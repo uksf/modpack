@@ -1,3 +1,14 @@
+<p align="center">
+    <img src="https://github.com/tbeswick96/UKSF-SR5-7-11/blob/master/Assets/uksfSource.png" width="256">
+</p>
+<p align="center">
+    <a href="https://github.com/tbeswick96/UKSF-SR5-7-11/issues">
+        <img src="https://img.shields.io/github/issues/tbeswick96/UKSF-SR5-7-11.svg?style=flat-square&label=Issues" alt="Issues">
+    </a>
+    <a href="https://github.com/tbeswick96/UKSF-SR5-7-11/blob/master/LICENSE">
+        <img src="https://img.shields.io/badge/license-GPLv3-blue.svg?style=flat-square" alt="License">
+    </a>
+</p>
 # UKSF SR5, SR7, SR11
 UKSF Combined repository for SR5 Mission Making, SR7 Advanced Development, SR11 Mod Development, and issue/feature tracking
 
