@@ -14,5 +14,4 @@ UKSF Combined repository for SR5 Mission Making, SR7 Advanced Development, SR11 
 # Contributing
 You have to be in UKSF to contribute, obviously.
 You must make pull requests if you want your contributions included.
-If contributing for SR5, please comment your sqf code, and use the headers as per the other files.
-If contributing for SR11, mods must use the CBA framework.
+See individual readmes for each SR section on contributing.
