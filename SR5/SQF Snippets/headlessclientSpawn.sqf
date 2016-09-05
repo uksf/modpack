@@ -33,3 +33,6 @@ HCs = [];
 //No spawning, but a useful thing for time acceleration to a defined time
 setTimeMultiplier 90;
 [{(((date select 2) > (_this select 0)) && (daytime > 4.5))}, {setTimeMultiplier 1;}, [_date]] call ace_common_fnc_waitUntilAndExecute;
+
+params ["_faction", "_number"]; //"Laraka", "6"
+_group = format ["configFile >> ""CfgGroups"" >> "East" >> ""UKSF_""%1 >> ""Infantry"" >> %1_%2", _faction, _number];
