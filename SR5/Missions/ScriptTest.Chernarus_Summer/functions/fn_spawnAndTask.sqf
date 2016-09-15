@@ -15,9 +15,9 @@
     Called from:
         ["MyMarker", "Genfor"] call UKSF_Mission_fnc_spawnAndTask;
 */
-params ["_markerName", "_factionName", "_group"];
+params ["_markerName", "_factionName"];
 
-[_markerName, _randomSpawn, _group] spawn {
+[_markerName, _factionName] spawn {
 	params ["_markerName", "_factionName", "_group"];
 
 	//Spawn units in random place within marker, at least 300m from nearest player

@@ -19,7 +19,6 @@
         ["MyMarker", 20, 40, "Genfor", false] call UKSF_Mission_fnc_spawnOnMarker;
 */
 params [["_markerName", ""], ["_maxAmount", 20], ["_poolSize", 40], ["_factionName", ""], ["_debug", false]];
-publicVariable "spawnAndTask";
 if(_markerName == "") exitWith {};
 if(_factionName == "") exitWith {};
 if(!isServer) exitWith {};
