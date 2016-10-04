@@ -13,4 +13,4 @@
 
 **UKSF Mods** - all custom UKSF mods and patches.
 
-Please use the [Issue Tracker](https://github.com/tbeswick96/UKSF-MM/issues) to report a bug, propose a feature, or suggest changes to existing features.
+Please use the [Issue Tracker](https://github.com/tbeswick96UKSF-SR5-7-11/issues) to report a bug, propose a feature, or suggest changes to existing features.

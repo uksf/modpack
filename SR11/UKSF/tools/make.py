@@ -30,7 +30,7 @@
 
 ###############################################################################
 
-__version__ = "0.7"
+__version__ = "0.8"
 
 import sys
 
@@ -51,15 +51,14 @@ import traceback
 import time
 import timeit
 import re
-
-from tempfile import mkstemp
+import fileinput
 
 if sys.platform == "win32":
     import winreg
 
 ######## GLOBALS #########
 project = "@uksf"
-project_version = "4.0.0"
+project_version = "0.0.1"
 arma3tools_path = ""
 work_drive = ""
 module_root = ""
@@ -75,6 +74,11 @@ pbo_name_prefix = "uksf_"
 signature_blacklist = []
 importantFiles = ["mod.cpp", "README.md", "mod.paa", "modLarge.paa", "AUTHORS.txt", "LICENSE"]
 versionFiles = ["mod.cpp", "README.md"]
+extrasFiles = []
+pluginFiles = []
+steamFiles = []
+extensions32 = []
+extensions64 = []
 
 ciBuild = False # Used for CI builds
 
@@ -328,8 +332,8 @@ def print_yellow(msg):
     color("reset")
 
 
-def copy_important_files(source_dir,destination_dir):
 
+def copy_important_files(source_dir,destination_dir):
     originalDir = os.getcwd()
 
     # Copy importantFiles
@@ -340,34 +344,67 @@ def copy_important_files(source_dir,destination_dir):
 
         for file in importantFiles:
             filePath = os.path.join(module_root_parent, file)
-            # Take only file name for destination path (to put it into root of release dir)
-            if "\\" in file:
-                count = file.count("\\")
-                file = file.split("\\", count)[-1]
-            print_green("Copying file => {}".format(os.path.join(source_dir,file)))
-            shutil.copyfile(os.path.join(source_dir,filePath),os.path.join(destination_dir,file))
+            if os.path.exists(filePath):
+                print_green("Copying file => {}".format(filePath))
+                shutil.copy(os.path.join(source_dir,filePath), destination_dir)
+            else:
+                missingFiles.append("{}".format(filePath))
+                print_error("Failed copying file => {}".format(filePath))
     except:
         print_error("COPYING IMPORTANT FILES.")
         raise
 
-    #copy all extension dlls
+    # Copy extrasFiles
     try:
-        os.chdir(os.path.join(source_dir))
-        print_blue("\nSearching for DLLs in {}".format(os.getcwd()))
-        filenames = glob.glob("*.dll")
+        source_extras_dir = os.path.join(source_dir, "extras")
+        destination_extras_dir = os.path.join(destination_dir, "extras")
+        print_blue("\nSearching for extras files in {}".format(source_extras_dir))
+        print("Source_dir: {}".format(source_extras_dir))
+        print("Destination_dir: {}".format(destination_extras_dir))
 
-        if not filenames:
-            print ("Empty SET")
+        if os.path.exists(destination_extras_dir):
+            shutil.rmtree(destination_extras_dir, True)
+        os.mkdir(destination_extras_dir)
 
-        for dll in filenames:
-            print_green("Copying dll => {}".format(os.path.join(source_dir,dll)))
-            if os.path.isfile(dll):
-                shutil.copyfile(os.path.join(source_dir,dll),os.path.join(destination_dir,dll))
+        for file in extrasFiles:
+            filePath = os.path.join(source_extras_dir, file)
+            if os.path.exists(filePath):
+                if os.path.isdir(filePath):
+                    print_green("Copying directory => {}".format(filePath))
+                    shutil.copytree(filePath, os.path.join(destination_extras_dir,file))
+                else:
+                    print_green("Copying file => {}".format(filePath))
+                    shutil.copy(filePath, destination_extras_dir)
+            else:
+                missingFiles.append("{}".format(filePath))
+                print_error("Failed copying file/directory => {}".format(filePath))
     except:
-        print_error("COPYING DLL FILES.")
+        print_error("COPYING EXTRAS FILES.")
         raise
-    finally:
-        os.chdir(originalDir)
+
+    # Copy pluginFiles
+    try:
+        source_plugin_dir = os.path.join(source_dir, "plugin")
+        destination_plugin_dir = os.path.join(destination_dir, "plugin")
+        print_blue("\nSearching for plugin files in {}".format(source_plugin_dir))
+        print("Source_dir: {}".format(source_plugin_dir))
+        print("Destination_dir: {}".format(destination_plugin_dir))
+
+        if os.path.exists(destination_plugin_dir):
+            shutil.rmtree(destination_plugin_dir, True)
+        os.mkdir(destination_plugin_dir)
+
+        for file in pluginFiles:
+            filePath = os.path.join(source_plugin_dir, file)
+            if os.path.exists(filePath):
+                print_green("Copying plugin dll => {}".format(filePath))
+                shutil.copy(filePath, destination_plugin_dir)
+            else:
+                missingFiles.append("{}".format(filePath))
+                print_error("Failed copying plugin dll => {}".format(filePath))
+    except:
+        print_error("COPYING PLUGIN FILES.")
+        raise
 
 
 def copy_optionals_for_building(mod,pbos):
@@ -467,9 +504,10 @@ def cleanup_optionals(mod):
 
 def purge(dir, pattern, friendlyPattern="files"):
     print_green("Deleting {} files from directory: {}".format(friendlyPattern,dir))
-    for f in os.listdir(dir):
-        if re.search(pattern, f):
-            os.remove(os.path.join(dir, f))
+    if os.path.exists(dir):
+        for f in os.listdir(dir):
+            if re.search(pattern, f):
+                os.remove(os.path.join(dir, f))
 
 
 def build_signature_file(file_name):
@@ -525,12 +563,13 @@ def addon_restore(modulePath):
     return True
 
 
-def get_project_version():
+def get_project_version(version_increments=[]):
     global project_version
     versionStamp = project_version
+    #do the magic based on https://github.com/acemod/ACE3/issues/806#issuecomment-95639048
 
     try:
-        scriptModPath = os.path.join(work_drive, prefix, "apache\script_mod.hpp")
+        scriptModPath = os.path.join(module_root, "main\script_version.hpp")
 
         if os.path.isfile(scriptModPath):
             f = open(scriptModPath, "r")
@@ -540,11 +579,31 @@ def get_project_version():
             if hpptext:
                 majorText = re.search(r"#define MAJOR (.*\b)", hpptext).group(1)
                 minorText = re.search(r"#define MINOR (.*\b)", hpptext).group(1)
-                patchlvlText = re.search(r"#define PATCHLVL (.*\b)", hpptext).group(1)
+                patchText = re.search(r"#define PATCHLVL (.*\b)", hpptext).group(1)
                 buildText = re.search(r"#define BUILD (.*\b)", hpptext).group(1)
 
+                # Increment version
+                if version_increments != []:
+                    if "major" in version_increments:
+                        majorText = int(majorText) + 1
+                    if "minor" in version_increments:
+                        minorText = int(minorText) + 1
+                    if "patch" in version_increments:
+                        patchText = int(patchText) + 1
+                    if "build" in version_increments:
+                        buildText = int(buildText) + 1
+
+                    print_green("Incrementing version to {}.{}.{}.{}".format(majorText,minorText,patchText,buildText))
+                    with open(scriptModPath, "w", newline="\n") as file:
+                        file.writelines([
+                            "#define MAJOR {}\n".format(majorText),
+                            "#define MINOR {}\n".format(minorText),
+                            "#define PATCHLVL {}\n".format(patchText),
+                            "#define BUILD {}\n".format(buildText)
+                        ])
+
                 if majorText:
-                    versionStamp = "{major}.{minor}.{patchlvl}.{build}".format(major=majorText,minor=minorText,patchlvl=patchlvlText,build=buildText)
+                    versionStamp = "{}.{}.{}.{}".format(majorText,minorText,patchText,buildText)
 
         else:
             print_error("A Critical file seems to be missing or inaccessible: {}".format(scriptModPath))
@@ -564,26 +623,19 @@ def get_project_version():
 
 
 def replace_file(filePath, oldSubstring, newSubstring):
-    #Create temp file
-    fh, absPath = mkstemp()
-    with open(absPath,'w') as newFile:
-        with open(filePath) as oldFile:
-            for line in oldFile:
-                newFile.write(line.replace(oldSubstring, newSubstring))
-    newFile.close()
-    #Remove original file
-    os.remove(filePath)
-    #Move new file
-    shutil.move(absPath, filePath)
+    for line in fileinput.input(filePath, inplace=True):
+        # Use stdout directly, print() adds newlines automatically
+        sys.stdout.write(line.replace(oldSubstring,newSubstring))
 
 
 def set_version_in_files():
     newVersion = project_version # MAJOR.MINOR.PATCH.BUILD
-    newVersionShort = newVersion[:-2] # MAJOR.MINOR.PATCH
+    newVersionArr = newVersion.split(".")
+    newVersionShort = ".".join((newVersionArr[0],newVersionArr[1],newVersionArr[2])) # MAJOR.MINOR.PATCH
 
     # Regex patterns
-    pattern = re.compile(r"(\b[0\.-9]+\b\.[0\.-9]+\b\.[0\.-9]+\b\.[0\.-9]+)") # MAJOR.MINOR.PATCH.BUILD
-    patternShort = re.compile(r"(\b[0\.-9]+\b\.[0\.-9]+\b\.[0\.-9]+)") # MAJOR.MINOR.PATCH
+    pattern = re.compile(r"([\d]+\.[\d]+\.[\d]+\.[\d]+)") # MAJOR.MINOR.PATCH.BUILD
+    patternShort = re.compile(r"([\d]+\.[\d]+\.[\d]+)") # MAJOR.MINOR.PATCH
 
     # Change versions in files containing version
     for i in versionFiles:
@@ -597,27 +649,37 @@ def set_version_in_files():
                 f.close()
 
                 if fileText:
-                    # Search and save version stamp, search short if long not found
-                    versionFound = re.findall(pattern, fileText)
-                    if not versionFound:
-                        versionFound = re.findall(patternShort, fileText)
+                    # Extension version file
+                    if "ACRE_VERSION_" in fileText:
+                        print_green("Changing extension version => {} in {}".format(newVersion, filePath))
+                        with open(filePath, "w", newline="\n") as file:
+                            file.writelines([
+                                "#define ACRE_VERSION_MAJOR {}\n".format(newVersionArr[0]),
+                                "#define ACRE_VERSION_MINOR {}\n".format(newVersionArr[1]),
+                                "#define ACRE_VERSION_SUBMINOR {}\n".format(newVersionArr[2]),
+                                "#define ACRE_VERSION_BUILD {}\n".format(newVersionArr[3])
+                            ])
+                        continue
+
+                    # Version string files
+                    # Search and save version stamp
+                    versionsFound = re.findall(pattern, fileText) + re.findall(patternShort, fileText)
+                    # Filter out sub-versions of other versions
+                    versionsFound = [j for i, j in enumerate(versionsFound) if all(j not in k for k in versionsFound[i + 1:])]
 
                     # Replace version stamp if any of the new version parts is higher than the one found
-                    if versionFound:
-                        # First item in the list findall returns
-                        versionFound = versionFound[0]
+                    for versionFound in versionsFound:
+                        if versionFound:
+                            # Use the same version length as the one found
+                            if len(versionFound) == len(newVersion):
+                                newVersionUsed = newVersion
+                            if len(versionFound) == len(newVersionShort):
+                                newVersionUsed = newVersionShort
 
-                        # Use the same version length as the one found
-                        if len(versionFound) == len(newVersion):
-                            newVersionUsed = newVersion
-                        if len(versionFound) == len(newVersionShort):
-                            newVersionUsed = newVersionShort
-
-                        # Print change and modify the file if changed
-                        if versionFound != newVersionUsed:
-                            print_green("Changing version {} => {} in {}".format(versionFound, newVersionUsed, filePath))
-                            replace_file(filePath, versionFound, newVersionUsed)
-
+                            # Print change and modify the file if changed
+                            if newVersionUsed and versionFound != newVersionUsed:
+                                print_green("Changing version {} => {} in {}".format(versionFound, newVersionUsed, filePath))
+                                replace_file(filePath, versionFound, newVersionUsed)
         except WindowsError as e:
             # Temporary file is still "in use" by Python, pass this exception
             pass
@@ -632,13 +694,17 @@ def stash_version_files_for_building():
     try:
         for file in versionFiles:
             filePath = os.path.join(module_root_parent, file)
-            # Take only file name for stash location if in subfolder (otherwise it gets removed when removing folders from release dir)
-            if "\\" in file:
-                count = file.count("\\")
-                file = file.split("\\", count)[-1]
-            stashPath = os.path.join(release_dir, file)
-            print("Temporarily stashing {} => {}.bak for version update".format(filePath, stashPath))
-            shutil.copy(filePath, "{}.bak".format(stashPath))
+            if os.path.exists(filePath):
+                # Take only file name for stash location if in subfolder (otherwise it gets removed when removing folders from release dir)
+                if "\\" in file:
+                    count = file.count("\\")
+                    file = file.split("\\", count)[-1]
+                stashPath = os.path.join(release_dir, file)
+                print("Temporarily stashing {} => {}.bak for version update".format(filePath, stashPath))
+                shutil.copy(filePath, "{}.bak".format(stashPath))
+            else:
+                print_error("Failed temporarily stashing {} for version update".format(filePath))
+                missingFiles.append("{}".format(filePath))
     except:
         print_error("Stashing version files failed")
         raise
@@ -650,6 +716,8 @@ def stash_version_files_for_building():
 
 def restore_version_files():
     try:
+        print_blue("\nRestoring version files...")
+
         for file in versionFiles:
             filePath = os.path.join(module_root_parent, file)
             # Take only file name for stash path if in subfolder (otherwise it gets removed when removing folders from release dir)
@@ -657,8 +725,9 @@ def restore_version_files():
                 count = file.count("\\")
                 file = file.split("\\", count)[-1]
             stashPath = os.path.join(release_dir, file)
-            print("Restoring {}".format(filePath))
-            shutil.move("{}.bak".format(stashPath), filePath)
+            if os.path.exists(filePath):
+                print("Restoring {}".format(filePath))
+                shutil.move("{}.bak".format(stashPath), filePath)
     except:
         print_error("Restoring version files failed")
         raise
@@ -667,9 +736,9 @@ def restore_version_files():
 
 def get_private_keyname(commitID,module="main"):
     global pbo_name_prefix
+    global project_version
 
-    aceVersion = get_project_version()
-    keyName = str("{prefix}{version}-{commit_id}".format(prefix=pbo_name_prefix,version=aceVersion,commit_id=commitID))
+    keyName = str("{prefix}{version}-{commit_id}".format(prefix=pbo_name_prefix,version=project_version,commit_id=commitID))
     return keyName
 
 
@@ -741,7 +810,7 @@ def version_stamp_pboprefix(module,commitID):
 
 def main(argv):
     """Build an Arma addon suite in a directory from rules in a make.cfg file."""
-    print_blue("\nmake.py for Arma, modified for Advanced Combat Environment v{}".format(__version__))
+    print_blue("\nmake.py for Arma, modified for Advanced Combat Radio Environment v{}".format(__version__))
 
     global project_version
     global arma3tools_path
@@ -757,6 +826,7 @@ def main(argv):
     global prefix
     global pbo_name_prefix
     global ciBuild
+    global missingFiles
 
     if sys.platform != "win32":
         print_error("Non-Windows platform (Cygwin?). Please re-run from cmd.")
@@ -771,11 +841,11 @@ def main(argv):
         raise Exception("BadTools","Arma 3 Tools are not installed correctly or the P: drive needs to be created.")
 
     # Default behaviors
-    test = True # Copy to Arma 3 directory?
+    test = False # Copy to Arma 3 directory?
     arg_modules = False # Only build modules on command line?
     use_pboproject = True # Default to pboProject build tool
     make_target = "DEFAULT" # Which section in make.cfg to use for the build
-    new_key = False # Make a new key and use it to sign?
+    new_key = True # Make a new key and use it to sign?
     quiet = False # Suppress output from build tool?
 
     # Parse arguments
@@ -825,12 +895,9 @@ See the make.cfg file for additional build options.
 
     if "release" in argv:
         make_release_zip = True
-        release_version = argv[argv.index("release") + 1]
-        argv.remove(release_version)
         argv.remove("release")
     else:
         make_release_zip = False
-        release_version = project_version
 
     if "target" in argv:
         make_target = argv[argv.index("target") + 1]
@@ -860,8 +927,22 @@ See the make.cfg file for additional build options.
     else:
         version_update = False
 
-    if "--ci" in argv:
-        argv.remove("--ci")
+    version_increments = []
+    if "increment_build" in argv:
+        argv.remove("increment_build")
+        version_increments.append("build")
+    if "increment_patch" in argv:
+        argv.remove("increment_patch")
+        version_increments.append("patch")
+    if "increment_minor" in argv:
+        argv.remove("increment_minor")
+        version_increments.append("minor")
+    if "increment_major" in argv:
+        argv.remove("increment_major")
+        version_increments.append("major")
+
+    if "ci" in argv:
+        argv.remove("ci")
         ciBuild = True
 
     print_yellow("\nCheck external references is set to {}".format(str(check_external)))
@@ -927,21 +1008,21 @@ See the make.cfg file for additional build options.
         optionals_root = os.path.join(module_root_parent, "optionals")
         extensions_root = os.path.join(module_root_parent, "extensions")
 
-        commit_id = get_commit_ID()
-        key_name = versionStamp = get_private_keyname(commit_id)
-        print_green ("module_root: {}".format(module_root))
-
         if (os.path.isdir(module_root)):
             os.chdir(module_root)
         else:
             print_error ("Directory {} does not exist.".format(module_root))
-            sys.exit()
+            sys.exit(1)
+
+        commit_id = get_commit_ID()
+        get_project_version(version_increments)
+        key_name = versionStamp = get_private_keyname(commit_id)
+        print_green ("module_root: {}".format(module_root))
 
         if (os.path.isdir(optionals_root)):
             print_green ("optionals_root: {}".format(optionals_root))
         else:
-            print_error ("Directory {} does not exist.".format(optionals_root))
-            sys.exit()
+            print("optionals_root does not exist: {}".format(optionals_root))
 
         print_green ("release_dir: {}".format(release_dir))
 
@@ -993,7 +1074,6 @@ See the make.cfg file for additional build options.
         cache = {}
 
     # Check the build version (from main) with cached version - forces a full rebuild when version changes
-    project_version = get_project_version()
     cacheVersion = "None";
     if 'cacheVersion' in cache:
         cacheVersion = cache['cacheVersion']
@@ -1017,6 +1097,9 @@ See the make.cfg file for additional build options.
             print_error("Cannot create release directory")
             raise
 
+    failedBuilds = []
+    missingFiles = []
+
     # Update version stamp in all files that contain it
     # Update version only for release if full update not requested (backup and restore files)
     print_blue("\nChecking for obsolete version numbers...")
@@ -1027,14 +1110,12 @@ See the make.cfg file for additional build options.
         set_version_in_files();
         print("Version in files has been changed, make sure you commit and push the updates!")
 
-    amountOfBuildsFailed = 0
-    namesOfBuildsFailed = []
-
     try:
         # Temporarily copy optionals_root for building. They will be removed later.
-        optionals_modules = []
-        optional_files = []
-        copy_optionals_for_building(optionals_modules,optional_files)
+        if (os.path.isdir(optionals_root)):
+            optionals_modules = []
+            optional_files = []
+            copy_optionals_for_building(optionals_modules,optional_files)
 
         # Get list of subdirs in make root.
         dirs = next(os.walk(module_root))[1]
@@ -1099,20 +1180,50 @@ See the make.cfg file for additional build options.
             if (file.endswith(".pbo") and os.path.isfile(os.path.join(obsolete_check_path,file))):
                 if check_for_obsolete_pbos(module_root, file):
                     fileName = os.path.splitext(file)[0]
-                    print_yellow("Removing obsolete file => {}".format(file))
+                    print_yellow("Removing obsolete pbo => {}".format(file))
                     purge(obsolete_check_path, "{}\..".format(fileName), "{}.*".format(fileName))
 
         obsolete_check_path = os.path.join(module_root, release_dir, project)
         for file in os.listdir(obsolete_check_path):
             if (file.endswith(".dll") and os.path.isfile(os.path.join(obsolete_check_path,file))):
-                if check_for_obsolete_pbos(extensions_root, file):
-                    fileName = os.path.splitext(file)[0]
-                    print_yellow("Removing obsolete file => {}".format(file))
+                if not os.path.exists(os.path.join(module_root_parent, file)):
+                    print_yellow("Removing obsolete dll => {}".format(file))
                     try:
                         os.remove(os.path.join(obsolete_check_path,file))
                     except:
                         print_error("\nFailed to delete {}".format(os.path.join(obsolete_check_path,file)))
                         pass
+
+        obsolete_check_path = os.path.join(module_root, release_dir, project, "plugin")
+        if os.path.exists(obsolete_check_path):
+            for file in os.listdir(obsolete_check_path):
+                if (file.endswith(".dll") and os.path.isfile(os.path.join(obsolete_check_path,file))):
+                    if not os.path.exists(os.path.join(module_root_parent, "plugin", file)):
+                        print_yellow("Removing obsolete plugin dll => {}".format(file))
+                        try:
+                            os.remove(os.path.join(obsolete_check_path,file))
+                        except:
+                            print_error("\nFailed to delete {}".format(os.path.join(obsolete_check_path,file)))
+                            pass
+            if len(os.listdir(obsolete_check_path)) == 0:
+                shutil.rmtree(obsolete_check_path, True)
+
+        obsolete_check_path = os.path.join(module_root, release_dir, project, "extras")
+        if os.path.exists(obsolete_check_path):
+            for file in os.listdir(obsolete_check_path):
+                if not os.path.exists(os.path.join(module_root_parent, "extras", file)):
+                    try:
+                        if os.path.isdir(os.path.join(obsolete_check_path,file)):
+                            print_yellow("Removing obsolete extras directory => {}".format(file))
+                            shutil.rmtree(os.path.join(obsolete_check_path,file), True)
+                        else:
+                            print_yellow("Removing obsolete extras file => {}".format(file))
+                            os.remove(os.path.join(obsolete_check_path,file))
+                    except:
+                        print_error("\nFailed to delete {}".format(os.path.join(obsolete_check_path,file)))
+                        pass
+            if len(os.listdir(obsolete_check_path)) == 0:
+                shutil.rmtree(obsolete_check_path, True)
 
         # For each module, prep files and then build.
         print_blue("\nBuilding...")
@@ -1253,8 +1364,7 @@ See the make.cfg file for additional build options.
                         print_error("pboProject return code == {}".format(str(ret)))
                         print_error("Module not successfully built/signed. Check your {}temp\{}_packing.log for more info.".format(work_drive,module))
                         print ("Resuming build...")
-                        amountOfBuildsFailed += 1
-                        namesOfBuildsFailed.append("{}".format(module))
+                        failedBuilds.append("{}".format(module))
                         continue
 
                     # Back to the root
@@ -1350,7 +1460,8 @@ See the make.cfg file for additional build options.
 
     finally:
         copy_important_files(module_root_parent,os.path.join(release_dir, project))
-        cleanup_optionals(optionals_modules)
+        if (os.path.isdir(optionals_root)):
+            cleanup_optionals(optionals_modules)
         if not version_update:
             restore_version_files()
 
@@ -1370,8 +1481,8 @@ See the make.cfg file for additional build options.
 
     # Make release
     if make_release_zip:
-        release_name = "{}_{}".format(zipPrefix, release_version)
-        print_blue("\nMaking release: {}.zip".format(release_name))
+        release_name = "{}_{}".format(zipPrefix, project_version)
+        release_name_steam = "{}_steam".format(release_name)
 
         try:
             # Delete all log files
@@ -1386,10 +1497,25 @@ See the make.cfg file for additional build options.
                     os.remove(os.path.join(release_dir, file))
 
             # Create a zip with the contents of release folder in it
+            print_blue("\nMaking release: {}.zip ...".format(release_name))
+            print("Packing...")
             release_zip = shutil.make_archive("{}".format(release_name), "zip", release_dir)
+
+            # Create a zip with Steam extension
+            print_blue("\nMaking release: {}.zip".format(release_name_steam))
+            for file in steamFiles:
+                steam_file = os.path.join(module_root_parent,file)
+                if os.path.exists(steam_file):
+                    print("Copying file => {}".format(steam_file))
+                    shutil.copy(steam_file, os.path.join(release_dir, project))
+            print("Packing...")
+            release_zip_steam = shutil.make_archive("{}".format(release_name_steam), "zip", release_dir)
+
             # Move release zip to release folder
             shutil.copy(release_zip, release_dir)
+            shutil.copy(release_zip_steam, release_dir)
             os.remove(release_zip)
+            os.remove(release_zip_steam)
         except:
             raise
             print_error("Could not make release.")
@@ -1421,15 +1547,23 @@ See the make.cfg file for additional build options.
             except:
                 print_error("Could not copy files. Is Arma 3 running?")
 
-    if amountOfBuildsFailed > 0:
-        print_error("Build failed. {} pbos failed.".format(amountOfBuildsFailed))
+    if len(failedBuilds) > 0 or len(missingFiles) > 0:
+        if len(failedBuilds) > 0:
+            print()
+            print_error("Build failed! {} PBOs failed!".format(len(failedBuilds)))
+            for failedBuild in failedBuilds:
+                print("- {} failed.".format(failedBuild))
 
-        for failedModuleName in namesOfBuildsFailed:
-            print("- {} failed.".format(failedModuleName))
+        if len(missingFiles) > 0:
+            missingFiles = set(missingFiles)
+            print()
+            print_error("Missing files! {} files not found!".format(len(missingFiles)))
+            for missingFile in missingFiles:
+                print("- {} failed.".format(missingFile))
 
         sys.exit(1)
     else:
-        print_green("\Completed with 0 errors.")
+        print_green("\nCompleted with 0 errors.")
 
 if __name__ == "__main__":
     start_time = timeit.default_timer()

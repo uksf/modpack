@@ -6,13 +6,12 @@ class CfgPatches {
         units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {"uksf_main"};
+        requiredAddons[] = {"uksf_main", "uksf_common"};
         author = QUOTE(UKSF);
         authors[] = {"Beswick.T"};
-        url = QUOTE(www.uk-sf.com);
-        VERSION_CONFIG_COMMON;
+        url = ECSTRING(main,URL);
+        VERSION_CONFIG;
     };
 };
 
-
-
+#include "CfgEventHandlers.hpp"

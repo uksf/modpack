@@ -1,11 +1,11 @@
-#define COMPONENT main
-#define COMPONENT_BEAUTIFIED Main
+#define COMPONENT common
+#define COMPONENT_BEAUTIFIED common
 #include "\u\uksf\addons\main\script_mod.hpp"
 
-// #define DEBUG_MODE_FULL
-// #define DISABLE_COMPILE_CACHE
-// #define CBA_DEBUG_SYNCHRONOUS
-// #define ENABLE_PERFORMANCE_COUNTERS
+#define DEBUG_MODE_FULL
+#define DISABLE_COMPILE_CACHE
+#define CBA_DEBUG_SYNCHRONOUS
+#define ENABLE_PERFORMANCE_COUNTERS
 
 #ifdef DEBUG_ENABLED_COMMON
     #define DEBUG_MODE_FULL

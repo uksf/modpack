@@ -872,10 +872,11 @@ class CfgPatches {
 
 			//ACE
 			"ace_main",
-			"ace_common"
+			"ace_common",
+			"ace_interaction"
         };
-        author = ECSTRING(common,UKSF);
-        url = CSTRING(URL);
+        author = QUOTE(UKSF);
+        url = QUOTE(www.uk-sf.com);
         VERSION_CONFIG;
     };
 };

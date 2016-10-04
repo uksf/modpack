@@ -1,9 +1,8 @@
 /**
 STACK TRACING
 **/
-//#define ENABLE_CALLSTACK
-//#define ENABLE_PERFORMANCE_COUNTERS
-//#define DEBUG_EVENTS
+#define ENABLE_CALLSTACK
+#define DEBUG_EVENTS
 
 #ifdef ENABLE_CALLSTACK
     #define CALLSTACK(function) {private ['_ret']; if(UKSF_IS_ERRORED) then { ['AUTO','AUTO'] call UKSF_DUMPSTACK_FNC; UKSF_IS_ERRORED = false; }; UKSF_IS_ERRORED = true; UKSF_STACK_TRACE set [UKSF_STACK_DEPTH, [diag_tickTime, __FILE__, __LINE__, UKSF_CURRENT_FUNCTION, 'ANON', _this]]; UKSF_STACK_DEPTH = UKSF_STACK_DEPTH + 1; UKSF_CURRENT_FUNCTION = 'ANON'; _ret = _this call ##function; UKSF_STACK_DEPTH = UKSF_STACK_DEPTH - 1; UKSF_IS_ERRORED = false; _ret;}
@@ -18,11 +17,10 @@ STACK TRACING
     #define DUMPSTACK
 #endif
 
-
 /**
 PERFORMANCE COUNTERS SECTION
 **/
-//#define ENABLE_PERFORMANCE_COUNTERS
+#define ENABLE_PERFORMANCE_COUNTERS
 
 #ifdef ENABLE_PERFORMANCE_COUNTERS
     #define CBA_fnc_addPerFrameHandler { _ret = [(_this select 0), (_this select 1), (_this select 2), #function] call CBA_fnc_addPerFrameHandler; if(isNil "UKSF_PFH_COUNTER" ) then { UKSF_PFH_COUNTER=[]; }; UKSF_PFH_COUNTER pushBack [[_ret, __FILE__, __LINE__], [(_this select 0), (_this select 1), (_this select 2)]];  _ret }
