@@ -30,7 +30,7 @@ class GVAR(menu) {
 		class btnLogout : btnClose {
 			text = QUOTE(Logout);
 			y = 11 * GUI_GRID_H;
-			action = QUOTE([] call DFUNC(login););
+			action = QUOTE([] call FUNC(login););
 		};
 	};
 };
@@ -38,7 +38,7 @@ class GVAR(menu) {
 class GVAR(login) {
 	idd = 85731;
 	movingEnable = false;
-	onLoad = QUOTE(call DFUNC(initLogin));
+	onLoad = QUOTE(call FUNC(initLogin));
 	controlsBackground[] = {};
 	objects[] = {};
 	class controls {
@@ -73,7 +73,7 @@ class GVAR(login) {
 			h = 1.5 * GUI_GRID_H;
 		};
 		class btnLogin : btnClose {
-			action = QUOTE([] call DFUNC(login););
+			action = QUOTE([] call FUNC(login););
 			text = QUOTE(Login);
 			y = 11 * GUI_GRID_H;
 		};

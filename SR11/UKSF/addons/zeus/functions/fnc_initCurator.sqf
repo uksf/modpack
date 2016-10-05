@@ -22,4 +22,4 @@ SETMVAR(GVAR(curatorName), "");
 
 INFO("Curator created");
 
-[QGVAR(disconnectEHKey), "onPlayerDisconnected", DFUNC(disconnect), [_id, _uid, _name, _jip, _owner]] call BIS_fnc_addStackedEventHandler;
+[QGVAR(disconnectEHKey), "onPlayerDisconnected", FUNC(disconnect), [_id, _uid, _name, _jip, _owner]] call BIS_fnc_addStackedEventHandler;

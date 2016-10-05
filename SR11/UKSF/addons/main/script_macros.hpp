@@ -9,18 +9,8 @@
 #include "\x\cba\addons\main\script_macros_common.hpp"
 #include "\x\cba\addons\xeh\script_xeh.hpp"
 
-// Default versioning level
-#define DEFAULT_VERSIONING_LEVEL 2
-
 #define DGVAR(varName)    if(isNil "UKSF_DEBUG_NAMESPACE") then { UKSF_DEBUG_NAMESPACE = []; }; if(!(QUOTE(GVAR(varName)) in UKSF_DEBUG_NAMESPACE)) then { PUSH(UKSF_DEBUG_NAMESPACE, QUOTE(GVAR(varName))); }; GVAR(varName)
 #define DVAR(varName)     if(isNil "UKSF_DEBUG_NAMESPACE") then { UKSF_DEBUG_NAMESPACE = []; }; if(!(QUOTE(varName) in UKSF_DEBUG_NAMESPACE)) then { PUSH(UKSF_DEBUG_NAMESPACE, QUOTE(varName)); }; varName
-#define DFUNC(var1) TRIPLES(ADDON,fnc,var1)
-#define DEFUNC(var1,var2) TRIPLES(DOUBLES(PREFIX,var1),fnc,var2)
-
-#undef QFUNC
-#undef QEFUNC
-#define QFUNC(var1) QUOTE(DFUNC(var1))
-#define QEFUNC(var1,var2) QUOTE(DEFUNC(var1,var2))
 
 #define GETVAR_SYS(var1,var2) getVariable [ARR_2(QUOTE(var1),var2)]
 #define SETVAR_SYS(var1,var2) setVariable [ARR_2(QUOTE(var1),var2)]
@@ -66,23 +56,4 @@
     count = COUNT; \
 }
 
-#ifdef DISABLE_COMPILE_CACHE
-    #undef PREP
-    #define PREP(fncName) DFUNC(fncName) = compile preprocessFileLineNumbers QPATHTOF(functions\DOUBLES(fnc,fncName).sqf)
-#else
-    #undef PREP
-    #define PREP(fncName) [QPATHTOF(functions\DOUBLES(fnc,fncName).sqf), QFUNC(fncName)] call CBA_fnc_compileFunction
-#endif
-
-#define PREP_MODULE(folder) [] call compile preprocessFileLineNumbers QPATHTOF(folder\__PREP__.sqf)
-
 #define UKSF_isHC (!hasInterface && !isDedicated)
-
-#ifdef DEBUG_MODE_FULL
-	#define TRACE_10(MESSAGE,A,B,C,D,E,F,G,H,I,J) \
-    	[THIS_FILE_, __LINE__, PFORMAT_10(MESSAGE,A,B,C,D,E,F,G,H,I,J)] call CBA_fnc_log
-#else
-   #define TRACE_10(MESSAGE,A,B,C,D,E,F,G,H,I,J) /* disabled */
-#endif
-
-#include "script_debug.hpp"
