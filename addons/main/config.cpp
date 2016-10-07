@@ -893,5 +893,3 @@ class CfgMods {
         description = "Issue Tracker: https://github.com/tbeswick96/UKSF-SR5-7-11/issues";
     };
 };
-
-

@@ -1,5 +1,5 @@
 #define COMPONENT zeus
-#define COMPONENT_BEAUTIFIED zeus
+#define COMPONENT_BEAUTIFIED Zeus
 #include "\u\uksf\addons\main\script_mod.hpp"
 
 #define DEBUG_MODE_FULL

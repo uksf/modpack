@@ -754,7 +754,7 @@ def get_commit_ID():
         commit_id = subprocess.check_output(["git", "rev-parse", "HEAD"])
         commit_id = str(commit_id, "utf-8")[:8]
     except:
-        print_error("FAILED TO DETERMINE COMMIT ID.")
+        print_error("FAILED TO DETERMINE COMMIT ID." + curDir)
         print_yellow("Verify that \GIT\BIN or \GIT\CMD is in your system path or user path.")
         commit_id = "NOGIT"
         raise
@@ -810,7 +810,7 @@ def version_stamp_pboprefix(module,commitID):
 
 def main(argv):
     """Build an Arma addon suite in a directory from rules in a make.cfg file."""
-    print_blue("\nmake.py for Arma, modified for Advanced Combat Radio Environment v{}".format(__version__))
+    print_blue("\nmake.py for Arma, modified for UKSF v{}".format(__version__))
 
     global project_version
     global arma3tools_path

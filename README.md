@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://github.com/tbeswick96/UKSF-SR5-7-11/blob/master/Assets/uksfSource.png" width="256">
+    <img src="https://github.com/tbeswick96/UKSF-SR5-7-11/blob/master/assets/uksfSource.png" width="256">
 </p>
 <p align="center">
     <a href="https://github.com/tbeswick96/UKSF-SR5-7-11/issues">
@@ -18,14 +18,24 @@ UKSF Combined repository for SR5 Mission Making, SR7 Advanced Development, SR11 
 #### SR7 Advanced Development
 - Website & plugins for ArmA
 
-#### SR11 Mod Development
-- Mods used by the unit
-- Mods will not be hosted unhere unless they are a collaboration
+## SR11 Mod Development
 
 #### Contributing
-You have to be in UKSF to contribute, obviously.
-You can help out with the ongoing development by looking for potential bugs in our modpack, or by contributing new features. To contribute something to our mods, submit pull requests for review by SR11. Mods must be based on the CBA framework (See SR11 Readme)
+To contribute to our modpack, you are welcome to work on your own mods.
+They must be cleared by SR11 and command beforehand, otherwise you may be let down once it's done. 
+You can help out with the ongoing development by looking for potential bugs in our modpack, or by contributing new features. To contribute something to our mods, submit pull requests for review by SR11. Mods must be based on the CBA framework.
+[How to make a feature request](https://github.com/tbeswick96/UKSF-SR5-7-11/wiki/How-to-make-a-feature-request)
 
+####Setting up CBA framework
+I would prefer mods to be built using the CBA framework, however, if the mod is simple, build it how you like.
+If it involves more than a couple of scripts/features, then use the CBA framework.
+
+Follow the ACE3 guide on how to set this up.
+Certain areas will not apply (you don't need to clone ACE3, for example)
+Best talk to SqnLdr.Beswick.T for help on setting this up.
+- [Setting up the development environment](http://ace3mod.com/wiki/development/setting-up-the-development-environment.html)
+
+## Bugs, Issues, Suggestions
 Use our [Issue Tracker](https://github.com/tbeswick96/UKSF-SR5-7-11/issues) to report a bug, propose a feature, or suggest changes to the existing ones. See also:
 - [How to report an issue](https://github.com/tbeswick96/UKSF-SR5-7-11/wiki/How-to-report-an-issue)
 - [How to make a feature request](https://github.com/tbeswick96/UKSF-SR5-7-11/wiki/How-to-make-a-feature-request)
