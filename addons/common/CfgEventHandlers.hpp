@@ -15,3 +15,19 @@ class Extended_PostInit_EventHandlers {
         init = QUOTE(call COMPILE_FILE(XEH_postInit));
     };
 };
+
+class Extended_Init_EventHandlers {
+	class CAManBase {
+	    class ADDON {
+	        init = QUOTE(_this call FUNC(gearCheck));
+	    };
+	};
+};
+
+class Extended_Killed_EventHandlers {
+	class CAManBase {
+	    class ADDON {
+	        killed = QUOTE(_this call FUNC(stopKilledVoices));
+	    };
+	};
+};

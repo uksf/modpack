@@ -21,7 +21,13 @@ params ["_id", "_uid", "_name", "_jip", "_owner"];
 
 INFO_1("%1 disconnected", _name);
 
-if(_name == GETMVAR(GVAR(curatorName),"")) exitWith {
-	SETMVAR(GVAR(curatorName), "");
-	INFO("Curator name reset");
-};
+_names = missionNamespace getVariable [QGVAR(curatorNames), ["","","","",""]];
+{
+	if(_name == _x) then {
+		_names set [_forEachIndex, ""];
+	};
+} forEach _names;
+
+SETMVAR(GVAR(curatorNames), _names);
+
+INFO_1("%1 removed from Curator names", _name);

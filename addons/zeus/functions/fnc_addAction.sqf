@@ -15,7 +15,7 @@
 
 params ["_unit"];
 
-_action = ["OpenZeusMenu", "Open Zeus Menu", "\A3\Ui_F_Curator\Data\Logos\arma3_zeus_icon_ca.paa", {call FUNC(openMenu)}, {true}] call ace_interact_menu_fnc_createAction;
+_action = [QGVAR(zeusMainAction), QUOTE(Zeus), ZEUS_ICON, {}, {true}, {call FUNC(getChildren)}] call ace_interact_menu_fnc_createAction;
 _path = [_unit, 1, ["ACE_SelfActions"], _action] call ace_interact_menu_fnc_addActionToObject;
 
-INFO_2("Respawned, action added: %1, at path %2", _action select 0, _path);
+INFO_1("Respawned, actions added: %1", _action select 0);

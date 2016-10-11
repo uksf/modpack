@@ -66,7 +66,7 @@ make_root = ""
 release_dir = ""
 module_root_parent = ""
 optionals_root = ""
-key_name = ""
+key_name = "uksf"
 key = ""
 dssignfile = ""
 prefix = "uksf"
@@ -74,11 +74,6 @@ pbo_name_prefix = "uksf_"
 signature_blacklist = []
 importantFiles = ["mod.cpp", "README.md", "mod.paa", "modLarge.paa", "AUTHORS.txt", "LICENSE"]
 versionFiles = ["mod.cpp", "README.md"]
-extrasFiles = []
-pluginFiles = []
-steamFiles = []
-extensions32 = []
-extensions64 = []
 
 ciBuild = False # Used for CI builds
 
@@ -354,58 +349,6 @@ def copy_important_files(source_dir,destination_dir):
         print_error("COPYING IMPORTANT FILES.")
         raise
 
-    # Copy extrasFiles
-    try:
-        source_extras_dir = os.path.join(source_dir, "extras")
-        destination_extras_dir = os.path.join(destination_dir, "extras")
-        print_blue("\nSearching for extras files in {}".format(source_extras_dir))
-        print("Source_dir: {}".format(source_extras_dir))
-        print("Destination_dir: {}".format(destination_extras_dir))
-
-        if os.path.exists(destination_extras_dir):
-            shutil.rmtree(destination_extras_dir, True)
-        os.mkdir(destination_extras_dir)
-
-        for file in extrasFiles:
-            filePath = os.path.join(source_extras_dir, file)
-            if os.path.exists(filePath):
-                if os.path.isdir(filePath):
-                    print_green("Copying directory => {}".format(filePath))
-                    shutil.copytree(filePath, os.path.join(destination_extras_dir,file))
-                else:
-                    print_green("Copying file => {}".format(filePath))
-                    shutil.copy(filePath, destination_extras_dir)
-            else:
-                missingFiles.append("{}".format(filePath))
-                print_error("Failed copying file/directory => {}".format(filePath))
-    except:
-        print_error("COPYING EXTRAS FILES.")
-        raise
-
-    # Copy pluginFiles
-    try:
-        source_plugin_dir = os.path.join(source_dir, "plugin")
-        destination_plugin_dir = os.path.join(destination_dir, "plugin")
-        print_blue("\nSearching for plugin files in {}".format(source_plugin_dir))
-        print("Source_dir: {}".format(source_plugin_dir))
-        print("Destination_dir: {}".format(destination_plugin_dir))
-
-        if os.path.exists(destination_plugin_dir):
-            shutil.rmtree(destination_plugin_dir, True)
-        os.mkdir(destination_plugin_dir)
-
-        for file in pluginFiles:
-            filePath = os.path.join(source_plugin_dir, file)
-            if os.path.exists(filePath):
-                print_green("Copying plugin dll => {}".format(filePath))
-                shutil.copy(filePath, destination_plugin_dir)
-            else:
-                missingFiles.append("{}".format(filePath))
-                print_error("Failed copying plugin dll => {}".format(filePath))
-    except:
-        print_error("COPYING PLUGIN FILES.")
-        raise
-
 
 def copy_optionals_for_building(mod,pbos):
     src_directories = os.listdir(optionals_root)
@@ -649,18 +592,6 @@ def set_version_in_files():
                 f.close()
 
                 if fileText:
-                    # Extension version file
-                    if "ACRE_VERSION_" in fileText:
-                        print_green("Changing extension version => {} in {}".format(newVersion, filePath))
-                        with open(filePath, "w", newline="\n") as file:
-                            file.writelines([
-                                "#define ACRE_VERSION_MAJOR {}\n".format(newVersionArr[0]),
-                                "#define ACRE_VERSION_MINOR {}\n".format(newVersionArr[1]),
-                                "#define ACRE_VERSION_SUBMINOR {}\n".format(newVersionArr[2]),
-                                "#define ACRE_VERSION_BUILD {}\n".format(newVersionArr[3])
-                            ])
-                        continue
-
                     # Version string files
                     # Search and save version stamp
                     versionsFound = re.findall(pattern, fileText) + re.findall(patternShort, fileText)
@@ -1006,7 +937,6 @@ See the make.cfg file for additional build options.
         module_root_parent = os.path.abspath(os.path.join(os.path.join(work_drive, prefix), os.pardir))
         module_root = cfg.get(make_target, "module_root", fallback=os.path.join(make_root_parent, "addons"))
         optionals_root = os.path.join(module_root_parent, "optionals")
-        extensions_root = os.path.join(module_root_parent, "extensions")
 
         if (os.path.isdir(module_root)):
             os.chdir(module_root)
@@ -1182,48 +1112,6 @@ See the make.cfg file for additional build options.
                     fileName = os.path.splitext(file)[0]
                     print_yellow("Removing obsolete pbo => {}".format(file))
                     purge(obsolete_check_path, "{}\..".format(fileName), "{}.*".format(fileName))
-
-        obsolete_check_path = os.path.join(module_root, release_dir, project)
-        for file in os.listdir(obsolete_check_path):
-            if (file.endswith(".dll") and os.path.isfile(os.path.join(obsolete_check_path,file))):
-                if not os.path.exists(os.path.join(module_root_parent, file)):
-                    print_yellow("Removing obsolete dll => {}".format(file))
-                    try:
-                        os.remove(os.path.join(obsolete_check_path,file))
-                    except:
-                        print_error("\nFailed to delete {}".format(os.path.join(obsolete_check_path,file)))
-                        pass
-
-        obsolete_check_path = os.path.join(module_root, release_dir, project, "plugin")
-        if os.path.exists(obsolete_check_path):
-            for file in os.listdir(obsolete_check_path):
-                if (file.endswith(".dll") and os.path.isfile(os.path.join(obsolete_check_path,file))):
-                    if not os.path.exists(os.path.join(module_root_parent, "plugin", file)):
-                        print_yellow("Removing obsolete plugin dll => {}".format(file))
-                        try:
-                            os.remove(os.path.join(obsolete_check_path,file))
-                        except:
-                            print_error("\nFailed to delete {}".format(os.path.join(obsolete_check_path,file)))
-                            pass
-            if len(os.listdir(obsolete_check_path)) == 0:
-                shutil.rmtree(obsolete_check_path, True)
-
-        obsolete_check_path = os.path.join(module_root, release_dir, project, "extras")
-        if os.path.exists(obsolete_check_path):
-            for file in os.listdir(obsolete_check_path):
-                if not os.path.exists(os.path.join(module_root_parent, "extras", file)):
-                    try:
-                        if os.path.isdir(os.path.join(obsolete_check_path,file)):
-                            print_yellow("Removing obsolete extras directory => {}".format(file))
-                            shutil.rmtree(os.path.join(obsolete_check_path,file), True)
-                        else:
-                            print_yellow("Removing obsolete extras file => {}".format(file))
-                            os.remove(os.path.join(obsolete_check_path,file))
-                    except:
-                        print_error("\nFailed to delete {}".format(os.path.join(obsolete_check_path,file)))
-                        pass
-            if len(os.listdir(obsolete_check_path)) == 0:
-                shutil.rmtree(obsolete_check_path, True)
 
         # For each module, prep files and then build.
         print_blue("\nBuilding...")
@@ -1482,7 +1370,6 @@ See the make.cfg file for additional build options.
     # Make release
     if make_release_zip:
         release_name = "{}_{}".format(zipPrefix, project_version)
-        release_name_steam = "{}_steam".format(release_name)
 
         try:
             # Delete all log files
@@ -1501,21 +1388,9 @@ See the make.cfg file for additional build options.
             print("Packing...")
             release_zip = shutil.make_archive("{}".format(release_name), "zip", release_dir)
 
-            # Create a zip with Steam extension
-            print_blue("\nMaking release: {}.zip".format(release_name_steam))
-            for file in steamFiles:
-                steam_file = os.path.join(module_root_parent,file)
-                if os.path.exists(steam_file):
-                    print("Copying file => {}".format(steam_file))
-                    shutil.copy(steam_file, os.path.join(release_dir, project))
-            print("Packing...")
-            release_zip_steam = shutil.make_archive("{}".format(release_name_steam), "zip", release_dir)
-
             # Move release zip to release folder
             shutil.copy(release_zip, release_dir)
-            shutil.copy(release_zip_steam, release_dir)
             os.remove(release_zip)
-            os.remove(release_zip_steam)
         except:
             raise
             print_error("Could not make release.")

@@ -2,10 +2,9 @@ PREP(ping);
 PREP(loop);
 PREP(getNewAnimation);
 
-PREP(initCurator);
+PREP(initCurators);
 PREP(disconnect);
 PREP(addAction);
-PREP(openMenu);
-PREP(initLogin);
-PREP(login);
-PREP(serverLogin);
+PREP(getChildren);
+PREP(getName);
+PREP(actionStatement);

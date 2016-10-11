@@ -4,6 +4,7 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
-GVAR(screenState) = 0;
+GVAR(curatorObjects) = [objNull,objNull,objNull,objNull,objNull];
+GVAR(curatorNames) = ["","","","",""];
 
 ADDON = true;

@@ -2,7 +2,7 @@
 
 if(isServer) then {
 	call FUNC(ping);
-	call FUNC(initCurator);
+	call FUNC(initCurators);
 };
 
 if(hasInterface) then {
