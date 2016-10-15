@@ -2,9 +2,9 @@ class CBA_Extended_EventHandlers;
 
 class CfgVehicles {
 	class Man;
-	class CAManBase : Man {
+	class CAManBase: Man {
 		class EventHandlers {
-			class CBA_Extended_EventHandlers : CBA_Extended_EventHandlers {};
+			class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
 		};
 	};
 

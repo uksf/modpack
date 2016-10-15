@@ -237,7 +237,7 @@ class ACE_gui_staticBase {
 };
 
 class RscListBox;
-class ACE_gui_listBoxBase : RscListBox{
+class ACE_gui_listBoxBase: RscListBox{
   type = CT_LISTBOX;
   style = ST_MULTI;
   font = FONT_ACE;

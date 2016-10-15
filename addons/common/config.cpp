@@ -17,4 +17,5 @@ class CfgPatches {
 #include "CfgEventHandlers.hpp"
 #include "CfgFactionClasses.hpp"
 #include "CfgEditorSubcategories.hpp"
+#include "CfgImprecision.hpp"
 #include "CfgVehicles.hpp"

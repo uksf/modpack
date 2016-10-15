@@ -1,7 +1,7 @@
 class CfgVehicles {
 
 	class Land_PowerGenerator_F;
-	class GVAR(core) : Land_PowerGenerator_F {
+	class GVAR(core): Land_PowerGenerator_F {
 		scope = 2;
 		scopeCurator = 2;
 		faction = "UKSF_Clan";
@@ -10,7 +10,7 @@ class CfgVehicles {
 		author = "UKSF";
 		model = "\z\ace\addons\fastroping\data\helper.p3d";
 		class EventHandlers {
-			class CBA_Extended_EventHandlers : CBA_Extended_EventHandlers {};
+			class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
 		};
 		class ACE_Actions {
 			class ACE_MainActions {
@@ -52,7 +52,7 @@ class CfgVehicles {
 			};
 		};
 	};
-	class UKSF_ATCStation : Land_PowerGenerator_F {
+	class UKSF_ATCStation: Land_PowerGenerator_F {
 		scope = 2;
 		scopeCurator = 2;
 		faction = "UKSF_Clan";
@@ -61,7 +61,7 @@ class CfgVehicles {
 		_generalMacro = "UKSF_ATCStation";
 		author = "UKSF";
 		class EventHandlers {
-			class CBA_Extended_EventHandlers : CBA_Extended_EventHandlers {};
+			class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
 		};
 	};
 };
