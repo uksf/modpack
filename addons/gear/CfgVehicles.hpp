@@ -1,3 +1,4 @@
+class CBA_Extended_EventHandlers;
 class CfgVehicles {
 	class UK3CB_BAF_B_Bergen_MTP_Medic_L_A;
 	class UK3CB_BAF_B_Bergen_MTP_Radio_L_B;
@@ -233,7 +234,7 @@ class CfgVehicles {
 		scope = 2;
 		scopeCurator = 2;
 		displayName = "Resupply Crate (Empty)";
-		editorPreview = QPATHTOF(data\previews\UKSF_Crate.jpg);
+		editorPreview = QPATHTOEF(common,data\previews\UKSF_Crate.jpg);
 		maximumLoad = 100000;
 		hiddenSelectionsTextures[] = { "\A3\Weapons_F\Ammoboxes\Data\AmmoBox_CO.paa","\A3\Weapons_F\Ammoboxes\Data\AmmoBox_signs_CA.paa" };
 		class TransportMagazines {};
@@ -241,7 +242,7 @@ class CfgVehicles {
 		class TransportItems {};
 		class TransportBackpacks {};
 	};
-	class UKSF_S_Ammo: UKSF_Crate {
+	class UKSF_S_Ammo: UKSF_S_Empty {
 		author = "UKSF";
 		scope = 2;
 		scopeCurator = 2;
@@ -319,7 +320,7 @@ class CfgVehicles {
 			};
 		};
 	};
-	class UKSF_S_Medic: UKSF_Crate {
+	class UKSF_S_Medic: UKSF_S_Empty {
 		author = "UKSF";
 		scope = 2;
 		scopeCurator = 2;
@@ -375,7 +376,7 @@ class CfgVehicles {
 			};
 		};
 	};
-	class UKSF_S_AmmoMedic: UKSF_Crate {
+	class UKSF_S_AmmoMedic: UKSF_S_Empty {
 		author = "UKSF";
 		scope = 2;
 		scopeCurator = 2;
@@ -483,42 +484,34 @@ class CfgVehicles {
 			};
 		};
 	};
-	class UKSF_S_Radios: UKSF_Crate {
+	class UKSF_S_Radios: UKSF_S_Empty {
 		author = "UKSF";
 		scope = 2;
 		scopeCurator = 2;
 		displayName = "ACRE Radios";
 		class eventhandlers {
-			init = "this addItemCargoGlobal [""ACRE_PRC117F"", 5]";
+			init = "this addItemCargoGlobal [""ACRE_PRC117F"", 10]";
 			class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
 		};
 		class TransportMagazines {};
 		class TransportWeapons {};
 		class TransportItems {
-			class _xx_ACRE_PRC77 {
-				name = "ACRE_PRC77";
-				count = 5;
-			};
 			class _xx_ACRE_PRC177F {
 				name = "ACRE_PRC117F";
-				count = 5;
-			};
-			class _xx_ACRE_PRC148 {
-				name = "ACRE_PRC148";
-				count = 50;
+				count = 10;
 			};
 			class _xx_ACRE_PRC152 {
 				name = "ACRE_PRC152";
-				count = 50;
+				count = 25;
 			};
 			class _xx_ACRE_PRC343 {
 				name = "ACRE_PRC343";
-				count = 50;
+				count = 25;
 			};
 		};
 		class TransportBackpacks {
 			class _xx_UKSF_RadioPack {
-				backpack = "UKSF_RadioPack";
+				backpack = "B_Parachute";
 				count = 5;
 			};
 		};
@@ -528,8 +521,7 @@ class CfgVehicles {
 		scopeCurator = 2;
 		faction = "UKSF_Clan";
 		displayName = "Aircraft Servicing Point";
-		editorPreview = QPATHTOF(data\previews\UK3CB_BAF_Vehicles_Servicing_Aircraft_Point.jpg);
-		model = "\uk3cb_baf_vehicles\addons\uk3cb_baf_vehicles_weapons\aircraft_resupply.p3d";
+		editorPreview = QPATHTOEF(common,data\previews\UK3CB_BAF_Vehicles_Servicing_Aircraft_Point.jpg);
 	};
 
 	class TargetP_Inf_F;
@@ -540,6 +532,1032 @@ class CfgVehicles {
 		class EventHandlers {
 			hitPart = "";
 			class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+		};
+	};
+
+	class B_AssaultPack_rgr;
+	class GENFOR_B_R: B_AssaultPack_rgr {
+		scope = 1;
+		author = "UKSF";
+		displayName = "Standard Pack";
+		class TransportMagazines {
+			class _xx_rhs_30Rnd_545x39_AK {
+				magazine = "rhs_30Rnd_545x39_AK";
+				count = 10;
+			};
+			class _xx_rhs_mag_rgd5 {
+				magazine = "rhs_mag_rgd5";
+				count = 5;
+			};
+			class _xx_rhs_mag_rdg2_white {
+				magazine = "rhs_mag_rdg2_white";
+				count = 5;
+			};
+		};
+	};
+	class GENFOR_B_RNOMAG: GENFOR_B_R {
+		displayName = "Light Pack";
+		class TransportMagazines {
+			class _xx_rhs_mag_rgd5 {
+				magazine = "rhs_mag_rgd5";
+				count = 5;
+			};
+			class _xx_rhs_mag_rdg2_white {
+				magazine = "rhs_mag_rdg2_white";
+				count = 5;
+			};
+		};
+	};
+	class GENFOR_B_Mark: GENFOR_B_R {
+		displayName = "Marksman Pack";
+		class TransportMagazines {
+			class _xx_rhs_30Rnd_762x39mm_tracer {
+				magazine = "rhs_30Rnd_762x39mm_tracer";
+				count = 6;
+			};
+			class _xx_rhs_mag_rgd5 {
+				magazine = "rhs_mag_rgd5";
+				count = 5;
+			};
+			class _xx_rhs_mag_rdg2_white {
+				magazine = "rhs_mag_rdg2_white";
+				count = 5;
+			};
+		};
+	};
+	class GENFOR_B_Med: UKSF_B_Medic {
+		scope = 1;
+		displayName = "Genfor Medic Pack";
+		class TransportMagazines {};
+	};
+	class GENFOR_B_MG: GENFOR_B_R {
+		displayName = "MG Pack";
+		class TransportMagazines {
+			class _xx_rhs_100Rnd_762x54mmR_green {
+				magazine = "rhs_100Rnd_762x54mmR_green";
+				count = 5;
+			};
+			class _xx_rhs_mag_rgd5 {
+				magazine = "rhs_mag_rgd5";
+				count = 5;
+			};
+			class _xx_rhs_mag_rdg2_white {
+				magazine = "rhs_mag_rdg2_white";
+				count = 5;
+			};
+		};
+	};
+	class SP_Carryall_Hunter2;
+	class GENFOR_B_AA: SP_Carryall_Hunter2 {
+		scope = 1;
+		author = "UKSF";
+		displayName = "AA Pack";
+		class TransportMagazines {
+			class _xx_rhs_mag_9k38_rocket {
+				magazine = "rhs_mag_9k38_rocket";
+				count = 4;
+			};
+			class _xx_rhs_30Rnd_545x39_AK {
+				magazine = "rhs_30Rnd_545x39_AK";
+				count = 10;
+			};
+			class _xx_rhs_mag_rgd5 {
+				magazine = "rhs_mag_rgd5";
+				count = 5;
+			};
+			class _xx_rhs_mag_rdg2_white {
+				magazine = "rhs_mag_rdg2_white";
+				count = 5;
+			};
+		};
+	};
+	class GENFOR_B_AT7: GENFOR_B_AA {
+		displayName = "RPG Pack";
+		class TransportMagazines {
+			class _xx_rhs_rpg7_PG7VL_mag {
+				magazine = "rhs_rpg7_PG7VL_mag";
+				count = 6;
+			};
+			class _xx_rhs_30Rnd_545x39_AK {
+				magazine = "rhs_30Rnd_545x39_AK";
+				count = 10;
+			};
+			class _xx_rhs_mag_rgd5 {
+				magazine = "rhs_mag_rgd5";
+				count = 5;
+			};
+			class _xx_rhs_mag_rdg2_white {
+				magazine = "rhs_mag_rdg2_white";
+				count = 5;
+			};
+		};
+	};
+	class GENFOR_B_AT: GENFOR_B_AA {
+		displayName = "AT Pack";
+		class TransportMagazines {
+			class _xx_Titan_AT {
+				magazine = "Titan_AT";
+				count = 2;
+			};
+			class _xx_Titan_AP {
+				magazine = "Titan_AP";
+				count = 2;
+			};
+			class _xx_rhs_30Rnd_545x39_AK {
+				magazine = "rhs_30Rnd_545x39_AK";
+				count = 10;
+			};
+			class _xx_rhs_mag_rgd5 {
+				magazine = "rhs_mag_rgd5";
+				count = 5;
+			};
+			class _xx_rhs_mag_rdg2_white {
+				magazine = "rhs_mag_rdg2_white";
+				count = 5;
+			};
+		};
+	};
+	class GENFOR_B_Sl: GENFOR_B_R {
+		displayName = "Section Leader Pack";
+		class TransportMagazines {
+			class _xx_rhs_30Rnd_545x39_AK {
+				magazine = "rhs_30Rnd_545x39_AK";
+				count = 10;
+			};
+			class _xx_rhs_mag_rgd5 {
+				magazine = "rhs_mag_rgd5";
+				count = 5;
+			};
+			class _xx_rhs_mag_rdg2_white {
+				magazine = "rhs_mag_rdg2_white";
+				count = 5;
+			};
+			class _xx_rhs_VOG25 {
+				magazine = "rhs_VOG25";
+				count = 10;
+			};
+		};
+	};
+	class UK3CB_BAF_B_Bergen_MTP_JTAC_L_A;
+	class GENFOR_B_Radio: UK3CB_BAF_B_Bergen_MTP_JTAC_L_A {
+		scope = 1;
+		displayName = "Radio Pack";
+		class eventhandlers {
+			init = "this addItemCargoGlobal [""ACRE_PRC117F"", 2]";
+			class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+		};
+		class TransportMagazines {
+			class _xx_rhs_30Rnd_545x39_AK {
+				magazine = "rhs_30Rnd_545x39_AK";
+				count = 10;
+			};
+			class _xx_rhs_mag_rgd5 {
+				magazine = "rhs_mag_rgd5";
+				count = 5;
+			};
+			class _xx_rhs_mag_rdg2_white {
+				magazine = "rhs_mag_rdg2_white";
+				count = 5;
+			};
+		};
+	};
+
+	class GENFOR_B_P_R: SP_Carryall_Hunter2 {
+		scope = 1;
+		author = "UKSF";
+		displayName = "Para Standard Pack";
+		class TransportMagazines {
+			class _xx_rhs_30Rnd_545x39_AK {
+				magazine = "rhs_30Rnd_545x39_AK";
+				count = 10;
+			};
+			class _xx_rhs_mag_rgd5 {
+				magazine = "rhs_mag_rgd5";
+				count = 5;
+			};
+			class _xx_rhs_mag_rdg2_white {
+				magazine = "rhs_mag_rdg2_white";
+				count = 5;
+			};
+		};
+	};
+	class GENFOR_B_P_RNOMAG: SP_Carryall_Hunter2 {
+		scope = 1;
+		author = "UKSF";
+		displayName = "Para Light Pack";
+		class TransportMagazines {
+			class _xx_rhs_mag_rgd5 {
+				magazine = "rhs_mag_rgd5";
+				count = 5;
+			};
+			class _xx_rhs_mag_rdg2_white {
+				magazine = "rhs_mag_rdg2_white";
+				count = 5;
+			};
+		};
+	};
+	class GENFOR_B_P_B: GENFOR_B_P_R {
+		displayName = "Para Breacher Pack";
+		class TransportMagazines {
+			class _xx_UK3CB_BAF_12G_Pellets {
+				magazine = "UK3CB_BAF_12G_Pellets";
+				count = 5;
+			};
+			class _xx_UK3CB_BAF_12G_Slugs {
+				magazine = "UK3CB_BAF_12G_Slugs";
+				count = 5;
+			};
+			class _xx_rhs_mag_rgd5 {
+				magazine = "rhs_mag_rgd5";
+				count = 5;
+			};
+			class _xx_rhs_mag_rdg2_white {
+				magazine = "rhs_mag_rdg2_white";
+				count = 5;
+			};
+			class _xx_DemoCharge_Remote_Mag {
+				magazine = "DemoCharge_Remote_Mag";
+				count = 4;
+			};
+		};
+	};
+	class GENFOR_B_P_MG: SP_Carryall_Hunter2 {
+		scope = 1;
+		displayName = "Para MG Pack";
+		class TransportMagazines {
+			class _xx_200Rnd_65x39_cased_Box_Tracer {
+				magazine = "200Rnd_65x39_cased_Box_Tracer";
+				count = 5;
+			};
+			class _xx_rhs_mag_rgd5 {
+				magazine = "rhs_mag_rgd5";
+				count = 5;
+			};
+			class _xx_rhs_mag_rdg2_white {
+				magazine = "rhs_mag_rdg2_white";
+				count = 5;
+			};
+		};
+	};
+	class GENFOR_B_P_AT: GENFOR_B_P_MG {
+		displayName = "Para AT Pack";
+		class TransportMagazines {
+			class _xx_rhs_30Rnd_545x39_AK {
+				magazine = "rhs_30Rnd_545x39_AK";
+				count = 10;
+			};
+			class _xx_rhs_rpg7_PG7VL_mag {
+				magazine = "rhs_rpg7_PG7VL_mag";
+				count = 6;
+			};
+			class _xx_rhs_mag_rgd5 {
+				magazine = "rhs_mag_rgd5";
+				count = 5;
+			};
+			class _xx_rhs_mag_rdg2_white {
+				magazine = "rhs_mag_rdg2_white";
+				count = 5;
+			};
+		};
+	};
+	class GENFOR_B_P_AA: GENFOR_B_P_MG {
+		displayName = "Para AA Pack";
+		class TransportMagazines {
+			class _xx_rhs_30Rnd_545x39_AK {
+				magazine = "rhs_30Rnd_545x39_AK";
+				count = 10;
+			};
+			class _xx_rhs_mag_9k32_rocket {
+				magazine = "rhs_mag_9k32_rocket";
+				count = 4;
+			};
+			class _xx_rhs_mag_rgd5 {
+				magazine = "rhs_mag_rgd5";
+				count = 5;
+			};
+			class _xx_rhs_mag_rdg2_white {
+				magazine = "rhs_mag_rdg2_white";
+				count = 5;
+			};
+		};
+	};
+
+	class GENFOR_B_SF_R: GENFOR_B_R {
+		displayName = "SF Standard Pack";
+		class TransportMagazines {
+			class _xx_30Rnd_556x45_Stanag {
+				magazine = "30Rnd_556x45_Stanag";
+				count = 10;
+			};
+			class _xx_rhs_mag_rgd5 {
+				magazine = "rhs_mag_rgd5";
+				count = 5;
+			};
+			class _xx_rhs_mag_rdg2_white {
+				magazine = "rhs_mag_rdg2_white";
+				count = 5;
+			};
+		};
+	};
+	class GENFOR_B_SF_RNOMAG: GENFOR_B_SF_R {
+		displayName = "SF Light Pack";
+		class TransportMagazines {
+			class _xx_rhs_mag_rgd5 {
+				magazine = "rhs_mag_rgd5";
+				count = 5;
+			};
+			class _xx_rhs_mag_rdg2_white {
+				magazine = "rhs_mag_rdg2_white";
+				count = 5;
+			};
+		};
+	};
+	class GENFOR_B_SF_MG: GENFOR_B_SF_R {
+		displayName = "SF MG Pack";
+		class TransportMagazines {
+			class _xx_200Rnd_65x39_cased_Box_Tracer {
+				magazine = "200Rnd_65x39_cased_Box_Tracer";
+				count = 4;
+			};
+			class _xx_rhs_mag_rgd5 {
+				magazine = "rhs_mag_rgd5";
+				count = 5;
+			};
+			class _xx_rhs_mag_rdg2_white {
+				magazine = "rhs_mag_rdg2_white";
+				count = 5;
+			};
+		};
+	};
+	class GENFOR_B_SF_AT: GENFOR_B_SF_R {
+		displayName = "SF AT Pack";
+		class TransportMagazines {
+			class _xx_30Rnd_556x45_Stanag {
+				magazine = "30Rnd_556x45_Stanag";
+				count = 10;
+			};
+			class _xx_RPG32_F {
+				magazine = "RPG32_F";
+				count = 3;
+			};
+			class _xx_RPG32_HE_F {
+				magazine = "RPG32_HE_F";
+				count = 3;
+			};
+			class _xx_rhs_mag_rgd5 {
+				magazine = "rhs_mag_rgd5";
+				count = 5;
+			};
+			class _xx_rhs_mag_rdg2_white {
+				magazine = "rhs_mag_rdg2_white";
+				count = 5;
+			};
+		};
+	};
+	class SP_Carryall_ATacsFG;
+	class GENFOR_B_SF_P: SP_Carryall_ATacsFG {
+		scope = 1;
+		author = "UKSF";
+		displayName = "SF Patrol Pack";
+		class TransportMagazines {
+			class _xx_rhs_30Rnd_545x39_AK {
+				magazine = "rhs_30Rnd_545x39_AK";
+				count = 10;
+			};
+			class _xx_rhs_mag_rgd5 {
+				magazine = "rhs_mag_rgd5";
+				count = 5;
+			};
+			class _xx_rhs_mag_rdg2_white {
+				magazine = "rhs_mag_rdg2_white";
+				count = 5;
+			};
+		};
+	};
+
+	class B_FieldPack_oli;
+	class Inegal_B_F: B_FieldPack_oli {
+		scope = 1;
+		author = "UKSF";
+		displayName = "Fusilier Pack";
+		class TransportWeapons {};
+		class TransportMagazines {
+			class _xx_R3F_30Rnd_556x45_FAMAS {
+				magazine = "R3F_30Rnd_556x45_FAMAS";
+				count = 10;
+			};
+			class _xx_ClaymoreDirectionalMine_Remote_Mag {
+				magazine = "ClaymoreDirectionalMine_Remote_Mag";
+				count = 2;
+			};
+			class _xx_APERSMine_Range_Mag {
+				magazine = "APERSMine_Range_Mag";
+				count = 2;
+			};
+		};
+		class TransportItems {
+			class _xx_ACE_M26_Clacker {
+				name = "ACE_M26_Clacker";
+				count = 1;
+			};
+			class _xx_ACE_Cellphone {
+				name = "ACE_Cellphone";
+				count = 1;
+			};
+			class _xx_ACE_CableTie {
+				name = "ACE_CableTie";
+				count = 4;
+			};
+			class _xx_ACE_DefusalKit {
+				name = "ACE_DefusalKit";
+				count = 1;
+			};
+		};
+		class TransportBackpacks {};
+	};
+	class Inegal_B_C: Inegal_B_F {
+		scope = 1;
+		author = "UKSF";
+		displayName = "Commander Pack";
+		class TransportMagazines: TransportMagazines {
+			class _xx_1Rnd_HE_Grenade_shell {
+				magazine = "1Rnd_HE_Grenade_shell";
+				count = 10;
+			};
+		};
+	};
+	class B_TacticalPack_oli;
+	class Inegal_B_Med: B_TacticalPack_oli {
+		scope = 1;
+		author = "UKSF";
+		displayName = "Medical Pack";
+		class TransportWeapons {};
+		class TransportMagazines {};
+		class TransportItems {
+			class _xx_ACE_packingBandage {
+				name = "ACE_packingBandage";
+				count = 50;
+			};
+			class _xx_ACE_elasticBandage {
+				name = "ACE_elasticBandage";
+				count = 50;
+			};
+			class _xx_ACE_tourniquet {
+				name = "ACE_tourniquet";
+				count = 5;
+			};
+			class _xx_ACE_ACE_atropine {
+				name = "ACE_atropine";
+				count = 6;
+			};
+			class _xx_ACE_ACE_adenosinee {
+				name = "ACE_adenosine";
+				count = 6;
+			};
+			class _xx_ACE_morphine {
+				name = "ACE_morphine";
+				count = 25;
+			};
+			class _xx_ACE_epinephrine {
+				name = "ACE_epinephrine";
+				count = 25;
+			};
+			class _xx_ACE_bloodIV_500 {
+				name = "ACE_bloodIV_500";
+				count = 5;
+			};
+			class _xx_ACE_bloodIV {
+				name = "ACE_bloodIV";
+				count = 5;
+			};
+			class _xx_ACE_personalAidKit {
+				name = "ACE_personalAidKit";
+				count = 1;
+			};
+			class _xx_ACE_surgicalKit {
+				name = "ACE_surgicalKit";
+				count = 1;
+			};
+		};
+		class TransportBackpacks {};
+	};
+	class Inegal_B_MG: Inegal_B_F {
+		scope = 1;
+		author = "UKSF";
+		displayName = "MG Pack";
+		class TransportMagazines {
+			class _xx_R3F_100Rnd_762x51_MINIMI {
+				magazine = "R3F_100Rnd_762x51_MINIMI";
+				count = 4;
+			};
+		};
+		class TransportItems {};
+	};
+	class Inegal_B_Mark: Inegal_B_F {
+		scope = 1;
+		author = "UKSF";
+		displayName = "Marksman Pack";
+		class TransportMagazines {
+			class _xx_R3F_10Rnd_762x51_FRF2 {
+				magazine = "R3F_10Rnd_762x51_FRF2";
+				count = 10;
+			};
+			class _xx_APERSTripMine_Wire_Mag {
+				magazine = "APERSTripMine_Wire_Mag";
+				count = 2;
+			};
+			class _xx_APERSMine_Range_Mag {
+				magazine = "APERSMine_Range_Mag";
+				count = 2;
+			};
+			class _xx_ClaymoreDirectionalMine_Remote_Mag {
+				magazine = "ClaymoreDirectionalMine_Remote_Mag";
+				count = 2;
+			};
+		};
+		class TransportItems {
+			class _xx_ACE_M26_Clacker {
+				name = "ACE_M26_Clacker";
+				count = 1;
+			};
+			class _xx_ACE_EntrenchingTool {
+				name = "ACE_EntrenchingTool";
+				count = 1;
+			};
+			class _xx_ACE_DefusalKit {
+				name = "ACE_DefusalKit";
+				count = 1;
+			};
+		};
+	};
+	class Inegal_B_AA: Inegal_B_Med {
+		scope = 1;
+		author = "UKSF";
+		displayName = "AA Pack";
+		class TransportMagazines {
+			class _xx_R3F_STINGER_mag {
+				magazine = "R3F_STINGER_mag";
+				count = 2;
+			};
+		};
+		class TransportItems {};
+	};
+	class Inegal_B_AT_Eryx: Inegal_B_AA {
+		scope = 1;
+		author = "UKSF";
+		displayName = "AT Eryx Pack";
+		class TransportMagazines {
+			class _xx_R3F_ERYX_Mag {
+				magazine = "R3F_ERYX_Mag";
+				count = 2;
+			};
+		};
+	};
+	class Inegal_B_Sniper: Inegal_B_Mark {
+		scope = 1;
+		author = "UKSF";
+		displayName = "Sniper Pack";
+		class TransportMagazines {
+			class _xx_R3F_7Rnd_127x99_PGM {
+				magazine = "R3F_7Rnd_127x99_PGM";
+				count = 10;
+			};
+			class _xx_ClaymoreDirectionalMine_Remote_Mag {
+				magazine = "ClaymoreDirectionalMine_Remote_Mag";
+				count = 2;
+			};
+		};
+		class TransportItems {
+			class _xx_ACE_M26_Clacker {
+				name = "ACE_M26_Clacker";
+				count = 1;
+			};
+			class _xx_ACE_EntrenchingTool {
+				name = "ACE_EntrenchingTool";
+				count = 1;
+			};
+			class _xx_ACE_DefusalKit {
+				name = "ACE_DefusalKit";
+				count = 1;
+			};
+		};
+	};
+	class UK3CB_BAF_B_Bergen_MTP_JTAC_H_A;
+	class Inegal_B_FAC: UK3CB_BAF_B_Bergen_MTP_JTAC_H_A {
+		scope = 1;
+		author = "UKSF";
+		displayName = "FAC Pack";
+		class TransportWeapons {};
+		class TransportMagazines {
+			class _xx_R3F_30Rnd_556x45_FAMAS {
+				magazine = "R3F_30Rnd_556x45_FAMAS";
+				count = 10;
+			};
+			class _xx_ClaymoreDirectionalMine_Remote_Mag {
+				magazine = "ClaymoreDirectionalMine_Remote_Mag";
+				count = 2;
+			};
+			class _xx_APERSMine_Range_Mag {
+				magazine = "APERSMine_Range_Mag";
+				count = 2;
+			};
+		};
+		class TransportItems {
+			class _xx_ACE_M26_Clacker {
+				name = "ACE_M26_Clacker";
+				count = 1;
+			};
+			class _xx_ACE_Cellphone {
+				name = "ACE_Cellphone";
+				count = 1;
+			};
+			class _xx_ACE_CableTie {
+				name = "ACE_CableTie";
+				count = 4;
+			};
+			class _xx_ACE_DefusalKit {
+				name = "ACE_DefusalKit";
+				count = 1;
+			};
+		};
+		class TransportBackpacks {};
+	};
+	class B_Carryall_cbr;
+	class Inegal_B_FDF_B: B_Carryall_cbr {
+		scope = 1;
+		author = "UKSF";
+		displayName = "FDF Brute Pack";
+		class TransportWeapons {};
+		class TransportMagazines {
+			class _xx_R3F_100Rnd_762x51_MINIMI {
+				magazine = "R3F_100Rnd_762x51_MINIMI";
+				count = 6;
+			};
+		};
+		class TransportItems {};
+		class TransportBackpacks {};
+	};
+	class Inegal_B_FDF_A: Inegal_B_FDF_B {
+		scope = 1;
+		author = "UKSF";
+		displayName = "FDF Arsonist Pack";
+		class TransportMagazines {
+			class _xx_R3F_AT4CS_Mag {
+				magazine = "R3F_AT4CS_Mag";
+				count = 4;
+			};
+		};
+	};
+	class Inegal_B_D_Specialist: SP_Carryall_ATacsFG {
+		scope = 1;
+		author = "UKSF";
+		displayName = "Diablerie Specialist Pack";
+		class TransportWeapons {};
+		class TransportMagazines {
+			class _xx_ACE_10Rnd_762x51_Mk316_Mod_0_Mag {
+				magazine = "ACE_10Rnd_762x51_Mk316_Mod_0_Mag";
+				count = 16;
+			};
+			class _xx_ClaymoreDirectionalMine_Remote_Mag {
+				magazine = "ClaymoreDirectionalMine_Remote_Mag";
+				count = 2;
+			};
+			class _xx_APERSMine_Range_Mag {
+				magazine = "APERSMine_Range_Mag";
+				count = 2;
+			};
+			class _xx_APERSTripMine_Wire_Mag {
+				magazine = "APERSTripMine_Wire_Mag";
+				count = 2;
+			};
+			class _xx_APERSBoundingMine_Range_Mag {
+				magazine = "APERSBoundingMine_Range_Mag";
+				count = 2;
+			};
+			class _xx_DemoCharge_Remote_Mag {
+				magazine = "DemoCharge_Remote_Mag";
+				count = 2;
+			};
+		};
+		class TransportItems {
+			class _xx_ACE_M26_Clacker {
+				name = "ACE_M26_Clacker";
+				count = 1;
+			};
+			class _xx_ACE_Cellphone {
+				name = "ACE_Cellphone";
+				count = 1;
+			};
+			class _xx_ACE_CableTie {
+				name = "ACE_CableTie";
+				count = 4;
+			};
+			class _xx_ACE_DefusalKit {
+				name = "ACE_DefusalKit";
+				count = 1;
+			};
+		};
+		class TransportBackpacks {};
+	};
+	class Inegal_B_D_Commander: Inegal_B_D_Specialist {
+		scope = 1;
+		author = "UKSF";
+		displayName = "Diablerie Commander Pack";
+		class TransportMagazines {
+			class _xx_ACE_30Rnd_556x45_Stanag_Mk262_mag {
+				magazine = "ACE_30Rnd_556x45_Stanag_Mk262_mag";
+				count = 10;
+			};
+			class _xx_1Rnd_HE_Grenade_shell {
+				magazine = "1Rnd_HE_Grenade_shell";
+				count = 10;
+			};
+			class _xx_ClaymoreDirectionalMine_Remote_Mag {
+				magazine = "ClaymoreDirectionalMine_Remote_Mag";
+				count = 2;
+			};
+			class _xx_APERSMine_Range_Mag {
+				magazine = "APERSMine_Range_Mag";
+				count = 2;
+			};
+			class _xx_APERSTripMine_Wire_Mag {
+				magazine = "APERSTripMine_Wire_Mag";
+				count = 2;
+			};
+			class _xx_APERSBoundingMine_Range_Mag {
+				magazine = "APERSBoundingMine_Range_Mag";
+				count = 2;
+			};
+			class _xx_DemoCharge_Remote_Mag {
+				magazine = "DemoCharge_Remote_Mag";
+				count = 2;
+			};
+		};
+	};
+	class Inegal_B_D_Surgeon: Inegal_B_D_Specialist {
+		scope = 1;
+		author = "UKSF";
+		displayName = "Diablerie Surgeon Pack";
+		class TransportMagazines {
+			class _xx_ACE_10Rnd_762x51_Mk316_Mod_0_Mag {
+				magazine = "ACE_10Rnd_762x51_Mk316_Mod_0_Mag";
+				count = 16;
+			};
+		};
+		class TransportItems {
+			class _xx_ACE_packingBandage {
+				name = "ACE_packingBandage";
+				count = 30;
+			};
+			class _xx_ACE_elasticBandage {
+				name = "ACE_elasticBandage";
+				count = 30;
+			};
+			class _xx_ACE_tourniquet {
+				name = "ACE_tourniquet";
+				count = 5;
+			};
+			class _xx_ACE_ACE_atropine {
+				name = "ACE_atropine";
+				count = 5;
+			};
+			class _xx_ACE_ACE_adenosinee {
+				name = "ACE_adenosine";
+				count = 5;
+			};
+			class _xx_ACE_morphine {
+				name = "ACE_morphine";
+				count = 20;
+			};
+			class _xx_ACE_epinephrine {
+				name = "ACE_epinephrine";
+				count = 20;
+			};
+			class _xx_ACE_bloodIV_500 {
+				name = "ACE_bloodIV_500";
+				count = 5;
+			};
+			class _xx_ACE_bloodIV {
+				name = "ACE_bloodIV";
+				count = 5;
+			};
+			class _xx_ACE_personalAidKit {
+				name = "ACE_personalAidKit";
+				count = 1;
+			};
+			class _xx_ACE_surgicalKit {
+				name = "ACE_surgicalKit";
+				count = 1;
+			};
+		};
+	};
+	class Inegal_B_D_Brute: Inegal_B_D_Specialist {
+		scope = 1;
+		author = "UKSF";
+		displayName = "Diablerie Brute Pack";
+		class TransportMagazines {
+			class _xx_R3F_100Rnd_762x51_MINIMI {
+				magazine = "R3F_100Rnd_762x51_MINIMI";
+				count = 6;
+			};
+		};
+		class TransportItems {};
+	};
+	class Inegal_B_D_Arsonist: Inegal_B_D_Specialist {
+		scope = 1;
+		author = "UKSF";
+		displayName = "Diablerie Arsonist Pack";
+		class TransportMagazines {
+			class _xx_ACE_10Rnd_762x51_Mk316_Mod_0_Mag {
+				magazine = "ACE_10Rnd_762x51_Mk316_Mod_0_Mag";
+				count = 10;
+			};
+			class _xx_R3F_AT4CS_Mag {
+				magazine = "R3F_AT4CS_Mag";
+				count = 4;
+			};
+		};
+		class TransportItems {};
+	};
+	class Inegal_B_D_Sentinel: Inegal_B_D_Specialist {
+		scope = 1;
+		author = "UKSF";
+		displayName = "Diablerie Sentinel Pack";
+		class TransportMagazines {
+			class _xx_ACE_30Rnd_556x45_Stanag_Mk262_mag {
+				magazine = "ACE_30Rnd_556x45_Stanag_Mk262_mag";
+				count = 16;
+			};
+			class _xx_ClaymoreDirectionalMine_Remote_Mag {
+				magazine = "ClaymoreDirectionalMine_Remote_Mag";
+				count = 2;
+			};
+			class _xx_APERSMine_Range_Mag {
+				magazine = "APERSMine_Range_Mag";
+				count = 2;
+			};
+			class _xx_APERSTripMine_Wire_Mag {
+				magazine = "APERSTripMine_Wire_Mag";
+				count = 2;
+			};
+			class _xx_APERSBoundingMine_Range_Mag {
+				magazine = "APERSBoundingMine_Range_Mag";
+				count = 2;
+			};
+			class _xx_DemoCharge_Remote_Mag {
+				magazine = "DemoCharge_Remote_Mag";
+				count = 2;
+			};
+		};
+		class TransportItems {
+			class _xx_ACE_M26_Clacker {
+				name = "ACE_M26_Clacker";
+				count = 1;
+			};
+			class _xx_ACE_Cellphone {
+				name = "ACE_Cellphone";
+				count = 1;
+			};
+			class _xx_ACE_CableTie {
+				name = "ACE_CableTie";
+				count = 4;
+			};
+			class _xx_ACE_DefusalKit {
+				name = "ACE_DefusalKit";
+				count = 1;
+			};
+		};
+	};
+	class Inegal_B_D_Assassin: Inegal_B_D_Specialist {
+		scope = 1;
+		author = "UKSF";
+		displayName = "Diablerie Assassin Pack";
+		class TransportMagazines {
+			class _xx_R3F_7Rnd_127x99_PEI_PGM {
+				magazine = "R3F_7Rnd_127x99_PEI_PGM";
+				count = 12;
+			};
+			class _xx_ClaymoreDirectionalMine_Remote_Mag {
+				magazine = "ClaymoreDirectionalMine_Remote_Mag";
+				count = 2;
+			};
+			class _xx_APERSMine_Range_Mag {
+				magazine = "APERSMine_Range_Mag";
+				count = 2;
+			};
+			class _xx_APERSTripMine_Wire_Mag {
+				magazine = "APERSTripMine_Wire_Mag";
+				count = 2;
+			};
+			class _xx_APERSBoundingMine_Range_Mag {
+				magazine = "APERSBoundingMine_Range_Mag";
+				count = 2;
+			};
+			class _xx_DemoCharge_Remote_Mag {
+				magazine = "DemoCharge_Remote_Mag";
+				count = 2;
+			};
+		};
+		class TransportItems {
+			class _xx_ACE_M26_Clacker {
+				name = "ACE_M26_Clacker";
+				count = 1;
+			};
+			class _xx_ACE_Cellphone {
+				name = "ACE_Cellphone";
+				count = 1;
+			};
+			class _xx_ACE_CableTie {
+				name = "ACE_CableTie";
+				count = 4;
+			};
+			class _xx_ACE_DefusalKit {
+				name = "ACE_DefusalKit";
+				count = 1;
+			};
+		};
+	};
+	class Inegal_B_R_C: B_FieldPack_oli {
+		scope = 1;
+		author = "UKSF";
+		displayName = "Recrues Conscript Pack";
+		class TransportWeapons {};
+		class TransportMagazines {
+			class _xx_R3F_30Rnd_556x45_FAMAS {
+				magazine = "R3F_30Rnd_556x45_FAMAS";
+				count = 4;
+			};
+			class _xx_R3F_25Rnd_556x45_FAMAS {
+				magazine = "R3F_25Rnd_556x45_FAMAS";
+				count = 3;
+			};
+			class _xx_R3F_25Rnd_556x45_TRACER_FAMAS {
+				magazine = "R3F_25Rnd_556x45_TRACER_FAMAS";
+				count = 2;
+			};
+		};
+		class TransportItems {};
+		class TransportBackpacks {};
+	};
+	class Inegal_B_R_L: Inegal_B_R_C {
+		scope = 1;
+		author = "UKSF";
+		displayName = "Recrues Leader Pack";
+		class TransportMagazines {
+			class _xx_R3F_30Rnd_556x45_FAMAS {
+				magazine = "R3F_30Rnd_556x45_FAMAS";
+				count = 8;
+			};
+			class _xx_1Rnd_HE_Grenade_shell {
+				magazine = "1Rnd_HE_Grenade_shell";
+				count = 5;
+			};
+		};
+	};
+	class Inegal_B_R_R: Inegal_B_R_C {
+		scope = 1;
+		author = "UKSF";
+		displayName = "Recrues Recruit Pack";
+		class TransportMagazines {
+			class _xx_R3F_25Rnd_556x45_FAMAS {
+				magazine = "R3F_25Rnd_556x45_FAMAS";
+				count = 5;
+			};
+			class _xx_R3F_25Rnd_556x45_TRACER_FAMAS {
+				magazine = "R3F_25Rnd_556x45_TRACER_FAMAS";
+				count = 5;
+			};
+		};
+	};
+
+	class B_Carryall_khk;
+	class Laraka_B_PKM: B_Carryall_khk {
+		scope = 1;
+		author = "UKSF";
+		displayName = "PKM/PKP Pack";
+		class TransportMagazines {
+			class _xx_rhs_100Rnd_762x54mmR_green {
+				magazine = "rhs_100Rnd_762x54mmR_green";
+				count = 6;
+			};
+		};
+	};
+	class Laraka_B_RPG: Laraka_B_PKM {
+		displayName = "RPG Pack";
+		class TransportMagazines {
+			class _xx_rhs_rpg7_PG7VL_mag {
+				magazine = "rhs_rpg7_PG7VL_mag";
+				count = 8;
+			};
+		};
+	};
+	class Laraka_B_AA: Laraka_B_PKM {
+		displayName = "AA Pack";
+		class TransportMagazines {
+			class _xx_rhs_mag_9k32_rocket {
+				magazine = "rhs_mag_9k32_rocket";
+				count = 6;
+			};
 		};
 	};
 };

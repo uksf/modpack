@@ -19,17 +19,17 @@ INFO_1("Unit stance %1", stance _unit);
 switch (stance _unit) do {
 	case ("STAND"): {
 		INFO_1("Unit weapon %1", currentWeapon _unit);
-		if(currentWeapon _unit != "") then {
-			if((currentWeapon _unit) isKindOf ["Rifle", configFile >> "CfgWeapons"]) then {
+		if (currentWeapon _unit != "") then {
+			if ((currentWeapon _unit) isKindOf ["Rifle", configFile >> "CfgWeapons"]) then {
 				_animation = "amovpercmstpslowwrfldnon";
 			};
-			if((currentWeapon _unit) isKindOf ["Pistol", configFile >> "CfgWeapons"]) then {
+			if ((currentWeapon _unit) isKindOf ["Pistol", configFile >> "CfgWeapons"]) then {
 				_animation = "amovpercmstpslowwpstdnon";
 			};
-			if((currentWeapon _unit) isKindOf ["Launcher", configFile >> "CfgWeapons"]) then {
+			if ((currentWeapon _unit) isKindOf ["Launcher", configFile >> "CfgWeapons"]) then {
 				_animation = "amovpercmstpsraswlnrdnon";
 			};
-			if((currentWeapon _unit) isKindOf ["Binocular", configFile >> "CfgWeapons"]) then {
+			if ((currentWeapon _unit) isKindOf ["Binocular", configFile >> "CfgWeapons"]) then {
 				_animation = "amovpercmstpsoptwbindnon";
 			};
 		} else {
@@ -38,17 +38,17 @@ switch (stance _unit) do {
 	};
 	case ("CROUCH"): {
 		INFO_1("Unit weapon %1", currentWeapon _unit);
-		if(currentWeapon _unit != "") then {
-			if((currentWeapon _unit) isKindOf ["Rifle", configFile >> "CfgWeapons"]) then {
+		if (currentWeapon _unit != "") then {
+			if ((currentWeapon _unit) isKindOf ["Rifle", configFile >> "CfgWeapons"]) then {
 				_animation = "amovpknlmstpslowwrfldnon";
 			};
-			if((currentWeapon _unit) isKindOf ["Pistol", configFile >> "CfgWeapons"]) then {
+			if ((currentWeapon _unit) isKindOf ["Pistol", configFile >> "CfgWeapons"]) then {
 				_animation = "amovpknlmstpslowwpstdnon";
 			};
-			if((currentWeapon _unit) isKindOf ["Launcher", configFile >> "CfgWeapons"]) then {
+			if ((currentWeapon _unit) isKindOf ["Launcher", configFile >> "CfgWeapons"]) then {
 				_animation = "amovpknlmstpsraswlnrdnon";
 			};
-			if((currentWeapon _unit) isKindOf ["Binocular", configFile >> "CfgWeapons"]) then {
+			if ((currentWeapon _unit) isKindOf ["Binocular", configFile >> "CfgWeapons"]) then {
 				_animation = "amovpknlmstpsoptwbindnon";
 			};
 		} else {
@@ -57,17 +57,17 @@ switch (stance _unit) do {
 	};
 	case ("PRONE"): {
 		INFO_1("Unit weapon %1", currentWeapon _unit);
-		if(currentWeapon _unit != "") then {
-			if((currentWeapon _unit) isKindOf ["Rifle", configFile >> "CfgWeapons"]) then {
+		if (currentWeapon _unit != "") then {
+			if ((currentWeapon _unit) isKindOf ["Rifle", configFile >> "CfgWeapons"]) then {
 				_animation = "amovppnemstpsraswrfldnon";
 			};
-			if((currentWeapon _unit) isKindOf ["Pistol", configFile >> "CfgWeapons"]) then {
+			if ((currentWeapon _unit) isKindOf ["Pistol", configFile >> "CfgWeapons"]) then {
 				_animation = "amovppnemstpsraswpstdnon";
 			};
-			if((currentWeapon _unit) isKindOf ["Launcher", configFile >> "CfgWeapons"]) then {
+			if ((currentWeapon _unit) isKindOf ["Launcher", configFile >> "CfgWeapons"]) then {
 				_animation = "amovpercmstpslowwrfldnon";
 			};
-			if((currentWeapon _unit) isKindOf ["Binocular", configFile >> "CfgWeapons"]) then {
+			if ((currentWeapon _unit) isKindOf ["Binocular", configFile >> "CfgWeapons"]) then {
 				_animation = "amovppnemstpsoptwbindnon";
 			};
 		} else {

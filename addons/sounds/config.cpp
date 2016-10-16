@@ -25,7 +25,6 @@ class CfgPatches {
     };
 };
 
-#include "CfgEventHandlers.hpp"
 #include "CfgWeapons.hpp"
 #include "CfgSoundSets.hpp"
 #include "CfgSoundShaders.hpp"

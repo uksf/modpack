@@ -5,7 +5,7 @@
 	Description:
 		Spawns defined units on marker positions with marker waypoint positions, directly on the headless client. (IT'S CRUDE OK)
 */
-if(!isServer) exitWith {};
+if (!isServer) exitWith {};
 sleep 60;
 
 //rs_1, rs_2, rs_3, rs_4, rs_5

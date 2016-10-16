@@ -23,7 +23,7 @@ _airTargetsHostile = [];
 _airTargetsFriendly = [];
 
 {
-	if(((side _unit) getFriend _x) < 0.6) then {
+	if (((side _unit) getFriend _x) < 0.6) then {
 		_enemysides pushBack _x;
 	} else {
 		_friendlysides pushBack _x;

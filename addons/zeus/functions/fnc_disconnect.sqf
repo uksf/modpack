@@ -23,7 +23,7 @@ INFO_1("%1 disconnected", _name);
 
 _names = missionNamespace getVariable [QGVAR(curatorNames), ["","","","",""]];
 {
-	if(_name == _x) then {
+	if (_name == _x) then {
 		_names set [_forEachIndex, ""];
 	};
 } forEach _names;

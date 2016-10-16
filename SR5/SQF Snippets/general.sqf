@@ -19,7 +19,7 @@ publicVariable _name;
 _dummy addCuratorAddons activatedAddons;
 _dummy addCuratorAddons ["Ares", "curatorPresets_Module"];
 {
-	if(name _x == "SqnLdr.Beswick.T") then {
+	if (name _x == "SqnLdr.Beswick.T") then {
 		_x assignCurator UKSF_curator1;
 	};
 } forEach allPlayers;
@@ -43,7 +43,7 @@ player enableStamina false; player enablefatigue false; player addEventHandler [
 //Switches named animation for named player
 {
 	{
-		if(name _x == "SqnLdr.Beswick.T") then {
+		if (name _x == "SqnLdr.Beswick.T") then {
 			_x switchMove "passenger_injured_medevac_truck01";
 			//_x switchMove "Acts_EpicSplit_Out";
 		};
@@ -56,7 +56,7 @@ player enableStamina false; player enablefatigue false; player addEventHandler [
 player setVariable ["ace_medical_allowDamage", false];
 
 //Disables compass handler for UAV controler
-{if(getConnectedUAV player == objNull) then {[compass_handler] call CBA_fnc_removePerFrameHandler};} remoteExec ["bis_fnc_call", -2];
+{if (getConnectedUAV player == objNull) then {[compass_handler] call CBA_fnc_removePerFrameHandler};} remoteExec ["bis_fnc_call", -2];
 
 //Sets texture for object (this is for the littlebird)
 (_this select 1) setObjectTextureGlobal [0,"A3\Air_F\Heli_Light_01\Data\Skins\heli_light_01_ext_vrana_co.paa"];
@@ -86,7 +86,7 @@ Land_i_House_Small_03_V1_F
 
 //Disables simulation for all units except players
 {
-	if(!(isPlayer _x)) then {
+	if (!(isPlayer _x)) then {
 		_x enableSimulation false;
 	}
 } forEach allUnits;
@@ -120,13 +120,13 @@ _plane addweapon "FIR_GBU10";
 
 //Sets units as civilian when conditions met
 hiddenHandler = [{
-	if(currentWeapon player == "" && primaryWeapon player == "" && secondaryWeapon player == "") then {
-		if(!(player getVariable ["CAPTIVESET", false])) then {
+	if (currentWeapon player == "" && primaryWeapon player == "" && secondaryWeapon player == "") then {
+		if (!(player getVariable ["CAPTIVESET", false])) then {
 			player setCaptive true;
 			player setVariable ["CAPTIVESET", true];
 		};
 	} else {
-		if(player getVariable ["CAPTIVESET", false]) then {
+		if (player getVariable ["CAPTIVESET", false]) then {
 			player setCaptive false;
 			player setVariable ["CAPTIVESET", false];
 		};

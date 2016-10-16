@@ -18,7 +18,7 @@ if (!isServer || !isMultiplayer) exitWith {};
 UKSF_Caching_groups = [];
 
 UKSF_Caching_distance = 500;
-if((paramsArray select 0) > 0) then {
+if ((paramsArray select 0) > 0) then {
 	UKSF_Caching_distance = (paramsArray select 0);
 };
 

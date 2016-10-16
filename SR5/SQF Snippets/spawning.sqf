@@ -19,8 +19,8 @@
 */
 params [["_markerName", ""], ["_maxAmount", 50], ["_poolSize", 200], ["_debug", false]];
 
-if(isNil _markerName) exitWith {};
-if(!isServer) exitWith {};
+if (isNil _markerName) exitWith {};
+if (!isServer) exitWith {};
 
 //Set poolsize for marker as mission variable
 missionNamespace setVariable [format ["%1_poolsize", _markerName], _poolSize, true];
@@ -68,19 +68,19 @@ _spawnAndTask = {
 	missionNamespace setVariable [format ["%1_poolsize", _markerName], _poolSize, true];
 
 	//If pool is empty, remove PFH
-	if(_poolSize <= 0) exitWith {
+	if (_poolSize <= 0) exitWith {
 		[_idPFH] call CBA_fnc_removePerFrameHandler;
 	};
 
 	//Count number of current enemy. If less than threshold, spawn more.
 	_totalEnemy = {alive _x && side _x == EAST} count allUnits;
-    if(_totalEnemy <= _maxAmount) then {
+    if (_totalEnemy <= _maxAmount) then {
 		//Execute code on one of the headless clients
 		[_markerName] remoteExec ["_spawnAndTask", selectRandom HCs, false];
     };
 
 	//If debug is on, add markers to each area
-	if(_debug) then {
+	if (_debug) then {
 		{_markerstr = createMarker [format ["%1", floor (random 9999)], leader _x]; _markerstr setMarkerShape "ICON"; _markerstr setMarkerType "hd_dot";} forEach allGroups;
 		_markerName setMarkerAlpha 1;
 	};

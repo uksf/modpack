@@ -1,3 +1,13 @@
+PREP(populate);
+PREP(random);
 PREP(setSkill);
 PREP(gearCheck);
 PREP(stopKilledVoices);
+PREP(randomIgla);
+PREP(suicide);
+PREP(carBomb);
+PREP(carBombEmpty);
+PREP(initNets);
+PREP(deployNet);
+PREP(concealNet);
+PREP(deployNetMedical);

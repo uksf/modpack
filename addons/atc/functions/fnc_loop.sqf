@@ -16,7 +16,7 @@
 
 params ["_object", "_unit"];
 
-if(local _unit) then {
+if (local _unit) then {
 	_object setVariable [QGVAR(radarOn), true, true];
 	_object setVariable [QGVAR(operator), _unit, true];
 	_unit setVariable [QGVAR(markers), [], true];
@@ -27,18 +27,18 @@ if(local _unit) then {
 		_args params ["_object"];
 
 		_unit = _object getVariable [QGVAR(operator), objNull];
-		if(isNull _unit) exitWith { _object setVariable [QGVAR(radarOn), false, true]; };
-		if(!(alive _object) || !(alive _unit)) exitWith { _object setVariable [QGVAR(radarOn), false, true]; };
+		if (isNull _unit) exitWith { _object setVariable [QGVAR(radarOn), false, true]; };
+		if (!(alive _object) || !(alive _unit)) exitWith { _object setVariable [QGVAR(radarOn), false, true]; };
 
 		_allMarkers = _unit getVariable [QGVAR(markers), []];
 		{ deleteMarker _x } forEach (_allMarkers);
 
 		_allTargets = [_object, _unit] call UKSF_Scripts_ATC_fnc_getTargets;
 		_allTargets params ["_airTargetsHostile", "_airTargetsFriendly"];
-		if(count _airTargetsHostile > 0) then {
+		if (count _airTargetsHostile > 0) then {
 			[_object, _airTargetsHostile]  call UKSF_Scripts_ATC_fnc_updateMarkers;
 		};
-		if(count _airTargetsFriendly > 0) then {
+		if (count _airTargetsFriendly > 0) then {
 			[_object, _airTargetsFriendly]  call UKSF_Scripts_ATC_fnc_updateMarkers;
 		};
 	}, 0.5, [_object]] call CBA_fnc_addPerFrameHandler;

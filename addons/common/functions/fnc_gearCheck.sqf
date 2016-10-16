@@ -19,7 +19,7 @@ params ["_unit"];
 	params ["_args"];
 	_args params ["_unit"];
 
-	if(isPlayer _unit || isNull _unit || !alive _unit ||
+	if (isPlayer _unit || isNull _unit || !alive _unit ||
 		damage _unit > 0.1 || !local _unit) exitWith {};
 
 	_currentUniform = uniform _unit;
@@ -28,15 +28,15 @@ params ["_unit"];
 	_uniform = getText (_config >> "uniformClass");
 	_weapon = (getArray (_config >> "weapons")) select {_x != "Throw" && _x != "Put"};
 
-	if((_currentUniform == "" && _uniform != "") || (_currentWeapon == "" && count _weapon > 0)) then {
+	if ((_currentUniform == "" && _uniform != "") || (_currentWeapon == "" && count _weapon > 0)) then {
 		_leader = leader _unit;
 		_type = typeOf _unit;
 		_pos = getPos _unit;
 		_dir = direction _unit;
-		_group = if(!isNull _leader && _leader != _unit) then {
+		_group = if (!isNull _leader && _leader != _unit) then {
 			group _leader
 		} else {
-			_side = switch(getNumber (_config >> "side")) do {
+			_side = switch (getNumber (_config >> "side")) do {
 				case 0: {east};
 				case 1: {west};
 				case 2: {resistance};
@@ -45,7 +45,7 @@ params ["_unit"];
 			};
 			createGroup _side
 		};
-		_vehicle = if(vehicle _unit != _unit) {
+		_vehicle = if (vehicle _unit != _unit) then {
 			vehicle _unit
 		} else {
 			_unit
@@ -53,7 +53,7 @@ params ["_unit"];
 
 		deleteVehicle _unit;
 		_unit = _type createUnit [[0,0,0], _group];
-		if(_vehicle == _unit) then {
+		if (_vehicle == _unit) then {
 			_unit moveInAny _vehicle;
 		} else {
 			_unit setPos _pos;

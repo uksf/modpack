@@ -29,7 +29,7 @@ params ["_markerName", "_factionName"];
 	};
 
 	_rand = random 10;
-	if(_rand < 8) then {
+	if (_rand < 8) then {
 		_randomUnit = selectRandom ["4","6","8","10","ATSquad","MGSquad","6_Res","4_Res"];
 		_group = [_randomSpawn, EAST, call compile format ["(configFile >> ""CfgGroups"" >> ""East"" >> ""UKSF_%1"" >> ""Infantry"" >> ""%1_%2"")", _factionName, _randomUnit]] call BIS_fnc_spawnGroup;
 	} else {

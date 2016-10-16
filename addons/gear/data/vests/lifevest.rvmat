@@ -8,7 +8,7 @@ PixelShaderID="Super";
 VertexShaderID="Super";
 class Stage1
 {
-	texture="UKSF_Weapons_Gear\Vests\lifevest_nohq.paa";
+	texture="u\uksf\addons\gear\data\Vests\lifevest_nohq.paa";
 	uvSource="tex";
 	class uvTransform
 	{
@@ -44,7 +44,7 @@ class Stage3
 };
 class Stage4
 {
-	texture="UKSF_Weapons_Gear\Vests\lifevest_AS.paa";
+	texture="u\uksf\addons\gear\data\Vests\lifevest_AS.paa";
 	uvSource="tex";
 	class uvTransform
 	{
@@ -56,7 +56,7 @@ class Stage4
 };
 class Stage5
 {
-	texture="UKSF_Weapons_Gear\Vests\lifevest_smdi.paa";
+	texture="u\uksf\addons\gear\data\Vests\lifevest_smdi.paa";
 	uvSource="tex";
 	class uvTransform
 	{

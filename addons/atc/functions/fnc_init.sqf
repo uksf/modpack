@@ -15,10 +15,10 @@
 
 params ["_object"];
 
-if(isServer) then {
-	if(_object isKindOf "UKSF_ATC_Core") then {
-		_ATC = createVehicle ["UKSF_ATC_CoreCore", [0,0,0], [], 0, "CAN_COLLIDE"];
+if ((isServer && !hasInterface) || !isMultiplayer) then {
+	if (_object isKindOf "UKSF_ATC_Station") then {
+		_ATC = createVehicle ["UKSF_ATC_Core", [0,0,0], [], 0, "CAN_COLLIDE"];
 		_ATC setPos (_object modelToWorld [0,0,0.5]);
-		_ATC setVariable [QVAR(radarOn), false, true];
+		_ATC setVariable [QGVAR(radarOn), false, true];
 	};
 };

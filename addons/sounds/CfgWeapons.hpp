@@ -1,4 +1,5 @@
 class Mode_FullAuto;
+class Mode_Burst;
 class Mode_SemiAuto;
 class CfgWeapons {	
 	class LMG_Zafir_F;
@@ -296,6 +297,7 @@ class CfgWeapons {
 			};
 		};
 	};
+	class rhs_weap_ak74m;
 	class rhs_weap_akm: rhs_weap_ak74m {
 		drySound[] = { "JSRSAPEX_P_Weaponsounds\dry\AKM_dry.ogg", 1, 1, 30 };
 		reloadMagazineSound[] = { "JSRSAPEX_P_Weaponsounds\Reload\AKM_reload.ogg", 1.5, 1, 35 };
@@ -313,7 +315,6 @@ class CfgWeapons {
 			};
 		};
 	};
-	class Rifle_Long_Base_F: Rifle_Base_F {};
 	class rhs_pkp_base: Rifle_Long_Base_F {
 		drySound[] = { "JSRSAPEX_P_Weaponsounds\dry\Spmg_dry.ogg", 1, 1, 30 };
 		reloadMagazineSound[] = { "JSRSAPEX_P_Weaponsounds\Reload\Spmg_reload.ogg", 1.5, 1, 35 };
@@ -340,111 +341,111 @@ class CfgWeapons {
 		};
 	};
 
-	class R3F_Famas_F1 : Rifle_Base_F {
-		class Single : Mode_SemiAuto {
+	class R3F_Famas_F1: Rifle_Base_F {
+		class Single: Mode_SemiAuto {
 			class BaseSoundModeType;
-			class StandardSound : BaseSoundModeType {
+			class StandardSound: BaseSoundModeType {
 				soundSetShot[] = { "UKSF_FAMAS_Shot_SoundSet", "JPEX_MX_Tail_SoundSet", "JPEX_FRAME_RIFLE_REFLECTORS", "JPEX_FRAME_NOISE_LAYER_556MM" };
 			};
-			class SilencedSound : BaseSoundModeType {
+			class SilencedSound: BaseSoundModeType {
 				soundSetShot[] = { "UKSF_FAMAS_Shot_Silenced_SoundSet", "JPEX_MX_Tail_Silenced_SoundSet", "JPEX_FRAME_NOISE_LAYER_556MM" };
 			};
 		};
-		class Burst : Mode_Burst {
+		class Burst: Mode_Burst {
 			class BaseSoundModeType;
-			class StandardSound : BaseSoundModeType {
+			class StandardSound: BaseSoundModeType {
 				soundSetShot[] = { "UKSF_FAMAS_Shot_SoundSet", "JPEX_MX_Tail_SoundSet", "JPEX_FRAME_RIFLE_REFLECTORS", "JPEX_FRAME_NOISE_LAYER_556MM" };
 			};
-			class SilencedSound : BaseSoundModeType {
+			class SilencedSound: BaseSoundModeType {
 				soundSetShot[] = { "UKSF_FAMAS_Shot_Silenced_SoundSet", "JPEX_MX_Tail_Silenced_SoundSet", "JPEX_FRAME_NOISE_LAYER_556MM" };
 			};
 		};
-		class FullAuto : Mode_FullAuto {
+		class FullAuto: Mode_FullAuto {
 			class BaseSoundModeType;
-			class StandardSound : BaseSoundModeType {
+			class StandardSound: BaseSoundModeType {
 				soundSetShot[] = { "UKSF_FAMAS_Shot_SoundSet", "JPEX_MX_Tail_SoundSet", "JPEX_FRAME_RIFLE_REFLECTORS", "JPEX_FRAME_NOISE_LAYER_556MM" };
 			};
-			class SilencedSound : BaseSoundModeType {
-				soundSetShot[] = { "UKSF_FAMAS_Shot_Silenced_SoundSet", "JPEX_MX_Tail_Silenced_SoundSet", "JPEX_FRAME_NOISE_LAYER_556MM" };
-			};
-		};
-	};
-	class R3F_Famas_G2 : R3F_Famas_F1 {
-		class Single : Mode_SemiAuto {
-			class BaseSoundModeType;
-			class StandardSound : BaseSoundModeType {
-				soundSetShot[] = { "UKSF_FAMAS_Shot_SoundSet", "JPEX_MX_Tail_SoundSet", "JPEX_FRAME_RIFLE_REFLECTORS", "JPEX_FRAME_NOISE_LAYER_556MM" };
-			};
-			class SilencedSound : BaseSoundModeType {
-				soundSetShot[] = { "UKSF_FAMAS_Shot_Silenced_SoundSet", "JPEX_MX_Tail_Silenced_SoundSet", "JPEX_FRAME_NOISE_LAYER_556MM" };
-			};
-		};
-		class Burst : Mode_Burst {
-			class BaseSoundModeType;
-			class StandardSound : BaseSoundModeType {
-				soundSetShot[] = { "UKSF_FAMAS_Shot_SoundSet", "JPEX_MX_Tail_SoundSet", "JPEX_FRAME_RIFLE_REFLECTORS", "JPEX_FRAME_NOISE_LAYER_556MM" };
-			};
-			class SilencedSound : BaseSoundModeType {
-				soundSetShot[] = { "UKSF_FAMAS_Shot_Silenced_SoundSet", "JPEX_MX_Tail_Silenced_SoundSet", "JPEX_FRAME_NOISE_LAYER_556MM" };
-			};
-		};
-		class FullAuto : Mode_FullAuto {
-			class BaseSoundModeType;
-			class StandardSound : BaseSoundModeType {
-				soundSetShot[] = { "UKSF_FAMAS_Shot_SoundSet", "JPEX_MX_Tail_SoundSet", "JPEX_FRAME_RIFLE_REFLECTORS", "JPEX_FRAME_NOISE_LAYER_556MM" };
-			};
-			class SilencedSound : BaseSoundModeType {
+			class SilencedSound: BaseSoundModeType {
 				soundSetShot[] = { "UKSF_FAMAS_Shot_Silenced_SoundSet", "JPEX_MX_Tail_Silenced_SoundSet", "JPEX_FRAME_NOISE_LAYER_556MM" };
 			};
 		};
 	};
-	class R3F_FRF2 : Rifle_Base_F {
-		class Single : Mode_SemiAuto {
+	class R3F_Famas_G2: R3F_Famas_F1 {
+		class Single: Mode_SemiAuto {
 			class BaseSoundModeType;
-			class StandardSound : BaseSoundModeType {
+			class StandardSound: BaseSoundModeType {
+				soundSetShot[] = { "UKSF_FAMAS_Shot_SoundSet", "JPEX_MX_Tail_SoundSet", "JPEX_FRAME_RIFLE_REFLECTORS", "JPEX_FRAME_NOISE_LAYER_556MM" };
+			};
+			class SilencedSound: BaseSoundModeType {
+				soundSetShot[] = { "UKSF_FAMAS_Shot_Silenced_SoundSet", "JPEX_MX_Tail_Silenced_SoundSet", "JPEX_FRAME_NOISE_LAYER_556MM" };
+			};
+		};
+		class Burst: Mode_Burst {
+			class BaseSoundModeType;
+			class StandardSound: BaseSoundModeType {
+				soundSetShot[] = { "UKSF_FAMAS_Shot_SoundSet", "JPEX_MX_Tail_SoundSet", "JPEX_FRAME_RIFLE_REFLECTORS", "JPEX_FRAME_NOISE_LAYER_556MM" };
+			};
+			class SilencedSound: BaseSoundModeType {
+				soundSetShot[] = { "UKSF_FAMAS_Shot_Silenced_SoundSet", "JPEX_MX_Tail_Silenced_SoundSet", "JPEX_FRAME_NOISE_LAYER_556MM" };
+			};
+		};
+		class FullAuto: Mode_FullAuto {
+			class BaseSoundModeType;
+			class StandardSound: BaseSoundModeType {
+				soundSetShot[] = { "UKSF_FAMAS_Shot_SoundSet", "JPEX_MX_Tail_SoundSet", "JPEX_FRAME_RIFLE_REFLECTORS", "JPEX_FRAME_NOISE_LAYER_556MM" };
+			};
+			class SilencedSound: BaseSoundModeType {
+				soundSetShot[] = { "UKSF_FAMAS_Shot_Silenced_SoundSet", "JPEX_MX_Tail_Silenced_SoundSet", "JPEX_FRAME_NOISE_LAYER_556MM" };
+			};
+		};
+	};
+	class R3F_FRF2: Rifle_Base_F {
+		class Single: Mode_SemiAuto {
+			class BaseSoundModeType;
+			class StandardSound: BaseSoundModeType {
 				soundSetShot[] = { "UKSF_FRF2_Shot_SoundSet", "JPEX_MK14_Tail_SoundSet", "JPEX_FRAME_RIFLE_REFLECTORS", "JPEX_FRAME_NOISE_LAYER_762MM" };
 			};
-			class SilencedSound : BaseSoundModeType {
+			class SilencedSound: BaseSoundModeType {
 				soundSetShot[] = { "UKSF_FRF2_Shot_Silenced_SoundSet", "JPEX_MK14_Tail_Silenced_SoundSet", "JPEX_FRAME_NOISE_LAYER_762MM" };
 			};
 		};
 	};
-	class R3F_PGM_Hecate_II : Rifle_Base_F {
-		class Single : Mode_SemiAuto {
+	class R3F_PGM_Hecate_II: Rifle_Base_F {
+		class Single: Mode_SemiAuto {
 			class BaseSoundModeType;
-			class StandardSound : BaseSoundModeType {
+			class StandardSound: BaseSoundModeType {
 				soundSetShot[] = { "UKSF_PGM_Shot_SoundSet", "JPEX_GM6_Tail_SoundSet", "JPEX_FRAME_SNIPER_REFLECTORS", "JPEX_FRAME_NOISE_LAYER_cal308" };
 			};
 		};
 	};
-	class R3F_Minimi : Rifle_Base_F {
-		class manual : Mode_FullAuto {
+	class R3F_Minimi: Rifle_Base_F {
+		class manual: Mode_FullAuto {
 			class BaseSoundModeType;
-			class StandardSound : BaseSoundModeType {
+			class StandardSound: BaseSoundModeType {
 				soundSetShot[] = { "UKSF_Minimi_Shot_SoundSet", "JPEX_ZAFIR_Tail_SoundSet", "JPEX_FRAME_MG_REFLECTORS", "JPEX_FRAME_NOISE_LAYER_762MM" };
 			};
 		};
 	};
-	class R3F_Minimi_HG : R3F_Minimi {
-		class manual : Mode_FullAuto {
+	class R3F_Minimi_HG: R3F_Minimi {
+		class manual: Mode_FullAuto {
 			class BaseSoundModeType;
-			class StandardSound : BaseSoundModeType {
+			class StandardSound: BaseSoundModeType {
 				soundSetShot[] = { "UKSF_Minimi_Shot_SoundSet", "JPEX_ZAFIR_Tail_SoundSet", "JPEX_FRAME_MG_REFLECTORS", "JPEX_FRAME_NOISE_LAYER_762MM" };
 			};
 		};
 	};
-	class R3F_Minimi_762 : R3F_Minimi {
-		class manual : Mode_FullAuto {
+	class R3F_Minimi_762: R3F_Minimi {
+		class manual: Mode_FullAuto {
 			class BaseSoundModeType;
-			class StandardSound : BaseSoundModeType {
+			class StandardSound: BaseSoundModeType {
 				soundSetShot[] = { "UKSF_Minimi762_Shot_SoundSet", "JPEX_NAVID_Tail_SoundSet", "JPEX_FRAME_MG_REFLECTORS", "JPEX_FRAME_NOISE_LAYER_CAL308" };
 			};
 		};
 	};
-	class R3F_Minimi_762_HG : R3F_Minimi_762 {
-		class manual : Mode_FullAuto {
+	class R3F_Minimi_762_HG: R3F_Minimi_762 {
+		class manual: Mode_FullAuto {
 			class BaseSoundModeType;
-			class StandardSound : BaseSoundModeType {
+			class StandardSound: BaseSoundModeType {
 				soundSetShot[] = { "UKSF_Minimi762_Shot_SoundSet", "JPEX_NAVID_Tail_SoundSet", "JPEX_FRAME_MG_REFLECTORS", "JPEX_FRAME_NOISE_LAYER_CAL308" };
 			};
 		};

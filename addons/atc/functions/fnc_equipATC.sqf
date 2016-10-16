@@ -22,7 +22,7 @@ removeBackpack player;
 removeHeadgear player;
 removeGoggles player;
 
-player forceAddUniform "UKSF_ATC_Blues";
+player forceAddUniform "UKSF_U_ATC";
 player addItemToUniform "ACE_Flashlight_XL50";
 player addItemToUniform "ACE_MapTools";
 for "_i" from 1 to 3 do {player addItemToUniform "ACE_IR_Strobe_Item";};

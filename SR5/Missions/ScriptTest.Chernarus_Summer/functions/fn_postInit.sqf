@@ -25,7 +25,7 @@ if (!isServer || !isMultiplayer) exitWith {};
 UKSF_Mission_groups = [];
 
 UKSF_Mission_distance = 750;
-if((paramsArray select 0) > 0) then {
+if ((paramsArray select 0) > 0) then {
 	UKSF_Mission_distance = (paramsArray select 0);
 };
 

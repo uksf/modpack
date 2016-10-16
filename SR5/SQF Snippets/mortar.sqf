@@ -5,7 +5,7 @@
 	Description:
 		Fires defined mortar unit at marker position (IT'S CRUDE OK)
 */
-if(!isServer) exitWith {};
+if (!isServer) exitWith {};
 
 {
 	_position = [mortarPos] call CBA_fnc_randPosArea;
