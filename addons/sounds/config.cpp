@@ -13,7 +13,10 @@ class CfgPatches {
             "JPEX_FrameWork",
             "JSRSAPEX_ReloadingSoundsApex",
             "JSRSAPEX_Navid",
-            "JSRSAPEX_Zafir"
+            "JSRSAPEX_Zafir",
+            "JSRSAPEX_AK12",
+            "JSRSAPEX_AKM",
+            "JSRSAPEX_SPMG"
         };
         author = QUOTE(UKSF);
         authors[] = {"Beswick.T"};
@@ -24,3 +27,5 @@ class CfgPatches {
 
 #include "CfgEventHandlers.hpp"
 #include "CfgWeapons.hpp"
+#include "CfgSoundSets.hpp"
+#include "CfgSoundShaders.hpp"

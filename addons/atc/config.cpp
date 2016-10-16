@@ -4,7 +4,7 @@ class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
         units[] = {};
-        weapons[] = {};
+        weapons[] = { "UKSF_ATC_Core", "UKSF_ATC_Station" };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {"uksf_main", "uksf_common"};
         author = QUOTE(UKSF);
@@ -15,4 +15,4 @@ class CfgPatches {
 };
 
 #include "CfgEventHandlers.hpp"
-#include "CfgVehicless.hpp"
+#include "CfgVehicles.hpp"

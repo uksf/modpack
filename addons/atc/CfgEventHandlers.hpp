@@ -18,9 +18,14 @@ class Extended_PostInit_EventHandlers {
 };
 
 class Extended_Init_EventHandlers {
-	class CAManBase {
+	class UKSF_ATC_Station {
 	    class ADDON {
-	        respawn = QUOTE(_this call FUNC(addAction));
+	        respawn = QUOTE(_this call FUNC(init));
+	    };
+	};
+    class Air {
+	    class ADDON {
+	        respawn = QUOTE(_this call FUNC(initAir));
 	    };
 	};
 };

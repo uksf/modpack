@@ -12,6 +12,8 @@
 	Return Value:
 		None
 */
+#include "script_component.hpp"
+
 params ["_unit", ["_setting", 0]];
 
 switch (_setting) do {
