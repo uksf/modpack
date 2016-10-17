@@ -3,13 +3,12 @@
 #define MAINPREFIX u
 #define PREFIX uksf
 
-#define MAJOR 0
+#define MAJOR 4
 #define MINOR 0
-#define PATCHLVL 1
-#define BUILD 1
+#define PATCHLVL 0
 
-#define VERSION MAJOR.MINOR.PATCHLVL.BUILD
-#define VERSION_AR MAJOR,MINOR,PATCHLVL,BUILD
+#define VERSION MAJOR.MINOR.PATCHLVL
+#define VERSION_AR MAJOR,MINOR,PATCHLVL
 
 // MINIMAL required version for the Mod. Components can specify others..
 #define REQUIRED_VERSION 1.64

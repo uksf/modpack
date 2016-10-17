@@ -523,7 +523,6 @@ def get_project_version(version_increments=[]):
                 majorText = re.search(r"#define MAJOR (.*\b)", hpptext).group(1)
                 minorText = re.search(r"#define MINOR (.*\b)", hpptext).group(1)
                 patchText = re.search(r"#define PATCHLVL (.*\b)", hpptext).group(1)
-                buildText = re.search(r"#define BUILD (.*\b)", hpptext).group(1)
 
                 # Increment version
                 if version_increments != []:
@@ -533,20 +532,17 @@ def get_project_version(version_increments=[]):
                         minorText = int(minorText) + 1
                     if "patch" in version_increments:
                         patchText = int(patchText) + 1
-                    if "build" in version_increments:
-                        buildText = int(buildText) + 1
 
-                    print_green("Incrementing version to {}.{}.{}.{}".format(majorText,minorText,patchText,buildText))
+                    print_green("Incrementing version to {}.{}.{}".format(majorText,minorText,patchText))
                     with open(scriptModPath, "w", newline="\n") as file:
                         file.writelines([
                             "#define MAJOR {}\n".format(majorText),
                             "#define MINOR {}\n".format(minorText),
-                            "#define PATCHLVL {}\n".format(patchText),
-                            "#define BUILD {}\n".format(buildText)
+                            "#define PATCHLVL {}\n".format(patchText)
                         ])
 
                 if majorText:
-                    versionStamp = "{}.{}.{}.{}".format(majorText,minorText,patchText,buildText)
+                    versionStamp = "{}.{}.{}".format(majorText,minorText,patchText)
 
         else:
             print_error("A Critical file seems to be missing or inaccessible: {}".format(scriptModPath))
@@ -572,13 +568,11 @@ def replace_file(filePath, oldSubstring, newSubstring):
 
 
 def set_version_in_files():
-    newVersion = project_version # MAJOR.MINOR.PATCH.BUILD
+    newVersion = project_version # MAJOR.MINOR.PATCH
     newVersionArr = newVersion.split(".")
-    newVersionShort = ".".join((newVersionArr[0],newVersionArr[1],newVersionArr[2])) # MAJOR.MINOR.PATCH
 
     # Regex patterns
-    pattern = re.compile(r"([\d]+\.[\d]+\.[\d]+\.[\d]+)") # MAJOR.MINOR.PATCH.BUILD
-    patternShort = re.compile(r"([\d]+\.[\d]+\.[\d]+)") # MAJOR.MINOR.PATCH
+    pattern = re.compile(r"([\d]+\.[\d]+\.[\d]+)") # MAJOR.MINOR.PATCH
 
     # Change versions in files containing version
     for i in versionFiles:
@@ -594,7 +588,7 @@ def set_version_in_files():
                 if fileText:
                     # Version string files
                     # Search and save version stamp
-                    versionsFound = re.findall(pattern, fileText) + re.findall(patternShort, fileText)
+                    versionsFound = re.findall(pattern, fileText) + re.findall(pattern, fileText)
                     # Filter out sub-versions of other versions
                     versionsFound = [j for i, j in enumerate(versionsFound) if all(j not in k for k in versionsFound[i + 1:])]
 
@@ -604,8 +598,6 @@ def set_version_in_files():
                             # Use the same version length as the one found
                             if len(versionFound) == len(newVersion):
                                 newVersionUsed = newVersion
-                            if len(versionFound) == len(newVersionShort):
-                                newVersionUsed = newVersionShort
 
                             # Print change and modify the file if changed
                             if newVersionUsed and versionFound != newVersionUsed:
