@@ -486,6 +486,37 @@ class CfgWeapons {
 		scope = 0;
 	};
 
+	class LMG_Zafir_F;
+	class UK3CB_BAF_L7A2: LMG_Zafir_F {
+		magazines[] = {
+			"UK3CB_BAF_762_200Rnd_T",
+			"UK3CB_BAF_762_200Rnd",
+			"UK3CB_BAF_762_200Rnd_Blank",
+			"UK3CB_BAF_762_100Rnd_T",
+			"UK3CB_BAF_762_100Rnd",
+			"UK3CB_BAF_762_100Rnd_Blank",
+			"UK3CB_BAF_762_100Rnd_EL",
+			"UK3CB_BAF_762_100Rnd_T_EL",
+			"UK3CB_BAF_762_200Rnd_EL",
+			"UK3CB_BAF_762_200Rnd_T_EL"
+		};
+	};
+	class LMG_RCWS;
+	class UK3CB_BAF_L7A2_veh: LMG_RCWS {
+		magazines[] = {
+			"UK3CB_BAF_762_200Rnd_T",
+			"UK3CB_BAF_762_200Rnd",
+			"UK3CB_BAF_762_200Rnd_Blank",
+			"UK3CB_BAF_762_100Rnd_T",
+			"UK3CB_BAF_762_100Rnd",
+			"UK3CB_BAF_762_100Rnd_Blank",
+			"UK3CB_BAF_762_100Rnd_EL",
+			"UK3CB_BAF_762_100Rnd_T_EL",
+			"UK3CB_BAF_762_200Rnd_EL",
+			"UK3CB_BAF_762_200Rnd_T_EL"
+		};
+	};
+
 	class LRR_base_F;
 	class srifle_LRR_F: LRR_base_F {
 		class WeaponSlotsInfo;

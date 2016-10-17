@@ -11,4 +11,12 @@ class CfgAmmo{
 		hit = 14;
 		caliber = 1.6;
 	};
+	class UK3CB_BAF_762_Ball_EL: UK3CB_BAF_762_Ball {
+		hit = 12;
+		tracerEndTime = 4.15957;
+	};
+	class UK3CB_BAF_762_Ball_Tracer_Red_EL: UK3CB_BAF_762_Ball_Tracer_Red {
+		hit = 12;
+		tracerEndTime = 4.15957;
+	};
 };
