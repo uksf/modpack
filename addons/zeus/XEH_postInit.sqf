@@ -7,7 +7,10 @@ if ((isServer && !hasInterface) || !isMultiplayer) then {
 
 if (hasInterface) then {
 	call FUNC(loop);
-	[player] call FUNC(addAction);
+	if (isNil {player getVariable QGVAR(actionsAdded)}) then {
+		player setVariable [QGVAR(actionsAdded), false, true];
+	};
+	call FUNC(addAction);
 };
 
 if (!isMultiplayer) then {

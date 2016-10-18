@@ -35,7 +35,7 @@ _actions pushBack [_action, [], player];
 _action = [QGVAR(zeusAction_kickall), QUOTE(Kick All), ZEUS_ICON, {	
 	[{
 		{unassignCurator _x} forEach GVAR(curatorObjects);
-		missionNamespace setVariable (QGVAR(curatorNames), ["","","","",""], true);
+		missionNamespace setVariable [QGVAR(curatorNames), ["","","","",""], true];
 	}] remoteExecCall ["bis_fnc_call", 2, false];
 }, {IS_ADMIN || isServer}] call ace_interact_menu_fnc_createAction;
 _actions pushBack [_action, [], player];

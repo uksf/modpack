@@ -657,11 +657,11 @@ def restore_version_files():
     return True
 
 
-def get_private_keyname(commitID,module="main"):
+def get_private_keyname(module="main"):
     global pbo_name_prefix
     global project_version
 
-    keyName = str("{prefix}{version}-{commit_id}".format(prefix=pbo_name_prefix,version=project_version,commit_id=commitID))
+    keyName = str("{prefix}{version}".format(prefix=pbo_name_prefix,version=project_version))
     return keyName
 
 
@@ -936,7 +936,7 @@ See the make.cfg file for additional build options.
             print_error ("Directory {} does not exist.".format(module_root))
             sys.exit(1)
 
-        commit_id = get_commit_ID()
+        #commit_id = get_commit_ID()
         get_project_version(version_increments)
         key_name = versionStamp = get_private_keyname(commit_id)
         print_green ("module_root: {}".format(module_root))
@@ -1197,7 +1197,7 @@ See the make.cfg file for additional build options.
                     nobinFilePath = os.path.join(work_drive, prefix, module, "$NOBIN$")
                     backup_config(module)
 
-                    version_stamp_pboprefix(module,commit_id)
+                    #version_stamp_pboprefix(module,commit_id)
 
                     if os.path.isfile(nobinFilePath):
                         print_green("$NOBIN$ Found. Proceeding with non-binarizing!")

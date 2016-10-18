@@ -24,7 +24,7 @@ if (_curatorName == (name player)) then {
 		[[_this select 2], {
 			_names = missionNamespace getVariable [QGVAR(curatorNames), ["","","","",""]];
 			_names set [(_this select 0), ""];
-			missionNamespace setVariable (QGVAR(curatorNames), _names, true);
+			missionNamespace setVariable [QGVAR(curatorNames), _names, true];
 			unassignCurator (GVAR(curatorObjects) select (_this select 0));
 
 			[[(_this select 0)], {
@@ -44,7 +44,7 @@ if (_curatorName == (name player)) then {
 				[[_this select 2, player], {
 					_names = missionNamespace getVariable [QGVAR(curatorNames), ["","","","",""]];
 					_names set [(_this select 0), name (_this select 1)];
-					missionNamespace setVariable (QGVAR(curatorNames), _names, true);
+					missionNamespace setVariable [QGVAR(curatorNames), _names, true];
 					(_this select 1) assignCurator (GVAR(curatorObjects) select (_this select 0));
 
 					[[(_this select 0), (_this select 1)], {
@@ -64,7 +64,7 @@ if (_curatorName == (name player)) then {
 				[[_this select 2], {
 					_names = missionNamespace getVariable [QGVAR(curatorNames), ["","","","",""]];
 					_names set [(_this select 0), ""];
-					missionNamespace setVariable (QGVAR(curatorNames), _names, true);
+					missionNamespace setVariable [QGVAR(curatorNames), _names, true];
 					unassignCurator (GVAR(curatorObjects) select (_this select 0));
 
 					[[(_this select 0)], {

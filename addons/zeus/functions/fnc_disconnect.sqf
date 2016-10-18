@@ -26,4 +26,4 @@ _names = missionNamespace getVariable [QGVAR(curatorNames), ["","","","",""]];
 	};
 } forEach _names;
 
-missionNamespace setVariable (QGVAR(curatorNames), _names, true);
+missionNamespace setVariable [QGVAR(curatorNames), _names, true];

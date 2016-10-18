@@ -19,7 +19,7 @@
 
 params [["_vehicle", objNull], ["_units", []], ["_turrets", []], ["_side", 0]];
 
-if ((isServer && !hasInterface) || !isMultiplayer) then {
+if (isServer || !isMultiplayer) then {
 	[{
 		params ["_vehicle", "_units", "_turrets"];
 		if (!isNull(driver _vehicle)) then {
@@ -36,8 +36,8 @@ if ((isServer && !hasInterface) || !isMultiplayer) then {
 			[{
 				params ["_vehicle", "_men", "_turrets"];
 				{
-					_x moveincargo _vehicle
-				} forEach units _men;
+					_x moveincargo _vehicle;
+				} forEach (units _men);
 
 				if (count _turrets > 0) then {
 					[{

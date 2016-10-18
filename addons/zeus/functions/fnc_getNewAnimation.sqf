@@ -13,7 +13,7 @@
 */
 #include "script_component.hpp"
 
-params ["_unit", "_animationation"];
+params ["_unit", "_animation"];
 
 switch (stance _unit) do {
 	case ("STAND"): {
