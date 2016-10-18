@@ -22,11 +22,11 @@ if (_curatorName == (name player)) then {
 	//Logout
 	_statement = {
 		[[_this select 2], {
-			GVAR(curatorNames) set [(_this select 0), ""];
-			SETMVAR(GVAR(curatorNames),GVAR(curatorNames));
+			_names = missionNamespace getVariable [QGVAR(curatorNames), ["","","","",""]];
+			_names set [(_this select 0), ""];
+			missionNamespace setVariable (QGVAR(curatorNames), _names, true);
 			unassignCurator (GVAR(curatorObjects) select (_this select 0));
 
-			INFO_1("Zeus %1 logged out", (_this select 0) + 1);
 			[[(_this select 0)], {
 				if (IS_ADMIN || (isServer && hasInterface)) then {
 					hint format ["Zeus %1 logged out", (_this select 0) + 1];
@@ -42,11 +42,11 @@ if (_curatorName == (name player)) then {
 			//Login
 			_statement = {
 				[[_this select 2, player], {
-					GVAR(curatorNames) set [(_this select 0), name (_this select 1)];
-					SETMVAR(GVAR(curatorNames), GVAR(curatorNames));
+					_names = missionNamespace getVariable [QGVAR(curatorNames), ["","","","",""]];
+					_names set [(_this select 0), name (_this select 1)];
+					missionNamespace setVariable (QGVAR(curatorNames), _names, true);
 					(_this select 1) assignCurator (GVAR(curatorObjects) select (_this select 0));
 
-					INFO_2("%1 logged into Zeus %2", name (_this select 1), (_this select 0) + 1);
 					[[(_this select 0), (_this select 1)], {
 						if (IS_ADMIN || (isServer && hasInterface)) then {
 							hint format ["%1 logged into Zeus %2", name (_this select 1), (_this select 0) + 1];
@@ -62,11 +62,11 @@ if (_curatorName == (name player)) then {
 			//Kick
 			_statement = {
 				[[_this select 2], {
-					GVAR(curatorNames) set [(_this select 0), ""];
-					SETMVAR(GVAR(curatorNames), GVAR(curatorNames));
+					_names = missionNamespace getVariable [QGVAR(curatorNames), ["","","","",""]];
+					_names set [(_this select 0), ""];
+					missionNamespace setVariable (QGVAR(curatorNames), _names, true);
 					unassignCurator (GVAR(curatorObjects) select (_this select 0));
 
-					INFO_1("Zeus %1 kicked", (_this select 0) + 1);
 					[[(_this select 0)], {
 						if (IS_ADMIN || (isServer && hasInterface)) then {
 							hint format ["Zeus %1 kicked", (_this select 0) + 1];

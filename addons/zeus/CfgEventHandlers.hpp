@@ -17,10 +17,10 @@ class Extended_PostInit_EventHandlers {
     };
 };
 
-class Extended_Respawn_EventHandlers {
+class Extended_Init_EventHandlers {
 	class CAManBase {
 	    class ADDON {
-	        respawn = QUOTE(_this call FUNC(addAction));
+	        init = QUOTE(_this call FUNC(addAction));
 	    };
 	};
 };

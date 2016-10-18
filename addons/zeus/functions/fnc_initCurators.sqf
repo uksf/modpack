@@ -40,8 +40,6 @@ SETPVAR(_curator,text,QUOTE(UKSFCurator_5));
 _curator addCuratorAddons activatedAddons;
 GVAR(curatorObjects) set [4, _curator];
 
-INFO("Curators created");
-
-SETMVAR(GVAR(curatorNames), GVAR(curatorNames));
+missionNamespace setVariable (QGVAR(curatorNames), ["","","","",""], true);
 
 [QGVAR(disconnectEHKey), "onPlayerDisconnected", FUNC(disconnect), [_id, _uid, _name, _jip, _owner]] call BIS_fnc_addStackedEventHandler;

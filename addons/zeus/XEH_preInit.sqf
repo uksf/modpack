@@ -5,6 +5,5 @@ ADDON = false;
 #include "XEH_PREP.hpp"
 
 GVAR(curatorObjects) = [objNull,objNull,objNull,objNull,objNull];
-GVAR(curatorNames) = ["","","","",""];
 
 ADDON = true;

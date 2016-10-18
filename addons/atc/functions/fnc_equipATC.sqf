@@ -41,8 +41,8 @@ for "_i" from 1 to 2 do {player addItemToUniform "SmokeShellPurple";};
 for "_i" from 1 to 2 do {player addItemToUniform "SmokeShellRed";};
 for "_i" from 1 to 2 do {player addItemToUniform "SmokeShellYellow";};
 player addItemToUniform "Laserbatteries";
-player addBackpack "UKSF_ATCPack";
-player addHeadgear "UKSF_RAF_Beret";
+player addBackpack "UKSF_B_ATC";
+player addHeadgear "UKSF_H_RAFBeret";
 player addGoggles "G_Aviator";
 
 player addWeapon "UK3CB_BAF_Soflam_Laserdesignator";

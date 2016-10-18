@@ -32,9 +32,12 @@ _actions pushBack [_action, [], player];
 _action = [QGVAR(zeusAction_5), [4] call FUNC(getName), ZEUS_ICON, [4] call FUNC(actionStatement), {true}, {}, 4] call ace_interact_menu_fnc_createAction;
 _actions pushBack [_action, [], player];
 
-_action = [QGVAR(zeusAction_kickall), QUOTE(Kick All), ZEUS_ICON, {{unassignCurator _x} forEach GVAR(curatorObjects); GVAR(curatorNames) = ["","","","",""]; SETMVAR(GVAR(curatorNames), GVAR(curatorNames));}, {IS_ADMIN || isServer}] call ace_interact_menu_fnc_createAction;
+_action = [QGVAR(zeusAction_kickall), QUOTE(Kick All), ZEUS_ICON, {	
+	[{
+		{unassignCurator _x} forEach GVAR(curatorObjects);
+		missionNamespace setVariable (QGVAR(curatorNames), ["","","","",""], true);
+	}] remoteExecCall ["bis_fnc_call", 2, false];
+}, {IS_ADMIN || isServer}] call ace_interact_menu_fnc_createAction;
 _actions pushBack [_action, [], player];
-
-INFO_2("Respawned, actions added: %1", _actions);
 
 _actions

@@ -200,7 +200,7 @@ class UKSF_Clan_HP : B_Helipilot_F {
         "ACE_IR_Strobe_Item"
     };
     linkedItems[] = {
-        "V_mas_uk_TacVest_p",
+        "UKSF_V_Pilot",
         "UK3CB_BAF_H_PilotHelmetHeli_A",
         "ACE_NVG_Pilot",
         "ItemMap",
@@ -209,7 +209,7 @@ class UKSF_Clan_HP : B_Helipilot_F {
         "ItemWatch"
     };
     respawnLinkedItems[] = {
-        "V_mas_uk_TacVest_p",
+        "UKSF_V_Pilot",
         "UK3CB_BAF_H_PilotHelmetHeli_A",
         "ACE_NVG_Pilot",
         "ItemMap",
@@ -255,7 +255,7 @@ class UKSF_Clan_FW : UKSF_Clan_HP {
 	editorPreview = QPATHTOEF(common,data\previews\UKSF_Clan_FW.jpg);
     backpack = "B_Parachute";
     linkedItems[] = {
-        "UKSF_FlightVest",
+        "UKSF_V_Flight",
         "H_PilotHelmetFighter_B",
         "ItemMap",
         "ItemCompass",
@@ -263,7 +263,7 @@ class UKSF_Clan_FW : UKSF_Clan_HP {
         "ItemWatch"
     };
     respawnLinkedItems[] = {
-        "UKSF_FlightVest",
+        "UKSF_V_Flight",
         "H_PilotHelmetFighter_B",
         "ItemMap",
         "ItemCompass",

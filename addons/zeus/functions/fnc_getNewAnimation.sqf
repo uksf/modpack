@@ -15,10 +15,8 @@
 
 params ["_unit", "_animationation"];
 
-INFO_1("Unit stance %1", stance _unit);
 switch (stance _unit) do {
 	case ("STAND"): {
-		INFO_1("Unit weapon %1", currentWeapon _unit);
 		if (currentWeapon _unit != "") then {
 			if ((currentWeapon _unit) isKindOf ["Rifle", configFile >> "CfgWeapons"]) then {
 				_animation = "amovpercmstpslowwrfldnon";
@@ -37,7 +35,6 @@ switch (stance _unit) do {
 		};
 	};
 	case ("CROUCH"): {
-		INFO_1("Unit weapon %1", currentWeapon _unit);
 		if (currentWeapon _unit != "") then {
 			if ((currentWeapon _unit) isKindOf ["Rifle", configFile >> "CfgWeapons"]) then {
 				_animation = "amovpknlmstpslowwrfldnon";
@@ -56,7 +53,6 @@ switch (stance _unit) do {
 		};
 	};
 	case ("PRONE"): {
-		INFO_1("Unit weapon %1", currentWeapon _unit);
 		if (currentWeapon _unit != "") then {
 			if ((currentWeapon _unit) isKindOf ["Rifle", configFile >> "CfgWeapons"]) then {
 				_animation = "amovppnemstpsraswrfldnon";

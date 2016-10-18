@@ -244,6 +244,7 @@ class CfgWeapons {
 
 	class H_Beret_02;
 	class UKSF_H_RAFBeret: H_Beret_02 {
+		scope = 2;
 		author = "UKSF";
 		displayName = "RAF Beret";
 		picture = QPATHTOF(UI\icon_beret_raf_ca.paa);
@@ -267,6 +268,7 @@ class CfgWeapons {
 		};
 	};
 	class UKSF_H_AACBeret: H_Beret_02 {
+		scope = 2;
 		author = "UKSF";
 		displayName = "AAC Beret";
 		picture = QPATHTOF(UI\icon_beret_aac_ca.paa);
@@ -292,6 +294,7 @@ class CfgWeapons {
 
 	class V_TacVest_oli;
 	class UKSF_V_Pilot: V_TacVest_oli {
+		scope = 2;
 		author = "UKSF";
 		displayName = "UK Pilot vest";
 		picture = QPATHTOF(UI\icon_v_tacvest_khk_ca.paa);

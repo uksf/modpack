@@ -19,7 +19,6 @@ if (!isNil "Beswick") then {
 		    params ["_curator", "_unit"];
 		    private _pingCount = GETVAR(_unit,GVAR(pingCount),0);
 		    private _lastPingTime = GETVAR(_unit,GVAR(pingCount),diag_tickTime);
-			INFO_2("Zeus pinged by: %1, %2 times", _unit, _pingCount);
 
 			_pingCount = _pingCount + 1;
 		    if (_lastPingTime <= diag_tickTime - 15) then {

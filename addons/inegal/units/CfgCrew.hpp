@@ -321,7 +321,7 @@ class Inegal_Crew_P: Inegal_Crew_HP {
 	};
 	linkedItems[] = {
 		"H_PilotHelmetFighter_O",
-		"UKSF_FlightVest",
+		"UKSF_V_Flight",
 		"ItemMap",
 		"ItemCompass",
 		"ItemWatch",
@@ -330,7 +330,7 @@ class Inegal_Crew_P: Inegal_Crew_HP {
 	};
 	respawnLinkedItems[] = {
 		"H_PilotHelmetFighter_O",
-		"UKSF_FlightVest",
+		"UKSF_V_Flight",
 		"ItemMap",
 		"ItemCompass",
 		"ItemWatch",
