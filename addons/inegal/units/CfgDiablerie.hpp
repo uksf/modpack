@@ -776,7 +776,7 @@ class Inegal_Diablerie_Sh: Inegal_Diablerie_S {
 	scope = 2;
 	displayName = "Sharpshooter";
 	editorPreview = QPATHTOEF(common,data\previews\Inegal_Diablerie_Sh.jpg);
-	backpack = "Inegal_B_D_Specialist";
+	backpack = "Inegal_B_D_Sharpshooter";
 	weapons[] = {
 		"arifle_SPAR_03_blk_F_dms_bipod_suppressor_laser",
 		"Throw",

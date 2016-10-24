@@ -15,7 +15,7 @@
 
 params ["_unit"];
 
-if ((isServer && !hasInterface) || !isMultiplayer) then {
+if (isServer) then {
 	if ((random 200) == 1) then {
 		if (_unit isKindOf "Laraka_RPG" || _unit isKindOf "Azaadi_RPG") then {
 			_unit removeWeapon "rhs_weap_rpg7";

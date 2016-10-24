@@ -4,7 +4,7 @@
 #define PREFIX uksf
 
 #define MAJOR 4
-#define MINOR 0
+#define MINOR 1
 #define PATCHLVL 0
 
 #define VERSION MAJOR.MINOR.PATCHLVL

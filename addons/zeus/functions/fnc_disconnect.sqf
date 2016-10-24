@@ -20,9 +20,12 @@
 params ["_id", "_uid", "_name", "_jip", "_owner"];
 
 _names = missionNamespace getVariable [QGVAR(curatorNames), ["","","","",""]];
+_newNames = [];
 {
 	if (_name == _x) then {
 		_names set [_forEachIndex, ""];
+	} else {
+		_newNames set [_forEachIndex, _x];
 	};
 } forEach _names;
 

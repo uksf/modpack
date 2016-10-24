@@ -44,22 +44,22 @@ class UKSF_LandRover_MG : Genfor_LandRover_MG {
 		class ACE_MainActions : ACE_MainActions {
 			class ACE_deployNetWoodland {
 				displayName = "Deploy Net (Woodland)";
-				condition = QUOTE((!(_target getVariable [ARR_2(QQGVAR(deployed), false)]) && (isNull (_target getVariable [ARR_2(QQGVAR(netObj), objNull)]))));
-				statement = QUOTE(([ARR_3(_target, _player, 'CamoNet_BLUFOR_big_F')] call EFUNC(common,deployNet)));
+				condition = QUOTE(!(_target getVariable [ARR_2(QQGVAR(deployed), false)]) && (isNull (_target getVariable [ARR_2(QQGVAR(netObj), objNull)])));
+				statement = QUOTE([ARR_3(_target, _player, 'CamoNet_BLUFOR_big_F')] call EFUNC(common,deployNet));
 				showDisabled = 0;
 				priority = 1;
 			};
 			class ACE_deployNetDesert {
 				displayName = "Deploy Net (Desert)";
-				condition = QUOTE((!(_target getVariable [ARR_2(QQGVAR(deployed), false)]) && (isNull (_target getVariable [ARR_2(QQGVAR(netObj), objNull)]))));
-				statement = QUOTE(([ARR_3(_target, _player, 'Land_CamoNetB_NATO_EP1')] call EFUNC(common,deployNet)));
+				condition = QUOTE(!(_target getVariable [ARR_2(QQGVAR(deployed), false)]) && (isNull (_target getVariable [ARR_2(QQGVAR(netObj), objNull)])));
+				statement = QUOTE([ARR_3(_target, _player, 'Land_CamoNetB_NATO_EP1')] call EFUNC(common,deployNet));
 				showDisabled = 0;
 				priority = 1;
 			};
 			class ACE_concealNet {
 				displayName = "Conceal Net";
-				condition = QUOTE(((_target getVariable [ARR_2(QQGVAR(deployed), false)]) && !(isNull (_target getVariable [ARR_2(QQGVAR(netObj), objNull)])) && ((_target distance (_target getVariable [ARR_2(QQGVAR(netObj), objNull)])) < 10)));
-				statement = QUOTE(([ARR_2(_target, _player)] call EFUNC(common,concealNet)));
+				condition = QUOTE((_target getVariable [ARR_2(QQGVAR(deployed), false)]) && !(isNull (_target getVariable [ARR_2(QQGVAR(netObj), objNull)])) && ((_target distance (_target getVariable [ARR_2(QQGVAR(netObj), objNull)])) < 10));
+				statement = QUOTE([ARR_2(_target, _player)] call EFUNC(common,concealNet));
 				showDisabled = 0;
 				priority = 1;
 			};
@@ -99,22 +99,22 @@ class UKSF_LandRover_GL : Genfor_LandRover_GL {
 		class ACE_MainActions : ACE_MainActions {
 			class ACE_deployNetWoodland {
 				displayName = "Deploy Net (Woodland)";
-				condition = QUOTE((!(_target getVariable [ARR_2(QQGVAR(deployed), false)]) && (isNull (_target getVariable [ARR_2(QQGVAR(netObj), objNull)]))));
-				statement = QUOTE(([ARR_3(_target, _player, 'CamoNet_BLUFOR_big_F')] call EFUNC(common,deployNet)));
+				condition = QUOTE(!(_target getVariable [ARR_2(QQGVAR(deployed), false)]) && (isNull (_target getVariable [ARR_2(QQGVAR(netObj), objNull)])));
+				statement = QUOTE([ARR_3(_target, _player, 'CamoNet_BLUFOR_big_F')] call EFUNC(common,deployNet));
 				showDisabled = 0;
 				priority = 1;
 			};
 			class ACE_deployNetDesert {
 				displayName = "Deploy Net (Desert)";
-				condition = QUOTE((!(_target getVariable [ARR_2(QQGVAR(deployed), false)]) && (isNull (_target getVariable [ARR_2(QQGVAR(netObj), objNull)]))));
-				statement = QUOTE(([ARR_3(_target, _player, 'Land_CamoNetB_NATO_EP1')] call EFUNC(common,deployNet)));
+				condition = QUOTE(!(_target getVariable [ARR_2(QQGVAR(deployed), false)]) && (isNull (_target getVariable [ARR_2(QQGVAR(netObj), objNull)])));
+				statement = QUOTE([ARR_3(_target, _player, 'Land_CamoNetB_NATO_EP1')] call EFUNC(common,deployNet));
 				showDisabled = 0;
 				priority = 1;
 			};
 			class ACE_concealNet {
 				displayName = "Conceal Net";
-				condition = QUOTE(((_target getVariable [ARR_2(QQGVAR(deployed), false)]) && !(isNull (_target getVariable [ARR_2(QQGVAR(netObj), objNull)])) && ((_target distance (_target getVariable [ARR_2(QQGVAR(netObj), objNull)])) < 10)));
-				statement = QUOTE(([ARR_2(_target, _player)] call EFUNC(common,concealNet)));
+				condition = QUOTE((_target getVariable [ARR_2(QQGVAR(deployed), false)]) && !(isNull (_target getVariable [ARR_2(QQGVAR(netObj), objNull)])) && ((_target distance (_target getVariable [ARR_2(QQGVAR(netObj), objNull)])) < 10));
+				statement = QUOTE([ARR_2(_target, _player)] call EFUNC(common,concealNet));
 				showDisabled = 0;
 				priority = 1;
 			};
@@ -186,46 +186,46 @@ class UKSF_LandRover_Medical : Genfor_LandRover_Medical {
 		class ACE_MainActions : ACE_MainActions {
 			class ACE_deployNetWoodland {
 				displayName = "Deploy Medical Net (Woodland)";
-				condition = QUOTE((!(_target getVariable [ARR_2(QQGVAR(deployed), false)]) && (isNull (_target getVariable [ARR_2(QQGVAR(netObj), objNull)]))));
+				condition = QUOTE(!(_target getVariable [ARR_2(QQGVAR(deployed), false)]) && (isNull (_target getVariable [ARR_2(QQGVAR(netObj), objNull)])));
 				statement = "";
 				class ACE_left {
 					displayName = "Left";
-					condition = QUOTE((!(_target getVariable [ARR_2(QQGVAR(deployed), false)]) && (isNull (_target getVariable [ARR_2(QQGVAR(netObj), objNull)]))));
-					statement = QUOTE(([ARR_4(_target, _player, 'CamoNet_BLUFOR_open_F', [ARR_3(-2.75,0,-1)])] call EFUNC(common,deployNetMedical)));
+					condition = QUOTE(!(_target getVariable [ARR_2(QQGVAR(deployed), false)]) && (isNull (_target getVariable [ARR_2(QQGVAR(netObj), objNull)])));
+					statement = QUOTE([ARR_4(_target, _player, 'CamoNet_BLUFOR_open_F', [ARR_3(-2.75,0,-1)])] call EFUNC(common,deployNetMedical));
 					showDisabled = 0;
 					priority = 1;
 				};
 				class ACE_right {
 					displayName = "Right";
-					condition = QUOTE((!(_target getVariable [ARR_2(QQGVAR(deployed), false)]) && (isNull (_target getVariable [ARR_2(QQGVAR(netObj), objNull)]))));
-					statement = QUOTE(([ARR_4(_target, _player, 'CamoNet_BLUFOR_open_F', [ARR_3(1.75,0,-1)])] call EFUNC(common,deployNetMedical)));
+					condition = QUOTE(!(_target getVariable [ARR_2(QQGVAR(deployed), false)]) && (isNull (_target getVariable [ARR_2(QQGVAR(netObj), objNull)])));
+					statement = QUOTE([ARR_4(_target, _player, 'CamoNet_BLUFOR_open_F', [ARR_3(1.75,0,-1)])] call EFUNC(common,deployNetMedical));
 					showDisabled = 0;
 					priority = 1;
 				};
 			};
 			class ACE_deployNetDesert {
 				displayName = "Deploy Medical Net (Desert)";
-				condition = QUOTE((!(_target getVariable [ARR_2(QQGVAR(deployed), false)]) && (isNull (_target getVariable [ARR_2(QQGVAR(netObj), objNull)]))));
+				condition = QUOTE(!(_target getVariable [ARR_2(QQGVAR(deployed), false)]) && (isNull (_target getVariable [ARR_2(QQGVAR(netObj), objNull)])));
 				statement = "";
 				class ACE_left {
 					displayName = "Left";
-					condition = QUOTE((!(_target getVariable [ARR_2(QQGVAR(deployed), false)]) && (isNull (_target getVariable [ARR_2(QQGVAR(netObj), objNull)]))));
-					statement = QUOTE(([ARR_4(_target, _player, 'Land_CamoNetVar_NATO_EP1', [ARR_3(-2.75,0,-1)])] call EFUNC(common,deployNetMedical)));
+					condition = QUOTE(!(_target getVariable [ARR_2(QQGVAR(deployed), false)]) && (isNull (_target getVariable [ARR_2(QQGVAR(netObj), objNull)])));
+					statement = QUOTE([ARR_4(_target, _player, 'Land_CamoNetVar_NATO_EP1', [ARR_3(-2.75,0,-1)])] call EFUNC(common,deployNetMedical));
 					showDisabled = 0;
 					priority = 1;
 				};
 				class ACE_right {
 					displayName = "Right";
-					condition = QUOTE((!(_target getVariable [ARR_2(QQGVAR(deployed), false)]) && (isNull (_target getVariable [ARR_2(QQGVAR(netObj), objNull)]))));
-					statement = QUOTE(([ARR_4(_target, _player, 'Land_CamoNetVar_NATO_EP1', [ARR_3(1.75,0,-1)])] call EFUNC(common,deployNetMedical)));
+					condition = QUOTE(!(_target getVariable [ARR_2(QQGVAR(deployed), false)]) && (isNull (_target getVariable [ARR_2(QQGVAR(netObj), objNull)])));
+					statement = QUOTE([ARR_4(_target, _player, 'Land_CamoNetVar_NATO_EP1', [ARR_3(1.75,0,-1)])] call EFUNC(common,deployNetMedical));
 					showDisabled = 0;
 					priority = 1;
 				};
 			};
 			class ACE_concealNet {
 				displayName = "Conceal Medical Net";
-				condition = QUOTE(((_target getVariable [ARR_2(QQGVAR(deployed), false)]) && !(isNull (_target getVariable [ARR_2(QQGVAR(netObj), objNull)])) && ((_target distance (_target getVariable [ARR_2(QQGVAR(netObj), objNull)])) < 10)));
-				statement = QUOTE(([ARR_2(_target, _player)] call EFUNC(common,concealNet)));
+				condition = QUOTE((_target getVariable [ARR_2(QQGVAR(deployed), false)]) && !(isNull (_target getVariable [ARR_2(QQGVAR(netObj), objNull)])) && ((_target distance (_target getVariable [ARR_2(QQGVAR(netObj), objNull)])) < 10));
+				statement = QUOTE([ARR_2(_target, _player)] call EFUNC(common,concealNet));
 				showDisabled = 0;
 				priority = 1;
 			};

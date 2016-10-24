@@ -3,7 +3,7 @@
 		Tim Beswick
 
 	Description:
-		Initialises respawn EH for player
+		Init EH for player
 
 	Parameter(s):
 		None

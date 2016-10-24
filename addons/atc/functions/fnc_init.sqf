@@ -15,7 +15,7 @@
 
 params ["_object"];
 
-if ((isServer && !hasInterface) || !isMultiplayer) then {
+if (isServer) then {
 	if (_object isKindOf "UKSF_ATC_Station") then {
 		_ATC = createVehicle ["UKSF_ATC_Core", [0,0,0], [], 0, "CAN_COLLIDE"];
 		_ATC setPos (_object modelToWorld [0,0,0.5]);

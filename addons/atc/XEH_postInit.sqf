@@ -1,6 +1,6 @@
 #include "script_component.hpp"
 
-if ((isServer && !hasInterface) || !isMultiplayer) then {
+if (isServer) then {
     _mapCenter = getArray(configFile >> "CfgWorlds" >> worldName >> "centerPosition");
     _towers = nearestobjects [_mapCenter, ["Land_Airport_Tower_F"], 10000];
     

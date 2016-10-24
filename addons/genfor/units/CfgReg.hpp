@@ -612,17 +612,16 @@ class GENFOR_Mark: GENFOR_Soldier_Base {
 	uniformClass = "SP_0000_Standard_FieldUniform_Hunter2";
 	backpack = "GENFOR_B_Mark";
 	weapons[] = {
-		"rhs_weap_ak103_npz_dmr",
+		"rhs_weap_ak103_pso",
 		"Throw",
 		"Put"
 	};
 	respawnWeapons[] = {
-		"rhs_weap_ak103_npz_dmr",
+		"rhs_weap_ak103_pso",
 		"Throw",
 		"Put"
 	};
 	magazines[] = {
-		"rhs_30Rnd_762x39mm_tracer",
 		"rhs_30Rnd_762x39mm_tracer",
 		"rhs_30Rnd_762x39mm_tracer",
 		"rhs_30Rnd_762x39mm_tracer",
@@ -639,7 +638,6 @@ class GENFOR_Mark: GENFOR_Soldier_Base {
 		"rhs_mag_rdg2_black"
 	};
 	respawnMagazines[] = {
-		"rhs_30Rnd_762x39mm_tracer",
 		"rhs_30Rnd_762x39mm_tracer",
 		"rhs_30Rnd_762x39mm_tracer",
 		"rhs_30Rnd_762x39mm_tracer",

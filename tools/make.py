@@ -938,7 +938,7 @@ See the make.cfg file for additional build options.
 
         #commit_id = get_commit_ID()
         get_project_version(version_increments)
-        key_name = versionStamp = get_private_keyname(commit_id)
+        key_name = versionStamp = get_private_keyname()
         print_green ("module_root: {}".format(module_root))
 
         if (os.path.isdir(optionals_root)):

@@ -984,6 +984,10 @@ class CfgVehicles {
 				magazine = "1Rnd_HE_Grenade_shell";
 				count = 10;
 			};
+			class _xx_R3F_30Rnd_556x45_FAMAS {
+				magazine = "R3F_30Rnd_556x45_FAMAS";
+				count = 10;
+			};
 		};
 	};
 	class B_TacticalPack_oli;
@@ -1214,8 +1218,8 @@ class CfgVehicles {
 		displayName = "Diablerie Specialist Pack";
 		class TransportWeapons {};
 		class TransportMagazines {
-			class _xx_ACE_10Rnd_762x51_Mk316_Mod_0_Mag {
-				magazine = "ACE_10Rnd_762x51_Mk316_Mod_0_Mag";
+			class _xx_ACE_30Rnd_556x45_Stanag_Mk262_mag {
+				magazine = "ACE_30Rnd_556x45_Stanag_Mk262_mag";
 				count = 16;
 			};
 			class _xx_ClaymoreDirectionalMine_Remote_Mag {
@@ -1299,8 +1303,8 @@ class CfgVehicles {
 		author = "UKSF";
 		displayName = "Diablerie Surgeon Pack";
 		class TransportMagazines {
-			class _xx_ACE_10Rnd_762x51_Mk316_Mod_0_Mag {
-				magazine = "ACE_10Rnd_762x51_Mk316_Mod_0_Mag";
+			class _xx_ACE_30Rnd_556x45_Stanag_Mk262_mag {
+				magazine = "ACE_30Rnd_556x45_Stanag_Mk262_mag";
 				count = 16;
 			};
 		};
@@ -1363,13 +1367,64 @@ class CfgVehicles {
 		};
 		class TransportItems {};
 	};
+	class Inegal_B_D_Sharpshooter: SP_Carryall_ATacsFG {
+		scope = 1;
+		author = "UKSF";
+		displayName = "Diablerie Sharpshooter Pack";
+		class TransportWeapons {};
+		class TransportMagazines {
+			class _xx_ACE_20Rnd_762x51_Mk316_Mod_0_Mag {
+				magazine = "ACE_20Rnd_762x51_Mk316_Mod_0_Mag";
+				count = 8;
+			};
+			class _xx_ClaymoreDirectionalMine_Remote_Mag {
+				magazine = "ClaymoreDirectionalMine_Remote_Mag";
+				count = 2;
+			};
+			class _xx_APERSMine_Range_Mag {
+				magazine = "APERSMine_Range_Mag";
+				count = 2;
+			};
+			class _xx_APERSTripMine_Wire_Mag {
+				magazine = "APERSTripMine_Wire_Mag";
+				count = 2;
+			};
+			class _xx_APERSBoundingMine_Range_Mag {
+				magazine = "APERSBoundingMine_Range_Mag";
+				count = 2;
+			};
+			class _xx_DemoCharge_Remote_Mag {
+				magazine = "DemoCharge_Remote_Mag";
+				count = 2;
+			};
+		};
+		class TransportItems {
+			class _xx_ACE_M26_Clacker {
+				name = "ACE_M26_Clacker";
+				count = 1;
+			};
+			class _xx_ACE_Cellphone {
+				name = "ACE_Cellphone";
+				count = 1;
+			};
+			class _xx_ACE_CableTie {
+				name = "ACE_CableTie";
+				count = 4;
+			};
+			class _xx_ACE_DefusalKit {
+				name = "ACE_DefusalKit";
+				count = 1;
+			};
+		};
+		class TransportBackpacks {};
+	};
 	class Inegal_B_D_Arsonist: Inegal_B_D_Specialist {
 		scope = 1;
 		author = "UKSF";
 		displayName = "Diablerie Arsonist Pack";
 		class TransportMagazines {
-			class _xx_ACE_10Rnd_762x51_Mk316_Mod_0_Mag {
-				magazine = "ACE_10Rnd_762x51_Mk316_Mod_0_Mag";
+			class _xx_ACE_30Rnd_556x45_Stanag_Mk262_mag {
+				magazine = "ACE_30Rnd_556x45_Stanag_Mk262_mag";
 				count = 10;
 			};
 			class _xx_R3F_AT4CS_Mag {

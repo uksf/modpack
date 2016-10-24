@@ -14,16 +14,16 @@
 #include "script_component.hpp"
 
 if (!isNil "Beswick") then {
-	if (!(GETVAR(Beswick,GVAR(pingSetup),false))) then {
+	if (!(missionNamespace getVariable [QGVAR(pingAdded), false])) then {
 		Beswick addEventHandler ["CuratorPinged", {
 		    params ["_curator", "_unit"];
-		    private _pingCount = GETVAR(_unit,GVAR(pingCount),0);
-		    private _lastPingTime = GETVAR(_unit,GVAR(pingCount),diag_tickTime);
+		    private _pingCount = _unit getVariable [QGVAR(pingCount), 0];
+		    private _lastPingTime = _unit getVariable [QGVAR(pingTime), diag_tickTime];
 
 			_pingCount = _pingCount + 1;
 		    if (_lastPingTime <= diag_tickTime - 15) then {
-				SETVAR(_unit,GVAR(pingCount),_pingCount);
-				SETVAR(_unit,GVAR(pingCount),diag_tickTime);
+				_unit getVariable [QGVAR(pingCount), _pingCount];
+				_unit getVariable [QGVAR(pingTime), diag_tickTime];
 		    } else {
 		        if (_pingCount == 5) then {
 		            "Stop pinging zeus, or you'll die." remoteExecCall ["hint", _unit];
@@ -31,14 +31,14 @@ if (!isNil "Beswick") then {
 		        if (_pingCount >= 10) then {
 		            "You were warned." remoteExecCall ["hint", _unit];
 		            _unit setDamage 1;
-					SETVAR(_unit,GVAR(pingCount),0);
-					SETVAR(_unit,GVAR(pingCount),diag_tickTime);
+					_unit setVariable [QGVAR(pingCount), 0, true];
+					_unit setVariable [QGVAR(pingTime), diag_tickTime, true];
 		        } else {
-					SETVAR(_unit,GVAR(pingCount),_pingCount);
-					SETVAR(_unit,GVAR(pingCount),diag_tickTime);
+					_unit setVariable [QGVAR(pingCount), _pingCount, true];
+					_unit setVariable [QGVAR(pingTime), diag_tickTime, true];
 		        };
 		    };
 		}];
-		SETPVAR(Beswick,GVAR(pingSetup),true);
+		missionNamespace setVariable [QGVAR(pingAdded), true, true];
 	};
 };

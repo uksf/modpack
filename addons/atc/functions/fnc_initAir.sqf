@@ -15,7 +15,7 @@
 
 params ["_object"];
 
-if ((isServer && !hasInterface) || !isMultiplayer) then {
+if (isServer) then {
 	_targets = missionNamespace getVariable [QGVAR(airTargets), []];
 	_targets pushBack _object;
 	missionNamespace setVariable [QGVAR(airTargets), _targets, true];

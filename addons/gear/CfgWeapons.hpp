@@ -837,12 +837,12 @@ class CfgWeapons {
 			};
 		};
 	};
-	class rhs_weap_ak103_npz;
-	class rhs_weap_ak103_npz_dmr: rhs_weap_ak103_npz {
+	class rhs_weap_ak103;
+	class rhs_weap_ak103_pso: rhs_weap_ak103 {
 		class LinkedItems {
 			class LinkedItemsOptic {
 				slot = "CowsSlot";
-				item = "optic_DMS";
+				item = "rhs_acc_pso1m21";
 			};
 		};
 	};

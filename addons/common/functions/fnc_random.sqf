@@ -15,7 +15,7 @@
 
 params ["_unit"];
 
-if ((isServer && !hasInterface) || !isMultiplayer) then {
+if (isServer) then {
 	if (_unit isKindOf "GENFOR_P") exitWith {};
 	if (_unit isKindOf "GENFOR_FP") exitWith {};
 

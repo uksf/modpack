@@ -16,7 +16,7 @@
 
 params ["_car", "_side"];
 
-if ((isServer && !hasInterface) || !isMultiplayer) then {
+if (isServer) then {
 	private _distance = 25 + ((random 10) - 5);
 	[{
 		params ["_args", "_idPFH"];

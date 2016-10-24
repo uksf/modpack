@@ -19,10 +19,10 @@
 
 params [["_vehicle", objNull], ["_units", []], ["_turrets", []], ["_side", 0]];
 
-if (isServer || !isMultiplayer) then {
+if (isServer) then {
 	[{
-		params ["_vehicle", "_units", "_turrets"];
-		if (!isNull(driver _vehicle)) then {
+		params ["_vehicle", "_units", "_turrets", "_side"];
+		if (!isNull (driver _vehicle)) then {
 			_side = switch (_side) do {
 				case 0: {east};
 				case 1: {west};
@@ -50,5 +50,5 @@ if (isServer || !isMultiplayer) then {
 				};
 			}, [_vehicle, _men, _turrets], 2] call CBA_fnc_waitAndExecute;
 		};
-	}, [_vehicle, _units, _turrets], 2] call CBA_fnc_waitAndExecute;
+	}, [_vehicle, _units, _turrets, _side], 2] call CBA_fnc_waitAndExecute;
 };

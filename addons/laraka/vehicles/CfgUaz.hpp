@@ -67,6 +67,7 @@ class Azaadi_Uaz_Unarmed : Laraka_Uaz_Unarmed {
 };
 class Azaadi_Uaz_Unarmed_Populated : Laraka_Uaz_Unarmed {
 	faction = "UKSF_Azaadi";
+	displayName = "UAZ Unarmed (Populated)";
 	side = 2;
 	crew = "Azaadi_AK";
 	typicalCargo[] = {

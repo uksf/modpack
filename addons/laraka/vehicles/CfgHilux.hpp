@@ -54,6 +54,7 @@ class Azaadi_Hilux_Unarmed : Laraka_Hilux_Unarmed {
 };
 class Azaadi_Hilux_Unarmed_Populated : Laraka_Hilux_Unarmed {
 	faction = "UKSF_Azaadi";
+	displayName = "Hilux (Populated)";
 	side = 2;
 	crew = "Azaadi_AK";
 	typicalCargo[] = {

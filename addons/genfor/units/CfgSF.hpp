@@ -612,7 +612,6 @@ class GENFOR_SF_Mark: GENFOR_Soldier_Base {
 		"20Rnd_762x51_Mag",
 		"20Rnd_762x51_Mag",
 		"20Rnd_762x51_Mag",
-		"20Rnd_762x51_Mag",
 		"rhs_mag_rgd5",
 		"rhs_mag_rgd5",
 		"rhs_mag_rgn",
@@ -623,7 +622,6 @@ class GENFOR_SF_Mark: GENFOR_Soldier_Base {
 		"rhs_mag_rdg2_black"
 	};
 	respawnMagazines[] = {
-		"20Rnd_762x51_Mag",
 		"20Rnd_762x51_Mag",
 		"20Rnd_762x51_Mag",
 		"20Rnd_762x51_Mag",
