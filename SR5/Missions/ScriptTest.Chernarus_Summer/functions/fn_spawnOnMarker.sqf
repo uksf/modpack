@@ -16,7 +16,7 @@
         Nothing
 
     Called from:
-        ["MyMarker", 20, 40, "Genfor", false] call UKSF_Mission_fnc_spawnOnMarker;
+        ["MyMarker", 20, 40, "Genfor", false] call FUNC(spawnOnMarker;
 */
 params [["_markerName", ""], ["_maxAmount", 20], ["_poolSize", 40], ["_factionName", ""], ["_debug", false]];
 if (_markerName == "") exitWith {};
@@ -47,7 +47,7 @@ _markerName setMarkerAlpha 0;
     _totalEnemy = count _currentGroups;
     if (_totalEnemy <= _maxAmount) then {
         //Execute code on one of the headless clients
-        [_markerName,_factionName] remoteExec ["UKSF_Mission_fnc_spawnAndTask", selectRandom HCs, false];
+        [_markerName,_factionName] remoteExec ["FUNC(spawnAndTask", selectRandom HCs, false];
     };
 
     //If debug is on, update markers on each group leader

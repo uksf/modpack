@@ -36,7 +36,7 @@ if ((paramsArray select 0) > 0) then {
 	_grps = [];
 
 	{
-		if ([_x] call UKSF_Mission_fnc_canCache) then {
+		if ([_x] call FUNC(canCache)) then {
 			_grps pushBack _x;
 		};
 		false
@@ -45,7 +45,7 @@ if ((paramsArray select 0) > 0) then {
 	for "_i" from 0 to (count _grps - 1) do {
 		_grp = _grps select _i;
 
-		[leader _grp] call UKSF_Mission_fnc_addEventhandler;
+		[leader _grp] call FUNC(addEventhandler);
 		_units = units _grp;
 		_units = _units select {!(_x isEqualTo leader _x)};
 
@@ -54,7 +54,7 @@ if ((paramsArray select 0) > 0) then {
 
 	if !(_units isEqualTo []) then {
 		for "_i" from 0 to (count _units - 1) do {
-			[_units select _i] call UKSF_Mission_fnc_cache;
+			[_units select _i] call FUNC(cache);
 		};
 	};
 
@@ -63,18 +63,18 @@ if ((paramsArray select 0) > 0) then {
 	for "_i" from (count UKSF_Mission_groups - 1) to 0 step -1 do {
 		_grp = UKSF_Mission_groups select _i;
 
-		if ([_grp] call UKSF_Mission_fnc_canUncache) then {
+		if ([_grp] call FUNC(canUncache) then {
 			_units = units _grp;
 			_units = _units select {!(_x isEqualTo leader _x)};
 			{
-				[_x] call UKSF_Mission_fnc_uncache;
+				[_x] call FUNC(uncache;
 			} forEach _units;
 
 			UKSF_Mission_groups deleteAt _i;
 		} else {
 			{
 				if (!(_x isEqualTo leader _x) && {simulationEnabled _x}) then {
-					[_x] call UKSF_Mission_fnc_cache;
+					[_x] call FUNC(cache;
 				};
 			} forEach (units _grp);
 		};
@@ -82,4 +82,4 @@ if ((paramsArray select 0) > 0) then {
 }, 15, []] call CBA_fnc_addPerFrameHandler;
 
 //Spawn units on markers
-["spawn_1", 25, 50, "Genfor", false] call UKSF_Mission_fnc_spawnOnMarker;
+["spawn_1", 25, 50, "Genfor", false] call FUNC(spawnOnMarker;

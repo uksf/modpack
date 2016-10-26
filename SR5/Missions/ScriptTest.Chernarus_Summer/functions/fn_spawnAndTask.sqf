@@ -13,7 +13,7 @@
         Nothing
 
     Called from:
-        ["MyMarker", "Genfor"] call UKSF_Mission_fnc_spawnAndTask;
+        ["MyMarker", "Genfor"] call FUNC(spawnAndTask;
 */
 params ["_markerName", "_factionName"];
 

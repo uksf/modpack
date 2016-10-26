@@ -179,7 +179,7 @@ class CfgPatches {
         };
         author = QUOTE(UKSF);
         authors[] = {"Beswick.T"};
-        url = ECSTRING(main,URL);
+        url = QUOTE(www.uk-sf.com);
         VERSION_CONFIG;
     };
 };

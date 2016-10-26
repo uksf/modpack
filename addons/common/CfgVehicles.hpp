@@ -1,6 +1,16 @@
 class CBA_Extended_EventHandlers;
-
 class CfgVehicles {
+	class Module_F;
+	class GVAR(moduleBase): Module_F {
+        author = QUOTE(UKSF);
+        category = "UKSF";
+        functionPriority = 1;
+        isGlobal = 1;
+        isTriggerActivated = 0;
+        scope = 1;
+        scopeCurator = 2;
+    };
+
 	class Man;
 	class CAManBase: Man {
 		class EventHandlers {

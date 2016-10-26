@@ -17,5 +17,5 @@
 params [["_group",grpNull]];
 
 _group getVariable ["UKSF_Mission_Disabled",false] ||
-{!(([leader _group,UKSF_Mission_distance] call UKSF_Mission_fnc_getNearPlayers) isEqualTo [])} ||
+{!(([leader _group,UKSF_Mission_distance] call FUNC(getNearPlayers)) isEqualTo [])} ||
 {!(isNull (leader _group findNearestEnemy leader _group))}

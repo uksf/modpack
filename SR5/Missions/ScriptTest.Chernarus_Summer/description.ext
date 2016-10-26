@@ -51,7 +51,7 @@ class CfgFunctions {
 };
 class Extended_PostInit_EventHandlers {
     class UKSF_Mission_PostInit_event {
-        init = "call UKSF_Mission_fnc_postInit";
+        init = "call FUNC(postInit";
     };
 };
 

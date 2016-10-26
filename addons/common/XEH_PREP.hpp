@@ -11,3 +11,5 @@ PREP(initNets);
 PREP(deployNet);
 PREP(concealNet);
 PREP(deployNetMedical);
+PREP(getNearPlayers);
+PREP(lineOfSight);

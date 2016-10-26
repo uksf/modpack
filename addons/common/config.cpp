@@ -15,20 +15,9 @@ class CfgPatches {
 };
 
 #include "CfgEventHandlers.hpp"
-#include "CfgFactionClasses.hpp"
+#include "CfgEden.hpp"
 #include "CfgEditorSubcategories.hpp"
+#include "CfgFactionClasses.hpp"
 #include "CfgImprecision.hpp"
+#include "CfgSounds.hpp"
 #include "CfgVehicles.hpp"
-
-class CfgSounds {
-	class GVAR(suicide) {
-		name = QGVAR(suicide);
-		sound[] = { QPATHTOF(data\sounds\suicide), 10, 1, 50 };
-		titles[] = {};
-	};
-    class GVAR(alarm) {
-		name = QGVAR(alarm);
-		sound[] = { QPATHTOF(data\sounds\alarm), 20, 1, 200 };
-		titles[] = {};
-	};
-};

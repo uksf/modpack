@@ -26,8 +26,8 @@ if (_unit isEqualTo leader _unit && {!(_unit getVariable ["UKSF_Mission_leaderHa
 				{!((leader (_this select 0)) isEqualTo (_this select 1))},
 				{
 					_newLeader = leader (_this select 0);
-					[_newLeader] call UKSF_Mission_fnc_uncache;
-					[_newLeader] call UKSF_Mission_fnc_addEventhandler;
+					[_newLeader] call FUNC(uncache;
+					[_newLeader] call FUNC(addEventhandler;
 				},
 				[group (_this select 0),_this select 0]
 			] call CBA_fnc_waitUntilAndExecute;
@@ -47,6 +47,6 @@ if (_unit isEqualTo leader _unit && {!(_unit getVariable ["UKSF_Mission_leaderHa
 if !(_unit getVariable ["UKSF_Mission_UnitHasEH",false]) exitWith {
 	_unit setVariable ["UKSF_Mission_UnitHasEH",true];
 	_unit addEventHandler ["killed", {
-		[_this select 0] call UKSF_Mission_fnc_uncache;
+		[_this select 0] call FUNC(uncache;
 	}];
 };
