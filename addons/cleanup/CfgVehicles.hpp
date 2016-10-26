@@ -2,8 +2,8 @@ class CfgVehicles {
     class ACE_Module;
     class GVAR(moduleSettings): ACE_Module {
         scope = 2;
-        displayName = QUOTE(Caching);
-        icon = QPATHTOF(UI\Icon_Module_Caching_ca.paa);
+        displayName = QUOTE(Cleanup);
+        icon = QPATHTOF(UI\Icon_Module_Cleanup_ca.paa);
         category = "UKSF";
         function = QFUNC(initModuleSettings);
         functionPriority = 1;
@@ -12,34 +12,34 @@ class CfgVehicles {
         author = QUOTE(UKSF);
         class Arguments {
             class enabled {
-                displayName = QUOTE(Caching);
-                description = QUOTE(Enables AI Caching);
+                displayName = QUOTE(Cleanup);
+                description = QUOTE(Enables cleanup of dead units/vehicles);
                 typeName = "BOOL";
                 defaultValue = 0;
             };
-            class distance {
-                displayName = QUOTE(Caching Distance);
-                description = QUOTE(Sets caching distance in metres);
+            class delay {
+                displayName = QUOTE(Cleanup Delay);
+                description = QUOTE(Delay in seconds between death and cleanup);
                 typeName = "NUMBER";
-                defaultValue = 1250;
+                defaultValue = 300;
             };
         };
         class ModuleDescription {
-            description = QUOTE(AI Caching settings);
+            description = QUOTE(AI Cleanup settings);
         };
     };
 
     class EGVAR(common,moduleBase);
-    class GVAR(moduleCachingExclude): EGVAR(common,moduleBase) {
+    class GVAR(moduleCleanupExclude): EGVAR(common,moduleBase) {
         curatorCanAttach = 1;
-        displayName = QUOTE(Caching exclude);
+        displayName = QUOTE(Cleanup exclude);
         function = QFUNC(moduleExclude);
-        icon = QPATHTOF(UI\Icon_Module_CachingExclude_ca.paa);
+        icon = QPATHTOF(UI\Icon_Module_CleanupExclude_ca.paa);
     };
-    class GVAR(moduleCachingInclude): EGVAR(common,moduleBase) {
+    class GVAR(moduleCleanupInclude): EGVAR(common,moduleBase) {
         curatorCanAttach = 1;
-        displayName = QUOTE(Caching include);
+        displayName = QUOTE(Cleanup include);
         function = QFUNC(moduleInclude);
-        icon = QPATHTOF(UI\Icon_Module_CachingInclude_ca.paa);
+        icon = QPATHTOF(UI\Icon_Module_CleanupInclude_ca.paa);
     };
 };

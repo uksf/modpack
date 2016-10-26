@@ -5,5 +5,5 @@ if (!GVAR(enabled)) exitWith {
 };
 
 if(isServer) then {
-	[FUNC(handleCache), 2, []] call CBA_fnc_addPerFrameHandler;
+	[FUNC(handleCache), 15, []] call CBA_fnc_addPerFrameHandler;
 };

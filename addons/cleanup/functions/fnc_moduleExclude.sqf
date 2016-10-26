@@ -3,7 +3,7 @@
 		Tim Beswick
 
 	Description:
-		Sets unit to exclude from cache and uncaches
+		Sets unit to exclude from cleanup
 
 	Parameter(s):
 		0: The module logic <OBJECT>
@@ -23,20 +23,12 @@ if !(_activated && local _logic) exitWith {};
 _mouseOver = GETMVAR(bis_fnc_curatorObjectPlaced_mouseOver,[""]);
 
 if ((_mouseOver select 0) != "OBJECT") then {
-	[QUOTE(Place on a unit)] call ace_common_fnc_displayTextStructured;
+	[QUOTE(Place on a unit or vehicle)] call ace_common_fnc_displayTextStructured;
 } else {
 	_unit = effectivecommander (_mouseOver select 1);
-	if !(_unit isKindOf "CAManBase") then {
-		[QUOTE(Unit must be infantry)] call ace_common_fnc_displayTextStructured;
-	} else {
-		if !(alive _unit) then {
-			[QUOTE(Unit must be alive)] call ace_common_fnc_displayTextStructured;
-		} else {
-			_excluded = (group _unit) getVariable [QGVAR(excluded), false];
-			if (!_excluded) then {
-				(group _unit) setVariable [QGVAR(excluded), true, true];
-			};
-		};
+	_excluded = _unit getVariable [QGVAR(excluded), false];
+	if (!_excluded) then {
+		_unit setVariable [QGVAR(excluded), true, true];
 	};
 };
 

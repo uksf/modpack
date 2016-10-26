@@ -4,8 +4,8 @@ class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
         units[] = {
-            QGVAR(moduleCachingExclude),
-            QGVAR(moduleCachingInclude)
+            QGVAR(moduleCleanupExclude),
+            QGVAR(moduleCleanupInclude)
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;

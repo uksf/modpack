@@ -15,7 +15,7 @@
 
 params ["_unit", "_pos"];
 
-if (!isPlayer _unit && !(_unit isEqualTo leader _unit) && {!("driver" in assignedVehicleRole _unit)}) then {
+if (!isPlayer _unit && !(_unit isEqualTo leader _unit) && {!("driver" in assignedVehicleRole _unit)} && alive _unit) then {
 	_unit enableSimulationGlobal true;
 	_unit hideObjectGlobal false;
 	if (vehicle _unit isEqualTo _unit) then {

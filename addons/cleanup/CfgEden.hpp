@@ -1,16 +1,17 @@
 class Cfg3DEN {
-    class Group {
+    class Object {
         class AttributeCategories {
             class uksf_attributes {
                 class Attributes {
                     class GVAR(excluded) {
                         property = QGVAR(excluded);
                         control = "Checkbox";
-                        displayName = QUOTE(Caching exclude);
-                        tooltip = QUOTE(Excludes group from caching);
-                        expression = QUOTE(if (_value) then {[ARR_2({(_this select 0) setVariable [ARR_3(QUOTE(QGVAR(excluded)),_this select 1,true)];},[ARR_2(_this,_value)])] call CBA_fnc_execNextFrame};);
+                        displayName = QUOTE(Cleanup exclude);
+                        tooltip = QUOTE(Excludes object from cleanup);
+                        expression = QUOTE(_this setVariable [ARR_3(QQGVAR(excluded),_value,true)]);
                         typeName = "BOOL";
                         defaultValue = "(false)";
+                        condition = "1";
                     };
                 };
             };
