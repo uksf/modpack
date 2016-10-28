@@ -5,6 +5,7 @@
 - Adds 5 curators to every mission.
 - Players can log in and out of curators.
 - Admins can kick a single user or all users from curators.
+- Accessible through ACE self-interaction menu.
 
 ## Ping
 - Pressing the ping button 'Y' 5 times within 15 seconds will show a warning.
