@@ -13,8 +13,6 @@
 */
 #include "script_component.hpp"
 
-params ["_unit"];
-
 _actions = [];
 
 _action = [QGVAR(zeusAction_1), [0] call FUNC(getName), ZEUS_ICON, [0] call FUNC(actionStatement), {true}, {}, 0] call ace_interact_menu_fnc_createAction;

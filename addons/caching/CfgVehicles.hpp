@@ -32,12 +32,14 @@ class CfgVehicles {
     class EGVAR(common,moduleBase);
     class GVAR(moduleCachingExclude): EGVAR(common,moduleBase) {
         curatorCanAttach = 1;
+        scopeCurator = 2;
         displayName = QUOTE(Caching exclude);
         function = QFUNC(moduleExclude);
         icon = QPATHTOF(UI\Icon_Module_CachingExclude_ca.paa);
     };
     class GVAR(moduleCachingInclude): EGVAR(common,moduleBase) {
         curatorCanAttach = 1;
+        scopeCurator = 2;
         displayName = QUOTE(Caching include);
         function = QFUNC(moduleInclude);
         icon = QPATHTOF(UI\Icon_Module_CachingInclude_ca.paa);

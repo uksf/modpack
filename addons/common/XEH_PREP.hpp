@@ -13,3 +13,4 @@ PREP(concealNet);
 PREP(deployNetMedical);
 PREP(getNearPlayers);
 PREP(lineOfSight);
+PREP(boxRefill);
