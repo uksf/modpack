@@ -20,7 +20,7 @@ if (!isPlayer _unit && !(_unit isEqualTo leader _unit) && {!("driver" in assigne
 	_unit hideObjectGlobal false;
 	if (vehicle _unit isEqualTo _unit) then {
 		detach _unit;
-		_position = ((leader _unit) modelToWorldVisual (_unit getVariable QGVAR(cachedPosition)));
+		_position = ((leader _unit) modelToWorldVisual (_unit getVariable [QGVAR(cachedPosition), [random 10,random 10,0]]));
 		if (count (lineIntersectsObjs [ATLToASL _position vectorAdd [0,0,1.8], [ATLToASL _position select 0, ATLToASL _position select 1, 0], objNull, objNull, false, 32]) == 0) then {
 			_position set [2, 0];
 		};
