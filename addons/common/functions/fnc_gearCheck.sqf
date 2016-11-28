@@ -20,7 +20,7 @@ params ["_unit"];
 	_args params ["_unit"];
 
 	if (isPlayer _unit || isNull _unit || !alive _unit ||
-		damage _unit > 0.1 || !local _unit) exitWith {};
+		damage _unit > 0.1 || !local _unit || (typeOf _unit) in ["B_UAV_AI", "O_UAV_AI", "I_UAV_AI"]) exitWith {};
 
 	_currentUniform = uniform _unit;
 	_currentWeapon = primaryWeapon _unit;
@@ -60,4 +60,4 @@ params ["_unit"];
 			_unit setDir _dir;
 		};
 	};
-}, [_unit], 30] call CBA_fnc_waitAndExecute;
+}, [_unit], (30 + random 10)] call CBA_fnc_waitAndExecute;

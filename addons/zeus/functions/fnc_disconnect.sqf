@@ -24,6 +24,9 @@ _newNames = [];
 {
 	if (_name == _x) then {
 		_names set [_forEachIndex, ""];
+		[[_forEachIndex], {
+			unassignCurator (GVAR(curatorObjects) select (_this select 0);
+		}] remoteExecCall ["bis_fnc_call", 2, false];
 	} else {
 		_newNames set [_forEachIndex, _x];
 	};
