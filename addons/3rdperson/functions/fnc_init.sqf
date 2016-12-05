@@ -15,6 +15,6 @@
 
 [{
     if (cameraView == "EXTERNAL" && vehicle player == player && isNull (getConnectedUAV player)) then {
-        player switchCamera "INTERNAL";
+        cameraOn switchCamera "INTERNAL";
     };
 }, 0, []] call CBA_fnc_addPerFrameHandler;
