@@ -27,7 +27,7 @@ if (local _car) then {
 		params ["_args", "_idPFH"];
 		_args params ["_car", "_side"];
 
-		_nearUnits = _car nearEntities [["CAManBase", "Car", "Motorcycle", "Tank"], 200];
+		_nearUnits = nearestObjects [_car, ["CAManBase", "Car", "Motorcycle", "Tank"], 200, true];
 		_nearUnits = _nearUnits - [_car];
 		{
 			if (side _x != _side) then {
@@ -36,7 +36,7 @@ if (local _car) then {
 		} forEach _nearUnits;
 
 		if (count _nearUnits != 0 && !(_car getVariable [QGVAR(tracking), false])) then {
-			_target = selectRandom _nearUnits;	
+			_target = _nearUnits select 0;	
 			_car setVariable [QGVAR(tracking), true];
 			(group _car) addWaypoint [position _target, 0];	
 			_car setSpeedMode "LIMITED";

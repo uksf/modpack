@@ -50,7 +50,7 @@ if (local _bomber) then {
 		params ["_args", "_idPFH"];
 		_args params ["_bomber", "_side"];
 
-		_nearUnits = _bomber nearEntities [["CAManBase", "Car", "Motorcycle", "Tank"], 100];
+		_nearUnits =  nearestObjects [_bomber, ["CAManBase", "Car", "Motorcycle", "Tank"], 100, true];
 		_nearUnits = _nearUnits - [_bomber];
 		{
 			if (!(side _x == _side)) then {
@@ -59,7 +59,7 @@ if (local _bomber) then {
 		} forEach _nearUnits;
 
 		if (count _nearUnits != 0 && !(_bomber getVariable [QGVAR(tracking), false])) then {
-			_target = selectRandom _nearUnits;
+			_target = _nearUnits select 0;
 			_bomber setVariable [QGVAR(tracking), true];	
 			(group _bomber) addWaypoint [position _target, 0];	
 			_bomber setSpeedMode "LIMITED";

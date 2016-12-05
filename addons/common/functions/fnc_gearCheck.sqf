@@ -30,10 +30,11 @@ params ["_unit"];
 
 	if ((_currentUniform == "" && _uniform != "") || (_currentWeapon == "" && count _weapon > 0)) then {
 		_leader = leader _unit;
-		_type = typeOf _unit;
-		_pos = getPos _unit;
-		_dir = direction _unit;
 		_group = if (!isNull _leader && _leader != _unit) then {
+			{
+				[_x] call EFUNC(caching,uncache);
+				false
+			} count (units (group _leader));
 			group _leader
 		} else {
 			_side = switch (getNumber (_config >> "side")) do {
@@ -45,6 +46,9 @@ params ["_unit"];
 			};
 			createGroup _side
 		};
+		_type = typeOf _unit;
+		_pos = getPos _unit;
+		_dir = direction _unit;
 		_vehicle = if (vehicle _unit != _unit) then {
 			vehicle _unit
 		} else {

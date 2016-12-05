@@ -20,32 +20,35 @@ private _uncacheGroups = [];
 	if ([_x] call FUNC(canCache)) then {
 		_cacheGroups pushBack _x;
 	};
-} forEach allGroups;
+	false
+} count allGroups;
 
 {
 	[leader _x] call FUNC(addEventhandler);
 	GVAR(groups) pushBack _x;
-} forEach _cacheGroups;
+	false
+} count _cacheGroups;
 
 GVAR(groups) = GVAR(groups) select {!isNull _x};
 
 {
-	{
-		[_x] call FUNC(cache);
-	} forEach (units _x);
-
 	if ([_x] call FUNC(canUncache)) then {
 		_uncacheGroups pushBack _x;
+	} else {
+		{
+			[_x] call FUNC(cache);
+			false
+		} count (units _x);
 	};
-} forEach GVAR(groups);
+	false
+} count GVAR(groups);
 
 {
 	{
 		[_x] call FUNC(uncache);
-	} forEach (units _x);
+		false
+	} count (units _x);
 
-	_index = GVAR(groups) find _x;
-	if (_index > -1) then {
-		GVAR(groups) deleteAt _index;
-	};
-} forEach _uncacheGroups;
+	GVAR(groups) deleteAt (GVAR(groups) find _x);
+	false
+} count _uncacheGroups;
