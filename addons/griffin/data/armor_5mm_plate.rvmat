@@ -1,0 +1,18 @@
+////////////////////////////////////////////////////////////////////
+//DeRap: Produced from mikero's Dos Tools Dll version 3.94
+//http://dev-heaven.net/projects/list_files/mikero-pbodll
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+//Class ca : data\penetration\armor_5mm_plate.rvmat{
+surfaceInfo = "u\uksf\addons\griffin\data\armor_5mm_plate.bisurf";
+ambient[] = {0.490196,0.592157,0.556863,1.0};
+diffuse[] = {0.490196,0.592157,0.556863,1.0};
+forcedDiffuse[] = {0.0,0.0,0.0,0.0};
+emmisive[] = {0.0,0.0,0.0,1.0};
+specular[] = {0.0,0.0,0.0,1.0};
+specularPower = 1.0;
+PixelShaderID = "Normal";
+VertexShaderID = "Basic";
+//};

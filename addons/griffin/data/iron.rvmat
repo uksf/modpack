@@ -1,0 +1,18 @@
+////////////////////////////////////////////////////////////////////
+//DeRap: Produced from mikero's Dos Tools Dll version 3.94
+//http://dev-heaven.net/projects/list_files/mikero-pbodll
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+//Class ca : data\penetration\iron.rvmat{
+surfaceInfo = "u\uksf\addons\griffin\data\iron.bisurf";
+ambient[] = {0.0,0.222,0.37,1.0};
+diffuse[] = {0.0,0.222,0.37,1.0};
+forcedDiffuse[] = {0.0,0.0,0.0,0.0};
+emmisive[] = {0.0,0.0,0.0,1.0};
+specular[] = {0.0,0.0,0.0,1.0};
+specularPower = 1.0;
+PixelShaderID = "Normal";
+VertexShaderID = "Basic";
+//};

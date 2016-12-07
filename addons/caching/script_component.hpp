@@ -7,5 +7,3 @@
 //#define CBA_DEBUG_SYNCHRONOUS
 
 #include "\u\uksf\addons\main\script_macros.hpp"
-
-#define ZEUS_ICON "\A3\Ui_F_Curator\Data\Logos\arma3_zeus_icon_ca.paa"

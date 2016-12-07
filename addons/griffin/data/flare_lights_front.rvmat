@@ -1,0 +1,18 @@
+////////////////////////////////////////////////////////////////////
+//DeRap: Produced from mikero's Dos Tools Dll version 3.94
+//http://dev-heaven.net/projects/list_files/mikero-pbodll
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+//Class air : Data\flare_lights_front.rvmat{
+ambient[] = {0.9,1,1,1};
+diffuse[] = {0.9,1,1,1};
+forcedDiffuse[] = {0.9,1,1,1};
+emmisive[] = {0.9,1,1,1};
+specular[] = {0,0,0,1};
+specularPower = 1;
+renderFlags[] = {"NoZWrite"};
+PixelShaderID = "Normal";
+VertexShaderID = "Basic";
+//};
