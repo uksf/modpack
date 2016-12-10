@@ -22,7 +22,10 @@ class CfgPatches {
 			"chinookpack",
 			"UK3CB_BAF_Vehicles_Weapons",
 			"UK3CB_BAF_Vehicles_Merlin",
-			"UK3CB_BAF_Vehicles_Wildcat"
+			"UK3CB_BAF_Vehicles_Wildcat",
+			"JSRSAPEX_CH67_Huron",
+			"JSRSAPEX_CH49_Mohawk",
+			"JSRSAPEX_WY55_Hellcat"
         };
         author = QUOTE(UKSF);
         authors[] = {"Beswick.T"};

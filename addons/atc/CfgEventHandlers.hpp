@@ -20,12 +20,12 @@ class Extended_PostInit_EventHandlers {
 class Extended_Init_EventHandlers {
 	class UKSF_ATC_Station {
 	    class ADDON {
-	        respawn = QUOTE(_this call FUNC(init));
+	        init = QUOTE(_this call FUNC(init));
 	    };
 	};
     class Air {
 	    class ADDON {
-	        respawn = QUOTE(_this call FUNC(initAir));
+	        init = QUOTE(_this call FUNC(initAir));
 	    };
 	};
 };

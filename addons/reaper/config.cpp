@@ -4,11 +4,11 @@ class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
         units[] = {
-            "UKSF_Griffin"
+            "UKSF_MQ9"
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {"uksf_main", "uksf_common", "JSRSAPEX_WY55_Hellcat"};
+        requiredAddons[] = {"uksf_main", "uksf_common", "uksf_mq9", "JSRSAPEX_UAV_2"};
         author = QUOTE(UKSF);
         authors[] = {"Beswick.T"};
         url = QUOTE(www.uk-sf.com);
@@ -17,6 +17,5 @@ class CfgPatches {
 };
 
 #include "CfgEventHandlers.hpp"
-#include "CfgMoves.hpp"
 #include "CfgRscUI.hpp"
 #include "CfgVehicles.hpp"
