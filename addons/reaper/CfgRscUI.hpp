@@ -3,7 +3,7 @@ class RscText;
 class RangeText : RscText {};
 class RscInGameUI {
 	class RscUnitInfo;
-	class Rsc_UKSF_MQ9_Turret : RscUnitInfo {
+	class Rsc_USAF_MQ9_Turret_UI : RscUnitInfo {
 		idd = 300;
 		controls[] = { "CA_Zeroing", "CA_IGUI_elements_group", "CA_VehicleToggles" };
 		class VScrollbar;
@@ -153,7 +153,7 @@ class RscInGameUI {
 					shadow = 0;
 					align = "right";
 					font = "EtelkaMonospacePro";
-					text = QPATHTOF(UI\Apache_LaserOn.paa);
+					text = "\USAF_MQ9\UI\data\Apache_LaserOn.paa";
 					x = "20.45 * 		(0.01875 * SafezoneH)";
 					y = "14.1 * 		(0.025 * SafezoneH)";
 					w = "12.5 * 		(0.01875 * SafezoneH)";

@@ -14,7 +14,7 @@
 #include "script_component.hpp"
 
 [{
-    if (cameraView == "EXTERNAL" && vehicle player == player && isNull (getConnectedUAV player)) then {
+    if (cameraView == "EXTERNAL" && cameraOn == player && vehicle player == player) then {
         cameraOn switchCamera "INTERNAL";
     };
 }, 0, []] call CBA_fnc_addPerFrameHandler;

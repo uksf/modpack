@@ -12,7 +12,7 @@ class Extended_PreInit_EventHandlers {
 };
 
 class Extended_Init_EventHandlers {
-    class UKSF_MQ9 {
+    class USAF_MQ9 {
         class ADDON {
             init = QUOTE(_this call FUNC(init));
         };
@@ -20,7 +20,7 @@ class Extended_Init_EventHandlers {
 };
 
 class Extended_Killed_EventHandlers {
-    class UKSF_MQ9 {
+    class USAF_MQ9 {
         class ADDON {
             killed = QUOTE(_this call FUNC(killed));
         };
