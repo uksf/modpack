@@ -16,16 +16,14 @@
 params ["_object"];
 
 if (!(_object getVariable [QGVAR(excluded), false])) then {
-    _delay = if (_object isKindOf "Man") then {
-        GVAR(delay)
+    _killed = missionNameSpace getVariable [QGVAR(killed), []];
+    _multiplier = if (_object isKindOf "Man") then {
+        1
     } else {
-        (GVAR(delay) * 2)
+        2
     };
-    [{
-        if (!(_this getVariable [QGVAR(excluded), false])) then {
-            deleteVehicle _this;          
-        };
-    }, _object, _delay] call CBA_fnc_waitAndExecute;
+    _killed pushBack [_object, time * _multiplier];
+    missionNamespace setVariable [QGVAR(killed), _killed, true];
 } else {
     _object setVariable [QGVAR(handled), false, true];
 };

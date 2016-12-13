@@ -30,7 +30,7 @@ if ((_mouseOver select 0) != "OBJECT") then {
 	_handled = _unit getVariable [QGVAR(handled), false];
 	if (_excluded) then {
 		_unit setVariable [QGVAR(excluded), false, true];
-		if (!_handled) then {
+		if (!_handled && !(alive _unit)) then {
 			[_unit] call FUNC(handleKilled);
 		};
 	};
