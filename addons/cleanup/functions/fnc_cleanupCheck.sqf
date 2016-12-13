@@ -13,8 +13,6 @@
 */
 #include "script_component.hpp"
 
-params ["_object"];
-
 if (GVAR(enabled)) then {
     [{
         _killed = missionNamespace getVariable [QGVAR(killed), []];
