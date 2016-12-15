@@ -16,13 +16,23 @@
 if (GVAR(enabled)) then {
     [{
         _killed = missionNamespace getVariable [QGVAR(killed), []];
-        missionNamespace setVariable [QGVAR(killed), [], true];
+        private _newKilled = [];
         {
             _x params ["_object", "_time"];
-            if (!(_object getVariable [QGVAR(excluded), false]) && ((_time + GVAR(delay) - 10) < time)) then {
-                deleteVehicle _object;
+            _multiplier = if (_object isKindOf "Man") then {
+                1
+            } else {
+                2
+            };
+            if (!(_object getVariable [QGVAR(excluded), false])) then {
+                if ((_time + (GVAR(delay) * _multiplier)) < time) then {
+                    deleteVehicle _object;
+                } else {
+                    _newKilled pushBack _x;
+                };                
             };
             false
         } count _killed;
+        missionNamespace setVariable [QGVAR(killed), _newKilled, true];
     }, GVAR(delay) / 4, []] call CBA_fnc_addPerFrameHandler;
 };

@@ -25,7 +25,7 @@ _mouseOver = GETMVAR(bis_fnc_curatorObjectPlaced_mouseOver,[""]);
 if ((_mouseOver select 0) != "OBJECT") then {
 	[QUOTE(Place on a unit or vehicle)] call ace_common_fnc_displayTextStructured;
 } else {
-	_unit = effectivecommander (_mouseOver select 1);
+	_unit = _mouseOver select 1;
 	_excluded = _unit getVariable [QGVAR(excluded), false];
 	if (!_excluded) then {
 		_unit setVariable [QGVAR(excluded), true, true];

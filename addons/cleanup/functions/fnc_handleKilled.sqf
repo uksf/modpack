@@ -15,15 +15,12 @@
 
 params ["_object"];
 
-if (!(_object getVariable [QGVAR(excluded), false])) then {
-    _killed = missionNameSpace getVariable [QGVAR(killed), []];
-    _multiplier = if (_object isKindOf "Man") then {
-        1
+if (GVAR(enabled)) then {
+    if (!(_object getVariable [QGVAR(excluded), false])) then {
+        _killed = missionNameSpace getVariable [QGVAR(killed), []];       
+        _killed pushBack [_object, time];
+        missionNamespace setVariable [QGVAR(killed), _killed, true];
     } else {
-        2
+        _object setVariable [QGVAR(handled), false, true];
     };
-    _killed pushBack [_object, time * _multiplier];
-    missionNamespace setVariable [QGVAR(killed), _killed, true];
-} else {
-    _object setVariable [QGVAR(handled), false, true];
 };
