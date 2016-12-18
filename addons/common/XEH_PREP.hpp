@@ -14,3 +14,4 @@ PREP(deployNetMedical);
 PREP(getNearPlayers);
 PREP(lineOfSight);
 PREP(boxRefill);
+PREP(configExport);

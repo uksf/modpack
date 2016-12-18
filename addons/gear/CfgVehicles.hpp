@@ -228,6 +228,7 @@ class CfgVehicles {
 
 	class CargoNet_01_ammo_base_F;
 	class Land_CargoBox_V1_F;
+	class UK3CB_BAF_Box_Weapon_Base;
 	class UKSF_S_Empty: CargoNet_01_ammo_base_F {
 		author = "UKSF";
 		faction = "UKSF_Clan";
@@ -522,6 +523,94 @@ class CfgVehicles {
 		faction = "UKSF_Clan";
 		displayName = "Aircraft Servicing Point";
 		editorPreview = QPATHTOEF(common,data\previews\UK3CB_BAF_Vehicles_Servicing_Aircraft_Point.jpg);
+	};
+	class UK3CB_BAF_Box_WpsSpecial: UK3CB_BAF_Box_Weapon_Base {
+		class TransportWeapons {
+			class xx_UK3CB_BAF_L7A2 {
+				weapon = "UK3CB_BAF_L7A2";
+				count = 2;
+			};
+			class xx_UK3CB_BAF_L7A2_FIST {
+				weapon = "UK3CB_BAF_L7A2_FIST";
+				count = 2;
+			};
+			class xx_UK3CB_BAF_L135A1 {
+				weapon = "UK3CB_BAF_L135A1";
+				count = 2;
+			};
+			class xx_UK3CB_BAF_L110A1 {
+				weapon = "UK3CB_BAF_L110A1";
+				count = 2;
+			};
+			class xx_UK3CB_BAF_L110A2 {
+				weapon = "UK3CB_BAF_L110A2";
+				count = 2;
+			};
+			class xx_UK3CB_BAF_L110A2RIS {
+				weapon = "UK3CB_BAF_L110A2RIS";
+				count = 2;
+			};
+			class xx_UK3CB_BAF_L110_762 {
+				weapon = "UK3CB_BAF_L110_762";
+				count = 2;
+			};
+			class xx_UK3CB_BAF_L110A3 {
+				weapon = "UK3CB_BAF_L110A3";
+				count = 2;
+			};
+			class xx_UK3CB_BAF_L115A3 {
+				weapon = "UK3CB_BAF_L115A3";
+				count = 2;
+			};
+			class xx_UK3CB_BAF_L115A3_BL {
+				weapon = "UK3CB_BAF_L115A3_BL";
+				count = 2;
+			};
+			class xx_UK3CB_BAF_L115A3_DE {
+				weapon = "UK3CB_BAF_L115A3_DE";
+				count = 2;
+			};
+			class xx_UK3CB_BAF_L115A3_Ghillie {
+				weapon = "UK3CB_BAF_L115A3_Ghillie";
+				count = 2;
+			};
+			class xx_UK3CB_BAF_L115A3_BL_Ghillie {
+				weapon = "UK3CB_BAF_L115A3_BL_Ghillie";
+				count = 2;
+			};
+			class xx_UK3CB_BAF_L115A3_DE_Ghillie {
+				weapon = "UK3CB_BAF_L115A3_DE_Ghillie";
+				count = 2;
+			};
+			class xx_UK3CB_BAF_L118A1_Covert {
+				weapon = "UK3CB_BAF_L118A1_Covert";
+				count = 2;
+			};
+			class xx_UK3CB_BAF_L118A1_Covert_BL {
+				weapon = "UK3CB_BAF_L118A1_Covert_BL";
+				count = 2;
+			};
+			class xx_UK3CB_BAF_L118A1_Covert_DE {
+				weapon = "UK3CB_BAF_L118A1_Covert_DE";
+				count = 2;
+			};
+			class xx_UK3CB_BAF_L129A1 {
+				weapon = "UK3CB_BAF_L129A1";
+				count = 2;
+			};
+			class xx_UK3CB_BAF_L129A1_AFG {
+				weapon = "UK3CB_BAF_L129A1_AFG";
+				count = 2;
+			};
+			class xx_UK3CB_BAF_L129A1_FGrip {
+				weapon = "UK3CB_BAF_L129A1_FGrip";
+				count = 2;
+			};
+			class xx_UK3CB_BAF_L129A1_Grippod {
+				weapon = "UK3CB_BAF_L129A1_Grippod";
+				count = 2;
+			};
+		};
 	};
 
 	class TargetP_Inf_F;
