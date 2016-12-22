@@ -125,6 +125,7 @@ class CfgPatches {
             "uksf_common",
             "uk3cb_baf_weapons_SmallArms",
             "UK3CB_BAF_Weapons_Accessories",
+			"uk3cb_baf_weapons_Ammo",
             "UK3CB_BAF_Equipment",
             "RKSL_LDS",
             "rhs_c_weapons",
