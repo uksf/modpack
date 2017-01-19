@@ -1,4 +1,4 @@
 
-# 3rd Person
+# Arsenal
 
-Handles restriction of 3d person, except for when in a vehicle.
+Restricts loading of loadouts in Arsenal to gear present in Arsenal
