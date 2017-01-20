@@ -42,7 +42,7 @@ _params = [];
 		_param = configName (_x select _i);
 		_newConfig = _config >> _param;
 		if (isClass _newConfig) then {
-			_output = [_newConfig, _numTabs + 1, _output] call DREAD_fnc_copyConfigClass;
+			_output = [_newConfig, _numTabs + 1, _output] call FUNC(configExport);
 		} else {
 			_newParam = _param;
 			_data = nil;
