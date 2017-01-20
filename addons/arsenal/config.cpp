@@ -6,7 +6,7 @@ class CfgPatches {
         units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {"uksf_main", "uksf_common"};
+        requiredAddons[] = {"uksf_main", "uksf_common", "3denEnhanced"};
         author = QUOTE(UKSF);
         authors[] = {"Beswick.T"};
         url = QUOTE(www.uk-sf.com);

@@ -467,7 +467,7 @@ switch _mode do {
 		};
 
 		INITTYPES
-		["InitGUI",[_display,"uksf_arsenal_fnc_arsenal"]] call FUNC(arsenal);
+		["InitGUI",[_display,QFUNC(arsenal)]] call FUNC(arsenal);
 		["Preload"] call FUNC(arsenal);
 		["ListAdd",[_display]] call FUNC(arsenal);
 		["ListSelectCurrent",[_display]] call FUNC(arsenal);
@@ -547,7 +547,7 @@ switch _mode do {
 			_sphere setdir 0;
 			_sphere setobjecttexture [0,"#(argb,8,8,3)color(0.93,1.0,0.98,0.028,co)"];
 			_sphere setobjecttexture [1,"#(argb,8,8,3)color(0.93,1.0,0.98,0.01,co)"];
-			_center = if (_function == "uksf_arsenal_fnc_arsenal") then {
+			_center = if (_function == QFUNC(arsenal)) then {
 				createagent [typeof _centerOrig,position _centerOrig,[],0,"none"]
 			} else {
 				createvehicle [typeof _centerOrig,position _centerOrig,[],0,"none"]
@@ -556,7 +556,7 @@ switch _mode do {
 			_center setdir 0;
 			_center switchmove animationstate _centerOrig;
 			_center switchaction "playerstand";
-			if (_function == "uksf_arsenal_fnc_arsenal") then {
+			if (_function == QFUNC(arsenal)) then {
 				_inventory = [_centerOrig,[_center,"arsenal"]] call bis_fnc_saveInventory;
 				[_center,[_center,"arsenal"]] call bis_fnc_loadInventory;
 				_face = face _centerOrig;
@@ -624,7 +624,7 @@ switch _mode do {
 		_ctrlStats ctrlcommit 0;
 
 		//--- UI event handlers
-		_function = "uksf_arsenal_fnc_arsenal";
+		_function = QFUNC(arsenal);
 
 		_ctrlButtonInterface = _display displayctrl IDC_RSCDISPLAYARSENAL_CONTROLSBAR_BUTTONINTERFACE;
 		_ctrlButtonInterface ctrladdeventhandler ["buttonclick","with uinamespace do {['buttonInterface',[ctrlparent (_this select 0)]] call uksf_arsenal_fnc_arsenal;};"];
@@ -1307,7 +1307,7 @@ switch _mode do {
 					default {_select = false; ""};
 				};
 			} else {
-				if (_defaultShow < 0) then {["ShowItem",[_display,_ctrlList,_foreachindex]] spawn uksf_arsenal_fnc_arsenal;};
+				if (_defaultShow < 0) then {["ShowItem",[_display,_ctrlList,_foreachindex]] spawn FUNC(arsenal);};
 				[_defaultItem select 0,0,"",[""]] call bis_fnc_paramin
 			};
 			if (_select) then {
@@ -1333,7 +1333,7 @@ switch _mode do {
 				};
 			};
 		} foreach _data;
-		if (_defaultShow >= 0) then {["ShowItem",[_display,_display displayctrl (IDC_RSCDISPLAYARSENAL_LIST + _defaultShow),_defaultShow]] spawn uksf_arsenal_fnc_arsenal;};
+		if (_defaultShow >= 0) then {["ShowItem",[_display,_display displayctrl (IDC_RSCDISPLAYARSENAL_LIST + _defaultShow),_defaultShow]] spawn FUNC(arsenal);};
 		uinamespace setvariable ["bis_fnc_arsenal_defaultItems",nil];
 		uinamespace setvariable ["bis_fnc_arsenal_defaultShow",nil];
 	};
@@ -1646,7 +1646,7 @@ switch _mode do {
 				};
 
 				//--- Refresh insignia (gets removed when uniform changes)
-				['SelectItem',[_display,_display displayctrl (IDC_RSCDISPLAYARSENAL_LIST + IDC_RSCDISPLAYARSENAL_TAB_INSIGNIA),IDC_RSCDISPLAYARSENAL_TAB_INSIGNIA]] spawn uksf_arsenal_fnc_arsenal;
+				['SelectItem',[_display,_display displayctrl (IDC_RSCDISPLAYARSENAL_LIST + IDC_RSCDISPLAYARSENAL_TAB_INSIGNIA),IDC_RSCDISPLAYARSENAL_TAB_INSIGNIA]] spawn FUNC(arsenal);
 			};
 			case IDC_RSCDISPLAYARSENAL_TAB_VEST: {
 				if (_item == "") then {
@@ -2368,7 +2368,7 @@ switch _mode do {
 					_ctrlMouseBlock = _display displayctrl IDC_RSCDISPLAYARSENAL_MOUSEBLOCK;
 					_ctrlMouseBlock ctrlenable false;
 				} else {
-					if (_fullVersion) then {["buttonClose",[_display]] spawn uksf_arsenal_fnc_arsenal;} else {_display closedisplay 2;};
+					if (_fullVersion) then {["buttonClose",[_display]] spawn FUNC(arsenal);} else {_display closedisplay 2;};
 				};
 				_return = true;
 			};
@@ -2378,7 +2378,7 @@ switch _mode do {
 				_ctrlTemplate = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_TEMPLATE;
 				if (ctrlfade _ctrlTemplate == 0) then {
 					if (BIS_fnc_arsenal_type == 0) then {
-						["buttonTemplateOK",[_display]] spawn uksf_arsenal_fnc_arsenal;
+						["buttonTemplateOK",[_display]] spawn FUNC(arsenal);
 					} else {
 						["buttonTemplateOK",[_display]] spawn bis_fnc_garage;
 					};
@@ -2626,8 +2626,8 @@ switch _mode do {
 		_ctrlTemplateValue = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_VALUENAME;
 		_cursel = lnbcurselrow _ctrlTemplateValue;
 		_name = _ctrlTemplateValue lnbtext [_cursel,0];
-		[_center,[profilenamespace,_name],nil,true] call (uinamespace getvariable (["bis_fnc_saveInventory","bis_fnc_saveVehicle"] select BIS_fnc_arsenal_type));
-		['showTemplates',[_display]] call (uinamespace getvariable (["uksf_arsenal_fnc_arsenal","bis_fnc_garage"] select BIS_fnc_arsenal_type));
+		[_center,[profilenamespace,_name],nil,true] call ([bis_fnc_saveInventory,bis_fnc_saveVehicle] select BIS_fnc_arsenal_type);
+		['showTemplates',[_display]] call ([FUNC(arsenal),bis_fnc_garage] select BIS_fnc_arsenal_type);
 		_ctrlTemplateValue lnbsetcurselrow (_cursel max (lbsize _ctrlTemplateValue - 1));
 
 		["templateSelChanged",[_display]] call FUNC(arsenal);
@@ -2865,7 +2865,7 @@ switch _mode do {
 	///////////////////////////////////////////////////////////////////////////////////////////
 	case "buttonLoad": {
 		_display = _this select 0;
-		['showTemplates',[_display]] call (uinamespace getvariable (["uksf_arsenal_fnc_arsenal","bis_fnc_garage"] select BIS_fnc_arsenal_type));
+		['showTemplates',[_display]] call ([FUNC(arsenal),bis_fnc_garage] select BIS_fnc_arsenal_type);
 
 		_ctrlTemplate = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_TEMPLATE;
 		_ctrlTemplate ctrlsetfade 0;
@@ -2892,7 +2892,7 @@ switch _mode do {
 	///////////////////////////////////////////////////////////////////////////////////////////
 	case "buttonSave": {
 		_display = _this select 0;
-		['showTemplates',[_display]] call (uinamespace getvariable (["uksf_arsenal_fnc_arsenal","bis_fnc_garage"] select BIS_fnc_arsenal_type));//bis_fnc_arsenal;
+		['showTemplates',[_display]] call ([FUNC(arsenal),bis_fnc_garage] select BIS_fnc_arsenal_type);
 
 		_ctrlTemplate = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_TEMPLATE;
 		_ctrlTemplate ctrlsetfade 0;
@@ -3012,7 +3012,7 @@ switch _mode do {
 			IDC_RSCDISPLAYARSENAL_SPACE_SPACEARSENAL,
 			IDC_RSCDISPLAYARSENAL_SPACE_SPACEGARAGE
 		] find (ctrlidc _ctrlButton);
-		_function = ["uksf_arsenal_fnc_arsenal","bis_fnc_garage"] select _buttonID;
+		_function = [QFUNC(arsenal),"bis_fnc_garage"] select _buttonID;
 		BIS_fnc_arsenal_toggleSpace = true;
 		_display closedisplay 2;
 		//missionnamespace setvariable ["BIS_fnc_arsenal_target",player];
@@ -3105,13 +3105,13 @@ switch _mode do {
 			[_box,true,true,false] call FUNC(addVirtualItemCargo);
 			[_box,true,true,false] call FUNC(addVirtualBackpackCargo);
 		};
-		["AmmoboxServer",_box,true] remoteExecCall ["uksf_arsenal_fnc_arsenal", 2];
+		["AmmoboxServer",_box,true] remoteExecCall [QFUNC(arsenal), 2];
 	};
 	///////////////////////////////////////////////////////////////////////////////////////////
 	case "AmmoboxExit": {
 		private ["_box"];
 		_box = [_this,0,objnull,[objnull]] call bis_fnc_param;
-		["AmmoboxServer",_box,false] remoteExecCall ["uksf_arsenal_fnc_arsenal", 2];
+		["AmmoboxServer",_box,false] remoteExecCall [QFUNC(arsenal), 2];
 	};
 	///////////////////////////////////////////////////////////////////////////////////////////
 	case "AmmoboxServer": {
@@ -3123,7 +3123,7 @@ switch _mode do {
 		if (_add) then {_boxes = _boxes + [_box];};
 		missionnamespace setvariable ["bis_fnc_arsenal_boxes",_boxes];
 		publicvariable "bis_fnc_arsenal_boxes";
-		["AmmoboxLocal"] remoteExecCall ["uksf_arsenal_fnc_arsenal", 0, isnil "bis_fnc_arsenal_ammoboxServer"];
+		["AmmoboxLocal"] remoteExecCall [QFUNC(arsenal), 0, isnil "bis_fnc_arsenal_ammoboxServer"];
 		bis_fnc_arsenal_ammoboxServer = true;
 	};
 	///////////////////////////////////////////////////////////////////////////////////////////

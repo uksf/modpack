@@ -27,6 +27,14 @@ class Cfg3DEN {
 						condition = "objectHasInventoryCargo";
 						wikiType = "[[String]]";
 					};
+					class Enh_RemoveWeapons;
+					class Enh_Arsenal: Enh_RemoveWeapons {
+						displayName = $STR_arsenal_displayName;
+						tooltip = $STR_arsenal_tooltip;
+						property = "Enh_arsenal";
+						expression = "if (_value && !is3DEN) then {['AmmoboxInit',[_this,true]] spawn uksf_arsenal_fnc_arsenal}";
+						condition = "objectControllable + objectVehicle + objectSimulated + objectDestructable";
+					};
 				};
 			};
         };

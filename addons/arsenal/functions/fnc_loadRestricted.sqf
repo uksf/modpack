@@ -30,33 +30,42 @@ _virtualCargo = _cargo call FUNC(getVirtualWeaponCargo);
 _virtualCargo append (_cargo call FUNC(getVirtualItemCargo));
 _virtualCargo append (_cargo call FUNC(getVirtualMagazineCargo));
 _virtualCargo append (_cargo call FUNC(getVirtualBackpackCargo));
-_virtualCargo append ["ItemRadioAcreFlagged", ""];
 
 _fnc_removeRestricted = {
-    params ["_data", "_virtualCargo", "_fnc_removeRestricted"];
+    params ["_data", "_virtualCargo", "_fnc_removeRestricted", ["_depth", 0]];
 
     private _restrictedData = [];
     {
         private _restrictedPart = "";
+		private _pushBack = true;
         if (_x isEqualType "") then {
             //Type is string: headgear/goggles/binoculars
             if (_x in _virtualCargo) then {
                 _restrictedPart = _x;
-            };
+            } else {
+				if (_depth > 1) then {
+					_pushBack = false;
+				};
+			};
         } else {
             if (_x isEqualType []) then {
                 //Type is array: uniform/vest/backpack/weapons
-                _restrictedPart = [_x, _virtualCargo, _fnc_removeRestricted] call _fnc_removeRestricted;
+                _restrictedPart = [_x, _virtualCargo, _fnc_removeRestricted, _depth + 1] call _fnc_removeRestricted;
             };
         };
-        _restrictedData pushBack _restrictedPart;
+		if (_pushBack) then {
+			_restrictedData pushBack _restrictedPart;
+		};
     } forEach _data;
     
     _restrictedData
 };
 
-_restrictedInv = ([_invData, _virtualCargo, _fnc_removeRestricted] call _fnc_removeRestricted);
-_restrictedInv set [10, _invData select 10];
+private _restrictedInv = _invData;
+if (!("%ALL" in _virtualCargo)) then {
+	_restrictedInv = ([_invData, _virtualCargo, _fnc_removeRestricted] call _fnc_removeRestricted);
+	_restrictedInv set [10, _invData select 10];
+};
 
 _nameID = _data find DUMMYLOADOUT;
 if (_nameID < 0) then {

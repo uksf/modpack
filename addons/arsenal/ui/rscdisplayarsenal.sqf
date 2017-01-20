@@ -10,12 +10,12 @@ switch _mode do {
 	case "onLoad": {
 		if (isnil {missionnamespace getvariable "bis_fnc_arsenal_data"}) then {
 			startloadingscreen [""];
-			['Init',_params] spawn (uinamespace getvariable "uksf_arsenal_fnc_arsenal");
+			['Init',_params] spawn uksf_arsenal_fnc_arsenal;
 		} else {
-			['Init',_params] call (uinamespace getvariable "uksf_arsenal_fnc_arsenal");
+			['Init',_params] call uksf_arsenal_fnc_arsenal;
 		};
 	};
 	case "onUnload": {
-		['Exit',_params] call (uinamespace getvariable "uksf_arsenal_fnc_arsenal");
+		['Exit',_params] call uksf_arsenal_fnc_arsenal;
 	};
 };
