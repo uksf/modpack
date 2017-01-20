@@ -475,20 +475,6 @@ class CfgWeapons {
 		ACE_NightVision_radBlur = 0;
 	};
 
-	class UK3CB_BAF_L119_Base;
-	class UK3CB_BAF_L119A1: UK3CB_BAF_L119_Base {
-		scope = 0;
-	};
-	class UK3CB_BAF_L119A1_CQB: UK3CB_BAF_L119_Base {
-		scope = 0;
-	};
-	class UK3CB_BAF_L119A1_FG: UK3CB_BAF_L119_Base {
-		scope = 0;
-	};
-	class UK3CB_BAF_L119A1_UKUGL: UK3CB_BAF_L119_Base {
-		scope = 0;
-	};
-
 	class LMG_Zafir_F;
 	class UK3CB_BAF_L7A2: LMG_Zafir_F {
 		magazines[] = {
