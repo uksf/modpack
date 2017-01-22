@@ -624,7 +624,6 @@ switch _mode do {
 		_ctrlStats ctrlcommit 0;
 
 		//--- UI event handlers
-		_function = QFUNC(arsenal);
 
 		_ctrlButtonInterface = _display displayctrl IDC_RSCDISPLAYARSENAL_CONTROLSBAR_BUTTONINTERFACE;
 		_ctrlButtonInterface ctrladdeventhandler ["buttonclick","with uinamespace do {['buttonInterface',[ctrlparent (_this select 0)]] call uksf_arsenal_fnc_arsenal;};"];
@@ -2626,8 +2625,8 @@ switch _mode do {
 		_ctrlTemplateValue = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_VALUENAME;
 		_cursel = lnbcurselrow _ctrlTemplateValue;
 		_name = _ctrlTemplateValue lnbtext [_cursel,0];
-		[_center,[profilenamespace,_name],nil,true] call ([bis_fnc_saveInventory,bis_fnc_saveVehicle] select BIS_fnc_arsenal_type);
-		['showTemplates',[_display]] call ([FUNC(arsenal),bis_fnc_garage] select BIS_fnc_arsenal_type);
+		[_center,[profilenamespace,_name],nil,true] call (uinamespace getvariable (["bis_fnc_saveInventory","bis_fnc_saveVehicle"] select BIS_fnc_arsenal_type));
+		['showTemplates',[_display]] call (uinamespace getvariable ([QFUNC(arsenal),"bis_fnc_garage"] select BIS_fnc_arsenal_type));
 		_ctrlTemplateValue lnbsetcurselrow (_cursel max (lbsize _ctrlTemplateValue - 1));
 
 		["templateSelChanged",[_display]] call FUNC(arsenal);
@@ -2707,7 +2706,7 @@ switch _mode do {
 			_ctrlTemplateValue lnbsetpicture [[_lbAdd,7],gettext (configfile >> "cfgweapons" >> (_inventory select 3) >> "picture")];
 			_ctrlTemplateValue lnbsetpicture [[_lbAdd,8],gettext (configfile >> "cfgglasses" >> (_inventory select 4) >> "picture")];
 			
-			if (
+			/*if (
 				{_item = _x; !CONDITION(_virtualWeaponCargo) || !isclass(configfile >> "cfgweapons" >> _item)} count _inventoryWeapons > 0
 				||
 				{_item = _x; !CONDITION(_virtualItemCargo + _virtualMagazineCargo) || {isclass(configfile >> _x >> _item)} count ["cfgweapons","cfgglasses","cfgmagazines"] == 0} count _inventoryMagazines > 0
@@ -2718,7 +2717,7 @@ switch _mode do {
 			) then {
 				_ctrlTemplateValue lnbsetcolor [[_lbAdd,0],[1,1,1,0.25]];
 				_ctrlTemplateValue lbsetvalue [_lbAdd,-1];
-			};
+			};*/
 		};
 		_ctrlTemplateValue lnbsort [0,false];
 
@@ -2865,7 +2864,7 @@ switch _mode do {
 	///////////////////////////////////////////////////////////////////////////////////////////
 	case "buttonLoad": {
 		_display = _this select 0;
-		['showTemplates',[_display]] call ([FUNC(arsenal),bis_fnc_garage] select BIS_fnc_arsenal_type);
+		['showTemplates',[_display]] call (uinamespace getvariable ([QFUNC(arsenal),"bis_fnc_garage"] select BIS_fnc_arsenal_type));
 
 		_ctrlTemplate = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_TEMPLATE;
 		_ctrlTemplate ctrlsetfade 0;
@@ -2892,7 +2891,7 @@ switch _mode do {
 	///////////////////////////////////////////////////////////////////////////////////////////
 	case "buttonSave": {
 		_display = _this select 0;
-		['showTemplates',[_display]] call ([FUNC(arsenal),bis_fnc_garage] select BIS_fnc_arsenal_type);
+		['showTemplates',[_display]] call (uinamespace getvariable ([QFUNC(arsenal),"bis_fnc_garage"] select BIS_fnc_arsenal_type));
 
 		_ctrlTemplate = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_TEMPLATE;
 		_ctrlTemplate ctrlsetfade 0;
@@ -3105,13 +3104,13 @@ switch _mode do {
 			[_box,true,true,false] call FUNC(addVirtualItemCargo);
 			[_box,true,true,false] call FUNC(addVirtualBackpackCargo);
 		};
-		["AmmoboxServer",_box,true] remoteExecCall [QFUNC(arsenal), 2];
+		["AmmoboxServer",_box,true] remoteExec [QFUNC(arsenal), 2];
 	};
 	///////////////////////////////////////////////////////////////////////////////////////////
 	case "AmmoboxExit": {
 		private ["_box"];
 		_box = [_this,0,objnull,[objnull]] call bis_fnc_param;
-		["AmmoboxServer",_box,false] remoteExecCall [QFUNC(arsenal), 2];
+		["AmmoboxServer",_box,false] remoteExec [QFUNC(arsenal), 2];
 	};
 	///////////////////////////////////////////////////////////////////////////////////////////
 	case "AmmoboxServer": {
@@ -3123,7 +3122,7 @@ switch _mode do {
 		if (_add) then {_boxes = _boxes + [_box];};
 		missionnamespace setvariable ["bis_fnc_arsenal_boxes",_boxes];
 		publicvariable "bis_fnc_arsenal_boxes";
-		["AmmoboxLocal"] remoteExecCall [QFUNC(arsenal), 0, isnil "bis_fnc_arsenal_ammoboxServer"];
+		["AmmoboxLocal"] remoteExec [QFUNC(arsenal), 0, isnil "bis_fnc_arsenal_ammoboxServer"];
 		bis_fnc_arsenal_ammoboxServer = true;
 	};
 	///////////////////////////////////////////////////////////////////////////////////////////
