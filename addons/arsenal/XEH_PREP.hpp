@@ -15,3 +15,5 @@ PREP(removevirtualmagazinecargo);
 PREP(removevirtualweaponcargo);
 PREP(initammobox);
 PREP(loadRestricted);
+PREP(saveToProfile);
+PREP(showRemoved);
