@@ -15,7 +15,6 @@
 
 params ["_removed"];
 
-
 private _compose = [lineBreak, parseText "<t align='center' size='1.5'>Did not load the following:<\t>", lineBreak];  
 {
 	private _config = _x;
