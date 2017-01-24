@@ -18,17 +18,17 @@ class Extended_PostInit_EventHandlers {
 };
 
 class Extended_Init_EventHandlers {
-	class CAManBase {
-	    class ADDON {
-	        init = QUOTE(_this call FUNC(addAction));
-	    };
-	};
+    class CAManBase {
+        class ADDON {
+            init = QUOTE(_this call FUNC(addAction));
+        };
+    };
 };
 
 class Extended_Respawn_EventHandlers {
-	class CAManBase {
-	    class ADDON {
-	        respawn = QUOTE(_this call FUNC(respawn));
-	    };
-	};
+    class CAManBase {
+        class ADDON {
+            respawn = QUOTE(_this call FUNC(respawn));
+        };
+    };
 };

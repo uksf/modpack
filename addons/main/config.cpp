@@ -870,10 +870,10 @@ class CfgPatches {
             "cba_xeh",
             "cba_jr",
 
-			//ACE
-			"ace_main",
-			"ace_common",
-			"ace_interaction"
+            //ACE
+            "ace_main",
+            "ace_common",
+            "ace_interaction"
         };
         author = QUOTE(UKSF);
         url = QUOTE(www.uk-sf.com);

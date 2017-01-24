@@ -18,14 +18,14 @@ class Extended_PostInit_EventHandlers {
 };
 
 class Extended_Init_EventHandlers {
-	class UKSF_ATC_Station {
-	    class ADDON {
-	        init = QUOTE(_this call FUNC(init));
-	    };
-	};
+    class UKSF_ATC_Station {
+        class ADDON {
+            init = QUOTE(_this call FUNC(init));
+        };
+    };
     class Air {
-	    class ADDON {
-	        init = QUOTE(_this call FUNC(initAir));
-	    };
-	};
+        class ADDON {
+            init = QUOTE(_this call FUNC(initAir));
+        };
+    };
 };
