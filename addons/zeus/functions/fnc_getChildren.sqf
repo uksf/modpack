@@ -1,15 +1,15 @@
 /*
-	Author:
-		Tim Beswick
+    Author:
+        Tim Beswick
 
-	Description:
-		Zeus action children
+    Description:
+        Zeus action children
 
-	Parameter(s):
-		None
+    Parameter(s):
+        None
 
-	Return Value:
-		Array of actions <ARRAY>
+    Return Value:
+        Array of actions <ARRAY>
 */
 #include "script_component.hpp"
 
@@ -30,12 +30,12 @@ _actions pushBack [_action, [], player];
 _action = [QGVAR(zeusAction_5), [4] call FUNC(getName), ZEUS_ICON, [4] call FUNC(actionStatement), {true}, {}, 4] call ace_interact_menu_fnc_createAction;
 _actions pushBack [_action, [], player];
 
-_action = [QGVAR(zeusAction_kickall), QUOTE(Kick All), ZEUS_ICON, {	
-	[{
-		{unassignCurator _x} forEach GVAR(curatorObjects);
-		missionNamespace setVariable [QGVAR(curatorNames), ["","","","",""], true];
-	}] remoteExecCall ["bis_fnc_call", 2, false];
-	hint "All Zeuses kicked";
+_action = [QGVAR(zeusAction_kickall), QUOTE(Kick All), ZEUS_ICON, {    
+    [{
+        {unassignCurator _x} forEach GVAR(curatorObjects);
+        missionNamespace setVariable [QGVAR(curatorNames), ["","","","",""], true];
+    }] remoteExecCall ["bis_fnc_call", 2, false];
+    hint "All Zeuses kicked";
 }, {IS_ADMIN || isServer}] call ace_interact_menu_fnc_createAction;
 _actions pushBack [_action, [], player];
 

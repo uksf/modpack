@@ -1,15 +1,15 @@
 /*
-	Author:
-		Tim Beswick
+    Author:
+        Tim Beswick
 
-	Description:
-		Stop dead units talking to their squad
+    Description:
+        Stop dead units talking to their squad
 
-	Parameter(s):
-		0: Unit <OBJECT>
+    Parameter(s):
+        0: Unit <OBJECT>
 
-	Return Value:
-		None
+    Return Value:
+        None
 */
 #include "script_component.hpp"
 

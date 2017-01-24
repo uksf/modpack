@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 
 [{
-	{deleteGroup _x} foreach allGroups;
+    {deleteGroup _x} foreach allGroups;
 }, 300, []] call CBA_fnc_addPerFrameHandler;
 
 GVAR(HCs) = [];

@@ -1,16 +1,16 @@
 /*
     Author:
-    	Nicholas Clark & Tim Beswick
+        Nicholas Clark & Tim Beswick
 
     Description:
-    	Check if in position in line of sight
+        Check if in position in line of sight
 
     Parameters:
-    	0: Unit to check <OBJECT>
+        0: Unit to check <OBJECT>
         1: Unit to check line of sight for <OBJECT>
 
     Return value:
-    	Boolean
+        Boolean
 */
 #include "script_component.hpp"
 

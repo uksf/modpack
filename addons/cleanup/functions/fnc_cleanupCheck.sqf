@@ -1,15 +1,15 @@
 /*
     Author:
-    	Tim Beswick
+        Tim Beswick
 
     Description:
-    	Run cleanup every 1/4 of delay time
+        Run cleanup every 1/4 of delay time
 
     Parameters:
-    	None
+        None
 
     Return value:
-    	Nothing
+        Nothing
 */
 #include "script_component.hpp"
 

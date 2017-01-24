@@ -1,22 +1,22 @@
 /*
-	Author:
-		Tim Beswick
+    Author:
+        Tim Beswick
 
-	Description:
-		Initialises air vehicles for ATC
+    Description:
+        Initialises air vehicles for ATC
 
-	Parameter(s):
-		0: Object <OBJECT>
+    Parameter(s):
+        0: Object <OBJECT>
 
-	Return Value:
-		None
+    Return Value:
+        None
 */
 #include "script_component.hpp"
 
 params ["_object"];
 
 if (isServer) then {
-	_targets = missionNamespace getVariable [QGVAR(airTargets), []];
-	_targets pushBack _object;
-	missionNamespace setVariable [QGVAR(airTargets), _targets, true];
+    _targets = missionNamespace getVariable [QGVAR(airTargets), []];
+    _targets pushBack _object;
+    missionNamespace setVariable [QGVAR(airTargets), _targets, true];
 };

@@ -1,16 +1,16 @@
 /*
-	Author: 
-		Karel Moricky, edited by Tim Beswick for UKSF usage
+    Author: 
+        Karel Moricky, edited by Tim Beswick for UKSF usage
 
-	Description:
-		Get virtual backpacks to an object (e.g., ammo box).
-		Virtual items can be selected in the Arsenal.
+    Description:
+        Get virtual backpacks to an object (e.g., ammo box).
+        Virtual items can be selected in the Arsenal.
 
-	Parameter(s):
-		0: OBJECT
+    Parameter(s):
+        0: OBJECT
 
-	Returns:
-		ARRAY of ARRAYs - all virtual items within the object's space in format [<items>,<weapons>,<magazines>,<backpacks>]
+    Returns:
+        ARRAY of ARRAYs - all virtual items within the object's space in format [<items>,<weapons>,<magazines>,<backpacks>]
 */
 #include "script_component.hpp"
 

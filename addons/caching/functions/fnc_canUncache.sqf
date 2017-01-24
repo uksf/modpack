@@ -1,15 +1,15 @@
 /*
     Author:
-    	Tim Beswick
+        Tim Beswick
 
     Description:
-    	Checks if group can be uncached
+        Checks if group can be uncached
 
     Parameters:
-    	0: Group to be uncached <GROUP>
+        0: Group to be uncached <GROUP>
 
     Return value:
-    	Boolean
+        Boolean
 */
 #include "script_component.hpp"
 

@@ -1,24 +1,24 @@
 /*
-	Author:
-		Tim Beswick
+    Author:
+        Tim Beswick
 
-	Description:
-		Respawn EH for player
+    Description:
+        Respawn EH for player
 
-	Parameter(s):
-		None
+    Parameter(s):
+        None
 
-	Return Value:
-		None
+    Return Value:
+        None
 */
 #include "script_component.hpp"
 
 if (local player) then {
-	_names = missionNamespace getVariable [QGVAR(curatorNames), ["","","","",""]];
-	_index = _names find (name player);
-	if (_index > -1) then {
-		[[_index, player], {
-			(_this select 1) assignCurator (GVAR(curatorObjects) select (_this select 0));
-		}] remoteExecCall ["bis_fnc_call", 2, false];
-	};
+    _names = missionNamespace getVariable [QGVAR(curatorNames), ["","","","",""]];
+    _index = _names find (name player);
+    if (_index > -1) then {
+        [[_index, player], {
+            (_this select 1) assignCurator (GVAR(curatorObjects) select (_this select 0));
+        }] remoteExecCall ["bis_fnc_call", 2, false];
+    };
 };

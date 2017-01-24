@@ -1,15 +1,15 @@
 /*
-	Author:
-		Tim Beswick
+    Author:
+        Tim Beswick
 
-	Description:
-		Equips pilot loadout
+    Description:
+        Equips pilot loadout
 
-	Parameter(s):
-		None
+    Parameter(s):
+        None
 
-	Return Value:
-		None
+    Return Value:
+        None
 */
 #include "script_component.hpp"
 

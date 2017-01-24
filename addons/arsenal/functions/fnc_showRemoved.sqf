@@ -1,15 +1,15 @@
 /*
-	Author:
-		Tim Beswick
+    Author:
+        Tim Beswick
 
-	Description:
-		Displays a message showing what was not loaded from loadout.
+    Description:
+        Displays a message showing what was not loaded from loadout.
 
-	Parameter(s):
-		0: Items not loaded <ARRAY>
+    Parameter(s):
+        0: Items not loaded <ARRAY>
 
-	Return Value:
-		None
+    Return Value:
+        None
 */
 #include "script_component.hpp"
 
@@ -17,23 +17,23 @@ params ["_removed"];
 
 private _compose = [lineBreak, parseText "<t align='center' size='1.5'>Did not load the following:<\t>", lineBreak];  
 {
-	private _config = _x;
-	private _configType = "";
-	private _name = _config;
-	switch true do {
-		case (isClass (configFile >> "CfgMagazines" >> _config)): {_configType = "CfgMagazines"};
-		case (isClass (configFile >> "CfgWeapons" >> _config)): {_configType = "CfgWeapons"};
-		case (isClass (configFile >> "CfgVehicles" >> _config)): {_configType = "CfgVehicles"};
-		case (isClass (configFile >> "CfgGlasses" >> _config)): {_configType = "CfgGlasses"};
-	};
-	if (_configType != "") then {
-		_name = getText (configFile >> _configType >> _config >> "displayName");
-	};
-	if (_forEachIndex == 0) then {
-		_compose append [format ["%1", _name]];
-	} else {
-		_compose append [format [", %1", _name]];
-	};
+    private _config = _x;
+    private _configType = "";
+    private _name = _config;
+    switch true do {
+        case (isClass (configFile >> "CfgMagazines" >> _config)): {_configType = "CfgMagazines"};
+        case (isClass (configFile >> "CfgWeapons" >> _config)): {_configType = "CfgWeapons"};
+        case (isClass (configFile >> "CfgVehicles" >> _config)): {_configType = "CfgVehicles"};
+        case (isClass (configFile >> "CfgGlasses" >> _config)): {_configType = "CfgGlasses"};
+    };
+    if (_configType != "") then {
+        _name = getText (configFile >> _configType >> _config >> "displayName");
+    };
+    if (_forEachIndex == 0) then {
+        _compose append [format ["%1", _name]];
+    } else {
+        _compose append [format [", %1", _name]];
+    };
 } forEach _removed;
 
 disableSerialization;

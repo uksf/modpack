@@ -1,15 +1,15 @@
 /*
     Author:
-    	Tim Beswick
+        Tim Beswick
 
     Description:
-    	Checks if group can be cached
+        Checks if group can be cached
 
     Parameters:
-    	0: Group to be cached <GROUP>
+        0: Group to be cached <GROUP>
 
     Return value:
-    	Boolean
+        Boolean
 */
 #include "script_component.hpp"
 

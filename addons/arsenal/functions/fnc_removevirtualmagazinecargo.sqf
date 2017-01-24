@@ -1,18 +1,18 @@
 /*
-	Author: 
-		Karel Moricky, edited by Tim Beswick for UKSF usage
+    Author: 
+        Karel Moricky, edited by Tim Beswick for UKSF usage
 
-	Description:
-		Remove virtual magazines from an object (e.g., ammo box).
-		Virtual items can be selected in the Arsenal.
+    Description:
+        Remove virtual magazines from an object (e.g., ammo box).
+        Virtual items can be selected in the Arsenal.
 
-	Parameter(s):
-		0: OBJECT - objct from which magazines will be removed
-		1: STRING or ARRAY of STRINGs - magazine class(es) to be removed
-		2 (Optional): BOOL - true to remove magazines globally (default: false)
+    Parameter(s):
+        0: OBJECT - objct from which magazines will be removed
+        1: STRING or ARRAY of STRINGs - magazine class(es) to be removed
+        2 (Optional): BOOL - true to remove magazines globally (default: false)
 
-	Returns:
-		ARRAY of ARRAYs - all virtual items within the object's space in format [<items>,<weapons>,<magazines>,<backpacks>]
+    Returns:
+        ARRAY of ARRAYs - all virtual items within the object's space in format [<items>,<weapons>,<magazines>,<backpacks>]
 */
 #include "script_component.hpp"
 

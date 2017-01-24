@@ -1,19 +1,19 @@
 /*
-	Author: 
-		Karel Moricky, edited by Tim Beswick for UKSF usage
+    Author: 
+        Karel Moricky, edited by Tim Beswick for UKSF usage
 
-	Description:
-		Add virtual magazines to an object (e.g., ammo box).
-		Virtual items can be selected in the Arsenal.
+    Description:
+        Add virtual magazines to an object (e.g., ammo box).
+        Virtual items can be selected in the Arsenal.
 
-	Parameter(s):
-		0: OBJECT - objct to which magazines will be added
-		1: STRING or ARRAY of STRINGs - magazine class(es) to be added
-		2 (Optional): BOOL - true to add magazines globally (default: false)
-		3 (Optional): BOOL - true to add Arsenal action (default: true)
+    Parameter(s):
+        0: OBJECT - objct to which magazines will be added
+        1: STRING or ARRAY of STRINGs - magazine class(es) to be added
+        2 (Optional): BOOL - true to add magazines globally (default: false)
+        3 (Optional): BOOL - true to add Arsenal action (default: true)
 
-	Returns:
-		ARRAY of ARRAYs - all virtual items within the object's space in format [<items>,<weapons>,<magazines>,<backpacks>]
+    Returns:
+        ARRAY of ARRAYs - all virtual items within the object's space in format [<items>,<weapons>,<magazines>,<backpacks>]
 */
 #include "script_component.hpp"
 

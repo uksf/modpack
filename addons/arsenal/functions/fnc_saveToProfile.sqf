@@ -1,15 +1,15 @@
 /*
-	Author:
-		Tim Beswick
+    Author:
+        Tim Beswick
 
-	Description:
-		Saves given data to profileNamespace and returns save data.
+    Description:
+        Saves given data to profileNamespace and returns save data.
 
-	Parameter(s):
-		0: Data to save <ARRAY>
+    Parameter(s):
+        0: Data to save <ARRAY>
 
-	Return Value:
-		Saved data <ARRAY>
+    Return Value:
+        Saved data <ARRAY>
 */
 #include "script_component.hpp"
 

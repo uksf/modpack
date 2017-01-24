@@ -1,15 +1,15 @@
 /*
     Author:
-    	Tim Beswick
+        Tim Beswick
 
     Description:
-    	Run cleanup
+        Run cleanup
 
     Parameters:
-    	0: Killed object <OBJECT>
+        0: Killed object <OBJECT>
 
     Return value:
-    	Nothing
+        Nothing
 */
 #include "script_component.hpp"
 

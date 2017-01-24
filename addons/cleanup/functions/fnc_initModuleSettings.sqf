@@ -1,17 +1,17 @@
 /*
-	Author:
-		Tim Beswick
+    Author:
+        Tim Beswick
 
-	Description:
-		Init module settings
+    Description:
+        Init module settings
 
-	Parameter(s):
-		0: Module logic <LOGIC>
-		1: Units <ARRAY>
-		2: Activated <BOOLEAN>
+    Parameter(s):
+        0: Module logic <LOGIC>
+        1: Units <ARRAY>
+        2: Activated <BOOLEAN>
 
-	Return Value:
-		None
+    Return Value:
+        None
 */
 #include "script_component.hpp"
 
