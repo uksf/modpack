@@ -24,9 +24,6 @@ _uav setVariable [QGVAR(customWaypoint), false, true];
 _heightChanged = false;
 _lastWaypoint = 1;
 
-
-_uav addEventHandler ["Killed", {[GVAR(handlerUav)] call CBA_fnc_removePerFrameHandler;}];
-
 GVAR(handlerUav) = [{
     params ["_args"];
     _args params ["_uav", "_heightChanged", "_lastWaypoint"];

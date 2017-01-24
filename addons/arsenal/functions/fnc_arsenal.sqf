@@ -155,7 +155,7 @@ _fullVersion = missionnamespace getvariable ["BIS_fnc_arsenal_fullArsenal",false
             };\
         };\
         _dlc\
-    }
+    };
 
 #define ADDMODICON\
     {\
