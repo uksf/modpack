@@ -8,6 +8,9 @@
     <a href="https://github.com/tbeswick96/UKSF-SR5-7-11/blob/master/LICENSE">
         <img src="https://img.shields.io/badge/license-GPLv3-blue.svg?style=flat-square" alt="License">
     </a>
+    <a href="https://travis-ci.org/tbeswick96/UKSF-SR5-7-11">
+        <img src="https://img.shields.io/travis/tbeswick96/UKSF-SR5-7-11.svg?style=flat-square&label=Build" alt="ACE3 Build Status">
+    </a>
 </p>
 # UKSF SR5, SR7, SR11
 UKSF Combined repository for SR5 Mission Making, SR7 Advanced Development, SR11 Mod Development, and issue/feature tracking
