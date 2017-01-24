@@ -69,14 +69,57 @@ class CfgPatches {
             "Inegal_Jet_L159",
             "Inegal_Static_HMG",
             "Inegal_Static_GMG",
-            "Inegal_Static_Mortar"
+            "Inegal_Static_Mortar",
+
+            "Inegal_B_F",
+            "Inegal_B_C",
+            "Inegal_B_Med",
+            "Inegal_B_MG",
+            "Inegal_B_Mark",
+            "Inegal_B_AA",
+            "Inegal_B_AT_Eryx",
+            "Inegal_B_Sniper",
+            "Inegal_B_FAC",
+            "Inegal_B_FDF_B",
+            "Inegal_B_FDF_A",
+            "Inegal_B_D_Specialist",
+            "Inegal_B_D_Commander",
+            "Inegal_B_D_Surgeon",
+            "Inegal_B_D_Brute",
+            "Inegal_B_D_Sharpshooter",
+            "Inegal_B_D_Arsonist",
+            "Inegal_B_D_Sentinel",
+            "Inegal_B_D_Assassin",
+            "Inegal_B_R_C",
+            "Inegal_B_R_L",
+            "Inegal_B_R_R"
         };
-        weapons[] = {};
+        weapons[] = {
+            "R3F_Famas_G2_HG_Aimpoint",
+            "R3F_Famas_G2_M203_Aimpoint",
+            "arifle_SPAR_01_GL_blk_F_erco",
+            "R3F_Famas_G2_Aimpoint",
+            "R3F_Minimi_762_Aimpoint",
+            "R3F_FRF2_DES_Zeiss",
+            "R3F_PGM_Hecate_II_DES_Zeiss",
+            "R3F_PGM_Hecate_II_POLY_J10",
+            "arifle_SPAR_01_blk_F_eotech_lamp_bipod",
+            "arifle_SPAR_01_GL_blk_F_eotech",
+            "arifle_SPAR_03_blk_F_dms_bipod",
+            "arifle_SPAR_01_blk_F_erco_laser_bipod_suppressor",
+            "arifle_SPAR_01_GL_blk_F_erco_laser_suppressor",
+            "arifle_SPAR_03_blk_F_dms_bipod_suppressor_laser",
+            "R3F_PGM_Hecate_II_POLY_Felin",
+            "R3F_Famas_F1_M203_Eotech",
+            "R3F_Famas_F1_HG_Eotech",
+            "R3F_MP5A5_Eotech",
+            "SP_Modular2_Black",
+            "Inegal_Diablerie_Helmet"
+        };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             "uksf_main", 
             "uksf_common",
-            "uksf_gear",
             "uksf_genfor"
         };
         author = QUOTE(UKSF);

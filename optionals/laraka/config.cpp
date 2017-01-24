@@ -61,14 +61,17 @@ class CfgPatches {
             "Azaadi_Static_2B14",
             "Azaadi_CarBomb",
             "Azaadi_CarBomb_Empty",
-            "Azaadi_CarBomb_Deadman"
+            "Azaadi_CarBomb_Deadman",     
+
+            "Laraka_B_PKM",
+            "Laraka_B_RPG",
+            "Laraka_B_AA"
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             "uksf_main", 
             "uksf_common",
-            "uksf_gear",
             "uksf_genfor",
             "Taliban_fighters"
         };

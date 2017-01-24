@@ -9,14 +9,14 @@ class CfgPatches {
         requiredAddons[] = {
             "uksf_main", 
             "uksf_common",
-            "UK3CB_BAF_Weapons",
+            "UK3CB_BAF_Weapons"/*,
             "JPEX_FrameWork",
             "JSRSAPEX_ReloadingSoundsApex",
             "JSRSAPEX_Navid",
             "JSRSAPEX_Zafir",
             "JSRSAPEX_AK12",
             "JSRSAPEX_AKM",
-            "JSRSAPEX_SPMG"
+            "JSRSAPEX_SPMG"*/
         };
         author = QUOTE(UKSF);
         authors[] = {"Beswick.T"};

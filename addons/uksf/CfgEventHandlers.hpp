@@ -5,7 +5,7 @@ class Extended_Init_EventHandlers {
             init = QUOTE(_this call EFUNC(atc,equipATC));
         };
     };
-    class UKSF_LandRover_MG {
+    /*class UKSF_LandRover_MG {
         class ADDON {
             init = QUOTE(_this call EFUNC(common,initNets));
         };
@@ -19,5 +19,5 @@ class Extended_Init_EventHandlers {
         class ADDON {
             init = QUOTE(_this call EFUNC(common,initNets));
         };
-    };    
+    };*/
 };

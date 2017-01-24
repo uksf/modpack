@@ -1,5 +1,5 @@
 //Jackal
-class UK3CB_BAF_Jackal2_L111A1_Base_D;
+/*class UK3CB_BAF_Jackal2_L111A1_Base_D;
 class UK3CB_BAF_Jackal2_L134A1_Base_D;
 class UK3CB_BAF_Jackal2_L2A1_D : UK3CB_BAF_Jackal2_L111A1_Base_D {
     scope = 0;
@@ -45,4 +45,4 @@ class UKSF_Jackal_GMG_W : UK3CB_BAF_Jackal2_GMG_W {
     displayName = "Jackal GMG Woodland";
     faction = "UKSF_Clan";
     editorPreview = QPATHTOEF(common,data\previews\UKSF_Jackal_GMG_W.jpg);
-};
+};*/

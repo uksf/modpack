@@ -152,14 +152,49 @@ class CfgPatches {
             "Genfor_Static_D30",
             "Genfor_Static_D30AT",
             "Genfor_Static_M119",
-            "Genfor_Static_M119AT"
+            "Genfor_Static_M119AT",
+            
+            "GENFOR_B_R",
+            "GENFOR_B_RNOMAG",
+            "GENFOR_B_Mark",
+            "GENFOR_B_Med",
+            "GENFOR_B_MG",
+            "GENFOR_B_AA",
+            "GENFOR_B_AT7",
+            "GENFOR_B_AT",
+            "GENFOR_B_Sl",
+            "GENFOR_B_Radio",
+            "GENFOR_B_P_R",
+            "GENFOR_B_P_RNOMAG",
+            "GENFOR_B_P_B",
+            "GENFOR_B_P_MG",
+            "GENFOR_B_P_AT",
+            "GENFOR_B_P_AA",
+            "GENFOR_B_SF_R",
+            "GENFOR_B_SF_RNOMAG",
+            "GENFOR_B_SF_MG",
+            "GENFOR_B_SF_AT",
+            "GENFOR_B_SF_P"
         };
-        weapons[] = {};
+        weapons[] = {
+            "rhs_weap_ak74m_camo_npz_acog",
+            "rhs_weap_ak74m_gp25_npz_acog",
+            "arifle_mas_m4_acog",
+            "arifle_mas_m4c_holo",
+            "rhs_weap_ak105_npz_acog",
+            "rhs_weap_ak103_pso",
+            "arifle_mas_m4_gl_acog",
+            "arifle_mas_fal",
+            "arifle_mas_lee",
+            "srifle_DMR_06_camo_F_dms",
+            "rhs_weap_ak74m_Base_F",
+            "rhs_pkp_base",
+            "rhs_weap_rpg7"            
+        };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             "uksf_main", 
             "uksf_common",
-            "uksf_gear",
             "mas_vehicleweapons_Core",
             "mas_apc",
             "mas_brdm",

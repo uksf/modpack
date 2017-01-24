@@ -1,5 +1,5 @@
 class CfgSoundShaders {
-    class UKSF_FAMAS_Shot_SoundShader {
+    /*class UKSF_FAMAS_Shot_SoundShader {
         samples[] = {
             { "\r3f_armes\sons\Famas_1", 1 },
             { "\r3f_armes\sons\Famas_2", 1 },
@@ -59,5 +59,5 @@ class CfgSoundShaders {
         volume = 1;
         range = 2000;
         rangeCurve[] = { { 0,1 },{ 100,0.9 },{ 500,0.6 },{ 2000,0 } };
-    };
+    };*/
 };

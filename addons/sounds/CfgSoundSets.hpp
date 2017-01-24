@@ -1,5 +1,5 @@
 class CfgSoundSets {
-    //Famas
+    /*//Famas
     class UKSF_FAMAS_Shot_SoundSet {
         soundShaders[] = { "JPEX_MX_Closure_SoundShader", "UKSF_FAMAS_Shot_SoundShader"};
         volumeFactor = 1.35;
@@ -74,5 +74,5 @@ class CfgSoundSets {
         doppler = 0;
         loop = 0;
         distanceFilter = "weaponShotDistanceFreqAttenuationFilter";
-    };
+    };*/
 };

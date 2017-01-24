@@ -1,5 +1,5 @@
 //Unarmed
-class Genfor_LandRover_Unarmed;
+/*class Genfor_LandRover_Unarmed;
 class UKSF_LandRover_Unarmed : Genfor_LandRover_Unarmed {
     scope = 2;
     side = 1;
@@ -230,5 +230,5 @@ class UKSF_LandRover_Medical : Genfor_LandRover_Medical {
                 priority = 1;
             };
         };
-    };
+    };*/
 };

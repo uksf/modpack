@@ -2,7 +2,7 @@ class Mode_FullAuto;
 class Mode_Burst;
 class Mode_SemiAuto;
 class CfgWeapons {    
-    class LMG_Zafir_F;
+    /*class LMG_Zafir_F;
     class UK3CB_BAF_L7A2: LMG_Zafir_F {
         drySound[] = { "JSRSAPEX_P_Weaponsounds\dry\Navid_dry.ogg", 1, 1, 30 };
         reloadMagazineSound[] = { "JSRSAPEX_P_Weaponsounds\Reload\Navid_reload.ogg", 1.5, 1, 35 };
@@ -449,5 +449,5 @@ class CfgWeapons {
                 soundSetShot[] = { "UKSF_Minimi762_Shot_SoundSet", "JPEX_NAVID_Tail_SoundSet", "JPEX_FRAME_MG_REFLECTORS", "JPEX_FRAME_NOISE_LAYER_CAL308" };
             };
         };
-    };
+    };*/
 };

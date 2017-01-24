@@ -1,4 +1,5 @@
 //Coyote
+/*
 class UK3CB_BAF_Coyote_L111A1_Base_D;
 class UK3CB_BAF_Coyote_L134A1_Base_D;
 class UK3CB_BAF_Coyote_Passenger_L111A1_D : UK3CB_BAF_Coyote_L111A1_Base_D {
@@ -89,4 +90,4 @@ class UKSF_Coyote_Logistics_GMG_W : UK3CB_BAF_Coyote_Logistics_L134A1_W {
     displayName = "Coyote Logistics GMG Woodland";
     faction = "UKSF_Clan";
     editorPreview = QPATHTOEF(common,data\previews\UKSF_Coyote_Logistics_GMG_W.jpg);
-};
+};*/

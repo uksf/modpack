@@ -1,5 +1,5 @@
 //Ridgeback
-class Wheeled_APC_F;
+/*class Wheeled_APC_F;
 class blx_ridgback_base : Wheeled_APC_F {
     class Turrets;
     class HitPoints;
@@ -493,4 +493,4 @@ class UKSF_ridgback_AMB_W : UKSF_ridgback_HMG_W {
     attendant = 1;
     hiddenSelections[] = { "fx1" };
     hiddenSelectionsTextures[] = { QPATHTOF(data\tex3WAMB_co.paa) };
-};
+};*/

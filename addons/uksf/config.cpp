@@ -21,7 +21,7 @@ class CfgPatches {
             "UKSF_Clan_HP",
             "UKSF_Clan_FW",
 
-            "UKSF_LandRover_Unarmed",
+            /*"UKSF_LandRover_Unarmed",
             "UKSF_LandRover_MG",
             "UKSF_LandRover_MG_Desert",
             "UKSF_LandRover_GL",
@@ -46,7 +46,7 @@ class CfgPatches {
             "UKSF_Coyote_Logistics_HMG_D",
             "UKSF_Coyote_Logistics_HMG_W",
             "UKSF_Coyote_Logistics_GMG_D",
-            "UKSF_Coyote_Logistics_GMG_W",
+            "UKSF_Coyote_Logistics_GMG_W",*/
             "UKSF_Hemtt_Ammo",
             "UKSF_Hemtt_Fuel",
             "UKSF_Hemtt_Repair"
@@ -57,11 +57,11 @@ class CfgPatches {
             "uksf_main", 
             "uksf_common",
             "uksf_gear",
-            "uksf_genfor",
-            "blx_ridgback",
-            "burnes_foxhound",
-            "UK3CB_BAF_Vehicles",
-            "UK3CB_BAF_Vehicles_Coyote_Jackal"
+            //"uksf_genfor",
+            //"blx_ridgback",
+            //"burnes_foxhound",
+            //"UK3CB_BAF_Vehicles",
+            //"UK3CB_BAF_Vehicles_Coyote_Jackal"
         };
         author = QUOTE(UKSF);
         authors[] = {"Beswick.T"};

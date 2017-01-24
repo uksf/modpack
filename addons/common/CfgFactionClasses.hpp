@@ -5,7 +5,7 @@ class CfgFactionClasses {
         priority = 1;
         side = 1;
     };
-    class UKSF_Genfor {
+    /*class UKSF_Genfor {
         displayName = "GENFOR";
         icon = QPATHTOF(data\Flags\genfor.paa);
         priority = 1;
@@ -28,7 +28,7 @@ class CfgFactionClasses {
         icon = "\A3\Structures_F\Mil\Flags\Data\Mast_civ_CO.paa";
         priority = 1;
         side = 0;
-    };
+    };*/
     class NO_CATEGORY;
     class UKSF: NO_CATEGORY {
         displayName = "UKSF";

@@ -1,9 +1,5 @@
 //Wildcat
-class UK3CB_BAF_Wildcat_AH1_6_Base;
-class UK3CB_BAF_Wildcat_AH1_8_Base;
-class UK3CB_BAF_Wildcat_HMA2_8_Base;
-
-class UK3CB_BAF_Wildcat_AH1_CAS_8A : UK3CB_BAF_Wildcat_AH1_8_Base {
+/*class UK3CB_BAF_Wildcat_AH1_CAS_8A : UK3CB_BAF_Wildcat_AH1_8_Base {
     scope = 2;
     author = "UKSF";
     faction = "UKSF_Clan";
@@ -62,41 +58,4 @@ class UK3CB_BAF_Wildcat_AH1_TRN_8A : UK3CB_BAF_Wildcat_AH1_8_Base {
     landingSoundOut0[]= { "A3\Sounds_F\vehicles\air\noises\landing_wheels_ext1", 0.4, 1, 50 };
     landingSoundOut1[]= { "A3\Sounds_F\vehicles\air\noises\landing_wheels_ext2", 0.4, 1, 50 };
     landingSoundOut[]= { "landingSoundOut0", 0.5, "landingSoundOut1", 0.5 };
-};
-
-class UK3CB_BAF_Wildcat_AH1_CAS_6A : UK3CB_BAF_Wildcat_AH1_6_Base {
-    scope = 0;
-    scopeCUrator = 0;
-};
-class UK3CB_BAF_Wildcat_AH1_CAS_6B : UK3CB_BAF_Wildcat_AH1_CAS_6A {
-    scope = 0;
-    scopeCUrator = 0;
-};
-class UK3CB_BAF_Wildcat_AH1_CAS_6C : UK3CB_BAF_Wildcat_AH1_CAS_6A {
-    scope = 0;
-    scopeCUrator = 0;
-};
-class UK3CB_BAF_Wildcat_AH1_CAS_6D : UK3CB_BAF_Wildcat_AH1_CAS_6A {
-    scope = 0;
-    scopeCUrator = 0;
-};
-class UK3CB_BAF_Wildcat_AH1_HEL_6A : UK3CB_BAF_Wildcat_AH1_6_Base {
-    scope = 0;
-    scopeCUrator = 0;
-};
-class UK3CB_BAF_Wildcat_AH1_CAS_8B : UK3CB_BAF_Wildcat_AH1_CAS_8A {
-    scope = 0;
-    scopeCUrator = 0;
-};
-class UK3CB_BAF_Wildcat_AH1_CAS_8C : UK3CB_BAF_Wildcat_AH1_CAS_8A {
-    scope = 0;
-    scopeCUrator = 0;
-};
-class UK3CB_BAF_Wildcat_AH1_CAS_8D : UK3CB_BAF_Wildcat_AH1_CAS_8A {
-    scope = 0;
-    scopeCUrator = 0;
-};
-class UK3CB_BAF_Wildcat_HMA2_TRN_8A : UK3CB_BAF_Wildcat_HMA2_8_Base {
-    scope = 0;
-    scopeCUrator = 0;
-};
+};*/

@@ -1,45 +1,5 @@
 //Chinook
-class Helicopter;
-class Helicopter_Base_F : Helicopter {
-    class Turrets {
-        class MainTurret;
-    };
-};
-class Helicopter_Base_H : Helicopter_Base_F {
-    class Turrets : Turrets {
-        class CopilotTurret;
-        class MainTurret;
-    };
-    class ViewOptics;
-    class ViewPilot;
-    class HitPoints;
-};
-class DEGA_BAF_CH47F_Unarmed : Helicopter_Base_H {
-    scope = 0;
-};
-class DEGA_BAF_CH47F_M134 : Helicopter_Base_H {
-    scope = 0;
-    class EventHandlers {
-        class CBA_Extended_EventHandlers : CBA_Extended_EventHandlers {};
-    };
-};
-class DEGA_BAF_CH47F_M134_M240 : Helicopter_Base_H {
-    scope = 0;
-    class EventHandlers {
-        class CBA_Extended_EventHandlers : CBA_Extended_EventHandlers {};
-    };
-};
-class DEGA_US_CH47F_Unarmed : Helicopter_Base_H {
-    scope = 0;
-};
-class DEGA_US_CH47F_M134 : Helicopter_Base_H {
-    scope = 0;
-};
-class DEGA_US_CH47F_M134_M240 : Helicopter_Base_H {
-    scope = 0;
-};
-
-class UKSF_Chinook_M134 : DEGA_BAF_CH47F_M134 {
+/*class UKSF_Chinook_M134 : DEGA_BAF_CH47F_M134 {
     scope = 2;
     displayName = "CH-47 M134";
     faction = "UKSF_Clan";
@@ -902,4 +862,4 @@ class UKSF_Chinook_M134M240 : DEGA_BAF_CH47F_M134_M240 {
             hasCVC = 1;
         };
     };
-};
+};*/

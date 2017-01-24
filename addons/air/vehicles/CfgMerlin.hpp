@@ -1,44 +1,5 @@
 //Merlin
-class UK3CB_BAF_Merlin_HC3_Base;
-class UK3CB_BAF_Merlin_HC3_Unarmed_Base : UK3CB_BAF_Merlin_HC3_Base {
-    class Turrets;
-};
-class UK3CB_BAF_Merlin_HC3_Armed_Base : UK3CB_BAF_Merlin_HC3_Base {
-    class Turrets;
-};
-class UK3CB_BAF_Merlin_HC3_18 : UK3CB_BAF_Merlin_HC3_Unarmed_Base {
-    scope = 0;
-    scopeCurator = 0;
-    class Turrets : Turrets {
-        class CopilotTurret;
-        class CargoTurret_13;
-        class CargoTurret_14;
-    };
-};
-class UK3CB_BAF_Merlin_HC3_18_GPMG : UK3CB_BAF_Merlin_HC3_Armed_Base {
-    scope = 0;
-    scopeCurator = 0;
-    class Turrets : Turrets {
-        class RampGun;
-        class DoorGunRight;
-        class DoorGunLeft;
-        class CopilotTurret;
-    };
-};
-class UK3CB_BAF_Merlin_HC3_24 : UK3CB_BAF_Merlin_HC3_Unarmed_Base {
-    scope = 0;
-    scopeCUrator = 0;
-};
-class UK3CB_BAF_Merlin_HC3_32 : UK3CB_BAF_Merlin_HC3_Unarmed_Base {
-    scope = 0;
-    scopeCUrator = 0;
-};
-class UK3CB_BAF_Merlin_HC3_CSAR : UK3CB_BAF_Merlin_HC3_Armed_Base {
-    scope = 0;
-    scopeCUrator = 0;
-};
-
-class UKSF_Merlin : UK3CB_BAF_Merlin_HC3_18 {
+/*class UKSF_Merlin : UK3CB_BAF_Merlin_HC3_18 {
     scope = 2;
     scopeCurator = 2;
     author = "UKSF";
@@ -97,4 +58,4 @@ class UKSF_Merlin_Armed : UK3CB_BAF_Merlin_HC3_18_GPMG {
     landingSoundOut0[]= { "A3\Sounds_F\vehicles\air\noises\landing_wheels_ext1", 0.4, 1, 50 };
     landingSoundOut1[]= { "A3\Sounds_F\vehicles\air\noises\landing_wheels_ext2", 0.4, 1, 50 };
     landingSoundOut[]= { "landingSoundOut0", 0.5, "landingSoundOut1", 0.5 };
-};
+};*/

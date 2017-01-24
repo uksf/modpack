@@ -4,7 +4,7 @@ class CfgVehicles {
         class ACE_SelfActions {
             class ACE_Drone {
                 displayName = "MQ-9 Control";
-                condition = QUOTE(!((getConnectedUAV _player) isEqualTo objNull) && (getConnectedUAV _player) isKindOf 'USAF_MQ9');
+                condition = QUOTE(!((getConnectedUAV _player) isEqualTo objNull) && (getConnectedUAV _player) isKindOf /*'USAF_MQ9'*/);
                 statement = "";
                 showDisabled = 1;
                 priority = 1;
@@ -193,7 +193,7 @@ class CfgVehicles {
         };
     };
 
-    class Plane;
+    /*class Plane;
     class UAV : Plane {
         class NewTurret;
         class ViewPilot;
@@ -234,5 +234,5 @@ class CfgVehicles {
             attenuation = 0;
             duration = 0;
         };
-    };
+    };*/
 };

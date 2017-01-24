@@ -1,5 +1,5 @@
 //Foxhound
-class burnes_foxhound_base;
+/*class burnes_foxhound_base;
 class burnes_foxhound : burnes_foxhound_base {
     author = "UKSF";
     scope = 2;
@@ -47,4 +47,4 @@ class burnes_foxhound_w_a : burnes_foxhound_d_a {
         "UKSF_Clan_R",
         "UKSF_Clan_R"
     };
-};
+};*/
