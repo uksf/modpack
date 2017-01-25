@@ -71,7 +71,7 @@ class CfgVehicles {
     };*/
 
     #include "units\CfgIdentities.hpp"
-    #include "units\CfgUnits2.hpp"
+    #include "units\CfgUnits4.hpp"
 
     //#include "vehicles\CfgLandRover.hpp"
     //#include "vehicles\CfgRidgeback.hpp"

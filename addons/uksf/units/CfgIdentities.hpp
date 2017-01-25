@@ -65,9 +65,6 @@ class CUP_C_R_Rescuer_01: CUP_C_C_Rescuer_01 {
 class CUP_Creatures_Military_ACR_Soldier_Base: SoldierWB {
     identityTypes[] = {"LanguagePER_F", "Head_NATO", "G_GUERIL_default"};
 };
-class CUP_Creatures_Military_BAF_Soldier_Base: SoldierWB {
-    identityTypes[] = {"LanguageENGB_F", "Head_NATO", "G_GUERIL_default"};
-};
 class CUP_Creatures_Military_CDF_Soldier_Base: SoldierWB {
     identityTypes[] = {"LanguagePER_F", "Head_NATO", "G_GUERIL_default"};
 };

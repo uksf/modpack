@@ -55,25 +55,25 @@ class CfgWeapons {
     class U_I_CombatUniform_shortsleeve;
     class U_B_HeliPilotCoveralls;
     class UK3CB_BAF_U_CombatUniform_MTP_RM: U_I_CombatUniform {
-        scope = 1;
+        scope = 2;
     };
     class UK3CB_BAF_U_CombatUniform_MTP_ShortSleeve_RM: U_I_CombatUniform_shortsleeve {
-        scope = 0;
+        scope = 2;
     };
     class UK3CB_BAF_U_CombatUniform_MTP_TShirt_RM: U_I_CombatUniform {
-        scope = 0;
+        scope = 2;
     };
     class UK3CB_BAF_U_CombatUniform_MTP: U_I_CombatUniform {
-        scope = 0;
+        scope = 2;
     };
     class UK3CB_BAF_U_CombatUniform_MTP_ShortSleeve: U_I_CombatUniform_shortsleeve {
-        scope = 1;
+        scope = 2;
     };
     class UK3CB_BAF_U_HeliPilotCoveralls_RN: U_B_HeliPilotCoveralls {
-        scope = 0;
+        scope = 2;
     };
     class UK3CB_BAF_U_CombatUniform_MTP_Ghillie_RM: Uniform_Base {
-        scope = 0;
+        scope = 2;
     };
     class UK3CB_BAF_U_CombatUniform_MTP_TShirt: UK3CB_BAF_U_CombatUniform_MTP_TShirt_RM {
         scope = 2;
