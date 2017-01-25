@@ -70,6 +70,7 @@ class CfgVehicles {
         };
     };*/
 
+    #include "units\CfgIdentities.hpp"
     #include "units\CfgUnits2.hpp"
 
     //#include "vehicles\CfgLandRover.hpp"

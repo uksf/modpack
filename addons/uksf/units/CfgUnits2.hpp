@@ -1,5 +1,4 @@
 //AI
-class CUP_Creatures_Military_BAF_Soldier_Base;
 class CUP_B_BAF_Soldier_01_DDPM : CUP_Creatures_Military_BAF_Soldier_Base {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 1;
