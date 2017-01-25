@@ -119,9 +119,7 @@ class UKSF_Clan_RTO : UKSF_Clan_Base {
 };
 class UKSF_Clan_ATC : UKSF_Clan_Base {
     author = "UKSF";
-    faction = "UKSF_Clan";
     genericNames = "EnglishMen";
-    editorSubcategory = QEGVAR(common,jsfaw);
     displayName = "Air Traffic Controller";
     model = "\A3\Characters_F\BLUFOR\b_soldier_01.p3d";
     uniformClass = "UKSF_U_ATC";
@@ -133,13 +131,11 @@ class UKSF_Clan_ATC : UKSF_Clan_Base {
         class CBA_Extended_EventHandlers : CBA_Extended_EventHandlers {};
     };
 };
-    class B_Helipilot_F;
+class B_Helipilot_F;
 class UKSF_Clan_HP : B_Helipilot_F {
     author = "UKSF";
-    faction = "UKSF_Clan";
     genericNames = "EnglishMen";
     displayName = "Rotary Pilot";
-    editorSubcategory = QEGVAR(common,jsfaw);
     model = "\A3\Characters_F\BLUFOR\b_soldier_01.p3d";
     uniformClass = "UK3CB_BAF_U_HeliPilotCoveralls_RAF";
     editorPreview = QPATHTOEF(common,data\previews\UKSF_Clan_HP.jpg);
@@ -219,39 +215,10 @@ class UKSF_Clan_HP : B_Helipilot_F {
     };
     cost = 1;
     threat[] = {1, 0.8, 0.8};
-    class Wounds {
-        tex[] = {};
-        mat[] = {
-            "A3\Characters_F\BLUFOR\Data\clothing1.rvmat",
-            "A3\Characters_F\BLUFOR\Data\clothing1_injury.rvmat",
-            "A3\Characters_F\BLUFOR\Data\clothing1_injury.rvmat",
-            "A3\Characters_F\Common\Data\basicbody.rvmat",
-            "A3\Characters_F\Common\Data\basicbody_injury.rvmat",
-            "A3\Characters_F\Common\Data\basicbody_injury.rvmat",
-            "A3\characters_f\common\data\coveralls.rvmat",
-            "A3\Characters_F\Common\Data\coveralls_injury.rvmat",
-            "A3\Characters_F\Common\Data\coveralls_injury.rvmat",
-            "A3\Characters_F\Heads\Data\hl_white_bald_muscular.rvmat",
-            "A3\Characters_F\Heads\Data\hl_white_bald_muscular_injury.rvmat",
-            "A3\Characters_F\Heads\Data\hl_white_bald_muscular_injury.rvmat",
-            "A3\Characters_F\Heads\Data\hl_black_bald_muscular.rvmat",
-            "A3\Characters_F\Heads\Data\hl_black_bald_muscular_injury.rvmat",
-            "A3\Characters_F\Heads\Data\hl_black_bald_muscular_injury.rvmat",
-            "A3\Characters_F\Heads\Data\hl_white_hairy_muscular.rvmat",
-            "A3\Characters_F\Heads\Data\hl_white_hairy_muscular_injury.rvmat",
-            "A3\Characters_F\Heads\Data\hl_white_hairy_muscular_injury.rvmat",
-            "A3\Characters_F\Heads\Data\hl_white_old.rvmat",
-            "A3\Characters_F\Heads\Data\hl_white_old_injury.rvmat",
-            "A3\Characters_F\Heads\Data\hl_white_old_injury.rvmat",
-            "A3\Characters_F\Heads\Data\hl_asian_bald_muscular.rvmat",
-            "A3\Characters_F\Heads\Data\hl_asian_bald_muscular_injury.rvmat",
-            "A3\Characters_F\Heads\Data\hl_asian_bald_muscular_injury.rvmat"};
-    };
 };
 class UKSF_Clan_FW : UKSF_Clan_HP {
     author = "UKSF";
     displayName = "Fixed Wing Pilot";
-    editorSubcategory = QEGVAR(common,jsfaw);
     editorPreview = QPATHTOEF(common,data\previews\UKSF_Clan_FW.jpg);
     backpack = "B_Parachute";
     linkedItems[] = {

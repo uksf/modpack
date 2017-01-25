@@ -158,7 +158,7 @@ class CfgVehicles {
         gunnerUsesPilotView = 1;
         gunnerOpticsModel = "";
         transportSoldier = 9;
-        crew = "UKSF_Clan_HP";
+        crew = "UKSF_Clan_P";
         transportAmmo = 0;
         transportMaxMagazines = 150;
         transportMaxWeapons = 30;
@@ -278,7 +278,7 @@ class CfgVehicles {
         soundEngineOnExt[] = { QPATHTOF(data\sounds\ext\ext-motor-start), "db-7", 1, 700 };
         soundEngineOffInt[] = { QPATHTOF(data\sounds\int\int-stop-final), "db-7", 1 };
         soundEngineOffExt[] = { QPATHTOF(data\sounds\ext\ext-motor-stop), "db-7", 1, 700 };
-        soundLocked[] = {"JSRSAPEX_P_Airsounds\Shared\opfor_lock_1.ogg",0.75,1};
+        /*soundLocked[] = {"JSRSAPEX_P_Airsounds\Shared\opfor_lock_1.ogg",0.75,1};
         soundIncommingMissile[] = {"JSRSAPEX_P_Airsounds\Shared\opfor_lock_2.ogg",0.75,1};
         rotorDamageInt[] = {"JSRSAPEX_P_Airsounds\Shared\heli_damage_rotor_int.ogg",0.75,1};
         rotorDamageOut[] = {"JSRSAPEX_P_Airsounds\Shared\heli_damage_rotor_ext.ogg",2.0,1,300};
@@ -303,7 +303,7 @@ class CfgVehicles {
         slingCargoAttach[] = {"slingCargoAttach0","slingCargoAttach1"};
         slingCargoDetach0[] = {"JSRSAPEX_P_Airsounds\Shared\SL_1hookUnlock.ogg",1.5,1};
         slingCargoDetach1[] = {"JSRSAPEX_P_Airsounds\Shared\SL_1hookUnlock.ogg",1,1,300};
-        slingCargoDetach[] = {"slingCargoDetach0","slingCargoDetach1"};
+        slingCargoDetach[] = {"slingCargoDetach0","slingCargoDetach1"};*/
         class Sounds {
             class Engine {
                 sound[] = { QPATHTOF(data\sounds\ext\ext-fly-mode2), "db8", 1, 800 };
@@ -337,7 +337,7 @@ class CfgVehicles {
                 frequency = "rotorSpeed";
                 volume = "(1-camPos)*3*(rotorThrust-0.9)";
             };            
-            class TransmissionDamageExt_phase1 {
+            /*class TransmissionDamageExt_phase1 {
                 sound[] = {"JSRSAPEX_P_Airsounds\Shared\heli_damage_transmission_int_1.ogg",1,1,300};
                 frequency = "0.66 + rotorSpeed / 3";
                 volume = "camPos * (transmissionDamage factor [0.3, 0.35]) * (transmissionDamage factor [0.5, 0.45]) * (rotorSpeed factor [0.2, 0.5])";
@@ -461,7 +461,7 @@ class CfgVehicles {
                 sound[] = {"JSRSAPEX_P_Airsounds\Shared\SL_engineUpINT.ogg",0.75,1};
                 frequency = 1;
                 volume = "(1-camPos)*(slingLoadActive factor [0,1])";
-            };
+            };*/
         };
         class HitPoints : HitPoints {
             class HitGlass1 : HitGlass1 { armor = 0.25; };

@@ -4,22 +4,14 @@ class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
         units[] = {
-            "UKSF_Underwear",
-            "UKSF_Clan_Base",
             "UKSF_Clan_R",
-            "UKSF_Clan_AR",
-            "UKSF_Clan_MG",
-            "UKSF_Clan_AT",
             "UKSF_Clan_O",
             "UKSF_Clan_SL",
-            "UKSF_Clan_TL",
+            "UKSF_Clan_MG",
+            "UKSF_Clan_AT",
             "UKSF_Clan_MED",
-            "UKSF_Clan_EXP",
             "UKSF_Clan_Sniper",
-            "UKSF_Clan_RTO",
-            "UKSF_Clan_ATC",
-            "UKSF_Clan_HP",
-            "UKSF_Clan_FW",
+            "UKSF_Clan_P",
 
             /*"UKSF_LandRover_Unarmed",
             "UKSF_LandRover_MG",
@@ -56,7 +48,7 @@ class CfgPatches {
         requiredAddons[] = {
             "uksf_main", 
             "uksf_common",
-            "uksf_gear",
+            "uksf_gear"
             //"uksf_genfor",
             //"blx_ridgback",
             //"burnes_foxhound",

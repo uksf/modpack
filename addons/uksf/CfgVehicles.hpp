@@ -1,6 +1,6 @@
 class CBA_Extended_EventHandlers;
 class CfgVehicles {
-    class B_Soldier_base_F;
+    /*class B_Soldier_base_F;
     class UKSF_Clan_Base: B_Soldier_base_F {
         author = "UKSF";
         scope = 2;
@@ -68,14 +68,14 @@ class CfgVehicles {
         class EventHandlers {
             class CBA_Extended_EventHandlers : CBA_Extended_EventHandlers {};
         };
-    };
+    };*/
 
-    #include "units\CfgUnits.hpp"
+    #include "units\CfgUnits2.hpp"
 
-    #include "vehicles\CfgLandRover.hpp"
-    #include "vehicles\CfgRidgeback.hpp"
-    #include "vehicles\CfgFoxhound.hpp"
-    #include "vehicles\CfgJackal.hpp"
-    #include "vehicles\CfgCoyote.hpp"
+    //#include "vehicles\CfgLandRover.hpp"
+    //#include "vehicles\CfgRidgeback.hpp"
+    //#include "vehicles\CfgFoxhound.hpp"
+    //#include "vehicles\CfgJackal.hpp"
+    //#include "vehicles\CfgCoyote.hpp"
     #include "vehicles\CfgHemtt.hpp"
 };

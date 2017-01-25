@@ -204,31 +204,8 @@ class CfgVehicles {
         hiddenSelectionsTextures[] = { QPATHTOF(data\uniforms\ATC.paa) };
     };
 
-    class UK3CB_BAF_HeliPilot_base;
-    class UK3CB_BAF_HeliPilot_RAF: UK3CB_BAF_HeliPilot_base {
-        scope = 0;
-        scopeCUrator = 0;
-    };
-    class UK3CB_BAF_HeliPilot_RN: UK3CB_BAF_HeliPilot_base {
-        scope = 0;
-        scopeCUrator = 0;
-    };
-    class UK3CB_BAF_Pilot_Army: UK3CB_BAF_HeliPilot_RAF {
-        scope = 0;
-        scopeCUrator = 0;
-    };
-    class UK3CB_BAF_Pilot_RAF: UK3CB_BAF_HeliPilot_RAF {
-        scope = 0;
-        scopeCUrator = 0;
-    };
-    class UK3CB_BAF_Pilot_RN: UK3CB_BAF_HeliPilot_RN {
-        scope = 0;
-        scopeCUrator = 0;
-    };
-
     class CargoNet_01_ammo_base_F;
     class Land_CargoBox_V1_F;
-    class UK3CB_BAF_Box_Weapon_Base;
     class UKSF_S_Empty: CargoNet_01_ammo_base_F {
         author = "UKSF";
         faction = "UKSF_Clan";

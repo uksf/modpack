@@ -1,9 +1,9 @@
 class CfgEditorSubcategories {
     //Units
-    class GVAR(jsfaw) {
-        displayName = "JSFAW";
+    class GVAR(uksf) {
+        displayName = "UKSF";
     };
-    class GVAR(para) {
+    /*class GVAR(para) {
         displayName = "Para";
     };
     class GVAR(sf) {
@@ -29,7 +29,7 @@ class CfgEditorSubcategories {
     };
     class GVAR(recrues) {
         displayName = "Recrues";
-    };
+    };*/
 
     //Vehicles
     class GVAR(hilux) {

@@ -1,40 +1,5 @@
 //Coyote
 /*
-class UK3CB_BAF_Coyote_L111A1_Base_D;
-class UK3CB_BAF_Coyote_L134A1_Base_D;
-class UK3CB_BAF_Coyote_Passenger_L111A1_D : UK3CB_BAF_Coyote_L111A1_Base_D {
-    scope = 0;
-    scopeCurator = 0;
-};
-class UK3CB_BAF_Coyote_Passenger_L134A1_D : UK3CB_BAF_Coyote_L134A1_Base_D {
-    scope = 0;
-    scopeCurator = 0;
-};
-class UK3CB_BAF_Coyote_Passenger_L134A1_W : UK3CB_BAF_Coyote_Passenger_L134A1_D {
-    scope = 0;
-    scopeCurator = 0;
-};
-class UK3CB_BAF_Coyote_Passenger_L111A1_W : UK3CB_BAF_Coyote_Passenger_L111A1_D {
-    scope = 0;
-    scopeCurator = 0;
-};
-class UK3CB_BAF_Coyote_Logistics_L111A1_D : UK3CB_BAF_Coyote_Passenger_L111A1_D {
-    scope = 0;
-    scopeCurator = 0;
-};
-class UK3CB_BAF_Coyote_Logistics_L134A1_D : UK3CB_BAF_Coyote_Passenger_L134A1_D {
-    scope = 0;
-    scopeCurator = 0;
-};
-class UK3CB_BAF_Coyote_Logistics_L134A1_W : UK3CB_BAF_Coyote_Logistics_L134A1_D {
-    scope = 0;
-    scopeCurator = 0;
-};
-class UK3CB_BAF_Coyote_Logistics_L111A1_W : UK3CB_BAF_Coyote_Logistics_L111A1_D {
-    scope = 0;
-    scopeCurator = 0;
-};
-
 class UKSF_Coyote_Passenger_HMG_D : UK3CB_BAF_Coyote_Passenger_L111A1_D {
     scope = 2;
     scopeCurator = 2;

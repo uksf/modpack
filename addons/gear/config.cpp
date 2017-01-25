@@ -46,8 +46,7 @@ class CfgPatches {
             "uksf_common",
             "UK3CB_BAF_Weapons_SmallArms",
             "UK3CB_BAF_Weapons_Accessories",
-            "UK3CB_BAF_Equipment",
-            "RKSL_LDS"
+            "UK3CB_BAF_Equipment"
         };
         author = QUOTE(UKSF);
         authors[] = {"Beswick.T"};
