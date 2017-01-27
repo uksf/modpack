@@ -4,8 +4,8 @@ class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
         units[] = {
-            "UKSF_B_Medic",
-            "UKSF_B_ATC",
+            "UKSF_B_Bergen_Medic",
+            "UKSF_B_Bergen_ATC",
             "UK3CB_BAF_B_Bergen_MTP_Rifleman_L_C_AR",
             "UK3CB_BAF_B_Bergen_MTP_Rifleman_L_C_MG",
             "UK3CB_BAF_B_Bergen_MTP_Rifleman_L_C_AA",
@@ -13,12 +13,12 @@ class CfgPatches {
             "UK3CB_BAF_B_Bergen_DPMW_Rifleman_A_AR",
             "UK3CB_BAF_B_Bergen_DPMW_Rifleman_A_MG",
             "UK3CB_BAF_B_Bergen_DPMW_Rifleman_A_AA",
-            "UKSF_B_Medic_DPMW",
+            "UKSF_B_Bergen_Medic_DPMW",
             "UK3CB_BAF_B_Bergen_DPMW_Rifleman_A_Toolkit",
             "UK3CB_BAF_B_Bergen_DDPM_Rifleman_A_AR",
             "UK3CB_BAF_B_Bergen_DDPM_Rifleman_A_MG",
             "UK3CB_BAF_B_Bergen_DDPM_Rifleman_A_AA",
-            "UKSF_B_Medic_DDPM",
+            "UKSF_B_Bergen_Medic_DDPM",
             "UK3CB_BAF_B_Bergen_DDPM_Rifleman_A_Toolkit",
             "UK3CB_BAF_Soldier_MTP_1para_LongSleeve_base",
             "UK3CB_BAF_Soldier_MTP_1para_ShortSleeve_base",
@@ -65,10 +65,21 @@ class CfgPatches {
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {             
             "uksf_common",
-            "UK3CB_BAF_Weapons_SmallArms",
-            "UK3CB_BAF_Weapons_Accessories",
             "UK3CB_BAF_Equipment",
-            "CUP_Weapons_Stinger"
+            "UK3CB_BAF_Equipment_ACRE_compatibility",
+            "UK3CB_BAF_Weapons",
+            "UK3CB_BAF_Weapons_Ammo",
+            "UK3CB_BAF_Weapons_L110",
+            "UK3CB_BAF_Weapons_L115",
+            "UK3CB_BAF_Weapons_L119",
+            "UK3CB_BAF_Weapons_L1A1",
+            "UK3CB_BAF_Weapons_Launchers",
+            "UK3CB_BAF_Weapons_SmallArms",
+            "UK3CB_BAF_Weapons_Static",
+            "UK3CB_BAF_Weapons_Accessories",
+            "UK3CB_BAF_Weapons_ACE",
+            "CUP_Weapons_Stinger",
+            "CUP_Weapons_Curator"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };

@@ -533,5 +533,5 @@ class CfgWeapons {
         };
     };
 
-    
+    #include "CfgWeaponsPrivate.hpp"
 };

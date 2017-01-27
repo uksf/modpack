@@ -465,7 +465,7 @@ class CUP_B_BAF_Medic_MTP : CUP_B_BAF_Soldier_01_MTP {
     icon = "iconManMedic";
     picture = "pictureHeal";
     editorPreview = QPATHTOEF(common,data\previews\CUP_B_BAF_Medic_MTP.jpg);
-    backpack = "UKSF_B_Medic";
+    backpack = "UKSF_B_Bergen_Medic";
     weapons[] = { "UK3CB_BAF_L85A2_RIS_Elcan","Throw","Put" };
     respawnWeapons[] = { "UK3CB_BAF_L85A2_RIS_Elcan","Throw","Put" };
     magazines[] = { "UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","HandGrenade","HandGrenade","SmokeShell","SmokeShell" };
@@ -916,7 +916,7 @@ class CUP_B_BAF_Medic_WDL : CUP_B_BAF_Soldier_01_DPM {
     icon = "iconManMedic";
     picture = "pictureHeal";
     editorPreview = QPATHTOEF(common,data\previews\CUP_B_BAF_Medic_WDL.jpg);
-    backpack = "UKSF_B_Medic_DPMW";
+    backpack = "UKSF_B_Bergen_Medic_DPMW";
     weapons[] = { "UK3CB_BAF_L85A2_RIS_Elcan","Throw","Put" };
     respawnWeapons[] = { "UK3CB_BAF_L85A2_RIS_Elcan","Throw","Put" };
     magazines[] = { "UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","HandGrenade","HandGrenade","SmokeShell","SmokeShell" };
@@ -1364,7 +1364,7 @@ class CUP_B_BAF_Medic_DDPM : CUP_B_BAF_Soldier_01_DDPM {
     icon = "iconManMedic";
     picture = "pictureHeal";
     editorPreview = QPATHTOEF(common,data\previews\CUP_B_BAF_Medic_DDPM.jpg);
-    backpack = "UKSF_B_Medic_DDPM";
+    backpack = "UKSF_B_Bergen_Medic_DDPM";
     weapons[] = { "UK3CB_BAF_L85A2_RIS_Elcan","Throw","Put" };
     respawnWeapons[] = { "UK3CB_BAF_L85A2_RIS_Elcan","Throw","Put" };
     magazines[] = { "UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","HandGrenade","HandGrenade","SmokeShell","SmokeShell" };
@@ -1429,6 +1429,7 @@ class UKSF_B_Officer : UKSF_B_Rifleman {
     displayName = "Officer";
     icon = "iconManOfficer";
     editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Officer.jpg);
+    backpack = "UKSF_B_Rifleman";
     linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "UK3CB_BAF_H_Beret_PR" };
     respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "UK3CB_BAF_H_Beret_PR" };
 };
@@ -1468,4 +1469,33 @@ class UKSF_B_Pilot : UKSF_B_Rifleman {
     attendant = 1;
     editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Pilot.jpg);
     uniformClass = "UK3CB_BAF_U_HeliPilotCoveralls_RAF";
+};
+
+//Javelin
+class CUP_B_USArmy_Soldier_01;
+class CUP_B_US_Soldier_HAT : CUP_B_USArmy_Soldier_01 {
+    weapons[] = { "CUP_arifle_M4A1_CCO_flashlight", "Throw", "Put", "UK3CB_BAF_Javelin_Slung_Tube","UK3CB_BAF_Javelin_CLU" };
+    respawnWeapons[] = { "CUP_arifle_M4A1_CCO_flashlight", "Throw", "Put", "UK3CB_BAF_Javelin_Slung_Tube","UK3CB_BAF_Javelin_CLU" };
+    magazines[] = { "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_HandGrenade_M67", "SmokeShell" };
+    respawnMagazines[] = { "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_HandGrenade_M67", "SmokeShell" };  
+};
+class CUP_B_USMC_Soldier_AT_Base;
+class CUP_B_USMC_Soldier_HAT : CUP_B_USMC_Soldier_AT_Base {
+    weapons[] = { "CUP_arifle_M16A4_Aim_Laser", "Throw", "Put", "UK3CB_BAF_Javelin_Slung_Tube","UK3CB_BAF_Javelin_CLU" };
+    respawnWeapons[] = { "CUP_arifle_M16A4_Aim_Laser", "Throw", "Put", "UK3CB_BAF_Javelin_Slung_Tube","UK3CB_BAF_Javelin_CLU" };
+    magazines[] = { "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_HandGrenade_M67", "CUP_HandGrenade_M67" };
+    respawnMagazines[] = { "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_HandGrenade_M67", "CUP_HandGrenade_M67" };
+};
+class CUP_B_USMC_Soldier_12;
+class CUP_B_USMC_Soldier_HAT_FROG_WDL : CUP_B_USMC_Soldier_12 {
+    weapons[] = { "CUP_arifle_M16A4_Aim_Laser", "Throw", "Put", "UK3CB_BAF_Javelin_Slung_Tube","UK3CB_BAF_Javelin_CLU" };
+    respawnWeapons[] = { "CUP_arifle_M16A4_Aim_Laser", "Throw", "Put", "UK3CB_BAF_Javelin_Slung_Tube","UK3CB_BAF_Javelin_CLU" };
+    magazines[] = { "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_HandGrenade_M67", "CUP_HandGrenade_M67" };
+    respawnMagazines[] = { "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_HandGrenade_M67", "CUP_HandGrenade_M67" };
+};
+class CUP_B_USMC_Soldier_HAT_FROG_DES : CUP_B_USMC_Soldier_13 {
+    weapons[] = { "CUP_arifle_M16A4_Aim_Laser", "Throw", "Put", "UK3CB_BAF_Javelin_Slung_Tube","UK3CB_BAF_Javelin_CLU" };
+    respawnWeapons[] = { "CUP_arifle_M16A4_Aim_Laser", "Throw", "Put", "UK3CB_BAF_Javelin_Slung_Tube","UK3CB_BAF_Javelin_CLU" };
+    magazines[] = { "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_HandGrenade_M67", "CUP_HandGrenade_M67" };
+    respawnMagazines[] = { "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_HandGrenade_M67", "CUP_HandGrenade_M67" };
 };

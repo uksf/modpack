@@ -3,7 +3,7 @@ class CfgVehicles {
     class UK3CB_BAF_B_Bergen_MTP_Medic_L_A;
     class UK3CB_BAF_B_Bergen_MTP_Radio_L_B;
     class Bag_Base;
-    class UKSF_B_Medic: UK3CB_BAF_B_Bergen_MTP_Medic_L_A {
+    class UKSF_B_Bergen_Medic: UK3CB_BAF_B_Bergen_MTP_Medic_L_A {
         scope = 1;
         scopeArsenal = 0;
         author = "UKSF";
@@ -55,7 +55,7 @@ class CfgVehicles {
             };
         };
     };
-    class UKSF_B_ATC: UK3CB_BAF_B_Bergen_MTP_Radio_L_B {
+    class UKSF_B_Bergen_ATC: UK3CB_BAF_B_Bergen_MTP_Radio_L_B {
         scope = 1;
         scopeArsenal = 0;
         author = "UKSF";
@@ -175,7 +175,7 @@ class CfgVehicles {
             };
         };
     };
-    class UKSF_B_Medic_DPMW: UK3CB_BAF_B_Bergen_DPMW_Rifleman_A_AR {
+    class UKSF_B_Bergen_Medic_DPMW: UK3CB_BAF_B_Bergen_DPMW_Rifleman_A_AR {
         displayName = "Bergen DPM Wdl Medic [BAF]";
         class TransportItems {
             class _xx_ACE_packingBandage {
@@ -267,7 +267,7 @@ class CfgVehicles {
             };
         };
     };    
-    class UKSF_B_Medic_DDPM: UK3CB_BAF_B_Bergen_DDPM_Rifleman_A {
+    class UKSF_B_Bergen_Medic_DDPM: UK3CB_BAF_B_Bergen_DDPM_Rifleman_A {
         displayName = "Bergen DDPM Medic [BAF]";
         class TransportItems {
             class _xx_ACE_packingBandage {
@@ -732,4 +732,170 @@ class CfgVehicles {
             class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
         };
     };
+
+    class CUP_USBasicAmmunitionBox;
+    class CUP_USLaunchersBox : CUP_USBasicAmmunitionBox {
+        class TransportMagazines {
+            class _xx_M136_M {
+                magazine = "CUP_M136_M";
+                count = 45;
+            };
+            class _xx_Stinger_M {
+                magazine = "CUP_Stinger_M";
+                count = 4;
+            };
+            class _xx_SMAW_HEAA_M {
+                magazine = "CUP_SMAW_HEAA_M";
+                count = 3;
+            };
+            class _xx_SMAW_HEDP_M {
+                magazine = "CUP_SMAW_HEDP_M";
+                count = 3;
+            };
+        };
+        class TransportWeapons {
+            class _xx_M136 {
+                weapon = "CUP_M136";
+                count = 15;
+            };
+            class _xx_Stinger {
+                weapon = "CUP_Stinger";
+                count = 4;
+            };
+            class _xx_UK3CB_BAF_Javelin_Slung_Tube {
+                weapon = "UK3CB_BAF_Javelin_Slung_Tube";
+                count = 1;
+            };
+            class _xx_UK3CB_BAF_Javelin_CLU {
+                weapon = "UK3CB_BAF_Javelin_CLU";
+                count = 1;
+            };
+            class _xx_SMAW {
+                weapon = "CUP_SMAW";
+                count = 2;
+            };
+        };
+    };
+
+    class CUP_ReammoBox_EP1;
+    class CUP_USLaunchers_EP1 : CUP_ReammoBox_EP1 {
+        class TransportMagazines {
+            class _xx_M136_M {
+                magazine = "CUP_M136_M";
+                count = 20;
+            };
+            class _xx_MAAWS_HEAT_M {
+                magazine = "CUP_MAAWS_HEAT_M";
+                count = 10;
+            };
+            class _xx_MAAWS_HEDP_M {
+                magazine = "CUP_MAAWS_HEDP_M";
+                count = 10;
+            };
+            class _xx_Stinger_M {
+                magazine = "CUP_Stinger_M";
+                count = 10;
+            };
+            class _xx_1Rnd_HE_M203 {
+                magazine = "CUP_1Rnd_HE_M203";
+                count = 80;
+            };
+            class _xx_6Rnd_HE_M203 {
+                magazine = "CUP_6Rnd_HE_M203";
+                count = 30;
+            };
+            class _xx_6Rnd_FlareWhite_M203 {
+                magazine = "CUP_6Rnd_FlareWhite_M203";
+                count = 30;
+            };
+            class _xx_6Rnd_FlareGreen_M203 {
+                magazine = "CUP_6Rnd_FlareGreen_M203";
+                count = 30;
+            };
+            class _xx_6Rnd_FlareRed_M203 {
+                magazine = "CUP_6Rnd_FlareRed_M203";
+                count = 30;
+            };
+            class _xx_6Rnd_FlareYellow_M203 {
+                magazine = "CUP_6Rnd_FlareYellow_M203";
+                count = 30;
+            };
+            class _xx_6Rnd_Smoke_M203 {
+                magazine = "CUP_6Rnd_Smoke_M203";
+                count = 30;
+            };
+            class _xx_6Rnd_SmokeRed_M203 {
+                magazine = "CUP_6Rnd_SmokeRed_M203";
+                count = 30;
+            };
+            class _xx_6Rnd_SmokeGreen_M203 {
+                magazine = "CUP_6Rnd_SmokeGreen_M203";
+                count = 30;
+            };
+            class _xx_6Rnd_SmokeYellow_M203 {
+                magazine = "CUP_6Rnd_SmokeYellow_M203";
+                count = 30;
+            };
+            class _xx_1Rnd_StarFlare_White_M203 {
+                magazine = "CUP_1Rnd_StarFlare_White_M203";
+                count = 10;
+            };
+            class _xx_1Rnd_StarFlare_Red_M203 {
+                magazine = "CUP_1Rnd_StarFlare_Red_M203";
+                count = 10;
+            };
+            class _xx_1Rnd_StarFlare_Green_M203 {
+                magazine = "CUP_1Rnd_StarFlare_Green_M203";
+                count = 10;
+            };
+            class _xx_1Rnd_StarCluster_White_M203 {
+                magazine = "CUP_1Rnd_StarCluster_White_M203";
+                count = 10;
+            };
+            class _xx_1Rnd_StarCluster_Red_M203 {
+                magazine = "CUP_1Rnd_StarCluster_Red_M203";
+                count = 10;
+            };
+            class _xx_1Rnd_StarCluster_Green_M203 {
+                magazine = "CUP_1Rnd_StarCluster_Green_M203";
+                count = 10;
+            };
+            class _xx_HandGrenade_M67 {
+                magazine = "CUP_HandGrenade_M67";
+                count = 50;
+            };
+        };
+        class TransportWeapons {
+            class _xx_M136 {
+                weapon = "CUP_M136";
+                count = 2;
+            };
+            class _xx_UK3CB_BAF_Javelin_Slung_Tube {
+                weapon = "UK3CB_BAF_Javelin_Slung_Tube";
+                count = 1;
+            };
+            class _xx_UK3CB_BAF_Javelin_CLU {
+                weapon = "UK3CB_BAF_Javelin_CLU";
+                count = 1;
+            };
+            class _xx_MAAWS {
+                weapon = "CUP_MAAWS";
+                count = 2;
+            };
+            class _xx_Stinger {
+                weapon = "CUP_Stinger";
+                count = 2;
+            };
+            class _xx_M32_EP1 {
+                weapon = "CUP_M32_EP1";
+                count = 2;
+            };
+            class _xx_Mk13_EP1 {
+                weapon = "CUP_Mk13_EP1";
+                count = 4;
+            };
+        };
+    };
+
+    #include "CfgVehiclesPrivate.hpp"
 };
