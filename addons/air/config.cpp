@@ -3,17 +3,14 @@
 class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
-        units[] = {
-            
-        };
+        units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "uksf_main", 
             "uksf_common"
         };
         author = QUOTE(UKSF);
-        authors[] = {"Beswick.T"};
+        authors[] = { "Beswick.T" };
         url = QUOTE(www.uk-sf.com);
         VERSION_CONFIG;
     };

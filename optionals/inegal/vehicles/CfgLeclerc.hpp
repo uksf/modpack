@@ -9,7 +9,7 @@ class Inegal_Tank_Leclerc: I_MBT_03_cannon_F {
     typicalCargo[] = {
         "Inegal_Crew_C"
     };
-    hiddenSelections[] = {"Camo1", "Camo2", "Camo3", "HideHull", "HideTurret", "pasoffsetl", "pasoffsetp"};
+    hiddenSelections[] = { "Camo1", "Camo2", "Camo3", "HideHull", "HideTurret", "pasoffsetl", "pasoffsetp" };
     hiddenSelectionsTextures[] = {
         QPATHTOF(data\TankBodyTexture.paa), 
         QPATHTOF(data\TankTurretTexture.paa), 

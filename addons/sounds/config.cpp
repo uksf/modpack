@@ -6,8 +6,7 @@ class CfgPatches {
         units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {
-            "uksf_main", 
+        requiredAddons[] = {             
             "uksf_common",
             "UK3CB_BAF_Weapons"/*,
             "JPEX_FrameWork",
@@ -19,7 +18,7 @@ class CfgPatches {
             "JSRSAPEX_SPMG"*/
         };
         author = QUOTE(UKSF);
-        authors[] = {"Beswick.T"};
+        authors[] = { "Beswick.T" };
         url = QUOTE(www.uk-sf.com);
         VERSION_CONFIG;
     };

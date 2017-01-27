@@ -1,7 +1,7 @@
 class CfgSoundSets {
     /*//Famas
     class UKSF_FAMAS_Shot_SoundSet {
-        soundShaders[] = { "JPEX_MX_Closure_SoundShader", "UKSF_FAMAS_Shot_SoundShader"};
+        soundShaders[] = { "JPEX_MX_Closure_SoundShader", "UKSF_FAMAS_Shot_SoundShader" };
         volumeFactor = 1.35;
         volumeCurve = "InverseSquare3Curve";
         sound3DProcessingType = "JPEX_WeaponMediumShot_3DProcessor";

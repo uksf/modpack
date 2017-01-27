@@ -6,6 +6,20 @@ class CfgPatches {
         units[] = {
             "UKSF_B_Medic",
             "UKSF_B_ATC",
+            "UK3CB_BAF_B_Bergen_MTP_Rifleman_L_C_AR",
+            "UK3CB_BAF_B_Bergen_MTP_Rifleman_L_C_MG",
+            "UK3CB_BAF_B_Bergen_MTP_Rifleman_L_C_AA",
+            "UK3CB_BAF_B_Bergen_MTP_Engineer_L_A_Toolkit",
+            "UK3CB_BAF_B_Bergen_DPMW_Rifleman_A_AR",
+            "UK3CB_BAF_B_Bergen_DPMW_Rifleman_A_MG",
+            "UK3CB_BAF_B_Bergen_DPMW_Rifleman_A_AA",
+            "UKSF_B_Medic_DPMW",
+            "UK3CB_BAF_B_Bergen_DPMW_Rifleman_A_Toolkit",
+            "UK3CB_BAF_B_Bergen_DDPM_Rifleman_A_AR",
+            "UK3CB_BAF_B_Bergen_DDPM_Rifleman_A_MG",
+            "UK3CB_BAF_B_Bergen_DDPM_Rifleman_A_AA",
+            "UKSF_B_Medic_DDPM",
+            "UK3CB_BAF_B_Bergen_DDPM_Rifleman_A_Toolkit",
             "UK3CB_BAF_Soldier_MTP_1para_LongSleeve_base",
             "UK3CB_BAF_Soldier_MTP_1para_ShortSleeve_base",
             "UK3CB_BAF_Soldier_MTP_CSMR_LongSleeve_base",
@@ -38,18 +52,26 @@ class CfgPatches {
             "UKSF_H_AACBeret",
             "UKSF_V_Pilot",
             "UKSF_V_Flight",
-            "ACE_NVG_Pilot"
+            "ACE_NVG_Pilot",
+            "UK3CB_BAF_L85A2_RIS_Elcan",
+            "UK3CB_BAF_L22A2_Elcan",
+            "UK3CB_BAF_L85A2_UGL_Elcan",
+            "UK3CB_BAF_L110A3_Elcan",
+            "UK3CB_BAF_L129A1_Grippod_Acog",
+            "UK3CB_BAF_L115A3_LRPS",
+            "UK3CB_BAF_L115A3_DE_LRPS",
+            "UK3CB_BAF_L135A1_LRPS"
         };
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {
-            "uksf_main", 
+        requiredAddons[] = {             
             "uksf_common",
             "UK3CB_BAF_Weapons_SmallArms",
             "UK3CB_BAF_Weapons_Accessories",
-            "UK3CB_BAF_Equipment"
+            "UK3CB_BAF_Equipment",
+            "CUP_Weapons_Stinger"
         };
         author = QUOTE(UKSF);
-        authors[] = {"Beswick.T"};
+        authors[] = { "Beswick.T" };
         url = QUOTE(www.uk-sf.com);
         VERSION_CONFIG;
     };

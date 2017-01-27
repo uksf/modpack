@@ -1,49 +1,3 @@
-class asdg_OpticRail;
-class asdg_OpticRail1913: asdg_OpticRail {
-    linkProxy = "\A3\data_f\proxies\weapon_slots\TOP";
-    displayName = "$STR_A3_CowsSlot0";
-    class compatibleItems {
-        optic_Nightstalker = 1;
-        optic_tws = 1;
-        optic_tws_mg = 1;
-        optic_NVS = 1;
-        optic_SOS = 1;
-        optic_MRCO = 1;
-        optic_Arco = 1;
-        optic_aco = 1;
-        optic_ACO_grn = 1;
-        optic_aco_smg = 1;
-        optic_ACO_grn_smg = 1;
-        optic_hamr = 1;
-        optic_Holosight = 1;
-        optic_Holosight_smg = 1;
-        optic_DMS = 1;
-        optic_LRPS = 1;
-        optic_AMS = 1;
-        optic_AMS_khk = 1;
-        optic_AMS_snd = 1;
-        optic_KHS_blk = 1;
-        optic_KHS_hex = 1;
-        optic_KHS_old = 1;
-        optic_KHS_tan = 1;
-        UK3CB_BAF_TA31F = 1;
-        UK3CB_BAF_TA31F_3D = 1;
-        UK3CB_BAF_TA31F_Hornbill = 1;
-        UK3CB_BAF_TA31F_Hornbill_3D = 1;
-        UK3CB_BAF_TA648 = 1;
-        UK3CB_BAF_TA648_308 = 1;
-    };
-};
-class asdg_OpticRail1913_long: asdg_OpticRail1913 {};
-class rhs_western_rifle_scopes_slot_long: asdg_OpticRail1913_long {};
-class Mode_SemiAuto;
-class Mode_Burst;
-class Mode_FullAuto;
-class SlotInfo;
-class CowsSlot;
-class MuzzleSlot;
-class PointerSlot;
-class UnderBarrelSlot;
 class CfgWeapons {
     class ItemCore;
     class Uniform_Base;
@@ -296,7 +250,7 @@ class CfgWeapons {
     class UKSF_V_Pilot: V_TacVest_oli {
         scope = 2;
         author = "UKSF";
-        displayName = "UK Pilot vest";
+        displayName = "Pilot vest";
         picture = QPATHTOF(UI\icon_v_tacvest_khk_ca.paa);
         hiddenSelections[] = { "camo" };
         hiddenSelectionsTextures[] = { QPATHTOF(data\vests\tacticalvest_olive_co.paa) };
@@ -362,7 +316,7 @@ class CfgWeapons {
                     memoryPointCamera = "opticView";
                     opticsFlare = 1;
                     opticsID = 1;
-                    opticsPPEffects[] = {"OpticsCHAbera5","OpticsBlur5"};
+                    opticsPPEffects[] = { "OpticsCHAbera5","OpticsBlur5" };
                     opticsZoomInit = 0.09;
                     opticsZoomMax = 0.09;
                     opticsZoomMin = 0.09;
@@ -399,7 +353,7 @@ class CfgWeapons {
                     memoryPointCamera = "opticView";
                     opticsFlare = 1;
                     opticsID = 1;
-                    opticsPPEffects[] = {"OpticsCHAbera5","OpticsBlur5"};
+                    opticsPPEffects[] = { "OpticsCHAbera5","OpticsBlur5" };
                     opticsZoomInit = 0.09;
                     opticsZoomMax = 0.09;
                     opticsZoomMin = 0.09;
@@ -416,7 +370,7 @@ class CfgWeapons {
                     memoryPointCamera = "eye";
                     opticsFlare = 1;
                     opticsID = 2;
-                    opticsPPEffects[] = {"OpticsCHAbera5","OpticsBlur5"};
+                    opticsPPEffects[] = { "OpticsCHAbera5","OpticsBlur5" };
                     opticsZoomInit = 0.75;
                     opticsZoomMax = 1.1;
                     opticsZoomMin = 0.375;
@@ -505,4 +459,79 @@ class CfgWeapons {
             "UK3CB_BAF_762_200Rnd_T_EL"
         };
     };
+
+    class UK3CB_BAF_L85A2_RIS;
+    class UK3CB_BAF_L85A2_RIS_Elcan: UK3CB_BAF_L85A2_RIS {
+        class LinkedItems {
+            class LinkedItemsOptic {
+                slot = "asdg_OpticRail_UK3CB_BAF_L85";
+                item = "UK3CB_BAF_SpecterLDS_Dot_3D";
+            };
+        };
+    };
+    class UK3CB_BAF_L22A2;
+    class UK3CB_BAF_L22A2_Elcan: UK3CB_BAF_L22A2 {
+        class LinkedItems {
+            class LinkedItemsOptic {
+                slot = "asdg_OpticRail_UK3CB_BAF_L85";
+                item = "UK3CB_BAF_SpecterLDS_Dot_3D";
+            };
+        };
+    };
+    class UK3CB_BAF_L85A2_UGL;
+    class UK3CB_BAF_L85A2_UGL_Elcan: UK3CB_BAF_L85A2_UGL {
+        class LinkedItems {
+            class LinkedItemsOptic {
+                slot = "asdg_OpticRail_UK3CB_BAF_L85";
+                item = "UK3CB_BAF_SpecterLDS_Dot_3D";
+            };
+        };
+    };
+    class UK3CB_BAF_L110A3;
+    class UK3CB_BAF_L110A3_Elcan: UK3CB_BAF_L110A3 {
+        class LinkedItems {
+            class LinkedItemsOptic {
+                slot = "asdg_OpticRail_UK3CB_BAF_L110A2";
+                item = "UK3CB_BAF_SpecterLDS_Dot_3D";
+            };
+        };
+    };
+    class UK3CB_BAF_L129A1_Grippod;
+    class UK3CB_BAF_L129A1_Grippod_Acog: UK3CB_BAF_L129A1_Grippod {
+        class LinkedItems {
+            class LinkedItemsOptic {
+                slot = "asdg_OpticRail_UK3CB_BAF_L129A1";
+                item = "UK3CB_BAF_TA31F";
+            };
+        };
+    };
+    class UK3CB_BAF_L115A3;
+    class UK3CB_BAF_L115A3_LRPS: UK3CB_BAF_L115A3 {
+        class LinkedItems {
+            class LinkedItemsOptic {
+                slot = "asdg_OpticRail_UK3CB_BAF_L115";
+                item = "optic_LRPS";
+            };
+        };
+    };
+    class UK3CB_BAF_L115A3_DE;
+    class UK3CB_BAF_L115A3_DE_LRPS: UK3CB_BAF_L115A3_DE {
+        class LinkedItems {
+            class LinkedItemsOptic {
+                slot = "asdg_OpticRail_UK3CB_BAF_L115";
+                item = "optic_LRPS";
+            };
+        };
+    };
+    class UK3CB_BAF_L135A1;
+    class UK3CB_BAF_L135A1_LRPS: UK3CB_BAF_L135A1 {
+        class LinkedItems {
+            class LinkedItemsOptic {
+                slot = "asdg_OpticRail_rifles";
+                item = "optic_LRPS";
+            };
+        };
+    };
+
+    
 };

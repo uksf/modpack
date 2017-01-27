@@ -8,13 +8,12 @@ class CfgPatches {
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {
-            "uksf_main", 
+        requiredAddons[] = {             
             "uksf_common"//, 
             //"JSRSAPEX_WY55_Hellcat"
         };
         author = QUOTE(UKSF);
-        authors[] = {"Beswick.T"};
+        authors[] = { "Beswick.T" };
         url = QUOTE(www.uk-sf.com);
         VERSION_CONFIG;
     };

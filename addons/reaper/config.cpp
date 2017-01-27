@@ -6,14 +6,13 @@ class CfgPatches {
         units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {
-            "uksf_main", 
+        requiredAddons[] = {             
             "uksf_common"//, 
             //"USAF_MQ9", 
             //"JSRSAPEX_UAV_2"
         };
         author = QUOTE(UKSF);
-        authors[] = {"Beswick.T"};
+        authors[] = { "Beswick.T" };
         url = QUOTE(www.uk-sf.com);
         VERSION_CONFIG;
     };

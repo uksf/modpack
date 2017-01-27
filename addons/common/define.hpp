@@ -190,10 +190,10 @@ class ACE_gui_buttonBase {
   animTextureDefault = "#(argb,8,8,3)color(1,1,1,1)";
   period = 0.5;
   font = FONT_ACE;
-  soundClick[] = {"\A3\ui_f\data\sound\RscButton\soundClick",0.09,1};
-  soundPush[] = {"\A3\ui_f\data\sound\RscButton\soundPush",0.0,0};
-  soundEnter[] = {"\A3\ui_f\data\sound\RscButton\soundEnter",0.07,1};
-  soundEscape[] = {"\A3\ui_f\data\sound\RscButton\soundEscape",0.09,1};
+  soundClick[] = { "\A3\ui_f\data\sound\RscButton\soundClick",0.09,1};
+  soundPush[] = { "\A3\ui_f\data\sound\RscButton\soundPush",0.0,0};
+  soundEnter[] = { "\A3\ui_f\data\sound\RscButton\soundEnter",0.07,1};
+  soundEscape[] = { "\A3\ui_f\data\sound\RscButton\soundEscape",0.09,1};
   class Attributes {
     font = FONT_ACE;
     color = "#E5E5E5";
@@ -249,7 +249,7 @@ class ACE_gui_listBoxBase: RscListBox{
   colorSelect2[] = {0.95, 0.95, 0.95, 1};
   colorSelectBackground[] = {0, 0, 0, 1};
   colorSelectBackground2[] = {0.543, 0.5742, 0.4102, 1.0};
-  colorDisabled[] = {"(profilenamespace getVariable ['GUI_BCG_RGB_R',0.69])","(profilenamespace getVariable ['GUI_BCG_RGB_G',0.75])","(profilenamespace getVariable ['GUI_BCG_RGB_B',0.5])", 0.25};
+  colorDisabled[] = { "(profilenamespace getVariable ['GUI_BCG_RGB_R',0.69])","(profilenamespace getVariable ['GUI_BCG_RGB_G',0.75])","(profilenamespace getVariable ['GUI_BCG_RGB_B',0.5])", 0.25};
   period = 1.2;
   rowHeight = 0.03;
   colorBackground[] = {0, 0, 0, 1};
@@ -257,9 +257,9 @@ class ACE_gui_listBoxBase: RscListBox{
   autoScrollSpeed = -1;
   autoScrollDelay = 5;
   autoScrollRewind = 0;
-  soundSelect[] = {"",0.1,1};
-  soundExpand[] = {"",0.1,1};
-  soundCollapse[] = {"",0.1,1};
+  soundSelect[] = { "",0.1,1};
+  soundExpand[] = { "",0.1,1};
+  soundCollapse[] = { "",0.1,1};
   class ListScrollBar {
     arrowEmpty = "\A3\ui_f\data\gui\cfg\scrollbar\arrowEmpty_ca.paa";
     arrowFull = "\A3\ui_f\data\gui\cfg\scrollbar\arrowFull_ca.paa";
@@ -322,7 +322,7 @@ class ACE_gui_listNBox {
  idcLeft = -1;
  idcRight = -1;
  maxHistoryDelay = 1;
- soundSelect[] = {"", 0.1, 1};
+ soundSelect[] = { "", 0.1, 1};
  period = 1;
  shadow = 2;
  class ScrollBar {
@@ -377,9 +377,9 @@ class ACE_gui_comboBoxBase: RscCombo {
  wholeHeight = 0.45;
  font = FONT_ACE;
  sizeEx = 0.031;
- soundSelect[] = {"\A3\ui_f\data\sound\RscCombo\soundSelect",0.1,1};
- soundExpand[] = {"\A3\ui_f\data\sound\RscCombo\soundExpand",0.1,1};
- soundCollapse[] = {"\A3\ui_f\data\sound\RscCombo\soundCollapse",0.1,1};
+ soundSelect[] = { "\A3\ui_f\data\sound\RscCombo\soundSelect",0.1,1};
+ soundExpand[] = { "\A3\ui_f\data\sound\RscCombo\soundExpand",0.1,1};
+ soundCollapse[] = { "\A3\ui_f\data\sound\RscCombo\soundCollapse",0.1,1};
  maxHistoryDelay = 1.0;
  class ScrollBar
  {
@@ -465,8 +465,8 @@ class ACE_gui_mapBase {
  colorText[] = {1, 1, 1, 0.85};
 font = "RobotoCondensed";
 sizeEx = 0.0270000;
-stickX[] = {0.20, {"Gamma", 1.00, 1.50} };
-stickY[] = {0.20, {"Gamma", 1.00, 1.50} };
+stickX[] = {0.20, { "Gamma", 1.00, 1.50} };
+stickY[] = {0.20, { "Gamma", 1.00, 1.50} };
 onMouseButtonClick = "";
 onMouseButtonDblClick = "";
 
@@ -505,7 +505,7 @@ onMouseButtonDblClick = "";
   iconCanceled = "\A3\ui_f\data\map\mapcontrol\taskIconCanceled_CA.paa";
   iconDone = "\A3\ui_f\data\map\mapcontrol\taskIconDone_CA.paa";
   iconFailed = "\A3\ui_f\data\map\mapcontrol\taskIconFailed_CA.paa";
-  color[] = {"(profilenamespace getVariable ['IGUI_TEXT_RGB_R',0])","(profilenamespace getVariable ['IGUI_TEXT_RGB_G',1])","(profilenamespace getVariable ['IGUI_TEXT_RGB_B',1])","(profilenamespace getVariable ['IGUI_TEXT_RGB_A',0.8])"};
+  color[] = { "(profilenamespace getVariable ['IGUI_TEXT_RGB_R',0])","(profilenamespace getVariable ['IGUI_TEXT_RGB_G',1])","(profilenamespace getVariable ['IGUI_TEXT_RGB_B',1])","(profilenamespace getVariable ['IGUI_TEXT_RGB_A',0.8])" };
   colorCreated[] = {1,1,1,1};
   colorCanceled[] = {0.7,0.7,0.7,1};
   colorDone[] = {0.7,1,0.3,1};

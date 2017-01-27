@@ -1,11 +1,11 @@
 class CfgFactionClasses {
-    class UKSF_Clan {
+    /*class UKSF_Clan {
         displayName = "UKSF";
         icon = "a3\ui_f\data\map\Markers\Flags\uk_ca.paa";
         priority = 1;
         side = 1;
     };
-    /*class UKSF_Genfor {
+    class UKSF_Genfor {
         displayName = "GENFOR";
         icon = QPATHTOF(data\Flags\genfor.paa);
         priority = 1;

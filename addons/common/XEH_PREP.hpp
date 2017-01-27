@@ -15,3 +15,4 @@ PREP(getNearPlayers);
 PREP(lineOfSight);
 PREP(boxRefill);
 PREP(configExport);
+PREP(configExportExtension);

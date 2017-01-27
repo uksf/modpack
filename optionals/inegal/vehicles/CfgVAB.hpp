@@ -10,7 +10,7 @@ class Inegal_VAB_Unarmed: I_MRAP_03_F {
     typicalCargo[] = {
         "Inegal_Crew_C"
     };
-    hiddenSelectionsTextures[] = {"\a3\soft_f_beta\MRAP_03\Data\mrap_03_ext_co.paa", "\a3\data_f\vehicles\turret_co.paa" };
+    hiddenSelectionsTextures[] = { "\a3\soft_f_beta\MRAP_03\Data\mrap_03_ext_co.paa", "\a3\data_f\vehicles\turret_co.paa" };
     class TransportMagazines {};
     class TransportItems {};
     class TransportWeapons {};
@@ -39,7 +39,7 @@ class Inegal_VAB_HMG: I_MRAP_03_hmg_F {
     typicalCargo[] = {
         "Inegal_F"
     };
-    hiddenSelectionsTextures[] = {"\a3\soft_f_beta\MRAP_03\Data\mrap_03_ext_co.paa", "\a3\data_f\vehicles\turret_co.paa" };
+    hiddenSelectionsTextures[] = { "\a3\soft_f_beta\MRAP_03\Data\mrap_03_ext_co.paa", "\a3\data_f\vehicles\turret_co.paa" };
     class TransportMagazines {};
     class TransportItems {};
     class TransportWeapons {};
@@ -68,7 +68,7 @@ class Inegal_VAB_GMG: I_MRAP_03_gmg_F {
     typicalCargo[] = {
         "Inegal_F"
     };
-    hiddenSelectionsTextures[] = {"\a3\soft_f_beta\MRAP_03\Data\mrap_03_ext_co.paa", "\a3\data_f\vehicles\turret_co.paa" };
+    hiddenSelectionsTextures[] = { "\a3\soft_f_beta\MRAP_03\Data\mrap_03_ext_co.paa", "\a3\data_f\vehicles\turret_co.paa" };
     class TransportMagazines {};
     class TransportItems {};
     class TransportWeapons {};
