@@ -60,7 +60,16 @@ class CfgPatches {
             "UK3CB_BAF_L129A1_Grippod_Acog",
             "UK3CB_BAF_L115A3_LRPS",
             "UK3CB_BAF_L115A3_DE_LRPS",
-            "UK3CB_BAF_L135A1_LRPS"
+            "UK3CB_BAF_L135A1_LRPS",
+            "CUP_AGM114L_Hellfire_II_Launcher_W",
+            "CUP_AGM114N_Hellfire_II_Launcher_W"
+        };
+        ammo[] = {
+            "CUP_M_AGM_114N_Hellfire_II_AT"
+        };
+        magazines[] = {
+            "CUP_8Rnd_AGM114N_Hellfire_II_M",
+            "CUP_4Rnd_AGM114N_Hellfire_II_M"
         };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {             
@@ -79,7 +88,9 @@ class CfgPatches {
             "UK3CB_BAF_Weapons_Accessories",
             "UK3CB_BAF_Weapons_ACE",
             "CUP_Weapons_Stinger",
-            "CUP_Weapons_Curator"
+            "CUP_Weapons_Curator",
+            "CUP_Weapons_Ammunition",
+            "CUP_Weapons_VehicleWeapons"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };

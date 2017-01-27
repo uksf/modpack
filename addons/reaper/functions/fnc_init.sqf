@@ -56,7 +56,7 @@ GVAR(handlerUav) = [{
 
         //Slows down the drone if it is in observation mode and close to its waypoint, unlimits speed when it's far from its waypoint.
         if (_observationMode && ((getPosATL _uav) distance2D (getWPPos [_uav, _currentWaypoint])) < (waypointLoiterRadius [_uav, _currentWaypoint] + 500)) then {
-            _uav forceSpeed 21;
+            _uav forceSpeed 40;
         } else {
             if (!_diveMode) then {
                 _uav forceSpeed -1;
@@ -66,7 +66,7 @@ GVAR(handlerUav) = [{
         //Then nosedives the drone in order for the hellfire to get a lock on the laser.
         //Once waypoint is completed drone speed is unlimited and drone climbs back to its original altitude.
         if (_diveMode && ((getPosATL _uav) distance2D (getWPPos [_uav, _currentWaypoint]) < [4000, _specificDistance * 3] call BIS_fnc_lowestNum) && !_heightChanged) then {
-            _uav forceSpeed 21;
+            _uav forceSpeed 40;
             if (((getPosATL _uav) distance2D (getWPPos [_uav, _currentWaypoint])) < (_specificDistance * 1.5)) then {
                 _targetHeightASL = ([200, (_specificDistance - 200)] call BIS_fnc_greatestNUM);
                 _heightChanged = true;

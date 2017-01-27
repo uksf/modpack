@@ -1,4 +1,3 @@
-class CUP_ReammoBox_EP1;
 class CUP_BAF_BasicAmmunitionBox : CUP_ReammoBox_EP1 {
     scope = 1;
     scopeCurator = 0;

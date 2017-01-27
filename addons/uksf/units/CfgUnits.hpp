@@ -1429,7 +1429,6 @@ class UKSF_B_Officer : UKSF_B_Rifleman {
     displayName = "Officer";
     icon = "iconManOfficer";
     editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Officer.jpg);
-    backpack = "UKSF_B_Rifleman";
     linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "UK3CB_BAF_H_Beret_PR" };
     respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "UK3CB_BAF_H_Beret_PR" };
 };
