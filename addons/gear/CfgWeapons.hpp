@@ -535,18 +535,18 @@ class CfgWeapons {
 
     class MissileLauncher;
     class CUP_Vmlauncher_AGM114K_veh: MissileLauncher {
-		displayName = "AGM-114K Hellfire II";
-		reloadMagazineSound[] = { "", 1, 1 };
-		sounds[] = { "StandardSound" };
-		class StandardSound {
-			begin1[] = { "a3\sounds_f\weapons\rockets\missile_2", 5, 1.3, 1000 };
-			soundBegin[] = { "begin1", 1 };
-			weaponSoundEffect = "DefaultRifle";
-		};
-		soundFly[] = { QPATHTOF(data\sounds\hellfire.ogg), 1, 1.5, 700 };
+        displayName = "AGM-114K Hellfire II";
+        reloadMagazineSound[] = { "", 1, 1 };
+        sounds[] = { "StandardSound" };
+        class StandardSound {
+            begin1[] = { "a3\sounds_f\weapons\rockets\missile_2", 5, 1.3, 1000 };
+            soundBegin[] = { "begin1", 1 };
+            weaponSoundEffect = "DefaultRifle";
+        };
+        soundFly[] = { QPATHTOF(data\sounds\hellfire.ogg), 1, 1.5, 700 };
         lockingTargetSound[] = { "\a3\sounds_f\weapons\rockets\locked_1", 0.31622776, 1 };
-		lockedTargetSound[] = { "\a3\sounds_f\weapons\rockets\locked_3", 0.31622776, 2.5 };
-		weaponLockDelay = 0.5;
+        lockedTargetSound[] = { "\a3\sounds_f\weapons\rockets\locked_3", 0.31622776, 2.5 };
+        weaponLockDelay = 0.5;
         magazines[] = {
             "CUP_8Rnd_AGM114K_Hellfire_II_M",
             "CUP_4Rnd_AGM114K_Hellfire_II_M",
@@ -555,7 +555,7 @@ class CfgWeapons {
         };
     };
     class CUP_Vmlauncher_AGM114L_veh: CUP_Vmlauncher_AGM114K_veh {
-		displayName = "AGM-114L Hellfire II";
+        displayName = "AGM-114L Hellfire II";
         magazines[] = {
             "CUP_8Rnd_AGM114L_Hellfire_II_M",
             "CUP_4Rnd_AGM114L_Hellfire_II_M",
@@ -565,7 +565,7 @@ class CfgWeapons {
     };
     class CUP_AGM114L_Hellfire_II_Launcher_W: CUP_Vmlauncher_AGM114L_veh {};
     class CUP_Vmlauncher_AGM114N_veh: CUP_Vmlauncher_AGM114K_veh {
-		displayName = "AGM-114N Hellfire II";
+        displayName = "AGM-114N Hellfire II";
         magazines[] = {
             "CUP_8Rnd_AGM114N_Hellfire_II_M",
             "CUP_4Rnd_AGM114N_Hellfire_II_M"

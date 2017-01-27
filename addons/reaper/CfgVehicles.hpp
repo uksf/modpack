@@ -200,7 +200,7 @@ class CfgVehicles {
     class CUP_MQ9_Base: UAV {
         class Turrets {
             class MainTurret : NewTurret {
-		        turretInfoType = "RscOptics_UAV_gunnerAdvanced";
+                turretInfoType = "RscOptics_UAV_gunnerAdvanced";
                 weapons[] = { "Laserdesignator_mounted","CUP_AGM114K_Hellfire_II_Launcher_W","CUP_AGM114N_Hellfire_II_Launcher_W" };
                 magazines[] = { "Laserbatteries","CUP_4Rnd_AGM114K_Hellfire_II_M","CUP_4Rnd_AGM114N_Hellfire_II_M" };
                 maxHorizontalRotSpeed = 1.75;
@@ -282,7 +282,7 @@ class CfgVehicles {
     class CUP_B_USMC_MQ9;
     class CUP_B_UKSF_MQ9 : CUP_B_USMC_MQ9 {
         author = "UKSF";
-		faction = "CUP_B_GB";
+        faction = "CUP_B_GB";
         editorPreview = QPATHTOEF(common,data\previews\UKSF_MQ9.jpg);
         hiddenSelections[] = { "camo1" };
         hiddenSelectionsTextures[] = { QPATHTOF(data\UKSF_MQ9_co.paa) };

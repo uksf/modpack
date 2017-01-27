@@ -26,22 +26,22 @@ class CfgMagazines {
     class VehicleMagazine;
     class CUP_8Rnd_AGM114K_Hellfire_II_M: VehicleMagazine {
         displayName = "AGM-114K";
-		displayNameShort = "HEAT";
-		displayNameMagazine = "HEAT";
-		sound[] = {};
-		soundFly[] = {};
-		lockingTargetSound[] = {};
-		lockedTargetSound[] = {};
-		reloadSound[] = {};
-		nameSound = "missiles";
+        displayNameShort = "HEAT";
+        displayNameMagazine = "HEAT";
+        sound[] = {};
+        soundFly[] = {};
+        lockingTargetSound[] = {};
+        lockedTargetSound[] = {};
+        reloadSound[] = {};
+        nameSound = "missiles";
     };
     class CUP_8Rnd_AGM114N_Hellfire_II_M: CUP_8Rnd_AGM114K_Hellfire_II_M {
-		displayName = "AGM-114N";
-		displayNameShort = "Thermobaric";
-		displayNameMagazine = "Thermobaric";
-		ammo = "CUP_M_AGM_114N_Hellfire_II_AT";
-	};
-	class CUP_4Rnd_AGM114N_Hellfire_II_M: CUP_8Rnd_AGM114N_Hellfire_II_M {
-		count = 4;
-	};
+        displayName = "AGM-114N";
+        displayNameShort = "Thermobaric";
+        displayNameMagazine = "Thermobaric";
+        ammo = "CUP_M_AGM_114N_Hellfire_II_AT";
+    };
+    class CUP_4Rnd_AGM114N_Hellfire_II_M: CUP_8Rnd_AGM114N_Hellfire_II_M {
+        count = 4;
+    };
 };
