@@ -3,14 +3,14 @@
         Tim Beswick
 
     Description:
-        Selectes group from given faction
+        Selects group from given faction
 
     Parameters:
         0: Faction Name <SCALAR>
 
     Return value:
         Array of units <ARRAY>
-
+		
     Called from:
         _selectedGroup = ["Inegal"] call UKSF_Mission_fnc_selectGroup;
 */

@@ -1,7 +1,7 @@
 //----------------------------------------------------------- CHANGE -----------------------------------------------------------
-onLoadName = "Operation Bram";
-onLoadMission = "Operation Bram";
-overviewText = "Operation Bram";
+onLoadName = "Operation Bastion";
+onLoadMission = "Operation Bastion";
+overviewText = "Operation Bastion";
 author = "UKSF";
 //------------------------------------------------------------------------------------------------------------------------------
 
@@ -32,15 +32,14 @@ class CfgFunctions {
 			class spawnAndTask {};
 			class spawnOnMarker {};
 			class selectGroup {};
-			class addHitEvent {};
-			class findNearby {};
-			class reTasking {};
+			class nearbySupport {};
+			class reTask {};
 		};
 	};
 };
 class Extended_Init_Eventhandlers {
     class CAManBase {
-        init = "_this call UKSF_Mission_fnc_addHitEvent";
+		init = "(_this select 0) addMPEventHandler [""MPHit"", {_this call UKSF_Mission_fnc_nearbySupport}]";
     };
 };
 class ACE_Settings {
@@ -56,7 +55,7 @@ class ACE_Settings {
 
 	//--------------------------------------------------- CACHING & CLEANUP ----------------------------------------------------
 	class uksf_caching_enabled { value = 1; typeName = "BOOL"; force = 1; };
-	class uksf_caching_distance { value = 1250; typeName = "SCALAR"; force = 1; };
+	class uksf_caching_distance { value = 750; typeName = "SCALAR"; force = 1; };
 	class uksf_cleanup_enabled { value = 1; typeName = "BOOL"; force = 1; };
 	class uksf_cleanup_delay { value = 300; typeName = "SCALAR"; force = 1; };
 	//--------------------------------------------------------------------------------------------------------------------------
