@@ -20,7 +20,7 @@ success = {
     params ["_args"];
     _args params ["_rover", "_unit"];
     _net = _rover getVariable [QGVAR(netObj), objNull];
-    if(_net != objNull) then {
+    if (_net != objNull) then {
         deleteVehicle _net;
         _rover setVariable [QGVAR(netObj), objNull, true];
         _rover setVariable [QGVAR(deployed), false, true];

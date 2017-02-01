@@ -18,7 +18,7 @@
 params ["_rover", "_unit", "_netType", "_offset"];
 
 
-if(count (nearestObjects [(position _rover), ["CamoNet_BLUFOR_open_F", "Land_CamoNetVar_NATO_EP1"], 20]) > 0) exitWith {
+if (count (nearestObjects [(position _rover), ["CamoNet_BLUFOR_open_F", "Land_CamoNetVar_NATO_EP1"], 20]) > 0) exitWith {
     hint "There's already a net nearby! Use that one!"
 };
 
