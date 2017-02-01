@@ -9,7 +9,7 @@
     	Nothing
 */
 
-if(isMultiplayer && !isServer) exitWith {};
+if (isMultiplayer && !isServer) exitWith {};
 
 HCs = [];
 {
@@ -17,7 +17,7 @@ HCs = [];
     HCs = HCs + [_id];
 } forEach (entities "HeadlessClient_F");
 
-if(!isMultiplayer || is3DENMultiplayer) then {
+if (!isMultiplayer || is3DENMultiplayer) then {
 	HCs = [player, player];
 };
 
