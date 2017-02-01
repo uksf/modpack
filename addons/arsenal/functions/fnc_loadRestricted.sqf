@@ -25,13 +25,6 @@ if (_nameID >= 0) then {
     ["Inventory '%1' not found", _name] call bis_fnc_error;
 };
 
-_cargo = (missionnamespace getvariable ["BIS_fnc_arsenal_cargo", objnull]);
-_virtualCargoArrays = _cargo getvariable ["bis_addVirtualWeaponCargo_cargo", [[], [], [], []]];
-_virtualCargo = _virtualCargoArrays select 0;
-_virtualCargo append (_virtualCargoArrays select 1);
-_virtualCargo append (_virtualCargoArrays select 2);
-_virtualCargo append (_virtualCargoArrays select 3);
-
 _fnc_removeRestricted = {
     params ["_data", "_virtualCargo", "_depth", "_removed", "_fnc_removeRestricted"];
 
@@ -64,14 +57,25 @@ _fnc_removeRestricted = {
 };
 
 private _restrictedInv = _invData;
-if (!("%ALL" in _virtualCargo)) then {
-    private _removed = [];
-    _restrictedInv = [_invData, _virtualCargo, 0, _removed, _fnc_removeRestricted] call _fnc_removeRestricted;
-    _removed = _removed - ["ACE_NoVoice", "ItemRadioAcreFlagged"];
-    _removed deleteAt (count _removed - 1);
+_fullArsenal = (missionnamespace getvariable ["BIS_fnc_arsenal_fullArsenal",false]);
+_fullGarage = (missionnamespace getvariable ["BIS_fnc_arsenal_fullGarage", false]);
+if (!_fullArsenal && !_fullGarage) then {
+    _cargo = (missionnamespace getvariable ["BIS_fnc_arsenal_cargo", objnull]);
+    _virtualCargoArrays = _cargo getvariable ["bis_addVirtualWeaponCargo_cargo", [[], [], [], []]];
+    _virtualCargo = _virtualCargoArrays select 0;
+    _virtualCargo append (_virtualCargoArrays select 1);
+    _virtualCargo append (_virtualCargoArrays select 2);
+    _virtualCargo append (_virtualCargoArrays select 3);
+    if (!("%ALL" in _virtualCargo)) then {        
+        "cba_diagnostic_Error" cutText ["","PLAIN"];
+        private _removed = [];
+        _restrictedInv = [_invData, _virtualCargo, 0, _removed, _fnc_removeRestricted] call _fnc_removeRestricted;
+        _removed = _removed - ["ACE_NoVoice", "ItemRadioAcreFlagged"];
+        _removed deleteAt (count _removed - 1);
 
-    if (count _removed > 0) then {
-        [_removed] call FUNC(showRemoved);
+        if (count _removed > 0) then {
+            [_removed] call FUNC(showRemoved);
+        };
     };
 };
 

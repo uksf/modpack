@@ -24,5 +24,9 @@
 		Giving something other than exactly these options will result in no units
 */
 //EXAMPLE:
-["area1", 5, 5, "Laraka", false] call UKSF_Mission_fnc_spawnOnMarker;
-["area2", 6, 6, "Laraka", false] call UKSF_Mission_fnc_spawnOnMarker;
+["area1", 15, 15, "Laraka", false] call UKSF_Mission_fnc_spawnOnMarker;
+["area2", 3, 3, "Laraka", false] call UKSF_Mission_fnc_spawnOnMarker;
+["area3", 3, 3, "Laraka", false] call UKSF_Mission_fnc_spawnOnMarker;
+["area4", 4, 4, "Laraka", false] call UKSF_Mission_fnc_spawnOnMarker;
+["area5", 4, 4, "Laraka", false] call UKSF_Mission_fnc_spawnOnMarker;
+["area6", 4, 4, "Laraka", false] call UKSF_Mission_fnc_spawnOnMarker;

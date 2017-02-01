@@ -11,7 +11,7 @@
 
     Return value:
         Nothing
-
+		
     Called from:
         ["MyMarker", "Genfor"] call UKSF_Mission_fnc_spawnAndTask;
 */

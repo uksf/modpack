@@ -1,13 +1,10 @@
 /*
     Author:
     	Tim Beswick
-
     Description:
     	Adds mission stuff
-
     Parameters:
     	None
-
     Return value:
     	Nothing
 */

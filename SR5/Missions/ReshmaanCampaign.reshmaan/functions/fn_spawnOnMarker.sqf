@@ -1,7 +1,7 @@
 /*
     Author:
         Julian Alwandy & Tim Beswick
-
+        
     Description:
         Spawns AI based on max amountof groups at any time and pool size, remotely on random headless client
 
@@ -59,4 +59,3 @@ _markerName setMarkerAlpha 0;
 		missionNamespace setVariable [format ["%1_markers", _markerName], _markers, true];
     };
 }, 30, [_markerName, _maxAmount, _factionName, _debug]] call CBA_fnc_addPerFrameHandler;
-
