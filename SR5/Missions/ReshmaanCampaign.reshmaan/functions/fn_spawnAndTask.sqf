@@ -39,7 +39,7 @@ params ["_markerName", "_factionName"];
 		case 0: {[_group, _markerName] call CBA_fnc_taskSearchArea;}; // Will search area
 		case 1: {[_group, _markerName, (_markerScale select 0)] call CBA_fnc_taskPatrol;}; // Calls patrol movement
 		case 2: {
-			if(count units _group <= 4) then {
+			if (count units _group <= 4) then {
 				[_group, _markerName, 100, 2, true] call CBA_fnc_taskDefend;
 			} else {
 				[_group, _markerName, (_markerScale select 0)] call CBA_fnc_taskPatrol;

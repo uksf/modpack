@@ -19,9 +19,9 @@
         ["MyMarker", 20, 40, "Genfor", false] call UKSF_Mission_fnc_spawnOnMarker;
 */
 params [["_markerName", ""], ["_maxAmount", 20], ["_poolSize", 40], ["_factionName", ""], ["_debug", false]];
-if(_markerName == "") exitWith {};
-if(_factionName == "") exitWith {};
-if(isMultiplayer && !isServer) exitWith {};
+if (_markerName == "") exitWith {};
+if (_factionName == "") exitWith {};
+if (isMultiplayer && !isServer) exitWith {};
 
 //Set current enemy & poolsize for marker as mission variable
 missionNamespace setVariable [format ["%1_currentGroups", _markerName], [], true];
@@ -38,19 +38,19 @@ _markerName setMarkerAlpha 0;
     _poolSize = missionNamespace getVariable [format ["%1_poolsize", _markerName], 0];
 
     //If pool is empty, remove PFH
-    if(_poolSize <= 0) exitWith {
+    if (_poolSize <= 0) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
     };
 
     //Count number of current enemy. If less than threshold, spawn more.
     _totalEnemy = count _currentGroups;
-    if(_totalEnemy <= _maxAmount) then {
+    if (_totalEnemy <= _maxAmount) then {
         //Execute code on one of the headless clients
         [_markerName,_factionName] remoteExec ["UKSF_Mission_fnc_spawnAndTask", selectRandom HCs, false];
     };
 
     //If debug is on, update markers on each group leader
-    if(_debug) then {
+    if (_debug) then {
 		_markers = missionNamespace getVariable [format ["%1_markers", _markerName], []];
 		{deleteMarker _x} forEach _markers;
 		_markers = [];
