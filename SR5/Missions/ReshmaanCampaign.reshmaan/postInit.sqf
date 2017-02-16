@@ -1,12 +1,12 @@
 /*
     Author:
-    	Tim Beswick
+        Tim Beswick
     Description:
-    	Adds mission stuff
+        Adds mission stuff
     Parameters:
-    	None
+        None
     Return value:
-    	Nothing
+        Nothing
 */
 
 if (isMultiplayer && !isServer) exitWith {};
@@ -18,7 +18,7 @@ HCs = [];
 } forEach (entities "HeadlessClient_F");
 
 if (!isMultiplayer || is3DENMultiplayer) then {
-	HCs = [player, player];
+    HCs = [player, player];
 };
 
 #include "spawning.hpp"

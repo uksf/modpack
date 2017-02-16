@@ -16,6 +16,6 @@ PixelShaderID = "Normal";
 VertexShaderID = "Basic";
 class StageTI
 {
-	texture = "u\uksf\addons\griffin\data\default_vehicle_ti_ca.paa";
+    texture = "u\uksf\addons\griffin\data\default_vehicle_ti_ca.paa";
 };
 //};
