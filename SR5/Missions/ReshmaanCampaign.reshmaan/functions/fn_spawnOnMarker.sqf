@@ -34,7 +34,7 @@ _markerName setMarkerAlpha 0;
     _args params ["_markerName", "_maxAmount","_factionName", "_debug"];
 
     //Get and update current groups & poolsize
-	_currentGroups = missionNamespace getVariable [format ["%1_currentGroups", _markerName], []];
+    _currentGroups = missionNamespace getVariable [format ["%1_currentGroups", _markerName], []];
     _poolSize = missionNamespace getVariable [format ["%1_poolsize", _markerName], 0];
 
     //If pool is empty, remove PFH
@@ -51,11 +51,11 @@ _markerName setMarkerAlpha 0;
 
     //If debug is on, update markers on each group leader
     if (_debug) then {
-		_markers = missionNamespace getVariable [format ["%1_markers", _markerName], []];
-		{deleteMarker _x} forEach _markers;
-		_markers = [];
+        _markers = missionNamespace getVariable [format ["%1_markers", _markerName], []];
+        {deleteMarker _x} forEach _markers;
+        _markers = [];
         {_markerstr = createMarker [format ["%1_%2", leader _x, _forEachIndex], leader _x]; _markerstr setMarkerShape "ICON"; _markerstr setMarkerType "hd_dot"; _markers pushBack _markerstr;} forEach _currentGroups;
         _markerName setMarkerAlpha 1;
-		missionNamespace setVariable [format ["%1_markers", _markerName], _markers, true];
+        missionNamespace setVariable [format ["%1_markers", _markerName], _markers, true];
     };
 }, 30, [_markerName, _maxAmount, _factionName, _debug]] call CBA_fnc_addPerFrameHandler;
