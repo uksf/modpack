@@ -3,11 +3,19 @@
 class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
-        units[] = {};
+        units[] = {
+            "CUP_B_Merlin_HC3_GB",
+            "CUP_B_Merlin_HC3_VIV_GB",
+            "CUP_B_Merlin_HC3_Armed_GB"
+        };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "uksf_common"
+            "uksf_common",
+            "CUP_AirVehicles_CH47",
+            "CUP_AirVehicles_HC3",
+            "CUP_AirVehicles_Merlin",
+            "CUP_AirVehciles_AW159"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
@@ -30,3 +38,5 @@ class RscInGameUI {
 };
 
 #include "CfgVehicles.hpp"
+
+//TODO: FOR APACHE crewCrashProtection = 0.25;
