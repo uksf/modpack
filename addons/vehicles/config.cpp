@@ -15,7 +15,8 @@ class CfgPatches {
             "uksf_gear",
             "uksf_units",
             "CUP_WheeledVehicles_LR",
-            "CUP_WheeledVehicles_Coyote"
+            "CUP_WheeledVehicles_Coyote",
+            "CUP_WheeledVehicles_Jackal"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
