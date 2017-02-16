@@ -98,32 +98,32 @@
                 priority = 2; \
                 icon = "\z\ace\addons\refuel\ui\icon_refuel_interact.paa"; \
                 class ace_refuel_TakeNozzle { \
-						displayName = "$STR_ace_refuel_TakeNozzle"; \
-						condition = "[_player,_target] call ace_refuel_fnc_canTakeNozzle"; \
-						statement = "[_player,_target,objNull] call ace_refuel_fnc_TakeNozzle"; \
-						exceptions[] = {"isNotInside"}; \
-						icon = "\z\ace\addons\refuel\ui\icon_refuel_interact.paa"; \
+                        displayName = "$STR_ace_refuel_TakeNozzle"; \
+                        condition = "[_player,_target] call ace_refuel_fnc_canTakeNozzle"; \
+                        statement = "[_player,_target,objNull] call ace_refuel_fnc_TakeNozzle"; \
+                        exceptions[] = {"isNotInside"}; \
+                        icon = "\z\ace\addons\refuel\ui\icon_refuel_interact.paa"; \
                 }; \
                 class ace_refuel_CheckFuelCounter { \
-						displayName = "$STR_ace_refuel_CheckFuelCounter"; \
-						condition = 1; \
-						statement = "[_player,_target] call ace_refuel_fnc_readFuelCounter"; \
-						exceptions[] = {"isNotInside"}; \
-						icon = "\z\ace\addons\refuel\ui\icon_refuel_interact.paa"; \
+                        displayName = "$STR_ace_refuel_CheckFuelCounter"; \
+                        condition = 1; \
+                        statement = "[_player,_target] call ace_refuel_fnc_readFuelCounter"; \
+                        exceptions[] = {"isNotInside"}; \
+                        icon = "\z\ace\addons\refuel\ui\icon_refuel_interact.paa"; \
                 }; \
                 class ace_refuel_CheckFuel { \
-						displayName = "$STR_ace_refuel_CheckFuel"; \
-						condition = "[_player,_target] call ace_refuel_fnc_canCheckFuel"; \
-						statement = "[_player,_target] call ace_refuel_fnc_checkFuel"; \
-						exceptions[] = {"isNotInside"}; \
-						icon = "\z\ace\addons\refuel\ui\icon_refuel_interact.paa"; \
+                        displayName = "$STR_ace_refuel_CheckFuel"; \
+                        condition = "[_player,_target] call ace_refuel_fnc_canCheckFuel"; \
+                        statement = "[_player,_target] call ace_refuel_fnc_checkFuel"; \
+                        exceptions[] = {"isNotInside"}; \
+                        icon = "\z\ace\addons\refuel\ui\icon_refuel_interact.paa"; \
                 }; \
                 class ace_refuel_Return { \
-						displayName = "$STR_ace_refuel_Return"; \
-						condition = "[_player,_target] call ace_refuel_fnc_canReturnNozzle"; \
-						statement = "[_player,_target] call ace_refuel_fnc_returnNozzle"; \
-						exceptions[] = {"isNotInside"}; \
-						icon = "\z\ace\addons\refuel\ui\icon_refuel_interact.paa"; \
+                        displayName = "$STR_ace_refuel_Return"; \
+                        condition = "[_player,_target] call ace_refuel_fnc_canReturnNozzle"; \
+                        statement = "[_player,_target] call ace_refuel_fnc_returnNozzle"; \
+                        exceptions[] = {"isNotInside"}; \
+                        icon = "\z\ace\addons\refuel\ui\icon_refuel_interact.paa"; \
                 }; \
             }; \
             class ace_rearm_TakeAmmo { \
@@ -145,13 +145,13 @@
                 icon = "\z\ace\addons\rearm\ui\icon_rearm_interact.paa"; \
             }; \
         }; \
-	};
+    };
 
 #define COYOTE_SUPPORT \
     transportFuel = 0; \
-	transportRepair = 0; \
-	transportAmmo = 0; \
-	ace_refuel_hooks[] = {{0.87, -2.47, 1.65}}; \
-	ace_refuel_fuelCargo = 3000; \
-	ace_repair_canRepair = 1; \
-	SUPPORT_ACTIONS
+    transportRepair = 0; \
+    transportAmmo = 0; \
+    ace_refuel_hooks[] = {{0.87, -2.47, 1.65}}; \
+    ace_refuel_fuelCargo = 3000; \
+    ace_repair_canRepair = 1; \
+    SUPPORT_ACTIONS

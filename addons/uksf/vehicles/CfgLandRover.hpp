@@ -77,4 +77,3 @@ class CUP_B_LR_Ambulance_GB_D : CUP_LR_Ambulance_Base {
     };
     MACRO_NET_MEDICAL_ACTIONS
 };
-					
