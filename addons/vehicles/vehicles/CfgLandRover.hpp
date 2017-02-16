@@ -3,13 +3,13 @@ class CUP_LR_MG_Base : CUP_LR_Base {};
 class CUP_LR_Special_Base : CUP_LR_Base {};
 class CUP_LR_Ambulance_Base : CUP_LR_Base {};
 class CUP_B_LR_MG_GB_W : CUP_LR_MG_Base {
-    MACRO_NET_ACTIONS
+    NET_ACTIONS
 };
 class CUP_B_LR_Special_M2_GB_W : CUP_LR_Special_Base {
-    MACRO_NET_ACTIONS
+    NET_ACTIONS
 };
 class CUP_B_LR_Special_GMG_GB_W : CUP_LR_Special_Base {
-    MACRO_NET_ACTIONS
+    NET_ACTIONS
 };
 class CUP_B_LR_Ambulance_GB_W : CUP_LR_Ambulance_Base {
     class TransportItems {
@@ -42,7 +42,7 @@ class CUP_B_LR_Ambulance_GB_W : CUP_LR_Ambulance_Base {
             count = 10;
         };
     };
-    MACRO_NET_MEDICAL_ACTIONS
+    NET_MEDICAL_ACTIONS
 };
 class CUP_B_LR_Ambulance_GB_D : CUP_LR_Ambulance_Base {
     class TransportItems {
@@ -75,5 +75,5 @@ class CUP_B_LR_Ambulance_GB_D : CUP_LR_Ambulance_Base {
             count = 10;
         };
     };
-    MACRO_NET_MEDICAL_ACTIONS
+    NET_MEDICAL_ACTIONS
 };

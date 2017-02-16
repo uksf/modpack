@@ -11,11 +11,7 @@ class CfgPatches {
             "UKSF_B_AntiTank",
             "UKSF_B_Medic",
             "UKSF_B_Sniper",
-            "UKSF_B_Pilot",
-
-            "UKSF_Hemtt_Ammo",
-            "UKSF_Hemtt_Fuel",
-            "UKSF_Hemtt_Repair"
+            "UKSF_B_Pilot"
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
@@ -38,9 +34,7 @@ class CfgPatches {
             "CUP_Creatures_Military_Taki",
             "CUP_Creatures_Military_TakiInsurgents",
             "CUP_Creatures_Military_USArmy",
-            "CUP_Creatures_Military_USMC",
-            "CUP_WheeledVehicles_LR",
-            "CUP_WheeledVehicles_Coyote"
+            "CUP_Creatures_Military_USMC"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
@@ -49,6 +43,5 @@ class CfgPatches {
     };
 };
 
-#include "CfgEventHandlers.hpp"
 #include "CfgGroups.hpp"
 #include "CfgVehicles.hpp"
