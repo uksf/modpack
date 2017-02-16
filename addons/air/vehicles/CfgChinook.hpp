@@ -1,5 +1,5 @@
 class CUP_CH47F_base: Helicopter_Base_H {
-	maxSpeed = 315;
+    maxSpeed = 315;
     cyclicAsideForceCoef = 0.9;
     cyclicForwardForceCoef = 0.9;
     armor = 60;
@@ -13,7 +13,7 @@ class CUP_CH47F_base: Helicopter_Base_H {
     class Turrets: Turrets {
         class CopilotTurret: CopilotTurret {
             memoryPointsGetInGunner = "pos cargo";
-			memoryPointsGetInGunnerDir = "pos cargo dir";
+            memoryPointsGetInGunnerDir = "pos cargo dir";
         };
     };    
     unitInfoType = "Rsc_UKSF_Air_Limited";

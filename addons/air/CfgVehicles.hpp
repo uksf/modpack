@@ -11,8 +11,8 @@ class CfgVehicles {
         };
         class ViewPilot;
         class Turrets: Turrets {
-			class CopilotTurret;
-		};
+            class CopilotTurret;
+        };
     };
     
     #include "vehicles\CfgChinook.hpp"
