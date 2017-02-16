@@ -11,3 +11,5 @@
 #define VERSION_CONFIG_COMMON VERSION_CONFIG;\
     versionDesc = "UKSF Mods";\
     versionAct = QUOTE(call COMPILE_FILE(init_versionTooltip))
+
+#define NET_DEPLOY_TIME 15

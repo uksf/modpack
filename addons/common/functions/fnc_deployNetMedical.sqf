@@ -44,4 +44,4 @@ fail = {
 };
 
 [_unit, "Acts_carFixingWheel", 1] call ace_common_fnc_doAnimation;
-[15, [_rover, _unit, _netType, _offset], {call success}, {call fail}, "Deploying Net"] call ace_common_fnc_progressBar;
+[NET_DEPLOY_TIME, [_rover, _unit, _netType, _offset], {call success}, {call fail}, "Deploying Net"] call ace_common_fnc_progressBar;

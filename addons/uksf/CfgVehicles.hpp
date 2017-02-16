@@ -3,10 +3,19 @@ class CfgVehicles {
     #include "units\CfgIdentities.hpp"
     #include "units\CfgUnits.hpp"
 
-    //#include "vehicles\CfgLandRover.hpp"
+    class LandVehicle;
+    class Car: LandVehicle {
+        class ACE_Actions;
+    };
+    class Car_F : Car {
+        class ACE_Actions: ACE_Actions {
+            class ACE_MainActions;
+        };
+    };
+    #include "vehicles\CfgLandRover.hpp"
     //#include "vehicles\CfgRidgeback.hpp"
     //#include "vehicles\CfgFoxhound.hpp"
     //#include "vehicles\CfgJackal.hpp"
-    //#include "vehicles\CfgCoyote.hpp"
+    #include "vehicles\CfgCoyote.hpp"
     #include "vehicles\CfgHemtt.hpp"
 };
