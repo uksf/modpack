@@ -9,6 +9,8 @@
 #include "\u\uksf\addons\main\script_macros.hpp"
 
 #define NET_DEPLOY_TIME 15
+#define JACKAL_FUEL_CAPACITY 5 //Reduced from 100 (5% of 100 gave ~27km range)
+
 #define NET_ACTIONS \
     class ACE_Actions : ACE_Actions { \
         class ACE_MainActions : ACE_MainActions { \
