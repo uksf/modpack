@@ -129,6 +129,7 @@ class CfgPatches {
     };
 };
 
+class CBA_Extended_EventHandlers;
 #include "CfgEventHandlers.hpp"
 #include "CfgWeapons.hpp"
 #include "CfgVehicles.hpp"

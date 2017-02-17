@@ -1,4 +1,3 @@
-class CBA_Extended_EventHandlers;
 class CfgVehicles {
     class UK3CB_BAF_B_Bergen_MTP_Medic_L_A;
     class UK3CB_BAF_B_Bergen_MTP_Radio_L_B;

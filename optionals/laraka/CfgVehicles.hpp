@@ -1,4 +1,3 @@
-class CBA_Extended_EventHandlers;
 class CfgVehicles {
     #include "units\CfgScopeZero.hpp"
     #include "units\CfgReg.hpp"

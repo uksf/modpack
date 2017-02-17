@@ -23,6 +23,7 @@ class CfgMagazines {
         displaynameshort = "7.62mm EL Tracer";
         ammo = "UK3CB_BAF_762_Ball_Tracer_Red_EL";
     };
+
     class VehicleMagazine;
     class CUP_8Rnd_AGM114K_Hellfire_II_M: VehicleMagazine {
         displayName = "AGM-114K";
@@ -43,5 +44,9 @@ class CfgMagazines {
     };
     class CUP_4Rnd_AGM114N_Hellfire_II_M: CUP_8Rnd_AGM114N_Hellfire_II_M {
         count = 4;
+    };
+    class 2Rnd_GBU12_LGB;
+    class 1Rnd_GBU12_LGB : 2Rnd_GBU12_LGB {
+        count = 1;
     };
 };

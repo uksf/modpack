@@ -1,4 +1,3 @@
-class CBA_Extended_EventHandlers;
 class CfgVehicles {    
     class O_Soldier_base_F;
     class O_Soldier_F;

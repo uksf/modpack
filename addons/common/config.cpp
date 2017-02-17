@@ -16,6 +16,7 @@ class CfgPatches {
     };
 };
 
+class CBA_Extended_EventHandlers;
 #include "CfgEventHandlers.hpp"
 #include "Cfg3den.hpp"
 #include "CfgEditorSubcategories.hpp"

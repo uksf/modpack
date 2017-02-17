@@ -573,5 +573,10 @@ class CfgWeapons {
     };
     class CUP_AGM114N_Hellfire_II_Launcher_W: CUP_Vmlauncher_AGM114N_veh {};
 
+    class RocketPods;
+    class GBU12BombLauncher: RocketPods {
+        magazines[] = { "1Rnd_GBU12_LGB", "2Rnd_GBU12_LGB", "2Rnd_GBU12_LGB_MI10" };
+    };
+
     #include "CfgWeaponsPrivate.hpp"
 };

@@ -1,4 +1,3 @@
-class CBA_Extended_EventHandlers;
 class CfgVehicles {
     class Land_PowerGenerator_F;
     class UKSF_ATC_Core: Land_PowerGenerator_F {

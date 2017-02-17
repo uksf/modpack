@@ -1,4 +1,3 @@
-class CBA_Extended_EventHandlers;
 class CfgVehicles {
     class LandVehicle;
     class Car: LandVehicle {

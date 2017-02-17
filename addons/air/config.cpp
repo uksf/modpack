@@ -15,7 +15,8 @@ class CfgPatches {
             "CUP_AirVehicles_CH47",
             "CUP_AirVehicles_HC3",
             "CUP_AirVehicles_Merlin",
-            "CUP_AirVehciles_AW159"
+            "CUP_AirVehciles_AW159",
+            "CUP_AirVehicles_C130J"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
