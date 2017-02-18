@@ -90,7 +90,9 @@ class CfgPatches {
             "CUP_Weapons_Stinger",
             "CUP_Weapons_Curator",
             "CUP_Weapons_Ammunition",
-            "CUP_Weapons_VehicleWeapons"
+            "CUP_Weapons_VehicleWeapons",
+            "DynaSound_DS_w_30mmgatling",
+            "DynaSound_DS_m_Explosions"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };

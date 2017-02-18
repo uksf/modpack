@@ -15,7 +15,7 @@ class CUP_CH47F_base: Helicopter_Base_H {
             memoryPointsGetInGunner = "pos cargo";
             memoryPointsGetInGunnerDir = "pos cargo dir";
         };
-    };    
+    };
     unitInfoType = "Rsc_UKSF_Air_Limited";
     unitInfoTypeLite = "Rsc_UKSF_Air_Limited";
     class Sounds {

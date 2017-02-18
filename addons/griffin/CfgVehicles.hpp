@@ -21,7 +21,7 @@ class CfgVehicles {
         scope = 2;
         scopeCurator = 2;
         side = 1;
-        editorPreview = QPATHTOEF(common,data\previews\UKSF_Griffin.jpg);
+        //editorPreview = QPATHTOEF(common,data\previews\UKSF_Griffin.jpg);
         displayName = "Griffin HT1";
         faction = "CUP_B_GB";
         model = QPATHTOF(Bell412.p3d);

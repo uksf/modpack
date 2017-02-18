@@ -12,6 +12,7 @@ class CfgPatches {
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             "uksf_common",
+            "uksf_gear",
             "CUP_AirVehicles_CH47",
             "CUP_AirVehicles_HC3",
             "CUP_AirVehicles_Merlin",
@@ -39,5 +40,3 @@ class RscInGameUI {
 };
 
 #include "CfgVehicles.hpp"
-
-//TODO: FOR APACHE crewCrashProtection = 0.25;

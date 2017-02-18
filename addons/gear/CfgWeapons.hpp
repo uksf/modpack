@@ -1,3 +1,6 @@
+class Mode_SemiAuto;
+class Mode_Burst;
+class Mode_FullAuto;
 class CfgWeapons {
     class ItemCore;
     class Uniform_Base;
@@ -533,6 +536,22 @@ class CfgWeapons {
         };
     };
 
+    class Default;
+    class CUP_weapon_mastersafe: Default {
+		displayName = "Safe";
+		displayNameMagazine = "Safe";
+		shortNameMagazine = "Safe";
+		nameSound = "cannon";
+		cursor = "EmptyCursor";
+		cursorAim = "EmptyCursor";
+		magazines[] = { "FakeMagazine" };
+		reloadMagazineSound[] = { "", 1, 1 };
+		canLock = 0;
+		burst = 0;
+		reloadTime = 0.01;
+		magazineReloadTime = 0.1;
+	};
+
     class MissileLauncher;
     class CUP_Vmlauncher_AGM114K_veh: MissileLauncher {
         displayName = "AGM-114K Hellfire II";
@@ -576,6 +595,161 @@ class CfgWeapons {
     class RocketPods;
     class GBU12BombLauncher: RocketPods {
         magazines[] = { "1Rnd_GBU12_LGB", "2Rnd_GBU12_LGB", "2Rnd_GBU12_LGB_MI10" };
+    };
+
+    class CannonCore;
+    class gatling_30mm: CannonCore {
+		class LowROF;
+		class close;
+		class near;
+		class short;
+		class medium;
+		class far;
+	};
+    class CUP_Vacannon_M230_veh_Enhanced: gatling_30mm {
+        scope = 1;
+        author = "UKSF";
+        displayName = "Chain Gun M230 30mm";
+        magazines[] = { "CUP_1200Rnd_TE1_Red_Tracer_30x113mm_M789_HEDP_M","CUP_1200Rnd_TE1_Green_Tracer_30x113mm_M789_HEDP_M","CUP_1200Rnd_TE1_Yellow_Tracer_30x113mm_M789_HEDP_M","CUP_1200Rnd_TE1_White_Tracer_30x113mm_M789_HEDP_M" };
+        canLock = 2;
+		ballisticsComputer = 1;
+		reloadMagazineSound[] = { "", 1, 1};
+		modes[] = { "Burst10", "Burst20", "Burst50", "close", "near", "short", "medium", "far" };
+		cursorAim = "EmptyCursor";		
+		class GunParticles {
+			class EffectSmokeLeft {
+				effectName = "MachineGun2";
+				positionName = "usti hlavne";
+				directionName = "gun_smoke_left";
+			};
+			class EffectSmokeRight {
+				effectName = "MachineGun2";
+				positionName = "usti hlavne";
+				directionName = "gun_smoke_right";
+			};
+			class EffectCartridge
+			{
+				positionName = "gun_eject";
+				directionName = "gun_eject_dir";
+				effectName = "MachineGunCartridge1";
+			};
+		};
+		class Burst10 : Mode_FullAuto {
+			displayName = "Burst 10";
+			textureType = "semi";
+			reloadTime = 0.096;
+			sounds[] = { "StandardSound" };
+			class StandardSound {
+				//begin1[] = { "\uk3cb_baf_vehicles\addons\uk3cb_baf_vehicles_weapons\data\sounds\m230.ogg", 3, 1, 1500 };
+				//soundBegin[] = { "begin1", 1 };
+                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet", "DS_sniper1_tail_soundset" };
+			};
+			autoFire = 1;
+			burst = 10;
+			minRange = 1000;
+			minRangeProbab = 0.03;
+			midRange = 2000;
+			midRangeProbab = 0.02;
+			maxRange = 3000;
+			maxRangeProbab = 0.01;
+			showToPlayer = 1;
+		};
+		class Burst20 : Burst10 {
+			displayName = "20 Burst";
+			textureType = "burst";
+			burst = 20;
+		};
+		class Burst50 : Burst20 {
+			displayName = "Full";
+			textureType = "fullAuto";
+			burst = 1;
+		};
+		class close : close {
+			reloadTime = 0.096;
+			class StandardSound {
+				//begin1[] = { "\uk3cb_baf_vehicles\addons\uk3cb_baf_vehicles_weapons\data\sounds\m230.ogg", 3, 1, 1500 };
+				//soundBegin[] = { "begin1", 1 };
+                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet", "DS_sniper1_tail_soundset" };
+			};
+		};
+		class near : near {
+			reloadTime = 0.096;
+			class StandardSound {
+				//begin1[] = { "\uk3cb_baf_vehicles\addons\uk3cb_baf_vehicles_weapons\data\sounds\m230.ogg", 3, 1, 1500 };
+				//soundBegin[] = { "begin1", 1 };
+                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet", "DS_sniper1_tail_soundset" };
+			};
+		};
+		class short : short{
+			reloadTime = 0.096;
+			class StandardSound {
+				//begin1[] = { "\uk3cb_baf_vehicles\addons\uk3cb_baf_vehicles_weapons\data\sounds\m230.ogg", 3, 1, 1500 };
+				//soundBegin[] = { "begin1", 1 };
+                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet", "DS_sniper1_tail_soundset" };
+			};
+		};
+		class medium : medium {
+			reloadTime = 0.096;
+			class StandardSound {
+				//begin1[] = { "\uk3cb_baf_vehicles\addons\uk3cb_baf_vehicles_weapons\data\sounds\m230.ogg", 3, 1, 1500 };
+				//soundBegin[] = { "begin1", 1 };
+                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet", "DS_sniper1_tail_soundset" };
+			};
+		};
+		class far : far {
+			reloadTime = 0.096;
+			class StandardSound {
+				//begin1[] = { "\uk3cb_baf_vehicles\addons\uk3cb_baf_vehicles_weapons\data\sounds\m230.ogg", 3, 1, 1500 };
+				//soundBegin[] = { "begin1", 1 };
+                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet", "DS_sniper1_tail_soundset" };
+			};
+		};
+    };
+    class MGun;
+    class CUP_Vacannon_M621_AW159_veh: CannonCore {        
+        class GunParticles {
+            class FirstEffect {
+                effectName = "machinegun1";
+                positionName = "muzzle_1";
+                directionName = "chamber_1";
+            };
+            class EffectCartridge {
+                positionName = "eject_1";
+                directionName = "eject_1_dir";
+                effectName = "MachineGunCartridge";
+            };
+        };
+        cartridgePos = "eject_1";
+        cartridgeVel = "eject_1_dir";
+        class manual: MGun {
+            class StandardSound {
+                soundSetShot[] = { "DS_20mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
+                begin1[] = { "A3\Sounds_F\arsenal\weapons_vehicles\gatling_20mm\20mm_01_burst", 3.98107, 1, 1300, {2, 35740} };
+                soundBegin[] = { "begin1", 1 };
+                closure1[] = { "A3\Sounds_F\weapons\Closure\sfx10", 0.63095737, 1, 20 };
+                closure2[] = { "A3\sounds_f\weapons\closure\sfx11", 0.63095737, 1.2, 20 };
+                soundClosure[] = { "closure1", 0.5, "closure2", 0.5 };
+            };
+        };
+    };
+
+    class CUP_Vmlauncher_FFAR_veh;
+    class CUP_Vmlauncher_CRV7_FAT_veh: CUP_Vmlauncher_FFAR_veh {
+        class Far_AI: RocketPods {
+            soundFly[] = { QPATHTOF(data\sounds\crv7.ogg), 100, 0.8, 800 };
+        };
+        class Single: Mode_SemiAuto {
+            soundFly[] = { QPATHTOF(data\sounds\crv7.ogg), 100, 0.8, 800 };
+        };
+        class Double: Single {
+            displayname = "Ripple 2";
+        };
+        class Quadruple: Single {
+            displayname = "Ripple 4";
+        };
+    };
+    class CUP_Vmlauncher_CRV7_HEISAP_veh: CUP_Vmlauncher_CRV7_FAT_veh {
+        magazines[] = { "CUP_12Rnd_CRV7_HEISAP_M","CUP_14Rnd_CRV7_HEISAP_M","CUP_19Rnd_CRV7_HEISAP_M","CUP_24Rnd_CRV7_HEISAP_M","CUP_38Rnd_CRV7_HEISAP_M","CUP_48Rnd_CRV7_HEISAP_M","CUP_76Rnd_CRV7_HEISAP_M","CUP_114Rnd_CRV7_HEISAP_M" };
     };
 
     #include "CfgWeaponsPrivate.hpp"

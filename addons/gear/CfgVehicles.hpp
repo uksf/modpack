@@ -431,7 +431,7 @@ class CfgVehicles {
         scope = 2;
         scopeCurator = 2;
         displayName = "Resupply Crate (Empty)";
-        editorPreview = QPATHTOEF(common,data\previews\UKSF_Crate.jpg);
+        //editorPreview = QPATHTOEF(common,data\previews\UKSF_Crate.jpg);
         maximumLoad = 100000;
         hiddenSelectionsTextures[] = { "\A3\Weapons_F\Ammoboxes\Data\AmmoBox_CO.paa","\A3\Weapons_F\Ammoboxes\Data\AmmoBox_signs_CA.paa" };
         class TransportMagazines {};
@@ -712,13 +712,6 @@ class CfgVehicles {
                 count = 5;
             };
         };
-    };
-    class UK3CB_BAF_Vehicles_Servicing_Aircraft_Point: Land_CargoBox_V1_F {
-        scope = 2;
-        scopeCurator = 2;
-        faction = "UKSF_Clan";
-        displayName = "Aircraft Servicing Point";
-        editorPreview = QPATHTOEF(common,data\previews\UK3CB_BAF_Vehicles_Servicing_Aircraft_Point.jpg);
     };
 
     class TargetP_Inf_F;

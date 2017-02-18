@@ -45,8 +45,43 @@ class CfgMagazines {
     class CUP_4Rnd_AGM114N_Hellfire_II_M: CUP_8Rnd_AGM114N_Hellfire_II_M {
         count = 4;
     };
+
     class 2Rnd_GBU12_LGB;
     class 1Rnd_GBU12_LGB : 2Rnd_GBU12_LGB {
         count = 1;
+    };   
+
+    class CUP_14Rnd_FFAR_M;
+    class CUP_12Rnd_CRV7_FAT_M: CUP_14Rnd_FFAR_M {
+        initSpeed = 30;
+        maxLeadSpeed = 650;
+    };
+    class CUP_12Rnd_CRV7_HEISAP_M: CUP_12Rnd_CRV7_FAT_M {
+        count = 12;
+        ammo = "CUP_R_CRV7_HEISAP";
+        displayName = "CRV7-HEISAP";
+        displayNameShort = "HEISAP";
+        descriptionShort = "CRV7 High Explosive Incendiary Semi-Armour Piercing Rocket";
+    };
+    class CUP_14Rnd_CRV7_FAT_M: CUP_12Rnd_CRV7_HEISAP_M {
+        count = 14;
+    };
+    class CUP_19Rnd_CRV7_FAT_M: CUP_12Rnd_CRV7_HEISAP_M {
+        count = 19;
+    };
+    class CUP_24Rnd_CRV7_FAT_M: CUP_12Rnd_CRV7_HEISAP_M {
+        count = 24;
+    };
+    class CUP_38Rnd_CRV7_FAT_M: CUP_12Rnd_CRV7_HEISAP_M {
+        count = 38;
+    };
+    class CUP_48Rnd_CRV7_FAT_M: CUP_12Rnd_CRV7_HEISAP_M {
+        count = 48;
+    };
+    class CUP_76Rnd_CRV7_FAT_M: CUP_12Rnd_CRV7_HEISAP_M {
+        count = 76;
+    };
+    class CUP_114Rnd_CRV7_FAT_M: CUP_12Rnd_CRV7_HEISAP_M {
+        count = 114;
     };
 };
