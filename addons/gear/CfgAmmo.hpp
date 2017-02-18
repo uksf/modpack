@@ -27,7 +27,7 @@ class CfgAmmo{
     class MissileBase;
     class CUP_M_AGM_114K_Hellfire_II_AT : MissileBase {
         model = QPATHTOF(data\AGM114\AGM114Hellfire.p3d);
-		proxyShape = QPATHTOF(data\AGM114\AGM114Hellfire_proxy.p3d);
+        proxyShape = QPATHTOF(data\AGM114\AGM114Hellfire_proxy.p3d);
         CraterEffects = "ATRocketCrater";
         explosionEffects = "ATRocketExplosion";
         class Hiteffects {
@@ -50,7 +50,7 @@ class CfgAmmo{
     };
     class CUP_M_AGM_114L_Hellfire_II_AT: MissileBase {
         model = QPATHTOF(data\AGM114\AGM114Hellfire.p3d);
-		proxyShape = QPATHTOF(data\AGM114\AGM114Hellfire_proxy.p3d);
+        proxyShape = QPATHTOF(data\AGM114\AGM114Hellfire_proxy.p3d);
         CraterEffects = "ATRocketCrater";
         explosionEffects = "ATRocketExplosion";
         class Hiteffects {

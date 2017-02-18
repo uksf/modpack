@@ -127,24 +127,24 @@ class CfgVehicles {
         soundgetin[] = { QPATHTOF(data\sounds\close.ogg), 1, 1 };
         soundgetout[] = { QPATHTOF(data\sounds\open.ogg), 1, 1, 40 };
         class Sounds: Sounds {
-			class RotorExt {
-				cone[] = { 1.8, 3.14, 2, 0.9 };
-				sound[] = { QPATHTOF(data\sounds\ah64_rotor_ext), 2, 1, 1500 };
-				frequency = "(rotorSpeed factor [0.3, 0.7]) * (rotorSpeed factor [0.3, 1]) * (1 - rotorThrust/6)";
-				volume = "camPos * 3 * (rotorSpeed factor [0.3, 1]) * (1 + rotorThrust)";
-			};
-			class RotorInt {
-				sound[] = { QPATHTOF(data\sounds\ah64_rotor_int), 0.75, 1 };
-				frequency = "(rotorSpeed factor [0.3, 0.7]) * (rotorSpeed factor [0.3, 1]) * (1 - rotorThrust/6)";
-				volume = "(1 - camPos) * (rotorSpeed factor [0.3, 0.7]) * (1 + rotorThrust) * 0.5";
-			};
-			class RotorSwist {
-				cone[] = { 3, 1.57, 3, 1.57 };
-				frequency = 1;
-				sound[] = { QPATHTOF(data\sounds\ah64_trotor_ext), 1, 1, 500 };
-				volume = "camPos * (rotorThrust factor [0.7, 0.9])";
-			};
-		};
+            class RotorExt {
+                cone[] = { 1.8, 3.14, 2, 0.9 };
+                sound[] = { QPATHTOF(data\sounds\ah64_rotor_ext), 2, 1, 1500 };
+                frequency = "(rotorSpeed factor [0.3, 0.7]) * (rotorSpeed factor [0.3, 1]) * (1 - rotorThrust/6)";
+                volume = "camPos * 3 * (rotorSpeed factor [0.3, 1]) * (1 + rotorThrust)";
+            };
+            class RotorInt {
+                sound[] = { QPATHTOF(data\sounds\ah64_rotor_int), 0.75, 1 };
+                frequency = "(rotorSpeed factor [0.3, 0.7]) * (rotorSpeed factor [0.3, 1]) * (1 - rotorThrust/6)";
+                volume = "(1 - camPos) * (rotorSpeed factor [0.3, 0.7]) * (1 + rotorThrust) * 0.5";
+            };
+            class RotorSwist {
+                cone[] = { 3, 1.57, 3, 1.57 };
+                frequency = 1;
+                sound[] = { QPATHTOF(data\sounds\ah64_trotor_ext), 1, 1, 500 };
+                volume = "camPos * (rotorThrust factor [0.7, 0.9])";
+            };
+        };
         weapons[] = { "CUP_weapon_mastersafe", "CUP_Vmlauncher_CRV7_FAT_veh", "CMFlareLauncher" };
         magazines[] = { "CUP_38Rnd_CRV7_FAT_M", "168Rnd_CMFlare_Chaff_Magazine" };
         class Turrets: Turrets {

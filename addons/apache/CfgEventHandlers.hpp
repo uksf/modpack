@@ -43,9 +43,9 @@ class Extended_Killed_EventHandlers {
 };
 
 class Extended_IncomingMissile_EventHandlers {
-	class UKSF_Apache_base {
-		class ADDON {
-			incomingMissile = QUOTE(_this call FUNC(incomingMissile));
-		};
-	};
+    class UKSF_Apache_base {
+        class ADDON {
+            incomingMissile = QUOTE(_this call FUNC(incomingMissile));
+        };
+    };
 };
