@@ -1,5 +1,5 @@
 PREP(ping);
-PREP(pinged)
+PREP(pinged);
 PREP(loop);
 PREP(getNewAnimation);
 PREP(initCurators);
