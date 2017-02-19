@@ -158,3 +158,18 @@
     ace_refuel_fuelCargo = 3000; \
     ace_repair_canRepair = 1; \
     SUPPORT_ACTIONS
+
+#define REARM_ACTIONS \
+    class UserActions { \
+        class ResupplyAmmo { \
+            displayName = "<t color='#217cd1'>Reload</t>"; \
+            displayNameDefault = "<img image='A3\ui_f\data\igui\cfg\actions\reammo_ca' size='2' shadow='true' />"; \
+            position = "crew_center"; \
+            radius = 4; \
+            priority = 5.92; \
+            showwindow = 0; \
+            condition = QUOTE(this call FUNC(canResupply)); \
+            statement = QUOTE(this call FUNC(resupply)); \
+            onlyforplayer = 1; \
+        }; \
+    };

@@ -84,4 +84,11 @@ class CfgMagazines {
     class CUP_114Rnd_CRV7_FAT_M: CUP_12Rnd_CRV7_HEISAP_M {
         count = 114;
     };
+
+    class CUP_100Rnd_127x99_M: VehicleMagazine {
+        picture = "\UK3CB_BAF_Weapons\addons\UK3CB_BAF_Weapons_Ammo\data\gear_magazine_belt_tracer_ca.paa";
+    };
+    class 200Rnd_40mm_G_belt: VehicleMagazine {
+        picture = "\UK3CB_BAF_Weapons\addons\UK3CB_BAF_Weapons_Ammo\data\gear_magazine_belt_tracer_ca.paa";
+    };
 };

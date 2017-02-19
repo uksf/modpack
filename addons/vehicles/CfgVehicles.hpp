@@ -7,11 +7,17 @@ class CfgVehicles {
         class ACE_Actions: ACE_Actions {
             class ACE_MainActions;
         };
+        class Turrets;
     };
-    #include "vehicles\CfgLandRover.hpp"
-    //#include "vehicles\CfgRidgeback.hpp"
-    //#include "vehicles\CfgFoxhound.hpp"
+    class Wheeled_APC_F: Car_F {
+        class NewTurret;
+    };
+
     #include "vehicles\CfgJackal.hpp"
     #include "vehicles\CfgCoyote.hpp"
+    #include "vehicles\CfgLandRover.hpp"
+    #include "vehicles\CfgMastiff.hpp"
+    #include "vehicles\CfgRidgeback.hpp"
+    #include "vehicles\CfgWolfhound.hpp"
     #include "vehicles\CfgHemtt.hpp"
 };

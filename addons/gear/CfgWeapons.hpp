@@ -435,31 +435,13 @@ class CfgWeapons {
     class LMG_Zafir_F;
     class UK3CB_BAF_L7A2: LMG_Zafir_F {
         magazines[] = {
-            "UK3CB_BAF_762_200Rnd_T",
-            "UK3CB_BAF_762_200Rnd",
-            "UK3CB_BAF_762_200Rnd_Blank",
-            "UK3CB_BAF_762_100Rnd_T",
-            "UK3CB_BAF_762_100Rnd",
-            "UK3CB_BAF_762_100Rnd_Blank",
-            "UK3CB_BAF_762_100Rnd_EL",
-            "UK3CB_BAF_762_100Rnd_T_EL",
-            "UK3CB_BAF_762_200Rnd_EL",
-            "UK3CB_BAF_762_200Rnd_T_EL"
+            "UK3CB_BAF_762_200Rnd_T","UK3CB_BAF_762_200Rnd","UK3CB_BAF_762_200Rnd_Blank","UK3CB_BAF_762_100Rnd_T","UK3CB_BAF_762_100Rnd","UK3CB_BAF_762_100Rnd_Blank","UK3CB_BAF_762_100Rnd_EL","UK3CB_BAF_762_100Rnd_T_EL","UK3CB_BAF_762_200Rnd_EL","UK3CB_BAF_762_200Rnd_T_EL"
         };
     };
     class LMG_RCWS;
     class UK3CB_BAF_L7A2_veh: LMG_RCWS {
         magazines[] = {
-            "UK3CB_BAF_762_200Rnd_T",
-            "UK3CB_BAF_762_200Rnd",
-            "UK3CB_BAF_762_200Rnd_Blank",
-            "UK3CB_BAF_762_100Rnd_T",
-            "UK3CB_BAF_762_100Rnd",
-            "UK3CB_BAF_762_100Rnd_Blank",
-            "UK3CB_BAF_762_100Rnd_EL",
-            "UK3CB_BAF_762_100Rnd_T_EL",
-            "UK3CB_BAF_762_200Rnd_EL",
-            "UK3CB_BAF_762_200Rnd_T_EL"
+            "UK3CB_BAF_762_200Rnd_T","UK3CB_BAF_762_200Rnd","UK3CB_BAF_762_200Rnd_Blank","UK3CB_BAF_762_100Rnd_T","UK3CB_BAF_762_100Rnd","UK3CB_BAF_762_100Rnd_Blank","UK3CB_BAF_762_100Rnd_EL","UK3CB_BAF_762_100Rnd_T_EL","UK3CB_BAF_762_200Rnd_EL","UK3CB_BAF_762_200Rnd_T_EL"
         };
     };
 
@@ -567,34 +549,27 @@ class CfgWeapons {
         lockedTargetSound[] = { "\a3\sounds_f\weapons\rockets\locked_3", 0.31622776, 2.5 };
         weaponLockDelay = 0.5;
         magazines[] = {
-            "CUP_8Rnd_AGM114K_Hellfire_II_M",
-            "CUP_4Rnd_AGM114K_Hellfire_II_M",
-            "CUP_2Rnd_AGM114K_Hellfire_II_M",
-            "CUP_1Rnd_AGM114K_Hellfire_II_M"
+            "CUP_8Rnd_AGM114K_Hellfire_II_M","CUP_4Rnd_AGM114K_Hellfire_II_M","CUP_2Rnd_AGM114K_Hellfire_II_M","CUP_1Rnd_AGM114K_Hellfire_II_M"
         };
     };
     class CUP_Vmlauncher_AGM114L_veh: CUP_Vmlauncher_AGM114K_veh {
         displayName = "AGM-114L Hellfire II";
         magazines[] = {
-            "CUP_8Rnd_AGM114L_Hellfire_II_M",
-            "CUP_4Rnd_AGM114L_Hellfire_II_M",
-            "CUP_2Rnd_AGM114L_Hellfire_II_M",
-            "CUP_1Rnd_AGM114L_Hellfire_II_M"
+            "CUP_8Rnd_AGM114L_Hellfire_II_M","CUP_4Rnd_AGM114L_Hellfire_II_M","CUP_2Rnd_AGM114L_Hellfire_II_M","CUP_1Rnd_AGM114L_Hellfire_II_M"
         };
     };
     class CUP_AGM114L_Hellfire_II_Launcher_W: CUP_Vmlauncher_AGM114L_veh {};
     class CUP_Vmlauncher_AGM114N_veh: CUP_Vmlauncher_AGM114K_veh {
         displayName = "AGM-114N Hellfire II";
         magazines[] = {
-            "CUP_8Rnd_AGM114N_Hellfire_II_M",
-            "CUP_4Rnd_AGM114N_Hellfire_II_M"
+            "CUP_8Rnd_AGM114N_Hellfire_II_M","CUP_4Rnd_AGM114N_Hellfire_II_M"
         };
     };
     class CUP_AGM114N_Hellfire_II_Launcher_W: CUP_Vmlauncher_AGM114N_veh {};
 
     class RocketPods;
     class GBU12BombLauncher: RocketPods {
-        magazines[] = { "1Rnd_GBU12_LGB", "2Rnd_GBU12_LGB", "2Rnd_GBU12_LGB_MI10" };
+        magazines[] = { "1Rnd_GBU12_LGB","2Rnd_GBU12_LGB","2Rnd_GBU12_LGB_MI10" };
     };
 
     class CannonCore;
@@ -614,7 +589,7 @@ class CfgWeapons {
         canLock = 2;
         ballisticsComputer = 1;
         reloadMagazineSound[] = { "", 1, 1};
-        modes[] = { "Burst10", "Burst20", "Burst50", "close", "near", "short", "medium", "far" };
+        modes[] = { "Burst10","Burst20","Burst50","close","near","short","medium","far" };
         cursorAim = "EmptyCursor";        
         class GunParticles {
             class EffectSmokeLeft {
@@ -640,9 +615,7 @@ class CfgWeapons {
             reloadTime = 0.096;
             sounds[] = { "StandardSound" };
             class StandardSound {
-                //begin1[] = { "\uk3cb_baf_vehicles\addons\uk3cb_baf_vehicles_weapons\data\sounds\m230.ogg", 3, 1, 1500 };
-                //soundBegin[] = { "begin1", 1 };
-                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet", "DS_sniper1_tail_soundset" };
+                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
             };
             autoFire = 1;
             burst = 10;
@@ -667,41 +640,31 @@ class CfgWeapons {
         class close : close {
             reloadTime = 0.096;
             class StandardSound {
-                //begin1[] = { "\uk3cb_baf_vehicles\addons\uk3cb_baf_vehicles_weapons\data\sounds\m230.ogg", 3, 1, 1500 };
-                //soundBegin[] = { "begin1", 1 };
-                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet", "DS_sniper1_tail_soundset" };
+                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
             };
         };
         class near : near {
             reloadTime = 0.096;
             class StandardSound {
-                //begin1[] = { "\uk3cb_baf_vehicles\addons\uk3cb_baf_vehicles_weapons\data\sounds\m230.ogg", 3, 1, 1500 };
-                //soundBegin[] = { "begin1", 1 };
-                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet", "DS_sniper1_tail_soundset" };
+                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
             };
         };
         class short : short{
             reloadTime = 0.096;
             class StandardSound {
-                //begin1[] = { "\uk3cb_baf_vehicles\addons\uk3cb_baf_vehicles_weapons\data\sounds\m230.ogg", 3, 1, 1500 };
-                //soundBegin[] = { "begin1", 1 };
-                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet", "DS_sniper1_tail_soundset" };
+                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
             };
         };
         class medium : medium {
             reloadTime = 0.096;
             class StandardSound {
-                //begin1[] = { "\uk3cb_baf_vehicles\addons\uk3cb_baf_vehicles_weapons\data\sounds\m230.ogg", 3, 1, 1500 };
-                //soundBegin[] = { "begin1", 1 };
-                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet", "DS_sniper1_tail_soundset" };
+                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
             };
         };
         class far : far {
             reloadTime = 0.096;
             class StandardSound {
-                //begin1[] = { "\uk3cb_baf_vehicles\addons\uk3cb_baf_vehicles_weapons\data\sounds\m230.ogg", 3, 1, 1500 };
-                //soundBegin[] = { "begin1", 1 };
-                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet", "DS_sniper1_tail_soundset" };
+                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
             };
         };
     };
@@ -750,6 +713,18 @@ class CfgWeapons {
     };
     class CUP_Vmlauncher_CRV7_HEISAP_veh: CUP_Vmlauncher_CRV7_FAT_veh {
         magazines[] = { "CUP_12Rnd_CRV7_HEISAP_M","CUP_14Rnd_CRV7_HEISAP_M","CUP_19Rnd_CRV7_HEISAP_M","CUP_24Rnd_CRV7_HEISAP_M","CUP_38Rnd_CRV7_HEISAP_M","CUP_48Rnd_CRV7_HEISAP_M","CUP_76Rnd_CRV7_HEISAP_M","CUP_114Rnd_CRV7_HEISAP_M" };
+    };
+
+    class CUP_Vlmg_M240_veh: MGun {
+        magazines[] = { "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M","CUP_200Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M","CUP_100Rnd_TE4_LRT4_White_Tracer_762x51_Belt_M","CUP_200Rnd_TE4_LRT4_White_Tracer_762x51_Belt_M","CUP_1200Rnd_TE4_White_Tracer_762x51_M240_M","CUP_100Rnd_TE4_White_Tracer_762x51_M240_M","CUP_1200Rnd_TE4_Red_Tracer_762x51_M240_M",,"UK3CB_BAF_762_200Rnd_T","UK3CB_BAF_762_200Rnd","UK3CB_BAF_762_200Rnd_Blank","UK3CB_BAF_762_100Rnd_T","UK3CB_BAF_762_100Rnd","UK3CB_BAF_762_100Rnd_Blank","UK3CB_BAF_762_100Rnd_EL","UK3CB_BAF_762_100Rnd_T_EL","UK3CB_BAF_762_200Rnd_EL","UK3CB_BAF_762_200Rnd_T_EL" };
+    };
+    class HMG_M2;
+    class CUP_Vhmg_M2_veh: HMG_M2 {
+        magazines[] = { "CUP_100Rnd_127x99_M","CUP_100Rnd_TE4_Red_Tracer_127x99_M","CUP_100Rnd_TE4_Green_Tracer_127x99_M","CUP_100Rnd_TE4_Yellow_Tracer_127x99_M","CUP_100Rnd_TE4_White_Tracer_127x99_M","CUP_100Rnd_TE1_Red_Tracer_127x99_M","CUP_100Rnd_TE1_Green_Tracer_127x99_M","CUP_100Rnd_TE1_Yellow_Tracer_127x99_M","CUP_100Rnd_TE1_White_Tracer_127x99_M","CUP_200Rnd_TE1_Red_Tracer_127x99_M","UK3CB_BAF_127_100Rnd" };
+    };
+    class CUP_Vhmg_AGS30_veh;
+    class CUP_Vgmg_MK19_veh: CUP_Vhmg_AGS30_veh {
+        magazines[] = { "CUP_48Rnd_40mm_MK19_M","CUP_32Rnd_40mm_MK19_M","CUP_96Rnd_40mm_MK19_M","UK3CB_BAF_32Rnd_40mm_G_Box" };
     };
 
     #include "CfgWeaponsPrivate.hpp"
