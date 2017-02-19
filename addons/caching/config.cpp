@@ -9,9 +9,11 @@ class CfgPatches {
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {"uksf_main", "uksf_common"};
+        requiredAddons[] = {
+            "uksf_common"
+        };
         author = QUOTE(UKSF);
-        authors[] = {"Beswick.T"};
+        authors[] = { "Beswick.T" };
         url = QUOTE(www.uk-sf.com);
         VERSION_CONFIG;
     };

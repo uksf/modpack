@@ -3,12 +3,18 @@
 class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
-        units[] = {};
+        units[] = {
+            "CUP_B_UKSF_MQ9"
+        };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {"uksf_main", "uksf_common", "USAF_MQ9", "JSRSAPEX_UAV_2"};
+        requiredAddons[] = {             
+            "uksf_common",          
+            "uksf_gear",
+            "CUP_AirVehicles_MQ9"
+        };
         author = QUOTE(UKSF);
-        authors[] = {"Beswick.T"};
+        authors[] = { "Beswick.T" };
         url = QUOTE(www.uk-sf.com);
         VERSION_CONFIG;
     };

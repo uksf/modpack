@@ -1,9 +1,15 @@
 class CfgEditorSubcategories {
     //Units
-    class GVAR(jsfaw) {
-        displayName = "JSFAW";
+    class GVAR(1para) {
+        displayName = "Men (1 Para)";
     };
-    class GVAR(para) {
+    class GVAR(jsfaw) {
+        displayName = "Men (JSFAW)";
+    };
+    class GVAR(mtp) {
+        displayName = "Men (MTP)";
+    };
+    /*class GVAR(para) {
         displayName = "Para";
     };
     class GVAR(sf) {
@@ -46,7 +52,7 @@ class CfgEditorSubcategories {
     };
     class GVAR(support) {
         displayName = "Support";
-    };
+    };*/
 
     //Other
     class GVAR(objects) {

@@ -6,16 +6,19 @@ class CfgPatches {
         units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {"uksf_main", "JPEX_FrameWork", "JSRSAPEX_Explosions"};
+        requiredAddons[] = { 
+            "uksf_main"
+        };
         author = QUOTE(UKSF);
-        authors[] = {"Beswick.T"};
+        authors[] = { "Beswick.T" };
         url = QUOTE(www.uk-sf.com);
         VERSION_CONFIG_COMMON;
     };
 };
 
+class CBA_Extended_EventHandlers;
 #include "CfgEventHandlers.hpp"
-#include "CfgEden.hpp"
+#include "Cfg3den.hpp"
 #include "CfgEditorSubcategories.hpp"
 #include "CfgFactionClasses.hpp"
 #include "CfgImprecision.hpp"

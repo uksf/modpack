@@ -21,9 +21,9 @@ class CfgVehicles {
         scope = 2;
         scopeCurator = 2;
         side = 1;
-        editorPreview = QPATHTOEF(common,data\previews\UKSF_Griffin.jpg);
+        //editorPreview = QPATHTOEF(common,data\previews\UKSF_Griffin.jpg);
         displayName = "Griffin HT1";
-        faction = "UKSF_Clan";
+        faction = "CUP_B_GB";
         model = QPATHTOF(Bell412.p3d);
         picture = QPATHTOF(UI\icon_uh1n.paa);
         icon = QPATHTOF(UI\icon_uh1n.paa);
@@ -158,7 +158,7 @@ class CfgVehicles {
         gunnerUsesPilotView = 1;
         gunnerOpticsModel = "";
         transportSoldier = 9;
-        crew = "UKSF_Clan_HP";
+        crew = "CUP_B_BAF_Pilot_DDPM";
         transportAmmo = 0;
         transportMaxMagazines = 150;
         transportMaxWeapons = 30;
@@ -278,32 +278,12 @@ class CfgVehicles {
         soundEngineOnExt[] = { QPATHTOF(data\sounds\ext\ext-motor-start), "db-7", 1, 700 };
         soundEngineOffInt[] = { QPATHTOF(data\sounds\int\int-stop-final), "db-7", 1 };
         soundEngineOffExt[] = { QPATHTOF(data\sounds\ext\ext-motor-stop), "db-7", 1, 700 };
-        soundLocked[] = {"JSRSAPEX_P_Airsounds\Shared\opfor_lock_1.ogg",0.75,1};
-        soundIncommingMissile[] = {"JSRSAPEX_P_Airsounds\Shared\opfor_lock_2.ogg",0.75,1};
-        rotorDamageInt[] = {"JSRSAPEX_P_Airsounds\Shared\heli_damage_rotor_int.ogg",0.75,1};
-        rotorDamageOut[] = {"JSRSAPEX_P_Airsounds\Shared\heli_damage_rotor_ext.ogg",2.0,1,300};
-        rotorDamage[] = {"rotorDamageInt","rotorDamageOut"};
-        tailDamageInt[] = {"JSRSAPEX_P_Airsounds\Shared\heli_damage_tail.ogg",0.75,1};
-        tailDamageOut[] = {"JSRSAPEX_P_Airsounds\Shared\heli_damage_tail.ogg",2.0,1,300};
-        tailDamage[] = {"tailDamageInt","tailDamageOut"};
-        landingSoundInt0[] = {"JSRSAPEX_P_Airsounds\Shared\landing_skids_int1_open.ogg",0.25,1};
-        landingSoundInt1[] = {"JSRSAPEX_P_Airsounds\Shared\landing_skids_int1_open.ogg",0.25,1};
-        landingSoundInt[] = {"landingSoundInt0",0.5,"landingSoundInt1",0.5};
-        landingSoundOut0[] = {"JSRSAPEX_P_Airsounds\Shared\landing_skids_ext1.ogg",0.4,1,100};
-        landingSoundOut1[] = {"JSRSAPEX_P_Airsounds\Shared\landing_skids_ext1.ogg",0.4,1,100};
-        landingSoundOut[] = {"landingSoundOut0",0.5,"landingSoundOut1",0.5};
-        gearUpExt[] = {"JSRSAPEX_P_Airsounds\Shared\gear_up_OUT.ogg",1.5,1,700};
-        gearUpInt[] = {"JSRSAPEX_P_Airsounds\Shared\\gear_up_IN.ogg",1.5,1};
-        gearUp[] = {"gearUpInt","gearUpExt"};
-        gearDownInt[] = {"JSRSAPEX_P_Airsounds\Shared\gear_down_IN.ogg",1.5,1};
-        gearDownExt[] = {"JSRSAPEX_P_Airsounds\Shared\gear_down_OUT.ogg",1.5,1,700};
-        gearDown[] = {"gearDownInt","gearDownExt"};
-        slingCargoAttach0[] = {"JSRSAPEX_P_Airsounds\Shared\SL_1hookLock.ogg",1.35,1};
-        slingCargoAttach1[] = {"JSRSAPEX_P_Airsounds\Shared\SL_1hookLock.ogg",1,1,300};
-        slingCargoAttach[] = {"slingCargoAttach0","slingCargoAttach1"};
-        slingCargoDetach0[] = {"JSRSAPEX_P_Airsounds\Shared\SL_1hookUnlock.ogg",1.5,1};
-        slingCargoDetach1[] = {"JSRSAPEX_P_Airsounds\Shared\SL_1hookUnlock.ogg",1,1,300};
-        slingCargoDetach[] = {"slingCargoDetach0","slingCargoDetach1"};
+        landingSoundInt0[] = {"A3\Sounds_F\vehicles\air\noises\landing_skids_int1_open", 1, 1, 100};
+        landingSoundInt1[] = {"A3\Sounds_F\vehicles\air\noises\landing_skids_int1_open", 1, 1, 100};
+        landingSoundInt[] = {"landingSoundInt0", 0.5, "landingSoundInt1", 0.5};
+        landingSoundOut0[] = {"A3\Sounds_F\vehicles\air\noises\landing_skids_ext1", 1.77828, 1, 100};
+        landingSoundOut1[] = {"A3\Sounds_F\vehicles\air\noises\landing_skids_ext1", 1.77828, 1, 100};
+        landingSoundOut[] = {"landingSoundOut0", 0.5, "landingSoundOut1", 0.5};
         class Sounds {
             class Engine {
                 sound[] = { QPATHTOF(data\sounds\ext\ext-fly-mode2), "db8", 1, 800 };
@@ -336,131 +316,6 @@ class CfgVehicles {
                 sound[] = { QPATHTOF(data\sounds\int\int-rotor-single5a), "db0", 1 };
                 frequency = "rotorSpeed";
                 volume = "(1-camPos)*3*(rotorThrust-0.9)";
-            };            
-            class TransmissionDamageExt_phase1 {
-                sound[] = {"JSRSAPEX_P_Airsounds\Shared\heli_damage_transmission_int_1.ogg",1,1,300};
-                frequency = "0.66 + rotorSpeed / 3";
-                volume = "camPos * (transmissionDamage factor [0.3, 0.35]) * (transmissionDamage factor [0.5, 0.45]) * (rotorSpeed factor [0.2, 0.5])";
-            };
-            class TransmissionDamageExt_phase2 {
-                sound[] = {"JSRSAPEX_P_Airsounds\Shared\heli_damage_transmission_int_1.ogg",1,1,300};
-                frequency = "0.66 + rotorSpeed / 3";
-                volume = "camPos * (transmissionDamage factor [0.45, 0.5]) * (rotorSpeed factor [0.2, 0.5])";
-            };
-            class TransmissionDamageInt_phase1 {
-                sound[] = {"JSRSAPEX_P_Airsounds\Shared\heli_damage_transmission_int_1.ogg",0.75,1};
-                frequency = "0.66 + rotorSpeed / 3";
-                volume = "(1 - camPos) * (transmissionDamage factor [0.3, 0.35]) * (transmissionDamage factor [0.5, 0.45]) * (rotorSpeed factor [0.2, 0.5])";
-            };
-            class TransmissionDamageInt_phase2 {
-                sound[] = {"JSRSAPEX_P_Airsounds\Shared\heli_damage_transmission_int_1.ogg",0.75,1};
-                frequency = "0.66 + rotorSpeed / 3";
-                volume = "(1 - camPos) * (transmissionDamage factor [0.45, 0.5]) * (rotorSpeed factor [0.2, 0.5])";
-            };
-            class damageAlarmInt {
-                sound[] = {"JSRSAPEX_P_Airsounds\Shared\damageAlarm.ogg",0.75,1};
-                frequency = 1;
-                volume = "engineOn * (1 - camPos) * ( 1 - ((transmissionDamage factor [0.61, 0.60]) * (motorDamage factor [0.61, 0.60]) * (rotorDamage factor [0.51, 0.50]))) * (rotorSpeed factor [0.0, 0.001])";
-            };
-            class damageAlarmExt {
-                sound[] = {"JSRSAPEX_P_Airsounds\Shared\damageAlarm.ogg",1,1,100};
-                frequency = 1;
-                volume = "engineOn * camPos * ( 1 - ((transmissionDamage factor [0.61, 0.60]) * (motorDamage factor [0.61, 0.60]) * (rotorDamage factor [0.51, 0.50]))) * (rotorSpeed factor [0, 0.001])";
-            };
-            class rotorLowAlarmInt {
-                sound[] = {"JSRSAPEX_P_Airsounds\Shared\LowRotorAlarmInt.ogg",0.75,1};
-                frequency = 1;
-                volume = "engineOn * (1 - camPos) * (rotorSpeed factor [0.9, 0.8999]) * (rotorSpeed factor [-0.5, 1]) * (speed factor [3, 3.01])";
-            };
-            class rotorLowAlarmExt {
-                sound[] = {"JSRSAPEX_P_Airsounds\Shared\LowRotorAlarmInt.ogg",1,1,75};
-                frequency = 1;
-                volume = "engineOn * camPos * (rotorSpeed factor [0.9, 0.8999]) * (rotorSpeed factor [-0.5, 1]) * (speed factor [3, 3.01])";
-            };
-            class WindBench {
-                sound[] = {"JSRSAPEX_P_Airsounds\Shared\wind_open_in.ogg",0.5,1};
-                frequency = 1;
-                volume = "4 * (playerPos factor [3.9, 4]) * (1 - camPos) * ((speed factor[0, 30]) + (speed factor[0, -30]))";
-            };
-            class RainExt {
-                sound[] = {"JSRSAPEX_P_Airsounds\Shared\rain1_ext.ogg",1,1,100};
-                frequency = 1;
-                volume = "camPos * (rain - rotorSpeed/2) * 2";
-            };
-            class RainInt {
-                sound[] = {"JSRSAPEX_P_Airsounds\Shared\rain1_int_open.ogg",0.5,1};
-                frequency = 1;
-                volume = "(1-camPos)*(rain - rotorSpeed/2)*2";
-            };
-            class WindInt {
-                sound[] = {"JSRSAPEX_P_Airsounds\Shared\wind_open_in.ogg",0.5,1};
-                frequency = 1;
-                volume = "(1-camPos)*(speed factor[5, 50])*(speed factor[5, 50])";
-            };
-            class WindLateralMovementInt {
-                sound[] = {"JSRSAPEX_P_Airsounds\Shared\wind_open_in.ogg",0.5,1,50};
-                frequency = 1;
-                volume = "(1-camPos)*lateralMovement*((speed factor [5,40]) + (speed factor [-5,-40]))";
-            };
-            class GStress {
-                sound[] = {"JSRSAPEX_P_Airsounds\Shared\vehicle_stress2b.ogg",0.75,1};
-                frequency = 1;
-                volume = "engineOn * (1-camPos) * ((gmeterZ factor[1.5, 2.5]) + (gmeterZ factor[0.5, -0.5]))";
-            };
-            class SpeedStress {
-                sound[] = {"JSRSAPEX_P_Airsounds\Shared\vehicle_stress2b.ogg",0.75,1};
-                frequency = 1;
-                volume = "(1-camPos)*(speed factor[40,80])";
-            };
-            class scrubTreeExt {
-                sound[] = {"JSRSAPEX_P_Airsounds\Shared\scrubTree.ogg",1,1,500};
-                frequency = 1;
-                volume = "camPos * (scrubTree factor[0.02, 0.05])";
-            };
-            class scrubLandExt {
-                sound[] = {"JSRSAPEX_P_Airsounds\Shared\scrubLandExt.ogg",1,1,500};
-                frequency = 1;
-                volume = "camPos * (scrubLand factor[0.02, 0.05])";
-            };
-            class scrubBuildingExt {
-                sound[] = {"JSRSAPEX_P_Airsounds\Shared\scrubBuilding.ogg",1,1,500};
-                frequency = 1;
-                volume = "camPos * (scrubBuilding factor[0.02, 0.05])";
-            };
-            class scrubLandInt {
-                sound[] = {"JSRSAPEX_P_Airsounds\Shared\scrubLandInt_open.ogg",0.75,1};
-                frequency = 1;
-                volume = "2 * (1-camPos) * (scrubLand factor[0.02, 0.05])";
-            };
-            class scrubBuildingInt {
-                sound[] = {"JSRSAPEX_P_Airsounds\Shared\scrubbuilding.ogg",0.75,1};
-                frequency = 1;
-                volume = "2 * (1 - camPos) * (scrubBuilding factor[0.02, 0.05])";
-            };
-            class scrubTreeInt {
-                sound[] = {"JSRSAPEX_P_Airsounds\Shared\scrubTree.ogg",0.75,1};
-                frequency = 1;
-                volume = "(1 - camPos) * ((scrubTree) factor [0, 0.01])";
-            };
-            class SlingLoadDownExt {
-                sound[] = {"JSRSAPEX_P_Airsounds\Shared\SL_engineDownEXT.ogg",1,1,500};
-                frequency = 1;
-                volume = "camPos*(slingLoadActive factor [0,-1])";
-            };
-            class SlingLoadUpExt {
-                sound[] = {"JSRSAPEX_P_Airsounds\Shared\SL_engineUpEXT.ogg",1,1,500};
-                frequency = 1;
-                volume = "camPos*(slingLoadActive factor [0,1])";
-            };
-            class SlingLoadDownInt {
-                sound[] = {"JSRSAPEX_P_Airsounds\Shared\SL_engineDownINT.ogg",0.75,1};
-                frequency = 1;
-                volume = "(1-camPos)*(slingLoadActive factor [0,-1])";
-            };
-            class SlingLoadUpInt {
-                sound[] = {"JSRSAPEX_P_Airsounds\Shared\SL_engineUpINT.ogg",0.75,1};
-                frequency = 1;
-                volume = "(1-camPos)*(slingLoadActive factor [0,1])";
             };
         };
         class HitPoints : HitPoints {

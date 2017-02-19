@@ -1,11 +1,10 @@
-class CBA_Extended_EventHandlers;
 class CfgVehicles {
     class Land_PowerGenerator_F;
     class UKSF_ATC_Core: Land_PowerGenerator_F {
         scope = 2;
         scopeCurator = 2;
         author = "UKSF";
-        faction = "UKSF_Clan";
+        faction = "CUP_B_GB";
         editorSubcategory = QEGVAR(common,objects);
         displayname = "ATC Core";
         model = "z\ace\addons\fastroping\data\helper.p3d";
@@ -56,7 +55,7 @@ class CfgVehicles {
         scope = 2;
         scopeCurator = 2;
         author = "UKSF";
-        faction = "UKSF_Clan";
+        faction = "CUP_B_GB";
         editorSubcategory = QEGVAR(common,objects);
         displayname = "ATC Station";
         class EventHandlers {

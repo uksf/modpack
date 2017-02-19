@@ -1,0 +1,88 @@
+class CUP_Wolfhound_Base: Wheeled_APC_F {
+    class Turrets {
+        class MainTurret: NewTurret {
+            magazines[] = { "UK3CB_BAF_127_100Rnd" };
+        };
+    };
+    class TransportMagazines {
+        class _xx_UK3CB_BAF_127_100Rnd {
+            magazine = "UK3CB_BAF_127_100Rnd";
+            count = 5;
+        };
+    };
+    REARM_ACTIONS
+};
+class CUP_B_Wolfhound_HMG_GB_D: CUP_Wolfhound_Base {
+    class TransportMagazines {
+        class _xx_UK3CB_BAF_127_100Rnd {
+            magazine = "UK3CB_BAF_127_100Rnd";
+            count = 5;
+        };
+    };
+    REARM_ACTIONS
+};
+class CUP_B_Wolfhound_HMG_GB_W: CUP_Wolfhound_Base {
+    class TransportMagazines {
+        class _xx_UK3CB_BAF_127_100Rnd {
+            magazine = "UK3CB_BAF_127_100Rnd";
+            count = 5;
+        };
+    };
+    REARM_ACTIONS
+};
+class CUP_B_Wolfhound_GMG_GB_D: CUP_Wolfhound_Base {
+    class Turrets: Turrets {
+        class MainTurret: MainTurret {
+            magazines[] = { "UK3CB_BAF_32Rnd_40mm_G_Box" };
+        };
+    };
+    class TransportMagazines {
+        class _xx_UK3CB_BAF_32Rnd_40mm_G_Box {
+            magazine = "UK3CB_BAF_32Rnd_40mm_G_Box";
+            count = 5;
+        };
+    };
+    REARM_ACTIONS
+};
+class CUP_B_Wolfhound_GMG_GB_W: CUP_Wolfhound_Base {
+    class Turrets: Turrets {
+        class MainTurret: MainTurret {
+            magazines[] = { "UK3CB_BAF_32Rnd_40mm_G_Box" };
+        };
+    };
+    class TransportMagazines {
+        class _xx_UK3CB_BAF_32Rnd_40mm_G_Box {
+            magazine = "UK3CB_BAF_32Rnd_40mm_G_Box";
+            count = 5;
+        };
+    };
+    REARM_ACTIONS
+};
+class CUP_B_Wolfhound_LMG_GB_D: CUP_Wolfhound_Base {
+    class Turrets: Turrets {
+        class Mainturret: NewTurret {
+            magazines[] = { "UK3CB_BAF_762_100Rnd_T" };
+        };
+    };
+    class TransportMagazines {
+        class _xx_UK3CB_BAF_762_100Rnd_T {
+            magazine = "UK3CB_BAF_762_100Rnd_T";
+            count = 5;
+        };
+    };
+    REARM_ACTIONS
+};
+class CUP_B_Wolfhound_LMG_GB_W: CUP_Wolfhound_Base {
+    class Turrets: Turrets {
+        class Mainturret: NewTurret {
+            magazines[] = { "UK3CB_BAF_762_100Rnd_T" };
+        };
+    };
+    class TransportMagazines {
+        class _xx_UK3CB_BAF_762_100Rnd_T {
+            magazine = "UK3CB_BAF_762_100Rnd_T";
+            count = 5;
+        };
+    };
+    REARM_ACTIONS
+};

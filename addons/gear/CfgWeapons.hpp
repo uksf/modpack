@@ -1,49 +1,6 @@
-class asdg_OpticRail;
-class asdg_OpticRail1913: asdg_OpticRail {
-    linkProxy = "\A3\data_f\proxies\weapon_slots\TOP";
-    displayName = "$STR_A3_CowsSlot0";
-    class compatibleItems {
-        optic_Nightstalker = 1;
-        optic_tws = 1;
-        optic_tws_mg = 1;
-        optic_NVS = 1;
-        optic_SOS = 1;
-        optic_MRCO = 1;
-        optic_Arco = 1;
-        optic_aco = 1;
-        optic_ACO_grn = 1;
-        optic_aco_smg = 1;
-        optic_ACO_grn_smg = 1;
-        optic_hamr = 1;
-        optic_Holosight = 1;
-        optic_Holosight_smg = 1;
-        optic_DMS = 1;
-        optic_LRPS = 1;
-        optic_AMS = 1;
-        optic_AMS_khk = 1;
-        optic_AMS_snd = 1;
-        optic_KHS_blk = 1;
-        optic_KHS_hex = 1;
-        optic_KHS_old = 1;
-        optic_KHS_tan = 1;
-        UK3CB_BAF_TA31F = 1;
-        UK3CB_BAF_TA31F_3D = 1;
-        UK3CB_BAF_TA31F_Hornbill = 1;
-        UK3CB_BAF_TA31F_Hornbill_3D = 1;
-        UK3CB_BAF_TA648 = 1;
-        UK3CB_BAF_TA648_308 = 1;
-    };
-};
-class asdg_OpticRail1913_long: asdg_OpticRail1913 {};
-class rhs_western_rifle_scopes_slot_long: asdg_OpticRail1913_long {};
 class Mode_SemiAuto;
 class Mode_Burst;
 class Mode_FullAuto;
-class SlotInfo;
-class CowsSlot;
-class MuzzleSlot;
-class PointerSlot;
-class UnderBarrelSlot;
 class CfgWeapons {
     class ItemCore;
     class Uniform_Base;
@@ -55,25 +12,25 @@ class CfgWeapons {
     class U_I_CombatUniform_shortsleeve;
     class U_B_HeliPilotCoveralls;
     class UK3CB_BAF_U_CombatUniform_MTP_RM: U_I_CombatUniform {
-        scope = 1;
+        scope = 2;
     };
     class UK3CB_BAF_U_CombatUniform_MTP_ShortSleeve_RM: U_I_CombatUniform_shortsleeve {
-        scope = 0;
+        scope = 2;
     };
     class UK3CB_BAF_U_CombatUniform_MTP_TShirt_RM: U_I_CombatUniform {
-        scope = 0;
+        scope = 2;
     };
     class UK3CB_BAF_U_CombatUniform_MTP: U_I_CombatUniform {
-        scope = 0;
+        scope = 2;
     };
     class UK3CB_BAF_U_CombatUniform_MTP_ShortSleeve: U_I_CombatUniform_shortsleeve {
-        scope = 1;
+        scope = 2;
     };
     class UK3CB_BAF_U_HeliPilotCoveralls_RN: U_B_HeliPilotCoveralls {
-        scope = 0;
+        scope = 2;
     };
     class UK3CB_BAF_U_CombatUniform_MTP_Ghillie_RM: Uniform_Base {
-        scope = 0;
+        scope = 2;
     };
     class UK3CB_BAF_U_CombatUniform_MTP_TShirt: UK3CB_BAF_U_CombatUniform_MTP_TShirt_RM {
         scope = 2;
@@ -296,7 +253,7 @@ class CfgWeapons {
     class UKSF_V_Pilot: V_TacVest_oli {
         scope = 2;
         author = "UKSF";
-        displayName = "UK Pilot vest";
+        displayName = "Pilot vest";
         picture = QPATHTOF(UI\icon_v_tacvest_khk_ca.paa);
         hiddenSelections[] = { "camo" };
         hiddenSelectionsTextures[] = { QPATHTOF(data\vests\tacticalvest_olive_co.paa) };
@@ -362,7 +319,7 @@ class CfgWeapons {
                     memoryPointCamera = "opticView";
                     opticsFlare = 1;
                     opticsID = 1;
-                    opticsPPEffects[] = {"OpticsCHAbera5","OpticsBlur5"};
+                    opticsPPEffects[] = { "OpticsCHAbera5","OpticsBlur5" };
                     opticsZoomInit = 0.09;
                     opticsZoomMax = 0.09;
                     opticsZoomMin = 0.09;
@@ -399,7 +356,7 @@ class CfgWeapons {
                     memoryPointCamera = "opticView";
                     opticsFlare = 1;
                     opticsID = 1;
-                    opticsPPEffects[] = {"OpticsCHAbera5","OpticsBlur5"};
+                    opticsPPEffects[] = { "OpticsCHAbera5","OpticsBlur5" };
                     opticsZoomInit = 0.09;
                     opticsZoomMax = 0.09;
                     opticsZoomMin = 0.09;
@@ -416,7 +373,7 @@ class CfgWeapons {
                     memoryPointCamera = "eye";
                     opticsFlare = 1;
                     opticsID = 2;
-                    opticsPPEffects[] = {"OpticsCHAbera5","OpticsBlur5"};
+                    opticsPPEffects[] = { "OpticsCHAbera5","OpticsBlur5" };
                     opticsZoomInit = 0.75;
                     opticsZoomMax = 1.1;
                     opticsZoomMin = 0.375;
@@ -463,7 +420,6 @@ class CfgWeapons {
             };
         };
     };
-
     class ACE_NVG_Wide;
     class ACE_NVG_Pilot: ACE_NVG_Wide {
         scope = 2;
@@ -475,643 +431,440 @@ class CfgWeapons {
         ACE_NightVision_radBlur = 0;
     };
 
+    class arifle_Mk20_plain_F;
+    class UGL_F;
+    class UK3CB_BAF_L85A2: arifle_Mk20_plain_F {
+        class UK3CB_BAF_L123A2: UGL_F {
+            magazines[] = { "1Rnd_HE_Grenade_shell","UGL_FlareWhite_F","UGL_FlareGreen_F","UGL_FlareRed_F","UGL_FlareYellow_F","UGL_FlareCIR_F","1Rnd_Smoke_Grenade_shell","1Rnd_SmokeRed_Grenade_shell","1Rnd_SmokeGreen_Grenade_shell","1Rnd_SmokeYellow_Grenade_shell","1Rnd_SmokePurple_Grenade_shell","1Rnd_SmokeBlue_Grenade_shell","1Rnd_SmokeOrange_Grenade_shell","UK3CB_BAF_1Rnd_HEDP_Grenade_shell","ACE_HuntIR_M203" };
+        };
+        class UK3CB_BAF_L123A3_V2: UGL_F {
+            magazines[] = { "1Rnd_HE_Grenade_shell","UGL_FlareWhite_F","UGL_FlareGreen_F","UGL_FlareRed_F","UGL_FlareYellow_F","UGL_FlareCIR_F","1Rnd_Smoke_Grenade_shell","1Rnd_SmokeRed_Grenade_shell","1Rnd_SmokeGreen_Grenade_shell","1Rnd_SmokeYellow_Grenade_shell","1Rnd_SmokePurple_Grenade_shell","1Rnd_SmokeBlue_Grenade_shell","1Rnd_SmokeOrange_Grenade_shell","UK3CB_BAF_1Rnd_HEDP_Grenade_shell","ACE_HuntIR_M203" };
+        };
+        class EGLM: UGL_F {
+            magazines[] = { "1Rnd_HE_Grenade_shell","UGL_FlareWhite_F","UGL_FlareGreen_F","UGL_FlareRed_F","UGL_FlareYellow_F","UGL_FlareCIR_F","1Rnd_Smoke_Grenade_shell","1Rnd_SmokeRed_Grenade_shell","1Rnd_SmokeGreen_Grenade_shell","1Rnd_SmokeYellow_Grenade_shell","1Rnd_SmokePurple_Grenade_shell","1Rnd_SmokeBlue_Grenade_shell","1Rnd_SmokeOrange_Grenade_shell","ACE_HuntIR_M203" };
+        };
+    };
     class LMG_Zafir_F;
     class UK3CB_BAF_L7A2: LMG_Zafir_F {
         magazines[] = {
-            "UK3CB_BAF_762_200Rnd_T",
-            "UK3CB_BAF_762_200Rnd",
-            "UK3CB_BAF_762_200Rnd_Blank",
-            "UK3CB_BAF_762_100Rnd_T",
-            "UK3CB_BAF_762_100Rnd",
-            "UK3CB_BAF_762_100Rnd_Blank",
-            "UK3CB_BAF_762_100Rnd_EL",
-            "UK3CB_BAF_762_100Rnd_T_EL",
-            "UK3CB_BAF_762_200Rnd_EL",
-            "UK3CB_BAF_762_200Rnd_T_EL"
+            "UK3CB_BAF_762_200Rnd_T","UK3CB_BAF_762_200Rnd","UK3CB_BAF_762_200Rnd_Blank","UK3CB_BAF_762_100Rnd_T","UK3CB_BAF_762_100Rnd","UK3CB_BAF_762_100Rnd_Blank","UK3CB_BAF_762_100Rnd_EL","UK3CB_BAF_762_100Rnd_T_EL","UK3CB_BAF_762_200Rnd_EL","UK3CB_BAF_762_200Rnd_T_EL"
+        };
+        class Single: Mode_SemiAuto {
+            sounds[] = { "StandardSound" };
+            class BaseSoundModeType;
+            class StandardSound: BaseSoundModeType {
+                soundSetShot[] = { "DS_CoaxMG_Closure_SoundSet","DS_CoaxMG_Shot_SoundSet","DS_mmg1_Tail_SoundSet" };
+            };
+        };
+        class FullAuto: Mode_FullAuto {
+            sounds[] = { "StandardSound" };
+            class BaseSoundModeType;
+            class StandardSound: BaseSoundModeType {
+                soundSetShot[] = { "DS_CoaxMG_Closure_SoundSet","DS_CoaxMG_Shot_SoundSet","DS_mmg1_Tail_SoundSet" };
+            };
+        };
+        class WeaponSlotsInfo;
+    };
+    class UK3CB_BAF_L7A2_FIST: UK3CB_BAF_L7A2 {
+        class WeaponSlotsInfo: WeaponSlotsInfo {
+            mass = 240;
+        };
+    };    
+    class UK3CB_BAF_L110A2: LMG_Zafir_F {
+        class Single: Mode_SemiAuto {
+            class BaseSoundModeType;
+            class StandardSound: BaseSoundModeType {
+                soundSetShot[] = {     "DS_zafir_Closure_SoundSet","DS_zafir_Shot_SoundSet","DS_lmg1_Tail_SoundSet" };
+            };
+        };
+        class FullAuto: Mode_FullAuto {
+            class BaseSoundModeType;
+            class StandardSound: BaseSoundModeType {
+                soundSetShot[] = {     "DS_zafir_Closure_SoundSet","DS_zafir_Shot_SoundSet","DS_lmg1_Tail_SoundSet" };
+            };
+        };
+    };
+    class Rifle_Long_Base_F;
+    class UK3CB_BAF_L110_Base: Rifle_Long_Base_F {
+        class Single: Mode_SemiAuto {
+            class BaseSoundModeType;
+            class StandardSound: BaseSoundModeType {
+                soundSetShot[] = {     "DS_zafir_Closure_SoundSet","DS_zafir_Shot_SoundSet","DS_lmg1_Tail_SoundSet" };
+            };
+        };
+        class FullAuto: Mode_FullAuto {
+            class BaseSoundModeType;
+            class StandardSound: BaseSoundModeType {
+                soundSetShot[] = {     "DS_zafir_Closure_SoundSet","DS_zafir_Shot_SoundSet","DS_lmg1_Tail_SoundSet" };
+            };
+        };
+    };
+    class UK3CB_BAF_L110_556_Base: UK3CB_BAF_L110_Base {
+        class Single: Mode_SemiAuto {
+            class BaseSoundModeType;
+            class StandardSound: BaseSoundModeType {
+                soundSetShot[] = {     "DS_zafir_Closure_SoundSet","DS_zafir_Shot_SoundSet","DS_lmg1_Tail_SoundSet" };
+            };
+        };
+        class FullAuto: Mode_FullAuto {
+            class BaseSoundModeType;
+            class StandardSound: BaseSoundModeType {
+                soundSetShot[] = {     "DS_zafir_Closure_SoundSet","DS_zafir_Shot_SoundSet","DS_lmg1_Tail_SoundSet" };
+            };
+        };
+    };
+    class UK3CB_BAF_L110_762_Base: UK3CB_BAF_L110_Base {
+        class Single: Mode_SemiAuto {
+            class BaseSoundModeType;
+            class StandardSound: BaseSoundModeType {
+                soundSetShot[] = { "DS_CoaxMG_Closure_SoundSet","DS_CoaxMG_Shot_SoundSet","DS_mmg1_Tail_SoundSet" };
+            };
+        };
+        class FullAuto: Mode_FullAuto {
+            class BaseSoundModeType;
+            class StandardSound: BaseSoundModeType {
+                soundSetShot[] = { "DS_CoaxMG_Closure_SoundSet","DS_CoaxMG_Shot_SoundSet","DS_mmg1_Tail_SoundSet" };
+            };
         };
     };
     class LMG_RCWS;
+    class MGun;
     class UK3CB_BAF_L7A2_veh: LMG_RCWS {
         magazines[] = {
-            "UK3CB_BAF_762_200Rnd_T",
-            "UK3CB_BAF_762_200Rnd",
-            "UK3CB_BAF_762_200Rnd_Blank",
-            "UK3CB_BAF_762_100Rnd_T",
-            "UK3CB_BAF_762_100Rnd",
-            "UK3CB_BAF_762_100Rnd_Blank",
-            "UK3CB_BAF_762_100Rnd_EL",
-            "UK3CB_BAF_762_100Rnd_T_EL",
-            "UK3CB_BAF_762_200Rnd_EL",
-            "UK3CB_BAF_762_200Rnd_T_EL"
+            "UK3CB_BAF_762_200Rnd_T","UK3CB_BAF_762_200Rnd","UK3CB_BAF_762_200Rnd_Blank","UK3CB_BAF_762_100Rnd_T","UK3CB_BAF_762_100Rnd","UK3CB_BAF_762_100Rnd_Blank","UK3CB_BAF_762_100Rnd_EL","UK3CB_BAF_762_100Rnd_T_EL","UK3CB_BAF_762_200Rnd_EL","UK3CB_BAF_762_200Rnd_T_EL"
+        };
+        class manual: MGun {
+            sounds[] = { "StandardSound" };
+            class StandardSound {
+                soundSetShot[] = { "DS_CoaxMG_Closure_SoundSet","DS_CoaxMG_Shot_SoundSet","DS_lmg1_Tail_SoundSet" };
+            };
+        };
+    };
+    class GM6_base_F;
+    class srifle_GM6_F: GM6_base_F {
+        class Single;
+    };
+    class UK3CB_BAF_L135A1: srifle_GM6_F {
+        class Single: Single {
+            class BaseSoundModeType {};
+            class StandardSound: BaseSoundModeType {
+                soundSetShot[] = { "DS_sniper1_crackling_SoundSet","DS_lrr_Shot_SoundSet","DS_sniper1_Tail_SoundSet" };
+            };
         };
     };
 
-    class LRR_base_F;
-    class srifle_LRR_F: LRR_base_F {
-        class WeaponSlotsInfo;
+    class UK3CB_BAF_L85A2_RIS;
+    class UK3CB_BAF_L85A2_RIS_Elcan: UK3CB_BAF_L85A2_RIS {
+        class LinkedItems {
+            class LinkedItemsOptic {
+                slot = "asdg_OpticRail_UK3CB_BAF_L85";
+                item = "UK3CB_BAF_SpecterLDS_Dot_3D";
+            };
+        };
     };
-    class arifle_mas_lee: srifle_LRR_F {
+    class UK3CB_BAF_L22A2;
+    class UK3CB_BAF_L22A2_Elcan: UK3CB_BAF_L22A2 {
+        class LinkedItems {
+            class LinkedItemsOptic {
+                slot = "asdg_OpticRail_UK3CB_BAF_L85";
+                item = "UK3CB_BAF_SpecterLDS_Dot_3D";
+            };
+        };
+    };
+    class UK3CB_BAF_L85A2_UGL;
+    class UK3CB_BAF_L85A2_UGL_Elcan: UK3CB_BAF_L85A2_UGL {
+        class LinkedItems {
+            class LinkedItemsOptic {
+                slot = "asdg_OpticRail_UK3CB_BAF_L85";
+                item = "UK3CB_BAF_SpecterLDS_Dot_3D";
+            };
+        };
+    };
+    class UK3CB_BAF_L110A3;
+    class UK3CB_BAF_L110A3_Elcan: UK3CB_BAF_L110A3 {
+        class LinkedItems {
+            class LinkedItemsOptic {
+                slot = "asdg_OpticRail_UK3CB_BAF_L110A2";
+                item = "UK3CB_BAF_SpecterLDS_Dot_3D";
+            };
+        };
+    };
+    class UK3CB_BAF_L129A1_Grippod;
+    class UK3CB_BAF_L129A1_Grippod_Acog: UK3CB_BAF_L129A1_Grippod {
+        class LinkedItems {
+            class LinkedItemsOptic {
+                slot = "asdg_OpticRail_UK3CB_BAF_L129A1";
+                item = "UK3CB_BAF_TA31F";
+            };
+        };
+    };
+    class UK3CB_BAF_L115A3;
+    class UK3CB_BAF_L115A3_LRPS: UK3CB_BAF_L115A3 {
+        class LinkedItems {
+            class LinkedItemsOptic {
+                slot = "asdg_OpticRail_UK3CB_BAF_L115";
+                item = "optic_LRPS";
+            };
+        };
+    };
+    class UK3CB_BAF_L115A3_DE;
+    class UK3CB_BAF_L115A3_DE_LRPS: UK3CB_BAF_L115A3_DE {
+        class LinkedItems {
+            class LinkedItemsOptic {
+                slot = "asdg_OpticRail_UK3CB_BAF_L115";
+                item = "optic_LRPS";
+            };
+        };
+    };
+    class UK3CB_BAF_L135A1_LRPS: UK3CB_BAF_L135A1 {
+        class LinkedItems {
+            class LinkedItemsOptic {
+                slot = "asdg_OpticRail_rifles";
+                item = "optic_LRPS";
+            };
+        };
+    };
+
+    class Default;
+    class CUP_weapon_mastersafe: Default {
+        displayName = "Safe";
+        displayNameMagazine = "Safe";
+        shortNameMagazine = "Safe";
+        nameSound = "cannon";
+        cursor = "EmptyCursor";
+        cursorAim = "EmptyCursor";
+        magazines[] = { "FakeMagazine" };
+        reloadMagazineSound[] = { "", 1, 1 };
+        canLock = 0;
+        burst = 0;
+        reloadTime = 0.01;
+        magazineReloadTime = 0.1;
+    };
+    class MissileLauncher;
+    class CUP_Vmlauncher_AGM114K_veh: MissileLauncher {
+        displayName = "AGM-114K Hellfire II";
+        reloadMagazineSound[] = { "", 1, 1 };
+        sounds[] = { "StandardSound" };
+        class StandardSound {
+            begin1[] = { "a3\sounds_f\weapons\rockets\missile_2", 5, 1.3, 1000 };
+            soundBegin[] = { "begin1", 1 };
+            weaponSoundEffect = "DefaultRifle";
+        };
+        soundFly[] = { QPATHTOF(data\sounds\hellfire.ogg), 1, 1.5, 700 };
+        lockingTargetSound[] = { "\a3\sounds_f\weapons\rockets\locked_1", 0.31622776, 1 };
+        lockedTargetSound[] = { "\a3\sounds_f\weapons\rockets\locked_3", 0.31622776, 2.5 };
+        weaponLockDelay = 0.5;
+        magazines[] = {
+            "CUP_8Rnd_AGM114K_Hellfire_II_M","CUP_4Rnd_AGM114K_Hellfire_II_M","CUP_2Rnd_AGM114K_Hellfire_II_M","CUP_1Rnd_AGM114K_Hellfire_II_M"
+        };
+    };
+    class CUP_Vmlauncher_AGM114L_veh: CUP_Vmlauncher_AGM114K_veh {
+        displayName = "AGM-114L Hellfire II";
+        magazines[] = {
+            "CUP_8Rnd_AGM114L_Hellfire_II_M","CUP_4Rnd_AGM114L_Hellfire_II_M","CUP_2Rnd_AGM114L_Hellfire_II_M","CUP_1Rnd_AGM114L_Hellfire_II_M"
+        };
+    };
+    class CUP_AGM114L_Hellfire_II_Launcher_W: CUP_Vmlauncher_AGM114L_veh {};
+    class CUP_Vmlauncher_AGM114N_veh: CUP_Vmlauncher_AGM114K_veh {
+        displayName = "AGM-114N Hellfire II";
+        magazines[] = {
+            "CUP_8Rnd_AGM114N_Hellfire_II_M","CUP_4Rnd_AGM114N_Hellfire_II_M"
+        };
+    };
+    class CUP_AGM114N_Hellfire_II_Launcher_W: CUP_Vmlauncher_AGM114N_veh {};
+    class RocketPods;
+    class GBU12BombLauncher: RocketPods {
+        magazines[] = { "1Rnd_GBU12_LGB","2Rnd_GBU12_LGB","2Rnd_GBU12_LGB_MI10" };
+    };
+    class CannonCore;
+    class gatling_30mm: CannonCore {
+        class LowROF;
+        class close;
+        class near;
+        class short;
+        class medium;
+        class far;
+    };
+    class CUP_Vacannon_M230_veh_Enhanced: gatling_30mm {
+        scope = 1;
         author = "UKSF";
-        displayname = "Lee-Enfield No4";
-        model = "\mas_us_rifle\mas_LeeEnfield";
-        reloadAction = "GestureReloadLRR";
-        handanim[] = { "OFP2_ManSkeleton","\mas_us_rifle\Anim\LeeEnfield.rtm" };
-        magazines[] = { "5Rnd_mas_762x51_Stanag","5Rnd_mas_762x51_T_Stanag" };
-        picture = "\mas_us_rifle\ui\gear_lee_x_ca.paa";
-        descriptionshort = "Rifle<br />Caliber: 7.62x51 mm";
-        maxZeroing = 1200;
-        hasBipod = 0;
-        class Library {
-            libtextdesc = "The Lee Enfield bolt action, magazine fed, repeating rifle was the main firearm used by the military forces of the British Empire and Commonwealth during the first half of the 20th century. It was the British Armys standard rifle from its official adoption in 1895 until 1957. It remained in widespread British service until the early mid 1960s and the 7,62 mm L42 sniper variant remained in service until the 1990s. As a standard issue infantry rifle, it is still found in service in the armed forces of some Commonwealth nations. During the 1960s, the British Government and the Ministry of Defence converted a number of Lee Enfield No4 rifles to 7,62�51mm NATO as part of a programme to retain the Lee Enfield as a reserve weapon.";
+        displayName = "Chain Gun M230 30mm";
+        magazines[] = { "CUP_1200Rnd_TE1_Red_Tracer_30x113mm_M789_HEDP_M","CUP_1200Rnd_TE1_Green_Tracer_30x113mm_M789_HEDP_M","CUP_1200Rnd_TE1_Yellow_Tracer_30x113mm_M789_HEDP_M","CUP_1200Rnd_TE1_White_Tracer_30x113mm_M789_HEDP_M" };
+        canLock = 2;
+        ballisticsComputer = 1;
+        reloadMagazineSound[] = { "", 1, 1};
+        modes[] = { "Burst10","Burst20","Burst50","close","near","short","medium","far" };
+        cursorAim = "EmptyCursor";        
+        class GunParticles {
+            class EffectSmokeLeft {
+                effectName = "MachineGun2";
+                positionName = "usti hlavne";
+                directionName = "gun_smoke_left";
+            };
+            class EffectSmokeRight {
+                effectName = "MachineGun2";
+                positionName = "usti hlavne";
+                directionName = "gun_smoke_right";
+            };
+            class EffectCartridge
+            {
+                positionName = "gun_eject";
+                directionName = "gun_eject_dir";
+                effectName = "MachineGunCartridge1";
+            };
         };
-        modes[] = { "Single" };
-        drySound[] = { "JSRSAPEX_P_Weaponsounds\dry\emr_dry", 0.56234097, 1, 50 };
-        reloadMagazineSound[] = { "JSRSAPEX_P_Weaponsounds\Reload\emr_reload", 0.96234101, 1, 100 };
-        changeFiremodeSound[] = { "JSRSAPEX_P_Weaponsounds\Noises\emr_FireMode", 0.56234097, 1, 50 };
-        class Single: Mode_SemiAuto {
-            dispersion = 0.00018;
-            soundContinuous = 0;
-            reloadTime = 1.2;
-            recoil = "recoil_single_gm6";
-            recoilProne = "recoil_single_prone_gm6";
-            sounds[] = { "StandardSound","SilencedSound" };
-            class BaseSoundModeType;
-            class StandardSound: BaseSoundModeType {
-                soundSetShot[] = { "JPEX_EMR_Shot_SoundSet", "JPEX_EMR_Tail_SoundSet", "JPEX_FRAME_RIFLE_REFLECTORS", "JPEX_FRAME_NOISE_LAYER_762MM" };
+        class Burst10 : Mode_FullAuto {
+            displayName = "Burst 10";
+            textureType = "semi";
+            reloadTime = 0.096;
+            sounds[] = { "StandardSound" };
+            class StandardSound {
+                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
             };
-            class SilencedSound: BaseSoundModeType {
-                soundSetShot[] = { "JPEX_EMR_Shot_Silenced_SoundSet", "JPEX_EMR_Tail_Silenced_SoundSet", "JPEX_FRAME_NOISE_LAYER_762MM" };
-            };
-            minRange = 2;
-            minRangeProbab = 0.1;
-            midRange = 250;
-            midRangeProbab = 0.69999999;
-            maxRange = 350;
-            maxRangeProbab = 0.050000001;
-            aiRateOfFire = 3;
-            aiRateOfFireDistance = 500;
+            autoFire = 1;
+            burst = 10;
+            minRange = 1000;
+            minRangeProbab = 0.03;
+            midRange = 2000;
+            midRangeProbab = 0.02;
+            maxRange = 3000;
+            maxRangeProbab = 0.01;
+            showToPlayer = 1;
         };
-        class WeaponSlotsInfo: WeaponSlotsInfo {
-            class MuzzleSlot: MuzzleSlot {
-                linkProxy = "\A3\data_f\proxies\weapon_slots\MUZZLE";
-                iconPicture = "\mas_us_rifle\ui\attachment_muzzle.paa";
-                iconPosition[] = { 0,0.40000001 };
-                iconPinpoint = "Center";
-                compatibleItems[] = { "muzzle_snds_B" };
-                iconScale = 0.2;
+        class Burst20 : Burst10 {
+            displayName = "20 Burst";
+            textureType = "burst";
+            burst = 20;
+        };
+        class Burst50 : Burst20 {
+            displayName = "Full";
+            textureType = "fullAuto";
+            burst = 1;
+        };
+        class close : close {
+            reloadTime = 0.096;
+            class StandardSound {
+                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
             };
-            class CowsSlot: CowsSlot {
-                linkProxy = "\A3\data_f\proxies\weapon_slots\TOP";
-                iconPicture = "\mas_us_rifle\ui\attachment_top.paa";
-                iconPosition[] = { 0.5,0.40000001 };
-                iconPinpoint = "Bottom";
-                compatibleitems[] = {
-                    "optic_Arco",
-                    "optic_aco",
-                    "optic_ACO_grn",
-                    "optic_hamr",
-                    "optic_Holosight",
-                    "optic_SOS",
-                    "optic_MRCO",
-                    "optic_Aco_smg",
-                    "optic_Holosight_smg",
-                    "optic_NVS",
-                    "optic_Nightstalker",
-                    "optic_tws",
-                    "optic_DMS",
-                    "optic_LRPS",
-                    "optic_AMS_khk",
-                    "optic_AMS_snd",
-                    "optic_AMS",
-                    "optic_KHS_blk",
-                    "optic_KHS_hex",
-                    "optic_KHS_old",
-                    "optic_KHS_tan",
-                    "UK3CB_BAF_SpecterLDS",
-                    "UK3CB_BAF_SpecterLDS_3D",
-                    "UK3CB_BAF_SpecterLDS_Dot",
-                    "UK3CB_BAF_SpecterLDS_Dot_3D",
-                    "UK3CB_BAF_Eotech",
-                    "UK3CB_BAF_SUSAT",
-                    "UK3CB_BAF_SUSAT_3D",
-                    "UK3CB_BAF_TA31F",
-                    "UK3CB_BAF_TA31F_3D",
-                    "UK3CB_BAF_TA31F_Hornbill",
-                    "UK3CB_BAF_TA31F_Hornbill_3D",
-                    "UK3CB_BAF_TA648",
-                    "UK3CB_BAF_TA648_308"
-                };
-                iconScale = 0.2;
+        };
+        class near : near {
+            reloadTime = 0.096;
+            class StandardSound {
+                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
             };
-            class PointerSlot: PointerSlot {
-                linkProxy = "\A3\data_f\proxies\weapon_slots\SIDE";
-                iconPicture = "\mas_us_rifle\ui\attachment_side.paa";
-                iconPinpoint = "Center";
-                iconPosition[] = { 0.2,0.40000001 };
-                compatibleitems[] = { "acc_flashlight","acc_pointer_IR" };
-                iconScale = 0.2;
+        };
+        class short : short{
+            reloadTime = 0.096;
+            class StandardSound {
+                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
             };
-            class UnderBarrelSlot: UnderBarrelSlot {
-                linkProxy = "\A3\Data_f_Mark\proxies\weapon_slots\UNDERBARREL";
-                iconPicture = "\mas_us_rifle\ui\attachment_bipod.paa";
-                iconPinpoint = "Center";
-                iconPosition[] = { 0.2,0.80000001 };
-                compatibleitems[] = { "bipod_01_F_snd","bipod_01_F_blk","bipod_01_F_mtp","bipod_02_F_blk","bipod_02_F_tan","bipod_02_F_hex","bipod_03_F_blk","bipod_03_F_oli" };
-                iconScale = 0.2;
+        };
+        class medium : medium {
+            reloadTime = 0.096;
+            class StandardSound {
+                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
             };
-            mass = 80;
+        };
+        class far : far {
+            reloadTime = 0.096;
+            class StandardSound {
+                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
+            };
         };
     };
-    class arifle_mas_fal: arifle_mas_lee {
-        author = "UKSF";
-        _generalMacro = "arifle_mas_fal";
-        displayname = "FN FAL";
-        model = "\mas_us_rifle\mas_fnfal";
-        reloadAction = "GestureReloadSMG_02";
-        handanim[] = { "OFP2_ManSkeleton","\mas_us_rifle\Anim\Handanim_fal.rtm" };
-        magazines[] = { "20Rnd_762x51_Mag" };
-        picture = "\mas_us_rifle\ui\gear_fal_x_ca.paa";
-        descriptionshort = "Assault Rifle<br />Caliber: 7.62x51 mm";
-        class Library {
-            libtextdesc = "The Fusil Automatique Leger or FAL is a self loading, selective fire battle rifle produced by the Belgian armaments manufacturer Fabrique Nationale de Herstal. During the Cold War it was adopted by many North Atlantic Treaty Organization NATO countries, with the notable exception of the United States. It is one of the most widely used rifles in history, having been used by more than 90 countries. The FAL was predominantly chambered for the 7.62�51mm NATO round, and because of its prevalence and widespread use among the armed forces of many NATO countries during the Cold War it was nicknamed The right arm of the Free World. A British Commonwealth derivative of the FN FAL has been produced under licence as the L1A1 Self Loading Rifle.";
+    class CUP_Vacannon_M621_AW159_veh: CannonCore {
+        class GunParticles {
+            class FirstEffect {
+                effectName = "machinegun1";
+                positionName = "muzzle_1";
+                directionName = "chamber_1";
+            };
+            class EffectCartridge {
+                positionName = "eject_1";
+                directionName = "eject_1_dir";
+                effectName = "MachineGunCartridge";
+            };
         };
-        recoil = "recoil_dmr_05";
-        modes[] = {
-            "Single",
-            "FullAuto"
+        cartridgePos = "eject_1";
+        cartridgeVel = "eject_1_dir";
+        class manual: MGun {
+            class StandardSound {
+                soundSetShot[] = { "DS_20mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
+                begin1[] = { "A3\Sounds_F\arsenal\weapons_vehicles\gatling_20mm\20mm_01_burst", 3.98107, 1, 1300, {2, 35740} };
+                soundBegin[] = { "begin1", 1 };
+                closure1[] = { "A3\Sounds_F\weapons\Closure\sfx10", 0.63095737, 1, 20 };
+                closure2[] = { "A3\sounds_f\weapons\closure\sfx11", 0.63095737, 1.2, 20 };
+                soundClosure[] = { "closure1", 0.5, "closure2", 0.5 };
+            };
+        };
+    };
+    class CUP_Vmlauncher_FFAR_veh;
+    class CUP_Vmlauncher_CRV7_FAT_veh: CUP_Vmlauncher_FFAR_veh {
+        class Far_AI: RocketPods {
+            soundFly[] = { QPATHTOF(data\sounds\crv7.ogg), 100, 0.8, 800 };
         };
         class Single: Mode_SemiAuto {
-            sounds[] = { "StandardSound","SilencedSound" };
-            class BaseSoundModeType;
-            class StandardSound: BaseSoundModeType {
-                soundSetShot[] = { "JPEX_EMR_Shot_SoundSet", "JPEX_EMR_Tail_SoundSet", "JPEX_FRAME_RIFLE_REFLECTORS", "JPEX_FRAME_NOISE_LAYER_762MM" };
-            };
-            class SilencedSound: BaseSoundModeType {
-                soundSetShot[] = { "JPEX_EMR_Shot_Silenced_SoundSet", "JPEX_EMR_Tail_Silenced_SoundSet", "JPEX_FRAME_NOISE_LAYER_762MM" };
-            };
-            reloadTime = 0.075000003;
-            dispersion = 0.00116;
-            recoil = "recoil_single_ebr";
-            recoilProne = "recoil_single_prone_ebr";
-            minRange = 2;
-            minRangeProbab = 0.5;
-            midRange = 200;
-            midRangeProbab = 0.69999999;
-            maxRange = 400;
-            maxRangeProbab = 0.30000001;
+            soundFly[] = { QPATHTOF(data\sounds\crv7.ogg), 100, 0.8, 800 };
         };
-        class FullAuto: Mode_FullAuto {
-            sounds[] = { "StandardSound","SilencedSound" };
-            class BaseSoundModeType;
-            class StandardSound: BaseSoundModeType {
-                soundSetShot[] = { "JPEX_EMR_Shot_SoundSet", "JPEX_EMR_Tail_SoundSet", "JPEX_FRAME_RIFLE_REFLECTORS", "JPEX_FRAME_NOISE_LAYER_762MM" };
-            };
-            class SilencedSound: BaseSoundModeType {
-                soundSetShot[] = { "JPEX_EMR_Shot_Silenced_SoundSet", "JPEX_EMR_Tail_Silenced_SoundSet", "JPEX_FRAME_NOISE_LAYER_762MM" };
-            };
-            reloadTime = 0.085000001;
-            dispersion = 0.00116;
-            recoil = "recoil_auto_ebr";
-            recoilProne = "recoil_auto_prone_ebr";
-            minRange = 0;
-            minRangeProbab = 0.89999998;
-            midRange = 15;
-            midRangeProbab = 0.69999999;
-            maxRange = 30;
-            maxRangeProbab = 0.1;
-            aiRateOfFire = 1e-006;
+        class Double: Single {
+            displayname = "Ripple 2";
         };
-        class WeaponSlotsInfo: WeaponSlotsInfo {
-            class MuzzleSlot: MuzzleSlot {
-                linkProxy = "\A3\data_f\proxies\weapon_slots\MUZZLE";
-                iconPicture = "\mas_us_rifle\ui\attachment_muzzle.paa";
-                iconPosition[] = { 0,0.40000001 };
-                iconPinpoint = "Center";
-                compatibleItems[] = { "muzzle_snds_H" };
-                iconScale = 0.2;
-            };
-            class CowsSlot: CowsSlot {
-                linkProxy = "\A3\data_f\proxies\weapon_slots\TOP";
-                iconPicture = "\mas_us_rifle\ui\attachment_top2.paa";
-                iconPosition[] = { 0.5,0.30000001 };
-                iconPinpoint = "Bottom";
-                compatibleitems[] = {
-                    "optic_Arco",
-                    "optic_aco",
-                    "optic_ACO_grn",
-                    "optic_hamr",
-                    "optic_Holosight",
-                    "optic_SOS",
-                    "optic_MRCO",
-                    "optic_Aco_smg",
-                    "optic_Holosight_smg",
-                    "optic_NVS",
-                    "optic_Nightstalker",
-                    "optic_tws",
-                    "optic_DMS",
-                    "optic_LRPS",
-                    "optic_AMS_khk",
-                    "optic_AMS_snd",
-                    "optic_AMS",
-                    "optic_KHS_blk",
-                    "optic_KHS_hex",
-                    "optic_KHS_old",
-                    "optic_KHS_tan",
-                    "UK3CB_BAF_SpecterLDS",
-                    "UK3CB_BAF_SpecterLDS_3D",
-                    "UK3CB_BAF_SpecterLDS_Dot",
-                    "UK3CB_BAF_SpecterLDS_Dot_3D",
-                    "UK3CB_BAF_Eotech",
-                    "UK3CB_BAF_SUSAT",
-                    "UK3CB_BAF_SUSAT_3D",
-                    "UK3CB_BAF_TA31F",
-                    "UK3CB_BAF_TA31F_3D",
-                    "UK3CB_BAF_TA31F_Hornbill",
-                    "UK3CB_BAF_TA31F_Hornbill_3D",
-                    "UK3CB_BAF_TA648",
-                    "UK3CB_BAF_TA648_308"
-                };
-                iconScale = 0.2;
-            };
-            class PointerSlot: PointerSlot {
-                linkProxy = "\A3\data_f\proxies\weapon_slots\SIDE";
-                iconPicture = "\mas_us_rifle\ui\attachment_side.paa";
-                iconPinpoint = "Center";
-                iconPosition[] = { 0.2,0.40000001 };
-                compatibleitems[] = { "acc_flashlight","acc_pointer_IR" };
-                iconScale = 0.2;
-            };
-            class UnderBarrelSlot: UnderBarrelSlot {
-                linkProxy = "\A3\Data_f_Mark\proxies\weapon_slots\UNDERBARREL";
-                iconPicture = "\mas_us_rifle\ui\attachment_bipod.paa";
-                iconPinpoint = "Center";
-                iconPosition[] = { 0.2,0.80000001 };
-                compatibleitems[] = { "bipod_01_F_snd","bipod_01_F_blk","bipod_01_F_mtp","bipod_02_F_blk","bipod_02_F_tan","bipod_02_F_hex","bipod_03_F_blk","bipod_03_F_oli" };
-                iconScale = 0.2;
-            };
-            mass = 80;
+        class Quadruple: Single {
+            displayname = "Ripple 4";
         };
-    };    
-
-    class rhs_weap_ak74m_camo_npz;
-    class rhs_weap_ak74m_camo_npz_acog: rhs_weap_ak74m_camo_npz {
-        class LinkedItems {
-            class LinkedItemsOptic {
-                slot = "CowsSlot";
-                item = "UK3CB_BAF_TA31F_3D";
+    };
+    class CUP_Vmlauncher_CRV7_HEISAP_veh: CUP_Vmlauncher_CRV7_FAT_veh {
+        magazines[] = { "CUP_12Rnd_CRV7_HEISAP_M","CUP_14Rnd_CRV7_HEISAP_M","CUP_19Rnd_CRV7_HEISAP_M","CUP_24Rnd_CRV7_HEISAP_M","CUP_38Rnd_CRV7_HEISAP_M","CUP_48Rnd_CRV7_HEISAP_M","CUP_76Rnd_CRV7_HEISAP_M","CUP_114Rnd_CRV7_HEISAP_M" };
+    };
+    class CUP_Vlmg_M240_veh: MGun {
+        displayName = "L7A2";
+        magazines[] = { "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M","CUP_200Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M","CUP_100Rnd_TE4_LRT4_White_Tracer_762x51_Belt_M","CUP_200Rnd_TE4_LRT4_White_Tracer_762x51_Belt_M","CUP_1200Rnd_TE4_White_Tracer_762x51_M240_M","CUP_100Rnd_TE4_White_Tracer_762x51_M240_M","CUP_1200Rnd_TE4_Red_Tracer_762x51_M240_M",,"UK3CB_BAF_762_200Rnd_T","UK3CB_BAF_762_200Rnd","UK3CB_BAF_762_200Rnd_Blank","UK3CB_BAF_762_100Rnd_T","UK3CB_BAF_762_100Rnd","UK3CB_BAF_762_100Rnd_Blank","UK3CB_BAF_762_100Rnd_EL","UK3CB_BAF_762_100Rnd_T_EL","UK3CB_BAF_762_200Rnd_EL","UK3CB_BAF_762_200Rnd_T_EL" };
+        class manual: MGun {
+            sounds[] = { "StandardSound" };
+            class StandardSound {
+                soundSetShot[] = { "DS_CoaxMG_Closure_SoundSet","DS_CoaxMG_Shot_SoundSet","DS_lmg1_Tail_SoundSet" };
             };
         };
     };
-    class rhs_weap_ak74m_gp25_npz;
-    class rhs_weap_ak74m_gp25_npz_acog: rhs_weap_ak74m_gp25_npz {
-        class LinkedItems {
-            class LinkedItemsOptic {
-                slot = "CowsSlot";
-                item = "UK3CB_BAF_TA31F_3D";
+    class HMG_M2;
+    class CUP_Vhmg_M2_veh: HMG_M2 {
+        displayName = "L111A1";
+        magazines[] = { "CUP_100Rnd_127x99_M","CUP_100Rnd_TE4_Red_Tracer_127x99_M","CUP_100Rnd_TE4_Green_Tracer_127x99_M","CUP_100Rnd_TE4_Yellow_Tracer_127x99_M","CUP_100Rnd_TE4_White_Tracer_127x99_M","CUP_100Rnd_TE1_Red_Tracer_127x99_M","CUP_100Rnd_TE1_Green_Tracer_127x99_M","CUP_100Rnd_TE1_Yellow_Tracer_127x99_M","CUP_100Rnd_TE1_White_Tracer_127x99_M","CUP_200Rnd_TE1_Red_Tracer_127x99_M","UK3CB_BAF_127_100Rnd" };
+        class manual: MGun {
+            class StandardSound {
+                soundSetShot[] = { "DS_HMG_Shot_SoundSet","DS_sniper1_Tail_SoundSet" };
             };
         };
     };
-    class arifle_mas_m4;
-    class arifle_mas_m4_acog: arifle_mas_m4 {
-        class LinkedItems {
-            class LinkedItemsOptic {
-                slot = "CowsSlot";
-                item = "UK3CB_BAF_TA31F_3D";
-            };
-            class LinkedItemsAcc {
-                slot = "PointerSlot";
-                item = "acc_flashlight";
+    class GMG_20mm;
+    class GMG_F;
+    class CUP_Vhmg_AGS30_veh: GMG_20mm {
+        class manual: GMG_F {
+            sounds[] = { "StandardSound" };
+            class StandardSound {
+                soundSetShot[] = { "DS_GMG_Shot_SoundSet","DS_mmg1_Tail_SoundSet" };
             };
         };
     };
-    class arifle_mas_m4c;
-    class arifle_mas_m4c_holo: arifle_mas_m4c {
-        class LinkedItems {
-            class LinkedItemsOptic {
-                slot = "CowsSlot";
-                item = "optic_Holosight";
-            };
-            class LinkedItemsAcc {
-                slot = "PointerSlot";
-                item = "acc_flashlight";
-            };
-            class LinkedItemsMuzzle {
-                slot = "MuzzleSlot";
-                item = "muzzle_snds_M";
+    class CUP_Vgmg_MK19_veh: CUP_Vhmg_AGS30_veh {
+        displayName = "L134A1";
+        magazines[] = { "CUP_48Rnd_40mm_MK19_M","CUP_32Rnd_40mm_MK19_M","CUP_96Rnd_40mm_MK19_M","UK3CB_BAF_32Rnd_40mm_G_Box" };
+    };
+    class MGunCore;
+    class CUP_Vlmg_M134_veh: MGunCore {
+        class LowROF: Mode_FullAuto {
+            sounds[] = { "StandardSound" };
+            class StandardSound {
+                soundSetShot[] = { "DS_Minigun762_Shot_SoundSet","DS_mmg1_Tail_SoundSet" };
             };
         };
-    };
-    class rhs_weap_ak105_npz;
-    class rhs_weap_ak105_npz_acog: rhs_weap_ak105_npz {
-        class LinkedItems {
-            class LinkedItemsOptic {
-                slot = "CowsSlot";
-                item = "UK3CB_BAF_TA31F_3D";
-            };
-        };
-    };
-    class arifle_mas_m4_gl;
-    class arifle_mas_m4_gl_acog: arifle_mas_m4_gl {
-        class LinkedItems {
-            class LinkedItemsOptic {
-                slot = "CowsSlot";
-                item = "UK3CB_BAF_TA31F_3D";
-            };
-            class LinkedItemsAcc {
-                slot = "PointerSlot";
-                item = "acc_flashlight";
-            };
-        };
-    };
-    class rhs_weap_ak103;
-    class rhs_weap_ak103_pso: rhs_weap_ak103 {
-        class LinkedItems {
-            class LinkedItemsOptic {
-                slot = "CowsSlot";
-                item = "rhs_acc_pso1m21";
-            };
-        };
-    };
-    class srifle_DMR_06_camo_F;
-    class srifle_DMR_06_camo_F_dms : srifle_DMR_06_camo_F {
-        class LinkedItems {
-            class LinkedItemsOptic {
-                slot = "CowsSlot";
-                item = "optic_DMS";
-            };
-        };
-    };
-    class launch_O_Titan_F;
-    class rhs_weap_strela: launch_O_Titan_F {
-        scope = 0;
-    };
-    class Launcher_Base_F;
-    class rhs_weap_rpg7: Launcher_Base_F {
-        minRange = 10;
-        midRange = 400;
-        maxRange = 900;
-    };
-
-    class R3F_Famas_G2_HG;
-    class R3F_Famas_G2_HG_Aimpoint: R3F_Famas_G2_HG {
-        class LinkedItems {
-            class LinkedItemsOptic {
-                slot = "CowsSlot";
-                item = "R3F_AIMPOINT";
-            };
-        };
-    };
-    class R3F_Famas_G2_M203;
-    class R3F_Famas_G2_M203_Aimpoint: R3F_Famas_G2_M203 {
-        class LinkedItems {
-            class LinkedItemsOptic {
-                slot = "CowsSlot";
-                item = "R3F_AIMPOINT";
-            };
-        };
-    };
-    class arifle_SPAR_01_GL_blk_F;
-    class arifle_SPAR_01_GL_blk_F_erco: arifle_SPAR_01_GL_blk_F {
-        class LinkedItems {
-            class LinkedItemsOptic {
-                slot = "CowsSlot";
-                item = "optic_ERCO_blk_F";
-            };
-        };
-    };
-    class R3F_Famas_G2;
-    class R3F_Famas_G2_Aimpoint: R3F_Famas_G2 {
-        class LinkedItems {
-            class LinkedItemsOptic {
-                slot = "CowsSlot";
-                item = "R3F_AIMPOINT";
-            };
-        };
-    };
-    class R3F_Minimi_762;
-    class R3F_Minimi_762_Aimpoint: R3F_Minimi_762 {
-        class LinkedItems {
-            class LinkedItemsOptic {
-                slot = "CowsSlot";
-                item = "R3F_AIMPOINT";
-            };
-        };
-    };
-    class R3F_FRF2_DES;
-    class R3F_FRF2_DES_Zeiss: R3F_FRF2_DES {
-        class LinkedItems {
-            class LinkedItemsOptic {
-                slot = "CowsSlot";
-                item = "R3F_ZEISS_DES";
-            };
-        };
-    };
-    class R3F_PGM_Hecate_II_DES;
-    class R3F_PGM_Hecate_II_DES_Zeiss: R3F_PGM_Hecate_II_DES {
-        class LinkedItems {
-            class LinkedItemsOptic {
-                slot = "CowsSlot";
-                item = "R3F_ZEISS_DES";
-            };
-        };
-    };
-    class arifle_SPAR_01_blk_F;
-    class arifle_SPAR_01_blk_F_eotech_lamp_bipod: arifle_SPAR_01_blk_F {
-        class LinkedItems {
-            class LinkedItemsOptic {
-                slot = "CowsSlot";
-                item = "UK3CB_BAF_Eotech";
-            };
-            class LinkedItemsAcc {
-                slot = "PointerSlot";
-                item = "acc_flashlight";
-            };
-            class LinkedItemsUnder {
-                slot = "UnderBarrelSlot";
-                item = "bipod_01_F_blk";
-            };
-        };
-    };
-    class arifle_SPAR_01_GL_blk_F_eotech: arifle_SPAR_01_GL_blk_F {
-        class LinkedItems {
-            class LinkedItemsOptic {
-                slot = "CowsSlot";
-                item = "UK3CB_BAF_Eotech";
-            };
-            class LinkedItemsAcc {
-                slot = "PointerSlot";
-                item = "acc_flashlight";
-            };
-        };
-    };
-    class arifle_SPAR_03_blk_F;
-    class arifle_SPAR_03_blk_F_dms_bipod: arifle_SPAR_03_blk_F {
-        class LinkedItems {
-            class LinkedItemsOptic {
-                slot = "CowsSlot";
-                item = "optic_DMS";
-            };
-            class LinkedItemsUnder {
-                slot = "UnderBarrelSlot";
-                item = "bipod_01_F_blk";
-            };
-        };
-    };
-    class arifle_SPAR_01_blk_F_erco_laser_bipod_suppressor: arifle_SPAR_01_blk_F {
-        class LinkedItems {
-            class LinkedItemsOptic {
-                slot = "CowsSlot";
-                item = "optic_ERCO_blk_F";
-            };
-            class LinkedItemsAcc {
-                slot = "PointerSlot";
-                item = "acc_pointer_IR";
-            };
-            class LinkedItemsMuzzle {
-                slot = "MuzzleSlot";
-                item = "muzzle_snds_M";
-            };
-            class LinkedItemsUnder {
-                slot = "UnderBarrelSlot";
-                item = "bipod_01_F_blk";
-            };
-        };
-    };
-    class arifle_SPAR_01_GL_blk_F_erco_laser_suppressor: arifle_SPAR_01_GL_blk_F {
-        class LinkedItems {
-            class LinkedItemsOptic {
-                slot = "CowsSlot";
-                item = "optic_ERCO_blk_F";
-            };
-            class LinkedItemsAcc {
-                slot = "PointerSlot";
-                item = "acc_pointer_IR";
-            };
-            class LinkedItemsMuzzle {
-                slot = "MuzzleSlot";
-                item = "muzzle_snds_M";
-            };
-        };
-    };
-    class arifle_SPAR_03_blk_F_dms_bipod_suppressor_laser: arifle_SPAR_03_blk_F {
-        class LinkedItems {
-            class LinkedItemsOptic {
-                slot = "CowsSlot";
-                item = "optic_DMS";
-            };
-            class LinkedItemsAcc {
-                slot = "PointerSlot";
-                item = "acc_pointer_IR";
-            };
-            class LinkedItemsMuzzle {
-                slot = "MuzzleSlot";
-                item = "muzzle_snds_B";
-            };
-            class LinkedItemsUnder {
-                slot = "UnderBarrelSlot";
-                item = "bipod_01_F_blk";
-            };
-        };
-    };
-    class R3F_PGM_Hecate_II_POLY;
-    class R3F_PGM_Hecate_II_POLY_J10: R3F_PGM_Hecate_II_POLY {
-        class LinkedItems {
-            class LinkedItemsOptic {
-                slot = "CowsSlot";
-                item = "R3F_J10_MILDOT_DES";
-            };
-        };
-    };
-    class R3F_Famas_F1_M203;
-    class R3F_Famas_F1_M203_Eotech: R3F_Famas_F1_M203 {
-        class LinkedItems {
-            class LinkedItemsOptic {
-                slot = "CowsSlot";
-                item = "R3F_EOTECH";
-            };
-        };
-    };
-    class R3F_Famas_F1_HG;
-    class R3F_Famas_F1_HG_Eotech: R3F_Famas_F1_HG {
-        class LinkedItems {
-            class LinkedItemsOptic {
-                slot = "CowsSlot";
-                item = "R3F_EOTECH";
+        class HighROF: LowROF {
+            sounds[] = { "StandardSound" };
+            class StandardSound {
+                soundSetShot[] = { "DS_Minigun762_Shot_SoundSet","DS_mmg1_Tail_SoundSet" };
             };
         };
     };
 
-    class R3F_MP5A5;
-    class R3F_MP5A5_Eotech: R3F_MP5A5 {
-        class LinkedItems {
-            class LinkedItemsOptic {
-                slot = "CowsSlot";
-                item = "R3F_EOTECH";
-            };
-        };
-    };
-
-    class Vest_NoCamo_Base;
-    class V_PlateCarrier1_rgr: Vest_NoCamo_Base {
-        class ItemInfo;
-    };
-    class SP_Modular2_Tan: V_PlateCarrier1_rgr {
-        class ItemInfo: ItemInfo {
-            containerClass = "Supply100";
-            mass = 80;
-            hiddenSelections[] = {
-                "camo"
-            };
-            class HitpointsProtectionInfo {
-                class Neck {
-                    hitpointName = "HitNeck";
-                    armor = 25;
-                    passThrough = 0.25;
-                };
-                class Arms {
-                    hitpointName = "HitArms";
-                    armor = 25;
-                    passThrough = 0.25;
-                };
-                class Chest {
-                    hitpointName = "HitChest";
-                    armor = 45;
-                    passThrough = 0.1;
-                };
-                class Diaphragm {
-                    hitpointName = "HitDiaphragm";
-                    armor = 45;
-                    passThrough = 0.1;
-                };
-                class Abdomen {
-                    hitpointName = "HitAbdomen";
-                    armor = 45;
-                    passThrough = 0.1;
-                };
-                class Body {
-                    hitpointName = "HitBody";
-                    passThrough = 0.1;
-                };
-            };
-        };
-    };
-
-    class SP_ECHHelmet_ATacsFG1: ItemCore {
-        scope = 0;
-        class ItemInfo;
-    };
-    class Inegal_Diablerie_Helmet: SP_ECHHelmet_ATacsFG1 {
-        scope = 2;
-        class ItemInfo: ItemInfo {
-            mass = 50;
-            modelSides[] = {0,1,2,3};
-            class HitpointsProtectionInfo {
-                class Head {
-                    hitpointName = "HitHead";
-                    armor = 25;
-                    passThrough = 0.1;
-                };
-            };
-        };
-    };
+    #include "CfgWeaponsPrivate.hpp"
 };

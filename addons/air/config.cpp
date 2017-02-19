@@ -4,31 +4,23 @@ class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
         units[] = {
-            "UKSF_Chinook_M134",
-            "UKSF_Chinook_M134M240",
-
-            "UKSF_Merlin",
-            "UKSF_Merlin_Armed",
-
-            "UK3CB_BAF_Wildcat_AH1_CAS_8A",
-            "UK3CB_BAF_Wildcat_AH1_HEL_8A",
-            "UK3CB_BAF_Wildcat_AH1_TRN_8A"
+            "CUP_B_Merlin_HC3_GB",
+            "CUP_B_Merlin_HC3_VIV_GB",
+            "CUP_B_Merlin_HC3_Armed_GB"
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "uksf_main", 
             "uksf_common",
-            "chinookpack",
-            "UK3CB_BAF_Vehicles_Weapons",
-            "UK3CB_BAF_Vehicles_Merlin",
-            "UK3CB_BAF_Vehicles_Wildcat",
-            "JSRSAPEX_CH67_Huron",
-            "JSRSAPEX_CH49_Mohawk",
-            "JSRSAPEX_WY55_Hellcat"
+            "uksf_gear",
+            "CUP_AirVehicles_CH47",
+            "CUP_AirVehicles_HC3",
+            "CUP_AirVehicles_Merlin",
+            "CUP_AirVehciles_AW159",
+            "CUP_AirVehicles_C130J"
         };
         author = QUOTE(UKSF);
-        authors[] = {"Beswick.T"};
+        authors[] = { "Beswick.T" };
         url = QUOTE(www.uk-sf.com);
         VERSION_CONFIG;
     };

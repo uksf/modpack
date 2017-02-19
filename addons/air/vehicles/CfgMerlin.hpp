@@ -1,100 +1,82 @@
-//Merlin
-class UK3CB_BAF_Merlin_HC3_Base;
-class UK3CB_BAF_Merlin_HC3_Unarmed_Base : UK3CB_BAF_Merlin_HC3_Base {
-    class Turrets;
-};
-class UK3CB_BAF_Merlin_HC3_Armed_Base : UK3CB_BAF_Merlin_HC3_Base {
-    class Turrets;
-};
-class UK3CB_BAF_Merlin_HC3_18 : UK3CB_BAF_Merlin_HC3_Unarmed_Base {
-    scope = 0;
-    scopeCurator = 0;
-    class Turrets : Turrets {
-        class CopilotTurret;
-        class CargoTurret_13;
-        class CargoTurret_14;
-    };
-};
-class UK3CB_BAF_Merlin_HC3_18_GPMG : UK3CB_BAF_Merlin_HC3_Armed_Base {
-    scope = 0;
-    scopeCurator = 0;
-    class Turrets : Turrets {
-        class RampGun;
-        class DoorGunRight;
-        class DoorGunLeft;
-        class CopilotTurret;
-    };
-};
-class UK3CB_BAF_Merlin_HC3_24 : UK3CB_BAF_Merlin_HC3_Unarmed_Base {
-    scope = 0;
-    scopeCUrator = 0;
-};
-class UK3CB_BAF_Merlin_HC3_32 : UK3CB_BAF_Merlin_HC3_Unarmed_Base {
-    scope = 0;
-    scopeCUrator = 0;
-};
-class UK3CB_BAF_Merlin_HC3_CSAR : UK3CB_BAF_Merlin_HC3_Armed_Base {
-    scope = 0;
-    scopeCUrator = 0;
-};
-
-class UKSF_Merlin : UK3CB_BAF_Merlin_HC3_18 {
-    scope = 2;
-    scopeCurator = 2;
-    author = "UKSF";
-    faction = "UKSF_Clan";
-    displayname = "AW101 Merlin HC3";
-    editorPreview = QPATHTOEF(common,data\previews\UKSF_Merlin.jpg);
+class CUP_Merlin_HC3_Base: Helicopter_Base_H {
+    maxspeed = 311;
     cyclicAsideForceCoef = 0.8;
     cyclicForwardForceCoef = 0.8;
-    class Turrets : Turrets {
-        class CopilotTurret : CopilotTurret {
-            lodTurnedIn = 1000;
-            lodTurnedOut = 1000;
-        };
-        class CargoTurret_13 : CargoTurret_13 {};
-        class CargoTurret_14 : CargoTurret_14 {};
+    class ViewPilot : ViewPilot {
+        minFov = 0.25;
+        maxFov = 1.25;
+        initFov = 0.95;
     };
-    #include "MFDMerlin.hpp"
-    unitInfoType = "Rsc_UKSF_Air_Limited";
-    unitInfoTypeLite = "Rsc_UKSF_Air_Limited";
     landingSoundInt0[]= { "A3\Sounds_F\vehicles\air\noises\landing_wheels_large_int1", 0.25, 1, 50 };
     landingSoundInt1[]= { "A3\Sounds_F\vehicles\air\noises\landing_wheels_large_int2", 0.25, 1, 50 };
     landingSoundInt[]= { "landingSoundInt0", 0.5, "landingSoundInt1", 0.5 };
     landingSoundOut0[]= { "A3\Sounds_F\vehicles\air\noises\landing_wheels_ext1", 0.4, 1, 50 };
     landingSoundOut1[]= { "A3\Sounds_F\vehicles\air\noises\landing_wheels_ext2", 0.4, 1, 50 };
     landingSoundOut[]= { "landingSoundOut0", 0.5, "landingSoundOut1", 0.5 };
+    class Sounds {
+        class EngineExt {
+            sound[] = { "A3\Sounds_F\vehicles\air\Heli_Transport_02\Heli_Transport_02_ext_engine", 1.5, 1, 1500 };
+            frequency = "rotorSpeed";
+            volume = "camPos*(rotorSpeed-0.72)*4";
+        };
+        class RotorExt {
+            sound[] = { "A3\Sounds_F\vehicles\air\Heli_Transport_02\Heli_Transport_02_ext_rotor", 2, 1, 2500 };
+            frequency = "rotorSpeed * rotorSpeed * (1 - rotorThrust/6)";
+            volume = "camPos*(0 max (rotorSpeed-0.1))*(1 + rotorThrust)";
+            cone[] = { 1.6, 3.14, 1.6, 0.95 };
+        };
+        class RotorNoiseExt {
+            sound[] = { "A3\Sounds_F\vehicles\air\Heli_Transport_02\rotor_swist", 1, 1, 1000 };
+            frequency = 1;
+            volume = "camPos * (rotorThrust factor [0.7, 0.9])";
+            cone[] = { 0.7, 1.3, 1, 0 };
+        };
+        class EngineInt {
+            sound[] = { "A3\Sounds_F\vehicles\air\Heli_Transport_02\Heli_Transport_02_int_engine", 1, 1 };
+            frequency = "rotorSpeed";
+            volume = "(1-camPos)*(rotorSpeed-0.75)*4";
+        };
+        class RotorInt {
+            sound[] = { "A3\Sounds_F\vehicles\air\Heli_Transport_02\Heli_Transport_02_int_rotor", 1.5, 1 };
+            frequency = "rotorSpeed * rotorSpeed * (1 - rotorThrust/6)";
+            volume = "(1-camPos)*(0 max (rotorSpeed-0.1))*(1 + rotorThrust)";
+        };
+    };
+    unitInfoType = "Rsc_UKSF_Air_Limited";
+    unitInfoTypeLite = "Rsc_UKSF_Air_Limited";
+    #include "MFDMerlin.hpp"
+    class ACE_Actions : ACE_Actions {
+        class ACE_MainActions: ACE_MainActions {
+            position = "[0,0,1.5]";
+        };
+    };
 };
-class UKSF_Merlin_Armed : UK3CB_BAF_Merlin_HC3_18_GPMG {
+class CUP_Merlin_HC3A_Base: CUP_Merlin_HC3_Base {};
+class CUP_Merlin_HC3_VIV_Base: CUP_Merlin_HC3_Base {};
+class CUP_Merlin_HC3_Armed_Base: CUP_Merlin_HC3_Base {};
+class CUP_Merlin_HC3A_Armed_Base: CUP_Merlin_HC3_Base {};
+class CUP_Merlin_HM2_Base: CUP_Merlin_HC3_Base {};
+class CUP_B_Merlin_HC3_GB : CUP_Merlin_HC3_Base {
     scope = 2;
     scopeCurator = 2;
-    author = "UKSF";
-    faction = "UKSF_Clan";
-    displayname = "AW101 Merlin HC3 Armed";
-    editorPreview = QPATHTOEF(common,data\previews\UKSF_Merlin.jpg);
-    cyclicAsideForceCoef = 0.9;
-    cyclicForwardForceCoef = 0.9;
-    class Turrets : Turrets {
-        class RampGun : RampGun {
-            maxHorizontalRotSpeed = 2;
-            maxVerticalRotSpeed = 2;
-            maxElev = 30;
-            maxOutElev = 20;
-        };
-        class CopilotTurret : CopilotTurret {
-            lodTurnedIn = 1000;
-            lodTurnedOut = 1000;
-        };
-        class DoorGunRight : DoorGunRight {};
-        class DoorGunLeft : DoorGunLeft {};
-    };
-    #include "MFDMerlin.hpp"
-    unitInfoType = "Rsc_UKSF_Air_Limited";
-    unitInfoTypeLite = "Rsc_UKSF_Air_Limited";
-    landingSoundInt0[]= { "A3\Sounds_F\vehicles\air\noises\landing_wheels_large_int1", 0.25, 1, 50 };
-    landingSoundInt1[]= { "A3\Sounds_F\vehicles\air\noises\landing_wheels_large_int2", 0.25, 1, 50 };
-    landingSoundInt[]= { "landingSoundInt0", 0.5, "landingSoundInt1", 0.5 };
-    landingSoundOut0[]= { "A3\Sounds_F\vehicles\air\noises\landing_wheels_ext1", 0.4, 1, 50 };
-    landingSoundOut1[]= { "A3\Sounds_F\vehicles\air\noises\landing_wheels_ext2", 0.4, 1, 50 };
-    landingSoundOut[]= { "landingSoundOut0", 0.5, "landingSoundOut1", 0.5 };
+};
+class CUP_B_Merlin_HC3_VIV_GB : CUP_Merlin_HC3_VIV_Base {
+    scope = 2;
+    scopeCurator = 2;
+};
+class CUP_B_Merlin_HC3A_GB : CUP_Merlin_HC3A_Base {
+    scope = 1;
+    scopeCurator = 0;
+};
+class CUP_B_Merlin_HC3_Armed_GB : CUP_Merlin_HC3_Armed_Base {
+    scope = 2;
+    scopeCurator = 2;
+};
+class CUP_B_Merlin_HC3A_Armed_GB : CUP_Merlin_HC3A_Armed_Base {
+    scope = 1;
+    scopeCurator = 0;
+};
+class CUP_B_Merlin_HC4_GB : CUP_Merlin_HM2_Base {
+    scope = 1;
+    scopeCurator = 0;
 };
