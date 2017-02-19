@@ -1,0 +1,4 @@
+* text=auto
+*.cpp text
+*.hpp text
+*.sqf text
