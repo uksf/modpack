@@ -34,20 +34,6 @@ class CfgVehicles {
                     showDisabled = 1;
                     priority = 1;
                 };
-                class ACE_equipPilot {
-                    displayName = "Equip Pilot";
-                    condition = QUOTE(!(_player getVariable [ARR_2(QQGVAR(loadoutPilot), false)]));
-                    statement = QUOTE(call FUNC(equipPilot));
-                    showDisabled = 1;
-                    priority = 1;
-                };
-                class ACE_equipATC {
-                    displayName = "Equip ATC";
-                    condition = QUOTE(_player getVariable [ARR_2(QQGVAR(loadoutPilot), true)]);
-                    statement = QUOTE(call FUNC(equipATC));
-                    showDisabled = 1;
-                    priority = 1;
-                };
             };
         };
     };

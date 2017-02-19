@@ -3,7 +3,7 @@
     // For New CBA:
     #define DEBUG_SYNCHRONOUS
     // For Old CBA:
-    #define cba_fnc_log { params ["_file","_lineNum","_message"]; diag_log [diag_frameNo, diag_tickTime, time,  _file + ":"+str(_lineNum + 1), _message]; }
+    #define CBA_fnc_log { params ["_file","_lineNum","_message"]; diag_log [diag_frameNo, diag_tickTime, time,  _file + ":"+str(_lineNum + 1), _message]; }
 #endif
 
 #include "\x\cba\addons\main\script_macros_common.hpp"
