@@ -42,5 +42,3 @@ Best talk to SqnLdr.Beswick.T for help on setting this up.
 Use our [Issue Tracker](https://github.com/tbeswick96/UKSF-SR5-7-11/issues) to report a bug, propose a feature, or suggest changes to the existing ones. See also:
 - [How to report an issue](https://github.com/tbeswick96/UKSF-SR5-7-11/wiki/How-to-report-an-issue)
 - [How to make a feature request](https://github.com/tbeswick96/UKSF-SR5-7-11/wiki/How-to-make-a-feature-request)
-
-
