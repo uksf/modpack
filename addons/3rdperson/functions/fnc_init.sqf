@@ -17,4 +17,4 @@
     if (cameraView == "EXTERNAL" && cameraOn == player && vehicle player == player) then {
         cameraOn switchCamera "INTERNAL";
     };
-}, 0, []] call CBA_fnc_addPerFrameHandler;
+}, 0, []] call cba_fnc_addPerFrameHandler;

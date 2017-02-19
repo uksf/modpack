@@ -46,9 +46,9 @@ if (isServer) then {
                             [_vehicle turretUnit [_x]] join grpNull;
                             deleteVehicle (_vehicle turretUnit [_x]);
                         } forEach _turrets;
-                    }, [_vehicle, _turrets], 2] call CBA_fnc_waitAndExecute;
+                    }, [_vehicle, _turrets], 2] call cba_fnc_waitAndExecute;
                 };
-            }, [_vehicle, _men, _turrets], 2] call CBA_fnc_waitAndExecute;
+            }, [_vehicle, _men, _turrets], 2] call cba_fnc_waitAndExecute;
         };
-    }, [_vehicle, _units, _turrets, _side], 2] call CBA_fnc_waitAndExecute;
+    }, [_vehicle, _units, _turrets, _side], 2] call cba_fnc_waitAndExecute;
 };

@@ -4,7 +4,7 @@ class CfgWeapons {
         class manual: CannonCore {
             reloadTime = 0.1;
             class StandardSound {
-                soundSetShot[] = {"DS_20mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset"};
+                soundSetShot[] = { "DS_20mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
             };
             soundContinuous = 0;
         };

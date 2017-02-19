@@ -1,19 +1,19 @@
 class RscControlsGroup;
 class RscText;
-class RangeText : RscText {};
+class RangeText: RscText {};
 class RscInGameUI {
     class RscUnitInfo;
-    class RscOptics_UAV_gunnerAdvanced : RscUnitInfo {
+    class RscOptics_UAV_gunnerAdvanced: RscUnitInfo {
         idd = 300;
         controls[] = { "CA_Zeroing", "CA_IGUI_elements_group", "CA_VehicleToggles" };
         class VScrollbar;
         class HScrollbar;
-        class CA_IGUI_elements_group : RscControlsGroup {
+        class CA_IGUI_elements_group: RscControlsGroup {
             idc = 170;
-            class VScrollbar : VScrollbar {
+            class VScrollbar: VScrollbar {
                 width = 0;
             };
-            class HScrollbar : HScrollbar {
+            class HScrollbar: HScrollbar {
                 height = 0;
             };
             x = "0 *         (0.01875 * SafezoneH) +         (SafezoneX + ((SafezoneW - SafezoneH) / 2))";
@@ -21,7 +21,7 @@ class RscInGameUI {
             w = "53.5 *         (0.01875 * SafezoneH)";
             h = "40 *         (0.025 * SafezoneH)";
             class controls {
-                class CA_Distance : RscText {
+                class CA_Distance: RscText {
                     idc = 151;
                     style = 2;
                     sizeEx = "0.0295*SafezoneH";
@@ -32,7 +32,7 @@ class RscInGameUI {
                     w = "4 *         (0.01875 * SafezoneH)";
                     h = "1.2 *         (0.025 * SafezoneH)";
                 };
-                class CA_Speed : RangeText {
+                class CA_Speed: RangeText {
                     idc = 188;
                     style = 2;
                     sizeEx = "0.0295*SafezoneH";
@@ -46,7 +46,7 @@ class RscInGameUI {
                     w = "4 *         (0.01875 * SafezoneH)";
                     h = "1.2 *         (0.025 * SafezoneH)";
                 };
-                class CA_Alt : RangeText {
+                class CA_Alt: RangeText {
                     idc = 189;
                     style = 2;
                     source = "altitudeASL";
@@ -60,7 +60,7 @@ class RscInGameUI {
                     w = "4 *         (0.01875 * SafezoneH)";
                     h = "1.2 *         (0.025 * SafezoneH)";
                 };
-                class ValueTime : RangeText {
+                class ValueTime: RangeText {
                     idc = 190;
                     text = "20:28:35";
                     font = "EtelkaMonospacePro";
@@ -72,7 +72,7 @@ class RscInGameUI {
                     w = "6 *         (0.01875 * SafezoneH)";
                     h = "1 *         (0.025 * SafezoneH)";
                 };
-                class CA_VisionMode : RscText {
+                class CA_VisionMode: RscText {
                     idc = 152;
                     style = 0;
                     sizeEx = "0.0295*SafezoneH";
@@ -85,7 +85,7 @@ class RscInGameUI {
                     w = "4 *         (0.01875 * SafezoneH)";
                     h = "1.0 *         (0.025 * SafezoneH)";
                 };
-                class CA_FlirMode : RscText {
+                class CA_FlirMode: RscText {
                     idc = 153;
                     style = 0;
                     sizeEx = "0.0295*SafezoneH";
@@ -98,7 +98,7 @@ class RscInGameUI {
                     w = "4.5 *         (0.01875 * SafezoneH)";
                     h = "1.0 *         (0.025 * SafezoneH)";
                 };
-                class TgT_Grid_text : RangeText {
+                class TgT_Grid_text: RangeText {
                     idc = 1005;
                     text = "TGT:";
                     font = "EtelkaMonospacePro";
@@ -110,7 +110,7 @@ class RscInGameUI {
                     w = "6 *         (0.01875 * SafezoneH)";
                     h = "1 *         (0.025 * SafezoneH)";
                 };
-                class TGT_ValueGrid : RangeText {
+                class TGT_ValueGrid: RangeText {
                     idc = 172;
                     font = "EtelkaMonospacePro";
                     colorText[] = { 0.70599997,0.074500002,0.0196,0.80000001 };
@@ -122,7 +122,7 @@ class RscInGameUI {
                     w = "6 *         (0.01875 * SafezoneH)";
                     h = "1 *         (0.025 * SafezoneH)";
                 };
-                class OWN_Grid_text : RangeText {
+                class OWN_Grid_text: RangeText {
                     idc = 1005;
                     text = "OWN:";
                     font = "EtelkaMonospacePro";
@@ -134,7 +134,7 @@ class RscInGameUI {
                     w = "6 *         (0.01875 * SafezoneH)";
                     h = "1 *         (0.025 * SafezoneH)";
                 };
-                class OWN_ValueGrid : RangeText {
+                class OWN_ValueGrid: RangeText {
                     idc = 171;
                     font = "EtelkaMonospacePro";
                     colorText[] = { 0.15000001,1,0.15000001,0.80000001 };
@@ -146,7 +146,7 @@ class RscInGameUI {
                     w = "6 *         (0.01875 * SafezoneH)";
                     h = "1 *         (0.025 * SafezoneH)";
                 };
-                class CA_Laser : RscText {
+                class CA_Laser: RscText {
                     idc = 158;
                     style = "0x30 + 0x800";
                     sizeEx = "0.038*SafezoneH";
@@ -159,7 +159,7 @@ class RscInGameUI {
                     w = "12.5 *         (0.01875 * SafezoneH)";
                     h = "12 *         (0.025 * SafezoneH)";
                 };
-                class CA_Heading : RscText {
+                class CA_Heading: RscText {
                     idc = 156;
                     style = 0;
                     sizeEx = "0.038*SafezoneH";

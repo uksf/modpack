@@ -34,7 +34,7 @@ GVAR(afterburnerHandler) = [{
     _args params ["_plane"];
 
     if (!alive _plane || {!isEngineOn _plane} || {_plane animationphase "switch_afterburner" <= 0.1}) exitWith {
-        [_idPFH] call CBA_fnc_removePerFrameHandler;    
+        [_idPFH] call cba_fnc_removePerFrameHandler;    
         _plane animate ["afterburner_strech", 0];
         [{
             (_this select 0) animationphase "afterburner_strech" <= 0.1
@@ -43,7 +43,7 @@ GVAR(afterburnerHandler) = [{
             _plane animate ["burner_fire_hide", 1];
             _plane animate ["burner_fire_high_hide", 0];
             _plane animate ["afterburner_userhide", 1];
-        }, [_plane]] call CBA_fnc_waitUntilAndExecute;
+        }, [_plane]] call cba_fnc_waitUntilAndExecute;
     };
 
     private _acceleration = 0.6;
@@ -65,4 +65,4 @@ GVAR(afterburnerHandler) = [{
     if (fuel _plane > 0) then {
         _plane setFuel ((fuel _plane) - ((1 / FUEL_LOSS_FACTOR) * (3 * TIME_FACTOR)));
     };
-}, 0.05, [_plane]] call CBA_fnc_addPerFrameHandler;
+}, 0.05, [_plane]] call cba_fnc_addPerFrameHandler;

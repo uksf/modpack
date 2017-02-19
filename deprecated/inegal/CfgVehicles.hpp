@@ -16,7 +16,7 @@ class CfgVehicles {
             "Throw",
             "Put"
         };
-        magazines[]={};
+        magazines[] = {};
         respawnMagazines[] = {};
         hiddenSelections[] = { "camo" };
         hiddenSelectionsTextures[] = { "\A3\Characters_F\Common\Data\basicbody_black_co.paa" };

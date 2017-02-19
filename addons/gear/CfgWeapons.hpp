@@ -713,7 +713,7 @@ class CfgWeapons {
                 effectName = "MachineGunCartridge1";
             };
         };
-        class Burst10 : Mode_FullAuto {
+        class Burst10: Mode_FullAuto {
             displayName = "Burst 10";
             textureType = "semi";
             reloadTime = 0.096;
@@ -731,41 +731,41 @@ class CfgWeapons {
             maxRangeProbab = 0.01;
             showToPlayer = 1;
         };
-        class Burst20 : Burst10 {
+        class Burst20: Burst10 {
             displayName = "20 Burst";
             textureType = "burst";
             burst = 20;
         };
-        class Burst50 : Burst20 {
+        class Burst50: Burst20 {
             displayName = "Full";
             textureType = "fullAuto";
             burst = 1;
         };
-        class close : close {
+        class close: close {
             reloadTime = 0.096;
             class StandardSound {
                 soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
             };
         };
-        class near : near {
+        class near: near {
             reloadTime = 0.096;
             class StandardSound {
                 soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
             };
         };
-        class short : short{
+        class short: short{
             reloadTime = 0.096;
             class StandardSound {
                 soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
             };
         };
-        class medium : medium {
+        class medium: medium {
             reloadTime = 0.096;
             class StandardSound {
                 soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
             };
         };
-        class far : far {
+        class far: far {
             reloadTime = 0.096;
             class StandardSound {
                 soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };

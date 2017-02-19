@@ -161,6 +161,6 @@ class Genfor_Tank_ZSU: O_mas_ZSU_OPF_01 {
     class TransportBackpacks {};
     class eventhandlers {
         init = "this setSkill [""aimingAccuracy"", 0.05]; this setSkill [""aimingSpeed"", 0.05]; this setSkill [""aimingshake"", 0.05]; this setSkill [""spotTime"", 0.5];";
-        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };

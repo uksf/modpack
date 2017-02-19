@@ -217,7 +217,7 @@ class MFD {
                     type = "text";
                     align = "right";
                     source = "static";
-                    text = "TOF=";
+                    text = "TOF = ";
                     scale = 1;
                     pos[] = { { 0.61,0.92 },1 };
                     right[] = { { 0.65,0.92 },1 };
@@ -287,7 +287,7 @@ class MFD {
                     down[] = { { 0.07,0.225 },1 };
                 };
             };
-            class AltNumber : SpeedNumber {
+            class AltNumber: SpeedNumber {
                 align = "right";
                 source = "altitudeAGL";
                 sourceScale = 3.2808399;
@@ -324,7 +324,7 @@ class MFD {
                 width = 3;
                 points[] = { { "VspeedBone",{ -0.01,0.0 },1 },{ "VspeedBone",{ -0.025,-0.015 },1 },{ "VspeedBone",{ -0.025,0.015 },1 },{ "VspeedBone",{ -0.01,0.0 },1 },{} };
             };
-            class HeadingNumber : SpeedNumber {
+            class HeadingNumber: SpeedNumber {
                 source = "heading";
                 sourceScale = 1;
                 align = "center";

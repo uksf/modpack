@@ -64,4 +64,4 @@ params ["_unit"];
             _unit setDir _dir;
         };
     };
-}, [_unit], (30 + random 10)] call CBA_fnc_waitAndExecute;
+}, [_unit], (30 + random 10)] call cba_fnc_waitAndExecute;

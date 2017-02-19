@@ -156,8 +156,8 @@ class CfgVehicles {
                 ace_fcs_MaxDistance = 4500;
                 discreteDistance[] = {};
                 discreteDistanceInitIndex = 0;
-                minElev     = -60;         maxElev = +11;             initElev = 0;
-                minTurn     = -110;     maxTurn = +110;         initTurn = 0;
+                minElev = -60;         maxElev = +11;             initElev = 0;
+                minTurn = -110;     maxTurn = +110;         initTurn = 0;
                 weapons[] = { "CUP_weapon_mastersafe", "CUP_Laserdesignator_mounted", "CUP_Vacannon_M230_veh_Enhanced", "CUP_AGM114L_Hellfire_II_Launcher_W", "CUP_AGM114N_Hellfire_II_Launcher_W" };
                 magazines[] = { "Laserbatteries", "CUP_1200Rnd_TE1_Red_Tracer_30x113mm_M789_HEDP_M", "CUP_4Rnd_AGM114L_Hellfire_II_M", "CUP_4Rnd_AGM114N_Hellfire_II_M" };
                 gunnerAction = "AH64_gunner_EP1";
@@ -233,8 +233,8 @@ class CfgVehicles {
                 memoryPointsGetInGunnerDir = "pos cargo dir right";    
                 gunnerName = "Passenger (Right Jumpseat)";
                 proxyIndex = 1;
-                minElev     = -50;         maxElev     = +15;         initElev = 0;
-                minTurn     = 30;         maxTurn = -30;         initTurn = 0;
+                minElev = -50;         maxElev = +15;         initElev = 0;
+                minTurn = 30;         maxTurn = -30;         initTurn = 0;
                 isPersonTurret = 0;                        
                 ejectDeadGunner = 0;                    
                 enabledByAnimationSource = "";
@@ -253,8 +253,8 @@ class CfgVehicles {
                 memoryPointsGetInGunnerDir = "pos cargo dir left";        
                 gunnerName = "Passenger (Left Jumpseat)";
                 proxyIndex = 2;
-                minElev     = -50;         maxElev     = +15;         initElev = 0;
-                minTurn     = -30;         maxTurn = 30;         initTurn = 0;
+                minElev = -50;         maxElev = +15;         initElev = 0;
+                minTurn = -30;         maxTurn = 30;         initTurn = 0;
             };
         };
         hiddenSelections[] = { "camo1", "id1", "id2", "id3", "decals", "hellfire_pods1", "hellfire_pods2", "crv7_pods1", "crv7_pods2" };
@@ -502,7 +502,7 @@ class CfgVehicles {
         };              
         class UserActions {
             class jammerSemi {
-                displayName = "<t color='#217cd1'>Jammer Semi-Auto</t>";
+                displayName = "<t color = '#217cd1'>Jammer Semi-Auto</t>";
                 position = "zamerny";
                 radius = 10;
                 priority = 4;
@@ -512,7 +512,7 @@ class CfgVehicles {
                 statement = QUOTE(this setVariable [ARR_3(QQGVAR(jammerMode),1,true)]);
             };
             class jammerAuto {
-                displayName = "<t color='#217cd1'>Jammer Auto</t>";
+                displayName = "<t color = '#217cd1'>Jammer Auto</t>";
                 position = "zamerny";
                 radius = 10;
                 priority = 4;
@@ -522,7 +522,7 @@ class CfgVehicles {
                 statement = QUOTE(this setVariable [ARR_3(QQGVAR(jammerMode),2,true)]);
             };
             class jammerOff {
-                displayName = "<t color='#217cd1'>Jammer Off</t>";
+                displayName = "<t color = '#217cd1'>Jammer Off</t>";
                 position = "zamerny";
                 radius = 10;
                 priority = 4;

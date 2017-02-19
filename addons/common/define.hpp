@@ -100,21 +100,21 @@ class ACE_gui_editBase
     y = 0;
     h = 0.04;
     w = 0.2;
-    colorBackground[] =
+    colorBackground[] = 
     {
             0,
             0,
             0,
             1
     };
-    colorText[] =
+    colorText[] = 
     {
             0.95,
             0.95,
             0.95,
             1
     };
-    colorSelection[] =
+    colorSelection[] = 
     {
             "(profilenamespace getVariable ['GUI_BCG_RGB_R',0.3843])",
             "(profilenamespace getVariable ['GUI_BCG_RGB_G',0.7019])",
@@ -128,7 +128,7 @@ class ACE_gui_editBase
     font = "RobotoCondensed";
     shadow = 2;
     sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
-    colorDisabled[] =
+    colorDisabled[] = 
     {
             1,
             1,
@@ -292,7 +292,7 @@ class ACE_gui_listBoxBase: RscListBox{
 class ACE_gui_listNBox {
   access = 0;
   type = CT_LISTNBOX;// 102;
-  style =ST_MULTI;
+  style = ST_MULTI;
   w = 0.4;
   h = 0.4;
   font = FONT_ACE;

@@ -47,7 +47,7 @@ class CfgMagazines {
     };
 
     class 2Rnd_GBU12_LGB;
-    class 1Rnd_GBU12_LGB : 2Rnd_GBU12_LGB {
+    class 1Rnd_GBU12_LGB: 2Rnd_GBU12_LGB {
         count = 1;
     };   
 

@@ -2,17 +2,17 @@ class CUP_Merlin_HC3_Base: Helicopter_Base_H {
     maxspeed = 311;
     cyclicAsideForceCoef = 0.8;
     cyclicForwardForceCoef = 0.8;
-    class ViewPilot : ViewPilot {
+    class ViewPilot: ViewPilot {
         minFov = 0.25;
         maxFov = 1.25;
         initFov = 0.95;
     };
-    landingSoundInt0[]= { "A3\Sounds_F\vehicles\air\noises\landing_wheels_large_int1", 0.25, 1, 50 };
-    landingSoundInt1[]= { "A3\Sounds_F\vehicles\air\noises\landing_wheels_large_int2", 0.25, 1, 50 };
-    landingSoundInt[]= { "landingSoundInt0", 0.5, "landingSoundInt1", 0.5 };
-    landingSoundOut0[]= { "A3\Sounds_F\vehicles\air\noises\landing_wheels_ext1", 0.4, 1, 50 };
-    landingSoundOut1[]= { "A3\Sounds_F\vehicles\air\noises\landing_wheels_ext2", 0.4, 1, 50 };
-    landingSoundOut[]= { "landingSoundOut0", 0.5, "landingSoundOut1", 0.5 };
+    landingSoundInt0[] = { "A3\Sounds_F\vehicles\air\noises\landing_wheels_large_int1", 0.25, 1, 50 };
+    landingSoundInt1[] = { "A3\Sounds_F\vehicles\air\noises\landing_wheels_large_int2", 0.25, 1, 50 };
+    landingSoundInt[] = { "landingSoundInt0", 0.5, "landingSoundInt1", 0.5 };
+    landingSoundOut0[] = { "A3\Sounds_F\vehicles\air\noises\landing_wheels_ext1", 0.4, 1, 50 };
+    landingSoundOut1[] = { "A3\Sounds_F\vehicles\air\noises\landing_wheels_ext2", 0.4, 1, 50 };
+    landingSoundOut[] = { "landingSoundOut0", 0.5, "landingSoundOut1", 0.5 };
     class Sounds {
         class EngineExt {
             sound[] = { "A3\Sounds_F\vehicles\air\Heli_Transport_02\Heli_Transport_02_ext_engine", 1.5, 1, 1500 };
@@ -45,7 +45,7 @@ class CUP_Merlin_HC3_Base: Helicopter_Base_H {
     unitInfoType = "Rsc_UKSF_Air_Limited";
     unitInfoTypeLite = "Rsc_UKSF_Air_Limited";
     #include "MFDMerlin.hpp"
-    class ACE_Actions : ACE_Actions {
+    class ACE_Actions: ACE_Actions {
         class ACE_MainActions: ACE_MainActions {
             position = "[0,0,1.5]";
         };
@@ -56,27 +56,27 @@ class CUP_Merlin_HC3_VIV_Base: CUP_Merlin_HC3_Base {};
 class CUP_Merlin_HC3_Armed_Base: CUP_Merlin_HC3_Base {};
 class CUP_Merlin_HC3A_Armed_Base: CUP_Merlin_HC3_Base {};
 class CUP_Merlin_HM2_Base: CUP_Merlin_HC3_Base {};
-class CUP_B_Merlin_HC3_GB : CUP_Merlin_HC3_Base {
+class CUP_B_Merlin_HC3_GB: CUP_Merlin_HC3_Base {
     scope = 2;
     scopeCurator = 2;
 };
-class CUP_B_Merlin_HC3_VIV_GB : CUP_Merlin_HC3_VIV_Base {
+class CUP_B_Merlin_HC3_VIV_GB: CUP_Merlin_HC3_VIV_Base {
     scope = 2;
     scopeCurator = 2;
 };
-class CUP_B_Merlin_HC3A_GB : CUP_Merlin_HC3A_Base {
+class CUP_B_Merlin_HC3A_GB: CUP_Merlin_HC3A_Base {
     scope = 1;
     scopeCurator = 0;
 };
-class CUP_B_Merlin_HC3_Armed_GB : CUP_Merlin_HC3_Armed_Base {
+class CUP_B_Merlin_HC3_Armed_GB: CUP_Merlin_HC3_Armed_Base {
     scope = 2;
     scopeCurator = 2;
 };
-class CUP_B_Merlin_HC3A_Armed_GB : CUP_Merlin_HC3A_Armed_Base {
+class CUP_B_Merlin_HC3A_Armed_GB: CUP_Merlin_HC3A_Armed_Base {
     scope = 1;
     scopeCurator = 0;
 };
-class CUP_B_Merlin_HC4_GB : CUP_Merlin_HM2_Base {
+class CUP_B_Merlin_HC4_GB: CUP_Merlin_HM2_Base {
     scope = 1;
     scopeCurator = 0;
 };

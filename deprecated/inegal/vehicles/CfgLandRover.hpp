@@ -15,7 +15,7 @@ class Inegal_LandRover_Unarmed: Genfor_LandRover_Unarmed {
     class TransportWeapons {};
     class TransportBackpacks {};
     class EventHandlers {
-        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };
 class Inegal_LandRover_FDF_Unarmed: Inegal_LandRover_Unarmed {

@@ -21,7 +21,7 @@ if (_state) then {
         params ["_args"];
         _args params ["_uav"];
         if (cameraView == "GUNNER" && cameraOn == _uav) then {
-            _zoom = (call CBA_fnc_getFov) select 1;
+            _zoom = (call cba_fnc_getFov) select 1;
             _factor = 500 / _zoom;
             _halfFactor = _factor / 2;
             {
@@ -37,9 +37,9 @@ if (_state) then {
             ];
         };
         
-    }, 0, [_uav]] call CBA_fnc_addPerFrameHandler;
+    }, 0, [_uav]] call cba_fnc_addPerFrameHandler;
     _uav setVariable [QGVAR(compassState), true];
 } else {
-    [GVAR(handlerCompass)] call CBA_fnc_removePerFrameHandler;
+    [GVAR(handlerCompass)] call cba_fnc_removePerFrameHandler;
     _uav setVariable [QGVAR(compassState), false];
 };

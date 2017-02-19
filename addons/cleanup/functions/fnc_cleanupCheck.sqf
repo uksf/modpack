@@ -34,5 +34,5 @@ if (GVAR(enabled)) then {
             false
         } count _killed;
         missionNamespace setVariable [QGVAR(killed), _newKilled, true];
-    }, GVAR(delay) / 4, []] call CBA_fnc_addPerFrameHandler;
+    }, GVAR(delay) / 4, []] call cba_fnc_addPerFrameHandler;
 };

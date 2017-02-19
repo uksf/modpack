@@ -1,5 +1,5 @@
 //AI
-class CUP_B_BAF_Soldier_01_DDPM : CUP_Creatures_Military_BAF_Soldier_Base {
+class CUP_B_BAF_Soldier_01_DDPM: CUP_Creatures_Military_BAF_Soldier_Base {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 1;
     scopeCurator = 0;
@@ -10,7 +10,7 @@ class CUP_B_BAF_Soldier_01_DDPM : CUP_Creatures_Military_BAF_Soldier_Base {
     hiddenSelections[] = { "Camo","Camo2","camo3","insignia" };
     hiddenSelectionsTextures[] = { "cup\creatures\people\military\cup_creatures_people_military_baf\data\ddpm\camo_ddpm_co.paa","cup\creatures\people\military\cup_creatures_people_military_baf\data\ddpm\armour_ddpm_co.paa","cup\creatures\people\military\cup_creatures_people_military_baf\data\ddpm\top_ddpm_co.paa" };
 };
-class CUP_B_BAF_Soldier_02_DDPM : CUP_Creatures_Military_BAF_Soldier_Base {
+class CUP_B_BAF_Soldier_02_DDPM: CUP_Creatures_Military_BAF_Soldier_Base {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 1;
     scopeCurator = 0;
@@ -22,7 +22,7 @@ class CUP_B_BAF_Soldier_02_DDPM : CUP_Creatures_Military_BAF_Soldier_Base {
     hiddenSelectionsTextures[] = { "cup\creatures\people\military\cup_creatures_people_military_baf\data\ddpm\camo_ddpm_co.paa","cup\creatures\people\military\cup_creatures_people_military_baf\data\ddpm\armour_ddpm_co.paa","cup\creatures\people\military\cup_creatures_people_military_baf\data\DDPM\top2_ddpm_co.paa" };
     icon = "iconManOfficer";
 };
-class CUP_B_BAF_Soldier_03_DDPM : CUP_Creatures_Military_BAF_Soldier_Base {
+class CUP_B_BAF_Soldier_03_DDPM: CUP_Creatures_Military_BAF_Soldier_Base {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 1;
     scopeCurator = 0;
@@ -34,7 +34,7 @@ class CUP_B_BAF_Soldier_03_DDPM : CUP_Creatures_Military_BAF_Soldier_Base {
     hiddenSelectionsTextures[] = { "cup\creatures\people\military\cup_creatures_people_military_baf\data\ddpm\camo_ddpm_co.paa","cup\creatures\people\military\cup_creatures_people_military_baf\data\ddpm\armour_ddpm_co.paa","cup\creatures\people\military\cup_creatures_people_military_baf\data\ddpm\top3_ddpm_co.paa" };
     icon = "iconManOfficer";
 };
-class CUP_B_BAF_Soldier_01_DPM : CUP_Creatures_Military_BAF_Soldier_Base {
+class CUP_B_BAF_Soldier_01_DPM: CUP_Creatures_Military_BAF_Soldier_Base {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 1;
     scopeCurator = 0;
@@ -46,7 +46,7 @@ class CUP_B_BAF_Soldier_01_DPM : CUP_Creatures_Military_BAF_Soldier_Base {
     hiddenSelectionsTextures[] = { "cup\creatures\people\military\cup_creatures_people_military_baf\data\DPM\camo_DPM_co.paa","cup\creatures\people\military\cup_creatures_people_military_baf\data\DPM\armour_DPM_co.paa","cup\creatures\people\military\cup_creatures_people_military_baf\data\dpm\top_dpm_co.paa" };
     icon = "iconManOfficer";
 };
-class CUP_B_BAF_Soldier_02_DPM : CUP_Creatures_Military_BAF_Soldier_Base {
+class CUP_B_BAF_Soldier_02_DPM: CUP_Creatures_Military_BAF_Soldier_Base {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 1;
     scopeCurator = 0;
@@ -58,7 +58,7 @@ class CUP_B_BAF_Soldier_02_DPM : CUP_Creatures_Military_BAF_Soldier_Base {
     hiddenSelectionsTextures[] = { "cup\creatures\people\military\cup_creatures_people_military_baf\data\DPM\camo_DPM_co.paa","cup\creatures\people\military\cup_creatures_people_military_baf\data\DPM\armour_DPM_co.paa","cup\creatures\people\military\cup_creatures_people_military_baf\data\DPM\top2_dpm_co.paa" };
     icon = "iconManOfficer";
 };
-class CUP_B_BAF_Soldier_03_DPM : CUP_Creatures_Military_BAF_Soldier_Base {
+class CUP_B_BAF_Soldier_03_DPM: CUP_Creatures_Military_BAF_Soldier_Base {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 1;
     scopeCurator = 0;
@@ -70,7 +70,7 @@ class CUP_B_BAF_Soldier_03_DPM : CUP_Creatures_Military_BAF_Soldier_Base {
     hiddenSelectionsTextures[] = { "cup\creatures\people\military\cup_creatures_people_military_baf\data\DPM\camo_DPM_co.paa","cup\creatures\people\military\cup_creatures_people_military_baf\data\DPM\armour_DPM_co.paa","cup\creatures\people\military\cup_creatures_people_military_baf\data\dpm\top3_dpm_co.paa" };
     icon = "iconManOfficer";
 };
-class CUP_B_BAF_Soldier_01_MTP : CUP_Creatures_Military_BAF_Soldier_Base {
+class CUP_B_BAF_Soldier_01_MTP: CUP_Creatures_Military_BAF_Soldier_Base {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 1;
     scopeCurator = 0;
@@ -82,7 +82,7 @@ class CUP_B_BAF_Soldier_01_MTP : CUP_Creatures_Military_BAF_Soldier_Base {
     hiddenSelectionsTextures[] = { "cup\creatures\people\military\cup_creatures_people_military_baf\data\MTP\camo_MTP_co.paa","cup\creatures\people\military\cup_creatures_people_military_baf\data\DPM\armour_DPM_co.paa","cup\creatures\people\military\cup_creatures_people_military_baf\data\MTP\top_mtp_co.paa" };
     icon = "iconManOfficer";
 };
-class CUP_B_BAF_Soldier_02_MTP : CUP_Creatures_Military_BAF_Soldier_Base {
+class CUP_B_BAF_Soldier_02_MTP: CUP_Creatures_Military_BAF_Soldier_Base {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 1;
     scopeCurator = 0;
@@ -94,7 +94,7 @@ class CUP_B_BAF_Soldier_02_MTP : CUP_Creatures_Military_BAF_Soldier_Base {
     hiddenSelectionsTextures[] = { "cup\creatures\people\military\cup_creatures_people_military_baf\data\MTP\camo_MTP_co.paa","cup\creatures\people\military\cup_creatures_people_military_baf\data\DPM\armour_DPM_co.paa","cup\creatures\people\military\cup_creatures_people_military_baf\data\MTP\top2_mtp_co.paa" };
     icon = "iconManOfficer";
 };
-class CUP_B_BAF_Soldier_03_MTP : CUP_Creatures_Military_BAF_Soldier_Base {
+class CUP_B_BAF_Soldier_03_MTP: CUP_Creatures_Military_BAF_Soldier_Base {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 1;
     scopeCurator = 0;
@@ -104,7 +104,7 @@ class CUP_B_BAF_Soldier_03_MTP : CUP_Creatures_Military_BAF_Soldier_Base {
     hiddenSelections[] = { "Camo","Camo2","camo3","insignia" };
     hiddenSelectionsTextures[] = { "cup\creatures\people\military\cup_creatures_people_military_baf\data\MTP\camo_MTP_co.paa","cup\creatures\people\military\cup_creatures_people_military_baf\data\DPM\armour_DPM_co.paa","cup\creatures\people\military\cup_creatures_people_military_baf\data\MTP\top3_mtp_co.paa" };
 };
-class CUP_B_BAF_Soldier_04_MTP : CUP_Creatures_Military_BAF_Soldier_Base {
+class CUP_B_BAF_Soldier_04_MTP: CUP_Creatures_Military_BAF_Soldier_Base {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 1;
     scopeCurator = 0;
@@ -114,7 +114,7 @@ class CUP_B_BAF_Soldier_04_MTP : CUP_Creatures_Military_BAF_Soldier_Base {
     hiddenSelectionsTextures[] = { "\CUP\Creatures\People\Military\CUP_Creatures_People_Military_Taki\data\ghillie_overall1_desert_co.paa" };
     icon = "iconMan";
 };
-class CUP_B_BAF_Soldier_04_DPM : CUP_Creatures_Military_BAF_Soldier_Base {
+class CUP_B_BAF_Soldier_04_DPM: CUP_Creatures_Military_BAF_Soldier_Base {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 1;
     scopeCurator = 0;
@@ -124,7 +124,7 @@ class CUP_B_BAF_Soldier_04_DPM : CUP_Creatures_Military_BAF_Soldier_Base {
     hiddenSelectionsTextures[] = { "\CUP\Creatures\People\Military\CUP_Creatures_People_Military_USMC\data\ghillie_overall1_co.paa" };
     icon = "iconMan";
 };
-class CUP_B_BAF_Soldier_04_DDPM : CUP_Creatures_Military_BAF_Soldier_Base {
+class CUP_B_BAF_Soldier_04_DDPM: CUP_Creatures_Military_BAF_Soldier_Base {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 1;
     scopeCurator = 0;
@@ -135,7 +135,7 @@ class CUP_B_BAF_Soldier_04_DDPM : CUP_Creatures_Military_BAF_Soldier_Base {
     hiddenSelectionsTextures[] = { "\CUP\Creatures\People\Military\CUP_Creatures_People_Military_Taki\data\ghillie_overall1_desert_co.paa" };
     icon = "iconMan";
 };
-class CUP_B_BAF_Soldier_05_MTP : CUP_Creatures_Military_BAF_Soldier_Base {
+class CUP_B_BAF_Soldier_05_MTP: CUP_Creatures_Military_BAF_Soldier_Base {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 1;
     scopeCurator = 0;
@@ -147,7 +147,7 @@ class CUP_B_BAF_Soldier_05_MTP : CUP_Creatures_Military_BAF_Soldier_Base {
     hiddenSelectionsTextures[] = { "cup\creatures\people\military\cup_creatures_people_military_baf\uniform\data\body_co.paa" };
     icon = "iconMan";
 };
-class CUP_B_BAF_Soldier_06_MTP : CUP_Creatures_Military_BAF_Soldier_Base {
+class CUP_B_BAF_Soldier_06_MTP: CUP_Creatures_Military_BAF_Soldier_Base {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 1;
     scopeCurator = 0;
@@ -159,7 +159,7 @@ class CUP_B_BAF_Soldier_06_MTP : CUP_Creatures_Military_BAF_Soldier_Base {
     hiddenSelectionsTextures[] = { "cup\creatures\people\military\cup_creatures_people_military_baf\uniform\data\body_co.paa" };
     icon = "iconMan";
 };
-class CUP_B_BAF_Soldier_07_MTP : CUP_Creatures_Military_BAF_Soldier_Base {
+class CUP_B_BAF_Soldier_07_MTP: CUP_Creatures_Military_BAF_Soldier_Base {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 1;
     scopeCurator = 0;
@@ -171,7 +171,7 @@ class CUP_B_BAF_Soldier_07_MTP : CUP_Creatures_Military_BAF_Soldier_Base {
     hiddenSelectionsTextures[] = { "cup\creatures\people\military\cup_creatures_people_military_baf\uniform\data\body_co.paa" };
     icon = "iconMan";
 };
-class CUP_B_BAF_Soldier_08_MTP : CUP_Creatures_Military_BAF_Soldier_Base {
+class CUP_B_BAF_Soldier_08_MTP: CUP_Creatures_Military_BAF_Soldier_Base {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 1;
     scopeCurator = 0;
@@ -183,7 +183,7 @@ class CUP_B_BAF_Soldier_08_MTP : CUP_Creatures_Military_BAF_Soldier_Base {
     hiddenSelectionsTextures[] = { "cup\creatures\people\military\cup_creatures_people_military_baf\uniform\data\body_co.paa","cup\creatures\people\military\cup_creatures_people_military_baf\osprey\data\gear_co.paa" };
     icon = "iconMan";
 };
-class CUP_B_BAF_Soldier_MTP : CUP_B_BAF_Soldier_06_MTP {
+class CUP_B_BAF_Soldier_MTP: CUP_B_BAF_Soldier_06_MTP {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -198,7 +198,7 @@ class CUP_B_BAF_Soldier_MTP : CUP_B_BAF_Soldier_06_MTP {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_MTP.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_MTP",1,"CUP_H_BAF_Helmet_Net_2_MTP",0.5,"CUP_H_BAF_Helmet_2_MTP",0.5,"CUP_H_BAF_Helmet_3_MTP",0.5,"CUP_H_BAF_Helmet_4_MTP",0.5 };
 };
-class CUP_B_BAF_Soldier_GL_MTP : CUP_B_BAF_Soldier_07_MTP {
+class CUP_B_BAF_Soldier_GL_MTP: CUP_B_BAF_Soldier_07_MTP {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -216,7 +216,7 @@ class CUP_B_BAF_Soldier_GL_MTP : CUP_B_BAF_Soldier_07_MTP {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_GL_MTP.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_MTP",1,"CUP_H_BAF_Helmet_Net_2_MTP",0.5,"CUP_H_BAF_Helmet_2_MTP",0.5,"CUP_H_BAF_Helmet_3_MTP",0.5,"CUP_H_BAF_Helmet_4_MTP",0.5 };
 };
-class CUP_B_BAF_Soldier_Night_MTP : CUP_B_BAF_Soldier_05_MTP {
+class CUP_B_BAF_Soldier_Night_MTP: CUP_B_BAF_Soldier_05_MTP {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -231,7 +231,7 @@ class CUP_B_BAF_Soldier_Night_MTP : CUP_B_BAF_Soldier_05_MTP {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_Night_MTP.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_MTP",1,"CUP_H_BAF_Helmet_Net_2_MTP",0.5,"CUP_H_BAF_Helmet_2_MTP",0.5,"CUP_H_BAF_Helmet_3_MTP",0.5,"CUP_H_BAF_Helmet_4_MTP",0.5 };
 };
-class CUP_B_BAF_Soldier_Light_MTP : CUP_B_BAF_Soldier_06_MTP {
+class CUP_B_BAF_Soldier_Light_MTP: CUP_B_BAF_Soldier_06_MTP {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -247,7 +247,7 @@ class CUP_B_BAF_Soldier_Light_MTP : CUP_B_BAF_Soldier_06_MTP {
     Icon = "iconMan";
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_Light_MTP.jpg";
 };
-class CUP_B_BAF_Soldier_Backpack_MTP : CUP_B_BAF_Soldier_07_MTP {
+class CUP_B_BAF_Soldier_Backpack_MTP: CUP_B_BAF_Soldier_07_MTP {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -261,7 +261,7 @@ class CUP_B_BAF_Soldier_Backpack_MTP : CUP_B_BAF_Soldier_07_MTP {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_Backpack_MTP.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_MTP",1,"CUP_H_BAF_Helmet_Net_2_MTP",0.5,"CUP_H_BAF_Helmet_2_MTP",0.5,"CUP_H_BAF_Helmet_3_MTP",0.5,"CUP_H_BAF_Helmet_4_MTP",0.5 };
 };
-class CUP_B_BAF_Soldier_AAR_MTP : CUP_B_BAF_Soldier_06_MTP {
+class CUP_B_BAF_Soldier_AAR_MTP: CUP_B_BAF_Soldier_06_MTP {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -277,7 +277,7 @@ class CUP_B_BAF_Soldier_AAR_MTP : CUP_B_BAF_Soldier_06_MTP {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_AAR_MTP.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_MTP",1,"CUP_H_BAF_Helmet_Net_2_MTP",0.5,"CUP_H_BAF_Helmet_2_MTP",0.5,"CUP_H_BAF_Helmet_3_MTP",0.5,"CUP_H_BAF_Helmet_4_MTP",0.5 };
 };
-class CUP_B_BAF_Soldier_AMG_MTP : CUP_B_BAF_Soldier_06_MTP {
+class CUP_B_BAF_Soldier_AMG_MTP: CUP_B_BAF_Soldier_06_MTP {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -293,7 +293,7 @@ class CUP_B_BAF_Soldier_AMG_MTP : CUP_B_BAF_Soldier_06_MTP {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_AMG_MTP.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_MTP",1,"CUP_H_BAF_Helmet_Net_2_MTP",0.5,"CUP_H_BAF_Helmet_2_MTP",0.5,"CUP_H_BAF_Helmet_3_MTP",0.5,"CUP_H_BAF_Helmet_4_MTP",0.5 };
 };
-class CUP_B_BAF_Soldier_AAT_MTP : CUP_B_BAF_Soldier_06_MTP {
+class CUP_B_BAF_Soldier_AAT_MTP: CUP_B_BAF_Soldier_06_MTP {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -307,7 +307,7 @@ class CUP_B_BAF_Soldier_AAT_MTP : CUP_B_BAF_Soldier_06_MTP {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_AAT_MTP.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_MTP",1,"CUP_H_BAF_Helmet_Net_2_MTP",0.5,"CUP_H_BAF_Helmet_2_MTP",0.5,"CUP_H_BAF_Helmet_3_MTP",0.5,"CUP_H_BAF_Helmet_4_MTP",0.5 };
 };
-class CUP_B_BAF_Soldier_AHAT_MTP : CUP_B_BAF_Soldier_06_MTP {
+class CUP_B_BAF_Soldier_AHAT_MTP: CUP_B_BAF_Soldier_06_MTP {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -323,7 +323,7 @@ class CUP_B_BAF_Soldier_AHAT_MTP : CUP_B_BAF_Soldier_06_MTP {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_AHAT_MTP.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_MTP",1,"CUP_H_BAF_Helmet_Net_2_MTP",0.5,"CUP_H_BAF_Helmet_2_MTP",0.5,"CUP_H_BAF_Helmet_3_MTP",0.5,"CUP_H_BAF_Helmet_4_MTP",0.5 };
 };
-class CUP_B_BAF_Soldier_AAA_MTP : CUP_B_BAF_Soldier_06_MTP {
+class CUP_B_BAF_Soldier_AAA_MTP: CUP_B_BAF_Soldier_06_MTP {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -337,7 +337,7 @@ class CUP_B_BAF_Soldier_AAA_MTP : CUP_B_BAF_Soldier_06_MTP {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_AAA_MTP.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_MTP",1,"CUP_H_BAF_Helmet_Net_2_MTP",0.5,"CUP_H_BAF_Helmet_2_MTP",0.5,"CUP_H_BAF_Helmet_3_MTP",0.5,"CUP_H_BAF_Helmet_4_MTP",0.5 };
 };
-class CUP_B_BAF_Officer_MTP : CUP_B_BAF_Soldier_05_MTP {
+class CUP_B_BAF_Officer_MTP: CUP_B_BAF_Soldier_05_MTP {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -364,7 +364,7 @@ class CUP_B_BAF_Officer_MTP : CUP_B_BAF_Soldier_05_MTP {
     icon = "iconManOfficer";
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Officer_MTP.jpg";
 };
-class CUP_B_BAF_Soldier_SL_MTP : CUP_B_BAF_Soldier_08_MTP {
+class CUP_B_BAF_Soldier_SL_MTP: CUP_B_BAF_Soldier_08_MTP {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -392,7 +392,7 @@ class CUP_B_BAF_Soldier_SL_MTP : CUP_B_BAF_Soldier_08_MTP {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_SL_MTP.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_MTP",1,"CUP_H_BAF_Helmet_Net_2_MTP",0.5,"CUP_H_BAF_Helmet_2_MTP",0.5,"CUP_H_BAF_Helmet_3_MTP",0.5,"CUP_H_BAF_Helmet_4_MTP",0.5 };
 };
-class CUP_B_BAF_Soldier_TL_MTP : CUP_B_BAF_Soldier_07_MTP {
+class CUP_B_BAF_Soldier_TL_MTP: CUP_B_BAF_Soldier_07_MTP {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -420,7 +420,7 @@ class CUP_B_BAF_Soldier_TL_MTP : CUP_B_BAF_Soldier_07_MTP {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_TL_MTP.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_MTP",1,"CUP_H_BAF_Helmet_Net_2_MTP",0.5,"CUP_H_BAF_Helmet_2_MTP",0.5,"CUP_H_BAF_Helmet_3_MTP",0.5,"CUP_H_BAF_Helmet_4_MTP",0.5 };
 };
-class CUP_B_BAF_Soldier_AR_MTP : CUP_B_BAF_Soldier_07_MTP {
+class CUP_B_BAF_Soldier_AR_MTP: CUP_B_BAF_Soldier_07_MTP {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -450,7 +450,7 @@ class CUP_B_BAF_Soldier_AR_MTP : CUP_B_BAF_Soldier_07_MTP {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_AR_MTP.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_MTP",1,"CUP_H_BAF_Helmet_Net_2_MTP",0.5,"CUP_H_BAF_Helmet_2_MTP",0.5,"CUP_H_BAF_Helmet_3_MTP",0.5,"CUP_H_BAF_Helmet_4_MTP",0.5 };
 };
-class CUP_B_BAF_Soldier_MG_MTP : CUP_B_BAF_Soldier_06_MTP {
+class CUP_B_BAF_Soldier_MG_MTP: CUP_B_BAF_Soldier_06_MTP {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -480,7 +480,7 @@ class CUP_B_BAF_Soldier_MG_MTP : CUP_B_BAF_Soldier_06_MTP {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_MG_MTP.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_MTP",1,"CUP_H_BAF_Helmet_Net_2_MTP",0.5,"CUP_H_BAF_Helmet_2_MTP",0.5,"CUP_H_BAF_Helmet_3_MTP",0.5,"CUP_H_BAF_Helmet_4_MTP",0.5 };
 };
-class CUP_B_BAF_Soldier_AT_MTP : CUP_B_BAF_Soldier_06_MTP {
+class CUP_B_BAF_Soldier_AT_MTP: CUP_B_BAF_Soldier_06_MTP {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -511,7 +511,7 @@ class CUP_B_BAF_Soldier_AT_MTP : CUP_B_BAF_Soldier_06_MTP {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_AT_MTP.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_MTP",1,"CUP_H_BAF_Helmet_Net_2_MTP",0.5,"CUP_H_BAF_Helmet_2_MTP",0.5,"CUP_H_BAF_Helmet_3_MTP",0.5,"CUP_H_BAF_Helmet_4_MTP",0.5 };
 };
-class CUP_B_BAF_Soldier_HAT_MTP : CUP_B_BAF_Soldier_06_MTP {
+class CUP_B_BAF_Soldier_HAT_MTP: CUP_B_BAF_Soldier_06_MTP {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -541,7 +541,7 @@ class CUP_B_BAF_Soldier_HAT_MTP : CUP_B_BAF_Soldier_06_MTP {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_HAT_MTP.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_MTP",1,"CUP_H_BAF_Helmet_Net_2_MTP",0.5,"CUP_H_BAF_Helmet_2_MTP",0.5,"CUP_H_BAF_Helmet_3_MTP",0.5,"CUP_H_BAF_Helmet_4_MTP",0.5 };
 };
-class CUP_B_BAF_Soldier_AA_MTP : CUP_B_BAF_Soldier_06_MTP {
+class CUP_B_BAF_Soldier_AA_MTP: CUP_B_BAF_Soldier_06_MTP {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -571,7 +571,7 @@ class CUP_B_BAF_Soldier_AA_MTP : CUP_B_BAF_Soldier_06_MTP {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_AA_MTP.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_MTP",1,"CUP_H_BAF_Helmet_Net_2_MTP",0.5,"CUP_H_BAF_Helmet_2_MTP",0.5,"CUP_H_BAF_Helmet_3_MTP",0.5,"CUP_H_BAF_Helmet_4_MTP",0.5 };
 };
-class CUP_B_BAF_Soldier_Marksman_MTP : CUP_B_BAF_Soldier_07_MTP {
+class CUP_B_BAF_Soldier_Marksman_MTP: CUP_B_BAF_Soldier_07_MTP {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -601,7 +601,7 @@ class CUP_B_BAF_Soldier_Marksman_MTP : CUP_B_BAF_Soldier_07_MTP {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_Marksman_MTP.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_MTP",1,"CUP_H_BAF_Helmet_Net_2_MTP",0.5,"CUP_H_BAF_Helmet_2_MTP",0.5,"CUP_H_BAF_Helmet_3_MTP",0.5,"CUP_H_BAF_Helmet_4_MTP",0.5 };
 };
-class CUP_B_BAF_Soldier_scout_MTP : CUP_B_BAF_Soldier_07_MTP {
+class CUP_B_BAF_Soldier_scout_MTP: CUP_B_BAF_Soldier_07_MTP {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -632,7 +632,7 @@ class CUP_B_BAF_Soldier_scout_MTP : CUP_B_BAF_Soldier_07_MTP {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_scout_MTP.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_MTP",1,"CUP_H_BAF_Helmet_Net_2_MTP",0.5,"CUP_H_BAF_Helmet_2_MTP",0.5,"CUP_H_BAF_Helmet_3_MTP",0.5,"CUP_H_BAF_Helmet_4_MTP",0.5 };
 };
-class CUP_B_BAF_Sniper_MTP : CUP_B_BAF_Soldier_04_MTP {
+class CUP_B_BAF_Sniper_MTP: CUP_B_BAF_Soldier_04_MTP {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -661,7 +661,7 @@ class CUP_B_BAF_Sniper_MTP : CUP_B_BAF_Soldier_04_MTP {
     Icon = "IconMan";
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Sniper_MTP.jpg";
 };
-class CUP_B_BAF_Sniper_AS50_MTP : CUP_B_BAF_Soldier_04_MTP {
+class CUP_B_BAF_Sniper_AS50_MTP: CUP_B_BAF_Soldier_04_MTP {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -686,7 +686,7 @@ class CUP_B_BAF_Sniper_AS50_MTP : CUP_B_BAF_Soldier_04_MTP {
     Icon = "IconMan";
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Sniper_AS50_MTP.jpg";
 };
-class CUP_B_BAF_Sniper_AS50_TWS_MTP : CUP_B_BAF_Sniper_AS50_MTP {
+class CUP_B_BAF_Sniper_AS50_TWS_MTP: CUP_B_BAF_Sniper_AS50_MTP {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -707,7 +707,7 @@ class CUP_B_BAF_Sniper_AS50_TWS_MTP : CUP_B_BAF_Sniper_AS50_MTP {
     Icon = "IconMan";
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Sniper_AS50_TWS_MTP.jpg";
 };
-class CUP_B_BAF_Spotter_MTP : CUP_B_BAF_Soldier_04_MTP {
+class CUP_B_BAF_Spotter_MTP: CUP_B_BAF_Soldier_04_MTP {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -723,7 +723,7 @@ class CUP_B_BAF_Spotter_MTP : CUP_B_BAF_Soldier_04_MTP {
     Icon = "iconMan";
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Spotter_MTP.jpg";
 };
-class CUP_B_BAF_Spotter_L85TWS_MTP : CUP_B_BAF_Spotter_MTP {
+class CUP_B_BAF_Spotter_L85TWS_MTP: CUP_B_BAF_Spotter_MTP {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -735,7 +735,7 @@ class CUP_B_BAF_Spotter_L85TWS_MTP : CUP_B_BAF_Spotter_MTP {
     Icon = "iconMan";
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Spotter_L85TWS_MTP.jpg";
 };
-class CUP_B_BAF_Pilot_MTP : CUP_B_BAF_Soldier_06_MTP {
+class CUP_B_BAF_Pilot_MTP: CUP_B_BAF_Soldier_06_MTP {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -760,7 +760,7 @@ class CUP_B_BAF_Pilot_MTP : CUP_B_BAF_Soldier_06_MTP {
     nameSound = "veh_infantry_pilot_s";
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Pilot_MTP.jpg";
 };
-class CUP_B_BAF_Crew_MTP : CUP_B_BAF_Soldier_06_MTP {
+class CUP_B_BAF_Crew_MTP: CUP_B_BAF_Soldier_06_MTP {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -776,7 +776,7 @@ class CUP_B_BAF_Crew_MTP : CUP_B_BAF_Soldier_06_MTP {
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","ItemRadio","CUP_NVG_HMNVS","CUP_V_BAF_Osprey_Mk4_MTP_Rifleman","CUP_H_BAF_Crew_Helmet_MTP" };
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Crew_MTP.jpg";
 };
-class CUP_B_BAF_Medic_MTP : CUP_B_BAF_Soldier_07_MTP {
+class CUP_B_BAF_Medic_MTP: CUP_B_BAF_Soldier_07_MTP {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -805,7 +805,7 @@ class CUP_B_BAF_Medic_MTP : CUP_B_BAF_Soldier_07_MTP {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Medic_MTP.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_MTP",1,"CUP_H_BAF_Helmet_Net_2_MTP",0.5,"CUP_H_BAF_Helmet_2_MTP",0.5,"CUP_H_BAF_Helmet_3_MTP",0.5,"CUP_H_BAF_Helmet_4_MTP",0.5 };
 };
-class CUP_B_BAF_Soldier_JTAC_MTP : CUP_B_BAF_Soldier_07_MTP {
+class CUP_B_BAF_Soldier_JTAC_MTP: CUP_B_BAF_Soldier_07_MTP {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -824,7 +824,7 @@ class CUP_B_BAF_Soldier_JTAC_MTP : CUP_B_BAF_Soldier_07_MTP {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_JTAC_MTP.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_MTP",1,"CUP_H_BAF_Helmet_Net_2_MTP",0.5,"CUP_H_BAF_Helmet_2_MTP",0.5,"CUP_H_BAF_Helmet_3_MTP",0.5,"CUP_H_BAF_Helmet_4_MTP",0.5 };
 };
-class CUP_B_BAF_Engineer_MTP : CUP_B_BAF_Soldier_05_MTP {
+class CUP_B_BAF_Engineer_MTP: CUP_B_BAF_Soldier_05_MTP {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -847,7 +847,7 @@ class CUP_B_BAF_Engineer_MTP : CUP_B_BAF_Soldier_05_MTP {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Engineer_MTP.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_MTP",1,"CUP_H_BAF_Helmet_Net_2_MTP",0.5,"CUP_H_BAF_Helmet_2_MTP",0.5,"CUP_H_BAF_Helmet_3_MTP",0.5,"CUP_H_BAF_Helmet_4_MTP",0.5 };
 };
-class CUP_B_BAF_Soldier_WDL : CUP_B_BAF_Soldier_01_DPM {
+class CUP_B_BAF_Soldier_WDL: CUP_B_BAF_Soldier_01_DPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -862,7 +862,7 @@ class CUP_B_BAF_Soldier_WDL : CUP_B_BAF_Soldier_01_DPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_WDL.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DPM",1,"CUP_H_BAF_Helmet_Net_2_DPM",0.5,"CUP_H_BAF_Helmet_2_DPM",0.5,"CUP_H_BAF_Helmet_3_DPM",0.5,"CUP_H_BAF_Helmet_4_v",0.5 };
 };
-class CUP_B_BAF_Soldier_GL_WDL : CUP_B_BAF_Soldier_03_DPM {
+class CUP_B_BAF_Soldier_GL_WDL: CUP_B_BAF_Soldier_03_DPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -880,7 +880,7 @@ class CUP_B_BAF_Soldier_GL_WDL : CUP_B_BAF_Soldier_03_DPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_GL_WDL.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DPM",1,"CUP_H_BAF_Helmet_Net_2_DPM",0.5,"CUP_H_BAF_Helmet_2_DPM",0.5,"CUP_H_BAF_Helmet_3_DPM",0.5,"CUP_H_BAF_Helmet_4_v",0.5 };
 };
-class CUP_B_BAF_Soldier_Night_WDL : CUP_B_BAF_Soldier_01_DPM {
+class CUP_B_BAF_Soldier_Night_WDL: CUP_B_BAF_Soldier_01_DPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -895,7 +895,7 @@ class CUP_B_BAF_Soldier_Night_WDL : CUP_B_BAF_Soldier_01_DPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_Night_WDL.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DPM",1,"CUP_H_BAF_Helmet_Net_2_DPM",0.5,"CUP_H_BAF_Helmet_2_DPM",0.5,"CUP_H_BAF_Helmet_3_DPM",0.5,"CUP_H_BAF_Helmet_4_v",0.5 };
 };
-class CUP_B_BAF_Soldier_Light_WDL : CUP_B_BAF_Soldier_03_DPM {
+class CUP_B_BAF_Soldier_Light_WDL: CUP_B_BAF_Soldier_03_DPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -911,7 +911,7 @@ class CUP_B_BAF_Soldier_Light_WDL : CUP_B_BAF_Soldier_03_DPM {
     Icon = "iconMan";
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_Light_WDL.jpg";
 };
-class CUP_B_BAF_Soldier_Backpack_WDL : CUP_B_BAF_Soldier_01_DPM {
+class CUP_B_BAF_Soldier_Backpack_WDL: CUP_B_BAF_Soldier_01_DPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -925,7 +925,7 @@ class CUP_B_BAF_Soldier_Backpack_WDL : CUP_B_BAF_Soldier_01_DPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_Backpack_WDL.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DPM",1,"CUP_H_BAF_Helmet_Net_2_DPM",0.5,"CUP_H_BAF_Helmet_2_DPM",0.5,"CUP_H_BAF_Helmet_3_DPM",0.5,"CUP_H_BAF_Helmet_4_v",0.5 };
 };
-class CUP_B_BAF_Soldier_AAR_WDL : CUP_B_BAF_Soldier_01_DPM {
+class CUP_B_BAF_Soldier_AAR_WDL: CUP_B_BAF_Soldier_01_DPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -941,7 +941,7 @@ class CUP_B_BAF_Soldier_AAR_WDL : CUP_B_BAF_Soldier_01_DPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_AAR_WDL.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DPM",1,"CUP_H_BAF_Helmet_Net_2_DPM",0.5,"CUP_H_BAF_Helmet_2_DPM",0.5,"CUP_H_BAF_Helmet_3_DPM",0.5,"CUP_H_BAF_Helmet_4_v",0.5 };
 };
-class CUP_B_BAF_Soldier_AMG_WDL : CUP_B_BAF_Soldier_01_DPM {
+class CUP_B_BAF_Soldier_AMG_WDL: CUP_B_BAF_Soldier_01_DPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -957,7 +957,7 @@ class CUP_B_BAF_Soldier_AMG_WDL : CUP_B_BAF_Soldier_01_DPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_AMG_WDL.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DPM",1,"CUP_H_BAF_Helmet_Net_2_DPM",0.5,"CUP_H_BAF_Helmet_2_DPM",0.5,"CUP_H_BAF_Helmet_3_DPM",0.5,"CUP_H_BAF_Helmet_4_v",0.5 };
 };
-class CUP_B_BAF_Soldier_AAT_WDL : CUP_B_BAF_Soldier_01_DPM {
+class CUP_B_BAF_Soldier_AAT_WDL: CUP_B_BAF_Soldier_01_DPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -971,7 +971,7 @@ class CUP_B_BAF_Soldier_AAT_WDL : CUP_B_BAF_Soldier_01_DPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_AAT_WDL.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DPM",1,"CUP_H_BAF_Helmet_Net_2_DPM",0.5,"CUP_H_BAF_Helmet_2_DPM",0.5,"CUP_H_BAF_Helmet_3_DPM",0.5,"CUP_H_BAF_Helmet_4_v",0.5 };
 };
-class CUP_B_BAF_Soldier_AHAT_WDL : CUP_B_BAF_Soldier_02_DPM {
+class CUP_B_BAF_Soldier_AHAT_WDL: CUP_B_BAF_Soldier_02_DPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -987,7 +987,7 @@ class CUP_B_BAF_Soldier_AHAT_WDL : CUP_B_BAF_Soldier_02_DPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_AHAT_WDL.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DPM",1,"CUP_H_BAF_Helmet_Net_2_DPM",0.5,"CUP_H_BAF_Helmet_2_DPM",0.5,"CUP_H_BAF_Helmet_3_DPM",0.5,"CUP_H_BAF_Helmet_4_v",0.5 };
 };
-class CUP_B_BAF_Soldier_AAA_WDL : CUP_B_BAF_Soldier_02_DPM {
+class CUP_B_BAF_Soldier_AAA_WDL: CUP_B_BAF_Soldier_02_DPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1001,7 +1001,7 @@ class CUP_B_BAF_Soldier_AAA_WDL : CUP_B_BAF_Soldier_02_DPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_AAA_WDL.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DPM",1,"CUP_H_BAF_Helmet_Net_2_DPM",0.5,"CUP_H_BAF_Helmet_2_DPM",0.5,"CUP_H_BAF_Helmet_3_DPM",0.5,"CUP_H_BAF_Helmet_4_v",0.5 };
 };
-class CUP_B_BAF_Officer_WDL : CUP_B_BAF_Soldier_01_DPM {
+class CUP_B_BAF_Officer_WDL: CUP_B_BAF_Soldier_01_DPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1028,7 +1028,7 @@ class CUP_B_BAF_Officer_WDL : CUP_B_BAF_Soldier_01_DPM {
     icon = "iconManOfficer";
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Officer_WDL.jpg";
 };
-class CUP_B_BAF_Soldier_SL_WDL : CUP_B_BAF_Soldier_01_DPM {
+class CUP_B_BAF_Soldier_SL_WDL: CUP_B_BAF_Soldier_01_DPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1056,7 +1056,7 @@ class CUP_B_BAF_Soldier_SL_WDL : CUP_B_BAF_Soldier_01_DPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_SL_WDL.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DPM",1,"CUP_H_BAF_Helmet_Net_2_DPM",0.5,"CUP_H_BAF_Helmet_2_DPM",0.5,"CUP_H_BAF_Helmet_3_DPM",0.5,"CUP_H_BAF_Helmet_4_v",0.5 };
 };
-class CUP_B_BAF_Soldier_TL_WDL : CUP_B_BAF_Soldier_03_DPM {
+class CUP_B_BAF_Soldier_TL_WDL: CUP_B_BAF_Soldier_03_DPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1084,7 +1084,7 @@ class CUP_B_BAF_Soldier_TL_WDL : CUP_B_BAF_Soldier_03_DPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_TL_WDL.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DPM",1,"CUP_H_BAF_Helmet_Net_2_DPM",0.5,"CUP_H_BAF_Helmet_2_DPM",0.5,"CUP_H_BAF_Helmet_3_DPM",0.5,"CUP_H_BAF_Helmet_4_v",0.5 };
 };
-class CUP_B_BAF_Soldier_AR_WDL : CUP_B_BAF_Soldier_02_DPM {
+class CUP_B_BAF_Soldier_AR_WDL: CUP_B_BAF_Soldier_02_DPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1114,7 +1114,7 @@ class CUP_B_BAF_Soldier_AR_WDL : CUP_B_BAF_Soldier_02_DPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_AR_WDL.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DPM",1,"CUP_H_BAF_Helmet_Net_2_DPM",0.5,"CUP_H_BAF_Helmet_2_DPM",0.5,"CUP_H_BAF_Helmet_3_DPM",0.5,"CUP_H_BAF_Helmet_4_v",0.5 };
 };
-class CUP_B_BAF_Soldier_MG_WDL : CUP_B_BAF_Soldier_02_DPM {
+class CUP_B_BAF_Soldier_MG_WDL: CUP_B_BAF_Soldier_02_DPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1144,7 +1144,7 @@ class CUP_B_BAF_Soldier_MG_WDL : CUP_B_BAF_Soldier_02_DPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_MG_WDL.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DPM",1,"CUP_H_BAF_Helmet_Net_2_DPM",0.5,"CUP_H_BAF_Helmet_2_DPM",0.5,"CUP_H_BAF_Helmet_3_DPM",0.5,"CUP_H_BAF_Helmet_4_v",0.5 };
 };
-class CUP_B_BAF_Soldier_AT_WDL : CUP_B_BAF_Soldier_02_DPM {
+class CUP_B_BAF_Soldier_AT_WDL: CUP_B_BAF_Soldier_02_DPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1175,7 +1175,7 @@ class CUP_B_BAF_Soldier_AT_WDL : CUP_B_BAF_Soldier_02_DPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_AT_WDL.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DPM",1,"CUP_H_BAF_Helmet_Net_2_DPM",0.5,"CUP_H_BAF_Helmet_2_DPM",0.5,"CUP_H_BAF_Helmet_3_DPM",0.5,"CUP_H_BAF_Helmet_4_v",0.5 };
 };
-class CUP_B_BAF_Soldier_HAT_WDL : CUP_B_BAF_Soldier_02_DPM {
+class CUP_B_BAF_Soldier_HAT_WDL: CUP_B_BAF_Soldier_02_DPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1205,7 +1205,7 @@ class CUP_B_BAF_Soldier_HAT_WDL : CUP_B_BAF_Soldier_02_DPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_HAT_WDL.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DPM",1,"CUP_H_BAF_Helmet_Net_2_DPM",0.5,"CUP_H_BAF_Helmet_2_DPM",0.5,"CUP_H_BAF_Helmet_3_DPM",0.5,"CUP_H_BAF_Helmet_4_v",0.5 };
 };
-class CUP_B_BAF_Soldier_AA_WDL : CUP_B_BAF_Soldier_02_DPM {
+class CUP_B_BAF_Soldier_AA_WDL: CUP_B_BAF_Soldier_02_DPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1235,7 +1235,7 @@ class CUP_B_BAF_Soldier_AA_WDL : CUP_B_BAF_Soldier_02_DPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_AA_WDL.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DPM",1,"CUP_H_BAF_Helmet_Net_2_DPM",0.5,"CUP_H_BAF_Helmet_2_DPM",0.5,"CUP_H_BAF_Helmet_3_DPM",0.5,"CUP_H_BAF_Helmet_4_v",0.5 };
 };
-class CUP_B_BAF_Soldier_Marksman_WDL : CUP_B_BAF_Soldier_02_DPM {
+class CUP_B_BAF_Soldier_Marksman_WDL: CUP_B_BAF_Soldier_02_DPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1265,7 +1265,7 @@ class CUP_B_BAF_Soldier_Marksman_WDL : CUP_B_BAF_Soldier_02_DPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_Marksman_WDL.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DPM",1,"CUP_H_BAF_Helmet_Net_2_DPM",0.5,"CUP_H_BAF_Helmet_2_DPM",0.5,"CUP_H_BAF_Helmet_3_DPM",0.5,"CUP_H_BAF_Helmet_4_v",0.5 };
 };
-class CUP_B_BAF_Soldier_scout_WDL : CUP_B_BAF_Soldier_02_DPM {
+class CUP_B_BAF_Soldier_scout_WDL: CUP_B_BAF_Soldier_02_DPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1296,7 +1296,7 @@ class CUP_B_BAF_Soldier_scout_WDL : CUP_B_BAF_Soldier_02_DPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_scout_WDL.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DPM",1,"CUP_H_BAF_Helmet_Net_2_DPM",0.5,"CUP_H_BAF_Helmet_2_DPM",0.5,"CUP_H_BAF_Helmet_3_DPM",0.5,"CUP_H_BAF_Helmet_4_v",0.5 };
 };
-class CUP_B_BAF_Sniper_WDL : CUP_B_BAF_Soldier_04_DPM {
+class CUP_B_BAF_Sniper_WDL: CUP_B_BAF_Soldier_04_DPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1325,7 +1325,7 @@ class CUP_B_BAF_Sniper_WDL : CUP_B_BAF_Soldier_04_DPM {
     Icon = "IconMan";
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Sniper_WDL.jpg";
 };
-class CUP_B_BAF_Sniper_AS50_WDL : CUP_B_BAF_Soldier_04_DPM {
+class CUP_B_BAF_Sniper_AS50_WDL: CUP_B_BAF_Soldier_04_DPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1350,7 +1350,7 @@ class CUP_B_BAF_Sniper_AS50_WDL : CUP_B_BAF_Soldier_04_DPM {
     Icon = "IconMan";
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Sniper_AS50_WDL.jpg";
 };
-class CUP_B_BAF_Sniper_AS50_TWS_WDL : CUP_B_BAF_Sniper_AS50_WDL {
+class CUP_B_BAF_Sniper_AS50_TWS_WDL: CUP_B_BAF_Sniper_AS50_WDL {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1371,7 +1371,7 @@ class CUP_B_BAF_Sniper_AS50_TWS_WDL : CUP_B_BAF_Sniper_AS50_WDL {
     Icon = "IconMan";
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Sniper_AS50_TWS_WDL.jpg";
 };
-class CUP_B_BAF_Spotter_WDL : CUP_B_BAF_Soldier_04_DPM {
+class CUP_B_BAF_Spotter_WDL: CUP_B_BAF_Soldier_04_DPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1387,7 +1387,7 @@ class CUP_B_BAF_Spotter_WDL : CUP_B_BAF_Soldier_04_DPM {
     Icon = "iconMan";
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Spotter_WDL.jpg";
 };
-class CUP_B_BAF_Spotter_L85TWS_WDL : CUP_B_BAF_Spotter_WDL {
+class CUP_B_BAF_Spotter_L85TWS_WDL: CUP_B_BAF_Spotter_WDL {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1399,7 +1399,7 @@ class CUP_B_BAF_Spotter_L85TWS_WDL : CUP_B_BAF_Spotter_WDL {
     Icon = "iconMan";
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Spotter_L85TWS_WDL.jpg";
 };
-class CUP_B_BAF_Pilot_WDL : CUP_B_BAF_Soldier_02_DPM {
+class CUP_B_BAF_Pilot_WDL: CUP_B_BAF_Soldier_02_DPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1424,7 +1424,7 @@ class CUP_B_BAF_Pilot_WDL : CUP_B_BAF_Soldier_02_DPM {
     nameSound = "veh_infantry_pilot_s";
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Pilot_WDL.jpg";
 };
-class CUP_B_BAF_Crew_WDL : CUP_B_BAF_Soldier_01_DPM {
+class CUP_B_BAF_Crew_WDL: CUP_B_BAF_Soldier_01_DPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1440,7 +1440,7 @@ class CUP_B_BAF_Crew_WDL : CUP_B_BAF_Soldier_01_DPM {
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","ItemRadio","CUP_NVG_HMNVS","CUP_V_BAF_Osprey_Mk2_DPM_Crewman","CUP_H_BAF_Crew_Helmet_DPM" };
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Crew_WDL.jpg";
 };
-class CUP_B_BAF_Medic_WDL : CUP_B_BAF_Soldier_03_DPM {
+class CUP_B_BAF_Medic_WDL: CUP_B_BAF_Soldier_03_DPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1469,7 +1469,7 @@ class CUP_B_BAF_Medic_WDL : CUP_B_BAF_Soldier_03_DPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Medic_WDL.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DPM",1,"CUP_H_BAF_Helmet_Net_2_DPM",0.5,"CUP_H_BAF_Helmet_2_DPM",0.5,"CUP_H_BAF_Helmet_3_DPM",0.5,"CUP_H_BAF_Helmet_4_v",0.5 };
 };
-class CUP_B_BAF_Soldier_JTAC_WDL : CUP_B_BAF_Soldier_03_DPM {
+class CUP_B_BAF_Soldier_JTAC_WDL: CUP_B_BAF_Soldier_03_DPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1488,7 +1488,7 @@ class CUP_B_BAF_Soldier_JTAC_WDL : CUP_B_BAF_Soldier_03_DPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_JTAC_WDL.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DPM",1,"CUP_H_BAF_Helmet_Net_2_DPM",0.5,"CUP_H_BAF_Helmet_2_DPM",0.5,"CUP_H_BAF_Helmet_3_DPM",0.5,"CUP_H_BAF_Helmet_4_v",0.5 };
 };
-class CUP_B_BAF_Engineer_WDL : CUP_B_BAF_Soldier_01_DPM {
+class CUP_B_BAF_Engineer_WDL: CUP_B_BAF_Soldier_01_DPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1511,7 +1511,7 @@ class CUP_B_BAF_Engineer_WDL : CUP_B_BAF_Soldier_01_DPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Engineer_WDL.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DPM",1,"CUP_H_BAF_Helmet_Net_2_DPM",0.5,"CUP_H_BAF_Helmet_2_DPM",0.5,"CUP_H_BAF_Helmet_3_DPM",0.5,"CUP_H_BAF_Helmet_4_v",0.5 };
 };
-class CUP_B_BAF_Soldier_DDPM : CUP_B_BAF_Soldier_01_DDPM {
+class CUP_B_BAF_Soldier_DDPM: CUP_B_BAF_Soldier_01_DDPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1526,7 +1526,7 @@ class CUP_B_BAF_Soldier_DDPM : CUP_B_BAF_Soldier_01_DDPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_DDPM.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DDPM",1,"CUP_H_BAF_Helmet_Net_2_DDPM",0.5,"CUP_H_BAF_Helmet_2_DDPM",0.5,"CUP_H_BAF_Helmet_3_DDPM",0.5,"CUP_H_BAF_Helmet_4_DDPM",0.5 };
 };
-class CUP_B_BAF_Soldier_GL_DDPM : CUP_B_BAF_Soldier_03_DDPM {
+class CUP_B_BAF_Soldier_GL_DDPM: CUP_B_BAF_Soldier_03_DDPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1544,7 +1544,7 @@ class CUP_B_BAF_Soldier_GL_DDPM : CUP_B_BAF_Soldier_03_DDPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_GL_DDPM.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DDPM",1,"CUP_H_BAF_Helmet_Net_2_DDPM",0.5,"CUP_H_BAF_Helmet_2_DDPM",0.5,"CUP_H_BAF_Helmet_3_DDPM",0.5,"CUP_H_BAF_Helmet_4_DDPM",0.5 };
 };
-class CUP_B_BAF_Soldier_Night_DDPM : CUP_B_BAF_Soldier_01_DDPM {
+class CUP_B_BAF_Soldier_Night_DDPM: CUP_B_BAF_Soldier_01_DDPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1559,7 +1559,7 @@ class CUP_B_BAF_Soldier_Night_DDPM : CUP_B_BAF_Soldier_01_DDPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_Night_DDPM.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DDPM",1,"CUP_H_BAF_Helmet_Net_2_DDPM",0.5,"CUP_H_BAF_Helmet_2_DDPM",0.5,"CUP_H_BAF_Helmet_3_DDPM",0.5,"CUP_H_BAF_Helmet_4_DDPM",0.5 };
 };
-class CUP_B_BAF_Soldier_Light_DDPM : CUP_B_BAF_Soldier_03_DDPM {
+class CUP_B_BAF_Soldier_Light_DDPM: CUP_B_BAF_Soldier_03_DDPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1575,7 +1575,7 @@ class CUP_B_BAF_Soldier_Light_DDPM : CUP_B_BAF_Soldier_03_DDPM {
     Icon = "iconMan";
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_Light_DDPM.jpg";
 };
-class CUP_B_BAF_Soldier_Backpack_DDPM : CUP_B_BAF_Soldier_01_DDPM {
+class CUP_B_BAF_Soldier_Backpack_DDPM: CUP_B_BAF_Soldier_01_DDPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1589,7 +1589,7 @@ class CUP_B_BAF_Soldier_Backpack_DDPM : CUP_B_BAF_Soldier_01_DDPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_Backpack_DDPM.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DDPM",1,"CUP_H_BAF_Helmet_Net_2_DDPM",0.5,"CUP_H_BAF_Helmet_2_DDPM",0.5,"CUP_H_BAF_Helmet_3_DDPM",0.5,"CUP_H_BAF_Helmet_4_DDPM",0.5 };
 };
-class CUP_B_BAF_Soldier_AAR_DDPM : CUP_B_BAF_Soldier_01_DDPM {
+class CUP_B_BAF_Soldier_AAR_DDPM: CUP_B_BAF_Soldier_01_DDPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1605,7 +1605,7 @@ class CUP_B_BAF_Soldier_AAR_DDPM : CUP_B_BAF_Soldier_01_DDPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_AAR_DDPM.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DDPM",1,"CUP_H_BAF_Helmet_Net_2_DDPM",0.5,"CUP_H_BAF_Helmet_2_DDPM",0.5,"CUP_H_BAF_Helmet_3_DDPM",0.5,"CUP_H_BAF_Helmet_4_DDPM",0.5 };
 };
-class CUP_B_BAF_Soldier_AMG_DDPM : CUP_B_BAF_Soldier_01_DDPM {
+class CUP_B_BAF_Soldier_AMG_DDPM: CUP_B_BAF_Soldier_01_DDPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1621,7 +1621,7 @@ class CUP_B_BAF_Soldier_AMG_DDPM : CUP_B_BAF_Soldier_01_DDPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_AMG_DDPM.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DDPM",1,"CUP_H_BAF_Helmet_Net_2_DDPM",0.5,"CUP_H_BAF_Helmet_2_DDPM",0.5,"CUP_H_BAF_Helmet_3_DDPM",0.5,"CUP_H_BAF_Helmet_4_DDPM",0.5 };
 };
-class CUP_B_BAF_Soldier_AAT_DDPM : CUP_B_BAF_Soldier_01_DDPM {
+class CUP_B_BAF_Soldier_AAT_DDPM: CUP_B_BAF_Soldier_01_DDPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1635,7 +1635,7 @@ class CUP_B_BAF_Soldier_AAT_DDPM : CUP_B_BAF_Soldier_01_DDPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_AAT_DDPM.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DDPM",1,"CUP_H_BAF_Helmet_Net_2_DDPM",0.5,"CUP_H_BAF_Helmet_2_DDPM",0.5,"CUP_H_BAF_Helmet_3_DDPM",0.5,"CUP_H_BAF_Helmet_4_DDPM",0.5 };
 };
-class CUP_B_BAF_Soldier_AHAT_DDPM : CUP_B_BAF_Soldier_02_DDPM {
+class CUP_B_BAF_Soldier_AHAT_DDPM: CUP_B_BAF_Soldier_02_DDPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1651,7 +1651,7 @@ class CUP_B_BAF_Soldier_AHAT_DDPM : CUP_B_BAF_Soldier_02_DDPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_AHAT_DDPM.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DDPM",1,"CUP_H_BAF_Helmet_Net_2_DDPM",0.5,"CUP_H_BAF_Helmet_2_DDPM",0.5,"CUP_H_BAF_Helmet_3_DDPM",0.5,"CUP_H_BAF_Helmet_4_DDPM",0.5 };
 };
-class CUP_B_BAF_Soldier_AAA_DDPM : CUP_B_BAF_Soldier_02_DDPM {
+class CUP_B_BAF_Soldier_AAA_DDPM: CUP_B_BAF_Soldier_02_DDPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1665,7 +1665,7 @@ class CUP_B_BAF_Soldier_AAA_DDPM : CUP_B_BAF_Soldier_02_DDPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_AAA_DDPM.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DDPM",1,"CUP_H_BAF_Helmet_Net_2_DDPM",0.5,"CUP_H_BAF_Helmet_2_DDPM",0.5,"CUP_H_BAF_Helmet_3_DDPM",0.5,"CUP_H_BAF_Helmet_4_DDPM",0.5 };
 };
-class CUP_B_BAF_Officer_DDPM : CUP_B_BAF_Soldier_01_DDPM {
+class CUP_B_BAF_Officer_DDPM: CUP_B_BAF_Soldier_01_DDPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1692,7 +1692,7 @@ class CUP_B_BAF_Officer_DDPM : CUP_B_BAF_Soldier_01_DDPM {
     icon = "iconManOfficer";
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Officer_DDPM.jpg";
 };
-class CUP_B_BAF_Soldier_SL_DDPM : CUP_B_BAF_Soldier_01_DDPM {
+class CUP_B_BAF_Soldier_SL_DDPM: CUP_B_BAF_Soldier_01_DDPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1720,7 +1720,7 @@ class CUP_B_BAF_Soldier_SL_DDPM : CUP_B_BAF_Soldier_01_DDPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_SL_DDPM.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DDPM",1,"CUP_H_BAF_Helmet_Net_2_DDPM",0.5,"CUP_H_BAF_Helmet_2_DDPM",0.5,"CUP_H_BAF_Helmet_3_DDPM",0.5,"CUP_H_BAF_Helmet_4_DDPM",0.5 };
 };
-class CUP_B_BAF_Soldier_TL_DDPM : CUP_B_BAF_Soldier_03_DDPM {
+class CUP_B_BAF_Soldier_TL_DDPM: CUP_B_BAF_Soldier_03_DDPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1748,7 +1748,7 @@ class CUP_B_BAF_Soldier_TL_DDPM : CUP_B_BAF_Soldier_03_DDPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_TL_DDPM.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DDPM",1,"CUP_H_BAF_Helmet_Net_2_DDPM",0.5,"CUP_H_BAF_Helmet_2_DDPM",0.5,"CUP_H_BAF_Helmet_3_DDPM",0.5,"CUP_H_BAF_Helmet_4_DDPM",0.5 };
 };
-class CUP_B_BAF_Soldier_AR_DDPM : CUP_B_BAF_Soldier_02_DDPM {
+class CUP_B_BAF_Soldier_AR_DDPM: CUP_B_BAF_Soldier_02_DDPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1778,7 +1778,7 @@ class CUP_B_BAF_Soldier_AR_DDPM : CUP_B_BAF_Soldier_02_DDPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_AR_DDPM.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DDPM",1,"CUP_H_BAF_Helmet_Net_2_DDPM",0.5,"CUP_H_BAF_Helmet_2_DDPM",0.5,"CUP_H_BAF_Helmet_3_DDPM",0.5,"CUP_H_BAF_Helmet_4_DDPM",0.5 };
 };
-class CUP_B_BAF_Soldier_MG_DDPM : CUP_B_BAF_Soldier_02_DDPM {
+class CUP_B_BAF_Soldier_MG_DDPM: CUP_B_BAF_Soldier_02_DDPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1808,7 +1808,7 @@ class CUP_B_BAF_Soldier_MG_DDPM : CUP_B_BAF_Soldier_02_DDPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_MG_DDPM.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DDPM",1,"CUP_H_BAF_Helmet_Net_2_DDPM",0.5,"CUP_H_BAF_Helmet_2_DDPM",0.5,"CUP_H_BAF_Helmet_3_DDPM",0.5,"CUP_H_BAF_Helmet_4_DDPM",0.5 };
 };
-class CUP_B_BAF_Soldier_AT_DDPM : CUP_B_BAF_Soldier_02_DDPM {
+class CUP_B_BAF_Soldier_AT_DDPM: CUP_B_BAF_Soldier_02_DDPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1839,7 +1839,7 @@ class CUP_B_BAF_Soldier_AT_DDPM : CUP_B_BAF_Soldier_02_DDPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_AT_DDPM.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DDPM",1,"CUP_H_BAF_Helmet_Net_2_DDPM",0.5,"CUP_H_BAF_Helmet_2_DDPM",0.5,"CUP_H_BAF_Helmet_3_DDPM",0.5,"CUP_H_BAF_Helmet_4_DDPM",0.5 };
 };
-class CUP_B_BAF_Soldier_HAT_DDPM : CUP_B_BAF_Soldier_02_DDPM {
+class CUP_B_BAF_Soldier_HAT_DDPM: CUP_B_BAF_Soldier_02_DDPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1869,7 +1869,7 @@ class CUP_B_BAF_Soldier_HAT_DDPM : CUP_B_BAF_Soldier_02_DDPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_HAT_DDPM.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DDPM",1,"CUP_H_BAF_Helmet_Net_2_DDPM",0.5,"CUP_H_BAF_Helmet_2_DDPM",0.5,"CUP_H_BAF_Helmet_3_DDPM",0.5,"CUP_H_BAF_Helmet_4_DDPM",0.5 };
 };
-class CUP_B_BAF_Soldier_AA_DDPM : CUP_B_BAF_Soldier_02_DDPM {
+class CUP_B_BAF_Soldier_AA_DDPM: CUP_B_BAF_Soldier_02_DDPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1899,7 +1899,7 @@ class CUP_B_BAF_Soldier_AA_DDPM : CUP_B_BAF_Soldier_02_DDPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_AA_DDPM.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DDPM",1,"CUP_H_BAF_Helmet_Net_2_DDPM",0.5,"CUP_H_BAF_Helmet_2_DDPM",0.5,"CUP_H_BAF_Helmet_3_DDPM",0.5,"CUP_H_BAF_Helmet_4_DDPM",0.5 };
 };
-class CUP_B_BAF_Soldier_Marksman_DDPM : CUP_B_BAF_Soldier_02_DDPM {
+class CUP_B_BAF_Soldier_Marksman_DDPM: CUP_B_BAF_Soldier_02_DDPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1929,7 +1929,7 @@ class CUP_B_BAF_Soldier_Marksman_DDPM : CUP_B_BAF_Soldier_02_DDPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_Marksman_DDPM.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DDPM",1,"CUP_H_BAF_Helmet_Net_2_DDPM",0.5,"CUP_H_BAF_Helmet_2_DDPM",0.5,"CUP_H_BAF_Helmet_3_DDPM",0.5,"CUP_H_BAF_Helmet_4_DDPM",0.5 };
 };
-class CUP_B_BAF_Soldier_scout_DDPM : CUP_B_BAF_Soldier_02_DDPM {
+class CUP_B_BAF_Soldier_scout_DDPM: CUP_B_BAF_Soldier_02_DDPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1960,7 +1960,7 @@ class CUP_B_BAF_Soldier_scout_DDPM : CUP_B_BAF_Soldier_02_DDPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_scout_DDPM.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DDPM",1,"CUP_H_BAF_Helmet_Net_2_DDPM",0.5,"CUP_H_BAF_Helmet_2_DDPM",0.5,"CUP_H_BAF_Helmet_3_DDPM",0.5,"CUP_H_BAF_Helmet_4_DDPM",0.5 };
 };
-class CUP_B_BAF_Sniper_DDPM : CUP_B_BAF_Soldier_04_DDPM {
+class CUP_B_BAF_Sniper_DDPM: CUP_B_BAF_Soldier_04_DDPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -1989,7 +1989,7 @@ class CUP_B_BAF_Sniper_DDPM : CUP_B_BAF_Soldier_04_DDPM {
     Icon = "IconMan";
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Sniper_DDPM.jpg";
 };
-class CUP_B_BAF_Sniper_AS50_DDPM : CUP_B_BAF_Soldier_04_DDPM {
+class CUP_B_BAF_Sniper_AS50_DDPM: CUP_B_BAF_Soldier_04_DDPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -2014,7 +2014,7 @@ class CUP_B_BAF_Sniper_AS50_DDPM : CUP_B_BAF_Soldier_04_DDPM {
     Icon = "IconMan";
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Sniper_AS50_DDPM.jpg";
 };
-class CUP_B_BAF_Sniper_AS50_TWS_DDPM : CUP_B_BAF_Sniper_AS50_DDPM {
+class CUP_B_BAF_Sniper_AS50_TWS_DDPM: CUP_B_BAF_Sniper_AS50_DDPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -2035,7 +2035,7 @@ class CUP_B_BAF_Sniper_AS50_TWS_DDPM : CUP_B_BAF_Sniper_AS50_DDPM {
     Icon = "IconMan";
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Sniper_AS50_TWS_DDPM.jpg";
 };
-class CUP_B_BAF_Spotter_DDPM : CUP_B_BAF_Soldier_04_DDPM {
+class CUP_B_BAF_Spotter_DDPM: CUP_B_BAF_Soldier_04_DDPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -2051,7 +2051,7 @@ class CUP_B_BAF_Spotter_DDPM : CUP_B_BAF_Soldier_04_DDPM {
     Icon = "iconMan";
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Spotter_DDPM.jpg";
 };
-class CUP_B_BAF_Spotter_L85TWS_DDPM : CUP_B_BAF_Spotter_DDPM {
+class CUP_B_BAF_Spotter_L85TWS_DDPM: CUP_B_BAF_Spotter_DDPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -2063,7 +2063,7 @@ class CUP_B_BAF_Spotter_L85TWS_DDPM : CUP_B_BAF_Spotter_DDPM {
     Icon = "iconMan";
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Spotter_L85TWS_DDPM.jpg";
 };
-class CUP_B_BAF_Pilot_DDPM : CUP_B_BAF_Soldier_02_DDPM {
+class CUP_B_BAF_Pilot_DDPM: CUP_B_BAF_Soldier_02_DDPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -2088,7 +2088,7 @@ class CUP_B_BAF_Pilot_DDPM : CUP_B_BAF_Soldier_02_DDPM {
     nameSound = "veh_infantry_pilot_s";
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Pilot_DDPM.jpg";
 };
-class CUP_B_BAF_Crew_DDPM : CUP_B_BAF_Soldier_01_DDPM {
+class CUP_B_BAF_Crew_DDPM: CUP_B_BAF_Soldier_01_DDPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -2104,7 +2104,7 @@ class CUP_B_BAF_Crew_DDPM : CUP_B_BAF_Soldier_01_DDPM {
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","ItemRadio","CUP_NVG_HMNVS","CUP_V_BAF_Osprey_Mk2_DDPM_Crewman","CUP_H_BAF_Crew_Helmet_DDPM" };
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Crew_DDPM.jpg";
 };
-class CUP_B_BAF_Medic_DDPM : CUP_B_BAF_Soldier_03_DDPM {
+class CUP_B_BAF_Medic_DDPM: CUP_B_BAF_Soldier_03_DDPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -2133,7 +2133,7 @@ class CUP_B_BAF_Medic_DDPM : CUP_B_BAF_Soldier_03_DDPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Medic_DDPM.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DDPM",1,"CUP_H_BAF_Helmet_Net_2_DDPM",0.5,"CUP_H_BAF_Helmet_2_DDPM",0.5,"CUP_H_BAF_Helmet_3_DDPM",0.5,"CUP_H_BAF_Helmet_4_DDPM",0.5 };
 };
-class CUP_B_BAF_Soldier_JTAC_DDPM : CUP_B_BAF_Soldier_03_DDPM {
+class CUP_B_BAF_Soldier_JTAC_DDPM: CUP_B_BAF_Soldier_03_DDPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -2152,7 +2152,7 @@ class CUP_B_BAF_Soldier_JTAC_DDPM : CUP_B_BAF_Soldier_03_DDPM {
     editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\Data\preview\CUP_B_BAF_Soldier_JTAC_DDPM.jpg";
     headgearList[] = { "CUP_H_BAF_Helmet_1_DDPM",1,"CUP_H_BAF_Helmet_Net_2_DDPM",0.5,"CUP_H_BAF_Helmet_2_DDPM",0.5,"CUP_H_BAF_Helmet_3_DDPM",0.5,"CUP_H_BAF_Helmet_4_DDPM",0.5 };
 };
-class CUP_B_BAF_Engineer_DDPM : CUP_B_BAF_Soldier_01_DDPM {
+class CUP_B_BAF_Engineer_DDPM: CUP_B_BAF_Soldier_01_DDPM {
     author = "$STR_CUP_AUTHOR_STRING";
     scope = 2;
     scopeCurator = 2;
@@ -2177,7 +2177,7 @@ class CUP_B_BAF_Engineer_DDPM : CUP_B_BAF_Soldier_01_DDPM {
 };
 
 //UKSF
-class CUP_B_GB_R : CUP_B_BAF_Soldier_MTP {
+class CUP_B_GB_R: CUP_B_BAF_Soldier_MTP {
     author = "UKSF";
     scope = 2;
     displayName = "Rifleman";
@@ -2225,10 +2225,10 @@ class CUP_B_GB_R : CUP_B_BAF_Soldier_MTP {
             };
         };
     class EventHandlers {
-        class CBA_Extended_EventHandlers : CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };
-class CUP_B_GB_O : CUP_B_GB_R {
+class CUP_B_GB_O: CUP_B_GB_R {
     displayName = "Officer";
     editorPreview = QPATHTOEF(common,data\previews\CUP_B_GB_O.jpg);
     icon = "iconManOfficer";
@@ -2236,23 +2236,23 @@ class CUP_B_GB_O : CUP_B_GB_R {
     linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "UK3CB_BAF_H_Beret_PR" };
     respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "UK3CB_BAF_H_Beret_PR" };
 };
-class CUP_B_GB_SL : CUP_B_GB_R {
+class CUP_B_GB_SL: CUP_B_GB_R {
     displayName = "Section Leader";
     editorPreview = QPATHTOEF(common,data\previews\CUP_B_GB_SL.jpg);
     icon = "iconManLeader";
 };
-class CUP_B_GB_MG : CUP_B_GB_R {
+class CUP_B_GB_MG: CUP_B_GB_R {
     displayName = "Machinegunner";
     editorPreview = QPATHTOEF(common,data\previews\CUP_B_GB_MG.jpg);
     icon = "iconManMG";
 };
-class CUP_B_GB_AT : CUP_B_GB_R {
+class CUP_B_GB_AT: CUP_B_GB_R {
     displayName = "Rifleman (AT)";
     editorPreview = QPATHTOEF(common,data\previews\CUP_B_GB_AT.jpg);
     icon = "iconManAT";
     threat[] = {1, 0.9, 0.3};
 };
-class CUP_B_GB_MED : CUP_B_GB_R {
+class CUP_B_GB_MED: CUP_B_GB_R {
     displayName = "Combat Medic";
     editorPreview = QPATHTOEF(common,data\previews\CUP_B_GB_MED.jpg);
     icon = "iconManMedic";
@@ -2261,12 +2261,12 @@ class CUP_B_GB_MED : CUP_B_GB_R {
     backpack = "UKSF_B_Medic";
     uniformClass = "UK3CB_BAF_U_CombatUniform_MTP_CSMR";
 };
-class CUP_B_GB_Sniper : CUP_B_GB_R {
+class CUP_B_GB_Sniper: CUP_B_GB_R {
     displayName = "Sniper";
     editorPreview = QPATHTOEF(common,data\previews\CUP_B_GB_Sniper.jpg);
     camouflage = 0.6;
 };
-class CUP_B_GB_P : CUP_B_GB_R {
+class CUP_B_GB_P: CUP_B_GB_R {
     author = "UKSF";
     displayName = "Pilot";
     editorPreview = QPATHTOEF(common,data\previews\CUP_B_GB_HP.jpg);

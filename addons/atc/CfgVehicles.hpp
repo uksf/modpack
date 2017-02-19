@@ -9,7 +9,7 @@ class CfgVehicles {
         displayname = "ATC Core";
         model = "z\ace\addons\fastroping\data\helper.p3d";
         class EventHandlers {
-            class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+            class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
         };
         class ACE_Actions {
             class ACE_MainActions {
@@ -29,7 +29,7 @@ class CfgVehicles {
                 };
                 class ACE_stopRadar {
                     displayName = "Stop ATC Radar";
-                    condition = QUOTE((_player == (_target getVariable [ARR_2(QQGVAR(isOperator), objNull)])) && (_target getVariable [ARR_2(QQGVAR(radarOn), false)]));
+                    condition = QUOTE((_player  isEqualTo  (_target getVariable [ARR_2(QQGVAR(isOperator), objNull)])) && (_target getVariable [ARR_2(QQGVAR(radarOn), false)]));
                     statement = QUOTE([ARR_2(_target, _player)] call FUNC(stop));
                     showDisabled = 1;
                     priority = 1;
@@ -59,7 +59,7 @@ class CfgVehicles {
         editorSubcategory = QEGVAR(common,objects);
         displayname = "ATC Station";
         class EventHandlers {
-            class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+            class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
         };
     };
 };

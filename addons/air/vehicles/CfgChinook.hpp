@@ -5,7 +5,7 @@ class CUP_CH47F_base: Helicopter_Base_H {
     armor = 60;
     memoryPointsGetInDriver = "pos cargo";
     memoryPointsGetInDriverDir = "pos cargo dir";
-    class ViewPilot : ViewPilot {
+    class ViewPilot: ViewPilot {
         minFov = 0.25;
         maxFov = 1.25;
         initFov = 0.95;

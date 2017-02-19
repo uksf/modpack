@@ -37,12 +37,12 @@ class Laraka_Uaz_Unarmed_Populated: Genfor_Uaz_Unarmed {
         "Laraka_Warlord"
     };
     class EventHandlers {
-        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };
 
 //DSHKM
-class Azaadi_Uaz_DSHKM : Laraka_Uaz_DSHKM {
+class Azaadi_Uaz_DSHKM: Laraka_Uaz_DSHKM {
     faction = "UKSF_Azaadi";
     side = 2;
     crew = "Azaadi_AK";
@@ -52,7 +52,7 @@ class Azaadi_Uaz_DSHKM : Laraka_Uaz_DSHKM {
 };
 
 //Unarmed
-class Azaadi_Uaz_Unarmed : Laraka_Uaz_Unarmed {
+class Azaadi_Uaz_Unarmed: Laraka_Uaz_Unarmed {
     faction = "UKSF_Azaadi";
     side = 2;
     crew = "Azaadi_AK";
@@ -65,7 +65,7 @@ class Azaadi_Uaz_Unarmed : Laraka_Uaz_Unarmed {
         "Azaadi_Warlord"
     };
 };
-class Azaadi_Uaz_Unarmed_Populated : Laraka_Uaz_Unarmed {
+class Azaadi_Uaz_Unarmed_Populated: Laraka_Uaz_Unarmed {
     faction = "UKSF_Azaadi";
     displayName = "UAZ Unarmed (Populated)";
     side = 2;

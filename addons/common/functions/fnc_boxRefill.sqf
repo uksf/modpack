@@ -23,8 +23,8 @@ params ["_crate", ["_type", 0], ["_array", []]];
 if (!isServer && isMultiplayer) exitWith {};
 
 _typeName = switch (_type) do { 
-    case 1 : {"Weapon"}; 
-    case 2 : {"Magazine"};
+    case 1: {"Weapon"}; 
+    case 2: {"Magazine"};
     default {"Item"}; 
 };
 
@@ -53,7 +53,7 @@ clearBackpackCargoGlobal _crate;
     _args params ["_crate", "_items", "_typeName", "_backpacks"];
     
     if (!alive _crate) exitWith {
-        [_handle] call CBA_fnc_removePerFrameHandler;
+        [_handle] call cba_fnc_removePerFrameHandler;
     };
         
     _cargo = call compile format ["get%1Cargo _crate", _typeName];    
@@ -84,4 +84,4 @@ clearBackpackCargoGlobal _crate;
             };
         } foreach _backpacks;
     } ;    
-}, 0, [_crate, _items, _typeName, _backpacks]] call CBA_fnc_addPerFrameHandler;
+}, 0, [_crate, _items, _typeName, _backpacks]] call cba_fnc_addPerFrameHandler;

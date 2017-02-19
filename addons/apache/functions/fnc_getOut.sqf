@@ -17,4 +17,4 @@
 #include "script_component.hpp"
 
 GVAR(soundPlaying) = false;
-[GVAR(soundHandler)] call CBA_fnc_removePerFrameHandler;
+[GVAR(soundHandler)] call cba_fnc_removePerFrameHandler;

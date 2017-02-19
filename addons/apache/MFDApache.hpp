@@ -30,8 +30,8 @@ class MFD {
             class GunnerAim {
                 type = "vector";
                 source = "weapon";
-                pos0[] = {0.5,"0.9 - 0.04 + 0.012"};
-                pos10[] = {"0.5 + 0.0111","0.9 - 0.04 + 0.012 + 0.0133"};
+                pos0[] = {0.5,"0.9 - 0.04 + 0.012" };
+                pos10[] = { "0.5 + 0.0111","0.9 - 0.04 + 0.012 + 0.0133" };
             };
             class Target {
                 source = "target";
@@ -97,64 +97,64 @@ class MFD {
                 pos10[] = {0.78,0.78};
                 angle = 0;
             };
-            class LevelP5 : Level0 {
+            class LevelP5: Level0 {
                 angle = 5;
             };
-            class LevelM5 : Level0 {
+            class LevelM5: Level0 {
                 angle = -5;
             };
-            class LevelP10 : Level0 {
+            class LevelP10: Level0 {
                 angle = 10;
             };
-            class LevelM10 : Level0 {
+            class LevelM10: Level0 {
                 angle = -10;
             };
-            class LevelP15 : Level0 {
+            class LevelP15: Level0 {
                 angle = 15;
             };
-            class LevelM15 : Level0 {
+            class LevelM15: Level0 {
                 angle = -15;
             };
-            class LevelP20 : Level0 {
+            class LevelP20: Level0 {
                 angle = 20;
             };
-            class LevelM20 : Level0 {
+            class LevelM20: Level0 {
                 angle = -20;
             };
-            class LevelP25 : Level0 {
+            class LevelP25: Level0 {
                 angle = 25;
             };
-            class LevelM25 : Level0 {
+            class LevelM25: Level0 {
                 angle = -25;
             };
-            class LevelP30 : Level0 {
+            class LevelP30: Level0 {
                 angle = 30;
             };
-            class LevelM30 : Level0 {
+            class LevelM30: Level0 {
                 angle = -30;
             };
-            class LevelP35 : Level0 {
+            class LevelP35: Level0 {
                 angle = 35;
             };
-            class LevelM35 : Level0 {
+            class LevelM35: Level0 {
                 angle = -35;
             };
-            class LevelP40 : Level0 {
+            class LevelP40: Level0 {
                 angle = 40;
             };
-            class LevelM40 : Level0 {
+            class LevelM40: Level0 {
                 angle = -40;
             };
-            class LevelP45 : Level0 {
+            class LevelP45: Level0 {
                 angle = 45;
             };
-            class LevelM45 : Level0 {
+            class LevelM45: Level0 {
                 angle = -45;
             };
-            class LevelP50 : Level0 {
+            class LevelP50: Level0 {
                 angle = 50;
             };
-            class LevelM50 : Level0 {
+            class LevelM50: Level0 {
                 angle = -50;
             };
         };
@@ -170,7 +170,7 @@ class MFD {
                         type = "line";
                         points[] = {{ "Level0",{ -0.42,0 },1 },{ "Level0",{ -0.38,0 },1 },{  },{ "Level0",{ -0.37,0 },1 },{ "Level0",{ -0.33,0 },1 },{  },{ "Level0",{ -0.32,0 },1 },{ "Level0",{ -0.28,0 },1 },{  },{ "Level0",{ -0.27,0 },1 },{ "Level0",{ -0.23,0 },1 },{  },{ "Level0",{ -0.22,0 },1 },{ "Level0",{ -0.18,0 },1 },{  },{ "Level0",{ -0.17,0 },1 },{ "Level0",{ -0.13,0 },1 },{  },{ "Level0",{ -0.12,0 },1 },{ "Level0",{ -0.08,0 },1 },{  },{ "Level0",{ 0.42,0 },1 },{ "Level0",{ 0.38,0 },1 },{  },{ "Level0",{ 0.37,0 },1 },{ "Level0",{ 0.33,0 },1 },{  },{ "Level0",{ 0.32,0 },1 },{ "Level0",{ 0.28,0 },1 },{  },{ "Level0",{ 0.27,0 },1 },{ "Level0",{ 0.23,0 },1 },{  },{ "Level0",{ 0.22,0 },1 },{ "Level0",{ 0.18,0 },1 },{  },{ "Level0",{ 0.17,0 },1 },{ "Level0",{ 0.13,0 },1 },{  },{ "Level0",{ 0.12,0 },1 },{ "Level0",{ 0.08,0 },1 }};
                     };
-                    class LevelM10 : Level0 {
+                    class LevelM10: Level0 {
                         type = "line";
                         width = 2;
                         points[] = {{ "LevelM10",{ -0.2,-0.03 },1 },{ "LevelM10",{ -0.2,0 },1 },{ "LevelM10",{ -0.15,0 },1 },{  },{ "LevelM10",{ -0.1,0 },1 },{ "LevelM10",{ -0.05,0 },1 },{  },{ "LevelM10",{ 0.05,0 },1 },{ "LevelM10",{ 0.1,0 },1 },{  },{ "LevelM10",{ 0.15,0 },1 },{ "LevelM10",{ 0.2,0 },1 },{ "LevelM10",{ 0.2,-0.03 },1 }};
@@ -182,17 +182,17 @@ class MFD {
                         align = "left";
                         scale = 1;
                         sourceScale = 1;
-                        pos[] = {"LevelM10",{ -0.22,-0.085 },1};
-                        right[] = {"LevelM10",{ -0.17,-0.085 },1};
-                        down[] = {"LevelM10",{ -0.22,-0.035 },1};
+                        pos[] = { "LevelM10",{ -0.22,-0.085 },1};
+                        right[] = { "LevelM10",{ -0.17,-0.085 },1};
+                        down[] = { "LevelM10",{ -0.22,-0.035 },1};
                     };
-                    class VALM_2_10 : VALM_1_10 {
+                    class VALM_2_10: VALM_1_10 {
                         align = "right";
-                        pos[] = {"LevelM10",{ 0.22,-0.085 },1};
-                        right[] = {"LevelM10",{ 0.27,-0.085 },1};
-                        down[] = {"LevelM10",{ 0.22,-0.035 },1};
+                        pos[] = { "LevelM10",{ 0.22,-0.085 },1};
+                        right[] = { "LevelM10",{ 0.27,-0.085 },1};
+                        down[] = { "LevelM10",{ 0.22,-0.035 },1};
                     };
-                    class LevelP10 : Level0 {
+                    class LevelP10: Level0 {
                         type = "line";
                         width = 2;
                         points[] = {{ "LevelP10",{ -0.2,0.03 },1 },{ "LevelP10",{ -0.2,0 },1 },{ "LevelP10",{ -0.05,0 },1 },{  },{ "LevelP10",{ 0.05,0 },1 },{ "LevelP10",{ 0.2,0 },1 },{ "LevelP10",{ 0.2,0.03 },1 }};
@@ -204,17 +204,17 @@ class MFD {
                         align = "left";
                         scale = 1;
                         sourceScale = 1;
-                        pos[] = {"LevelP10",{ -0.22,0.035 },1};
-                        right[] = {"LevelP10",{ -0.17,0.035 },1};
-                        down[] = {"LevelP10",{ -0.22,0.085 },1};
+                        pos[] = { "LevelP10",{ -0.22,0.035 },1};
+                        right[] = { "LevelP10",{ -0.17,0.035 },1};
+                        down[] = { "LevelP10",{ -0.22,0.085 },1};
                     };
-                    class VALP_2_10 : VALP_1_10 {
+                    class VALP_2_10: VALP_1_10 {
                         align = "right";
-                        pos[] = {"LevelP10",{ 0.22,0.035 },1};
-                        right[] = {"LevelP10",{ 0.27,0.035 },1};
-                        down[] = {"LevelP10",{ 0.22,0.085 },1};
+                        pos[] = { "LevelP10",{ 0.22,0.035 },1};
+                        right[] = { "LevelP10",{ 0.27,0.035 },1};
+                        down[] = { "LevelP10",{ 0.22,0.085 },1};
                     };
-                    class LevelM20 : Level0 {
+                    class LevelM20: Level0 {
                         type = "line";
                         width = 2;
                         points[] = {{ "LevelM20",{ -0.2,-0.03 },1 },{ "LevelM20",{ -0.2,0 },1 },{ "LevelM20",{ -0.15,0 },1 },{  },{ "LevelM20",{ -0.1,0 },1 },{ "LevelM20",{ -0.05,0 },1 },{  },{ "LevelM20",{ 0.05,0 },1 },{ "LevelM20",{ 0.1,0 },1 },{  },{ "LevelM20",{ 0.15,0 },1 },{ "LevelM20",{ 0.2,0 },1 },{ "LevelM20",{ 0.2,-0.03 },1 }};
@@ -226,17 +226,17 @@ class MFD {
                         align = "left";
                         scale = 1;
                         sourceScale = 1;
-                        pos[] = {"LevelM20",{ -0.22,-0.085 },1};
-                        right[] = {"LevelM20",{ -0.17,-0.085 },1};
-                        down[] = {"LevelM20",{ -0.22,-0.035 },1};
+                        pos[] = { "LevelM20",{ -0.22,-0.085 },1};
+                        right[] = { "LevelM20",{ -0.17,-0.085 },1};
+                        down[] = { "LevelM20",{ -0.22,-0.035 },1};
                     };
-                    class VALM_2_20 : VALM_1_20 {
+                    class VALM_2_20: VALM_1_20 {
                         align = "right";
-                        pos[] = {"LevelM20",{ 0.22,-0.085 },1};
-                        right[] = {"LevelM20",{ 0.27,-0.085 },1};
-                        down[] = {"LevelM20",{ 0.22,-0.035 },1};
+                        pos[] = { "LevelM20",{ 0.22,-0.085 },1};
+                        right[] = { "LevelM20",{ 0.27,-0.085 },1};
+                        down[] = { "LevelM20",{ 0.22,-0.035 },1};
                     };
-                    class LevelP20 : Level0 {
+                    class LevelP20: Level0 {
                         type = "line";
                         width = 2;
                         points[] = {{ "LevelP20",{ -0.2,0.03 },1 },{ "LevelP20",{ -0.2,0 },1 },{ "LevelP20",{ -0.05,0 },1 },{  },{ "LevelP20",{ 0.05,0 },1 },{ "LevelP20",{ 0.2,0 },1 },{ "LevelP20",{ 0.2,0.03 },1 }};
@@ -248,17 +248,17 @@ class MFD {
                         align = "left";
                         scale = 1;
                         sourceScale = 1;
-                        pos[] = {"LevelP20",{ -0.22,0.035 },1};
-                        right[] = {"LevelP20",{ -0.17,0.035 },1};
-                        down[] = {"LevelP20",{ -0.22,0.085 },1};
+                        pos[] = { "LevelP20",{ -0.22,0.035 },1};
+                        right[] = { "LevelP20",{ -0.17,0.035 },1};
+                        down[] = { "LevelP20",{ -0.22,0.085 },1};
                     };
-                    class VALP_2_20 : VALP_1_20 {
+                    class VALP_2_20: VALP_1_20 {
                         align = "right";
-                        pos[] = {"LevelP20",{ 0.22,0.035 },1};
-                        right[] = {"LevelP20",{ 0.27,0.035 },1};
-                        down[] = {"LevelP20",{ 0.22,0.085 },1};
+                        pos[] = { "LevelP20",{ 0.22,0.035 },1};
+                        right[] = { "LevelP20",{ 0.27,0.035 },1};
+                        down[] = { "LevelP20",{ 0.22,0.085 },1};
                     };
-                    class LevelM30 : Level0 {
+                    class LevelM30: Level0 {
                         type = "line";
                         width = 2;
                         points[] = {{ "LevelM30",{ -0.2,-0.03 },1 },{ "LevelM30",{ -0.2,0 },1 },{ "LevelM30",{ -0.15,0 },1 },{  },{ "LevelM30",{ -0.1,0 },1 },{ "LevelM30",{ -0.05,0 },1 },{  },{ "LevelM30",{ 0.05,0 },1 },{ "LevelM30",{ 0.1,0 },1 },{  },{ "LevelM30",{ 0.15,0 },1 },{ "LevelM30",{ 0.2,0 },1 },{ "LevelM30",{ 0.2,-0.03 },1 }};
@@ -270,17 +270,17 @@ class MFD {
                         align = "left";
                         scale = 1;
                         sourceScale = 1;
-                        pos[] = {"LevelM30",{ -0.22,-0.085 },1};
-                        right[] = {"LevelM30",{ -0.17,-0.085 },1};
-                        down[] = {"LevelM30",{ -0.22,-0.035 },1};
+                        pos[] = { "LevelM30",{ -0.22,-0.085 },1};
+                        right[] = { "LevelM30",{ -0.17,-0.085 },1};
+                        down[] = { "LevelM30",{ -0.22,-0.035 },1};
                     };
-                    class VALM_2_30 : VALM_1_30 {
+                    class VALM_2_30: VALM_1_30 {
                         align = "right";
-                        pos[] = {"LevelM30",{ 0.22,-0.085 },1};
-                        right[] = {"LevelM30",{ 0.27,-0.085 },1};
-                        down[] = {"LevelM30",{ 0.22,-0.035 },1};
+                        pos[] = { "LevelM30",{ 0.22,-0.085 },1};
+                        right[] = { "LevelM30",{ 0.27,-0.085 },1};
+                        down[] = { "LevelM30",{ 0.22,-0.035 },1};
                     };
-                    class LevelP30 : Level0 {
+                    class LevelP30: Level0 {
                         type = "line";
                         width = 2;
                         points[] = {{ "LevelP30",{ -0.2,0.03 },1 },{ "LevelP30",{ -0.2,0 },1 },{ "LevelP30",{ -0.05,0 },1 },{  },{ "LevelP30",{ 0.05,0 },1 },{ "LevelP30",{ 0.2,0 },1 },{ "LevelP30",{ 0.2,0.03 },1 }};
@@ -292,17 +292,17 @@ class MFD {
                         align = "left";
                         scale = 1;
                         sourceScale = 1;
-                        pos[] = {"LevelP30",{ -0.22,0.035 },1};
-                        right[] = {"LevelP30",{ -0.17,0.035 },1};
-                        down[] = {"LevelP30",{ -0.22,0.085 },1};
+                        pos[] = { "LevelP30",{ -0.22,0.035 },1};
+                        right[] = { "LevelP30",{ -0.17,0.035 },1};
+                        down[] = { "LevelP30",{ -0.22,0.085 },1};
                     };
-                    class VALP_2_30 : VALP_1_30 {
+                    class VALP_2_30: VALP_1_30 {
                         align = "right";
-                        pos[] = {"LevelP30",{ 0.22,0.035 },1};
-                        right[] = {"LevelP30",{ 0.27,0.035 },1};
-                        down[] = {"LevelP30",{ 0.22,0.085 },1};
+                        pos[] = { "LevelP30",{ 0.22,0.035 },1};
+                        right[] = { "LevelP30",{ 0.27,0.035 },1};
+                        down[] = { "LevelP30",{ 0.22,0.085 },1};
                     };
-                    class LevelM40 : Level0 {
+                    class LevelM40: Level0 {
                         type = "line";
                         width = 2;
                         points[] = {{ "LevelM40",{ -0.2,-0.03 },1 },{ "LevelM40",{ -0.2,0 },1 },{ "LevelM40",{ -0.15,0 },1 },{  },{ "LevelM40",{ -0.1,0 },1 },{ "LevelM40",{ -0.05,0 },1 },{  },{ "LevelM40",{ 0.05,0 },1 },{ "LevelM40",{ 0.1,0 },1 },{  },{ "LevelM40",{ 0.15,0 },1 },{ "LevelM40",{ 0.2,0 },1 },{ "LevelM40",{ 0.2,-0.03 },1 }};
@@ -314,17 +314,17 @@ class MFD {
                         align = "left";
                         scale = 1;
                         sourceScale = 1;
-                        pos[] = {"LevelM40",{ -0.22,-0.085 },1};
-                        right[] = {"LevelM40",{ -0.17,-0.085 },1};
-                        down[] = {"LevelM40",{ -0.22,-0.035 },1};
+                        pos[] = { "LevelM40",{ -0.22,-0.085 },1};
+                        right[] = { "LevelM40",{ -0.17,-0.085 },1};
+                        down[] = { "LevelM40",{ -0.22,-0.035 },1};
                     };
-                    class VALM_2_40 : VALM_1_40 {
+                    class VALM_2_40: VALM_1_40 {
                         align = "right";
-                        pos[] = {"LevelM40",{ 0.22,-0.085 },1};
-                        right[] = {"LevelM40",{ 0.27,-0.085 },1};
-                        down[] = {"LevelM40",{ 0.22,-0.035 },1};
+                        pos[] = { "LevelM40",{ 0.22,-0.085 },1};
+                        right[] = { "LevelM40",{ 0.27,-0.085 },1};
+                        down[] = { "LevelM40",{ 0.22,-0.035 },1};
                     };
-                    class LevelP40 : Level0 {
+                    class LevelP40: Level0 {
                         type = "line";
                         width = 2;
                         points[] = {{ "LevelP40",{ -0.2,0.03 },1 },{ "LevelP40",{ -0.2,0 },1 },{ "LevelP40",{ -0.05,0 },1 },{  },{ "LevelP40",{ 0.05,0 },1 },{ "LevelP40",{ 0.2,0 },1 },{ "LevelP40",{ 0.2,0.03 },1 }};
@@ -336,17 +336,17 @@ class MFD {
                         align = "left";
                         scale = 1;
                         sourceScale = 1;
-                        pos[] = {"LevelP40",{ -0.22,0.035 },1};
-                        right[] = {"LevelP40",{ -0.17,0.035 },1};
-                        down[] = {"LevelP40",{ -0.22,0.085 },1};
+                        pos[] = { "LevelP40",{ -0.22,0.035 },1};
+                        right[] = { "LevelP40",{ -0.17,0.035 },1};
+                        down[] = { "LevelP40",{ -0.22,0.085 },1};
                     };
-                    class VALP_2_40 : VALP_1_40 {
+                    class VALP_2_40: VALP_1_40 {
                         align = "right";
-                        pos[] = {"LevelP40",{ 0.22,0.035 },1};
-                        right[] = {"LevelP40",{ 0.27,0.035 },1};
-                        down[] = {"LevelP40",{ 0.22,0.085 },1};
+                        pos[] = { "LevelP40",{ 0.22,0.035 },1};
+                        right[] = { "LevelP40",{ 0.27,0.035 },1};
+                        down[] = { "LevelP40",{ 0.22,0.085 },1};
                     };
-                    class LevelM50 : Level0 {
+                    class LevelM50: Level0 {
                         type = "line";
                         width = 2;
                         points[] = {{ "LevelM50",{ -0.2,-0.03 },1 },{ "LevelM50",{ -0.2,0 },1 },{ "LevelM50",{ -0.15,0 },1 },{  },{ "LevelM50",{ -0.1,0 },1 },{ "LevelM50",{ -0.05,0 },1 },{  },{ "LevelM50",{ 0.05,0 },1 },{ "LevelM50",{ 0.1,0 },1 },{  },{ "LevelM50",{ 0.15,0 },1 },{ "LevelM50",{ 0.2,0 },1 },{ "LevelM50",{ 0.2,-0.03 },1 }};
@@ -358,17 +358,17 @@ class MFD {
                         align = "left";
                         scale = 1;
                         sourceScale = 1;
-                        pos[] = {"LevelM50",{ -0.22,-0.085 },1};
-                        right[] = {"LevelM50",{ -0.17,-0.085 },1};
-                        down[] = {"LevelM50",{ -0.22,-0.035 },1};
+                        pos[] = { "LevelM50",{ -0.22,-0.085 },1};
+                        right[] = { "LevelM50",{ -0.17,-0.085 },1};
+                        down[] = { "LevelM50",{ -0.22,-0.035 },1};
                     };
-                    class VALM_2_50 : VALM_1_50 {
+                    class VALM_2_50: VALM_1_50 {
                         align = "right";
-                        pos[] = {"LevelM50",{ 0.22,-0.085 },1};
-                        right[] = {"LevelM50",{ 0.27,-0.085 },1};
-                        down[] = {"LevelM50",{ 0.22,-0.035 },1};
+                        pos[] = { "LevelM50",{ 0.22,-0.085 },1};
+                        right[] = { "LevelM50",{ 0.27,-0.085 },1};
+                        down[] = { "LevelM50",{ 0.22,-0.035 },1};
                     };
-                    class LevelP50 : Level0 {
+                    class LevelP50: Level0 {
                         type = "line";
                         width = 2;
                         points[] = {{ "LevelP50",{ -0.2,0.03 },1 },{ "LevelP50",{ -0.2,0 },1 },{ "LevelP50",{ -0.05,0 },1 },{  },{ "LevelP50",{ 0.05,0 },1 },{ "LevelP50",{ 0.2,0 },1 },{ "LevelP50",{ 0.2,0.03 },1 }};
@@ -380,45 +380,45 @@ class MFD {
                         align = "left";
                         scale = 1;
                         sourceScale = 1;
-                        pos[] = {"LevelP50",{ -0.22,0.035 },1};
-                        right[] = {"LevelP50",{ -0.17,0.035 },1};
-                        down[] = {"LevelP50",{ -0.22,0.085 },1};
+                        pos[] = { "LevelP50",{ -0.22,0.035 },1};
+                        right[] = { "LevelP50",{ -0.17,0.035 },1};
+                        down[] = { "LevelP50",{ -0.22,0.085 },1};
                     };
-                    class VALP_2_50 : VALP_1_50 {
+                    class VALP_2_50: VALP_1_50 {
                         align = "right";
-                        pos[] = {"LevelP50",{ 0.22,0.035 },1};
-                        right[] = {"LevelP50",{ 0.27,0.035 },1};
-                        down[] = {"LevelP50",{ 0.22,0.085 },1};
+                        pos[] = { "LevelP50",{ 0.22,0.035 },1};
+                        right[] = { "LevelP50",{ 0.27,0.035 },1};
+                        down[] = { "LevelP50",{ 0.22,0.085 },1};
                     };
                 };
             };
             class HorizonBankRot {
                 type = "line";
                 width = 2;
-                points[] = {{"HorizonBankRot",{0,0.25},1},{"HorizonBankRot",{-0.01,0.23},1},{"HorizonBankRot",{0.01,0.23},1},{"HorizonBankRot",{0,0.25},1}};
+                points[] = {{ "HorizonBankRot",{0,0.25},1},{ "HorizonBankRot",{-0.01,0.23},1},{ "HorizonBankRot",{0.01,0.23},1},{ "HorizonBankRot",{0,0.25},1}};
             };
             class Static_HAD_BOX {
                 clipTL[] = {0,1};
                 clipBR[] = {1,0};
                 type = "line";
                 width = 4;
-                points[] = {{{"0.5-0.1","0.9-0.04"},1},{{"0.5-0.1","0.9+0.04"},1},{{"0.5+0.1","0.9+0.04"},1},{{"0.5+0.1","0.9-0.04"},1},{{"0.5-0.1","0.9-0.04"},1},{},{{"0.5-0.1","0.9-0.04+0.012"},1},{{"0.5-0.092","0.9-0.04+0.012"},1},{},{{"0.5+0.1","0.9-0.04+0.012"},1},{{"0.5+0.092","0.9-0.04+0.012"},1},{},{{0.5,"0.9-0.04"},1},{{0.5,"0.9-0.032"},1},{},{{0.5,"0.9+0.04"},1},{{0.5,"0.9+0.032"},1},{}};
+                points[] = {{{ "0.5-0.1","0.9-0.04" },1},{{ "0.5-0.1","0.9+0.04" },1},{{ "0.5+0.1","0.9+0.04" },1},{{ "0.5+0.1","0.9-0.04" },1},{{ "0.5-0.1","0.9-0.04" },1},{},{{ "0.5-0.1","0.9-0.04+0.012" },1},{{ "0.5-0.092","0.9-0.04+0.012" },1},{},{{ "0.5+0.1","0.9-0.04+0.012" },1},{{ "0.5+0.092","0.9-0.04+0.012" },1},{},{{0.5,"0.9-0.04" },1},{{0.5,"0.9-0.032" },1},{},{{0.5,"0.9+0.04" },1},{{0.5,"0.9+0.032" },1},{}};
             };
             class Gunner_HAD {
                 type = "line";
                 width = 4;
-                points[] = {{"GunnerAim",{-0.015,-0.008},1},{"GunnerAim",{-0.015,0.008},1},{"GunnerAim",{0.015,0.008},1},{"GunnerAim",{0.015,-0.008},1},{"GunnerAim",{-0.015,-0.008},1}};
+                points[] = {{ "GunnerAim",{-0.015,-0.008},1},{ "GunnerAim",{-0.015,0.008},1},{ "GunnerAim",{0.015,0.008},1},{ "GunnerAim",{0.015,-0.008},1},{ "GunnerAim",{-0.015,-0.008},1}};
             };
             class Slip_ball_group {
                 class Slip_bars {
                     type = "line";
                     width = 4;
-                    points[] = {{{"0.5-0.018","0.9-0.04"},1},{{"0.5-0.018","0.9-0.075"},1},{},{{"0.5+0.018","0.9-0.04"},1},{{"0.5+0.018","0.9-0.075"},1}};
+                    points[] = {{{ "0.5-0.018","0.9-0.04" },1},{{ "0.5-0.018","0.9-0.075" },1},{},{{ "0.5+0.018","0.9-0.04" },1},{{ "0.5+0.018","0.9-0.075" },1}};
                 };
                 class Slip_ball {
                     type = "line";
                     width = 4;
-                    points[] = {{"Velocity_slip",1,{"0 * 0.75","-0.02 * 0.75"},1},{"Velocity_slip",1,{"0.0099999998 * 0.75","-0.01732 * 0.75"},1},{"Velocity_slip",1,{"0.01732 * 0.75","-0.0099999998 * 0.75"},1},{"Velocity_slip",1,{"0.02 * 0.75","0 * 0.75"},1},{"Velocity_slip",1,{"0.01732 * 0.75","0.0099999998 * 0.75"},1},{"Velocity_slip",1,{"0.0099999998 * 0.75","0.01732 * 0.75"},1},{"Velocity_slip",1,{"0 * 0.75","0.02 * 0.75"},1},{"Velocity_slip",1,{"-0.0099999998 * 0.75","0.01732 * 0.75"},1},{"Velocity_slip",1,{"-0.01732 * 0.75","0.0099999998 * 0.75"},1},{"Velocity_slip",1,{"-0.02 * 0.75","0 * 0.75"},1},{"Velocity_slip",1,{"-0.01732 * 0.75","-0.0099999998 * 0.75"},1},{"Velocity_slip",1,{"-0.0099999998 * 0.75","-0.01732 * 0.75"},1},{"Velocity_slip",1,{"0 * 0.75","-0.02 * 0.75"},1},{},{"Velocity_slip",1,{"0 * 0.6","-0.02 * 0.6"},1},{"Velocity_slip",1,{"0.0099999998 * 0.6","-0.01732 * 0.6"},1},{"Velocity_slip",1,{"0.01732 * 0.6","-0.0099999998 * 0.6"},1},{"Velocity_slip",1,{"0.02 * 0.6","0 * 0.6"},1},{"Velocity_slip",1,{"0.01732 * 0.6","0.0099999998 * 0.6"},1},{"Velocity_slip",1,{"0.0099999998 * 0.6","0.01732 * 0.6"},1},{"Velocity_slip",1,{"0 * 0.6","0.02 * 0.6"},1},{"Velocity_slip",1,{"-0.0099999998 * 0.6","0.01732 * 0.6"},1},{"Velocity_slip",1,{"-0.01732 * 0.6","0.0099999998 * 0.6"},1},{"Velocity_slip",1,{"-0.02 * 0.6","0 * 0.6"},1},{"Velocity_slip",1,{"-0.01732 * 0.6","-0.0099999998 * 0.6"},1},{"Velocity_slip",1,{"-0.0099999998 * 0.6","-0.01732 * 0.6"},1},{"Velocity_slip",1,{"0 * 0.6","-0.02 * 0.6"},1},{},{"Velocity_slip",1,{"0 * 0.5","-0.02 * 0.5"},1},{"Velocity_slip",1,{"0.0099999998 * 0.5","-0.01732 * 0.5"},1},{"Velocity_slip",1,{"0.01732 * 0.5","-0.0099999998 * 0.5"},1},{"Velocity_slip",1,{"0.02 * 0.5","0 * 0.5"},1},{"Velocity_slip",1,{"0.01732 * 0.5","0.0099999998 * 0.5"},1},{"Velocity_slip",1,{"0.0099999998 * 0.5","0.01732 * 0.5"},1},{"Velocity_slip",1,{"0 * 0.5","0.02 * 0.5"},1},{"Velocity_slip",1,{"-0.0099999998 * 0.5","0.01732 * 0.5"},1},{"Velocity_slip",1,{"-0.01732 * 0.5","0.0099999998 * 0.5"},1},{"Velocity_slip",1,{"-0.02 * 0.5","0 * 0.5"},1},{"Velocity_slip",1,{"-0.01732 * 0.5","-0.0099999998 * 0.5"},1},{"Velocity_slip",1,{"-0.0099999998 * 0.5","-0.01732 * 0.5"},1},{"Velocity_slip",1,{"0 * 0.5","-0.02 * 0.5"},1},{},{"Velocity_slip",1,{"0 * 0.4","-0.02 * 0.4"},1},{"Velocity_slip",1,{"0.0099999998 * 0.4","-0.01732 * 0.4"},1},{"Velocity_slip",1,{"0.01732 * 0.4","-0.0099999998 * 0.4"},1},{"Velocity_slip",1,{"0.02 * 0.4","0 * 0.4"},1},{"Velocity_slip",1,{"0.01732 * 0.4","0.0099999998 * 0.4"},1},{"Velocity_slip",1,{"0.0099999998 * 0.4","0.01732 * 0.4"},1},{"Velocity_slip",1,{"0 * 0.4","0.02 * 0.4"},1},{"Velocity_slip",1,{"-0.0099999998 * 0.4","0.01732 * 0.4"},1},{"Velocity_slip",1,{"-0.01732 * 0.4","0.0099999998 * 0.4"},1},{"Velocity_slip",1,{"-0.02 * 0.4","0 * 0.4"},1},{"Velocity_slip",1,{"-0.01732 * 0.4","-0.0099999998 * 0.4"},1},{"Velocity_slip",1,{"-0.0099999998 * 0.4","-0.01732 * 0.4"},1},{"Velocity_slip",1,{"0 * 0.4","-0.02 * 0.4"},1},{},{"Velocity_slip",1,{"0 * 0.30","-0.02 * 0.30"},1},{"Velocity_slip",1,{"0.0099999998 * 0.30","-0.01732 * 0.30"},1},{"Velocity_slip",1,{"0.01732 * 0.30","-0.0099999998 * 0.30"},1},{"Velocity_slip",1,{"0.02 * 0.30","0 * 0.30"},1},{"Velocity_slip",1,{"0.01732 * 0.30","0.0099999998 * 0.30"},1},{"Velocity_slip",1,{"0.0099999998 * 0.30","0.01732 * 0.30"},1},{"Velocity_slip",1,{"0 * 0.30","0.02 * 0.30"},1},{"Velocity_slip",1,{"-0.0099999998 * 0.30","0.01732 * 0.30"},1},{"Velocity_slip",1,{"-0.01732 * 0.30","0.0099999998 * 0.30"},1},{"Velocity_slip",1,{"-0.02 * 0.30","0 * 0.30"},1},{"Velocity_slip",1,{"-0.01732 * 0.30","-0.0099999998 * 0.30"},1},{"Velocity_slip",1,{"-0.0099999998 * 0.30","-0.01732 * 0.30"},1},{"Velocity_slip",1,{"0 * 0.30","-0.02 * 0.30"},1},{},{"Velocity_slip",1,{"0 * 0.20","-0.02 * 0.20"},1},{"Velocity_slip",1,{"0.0099999998 * 0.20","-0.01732 * 0.20"},1},{"Velocity_slip",1,{"0.01732 * 0.20","-0.0099999998 * 0.20"},1},{"Velocity_slip",1,{"0.02 * 0.20","0 * 0.20"},1},{"Velocity_slip",1,{"0.01732 * 0.20","0.0099999998 * 0.20"},1},{"Velocity_slip",1,{"0.0099999998 * 0.20","0.01732 * 0.20"},1},{"Velocity_slip",1,{"0 * 0.20","0.02 * 0.20"},1},{"Velocity_slip",1,{"-0.0099999998 * 0.20","0.01732 * 0.20"},1},{"Velocity_slip",1,{"-0.01732 * 0.20","0.0099999998 * 0.20"},1},{"Velocity_slip",1,{"-0.02 * 0.20","0 * 0.20"},1},{"Velocity_slip",1,{"-0.01732 * 0.20","-0.0099999998 * 0.20"},1},{"Velocity_slip",1,{"-0.0099999998 * 0.20","-0.01732 * 0.20"},1},{"Velocity_slip",1,{"0 * 0.20","-0.02 * 0.20"},1},{},{"Velocity_slip",1,{"0 * 0.1","-0.02 * 0.1"},1},{"Velocity_slip",1,{"0.0099999998 * 0.1","-0.01732 * 0.1"},1},{"Velocity_slip",1,{"0.01732 * 0.1","-0.0099999998 * 0.1"},1},{"Velocity_slip",1,{"0.02 * 0.1","0 * 0.1"},1},{"Velocity_slip",1,{"0.01732 * 0.1","0.0099999998 * 0.1"},1},{"Velocity_slip",1,{"0.0099999998 * 0.1","0.01732 * 0.1"},1},{"Velocity_slip",1,{"0 * 0.1","0.02 * 0.1"},1},{"Velocity_slip",1,{"-0.0099999998 * 0.1","0.01732 * 0.1"},1},{"Velocity_slip",1,{"-0.01732 * 0.1","0.0099999998 * 0.1"},1},{"Velocity_slip",1,{"-0.02 * 0.1","0 * 0.1"},1},{"Velocity_slip",1,{"-0.01732 * 0.1","-0.0099999998 * 0.1"},1},{"Velocity_slip",1,{"-0.0099999998 * 0.1","-0.01732 * 0.1"},1},{"Velocity_slip",1,{"0 * 0.1","-0.02 * 0.1"},1}};
+                    points[] = {{ "Velocity_slip",1,{ "0 * 0.75","-0.02 * 0.75" },1},{ "Velocity_slip",1,{ "0.0099999998 * 0.75","-0.01732 * 0.75" },1},{ "Velocity_slip",1,{ "0.01732 * 0.75","-0.0099999998 * 0.75" },1},{ "Velocity_slip",1,{ "0.02 * 0.75","0 * 0.75" },1},{ "Velocity_slip",1,{ "0.01732 * 0.75","0.0099999998 * 0.75" },1},{ "Velocity_slip",1,{ "0.0099999998 * 0.75","0.01732 * 0.75" },1},{ "Velocity_slip",1,{ "0 * 0.75","0.02 * 0.75" },1},{ "Velocity_slip",1,{ "-0.0099999998 * 0.75","0.01732 * 0.75" },1},{ "Velocity_slip",1,{ "-0.01732 * 0.75","0.0099999998 * 0.75" },1},{ "Velocity_slip",1,{ "-0.02 * 0.75","0 * 0.75" },1},{ "Velocity_slip",1,{ "-0.01732 * 0.75","-0.0099999998 * 0.75" },1},{ "Velocity_slip",1,{ "-0.0099999998 * 0.75","-0.01732 * 0.75" },1},{ "Velocity_slip",1,{ "0 * 0.75","-0.02 * 0.75" },1},{},{ "Velocity_slip",1,{ "0 * 0.6","-0.02 * 0.6" },1},{ "Velocity_slip",1,{ "0.0099999998 * 0.6","-0.01732 * 0.6" },1},{ "Velocity_slip",1,{ "0.01732 * 0.6","-0.0099999998 * 0.6" },1},{ "Velocity_slip",1,{ "0.02 * 0.6","0 * 0.6" },1},{ "Velocity_slip",1,{ "0.01732 * 0.6","0.0099999998 * 0.6" },1},{ "Velocity_slip",1,{ "0.0099999998 * 0.6","0.01732 * 0.6" },1},{ "Velocity_slip",1,{ "0 * 0.6","0.02 * 0.6" },1},{ "Velocity_slip",1,{ "-0.0099999998 * 0.6","0.01732 * 0.6" },1},{ "Velocity_slip",1,{ "-0.01732 * 0.6","0.0099999998 * 0.6" },1},{ "Velocity_slip",1,{ "-0.02 * 0.6","0 * 0.6" },1},{ "Velocity_slip",1,{ "-0.01732 * 0.6","-0.0099999998 * 0.6" },1},{ "Velocity_slip",1,{ "-0.0099999998 * 0.6","-0.01732 * 0.6" },1},{ "Velocity_slip",1,{ "0 * 0.6","-0.02 * 0.6" },1},{},{ "Velocity_slip",1,{ "0 * 0.5","-0.02 * 0.5" },1},{ "Velocity_slip",1,{ "0.0099999998 * 0.5","-0.01732 * 0.5" },1},{ "Velocity_slip",1,{ "0.01732 * 0.5","-0.0099999998 * 0.5" },1},{ "Velocity_slip",1,{ "0.02 * 0.5","0 * 0.5" },1},{ "Velocity_slip",1,{ "0.01732 * 0.5","0.0099999998 * 0.5" },1},{ "Velocity_slip",1,{ "0.0099999998 * 0.5","0.01732 * 0.5" },1},{ "Velocity_slip",1,{ "0 * 0.5","0.02 * 0.5" },1},{ "Velocity_slip",1,{ "-0.0099999998 * 0.5","0.01732 * 0.5" },1},{ "Velocity_slip",1,{ "-0.01732 * 0.5","0.0099999998 * 0.5" },1},{ "Velocity_slip",1,{ "-0.02 * 0.5","0 * 0.5" },1},{ "Velocity_slip",1,{ "-0.01732 * 0.5","-0.0099999998 * 0.5" },1},{ "Velocity_slip",1,{ "-0.0099999998 * 0.5","-0.01732 * 0.5" },1},{ "Velocity_slip",1,{ "0 * 0.5","-0.02 * 0.5" },1},{},{ "Velocity_slip",1,{ "0 * 0.4","-0.02 * 0.4" },1},{ "Velocity_slip",1,{ "0.0099999998 * 0.4","-0.01732 * 0.4" },1},{ "Velocity_slip",1,{ "0.01732 * 0.4","-0.0099999998 * 0.4" },1},{ "Velocity_slip",1,{ "0.02 * 0.4","0 * 0.4" },1},{ "Velocity_slip",1,{ "0.01732 * 0.4","0.0099999998 * 0.4" },1},{ "Velocity_slip",1,{ "0.0099999998 * 0.4","0.01732 * 0.4" },1},{ "Velocity_slip",1,{ "0 * 0.4","0.02 * 0.4" },1},{ "Velocity_slip",1,{ "-0.0099999998 * 0.4","0.01732 * 0.4" },1},{ "Velocity_slip",1,{ "-0.01732 * 0.4","0.0099999998 * 0.4" },1},{ "Velocity_slip",1,{ "-0.02 * 0.4","0 * 0.4" },1},{ "Velocity_slip",1,{ "-0.01732 * 0.4","-0.0099999998 * 0.4" },1},{ "Velocity_slip",1,{ "-0.0099999998 * 0.4","-0.01732 * 0.4" },1},{ "Velocity_slip",1,{ "0 * 0.4","-0.02 * 0.4" },1},{},{ "Velocity_slip",1,{ "0 * 0.30","-0.02 * 0.30" },1},{ "Velocity_slip",1,{ "0.0099999998 * 0.30","-0.01732 * 0.30" },1},{ "Velocity_slip",1,{ "0.01732 * 0.30","-0.0099999998 * 0.30" },1},{ "Velocity_slip",1,{ "0.02 * 0.30","0 * 0.30" },1},{ "Velocity_slip",1,{ "0.01732 * 0.30","0.0099999998 * 0.30" },1},{ "Velocity_slip",1,{ "0.0099999998 * 0.30","0.01732 * 0.30" },1},{ "Velocity_slip",1,{ "0 * 0.30","0.02 * 0.30" },1},{ "Velocity_slip",1,{ "-0.0099999998 * 0.30","0.01732 * 0.30" },1},{ "Velocity_slip",1,{ "-0.01732 * 0.30","0.0099999998 * 0.30" },1},{ "Velocity_slip",1,{ "-0.02 * 0.30","0 * 0.30" },1},{ "Velocity_slip",1,{ "-0.01732 * 0.30","-0.0099999998 * 0.30" },1},{ "Velocity_slip",1,{ "-0.0099999998 * 0.30","-0.01732 * 0.30" },1},{ "Velocity_slip",1,{ "0 * 0.30","-0.02 * 0.30" },1},{},{ "Velocity_slip",1,{ "0 * 0.20","-0.02 * 0.20" },1},{ "Velocity_slip",1,{ "0.0099999998 * 0.20","-0.01732 * 0.20" },1},{ "Velocity_slip",1,{ "0.01732 * 0.20","-0.0099999998 * 0.20" },1},{ "Velocity_slip",1,{ "0.02 * 0.20","0 * 0.20" },1},{ "Velocity_slip",1,{ "0.01732 * 0.20","0.0099999998 * 0.20" },1},{ "Velocity_slip",1,{ "0.0099999998 * 0.20","0.01732 * 0.20" },1},{ "Velocity_slip",1,{ "0 * 0.20","0.02 * 0.20" },1},{ "Velocity_slip",1,{ "-0.0099999998 * 0.20","0.01732 * 0.20" },1},{ "Velocity_slip",1,{ "-0.01732 * 0.20","0.0099999998 * 0.20" },1},{ "Velocity_slip",1,{ "-0.02 * 0.20","0 * 0.20" },1},{ "Velocity_slip",1,{ "-0.01732 * 0.20","-0.0099999998 * 0.20" },1},{ "Velocity_slip",1,{ "-0.0099999998 * 0.20","-0.01732 * 0.20" },1},{ "Velocity_slip",1,{ "0 * 0.20","-0.02 * 0.20" },1},{},{ "Velocity_slip",1,{ "0 * 0.1","-0.02 * 0.1" },1},{ "Velocity_slip",1,{ "0.0099999998 * 0.1","-0.01732 * 0.1" },1},{ "Velocity_slip",1,{ "0.01732 * 0.1","-0.0099999998 * 0.1" },1},{ "Velocity_slip",1,{ "0.02 * 0.1","0 * 0.1" },1},{ "Velocity_slip",1,{ "0.01732 * 0.1","0.0099999998 * 0.1" },1},{ "Velocity_slip",1,{ "0.0099999998 * 0.1","0.01732 * 0.1" },1},{ "Velocity_slip",1,{ "0 * 0.1","0.02 * 0.1" },1},{ "Velocity_slip",1,{ "-0.0099999998 * 0.1","0.01732 * 0.1" },1},{ "Velocity_slip",1,{ "-0.01732 * 0.1","0.0099999998 * 0.1" },1},{ "Velocity_slip",1,{ "-0.02 * 0.1","0 * 0.1" },1},{ "Velocity_slip",1,{ "-0.01732 * 0.1","-0.0099999998 * 0.1" },1},{ "Velocity_slip",1,{ "-0.0099999998 * 0.1","-0.01732 * 0.1" },1},{ "Velocity_slip",1,{ "0 * 0.1","-0.02 * 0.1" },1}};
                 };
             };
             class Centerline {
@@ -515,9 +515,9 @@ class MFD {
                     text = "LIGHTS";
                     align = "right";
                     scale = 1;
-                    pos[] = {{0.03,"0.53 + 0.055"},1};
-                    right[] = {{0.07,"0.53 + 0.055"},1};
-                    down[] = {{0.03,"0.53 + 0.095"},1};
+                    pos[] = {{0.03,"0.53 + 0.055" },1};
+                    right[] = {{0.07,"0.53 + 0.055" },1};
+                    down[] = {{0.03,"0.53 + 0.095" },1};
                 };
             };
             class CollisionLightsGroup {
@@ -529,9 +529,9 @@ class MFD {
                     text = "A-COL";
                     align = "right";
                     scale = 1;
-                    pos[] = {{0.03,"0.53 + 0.105"},1};
-                    right[] = {{0.07,"0.53 + 0.105"},1};
-                    down[] = {{0.03,"0.53 + 0.145"},1};
+                    pos[] = {{0.03,"0.53 + 0.105" },1};
+                    right[] = {{0.07,"0.53 + 0.105" },1};
+                    down[] = {{0.03,"0.53 + 0.145" },1};
                 };
             };
             class ATMissileTOFGroup {
@@ -541,7 +541,7 @@ class MFD {
                     type = "text";
                     align = "right";
                     source = "static";
-                    text = "TOF=";
+                    text = "TOF = ";
                     scale = 1;
                     pos[] = {{0.61,0.92},1};
                     right[] = {{0.65,0.92},1};
@@ -565,7 +565,7 @@ class MFD {
                     type = "text";
                     align = "right";
                     source = "static";
-                    text = "TOF=";
+                    text = "TOF = ";
                     scale = 1;
                     pos[] = {{0.61,0.92},1};
                     right[] = {{0.65,0.92},1};
@@ -589,7 +589,7 @@ class MFD {
                     type = "text";
                     align = "right";
                     source = "static";
-                    text = "TOF=";
+                    text = "TOF = ";
                     scale = 1;
                     pos[] = {{0.61,0.92},1};
                     right[] = {{0.65,0.92},1};
@@ -659,7 +659,7 @@ class MFD {
                     down[] = {{0.07,0.225},1};
                 };
             };
-            class AltNumber : SpeedNumber {
+            class AltNumber: SpeedNumber {
                 align = "right";
                 source = "altitudeAGL";
                 sourceScale = 3.2808399;
@@ -689,31 +689,31 @@ class MFD {
                 class radarbanda {
                     type = "line";
                     width = 17;
-                    points[] = {{"RadarAltitudeBone",{0,0},1},{"RadarAltitudeBone",{0,0.6},1}};
+                    points[] = {{ "RadarAltitudeBone",{0,0},1},{ "RadarAltitudeBone",{0,0.6},1}};
                 };
             };
             class VspeedBand {
                 type = "line";
                 width = 3;
-                points[] = {{"VspeedBone",{-0.01,0},1},{"VspeedBone",{-0.025,-0.015},1},{"VspeedBone",{-0.025,0.015},1},{"VspeedBone",{-0.01,0},1},{}};
+                points[] = {{ "VspeedBone",{-0.01,0},1},{ "VspeedBone",{-0.025,-0.015},1},{ "VspeedBone",{-0.025,0.015},1},{ "VspeedBone",{-0.01,0},1},{}};
             };
-            class HeadingNumber : SpeedNumber {
+            class HeadingNumber: SpeedNumber {
                 source = "heading";
                 sourceScale = 1;
                 align = "center";
                 pos[] = {{0.5,0.045},1};
                 right[] = {{0.56,0.045},1};
-                down[] = {{0.5,"0.045 + 0.06"},1};
+                down[] = {{0.5,"0.045 + 0.06" },1};
             };
             class Center_box {
                 type = "line";
                 width = 1.5;
-                points[] = {{{0.45,"0.02 + 0.085 - 0.06"},1},{{"0.45 + 0.10","0.02 + 0.085 - 0.06"},1},{{"0.45 + 0.10","0.02 + 0.085"},1},{{0.45,"0.02 + 0.085"},1},{{0.45,"0.02 + 0.085 - 0.06"},1}};
+                points[] = {{{0.45,"0.02 + 0.085 - 0.06" },1},{{ "0.45 + 0.10","0.02 + 0.085 - 0.06" },1},{{ "0.45 + 0.10","0.02 + 0.085" },1},{{0.45,"0.02 + 0.085" },1},{{0.45,"0.02 + 0.085 - 0.06" },1}};
             };
             class HeadingArrow {
                 type = "line";
                 width = 7;
-                points[] = {{{"0.5","0.128 + 0.03"},1},{{0.5,0.128},1}};
+                points[] = {{{ "0.5","0.128 + 0.03" },1},{{0.5,0.128},1}};
             };
             class HeadingScale_LEFT {
                 clipTL[] = {0,0};
@@ -737,9 +737,9 @@ class MFD {
                     stepSize = "0.05";
                     align = "center";
                     scale = 1;
-                    pos[] = {0.12,"0.0 + 0.065"};
-                    right[] = {0.16,"0.0 + 0.065"};
-                    down[] = {0.12,"0.04 + 0.065"};
+                    pos[] = {0.12,"0.0 + 0.065" };
+                    right[] = {0.16,"0.0 + 0.065" };
+                    down[] = {0.12,"0.04 + 0.065" };
                 };
             };
             class HeadingScale_RIGHT {
@@ -764,14 +764,14 @@ class MFD {
                     stepSize = "0.05";
                     align = "center";
                     scale = 1;
-                    pos[] = {0.12,"0.0 + 0.065"};
-                    right[] = {0.16,"0.0 + 0.065"};
-                    down[] = {0.12,"0.04 + 0.065"};
+                    pos[] = {0.12,"0.0 + 0.065" };
+                    right[] = {0.16,"0.0 + 0.065" };
+                    down[] = {0.12,"0.04 + 0.065" };
                 };
             };
             class HeadingScale_BOTTOM {
-                clipTL[] = {0.45,"0.02 + 0.085"};
-                clipBR[] = {"0.45 + 0.10",1};
+                clipTL[] = {0.45,"0.02 + 0.085" };
+                clipBR[] = { "0.45 + 0.10",1};
                 class Heading_group {
                     type = "scale";
                     horizontal = 1;
@@ -791,9 +791,9 @@ class MFD {
                     stepSize = "0.05";
                     align = "center";
                     scale = 1;
-                    pos[] = {0.12,"0.0 + 0.065"};
-                    right[] = {0.16,"0.0 + 0.065"};
-                    down[] = {0.12,"0.04 + 0.065"};
+                    pos[] = {0.12,"0.0 + 0.065" };
+                    right[] = {0.16,"0.0 + 0.065" };
+                    down[] = {0.12,"0.04 + 0.065" };
                 };
             };
             class Fuel_Text {
@@ -886,14 +886,14 @@ class MFD {
             class PlaneMovementCrosshair {
                 type = "line";
                 width = 4;
-                points[] = {{"ForwardVec1",1,"Velocity",1,{0,-0.02},1},{"ForwardVec1",1,"Velocity",1,{0.01,-0.01732},1},{"ForwardVec1",1,"Velocity",1,{0.01732,-0.01},1},{"ForwardVec1",1,"Velocity",1,{0.02,0},1},{"ForwardVec1",1,"Velocity",1,{0.01732,0.01},1},{"ForwardVec1",1,"Velocity",1,{0.01,0.01732},1},{"ForwardVec1",1,"Velocity",1,{0,0.02},1},{"ForwardVec1",1,"Velocity",1,{-0.01,0.01732},1},{"ForwardVec1",1,"Velocity",1,{-0.01732,0.01},1},{"ForwardVec1",1,"Velocity",1,{-0.02,0},1},{"ForwardVec1",1,"Velocity",1,{-0.01732,-0.01},1},{"ForwardVec1",1,"Velocity",1,{-0.01,-0.01732},1},{"ForwardVec1",1,"Velocity",1,{0,-0.02},1},{},{"ForwardVec1",1,"Velocity",1,{0.04,0},1},{"ForwardVec1",1,"Velocity",1,{0.02,0},1},{},{"ForwardVec1",1,"Velocity",1,{-0.04,0},1},{"ForwardVec1",1,"Velocity",1,{-0.02,0},1},{},{"ForwardVec1",1,"Velocity",1,{0,-0.04},1},{"ForwardVec1",1,"Velocity",1,{0,-0.02},1}};
+                points[] = {{ "ForwardVec1",1,"Velocity",1,{0,-0.02},1},{ "ForwardVec1",1,"Velocity",1,{0.01,-0.01732},1},{ "ForwardVec1",1,"Velocity",1,{0.01732,-0.01},1},{ "ForwardVec1",1,"Velocity",1,{0.02,0},1},{ "ForwardVec1",1,"Velocity",1,{0.01732,0.01},1},{ "ForwardVec1",1,"Velocity",1,{0.01,0.01732},1},{ "ForwardVec1",1,"Velocity",1,{0,0.02},1},{ "ForwardVec1",1,"Velocity",1,{-0.01,0.01732},1},{ "ForwardVec1",1,"Velocity",1,{-0.01732,0.01},1},{ "ForwardVec1",1,"Velocity",1,{-0.02,0},1},{ "ForwardVec1",1,"Velocity",1,{-0.01732,-0.01},1},{ "ForwardVec1",1,"Velocity",1,{-0.01,-0.01732},1},{ "ForwardVec1",1,"Velocity",1,{0,-0.02},1},{},{ "ForwardVec1",1,"Velocity",1,{0.04,0},1},{ "ForwardVec1",1,"Velocity",1,{0.02,0},1},{},{ "ForwardVec1",1,"Velocity",1,{-0.04,0},1},{ "ForwardVec1",1,"Velocity",1,{-0.02,0},1},{},{ "ForwardVec1",1,"Velocity",1,{0,-0.04},1},{ "ForwardVec1",1,"Velocity",1,{0,-0.02},1}};
             };
             class Gunner_AIM {
                 type = "group";
                 class Circle {
                     type = "line";
                     width = 2;
-                    points[] = {{"ForwardVec",1,"WeaponAim",1,{0,-0.015},1},{"ForwardVec",1,"WeaponAim",1,{0,-0.03},1},{},{"ForwardVec",1,"WeaponAim",1,{0,-0.0325},1},{"ForwardVec",1,"WeaponAim",1,{0,-0.0475},1},{},{"ForwardVec",1,"WeaponAim",1,{0,0.015},1},{"ForwardVec",1,"WeaponAim",1,{0,0.03},1},{},{"ForwardVec",1,"WeaponAim",1,{0,0.0325},1},{"ForwardVec",1,"WeaponAim",1,{0,0.0475},1},{},{"ForwardVec",1,"WeaponAim",1,{-0.015,0},1},{"ForwardVec",1,"WeaponAim",1,{-0.03,0},1},{},{"ForwardVec",1,"WeaponAim",1,{-0.0325,0},1},{"ForwardVec",1,"WeaponAim",1,{-0.0475,0},1},{},{"ForwardVec",1,"WeaponAim",1,{0.015,0},1},{"ForwardVec",1,"WeaponAim",1,{0.03,0},1},{},{"ForwardVec",1,"WeaponAim",1,{0.0325,0},1},{"ForwardVec",1,"WeaponAim",1,{0.0475,0},1}};
+                    points[] = {{ "ForwardVec",1,"WeaponAim",1,{0,-0.015},1},{ "ForwardVec",1,"WeaponAim",1,{0,-0.03},1},{},{ "ForwardVec",1,"WeaponAim",1,{0,-0.0325},1},{ "ForwardVec",1,"WeaponAim",1,{0,-0.0475},1},{},{ "ForwardVec",1,"WeaponAim",1,{0,0.015},1},{ "ForwardVec",1,"WeaponAim",1,{0,0.03},1},{},{ "ForwardVec",1,"WeaponAim",1,{0,0.0325},1},{ "ForwardVec",1,"WeaponAim",1,{0,0.0475},1},{},{ "ForwardVec",1,"WeaponAim",1,{-0.015,0},1},{ "ForwardVec",1,"WeaponAim",1,{-0.03,0},1},{},{ "ForwardVec",1,"WeaponAim",1,{-0.0325,0},1},{ "ForwardVec",1,"WeaponAim",1,{-0.0475,0},1},{},{ "ForwardVec",1,"WeaponAim",1,{0.015,0},1},{ "ForwardVec",1,"WeaponAim",1,{0.03,0},1},{},{ "ForwardVec",1,"WeaponAim",1,{0.0325,0},1},{ "ForwardVec",1,"WeaponAim",1,{0.0475,0},1}};
                 };
             };
             class GunCross {
@@ -901,7 +901,7 @@ class MFD {
                 class Circle {
                     type = "line";
                     width = 4;
-                    points[] = {{"ForwardVec",1,"WeaponAim",1,{0,-0.05},1},{"ForwardVec",1,"WeaponAim",1,{0,-0.015},1},{},{"ForwardVec",1,"WeaponAim",1,{0,0.015},1},{"ForwardVec",1,"WeaponAim",1,{0,0.05},1},{},{"ForwardVec",1,"WeaponAim",1,{-0.05,0},1},{"ForwardVec",1,"WeaponAim",1,{-0.015,0},1},{},{"ForwardVec",1,"WeaponAim",1,{0.015,0},1},{"ForwardVec",1,"WeaponAim",1,{0.05,0},1},{}};
+                    points[] = {{ "ForwardVec",1,"WeaponAim",1,{0,-0.05},1},{ "ForwardVec",1,"WeaponAim",1,{0,-0.015},1},{},{ "ForwardVec",1,"WeaponAim",1,{0,0.015},1},{ "ForwardVec",1,"WeaponAim",1,{0,0.05},1},{},{ "ForwardVec",1,"WeaponAim",1,{-0.05,0},1},{ "ForwardVec",1,"WeaponAim",1,{-0.015,0},1},{},{ "ForwardVec",1,"WeaponAim",1,{0.015,0},1},{ "ForwardVec",1,"WeaponAim",1,{0.05,0},1},{}};
                 };
             };
             class RocketCross {
@@ -910,15 +910,15 @@ class MFD {
                 class Circle {
                     type = "line";
                     width = 4;
-                    points[] = {{"ForwardVec",1,"WeaponAim",1,{-0.05,-0.08},1},{"ForwardVec",1,"WeaponAim",1,{0.05,-0.08},1},{},{"ForwardVec",1,"WeaponAim",1,{0,-0.08},1},{"ForwardVec",1,"WeaponAim",1,{0,0.08},1},{},{"ForwardVec",1,"WeaponAim",1,{-0.05,0.08},1},{"ForwardVec",1,"WeaponAim",1,{0.05,0.08},1},{}};
+                    points[] = {{ "ForwardVec",1,"WeaponAim",1,{-0.05,-0.08},1},{ "ForwardVec",1,"WeaponAim",1,{0.05,-0.08},1},{},{ "ForwardVec",1,"WeaponAim",1,{0,-0.08},1},{ "ForwardVec",1,"WeaponAim",1,{0,0.08},1},{},{ "ForwardVec",1,"WeaponAim",1,{-0.05,0.08},1},{ "ForwardVec",1,"WeaponAim",1,{0.05,0.08},1},{}};
                 };
             };
             class WeaponCrossPilot {
                 class Circle {
                     type = "line";
                     width = 2;
-                    // points[] = {{"ForwardVec",1,"WeaponFixed",1,{0,-0.02},1},{"ForwardVec",1,"WeaponFixed",1,{0,0.02},1},{},{"ForwardVec",1,"WeaponFixed",1,{-0.02,0},1},{"ForwardVec",1,"WeaponFixed",1,{0.02, 0},1},{}};
-                    points[] = {{"ForwardVec",1,"WeaponFixed",1,{"-1.2000 * 0.02","-0.0000 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"-1.0000 * 0.02","-0.0000 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"-0.9877 * 0.02","-0.1736 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"-0.9397 * 0.02","-0.3420 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"-0.8660 * 0.02","-0.5000 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"-0.7660 * 0.02","-0.6428 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"-0.6428 * 0.02","-0.7660 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"-0.5000 * 0.02","-0.8660 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"-0.3420 * 0.02","-0.9397 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"-0.1736 * 0.02","-0.9877 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"-0.0000 * 0.02","-1.0000 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"0.1736 * 0.02","-0.9877 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"0.3420 * 0.02","-0.9397 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"0.5000 * 0.02","-0.8660 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"0.6428 * 0.02","-0.7660 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"0.7660 * 0.02","-0.6428 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"0.8660 * 0.02","-0.5000 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"0.9397 * 0.02","-0.3420 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"0.9877 * 0.02","-0.1736 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"1.0000 * 0.02","-0.0000 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"1.2000 * 0.02","-0.0000 * 0.02"},1},{},{"ForwardVec",1,"WeaponFixed",1,{"-1.2000 * 0.02","0.0000 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"-1.0000 * 0.02","0.0000 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"-0.9877 * 0.02","0.1736 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"-0.9397 * 0.02","0.3420 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"-0.8660 * 0.02","0.5000 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"-0.7660 * 0.02","0.6428 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"-0.6428 * 0.02","0.7660 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"-0.5000 * 0.02","0.8660 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"-0.3420 * 0.02","0.9397 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"-0.1736 * 0.02","0.9877 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"-0.0000 * 0.02","1.0000 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"0.1736 * 0.02","0.9877 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"0.3420 * 0.02","0.9397 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"0.5000 * 0.02","0.8660 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"0.6428 * 0.02","0.7660 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"0.7660 * 0.02","0.6428 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"0.8660 * 0.02","0.5000 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"0.9397 * 0.02","0.3420 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"0.9877 * 0.02","0.1736 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"1.0000 * 0.02","0.0000 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"1.2000 * 0.02","0.0000 * 0.02"},1},{},{"ForwardVec",1,"WeaponFixed",1,{"-0.0000 * 0.02","-1.0000 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"-0.0000 * 0.02","-1.2000 * 0.02"},1},{},{"ForwardVec",1,"WeaponFixed",1,{"-0.0000 * 0.02","1.0000 * 0.02"},1},{"ForwardVec",1,"WeaponFixed",1,{"-0.0000 * 0.02","1.2000 * 0.02"},1},{},{"ForwardVec",1,"WeaponFixed",1,{0.005,0},1},{"ForwardVec",1,"WeaponFixed",1,{-0.005,0},1},{},{"ForwardVec",1,"WeaponFixed",1,{0,0.005},1},{"ForwardVec",1,"WeaponFixed",1,{0,-0.005},1}};
+                    // points[] = {{ "ForwardVec",1,"WeaponFixed",1,{0,-0.02},1},{ "ForwardVec",1,"WeaponFixed",1,{0,0.02},1},{},{ "ForwardVec",1,"WeaponFixed",1,{-0.02,0},1},{ "ForwardVec",1,"WeaponFixed",1,{0.02, 0},1},{}};
+                    points[] = {{ "ForwardVec",1,"WeaponFixed",1,{ "-1.2000 * 0.02","-0.0000 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "-1.0000 * 0.02","-0.0000 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "-0.9877 * 0.02","-0.1736 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "-0.9397 * 0.02","-0.3420 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "-0.8660 * 0.02","-0.5000 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "-0.7660 * 0.02","-0.6428 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "-0.6428 * 0.02","-0.7660 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "-0.5000 * 0.02","-0.8660 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "-0.3420 * 0.02","-0.9397 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "-0.1736 * 0.02","-0.9877 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "-0.0000 * 0.02","-1.0000 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "0.1736 * 0.02","-0.9877 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "0.3420 * 0.02","-0.9397 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "0.5000 * 0.02","-0.8660 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "0.6428 * 0.02","-0.7660 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "0.7660 * 0.02","-0.6428 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "0.8660 * 0.02","-0.5000 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "0.9397 * 0.02","-0.3420 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "0.9877 * 0.02","-0.1736 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "1.0000 * 0.02","-0.0000 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "1.2000 * 0.02","-0.0000 * 0.02" },1},{},{ "ForwardVec",1,"WeaponFixed",1,{ "-1.2000 * 0.02","0.0000 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "-1.0000 * 0.02","0.0000 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "-0.9877 * 0.02","0.1736 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "-0.9397 * 0.02","0.3420 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "-0.8660 * 0.02","0.5000 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "-0.7660 * 0.02","0.6428 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "-0.6428 * 0.02","0.7660 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "-0.5000 * 0.02","0.8660 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "-0.3420 * 0.02","0.9397 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "-0.1736 * 0.02","0.9877 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "-0.0000 * 0.02","1.0000 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "0.1736 * 0.02","0.9877 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "0.3420 * 0.02","0.9397 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "0.5000 * 0.02","0.8660 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "0.6428 * 0.02","0.7660 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "0.7660 * 0.02","0.6428 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "0.8660 * 0.02","0.5000 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "0.9397 * 0.02","0.3420 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "0.9877 * 0.02","0.1736 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "1.0000 * 0.02","0.0000 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "1.2000 * 0.02","0.0000 * 0.02" },1},{},{ "ForwardVec",1,"WeaponFixed",1,{ "-0.0000 * 0.02","-1.0000 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "-0.0000 * 0.02","-1.2000 * 0.02" },1},{},{ "ForwardVec",1,"WeaponFixed",1,{ "-0.0000 * 0.02","1.0000 * 0.02" },1},{ "ForwardVec",1,"WeaponFixed",1,{ "-0.0000 * 0.02","1.2000 * 0.02" },1},{},{ "ForwardVec",1,"WeaponFixed",1,{0.005,0},1},{ "ForwardVec",1,"WeaponFixed",1,{-0.005,0},1},{},{ "ForwardVec",1,"WeaponFixed",1,{0,0.005},1},{ "ForwardVec",1,"WeaponFixed",1,{0,-0.005},1}};
                 };
             };
             class AT_Aim {
@@ -927,7 +927,7 @@ class MFD {
                 class Circle {
                     type = "line";
                     width = 2;
-                    points[] = {{"ForwardVec",1,"WeaponAim",1,{-0.1,-0.1},1},{"ForwardVec",1,"WeaponAim",1,{0.1,-0.1},1},{"ForwardVec",1,"WeaponAim",1,{0.1,0.1},1},{"ForwardVec",1,"WeaponAim",1,{-0.1,0.1},1},{"ForwardVec",1,"WeaponAim",1,{-0.1,-0.1},1}};
+                    points[] = {{ "ForwardVec",1,"WeaponAim",1,{-0.1,-0.1},1},{ "ForwardVec",1,"WeaponAim",1,{0.1,-0.1},1},{ "ForwardVec",1,"WeaponAim",1,{0.1,0.1},1},{ "ForwardVec",1,"WeaponAim",1,{-0.1,0.1},1},{ "ForwardVec",1,"WeaponAim",1,{-0.1,-0.1},1}};
                 };
             };
             class AA_aim {
@@ -935,13 +935,13 @@ class MFD {
                 class Circle {
                     type = "line";
                     width = 2;
-                    points[] = {{"ForwardVec",1,"WeaponAim",1,{"0 / 4","-0.248559 / 4"},1},{"ForwardVec",1,"WeaponAim",1,{"0.0434 / 4","-0.244781 / 4"},1},{"ForwardVec",1,"WeaponAim",1,{"0.0855 / 4","-0.233571 / 4"},1},{"ForwardVec",1,"WeaponAim",1,{"0.125 / 4","-0.215252 / 4"},1},{"ForwardVec",1,"WeaponAim",1,{"0.1607 / 4","-0.190396 / 4"},1},{"ForwardVec",1,"WeaponAim",1,{"0.1915 / 4","-0.159774 / 4"},1},{"ForwardVec",1,"WeaponAim",1,{"0.2165 / 4","-0.12428 / 4"},1},{"ForwardVec",1,"WeaponAim",1,{"0.234925 / 4","-0.0850072 / 4"},1},{"ForwardVec",1,"WeaponAim",1,{"0.2462 / 4","-0.0431499 / 4"},1},{"ForwardVec",1,"WeaponAim",1,{"0.25 / 4","0 / 4"},1},{"ForwardVec",1,"WeaponAim",1,{"0.2462 / 4","0.0431499 / 4"},1},{"ForwardVec",1,"WeaponAim",1,{"0.234925 / 4","0.0850072 / 4"},1},{"ForwardVec",1,"WeaponAim",1,{"0.2165 / 4","0.12428 / 4"},1},{"ForwardVec",1,"WeaponAim",1,{"0.1915 / 4","0.159774 / 4"},1},{"ForwardVec",1,"WeaponAim",1,{"0.1607 / 4","0.190396 / 4"},1},{"ForwardVec",1,"WeaponAim",1,{"0.125 / 4","0.215252 / 4"},1},{"ForwardVec",1,"WeaponAim",1,{"0.0855 / 4","0.233571 / 4"},1},{"ForwardVec",1,"WeaponAim",1,{"0.0434 / 4","0.244781 / 4"},1},{"ForwardVec",1,"WeaponAim",1,{"0 / 4","0.248559 / 4"},1},{"ForwardVec",1,"WeaponAim",1,{"-0.0434 / 4","0.244781 / 4"},1},{"ForwardVec",1,"WeaponAim",1,{"-0.0855 / 4","0.233571 / 4"},1},{"ForwardVec",1,"WeaponAim",1,{"-0.125 / 4","0.215252 / 4"},1},{"ForwardVec",1,"WeaponAim",1,{"-0.1607 / 4","0.190396 / 4"},1},{"ForwardVec",1,"WeaponAim",1,{"-0.1915 / 4","0.159774 / 4"},1},{"ForwardVec",1,"WeaponAim",1,{"-0.2165 / 4","0.12428 / 4"},1},{"ForwardVec",1,"WeaponAim",1,{"-0.234925 / 4","0.0850072 / 4"},1},{"ForwardVec",1,"WeaponAim",1,{"-0.2462 / 4","0.0431499 / 4"},1},{"ForwardVec",1,"WeaponAim",1,{"-0.25 / 4","0 / 4"},1},{"ForwardVec",1,"WeaponAim",1,{"-0.2462 / 4","-0.0431499 / 4"},1},{"ForwardVec",1,"WeaponAim",1,{"-0.234925 / 4","-0.0850072 / 4"},1},{"ForwardVec",1,"WeaponAim",1,{"-0.2165 / 4","-0.12428 / 4"},1},{"ForwardVec",1,"WeaponAim",1,{"-0.1915 / 4","-0.159774 / 4"},1},{"ForwardVec",1,"WeaponAim",1,{"-0.1607 / 4","-0.190396 / 4"},1},{"ForwardVec",1,"WeaponAim",1,{"-0.125 / 4","-0.215252 / 4"},1},{"ForwardVec",1,"WeaponAim",1,{"-0.0855 / 4","-0.233571 / 4"},1},{"ForwardVec",1,"WeaponAim",1,{"-0.0434 / 4","-0.244781 / 4"},1},{"ForwardVec",1,"WeaponAim",1,{"0 / 4","-0.248559 / 4"},1},{},{"ForwardVec",1,"WeaponAim",1,{"0 / 2","-0.248559 / 2"},1},{"ForwardVec",1,"WeaponAim",1,{"0.0434 / 2","-0.244781 / 2"},1},{"ForwardVec",1,"WeaponAim",1,{"0.0855 / 2","-0.233571 / 2"},1},{"ForwardVec",1,"WeaponAim",1,{"0.125 / 2","-0.215252 / 2"},1},{"ForwardVec",1,"WeaponAim",1,{"0.1607 / 2","-0.190396 / 2"},1},{"ForwardVec",1,"WeaponAim",1,{"0.1915 / 2","-0.159774 / 2"},1},{"ForwardVec",1,"WeaponAim",1,{"0.2165 / 2","-0.12428 / 2"},1},{"ForwardVec",1,"WeaponAim",1,{"0.234925 / 2","-0.0850072 / 2"},1},{"ForwardVec",1,"WeaponAim",1,{"0.2462 / 2","-0.0431499 / 2"},1},{"ForwardVec",1,"WeaponAim",1,{"0.25 / 2","0 / 2"},1},{"ForwardVec",1,"WeaponAim",1,{"0.2462 / 2","0.0431499 / 2"},1},{"ForwardVec",1,"WeaponAim",1,{"0.234925 / 2","0.0850072 / 2"},1},{"ForwardVec",1,"WeaponAim",1,{"0.2165 / 2","0.12428 / 2"},1},{"ForwardVec",1,"WeaponAim",1,{"0.1915 / 2","0.159774 / 2"},1},{"ForwardVec",1,"WeaponAim",1,{"0.1607 / 2","0.190396 / 2"},1},{"ForwardVec",1,"WeaponAim",1,{"0.125 / 2","0.215252 / 2"},1},{"ForwardVec",1,"WeaponAim",1,{"0.0855 / 2","0.233571 / 2"},1},{"ForwardVec",1,"WeaponAim",1,{"0.0434 / 2","0.244781 / 2"},1},{"ForwardVec",1,"WeaponAim",1,{"0 / 2","0.248559 / 2"},1},{"ForwardVec",1,"WeaponAim",1,{"-0.0434 / 2","0.244781 / 2"},1},{"ForwardVec",1,"WeaponAim",1,{"-0.0855 / 2","0.233571 / 2"},1},{"ForwardVec",1,"WeaponAim",1,{"-0.125 / 2","0.215252 / 2"},1},{"ForwardVec",1,"WeaponAim",1,{"-0.1607 / 2","0.190396 / 2"},1},{"ForwardVec",1,"WeaponAim",1,{"-0.1915 / 2","0.159774 / 2"},1},{"ForwardVec",1,"WeaponAim",1,{"-0.2165 / 2","0.12428 / 2"},1},{"ForwardVec",1,"WeaponAim",1,{"-0.234925 / 2","0.0850072 / 2"},1},{"ForwardVec",1,"WeaponAim",1,{"-0.2462 / 2","0.0431499 / 2"},1},{"ForwardVec",1,"WeaponAim",1,{"-0.25 / 2","0 / 2"},1},{"ForwardVec",1,"WeaponAim",1,{"-0.2462 / 2","-0.0431499 / 2"},1},{"ForwardVec",1,"WeaponAim",1,{"-0.234925 / 2","-0.0850072 / 2"},1},{"ForwardVec",1,"WeaponAim",1,{"-0.2165 / 2","-0.12428 / 2"},1},{"ForwardVec",1,"WeaponAim",1,{"-0.1915 / 2","-0.159774 / 2"},1},{"ForwardVec",1,"WeaponAim",1,{"-0.1607 / 2","-0.190396 / 2"},1},{"ForwardVec",1,"WeaponAim",1,{"-0.125 / 2","-0.215252 / 2"},1},{"ForwardVec",1,"WeaponAim",1,{"-0.0855 / 2","-0.233571 / 2"},1},{"ForwardVec",1,"WeaponAim",1,{"-0.0434 / 2","-0.244781 / 2"},1},{"ForwardVec",1,"WeaponAim",1,{"0 / 2","-0.248559 / 2"},1}};
+                    points[] = {{ "ForwardVec",1,"WeaponAim",1,{ "0 / 4","-0.248559 / 4" },1},{ "ForwardVec",1,"WeaponAim",1,{ "0.0434 / 4","-0.244781 / 4" },1},{ "ForwardVec",1,"WeaponAim",1,{ "0.0855 / 4","-0.233571 / 4" },1},{ "ForwardVec",1,"WeaponAim",1,{ "0.125 / 4","-0.215252 / 4" },1},{ "ForwardVec",1,"WeaponAim",1,{ "0.1607 / 4","-0.190396 / 4" },1},{ "ForwardVec",1,"WeaponAim",1,{ "0.1915 / 4","-0.159774 / 4" },1},{ "ForwardVec",1,"WeaponAim",1,{ "0.2165 / 4","-0.12428 / 4" },1},{ "ForwardVec",1,"WeaponAim",1,{ "0.234925 / 4","-0.0850072 / 4" },1},{ "ForwardVec",1,"WeaponAim",1,{ "0.2462 / 4","-0.0431499 / 4" },1},{ "ForwardVec",1,"WeaponAim",1,{ "0.25 / 4","0 / 4" },1},{ "ForwardVec",1,"WeaponAim",1,{ "0.2462 / 4","0.0431499 / 4" },1},{ "ForwardVec",1,"WeaponAim",1,{ "0.234925 / 4","0.0850072 / 4" },1},{ "ForwardVec",1,"WeaponAim",1,{ "0.2165 / 4","0.12428 / 4" },1},{ "ForwardVec",1,"WeaponAim",1,{ "0.1915 / 4","0.159774 / 4" },1},{ "ForwardVec",1,"WeaponAim",1,{ "0.1607 / 4","0.190396 / 4" },1},{ "ForwardVec",1,"WeaponAim",1,{ "0.125 / 4","0.215252 / 4" },1},{ "ForwardVec",1,"WeaponAim",1,{ "0.0855 / 4","0.233571 / 4" },1},{ "ForwardVec",1,"WeaponAim",1,{ "0.0434 / 4","0.244781 / 4" },1},{ "ForwardVec",1,"WeaponAim",1,{ "0 / 4","0.248559 / 4" },1},{ "ForwardVec",1,"WeaponAim",1,{ "-0.0434 / 4","0.244781 / 4" },1},{ "ForwardVec",1,"WeaponAim",1,{ "-0.0855 / 4","0.233571 / 4" },1},{ "ForwardVec",1,"WeaponAim",1,{ "-0.125 / 4","0.215252 / 4" },1},{ "ForwardVec",1,"WeaponAim",1,{ "-0.1607 / 4","0.190396 / 4" },1},{ "ForwardVec",1,"WeaponAim",1,{ "-0.1915 / 4","0.159774 / 4" },1},{ "ForwardVec",1,"WeaponAim",1,{ "-0.2165 / 4","0.12428 / 4" },1},{ "ForwardVec",1,"WeaponAim",1,{ "-0.234925 / 4","0.0850072 / 4" },1},{ "ForwardVec",1,"WeaponAim",1,{ "-0.2462 / 4","0.0431499 / 4" },1},{ "ForwardVec",1,"WeaponAim",1,{ "-0.25 / 4","0 / 4" },1},{ "ForwardVec",1,"WeaponAim",1,{ "-0.2462 / 4","-0.0431499 / 4" },1},{ "ForwardVec",1,"WeaponAim",1,{ "-0.234925 / 4","-0.0850072 / 4" },1},{ "ForwardVec",1,"WeaponAim",1,{ "-0.2165 / 4","-0.12428 / 4" },1},{ "ForwardVec",1,"WeaponAim",1,{ "-0.1915 / 4","-0.159774 / 4" },1},{ "ForwardVec",1,"WeaponAim",1,{ "-0.1607 / 4","-0.190396 / 4" },1},{ "ForwardVec",1,"WeaponAim",1,{ "-0.125 / 4","-0.215252 / 4" },1},{ "ForwardVec",1,"WeaponAim",1,{ "-0.0855 / 4","-0.233571 / 4" },1},{ "ForwardVec",1,"WeaponAim",1,{ "-0.0434 / 4","-0.244781 / 4" },1},{ "ForwardVec",1,"WeaponAim",1,{ "0 / 4","-0.248559 / 4" },1},{},{ "ForwardVec",1,"WeaponAim",1,{ "0 / 2","-0.248559 / 2" },1},{ "ForwardVec",1,"WeaponAim",1,{ "0.0434 / 2","-0.244781 / 2" },1},{ "ForwardVec",1,"WeaponAim",1,{ "0.0855 / 2","-0.233571 / 2" },1},{ "ForwardVec",1,"WeaponAim",1,{ "0.125 / 2","-0.215252 / 2" },1},{ "ForwardVec",1,"WeaponAim",1,{ "0.1607 / 2","-0.190396 / 2" },1},{ "ForwardVec",1,"WeaponAim",1,{ "0.1915 / 2","-0.159774 / 2" },1},{ "ForwardVec",1,"WeaponAim",1,{ "0.2165 / 2","-0.12428 / 2" },1},{ "ForwardVec",1,"WeaponAim",1,{ "0.234925 / 2","-0.0850072 / 2" },1},{ "ForwardVec",1,"WeaponAim",1,{ "0.2462 / 2","-0.0431499 / 2" },1},{ "ForwardVec",1,"WeaponAim",1,{ "0.25 / 2","0 / 2" },1},{ "ForwardVec",1,"WeaponAim",1,{ "0.2462 / 2","0.0431499 / 2" },1},{ "ForwardVec",1,"WeaponAim",1,{ "0.234925 / 2","0.0850072 / 2" },1},{ "ForwardVec",1,"WeaponAim",1,{ "0.2165 / 2","0.12428 / 2" },1},{ "ForwardVec",1,"WeaponAim",1,{ "0.1915 / 2","0.159774 / 2" },1},{ "ForwardVec",1,"WeaponAim",1,{ "0.1607 / 2","0.190396 / 2" },1},{ "ForwardVec",1,"WeaponAim",1,{ "0.125 / 2","0.215252 / 2" },1},{ "ForwardVec",1,"WeaponAim",1,{ "0.0855 / 2","0.233571 / 2" },1},{ "ForwardVec",1,"WeaponAim",1,{ "0.0434 / 2","0.244781 / 2" },1},{ "ForwardVec",1,"WeaponAim",1,{ "0 / 2","0.248559 / 2" },1},{ "ForwardVec",1,"WeaponAim",1,{ "-0.0434 / 2","0.244781 / 2" },1},{ "ForwardVec",1,"WeaponAim",1,{ "-0.0855 / 2","0.233571 / 2" },1},{ "ForwardVec",1,"WeaponAim",1,{ "-0.125 / 2","0.215252 / 2" },1},{ "ForwardVec",1,"WeaponAim",1,{ "-0.1607 / 2","0.190396 / 2" },1},{ "ForwardVec",1,"WeaponAim",1,{ "-0.1915 / 2","0.159774 / 2" },1},{ "ForwardVec",1,"WeaponAim",1,{ "-0.2165 / 2","0.12428 / 2" },1},{ "ForwardVec",1,"WeaponAim",1,{ "-0.234925 / 2","0.0850072 / 2" },1},{ "ForwardVec",1,"WeaponAim",1,{ "-0.2462 / 2","0.0431499 / 2" },1},{ "ForwardVec",1,"WeaponAim",1,{ "-0.25 / 2","0 / 2" },1},{ "ForwardVec",1,"WeaponAim",1,{ "-0.2462 / 2","-0.0431499 / 2" },1},{ "ForwardVec",1,"WeaponAim",1,{ "-0.234925 / 2","-0.0850072 / 2" },1},{ "ForwardVec",1,"WeaponAim",1,{ "-0.2165 / 2","-0.12428 / 2" },1},{ "ForwardVec",1,"WeaponAim",1,{ "-0.1915 / 2","-0.159774 / 2" },1},{ "ForwardVec",1,"WeaponAim",1,{ "-0.1607 / 2","-0.190396 / 2" },1},{ "ForwardVec",1,"WeaponAim",1,{ "-0.125 / 2","-0.215252 / 2" },1},{ "ForwardVec",1,"WeaponAim",1,{ "-0.0855 / 2","-0.233571 / 2" },1},{ "ForwardVec",1,"WeaponAim",1,{ "-0.0434 / 2","-0.244781 / 2" },1},{ "ForwardVec",1,"WeaponAim",1,{ "0 / 2","-0.248559 / 2" },1}};
                 };
             };
             class TargetACQ {
                 type = "line";
                 width = 2;
-                points[] = {{"ForwardVec",1,"target",{0,-0.06},1},{"ForwardVec",1,"target",{0,-0.055},1},{},{"ForwardVec",1,"target",{0,-0.05},1},{"ForwardVec",1,"target",{0,-0.045},1},{},{"ForwardVec",1,"target",{0,-0.04},1},{"ForwardVec",1,"target",{0,-0.035},1},{},{"ForwardVec",1,"target",{0,-0.03},1},{"ForwardVec",1,"target",{0,-0.025},1},{},{"ForwardVec",1,"target",{0,-0.02},1},{"ForwardVec",1,"target",{0,-0.015},1},{},{"ForwardVec",1,"target",{0,-0.01},1},{"ForwardVec",1,"target",{0,-0.005},1},{},{"ForwardVec",1,"target",{0,0},1},{"ForwardVec",1,"target",{0,0},1},{},{"ForwardVec",1,"target",{0,0.06},1},{"ForwardVec",1,"target",{0,0.055},1},{},{"ForwardVec",1,"target",{0,0.05},1},{"ForwardVec",1,"target",{0,0.045},1},{},{"ForwardVec",1,"target",{0,0.04},1},{"ForwardVec",1,"target",{0,0.035},1},{},{"ForwardVec",1,"target",{0,0.03},1},{"ForwardVec",1,"target",{0,0.025},1},{},{"ForwardVec",1,"target",{0,0.02},1},{"ForwardVec",1,"target",{0,0.015},1},{},{"ForwardVec",1,"target",{0,0.01},1},{"ForwardVec",1,"target",{0,0.005},1},{},{"ForwardVec",1,"target",{-0.06,0},1},{"ForwardVec",1,"target",{-0.055,0},1},{},{"ForwardVec",1,"target",{-0.05,0},1},{"ForwardVec",1,"target",{-0.045,0},1},{},{"ForwardVec",1,"target",{-0.04,0},1},{"ForwardVec",1,"target",{-0.035,0},1},{},{"ForwardVec",1,"target",{-0.03,0},1},{"ForwardVec",1,"target",{-0.025,0},1},{},{"ForwardVec",1,"target",{-0.02,0},1},{"ForwardVec",1,"target",{-0.015,0},1},{},{"ForwardVec",1,"target",{-0.01,0},1},{"ForwardVec",1,"target",{-0.005,0},1},{},{"ForwardVec",1,"target",{0.06,0},1},{"ForwardVec",1,"target",{0.055,0},1},{},{"ForwardVec",1,"target",{0.05,0},1},{"ForwardVec",1,"target",{0.045,0},1},{},{"ForwardVec",1,"target",{0.04,0},1},{"ForwardVec",1,"target",{0.035,0},1},{},{"ForwardVec",1,"target",{0.03,0},1},{"ForwardVec",1,"target",{0.025,0},1},{},{"ForwardVec",1,"target",{0.02,0},1},{"ForwardVec",1,"target",{0.015,0},1},{},{"ForwardVec",1,"target",{0.01,0},1},{"ForwardVec",1,"target",{0.005,0},1},{}};
+                points[] = {{ "ForwardVec",1,"target",{0,-0.06},1},{ "ForwardVec",1,"target",{0,-0.055},1},{},{ "ForwardVec",1,"target",{0,-0.05},1},{ "ForwardVec",1,"target",{0,-0.045},1},{},{ "ForwardVec",1,"target",{0,-0.04},1},{ "ForwardVec",1,"target",{0,-0.035},1},{},{ "ForwardVec",1,"target",{0,-0.03},1},{ "ForwardVec",1,"target",{0,-0.025},1},{},{ "ForwardVec",1,"target",{0,-0.02},1},{ "ForwardVec",1,"target",{0,-0.015},1},{},{ "ForwardVec",1,"target",{0,-0.01},1},{ "ForwardVec",1,"target",{0,-0.005},1},{},{ "ForwardVec",1,"target",{0,0},1},{ "ForwardVec",1,"target",{0,0},1},{},{ "ForwardVec",1,"target",{0,0.06},1},{ "ForwardVec",1,"target",{0,0.055},1},{},{ "ForwardVec",1,"target",{0,0.05},1},{ "ForwardVec",1,"target",{0,0.045},1},{},{ "ForwardVec",1,"target",{0,0.04},1},{ "ForwardVec",1,"target",{0,0.035},1},{},{ "ForwardVec",1,"target",{0,0.03},1},{ "ForwardVec",1,"target",{0,0.025},1},{},{ "ForwardVec",1,"target",{0,0.02},1},{ "ForwardVec",1,"target",{0,0.015},1},{},{ "ForwardVec",1,"target",{0,0.01},1},{ "ForwardVec",1,"target",{0,0.005},1},{},{ "ForwardVec",1,"target",{-0.06,0},1},{ "ForwardVec",1,"target",{-0.055,0},1},{},{ "ForwardVec",1,"target",{-0.05,0},1},{ "ForwardVec",1,"target",{-0.045,0},1},{},{ "ForwardVec",1,"target",{-0.04,0},1},{ "ForwardVec",1,"target",{-0.035,0},1},{},{ "ForwardVec",1,"target",{-0.03,0},1},{ "ForwardVec",1,"target",{-0.025,0},1},{},{ "ForwardVec",1,"target",{-0.02,0},1},{ "ForwardVec",1,"target",{-0.015,0},1},{},{ "ForwardVec",1,"target",{-0.01,0},1},{ "ForwardVec",1,"target",{-0.005,0},1},{},{ "ForwardVec",1,"target",{0.06,0},1},{ "ForwardVec",1,"target",{0.055,0},1},{},{ "ForwardVec",1,"target",{0.05,0},1},{ "ForwardVec",1,"target",{0.045,0},1},{},{ "ForwardVec",1,"target",{0.04,0},1},{ "ForwardVec",1,"target",{0.035,0},1},{},{ "ForwardVec",1,"target",{0.03,0},1},{ "ForwardVec",1,"target",{0.025,0},1},{},{ "ForwardVec",1,"target",{0.02,0},1},{ "ForwardVec",1,"target",{0.015,0},1},{},{ "ForwardVec",1,"target",{0.01,0},1},{ "ForwardVec",1,"target",{0.005,0},1},{}};
             };
         };
         helmetMountedDisplay = 1;

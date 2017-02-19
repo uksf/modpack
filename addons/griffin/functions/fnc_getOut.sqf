@@ -19,6 +19,6 @@
 params ["_heli", "_position", "_unit"];
 
 if ((_position == "driver" || _position == "gunner") && local _unit) then {
-    [GVAR(metricsHandler)] call CBA_fnc_removePerFrameHandler;
+    [GVAR(metricsHandler)] call cba_fnc_removePerFrameHandler;
     (QGVAR(metricsLayer) call BIS_fnc_rscLayer) cutFadeOut 0;
 };

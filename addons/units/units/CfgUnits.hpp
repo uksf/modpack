@@ -35,7 +35,7 @@ class CUP_Creatures_Military_BAF_Soldier_Base: SoldierWB {
         };
     };
     class EventHandlers {
-        class CBA_Extended_EventHandlers : CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
         init = "";
     };
     weapons[] = { "UK3CB_BAF_L85A2_RIS_Elcan","Throw","Put" };
@@ -45,7 +45,7 @@ class CUP_Creatures_Military_BAF_Soldier_Base: SoldierWB {
 };
 
 //MTP
-class CUP_B_BAF_Soldier_01_MTP : CUP_Creatures_Military_BAF_Soldier_Base {
+class CUP_B_BAF_Soldier_01_MTP: CUP_Creatures_Military_BAF_Soldier_Base {
     scope = 1;
     scopeCurator = 0;
     vehicleClass = "CUP_B_Men_GB_MTP";
@@ -55,12 +55,12 @@ class CUP_B_BAF_Soldier_01_MTP : CUP_Creatures_Military_BAF_Soldier_Base {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_Rifleman_A","UK3CB_BAF_H_Mk7_Camo_D" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_Rifleman_A","UK3CB_BAF_H_Mk7_Camo_D" };
 };
-class CUP_B_BAF_Soldier_02_MTP : CUP_B_BAF_Soldier_01_MTP {
+class CUP_B_BAF_Soldier_02_MTP: CUP_B_BAF_Soldier_01_MTP {
     displayName = "Soldier 2 - MTP";
     uniformClass = "UK3CB_BAF_U_CombatUniform_MTP_Ghillie_RM";
     model = "A3\Characters_F_Beta\INDEP\ia_sniper.p3d";
 };
-class CUP_B_BAF_Soldier_MTP : CUP_B_BAF_Soldier_01_MTP {
+class CUP_B_BAF_Soldier_MTP: CUP_B_BAF_Soldier_01_MTP {
     scope = 2;
     scopeCurator = 2;
     editorSubcategory = QEGVAR(common,mtp);
@@ -73,43 +73,43 @@ class CUP_B_BAF_Soldier_MTP : CUP_B_BAF_Soldier_01_MTP {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_Rifleman_A","UK3CB_BAF_H_Mk7_Camo_D" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_Rifleman_A","UK3CB_BAF_H_Mk7_Camo_D" };
 };
-class CUP_B_BAF_Soldier_GL_MTP : CUP_B_BAF_Soldier_01_MTP {
+class CUP_B_BAF_Soldier_GL_MTP: CUP_B_BAF_Soldier_01_MTP {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Soldier_Night_MTP : CUP_B_BAF_Soldier_01_MTP {
+class CUP_B_BAF_Soldier_Night_MTP: CUP_B_BAF_Soldier_01_MTP {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Soldier_Light_MTP : CUP_B_BAF_Soldier_01_MTP {
+class CUP_B_BAF_Soldier_Light_MTP: CUP_B_BAF_Soldier_01_MTP {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Soldier_Backpack_MTP : CUP_B_BAF_Soldier_01_MTP {
+class CUP_B_BAF_Soldier_Backpack_MTP: CUP_B_BAF_Soldier_01_MTP {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Soldier_AAR_MTP : CUP_B_BAF_Soldier_01_MTP {
+class CUP_B_BAF_Soldier_AAR_MTP: CUP_B_BAF_Soldier_01_MTP {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Soldier_AMG_MTP : CUP_B_BAF_Soldier_01_MTP {
+class CUP_B_BAF_Soldier_AMG_MTP: CUP_B_BAF_Soldier_01_MTP {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Soldier_AAT_MTP : CUP_B_BAF_Soldier_01_MTP {
+class CUP_B_BAF_Soldier_AAT_MTP: CUP_B_BAF_Soldier_01_MTP {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Soldier_AHAT_MTP : CUP_B_BAF_Soldier_01_MTP {
+class CUP_B_BAF_Soldier_AHAT_MTP: CUP_B_BAF_Soldier_01_MTP {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Soldier_AAA_MTP : CUP_B_BAF_Soldier_01_MTP {
+class CUP_B_BAF_Soldier_AAA_MTP: CUP_B_BAF_Soldier_01_MTP {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Officer_MTP : CUP_B_BAF_Soldier_01_MTP {
+class CUP_B_BAF_Officer_MTP: CUP_B_BAF_Soldier_01_MTP {
     scope = 2;
     scopeCurator = 2;
     editorSubcategory = QEGVAR(common,mtp);
@@ -133,7 +133,7 @@ class CUP_B_BAF_Officer_MTP : CUP_B_BAF_Soldier_01_MTP {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_SL_A","UK3CB_BAF_H_Mk7_Camo_D" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_SL_A","UK3CB_BAF_H_Mk7_Camo_D" };
 };
-class CUP_B_BAF_Soldier_SL_MTP : CUP_B_BAF_Soldier_01_MTP {
+class CUP_B_BAF_Soldier_SL_MTP: CUP_B_BAF_Soldier_01_MTP {
     scope = 2;
     scopeCurator = 2;
     editorSubcategory = QEGVAR(common,mtp);
@@ -157,11 +157,11 @@ class CUP_B_BAF_Soldier_SL_MTP : CUP_B_BAF_Soldier_01_MTP {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_SL_A","UK3CB_BAF_H_Mk7_Camo_D" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_SL_A","UK3CB_BAF_H_Mk7_Camo_D" };
 };
-class CUP_B_BAF_Soldier_TL_MTP : CUP_B_BAF_Soldier_01_MTP {
+class CUP_B_BAF_Soldier_TL_MTP: CUP_B_BAF_Soldier_01_MTP {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Soldier_AR_MTP : CUP_B_BAF_Soldier_01_MTP {
+class CUP_B_BAF_Soldier_AR_MTP: CUP_B_BAF_Soldier_01_MTP {
     scope = 2;
     scopeCurator = 2;
     editorSubcategory = QEGVAR(common,mtp);
@@ -187,7 +187,7 @@ class CUP_B_BAF_Soldier_AR_MTP : CUP_B_BAF_Soldier_01_MTP {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_MG_A","UK3CB_BAF_H_Mk7_Camo_D" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_MG_A","UK3CB_BAF_H_Mk7_Camo_D" };
 };
-class CUP_B_BAF_Soldier_MG_MTP : CUP_B_BAF_Soldier_01_MTP {
+class CUP_B_BAF_Soldier_MG_MTP: CUP_B_BAF_Soldier_01_MTP {
     scope = 2;
     scopeCurator = 2;
     editorSubcategory = QEGVAR(common,mtp);
@@ -213,7 +213,7 @@ class CUP_B_BAF_Soldier_MG_MTP : CUP_B_BAF_Soldier_01_MTP {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_MG_A","UK3CB_BAF_H_Mk7_Camo_D" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_MG_A","UK3CB_BAF_H_Mk7_Camo_D" };
 };
-class CUP_B_BAF_Soldier_AT_MTP : CUP_B_BAF_Soldier_01_MTP {
+class CUP_B_BAF_Soldier_AT_MTP: CUP_B_BAF_Soldier_01_MTP {
     scope = 2;
     scopeCurator = 2;
     editorSubcategory = QEGVAR(common,mtp);
@@ -240,7 +240,7 @@ class CUP_B_BAF_Soldier_AT_MTP : CUP_B_BAF_Soldier_01_MTP {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_Rifleman_A","UK3CB_BAF_H_Mk7_Camo_D" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_Rifleman_A","UK3CB_BAF_H_Mk7_Camo_D" };
 };
-class CUP_B_BAF_Soldier_HAT_MTP : CUP_B_BAF_Soldier_01_MTP {
+class CUP_B_BAF_Soldier_HAT_MTP: CUP_B_BAF_Soldier_01_MTP {
     scope = 2;
     scopeCurator = 2;
     editorSubcategory = QEGVAR(common,mtp);
@@ -266,7 +266,7 @@ class CUP_B_BAF_Soldier_HAT_MTP : CUP_B_BAF_Soldier_01_MTP {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_Rifleman_A","UK3CB_BAF_H_Mk7_Camo_D" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_Rifleman_A","UK3CB_BAF_H_Mk7_Camo_D" };
 };
-class CUP_B_BAF_Soldier_AA_MTP : CUP_B_BAF_Soldier_01_MTP {
+class CUP_B_BAF_Soldier_AA_MTP: CUP_B_BAF_Soldier_01_MTP {
     scope = 2;
     scopeCurator = 2;
     editorSubcategory = QEGVAR(common,mtp);
@@ -293,7 +293,7 @@ class CUP_B_BAF_Soldier_AA_MTP : CUP_B_BAF_Soldier_01_MTP {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_Rifleman_A","UK3CB_BAF_H_Mk7_Camo_D" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_Rifleman_A","UK3CB_BAF_H_Mk7_Camo_D" };
 };
-class CUP_B_BAF_Soldier_Marksman_MTP : CUP_B_BAF_Soldier_01_MTP {
+class CUP_B_BAF_Soldier_Marksman_MTP: CUP_B_BAF_Soldier_01_MTP {
     scope = 2;
     scopeCurator = 2;
     editorSubcategory = QEGVAR(common,mtp);
@@ -318,11 +318,11 @@ class CUP_B_BAF_Soldier_Marksman_MTP : CUP_B_BAF_Soldier_01_MTP {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_Marksman_A","UK3CB_BAF_H_Mk7_Camo_D" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_Marksman_A","UK3CB_BAF_H_Mk7_Camo_D" };
 };
-class CUP_B_BAF_Soldier_scout_MTP : CUP_B_BAF_Soldier_01_MTP {
+class CUP_B_BAF_Soldier_scout_MTP: CUP_B_BAF_Soldier_01_MTP {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Sniper_MTP : CUP_B_BAF_Soldier_02_MTP {
+class CUP_B_BAF_Sniper_MTP: CUP_B_BAF_Soldier_02_MTP {
     scope = 2;
     scopeCurator = 2;
     editorSubcategory = QEGVAR(common,mtp);
@@ -347,7 +347,7 @@ class CUP_B_BAF_Sniper_MTP : CUP_B_BAF_Soldier_02_MTP {
     linkedItems[] = { "ItemGPS","ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_Marksman_A" };
     respawnLinkedItems[] = { "ItemGPS","ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_Marksman_A" };
 };
-class CUP_B_BAF_Sniper_AS50_MTP : CUP_B_BAF_Soldier_02_MTP {
+class CUP_B_BAF_Sniper_AS50_MTP: CUP_B_BAF_Soldier_02_MTP {
     scope = 2;
     scopeCurator = 2;
     editorSubcategory = QEGVAR(common,mtp);
@@ -372,11 +372,11 @@ class CUP_B_BAF_Sniper_AS50_MTP : CUP_B_BAF_Soldier_02_MTP {
     linkedItems[] = { "ItemGPS","ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_Marksman_A" };
     respawnLinkedItems[] = { "ItemGPS","ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_Marksman_A" };
 };
-class CUP_B_BAF_Sniper_AS50_TWS_MTP : CUP_B_BAF_Sniper_AS50_MTP {
+class CUP_B_BAF_Sniper_AS50_TWS_MTP: CUP_B_BAF_Sniper_AS50_MTP {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Spotter_MTP : CUP_B_BAF_Soldier_02_MTP {
+class CUP_B_BAF_Spotter_MTP: CUP_B_BAF_Soldier_02_MTP {
     scope = 2;
     scopeCurator = 2;
     editorSubcategory = QEGVAR(common,mtp);
@@ -401,11 +401,11 @@ class CUP_B_BAF_Spotter_MTP : CUP_B_BAF_Soldier_02_MTP {
     linkedItems[] = { "ItemGPS","ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_Marksman_A" };
     respawnLinkedItems[] = { "ItemGPS","ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_Marksman_A" };
 };
-class CUP_B_BAF_Spotter_L85TWS_MTP : CUP_B_BAF_Spotter_MTP {
+class CUP_B_BAF_Spotter_L85TWS_MTP: CUP_B_BAF_Spotter_MTP {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Pilot_MTP : CUP_B_BAF_Soldier_01_MTP {
+class CUP_B_BAF_Pilot_MTP: CUP_B_BAF_Soldier_01_MTP {
     scope = 2;
     scopeCurator = 2;
     editorSubcategory = QEGVAR(common,mtp);
@@ -431,7 +431,7 @@ class CUP_B_BAF_Pilot_MTP : CUP_B_BAF_Soldier_01_MTP {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","ACE_NVG_Pilot","UKSF_V_Pilot","UK3CB_BAF_H_PilotHelmetHeli_A" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","ACE_NVG_Pilot","UKSF_V_Pilot","UK3CB_BAF_H_PilotHelmetHeli_A" };
 };
-class CUP_B_BAF_Crew_MTP : CUP_B_BAF_Soldier_01_MTP {
+class CUP_B_BAF_Crew_MTP: CUP_B_BAF_Soldier_01_MTP {
     scope = 2;
     scopeCurator = 2;
     editorSubcategory = QEGVAR(common,mtp);
@@ -446,7 +446,7 @@ class CUP_B_BAF_Crew_MTP : CUP_B_BAF_Soldier_01_MTP {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_Rifleman_A","UK3CB_BAF_H_CrewHelmet_A" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_Rifleman_A","UK3CB_BAF_H_CrewHelmet_A" };
 };
-class CUP_B_BAF_Medic_MTP : CUP_B_BAF_Soldier_01_MTP {
+class CUP_B_BAF_Medic_MTP: CUP_B_BAF_Soldier_01_MTP {
     scope = 2;
     scopeCurator = 2;
     editorSubcategory = QEGVAR(common,mtp);
@@ -473,7 +473,7 @@ class CUP_B_BAF_Medic_MTP : CUP_B_BAF_Soldier_01_MTP {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_Medic_B","UK3CB_BAF_H_Mk7_Camo_D" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_Medic_B","UK3CB_BAF_H_Mk7_Camo_D" };
 };
-class CUP_B_BAF_Soldier_JTAC_MTP : CUP_B_BAF_Soldier_01_MTP {
+class CUP_B_BAF_Soldier_JTAC_MTP: CUP_B_BAF_Soldier_01_MTP {
     scope = 2;
     scopeCurator = 2;
     editorSubcategory = QEGVAR(common,mtp);
@@ -488,7 +488,7 @@ class CUP_B_BAF_Soldier_JTAC_MTP : CUP_B_BAF_Soldier_01_MTP {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_Rifleman_A","UK3CB_BAF_H_Mk7_Camo_D" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_Rifleman_A","UK3CB_BAF_H_Mk7_Camo_D" };
 };
-class CUP_B_BAF_Engineer_MTP : CUP_B_BAF_Soldier_01_MTP {
+class CUP_B_BAF_Engineer_MTP: CUP_B_BAF_Soldier_01_MTP {
     scope = 2;
     scopeCurator = 2;
     editorSubcategory = QEGVAR(common,mtp);
@@ -510,7 +510,7 @@ class CUP_B_BAF_Engineer_MTP : CUP_B_BAF_Soldier_01_MTP {
 };
 
 //WDL
-class CUP_B_BAF_Soldier_01_DPM : CUP_Creatures_Military_BAF_Soldier_Base {
+class CUP_B_BAF_Soldier_01_DPM: CUP_Creatures_Military_BAF_Soldier_Base {
     scope = 1;
     scopeCurator = 0;
     vehicleClass = "CUP_B_Men_GB_WDL";
@@ -521,12 +521,12 @@ class CUP_B_BAF_Soldier_01_DPM : CUP_Creatures_Military_BAF_Soldier_Base {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DPMW1","UK3CB_BAF_H_Mk6_DPMW_B" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DPMW1","UK3CB_BAF_H_Mk6_DPMW_B" };
 };
-class CUP_B_BAF_Soldier_02_DPM : CUP_B_BAF_Soldier_01_DPM {
+class CUP_B_BAF_Soldier_02_DPM: CUP_B_BAF_Soldier_01_DPM {
     displayName = "Soldier 2 - DPM";
     uniformClass = "UK3CB_BAF_U_CombatUniform_DPMW_Ghillie_RM";
     model = "A3\Characters_F_Beta\INDEP\ia_sniper.p3d";
 };
-class CUP_B_BAF_Soldier_WDL : CUP_B_BAF_Soldier_01_DPM {
+class CUP_B_BAF_Soldier_WDL: CUP_B_BAF_Soldier_01_DPM {
     scope = 2;
     scopeCurator = 2;
     displayName = "Rifleman (DPMW)";
@@ -538,43 +538,43 @@ class CUP_B_BAF_Soldier_WDL : CUP_B_BAF_Soldier_01_DPM {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DPMW1","UK3CB_BAF_H_Mk6_DPMW_B" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DPMW1","UK3CB_BAF_H_Mk6_DPMW_B" };
 };
-class CUP_B_BAF_Soldier_GL_WDL : CUP_B_BAF_Soldier_01_DPM {
+class CUP_B_BAF_Soldier_GL_WDL: CUP_B_BAF_Soldier_01_DPM {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Soldier_Night_WDL : CUP_B_BAF_Soldier_01_DPM {
+class CUP_B_BAF_Soldier_Night_WDL: CUP_B_BAF_Soldier_01_DPM {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Soldier_Light_WDL : CUP_B_BAF_Soldier_01_DPM {
+class CUP_B_BAF_Soldier_Light_WDL: CUP_B_BAF_Soldier_01_DPM {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Soldier_Backpack_WDL : CUP_B_BAF_Soldier_01_DPM {
+class CUP_B_BAF_Soldier_Backpack_WDL: CUP_B_BAF_Soldier_01_DPM {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Soldier_AAR_WDL : CUP_B_BAF_Soldier_01_DPM {
+class CUP_B_BAF_Soldier_AAR_WDL: CUP_B_BAF_Soldier_01_DPM {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Soldier_AMG_WDL : CUP_B_BAF_Soldier_01_DPM {
+class CUP_B_BAF_Soldier_AMG_WDL: CUP_B_BAF_Soldier_01_DPM {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Soldier_AAT_WDL : CUP_B_BAF_Soldier_01_DPM {
+class CUP_B_BAF_Soldier_AAT_WDL: CUP_B_BAF_Soldier_01_DPM {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Soldier_AHAT_WDL : CUP_B_BAF_Soldier_01_DPM {
+class CUP_B_BAF_Soldier_AHAT_WDL: CUP_B_BAF_Soldier_01_DPM {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Soldier_AAA_WDL : CUP_B_BAF_Soldier_01_DPM {
+class CUP_B_BAF_Soldier_AAA_WDL: CUP_B_BAF_Soldier_01_DPM {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Officer_WDL : CUP_B_BAF_Soldier_01_DPM {
+class CUP_B_BAF_Officer_WDL: CUP_B_BAF_Soldier_01_DPM {
     scope = 2;
     scopeCurator = 2;
     displayName = "Officer (DPMW)";
@@ -597,7 +597,7 @@ class CUP_B_BAF_Officer_WDL : CUP_B_BAF_Soldier_01_DPM {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DPMW1","UK3CB_BAF_H_Mk6_DPMW_B" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DPMW1","UK3CB_BAF_H_Mk6_DPMW_B" };
 };
-class CUP_B_BAF_Soldier_SL_WDL : CUP_B_BAF_Soldier_01_DPM {
+class CUP_B_BAF_Soldier_SL_WDL: CUP_B_BAF_Soldier_01_DPM {
     scope = 2;
     scopeCurator = 2;
     displayName = "Section Leader (DPMW)";
@@ -620,11 +620,11 @@ class CUP_B_BAF_Soldier_SL_WDL : CUP_B_BAF_Soldier_01_DPM {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DPMW1","UK3CB_BAF_H_Mk6_DPMW_B" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DPMW1","UK3CB_BAF_H_Mk6_DPMW_B" };
 };
-class CUP_B_BAF_Soldier_TL_WDL : CUP_B_BAF_Soldier_01_DPM {
+class CUP_B_BAF_Soldier_TL_WDL: CUP_B_BAF_Soldier_01_DPM {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Soldier_AR_WDL : CUP_B_BAF_Soldier_01_DPM {
+class CUP_B_BAF_Soldier_AR_WDL: CUP_B_BAF_Soldier_01_DPM {
     scope = 2;
     scopeCurator = 2;
     displayName = "Automatic Rifleman (DPMW)";
@@ -649,7 +649,7 @@ class CUP_B_BAF_Soldier_AR_WDL : CUP_B_BAF_Soldier_01_DPM {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DPMW1","UK3CB_BAF_H_Mk6_DPMW_B" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DPMW1","UK3CB_BAF_H_Mk6_DPMW_B" };
 };
-class CUP_B_BAF_Soldier_MG_WDL : CUP_B_BAF_Soldier_01_DPM {
+class CUP_B_BAF_Soldier_MG_WDL: CUP_B_BAF_Soldier_01_DPM {
     scope = 2;
     scopeCurator = 2;
     displayName = "Machinegunner (DPMW)";
@@ -674,7 +674,7 @@ class CUP_B_BAF_Soldier_MG_WDL : CUP_B_BAF_Soldier_01_DPM {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DPMW1","UK3CB_BAF_H_Mk6_DPMW_B" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DPMW1","UK3CB_BAF_H_Mk6_DPMW_B" };
 };
-class CUP_B_BAF_Soldier_AT_WDL : CUP_B_BAF_Soldier_01_DPM {
+class CUP_B_BAF_Soldier_AT_WDL: CUP_B_BAF_Soldier_01_DPM {
     scope = 2;
     scopeCurator = 2;
     displayName = "AT Specialist (DPMW)";
@@ -700,7 +700,7 @@ class CUP_B_BAF_Soldier_AT_WDL : CUP_B_BAF_Soldier_01_DPM {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DPMW1","UK3CB_BAF_H_Mk6_DPMW_B" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DPMW1","UK3CB_BAF_H_Mk6_DPMW_B" };
 };
-class CUP_B_BAF_Soldier_HAT_WDL : CUP_B_BAF_Soldier_01_DPM {
+class CUP_B_BAF_Soldier_HAT_WDL: CUP_B_BAF_Soldier_01_DPM {
     scope = 2;
     scopeCurator = 2;
     displayName = "AT Specialist (Javelin) (DPMW)";
@@ -725,7 +725,7 @@ class CUP_B_BAF_Soldier_HAT_WDL : CUP_B_BAF_Soldier_01_DPM {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DPMW1","UK3CB_BAF_H_Mk6_DPMW_B" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DPMW1","UK3CB_BAF_H_Mk6_DPMW_B" };
 };
-class CUP_B_BAF_Soldier_AA_WDL : CUP_B_BAF_Soldier_01_DPM {
+class CUP_B_BAF_Soldier_AA_WDL: CUP_B_BAF_Soldier_01_DPM {
     scope = 2;
     scopeCurator = 2;
     displayName = "AA Specialist (DPMW)";
@@ -751,7 +751,7 @@ class CUP_B_BAF_Soldier_AA_WDL : CUP_B_BAF_Soldier_01_DPM {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DPMW1","UK3CB_BAF_H_Mk6_DPMW_B" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DPMW1","UK3CB_BAF_H_Mk6_DPMW_B" };
 };
-class CUP_B_BAF_Soldier_Marksman_WDL : CUP_B_BAF_Soldier_01_DPM {
+class CUP_B_BAF_Soldier_Marksman_WDL: CUP_B_BAF_Soldier_01_DPM {
     scope = 2;
     scopeCurator = 2;
     displayName = "Marksman (DPMW)";
@@ -775,11 +775,11 @@ class CUP_B_BAF_Soldier_Marksman_WDL : CUP_B_BAF_Soldier_01_DPM {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DPMW1","UK3CB_BAF_H_Mk6_DPMW_B" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DPMW1","UK3CB_BAF_H_Mk6_DPMW_B" };
 };
-class CUP_B_BAF_Soldier_scout_WDL : CUP_B_BAF_Soldier_01_DPM {
+class CUP_B_BAF_Soldier_scout_WDL: CUP_B_BAF_Soldier_01_DPM {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Sniper_WDL : CUP_B_BAF_Soldier_02_DPM {
+class CUP_B_BAF_Sniper_WDL: CUP_B_BAF_Soldier_02_DPM {
     scope = 2;
     scopeCurator = 2;
     displayName = "Sniper (LRR) (DPMW)";
@@ -803,7 +803,7 @@ class CUP_B_BAF_Sniper_WDL : CUP_B_BAF_Soldier_02_DPM {
     linkedItems[] = { "ItemGPS","ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DPMW1" };
     respawnLinkedItems[] = { "ItemGPS","ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DPMW1" };
 };
-class CUP_B_BAF_Sniper_AS50_WDL : CUP_B_BAF_Soldier_02_DPM {
+class CUP_B_BAF_Sniper_AS50_WDL: CUP_B_BAF_Soldier_02_DPM {
     scope = 2;
     scopeCurator = 2;
     displayName = "Sniper (L135A1) (DPMW)";
@@ -827,11 +827,11 @@ class CUP_B_BAF_Sniper_AS50_WDL : CUP_B_BAF_Soldier_02_DPM {
     linkedItems[] = { "ItemGPS","ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DPMW1" };
     respawnLinkedItems[] = { "ItemGPS","ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DPMW1" };
 };
-class CUP_B_BAF_Sniper_AS50_TWS_WDL : CUP_B_BAF_Sniper_AS50_WDL {
+class CUP_B_BAF_Sniper_AS50_TWS_WDL: CUP_B_BAF_Sniper_AS50_WDL {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Spotter_WDL : CUP_B_BAF_Soldier_02_DPM {
+class CUP_B_BAF_Spotter_WDL: CUP_B_BAF_Soldier_02_DPM {
     scope = 2;
     scopeCurator = 2;
     displayName = "Spotter (DPMW)";
@@ -855,11 +855,11 @@ class CUP_B_BAF_Spotter_WDL : CUP_B_BAF_Soldier_02_DPM {
     linkedItems[] = { "ItemGPS","ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DPMW1" };
     respawnLinkedItems[] = { "ItemGPS","ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DPMW1" };
 };
-class CUP_B_BAF_Spotter_L85TWS_WDL : CUP_B_BAF_Spotter_WDL {
+class CUP_B_BAF_Spotter_L85TWS_WDL: CUP_B_BAF_Spotter_WDL {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Pilot_WDL : CUP_B_BAF_Soldier_01_DPM {
+class CUP_B_BAF_Pilot_WDL: CUP_B_BAF_Soldier_01_DPM {
     scope = 2;
     scopeCurator = 2;
     displayName = "Pilot (DPMW)";
@@ -884,7 +884,7 @@ class CUP_B_BAF_Pilot_WDL : CUP_B_BAF_Soldier_01_DPM {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","ACE_NVG_Pilot","UKSF_V_Pilot","UK3CB_BAF_H_PilotHelmetHeli_A" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","ACE_NVG_Pilot","UKSF_V_Pilot","UK3CB_BAF_H_PilotHelmetHeli_A" };
 };
-class CUP_B_BAF_Crew_WDL : CUP_B_BAF_Soldier_01_DPM {
+class CUP_B_BAF_Crew_WDL: CUP_B_BAF_Soldier_01_DPM {
     scope = 2;
     scopeCurator = 2;    
     displayName = "Crewman (DPMW)";
@@ -898,7 +898,7 @@ class CUP_B_BAF_Crew_WDL : CUP_B_BAF_Soldier_01_DPM {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DPMW1","UK3CB_BAF_H_CrewHelmet_DPMW_A" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DPMW1","UK3CB_BAF_H_CrewHelmet_DPMW_A" };
 };
-class CUP_B_BAF_Medic_WDL : CUP_B_BAF_Soldier_01_DPM {
+class CUP_B_BAF_Medic_WDL: CUP_B_BAF_Soldier_01_DPM {
     scope = 2;
     scopeCurator = 2;
     displayName = "Medic (DPMW)";
@@ -922,7 +922,7 @@ class CUP_B_BAF_Medic_WDL : CUP_B_BAF_Soldier_01_DPM {
     magazines[] = { "UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","HandGrenade","HandGrenade","SmokeShell","SmokeShell" };
     respawnMagazines[] = { "UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","HandGrenade","HandGrenade","SmokeShell","SmokeShell" };
 };
-class CUP_B_BAF_Soldier_JTAC_WDL : CUP_B_BAF_Soldier_01_DPM {
+class CUP_B_BAF_Soldier_JTAC_WDL: CUP_B_BAF_Soldier_01_DPM {
     scope = 2;
     scopeCurator = 2;
     displayName = "JTAC (DPMW)";
@@ -936,7 +936,7 @@ class CUP_B_BAF_Soldier_JTAC_WDL : CUP_B_BAF_Soldier_01_DPM {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DPMW1","UK3CB_BAF_H_Mk6_DPMW_B" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DPMW1","UK3CB_BAF_H_Mk6_DPMW_B" };
 };
-class CUP_B_BAF_Engineer_WDL : CUP_B_BAF_Soldier_01_DPM {
+class CUP_B_BAF_Engineer_WDL: CUP_B_BAF_Soldier_01_DPM {
     scope = 2;
     scopeCurator = 2;
     displayName = "Engineer (DPMW)";
@@ -957,7 +957,7 @@ class CUP_B_BAF_Engineer_WDL : CUP_B_BAF_Soldier_01_DPM {
 };
 
 //DDPM
-class CUP_B_BAF_Soldier_01_DDPM : CUP_Creatures_Military_BAF_Soldier_Base {
+class CUP_B_BAF_Soldier_01_DDPM: CUP_Creatures_Military_BAF_Soldier_Base {
     scope = 1;
     scopeCurator = 0;
     vehicleClass = "CUP_B_Men_GB_DDPM";
@@ -968,12 +968,12 @@ class CUP_B_BAF_Soldier_01_DDPM : CUP_Creatures_Military_BAF_Soldier_Base {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DDPM1","UK3CB_BAF_H_Mk6_DDPM_B" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DDPM1","UK3CB_BAF_H_Mk6_DDPM_B" };
 };
-class CUP_B_BAF_Soldier_02_DDPM : CUP_B_BAF_Soldier_01_DDPM {
+class CUP_B_BAF_Soldier_02_DDPM: CUP_B_BAF_Soldier_01_DDPM {
     displayName = "Soldier 2 - DDPM";
     uniformClass = "UK3CB_BAF_U_CombatUniform_DDPM_Ghillie_RM";
     model = "A3\Characters_F_Beta\INDEP\ia_sniper.p3d";
 };
-class CUP_B_BAF_Soldier_DDPM : CUP_B_BAF_Soldier_01_DDPM {
+class CUP_B_BAF_Soldier_DDPM: CUP_B_BAF_Soldier_01_DDPM {
     scope = 2;
     scopeCurator = 2;
     displayName = "Rifleman (DDPM)";
@@ -985,43 +985,43 @@ class CUP_B_BAF_Soldier_DDPM : CUP_B_BAF_Soldier_01_DDPM {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DDPM1","UK3CB_BAF_H_Mk6_DDPM_B" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DDPM1","UK3CB_BAF_H_Mk6_DDPM_B" };
 };
-class CUP_B_BAF_Soldier_GL_DDPM : CUP_B_BAF_Soldier_01_DDPM {
+class CUP_B_BAF_Soldier_GL_DDPM: CUP_B_BAF_Soldier_01_DDPM {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Soldier_Night_DDPM : CUP_B_BAF_Soldier_01_DDPM {
+class CUP_B_BAF_Soldier_Night_DDPM: CUP_B_BAF_Soldier_01_DDPM {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Soldier_Light_DDPM : CUP_B_BAF_Soldier_01_DDPM {
+class CUP_B_BAF_Soldier_Light_DDPM: CUP_B_BAF_Soldier_01_DDPM {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Soldier_Backpack_DDPM : CUP_B_BAF_Soldier_01_DDPM {
+class CUP_B_BAF_Soldier_Backpack_DDPM: CUP_B_BAF_Soldier_01_DDPM {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Soldier_AAR_DDPM : CUP_B_BAF_Soldier_01_DDPM {
+class CUP_B_BAF_Soldier_AAR_DDPM: CUP_B_BAF_Soldier_01_DDPM {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Soldier_AMG_DDPM : CUP_B_BAF_Soldier_01_DDPM {
+class CUP_B_BAF_Soldier_AMG_DDPM: CUP_B_BAF_Soldier_01_DDPM {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Soldier_AAT_DDPM : CUP_B_BAF_Soldier_01_DDPM {
+class CUP_B_BAF_Soldier_AAT_DDPM: CUP_B_BAF_Soldier_01_DDPM {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Soldier_AHAT_DDPM : CUP_B_BAF_Soldier_01_DDPM {
+class CUP_B_BAF_Soldier_AHAT_DDPM: CUP_B_BAF_Soldier_01_DDPM {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Soldier_AAA_DDPM : CUP_B_BAF_Soldier_01_DDPM {
+class CUP_B_BAF_Soldier_AAA_DDPM: CUP_B_BAF_Soldier_01_DDPM {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Officer_DDPM : CUP_B_BAF_Soldier_01_DDPM {
+class CUP_B_BAF_Officer_DDPM: CUP_B_BAF_Soldier_01_DDPM {
     scope = 2;
     scopeCurator = 2;
     displayName = "Officer (DDPM)";
@@ -1044,7 +1044,7 @@ class CUP_B_BAF_Officer_DDPM : CUP_B_BAF_Soldier_01_DDPM {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DDPM1","UK3CB_BAF_H_Mk6_DDPM_B" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DDPM1","UK3CB_BAF_H_Mk6_DDPM_B" };
 };
-class CUP_B_BAF_Soldier_SL_DDPM : CUP_B_BAF_Soldier_01_DDPM {
+class CUP_B_BAF_Soldier_SL_DDPM: CUP_B_BAF_Soldier_01_DDPM {
     scope = 2;
     scopeCurator = 2;
     displayName = "Section Leader (DDPM)";
@@ -1067,11 +1067,11 @@ class CUP_B_BAF_Soldier_SL_DDPM : CUP_B_BAF_Soldier_01_DDPM {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DDPM1","UK3CB_BAF_H_Mk6_DDPM_B" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DDPM1","UK3CB_BAF_H_Mk6_DDPM_B" };
 };
-class CUP_B_BAF_Soldier_TL_DDPM : CUP_B_BAF_Soldier_01_DDPM {
+class CUP_B_BAF_Soldier_TL_DDPM: CUP_B_BAF_Soldier_01_DDPM {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Soldier_AR_DDPM : CUP_B_BAF_Soldier_01_DDPM {
+class CUP_B_BAF_Soldier_AR_DDPM: CUP_B_BAF_Soldier_01_DDPM {
     scope = 2;
     scopeCurator = 2;
     displayName = "Automatic Rifleman (DDPM)";
@@ -1096,7 +1096,7 @@ class CUP_B_BAF_Soldier_AR_DDPM : CUP_B_BAF_Soldier_01_DDPM {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DDPM1","UK3CB_BAF_H_Mk6_DDPM_B" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DDPM1","UK3CB_BAF_H_Mk6_DDPM_B" };
 };
-class CUP_B_BAF_Soldier_MG_DDPM : CUP_B_BAF_Soldier_01_DDPM {
+class CUP_B_BAF_Soldier_MG_DDPM: CUP_B_BAF_Soldier_01_DDPM {
     scope = 2;
     scopeCurator = 2;
     displayName = "Machinegunner (DDPM)";
@@ -1121,7 +1121,7 @@ class CUP_B_BAF_Soldier_MG_DDPM : CUP_B_BAF_Soldier_01_DDPM {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DDPM1","UK3CB_BAF_H_Mk6_DDPM_B" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DDPM1","UK3CB_BAF_H_Mk6_DDPM_B" };
 };
-class CUP_B_BAF_Soldier_AT_DDPM : CUP_B_BAF_Soldier_01_DDPM {
+class CUP_B_BAF_Soldier_AT_DDPM: CUP_B_BAF_Soldier_01_DDPM {
     scope = 2;
     scopeCurator = 2;
     displayName = "AT Specialist (DDPM)";
@@ -1147,7 +1147,7 @@ class CUP_B_BAF_Soldier_AT_DDPM : CUP_B_BAF_Soldier_01_DDPM {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DDPM1","UK3CB_BAF_H_Mk6_DDPM_B" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DDPM1","UK3CB_BAF_H_Mk6_DDPM_B" };
 };
-class CUP_B_BAF_Soldier_HAT_DDPM : CUP_B_BAF_Soldier_01_DDPM {
+class CUP_B_BAF_Soldier_HAT_DDPM: CUP_B_BAF_Soldier_01_DDPM {
     scope = 2;
     scopeCurator = 2;
     displayName = "AT Specialist (Javelin) (DDPM)";
@@ -1172,7 +1172,7 @@ class CUP_B_BAF_Soldier_HAT_DDPM : CUP_B_BAF_Soldier_01_DDPM {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DDPM1","UK3CB_BAF_H_Mk6_DDPM_B" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DDPM1","UK3CB_BAF_H_Mk6_DDPM_B" };
 };
-class CUP_B_BAF_Soldier_AA_DDPM : CUP_B_BAF_Soldier_01_DDPM {
+class CUP_B_BAF_Soldier_AA_DDPM: CUP_B_BAF_Soldier_01_DDPM {
     scope = 2;
     scopeCurator = 2;
     displayName = "AA Specialist (DDPM)";
@@ -1198,7 +1198,7 @@ class CUP_B_BAF_Soldier_AA_DDPM : CUP_B_BAF_Soldier_01_DDPM {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DDPM1","UK3CB_BAF_H_Mk6_DDPM_B" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DDPM1","UK3CB_BAF_H_Mk6_DDPM_B" };
 };
-class CUP_B_BAF_Soldier_Marksman_DDPM : CUP_B_BAF_Soldier_01_DDPM {
+class CUP_B_BAF_Soldier_Marksman_DDPM: CUP_B_BAF_Soldier_01_DDPM {
     scope = 2;
     scopeCurator = 2;
     displayName = "Marksman (DDPM)";
@@ -1222,11 +1222,11 @@ class CUP_B_BAF_Soldier_Marksman_DDPM : CUP_B_BAF_Soldier_01_DDPM {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DDPM1","UK3CB_BAF_H_Mk6_DDPM_B" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DDPM1","UK3CB_BAF_H_Mk6_DDPM_B" };
 };
-class CUP_B_BAF_Soldier_scout_DDPM : CUP_B_BAF_Soldier_01_DDPM {
+class CUP_B_BAF_Soldier_scout_DDPM: CUP_B_BAF_Soldier_01_DDPM {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Sniper_DDPM : CUP_B_BAF_Soldier_02_DDPM {
+class CUP_B_BAF_Sniper_DDPM: CUP_B_BAF_Soldier_02_DDPM {
     scope = 2;
     scopeCurator = 2;
     displayName = "Sniper (LRR) (DDPM)";
@@ -1251,7 +1251,7 @@ class CUP_B_BAF_Sniper_DDPM : CUP_B_BAF_Soldier_02_DDPM {
     linkedItems[] = { "ItemGPS","ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DPMW1" };
     respawnLinkedItems[] = { "ItemGPS","ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DPMW1" };
 };
-class CUP_B_BAF_Sniper_AS50_DDPM : CUP_B_BAF_Soldier_02_DDPM {
+class CUP_B_BAF_Sniper_AS50_DDPM: CUP_B_BAF_Soldier_02_DDPM {
     scope = 2;
     scopeCurator = 2;
     displayName = "Sniper (L135A1) (DDPM)";
@@ -1275,11 +1275,11 @@ class CUP_B_BAF_Sniper_AS50_DDPM : CUP_B_BAF_Soldier_02_DDPM {
     linkedItems[] = { "ItemGPS","ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DDPM1" };
     respawnLinkedItems[] = { "ItemGPS","ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DDPM1" };
 };
-class CUP_B_BAF_Sniper_AS50_TWS_DDPM : CUP_B_BAF_Sniper_AS50_DDPM {
+class CUP_B_BAF_Sniper_AS50_TWS_DDPM: CUP_B_BAF_Sniper_AS50_DDPM {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Spotter_DDPM : CUP_B_BAF_Soldier_02_DDPM {
+class CUP_B_BAF_Spotter_DDPM: CUP_B_BAF_Soldier_02_DDPM {
     scope = 2;
     scopeCurator = 2;
     displayName = "Spotter (DDPM)";
@@ -1303,11 +1303,11 @@ class CUP_B_BAF_Spotter_DDPM : CUP_B_BAF_Soldier_02_DDPM {
     linkedItems[] = { "ItemGPS","ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DDPM1" };
     respawnLinkedItems[] = { "ItemGPS","ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DDPM1" };
 };
-class CUP_B_BAF_Spotter_L85TWS_DDPM : CUP_B_BAF_Spotter_DDPM {
+class CUP_B_BAF_Spotter_L85TWS_DDPM: CUP_B_BAF_Spotter_DDPM {
     scope = 1;
     scopeCurator = 1;
 };
-class CUP_B_BAF_Pilot_DDPM : CUP_B_BAF_Soldier_01_DDPM {
+class CUP_B_BAF_Pilot_DDPM: CUP_B_BAF_Soldier_01_DDPM {
     scope = 2;
     scopeCurator = 2;
     displayName = "Pilot (DDPM)";
@@ -1332,7 +1332,7 @@ class CUP_B_BAF_Pilot_DDPM : CUP_B_BAF_Soldier_01_DDPM {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","ACE_NVG_Pilot","UKSF_V_Pilot","UK3CB_BAF_H_PilotHelmetHeli_A" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","ACE_NVG_Pilot","UKSF_V_Pilot","UK3CB_BAF_H_PilotHelmetHeli_A" };
 };
-class CUP_B_BAF_Crew_DDPM : CUP_B_BAF_Soldier_01_DDPM {
+class CUP_B_BAF_Crew_DDPM: CUP_B_BAF_Soldier_01_DDPM {
     scope = 2;
     scopeCurator = 2;    
     displayName = "Crewman (DDPM)";
@@ -1346,7 +1346,7 @@ class CUP_B_BAF_Crew_DDPM : CUP_B_BAF_Soldier_01_DDPM {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DDPM1","UK3CB_BAF_H_CrewHelmet_DDPM_A" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DDPM1","UK3CB_BAF_H_CrewHelmet_DDPM_A" };
 };
-class CUP_B_BAF_Medic_DDPM : CUP_B_BAF_Soldier_01_DDPM {
+class CUP_B_BAF_Medic_DDPM: CUP_B_BAF_Soldier_01_DDPM {
     scope = 2;
     scopeCurator = 2;
     displayName = "Medic (DDPM)";
@@ -1372,7 +1372,7 @@ class CUP_B_BAF_Medic_DDPM : CUP_B_BAF_Soldier_01_DDPM {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DDPM1","UK3CB_BAF_H_Mk6_DDPM_B" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DDPM1","UK3CB_BAF_H_Mk6_DDPM_B" };
 };
-class CUP_B_BAF_Soldier_JTAC_DDPM : CUP_B_BAF_Soldier_01_DDPM {
+class CUP_B_BAF_Soldier_JTAC_DDPM: CUP_B_BAF_Soldier_01_DDPM {
     scope = 2;
     scopeCurator = 2;
     displayName = "JTAC (DDPM)";
@@ -1386,7 +1386,7 @@ class CUP_B_BAF_Soldier_JTAC_DDPM : CUP_B_BAF_Soldier_01_DDPM {
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DDPM1","UK3CB_BAF_H_Mk6_DDPM_B" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DDPM1","UK3CB_BAF_H_Mk6_DDPM_B" };
 };
-class CUP_B_BAF_Engineer_DDPM : CUP_B_BAF_Soldier_01_DDPM {
+class CUP_B_BAF_Engineer_DDPM: CUP_B_BAF_Soldier_01_DDPM {
     scope = 2;
     scopeCurator = 2;
     displayName = "Engineer (DDPM)";
@@ -1408,27 +1408,27 @@ class CUP_B_BAF_Engineer_DDPM : CUP_B_BAF_Soldier_01_DDPM {
 
 //Javelin
 class CUP_B_USArmy_Soldier_01;
-class CUP_B_US_Soldier_HAT : CUP_B_USArmy_Soldier_01 {
+class CUP_B_US_Soldier_HAT: CUP_B_USArmy_Soldier_01 {
     weapons[] = { "CUP_arifle_M4A1_CCO_flashlight", "Throw", "Put", "UK3CB_BAF_Javelin_Slung_Tube","UK3CB_BAF_Javelin_CLU" };
     respawnWeapons[] = { "CUP_arifle_M4A1_CCO_flashlight", "Throw", "Put", "UK3CB_BAF_Javelin_Slung_Tube","UK3CB_BAF_Javelin_CLU" };
     magazines[] = { "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_HandGrenade_M67", "SmokeShell" };
     respawnMagazines[] = { "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_HandGrenade_M67", "SmokeShell" };  
 };
 class CUP_B_USMC_Soldier_AT_Base;
-class CUP_B_USMC_Soldier_HAT : CUP_B_USMC_Soldier_AT_Base {
+class CUP_B_USMC_Soldier_HAT: CUP_B_USMC_Soldier_AT_Base {
     weapons[] = { "CUP_arifle_M16A4_Aim_Laser", "Throw", "Put", "UK3CB_BAF_Javelin_Slung_Tube","UK3CB_BAF_Javelin_CLU" };
     respawnWeapons[] = { "CUP_arifle_M16A4_Aim_Laser", "Throw", "Put", "UK3CB_BAF_Javelin_Slung_Tube","UK3CB_BAF_Javelin_CLU" };
     magazines[] = { "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_HandGrenade_M67", "CUP_HandGrenade_M67" };
     respawnMagazines[] = { "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_HandGrenade_M67", "CUP_HandGrenade_M67" };
 };
 class CUP_B_USMC_Soldier_12;
-class CUP_B_USMC_Soldier_HAT_FROG_WDL : CUP_B_USMC_Soldier_12 {
+class CUP_B_USMC_Soldier_HAT_FROG_WDL: CUP_B_USMC_Soldier_12 {
     weapons[] = { "CUP_arifle_M16A4_Aim_Laser", "Throw", "Put", "UK3CB_BAF_Javelin_Slung_Tube","UK3CB_BAF_Javelin_CLU" };
     respawnWeapons[] = { "CUP_arifle_M16A4_Aim_Laser", "Throw", "Put", "UK3CB_BAF_Javelin_Slung_Tube","UK3CB_BAF_Javelin_CLU" };
     magazines[] = { "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_HandGrenade_M67", "CUP_HandGrenade_M67" };
     respawnMagazines[] = { "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_HandGrenade_M67", "CUP_HandGrenade_M67" };
 };
-class CUP_B_USMC_Soldier_HAT_FROG_DES : CUP_B_USMC_Soldier_13 {
+class CUP_B_USMC_Soldier_HAT_FROG_DES: CUP_B_USMC_Soldier_13 {
     weapons[] = { "CUP_arifle_M16A4_Aim_Laser", "Throw", "Put", "UK3CB_BAF_Javelin_Slung_Tube","UK3CB_BAF_Javelin_CLU" };
     respawnWeapons[] = { "CUP_arifle_M16A4_Aim_Laser", "Throw", "Put", "UK3CB_BAF_Javelin_Slung_Tube","UK3CB_BAF_Javelin_CLU" };
     magazines[] = { "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_HandGrenade_M67", "CUP_HandGrenade_M67" };
@@ -1436,7 +1436,7 @@ class CUP_B_USMC_Soldier_HAT_FROG_DES : CUP_B_USMC_Soldier_13 {
 };
 
 //UKSF
-class UKSF_B_Rifleman : CUP_B_BAF_Soldier_MTP {
+class UKSF_B_Rifleman: CUP_B_BAF_Soldier_MTP {
     scope = 2;
     author = "UKSF";
     editorSubcategory = QEGVAR(common,1para);
@@ -1454,30 +1454,30 @@ class UKSF_B_Rifleman : CUP_B_BAF_Soldier_MTP {
     linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch" };
     respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch" };
 };
-class UKSF_B_Officer : UKSF_B_Rifleman {
+class UKSF_B_Officer: UKSF_B_Rifleman {
     displayName = "Officer";
     icon = "iconManOfficer";
     editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Officer.jpg);
     linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "UK3CB_BAF_H_Beret_PR" };
     respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "UK3CB_BAF_H_Beret_PR" };
 };
-class UKSF_B_SectionLeader : UKSF_B_Rifleman {
+class UKSF_B_SectionLeader: UKSF_B_Rifleman {
     displayName = "Section Leader";
     icon = "iconManLeader";
     editorPreview = QPATHTOEF(common,data\previews\UKSF_B_SectionLeader.jpg);
 };
-class UKSF_B_MachineGunner : UKSF_B_Rifleman {
+class UKSF_B_MachineGunner: UKSF_B_Rifleman {
     displayName = "Machinegunner";
     icon = "iconManMG";
     editorPreview = QPATHTOEF(common,data\previews\UKSF_B_MachineGunner.jpg);
 };
-class UKSF_B_AntiTank : UKSF_B_Rifleman {
+class UKSF_B_AntiTank: UKSF_B_Rifleman {
     displayName = "Rifleman (AT)";
     threat[] = {1, 1, 0.3};
     icon = "iconManAT";
     editorPreview = QPATHTOEF(common,data\previews\UKSF_B_AntiTank.jpg);
 };
-class UKSF_B_Medic : UKSF_B_Rifleman {
+class UKSF_B_Medic: UKSF_B_Rifleman {
     displayName = "Combat Medic";
     attendant = 1;
     icon = "iconManMedic";
@@ -1485,12 +1485,12 @@ class UKSF_B_Medic : UKSF_B_Rifleman {
     editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Medic.jpg);
     uniformClass = "UK3CB_BAF_U_CombatUniform_MTP_CSMR";
 };
-class UKSF_B_Sniper : UKSF_B_Rifleman {
+class UKSF_B_Sniper: UKSF_B_Rifleman {
     displayName = "Sniper";
     camouflage = 0.6;
     editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Sniper.jpg);
 };
-class UKSF_B_Pilot : UKSF_B_Rifleman {
+class UKSF_B_Pilot: UKSF_B_Rifleman {
     editorSubcategory = QEGVAR(common,jsfaw);
     displayName = "Pilot";
     threat[] = {1, 1, 1};

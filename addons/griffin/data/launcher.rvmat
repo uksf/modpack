@@ -5,7 +5,7 @@
 
 #define _ARMA_
 
-//Class air2 : UH1Y\DATA\launcher.rvmat{
+//Class air2: UH1Y\DATA\launcher.rvmat{
 ambient[] = {1.0,1.0,1.0,1.0};
 diffuse[] = {1.0,1.0,1.0,1.0};
 forcedDiffuse[] = {0.0,0.0,0.0,1.0};

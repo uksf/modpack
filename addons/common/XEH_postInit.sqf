@@ -2,7 +2,7 @@
 
 [{
     {deleteGroup _x} foreach allGroups;
-}, 300, []] call CBA_fnc_addPerFrameHandler;
+}, 300, []] call cba_fnc_addPerFrameHandler;
 
 GVAR(HCs) = [];
 {

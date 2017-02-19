@@ -41,10 +41,10 @@ class Cfg3DEN {
     };
 };
 class RscDisplayArsenal {
-    scriptName="RscDisplayArsenal";
-    scriptPath="UKSFGUI";
-    onLoad="[""onLoad"",_this,""RscDisplayArsenal"",'UKSFGUI'] call (uinamespace getvariable 'BIS_fnc_initDisplay')";
-    onUnload="[""onUnload"",_this,""RscDisplayArsenal"",'UKSFGUI'] call (uinamespace getvariable 'BIS_fnc_initDisplay')";
+    scriptName = "RscDisplayArsenal";
+    scriptPath = "UKSFGUI";
+    onLoad = "[""onLoad"",_this,""RscDisplayArsenal"",'UKSFGUI'] call (uinamespace getvariable 'BIS_fnc_initDisplay')";
+    onUnload = "[""onUnload"",_this,""RscDisplayArsenal"",'UKSFGUI'] call (uinamespace getvariable 'BIS_fnc_initDisplay')";
 };
 class CfgScriptPaths {
     UKSFAttributes = "u\uksf\addons\arsenal\UI\attributes\";

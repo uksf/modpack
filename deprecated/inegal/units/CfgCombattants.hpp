@@ -4,7 +4,7 @@ class Inegal_F: Inegal_Soldier_Base {
     displayName = "Fusilier";
     editorSubcategory = QEGVAR(common,combattants);
     editorPreview = QPATHTOEF(common,data\previews\Inegal_F.jpg);
-    uniformClass="U_BG_Guerilla2_3";
+    uniformClass = "U_BG_Guerilla2_3";
     model = "\A3\characters_F_gamma\Guerrilla\ig_guerrilla2_1.p3d";
     backpack = "Inegal_B_F";
     weapons[] = {
@@ -123,7 +123,7 @@ class Inegal_C: Inegal_F {
     scope = 2;
     displayName = "Commander";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_C.jpg);
-    uniformClass="U_BG_Guerilla3_1";
+    uniformClass = "U_BG_Guerilla3_1";
     icon = "iconManLeader";
     backpack = "Inegal_B_C";
     weapons[] = {
@@ -338,7 +338,7 @@ class Inegal_MED: Inegal_F {
     icon = "iconManMedic";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_MED.jpg);
     picture = "pictureHeal";
-    uniformClass="U_BG_Guerilla2_1";
+    uniformClass = "U_BG_Guerilla2_1";
     backpack = "Inegal_B_Med";
     attendant = 1;
     weapons[] = {
@@ -419,7 +419,7 @@ class Inegal_MG: Inegal_F {
     scope = 2;
     displayName = "Machinegunner";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_MG.jpg);
-    uniformClass="U_BG_Guerilla2_2";
+    uniformClass = "U_BG_Guerilla2_2";
     icon = "iconManMG";
     backpack = "Inegal_B_MG";
     weapons[] = {
@@ -532,7 +532,7 @@ class Inegal_Mark: Inegal_F {
     scope = 2;
     displayName = "Marksman";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_Mark.jpg);
-    uniformClass="U_BG_Guerilla2_3";
+    uniformClass = "U_BG_Guerilla2_3";
     backpack = "Inegal_B_Mark";
     weapons[] = {
         "R3F_FRF2_DES_Zeiss",
@@ -660,7 +660,7 @@ class Inegal_AA: Inegal_F {
     scope = 2;
     displayName = "Anti-Air";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_AA.jpg);
-    uniformClass="U_BG_Guerilla3_1";
+    uniformClass = "U_BG_Guerilla3_1";
     icon = "iconManAT";
     threat[] = { 1,0.1,1 };
     backpack = "Inegal_B_AA";
@@ -792,7 +792,7 @@ class Inegal_ATE: Inegal_F {
     scope = 2;
     displayName = "Anti-Tank (Eryx)";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_ATE.jpg);
-    uniformClass="U_BG_Guerilla2_1";
+    uniformClass = "U_BG_Guerilla2_1";
     icon = "iconManAT";
     threat[] = { 1,0.9,0.9 };
     backpack = "Inegal_B_AT_Eryx";
@@ -924,7 +924,7 @@ class Inegal_ATJ: Inegal_F {
     scope = 2;
     displayName = "Anti-Tank (Javelin)";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_ATJ.jpg);
-    uniformClass="U_BG_Guerilla2_3";
+    uniformClass = "U_BG_Guerilla2_3";
     icon = "iconManAT";
     threat[] = { 1,0.9,0.9 };
     backpack = "Inegal_B_F";
@@ -1172,7 +1172,7 @@ class Inegal_FAC: Inegal_F {
     scope = 2;
     displayName = "FAC";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_FAC.jpg);
-    uniformClass="U_BG_Guerilla2_2";
+    uniformClass = "U_BG_Guerilla2_2";
     backpack = "Inegal_B_FAC";
     weapons[] = {
         "R3F_Famas_G2_HG_Aimpoint",

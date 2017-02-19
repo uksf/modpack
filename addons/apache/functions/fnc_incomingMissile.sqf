@@ -32,12 +32,12 @@ if (local _heli && {alive _heli} && {player isEqualTo (driver _heli) || {player 
             _args params ["_heli", "_missile", "_iteration"];
 
             if (isNull _missile || {!alive _heli} || {_iteration >= 8} || {(_missile distance _heli) > (10000)}) exitWith {
-                [_idPFH] call CBA_fnc_removePerFrameHandler;
+                [_idPFH] call cba_fnc_removePerFrameHandler;
                 player forceWeaponFire ["CUP_weapon_mastersafe", "CUP_weapon_mastersafe"];
             };
             player forceWeaponFire ["CMFlareLauncher", "Single"];
             _args set [2, _iteration + 1];
-        }, 0.1, [_heli, _missile, 1]] call CBA_fnc_addPerFrameHandler;
+        }, 0.1, [_heli, _missile, 1]] call cba_fnc_addPerFrameHandler;
     };
 
     private _missileAlt = "low";
@@ -66,7 +66,7 @@ if (local _heli && {alive _heli} && {player isEqualTo (driver _heli) || {player 
             _args params ["_trackTo", "_missile", "_distanceToTarget", "_prevDistanceToTarget"];          
 
             if (isNull _trackTo || {isNull _missile} || {!alive _missile}) exitWith {
-                [_idPFH] call CBA_fnc_removePerFrameHandler;
+                [_idPFH] call cba_fnc_removePerFrameHandler;
             };
 
             private _vectorToTarget = (getPosASL _trackTo) vectorDiff (getPosASL _missile);
@@ -87,6 +87,6 @@ if (local _heli && {alive _heli} && {player isEqualTo (driver _heli) || {player 
             };
             _args set [2, _distanceToTarget];
             _args set [3, _prevDistanceToTarget];
-        }, 0, [_trackTo, _missile, 100000, 0]] call CBA_fnc_addPerFrameHandler;
-    }, [_heli, _missile, _missileAlt], 1] call CBA_fnc_waitAndExecute;    
+        }, 0, [_trackTo, _missile, 100000, 0]] call cba_fnc_addPerFrameHandler;
+    }, [_heli, _missile, _missileAlt], 1] call cba_fnc_waitAndExecute;    
 };

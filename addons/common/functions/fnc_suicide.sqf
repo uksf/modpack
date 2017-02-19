@@ -76,36 +76,36 @@ if (local _bomber) then {
                             deleteWaypoint ((waypoints (group _bomber)) select 0);
                         };
                         if (count (waypoints (group _bomber)) <= 0) exitWith {
-                            [_idPFH] call CBA_fnc_removePerFrameHandler;
+                            [_idPFH] call cba_fnc_removePerFrameHandler;
                         };
-                    }, 0, [_bomber]] call CBA_fnc_addPerFrameHandler;
+                    }, 0, [_bomber]] call cba_fnc_addPerFrameHandler;
                     _bomber setVariable [QGVAR(tracking), false];
-                    [_idPFH] call CBA_fnc_removePerFrameHandler;
+                    [_idPFH] call cba_fnc_removePerFrameHandler;
                 };
 
                 if ((position _target) distance _bomber <= 15) exitWith {
-                    [_idPFH] call CBA_fnc_removePerFrameHandler;
+                    [_idPFH] call cba_fnc_removePerFrameHandler;
                     _bomber setSpeedMode "FULL";
-                    [_bomber, QEGVAR(common,suicide)] call CBA_fnc_globalSay3d;
+                    [_bomber, QEGVAR(common,suicide)] call cba_fnc_globalSay3d;
                     [{
                         params ["_bomber"];                        
                         if (alive _bomber) exitWith {
                             _bomber setVariable [QGVAR(explode), true];
                             _bomber setDamage 1;
                         };
-                    }, [_bomber], 2.5] call CBA_fnc_waitAndExecute;
+                    }, [_bomber], 2.5] call cba_fnc_waitAndExecute;
                 };
-            }, 0, [_bomber, _target]] call CBA_fnc_addPerFrameHandler;
+            }, 0, [_bomber, _target]] call cba_fnc_addPerFrameHandler;
         };    
-    }, 5, [_bomber, _side]] call CBA_fnc_addPerFrameHandler;
+    }, 5, [_bomber, _side]] call cba_fnc_addPerFrameHandler;
 
     [{
         params ["_args", "_idPFH"];
         _args params ["_bomber", "_deadman", "_discrete", "_explosives", "_detectionHandle"];
 
         if (!alive _bomber) exitWith {
-            [_idPFH] call CBA_fnc_removePerFrameHandler;
-            [_detectionHandle] call CBA_fnc_removePerFrameHandler;
+            [_idPFH] call cba_fnc_removePerFrameHandler;
+            [_detectionHandle] call cba_fnc_removePerFrameHandler;
 
             if (_deadman || _bomber getVariable [QGVAR(explode), false]) then {
                 "HelicopterExploSmall" createVehicle (position _bomber);
@@ -114,5 +114,5 @@ if (local _bomber) then {
                 {deleteVehicle _x} forEach _explosives;
             };
         };
-    }, 0, [_bomber, _deadman, _discrete, _explosives, _detectionHandle]] call CBA_fnc_addPerFrameHandler;
+    }, 0, [_bomber, _deadman, _discrete, _explosives, _detectionHandle]] call cba_fnc_addPerFrameHandler;
 };

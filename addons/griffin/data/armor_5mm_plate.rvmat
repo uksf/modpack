@@ -5,7 +5,7 @@
 
 #define _ARMA_
 
-//Class ca : data\penetration\armor_5mm_plate.rvmat{
+//Class ca: data\penetration\armor_5mm_plate.rvmat{
 surfaceInfo = "u\uksf\addons\griffin\data\armor_5mm_plate.bisurf";
 ambient[] = {0.490196,0.592157,0.556863,1.0};
 diffuse[] = {0.490196,0.592157,0.556863,1.0};

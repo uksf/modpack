@@ -6,7 +6,7 @@
         Checks unit stance and returns contextual animation
 
     Parameter(s):
-        0 : Unit to check <OBJECT>
+        0: Unit to check <OBJECT>
 
     Return Value:
         Animation name <STRING>

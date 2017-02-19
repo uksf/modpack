@@ -37,7 +37,7 @@ _light  lightAttachObject [_seat, [0,0,0]];
     [{
         params ["_smoke"];
         deleteVehicle _smoke;
-    }, [_smoke], 0.2] call CBA_fnc_waitAndExecute;
+    }, [_smoke], 0.2] call cba_fnc_waitAndExecute;
 
     _smokeTrail = "#particlesource" createVehicle (getPos _seat);
     _smokeTrail setParticleClass "MissileEffects1";
@@ -45,5 +45,5 @@ _light  lightAttachObject [_seat, [0,0,0]];
     [{
         params ["_smokeTrail"];
         deleteVehicle _smokeTrail;
-    }, [_smokeTrail], 0.5] call CBA_fnc_waitAndExecute;
-}, [_plane, _seat, _light], 0.01] call CBA_fnc_waitAndExecute;
+    }, [_smokeTrail], 0.5] call cba_fnc_waitAndExecute;
+}, [_plane, _seat, _light], 0.01] call cba_fnc_waitAndExecute;

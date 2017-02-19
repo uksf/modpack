@@ -16,7 +16,7 @@ class Inegal_TRM_Covered: B_Truck_01_covered_F {
     class TransportWeapons {};
     class TransportBackpacks {};
     class EventHandlers {
-        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };
 class Inegal_TRM_D_Covered: Inegal_TRM_Covered {
@@ -52,7 +52,7 @@ class Inegal_TRM_Open: B_Truck_01_transport_F {
     class TransportWeapons {};
     class TransportBackpacks {};
     class EventHandlers {
-        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };
 class Inegal_TRM_D_Open: Inegal_TRM_Open {

@@ -6,7 +6,7 @@ class Laraka_CarBomb: Laraka_Hilux_Unarmed {
     typicalCargo[] = {};
     weapons[] = { "CarHorn" };
     class EventHandlers {
-        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };
 
@@ -17,7 +17,7 @@ class Laraka_CarBomb_Empty: Laraka_CarBomb {
     crew = "Afghan_Civilian5";
     typicalCargo[] = {};
     class EventHandlers {
-        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };
 
@@ -28,24 +28,24 @@ class Laraka_CarBomb_Deadman: Laraka_CarBomb {
     crew = "Afghan_Civilian5";
     typicalCargo[] = {};
     class EventHandlers {
-        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };
 
 //Car bomb
-class Azaadi_CarBomb : Laraka_CarBomb {
+class Azaadi_CarBomb: Laraka_CarBomb {
     faction = "UKSF_Azaadi";
     side = 2;
 };
 
 //Empty
-class Azaadi_CarBomb_Empty : Laraka_CarBomb_Empty {
+class Azaadi_CarBomb_Empty: Laraka_CarBomb_Empty {
     faction = "UKSF_Azaadi";
     side = 2;
 };
 
 //Deadman
-class Azaadi_CarBomb_Deadman : Laraka_CarBomb_Deadman {
+class Azaadi_CarBomb_Deadman: Laraka_CarBomb_Deadman {
     faction = "UKSF_Azaadi";
     side = 2;
 };

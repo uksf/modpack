@@ -101,112 +101,112 @@ class MFD {
                 pos10[] = { 0.78,0.78 };
                 angle = 0;
             };
-            class LevelP5 : Level0 {
+            class LevelP5: Level0 {
                 angle = 5;
             };
-            class LevelM5 : Level0 {
+            class LevelM5: Level0 {
                 angle = -5;
             };
-            class LevelP10 : Level0 {
+            class LevelP10: Level0 {
                 angle = 10;
             };
-            class LevelM10 : Level0 {
+            class LevelM10: Level0 {
                 angle = -10;
             };
-            class LevelP15 : Level0 {
+            class LevelP15: Level0 {
                 angle = 15;
             };
-            class LevelM15 : Level0 {
+            class LevelM15: Level0 {
                 angle = -15;
             };
-            class LevelP20 : Level0 {
+            class LevelP20: Level0 {
                 angle = 20;
             };
-            class LevelM20 : Level0 {
+            class LevelM20: Level0 {
                 angle = -20;
             };
-            class LevelP25 : Level0 {
+            class LevelP25: Level0 {
                 angle = 25;
             };
-            class LevelM25 : Level0 {
+            class LevelM25: Level0 {
                 angle = -25;
             };
-            class LevelP30 : Level0 {
+            class LevelP30: Level0 {
                 angle = 30;
             };
-            class LevelM30 : Level0 {
+            class LevelM30: Level0 {
                 angle = -30;
             };
-            class LevelP35 : Level0 {
+            class LevelP35: Level0 {
                 angle = 35;
             };
-            class LevelM35 : Level0 {
+            class LevelM35: Level0 {
                 angle = -35;
             };
-            class LevelP40 : Level0 {
+            class LevelP40: Level0 {
                 angle = 40;
             };
-            class LevelM40 : Level0 {
+            class LevelM40: Level0 {
                 angle = -40;
             };
-            class LevelP45 : Level0 {
+            class LevelP45: Level0 {
                 angle = 45;
             };
-            class LevelM45 : Level0 {
+            class LevelM45: Level0 {
                 angle = -45;
             };
-            class LevelP50 : Level0 {
+            class LevelP50: Level0 {
                 angle = 50;
             };
-            class LevelM50 : Level0 {
+            class LevelM50: Level0 {
                 angle = -50;
             };
-            class LevelP55 : Level0 {
+            class LevelP55: Level0 {
                 angle = 55;
             };
-            class LevelM55 : Level0 {
+            class LevelM55: Level0 {
                 angle = -55;
             };
-            class LevelP60 : Level0 {
+            class LevelP60: Level0 {
                 angle = 60;
             };
-            class LevelM60 : Level0 {
+            class LevelM60: Level0 {
                 angle = -60;
             };
-            class LevelP65 : Level0 {
+            class LevelP65: Level0 {
                 angle = 65;
             };
-            class LevelM65 : Level0 {
+            class LevelM65: Level0 {
                 angle = -65;
             };
-            class LevelP70 : Level0 {
+            class LevelP70: Level0 {
                 angle = 70;
             };
-            class LevelM70 : Level0 {
+            class LevelM70: Level0 {
                 angle = -70;
             };
-            class LevelP75 : Level0 {
+            class LevelP75: Level0 {
                 angle = 75;
             };
-            class LevelM75 : Level0 {
+            class LevelM75: Level0 {
                 angle = -75;
             };
-            class LevelP80 : Level0 {
+            class LevelP80: Level0 {
                 angle = 80;
             };
-            class LevelM80 : Level0 {
+            class LevelM80: Level0 {
                 angle = -80;
             };
-            class LevelP85 : Level0 {
+            class LevelP85: Level0 {
                 angle = 85;
             };
-            class LevelM85 : Level0 {
+            class LevelM85: Level0 {
                 angle = -85;
             };
-            class LevelP90 : Level0 {
+            class LevelP90: Level0 {
                 angle = 90;
             };
-            class LevelM90 : Level0 {
+            class LevelM90: Level0 {
                 angle = -90;
             };
         };
@@ -317,7 +317,7 @@ class MFD {
                     type = "text";
                     align = "right";
                     source = "static";
-                    text = "TOF=";
+                    text = "TOF = ";
                     scale = 1;
                     pos[] = { { 0.61,0.92 },1 };
                     right[] = { { 0.65,0.92 },1 };
@@ -387,7 +387,7 @@ class MFD {
                     down[] = { { 0.07,0.225 },1 };
                 };
             };
-            class AltNumber : SpeedNumber {
+            class AltNumber: SpeedNumber {
                 align = "right";
                 source = "altitudeAGL";
                 sourceScale = 3.2808399;
@@ -424,7 +424,7 @@ class MFD {
                 width = 3;
                 points[] = { { "VspeedBone",{ -0.01,0.0 },1 },{ "VspeedBone",{ -0.025,-0.015 },1 },{ "VspeedBone",{ -0.025,0.015 },1 },{ "VspeedBone",{ -0.01,0.0 },1 },{} };
             };
-            class HeadingNumber : SpeedNumber {
+            class HeadingNumber: SpeedNumber {
                 source = "heading";
                 sourceScale = 1;
                 align = "center";

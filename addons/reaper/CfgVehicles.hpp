@@ -1,6 +1,6 @@
 class CfgVehicles {
     class Man;
-    class CAManBase : Man {
+    class CAManBase: Man {
         class ACE_SelfActions {
             class ACE_Drone {
                 displayName = "MQ-9 Control";
@@ -90,7 +90,7 @@ class CfgVehicles {
                 };
                 class ACE_Drone_Radius {
                     displayName = "Loiter Radius";
-                    condition = QUOTE((waypointType [ARR_2(group (getConnectedUAV _player), currentWaypoint group (getConnectedUAV _player))]) == 'LOITER');
+                    condition = QUOTE((waypointType [ARR_2(group (getConnectedUAV _player), currentWaypoint group (getConnectedUAV _player))]) isEqualTo 'LOITER');
                     statement = "";
                     showDisabled = 1;
                     priority = 1;
@@ -199,7 +199,7 @@ class CfgVehicles {
     };
     class CUP_MQ9_Base: UAV {
         class Turrets {
-            class MainTurret : NewTurret {
+            class MainTurret: NewTurret {
                 turretInfoType = "RscOptics_UAV_gunnerAdvanced";
                 weapons[] = { "Laserdesignator_mounted","CUP_AGM114K_Hellfire_II_Launcher_W","CUP_AGM114N_Hellfire_II_Launcher_W" };
                 magazines[] = { "Laserbatteries","CUP_4Rnd_AGM114K_Hellfire_II_M","CUP_4Rnd_AGM114N_Hellfire_II_M" };
@@ -224,7 +224,7 @@ class CfgVehicles {
                         gunnerOpticsModel = "A3\Weapons_F\Reticle\Optics_Gunner_MBT_03_w_F.p3d";
                         opticsPPEffects[] = { "OpticsCHAbera2","OpticsBlur2" };
                     };
-                    class Medium : Wide {
+                    class Medium: Wide {
                         gunnerOpticsColor[] = { 0,0,0,1 };
                         initFov = 0.466;
                         minFov = 0.466;
@@ -232,7 +232,7 @@ class CfgVehicles {
                         directionStabilized = 1;
                         gunnerOpticsModel = "A3\Weapons_F\Reticle\Optics_Gunner_MBT_02_w_F.p3d";
                     };
-                    class Narrow : Wide {
+                    class Narrow: Wide {
                         opticsDisplayName = "WL";
                         initFov = 0.2;
                         minFov = 0.2;
@@ -240,14 +240,14 @@ class CfgVehicles {
                         directionStabilized = 1;
                         gunnerOpticsModel = "A3\Weapons_F\Reticle\Optics_Gunner_MBT_02_m_F.p3d";
                     };
-                    class Narrower : Wide {
+                    class Narrower: Wide {
                         opticsDisplayName = "M";
                         initFov = 0.1;
                         minFov = 0.1;
                         maxFov = 0.1;
                         directionStabilized = 1;
                     };
-                    class Narrowerer : Wide {
+                    class Narrowerer: Wide {
                         opticsDisplayName = "N";
                         initFov = 0.02;
                         minFov = 0.02;
@@ -255,7 +255,7 @@ class CfgVehicles {
                         directionStabilized = 1;
                         gunnerOpticsModel = "A3\Weapons_F\Reticle\Optics_Gunner_MBT_02_n_F.p3d";
                     };
-                    class Narrowererer : Wide {
+                    class Narrowererer: Wide {
                         opticsDisplayName = "N";
                         initFov = 0.01;
                         minFov = 0.01;
@@ -280,7 +280,7 @@ class CfgVehicles {
         };
     };
     class CUP_B_USMC_MQ9;
-    class CUP_B_UKSF_MQ9 : CUP_B_USMC_MQ9 {
+    class CUP_B_UKSF_MQ9: CUP_B_USMC_MQ9 {
         author = "UKSF";
         faction = "CUP_B_GB";
         //editorPreview = QPATHTOEF(common,data\previews\CUP_B_UKSF_MQ9.jpg);

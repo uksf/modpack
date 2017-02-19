@@ -18,7 +18,7 @@ class CfgPatches {
     };
 };
 
-class CBA_Extended_EventHandlers;
+class cba_Extended_EventHandlers;
 #include "CfgEventHandlers.hpp"
 #include "CfgMagazines.hpp"
 #include "CfgRscUI.hpp"

@@ -2,7 +2,7 @@ class CfgVehicles {
     class Plane_Base_F;
     class Motorcycle;
     class StaticAmmocart;
-    class USAF_F35A : Plane_Base_F {
+    class USAF_F35A: Plane_Base_F {
         scope = 2;
         scopeCurator = 2;
         displayName = "F-35A";
@@ -189,7 +189,7 @@ class CfgVehicles {
                     };
                     class center {
                         type = "fixed";
-                        pos[] =
+                        pos[] = 
                         {
                             0.5,
                             "PoxY0Center"
@@ -228,13 +228,13 @@ class CfgVehicles {
                         type = "fixed";
                         pos[] = { 0.5,0.94999999 };
                     };
-                    class weaponAim : Pos10Vector {
+                    class weaponAim: Pos10Vector {
                         source = "weapon";
                     };
-                    class Target : Pos10Vector {
+                    class Target: Pos10Vector {
                         source = "target";
                     };
-                    class Velocity : Pos10Vector {
+                    class Velocity: Pos10Vector {
                         type = "vector";
                         source = "velocity";
                         pos0[] = { 0.5,0.5 };
@@ -245,10 +245,10 @@ class CfgVehicles {
                         pos0[] = { 0.5,0.5 };
                         pos3[] = { 0.56339699,0.5 };
                     };
-                    class ILS_W : ILS_H {
+                    class ILS_W: ILS_H {
                         pos3[] = { 0.5,0.58793098 };
                     };
-                    class Level0 : Pos10Vector {
+                    class Level0: Pos10Vector {
                         pos0[] = { 0.5,0.5 };
                         pos10[] = { 0.83811897,0.88103598 };
                         type = "horizon";
@@ -264,112 +264,112 @@ class CfgVehicles {
                         maxAngle = 60;
                         aspectRatio = 1.3888888;
                     };
-                    class LevelP5 : Level0 {
+                    class LevelP5: Level0 {
                         angle = 5;
                     };
-                    class LevelM5 : Level0 {
+                    class LevelM5: Level0 {
                         angle = -5;
                     };
-                    class LevelP10 : Level0 {
+                    class LevelP10: Level0 {
                         angle = 10;
                     };
-                    class LevelM10 : Level0 {
+                    class LevelM10: Level0 {
                         angle = -10;
                     };
-                    class LevelP15 : Level0 {
+                    class LevelP15: Level0 {
                         angle = 15;
                     };
-                    class LevelM15 : Level0 {
+                    class LevelM15: Level0 {
                         angle = -15;
                     };
-                    class LevelP20 : Level0 {
+                    class LevelP20: Level0 {
                         angle = 20;
                     };
-                    class LevelM20 : Level0 {
+                    class LevelM20: Level0 {
                         angle = -20;
                     };
-                    class LevelP25 : Level0 {
+                    class LevelP25: Level0 {
                         angle = 25;
                     };
-                    class LevelM25 : Level0 {
+                    class LevelM25: Level0 {
                         angle = -25;
                     };
-                    class LevelP30 : Level0 {
+                    class LevelP30: Level0 {
                         angle = 30;
                     };
-                    class LevelM30 : Level0 {
+                    class LevelM30: Level0 {
                         angle = -30;
                     };
-                    class LevelP35 : Level0 {
+                    class LevelP35: Level0 {
                         angle = 35;
                     };
-                    class LevelM35 : Level0 {
+                    class LevelM35: Level0 {
                         angle = -35;
                     };
-                    class LevelP40 : Level0 {
+                    class LevelP40: Level0 {
                         angle = 40;
                     };
-                    class LevelM40 : Level0 {
+                    class LevelM40: Level0 {
                         angle = -40;
                     };
-                    class LevelP45 : Level0 {
+                    class LevelP45: Level0 {
                         angle = 45;
                     };
-                    class LevelM45 : Level0 {
+                    class LevelM45: Level0 {
                         angle = -45;
                     };
-                    class LevelP50 : Level0 {
+                    class LevelP50: Level0 {
                         angle = 50;
                     };
-                    class LevelM50 : Level0 {
+                    class LevelM50: Level0 {
                         angle = -50;
                     };
-                    class LevelP55 : Level0 {
+                    class LevelP55: Level0 {
                         angle = 55;
                     };
-                    class LevelM55 : Level0 {
+                    class LevelM55: Level0 {
                         angle = -55;
                     };
-                    class LevelP60 : Level0 {
+                    class LevelP60: Level0 {
                         angle = 60;
                     };
-                    class LevelM60 : Level0 {
+                    class LevelM60: Level0 {
                         angle = -60;
                     };
-                    class LevelP65 : Level0 {
+                    class LevelP65: Level0 {
                         angle = 65;
                     };
-                    class LevelM65 : Level0 {
+                    class LevelM65: Level0 {
                         angle = -65;
                     };
-                    class LevelP70 : Level0 {
+                    class LevelP70: Level0 {
                         angle = 70;
                     };
-                    class LevelM70 : Level0 {
+                    class LevelM70: Level0 {
                         angle = -70;
                     };
-                    class LevelP75 : Level0 {
+                    class LevelP75: Level0 {
                         angle = 75;
                     };
-                    class LevelM75 : Level0 {
+                    class LevelM75: Level0 {
                         angle = -75;
                     };
-                    class LevelP80 : Level0 {
+                    class LevelP80: Level0 {
                         angle = 80;
                     };
-                    class LevelM80 : Level0 {
+                    class LevelM80: Level0 {
                         angle = -80;
                     };
-                    class LevelP85 : Level0 {
+                    class LevelP85: Level0 {
                         angle = 85;
                     };
-                    class LevelM85 : Level0 {
+                    class LevelM85: Level0 {
                         angle = -85;
                     };
-                    class LevelP90 : Level0 {
+                    class LevelP90: Level0 {
                         angle = 90;
                     };
-                    class LevelM90 : Level0 {
+                    class LevelM90: Level0 {
                         angle = -90;
                     };
                 };
@@ -380,7 +380,7 @@ class CfgVehicles {
                     class centerPoint {
                         type = "line";
                         width = 4;
-                        points[] =
+                        points[] = 
                         {
 
                             {
@@ -415,7 +415,7 @@ class CfgVehicles {
                         clipBR[] = { 1,0 };
                         type = "line";
                         width = 4;
-                        points[] =
+                        points[] = 
                         {
 
                             {
@@ -678,7 +678,7 @@ class CfgVehicles {
                             class Level0_1 {
                                 type = "line";
                                 width = 4;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -722,7 +722,7 @@ class CfgVehicles {
                             class Level0_2 {
                                 type = "line";
                                 width = 4;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -766,7 +766,7 @@ class CfgVehicles {
                             class Level0_3 {
                                 type = "line";
                                 width = 4;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -810,7 +810,7 @@ class CfgVehicles {
                             class Level0_4 {
                                 type = "line";
                                 width = 4;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -854,7 +854,7 @@ class CfgVehicles {
                             class LevelM5 {
                                 type = "line";
                                 width = 1.2;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -1102,7 +1102,7 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelM5",
                                     { 0.205,-0.039999999 },
@@ -1110,7 +1110,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelM5",
                                     { 0.24250001,-0.039999999 },
@@ -1118,7 +1118,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelM5",
                                     { 0.205,0.0099999998 },
@@ -1134,7 +1134,7 @@ class CfgVehicles {
                                 align = "left";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelM5",
                                     { -0.205,-0.039999999 },
@@ -1142,7 +1142,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelM5",
                                     { -0.1675,-0.039999999 },
@@ -1150,7 +1150,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelM5",
                                     { -0.205,0.0099999998 },
@@ -1162,7 +1162,7 @@ class CfgVehicles {
                             class LevelP5 {
                                 type = "line";
                                 width = 1.2;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -1222,7 +1222,7 @@ class CfgVehicles {
                                 align = "left";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelP5",
                                     { -0.205,-0.02 },
@@ -1230,7 +1230,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelP5",
                                     { -0.1675,-0.02 },
@@ -1238,7 +1238,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelP5",
                                     { -0.205,0.029999999 },
@@ -1254,7 +1254,7 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelP5",
                                     { 0.205,-0.02 },
@@ -1262,7 +1262,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelP5",
                                     { 0.24250001,-0.02 },
@@ -1270,7 +1270,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelP5",
                                     { 0.205,0.029999999 },
@@ -1282,7 +1282,7 @@ class CfgVehicles {
                             class LevelM10 {
                                 type = "line";
                                 width = 1.2;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -1530,7 +1530,7 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelM10",
                                     { 0.205,-0.039999999 },
@@ -1538,7 +1538,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelM10",
                                     { 0.24250001,-0.039999999 },
@@ -1546,7 +1546,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelM10",
                                     { 0.205,0.0099999998 },
@@ -1562,7 +1562,7 @@ class CfgVehicles {
                                 align = "left";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelM10",
                                     { -0.205,-0.039999999 },
@@ -1570,7 +1570,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelM10",
                                     { -0.1675,-0.039999999 },
@@ -1578,7 +1578,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelM10",
                                     { -0.205,0.0099999998 },
@@ -1590,7 +1590,7 @@ class CfgVehicles {
                             class LevelP10 {
                                 type = "line";
                                 width = 1.2;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -1650,7 +1650,7 @@ class CfgVehicles {
                                 align = "left";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelP10",
                                     { -0.205,-0.02 },
@@ -1658,7 +1658,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelP10",
                                     { -0.1675,-0.02 },
@@ -1666,7 +1666,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelP10",
                                     { -0.205,0.029999999 },
@@ -1682,7 +1682,7 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelP10",
                                     { 0.205,-0.02 },
@@ -1690,7 +1690,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelP10",
                                     { 0.24250001,-0.02 },
@@ -1698,7 +1698,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelP10",
                                     { 0.205,0.029999999 },
@@ -1710,7 +1710,7 @@ class CfgVehicles {
                             class LevelM15 {
                                 type = "line";
                                 width = 1.2;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -1958,7 +1958,7 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelM15",
                                     { 0.205,-0.039999999 },
@@ -1966,7 +1966,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelM15",
                                     { 0.24250001,-0.039999999 },
@@ -1974,7 +1974,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelM15",
                                     { 0.205,0.0099999998 },
@@ -1990,7 +1990,7 @@ class CfgVehicles {
                                 align = "left";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelM15",
                                     { -0.205,-0.039999999 },
@@ -1998,7 +1998,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelM15",
                                     { -0.1675,-0.039999999 },
@@ -2006,7 +2006,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelM15",
                                     { -0.205,0.0099999998 },
@@ -2018,7 +2018,7 @@ class CfgVehicles {
                             class LevelP15 {
                                 type = "line";
                                 width = 1.2;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -2078,7 +2078,7 @@ class CfgVehicles {
                                 align = "left";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelP15",
                                     { -0.205,-0.02 },
@@ -2086,7 +2086,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelP15",
                                     { -0.1675,-0.02 },
@@ -2094,7 +2094,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelP15",
                                     { -0.205,0.029999999 },
@@ -2110,7 +2110,7 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelP15",
                                     { 0.205,-0.02 },
@@ -2118,7 +2118,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelP15",
                                     { 0.24250001,-0.02 },
@@ -2126,7 +2126,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelP15",
                                     { 0.205,0.029999999 },
@@ -2138,7 +2138,7 @@ class CfgVehicles {
                             class LevelM20 {
                                 type = "line";
                                 width = 1.2;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -2386,7 +2386,7 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelM20",
                                     { 0.205,-0.039999999 },
@@ -2394,7 +2394,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelM20",
                                     { 0.24250001,-0.039999999 },
@@ -2402,7 +2402,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelM20",
                                     { 0.205,0.0099999998 },
@@ -2418,7 +2418,7 @@ class CfgVehicles {
                                 align = "left";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelM20",
                                     { -0.205,-0.039999999 },
@@ -2426,7 +2426,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelM20",
                                     { -0.1675,-0.039999999 },
@@ -2434,7 +2434,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelM20",
                                     { -0.205,0.0099999998 },
@@ -2446,7 +2446,7 @@ class CfgVehicles {
                             class LevelP20 {
                                 type = "line";
                                 width = 1.2;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -2506,7 +2506,7 @@ class CfgVehicles {
                                 align = "left";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelP20",
                                     { -0.205,-0.02 },
@@ -2514,7 +2514,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelP20",
                                     { -0.1675,-0.02 },
@@ -2522,7 +2522,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelP20",
                                     { -0.205,0.029999999 },
@@ -2538,7 +2538,7 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelP20",
                                     { 0.205,-0.02 },
@@ -2546,7 +2546,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelP20",
                                     { 0.24250001,-0.02 },
@@ -2554,7 +2554,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelP20",
                                     { 0.205,0.029999999 },
@@ -2566,7 +2566,7 @@ class CfgVehicles {
                             class LevelM25 {
                                 type = "line";
                                 width = 1.2;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -2814,7 +2814,7 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelM25",
                                     { 0.205,-0.039999999 },
@@ -2822,7 +2822,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelM25",
                                     { 0.24250001,-0.039999999 },
@@ -2830,7 +2830,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelM25",
                                     { 0.205,0.0099999998 },
@@ -2846,7 +2846,7 @@ class CfgVehicles {
                                 align = "left";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelM25",
                                     { -0.205,-0.039999999 },
@@ -2854,7 +2854,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelM25",
                                     { -0.1675,-0.039999999 },
@@ -2862,7 +2862,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelM25",
                                     { -0.205,0.0099999998 },
@@ -2874,7 +2874,7 @@ class CfgVehicles {
                             class LevelP25 {
                                 type = "line";
                                 width = 1.2;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -2934,7 +2934,7 @@ class CfgVehicles {
                                 align = "left";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelP25",
                                     { -0.205,-0.02 },
@@ -2942,7 +2942,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelP25",
                                     { -0.1675,-0.02 },
@@ -2950,7 +2950,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelP25",
                                     { -0.205,0.029999999 },
@@ -2966,7 +2966,7 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelP25",
                                     { 0.205,-0.02 },
@@ -2974,7 +2974,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelP25",
                                     { 0.24250001,-0.02 },
@@ -2982,7 +2982,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelP25",
                                     { 0.205,0.029999999 },
@@ -2994,7 +2994,7 @@ class CfgVehicles {
                             class LevelM30 {
                                 type = "line";
                                 width = 1.2;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -3242,7 +3242,7 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelM30",
                                     { 0.205,-0.039999999 },
@@ -3250,7 +3250,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelM30",
                                     { 0.24250001,-0.039999999 },
@@ -3258,7 +3258,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelM30",
                                     { 0.205,0.0099999998 },
@@ -3274,7 +3274,7 @@ class CfgVehicles {
                                 align = "left";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelM30",
                                     { -0.205,-0.039999999 },
@@ -3282,7 +3282,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelM30",
                                     { -0.1675,-0.039999999 },
@@ -3290,7 +3290,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelM30",
                                     { -0.205,0.0099999998 },
@@ -3302,7 +3302,7 @@ class CfgVehicles {
                             class LevelP30 {
                                 type = "line";
                                 width = 1.2;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -3362,7 +3362,7 @@ class CfgVehicles {
                                 align = "left";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelP30",
                                     { -0.205,-0.02 },
@@ -3370,7 +3370,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelP30",
                                     { -0.1675,-0.02 },
@@ -3378,7 +3378,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelP30",
                                     { -0.205,0.029999999 },
@@ -3394,7 +3394,7 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelP30",
                                     { 0.205,-0.02 },
@@ -3402,7 +3402,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelP30",
                                     { 0.24250001,-0.02 },
@@ -3410,7 +3410,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelP30",
                                     { 0.205,0.029999999 },
@@ -3422,7 +3422,7 @@ class CfgVehicles {
                             class LevelM35 {
                                 type = "line";
                                 width = 1.2;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -3670,7 +3670,7 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelM35",
                                     { 0.205,-0.039999999 },
@@ -3678,7 +3678,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelM35",
                                     { 0.24250001,-0.039999999 },
@@ -3686,7 +3686,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelM35",
                                     { 0.205,0.0099999998 },
@@ -3702,7 +3702,7 @@ class CfgVehicles {
                                 align = "left";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelM35",
                                     { -0.205,-0.039999999 },
@@ -3710,7 +3710,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelM35",
                                     { -0.1675,-0.039999999 },
@@ -3718,7 +3718,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelM35",
                                     { -0.205,0.0099999998 },
@@ -3730,7 +3730,7 @@ class CfgVehicles {
                             class LevelP35 {
                                 type = "line";
                                 width = 1.2;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -3790,7 +3790,7 @@ class CfgVehicles {
                                 align = "left";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelP35",
                                     { -0.205,-0.02 },
@@ -3798,7 +3798,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelP35",
                                     { -0.1675,-0.02 },
@@ -3806,7 +3806,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelP35",
                                     { -0.205,0.029999999 },
@@ -3822,7 +3822,7 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelP35",
                                     { 0.205,-0.02 },
@@ -3830,7 +3830,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelP35",
                                     { 0.24250001,-0.02 },
@@ -3838,7 +3838,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelP35",
                                     { 0.205,0.029999999 },
@@ -3850,7 +3850,7 @@ class CfgVehicles {
                             class LevelM40 {
                                 type = "line";
                                 width = 1.2;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -4098,7 +4098,7 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelM40",
                                     { 0.205,-0.039999999 },
@@ -4106,7 +4106,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelM40",
                                     { 0.24250001,-0.039999999 },
@@ -4114,7 +4114,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelM40",
                                     { 0.205,0.0099999998 },
@@ -4130,7 +4130,7 @@ class CfgVehicles {
                                 align = "left";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelM40",
                                     { -0.205,-0.039999999 },
@@ -4138,7 +4138,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelM40",
                                     { -0.1675,-0.039999999 },
@@ -4146,7 +4146,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelM40",
                                     { -0.205,0.0099999998 },
@@ -4158,7 +4158,7 @@ class CfgVehicles {
                             class LevelP40 {
                                 type = "line";
                                 width = 1.2;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -4218,7 +4218,7 @@ class CfgVehicles {
                                 align = "left";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelP40",
                                     { -0.205,-0.02 },
@@ -4226,7 +4226,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelP40",
                                     { -0.1675,-0.02 },
@@ -4234,7 +4234,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelP40",
                                     { -0.205,0.029999999 },
@@ -4250,7 +4250,7 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelP40",
                                     { 0.205,-0.02 },
@@ -4258,7 +4258,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelP40",
                                     { 0.24250001,-0.02 },
@@ -4266,7 +4266,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelP40",
                                     { 0.205,0.029999999 },
@@ -4278,7 +4278,7 @@ class CfgVehicles {
                             class LevelM45 {
                                 type = "line";
                                 width = 1.2;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -4526,7 +4526,7 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelM45",
                                     { 0.205,-0.039999999 },
@@ -4534,7 +4534,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelM45",
                                     { 0.24250001,-0.039999999 },
@@ -4542,7 +4542,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelM45",
                                     { 0.205,0.0099999998 },
@@ -4558,7 +4558,7 @@ class CfgVehicles {
                                 align = "left";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelM45",
                                     { -0.205,-0.039999999 },
@@ -4566,7 +4566,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelM45",
                                     { -0.1675,-0.039999999 },
@@ -4574,7 +4574,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelM45",
                                     { -0.205,0.0099999998 },
@@ -4586,7 +4586,7 @@ class CfgVehicles {
                             class LevelP45 {
                                 type = "line";
                                 width = 1.2;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -4646,7 +4646,7 @@ class CfgVehicles {
                                 align = "left";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelP45",
                                     { -0.205,-0.02 },
@@ -4654,7 +4654,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelP45",
                                     { -0.1675,-0.02 },
@@ -4662,7 +4662,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelP45",
                                     { -0.205,0.029999999 },
@@ -4678,7 +4678,7 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelP45",
                                     { 0.205,-0.02 },
@@ -4686,7 +4686,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelP45",
                                     { 0.24250001,-0.02 },
@@ -4694,7 +4694,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelP45",
                                     { 0.205,0.029999999 },
@@ -4706,7 +4706,7 @@ class CfgVehicles {
                             class LevelM50 {
                                 type = "line";
                                 width = 1.2;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -4954,7 +4954,7 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelM50",
                                     { 0.205,-0.039999999 },
@@ -4962,7 +4962,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelM50",
                                     { 0.24250001,-0.039999999 },
@@ -4970,7 +4970,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelM50",
                                     { 0.205,0.0099999998 },
@@ -4986,7 +4986,7 @@ class CfgVehicles {
                                 align = "left";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelM50",
                                     { -0.205,-0.039999999 },
@@ -4994,7 +4994,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelM50",
                                     { -0.1675,-0.039999999 },
@@ -5002,7 +5002,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelM50",
                                     { -0.205,0.0099999998 },
@@ -5014,7 +5014,7 @@ class CfgVehicles {
                             class LevelP50 {
                                 type = "line";
                                 width = 1.2;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -5074,7 +5074,7 @@ class CfgVehicles {
                                 align = "left";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelP50",
                                     { -0.205,-0.02 },
@@ -5082,7 +5082,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelP50",
                                     { -0.1675,-0.02 },
@@ -5090,7 +5090,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelP50",
                                     { -0.205,0.029999999 },
@@ -5106,7 +5106,7 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelP50",
                                     { 0.205,-0.02 },
@@ -5114,7 +5114,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelP50",
                                     { 0.24250001,-0.02 },
@@ -5122,7 +5122,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelP50",
                                     { 0.205,0.029999999 },
@@ -5134,7 +5134,7 @@ class CfgVehicles {
                             class LevelM55 {
                                 type = "line";
                                 width = 1.2;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -5382,7 +5382,7 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelM55",
                                     { 0.205,-0.039999999 },
@@ -5390,7 +5390,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelM55",
                                     { 0.24250001,-0.039999999 },
@@ -5398,7 +5398,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelM55",
                                     { 0.205,0.0099999998 },
@@ -5414,7 +5414,7 @@ class CfgVehicles {
                                 align = "left";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelM55",
                                     { -0.205,-0.039999999 },
@@ -5422,7 +5422,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelM55",
                                     { -0.1675,-0.039999999 },
@@ -5430,7 +5430,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelM55",
                                     { -0.205,0.0099999998 },
@@ -5442,7 +5442,7 @@ class CfgVehicles {
                             class LevelP55 {
                                 type = "line";
                                 width = 1.2;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -5502,7 +5502,7 @@ class CfgVehicles {
                                 align = "left";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelP55",
                                     { -0.205,-0.02 },
@@ -5510,7 +5510,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelP55",
                                     { -0.1675,-0.02 },
@@ -5518,7 +5518,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelP55",
                                     { -0.205,0.029999999 },
@@ -5534,7 +5534,7 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelP55",
                                     { 0.205,-0.02 },
@@ -5542,7 +5542,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelP55",
                                     { 0.24250001,-0.02 },
@@ -5550,7 +5550,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelP55",
                                     { 0.205,0.029999999 },
@@ -5562,7 +5562,7 @@ class CfgVehicles {
                             class LevelM60 {
                                 type = "line";
                                 width = 1.2;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -5810,7 +5810,7 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelM60",
                                     { 0.205,-0.039999999 },
@@ -5818,7 +5818,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelM60",
                                     { 0.24250001,-0.039999999 },
@@ -5826,7 +5826,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelM60",
                                     { 0.205,0.0099999998 },
@@ -5842,7 +5842,7 @@ class CfgVehicles {
                                 align = "left";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelM60",
                                     { -0.205,-0.039999999 },
@@ -5850,7 +5850,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelM60",
                                     { -0.1675,-0.039999999 },
@@ -5858,7 +5858,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelM60",
                                     { -0.205,0.0099999998 },
@@ -5870,7 +5870,7 @@ class CfgVehicles {
                             class LevelP60 {
                                 type = "line";
                                 width = 1.2;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -5930,7 +5930,7 @@ class CfgVehicles {
                                 align = "left";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelP60",
                                     { -0.205,-0.02 },
@@ -5938,7 +5938,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelP60",
                                     { -0.1675,-0.02 },
@@ -5946,7 +5946,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelP60",
                                     { -0.205,0.029999999 },
@@ -5962,7 +5962,7 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelP60",
                                     { 0.205,-0.02 },
@@ -5970,7 +5970,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelP60",
                                     { 0.24250001,-0.02 },
@@ -5978,7 +5978,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelP60",
                                     { 0.205,0.029999999 },
@@ -5990,7 +5990,7 @@ class CfgVehicles {
                             class LevelM65 {
                                 type = "line";
                                 width = 1.2;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -6238,7 +6238,7 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelM65",
                                     { 0.205,-0.039999999 },
@@ -6246,7 +6246,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelM65",
                                     { 0.24250001,-0.039999999 },
@@ -6254,7 +6254,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelM65",
                                     { 0.205,0.0099999998 },
@@ -6270,7 +6270,7 @@ class CfgVehicles {
                                 align = "left";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelM65",
                                     { -0.205,-0.039999999 },
@@ -6278,7 +6278,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelM65",
                                     { -0.1675,-0.039999999 },
@@ -6286,7 +6286,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelM65",
                                     { -0.205,0.0099999998 },
@@ -6298,7 +6298,7 @@ class CfgVehicles {
                             class LevelP65 {
                                 type = "line";
                                 width = 1.2;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -6358,7 +6358,7 @@ class CfgVehicles {
                                 align = "left";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelP65",
                                     { -0.205,-0.02 },
@@ -6366,7 +6366,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelP65",
                                     { -0.1675,-0.02 },
@@ -6374,7 +6374,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelP65",
                                     { -0.205,0.029999999 },
@@ -6390,7 +6390,7 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelP65",
                                     { 0.205,-0.02 },
@@ -6398,7 +6398,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelP65",
                                     { 0.24250001,-0.02 },
@@ -6406,7 +6406,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelP65",
                                     { 0.205,0.029999999 },
@@ -6418,7 +6418,7 @@ class CfgVehicles {
                             class LevelM70 {
                                 type = "line";
                                 width = 1.2;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -6666,7 +6666,7 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelM70",
                                     { 0.205,-0.039999999 },
@@ -6674,7 +6674,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelM70",
                                     { 0.24250001,-0.039999999 },
@@ -6682,7 +6682,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelM70",
                                     { 0.205,0.0099999998 },
@@ -6698,7 +6698,7 @@ class CfgVehicles {
                                 align = "left";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelM70",
                                     { -0.205,-0.039999999 },
@@ -6706,7 +6706,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelM70",
                                     { -0.1675,-0.039999999 },
@@ -6714,7 +6714,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelM70",
                                     { -0.205,0.0099999998 },
@@ -6726,7 +6726,7 @@ class CfgVehicles {
                             class LevelP70 {
                                 type = "line";
                                 width = 1.2;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -6786,7 +6786,7 @@ class CfgVehicles {
                                 align = "left";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelP70",
                                     { -0.205,-0.02 },
@@ -6794,7 +6794,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelP70",
                                     { -0.1675,-0.02 },
@@ -6802,7 +6802,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelP70",
                                     { -0.205,0.029999999 },
@@ -6818,7 +6818,7 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelP70",
                                     { 0.205,-0.02 },
@@ -6826,7 +6826,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelP70",
                                     { 0.24250001,-0.02 },
@@ -6834,7 +6834,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelP70",
                                     { 0.205,0.029999999 },
@@ -6846,7 +6846,7 @@ class CfgVehicles {
                             class LevelM75 {
                                 type = "line";
                                 width = 1.2;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -7094,7 +7094,7 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelM75",
                                     { 0.205,-0.039999999 },
@@ -7102,7 +7102,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelM75",
                                     { 0.24250001,-0.039999999 },
@@ -7110,7 +7110,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelM75",
                                     { 0.205,0.0099999998 },
@@ -7126,7 +7126,7 @@ class CfgVehicles {
                                 align = "left";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelM75",
                                     { -0.205,-0.039999999 },
@@ -7134,7 +7134,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelM75",
                                     { -0.1675,-0.039999999 },
@@ -7142,7 +7142,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelM75",
                                     { -0.205,0.0099999998 },
@@ -7154,7 +7154,7 @@ class CfgVehicles {
                             class LevelP75 {
                                 type = "line";
                                 width = 1.2;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -7214,7 +7214,7 @@ class CfgVehicles {
                                 align = "left";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelP75",
                                     { -0.205,-0.02 },
@@ -7222,7 +7222,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelP75",
                                     { -0.1675,-0.02 },
@@ -7230,7 +7230,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelP75",
                                     { -0.205,0.029999999 },
@@ -7246,7 +7246,7 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelP75",
                                     { 0.205,-0.02 },
@@ -7254,7 +7254,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelP75",
                                     { 0.24250001,-0.02 },
@@ -7262,7 +7262,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelP75",
                                     { 0.205,0.029999999 },
@@ -7274,7 +7274,7 @@ class CfgVehicles {
                             class LevelM80 {
                                 type = "line";
                                 width = 1.2;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -7522,7 +7522,7 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelM80",
                                     { 0.205,-0.039999999 },
@@ -7530,7 +7530,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelM80",
                                     { 0.24250001,-0.039999999 },
@@ -7538,7 +7538,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelM80",
                                     { 0.205,0.0099999998 },
@@ -7554,7 +7554,7 @@ class CfgVehicles {
                                 align = "left";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelM80",
                                     { -0.205,-0.039999999 },
@@ -7562,7 +7562,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelM80",
                                     { -0.1675,-0.039999999 },
@@ -7570,7 +7570,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelM80",
                                     { -0.205,0.0099999998 },
@@ -7582,7 +7582,7 @@ class CfgVehicles {
                             class LevelP80 {
                                 type = "line";
                                 width = 1.2;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -7642,7 +7642,7 @@ class CfgVehicles {
                                 align = "left";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelP80",
                                     { -0.205,-0.02 },
@@ -7650,7 +7650,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelP80",
                                     { -0.1675,-0.02 },
@@ -7658,7 +7658,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelP80",
                                     { -0.205,0.029999999 },
@@ -7674,7 +7674,7 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelP80",
                                     { 0.205,-0.02 },
@@ -7682,7 +7682,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelP80",
                                     { 0.24250001,-0.02 },
@@ -7690,7 +7690,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelP80",
                                     { 0.205,0.029999999 },
@@ -7702,7 +7702,7 @@ class CfgVehicles {
                             class LevelM85 {
                                 type = "line";
                                 width = 1.2;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -7950,7 +7950,7 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelM85",
                                     { 0.205,-0.039999999 },
@@ -7958,7 +7958,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelM85",
                                     { 0.24250001,-0.039999999 },
@@ -7966,7 +7966,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelM85",
                                     { 0.205,0.0099999998 },
@@ -7982,7 +7982,7 @@ class CfgVehicles {
                                 align = "left";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelM85",
                                     { -0.205,-0.039999999 },
@@ -7990,7 +7990,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelM85",
                                     { -0.1675,-0.039999999 },
@@ -7998,7 +7998,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelM85",
                                     { -0.205,0.0099999998 },
@@ -8010,7 +8010,7 @@ class CfgVehicles {
                             class LevelP85 {
                                 type = "line";
                                 width = 1.2;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -8070,7 +8070,7 @@ class CfgVehicles {
                                 align = "left";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelP85",
                                     { -0.205,-0.02 },
@@ -8078,7 +8078,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelP85",
                                     { -0.1675,-0.02 },
@@ -8086,7 +8086,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelP85",
                                     { -0.205,0.029999999 },
@@ -8102,7 +8102,7 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelP85",
                                     { 0.205,-0.02 },
@@ -8110,7 +8110,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelP85",
                                     { 0.24250001,-0.02 },
@@ -8118,7 +8118,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelP85",
                                     { 0.205,0.029999999 },
@@ -8130,7 +8130,7 @@ class CfgVehicles {
                             class LevelM90 {
                                 type = "line";
                                 width = 1.2;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -8378,7 +8378,7 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelM90",
                                     { 0.205,-0.039999999 },
@@ -8386,7 +8386,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelM90",
                                     { 0.24250001,-0.039999999 },
@@ -8394,7 +8394,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelM90",
                                     { 0.205,0.0099999998 },
@@ -8410,7 +8410,7 @@ class CfgVehicles {
                                 align = "left";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelM90",
                                     { -0.205,-0.039999999 },
@@ -8418,7 +8418,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelM90",
                                     { -0.1675,-0.039999999 },
@@ -8426,7 +8426,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelM90",
                                     { -0.205,0.0099999998 },
@@ -8438,7 +8438,7 @@ class CfgVehicles {
                             class LevelP90 {
                                 type = "line";
                                 width = 1.2;
-                                points[] =
+                                points[] = 
                                 {
 
                                     {
@@ -8498,7 +8498,7 @@ class CfgVehicles {
                                 align = "left";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelP90",
                                     { -0.205,-0.02 },
@@ -8506,7 +8506,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelP90",
                                     { -0.1675,-0.02 },
@@ -8514,7 +8514,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelP90",
                                     { -0.205,0.029999999 },
@@ -8530,7 +8530,7 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "LevelP90",
                                     { 0.205,-0.02 },
@@ -8538,7 +8538,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "LevelP90",
                                     { 0.24250001,-0.02 },
@@ -8546,7 +8546,7 @@ class CfgVehicles {
                                     "ForwardVec",
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "LevelP90",
                                     { 0.205,0.029999999 },
@@ -8566,19 +8566,19 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "horizon_data",
                                     { 0,0 },
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "horizon_data",
                                     { 0.022500001,0 },
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "horizon_data",
                                     { 0,0.029999999 },
@@ -8592,19 +8592,19 @@ class CfgVehicles {
                                 align = "center";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "horizon_data",
                                     { 0.035,0 },
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "horizon_data",
                                     { 0.055500001,0 },
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "horizon_data",
                                     { 0.035,0.029999999 },
@@ -8620,19 +8620,19 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "horizon_data",
                                     { 0,0.030999999 },
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "horizon_data",
                                     { 0.022500001,0.030999999 },
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "horizon_data",
                                     { 0,0.061000001 },
@@ -8645,19 +8645,19 @@ class CfgVehicles {
                                 align = "center";
                                 scale = 1;
                                 sourceScale = 0.28799999;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "horizon_data",
                                     { 0.035,0.030999999 },
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "horizon_data",
                                     { 0.055500001,0.030999999 },
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "horizon_data",
                                     { 0.035,0.061000001 },
@@ -8673,19 +8673,19 @@ class CfgVehicles {
                                 align = "right";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "horizon_data",
                                     { 0,0.061999999 },
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "horizon_data",
                                     { 0.022500001,0.061999999 },
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "horizon_data",
                                     { 0,0.092 },
@@ -8699,19 +8699,19 @@ class CfgVehicles {
                                 align = "center";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "horizon_data",
                                     { 0.035,0.061999999 },
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "horizon_data",
                                     { 0.055500001,0.061999999 },
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "horizon_data",
                                     { 0.035,0.092 },
@@ -8724,7 +8724,7 @@ class CfgVehicles {
                         class indicatorBox {
                             type = "line";
                             width = 4;
-                            points[] =
+                            points[] = 
                             {
 
                                 {
@@ -8764,19 +8764,19 @@ class CfgVehicles {
                             scale = 1;
                             sourceScale = 1.94384;
                             align = "center";
-                            pos[] =
+                            pos[] = 
                             {
                                 "speedIndicator",
                                 { 0.034417499,-0.00385 },
                                 1
                             };
-                            right[] =
+                            right[] = 
                             {
                                 "speedIndicator",
                                 { 0.069417499,-0.00385 },
                                 1
                             };
-                            down[] =
+                            down[] = 
                             {
                                 "speedIndicator",
                                 { 0.034417499,0.046149999 },
@@ -8790,19 +8790,19 @@ class CfgVehicles {
                             scale = 1;
                             sourceScale = 1;
                             align = "right";
-                            pos[] =
+                            pos[] = 
                             {
                                 "speedIndicator",
                                 { 0,0.050299998 },
                                 1
                             };
-                            right[] =
+                            right[] = 
                             {
                                 "speedIndicator",
                                 { 0.022500001,0.050299998 },
                                 1
                             };
-                            down[] =
+                            down[] = 
                             {
                                 "speedIndicator",
                                 { 0,0.080300003 },
@@ -8815,19 +8815,19 @@ class CfgVehicles {
                             scale = 1;
                             sourceScale = 1.94384;
                             align = "left";
-                            pos[] =
+                            pos[] = 
                             {
                                 "speedIndicator",
                                 { 0.068834998,0.050299998 },
                                 1
                             };
-                            right[] =
+                            right[] = 
                             {
                                 "speedIndicator",
                                 { 0.091334999,0.050299998 },
                                 1
                             };
-                            down[] =
+                            down[] = 
                             {
                                 "speedIndicator",
                                 { 0.068834998,0.080300003 },
@@ -8839,7 +8839,7 @@ class CfgVehicles {
                         class indicatorBox {
                             type = "line";
                             width = 4;
-                            points[] =
+                            points[] = 
                             {
 
                                 {
@@ -8879,7 +8879,7 @@ class CfgVehicles {
                             scale = 1;
                             sourceScale = 3.2808399;
                             align = "center";
-                            pos[] =
+                            pos[] = 
                             {
                                 "altIndicator",
 
@@ -8889,7 +8889,7 @@ class CfgVehicles {
                                 },
                                 1
                             };
-                            right[] =
+                            right[] = 
                             {
                                 "altIndicator",
 
@@ -8899,7 +8899,7 @@ class CfgVehicles {
                                 },
                                 1
                             };
-                            down[] =
+                            down[] = 
                             {
                                 "altIndicator",
                                 { -0.0435955,0.046149999 },
@@ -8913,19 +8913,19 @@ class CfgVehicles {
                             scale = 1;
                             sourceScale = 1;
                             align = "right";
-                            pos[] =
+                            pos[] = 
                             {
                                 "altIndicator",
                                 { -0.077191003,0.050299998 },
                                 1
                             };
-                            right[] =
+                            right[] = 
                             {
                                 "altIndicator",
                                 { -0.054691002,0.050299998 },
                                 1
                             };
-                            down[] =
+                            down[] = 
                             {
                                 "altIndicator",
                                 { -0.077191003,0.080300003 },
@@ -8938,7 +8938,7 @@ class CfgVehicles {
                             scale = 1;
                             sourceScale = 3.2808399;
                             align = "left";
-                            pos[] =
+                            pos[] = 
                             {
                                 "altIndicator",
 
@@ -8948,13 +8948,13 @@ class CfgVehicles {
                                 },
                                 1
                             };
-                            right[] =
+                            right[] = 
                             {
                                 "altIndicator",
                                 { 0.0125,0.050299998 },
                                 1
                             };
-                            down[] =
+                            down[] = 
                             {
                                 "altIndicator",
                                 { -0.0099999998,0.080300003 },
@@ -8970,13 +8970,13 @@ class CfgVehicles {
                             align = "center";
                             scale = 1;
                             sourceScale = 1;
-                            pos[] =
+                            pos[] = 
                             {
                                 "emconIndicator",
                                 { 0,0 },
                                 1
                             };
-                            right[] =
+                            right[] = 
                             {
                                 "emconIndicator",
 
@@ -8986,7 +8986,7 @@ class CfgVehicles {
                                 },
                                 1
                             };
-                            down[] =
+                            down[] = 
                             {
                                 "emconIndicator",
                                 { 0,0.029999999 },
@@ -9000,13 +9000,13 @@ class CfgVehicles {
                             align = "center";
                             scale = 1;
                             sourceScale = 1;
-                            pos[] =
+                            pos[] = 
                             {
                                 "emconIndicator",
                                 { 0,0.029999999 },
                                 1
                             };
-                            right[] =
+                            right[] = 
                             {
                                 "emconIndicator",
 
@@ -9016,7 +9016,7 @@ class CfgVehicles {
                                 },
                                 1
                             };
-                            down[] =
+                            down[] = 
                             {
                                 "emconIndicator",
 
@@ -9038,13 +9038,13 @@ class CfgVehicles {
                                 align = "center";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "weaponIndicator",
                                     { 0,0 },
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "weaponIndicator",
 
@@ -9054,7 +9054,7 @@ class CfgVehicles {
                                     },
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "weaponIndicator",
                                     { 0,0.029999999 },
@@ -9071,13 +9071,13 @@ class CfgVehicles {
                                 align = "center";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "weaponIndicator",
                                     { 0,0 },
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "weaponIndicator",
 
@@ -9087,7 +9087,7 @@ class CfgVehicles {
                                     },
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "weaponIndicator",
                                     { 0,0.029999999 },
@@ -9104,13 +9104,13 @@ class CfgVehicles {
                                 align = "center";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "weaponIndicator",
                                     { 0,0 },
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "weaponIndicator",
 
@@ -9120,7 +9120,7 @@ class CfgVehicles {
                                     },
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "weaponIndicator",
                                     { 0,0.029999999 },
@@ -9134,13 +9134,13 @@ class CfgVehicles {
                             align = "center";
                             scale = 1;
                             sourceScale = 1;
-                            pos[] =
+                            pos[] = 
                             {
                                 "weaponIndicator",
                                 { 0,0.029999999 },
                                 1
                             };
-                            right[] =
+                            right[] = 
                             {
                                 "weaponIndicator",
 
@@ -9150,7 +9150,7 @@ class CfgVehicles {
                                 },
                                 1
                             };
-                            down[] =
+                            down[] = 
                             {
                                 "weaponIndicator",
 
@@ -9168,7 +9168,7 @@ class CfgVehicles {
                             align = "center";
                             scale = 1;
                             sourceScale = 1;
-                            pos[] =
+                            pos[] = 
                             {
                                 "weaponIndicator",
 
@@ -9178,7 +9178,7 @@ class CfgVehicles {
                                 },
                                 1
                             };
-                            right[] =
+                            right[] = 
                             {
                                 "weaponIndicator",
 
@@ -9188,7 +9188,7 @@ class CfgVehicles {
                                 },
                                 1
                             };
-                            down[] =
+                            down[] = 
                             {
                                 "weaponIndicator",
 
@@ -9230,17 +9230,17 @@ class CfgVehicles {
                             sourceScale = 1;
                             scale = 1;
                             align = "center";
-                            pos[] =
+                            pos[] = 
                             {
                                 { 0.5,0.0049999999 },
                                 1
                             };
-                            right[] =
+                            right[] = 
                             {
                                 { 0.52999997,0.0049999999 },
                                 1
                             };
-                            down[] =
+                            down[] = 
                             {
                                 { 0.5,0.045000002 },
                                 1
@@ -9249,7 +9249,7 @@ class CfgVehicles {
                         class headingIndicatorBox {
                             type = "line";
                             width = 2;
-                            points[] =
+                            points[] = 
                             {
 
                                 {
@@ -9306,19 +9306,19 @@ class CfgVehicles {
                                         sourceScale = 1;
                                         scale = 1;
                                         align = "center";
-                                        pos[] =
+                                        pos[] = 
                                         {
                                             "waypointIndicator",
                                             { 1.86,0.0049999999 },
                                             1
                                         };
-                                        right[] =
+                                        right[] = 
                                         {
                                             "waypointIndicator",
                                             { 1.89,0.0049999999 },
                                             1
                                         };
-                                        down[] =
+                                        down[] = 
                                         {
                                             "waypointIndicator",
                                             { 1.86,0.045000002 },
@@ -9336,19 +9336,19 @@ class CfgVehicles {
                                         sourceScale = 1;
                                         scale = 1;
                                         align = "center";
-                                        pos[] =
+                                        pos[] = 
                                         {
                                             "waypointIndicator",
                                             { -5.3400002,0.0049999999 },
                                             1
                                         };
-                                        right[] =
+                                        right[] = 
                                         {
                                             "waypointIndicator",
                                             { -5.3099999,0.0049999999 },
                                             1
                                         };
-                                        down[] =
+                                        down[] = 
                                         {
                                             "waypointIndicator",
                                             { -5.3400002,0.045000002 },
@@ -9366,19 +9366,19 @@ class CfgVehicles {
                                         sourceScale = 1;
                                         scale = 1;
                                         align = "center";
-                                        pos[] =
+                                        pos[] = 
                                         {
                                             "waypointIndicator",
                                             { 1.86,0.0049999999 },
                                             1
                                         };
-                                        right[] =
+                                        right[] = 
                                         {
                                             "waypointIndicator",
                                             { 1.89,0.0049999999 },
                                             1
                                         };
-                                        down[] =
+                                        down[] = 
                                         {
                                             "waypointIndicator",
                                             { 1.86,0.045000002 },
@@ -9396,19 +9396,19 @@ class CfgVehicles {
                                         sourceScale = 1;
                                         scale = 1;
                                         align = "center";
-                                        pos[] =
+                                        pos[] = 
                                         {
                                             "waypointIndicator",
                                             { -5.3400002,0.0049999999 },
                                             1
                                         };
-                                        right[] =
+                                        right[] = 
                                         {
                                             "waypointIndicator",
                                             { -5.3099999,0.0049999999 },
                                             1
                                         };
-                                        down[] =
+                                        down[] = 
                                         {
                                             "waypointIndicator",
                                             { -5.3400002,0.045000002 },
@@ -9419,7 +9419,7 @@ class CfgVehicles {
                                 class box68 {
                                     type = "line";
                                     width = 2;
-                                    points[] =
+                                    points[] = 
                                     {
 
                                         {
@@ -9486,19 +9486,19 @@ class CfgVehicles {
                                         sourceScale = 1;
                                         scale = 1;
                                         align = "center";
-                                        pos[] =
+                                        pos[] = 
                                         {
                                             "waypointIndicator",
                                             { 6.0799999,0.0049999999 },
                                             1
                                         };
-                                        right[] =
+                                        right[] = 
                                         {
                                             "waypointIndicator",
                                             { 6.1100001,0.0049999999 },
                                             1
                                         };
-                                        down[] =
+                                        down[] = 
                                         {
                                             "waypointIndicator",
                                             { 6.0799999,0.045000002 },
@@ -9516,19 +9516,19 @@ class CfgVehicles {
                                         sourceScale = 1;
                                         scale = 1;
                                         align = "center";
-                                        pos[] =
+                                        pos[] = 
                                         {
                                             "waypointIndicator",
                                             { -1.12,0.0049999999 },
                                             1
                                         };
-                                        right[] =
+                                        right[] = 
                                         {
                                             "waypointIndicator",
                                             { -1.09,0.0049999999 },
                                             1
                                         };
-                                        down[] =
+                                        down[] = 
                                         {
                                             "waypointIndicator",
                                             { -1.12,0.045000002 },
@@ -9546,19 +9546,19 @@ class CfgVehicles {
                                         sourceScale = 1;
                                         scale = 1;
                                         align = "center";
-                                        pos[] =
+                                        pos[] = 
                                         {
                                             "waypointIndicator",
                                             { 6.0799999,0.0049999999 },
                                             1
                                         };
-                                        right[] =
+                                        right[] = 
                                         {
                                             "waypointIndicator",
                                             { 6.1100001,0.0049999999 },
                                             1
                                         };
-                                        down[] =
+                                        down[] = 
                                         {
                                             "waypointIndicator",
                                             { 6.0799999,0.045000002 },
@@ -9576,19 +9576,19 @@ class CfgVehicles {
                                         sourceScale = 1;
                                         scale = 1;
                                         align = "center";
-                                        pos[] =
+                                        pos[] = 
                                         {
                                             "waypointIndicator",
                                             { -1.12,0.0049999999 },
                                             1
                                         };
-                                        right[] =
+                                        right[] = 
                                         {
                                             "waypointIndicator",
                                             { -1.09,0.0049999999 },
                                             1
                                         };
-                                        down[] =
+                                        down[] = 
                                         {
                                             "waypointIndicator",
                                             { -1.12,0.045000002 },
@@ -9599,7 +9599,7 @@ class CfgVehicles {
                                 class box279 {
                                     type = "line";
                                     width = 2;
-                                    points[] =
+                                    points[] = 
                                     {
 
                                         {
@@ -9661,7 +9661,7 @@ class CfgVehicles {
                         class bankRotScale {
                             type = "line";
                             width = 2;
-                            points[] =
+                            points[] = 
                             {
 
                                 {
@@ -9841,7 +9841,7 @@ class CfgVehicles {
                             align = "center";
                             scale = 1;
                             sourceScale = 1;
-                            pos[] =
+                            pos[] = 
                             {
                                 "ForwardVec",
                                 1,
@@ -9849,7 +9849,7 @@ class CfgVehicles {
                                 { 0,0.40000001 },
                                 1
                             };
-                            right[] =
+                            right[] = 
                             {
                                 "ForwardVec",
                                 1,
@@ -9857,7 +9857,7 @@ class CfgVehicles {
                                 { 0.029999999,0.40000001 },
                                 1
                             };
-                            down[] =
+                            down[] = 
                             {
                                 "ForwardVec",
                                 1,
@@ -9869,7 +9869,7 @@ class CfgVehicles {
                         class HorizonBankRot {
                             type = "line";
                             width = 2;
-                            points[] =
+                            points[] = 
                             {
 
                                 {
@@ -9918,19 +9918,19 @@ class CfgVehicles {
                                 align = "center";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "bottomIndicator",
                                     { 0,-0.15000001 },
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "bottomIndicator",
                                     { 0.037500001,-0.15000001 },
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "bottomIndicator",
 
@@ -9951,19 +9951,19 @@ class CfgVehicles {
                                 align = "center";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "bottomIndicator",
                                     { -0.1,0 },
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "bottomIndicator",
                                     { -0.07,0 },
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "bottomIndicator",
                                     { -0.1,0.039999999 },
@@ -9980,19 +9980,19 @@ class CfgVehicles {
                                 align = "center";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "bottomIndicator",
                                     { 0.1,0 },
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "bottomIndicator",
                                     { 0.13,0 },
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "bottomIndicator",
                                     { 0.1,0.039999999 },
@@ -10009,19 +10009,19 @@ class CfgVehicles {
                                 align = "center";
                                 scale = 1;
                                 sourceScale = 1;
-                                pos[] =
+                                pos[] = 
                                 {
                                     "bottomIndicator",
                                     { 0,0 },
                                     1
                                 };
-                                right[] =
+                                right[] = 
                                 {
                                     "bottomIndicator",
                                     { 0.029999999,0 },
                                     1
                                 };
-                                down[] =
+                                down[] = 
                                 {
                                     "bottomIndicator",
                                     { 0,0.039999999 },
@@ -10036,7 +10036,7 @@ class CfgVehicles {
                                 class noGunCross {
                                     type = "line";
                                     width = 2;
-                                    points[] =
+                                    points[] = 
                                     {
 
                                         {
@@ -10073,7 +10073,7 @@ class CfgVehicles {
                         class Circle {
                             type = "line";
                             width = 1;
-                            points[] =
+                            points[] = 
                             {
 
                                 {
@@ -10520,7 +10520,7 @@ class CfgVehicles {
                         class reticle {
                             type = "line";
                             width = 2;
-                            points[] =
+                            points[] = 
                             {
 
                                 {
@@ -10794,7 +10794,7 @@ class CfgVehicles {
                         class reticle {
                             type = "line";
                             width = 2;
-                            points[] =
+                            points[] = 
                             {
 
                                 {
@@ -10867,7 +10867,7 @@ class CfgVehicles {
                         class reticle {
                             type = "line";
                             width = 2;
-                            points[] =
+                            points[] = 
                             {
 
                                 {
@@ -10940,7 +10940,7 @@ class CfgVehicles {
                         pos0[] = { 0.5,0.5 };
                         pos10[] = { 0.71132398,0.79310501 };
                         width = 2;
-                        points[] =
+                        points[] = 
                         {
 
                             {
@@ -11125,10 +11125,10 @@ class CfgVehicles {
             };
         };
         class EventHandlers {
-            class CBA_Extended_EventHandlers : CBA_Extended_EventHandlers {};
+            class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
         };
     };
-    class USAF_F35A_ejection_seat : Motorcycle {
+    class USAF_F35A_ejection_seat: Motorcycle {
         faction = "CUP_B_GB";
         crew = "B_pilot_F";
         scope = 1;
@@ -11138,23 +11138,23 @@ class CfgVehicles {
         destrType = "";
         hullDamageCauseExplosion = 0;
         class EventHandlers {
-            class CBA_Extended_EventHandlers : CBA_Extended_EventHandlers {};
+            class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
         };
     };
-    class Missilecart_base : StaticAmmocart {
+    class Missilecart_base: StaticAmmocart {
         faction = "CUP_B_GB";
         crew = "";
         editorSubcategory = QEGVAR(common,objects);
         class EventHandlers {
-            class CBA_Extended_EventHandlers : CBA_Extended_EventHandlers {};
+            class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
         };
     };
     class USAF_editorMissileObjects;
-    class USAF_MK77 : USAF_editorMissileObjects {
+    class USAF_MK77: USAF_editorMissileObjects {
         icon = "";
     };
     class LaserTarget;
-    class USAF_F35A_GPSTarget : LaserTarget {
+    class USAF_F35A_GPSTarget: LaserTarget {
         scope = 2;
         scopeCurator = 2;
         faction = "CUP_B_GB";

@@ -1,6 +1,6 @@
 class CfgSounds {
     class GVAR(ejection) {
-        sound[] = {"A3\sounds_f\weapons\launcher\nlaw_final_2", db10, 1, 1000};
+        sound[] = { "A3\sounds_f\weapons\launcher\nlaw_final_2", db10, 1, 1000};
         name = QGVAR(ejection);
         titles[] = {};
         duration = 3;
