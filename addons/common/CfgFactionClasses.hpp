@@ -1,5 +1,5 @@
 class CfgFactionClasses {
-    /*class UKSF_Clan {
+    /*class CUP_B_GB {
         displayName = "UKSF";
         icon = "a3\ui_f\data\map\Markers\Flags\uk_ca.paa";
         priority = 1;

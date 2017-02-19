@@ -18,7 +18,6 @@ class CUP_srifle_AWM_des_SBPMII : CUP_srifle_AWM_des {
 class CUP_srifle_AWM_wdl_SBPMII : CUP_srifle_AWM_wdl {
     scope = 1;
 };
-class Rifle_Long_Base_F;
 class CUP_lmg_L110A1 : Rifle_Long_Base_F {
     scope = 1;
 };

@@ -68,7 +68,6 @@ class CfgAmmo{
         ace_frag_charge = 1500;
         ace_frag_gurney_c = 1800;
     };
-
     class CUP_R_70mm_Hydra_HE;
     class CUP_R_CRV7_FAT: CUP_R_70mm_Hydra_HE {
         hit = 800;
@@ -103,7 +102,6 @@ class CfgAmmo{
             hitWater = "ImpactEffectsWaterBig";
         };
     };
-
     class CUP_B_30x113mm_M789_HEDP_Red_Tracer: BulletBase {
         SoundSetExplosion[] = { "DS_Ex_small_impact_SoundSet", "DS_exploSmall_Tail_placeholder_SoundSet", "Explosion_Debris_SoundSet" };
         CraterEffects = "ExploAmmoCrater";
@@ -117,7 +115,6 @@ class CfgAmmo{
         tracerEndTime = 30;
         caliber = 4.2;
     };
-
     class M_Titan_AA;
     class UKSF_Dummy_Missile : M_Titan_AA {
         indirectHitRange = 1;

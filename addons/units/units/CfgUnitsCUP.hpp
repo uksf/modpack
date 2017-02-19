@@ -2177,11 +2177,11 @@ class CUP_B_BAF_Engineer_DDPM : CUP_B_BAF_Soldier_01_DDPM {
 };
 
 //UKSF
-class UKSF_Clan_R : CUP_B_BAF_Soldier_MTP {
+class CUP_B_GB_R : CUP_B_BAF_Soldier_MTP {
     author = "UKSF";
     scope = 2;
     displayName = "Rifleman";
-    editorPreview = QPATHTOEF(common,data\previews\UKSF_Clan_R.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\CUP_B_GB_R.jpg);
     editorSubcategory = QEGVAR(common,uksf);
     cost = 100000;
     model = "\A3\Characters_F\BLUFOR\b_soldier_01.p3d";
@@ -2228,48 +2228,48 @@ class UKSF_Clan_R : CUP_B_BAF_Soldier_MTP {
         class CBA_Extended_EventHandlers : CBA_Extended_EventHandlers {};
     };
 };
-class UKSF_Clan_O : UKSF_Clan_R {
+class CUP_B_GB_O : CUP_B_GB_R {
     displayName = "Officer";
-    editorPreview = QPATHTOEF(common,data\previews\UKSF_Clan_O.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\CUP_B_GB_O.jpg);
     icon = "iconManOfficer";
     cost = 100000;
     linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "UK3CB_BAF_H_Beret_PR" };
     respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "UK3CB_BAF_H_Beret_PR" };
 };
-class UKSF_Clan_SL : UKSF_Clan_R {
+class CUP_B_GB_SL : CUP_B_GB_R {
     displayName = "Section Leader";
-    editorPreview = QPATHTOEF(common,data\previews\UKSF_Clan_SL.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\CUP_B_GB_SL.jpg);
     icon = "iconManLeader";
 };
-class UKSF_Clan_MG : UKSF_Clan_R {
+class CUP_B_GB_MG : CUP_B_GB_R {
     displayName = "Machinegunner";
-    editorPreview = QPATHTOEF(common,data\previews\UKSF_Clan_MG.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\CUP_B_GB_MG.jpg);
     icon = "iconManMG";
 };
-class UKSF_Clan_AT : UKSF_Clan_R {
+class CUP_B_GB_AT : CUP_B_GB_R {
     displayName = "Rifleman (AT)";
-    editorPreview = QPATHTOEF(common,data\previews\UKSF_Clan_AT.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\CUP_B_GB_AT.jpg);
     icon = "iconManAT";
     threat[] = {1, 0.9, 0.3};
 };
-class UKSF_Clan_MED : UKSF_Clan_R {
+class CUP_B_GB_MED : CUP_B_GB_R {
     displayName = "Combat Medic";
-    editorPreview = QPATHTOEF(common,data\previews\UKSF_Clan_MED.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\CUP_B_GB_MED.jpg);
     icon = "iconManMedic";
     picture = "pictureHeal";
     attendant = 1;
     backpack = "UKSF_B_Medic";
     uniformClass = "UK3CB_BAF_U_CombatUniform_MTP_CSMR";
 };
-class UKSF_Clan_Sniper : UKSF_Clan_R {
+class CUP_B_GB_Sniper : CUP_B_GB_R {
     displayName = "Sniper";
-    editorPreview = QPATHTOEF(common,data\previews\UKSF_Clan_Sniper.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\CUP_B_GB_Sniper.jpg);
     camouflage = 0.6;
 };
-class UKSF_Clan_P : UKSF_Clan_R {
+class CUP_B_GB_P : CUP_B_GB_R {
     author = "UKSF";
     displayName = "Pilot";
-    editorPreview = QPATHTOEF(common,data\previews\UKSF_Clan_HP.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\CUP_B_GB_HP.jpg);
     attendant = 1;
     threat[] = {1, 1, 1};
     uniformClass = "UK3CB_BAF_U_HeliPilotCoveralls_RAF";

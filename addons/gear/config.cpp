@@ -64,13 +64,6 @@ class CfgPatches {
             "CUP_AGM114L_Hellfire_II_Launcher_W",
             "CUP_AGM114N_Hellfire_II_Launcher_W"
         };
-        ammo[] = {
-            "CUP_M_AGM_114N_Hellfire_II_AT"
-        };
-        magazines[] = {
-            "CUP_8Rnd_AGM114N_Hellfire_II_M",
-            "CUP_4Rnd_AGM114N_Hellfire_II_M"
-        };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {             
             "uksf_common",
@@ -91,8 +84,15 @@ class CfgPatches {
             "CUP_Weapons_Curator",
             "CUP_Weapons_Ammunition",
             "CUP_Weapons_VehicleWeapons",
+            "CUP_Creatures_StaticWeapons",
             "DynaSound_DS_w_30mmgatling",
-            "DynaSound_DS_m_Explosions"
+            "DynaSound_DS_m_Explosions",
+            "DynaSound_DS_w_MINIGUN762",
+            "DynaSound_DS_w_HMG",
+            "DynaSound_DS_w_GMG",
+            "DynaSound_DS_w_CoaxMG",
+            "DynaSound_DS_w_LRR",
+            "DynaSound_DS_w_Zafir"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };

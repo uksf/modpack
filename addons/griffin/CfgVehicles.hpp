@@ -158,7 +158,7 @@ class CfgVehicles {
         gunnerUsesPilotView = 1;
         gunnerOpticsModel = "";
         transportSoldier = 9;
-        crew = "UKSF_Clan_P";
+        crew = "CUP_B_BAF_Pilot_DDPM";
         transportAmmo = 0;
         transportMaxMagazines = 150;
         transportMaxWeapons = 30;

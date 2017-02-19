@@ -335,7 +335,7 @@ class CfgVehicles {
         scopeCurator = 0;
         author = "UKSF";
         side = 1;
-        faction = "UKSF_Clan";
+        faction = "CUP_B_GB";
         identityTypes[] = { "LanguageENGB_F", "Head_NATO", "G_NATO_default" };
         displayName = "Base Soldier MTP 1Para";
         genericNames = "EnglishMen";
@@ -348,7 +348,7 @@ class CfgVehicles {
         scopeCurator = 0;
         author = "UKSF";
         side = 1;
-        faction = "UKSF_Clan";
+        faction = "CUP_B_GB";
         identityTypes[] = { "LanguageENGB_F", "Head_NATO", "G_NATO_default" };
         displayName = "Base Soldier MTP 1Para Rolled";
         genericNames = "EnglishMen";
@@ -397,7 +397,7 @@ class CfgVehicles {
         scopeCurator = 0;
         author = "UKSF";
         side = 1;
-        faction = "UKSF_Clan";
+        faction = "CUP_B_GB";
         identityTypes[] = { "LanguageENGB_F", "Head_NATO", "G_NATO_default" };
         displayName = "Base Helicopter Pilot RAF";
         genericNames = "EnglishMen";
@@ -412,7 +412,7 @@ class CfgVehicles {
         scopeCurator = 0;
         author = "UKSF";
         side = 1;
-        faction = "UKSF_Clan";
+        faction = "CUP_B_GB";
         identityTypes[] = { "LanguageENGB_F", "Head_NATO", "G_NATO_default" };
         displayName = "ATC Base";
         genericNames = "EnglishMen";
@@ -427,7 +427,7 @@ class CfgVehicles {
     class Land_CargoBox_V1_F;
     class UKSF_S_Empty: CargoNet_01_ammo_base_F {
         author = "UKSF";
-        faction = "UKSF_Clan";
+        faction = "CUP_B_GB";
         scope = 2;
         scopeCurator = 2;
         displayName = "Resupply Crate (Empty)";
@@ -887,6 +887,101 @@ class CfgVehicles {
                 count = 4;
             };
         };
+    };
+
+    class StaticWeapon;
+    class StaticMGWeapon: StaticWeapon {
+        class Turrets;
+    };
+    class UK3CB_BAF_Static_MG_Base : StaticMGWeapon {
+        faction = "CUP_B_GB";
+        crew = "CUP_B_BAF_Soldier_MTP";
+        typicalCargo[] = { "CUP_B_BAF_Soldier_MTP" };
+        class Turrets: Turrets {
+            class MainTurret;
+        };
+    };
+    class UK3CB_BAF_Static_L7A2_Base : UK3CB_BAF_Static_MG_Base {
+        class Turrets : Turrets {
+            class MainTurret : MainTurret {
+                weapons[] = { "CUP_Vlmg_M240_veh" };
+            };
+        };
+    };
+    class UK3CB_BAF_Static_L7A2_Low;
+    class UK3CB_BAF_Static_L7A2_Deployed_Low : UK3CB_BAF_Static_L7A2_Low {
+        faction = "CUP_B_GB";
+        crew = "CUP_B_BAF_Soldier_MTP";
+    };
+    class UK3CB_BAF_Static_L7A2_Mid;
+    class UK3CB_BAF_Static_L7A2_Deployed_Mid : UK3CB_BAF_Static_L7A2_Mid {
+        faction = "CUP_B_GB";
+        crew = "CUP_B_BAF_Soldier_MTP";
+    };
+    class UK3CB_BAF_Static_L7A2_High;
+    class UK3CB_BAF_Static_L7A2_Deployed_High : UK3CB_BAF_Static_L7A2_High {
+        faction = "CUP_B_GB";
+        crew = "CUP_B_BAF_Soldier_MTP";
+    };
+    class UK3CB_BAF_Static_L111A1_Base : UK3CB_BAF_Static_MG_Base {
+        class Turrets : Turrets {
+            class MainTurret : MainTurret {
+                weapons[] = { "CUP_Vhmg_M2_veh" };
+            };
+        };
+    };
+    class UK3CB_BAF_Static_L111A1_Low;
+    class UK3CB_BAF_Static_L111A1_Deployed_Low : UK3CB_BAF_Static_L111A1_Low {
+        faction = "CUP_B_GB";
+        crew = "CUP_B_BAF_Soldier_MTP";
+    };
+    class UK3CB_BAF_Static_L111A1_Mid;
+    class UK3CB_BAF_Static_L111A1_Deployed_Mid : UK3CB_BAF_Static_L111A1_Mid {
+        faction = "CUP_B_GB";
+        crew = "CUP_B_BAF_Soldier_MTP";
+    };
+    class UK3CB_BAF_Static_L111A1_High;
+    class UK3CB_BAF_Static_L111A1_Deployed_High : UK3CB_BAF_Static_L111A1_High {
+        faction = "CUP_B_GB";
+        crew = "CUP_B_BAF_Soldier_MTP";
+    };
+    class UK3CB_BAF_Static_L134A1_Base : UK3CB_BAF_Static_MG_Base {
+        class Turrets : Turrets {
+            class MainTurret : MainTurret {
+                weapons[] = { "CUP_Vgmg_MK19_veh" };
+            };
+        };
+    };
+    class UK3CB_BAF_Static_L134A1_Low;
+    class UK3CB_BAF_Static_L134A1_Deployed_Low : UK3CB_BAF_Static_L134A1_Low {
+        faction = "CUP_B_GB";
+        crew = "CUP_B_BAF_Soldier_MTP";
+    };
+    class UK3CB_BAF_Static_L134A1_Mid;
+    class UK3CB_BAF_Static_L134A1_Deployed_Mid : UK3CB_BAF_Static_L134A1_Mid {
+        faction = "CUP_B_GB";
+        crew = "CUP_B_BAF_Soldier_MTP";
+    };
+    class UK3CB_BAF_Static_L134A1_High;
+    class UK3CB_BAF_Static_L134A1_Deployed_High : UK3CB_BAF_Static_L134A1_High {
+        faction = "CUP_B_GB";
+        crew = "CUP_B_BAF_Soldier_MTP";
+    };
+    class Mortar_01_base_F;
+    class UK3CB_BAF_Static_Mortar_Base : Mortar_01_base_F {
+        faction = "CUP_B_GB";
+        crew = "CUP_B_BAF_Soldier_MTP";
+        typicalCargo[] = { "CUP_B_BAF_Soldier_MTP" };
+    };
+    class UK3CB_BAF_Static_L16;
+    class UK3CB_BAF_Static_L16_Deployed : UK3CB_BAF_Static_L16 {
+        faction = "CUP_B_GB";
+        crew = "CUP_B_BAF_Soldier_MTP";
+    };
+    class UK3CB_BAF_Static_M6;
+    class UK3CB_BAF_Static_M6_Deployed : UK3CB_BAF_Static_M6 {
+        faction = "CUP_B_GB";
+        crew = "CUP_B_BAF_Soldier_MTP";
     };
 
     #include "CfgVehiclesPrivate.hpp"
