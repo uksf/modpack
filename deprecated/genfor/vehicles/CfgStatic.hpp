@@ -34,7 +34,7 @@ class Genfor_Static_ZU23: O_mas_ZU23_AAF {
     };
     class eventhandlers {
         init = "(_this select 0) setSkill [""aimingAccuracy"", 0.01]; (_this select 0) setSkill [""aimingSpeed"", 0.01]; (_this select 0) setSkill [""aimingshake"", 0.01]; (_this select 0) setSkill [""spotTime"", 1];";
-        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };
 
@@ -92,7 +92,7 @@ class Genfor_Static_KORD: O_mas_KORD_AAF {
     };
     class eventhandlers {
         init = "(_this select 0) setSkill [""aimingAccuracy"", 0.01]; (_this select 0) setSkill [""aimingSpeed"", 0.01]; (_this select 0) setSkill [""aimingshake"", 0.01]; (_this select 0) setSkill [""spotTime"", 1];";
-        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };
 
@@ -114,7 +114,7 @@ class Genfor_Static_KORDHigh: O_mas_KORD_high_AAF {
     };
     class eventhandlers {
         init = "(_this select 0) setSkill [""aimingAccuracy"", 0.01]; (_this select 0) setSkill [""aimingSpeed"", 0.01]; (_this select 0) setSkill [""aimingshake"", 0.01]; (_this select 0) setSkill [""spotTime"", 1];";
-        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };
 
@@ -136,7 +136,7 @@ class Genfor_Static_M2: B_mas_M2StaticMG_AAF {
     };
     class eventhandlers {
         init = "(_this select 0) setSkill [""aimingAccuracy"", 0.01]; (_this select 0) setSkill [""aimingSpeed"", 0.01]; (_this select 0) setSkill [""aimingshake"", 0.01]; (_this select 0) setSkill [""spotTime"", 1];";
-        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };
 
@@ -158,7 +158,7 @@ class Genfor_Static_M2MiniTripod: B_mas_M2StaticMG_MiniTripod_AAF {
     };
     class eventhandlers {
         init = "(_this select 0) setSkill [""aimingAccuracy"", 0.01]; (_this select 0) setSkill [""aimingSpeed"", 0.01]; (_this select 0) setSkill [""aimingshake"", 0.01]; (_this select 0) setSkill [""spotTime"", 1];";
-        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };
 
@@ -180,7 +180,7 @@ class Genfor_Static_AGS: O_mas_AGS_AAF {
     };
     class eventhandlers {
         init = "(_this select 0) setSkill [""aimingAccuracy"", 0.01]; (_this select 0) setSkill [""aimingSpeed"", 0.01]; (_this select 0) setSkill [""aimingshake"", 0.01]; (_this select 0) setSkill [""spotTime"", 1];";
-        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };
 
@@ -202,7 +202,7 @@ class Genfor_Static_GMG: B_mas_GMG_AAF {
     };
     class eventhandlers {
         init = "(_this select 0) setSkill [""aimingAccuracy"", 0.01]; (_this select 0) setSkill [""aimingSpeed"", 0.01]; (_this select 0) setSkill [""aimingshake"", 0.01]; (_this select 0) setSkill [""spotTime"", 1];";
-        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };
 
@@ -224,7 +224,7 @@ class Genfor_Static_MK19: B_mas_MK19_TriPod_AAF {
     };
     class eventhandlers {
         init = "(_this select 0) setSkill [""aimingAccuracy"", 0.01]; (_this select 0) setSkill [""aimingSpeed"", 0.01]; (_this select 0) setSkill [""aimingshake"", 0.01]; (_this select 0) setSkill [""spotTime"", 1];";
-        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };
 
@@ -246,7 +246,7 @@ class Genfor_Static_Metis: O_mas_Metis_AAF {
     };
     class eventhandlers {
         init = "(_this select 0) setSkill [""aimingAccuracy"", 0.01]; (_this select 0) setSkill [""aimingSpeed"", 0.01]; (_this select 0) setSkill [""aimingshake"", 0.01]; (_this select 0) setSkill [""spotTime"", 1];";
-        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };
 
@@ -268,7 +268,7 @@ class Genfor_Static_TOW: B_mas_TOW_TriPod_AAF {
     };
     class eventhandlers {
         init = "(_this select 0) setSkill [""aimingAccuracy"", 0.01]; (_this select 0) setSkill [""aimingSpeed"", 0.01]; (_this select 0) setSkill [""aimingshake"", 0.01]; (_this select 0) setSkill [""spotTime"", 1];";
-        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };
 
@@ -290,7 +290,7 @@ class Genfor_Static_SPG9: O_mas_SPG9_AAF {
     };
     class eventhandlers {
         init = "(_this select 0) setSkill [""aimingAccuracy"", 0.01]; (_this select 0) setSkill [""aimingSpeed"", 0.01]; (_this select 0) setSkill [""aimingshake"", 0.01]; (_this select 0) setSkill [""spotTime"", 1];";
-        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };
 
@@ -312,7 +312,7 @@ class Genfor_Static_Igla: O_mas_Igla_AA_pod_AAF {
     };
     class eventhandlers {
         init = "(_this select 0) setSkill [""aimingAccuracy"", 0.01]; (_this select 0) setSkill [""aimingSpeed"", 0.01]; (_this select 0) setSkill [""aimingshake"", 0.01]; (_this select 0) setSkill [""spotTime"", 1];";
-        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };
 
@@ -334,7 +334,7 @@ class Genfor_Static_Stinger: B_mas_Stinger_AA_pod_AAF {
     };
     class eventhandlers {
         init = "(_this select 0) setSkill [""aimingAccuracy"", 0.01]; (_this select 0) setSkill [""aimingSpeed"", 0.01]; (_this select 0) setSkill [""aimingshake"", 0.01]; (_this select 0) setSkill [""spotTime"", 1];";
-        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };
 
@@ -356,7 +356,7 @@ class Genfor_Static_2B14: O_mas_2b14_82mm_AAF {
     };
     class eventhandlers {
         init = "(_this select 0) setSkill [""aimingAccuracy"", 0.01]; (_this select 0) setSkill [""aimingSpeed"", 0.01]; (_this select 0) setSkill [""aimingshake"", 0.01]; (_this select 0) setSkill [""spotTime"", 1];";
-        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };
 
@@ -378,7 +378,7 @@ class Genfor_Static_M252: B_mas_M252_AAF {
     };
     class eventhandlers {
         init = "(_this select 0) setSkill [""aimingAccuracy"", 0.01]; (_this select 0) setSkill [""aimingSpeed"", 0.01]; (_this select 0) setSkill [""aimingshake"", 0.01]; (_this select 0) setSkill [""spotTime"", 1];";
-        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };
 
@@ -400,7 +400,7 @@ class Genfor_Static_D30: O_mas_D30_AAF {
     };
     class eventhandlers {
         init = "(_this select 0) setSkill [""aimingAccuracy"", 0.01]; (_this select 0) setSkill [""aimingSpeed"", 0.01]; (_this select 0) setSkill [""aimingshake"", 0.01]; (_this select 0) setSkill [""spotTime"", 1];";
-        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };
 
@@ -422,7 +422,7 @@ class Genfor_Static_D30AT: O_mas_D30_AT_AAF {
     };
     class eventhandlers {
         init = "(_this select 0) setSkill [""aimingAccuracy"", 0.01]; (_this select 0) setSkill [""aimingSpeed"", 0.01]; (_this select 0) setSkill [""aimingshake"", 0.01]; (_this select 0) setSkill [""spotTime"", 1];";
-        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };
 
@@ -444,7 +444,7 @@ class Genfor_Static_M119: B_mas_M119_AAF {
     };
     class eventhandlers {
         init = "(_this select 0) setSkill [""aimingAccuracy"", 0.01]; (_this select 0) setSkill [""aimingSpeed"", 0.01]; (_this select 0) setSkill [""aimingshake"", 0.01]; (_this select 0) setSkill [""spotTime"", 1];";
-        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };
 
@@ -466,7 +466,7 @@ class Genfor_Static_M119AT: B_mas_M119_AT_AAF {
     };
     class eventhandlers {
         init = "(_this select 0) setSkill [""aimingAccuracy"", 0.01]; (_this select 0) setSkill [""aimingSpeed"", 0.01]; (_this select 0) setSkill [""aimingshake"", 0.01]; (_this select 0) setSkill [""spotTime"", 1];";
-        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };
 

@@ -5,7 +5,7 @@
 
 #define _ARMA_
 
-//Class ca : data\penetration\iron.rvmat{
+//Class ca: data\penetration\iron.rvmat{
 surfaceInfo = "u\uksf\addons\griffin\data\iron.bisurf";
 ambient[] = {0.0,0.222,0.37,1.0};
 diffuse[] = {0.0,0.222,0.37,1.0};

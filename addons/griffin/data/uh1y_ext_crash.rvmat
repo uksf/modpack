@@ -5,7 +5,7 @@
 
 #define _ARMA_
 
-//Class air2 : UH1Y\DATA\uh1y_ext_crash.rvmat{
+//Class air2: UH1Y\DATA\uh1y_ext_crash.rvmat{
 ambient[] = {1.0,1.0,1.0,1.0};
 diffuse[] = {1.0,1.0,1.0,1.0};
 forcedDiffuse[] = {0.0,0.0,0.0,1.0};

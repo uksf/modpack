@@ -1,6 +1,3 @@
-PREP(equipATC);
-PREP(equipPilot);
-
 PREP(init);
 PREP(initAir);
 PREP(loop);

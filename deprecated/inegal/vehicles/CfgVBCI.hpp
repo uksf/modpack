@@ -21,6 +21,6 @@ class Inegal_APC_VBCI: I_APC_Wheeled_03_cannon_F {
     class TransportWeapons {};
     class TransportBackpacks {};
     class EventHandlers {
-        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };

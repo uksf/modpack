@@ -8,6 +8,6 @@
 if (!isServer) exitWith {};
 
 {
-    _position = [mortarPos] call CBA_fnc_randPosArea;
+    _position = [mortarPos] call cba_fnc_randPosArea;
     mortarUnit commandArtilleryFire [_position, (getArtilleryAmmo [mortar]) select 0, 4];
 } remoteExec ["bis_fnc_call", HCs select 0, false];

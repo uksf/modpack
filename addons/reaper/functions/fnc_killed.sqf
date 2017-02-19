@@ -17,6 +17,6 @@ params ["_uav"];
 
 [[], {
     if (!alive (getConnectedUAV player) && !isNil QGVAR(handlerCompass)) then {
-        [GVAR(handlerCompass)] call CBA_fnc_removePerFrameHandler;
+        [GVAR(handlerCompass)] call cba_fnc_removePerFrameHandler;
     };
 }] remoteExecCall ["bis_fnc_call", 0];

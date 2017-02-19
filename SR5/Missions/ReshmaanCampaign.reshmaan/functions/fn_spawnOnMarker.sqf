@@ -39,7 +39,7 @@ _markerName setMarkerAlpha 0;
 
     //If pool is empty, remove PFH
     if (_poolSize <= 0) exitWith {
-        [_idPFH] call CBA_fnc_removePerFrameHandler;
+        [_idPFH] call cba_fnc_removePerFrameHandler;
     };
 
     //Count number of current enemy. If less than threshold, spawn more.
@@ -58,4 +58,4 @@ _markerName setMarkerAlpha 0;
         _markerName setMarkerAlpha 1;
         missionNamespace setVariable [format ["%1_markers", _markerName], _markers, true];
     };
-}, 30, [_markerName, _maxAmount, _factionName, _debug]] call CBA_fnc_addPerFrameHandler;
+}, 30, [_markerName, _maxAmount, _factionName, _debug]] call cba_fnc_addPerFrameHandler;

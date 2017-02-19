@@ -22,5 +22,5 @@ if (group _unit in GVAR(groups) && {leader _unit isEqualTo _unit} && {count unit
         _newLeader = leader (_this select 0);
         [_newLeader] call FUNC(uncache);
         [_newLeader] call FUNC(addEventhandler);
-    },[group _unit,_unit]] call CBA_fnc_waitUntilAndExecute;
+    },[group _unit,_unit]] call cba_fnc_waitUntilAndExecute;
 };

@@ -101,7 +101,7 @@ class CfgPatches {
     };
 };
 
-class CBA_Extended_EventHandlers;
+class cba_Extended_EventHandlers;
 #include "CfgAmmo.hpp"
 #include "CfgMagazines.hpp"
 #include "CfgWeapons.hpp"

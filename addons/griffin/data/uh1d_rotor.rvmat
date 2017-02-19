@@ -5,7 +5,7 @@
 
 #define _ARMA_
 
-//Class air_e : UH1H\Data\uh1d_rotor.rvmat{
+//Class air_e: UH1H\Data\uh1d_rotor.rvmat{
 ambient[] = {1,1,1,1};
 diffuse[] = {1,1,1,1};
 forcedDiffuse[] = {0,0,0,0};

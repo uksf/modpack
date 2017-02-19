@@ -5,7 +5,7 @@
 
 #define _ARMA_
 
-//Class ca : data\penetration\armor_5mm_plate.bisurf{
+//Class ca: data\penetration\armor_5mm_plate.bisurf{
 Density = 7800;
 Thickness = 5;
 rough = 0.1;

@@ -15,4 +15,4 @@ if (hasInterface) then {
 
 [{
     {_x addCuratorEditableObjects [allMissionObjects "all", true]} forEach allCurators;
-}, [], 0.5] call CBA_fnc_waitAndExecute;
+}, [], 0.5] call cba_fnc_waitAndExecute;

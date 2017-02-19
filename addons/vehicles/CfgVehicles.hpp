@@ -3,7 +3,7 @@ class CfgVehicles {
     class Car: LandVehicle {
         class ACE_Actions;
     };
-    class Car_F : Car {
+    class Car_F: Car {
         class ACE_Actions: ACE_Actions {
             class ACE_MainActions;
         };

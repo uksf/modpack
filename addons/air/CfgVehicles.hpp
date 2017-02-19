@@ -4,7 +4,7 @@ class CfgVehicles {
         class ACE_Actions;
         class Turrets;
     };
-    class Helicopter_Base_H : Helicopter_Base_F {
+    class Helicopter_Base_H: Helicopter_Base_F {
         class ACE_Actions: ACE_Actions {
             class ACE_MainActions;
         };

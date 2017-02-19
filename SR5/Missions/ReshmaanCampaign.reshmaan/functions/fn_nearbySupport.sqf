@@ -49,12 +49,12 @@ if (_unit distance2D _shooter > 750) exitWith {};
     
     if (alive _unit) then {
         _supportingUnit = selectRandom (((position _unit) nearEntities [["Man"], 500]) select {SUPPORTCONDITION});
-        _position = [(position _shooter), 50 + ((_unit distance2D _shooter) / 10) + (100 * _reportDepth)] call CBA_fnc_randPos;
+        _position = [(position _shooter), 50 + ((_unit distance2D _shooter) / 10) + (100 * _reportDepth)] call cba_fnc_randPos;
         _radius = ((_supportingUnit distance2D _shooter) / 10) + (50 * _reportDepth);
         (group _supportingUnit) setVariable ["Tasked", true, true];
-        [group _supportingUnit] call CBA_fnc_clearWaypoints;
-        [group _supportingUnit, _position, _radius, "SAD", "COMBAT", "RED", "FULL", "WEDGE", "[this] call UKSF_Mission_fnc_reTask", [0,0,0], 20] call CBA_fnc_addWaypoint;
+        [group _supportingUnit] call cba_fnc_clearWaypoints;
+        [group _supportingUnit, _position, _radius, "SAD", "COMBAT", "RED", "FULL", "WEDGE", "[this] call UKSF_Mission_fnc_reTask", [0,0,0], 20] call cba_fnc_addWaypoint;
     } else {
         [selectRandom (((position _unit) nearEntities [["Man"], 20]) select {PROXIMITYCONDITION}), "", "", _shooter, _reportDepth + 1] call UKSF_Mission_fnc_nearbySupport;
     };
-}, [_unit, _shooter, _reportDepth], 1] call CBA_fnc_waitAndExecute;        
+}, [_unit, _shooter, _reportDepth], 1] call cba_fnc_waitAndExecute;        

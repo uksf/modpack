@@ -1,15 +1,15 @@
 class CfgVehicles {
     class Helicopter;
-    class Helicopter_Base_F : Helicopter {
+    class Helicopter_Base_F: Helicopter {
         class Turrets;
         class HitPoints;
     };
-    class Helicopter_Base_H : Helicopter_Base_F {
+    class Helicopter_Base_H: Helicopter_Base_F {
         class AnimationSources;
-        class Turrets : Turrets {
+        class Turrets: Turrets {
             class CopilotTurret;
         };
-        class HitPoints : HitPoints {
+        class HitPoints: HitPoints {
             class HitGlass1;
             class HitGlass2;
             class HitGlass3;
@@ -17,7 +17,7 @@ class CfgVehicles {
             class HitGlass5;
         };
     };
-    class UKSF_Griffin : Helicopter_Base_H {
+    class UKSF_Griffin: Helicopter_Base_H {
         scope = 2;
         scopeCurator = 2;
         side = 1;
@@ -79,8 +79,8 @@ class CfgVehicles {
         armor = 40;
         weapons[] = {};
         magazines[] = {};
-        class Turrets : Turrets {
-            class CopilotTurret : CopilotTurret {
+        class Turrets: Turrets {
+            class CopilotTurret: CopilotTurret {
                 isCopilot = 1;
                 proxyIndex = 1;
                 gunnerName = "Co-Pilot";
@@ -278,12 +278,12 @@ class CfgVehicles {
         soundEngineOnExt[] = { QPATHTOF(data\sounds\ext\ext-motor-start), "db-7", 1, 700 };
         soundEngineOffInt[] = { QPATHTOF(data\sounds\int\int-stop-final), "db-7", 1 };
         soundEngineOffExt[] = { QPATHTOF(data\sounds\ext\ext-motor-stop), "db-7", 1, 700 };
-        landingSoundInt0[] = {"A3\Sounds_F\vehicles\air\noises\landing_skids_int1_open", 1, 1, 100};
-        landingSoundInt1[] = {"A3\Sounds_F\vehicles\air\noises\landing_skids_int1_open", 1, 1, 100};
-        landingSoundInt[] = {"landingSoundInt0", 0.5, "landingSoundInt1", 0.5};
-        landingSoundOut0[] = {"A3\Sounds_F\vehicles\air\noises\landing_skids_ext1", 1.77828, 1, 100};
-        landingSoundOut1[] = {"A3\Sounds_F\vehicles\air\noises\landing_skids_ext1", 1.77828, 1, 100};
-        landingSoundOut[] = {"landingSoundOut0", 0.5, "landingSoundOut1", 0.5};
+        landingSoundInt0[] = { "A3\Sounds_F\vehicles\air\noises\landing_skids_int1_open", 1, 1, 100};
+        landingSoundInt1[] = { "A3\Sounds_F\vehicles\air\noises\landing_skids_int1_open", 1, 1, 100};
+        landingSoundInt[] = { "landingSoundInt0", 0.5, "landingSoundInt1", 0.5};
+        landingSoundOut0[] = { "A3\Sounds_F\vehicles\air\noises\landing_skids_ext1", 1.77828, 1, 100};
+        landingSoundOut1[] = { "A3\Sounds_F\vehicles\air\noises\landing_skids_ext1", 1.77828, 1, 100};
+        landingSoundOut[] = { "landingSoundOut0", 0.5, "landingSoundOut1", 0.5};
         class Sounds {
             class Engine {
                 sound[] = { QPATHTOF(data\sounds\ext\ext-fly-mode2), "db8", 1, 800 };
@@ -318,12 +318,12 @@ class CfgVehicles {
                 volume = "(1-camPos)*3*(rotorThrust-0.9)";
             };
         };
-        class HitPoints : HitPoints {
-            class HitGlass1 : HitGlass1 { armor = 0.25; };
-            class HitGlass2 : HitGlass2 { armor = 0.25; };
-            class HitGlass3 : HitGlass3 { armor = 0.25; };
-            class HitGlass4 : HitGlass4 { armor = 0.25; };
-            class HitGlass5 : HitGlass5 { armor = 0.25; };
+        class HitPoints: HitPoints {
+            class HitGlass1: HitGlass1 { armor = 0.25; };
+            class HitGlass2: HitGlass2 { armor = 0.25; };
+            class HitGlass3: HitGlass3 { armor = 0.25; };
+            class HitGlass4: HitGlass4 { armor = 0.25; };
+            class HitGlass5: HitGlass5 { armor = 0.25; };
             class HitVRotor {
                 armor = 1.3;
                 material = 51;
@@ -406,7 +406,7 @@ class CfgVehicles {
                 radius = 0.35;
                 convexComponent = "engine_2_hit";
             };
-            class HitEngine : HitEngine2 {
+            class HitEngine: HitEngine2 {
                 armor = 999;
                 name = "engine_hit";
                 convexComponent = "engine_hit";

@@ -120,7 +120,7 @@ params ["_plane", "_magazines"];
         _args params ["_plane", "_magazines", "_i", "_j"];
 
         if (_i >= 34) exitWith {
-            [_idPFH] call CBA_fnc_removePerFrameHandler;
+            [_idPFH] call cba_fnc_removePerFrameHandler;
             _loadout = magazines _plane;
             if (("USAF_1Rnd_AIM9X" in _loadout)) then {_plane addWeapon "USAF_AIM9X_Launcher";};
             if (("USAF_1Rnd_AIM120" in _loadout)) then {_plane addWeapon "USAF_AIM120_Launcher";};
@@ -159,7 +159,7 @@ params ["_plane", "_magazines"];
         };
         if (speed _plane > 1) exitWith {
             [parseText format ["<t align = 'center' color = '#FF0000'>Rearming Canceled</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 1] spawn BIS_fnc_textTiles;
-            [_idPFH] call CBA_fnc_removePerFrameHandler;
+            [_idPFH] call cba_fnc_removePerFrameHandler;
         };
 
         [parseText format ["<t align = 'center' color = '#00CC00'>Rearming...</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 1] spawn BIS_fnc_textTiles;
@@ -172,5 +172,5 @@ params ["_plane", "_magazines"];
         };
         _args set [2, _i + 1];
         _args set [3, _j - 1];
-    }, 0.1, [_plane, _magazines, 0, 34]] call CBA_fnc_addPerFrameHandler;    
-}, [_plane, _magazines]] call CBA_fnc_waitUntilAndExecute;
+    }, 0.1, [_plane, _magazines, 0, 34]] call cba_fnc_addPerFrameHandler;    
+}, [_plane, _magazines]] call cba_fnc_waitUntilAndExecute;

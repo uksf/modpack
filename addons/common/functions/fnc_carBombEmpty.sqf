@@ -34,14 +34,14 @@ if (isServer) then {
         } forEach _nearUnits;
 
         if (count _nearUnits != 0) exitWith {    
-            [_idPFH] call CBA_fnc_removePerFrameHandler;
-            [_car, QEGVAR(common,alarm)] call CBA_fnc_globalSay3d;    
+            [_idPFH] call cba_fnc_removePerFrameHandler;
+            [_car, QEGVAR(common,alarm)] call cba_fnc_globalSay3d;    
             [{
                 params ["_car"];
                 _pos = getPos _car;
                 "R_TBG32V_F" createVehicle [_pos select 0, _pos select 1, (_pos select 2) + 0.1];
                 _car setDamage 1;
-            }, [_car], 3] call CBA_fnc_waitAndExecute;
+            }, [_car], 3] call cba_fnc_waitAndExecute;
         };    
-    }, 5, [_car, _side, _distance]] call CBA_fnc_addPerFrameHandler;
+    }, 5, [_car, _side, _distance]] call cba_fnc_addPerFrameHandler;
 };

@@ -576,7 +576,7 @@ class CfgWeapons {
         };
     };
     class srifle_DMR_06_camo_F;
-    class srifle_DMR_06_camo_F_dms : srifle_DMR_06_camo_F {
+    class srifle_DMR_06_camo_F_dms: srifle_DMR_06_camo_F {
         class LinkedItems {
             class LinkedItemsOptic {
                 slot = "CowsSlot";

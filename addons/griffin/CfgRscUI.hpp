@@ -1,6 +1,6 @@
 class RscInGameUI {
     class RscUnitInfo;
-    class Rsc_UKSF_Air_Special : RscUnitInfo {
+    class Rsc_UKSF_Air_Special: RscUnitInfo {
         controls[] = {
             "CA_BackgroundFuel",
             "CA_VehicleToggles",
@@ -23,7 +23,7 @@ class RscTitles {
         onLoad = QUOTE(uiNameSpace setVariable [ARR_2(QQGVAR(metrics), _this select 0)];);
         onUnload = QUOTE(uinamespace setvariable [ARR_2(QQGVAR(metrics), nil)];);
         class controls {
-            class RscText_1891 : RscText {
+            class RscText_1891: RscText {
                 idc = 1891;
                 text = "0 kn";
                 x = 0.0823437 * safezoneW + safezoneX;
@@ -31,7 +31,7 @@ class RscTitles {
                 w = 0.04125 * safezoneW;
                 h = 0.022 * safezoneH;
             };
-            class RscText_1892 : RscText {
+            class RscText_1892: RscText {
                 idc = 1892;
                 text = "0 ft";
                 x = 0.0823437 * safezoneW + safezoneX;

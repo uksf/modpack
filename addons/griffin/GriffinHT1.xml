@@ -1,15 +1,15 @@
-<?xml version="1.0"?>
-<GenHeli600 version="1.0">
+<?xml version = "1.0"?>
+<GenHeli600 version = "1.0">
 
-  <Mass mass="3500"/>  
-  <CenterOfGravity x="0.0" y="0.420" z="0.220"/>
-  <MomentsOfInertia Ixx="15990" Iyy="3182" Izz="14040"/>
+  <Mass mass = "3500"/>  
+  <CenterOfGravity x = "0.0" y = "0.420" z = "0.220"/>
+  <MomentsOfInertia Ixx = "15990" Iyy = "3182" Izz = "14040"/>
 
-  <!--<Fuselage CoPX="0.0" CoPY="0.325" CoPZ="-0.260" rotationalResistance="100"> -->
-  <Fuselage forceExertionPntX="0.0" forceExertionPntY="0.325" forceExertionPntZ="-0.260" rotationalResistance="100">
+  <!--<Fuselage CoPX = "0.0" CoPY = "0.325" CoPZ = "-0.260" rotationalResistance = "100"> -->
+  <Fuselage forceExertionPntX = "0.0" forceExertionPntY = "0.325" forceExertionPntZ = "-0.260" rotationalResistance = "100">
 
          <MainRotorDownwash >
-          <Low_a1 a1 ="-6" scale="1">
+          <Low_a1 a1 = "-6" scale = "1">
         0    0.958
         10    0.957
         20    0.949
@@ -21,7 +21,7 @@
         80    0.700
         100    0.
           </Low_a1>
-          <Medium_a1 a1 ="0" scale="1">
+          <Medium_a1 a1 = "0" scale = "1">
         0    0.958
         10    0.953
         20    0.941
@@ -33,7 +33,7 @@
         80    0.639
         100    0.6
           </Medium_a1>
-          <High_a1 a1 ="6" scale="1">
+          <High_a1 a1 = "6" scale = "1">
         0    0.956
         10    0.946
         20    0.930
@@ -47,8 +47,8 @@
           </High_a1>
     </MainRotorDownwash>
 
-    <MainRotorInplanewash scale="1">
-      <Low_a1 a1 ="-6">
+    <MainRotorInplanewash scale = "1">
+      <Low_a1 a1 = "-6">
         0    0.08
         10    0.18
         20    0.3
@@ -62,7 +62,7 @@
         100    0
       </Low_a1>
 
-      <Medium_a1 a1 ="0" scale="1">
+      <Medium_a1 a1 = "0" scale = "1">
         0    0
         10    0.1
         20    0.21
@@ -76,7 +76,7 @@
         100    0
       </Medium_a1>
 
-      <High_a1 a1 ="6" scale="1">
+      <High_a1 a1 = "6" scale = "1">
         0    -0.12
         10    0.02
         20    0.08
@@ -91,7 +91,7 @@
       </High_a1>
     </MainRotorInplanewash>
 
-    <SideForceDueToSideslip scale="1">
+    <SideForceDueToSideslip scale = "1">
 -180    -0.003
 -170    -2.352
 -160    -4.417
@@ -137,7 +137,7 @@
 180    0.003
     </SideForceDueToSideslip>
 
-    <LiftDueToAoA scale="1.0">
+    <LiftDueToAoA scale = "1.0">
 -180    0.000
 -170    0.739
 -160    1.341
@@ -189,7 +189,7 @@
 180    0.000
        </LiftDueToAoA>
 
-    <DragDueToAoA scale="1.0">
+    <DragDueToAoA scale = "1.0">
       -180    1.016
       -170    1.210
       -160    1.770
@@ -241,7 +241,7 @@
       180    1.016
     </DragDueToAoA>    
 
-    <DragDueToSideslip scale="1">
+    <DragDueToSideslip scale = "1">
 -180    0.000
 -170    0.267
 -160    1.087
@@ -287,7 +287,7 @@
 180    0.000
        </DragDueToSideslip>    
 
-    <PitchingMomentDueToAoA scale="1.0">
+    <PitchingMomentDueToAoA scale = "1.0">
 -180    0.005
 -170    3.424
 -160    6.431
@@ -339,7 +339,7 @@
 180    -0.005
        </PitchingMomentDueToAoA>
 
-    <YawingMomentDueToSideslip scale="1">
+    <YawingMomentDueToSideslip scale = "1">
 -180    0.000
 -170    -1.225
 -160    -2.411
@@ -388,93 +388,93 @@
   </Fuselage>
 
   <Engines>
-        <Engine type="ConstantRPMEngine">
-            <DebugInfo printDebugInfo="false" />
-            <General inertia="0.15" /> 
-            <Performance emergencyPowerHP="1300" maxTorque="1500" rotationResistance="0.000009"/>  
-            <ControllerParams P="0.5" I="1.5" D="0.0" offset="150" targetRPM="6164" />
+        <Engine type = "ConstantRPMEngine">
+            <DebugInfo printDebugInfo = "false" />
+            <General inertia = "0.15" /> 
+            <Performance emergencyPowerHP = "1300" maxTorque = "1500" rotationResistance = "0.000009"/>  
+            <ControllerParams P = "0.5" I = "1.5" D = "0.0" offset = "150" targetRPM = "6164" />
         </Engine>
 
-    <Engine type="ConstantRPMEngine">
-            <DebugInfo printDebugInfo="false" />
-            <General inertia="0.15" />
-            <Performance emergencyPowerHP="1300" maxTorque="1500" rotationResistance="0.000009"/>
-            <ControllerParams P="0.5" I="1.5" D="0.0" offset="150" targetRPM="6164" />
+    <Engine type = "ConstantRPMEngine">
+            <DebugInfo printDebugInfo = "false" />
+            <General inertia = "0.15" />
+            <Performance emergencyPowerHP = "1300" maxTorque = "1500" rotationResistance = "0.000009"/>
+            <ControllerParams P = "0.5" I = "1.5" D = "0.0" offset = "150" targetRPM = "6164" />
         </Engine>
         
   </Engines>
 
   <DriveTrains>
-    <DriveTrain type="GenericDriveTrain">
-      <TorqueLimits emergency="4000"/>
-      <GearBox gearRatios="1" reverseGearRatio="1"/>
-      <Clutch isFreewheeling="true" maxClutchTorque="15000"/>
-      <Engine index="0"/>
-      <Engine index="1"/>
-      <Load gearRatio="18.12" name="MainRotor"/>
-      <Load gearRatio="3.34" name="TailRotor"/>
+    <DriveTrain type = "GenericDriveTrain">
+      <TorqueLimits emergency = "4000"/>
+      <GearBox gearRatios = "1" reverseGearRatio = "1"/>
+      <Clutch isFreewheeling = "true" maxClutchTorque = "15000"/>
+      <Engine index = "0"/>
+      <Engine index = "1"/>
+      <Load gearRatio = "18.12" name = "MainRotor"/>
+      <Load gearRatio = "3.34" name = "TailRotor"/>
     </DriveTrain>
     
   </DriveTrains>  
   
   <ControlSystem>
 
-        <CSComponent type="FCSAutoHoverTOH">
-      <YawController P="0.0" D="0"/>
-      <PitchController P="0.1" D="0.025"/>
-      <RollController P="0.1" D="0.025"/>
+        <CSComponent type = "FCSAutoHoverTOH">
+      <YawController P = "0.0" D = "0"/>
+      <PitchController P = "0.1" D = "0.025"/>
+      <RollController P = "0.1" D = "0.025"/>
     </CSComponent>
 
-    <CSComponent type="FCSHelicopterAutoTrim100" >
-      <YawRateAndSideslipController printDebugInfo="false">
-        <YawRatePID P="0.04"  I="0.01" D="0.0" offset="0.0" integralMin="-100" integralMax="100" />
-        <SideslipPID P="0.02"  I="0.01" D="0.008" offset="0.0" integralMin="-25" integralMax="25" />
-        <Transition speedLow="15" speedHigh="40" />
-        <Maximums maxYawRate="180" maxSideslip="75" />
-        <InputMapping nonlinearity="1.5" />
+    <CSComponent type = "FCSHelicopterAutoTrim100" >
+      <YawRateAndSideslipController printDebugInfo = "false">
+        <YawRatePID P = "0.04"  I = "0.01" D = "0.0" offset = "0.0" integralMin = "-100" integralMax = "100" />
+        <SideslipPID P = "0.02"  I = "0.01" D = "0.008" offset = "0.0" integralMin = "-25" integralMax = "25" />
+        <Transition speedLow = "15" speedHigh = "40" />
+        <Maximums maxYawRate = "180" maxSideslip = "75" />
+        <InputMapping nonlinearity = "1.5" />
       </YawRateAndSideslipController>
 
-      <PitchRateController printDebugInfo="false">
-        <PID P="0.01"  I="0.04" D="0.001" offset="0.0" integralMin="-25" integralMax="25" />
-        <MaxPitchRate maxPitchRate="35" />
-        <InputMapping nonlinearity="1.0" />
+      <PitchRateController printDebugInfo = "false">
+        <PID P = "0.01"  I = "0.04" D = "0.001" offset = "0.0" integralMin = "-25" integralMax = "25" />
+        <MaxPitchRate maxPitchRate = "35" />
+        <InputMapping nonlinearity = "1.0" />
       </PitchRateController>
 
-      <RollRateController printDebugInfo="false">
-        <PID P="0.01"  I="0.04" D="0.001" offset="0.0" integralMin="-25" integralMax="25" />
-        <MaxRollRate maxRollRate="70" />
-        <InputMapping nonlinearity="1.0" />
+      <RollRateController printDebugInfo = "false">
+        <PID P = "0.01"  I = "0.04" D = "0.001" offset = "0.0" integralMin = "-25" integralMax = "25" />
+        <MaxRollRate maxRollRate = "70" />
+        <InputMapping nonlinearity = "1.0" />
       </RollRateController>
 
     </CSComponent>
 
-    <CSComponent type="GenericControlSystem">
+    <CSComponent type = "GenericControlSystem">
       <Variables>
-        <Variable alias="latCyclic" member="roll" name="CSComponent_1/ControlOutput/pitchRollControl"/>
-        <Variable alias="lonCyclic" member="pitch" name="CSComponent_1/ControlOutput/pitchRollControl"/>
-        <Variable alias="pedals" name="CSComponent_1/ControlOutput/pedals"/>
-        <Variable alias="collective" name="CSComponent_1/ControlOutput/collective"/>
+        <Variable alias = "latCyclic" member = "roll" name = "CSComponent_1/ControlOutput/pitchRollControl"/>
+        <Variable alias = "lonCyclic" member = "pitch" name = "CSComponent_1/ControlOutput/pitchRollControl"/>
+        <Variable alias = "pedals" name = "CSComponent_1/ControlOutput/pedals"/>
+        <Variable alias = "collective" name = "CSComponent_1/ControlOutput/collective"/>
         
-        <Variable alias="rotorBrake" name="CSComponent_1/ControlOutput/rotorBrake"  />
+        <Variable alias = "rotorBrake" name = "CSComponent_1/ControlOutput/rotorBrake"  />
         
-        <Variable alias="pitchRateRad" member="X" name="angularVelocityBCS"/>
-        <Variable alias="rollRateRad" member="Y" name="angularVelocityBCS"/>
-        <Variable alias="yawRateRad" member="Z" name="angularVelocityBCS"/>
+        <Variable alias = "pitchRateRad" member = "X" name = "angularVelocityBCS"/>
+        <Variable alias = "rollRateRad" member = "Y" name = "angularVelocityBCS"/>
+        <Variable alias = "yawRateRad" member = "Z" name = "angularVelocityBCS"/>
 
-        <Variable alias="p" member="P" name="attitudeHPR"/>
-        <Variable alias="r" member="R" name="attitudeHPR"/>
+        <Variable alias = "p" member = "P" name = "attitudeHPR"/>
+        <Variable alias = "r" member = "R" name = "attitudeHPR"/>
 
-        <Variable alias="A1m" name="MainRotor/A1"/>
-        <Variable alias="B1m" name="MainRotor/B1"/>
-        <Variable alias="Th0m" name="MainRotor/theta0"/>
+        <Variable alias = "A1m" name = "MainRotor/A1"/>
+        <Variable alias = "B1m" name = "MainRotor/B1"/>
+        <Variable alias = "Th0m" name = "MainRotor/theta0"/>
         
-        <Variable alias="mainRotorBrake"  name="MainRotor/rotorBrakeInput" />
+        <Variable alias = "mainRotorBrake"  name = "MainRotor/rotorBrakeInput" />
 
-        <Variable alias="A1t" name="TailRotor/A1"/>
-        <Variable alias="B1t" name="TailRotor/B1"/>
-        <Variable alias="Th0t" name="TailRotor/theta0"/>
+        <Variable alias = "A1t" name = "TailRotor/A1"/>
+        <Variable alias = "B1t" name = "TailRotor/B1"/>
+        <Variable alias = "Th0t" name = "TailRotor/theta0"/>
 
-        <Variable alias="profondeur" name="HorizontalStabilizer/controlSurfaceDeflection"  />
+        <Variable alias = "profondeur" name = "HorizontalStabilizer/controlSurfaceDeflection"  />
 
       </Variables>
 
@@ -485,7 +485,7 @@
           pedals = pedals + clamp(yawRateRad * 2, -0.15 , 0.15 ),
           A1m = linearInterp( 9.2, -9.2 , (latCyclic+1) * 0.5  ),
           B1m = linearInterp( -14.375 , 18.745 ,  (lonCyclic+1) * 0.5 ),
-          Th0m= collective *9.5 + 8.5,
+          Th0m = collective *9.5 + 8.5,
           A1t = 0.0,
           B1t = 0.0,
                   Th0t = linearInterp(-20 , 30 , (pedals +1) * 0.5   ),
@@ -506,24 +506,24 @@
  
   <Rotors>
    
-    <Rotor type="FGRotorBladeElementTheory">
-      <ModelConfiguration maxIntegrationStepSizeDeg="1.0" />
-      <InfoPrint printControlInputs="false" printFlappingInfo="false" printOmega="false" printMoments="false" />
+    <Rotor type = "FGRotorBladeElementTheory">
+      <ModelConfiguration maxIntegrationStepSizeDeg = "1.0" />
+      <InfoPrint printControlInputs = "false" printFlappingInfo = "false" printOmega = "false" printMoments = "false" />
       <Geometry>
-        <Position x="0.0" y="0.465" z="1.820"/>
-        <Tilt lateralTilt="0.0" longitudinalTilt="-4" />
-        <Blades chord="0.395" count="4" rootCutout="1.5" flappingHingeHigherLimit="10" flappingHingeLowerLimit="-5" hingeOffset="0.1" radius="6.359" />
-        <Rotation clockwise="true" />
+        <Position x = "0.0" y = "0.465" z = "1.820"/>
+        <Tilt lateralTilt = "0.0" longitudinalTilt = "-4" />
+        <Blades chord = "0.395" count = "4" rootCutout = "1.5" flappingHingeHigherLimit = "10" flappingHingeLowerLimit = "-5" hingeOffset = "0.1" radius = "6.359" />
+        <Rotation clockwise = "true" />
         
       </Geometry>
 
-      <MechanicalFeatures Ir="5000"  Ib="1200" maxBrakeTorque="7000" />
+      <MechanicalFeatures Ir = "5000"  Ib = "1200" maxBrakeTorque = "7000" />
 
       <AerodynamicFeatures>      
-        <InducedVelocity groundEffectFactor="1.5" />
+        <InducedVelocity groundEffectFactor = "1.5" />
             
-        <DesignRPM rpm="340"/>
-        <Blades twist="-8" tipLossFactor="0.03">
+        <DesignRPM rpm = "340"/>
+        <Blades twist = "-8" tipLossFactor = "0.03">
           <LiftCoefficient>
             0    0.3    0.4    0.5    0.6    0.7    0.8    1
             -180    0.000    0.000    0.000    0.000    0.000    0.000    0.000    0.000
@@ -660,24 +660,24 @@
       
     </Rotor>
 
-    <Rotor type="FGRotorMomentumTheory">
-      <InfoPrint printControlInputs="false" printFlappingInfo="false"/>
+    <Rotor type = "FGRotorMomentumTheory">
+      <InfoPrint printControlInputs = "false" printFlappingInfo = "false"/>
 
       <Geometry>
-        <Position x="0.000" y="-7.195" z="0.400"/>
-        <Tilt lateralTilt="-90.0" longitudinalTilt="0.0"/>
-        <Blades chord="0.18" count="4" hingeOffset="0.0" radius="1.105"/>
-        <Delta3 angle="0"/>
+        <Position x = "0.000" y = "-7.195" z = "0.400"/>
+        <Tilt lateralTilt = "-90.0" longitudinalTilt = "0.0"/>
+        <Blades chord = "0.18" count = "4" hingeOffset = "0.0" radius = "1.105"/>
+        <Delta3 angle = "0"/>
         
       </Geometry>
       
-      <MechanicalFeatures Ib="3" Ir="4"/>
+      <MechanicalFeatures Ib = "3" Ir = "4"/>
       
       <AerodynamicFeatures>
-        <GroundEffect magnitude="0.1"/>
-        <DesignRPM rpm="1844"/>
-        <Blades liftCurveSlope="0.108" twist="0" zeroLiftDragCoefficient="0.0103"/>    
-        <Power inducedPowerCorrectionFactor="1.08"/>
+        <GroundEffect magnitude = "0.1"/>
+        <DesignRPM rpm = "1844"/>
+        <Blades liftCurveSlope = "0.108" twist = "0" zeroLiftDragCoefficient = "0.0103"/>    
+        <Power inducedPowerCorrectionFactor = "1.08"/>
         
       </AerodynamicFeatures>
         
@@ -688,12 +688,12 @@
   <StabilizersAndWings>
     <HorizontalStabilizer>
       <Geometry>
-        <Position x="0.000" y="-7.035" z="1.420"/>
-        <Up x="0.0" y="0.0" z="1.0"/>
-        <Front x="0.0" y="1.0" z="0.0"/>
-        <SurfaceArea area="1.01"/>
+        <Position x = "0.000" y = "-7.035" z = "1.420"/>
+        <Up x = "0.0" y = "0.0" z = "1.0"/>
+        <Front x = "0.0" y = "1.0" z = "0.0"/>
+        <SurfaceArea area = "1.01"/>
       </Geometry>
-      <ControlResponse controlSurfaceLiftCoeffDerivative="0.4" controlSurfaceForceArmPos="0.0" maxControlSurfaceDeflection="20.0" minControlSurfaceDeflection="-20.0=" controlSurfaceDeflectionRateLimit="20.0"/>
+      <ControlResponse controlSurfaceLiftCoeffDerivative = "0.4" controlSurfaceForceArmPos = "0.0" maxControlSurfaceDeflection = "20.0" minControlSurfaceDeflection = "-20.0 = " controlSurfaceDeflectionRateLimit = "20.0"/>
 
       <AerodynamicFeatures>
         <DynamicPressureRatio>
@@ -712,7 +712,7 @@
         <!-- Inplane wash factor vs rotor wash skew angle. Three curves for different longitudinal flappings(a1) -->
         <!-- From table 3.5.1 p142 -->
         <MainRotorInplanewash>
-          <Low_a1 a1 ="-6">
+          <Low_a1 a1 = "-6">
             -1000     0.0
             0         0.0
             10         -0.2
@@ -728,7 +728,7 @@
             1000     0.0
           </Low_a1>
 
-          <Medium_a1 a1 ="0">
+          <Medium_a1 a1 = "0">
             -1000      0.0
             0         -0.4
             10         -0.6
@@ -744,7 +744,7 @@
             1000     0.0
           </Medium_a1>
 
-          <High_a1 a1 ="6">
+          <High_a1 a1 = "6">
             -1000     0.0
             0        -0.56
             10        -0.8
@@ -765,7 +765,7 @@
         <!-- Downwash factor vs rotor wash skew angle. Three curves for different longitudinal flappings(a1) -->
         <!-- From table 3.5.2 p142 -->
         <MainRotorDownwash>
-          <Low_a1 a1 ="-6">
+          <Low_a1 a1 = "-6">
             -1000       0.0
         0    0.795
         10    0.851
@@ -779,7 +779,7 @@
             1000      0.0
           </Low_a1>
 
-          <Medium_a1 a1 ="0">
+          <Medium_a1 a1 = "0">
             -1000     0.0
         0    0.812
         10    0.936
@@ -793,7 +793,7 @@
             1000     0.0
           </Medium_a1>
 
-          <High_a1 a1 ="6">
+          <High_a1 a1 = "6">
             -1000     0.0
         0    0.876
         10    1.055
@@ -808,7 +808,7 @@
           </High_a1>
         </MainRotorDownwash>
 
-        <GroundEffect startDistance="1.50" strength="0.0"/>
+        <GroundEffect startDistance = "1.50" strength = "0.0"/>
         <LiftCurve>
 -180    0.000
 -170    0.575
@@ -942,17 +942,17 @@
  <!--"1.960"-->
     <VerticalStabilizer>
       <Geometry>
-        <Position x="0.000" y="-6.559" z="0.220"/>
+        <Position x = "0.000" y = "-6.559" z = "0.220"/>
 
-        <Up x="1.0" y="0.0" z="0"/>
-        <Front x="0" y="1.0" z="0"/>
-        <SurfaceArea area="3.5"/>
+        <Up x = "1.0" y = "0.0" z = "0"/>
+        <Front x = "0" y = "1.0" z = "0"/>
+        <SurfaceArea area = "3.5"/>
       </Geometry>
-      <ControlResponse controlSurfaceForceArmPos="0.0" controlSurfaceLiftCoeffDerivative="0.0"/>
+      <ControlResponse controlSurfaceForceArmPos = "0.0" controlSurfaceLiftCoeffDerivative = "0.0"/>
       <AerodynamicFeatures>
 
 
-        <GroundEffect startDistance="0" strength="0.0"/>
+        <GroundEffect startDistance = "0" strength = "0.0"/>
        <LiftCurve>
           -180     0
           -170     0.34
@@ -1027,102 +1027,102 @@
   </StabilizersAndWings>
 
   <GroundContacts>
-    <GeneralConfiguration    gearExtensionTime="3" maxSteerableGearDeflection="80"     steerableGearSpeedCorrectionFactor="0.0"/>
+    <GeneralConfiguration    gearExtensionTime = "3" maxSteerableGearDeflection = "80"     steerableGearSpeedCorrectionFactor = "0.0"/>
    
-    <GroundContact type="FGGroundContact200" >
-      <Features isBrakable="false" isRetractable="false" isSteerable="false"  />
-      <Aerodynamics equivalentFlatPlateArea ="0.0" />
+    <GroundContact type = "FGGroundContact200" >
+      <Features isBrakable = "false" isRetractable = "false" isSteerable = "false"  />
+      <Aerodynamics equivalentFlatPlateArea = "0.0" />
       <Suspension>
-        <MountStation  x="-1.23" y="2.575" z="-1.6"/>
-        <SliderAxis x="0" y="0" z="1" />
-        <SuspensionLength length="0.2" />
-        <SpringParameters springConstant="420000" damperConstant="50000" maxCompression="0.18" />
+        <MountStation  x = "-1.23" y = "2.575" z = "-1.6"/>
+        <SliderAxis x = "0" y = "0" z = "1" />
+        <SuspensionLength length = "0.2" />
+        <SpringParameters springConstant = "420000" damperConstant = "50000" maxCompression = "0.18" />
       </Suspension>
-      <Wheel mass="1" radius="0.1" >
-        <RollAxis x="1" y="0" z="0" />
-        <Friction slidingFriction="0.5" resistanceTorqueNoBrake="400" resistanceTorqueFullBrake="400" />
+      <Wheel mass = "1" radius = "0.1" >
+        <RollAxis x = "1" y = "0" z = "0" />
+        <Friction slidingFriction = "0.5" resistanceTorqueNoBrake = "400" resistanceTorqueFullBrake = "400" />
       </Wheel>
-      <Damage thresholdLoad="20000000" />
+      <Damage thresholdLoad = "20000000" />
     </GroundContact>
 
-    <GroundContact type="FGGroundContact200" >
-      <Features isBrakable="false" isRetractable="false" isSteerable="false"  />
-      <Aerodynamics equivalentFlatPlateArea ="0.0" />
+    <GroundContact type = "FGGroundContact200" >
+      <Features isBrakable = "false" isRetractable = "false" isSteerable = "false"  />
+      <Aerodynamics equivalentFlatPlateArea = "0.0" />
       <Suspension>
-        <MountStation  x="1.23" y="2.575" z="-1.6"/>
-        <SliderAxis x="0" y="0" z="1" />
-        <SuspensionLength length="0.2" />
-        <SpringParameters springConstant="420000" damperConstant="50000" maxCompression="0.18" />
+        <MountStation  x = "1.23" y = "2.575" z = "-1.6"/>
+        <SliderAxis x = "0" y = "0" z = "1" />
+        <SuspensionLength length = "0.2" />
+        <SpringParameters springConstant = "420000" damperConstant = "50000" maxCompression = "0.18" />
       </Suspension>
-      <Wheel mass="1" radius="0.1" >
-        <RollAxis x="1" y="0" z="0" />
-        <Friction slidingFriction="0.5" resistanceTorqueNoBrake="400" resistanceTorqueFullBrake="400" />
+      <Wheel mass = "1" radius = "0.1" >
+        <RollAxis x = "1" y = "0" z = "0" />
+        <Friction slidingFriction = "0.5" resistanceTorqueNoBrake = "400" resistanceTorqueFullBrake = "400" />
       </Wheel>
-      <Damage thresholdLoad="20000000" />
+      <Damage thresholdLoad = "20000000" />
     </GroundContact>
 
-    <GroundContact type="FGGroundContact200" >
-      <Features isBrakable="false" isRetractable="false" isSteerable="false"  />
-      <Aerodynamics equivalentFlatPlateArea ="0.0" />
+    <GroundContact type = "FGGroundContact200" >
+      <Features isBrakable = "false" isRetractable = "false" isSteerable = "false"  />
+      <Aerodynamics equivalentFlatPlateArea = "0.0" />
       <Suspension>
-        <MountStation  x="-1.23" y="-1.007" z="-1.6"/>
-        <SliderAxis x="0" y="0" z="1" />
-        <SuspensionLength length="0.2" />
-        <SpringParameters springConstant="420000" damperConstant="50000" maxCompression="0.18" />
+        <MountStation  x = "-1.23" y = "-1.007" z = "-1.6"/>
+        <SliderAxis x = "0" y = "0" z = "1" />
+        <SuspensionLength length = "0.2" />
+        <SpringParameters springConstant = "420000" damperConstant = "50000" maxCompression = "0.18" />
       </Suspension>
-      <Wheel mass="1" radius="0.1" >
-        <RollAxis x="1" y="0" z="0" />
-        <Friction slidingFriction="0.5" resistanceTorqueNoBrake="400" resistanceTorqueFullBrake="400" />
+      <Wheel mass = "1" radius = "0.1" >
+        <RollAxis x = "1" y = "0" z = "0" />
+        <Friction slidingFriction = "0.5" resistanceTorqueNoBrake = "400" resistanceTorqueFullBrake = "400" />
       </Wheel>
-      <Damage thresholdLoad="20000000" />
+      <Damage thresholdLoad = "20000000" />
     </GroundContact>
 
-    <GroundContact type="FGGroundContact200" >
-      <Features isBrakable="false" isRetractable="false" isSteerable="false"  />
-      <Aerodynamics equivalentFlatPlateArea ="0.0" />
+    <GroundContact type = "FGGroundContact200" >
+      <Features isBrakable = "false" isRetractable = "false" isSteerable = "false"  />
+      <Aerodynamics equivalentFlatPlateArea = "0.0" />
       <Suspension>
-        <MountStation  x="1.23" y="-1.007" z="-1.6"/>
-        <SliderAxis x="0" y="0" z="1" />
-        <SuspensionLength length="0.2" />
-        <SpringParameters springConstant="420000" damperConstant="50000" maxCompression="0.18" />
+        <MountStation  x = "1.23" y = "-1.007" z = "-1.6"/>
+        <SliderAxis x = "0" y = "0" z = "1" />
+        <SuspensionLength length = "0.2" />
+        <SpringParameters springConstant = "420000" damperConstant = "50000" maxCompression = "0.18" />
       </Suspension>
-      <Wheel mass="1" radius="0.1" >
-        <RollAxis x="1" y="0" z="0" />
-        <Friction slidingFriction="0.5" resistanceTorqueNoBrake="400" resistanceTorqueFullBrake="400" />
+      <Wheel mass = "1" radius = "0.1" >
+        <RollAxis x = "1" y = "0" z = "0" />
+        <Friction slidingFriction = "0.5" resistanceTorqueNoBrake = "400" resistanceTorqueFullBrake = "400" />
       </Wheel>
-      <Damage thresholdLoad="20000000" />
+      <Damage thresholdLoad = "20000000" />
     </GroundContact>  
   
-      <GroundContact type="FGGroundContact200" >
-      <Features isBrakable="false" isRetractable="false" isSteerable="false"  />
-      <Aerodynamics equivalentFlatPlateArea ="0.0" />
+      <GroundContact type = "FGGroundContact200" >
+      <Features isBrakable = "false" isRetractable = "false" isSteerable = "false"  />
+      <Aerodynamics equivalentFlatPlateArea = "0.0" />
       <Suspension>
-        <MountStation  x="0" y="4.665" z="-1.228"/>
-        <SliderAxis x="0" y="0" z="1" />
-        <SuspensionLength length="0" />
-        <SpringParameters springConstant="420000" damperConstant="50000" maxCompression="0" />
+        <MountStation  x = "0" y = "4.665" z = "-1.228"/>
+        <SliderAxis x = "0" y = "0" z = "1" />
+        <SuspensionLength length = "0" />
+        <SpringParameters springConstant = "420000" damperConstant = "50000" maxCompression = "0" />
       </Suspension>
-      <Wheel mass="0.1" radius="0.1" >
-        <RollAxis x="1" y="0" z="0" />
-        <Friction slidingFriction="0.5" resistanceTorqueNoBrake="1000" resistanceTorqueFullBrake="1000" />
+      <Wheel mass = "0.1" radius = "0.1" >
+        <RollAxis x = "1" y = "0" z = "0" />
+        <Friction slidingFriction = "0.5" resistanceTorqueNoBrake = "1000" resistanceTorqueFullBrake = "1000" />
       </Wheel>
-      <Damage thresholdLoad="20000000" />
+      <Damage thresholdLoad = "20000000" />
     </GroundContact>
   
-      <GroundContact type="FGGroundContact200" >
-      <Features isBrakable="false" isRetractable="false" isSteerable="false"  />
-      <Aerodynamics equivalentFlatPlateArea ="0.0" />
+      <GroundContact type = "FGGroundContact200" >
+      <Features isBrakable = "false" isRetractable = "false" isSteerable = "false"  />
+      <Aerodynamics equivalentFlatPlateArea = "0.0" />
       <Suspension>
-        <MountStation  x="0" y="-7.091" z="-1.023"/>
-        <SliderAxis x="0" y="0" z="1" />
-        <SuspensionLength length="0" />
-        <SpringParameters springConstant="420000" damperConstant="50000" maxCompression="0" />
+        <MountStation  x = "0" y = "-7.091" z = "-1.023"/>
+        <SliderAxis x = "0" y = "0" z = "1" />
+        <SuspensionLength length = "0" />
+        <SpringParameters springConstant = "420000" damperConstant = "50000" maxCompression = "0" />
       </Suspension>
-      <Wheel mass="0.1" radius="0.1" >
-        <RollAxis x="1" y="0" z="0" />
-        <Friction slidingFriction="0.5" resistanceTorqueNoBrake="1000" resistanceTorqueFullBrake="1000" />
+      <Wheel mass = "0.1" radius = "0.1" >
+        <RollAxis x = "1" y = "0" z = "0" />
+        <Friction slidingFriction = "0.5" resistanceTorqueNoBrake = "1000" resistanceTorqueFullBrake = "1000" />
       </Wheel>
-      <Damage thresholdLoad="20000000" />
+      <Damage thresholdLoad = "20000000" />
     </GroundContact>
        
   </GroundContacts>

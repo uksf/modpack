@@ -13,7 +13,7 @@ class CfgVehicles {
     class Man;
     class CAManBase: Man {
         class EventHandlers {
-            class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+            class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
         };
     };
 

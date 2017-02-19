@@ -30,7 +30,7 @@ class CUP_B_Mastiff_HMG_GB_W: CUP_Mastiff_Base {
     };
     REARM_ACTIONS
 };
-class CUP_B_Mastiff_GMG_GB_D : CUP_Mastiff_Base {
+class CUP_B_Mastiff_GMG_GB_D: CUP_Mastiff_Base {
     class Turrets: Turrets {
         class MainTurret: MainTurret {
             magazines[] = { "UK3CB_BAF_32Rnd_40mm_G_Box" };
@@ -44,7 +44,7 @@ class CUP_B_Mastiff_GMG_GB_D : CUP_Mastiff_Base {
     };
     REARM_ACTIONS
 };
-class CUP_B_Mastiff_GMG_GB_W : CUP_Mastiff_Base {
+class CUP_B_Mastiff_GMG_GB_W: CUP_Mastiff_Base {
     class Turrets: Turrets {
         class MainTurret: MainTurret {
             magazines[] = { "UK3CB_BAF_32Rnd_40mm_G_Box" };
@@ -58,7 +58,7 @@ class CUP_B_Mastiff_GMG_GB_W : CUP_Mastiff_Base {
     };
     REARM_ACTIONS
 };
-class CUP_B_Mastiff_LMG_GB_D : CUP_Mastiff_Base {
+class CUP_B_Mastiff_LMG_GB_D: CUP_Mastiff_Base {
     class Turrets: Turrets {
         class Mainturret: NewTurret {
             magazines[] = { "UK3CB_BAF_762_100Rnd_T" };
@@ -72,7 +72,7 @@ class CUP_B_Mastiff_LMG_GB_D : CUP_Mastiff_Base {
     };
     REARM_ACTIONS
 };
-class CUP_B_Mastiff_LMG_GB_W : CUP_Mastiff_Base {
+class CUP_B_Mastiff_LMG_GB_W: CUP_Mastiff_Base {
     class Turrets: Turrets {
         class Mainturret: NewTurret {
             magazines[] = { "UK3CB_BAF_762_100Rnd_T" };

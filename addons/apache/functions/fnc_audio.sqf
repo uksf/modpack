@@ -30,16 +30,16 @@ params [["_sound1", ""], ["_delay1", 0], ["_sound2", ""], ["_delay2", 0], ["_sou
             playsound [_sound1, true];
             [{
                 playsound [_this, true];
-            }, _sound2, _delay1] call CBA_fnc_waitAndExecute;
+            }, _sound2, _delay1] call cba_fnc_waitAndExecute;
             [{
                 playsound [_this, true];
-            }, _sound3, (_delay1 + _delay2)] call CBA_fnc_waitAndExecute;
+            }, _sound3, (_delay1 + _delay2)] call cba_fnc_waitAndExecute;
         } else {
             if (_sound2 != "") then {
                 playsound [_sound1, true];
                 [{
                     playsound [_this, true];
-                }, _sound2, _delay1] call CBA_fnc_waitAndExecute;
+                }, _sound2, _delay1] call cba_fnc_waitAndExecute;
             } else {
                 if (_sound1 != "") then {
                     playsound [_sound1, true];
@@ -50,5 +50,5 @@ params [["_sound1", ""], ["_delay1", 0], ["_sound2", ""], ["_delay2", 0], ["_sou
 
     [{
         GVAR(soundPlaying) = false;
-    }, [], (_delay1 + _delay2 + _delay3)] call CBA_fnc_waitAndExecute;    
-}, [_sound1, _delay1, _sound2, _delay2, _sound3, _delay3]] call CBA_fnc_waitUntilAndExecute;
+    }, [], (_delay1 + _delay2 + _delay3)] call cba_fnc_waitAndExecute;    
+}, [_sound1, _delay1, _sound2, _delay2, _sound3, _delay3]] call cba_fnc_waitUntilAndExecute;

@@ -5,14 +5,14 @@
 
 #define _ARMA_
 
-//Class air : Data\ah1z_monitors.rvmat{
+//Class air: Data\ah1z_monitors.rvmat{
 ambient[] = {1.0,1.0,1.0,1.0};
 diffuse[] = {1.0,1.0,1.0,1.0};
 forcedDiffuse[] = {0.0,0.0,0.0,0.0};
 emmisive[] = {0.0,0.0,0.0,0.0};
 specular[] = {1.0,1.0,1.0,0.0};
 specularPower = 70.0;
-renderFlags[] = {"NoZWrite"};
+renderFlags[] = { "NoZWrite" };
 PixelShaderID = "NormalMapSpecularDIMap";
 VertexShaderID = "NormalMap";
 class Stage1

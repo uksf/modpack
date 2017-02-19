@@ -5,7 +5,7 @@
 
 #define _ARMA_
 
-//Class data_f : lights\car_panels.rvmat{
+//Class data_f: lights\car_panels.rvmat{
 class StageTI
 {
     texture = "a3\data_f\default_vehicle_ti_ca.paa";

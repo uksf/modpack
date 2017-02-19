@@ -28,7 +28,7 @@ class CfgPatches {
 
 class RscInGameUI {
     class RscUnitInfo;
-    class Rsc_UKSF_Air_Limited : RscUnitInfo {
+    class Rsc_UKSF_Air_Limited: RscUnitInfo {
         controls[] = {
             "WeaponInfoControlsGroupRight",
             "CA_TextFlaresMode",

@@ -12,7 +12,7 @@ class Inegal_Static_HMG: I_HMG_01_high_F {
     };
     class eventhandlers {
         init = "(_this select 0) setSkill [""aimingAccuracy"", 0.01]; (_this select 0) setSkill [""aimingSpeed"", 0.01]; (_this select 0) setSkill [""aimingshake"", 0.01]; (_this select 0) setSkill [""spotTime"", 1];";
-        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };
 
@@ -30,7 +30,7 @@ class Inegal_Static_GMG: I_HMG_01_high_F {
     };
     class eventhandlers {
         init = "(_this select 0) setSkill [""aimingAccuracy"", 0.01]; (_this select 0) setSkill [""aimingSpeed"", 0.01]; (_this select 0) setSkill [""aimingshake"", 0.01]; (_this select 0) setSkill [""spotTime"", 1];";
-        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };
 

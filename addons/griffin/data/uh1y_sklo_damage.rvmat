@@ -5,14 +5,14 @@
 
 #define _ARMA_
 
-//Class air2 : UH1Y\DATA\uh1y_sklo_damage.rvmat{
+//Class air2: UH1Y\DATA\uh1y_sklo_damage.rvmat{
 ambient[] = {1.0,1.0,1.0,1.0};
 diffuse[] = {1.0,1.0,1.0,1.0};
 forcedDiffuse[] = {0.0,0.0,0.0,1.0};
 emmisive[] = {0.0,0.0,0.0,1.0};
 specular[] = {2.0,2.0,2.0,1.0};
 specularPower = 1000.0;
-renderFlags[] = {"NoAlphaWrite"};
+renderFlags[] = { "NoAlphaWrite" };
 PixelShaderID = "Super";
 VertexShaderID = "Super";
 class Stage1

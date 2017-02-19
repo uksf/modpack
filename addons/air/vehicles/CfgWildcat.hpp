@@ -2,19 +2,19 @@ class CUP_AW159_Unarmed_Base: Helicopter_Base_H {
     scope = 1;
     scopeCurator = 0;
     maxspeed = 311;
-    landingSoundInt0[]= { "A3\Sounds_F\vehicles\air\noises\landing_wheels_small_int1", 0.25, 1, 50 };
-    landingSoundInt1[]= { "A3\Sounds_F\vehicles\air\noises\landing_wheels_small_int2", 0.25, 1, 50 };
-    landingSoundInt[]= { "landingSoundInt0", 0.5, "landingSoundInt1", 0.5 };
-    landingSoundOut0[]= { "A3\Sounds_F\vehicles\air\noises\landing_wheels_ext1", 0.4, 1, 50 };
-    landingSoundOut1[]= { "A3\Sounds_F\vehicles\air\noises\landing_wheels_ext2", 0.4, 1, 50 };
-    landingSoundOut[]= { "landingSoundOut0", 0.5, "landingSoundOut1", 0.5 };
+    landingSoundInt0[] = { "A3\Sounds_F\vehicles\air\noises\landing_wheels_small_int1", 0.25, 1, 50 };
+    landingSoundInt1[] = { "A3\Sounds_F\vehicles\air\noises\landing_wheels_small_int2", 0.25, 1, 50 };
+    landingSoundInt[] = { "landingSoundInt0", 0.5, "landingSoundInt1", 0.5 };
+    landingSoundOut0[] = { "A3\Sounds_F\vehicles\air\noises\landing_wheels_ext1", 0.4, 1, 50 };
+    landingSoundOut1[] = { "A3\Sounds_F\vehicles\air\noises\landing_wheels_ext2", 0.4, 1, 50 };
+    landingSoundOut[] = { "landingSoundOut0", 0.5, "landingSoundOut1", 0.5 };
     unitInfoType = "Rsc_UKSF_Air_Limited";
     unitInfoTypeLite = "Rsc_UKSF_Air_Limited";
     #include "MFDGeneral.hpp"
     class Turrets: Turrets {
         class MainTurret;
     };
-    class ACE_Actions : ACE_Actions {
+    class ACE_Actions: ACE_Actions {
         class ACE_MainActions: ACE_MainActions {
             position = "[0,0,1.5]";
         };

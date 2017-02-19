@@ -16,7 +16,7 @@ class Inegal_VAB_Unarmed: I_MRAP_03_F {
     class TransportWeapons {};
     class TransportBackpacks {};
     class EventHandlers {
-        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };
 class Inegal_VAB_D_Unarmed: Inegal_VAB_Unarmed {
@@ -45,7 +45,7 @@ class Inegal_VAB_HMG: I_MRAP_03_hmg_F {
     class TransportWeapons {};
     class TransportBackpacks {};
     class EventHandlers {
-        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };
 class Inegal_VAB_D_HMG: Inegal_VAB_HMG {
@@ -74,7 +74,7 @@ class Inegal_VAB_GMG: I_MRAP_03_gmg_F {
     class TransportWeapons {};
     class TransportBackpacks {};
     class EventHandlers {
-        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };
 class Inegal_VAB_D_GMG: Inegal_VAB_GMG {

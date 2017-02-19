@@ -17,7 +17,7 @@ class Inegal_Heli_AW101: I_Heli_Transport_02_F {
     class TransportWeapons {};
     class TransportBackpacks {};
     class EventHandlers {
-        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };
 
@@ -56,7 +56,7 @@ class Inegal_Heli_MH6: B_Heli_Light_01_F {
     class TransportWeapons {};
     class TransportBackpacks {};
     class EventHandlers {
-        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };
 class Inegal_Heli_FDF_MH6: Inegal_Heli_MH6 {

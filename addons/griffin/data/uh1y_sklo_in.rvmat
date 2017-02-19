@@ -5,7 +5,7 @@
 
 #define _ARMA_
 
-//Class air2 : UH1Y\DATA\uh1y_sklo_in.rvmat{
+//Class air2: UH1Y\DATA\uh1y_sklo_in.rvmat{
 class StageTI
 {
     texture = "u\uksf\addons\griffin\data\ah64d_glass_ti_ca.paa";
@@ -16,7 +16,7 @@ forcedDiffuse[] = {0.0,0.0,0.0,0.0};
 emmisive[] = {0.0,0.0,0.0,0.0};
 specular[] = {1.0,1.0,1.0,0.0};
 specularPower = 800.0;
-renderFlags[] = {"NoZWrite","NoAlphaWrite"};
+renderFlags[] = { "NoZWrite","NoAlphaWrite" };
 PixelShaderID = "Super";
 VertexShaderID = "Super";
 class Stage1

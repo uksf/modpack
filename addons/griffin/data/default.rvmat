@@ -5,7 +5,7 @@
 
 #define _ARMA_
 
-//Class ca_e : data\default.rvmat{
+//Class ca_e: data\default.rvmat{
 ambient[] = {1,1,1,1};
 diffuse[] = {1,1,1,1};
 forcedDiffuse[] = {0,0,0,0};

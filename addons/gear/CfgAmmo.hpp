@@ -25,7 +25,7 @@ class CfgAmmo{
     };
 
     class MissileBase;
-    class CUP_M_AGM_114K_Hellfire_II_AT : MissileBase {
+    class CUP_M_AGM_114K_Hellfire_II_AT: MissileBase {
         model = QPATHTOF(data\AGM114\AGM114Hellfire.p3d);
         proxyShape = QPATHTOF(data\AGM114\AGM114Hellfire_proxy.p3d);
         CraterEffects = "ATRocketCrater";
@@ -116,7 +116,7 @@ class CfgAmmo{
         caliber = 4.2;
     };
     class M_Titan_AA;
-    class UKSF_Dummy_Missile : M_Titan_AA {
+    class UKSF_Dummy_Missile: M_Titan_AA {
         indirectHitRange = 1;
         fusedistance = 0.01;
         inittime = 0.01;

@@ -1,5 +1,5 @@
-// BWC for CBA's DEBUG_SYNCHRONOUS - https://github.com/CBATeam/CBA_A3/pull/466/
-#ifdef CBA_DEBUG_SYNCHRONOUS
+// BWC for CBA's DEBUG_SYNCHRONOUS - https://github.com/CBATeam/cba_A3/pull/466/
+#ifdef cba_DEBUG_SYNCHRONOUS
     // For New CBA:
     #define DEBUG_SYNCHRONOUS
     // For Old CBA:
@@ -61,7 +61,7 @@
     #define PREP(fncName) FUNC(fncName) = compile preprocessFileLineNumbers QPATHTOF(functions\DOUBLES(fnc,fncName).sqf)
 #else
     #undef PREP
-    #define PREP(fncName) [QPATHTOF(functions\DOUBLES(fnc,fncName).sqf), QFUNC(fncName)] call CBA_fnc_compileFunction
+    #define PREP(fncName) [QPATHTOF(functions\DOUBLES(fnc,fncName).sqf), QFUNC(fncName)] call cba_fnc_compileFunction
 #endif
 
 #define PREP_MODULE(folder) [] call compile preprocessFileLineNumbers QPATHTOF(folder\__PREP__.sqf)

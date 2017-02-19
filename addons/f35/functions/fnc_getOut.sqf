@@ -18,11 +18,11 @@
 params ["_plane", "_position", "_unit"];
 
 if (_unit isEqualTo player && local _plane) then {
-    if (!isNil QGVAR(stealthHandler)) then {[GVAR(stealthHandler)] call CBA_fnc_removePerFrameHandler;};
-    if (!isNil QGVAR(animationHandler)) then {[GVAR(animationHandler)] call CBA_fnc_removePerFrameHandler;};
-    if (!isNil QGVAR(screenHandler)) then {[GVAR(screenHandler)] call CBA_fnc_removePerFrameHandler;};
-    if (!isNil QGVAR(sonicHandler)) then {[GVAR(sonicHandler)] call CBA_fnc_removePerFrameHandler;};
-    if (!isNil QGVAR(afterburnerHandler)) then {[GVAR(afterburnerHandler)] call CBA_fnc_removePerFrameHandler;};
+    if (!isNil QGVAR(stealthHandler)) then {[GVAR(stealthHandler)] call cba_fnc_removePerFrameHandler;};
+    if (!isNil QGVAR(animationHandler)) then {[GVAR(animationHandler)] call cba_fnc_removePerFrameHandler;};
+    if (!isNil QGVAR(screenHandler)) then {[GVAR(screenHandler)] call cba_fnc_removePerFrameHandler;};
+    if (!isNil QGVAR(sonicHandler)) then {[GVAR(sonicHandler)] call cba_fnc_removePerFrameHandler;};
+    if (!isNil QGVAR(afterburnerHandler)) then {[GVAR(afterburnerHandler)] call cba_fnc_removePerFrameHandler;};
 
     _plane setcaptive false;
     _unit setcaptive false;

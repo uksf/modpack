@@ -33,10 +33,10 @@
                 params ["_args", "_idPFH"];
                 _args params ["_unit", "_animation", "_time"];
                 if (diag_tickTime - _time > 1) exitWith {
-                    [_idPFH] call CBA_fnc_removePerFrameHandler;
+                    [_idPFH] call cba_fnc_removePerFrameHandler;
                 };
                 [_unit, _animation] remoteExecCall ["switchMove", 0];
-            }, 0, [_unit, _animation, _time]] call CBA_fnc_addPerFrameHandler;
+            }, 0, [_unit, _animation, _time]] call cba_fnc_addPerFrameHandler;
         };
 
     } else {
@@ -44,4 +44,4 @@
             SETVAR(_unit,GVAR(inZeus),false);
         };
     };
-}, 1,[]] call CBA_fnc_addPerFrameHandler;
+}, 1,[]] call cba_fnc_addPerFrameHandler;

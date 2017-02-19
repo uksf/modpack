@@ -279,7 +279,7 @@ class Laraka_RPG: TBan_Fighter5 {
         "ItemCompass"
     };
     class EventHandlers {
-        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };
 class Laraka_SVD: TBan_Fighter5 {
@@ -415,31 +415,31 @@ class Laraka_Warlord: TBan_Warlord {
     };
 };
 
-class Azaadi_L : Laraka_L {
+class Azaadi_L: Laraka_L {
     side = 2;
     faction = "UKSF_Azaadi";
 };
-class Azaadi_AK : Laraka_AK {
+class Azaadi_AK: Laraka_AK {
     side = 2;
     faction = "UKSF_Azaadi";
 };
-class Azaadi_PKM : Laraka_PKM {
+class Azaadi_PKM: Laraka_PKM {
     side = 2;
     faction = "UKSF_Azaadi";
 };
-class Azaadi_PKP : Laraka_PKP {
+class Azaadi_PKP: Laraka_PKP {
     side = 2;
     faction = "UKSF_Azaadi";
 };
-class Azaadi_RPG : Laraka_RPG {
+class Azaadi_RPG: Laraka_RPG {
     side = 2;
     faction = "UKSF_Azaadi";
 };
-class Azaadi_SVD : Laraka_SVD {
+class Azaadi_SVD: Laraka_SVD {
     side = 2;
     faction = "UKSF_Azaadi";
 };
-class Azaadi_Warlord : Laraka_Warlord {
+class Azaadi_Warlord: Laraka_Warlord {
     side = 2;
     faction = "UKSF_Azaadi";
 };

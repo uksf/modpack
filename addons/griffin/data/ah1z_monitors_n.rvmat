@@ -5,7 +5,7 @@
 
 #define _ARMA_
 
-//Class air : Data\ah1z_monitors_n.rvmat{
+//Class air: Data\ah1z_monitors_n.rvmat{
 ambient[] = {0.032,0.032,0.032,1.0};
 diffuse[] = {0.032,0.032,0.032,1.0};
 forcedDiffuse[] = {0.032,0.032,0.032,0.0};

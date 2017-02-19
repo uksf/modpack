@@ -40,14 +40,14 @@ class Genfor_Air_MI8_Populated: Genfor_Air_MI8 {
     displayName = "Mi-8 (Populated)";
     editorPreview = QPATHTOEF(common,data\previews\Genfor_Air_MI8_Populated.jpg);
     class EventHandlers {
-        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };
 class Genfor_Air_MI8MTV_Populated: Genfor_Air_MI8MTV {
     displayName = "Mi-8 MTV (Populated)";
     editorPreview = QPATHTOEF(common,data\previews\Genfor_Air_MI8MTV_Populated.jpg);
     class EventHandlers {
-        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
     };
 };
 

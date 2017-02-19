@@ -14,7 +14,7 @@ class Extended_PreInit_EventHandlers {
 class Extended_Init_EventHandlers {
     class UKSF_Griffin {
         class ADDON {
-            init = QUOTE(if (player == driver (_this select 0) || player == gunner (_this select 0)) then {(_this select 0) call FUNC(getIn)};);
+            init = QUOTE(if (player  isEqualTo  driver (_this select 0) || player  isEqualTo  gunner (_this select 0)) then {(_this select 0) call FUNC(getIn)};);
         };
     };
 };

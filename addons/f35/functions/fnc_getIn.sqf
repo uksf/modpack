@@ -20,7 +20,7 @@ GVAR(stealthHandler) = [{
     _args params ["_plane"];
 
     if (!alive _plane) exitWith {
-        [_idPFH] call CBA_fnc_removePerFrameHandler;
+        [_idPFH] call cba_fnc_removePerFrameHandler;
     };
 
     if (local _plane) then {
@@ -30,14 +30,14 @@ GVAR(stealthHandler) = [{
             _plane setcaptive false;
         };
     };
-}, 1, [_plane]] call CBA_fnc_addPerFrameHandler;
+}, 1, [_plane]] call cba_fnc_addPerFrameHandler;
 
 GVAR(animationHandler) = [{
     params ["_args", "_idPFH"];
     _args params ["_plane"];
 
     if (!alive _plane) exitWith {
-        [_idPFH] call CBA_fnc_removePerFrameHandler;
+        [_idPFH] call cba_fnc_removePerFrameHandler;
     };
 
     if (local _plane) then {
@@ -115,7 +115,7 @@ GVAR(animationHandler) = [{
             _plane animate ["wingtipL_lip",0];
         };
     };
-}, 0.1, [_plane]] call CBA_fnc_addPerFrameHandler;
+}, 0.1, [_plane]] call cba_fnc_addPerFrameHandler;
 
 if (isNil "F22_initstate") then {
     for "_i" from 1 to 11 do {  _plane setVariable [(format["screen_%1",_i]),'off',true]; };
@@ -130,7 +130,7 @@ GVAR(screenHandler) = [{
     _args params ["_plane"];
 
     if (!alive _plane) exitWith {
-        [_idPFH] call CBA_fnc_removePerFrameHandler;
+        [_idPFH] call cba_fnc_removePerFrameHandler;
     };
 
     if (local _plane) then {
@@ -147,6 +147,6 @@ GVAR(screenHandler) = [{
         if (_plane getVariable ["screen_5",'off'] isEqualTo 'off') then {_plane setobjecttexture [5,"\USAF_F35A\data\black_co.paa"];} else {_plane setobjecttexture [5,"\USAF_F35A\data\f_35c_mfd_co.paa"];};
         if (_plane getVariable ["screen_6",'off'] isEqualTo 'off') then {_plane setobjecttexture [6,"\USAF_F35A\data\black_co.paa"];} else {_plane setobjecttexture [6,"\USAF_F35A\data\f_35c_mfd_co.paa"];};
     };
-}, 0, [_plane]] call CBA_fnc_addPerFrameHandler;
+}, 0, [_plane]] call cba_fnc_addPerFrameHandler;
 
 [_plane] call FUNC(sonicBoom);

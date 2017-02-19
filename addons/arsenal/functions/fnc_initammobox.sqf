@@ -72,4 +72,3 @@ if (_isVirtual) then {
     _values = _list select 1;
     {_entity addbackpackcargoglobal [_x,_values select _foreachindex];} foreach _classes;
 };
-

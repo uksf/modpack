@@ -119,7 +119,7 @@ _dumpConfigTree = {
         if (isClass _this) exitwith {
             "class " + _confName + (
                 configName inheritsFrom _this call {
-                    if (_this == "" || !_specifyParentClass) then { "" } else { " : " + _this }
+                    if (_this == "" || !_specifyParentClass) then {"" } else {": " + _this }
                 }
             ) + " {" call _pushLine;
             if (_includeInheritedProperties) then {

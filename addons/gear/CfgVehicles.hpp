@@ -688,7 +688,7 @@ class CfgVehicles {
         displayName = "ACRE Radios";
         class eventhandlers {
             init = "this addItemCargoGlobal [""ACRE_PRC117F"", 10]";
-            class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+            class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
         };
         class TransportMagazines {};
         class TransportWeapons {};
@@ -721,12 +721,12 @@ class CfgVehicles {
         displayName = "Figure 11 Target - No Popup";
         class EventHandlers {
             hitPart = "";
-            class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+            class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
         };
     };
 
     class CUP_USBasicAmmunitionBox;
-    class CUP_USLaunchersBox : CUP_USBasicAmmunitionBox {
+    class CUP_USLaunchersBox: CUP_USBasicAmmunitionBox {
         class TransportMagazines {
             class _xx_M136_M {
                 magazine = "CUP_M136_M";
@@ -770,7 +770,7 @@ class CfgVehicles {
     };
 
     class CUP_ReammoBox_EP1;
-    class CUP_USLaunchers_EP1 : CUP_ReammoBox_EP1 {
+    class CUP_USLaunchers_EP1: CUP_ReammoBox_EP1 {
         class TransportMagazines {
             class _xx_M136_M {
                 magazine = "CUP_M136_M";
@@ -893,7 +893,7 @@ class CfgVehicles {
     class StaticMGWeapon: StaticWeapon {
         class Turrets;
     };
-    class UK3CB_BAF_Static_MG_Base : StaticMGWeapon {
+    class UK3CB_BAF_Static_MG_Base: StaticMGWeapon {
         faction = "CUP_B_GB";
         crew = "CUP_B_BAF_Soldier_MTP";
         typicalCargo[] = { "CUP_B_BAF_Soldier_MTP" };
@@ -901,85 +901,85 @@ class CfgVehicles {
             class MainTurret;
         };
     };
-    class UK3CB_BAF_Static_L7A2_Base : UK3CB_BAF_Static_MG_Base {
-        class Turrets : Turrets {
-            class MainTurret : MainTurret {
+    class UK3CB_BAF_Static_L7A2_Base: UK3CB_BAF_Static_MG_Base {
+        class Turrets: Turrets {
+            class MainTurret: MainTurret {
                 weapons[] = { "CUP_Vlmg_M240_veh" };
             };
         };
     };
     class UK3CB_BAF_Static_L7A2_Low;
-    class UK3CB_BAF_Static_L7A2_Deployed_Low : UK3CB_BAF_Static_L7A2_Low {
+    class UK3CB_BAF_Static_L7A2_Deployed_Low: UK3CB_BAF_Static_L7A2_Low {
         faction = "CUP_B_GB";
         crew = "CUP_B_BAF_Soldier_MTP";
     };
     class UK3CB_BAF_Static_L7A2_Mid;
-    class UK3CB_BAF_Static_L7A2_Deployed_Mid : UK3CB_BAF_Static_L7A2_Mid {
+    class UK3CB_BAF_Static_L7A2_Deployed_Mid: UK3CB_BAF_Static_L7A2_Mid {
         faction = "CUP_B_GB";
         crew = "CUP_B_BAF_Soldier_MTP";
     };
     class UK3CB_BAF_Static_L7A2_High;
-    class UK3CB_BAF_Static_L7A2_Deployed_High : UK3CB_BAF_Static_L7A2_High {
+    class UK3CB_BAF_Static_L7A2_Deployed_High: UK3CB_BAF_Static_L7A2_High {
         faction = "CUP_B_GB";
         crew = "CUP_B_BAF_Soldier_MTP";
     };
-    class UK3CB_BAF_Static_L111A1_Base : UK3CB_BAF_Static_MG_Base {
-        class Turrets : Turrets {
-            class MainTurret : MainTurret {
+    class UK3CB_BAF_Static_L111A1_Base: UK3CB_BAF_Static_MG_Base {
+        class Turrets: Turrets {
+            class MainTurret: MainTurret {
                 weapons[] = { "CUP_Vhmg_M2_veh" };
             };
         };
     };
     class UK3CB_BAF_Static_L111A1_Low;
-    class UK3CB_BAF_Static_L111A1_Deployed_Low : UK3CB_BAF_Static_L111A1_Low {
+    class UK3CB_BAF_Static_L111A1_Deployed_Low: UK3CB_BAF_Static_L111A1_Low {
         faction = "CUP_B_GB";
         crew = "CUP_B_BAF_Soldier_MTP";
     };
     class UK3CB_BAF_Static_L111A1_Mid;
-    class UK3CB_BAF_Static_L111A1_Deployed_Mid : UK3CB_BAF_Static_L111A1_Mid {
+    class UK3CB_BAF_Static_L111A1_Deployed_Mid: UK3CB_BAF_Static_L111A1_Mid {
         faction = "CUP_B_GB";
         crew = "CUP_B_BAF_Soldier_MTP";
     };
     class UK3CB_BAF_Static_L111A1_High;
-    class UK3CB_BAF_Static_L111A1_Deployed_High : UK3CB_BAF_Static_L111A1_High {
+    class UK3CB_BAF_Static_L111A1_Deployed_High: UK3CB_BAF_Static_L111A1_High {
         faction = "CUP_B_GB";
         crew = "CUP_B_BAF_Soldier_MTP";
     };
-    class UK3CB_BAF_Static_L134A1_Base : UK3CB_BAF_Static_MG_Base {
-        class Turrets : Turrets {
-            class MainTurret : MainTurret {
+    class UK3CB_BAF_Static_L134A1_Base: UK3CB_BAF_Static_MG_Base {
+        class Turrets: Turrets {
+            class MainTurret: MainTurret {
                 weapons[] = { "CUP_Vgmg_MK19_veh" };
             };
         };
     };
     class UK3CB_BAF_Static_L134A1_Low;
-    class UK3CB_BAF_Static_L134A1_Deployed_Low : UK3CB_BAF_Static_L134A1_Low {
+    class UK3CB_BAF_Static_L134A1_Deployed_Low: UK3CB_BAF_Static_L134A1_Low {
         faction = "CUP_B_GB";
         crew = "CUP_B_BAF_Soldier_MTP";
     };
     class UK3CB_BAF_Static_L134A1_Mid;
-    class UK3CB_BAF_Static_L134A1_Deployed_Mid : UK3CB_BAF_Static_L134A1_Mid {
+    class UK3CB_BAF_Static_L134A1_Deployed_Mid: UK3CB_BAF_Static_L134A1_Mid {
         faction = "CUP_B_GB";
         crew = "CUP_B_BAF_Soldier_MTP";
     };
     class UK3CB_BAF_Static_L134A1_High;
-    class UK3CB_BAF_Static_L134A1_Deployed_High : UK3CB_BAF_Static_L134A1_High {
+    class UK3CB_BAF_Static_L134A1_Deployed_High: UK3CB_BAF_Static_L134A1_High {
         faction = "CUP_B_GB";
         crew = "CUP_B_BAF_Soldier_MTP";
     };
     class Mortar_01_base_F;
-    class UK3CB_BAF_Static_Mortar_Base : Mortar_01_base_F {
+    class UK3CB_BAF_Static_Mortar_Base: Mortar_01_base_F {
         faction = "CUP_B_GB";
         crew = "CUP_B_BAF_Soldier_MTP";
         typicalCargo[] = { "CUP_B_BAF_Soldier_MTP" };
     };
     class UK3CB_BAF_Static_L16;
-    class UK3CB_BAF_Static_L16_Deployed : UK3CB_BAF_Static_L16 {
+    class UK3CB_BAF_Static_L16_Deployed: UK3CB_BAF_Static_L16 {
         faction = "CUP_B_GB";
         crew = "CUP_B_BAF_Soldier_MTP";
     };
     class UK3CB_BAF_Static_M6;
-    class UK3CB_BAF_Static_M6_Deployed : UK3CB_BAF_Static_M6 {
+    class UK3CB_BAF_Static_M6_Deployed: UK3CB_BAF_Static_M6 {
         faction = "CUP_B_GB";
         crew = "CUP_B_BAF_Soldier_MTP";
     };

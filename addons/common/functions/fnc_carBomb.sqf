@@ -53,15 +53,15 @@ if (local _car) then {
                             deleteWaypoint ((waypoints (group _car)) select 0);
                         };
                         if (count (waypoints (group _car)) <= 0) exitWith {
-                            [_idPFH] call CBA_fnc_removePerFrameHandler;
+                            [_idPFH] call cba_fnc_removePerFrameHandler;
                         };
-                    }, 0, [_car]] call CBA_fnc_addPerFrameHandler;
+                    }, 0, [_car]] call cba_fnc_addPerFrameHandler;
                     _car setVariable [QGVAR(tracking), false];
-                    [_idPFH] call CBA_fnc_removePerFrameHandler;
+                    [_idPFH] call cba_fnc_removePerFrameHandler;
                 };
 
                 if ((position _target) distance _car <= 50) exitWith {
-                    [_idPFH] call CBA_fnc_removePerFrameHandler;
+                    [_idPFH] call cba_fnc_removePerFrameHandler;
                     _car setSpeedMode "FULL";                    
                     _driver = driver _car;
                     _driver forceWeaponFire ["CarHorn", "CarHorn"];
@@ -69,7 +69,7 @@ if (local _car) then {
                         params ["_car", "_driver"];
                         if (alive _driver) exitWith {
                             _driver forceWeaponFire ["CarHorn", "CarHorn"];
-                            [_car, QEGVAR(common,suicide)] call CBA_fnc_globalSay3d;
+                            [_car, QEGVAR(common,suicide)] call cba_fnc_globalSay3d;
                             [{
                                 params ["_car", "_driver"];
                                 if (alive _driver) exitWith {
@@ -80,15 +80,15 @@ if (local _car) then {
                                             _car setVariable [QGVAR(explode), true];
                                             _car setDamage 1;
                                         };
-                                    }, [_car, _driver], 1] call CBA_fnc_waitAndExecute;
+                                    }, [_car, _driver], 1] call cba_fnc_waitAndExecute;
                                 };
-                            }, [_car, _driver], 1] call CBA_fnc_waitAndExecute;
+                            }, [_car, _driver], 1] call cba_fnc_waitAndExecute;
                         };
-                    }, [_car, _driver], 1] call CBA_fnc_waitAndExecute;
+                    }, [_car, _driver], 1] call cba_fnc_waitAndExecute;
                 };
-            }, 3, [_car, _target]] call CBA_fnc_addPerFrameHandler;
+            }, 3, [_car, _target]] call cba_fnc_addPerFrameHandler;
         };    
-    }, 5, [_car, _side]] call CBA_fnc_addPerFrameHandler;
+    }, 5, [_car, _side]] call cba_fnc_addPerFrameHandler;
     
     [{
         [{
@@ -97,12 +97,12 @@ if (local _car) then {
             _driver = driver _car;
 
             if (!alive _driver) exitWith {
-                [_idPFH] call CBA_fnc_removePerFrameHandler;
-                [_detectionHandle] call CBA_fnc_removePerFrameHandler;
+                [_idPFH] call cba_fnc_removePerFrameHandler;
+                [_detectionHandle] call cba_fnc_removePerFrameHandler;
                 if ((_deadman && !isNull _driver) || _car getVariable [QGVAR(explode), false]) then {
                     "R_TBG32V_F" createVehicle (position _car);
                 };
             };
-        }, 0, _this] call CBA_fnc_addPerFrameHandler;                        
-    }, [_car, _deadman, _detectionHandle], 1] call CBA_fnc_waitAndExecute;
+        }, 0, _this] call cba_fnc_addPerFrameHandler;                        
+    }, [_car, _deadman, _detectionHandle], 1] call cba_fnc_waitAndExecute;
 };

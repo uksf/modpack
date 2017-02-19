@@ -62,112 +62,112 @@ class MFD {
                 pos10[] = { 0.78,0.78 };
                 angle = 0;
             };
-            class LevelP5 : Level0 {
+            class LevelP5: Level0 {
                 angle = 5;
             };
-            class LevelM5 : Level0 {
+            class LevelM5: Level0 {
                 angle = -5;
             };
-            class LevelP10 : Level0 {
+            class LevelP10: Level0 {
                 angle = 10;
             };
-            class LevelM10 : Level0 {
+            class LevelM10: Level0 {
                 angle = -10;
             };
-            class LevelP15 : Level0 {
+            class LevelP15: Level0 {
                 angle = 15;
             };
-            class LevelM15 : Level0 {
+            class LevelM15: Level0 {
                 angle = -15;
             };
-            class LevelP20 : Level0 {
+            class LevelP20: Level0 {
                 angle = 20;
             };
-            class LevelM20 : Level0 {
+            class LevelM20: Level0 {
                 angle = -20;
             };
-            class LevelP25 : Level0 {
+            class LevelP25: Level0 {
                 angle = 25;
             };
-            class LevelM25 : Level0 {
+            class LevelM25: Level0 {
                 angle = -25;
             };
-            class LevelP30 : Level0 {
+            class LevelP30: Level0 {
                 angle = 30;
             };
-            class LevelM30 : Level0 {
+            class LevelM30: Level0 {
                 angle = -30;
             };
-            class LevelP35 : Level0 {
+            class LevelP35: Level0 {
                 angle = 35;
             };
-            class LevelM35 : Level0 {
+            class LevelM35: Level0 {
                 angle = -35;
             };
-            class LevelP40 : Level0 {
+            class LevelP40: Level0 {
                 angle = 40;
             };
-            class LevelM40 : Level0 {
+            class LevelM40: Level0 {
                 angle = -40;
             };
-            class LevelP45 : Level0 {
+            class LevelP45: Level0 {
                 angle = 45;
             };
-            class LevelM45 : Level0 {
+            class LevelM45: Level0 {
                 angle = -45;
             };
-            class LevelP50 : Level0 {
+            class LevelP50: Level0 {
                 angle = 50;
             };
-            class LevelM50 : Level0 {
+            class LevelM50: Level0 {
                 angle = -50;
             };
-            class LevelP55 : Level0 {
+            class LevelP55: Level0 {
                 angle = 55;
             };
-            class LevelM55 : Level0 {
+            class LevelM55: Level0 {
                 angle = -55;
             };
-            class LevelP60 : Level0 {
+            class LevelP60: Level0 {
                 angle = 60;
             };
-            class LevelM60 : Level0 {
+            class LevelM60: Level0 {
                 angle = -60;
             };
-            class LevelP65 : Level0 {
+            class LevelP65: Level0 {
                 angle = 65;
             };
-            class LevelM65 : Level0 {
+            class LevelM65: Level0 {
                 angle = -65;
             };
-            class LevelP70 : Level0 {
+            class LevelP70: Level0 {
                 angle = 70;
             };
-            class LevelM70 : Level0 {
+            class LevelM70: Level0 {
                 angle = -70;
             };
-            class LevelP75 : Level0 {
+            class LevelP75: Level0 {
                 angle = 75;
             };
-            class LevelM75 : Level0 {
+            class LevelM75: Level0 {
                 angle = -75;
             };
-            class LevelP80 : Level0 {
+            class LevelP80: Level0 {
                 angle = 80;
             };
-            class LevelM80 : Level0 {
+            class LevelM80: Level0 {
                 angle = -80;
             };
-            class LevelP85 : Level0 {
+            class LevelP85: Level0 {
                 angle = 85;
             };
-            class LevelM85 : Level0 {
+            class LevelM85: Level0 {
                 angle = -85;
             };
-            class LevelP90 : Level0 {
+            class LevelP90: Level0 {
                 angle = 90;
             };
-            class LevelM90 : Level0 {
+            class LevelM90: Level0 {
                 angle = -90;
             };
         };
@@ -183,7 +183,7 @@ class MFD {
                         type = "line";
                         points[] = { { "Level0",{ -0.42,0 },1 },{ "Level0",{ -0.08,0 },1 },{},{ "Level0",{ 0.42,0 },1 },{ "Level0",{ 0.08,0 },1 },{} };
                     };
-                    class LevelM10 : Level0 {
+                    class LevelM10: Level0 {
                         type = "line";
                         width = 3;
                         points[] = { { "LevelM10",{ -0.2,-0.03 },1 },{ "LevelM10",{ -0.2,0 },1 },{ "LevelM10",{ -0.15,0 },1 },{},{ "LevelM10",{ -0.1,0 },1 },{ "LevelM10",{ -0.05,0 },1 },{},{ "LevelM10",{ 0.05,0 },1 },{ "LevelM10",{ 0.1,0 },1 },{},{ "LevelM10",{ 0.15,0 },1 },{ "LevelM10",{ 0.2,0 },1 },{ "LevelM10",{ 0.2,-0.03 },1 } };
@@ -199,13 +199,13 @@ class MFD {
                         right[] = { "LevelM10",{ -0.16,-0.05 },1 };
                         down[] = { "LevelM10",{ -0.21,0 },1 };
                     };
-                    class VALM_2_10 : VALM_1_10 {
+                    class VALM_2_10: VALM_1_10 {
                         align = "right";
                         pos[] = { "LevelM10",{ 0.21,-0.05 },1 };
                         right[] = { "LevelM10",{ 0.26,-0.05 },1 };
                         down[] = { "LevelM10",{ 0.21,0 },1 };
                     };
-                    class LevelP10 : Level0 {
+                    class LevelP10: Level0 {
                         type = "line";
                         width = 3;
                         points[] = { { "LevelP10",{ -0.2,0.03 },1 },{ "LevelP10",{ -0.2,0 },1 },{ "LevelP10",{ -0.05,0 },1 },{},{ "LevelP10",{ 0.05,0 },1 },{ "LevelP10",{ 0.2,0 },1 },{ "LevelP10",{ 0.2,0.03 },1 } };
@@ -221,13 +221,13 @@ class MFD {
                         right[] = { "LevelP10",{ -0.16,0 },1 };
                         down[] = { "LevelP10",{ -0.21,0.05 },1 };
                     };
-                    class VALP_2_10 : VALP_1_10 {
+                    class VALP_2_10: VALP_1_10 {
                         align = "right";
                         pos[] = { "LevelP10",{ 0.21,0 },1 };
                         right[] = { "LevelP10",{ 0.26,0 },1 };
                         down[] = { "LevelP10",{ 0.21,0.05 },1 };
                     };
-                    class LevelM20 : Level0 {
+                    class LevelM20: Level0 {
                         type = "line";
                         width = 3;
                         points[] = { { "LevelM20",{ -0.2,-0.03 },1 },{ "LevelM20",{ -0.2,0 },1 },{ "LevelM20",{ -0.15,0 },1 },{},{ "LevelM20",{ -0.1,0 },1 },{ "LevelM20",{ -0.05,0 },1 },{},{ "LevelM20",{ 0.05,0 },1 },{ "LevelM20",{ 0.1,0 },1 },{},{ "LevelM20",{ 0.15,0 },1 },{ "LevelM20",{ 0.2,0 },1 },{ "LevelM20",{ 0.2,-0.03 },1 } };
@@ -243,13 +243,13 @@ class MFD {
                         right[] = { "LevelM20",{ -0.16,-0.05 },1 };
                         down[] = { "LevelM20",{ -0.21,0 },1 };
                     };
-                    class VALM_2_20 : VALM_1_20 {
+                    class VALM_2_20: VALM_1_20 {
                         align = "right";
                         pos[] = { "LevelM20",{ 0.21,-0.05 },1 };
                         right[] = { "LevelM20",{ 0.26,-0.05 },1 };
                         down[] = { "LevelM20",{ 0.21,0 },1 };
                     };
-                    class LevelP20 : Level0 {
+                    class LevelP20: Level0 {
                         type = "line";
                         width = 3;
                         points[] = { { "LevelP20",{ -0.2,0.03 },1 },{ "LevelP20",{ -0.2,0 },1 },{ "LevelP20",{ -0.05,0 },1 },{},{ "LevelP20",{ 0.05,0 },1 },{ "LevelP20",{ 0.2,0 },1 },{ "LevelP20",{ 0.2,0.03 },1 } };
@@ -265,13 +265,13 @@ class MFD {
                         right[] = { "LevelP20",{ -0.16,0 },1 };
                         down[] = { "LevelP20",{ -0.21,0.05 },1 };
                     };
-                    class VALP_2_20 : VALP_1_20 {
+                    class VALP_2_20: VALP_1_20 {
                         align = "right";
                         pos[] = { "LevelP20",{ 0.21,0 },1 };
                         right[] = { "LevelP20",{ 0.26,0 },1 };
                         down[] = { "LevelP20",{ 0.21,0.05 },1 };
                     };
-                    class LevelM30 : Level0 {
+                    class LevelM30: Level0 {
                         type = "line";
                         width = 3;
                         points[] = { { "LevelM30",{ -0.2,-0.03 },1 },{ "LevelM30",{ -0.2,0 },1 },{ "LevelM30",{ -0.15,0 },1 },{},{ "LevelM30",{ -0.1,0 },1 },{ "LevelM30",{ -0.05,0 },1 },{},{ "LevelM30",{ 0.05,0 },1 },{ "LevelM30",{ 0.1,0 },1 },{},{ "LevelM30",{ 0.15,0 },1 },{ "LevelM30",{ 0.2,0 },1 },{ "LevelM30",{ 0.2,-0.03 },1 } };
@@ -287,13 +287,13 @@ class MFD {
                         right[] = { "LevelM30",{ -0.16,-0.05 },1 };
                         down[] = { "LevelM30",{ -0.21,0 },1 };
                     };
-                    class VALM_2_30 : VALM_1_30 {
+                    class VALM_2_30: VALM_1_30 {
                         align = "right";
                         pos[] = { "LevelM30",{ 0.21,-0.05 },1 };
                         right[] = { "LevelM30",{ 0.26,-0.05 },1 };
                         down[] = { "LevelM30",{ 0.21,0 },1 };
                     };
-                    class LevelP30 : Level0 {
+                    class LevelP30: Level0 {
                         type = "line";
                         width = 3;
                         points[] = { { "LevelP30",{ -0.2,0.03 },1 },{ "LevelP30",{ -0.2,0 },1 },{ "LevelP30",{ -0.05,0 },1 },{},{ "LevelP30",{ 0.05,0 },1 },{ "LevelP30",{ 0.2,0 },1 },{ "LevelP30",{ 0.2,0.03 },1 } };
@@ -309,13 +309,13 @@ class MFD {
                         right[] = { "LevelP30",{ -0.16,0 },1 };
                         down[] = { "LevelP30",{ -0.21,0.05 },1 };
                     };
-                    class VALP_2_30 : VALP_1_30 {
+                    class VALP_2_30: VALP_1_30 {
                         align = "right";
                         pos[] = { "LevelP30",{ 0.21,0 },1 };
                         right[] = { "LevelP30",{ 0.26,0 },1 };
                         down[] = { "LevelP30",{ 0.21,0.05 },1 };
                     };
-                    class LevelM40 : Level0 {
+                    class LevelM40: Level0 {
                         type = "line";
                         width = 3;
                         points[] = { { "LevelM40",{ -0.2,-0.03 },1 },{ "LevelM40",{ -0.2,0 },1 },{ "LevelM40",{ -0.15,0 },1 },{},{ "LevelM40",{ -0.1,0 },1 },{ "LevelM40",{ -0.05,0 },1 },{},{ "LevelM40",{ 0.05,0 },1 },{ "LevelM40",{ 0.1,0 },1 },{},{ "LevelM40",{ 0.15,0 },1 },{ "LevelM40",{ 0.2,0 },1 },{ "LevelM40",{ 0.2,-0.03 },1 } };
@@ -331,13 +331,13 @@ class MFD {
                         right[] = { "LevelM40",{ -0.16,-0.05 },1 };
                         down[] = { "LevelM40",{ -0.21,0 },1 };
                     };
-                    class VALM_2_40 : VALM_1_40 {
+                    class VALM_2_40: VALM_1_40 {
                         align = "right";
                         pos[] = { "LevelM40",{ 0.21,-0.05 },1 };
                         right[] = { "LevelM40",{ 0.26,-0.05 },1 };
                         down[] = { "LevelM40",{ 0.21,0 },1 };
                     };
-                    class LevelP40 : Level0 {
+                    class LevelP40: Level0 {
                         type = "line";
                         width = 3;
                         points[] = { { "LevelP40",{ -0.2,0.03 },1 },{ "LevelP40",{ -0.2,0 },1 },{ "LevelP40",{ -0.05,0 },1 },{},{ "LevelP40",{ 0.05,0 },1 },{ "LevelP40",{ 0.2,0 },1 },{ "LevelP40",{ 0.2,0.03 },1 } };
@@ -353,13 +353,13 @@ class MFD {
                         right[] = { "LevelP40",{ -0.16,0 },1 };
                         down[] = { "LevelP40",{ -0.21,0.05 },1 };
                     };
-                    class VALP_2_40 : VALP_1_40 {
+                    class VALP_2_40: VALP_1_40 {
                         align = "right";
                         pos[] = { "LevelP40",{ 0.21,0 },1 };
                         right[] = { "LevelP40",{ 0.26,0 },1 };
                         down[] = { "LevelP40",{ 0.21,0.05 },1 };
                     };
-                    class LevelM50 : Level0 {
+                    class LevelM50: Level0 {
                         type = "line";
                         width = 3;
                         points[] = { { "LevelM50",{ -0.2,-0.03 },1 },{ "LevelM50",{ -0.2,0 },1 },{ "LevelM50",{ -0.15,0 },1 },{},{ "LevelM50",{ -0.1,0 },1 },{ "LevelM50",{ -0.05,0 },1 },{},{ "LevelM50",{ 0.05,0 },1 },{ "LevelM50",{ 0.1,0 },1 },{},{ "LevelM50",{ 0.15,0 },1 },{ "LevelM50",{ 0.2,0 },1 },{ "LevelM50",{ 0.2,-0.03 },1 } };
@@ -375,13 +375,13 @@ class MFD {
                         right[] = { "LevelM50",{ -0.16,-0.05 },1 };
                         down[] = { "LevelM50",{ -0.21,0 },1 };
                     };
-                    class VALM_2_50 : VALM_1_50 {
+                    class VALM_2_50: VALM_1_50 {
                         align = "right";
                         pos[] = { "LevelM50",{ 0.21,-0.05 },1 };
                         right[] = { "LevelM50",{ 0.26,-0.05 },1 };
                         down[] = { "LevelM50",{ 0.21,0 },1 };
                     };
-                    class LevelP50 : Level0 {
+                    class LevelP50: Level0 {
                         type = "line";
                         width = 3;
                         points[] = { { "LevelP50",{ -0.2,0.03 },1 },{ "LevelP50",{ -0.2,0 },1 },{ "LevelP50",{ -0.05,0 },1 },{},{ "LevelP50",{ 0.05,0 },1 },{ "LevelP50",{ 0.2,0 },1 },{ "LevelP50",{ 0.2,0.03 },1 } };
@@ -397,7 +397,7 @@ class MFD {
                         right[] = { "LevelP50",{ -0.16,0 },1 };
                         down[] = { "LevelP50",{ -0.21,0.05 },1 };
                     };
-                    class VALP_2_50 : VALP_1_50 {
+                    class VALP_2_50: VALP_1_50 {
                         align = "right";
                         pos[] = { "LevelP50",{ 0.21,0 },1 };
                         right[] = { "LevelP50",{ 0.26,0 },1 };
@@ -507,7 +507,7 @@ class MFD {
                     down[] = { { 0.07,0.225 },1 };
                 };
             };
-            class AltNumber : SpeedNumber {
+            class AltNumber: SpeedNumber {
                 align = "right";
                 source = "altitudeAGL";
                 sourceScale = 3.2808399;
@@ -544,7 +544,7 @@ class MFD {
                 width = 3;
                 points[] = { { "VspeedBone",{ -0.01,0 },1 },{ "VspeedBone",{ -0.025,-0.015 },1 },{ "VspeedBone",{ -0.025,0.015 },1 },{ "VspeedBone",{ -0.01,0 },1 },{} };
             };
-            class HeadingNumber : SpeedNumber {
+            class HeadingNumber: SpeedNumber {
                 source = "heading";
                 sourceScale = 1;
                 align = "center";

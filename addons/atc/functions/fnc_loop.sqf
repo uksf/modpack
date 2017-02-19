@@ -41,14 +41,14 @@ if (local _unit) then {
         if (count _airTargetsFriendly > 0) then {
             [_object, _airTargetsFriendly]  call UKSF_Scripts_ATC_fnc_updateMarkers;
         };
-    }, 0.5, [_object]] call CBA_fnc_addPerFrameHandler;
+    }, 0.5, [_object]] call cba_fnc_addPerFrameHandler;
 
     [{!((_this select 0) getVariable [QGVAR(radarOn), false]) || ((_this select 0) distance2D (_this select 1)) > 10}, {
-        [_this select 2] call CBA_fnc_removePerFrameHandler;
+        [_this select 2] call cba_fnc_removePerFrameHandler;
         { deleteMarker _x } forEach ((_this select 1) getVariable [QGVAR(markers), []]);
         (_this select 0) setVariable [QGVAR(radarOn), false, true];
         (_this select 0) setVariable [QGVAR(operator), objNull, true];
         (_this select 1) setVariable [QGVAR(markers), [], true];
         (_this select 1) setVariable [QGVAR(isOperator), false, true];
-    }, [_object, _unit, _radarHandle]] call CBA_fnc_waitUntilAndExecute;
+    }, [_object, _unit, _radarHandle]] call cba_fnc_waitUntilAndExecute;
 };
