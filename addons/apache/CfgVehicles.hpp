@@ -505,7 +505,7 @@ class CfgVehicles {
                 displayName = "<t color='#217cd1'>Jammer Semi-Auto</t>";
                 position = "zamerny";
                 radius = 10;
-                priority = 2;
+                priority = 4;
                 onlyForPlayer = 0;
                 hideOnUse = 0;
                 condition = QUOTE((player isEqualTo (driver this) || player isEqualTo (gunner this)) && {(this getVariable [ARR_2(QQGVAR(jammerMode),0)]) != 1});
@@ -515,7 +515,7 @@ class CfgVehicles {
                 displayName = "<t color='#217cd1'>Jammer Auto</t>";
                 position = "zamerny";
                 radius = 10;
-                priority = 2;
+                priority = 4;
                 onlyForPlayer = 0;
                 hideOnUse = 0;
                 condition = QUOTE((player isEqualTo (driver this) || player isEqualTo (gunner this)) && {(this getVariable [ARR_2(QQGVAR(jammerMode),0)]) != 2});
@@ -525,7 +525,7 @@ class CfgVehicles {
                 displayName = "<t color='#217cd1'>Jammer Off</t>";
                 position = "zamerny";
                 radius = 10;
-                priority = 1;
+                priority = 4;
                 onlyForPlayer = 0;
                 hideOnUse = 0;
                 condition = QUOTE((player isEqualTo (driver this) || player isEqualTo (gunner this)) && {(this getVariable [ARR_2(QQGVAR(jammerMode),0)]) != 0});

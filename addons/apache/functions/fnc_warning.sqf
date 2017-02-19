@@ -19,10 +19,7 @@ GVAR(soundHandler) = [{
     params ["_args", "_idPFH"];
     _args params ["_heli"];
 
-    diag_log "warning loop";
-
     private _damage = _heli getHitPointDamage "HitVRotor";
-    diag_log format ["tail %1", _damage];
     if (_damage > GVAR(previousTailDamage)) then {
         if (_damage > 0.4) then {
             if (_damage < 0.8) then {
@@ -35,7 +32,6 @@ GVAR(soundHandler) = [{
     };
 
     _damage = _heli getHitPointDamage "HitHRotor";
-    diag_log format ["main %1", _damage];
     if (_damage > GVAR(previousMainDamage)) then {
         if (_damage > 0.4) then {
             if (_damage < 0.8) then {
@@ -48,7 +44,6 @@ GVAR(soundHandler) = [{
     };
 
     _damage = _heli getHitPointDamage "HitEngine1";
-    diag_log format ["eng1 %1", _damage];
     if (_damage > GVAR(previousE1Damage)) then {
         if (_damage > 0.4) then {
             if (_damage < 0.8) then {
@@ -61,7 +56,6 @@ GVAR(soundHandler) = [{
     };
 
     _damage = _heli getHitPointDamage "HitEngine2";
-    diag_log format ["eng2 %1", _damage];
     if (_damage > GVAR(previousE2Damage)) then {
         if (_damage > 0.4) then {
             if (_damage < 0.8) then {
@@ -74,7 +68,6 @@ GVAR(soundHandler) = [{
     };
 
     _damage = _heli getHitPointDamage "HitGun";
-    diag_log format ["gun %1", _damage];
     if (_damage > GVAR(previousGunDamage)) then {
         if (_damage >= 0.8) then {
             _heli removemagazine "UK3CB_BAF_1200Rnd_30mm_M230_HEDP_T";
@@ -86,7 +79,6 @@ GVAR(soundHandler) = [{
     };
 
     _damage = _heli getHitPointDamage "HitAvionics";
-    diag_log format ["ins %1", _damage];
     if (_damage > GVAR(previousInsDamage)) then {
         if (_damage >= 0.8) then {
             [QGVAR(instrumentFailure), 1.7] call FUNC(audio);
