@@ -1,7 +1,7 @@
 PREP(ping);
+PREP(pinged)
 PREP(loop);
 PREP(getNewAnimation);
-
 PREP(initCurators);
 PREP(disconnect);
 PREP(addAction);

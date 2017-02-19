@@ -30,19 +30,19 @@ if (local _bomber) then {
         _explosive attachTo [_bomber, [-0.08, 0.08, 0.15], "Pelvis"];
         _explosive setVectorDirAndUp [[0.5, 0.5, 0], [-0.5, 0.5, 0]];
         _explosive setVariable [QGVAR(bomber), _bomber];
-        _explosive addEventHandler ["Hit", { _bomber = (_this select 0) getVariable [QGVAR(bomber), objNull]; _bomber setVariable [QGVAR(explode), true]; _bomber setDamage 1; }];
+        _explosive addEventHandler ["Hit", {_bomber = (_this select 0) getVariable [QGVAR(bomber), objNull]; _bomber setVariable [QGVAR(explode), true]; _bomber setDamage 1;}];
         _explosives pushBack _explosive;
         _explosive = "DemoCharge_F" createVehicle position _bomber;
         _explosive attachTo [_bomber, [0, 0.12, 0.15], "Pelvis"];
         _explosive setVectorDirAndUp [[1, 0, 0], [0, 1, 0]];
         _explosive setVariable [QGVAR(bomber), _bomber];
-        _explosive addEventHandler ["Hit", { _bomber = (_this select 0) getVariable [QGVAR(bomber), objNull]; _bomber setVariable [QGVAR(explode), true]; _bomber setDamage 1; }];
+        _explosive addEventHandler ["Hit", {_bomber = (_this select 0) getVariable [QGVAR(bomber), objNull]; _bomber setVariable [QGVAR(explode), true]; _bomber setDamage 1;}];
         _explosives pushBack _explosive;
         _explosive = "DemoCharge_F" createVehicle position _bomber;
         _explosive attachTo [_bomber, [0.08, 0.08, 0.15], "Pelvis"];
         _explosive setVectorDirAndUp [[0.5, -0.5, 0], [0.5, 0.5, 0]];
         _explosive setVariable [QGVAR(bomber), _bomber];
-        _explosive addEventHandler ["Hit", { _bomber = (_this select 0) getVariable [QGVAR(bomber), objNull]; _bomber setVariable [QGVAR(explode), true]; _bomber setDamage 1; }];
+        _explosive addEventHandler ["Hit", {_bomber = (_this select 0) getVariable [QGVAR(bomber), objNull]; _bomber setVariable [QGVAR(explode), true]; _bomber setDamage 1;}];
         _explosives pushBack _explosive;
     };
 
