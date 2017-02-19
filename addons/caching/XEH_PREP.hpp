@@ -8,3 +8,5 @@ PREP(uncache);
 PREP(canCache);
 PREP(canUncache);
 PREP(addEventhandler);
+PREP(killed);
+PREP(getOut);
