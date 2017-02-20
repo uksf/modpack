@@ -6,7 +6,8 @@ class CfgPatches {
         units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {             
+        requiredAddons[] = {    
+            "uksf_gear",         
             "USAF_F35A",
             "USAF_Missilebox",
             "DynaSound_DS_w_20mmgatling"

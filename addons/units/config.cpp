@@ -15,8 +15,7 @@ class CfgPatches {
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {             
-            "uksf_common",
+        requiredAddons[] = {
             "uksf_gear",
             "CUP_Creatures_People_Civil_Chernarus",
             "CUP_Creatures_People_Civil_Russia",
