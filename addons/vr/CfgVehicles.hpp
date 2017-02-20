@@ -21,6 +21,162 @@ class CfgVehicles {
         respawnItems[] = {};
         linkedItems[] = { "ItemMap","ItemCompass","ItemWatch" };
         respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch" };
+        class HitPoints {
+            class HitFace {
+                armor = 2;
+                material = -1;
+                name = "face_hub";
+                passThrough = 0.1;
+                radius = 0.08;
+                explosionShielding = 0.1;
+                minimalHit = 0.01;
+            };
+            class HitNeck: HitFace {
+                armor = 2;
+                material = -1;
+                name = "neck";
+                passThrough = 0.1;
+                radius = 0.1;
+                explosionShielding = 0.5;
+                minimalHit = 0.01;
+            };
+            class HitHead: HitNeck {
+                armor = 5;
+                material = -1;
+                name = "head";
+                passThrough = 0.1;
+                radius = 0.2;
+                explosionShielding = 0.5;
+                visual = "camo_head";
+                minimalHit = 0.01;
+                depends = "HitFace max HitNeck";
+            };
+            class HitPelvis {
+                armor = 15;
+                material = -1;
+                name = "pelvis";
+                passThrough = 0.1;
+                radius = 0.2;
+                explosionShielding = 1;
+                visual = "injury_body";
+                minimalHit = 0.01;
+            };
+            class HitAbdomen: HitPelvis {
+                armor = 15;
+                material = -1;
+                name = "spine1";
+                passThrough = 0.1;
+                radius = 0.15;
+                explosionShielding = 1;
+                visual = "injury_body";
+                minimalHit = 0.01;
+            };
+            class HitDiaphragm: HitAbdomen {
+                armor = 15;
+                material = -1;
+                name = "spine2";
+                passThrough = 0.1;
+                radius = 0.15;
+                explosionShielding = 6;
+                visual = "injury_body";
+                minimalHit = 0.01;
+            };
+            class HitChest: HitDiaphragm {
+                armor = 10;
+                material = -1;
+                name = "spine3";
+                passThrough = 0.1;
+                radius = 0.15;
+                explosionShielding = 6;
+                visual = "injury_body";
+                minimalHit = 0.01;
+            };
+            class HitBody: HitChest {
+                armor = 1000;
+                material = -1;
+                name = "body";
+                passThrough = 0.1;
+                radius = 0.16;
+                explosionShielding = 6;
+                visual = "camo_body";
+                minimalHit = 0.01;
+                depends = "HitPelvis max HitAbdomen max HitDiaphragm max HitChest";
+            };
+            class hand_l {
+                armor = 10;
+                material = -1;
+                name = "hand_l";
+                passThrough = 1;
+                radius = 0.1;
+                explosionShielding = 1;
+                visual = "Camo_arm_left";
+                minimalHit = 0.01;
+            };
+            class hand_r {
+                armor = 10;
+                material = -1;
+                name = "hand_r";
+                passThrough = 1;
+                radius = 0.1;
+                explosionShielding = 1;
+                visual = "Camo_arm_right";
+                minimalHit = 0.01;
+            };
+            class HitArms {
+                armor = 10;
+                material = -1;
+                name = "arms";
+                passThrough = 1;
+                radius = 0.1;
+                explosionShielding = 1;
+                visual = "injury_hands";
+                minimalHit = 0.01;
+            };
+            class HitHands: HitArms {
+                armor = 10;
+                material = -1;
+                name = "hands";
+                passThrough = 1;
+                radius = 0.1;
+                explosionShielding = 1;
+                visual = "injury_hands";
+                minimalHit = 0.01;
+                depends = "HitArms";
+            };
+            class leg_l {
+                armor = 10;
+                material = -1;
+                name = "leg_l";
+                passThrough = 1;
+                radius = 0.12;
+                explosionShielding = 1;
+                visual = "Camo_leg_left";
+                minimalHit = 0.01;
+            };
+            class leg_r {
+                armor = 10;
+                material = -1;
+                name = "leg_r";
+                passThrough = 1;
+                radius = 0.12;
+                explosionShielding = 1;
+                visual = "Camo_leg_right";
+                minimalHit = 0.01;
+            };
+            class HitLegs {
+                armor = 10;
+                material = -1;
+                name = "legs";
+                passThrough = 1;
+                radius = 0.12;
+                explosionShielding = 1;
+                visual = "injury_legs";
+                minimalHit = 0.01;
+            };
+        };
+        armor = 5;
+        armorStructural = 0.5;
+        explosionShielding = 0.2;
     };
     class UKSF_O_MG: UKSF_O_Rifleman {
         displayName = "VR Machinegunner";
@@ -143,7 +299,7 @@ class CfgVehicles {
         author = "UKSF";
         side = 0;
         faction = "UKSF_VR";
-        displayName = "VR M6 Linebacker ";
+        displayName = "VR M6 Linebacker";
         //editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Rifleman.jpg);
         crew = "UKSF_O_Rifleman";
         hiddenSelectionsTextures[] = { "#(argb,8,8,3)color(0.85,0.05,0.05,1,ca)", "#(argb,8,8,3)color(0.85,0.05,0.05,1,ca)", "#(argb,8,8,3)color(0.85,0.05,0.05,1,ca)" };
