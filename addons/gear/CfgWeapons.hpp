@@ -198,6 +198,22 @@ class CfgWeapons {
             mass = 20;
         };
     };
+    class U_O_Soldier_VR;
+    class UKSF_U_VR: U_O_Soldier_VR {
+        scope = 2;
+        scopeArsenal = 1;
+        displayName = "VR Battle Suit";
+        model = "\A3\Characters_F\Common\Suitpacks\suitpack_original_F.p3d";
+        picture = "\A3\characters_f_bootcamp\data\ui\icon_u_o_protagonist_vr_ca.paa";
+        hiddenSelectionsTextures[] = { "#(argb,8,8,3)color(0.85,0.05,0.05,1,ca)" };
+        class ItemInfo: UniformItem {
+            modelSides[] = {0, 3};
+            uniformModel = "-";
+            uniformClass = "UKSF_O_Rifleman";
+            containerClass = "Supply1000";
+            mass = 0;
+        };
+    };
 
     class H_Beret_02;
     class UKSF_H_RAFBeret: H_Beret_02 {
@@ -624,6 +640,40 @@ class CfgWeapons {
             };
         };
     };
+    class CUP_arifle_M4A1;
+    class CUP_arifle_M4A1_Acog: CUP_arifle_M4A1 {
+        scopeArsenal = 1;
+        magazines[] = { "30Rnd_556x45_Stanag_Rubber" };
+        class LinkedItems {
+            class LinkedItemsOptic {
+                slot = "CUP_PicatinnyTopMountM4";
+                item = "CUP_optic_RCO";
+            };
+        };
+    };
+    class CUP_lmg_M240;
+    class CUP_lmg_M240_LDS: CUP_lmg_M240 {
+        scopeArsenal = 1;
+        magazines[] = { "CUP_100Rnd_TE4_LRT4_White_Tracer_762x51_Belt_M_Rubber" };
+        class LinkedItems {
+            class LinkedItemsOptic {
+                slot = "CUP_PicatinnyTopMountM4";
+                item = "UK3CB_BAF_SpecterLDS";
+            };
+        };
+    };
+    class CUP_launch_Mk153Mod0;
+    class CUP_launch_Mk153Mod0_Rubber: CUP_launch_Mk153Mod0 {
+        scopeArsenal = 1;
+        magazines[] = { "CUP_SMAW_HEAT_M_Rubber" };
+        ace_overpressure_damage = 0;
+    };
+    class CUP_launch_FIM92Stinger;
+    class CUP_launch_FIM92Stinger_Rubber: CUP_launch_FIM92Stinger {
+        scopeArsenal = 1;
+        magazines[] = { "CUP_Stinger_M_Rubber" };
+        ace_overpressure_damage = 0;
+    };
 
     class Default;
     class CUP_weapon_mastersafe: Default {
@@ -865,6 +915,43 @@ class CfgWeapons {
             };
         };
     };
-
+    class CUP_Vhmg_M2_veh_rubber: CUP_Vhmg_M2_veh {
+        displayName = "M2 Rubber";
+        magazines[] = { "CUP_100Rnd_TE4_White_Tracer_127x99_M_Rubber" };
+    };
+    class CUP_Vcannon_M256_M1Abrams;
+    class CUP_Vcannon_M256_M1Abrams_Rubber: CUP_Vcannon_M256_M1Abrams {
+        displayName = "M256 Rubber";
+        magazines[] = { "CUP_20Rnd_TE1_White_Tracer_120mmSABOT_M256_Cannon_M_Rubber", "CUP_20Rnd_TE1_White_Tracer_120mmHE_M256_Cannon_M_Rubber" };
+    };
+    class CUP_Vlmg_M240_M1Abrams_Coax;
+    class CUP_Vlmg_M240_M1Abrams_Coax_Rubber: CUP_Vlmg_M240_M1Abrams_Coax {
+        displayName = "M240 Rubber";
+        magazines[] = { "CUP_100Rnd_TE4_LRT4_White_Tracer_762x51_Belt_M_Rubber" };
+    };
+    class CUP_Vhmg_M2_M1Abrams_Commander;
+    class CUP_Vhmg_M2_M1Abrams_Commander_Rubber: CUP_Vhmg_M2_M1Abrams_Commander {
+        displayName = "M2 Rubber";
+        magazines[] = { "CUP_100Rnd_TE4_White_Tracer_127x99_M_Rubber" };
+    };
+    class CUP_Vlmg_M240_M1Abrams_Loader;
+    class CUP_Vlmg_M240_M1Abrams_Loader_Rubber: CUP_Vlmg_M240_M1Abrams_Loader {
+        displayName = "M240 Rubber";
+        magazines[] = { "CUP_100Rnd_TE4_LRT4_White_Tracer_762x51_Belt_M_Rubber" };
+    };
+    class CUP_Vacannon_M242_veh;
+    class CUP_Vacannon_M242_veh_Rubber: CUP_Vacannon_M242_veh {
+         displayName = "M242 Bushmaster 25mm Rubber";
+        magazines[] = { "CUP_210Rnd_TE1_White_Tracer_25mm_M242_APFSDS_Rubber", "CUP_210Rnd_TE1_White_Tracer_25mm_M242_HE_Rubber" };
+    };
+    class CUP_Vlmg_M240_veh_Rubber: CUP_Vlmg_M240_veh {
+        displayName = "M240 Rubber";
+        magazines[] = { "CUP_100Rnd_TE4_LRT4_White_Tracer_762x51_Belt_M_Rubber" };
+    };
+    class CUP_Vmlauncher_Stinger_vehicle_veh;
+    class CUP_Vmlauncher_Stinger_vehicle_veh_Rubber: CUP_Vmlauncher_Stinger_vehicle_veh {
+        magazines[] = { "CUP_4Rnd_Stinger_M_Rubber" };
+    };
+    
     #include "CfgWeaponsPrivate.hpp"
 };

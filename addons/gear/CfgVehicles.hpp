@@ -99,7 +99,6 @@ class CfgVehicles {
         scope = 2;
         maximumLoad = 320;
     };
-    //MTP
     class UK3CB_BAF_B_Bergen_MTP_Rifleman_L_C;
     class UK3CB_BAF_B_Bergen_MTP_Rifleman_L_C_AR: UK3CB_BAF_B_Bergen_MTP_Rifleman_L_C {
         scope = 1;
@@ -141,8 +140,7 @@ class CfgVehicles {
             };
         };
         class TransportMagazines {};
-    };
-    //DPM Wdl    
+    }; 
     class UK3CB_BAF_B_Bergen_DPMW_Rifleman_A;
     class UK3CB_BAF_B_Bergen_DPMW_Rifleman_A_AR: UK3CB_BAF_B_Bergen_DPMW_Rifleman_A {
         scope = 1;
@@ -234,7 +232,6 @@ class CfgVehicles {
         };
         class TransportMagazines {};
     };
-    //DDPM
     class UK3CB_BAF_B_Bergen_DDPM_Rifleman_A;
     class UK3CB_BAF_B_Bergen_DDPM_Rifleman_A_AR: UK3CB_BAF_B_Bergen_DDPM_Rifleman_A {
         scope = 1;
@@ -325,6 +322,30 @@ class CfgVehicles {
             };
         };
         class TransportMagazines {};
+    };
+    class B_AssaultPack_blk;
+    class B_AssaultPack_VR_AT: B_AssaultPack_blk {
+        scopeArsenal = 1;
+        displayName = "AT Pack (VR)";
+        hiddenSelectionsTextures[] = { "#(argb,8,8,3)color(0.85,0.05,0.05,1,ca)" };
+        hiddenSelectionsMaterials[] = { "\A3\Characters_F_Bootcamp\Common\Data\O_VR_Soldier_F.rvmat" };
+        maximumLoad = 500;
+        class TransportMagazines {
+            class _xx_CUP_SMAW_HEAT_M_Rubber {
+                magazine = "CUP_SMAW_HEAT_M_Rubber";
+                count = 2;
+            };
+        };
+    };
+    class B_AssaultPack_VR_AA: B_AssaultPack_VR_AT {
+        scopeArsenal = 1;
+        displayName = "AA Pack (VR)";
+        class TransportMagazines {
+            class _xx_CUP_Stinger_M_Rubber {
+                magazine = "CUP_Stinger_M_Rubber";
+                count = 2;
+            };
+        };
     };
 
     class I_soldier_F;
@@ -421,6 +442,12 @@ class CfgVehicles {
         model = "\A3\characters_F_gamma\Guerrilla\ig_guerrilla2_1.p3d";
         hiddenSelections[] = { "Camo" };
         hiddenSelectionsTextures[] = { QPATHTOF(data\uniforms\ATC.paa) };
+    };
+    class Supply500;
+    class Supply1000: Supply500 {
+        author = "Bohemia Interactive";
+        _generalMacro = "Supply1000";
+        maximumLoad = 1000;
     };
 
     class CargoNet_01_ammo_base_F;
