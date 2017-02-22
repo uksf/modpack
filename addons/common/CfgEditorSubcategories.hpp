@@ -8,6 +8,9 @@ class CfgEditorSubcategories {
     class GVAR(mtp) {
         displayName = "Men (MTP)";
     };
+    class GVAR(support) {
+        displayName = "Support";
+    };
     class GVAR(objects) {
         displayName = "Objects";
     };

@@ -873,7 +873,10 @@ class CfgPatches {
             //ACE
             "ace_main",
             "ace_common",
-            "ace_interaction"
+            "ace_dragging",
+            "ace_interaction",
+            "ace_rearm",
+            "ace_refuel",
         };
         author = QUOTE(UKSF);
         url = QUOTE(www.uk-sf.com);
