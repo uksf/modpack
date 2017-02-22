@@ -48,7 +48,6 @@ class CUP_Creatures_Military_BAF_Soldier_Base: SoldierWB {
 class CUP_B_BAF_Soldier_01_MTP: CUP_Creatures_Military_BAF_Soldier_Base {
     scope = 1;
     scopeCurator = 0;
-    vehicleClass = "CUP_B_Men_GB_MTP";
     displayName = "Soldier 1 - MTP";
     nameSound = "veh_infantry_officer_s";
     uniformClass = "UK3CB_BAF_U_CombatUniform_MTP";
@@ -513,7 +512,6 @@ class CUP_B_BAF_Engineer_MTP: CUP_B_BAF_Soldier_01_MTP {
 class CUP_B_BAF_Soldier_01_DPM: CUP_Creatures_Military_BAF_Soldier_Base {
     scope = 1;
     scopeCurator = 0;
-    vehicleClass = "CUP_B_Men_GB_WDL";
     editorSubcategory = "EdSubcat_Personnel_Camo_Woodland";
     displayName = "Soldier 1 - DPM";
     nameSound = "veh_infantry_officer_s";
@@ -960,7 +958,6 @@ class CUP_B_BAF_Engineer_WDL: CUP_B_BAF_Soldier_01_DPM {
 class CUP_B_BAF_Soldier_01_DDPM: CUP_Creatures_Military_BAF_Soldier_Base {
     scope = 1;
     scopeCurator = 0;
-    vehicleClass = "CUP_B_Men_GB_DDPM";
     editorSubcategory = "EdSubcat_Personnel_Camo_Desert";
     displayName = "Soldier 1 - DDPM";
     nameSound = "veh_infantry_officer_s";
