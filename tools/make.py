@@ -769,7 +769,7 @@ def main(argv):
     global make_root
     global release_dir
     global module_root_parent
-    global optionals_root
+    #global optionals_root
     global key_name
     global key
     global dssignfile
@@ -955,7 +955,7 @@ See the make.cfg file for additional build options.
         # Project module Root
         module_root_parent = os.path.abspath(os.path.join(os.path.join(work_drive, prefix), os.pardir))
         module_root = cfg.get(make_target, "module_root", fallback=os.path.join(make_root_parent, "addons"))
-        optionals_root = os.path.join(module_root_parent, "optionals")
+        #optionals_root = os.path.join(module_root_parent, "optionals")
 
         if (os.path.isdir(module_root)):
             os.chdir(module_root)
@@ -968,10 +968,10 @@ See the make.cfg file for additional build options.
         key_name = versionStamp = get_private_keyname(commit_id)
         print_green ("module_root: {}".format(module_root))
 
-        if (os.path.isdir(optionals_root)):
-            print_green ("optionals_root: {}".format(optionals_root))
-        else:
-            print("optionals_root does not exist: {}".format(optionals_root))
+        #if (os.path.isdir(optionals_root)):
+            #print_green ("optionals_root: {}".format(optionals_root))
+        #else:
+            #print("optionals_root does not exist: {}".format(optionals_root))
 
         print_green ("release_dir: {}".format(release_dir))
 
@@ -1061,10 +1061,10 @@ See the make.cfg file for additional build options.
 
     try:
         # Temporarily copy optionals_root for building. They will be removed later.
-        if (os.path.isdir(optionals_root)):
-            optionals_modules = []
-            optional_files = []
-            copy_optionals_for_building(optionals_modules,optional_files)
+        #if (os.path.isdir(optionals_root)):
+            #optionals_modules = []
+            #optional_files = []
+            #copy_optionals_for_building(optionals_modules,optional_files)
 
         # Get list of subdirs in make root.
         dirs = next(os.walk(module_root))[1]
@@ -1094,7 +1094,7 @@ See the make.cfg file for additional build options.
                     print_green("Created: {}".format(os.path.join(private_key_path, key_name + ".biprivatekey")))
                     print("Removing any old signature keys...")
                     purge(os.path.join(module_root, release_dir, project, "addons"), "^.*\.bisign$","*.bisign")
-                    purge(os.path.join(module_root, release_dir, project, "optionals"), "^.*\.bisign$","*.bisign")
+                    #purge(os.path.join(module_root, release_dir, project, "optionals"), "^.*\.bisign$","*.bisign")
                     purge(os.path.join(module_root, release_dir, project, "keys"), "^.*\.bikey$","*.bikey")
                 else:
                     print_error("Failed to create key!")
@@ -1367,8 +1367,8 @@ See the make.cfg file for additional build options.
 
     finally:
         copy_important_files(module_root_parent,os.path.join(release_dir, project))
-        if (os.path.isdir(optionals_root)):
-            cleanup_optionals(optionals_modules)
+        #if (os.path.isdir(optionals_root)):
+            #cleanup_optionals(optionals_modules)
         if not version_update:
             restore_version_files()
 

@@ -3,15 +3,15 @@
 #define MAINPREFIX u
 #define PREFIX uksf
 
-#define MAJOR 4
-#define MINOR 2
-#define PATCHLVL 6
+#define MAJOR 5
+#define MINOR 0
+#define PATCHLVL 0
 #define VERSION MAJOR.MINOR.PATCHLVL
 #define VERSION_AR MAJOR,MINOR,PATCHLVL
 
 // MINIMAL required version for the Mod. Components can specify others..
 #define REQUIRED_VERSION 1.64
-#define REQUIRED_cba_VERSION {3,1,1}
+#define REQUIRED_cba_VERSION {3,1,2}
 
 #ifdef COMPONENT_BEAUTIFIED
     #define COMPONENT_NAME QUOTE(UKSF - COMPONENT_BEAUTIFIED)
