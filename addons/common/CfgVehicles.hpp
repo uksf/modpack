@@ -18,72 +18,7 @@ class CfgVehicles {
     };
 
     //Uniforms Fix
-    class B_Soldier_Base_F;
-    class B_Soldier_03_f;
-    class B_Soldier_02_f;
-    class I_G_Soldier_LAT_F;
-    class I_Soldier_base_F;
-    class B_Soldier_04_f;
-    class SoldierWB;
     class Civilian;
-    class CAManBase;
-    class B_Soldier_F: B_Soldier_Base_F {
-        modelSides[] = {6};
-    };
-    class B_officer_F: B_Soldier_Base_F {
-        modelSides[] = {6};
-    };
-    class B_Soldier_TL_F: B_Soldier_03_f {
-        modelSides[] = {6};
-    };
-    class B_Soldier_SL_F: B_Soldier_03_f {
-        modelSides[] = {6};
-    };
-    class B_engineer_F: B_Soldier_03_f {
-        modelSides[] = {6};
-    };
-    class B_soldier_repair_F: B_Soldier_Base_F {
-        modelSides[] = {6};
-    };
-    class B_soldier_exp_F: B_Soldier_Base_F {
-        modelSides[] = {6};
-    };
-    class B_Soldier_GL_F: B_Soldier_Base_F {
-        modelSides[] = {6};
-    };
-    class B_soldier_AR_F: B_Soldier_02_f {
-        modelSides[] = {6};
-    };
-    class B_medic_F: B_Soldier_02_f {
-        modelSides[] = {6};
-    };
-    class B_soldier_LAT_F: B_Soldier_Base_F {
-        modelSides[] = {6};
-    };
-    class B_G_Soldier_LAT_F: I_G_Soldier_LAT_F {
-        modelSides[] = {6};
-    };
-    class I_soldier_F: I_Soldier_base_F {
-        modelSides[] = {6};
-    };
-    class I_Soldier_02_F: I_Soldier_base_F {
-        modelSides[] = {6};
-    };
-    class B_Helipilot_F: B_Soldier_04_f {
-        modelSides[] = {6};
-    };
-    class B_Soldier_Base_F: SoldierWB {
-        modelSides[] = {6};
-    };
-    class B_Soldier_03_f: B_Soldier_Base_F {
-        modelSides[] = {6};
-    };
-    class I_Soldier_sniper_Base_F: I_Soldier_base_F {
-        modelSides[] = {6};
-    };
-    class UK3CB_BAF_HeliPilot_RAF_Base: B_Helipilot_F {
-        modelSides[] = {6};
-    };
     class Civilian_F: Civilian {
         modelSides[] = {6};
     };
@@ -99,13 +34,19 @@ class CfgVehicles {
     class SoldierGB: CAManBase {
         modelSides[] = {6};
     };
-    class VirtualMan_F: Civilian_F {
+    class B_Soldier_Base_F: SoldierWB {
         modelSides[] = {6};
     };
-    class HeadlessClient_F: VirtualMan_F {
+    class B_Soldier_F: B_Soldier_Base_F {
+        modelSides[] = {6};
+    };
+    class B_officer_F: B_Soldier_Base_F {
         modelSides[] = {6};
     };
     class B_Soldier_02_f: B_Soldier_Base_F {
+        modelSides[] = {6};
+    };
+    class B_Soldier_03_f: B_Soldier_Base_F {
         modelSides[] = {6};
     };
     class B_Soldier_04_f: B_Soldier_Base_F {
@@ -114,10 +55,19 @@ class CfgVehicles {
     class B_Soldier_05_f: B_Soldier_Base_F {
         modelSides[] = {6};
     };
-    class B_RangeMaster_F: B_Soldier_Base_F {
+    class B_soldier_repair_F: B_Soldier_Base_F {
         modelSides[] = {6};
     };
-    class B_Soldier_lite_F: B_Soldier_03_f {
+    class B_soldier_exp_F: B_Soldier_Base_F {
+        modelSides[] = {6};
+    };
+    class B_Soldier_GL_F: B_Soldier_Base_F {
+        modelSides[] = {6};
+    };
+    class B_soldier_LAT_F: B_Soldier_Base_F {
+        modelSides[] = {6};
+    };
+    class B_RangeMaster_F: B_Soldier_Base_F {
         modelSides[] = {6};
     };
     class B_soldier_M_F: B_Soldier_Base_F {
@@ -132,7 +82,160 @@ class CfgVehicles {
     class B_soldier_AA_F: B_Soldier_Base_F {
         modelSides[] = {6};
     };
-    class B_crew_F: B_Soldier_03_f {
+    class B_soldier_PG_F: B_Soldier_Base_F {
+        modelSides[] = {6};
+    };
+    class B_soldier_UAV_F: B_Soldier_Base_F {
+        modelSides[] = {6};
+    };
+    class B_Soldier_diver_base_F: B_Soldier_Base_F {
+        modelSides[] = {6};
+    };
+    class B_Soldier_recon_base: B_Soldier_Base_F {
+        modelSides[] = {6};
+    };
+    class B_Soldier_sniper_base_F: B_Soldier_Base_F {
+        modelSides[] = {6};
+    };
+    class B_Story_Engineer_F: B_Soldier_Base_F {
+        modelSides[] = {6};
+    };
+    class B_Story_Colonel_F: B_Soldier_Base_F {
+        modelSides[] = {6};
+    };
+    class B_Story_Pilot_F: B_Soldier_Base_F {
+        modelSides[] = {6};
+    };
+    class B_Story_Tank_Commander_F: B_Soldier_Base_F {
+        modelSides[] = {6};
+    };
+    class b_soldier_survival_F: B_Soldier_Base_F {
+        modelSides[] = {6};
+    };
+    class B_CTRG_soldier_GL_LAT_F: B_Soldier_Base_F {
+        modelSides[] = {6};
+    };
+    class B_Soldier_support_base_F: B_Soldier_Base_F {
+        modelSides[] = {6};
+    };
+    class B_Soldier_VR_F: B_Soldier_Base_F {
+        modelSides[] = {6};
+    };
+    class B_Protagonist_VR_F: B_Soldier_Base_F {
+        modelSides[] = {6};
+    };
+    class B_Sharpshooter_F: B_Soldier_Base_F {
+        modelSides[] = {6};
+    };
+    class B_CTRG_Sharphooter_F: B_Soldier_Base_F {
+        modelSides[] = {6};
+    };
+    class B_HeavyGunner_F: B_Soldier_Base_F {
+        modelSides[] = {6};
+    };
+    class B_CTRG_Soldier_base_F: B_Soldier_Base_F {
+        modelSides[] = {6};
+    };
+    class B_Soldier_TL_F: B_Soldier_03_f {
+        modelSides[] = {6};
+    };
+    class B_Soldier_SL_F: B_Soldier_03_f {
+        modelSides[] = {6};
+    };
+    class B_engineer_F: B_Soldier_03_f {
+        modelSides[] = {6};
+    };
+    class B_soldier_AR_F: B_Soldier_02_f {
+        modelSides[] = {6};
+    };
+    class B_medic_F: B_Soldier_02_f {
+        modelSides[] = {6};
+    };
+    class I_G_Soldier_base_F: SoldierGB {
+        modelSides[] = {6};
+    };
+    class I_G_Soldier_F: I_G_Soldier_base_F {
+        modelSides[] = {6};
+    };
+    class I_G_Soldier_lite_F: I_G_Soldier_base_F {
+        modelSides[] = {6};
+    };
+    class I_G_Soldier_SL_F: I_G_Soldier_base_F {
+        modelSides[] = {6};
+    };
+    class I_G_Soldier_TL_F: I_G_Soldier_base_F {
+        modelSides[] = {6};
+    };
+    class I_G_Soldier_AR_F: I_G_Soldier_base_F {
+        modelSides[] = {6};
+    };
+    class I_G_medic_F: I_G_Soldier_base_F {
+        modelSides[] = {6};
+    };
+    class I_G_engineer_F: I_G_Soldier_base_F {
+        modelSides[] = {6};
+    };
+    class I_G_Soldier_exp_F: I_G_Soldier_base_F {
+        modelSides[] = {6};
+    };
+    class I_G_Soldier_GL_F: I_G_Soldier_base_F {
+        modelSides[] = {6};
+    };
+    class I_G_Soldier_M_F: I_G_Soldier_base_F {
+        modelSides[] = {6};
+    };
+    class I_G_Soldier_LAT_F: I_G_Soldier_base_F {
+        modelSides[] = {6};
+    };
+    class I_G_Soldier_A_F: I_G_Soldier_base_F {
+        modelSides[] = {6};
+    };
+    class I_G_officer_F: I_G_Soldier_base_F {
+        modelSides[] = {6};
+    };
+    class B_G_Soldier_LAT_F: I_G_Soldier_LAT_F {
+        modelSides[] = {6};
+    };
+    class I_Soldier_base_F: SoldierGB {
+        modelSides[] = {6};
+    };
+    class I_Soldier_03_F: I_Soldier_base_F {
+        modelSides[] = {6};
+    };
+    class I_Soldier_04_F: I_Soldier_base_F {
+        modelSides[] = {6};
+    };
+    class I_Soldier_GL_F: I_Soldier_base_F {
+        modelSides[] = {6};
+    };
+    class I_Soldier_TL_F: I_Soldier_base_F {
+        modelSides[] = {6};
+    };
+    class I_Soldier_M_F: I_Soldier_base_F {
+        modelSides[] = {6};
+    };
+    class I_Soldier_LAT_F: I_Soldier_base_F {
+        modelSides[] = {6};
+    };
+    class I_Soldier_AT_F: I_Soldier_base_F {
+        modelSides[] = {6};
+    };
+    class I_soldier_F: I_Soldier_base_F {
+        modelSides[] = {6};
+    };
+    class I_Soldier_02_F: I_Soldier_base_F {
+        modelSides[] = {6};
+    };
+    class B_Helipilot_F: B_Soldier_04_f {
+        modelSides[] = {6};
+    };
+    class I_Soldier_sniper_Base_F: I_Soldier_base_F {
+        modelSides[] = {6};
+    };
+    class UK3CB_BAF_HeliPilot_RAF_Base: B_Helipilot_F {
+        modelSides[] = {6};
+    };
+    class B_Soldier_lite_F: B_Soldier_03_f {
         modelSides[] = {6};
     };
     class B_Competitor_F: B_RangeMaster_F {
@@ -144,10 +247,7 @@ class CfgVehicles {
     class B_helicrew_F: B_Helipilot_F {
         modelSides[] = {6};
     };
-    class B_soldier_PG_F: B_Soldier_Base_F {
-        modelSides[] = {6};
-    };
-    class B_soldier_UAV_F: B_Soldier_Base_F {
+    class B_crew_F: B_Soldier_03_f {
         modelSides[] = {6};
     };
     class B_Soldier_universal_F: B_Soldier_F {
@@ -159,9 +259,6 @@ class CfgVehicles {
     class B_Soldier_unarmed_F: B_Soldier_F {
         modelSides[] = {6};
     };
-    class B_Soldier_diver_base_F: B_Soldier_Base_F {
-        modelSides[] = {6};
-    };
     class B_diver_F: B_Soldier_diver_base_F {
         modelSides[] = {6};
     };
@@ -169,9 +266,6 @@ class CfgVehicles {
         modelSides[] = {6};
     };
     class B_diver_exp_F: B_Soldier_diver_base_F {
-        modelSides[] = {6};
-    };
-    class B_Soldier_recon_base: B_Soldier_Base_F {
         modelSides[] = {6};
     };
     class B_recon_F: B_Soldier_recon_base {
@@ -195,9 +289,6 @@ class CfgVehicles {
     class B_recon_JTAC_F: B_Soldier_recon_base {
         modelSides[] = {6};
     };
-    class B_Soldier_sniper_base_F: B_Soldier_Base_F {
-        modelSides[] = {6};
-    };
     class B_spotter_F: B_Soldier_sniper_base_F {
         modelSides[] = {6};
     };
@@ -210,24 +301,6 @@ class CfgVehicles {
     class B_Story_Protagonist_F: B_Soldier_02_f {
         modelSides[] = {6};
     };
-    class B_Story_Engineer_F: B_Soldier_Base_F {
-        modelSides[] = {6};
-    };
-    class B_Story_Colonel_F: B_Soldier_Base_F {
-        modelSides[] = {6};
-    };
-    class B_Story_Pilot_F: B_Soldier_Base_F {
-        modelSides[] = {6};
-    };
-    class B_Story_Tank_Commander_F: B_Soldier_Base_F {
-        modelSides[] = {6};
-    };
-    class b_soldier_survival_F: B_Soldier_Base_F {
-        modelSides[] = {6};
-    };
-    class B_CTRG_soldier_GL_LAT_F: B_Soldier_Base_F {
-        modelSides[] = {6};
-    };
     class B_CTRG_soldier_engineer_exp_F: B_Soldier_02_f {
         modelSides[] = {6};
     };
@@ -235,9 +308,6 @@ class CfgVehicles {
         modelSides[] = {6};
     };
     class B_CTRG_soldier_AR_A_F: B_Soldier_03_f {
-        modelSides[] = {6};
-    };
-    class B_Soldier_support_base_F: B_Soldier_Base_F {
         modelSides[] = {6};
     };
     class B_soldier_AAR_F: B_Soldier_support_base_F {
@@ -453,48 +523,6 @@ class CfgVehicles {
     class C_Nikos_aged: C_Nikos {
         modelSides[] = {6};
     };
-    class I_G_Soldier_base_F: SoldierGB {
-        modelSides[] = {6};
-    };
-    class I_G_Soldier_F: I_G_Soldier_base_F {
-        modelSides[] = {6};
-    };
-    class I_G_Soldier_lite_F: I_G_Soldier_base_F {
-        modelSides[] = {6};
-    };
-    class I_G_Soldier_SL_F: I_G_Soldier_base_F {
-        modelSides[] = {6};
-    };
-    class I_G_Soldier_TL_F: I_G_Soldier_base_F {
-        modelSides[] = {6};
-    };
-    class I_G_Soldier_AR_F: I_G_Soldier_base_F {
-        modelSides[] = {6};
-    };
-    class I_G_medic_F: I_G_Soldier_base_F {
-        modelSides[] = {6};
-    };
-    class I_G_engineer_F: I_G_Soldier_base_F {
-        modelSides[] = {6};
-    };
-    class I_G_Soldier_exp_F: I_G_Soldier_base_F {
-        modelSides[] = {6};
-    };
-    class I_G_Soldier_GL_F: I_G_Soldier_base_F {
-        modelSides[] = {6};
-    };
-    class I_G_Soldier_M_F: I_G_Soldier_base_F {
-        modelSides[] = {6};
-    };
-    class I_G_Soldier_LAT_F: I_G_Soldier_base_F {
-        modelSides[] = {6};
-    };
-    class I_G_Soldier_A_F: I_G_Soldier_base_F {
-        modelSides[] = {6};
-    };
-    class I_G_officer_F: I_G_Soldier_base_F {
-        modelSides[] = {6};
-    };
     class B_G_Soldier_F: I_G_Soldier_F {
         modelSides[] = {6};
     };
@@ -609,40 +637,16 @@ class CfgVehicles {
     class I_G_resistanceCommander_F: I_G_Story_Protagonist_F {
         modelSides[] = {6};
     };
-    class I_Soldier_base_F: SoldierGB {
-        modelSides[] = {6};
-    };
-    class I_Soldier_03_F: I_Soldier_base_F {
-        modelSides[] = {6};
-    };
-    class I_Soldier_04_F: I_Soldier_base_F {
-        modelSides[] = {6};
-    };
     class I_Soldier_lite_F: I_Soldier_02_F {
         modelSides[] = {6};
     };
     class I_Soldier_A_F: I_Soldier_02_F {
         modelSides[] = {6};
     };
-    class I_Soldier_GL_F: I_Soldier_base_F {
-        modelSides[] = {6};
-    };
     class I_Soldier_AR_F: I_Soldier_02_F {
         modelSides[] = {6};
     };
     class I_Soldier_SL_F: I_Soldier_02_F {
-        modelSides[] = {6};
-    };
-    class I_Soldier_TL_F: I_Soldier_base_F {
-        modelSides[] = {6};
-    };
-    class I_Soldier_M_F: I_Soldier_base_F {
-        modelSides[] = {6};
-    };
-    class I_Soldier_LAT_F: I_Soldier_base_F {
-        modelSides[] = {6};
-    };
-    class I_Soldier_AT_F: I_Soldier_base_F {
         modelSides[] = {6};
     };
     class I_Soldier_AA_F: I_Soldier_02_F {
@@ -987,9 +991,6 @@ class CfgVehicles {
     class C_Marshal_F: B_RangeMaster_F {
         modelSides[] = {6};
     };
-    class B_Soldier_VR_F: B_Soldier_Base_F {
-        modelSides[] = {6};
-    };
     class O_Soldier_VR_F: O_Soldier_base_F {
         modelSides[] = {6};
     };
@@ -997,9 +998,6 @@ class CfgVehicles {
         modelSides[] = {6};
     };
     class C_Soldier_VR_F: C_man_1 {
-        modelSides[] = {6};
-    };
-    class B_Protagonist_VR_F: B_Soldier_Base_F {
         modelSides[] = {6};
     };
     class O_Protagonist_VR_F: O_Soldier_base_F {
@@ -1044,16 +1042,7 @@ class CfgVehicles {
     class I_ghillie_ard_F: I_ghillie_base_F {
         modelSides[] = {6};
     };
-    class B_Sharpshooter_F: B_Soldier_Base_F {
-        modelSides[] = {6};
-    };
     class B_Recon_Sharpshooter_F: B_Soldier_recon_base {
-        modelSides[] = {6};
-    };
-    class B_CTRG_Sharphooter_F: B_Soldier_Base_F {
-        modelSides[] = {6};
-    };
-    class B_HeavyGunner_F: B_Soldier_Base_F {
         modelSides[] = {6};
     };
     class O_Sharpshooter_F: O_Soldier_base_F {
@@ -1435,9 +1424,6 @@ class CfgVehicles {
         modelSides[] = {6};
     };
     class O_T_Soldier_universal_F: O_T_Soldier_F {
-        modelSides[] = {6};
-    };
-    class B_CTRG_Soldier_base_F: B_Soldier_Base_F {
         modelSides[] = {6};
     };
     class B_CTRG_Soldier_F: B_CTRG_Soldier_base_F {
