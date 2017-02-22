@@ -20,8 +20,7 @@ private ["_mouseOver", "_unit", "_excluded"];
 
 if !(_activated && local _logic) exitWith {};
 
-_mouseOver = GETMVAR(bis_fnc_curatorObjectPlaced_mouseOver,[""]);
-
+_mouseOver = missionNamespace getVariable ["bis_fnc_curatorObjectPlaced_mouseOver", [""]];
 if ((_mouseOver select 0) != "OBJECT") then {
     [QUOTE(Place on a unit or vehicle)] call ace_common_fnc_displayTextStructured;
 } else {

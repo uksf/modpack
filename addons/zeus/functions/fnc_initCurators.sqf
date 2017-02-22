@@ -15,30 +15,11 @@
 
 _group = creategroup sideLogic;
 
-_curator = _group createUnit ["ModuleCurator_F", [0,0,0], [], 0, "NONE"];
-SETPVAR(_curator,text,QUOTE(UKSFCurator_1));
-_curator addCuratorAddons activatedAddons;
-GVAR(curatorObjects) set [0, _curator];
-
-_curator = _group createUnit ["ModuleCurator_F", [0,0,0], [], 0, "NONE"];
-SETPVAR(_curator,text,QUOTE(UKSFCurator_2));
-_curator addCuratorAddons activatedAddons;
-GVAR(curatorObjects) set [1, _curator];
-
-_curator = _group createUnit ["ModuleCurator_F", [0,0,0], [], 0, "NONE"];
-SETPVAR(_curator,text,QUOTE(UKSFCurator_3));
-_curator addCuratorAddons activatedAddons;
-GVAR(curatorObjects) set [2, _curator];
-
-_curator = _group createUnit ["ModuleCurator_F", [0,0,0], [], 0, "NONE"];
-SETPVAR(_curator,text,QUOTE(UKSFCurator_4));
-_curator addCuratorAddons activatedAddons;
-GVAR(curatorObjects) set [3, _curator];
-
-_curator = _group createUnit ["ModuleCurator_F", [0,0,0], [], 0, "NONE"];
-SETPVAR(_curator,text,QUOTE(UKSFCurator_5));
-_curator addCuratorAddons activatedAddons;
-GVAR(curatorObjects) set [4, _curator];
+ADD_CURATOR(0);
+ADD_CURATOR(1);
+ADD_CURATOR(2);
+ADD_CURATOR(3);
+ADD_CURATOR(4);
 
 missionNamespace setVariable [QGVAR(curatorNames), ["","","","",""], true];
 

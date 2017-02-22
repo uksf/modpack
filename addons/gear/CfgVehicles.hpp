@@ -456,8 +456,10 @@ class CfgVehicles {
         faction = "CUP_B_GB";
         scope = 2;
         scopeCurator = 2;
+        editorCategory = QEGVAR(common,UKSF);
+        editorSubcategory = QEGVAR(common,support);
         displayName = "Resupply Crate (Empty)";
-        //editorPreview = QPATHTOEF(common,data\previews\UKSF_Crate.jpg);
+        editorPreview = QPATHTOEF(common,data\previews\UKSF_S_Empty.jpg);
         maximumLoad = 100000;
         ace_cargo_hasCargo = 1;
         ace_cargo_space = 20;
@@ -747,6 +749,9 @@ class CfgVehicles {
         scope = 2;
         scopeCurator = 2;
         displayName = "Figure 11 Target - No Popup";
+        editorCategory = QEGVAR(common,UKSF);
+        editorSubcategory = QEGVAR(common,support);
+        editorPreview = QPATHTOEF(common,data\previews\UKSF_Target_Nopopup.jpg);
         class EventHandlers {
             hitPart = "";
             class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};

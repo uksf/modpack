@@ -9,7 +9,7 @@ class CfgVehicles {
         side = 1;
         faction = "CUP_B_GB";
         crew = "B_pilot_F";
-        //editorPreview = "\UKSF_Units_Core\Previews\USAF_F35A.jpg";
+        editorPreview = QPATHTOEF(common,data\previews\USAF_F35A.jpg);
         hiddenSelections[] = { "rendertarget0", "screen_1", "screen_2", "screen_3", "screen_4", "screen_5", "screen_6", "camo1", "camo2", "camo3", "camo4" };
         hiddenSelectionsTextures[] = { "#(rgb,8,8,3)color(0,0,0,0)", "", "", "", "", "", "", QPATHTOF(data\F-35Auk.paa), QPATHTOF(data\f_35c_ext_2_co.paa), QPATHTOF(data\f_35c_ext_3_co.paa), QPATHTOF(data\f35_glass_ca.paa) };
         weapons[] = {

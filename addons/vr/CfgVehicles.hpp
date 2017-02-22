@@ -7,7 +7,7 @@ class CfgVehicles {
         faction = "UKSF_VR";
         displayName = "VR Rifleman";
         role = "Rifleman";
-        //editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Rifleman.jpg);
+        editorPreview = QPATHTOEF(common,data\previews\UKSF_O_Rifleman.jpg);
         hiddenSelections[] = { "Camo_arm_left", "Camo_arm_right", "Camo_body", "Camo_head", "Camo_leg_left", "Camo_leg_right" };
         hiddenSelectionsTextures[] = { "#(argb,8,8,3)color(0.85,0.05,0.05,1,ca)", "#(argb,8,8,3)color(0.85,0.05,0.05,1,ca)", "#(argb,8,8,3)color(0.85,0.05,0.05,1,ca)", "#(argb,8,8,3)color(0.85,0.05,0.05,1,ca)", "#(argb,8,8,3)color(0.85,0.05,0.05,1,ca)", "#(argb,8,8,3)color(0.85,0.05,0.05,1,ca)" };
         hiddenSelectionsMaterials[] = { "\A3\Characters_F_Bootcamp\Common\Data\O_VR_Soldier_F.rvmat", "\A3\Characters_F_Bootcamp\Common\Data\O_VR_Soldier_F.rvmat", "\A3\Characters_F_Bootcamp\Common\Data\O_VR_Soldier_F.rvmat", "\A3\Characters_F_Bootcamp\Common\Data\O_VR_Soldier_F.rvmat", "\A3\Characters_F_Bootcamp\Common\Data\O_VR_Soldier_F.rvmat", "\A3\Characters_F_Bootcamp\Common\Data\O_VR_Soldier_F.rvmat" };
@@ -180,7 +180,7 @@ class CfgVehicles {
     };
     class UKSF_O_MG: UKSF_O_Rifleman {
         displayName = "VR Machinegunner";
-        //editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Rifleman.jpg);
+        editorPreview = QPATHTOEF(common,data\previews\UKSF_O_MG.jpg);
         weapons[] = { "CUP_lmg_M240_LDS","Throw","Put" };
         respawnWeapons[] = { "CUP_lmg_M240_LDS","Throw","Put" };
         magazines[] = { "CUP_100Rnd_TE4_LRT4_White_Tracer_762x51_Belt_M_Rubber" };
@@ -188,7 +188,7 @@ class CfgVehicles {
     };
     class UKSF_O_AT: UKSF_O_Rifleman {
         displayName = "VR AT Specialist";
-        //editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Rifleman.jpg);
+        editorPreview = QPATHTOEF(common,data\previews\UKSF_O_AT.jpg);
         backpack = "B_AssaultPack_VR_AT";
         weapons[] = { "CUP_arifle_M4A1_Acog","CUP_launch_Mk153Mod0_Rubber","Throw","Put" };
         respawnWeapons[] = { "CUP_arifle_M4A1_Acog","CUP_launch_Mk153Mod0_Rubber","Throw","Put" };
@@ -197,7 +197,7 @@ class CfgVehicles {
     };
     class UKSF_O_AA: UKSF_O_Rifleman {
         displayName = "VR AA Specialist";
-        //editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Rifleman.jpg);
+        editorPreview = QPATHTOEF(common,data\previews\UKSF_O_AA.jpg);
         backpack = "B_AssaultPack_VR_AA";
         weapons[] = { "CUP_arifle_M4A1_Acog","CUP_launch_FIM92Stinger_Rubber","Throw","Put" };
         respawnWeapons[] = { "CUP_arifle_M4A1_Acog","CUP_launch_FIM92Stinger_Rubber","Throw","Put" };
@@ -219,7 +219,7 @@ class CfgVehicles {
         side = 0;
         faction = "UKSF_VR";
         displayName = "VR HMMWV M2";
-        //editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Rifleman.jpg);
+        editorPreview = QPATHTOEF(common,data\previews\UKSF_O_HMMWV_M2_VR_Rubber.jpg);
         crew = "UKSF_O_Rifleman";
         typicalCargo[] = { "UKSF_O_Rifleman", "UKSF_O_Rifleman", "UKSF_O_Rifleman", "UKSF_O_Rifleman" };
         hiddenSelectionsTextures[] = { "#(argb,8,8,3)color(0.85,0.05,0.05,1,ca)" };
@@ -263,7 +263,7 @@ class CfgVehicles {
         side = 0;
         faction = "UKSF_VR";
         displayName = "VR M1A2 Abrams TUSK";
-        //editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Rifleman.jpg);
+        editorPreview = QPATHTOEF(common,data\previews\UKSF_O_M1A2_TUSK_MG_VR_Rubber.jpg);
         crew = "UKSF_O_Rifleman";
         typicalCargo[] = { "UKSF_O_Rifleman", "UKSF_O_Rifleman", "UKSF_O_Rifleman", "UKSF_O_Rifleman" };
         hiddenSelectionsTextures[] = { "#(argb,8,8,3)color(0.85,0.05,0.05,1,ca)", "#(argb,8,8,3)color(0.85,0.05,0.05,1,ca)", "#(argb,8,8,3)color(0.85,0.05,0.05,1,ca)", "#(argb,8,8,3)color(0.85,0.05,0.05,1,ca)" };
@@ -300,7 +300,7 @@ class CfgVehicles {
         side = 0;
         faction = "UKSF_VR";
         displayName = "VR M6 Linebacker";
-        //editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Rifleman.jpg);
+        editorPreview = QPATHTOEF(common,data\previews\UKSF_O_M6LineBacker_VR_Rubber.jpg);
         crew = "UKSF_O_Rifleman";
         hiddenSelectionsTextures[] = { "#(argb,8,8,3)color(0.85,0.05,0.05,1,ca)", "#(argb,8,8,3)color(0.85,0.05,0.05,1,ca)", "#(argb,8,8,3)color(0.85,0.05,0.05,1,ca)" };
         hiddenSelectionsMaterials[] = { "\A3\Characters_F_Bootcamp\Common\Data\O_VR_Soldier_F.rvmat", "\A3\Characters_F_Bootcamp\Common\Data\O_VR_Soldier_F.rvmat", "\A3\Characters_F_Bootcamp\Common\Data\O_VR_Soldier_F.rvmat" };

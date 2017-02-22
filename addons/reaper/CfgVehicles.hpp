@@ -283,7 +283,6 @@ class CfgVehicles {
     class CUP_B_UKSF_MQ9: CUP_B_USMC_MQ9 {
         author = "UKSF";
         faction = "CUP_B_GB";
-        //editorPreview = QPATHTOEF(common,data\previews\CUP_B_UKSF_MQ9.jpg);
         hiddenSelections[] = { "camo1" };
         hiddenSelectionsTextures[] = { QPATHTOF(data\UKSF_MQ9_co.paa) };
     };

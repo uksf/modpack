@@ -889,11 +889,11 @@ class CfgMods {
         dir = "@uksf";
         name = "UKSF Mods";
         picture = "A3\Ui_f\data\Logos\arma3_expansion_alpha_ca";
-        hidePicture = "true";
-        hideName = "true";
+        hideName = 0;
+        hidePicture = 0;
         actionName = "Website";
-        action = CSTRING(URL);
-        description = "Issue Tracker: https://github.com/tbeswick96/UKSF-SR5-7-11/issues";
+        action = "http://uk-sf.com/";
+        description = "Issue Tracker: https://github.com/uksf/UKSF-SR5-7-11/issues";
     };
 };
 

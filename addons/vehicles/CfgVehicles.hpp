@@ -25,8 +25,11 @@ class CfgVehicles {
     class Land_CanisterFuel_F: Items_base_F {
         scope = 2;
         scopeCurator = 2;
+        faction = "CUP_B_GB";
         displayName = "Jerry Can";
+        editorCategory = QEGVAR(common,UKSF);
         editorSubcategory = QEGVAR(common,support);
+        editorPreview = QPATHTOEF(common,data\previews\Land_CanisterFuel_F.jpg);
         simulation = "thingX";
         class EventHandlers {
             class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
@@ -95,8 +98,11 @@ class CfgVehicles {
     class CargoNet_01_barrels_F: CargoNet_01_base_F {
         scope = 2;
         scopeCurator = 2;
+        faction = "CUP_B_GB";
         displayName = "Cargo Net (Fuel Barrels)";
+        editorCategory = QEGVAR(common,UKSF);
         editorSubcategory = QEGVAR(common,support);
+        editorPreview = QPATHTOEF(common,data\previews\CargoNet_01_barrels_F.jpg);
         ace_refuel_fuelCapacity = 800;
         ace_refuel_fuelCargo = 800;
         ace_refuel_flowRate = 2;
