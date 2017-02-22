@@ -238,9 +238,6 @@ class CfgVehicles {
     class B_Soldier_lite_F: B_Soldier_03_f {
         modelSides[] = {6};
     };
-    class B_crew_F: B_Soldier_03_f {
-        modelSides[] = {6};
-    };
     class B_Competitor_F: B_RangeMaster_F {
         modelSides[] = {6};
     };
@@ -248,6 +245,9 @@ class CfgVehicles {
         modelSides[] = {6};
     };
     class B_helicrew_F: B_Helipilot_F {
+        modelSides[] = {6};
+    };
+    class B_crew_F: B_Soldier_03_f {
         modelSides[] = {6};
     };
     class B_Soldier_universal_F: B_Soldier_F {
