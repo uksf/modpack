@@ -1081,24 +1081,6 @@ class CfgVehicles {
     class Underwear_F: B_Soldier_F {
         modelSides[] = {6};
     };
-    class VirtualCurator_F: VirtualMan_F {
-        modelSides[] = {6};
-    };
-    class B_VirtualCurator_F: VirtualCurator_F {
-        modelSides[] = {6};
-    };
-    class O_VirtualCurator_F: VirtualCurator_F {
-        modelSides[] = {6};
-    };
-    class I_VirtualCurator_F: VirtualCurator_F {
-        modelSides[] = {6};
-    };
-    class C_VirtualCurator_F: VirtualCurator_F {
-        modelSides[] = {6};
-    };
-    class VirtualSpectator_F: VirtualMan_F {
-        modelSides[] = {6};
-    };
     class I_C_Soldier_base_F: I_G_Soldier_base_F {
         modelSides[] = {6};
     };
