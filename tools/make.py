@@ -657,11 +657,11 @@ def restore_version_files():
     return True
 
 
-def get_private_keyname(module="main"):
+def get_private_keyname(commitID,module="main"):
     global pbo_name_prefix
     global project_version
 
-    keyName = str("{prefix}{version}".format(prefix=pbo_name_prefix,version=project_version))
+    keyName = str("{prefix}{version}-{commit_id}".format(prefix=pbo_name_prefix,version=project_version,commit_id=commitID))
     return keyName
 
 
@@ -669,20 +669,47 @@ def get_commit_ID():
     # Get latest commit ID
     global make_root
     curDir = os.getcwd()
+    commit_id = ""
+
     try:
+        # Verify if Git repository
         gitpath = os.path.join(os.path.dirname(make_root), ".git")
         assert os.path.exists(gitpath)
-        os.chdir(make_root)
 
+        # Try to get commit ID through Git client
+        os.chdir(make_root)
         commit_id = subprocess.check_output(["git", "rev-parse", "HEAD"])
         commit_id = str(commit_id, "utf-8")[:8]
+    except FileNotFoundError:
+        # Try to get commit ID from git files (subprocess failed - eg. no Git client)
+        head_path = os.path.join(gitpath, "HEAD")
+        if os.path.exists(head_path):
+            with open(head_path, "r") as head_file:
+                branch_path = head_file.readline().split(": ")
+
+                # Commit ID is written in HEAD file directly when in detached state
+                if len(branch_path) == 1:
+                    commit_id = branch_path[0]
+                else:
+                    branch_path = branch_path[-1].strip()
+                    ref_path = os.path.join(gitpath, branch_path)
+                    if os.path.exists(ref_path):
+                        with open(ref_path, "r") as ref_file:
+                            commit_id = ref_file.readline()
+
+        if commit_id != "":
+            commit_id = commit_id.strip()[:8]
+        else:
+            raise
     except:
-        print_error("FAILED TO DETERMINE COMMIT ID." + curDir)
-        print_yellow("Verify that \GIT\BIN or \GIT\CMD is in your system path or user path.")
-        commit_id = "NOGIT"
-        raise
+        # All other exceptions (eg. AssertionException)
+        if commit_id == "":
+            raise
     finally:
         pass
+        if commit_id == "":
+            print_error("Failed to determine commit ID - folder is not a Git repository.")
+            commit_id = "NOGIT"
         os.chdir(curDir)
 
     print_yellow("COMMIT ID set to {}".format(commit_id))
@@ -936,9 +963,9 @@ See the make.cfg file for additional build options.
             print_error ("Directory {} does not exist.".format(module_root))
             sys.exit(1)
 
-        #commit_id = get_commit_ID()
+        commit_id = get_commit_ID()
         get_project_version(version_increments)
-        key_name = versionStamp = get_private_keyname()
+        key_name = versionStamp = get_private_keyname(commit_id)
         print_green ("module_root: {}".format(module_root))
 
         if (os.path.isdir(optionals_root)):
@@ -1197,7 +1224,7 @@ See the make.cfg file for additional build options.
                     nobinFilePath = os.path.join(work_drive, prefix, module, "$NOBIN$")
                     backup_config(module)
 
-                    #version_stamp_pboprefix(module,commit_id)
+                    version_stamp_pboprefix(module,commit_id)
 
                     if os.path.isfile(nobinFilePath):
                         print_green("$NOBIN$ Found. Proceeding with non-binarizing!")
