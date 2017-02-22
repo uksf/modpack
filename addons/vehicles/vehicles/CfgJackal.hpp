@@ -24,7 +24,7 @@ class CUP_BAF_Jackal2_GMG_D: CUP_BAF_Jackal2_BASE_D {
         };
     };
     REARM_ACTIONS
-    fuelCapacity = JACKAL_FUEL_CAPACITY;
+    FUEL_CAPACITY
 };
 class CUP_BAF_Jackal2_L2A1_D: CUP_BAF_Jackal2_BASE_D {
     class Turrets: Turrets {
@@ -46,5 +46,5 @@ class CUP_BAF_Jackal2_L2A1_D: CUP_BAF_Jackal2_BASE_D {
         };
     };
     REARM_ACTIONS
-    fuelCapacity = JACKAL_FUEL_CAPACITY;
+    FUEL_CAPACITY
 };
