@@ -451,7 +451,6 @@ class CfgVehicles {
     };
 
     class CargoNet_01_ammo_base_F;
-    class Land_CargoBox_V1_F;
     class UKSF_S_Empty: CargoNet_01_ammo_base_F {
         author = "UKSF";
         faction = "CUP_B_GB";
@@ -460,6 +459,8 @@ class CfgVehicles {
         displayName = "Resupply Crate (Empty)";
         //editorPreview = QPATHTOEF(common,data\previews\UKSF_Crate.jpg);
         maximumLoad = 100000;
+        ace_cargo_hasCargo = 1;
+        ace_cargo_space = 20;
         hiddenSelectionsTextures[] = { "\A3\Weapons_F\Ammoboxes\Data\AmmoBox_CO.paa","\A3\Weapons_F\Ammoboxes\Data\AmmoBox_signs_CA.paa" };
         class TransportMagazines {};
         class TransportWeapons {};

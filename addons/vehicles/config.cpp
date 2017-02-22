@@ -6,7 +6,9 @@ class CfgPatches {
         units[] = {
             "UKSF_Hemtt_Ammo",
             "UKSF_Hemtt_Fuel",
-            "UKSF_Hemtt_Repair"
+            "UKSF_Hemtt_Repair",
+            "Land_CanisterFuel_F",
+            "CargoNet_01_barrels_F"
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
