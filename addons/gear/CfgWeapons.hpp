@@ -640,40 +640,6 @@ class CfgWeapons {
             };
         };
     };
-    class CUP_arifle_M4A1;
-    class CUP_arifle_M4A1_Acog: CUP_arifle_M4A1 {
-        scopeArsenal = 1;
-        magazines[] = { "30Rnd_556x45_Stanag_Rubber" };
-        class LinkedItems {
-            class LinkedItemsOptic {
-                slot = "CUP_PicatinnyTopMountM4";
-                item = "CUP_optic_RCO";
-            };
-        };
-    };
-    class CUP_lmg_M240;
-    class CUP_lmg_M240_LDS: CUP_lmg_M240 {
-        scopeArsenal = 1;
-        magazines[] = { "CUP_100Rnd_TE4_LRT4_White_Tracer_762x51_Belt_M_Rubber" };
-        class LinkedItems {
-            class LinkedItemsOptic {
-                slot = "CUP_PicatinnyTopMountM4";
-                item = "UK3CB_BAF_SpecterLDS";
-            };
-        };
-    };
-    class CUP_launch_Mk153Mod0;
-    class CUP_launch_Mk153Mod0_Rubber: CUP_launch_Mk153Mod0 {
-        scopeArsenal = 1;
-        magazines[] = { "CUP_SMAW_HEAT_M_Rubber" };
-        ace_overpressure_damage = 0;
-    };
-    class CUP_launch_FIM92Stinger;
-    class CUP_launch_FIM92Stinger_Rubber: CUP_launch_FIM92Stinger {
-        scopeArsenal = 1;
-        magazines[] = { "CUP_Stinger_M_Rubber" };
-        ace_overpressure_damage = 0;
-    };
 
     class Default;
     class CUP_weapon_mastersafe: Default {
@@ -914,6 +880,42 @@ class CfgWeapons {
                 soundSetShot[] = { "DS_Minigun762_Shot_SoundSet","DS_mmg1_Tail_SoundSet" };
             };
         };
+    };
+
+    //Rubber weapons for virtual army faction
+    class CUP_arifle_M4A1;
+    class CUP_arifle_M4A1_Acog: CUP_arifle_M4A1 {
+        scopeArsenal = 1;
+        magazines[] = { "30Rnd_556x45_Stanag_Rubber" };
+        class LinkedItems {
+            class LinkedItemsOptic {
+                slot = "CUP_PicatinnyTopMountM4";
+                item = "CUP_optic_RCO";
+            };
+        };
+    };
+    class CUP_lmg_M240;
+    class CUP_lmg_M240_LDS: CUP_lmg_M240 {
+        scopeArsenal = 1;
+        magazines[] = { "CUP_100Rnd_TE4_LRT4_White_Tracer_762x51_Belt_M_Rubber" };
+        class LinkedItems {
+            class LinkedItemsOptic {
+                slot = "CUP_PicatinnyTopMountM4";
+                item = "UK3CB_BAF_SpecterLDS";
+            };
+        };
+    };
+    class CUP_launch_Mk153Mod0;
+    class CUP_launch_Mk153Mod0_Rubber: CUP_launch_Mk153Mod0 {
+        scopeArsenal = 1;
+        magazines[] = { "CUP_SMAW_HEAT_M_Rubber" };
+        ace_overpressure_damage = 0;
+    };
+    class CUP_launch_FIM92Stinger;
+    class CUP_launch_FIM92Stinger_Rubber: CUP_launch_FIM92Stinger {
+        scopeArsenal = 1;
+        magazines[] = { "CUP_Stinger_M_Rubber" };
+        ace_overpressure_damage = 0;
     };
     class CUP_Vhmg_M2_veh_rubber: CUP_Vhmg_M2_veh {
         displayName = "M2 Rubber";
