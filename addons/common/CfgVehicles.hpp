@@ -4,7 +4,7 @@ class CfgVehicles {
         author = QUOTE(UKSF);
         category = "UKSF";
         functionPriority = 1;
-        isGlobal = 1;
+        isGlobal = 0;
         isTriggerActivated = 0;
         scope = 1;
         scopeCurator = 0;
