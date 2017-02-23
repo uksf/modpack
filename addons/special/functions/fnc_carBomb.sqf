@@ -15,7 +15,7 @@
 
 params ["_car"];
 
-if (!local _car) exitWith {};
+if (!local _car || {_car getVariable [QGVAR(isBomber), false]}) exitWith {};
 
 _car setVariable [QGVAR(isBomber), true, true];
 if ((driver _car) != objNull) then {

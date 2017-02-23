@@ -17,7 +17,7 @@
 
 params ["_bomber", ["_deadman", false], ["_car", false]];
 
-if (!local _bomber) exitWith {};
+if (!local _bomber || {_bomber getVariable [QGVAR(isBomber), false]}) exitWith {};
 
 _bomber setVariable ["acex_headless_blacklist", true, true];
 _bomber setVariable [QGVAR(isBomber), true, true];

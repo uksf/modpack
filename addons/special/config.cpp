@@ -3,10 +3,10 @@
 class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
-        units[] = {,
+        units[] = {
+            "UKSF_O_TK_INS_Suicide_Driver",
             "UKSF_O_TK_INS_Suicide",
             "UKSF_O_TK_INS_Suicide_Deadman",
-            "UKSF_O_TK_INS_SuicideDriver",
             "UKSF_O_Skoda_Base",
             "UKSF_O_Skoda_CarBomb",
             "UKSF_O_Skoda_CarBomb_Deadman",
@@ -31,7 +31,6 @@ class CfgPatches {
     };
 };
 
-#include "ACE_Settings.hpp"
 #include "CfgEventHandlers.hpp"
-#include "CfgEden.hpp"
+#include "Cfg3den.hpp"
 #include "CfgVehicles.hpp"

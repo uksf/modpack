@@ -1,11 +1,11 @@
 class CfgVehicles {
     class CUP_O_TK_INS_Soldier;
-    class UKSF_O_TK_INS_SuicideDriver: CUP_O_TK_INS_Soldier {
+    class UKSF_O_TK_INS_Suicide_Driver: CUP_O_TK_INS_Soldier {
         author = "UKSF";
         scope = 2;
         scopeCurator = 2;
         displayName = "Suicide Driver";
-        //editorPreview = QPATHTOEF(common,data\previews\UKSF_O_TK_INS_SuicideDriver.jpg);
+        //editorPreview = QPATHTOEF(common,data\previews\UKSF_O_TK_INS_Suicide_Driver.jpg);
         uniformClass = "CUP_O_TKI_Khet_Partug_04";
         weapons[] = { "Throw", "Put" };
         respawnWeapons[] = { "Throw", "Put" };
@@ -14,26 +14,26 @@ class CfgVehicles {
         linkedItems[] = { "CUP_H_TKI_Pakol_2_01", "CUP_V_OI_TKI_Jacket1_03", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio" };
         respawnLinkedItems[] = { "CUP_H_TKI_Pakol_2_01", "CUP_V_OI_TKI_Jacket1_03", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio" };
     };
-    class UKSF_O_TK_INS_Suicide: UKSF_O_TK_INS_SuicideDriver {
+    class UKSF_O_TK_INS_Suicide: UKSF_O_TK_INS_Suicide_Driver {
         author = "UKSF";
         displayName = "Suicide Bomber";
         //editorPreview = QPATHTOEF(common,data\previews\UKSF_O_TK_INS_Suicide.jpg);
     };
-    class UKSF_O_TK_INS_Suicide_Deadman: UKSF_O_TK_INS_SuicideDriver {
+    class UKSF_O_TK_INS_Suicide_Deadman: UKSF_O_TK_INS_Suicide_Driver {
         displayName = "Suicide Bomber (Deadman)";
         //editorPreview = QPATHTOEF(common,data\previews\UKSF_O_TK_INS_Suicide_Deadman.jpg);
     };
 
     class CUP_C_Skoda_White_CIV;
-    class UKSF_O_Skoda_Base: UKSF_O_Skoda_CarBomb {
+    class UKSF_O_Skoda_Base: CUP_C_Skoda_White_CIV {
         author = "UKSF";
         scope = 1;
         scopeCurator = 0;
         side = 0;
         faction = "CUP_O_TK_MILITIA";
         displayName = "Car Bomb";
-        crew = "UKSF_O_TK_INS_SuicideDriver";
-		typicalCargo[] = { "UKSF_O_TK_INS_SuicideDriver" };
+        crew = "UKSF_O_TK_INS_Suicide_Driver";
+		typicalCargo[] = { "UKSF_O_TK_INS_Suicide_Driver" };
         class TextureSources {
             class White {
                 displayName = "White";
@@ -62,12 +62,18 @@ class CfgVehicles {
         };
     };
     class UKSF_O_Skoda_CarBomb: UKSF_O_Skoda_Base {
+        scope = 2;
+        scopeCurator = 2;
         displayName = "Car Bomb";
     };
     class UKSF_O_Skoda_CarBomb_Deadman: UKSF_O_Skoda_Base {
+        scope = 2;
+        scopeCurator = 2;
         displayName = "Car Bomb (Deadman)";
     };
     class UKSF_O_Skoda_CarBomb_Empty: UKSF_O_Skoda_Base {
+        scope = 2;
+        scopeCurator = 2;
         displayName = "Car Bomb (Empty)";
         crew = "";
 		typicalCargo[] = { "" };

@@ -8,7 +8,7 @@ class Cfg3DEN {
                         control = "Checkbox";
                         displayName = QUOTE(Set Suicide Bomber);
                         tooltip = QUOTE(Sets unit as a suicide bomber);
-                        expression = QUOTE([_this] call FUNC(suicide));
+                        expression = QUOTE(if (!is3DEN && {!(_this getVariable [ARR_2(QQGVAR(isBomber), false)])}) then {[_this] call FUNC(suicide)};);
                         typeName = "BOOL";
                         defaultValue = "(false)";
                         condition = "objectBrain * (1 - objectVehicle)";
@@ -18,7 +18,7 @@ class Cfg3DEN {
                         control = "Checkbox";
                         displayName = QUOTE(Set Deadman Suicide Bomber);
                         tooltip = QUOTE(Sets unit as a deadman suicide bomber);
-                        expression = QUOTE([ARR_2(_this, true)] call FUNC(suicide));
+                        expression = QUOTE(if (!is3DEN && {!(_this getVariable [ARR_2(QQGVAR(isBomber), false)])}) then {[ARR_2(_this, true)] call FUNC(suicide)};);
                         typeName = "BOOL";
                         defaultValue = "(false)";
                         condition = "objectBrain * (1 - objectVehicle)";
@@ -28,7 +28,7 @@ class Cfg3DEN {
                         control = "Checkbox";
                         displayName = QUOTE(Set Car Bomber);
                         tooltip = QUOTE(Sets vehicle as a car bomber);
-                        expression = QUOTE([ARR_3(_this, false, true)] call FUNC(suicide));
+                        expression = QUOTE(if (!is3DEN && {!(_this getVariable [ARR_2(QQGVAR(isBomber), false)])}) then {[ARR_3(_this, false, true)] call FUNC(suicide)};);
                         typeName = "BOOL";
                         defaultValue = "(false)";
                         condition = "objectBrain * objectVehicle";
@@ -38,7 +38,7 @@ class Cfg3DEN {
                         control = "Checkbox";
                         displayName = QUOTE(Set Deadman Car Bomber);
                         tooltip = QUOTE(Sets vehicle as a deadman car bomber);
-                        expression = QUOTE([ARR_3(_this, true, true)] call FUNC(suicide));
+                        expression = QUOTE(if (!is3DEN && {!(_this getVariable [ARR_2(QQGVAR(isBomber), false)])}) then {[ARR_3(_this, true, true)] call FUNC(suicide)};);
                         typeName = "BOOL";
                         defaultValue = "(false)";
                         condition = "objectBrain * objectVehicle";
@@ -48,7 +48,7 @@ class Cfg3DEN {
                         control = "Checkbox";
                         displayName = QUOTE(Set Car Bomb);
                         tooltip = QUOTE(Sets vehicle as an empty car bomb);
-                        expression = QUOTE([_this] call FUNC(carBomb));
+                        expression = QUOTE(if (!is3DEN && {!(_this getVariable [ARR_2(QQGVAR(isBomber), false)])}) then {[_this] call FUNC(carBomb)};);
                         typeName = "BOOL";
                         defaultValue = "(false)";
                         condition = "(1 - objectBrain) * objectVehicle";

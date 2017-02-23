@@ -30,30 +30,30 @@ if (_logic isKindOf QGVAR(moduleMakeCarBomb)) then {
 };
 
 (missionNamespace getVariable ["bis_fnc_curatorObjectPlaced_mouseOver", [""]]) params ["_typeName", "_unit"];
-if (_typeName != "OBJECT") then {
-    if (!_car && {!(alive _unit)} && {!(_unit isKindOf "CAManBase")}) then {
-        [QUOTE(Place on a living unit)] call ace_common_fnc_displayTextStructured;
+if (_typeName != "OBJECT") then {  
+    [QUOTE(Place on a living unit or vehicle)] call ace_common_fnc_displayTextStructured;  
+} else {
+    if (_empty && {!(_unit isKindOf "LandVehicle")}) then {
+        [QUOTE(Place on a land vehicle)] call ace_common_fnc_displayTextStructured;
     } else {
-        if (_car && {!(alive _unit)} && {!(_unit isKindOf "LandVehicle")}) then {
+        if (_car && {!(alive _unit) || {!(_unit isKindOf "LandVehicle")}}) then {
             [QUOTE(Place on a living land vehicle)] call ace_common_fnc_displayTextStructured;
         } else {
-            if (_empty && {!(_unit isKindOf "LandVehicle")}) then {
-                [QUOTE(Place on a land vehicle)] call ace_common_fnc_displayTextStructured;
+            if (!_car && {!(alive _unit) || {!(_unit isKindOf "CAManBase")}}) then {
+                [QUOTE(Place on a living unit)] call ace_common_fnc_displayTextStructured;
             } else {
-                [QUOTE(Place on a living unit or vehicle)] call ace_common_fnc_displayTextStructured;
+                if (!(_unit getVariable [QGVAR(isBomber), false])) then {
+                    if (_empty) then {
+                        [_unit] remoteExecCall [QFUNC(carBomb), owner _unit];
+                    } else {
+                        [_unit, _deadman, _car] remoteExecCall [QFUNC(suicide), owner _unit];
+                    };        
+                } else {
+                    [QUOTE(Unit or vehicle is already a bomb)] call ace_common_fnc_displayTextStructured;
+                };
             };
         };
-    };
-} else {
-    if (!(_unit getVariable [QGVAR(isBomber), false])) then {
-        if (_empty) then {
-            [_unit] remoteExecCall [QFUNC(carBomb), owner _unit];
-        } else {
-            [_unit, _deadman, _car] remoteExecCall [QFUNC(suicide), owner _unit];
-        };        
-    } else {
-        [QUOTE(Unit or vehicle is already a bomb)] call ace_common_fnc_displayTextStructured;
-    };
+    };    
 };
 
 deleteVehicle _logic;
