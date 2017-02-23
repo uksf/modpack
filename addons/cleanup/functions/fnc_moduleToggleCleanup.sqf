@@ -3,7 +3,7 @@
         Tim Beswick
 
     Description:
-        Sets unit to exclude from cleanup
+        Toggles unit cleanup state
 
     Parameter(s):
         0: The module logic <OBJECT>
@@ -16,18 +16,20 @@
 #include "script_component.hpp"
 
 params ["_logic", "_units", "_activated"];
-private ["_mouseOver", "_unit", "_excluded"];
 
 if !(_activated && local _logic) exitWith {};
 
-_mouseOver = missionNamespace getVariable ["bis_fnc_curatorObjectPlaced_mouseOver", [""]];
-if ((_mouseOver select 0) != "OBJECT") then {
+(missionNamespace getVariable ["bis_fnc_curatorObjectPlaced_mouseOver", [""]]) params ["_typeName", "_unit"];
+if (_typeName != "OBJECT") then {
     [QUOTE(Place on a unit or vehicle)] call ace_common_fnc_displayTextStructured;
 } else {
-    _unit = _mouseOver select 1;
-    _excluded = _unit getVariable [QGVAR(excluded), false];
-    if (!_excluded) then {
+    if (!(_unit getVariable [QGVAR(excluded), false])) then {
         _unit setVariable [QGVAR(excluded), true, true];
+    } else {
+        _unit setVariable [QGVAR(excluded), false, true];
+        if (!(_unit getVariable [QGVAR(handled), false]) && {!(alive _unit)}) then {
+            [_unit] call FUNC(handleKilled);
+        };
     };
 };
 

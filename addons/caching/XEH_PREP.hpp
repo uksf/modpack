@@ -1,6 +1,5 @@
 PREP(initModuleSettings);
-PREP(moduleExclude);
-PREP(moduleInclude);
+PREP(moduleToggleCaching);
 PREP(handleCache);
 PREP(cache);
 PREP(uncache);

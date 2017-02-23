@@ -1,5 +1,4 @@
 PREP(initModuleSettings);
-PREP(moduleExclude);
-PREP(moduleInclude);
+PREP(moduleToggleCleanup);
 PREP(cleanupCheck);
 PREP(handleKilled);
