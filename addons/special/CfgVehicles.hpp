@@ -33,7 +33,7 @@ class CfgVehicles {
         faction = "CUP_O_TK_MILITIA";
         displayName = "Car Bomb";
         crew = "UKSF_O_TK_INS_Suicide_Driver";
-		typicalCargo[] = { "UKSF_O_TK_INS_Suicide_Driver" };
+        typicalCargo[] = { "UKSF_O_TK_INS_Suicide_Driver" };
         class TextureSources {
             class White {
                 displayName = "White";
@@ -76,7 +76,7 @@ class CfgVehicles {
         scopeCurator = 2;
         displayName = "Car Bomb (Empty)";
         crew = "";
-		typicalCargo[] = { "" };
+        typicalCargo[] = { "" };
     };
 
     class EGVAR(common,moduleBase);
