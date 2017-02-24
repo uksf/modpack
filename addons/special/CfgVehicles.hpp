@@ -83,7 +83,7 @@ class CfgVehicles {
     class GVAR(moduleMakeSuicideBomber): EGVAR(common,moduleBase) {
         curatorCanAttach = 1;
         scopeCurator = 2;
-        category = "UKSF Special";
+        category = QEGVAR(common,zeus_uksf_special);
         displayName = QUOTE(Make Suicide Bomber);
         function = QFUNC(moduleMakeBomb);
         icon = "\z\ace\addons\explosives\UI\Icon_Module_Explosives_ca.paa";
@@ -91,7 +91,7 @@ class CfgVehicles {
     class GVAR(moduleMakeSuicideBomberDeadman): EGVAR(common,moduleBase) {
         curatorCanAttach = 1;
         scopeCurator = 2;
-        category = "UKSF Special";
+        category = QEGVAR(common,zeus_uksf_special);
         displayName = QUOTE(Make Deadman Suicide Bomber);
         function = QFUNC(moduleMakeBomb);
         icon = "\z\ace\addons\explosives\UI\Icon_Module_Explosives_ca.paa";
@@ -99,7 +99,7 @@ class CfgVehicles {
     class GVAR(moduleMakeCarBomber): EGVAR(common,moduleBase) {
         curatorCanAttach = 1;
         scopeCurator = 2;
-        category = "UKSF Special";
+        category = QEGVAR(common,zeus_uksf_special);
         displayName = QUOTE(Make Car Bomber);
         function = QFUNC(moduleMakeBomb);
         icon = "\z\ace\addons\explosives\UI\Icon_Module_Explosives_ca.paa";
@@ -107,7 +107,7 @@ class CfgVehicles {
     class GVAR(moduleMakeCarBomberDeadman): EGVAR(common,moduleBase) {
         curatorCanAttach = 1;
         scopeCurator = 2;
-        category = "UKSF Special";
+        category = QEGVAR(common,zeus_uksf_special);
         displayName = QUOTE(Make Deadman Car Bomber);
         function = QFUNC(moduleMakeBomb);
         icon = "\z\ace\addons\explosives\UI\Icon_Module_Explosives_ca.paa";
@@ -115,7 +115,7 @@ class CfgVehicles {
     class GVAR(moduleMakeCarBomb): EGVAR(common,moduleBase) {
         curatorCanAttach = 1;
         scopeCurator = 2;
-        category = "UKSF Special";
+        category = QEGVAR(common,zeus_uksf_special);
         displayName = QUOTE(Make Car Bomb);
         function = QFUNC(moduleMakeBomb);
         icon = "\z\ace\addons\explosives\UI\Icon_Module_Explosives_ca.paa";

@@ -2,7 +2,7 @@ class CfgVehicles {
     class Module_F;
     class GVAR(moduleBase): Module_F {
         author = QUOTE(UKSF);
-        category = "UKSF";
+        category = GVAR(zeus_uksf);
         functionPriority = 1;
         isGlobal = 0;
         isTriggerActivated = 0;

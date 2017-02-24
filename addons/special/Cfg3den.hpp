@@ -23,26 +23,6 @@ class Cfg3DEN {
                         defaultValue = "(false)";
                         condition = "objectBrain * (1 - objectVehicle)";
                     };
-                    class GVAR(setCarBomber) {
-                        property = QGVAR(setCarBomber);
-                        control = "Checkbox";
-                        displayName = QUOTE(Set Car Bomber);
-                        tooltip = QUOTE(Sets vehicle as a car bomber);
-                        expression = QUOTE(if (!is3DEN && {!(_this getVariable [ARR_2(QQGVAR(isBomber), false)])}) then {[ARR_3(_this, false, true)] call FUNC(suicide)};);
-                        typeName = "BOOL";
-                        defaultValue = "(false)";
-                        condition = "objectBrain * objectVehicle";
-                    };
-                    class GVAR(setCarBomberDeadman) {
-                        property = QGVAR(setCarBomberDeadman);
-                        control = "Checkbox";
-                        displayName = QUOTE(Set Deadman Car Bomber);
-                        tooltip = QUOTE(Sets vehicle as a deadman car bomber);
-                        expression = QUOTE(if (!is3DEN && {!(_this getVariable [ARR_2(QQGVAR(isBomber), false)])}) then {[ARR_3(_this, true, true)] call FUNC(suicide)};);
-                        typeName = "BOOL";
-                        defaultValue = "(false)";
-                        condition = "objectBrain * objectVehicle";
-                    };
                     class GVAR(setCarBomb) {
                         property = QGVAR(setCarBomb);
                         control = "Checkbox";

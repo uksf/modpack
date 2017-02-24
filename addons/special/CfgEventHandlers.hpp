@@ -28,11 +28,6 @@ class Extended_Init_EventHandlers {
             init = QUOTE([ARR_2((_this select 0), true)] call FUNC(suicide));
         };
     };
-    class UKSF_O_Skoda_Base {
-        class ADDON {
-            init = "[this, ['White', 0.25, 'Red', 0.25, 'Blue', 0.25, 'Green', 0.25]] call BIS_fnc_initVehicle";
-        };
-    };
     class UKSF_O_Skoda_CarBomb {
         class ADDON {
             init = QUOTE([ARR_3((_this select 0), false, true)] call FUNC(suicide));

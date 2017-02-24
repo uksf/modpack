@@ -31,15 +31,15 @@ if (_logic isKindOf QGVAR(moduleMakeCarBomb)) then {
 
 (missionNamespace getVariable ["bis_fnc_curatorObjectPlaced_mouseOver", [""]]) params ["_typeName", "_unit"];
 if (_typeName != "OBJECT") then {  
-    [QUOTE(Place on a living unit or vehicle)] call ace_common_fnc_displayTextStructured;  
+    [QUOTE(Place on a living unit or an occupied land vehicle)] call ace_common_fnc_displayTextStructured;  
 } else {
     if (_empty && {!(_unit isKindOf "LandVehicle")}) then {
         [QUOTE(Place on a land vehicle)] call ace_common_fnc_displayTextStructured;
     } else {
-        if (_car && {!(alive _unit) || {!(_unit isKindOf "LandVehicle")}}) then {
-            [QUOTE(Place on a living land vehicle)] call ace_common_fnc_displayTextStructured;
+        if (_car && {!(alive _unit) || {!(_unit isKindOf "LandVehicle")} || {driver _unit isEqualTo objNull}}) then {
+            [QUOTE(Place on an occupied land vehicle)] call ace_common_fnc_displayTextStructured;
         } else {
-            if (!_car && {!(alive _unit) || {!(_unit isKindOf "CAManBase")}}) then {
+            if (!_empty && {!_car} && {!(alive _unit) || {!(_unit isKindOf "CAManBase")}}) then {
                 [QUOTE(Place on a living unit)] call ace_common_fnc_displayTextStructured;
             } else {
                 if (!(_unit getVariable [QGVAR(isBomber), false])) then {
