@@ -10,7 +10,7 @@ class CUP_B_L39_CAP_CZ: CUP_L39_CAP_Base {
 class UKSF_B_L39_CAP: CUP_B_L39_CAP_CZ {
     author = "UKSF";
     faction = "CUP_B_GB";
-    //editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Pilot.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\UKSF_B_L39_CAP.jpg);
     crew = "UKSF_B_Pilot_617";
     typicalCargo[] = { "UKSF_B_Pilot_617" };
     hiddenSelectionsTextures[] = { QPATHTOF(data\l_39_body_raf.paa), QPATHTOF(data\l_39_body_1_raf.paa) };
@@ -27,7 +27,7 @@ class CUP_B_L39_BMB_CZ;
 class UKSF_B_L39_BMB: CUP_B_L39_BMB_CZ {
     author = "UKSF";
     faction = "CUP_B_GB";
-    //editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Pilot.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\UKSF_B_L39_BMB.jpg);
     crew = "UKSF_B_Pilot_617";
     typicalCargo[] = { "UKSF_B_Pilot_617" };    
     hiddenSelectionsTextures[] = { QPATHTOF(data\l_39_body_raf.paa), QPATHTOF(data\l_39_body_1_raf.paa) };

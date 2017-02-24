@@ -5,7 +5,7 @@ class CfgVehicles {
         scope = 2;
         scopeCurator = 2;
         displayName = "Suicide Driver";
-        //editorPreview = QPATHTOEF(common,data\previews\UKSF_O_TK_INS_Suicide_Driver.jpg);
+        editorPreview = QPATHTOEF(common,data\previews\UKSF_O_TK_INS_Suicide.jpg);
         uniformClass = "CUP_O_TKI_Khet_Partug_04";
         weapons[] = { "Throw", "Put" };
         respawnWeapons[] = { "Throw", "Put" };
@@ -17,11 +17,9 @@ class CfgVehicles {
     class UKSF_O_TK_INS_Suicide: UKSF_O_TK_INS_Suicide_Driver {
         author = "UKSF";
         displayName = "Suicide Bomber";
-        //editorPreview = QPATHTOEF(common,data\previews\UKSF_O_TK_INS_Suicide.jpg);
     };
     class UKSF_O_TK_INS_Suicide_Deadman: UKSF_O_TK_INS_Suicide_Driver {
         displayName = "Suicide Bomber (Deadman)";
-        //editorPreview = QPATHTOEF(common,data\previews\UKSF_O_TK_INS_Suicide_Deadman.jpg);
     };
 
     class CUP_C_Skoda_White_CIV;
