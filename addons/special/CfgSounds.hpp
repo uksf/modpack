@@ -1,12 +1,12 @@
 class CfgSounds {
     class GVAR(suicide) {
         name = QGVAR(suicide);
-        sound[] = { QPATHTOF(data\sounds\suicide), 10, 1, 50 };
+        sound[] = { QPATHTOF(data\sounds\suicide), 10, 1, 150 };
         titles[] = {};
     };
     class GVAR(trigger) {
         name = QGVAR(trigger);
-        sound[] = { "A3\Sounds_F\weapons\mines\mech_trigger_2", 10, 1, 50 };
+        sound[] = { "A3\Sounds_F\weapons\mines\mech_trigger_2", 10, 1, 100 };
         titles[] = {};
     };
     class GVAR(alarm) {

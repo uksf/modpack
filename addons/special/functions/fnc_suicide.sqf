@@ -55,7 +55,7 @@ _bomber allowfleeing 0;
 
     if ((!alive _bomber && _deadman) || {_bomber getVariable [QGVAR(explode), false]}) then {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
-        [_bomber, [QGVAR(trigger), 50]] remoteExecCall ["say3D", 0];
+        [_bomber, [QGVAR(trigger), 100]] remoteExecCall ["say3D", 0];
         [{
             params ["_bomber"];
             "R_TBG32V_F" createVehicle (getPosATL _bomber);
@@ -80,7 +80,7 @@ _bomber allowfleeing 0;
             if (_bomber distance _target <= (_distance / 5) && {[objNull, "VIEW"] checkVisibility [eyePos _bomber, eyePos _target] > 0}) exitWith {
                 [_idPFH] call CBA_fnc_removePerFrameHandler;
                 _bomber setSpeedMode "FULL";
-                [_bomber, [QGVAR(suicide), 50]] remoteExecCall ["say3D", 0];
+                [_bomber, [QGVAR(suicide), 150]] remoteExecCall ["say3D", 0];
                 [{
                     params ["_bomber"];                        
                     if (alive _bomber) exitWith {                        
