@@ -885,15 +885,35 @@ class CfgPatches {
 };
 
 class CfgMods {
-    class PREFIX {
+    class Mod_Base;
+    class PREFIX: Mod_Base {
         dir = "@uksf";
         name = "UKSF Mods";
-        picture = "A3\Ui_f\data\Logos\arma3_expansion_alpha_ca";
+        author = "UKSF";
+        picture = QPATHTO_R(data\uksf_logo_ca);
+        logo = QPATHTO_R(data\uksf_logo_ca);
+        logoOver = QPATHTO_R(data\uksf_logo_ca);
+        logoSmall = QPATHTO_R(data\uksf_logo_ca);
         hideName = 0;
         hidePicture = 0;
         actionName = "Website";
         action = "http://uk-sf.com/";
         description = "Issue Tracker: https://github.com/uksf/UKSF-SR5-7-11/issues";
+        tooltip = "UKSF Mods";
+        tooltipOwned = "UKSF Mods - Owned";
+        overview = "Collection of custom mods and patches tailor made for use with UKSF";
+    };
+    class UK3CB_BAF_Weapons: Mod_Base {
+        picture = QPATHTO_R(data\uksf_logo_ca);
+        logo = QPATHTO_R(data\uksf_logo_ca);
+        logoOver = QPATHTO_R(data\uksf_logo_ca);
+        logoSmall = QPATHTO_R(data\uksf_logo_ca);
+    };
+    class UK3CB_BAF_Equipment: Mod_Base {
+        picture = QPATHTO_R(data\uksf_logo_ca);
+        logo = QPATHTO_R(data\uksf_logo_ca);
+        logoOver = QPATHTO_R(data\uksf_logo_ca);
+        logoSmall = QPATHTO_R(data\uksf_logo_ca);
     };
 };
 
