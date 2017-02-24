@@ -424,11 +424,10 @@ class CfgVehicles {
         genericNames = "EnglishMen";
         uniformClass = "UK3CB_BAF_U_HeliPilotCoveralls_RAF";
         model = "\A3\Characters_F\Common\coveralls.p3d";
-        modelSides[] = { 3,1 };
         hiddenSelections[] = { "Camo", "insignia" };
-        hiddenSelectionsTextures[] = { QPATHTOF(data\uniforms\helipilot_coveralls_raf.paa) };
+        hiddenSelectionsTextures[] = { QPATHTOF(data\uniforms\pilot_coveralls_raf.paa) };
     };
-    class UKSF_Soldier_ATC_base: B_Helipilot_F {
+    class UKSF_B_ATC_base: B_Helipilot_F {
         scope = 1;
         scopeCurator = 0;
         author = "UKSF";
@@ -438,9 +437,9 @@ class CfgVehicles {
         displayName = "ATC Base";
         genericNames = "EnglishMen";
         nakedUniform = "U_BasicBody";
-        uniformClass = "UKSF_ATC";
+        uniformClass = "UKSF_U_RAF_Blues";
         model = "\A3\characters_F_gamma\Guerrilla\ig_guerrilla2_1.p3d";
-        hiddenSelections[] = { "Camo" };
+        hiddenSelections[] = { "camo", "insignia" };
         hiddenSelectionsTextures[] = { QPATHTOF(data\uniforms\ATC.paa) };
     };
     class Supply500;
