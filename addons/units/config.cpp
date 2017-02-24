@@ -11,7 +11,9 @@ class CfgPatches {
             "UKSF_B_AntiTank",
             "UKSF_B_Medic",
             "UKSF_B_Sniper",
-            "UKSF_B_Pilot"
+            "UKSF_B_Pilot_7",
+            "UKSF_B_Pilot_656",
+            "UKSF_B_Pilot_617"
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;

@@ -15,6 +15,7 @@ class CfgVehicles {
     };
     class Plane_Base_F;
     
+    #include "vehicles\CfgBuzzard.hpp"
     #include "vehicles\CfgChinook.hpp"
     #include "vehicles\CfgMerlin.hpp"
     #include "vehicles\CfgWildcat.hpp"
