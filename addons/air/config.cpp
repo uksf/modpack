@@ -4,6 +4,8 @@ class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
         units[] = {
+            "UKSF_B_L39_CAP",
+            "UKSF_B_L39_BMB",
             "CUP_B_Merlin_HC3_GB",
             "CUP_B_Merlin_HC3_VIV_GB",
             "CUP_B_Merlin_HC3_Armed_GB"
@@ -12,6 +14,7 @@ class CfgPatches {
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             "uksf_gear",
+            "uksf_units",
             "CUP_AirVehicles_CH47",
             "CUP_AirVehicles_HC3",
             "CUP_AirVehicles_Merlin",
