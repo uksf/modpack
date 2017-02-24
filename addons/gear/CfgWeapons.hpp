@@ -174,10 +174,10 @@ class CfgWeapons {
     class UK3CB_BAF_U_HeliPilotCoveralls_RAF: U_B_HeliPilotCoveralls {
         scope = 2;
         author = "UKSF";
-        displayName = "Heli Pilot Flight Suit RAF [BAF]";
+        displayName = "Pilot Coveralls [BAF]";
         model = "\A3\Characters_F\Common\Suitpacks\suitpack_civilian_F.p3d";
-        hiddenSelections[] = { "Camo" };
-        hiddenSelectionsTextures[] = { QPATHTOF(data\uniforms\helipilot_coveralls_raf.paa) };
+        hiddenSelections[] = { "camo", "insignia" };
+        hiddenSelectionsTextures[] = { QPATHTOF(data\uniforms\pilot_coveralls_raf.paa) };
         class ItemInfo: UniformItem {
             uniformModel = "-";
             uniformClass = "UK3CB_BAF_HeliPilot_RAF_base";
@@ -185,15 +185,50 @@ class CfgWeapons {
             mass = 60;
         };
     };
-    class UKSF_U_ATC: Uniform_Base {
+    class UKSF_U_PilotCoveralls_7: UK3CB_BAF_U_HeliPilotCoveralls_RAF {
+        displayName = "Pilot Coveralls (7 Sqn.)";
+        hiddenSelections[] = { "camo", "insignia" };
+        hiddenSelectionsTextures[] = { QPATHTOF(data\uniforms\pilot_coveralls_7.paa) };
+        class ItemInfo: UniformItem {
+            uniformModel = "-";
+            uniformClass = "UKSF_B_Pilot_7";
+            containerClass = "Supply40";
+            mass = 60;
+        };
+    };
+    class UKSF_U_PilotUniform_656: UK3CB_BAF_U_CombatUniform_MTP {
+        displayName = "Pilot Uniform (656 Sqn.)";
+        hiddenSelections[] = { "camo", "insignia" };
+        hiddenSelectionsTextures[] = { QPATHTOF(data\uniforms\pilot_uniform_656.paa) };
+        class ItemInfo: UniformItem {
+            uniformModel = "-";
+            uniformClass = "UKSF_B_Pilot_656";
+            containerClass = "Supply40";
+            mass = 60;
+        };
+    };
+    class U_I_pilotCoveralls;
+    class UKSF_U_PilotGSuit_617: U_I_pilotCoveralls {
+        author = "UKSF";
+        displayName = "Pilot G-Suit (617 Sqn.)";
+        hiddenSelections[] = { "Camo" };
+        hiddenSelectionsTextures[] = { QPATHTOF(data\uniforms\pilot_gsuit_617.paa) };
+        class ItemInfo: UniformItem {
+            uniformModel = "-";
+            uniformClass = "UKSF_B_Pilot_617";
+            containerClass = "Supply40";
+            mass = 60;
+        };
+    };
+    class UKSF_U_RAF_Blues: Uniform_Base {
         scope = 2;
         author = "UKSF";
-        displayName = "ATC Blues";
+        displayName = "RAF Blues";
         picture = QPATHTOF(UI\icon_uniform_atc_ca.paa);
         model = "\A3\Characters_F\Common\Suitpacks\suitpack_blufor_diver";
         class ItemInfo: UniformItem {
             uniformModel = "-";
-            uniformClass = "UKSF_Soldier_ATC_base";
+            uniformClass = "UKSF_B_ATC_base";
             containerClass = "Supply100";
             mass = 20;
         };
@@ -280,23 +315,6 @@ class CfgWeapons {
             armor = 20;
             passThrough = 1;
             hiddenSelections[] = { "camo" };
-        };
-    };
-    class Vest_Camo_Base: ItemCore {
-        class ItemInfo;
-    };
-    class UKSF_V_Flight: Vest_Camo_Base {
-        scope = 2;
-        author = "UKSF";
-        displayName = "Pilot Survival Vest";
-        picture = QPATHTOF(UI\pilotvest_pic_ca.paa);
-        model = QPATHTOF(data\vests\FIR_pilot_vest.p3d);
-        class ItemInfo: ItemInfo {
-            uniformModel = QPATHTOF(data\vests\FIR_pilot_vest.p3d);
-            containerClass = "Supply200";
-            mass = 40;
-            armor = 40;
-            passThrough = 0.4;
         };
     };
 
