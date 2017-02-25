@@ -503,20 +503,6 @@ class CfgWeapons {
         class WeaponSlotsInfo: WeaponSlotsInfo {
             mass = 240;
         };
-    };    
-    class UK3CB_BAF_L110A2: LMG_Zafir_F {
-        class Single: Mode_SemiAuto {
-            class BaseSoundModeType;
-            class StandardSound: BaseSoundModeType {
-                soundSetShot[] = {     "DS_zafir_Closure_SoundSet","DS_zafir_Shot_SoundSet","DS_lmg1_Tail_SoundSet" };
-            };
-        };
-        class FullAuto: Mode_FullAuto {
-            class BaseSoundModeType;
-            class StandardSound: BaseSoundModeType {
-                soundSetShot[] = {     "DS_zafir_Closure_SoundSet","DS_zafir_Shot_SoundSet","DS_lmg1_Tail_SoundSet" };
-            };
-        };
     };
     class Rifle_Long_Base_F;
     class UK3CB_BAF_L110_Base: Rifle_Long_Base_F {
