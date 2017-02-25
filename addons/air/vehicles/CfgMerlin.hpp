@@ -59,10 +59,14 @@ class CUP_Merlin_HM2_Base: CUP_Merlin_HC3_Base {};
 class CUP_B_Merlin_HC3_GB: CUP_Merlin_HC3_Base {
     scope = 2;
     scopeCurator = 2;
+    crew = "UKSF_B_Pilot_7";
+    typicalCargo[] = { "UKSF_B_Pilot_7","UKSF_B_Pilot_7" };
 };
 class CUP_B_Merlin_HC3_VIV_GB: CUP_Merlin_HC3_VIV_Base {
     scope = 2;
     scopeCurator = 2;
+    crew = "UKSF_B_Pilot_7";
+    typicalCargo[] = { "UKSF_B_Pilot_7","UKSF_B_Pilot_7" };
 };
 class CUP_B_Merlin_HC3A_GB: CUP_Merlin_HC3A_Base {
     scope = 1;
@@ -71,6 +75,8 @@ class CUP_B_Merlin_HC3A_GB: CUP_Merlin_HC3A_Base {
 class CUP_B_Merlin_HC3_Armed_GB: CUP_Merlin_HC3_Armed_Base {
     scope = 2;
     scopeCurator = 2;
+    crew = "UKSF_B_Pilot_7";
+    typicalCargo[] = { "UKSF_B_Pilot_7","UKSF_B_Pilot_7" };
 };
 class CUP_B_Merlin_HC3A_Armed_GB: CUP_Merlin_HC3A_Armed_Base {
     scope = 1;

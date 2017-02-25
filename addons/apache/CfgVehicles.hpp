@@ -95,7 +95,8 @@ class CfgVehicles {
         lockDetectionSystem = "1 + 2 + 4 + 8";
         showAllTargets = 2;
         destrType = "DestructWreck";
-        crew = "CUP_B_BAF_Pilot_DDPM";
+        crew = "UKSF_B_Pilot_656";
+        typicalCargo[] = { "UKSF_B_Pilot_656", "UKSF_B_Pilot_656" };
         gunnerCanSee = "1 + 2 + 4 + 8 + 16";
         driverCanSee = "1 + 2 + 4 + 8 + 16";
         driverAction = "AH64_Pilot_EP1";
@@ -106,7 +107,6 @@ class CfgVehicles {
         driverCanEject = 1;        
         getInAction = "pilot_Heli_Light_02_Enter";
         getOutAction = "pilot_Heli_Light_02_Exit";
-        typicalCargo[] = { "CUP_B_BAF_Pilot_DDPM", "CUP_B_BAF_Pilot_DDPM" };
         maximumLoad = 2000;
         backRotorForceCoef = 1.8;
         backRotorSpeed = 3.0;

@@ -27,6 +27,8 @@ class CfgVehicles {
         model = QPATHTOF(Bell412.p3d);
         picture = QPATHTOF(UI\icon_uh1n.paa);
         icon = QPATHTOF(UI\icon_uh1n.paa);
+        crew = "UKSF_B_Pilot_7";
+        typicalCargo[] = { "UKSF_B_Pilot_7","UKSF_B_Pilot_7" };
         unitInfoType = "Rsc_UKSF_Air_Special";
         unitInfoTypeLite = "Rsc_UKSF_Air_Special";
         availableForSupportTypes[] = {};
@@ -158,7 +160,6 @@ class CfgVehicles {
         gunnerUsesPilotView = 1;
         gunnerOpticsModel = "";
         transportSoldier = 9;
-        crew = "CUP_B_BAF_Pilot_DDPM";
         transportAmmo = 0;
         transportMaxMagazines = 150;
         transportMaxWeapons = 30;

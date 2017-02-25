@@ -24,11 +24,18 @@ class CUP_B_AW159_Unarmed_GB: CUP_AW159_Unarmed_Base {
     scope = 1;
     scopeCurator = 0;
 };
+class CUP_B_AW159_Unarmed_RN_Grey: CUP_AW159_Unarmed_Base {
+    crew = "UKSF_B_Pilot_7";
+    typicalCargo[] = { "UKSF_B_Pilot_7" };
+};
 class CUP_B_AW159_Unarmed_BAF: CUP_B_AW159_Unarmed_GB {
     scope = 1;
     scopeCurator = 0;
 };
-class CUP_B_AW159_Unarmed_RN_Blackcat;
+class CUP_B_AW159_Unarmed_RN_Blackcat: CUP_AW159_Unarmed_Base {
+    crew = "UKSF_B_Pilot_7";
+    typicalCargo[] = { "UKSF_B_Pilot_7" };
+};
 class CUP_B_Wildcat_Unarmed_RN_Blackcat: CUP_B_AW159_Unarmed_RN_Blackcat {
     scope = 1;
     scopeCurator = 0;
@@ -38,6 +45,8 @@ class CUP_B_AW159_Hellfire_GB: CUP_AW159_Unarmed_Base {
     scopeCurator = 0;
 };
 class CUP_B_AW159_Hellfire_RN_Grey: CUP_AW159_Unarmed_Base {
+    crew = "UKSF_B_Pilot_656";
+    typicalCargo[] = { "UKSF_B_Pilot_656" };
     #include "MFDCAS.hpp"
     class Turrets: Turrets {
         class MainTurret: MainTurret {
@@ -55,6 +64,8 @@ class CUP_B_AW159_Cannon_GB: CUP_AW159_Unarmed_Base {
     scopeCurator = 0;
 };
 class CUP_B_AW159_Cannon_RN_Grey: CUP_AW159_Unarmed_Base {
+    crew = "UKSF_B_Pilot_656";
+    typicalCargo[] = { "UKSF_B_Pilot_656" };
     #include "MFDCAS.hpp"
     weapons[] = { "CUP_weapon_mastersafe", "CUP_Vacannon_M621_AW159_veh", "CUP_Vmlauncher_CRV7_HEISAP_veh", "CMFlareLauncher" };
     magazines[] = { "CUP_1Rnd_CRV7_Pod_12_M", "CUP_1Rnd_M621_Pod_Heli_M", "CUP_1200Rnd_TE1_Red_Tracer_M621_20mm_HE_M", "CUP_12Rnd_CRV7_HEISAP_M", "120Rnd_CMFlare_Chaff_Magazine" };
