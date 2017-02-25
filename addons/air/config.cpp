@@ -15,11 +15,13 @@ class CfgPatches {
         requiredAddons[] = {
             "uksf_gear",
             "uksf_units",
-            "CUP_AirVehicles_CH47",
-            "CUP_AirVehicles_HC3",
-            "CUP_AirVehicles_Merlin",
+            "CUP_AirVehicles_AV8B",
             "CUP_AirVehciles_AW159",
-            "CUP_AirVehicles_C130J"
+            "CUP_AirVehicles_CH47",
+            "CUP_AirVehicles_F35",
+            "CUP_AirVehicles_HC3",
+            "CUP_AirVehicles_L39",
+            "CUP_AirVehicles_Merlin"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
@@ -40,5 +42,4 @@ class RscInGameUI {
         };
     };
 };
-
 #include "CfgVehicles.hpp"
