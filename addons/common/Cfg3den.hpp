@@ -6,6 +6,22 @@ class Cfg3DEN {
                 collapsed = 1;
                 class Attributes {};
             };
+            class Enh_AmbientAnimation {
+                class Attributes {
+                    class Enh_Type {
+                        condition = "0";
+                    };
+                    class Enh_Equipment: Enh_Type {};
+                };
+            };
+            class Enh_AmbientAnimationCombat {
+                class Attributes {
+                    class Enh_Type {
+                        condition = "0";
+                    };
+                    class Enh_Equipment: Enh_Type {};
+                };
+            };
         };
     };
 

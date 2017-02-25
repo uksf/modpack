@@ -1,11 +1,6 @@
 PREP(populate);
-PREP(random);
 PREP(setSkill);
-PREP(gearCheck);
-PREP(stopKilledVoices);
-PREP(randomIgla);
 PREP(getNearPlayers);
 PREP(lineOfSight);
-PREP(boxRefill);
 PREP(configExport);
 PREP(configExportExtension);

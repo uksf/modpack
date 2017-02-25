@@ -1428,7 +1428,7 @@ class UKSF_B_Pilot_7: UKSF_B_Rifleman {
     displayName = "Pilot (7 Sqn.)";
     threat[] = {1, 1, 1};
     attendant = 1;
-    editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Pilot.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Pilot_7.jpg);
     model = "\A3\Characters_F\Common\coveralls.p3d";
     hiddenSelections[] = { "Camo", "insignia" };
     hiddenSelectionsTextures[] = { QPATHTOEF(gear,data\uniforms\pilot_coveralls_7.paa) };
@@ -1443,7 +1443,7 @@ class UKSF_B_Pilot_7: UKSF_B_Rifleman {
 };
 class UKSF_B_Pilot_656: UKSF_B_Pilot_7 {
     displayName = "Pilot (656 Sqn.)";
-    editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Pilot.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Pilot_656.jpg);
     model = "\A3\Characters_F_Beta\INDEP\ia_soldier_01.p3d";
     hiddenSelections[] = { "Camo", "insignia" };
     hiddenSelectionsTextures[] = { QPATHTOEF(gear,data\uniforms\pilot_uniform_656.paa) };
@@ -1458,7 +1458,7 @@ class UKSF_B_Pilot_656: UKSF_B_Pilot_7 {
 };
 class UKSF_B_Pilot_617: UKSF_B_Pilot_7 {
     displayName = "Pilot (617 Sqn.)";
-    editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Pilot.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Pilot_617.jpg);
     model = "\A3\characters_F\Common\pilot_f.p3d";
     hiddenSelections[] = { "Camo", "insignia" };
     hiddenSelectionsTextures[] = { QPATHTOEF(gear,data\uniforms\pilot_gsuit_617.paa) };

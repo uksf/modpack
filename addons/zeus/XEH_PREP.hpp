@@ -9,3 +9,8 @@ PREP(respawn);
 PREP(getChildren);
 PREP(getName);
 PREP(actionStatement);
+PREP(explosionSmall);
+PREP(explosionLarge);
+PREP(addAllObjects);
+PREP(toggleZeusVisibility);
+PREP(teleportZeus);
