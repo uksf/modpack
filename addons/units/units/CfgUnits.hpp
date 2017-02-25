@@ -1468,6 +1468,6 @@ class UKSF_B_Pilot_617: UKSF_B_Pilot_7 {
     respawnWeapons[] = { "UK3CB_BAF_L131A1","Throw","Put" };
     magazines[] = { "UK3CB_BAF_9_17Rnd","UK3CB_BAF_9_17Rnd","UK3CB_BAF_9_17Rnd","UK3CB_BAF_9_17Rnd","HandGrenade","HandGrenade","SmokeShell","SmokeShell" };
     respawnMagazines[] = { "UK3CB_BAF_9_17Rnd","UK3CB_BAF_9_17Rnd","UK3CB_BAF_9_17Rnd","UK3CB_BAF_9_17Rnd","HandGrenade","HandGrenade","SmokeShell","SmokeShell" };
-    linkedItems[] = { "B_UavTerminal","ItemCompass","ItemWatch","ACE_NVG_Pilot","H_PilotHelmetFighter_I" };
-    respawnLinkedItems[] = { "B_UavTerminal","ItemCompass","ItemWatch","ACE_NVG_Pilot","H_PilotHelmetFighter_I" };
+    linkedItems[] = { "B_UavTerminal","ItemCompass","ItemWatch","ACE_NVG_Pilot","H_PilotHelmetFighter_B" };
+    respawnLinkedItems[] = { "B_UavTerminal","ItemCompass","ItemWatch","ACE_NVG_Pilot","H_PilotHelmetFighter_B" };
 };

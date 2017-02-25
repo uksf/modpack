@@ -216,8 +216,8 @@ class CfgWeapons {
         class ItemInfo: UniformItem {
             uniformModel = "-";
             uniformClass = "UKSF_B_Pilot_617";
-            containerClass = "Supply40";
-            mass = 60;
+            containerClass = "Supply250";
+            mass = 100;
         };
     };
     class UKSF_U_RAF_Blues: Uniform_Base {
