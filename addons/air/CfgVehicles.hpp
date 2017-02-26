@@ -16,10 +16,11 @@ class CfgVehicles {
     class Plane_Base_F;
     
     #include "vehicles\CfgBuzzard.hpp"
+    #include "vehicles\CfgC130.hpp"
     #include "vehicles\CfgChinook.hpp"
     #include "vehicles\CfgF35.hpp"
     #include "vehicles\CfgGR9.hpp"
     #include "vehicles\CfgMerlin.hpp"
+    #include "vehicles\CfgPuma.hpp"
     #include "vehicles\CfgWildcat.hpp"
-    #include "vehicles\CfgC130.hpp"
 };

@@ -5,10 +5,7 @@ class CfgPatches {
         name = COMPONENT_NAME;
         units[] = {
             "UKSF_B_L39_CAP",
-            "UKSF_B_L39_BMB",
-            "CUP_B_Merlin_HC3_GB",
-            "CUP_B_Merlin_HC3_VIV_GB",
-            "CUP_B_Merlin_HC3_Armed_GB"
+            "UKSF_B_L39_BMB"
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
@@ -17,11 +14,13 @@ class CfgPatches {
             "uksf_units",
             "CUP_AirVehicles_AV8B",
             "CUP_AirVehciles_AW159",
+            "CUP_AirVehicles_C130J",
             "CUP_AirVehicles_CH47",
             "CUP_AirVehicles_F35",
             "CUP_AirVehicles_HC3",
             "CUP_AirVehicles_L39",
-            "CUP_AirVehicles_Merlin"
+            "CUP_AirVehicles_Merlin",
+            "CUP_AirVehciles_SA330"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
