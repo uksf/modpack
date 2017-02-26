@@ -1438,8 +1438,8 @@ class UKSF_B_Pilot_7: UKSF_B_Rifleman {
     respawnWeapons[] = { "UK3CB_BAF_L131A1","Throw","Put" };
     magazines[] = { "UK3CB_BAF_9_17Rnd","UK3CB_BAF_9_17Rnd","UK3CB_BAF_9_17Rnd","UK3CB_BAF_9_17Rnd","HandGrenade","HandGrenade","SmokeShell","SmokeShell" };
     respawnMagazines[] = { "UK3CB_BAF_9_17Rnd","UK3CB_BAF_9_17Rnd","UK3CB_BAF_9_17Rnd","UK3CB_BAF_9_17Rnd","HandGrenade","HandGrenade","SmokeShell","SmokeShell" };
-    linkedItems[] = { "B_UavTerminal","ItemCompass","ItemWatch","ACE_NVG_Pilot","UKSF_V_Pilot","UK3CB_BAF_H_PilotHelmetHeli_A" };
-    respawnLinkedItems[] = { "B_UavTerminal","ItemCompass","ItemWatch","ACE_NVG_Pilot","UKSF_V_Pilot","UK3CB_BAF_H_PilotHelmetHeli_A" };
+    linkedItems[] = { "ItemGPS","ItemCompass","ItemWatch","ACE_NVG_Pilot","UKSF_V_Pilot","UK3CB_BAF_H_PilotHelmetHeli_A" };
+    respawnLinkedItems[] = { "ItemGPS","ItemCompass","ItemWatch","ACE_NVG_Pilot","UKSF_V_Pilot","UK3CB_BAF_H_PilotHelmetHeli_A" };
 };
 class UKSF_B_Pilot_656: UKSF_B_Pilot_7 {
     displayName = "Pilot (656 Sqn.)";
@@ -1453,8 +1453,8 @@ class UKSF_B_Pilot_656: UKSF_B_Pilot_7 {
     respawnWeapons[] = { "UK3CB_BAF_L22A2_Elcan","Throw","Put" };
     magazines[] = { "UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","HandGrenade","HandGrenade","SmokeShell","SmokeShell" };
     respawnMagazines[] = { "UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","HandGrenade","HandGrenade","SmokeShell","SmokeShell" };
-    linkedItems[] = { "B_UavTerminal","ItemCompass","ItemWatch","ACE_NVG_Pilot","UKSF_V_Pilot","UK3CB_BAF_H_PilotHelmetHeli_A" };
-    respawnLinkedItems[] = { "B_UavTerminal","ItemCompass","ItemWatch","ACE_NVG_Pilot","UKSF_V_Pilot","UK3CB_BAF_H_PilotHelmetHeli_A" };
+    linkedItems[] = { "ItemGPS","ItemCompass","ItemWatch","ACE_NVG_Pilot","UKSF_V_Pilot","UK3CB_BAF_H_PilotHelmetHeli_A" };
+    respawnLinkedItems[] = { "ItemGPS","ItemCompass","ItemWatch","ACE_NVG_Pilot","UKSF_V_Pilot","UK3CB_BAF_H_PilotHelmetHeli_A" };
 };
 class UKSF_B_Pilot_617: UKSF_B_Pilot_7 {
     displayName = "Pilot (617 Sqn.)";
@@ -1468,6 +1468,6 @@ class UKSF_B_Pilot_617: UKSF_B_Pilot_7 {
     respawnWeapons[] = { "UK3CB_BAF_L131A1","Throw","Put" };
     magazines[] = { "UK3CB_BAF_9_17Rnd","UK3CB_BAF_9_17Rnd","UK3CB_BAF_9_17Rnd","UK3CB_BAF_9_17Rnd","HandGrenade","HandGrenade","SmokeShell","SmokeShell" };
     respawnMagazines[] = { "UK3CB_BAF_9_17Rnd","UK3CB_BAF_9_17Rnd","UK3CB_BAF_9_17Rnd","UK3CB_BAF_9_17Rnd","HandGrenade","HandGrenade","SmokeShell","SmokeShell" };
-    linkedItems[] = { "B_UavTerminal","ItemCompass","ItemWatch","ACE_NVG_Pilot","H_PilotHelmetFighter_B" };
-    respawnLinkedItems[] = { "B_UavTerminal","ItemCompass","ItemWatch","ACE_NVG_Pilot","H_PilotHelmetFighter_B" };
+    linkedItems[] = { "ItemGPS","ItemCompass","ItemWatch","ACE_NVG_Pilot","H_PilotHelmetFighter_B" };
+    respawnLinkedItems[] = { "ItemGPS","ItemCompass","ItemWatch","ACE_NVG_Pilot","H_PilotHelmetFighter_B" };
 };
