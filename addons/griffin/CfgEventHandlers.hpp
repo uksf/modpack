@@ -13,7 +13,7 @@ class Extended_PreInit_EventHandlers {
 class Extended_Init_EventHandlers {
     class UKSF_Griffin {
         class ADDON {
-            init = QUOTE((_this select 0) call FUNC(getIn));
+            init = QUOTE(_this call FUNC(init));
         };
     };
 };
