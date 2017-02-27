@@ -59,7 +59,7 @@ _bomber allowfleeing 0;
     private _target = _bomber findNearestEnemy (getPosATL _bomber);
     if (_target != objNull && {(_target isKindOf "CAManBase") || {(_target isKindOf "LandVehicle")}} && {alive _target} && {(_bomber getVariable [QGVAR(previousTarget), objNull]) != _target} && {(_bomber distance2D _target) < _distance}) then {
         _bomber setVariable [QGVAR(previousTarget), _target, true];
-        {deleteWaypoint [(group _bomber), 0]; false} count waypoints (group _bomber);
+        [group _bomber] call CBA_fnc_clearWaypoints;
         [group _bomber, (getPosATL _target), 0, "MOVE", "CARELESS", "BLUE", "LIMITED"] call CBA_fnc_addWaypoint;
 
         [{
