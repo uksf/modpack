@@ -23,6 +23,7 @@ params ["_plane"];
 
 if (!local _plane || {!isEngineOn _plane}) exitWith {};
 
+_plane animate ["switch_afterburner", 1];
 _plane animate ["burner_fire_hide", 0];    
 _plane animate ["burner_fire_high_hide", 1];
 _plane animate ["afterburner_userhide", 0];

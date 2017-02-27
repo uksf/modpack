@@ -10987,8 +10987,8 @@ class CfgVehicles {
                 displayName = "<t color = '#fb7904'>Afterburner On</t>";
                 priority = 100;
                 shortcut = "User1";
-                condition = "this animationPhase ""switch_afterburner"" isEqualTo 0 and player in this and isengineon this && speed this > 10";
-                statement = QUOTE(this animate [ARR_2('switch_afterburner',1)]; [this] call FUNC(afterburner););
+                condition = "((this animationPhase ""switch_afterburner"") isEqualTo 0) && (player in this) && (isEngineOn this) && (speed this > 5)";
+                statement = QUOTE([this] call FUNC(afterburner););
                 position = "pilotcontrol";
                 radius = 10;
                 onlyforplayer = 1;
@@ -10998,7 +10998,7 @@ class CfgVehicles {
             class F35_afterburner_off {
                 displayName = "<t color = '#fb7904'>Afterburner Off</t>";
                 shortcut = "User1";
-                condition = "this animationPhase ""switch_afterburner"" isEqualTo 1 and player in this";
+                condition = "((this animationPhase ""switch_afterburner"") isEqualTo 1) && (player in this)";
                 statement = "this animate [""switch_afterburner"",0];";
                 position = "pilotcontrol";
                 radius = 10;
