@@ -8,7 +8,9 @@ class CfgPatches {
             "UKSF_Hemtt_Fuel",
             "UKSF_Hemtt_Repair",
             "Land_CanisterFuel_F",
-            "CargoNet_01_barrels_F"
+            "CargoNet_01_barrels_F",
+            "UKSF_B_LR_Ambulance_W",
+            "UKSF_B_LR_Ambulance_D"
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;

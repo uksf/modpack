@@ -16,9 +16,9 @@
 */
 #include "script_component.hpp"
 
-params ["_heli", "_position", "_unit", "_turret"];
+params ["_heli"];
 
-if (player == driver _heli || player == gunner _heli) then {
+if (player isEqualTo (driver _heli) || player isEqualTo (gunner _heli)) then {
     (QGVAR(metricsLayer) call BIS_fnc_rscLayer) cutRsc [QGVAR(metrics), "PLAIN", 0.01];
     GVAR(metricsHandler) = [{
         params ["_args"];

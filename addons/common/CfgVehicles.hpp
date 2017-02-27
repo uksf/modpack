@@ -4,7 +4,7 @@ class CfgVehicles {
         author = QUOTE(UKSF);
         category = GVAR(zeus_uksf);
         functionPriority = 1;
-        isGlobal = 0;
+        isGlobal = 1;
         isTriggerActivated = 0;
         scope = 1;
         scopeCurator = 0;

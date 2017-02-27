@@ -28,6 +28,10 @@ class CUP_B_AW159_Unarmed_RN_Grey: CUP_AW159_Unarmed_Base {
     crew = "UKSF_B_Pilot_7";
     typicalCargo[] = { "UKSF_B_Pilot_7" };
 };
+class CUP_B_Wildcat_Unarmed_RN_Grey : CUP_B_AW159_Unarmed_RN_Grey {
+    scope = 1;
+    scopeCurator = 0;
+};
 class CUP_B_AW159_Unarmed_BAF: CUP_B_AW159_Unarmed_GB {
     scope = 1;
     scopeCurator = 0;

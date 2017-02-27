@@ -29,19 +29,8 @@ if ((_car && {(driver _bomber) isEqualTo objNull}) || (!_car && {_bomber isKindO
 
 private _distance = DISTANCE_MOVE;
 if (_car) then {
-    if (_bomber isKindOf "UKSF_O_Skoda_Base") then {
-        [_bomber, ["White", 0.25, "Red", 0.25, "Blue", 0.25, "Green", 0.25]] call BIS_fnc_initVehicle;
-    };
     _bomber = driver _bomber;
     _distance = _distance * 2;
-};
-if (_bomber isKindOf "UKSF_O_TK_INS_SuicideDriver") then {
-    removeUniform _bomber;
-    removeVest _bomber;
-    removeHeadgear _bomber;
-    _bomber addUniform (format ["CUP_O_TKI_Khet_Partug_0%1", floor ((random 8) + 1)]);
-    _bomber addVest (format ["CUP_V_OI_TKI_Jacket%1_0%2", floor ((random 4) + 1), floor ((random 6) + 1)]);
-    _bomber addHeadgear (format ["CUP_H_TKI_Pakol_%1_0%2", floor ((random 2) + 1), floor ((random 6) + 1)]);
 };
 _bomber setVariable ["acex_headless_blacklist", true, true];
 _bomber setVariable [QGVAR(isBomber), true, true];
@@ -70,7 +59,7 @@ _bomber allowfleeing 0;
     private _target = _bomber findNearestEnemy (getPosATL _bomber);
     if (_target != objNull && {(_target isKindOf "CAManBase") || {(_target isKindOf "LandVehicle")}} && {alive _target} && {(_bomber getVariable [QGVAR(previousTarget), objNull]) != _target} && {(_bomber distance2D _target) < _distance}) then {
         _bomber setVariable [QGVAR(previousTarget), _target, true];
-        [group _bomber] call CBA_fnc_clearWaypoints;
+        {deleteWaypoint [(group _bomber), 0]; false} count waypoints (group _bomber);
         [group _bomber, (getPosATL _target), 0, "MOVE", "CARELESS", "BLUE", "LIMITED"] call CBA_fnc_addWaypoint;
 
         [{

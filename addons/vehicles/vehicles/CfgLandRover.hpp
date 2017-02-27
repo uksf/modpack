@@ -1,4 +1,21 @@
-class CUP_LR_Base: Car_F {    
+class CUP_LR_Base: Car_F {
+    turnCoef = 3.5;
+    enginePower = 150;
+    peakTorque = 425;
+    class complexGearbox {
+        GearboxRatios[] = { "R1", -4, "N", 0, "D1", 4.5, "D2", 2.61, "D3", 1.51, "D4", 0.87, "D5", 0.51, "D6", 0.35 };
+        TransmissionRatios[] = { "High", 7 };
+        gearBoxMode = "auto";
+        moveOffGear = 1;
+        driveString = "D";
+        neutralString = "N";
+        reverseString = "R";
+        gearUpMaxCoef = 0.95;
+        gearDownMaxCoef = 0.85;
+        gearUpMinCoef = 0.65;
+        gearDownMinCoef = 0.55;
+        transmissionDelay = 2;
+    };
     class Turrets: Turrets {
         class MainTurret;
     };
@@ -22,7 +39,6 @@ class CUP_LR_Special_Base: CUP_LR_Base {
         class PK_Turret;
     };
 };
-class CUP_LR_Ambulance_Base: CUP_LR_Base {};
 class CUP_B_LR_MG_GB_W: CUP_LR_MG_Base {
     NET_ACTIONS
 };
@@ -70,7 +86,28 @@ class CUP_B_LR_Special_GMG_GB_W: CUP_LR_Special_Base {
     };
     REARM_ACTIONS
 };
+class CUP_LR_Ambulance_Base: CUP_LR_Base {};
 class CUP_B_LR_Ambulance_GB_W: CUP_LR_Ambulance_Base {
+    scope = 1;
+    scopeCurator = 0;
+};
+class CUP_B_LR_Ambulance_GB_D: CUP_LR_Ambulance_Base {
+    scope = 1;
+    scopeCurator = 0;
+};
+class CUP_LR_Transport_Base: CUP_LR_Base {};
+class CUP_B_LR_Transport_GB_W: CUP_LR_Transport_Base {
+    displayname = "Land Rover (Woodland)";
+};
+class CUP_B_LR_Transport_GB_D: CUP_LR_Transport_Base {
+    displayname = "Land Rover (Desert)";
+};
+class UKSF_B_LR_Ambulance_W: CUP_B_LR_Transport_GB_W {
+    displayname = "Land Rover (Ambulance, Woodland)";
+    attendant = 1;
+    crew = "CUP_B_BAF_Medic_WDL";
+    typicalCargo[] = { "CUP_B_BAF_Medic_WDL" };
+    hiddenselectionstextures[] = { QPATHTOF(data\gb_w_lr_base_med_co.paa), QPATHTOF(data\gb_w_lr_special_med_co.paa) };
     class TransportItems {
         class _xx_ACE_EarPlugs {
             name = "ACE_EarPlugs";
@@ -103,7 +140,12 @@ class CUP_B_LR_Ambulance_GB_W: CUP_LR_Ambulance_Base {
     };
     NET_MEDICAL_ACTIONS
 };
-class CUP_B_LR_Ambulance_GB_D: CUP_LR_Ambulance_Base {
+class UKSF_B_LR_Ambulance_D: CUP_B_LR_Transport_GB_D {
+    displayname = "Land Rover (Ambulance, Desert)";
+    attendant = 1;
+    crew = "CUP_B_BAF_Medic_DDPM";
+    typicalCargo[] = { "CUP_B_BAF_Medic_DDPM" };
+    hiddenselectionstextures[] = { QPATHTOF(data\gb_d_lr_base_med_co.paa), QPATHTOF(data\gb_d_lr_special_med_co.paa) };
     class TransportItems {
         class _xx_ACE_EarPlugs {
             name = "ACE_EarPlugs";
