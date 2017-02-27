@@ -4,7 +4,10 @@ class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
         units[] = {};
-        weapons[] = { "UKSF_ATC_Core", "UKSF_ATC_Station" };
+        weapons[] = { 
+            "UKSF_ATC_Core", 
+            "UKSF_ATC_Station"
+        };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             "uksf_common"

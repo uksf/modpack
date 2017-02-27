@@ -105,7 +105,7 @@ class CfgAmmo{
         ace_frag_charge = 2400;
         ace_frag_gurney_c = 2700;
         ace_frag_gurney_k = "1/2";
-        SoundSetExplosion[] = { "DS_Ex_rocket_big_SoundSet","DS_exploBig_Tail_placeholder_SoundSet" };
+        //SoundSetExplosion[] = { "DS_Ex_rocket_big_SoundSet","DS_exploBig_Tail_placeholder_SoundSet" };
     };
     class CUP_M_AGM_114L_Hellfire_II_AT: MissileBase {
         model = QPATHTOF(data\AGM114\AGM114Hellfire.p3d);
@@ -115,7 +115,7 @@ class CfgAmmo{
         class Hiteffects {
             hitWater = "ImpactEffectsWaterBig";
         };
-        SoundSetExplosion[] = { "DS_Ex_rocket_big_SoundSet","DS_exploBig_Tail_placeholder_SoundSet" };
+        //SoundSetExplosion[] = { "DS_Ex_rocket_big_SoundSet","DS_exploBig_Tail_placeholder_SoundSet" };
     };
     class CUP_M_AGM_114N_Hellfire_II_AT: CUP_M_AGM_114K_Hellfire_II_AT {
         hit = 1100;
@@ -142,7 +142,7 @@ class CfgAmmo{
         class HitEffects {
             hitWater = "ImpactEffectsWaterBig";
         };
-        SoundSetExplosion[] = { "DS_Ex_rocket_small_SoundSet","DS_exploBig_Tail_placeholder_SoundSet" };
+        //SoundSetExplosion[] = { "DS_Ex_rocket_small_SoundSet","DS_exploBig_Tail_placeholder_SoundSet" };
     };
     class CUP_R_CRV7_HEISAP: CUP_R_CRV7_FAT {
         hit = 400;
@@ -162,7 +162,7 @@ class CfgAmmo{
         };
     };
     class CUP_B_30x113mm_M789_HEDP_Red_Tracer: BulletBase {
-        SoundSetExplosion[] = { "DS_Ex_small_impact_SoundSet", "DS_exploSmall_Tail_placeholder_SoundSet", "Explosion_Debris_SoundSet" };
+        //SoundSetExplosion[] = { "DS_Ex_small_impact_SoundSet", "DS_exploSmall_Tail_placeholder_SoundSet", "Explosion_Debris_SoundSet" };
         CraterEffects = "ExploAmmoCrater";
         explosionEffects = "ExploAmmoExplosion";
         class HitEffects {

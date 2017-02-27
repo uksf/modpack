@@ -96,7 +96,7 @@ class CfgPatches {
             "CUP_Creatures_StaticWeapons",
             "CUP_Weapons_M16",
             "CUP_Weapons_SMAW",
-            "CUP_Weapons_M240",
+            "CUP_Weapons_M240"/*,
             "DynaSound_DS_w_30mmgatling",
             "DynaSound_DS_m_Explosions",
             "DynaSound_DS_w_MINIGUN762",
@@ -104,7 +104,7 @@ class CfgPatches {
             "DynaSound_DS_w_GMG",
             "DynaSound_DS_w_CoaxMG",
             "DynaSound_DS_w_LRR",
-            "DynaSound_DS_w_Zafir"
+            "DynaSound_DS_w_Zafir"*/
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
