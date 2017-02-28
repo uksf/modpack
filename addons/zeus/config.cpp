@@ -4,10 +4,10 @@ class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
         units[] = {
-            "UKSF_Module_SmallExplosion",
-            "UKSF_Module_LargeExplosion",
-            "UKSF_Module_AddAllObjects",
             "Ares_Module_Zeus_Visibility",
+            "UKSF_Module_AddAllObjects",
+            "UKSF_Module_LargeExplosion",
+            "UKSF_Module_SmallExplosion",
             "UKSF_Module_TeleportZeus",
             "UKSF_Module_ToggleAllowUnconcious"
         };

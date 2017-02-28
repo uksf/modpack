@@ -10,7 +10,6 @@ PREP(getChildren);
 PREP(getName);
 PREP(actionStatement);
 PREP(moduleAddAllObjects);
-PREP(moduleAddFullArsenal);
 PREP(moduleExplosionSmall);
 PREP(moduleExplosionLarge);
 PREP(moduleFullHeal);
