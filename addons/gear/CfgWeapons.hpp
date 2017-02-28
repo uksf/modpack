@@ -736,10 +736,11 @@ class CfgWeapons {
             displayName = "Burst 10";
             textureType = "semi";
             reloadTime = 0.096;
-            /*sounds[] = { "StandardSound" };
+            sounds[] = { "StandardSound" };
             class StandardSound {
-                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
-            };*/
+                //soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
+                soundSetShot[] = {"CUP_M230_Shot_SoundSet","CUP_sniper1_Tail_SoundSet"};
+            };
             autoFire = 1;
             burst = 10;
             minRange = 1000;
@@ -762,33 +763,38 @@ class CfgWeapons {
         };
         class close: close {
             reloadTime = 0.096;
-            /*class StandardSound {
-                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
-            };*/
+            class StandardSound {
+                //soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
+                soundSetShot[] = {"CUP_M230_Shot_SoundSet","CUP_sniper1_Tail_SoundSet"};
+            };
         };
         class near: near {
             reloadTime = 0.096;
-            /*class StandardSound {
-                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
-            };*/
+            class StandardSound {
+                //soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
+                soundSetShot[] = {"CUP_M230_Shot_SoundSet","CUP_sniper1_Tail_SoundSet"};
+            };
         };
         class short: short{
             reloadTime = 0.096;
-            /*class StandardSound {
-                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
-            };*/
+            class StandardSound {
+                //soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
+                soundSetShot[] = {"CUP_M230_Shot_SoundSet","CUP_sniper1_Tail_SoundSet"};
+            };
         };
         class medium: medium {
             reloadTime = 0.096;
-            /*class StandardSound {
-                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
-            };*/
+            class StandardSound {
+                //soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
+                soundSetShot[] = {"CUP_M230_Shot_SoundSet","CUP_sniper1_Tail_SoundSet"};
+            };
         };
         class far: far {
             reloadTime = 0.096;
-            /*class StandardSound {
-                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
-            };*/
+            class StandardSound {
+                //soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
+                soundSetShot[] = {"CUP_M230_Shot_SoundSet","CUP_sniper1_Tail_SoundSet"};
+            };
         };
     };
     class CUP_Vacannon_M621_AW159_veh: CannonCore {
