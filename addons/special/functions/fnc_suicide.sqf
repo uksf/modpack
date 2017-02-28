@@ -47,7 +47,7 @@ _bomber allowfleeing 0;
         [_bomber, [QGVAR(trigger), 100]] remoteExecCall ["say3D", 0];
         [{
             params ["_bomber"];
-            "R_TBG32V_F" createVehicle (getPosATL _bomber);
+            createVehicle ["R_TBG32V_F", (getPosATL _bomber), [] , 0, "CAN_COLLIDE"];
             (vehicle _bomber) setDamage 1;
         }, [_bomber], 0.5] call CBA_fnc_waitAndExecute;
     };
@@ -57,29 +57,18 @@ _bomber allowfleeing 0;
     };
 
     private _target = _bomber findNearestEnemy (getPosATL _bomber);
-    if (_target != objNull && {(_target isKindOf "CAManBase") || {(_target isKindOf "LandVehicle")}} && {alive _target} && {(_bomber getVariable [QGVAR(previousTarget), objNull]) != _target} && {(_bomber distance2D _target) < _distance}) then {
-        _bomber setVariable [QGVAR(previousTarget), _target, true];
+    if (_target != objNull && {(_target isKindOf "CAManBase") || {(_target isKindOf "LandVehicle")}} && {alive _target} && {(_bomber distance2D _target) < _distance}) then {
         [group _bomber] call CBA_fnc_clearWaypoints;
         [group _bomber, (getPosATL _target), 0, "MOVE", "CARELESS", "BLUE", "LIMITED"] call CBA_fnc_addWaypoint;
-
-        [{
-            params ["_args", "_idPFH"];
-            _args params ["_bomber", "_target", "_distance"];
-
-            if (_bomber distance _target <= (_distance / 5) && {[objNull, "VIEW"] checkVisibility [eyePos _bomber, eyePos _target] > 0}) exitWith {
-                [_idPFH] call CBA_fnc_removePerFrameHandler;
-                _bomber setSpeedMode "FULL";
-                [_bomber, [QGVAR(suicide), 150]] remoteExecCall ["say3D", 0];
-                [{
-                    params ["_bomber"];                        
-                    if (alive _bomber) exitWith {                        
-                        _bomber setVariable [QGVAR(explode), true];
-                    };
-                }, [_bomber], 2.5] call CBA_fnc_waitAndExecute;
-            };
-            if ((_bomber getVariable [QGVAR(previousTarget), objNull]) != _target) exitWith {
-                [_idPFH] call CBA_fnc_removePerFrameHandler;
-            };
-        }, 1, [_bomber, _target, _distance]] call cba_fnc_addPerFrameHandler;
+        if (!(_bomber getVariable [QGVAR(explode), false]) && {_bomber distance _target <= (_distance / 5)} && {[objNull, "VIEW"] checkVisibility [eyePos _bomber, eyePos _target] > 0}) then {
+            _bomber setSpeedMode "FULL";
+            [_bomber, [QGVAR(suicide), 150]] remoteExecCall ["say3D", 0];
+            [{
+                params ["_bomber"];                        
+                if (alive _bomber) exitWith {                        
+                    _bomber setVariable [QGVAR(explode), true];
+                };
+            }, [_bomber], 2.5] call CBA_fnc_waitAndExecute;
+        };
     };
 }, 1, [_bomber, _deadman, _distance]] call CBA_fnc_addPerFrameHandler;
