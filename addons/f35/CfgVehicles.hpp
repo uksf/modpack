@@ -10998,7 +10998,7 @@ class CfgVehicles {
             class F35_afterburner_off {
                 displayName = "<t color = '#fb7904'>Afterburner Off</t>";
                 shortcut = "User1";
-                condition = "((this animationPhase ""switch_afterburner"") isEqualTo 1) && (player in this)";
+                condition = QUOTE(((this animationPhase 'switch_afterburner') isEqualTo 1) && player in this);
                 statement = "this animate [""switch_afterburner"",0];";
                 position = "pilotcontrol";
                 radius = 10;
@@ -11008,7 +11008,7 @@ class CfgVehicles {
                 hideOnUse = 1;
             };
             class DAS_ON {
-                displayName = "(DAS)AESA OFF";
+                displayName = "(DAS) AESA OFF";
                 position = "pilotcontrol";
                 radius = 15;
                 shortcut = "User4";
@@ -11074,7 +11074,7 @@ class CfgVehicles {
                 hideOnUse = 1;
                 radius = 5;
                 condition = QUOTE([this] call FUNC(serviceCheck));
-                statement = QUOTE([] call FUNC(loadoutMenu));
+                statement = QUOTE(call FUNC(loadoutMenu));
             };
             class USAF_F35A_GPS_targeting_system {
                 displayName = "(EOTS) Electro-Optical Targeting System";
@@ -11118,12 +11118,8 @@ class CfgVehicles {
                 condition = "player in this and this animationPhase ""FormationLights"" < 0.5";
                 statement = "this animate [""FormationLights"",1];";
             };
-            class retractrefueling {
-                condition = "false";
-            };
-            class extendrefueling {
-                condition = "false";
-            };
+            delete retractrefueling;
+            delete extendrefueling;
         };
         class EventHandlers {
             class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
