@@ -1,17 +1,17 @@
 /*
-	Author:
-		Tim Beswick
+    Author:
+        Tim Beswick
 
-	Description:
-		Fully heals unit
+    Description:
+        Fully heals unit
 
-	Parameter(s):
+    Parameter(s):
         0: The module logic <OBJECT>
         1: Synchronized units <ARRAY>
         2: Activated <BOOL>
 
-	Return Value:
-		None
+    Return Value:
+        None
 */
 #include "script_component.hpp"
 
@@ -23,7 +23,7 @@ if !(_activated && local _logic) exitWith {};
 if (_typeName != "OBJECT") then {
     ["Place on a unit or vehicle"] call ace_common_fnc_displayTextStructured;
 } else {
-	[_unit, _unit] remoteExecCall ["ace_medical_fnc_treatmentAdvanced_fullHealLocal", _unit, false];
+    [_unit, _unit] remoteExecCall ["ace_medical_fnc_treatmentAdvanced_fullHealLocal", _unit, false];
     ["Unit full healed"] call ace_common_fnc_displayTextStructured;
 };
 
