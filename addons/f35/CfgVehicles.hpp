@@ -11006,7 +11006,7 @@ class CfgVehicles {
                 onlyforplayer = 1;
                 showWindow = 0;
                 hideOnUse = 1;
-                };
+            };
             class DAS_ON {
                 displayName = "(DAS)AESA OFF";
                 position = "pilotcontrol";
