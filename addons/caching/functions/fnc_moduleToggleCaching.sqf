@@ -21,19 +21,21 @@ if !(_activated && local _logic) exitWith {};
 
 (missionNamespace getVariable ["bis_fnc_curatorObjectPlaced_mouseOver", [""]]) params ["_typeName", "_unit"];
 if (_typeName != "OBJECT" && {!(alive _unit)}) then {
-    [QUOTE(Place on a living unit or vehicle)] call ace_common_fnc_displayTextStructured;
+    ["Place on a living unit or vehicle"] call ace_common_fnc_displayTextStructured;
 } else {
     _unit = effectivecommander _unit;
     if !(_unit isKindOf "CAManBase") then {
-        [QUOTE(Unit must be infantry)] call ace_common_fnc_displayTextStructured;
+        ["Unit must be infantry"] call ace_common_fnc_displayTextStructured;
     } else {
         if !(alive _unit) then {
-            [QUOTE(Unit must be alive)] call ace_common_fnc_displayTextStructured;
+            ["Unit must be alive"] call ace_common_fnc_displayTextStructured;
         } else {
             if (!((group _unit) getVariable [QGVAR(excluded), false])) then {
                 (group _unit) setVariable [QGVAR(excluded), true, true];
+                ["Group excluded from caching"] call ace_common_fnc_displayTextStructured;
             } else {
                 (group _unit) setVariable [QGVAR(excluded), false, true];
+                ["Group included in caching"] call ace_common_fnc_displayTextStructured;
             };
         };
     };

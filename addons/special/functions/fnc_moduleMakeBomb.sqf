@@ -31,25 +31,27 @@ if (_logic isKindOf QGVAR(moduleMakeCarBomb)) then {
 
 (missionNamespace getVariable ["bis_fnc_curatorObjectPlaced_mouseOver", [""]]) params ["_typeName", "_unit"];
 if (_typeName != "OBJECT") then {  
-    [QUOTE(Place on a living unit or an occupied land vehicle)] call ace_common_fnc_displayTextStructured;  
+    ["Place on a living unit or an occupied land vehicle"] call ace_common_fnc_displayTextStructured;  
 } else {
     if (_empty && {!(_unit isKindOf "LandVehicle")}) then {
-        [QUOTE(Place on a land vehicle)] call ace_common_fnc_displayTextStructured;
+        ["Place on a land vehicle"] call ace_common_fnc_displayTextStructured;
     } else {
         if (_car && {!(alive _unit) || {!(_unit isKindOf "LandVehicle")} || {driver _unit isEqualTo objNull}}) then {
-            [QUOTE(Place on an occupied land vehicle)] call ace_common_fnc_displayTextStructured;
+            ["Place on an occupied land vehicle"] call ace_common_fnc_displayTextStructured;
         } else {
             if (!_empty && {!_car} && {!(alive _unit) || {!(_unit isKindOf "CAManBase")}}) then {
-                [QUOTE(Place on a living unit)] call ace_common_fnc_displayTextStructured;
+                ["Place on a living unit"] call ace_common_fnc_displayTextStructured;
             } else {
                 if (!(_unit getVariable [QGVAR(isBomber), false])) then {
                     if (_empty) then {
                         [_unit] remoteExecCall [QFUNC(carBomb), owner _unit];
+                        ["Vehicle is now a car bomb"] call ace_common_fnc_displayTextStructured;
                     } else {
                         [_unit, _deadman, _car] remoteExecCall [QFUNC(suicide), owner _unit];
+                        ["Unit/vehicle is now a bomber"] call ace_common_fnc_displayTextStructured;
                     };        
                 } else {
-                    [QUOTE(Unit or vehicle is already a bomb)] call ace_common_fnc_displayTextStructured;
+                    ["Unit or vehicle is already a bomb"] call ace_common_fnc_displayTextStructured;
                 };
             };
         };

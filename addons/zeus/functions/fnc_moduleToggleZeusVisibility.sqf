@@ -34,6 +34,6 @@ if (!(isObjectHidden player)) then  {
     };
 };
 
-[_text] call Ares_fnc_ShowZeusMessage;
+[_text] call ace_common_fnc_displayTextStructured;
 
 #include "\achilles\modules_f_ares\module_footer.hpp"
