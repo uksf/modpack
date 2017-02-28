@@ -15,9 +15,11 @@
 
 params ["_ctrlTemplateValue", "_center", "_display"];
 
-_name = _ctrlTemplateValue lnbtext [lnbcurselrow _ctrlTemplateValue, 0];
-_data = profilenamespace getvariable ["bis_fnc_saveInventory_data", []];
-_nameID = _data find _name;
+"cba_diagnostic_Error" cutText ["","PLAIN"];
+
+private _name = _ctrlTemplateValue lnbtext [lnbcurselrow _ctrlTemplateValue, 0];
+private _data = profilenamespace getvariable ["bis_fnc_saveInventory_data", []];
+private _nameID = _data find _name;
 private _invData = [];
 if (_nameID >= 0) then {
     _invData = _data select (_nameID + 1);
@@ -26,14 +28,14 @@ if (_nameID >= 0) then {
 };
 
 _fnc_removeRestricted = {
-    params ["_data", "_virtualCargo", "_depth", "_removed", "_fnc_removeRestricted"];
+    params ["_data", "_cargo", "_depth", "_removed", "_fnc_removeRestricted"];
 
     private _restrictedData = [];
     {
         private _restrictedPart = "";
         private _pushBack = true;
         if (_x isEqualType "") then {
-            if (_x in _virtualCargo) then {
+            if (_x in _cargo || {"%ALL" in _cargo}) then {
                 _restrictedPart = _x;
             } else {
                 if (_depth > 1) then {
@@ -45,37 +47,32 @@ _fnc_removeRestricted = {
             };
         } else {
             if (_x isEqualType []) then {
-                _restrictedPart = [_x, _virtualCargo, _depth + 1, _removed, _fnc_removeRestricted] call _fnc_removeRestricted;
+                _restrictedPart = [_x, _cargo, _depth + 1, _removed, _fnc_removeRestricted] call _fnc_removeRestricted;
             };
         };
         if (_pushBack) then {
-            _restrictedData pushBack _restrictedPart;
+            _restrictedData pushBack ([_restrictedPart] call FUNC(cleanRadio));
         };
-    } forEach _data;
+        false
+    } count _data;
     
     _restrictedData
 };
 
 private _restrictedInv = _invData;
-_fullArsenal = (missionnamespace getvariable ["BIS_fnc_arsenal_fullArsenal",false]);
-_fullGarage = (missionnamespace getvariable ["BIS_fnc_arsenal_fullGarage", false]);
-if (!_fullArsenal && !_fullGarage) then {
-    _cargo = (missionnamespace getvariable ["BIS_fnc_arsenal_cargo", objnull]);
-    _virtualCargoArrays = _cargo getvariable ["bis_addVirtualWeaponCargo_cargo", [[], [], [], []]];
-    _virtualCargo = _virtualCargoArrays select 0;
-    _virtualCargo append (_virtualCargoArrays select 1);
-    _virtualCargo append (_virtualCargoArrays select 2);
-    _virtualCargo append (_virtualCargoArrays select 3);
-    if (!("%ALL" in _virtualCargo)) then {        
-        "cba_diagnostic_Error" cutText ["","PLAIN"];
-        private _removed = [];
-        _restrictedInv = [_invData, _virtualCargo, 0, _removed, _fnc_removeRestricted] call _fnc_removeRestricted;
-        _removed = _removed - ["ACE_NoVoice", "ItemRadioAcreFlagged"];
-        _removed deleteAt (count _removed - 1);
+private _fullArsenal = (missionnamespace getvariable ["BIS_fnc_arsenal_fullArsenal",false]);
+private _fullGarage = (missionnamespace getvariable ["BIS_fnc_arsenal_fullGarage", false]);
+if (!_fullArsenal && !_fullGarage && isMultiplayer) then {
+    private _crate = (missionnamespace getvariable ["BIS_fnc_arsenal_cargo", objnull]);
+    private _cargo = _crate getvariable [QGVAR(formattedCargo), []];
 
-        if (count _removed > 0) then {
-            [_removed] call FUNC(showRemoved);
-        };
+    private _removed = [];
+    _restrictedInv = [_invData, _cargo, 0, _removed, _fnc_removeRestricted] call _fnc_removeRestricted;
+    _removed = _removed - ["ACE_NoVoice", "ItemRadioAcreFlagged"];
+    _removed deleteAt (count _removed - 1);
+
+    if (count _removed > 0) then {
+        [_removed] call FUNC(showRemoved);
     };
 };
 

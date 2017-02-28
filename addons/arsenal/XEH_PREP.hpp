@@ -14,6 +14,8 @@ PREP(removevirtualitemcargo);
 PREP(removevirtualmagazinecargo);
 PREP(removevirtualweaponcargo);
 PREP(initammobox);
+PREP(setFormattedCargo);
 PREP(loadRestricted);
+PREP(cleanRadio);
 PREP(saveToProfile);
 PREP(showRemoved);

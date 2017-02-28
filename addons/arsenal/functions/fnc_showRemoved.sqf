@@ -15,7 +15,7 @@
 
 params ["_removed"];
 
-private _compose = [lineBreak, parseText "<t align='center' size='1.5'>Did not load the following:<\t>", lineBreak];  
+private _compose = [lineBreak, parseText "<t align='center' size='1.5'>Did not load the following items. Select them manually from the Arsenal if they exist.<\t>", lineBreak];  
 {
     private _config = _x;
     private _configType = "";
@@ -34,10 +34,11 @@ private _compose = [lineBreak, parseText "<t align='center' size='1.5'>Did not l
     } else {
         _compose append [format [", %1", _name]];
     };
-} forEach _removed;
+    false
+} count _removed;
 
 disableSerialization;
 "cba_diagnostic_Error" cutRsc ["cba_diagnostic_Error", "PLAIN"];
-_control = uiNamespace getVariable "cba_diagnostic_Error";
+private _control = uiNamespace getVariable "cba_diagnostic_Error";
 _control ctrlSetBackgroundColor [0.2,0.2,0.2,0.8];
-_control ctrlSetStructuredText composeText _compose;
+_control ctrlSetStructuredText (composeText _compose);

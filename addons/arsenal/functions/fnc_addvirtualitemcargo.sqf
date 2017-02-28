@@ -64,6 +64,7 @@ if (_save) then {
     if (typename _object == typename missionnamespace) then {
         _object setvariable ["bis_addVirtualWeaponCargo_cargo",_cargo];
         publicvariable "bis_addVirtualWeaponCargo_cargo";
+        [_object, _cargo] call FUNC(setFormattedCargo);
     } else {
         _object setvariable ["bis_addVirtualWeaponCargo_cargo",_cargo,_isGlobal];
     };
