@@ -726,8 +726,7 @@ class CfgWeapons {
                 positionName = "usti hlavne";
                 directionName = "gun_smoke_right";
             };
-            class EffectCartridge
-            {
+            class EffectCartridge {
                 positionName = "gun_eject";
                 directionName = "gun_eject_dir";
                 effectName = "MachineGunCartridge1";
@@ -737,8 +736,8 @@ class CfgWeapons {
             displayName = "Burst 10";
             textureType = "semi";
             reloadTime = 0.096;
-            sounds[] = { "StandardSound" };
-            /*class StandardSound {
+            /*sounds[] = { "StandardSound" };
+            class StandardSound {
                 soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
             };*/
             autoFire = 1;
@@ -807,7 +806,7 @@ class CfgWeapons {
         };
         cartridgePos = "eject_1";
         cartridgeVel = "eject_1_dir";
-        class manual: MGun {
+        /*class manual: MGun {
             class StandardSound {
                 //soundSetShot[] = { "DS_20mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
                 begin1[] = { "A3\Sounds_F\arsenal\weapons_vehicles\gatling_20mm\20mm_01_burst", 3.98107, 1, 1300, {2, 35740} };
@@ -816,7 +815,7 @@ class CfgWeapons {
                 closure2[] = { "A3\sounds_f\weapons\closure\sfx11", 0.63095737, 1.2, 20 };
                 soundClosure[] = { "closure1", 0.5, "closure2", 0.5 };
             };
-        };
+        };*/
     };
     class CUP_Vmlauncher_FFAR_veh;
     class CUP_Vmlauncher_CRV7_FAT_veh: CUP_Vmlauncher_FFAR_veh {
@@ -839,12 +838,12 @@ class CfgWeapons {
     class CUP_Vlmg_M240_veh: MGun {
         displayName = "L7A2";
         magazines[] = { "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M","CUP_200Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M","CUP_100Rnd_TE4_LRT4_White_Tracer_762x51_Belt_M","CUP_200Rnd_TE4_LRT4_White_Tracer_762x51_Belt_M","CUP_1200Rnd_TE4_White_Tracer_762x51_M240_M","CUP_100Rnd_TE4_White_Tracer_762x51_M240_M","CUP_1200Rnd_TE4_Red_Tracer_762x51_M240_M",,"UK3CB_BAF_762_200Rnd_T","UK3CB_BAF_762_200Rnd","UK3CB_BAF_762_200Rnd_Blank","UK3CB_BAF_762_100Rnd_T","UK3CB_BAF_762_100Rnd","UK3CB_BAF_762_100Rnd_Blank","UK3CB_BAF_762_100Rnd_EL","UK3CB_BAF_762_100Rnd_T_EL","UK3CB_BAF_762_200Rnd_EL","UK3CB_BAF_762_200Rnd_T_EL" };
-        class manual: MGun {
+        /*class manual: MGun {
             sounds[] = { "StandardSound" };
-            /*class StandardSound {
+            class StandardSound {
                 soundSetShot[] = { "DS_CoaxMG_Closure_SoundSet","DS_CoaxMG_Shot_SoundSet","DS_lmg1_Tail_SoundSet" };
-            };*/
-        };
+            };
+        };*/
     };
     class HMG_M2;
     class CUP_Vhmg_M2_veh: HMG_M2 {
