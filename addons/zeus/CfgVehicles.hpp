@@ -44,4 +44,36 @@ class CfgVehicles {
         function = QFUNC(moduleToggleAllowUnconcious);
         icon = "\z\ace\addons\zeus\ui\Icon_Module_Zeus_Unconscious_ca.paa";
     };
+    class Ares_Arsenal_Module_Base;
+    class Ares_Module_Arsenal_AddFull: Ares_Arsenal_Module_Base {
+        function = QFUNC(moduleAddFullArsenal);
+    };
+    class Ares_Module_Arsenal_AddCustom: Ares_Arsenal_Module_Base {
+        scopeCurator = 0;
+    };
+    class Ares_Module_Arsenal_Copy_To_Clipboard: Ares_Arsenal_Module_Base {
+        scopeCurator = 2;
+        displayName = "$STR_COPY_TO_CLIPBOARD";
+        function = "Ares_fnc_ArsenalCopyToClipboard";
+        icon = "\achilles\data_f_achilles\icons\icon_object.paa";
+        portrait = "\achilles\data_f_achilles\icons\icon_object.paa";
+    };
+    class Ares_Module_Arsenal_Paste_Replace: Ares_Arsenal_Module_Base {
+        scopeCurator = 0;
+    };
+    class Ares_Module_Arsenal_Paste_Combine: Ares_Arsenal_Module_base {
+        scopeCurator = 0;
+    };
+    class Ares_Module_Arsenal_Create_Nato: Ares_Arsenal_Module_Base {
+        scopeCurator = 0;
+    };
+    class Ares_Module_Arsenal_Create_Csat: Ares_Arsenal_Module_Base {
+        scopeCurator = 0;
+    };
+    class Ares_Module_Arsenal_Create_Aaf: Ares_Arsenal_Module_Base {
+        scopeCurator = 0;
+    };
+    class Ares_Module_Arsenal_Create_Guerilla: Ares_Arsenal_Module_Base {
+        scopeCurator = 0;
+    };
 };

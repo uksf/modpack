@@ -64,19 +64,19 @@ if (_save) then {
     if (typename _object == typename missionnamespace) then {
         _object setvariable ["bis_addVirtualWeaponCargo_cargo",_cargo];
         publicvariable "bis_addVirtualWeaponCargo_cargo";
-        [_object, _cargo] call FUNC(setFormattedCargo);
     } else {
         _object setvariable ["bis_addVirtualWeaponCargo_cargo",_cargo,_isGlobal];
     };
+    [_object, _cargo] call FUNC(setFormattedCargo);
 };
 
 if (_initAction && typename _object == typename objnull) then {
     if ({count _x > 0} count _cargo > 0) then {
         //--- Init arsenal
-        ["AmmoboxInit",_object] call FUNC(arsenal);
+        ["AmmoboxInit",_object] call bis_fnc_arsenal;
     } else {
         //--- Terminate arsenal
-        ["AmmoboxExit",_object] call FUNC(arsenal);
+        ["AmmoboxExit",_object] call bis_fnc_arsenal;
     };
 };
 

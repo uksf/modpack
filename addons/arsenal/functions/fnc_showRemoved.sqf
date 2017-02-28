@@ -15,7 +15,7 @@
 
 params ["_removed"];
 
-private _compose = [lineBreak, parseText "<t align='center' size='1.5'>Did not load the following items. Select them manually from the Arsenal if they exist.<\t>", lineBreak];  
+private _compose = [lineBreak, parseText "<t align='center' size='1.3' color='#feb100'>Did not load the following items. Select them manually from the Arsenal if they exist.<\t>", lineBreak, lineBreak];  
 {
     private _config = _x;
     private _configType = "";
@@ -29,7 +29,7 @@ private _compose = [lineBreak, parseText "<t align='center' size='1.5'>Did not l
     if (_configType != "") then {
         _name = getText (configFile >> _configType >> _config >> "displayName");
     };
-    if (_forEachIndex == 0) then {
+    if ((count _compose) isEqualTo 4) then {
         _compose append [format ["%1", _name]];
     } else {
         _compose append [format [", %1", _name]];

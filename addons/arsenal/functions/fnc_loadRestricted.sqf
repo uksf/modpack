@@ -6,18 +6,19 @@
         Loads gear based on arsenal content. Will not add gear if not available in arsenal.
 
     Parameter(s):
-        None
+        0: Load display control <SCALAR>
+        1: Local unit <OBJECT>
 
     Return Value:
         None
 */
 #include "script_component.hpp"
 
-params ["_ctrlTemplateValue", "_center", "_display"];
+params ["_control", "_unit"];
 
 "cba_diagnostic_Error" cutText ["","PLAIN"];
 
-private _name = _ctrlTemplateValue lnbtext [lnbcurselrow _ctrlTemplateValue, 0];
+private _name = _control lnbtext [lnbcurselrow _control, 0];
 private _data = profilenamespace getvariable ["bis_fnc_saveInventory_data", []];
 private _nameID = _data find _name;
 private _invData = [];
@@ -32,26 +33,30 @@ _fnc_removeRestricted = {
 
     private _restrictedData = [];
     {
+        private _part = _x;
         private _restrictedPart = "";
         private _pushBack = true;
-        if (_x isEqualType "") then {
-            if (_x in _cargo || {"%ALL" in _cargo}) then {
-                _restrictedPart = _x;
+        if (_part isEqualType "") then {
+            if ((_part select [0, 4]) isEqualTo "ACRE") then {
+                _part = [_part] call FUNC(cleanRadio);
+            };
+            if (_part in _cargo || {"%ALL" in _cargo}) then {
+                _restrictedPart = _part;
             } else {
                 if (_depth > 1) then {
                     _pushBack = false;
                 };
-                if (_x != "") then {
-                    _removed pushBackUnique _x;
+                if (_part != "") then {
+                    _removed pushBackUnique _part;
                 };
             };
         } else {
-            if (_x isEqualType []) then {
-                _restrictedPart = [_x, _cargo, _depth + 1, _removed, _fnc_removeRestricted] call _fnc_removeRestricted;
+            if (_part isEqualType []) then {
+                _restrictedPart = [_part, _cargo, _depth + 1, _removed, _fnc_removeRestricted] call _fnc_removeRestricted;
             };
         };
-        if (_pushBack) then {
-            _restrictedData pushBack ([_restrictedPart] call FUNC(cleanRadio));
+        if (_pushBack) then {            
+            _restrictedData pushBack _restrictedPart;
         };
         false
     } count _data;
@@ -65,12 +70,10 @@ private _fullGarage = (missionnamespace getvariable ["BIS_fnc_arsenal_fullGarage
 if (!_fullArsenal && !_fullGarage && isMultiplayer) then {
     private _crate = (missionnamespace getvariable ["BIS_fnc_arsenal_cargo", objnull]);
     private _cargo = _crate getvariable [QGVAR(formattedCargo), []];
-
     private _removed = [];
     _restrictedInv = [_invData, _cargo, 0, _removed, _fnc_removeRestricted] call _fnc_removeRestricted;
     _removed = _removed - ["ACE_NoVoice", "ItemRadioAcreFlagged"];
     _removed deleteAt (count _removed - 1);
-
     if (count _removed > 0) then {
         [_removed] call FUNC(showRemoved);
     };
@@ -84,7 +87,7 @@ if (_nameID < 0) then {
 _data set [_nameID + 1, _restrictedInv];
 _data = [_data] call FUNC(saveToProfile);
 
-[_center, [profilenamespace, DUMMYLOADOUT]] call bis_fnc_loadinventory;
+[_unit, [profilenamespace, DUMMYLOADOUT]] call bis_fnc_loadinventory;
 
 if (_nameID >= 0) then {
     _data set [_nameID, objnull];
@@ -97,8 +100,8 @@ _nameID = _data find _name;
 if (_nameID >= 0) then {
     _inventory = _data select (_nameID + 1);
     _inventoryCustom = _inventory select 10;
-    _center setface (_inventoryCustom select 0);
-    _center setvariable ["BIS_fnc_arsenal_face", (_inventoryCustom select 0)];
-    _center setspeaker (_inventoryCustom select 1);
-    [_center, _inventoryCustom select 2] call bis_fnc_setUnitInsignia;
+    _unit setface (_inventoryCustom select 0);
+    _unit setvariable ["BIS_fnc_arsenal_face", (_inventoryCustom select 0)];
+    _unit setspeaker (_inventoryCustom select 1);
+    [_unit, _inventoryCustom select 2] call bis_fnc_setUnitInsignia;
 };
