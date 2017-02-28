@@ -8,13 +8,15 @@ class CfgPatches {
             "UKSF_Module_LargeExplosion",
             "UKSF_Module_AddAllObjects",
             "Ares_Module_Zeus_Visibility",
-            "UKSF_Module_TeleportZeus"
+            "UKSF_Module_TeleportZeus",
+            "UKSF_Module_ToggleAllowUnconcious"
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             "uksf_common",
-            "achilles_modules_f_ares"
+            "achilles_modules_f_ares",
+            "achilles_modules_f_achilles"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
@@ -23,5 +25,6 @@ class CfgPatches {
     };
 };
 
+#include "Cfg3den.hpp"
 #include "CfgEventHandlers.hpp"
 #include "CfgVehicles.hpp"

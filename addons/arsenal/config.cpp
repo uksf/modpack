@@ -7,8 +7,7 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "uksf_common",
-            "3denEnhanced"
+            "uksf_common"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
@@ -18,4 +17,4 @@ class CfgPatches {
 };
 
 #include "CfgEventHandlers.hpp"
-#include "Cfg3den.hpp"
+#include "CfgFunctions.hpp"

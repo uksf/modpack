@@ -3,7 +3,7 @@
         Tim Beswick
 
     Description:
-        Toggles unit cleanup state
+        Fully heals unit
 
     Parameter(s):
         0: The module logic <OBJECT>
@@ -23,16 +23,8 @@ if !(_activated && local _logic) exitWith {};
 if (_typeName != "OBJECT") then {
     ["Place on a unit or vehicle"] call ace_common_fnc_displayTextStructured;
 } else {
-    if (!(_unit getVariable [QGVAR(excluded), false])) then {
-        _unit setVariable [QGVAR(excluded), true, true];
-        ["Unit excluded from cleanup"] call ace_common_fnc_displayTextStructured;
-    } else {
-        _unit setVariable [QGVAR(excluded), false, true];
-        if (!(_unit getVariable [QGVAR(handled), false]) && {!(alive _unit)}) then {
-            [_unit] call FUNC(handleKilled);
-            ["Unit included in cleanup"] call ace_common_fnc_displayTextStructured;
-        };
-    };
+    [_unit, _unit] remoteExecCall ["ace_medical_fnc_treatmentAdvanced_fullHealLocal", _unit, false];
+    ["Unit full healed"] call ace_common_fnc_displayTextStructured;
 };
 
 deleteVehicle _logic;
