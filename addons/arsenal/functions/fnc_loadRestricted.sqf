@@ -67,11 +67,9 @@ _fnc_removeRestricted = {
 private _restrictedInv = _invData;
 private _fullArsenal = (missionnamespace getvariable ["BIS_fnc_arsenal_fullArsenal",false]);
 private _fullGarage = (missionnamespace getvariable ["BIS_fnc_arsenal_fullGarage", false]);
-//if (!_fullArsenal && !_fullGarage && isMultiplayer) then {
-if (!_fullArsenal && !_fullGarage) then {
+if (!_fullArsenal && !_fullGarage && isMultiplayer) then {
     private _crate = (missionnamespace getvariable ["BIS_fnc_arsenal_cargo", objnull]);
     private _cargo = _crate getvariable [QGVAR(formattedCargo), []];
-    INFO_1("LOAD RESTRICTED CALL: %1", _cargo);
     private _removed = [];
     _restrictedInv = [_invData, _cargo, 0, _removed, _fnc_removeRestricted] call _fnc_removeRestricted;
     _removed = _removed - ["ACE_NoVoice", "ItemRadioAcreFlagged"];

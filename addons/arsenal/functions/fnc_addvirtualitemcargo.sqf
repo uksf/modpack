@@ -61,7 +61,6 @@ if (count _classes == 0 && _add < 0) then {
 _cargo set [_type,_cargoArray];
 
 if (_save) then {
-    INFO_1("Type: %1", typeName _object);
     if (typename _object == typename missionnamespace) then {
         _object setvariable ["bis_addVirtualWeaponCargo_cargo",_cargo];
         publicvariable "bis_addVirtualWeaponCargo_cargo";

@@ -16,9 +16,7 @@
 
 params ["_crate", "_cargo"];
 
-INFO_1("SET FORMATTED CALL: %1", _cargo);
 private _formattedCargo = [];
-
 if ("%ALL" in _cargo) then {
     _formattedCargo append ["%ALL"];
 } else {
