@@ -92,7 +92,7 @@ class CfgMagazines {
         picture = "\UK3CB_BAF_Weapons\addons\UK3CB_BAF_Weapons_Ammo\data\gear_magazine_belt_tracer_ca.paa";
     };
 
-    class 30Rnd_556x45_Stanag;
+    /*class 30Rnd_556x45_Stanag;
     class 30Rnd_556x45_Stanag_Rubber: 30Rnd_556x45_Stanag {
         scopeArsenal = 1;
         displayname = "5.56mm 30Rnd Rubber";
@@ -120,14 +120,14 @@ class CfgMagazines {
         displayname = "SMAW-HEAT Rubber";
         displaynameshort = "HEAT Rubber";
         ammo = "CUP_R_SMAW_HEAT_N_Rubber";
-    };
+    };*/
     class CUP_Stinger_M;
     class CUP_Stinger_M_Rubber: CUP_Stinger_M {
         scopeArsenal = 1;
         displayName = "FIM-92F Stinger Rubber";
         displayNameShort = "AA Rubber";
         ammo = "CUP_M_Stinger_AA_Rubber";
-    };
+    };/*
     class CUP_20Rnd_TE1_Red_Tracer_120mmSABOT_M256_Cannon_M;
     class CUP_20Rnd_TE1_White_Tracer_120mmSABOT_M256_Cannon_M_Rubber: CUP_20Rnd_TE1_Red_Tracer_120mmSABOT_M256_Cannon_M {        
         displayName = "120mm APFSDS-T Rubber";
@@ -151,7 +151,7 @@ class CfgMagazines {
         displayName = "M242 25mm APFSDS-T Magazine";
         displayNameShort = "M242 APFSDS-T Rubber";
         ammo = "CUP_B_25mm_APFSDS_White_Tracer_Rubber";
-    };
+    };*/
     class CUP_4Rnd_Stinger_M;
     class CUP_4Rnd_Stinger_M_Rubber: CUP_4Rnd_Stinger_M {
         displayName = "FIM-92F Stinger Rubber";

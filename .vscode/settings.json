@@ -1,6 +1,8 @@
 // Place your settings in this file to overwrite default and user settings.
 {
     "files.associations": {
-        "*.HPP": "cpp"
+        "*.HPP": "cpp",
+        "array": "cpp",
+        "xutility": "cpp"
     }
 }

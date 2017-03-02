@@ -16,6 +16,7 @@
 
 params ["_crate", "_cargo"];
 
+INFO_1("SET FORMATTED CALL: %1", _cargo);
 private _formattedCargo = [];
 
 if ("%ALL" in _cargo) then {
@@ -27,5 +28,5 @@ if ("%ALL" in _cargo) then {
     _formattedCargo append (_cargo select 3);
 };
 
-_crate setvariable [QGVAR(formattedCargo), _formattedCargo];
+_crate setvariable [QGVAR(formattedCargo), _formattedCargo, true];
 publicvariable QGVAR(formattedCargo);

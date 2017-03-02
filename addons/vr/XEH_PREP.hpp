@@ -1,1 +1,2 @@
 PREP(fired);
+PREP(killed);

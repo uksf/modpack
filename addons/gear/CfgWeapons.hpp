@@ -895,7 +895,7 @@ class CfgWeapons {
     class CUP_arifle_M4A1;
     class CUP_arifle_M4A1_Acog: CUP_arifle_M4A1 {
         scopeArsenal = 1;
-        magazines[] = { "30Rnd_556x45_Stanag_Rubber" };
+        //magazines[] = { "30Rnd_556x45_Stanag_Rubber" };
         class LinkedItems {
             class LinkedItemsOptic {
                 slot = "CUP_PicatinnyTopMountM4";
@@ -906,7 +906,7 @@ class CfgWeapons {
     class CUP_lmg_M240;
     class CUP_lmg_M240_LDS: CUP_lmg_M240 {
         scopeArsenal = 1;
-        magazines[] = { "CUP_100Rnd_TE4_LRT4_White_Tracer_762x51_Belt_M_Rubber" };
+        //magazines[] = { "CUP_100Rnd_TE4_LRT4_White_Tracer_762x51_Belt_M_Rubber" };
         class LinkedItems {
             class LinkedItemsOptic {
                 slot = "CUP_PicatinnyTopMountM4";
@@ -914,18 +914,18 @@ class CfgWeapons {
             };
         };
     };
-    class CUP_launch_Mk153Mod0;
+    /*class CUP_launch_Mk153Mod0;
     class CUP_launch_Mk153Mod0_Rubber: CUP_launch_Mk153Mod0 {
         scopeArsenal = 1;
         magazines[] = { "CUP_SMAW_HEAT_M_Rubber" };
         ace_overpressure_damage = 0;
-    };
+    };*/
     class CUP_launch_FIM92Stinger;
     class CUP_launch_FIM92Stinger_Rubber: CUP_launch_FIM92Stinger {
         scopeArsenal = 1;
         magazines[] = { "CUP_Stinger_M_Rubber" };
         ace_overpressure_damage = 0;
-    };
+    };/*
     class CUP_Vhmg_M2_veh_rubber: CUP_Vhmg_M2_veh {
         displayName = "M2 Rubber";
         magazines[] = { "CUP_100Rnd_TE4_White_Tracer_127x99_M_Rubber" };
@@ -958,7 +958,7 @@ class CfgWeapons {
     class CUP_Vlmg_M240_veh_Rubber: CUP_Vlmg_M240_veh {
         displayName = "M240 Rubber";
         magazines[] = { "CUP_100Rnd_TE4_LRT4_White_Tracer_762x51_Belt_M_Rubber" };
-    };
+    };*/
     class CUP_Vmlauncher_Stinger_vehicle_veh;
     class CUP_Vmlauncher_Stinger_vehicle_veh_Rubber: CUP_Vmlauncher_Stinger_vehicle_veh {
         magazines[] = { "CUP_4Rnd_Stinger_M_Rubber" };

@@ -3045,6 +3045,7 @@ switch _mode do {
     ///////////////////////////////////////////////////////////////////////////////////////////
     case "buttonClose": {
         _display = _this select 0;
+        "cba_diagnostic_Error" cutText ["","PLAIN"];
         _message = if (missionname == "Arsenal") then {
             [
                 localize "STR_SURE",

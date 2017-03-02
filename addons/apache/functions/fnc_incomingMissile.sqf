@@ -22,61 +22,63 @@ params ["_heli", "_missileType", "_hostile"];
 #define FLARESEARCHRADIUS 100
 
 if (local _heli && {alive _heli} && {player isEqualTo (driver _heli) || {player isEqualTo (gunner _heli)}} && {isEngineOn _heli} && {_missileType isKindOf "MissileBase"} && {(_heli getVariable [QGVAR(jammerMode), 0]) > 0}) then {
-    private _missile = nearestObject [_hostile, _missileType];    
-    private _posHeli = getPosASL _heli;
-    private _posMissile = getPosASL _missile;    
-
-    if (player isEqualTo (driver _heli) && {(_heli getVariable [QGVAR(jammerMode), 0]) isEqualTo 2}) then {
-        [{
-            params ["_args", "_idPFH"];
-            _args params ["_heli", "_missile", "_iteration"];
-
-            if (isNull _missile || {!alive _heli} || {_iteration >= 8} || {(_missile distance _heli) > (10000)}) exitWith {
-                [_idPFH] call cba_fnc_removePerFrameHandler;
-                player forceWeaponFire ["CUP_weapon_mastersafe", "CUP_weapon_mastersafe"];
-            };
-            player forceWeaponFire ["CMFlareLauncher", "Single"];
-            _args set [2, _iteration + 1];
-        }, 0.1, [_heli, _missile, 1]] call cba_fnc_addPerFrameHandler;
-    };
-
-    private _missileAlt = "low";
-    if (_posHeli select 2 < _posMissile select 2) then {
-        _missileAlt = "high";
-    };    
-    private _missileDirection = ((_posMissile select 0) - (_posHeli select 0)) atan2 ((_posMissile select 1) - (_posHeli select 1));
-    if (_missileDirection < 0) then {
-        _missileDirection = _missileDirection + 360;
-    };    
-    private _oclock = floor ((((360 + (_missileDirection - (direction _heli))) mod 360) + 15) / 30);
-    if (_oclock isEqualTo 0) then { _oclock = 12; };    
-    [format [QUOTE(GVAR(%1oclock)), _oclock], 1.8, format [QUOTE(GVAR(%1)), _missileAlt], 0.6] call FUNC(audio);
-
+    private _missile = nearestObject [_hostile, _missileType];
     [{
-        params ["_heli", "_missile", "_missileAlt"];
+        params ["_heli", "_missile"];
 
-        private _trackTo = _heli;
-        private _flareList = (nearestObjects [_heli, [], FLARESEARCHRADIUS]) select {((typeOf _x) isEqualTo "CMflareAmmo") || {(typeOf _x) isEqualTo "CMflare_Chaff_Ammo"}};
-        if (_missileAlt != "high" && {(floor random 100) < TRACKCHANCE} && {(count _flareList) > 0}) then {
-            _trackTo = selectRandom _flareList;
+        if (player isEqualTo (driver _heli) && {(_heli getVariable [QGVAR(jammerMode), 0]) isEqualTo 2}) then {
+            [{
+                params ["_args", "_idPFH"];
+                _args params ["_heli", "_missile", "_iteration"];
+
+                if (!alive _heli || {_iteration >= 8} || {(_missile distance _heli) > (10000)}) exitWith {
+                    [_idPFH] call cba_fnc_removePerFrameHandler;
+                    player forceWeaponFire ["CUP_weapon_mastersafe", "CUP_weapon_mastersafe"];
+                };
+                player forceWeaponFire ["CMFlareLauncher", "Single"];
+                _args set [2, _iteration + 1];
+            }, 0.1, [_heli, _missile, 1]] call cba_fnc_addPerFrameHandler;
         };
 
+        private _posHeli = getPosASL _heli;
+        private _posMissile = getPosASL _missile;
+        private _missileAlt = "low";
+        if (_posHeli select 2 < _posMissile select 2) then {
+            _missileAlt = "high";
+        };    
+        private _missileDirection = ((_posMissile select 0) - (_posHeli select 0)) atan2 ((_posMissile select 1) - (_posHeli select 1));
+        if (_missileDirection < 0) then {
+            _missileDirection = _missileDirection + 360;
+        };
+        private _oclock = floor ((((360 + (_missileDirection - (direction _heli))) mod 360) + 15) / 30);
+        if (_oclock isEqualTo 0) then { _oclock = 12; };    
+        [format [QUOTE(GVAR(%1oclock)), _oclock], 1.7, format [QUOTE(GVAR(%1)), _missileAlt], 0.5] call FUNC(audio);
+
+        private _useFlare = ((_missileAlt isEqualTo "low") && ((random 100) < TRACKCHANCE));
         [{
             params ["_args", "_idPFH"];
-            _args params ["_trackTo", "_missile", "_distanceToTarget", "_prevDistanceToTarget"];          
+            _args params ["_heli", "_trackTo", "_useFlare", "_missile", "_distanceToTarget", "_prevDistanceToTarget"];
 
-            if (isNull _trackTo || {isNull _missile} || {!alive _missile}) exitWith {
+            if (isNull _missile || {!alive _missile}) exitWith {
                 [_idPFH] call cba_fnc_removePerFrameHandler;
+            };
+
+            if (_useFlare && {!((typeOf _trackTo) isEqualTo "CMflare_Chaff_Ammo")} && {!((typeOf _trackTo) isEqualTo "CMflareAmmo")}) then {
+                private _flareList = (nearestObjects [_heli, [], FLARESEARCHRADIUS]) select {((typeOf _x) isEqualTo "CMflareAmmo") || {(typeOf _x) isEqualTo "CMflare_Chaff_Ammo"}};
+                if ((count _flareList) > 0) then {
+                    _trackTo = selectRandom _flareList;
+                };
+            } else {
+                _trackTo = _heli;
             };
 
             private _vectorToTarget = (getPosASL _trackTo) vectorDiff (getPosASL _missile);
             private _dir = vectorNormalized _vectorToTarget;
             _prevDistanceToTarget = _distanceToTarget;
             _distanceToTarget = vectorMagnitude _vectorToTarget;
-
-            if ((_distanceToTarget < DETONATIONDISTANCE || {_distanceToTarget > _prevDistanceToTarget}) && {((typeOf _trackTo) isEqualTo "CMflareAmmo") || {(typeOf _trackTo) isEqualTo "CMflare_Chaff_Ammo"}}) then {
+            if ((_distanceToTarget < DETONATIONDISTANCE || {_distanceToTarget > _prevDistanceToTarget}) && {((typeOf _trackTo) isEqualTo "CMflare_Chaff_Ammo") || {(typeOf _trackTo) isEqualTo "CMflareAmmo"}}) then {
                 private _dummyMissile = createVehicle ["UKSF_Dummy_Missile", [0,0,0], [], 0, "FLY"];
-                _dummyMissile setPos (getPos _missile);
+                _dummyMissile setPosATL (getPosATL _missile);
                 deleteVehicle _missile;
                 deleteVehicle _trackTo;
                 _missile = objNull;            
@@ -85,8 +87,10 @@ if (local _heli && {alive _heli} && {player isEqualTo (driver _heli) || {player 
                 _missile setVectorDirAndUp [_dir, _up];
                 _missile setVelocity (_dir vectorMultiply (vectorMagnitude (velocity _missile)));
             };
-            _args set [2, _distanceToTarget];
-            _args set [3, _prevDistanceToTarget];
-        }, 0, [_trackTo, _missile, 100000, 0]] call cba_fnc_addPerFrameHandler;
-    }, [_heli, _missile, _missileAlt], 1] call cba_fnc_waitAndExecute;    
+
+            _args set [1, _trackTo];
+            _args set [3, _distanceToTarget];
+            _args set [4, _prevDistanceToTarget];
+        }, 0, [_heli, _heli, _useFlare, _missile, 100000, 0]] call cba_fnc_addPerFrameHandler;
+    }, [_heli, _missile], 0.75] call cba_fnc_waitAndExecute;
 };

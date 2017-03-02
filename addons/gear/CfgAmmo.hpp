@@ -25,40 +25,41 @@ class CfgAmmo{
     };
     class B_556x45_Ball;
     class B_556x45_Ball_Rubber: B_556x45_Ball {
-        hit = 0.5;
+        hit = 0.25;
         cost = 1;
         model = "\A3\Weapons_f\Data\bullettracer\tracer_white";
     };
     class CUP_B_762x51_Tracer_White;
     class CUP_B_762x51_Tracer_White_Rubber: CUP_B_762x51_Tracer_White {
-        hit = 0.5;
+        hit = 0.25;
         cost = 1;
     };
     class B_127x99_Ball_Tracer_Red;
     class B_127x99_Ball_Tracer_White_Rubber: B_127x99_Ball_Tracer_Red {
-        hit = 0.5;
+        hit = 0.25;
         cost = 1;
         model = "\A3\Weapons_f\Data\bullettracer\tracer_white";
     };
     class CUP_R_SMAW_HEAA_N;
     class CUP_R_SMAW_HEAT_N_Rubber: CUP_R_SMAW_HEAA_N {
-        hit = 1;
+        hit = 0.5;
         indirecthit = 0;
         indirecthitrange = 0;
         cost = 1;
         ace_frag_enabled = 0;
+        mass = 20;
     };
     class CUP_M_Stinger_AA;
     class CUP_M_Stinger_AA_Rubber: CUP_M_Stinger_AA {
-        hit = 1;
-        indirecthit = 0;
-        indirecthitrange = 0;
+        hit = 31;
+        indirecthit = 10;
+        indirecthitrange = 1;
         cost = 1;
         ace_frag_enabled = 0;
     };
     class Sh_120mm_APFSDS;
     class Sh_120mm_APFSDS_Tracer_White_Rubber: Sh_120mm_APFSDS {
-        hit = 1;
+        hit = 0.5;
         indirectHit = 0;
         indirectHitRange = 0;
         dangerRadiusHit = 0;
@@ -67,7 +68,7 @@ class CfgAmmo{
     };
     class Sh_120mm_HE;
     class Sh_120mm_HE_Tracer_White_Rubber: Sh_120mm_HE {
-        hit = 1;
+        hit = 0.5;
         indirectHit = 0;
         indirectHitRange = 0;
         dangerRadiusHit = 0;
@@ -77,7 +78,7 @@ class CfgAmmo{
     };
     class CUP_B_25mm_HE_White_Tracer;
     class CUP_B_25mm_HE_White_Tracer_Rubber: CUP_B_25mm_HE_White_Tracer {
-        hit = 1;
+        hit = 0.5;
         indirectHit = 0;
         indirectHitRange = 0;
         cost = 1;
@@ -85,7 +86,7 @@ class CfgAmmo{
     };
     class CUP_B_25mm_APFSDS_White_Tracer;
     class CUP_B_25mm_APFSDS_White_Tracer_Rubber: CUP_B_25mm_APFSDS_White_Tracer {
-        hit = 1;
+        hit = 0.5;
         indirectHit = 0;
         indirectHitRange = 0;
         cost = 1;

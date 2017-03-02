@@ -331,14 +331,13 @@ class CfgVehicles {
         hiddenSelectionsMaterials[] = { "\A3\Characters_F_Bootcamp\Common\Data\O_VR_Soldier_F.rvmat" };
         maximumLoad = 500;
         class TransportMagazines {
-            class _xx_CUP_SMAW_HEAT_M_Rubber {
-                magazine = "CUP_SMAW_HEAT_M_Rubber";
+            class _xx_CUP_SMAW_HEAA_M {
+                magazine = "CUP_SMAW_HEAA_M";
                 count = 2;
             };
         };
     };
     class B_AssaultPack_VR_AA: B_AssaultPack_VR_AT {
-        scopeArsenal = 1;
         displayName = "AA Pack (VR)";
         class TransportMagazines {
             class _xx_CUP_Stinger_M_Rubber {
