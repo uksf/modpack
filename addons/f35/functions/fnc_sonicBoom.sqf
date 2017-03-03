@@ -46,10 +46,11 @@ GVAR(sonicHandler) = [{
             _emitter setParticleRandom [0.4, [10 * (_i / 100), 10 * (_i / 100), 10 * (_i / 100)], [10 * (_i / 100), 10 * (_i / 100), 10 * (_i / 100)], 0, 0.3, [0.1, 0.15, 0.3, 0.5], 0, 0];
             _emitter setParticleParams [[QPATHTOF(data\Universal.p3d), 16, 12, 1], "", "Billboard", 1, 0.1, [0, (-12 * (_i / 100)+8), -0.5], (velocity _plane), 1, 1.2745, 1, 0.001, [20 * (_i / 100)], [[1, 1, 1, 0], [1, 1, 1, 0.1 * (_i / 100)], [1, 1, 1, 0]], [0], 0, 0, "", "", _plane];
             if (_i isEqualTo 70) then {
+                INFO_1("Sound barrier broken. Called on: %1", owner player);
                 [_plane, [QGVAR(sonicBoom), 10000]] remoteExecCall ["say3D", 0];
             };
             _args set [2, _i + 1];
-        }, 0.01, [_plane, _emitter, 1]] call cba_fnc_addPerFrameHandler;        
+        }, 0.02, [_plane, _emitter, 1]] call cba_fnc_addPerFrameHandler;     
     };    
     _args set [1, speed _plane];
-}, 0.2, [_plane, speed _plane]] call cba_fnc_addPerFrameHandler;
+}, 0.5, [_plane, speed _plane]] call cba_fnc_addPerFrameHandler;
