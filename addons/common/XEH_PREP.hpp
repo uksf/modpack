@@ -1,6 +1,10 @@
-PREP(populate);
-PREP(setSkill);
-PREP(getNearPlayers);
-PREP(lineOfSight);
 PREP(configExport);
 PREP(configExportExtension);
+PREP(fpsAction);
+PREP(fpsGet);
+PREP(fpsSet);
+PREP(fpsToggle);
+PREP(getNearPlayers);
+PREP(lineOfSight);
+PREP(populate);
+PREP(setSkill);
