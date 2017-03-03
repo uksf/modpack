@@ -19,7 +19,7 @@ class Extended_PostInit_EventHandlers {
 class Extended_Init_EventHandlers {
     class CAManBase {
         class ADDON {
-            init = QUOTE(_this call FUNC(gearCheck));
+            init = QUOTE(_this call FUNC(addAction));
         };
     };
 };

@@ -1,10 +1,28 @@
 #include "script_component.hpp"
 
 [{
-    {deleteGroup _x} foreach allGroups;
+    {deleteGroup _x; false} count allGroups;
 }, 300, []] call cba_fnc_addPerFrameHandler;
 
 GVAR(HCs) = [];
 {
     GVAR(HCs) pushBack [owner _x];
-} forEach (entities "HeadlessClient_F");
+    false
+} count (entities "HeadlessClient_F");
+
+GVAR(fpsState) = false;
+
+if (hasInterface) then {
+    GVAR(fpsArray) = [];
+    call FUNC(fpsAction);
+};
+
+if (!isServer && !hasInterface) then {
+    GVAR(fpsEventID) = [QGVAR(fpsGet), {_this call FUNC(fpsGet)}] call CBA_fnc_addEventHandler;
+};
+
+if (isServer) then {
+    GVAR(server) = player;
+    publicVariable QGVAR(server);
+    GVAR(fpsEventID) = [QGVAR(fpsGet), {_this call FUNC(fpsGet)}] call CBA_fnc_addEventHandler;
+};
