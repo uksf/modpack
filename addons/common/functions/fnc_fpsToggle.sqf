@@ -27,7 +27,7 @@ if (GVAR(fpsState)) then {
         {
             [QGVAR(fpsGet), [player], _x] call CBA_fnc_targetEvent;
             false
-        } count (entities "HeadlessClient_F");
+        } count GVAR(HCs);
         [QGVAR(fpsGet), [player]] call CBA_fnc_serverEvent;
 
         private _text = [lineBreak, "FPS Debug:", lineBreak, lineBreak];

@@ -21,7 +21,7 @@ params ["_heli", "_missileType", "_hostile"];
 #define TRACKCHANCE 99
 #define FLARESEARCHRADIUS 100
 
-if (local _heli && {alive _heli} && {player isEqualTo (driver _heli) || {player isEqualTo (gunner _heli)}} && {isEngineOn _heli} && {_missileType isKindOf "MissileBase"} && {(_heli getVariable [QGVAR(jammerMode), 0]) > 0}) then {
+if (local _heli && {alive _heli} && {player isEqualTo (driver _heli)} && {isEngineOn _heli} && {_missileType isKindOf "MissileBase"} && {(_heli getVariable [QGVAR(jammerMode), 0]) > 0}) then {
     private _missile = nearestObject [_hostile, _missileType];
     [{
         params ["_heli", "_missile"];
@@ -51,15 +51,19 @@ if (local _heli && {alive _heli} && {player isEqualTo (driver _heli) || {player 
             _missileDirection = _missileDirection + 360;
         };
         private _oclock = floor ((((360 + (_missileDirection - (direction _heli))) mod 360) + 15) / 30);
-        if (_oclock isEqualTo 0) then { _oclock = 12; };    
-        [format [QUOTE(GVAR(%1oclock)), _oclock], 1.7, format [QUOTE(GVAR(%1)), _missileAlt], 0.5] call FUNC(audio);
+        if (_oclock isEqualTo 0) then { _oclock = 12; };
+        private _sounds = [format [QUOTE(GVAR(%1oclock)), _oclock], 1.7, format [QUOTE(GVAR(%1)), _missileAlt], 0.5];
+        _sounds call FUNC(audio);
+        if ((gunner _heli) != objNull) then {
+            _sounds remoteExecCall [QFUNC(audio), (gunner _heli)];
+        };
 
         private _useFlare = ((_missileAlt isEqualTo "low") && ((random 100) < TRACKCHANCE));
         [{
             params ["_args", "_idPFH"];
             _args params ["_heli", "_trackTo", "_useFlare", "_missile", "_distanceToTarget", "_prevDistanceToTarget"];
 
-            if (isNull _missile || {!alive _missile}) exitWith {
+            if (!alive _missile) exitWith {
                 [_idPFH] call cba_fnc_removePerFrameHandler;
             };
 

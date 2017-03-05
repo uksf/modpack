@@ -8,6 +8,7 @@ class CUP_BAF_Coyote_BASE_D: Car_F {
         class MainTurret;
         class M240_Turret;
     };
+    maximumLoad = 5000;
 };
 class CUP_B_BAF_Coyote_L2A1_D: CUP_BAF_Coyote_BASE_D {
     COYOTE_SUPPORT

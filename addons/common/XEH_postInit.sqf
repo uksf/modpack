@@ -5,10 +5,11 @@
 }, 300, []] call cba_fnc_addPerFrameHandler;
 
 GVAR(HCs) = [];
-{
-    GVAR(HCs) pushBack [owner _x];
-    false
-} count (entities "HeadlessClient_F");
+if (isMultiplayer && !is3DENMultiplayer) then {
+    GVAR(HCs) = (entities "HeadlessClient_F");
+} else {
+    GVAR(HCs) pushBack player;
+};
 
 GVAR(fpsState) = false;
 

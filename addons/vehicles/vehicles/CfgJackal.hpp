@@ -3,6 +3,7 @@ class CUP_BAF_Jackal2_BASE_D: Car_F {
         class MainTurret;
         class M240_Turret;
     };
+    maximumLoad = 4000;
 };
 class CUP_BAF_Jackal2_GMG_D: CUP_BAF_Jackal2_BASE_D {    
     class Turrets: Turrets {

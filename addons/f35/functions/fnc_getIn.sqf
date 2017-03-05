@@ -15,6 +15,8 @@
 
 params ["_plane"];
 
+if (!local _plane) exitWith {};
+
 GVAR(stealthHandler) = [{
     params ["_args", "_idPFH"];
     _args params ["_plane"];
