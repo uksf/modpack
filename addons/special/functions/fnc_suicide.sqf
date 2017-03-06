@@ -36,7 +36,6 @@ _bomber setVariable ["acex_headless_blacklist", true, true];
 _bomber setVariable [QGVAR(isBomber), true, true];
 _bomber setVariable [QGVAR(previousTarget), objNull, true];
 _bomber allowfleeing 0;
-(group _bomber) setBehaviour "CARELESS";
 
 [{
     params ["_args", "_idPFH"];
@@ -57,15 +56,16 @@ _bomber allowfleeing 0;
     };
 
     private _target = _bomber findNearestEnemy (getPosATL _bomber);
-    if (_target != objNull && {(_target isKindOf "CAManBase") || {(_target isKindOf "LandVehicle")}} && {alive _target} && {(_bomber distance2D _target) < _distance}) then {
-        [group _bomber] call CBA_fnc_clearWaypoints;
-        [group _bomber, (getPosATL _target), 0, "MOVE", "CARELESS", "BLUE", "LIMITED"] call CBA_fnc_addWaypoint;
-        if (!(_bomber getVariable [QGVAR(explode), false]) && {_bomber distance _target <= (_distance / 5)} && {[objNull, "VIEW"] checkVisibility [eyePos _bomber, eyePos _target] > 0}) then {
-            _bomber setSpeedMode "FULL";
+    if (!(_bomber getVariable [QGVAR(exploding), false]) && {_target != objNull} && {(_target isKindOf "CAManBase") || {(_target isKindOf "LandVehicle")}} && {alive _target} && {(_bomber distance2D _target) < _distance}) then {
+        {deleteWaypoint [(group _bomber), 0]; false} count (waypoints (group _bomber));
+        private _waypoint = [group _bomber, (getPosATL _target), 0, "MOVE", "CARELESS", "BLUE", "LIMITED"] call CBA_fnc_addWaypoint;
+        if (_bomber distance _target <= (_distance / 5) && {[objNull, "VIEW"] checkVisibility [eyePos _bomber, eyePos _target] > 0}) then {
+            _waypoint setWaypointSpeed "FULL";
+            _bomber setVariable [QGVAR(exploding), true];
             [_bomber, [QGVAR(suicide), 150]] remoteExecCall ["say3D", 0];
             [{
-                params ["_bomber"];                        
-                if (alive _bomber) exitWith {                        
+                params ["_bomber"];
+                if (alive _bomber) exitWith {
                     _bomber setVariable [QGVAR(explode), true];
                 };
             }, [_bomber], 2.5] call CBA_fnc_waitAndExecute;
