@@ -13,6 +13,7 @@ PREP(moduleAddAllObjects);
 PREP(moduleExplosionSmall);
 PREP(moduleExplosionLarge);
 PREP(moduleFullHeal);
+PREP(moduleSetEngineer);
 PREP(moduleTeleportZeus);
 PREP(moduleToggleAllowUnconcious);
 PREP(moduleToggleZeusVisibility);

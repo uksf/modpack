@@ -5,11 +5,12 @@ class CfgPatches {
         name = COMPONENT_NAME;
         units[] = {
             "Ares_Module_Zeus_Visibility",
-            "UKSF_Module_AddAllObjects",
-            "UKSF_Module_LargeExplosion",
-            "UKSF_Module_SmallExplosion",
-            "UKSF_Module_TeleportZeus",
-            "UKSF_Module_ToggleAllowUnconcious"
+            QGVAR(moduleExplosionSmall),
+            QGVAR(moduleExplosionLarge),
+            QGVAR(moduleAddAllObjects),
+            QGVAR(moduleTeleportZeus),
+            QGVAR(moduleToggleAllowUnconcious),
+            QGVAR(moduleSetEngineer)
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
