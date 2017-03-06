@@ -3,6 +3,8 @@
     "files.associations": {
         "*.HPP": "cpp",
         "array": "cpp",
-        "xutility": "cpp"
+        "xutility": "cpp",
+        "xlocale": "cpp",
+        "functional": "cpp"
     }
 }

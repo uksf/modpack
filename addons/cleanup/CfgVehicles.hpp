@@ -32,14 +32,12 @@ class CfgVehicles {
     class EGVAR(common,moduleBase);
     class GVAR(moduleCleanupExclude): EGVAR(common,moduleBase) {
         curatorCanAttach = 1;
-        scopeCurator = 2;
         displayName = QUOTE(Cleanup exclude);
         function = QFUNC(moduleToggleCleanup);
         icon = QPATHTOF(UI\Icon_Module_CleanupExclude_ca.paa);
     };
     class GVAR(moduleCleanupInclude): EGVAR(common,moduleBase) {
         curatorCanAttach = 1;
-        scopeCurator = 2;
         displayName = QUOTE(Cleanup include);
         function = QFUNC(moduleToggleCleanup);
         icon = QPATHTOF(UI\Icon_Module_CleanupInclude_ca.paa);

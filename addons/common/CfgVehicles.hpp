@@ -7,7 +7,7 @@ class CfgVehicles {
         isGlobal = 1;
         isTriggerActivated = 0;
         scope = 1;
-        scopeCurator = 0;
+        scopeCurator = 2;
     };
 
     class NonStrategic;
