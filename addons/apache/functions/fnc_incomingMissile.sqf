@@ -93,8 +93,8 @@ if (local _heli && {alive _heli} && {player isEqualTo (driver _heli)} && {isEngi
             };
 
             _args set [1, _trackTo];
-            _args set [3, _distanceToTarget];
-            _args set [4, _prevDistanceToTarget];
+            _args set [4, _distanceToTarget];
+            _args set [5, _prevDistanceToTarget];
         }, 0, [_heli, _heli, _useFlare, _missile, 100000, 0]] call cba_fnc_addPerFrameHandler;
     }, [_heli, _missile], 0.75] call cba_fnc_waitAndExecute;
 };
