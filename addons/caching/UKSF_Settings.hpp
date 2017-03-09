@@ -1,4 +1,4 @@
-class ACE_Settings {
+class UKSF_Settings {
     class GVAR(enabled) {
         category = "ACE";
         displayName = QUOTE(Caching);

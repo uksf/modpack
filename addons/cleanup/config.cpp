@@ -19,7 +19,7 @@ class CfgPatches {
     };
 };
 
-#include "ACE_Settings.hpp"
+#include "UKSF_Settings.hpp"
 #include "CfgEventHandlers.hpp"
 #include "Cfg3den.hpp"
 #include "CfgVehicles.hpp"
