@@ -4,12 +4,13 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
-GVAR(settingsInitFinished) = false;
+GVAR(moduleInitCollection) = [];
 GVAR(HCs) = [];
 GVAR(fpsState) = false;
 GVAR(fpsArray) = [];
 
 if (isServer) then {
+    INFO("Calling settings");
     call FUNC(loadSettings);
 };
 

@@ -3,7 +3,9 @@
 class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
-        units[] = {};
+        units[] = {
+            QGVAR(moduleSettings)
+        };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
@@ -16,4 +18,6 @@ class CfgPatches {
     };
 };
 
+#include "UKSF_Settings.hpp"
 #include "CfgEventHandlers.hpp"
+#include "CfgVehicles.hpp"

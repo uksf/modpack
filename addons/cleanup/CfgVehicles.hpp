@@ -1,6 +1,6 @@
 class CfgVehicles {
-    class ACE_Module;
-    class GVAR(moduleSettings): ACE_Module {
+    class EGVAR(common,module);
+    class GVAR(moduleSettings): EGVAR(common,module) {
         scope = 2;
         displayName = QUOTE(Cleanup);
         icon = QPATHTOF(UI\Icon_Module_Cleanup_ca.paa);

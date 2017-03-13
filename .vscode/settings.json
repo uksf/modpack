@@ -5,6 +5,9 @@
         "array": "cpp",
         "xutility": "cpp",
         "xlocale": "cpp",
-        "functional": "cpp"
+        "functional": "cpp",
+        "regex": "cpp",
+        "xfunctional": "cpp",
+        "xlocmon": "cpp"
     }
 }

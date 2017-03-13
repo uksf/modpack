@@ -1,6 +1,6 @@
 class CfgVehicles {
-    class ACE_Module;
-    class GVAR(moduleSettings): ACE_Module {
+    class EGVAR(common,module);
+    class GVAR(moduleSettings): EGVAR(common,module) {
         scope = 2;
         displayName = QUOTE(Caching);
         icon = QPATHTOF(UI\Icon_Module_Caching_ca.paa);

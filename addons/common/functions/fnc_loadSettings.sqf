@@ -23,7 +23,7 @@ private _fnc_parseConfigForSettings = {
         private _optionEntry = _config select _index;
         [_optionEntry] call FUNC(setSettingFromConfig);
     };
-    if (GVAR(forceAllSettings)) then {
+    if (ace_common_forceAllSettings) then {
         {
             _x set [6, true];
             false
