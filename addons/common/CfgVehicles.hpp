@@ -9,12 +9,6 @@ class CfgVehicles {
         scope = 1;
         scopeCurator = 2;
     };
-    class ACE_Module;
-    class GVAR(module): ACE_Module {
-        class EventHandlers {
-            init = QUOTE(_this call FUNC(moduleInit));
-        };
-    };
 
     class NonStrategic;
     class HouseBase: NonStrategic {
