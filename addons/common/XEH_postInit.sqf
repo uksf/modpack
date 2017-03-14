@@ -4,17 +4,13 @@
     {deleteGroup _x; false} count allGroups;
 }, 300, []] call cba_fnc_addPerFrameHandler;
 
-GVAR(HCs) = [];
 if (isMultiplayer && !is3DENMultiplayer) then {
     GVAR(HCs) = (entities "HeadlessClient_F");
 } else {
     GVAR(HCs) pushBack player;
 };
 
-GVAR(fpsState) = false;
-
 if (hasInterface) then {
-    GVAR(fpsArray) = [];
     call FUNC(fpsAction);
 };
 
