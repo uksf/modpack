@@ -1,7 +1,3 @@
-PREP(loadSettings);
-PREP(setSettingFromConfig);
-PREP(getSettingData);
-PREP(readSettingFromModule);
 PREP(configExport);
 PREP(configExportExtension);
 PREP(fpsAction);
