@@ -23,7 +23,8 @@ if !(_activated && local _logic) exitWith {};
 if (_typeName != "OBJECT") then {
     ["Place on a unit or vehicle"] call ace_common_fnc_displayTextStructured;
 } else {
-    [_unit, _unit] remoteExecCall ["ace_medical_fnc_treatmentAdvanced_fullHealLocal", _unit, false];
+    [_unit, _unit] remoteExecCall ["ace_medical_fnc_treatmentAdvanced_fullHealLocal", _unit];
+    _unit setDamage 0;
     ["Unit full healed"] call ace_common_fnc_displayTextStructured;
 };
 

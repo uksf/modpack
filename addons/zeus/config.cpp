@@ -16,6 +16,7 @@ class CfgPatches {
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             "uksf_common",
+            "achilles_functions_f_achilles",
             "achilles_modules_f_ares",
             "achilles_modules_f_achilles"
         };
@@ -28,4 +29,6 @@ class CfgPatches {
 
 #include "Cfg3den.hpp"
 #include "CfgEventHandlers.hpp"
+#include "CfgFunctions.hpp"
 #include "CfgVehicles.hpp"
+#include "RscDisplayCurator.hpp"

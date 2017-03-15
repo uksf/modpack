@@ -40,7 +40,7 @@ _fnc_removeRestricted = {
             if ((_part select [0, 4]) isEqualTo "ACRE") then {
                 _part = [_part] call FUNC(cleanRadio);
             };
-            if (_part in _cargo || {"%ALL" in _cargo}) then {
+            if (_part in _cargo || {"%ALL" in _cargo} || {_part isEqualTo "ItemRadioAcreFlagged"}) then {
                 _restrictedPart = _part;
             } else {
                 if (_depth > 1) then {
@@ -72,7 +72,7 @@ if (!_fullArsenal && !_fullGarage && isMultiplayer) then {
     private _cargo = _crate getvariable [QGVAR(formattedCargo), []];
     private _removed = [];
     _restrictedInv = [_invData, _cargo, 0, _removed, _fnc_removeRestricted] call _fnc_removeRestricted;
-    _removed = _removed - ["ACE_NoVoice", "ItemRadioAcreFlagged"];
+    _removed = _removed - ["ACE_NoVoice"];
     _removed deleteAt (count _removed - 1);
     if (count _removed > 0) then {
         [_removed] call FUNC(showRemoved);

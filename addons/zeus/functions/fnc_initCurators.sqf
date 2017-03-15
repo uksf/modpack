@@ -21,6 +21,6 @@ ADD_CURATOR(2);
 ADD_CURATOR(3);
 ADD_CURATOR(4);
 
-missionNamespace setVariable [QGVAR(curatorNames), ["","","","",""], true];
+addMissionEventHandler ["HandleDisconnect", {_this call FUNC(disconnect)}];
 
-[QGVAR(disconnectEHKey), "onPlayerDisconnected", FUNC(disconnect), [_id, _uid, _name, _jip, _owner]] call BIS_fnc_addStackedEventHandler;
+GVAR(curatorInitComplete) = true;

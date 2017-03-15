@@ -4,14 +4,8 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
+GVAR(curatorInitComplete) = false;
 GVAR(curatorObjects) = [objNull,objNull,objNull,objNull,objNull];
-
-if (isServer) then {
-    if (isNil {missionNamespace getVariable QGVAR(pingAdded)}) then {
-        missionNamespace setVariable [QGVAR(pingAdded), false, true];
-    };
-    call FUNC(ping);    
-    call FUNC(initCurators);
-};
+missionNamespace setVariable [QGVAR(curatorNames), ["","","","",""], true];
 
 ADDON = true;

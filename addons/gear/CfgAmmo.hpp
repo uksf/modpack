@@ -21,7 +21,7 @@ class CfgAmmo{
     };
     class BulletBase;
     class UK3CB_BAF_B_12Gauge_Pellets: BulletBase {
-        hit = 2; //Reduced from 4, 10
+        hit = 5; //Increased from 2, 4, 10
     };
     class B_556x45_Ball;
     class B_556x45_Ball_Rubber: B_556x45_Ball {
