@@ -19,4 +19,4 @@ params ["_logic","_units", "_activated"];
 
 if !(_activated) exitWith {};
 
-[_logic, QGVAR(ID), "id"] call EFUNC(common,readSettingFromModule);
+[_logic, QGVAR(ID), "id"] call ace_common_fnc_readSettingFromModule;

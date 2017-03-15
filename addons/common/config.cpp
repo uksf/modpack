@@ -6,7 +6,7 @@ class CfgPatches {
         units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = { 
+        requiredAddons[] = {
             "uksf_main",
             "3denEnhanced"
         };

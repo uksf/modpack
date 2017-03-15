@@ -1,6 +1,6 @@
 class CfgVehicles {
-    class EGVAR(common,module);
-    class GVAR(moduleSettings): EGVAR(common,module) {
+    class ACE_Module;
+    class GVAR(moduleSettings): ACE_Module {
         scope = 2;
         displayName = QUOTE(Persistence);
         icon = QPATHTOF(UI\Icon_Module_Persistence_ca.paa);
