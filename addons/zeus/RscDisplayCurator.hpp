@@ -6,5 +6,5 @@ class RscDisplayCurator {
     };
 };
 class CfgScriptPaths {
-	GVAR(Displays) = "\u\uksf\addons\zeus\UI\";
+    GVAR(Displays) = "\u\uksf\addons\zeus\UI\";
 };
