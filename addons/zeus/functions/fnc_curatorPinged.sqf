@@ -17,15 +17,15 @@
 params ["_curator", "_player"];
 
 if (((getAssignedCuratorUnit _curator) != player) && {local _player}) then {
-    QGVAR(pingCount) = QGVAR(pingCount) + 1;
+    GVAR(pingCount) = GVAR(pingCount) + 1;
 
-    if (QGVAR(pingTime) <= time - 15) then {
-        QGVAR(pingCount) = 0;
+    if (GVAR(pingTime) <= time - 15) then {
+        GVAR(pingCount) = 0;
     } else {
-        if (QGVAR(pingCount) >= 5) then {
+        if (GVAR(pingCount) >= 5) then {
             private _kill = false;
             private _text = composeText [lineBreak, lineBreak, parseText "<t align='center' size='2' color='#ff0000'>Stop pinging zeus, or you'll die.<\t>", lineBreak, lineBreak];
-            if (QGVAR(pingCount) >= 10) then {
+            if (GVAR(pingCount) >= 10) then {
                 _text = composeText [lineBreak, lineBreak, parseText "<t align='center' size='2' color='#ff0000'>You were warned.<\t>", lineBreak, lineBreak];
                 _kill = true;
             };
@@ -42,12 +42,12 @@ if (((getAssignedCuratorUnit _curator) != player) && {local _player}) then {
                 "cba_diagnostic_Error" cutText ["","PLAIN"];
                 if (_kill) then {
                     _player setDamage 1;
-                    QGVAR(pingCount) = 0;
+                    GVAR(pingCount) = 0;
                 };
             }, [_player, _kill], 2] call CBA_fnc_waitAndExecute;
         };
     };
-    QGVAR(pingTime) = time;
+    GVAR(pingTime) = time;
 };
 
 true
