@@ -16,6 +16,12 @@ class Extended_PostInit_EventHandlers {
     };
 };
 
+class Extended_DisplayLoad_EventHandlers {
+    class RscDisplayCurator {
+        ADDON = QUOTE(_this call FUNC(curatorOpen));
+    };
+};
+
 class Extended_Init_EventHandlers {
     class CAManBase {
         class ADDON {
