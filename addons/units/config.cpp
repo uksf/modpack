@@ -47,3 +47,4 @@ class CfgPatches {
 class cba_Extended_EventHandlers;
 #include "CfgGroups.hpp"
 #include "CfgVehicles.hpp"
+#include "\u\uksf\addons\3rdperson\force.hpp"
