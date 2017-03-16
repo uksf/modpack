@@ -1,7 +1,7 @@
 name = "UKSF Mods";
 picture = "modLarge.paa";
 actionName = "GitHub";
-action = "https://github.com/uksf/UKSF-SR5-7-11";
+action = "https://github.com/uksf/modpack";
 description = "UKSF - All custom mods and patches";
 logo = "mod.paa";
 logoOver = "mod.paa";

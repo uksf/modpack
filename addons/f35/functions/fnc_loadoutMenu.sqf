@@ -24,7 +24,7 @@ GVAR(Menu_fnc_Return) = {
 
 GVAR(Menu_fnc_Loadout_Cas) = {    
     _plane = vehicle player;
-    [_plane,["USAF_1Rnd_StationR","USAF_1Rnd_StationL","USAF_1Rnd_Station2","USAF_1Rnd_Station2","USAF_1Rnd_Station1","USAF_1Rnd_Station1","USAF_1Rnd_AIM9X","USAF_1Rnd_AIM9X","USAF_1Rnd_AGM154A1","USAF_1Rnd_AGM154A1","USAF_Empty","USAF_Empty","USAF_Empty","USAF_Empty","1Rnd_GBU12_LGB","1Rnd_GBU12_LGB","USAF_1Rnd_AIM120I","USAF_1Rnd_AIM120I","USAF_F35A_8Rnd_GBU53_M","USAF_F35A_8Rnd_GBU53_M","USAF_F35A_8Rnd_GBU53_M","USAF_F35A_8Rnd_GBU53_M","USAF_F35A_8Rnd_GBU53_M","USAF_F35A_8Rnd_GBU53_M","USAF_F35A_8Rnd_GBU53_M","USAF_F35A_8Rnd_GBU53_M","USAF_empty","USAF_empty","USAF_empty","USAF_empty","USAF_empty","USAF_empty","USAF_empty","USAF_empty"]]  call FUNC(loadoutDynamic);
+    [_plane,["USAF_1Rnd_StationR","USAF_1Rnd_StationL","USAF_1Rnd_Station2","USAF_1Rnd_Station2","USAF_1Rnd_Station1","USAF_1Rnd_Station1","USAF_1Rnd_AIM9X","USAF_1Rnd_AIM9X","USAF_1Rnd_AGM154A1","USAF_1Rnd_AGM154A1","USAF_Empty","USAF_Empty","USAF_Empty","USAF_Empty","USAF_1Rnd_GBU12","USAF_1Rnd_GBU12","USAF_1Rnd_AIM120I","USAF_1Rnd_AIM120I","USAF_F35A_8Rnd_GBU53_M","USAF_F35A_8Rnd_GBU53_M","USAF_F35A_8Rnd_GBU53_M","USAF_F35A_8Rnd_GBU53_M","USAF_F35A_8Rnd_GBU53_M","USAF_F35A_8Rnd_GBU53_M","USAF_F35A_8Rnd_GBU53_M","USAF_F35A_8Rnd_GBU53_M","USAF_empty","USAF_empty","USAF_empty","USAF_empty","USAF_empty","USAF_empty","USAF_empty","USAF_empty"]]  call FUNC(loadoutDynamic);
     closeDialog 0;
 };
 
@@ -188,7 +188,7 @@ GVAR(Menu_fnc_Loadout_Exec) = {
         case 2: {"USAF_1Rnd_RACKS_X2" };
         case 3: {"USAF_1Rnd_AGM154A1" };
         case 4: {"USAF_1Rnd_GBU31" };
-        case 5: {"1Rnd_GBU12_LGB" };
+        case 5: {"USAF_1Rnd_GBU12" };
         case 6: {"USAF_1Rnd_AGM88" };
         case 7: {"USAF_1Rnd_RACKS_X2" };
         case 8: {"USAF_1Rnd_RACKS_X2" };
@@ -201,7 +201,7 @@ GVAR(Menu_fnc_Loadout_Exec) = {
         case 2: {"USAF_1Rnd_RACKS_X2" };
         case 3: {"USAF_1Rnd_AGM154A1" };
         case 4: {"USAF_1Rnd_GBU31" };
-        case 5: {"1Rnd_GBU12_LGB" };
+        case 5: {"USAF_1Rnd_GBU12" };
         case 6: {"USAF_1Rnd_AGM88" };
         case 7: {"USAF_1Rnd_RACKS_X2" };
         case 8: {"USAF_1Rnd_RACKS_X2" };
@@ -264,7 +264,7 @@ GVAR(Menu_fnc_Loadout_Exec) = {
         case 0: {"USAF_Empty" };
         case 1: {"USAF_1Rnd_F35_TANK" };
         case 2: {"USAF_1Rnd_AGM154A1" };
-        case 3: {"1Rnd_GBU12_LGB" };
+        case 3: {"USAF_1Rnd_GBU12" };
         case 4: {"USAF_1Rnd_GBU31" };
         case 5: {"USAF_1Rnd_RACKS_X2" };
         case 6: {"USAF_1Rnd_RACKS_X2" };
@@ -275,7 +275,7 @@ GVAR(Menu_fnc_Loadout_Exec) = {
         case 0: {"USAF_Empty" };
         case 1: {"USAF_1Rnd_F35_TANK" };
         case 2: {"USAF_1Rnd_AGM154A1" };
-        case 3: {"1Rnd_GBU12_LGB" };
+        case 3: {"USAF_1Rnd_GBU12" };
         case 4: {"USAF_1Rnd_GBU31" };
         case 5: {"USAF_1Rnd_RACKS_X2" };
         case 6: {"USAF_1Rnd_RACKS_X2" };

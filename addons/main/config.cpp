@@ -898,7 +898,7 @@ class CfgMods {
         hidePicture = 0;
         actionName = "Website";
         action = "http://uk-sf.com/";
-        description = "Issue Tracker: https://github.com/uksf/UKSF-SR5-7-11/issues";
+        description = "Issue Tracker: https://github.com/uksf/modpack/issues";
         tooltip = "UKSF Mods";
         tooltipOwned = "UKSF Mods - Owned";
         overview = "Collection of custom mods and patches tailor made for use with UKSF";
