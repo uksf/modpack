@@ -12,6 +12,7 @@
         <img src="https://img.shields.io/travis/uksf/modpack.svg?style=flat-square&label=Build" alt="ACE3 Build Status">
     </a>
 </p>
+
 # UKSF Modpack
 UKSF SR11 Mod Development and issue/feature tracking
 
@@ -21,7 +22,7 @@ They must be cleared by SR11 and command beforehand, otherwise you may be let do
 You can help out with the ongoing development by looking for potential bugs in our modpack, or by contributing new features. To contribute something to our mods, submit pull requests for review by SR11. Mods must be based on the CBA framework.
 [How to make a feature request](https://github.com/uksf/modpack/wiki/How-to-make-a-feature-request)
 
-####Setting up CBA framework
+#### Setting up CBA framework
 I would prefer mods to be built using the CBA framework, however, if the mod is simple, build it how you like.
 If it involves more than a couple of scripts/features, then use the CBA framework.
 
