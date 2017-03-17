@@ -6,8 +6,9 @@ class CfgPatches {
         units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = { 
+        requiredAddons[] = {
             "uksf_main",
+            "uksf_3rdperson",
             "3denEnhanced"
         };
         author = QUOTE(UKSF);
