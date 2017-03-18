@@ -1,3 +1,4 @@
+//MERGE BIS
 /*
     Author: 
         Karel Moricky, edited by Tim Beswick for UKSF usage
@@ -70,7 +71,7 @@ if (_save) then {
     [_object, _cargo] call FUNC(setFormattedCargo);
 };
 
-if (_initAction && typename _object == typename objnull) then {
+if (!is3DEN && _initAction && typename _object == typename objnull) then {
     if ({count _x > 0} count _cargo > 0) then {
         //--- Init arsenal
         ["AmmoboxInit",_object] call bis_fnc_arsenal;

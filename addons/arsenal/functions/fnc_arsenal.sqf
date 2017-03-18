@@ -1,3 +1,4 @@
+//MERGE BIS
 /*
     Author: 
         Karel Moricky, edited by Tim Beswick for UKSF usage
@@ -461,6 +462,7 @@ switch _mode do {
                         } foreach ("isclass _x && getnumber (_x >> 'scope') > 1 && gettext (_x >> 'simulation') == 'soldier'" configclasses (configfile >> "cfgvehicles"));
                         [player,_soldiers call bis_fnc_selectrandom] call bis_fnc_loadinventory;
                     };
+                    player switchMove "";
                     uinamespace setvariable ["bis_fnc_arsenal_defaultClass",nil];
                 };
             };
@@ -1641,6 +1643,7 @@ switch _mode do {
                 } else {
                     _items = uniformitems _center;
                     _center forceadduniform _item;
+                    while {count uniformitems _center > 0} do {_center removeitemfromuniform (uniformitems _center select 0);}; //--- Remove default config contents
                     {_center additemtouniform _x;} foreach _items;
                 };
 
@@ -1653,6 +1656,7 @@ switch _mode do {
                 } else {
                     _items = vestitems _center;
                     _center addvest _item;
+                    while {count vestitems _center > 0} do {_center removeitemfromvest (vestitems _center select 0);}; //--- Remove default config contents
                     {_center additemtovest _x;} foreach _items;
                 };
             };
@@ -1661,6 +1665,7 @@ switch _mode do {
                 removebackpack _center;
                 if !(_item == "") then {
                     _center addbackpack _item;
+                    while {count backpackitems _center > 0} do {_center removeitemfrombackpack (backpackitems _center select 0);}; //--- Remove default config contents
                     {_center additemtobackpack _x;} foreach _items;
                 };
             };
@@ -2451,6 +2456,7 @@ switch _mode do {
                                 _soldiers set [count _soldiers,configname _x];
                             } foreach ("isclass _x && getnumber (_x >> 'scope') > 1 && gettext (_x >> 'simulation') == 'soldier'" configclasses (configfile >> "cfgvehicles"));
                             [_center,_soldiers call bis_fnc_selectrandom] call bis_fnc_loadinventory;
+                            _center switchmove "";
                             ["ListSelectCurrent",[_display]] call bis_fnc_arsenal;
                         }else {
                             ['buttonRandom',[_display]] call bis_fnc_arsenal;
@@ -2742,7 +2748,7 @@ switch _mode do {
         if (count _importArray == 1) then {
             //--- Import vehicle class
             _class = _importArray select 0;
-            if (isclass (configfile >> "cfgvehicles" >> _class)) then {[_center,_class] call bis_fnc_loadinventory;};
+            if (isclass (configfile >> "cfgvehicles" >> _class)) then {[_center,_class] call bis_fnc_loadinventory;_center switchMove "";};
         } else {
             //--- Import specific items
             _importArray = _importArray + [""];
@@ -2966,6 +2972,7 @@ switch _mode do {
                 _ctrl ctrlcommit FADE_DELAY;
             } foreach [
                 IDC_RSCDISPLAYARSENAL_ICON,
+                IDC_RSCDISPLAYARSENAL_ICONBACKGROUND,
                 IDC_RSCDISPLAYARSENAL_TAB,
                 IDC_RSCDISPLAYARSENAL_LIST,
                 IDC_RSCDISPLAYARSENAL_SORT
@@ -3130,7 +3137,7 @@ switch _mode do {
         {
             if (isnil {_x getvariable "bis_fnc_arsenal_action"}) then {
                 _action = _x addaction [
-                    "Arsenal",
+                    localize "STR_A3_Arsenal",
                     {
                         _box = _this select 0;
                         _unit = _this select 1;

@@ -16,7 +16,7 @@
 
 params ["_curator", "_player"];
 
-if (((getAssignedCuratorUnit _curator) != player) && {local _player}) then {
+if (((getAssignedCuratorUnit _curator) != _player) && {local _player}) then {
     GVAR(pingCount) = GVAR(pingCount) + 1;
 
     if (GVAR(pingTime) <= time - 15) then {

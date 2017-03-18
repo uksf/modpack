@@ -8,6 +8,7 @@ class CfgPatches {
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             "uksf_main",
+            "uksf_3rdperson",
             "3denEnhanced"
         };
         author = QUOTE(UKSF);

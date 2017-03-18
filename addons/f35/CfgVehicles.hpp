@@ -19,7 +19,7 @@ class CfgVehicles {
             "USAF_F35A_CANNON_W",
             "USAF_AIM9X_Launcher",
             "USAF_AIM120I_Launcher",
-            "GBU12BombLauncher",
+            "USAF_GBU12_Launcher",
             "USAF_F35A_GBU53_int_W",
             "USAF_AGM154A1_Launcher"
         };
@@ -40,8 +40,8 @@ class CfgVehicles {
             "USAF_Empty",
             "USAF_Empty",
             "USAF_Empty",
-            "1Rnd_GBU12_LGB",
-            "1Rnd_GBU12_LGB",
+            "USAF_1Rnd_GBU12",
+            "USAF_1Rnd_GBU12",
             "USAF_1Rnd_AIM120I",
             "USAF_1Rnd_AIM120I",
             "USAF_F35A_8Rnd_GBU53_M",
@@ -11084,7 +11084,7 @@ class CfgVehicles {
                 onlyforplayer = 1;
                 showWindow = 0;
                 hideOnUse = 1;
-                condition = "player in this and ((""USAF_F35A_8Rnd_GBU53_M"" in magazines this) or (""USAF_1Rnd_GBU31"" in magazines this) or (""USAF_1Rnd_GBU32"" in magazines this) or (""USAF_1Rnd_AGM154A"" in magazines this) or (""1Rnd_GBU12_LGB"" in magazines this))";
+                condition = "player in this and ((""USAF_F35A_8Rnd_GBU53_M"" in magazines this) or (""USAF_1Rnd_GBU31"" in magazines this) or (""USAF_1Rnd_GBU32"" in magazines this) or (""USAF_1Rnd_AGM154A"" in magazines this) or (""USAF_1Rnd_GBU12"" in magazines this))";
                 statement = "[this] spawn USAF_F35A_fnc_USAF_F35A_GPS_TARGETING_INIT";
             };
             class SEAD {
@@ -11156,5 +11156,96 @@ class CfgVehicles {
         scopeCurator = 2;
         faction = "CUP_B_GB";
         editorSubcategory = QEGVAR(common,objects);
+    };
+    class Plane;
+    class CUP_F35B_base: Plane {
+        maxSpeed = 1930;
+        envelope[] = { 0, 1.75, 5.9, 7, 9.8, 10.3, 10.5, 10.9, 9.2, 7.8, 5, 3.8, 0.5, 0 };
+        aileronSensitivity=1.2;
+        armor = 90;
+        damageResistance = 0.004;
+        unitInfoType = "Rsc_UKSF_F35_Limited";
+        unitInfoTypeLite = "Rsc_UKSF_F35_Limited";
+        attenuationEffectType = "HeliAttenuation";
+        soundGetIn[] = { "A3\sounds_F\air\Plane_Fighter_03\getin", 0.562341, 1 };
+        soundGetOut[] = { "A3\sounds_F\air\Plane_Fighter_03\getout", 0.562341, 1, 40 };
+        soundDammage[] = { "", 0.562341, 1 };
+        soundEngineOnInt[] = { QPATHTOF(data\sound\f_startup_int.wss), 1.0, 1.0 };
+        soundEngineOnExt[] = { QPATHTOF(data\sound\f_enginestart_ext.wss), 15, 1.0, 700 };
+        soundEngineOffInt[] = { QPATHTOF(data\sound\f_shutdown_int.wss), 1.0, 1.0 };
+        soundEngineOffExt[] = { QPATHTOF(data\sound\f_shutdown_ext.wss), 10, 1.0, 500 };
+        soundLocked[] = { "\A3\sounds_F\weapons\Rockets\locked_1", 0.1, 1 };
+        soundIncommingMissile[] = { "\A3\sounds_F\weapons\Rockets\locked_3", 0.1, 1.5 };
+        soundGearUp[] = { "A3\sounds_F_EPC\CAS_02\gear_up", 0.794328, 1.0, 150 };
+        soundGearDown[] = { "A3\sounds_F_EPC\CAS_02\gear_down", 0.794328, 1.0, 150 };
+        soundFlapsUp[] = { "A3\sounds_F_EPC\CAS_02\Flaps_Up", 0.630957, 1.0, 100 };
+        soundFlapsDown[] = { "A3\sounds_F_EPC\CAS_02\Flaps_Down", 0.630957, 1.0, 100 };
+        class sounds {
+            class EngineLowOut {
+                sound[] = { QPATHTOF(data\sound\f_engine_ext.wss), 12, 1.0, 1250 };
+                frequency = "1.0 min (rpm + 0.5)";
+                volume = "engineOn*camPos*(thrust factor[1.0, 1.0])*(thrust factor[1.0, 0.3])";
+                cone[] = { 3.0, 3.92, 1.9, 0.5 };
+            };
+            class EngineHighOut {
+                sound[] = { QPATHTOF(data\sound\ext_low_var1.wss), 20, 1.0, 3500 };
+                frequency = "1";
+                volume = "engineOn*camPos*(speed factor [50,100])";
+                cone[] = { 3.14, 3.92, 2.0, 0.5 };
+            };
+            class ForsageOut {
+                sound[] = { QPATHTOF(data\sound\forsagevar4.wss), 17, 0.99, 2500 };
+                frequency = "1";
+                volume = "engineOn*camPos*(thrust factor[0.6, 1.0])";
+                cone[] = { 3.14, 3.92, 2.0, 0.5 };
+            };
+            class ActuatorForsageOut {
+                sound[] = { QPATHTOF(data\sound\actuatorforsage.wss), 16, 0.99, 400 };
+                frequency = "1";
+                volume = "engineOn*camPos*(thrust factor[0.6, 1.0])";
+                cone[] = { 3.14, 3.92, 2.0, 0.5 };
+            };
+            class WindNoiseOut {
+                sound[] = { QPATHTOF(data\sound\f_windnoise_ext.wss), 0.562341, 1.0, 150 };
+                frequency = "(0.1+(1.2*(speed factor[1, 150])))";
+                volume = "camPos*(speed factor[1, 150])";
+            };
+            class DistantPlaneOut {
+                sound[] = { QPATHTOF(data\sound\16_distant.wss), 12, 1.0, 5000 };
+                frequency = "1";
+                volume = "engineOn*camPos*(thrust factor[0.6, 1.0])";
+                cone[] = { 3.14, 3.92, 2.0, 0.5 };
+            };
+            class EngineLowIn {
+                sound[] = { QPATHTOF(data\sound\f_engine_int.wss), db2, 1.0 };
+                frequency = "1.0 min (rpm + 0.5)";
+                volume = "(1-camPos)*(rpm factor[0.85, 1.0])";
+            };
+            class EngineHighIn {
+                sound[] = { QPATHTOF(data\sound\f_forsage_int.wss), db2, 1.2 };
+                frequency = "1";
+                volume = "(1-camPos)*(rpm factor[0.85, 1.0])";
+            };
+            class ForsageIn {
+                sound[] = { QPATHTOF(data\sound\f_forsage_int.wss), db3, 1.0 };
+                frequency = "1";
+                volume = "(1-camPos)*(engineOn*(thrust factor[0.6, 1.0]))";
+            };
+            class WindNoiseIn {
+                sound[] = { QPATHTOF(data\sound\f_windnoise_int.wss), db - 1, 1.0 };
+                frequency = "(0.1+(1.2*(speed factor[1, 150])))";
+                volume = "(1-camPos)*(speed factor[1, 150])";
+            };
+            class RainExt {
+                sound[] = { "A3\sounds_F\vehicles\noises\rain1_ext", db5, 1.0, 100 };
+                frequency = 1;
+                volume = "camPos * rain * (speed factor[50, 0])";
+            };
+            class RainInt {
+                sound[] = { "A3\sounds_F\vehicles\noises\rain1_int", db0, 1.0, 100 };
+                frequency = 1;
+                volume = "(1-camPos) * rain * (speed factor[50, 0])";
+            };
+        };
     };
 };
