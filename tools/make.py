@@ -65,7 +65,6 @@ module_root = ""
 make_root = ""
 release_dir = ""
 module_root_parent = ""
-optionals_root = ""
 key_name = "uksf"
 key = ""
 dssignfile = ""
@@ -326,6 +325,39 @@ def print_yellow(msg):
     print(msg)
     color("reset")
 
+def compile_extensions(extensions_root, force_build):
+    originalDir = os.getcwd()
+
+    try:
+        print_blue("\nCompiling extensions in {}".format(extensions_root))
+        joinstr = ":rebuild;" if force_build else ";"
+
+        # Prepare 32bit build dirs
+        vcproj32 = os.path.join(extensions_root,"vcproj32")
+        if not os.path.exists(vcproj32):
+            os.mkdir(vcproj32)
+        # Build
+        os.chdir(vcproj32)
+        subprocess.call(["cmake", "..", "-DUSE_64BIT_BUILD=OFF", "-G", "Visual Studio 15 2017"])
+        print()
+        subprocess.call(["msbuild", "uksf_extension_persistence.sln", "/m", "/p:Configuration=Release"])
+        #subprocess.call(["C:/Program Files (x86)/MSBuild/14.0/Bin/MSBuild.exe", "uksf_extension_persistence.sln", "/tv:14.0", "/m", "/p:Configuration=Release"])
+
+        # Prepare 64bit build dirs
+        vcproj64 = os.path.join(extensions_root,"vcproj64")
+        if not os.path.exists(vcproj64):
+            os.mkdir(vcproj64)
+        # Build
+        os.chdir(vcproj64)
+        subprocess.call(["cmake", "..", "-DUSE_64BIT_BUILD=OFF", "-G", "Visual Studio 15 2017 Win64"])
+        print()
+        subprocess.call(["msbuild", "uksf_extension_persistence.sln", "/m", "/p:Configuration=Release"])
+        #subprocess.call(["C:/Program Files (x86)/MSBuild/14.0/Bin/MSBuild.exe", "uksf_extension_persistence.sln", "/tv:14.0", "/m", "/p:Configuration=Release", "/p:Platform=x64"])
+    except:
+        print_error("COMPILING EXTENSIONS.")
+        raise
+    finally:
+        os.chdir(originalDir)
 
 
 def copy_important_files(source_dir,destination_dir):
@@ -347,101 +379,6 @@ def copy_important_files(source_dir,destination_dir):
                 print_error("Failed copying file => {}".format(filePath))
     except:
         print_error("COPYING IMPORTANT FILES.")
-        raise
-
-
-def copy_optionals_for_building(mod,pbos):
-    src_directories = os.listdir(optionals_root)
-    current_dir = os.getcwd()
-
-    print_blue("\nChecking Optionals folder...")
-    try:
-
-        #special server.pbo processing
-        files = glob.glob(os.path.join(release_dir, project, "optionals", "*.pbo"))
-        for file in files:
-            file_name = os.path.basename(file)
-            #print ("Adding the following file: {}".format(file_name))
-            pbos.append(file_name)
-            pbo_path = os.path.join(release_dir, project, "optionals", file_name)
-            sigFile_name = file_name +"."+ key_name + ".bisign"
-            sig_path = os.path.join(release_dir, project, "optionals", sigFile_name)
-            if (os.path.isfile(pbo_path)):
-                print("Moving {} for processing.".format(pbo_path))
-                shutil.move(pbo_path, os.path.join(release_dir, project, "addons", file_name))
-
-            if (os.path.isfile(sig_path)):
-                #print("Moving {} for processing.".format(sig_path))
-                shutil.move(sig_path, os.path.join(release_dir, project, "addons", sigFile_name))
-
-    except:
-        print_error("Error in moving")
-        raise
-    finally:
-        os.chdir(current_dir)
-
-    print("")
-    try:
-        for dir_name in src_directories:
-            mod.append(dir_name)
-            #userconfig requires special handling since it is not a PBO source folder.
-            #CfgConvert fails to build server.pbo if userconfig is not found in P:\
-            if (dir_name == "userconfig"):
-                if (os.path.exists(os.path.join(release_dir, project, "optionals", dir_name))):
-                    shutil.rmtree(os.path.join(release_dir, project, "optionals", dir_name), True)
-                shutil.copytree(os.path.join(optionals_root,dir_name), os.path.join(release_dir, project, "optionals", dir_name))
-                destination = os.path.join(work_drive,dir_name)
-            else:
-                destination = os.path.join(module_root,dir_name)
-
-            print("Temporarily copying {} => {} for building.".format(os.path.join(optionals_root,dir_name),destination))
-            if (os.path.exists(destination)):
-                shutil.rmtree(destination, True)
-            shutil.copytree(os.path.join(optionals_root,dir_name), destination)
-    except:
-        print_error("Copy Optionals Failed")
-        raise
-    finally:
-        os.chdir(current_dir)
-
-
-def cleanup_optionals(mod):
-    print("")
-    try:
-        for dir_name in mod:
-            #userconfig requires special handling since it is not a PBO source folder.
-            if (dir_name == "userconfig"):
-                destination = os.path.join(work_drive,dir_name)
-            else:
-                destination = os.path.join(module_root,dir_name)
-
-            print("Cleaning {}".format(destination))
-
-            try:
-                file_name = "{}{}.pbo".format(pbo_name_prefix,dir_name)
-                src_file_path = os.path.join(release_dir, project, "addons", file_name)
-                dst_file_path = os.path.join(release_dir, project, "optionals", file_name)
-
-                sigFile_name = "{}.{}.bisign".format(file_name,key_name)
-                src_sig_path = os.path.join(release_dir, project, "addons", sigFile_name)
-                dst_sig_path = os.path.join(release_dir, project, "optionals", sigFile_name)
-
-                if (os.path.isfile(src_file_path)):
-                    #print("Preserving {}".format(file_name))
-                    os.renames(src_file_path,dst_file_path)
-                if (os.path.isfile(src_sig_path)):
-                    #print("Preserving {}".format(sigFile_name))
-                    os.renames(src_sig_path,dst_sig_path)
-            except FileExistsError:
-                print_error("{} already exists".format(file_name))
-                continue
-            shutil.rmtree(destination)
-
-    except FileNotFoundError:
-        print_yellow("{} file not found".format(file_name))
-
-    except:
-        print_error("Cleaning Optionals Failed")
         raise
 
 
@@ -524,13 +461,16 @@ def get_project_version(version_increments=[]):
                 minorText = re.search(r"#define MINOR (.*\b)", hpptext).group(1)
                 patchText = re.search(r"#define PATCHLVL (.*\b)", hpptext).group(1)
 
-                # Increment version
+                # Increment version (reset all below except build)
                 if version_increments != []:
                     if "major" in version_increments:
                         majorText = int(majorText) + 1
-                    if "minor" in version_increments:
+                        minorText = 0
+                        patchText = 0
+                    elif "minor" in version_increments:
                         minorText = int(minorText) + 1
-                    if "patch" in version_increments:
+                        patchText = 0
+                    elif "patch" in version_increments:
                         patchText = int(patchText) + 1
 
                     print_green("Incrementing version to {}.{}.{}".format(majorText,minorText,patchText))
@@ -588,7 +528,7 @@ def set_version_in_files():
                 if fileText:
                     # Version string files
                     # Search and save version stamp
-                    versionsFound = re.findall(pattern, fileText) + re.findall(pattern, fileText)
+                    versionsFound = re.findall(pattern, fileText)
                     # Filter out sub-versions of other versions
                     versionsFound = [j for i, j in enumerate(versionsFound) if all(j not in k for k in versionsFound[i + 1:])]
 
@@ -596,7 +536,8 @@ def set_version_in_files():
                     for versionFound in versionsFound:
                         if versionFound:
                             # Use the same version length as the one found
-                            if len(versionFound) == len(newVersion):
+                            newVersionUsed = "" # In case undefined
+                            if versionFound.count(".") == newVersion.count("."):
                                 newVersionUsed = newVersion
 
                             # Print change and modify the file if changed
@@ -769,7 +710,6 @@ def main(argv):
     global make_root
     global release_dir
     global module_root_parent
-    #global optionals_root
     global key_name
     global key
     global dssignfile
@@ -878,9 +818,6 @@ See the make.cfg file for additional build options.
         version_update = False
 
     version_increments = []
-    if "increment_build" in argv:
-        argv.remove("increment_build")
-        version_increments.append("build")
     if "increment_patch" in argv:
         argv.remove("increment_patch")
         version_increments.append("patch")
@@ -890,6 +827,12 @@ See the make.cfg file for additional build options.
     if "increment_major" in argv:
         argv.remove("increment_major")
         version_increments.append("major")
+
+    if "compile" in argv:
+        argv.remove("compile")
+        compile_ext = True
+    else:
+        compile_ext = False
 
     if "ci" in argv:
         argv.remove("ci")
@@ -955,7 +898,7 @@ See the make.cfg file for additional build options.
         # Project module Root
         module_root_parent = os.path.abspath(os.path.join(os.path.join(work_drive, prefix), os.pardir))
         module_root = cfg.get(make_target, "module_root", fallback=os.path.join(make_root_parent, "addons"))
-        #optionals_root = os.path.join(module_root_parent, "optionals")
+        extensions_root = os.path.join(module_root_parent, "extensions")
 
         if (os.path.isdir(module_root)):
             os.chdir(module_root)
@@ -967,11 +910,6 @@ See the make.cfg file for additional build options.
         get_project_version(version_increments)
         key_name = versionStamp = get_private_keyname(commit_id)
         print_green ("module_root: {}".format(module_root))
-
-        #if (os.path.isdir(optionals_root)):
-            #print_green ("optionals_root: {}".format(optionals_root))
-        #else:
-            #print("optionals_root does not exist: {}".format(optionals_root))
 
         print_green ("release_dir: {}".format(release_dir))
 
@@ -1060,12 +998,6 @@ See the make.cfg file for additional build options.
         print("Version in files has been changed, make sure you commit and push the updates!")
 
     try:
-        # Temporarily copy optionals_root for building. They will be removed later.
-        #if (os.path.isdir(optionals_root)):
-            #optionals_modules = []
-            #optional_files = []
-            #copy_optionals_for_building(optionals_modules,optional_files)
-
         # Get list of subdirs in make root.
         dirs = next(os.walk(module_root))[1]
 
@@ -1094,7 +1026,6 @@ See the make.cfg file for additional build options.
                     print_green("Created: {}".format(os.path.join(private_key_path, key_name + ".biprivatekey")))
                     print("Removing any old signature keys...")
                     purge(os.path.join(module_root, release_dir, project, "addons"), "^.*\.bisign$","*.bisign")
-                    #purge(os.path.join(module_root, release_dir, project, "optionals"), "^.*\.bisign$","*.bisign")
                     purge(os.path.join(module_root, release_dir, project, "keys"), "^.*\.bikey$","*.bikey")
                 else:
                     print_error("Failed to create key!")
@@ -1131,6 +1062,17 @@ See the make.cfg file for additional build options.
                     fileName = os.path.splitext(file)[0]
                     print_yellow("Removing obsolete pbo => {}".format(file))
                     purge(obsolete_check_path, "{}\..".format(fileName), "{}.*".format(fileName))
+
+        obsolete_check_path = os.path.join(module_root, release_dir, project)
+        for file in os.listdir(obsolete_check_path):
+            if (file.endswith(".dll") and os.path.isfile(os.path.join(obsolete_check_path,file))):
+                if not os.path.exists(os.path.join(module_root_parent, file)):
+                    print_yellow("Removing obsolete dll => {}".format(file))
+                    try:
+                        os.remove(os.path.join(obsolete_check_path,file))
+                    except:
+                        print_error("\nFailed to delete {}".format(os.path.join(obsolete_check_path,file)))
+                        pass
 
         # For each module, prep files and then build.
         print_blue("\nBuilding...")
@@ -1366,9 +1308,11 @@ See the make.cfg file for additional build options.
 
 
     finally:
+        if compile_ext:
+            compile_extensions(extensions_root, force_build)
+
         copy_important_files(module_root_parent,os.path.join(release_dir, project))
-        #if (os.path.isdir(optionals_root)):
-            #cleanup_optionals(optionals_modules)
+
         if not version_update:
             restore_version_files()
 
@@ -1467,5 +1411,3 @@ if __name__ == "__main__":
 
     if ciBuild:
         sys.exit(0)
-
-    input("Press Enter to continue...")
