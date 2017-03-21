@@ -13,7 +13,7 @@ class CfgVehicles {
         class Arguments {
             class id {
                 displayName = QUOTE(Persistence ID);
-                description = QUOTE(ID for persistence database. Keep this the same across campaign missions.);
+                description = QUOTE(ID for persistence database. Keep this the same across campaign missions. Max 20 characters.);
                 typeName = "STRING";
                 defaultValue = "DEFAULTWILLNOTLOAD";
             };

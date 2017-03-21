@@ -3,7 +3,7 @@
         Tim Beswick
 
     Description:
-        Inits persistence. Gets mission ID setting, and looks for database. If none exists, create one.
+        Initialises connection to database.
 
     Parameter(s):
         None
@@ -13,28 +13,19 @@
 */
 #include "script_component.hpp"
 
-"extDB3" callExtension "9:UNLOCK:uksf";
-"extDB3" callExtension "9:RESET";
+private _seperator = call compile (GVAR(extensionName) callExtension "separator");
+if ((_seperator select 0) isEqualTo "error") exitWith {
 
-if (("extDB3" callExtension "9:VERSION") isEqualTo "") exitWith {
-    ERROR("extDB3 failed to load.");
+    ERROR_SYSTEM_CHAT("The extension failed to load or is missing");
+    ERROR_1("Failed to init: %1", _seperator select 1);
+};
+GVAR(extensionSeparator) = _seperator select 1;
+INFO_1("Seperator %1", GVAR(extensionSeparator));
+
+private _connect = call compile (GVAR(extensionName) callExtension "connect");
+if ((_connect select 0) isEqualTo "error") exitWith {
+    ERROR_SYSTEM_CHAT("The extension failed to connect to the database. Will not run any persistence functionality");
+    ERROR_1("Failed to connect to database: %1", _connect select 1);
 };
 
-INFO("Attempting connetion to database...");
-private _connection = parseSimpleArray "extDB3" callExtension "9:ADD_DATABASE:Database";
-INFO_1("Connection result: %1", _connection);
-if (!(_connection isEqualTo [1])) exitWith {
-    ERROR("Failed to connect to database.");
-};
-INFO("Connetion to database successful.");
-
-private _protocol = parseSimpleArray str ("extDB3" callExtension "9:ADD_DATABASE_PROTOCOL:Database:SQL:SQLRAW");
-INFO_1("Protocol result: %1", _protocol);
-if (!(_protocol isEqualTo [1])) exitWith {
-    ERROR("Failed to add protocol to database.");
-};
-INFO("Protocol added to database successful.");
-
-"extDB3" callExtension "9:LOCK:uksf";
-
-[QGVAR(databaseInitFinished), [], QGVAR(databaseInitFinishedJIP)] call CBA_fnc_globalEventJIP;
+call FUNC(initTable);
