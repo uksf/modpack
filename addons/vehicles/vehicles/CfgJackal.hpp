@@ -1,14 +1,21 @@
 class CUP_BAF_Jackal2_BASE_D: Car_F {
     class Turrets: Turrets {
         class MainTurret;
-        class M240_Turret;
+        class M240_Turret: MainTurret {
+            class ViewOptics {
+                visionMode[] = { "Normal", "NVG" };
+            };
+        };
     };
     maximumLoad = 4000;
 };
-class CUP_BAF_Jackal2_GMG_D: CUP_BAF_Jackal2_BASE_D {    
+class CUP_BAF_Jackal2_GMG_D: CUP_BAF_Jackal2_BASE_D {
     class Turrets: Turrets {
         class GMG_Turret: MainTurret {
             magazines[] = { "UK3CB_BAF_32Rnd_40mm_G_Box" };
+            class ViewOptics {
+                visionMode[] = { "Normal", "NVG" };
+            };
         };
         class M240_Turret: M240_Turret {
             magazines[] = { "UK3CB_BAF_762_200Rnd_T", "SmokeLauncherMag", "SmokeLauncherMag" };
@@ -31,6 +38,9 @@ class CUP_BAF_Jackal2_L2A1_D: CUP_BAF_Jackal2_BASE_D {
     class Turrets: Turrets {
         class M2_Turret: MainTurret {
             magazines[] = { "UK3CB_BAF_127_100Rnd" };
+            class ViewOptics {
+                visionMode[] = { "Normal", "NVG" };
+            };
         };
         class M240_Turret: M240_Turret {
             magazines[] = { "UK3CB_BAF_762_200Rnd_T", "SmokeLauncherMag", "SmokeLauncherMag" };

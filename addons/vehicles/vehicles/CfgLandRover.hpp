@@ -17,13 +17,18 @@ class CUP_LR_Base: Car_F {
         transmissionDelay = 2;
     };
     class Turrets: Turrets {
-        class MainTurret;
+        class MainTurret: MainTurret {
+            class ViewOptics;
+        };
     };
 };
 class CUP_LR_MG_Base: CUP_LR_Base {    
     class Turrets: Turrets {
         class MainTurret: MainTurret {
             magazines[] = { "UK3CB_BAF_127_100Rnd" };
+            class ViewOptics: ViewOptics {
+                visionMode[] = { "Normal", "NVG" };
+            };
         };
     };
     class TransportMagazines {
@@ -47,9 +52,15 @@ class CUP_B_LR_Special_M2_GB_W: CUP_LR_Special_Base {
     class Turrets: Turrets {
         class MainTurret: MainTurret {
             magazines[] = { "UK3CB_BAF_127_100Rnd" };
+            class ViewOptics {
+                visionMode[] = { "Normal", "NVG" };
+            };
         };
         class PK_Turret: PK_Turret {
             magazines[] = { "UK3CB_BAF_762_200Rnd_T", "SmokeLauncherMag", "SmokeLauncherMag" };
+            class ViewOptics {
+                visionMode[] = { "Normal", "NVG" };
+            };            
         };
     };
     class TransportMagazines {
@@ -69,9 +80,15 @@ class CUP_B_LR_Special_GMG_GB_W: CUP_LR_Special_Base {
     class Turrets: Turrets {
         class MainTurret: MainTurret {
             magazines[] = { "UK3CB_BAF_32Rnd_40mm_G_Box" };
+            class ViewOptics {
+                visionMode[] = { "Normal", "NVG" };
+            };
         };
         class PK_Turret: PK_Turret {
             magazines[] = { "UK3CB_BAF_762_200Rnd_T", "SmokeLauncherMag", "SmokeLauncherMag" };
+            class ViewOptics {
+                visionMode[] = { "Normal", "NVG" };
+            };
         };
     };
     class TransportMagazines {
