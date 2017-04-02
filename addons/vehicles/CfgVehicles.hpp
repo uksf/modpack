@@ -11,6 +11,7 @@ class CfgVehicles {
         class Turrets: Turrets {
             class MainTurret;
         };
+        class HitPoints;
     };
     class Wheeled_APC_F: Car_F {
         class NewTurret;

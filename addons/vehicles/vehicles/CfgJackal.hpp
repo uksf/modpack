@@ -8,6 +8,21 @@ class CUP_BAF_Jackal2_BASE_D: Car_F {
         };
     };
     maximumLoad = 4000;
+    crewCrashProtection = 0.1;
+    armor = 100;
+    armorStructural = 3;
+    armorWheels = 0.5;
+    class HitPoints: HitPoints {
+        class HitBody {
+            armor = 1.5;
+        };
+        class HitEngine {
+            armor = 4;
+        };
+        class HitFuel {
+            armor = 2;
+        };
+    };
 };
 class CUP_BAF_Jackal2_GMG_D: CUP_BAF_Jackal2_BASE_D {
     class Turrets: Turrets {

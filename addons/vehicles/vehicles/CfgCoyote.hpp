@@ -13,6 +13,21 @@ class CUP_BAF_Coyote_BASE_D: Car_F {
         };
     };
     maximumLoad = 5000;
+    crewCrashProtection = 0.1;
+    armor = 100;
+    armorStructural = 3;
+    armorWheels = 0.5;
+    class HitPoints: HitPoints {
+        class HitBody {
+            armor = 1.5;
+        };
+        class HitEngine {
+            armor = 4;
+        };
+        class HitFuel {
+            armor = 2;
+        };
+    };
 };
 class CUP_B_BAF_Coyote_L2A1_D: CUP_BAF_Coyote_BASE_D {
     COYOTE_SUPPORT
