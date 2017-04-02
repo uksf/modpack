@@ -42,6 +42,20 @@ class CfgVehicles {
         function = QFUNC(moduleSetEngineer);
         icon = "\z\ace\addons\zeus\ui\Icon_Module_Zeus_Medic_ca.paa";
     };
+    class GVAR(moduleCopyLoadout): EGVAR(common,moduleBase) {
+        curatorCanAttach = 1;
+        category = "Equipment";
+        displayName = "Copy Loadout";
+        function = QFUNC(moduleCopyLoadout);
+        icon = "\achilles\data_f_achilles\icons\icon_position.paa";
+    };
+    class GVAR(modulePasteLoadout): EGVAR(common,moduleBase) {
+        curatorCanAttach = 1;
+        category = "Equipment";
+        displayName = "Paste Loadout";
+        function = QFUNC(modulePasteLoadout);
+        icon = "\achilles\data_f_achilles\icons\icon_position.paa";
+    };
 
     class Ares_Zeus_Module_Base;
     class Ares_Module_Zeus_Visibility: Ares_Zeus_Module_Base {

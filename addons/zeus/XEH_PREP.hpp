@@ -13,4 +13,6 @@ PREP(moduleSetEngineer);
 PREP(moduleTeleportZeus);
 PREP(moduleToggleAllowUnconcious);
 PREP(moduleToggleZeusVisibility);
+PREP(moduleCopyLoadout);
+PREP(modulePasteLoadout);
 PREP(setAllowUnconcious);
