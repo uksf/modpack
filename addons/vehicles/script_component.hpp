@@ -9,8 +9,8 @@
 #include "\u\uksf\addons\main\script_macros.hpp"
 
 #define NET_DEPLOY_TIME 15
-//Reduced from 100. Gives ~27km range. 200L tank
-#define FUEL_CAPACITY fuelCapacity = 5; \
+//Reduced from 100. Gives ~30km range. 200L tank
+#define FUEL_CAPACITY fuelCapacity = 10; \
     ace_refuel_fuelCapacity = 200;
 
 #define NET_ACTIONS \

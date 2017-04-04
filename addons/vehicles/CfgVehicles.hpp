@@ -2,12 +2,16 @@ class CfgVehicles {
     class LandVehicle;
     class Car: LandVehicle {
         class ACE_Actions;
+        class Turrets;
     };
     class Car_F: Car {
         class ACE_Actions: ACE_Actions {
             class ACE_MainActions;
         };
-        class Turrets;
+        class Turrets: Turrets {
+            class MainTurret;
+        };
+        class HitPoints;
     };
     class Wheeled_APC_F: Car_F {
         class NewTurret;
