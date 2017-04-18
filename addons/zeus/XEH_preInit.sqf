@@ -11,4 +11,6 @@ missionNamespace setVariable [QGVAR(curatorNames), ["","","","",""], true];
 GVAR(pingCount) = 0;
 GVAR(pingTime) = 0;
 
+GVAR(loadout) = "";
+
 ADDON = true;
