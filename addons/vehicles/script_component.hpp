@@ -12,6 +12,8 @@
 //Reduced from 100. Gives ~30km range. 200L tank
 #define FUEL_CAPACITY fuelCapacity = 10; \
     ace_refuel_fuelCapacity = 200;
+//Reduced from 60. Gives ~?km range
+#define FUEL_CAPACITY_LR fuelCapacity = 5;
 
 #define NET_ACTIONS \
     class ACE_Actions: ACE_Actions { \
