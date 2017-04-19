@@ -6,10 +6,10 @@
         Cleans radio of IDs, leaving base class name.
 
     Parameter(s):
-        0: Item <STRING>
+        0: Radio class <STRING>
 
     Return Value:
-        Item <STRING>
+        Radio base class <STRING>
 */
 #include "script_component.hpp"
 
