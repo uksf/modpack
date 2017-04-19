@@ -17,9 +17,6 @@
 
 params ["_logic", "_units", "_activated"];
 
-diag_log format ["Logic: %1", _logic];
-diag_log format ["Synced: %1", _units];
-diag_log format ["Activated: %1", _activated];
 if !(_activated && local _logic) exitWith {};
 
 (missionNamespace getVariable ["bis_fnc_curatorObjectPlaced_mouseOver", [""]]) params ["_typeName", "_unit"];
