@@ -17,6 +17,6 @@ if (isNull GVAR(curatorGroup)) then {
     GVAR(curatorGroup) = creategroup sideLogic;
 };
 private _curator = GVAR(curatorGroup) createUnit ["ModuleCurator_F", [0,0,0], [], 0, "NONE"];
-//_curator setVariable ["Addons", 3, true];
+_curator addCuratorEditableObjects [allMissionObjects "all", true];
 GVAR(curatorObjects) pushBack _curator;
 publicVariable QGVAR(curatorObjects);

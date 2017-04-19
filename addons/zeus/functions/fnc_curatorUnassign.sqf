@@ -16,4 +16,6 @@
 params ["_curator"];
 
 unassignCurator _curator;
-[QGVAR(curatorDelete), [_curator]] call CBA_fnc_serverEvent;
+if (isMultiplayer) then {
+    [QGVAR(curatorDelete), [_curator]] call CBA_fnc_serverEvent;
+};

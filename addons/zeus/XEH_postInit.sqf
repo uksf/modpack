@@ -26,6 +26,3 @@ if (hasInterface) then {
     };
     call FUNC(addCuratorActions);
 };
-[{
-    {_x addCuratorEditableObjects [allMissionObjects "all", true]; false} count allCurators;
-}, [], 1] call cba_fnc_waitAndExecute;

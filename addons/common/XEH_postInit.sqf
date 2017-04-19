@@ -1,16 +1,5 @@
 #include "script_component.hpp"
 
-//Activate all addons
-private _addons = [];
-private _cfgPatches = configFile >> "CfgPatches";
-for "_i" from 0 to (count _cfgPatches - 1) do {
-    private _class = _cfgPatches select _i;
-    if (isClass _class) then {
-        _addons set [count _addons, configName _class];
-    };
-};
-_addons call bis_fnc_activateaddons;
-
 //Delete groups every 5 minutes
 [{
     {deleteGroup _x; false} count allGroups;

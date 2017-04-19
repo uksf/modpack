@@ -15,7 +15,5 @@
 
 params ["_locked"];
 
-diag_log GVAR(curatorsLocked);
 GVAR(curatorsLocked) = _locked;
-diag_log GVAR(curatorsLocked);
 publicVariable QGVAR(curatorsLocked);

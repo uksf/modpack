@@ -1,4 +1,9 @@
 class CfgVehicles {
+    class Module_F;
+    class ModuleCurator_F: Module_F {
+        function = QFUNC(moduleCurator);
+    };
+
     class EGVAR(common,moduleBase);
     class GVAR(moduleExplosionSmall): EGVAR(common,moduleBase) {
         curatorCanAttach = 1;

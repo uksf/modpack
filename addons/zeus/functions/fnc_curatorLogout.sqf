@@ -21,4 +21,3 @@ if (_kicked) then {
 } else {
     [QGVAR(adminHint), [format ["%1 logged out", name player]]] call CBA_fnc_globalEvent;
 };
-GVAR(curatorLogged) = false;
