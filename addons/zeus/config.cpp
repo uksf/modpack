@@ -29,6 +29,7 @@ class CfgPatches {
     };
 };
 
+#include "ACE_Settings.hpp"
 #include "Cfg3den.hpp"
 #include "CfgEventHandlers.hpp"
 #include "CfgFunctions.hpp"

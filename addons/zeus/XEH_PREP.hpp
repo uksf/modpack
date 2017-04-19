@@ -1,12 +1,16 @@
-PREP(initCurators);
-PREP(disconnect);
-PREP(addAction);
-PREP(respawn);
-PREP(getChildren);
-PREP(getName);
-PREP(actionStatement);
-PREP(setAllowUnconcious);
+PREP(curatorCreate);
+PREP(curatorDelete);
+PREP(curatorAssign);
+PREP(curatorUnassign);
+PREP(curatorLogin);
+PREP(curatorLogout);
+PREP(curatorKick);
+PREP(setCuratorsLocked);
+PREP(adminHint);
+PREP(addCuratorActions);
+PREP(getCuratorActions);
 
+PREP(setAllowUnconcious);
 PREP(moduleAddAllObjects);
 PREP(moduleExplosionSmall);
 PREP(moduleExplosionLarge);
