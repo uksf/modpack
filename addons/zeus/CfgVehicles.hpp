@@ -40,21 +40,24 @@ class CfgVehicles {
         category = "ace_zeus_Repair";
         displayName = "Assign Engineer";
         function = QFUNC(moduleSetEngineer);
-        icon = "\z\ace\addons\zeus\ui\Icon_Module_Zeus_Medic_ca.paa";
+        icon = "\achilles\data_f_achilles\icons\icon_default_unit.paa";
+        portrait = "\achilles\data_f_achilles\icons\icon_default_unit.paa";
     };
-    class GVAR(moduleCopyLoadout): EGVAR(common,moduleBase) {
+    class GVAR(moduleLoadoutCopy): EGVAR(common,moduleBase) {
         curatorCanAttach = 1;
         category = "Equipment";
-        displayName = "Copy Loadout";
-        function = QFUNC(moduleCopyLoadout);
-        icon = "\achilles\data_f_achilles\icons\icon_position.paa";
+        displayName = "Loadout Copy";
+        function = QFUNC(moduleLoadoutCopy);
+        icon = "\achilles\data_f_achilles\icons\icon_default_unit.paa";
+        portrait = "\achilles\data_f_achilles\icons\icon_default_unit.paa";
     };
-    class GVAR(modulePasteLoadout): EGVAR(common,moduleBase) {
+    class GVAR(moduleLoadoutPaste): EGVAR(common,moduleBase) {
         curatorCanAttach = 1;
         category = "Equipment";
-        displayName = "Paste Loadout";
-        function = QFUNC(modulePasteLoadout);
-        icon = "\achilles\data_f_achilles\icons\icon_position.paa";
+        displayName = "Loadout Paste";
+        function = QFUNC(moduleLoadoutPaste);
+        icon = "\achilles\data_f_achilles\icons\icon_default_unit.paa";
+        portrait = "\achilles\data_f_achilles\icons\icon_default_unit.paa";
     };
 
     class Ares_Zeus_Module_Base;

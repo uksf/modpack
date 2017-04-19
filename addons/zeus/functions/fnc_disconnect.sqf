@@ -23,5 +23,5 @@ private _index = _names find _name;
 if (_index != -1) then {
     _names set [_index, ""];
     unassignCurator (GVAR(curatorObjects) select _index);
+    missionNamespace setVariable [QGVAR(curatorNames), _names, true];
 };
-missionNamespace setVariable [QGVAR(curatorNames), _names, true];

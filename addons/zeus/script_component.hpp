@@ -11,5 +11,5 @@
 #define ZEUS_ICON "\A3\Ui_F_Curator\Data\Logos\arma3_zeus_icon_ca.paa"
 
 #define ADD_CURATOR(INDEX) _curator = _group createUnit ["ModuleCurator_F", [0,0,0], [], 0, "NONE"]; \
-_curator addCuratorAddons activatedAddons; \
+_curator setVariable ["Addons", 3, true]; \
 GVAR(curatorObjects) set [INDEX, _curator]

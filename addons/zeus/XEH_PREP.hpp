@@ -5,6 +5,8 @@ PREP(respawn);
 PREP(getChildren);
 PREP(getName);
 PREP(actionStatement);
+PREP(setAllowUnconcious);
+
 PREP(moduleAddAllObjects);
 PREP(moduleExplosionSmall);
 PREP(moduleExplosionLarge);
@@ -13,6 +15,5 @@ PREP(moduleSetEngineer);
 PREP(moduleTeleportZeus);
 PREP(moduleToggleAllowUnconcious);
 PREP(moduleToggleZeusVisibility);
-PREP(moduleCopyLoadout);
-PREP(modulePasteLoadout);
-PREP(setAllowUnconcious);
+PREP(moduleLoadoutCopy);
+PREP(moduleLoadoutPaste);

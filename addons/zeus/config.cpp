@@ -11,8 +11,8 @@ class CfgPatches {
             QGVAR(moduleTeleportZeus),
             QGVAR(moduleToggleAllowUnconcious),
             QGVAR(moduleSetEngineer),
-            QGVAR(moduleCopyLoadout),
-            QGVAR(modulePasteLoadout)
+            QGVAR(moduleLoadoutCopy),
+            QGVAR(moduleLoadoutPaste)
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
