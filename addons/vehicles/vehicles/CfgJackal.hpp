@@ -22,7 +22,7 @@ class CUP_BAF_Jackal2_BASE_D: Car_F {
             armor = 4; //Default: 2
         };
         class HitFuel {
-            armor = 2; //Default: 1
+            armor = 2.5; //Default: 1
         };
     };
 };
