@@ -4,13 +4,12 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
-GVAR(curatorInitComplete) = false;
-GVAR(curatorObjects) = [objNull,objNull,objNull,objNull,objNull];
-missionNamespace setVariable [QGVAR(curatorNames), ["","","","",""], true];
+//Curator access
+GVAR(curatorGroup) = creategroup sideLogic;
+GVAR(curatorObjects) = [];
+GVAR(curatorsLocked) = false;
 
-GVAR(pingCount) = 0;
-GVAR(pingTime) = 0;
-
+//Loadout copying
 GVAR(loadout) = "";
 
 ADDON = true;
