@@ -19,4 +19,3 @@ if (isMultiplayer || {!isMultiplayer && {GVAR(curatorObjects) isEqualTo []}}) th
 [QGVAR(curatorAssign), [player]] call CBA_fnc_serverEvent;
 [QGVAR(serverLog), ["%1 logged in", name player]] call CBA_fnc_serverEvent;
 [QGVAR(adminHint), [format ["%1 logged in", name player]]] call CBA_fnc_globalEvent;
-

@@ -22,8 +22,5 @@ if (!isMultiplayer) then {
     call FUNC(curatorLogin);
 };
 if (hasInterface) then {
-    if (isNil {player getVariable QGVAR(curatorActionsAdded)}) then {
-        player setVariable [QGVAR(curatorActionsAdded), false, true];
-    };
     call FUNC(addCuratorActions);
 };

@@ -17,21 +17,20 @@
 
 params [["_treeControl",controlNull,[controlNull]]];
 
-private _display_reload = false;
+private _displayReload = false;
 
 // trick to unlock ares/achilles modules for Zeus if mission was not set up properly
-if (!("achilles_modules_f_achilles" in (curatorAddons getAssignedCuratorLogic player))) then {
-    _logic = (createGroup sideLogic) createUnit ["Achilles_Module_Base", getPos player, [], 0, "NONE"];
-    _logic = (createGroup sideLogic) createUnit ["Ares_Module_Base", getPos player, [], 0, "NONE"];
+if (!("achilles_modules_f_achilles" in (curatorAddons (getAssignedCuratorLogic player)))) then {
+    (createGroup sideLogic) createUnit ["Achilles_Module_Base", [0,0,0], [], 0, "NONE"];
+    (createGroup sideLogic) createUnit ["Ares_Module_Base", [0,0,0], [], 0, "NONE"];
     
     // wait until zeus has truly entered the interface
     waitUntil {!(isNull (findDisplay 312))};
     
     // Wait until Zeus modules are avaiable (e.g. respawns has to be placed before)
-    waitUntil {_tree_ctrl tvText [(_tree_ctrl tvCount []) - 1] == localize "STR_ZEUS"};
+    waitUntil {((_tree_ctrl tvText [(_tree_ctrl tvCount []) - 1]) isEqualTo (localize "STR_ZEUS"))};
     
-    [[getAssignedCuratorLogic player],
-    {
+    [[getAssignedCuratorLogic player], {
         waitUntil {!isNil QGVAR(addons)};
         (_this select 0) addcuratoraddons GVAR(addons);
     }] remoteExec ["spawn",2];
@@ -44,7 +43,7 @@ if (!("achilles_modules_f_achilles" in (curatorAddons getAssignedCuratorLogic pl
     uiSleep 0.1;
     openCuratorInterface;
     cutText ["","BLACK IN", 0.1, true];
-    _display_reload = true;
+    _displayReload = true;
 };
 
 _curatorModule = getassignedcuratorLogic player;
@@ -86,4 +85,4 @@ if (!(_curatorModule getVariable [QGVAR(eventsAdded), false])) then {
     _curatorModule setVariable [QGVAR(eventsAdded), true, true];
 };
 
-_display_reload
+_displayReload
