@@ -15,19 +15,19 @@
 
 private _actions = [];
 
-private _action = [QGVAR(curatorLogin), QUOTE(Login), CURATOR_ICON, {[] call FUNC(curatorLogin)}, {!GVAR(curatorsLocked) && {isNull (getAssignedCuratorLogic _player)} && {(count GVAR(curatorObjects)) < GVAR(curatorsMax)}}] call ace_interact_menu_fnc_createAction;
+private _action = [QGVAR(curatorLogin), QUOTE(Login), CURATOR_ICON, {[] call FUNC(curatorLogin)}, {((ADMIN_OR_HOST) || !GVAR(curatorsLocked)) && (isNull (getAssignedCuratorLogic player)) && ((count GVAR(curatorObjects)) < GVAR(curatorsMax))}] call ace_interact_menu_fnc_createAction;
 _actions pushBack [_action, [], player];
 
-_action = [QGVAR(curatorLogout), QUOTE(Logout), CURATOR_ICON, {[] call FUNC(curatorLogout)}, {!GVAR(curatorsLocked) && {!isNull (getAssignedCuratorLogic _player)}}] call ace_interact_menu_fnc_createAction;
+_action = [QGVAR(curatorLogout), QUOTE(Logout), CURATOR_ICON, {[] call FUNC(curatorLogout)}, {((ADMIN_OR_HOST) || !GVAR(curatorsLocked)) && (!isNull (getAssignedCuratorLogic player))}] call ace_interact_menu_fnc_createAction;
 _actions pushBack [_action, [], player];
 
-_action = [QGVAR(curatorsLock), QUOTE(Lock Curators), CURATOR_ICON, {[true] call FUNC(setCuratorsLocked)}, {!GVAR(curatorsLocked) && {ADMIN_OR_HOST}}] call ace_interact_menu_fnc_createAction;
+_action = [QGVAR(curatorsLock), QUOTE(Lock Curators), CURATOR_ICON, {[true] call FUNC(setCuratorsLocked)}, {!GVAR(curatorsLocked) && (ADMIN_OR_HOST)}] call ace_interact_menu_fnc_createAction;
 _actions pushBack [_action, [], player];
 
-_action = [QGVAR(curatorsUnlock), QUOTE(Unlock Curators), CURATOR_ICON, {[false] call FUNC(setCuratorsLocked)}, {GVAR(curatorsLocked) && {ADMIN_OR_HOST}}] call ace_interact_menu_fnc_createAction;
+_action = [QGVAR(curatorsUnlock), QUOTE(Unlock Curators), CURATOR_ICON, {[false] call FUNC(setCuratorsLocked)}, {GVAR(curatorsLocked) && (ADMIN_OR_HOST)}] call ace_interact_menu_fnc_createAction;
 _actions pushBack [_action, [], player];
 
-_action = [QGVAR(curatorKickAll), QUOTE(Kick All), CURATOR_ICON, {[true] call FUNC(curatorKick)}, {(ADMIN_OR_HOST) && {isMultiplayer} && {!(GVAR(curatorObjects) isEqualTo [])}}] call ace_interact_menu_fnc_createAction;
+_action = [QGVAR(curatorKickAll), QUOTE(Kick All), CURATOR_ICON, {[true] call FUNC(curatorKick)}, {(ADMIN_OR_HOST) && isMultiplayer && (!(GVAR(curatorObjects) isEqualTo []))}] call ace_interact_menu_fnc_createAction;
 _actions pushBack [_action, [], player];
 
 {
@@ -38,7 +38,7 @@ _actions pushBack [_action, [], player];
             format ["Kick: %1", (name (getAssignedCuratorUnit _curator))],
             CURATOR_ICON,
             {[false, getAssignedCuratorUnit (_this select 2 select 0)] call FUNC(curatorKick)},
-            {(ADMIN_OR_HOST) && {isMultiplayer}},
+            {(ADMIN_OR_HOST) && isMultiplayer},
             {},
             [_curator]
         ] call ace_interact_menu_fnc_createAction;

@@ -62,8 +62,9 @@ if (_activated) then {
         };
 
         //--- Get allowed addons
-        //removeAllCuratorAddons _logic;
-        //_logic addcuratoraddons GVAR(addons);
+        waitUntil {!isNil QGVAR(addons)};
+        removeAllCuratorAddons _logic;
+        _logic addcuratoraddons GVAR(addons);
         /*_addonsType = _logic getvariable ["Addons",2];
         _addons = [];
         switch _addonsType do {
@@ -116,7 +117,6 @@ if (_activated) then {
 
             //--- Refresh addon list, so it's broadcasted to clients
             waitUntil {!isNil QGVAR(addons)};
-            diag_log format ["%1", GVAR(addons)];
             removeAllCuratorAddons _logic;
             _logic addcuratoraddons GVAR(addons);
 
@@ -325,17 +325,6 @@ if (_activated) then {
                 ] call bis_fnc_guiMessage;
             };
         };
-
-        //--- Add local event handlers
-        _logic addeventhandler ["curatorFeedbackMessage",{_this call bis_fnc_showCuratorFeedbackMessage;}];
-        //_logic addeventhandler ["curatorObjectPlaced",{_this call bis_fnc_curatorObjectPlaced;}];
-        _logic addeventhandler ["curatorObjectEdited",{_this call bis_fnc_curatorObjectEdited;}];
-        _logic addeventhandler ["curatorWaypointPlaced",{_this call bis_fnc_curatorWaypointPlaced;}];
-
-        //_logic addeventhandler ["curatorObjectDoubleClicked",{diag_log "DOUBLE CLICK"; (_this select 1) call bis_fnc_showCuratorAttributes;}];
-        _logic addeventhandler ["curatorGroupDoubleClicked",{(_this select 1) call bis_fnc_showCuratorAttributes;}];
-        _logic addeventhandler ["curatorWaypointDoubleClicked",{(_this select 1) call bis_fnc_showCuratorAttributes;}];
-        _logic addeventhandler ["curatorMarkerDoubleClicked",{(_this select 1) call bis_fnc_showCuratorAttributes;}];
 
         player call bis_fnc_curatorRespawn;
     };

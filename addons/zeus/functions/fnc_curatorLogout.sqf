@@ -16,6 +16,7 @@
 params [["_kicked", false]];
 
 [QGVAR(curatorUnassign), [getAssignedCuratorLogic player]] call CBA_fnc_serverEvent;
+[QGVAR(serverLog), ["%1 logged out/kicked", name player]] call CBA_fnc_serverEvent;
 if (_kicked) then {
     ["You were kicked"] call ace_common_fnc_displayTextStructured;
 } else {

@@ -1,4 +1,5 @@
 PREP(moduleCurator);
+PREP(curatorStart);
 
 PREP(curatorCreate);
 PREP(curatorDelete);
