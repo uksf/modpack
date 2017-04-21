@@ -1,3 +1,5 @@
+PREP(adminHint);
+PREP(addObjectsToCurators);
 PREP(configExport);
 PREP(configExportExtension);
 PREP(fpsAction);
@@ -7,4 +9,5 @@ PREP(fpsToggle);
 PREP(getNearPlayers);
 PREP(lineOfSight);
 PREP(populate);
+PREP(setAllowUnconcious);
 PREP(setSkill);
