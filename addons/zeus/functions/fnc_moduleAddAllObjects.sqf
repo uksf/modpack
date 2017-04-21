@@ -6,17 +6,20 @@
         Adds all objects to all curators
 
     Parameter(s):
-        None
+        0: The module logic <OBJECT>
+        1: Synchronized units <ARRAY>
+        2: Activated <BOOL>
 
     Return Value:
         None
 */
 #include "script_component.hpp"
-#include "\achilles\modules_f_ares\module_header.hpp"
 
-private _objects = (allMissionObjects "") select {typeOf _x != "ModuleCurator_F"};
-[_objects] call Ares_fnc_AddUnitsToCurator;
+params ["_logic", "_units", "_activated"];
 
-[objNull, format ["%1 objects were added to Zeus", count _objects]] call bis_fnc_showCuratorFeedbackMessage;
+if !(_activated && local _logic) exitWith {};
 
-#include "\achilles\modules_f_ares\module_footer.hpp"
+[QEGVAR(common,addObjectsToCurators), []] call CBA_fnc_serverEvent;
+["All objects were added to Zeus"] call ace_common_fnc_displayTextStructured;
+
+deleteVehicle _logic;

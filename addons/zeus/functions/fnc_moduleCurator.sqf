@@ -62,9 +62,9 @@ if (_activated) then {
         };
 
         //--- Get allowed addons
-        waitUntil {!isNil QGVAR(addons)};
+        waitUntil {!isNil QEGVAR(common,addons)};
         removeAllCuratorAddons _logic;
-        _logic addcuratoraddons GVAR(addons);
+        _logic addcuratoraddons EGVAR(common,addons);
         /*_addonsType = _logic getvariable ["Addons",2];
         _addons = [];
         switch _addonsType do {
@@ -116,9 +116,9 @@ if (_activated) then {
             waitUntil {time > 0}; // NOTE: DO NOT CHANGE TO CBA_missionTime, IT BREAKS THE MODULE
 
             //--- Refresh addon list, so it's broadcasted to clients
-            waitUntil {!isNil QGVAR(addons)};
+            waitUntil {!isNil QEGVAR(common,addons)};
             removeAllCuratorAddons _logic;
-            _logic addcuratoraddons GVAR(addons);
+            _logic addcuratoraddons EGVAR(common,addons);
 
             while {true} do {
                 //--- Wait for player to become Zeus
@@ -221,7 +221,7 @@ if (_activated) then {
                 };
 
                 //--- Locality changed
-                _logic addeventhandler [
+                _logic addEventHandler [
                     "local",
                     {
                         _logic = _this select 0;
@@ -320,11 +320,32 @@ if (_activated) then {
                 [
                     format [
                         localize "str_a3_cfgvehicles_modulecurator_f_keyNotAssigned",
-                        (["IGUI","WARNING_RGB"] call bis_fnc_displaycolorget) call bis_fnc_colorRGBAtoHTML
+                        (["IGUI", "WARNING_RGB"] call bis_fnc_displaycolorget) call bis_fnc_colorRGBAtoHTML
                     ]
                 ] call bis_fnc_guiMessage;
             };
         };
+
+        _logic addEventHandler ["CuratorObjectPlaced", {_this call bis_fnc_curatorObjectPlaced}];
+        _logic addEventHandler ["CuratorObjectPlaced", {_this call Achilles_fnc_HandleCuratorObjectPlaced}];
+        _logic addEventHandler ["curatorObjectEdited", {_this call bis_fnc_curatorObjectEdited}];
+        _logic addEventHandler ["CuratorObjectEdited", {_this call Achilles_fnc_HandleCuratorObjectEdited}];
+        _logic addEventHandler ["CuratorGroupPlaced", {_this call Achilles_fnc_HandleCuratorGroupPlaced}];
+        _logic addEventHandler ["curatorWaypointPlaced", {_this call bis_fnc_curatorWaypointPlaced}];
+        _logic addEventHandler ["curatorFeedbackMessage", {_this call bis_fnc_showCuratorFeedbackMessage}];
+        _logic addEventHandler ["curatorObjectDoubleClicked", {(_this select 1) call bis_fnc_showCuratorAttributes}];
+        _logic addEventHandler ["CuratorObjectDoubleClicked", {_this call Achilles_fnc_HandleCuratorObjectDoubleClicked}];
+        _logic addEventHandler ["curatorGroupDoubleClicked", {(_this select 1) call bis_fnc_showCuratorAttributes}];
+        _logic addEventHandler ["curatorWaypointDoubleClicked", {(_this select 1) call bis_fnc_showCuratorAttributes}];
+        _logic addEventHandler ["curatorMarkerDoubleClicked", {(_this select 1) call bis_fnc_showCuratorAttributes}];
+            
+        _logic setVariable ["BIS_fnc_curatorAttributesplayer", ["%ALL"]];
+        _logic setVariable ["BIS_fnc_curatorAttributesobject", ["%ALL"]];
+        _logic setVariable ["BIS_fnc_curatorAttributesgroup", ["%ALL"]];
+        _logic setVariable ["BIS_fnc_curatorAttributeswaypoint", ["%ALL"]];
+        _logic setVariable ["BIS_fnc_curatorAttributesmarker", ["%ALL"]];
+
+        [] call Achilles_fnc_setCuratorVisionModes;
 
         player call bis_fnc_curatorRespawn;
     };
