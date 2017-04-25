@@ -4,15 +4,14 @@ class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
         units[] = {
-            "Ares_Module_Zeus_Visibility",
-            QGVAR(moduleExplosionSmall),
-            QGVAR(moduleExplosionLarge),
             QGVAR(moduleAddAllObjects),
-            QGVAR(moduleTeleportZeus),
-            QGVAR(moduleToggleAllowUnconcious),
-            QGVAR(moduleSetEngineer),
+            QGVAR(moduleExplosionLarge),
+            QGVAR(moduleExplosionSmall),
             QGVAR(moduleLoadoutCopy),
-            QGVAR(moduleLoadoutPaste)
+            QGVAR(moduleLoadoutPaste),
+            QGVAR(moduleSetEngineer),
+            QGVAR(moduleTeleportZeus),
+            QGVAR(moduleToggleAllowUnconcious)
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
@@ -29,7 +28,6 @@ class CfgPatches {
     };
 };
 
-#include "ACE_Settings.hpp"
 #include "Cfg3den.hpp"
 #include "CfgEventHandlers.hpp"
 #include "CfgFunctions.hpp"

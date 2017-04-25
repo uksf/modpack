@@ -1,10 +1,39 @@
 // Place your settings in this file to overwrite default and user settings.
 {
+    "files.autoSave": "afterDelay",
+    "extensions.autoUpdate": true,
+    "git.confirmSync": false,
+    "files.insertFinalNewline": true,
+    "editor.dragAndDrop": true,
+    "sqf.enableCBA": true,
+    "sqf.enableACE3": true,
+    "[sqf]": {
+        "editor.quickSuggestions": true,
+        "editor.tabSize": 4,
+        "editor.insertSpaces": true,
+        "editor.detectIndentation": true,
+        "editor.trimAutoWhitespace": true,
+        "editor.autoClosingBrackets": true
+    },
+    "sqf.maxNumberOfProblems": 1000,
+    "sqflint.warnings": false,
+    "sqflint.indexWorkspace": false,
+    "sqflint.indexWorkspaceTwice": false,
+    "sqflint.checkPaths": false,
     "files.associations": {
+        "*.ext": "sqf",
         "*.HPP": "cpp",
         "array": "cpp",
         "xutility": "cpp",
         "xlocale": "cpp",
         "functional": "cpp"
-    }
+    },
+    "[cpp]": {
+        "editor.quickSuggestions": false
+    },
+    "[c]": {
+        "editor.quickSuggestions": false
+    },
+    "workbench.colorTheme": "[SQF] Dark Theme",
+    "editor.detectIndentation": false
 }

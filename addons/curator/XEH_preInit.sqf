@@ -4,7 +4,8 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
-//Loadout copying
-GVAR(loadout) = "";
+//Curator access
+GVAR(curatorGroup) = creategroup sideLogic;
+GVAR(curatorObjects) = [];
 
 ADDON = true;

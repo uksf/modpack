@@ -1,0 +1,10 @@
+PREP(addCuratorActions);
+PREP(curatorAssign);
+PREP(curatorCreate);
+PREP(curatorDelete);
+PREP(curatorKick);
+PREP(curatorLogin);
+PREP(curatorLogout);
+PREP(curatorUnassign);
+PREP(getCuratorActions);
+PREP(setCuratorsLocked);

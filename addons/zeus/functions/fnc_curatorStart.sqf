@@ -15,14 +15,14 @@
 */
 #include "script_component.hpp"
 
-params [["_treeControl",controlNull,[controlNull]]];
+params [["_treeControl", controlNull, [controlNull]]];
 
 private _displayReload = false;
 
 // trick to unlock ares/achilles modules for Zeus if mission was not set up properly
 if (!("achilles_modules_f_achilles" in (curatorAddons (getAssignedCuratorLogic player)))) then {
-    (createGroup sideLogic) createUnit ["Achilles_Module_Base", [0,0,0], [], 0, "NONE"];
-    (createGroup sideLogic) createUnit ["Ares_Module_Base", [0,0,0], [], 0, "NONE"];
+    //(createGroup sideLogic) createUnit ["Achilles_Module_Base", [0,0,0], [], 0, "NONE"];
+    //(createGroup sideLogic) createUnit ["Ares_Module_Base", [0,0,0], [], 0, "NONE"];
     
     // wait until zeus has truly entered the interface
     waitUntil {!(isNull (findDisplay 312))};
@@ -31,58 +31,28 @@ if (!("achilles_modules_f_achilles" in (curatorAddons (getAssignedCuratorLogic p
     waitUntil {((_tree_ctrl tvText [(_tree_ctrl tvCount []) - 1]) isEqualTo (localize "STR_ZEUS"))};
     
     [[getAssignedCuratorLogic player], {
-        waitUntil {!isNil QGVAR(addons)};
-        (_this select 0) addcuratoraddons GVAR(addons);
-    }] remoteExec ["spawn",2];
+        waitUntil {!isNil QEGVAR(common,addons)};
+        (_this select 0) addCuratorAddons EGVAR(common,addons);
+    }] remoteExec ["spawn", 2];
     
     // reload interface
-    waitUntil {"achilles_modules_f_achilles" in (curatorAddons getAssignedCuratorLogic player)};
-    cutText ["","BLACK OUT", 0.1,true];
+    waitUntil {"achilles_modules_f_achilles" in (curatorAddons (getAssignedCuratorLogic player))};
+    cutText ["","BLACK OUT", 0.001,true];
     uiSleep 0.1;
     (findDisplay 312) closeDisplay 0;
     uiSleep 0.1;
     openCuratorInterface;
-    cutText ["","BLACK IN", 0.1, true];
+    cutText ["","BLACK IN", 0.001, true];
     _displayReload = true;
 };
 
-_curatorModule = getassignedcuratorLogic player;
-
-// Unlock all available attributes
-_curatorModule setVariable ["BIS_fnc_curatorAttributesplayer",["%ALL"]];
-_curatorModule setVariable ["BIS_fnc_curatorAttributesobject",["%ALL"]];
-_curatorModule setVariable ["BIS_fnc_curatorAttributesgroup",["%ALL"]];
-_curatorModule setVariable ["BIS_fnc_curatorAttributeswaypoint",["%ALL"]];
-_curatorModule setVariable ["BIS_fnc_curatorAttributesmarker",["%ALL"]];
-
 //prevent drawing mines
-if (!(missionnamespace getvariable ["bis_fnc_drawMinefields_active",false])) then {
-    missionnamespace setvariable ["bis_fnc_drawMinefields_active",true,true];
+if (!(missionnamespace getvariable ["bis_fnc_drawMinefields_active", false])) then {
+    missionnamespace setvariable ["bis_fnc_drawMinefields_active", true, true];
 };
 
 // Initialize settings variables
 Achilles_var_reloadDisplay = nil; 
 Achilles_var_reloadVisionModes = nil;
-
-// Enable the selected VisionModes for Zeus
-[] call Achilles_fnc_setCuratorVisionModes;
-
-if (!(_curatorModule getVariable [QGVAR(eventsAdded), false])) then {
-    _curatorModule addEventHandler ["CuratorObjectPlaced", { _this call bis_fnc_curatorObjectPlaced; }];
-    _curatorModule addEventHandler ["CuratorObjectPlaced", { _this call Achilles_fnc_HandleCuratorObjectPlaced; }];
-    _curatorModule addEventHandler ["CuratorGroupPlaced", { _this call Achilles_fnc_HandleCuratorGroupPlaced; }];
-    _curatorModule addeventhandler ["curatorWaypointPlaced",{_this call bis_fnc_curatorWaypointPlaced;}];
-    _curatorModule addeventhandler ["curatorFeedbackMessage",{_this call bis_fnc_showCuratorFeedbackMessage;}];
-    _curatorModule addeventhandler ["curatorObjectEdited",{_this call bis_fnc_curatorObjectEdited;}];
-    _curatorModule addEventHandler ["CuratorObjectEdited", {_this call Achilles_fnc_HandleCuratorObjectEdited; }];
-
-    _curatorModule addeventhandler ["curatorObjectDoubleClicked",{(_this select 1) call bis_fnc_showCuratorAttributes;}];
-    _curatorModule addEventHandler ["CuratorObjectDoubleClicked", { _this call Achilles_fnc_HandleCuratorObjectDoubleClicked; }];
-    _curatorModule addeventhandler ["curatorGroupDoubleClicked",{(_this select 1) call bis_fnc_showCuratorAttributes;}];
-    _curatorModule addeventhandler ["curatorWaypointDoubleClicked",{(_this select 1) call bis_fnc_showCuratorAttributes;}];
-    _curatorModule addeventhandler ["curatorMarkerDoubleClicked",{(_this select 1) call bis_fnc_showCuratorAttributes;}];
-
-    _curatorModule setVariable [QGVAR(eventsAdded), true, true];
-};
 
 _displayReload
