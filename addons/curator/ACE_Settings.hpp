@@ -6,7 +6,7 @@ class ACE_Settings {
         typeName = "SCALAR";
         value = 10;
     };
-    class GVAR(curatorsLockedOnStart) {
+    class GVAR(curatorsLocked) {
         category = "ACE";
         displayName = QUOTE(Curators Locked);
         description = QUOTE(Locks access to curators on mission start);
