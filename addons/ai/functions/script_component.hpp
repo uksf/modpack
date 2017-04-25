@@ -1,1 +1,1 @@
-#include "\u\uksf\addons\special\script_component.hpp"
+#include "\u\uksf\addons\ai\script_component.hpp"

@@ -1,5 +1,5 @@
-#define COMPONENT special
-#define COMPONENT_BEAUTIFIED Special
+#define COMPONENT ai
+#define COMPONENT_BEAUTIFIED Ai
 #include "\u\uksf\addons\main\script_mod.hpp"
 
 //#define DEBUG_MODE_FULL
