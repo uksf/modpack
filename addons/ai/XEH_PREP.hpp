@@ -1,1 +1,3 @@
-PREP(mortarTest);
+PREP(mortarSupportFiredNear);
+PREP(mortarFire);
+PREP(mortarIsKindOf);

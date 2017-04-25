@@ -16,10 +16,8 @@ class Extended_PostInit_EventHandlers {
     };
 };
 
-class Extended_Init_EventHandlers {
+class Extended_FiredNear_EventHandlers {
     class CAManBase {
-        class ADDON {
-            init = QUOTE(_this call FUNC(mortarTest));
-        };
+        init = QUOTE(call COMPILE_FILE(mortarSupportFiredNear));
     };
 };

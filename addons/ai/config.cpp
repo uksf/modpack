@@ -4,6 +4,8 @@ class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
         units[] = {
+            "CUP_O_RU_JTAC_Flora",
+            "CUP_O_RU_JTAC_EMR"
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
@@ -18,3 +20,4 @@ class CfgPatches {
 };
 
 #include "CfgEventHandlers.hpp"
+#include "CfgVehicles.hpp"
