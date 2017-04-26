@@ -28,6 +28,8 @@ if (!("achilles_modules_f_achilles" in (curatorAddons (getAssignedCuratorLogic p
     _displayReload = true;
 };
 
+(getAssignedCuratorLogic player) addCuratorAddons (EGVAR(common,addons) - (curatorAddons (getAssignedCuratorLogic player)));
+
 if (!(missionnamespace getvariable ["bis_fnc_drawMinefields_active", false])) then {
     missionnamespace setvariable ["bis_fnc_drawMinefields_active", true, true];
 };

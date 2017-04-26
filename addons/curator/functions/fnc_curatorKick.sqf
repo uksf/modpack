@@ -18,8 +18,12 @@ params ["_kickAll", ["_player", objnull]];
 
 if (_kickAll) then {
     {
-        _player = (getAssignedCuratorUnit _x);
-        [QGVAR(curatorLogout), [true], _player] call CBA_fnc_targetEvent;
+        if (isNull _x) then {
+            GVAR(curatorObjects) deleteAt (GVAR(curatorObjects) find _x);
+        } else {
+            _player = (getAssignedCuratorUnit _x);
+            [QGVAR(curatorLogout), [true], _player] call CBA_fnc_targetEvent;
+        };
         false
     } count GVAR(curatorObjects);
     [QGVAR(adminHint), ["Kicked all"]] call CBA_fnc_globalEvent;

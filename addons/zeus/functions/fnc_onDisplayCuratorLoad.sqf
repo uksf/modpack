@@ -12,7 +12,6 @@
         Boolean
 */
 #include "script_component.hpp"
-#include "\A3\ui_f_curator\ui\defineResinclDesign.inc"
 
 ["onLoad", _this ,"RscDisplayCurator", "CuratorDisplays"] call (uinamespace getvariable "BIS_fnc_initDisplay");
 
@@ -30,6 +29,7 @@ if (_displayReload) exitWith {};
 private _display = (_this select 0);
 _display displayAddEventHandler ["KeyDown", {_this call Achilles_fnc_HandleCuratorKeyPressed;}];
 _display displayAddEventHandler ["KeyUp", {_this call Achilles_fnc_HandleCuratorKeyReleased;}];
+[QEGVAR(common,addObjectsToCurators), [[(getAssignedCuratorLogic player)]]] call CBA_fnc_serverEvent;
 [] spawn {
     waitUntil {!(isNull (findDisplay 312))};
     [] call Achilles_fnc_OnModuleTreeLoad;

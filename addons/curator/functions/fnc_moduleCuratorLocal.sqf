@@ -19,9 +19,6 @@
 params ["_logic", "", "_activated"];
 
 if (_activated) then {
-    if (isServer) then {
-        _logic addCuratorAddons EGVAR(common,addons);
-    };
     if (hasInterface) then {
         _logic addEventHandler ["CuratorObjectPlaced", {_this call bis_fnc_curatorObjectPlaced}];
         _logic addEventHandler ["CuratorObjectPlaced", {_this call Achilles_fnc_HandleCuratorObjectPlaced}];
