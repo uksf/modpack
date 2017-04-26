@@ -3,6 +3,10 @@ class CfgFunctions {
         class Init {
             class onCuratorStart { file = QPATHTOF(functions\fnc_onCuratorStart.sqf); };
         };
+        class ui_f_displayCurator {
+            class onDisplayCuratorLoad { file = QPATHTOF(functions\fnc_onDisplayCuratorLoad.sqf); };
+            class onModuleTreeLoad { file = QPATHTOF(functions\fnc_onModuleTreeLoad.sqf); };
+        };
     };
     class A3_Functions_F_Curator {
         class Curator {

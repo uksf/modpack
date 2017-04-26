@@ -1,3 +1,4 @@
+PREP(moduleCuratorLocal);
 PREP(addCuratorActions);
 PREP(curatorAssign);
 PREP(curatorCreate);

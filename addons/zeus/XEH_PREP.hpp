@@ -1,4 +1,3 @@
-PREP(curatorStart);
 PREP(moduleCurator);
 
 //Modules
