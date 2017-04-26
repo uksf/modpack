@@ -18,6 +18,6 @@ class Extended_PostInit_EventHandlers {
 
 class Extended_FiredNear_EventHandlers {
     class CAManBase {
-        init = QUOTE(call COMPILE_FILE(mortarSupportFiredNear));
+        init = QUOTE(_this call FUNC(mortarSupportFiredNear));
     };
 };

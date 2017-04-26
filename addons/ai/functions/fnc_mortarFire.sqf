@@ -12,15 +12,13 @@
         Nothing
 */
 
-hint "mortarFired called";
+#include "script_component.hpp"
+
 params ["_unit"];
 
-private _unit = (_this select 0);
-                enPos = _unit findNearestEnemy _unit;
-                hint str enPos;
-                if (!mortCooldown) then {
-                    mortar1 commandArtilleryFire [(getPosATL enPos), "8Rnd_82mm_Mo_shells", (floor random [1,4,6])];
-                    mortCooldown = true;
-                    hint "mortarFired";
-                    [{mortCooldown = false}, [], 120] call CBA_fnc_waitAndExecute;
-            };
+private _enemy = _unit findNearestEnemy _unit;
+if (!mortCooldown) then {
+    mortar1 commandArtilleryFire [getPosATL _enemy, "8Rnd_82mm_Mo_shells", (floor random [1,4,6])];
+    mortCooldown = true;
+    [{mortCooldown = false}, [], 120] call CBA_fnc_waitAndExecute;
+};

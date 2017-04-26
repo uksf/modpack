@@ -12,6 +12,8 @@
     PASTE INTO TRIGGER
 */
 
+#include "script_component.hpp"
+
 0 = [] spawn {
     stick1 = createGroup [east, true];
 
