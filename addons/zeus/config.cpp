@@ -18,6 +18,7 @@ class CfgPatches {
         requiredAddons[] = {
             "uksf_common",
             "achilles_functions_f_achilles",
+            "achilles_ui_f",
             "achilles_modules_f_ares",
             "achilles_modules_f_achilles"
         };

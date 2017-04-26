@@ -3,7 +3,9 @@
 class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
-        units[] = {};
+        units[] = {
+            "ModuleCuratorLocal"
+        };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
@@ -18,3 +20,4 @@ class CfgPatches {
 
 #include "ACE_Settings.hpp"
 #include "CfgEventHandlers.hpp"
+#include "CfgVehicles.hpp"

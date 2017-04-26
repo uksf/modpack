@@ -8,6 +8,7 @@ if (isServer) then {
     [QGVAR(curatorUnassign), {_this call FUNC(curatorUnassign)}] call CBA_fnc_addEventHandler;
 };
 if (hasInterface) then {
+    [QGVAR(curatorInit), {_this call FUNC(moduleCuratorLocal)}] call CBA_fnc_addEventHandler;
     [QGVAR(curatorLogout), {_this call FUNC(curatorLogout)}] call CBA_fnc_addEventHandler;
 };
 
