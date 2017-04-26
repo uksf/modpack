@@ -22,4 +22,3 @@ private _curator = GVAR(curatorGroup) createUnit ["ModuleCuratorLocal", [0,0,0],
 [QGVAR(curatorInit), [_curator, [], true], _player] call CBA_fnc_targetEvent;
 GVAR(curatorObjects) pushBack _curator;
 publicVariable QGVAR(curatorObjects);
-[QEGVAR(common,addObjectsToCurators), [[_curator]]] call CBA_fnc_serverEvent;
