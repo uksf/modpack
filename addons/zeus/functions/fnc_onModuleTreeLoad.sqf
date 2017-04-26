@@ -24,7 +24,7 @@ for "_i" from 0 to ((_ctrl tvCount []) - 1) do {
 };
 
 {
-	private _treeCtrl = _display displayCtrl _x;
+    private _treeCtrl = _display displayCtrl _x;
     for "_i" from 0 to ((_treeCtrl tvCount []) - 1) do {
         _treeCtrl tvCollapse [_i];
     };
@@ -38,7 +38,7 @@ for "_i" from 0 to ((_ctrl tvCount []) - 1) do {
 ];
 
 {
-	private _treeCtrl = _display displayCtrl _x;
+    private _treeCtrl = _display displayCtrl _x;
     for "_i" from 0 to ((_treeCtrl tvCount [0]) - 1) do {
         _treeCtrl tvCollapse [0, _i];
     };
