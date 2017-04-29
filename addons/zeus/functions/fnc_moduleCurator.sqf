@@ -74,8 +74,8 @@ if (_activated) then {
             waitUntil {time > 0}; // NOTE: DO NOT CHANGE TO CBA_missionTime, IT BREAKS THE MODULE
 
             //--- Refresh addon list, so it's broadcasted to clients
-            waitUntil {!isNil QEGVAR(common,addons)};
-            _logic addcuratoraddons (EGVAR(common,addons) - (curatorAddons _logic));
+            //waitUntil {!isNil QEGVAR(common,addons)};
+            //_logic addcuratoraddons (EGVAR(common,addons) - (curatorAddons _logic));
 
             while {true} do {
                 //--- Wait for player to become Zeus
