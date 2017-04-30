@@ -11,8 +11,8 @@
 #define CURATOR_ICON "\A3\Ui_F_Curator\Data\Logos\arma3_zeus_icon_ca.paa"
 
 #define MULTIPLAYER_ADMIN isMultiplayer && (ADMIN_OR_HOST)
-#define CONDITION_LOGIN ((ADMIN_OR_HOST) || {!GVAR(curatorsLocked)}) && {isNull (getAssignedCuratorLogic player)} && {(count GVAR(curatorObjects)) < GVAR(curatorsMax)}
+#define CONDITION_LOGIN ((ADMIN_OR_HOST) || {!GVAR(curatorsLocked)}) && {isNull (getAssignedCuratorLogic player)} && {({isNull (getAssignedCuratorUnit _x)} count GVAR(curatorObjects)) > 0}
 #define CONDITION_LOGOUT ((ADMIN_OR_HOST) || {!GVAR(curatorsLocked)}) && {!isNull (getAssignedCuratorLogic player)} && {(getAssignedCuratorLogic player) in GVAR(curatorObjects)}
 #define CONDITION_LOCK MULTIPLAYER_ADMIN && {!GVAR(curatorsLocked)}
 #define CONDITION_UNLOCK MULTIPLAYER_ADMIN && {GVAR(curatorsLocked)}
-#define CONDITION_KICKALL MULTIPLAYER_ADMIN && {!(GVAR(curatorObjects) isEqualTo [])}
+#define CONDITION_KICKALL MULTIPLAYER_ADMIN && {({!(isNull (getAssignedCuratorUnit _x))} count GVAR(curatorObjects)) > 1}

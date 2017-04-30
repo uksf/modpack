@@ -22,7 +22,8 @@ if (!isServer) exitWith {
 
 {
     [_x] spawn {
-        (_this select 0) addCuratorEditableObjects [allMissionObjects "all", true];
+        (_this select 0) addCuratorEditableObjects [(allMissionObjects "all"), true];
+        (_this select 0) removeCuratorEditableObjects [allCurators, true];
     };
     false
 } count _curators;
