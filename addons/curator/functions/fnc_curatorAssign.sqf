@@ -18,6 +18,6 @@
 params ["_player", ["_curator", objNull]];
 
 if (isNull _curator) then {
-    _curator = GVAR(curatorObjects) select ((count GVAR(curatorObjects)) - 1);
+    _curator = (GVAR(curatorObjects) select {isNull (getAssignedCuratorUnit _x)}) select 0;
 };
 _player assignCurator _curator;
