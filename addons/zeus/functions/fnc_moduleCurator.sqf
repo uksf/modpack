@@ -21,6 +21,7 @@
 params ["_logic", "_units", "_activated"];
 
 if (_activated) then {
+    
     //--- Terminate when not created on the server
     if (!isServer && {local _logic} && {isNull (getAssignedCuratorUnit _logic)}) exitwith {
         [format ["%1 is trying to create curator logic ModuleCurator_F", profilename], "bis_fnc_error", false] call bis_fnc_mp;
@@ -46,6 +47,9 @@ if (_activated) then {
 
     //--- Wipe out the variable so clients can't access it
     _logic setVariable ["owner", nil];
+
+    waitUntil {!isNil QEGVAR(common,addons)};
+    _logic addcuratoraddons (EGVAR(common,addons) - (curatorAddons _logic));
 
     //--- Server
     if (isserver) then {
@@ -74,10 +78,8 @@ if (_activated) then {
             waitUntil {time > 0}; // NOTE: DO NOT CHANGE TO CBA_missionTime, IT BREAKS THE MODULE
 
             //--- Refresh addon list, so it's broadcasted to clients
-            if (!isMultiplayer) then {
-                waitUntil {!isNil QEGVAR(common,addons)};
-                _logic addcuratoraddons (EGVAR(common,addons) - (curatorAddons _logic));
-            };
+            waitUntil {!isNil QEGVAR(common,addons)};
+            _logic addcuratoraddons (EGVAR(common,addons) - (curatorAddons _logic));
             
 
             while {true} do {
@@ -204,6 +206,7 @@ if (_activated) then {
                 ] call bis_fnc_guiMessage;
             };
         };
+
 
         _logic addEventHandler ["CuratorObjectPlaced", {_this call bis_fnc_curatorObjectPlaced}];
         _logic addEventHandler ["CuratorObjectPlaced", {_this call Achilles_fnc_HandleCuratorObjectPlaced}];

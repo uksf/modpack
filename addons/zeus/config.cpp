@@ -4,6 +4,7 @@ class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
         units[] = {
+            "ModuleCurator_F",
             QGVAR(moduleAddAllObjects),
             QGVAR(moduleExplosionLarge),
             QGVAR(moduleExplosionSmall),
