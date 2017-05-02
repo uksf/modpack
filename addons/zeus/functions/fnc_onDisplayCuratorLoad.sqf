@@ -14,6 +14,7 @@
 #include "script_component.hpp"
 
 ["onLoad", _this ,"RscDisplayCurator", "CuratorDisplays"] call (uinamespace getvariable "BIS_fnc_initDisplay");
+[QEGVAR(common,addObjectsToCurators), [[(getAssignedCuratorLogic player)]]] call CBA_fnc_serverEvent;
 
 disableSerialization;
 private _displayReload = false;
@@ -22,14 +23,18 @@ if (isNil "Achilles_curator_init_done") then {
     _mainDisplay displayAddEventHandler ["KeyDown", { _this call Achilles_fnc_HandleRemoteKeyPressed; }];
     Ares_Ctrl_Key_Pressed = false;
     Ares_Shift_Key_Pressed = false;
-    _displayReload = [] call Achilles_fnc_onCuratorStart;
+    (getAssignedCuratorLogic player) addCuratorAddons (EGVAR(common,addons) - (curatorAddons (getAssignedCuratorLogic player)));
+    if (!(missionnamespace getvariable ["bis_fnc_drawMinefields_active", false])) then {
+        missionnamespace setvariable ["bis_fnc_drawMinefields_active", true, true];
+    };
+    Achilles_var_reloadDisplay = nil; 
+    Achilles_var_reloadVisionModes = nil;
     Achilles_curator_init_done = true;
 };
 if (_displayReload) exitWith {};    
 private _display = (_this select 0);
 _display displayAddEventHandler ["KeyDown", {_this call Achilles_fnc_HandleCuratorKeyPressed;}];
 _display displayAddEventHandler ["KeyUp", {_this call Achilles_fnc_HandleCuratorKeyReleased;}];
-[QEGVAR(common,addObjectsToCurators), [[(getAssignedCuratorLogic player)]]] call CBA_fnc_serverEvent;
 [] spawn {
     waitUntil {!(isNull (findDisplay 312))};
     [] call Achilles_fnc_OnModuleTreeLoad;
