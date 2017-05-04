@@ -25,4 +25,5 @@ class cba_Extended_EventHandlers;
 #include "CfgEditorSubcategories.hpp"
 #include "CfgFactionClasses.hpp"
 #include "CfgImprecision.hpp"
+#include "CfgMovesBasic.hpp"
 #include "CfgVehicles.hpp"

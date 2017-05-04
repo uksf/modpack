@@ -28,5 +28,20 @@ class CfgVehicles {
         };
     };
 
+    class Man;
+    class CAManBase: Man {
+        class TurretBase {
+            minElev = -4;
+            maxElev = 20;
+            minTurn = -360;
+            maxTurn = 360;
+        };
+        mingunturn = -90;
+        maxgunturn = 90;
+        turning = 1;
+        mingunturnai = -90;
+        maxgunturnai = 90;
+    };
+
     #include "CfgUniforms.hpp"
 };

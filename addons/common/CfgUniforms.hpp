@@ -6,7 +6,6 @@ class Civilian_F: Civilian {
 class C_man_1: Civilian_F {
     modelSides[] = {6};
 };
-class CAManBase;
 class SoldierWB: CAManBase {
     modelSides[] = {6};
 };
