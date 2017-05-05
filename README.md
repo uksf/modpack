@@ -13,7 +13,7 @@
     </a>
 </p>
 
-# UKSF modpack
+# UKSF Modpack
 UKSF SR11 Mod Development and issue/feature tracking
 
 #### Contributing
