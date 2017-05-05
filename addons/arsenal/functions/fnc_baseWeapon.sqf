@@ -1,16 +1,4 @@
 /*
-    Author: 
-
-    Description:
-    Return base weapon (i.e., weapon without any attachments)
-    
-    Parameter(s):
-        0: STRING - weapon class
-    
-    Returns:
-    STRING - weapon class
-*/
-/*
     Author:
         Karel Moricky, edited by Tim Beswick to remove %ALL error case
 

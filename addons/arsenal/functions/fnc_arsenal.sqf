@@ -2712,7 +2712,6 @@ switch _mode do {
             if (isClass (getMissionConfig QGVAR(loadouts))) then {
                 _loadouts append ("true" configClasses (getMissionConfig QGVAR(loadouts)));
             };
-            diag_log format ["Loadouts: %1", _loadouts];
             {
                 private _name = getText (_x >> "name");
                 private _inventory = call compile (getText (_x >> "loadout"));
