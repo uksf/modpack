@@ -3,22 +3,17 @@
         Tim Beswick
 
     Description:
-        Unassigns and deletes curator
+        Logs player out of curator
 
     Parameter(s):
-        0: Kicked <BOOL>
+        None
 
     Return Value:
         None
 */
 #include "script_component.hpp"
 
-params [["_kicked", false]];
-
 [QGVAR(curatorUnassign), [getAssignedCuratorLogic player]] call CBA_fnc_serverEvent;
-if (_kicked) then {
-    ["You were kicked"] call ace_common_fnc_displayTextStructured;
-} else {
-    [QEGVAR(common,adminHint), [format ["%1 logged out", name player]]] call CBA_fnc_globalEvent;
-};
-[QEGVAR(common,serverLog), [format ["%1 logged out/kicked", name player]]] call CBA_fnc_serverEvent;
+[QEGVAR(common,hint), [format ["%1 logged out", name player]]] call CBA_fnc_localEvent;
+[QEGVAR(common,hint), [format ["%1 logged out", name player], true]] call CBA_fnc_globalEvent;
+[QEGVAR(common,log), [format ["%1 logged out", name player]]] call CBA_fnc_serverEvent;
