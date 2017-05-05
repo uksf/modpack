@@ -5,9 +5,12 @@ class CfgPatches {
         name = COMPONENT_NAME;
         units[] = {
             "CUP_O_RU_JTAC_Flora",
-            "CUP_O_RU_JTAC_EMR"
+            "CUP_O_RU_JTAC_EMR",
+            "CUP_O_RU_RTO_EMR"
         };
-        weapons[] = {};
+        weapons[] = {
+            "CUP_srifle_SVD_Bridg"
+        };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             "uksf_common"
@@ -21,3 +24,4 @@ class CfgPatches {
 
 #include "CfgEventHandlers.hpp"
 #include "CfgVehicles.hpp"
+#include "CfgWeapons.hpp"
