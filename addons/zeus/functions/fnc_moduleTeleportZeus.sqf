@@ -6,14 +6,19 @@
         Teleports curator to module position
 
     Parameter(s):
-        None
+        0: The module logic <OBJECT>
+        1: Synchronized units <ARRAY>
+        2: Activated <BOOL>
 
     Return Value:
         None
 */
 #include "script_component.hpp"
-#include "\achilles\modules_f_ares\module_header.hpp"
 
-[[player], (position _logic), false, false] call Ares_fnc_TeleportPlayers;
+params ["_logic", "_units", "_activated"];
 
-#include "\achilles\modules_f_ares\module_footer.hpp"
+if !(_activated && local _logic) exitWith {};
+
+player setPosATL (getPosATL _logic);
+
+deleteVehicle _logic;

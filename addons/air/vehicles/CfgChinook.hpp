@@ -1,10 +1,12 @@
 class CUP_CH47F_base: Helicopter_Base_H {
     maxSpeed = 315;
-    cyclicAsideForceCoef = 0.9;
-    cyclicForwardForceCoef = 0.9;
+    cyclicAsideForceCoef = 1;
+    cyclicForwardForceCoef = 1;
+    fuelCapacity = 500;
     armor = 60;
     memoryPointsGetInDriver = "pos cargo";
     memoryPointsGetInDriverDir = "pos cargo dir";
+    driverCanEject = 1;
     class ViewPilot: ViewPilot {
         minFov = 0.25;
         maxFov = 1.25;
@@ -14,8 +16,20 @@ class CUP_CH47F_base: Helicopter_Base_H {
         class CopilotTurret: CopilotTurret {
             memoryPointsGetInGunner = "pos cargo";
             memoryPointsGetInGunnerDir = "pos cargo dir";
+            CanEject = 1;
+            showHMD = 1;
+        };
+        class MainTurret: MainTurret {
+            soundAttenuationTurret = "HeliAttenuationGunner";
+        };
+        class RightDoorGun: MainTurret {
+            soundAttenuationTurret = "HeliAttenuationGunner";
+        };
+        class BackDoorGun: MainTurret {
+            soundAttenuationTurret = "HeliAttenuationGunner";
         };
     };
+    attenuationEffectType = "SemiOpenHeliAttenuation";
     unitInfoType = "Rsc_UKSF_Air_Limited";
     unitInfoTypeLite = "Rsc_UKSF_Air_Limited";
     class Sounds {

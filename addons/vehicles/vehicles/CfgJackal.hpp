@@ -7,20 +7,22 @@ class CUP_BAF_Jackal2_BASE_D: Car_F {
             };
         };
     };
-    maximumLoad = 4000;
-    crewCrashProtection = 0.1;
-    armor = 100;
-    armorStructural = 3;
-    armorWheels = 0.5;
+    maximumLoad = 4000; //Default: 2000
+    camouflage = 1.8; //Default: 2
+    hullDamageCauseExplosion = 0; //Default: 1
+    crewCrashProtection = 0.1; //Default: 0.15
+    armor = 100; //Default: 80
+    armorStructural = 3; //Default: 2
+    armorWheels = 0.5; //Default: 0.1
     class HitPoints: HitPoints {
         class HitBody {
-            armor = 1.5;
+            armor = 1.5; //Default: 0.7
         };
         class HitEngine {
-            armor = 4;
+            armor = 4; //Default: 2
         };
         class HitFuel {
-            armor = 2;
+            armor = 2; //Default: 1
         };
     };
 };

@@ -15,7 +15,16 @@
 
 params ["_removed"];
 
-private _compose = [lineBreak, parseText "<t align='center' size='1.3' color='#feb100'>Did not load the following items. Select them manually from the Arsenal if they exist.<\t>", lineBreak, lineBreak];  
+if (_removed isEqualTo []) exitWith {};
+
+private _compose = [
+    lineBreak,
+    parseText "<t align='center' size='1.3' color='#feb100'>Did not load the following items. Select them manually from the Arsenal if they exist.<\t>",
+    lineBreak,
+    parseText "<t align='center' size='0.9'>If any of these are listed in error, tell Beswick!<\t>",
+    lineBreak,
+    lineBreak
+];  
 {
     private _config = _x;
     private _configType = "";
@@ -29,7 +38,7 @@ private _compose = [lineBreak, parseText "<t align='center' size='1.3' color='#f
     if (_configType != "") then {
         _name = getText (configFile >> _configType >> _config >> "displayName");
     };
-    if ((count _compose) isEqualTo 4) then {
+    if ((count _compose) isEqualTo 6) then {
         _compose append [format ["%1", _name]];
     } else {
         _compose append [format [", %1", _name]];

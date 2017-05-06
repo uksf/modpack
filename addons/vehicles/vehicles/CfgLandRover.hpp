@@ -1,4 +1,18 @@
 class CUP_LR_Base: Car_F {
+    hullDamageCauseExplosion = 0; //Default: 1
+    armor = 80; //Default: 50
+    armorWheels = 0.35; //Default: 0.2
+    class HitPoints: HitPoints {
+        class HitBody {
+            armor = 1.25; //Default: 1
+        };
+        class HitEngine {
+            armor = 3; //Default: 2
+        };
+        class HitFuel {
+            armor = 1.5; //Default: 1
+        };
+    };
     turnCoef = 3.5;
     enginePower = 150;
     peakTorque = 425;
@@ -21,6 +35,7 @@ class CUP_LR_Base: Car_F {
             class ViewOptics;
         };
     };
+    FUEL_CAPACITY_LR
 };
 class CUP_LR_MG_Base: CUP_LR_Base {    
     class Turrets: Turrets {

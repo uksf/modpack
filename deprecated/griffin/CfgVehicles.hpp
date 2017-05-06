@@ -271,7 +271,7 @@ class CfgVehicles {
                 QPATHTO_R(data\uh1y_cockpit_destruct.rvmat)
             };
         };
-        attenuationEffectType = "HeliAttenuation";
+        attenuationEffectType = "SemiOpenHeliAttenuation";
         soundGetIn[] = { QPATHTOF(data\sounds\heli_door_01), "db-10", 1 };
         soundGetOut[] = { QPATHTOF(data\sounds\heli_door_01), "db-10", 1, 40 };
         soundDammage[] = { QPATHTOF(data\sounds\alarm_loop1), "db-10", 1 };

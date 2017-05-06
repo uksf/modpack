@@ -9,7 +9,7 @@
         <img src="https://img.shields.io/badge/license-GPLv3-blue.svg?style=flat-square" alt="License">
     </a>
     <a href="https://travis-ci.org/uksf/modpack">
-        <img src="https://img.shields.io/travis/uksf/modpack.svg?style=flat-square&label=Build" alt="ACE3 Build Status">
+        <img src="https://img.shields.io/travis/uksf/modpack.svg?style=flat-square&label=Build" alt="Build Status">
     </a>
 </p>
 

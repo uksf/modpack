@@ -1,12 +1,17 @@
 class CfgVehicles {
+    class Module_F;
+    class ModuleCurator_F: Module_F {
+        function = QFUNC(moduleCurator);
+    };
+    
     class EGVAR(common,moduleBase);
-    class GVAR(moduleExplosionSmall): EGVAR(common,moduleBase) {
+    class GVAR(moduleAddAllObjects): EGVAR(common,moduleBase) {
         curatorCanAttach = 1;
-        category = "Spawn";
-        displayName = "Small Explosion";
-        function = QFUNC(moduleExplosionSmall);
-        icon = QPATHTOF(UI\Icon_Module_Explosion_Small_ca.paa);
-    };        
+        category = "Curator";
+        displayName = "Add all objects";
+        function = QFUNC(moduleAddAllObjects);
+        icon = "\achilles\data_f_achilles\icons\icon_position.paa";
+    };
     class GVAR(moduleExplosionLarge): EGVAR(common,moduleBase) {
         curatorCanAttach = 1;
         category = "Spawn";
@@ -14,12 +19,36 @@ class CfgVehicles {
         function = QFUNC(moduleExplosionLarge);
         icon = QPATHTOF(UI\Icon_Module_Explosion_Large_ca.paa);
     };
-    class GVAR(moduleAddAllObjects): EGVAR(common,moduleBase) {
+    class GVAR(moduleExplosionSmall): EGVAR(common,moduleBase) {
         curatorCanAttach = 1;
-        category = "Curator";
-        displayName = "Add all objects";
-        function = QFUNC(moduleAddAllObjects);
-        icon = "\achilles\data_f_achilles\icons\icon_position.paa";
+        category = "Spawn";
+        displayName = "Small Explosion";
+        function = QFUNC(moduleExplosionSmall);
+        icon = QPATHTOF(UI\Icon_Module_Explosion_Small_ca.paa);
+    };
+    class GVAR(moduleLoadoutCopy): EGVAR(common,moduleBase) {
+        curatorCanAttach = 1;
+        category = "Equipment";
+        displayName = "Loadout Copy";
+        function = QFUNC(moduleLoadoutCopy);
+        icon = "\achilles\data_f_achilles\icons\icon_default_unit.paa";
+        portrait = "\achilles\data_f_achilles\icons\icon_default_unit.paa";
+    };
+    class GVAR(moduleLoadoutPaste): EGVAR(common,moduleBase) {
+        curatorCanAttach = 1;
+        category = "Equipment";
+        displayName = "Loadout Paste";
+        function = QFUNC(moduleLoadoutPaste);
+        icon = "\achilles\data_f_achilles\icons\icon_default_unit.paa";
+        portrait = "\achilles\data_f_achilles\icons\icon_default_unit.paa";
+    };
+    class GVAR(moduleSetEngineer): EGVAR(common,moduleBase) {
+        curatorCanAttach = 1;
+        category = "ace_zeus_Repair";
+        displayName = "Assign Engineer";
+        function = QFUNC(moduleSetEngineer);
+        icon = "\achilles\data_f_achilles\icons\icon_default_unit.paa";
+        portrait = "\achilles\data_f_achilles\icons\icon_default_unit.paa";
     };
     class GVAR(moduleTeleportZeus): EGVAR(common,moduleBase) {
         curatorCanAttach = 1;
@@ -34,13 +63,6 @@ class CfgVehicles {
         displayName = "Toggle Allow Unconcious";
         function = QFUNC(moduleToggleAllowUnconcious);
         icon = "\z\ace\addons\zeus\ui\Icon_Module_Zeus_Unconscious_ca.paa";
-    };
-    class GVAR(moduleSetEngineer): EGVAR(common,moduleBase) {
-        curatorCanAttach = 1;
-        category = "ace_zeus_Repair";
-        displayName = "Assign Engineer";
-        function = QFUNC(moduleSetEngineer);
-        icon = "\z\ace\addons\zeus\ui\Icon_Module_Zeus_Medic_ca.paa";
     };
 
     class Ares_Zeus_Module_Base;
