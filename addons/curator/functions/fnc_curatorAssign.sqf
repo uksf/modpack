@@ -21,3 +21,5 @@ if (isNull _curator) then {
     _curator = (GVAR(curatorObjects) select {isNull (getAssignedCuratorUnit _x)}) select 0;
 };
 _player assignCurator _curator;
+publicVariable QGVAR(curatorObjects);
+[QEGVAR(common,addObjectsToCurators), [[_curator]]] call CBA_fnc_localEvent;

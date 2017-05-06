@@ -19,7 +19,17 @@ class CUP_CH47F_base: Helicopter_Base_H {
             CanEject = 1;
             showHMD = 1;
         };
+        class MainTurret: MainTurret {
+            soundAttenuationTurret = "HeliAttenuationGunner";
+        };
+        class RightDoorGun: MainTurret {
+            soundAttenuationTurret = "HeliAttenuationGunner";
+        };
+        class BackDoorGun: MainTurret {
+            soundAttenuationTurret = "HeliAttenuationGunner";
+        };
     };
+    attenuationEffectType = "SemiOpenHeliAttenuation";
     unitInfoType = "Rsc_UKSF_Air_Limited";
     unitInfoTypeLite = "Rsc_UKSF_Air_Limited";
     class Sounds {

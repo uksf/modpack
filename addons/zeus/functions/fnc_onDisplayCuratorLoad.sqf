@@ -14,7 +14,6 @@
 #include "script_component.hpp"
 
 ["onLoad", _this ,"RscDisplayCurator", "CuratorDisplays"] call (uinamespace getvariable "BIS_fnc_initDisplay");
-[QEGVAR(common,addObjectsToCurators), [[(getAssignedCuratorLogic player)]]] call CBA_fnc_serverEvent;
 
 disableSerialization;
 private _displayReload = false;

@@ -18,7 +18,7 @@ if (hasInterface) then {
     GVAR(fpsArray) = [];
     call FUNC(fpsAction);
 
-    [QGVAR(adminHint), {_this call FUNC(adminHint)}] call CBA_fnc_addEventHandler;
+    [QGVAR(hint), {_this call FUNC(hint)}] call CBA_fnc_addEventHandler;
 };
 if (!isServer && !hasInterface) then {
     GVAR(fpsEventID) = [QGVAR(fpsGet), {_this call FUNC(fpsGet)}] call CBA_fnc_addEventHandler;
@@ -29,5 +29,5 @@ if (isServer) then {
     GVAR(fpsEventID) = [QGVAR(fpsGet), {_this call FUNC(fpsGet)}] call CBA_fnc_addEventHandler;
 
     [QGVAR(addObjectsToCurators), {_this call FUNC(addObjectsToCurators)}] call CBA_fnc_addEventHandler;
-    [QGVAR(serverLog), {INFO(_this select 0)}] call CBA_fnc_addEventHandler;
 };
+[QGVAR(log), {INFO(_this select 0)}] call CBA_fnc_addEventHandler;

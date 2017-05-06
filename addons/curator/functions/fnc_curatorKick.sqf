@@ -21,13 +21,14 @@ if (_kickAll) then {
         if (isNull _x) then {
             GVAR(curatorObjects) deleteAt (GVAR(curatorObjects) find _x);
         } else {
-            _player = (getAssignedCuratorUnit _x);
-            [QGVAR(curatorLogout), [true], _player] call CBA_fnc_targetEvent;
+            [QGVAR(curatorUnassign), [_x]] call CBA_fnc_serverEvent;
+            [QEGVAR(common,hint), ["You were kicked"], (getAssignedCuratorUnit _x)] call CBA_fnc_targetEvent;
         };
         false
     } count GVAR(curatorObjects);
-    [QGVAR(adminHint), ["Kicked all"]] call CBA_fnc_globalEvent;
+    [QEGVAR(common,hint), ["Kicked all"]] call CBA_fnc_localEvent;
 } else {
-    [QGVAR(curatorLogout), [true], _player] call CBA_fnc_targetEvent;
-    [QGVAR(adminHint), [format ["%1 kicked", name _player]]] call CBA_fnc_globalEvent;
+    [QGVAR(curatorUnassign), [(getAssignedCuratorLogic _player)]] call CBA_fnc_serverEvent;
+    [QEGVAR(common,hint), ["You were kicked"], _player] call CBA_fnc_targetEvent;
+    [QEGVAR(common,hint), [format ["Kicked %1", name _player]]] call CBA_fnc_localEvent;
 };
