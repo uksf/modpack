@@ -16,3 +16,4 @@
 params ["_curator"];
 
 unassignCurator _curator;
+publicVariable QGVAR(curatorObjects);

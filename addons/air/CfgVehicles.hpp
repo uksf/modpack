@@ -10,6 +10,7 @@ class CfgVehicles {
         };
         class ViewPilot;
         class Turrets: Turrets {
+            class MainTurret;
             class CopilotTurret;
         };
     };

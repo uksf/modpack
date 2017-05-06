@@ -64,7 +64,7 @@ class CfgVehicles {
         maxSpeed = 1930;
         unitInfoType = "Rsc_UKSF_F35_Limited";
         unitInfoTypeLite = "Rsc_UKSF_F35_Limited";
-        attenuationEffectType = "HeliAttenuation";
+        attenuationEffectType = "PlaneAttenuation";
         soundGetIn[] = { "A3\sounds_F\air\Plane_Fighter_03\getin", 0.562341, 1 };
         soundGetOut[] = { "A3\sounds_F\air\Plane_Fighter_03\getout", 0.562341, 1, 40 };
         soundDammage[] = { "", 0.562341, 1 };
@@ -11166,7 +11166,7 @@ class CfgVehicles {
         damageResistance = 0.004;
         unitInfoType = "Rsc_UKSF_F35_Limited";
         unitInfoTypeLite = "Rsc_UKSF_F35_Limited";
-        attenuationEffectType = "HeliAttenuation";
+        attenuationEffectType = "PlaneAttenuation";
         soundGetIn[] = { "A3\sounds_F\air\Plane_Fighter_03\getin", 0.562341, 1 };
         soundGetOut[] = { "A3\sounds_F\air\Plane_Fighter_03\getout", 0.562341, 1, 40 };
         soundDammage[] = { "", 0.562341, 1 };

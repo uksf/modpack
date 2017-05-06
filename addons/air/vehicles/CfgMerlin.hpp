@@ -42,6 +42,7 @@ class CUP_Merlin_HC3_Base: Helicopter_Base_H {
             volume = "(1-camPos)*(0 max (rotorSpeed-0.1))*(1 + rotorThrust)";
         };
     };
+    attenuationEffectType = "SemiOpenHeliAttenuation";
     unitInfoType = "Rsc_UKSF_Air_Limited";
     unitInfoTypeLite = "Rsc_UKSF_Air_Limited";
     #include "MFDMerlin.hpp"
