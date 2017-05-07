@@ -31,8 +31,7 @@ if (!(missionNamespace getVariable [QGVAR(defaults), false])) then {
         _inventory = [_inventory, _allowed, 0, _removed] call FUNC(restrictInventory);
         [_removed] call FUNC(showRemoved);
     };
-
-    _unit setUnitLoadout _inventory;
+    _unit setUnitLoadout [_inventory, true];
 } else {
     private _data =  profileNamespace getvariable ["bis_fnc_saveInventory_data", []];
     private _index = _data find _loadoutName;
