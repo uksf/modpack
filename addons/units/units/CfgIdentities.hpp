@@ -151,3 +151,5 @@ class CUP_B_USMC_Soldier_11;
 class CUP_B_FR_Soldier_Light_DES: CUP_B_USMC_Soldier_11 {
     identityTypes[] = { "LanguageENG_F", "Head_NATO", "NoGlasses" };
 };
+class C_man_p_fugitive_F;
+
