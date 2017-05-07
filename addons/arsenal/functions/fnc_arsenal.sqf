@@ -2681,10 +2681,18 @@ switch _mode do {
             _data = ["DEFAULTS"];
             _ctrlTemplateButtonDefaults ctrlSetText "PROFILE";
             _ctrlTemplateButtonDefaults ctrlCommit 0;
+            _ctrlTemplateButtonDelete = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_BUTTONDELETE;
+            _ctrlTemplateButtonDelete ctrlSetFade 1;
+            _ctrlTemplateButtonDelete ctrlCommit 0;
+            _ctrlTemplateButtonDelete ctrlEnable false;
         } else {
             _data = profileNamespace getvariable ["bis_fnc_saveInventory_data", []];
             _ctrlTemplateButtonDefaults ctrlSetText "DEFAULTS";
             _ctrlTemplateButtonDefaults ctrlCommit 0;
+            _ctrlTemplateButtonDelete = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_BUTTONDELETE;
+            _ctrlTemplateButtonDelete ctrlSetFade 0;
+            _ctrlTemplateButtonDelete ctrlCommit 0;
+            _ctrlTemplateButtonDelete ctrlEnable true;
         };
         missionNamespace setVariable [QGVAR(defaults), !_isDefaults];
         _center = (missionnamespace getvariable ["BIS_fnc_arsenal_center",player]);
