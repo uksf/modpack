@@ -12,7 +12,7 @@ class UKSF_TK_Civ_Mullah : C_man_p_fugitive_F {
     displayName = "Mullah";
     faction = "CUP_C_TK";
 };
-class C_man_p_fugitive_F : C_man_p_fugitive_F {
+class UKSF_TK_Civ_1 : C_man_p_fugitive_F {
     uniformClass = "CUP_O_TKI_Khet_Partug_01";
     headgearList[] = { 
         "CUP_H_TKI_Lungee_Open_01",
