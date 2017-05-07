@@ -174,6 +174,8 @@ _fullVersion = missionnamespace getvariable ["BIS_fnc_arsenal_fullArsenal",false
 
 #define CAM_DIS_MAX    5
 
+//Default loadouts
+#define IDC_RSCDISPLAYARSENAL_TEMPLATE_BUTTONDEFAULTS 36022
 
 switch _mode do {
 
@@ -666,6 +668,11 @@ switch _mode do {
 
         _ctrlTemplateButtonDelete = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_BUTTONDELETE;
         _ctrlTemplateButtonDelete ctrladdeventhandler ["buttonclick","with uinamespace do {['buttonTemplateDelete',[ctrlparent (_this select 0)]] call bis_fnc_arsenal;};"];
+
+        if (BIS_fnc_arsenal_type isEqualTo 0) then {
+            _ctrlTemplateButtonDefaults = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_BUTTONDEFAULTS;
+            _ctrlTemplateButtonDefaults ctrladdeventhandler ["buttonclick","with uinamespace do {['showTemplates',[ctrlparent (_this select 0)]] call BIS_fnc_arsenal;};"];
+        };
 
         _ctrlTemplateValue = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_VALUENAME;
         _ctrlTemplateValue ctrladdeventhandler ["lbselchanged","with uinamespace do {['templateSelChanged',[ctrlparent (_this select 0)]] call bis_fnc_arsenal;};"];
@@ -2667,40 +2674,36 @@ switch _mode do {
         _display = _this select 0;
         _ctrlTemplateValue = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_VALUENAME;
         lnbclear _ctrlTemplateValue;
-        _data = profilenamespace getvariable ["bis_fnc_saveInventory_data",[]];
+        private _ctrlTemplateButtonDefaults = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_BUTTONDEFAULTS;
+        private _data = [];
+        private _isDefaults = missionNamespace getVariable [QGVAR(defaults), false];
+        if (_isDefaults) then {
+            _data = ["DEFAULTS"];
+            _ctrlTemplateButtonDefaults ctrlSetText "PROFILE";
+            _ctrlTemplateButtonDefaults ctrlCommit 0;
+            _ctrlTemplateButtonDelete = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_BUTTONDELETE;
+            _ctrlTemplateButtonDelete ctrlSetFade 1;
+            _ctrlTemplateButtonDelete ctrlCommit 0;
+            _ctrlTemplateButtonDelete ctrlEnable false;
+        } else {
+            _data = profileNamespace getvariable ["bis_fnc_saveInventory_data", []];
+            _ctrlTemplateButtonDefaults ctrlSetText "DEFAULTS";
+            _ctrlTemplateButtonDefaults ctrlCommit 0;
+            _ctrlTemplateButtonDelete = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_BUTTONDELETE;
+            _ctrlTemplateButtonDelete ctrlSetFade 0;
+            _ctrlTemplateButtonDelete ctrlCommit 0;
+            _ctrlTemplateButtonDelete ctrlEnable true;
+        };
+        missionNamespace setVariable [QGVAR(defaults), !_isDefaults];
         _center = (missionnamespace getvariable ["BIS_fnc_arsenal_center",player]);
         _cargo = (missionnamespace getvariable ["BIS_fnc_arsenal_cargo",objnull]);
 
         GETVIRTUALCARGO
 
+        if ((_data select 0) != "DEFAULTS") then {
         for "_i" from 0 to (count _data - 1) step 2 do {
             _name = _data select _i;
             _inventory = _data select (_i + 1);
-
-            _inventoryWeapons = [
-                (_inventory select 5), //--- Binocular
-                (_inventory select 6 select 0), //--- Primary weapon
-                (_inventory select 7 select 0), //--- Secondary weapon
-                (_inventory select 8 select 0) //--- Handgun
-            ] - [""];
-            _inventoryMagazines = (
-                (_inventory select 0 select 1) + //--- Uniform
-                (_inventory select 1 select 1) + //--- Vest
-                (_inventory select 2 select 1) //--- Backpack items
-            ) - [""];
-            _inventoryItems = (
-                [_inventory select 0 select 0] + (_inventory select 0 select 1) + //--- Uniform
-                [_inventory select 1 select 0] + (_inventory select 1 select 1) + //--- Vest
-                (_inventory select 2 select 1) + //--- Backpack items
-                [_inventory select 3] + //--- Headgear
-                [_inventory select 4] + //--- Goggles
-                (_inventory select 6 select 1) + //--- Primary weapon items
-                (_inventory select 7 select 1) + //--- Secondary weapon items
-                (_inventory select 8 select 1) + //--- Handgun items
-                (_inventory select 9) //--- Assigned items
-            ) - [""];
-            _inventoryBackpacks = [_inventory select 2 select 0] - [""];
-
 
             _lbAdd = _ctrlTemplateValue lnbaddrow [_name];
             _ctrlTemplateValue lnbsetpicture [[_lbAdd,1],gettext (configfile >> "cfgweapons" >> (_inventory select 6 select 0) >> "picture")];
@@ -2711,21 +2714,30 @@ switch _mode do {
             _ctrlTemplateValue lnbsetpicture [[_lbAdd,6],gettext (configfile >> "cfgvehicles" >> (_inventory select 2 select 0) >> "picture")];
             _ctrlTemplateValue lnbsetpicture [[_lbAdd,7],gettext (configfile >> "cfgweapons" >> (_inventory select 3) >> "picture")];
             _ctrlTemplateValue lnbsetpicture [[_lbAdd,8],gettext (configfile >> "cfgglasses" >> (_inventory select 4) >> "picture")];
+            };
+        } else {
+            private _loadouts = ("true" configClasses (configFile >> QGVAR(loadouts)));
+            if (isClass (getMissionConfig QGVAR(loadouts))) then {
+                _loadouts append ("true" configClasses (getMissionConfig QGVAR(loadouts)));
+            };
+            {
+                private _name = getText (_x >> "name");
+                private _inventory = call compile (getText (_x >> "loadout"));
+                _lbAdd = _ctrlTemplateValue lnbAddRow [_name];
+                _ctrlTemplateValue lnbSetPicture [[_lbAdd, 1], getText (configFile >> "CfgWeapons" >> (_inventory select 0 select 0) >> "picture")]; //Primary
+                _ctrlTemplateValue lnbSetPicture [[_lbAdd, 2], getText (configFile >> "CfgWeapons" >> (_inventory select 1 select 0) >> "picture")]; //Launcher
+                _ctrlTemplateValue lnbSetPicture [[_lbAdd, 3], getText (configFile >> "CfgWeapons" >> (_inventory select 2 select 0) >> "picture")]; //Secondary
+                _ctrlTemplateValue lnbSetPicture [[_lbAdd, 4], getText (configFile >> "CfgWeapons" >> (_inventory select 3 select 0) >> "picture")]; //Uniform
+                _ctrlTemplateValue lnbSetPicture [[_lbAdd, 5], getText (configFile >> "CfgWeapons" >> (_inventory select 4 select 0) >> "picture")]; //Vest
+                _ctrlTemplateValue lnbSetPicture [[_lbAdd, 6], getText (configFile >> "CfgVehicles" >> (_inventory select 5 select 0) >> "picture")]; //Backpack
+                _ctrlTemplateValue lnbSetPicture [[_lbAdd, 7], getText (configFile >> "CfgWeapons" >> (_inventory select 6) >> "picture")]; //Headgear
+                _ctrlTemplateValue lnbSetPicture [[_lbAdd, 8], getText (configFile >> "CfgGlasses" >> (_inventory select 7) >> "picture")]; //Glasses
             
-            /*if (
-                {_item = _x; !CONDITION(_virtualWeaponCargo) || !isclass(configfile >> "cfgweapons" >> _item)} count _inventoryWeapons > 0
-                ||
-                {_item = _x; !CONDITION(_virtualItemCargo + _virtualMagazineCargo) || {isclass(configfile >> _x >> _item)} count ["cfgweapons","cfgglasses","cfgmagazines"] == 0} count _inventoryMagazines > 0
-                ||
-                {_item = _x; !CONDITION(_virtualItemCargo + _virtualMagazineCargo) || {isclass(configfile >> _x >> _item)} count ["cfgweapons","cfgglasses","cfgmagazines"] == 0} count _inventoryItems > 0
-                ||
-                {_item = _x; !CONDITION(_virtualBackpackCargo) || !isclass(configfile >> "cfgvehicles" >> _item)} count _inventoryBackpacks > 0
-            ) then {
-                _ctrlTemplateValue lnbsetcolor [[_lbAdd,0],[1,1,1,0.25]];
-                _ctrlTemplateValue lbsetvalue [_lbAdd,-1];
-            };*/
+                false
+            } count _loadouts;
         };
         _ctrlTemplateValue lnbsort [0,false];
+        _ctrlTemplateValue lnbSetCurSelRow 0;
 
         ["templateSelChanged",[_display]] call bis_fnc_arsenal;
         //['buttonExport',[_display]] call bis_fnc_arsenal;
@@ -2870,12 +2882,18 @@ switch _mode do {
     ///////////////////////////////////////////////////////////////////////////////////////////
     case "buttonLoad": {
         _display = _this select 0;
+        missionNamespace setVariable [QGVAR(defaults), false];
         ['showTemplates',[_display]] call (uinamespace getvariable (["bis_fnc_arsenal","bis_fnc_garage"] select BIS_fnc_arsenal_type));
 
         _ctrlTemplate = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_TEMPLATE;
         _ctrlTemplate ctrlsetfade 0;
         _ctrlTemplate ctrlcommit 0;
         _ctrlTemplate ctrlenable true;
+
+        _ctrlTemplateButtonDefaults = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_BUTTONDEFAULTS;
+        _ctrlTemplateButtonDefaults ctrlSetFade 0;
+        _ctrlTemplateButtonDefaults ctrlCommit 0;
+        _ctrlTemplateButtonDefaults ctrlEnable true;
 
         _ctrlMouseBlock = _display displayctrl IDC_RSCDISPLAYARSENAL_MOUSEBLOCK;
         _ctrlMouseBlock ctrlenable true;
@@ -2897,12 +2915,18 @@ switch _mode do {
     ///////////////////////////////////////////////////////////////////////////////////////////
     case "buttonSave": {
         _display = _this select 0;
+        missionNamespace setVariable [QGVAR(defaults), false];
         ['showTemplates',[_display]] call (uinamespace getvariable (["bis_fnc_arsenal","bis_fnc_garage"] select BIS_fnc_arsenal_type));
 
         _ctrlTemplate = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_TEMPLATE;
         _ctrlTemplate ctrlsetfade 0;
         _ctrlTemplate ctrlcommit 0;
         _ctrlTemplate ctrlenable true;
+
+        _ctrlTemplateButtonDefaults = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_BUTTONDEFAULTS;
+        _ctrlTemplateButtonDefaults ctrlSetFade 1;
+        _ctrlTemplateButtonDefaults ctrlCommit 0;
+        _ctrlTemplateButtonDefaults ctrlEnable false;
 
         _ctrlMouseBlock = _display displayctrl IDC_RSCDISPLAYARSENAL_MOUSEBLOCK;
         _ctrlMouseBlock ctrlenable true;

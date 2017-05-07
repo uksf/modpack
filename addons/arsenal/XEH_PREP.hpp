@@ -4,3 +4,4 @@ PREP(restrictInventory);
 PREP(cleanRadio);
 PREP(saveToProfile);
 PREP(showRemoved);
+PREP(getDefaultLoadout);
