@@ -100,4 +100,12 @@ class CfgMagazines {
         displayNameShort = "AA Rubber";
         ammo = "CUP_M_Stinger_AA_Rubber";
     };
+
+    //AAA Magazine lead speeds
+    class CUP_2000Rnd_23mm_AZP23_M: VehicleMagazine {
+        maxLeadSpeed = 200; //600
+    };
+    class CUP_750Rnd_TE1_30mm_GSh302K_HE_M: VehicleMagazine {
+        maxLeadSpeed = 200; //600
+    };
 };
