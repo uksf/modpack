@@ -1,4 +1,3 @@
-class Launcher_Base_F;
 class CUP_launch_NLAW: Launcher_Base_F {
     scope = 1;
 };

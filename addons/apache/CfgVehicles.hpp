@@ -151,10 +151,7 @@ class CfgVehicles {
         class Turrets: Turrets {
             class MainTurret: MainTurret {
                 turretInfoType = "RscOptics_GENERAL_FLIR";
-                ace_laser_CanLockLaser = 1;
-                ace_laser_selfdesignate_Enabled = 1;
                 ace_fcs_Enabled = 1;
-                ace_fcs_MaxDistance = 4500;
                 discreteDistance[] = {};
                 discreteDistanceInitIndex = 0;
                 initElev = 0;
