@@ -707,7 +707,7 @@ class CfgWeapons {
         displayName = "Chain Gun M230 30mm";
         magazines[] = { "CUP_1200Rnd_TE1_Red_Tracer_30x113mm_M789_HEDP_M","CUP_1200Rnd_TE1_Green_Tracer_30x113mm_M789_HEDP_M","CUP_1200Rnd_TE1_Yellow_Tracer_30x113mm_M789_HEDP_M","CUP_1200Rnd_TE1_White_Tracer_30x113mm_M789_HEDP_M" };
         canLock = 2;
-        ballisticsComputer = 1;
+        ballisticsComputer = "4 + 2 + 1";
         reloadMagazineSound[] = { "", 1, 1};
         modes[] = { "Burst10","Burst20","Burst50","close","near","short","medium","far" };
         cursorAim = "EmptyCursor";        
@@ -888,6 +888,146 @@ class CfgWeapons {
         };*/
     };
 
+    //AA weapons range changes
+    //Ural ZU-23, BMP-2 ZU-23, ZU-23
+    class CUP_Vacannon_2A14_veh: CannonCore {
+        class manual;
+        class close: manual {
+            midRange = 200; //300
+            maxRange = 400; //600
+            aiDispersionCoefX = 5;
+            aiDispersionCoefY = 5;
+        };
+        class short: close {
+            minRange = 300; //400
+            midRange = 400; //600
+            maxRange = 700; //900
+            aiDispersionCoefX = 6;
+            aiDispersionCoefY = 6;
+        };
+        class medium: close {
+            minRange = 500; //700
+            midRange = 700; //900
+            maxRange = 1000; //1200
+            aiDispersionCoefX = 7;
+            aiDispersionCoefY = 7;
+        };
+        class far: close {
+            minRange = 700; //1000
+            midRange = 800; //1200
+            maxRange = 1000; //1500
+            aiDispersionCoefX = 8;
+            aiDispersionCoefY = 8;
+        };
+    };
+    //Tunguska
+    class CUP_Vacannon_GSh302K_veh;
+    class CUP_Vacannon_2A38M_veh: CUP_Vacannon_GSh302K_veh {
+        class LowROF;
+        class close: LowROF {
+            midRange = 150; //150
+            maxRange = 300; //300
+            aiDispersionCoefX = 5;
+            aiDispersionCoefY = 5;
+        };
+        class near: close {
+            midRange = 400; //250
+            maxRange = 700; //400
+            aiDispersionCoefX = 5;
+            aiDispersionCoefY = 5;
+        };
+        class short: close {
+            minRange = 300; //200
+            midRange = 400; //400
+            maxRange = 700; //600
+            aiDispersionCoefX = 6;
+            aiDispersionCoefY = 6;
+        };
+        class medium: close {
+            minRange = 500; //400
+            midRange = 700; //700
+            maxRange = 1000; //900
+            aiDispersionCoefX = 7;
+            aiDispersionCoefY = 7;
+        };
+        class far: close {
+            minRange = 700; //800
+            midRange = 800; //1000
+            maxRange = 1000; //1500
+            aiDispersionCoefX = 8;
+            aiDispersionCoefY = 8;
+        };
+    };
+    //ZSU-23-4
+    class CUP_Vacannon_AZP23_veh: CannonCore {
+        class manual;
+        class close: manual {
+            midRange = 200; //300
+            maxRange = 400; //600
+            aiDispersionCoefX = 5;
+            aiDispersionCoefY = 5;
+        };
+        class short: close {
+            minRange = 300; //400
+            midRange = 400; //600
+            maxRange = 700; //900
+            aiDispersionCoefX = 6;
+            aiDispersionCoefY = 6;
+        };
+        class medium: close {
+            minRange = 500; //700
+            midRange = 700; //900
+            maxRange = 1000; //1200
+            aiDispersionCoefX = 7;
+            aiDispersionCoefY = 7;
+        };
+        class far: close {
+            minRange = 700; //1000
+            midRange = 800; //1200
+            maxRange = 1000; //1500
+            aiDispersionCoefX = 8;
+            aiDispersionCoefY = 8;
+        };
+    };
+    //Tunguska
+    class missiles_titan;
+    class CUP_Vmlauncher_9M311_veh: missiles_titan {
+        midRange = 1000; //4500
+        maxRange = 2000; //8000
+        aiRateOfFire = 7; // 5
+    };
+    class CUP_Vmlauncher_Igla_twice_veh: missiles_titan {
+        midRange = 1000; //3100
+        maxRange = 2000; //5200
+        aiRateOfFire = 7; // 5
+    };
+    class CUP_Vmlauncher_Stinger_vehicle_veh: missiles_titan {
+        midRange = 1000; //3100
+        maxRange = 2000; //5200
+        aiRateOfFire = 7; // 5
+    };
+    class CUP_Vmlauncher_RBS70_veh: missiles_titan {
+        midRange = 1000; //3100
+        maxRange = 2000; //5200
+        aiRateOfFire = 7; // 5
+    };
+    class Launcher_Base_F;
+    class CUP_launch_Igla: Launcher_Base_F {
+        midRange = 1000; //2500
+        maxRange = 2000; //4800
+        aiRateOfFire = 7; // 5
+    };
+    class CUP_launch_FIM92Stinger: Launcher_Base_F {
+        midRange = 1000; //2500
+        maxRange = 2000; //4800
+        aiRateOfFire = 7; // 5
+    };
+    class CUP_launch_9K32Strela: Launcher_Base_F {
+        midRange = 1000; //2500
+        maxRange = 2000; //4800
+        aiRateOfFire = 7; // 5
+    };
+
     //Weapons for virtual army faction
     class CUP_arifle_M4A1;
     class CUP_arifle_M4A1_Acog: CUP_arifle_M4A1 {
@@ -908,14 +1048,12 @@ class CfgWeapons {
                 item = "UK3CB_BAF_SpecterLDS";
             };
         };
-    };    
-    class CUP_launch_FIM92Stinger;
+    };
     class CUP_launch_FIM92Stinger_Rubber: CUP_launch_FIM92Stinger {
         scopeArsenal = 1;
         magazines[] = { "CUP_Stinger_M_Rubber" };
         ace_overpressure_damage = 0;
     };
-    class CUP_Vmlauncher_Stinger_vehicle_veh;
     class CUP_Vmlauncher_Stinger_vehicle_veh_Rubber: CUP_Vmlauncher_Stinger_vehicle_veh {
         magazines[] = { "CUP_4Rnd_Stinger_M_Rubber" };
     };

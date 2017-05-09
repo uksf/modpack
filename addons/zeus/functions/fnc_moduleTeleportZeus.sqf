@@ -19,6 +19,6 @@ params ["_logic", "_units", "_activated"];
 
 if !(_activated && local _logic) exitWith {};
 
-player setPosATL (getPosATL _logic);
+(vehicle player) setPosATL (getPosATL _logic);
 
 deleteVehicle _logic;

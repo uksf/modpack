@@ -159,4 +159,12 @@ class CfgVehicles {
             };
         };
     };
+
+    class Tank_F;
+    class CUP_2S6_Base: Tank_F {
+        radarType = 2;
+    };
+    class CUP_ZSU23_Base: Tank_F {
+        radarType = 2;
+    };
 };

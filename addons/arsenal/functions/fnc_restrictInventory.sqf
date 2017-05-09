@@ -37,8 +37,12 @@ params ["_inventory", "_allowed", "_depth", "_removed", ["_restrictedInventory",
             };
         };
     } else {
-        if (_part isEqualType []) then {
-            _restrictedPart = [_part, _allowed, _depth + 1, _removed] call FUNC(restrictInventory);
+        if (_part isEqualType 0) then {
+            _restrictedPart = _part;
+        } else {
+            if (_part isEqualType []) then {
+                _restrictedPart = [_part, _allowed, _depth + 1, _removed] call FUNC(restrictInventory);
+            };
         };
     };
     if (_pushBack) then {

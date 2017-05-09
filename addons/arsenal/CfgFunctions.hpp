@@ -3,6 +3,7 @@ class CfgFunctions {
         class Inventory {
             class arsenal { file = QPATHTOF(functions\fnc_arsenal.sqf); };
             class addVirtualItemCargo { file = QPATHTOF(functions\fnc_addVirtualItemCargo.sqf); };
+            class baseWeapon { file = QPATHTOF(functions\fnc_baseWeapon.sqf); };
         };
     };
     class zade_boc {

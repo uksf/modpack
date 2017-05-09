@@ -3,7 +3,7 @@
         Tim Beswick
 
     Description:
-        Saves given data to profileNamespace and returns save data.
+        Saves given data to profileNamespace and returns saved data.
 
     Parameter(s):
         0: Data to save <ARRAY>
