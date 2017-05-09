@@ -1,5 +1,5 @@
 //Middle Eastern Civs
-ass C_man_p_fugitive_F;
+class C_man_p_fugitive_F;
 class UKSF_TK_Civ_Sheikh : C_man_p_fugitive_F {
     uniformClass = "CUP_O_TKI_Khet_Partug_03";
     headgearList[] = { "CUP_H_TKI_Lungee_Open_05" };
