@@ -70,7 +70,8 @@ class UKSF_TK_Civ_3 : C_man_p_fugitive_F {
         "CUP_H_TKI_SkullCap_03",
         "CUP_H_TKI_SkullCap_04",
         "CUP_H_TKI_SkullCap_05",
-        "CUP_H_TKI_SkullCap_06"    };
+        "CUP_H_TKI_SkullCap_06"
+    };
     displayName = "TakiCiv3";
     faction = "CUP_C_TK";
 };
