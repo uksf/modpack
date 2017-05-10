@@ -4,7 +4,7 @@
         Adam Bridgford, Tim Beswick
 
     Description:
-        Finds empty statics / vehicle nearby
+        Checks if unit is alive.
         
     Parameter(s):
         0: Unit hit <OBJECT>
@@ -18,23 +18,17 @@
 
 #include "script_component.hpp"
 
-params ["_unit", "", "", ""];
 
-if (
-    !(alive _unit)
-) exitWith {};
+params ["_unit", "", "", "_instigator"];
 
-[{
-    params ["_unit"];
+if (!alive _unit ||
+   {!((side _unit) isEqualTo east)}
+) exitwith {};
+hint "3";
+
+params ["_unit","_instigator"];
 
     if (alive _unit) then {
-        _emptyVic = (getPosATL _unit) nearEntities ["Car",30];
-        diag_log _emptyVic;
-        _crew = fullCrew [_vehicle, "gunner"];
-        diag_log _crew;
-        
+        hint "unit alive";
+        _this call FUNC(rf_returnFire);
     };
-}];
-    
-
-

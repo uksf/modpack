@@ -18,9 +18,11 @@ class Extended_PostInit_EventHandlers {
 
 class Extended_Init_Eventhandlers {
     class CAManBase {
-        init = QUOTE((_this select 0) addMPEventHandler [QQUOTE(MPHit), {_this call FUNC(artillerySupport);}]);
+        //init = QUOTE((_this select 0) addMPEventHandler [QQUOTE(MPHit), {_this call FUNC(artillerySupport);}]);
+        init = QUOTE((_this select 0) addMPEventHandler [QQUOTE(MPHit), {_this call FUNC(rf_AliveCheck);}]);
     };
 };
+
 
 /*class Extended_FiredNear_EventHandlers {
     class CAManBase {

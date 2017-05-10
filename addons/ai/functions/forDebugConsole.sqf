@@ -1,40 +1,43 @@
-fnc_mortarFire = {
-    mortar1 commandArtilleryFire [(getPosATL enPos), "8Rnd_82mm_Mo_shells", (floor random [1,4,6])];
-    cooldown = true;
-    [{cooldown = false}, [], 20] call CBA_fnc_waitAndExecute;
-};
-
-unitArray = [RTO,SectLead];
-cooldown = false;
-
-fnc_firedAt = {{_x addEventHandler ["FiredNear", {
-        private _unit = (_this select 0);
-        enPos = _unit findNearestEnemy _unit;
-        if (!cooldown) then {
-            call fnc_mortarFire;
-    }}];         
-    } forEach unitArray};
-
-loop = 0;
 
 
-fnc_aliveCheck = {
-    params ["_args", "_handle"];
-    
-    if (!(alive mortar1)) exitWith {
-        hint "EXITED";
-        [_handle] call CBA_fnc_removePerFrameHandler;
+if (
+    !(alive player)
+) exitWith {};
+
+[{
+
+    if (alive player) then {
+        private _emptyPos = (getPosATL player) nearEntities ["Car",30];
+        hint format ["Posns: %1", _emptyPos];
     };
-
-    if (alive RTO) then {
-    loop = loop +1;
-    hint format ["Mortar alive loops: %1", loop];
-    call fnc_firedAt;
-    } else {
-        hint "RTO NOT ALIVE";
-        [_handle] call CBA_fnc_removePerFrameHandler;
-    }
-};
+}];
 
 
-[{call fnc_aliveCheck}, 5, []] call CBA_fnc_addPerFrameHandler;
+_pos = position player findEmptyPosition [0,30];
+hint format ["Posn: %1", _pos];
+
+////////////////////////
+
+
+params ["_unit", "", "", "_instigator"]; 
+ 
+if (!alive _unit) exitwith {}; 
+ 
+[{ 
+    params ["_unit","_instigator"]; 
+ 
+    if (alive _unit) then { 
+        _wpn = currentWeapon _unit; 
+        _instigatorPos = _unit doTarget (selectRandom units group _instigator); 
+        _unit Fire _wpn; 
+        shots = 0; 
+        _unit addEventHandler ["fired", { 
+            hint format ["Shots: %1",shots]; 
+            if (shots < 20) then { 
+            _unit Fire _wpn; 
+            shots = shots + 1; 
+            }; 
+            _unit removeEventHandler ["fired", 1]; 
+        }]; 
+    }; 
+}];
