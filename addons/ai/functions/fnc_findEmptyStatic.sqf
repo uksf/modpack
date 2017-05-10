@@ -17,6 +17,7 @@
 */
 
 #include "script_component.hpp"
+diag_log "
 
 params ["_unit", "", "", ""];
 
@@ -32,7 +33,7 @@ if (
         diag_log _emptyVic;
         _crew = fullCrew [_vehicle, "gunner"];
         diag_log _crew;
-        
+
     };
 }];
     

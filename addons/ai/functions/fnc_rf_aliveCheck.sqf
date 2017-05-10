@@ -18,17 +18,14 @@
 
 #include "script_component.hpp"
 
+diag_log "===== ALIVECHECK INIT =====";
+
 
 params ["_unit", "", "", "_instigator"];
 
 if (!alive _unit ||
    {!((side _unit) isEqualTo east)}
 ) exitwith {};
-hint "3";
 
-params ["_unit","_instigator"];
 
-    if (alive _unit) then {
-        hint "unit alive";
-        _this call FUNC(rf_returnFire);
-    };
+[_unit,_instigator] call FUNC(rf_returnFire);

@@ -4,7 +4,7 @@
         Adam Bridgford, Tim Beswick
 
     Description:
-        Makes unit fire 20 rounds fast.
+        Makes unit suppress.
         
     Parameter(s):
         0: Unit hit <OBJECT>
@@ -14,8 +14,16 @@
         Nothing
 */
  
- params ["_unit","_instigator"];
- 
+params ["_unit","_instigator"];
+
+{
+    _unit doTarget _instigator;
+    _unit reveal [_instigator, 4];
+    _unit suppressFor 30;
+} forEach units group _unit;
+
+
+ /*
         _wpn = currentWeapon _unit;
         hint format ["%1",_wpn];
         _unit doTarget _instigator;
@@ -31,3 +39,6 @@
             };
             _unit removeEventHandler ["fired", 1];
         }] forEach units group _unit;
+
+
+*/
