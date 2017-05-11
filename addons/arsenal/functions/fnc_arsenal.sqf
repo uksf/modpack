@@ -2716,10 +2716,6 @@ switch _mode do {
             _ctrlTemplateValue lnbsetpicture [[_lbAdd,8],gettext (configfile >> "cfgglasses" >> (_inventory select 4) >> "picture")];
             };
         } else {
-            private _loadouts = ("true" configClasses (configFile >> QGVAR(loadouts)));
-            if (isClass (getMissionConfig QGVAR(loadouts))) then {
-                _loadouts append ("true" configClasses (getMissionConfig QGVAR(loadouts)));
-            };
             {
                 private _name = getText (_x >> "name");
                 private _inventory = call compile (getText (_x >> "loadout"));
@@ -2734,7 +2730,7 @@ switch _mode do {
                 _ctrlTemplateValue lnbSetPicture [[_lbAdd, 8], getText (configFile >> "CfgGlasses" >> (_inventory select 7) >> "picture")]; //Glasses
             
                 false
-            } count _loadouts;
+            } count GVAR(loadoutConfigs);
         };
         _ctrlTemplateValue lnbsort [0,false];
         _ctrlTemplateValue lnbSetCurSelRow 0;
