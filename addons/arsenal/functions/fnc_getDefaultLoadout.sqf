@@ -15,11 +15,7 @@
 
 params ["_loadout"];
 
-private _loadouts = ((format ["getText (_x >> 'name') isEqualTo '%1'", _loadout]) configClasses (configFile >> QGVAR(loadouts)));
-if (isClass (getMissionConfig QGVAR(loadouts))) then {
-    _loadouts append ((format ["getText (_x >> 'name') isEqualTo '%1'", _loadout]) configClasses (getMissionConfig QGVAR(loadouts)));
-};
-
+private _loadouts = GVAR(loadoutConfigs) select {call compile format ["getText (_x >> 'name') isEqualTo '%1'", _loadout]};
 private _loadoutArray = [];
 if ((count _loadouts) > 0) then {
     _loadoutArray = call compile (getText ((_loadouts select 0) >> "loadout"));
