@@ -15,10 +15,6 @@
 */
 #include "script_component.hpp"
 
-#define DISTANCE_MIN 1000
-#define DISTANCE_MULTIPLIER 100
-#define VEHICLE_MULTIPLIER 2.5
-
 params ["_target", "_source", ["_zoomCheck", false]];
 
 private _pos = worldToScreen (getPos _target);

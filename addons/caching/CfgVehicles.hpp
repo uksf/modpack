@@ -17,6 +17,12 @@ class CfgVehicles {
                 typeName = "BOOL";
                 defaultValue = 0;
             };
+            class distance {
+                displayName = QUOTE(Caching Distance);
+                description = QUOTE(Sets caching distance in metres);
+                typeName = "NUMBER";
+                defaultValue = 750;
+            };
         };
         class ModuleDescription {
             description = QUOTE(AI Caching settings);

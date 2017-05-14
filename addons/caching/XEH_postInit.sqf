@@ -5,9 +5,10 @@ if (!GVAR(enabled)) exitWith {
     enableDynamicSimulationSystem false;
 };
 
+INFO("Caching is enabled.");
 enableDynamicSimulationSystem true;
-"Group" setDynamicSimulationDistance 1000;
-"Vehicle" setDynamicSimulationDistance 1000;
+"Group" setDynamicSimulationDistance GVAR(distance);
+"Vehicle" setDynamicSimulationDistance GVAR(distance);
 "EmptyVehicle" setDynamicSimulationDistance 250;
 "Prop" setDynamicSimulationDistance 50;
 "IsMoving" setDynamicSimulationDistanceCoef 2;
