@@ -20,4 +20,3 @@ params ["_logic","_units", "_activated"];
 if !(_activated) exitWith {};
 
 [_logic, QGVAR(enabled), "enabled"] call ace_common_fnc_readSettingFromModule;
-[_logic, QGVAR(distance), "distance"] call ace_common_fnc_readSettingFromModule;

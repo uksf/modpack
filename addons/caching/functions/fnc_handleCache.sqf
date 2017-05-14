@@ -13,42 +13,19 @@
 */
 #include "script_component.hpp"
 
-private _cacheGroups = [];
-private _uncacheGroups = [];
-
 {
-    if ([_x] call FUNC(canCache)) then {
-        _cacheGroups pushBack _x;
+    private _unit = if (!(isNull (getConnectedUAV player))) then {
+        (gunner (getConnectedUAV player))
+    } else {
+        (missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", player])
+    };
+    if (({!(isPlayer _x) && {!(_x getVariable [QGVAR(excluded), false])} && {[_x, _unit, true] call EFUNC(common,lineOfSight)}} count (units _x)) > 0) exitWith {
+        if (dynamicSimulationEnabled _x) then {
+            _x enableDynamicSimulation false;
+        };
+    };
+    if (!(dynamicSimulationEnabled _x) && {!(isPlayer (leader _x))} && {!(_x getVariable [QGVAR(excluded), false])} && {!((vehicle (leader _x)) isKindOf "Air")}) then {
+        _x enableDynamicSimulation true;
     };
     false
 } count allGroups;
-
-{
-    [leader _x] call FUNC(addEventhandler);
-    GVAR(groups) pushBack _x;
-    false
-} count _cacheGroups;
-
-GVAR(groups) = GVAR(groups) select {!isNull _x};
-
-{
-    if ([_x] call FUNC(canUncache)) then {
-        _uncacheGroups pushBack _x;
-    } else {
-        {
-            [_x] call FUNC(cache);
-            false
-        } count (units _x);
-    };
-    false
-} count GVAR(groups);
-
-{
-    {
-        [_x] call FUNC(uncache);
-        false
-    } count (units _x);
-
-    GVAR(groups) deleteAt (GVAR(groups) find _x);
-    false
-} count _uncacheGroups;

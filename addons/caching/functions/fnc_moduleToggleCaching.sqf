@@ -23,7 +23,7 @@ if !(_activated && local _logic) exitWith {};
 if (_typeName != "OBJECT" && {!(alive _unit)}) then {
     ["Place on a living unit or vehicle"] call ace_common_fnc_displayTextStructured;
 } else {
-    _unit = effectivecommander _unit;
+    private _unit = effectivecommander _unit;
     if !(_unit isKindOf "CAManBase") then {
         ["Unit must be infantry"] call ace_common_fnc_displayTextStructured;
     } else {
@@ -31,7 +31,7 @@ if (_typeName != "OBJECT" && {!(alive _unit)}) then {
             ["Unit must be alive"] call ace_common_fnc_displayTextStructured;
         } else {
             if (!((group _unit) getVariable [QGVAR(excluded), false])) then {
-                (group _unit) setVariable [QGVAR(excluded), true, true];
+                [_unit] call FUNC(disableCache);
                 ["Group excluded from caching"] call ace_common_fnc_displayTextStructured;
             } else {
                 (group _unit) setVariable [QGVAR(excluded), false, true];

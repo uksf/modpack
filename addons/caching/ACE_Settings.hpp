@@ -6,11 +6,4 @@ class ACE_Settings {
         typeName = "BOOL";
         value = 0;
     };
-    class GVAR(distance) {
-        category = "ACE";
-        displayName = QUOTE(Caching Distance);
-        description = QUOTE(Sets caching distance in metres);
-        typeName = "SCALAR";
-        value = 1250;
-    };
 };
