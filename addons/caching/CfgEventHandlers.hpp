@@ -17,6 +17,11 @@ class Extended_PostInit_EventHandlers {
 };
 
 class Extended_Init_EventHandlers {
+    class All {
+        class ADDON {
+            killed = QUOTE([QGVAR(disableCache), _this] call CBA_fnc_serverEvent;);
+        };
+    };
     class B_UAV_AI {
         class ADDON {
             init = QUOTE((group (_this select 0)) setVariable [ARR_3(QQGVAR(excluded), true, true)];);

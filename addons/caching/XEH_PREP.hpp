@@ -1,4 +1,5 @@
 PREP(initModuleSettings);
 PREP(moduleToggleCaching);
-PREP(handleCache);
+PREP(checkGroupsServer);
+PREP(checkGroupsClient);
 PREP(disableCache);

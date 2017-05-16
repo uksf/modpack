@@ -20,4 +20,5 @@ params [["_entity", objNull, [grpNull, objNull]]];
 _entity setVariable [QGVAR(excluded), true, true];
 if (dynamicSimulationEnabled _entity) then {
     _entity enableDynamicSimulation false;
+    _entity enableSimulationGlobal true;
 };

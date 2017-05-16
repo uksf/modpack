@@ -13,5 +13,5 @@
     versionAct = QUOTE(call COMPILE_FILE(init_versionTooltip))
 
 #define DISTANCE_MIN 1000
-#define DISTANCE_MULTIPLIER 100
+#define DISTANCE_MULTIPLIER 200
 #define VEHICLE_MULTIPLIER 2.5
