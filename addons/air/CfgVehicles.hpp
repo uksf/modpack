@@ -1,5 +1,10 @@
 class CfgVehicles {
-    class Helicopter;
+    class Air;
+    class Helicopter: Air {
+        explosionShielding = 0.5;
+        epeImpulseDamageCoef = 0;
+        crewCrashProtection = 1;
+    };
     class Helicopter_Base_F: Helicopter {
         class ACE_Actions;
         class Turrets;
@@ -14,7 +19,24 @@ class CfgVehicles {
             class CopilotTurret;
         };
     };
+    class Heli_Light_01_base_F: Helicopter_Base_H {
+        epeImpulseDamageCoef = 0;
+    };
     class Plane_Base_F;
+    class Plane: Air {
+        explosionShielding = 0.5;
+        epeImpulseDamageCoef = 0;
+        crewCrashProtection = 1;
+    };
+    class Plane_CAS_01_base_F: Plane_Base_F {
+        epeImpulseDamageCoef = 0;
+    };
+    class Plane_CAS_02_base_F: Plane_Base_F {
+        epeImpulseDamageCoef = 0;
+    };
+    class Plane_Fighter_03_base_F: Plane_Base_F {
+        epeImpulseDamageCoef = 0;
+    };
     
     #include "vehicles\CfgBuzzard.hpp"
     #include "vehicles\CfgC130.hpp"
