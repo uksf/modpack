@@ -18,3 +18,5 @@ class CfgPatches {
 
 #include "CfgEventHandlers.hpp"
 #include "CfgFunctions.hpp"
+#include "CfgLoadouts.hpp"
+#include "RscDisplayArsenal.hpp"

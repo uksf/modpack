@@ -24,7 +24,10 @@ class CfgAmmo{
         hit = 5; //Increased from 2, 4, 10
     };
 
-    class MissileBase;
+    class MissileCore;
+    class MissileBase: MissileCore {
+        timeToLive = 30;
+    };
     class CUP_M_AGM_114K_Hellfire_II_AT: MissileBase {
         model = QPATHTOF(data\AGM114\AGM114Hellfire.p3d);
         proxyShape = QPATHTOF(data\AGM114\AGM114Hellfire_proxy.p3d);
@@ -113,6 +116,7 @@ class CfgAmmo{
         indirectHit = 15;
         indirectHitRange = 4;
         tracerEndTime = 30;
+        timeToLive = 30;
         caliber = 4.2;
     };
     class M_Titan_AA;

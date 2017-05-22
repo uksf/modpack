@@ -18,7 +18,7 @@ params ["_plane"];
 if ("USAF_1Rnd_AGM88" in magazines _plane) then {    
     _targets = vehicles select {
         alive _x && 
-        {_x distance _plane <= 5000} && 
+        {_x distance _plane <= 8000} && 
         {_x isKindOf "Landvehicle" || _x isKindOf "Ship"} && 
         {side _plane != side _x} && 
         {_x getVariable ["USAF_AGM_FIRED_AT_TARGET", false]} && 

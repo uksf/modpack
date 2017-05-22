@@ -13,7 +13,16 @@ class CfgPatches {
             "UKSF_B_Sniper",
             "UKSF_B_Pilot_7",
             "UKSF_B_Pilot_656",
-            "UKSF_B_Pilot_617"
+            "UKSF_B_Pilot_617",
+            "UKSF_TK_Civ_Mullah",
+            "UKSF_TK_Civ_Sheikh",
+            "UKSF_TK_Civ_1",
+            "UKSF_TK_Civ_2",
+            "UKSF_TK_Civ_3",
+            "UKSF_TK_Civ_4",
+            "UKSF_TK_Civ_5",
+            "UKSF_TK_Civ_6",
+            "UKSF_TK_Civ_7"
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
