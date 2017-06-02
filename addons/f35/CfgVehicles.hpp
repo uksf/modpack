@@ -1,7 +1,19 @@
+class DefaultVehicleSystemsDisplayManagerRight;
+class DefaultVehicleSystemsDisplayManagerLeft;
+class SensorTemplateActiveRadar;
+class SensorTemplateAntiRadiation;
+class SensorTemplateIR;
+class SensorTemplateLaser;
+class SensorTemplateMan;
+class SensorTemplateNV;
+class SensorTemplatePassiveRadar;
+class SensorTemplateVisual;
 class CfgVehicles {
-    class Plane_Fighter_01_Base_F;
-    delete USAF_F35A;
-    class USAF_F35A: Plane_Fighter_01_Base_F {
+    class Plane;
+    class Plane_Base_F: Plane {
+        class Components;
+    };
+    class USAF_F35A: Plane_Base_F {
         scope = 2;
         scopeCurator = 2;
         displayName = "F-35A";
@@ -457,10 +469,10 @@ class CfgVehicles {
             };
         };
     };
-    delete USAF_F35A_ejection_seat;
+    class B_Ejection_Seat_Plane_Fighter_01_F;
     class USAF_F35A_ejection_seat: B_Ejection_Seat_Plane_Fighter_01_F {
         faction = "CUP_B_GB";
-        crew = "B_pilot_F";
+        crew = "UKSF_B_Pilot_617";
         model = "\usaf_f35A\usaf_f35A_ejection_seat.p3d";
     };
     class StaticAmmocart;
@@ -483,7 +495,6 @@ class CfgVehicles {
         faction = "CUP_B_GB";
         editorSubcategory = QEGVAR(common,objects);
     };
-    class Plane;
     class CUP_F35B_base: Plane {
         maxSpeed = 1930;
         envelope[] = { 0, 1.75, 5.9, 7, 9.8, 10.3, 10.5, 10.9, 9.2, 7.8, 5, 3.8, 0.5, 0 };

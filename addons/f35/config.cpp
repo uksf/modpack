@@ -9,8 +9,8 @@ class CfgPatches {
         requiredAddons[] = {    
             "uksf_gear",         
             "USAF_F35A",
-            "USAF_Missilebox"/*,
-            "DynaSound_DS_w_20mmgatling"*/
+            "USAF_Missilebox",
+            "DynaSound_DS_w_20mmgatling"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
@@ -25,4 +25,4 @@ class cba_Extended_EventHandlers;
 #include "CfgRscUI.hpp"
 #include "CfgSounds.hpp"
 #include "CfgVehicles.hpp"
-//#include "CfgWeapons.hpp"
+#include "CfgWeapons.hpp"
