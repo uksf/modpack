@@ -45,6 +45,55 @@ class CUP_Merlin_HC3_Base: Helicopter_Base_H {
     attenuationEffectType = "SemiOpenHeliAttenuation";
     unitInfoType = "Rsc_UKSF_Air_Limited";
     unitInfoTypeLite = "Rsc_UKSF_Air_Limited";
+    class Components : Components {
+        class VehicleSystemsDisplayManagerComponentLeft : DefaultVehicleSystemsDisplayManagerLeft {
+            defaultDisplay = "EmptyDisplay";
+            class Components {
+                class SensorsDisplay {
+                    componentType = "SensorsDisplayComponent";
+                    range[] = { 16000,8000,4000,2000 };
+                    resource = "RscCustomInfoSensors";
+                };
+                class CrewDisplay {
+                    componentType = "CrewDisplayComponent";
+                    resource = "RscCustomInfoCrew";
+                };
+                class MinimapDisplay {
+                    componentType = "MinimapDisplayComponent";
+                    resource = "RscCustomInfoMiniMap";
+                };
+                class EmptyDisplay {
+                    componentType = "EmptyDisplayComponent";
+                };
+            };
+        };
+        class VehicleSystemsDisplayManagerComponentRight : DefaultVehicleSystemsDisplayManagerRight {
+            defaultDisplay = "SensorsDisplay";
+            class Components {
+                class SensorsDisplay {
+                    componentType = "SensorsDisplayComponent";
+                    range[] = { 16000,8000,4000,2000 };
+                    resource = "RscCustomInfoSensors";
+                };
+                class CrewDisplay {
+                    componentType = "CrewDisplayComponent";
+                    resource = "RscCustomInfoCrew";
+                };
+                class MinimapDisplay {
+                    componentType = "MinimapDisplayComponent";
+                    resource = "RscCustomInfoMiniMap";
+                };
+                class EmptyDisplay {
+                    componentType = "EmptyDisplayComponent";
+                };
+            };
+        };
+        class SensorsManagerComponent {
+            class Components {
+                class PassiveSensorComponent : SensorTemplatePassiveRadar {};
+            };
+        };
+    };
     #include "MFDMerlin.hpp"
     class ACE_Actions: ACE_Actions {
         class ACE_MainActions: ACE_MainActions {

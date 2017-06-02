@@ -1,3 +1,13 @@
+class DefaultVehicleSystemsDisplayManagerRight;
+class DefaultVehicleSystemsDisplayManagerLeft;
+class SensorTemplateActiveRadar;
+class SensorTemplateAntiRadiation;
+class SensorTemplateIR;
+class SensorTemplateLaser;
+class SensorTemplateMan;
+class SensorTemplateNV;
+class SensorTemplatePassiveRadar;
+class SensorTemplateVisual;
 class CfgVehicles {
     class CUP_B_AH64D_NO_USA;
     class CUP_B_AH1_NO_BAF: CUP_B_AH64D_NO_USA {
@@ -69,6 +79,7 @@ class CfgVehicles {
         class RotorLibHelicopterProperties;
         class WeaponCloudsMGun;
         class Sounds;
+        class Components;
     };
     class UKSF_Apache_base: Heli_Attack_01_base_F {
         scope = 1;
@@ -83,7 +94,9 @@ class CfgVehicles {
         availableForSupportTypes[] = { "CAS_Heli" };
         armor = 100;
         fuelCapacity = 300;
-        crewCrashProtection = 0.01;
+        explosionShielding = 0.5;
+        epeImpulseDamageCoef = 0;
+        crewCrashProtection = 0.5;
         enableManualFire = 1;
         copilotHasFlares = 1;
         memoryPointLMissile = "missile_1";
@@ -160,7 +173,7 @@ class CfgVehicles {
                 initTurn = 0;
                 minTurn = -110;
                 maxTurn = 110;
-                weapons[] = { "CUP_weapon_mastersafe", "CUP_Laserdesignator_mounted", "CUP_Vacannon_M230_veh_Enhanced", "CUP_AGM114L_Hellfire_II_Launcher_W", "CUP_AGM114N_Hellfire_II_Launcher_W" };
+                weapons[] = { "CUP_weapon_mastersafe", "CUP_Laserdesignator_mounted", "CUP_Vacannon_M230_veh", "CUP_AGM114L_Hellfire_II_Launcher_W", "CUP_AGM114N_Hellfire_II_Launcher_W" };
                 magazines[] = { "Laserbatteries", "CUP_1200Rnd_TE1_Red_Tracer_30x113mm_M789_HEDP_M", "CUP_4Rnd_AGM114L_Hellfire_II_M", "CUP_4Rnd_AGM114N_Hellfire_II_M" };
                 gunnerAction = "AH64_gunner_EP1";
                 gunnerGetInAction = "pilot_Heli_Light_02_Enter";
@@ -562,6 +575,168 @@ class CfgVehicles {
                 hideOnUse = 0;
                 condition = QUOTE((player isEqualTo (driver this) || player isEqualTo (gunner this)) && {(this getVariable [ARR_2(QQGVAR(jammerMode),0)]) != 0});
                 statement = QUOTE(this setVariable [ARR_3(QQGVAR(jammerMode),0,true)]);
+            };
+        };
+        class Components : Components {
+            class VehicleSystemsDisplayManagerComponentLeft : DefaultVehicleSystemsDisplayManagerLeft {
+                defaultDisplay = "EmptyDisplay";
+                class Components {
+                    class MissileDisplay {
+                        componentType = "TransportFeedDisplayComponent";
+                        source = "Missile";
+                    };
+                    class VehicleGunnerDisplay {
+                        componentType = "TransportFeedDisplayComponent";
+                        source = "PrimaryGunner";
+                    };
+                    class SensorsDisplay {
+                        componentType = "SensorsDisplayComponent";
+                        range[] = { 16000,8000,4000,2000 };
+                        resource = "RscCustomInfoSensors";
+                    };
+                    class CrewDisplay {
+                        componentType = "CrewDisplayComponent";
+                        resource = "RscCustomInfoCrew";
+                    };
+                    class MinimapDisplay {
+                        componentType = "MinimapDisplayComponent";
+                        resource = "RscCustomInfoMiniMap";
+                    };
+                    class EmptyDisplay {
+                        componentType = "EmptyDisplayComponent";
+                    };
+                };
+            };
+            class VehicleSystemsDisplayManagerComponentRight : DefaultVehicleSystemsDisplayManagerRight {
+                defaultDisplay = "SensorsDisplay";
+                class Components {
+                    class MissileDisplay {
+                        componentType = "TransportFeedDisplayComponent";
+                        source = "Missile";
+                    };
+                    class VehicleGunnerDisplay {
+                        componentType = "TransportFeedDisplayComponent";
+                        source = "PrimaryGunner";
+                    };
+                    class SensorsDisplay {
+                        componentType = "SensorsDisplayComponent";
+                        range[] = { 16000,8000,4000,2000 };
+                        resource = "RscCustomInfoSensors";
+                    };
+                    class CrewDisplay {
+                        componentType = "CrewDisplayComponent";
+                        resource = "RscCustomInfoCrew";
+                    };
+                    class MinimapDisplay {
+                        componentType = "MinimapDisplayComponent";
+                        resource = "RscCustomInfoMiniMap";
+                    };
+                    class EmptyDisplay {
+                        componentType = "EmptyDisplayComponent";
+                    };
+                };
+            };
+            class SensorsManagerComponent {
+                class Components {
+                    class IRSensorComponent : SensorTemplateIR {
+                        aimDown = 30;
+                        animDirection = "MainTurret";
+                        angleRangeHorizontal = 30;
+                        angleRangeVertical = 30;
+                        maxTrackableSpeed = 110;
+                        class AirTarget {
+                            maxRange = 5000;
+                            minRange = 50;
+                            objectDistanceLimitCoef = 1;
+                            viewDistanceLimitCoef = 1;
+                        };
+                        class GroundTarget {
+                            maxRange = 5000;
+                            minRange = 50;
+                            objectDistanceLimitCoef = 1;
+                            viewDistanceLimitCoef = 1;
+                        };
+                    };
+                    class VisualSensorComponent : SensorTemplateVisual {
+                        aimDown = 30;
+                        animDirection = "MainTurret";
+                        angleRangeHorizontal = 30;
+                        angleRangeVertical = 30;
+                        maxTrackableSpeed = 110;
+                        class AirTarget {
+                            maxRange = 4000;
+                            minRange = 50;
+                            objectDistanceLimitCoef = 1;
+                            viewDistanceLimitCoef = 1;
+                        };
+                        class GroundTarget {
+                            maxRange = 4000;
+                            minRange = 50;
+                            objectDistanceLimitCoef = 1;
+                            viewDistanceLimitCoef = 1;
+                        };
+                    };
+                    class ActiveRadarComponent : SensorTemplateActiveRadar {
+                        aimDown = 0;
+                        angleRangeHorizontal = 360;
+                        angleRangeVertical = 360;
+                        typeRecognitionDistance = 8000;
+                        maxGroundNoiseDistance = 50;
+                        minSpeedThreshold = 3;
+                        maxSpeedThreshold = 24;
+                        class AirTarget {
+                            maxRange = 8000;
+                            minRange = 0;
+                            objectDistanceLimitCoef = -1;
+                            viewDistanceLimitCoef = -1;
+                        };
+                        class GroundTarget {
+                            maxRange = 8000;
+                            minRange = 0;
+                            objectDistanceLimitCoef = -1;
+                            viewDistanceLimitCoef = -1;
+                        };
+                    };
+                    class PassiveSensorComponent : SensorTemplatePassiveRadar {};
+                    class NVSensorComponent : SensorTemplateNV {
+                        aimDown = 0;
+                        animDirection = "MainTurret";
+                        angleRangeHorizontal = 30;
+                        angleRangeVertical = 30;
+                        maxTrackableSpeed = 110;
+                        class AirTarget {
+                            maxRange = 2000;
+                            minRange = 50;
+                            objectDistanceLimitCoef = 1;
+                            viewDistanceLimitCoef = 1;
+                        };
+                        class GroundTarget {
+                            maxRange = 2000;
+                            minRange = 50;
+                            objectDistanceLimitCoef = 1;
+                            viewDistanceLimitCoef = 1;
+                        };
+                    };
+                    class LaserSensorComponent : SensorTemplateLaser {
+                        aimDown = 45;
+                        animDirection = "MainTurret";
+                        angleRangeHorizontal = 180;
+                        angleRangeVertical = 180;
+                        maxTrackableSpeed = 110;
+                        class AirTarget {
+                            maxRange = 8000;
+                            minRange = 500;
+                            objectDistanceLimitCoef = 1;
+                            viewDistanceLimitCoef = 1;
+                        };
+                        class GroundTarget {
+                            maxRange = 8000;
+                            minRange = 500;
+                            objectDistanceLimitCoef = 1;
+                            viewDistanceLimitCoef = 1;
+                        };
+                    };
+                };
             };
         };
     };
