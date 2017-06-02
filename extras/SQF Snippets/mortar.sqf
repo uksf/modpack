@@ -52,3 +52,11 @@ if (!isServer) exitWith {};
 }, [_this], 360] call CBA_fnc_waitAndExecute;
 
 nil
+
+
+//
+(vehicle player) removeWeapon "CUP_Vacannon_M230_veh_Enhanced";
+(vehicle player) addWeapon "CUP_Vacannon_M230_veh";
+//
+(vehicle player) removeMagazines "CUP_1200Rnd_TE1_Red_Tracer_30x113mm_M789_HEDP_M";
+(vehicle player) addMagazine "CUP_1200Rnd_TE1_Red_Tracer_30x113mm_M789_HEDP_M";
