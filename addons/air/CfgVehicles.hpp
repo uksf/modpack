@@ -11,7 +11,7 @@ class SensorTemplateVisual;
 class CfgVehicles {
     class Air;
     class Helicopter: Air {
-        explosionShielding = 0.5;
+        explosionShielding = 0.7;
         epeImpulseDamageCoef = 0;
         crewCrashProtection = 1;
     };
@@ -35,7 +35,7 @@ class CfgVehicles {
     };
     class Plane_Base_F;
     class Plane: Air {
-        explosionShielding = 0.5;
+        explosionShielding = 0.6;
         epeImpulseDamageCoef = 0;
         crewCrashProtection = 1;
     };
