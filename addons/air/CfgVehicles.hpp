@@ -23,7 +23,7 @@ class CfgVehicles {
             class MainTurret;
             class CopilotTurret;
         };        
-		class Components;
+        class Components;
     };
     class Plane_Base_F;
     
