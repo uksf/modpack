@@ -11,6 +11,6 @@ class ACE_Settings {
         displayName = QUOTE(Caching Distance);
         description = QUOTE(Sets caching distance in metres);
         typeName = "SCALAR";
-        value = 1250;
+        value = 750;
     };
 };

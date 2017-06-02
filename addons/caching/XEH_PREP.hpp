@@ -1,10 +1,5 @@
 PREP(initModuleSettings);
 PREP(moduleToggleCaching);
-PREP(handleCache);
-PREP(cache);
-PREP(uncache);
-PREP(canCache);
-PREP(canUncache);
-PREP(addEventhandler);
-PREP(killed);
-PREP(getOut);
+PREP(checkGroupsServer);
+PREP(checkGroupsClient);
+PREP(disableCache);

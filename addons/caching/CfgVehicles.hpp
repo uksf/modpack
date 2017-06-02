@@ -21,7 +21,7 @@ class CfgVehicles {
                 displayName = QUOTE(Caching Distance);
                 description = QUOTE(Sets caching distance in metres);
                 typeName = "NUMBER";
-                defaultValue = 1250;
+                defaultValue = 750;
             };
         };
         class ModuleDescription {
