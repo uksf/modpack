@@ -483,7 +483,7 @@ class CfgWeapons {
         magazines[] = {
             "UK3CB_BAF_762_200Rnd_T","UK3CB_BAF_762_200Rnd","UK3CB_BAF_762_200Rnd_Blank","UK3CB_BAF_762_100Rnd_T","UK3CB_BAF_762_100Rnd","UK3CB_BAF_762_100Rnd_Blank","UK3CB_BAF_762_100Rnd_EL","UK3CB_BAF_762_100Rnd_T_EL","UK3CB_BAF_762_200Rnd_EL","UK3CB_BAF_762_200Rnd_T_EL"
         };
-        /*class Single: Mode_SemiAuto {
+        class Single: Mode_SemiAuto {
             sounds[] = { "StandardSound" };
             class BaseSoundModeType;
             class StandardSound: BaseSoundModeType {
@@ -496,7 +496,7 @@ class CfgWeapons {
             class StandardSound: BaseSoundModeType {
                 soundSetShot[] = { "DS_CoaxMG_Closure_SoundSet","DS_CoaxMG_Shot_SoundSet","DS_mmg1_Tail_SoundSet" };
             };
-        };*/
+        };
         class WeaponSlotsInfo;
     };
     class UK3CB_BAF_L7A2_FIST: UK3CB_BAF_L7A2 {
@@ -506,7 +506,7 @@ class CfgWeapons {
     };
     class Rifle_Long_Base_F;
     class UK3CB_BAF_L110_Base: Rifle_Long_Base_F {
-        /*class Single: Mode_SemiAuto {
+        class Single: Mode_SemiAuto {
             class BaseSoundModeType;
             class StandardSound: BaseSoundModeType {
                 soundSetShot[] = {     "DS_zafir_Closure_SoundSet","DS_zafir_Shot_SoundSet","DS_lmg1_Tail_SoundSet" };
@@ -517,10 +517,10 @@ class CfgWeapons {
             class StandardSound: BaseSoundModeType {
                 soundSetShot[] = {     "DS_zafir_Closure_SoundSet","DS_zafir_Shot_SoundSet","DS_lmg1_Tail_SoundSet" };
             };
-        };*/
+        };
     };
     class UK3CB_BAF_L110_556_Base: UK3CB_BAF_L110_Base {
-        /*class Single: Mode_SemiAuto {
+        class Single: Mode_SemiAuto {
             class BaseSoundModeType;
             class StandardSound: BaseSoundModeType {
                 soundSetShot[] = {     "DS_zafir_Closure_SoundSet","DS_zafir_Shot_SoundSet","DS_lmg1_Tail_SoundSet" };
@@ -531,10 +531,10 @@ class CfgWeapons {
             class StandardSound: BaseSoundModeType {
                 soundSetShot[] = {     "DS_zafir_Closure_SoundSet","DS_zafir_Shot_SoundSet","DS_lmg1_Tail_SoundSet" };
             };
-        };*/
+        };
     };
     class UK3CB_BAF_L110_762_Base: UK3CB_BAF_L110_Base {
-        /*class Single: Mode_SemiAuto {
+        class Single: Mode_SemiAuto {
             class BaseSoundModeType;
             class StandardSound: BaseSoundModeType {
                 soundSetShot[] = { "DS_CoaxMG_Closure_SoundSet","DS_CoaxMG_Shot_SoundSet","DS_mmg1_Tail_SoundSet" };
@@ -545,7 +545,7 @@ class CfgWeapons {
             class StandardSound: BaseSoundModeType {
                 soundSetShot[] = { "DS_CoaxMG_Closure_SoundSet","DS_CoaxMG_Shot_SoundSet","DS_mmg1_Tail_SoundSet" };
             };
-        };*/
+        };
     };
     class LMG_RCWS;
     class MGun;
@@ -553,24 +553,24 @@ class CfgWeapons {
         magazines[] = {
             "UK3CB_BAF_762_200Rnd_T","UK3CB_BAF_762_200Rnd","UK3CB_BAF_762_200Rnd_Blank","UK3CB_BAF_762_100Rnd_T","UK3CB_BAF_762_100Rnd","UK3CB_BAF_762_100Rnd_Blank","UK3CB_BAF_762_100Rnd_EL","UK3CB_BAF_762_100Rnd_T_EL","UK3CB_BAF_762_200Rnd_EL","UK3CB_BAF_762_200Rnd_T_EL"
         };
-        /*class manual: MGun {
+        class manual: MGun {
             sounds[] = { "StandardSound" };
             class StandardSound {
                 soundSetShot[] = { "DS_CoaxMG_Closure_SoundSet","DS_CoaxMG_Shot_SoundSet","DS_lmg1_Tail_SoundSet" };
             };
-        };*/
+        };
     };
     class GM6_base_F;
     class srifle_GM6_F: GM6_base_F {
         class Single;
     };
     class UK3CB_BAF_L135A1: srifle_GM6_F {
-        /*class Single: Single {
+        class Single: Single {
             class BaseSoundModeType {};
             class StandardSound: BaseSoundModeType {
                 soundSetShot[] = { "DS_sniper1_crackling_SoundSet","DS_lrr_Shot_SoundSet","DS_sniper1_Tail_SoundSet" };
             };
-        };*/
+        };
     };
 
     class UK3CB_BAF_L85A2_RIS;
@@ -693,24 +693,12 @@ class CfgWeapons {
     };
     class CUP_AGM114N_Hellfire_II_Launcher_W: CUP_Vmlauncher_AGM114N_veh {};
     class CannonCore;
-    class gatling_30mm: CannonCore {
-        class LowROF;
-        class close;
-        class near;
-        class short;
-        class medium;
-        class far;
-    };
-    class CUP_Vacannon_M230_veh_Enhanced: gatling_30mm {
-        scope = 1;
-        author = "UKSF";
-        displayName = "Chain Gun M230 30mm";
+    class CUP_Vacannon_M230_veh: CannonCore {
         magazines[] = { "CUP_1200Rnd_TE1_Red_Tracer_30x113mm_M789_HEDP_M","CUP_1200Rnd_TE1_Green_Tracer_30x113mm_M789_HEDP_M","CUP_1200Rnd_TE1_Yellow_Tracer_30x113mm_M789_HEDP_M","CUP_1200Rnd_TE1_White_Tracer_30x113mm_M789_HEDP_M" };
-        canLock = 2;
         ballisticsComputer = "4 + 2 + 1";
-        reloadMagazineSound[] = { "", 1, 1};
-        modes[] = { "Burst10","Burst20","Burst50","close","near","short","medium","far" };
-        cursorAim = "EmptyCursor";        
+        reloadTime = 0.096;
+        modes[] = { "close", "short", "medium", "far", "manual", "burst_15", "burst_25" };
+        cursorAim = "EmptyCursor";      
         class GunParticles {
             class EffectSmokeLeft {
                 effectName = "MachineGun2";
@@ -728,69 +716,21 @@ class CfgWeapons {
                 effectName = "MachineGunCartridge1";
             };
         };
-        class Burst10: Mode_FullAuto {
+        class manual: CannonCore {
             displayName = "Burst 10";
             textureType = "semi";
-            reloadTime = 0.096;
-            sounds[] = { "StandardSound" };
-            class StandardSound {
-                //soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
-                soundSetShot[] = {"CUP_M230_Shot_SoundSet","CUP_sniper1_Tail_SoundSet"};
-            };
-            autoFire = 1;
             burst = 10;
-            minRange = 1000;
-            minRangeProbab = 0.03;
-            midRange = 2000;
-            midRangeProbab = 0.02;
-            maxRange = 3000;
-            maxRangeProbab = 0.01;
-            showToPlayer = 1;
+            soundBurst = 0;
         };
-        class Burst20: Burst10 {
-            displayName = "20 Burst";
+        class burst_15: manual {
+            displayName = "Burst 20 ";
             textureType = "burst";
             burst = 20;
         };
-        class Burst50: Burst20 {
+        class burst_25: manual {
             displayName = "Full";
             textureType = "fullAuto";
             burst = 1;
-        };
-        class close: close {
-            reloadTime = 0.096;
-            class StandardSound {
-                //soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
-                soundSetShot[] = {"CUP_M230_Shot_SoundSet","CUP_sniper1_Tail_SoundSet"};
-            };
-        };
-        class near: near {
-            reloadTime = 0.096;
-            class StandardSound {
-                //soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
-                soundSetShot[] = {"CUP_M230_Shot_SoundSet","CUP_sniper1_Tail_SoundSet"};
-            };
-        };
-        class short: short{
-            reloadTime = 0.096;
-            class StandardSound {
-                //soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
-                soundSetShot[] = {"CUP_M230_Shot_SoundSet","CUP_sniper1_Tail_SoundSet"};
-            };
-        };
-        class medium: medium {
-            reloadTime = 0.096;
-            class StandardSound {
-                //soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
-                soundSetShot[] = {"CUP_M230_Shot_SoundSet","CUP_sniper1_Tail_SoundSet"};
-            };
-        };
-        class far: far {
-            reloadTime = 0.096;
-            class StandardSound {
-                //soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
-                soundSetShot[] = {"CUP_M230_Shot_SoundSet","CUP_sniper1_Tail_SoundSet"};
-            };
         };
     };
     class CUP_Vacannon_M621_AW159_veh: CannonCore {
@@ -808,7 +748,7 @@ class CfgWeapons {
         };
         cartridgePos = "eject_1";
         cartridgeVel = "eject_1_dir";
-        /*class manual: MGun {
+        class manual: MGun {
             class StandardSound {
                 //soundSetShot[] = { "DS_20mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
                 begin1[] = { "A3\Sounds_F\arsenal\weapons_vehicles\gatling_20mm\20mm_01_burst", 3.98107, 1, 1300, {2, 35740} };
@@ -817,7 +757,7 @@ class CfgWeapons {
                 closure2[] = { "A3\sounds_f\weapons\closure\sfx11", 0.63095737, 1.2, 20 };
                 soundClosure[] = { "closure1", 0.5, "closure2", 0.5 };
             };
-        };*/
+        };
     };
     class CUP_Vmlauncher_FFAR_veh;
     class RocketPods;
@@ -841,32 +781,32 @@ class CfgWeapons {
     class CUP_Vlmg_M240_veh: MGun {
         displayName = "L7A2";
         magazines[] = { "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M","CUP_200Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M","CUP_100Rnd_TE4_LRT4_White_Tracer_762x51_Belt_M","CUP_200Rnd_TE4_LRT4_White_Tracer_762x51_Belt_M","CUP_1200Rnd_TE4_White_Tracer_762x51_M240_M","CUP_100Rnd_TE4_White_Tracer_762x51_M240_M","CUP_1200Rnd_TE4_Red_Tracer_762x51_M240_M",,"UK3CB_BAF_762_200Rnd_T","UK3CB_BAF_762_200Rnd","UK3CB_BAF_762_200Rnd_Blank","UK3CB_BAF_762_100Rnd_T","UK3CB_BAF_762_100Rnd","UK3CB_BAF_762_100Rnd_Blank","UK3CB_BAF_762_100Rnd_EL","UK3CB_BAF_762_100Rnd_T_EL","UK3CB_BAF_762_200Rnd_EL","UK3CB_BAF_762_200Rnd_T_EL" };
-        /*class manual: MGun {
+        class manual: MGun {
             sounds[] = { "StandardSound" };
             class StandardSound {
                 soundSetShot[] = { "DS_CoaxMG_Closure_SoundSet","DS_CoaxMG_Shot_SoundSet","DS_lmg1_Tail_SoundSet" };
             };
-        };*/
+        };
     };
     class HMG_M2;
     class CUP_Vhmg_M2_veh: HMG_M2 {
         displayName = "L111A1";
         magazines[] = { "CUP_100Rnd_127x99_M","CUP_100Rnd_TE4_Red_Tracer_127x99_M","CUP_100Rnd_TE4_Green_Tracer_127x99_M","CUP_100Rnd_TE4_Yellow_Tracer_127x99_M","CUP_100Rnd_TE4_White_Tracer_127x99_M","CUP_100Rnd_TE1_Red_Tracer_127x99_M","CUP_100Rnd_TE1_Green_Tracer_127x99_M","CUP_100Rnd_TE1_Yellow_Tracer_127x99_M","CUP_100Rnd_TE1_White_Tracer_127x99_M","CUP_200Rnd_TE1_Red_Tracer_127x99_M","UK3CB_BAF_127_100Rnd" };
-        /*class manual: MGun {
+        class manual: MGun {
             class StandardSound {
                 soundSetShot[] = { "DS_HMG_Shot_SoundSet","DS_sniper1_Tail_SoundSet" };
             };
-        };*/
+        };
     };
     class GMG_20mm;
     class GMG_F;
     class CUP_Vhmg_AGS30_veh: GMG_20mm {
-        /*class manual: GMG_F {
+        class manual: GMG_F {
             sounds[] = { "StandardSound" };
             class StandardSound {
                 soundSetShot[] = { "DS_GMG_Shot_SoundSet","DS_mmg1_Tail_SoundSet" };
             };
-        };*/
+        };
     };
     class CUP_Vgmg_MK19_veh: CUP_Vhmg_AGS30_veh {
         displayName = "L134A1";
@@ -874,7 +814,7 @@ class CfgWeapons {
     };
     class MGunCore;
     class CUP_Vlmg_M134_veh: MGunCore {
-        /*class LowROF: Mode_FullAuto {
+        class LowROF: Mode_FullAuto {
             sounds[] = { "StandardSound" };
             class StandardSound {
                 soundSetShot[] = { "DS_Minigun762_Shot_SoundSet","DS_mmg1_Tail_SoundSet" };
@@ -885,7 +825,46 @@ class CfgWeapons {
             class StandardSound {
                 soundSetShot[] = { "DS_Minigun762_Shot_SoundSet","DS_mmg1_Tail_SoundSet" };
             };
-        };*/
+        };
+    };
+    delete gatling_30mm;
+    class gatling_30mm_base: CannonCore {
+        class LowROF: Mode_FullAuto {
+            class StandardSound {
+                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
+            };
+            soundContinuous = 0;
+        };
+        class close: LowROF {
+            class StandardSound {
+                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
+            };
+            soundContinuous = 0;
+        };
+        class near: close {
+            class StandardSound {
+                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
+            };
+            soundContinuous = 0;
+        };
+        class short: close {
+            class StandardSound {
+                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
+            };
+            soundContinuous = 0;
+        };
+        class medium: close {
+            class StandardSound {
+                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
+            };
+            soundContinuous = 0;
+        };
+        class far: close {
+            class StandardSound {
+                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
+            };
+            soundContinuous = 0;
+        };
     };
 
     //AA weapons range changes
