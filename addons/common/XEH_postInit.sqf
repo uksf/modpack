@@ -15,7 +15,6 @@ if (isMultiplayer && !is3DENMultiplayer) then {
 
 //Setup events
 if (hasInterface) then {
-    GVAR(fpsArray) = [];
     call FUNC(fpsAction);
 
     [QGVAR(hint), {_this call FUNC(hint)}] call CBA_fnc_addEventHandler;
