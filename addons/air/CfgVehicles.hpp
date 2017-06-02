@@ -1,3 +1,13 @@
+class DefaultVehicleSystemsDisplayManagerRight;
+class DefaultVehicleSystemsDisplayManagerLeft;
+class SensorTemplateActiveRadar;
+class SensorTemplateAntiRadiation;
+class SensorTemplateIR;
+class SensorTemplateLaser;
+class SensorTemplateMan;
+class SensorTemplateNV;
+class SensorTemplatePassiveRadar;
+class SensorTemplateVisual;
 class CfgVehicles {
     class Air;
     class Helicopter: Air {
@@ -17,7 +27,8 @@ class CfgVehicles {
         class Turrets: Turrets {
             class MainTurret;
             class CopilotTurret;
-        };
+        };        
+        class Components;
     };
     class Heli_Light_01_base_F: Helicopter_Base_H {
         epeImpulseDamageCoef = 0;
