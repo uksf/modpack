@@ -1,3 +1,13 @@
+class DefaultVehicleSystemsDisplayManagerRight;
+class DefaultVehicleSystemsDisplayManagerLeft;
+class SensorTemplateActiveRadar;
+class SensorTemplateAntiRadiation;
+class SensorTemplateIR;
+class SensorTemplateLaser;
+class SensorTemplateMan;
+class SensorTemplateNV;
+class SensorTemplatePassiveRadar;
+class SensorTemplateVisual;
 class CfgVehicles {
     class Helicopter;
     class Helicopter_Base_F: Helicopter {
@@ -12,7 +22,8 @@ class CfgVehicles {
         class Turrets: Turrets {
             class MainTurret;
             class CopilotTurret;
-        };
+        };        
+		class Components;
     };
     class Plane_Base_F;
     

@@ -1,3 +1,13 @@
+class DefaultVehicleSystemsDisplayManagerRight;
+class DefaultVehicleSystemsDisplayManagerLeft;
+class SensorTemplateActiveRadar;
+class SensorTemplateAntiRadiation;
+class SensorTemplateIR;
+class SensorTemplateLaser;
+class SensorTemplateMan;
+class SensorTemplateNV;
+class SensorTemplatePassiveRadar;
+class SensorTemplateVisual;
 class CfgVehicles {
     class Man;
     class CAManBase: Man {
@@ -196,6 +206,7 @@ class CfgVehicles {
     class Plane;
     class UAV: Plane {
         class NewTurret;
+        class Components;
     };
     class CUP_MQ9_Base: UAV {
         class Turrets {
@@ -262,6 +273,199 @@ class CfgVehicles {
                         maxFov = 0.01;
                         directionStabilized = 1;
                         gunnerOpticsModel = "A3\Weapons_F\Reticle\Optics_Gunner_MBT_02_n_F.p3d";
+                    };
+                };
+                class Components {
+                    class VehicleSystemsDisplayManagerComponentLeft : DefaultVehicleSystemsDisplayManagerLeft {
+                        defaultDisplay = "EmptyDisplay";
+                        class Components {
+                            class MissileDisplay {
+                                componentType = "TransportFeedDisplayComponent";
+                                source = "Missile";
+                            };
+                            class SensorsDisplay {
+                                componentType = "SensorsDisplayComponent";
+                                range[] = { 16000,8000,4000,2000 };
+                                resource = "RscCustomInfoSensors";
+                            };
+                            class CrewDisplay {
+                                componentType = "CrewDisplayComponent";
+                                resource = "RscCustomInfoCrew";
+                            };
+                            class MinimapDisplay {
+                                componentType = "MinimapDisplayComponent";
+                                resource = "RscCustomInfoMiniMap";
+                            };
+                            class EmptyDisplay {
+                                componentType = "EmptyDisplayComponent";
+                            };
+                        };
+                    };
+                    class VehicleSystemsDisplayManagerComponentRight : DefaultVehicleSystemsDisplayManagerRight {
+                        defaultDisplay = "SensorsDisplay";
+                        class Components {
+                            class MissileDisplay {
+                                componentType = "TransportFeedDisplayComponent";
+                                source = "Missile";
+                            };
+                            class SensorsDisplay {
+                                componentType = "SensorsDisplayComponent";
+                                range[] = { 16000,8000,4000,2000 };
+                                resource = "RscCustomInfoSensors";
+                            };
+                            class CrewDisplay {
+                                componentType = "CrewDisplayComponent";
+                                resource = "RscCustomInfoCrew";
+                            };
+                            class MinimapDisplay {
+                                componentType = "MinimapDisplayComponent";
+                                resource = "RscCustomInfoMiniMap";
+                            };
+                            class EmptyDisplay {
+                                componentType = "EmptyDisplayComponent";
+                            };
+                        };
+                    };
+                };
+            };
+        };
+        class Components : Components {
+            class VehicleSystemsDisplayManagerComponentLeft : DefaultVehicleSystemsDisplayManagerLeft {
+                defaultDisplay = "EmptyDisplay";
+                class Components {
+                    class VehicleGunnerDisplay {
+                        componentType = "TransportFeedDisplayComponent";
+                        source = "PrimaryGunner";
+                    };
+                    class MissileDisplay {
+                        componentType = "TransportFeedDisplayComponent";
+                        source = "Missile";
+                    };
+                    class SensorsDisplay {
+                        componentType = "SensorsDisplayComponent";
+                        range[] = { 16000,8000,4000,2000 };
+                        resource = "RscCustomInfoSensors";
+                    };
+                    class CrewDisplay {
+                        componentType = "CrewDisplayComponent";
+                        resource = "RscCustomInfoCrew";
+                    };
+                    class MinimapDisplay {
+                        componentType = "MinimapDisplayComponent";
+                        resource = "RscCustomInfoMiniMap";
+                    };
+                    class EmptyDisplay {
+                        componentType = "EmptyDisplayComponent";
+                    };
+                };
+            };
+            class VehicleSystemsDisplayManagerComponentRight : DefaultVehicleSystemsDisplayManagerRight {
+                defaultDisplay = "SensorsDisplay";
+                class Components {
+                    class VehicleGunnerDisplay {
+                        componentType = "TransportFeedDisplayComponent";
+                        source = "PrimaryGunner";
+                    };
+                    class MissileDisplay {
+                        componentType = "TransportFeedDisplayComponent";
+                        source = "Missile";
+                    };
+                    class SensorsDisplay {
+                        componentType = "SensorsDisplayComponent";
+                        range[] = { 16000,8000,4000,2000 };
+                        resource = "RscCustomInfoSensors";
+                    };
+                    class CrewDisplay {
+                        componentType = "CrewDisplayComponent";
+                        resource = "RscCustomInfoCrew";
+                    };
+                    class MinimapDisplay {
+                        componentType = "MinimapDisplayComponent";
+                        resource = "RscCustomInfoMiniMap";
+                    };
+                    class EmptyDisplay {
+                        componentType = "EmptyDisplayComponent";
+                    };
+                };
+            };
+            class SensorsManagerComponent {
+                class Components {
+                    class IRSensorComponent : SensorTemplateIR {
+                        aimDown = 0;
+                        animDirection = "MainTurret";
+                        angleRangeHorizontal = 30;
+                        angleRangeVertical = 30;
+                        maxTrackableSpeed = 110;
+                        class AirTarget {
+                            maxRange = 5000;
+                            minRange = 50;
+                            objectDistanceLimitCoef = 1;
+                            viewDistanceLimitCoef = 1;
+                        };
+                        class GroundTarget {
+                            maxRange = 5000;
+                            minRange = 50;
+                            objectDistanceLimitCoef = 1;
+                            viewDistanceLimitCoef = 1;
+                        };
+                    };
+                    class VisualSensorComponent : SensorTemplateVisual {
+                        aimDown = 0;
+                        animDirection = "MainTurret";
+                        angleRangeHorizontal = 30;
+                        angleRangeVertical = 30;
+                        maxTrackableSpeed = 110;
+                        class AirTarget {
+                            maxRange = 3000;
+                            minRange = 50;
+                            objectDistanceLimitCoef = 1;
+                            viewDistanceLimitCoef = 1;
+                        };
+                        class GroundTarget {
+                            maxRange = 3000;
+                            minRange = 50;
+                            objectDistanceLimitCoef = 1;
+                            viewDistanceLimitCoef = 1;
+                        };
+                    };
+                    class PassiveSensorComponent : SensorTemplatePassiveRadar {};
+                    class NVSensorComponent : SensorTemplateNV {
+                        aimDown = 0;
+                        animDirection = "MainTurret";
+                        angleRangeHorizontal = 30;
+                        angleRangeVertical = 30;
+                        maxTrackableSpeed = 110;
+                        class AirTarget {
+                            maxRange = 2000;
+                            minRange = 50;
+                            objectDistanceLimitCoef = 1;
+                            viewDistanceLimitCoef = 1;
+                        };
+                        class GroundTarget {
+                            maxRange = 2000;
+                            minRange = 50;
+                            objectDistanceLimitCoef = 1;
+                            viewDistanceLimitCoef = 1;
+                        };
+                    };
+                    class LaserSensorComponent : SensorTemplateLaser {
+                        aimDown = 0;
+                        animDirection = "MainTurret";
+                        angleRangeHorizontal = 30;
+                        angleRangeVertical = 30;
+                        maxTrackableSpeed = 110;
+                        class AirTarget {
+                            maxRange = 0;
+                            minRange = 0;
+                            objectDistanceLimitCoef = -1;
+                            viewDistanceLimitCoef = -1;
+                        };
+                        class GroundTarget {
+                            maxRange = 5000;
+                            minRange = 0;
+                            objectDistanceLimitCoef = -1;
+                            viewDistanceLimitCoef = -1;
+                        };
                     };
                 };
             };

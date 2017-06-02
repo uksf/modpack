@@ -693,24 +693,14 @@ class CfgWeapons {
     };
     class CUP_AGM114N_Hellfire_II_Launcher_W: CUP_Vmlauncher_AGM114N_veh {};
     class CannonCore;
-    class gatling_30mm: CannonCore {
-        class LowROF;
-        class close;
-        class near;
-        class short;
-        class medium;
-        class far;
-    };
-    class CUP_Vacannon_M230_veh_Enhanced: gatling_30mm {
+    class CUP_Vacannon_M230_veh: CannonCore {
         scope = 1;
-        author = "UKSF";
-        displayName = "Chain Gun M230 30mm";
         magazines[] = { "CUP_1200Rnd_TE1_Red_Tracer_30x113mm_M789_HEDP_M","CUP_1200Rnd_TE1_Green_Tracer_30x113mm_M789_HEDP_M","CUP_1200Rnd_TE1_Yellow_Tracer_30x113mm_M789_HEDP_M","CUP_1200Rnd_TE1_White_Tracer_30x113mm_M789_HEDP_M" };
         canLock = 2;
         ballisticsComputer = "4 + 2 + 1";
-        reloadMagazineSound[] = { "", 1, 1};
-        modes[] = { "Burst10","Burst20","Burst50","close","near","short","medium","far" };
-        cursorAim = "EmptyCursor";        
+        reloadTime = 0.096;
+        modes[] = { "close", "short", "medium", "far", "manual", "burst_15", "burst_25" };
+        cursorAim = "EmptyCursor";      
         class GunParticles {
             class EffectSmokeLeft {
                 effectName = "MachineGun2";
@@ -728,69 +718,24 @@ class CfgWeapons {
                 effectName = "MachineGunCartridge1";
             };
         };
-        class Burst10: Mode_FullAuto {
+        class manual: CannonCore {
             displayName = "Burst 10";
             textureType = "semi";
-            reloadTime = 0.096;
             sounds[] = { "StandardSound" };
             class StandardSound {
-                //soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
-                soundSetShot[] = {"CUP_M230_Shot_SoundSet","CUP_sniper1_Tail_SoundSet"};
+                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
             };
-            autoFire = 1;
             burst = 10;
-            minRange = 1000;
-            minRangeProbab = 0.03;
-            midRange = 2000;
-            midRangeProbab = 0.02;
-            maxRange = 3000;
-            maxRangeProbab = 0.01;
-            showToPlayer = 1;
         };
-        class Burst20: Burst10 {
-            displayName = "20 Burst";
+        class burst_15: manual {
+            displayName = "Burst 20 ";
             textureType = "burst";
             burst = 20;
         };
-        class Burst50: Burst20 {
+        class burst_25: manual {
             displayName = "Full";
             textureType = "fullAuto";
             burst = 1;
-        };
-        class close: close {
-            reloadTime = 0.096;
-            class StandardSound {
-                //soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
-                soundSetShot[] = {"CUP_M230_Shot_SoundSet","CUP_sniper1_Tail_SoundSet"};
-            };
-        };
-        class near: near {
-            reloadTime = 0.096;
-            class StandardSound {
-                //soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
-                soundSetShot[] = {"CUP_M230_Shot_SoundSet","CUP_sniper1_Tail_SoundSet"};
-            };
-        };
-        class short: short{
-            reloadTime = 0.096;
-            class StandardSound {
-                //soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
-                soundSetShot[] = {"CUP_M230_Shot_SoundSet","CUP_sniper1_Tail_SoundSet"};
-            };
-        };
-        class medium: medium {
-            reloadTime = 0.096;
-            class StandardSound {
-                //soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
-                soundSetShot[] = {"CUP_M230_Shot_SoundSet","CUP_sniper1_Tail_SoundSet"};
-            };
-        };
-        class far: far {
-            reloadTime = 0.096;
-            class StandardSound {
-                //soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
-                soundSetShot[] = {"CUP_M230_Shot_SoundSet","CUP_sniper1_Tail_SoundSet"};
-            };
         };
     };
     class CUP_Vacannon_M621_AW159_veh: CannonCore {

@@ -160,7 +160,7 @@ class CfgVehicles {
                 initTurn = 0;
                 minTurn = -110;
                 maxTurn = 110;
-                weapons[] = { "CUP_weapon_mastersafe", "CUP_Laserdesignator_mounted", "CUP_Vacannon_M230_veh_Enhanced", "CUP_AGM114L_Hellfire_II_Launcher_W", "CUP_AGM114N_Hellfire_II_Launcher_W" };
+                weapons[] = { "CUP_weapon_mastersafe", "CUP_Laserdesignator_mounted", "CUP_Vacannon_M230_veh", "CUP_AGM114L_Hellfire_II_Launcher_W", "CUP_AGM114N_Hellfire_II_Launcher_W" };
                 magazines[] = { "Laserbatteries", "CUP_1200Rnd_TE1_Red_Tracer_30x113mm_M789_HEDP_M", "CUP_4Rnd_AGM114L_Hellfire_II_M", "CUP_4Rnd_AGM114N_Hellfire_II_M" };
                 gunnerAction = "AH64_gunner_EP1";
                 gunnerGetInAction = "pilot_Heli_Light_02_Enter";
