@@ -445,6 +445,15 @@ class CfgWeapons {
             };
         };
     };
+    class RKSL_optic_LDS: ItemCore {
+        class ItemInfo: InventoryOpticsItem_Base_F {
+            class OpticsModes {
+                class LDS {
+                    visionMode[] = {};
+                };
+            };
+        };
+    };
     class optic_LRPS: ItemCore {
         class ItemInfo: InventoryOpticsItem_Base_F {
             class OpticsModes {
