@@ -72,7 +72,7 @@ class CfgVehicles {
             "USAF_empty"
         };
         maxSpeed = 1930;
-        soundEngineOnInt[] = { "A3\Sounds_F_Jets\vehicles\air\Plane_Fighter_01\B_PLANE_FIGHTER_01_engine_start_int", 1, 1 };
+        /*soundEngineOnInt[] = { "A3\Sounds_F_Jets\vehicles\air\Plane_Fighter_01\B_PLANE_FIGHTER_01_engine_start_int", 1, 1 };
         soundEngineOnExt[] = { "A3\Sounds_F_Jets\vehicles\air\Plane_Fighter_01\B_PLANE_FIGHTER_01_engine_start_ext", 5, 1, 500 };
         soundEngineOffInt[] = { "A3\Sounds_F_Jets\vehicles\air\Plane_Fighter_01\B_PLANE_FIGHTER_01_engine_shut_int", 1, 1 };
         soundEngineOffExt[] = { "A3\Sounds_F_Jets\vehicles\air\Plane_Fighter_01\B_PLANE_FIGHTER_01_engine_shut_ext", 4, 1, 400 };
@@ -91,7 +91,7 @@ class CfgVehicles {
                 "Plane_Fighter_01_WindNoiseInt_SoundSet",
                 "Plane_Fighter_01_VelocityInt_SoundSet"
             };
-        };
+        };*/
         class UserActions {
             class F35_afterburner_on {
                 displayName = "<t color = '#fb7904'>Afterburner On</t>";
@@ -236,7 +236,7 @@ class CfgVehicles {
             CanopyForce = 30;
         };
         //Wait until USAF release
-        class Components: Components {
+        /*class Components: Components {
             class SensorsManagerComponent {
                 class Components {
                     class IRSensorComponent: SensorTemplateIR {
@@ -467,13 +467,13 @@ class CfgVehicles {
                     };
                 };
             };
-        };
+        };*/
     };
     class B_Ejection_Seat_Plane_Fighter_01_F;
     class USAF_F35A_ejection_seat: B_Ejection_Seat_Plane_Fighter_01_F {
         faction = "CUP_B_GB";
         crew = "UKSF_B_Pilot_617";
-        model = "\usaf_f35A\usaf_f35A_ejection_seat.p3d";
+        //model = "\usaf_f35A\usaf_f35A_ejection_seat.p3d";
     };
     class StaticAmmocart;
     class Missilecart_base: StaticAmmocart {
