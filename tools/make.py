@@ -70,6 +70,7 @@ key = ""
 dssignfile = ""
 prefix = "uksf"
 pbo_name_prefix = "uksf_"
+dependencies = "C:/SteamLibrary/_Working/next/@uksf_dependencies/addons"
 signature_blacklist = []
 importantFiles = ["mod.cpp", "README.md", "mod.paa", "modLarge.paa", "AUTHORS.txt", "LICENSE"]
 versionFiles = ["mod.cpp", "README.md"]
@@ -695,6 +696,72 @@ def version_stamp_pboprefix(module,commitID):
 
     return True
 
+def copy_dependencies():
+    print_blue("\nSigning dependencies")
+
+    if sys.platform == "win32":
+        reg = winreg.ConnectRegistry(None, winreg.HKEY_LOCAL_MACHINE)
+        try:
+            k = winreg.OpenKey(reg, r"SOFTWARE\Wow6432Node\Bohemia Interactive\Arma 3")
+            a3_path = winreg.EnumValue(k, 1)[1]
+            winreg.CloseKey(k)
+        except:
+            return 1
+            print_error("Could not find Arma 3's directory in the registry.")
+    else:
+        a3_path = cygwin_a3path
+
+    signatures_path = os.path.join(release_dir, "@uksf_dependencies\\addons")
+    if not os.path.isdir(signatures_path):
+        try:
+            os.makedirs(signatures_path)
+        except:
+            print_error("Cannot create dependencies directory")
+            raise
+    
+    dependencies_path = os.path.join(a3_path, "@uksf_dependencies\\addons")
+    temp_path = os.path.join(dependencies_path, "signatures")
+    if not os.path.isdir(temp_path):
+        try:
+            os.makedirs(temp_path)
+        except:
+            print_error("Cannot create temp directory")
+            raise
+            
+    for file in os.listdir(dependencies_path):
+        if (file.endswith(".bisign") and os.path.isfile(os.path.join(dependencies_path, file))):
+            shutil.move(os.path.join(dependencies_path, file), os.path.join(temp_path, file))
+
+    for file in os.listdir(dependencies_path):
+        if (file.endswith(".pbo") and os.path.isfile(os.path.join(dependencies_path, file))):
+            if (key):
+                #print("Checking for: {}.".format(os.path.join(signatures_path, "{}.{}.bisign".format(file, os.path.splitext(os.path.basename(key))[0]))))
+                if(not os.path.isfile(os.path.join(signatures_path, "{}.{}.bisign".format(file, os.path.splitext(os.path.basename(key))[0])))):
+                    print("Signing {} with {}.".format(file, key))
+                    ret = subprocess.call([dssignfile, key, os.path.join(dependencies_path, "{}".format(file))])
+                    if ret == 1:
+                        return 1
+
+    for file in os.listdir(dependencies_path):
+        if (file.endswith(".bisign") and os.path.isfile(os.path.join(dependencies_path, file))):
+            shutil.move(os.path.join(dependencies_path, file), os.path.join(signatures_path, file))
+
+    for file in os.listdir(temp_path):
+        shutil.move(os.path.join(temp_path, file), os.path.join(dependencies_path, file))
+
+    print_blue("\nSigning updated dependencies")
+    for file in os.listdir(signatures_path):
+        if (file.endswith(".pbo") and os.path.isfile(os.path.join(signatures_path, file))):
+            print("Found: {}.".format(file))
+            if (key):
+                print("Signing with {}.".format(key))
+                ret = subprocess.call([dssignfile, key, os.path.join(signatures_path, "{}".format(file))])
+                if ret == 1:
+                    return 1
+
+    shutil.rmtree(temp_path)
+
+    return 0
 
 ###############################################################################
 
@@ -1384,6 +1451,12 @@ See the make.cfg file for additional build options.
                 shutil.copytree(os.path.join(module_root, release_dir, project), os.path.join(a3_path, project))
             except:
                 print_error("Could not copy files. Is Arma 3 running?")
+
+    ret = copy_dependencies()
+    if ret == 0:
+        print_blue("\nDependencies signed")
+    else:
+        print_error("Could not sign dependencies")
 
     if len(failedBuilds) > 0 or len(missingFiles) > 0:
         if len(failedBuilds) > 0:
