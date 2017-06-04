@@ -741,7 +741,6 @@ def copy_dependencies():
     for file in os.listdir(dependencies_path):
         if (file.endswith(".pbo") and os.path.isfile(os.path.join(dependencies_path, file))):
             if (key):
-                #print("Checking for: {}.".format(os.path.join(signatures_path, "{}.{}.bisign".format(file, os.path.splitext(os.path.basename(key))[0]))))
                 if(not os.path.isfile(os.path.join(signatures_path, "{}.{}.bisign".format(file, os.path.splitext(os.path.basename(key))[0])))):
                     print("Signing {} with {}.".format(file, key))
                     ret = subprocess.call([dssignfile, key, os.path.join(dependencies_path, "{}".format(file))])
