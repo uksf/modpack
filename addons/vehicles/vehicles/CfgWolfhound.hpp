@@ -13,6 +13,7 @@ class CUP_Wolfhound_Base: Wheeled_APC_F {
             count = 5;
         };
     };
+    fuelCapacity = 25; //45
     REARM_ACTIONS
 };
 class CUP_B_Wolfhound_HMG_GB_D: CUP_Wolfhound_Base {
