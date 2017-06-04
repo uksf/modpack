@@ -45,8 +45,8 @@ class CUP_Merlin_HC3_Base: Helicopter_Base_H {
     attenuationEffectType = "SemiOpenHeliAttenuation";
     unitInfoType = "Rsc_UKSF_Air_Limited";
     unitInfoTypeLite = "Rsc_UKSF_Air_Limited";
-    class Components : Components {
-        class VehicleSystemsDisplayManagerComponentLeft : DefaultVehicleSystemsDisplayManagerLeft {
+    class Components: Components {
+        class VehicleSystemsDisplayManagerComponentLeft: DefaultVehicleSystemsDisplayManagerLeft {
             defaultDisplay = "EmptyDisplay";
             class Components {
                 class SensorsDisplay {
@@ -67,7 +67,7 @@ class CUP_Merlin_HC3_Base: Helicopter_Base_H {
                 };
             };
         };
-        class VehicleSystemsDisplayManagerComponentRight : DefaultVehicleSystemsDisplayManagerRight {
+        class VehicleSystemsDisplayManagerComponentRight: DefaultVehicleSystemsDisplayManagerRight {
             defaultDisplay = "SensorsDisplay";
             class Components {
                 class SensorsDisplay {
@@ -90,7 +90,7 @@ class CUP_Merlin_HC3_Base: Helicopter_Base_H {
         };
         class SensorsManagerComponent {
             class Components {
-                class PassiveSensorComponent : SensorTemplatePassiveRadar {};
+                class PassiveSensorComponent: SensorTemplatePassiveRadar {};
             };
         };
     };
@@ -99,6 +99,10 @@ class CUP_Merlin_HC3_Base: Helicopter_Base_H {
         class ACE_MainActions: ACE_MainActions {
             position = "[0,0,1.5]";
         };
+    };
+    class EventHandlers: EventHandlers {
+        init = "if (local (_this select 0)) then {[(_this select 0), """""""", [], false] call bis_fnc_initVehicle;};";
+        getIn = "";
     };
 };
 class CUP_Merlin_HC3A_Base: CUP_Merlin_HC3_Base {};

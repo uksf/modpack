@@ -2,6 +2,7 @@ class CUP_AW159_Unarmed_Base: Helicopter_Base_H {
     scope = 1;
     scopeCurator = 0;
     maxspeed = 311;
+    fuelCapacity = 40; //1000
     landingSoundInt0[] = { "A3\Sounds_F\vehicles\air\noises\landing_wheels_small_int1", 0.25, 1, 50 };
     landingSoundInt1[] = { "A3\Sounds_F\vehicles\air\noises\landing_wheels_small_int2", 0.25, 1, 50 };
     landingSoundInt[] = { "landingSoundInt0", 0.5, "landingSoundInt1", 0.5 };
@@ -15,7 +16,7 @@ class CUP_AW159_Unarmed_Base: Helicopter_Base_H {
     class Turrets: Turrets {
         class MainTurret: MainTurret {
             class Components {
-                class VehicleSystemsDisplayManagerComponentLeft : DefaultVehicleSystemsDisplayManagerLeft {
+                class VehicleSystemsDisplayManagerComponentLeft: DefaultVehicleSystemsDisplayManagerLeft {
                     defaultDisplay = "EmptyDisplay";
                     class Components {
                         class SensorsDisplay {
@@ -36,7 +37,7 @@ class CUP_AW159_Unarmed_Base: Helicopter_Base_H {
                         };
                     };
                 };
-                class VehicleSystemsDisplayManagerComponentRight : DefaultVehicleSystemsDisplayManagerRight {
+                class VehicleSystemsDisplayManagerComponentRight: DefaultVehicleSystemsDisplayManagerRight {
                     defaultDisplay = "SensorsDisplay";
                     class Components {
                         class SensorsDisplay {
@@ -60,8 +61,8 @@ class CUP_AW159_Unarmed_Base: Helicopter_Base_H {
             };
         };
     };
-    class Components : Components {
-        class VehicleSystemsDisplayManagerComponentLeft : DefaultVehicleSystemsDisplayManagerLeft {
+    class Components: Components {
+        class VehicleSystemsDisplayManagerComponentLeft: DefaultVehicleSystemsDisplayManagerLeft {
             defaultDisplay = "EmptyDisplay";
             class Components {
                 class SensorsDisplay {
@@ -82,7 +83,7 @@ class CUP_AW159_Unarmed_Base: Helicopter_Base_H {
                 };
             };
         };
-        class VehicleSystemsDisplayManagerComponentRight : DefaultVehicleSystemsDisplayManagerRight {
+        class VehicleSystemsDisplayManagerComponentRight: DefaultVehicleSystemsDisplayManagerRight {
             defaultDisplay = "SensorsDisplay";
             class Components {
                 class SensorsDisplay {
@@ -105,7 +106,7 @@ class CUP_AW159_Unarmed_Base: Helicopter_Base_H {
         };
         class SensorsManagerComponent {
             class Components {
-                class IRSensorComponent : SensorTemplateIR {
+                class IRSensorComponent: SensorTemplateIR {
                     class AirTarget {
                         minRange = 500;
                         maxRange = 4000;
@@ -123,7 +124,7 @@ class CUP_AW159_Unarmed_Base: Helicopter_Base_H {
                     angleRangeHorizontal = 26;
                     angleRangeVertical = 26;
                 };
-                class VisualSensorComponent : SensorTemplateVisual {
+                class VisualSensorComponent: SensorTemplateVisual {
                     class AirTarget {
                         minRange = 500;
                         maxRange = 3000;
@@ -141,7 +142,7 @@ class CUP_AW159_Unarmed_Base: Helicopter_Base_H {
                     angleRangeHorizontal = 26;
                     angleRangeVertical = 26;
                 };
-                class PassiveSensorComponent : SensorTemplatePassiveRadar {};
+                class PassiveSensorComponent: SensorTemplatePassiveRadar {};
                 class LaserSensorComponent: SensorTemplateLaser {};
                 class NVSensorComponent: SensorTemplateNV {};
             };
@@ -166,7 +167,7 @@ class CUP_B_AW159_Unarmed_RN_Grey: CUP_AW159_Unarmed_Base {
         };
     };
 };
-class CUP_B_Wildcat_Unarmed_RN_Grey : CUP_B_AW159_Unarmed_RN_Grey {
+class CUP_B_Wildcat_Unarmed_RN_Grey: CUP_B_AW159_Unarmed_RN_Grey {
     scope = 1;
     scopeCurator = 0;
 };
@@ -202,8 +203,8 @@ class CUP_B_AW159_Hellfire_RN_Grey: CUP_AW159_Unarmed_Base {
             magazines[] = { "Laserbatteries", "CUP_2Rnd_AGM_Rack_M", "CUP_4Rnd_AGM114K_Hellfire_II_M", "CUP_4Rnd_AGM114N_Hellfire_II_M" };
         };
     };
-    class Components : Components {
-        class VehicleSystemsDisplayManagerComponentLeft : DefaultVehicleSystemsDisplayManagerLeft {
+    class Components: Components {
+        class VehicleSystemsDisplayManagerComponentLeft: DefaultVehicleSystemsDisplayManagerLeft {
             defaultDisplay = "EmptyDisplay";
             class Components {
                 class SensorsDisplay {
@@ -224,7 +225,7 @@ class CUP_B_AW159_Hellfire_RN_Grey: CUP_AW159_Unarmed_Base {
                 };
             };
         };
-        class VehicleSystemsDisplayManagerComponentRight : DefaultVehicleSystemsDisplayManagerRight {
+        class VehicleSystemsDisplayManagerComponentRight: DefaultVehicleSystemsDisplayManagerRight {
             defaultDisplay = "SensorsDisplay";
             class Components {
                 class SensorsDisplay {
@@ -247,7 +248,7 @@ class CUP_B_AW159_Hellfire_RN_Grey: CUP_AW159_Unarmed_Base {
         };
         class SensorsManagerComponent {
             class Components {
-                class IRSensorComponent : SensorTemplateIR {
+                class IRSensorComponent: SensorTemplateIR {
                     class AirTarget {
                         minRange = 500;
                         maxRange = 4000;
@@ -265,7 +266,7 @@ class CUP_B_AW159_Hellfire_RN_Grey: CUP_AW159_Unarmed_Base {
                     angleRangeHorizontal = 26;
                     angleRangeVertical = 26;
                 };
-                class VisualSensorComponent : SensorTemplateVisual {
+                class VisualSensorComponent: SensorTemplateVisual {
                     class AirTarget {
                         minRange = 500;
                         maxRange = 3000;
@@ -283,7 +284,7 @@ class CUP_B_AW159_Hellfire_RN_Grey: CUP_AW159_Unarmed_Base {
                     angleRangeHorizontal = 26;
                     angleRangeVertical = 26;
                 };
-                class ActiveRadarSensorComponent : SensorTemplateActiveRadar {
+                class ActiveRadarSensorComponent: SensorTemplateActiveRadar {
                     class AirTarget {
                         minRange = 5000;
                         maxRange = 5000;
@@ -304,7 +305,7 @@ class CUP_B_AW159_Hellfire_RN_Grey: CUP_AW159_Unarmed_Base {
                     maxSpeedThreshold = 0;
                     aimDown = 30;
                 };
-                class PassiveSensorComponent : SensorTemplatePassiveRadar {};
+                class PassiveSensorComponent: SensorTemplatePassiveRadar {};
                 class LaserSensorComponent: SensorTemplateLaser {};
                 class NVSensorComponent: SensorTemplateNV {};
             };
@@ -330,8 +331,8 @@ class CUP_B_AW159_Cannon_RN_Grey: CUP_AW159_Unarmed_Base {
             soundAttenuationTurret = "SemiOpenHeliAttenuation";
         };
     };
-    class Components : Components {
-        class VehicleSystemsDisplayManagerComponentLeft : DefaultVehicleSystemsDisplayManagerLeft {
+    class Components: Components {
+        class VehicleSystemsDisplayManagerComponentLeft: DefaultVehicleSystemsDisplayManagerLeft {
             defaultDisplay = "EmptyDisplay";
             class Components {
                 class SensorsDisplay {
@@ -352,7 +353,7 @@ class CUP_B_AW159_Cannon_RN_Grey: CUP_AW159_Unarmed_Base {
                 };
             };
         };
-        class VehicleSystemsDisplayManagerComponentRight : DefaultVehicleSystemsDisplayManagerRight {
+        class VehicleSystemsDisplayManagerComponentRight: DefaultVehicleSystemsDisplayManagerRight {
             defaultDisplay = "SensorsDisplay";
             class Components {
                 class SensorsDisplay {
@@ -375,7 +376,7 @@ class CUP_B_AW159_Cannon_RN_Grey: CUP_AW159_Unarmed_Base {
         };
         class SensorsManagerComponent {
             class Components {
-                class IRSensorComponent : SensorTemplateIR {
+                class IRSensorComponent: SensorTemplateIR {
                     class AirTarget {
                         minRange = 500;
                         maxRange = 4000;
@@ -393,7 +394,7 @@ class CUP_B_AW159_Cannon_RN_Grey: CUP_AW159_Unarmed_Base {
                     angleRangeHorizontal = 26;
                     angleRangeVertical = 26;
                 };
-                class VisualSensorComponent : SensorTemplateVisual {
+                class VisualSensorComponent: SensorTemplateVisual {
                     class AirTarget {
                         minRange = 500;
                         maxRange = 3000;
@@ -411,7 +412,7 @@ class CUP_B_AW159_Cannon_RN_Grey: CUP_AW159_Unarmed_Base {
                     angleRangeHorizontal = 26;
                     angleRangeVertical = 26;
                 };
-                class ActiveRadarSensorComponent : SensorTemplateActiveRadar {
+                class ActiveRadarSensorComponent: SensorTemplateActiveRadar {
                     class AirTarget {
                         minRange = 5000;
                         maxRange = 5000;
@@ -432,7 +433,7 @@ class CUP_B_AW159_Cannon_RN_Grey: CUP_AW159_Unarmed_Base {
                     maxSpeedThreshold = 0;
                     aimDown = 30;
                 };
-                class PassiveSensorComponent : SensorTemplatePassiveRadar {};
+                class PassiveSensorComponent: SensorTemplatePassiveRadar {};
                 class LaserSensorComponent: SensorTemplateLaser {};
                 class NVSensorComponent: SensorTemplateNV {};
             };
@@ -452,8 +453,8 @@ class CUP_I_Wildcat_Hellfire_Armed_Green_AAF: CUP_AW159_Unarmed_Base {
             magazines[] = { "Laserbatteries", "CUP_2Rnd_AGM_Rack_M", "CUP_4Rnd_AGM114K_Hellfire_II_M", "CUP_4Rnd_AGM114N_Hellfire_II_M" };
         };
     };
-    class Components : Components {
-        class VehicleSystemsDisplayManagerComponentLeft : DefaultVehicleSystemsDisplayManagerLeft {
+    class Components: Components {
+        class VehicleSystemsDisplayManagerComponentLeft: DefaultVehicleSystemsDisplayManagerLeft {
             defaultDisplay = "EmptyDisplay";
             class Components {
                 class SensorsDisplay {
@@ -474,7 +475,7 @@ class CUP_I_Wildcat_Hellfire_Armed_Green_AAF: CUP_AW159_Unarmed_Base {
                 };
             };
         };
-        class VehicleSystemsDisplayManagerComponentRight : DefaultVehicleSystemsDisplayManagerRight {
+        class VehicleSystemsDisplayManagerComponentRight: DefaultVehicleSystemsDisplayManagerRight {
             defaultDisplay = "SensorsDisplay";
             class Components {
                 class SensorsDisplay {
@@ -497,7 +498,7 @@ class CUP_I_Wildcat_Hellfire_Armed_Green_AAF: CUP_AW159_Unarmed_Base {
         };
         class SensorsManagerComponent {
             class Components {
-                class IRSensorComponent : SensorTemplateIR {
+                class IRSensorComponent: SensorTemplateIR {
                     class AirTarget {
                         minRange = 500;
                         maxRange = 4000;
@@ -515,7 +516,7 @@ class CUP_I_Wildcat_Hellfire_Armed_Green_AAF: CUP_AW159_Unarmed_Base {
                     angleRangeHorizontal = 26;
                     angleRangeVertical = 26;
                 };
-                class VisualSensorComponent : SensorTemplateVisual {
+                class VisualSensorComponent: SensorTemplateVisual {
                     class AirTarget {
                         minRange = 500;
                         maxRange = 3000;
@@ -533,7 +534,7 @@ class CUP_I_Wildcat_Hellfire_Armed_Green_AAF: CUP_AW159_Unarmed_Base {
                     angleRangeHorizontal = 26;
                     angleRangeVertical = 26;
                 };
-                class ActiveRadarSensorComponent : SensorTemplateActiveRadar {
+                class ActiveRadarSensorComponent: SensorTemplateActiveRadar {
                     class AirTarget {
                         minRange = 5000;
                         maxRange = 5000;
@@ -554,7 +555,7 @@ class CUP_I_Wildcat_Hellfire_Armed_Green_AAF: CUP_AW159_Unarmed_Base {
                     maxSpeedThreshold = 0;
                     aimDown = 30;
                 };
-                class PassiveSensorComponent : SensorTemplatePassiveRadar {};
+                class PassiveSensorComponent: SensorTemplatePassiveRadar {};
                 class LaserSensorComponent: SensorTemplateLaser {};
                 class NVSensorComponent: SensorTemplateNV {};
             };
@@ -570,8 +571,8 @@ class CUP_I_Wildcat_Cannon_Armed_Green_AAF: CUP_AW159_Unarmed_Base {
             soundAttenuationTurret = "SemiOpenHeliAttenuation";
         };
     };
-    class Components : Components {
-        class VehicleSystemsDisplayManagerComponentLeft : DefaultVehicleSystemsDisplayManagerLeft {
+    class Components: Components {
+        class VehicleSystemsDisplayManagerComponentLeft: DefaultVehicleSystemsDisplayManagerLeft {
             defaultDisplay = "EmptyDisplay";
             class Components {
                 class SensorsDisplay {
@@ -592,7 +593,7 @@ class CUP_I_Wildcat_Cannon_Armed_Green_AAF: CUP_AW159_Unarmed_Base {
                 };
             };
         };
-        class VehicleSystemsDisplayManagerComponentRight : DefaultVehicleSystemsDisplayManagerRight {
+        class VehicleSystemsDisplayManagerComponentRight: DefaultVehicleSystemsDisplayManagerRight {
             defaultDisplay = "SensorsDisplay";
             class Components {
                 class SensorsDisplay {
@@ -615,7 +616,7 @@ class CUP_I_Wildcat_Cannon_Armed_Green_AAF: CUP_AW159_Unarmed_Base {
         };
         class SensorsManagerComponent {
             class Components {
-                class IRSensorComponent : SensorTemplateIR {
+                class IRSensorComponent: SensorTemplateIR {
                     class AirTarget {
                         minRange = 500;
                         maxRange = 4000;
@@ -633,7 +634,7 @@ class CUP_I_Wildcat_Cannon_Armed_Green_AAF: CUP_AW159_Unarmed_Base {
                     angleRangeHorizontal = 26;
                     angleRangeVertical = 26;
                 };
-                class VisualSensorComponent : SensorTemplateVisual {
+                class VisualSensorComponent: SensorTemplateVisual {
                     class AirTarget {
                         minRange = 500;
                         maxRange = 3000;
@@ -651,7 +652,7 @@ class CUP_I_Wildcat_Cannon_Armed_Green_AAF: CUP_AW159_Unarmed_Base {
                     angleRangeHorizontal = 26;
                     angleRangeVertical = 26;
                 };
-                class ActiveRadarSensorComponent : SensorTemplateActiveRadar {
+                class ActiveRadarSensorComponent: SensorTemplateActiveRadar {
                     class AirTarget {
                         minRange = 5000;
                         maxRange = 5000;
@@ -672,7 +673,7 @@ class CUP_I_Wildcat_Cannon_Armed_Green_AAF: CUP_AW159_Unarmed_Base {
                     maxSpeedThreshold = 0;
                     aimDown = 30;
                 };
-                class PassiveSensorComponent : SensorTemplatePassiveRadar {};
+                class PassiveSensorComponent: SensorTemplatePassiveRadar {};
                 class LaserSensorComponent: SensorTemplateLaser {};
                 class NVSensorComponent: SensorTemplateNV {};
             };
@@ -688,8 +689,8 @@ class CUP_I_Wildcat_Cannon_Armed_Digital_AAF: CUP_AW159_Unarmed_Base {
             soundAttenuationTurret = "SemiOpenHeliAttenuation";
         };
     };
-    class Components : Components {
-        class VehicleSystemsDisplayManagerComponentLeft : DefaultVehicleSystemsDisplayManagerLeft {
+    class Components: Components {
+        class VehicleSystemsDisplayManagerComponentLeft: DefaultVehicleSystemsDisplayManagerLeft {
             defaultDisplay = "EmptyDisplay";
             class Components {
                 class SensorsDisplay {
@@ -710,7 +711,7 @@ class CUP_I_Wildcat_Cannon_Armed_Digital_AAF: CUP_AW159_Unarmed_Base {
                 };
             };
         };
-        class VehicleSystemsDisplayManagerComponentRight : DefaultVehicleSystemsDisplayManagerRight {
+        class VehicleSystemsDisplayManagerComponentRight: DefaultVehicleSystemsDisplayManagerRight {
             defaultDisplay = "SensorsDisplay";
             class Components {
                 class SensorsDisplay {
@@ -733,7 +734,7 @@ class CUP_I_Wildcat_Cannon_Armed_Digital_AAF: CUP_AW159_Unarmed_Base {
         };
         class SensorsManagerComponent {
             class Components {
-                class IRSensorComponent : SensorTemplateIR {
+                class IRSensorComponent: SensorTemplateIR {
                     class AirTarget {
                         minRange = 500;
                         maxRange = 4000;
@@ -751,7 +752,7 @@ class CUP_I_Wildcat_Cannon_Armed_Digital_AAF: CUP_AW159_Unarmed_Base {
                     angleRangeHorizontal = 26;
                     angleRangeVertical = 26;
                 };
-                class VisualSensorComponent : SensorTemplateVisual {
+                class VisualSensorComponent: SensorTemplateVisual {
                     class AirTarget {
                         minRange = 500;
                         maxRange = 3000;
@@ -769,7 +770,7 @@ class CUP_I_Wildcat_Cannon_Armed_Digital_AAF: CUP_AW159_Unarmed_Base {
                     angleRangeHorizontal = 26;
                     angleRangeVertical = 26;
                 };
-                class ActiveRadarSensorComponent : SensorTemplateActiveRadar {
+                class ActiveRadarSensorComponent: SensorTemplateActiveRadar {
                     class AirTarget {
                         minRange = 5000;
                         maxRange = 5000;
@@ -790,7 +791,7 @@ class CUP_I_Wildcat_Cannon_Armed_Digital_AAF: CUP_AW159_Unarmed_Base {
                     maxSpeedThreshold = 0;
                     aimDown = 30;
                 };
-                class PassiveSensorComponent : SensorTemplatePassiveRadar {};
+                class PassiveSensorComponent: SensorTemplatePassiveRadar {};
                 class LaserSensorComponent: SensorTemplateLaser {};
                 class NVSensorComponent: SensorTemplateNV {};
             };

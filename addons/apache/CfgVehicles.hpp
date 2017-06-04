@@ -93,7 +93,7 @@ class CfgVehicles {
         icon = QPATHTOF(data\UI\Icon_ah64d_CA.paa);
         availableForSupportTypes[] = { "CAS_Heli" };
         armor = 100;
-        fuelCapacity = 300;
+        fuelCapacity = 200; //300
         explosionShielding = 0.5;
         epeImpulseDamageCoef = 0;
         crewCrashProtection = 0.5;
@@ -577,8 +577,8 @@ class CfgVehicles {
                 statement = QUOTE(this setVariable [ARR_3(QQGVAR(jammerMode),0,true)]);
             };
         };
-        class Components : Components {
-            class VehicleSystemsDisplayManagerComponentLeft : DefaultVehicleSystemsDisplayManagerLeft {
+        class Components: Components {
+            class VehicleSystemsDisplayManagerComponentLeft: DefaultVehicleSystemsDisplayManagerLeft {
                 defaultDisplay = "EmptyDisplay";
                 class Components {
                     class MissileDisplay {
@@ -607,7 +607,7 @@ class CfgVehicles {
                     };
                 };
             };
-            class VehicleSystemsDisplayManagerComponentRight : DefaultVehicleSystemsDisplayManagerRight {
+            class VehicleSystemsDisplayManagerComponentRight: DefaultVehicleSystemsDisplayManagerRight {
                 defaultDisplay = "SensorsDisplay";
                 class Components {
                     class MissileDisplay {
@@ -638,7 +638,7 @@ class CfgVehicles {
             };
             class SensorsManagerComponent {
                 class Components {
-                    class IRSensorComponent : SensorTemplateIR {
+                    class IRSensorComponent: SensorTemplateIR {
                         aimDown = 30;
                         animDirection = "MainTurret";
                         angleRangeHorizontal = 30;
@@ -657,7 +657,7 @@ class CfgVehicles {
                             viewDistanceLimitCoef = 1;
                         };
                     };
-                    class VisualSensorComponent : SensorTemplateVisual {
+                    class VisualSensorComponent: SensorTemplateVisual {
                         aimDown = 30;
                         animDirection = "MainTurret";
                         angleRangeHorizontal = 30;
@@ -676,7 +676,7 @@ class CfgVehicles {
                             viewDistanceLimitCoef = 1;
                         };
                     };
-                    class ActiveRadarComponent : SensorTemplateActiveRadar {
+                    class ActiveRadarComponent: SensorTemplateActiveRadar {
                         aimDown = 0;
                         angleRangeHorizontal = 360;
                         angleRangeVertical = 360;
@@ -697,8 +697,8 @@ class CfgVehicles {
                             viewDistanceLimitCoef = -1;
                         };
                     };
-                    class PassiveSensorComponent : SensorTemplatePassiveRadar {};
-                    class NVSensorComponent : SensorTemplateNV {
+                    class PassiveSensorComponent: SensorTemplatePassiveRadar {};
+                    class NVSensorComponent: SensorTemplateNV {
                         aimDown = 0;
                         animDirection = "MainTurret";
                         angleRangeHorizontal = 30;
@@ -717,7 +717,7 @@ class CfgVehicles {
                             viewDistanceLimitCoef = 1;
                         };
                     };
-                    class LaserSensorComponent : SensorTemplateLaser {
+                    class LaserSensorComponent: SensorTemplateLaser {
                         aimDown = 45;
                         animDirection = "MainTurret";
                         angleRangeHorizontal = 180;

@@ -276,7 +276,7 @@ class CfgVehicles {
                     };
                 };
                 class Components {
-                    class VehicleSystemsDisplayManagerComponentLeft : DefaultVehicleSystemsDisplayManagerLeft {
+                    class VehicleSystemsDisplayManagerComponentLeft: DefaultVehicleSystemsDisplayManagerLeft {
                         defaultDisplay = "EmptyDisplay";
                         class Components {
                             class MissileDisplay {
@@ -301,7 +301,7 @@ class CfgVehicles {
                             };
                         };
                     };
-                    class VehicleSystemsDisplayManagerComponentRight : DefaultVehicleSystemsDisplayManagerRight {
+                    class VehicleSystemsDisplayManagerComponentRight: DefaultVehicleSystemsDisplayManagerRight {
                         defaultDisplay = "SensorsDisplay";
                         class Components {
                             class MissileDisplay {
@@ -329,8 +329,8 @@ class CfgVehicles {
                 };
             };
         };
-        class Components : Components {
-            class VehicleSystemsDisplayManagerComponentLeft : DefaultVehicleSystemsDisplayManagerLeft {
+        class Components: Components {
+            class VehicleSystemsDisplayManagerComponentLeft: DefaultVehicleSystemsDisplayManagerLeft {
                 defaultDisplay = "EmptyDisplay";
                 class Components {
                     class VehicleGunnerDisplay {
@@ -359,7 +359,7 @@ class CfgVehicles {
                     };
                 };
             };
-            class VehicleSystemsDisplayManagerComponentRight : DefaultVehicleSystemsDisplayManagerRight {
+            class VehicleSystemsDisplayManagerComponentRight: DefaultVehicleSystemsDisplayManagerRight {
                 defaultDisplay = "SensorsDisplay";
                 class Components {
                     class VehicleGunnerDisplay {
@@ -390,7 +390,7 @@ class CfgVehicles {
             };
             class SensorsManagerComponent {
                 class Components {
-                    class IRSensorComponent : SensorTemplateIR {
+                    class IRSensorComponent: SensorTemplateIR {
                         aimDown = 0;
                         animDirection = "MainTurret";
                         angleRangeHorizontal = 30;
@@ -409,7 +409,7 @@ class CfgVehicles {
                             viewDistanceLimitCoef = 1;
                         };
                     };
-                    class VisualSensorComponent : SensorTemplateVisual {
+                    class VisualSensorComponent: SensorTemplateVisual {
                         aimDown = 0;
                         animDirection = "MainTurret";
                         angleRangeHorizontal = 30;
@@ -428,8 +428,8 @@ class CfgVehicles {
                             viewDistanceLimitCoef = 1;
                         };
                     };
-                    class PassiveSensorComponent : SensorTemplatePassiveRadar {};
-                    class NVSensorComponent : SensorTemplateNV {
+                    class PassiveSensorComponent: SensorTemplatePassiveRadar {};
+                    class NVSensorComponent: SensorTemplateNV {
                         aimDown = 0;
                         animDirection = "MainTurret";
                         angleRangeHorizontal = 30;
@@ -448,7 +448,7 @@ class CfgVehicles {
                             viewDistanceLimitCoef = 1;
                         };
                     };
-                    class LaserSensorComponent : SensorTemplateLaser {
+                    class LaserSensorComponent: SensorTemplateLaser {
                         aimDown = 0;
                         animDirection = "MainTurret";
                         angleRangeHorizontal = 30;

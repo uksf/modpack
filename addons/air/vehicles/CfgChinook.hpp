@@ -2,7 +2,7 @@ class CUP_CH47F_base: Helicopter_Base_H {
     maxSpeed = 315;
     cyclicAsideForceCoef = 1;
     cyclicForwardForceCoef = 1;
-    fuelCapacity = 500;
+    fuelCapacity = 40; //500
     armor = 60;
     memoryPointsGetInDriver = "pos cargo";
     memoryPointsGetInDriverDir = "pos cargo dir";
@@ -19,7 +19,7 @@ class CUP_CH47F_base: Helicopter_Base_H {
             CanEject = 1;
             showHMD = 1;
             class Components {
-                class VehicleSystemsDisplayManagerComponentLeft : DefaultVehicleSystemsDisplayManagerLeft {
+                class VehicleSystemsDisplayManagerComponentLeft: DefaultVehicleSystemsDisplayManagerLeft {
                     defaultDisplay = "EmptyDisplay";
                     class Components {
                         class SensorsDisplay {
@@ -40,7 +40,7 @@ class CUP_CH47F_base: Helicopter_Base_H {
                         };
                     };
                 };
-                class VehicleSystemsDisplayManagerComponentRight : DefaultVehicleSystemsDisplayManagerRight {
+                class VehicleSystemsDisplayManagerComponentRight: DefaultVehicleSystemsDisplayManagerRight {
                     defaultDisplay = "SensorsDisplay";
                     class Components {
                         class SensorsDisplay {
@@ -110,8 +110,8 @@ class CUP_CH47F_base: Helicopter_Base_H {
             volume = "(1-camPos)*3*(rotorThrust-0.9)";
         };
     };
-    class Components : Components {
-        class VehicleSystemsDisplayManagerComponentLeft : DefaultVehicleSystemsDisplayManagerLeft {
+    class Components: Components {
+        class VehicleSystemsDisplayManagerComponentLeft: DefaultVehicleSystemsDisplayManagerLeft {
             defaultDisplay = "EmptyDisplay";
             class Components {
                 class SensorsDisplay {
@@ -132,7 +132,7 @@ class CUP_CH47F_base: Helicopter_Base_H {
                 };
             };
         };
-        class VehicleSystemsDisplayManagerComponentRight : DefaultVehicleSystemsDisplayManagerRight {
+        class VehicleSystemsDisplayManagerComponentRight: DefaultVehicleSystemsDisplayManagerRight {
             defaultDisplay = "SensorsDisplay";
             class Components {
                 class SensorsDisplay {
@@ -155,7 +155,7 @@ class CUP_CH47F_base: Helicopter_Base_H {
         };
         class SensorsManagerComponent {
             class Components {
-                class PassiveSensorComponent : SensorTemplatePassiveRadar {};
+                class PassiveSensorComponent: SensorTemplatePassiveRadar {};
             };
         };
     };

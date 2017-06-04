@@ -236,10 +236,10 @@ class CfgVehicles {
             CanopyForce = 30;
         };
         //Wait until USAF release
-        class Components : Components {
+        class Components: Components {
             class SensorsManagerComponent {
                 class Components {
-                    class IRSensorComponent : SensorTemplateIR {
+                    class IRSensorComponent: SensorTemplateIR {
                         class AirTarget {
                             minRange = 500;
                             maxRange = 2500;
@@ -256,7 +256,7 @@ class CfgVehicles {
                         angleRangeVertical = 90;
                         maxTrackableSpeed = 400;
                     };
-                    class VisualSensorComponent : SensorTemplateVisual {
+                    class VisualSensorComponent: SensorTemplateVisual {
                         class AirTarget {
                             minRange = 500;
                             maxRange = 4000;
@@ -275,9 +275,9 @@ class CfgVehicles {
                         aimDown = 1;
                         animDirection = "mainGun";
                     };
-                    class PassiveRadarSensorComponent : SensorTemplatePassiveRadar {
+                    class PassiveRadarSensorComponent: SensorTemplatePassiveRadar {
                     };
-                    class ActiveRadarSensorComponent : SensorTemplateActiveRadar {
+                    class ActiveRadarSensorComponent: SensorTemplateActiveRadar {
                         class AirTarget {
                             minRange = 15000;
                             maxRange = 15000;
@@ -295,13 +295,13 @@ class CfgVehicles {
                         angleRangeVertical = 45;
                         groundNoiseDistanceCoef = 0.2;
                     };
-                    class LaserSensorComponent : SensorTemplateLaser {
+                    class LaserSensorComponent: SensorTemplateLaser {
                     };
-                    class NVSensorComponent : SensorTemplateNV {
+                    class NVSensorComponent: SensorTemplateNV {
                     };
                 };
             };
-            class VehicleSystemsDisplayManagerComponentLeft : DefaultVehicleSystemsDisplayManagerLeft {
+            class VehicleSystemsDisplayManagerComponentLeft: DefaultVehicleSystemsDisplayManagerLeft {
                 class Components {
                     class EmptyDisplay {
                         componentType = "EmptyDisplayComponent";
@@ -328,7 +328,7 @@ class CfgVehicles {
                     };
                 };
             };
-            class VehicleSystemsDisplayManagerComponentRight : DefaultVehicleSystemsDisplayManagerRight {
+            class VehicleSystemsDisplayManagerComponentRight: DefaultVehicleSystemsDisplayManagerRight {
                 defaultDisplay = "SensorDisplay";
                 class Components {
                     class EmptyDisplay {
@@ -366,7 +366,7 @@ class CfgVehicles {
                         maxweight = 300;
                         UIposition[] = { 0.6, 0.45 };
                     };
-                    class pylon2 : pylon1 {
+                    class pylon2: pylon1 {
                         UIposition[] = { 0.05, 0.45 };
                         mirroredMissilePos = 1;
                     };
@@ -377,7 +377,7 @@ class CfgVehicles {
                         maxweight = 1050;
                         UIposition[] = { 0.55, 0.35 };
                     };
-                    class pylon4 : pylon3 {
+                    class pylon4: pylon3 {
                         UIposition[] = { 0.1, 0.35 };
                         mirroredMissilePos = 3;
                     };
@@ -389,7 +389,7 @@ class CfgVehicles {
                         UIposition[] = { 0.5, 0.25 };
                         bay = 2;
                     };
-                    class pylonBayLeft1 : pylonBayRight1 {
+                    class pylonBayLeft1: pylonBayRight1 {
                         UIposition[] = { 0.16, 0.25 };
                         mirroredMissilePos = 5;
                         bay = 1;
@@ -402,7 +402,7 @@ class CfgVehicles {
                         UIposition[] = { 0.33, 0.3 };
                         bay = 3;
                     };
-                    class pylonBayCenter2 : pylonBayCenter1 {
+                    class pylonBayCenter2: pylonBayCenter1 {
                         UIposition[] = { 0.33, 0.35 };
                         mirroredMissilePos = 7;
                     };
@@ -414,7 +414,7 @@ class CfgVehicles {
                         UIposition[] = { 0.33, 0.4 };
                         bay = 3;
                     };
-                    class pylonBayCenter4 : pylonBayCenter3 {
+                    class pylonBayCenter4: pylonBayCenter3 {
                         UIposition[] = { 0.33, 0.45 };
                         mirroredMissilePos = 9;
                     };
@@ -426,7 +426,7 @@ class CfgVehicles {
                         UIposition[] = { 0.33, 0.5 };
                         bay = 3;
                     };
-                    class pylonBayCenter6 : pylonBayCenter5 {
+                    class pylonBayCenter6: pylonBayCenter5 {
                         UIposition[] = { 0.33, 0.55 };
                         mirroredMissilePos = 11;
                     };
