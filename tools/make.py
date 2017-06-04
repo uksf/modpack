@@ -719,6 +719,12 @@ def copy_dependencies():
             print_error("Cannot create dependencies directory")
             raise
     
+    for file in os.listdir(signatures_path):
+        if (file.endswith(".bisign") and os.path.isfile(os.path.join(signatures_path, file))):
+            if (os.path.splitext(os.path.basename(key))[0] not in file):
+                os.remove(os.path.join(signatures_path, file))
+    
+    
     dependencies_path = os.path.join(a3_path, "@uksf_dependencies\\addons")
     temp_path = os.path.join(dependencies_path, "signatures")
     if not os.path.isdir(temp_path):
@@ -760,7 +766,7 @@ def copy_dependencies():
                     return 1
 
     shutil.rmtree(temp_path)
-
+    
     return 0
 
 ###############################################################################
