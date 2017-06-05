@@ -9,4 +9,4 @@
 Tim Beswick <contact.tim.here@gmail.com>
 
 # CONTRIBUTORS
-Jim
+Adam Bridgford
