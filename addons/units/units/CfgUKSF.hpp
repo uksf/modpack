@@ -70,7 +70,7 @@ class UKSF_B_Pilot_7: UKSF_B_Rifleman {
     respawnMagazines[] = { "UK3CB_BAF_9_17Rnd","UK3CB_BAF_9_17Rnd","UK3CB_BAF_9_17Rnd","UK3CB_BAF_9_17Rnd","HandGrenade","HandGrenade","SmokeShell","SmokeShell" };
     linkedItems[] = { "ItemMap","ItemGPS","ItemCompass","ItemWatch","ACE_NVG_Pilot","UKSF_V_Pilot","UK3CB_BAF_H_PilotHelmetHeli_A" };
     respawnLinkedItems[] = { "ItemMap","ItemGPS","ItemCompass","ItemWatch","ACE_NVG_Pilot","UKSF_V_Pilot","UK3CB_BAF_H_PilotHelmetHeli_A" };
-    ACE_GForceCoef = 0.4;
+    ACE_GForceCoef = 0.6;
 };
 class UKSF_B_Pilot_656: UKSF_B_Pilot_7 {
     displayName = "Pilot (656 Sqn.)";
@@ -86,7 +86,7 @@ class UKSF_B_Pilot_656: UKSF_B_Pilot_7 {
     respawnMagazines[] = { "UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","HandGrenade","HandGrenade","SmokeShell","SmokeShell" };
     linkedItems[] = { "ItemMap","ItemGPS","ItemCompass","ItemWatch","ACE_NVG_Pilot","UKSF_V_Pilot","UK3CB_BAF_H_PilotHelmetHeli_A" };
     respawnLinkedItems[] = { "ItemMap","ItemGPS","ItemCompass","ItemWatch","ACE_NVG_Pilot","UKSF_V_Pilot","UK3CB_BAF_H_PilotHelmetHeli_A" };
-    ACE_GForceCoef = 0.4;
+    ACE_GForceCoef = 0.6;
 };
 class UKSF_B_Pilot_617: UKSF_B_Pilot_7 {
     displayName = "Pilot (617 Sqn.)";
@@ -102,5 +102,5 @@ class UKSF_B_Pilot_617: UKSF_B_Pilot_7 {
     respawnMagazines[] = { "UK3CB_BAF_9_17Rnd","UK3CB_BAF_9_17Rnd","UK3CB_BAF_9_17Rnd","UK3CB_BAF_9_17Rnd","HandGrenade","HandGrenade","SmokeShell","SmokeShell" };
     linkedItems[] = { "ItemMap","ItemGPS","ItemCompass","ItemWatch","ACE_NVG_Pilot","H_PilotHelmetFighter_B" };
     respawnLinkedItems[] = { "ItemMap","ItemGPS","ItemCompass","ItemWatch","ACE_NVG_Pilot","H_PilotHelmetFighter_B" };
-    ACE_GForceCoef = 0.2;
+    ACE_GForceCoef = 0.3;
 };
