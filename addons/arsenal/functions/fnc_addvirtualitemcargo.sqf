@@ -65,6 +65,7 @@ if (_save) then {
     if (typename _object == typename missionnamespace) then {
         _object setvariable ["bis_addVirtualWeaponCargo_cargo",_cargo];
         publicvariable "bis_addVirtualWeaponCargo_cargo";
+        missionnamespace setVariable [QGVAR(virtualArsenal), true, true];
     } else {
         _object setvariable ["bis_addVirtualWeaponCargo_cargo",_cargo,_isGlobal];
     };

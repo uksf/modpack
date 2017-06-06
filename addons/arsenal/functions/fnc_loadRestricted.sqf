@@ -22,12 +22,15 @@ private _loadoutName = _control lnbtext [lnbcurselrow _control, 0];
 if (_loadoutName isEqualTo "") exitWith {};
 
 private _crate = (missionnamespace getvariable ["BIS_fnc_arsenal_cargo", objnull]);
+if (isNull _crate) then {
+    _crate = missionNamespace;
+};
 private _allowed = _crate getvariable [QGVAR(formattedCargo), []];
 private _removed = [];
 
 if (!(missionNamespace getVariable [QGVAR(defaults), false])) then {
     private _inventory = ([_loadoutName] call FUNC(getDefaultLoadout));
-    if (!(missionnamespace getvariable ["BIS_fnc_arsenal_fullArsenal", false]) && {!(missionnamespace getvariable ["BIS_fnc_arsenal_fullGarage", false])} && {isMultiplayer}) then {
+    if ((!(missionnamespace getVariable ["BIS_fnc_arsenal_fullArsenal", false]) && {isMultiplayer}) || {missionnamespace getVariable [QGVAR(virtualArsenal), false]}) then {
         _inventory = [_inventory, _allowed, 0, _removed] call FUNC(restrictInventory);
         [_removed] call FUNC(showRemoved);
     };
@@ -43,7 +46,7 @@ if (!(missionNamespace getVariable [QGVAR(defaults), false])) then {
 
     private _restrictedInventory = +_inventory;
     _restrictedInventory deleteAt (count _restrictedInventory - 1);
-    if (!(missionnamespace getvariable ["BIS_fnc_arsenal_fullArsenal", false]) && {!(missionnamespace getvariable ["BIS_fnc_arsenal_fullGarage", false])} && {isMultiplayer}) then {
+    if ((!(missionnamespace getVariable ["BIS_fnc_arsenal_fullArsenal", false]) && {isMultiplayer}) || {missionnamespace getVariable [QGVAR(virtualArsenal), false]}) then {
         _restrictedInventory = [_restrictedInventory, _allowed, 0, _removed] call FUNC(restrictInventory);
         [_removed] call FUNC(showRemoved);
     };

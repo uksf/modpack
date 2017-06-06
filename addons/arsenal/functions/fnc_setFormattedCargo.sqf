@@ -26,5 +26,5 @@ if ("%ALL" in _cargo) then {
     _formattedCargo append (_cargo select 3);
 };
 
-_crate setvariable [QGVAR(formattedCargo), _formattedCargo, true];
-publicvariable QGVAR(formattedCargo);
+_crate setVariable [QGVAR(formattedCargo), _formattedCargo, true];
+publicVariable QGVAR(formattedCargo);
