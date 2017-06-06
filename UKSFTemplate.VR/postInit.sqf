@@ -1,15 +1,15 @@
 /*
     Author:
-    	Tim Beswick
+        Tim Beswick
 
     Description:
-    	Adds mission stuff
+        Adds mission stuff
 
     Parameters:
-    	None
+        None
         
     Return value:
-    	Nothing
+        Nothing
 */
 
 if ((!isServer && !hasInterface) || !isMultiplayer || is3DENMultiplayer) then {
