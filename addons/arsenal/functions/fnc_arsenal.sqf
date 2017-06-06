@@ -3137,8 +3137,10 @@ switch _mode do {
         private _ctrlButtonGear = _display displayctrl IDC_RSCDISPLAYARSENAL_CONTROLSBAR_BUTTONGEAR;
         if (_mainGear) then {
             _ctrlButtonGear ctrlSetText "ALL GEAR";
+            missionnamespace setVariable [QGVAR(virtualArsenal), true, true];
         } else {
             _ctrlButtonGear ctrlSetText "MAIN OP GEAR";
+            missionnamespace setVariable [QGVAR(virtualArsenal), false, true];
         };
         [_mainGear] call FUNC(setArsenalGear);
 
