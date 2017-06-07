@@ -30,8 +30,7 @@
         {[_leader, _player, true, true] call EFUNC(common,lineOfSight)}
     ) then {
         if (dynamicSimulationEnabled _x) then {
-            INFO_1("Sending disable to %1",_x);
-            [QGVAR(setDynamicSimulation), [_x, false]] call CBA_fnc_serverEvent;
+            [QGVAR(setDynamicSimulation), [_x, false]] call CBA_fnc_globalEvent;
         };
         _leader setVariable [QGVAR(time), diag_tickTime, true];
     };

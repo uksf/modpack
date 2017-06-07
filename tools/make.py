@@ -74,7 +74,7 @@ dependencies = "C:/SteamLibrary/_Working/next/@uksf_dependencies/addons"
 signature_blacklist = []
 importantFiles = ["mod.cpp", "README.md", "mod.paa", "modLarge.paa", "AUTHORS.txt", "LICENSE"]
 versionFiles = ["mod.cpp", "README.md"]
-
+sign = False
 ciBuild = False # Used for CI builds
 
 ###############################################################################
@@ -790,6 +790,7 @@ def main(argv):
     global prefix
     global pbo_name_prefix
     global ciBuild
+    global sign
     global missingFiles
 
     if sys.platform != "win32":
@@ -911,6 +912,10 @@ See the make.cfg file for additional build options.
     if "ci" in argv:
         argv.remove("ci")
         ciBuild = True
+
+    if "sign" in argv:
+        argv.remove("sign")
+        sign = True
 
     print_yellow("\nCheck external references is set to {}".format(str(check_external)))
 
@@ -1458,12 +1463,13 @@ See the make.cfg file for additional build options.
                 shutil.copytree(os.path.join(module_root, release_dir, project), os.path.join(a3_path, project))
             except:
                 print_error("Could not copy files. Is Arma 3 running?")
-
-    ret = copy_dependencies()
-    if ret == 0:
-        print_blue("\nDependencies signed")
-    else:
-        print_error("Could not sign dependencies")
+            
+    if (sign):
+        ret = copy_dependencies()
+        if ret == 0:
+            print_blue("\nDependencies signed")
+        else:
+            print_error("Could not sign dependencies")
 
     if len(failedBuilds) > 0 or len(missingFiles) > 0:
         if len(failedBuilds) > 0:
