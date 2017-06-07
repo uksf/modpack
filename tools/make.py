@@ -72,7 +72,7 @@ prefix = "uksf"
 pbo_name_prefix = "uksf_"
 dependencies = "C:/SteamLibrary/_Working/next/@uksf_dependencies/addons"
 signature_blacklist = []
-importantFiles = ["mod.cpp", "README.md", "mod.paa", "modLarge.paa", "AUTHORS.txt", "LICENSE"]
+importantFiles = ["mod.cpp", "README.md", "mod.paa", "modLarge.paa", "AUTHORS.txt", "LICENSE", "UKSFTemplate.VR"]
 versionFiles = ["mod.cpp", "README.md"]
 sign = False
 ciBuild = False # Used for CI builds
@@ -374,7 +374,11 @@ def copy_important_files(source_dir,destination_dir):
             filePath = os.path.join(module_root_parent, file)
             if os.path.exists(filePath):
                 print_green("Copying file => {}".format(filePath))
-                shutil.copy(os.path.join(source_dir,filePath), destination_dir)
+                if (os.path.isdir(os.path.join(source_dir,filePath))):
+                    shutil.rmtree(os.path.join(destination_dir, file), True)
+                    shutil.copytree(os.path.join(source_dir, file), os.path.join(destination_dir, file))
+                else:
+                    shutil.copy(os.path.join(source_dir,filePath), destination_dir)
             else:
                 missingFiles.append("{}".format(filePath))
                 print_error("Failed copying file => {}".format(filePath))

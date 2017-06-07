@@ -108,13 +108,7 @@ _fullVersion = missionnamespace getvariable ["BIS_fnc_arsenal_fullArsenal",false
 #define GETVIRTUALCARGO\
     _virtualItemCargo =\
         (missionnamespace call bis_fnc_getVirtualItemCargo) +\
-        (_cargo call bis_fnc_getVirtualItemCargo) +\
-        items _center +\
-        assigneditems _center +\
-        primaryweaponitems _center +\
-        secondaryweaponitems _center +\
-        handgunitems _center +\
-        [uniform _center,vest _center,headgear _center,goggles _center];\
+        (_cargo call bis_fnc_getVirtualItemCargo);\
     _virtualWeaponCargo = [];\
     {\
         _weapon = _x call bis_fnc_baseWeapon;\
@@ -124,9 +118,9 @@ _fullVersion = missionnamespace getvariable ["BIS_fnc_arsenal_fullArsenal",false
             _item = gettext (_x >> "item");\
             if !(_item in _virtualItemCargo) then {_virtualItemCargo set [count _virtualItemCargo,_item];};\
         } foreach ((configfile >> "cfgweapons" >> _x >> "linkeditems") call bis_fnc_returnchildren);\
-    } foreach ((missionnamespace call bis_fnc_getVirtualWeaponCargo) + (_cargo call bis_fnc_getVirtualWeaponCargo) + weapons _center + [binocular _center]);\
-    _virtualMagazineCargo = (missionnamespace call bis_fnc_getVirtualMagazineCargo) + (_cargo call bis_fnc_getVirtualMagazineCargo) + magazines _center;\
-    _virtualBackpackCargo = (missionnamespace call bis_fnc_getVirtualBackpackCargo) + (_cargo call bis_fnc_getVirtualBackpackCargo) + [backpack _center];
+    } foreach ((missionnamespace call bis_fnc_getVirtualWeaponCargo) + (_cargo call bis_fnc_getVirtualWeaponCargo));\
+    _virtualMagazineCargo = (missionnamespace call bis_fnc_getVirtualMagazineCargo) + (_cargo call bis_fnc_getVirtualMagazineCargo);\
+    _virtualBackpackCargo = (missionnamespace call bis_fnc_getVirtualBackpackCargo) + (_cargo call bis_fnc_getVirtualBackpackCargo);
 
 #define STATS_WEAPONS\
     ["reloadtime","dispersion","maxzeroing","hit","mass","initSpeed"],\
@@ -176,6 +170,7 @@ _fullVersion = missionnamespace getvariable ["BIS_fnc_arsenal_fullArsenal",false
 
 //Default loadouts
 #define IDC_RSCDISPLAYARSENAL_TEMPLATE_BUTTONDEFAULTS 36022
+#define IDC_RSCDISPLAYARSENAL_CONTROLSBAR_BUTTONGEAR 44449
 
 switch _mode do {
 
@@ -672,6 +667,19 @@ switch _mode do {
         if (BIS_fnc_arsenal_type isEqualTo 0) then {
             _ctrlTemplateButtonDefaults = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_BUTTONDEFAULTS;
             _ctrlTemplateButtonDefaults ctrladdeventhandler ["buttonclick","with uinamespace do {['showTemplates',[ctrlparent (_this select 0)]] call BIS_fnc_arsenal;};"];
+
+            _ctrlButtonGear = _display displayctrl IDC_RSCDISPLAYARSENAL_CONTROLSBAR_BUTTONGEAR;
+            _ctrlButtonGear ctrladdeventhandler ["buttonclick","with uinamespace do {['setMainGear',[ctrlparent (_this select 0)]] call BIS_fnc_arsenal;};"];
+            if (isMultiplayer) then {
+                _ctrlButtonGear ctrlEnable false;
+            } else {
+                private _mainGear = missionNamespace getVariable [QGVAR(mainGear), false];
+                if (_mainGear) then {
+                    _ctrlButtonGear ctrlSetText "ALL GEAR";
+                } else {
+                    _ctrlButtonGear ctrlSetText "MAIN OP GEAR";
+                };
+            };
         };
 
         _ctrlTemplateValue = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_VALUENAME;
@@ -1050,16 +1058,16 @@ switch _mode do {
         _modList = MODLIST;
         _fnc_addModIcon = ADDMODICON;
         _listDefaults = [
-            [(primaryweapon _center) call bis_fnc_baseWeapon], // IDC_RSCDISPLAYARSENAL_TAB_PRIMARYWEAPON
-            [(secondaryweapon _center) call bis_fnc_baseWeapon], // IDC_RSCDISPLAYARSENAL_TAB_SECONDARYWEAPON
-            [(handgunweapon _center) call bis_fnc_baseWeapon], // IDC_RSCDISPLAYARSENAL_TAB_HANDGUN
-            [uniform _center], // IDC_RSCDISPLAYARSENAL_TAB_UNIFORM
-            [vest _center], // IDC_RSCDISPLAYARSENAL_TAB_VEST
-            [backpack _center], // IDC_RSCDISPLAYARSENAL_TAB_BACKPACK
-            [headgear _center], // IDC_RSCDISPLAYARSENAL_TAB_HEADGEAR
-            [goggles _center], // IDC_RSCDISPLAYARSENAL_TAB_GOGGLES
+            [], // IDC_RSCDISPLAYARSENAL_TAB_PRIMARYWEAPON
+            [], // IDC_RSCDISPLAYARSENAL_TAB_SECONDARYWEAPON
+            [], // IDC_RSCDISPLAYARSENAL_TAB_HANDGUN
+            [], // IDC_RSCDISPLAYARSENAL_TAB_UNIFORM
+            [], // IDC_RSCDISPLAYARSENAL_TAB_VEST
+            [], // IDC_RSCDISPLAYARSENAL_TAB_BACKPACK
+            [], // IDC_RSCDISPLAYARSENAL_TAB_HEADGEAR
+            [], // IDC_RSCDISPLAYARSENAL_TAB_GOGGLES
             [], // IDC_RSCDISPLAYARSENAL_TAB_NVGS
-            [binocular player], // IDC_RSCDISPLAYARSENAL_TAB_BINOCULARS
+            [], // IDC_RSCDISPLAYARSENAL_TAB_BINOCULARS
             [], // IDC_RSCDISPLAYARSENAL_TAB_MAP
             [], // IDC_RSCDISPLAYARSENAL_TAB_GPS
             [], // IDC_RSCDISPLAYARSENAL_TAB_RADIO
@@ -1079,6 +1087,12 @@ switch _mode do {
             [], // IDC_RSCDISPLAYARSENAL_TAB_CARGOPUT
             [] // IDC_RSCDISPLAYARSENAL_TAB_CARGOMISC
         ];
+
+        {
+            _ctrlList = _display displayctrl (IDC_RSCDISPLAYARSENAL_LIST + _x);
+            lbclear _ctrlList;
+            _ctrlList lbsetcursel -1;
+        } foreach IDCS;
 
         GETVIRTUALCARGO
 
@@ -2671,12 +2685,13 @@ switch _mode do {
 
     ///////////////////////////////////////////////////////////////////////////////////////////
     case "showTemplates": {
-        _display = _this select 0;
-        _ctrlTemplateValue = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_VALUENAME;
+        private _display = _this select 0;
+        private _ctrlTemplateValue = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_VALUENAME;
         lnbclear _ctrlTemplateValue;
         private _ctrlTemplateButtonDefaults = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_BUTTONDEFAULTS;
         private _data = [];
         private _isDefaults = missionNamespace getVariable [QGVAR(defaults), false];
+
         if (_isDefaults) then {
             _data = ["DEFAULTS"];
             _ctrlTemplateButtonDefaults ctrlSetText "PROFILE";
@@ -2695,31 +2710,29 @@ switch _mode do {
             _ctrlTemplateButtonDelete ctrlEnable true;
         };
         missionNamespace setVariable [QGVAR(defaults), !_isDefaults];
-        _center = (missionnamespace getvariable ["BIS_fnc_arsenal_center",player]);
-        _cargo = (missionnamespace getvariable ["BIS_fnc_arsenal_cargo",objnull]);
-
-        GETVIRTUALCARGO
+        private _center = (missionnamespace getvariable ["BIS_fnc_arsenal_center",player]);
+        private _cargo = (missionnamespace getvariable ["BIS_fnc_arsenal_cargo",objnull]);
 
         if ((_data select 0) != "DEFAULTS") then {
-        for "_i" from 0 to (count _data - 1) step 2 do {
-            _name = _data select _i;
-            _inventory = _data select (_i + 1);
+            for "_i" from 0 to (count _data - 1) step 2 do {
+                private _name = _data select _i;
+                private _inventory = _data select (_i + 1);
 
-            _lbAdd = _ctrlTemplateValue lnbaddrow [_name];
-            _ctrlTemplateValue lnbsetpicture [[_lbAdd,1],gettext (configfile >> "cfgweapons" >> (_inventory select 6 select 0) >> "picture")];
-            _ctrlTemplateValue lnbsetpicture [[_lbAdd,2],gettext (configfile >> "cfgweapons" >> (_inventory select 7 select 0) >> "picture")];
-            _ctrlTemplateValue lnbsetpicture [[_lbAdd,3],gettext (configfile >> "cfgweapons" >> (_inventory select 8 select 0) >> "picture")];
-            _ctrlTemplateValue lnbsetpicture [[_lbAdd,4],gettext (configfile >> "cfgweapons" >> (_inventory select 0 select 0) >> "picture")];
-            _ctrlTemplateValue lnbsetpicture [[_lbAdd,5],gettext (configfile >> "cfgweapons" >> (_inventory select 1 select 0) >> "picture")];
-            _ctrlTemplateValue lnbsetpicture [[_lbAdd,6],gettext (configfile >> "cfgvehicles" >> (_inventory select 2 select 0) >> "picture")];
-            _ctrlTemplateValue lnbsetpicture [[_lbAdd,7],gettext (configfile >> "cfgweapons" >> (_inventory select 3) >> "picture")];
-            _ctrlTemplateValue lnbsetpicture [[_lbAdd,8],gettext (configfile >> "cfgglasses" >> (_inventory select 4) >> "picture")];
+                private _lbAdd = _ctrlTemplateValue lnbaddrow [_name];
+                _ctrlTemplateValue lnbsetpicture [[_lbAdd,1],gettext (configfile >> "cfgweapons" >> (_inventory select 6 select 0) >> "picture")];
+                _ctrlTemplateValue lnbsetpicture [[_lbAdd,2],gettext (configfile >> "cfgweapons" >> (_inventory select 7 select 0) >> "picture")];
+                _ctrlTemplateValue lnbsetpicture [[_lbAdd,3],gettext (configfile >> "cfgweapons" >> (_inventory select 8 select 0) >> "picture")];
+                _ctrlTemplateValue lnbsetpicture [[_lbAdd,4],gettext (configfile >> "cfgweapons" >> (_inventory select 0 select 0) >> "picture")];
+                _ctrlTemplateValue lnbsetpicture [[_lbAdd,5],gettext (configfile >> "cfgweapons" >> (_inventory select 1 select 0) >> "picture")];
+                _ctrlTemplateValue lnbsetpicture [[_lbAdd,6],gettext (configfile >> "cfgvehicles" >> (_inventory select 2 select 0) >> "picture")];
+                _ctrlTemplateValue lnbsetpicture [[_lbAdd,7],gettext (configfile >> "cfgweapons" >> (_inventory select 3) >> "picture")];
+                _ctrlTemplateValue lnbsetpicture [[_lbAdd,8],gettext (configfile >> "cfgglasses" >> (_inventory select 4) >> "picture")];
             };
         } else {
             {
                 private _name = getText (_x >> "name");
                 private _inventory = call compile (getText (_x >> "loadout"));
-                _lbAdd = _ctrlTemplateValue lnbAddRow [_name];
+                private _lbAdd = _ctrlTemplateValue lnbAddRow [_name];
                 _ctrlTemplateValue lnbSetPicture [[_lbAdd, 1], getText (configFile >> "CfgWeapons" >> (_inventory select 0 select 0) >> "picture")]; //Primary
                 _ctrlTemplateValue lnbSetPicture [[_lbAdd, 2], getText (configFile >> "CfgWeapons" >> (_inventory select 1 select 0) >> "picture")]; //Launcher
                 _ctrlTemplateValue lnbSetPicture [[_lbAdd, 3], getText (configFile >> "CfgWeapons" >> (_inventory select 2 select 0) >> "picture")]; //Secondary
@@ -3114,6 +3127,26 @@ switch _mode do {
         missionnamespace setvariable ["BIS_fnc_arsenal_message",_spawn];
     };
 
+    ///////////////////////////////////////////////////////////////////////////////////////////
+    case "setMainGear": {
+        private _mainGear = missionNamespace getVariable [QGVAR(mainGear), false];
+        _mainGear = !_mainGear;
+        missionNamespace setVariable [QGVAR(mainGear), _mainGear, true];
+
+        private _display = _this select 0;
+        private _ctrlButtonGear = _display displayctrl IDC_RSCDISPLAYARSENAL_CONTROLSBAR_BUTTONGEAR;
+        if (_mainGear) then {
+            _ctrlButtonGear ctrlSetText "ALL GEAR";
+            missionnamespace setVariable [QGVAR(virtualArsenal), true, true];
+        } else {
+            _ctrlButtonGear ctrlSetText "MAIN OP GEAR";
+            missionnamespace setVariable [QGVAR(virtualArsenal), false, true];
+        };
+        [_mainGear] call FUNC(setArsenalGear);
+
+        ["ListAdd", [_display]] call BIS_fnc_arsenal;
+        ["ListSelectCurrent", [_display]] call BIS_fnc_arsenal;
+    };
 
     ///////////////////////////////////////////////////////////////////////////////////////////
     case "AmmoboxInit": {

@@ -5,3 +5,4 @@ PREP(cleanRadio);
 PREP(saveToProfile);
 PREP(showRemoved);
 PREP(getDefaultLoadout);
+PREP(setArsenalGear);
