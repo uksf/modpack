@@ -6,19 +6,21 @@
         Handles caching of AI units
 
     Parameter(s):
-        None
+        0: Group to exclude from caching
 
     Return Value:
         None
 */
 #include "script_component.hpp"
 
-if !(isServer) exitWith {};
+if !(isServer) exitWith {
+    [QGVAR(disableCache), this] call CBA_fnc_serverEvent;
+};
 
-params [["_entity", objNull, [grpNull, objNull]]];
+params [["_group", grpNull, [grpNull]]];
 
-_entity setVariable [QGVAR(excluded), true, true];
-if (dynamicSimulationEnabled _entity) then {
-    _entity enableDynamicSimulation false;
-    _entity enableSimulationGlobal true;
+_group setVariable [QGVAR(excluded), true, true];
+if (dynamicSimulationEnabled _group) then {
+    _group enableDynamicSimulation false;
+    {_x enableSimulationGlobal true; false} count (units _group);
 };

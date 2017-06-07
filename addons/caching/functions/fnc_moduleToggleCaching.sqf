@@ -31,7 +31,7 @@ if (_typeName != "OBJECT" && {!(alive _unit)}) then {
             ["Unit must be alive"] call ace_common_fnc_displayTextStructured;
         } else {
             if (!((group _unit) getVariable [QGVAR(excluded), false])) then {
-                [_unit] call FUNC(disableCache);
+                [QGVAR(disableCache), [(group _unit)]] call CBA_fnc_serverEvent;
                 ["Group excluded from caching"] call ace_common_fnc_displayTextStructured;
             } else {
                 (group _unit) setVariable [QGVAR(excluded), false, true];
