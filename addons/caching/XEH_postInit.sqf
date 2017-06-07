@@ -14,11 +14,11 @@ enableDynamicSimulationSystem true;
 "IsMoving" setDynamicSimulationDistanceCoef 1.5;
 
 if (isServer) then {
-    [FUNC(checkGroupsServer), 5, []] call cba_fnc_addPerFrameHandler;
+    [{call FUNC(checkGroupsServer)}, 5, []] call cba_fnc_addPerFrameHandler;
 };
 
 if (hasInterface) then {
-    [FUNC(checkGroupsClient), 1, []] call cba_fnc_addPerFrameHandler;
+    [{call FUNC(checkGroupsClient)}, 1, []] call cba_fnc_addPerFrameHandler;
 };
 
 //Debug shizzle
