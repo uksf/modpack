@@ -47,7 +47,7 @@ if (!isServer) exitWith {};
 
                 _args set [2, _iterator + 1];
             }, 10, [_gunner, _magazine, _iterator]] call CBA_fnc_addPerFrameHandler;
-        }, 120 + (random 30), [_gunner, _magazine]] call CBA_fnc_addPerFrameHandler;
+        }, 30, [_gunner, _magazine]] call CBA_fnc_addPerFrameHandler;
     }] remoteExecCall ["bis_fnc_call", owner _gunner, false];
 }, [_this], 360] call CBA_fnc_waitAndExecute;
 

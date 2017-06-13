@@ -10064,7 +10064,7 @@ class Mission
 						isPlayable=1;
 					};
 					id=288;
-					type="UKSF_B_Pilot_656";
+					type="UKSF_B_Pilot_617";
 					class CustomAttributes
 					{
 						class Attribute0
