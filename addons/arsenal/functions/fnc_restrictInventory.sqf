@@ -26,7 +26,7 @@ params ["_inventory", "_allowed", "_depth", "_removed", ["_restrictedInventory",
         if ((_part select [0, 4]) isEqualTo "ACRE") then {
             _part = [_part] call FUNC(cleanRadio);
         };
-        if (_part in _allowed || {"%ALL" in _allowed} || {_part isEqualTo "ItemRadioAcreFlagged"}) then {
+        if (_part in _allowed || {_part isEqualTo ""} || {"%ALL" in _allowed} || {_part isEqualTo "ItemRadioAcreFlagged"}) then {
             _restrictedPart = _part;
         } else {
             if (_depth > 1) then {
@@ -37,7 +37,7 @@ params ["_inventory", "_allowed", "_depth", "_removed", ["_restrictedInventory",
             };
         };
     } else {
-        if (_part isEqualType 0) then {
+        if (_part isEqualType 0 || {_part isEqualType false}) then {
             _restrictedPart = _part;
         } else {
             if (_part isEqualType []) then {
@@ -50,5 +50,5 @@ params ["_inventory", "_allowed", "_depth", "_removed", ["_restrictedInventory",
     };
     false
 } count _inventory;
-    
+
 _restrictedInventory

@@ -2649,6 +2649,7 @@ switch _mode do {
     ///////////////////////////////////////////////////////////////////////////////////////////
     case "buttonTemplateDelete": {
         _display = _this select 0;
+        missionNamespace setVariable [QGVAR(defaults), false];
         _ctrlTemplateValue = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_VALUENAME;
         _cursel = lnbcurselrow _ctrlTemplateValue;
         _name = _ctrlTemplateValue lnbtext [_cursel,0];
@@ -2657,13 +2658,13 @@ switch _mode do {
         _ctrlTemplateValue lnbsetcurselrow (_cursel max (lbsize _ctrlTemplateValue - 1));
 
         ["templateSelChanged",[_display]] call bis_fnc_arsenal;
-/*
+        /*
         _enableButtons = (lnbsize _ctrlTemplateValue select 0) > 0;
         _ctrlTemplateButtonOK = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_BUTTONOK;
         _ctrlTemplateButtonOK ctrlenable _enableButtons;
         _ctrlTemplateButtonDelete = _display displayctrl IDC_RSCDISPLAYARSENAL_TEMPLATE_BUTTONDELETE;
         _ctrlTemplateButtonDelete ctrlenable _enableButtons;
-*/
+        */
     };
 
     ///////////////////////////////////////////////////////////////////////////////////////////
