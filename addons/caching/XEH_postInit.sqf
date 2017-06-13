@@ -32,11 +32,15 @@ onEachFrame {
     {
         if (!(isPlayer _x)) then {
             private _colour = [1,0,0,1];
-            private _pos = worldToScreen (getPos _x);
+            private _pos = worldToScreen (getPosVisual _x);
             private _onScreen = ((count _pos) > 0) && {(abs (_pos select 0)) < 1.5} && {(abs (_pos select 1)) < 1.5};
             if (_onScreen) then {
                 _colour = [1,1,0,1];
-                private _distance = (getObjectViewDistance select 0) min (1000 + ((200 + (4 * 200 * ((currentVisionMode _player) - 1))) * ((call CBA_fnc_getFov) select 1)));
+                private _distanceMultiplier = (200 + (4 * 200 * (((currentVisionMode _player) - 1) max 0)));
+                if (!((vehicle _x) isKindOf "CAManBase")) then {
+                    _distanceMultiplier = _distanceMultiplier * 2.5;
+                };
+                private _distance = (getObjectViewDistance select 0) min (1000 + (_distanceMultiplier * ((call CBA_fnc_getFov) select 1)));
                 private _zoom = ((_x distance _player) < _distance);
                 if (_zoom) then {
                     _colour = [0,0,1,1];
@@ -50,7 +54,7 @@ onEachFrame {
             if (simulationEnabled _x) then {
                 _text = "CAN MOVE";
             };
-            drawIcon3D ["\a3\ui_f_curator\data\logos\arma3_curator_eye_32_ca.paa", _colour, getPos _x, 0.5, 0.5, 0, _text, 0, 0.01, "TahomaB", "center", true];
+            drawIcon3D ["\a3\ui_f_curator\data\logos\arma3_curator_eye_32_ca.paa", _colour, getPosVisual _x, 0.5, 0.5, 0, _text, 0, 0.01, "TahomaB", "center", true];
         };
     } count allUnits;
 };
@@ -95,5 +99,16 @@ onEachFrame {
             drawIcon3D ["\a3\ui_f_curator\data\logos\arma3_curator_eye_32_ca.paa", _colour, getPos _unit, 0.5, 0.5, 0, _text, 0, 0.025, "TahomaB", "center", true];
         };
     } count allGroups;
+};
+onEachFrame {
+    {
+        if (!(isPlayer _x)) then {
+            private _colour = [1,0,0,1];
+            if (simulationEnabled _x) then {
+                _colour = [0,1,0,1];
+            };
+            drawIcon3D ["\a3\ui_f_curator\data\logos\arma3_curator_eye_32_ca.paa", _colour, getPosVisual _x, 0.5, 0.5, 0, "", 0, 0.025, "TahomaB", "center", true];
+        };
+    } count allUnits;
 };
 */
