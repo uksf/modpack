@@ -8,30 +8,7 @@ class CfgWeapons {
     class HeadgearItem;
     class VestItem;
 
-    class U_I_CombatUniform;
-    class U_I_CombatUniform_shortsleeve;
-    class U_B_HeliPilotCoveralls;
-    class UK3CB_BAF_U_CombatUniform_MTP_RM: U_I_CombatUniform {
-        scope = 2;
-    };
-    class UK3CB_BAF_U_CombatUniform_MTP_ShortSleeve_RM: U_I_CombatUniform_shortsleeve {
-        scope = 2;
-    };
-    class UK3CB_BAF_U_CombatUniform_MTP_TShirt_RM: U_I_CombatUniform {
-        scope = 2;
-    };
-    class UK3CB_BAF_U_CombatUniform_MTP: U_I_CombatUniform {
-        scope = 2;
-    };
-    class UK3CB_BAF_U_CombatUniform_MTP_ShortSleeve: U_I_CombatUniform_shortsleeve {
-        scope = 2;
-    };
-    class UK3CB_BAF_U_HeliPilotCoveralls_RN: U_B_HeliPilotCoveralls {
-        scope = 2;
-    };
-    class UK3CB_BAF_U_CombatUniform_MTP_Ghillie_RM: Uniform_Base {
-        scope = 2;
-    };
+    class UK3CB_BAF_U_CombatUniform_MTP_TShirt_RM;
     class UK3CB_BAF_U_CombatUniform_MTP_TShirt: UK3CB_BAF_U_CombatUniform_MTP_TShirt_RM {
         scope = 2;
         author = "UKSF";
@@ -43,6 +20,7 @@ class CfgWeapons {
             mass = 40;
         };
     };
+    class U_I_CombatUniform;
     class UK3CB_BAF_U_CombatUniform_MTP_1Para: U_I_CombatUniform {
         scope = 2;
         author = "UKSF";
@@ -59,6 +37,7 @@ class CfgWeapons {
             mass = 40;
         };
     };
+    class U_I_CombatUniform_shortsleeve;
     class UK3CB_BAF_U_CombatUniform_MTP_1Para_ShortSleeve: U_I_CombatUniform_shortsleeve {
         scope = 2;
         author = "UKSF";
@@ -171,6 +150,7 @@ class CfgWeapons {
             mass = 40;
         };
     };
+    class U_B_HeliPilotCoveralls;
     class UK3CB_BAF_U_HeliPilotCoveralls_RAF: U_B_HeliPilotCoveralls {
         scope = 2;
         author = "UKSF";
@@ -196,6 +176,7 @@ class CfgWeapons {
             mass = 60;
         };
     };
+    class UK3CB_BAF_U_CombatUniform_MTP;
     class UKSF_U_PilotUniform_656: UK3CB_BAF_U_CombatUniform_MTP {
         displayName = "Pilot Uniform (656 Sqn.)";
         hiddenSelections[] = { "camo", "insignia" };
@@ -316,6 +297,40 @@ class CfgWeapons {
             armor = 20;
             passThrough = 1;
             hiddenSelections[] = { "camo" };
+        };
+    };    
+    class V_PlateCarrier1_rgr;
+    class V_PlateCarrier2_rgr: V_PlateCarrier1_rgr {
+        class ItemInfo;
+    };
+    class UK3CB_BAF_V_Osprey_Base: V_PlateCarrier2_rgr {
+        class ItemInfo: ItemInfo {
+            class HitpointsProtectionInfo {
+                class Neck {
+                    HitpointName = "HitNeck";
+                    armor = 16; //12
+                    PassThrough = 0.4;
+                };
+                class Chest {
+                    HitpointName = "HitChest";
+                    armor = 30; //26, 20
+                    PassThrough = 0.2;
+                };
+                class Diaphragm {
+                    HitpointName = "HitDiaphragm";
+                    armor = 30; //26, 20
+                    PassThrough = 0.2;
+                };
+                class Abdomen {
+                    hitpointName = "HitAbdomen";
+                    armor = 26; //20
+                    passThrough = 0.2; //0.3
+                };
+                class Body {
+                    hitpointName = "HitBody";
+                    passThrough = 0.2; //0.3
+                };
+            };
         };
     };
 
