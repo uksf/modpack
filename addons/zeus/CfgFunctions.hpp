@@ -12,7 +12,7 @@ class CfgFunctions {
     };
     class Ares {
         class functions_f_features {
-            class AddUnitsToCurator { file = QPATHTOF(functions\fnc_addUnitsToCurator.sqf); };
+            class AddUnitsToCurator { fil-e = QPATHTOF(functions\fnc_addUnitsToCurator.sqf); };
         };
     };
 };

@@ -1,4 +1,5 @@
 PREP(moduleCurator);
+PREP(openArsenal);
 
 //Modules
 PREP(moduleAddAllObjects);
