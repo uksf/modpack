@@ -777,9 +777,25 @@ class CfgVehicles {
                     };
                 };
                 class Presets {
+                    class Empty {
+                        displayName = "Empty";
+                        attachment[] = {};
+                    };
                     class Default {
-                        displayName = "Default";
+                        displayName = "CAS";
                         attachment[] = { "PylonRocket_19Rnd_CRV7_HEISAP", "PylonRack_4Rnd_ACE_Hellfire_AGM114N", "PylonRack_4Rnd_ACE_Hellfire_AGM114L", "PylonRocket_19Rnd_CRV7_HEISAP" };
+                    };
+                    class AT {
+                        displayName = "AT";
+                        attachment[] = { "PylonRack_4Rnd_ACE_Hellfire_AGM114L", "PylonRack_4Rnd_ACE_Hellfire_AGM114L", "PylonRack_4Rnd_ACE_Hellfire_AGM114L", "PylonRack_4Rnd_ACE_Hellfire_AGM114L" };
+                    };
+                    class Escort {
+                        displayName = "Escort";
+                        attachment[] = { "PylonRocket_19Rnd_CRV7_HEISAP", "PylonRocket_19Rnd_CRV7_HEISAP", "PylonRocket_19Rnd_CRV7_HEISAP", "PylonRocket_19Rnd_CRV7_HEISAP" };
+                    };
+                    class Strike {
+                        displayName = "Escort";
+                        attachment[] = { "PylonRack_4Rnd_ACE_Hellfire_AGM114L", "PylonRack_4Rnd_ACE_Hellfire_AGM114N", "PylonRack_4Rnd_ACE_Hellfire_AGM114K", "PylonRack_4Rnd_ACE_Hellfire_AGM114L" };
                     };
                 };
             };
