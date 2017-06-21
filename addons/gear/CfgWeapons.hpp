@@ -685,38 +685,20 @@ class CfgWeapons {
         reloadTime = 0.01;
         magazineReloadTime = 0.1;
     };
-    class MissileLauncher;
-    class CUP_Vmlauncher_AGM114K_veh: MissileLauncher {
+    class missiles_SCALPEL;
+    class ace_hellfire_launcher: missiles_SCALPEL {
         displayName = "AGM-114K Hellfire II";
-        reloadMagazineSound[] = { "", 1, 1 };
-        sounds[] = { "StandardSound" };
-        class StandardSound {
-            begin1[] = { "a3\sounds_f\weapons\rockets\missile_2", 5, 1.3, 1000 };
-            soundBegin[] = { "begin1", 1 };
-            weaponSoundEffect = "DefaultRifle";
-        };
-        soundFly[] = { QPATHTOF(data\sounds\hellfire.ogg), 1, 1.5, 700 };
-        lockingTargetSound[] = { "\a3\sounds_f\weapons\rockets\locked_1", 0.31622776, 1 };
-        lockedTargetSound[] = { "\a3\sounds_f\weapons\rockets\locked_3", 0.31622776, 2.5 };
-        weaponLockDelay = 0.5;
-        magazines[] = {
-            "CUP_8Rnd_AGM114K_Hellfire_II_M","CUP_4Rnd_AGM114K_Hellfire_II_M","CUP_2Rnd_AGM114K_Hellfire_II_M","CUP_1Rnd_AGM114K_Hellfire_II_M"
-        };
+        magazines[] = { "4Rnd_ACE_Hellfire_AGM114K", "PylonMissile_1Rnd_ACE_Hellfire_AGM114K", "PylonRack_1Rnd_ACE_Hellfire_AGM114K", "PylonRack_3Rnd_ACE_Hellfire_AGM114K", "PylonRack_4Rnd_ACE_Hellfire_AGM114K" };
     };
-    class CUP_Vmlauncher_AGM114L_veh: CUP_Vmlauncher_AGM114K_veh {
+    class ace_hellfire_launcher_L: ace_hellfire_launcher {
         displayName = "AGM-114L Hellfire II";
-        magazines[] = {
-            "CUP_8Rnd_AGM114L_Hellfire_II_M","CUP_4Rnd_AGM114L_Hellfire_II_M","CUP_2Rnd_AGM114L_Hellfire_II_M","CUP_1Rnd_AGM114L_Hellfire_II_M"
-        };
+        magazines[] = { "4Rnd_ACE_Hellfire_AGM114L", "PylonRack_4Rnd_ACE_Hellfire_AGM114L" };
+        ace_hellfire_enabled = 0;
+        ace_laser_canSelect = 0;
+        canLock = 2;
+        weaponLockSystem = 8;
+        cmImmunity = 1;
     };
-    class CUP_AGM114L_Hellfire_II_Launcher_W: CUP_Vmlauncher_AGM114L_veh {};
-    class CUP_Vmlauncher_AGM114N_veh: CUP_Vmlauncher_AGM114K_veh {
-        displayName = "AGM-114N Hellfire II";
-        magazines[] = {
-            "CUP_8Rnd_AGM114N_Hellfire_II_M","CUP_4Rnd_AGM114N_Hellfire_II_M"
-        };
-    };
-    class CUP_AGM114N_Hellfire_II_Launcher_W: CUP_Vmlauncher_AGM114N_veh {};
     class CannonCore;
     class CUP_Vacannon_M230_veh: CannonCore {
         magazines[] = { "CUP_1200Rnd_TE1_Red_Tracer_30x113mm_M789_HEDP_M","CUP_1200Rnd_TE1_Green_Tracer_30x113mm_M789_HEDP_M","CUP_1200Rnd_TE1_Yellow_Tracer_30x113mm_M789_HEDP_M","CUP_1200Rnd_TE1_White_Tracer_30x113mm_M789_HEDP_M" };
@@ -800,8 +782,9 @@ class CfgWeapons {
             displayname = "Ripple 4";
         };
     };
-    class CUP_Vmlauncher_CRV7_HEISAP_veh: CUP_Vmlauncher_CRV7_FAT_veh {
-        magazines[] = { "CUP_12Rnd_CRV7_HEISAP_M","CUP_14Rnd_CRV7_HEISAP_M","CUP_19Rnd_CRV7_HEISAP_M","CUP_24Rnd_CRV7_HEISAP_M","CUP_38Rnd_CRV7_HEISAP_M","CUP_48Rnd_CRV7_HEISAP_M","CUP_76Rnd_CRV7_HEISAP_M","CUP_114Rnd_CRV7_HEISAP_M" };
+    class launcher_crv7_heisap: CUP_Vmlauncher_CRV7_FAT_veh {
+        displayName = "CRV7-HEISAP";
+        magazines[] = { "PylonRocket_19Rnd_CRV7_HEISAP" };
     };
     class CUP_Vlmg_M240_veh: MGun {
         displayName = "L7A2";
