@@ -24,6 +24,8 @@ private _magazines = getPylonMagazines _vehicle;
     private _magazine = configFile >> "CfgMagazines" >> _x;
     if (isNumber (_magazine >> QGVAR(pilotControl)) && {(getNumber (_magazine >> QGVAR(pilotControl))) > 0}) then {
         _vehicle removeWeaponTurret [getText (_magazine >> "pylonWeapon"), [0]];
-        _vehicle setPylonLoadOut [configName (_pylons select _forEachIndex), _x, true, []];
+        private _ammo = (_vehicle ammoOnPylon (_forEachIndex + 1));
+        _vehicle setPylonLoadOut [(_forEachIndex + 1), _x, true, []];
+        _vehicle setAmmoOnPylon [(_forEachIndex + 1), _ammo];
     };
 } forEach _magazines;

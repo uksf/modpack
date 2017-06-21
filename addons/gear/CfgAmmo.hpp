@@ -75,6 +75,7 @@ class CfgAmmo{
         };
         model = QPATHTOF(data\AGM114\AGM114Hellfire.p3d);
         proxyShape = QPATHTOF(data\AGM114\AGM114Hellfire_proxy.p3d);
+        ace_rearm_dummy = QGVAR(ACE_Hellfire_AGM114);
     };
     class ACE_Hellfire_AGM114L: ACE_Hellfire_AGM114K {
         displayName = "AGM-114L";
@@ -138,6 +139,7 @@ class CfgAmmo{
             hitWater = "ImpactEffectsWaterBig";
         };
         SoundSetExplosion[] = { "DS_Ex_rocket_small_SoundSet", "DS_exploBig_Tail_placeholder_SoundSet" };
+        ace_rearm_dummy = "ace_rearm_R_Hydra_HE";
     };
     class CUP_R_CRV7_HEISAP: CUP_R_CRV7_FAT {
         hit = 400;
