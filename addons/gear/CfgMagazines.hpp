@@ -81,6 +81,9 @@ class CfgMagazines {
         initSpeed = 30;
         maxLeadSpeed = 650;
     };
+    class CUP_19Rnd_CRV7_FAT_M: CUP_12Rnd_CRV7_FAT_M {
+        count = 19;
+    };
     class CUP_12Rnd_CRV7_HEISAP_M: CUP_12Rnd_CRV7_FAT_M {
         count = 12;
         ammo = "CUP_R_CRV7_HEISAP";
@@ -88,7 +91,7 @@ class CfgMagazines {
         displayNameShort = "HEISAP";
         descriptionShort = "CRV7 High Explosive Incendiary Semi-Armour Piercing Rocket";
     };
-    class CUP_19Rnd_CRV7_FAT_M: CUP_12Rnd_CRV7_HEISAP_M {
+    class CUP_19Rnd_CRV7_HEISAP_M: CUP_12Rnd_CRV7_HEISAP_M {
         count = 19;
     };
     class PylonRocket_19Rnd_CRV7_HEISAP: CUP_19Rnd_CRV7_FAT_M {

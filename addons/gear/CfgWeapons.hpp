@@ -782,7 +782,10 @@ class CfgWeapons {
             displayname = "Ripple 4";
         };
     };
-    class launcher_crv7_heisap: CUP_Vmlauncher_CRV7_FAT_veh {
+    class CUP_Vmlauncher_CRV7_HEISAP_veh: CUP_Vmlauncher_CRV7_FAT_veh {
+        magazines[] = { "CUP_12Rnd_CRV7_HEISAP_M","CUP_19Rnd_CRV7_HEISAP_M" };
+    };
+    class launcher_crv7_heisap: CUP_Vmlauncher_CRV7_HEISAP_veh {
         displayName = "CRV7-HEISAP";
         magazines[] = { "PylonRocket_19Rnd_CRV7_HEISAP" };
     };
