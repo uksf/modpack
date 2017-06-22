@@ -6,7 +6,7 @@ class UKSF_B_Rifleman: CUP_B_BAF_Soldier_MTP {
     displayName = "Rifleman";
     cost = 100000;
     editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Rifleman.jpg);
-    uniformClass = "UK3CB_BAF_U_CombatUniform_MTP";
+    uniformClass = "UK3CB_BAF_U_CombatUniform_MTP_1Para";
     backpack = "";
     weapons[] = { "Throw","Put" };
     respawnWeapons[] = { "Throw","Put" };

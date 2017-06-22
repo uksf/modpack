@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=125;
+		nextID=137;
 	};
 	class Camera
 	{
-		pos[]={22.320171,28.562944,-8.6769838};
-		dir[]={0.0014445012,-0.89633065,0.44349921};
-		up[]={0.0029198762,0.44331196,0.89635575};
-		aside[]={1.0000486,1.0946133e-007,-0.0032589019};
+		pos[]={50.326511,27.244787,7.624999};
+		dir[]={0.14534862,-0.75611049,0.638179};
+		up[]={0.16792575,0.65434569,0.73730612};
+		aside[]={0.97508305,-2.9610237e-007,-0.22208202};
 	};
 };
 binarizationWanted=0;
@@ -10001,7 +10001,7 @@ class Mission
 											"STRING"
 										};
 									};
-									value="[[[[],[]],[[],[]],[[""G_Combat"",""H_Shemag_olive"",""H_Shemag_olive_hs"",""H_ShemagOpen_tan"",""H_ShemagOpen_khk"",""UK3CB_BAF_H_CrewHelmet_DDPM_A"",""UK3CB_BAF_H_CrewHelmet_DPMT_ESS_A"",""UK3CB_BAF_H_CrewHelmet_DPMW_A"",""UK3CB_BAF_H_CrewHelmet_A""],[]],[[],[]]],true]";
+									value="[[[[],[]],[[],[]],[[""G_Combat"",""H_Shemag_olive"",""H_Shemag_olive_hs"",""H_ShemagOpen_tan"",""H_ShemagOpen_khk"",""UK3CB_BAF_H_CrewHelmet_DDPM_A"",""UK3CB_BAF_H_CrewHelmet_DPMT_ESS_A"",""UK3CB_BAF_H_CrewHelmet_DPMW_A"",""UK3CB_BAF_H_CrewHelmet_A""],[15,15,15,15,15,15,15,15,15]],[[],[]]],false]";
 								};
 							};
 						};
