@@ -114,7 +114,16 @@ class CfgPatches {
 };
 
 class cba_Extended_EventHandlers;
+class SensorTemplateActiveRadar;
+class SensorTemplateAntiRadiation;
+class SensorTemplateIR;
+class SensorTemplateLaser;
+class SensorTemplateMan;
+class SensorTemplateNV;
+class SensorTemplatePassiveRadar;
+class SensorTemplateVisual;
 #include "CfgAmmo.hpp"
+#include "CfgEventHandlers.hpp"
 #include "CfgMagazines.hpp"
 #include "CfgWeapons.hpp"
 #include "CfgVehicles.hpp"

@@ -8,6 +8,17 @@ class SensorTemplateMan;
 class SensorTemplateNV;
 class SensorTemplatePassiveRadar;
 class SensorTemplateVisual;
+class CfgNonAIVehicles {
+    class ProxyWeapon;
+    class ProxyPylonRocket_19Rnd_CRV7_HEISAP: ProxyWeapon {
+        model = QPATHTOF(PylonRocket_19Rnd_CRV7_HEISAP.p3d);
+        simulation = "pylonpod";
+    };
+    class ProxyPylonPod_4x_Missile_LG_scalpel_F: ProxyWeapon {
+        model = "\A3\Weapons_F\DynamicLoadout\PylonPod_4x_Missile_LG_scalpel_F.p3d";
+        simulation = "pylonpod";
+    };
+};
 class CfgVehicles {
     class CUP_B_AH64D_NO_USA;
     class CUP_B_AH1_NO_BAF: CUP_B_AH64D_NO_USA {
@@ -102,7 +113,7 @@ class CfgVehicles {
         memoryPointLMissile = "missile_1";
         memoryPointRMissile = "missile_2";
         memoryPointLRocket = "Rocket_1";
-        memoryPointRRocket = "Rocket_2";        
+        memoryPointRRocket = "Rocket_2";
         memoryPointCM[] = { "flare_launcher1", "flare_launcher2" }; 
         memoryPointCMDir[] = { "flare_launcher1_dir", "flare_launcher2_dir" };
         radarType = 4;
@@ -117,8 +128,8 @@ class CfgVehicles {
         driverRightHandAnimName = "stick";
         driverLeftHandAnimName = "lever";
         driverLeftLegAnimName = "pedalL";
-        driverRightLegAnimName = "pedalR";    
-        driverCanEject = 1;        
+        driverRightLegAnimName = "pedalR";
+        driverCanEject = 1;
         getInAction = "pilot_Heli_Light_02_Enter";
         getOutAction = "pilot_Heli_Light_02_Exit";
         maximumLoad = 2000;
@@ -130,14 +141,14 @@ class CfgVehicles {
         selectionHRotorStill = "velka vrtule staticka";
         selectionHRotorMove = "velka vrtule blur";
         selectionVRotorStill = "mala vrtule staticka";
-        selectionVRotorMove = "mala vrtule blur";        
+        selectionVRotorMove = "mala vrtule blur";
         mainBladeCenter = "rotor_center";
         mainBladeRadius = 6.8;
         tailBladeCenter = "rotor_02_center";
-        tailBladeRadius = 1.6;        
-        driveOnComponent[] = { "wheel_1_1", "wheel_2_1", "wheel_12_2" };    
+        tailBladeRadius = 1.6;
+        driveOnComponent[] = { "wheel_1_1", "wheel_2_1", "wheel_12_2" };
         soundLocked[] = { "\A3\Sounds_F\weapons\Rockets\opfor_lock_1", 1, 1};
-        soundIncommingMissile[] = { "\A3\Sounds_F\weapons\Rockets\opfor_lock_2", 1, 1};        
+        soundIncommingMissile[] = { "\A3\Sounds_F\weapons\Rockets\opfor_lock_2", 1, 1};
         soundgetin[] = { QPATHTOF(data\sounds\close.ogg), 1, 1 };
         soundgetout[] = { QPATHTOF(data\sounds\open.ogg), 1, 1, 40 };
         class Sounds: Sounds {
@@ -159,8 +170,8 @@ class CfgVehicles {
                 volume = "camPos * (rotorThrust factor [0.7, 0.9])";
             };
         };
-        weapons[] = { "CUP_weapon_mastersafe", "CUP_Vmlauncher_CRV7_FAT_veh", "CMFlareLauncher" };
-        magazines[] = { "CUP_38Rnd_CRV7_FAT_M", "168Rnd_CMFlare_Chaff_Magazine" };
+        weapons[] = { "CUP_weapon_mastersafe", "CMFlareLauncher" };
+        magazines[] = { "168Rnd_CMFlare_Chaff_Magazine" };
         class Turrets: Turrets {
             class MainTurret: MainTurret {
                 turretInfoType = "RscOptics_GENERAL_FLIR";
@@ -173,8 +184,8 @@ class CfgVehicles {
                 initTurn = 0;
                 minTurn = -110;
                 maxTurn = 110;
-                weapons[] = { "CUP_weapon_mastersafe", "CUP_Laserdesignator_mounted", "CUP_Vacannon_M230_veh", "CUP_AGM114L_Hellfire_II_Launcher_W", "CUP_AGM114N_Hellfire_II_Launcher_W" };
-                magazines[] = { "Laserbatteries", "CUP_1200Rnd_TE1_Red_Tracer_30x113mm_M789_HEDP_M", "CUP_4Rnd_AGM114L_Hellfire_II_M", "CUP_4Rnd_AGM114N_Hellfire_II_M" };
+                weapons[] = { "CUP_weapon_mastersafe", "Laserdesignator_mounted", "CUP_Vacannon_M230_veh" };
+                magazines[] = { "Laserbatteries", "CUP_1200Rnd_TE1_Red_Tracer_30x113mm_M789_HEDP_M" };
                 gunnerAction = "AH64_gunner_EP1";
                 gunnerGetInAction = "pilot_Heli_Light_02_Enter";
                 gunnerGetOutAction = "pilot_Heli_Light_02_Exit";
@@ -183,10 +194,10 @@ class CfgVehicles {
                 pilotOpticsShowCursor = 1;
                 gunnerOpticsShowCursor = 1;
                 turretOpticsShowCursor = 1;
-                turretCanSee = "1 + 2 + 4 + 8 + 16";                
+                turretCanSee = "1 + 2 + 4 + 8 + 16";
                 enableManualFire = 1; 
                 gunnerUsesPilotView = 1;
-                commanderUsesPilotView = 1;                        
+                commanderUsesPilotView = 1;
                 class OpticsIn {
                     class WideNGS {
                         opticsDisplayName = "WNGS";
@@ -302,10 +313,10 @@ class CfgVehicles {
                 maxTurn = 30;
             };
         };
-        hiddenSelections[] = { "camo1", "id1", "id2", "id3", "decals", "hellfire_pods1", "hellfire_pods2", "crv7_pods1", "crv7_pods2" };
+        hiddenSelections[] = { "camo1", "id1", "id2", "id3", "decals" };
         unitInfoType = "Rsc_UKSF_Air_Limited";
         unitInfoTypeLite = "Rsc_UKSF_Air_Limited";
-        #include "MFDApache.hpp"    
+        //#include "MFDApache.hpp"
         class RotorLibHelicopterProperties: RotorLibHelicopterProperties {
             rtd_center = "rtd_center";
             RTDconfig = QPATHTOF(RTD_AH_BAF_attack_01.xml);
@@ -350,33 +361,33 @@ class CfgVehicles {
             };
         };
         class HitPoints: HitPoints {
-            class HitHull: HitHull    {
+            class HitHull: HitHull {
                 name = "NEtrup";
                 convexComponent = "NEtrup";
                 visual = "trup";
                 armor = 2;
                 radius = 0.3;
             };
-            class HitAvionics: HitAvionics    {
+            class HitAvionics: HitAvionics {
                 name = "elektronika";
-                convexComponent = "elektronika";        
+                convexComponent = "elektronika";
                 visual = "elektronika";
-                armor = 2;                
+                armor = 2;
                 radius = 0.3;
             };
-            class HitMissiles: HitMissiles    {
+            class HitMissiles: HitMissiles {
                 name = "munice";
-                convexComponent = "munice";        
+                convexComponent = "munice";
                 visual = "munice";
-                armor = 2;                
+                armor = 2;
                 radius = 0.3;
             };
             class HitEngine1: HitEngine1 {
                 name = "motor_1";
                 convexComponent = "motor_1";
-                visual = "motor_1";    
+                visual = "motor_1";
                 minimalHit = 0.09;
-                armor = 1;                
+                armor = 1;
                 radius = 0.3;
                 explosionShielding = 4;
             };
@@ -385,35 +396,35 @@ class CfgVehicles {
                 convexComponent = "motor_2";
                 visual = "motor_2";
                 minimalHit = 0.09;
-                armor = 1;                
+                armor = 1;
                 radius = 0.3;
                 explosionShielding = 4;
             };
-            class HitEngine: HitEngine    {
+            class HitEngine: HitEngine {
                 name = "";
                 convexComponent = "";
                 minimalHit = 0.09;
-                armor = 1;                
+                armor = 1;
                 radius = 0.3;
                 explosionShielding = 4;
             };
-            class HitHRotor: HitHRotor    {
+            class HitHRotor: HitHRotor {
                 name = "velka vrtule";
-                convexComponent = "velka vrtule";        
+                convexComponent = "velka vrtule";
                 visual = "velka vrtule staticka";
                 armor = 4;
                 radius = 0.1;
                 minimalHit = 0.09;
                 explosionShielding = 2.5;
             };
-            class HitVRotor: HitVRotor    {
+            class HitVRotor: HitVRotor {
                 name = "mala vrtule";
-                convexComponent = "mala vrtule";        
-                visual = "mala vrtule staticka";    
+                convexComponent = "mala vrtule";
+                visual = "mala vrtule staticka";
                 armor = 4;
                 radius = 0.06;
                 minimalHit = 0.05;
-                explosionShielding = 6;            
+                explosionShielding = 6;
             };
             class HitGear: HitGear {
                 name = "gear";
@@ -426,27 +437,27 @@ class CfgVehicles {
             };
             class HitGlass1: HitGlass1 {
                 radius = 0.25;
-                armor = 0.5;                
+                armor = 0.5;
             };
             class HitGlass2: HitGlass2 {
                 radius = 0.25;
-                armor = 0.5;                
+                armor = 0.5;
             };
             class HitGlass3: HitGlass3 {
                 radius = 0.3;
-                armor = 0.5;                
+                armor = 0.5;
             };
             class HitGlass4: HitGlass4 {
                 radius = 0.3;
-                armor = 0.5;                
+                armor = 0.5;
             };
             class HitGlass5: HitGlass5 {
                 radius = 0.4;
-                armor = 3;                
+                armor = 3;
             };
             class HitGlass6: HitGlass6 {
                 radius = 0.4;
-                armor = 3;                
+                armor = 3;
             };
         };        
         class AnimationSources: AnimationSources {
@@ -738,6 +749,56 @@ class CfgVehicles {
                     };
                 };
             };
+            class TransportPylonsComponent {
+                uiPicture = QPATHTOF(data\UI\Apache_EDEN_CA.paa);
+                class Pylons {
+                    class PylonLeft1 {
+                        attachment = "PylonRocket_19Rnd_CRV7_HEISAP";
+                        priority = 5;
+                        bay = -1;
+                        hardpoints[] = { "B_CRV7", "B_HELLFIRE" };
+                        UIposition[] = { 0.06, 0.4 };
+                        turret[] = { 0 };
+                    };
+                    class PylonLeft2: PylonLeft1 {
+                        attachment = "PylonRack_4Rnd_ACE_Hellfire_AGM114N";
+                        priority = 4;
+                        hardpoints[] = { "B_CRV7", "B_HELLFIRE" };
+                        UIposition[] = { 0.13, 0.45 };
+                    };
+                    class PylonRight2: PylonLeft2 {
+                        attachment = "PylonRack_4Rnd_ACE_Hellfire_AGM114L";
+                        mirroredMissilePos = 2;
+                        UIposition[] = { 0.52, 0.45 };
+                    };
+                    class PylonRight1: PylonLeft1 {
+                        mirroredMissilePos = 1;
+                        UIposition[] = { 0.59, 0.4 };
+                    };
+                };
+                class Presets {
+                    class Empty {
+                        displayName = "Empty";
+                        attachment[] = {};
+                    };
+                    class Default {
+                        displayName = "CAS";
+                        attachment[] = { "PylonRocket_19Rnd_CRV7_HEISAP", "PylonRack_4Rnd_ACE_Hellfire_AGM114N", "PylonRack_4Rnd_ACE_Hellfire_AGM114L", "PylonRocket_19Rnd_CRV7_HEISAP" };
+                    };
+                    class AT {
+                        displayName = "AT";
+                        attachment[] = { "PylonRack_4Rnd_ACE_Hellfire_AGM114L", "PylonRack_4Rnd_ACE_Hellfire_AGM114L", "PylonRack_4Rnd_ACE_Hellfire_AGM114L", "PylonRack_4Rnd_ACE_Hellfire_AGM114L" };
+                    };
+                    class Escort {
+                        displayName = "Escort";
+                        attachment[] = { "PylonRocket_19Rnd_CRV7_HEISAP", "PylonRocket_19Rnd_CRV7_HEISAP", "PylonRocket_19Rnd_CRV7_HEISAP", "PylonRocket_19Rnd_CRV7_HEISAP" };
+                    };
+                    class Strike {
+                        displayName = "Strike";
+                        attachment[] = { "PylonRack_4Rnd_ACE_Hellfire_AGM114L", "PylonRack_4Rnd_ACE_Hellfire_AGM114N", "PylonRack_4Rnd_ACE_Hellfire_AGM114K", "PylonRack_4Rnd_ACE_Hellfire_AGM114L" };
+                    };
+                };
+            };
         };
     };
     class UKSF_Apache_AH1: UKSF_Apache_base {
@@ -745,6 +806,6 @@ class CfgVehicles {
         scopeCurator = 2;
         displayName = "Apache AH1";
         editorPreview = QPATHTOEF(common,data\previews\UKSF_Apache_AH1.jpg);
-        hiddenSelectionsTextures[] = { QPATHTOF(data\ah1_baf_body_co.paa), "", "", "", QPATHTOF(data\decals_ca.paa), QPATHTOF(data\ah64d_details_co.paa), "", "", QPATHTOF(data\ah64d_details_co.paa) };
+        hiddenSelectionsTextures[] = { QPATHTOF(data\ah1_baf_body_co.paa), "", "", "", QPATHTOF(data\decals_ca.paa) };
     };
 };

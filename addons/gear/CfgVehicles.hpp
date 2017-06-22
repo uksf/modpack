@@ -1015,5 +1015,10 @@ class CfgVehicles {
         crew = "CUP_B_BAF_Soldier_MTP";
     };
 
+    class ace_rearm_defaultCarriedObject;
+    class GVAR(ACE_Hellfire_AGM114): ace_rearm_defaultCarriedObject {
+        model = QPATHTOF(data\AGM114\AGM114Hellfire_proxy.p3d);
+    };
+
     #include "CfgVehiclesPrivate.hpp"
 };
