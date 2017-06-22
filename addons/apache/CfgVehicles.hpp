@@ -794,7 +794,7 @@ class CfgVehicles {
                         attachment[] = { "PylonRocket_19Rnd_CRV7_HEISAP", "PylonRocket_19Rnd_CRV7_HEISAP", "PylonRocket_19Rnd_CRV7_HEISAP", "PylonRocket_19Rnd_CRV7_HEISAP" };
                     };
                     class Strike {
-                        displayName = "Escort";
+                        displayName = "Strike";
                         attachment[] = { "PylonRack_4Rnd_ACE_Hellfire_AGM114L", "PylonRack_4Rnd_ACE_Hellfire_AGM114N", "PylonRack_4Rnd_ACE_Hellfire_AGM114K", "PylonRack_4Rnd_ACE_Hellfire_AGM114L" };
                     };
                 };
