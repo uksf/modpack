@@ -783,11 +783,11 @@ class CfgWeapons {
         };
     };
     class CUP_Vmlauncher_CRV7_HEISAP_veh: CUP_Vmlauncher_CRV7_FAT_veh {
-        magazines[] = { "CUP_12Rnd_CRV7_HEISAP_M","CUP_19Rnd_CRV7_HEISAP_M" };
+        magazines[] = { "CUP_12Rnd_CRV7_HEISAP_M", "CUP_19Rnd_CRV7_HEISAP_M" };
     };
     class launcher_crv7_heisap: CUP_Vmlauncher_CRV7_HEISAP_veh {
         displayName = "CRV7-HEISAP";
-        magazines[] = { "PylonRocket_19Rnd_CRV7_HEISAP" };
+        magazines[] = { "CUP_12Rnd_CRV7_HEISAP_M", "CUP_19Rnd_CRV7_HEISAP_M", "PylonRocket_19Rnd_CRV7_HEISAP" };
     };
     class CUP_Vlmg_M240_veh: MGun {
         displayName = "L7A2";

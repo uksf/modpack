@@ -199,8 +199,8 @@ class CUP_B_AW159_Hellfire_RN_Grey: CUP_AW159_Unarmed_Base {
     class Turrets: Turrets {
         class MainTurret: MainTurret {
             soundAttenuationTurret = "SemiOpenHeliAttenuation";
-            weapons[] = { "CUP_weapon_mastersafe", "CUP_Laserdesignator_mounted", "CUP_Vmlauncher_AGM114K_veh", "CUP_Vmlauncher_AGM114N_veh" };
-            magazines[] = { "Laserbatteries", "CUP_2Rnd_AGM_Rack_M", "CUP_4Rnd_AGM114K_Hellfire_II_M", "CUP_4Rnd_AGM114N_Hellfire_II_M" };
+            weapons[] = { "CUP_weapon_mastersafe", "CUP_Laserdesignator_mounted", "ace_hellfire_launcher", "ace_hellfire_launcher_N" };
+            magazines[] = { "Laserbatteries", "CUP_2Rnd_AGM_Rack_M", "4Rnd_ACE_Hellfire_AGM114K", "4Rnd_ACE_Hellfire_AGM114N" };
         };
     };
     class Components: Components {
@@ -324,7 +324,7 @@ class CUP_B_AW159_Cannon_RN_Grey: CUP_AW159_Unarmed_Base {
     crew = "UKSF_B_Pilot_656";
     typicalCargo[] = { "UKSF_B_Pilot_656" };
     #include "MFDCAS.hpp"
-    weapons[] = { "CUP_weapon_mastersafe", "CUP_Vacannon_M621_AW159_veh", "CUP_Vmlauncher_CRV7_HEISAP_veh", "CMFlareLauncher" };
+    weapons[] = { "CUP_weapon_mastersafe", "CUP_Vacannon_M621_AW159_veh", "launcher_crv7_heisap", "CMFlareLauncher" };
     magazines[] = { "CUP_1Rnd_CRV7_Pod_12_M", "CUP_1Rnd_M621_Pod_Heli_M", "CUP_1200Rnd_TE1_Red_Tracer_M621_20mm_HE_M", "CUP_12Rnd_CRV7_HEISAP_M", "120Rnd_CMFlare_Chaff_Magazine" };
     class Turrets: Turrets {
         class MainTurret: MainTurret {
@@ -449,8 +449,8 @@ class CUP_I_Wildcat_Hellfire_Armed_Green_AAF: CUP_AW159_Unarmed_Base {
     class Turrets: Turrets {
         class MainTurret: MainTurret {
             soundAttenuationTurret = "SemiOpenHeliAttenuation";
-            weapons[] = { "CUP_weapon_mastersafe", "CUP_Laserdesignator_mounted", "CUP_Vmlauncher_AGM114K_veh", "CUP_Vmlauncher_AGM114N_veh" };
-            magazines[] = { "Laserbatteries", "CUP_2Rnd_AGM_Rack_M", "CUP_4Rnd_AGM114K_Hellfire_II_M", "CUP_4Rnd_AGM114N_Hellfire_II_M" };
+            weapons[] = { "CUP_weapon_mastersafe", "CUP_Laserdesignator_mounted", "ace_hellfire_launcher", "ace_hellfire_launcher_N" };
+            magazines[] = { "Laserbatteries", "CUP_2Rnd_AGM_Rack_M", "4Rnd_ACE_Hellfire_AGM114K", "4Rnd_ACE_Hellfire_AGM114N" };
         };
     };
     class Components: Components {
@@ -564,7 +564,7 @@ class CUP_I_Wildcat_Hellfire_Armed_Green_AAF: CUP_AW159_Unarmed_Base {
 };
 class CUP_I_Wildcat_Cannon_Armed_Green_AAF: CUP_AW159_Unarmed_Base {
     #include "MFDCAS.hpp"
-    weapons[] = { "CUP_weapon_mastersafe", "CUP_Vacannon_M621_AW159_veh", "CUP_Vmlauncher_CRV7_HEISAP_veh", "CMFlareLauncher" };
+    weapons[] = { "CUP_weapon_mastersafe", "CUP_Vacannon_M621_AW159_veh", "launcher_crv7_heisap", "CMFlareLauncher" };
     magazines[] = { "CUP_1Rnd_CRV7_Pod_12_M", "CUP_1Rnd_M621_Pod_Heli_M", "CUP_1200Rnd_TE1_Red_Tracer_M621_20mm_HE_M", "CUP_12Rnd_CRV7_HEISAP_M", "120Rnd_CMFlare_Chaff_Magazine" };
     class Turrets: Turrets {
         class MainTurret: MainTurret {
@@ -682,7 +682,7 @@ class CUP_I_Wildcat_Cannon_Armed_Green_AAF: CUP_AW159_Unarmed_Base {
 };
 class CUP_I_Wildcat_Cannon_Armed_Digital_AAF: CUP_AW159_Unarmed_Base {
     #include "MFDCAS.hpp"
-    weapons[] = { "CUP_weapon_mastersafe", "CUP_Vacannon_M621_AW159_veh", "CUP_Vmlauncher_CRV7_HEISAP_veh", "CMFlareLauncher" };
+    weapons[] = { "CUP_weapon_mastersafe", "CUP_Vacannon_M621_AW159_veh", "launcher_crv7_heisap", "CMFlareLauncher" };
     magazines[] = { "CUP_1Rnd_CRV7_Pod_12_M", "CUP_1Rnd_M621_Pod_Heli_M", "CUP_1200Rnd_TE1_Red_Tracer_M621_20mm_HE_M", "CUP_12Rnd_CRV7_HEISAP_M", "120Rnd_CMFlare_Chaff_Magazine" };
     class Turrets: Turrets {
         class MainTurret: MainTurret {
