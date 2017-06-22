@@ -873,7 +873,10 @@ class CfgPatches {
             //ACE
             "ace_main",
             "ace_common",
+            "ace_aircraft",
+            "ace_cargo",
             "ace_dragging",
+            "ace_hellfire",
             "ace_interaction",
             "ace_rearm",
             "ace_refuel"
