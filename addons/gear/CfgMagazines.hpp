@@ -33,6 +33,10 @@ class CfgMagazines {
         displayName = "AGM-114K";
         count = 4;
     };
+    class 2Rnd_ACE_Hellfire_AGM114K: 6Rnd_ACE_Hellfire_AGM114K {
+        displayName = "AGM-114K";
+        count = 2;
+    };
     class PylonMissile_1Rnd_ACE_Hellfire_AGM114K: 6Rnd_ACE_Hellfire_AGM114K {
         displayName = "1x AGM-114K";
         hardpoints[] = { "SCALPEL_1RND" };
@@ -55,6 +59,9 @@ class CfgMagazines {
         displayNameShort = "AGM-114N";
         descriptionShort = "AGM-114N";
     };
+    class 2Rnd_ACE_Hellfire_AGM114N: 6Rnd_ACE_Hellfire_AGM114N {
+        count = 2;
+    };
     class 4Rnd_ACE_Hellfire_AGM114N: 6Rnd_ACE_Hellfire_AGM114N {
         count = 4;
     };
@@ -67,6 +74,9 @@ class CfgMagazines {
         displayName = "AGM-114L";
         displayNameShort = "AGM-114L";
         descriptionShort = "AGM-114L";
+    };
+    class 2Rnd_ACE_Hellfire_AGM114L: 6Rnd_ACE_Hellfire_AGM114L {
+        count = 2;
     };
     class 4Rnd_ACE_Hellfire_AGM114L: 6Rnd_ACE_Hellfire_AGM114L {
         count = 4;
