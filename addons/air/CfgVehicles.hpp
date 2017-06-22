@@ -13,7 +13,7 @@ class CfgVehicles {
     class Air: AllVehicles {
         receiveRemoteTargets = 1;
         reportRemoteTargets = 1;
-        receiveRemoteTargets = 1;
+        reportOwnPosition = 1;
     };
     class Helicopter: Air {
         explosionShielding = 0.7;

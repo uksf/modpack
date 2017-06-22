@@ -74,7 +74,7 @@ class CfgPatches {
             "CUP_AGM114N_Hellfire_II_Launcher_W"
         };
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {             
+        requiredAddons[] = {
             "uksf_common",
             "UK3CB_BAF_Equipment",
             "UK3CB_BAF_Equipment_ACRE_compatibility",
