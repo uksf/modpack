@@ -67,6 +67,8 @@ class CfgMagazines {
     };
     class PylonRack_4Rnd_ACE_Hellfire_AGM114N: PylonRack_4Rnd_ACE_Hellfire_AGM114K {
         displayName = "4x AGM-114N";
+        displayNameShort = "AGM-114N";
+        descriptionShort = "AGM-114N";
         pylonWeapon = "ace_hellfire_launcher_N";
     };
     //Hellfire L
@@ -83,11 +85,16 @@ class CfgMagazines {
     };
     class PylonRack_4Rnd_ACE_Hellfire_AGM114L: PylonRack_4Rnd_ACE_Hellfire_AGM114K {
         displayName = "4x AGM-114L";
+        displayNameShort = "AGM-114L";
+        descriptionShort = "AGM-114L";
         pylonWeapon = "ace_hellfire_launcher_L";
     };
 
     class CUP_14Rnd_FFAR_M;
     class CUP_12Rnd_CRV7_FAT_M: CUP_14Rnd_FFAR_M {
+        displayName = "CRV7 FAT";
+        displayNameShort = "CRV7";
+        descriptionShort = "CRV7";
         initSpeed = 30;
         maxLeadSpeed = 650;
     };
@@ -97,15 +104,18 @@ class CfgMagazines {
     class CUP_12Rnd_CRV7_HEISAP_M: CUP_12Rnd_CRV7_FAT_M {
         count = 12;
         ammo = "CUP_R_CRV7_HEISAP";
-        displayName = "CRV7-HEISAP";
-        displayNameShort = "HEISAP";
-        descriptionShort = "CRV7 High Explosive Incendiary Semi-Armour Piercing Rocket";
+        displayName = "CRV7 HEISAP";
+        displayNameShort = "CRV7";
+        descriptionShort = "CRV7";
     };
     class CUP_19Rnd_CRV7_HEISAP_M: CUP_12Rnd_CRV7_HEISAP_M {
         count = 19;
     };
     class PylonRocket_19Rnd_CRV7_HEISAP: CUP_19Rnd_CRV7_FAT_M {
         displayName = "19x CRV7";
+        displayName = "CRV7 HEISAP";
+        displayNameShort = "CRV7";
+        descriptionShort = "CRV7";
         ammo = "CUP_R_CRV7_HEISAP";
         pylonWeapon = "launcher_crv7_heisap";
         count = 19;
