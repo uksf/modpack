@@ -174,6 +174,7 @@ class CfgVehicles {
         magazines[] = { "168Rnd_CMFlare_Chaff_Magazine" };
         class Turrets: Turrets {
             class MainTurret: MainTurret {
+                #include "MFDGunner.hpp"
                 turretInfoType = "RscOptics_GENERAL_FLIR";
                 ace_fcs_Enabled = 1;
                 discreteDistance[] = {};
@@ -255,7 +256,7 @@ class CfgVehicles {
                         horizontallyStabilized = 1;
                         gunnerOpticsModel = "CUP\AirVehicles\CUP_AirVehicles_AH64\gunnerOptics_ah64.p3d";
                     };
-                };    
+                };
                 class OpticsOut {
                     class Monocular {
                         initAngleX = 0;
@@ -316,11 +317,11 @@ class CfgVehicles {
         hiddenSelections[] = { "camo1", "id1", "id2", "id3", "decals" };
         unitInfoType = "Rsc_UKSF_Air_Limited";
         unitInfoTypeLite = "Rsc_UKSF_Air_Limited";
-        //#include "MFDApache.hpp"
+        #include "MFDPilot.hpp"
         class RotorLibHelicopterProperties: RotorLibHelicopterProperties {
             rtd_center = "rtd_center";
             RTDconfig = QPATHTOF(RTD_AH_BAF_attack_01.xml);
-        };    
+        };
         class ACRE {
             class CVC {
                 hasCVC = 1;
@@ -334,7 +335,7 @@ class CfgVehicles {
                 size = 1;
                 innerAngle = 20;
                 outerAngle = 75;
-                coneFadeCoef = 10;                
+                coneFadeCoef = 10;
                 position = "L svetlo";
                 direction = "konec L svetla";
                 hitpoint = "L svetlo";
@@ -539,7 +540,7 @@ class CfgVehicles {
                 color[] = {1, 1, 1};
                 ambient[] = {0.1, 0.1, 0.1};
                 name = "bily pozicni";
-            };    
+            };
             class CollisionWhite: PositionRed {
                 color[] = {1, 1, 1};
                 ambient[] = {0.1, 0.1, 0.1};
@@ -550,12 +551,12 @@ class CfgVehicles {
                 blinking = 1;
                 blinkingPattern[] = {0.1, 2.1};
                 blinkingPatternGuarantee = 0;
-            };    
+            };
             class CollisionRed: CollisionWhite {
                 name = "Strobe_right";
                 blinkingPattern[] = {0.1, 1.9};
-            };        
-        };              
+            };
+        };
         class UserActions {
             class jammerSemi {
                 displayName = "<t color = '#217cd1'>Jammer Semi-Auto</t>";
