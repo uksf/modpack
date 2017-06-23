@@ -113,7 +113,6 @@ class CfgMagazines {
     };
     class PylonRocket_19Rnd_CRV7_HEISAP: CUP_19Rnd_CRV7_FAT_M {
         displayName = "19x CRV7";
-        displayName = "CRV7 HEISAP";
         displayNameShort = "CRV7";
         descriptionShort = "CRV7";
         ammo = "CUP_R_CRV7_HEISAP";
