@@ -213,7 +213,7 @@ class CfgVehicles {
             class MainTurret: NewTurret {
                 turretInfoType = "RscOptics_UAV_gunnerAdvanced";
                 weapons[] = { "Laserdesignator_mounted", "ace_hellfire_launcher", "ace_hellfire_launcher_N" };
-                magazines[] = { "Laserbatteries", "2Rnd_ACE_Hellfire_AGM114K", "2Rnd_ACE_Hellfire_AGM114N" };
+                magazines[] = { "Laserbatteries", "4Rnd_ACE_Hellfire_AGM114K", "4Rnd_ACE_Hellfire_AGM114N" };
                 maxHorizontalRotSpeed = 1.75;
                 maxVerticalRotSpeed = 1.75;
                 class OpticsIn {
