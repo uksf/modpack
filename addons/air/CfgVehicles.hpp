@@ -8,6 +8,7 @@ class SensorTemplateMan;
 class SensorTemplateNV;
 class SensorTemplatePassiveRadar;
 class SensorTemplateVisual;
+class SensorTemplateDataLink;
 class CfgVehicles {
     class AllVehicles;
     class Air: AllVehicles {

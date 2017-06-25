@@ -36,23 +36,6 @@ class CfgAmmo{
         class Components: Components {
             class SensorsManagerComponent {
                 class Components {
-                    class IRSensorComponent: SensorTemplateIR {
-                        class AirTarget {
-                            minRange = 500;
-                            maxRange = 8000;
-                            objectDistanceLimitCoef = -1;
-                            viewDistanceLimitCoef = 1;
-                        };
-                        class GroundTarget {
-                            minRange = 500;
-                            maxRange = 8000;
-                            objectDistanceLimitCoef = 1;
-                            viewDistanceLimitCoef = 1;
-                        };
-                        maxTrackableSpeed = 55;
-                        angleRangeHorizontal = 30;
-                        angleRangeVertical = 30;
-                    };
                     class LaserSensorComponent: SensorTemplateLaser {
                         class AirTarget {
                             minRange = 8000;
@@ -76,24 +59,25 @@ class CfgAmmo{
         model = QPATHTOF(data\AGM114\AGM114Hellfire.p3d);
         proxyShape = QPATHTOF(data\AGM114\AGM114Hellfire_proxy.p3d);
         ace_rearm_dummy = QGVAR(ACE_Hellfire_AGM114);
+        effectsMissileInit = "PylonBackEffects";
+        CraterEffects = "Hellfire_Smoke";
+        explosionEffects = "Hellfire_Explode";
     };
     class ACE_Hellfire_AGM114L: ACE_Hellfire_AGM114K {
         displayName = "AGM-114L";
         displayNameShort = "AGM-114L";
         description = "AGM-114L";
         descriptionShort = "AGM-114L";
-        airLock = 0;
-        irLock = 1;
-        laserLock = 0;
-        nvLock = 0;
         weaponLockSystem = "8 + 16";
         cmImmunity = 0.95;
-        missileLockMaxDistance = 8000;
-        missileLockMinDistance = 100;
-        manualControl = 0;
         class ace_missileguidance {
             enabled = 0;
         };
+        missileLockCone = 90;
+        missileKeepLockedCone = 180;
+        missileLockMaxDistance = 8000;
+        missileLockMinDistance = 500;
+        missileLockMaxSpeed = 55;
         class Components: Components {
             class SensorsManagerComponent {
                 class Components {
@@ -110,13 +94,14 @@ class CfgAmmo{
                             objectDistanceLimitCoef = -1;
                             viewDistanceLimitCoef = -1;
                         };
-                        maxTrackableSpeed = 55;
-                        angleRangeHorizontal = 30;
-                        angleRangeVertical = 30;
-                        groundNoiseDistanceCoef = -1;
+                        angleRangeHorizontal = 90;
+                        angleRangeVertical = 90;
+                        maxFogSeeThrough = 1;
                         maxGroundNoiseDistance = -1;
+                        groundNoiseDistanceCoef = -1;
                         minSpeedThreshold = 0;
                         maxSpeedThreshold = 0;
+                        maxTrackableSpeed = 55;
                     };
                 };
             };
@@ -157,8 +142,8 @@ class CfgAmmo{
             hitWater = "ImpactEffectsWater";
         };
         hit = 105;
-        indirectHit = 15;
-        indirectHitRange = 4;
+        indirectHit = 10;
+        indirectHitRange = 2;
         tracerEndTime = 30;
         timeToLive = 30;
         caliber = 4.2;

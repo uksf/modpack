@@ -8,6 +8,7 @@ class SensorTemplateMan;
 class SensorTemplateNV;
 class SensorTemplatePassiveRadar;
 class SensorTemplateVisual;
+class SensorTemplateDataLink;
 class CfgVehicles {
     class Man;
     class CAManBase: Man {
@@ -467,6 +468,7 @@ class CfgVehicles {
                             viewDistanceLimitCoef = -1;
                         };
                     };
+                    class DataLinkSensorComponent: SensorTemplateDataLink {};
                 };
             };
         };

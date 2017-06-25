@@ -76,6 +76,7 @@ class CfgMagazines {
         displayName = "AGM-114L";
         displayNameShort = "AGM-114L";
         descriptionShort = "AGM-114L";
+        ammo = "ACE_Hellfire_AGM114L";
     };
     class 2Rnd_ACE_Hellfire_AGM114L: 6Rnd_ACE_Hellfire_AGM114L {
         count = 2;
@@ -88,6 +89,7 @@ class CfgMagazines {
         displayNameShort = "AGM-114L";
         descriptionShort = "AGM-114L";
         pylonWeapon = "ace_hellfire_launcher_L";
+        ammo = "ACE_Hellfire_AGM114L";
     };
 
     class CUP_14Rnd_FFAR_M;

@@ -30,15 +30,9 @@ class CfgPatches {
 };
 
 class RscInGameUI {
-    class RscUnitInfo;
-    class Rsc_UKSF_Air_Limited: RscUnitInfo {
-        controls[] = {
-            "WeaponInfoControlsGroupRight",
-            "CA_TextFlaresMode",
-            "CA_TextFlares",
-            "CA_VehicleToggles",
-            "CA_Radar"
-        };
+    class RscUnitInfoAir;
+    class RscUnitInfoNoSpeed: RscUnitInfoAir {
+        controls[] = { "CA_BackgroundVehicle", "CA_BackgroundVehicleTitle", "CA_BackgroundVehicleTitleDark", "CA_BackgroundFuel", "CA_Vehicle", "CA_VehicleRole", "CA_HitZones", "CA_VehicleTogglesBackground", "CA_VehicleToggles", "CA_ValueFuel", "WeaponInfoControlsGroupRight" };
     };
 };
 #include "CfgVehicles.hpp"

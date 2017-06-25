@@ -122,6 +122,7 @@ class SensorTemplateMan;
 class SensorTemplateNV;
 class SensorTemplatePassiveRadar;
 class SensorTemplateVisual;
+class SensorTemplateDataLink;
 #include "CfgAmmo.hpp"
 #include "CfgEventHandlers.hpp"
 #include "CfgMagazines.hpp"
