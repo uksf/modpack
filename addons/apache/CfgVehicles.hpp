@@ -785,23 +785,23 @@ class CfgVehicles {
                         priority = 5;
                         bay = -1;
                         hardpoints[] = { "B_CRV7", "B_HELLFIRE" };
-                        UIposition[] = { 0.06, 0.4 };
+                        UIposition[] = { 0.13, 0.3 };
                         turret[] = { 0 };
                     };
                     class PylonLeft2: PylonLeft1 {
                         attachment = "PylonRack_4Rnd_ACE_Hellfire_AGM114N";
                         priority = 4;
                         hardpoints[] = { "B_CRV7", "B_HELLFIRE" };
-                        UIposition[] = { 0.13, 0.45 };
+                        UIposition[] = { 0.19, 0.35 };
                     };
                     class PylonRight2: PylonLeft2 {
                         attachment = "PylonRack_4Rnd_ACE_Hellfire_AGM114L";
                         mirroredMissilePos = 2;
-                        UIposition[] = { 0.52, 0.45 };
+                        UIposition[] = { 0.43, 0.35 };
                     };
                     class PylonRight1: PylonLeft1 {
                         mirroredMissilePos = 1;
-                        UIposition[] = { 0.59, 0.4 };
+                        UIposition[] = { 0.50, 0.3 };
                     };
                 };
                 class Presets {
