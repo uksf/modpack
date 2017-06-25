@@ -10,8 +10,8 @@ class CUP_AW159_Unarmed_Base: Helicopter_Base_H {
     landingSoundOut1[] = { "A3\Sounds_F\vehicles\air\noises\landing_wheels_ext2", 0.4, 1, 50 };
     landingSoundOut[] = { "landingSoundOut0", 0.5, "landingSoundOut1", 0.5 };
     attenuationEffectType = "SemiOpenHeliAttenuation";
-    unitInfoType = "Rsc_UKSF_Air_Limited";
-    unitInfoTypeLite = "Rsc_UKSF_Air_Limited";
+    unitInfoType = "RscUnitInfoNoSpeed";
+    unitInfoTypeLite = "RscUnitInfoNoSpeed";
     #include "MFDGeneral.hpp"
     class Turrets: Turrets {
         class MainTurret: MainTurret {
@@ -145,6 +145,7 @@ class CUP_AW159_Unarmed_Base: Helicopter_Base_H {
                 class PassiveSensorComponent: SensorTemplatePassiveRadar {};
                 class LaserSensorComponent: SensorTemplateLaser {};
                 class NVSensorComponent: SensorTemplateNV {};
+                class DataLinkSensorComponent: SensorTemplateDataLink {};
             };
         };
     };
@@ -308,6 +309,7 @@ class CUP_B_AW159_Hellfire_RN_Grey: CUP_AW159_Unarmed_Base {
                 class PassiveSensorComponent: SensorTemplatePassiveRadar {};
                 class LaserSensorComponent: SensorTemplateLaser {};
                 class NVSensorComponent: SensorTemplateNV {};
+                class DataLinkSensorComponent: SensorTemplateDataLink {};
             };
         };
     };
@@ -436,6 +438,7 @@ class CUP_B_AW159_Cannon_RN_Grey: CUP_AW159_Unarmed_Base {
                 class PassiveSensorComponent: SensorTemplatePassiveRadar {};
                 class LaserSensorComponent: SensorTemplateLaser {};
                 class NVSensorComponent: SensorTemplateNV {};
+                class DataLinkSensorComponent: SensorTemplateDataLink {};
             };
         };
     };
@@ -558,6 +561,7 @@ class CUP_I_Wildcat_Hellfire_Armed_Green_AAF: CUP_AW159_Unarmed_Base {
                 class PassiveSensorComponent: SensorTemplatePassiveRadar {};
                 class LaserSensorComponent: SensorTemplateLaser {};
                 class NVSensorComponent: SensorTemplateNV {};
+                class DataLinkSensorComponent: SensorTemplateDataLink {};
             };
         };
     };
@@ -676,6 +680,7 @@ class CUP_I_Wildcat_Cannon_Armed_Green_AAF: CUP_AW159_Unarmed_Base {
                 class PassiveSensorComponent: SensorTemplatePassiveRadar {};
                 class LaserSensorComponent: SensorTemplateLaser {};
                 class NVSensorComponent: SensorTemplateNV {};
+                class DataLinkSensorComponent: SensorTemplateDataLink {};
             };
         };
     };
@@ -794,6 +799,7 @@ class CUP_I_Wildcat_Cannon_Armed_Digital_AAF: CUP_AW159_Unarmed_Base {
                 class PassiveSensorComponent: SensorTemplatePassiveRadar {};
                 class LaserSensorComponent: SensorTemplateLaser {};
                 class NVSensorComponent: SensorTemplateNV {};
+                class DataLinkSensorComponent: SensorTemplateDataLink {};
             };
         };
     };

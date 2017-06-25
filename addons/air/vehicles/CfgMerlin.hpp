@@ -44,8 +44,8 @@ class CUP_Merlin_HC3_Base: Helicopter_Base_H {
         };
     };
     attenuationEffectType = "SemiOpenHeliAttenuation";
-    unitInfoType = "Rsc_UKSF_Air_Limited";
-    unitInfoTypeLite = "Rsc_UKSF_Air_Limited";
+    unitInfoType = "RscUnitInfoNoSpeed";
+    unitInfoTypeLite = "RscUnitInfoNoSpeed";
     class Components: Components {
         class VehicleSystemsDisplayManagerComponentLeft: DefaultVehicleSystemsDisplayManagerLeft {
             defaultDisplay = "EmptyDisplay";
@@ -92,6 +92,7 @@ class CUP_Merlin_HC3_Base: Helicopter_Base_H {
         class SensorsManagerComponent {
             class Components {
                 class PassiveSensorComponent: SensorTemplatePassiveRadar {};
+                class DataLinkSensorComponent: SensorTemplateDataLink {};
             };
         };
     };

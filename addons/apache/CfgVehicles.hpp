@@ -8,6 +8,7 @@ class SensorTemplateMan;
 class SensorTemplateNV;
 class SensorTemplatePassiveRadar;
 class SensorTemplateVisual;
+class SensorTemplateDataLink;
 class CfgNonAIVehicles {
     class ProxyWeapon;
     class ProxyPylonRocket_19Rnd_CRV7_HEISAP: ProxyWeapon {
@@ -147,27 +148,44 @@ class CfgVehicles {
         tailBladeCenter = "rotor_02_center";
         tailBladeRadius = 1.6;
         driveOnComponent[] = { "wheel_1_1", "wheel_2_1", "wheel_12_2" };
-        soundLocked[] = { "\A3\Sounds_F\weapons\Rockets\opfor_lock_1", 1, 1};
-        soundIncommingMissile[] = { "\A3\Sounds_F\weapons\Rockets\opfor_lock_2", 1, 1};
         soundgetin[] = { QPATHTOF(data\sounds\close.ogg), 1, 1 };
         soundgetout[] = { QPATHTOF(data\sounds\open.ogg), 1, 1, 40 };
         class Sounds: Sounds {
             class RotorExt {
-                cone[] = { 1.8, 3.14, 2, 0.9 };
-                sound[] = { QPATHTOF(data\sounds\ah64_rotor_ext), 2, 1, 1500 };
-                frequency = "(rotorSpeed factor [0.3, 0.7]) * (rotorSpeed factor [0.3, 1]) * (1 - rotorThrust/6)";
-                volume = "camPos * 3 * (rotorSpeed factor [0.3, 1]) * (1 + rotorThrust)";
+                sound[] = { QPATHTOF(data\sounds\ah64_rotor_ext), 1.4, 1, 1000 };
+                frequency = "(rotorSpeed factor [0.3, 0.7]) * (rotorSpeed factor [0.3, 1]) * (1 - rotorThrust/4)";
+                volume = "camPos * (rotorSpeed factor [0.3, 1]) * (1 + rotorThrust)";
             };
             class RotorInt {
-                sound[] = { QPATHTOF(data\sounds\ah64_rotor_int), 0.75, 1 };
-                frequency = "(rotorSpeed factor [0.3, 0.7]) * (rotorSpeed factor [0.3, 1]) * (1 - rotorThrust/6)";
-                volume = "(1 - camPos) * (rotorSpeed factor [0.3, 0.7]) * (1 + rotorThrust) * 0.5";
+                sound[] = { QPATHTOF(data\sounds\ah64_rotor_int), 0.7, 1 };
+                frequency = "(rotorSpeed factor [0.3, 0.7]) * (rotorSpeed factor [0.3, 1]) * (1 - rotorThrust/4)";
+                volume = "(1 - camPos) * (rotorSpeed factor [0.3, 0.7]) * (1 + rotorThrust) * 0.7";
             };
             class RotorSwist {
-                cone[] = { 3, 1.57, 3, 1.57 };
-                frequency = 1;
                 sound[] = { QPATHTOF(data\sounds\ah64_trotor_ext), 1, 1, 500 };
-                volume = "camPos * (rotorThrust factor [0.7, 0.9])";
+                frequency = 1;
+                volume = 0;
+                cone[] = {0.7, 1.3, 1, 0};
+            };
+        };
+        class SoundsExt {
+            class Sounds {
+                class RotorExt {
+                    sound[] = { QPATHTOF(data\sounds\ah64_rotor_ext), 1.4, 1, 1000 };
+                    frequency = "(rotorSpeed factor [0.3, 0.7]) * (rotorSpeed factor [0.3, 1]) * (1 - rotorThrust/4)";
+                    volume = "camPos * (rotorSpeed factor [0.3, 1]) * (1 + rotorThrust)";
+                };
+                class RotorInt {
+                    sound[] = { QPATHTOF(data\sounds\ah64_rotor_int), 0.7, 1 };
+                    frequency = "(rotorSpeed factor [0.3, 0.7]) * (rotorSpeed factor [0.3, 1]) * (1 - rotorThrust/4)";
+                    volume = "(1 - camPos) * (rotorSpeed factor [0.3, 0.7]) * (1 + rotorThrust) * 0.7";
+                };
+                class RotorSwist {
+                    sound[] = { QPATHTOF(data\sounds\ah64_trotor_ext), 0, 1, 0 };
+                    frequency = 1;
+                    volume = 0;
+                    cone[] = {0.7, 1.3, 1, 0};
+                };
             };
         };
         weapons[] = { "CUP_weapon_mastersafe", "CMFlareLauncher" };
@@ -315,8 +333,8 @@ class CfgVehicles {
             };
         };
         hiddenSelections[] = { "camo1", "id1", "id2", "id3", "decals" };
-        unitInfoType = "Rsc_UKSF_Air_Limited";
-        unitInfoTypeLite = "Rsc_UKSF_Air_Limited";
+        unitInfoType = "RscUnitInfoNoSpeed";
+        unitInfoTypeLite = "RscUnitInfoNoSpeed";
         #include "MFDPilot.hpp"
         class RotorLibHelicopterProperties: RotorLibHelicopterProperties {
             rtd_center = "rtd_center";
@@ -354,7 +372,7 @@ class CfgVehicles {
                 innerAngle = 170;
                 outerAngle = 180;
                 flareSize = 0.1;
-                class Attenuation: Attenuation    {
+                class Attenuation: Attenuation {
                     start = 0;
                     hardLimitStart = 0.05;
                     hardLimitEnd = 0.1;
@@ -460,11 +478,11 @@ class CfgVehicles {
                 radius = 0.4;
                 armor = 3;
             };
-        };        
+        };
         class AnimationSources: AnimationSources {
             class Muzzle_flash: Muzzle_flash {
                 weapon = "CUP_Vacannon_M230_veh";
-            };        
+            };
         };
         dammageHalf[] = { QPATHTOF(data\AH64D_mfd_normal_co.paa), QPATHTOF(data\AH64D_mfd_malfc_co.paa) };
         dammageFull[] = { QPATHTOF(data\AH64D_mfd_normal_co.paa), QPATHTOF(data\AH64D_mfd_malfc_co.paa) };
@@ -488,22 +506,30 @@ class CfgVehicles {
                 QPATHTO_R(data\AH64D_glass_in_damage.rvmat),
                 QPATHTO_R(data\NumberDecal.rvmat),
                 QPATHTO_R(data\NumberDecal.rvmat),
-                QPATHTO_R(data\NumberDecal_destruct.rvmat),                
+                QPATHTO_R(data\NumberDecal_destruct.rvmat),
                 QPATHTO_R(data\default.rvmat),
                 QPATHTO_R(data\default.rvmat),
                 QPATHTO_R(data\default_destruct.rvmat)
             };
         };
         class ViewPilot: ViewPilot {
-            initAngleX = 0;     minAngleX = -60;        maxAngleX = +60;
-            initAngleY = 0;     minAngleY = -120;        maxAngleY = +120;
-            initFov = 0.75;     minFov = 0.25;             maxFov = 1.25;
+            initAngleX = 0;
+            minAngleX = -60;
+            maxAngleX = +60;
+            initAngleY = 0;
+            minAngleY = -120;
+            maxAngleY = +120;
+            initFov = 0.75;
+            minFov = 0.25;
+            maxFov = 1.25;
             visionMode[] = { "Normal", "NVG" };
             gunnerOpticsModel = "";
             gunnerOpticsEffect[] = {};
-        };        
+        };
         class ViewOptics: ViewOptics {
-            initFov = 0.75;     minFov = 0.25;             maxFov = 1.25;
+            initFov = 0.75;
+            minFov = 0.25;
+            maxFov = 1.25;
             visionMode[] = { "Normal", "NVG" };
             gunnerOpticsModel = "";
             gunnerOpticsEffect[] = {};
@@ -650,72 +676,67 @@ class CfgVehicles {
             };
             class SensorsManagerComponent {
                 class Components {
-                    class IRSensorComponent: SensorTemplateIR {
-                        aimDown = 30;
-                        animDirection = "MainTurret";
-                        angleRangeHorizontal = 30;
-                        angleRangeVertical = 30;
-                        maxTrackableSpeed = 110;
-                        class AirTarget {
-                            maxRange = 5000;
-                            minRange = 50;
-                            objectDistanceLimitCoef = 1;
-                            viewDistanceLimitCoef = 1;
-                        };
-                        class GroundTarget {
-                            maxRange = 5000;
-                            minRange = 50;
-                            objectDistanceLimitCoef = 1;
-                            viewDistanceLimitCoef = 1;
-                        };
-                    };
-                    class VisualSensorComponent: SensorTemplateVisual {
-                        aimDown = 30;
-                        animDirection = "MainTurret";
-                        angleRangeHorizontal = 30;
-                        angleRangeVertical = 30;
-                        maxTrackableSpeed = 110;
-                        class AirTarget {
-                            maxRange = 4000;
-                            minRange = 50;
-                            objectDistanceLimitCoef = 1;
-                            viewDistanceLimitCoef = 1;
-                        };
-                        class GroundTarget {
-                            maxRange = 4000;
-                            minRange = 50;
-                            objectDistanceLimitCoef = 1;
-                            viewDistanceLimitCoef = 1;
-                        };
-                    };
                     class ActiveRadarComponent: SensorTemplateActiveRadar {
-                        aimDown = 0;
+                        class AirTarget {
+                            maxRange = 8000;
+                            minRange = 8000;
+                            objectDistanceLimitCoef = -1;
+                            viewDistanceLimitCoef = -1;
+                        };
+                        class GroundTarget {
+                            maxRange = 8000;
+                            minRange = 8000;
+                            objectDistanceLimitCoef = -1;
+                            viewDistanceLimitCoef = -1;
+                        };
+                        typeRecognitionDistance = 8000;
                         angleRangeHorizontal = 360;
                         angleRangeVertical = 360;
-                        typeRecognitionDistance = 8000;
-                        maxGroundNoiseDistance = 50;
-                        minSpeedThreshold = 3;
+                        maxGroundNoiseDistance = -1;
+                        groundNoiseDistanceCoef = -1;
+                        minSpeedThreshold = 0;
                         maxSpeedThreshold = 24;
+                    };
+                    class IRSensorComponent: SensorTemplateIR {
                         class AirTarget {
                             maxRange = 8000;
-                            minRange = 0;
-                            objectDistanceLimitCoef = -1;
-                            viewDistanceLimitCoef = -1;
+                            minRange = 50;
+                            objectDistanceLimitCoef = 1;
+                            viewDistanceLimitCoef = 1;
                         };
                         class GroundTarget {
                             maxRange = 8000;
-                            minRange = 0;
-                            objectDistanceLimitCoef = -1;
-                            viewDistanceLimitCoef = -1;
+                            minRange = 50;
+                            objectDistanceLimitCoef = 1;
+                            viewDistanceLimitCoef = 1;
                         };
+                        aimDown = 30;
+                        animDirection = "MainTurret";
+                        angleRangeHorizontal = 60;
+                        angleRangeVertical = 60;
+                        maxTrackableSpeed = 110;
+                    };
+                    class VisualSensorComponent: SensorTemplateVisual {
+                        class AirTarget {
+                            maxRange = 8000;
+                            minRange = 50;
+                            objectDistanceLimitCoef = 1;
+                            viewDistanceLimitCoef = 1;
+                        };
+                        class GroundTarget {
+                            maxRange = 8000;
+                            minRange = 50;
+                            objectDistanceLimitCoef = 1;
+                            viewDistanceLimitCoef = 1;
+                        };
+                        aimDown = 30;
+                        animDirection = "MainTurret";
+                        angleRangeHorizontal = 60;
+                        angleRangeVertical = 60;
+                        maxTrackableSpeed = 110;
                     };
                     class PassiveSensorComponent: SensorTemplatePassiveRadar {};
                     class NVSensorComponent: SensorTemplateNV {
-                        aimDown = 0;
-                        animDirection = "MainTurret";
-                        angleRangeHorizontal = 30;
-                        angleRangeVertical = 30;
-                        maxTrackableSpeed = 110;
                         class AirTarget {
                             maxRange = 2000;
                             minRange = 50;
@@ -728,26 +749,32 @@ class CfgVehicles {
                             objectDistanceLimitCoef = 1;
                             viewDistanceLimitCoef = 1;
                         };
+                        aimDown = 30;
+                        animDirection = "MainTurret";
+                        angleRangeHorizontal = 60;
+                        angleRangeVertical = 60;
+                        maxTrackableSpeed = 110;
                     };
                     class LaserSensorComponent: SensorTemplateLaser {
-                        aimDown = 45;
+                        class AirTarget {
+                            maxRange = 8000;
+                            minRange = 500;
+                            objectDistanceLimitCoef = 1;
+                            viewDistanceLimitCoef = 1;
+                        };
+                        class GroundTarget {
+                            maxRange = 8000;
+                            minRange = 500;
+                            objectDistanceLimitCoef = 1;
+                            viewDistanceLimitCoef = 1;
+                        };
+                        aimDown = 30;
                         animDirection = "MainTurret";
                         angleRangeHorizontal = 180;
                         angleRangeVertical = 180;
                         maxTrackableSpeed = 110;
-                        class AirTarget {
-                            maxRange = 8000;
-                            minRange = 500;
-                            objectDistanceLimitCoef = 1;
-                            viewDistanceLimitCoef = 1;
-                        };
-                        class GroundTarget {
-                            maxRange = 8000;
-                            minRange = 500;
-                            objectDistanceLimitCoef = 1;
-                            viewDistanceLimitCoef = 1;
-                        };
                     };
+                    class DataLinkSensorComponent: SensorTemplateDataLink {};
                 };
             };
             class TransportPylonsComponent {

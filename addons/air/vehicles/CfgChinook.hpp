@@ -74,8 +74,8 @@ class CUP_CH47F_base: Helicopter_Base_H {
         };
     };
     attenuationEffectType = "SemiOpenHeliAttenuation";
-    unitInfoType = "Rsc_UKSF_Air_Limited";
-    unitInfoTypeLite = "Rsc_UKSF_Air_Limited";
+    unitInfoType = "RscUnitInfoNoSpeed";
+    unitInfoTypeLite = "RscUnitInfoNoSpeed";
     class Sounds {
         class Engine {
             sound[] = { "CUP\AirVehicles\CUP_AirVehicles_CH47\sounds\CH47_engine_high_ext", 2, 1.0, 1000 };
@@ -156,6 +156,7 @@ class CUP_CH47F_base: Helicopter_Base_H {
         class SensorsManagerComponent {
             class Components {
                 class PassiveSensorComponent: SensorTemplatePassiveRadar {};
+                class DataLinkSensorComponent: SensorTemplateDataLink {};
             };
         };
     };
