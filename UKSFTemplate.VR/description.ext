@@ -6,6 +6,12 @@
         1.1.2
 */
 
+//--------------------------------------------------- CHANGE BASED ON MISSION --------------------------------------------------
+onLoadName = "UKSF: Operation";
+onLoadMission = "UKSF: Operation";
+overviewText = "UKSF: Operation";
+//------------------------------------------------------------------------------------------------------------------------------
+
 //----------------------------------------------- UNCOMMENT FOR SUPPORT FUNCTIONS ----------------------------------------------
 /* DELETE THIS LINE FOR SUPPORT FUNCTIONS
 class Extended_Init_Eventhandlers {
@@ -222,6 +228,19 @@ class ACE_Settings {
 };
 //-------------------------------------------------------- DON'T CHANGE --------------------------------------------------------
 author = "UKSF";
-disableChannels[] = {0,2,6};
+loadScreen = "uksf.paa";
+class Header {
+    gameType = "Coop";
+    minPlayers = 4;
+    maxPlayers = 78;
+};
+respawnTemplates[] = { "MenuPosition" };
+respawnOnStart = 1;
+respawnDelay = 5;
+reviveMode = 0;
+disabledAI = 1;
+aiKills = 0;
+enableDebugConsole[] = { "76561198041153310" };
+disableChannels[] = { 0,2,6 };
 #include "CfgFunctions.hpp"
 #include "CfgLoadouts.hpp"

@@ -52,6 +52,7 @@ import time
 import timeit
 import re
 import fileinput
+import playercount
 
 if sys.platform == "win32":
     import winreg
@@ -795,6 +796,7 @@ def main(argv):
     global pbo_name_prefix
     global ciBuild
     global sign
+    global mission
     global missingFiles
 
     if sys.platform != "win32":
@@ -920,6 +922,10 @@ See the make.cfg file for additional build options.
     if "sign" in argv:
         argv.remove("sign")
         sign = True
+
+    if "mission" in argv:
+        argv.remove("mission")
+        mission = True
 
     print_yellow("\nCheck external references is set to {}".format(str(check_external)))
 
@@ -1474,6 +1480,11 @@ See the make.cfg file for additional build options.
             print_blue("\nDependencies signed")
         else:
             print_error("Could not sign dependencies")
+
+    if (mission):
+        print_blue("\nUpdating player count...")
+        os.chdir(make_root)
+        playercount.update_player_count()
 
     if len(failedBuilds) > 0 or len(missingFiles) > 0:
         if len(failedBuilds) > 0:
