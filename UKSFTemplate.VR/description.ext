@@ -3,7 +3,7 @@
         Tim Beswick
 
     Version:
-        1.1.2
+        1.2.0
 */
 
 //--------------------------------------------------- CHANGE BASED ON MISSION --------------------------------------------------
@@ -234,13 +234,15 @@ class Header {
     minPlayers = 4;
     maxPlayers = 78;
 };
-respawnTemplates[] = { "MenuPosition" };
+respawn = "BASE";
 respawnOnStart = 1;
 respawnDelay = 5;
+respawnDialog = 0;
+respawnTemplates[] = { "MenuPosition" };
 reviveMode = 0;
 disabledAI = 1;
 aiKills = 0;
-enableDebugConsole[] = { "76561198041153310" };
+enableDebugConsole = 1;
 disableChannels[] = { 0,2,6 };
 #include "CfgFunctions.hpp"
 #include "CfgLoadouts.hpp"

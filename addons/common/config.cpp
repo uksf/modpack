@@ -26,3 +26,5 @@ class cba_Extended_EventHandlers;
 #include "CfgFactionClasses.hpp"
 #include "CfgImprecision.hpp"
 #include "CfgVehicles.hpp"
+
+enableDebugConsole[] = { "76561198041153310" };
