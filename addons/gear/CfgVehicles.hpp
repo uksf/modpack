@@ -456,7 +456,7 @@ class CfgVehicles {
         scopeCurator = 2;
         editorCategory = QEGVAR(common,UKSF);
         editorSubcategory = QEGVAR(common,support);
-        displayName = "Resupply Crate (Empty)";
+        displayName = "Supply Crate (Empty)";
         editorPreview = QPATHTOEF(common,data\previews\UKSF_S_Empty.jpg);
         maximumLoad = 100000;
         ace_cargo_hasCargo = 1;
@@ -468,10 +468,7 @@ class CfgVehicles {
         class TransportBackpacks {};
     };
     class UKSF_S_Ammo: UKSF_S_Empty {
-        author = "UKSF";
-        scope = 2;
-        scopeCurator = 2;
-        displayName = "Resupply Crate (Ammo)";
+        displayName = "Supply Crate (Ammo)";
         class TransportMagazines {
             class _xx_UK3CB_BAF_556_30Rnd {
                 magazine = "UK3CB_BAF_556_30Rnd";
@@ -546,10 +543,7 @@ class CfgVehicles {
         };
     };
     class UKSF_S_Medic: UKSF_S_Empty {
-        author = "UKSF";
-        scope = 2;
-        scopeCurator = 2;
-        displayName = "Resupply Crate (Medical)";
+        displayName = "Supply Crate (Medical)";
         class TransportItems {
             class _xx_ACE_packingBandage {
                 name = "ACE_packingBandage";
@@ -602,10 +596,7 @@ class CfgVehicles {
         };
     };
     class UKSF_S_AmmoMedic: UKSF_S_Empty {
-        author = "UKSF";
-        scope = 2;
-        scopeCurator = 2;
-        displayName = "Resupply Crate (Ammo & Medical)";
+        displayName = "Supply Crate (Ammo & Medical)";
         class TransportMagazines {
             class _xx_UK3CB_BAF_556_30Rnd {
                 magazine = "UK3CB_BAF_556_30Rnd";
@@ -710,16 +701,11 @@ class CfgVehicles {
         };
     };
     class UKSF_S_Radios: UKSF_S_Empty {
-        author = "UKSF";
-        scope = 2;
-        scopeCurator = 2;
         displayName = "ACRE Radios";
         class eventhandlers {
             init = "this addItemCargoGlobal [""ACRE_PRC117F"", 10]";
             class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
         };
-        class TransportMagazines {};
-        class TransportWeapons {};
         class TransportItems {
             class _xx_ACRE_PRC177F {
                 name = "ACRE_PRC117F";
@@ -740,6 +726,9 @@ class CfgVehicles {
                 count = 5;
             };
         };
+    };
+    class UKSF_S_Arsenal: UKSF_S_Empty {
+        displayName = "Supply Crate (Arsenal)";
     };
 
     class TargetP_Inf_F;
