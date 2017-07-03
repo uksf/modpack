@@ -76,6 +76,7 @@ signature_blacklist = []
 importantFiles = ["mod.cpp", "README.md", "mod.paa", "modLarge.paa", "AUTHORS.txt", "LICENSE", "UKSFTemplate.VR"]
 versionFiles = ["mod.cpp", "README.md"]
 sign = False
+mission = False
 ciBuild = False # Used for CI builds
 
 ###############################################################################
