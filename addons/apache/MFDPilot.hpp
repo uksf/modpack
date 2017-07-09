@@ -587,22 +587,18 @@ class MFD {
                 pos10[] = { 0.234, 0.23 };
             };
             class HorizonVector {
-                type = "horizontoview";
+                type = "horizon";
                 pos0[] = { 0.5, 0.5 };
-                pos10[] = { 0.830923, 0.825266 };
+                pos10[] = {0.838, 0.881};
                 angle = 0;
             };
             class GunnerAim {
-                // CAUSES CRASH
-                /*type = "vector";
-                source = "turret";
-                pos0[] = { 0, -2 };
-                pos10[] = { 0.0068, -0.01 };
-                projection = 0;*/
                 type = "vector";
                 source = "weapon";
-                pos0[] = { 0, -0.0025 };
-                pos10[] = { 0.01, 0.0025 };
+                //source = "turret"; // CAUSES CRASH
+                pos0[] = { 0, -2 };
+                pos10[] = { 0.0068, -0.01 };
+                projection = 0;
             };
             class VerticalSpeedBone {
                 type = "linear";
@@ -613,14 +609,11 @@ class MFD {
                 minPos[] = { 0, -0.32 };
                 maxPos[] = { 0, 0.32 };
             };
-            class HorizonBankRot {
-                type = "linear";
-                source = "horizonBank";
-                min = -0.5236;
-                max = 0.5236;
-                minPos[] = { 0.41, 0.84 };
-                maxPos[] = { 0.59, 0.84 };
-                aspectRatio = 1;
+            class SlipVector {
+                type = "vector";
+                source = "velocity";
+                pos0[] = { 0.5,0.845 };
+                pos10[] = { 0.53,0.845 };
             };
             class ImpactPoint {
                 type = "vector";
@@ -816,10 +809,10 @@ class MFD {
                     };
                 };
             };
-            class HorizonBankRot {
+            class SlipVector {
                 type = "polygon";
                 width = 4;
-                points[] = { { { "HorizonBankRot", 1,{ 0, 0 }, 1 },{ "HorizonBankRot",{ 0.00260472, -0.0145196 }, 1 },{ "HorizonBankRot",{ 0.0051303, -0.0138544 }, 1 },{ "HorizonBankRot",{ 0.0075, -0.0127683 }, 1 } },{ { "HorizonBankRot", 1,{ 0, 0 }, 1 },{ "HorizonBankRot",{ 0.0075, -0.0127683 }, 1 },{ "HorizonBankRot",{ 0.00964181, -0.0112942 }, 1 },{ "HorizonBankRot",{ 0.0114907, -0.009477 }, 1 } },{ { "HorizonBankRot", 1,{ 0, 0 }, 1 },{ "HorizonBankRot",{ 0.0114907, -0.009477 }, 1 },{ "HorizonBankRot",{ 0.0129904, -0.00737179 }, 1 },{ "HorizonBankRot",{ 0.0140954, -0.0050426 }, 1 } },{ { "HorizonBankRot", 1,{ 0, 0 }, 1 },{ "HorizonBankRot",{ 0.0140954, -0.0050426 }, 1 },{ "HorizonBankRot",{ 0.0147721, -0.0025602 }, 1 },{ "HorizonBankRot",{ 0.015, 6.44463e-010 }, 1 } },{ { "HorizonBankRot", 1,{ 0, 0 }, 1 },{ "HorizonBankRot",{ 0.015, 6.44463e-010 }, 1 },{ "HorizonBankRot",{ 0.0147721, 0.0025602 }, 1 },{ "HorizonBankRot",{ 0.0140954, 0.0050426 }, 1 } },{ { "HorizonBankRot", 1,{ 0, 0 }, 1 },{ "HorizonBankRot",{ 0.0140954, 0.0050426 }, 1 },{ "HorizonBankRot",{ 0.0129904, 0.0073718 }, 1 },{ "HorizonBankRot",{ 0.0114907, 0.009477 }, 1 } },{ { "HorizonBankRot", 1,{ 0, 0 }, 1 },{ "HorizonBankRot",{ 0.0114907, 0.009477 }, 1 },{ "HorizonBankRot",{ 0.00964181, 0.0112942 }, 1 },{ "HorizonBankRot",{ 0.0075, 0.0127683 }, 1 } },{ { "HorizonBankRot", 1,{ 0, 0 }, 1 },{ "HorizonBankRot",{ 0.0075, 0.0127683 }, 1 },{ "HorizonBankRot",{ 0.0051303, 0.0138544 }, 1 },{ "HorizonBankRot",{ 0.00260472, 0.0145196 }, 1 } },{ { "HorizonBankRot", 1,{ 0, 0 }, 1 },{ "HorizonBankRot",{ 0.00260472, 0.0145196 }, 1 },{ "HorizonBankRot",{ -1.31134e-009, 0.0147436 }, 1 },{ "HorizonBankRot",{ -0.00260473, 0.0145196 }, 1 } },{ { "HorizonBankRot", 1,{ 0, 0 }, 1 },{ "HorizonBankRot",{ -0.00260473, 0.0145196 }, 1 },{ "HorizonBankRot",{ -0.0051303, 0.0138544 }, 1 },{ "HorizonBankRot",{ -0.0075, 0.0127683 }, 1 } },{ { "HorizonBankRot", 1,{ 0, 0 }, 1 },{ "HorizonBankRot",{ -0.0075, 0.0127683 }, 1 },{ "HorizonBankRot",{ -0.00964181, 0.0112942 }, 1 },{ "HorizonBankRot",{ -0.0114907, 0.009477 }, 1 } },{ { "HorizonBankRot", 1,{ 0, 0 }, 1 },{ "HorizonBankRot",{ -0.0114907, 0.009477 }, 1 },{ "HorizonBankRot",{ -0.0129904, 0.00737179 }, 1 },{ "HorizonBankRot",{ -0.0140954, 0.0050426 }, 1 } },{ { "HorizonBankRot", 1,{ 0, 0 }, 1 },{ "HorizonBankRot",{ -0.0140954, 0.0050426 }, 1 },{ "HorizonBankRot",{ -0.0147721, 0.0025602 }, 1 },{ "HorizonBankRot",{ -0.015, -1.75816e-010 }, 1 } },{ { "HorizonBankRot", 1,{ 0, 0 }, 1 },{ "HorizonBankRot",{ -0.015, -1.75816e-010 }, 1 },{ "HorizonBankRot",{ -0.0147721, -0.0025602 }, 1 },{ "HorizonBankRot",{ -0.0140954, -0.0050426 }, 1 } },{ { "HorizonBankRot", 1,{ 0, 0 }, 1 },{ "HorizonBankRot",{ -0.0140954, -0.0050426 }, 1 },{ "HorizonBankRot",{ -0.0129904, -0.0073718 }, 1 },{ "HorizonBankRot",{ -0.0114907, -0.009477 }, 1 } },{ { "HorizonBankRot", 1,{ 0, 0 }, 1 },{ "HorizonBankRot",{ -0.0114907, -0.009477 }, 1 },{ "HorizonBankRot",{ -0.00964181, -0.0112942 }, 1 },{ "HorizonBankRot",{ -0.0075, -0.0127683 }, 1 } },{ { "HorizonBankRot", 1,{ 0, 0 }, 1 },{ "HorizonBankRot",{ -0.0075, -0.0127683 }, 1 },{ "HorizonBankRot",{ -0.00513031, -0.0138544 }, 1 },{ "HorizonBankRot",{ -0.00260472, -0.0145196 }, 1 } },{ { "HorizonBankRot", 1,{ 0, 0 }, 1 },{ "HorizonBankRot",{ -0.00260472, -0.0145196 }, 1 },{ "HorizonBankRot",{ 2.62268e-009, -0.0147436 }, 1 },{ "HorizonBankRot",{ 0.00260472, -0.0145196 }, 1 } } };
+                points[] = { { { "SlipVector", 1,{ 0, 0 }, 1 },{ "SlipVector",{ 0.00260472, -0.0145196 }, 1 },{ "SlipVector",{ 0.0051303, -0.0138544 }, 1 },{ "SlipVector",{ 0.0075, -0.0127683 }, 1 } },{ { "SlipVector", 1,{ 0, 0 }, 1 },{ "SlipVector",{ 0.0075, -0.0127683 }, 1 },{ "SlipVector",{ 0.00964181, -0.0112942 }, 1 },{ "SlipVector",{ 0.0114907, -0.009477 }, 1 } },{ { "SlipVector", 1,{ 0, 0 }, 1 },{ "SlipVector",{ 0.0114907, -0.009477 }, 1 },{ "SlipVector",{ 0.0129904, -0.00737179 }, 1 },{ "SlipVector",{ 0.0140954, -0.0050426 }, 1 } },{ { "SlipVector", 1,{ 0, 0 }, 1 },{ "SlipVector",{ 0.0140954, -0.0050426 }, 1 },{ "SlipVector",{ 0.0147721, -0.0025602 }, 1 },{ "SlipVector",{ 0.015, 6.44463e-010 }, 1 } },{ { "SlipVector", 1,{ 0, 0 }, 1 },{ "SlipVector",{ 0.015, 6.44463e-010 }, 1 },{ "SlipVector",{ 0.0147721, 0.0025602 }, 1 },{ "SlipVector",{ 0.0140954, 0.0050426 }, 1 } },{ { "SlipVector", 1,{ 0, 0 }, 1 },{ "SlipVector",{ 0.0140954, 0.0050426 }, 1 },{ "SlipVector",{ 0.0129904, 0.0073718 }, 1 },{ "SlipVector",{ 0.0114907, 0.009477 }, 1 } },{ { "SlipVector", 1,{ 0, 0 }, 1 },{ "SlipVector",{ 0.0114907, 0.009477 }, 1 },{ "SlipVector",{ 0.00964181, 0.0112942 }, 1 },{ "SlipVector",{ 0.0075, 0.0127683 }, 1 } },{ { "SlipVector", 1,{ 0, 0 }, 1 },{ "SlipVector",{ 0.0075, 0.0127683 }, 1 },{ "SlipVector",{ 0.0051303, 0.0138544 }, 1 },{ "SlipVector",{ 0.00260472, 0.0145196 }, 1 } },{ { "SlipVector", 1,{ 0, 0 }, 1 },{ "SlipVector",{ 0.00260472, 0.0145196 }, 1 },{ "SlipVector",{ -1.31134e-009, 0.0147436 }, 1 },{ "SlipVector",{ -0.00260473, 0.0145196 }, 1 } },{ { "SlipVector", 1,{ 0, 0 }, 1 },{ "SlipVector",{ -0.00260473, 0.0145196 }, 1 },{ "SlipVector",{ -0.0051303, 0.0138544 }, 1 },{ "SlipVector",{ -0.0075, 0.0127683 }, 1 } },{ { "SlipVector", 1,{ 0, 0 }, 1 },{ "SlipVector",{ -0.0075, 0.0127683 }, 1 },{ "SlipVector",{ -0.00964181, 0.0112942 }, 1 },{ "SlipVector",{ -0.0114907, 0.009477 }, 1 } },{ { "SlipVector", 1,{ 0, 0 }, 1 },{ "SlipVector",{ -0.0114907, 0.009477 }, 1 },{ "SlipVector",{ -0.0129904, 0.00737179 }, 1 },{ "SlipVector",{ -0.0140954, 0.0050426 }, 1 } },{ { "SlipVector", 1,{ 0, 0 }, 1 },{ "SlipVector",{ -0.0140954, 0.0050426 }, 1 },{ "SlipVector",{ -0.0147721, 0.0025602 }, 1 },{ "SlipVector",{ -0.015, -1.75816e-010 }, 1 } },{ { "SlipVector", 1,{ 0, 0 }, 1 },{ "SlipVector",{ -0.015, -1.75816e-010 }, 1 },{ "SlipVector",{ -0.0147721, -0.0025602 }, 1 },{ "SlipVector",{ -0.0140954, -0.0050426 }, 1 } },{ { "SlipVector", 1,{ 0, 0 }, 1 },{ "SlipVector",{ -0.0140954, -0.0050426 }, 1 },{ "SlipVector",{ -0.0129904, -0.0073718 }, 1 },{ "SlipVector",{ -0.0114907, -0.009477 }, 1 } },{ { "SlipVector", 1,{ 0, 0 }, 1 },{ "SlipVector",{ -0.0114907, -0.009477 }, 1 },{ "SlipVector",{ -0.00964181, -0.0112942 }, 1 },{ "SlipVector",{ -0.0075, -0.0127683 }, 1 } },{ { "SlipVector", 1,{ 0, 0 }, 1 },{ "SlipVector",{ -0.0075, -0.0127683 }, 1 },{ "SlipVector",{ -0.00513031, -0.0138544 }, 1 },{ "SlipVector",{ -0.00260472, -0.0145196 }, 1 } },{ { "SlipVector", 1,{ 0, 0 }, 1 },{ "SlipVector",{ -0.00260472, -0.0145196 }, 1 },{ "SlipVector",{ 2.62268e-009, -0.0147436 }, 1 },{ "SlipVector",{ 0.00260472, -0.0145196 }, 1 } } };
             };
             class CollectiveGroup {
                 condition = "simulRTD";
@@ -923,20 +916,6 @@ class MFD {
                     type = "line";
                     width = 4;
                     points[] = { { "VelocityVector",{ 0, -0.0196581 }, 1 },{ "VelocityVector",{ 0.014, -0.0137607 }, 1 },{ "VelocityVector",{ 0.02, 0 }, 1 },{ "VelocityVector",{ 0.014, 0.0137607 }, 1 },{ "VelocityVector",{ 0, 0.0196581 }, 1 },{ "VelocityVector",{ -0.014, 0.0137607 }, 1 },{ "VelocityVector",{ -0.02, 0 }, 1 },{ "VelocityVector",{ -0.014, -0.0137607 }, 1 },{ "VelocityVector",{ 0, -0.0196581 }, 1 },{},{ "VelocityVector",{ 0.04, 0 }, 1 },{ "VelocityVector",{ 0.02, 0 }, 1 },{},{ "VelocityVector",{ -0.04, 0 }, 1 },{ "VelocityVector",{ -0.02, 0 }, 1 },{},{ "VelocityVector",{ 0, -0.0393162 }, 1 },{ "VelocityVector",{ 0, -0.0196581 }, 1 },{} };
-                };
-            };
-            class GearGroup {
-                type = "group";
-                condition = "ils";
-                class GearText {
-                    type = "text";
-                    source = "static";
-                    text = "GEAR";
-                    align = "right";
-                    scale = 1;
-                    pos[] = { { 0.015, 0.334188 }, 1 };
-                    right[] = { { 0.055, 0.334188 }, 1 };
-                    down[] = { { 0.015, 0.363675 }, 1 };
                 };
             };
             class LaserGroup {
@@ -1134,9 +1113,9 @@ class MFD {
                     down[] = { { "0.075 +0.11", 0.825 }, 1 };
                 };
                 class WP {
-                    width = 2;
                     type = "line";
-                    points[] = { { "WPPoint", 1, "LimitWaypoint", 1,{ -0.02, 0.04 }, 1 },{ "WPPoint", 1, "LimitWaypoint", 1,{ 0, 0.02 }, 1 },{ "WPPoint", 1, "LimitWaypoint", 1,{ 0.02, 0.04 }, 1 },{} };
+                    width = 2;
+                    points[] = {{"WPPoint", 1, "LimitWaypoint", 1, {-0.02, 0.042}, 1}, {"WPPoint", 1, "LimitWaypoint", 1, {0, 0.022}, 1}, {"WPPoint", 1, "LimitWaypoint", 1, {0.02, 0.042}, 1}};
                 };
             };
             class WeaponsLocking {
@@ -1248,7 +1227,7 @@ class MFD {
         class Draw {
             alpha = 1;
             color[] = { 0.25, 1, 0.25 };
-            condition = "on";
+            condition = "(1 - (cameraHeadingDiffY<=-19) + (abs(cameraHeadingDiffX)>=24))*on";
             class cmWeapons {
                 type = "text";
                 source = "cmweapon";

@@ -94,6 +94,7 @@ class CfgPatches {
             "CUP_Weapons_Ammunition",
             "CUP_Weapons_VehicleWeapons",
             "CUP_Creatures_StaticWeapons",
+            "CUP_Weapons_DynamicLoadout",
             "CUP_Weapons_M16",
             "CUP_Weapons_SMAW",
             "CUP_Weapons_M240",

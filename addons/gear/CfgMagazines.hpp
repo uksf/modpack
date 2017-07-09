@@ -92,36 +92,22 @@ class CfgMagazines {
         ammo = "ACE_Hellfire_AGM114L";
     };
 
-    class CUP_14Rnd_FFAR_M;
-    class CUP_12Rnd_CRV7_FAT_M: CUP_14Rnd_FFAR_M {
-        displayName = "CRV7 FAT";
-        displayNameShort = "CRV7";
-        descriptionShort = "CRV7";
-        initSpeed = 30;
-        maxLeadSpeed = 650;
-    };
-    class CUP_19Rnd_CRV7_FAT_M: CUP_12Rnd_CRV7_FAT_M {
-        count = 19;
-    };
-    class CUP_12Rnd_CRV7_HEISAP_M: CUP_12Rnd_CRV7_FAT_M {
-        count = 12;
-        ammo = "CUP_R_CRV7_HEISAP";
-        displayName = "CRV7 HEISAP";
-        displayNameShort = "CRV7";
-        descriptionShort = "CRV7";
-    };
-    class CUP_19Rnd_CRV7_HEISAP_M: CUP_12Rnd_CRV7_HEISAP_M {
-        count = 19;
-    };
-    class PylonRocket_19Rnd_CRV7_HEISAP: CUP_19Rnd_CRV7_FAT_M {
-        displayName = "19x CRV7";
-        displayNameShort = "CRV7";
-        descriptionShort = "CRV7";
-        ammo = "CUP_R_CRV7_HEISAP";
-        pylonWeapon = "launcher_crv7_heisap";
-        count = 19;
-        hardpoints[] = { "B_CRV7" };
+    class CUP_19Rnd_CRV7_FAT_M;
+    class CUP_PylonPod_19Rnd_CRV7_FAT_M: CUP_19Rnd_CRV7_FAT_M {
+        hardpoints[] += { "B_CRV7" };
         model = QPATHTOEF(apache,PylonRocket_19Rnd_CRV7_HEISAP.p3d);
+        CUP_PilotControl = 0;
+        GVAR(pilotControl) = 1;
+    };
+    class CUP_PylonPod_19Rnd_CRV7_HE_M: CUP_PylonPod_19Rnd_CRV7_FAT_M {
+        hardpoints[] += { "B_CRV7" };
+    };
+    class CUP_PylonPod_19Rnd_CRV7_KEP_M: CUP_PylonPod_19Rnd_CRV7_FAT_M {
+        hardpoints[] += { "B_CRV7" };
+    };
+    class CUP_1200Rnd_TE1_Red_Tracer_M621_20mm_HE_M;
+    class CUP_PylonPod_1200Rnd_TE1_Red_Tracer_M621_20mm_HE_M: CUP_1200Rnd_TE1_Red_Tracer_M621_20mm_HE_M {
+        CUP_PilotControl = 0;
         GVAR(pilotControl) = 1;
     };
 
@@ -145,13 +131,5 @@ class CfgMagazines {
         displayName = "FIM-92F Stinger Rubber";
         displayNameShort = "AA Rubber";
         ammo = "CUP_M_Stinger_AA_Rubber";
-    };
-
-    //AAA Magazine lead speeds
-    class CUP_2000Rnd_23mm_AZP23_M: VehicleMagazine {
-        maxLeadSpeed = 200; //600
-    };
-    class CUP_750Rnd_TE1_30mm_GSh302K_HE_M: VehicleMagazine {
-        maxLeadSpeed = 200; //600
     };
 };
