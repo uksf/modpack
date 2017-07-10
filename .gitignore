@@ -10,3 +10,4 @@ Thumbs.db
 *.diff
 *.rar
 *.zip
+tools/service.py
