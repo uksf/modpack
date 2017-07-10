@@ -178,6 +178,7 @@ def upload_zip():
         file_send = open(os.path.abspath(file_zip), "rb")
         session.storbinary("STOR {}".format(file_zip), file_send, 1024, upload_callback)
         file_send.close()
+        print("\n")
         session.quit()
     except ftplib.all_errors as e:
         print_error(e)
@@ -195,7 +196,7 @@ def remote_deploy():
     try:
         password = getpass.getpass("Connection password:")
         print("Connecting...")
-        channel = rpyc.Channel(rpyc.SocketStream.connect("localhost", 18812))
+        channel = rpyc.Channel(rpyc.SocketStream.connect("uk-sf.com", 18812))
         channel.send(password.encode())
         response = channel.recv()
         if response == AUTH_ERROR:
