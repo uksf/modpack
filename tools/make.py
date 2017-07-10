@@ -731,7 +731,7 @@ def copy_dependencies():
                 os.remove(os.path.join(signatures_path, file))
     
     
-    dependencies_path = os.path.join(a3_path, "@uksf_dependencies\\addons")
+    dependencies_path = os.path.join(a3_path, "uksf\\@uksf_dependencies\\addons")
     temp_path = os.path.join(dependencies_path, "signatures")
     if not os.path.isdir(temp_path):
         try:
