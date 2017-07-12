@@ -559,7 +559,8 @@ class MFD {
         helmetRight[] = { 0.075, 0, 0 };
         helmetDown[] = { 0, -0.075, 0 };
         font = "LucidaConsoleB";
-        turret[] = { -2 };
+        //turret[] = { -2 }; // CAUSES CRASH
+        turret[] = { 0 };
         class Bones {
             class HUDCenter {
                 type = "fixed";
@@ -592,18 +593,12 @@ class MFD {
                 pos10[] = {0.838, 0.881};
                 angle = 0;
             };
-            /*class GunnerAim {
+            class GunnerAim {
                 type = "vector";
-                source = "turret"; // CAUSES CRASH
+                source = "turret";
                 pos0[] = { 0, -2 };
                 pos10[] = { 0.0068, -0.01 };
                 projection = 0;
-            };*/
-            class GunnerAim {
-                type = "vector";
-                source = "weapon";
-                pos0[] = { 0.5, 0.88 };
-                pos10[] = { 0.51, 0.89 };
             };
             class VerticalSpeedBone {
                 type = "linear";
