@@ -64,6 +64,33 @@ class CfgVehicles {
         function = QFUNC(moduleToggleAllowUnconcious);
         icon = "\z\ace\addons\zeus\ui\Icon_Module_Zeus_Unconscious_ca.paa";
     };
+    class GVAR(moduleToggleBluforOpfor): EGVAR(common,moduleBase) {
+        curatorCanAttach = 1;
+        isGlobal = 0;
+        category = QEGVAR(common,zeus_uksf_side);
+        displayName = "Toggle Blufor/Opfor Relations";
+        function = QFUNC(moduleToggleSideRelations);
+        GVAR(sides)[] = {west, east};
+        icon = QPATHTOF(UI\Icon_Module_ToggleBluforOpfor_ca.paa);
+    };
+    class GVAR(moduleToggleIndepBlufor): EGVAR(common,moduleBase) {
+        curatorCanAttach = 1;
+        isGlobal = 0;
+        category = QEGVAR(common,zeus_uksf_side);
+        displayName = "Toggle Indep/Blufor Relations";
+        function = QFUNC(moduleToggleSideRelations);
+        GVAR(sides)[] = {independent, west};
+        icon = QPATHTOF(UI\Icon_Module_ToggleIndepBlufor_ca.paa);
+    };
+    class GVAR(moduleToggleIndepOpfor): EGVAR(common,moduleBase) {
+        curatorCanAttach = 1;
+        isGlobal = 0;
+        category = QEGVAR(common,zeus_uksf_side);
+        displayName = "Toggle Indep/Opfor Relations";
+        function = QFUNC(moduleToggleSideRelations);
+        GVAR(sides)[] = {independent, east};
+        icon = QPATHTOF(UI\Icon_Module_ToggleIndepOpfor_ca.paa);
+    };
 
     class Ares_Zeus_Module_Base;
     class Ares_Module_Zeus_Visibility: Ares_Zeus_Module_Base {
