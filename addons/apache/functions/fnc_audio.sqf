@@ -50,5 +50,5 @@ params [["_sound1", ""], ["_delay1", 0], ["_sound2", ""], ["_delay2", 0], ["_sou
 
     [{
         GVAR(soundPlaying) = false;
-    }, [], (_delay1 + _delay2 + _delay3)] call cba_fnc_waitAndExecute;    
+    }, [], (_delay1 + _delay2 + _delay3)] call cba_fnc_waitAndExecute;
 }, [_sound1, _delay1, _sound2, _delay2, _sound3, _delay3]] call cba_fnc_waitUntilAndExecute;
