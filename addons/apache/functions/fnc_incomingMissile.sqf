@@ -85,7 +85,7 @@ if (local _heli && {alive _heli} && {player isEqualTo (driver _heli)} && {isEngi
                 _dummyMissile setPosATL (getPosATL _missile);
                 deleteVehicle _missile;
                 deleteVehicle _trackTo;
-                _missile = objNull;            
+                _missile = objNull;
             } else {
                 private _up = (_dir vectorCrossProduct [0,0,1]) vectorCrossProduct _dir;
                 _missile setVectorDirAndUp [_dir, _up];
