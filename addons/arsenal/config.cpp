@@ -7,7 +7,8 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "uksf_common"
+            "uksf_common",
+            "uksf_gear"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
@@ -16,6 +17,7 @@ class CfgPatches {
     };
 };
 
+#include "ACE_Settings.hpp"
 #include "CfgEventHandlers.hpp"
 #include "CfgFunctions.hpp"
 #include "CfgLoadouts.hpp"
