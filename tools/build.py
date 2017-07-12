@@ -31,9 +31,9 @@ def check_for_obsolete_pbos(addonspath, file):
 
 def main():
     print("""
-  #####################
-  # UKSF Debug Build #
-  #####################
+#####################
+# UKSF Debug Build #
+#####################
 """)
 
     scriptpath = os.path.realpath(__file__)
