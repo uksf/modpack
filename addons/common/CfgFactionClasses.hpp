@@ -14,4 +14,7 @@ class CfgFactionClasses {
     class GVAR(zeus_uksf_special): GVAR(zeus_uksf) {
         displayName = "UKSF Special";
     };
+    class GVAR(zeus_uksf_side): GVAR(zeus_uksf) {
+        displayName = "Side";
+    };
 };
