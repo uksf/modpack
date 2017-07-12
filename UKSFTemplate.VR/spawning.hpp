@@ -12,12 +12,12 @@
             3: factionName (default: "") - The name of the faction to spawn
 
         Format: 
-            ["markername"/trigger object/location, maxGroupsActive, groupPoolSize, factionName] call uksf_mission_fnc_initPatrol;
+            ["markername"/trigger object/location, maxGroupsActive, groupPoolSize, factionName] call uksf_spawn_fnc_initPatrol;
 
         Examples:
-            Marker: ["markerName", 10, 15, "CUP_O_RU"] call uksf_mission_fnc_initPatrol; (NOTE: The marker name must be given)
-            Trigger: [thisTrigger, 4, 100, "CUP_I_UN"] call uksf_mission_fnc_initPatrol; (NOTE: The trigger object)
-            Location: [location, 10, 15, "CUP_B_GB"] call uksf_mission_fnc_initPatrol; (NOTE: Custom locations will not work)
+            Marker: ["markerName", 10, 15, "CUP_O_RU"] call uksf_spawn_fnc_initPatrol; (NOTE: The marker name must be given)
+            Trigger: [thisTrigger, 4, 100, "CUP_I_UN"] call uksf_spawn_fnc_initPatrol; (NOTE: The trigger object)
+            Location: [location, 10, 15, "CUP_B_GB"] call uksf_spawn_fnc_initPatrol; (NOTE: Custom locations will not work)
 
         Markers must be area markers. In editor: Markers > Areas (Circle overlapping rectangle icon)
 */

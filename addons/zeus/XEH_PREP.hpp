@@ -11,4 +11,5 @@ PREP(moduleLoadoutPaste);
 PREP(moduleSetEngineer);
 PREP(moduleTeleportZeus);
 PREP(moduleToggleAllowUnconcious);
+PREP(moduleToggleSideRelations);
 PREP(moduleToggleZeusVisibility);

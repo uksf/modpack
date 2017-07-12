@@ -30,7 +30,8 @@ class ACE_Settings {
     class ace_medical_useLocation_PAK { value = 3; typeName = "SCALAR"; force = 1; };
     //--------------------------------------------------------------------------------------------------------------------------
 
-    //--------------------------------------------------- CACHING & CLEANUP ----------------------------------------------------
+    //----------------------------------------------------- UKSF SETTINGS ------------------------------------------------------
+    class uksf_arsenal_mainOpGear { value = 1; typeName = "SCALAR"; force = 1; };
     class uksf_caching_enabled { value = 1; typeName = "BOOL"; force = 1; };
     class uksf_caching_distance { value = 750; typeName = "SCALAR"; force = 1; };
     class uksf_cleanup_enabled { value = 1; typeName = "BOOL"; force = 1; };
