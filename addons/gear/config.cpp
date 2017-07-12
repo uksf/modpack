@@ -38,6 +38,7 @@ class CfgPatches {
             "UKSF_S_Medic",
             "UKSF_S_AmmoMedic",
             "UKSF_S_Radios",
+            "UKSF_S_Arsenal",
             "UKSF_Target_Nopopup"
         };
         weapons[] = {

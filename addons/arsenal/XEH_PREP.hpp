@@ -6,3 +6,4 @@ PREP(saveToProfile);
 PREP(showRemoved);
 PREP(getDefaultLoadout);
 PREP(setArsenalGear);
+PREP(initSupplyCrate);
