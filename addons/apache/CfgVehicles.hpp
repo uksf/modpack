@@ -292,6 +292,167 @@ class CfgVehicles {
                         directionStabilized = 0;
                     };
                 };
+                class VehicleSystemsDisplayManagerComponentLeft: DefaultVehicleSystemsDisplayManagerLeft {
+                    defaultDisplay = "EmptyDisplay";
+                    class Components {
+                        class MissileDisplay {
+                            componentType = "TransportFeedDisplayComponent";
+                            source = "Missile";
+                        };
+                        class VehicleDriverDisplay {
+                            componentType = "TransportFeedDisplayComponent";
+                            source = "Driver";
+                        };
+                        class SensorsDisplay {
+                            componentType = "SensorsDisplayComponent";
+                            range[] = { 16000, 8000, 4000, 2000 };
+                            resource = "RscCustomInfoSensors";
+                        };
+                        class CrewDisplay {
+                            componentType = "CrewDisplayComponent";
+                            resource = "RscCustomInfoCrew";
+                        };
+                        class MinimapDisplay {
+                            componentType = "MinimapDisplayComponent";
+                            resource = "RscCustomInfoMiniMap";
+                        };
+                        class EmptyDisplay {
+                            componentType = "EmptyDisplayComponent";
+                        };
+                    };
+                };
+                class VehicleSystemsDisplayManagerComponentRight: DefaultVehicleSystemsDisplayManagerRight {
+                    defaultDisplay = "SensorsDisplay";
+                    class Components {
+                        class MissileDisplay {
+                            componentType = "TransportFeedDisplayComponent";
+                            source = "Missile";
+                        };
+                        class VehicleDriverDisplay {
+                            componentType = "TransportFeedDisplayComponent";
+                            source = "Driver";
+                        };
+                        class SensorsDisplay {
+                            componentType = "SensorsDisplayComponent";
+                            range[] = { 16000, 8000, 4000, 2000 };
+                            resource = "RscCustomInfoSensors";
+                        };
+                        class CrewDisplay {
+                            componentType = "CrewDisplayComponent";
+                            resource = "RscCustomInfoCrew";
+                        };
+                        class MinimapDisplay {
+                            componentType = "MinimapDisplayComponent";
+                            resource = "RscCustomInfoMiniMap";
+                        };
+                        class EmptyDisplay {
+                            componentType = "EmptyDisplayComponent";
+                        };
+                    };
+                };
+                class SensorsManagerComponent {
+                    class Components {
+                        class ActiveRadarComponent: SensorTemplateActiveRadar {
+                            class AirTarget {
+                                maxRange = 8000;
+                                minRange = 8000;
+                                objectDistanceLimitCoef = -1;
+                                viewDistanceLimitCoef = -1;
+                            };
+                            class GroundTarget {
+                                maxRange = 8000;
+                                minRange = 8000;
+                                objectDistanceLimitCoef = -1;
+                                viewDistanceLimitCoef = -1;
+                            };
+                            typeRecognitionDistance = 8000;
+                            angleRangeHorizontal = 360;
+                            angleRangeVertical = 360;
+                            maxGroundNoiseDistance = -1;
+                            groundNoiseDistanceCoef = -1;
+                            minSpeedThreshold = 0;
+                            maxSpeedThreshold = 24;
+                        };
+                        class IRSensorComponent: SensorTemplateIR {
+                            class AirTarget {
+                                maxRange = 8000;
+                                minRange = 50;
+                                objectDistanceLimitCoef = 1;
+                                viewDistanceLimitCoef = 1;
+                            };
+                            class GroundTarget {
+                                maxRange = 8000;
+                                minRange = 50;
+                                objectDistanceLimitCoef = 1;
+                                viewDistanceLimitCoef = 1;
+                            };
+                            aimDown = 30;
+                            animDirection = "MainTurret";
+                            angleRangeHorizontal = 60;
+                            angleRangeVertical = 60;
+                            maxTrackableSpeed = 110;
+                        };
+                        class VisualSensorComponent: SensorTemplateVisual {
+                            class AirTarget {
+                                maxRange = 8000;
+                                minRange = 50;
+                                objectDistanceLimitCoef = 1;
+                                viewDistanceLimitCoef = 1;
+                            };
+                            class GroundTarget {
+                                maxRange = 8000;
+                                minRange = 50;
+                                objectDistanceLimitCoef = 1;
+                                viewDistanceLimitCoef = 1;
+                            };
+                            aimDown = 30;
+                            animDirection = "MainTurret";
+                            angleRangeHorizontal = 60;
+                            angleRangeVertical = 60;
+                            maxTrackableSpeed = 110;
+                        };
+                        class PassiveSensorComponent: SensorTemplatePassiveRadar {};
+                        class NVSensorComponent: SensorTemplateNV {
+                            class AirTarget {
+                                maxRange = 2000;
+                                minRange = 50;
+                                objectDistanceLimitCoef = 1;
+                                viewDistanceLimitCoef = 1;
+                            };
+                            class GroundTarget {
+                                maxRange = 2000;
+                                minRange = 50;
+                                objectDistanceLimitCoef = 1;
+                                viewDistanceLimitCoef = 1;
+                            };
+                            aimDown = 30;
+                            animDirection = "MainTurret";
+                            angleRangeHorizontal = 60;
+                            angleRangeVertical = 60;
+                            maxTrackableSpeed = 110;
+                        };
+                        class LaserSensorComponent: SensorTemplateLaser {
+                            class AirTarget {
+                                maxRange = 8000;
+                                minRange = 500;
+                                objectDistanceLimitCoef = 1;
+                                viewDistanceLimitCoef = 1;
+                            };
+                            class GroundTarget {
+                                maxRange = 8000;
+                                minRange = 500;
+                                objectDistanceLimitCoef = 1;
+                                viewDistanceLimitCoef = 1;
+                            };
+                            aimDown = 30;
+                            animDirection = "MainTurret";
+                            angleRangeHorizontal = 180;
+                            angleRangeVertical = 180;
+                            maxTrackableSpeed = 110;
+                        };
+                        class DataLinkSensorComponent: SensorTemplateDataLink {};
+                    };
+                };
             };
             class CargoTurret_01: CargoTurret {
                 gunnerAction = "passenger_bench_1";
@@ -629,7 +790,7 @@ class CfgVehicles {
                     };
                     class SensorsDisplay {
                         componentType = "SensorsDisplayComponent";
-                        range[] = { 16000,8000,4000,2000 };
+                        range[] = { 16000, 8000, 4000, 2000 };
                         resource = "RscCustomInfoSensors";
                     };
                     class CrewDisplay {
@@ -658,7 +819,7 @@ class CfgVehicles {
                     };
                     class SensorsDisplay {
                         componentType = "SensorsDisplayComponent";
-                        range[] = { 16000,8000,4000,2000 };
+                        range[] = { 16000, 8000, 4000, 2000 };
                         resource = "RscCustomInfoSensors";
                     };
                     class CrewDisplay {
@@ -781,7 +942,7 @@ class CfgVehicles {
                 uiPicture = QPATHTOF(data\UI\Apache_EDEN_CA.paa);
                 class Pylons {
                     class PylonLeft1 {
-                        attachment = "PylonRocket_19Rnd_CRV7_HEISAP";
+                        attachment = "CUP_PylonPod_19Rnd_CRV7_HE_M";
                         priority = 5;
                         bay = -1;
                         hardpoints[] = { "B_CRV7", "B_HELLFIRE" };
@@ -811,7 +972,7 @@ class CfgVehicles {
                     };
                     class Default {
                         displayName = "CAS";
-                        attachment[] = { "PylonRocket_19Rnd_CRV7_HEISAP", "PylonRack_4Rnd_ACE_Hellfire_AGM114N", "PylonRack_4Rnd_ACE_Hellfire_AGM114L", "PylonRocket_19Rnd_CRV7_HEISAP" };
+                        attachment[] = { "CUP_PylonPod_19Rnd_CRV7_HE_M", "PylonRack_4Rnd_ACE_Hellfire_AGM114N", "PylonRack_4Rnd_ACE_Hellfire_AGM114L", "CUP_PylonPod_19Rnd_CRV7_HE_M" };
                     };
                     class AT {
                         displayName = "AT";
@@ -819,7 +980,7 @@ class CfgVehicles {
                     };
                     class Escort {
                         displayName = "Escort";
-                        attachment[] = { "PylonRocket_19Rnd_CRV7_HEISAP", "PylonRocket_19Rnd_CRV7_HEISAP", "PylonRocket_19Rnd_CRV7_HEISAP", "PylonRocket_19Rnd_CRV7_HEISAP" };
+                        attachment[] = { "CUP_PylonPod_19Rnd_CRV7_HE_M", "CUP_PylonPod_19Rnd_CRV7_HE_M", "CUP_PylonPod_19Rnd_CRV7_HE_M", "CUP_PylonPod_19Rnd_CRV7_HE_M" };
                     };
                     class Strike {
                         displayName = "Strike";

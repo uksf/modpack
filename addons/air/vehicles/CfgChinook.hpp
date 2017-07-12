@@ -24,7 +24,7 @@ class CUP_CH47F_base: Helicopter_Base_H {
                     class Components {
                         class SensorsDisplay {
                             componentType = "SensorsDisplayComponent";
-                            range[] = { 16000,8000,4000,2000 };
+                            range[] = { 16000, 8000, 4000, 2000 };
                             resource = "RscCustomInfoSensors";
                         };
                         class CrewDisplay {
@@ -45,7 +45,7 @@ class CUP_CH47F_base: Helicopter_Base_H {
                     class Components {
                         class SensorsDisplay {
                             componentType = "SensorsDisplayComponent";
-                            range[] = { 16000,8000,4000,2000 };
+                            range[] = { 16000, 8000, 4000, 2000 };
                             resource = "RscCustomInfoSensors";
                         };
                         class CrewDisplay {
@@ -116,7 +116,7 @@ class CUP_CH47F_base: Helicopter_Base_H {
             class Components {
                 class SensorsDisplay {
                     componentType = "SensorsDisplayComponent";
-                    range[] = { 16000,8000,4000,2000 };
+                    range[] = { 16000, 8000, 4000, 2000 };
                     resource = "RscCustomInfoSensors";
                 };
                 class CrewDisplay {
@@ -137,7 +137,7 @@ class CUP_CH47F_base: Helicopter_Base_H {
             class Components {
                 class SensorsDisplay {
                     componentType = "SensorsDisplayComponent";
-                    range[] = { 16000,8000,4000,2000 };
+                    range[] = { 16000, 8000, 4000, 2000 };
                     resource = "RscCustomInfoSensors";
                 };
                 class CrewDisplay {

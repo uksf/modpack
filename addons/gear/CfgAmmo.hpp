@@ -36,6 +36,23 @@ class CfgAmmo{
         class Components: Components {
             class SensorsManagerComponent {
                 class Components {
+                    class IRSensorComponent: SensorTemplateIR {
+                        class AirTarget {
+                            minRange = 8000;
+                            maxRange = 8000;
+                            objectDistanceLimitCoef = -1;
+                            viewDistanceLimitCoef = 1;
+                        };
+                        class GroundTarget {
+                            minRange = 8000;
+                            maxRange = 8000;
+                            objectDistanceLimitCoef = 1;
+                            viewDistanceLimitCoef = 1;
+                        };
+                        maxTrackableSpeed = 35;
+                        angleRangeHorizontal = 45;
+                        angleRangeVertical = 35;
+                    };
                     class LaserSensorComponent: SensorTemplateLaser {
                         class AirTarget {
                             minRange = 8000;
@@ -106,33 +123,6 @@ class CfgAmmo{
                 };
             };
         };
-    };
-
-    class CUP_R_70mm_Hydra_HE;
-    class CUP_R_CRV7_FAT: CUP_R_70mm_Hydra_HE {
-        hit = 800;
-        indirectHit = 8;
-        indirectHitRange = 3;
-        maxSpeed = 975;
-        thrustTime = 0.93;
-        thrust = 1150;
-        aiAmmoUsageFlags = "128 + 256";
-        ace_frag_enabled = 0;
-        CraterEffects = "ATRocketCrater";
-        explosionEffects = "ATRocketExplosion";
-        class HitEffects {
-            hitWater = "ImpactEffectsWaterBig";
-        };
-        SoundSetExplosion[] = { "DS_Ex_rocket_small_SoundSet", "DS_exploBig_Tail_placeholder_SoundSet" };
-        ace_rearm_dummy = "ace_rearm_R_Hydra_HE";
-    };
-    class CUP_R_CRV7_HEISAP: CUP_R_CRV7_FAT {
-        hit = 400;
-        indirectHit = 60;
-        indirectHitRange = 15;
-        aiAmmoUsageFlags = "64 + 128";
-        CraterEffects = "HERocketCrater";
-        explosionEffects = "HERocketExplosion";
     };
     class CUP_B_30x113mm_M789_HEDP_Red_Tracer: BulletBase {
         SoundSetExplosion[] = { "DS_Ex_small_impact_SoundSet", "DS_exploSmall_Tail_placeholder_SoundSet", "Explosion_Debris_SoundSet" };

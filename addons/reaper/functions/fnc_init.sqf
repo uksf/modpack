@@ -38,12 +38,7 @@ GVAR(handlerUav) = [{
         if (((getWPPos [_uav, _currentWaypoint]) select 2) != 0) then {
             _specificDistance = (getWPPos [_uav, _currentWaypoint]) select 2;
         };
-
-        // Update _lastWaypoint to reflect current WP number.
-        if (!_heightChanged) then {
-            _lastWaypoint = _currentWaypoint;
-        };
-
+        
         // Sets the height of all current waypoints to _targetHeightASL if set.
         if (_customWaypoint && !_heightChanged) then {
             if (!(((getWPPos [_uav, _currentWaypoint]) select 2) == _targetHeightASL)) then {
@@ -84,5 +79,9 @@ GVAR(handlerUav) = [{
         // Updates flyInHeight based on ATL and ASL
         _uav flyinHeight 200;
         _uav flyInHeightASL [_targetHeightASL, _targetHeightASL, _targetHeightASL];
+
+        //Update vars
+        _args set [1, _heightChanged];
+        _args set [2, _currentWaypoint];
     };
 }, 0, [_uav, _heightChanged, _lastWaypoint]] call cba_fnc_addPerFrameHandler;

@@ -771,27 +771,14 @@ class CfgWeapons {
         };
     };
     class CUP_Vmlauncher_FFAR_veh;
-    class RocketPods;
-    class CUP_Vmlauncher_CRV7_FAT_veh: CUP_Vmlauncher_FFAR_veh {
-        class Far_AI: RocketPods {
-            soundFly[] = { QPATHTOF(data\sounds\crv7.ogg), 100, 0.8, 800 };
-        };
-        class Single: Mode_SemiAuto {
-            soundFly[] = { QPATHTOF(data\sounds\crv7.ogg), 100, 0.8, 800 };
-        };
+    class CUP_Vmlauncher_CRV7_veh: CUP_Vmlauncher_FFAR_veh {
+        class Single;
         class Double: Single {
-            displayname = "Ripple 2";
+            displayName = "Ripple 2";
         };
         class Quadruple: Single {
-            displayname = "Ripple 4";
+            displayName = "Ripple 4";
         };
-    };
-    class CUP_Vmlauncher_CRV7_HEISAP_veh: CUP_Vmlauncher_CRV7_FAT_veh {
-        magazines[] = { "CUP_12Rnd_CRV7_HEISAP_M", "CUP_19Rnd_CRV7_HEISAP_M" };
-    };
-    class launcher_crv7_heisap: CUP_Vmlauncher_CRV7_HEISAP_veh {
-        displayName = "CRV7-HEISAP";
-        magazines[] = { "CUP_12Rnd_CRV7_HEISAP_M", "CUP_19Rnd_CRV7_HEISAP_M", "PylonRocket_19Rnd_CRV7_HEISAP" };
     };
     class CUP_Vlmg_M240_veh: MGun {
         displayName = "L7A2";
@@ -888,28 +875,28 @@ class CfgWeapons {
         class manual;
         class close: manual {
             midRange = 200; // 300
-            maxRange = 400; // 600
+            maxRange = 500; // 600
             aiDispersionCoefX = 5;
             aiDispersionCoefY = 5;
         };
         class short: close {
             minRange = 300; // 400
-            midRange = 400; // 600
-            maxRange = 700; // 900
+            midRange = 500; // 600
+            maxRange = 800; // 900
             aiDispersionCoefX = 6;
             aiDispersionCoefY = 6;
         };
         class medium: close {
-            minRange = 500; // 700
-            midRange = 700; // 900
-            maxRange = 1000; // 1200
+            minRange = 600; // 700
+            midRange = 800; // 900
+            maxRange = 1100; // 1200
             aiDispersionCoefX = 7;
             aiDispersionCoefY = 7;
         };
         class far: close {
-            minRange = 700; // 1000
-            midRange = 800; // 1200
-            maxRange = 1000; // 1500
+            minRange = 900; // 1000
+            midRange = 1100; // 1200
+            maxRange = 1400; // 1500
             aiDispersionCoefX = 8;
             aiDispersionCoefY = 8;
         };
@@ -919,35 +906,35 @@ class CfgWeapons {
     class CUP_Vacannon_2A38M_veh: CUP_Vacannon_GSh302K_veh {
         class LowROF;
         class close: LowROF {
-            midRange = 150; // 150
-            maxRange = 300; // 300
+            midRange = 50; // 150
+            maxRange = 200; // 300
             aiDispersionCoefX = 5;
             aiDispersionCoefY = 5;
         };
         class near: close {
-            midRange = 400; // 250
-            maxRange = 700; // 400
+            midRange = 150; // 250
+            maxRange = 300; // 400
             aiDispersionCoefX = 5;
             aiDispersionCoefY = 5;
         };
         class short: close {
-            minRange = 300; // 200
-            midRange = 400; // 400
-            maxRange = 700; // 600
+            minRange = 100; // 200
+            midRange = 300; // 400
+            maxRange = 500; // 600
             aiDispersionCoefX = 6;
             aiDispersionCoefY = 6;
         };
         class medium: close {
-            minRange = 500; // 400
-            midRange = 700; // 700
-            maxRange = 1000; // 900
+            minRange = 300; // 400
+            midRange = 600; // 700
+            maxRange = 800; // 900
             aiDispersionCoefX = 7;
             aiDispersionCoefY = 7;
         };
         class far: close {
             minRange = 700; // 800
-            midRange = 800; // 1000
-            maxRange = 1000; // 1500
+            midRange = 900; // 1000
+            maxRange = 1400; // 1500
             aiDispersionCoefX = 8;
             aiDispersionCoefY = 8;
         };
@@ -957,28 +944,28 @@ class CfgWeapons {
         class manual;
         class close: manual {
             midRange = 200; // 300
-            maxRange = 400; // 600
+            maxRange = 500; // 600
             aiDispersionCoefX = 5;
             aiDispersionCoefY = 5;
         };
         class short: close {
             minRange = 300; // 400
-            midRange = 400; // 600
-            maxRange = 700; // 900
+            midRange = 500; // 600
+            maxRange = 800; // 900
             aiDispersionCoefX = 6;
             aiDispersionCoefY = 6;
         };
         class medium: close {
-            minRange = 500; // 700
-            midRange = 700; // 900
-            maxRange = 1000; // 1200
+            minRange = 600; // 700
+            midRange = 800; // 900
+            maxRange = 1100; // 1200
             aiDispersionCoefX = 7;
             aiDispersionCoefY = 7;
         };
         class far: close {
-            minRange = 700; // 1000
-            midRange = 800; // 1200
-            maxRange = 1000; // 1500
+            minRange = 900; // 1000
+            midRange = 1100; // 1200
+            maxRange = 1400; // 1500
             aiDispersionCoefX = 8;
             aiDispersionCoefY = 8;
         };
@@ -987,38 +974,38 @@ class CfgWeapons {
     class missiles_titan;
     class CUP_Vmlauncher_9M311_veh: missiles_titan {
         midRange = 1000; // 4500
-        maxRange = 2000; // 8000
+        maxRange = 5000; // 8000
         aiRateOfFire = 7; // 5
     };
     class CUP_Vmlauncher_Igla_twice_veh: missiles_titan {
         midRange = 1000; // 3100
-        maxRange = 2000; // 5200
+        maxRange = 4000; // 5200
         aiRateOfFire = 7; // 5
     };
     class CUP_Vmlauncher_Stinger_vehicle_veh: missiles_titan {
         midRange = 1000; // 3100
-        maxRange = 2000; // 5200
+        maxRange = 4000; // 5200
         aiRateOfFire = 7; // 5
     };
     class CUP_Vmlauncher_RBS70_veh: missiles_titan {
         midRange = 1000; // 3100
-        maxRange = 2000; // 5200
+        maxRange = 4000; // 5200
         aiRateOfFire = 7; // 5
     };
     class Launcher_Base_F;
     class CUP_launch_Igla: Launcher_Base_F {
         midRange = 1000; // 2500
-        maxRange = 2000; // 4800
+        maxRange = 3000; // 4800
         aiRateOfFire = 7; // 5
     };
     class CUP_launch_FIM92Stinger: Launcher_Base_F {
         midRange = 1000; // 2500
-        maxRange = 2000; // 4800
+        maxRange = 3000; // 4800
         aiRateOfFire = 7; // 5
     };
     class CUP_launch_9K32Strela: Launcher_Base_F {
         midRange = 1000; // 2500
-        maxRange = 2000; // 4800
+        maxRange = 3000; // 4800
         aiRateOfFire = 7; // 5
     };
 

@@ -210,6 +210,7 @@ class CfgVehicles {
         class Components;
     };
     class CUP_MQ9_Base: UAV {
+        camouflage = 0;
         class Turrets {
             class MainTurret: NewTurret {
                 turretInfoType = "RscOptics_UAV_gunnerAdvanced";
@@ -286,7 +287,7 @@ class CfgVehicles {
                             };
                             class SensorsDisplay {
                                 componentType = "SensorsDisplayComponent";
-                                range[] = { 16000,8000,4000,2000 };
+                                range[] = { 16000, 8000, 4000, 2000 };
                                 resource = "RscCustomInfoSensors";
                             };
                             class CrewDisplay {
@@ -311,7 +312,7 @@ class CfgVehicles {
                             };
                             class SensorsDisplay {
                                 componentType = "SensorsDisplayComponent";
-                                range[] = { 16000,8000,4000,2000 };
+                                range[] = { 16000, 8000, 4000, 2000 };
                                 resource = "RscCustomInfoSensors";
                             };
                             class CrewDisplay {
@@ -344,7 +345,7 @@ class CfgVehicles {
                     };
                     class SensorsDisplay {
                         componentType = "SensorsDisplayComponent";
-                        range[] = { 16000,8000,4000,2000 };
+                        range[] = { 16000, 8000, 4000, 2000 };
                         resource = "RscCustomInfoSensors";
                     };
                     class CrewDisplay {
@@ -373,7 +374,7 @@ class CfgVehicles {
                     };
                     class SensorsDisplay {
                         componentType = "SensorsDisplayComponent";
-                        range[] = { 16000,8000,4000,2000 };
+                        range[] = { 16000, 8000, 4000, 2000 };
                         resource = "RscCustomInfoSensors";
                     };
                     class CrewDisplay {
@@ -391,6 +392,27 @@ class CfgVehicles {
             };
             class SensorsManagerComponent {
                 class Components {
+                    class ActiveRadarComponent: SensorTemplateActiveRadar {
+                        class AirTarget {
+                            maxRange = 12000;
+                            minRange = 12000;
+                            objectDistanceLimitCoef = -1;
+                            viewDistanceLimitCoef = -1;
+                        };
+                        class GroundTarget {
+                            maxRange = 12000;
+                            minRange = 12000;
+                            objectDistanceLimitCoef = -1;
+                            viewDistanceLimitCoef = -1;
+                        };
+                        typeRecognitionDistance = 12000;
+                        angleRangeHorizontal = 360;
+                        angleRangeVertical = 360;
+                        maxGroundNoiseDistance = -1;
+                        groundNoiseDistanceCoef = -1;
+                        minSpeedThreshold = 0;
+                        maxSpeedThreshold = 24;
+                    };
                     class IRSensorComponent: SensorTemplateIR {
                         aimDown = 0;
                         animDirection = "MainTurret";
@@ -398,14 +420,14 @@ class CfgVehicles {
                         angleRangeVertical = 30;
                         maxTrackableSpeed = 110;
                         class AirTarget {
-                            maxRange = 5000;
-                            minRange = 50;
+                            maxRange = 12000;
+                            minRange = 12000;
                             objectDistanceLimitCoef = 1;
                             viewDistanceLimitCoef = 1;
                         };
                         class GroundTarget {
-                            maxRange = 5000;
-                            minRange = 50;
+                            maxRange = 12000;
+                            minRange = 12000;
                             objectDistanceLimitCoef = 1;
                             viewDistanceLimitCoef = 1;
                         };
@@ -417,14 +439,14 @@ class CfgVehicles {
                         angleRangeVertical = 30;
                         maxTrackableSpeed = 110;
                         class AirTarget {
-                            maxRange = 3000;
-                            minRange = 50;
+                            maxRange = 12000;
+                            minRange = 12000;
                             objectDistanceLimitCoef = 1;
                             viewDistanceLimitCoef = 1;
                         };
                         class GroundTarget {
-                            maxRange = 3000;
-                            minRange = 50;
+                            maxRange = 12000;
+                            minRange = 12000;
                             objectDistanceLimitCoef = 1;
                             viewDistanceLimitCoef = 1;
                         };
@@ -437,14 +459,14 @@ class CfgVehicles {
                         angleRangeVertical = 30;
                         maxTrackableSpeed = 110;
                         class AirTarget {
-                            maxRange = 2000;
-                            minRange = 50;
+                            maxRange = 12000;
+                            minRange = 12000;
                             objectDistanceLimitCoef = 1;
                             viewDistanceLimitCoef = 1;
                         };
                         class GroundTarget {
-                            maxRange = 2000;
-                            minRange = 50;
+                            maxRange = 12000;
+                            minRange = 12000;
                             objectDistanceLimitCoef = 1;
                             viewDistanceLimitCoef = 1;
                         };
@@ -462,8 +484,8 @@ class CfgVehicles {
                             viewDistanceLimitCoef = -1;
                         };
                         class GroundTarget {
-                            maxRange = 5000;
-                            minRange = 0;
+                            maxRange = 12000;
+                            minRange = 12000;
                             objectDistanceLimitCoef = -1;
                             viewDistanceLimitCoef = -1;
                         };
