@@ -1,4 +1,4 @@
-//Para
+// Para
 class GENFOR_P_R: GENFOR_Soldier_Base {
     _generalMacro = "GENFOR_P_R";
     scope = 2;

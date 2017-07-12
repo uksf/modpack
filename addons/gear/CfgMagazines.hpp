@@ -24,7 +24,7 @@ class CfgMagazines {
         ammo = "UK3CB_BAF_762_Ball_Tracer_Red_EL";
     };
 
-    //Hellfire K
+    // Hellfire K
     class 12Rnd_PG_missiles;
     class 6Rnd_ACE_Hellfire_AGM114K: 12Rnd_PG_missiles {
         displayName = "AGM-114K";
@@ -53,7 +53,7 @@ class CfgMagazines {
         displayName = "4x AGM-114K";
         hardpoints[] = { "UNI_SCALPEL", "B_HELLFIRE" };
     };
-    //Hellfire N
+    // Hellfire N
     class 6Rnd_ACE_Hellfire_AGM114N: 6Rnd_ACE_Hellfire_AGM114K {
         displayName = "AGM-114N";
         displayNameShort = "AGM-114N";
@@ -71,7 +71,7 @@ class CfgMagazines {
         descriptionShort = "AGM-114N";
         pylonWeapon = "ace_hellfire_launcher_N";
     };
-    //Hellfire L
+    // Hellfire L
     class 6Rnd_ACE_Hellfire_AGM114L: 6Rnd_ACE_Hellfire_AGM114K {
         displayName = "AGM-114L";
         displayNameShort = "AGM-114L";
@@ -147,11 +147,11 @@ class CfgMagazines {
         ammo = "CUP_M_Stinger_AA_Rubber";
     };
 
-    //AAA Magazine lead speeds
+    // AAA Magazine lead speeds
     class CUP_2000Rnd_23mm_AZP23_M: VehicleMagazine {
-        maxLeadSpeed = 200; //600
+        maxLeadSpeed = 200; // 600
     };
     class CUP_750Rnd_TE1_30mm_GSh302K_HE_M: VehicleMagazine {
-        maxLeadSpeed = 200; //600
+        maxLeadSpeed = 200; // 600
     };
 };

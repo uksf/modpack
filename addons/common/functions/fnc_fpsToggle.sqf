@@ -3,7 +3,7 @@
         Tim Beswick
 
     Description:
-        Display FPS of all connected headless clients //diag_fps
+        Display FPS of all connected headless clients // diag_fps
 
     Parameters:
         None

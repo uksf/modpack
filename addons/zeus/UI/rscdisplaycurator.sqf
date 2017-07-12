@@ -1,4 +1,4 @@
-//MERGE BIS
+// MERGE BIS
 /*
     Author:
         Bohemia Interactive, edited by Tim Beswick
@@ -71,14 +71,14 @@ switch _mode do {
             IDC_RSCDISPLAYCURATOR_SIDEEMPTY
         ];
 
-        //--- Mouse area
+        // --- Mouse area
         {
             _ctrl = _display displayctrl _x;
             _ctrl ctrladdeventhandler ["mousemoving","with (uinamespace) do {RscDisplayCurator_mousePos = [_this select 1,_this select 2];};"];
             _ctrl ctrladdeventhandler ["mouseholding","with (uinamespace) do {RscDisplayCurator_mousePos = [_this select 1,_this select 2];};"];
         } foreach [IDC_RSCDISPLAYCURATOR_MOUSEAREA,IDC_RSCDISPLAYCURATOR_MISSION];
 
-        //--- Hide sidebars
+        // --- Hide sidebars
         _sideBars = [
             [
                 IDC_RSCDISPLAYCURATOR_MISSION,
@@ -113,40 +113,40 @@ switch _mode do {
             } foreach (_x select 1);
         } foreach _sideBars;
 
-        //--- Toggle clock
+        // --- Toggle clock
         _control = _display displayctrl IDC_RSCDISPLAYCURATOR_CLOCK;
         _control ctrlshow (profilenamespace getvariable ["RscDisplayCurator_watch",true]);
 
-        //--- Toggle compass
+        // --- Toggle compass
         _control = _display displayctrl IDC_RSCDISPLAYCURATOR_COMPASS;
         _control ctrlshow (profilenamespace getvariable ["RscDisplayCurator_compass",true]);
 
-        //--- Hide task notification
+        // --- Hide task notification
         _ctrlNotification = _display displayctrl IDC_RSCNOTIFICATION_NOTIFICATIONAREA;
         _ctrlNotification ctrlshow false;
         _ctrlNotification ctrlenable false;
 
-        //--- Hide hint
+        // --- Hide hint
         _ctrlHintGroup = _display displayctrl IDC_RSCADVANCEDHINT_HINTGROUP;
         _ctrlHintGroup ctrlshow false;
         _ctrlHintGroup ctrlenable false;
 
-        //--- Remove ability to exit the interface
+        // --- Remove ability to exit the interface
         _display displayaddeventhandler ["keydown","with (uinamespace) do {['keyDown',_this,''] call RscDisplayCurator_script;};"];
         _display displayaddeventhandler ["keyup","with (uinamespace) do {['keyUp',_this,''] call RscDisplayCurator_script;};"];
         _display displayaddeventhandler ["mousemoving","with (uinamespace) do {['Loop',_this,''] call RscDisplayCurator_script;};"];
         _display displayaddeventhandler ["mouseholding","with (uinamespace) do {['Loop',_this,''] call RscDisplayCurator_script;};"];
 
-        //--- Set vision mode
+        // --- Set vision mode
         [_logic,0] call bis_fnc_toggleCuratorVisionMode;
 
-        //--- Search field
+        // --- Search field
         _ctrlSearch = _display displayctrl IDC_RSCDISPLAYCURATOR_CREATE_SEARCH;
         _ctrlSearch ctrladdeventhandler ["setfocus",{missionnamespace setvariable ["RscDisplayCurator_search",true];}];
         _ctrlSearch ctrladdeventhandler ["killfocus",{missionnamespace setvariable ["RscDisplayCurator_search",false];}];
         missionnamespace setvariable ["RscDisplayCurator_search",false];
 
-        //--- Draw custom 3D icons
+        // --- Draw custom 3D icons
         removemissioneventhandler ["draw3d",_logic getvariable ["bis_fnc_addcuratoricon_draw",-1]];
         RscDisplayCurator_fadeStart = getnumber (configfile >> "cfgcurator" >> "drawobject" >> "3D" >> "startIconFading");
         RscDisplayCurator_fadeEnd = getnumber (configfile >> "cfgcurator" >> "drawobject" >> "3D" >> "endIconFading");
@@ -175,7 +175,7 @@ switch _mode do {
         ];
         _logic setvariable ["bis_fnc_addcuratoricon_draw",_draw3d];
 
-        //--- Draw custom 2D icons
+        // --- Draw custom 2D icons
         RscDisplayCurator_iconSize = getnumber (configfile >> "CfgInGameUI" >> "IslandMap" >> "size");
         _ctrlMap = _display displayctrl IDC_RSCDISPLAYCURATOR_MAINMAP;
         _ctrlMap ctrladdeventhandler [
@@ -196,7 +196,7 @@ switch _mode do {
             "
         ];
 
-        //--- Mission status
+        // --- Mission status
         missionnamespace setvariable [
             "RscMissionStatus_buttonClick",
             {
@@ -218,7 +218,7 @@ switch _mode do {
 
             waituntil {!isnull curatorcamera && !([] call bis_fnc_isLoading)};
 
-            //--- Default menu section
+            // --- Default menu section
             with missionnamespace do {
                 if (isnil "RscDisplayCurator_sections") then {RscDisplayCurator_sections = [0,0];};
             };
@@ -248,15 +248,15 @@ switch _mode do {
             ctrlactivate _sideControl;
             ["sideChanged",[_sideControl],""] call RscDisplayCurator_script;
 
-            //--- Toggle compass
+            // --- Toggle compass
             showcuratorcompass (profilenamespace getvariable ["RscDisplayCurator_compass",true]);
 
-            //--- Set default camera
+            // --- Set default camera
             _cameraParams = _logic getvariable "bis_fnc_modulecuratorsetcamera_params";
             if !(isnil "_cameraParams") then {_cameraParams call bis_fnc_setcuratorcamera;};
             cameraEffectEnableHUD true;
 
-            //--- Show sidebars
+            // --- Show sidebars
             _sidebarShow = missionnamespace getvariable ["RscDisplayCurator_sidebarShow",[true,true]];
             {
                 _show = _sidebarShow param [_foreachindex,true,[true]];
@@ -271,7 +271,7 @@ switch _mode do {
                 };
             } foreach _sideBars;
 
-            //--- Fade in
+            // --- Fade in
             _ctrlBlack = _display displayctrl IDC_RSCDISPLAYCURATOR_BLACK;
             _ctrlBlack ctrlsetfade 1;
             _ctrlBlack ctrlcommit 1;
@@ -279,24 +279,24 @@ switch _mode do {
             ("RscDisplayCurator" call bis_fnc_rscLayer) cuttext ["","black in"];
         };
 
-        //--- Hide existing hints
+        // --- Hide existing hints
         ("RscAdvancedHint" call bis_fnc_rsclayer) cuttext ["","plain"];
 
-        //--- Show modules
+        // --- Show modules
         {
             if ((_x call bis_fnc_objectside) == sidelogic) then {_x hideobject false;};
         } foreach (curatoreditableobjects _logic + (_logic getvariable ["hideObjects",[]]));
 
-        //--- Let outside systems now that the interface was opened withing this game session
+        // --- Let outside systems now that the interface was opened withing this game session
         uinamespace setvariable ["RscDisplayCurator_opened",true];
     };
 
-    //--- Rendertarget camera update. ToDo: Move to engine
+    // --- Rendertarget camera update. ToDo: Move to engine
     case "Loop": {
         _display = _params select 0;
         _logic = getassignedcuratorlogic player;
 
-        //--- Update clock
+        // --- Update clock
         _ctrlClock = _display displayctrl IDC_RSCDISPLAYCURATOR_CLOCK;
         if (ctrlshown _ctrlClock && time > (_logic getvariable ["clocktime",0])) then {
             _ctrlClockDuration = _display displayctrl IDC_RSCDISPLAYCURATOR_CLOCKDURATION;
@@ -313,7 +313,7 @@ switch _mode do {
             _logic setvariable ["clocktime",time + 1];
         };
 
-        //--- Let Eagle circle around camera
+        // --- Let Eagle circle around camera
         _bird = _logic getvariable ["bird",objnull];
         if (time > (_logic getvariable ["birdtime",0])) then {
             _pos = [
@@ -336,27 +336,27 @@ switch _mode do {
         _button = controlnull;
         _buttonMode = "";
 
-        //--- Terminate when focus is in the search field
+        // --- Terminate when focus is in the search field
         if (missionnamespace getvariable ["RscDisplayCurator_search",false]) exitwith { };
 
-        //--- Terminate when the key is already held to prevent repeat call
+        // --- Terminate when the key is already held to prevent repeat call
         if !(isnil {RscDisplayCurator_keys select _key}) exitwith {};
 
         switch true do {
-            case (_key in (actionKeys 'curatorInterface')): { //--- Prevent closing the interface when it's forced
+            case (_key in (actionKeys 'curatorInterface')): { // --- Prevent closing the interface when it's forced
                 _return = [] call bis_fnc_isForcedCuratorInterface;
                 if (_return) then {
                     [objnull,000] spawn bis_fnc_showCuratorFeedbackMessage;
                 };
             };
-            case (_key in actionkeys 'help'): { //--- Show advanced hint (hijack of BIS_fnc_advHint)
+            case (_key in actionkeys 'help'): { // --- Show advanced hint (hijack of BIS_fnc_advHint)
                 with missionnamespace do {
                     BIS_fnc_advHint_HPressed = true;
                     [true] call BIS_fnc_AdvHintCall;
                 };
                 _return = true;
             };
-            case (_key in actionkeys 'curatorPersonView'): { //--- Toggle unit view
+            case (_key in actionkeys 'curatorPersonView'): { // --- Toggle unit view
                 if (cameraon == player && isNil {missionNamespace getVariable "BIS_curator_observedUnit"}) then {
                     _objects = curatorselected select 0;
                     {
@@ -385,28 +385,28 @@ switch _mode do {
                 };
                 _return = true;
             };
-            case (_key in actionkeys 'curatorNightvision'): { //--- Toggle vision mode
+            case (_key in actionkeys 'curatorNightvision'): { // --- Toggle vision mode
                 [getassignedcuratorlogic player,if (_ctrl) then {-1} else {+1}] call bis_fnc_toggleCuratorVisionMode;
                 _return = true;
             };
-            case (_key in actionkeys 'curatorCompass'): { //--- Toggle compass
+            case (_key in actionkeys 'curatorCompass'): { // --- Toggle compass
                 showcuratorcompass !showncuratorcompass;
                 _control = _display displayctrl IDC_RSCDISPLAYCURATOR_COMPASS;
                 _control ctrlshow showncuratorcompass;
                 profilenamespace setvariable ["RscDisplayCurator_compass",ctrlshown _control];
                 saveprofilenamespace;
             };
-            case (_key in actionkeys 'curatorWatch'): { //--- Toggle clock
+            case (_key in actionkeys 'curatorWatch'): { // --- Toggle clock
                 _control = _display displayctrl IDC_RSCDISPLAYCURATOR_CLOCK;
                 _control ctrlshow !(ctrlshown _control);
                 profilenamespace setvariable ["RscDisplayCurator_watch",ctrlshown _control];
                 saveprofilenamespace;
             };
-            case (_key in actionkeys 'curatorMapTextures'): { //--- Toggle map textures
+            case (_key in actionkeys 'curatorMapTextures'): { // --- Toggle map textures
                 _control = _display displayctrl IDC_MAP_TEXTURES;
                 ctrlactivate _control;
             };
-            case (_key == DIK_TAB): { //--- Toggle editing modes
+            case (_key == DIK_TAB): { // --- Toggle editing modes
 
                 _index = -1;
                 {
@@ -425,7 +425,7 @@ switch _mode do {
                 ["modeChanged",[_button],""] call RscDisplayCurator_script;
                 ["toggleTree",[_display displayctrl IDC_RSCDISPLAYCURATOR_ADDBARTITLE,true],""] call RscDisplayCurator_script;
             };
-            case (_key in actionkeys 'curatorPingView'): { //--- Go to last ping
+            case (_key in actionkeys 'curatorPingView'): { // --- Go to last ping
                 _target = missionnamespace getvariable "bis_fnc_curatorPinged_player";
                 if !(isnil "_target") then {
                     _pos = getposatl _target;
@@ -436,7 +436,7 @@ switch _mode do {
                 };
                 _return = true;
             };
-            case (_key in actionkeys 'curatorToggleInterface'): { //--- Screenshot mode
+            case (_key in actionkeys 'curatorToggleInterface'): { // --- Screenshot mode
                 RscDisplayCurator_screenshotMode = !RscDisplayCurator_screenshotMode;
                 _fade = [0,1] select RscDisplayCurator_screenshotMode;
                 {
@@ -478,7 +478,7 @@ switch _mode do {
                     ];
                 };
 
-                //--- Toggle modules
+                // --- Toggle modules
                 _logic = getassignedcuratorlogic player;
                 {
                     if ((_x call bis_fnc_objectside) == sidelogic) then {_x hideobject RscDisplayCurator_screenshotMode;};
@@ -487,11 +487,11 @@ switch _mode do {
                 showHUD !RscDisplayCurator_screenshotMode;
                 _return = true;
             };
-            case (_key in actionkeys 'curatorToggleEdit'): { //--- Switch section
+            case (_key in actionkeys 'curatorToggleEdit'): { // --- Switch section
                 ["toggleTree",[_display displayctrl IDC_RSCDISPLAYCURATOR_MISSIONBARTITLE,false],""] call RscDisplayCurator_script;
                 _return = true;
             };
-            case (_key in actionkeys 'curatorToggleCreate'): { //--- Switch section
+            case (_key in actionkeys 'curatorToggleCreate'): { // --- Switch section
                 ["toggleTree",[_display displayctrl IDC_RSCDISPLAYCURATOR_ADDBARTITLE,false],""] call RscDisplayCurator_script;
                 _return = true;
             };
@@ -528,14 +528,14 @@ switch _mode do {
         _ctrlGroupIDC = [IDC_RSCDISPLAYCURATOR_MISSION,IDC_RSCDISPLAYCURATOR_ADD] select _index;
         _ctrlGroup = _display displayctrl _ctrlGroupIDC;
 
-        //--- Hide the group
+        // --- Hide the group
         _fade = if (_force) then {0} else {(ctrlfade _ctrlGroup + 1) % 2};
         _enable = _fade == 0;
         _ctrlGroup ctrlenable _enable;
         _ctrlGroup ctrlsetfade _fade;
         _ctrlGroup ctrlcommit 0.1;
 
-        //--- Disable the sub-elements (group cannot be disabled)
+        // --- Disable the sub-elements (group cannot be disabled)
         _children = [
             [
                 IDC_RSCDISPLAYCURATOR_ENTITIES
@@ -561,7 +561,7 @@ switch _mode do {
             _ctrl ctrlenable _enable;
         } foreach _children;
 
-        //--- Save visibility of sidebars
+        // --- Save visibility of sidebars
         _sidebarShow = missionnamespace getvariable ["RscDisplayCurator_sidebarShow",[true,true]];
         _sidebarShow set [_index,_enable];
         missionnamespace setvariable ["RscDisplayCurator_sidebarShow",_sidebarShow];
@@ -635,12 +635,12 @@ switch _mode do {
         _keyID = [DIK_F1,DIK_F2,DIK_F3,DIK_F4,DIK_F5,DIK_F6,DIK_F7,DIK_F8,DIK_F9,DIK_F10,DIK_F11,DIK_F12] find _key;
         _cameraData = missionnamespace getvariable ["RscDisplayCurator",[[],[],[],[],[],[],[],[],[],[],[],[]]];
         if (_ctrl) then {
-            //--- Save camera position
+            // --- Save camera position
             _cameraData set [_keyID,[getposatl curatorcamera,vectordir curatorcamera,vectorup curatorcamera]];
             missionnamespace setvariable ["RscDisplayCurator",_cameraData];
             ("RscDisplayCurator" call bis_fnc_rscLayer) cuttext ["","white in",0.5];
         } else {
-            //--- Restore camera position
+            // --- Restore camera position
             _data = _cameraData select _keyID;
             if (count _data == 3) then {
                 curatorcamera setposatl (_data select 0);
@@ -653,32 +653,32 @@ switch _mode do {
     case "onUnload": {
         _logic = missionnamespace getvariable ["RscDisplayCurator_logic",getassignedcuratorlogic player];
         missionnamespace setvariable ["RscDisplayCurator_logic",nil];
-        //_rendertargetcurator0 = _logic getvariable ["rendertargetcurator0",objnull];
-        //_rendertargetcurator0 cameraeffect ["terminate","back"];
+        // _rendertargetcurator0 = _logic getvariable ["rendertargetcurator0",objnull];
+        // _rendertargetcurator0 cameraeffect ["terminate","back"];
         camdestroy _rendertargetcurator0;
         vehicle player switchcamera cameraview;
         showhud true;
 
-        //ppEffectDestroy (_logic getvariable ["ppColor",-1]);
+        // ppEffectDestroy (_logic getvariable ["ppColor",-1]);
 
-        //--- Remove custom icons
+        // --- Remove custom icons
         RscDisplayCurator_iconSize = nil;
         RscDisplayCurator_fadeStart = nil;
         RscDisplayCurator_fadeEnd = nil;
         removemissioneventhandler ["draw3d",_logic getvariable ["bis_fnc_addcuratoricon_draw",-1]];
 
-        //--- Bird
+        // --- Bird
         _bird = _logic getvariable ["bird",objnull];
         _bird setpos [100,100,100];
 
-        //--- Hide modules
+        // --- Hide modules
         {
             if ((_x call bis_fnc_objectside) == sidelogic) then {_x hideobject true;};
         } foreach (curatoreditableobjects _logic + (_logic getvariable ["hideObjects",[]]));
 
         _logic setvariable ["bis_fnc_modulecuratorsetcamera_params",[getposatl curatorcamera,vectordir curatorcamera]];
 
-        //--- Outro effect
+        // --- Outro effect
         ("RscDisplayCurator" call bis_fnc_rscLayer) cuttext ["","black in"];
     };
 };

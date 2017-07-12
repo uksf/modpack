@@ -1,4 +1,4 @@
-//Middle Eastern Civs
+// Middle Eastern Civs
 class C_man_p_fugitive_F;
 class UKSF_TK_Civ_Sheikh: C_man_p_fugitive_F {
     uniformClass = "CUP_O_TKI_Khet_Partug_03";

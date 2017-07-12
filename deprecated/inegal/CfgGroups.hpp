@@ -7,7 +7,7 @@ class CfgGroups {
             class Infantry {
                 name = "Infantry";
                 aliveCategory = "Infantry";
-                //Regular
+                // Regular
                 class Inegal_InfSection {
                     faction = "UKSF_Inegal";
                     name = "Infantry Section";
@@ -427,7 +427,7 @@ class CfgGroups {
                     };
                 };
 
-                //Recrues
+                // Recrues
                 class Inegal_6_Rec {
                     name = "6 Man Recrues Group";
                     faction = "UKSF_Inegal";
@@ -501,7 +501,7 @@ class CfgGroups {
                     };
                 };
 
-                //FDF
+                // FDF
                 class Inegal_6_FDF {
                     name = "6 Man FDF Team";
                     faction = "UKSF_Inegal";
@@ -611,7 +611,7 @@ class CfgGroups {
                     };
                 };
 
-                //Diablerie
+                // Diablerie
                 class Inegal_D_Assault {
                     name = "Diablerie Assault Team";
                     faction = "UKSF_Inegal";

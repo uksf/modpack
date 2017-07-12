@@ -39,12 +39,12 @@ GVAR(handlerUav) = [{
             _specificDistance = (getWPPos [_uav, _currentWaypoint]) select 2;
         };
 
-        //Update _lastWaypoint to reflect current WP number.
+        // Update _lastWaypoint to reflect current WP number.
         if (!_heightChanged) then {
             _lastWaypoint = _currentWaypoint;
         };
 
-        //Sets the height of all current waypoints to _targetHeightASL if set.
+        // Sets the height of all current waypoints to _targetHeightASL if set.
         if (_customWaypoint && !_heightChanged) then {
             if (!(((getWPPos [_uav, _currentWaypoint]) select 2) == _targetHeightASL)) then {
                 {
@@ -54,7 +54,7 @@ GVAR(handlerUav) = [{
             };
         };
 
-        //Slows down the drone if it is in observation mode and close to its waypoint, unlimits speed when it's far from its waypoint.
+        // Slows down the drone if it is in observation mode and close to its waypoint, unlimits speed when it's far from its waypoint.
         if (_observationMode && ((getPosATL _uav) distance2D (getWPPos [_uav, _currentWaypoint])) < (waypointLoiterRadius [_uav, _currentWaypoint] + 500)) then {
             _uav forceSpeed 40;
         } else {
@@ -62,9 +62,9 @@ GVAR(handlerUav) = [{
                 _uav forceSpeed -1;
             };
         };
-        //Limits speed of the drone when it is getting close to its waypoint (so target can be acquired).
-        //Then nosedives the drone in order for the hellfire to get a lock on the laser.
-        //Once waypoint is completed drone speed is unlimited and drone climbs back to its original altitude.
+        // Limits speed of the drone when it is getting close to its waypoint (so target can be acquired).
+        // Then nosedives the drone in order for the hellfire to get a lock on the laser.
+        // Once waypoint is completed drone speed is unlimited and drone climbs back to its original altitude.
         if (_diveMode && ((getPosATL _uav) distance2D (getWPPos [_uav, _currentWaypoint]) < [4000, _specificDistance * 3] call BIS_fnc_lowestNum) && !_heightChanged) then {
             _uav forceSpeed 40;
             if (((getPosATL _uav) distance2D (getWPPos [_uav, _currentWaypoint])) < (_specificDistance * 1.5)) then {
@@ -81,7 +81,7 @@ GVAR(handlerUav) = [{
             };
         };
 
-        //Updates flyInHeight based on ATL and ASL
+        // Updates flyInHeight based on ATL and ASL
         _uav flyinHeight 200;
         _uav flyInHeightASL [_targetHeightASL, _targetHeightASL, _targetHeightASL];
     };

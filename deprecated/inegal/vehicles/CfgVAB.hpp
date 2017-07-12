@@ -1,4 +1,4 @@
-//Unarmed
+// Unarmed
 class I_MRAP_03_F;
 class Inegal_VAB_Unarmed: I_MRAP_03_F {
     scope = 2;
@@ -27,7 +27,7 @@ class Inegal_VAB_D_Unarmed: Inegal_VAB_Unarmed {
     };
 };
 
-//HMG
+// HMG
 class I_MRAP_03_hmg_F;
 class Inegal_VAB_HMG: I_MRAP_03_hmg_F {
     scope = 2;
@@ -56,7 +56,7 @@ class Inegal_VAB_D_HMG: Inegal_VAB_HMG {
     };
 };
 
-//GMG
+// GMG
 class I_MRAP_03_gmg_F;
 class Inegal_VAB_GMG: I_MRAP_03_gmg_F {
     scope = 2;

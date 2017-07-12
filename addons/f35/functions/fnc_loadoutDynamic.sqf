@@ -29,7 +29,7 @@ params ["_plane", "_magazines"];
     };
     [parseText format ["<t align = 'center' color = '#00CC00'>Rearming...</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 1] spawn BIS_fnc_textTiles;
 
-    //ROMEVE ALL POSSIBLE DEFAULT WEAPONS
+    // ROMEVE ALL POSSIBLE DEFAULT WEAPONS
     _plane removeWeapon "USAF_AIM9X_Launcher";
     _plane removeWeapon "USAF_AIM120_Launcher";
     _plane removeWeapon "USAF_AIM120I_Launcher";

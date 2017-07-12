@@ -1,4 +1,4 @@
-//Vehicle
+// Vehicle
 class GENFOR_P: GENFOR_Soldier_Base {
     _generalMacro = "GENFOR_P";
     scope = 2;

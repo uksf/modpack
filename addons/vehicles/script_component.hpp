@@ -2,17 +2,17 @@
 #define COMPONENT_BEAUTIFIED Vehicles
 #include "\u\uksf\addons\main\script_mod.hpp"
 
-//#define DEBUG_MODE_FULL
-//#define DISABLE_COMPILE_CACHE
-//#define CBA_DEBUG_SYNCHRONOUS
+// #define DEBUG_MODE_FULL
+// #define DISABLE_COMPILE_CACHE
+// #define CBA_DEBUG_SYNCHRONOUS
 
 #include "\u\uksf\addons\main\script_macros.hpp"
 
 #define NET_DEPLOY_TIME 15
-//Reduced from 100. Gives ~30km range. 200L tank
+// Reduced from 100. Gives ~30km range. 200L tank
 #define FUEL_CAPACITY fuelCapacity = 10; \
     ace_refuel_fuelCapacity = 200;
-//Reduced from 60. Gives ~?km range
+// Reduced from 60. Gives ~?km range
 #define FUEL_CAPACITY_LR fuelCapacity = 5;
 
 #define NET_ACTIONS \

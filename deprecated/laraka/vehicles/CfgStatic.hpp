@@ -1,5 +1,5 @@
 
-//ZU23
+// ZU23
 class Genfor_Static_ZU23;
 class Laraka_Static_ZU23: Genfor_Static_ZU23 {
     faction = "UKSF_Laraka";
@@ -9,7 +9,7 @@ class Laraka_Static_ZU23: Genfor_Static_ZU23 {
     };
 };
 
-//DSHKM
+// DSHKM
 class Genfor_Static_DSHKM;
 class Laraka_Static_DSHKM: Genfor_Static_DSHKM {
     faction = "UKSF_Laraka";
@@ -19,7 +19,7 @@ class Laraka_Static_DSHKM: Genfor_Static_DSHKM {
     };
 };
 
-//KORD
+// KORD
 class Genfor_Static_KORDHigh;
 class Laraka_Static_KORD: Genfor_Static_KORDHigh {
     displayName = "KORD";
@@ -30,7 +30,7 @@ class Laraka_Static_KORD: Genfor_Static_KORDHigh {
     };
 };
 
-//TOW
+// TOW
 class Genfor_Static_TOW;
 class Laraka_Static_TOW: Genfor_Static_TOW {
     faction = "UKSF_Laraka";
@@ -40,7 +40,7 @@ class Laraka_Static_TOW: Genfor_Static_TOW {
     };
 };
 
-//SPG9
+// SPG9
 class Genfor_Static_SPG9;
 class Laraka_Static_SPG9: Genfor_Static_SPG9 {
     faction = "UKSF_Laraka";
@@ -50,7 +50,7 @@ class Laraka_Static_SPG9: Genfor_Static_SPG9 {
     };
 };
 
-//Igla
+// Igla
 class Genfor_Static_Igla;
 class Laraka_Static_Igla: Genfor_Static_Igla {
     faction = "UKSF_Laraka";
@@ -60,7 +60,7 @@ class Laraka_Static_Igla: Genfor_Static_Igla {
     };
 };
 
-//Mortar
+// Mortar
 class Genfor_Static_2B14;
 class Laraka_Static_2B14: Genfor_Static_2B14 {
     faction = "UKSF_Laraka";
@@ -70,7 +70,7 @@ class Laraka_Static_2B14: Genfor_Static_2B14 {
     };
 };
 
-//ZU23
+// ZU23
 class Azaadi_Static_ZU23: Laraka_Static_ZU23 {
     faction = "UKSF_Azaadi";
     side = 2;
@@ -80,7 +80,7 @@ class Azaadi_Static_ZU23: Laraka_Static_ZU23 {
     };
 };
 
-//DSHKM
+// DSHKM
 class Azaadi_Static_DSHKM: Laraka_Static_DSHKM {
     faction = "UKSF_Azaadi";
     side = 2;
@@ -90,7 +90,7 @@ class Azaadi_Static_DSHKM: Laraka_Static_DSHKM {
     };
 };
 
-//KORD
+// KORD
 class Azaadi_Static_KORD: Laraka_Static_KORD {
     displayName = "KORD";
     faction = "UKSF_Azaadi";
@@ -101,7 +101,7 @@ class Azaadi_Static_KORD: Laraka_Static_KORD {
     };
 };
 
-//TOW
+// TOW
 class Azaadi_Static_TOW: Laraka_Static_TOW {
     faction = "UKSF_Azaadi";
     side = 2;
@@ -111,7 +111,7 @@ class Azaadi_Static_TOW: Laraka_Static_TOW {
     };
 };
 
-//SPG9
+// SPG9
 class Azaadi_Static_SPG9: Laraka_Static_SPG9 {
     faction = "UKSF_Azaadi";
     side = 2;
@@ -121,7 +121,7 @@ class Azaadi_Static_SPG9: Laraka_Static_SPG9 {
     };
 };
 
-//Igla
+// Igla
 class Azaadi_Static_Igla: Laraka_Static_Igla {
     faction = "UKSF_Azaadi";
     side = 2;
@@ -131,7 +131,7 @@ class Azaadi_Static_Igla: Laraka_Static_Igla {
     };
 };
 
-//Mortar
+// Mortar
 class Azaadi_Static_2B14: Laraka_Static_2B14 {
     faction = "UKSF_Azaadi";
     side = 2;

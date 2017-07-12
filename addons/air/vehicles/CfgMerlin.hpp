@@ -1,6 +1,6 @@
 class CUP_Merlin_HC3_Base: Helicopter_Base_H {
     maxspeed = 311;
-    fuelCapacity = 40; //1000
+    fuelCapacity = 40; // 1000
     cyclicAsideForceCoef = 0.8;
     cyclicForwardForceCoef = 0.8;
     class ViewPilot: ViewPilot {

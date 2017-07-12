@@ -4,7 +4,7 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
-//Loadout copying
+// Loadout copying
 GVAR(loadout) = "";
 
 ADDON = true;

@@ -1,4 +1,4 @@
-//Uniforms Fix
+// Uniforms Fix
 class Civilian;
 class Civilian_F: Civilian {
     modelSides[] = {6};

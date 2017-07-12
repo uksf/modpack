@@ -1,4 +1,4 @@
-//CUP BAF
+// CUP BAF
 class CUP_Creatures_Military_BAF_Soldier_Base: SoldierWB {
     author = "$STR_CUP_AUTHOR_STRING";
     identityTypes[] = { "LanguageENGB_F","Head_NATO","G_GUERIL_default" };
@@ -44,7 +44,7 @@ class CUP_Creatures_Military_BAF_Soldier_Base: SoldierWB {
     respawnMagazines[] = { "UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","HandGrenade","HandGrenade","SmokeShell","SmokeShell" };
 };
 
-//MTP
+// MTP
 class CUP_B_BAF_Soldier_01_MTP: CUP_Creatures_Military_BAF_Soldier_Base {
     scope = 1;
     scopeCurator = 0;
@@ -486,7 +486,7 @@ class CUP_B_BAF_Engineer_MTP: CUP_B_BAF_Soldier_01_MTP {
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_Rifleman_A","UK3CB_BAF_H_Mk7_Camo_D" };
 };
 
-//WDL
+// WDL
 class CUP_B_BAF_Soldier_01_DPM: CUP_Creatures_Military_BAF_Soldier_Base {
     scope = 1;
     scopeCurator = 0;
@@ -911,7 +911,7 @@ class CUP_B_BAF_Engineer_WDL: CUP_B_BAF_Soldier_01_DPM {
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DPMW1","UK3CB_BAF_H_Mk6_DPMW_B" };
 };
 
-//DDPM
+// DDPM
 class CUP_B_BAF_Soldier_01_DDPM: CUP_Creatures_Military_BAF_Soldier_Base {
     scope = 1;
     scopeCurator = 0;

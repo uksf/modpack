@@ -1,4 +1,4 @@
-//Special Forces
+// Special Forces
 class GENFOR_SF_R: GENFOR_Soldier_Base {
     _generalMacro = "GENFOR_SF_R";
     scope = 2;

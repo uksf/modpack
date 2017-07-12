@@ -1,4 +1,4 @@
-//BMP1
+// BMP1
 class I_mas_BMP1_AAF_base;
 class I_mas_BMP1_AAF_01: I_mas_BMP1_AAF_base {
     scope = 0;
@@ -22,7 +22,7 @@ class Genfor_Apc_BMP1: O_mas_BMP1_OPF_01 {
     class TransportBackpacks {};
 };
 
-//BMP1P
+// BMP1P
 class I_mas_BMP1P_AAF_base;
 class I_mas_BMP1P_AAF_01: I_mas_BMP1P_AAF_base {
     scope = 0;
@@ -46,7 +46,7 @@ class Genfor_Apc_BMP1P: O_mas_BMP1P_OPF_01 {
     class TransportBackpacks {};
 };
 
-//BMP2
+// BMP2
 class I_mas_BMP2_AAF_base;
 class I_mas_BMP2_AAF_01: I_mas_BMP2_AAF_base {
     scope = 0;
@@ -70,7 +70,7 @@ class Genfor_Apc_BMP2: O_mas_BMP2_OPF_01 {
     class TransportBackpacks {};
 };
 
-//BMP2 HQ
+// BMP2 HQ
 class I_mas_BMP2_HQ_AAF_base;
 class I_mas_BMP2_HQ_AAF_01: I_mas_BMP2_HQ_AAF_base {
     scope = 0;
@@ -94,7 +94,7 @@ class Genfor_Apc_BMP2HQ: O_mas_BMP2_HQ_OPF_01 {
     class TransportBackpacks {};
 };
 
-//BMP2 Ambul
+// BMP2 Ambul
 class I_mas_BMP2_Ambul_AAF_base;
 class I_mas_BMP2_Ambul_01: I_mas_BMP2_Ambul_AAF_base {
     scope = 0;

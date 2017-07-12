@@ -2,7 +2,7 @@ class CUP_AW159_Unarmed_Base: Helicopter_Base_H {
     scope = 1;
     scopeCurator = 0;
     maxspeed = 311;
-    fuelCapacity = 40; //1000
+    fuelCapacity = 40; // 1000
     landingSoundInt0[] = { "A3\Sounds_F\vehicles\air\noises\landing_wheels_small_int1", 0.25, 1, 50 };
     landingSoundInt1[] = { "A3\Sounds_F\vehicles\air\noises\landing_wheels_small_int2", 0.25, 1, 50 };
     landingSoundInt[] = { "landingSoundInt0", 0.5, "landingSoundInt1", 0.5 };

@@ -1,6 +1,6 @@
 class B_mas_HMMWV_Base;
 
-//MG
+// MG
 class B_mas_HMMWV_M2: B_mas_HMMWV_Base {
     scope = 0;
 };
@@ -24,7 +24,7 @@ class Genfor_Hmmwv_MG_SF: B_mas_HMMWV_M2 {
     class TransportBackpacks {};
 };
 
-//M134
+// M134
 class B_mas_HMMWV_M134: B_mas_HMMWV_Base {
     scope = 0;
 };
@@ -48,7 +48,7 @@ class Genfor_Hmmwv_M134_SF: B_mas_HMMWV_M134 {
     class TransportBackpacks {};
 };
 
-//Open GL
+// Open GL
 class B_mas_HMMWV_SOV: B_mas_HMMWV_Base {
     scope = 0;
 };
@@ -72,7 +72,7 @@ class Genfor_Hmmwv_SOVGL_SF: B_mas_HMMWV_SOV {
     class TransportBackpacks {};
 };
 
-//Open M134
+// Open M134
 class B_mas_HMMWV_SOV_M134: B_mas_HMMWV_SOV {
     scope = 0;
 };
@@ -96,7 +96,7 @@ class Genfor_Hmmwv_SOVM134_SF: B_mas_HMMWV_SOV_M134 {
     class TransportBackpacks {};
 };
 
-//TOW
+// TOW
 class B_mas_HMMWV_TOW: B_mas_HMMWV_Base {
     scope = 0;
 };
@@ -120,7 +120,7 @@ class Genfor_Hmmwv_TOW_SF: B_mas_HMMWV_TOW {
     class TransportBackpacks {};
 };
 
-//Stinger
+// Stinger
 class B_mas_HMMWV_Stinger: B_mas_HMMWV_Base {
     scope = 0;
 };
@@ -144,7 +144,7 @@ class Genfor_Hmmwv_Stinger_SF: B_mas_HMMWV_Stinger {
     class TransportBackpacks {};
 };
 
-//GL
+// GL
 class B_mas_HMMWV_MK19: B_mas_HMMWV_Base {
     scope = 0;
 };
@@ -168,7 +168,7 @@ class Genfor_Hmmwv_GL_SF: B_mas_HMMWV_MK19 {
     class TransportBackpacks {};
 };
 
-//Unarmed
+// Unarmed
 class B_mas_HMMWV_UNA: B_mas_HMMWV_Base {
     scope = 0;
 };
@@ -199,7 +199,7 @@ class Genfor_Hmmwv_Unarmed_SF_Populated: Genfor_Hmmwv_Unarmed_SF {
     };
 };
 
-//Medical
+// Medical
 class B_mas_HMMWV_MEV: B_mas_HMMWV_UNA {
     scope = 0;
 };
@@ -223,7 +223,7 @@ class Genfor_Hmmwv_Medical_SF: B_mas_HMMWV_MEV {
     class TransportBackpacks {};
 };
 
-//MG Desert
+// MG Desert
 class B_mas_HMMWV_M2_des: B_mas_HMMWV_M2 {
     scope = 0;
 };
@@ -247,7 +247,7 @@ class Genfor_Hmmwv_MG_Desert_SF: B_mas_HMMWV_M2_des {
     class TransportBackpacks {};
 };
 
-//M134 Desert
+// M134 Desert
 class B_mas_HMMWV_M134_des: B_mas_HMMWV_M134 {
     scope = 0;
 };
@@ -271,7 +271,7 @@ class Genfor_Hmmwv_M134_Desert_SF: B_mas_HMMWV_M134_des {
     class TransportBackpacks {};
 };
 
-//Open GL Desert
+// Open GL Desert
 class B_mas_HMMWV_SOV_des: B_mas_HMMWV_SOV {
     scope = 0;
 };
@@ -295,7 +295,7 @@ class Genfor_Hmmwv_SOVGL_Desert_SF: B_mas_HMMWV_SOV_des {
     class TransportBackpacks {};
 };
 
-//Open M134 Desert
+// Open M134 Desert
 class B_mas_HMMWV_SOV_M134_des: B_mas_HMMWV_SOV_M134 {
     scope = 0;
 };
@@ -319,7 +319,7 @@ class Genfor_Hmmwv_SOVM134_Desert_SF: B_mas_HMMWV_SOV_M134_des {
     class TransportBackpacks {};
 };
 
-//TOW desert
+// TOW desert
 class B_mas_HMMWV_TOW_des: B_mas_HMMWV_TOW {
     scope = 0;
 };
@@ -343,7 +343,7 @@ class Genfor_Hmmwv_TOW_Desert_SF: B_mas_HMMWV_TOW_des {
     class TransportBackpacks {};
 };
 
-//Stinger Desert
+// Stinger Desert
 class B_mas_HMMWV_Stinger_des: B_mas_HMMWV_Stinger {
     scope = 0;
 };
@@ -367,7 +367,7 @@ class Genfor_Hmmwv_Stinger_Desert_SF: B_mas_HMMWV_Stinger_des {
     class TransportBackpacks {};
 };
 
-//GL Desert
+// GL Desert
 class B_mas_HMMWV_MK19_des: B_mas_HMMWV_MK19 {
     scope = 0;
 };
@@ -391,7 +391,7 @@ class Genfor_Hmmwv_GL_Desert_SF: B_mas_HMMWV_MK19_des {
     class TransportBackpacks {};
 };
 
-//Unarmed Desert
+// Unarmed Desert
 class B_mas_HMMWV_UNA_des: B_mas_HMMWV_UNA {
     scope = 0;
 };
@@ -422,7 +422,7 @@ class Genfor_Hmmwv_Unarmed_Desert_SF_Populated: Genfor_Hmmwv_Unarmed_Desert_SF {
     };
 };
 
-//Medical Desert
+// Medical Desert
 class B_mas_HMMWV_MEV_des: B_mas_HMMWV_MEV {
     scope = 0;
 };

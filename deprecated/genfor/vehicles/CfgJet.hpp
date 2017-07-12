@@ -1,4 +1,4 @@
-//SU-25
+// SU-25
 class bwi_a3_su25_base;
 class bwi_a3_su25_str: bwi_a3_su25_base {
     scope = 0;
@@ -23,7 +23,7 @@ class Genfor_Air_SU25T: bwi_a3_su25t_str {
     crew = "GENFOR_FP";
 };
 
-//SU-35
+// SU-35
 class sab_SU34_BASE;
 class sab_SU34_I_CAP: sab_SU34_BASE {
     scope = 0;
@@ -51,7 +51,7 @@ class Genfor_Air_SU34: sab_SU34_O_CAS_CRU {
     typicalCargo[] = { "GENFOR_FP" };
 };
 
-//Scope 0
+// Scope 0
 class bwi_a3_su25: bwi_a3_su25_base {
     scope = 0;
     scopeCurator = 0;

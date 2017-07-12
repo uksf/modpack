@@ -1,4 +1,4 @@
-//Special
+// Special
 class Laraka_Special_HVT: Haji_Matin {
     scope = 2;
     scopeCurator = 2;

@@ -1,4 +1,4 @@
-//Mi 8 - 2 Variants
+// Mi 8 - 2 Variants
 class mas_Mi8_Base;
 class I_mas_MI8: mas_Mi8_Base {
     scope = 0;
@@ -51,7 +51,7 @@ class Genfor_Air_MI8MTV_Populated: Genfor_Air_MI8MTV {
     };
 };
 
-//Mi 24 Hind - 1 Variant
+// Mi 24 Hind - 1 Variant
 class mas_Mi24_Base;
 class I_mas_MI24V: mas_Mi24_Base {
     scope = 0;

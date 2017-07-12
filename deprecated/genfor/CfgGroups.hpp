@@ -7,7 +7,7 @@ class CfgGroups {
             class Infantry {
                 name = "Infantry";
                 aliveCategory = "Infantry";
-                //Regular
+                // Regular
                 class GENFOR_InfSection {
                     faction = "UKSF_Genfor";
                     name = "Infantry Section";
@@ -344,7 +344,7 @@ class CfgGroups {
                     };
                 };
 
-                //Reserves
+                // Reserves
                 class GENFOR_6_Res {
                     name = "6 Man Reserve Group";
                     faction = "UKSF_Genfor";
@@ -418,7 +418,7 @@ class CfgGroups {
                     };
                 };
 
-                //Para
+                // Para
                 class GENFOR_6_Para {
                     name = "6 Man Para Group";
                     faction = "UKSF_Genfor";
@@ -492,7 +492,7 @@ class CfgGroups {
                     };
                 };
 
-                //Special Forces
+                // Special Forces
                 class GENFOR_6_SF {
                     name = "6 Man SF Group";
                     faction = "UKSF_Genfor";
