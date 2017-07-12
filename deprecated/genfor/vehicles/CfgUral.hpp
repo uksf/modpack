@@ -2,7 +2,7 @@ class I_mas_cars_Ural_Base;
 class I_mas_cars_Ural_BM21_Base;
 class I_mas_cars_Ural_ZU23_Base;
 
-//Transport
+// Transport
 class I_mas_cars_Ural: I_mas_cars_Ural_Base {
     scope = 0;
 };
@@ -32,7 +32,7 @@ class Genfor_Ural_Transport_Populated: Genfor_Ural_Transport {
     };
 };
 
-//Transport open
+// Transport open
 class I_mas_cars_Ural_open: I_mas_cars_Ural {
     scope = 0;
 };
@@ -62,7 +62,7 @@ class Genfor_Ural_TransportOpen_Populated: Genfor_Ural_TransportOpen {
     };
 };
 
-//Ammo
+// Ammo
 class I_mas_cars_Ural_ammo: I_mas_cars_Ural_Base {
     scope = 0;
 };
@@ -86,7 +86,7 @@ class Genfor_Ural_Ammo: O_mas_cars_Ural_ammo {
     class TransportBackpacks {};
 };
 
-//Repair
+// Repair
 class I_mas_cars_Ural_repair: I_mas_cars_Ural_Base {
     scope = 0;
 };
@@ -110,7 +110,7 @@ class Genfor_Ural_Repair: O_mas_cars_Ural_repair {
     class TransportBackpacks {};
 };
 
-//Refuel
+// Refuel
 class I_mas_cars_Ural_fuel: I_mas_cars_Ural_Base {
     scope = 0;
 };
@@ -134,7 +134,7 @@ class Genfor_Ural_Fuel: O_mas_cars_Ural_fuel {
     class TransportBackpacks {};
 };
 
-//BM21
+// BM21
 class I_mas_cars_Ural_BM21: I_mas_cars_Ural_BM21_Base {
     scope = 0;
 };
@@ -158,7 +158,7 @@ class Genfor_Ural_BM21: O_mas_cars_Ural_BM21 {
     class TransportBackpacks {};
 };
 
-//ZSU
+// ZSU
 class I_mas_cars_Ural_ZU23: I_mas_cars_Ural_ZU23_Base {
     scope = 0;
 };

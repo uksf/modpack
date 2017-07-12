@@ -21,7 +21,7 @@ if (hasInterface) then {
     [{call FUNC(checkGroupsClient)}, 1, []] call cba_fnc_addPerFrameHandler;
 };
 
-//Debug shizzle
+// Debug shizzle
 /*
 onEachFrame {
     private _player = if (!(isNull (getConnectedUAV player))) then {

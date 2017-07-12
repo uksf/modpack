@@ -1,4 +1,4 @@
-//Unarmed
+// Unarmed
 class Genfor_Hilux_Unarmed;
 class Laraka_Hilux_Unarmed: Genfor_Hilux_Unarmed {
     faction = "UKSF_Laraka";
@@ -28,7 +28,7 @@ class Laraka_Hilux_Unarmed_Populated: Genfor_Hilux_Unarmed {
     };
 };
 
-//DSHKM
+// DSHKM
 class Genfor_Hilux_MG;
 class Laraka_Hilux_DSHKM: Genfor_Hilux_MG {
     faction = "UKSF_Laraka";
@@ -39,7 +39,7 @@ class Laraka_Hilux_DSHKM: Genfor_Hilux_MG {
     };
 };
 
-//Unarmed
+// Unarmed
 class Azaadi_Hilux_Unarmed: Laraka_Hilux_Unarmed {
     faction = "UKSF_Azaadi";
     side = 2;
@@ -66,7 +66,7 @@ class Azaadi_Hilux_Unarmed_Populated: Laraka_Hilux_Unarmed {
     };
 };
 
-//DSHKM
+// DSHKM
 class Azaadi_Hilux_DSHKM: Laraka_Hilux_DSHKM {
     faction = "UKSF_Azaadi";
     side = 2;

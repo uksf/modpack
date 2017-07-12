@@ -1,4 +1,4 @@
-//HMG
+// HMG
 class I_HMG_01_high_F;
 class Inegal_Static_HMG: I_HMG_01_high_F {
     scope = 2;
@@ -16,7 +16,7 @@ class Inegal_Static_HMG: I_HMG_01_high_F {
     };
 };
 
-//GMG
+// GMG
 class I_GMG_01_high_F;
 class Inegal_Static_GMG: I_HMG_01_high_F {
     scope = 2;
@@ -34,7 +34,7 @@ class Inegal_Static_GMG: I_HMG_01_high_F {
     };
 };
 
-//Mortar
+// Mortar
 class I_Mortar_01_F;
 class Inegal_Static_Mortar: I_Mortar_01_F {
     scope = 2;

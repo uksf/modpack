@@ -1,6 +1,6 @@
 class CUP_AW159_Unarmed_Base: Helicopter_Base_H {
     maxspeed = 311;
-    fuelCapacity = 40; //1000
+    fuelCapacity = 40; // 1000
     attenuationEffectType = "SemiOpenHeliAttenuation";
     unitInfoType = "RscUnitInfoNoSpeed";
     unitInfoTypeLite = "RscUnitInfoNoSpeed";

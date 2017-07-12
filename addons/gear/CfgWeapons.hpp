@@ -308,27 +308,27 @@ class CfgWeapons {
             class HitpointsProtectionInfo {
                 class Neck {
                     HitpointName = "HitNeck";
-                    armor = 16; //12
+                    armor = 16; // 12
                     PassThrough = 0.4;
                 };
                 class Chest {
                     HitpointName = "HitChest";
-                    armor = 30; //26, 20
+                    armor = 30; // 26, 20
                     PassThrough = 0.2;
                 };
                 class Diaphragm {
                     HitpointName = "HitDiaphragm";
-                    armor = 30; //26, 20
+                    armor = 30; // 26, 20
                     PassThrough = 0.2;
                 };
                 class Abdomen {
                     hitpointName = "HitAbdomen";
-                    armor = 26; //20
-                    passThrough = 0.2; //0.3
+                    armor = 26; // 20
+                    passThrough = 0.2; // 0.3
                 };
                 class Body {
                     hitpointName = "HitBody";
-                    passThrough = 0.2; //0.3
+                    passThrough = 0.2; // 0.3
                 };
             };
         };
@@ -761,7 +761,7 @@ class CfgWeapons {
         cartridgeVel = "eject_1_dir";
         class manual: MGun {
             class StandardSound {
-                //soundSetShot[] = { "DS_20mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
+                // soundSetShot[] = { "DS_20mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
                 begin1[] = { "A3\Sounds_F\arsenal\weapons_vehicles\gatling_20mm\20mm_01_burst", 3.98107, 1, 1300, {2, 35740} };
                 soundBegin[] = { "begin1", 1 };
                 closure1[] = { "A3\Sounds_F\weapons\Closure\sfx10", 0.63095737, 1, 20 };
@@ -869,147 +869,147 @@ class CfgWeapons {
         };
     };
 
-    //AA weapons range changes
-    //Ural ZU-23, BMP-2 ZU-23, ZU-23
+    // AA weapons range changes
+    // Ural ZU-23, BMP-2 ZU-23, ZU-23
     class CUP_Vacannon_2A14_veh: CannonCore {
         class manual;
         class close: manual {
-            midRange = 200; //300
-            maxRange = 500; //600
+            midRange = 200; // 300
+            maxRange = 500; // 600
             aiDispersionCoefX = 5;
             aiDispersionCoefY = 5;
         };
         class short: close {
-            minRange = 300; //400
-            midRange = 500; //600
-            maxRange = 800; //900
+            minRange = 300; // 400
+            midRange = 500; // 600
+            maxRange = 800; // 900
             aiDispersionCoefX = 6;
             aiDispersionCoefY = 6;
         };
         class medium: close {
-            minRange = 600; //700
-            midRange = 800; //900
-            maxRange = 1100; //1200
+            minRange = 600; // 700
+            midRange = 800; // 900
+            maxRange = 1100; // 1200
             aiDispersionCoefX = 7;
             aiDispersionCoefY = 7;
         };
         class far: close {
-            minRange = 900; //1000
-            midRange = 1100; //1200
-            maxRange = 1400; //1500
+            minRange = 900; // 1000
+            midRange = 1100; // 1200
+            maxRange = 1400; // 1500
             aiDispersionCoefX = 8;
             aiDispersionCoefY = 8;
         };
     };
-    //Tunguska
+    // Tunguska
     class CUP_Vacannon_GSh302K_veh;
     class CUP_Vacannon_2A38M_veh: CUP_Vacannon_GSh302K_veh {
         class LowROF;
         class close: LowROF {
-            midRange = 50; //150
-            maxRange = 200; //300
+            midRange = 50; // 150
+            maxRange = 200; // 300
             aiDispersionCoefX = 5;
             aiDispersionCoefY = 5;
         };
         class near: close {
-            midRange = 150; //250
-            maxRange = 300; //400
+            midRange = 150; // 250
+            maxRange = 300; // 400
             aiDispersionCoefX = 5;
             aiDispersionCoefY = 5;
         };
         class short: close {
-            minRange = 100; //200
-            midRange = 300; //400
-            maxRange = 500; //600
+            minRange = 100; // 200
+            midRange = 300; // 400
+            maxRange = 500; // 600
             aiDispersionCoefX = 6;
             aiDispersionCoefY = 6;
         };
         class medium: close {
-            minRange = 300; //400
-            midRange = 600; //700
-            maxRange = 800; //900
+            minRange = 300; // 400
+            midRange = 600; // 700
+            maxRange = 800; // 900
             aiDispersionCoefX = 7;
             aiDispersionCoefY = 7;
         };
         class far: close {
-            minRange = 700; //800
-            midRange = 900; //1000
-            maxRange = 1400; //1500
+            minRange = 700; // 800
+            midRange = 900; // 1000
+            maxRange = 1400; // 1500
             aiDispersionCoefX = 8;
             aiDispersionCoefY = 8;
         };
     };
-    //ZSU-23-4
+    // ZSU-23-4
     class CUP_Vacannon_AZP23_veh: CannonCore {
         class manual;
         class close: manual {
-            midRange = 200; //300
-            maxRange = 500; //600
+            midRange = 200; // 300
+            maxRange = 500; // 600
             aiDispersionCoefX = 5;
             aiDispersionCoefY = 5;
         };
         class short: close {
-            minRange = 300; //400
-            midRange = 500; //600
-            maxRange = 800; //900
+            minRange = 300; // 400
+            midRange = 500; // 600
+            maxRange = 800; // 900
             aiDispersionCoefX = 6;
             aiDispersionCoefY = 6;
         };
         class medium: close {
-            minRange = 600; //700
-            midRange = 800; //900
-            maxRange = 1100; //1200
+            minRange = 600; // 700
+            midRange = 800; // 900
+            maxRange = 1100; // 1200
             aiDispersionCoefX = 7;
             aiDispersionCoefY = 7;
         };
         class far: close {
-            minRange = 900; //1000
-            midRange = 1100; //1200
-            maxRange = 1400; //1500
+            minRange = 900; // 1000
+            midRange = 1100; // 1200
+            maxRange = 1400; // 1500
             aiDispersionCoefX = 8;
             aiDispersionCoefY = 8;
         };
     };
-    //Tunguska
+    // Tunguska
     class missiles_titan;
     class CUP_Vmlauncher_9M311_veh: missiles_titan {
-        midRange = 1000; //4500
-        maxRange = 5000; //8000
+        midRange = 1000; // 4500
+        maxRange = 5000; // 8000
         aiRateOfFire = 7; // 5
     };
     class CUP_Vmlauncher_Igla_twice_veh: missiles_titan {
-        midRange = 1000; //3100
-        maxRange = 4000; //5200
+        midRange = 1000; // 3100
+        maxRange = 4000; // 5200
         aiRateOfFire = 7; // 5
     };
     class CUP_Vmlauncher_Stinger_vehicle_veh: missiles_titan {
-        midRange = 1000; //3100
-        maxRange = 4000; //5200
+        midRange = 1000; // 3100
+        maxRange = 4000; // 5200
         aiRateOfFire = 7; // 5
     };
     class CUP_Vmlauncher_RBS70_veh: missiles_titan {
-        midRange = 1000; //3100
-        maxRange = 4000; //5200
+        midRange = 1000; // 3100
+        maxRange = 4000; // 5200
         aiRateOfFire = 7; // 5
     };
     class Launcher_Base_F;
     class CUP_launch_Igla: Launcher_Base_F {
-        midRange = 1000; //2500
-        maxRange = 3000; //4800
+        midRange = 1000; // 2500
+        maxRange = 3000; // 4800
         aiRateOfFire = 7; // 5
     };
     class CUP_launch_FIM92Stinger: Launcher_Base_F {
-        midRange = 1000; //2500
-        maxRange = 3000; //4800
+        midRange = 1000; // 2500
+        maxRange = 3000; // 4800
         aiRateOfFire = 7; // 5
     };
     class CUP_launch_9K32Strela: Launcher_Base_F {
-        midRange = 1000; //2500
-        maxRange = 3000; //4800
+        midRange = 1000; // 2500
+        maxRange = 3000; // 4800
         aiRateOfFire = 7; // 5
     };
 
-    //Weapons for virtual army faction
+    // Weapons for virtual army faction
     class CUP_arifle_M4A1;
     class CUP_arifle_M4A1_Acog: CUP_arifle_M4A1 {
         scopeArsenal = 1;

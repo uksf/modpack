@@ -1,6 +1,6 @@
 class B_mas_cars_Hilux_Base;
 
-//Unarmed
+// Unarmed
 class B_mas_cars_Hilux_Unarmed: B_mas_cars_Hilux_Base {
     scope = 0;
 };
@@ -43,7 +43,7 @@ class Genfor_Hilux_Unarmed_Reserves_Populated: Genfor_Hilux_Unarmed_Reserves {
     };
 };
 
-//MG
+// MG
 class B_mas_cars_Hilux_MG: B_mas_cars_Hilux_Base {
     scope = 0;
 };
@@ -72,7 +72,7 @@ class Genfor_Hilux_MG_Reserves: Genfor_Hilux_MG {
     };
 };
 
-//50 cal
+// 50 cal
 class B_mas_cars_Hilux_M2: B_mas_cars_Hilux_MG {
     scope = 0;
 };
@@ -101,7 +101,7 @@ class Genfor_Hilux_50_Reserves: Genfor_Hilux_50 {
     };
 };
 
-//Grenade launcher
+// Grenade launcher
 class B_mas_cars_Hilux_AGS30: B_mas_cars_Hilux_Base {
     scope = 0;
 };
@@ -130,7 +130,7 @@ class Genfor_Hilux_Grenade_Reserves: Genfor_Hilux_Grenade {
     };
 };
 
-//Medical
+// Medical
 class B_mas_cars_Hilux_Med: B_mas_cars_Hilux_Unarmed {
     scope = 0;
 };
@@ -152,7 +152,7 @@ class Genfor_Hilux_Med: B_mas_cars_Hilux_Med {
     class TransportBackpacks {};
 };
 
-//SPG9
+// SPG9
 class B_mas_cars_Hilux_SPG9: B_mas_cars_Hilux_Base {
     scope = 0;
 };
@@ -173,7 +173,7 @@ class Genfor_Hilux_SPG9: B_mas_cars_Hilux_SPG9 {
     class TransportBackpacks {};
 };
 
-//Rockets
+// Rockets
 class B_mas_cars_Hilux_RKTS: B_mas_cars_Hilux_SPG9 {
     scope = 0;
 };

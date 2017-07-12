@@ -235,7 +235,7 @@ class CfgVehicles {
             EjectionSeatForce = 50;
             CanopyForce = 30;
         };
-        //Wait until USAF release
+        // Wait until USAF release
         /*class Components: Components {
             class SensorsManagerComponent {
                 class Components {
@@ -473,7 +473,7 @@ class CfgVehicles {
     class USAF_F35A_ejection_seat: B_Ejection_Seat_Plane_Fighter_01_F {
         faction = "CUP_B_GB";
         crew = "UKSF_B_Pilot_617";
-        //model = "\usaf_f35A\usaf_f35A_ejection_seat.p3d";
+        // model = "\usaf_f35A\usaf_f35A_ejection_seat.p3d";
     };
     class StaticAmmocart;
     class Missilecart_base: StaticAmmocart {

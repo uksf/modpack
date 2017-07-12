@@ -1,6 +1,6 @@
 class B_mas_cars_LR_BASE;
 
-//Unarmed
+// Unarmed
 class B_mas_cars_LR_Unarmed: B_mas_cars_LR_BASE {
     scope = 0;
 };
@@ -51,7 +51,7 @@ class Genfor_LandRover_Unarmed_Para_Populated: Genfor_LandRover_Unarmed_Para {
     };
 };
 
-//Medical
+// Medical
 class B_mas_cars_LR_Med: B_mas_cars_LR_Unarmed {
     scope = 0;
 };
@@ -88,7 +88,7 @@ class Genfor_LandRover_Medical_Para: Genfor_LandRover_Medical {
     };
 };
 
-//MG
+// MG
 class B_mas_cars_LR_M2: B_mas_cars_LR_BASE {
     scope = 0;
 };
@@ -125,7 +125,7 @@ class Genfor_LandRover_MG_Para: Genfor_LandRover_MG {
     };
 };
 
-//GL
+// GL
 class B_mas_cars_LR_Mk19: B_mas_cars_LR_M2 {
     scope = 0;
 };
@@ -162,7 +162,7 @@ class Genfor_LandRover_GL_Para: Genfor_LandRover_GL {
     };
 };
 
-//TOW
+// TOW
 class B_mas_cars_LR_TOW: B_mas_cars_LR_M2 {
     scope = 0;
 };
@@ -199,7 +199,7 @@ class Genfor_LandRover_TOW_Para: Genfor_LandRover_TOW {
     };
 };
 
-//Stinger
+// Stinger
 class B_mas_cars_LR_Stinger: B_mas_cars_LR_M2 {
     scope = 0;
 };
@@ -236,7 +236,7 @@ class Genfor_LandRover_Stinger_Para: Genfor_LandRover_Stinger {
     };
 };
 
-//SPG9
+// SPG9
 class B_mas_cars_LR_SPG9: B_mas_cars_LR_TOW {
     scope = 0;
 };

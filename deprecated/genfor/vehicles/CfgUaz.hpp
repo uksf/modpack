@@ -1,6 +1,6 @@
 class I_mas_cars_UAZ_Base;
 
-//DSHKM
+// DSHKM
 class I_mas_cars_UAZ_MG: I_mas_cars_UAZ_Base {
     scope = 0;
 };
@@ -24,7 +24,7 @@ class Genfor_Uaz_DSHKM: O_mas_cars_UAZ_MG {
     class TransportBackpacks {};
 };
 
-//.50 cal
+// .50 cal
 class I_mas_cars_UAZ_M2: I_mas_cars_UAZ_MG {
     scope = 0;
 };
@@ -45,7 +45,7 @@ class Genfor_Uaz_50cal: I_mas_cars_UAZ_M2 {
     class TransportBackpacks {};
 };
 
-//GL
+// GL
 class I_mas_cars_UAZ_AGS30: I_mas_cars_UAZ_Base {
     scope = 0;
 };
@@ -69,7 +69,7 @@ class Genfor_Uaz_GL: O_mas_cars_UAZ_AGS30 {
     class TransportBackpacks {};
 };
 
-//Unarmed
+// Unarmed
 class I_mas_cars_UAZ_Unarmed: I_mas_cars_UAZ_Base {
     scope = 0;
 };
@@ -99,7 +99,7 @@ class Genfor_Uaz_Unarmed_Populated: Genfor_Uaz_Unarmed {
     };
 };
 
-//Med
+// Med
 class I_mas_cars_UAZ_Med: I_mas_cars_UAZ_Unarmed {
     scope = 0;
 };
@@ -123,7 +123,7 @@ class Genfor_Uaz_Medical: O_mas_cars_UAZ_Med {
     class TransportBackpacks {};
 };
 
-//SPG9
+// SPG9
 class I_mas_cars_UAZ_SPG9: I_mas_cars_UAZ_Base {
     scope = 0;
 };

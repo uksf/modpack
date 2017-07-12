@@ -1,7 +1,7 @@
 PREP(moduleCurator);
 PREP(openArsenal);
 
-//Modules
+// Modules
 PREP(moduleAddAllObjects);
 PREP(moduleExplosionLarge);
 PREP(moduleExplosionSmall);

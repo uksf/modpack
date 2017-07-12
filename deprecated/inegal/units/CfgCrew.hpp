@@ -1,4 +1,4 @@
-//Crew
+// Crew
 class Inegal_Crew_HP: Inegal_Soldier_Base {
     _generalMacro = "Inegal_Crew_HP";
     scope = 2;

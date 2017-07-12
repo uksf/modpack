@@ -16,7 +16,7 @@ class I_mas_M252_base;
 class I_mas_D30_base;
 class I_mas_M119_base;
 
-//ZU23
+// ZU23
 class I_mas_ZU23_AAF: I_mas_ZU23_base {
     scope = 0;
 };
@@ -38,7 +38,7 @@ class Genfor_Static_ZU23: O_mas_ZU23_AAF {
     };
 };
 
-//DSHKM
+// DSHKM
 class I_mas_DSHKM_AAF: I_mas_DSHKM_base {
     scope = 0;
 };
@@ -56,7 +56,7 @@ class Genfor_Static_DSHKM: O_mas_DSHKM_AAF {
     };
 };
 
-//DSHKM Mini Tripod
+// DSHKM Mini Tripod
 class I_mas_DSHkM_Mini_TriPod: I_mas_DSHKM_base {
     scope = 0;
 };
@@ -74,7 +74,7 @@ class Genfor_Static_DSHKMMiniTripod: O_mas_DSHkM_Mini_TriPod {
     };
 };
 
-//KORD
+// KORD
 class I_mas_KORD_AAF: I_mas_KORD_Base {
     scope = 0;
 };
@@ -96,7 +96,7 @@ class Genfor_Static_KORD: O_mas_KORD_AAF {
     };
 };
 
-//KORD High
+// KORD High
 class I_mas_KORD_high_AAF: I_mas_KORD_Base {
     scope = 0;
 };
@@ -118,7 +118,7 @@ class Genfor_Static_KORDHigh: O_mas_KORD_high_AAF {
     };
 };
 
-//M2
+// M2
 class I_mas_M2StaticMG_AAF: I_mas_M2StaticMG_base {
     scope = 0;
 };
@@ -140,7 +140,7 @@ class Genfor_Static_M2: B_mas_M2StaticMG_AAF {
     };
 };
 
-//M2 Mini Tripod
+// M2 Mini Tripod
 class I_mas_M2StaticMG_MiniTripod_AAF: I_mas_M2StaticMG_MiniTripod_base {
     scope = 0;
 };
@@ -162,7 +162,7 @@ class Genfor_Static_M2MiniTripod: B_mas_M2StaticMG_MiniTripod_AAF {
     };
 };
 
-//AGS
+// AGS
 class I_mas_AGS_AAF: I_mas_AGS_base {
     scope = 0;
 };
@@ -184,7 +184,7 @@ class Genfor_Static_AGS: O_mas_AGS_AAF {
     };
 };
 
-//GMG
+// GMG
 class I_mas_GMG_AAF: I_mas_GMG_base {
     scope = 0;
 };
@@ -206,7 +206,7 @@ class Genfor_Static_GMG: B_mas_GMG_AAF {
     };
 };
 
-//MK19
+// MK19
 class I_mas_MK19_TriPod_AAF: I_mas_MK19_TriPod_base {
     scope = 0;
 };
@@ -228,7 +228,7 @@ class Genfor_Static_MK19: B_mas_MK19_TriPod_AAF {
     };
 };
 
-//Metis
+// Metis
 class I_mas_Metis_AAF: I_mas_Metis_Base {
     scope = 0;
 };
@@ -250,7 +250,7 @@ class Genfor_Static_Metis: O_mas_Metis_AAF {
     };
 };
 
-//TOW
+// TOW
 class I_mas_TOW_TriPod_AAF: I_mas_TOW_TriPod_base {
     scope = 0;
 };
@@ -272,7 +272,7 @@ class Genfor_Static_TOW: B_mas_TOW_TriPod_AAF {
     };
 };
 
-//SPG9
+// SPG9
 class I_mas_SPG9_AAF: I_mas_SPG9_base {
     scope = 0;
 };
@@ -294,7 +294,7 @@ class Genfor_Static_SPG9: O_mas_SPG9_AAF {
     };
 };
 
-//Igla
+// Igla
 class I_mas_Igla_AA_pod_AAF: I_mas_Igla_AA_pod_Base {
     scope = 0;
 };
@@ -316,7 +316,7 @@ class Genfor_Static_Igla: O_mas_Igla_AA_pod_AAF {
     };
 };
 
-//Stinger
+// Stinger
 class I_mas_Stinger_AA_pod_AAF: I_mas_Stinger_AA_pod_Base {
     scope = 0;
 };
@@ -338,7 +338,7 @@ class Genfor_Static_Stinger: B_mas_Stinger_AA_pod_AAF {
     };
 };
 
-//2B14
+// 2B14
 class I_mas_2b14_82mm_AAF: I_mas_2b14_82mm_Base {
     scope = 0;
 };
@@ -360,7 +360,7 @@ class Genfor_Static_2B14: O_mas_2b14_82mm_AAF {
     };
 };
 
-//M252
+// M252
 class I_mas_M252_AAF: I_mas_M252_base {
     scope = 0;
 };
@@ -382,7 +382,7 @@ class Genfor_Static_M252: B_mas_M252_AAF {
     };
 };
 
-//D30
+// D30
 class I_mas_D30_AAF: I_mas_D30_base {
     scope = 0;
 };
@@ -404,7 +404,7 @@ class Genfor_Static_D30: O_mas_D30_AAF {
     };
 };
 
-//D30 AT
+// D30 AT
 class I_mas_D30_AT_AAF: I_mas_D30_AAF {
     scope = 0;
 };
@@ -426,7 +426,7 @@ class Genfor_Static_D30AT: O_mas_D30_AT_AAF {
     };
 };
 
-//M119
+// M119
 class I_mas_M119_AAF: I_mas_M119_base {
     scope = 0;
 };
@@ -448,7 +448,7 @@ class Genfor_Static_M119: B_mas_M119_AAF {
     };
 };
 
-//M119 AT
+// M119 AT
 class I_mas_M119_AT_AAF: I_mas_M119_AAF {
     scope = 0;
 };

@@ -15,7 +15,7 @@
 
 params ["_plane"];
 
-//TEMPORARY
+// TEMPORARY
 if (local _plane) exitWith {
     private _position = getPosATL _plane;
     private _vectorDir = vectorDir _plane;

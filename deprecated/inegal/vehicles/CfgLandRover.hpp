@@ -1,4 +1,4 @@
-//Unarmed
+// Unarmed
 class Genfor_LandRover_Unarmed;
 class Inegal_LandRover_Unarmed: Genfor_LandRover_Unarmed {
     scope = 2;
@@ -26,7 +26,7 @@ class Inegal_LandRover_FDF_Unarmed: Inegal_LandRover_Unarmed {
     };
 };
 
-//MG
+// MG
 class Genfor_LandRover_MG;
 class Inegal_LandRover_MG: Genfor_LandRover_MG {
     scope = 2;
@@ -47,7 +47,7 @@ class Inegal_LandRover_FDF_MG: Inegal_LandRover_MG {
     };
 };
 
-//GL
+// GL
 class Genfor_LandRover_GL;
 class Inegal_LandRover_GL: Genfor_LandRover_GL {
     scope = 2;

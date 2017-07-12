@@ -1,4 +1,4 @@
-//Car bomb
+// Car bomb
 class Laraka_CarBomb: Laraka_Hilux_Unarmed {
     faction = "UKSF_Laraka";
     displayName = "Hilux Car Bomb";
@@ -10,7 +10,7 @@ class Laraka_CarBomb: Laraka_Hilux_Unarmed {
     };
 };
 
-//Empty
+// Empty
 class Laraka_CarBomb_Empty: Laraka_CarBomb {
     faction = "UKSF_Laraka";
     displayName = "Hilux Car Bomb (Empty)";
@@ -21,7 +21,7 @@ class Laraka_CarBomb_Empty: Laraka_CarBomb {
     };
 };
 
-//Deadman
+// Deadman
 class Laraka_CarBomb_Deadman: Laraka_CarBomb {
     faction = "UKSF_Laraka";
     displayName = "Hilux Car Bomb (Deadman)";
@@ -32,19 +32,19 @@ class Laraka_CarBomb_Deadman: Laraka_CarBomb {
     };
 };
 
-//Car bomb
+// Car bomb
 class Azaadi_CarBomb: Laraka_CarBomb {
     faction = "UKSF_Azaadi";
     side = 2;
 };
 
-//Empty
+// Empty
 class Azaadi_CarBomb_Empty: Laraka_CarBomb_Empty {
     faction = "UKSF_Azaadi";
     side = 2;
 };
 
-//Deadman
+// Deadman
 class Azaadi_CarBomb_Deadman: Laraka_CarBomb_Deadman {
     faction = "UKSF_Azaadi";
     side = 2;

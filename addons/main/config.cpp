@@ -870,7 +870,7 @@ class CfgPatches {
             "cba_xeh",
             "cba_jr",
 
-            //ACE
+            // ACE
             "ace_main",
             "ace_common",
             "ace_aircraft",

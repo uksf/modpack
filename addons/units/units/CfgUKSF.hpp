@@ -1,4 +1,4 @@
-//UKSF
+// UKSF
 class UKSF_B_Rifleman: CUP_B_BAF_Soldier_MTP {
     scope = 2;
     author = "UKSF";

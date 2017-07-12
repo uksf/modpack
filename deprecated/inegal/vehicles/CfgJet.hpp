@@ -1,4 +1,4 @@
-//L-159
+// L-159
 class I_Plane_Fighter_03_AA_F;
 class Inegal_Jet_L159: I_Plane_Fighter_03_AA_F {
     scope = 2;

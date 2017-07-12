@@ -1,4 +1,4 @@
-//Transport
+// Transport
 class B_Truck_01_covered_F;
 class Inegal_TRM_Covered: B_Truck_01_covered_F {
     scope = 2;
@@ -34,7 +34,7 @@ class Inegal_TRM_R_Covered: Inegal_TRM_Covered {
     };
 };
 
-//Transport open
+// Transport open
 class B_Truck_01_transport_F;
 class Inegal_TRM_Open: B_Truck_01_transport_F {
     scope = 2;
@@ -70,7 +70,7 @@ class Inegal_TRM_R_Open: Inegal_TRM_Open {
     };
 };
 
-//Ammo
+// Ammo
 class B_Truck_01_ammo_F;
 class Inegal_TRM_Ammo: B_Truck_01_ammo_F {
     scope = 2;
@@ -89,7 +89,7 @@ class Inegal_TRM_Ammo: B_Truck_01_ammo_F {
     class TransportBackpacks {};
 };
 
-//Repair
+// Repair
 class B_Truck_01_Repair_F;
 class Inegal_TRM_Repair: B_Truck_01_Repair_F {
     scope = 2;
@@ -108,7 +108,7 @@ class Inegal_TRM_Repair: B_Truck_01_Repair_F {
     class TransportBackpacks {};
 };
 
-//Refuel
+// Refuel
 class B_Truck_01_fuel_F;
 class Inegal_TRM_Fuel: B_Truck_01_fuel_F {
     scope = 2;

@@ -1,4 +1,4 @@
-//BRDM2
+// BRDM2
 class mas_BRDM2_BASE;
 class I_mas_BRDM2: mas_BRDM2_BASE {
     scope = 0;
@@ -22,7 +22,7 @@ class Genfor_Brdm_BRDM2: O_mas_BRDM2 {
     class TransportBackpacks {};
 };
 
-//BTR60
+// BTR60
 class mas_BTR60_Base;
 class I_mas_BTR60: mas_BTR60_Base {
     scope = 0;

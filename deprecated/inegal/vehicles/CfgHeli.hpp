@@ -1,4 +1,4 @@
-//AW101
+// AW101
 class I_Heli_Transport_02_F;
 class Inegal_Heli_AW101: I_Heli_Transport_02_F {
     scope = 2;
@@ -21,7 +21,7 @@ class Inegal_Heli_AW101: I_Heli_Transport_02_F {
     };
 };
 
-//AH6
+// AH6
 class B_Heli_Light_01_armed_F;
 class Inegal_Heli_AH6: B_Heli_Light_01_armed_F {
     scope = 2;
@@ -39,7 +39,7 @@ class Inegal_Heli_AH6: B_Heli_Light_01_armed_F {
     class TransportBackpacks {};
 };
 
-//MH6
+// MH6
 class B_Heli_Light_01_F;
 class Inegal_Heli_MH6: B_Heli_Light_01_F {
     scope = 2;

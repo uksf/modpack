@@ -22,13 +22,13 @@ params ["_logic", "_units", "_activated"];
 
 if (_activated) then {
     
-    //--- Terminate when not created on the server
+    // --- Terminate when not created on the server
     if (!isServer && {local _logic} && {isNull (getAssignedCuratorUnit _logic)}) exitwith {
         [format ["%1 is trying to create curator logic ModuleCurator_F", profilename], "bis_fnc_error", false] call bis_fnc_mp;
         deletevehicle _logic;
     };
 
-    //--- Get curator owner
+    // --- Get curator owner
     private _ownerVar = _logic getVariable ["owner", ""];
     private _ownerUID = parseNumber _ownerVar;
     if (cheatsEnabled) then {
@@ -37,7 +37,7 @@ if (_activated) then {
         if (toString _ownerVarArray isEqualTo "DEV") then {_ownerUID = 1;};
     };
     if (_ownerVar isEqualTo "" && {!isMultiplayer}) then {
-        //["Curator owner not defined, player used instead in singleplayer."] call bis_fnc_error;
+        // ["Curator owner not defined, player used instead in singleplayer."] call bis_fnc_error;
         _ownerVar = player call bis_fnc_objectvar;
     };
     if (_ownerUID > 0 && {!isMultiplayer}) then {
@@ -45,15 +45,15 @@ if (_activated) then {
     };
     private _isAdmin = _ownerVar isEqualTo "#adminLogged" || _ownerVar isEqualTo "#adminVoted";
 
-    //--- Wipe out the variable so clients can't access it
+    // --- Wipe out the variable so clients can't access it
     _logic setVariable ["owner", nil];
 
     waitUntil {!isNil QEGVAR(common,addons)};
     _logic addcuratoraddons (EGVAR(common,addons) - (curatorAddons _logic));
 
-    //--- Server
+    // --- Server
     if (isserver) then {
-        //--- Prepare admin variable
+        // --- Prepare admin variable
         private _adminVar = "";
         if (_isAdmin) then {
             _letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
@@ -62,7 +62,7 @@ if (_activated) then {
             _logic setVariable ["adminVar", _adminVar, true];
         };
 
-        //--- Handle ownership
+        // --- Handle ownership
         [_logic, _ownerVar, _ownerUID, _adminVar] spawn {
             scriptname "BIS_fnc_moduleCurator: Owner";
 
@@ -74,16 +74,16 @@ if (_activated) then {
             private _name = _logic getVariable ["name", ""];
             if (_name isEqualTo "") then {_name = localize "STR_A3_curator";};
 
-            //--- Wait until mission starts
+            // --- Wait until mission starts
             waitUntil {time > 0}; // NOTE: DO NOT CHANGE TO CBA_missionTime, IT BREAKS THE MODULE
 
-            //--- Refresh addon list, so it's broadcasted to clients
+            // --- Refresh addon list, so it's broadcasted to clients
             waitUntil {!isNil QEGVAR(common,addons)};
             _logic addcuratoraddons (EGVAR(common,addons) - (curatorAddons _logic));
             
 
             while {true} do {
-                //--- Wait for player to become Zeus
+                // --- Wait for player to become Zeus
                 switch true do {
                     case (_ownerUID > 0): {
                         waitUntil {
@@ -97,7 +97,7 @@ if (_activated) then {
                 };
                 if (isNull _logic) exitwith {};
 
-                //--- Assign
+                // --- Assign
                 private _player = objnull;
                 switch true do {
                     case (_ownerUID > 0): {
@@ -119,7 +119,7 @@ if (_activated) then {
                 // Added by ace_zeus
                 ["ace_zeus_zeusUnitAssigned", [_logic, _player]] call CBA_fnc_globalEvent;
 
-                //--- Wait for player to stop being Zeus
+                // --- Wait for player to stop being Zeus
                 switch true do {
                     case (_ownerUID > 0): {
                         waitUntil {
@@ -133,19 +133,19 @@ if (_activated) then {
                 };
                 if (isNull _logic) exitwith {};
 
-                //--- Unassign
+                // --- Unassign
                 waitUntil {unassignCurator _logic; isNull (getAssignedCuratorUnit _logic) || isNull _logic};
                 if (isNull _logic) exitwith {};
             };
         };
     };
 
-    //--- Player
+    // --- Player
     if (hasinterface) then {
         waitUntil {local player};
         private _serverCommand = if (_ownerVar isEqualTo "#adminLogged") then {"#shutdown"} else {"#kick"};
 
-        //--- Black effect until the interface is open
+        // --- Black effect until the interface is open
         private _forced = _logic getVariable ["forced", 0] > 0;
         if (_forced) then {
             private _isCurator = switch true do {
@@ -164,15 +164,15 @@ if (_activated) then {
                 ("RscDisplayCurator" call bis_fnc_rscLayer) cuttext ["", "black in", 1e10];
             };
         };
-        //--- Check if player is server admin
+        // --- Check if player is server admin
         if (_isAdmin) then {
             private _adminVar = _logic getVariable ["adminVar", ""];
             _logic setVariable ["adminVar", nil];
             if (isserver) then {
-                //--- Host
+                // --- Host
                 missionNamespace setVariable [_adminVar, player];
             } else {
-                //--- Client
+                // --- Client
                 [_logic, _adminVar, _serverCommand] spawn {
                     scriptname "BIS_fnc_moduleCurator: Admin check";
 
@@ -196,7 +196,7 @@ if (_activated) then {
             private _logic = (_this select 0);
             waitUntil {alive player};
 
-            //--- Show warning when Zeus key is not assigned
+            // --- Show warning when Zeus key is not assigned
             if (count (actionkeys "curatorInterface") isEqualTo 0) then {
                 [
                     format [

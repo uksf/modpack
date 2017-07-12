@@ -52,4 +52,4 @@ class GVAR(loadouts) {
         loadout = "[[],[],['UK3CB_BAF_L131A1','','','',['UK3CB_BAF_9_17Rnd',17],[],''],['UKSF_U_PilotCoveralls_7',[['UK3CB_BAF_9_17Rnd',4,17]]],['UKSF_V_Pilot',[['ACE_fieldDressing',3],['ACE_elasticBandage',3],['ACE_bloodIV_250',2],['ACE_EarPlugs',1],['ACE_epinephrine',2],['ACE_morphine',2],['ACE_packingBandage',2],['ACE_personalAidKit',1],['ACE_surgicalKit',1],['ACE_Flashlight_XL50',1],['ACE_MapTools',1],['SmokeShellBlue',2,1],['SmokeShellOrange',2,1],['SmokeShellRed',2,1],['Chemlight_red',2,1],['B_IR_Grenade',2,1],['ACE_HandFlare_Red',2,1]]],['B_Parachute',[['ACRE_PRC117F',1],['ACRE_PRC117F',1]]],'UK3CB_BAF_H_PilotHelmetHeli_A','',[],['ItemMap','B_UavTerminal','ItemRadioAcreFlagged','ItemCompass','ItemWatch','ACE_NVG_Pilot']]";
     };
 };
-//copyToClipboard str (getUnitLoadout player)
+// copyToClipboard str (getUnitLoadout player)

@@ -1,4 +1,4 @@
-//T-72A
+// T-72A
 class I_mas_T72_AAF_base;
 class I_mas_T72_AAF_01: I_mas_T72_AAF_base {
     scope = 0;
@@ -22,7 +22,7 @@ class Genfor_Tank_T72A: O_mas_T72_OPF_01 {
     class TransportBackpacks {};
 };
 
-//T-72B Early
+// T-72B Early
 class I_mas_T72B_Early_AAF_01: I_mas_T72_AAF_01 {
     scope = 0;
 };
@@ -45,7 +45,7 @@ class Genfor_Tank_T7BEarly: O_mas_T72B_Early_OPF_01 {
     class TransportBackpacks {};
 };
 
-//T-72B
+// T-72B
 class I_mas_T72B_AAF_01: I_mas_T72B_Early_AAF_01 {
     scope = 0;
 };
@@ -68,7 +68,7 @@ class Genfor_Tank_T72B: O_mas_T72B_OPF_01 {
     class TransportBackpacks {};
 };
 
-//T-72BM
+// T-72BM
 class I_mas_T72BM_AAF_01: I_mas_T72B_AAF_01 {
     scope = 0;
 };
@@ -91,7 +91,7 @@ class Genfor_Tank_T72BM: O_mas_T72BM_OPF_01 {
     class TransportBackpacks {};
 };
 
-//T-55A
+// T-55A
 class I_mas_T55_AAF_base;
 class I_mas_T55_AAF_01: I_mas_T55_AAF_base {
     scope = 0;
@@ -115,7 +115,7 @@ class Genfor_Tank_T55A: O_mas_T55_OPF_01 {
     class TransportBackpacks {};
 };
 
-//T-34
+// T-34
 class I_mas_T34_AAF_base;
 class I_mas_T34_AAF_01: I_mas_T34_AAF_base {
     scope = 0;
@@ -136,7 +136,7 @@ class Genfor_Tank_T34: I_mas_T34_AAF_01 {
     class TransportBackpacks {};
 };
 
-//ZSU
+// ZSU
 class I_mas_ZSU_AAF_base;
 class I_mas_ZSU_AAF_01: I_mas_ZSU_AAF_base {
     scope = 0;

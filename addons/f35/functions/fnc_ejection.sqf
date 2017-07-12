@@ -33,7 +33,7 @@ player allowDamage false;
 [{
     params ["_plane", "_canopy", "_seat"];
     
-    //First stage - Jettison Canopy
+    // First stage - Jettison Canopy
     _pitchBank = _plane call BIS_fnc_getPitchBank;
     _pos = _plane modelToWorld (_plane selectionPosition "eject_pos");
     _dirPos = _plane modelToWorld (_plane selectionPosition "eject_canopy_dir");
@@ -50,7 +50,7 @@ player allowDamage false;
     [{
         params ["_plane", "_canopy", "_seat"];
 
-        //Second stage - Move pilot toi ejection seat and jettison
+        // Second stage - Move pilot toi ejection seat and jettison
         _plane setVelocity [(velocity _plane select 0) + 1, (velocity _plane select 1) * 1.0, (velocity _plane select 2) * 1.0];
         moveOut player;
         player moveInDriver _seat;
@@ -72,7 +72,7 @@ player allowDamage false;
         [{
             params ["_plane", "_canopy", "_seat"];
             
-            //Third stage - Deploy chute
+            // Third stage - Deploy chute
             _seat lock 0;
             _pitchBank = _seat call BIS_fnc_getPitchBank;
             _seat setVelocity [1, 1, 1];

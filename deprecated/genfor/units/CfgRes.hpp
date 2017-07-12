@@ -1,4 +1,4 @@
-//Reservists
+// Reservists
 class GENFOR_Res: GENFOR_Soldier_Base {
     _generalMacro = "GENFOR_Res";
     scope = 2;

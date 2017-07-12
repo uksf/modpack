@@ -12,8 +12,8 @@ if (!isServer) exitWith {};
     mortarUnit commandArtilleryFire [_position, (getArtilleryAmmo [mortar]) select 0, 4];
 } remoteExec ["bis_fnc_call", HCs select 0, false];
 
-//////////////////////////////////////////////////////////////////////////////////
-//For use in an init line of an artillery gunner.
+////////////////////////////////////////////////////////////////////////////////// 
+// For use in an init line of an artillery gunner.
 
 [{
     params ["_gunner"];
@@ -54,9 +54,9 @@ if (!isServer) exitWith {};
 nil
 
 
-//
+// 
 (vehicle player) removeWeapon "CUP_Vacannon_M230_veh_Enhanced";
 (vehicle player) addWeapon "CUP_Vacannon_M230_veh";
-//
+// 
 (vehicle player) removeMagazines "CUP_1200Rnd_TE1_Red_Tracer_30x113mm_M789_HEDP_M";
 (vehicle player) addMagazine "CUP_1200Rnd_TE1_Red_Tracer_30x113mm_M789_HEDP_M";

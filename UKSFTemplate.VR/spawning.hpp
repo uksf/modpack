@@ -21,8 +21,8 @@
 
         Markers must be area markers. In editor: Markers > Areas (Circle overlapping rectangle icon)
 */
-//EXAMPLE:
-//["area1", 3, 10, "CUP_O_RU"] call uksf_spawn_fnc_initPatrol;
+// EXAMPLE:
+// ["area1", 3, 10, "CUP_O_RU"] call uksf_spawn_fnc_initPatrol;
 
 
 /* VALID FACTION NAMES:

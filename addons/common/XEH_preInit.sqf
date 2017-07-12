@@ -4,7 +4,7 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
-//Activate all addons
+// Activate all addons
 [] spawn {
     GVAR(addons) = [];
     private _activated = activatedAddons;
@@ -18,10 +18,10 @@ ADDON = false;
     activateAddons GVAR(addons);
 };
 
-//FPS Debug
+// FPS Debug
 GVAR(fpsState) = false;
 
-//Setup events
+// Setup events
 if (hasInterface) then {
     GVAR(fpsArray) = [];
     call FUNC(fpsAction);

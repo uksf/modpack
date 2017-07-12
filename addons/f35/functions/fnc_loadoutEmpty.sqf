@@ -15,7 +15,7 @@
 
 params ["_plane"];
 
-//WEAPON CLASSNAME DEFINITIONS
+// WEAPON CLASSNAME DEFINITIONS
 _SAFE_weapon = "Fuller_master_arms_safe";
 _AIM9X_weapon = "USAF_AIM9X_Launcher";
 _AGM65_weapon = "USAF_AGM65_Launcher";
@@ -45,7 +45,7 @@ _MK77_weapon = "USAF_MK77_Launcher";
 _JAGM_weapon = "USAF_JAGM_Launcher";
 
 
-//MAGAZINE CLASSNAME DEFINITIONS
+// MAGAZINE CLASSNAME DEFINITIONS
 _AIM9X_magazine = "USAF_1Rnd_AIM9X";
 _AIM120_magazine = "USAF_1Rnd_AIM120";
 _AIM120I_magazine = "USAF_1Rnd_AIM120I";
@@ -96,11 +96,11 @@ _MK20_M = "USAF_1Rnd_CBU100";
 _MK77_M = "USAF_1Rnd_MK77";
 _JAGM_M = "USAF_1Rnd_JAGM";
 
-//SWITCH PILOTS WEAPON TO SAFE
+// SWITCH PILOTS WEAPON TO SAFE
 _plane selectWeapon _SAFE_weapon;
 _plane setVariable ["Rearming_done_switch", 0];
 
-//ROMEVE ALL POSSIBLE DEFAULT WEAPONS
+// ROMEVE ALL POSSIBLE DEFAULT WEAPONS
 _plane removeWeapon _AIM9X_weapon;
 _plane removeWeapon _AIM120_weapon;
 _plane removeWeapon _AIM120I_weapon;
@@ -128,7 +128,7 @@ _plane removeWeapon _MK20_weapon;
 _plane removeWeapon _MK77_weapon;
 _plane removeWeapon _JAGM_weapon;
 
-//ROMEVE ALL POSSIBLE DEFAULT MAGAZINES
+// ROMEVE ALL POSSIBLE DEFAULT MAGAZINES
 _plane removeMagazines _AIM9X_magazine;
 _plane removeMagazines _AIM120_magazine;
 _plane removeMagazines _AIM120I_magazine;
@@ -180,7 +180,7 @@ _plane removeMagazines _MK20_M;
 _plane removeMagazines _MK77_M;
 _plane removeMagazines _JAGM_M;
 
-//ANIMATE ALL HIDDEN SELECTIONS TO SUPPORT NEW LOADOUT
+// ANIMATE ALL HIDDEN SELECTIONS TO SUPPORT NEW LOADOUT
 _plane animate ["pylon_1_hide",1];
 _plane animate ["pylon_2_hide",1];
 _plane animate ["pylon_3_hide",1];
@@ -188,7 +188,7 @@ _plane animate ["pylon_4_hide",1];
 _plane animate ["pylon_5_hide",1];
 _plane animate ["pylon_6_hide",1];
 
-//FINALIZING FUNCTION
+// FINALIZING FUNCTION
 _plane setVehicleAmmo 1;
 _plane selectWeapon _SAFE_weapon;
 _plane setVariable ["Rearming_done_switch", 1, false];

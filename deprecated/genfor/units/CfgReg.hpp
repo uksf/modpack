@@ -1,4 +1,4 @@
-//Normal
+// Normal
 class GENFOR_R: GENFOR_Soldier_Base {
     _generalMacro = "GENFOR_R";
     scope = 2;

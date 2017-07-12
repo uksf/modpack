@@ -1,4 +1,4 @@
-//DSHKM
+// DSHKM
 class Genfor_Uaz_DSHKM;
 class Laraka_Uaz_DSHKM: Genfor_Uaz_DSHKM {
     faction = "UKSF_Laraka";
@@ -9,7 +9,7 @@ class Laraka_Uaz_DSHKM: Genfor_Uaz_DSHKM {
     };
 };
 
-//Unarmed
+// Unarmed
 class Genfor_Uaz_Unarmed;
 class Laraka_Uaz_Unarmed: Genfor_Uaz_Unarmed {
     faction = "UKSF_Laraka";
@@ -41,7 +41,7 @@ class Laraka_Uaz_Unarmed_Populated: Genfor_Uaz_Unarmed {
     };
 };
 
-//DSHKM
+// DSHKM
 class Azaadi_Uaz_DSHKM: Laraka_Uaz_DSHKM {
     faction = "UKSF_Azaadi";
     side = 2;
@@ -51,7 +51,7 @@ class Azaadi_Uaz_DSHKM: Laraka_Uaz_DSHKM {
     };
 };
 
-//Unarmed
+// Unarmed
 class Azaadi_Uaz_Unarmed: Laraka_Uaz_Unarmed {
     faction = "UKSF_Azaadi";
     side = 2;
