@@ -24,31 +24,38 @@ if (isServer) then {
         params ["_vehicle", "_units", "_turrets", "_side"];
         if (!isNull (driver _vehicle)) then {
             _side = switch (_side) do {
-                case 0: {east};
-                case 1: {west};
-                case 2: {resistance};
-                case 3: {civilian};
-                default {sideUnknown};
+                case 0: { east };
+                case 1: { west };
+                case 2: { resistance };
+                case 3: { civilian };
+                default { sideUnknown };
             };
-            _men = [[0,0,0], _side, _units] call BIS_fnc_spawnGroup;
-            [units _men] call Ares_fnc_AddUnitsToCurator;
+            private _group = createGroup _side;
 
             [{
-                params ["_vehicle", "_men", "_turrets"];
-                {
-                    _x moveincargo _vehicle;
-                } forEach (units _men);
+                params ["_args", "_idPFH"];
+                _args params ["_vehicle", "_men", "_index", "_group", "_turrets"];
 
-                if (count _turrets > 0) then {
-                    [{
-                        params ["_vehicle", "_turrets"];
-                        {
-                            [_vehicle turretUnit [_x]] join grpNull;
-                            deleteVehicle (_vehicle turretUnit [_x]);
-                        } forEach _turrets;
-                    }, [_vehicle, _turrets], 2] call cba_fnc_waitAndExecute;
+                if (_index isEqualTo (count _men)) exitWith {
+                    [_idPFH] call CBA_fnc_removePerFrameHandler;
+                    [QGVAR(addObjectsToCurators), []] call CBA_fnc_serverEvent;
+                    if (count _turrets > 0) then {
+                        [{
+                            params ["_vehicle", "_turrets"];
+                            {
+                                [_vehicle turretUnit [_x]] join grpNull;
+                                deleteVehicle (_vehicle turretUnit [_x]);
+                                false
+                            } count _turrets;
+                        }, [_vehicle, _turrets], 2] call cba_fnc_waitAndExecute;
+                    };
                 };
-            }, [_vehicle, _men, _turrets], 2] call cba_fnc_waitAndExecute;
+
+                private _unit = ((_men select _index) createUnit [[0, 0, 0], _group]);
+                _unit moveInCargo _vehicle;
+
+                _args set [2, _index + 1];
+            }, 1, [_vehicle, _men, 0, _group, _turrets]] call CBA_fnc_addPerFrameHandler;
         };
     }, [_vehicle, _units, _turrets, _side], 2] call cba_fnc_waitAndExecute;
 };
