@@ -213,14 +213,14 @@ class CfgVehicles {
         camouflage = 0;
         class Turrets {
             class MainTurret: NewTurret {
-                turretInfoType = "RscOptics_UAV_gunnerAdvanced";
+                turretInfoType = "RscOptics_UAV_gunnerClean";
                 weapons[] = { "Laserdesignator_mounted", "ace_hellfire_launcher", "ace_hellfire_launcher_N" };
                 magazines[] = { "Laserbatteries", "4Rnd_ACE_Hellfire_AGM114K", "4Rnd_ACE_Hellfire_AGM114N" };
                 maxHorizontalRotSpeed = 1.75;
                 maxVerticalRotSpeed = 1.75;
                 class OpticsIn {
                     class Wide {
-                        opticsDisplayName = "W";
+                        opticsDisplayName = "WW";
                         initAngleX = 0;
                         minAngleX = -35;
                         maxAngleX = 10;
@@ -234,24 +234,25 @@ class CfgVehicles {
                         visionMode[] = { "Normal","NVG","Ti" };
                         thermalMode[] = { 0,1 };
                         gunnerOpticsColor[] = { 0.15,1,0.15,1 };
-                        gunnerOpticsModel = "A3\Weapons_F\Reticle\Optics_Gunner_MBT_03_w_F.p3d";
-                        opticsPPEffects[] = { "OpticsCHAbera2","OpticsBlur2" };
+                        gunnerOpticsModel = QPATHTOF(data\empty.p3d);
+                        opticsPPEffects[] = {};
                     };
                     class Medium: Wide {
+                        opticsDisplayName = "W";
                         gunnerOpticsColor[] = { 0,0,0,1 };
                         initFov = 0.466;
                         minFov = 0.466;
                         maxFov = 0.466;
                         directionStabilized = 1;
-                        gunnerOpticsModel = "A3\Weapons_F\Reticle\Optics_Gunner_MBT_02_w_F.p3d";
+                        gunnerOpticsModel = QPATHTOF(data\empty.p3d);
                     };
                     class Narrow: Wide {
-                        opticsDisplayName = "WL";
+                        opticsDisplayName = "WM";
                         initFov = 0.2;
                         minFov = 0.2;
                         maxFov = 0.2;
                         directionStabilized = 1;
-                        gunnerOpticsModel = "A3\Weapons_F\Reticle\Optics_Gunner_MBT_02_m_F.p3d";
+                        gunnerOpticsModel = QPATHTOF(data\empty.p3d);
                     };
                     class Narrower: Wide {
                         opticsDisplayName = "M";
@@ -259,22 +260,39 @@ class CfgVehicles {
                         minFov = 0.1;
                         maxFov = 0.1;
                         directionStabilized = 1;
+                        gunnerOpticsModel = QPATHTOF(data\empty.p3d);
                     };
                     class Narrowerer: Wide {
-                        opticsDisplayName = "N";
+                        opticsDisplayName = "MN";
+                        initFov = 0.05;
+                        minFov = 0.05;
+                        maxFov = 0.05;
+                        directionStabilized = 1;
+                        gunnerOpticsModel = QPATHTOF(data\empty.p3d);
+                    };
+                    class Narrowererer: Wide {
+                        opticsDisplayName = "WN";
                         initFov = 0.02;
                         minFov = 0.02;
                         maxFov = 0.02;
                         directionStabilized = 1;
-                        gunnerOpticsModel = "A3\Weapons_F\Reticle\Optics_Gunner_MBT_02_n_F.p3d";
+                        gunnerOpticsModel = QPATHTOF(data\empty.p3d);
                     };
-                    class Narrowererer: Wide {
+                    class Narrowerererer: Wide {
                         opticsDisplayName = "N";
                         initFov = 0.01;
                         minFov = 0.01;
                         maxFov = 0.01;
                         directionStabilized = 1;
-                        gunnerOpticsModel = "A3\Weapons_F\Reticle\Optics_Gunner_MBT_02_n_F.p3d";
+                        gunnerOpticsModel = QPATHTOF(data\empty.p3d);
+                    };
+                    class Narrowererererer: Wide {
+                        opticsDisplayName = "NN";
+                        initFov = 0.005;
+                        minFov = 0.005;
+                        maxFov = 0.005;
+                        directionStabilized = 1;
+                        gunnerOpticsModel = QPATHTOF(data\empty.p3d);
                     };
                 };
                 class Components {

@@ -285,7 +285,7 @@ class CUP_B_AW159_Unarmed_BAF: CUP_B_AW159_Unarmed_GB {
 class CUP_B_AW159_GB: CUP_AW159_Dynamic_Base {
     scope = 0;
     scopeCurator = 0;
-}
+};
 class CUP_B_AW159_RN_Blackcat: CUP_AW159_Dynamic_Base {
     scope = 0;
     scopeCurator = 0;

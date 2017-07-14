@@ -79,6 +79,10 @@ class CfgAmmo{
         effectsMissileInit = "PylonBackEffects";
         CraterEffects = "Hellfire_Smoke";
         explosionEffects = "Hellfire_Explode";
+        missileLockMaxDistance = 8000;
+        class ace_missileguidance {
+            seekerMaxRange = 8000;
+        };
     };
     class ACE_Hellfire_AGM114L: ACE_Hellfire_AGM114K {
         displayName = "AGM-114L";
