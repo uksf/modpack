@@ -53,6 +53,7 @@ import timeit
 import re
 import fileinput
 import playercount
+import deploy
 
 if sys.platform == "win32":
     import winreg
@@ -77,7 +78,9 @@ importantFiles = ["mod.cpp", "README.md", "mod.paa", "modLarge.paa", "AUTHORS.tx
 versionFiles = ["mod.cpp", "README.md"]
 sign = False
 mission = False
-ciBuild = False # Used for CI builds
+ace = False
+compats = ["ace_compat_rksl_pm_ii"]
+deployServer = False
 
 ###############################################################################
 # http://akiscode.com/articles/sha-1directoryhash.shtml
@@ -312,6 +315,8 @@ def print_error(msg):
     color("red")
     print ("ERROR: {}".format(msg))
     color("reset")
+    global printedErrors
+    printedErrors += 1
 
 def print_green(msg):
     color("green")
@@ -773,7 +778,32 @@ def copy_dependencies():
                     return 1
 
     shutil.rmtree(temp_path)
+
+    return 0
+
+def update_ace():
+    ace_path = os.path.join(make_root, "..\\..", "ace")
+    ace_tools = os.path.join(ace_path, "tools")
+    ace_release = os.path.join(ace_path, "release\\@ace")
+    uksf_ace_release = os.path.join(release_dir, "@uksf_ace")
+    if os.path.exists(uksf_ace_release):
+        shutil.rmtree(uksf_ace_release)
     
+    print_yellow("Running ACE make.py\n")
+    ret = subprocess.call(["python", os.path.join(ace_tools, "make.py")])
+    print_yellow("###############################################################################")
+    if ret == 1:
+        return 1
+
+    print_blue("\nCopying compats")
+    for file in os.listdir(os.path.join(ace_release, "optionals")):
+        for compat in compats:
+            if ((compat in file) and not(os.path.isfile(os.path.join(ace_release, "addons", file)))):
+                shutil.copyfile(os.path.join(ace_release, "optionals", file), os.path.join(ace_release, "addons", file))
+
+    print_blue("\nCopying ACE release folder")
+    shutil.copytree(ace_release, uksf_ace_release)
+
     return 0
 
 ###############################################################################
@@ -795,10 +825,15 @@ def main(argv):
     global dssignfile
     global prefix
     global pbo_name_prefix
-    global ciBuild
     global sign
     global mission
+    global ace
+    global deployServer
     global missingFiles
+    global failedBuilds
+    global printedErrors
+
+    printedErrors = 0
 
     if sys.platform != "win32":
         print_error("Non-Windows platform (Cygwin?). Please re-run from cmd.")
@@ -916,10 +951,6 @@ See the make.cfg file for additional build options.
     else:
         compile_ext = False
 
-    if "ci" in argv:
-        argv.remove("ci")
-        ciBuild = True
-
     if "sign" in argv:
         argv.remove("sign")
         sign = True
@@ -928,14 +959,24 @@ See the make.cfg file for additional build options.
         argv.remove("mission")
         mission = True
 
+    if "ace" in argv:
+        argv.remove("ace")
+        ace = True
+
+    if "deployServer" in argv:
+        argv.remove("deployServer")
+        sign = True
+        mission = True
+        ace = True
+        make_release_zip = True
+        deployServer = True
+
     print_yellow("\nCheck external references is set to {}".format(str(check_external)))
 
     # Get the directory the make script is in.
     make_root = os.path.dirname(os.path.realpath(__file__))
     make_root_parent = os.path.abspath(os.path.join(os.getcwd(), os.pardir))
     os.chdir(make_root)
-
-
 
     cfg = configparser.ConfigParser();
     try:
@@ -1407,6 +1448,26 @@ See the make.cfg file for additional build options.
             restore_version_files()
 
     # Done building all modules!
+            
+    if (sign):
+        ret = copy_dependencies()
+        if ret == 0:
+            print_blue("\nDependencies signed")
+        else:
+            print_error("Could not sign dependencies")
+
+    if (mission):
+        print_blue("\nUpdating player count...")
+        os.chdir(make_root)
+        playercount.update_player_count()
+
+    if (ace):
+        print_blue("\nUpdating ACE...")
+        ret = update_ace()
+        if ret == 0:
+            print_blue("\nACE Updated")
+        else:
+            print_error("Failed to update ACE")
 
     # Write out the cache state
     cache_out = json.dumps(cache)
@@ -1474,33 +1535,20 @@ See the make.cfg file for additional build options.
                 shutil.copytree(os.path.join(module_root, release_dir, project), os.path.join(a3_path, project))
             except:
                 print_error("Could not copy files. Is Arma 3 running?")
-            
-    if (sign):
-        ret = copy_dependencies()
-        if ret == 0:
-            print_blue("\nDependencies signed")
-        else:
-            print_error("Could not sign dependencies")
 
-    if (mission):
-        print_blue("\nUpdating player count...")
-        os.chdir(make_root)
-        playercount.update_player_count()
-
-    if len(failedBuilds) > 0 or len(missingFiles) > 0:
+    tracedErrors = len(failedBuilds) + len(missingFiles)
+    if printedErrors > 0: # printedErrors includes tracedErrors
+        printedOnlyErrors = printedErrors - tracedErrors
+        print()
+        print_error("Failed with {} errors.".format(printedErrors))
         if len(failedBuilds) > 0:
-            print()
-            print_error("Build failed! {} PBOs failed!".format(len(failedBuilds)))
             for failedBuild in failedBuilds:
-                print("- {} failed.".format(failedBuild))
-
+                print("- {} build failed!".format(failedBuild))
         if len(missingFiles) > 0:
-            missingFiles = set(missingFiles)
-            print()
-            print_error("Missing files! {} files not found!".format(len(missingFiles)))
             for missingFile in missingFiles:
-                print("- {} failed.".format(missingFile))
-
+                print("- {} not found!".format(missingFile))
+        if printedOnlyErrors > 0:
+            print_yellow("- {} untraced error(s)!".format(printedOnlyErrors))
         sys.exit(1)
     else:
         print_green("\nCompleted with 0 errors.")
@@ -1511,5 +1559,5 @@ if __name__ == "__main__":
     d,h,m,s = Fract_Sec(timeit.default_timer() - start_time)
     print("\nTotal Program time elapsed: {0:2}h {1:2}m {2:4.5f}s".format(h,m,s))
 
-    if ciBuild:
-        sys.exit(0)
+    if deployServer:
+        sys.exit(deploy.deploy_to_server())

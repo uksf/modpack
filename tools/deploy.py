@@ -222,10 +222,11 @@ def remote_deploy():
         client.close()
 
     except Exception as e:
+        client.close()
         print_error(e)
         raise Exception
 
-if __name__ == "__main__":
+def deploy_to_server():
     print("""
 ###############
 # UKSF Deploy #
@@ -238,4 +239,5 @@ if __name__ == "__main__":
     except:
         print_red("\n# Deploy Failed")
 
-    sys.exit()
+if __name__ == "__main__":
+    sys.exit(deploy_to_server())
