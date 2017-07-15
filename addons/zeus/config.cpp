@@ -38,3 +38,6 @@ class CfgPatches {
 #include "CfgFunctions.hpp"
 #include "CfgVehicles.hpp"
 #include "RscDisplayCurator.hpp"
+class cfgHints {
+    delete Ares;
+};

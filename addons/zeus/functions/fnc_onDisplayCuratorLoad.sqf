@@ -30,11 +30,11 @@ if (isNil "Achilles_curator_init_done") then {
     Achilles_var_reloadVisionModes = nil;
     Achilles_curator_init_done = true;
 };
-if (_displayReload) exitWith {};    
+
 private _display = (_this select 0);
-_display displayAddEventHandler ["KeyDown", {_this call Achilles_fnc_HandleCuratorKeyPressed;}];
-_display displayAddEventHandler ["KeyUp", {_this call Achilles_fnc_HandleCuratorKeyReleased;}];
+_display displayAddEventHandler ["KeyDown", { _this call Achilles_fnc_HandleCuratorKeyPressed; }];
+_display displayAddEventHandler ["KeyUp", { _this call Achilles_fnc_HandleCuratorKeyReleased; }];
 [] spawn {
-    waitUntil {!(isNull (findDisplay 312))};
+    waitUntil { !(isNull (findDisplay 312)) };
     [] call Achilles_fnc_OnModuleTreeLoad;
 };
