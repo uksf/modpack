@@ -24,6 +24,7 @@ DELETE THIS LINE FOR SUPPORT FUNCTIONS */
 
 class ACE_Settings {
     //------------------------------ COMMENT OR UNCOMMENT APPROPRIATE LINES FOR BASIC OR ADVANCED ------------------------------
+    //------------------------------------------ A COMMENT IS A LINE STARTING WITH // ------------------------------------------
     //---------------------------------------------------------- BASIC ---------------------------------------------------------
     //class ace_medical_useLocation_PAK { value = 0; typeName = "SCALAR"; force = 1; };
     //-------------------------------------------------------- ADVANCED --------------------------------------------------------
