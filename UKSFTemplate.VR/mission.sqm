@@ -2023,7 +2023,7 @@ class Mission
 					class Attributes
 					{
 						rank="CORPORAL";
-						description="Platoon RTO - LCpl.Dimes.J@Guardian 1";
+						description="Platoon RTO@Guardian 1";
 						isPlayable=1;
 					};
 					id=26;
