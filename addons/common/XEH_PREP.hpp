@@ -1,3 +1,4 @@
+PREP(addNVG);
 PREP(addObjectsToCurators);
 PREP(configExport);
 PREP(configExportExtension);
