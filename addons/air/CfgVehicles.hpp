@@ -52,6 +52,12 @@ class CfgVehicles {
     class Plane_CAS_02_base_F: Plane_Base_F {
         epeImpulseDamageCoef = 0;
     };
+    class Plane_Fighter_01_Base_F: Plane_Base_F {
+        epeImpulseDamageCoef = 0;
+    };
+    class Plane_Fighter_02_Base_F: Plane_Base_F {
+        epeImpulseDamageCoef = 0;
+    };
     class Plane_Fighter_03_base_F: Plane_Base_F {
         epeImpulseDamageCoef = 0;
     };

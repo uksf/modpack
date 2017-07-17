@@ -750,9 +750,11 @@ def copy_dependencies():
             shutil.move(os.path.join(dependencies_path, file), os.path.join(temp_path, file))
 
     for file in os.listdir(dependencies_path):
-        if (file.endswith(".pbo") and os.path.isfile(os.path.join(dependencies_path, file))):
+        if (file.endswith(".pbo") and os.path.isfile(os.path.join(dependencies_path, file))
+            and not os.path.isfile(os.path.join(signatures_path, file))
+            and not os.path.isfile(os.path.join(signatures_path, "{}.delete".format(os.path.splitext(os.path.basename(file))[0])))):
             if (key):
-                if(not os.path.isfile(os.path.join(signatures_path, "{}.{}.bisign".format(file, os.path.splitext(os.path.basename(key))[0])))):
+                if (not os.path.isfile(os.path.join(signatures_path, "{}.{}.bisign".format(file, os.path.splitext(os.path.basename(key))[0])))):
                     print("Signing {} with {}.".format(file, key))
                     ret = subprocess.call([dssignfile, key, os.path.join(dependencies_path, "{}".format(file))])
                     if ret == 1:
@@ -965,6 +967,11 @@ See the make.cfg file for additional build options.
 
     if "deployServer" in argv:
         argv.remove("deployServer")
+        make_release_zip = True
+        deployServer = True
+
+    if "deployServerFull" in argv:
+        argv.remove("deployServerFull")
         sign = True
         mission = True
         ace = True
