@@ -99,11 +99,9 @@ class CfgMagazines {
         CUP_PilotControl = 0;
         GVAR(pilotControl) = 1;
     };
-    class CUP_PylonPod_19Rnd_CRV7_HE_M: CUP_PylonPod_19Rnd_CRV7_FAT_M {
-        hardpoints[] += { "B_CRV7" };
-    };
-    class CUP_PylonPod_19Rnd_CRV7_KEP_M: CUP_PylonPod_19Rnd_CRV7_FAT_M {
-        hardpoints[] += { "B_CRV7" };
+    class CUP_PylonPod_12Rnd_CRV7_FAT_M: CUP_19Rnd_CRV7_FAT_M {
+        CUP_PilotControl = 0;
+        GVAR(pilotControl) = 1;
     };
     class CUP_1200Rnd_TE1_Red_Tracer_M621_20mm_HE_M;
     class CUP_PylonPod_1200Rnd_TE1_Red_Tracer_M621_20mm_HE_M: CUP_1200Rnd_TE1_Red_Tracer_M621_20mm_HE_M {
