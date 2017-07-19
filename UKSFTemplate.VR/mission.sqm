@@ -8,7 +8,7 @@ class EditorData
 	toggles=141;
 	class ItemIDProvider
 	{
-		nextID=321;
+		nextID=322;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=149;
+		nextID=155;
 	};
 	class Camera
 	{
-		pos[]={55.63586,27.244787,-14.721616};
-		dir[]={-0.51817811,-0.60629982,0.60331976};
-		up[]={-0.3951081,0.79514194,0.46002865};
-		aside[]={0.75864923,-5.7183206e-007,0.6515851};
+		pos[]={-13.987848,31.982895,19.379915};
+		dir[]={0.92266256,-0.38231921,-0.050637923};
+		up[]={0.38178107,0.92400688,-0.020953637};
+		aside[]={-0.054803152,-4.1609746e-007,-0.99851364};
 	};
 };
 binarizationWanted=0;
@@ -47,8 +47,6 @@ addons[]=
 	"CUP_AirVehciles_AW159",
 	"uksf_air",
 	"CUP_AirVehicles_CH47",
-	"USAF_F35A",
-	"uksf_f35",
 	"A3_Structures_F_Mil_Helipads",
 	"uksf_vehicles",
 	"CUP_WheeledVehicles_LR",
@@ -61,7 +59,7 @@ class AddonsMetaData
 {
 	class List
 	{
-		items=23;
+		items=21;
 		class Item0
 		{
 			className="uksf_units";
@@ -165,49 +163,36 @@ class AddonsMetaData
 		};
 		class Item15
 		{
-			className="USAF_F35A";
-			name="USAF_F35A";
-			author="USAF MOD TEAM";
-		};
-		class Item16
-		{
-			className="uksf_f35";
-			name="UKSF - F-35";
-			author="UKSF";
-			url="www.uk-sf.com";
-		};
-		class Item17
-		{
 			className="uksf_vehicles";
 			name="UKSF - Vehicles";
 			author="UKSF";
 			url="www.uk-sf.com";
 		};
-		class Item18
+		class Item16
 		{
 			className="CUP_WheeledVehicles_LR";
 			name="CUP_WheeledVehicles_LR";
 		};
-		class Item19
+		class Item17
 		{
 			className="CUP_AirVehicles_HC3";
 			name="CUP_AirVehicles_HC3";
 		};
-		class Item20
+		class Item18
 		{
 			className="A3_Supplies_F_Heli";
 			name="Arma 3 Helicopters - Ammoboxes and Supplies";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item21
+		class Item19
 		{
 			className="uksf_reaper";
 			name="UKSF - Reaper";
 			author="UKSF";
 			url="www.uk-sf.com";
 		};
-		class Item22
+		class Item20
 		{
 			className="acre_api";
 			name="ACRE2 - API";
@@ -9447,7 +9432,7 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isMedicalFacility";
-							expression="if (_value) then {_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];};";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
 							class Value
 							{
 								class data
@@ -9526,7 +9511,7 @@ class Mission
 						class Attribute2
 						{
 							property="ace_isMedicalFacility";
-							expression="if (_value) then {_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];};";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
 							class Value
 							{
 								class data
@@ -9586,7 +9571,7 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isMedicalFacility";
-							expression="if (_value) then {_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];};";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
 							class Value
 							{
 								class data
@@ -9627,7 +9612,7 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isMedicalFacility";
-							expression="if (_value) then {_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];};";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
 							class Value
 							{
 								class data
@@ -9669,7 +9654,7 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isMedicalFacility";
-							expression="if (_value) then {_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];};";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
 							class Value
 							{
 								class data
@@ -9710,7 +9695,7 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isMedicalFacility";
-							expression="if (_value) then {_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];};";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
 							class Value
 							{
 								class data
@@ -9752,7 +9737,7 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isMedicalFacility";
-							expression="if (_value) then {_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];};";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
 							class Value
 							{
 								class data
@@ -9794,7 +9779,7 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isMedicalFacility";
-							expression="if (_value) then {_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];};";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
 							class Value
 							{
 								class data
@@ -9836,7 +9821,7 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isMedicalFacility";
-							expression="if (_value) then {_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];};";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
 							class Value
 							{
 								class data
@@ -9913,7 +9898,7 @@ class Mission
 						class Attribute2
 						{
 							property="ace_isMedicalFacility";
-							expression="if (_value) then {_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];};";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
 							class Value
 							{
 								class data
@@ -12174,7 +12159,7 @@ class Mission
 						class Attribute2
 						{
 							property="ace_isMedicalFacility";
-							expression="if (_value) then {_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];};";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
 							class Value
 							{
 								class data
@@ -12252,7 +12237,7 @@ class Mission
 						class Attribute2
 						{
 							property="ace_isMedicalFacility";
-							expression="if (_value) then {_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];};";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
 							class Value
 							{
 								class data
@@ -12330,7 +12315,7 @@ class Mission
 						class Attribute2
 						{
 							property="ace_isMedicalFacility";
-							expression="if (_value) then {_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];};";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
 							class Value
 							{
 								class data
@@ -12408,7 +12393,7 @@ class Mission
 						class Attribute2
 						{
 							property="ace_isMedicalFacility";
-							expression="if (_value) then {_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];};";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
 							class Value
 							{
 								class data
@@ -12486,7 +12471,7 @@ class Mission
 						class Attribute2
 						{
 							property="ace_isMedicalFacility";
-							expression="if (_value) then {_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];};";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
 							class Value
 							{
 								class data
@@ -12534,7 +12519,7 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isMedicalVehicle";
-							expression="if (_value != 0) then {_this setVariable [""ace_medical_medicClass"", _value,  true];};";
+							expression="_this setVariable [""ace_medical_medicClass"", _value,  true];";
 							class Value
 							{
 								class data
@@ -12577,22 +12562,21 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={192.00354,5.0403214,41.588478};
+						position[]={160.00354,5.0403137,22.58848};
 					};
 					side="Empty";
 					flags=4;
 					class Attributes
 					{
 					};
-					id=127;
-					type="CUP_B_AW159_Cannon_RN_Grey";
-					atlOffset=7.6293945e-006;
+					id=126;
+					type="CUP_B_AW159_Unarmed_RN_Grey";
 					class CustomAttributes
 					{
 						class Attribute0
 						{
 							property="ace_isMedicalVehicle";
-							expression="if (_value != 0) then {_this setVariable [""ace_medical_medicClass"", _value,  true];};";
+							expression="_this setVariable [""ace_medical_medicClass"", _value,  true];";
 							class Value
 							{
 								class data
@@ -12654,21 +12638,21 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={160.00354,5.0403137,22.58848};
+						position[]={96,8.5504436,41.914787};
 					};
 					side="Empty";
 					flags=4;
 					class Attributes
 					{
 					};
-					id=126;
-					type="CUP_B_AW159_Unarmed_RN_Grey";
+					id=122;
+					type="CUP_B_CH47F_GB";
 					class CustomAttributes
 					{
 						class Attribute0
 						{
 							property="ace_isMedicalVehicle";
-							expression="if (_value != 0) then {_this setVariable [""ace_medical_medicClass"", _value,  true];};";
+							expression="_this setVariable [""ace_medical_medicClass"", _value,  true];";
 							class Value
 							{
 								class data
@@ -12699,30 +12683,11 @@ class Mission
 											"STRING"
 										};
 									};
-									value="[[[[""arifle_MXC_F"",""FirstAidKit""],[2,6]],[[""SmokeShell"",""SmokeShellBlue"",""30Rnd_65x39_caseless_mag""],[2,2,4]],[[""ToolKit"",""ItemGPS""],[1,1]],[[""B_Parachute""],[10]]],false]";
+									value="[[[[],[]],[[],[]],[[],[]],[[],[]]],true]";
 								};
 							};
 						};
-						class Attribute2
-						{
-							property="ace_fastroping_equipFRIES";
-							expression="[_this] call ace_fastroping_fnc_equipFRIES";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						nAttributes=3;
+						nAttributes=2;
 					};
 				};
 				class Item3
@@ -12730,21 +12695,21 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={96,8.5504436,41.914787};
+						position[]={96,8.5504436,4.9147887};
 					};
 					side="Empty";
 					flags=4;
 					class Attributes
 					{
 					};
-					id=122;
+					id=123;
 					type="CUP_B_CH47F_GB";
 					class CustomAttributes
 					{
 						class Attribute0
 						{
 							property="ace_isMedicalVehicle";
-							expression="if (_value != 0) then {_this setVariable [""ace_medical_medicClass"", _value,  true];};";
+							expression="_this setVariable [""ace_medical_medicClass"", _value,  true];";
 							class Value
 							{
 								class data
@@ -12787,63 +12752,6 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={96,8.5504436,4.9147887};
-					};
-					side="Empty";
-					flags=4;
-					class Attributes
-					{
-					};
-					id=123;
-					type="CUP_B_CH47F_GB";
-					class CustomAttributes
-					{
-						class Attribute0
-						{
-							property="ace_isMedicalVehicle";
-							expression="if (_value != 0) then {_this setVariable [""ace_medical_medicClass"", _value,  true];};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"SCALAR"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ammoBox";
-							expression="[_this,_value] call bis_fnc_initAmmoBox;";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="[[[[],[]],[[],[]],[[],[]],[[],[]]],true]";
-								};
-							};
-						};
-						nAttributes=2;
-					};
-				};
-				class Item5
-				{
-					dataType="Object";
-					class PositionInfo
-					{
 						position[]={224.5,7.0170002,41.871552};
 					};
 					side="Empty";
@@ -12853,8 +12761,9 @@ class Mission
 					};
 					id=192;
 					type="USAF_F35A";
+					atlOffset=-0.47805119;
 				};
-				class Item6
+				class Item5
 				{
 					dataType="Object";
 					class PositionInfo
@@ -12893,7 +12802,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isMedicalFacility";
-							expression="if (_value) then {_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];};";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
 							class Value
 							{
 								class data
@@ -12912,7 +12821,7 @@ class Mission
 						nAttributes=2;
 					};
 				};
-				class Item7
+				class Item6
 				{
 					dataType="Object";
 					class PositionInfo
@@ -12951,7 +12860,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isMedicalFacility";
-							expression="if (_value) then {_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];};";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
 							class Value
 							{
 								class data
@@ -12970,7 +12879,7 @@ class Mission
 						nAttributes=2;
 					};
 				};
-				class Item8
+				class Item7
 				{
 					dataType="Object";
 					class PositionInfo
@@ -13009,7 +12918,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isMedicalFacility";
-							expression="if (_value) then {_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];};";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
 							class Value
 							{
 								class data
@@ -13028,7 +12937,7 @@ class Mission
 						nAttributes=2;
 					};
 				};
-				class Item9
+				class Item8
 				{
 					dataType="Object";
 					class PositionInfo
@@ -13067,7 +12976,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isMedicalFacility";
-							expression="if (_value) then {_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];};";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
 							class Value
 							{
 								class data
@@ -13086,7 +12995,7 @@ class Mission
 						nAttributes=2;
 					};
 				};
-				class Item10
+				class Item9
 				{
 					dataType="Object";
 					class PositionInfo
@@ -13125,7 +13034,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isMedicalFacility";
-							expression="if (_value) then {_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];};";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
 							class Value
 							{
 								class data
@@ -13144,7 +13053,7 @@ class Mission
 						nAttributes=2;
 					};
 				};
-				class Item11
+				class Item10
 				{
 					dataType="Object";
 					class PositionInfo
@@ -13183,7 +13092,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isMedicalFacility";
-							expression="if (_value) then {_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];};";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
 							class Value
 							{
 								class data
@@ -13202,7 +13111,7 @@ class Mission
 						nAttributes=2;
 					};
 				};
-				class Item12
+				class Item11
 				{
 					dataType="Object";
 					class PositionInfo
@@ -13241,7 +13150,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isMedicalFacility";
-							expression="if (_value) then {_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];};";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
 							class Value
 							{
 								class data
@@ -13260,7 +13169,7 @@ class Mission
 						nAttributes=2;
 					};
 				};
-				class Item13
+				class Item12
 				{
 					dataType="Object";
 					class PositionInfo
@@ -13279,7 +13188,64 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isMedicalVehicle";
-							expression="if (_value != 0) then {_this setVariable [""ace_medical_medicClass"", _value,  true];};";
+							expression="_this setVariable [""ace_medical_medicClass"", _value,  true];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1;
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="ammoBox";
+							expression="[_this,_value] call bis_fnc_initAmmoBox;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="[[[[""FirstAidKit""],[10]],[[],[]],[[],[]],[[],[]]],false]";
+								};
+							};
+						};
+						nAttributes=2;
+					};
+				};
+				class Item13
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={245,6.9160042,22};
+					};
+					side="Empty";
+					flags=4;
+					class Attributes
+					{
+					};
+					id=132;
+					type="UKSF_Hemtt_Fuel";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isMedicalVehicle";
+							expression="_this setVariable [""ace_medical_medicClass"", _value,  true];";
 							class Value
 							{
 								class data
@@ -13322,21 +13288,21 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={245,6.9160042,22};
+						position[]={250,7.3134775,22};
 					};
 					side="Empty";
 					flags=4;
 					class Attributes
 					{
 					};
-					id=132;
-					type="UKSF_Hemtt_Fuel";
+					id=133;
+					type="UKSF_Hemtt_Repair";
 					class CustomAttributes
 					{
 						class Attribute0
 						{
 							property="ace_isMedicalVehicle";
-							expression="if (_value != 0) then {_this setVariable [""ace_medical_medicClass"", _value,  true];};";
+							expression="_this setVariable [""ace_medical_medicClass"", _value,  true];";
 							class Value
 							{
 								class data
@@ -13379,21 +13345,60 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={250,7.3134775,22};
+						position[]={255,6.8043747,21.998402};
 					};
 					side="Empty";
 					flags=4;
 					class Attributes
 					{
 					};
-					id=133;
-					type="UKSF_Hemtt_Repair";
+					id=134;
+					type="CUP_B_LR_Transport_GB_W";
+					atlOffset=-0.041010857;
 					class CustomAttributes
 					{
 						class Attribute0
 						{
 							property="ace_isMedicalVehicle";
-							expression="if (_value != 0) then {_this setVariable [""ace_medical_medicClass"", _value,  true];};";
+							expression="_this setVariable [""ace_medical_medicClass"", _value,  true];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item16
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={128.22067,5.1204753,40.872337};
+					};
+					side="Empty";
+					flags=4;
+					class Attributes
+					{
+					};
+					id=124;
+					type="CUP_B_Merlin_HC3_Armed_GB";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isMedicalVehicle";
+							expression="_this setVariable [""ace_medical_medicClass"", _value,  true];";
 							class Value
 							{
 								class data
@@ -13424,50 +13429,11 @@ class Mission
 											"STRING"
 										};
 									};
-									value="[[[[""FirstAidKit""],[10]],[[],[]],[[],[]],[[],[]]],false]";
+									value="[[[[""FirstAidKit""],[4]],[[],[]],[[],[]],[[],[]]],false]";
 								};
 							};
 						};
 						nAttributes=2;
-					};
-				};
-				class Item16
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={255,6.8043747,21.998402};
-					};
-					side="Empty";
-					flags=4;
-					class Attributes
-					{
-					};
-					id=134;
-					type="CUP_B_LR_Transport_GB_W";
-					atlOffset=-0.041010857;
-					class CustomAttributes
-					{
-						class Attribute0
-						{
-							property="ace_isMedicalVehicle";
-							expression="if (_value != 0) then {_this setVariable [""ace_medical_medicClass"", _value,  true];};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"SCALAR"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=1;
 					};
 				};
 				class Item17
@@ -13475,21 +13441,21 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={128.22067,5.1204753,40.872337};
+						position[]={128.22067,5.1204753,3.8723381};
 					};
 					side="Empty";
 					flags=4;
 					class Attributes
 					{
 					};
-					id=124;
+					id=125;
 					type="CUP_B_Merlin_HC3_Armed_GB";
 					class CustomAttributes
 					{
 						class Attribute0
 						{
 							property="ace_isMedicalVehicle";
-							expression="if (_value != 0) then {_this setVariable [""ace_medical_medicClass"", _value,  true];};";
+							expression="_this setVariable [""ace_medical_medicClass"", _value,  true];";
 							class Value
 							{
 								class data
@@ -13532,63 +13498,6 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={128.22067,5.1204753,3.8723381};
-					};
-					side="Empty";
-					flags=4;
-					class Attributes
-					{
-					};
-					id=125;
-					type="CUP_B_Merlin_HC3_Armed_GB";
-					class CustomAttributes
-					{
-						class Attribute0
-						{
-							property="ace_isMedicalVehicle";
-							expression="if (_value != 0) then {_this setVariable [""ace_medical_medicClass"", _value,  true];};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"SCALAR"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ammoBox";
-							expression="[_this,_value] call bis_fnc_initAmmoBox;";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="[[[[""FirstAidKit""],[4]],[[],[]],[[],[]],[[],[]]],false]";
-								};
-							};
-						};
-						nAttributes=2;
-					};
-				};
-				class Item19
-				{
-					dataType="Object";
-					class PositionInfo
-					{
 						position[]={51,5.8253026,2};
 					};
 					side="Empty";
@@ -13599,7 +13508,7 @@ class Mission
 					id=101;
 					type="UKSF_S_AmmoMedic";
 				};
-				class Item20
+				class Item19
 				{
 					dataType="Object";
 					class PositionInfo
@@ -13614,7 +13523,7 @@ class Mission
 					id=102;
 					type="UKSF_S_AmmoMedic";
 				};
-				class Item21
+				class Item20
 				{
 					dataType="Object";
 					class PositionInfo
@@ -13629,7 +13538,7 @@ class Mission
 					id=103;
 					type="UKSF_S_AmmoMedic";
 				};
-				class Item22
+				class Item21
 				{
 					dataType="Object";
 					class PositionInfo
@@ -13644,7 +13553,7 @@ class Mission
 					id=104;
 					type="UKSF_S_Ammo";
 				};
-				class Item23
+				class Item22
 				{
 					dataType="Object";
 					class PositionInfo
@@ -13659,7 +13568,7 @@ class Mission
 					id=105;
 					type="UKSF_S_Ammo";
 				};
-				class Item24
+				class Item23
 				{
 					dataType="Object";
 					class PositionInfo
@@ -13674,7 +13583,7 @@ class Mission
 					id=106;
 					type="UKSF_S_Ammo";
 				};
-				class Item25
+				class Item24
 				{
 					dataType="Object";
 					class PositionInfo
@@ -13689,7 +13598,7 @@ class Mission
 					id=107;
 					type="UKSF_S_Medic";
 				};
-				class Item26
+				class Item25
 				{
 					dataType="Object";
 					class PositionInfo
@@ -13704,7 +13613,7 @@ class Mission
 					id=108;
 					type="UKSF_S_Medic";
 				};
-				class Item27
+				class Item26
 				{
 					dataType="Object";
 					class PositionInfo
@@ -13719,7 +13628,7 @@ class Mission
 					id=109;
 					type="UKSF_S_Medic";
 				};
-				class Item28
+				class Item27
 				{
 					dataType="Object";
 					class PositionInfo
@@ -13738,7 +13647,45 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isMedicalFacility";
-							expression="if (_value) then {_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];};";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item28
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={78,5.5287609,5};
+					};
+					side="Empty";
+					flags=4;
+					class Attributes
+					{
+					};
+					id=312;
+					type="CargoNet_01_barrels_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isMedicalFacility";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
 							class Value
 							{
 								class data
@@ -13762,21 +13709,21 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={78,5.5287609,5};
+						position[]={78,5.5287609,8};
 					};
 					side="Empty";
 					flags=4;
 					class Attributes
 					{
 					};
-					id=312;
+					id=313;
 					type="CargoNet_01_barrels_F";
 					class CustomAttributes
 					{
 						class Attribute0
 						{
 							property="ace_isMedicalFacility";
-							expression="if (_value) then {_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];};";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
 							class Value
 							{
 								class data
@@ -13800,44 +13747,6 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={78,5.5287609,8};
-					};
-					side="Empty";
-					flags=4;
-					class Attributes
-					{
-					};
-					id=313;
-					type="CargoNet_01_barrels_F";
-					class CustomAttributes
-					{
-						class Attribute0
-						{
-							property="ace_isMedicalFacility";
-							expression="if (_value) then {_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						nAttributes=1;
-					};
-				};
-				class Item31
-				{
-					dataType="Object";
-					class PositionInfo
-					{
 						position[]={224.5,6.904613,3.9950609};
 					};
 					side="West";
@@ -13848,7 +13757,7 @@ class Mission
 					id=191;
 					type="CUP_B_UKSF_MQ9";
 				};
-				class Item32
+				class Item31
 				{
 					dataType="Marker";
 					position[]={60,3.8947753e+013,5};
@@ -13858,7 +13767,7 @@ class Mission
 					id=111;
 					atlOffset=3.8947753e+013;
 				};
-				class Item33
+				class Item32
 				{
 					dataType="Marker";
 					position[]={51,3.8930842e+013,5};
@@ -13868,7 +13777,7 @@ class Mission
 					id=110;
 					atlOffset=3.8930842e+013;
 				};
-				class Item34
+				class Item33
 				{
 					dataType="Marker";
 					position[]={78,-1201.0093,5};
@@ -13878,7 +13787,7 @@ class Mission
 					id=307;
 					atlOffset=-1206.0093;
 				};
-				class Item35
+				class Item34
 				{
 					dataType="Marker";
 					position[]={69,3.8930842e+013,5};
@@ -13888,7 +13797,7 @@ class Mission
 					id=112;
 					atlOffset=3.8930842e+013;
 				};
-				class Item36
+				class Item35
 				{
 					dataType="Marker";
 					position[]={96,3.8930842e+013,41};
@@ -13898,7 +13807,7 @@ class Mission
 					id=136;
 					atlOffset=3.8930842e+013;
 				};
-				class Item37
+				class Item36
 				{
 					dataType="Marker";
 					position[]={96,3.8947753e+013,4};
@@ -13908,7 +13817,7 @@ class Mission
 					id=137;
 					atlOffset=3.8947753e+013;
 				};
-				class Item38
+				class Item37
 				{
 					dataType="Marker";
 					position[]={128,3.8930842e+013,41};
@@ -13918,7 +13827,7 @@ class Mission
 					id=138;
 					atlOffset=3.8930842e+013;
 				};
-				class Item39
+				class Item38
 				{
 					dataType="Marker";
 					position[]={128,3.8897019e+013,4};
@@ -13928,7 +13837,7 @@ class Mission
 					id=139;
 					atlOffset=3.8897019e+013;
 				};
-				class Item40
+				class Item39
 				{
 					dataType="Marker";
 					position[]={160,3.8930842e+013,22.5};
@@ -13938,7 +13847,7 @@ class Mission
 					id=140;
 					atlOffset=3.8930842e+013;
 				};
-				class Item41
+				class Item40
 				{
 					dataType="Marker";
 					position[]={192,3.8930842e+013,4};
@@ -13948,7 +13857,7 @@ class Mission
 					id=143;
 					atlOffset=3.8930842e+013;
 				};
-				class Item42
+				class Item41
 				{
 					dataType="Marker";
 					position[]={192,3.8947753e+013,41};
@@ -13958,7 +13867,7 @@ class Mission
 					id=141;
 					atlOffset=3.8947753e+013;
 				};
-				class Item43
+				class Item42
 				{
 					dataType="Marker";
 					position[]={224.5,3.8897019e+013,41};
@@ -13968,7 +13877,7 @@ class Mission
 					id=144;
 					atlOffset=3.8897019e+013;
 				};
-				class Item44
+				class Item43
 				{
 					dataType="Marker";
 					position[]={224.5,3.8930842e+013,4};
@@ -13978,9 +13887,27 @@ class Mission
 					id=158;
 					atlOffset=3.8930842e+013;
 				};
+				class Item44
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={192.00354,5.0403137,40.838478};
+					};
+					side="Empty";
+					flags=4;
+					class Attributes
+					{
+						reportRemoteTargets=1;
+						receiveRemoteTargets=1;
+						reportOwnPosition=1;
+					};
+					id=321;
+					type="CUP_B_AW159_RN_Grey";
+				};
 			};
 			id=286;
-			atlOffset=3.8900278e+013;
+			atlOffset=1.9450139e+013;
 		};
 		class Item26
 		{

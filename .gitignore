@@ -10,5 +10,7 @@ Thumbs.db
 *.diff
 *.rar
 *.zip
+*.bat
+*.pyc
 tools/service.py
 tools/manage.py

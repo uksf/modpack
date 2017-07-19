@@ -17,6 +17,8 @@
 */
 #include "script_component.hpp"
 
+#define TIMEOUT 30
+
 params [["_vehicle", objNull], ["_units", []], ["_turrets", []], ["_side", 0]];
 
 if (isServer) then {
@@ -30,13 +32,13 @@ if (isServer) then {
                 case 3: { civilian };
                 default { sideUnknown };
             };
-            private _group = createGroup _side;
 
+            private _group = createGroup _side;
             [{
                 params ["_args", "_idPFH"];
-                _args params ["_vehicle", "_men", "_index", "_group", "_turrets"];
+                _args params ["_vehicle", "_units", "_index", "_group", "_turrets", "_time"];
 
-                if (_index isEqualTo (count _men)) exitWith {
+                if (_index isEqualTo (count _units) || {isNull _vehicle} || {time > (_time + TIMEOUT)}) exitWith {
                     [_idPFH] call CBA_fnc_removePerFrameHandler;
                     [QGVAR(addObjectsToCurators), []] call CBA_fnc_serverEvent;
                     if (count _turrets > 0) then {
@@ -51,11 +53,11 @@ if (isServer) then {
                     };
                 };
 
-                private _unit = ((_men select _index) createUnit [[0, 0, 0], _group]);
+                private _unit = (_group createUnit [(_units select _index), [0,0,0], [], 0, "NONE"]);
                 _unit moveInCargo _vehicle;
 
                 _args set [2, _index + 1];
-            }, 1, [_vehicle, _men, 0, _group, _turrets]] call CBA_fnc_addPerFrameHandler;
+            }, 1, [_vehicle, _units, 0, _group, _turrets, time]] call CBA_fnc_addPerFrameHandler;
         };
     }, [_vehicle, _units, _turrets, _side], 2] call cba_fnc_waitAndExecute;
 };
