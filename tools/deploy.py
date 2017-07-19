@@ -148,20 +148,6 @@ def upload_callback(data):
 
 def upload_zip():
     global upload_total
-    global file_zip
-
-    # Find the zip file (there should only be one when make is run)
-    os.chdir(os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), "release"))
-    for file in os.listdir():
-        if file.endswith(".zip"):
-            file_zip = file
-            break
-
-    if file_zip != "":
-        print_blue("Using {}".format(file_zip))
-    else:
-        print_error("No zip found")
-        raise Exception
 
     try:
         password = getpass.getpass("FTP password:")
@@ -191,6 +177,12 @@ class CallbackService(rpyc.Service):
     def exposed_print_blue(self, message):
         print_blue(message)
 
+deploy_all = False
+deploy_update = False
+deploy_build = False
+deploy_sync = False
+deploy_cleanup = False
+
 def remote_deploy():
     print_blue("\nStarting remote deploy")
     try:
@@ -204,20 +196,25 @@ def remote_deploy():
         client = rpyc.utils.factory.connect_channel(channel, service=CallbackService)
         print("Connected to uk-sf.com")
 
-        print_blue("\nExtracting remote {}".format(file_zip))
-        client.root.extract_zip(file_zip)
+        if deploy_all:
+            print_blue("\nExtracting remote {}".format(file_zip))
+            client.root.extract_zip(file_zip)
 
-        print_blue("\nUpdating repo")
-        client.root.update_repo()
+        if deploy_all or deploy_update:
+            print_blue("\nUpdating repo")
+            client.root.update_repo(file_zip)
 
-        print_blue("\nBuilding repo")
-        client.root.build_repo()
+        if deploy_all or deploy_build:
+            print_blue("\nBuilding repo")
+            client.root.build_repo()
 
-        print_blue("\nUpdating server")
-        client.root.update_server()
+        if deploy_all or deploy_sync:
+            print_blue("\nUpdating server")
+            client.root.update_server()
 
-        print_blue("\nCleaning up")
-        client.root.cleanup()
+        if deploy_all or deploy_cleanup:
+            print_blue("\nCleaning up")
+            client.root.cleanup(file_zip)
 
         client.close()
 
@@ -226,18 +223,56 @@ def remote_deploy():
         print_error(e)
         raise Exception
 
-def deploy_to_server():
+def deploy_to_server(argv):
+    global deploy_all
+    global deploy_update
+    global deploy_build
+    global deploy_sync
+    global deploy_cleanup
+    global file_zip
+
     print("""
 ###############
 # UKSF Deploy #
 ###############
 """)
+    if len(argv) == 0:
+        deploy_all = True
+    else:
+        if "update" in argv:
+            argv.remove("update")
+            deploy_update = True
+        if "build" in argv:
+            argv.remove("build")
+            deploy_build = True
+        if "sync" in argv:
+            argv.remove("sync")
+            deploy_sync = True
+        if "cleanup" in argv:
+            argv.remove("cleanup")
+            deploy_cleanup = True
+
     try:
-        upload_zip()
+        # Find the zip file (there should only be one when make is run)
+        os.chdir(os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), "release"))
+        for file in os.listdir():
+            if file.endswith(".zip"):
+                file_zip = file
+                break
+
+        if file_zip != "":
+            print_blue("Using {}".format(file_zip))
+        else:
+            print_error("No zip found")
+            raise Exception
+
+        if deploy_all:
+            upload_zip()
+
         remote_deploy()
         print_green("\n# Deploy Complete")
     except:
         print_red("\n# Deploy Failed")
 
 if __name__ == "__main__":
-    sys.exit(deploy_to_server())
+    sys.exit(deploy_to_server(sys.argv))

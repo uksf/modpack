@@ -80,7 +80,8 @@ sign = False
 mission = False
 ace = False
 compats = ["ace_compat_rksl_pm_ii"]
-deployServer = False
+deploy_server = False
+deploy_args = []
 
 ###############################################################################
 # http://akiscode.com/articles/sha-1directoryhash.shtml
@@ -830,7 +831,8 @@ def main(argv):
     global sign
     global mission
     global ace
-    global deployServer
+    global deploy_server
+    global deploy_args
     global missingFiles
     global failedBuilds
     global printedErrors
@@ -965,18 +967,29 @@ See the make.cfg file for additional build options.
         argv.remove("ace")
         ace = True
 
-    if "deployServer" in argv:
-        argv.remove("deployServer")
-        make_release_zip = True
-        deployServer = True
+    if "deploy_server" in argv:
+        argv.remove("deploy_server")
+        deploy_server = True
+        if "update" in argv:
+            argv.remove("update")
+            deploy_args.append("update")
+        if "build" in argv:
+            argv.remove("build")
+            deploy_args.append("build")
+        if "sync" in argv:
+            argv.remove("sync")
+            deploy_args.append("sync")
+        if "cleanup" in argv:
+            argv.remove("cleanup")
+            deploy_args.append("cleanup")
 
-    if "deployServerFull" in argv:
-        argv.remove("deployServerFull")
+    if not deploy_server and "deploy_server_full" in argv:
+        argv.remove("deploy_server_full")
         sign = True
         mission = True
         ace = True
         make_release_zip = True
-        deployServer = True
+        deploy_server = True
 
     print_yellow("\nCheck external references is set to {}".format(str(check_external)))
 
@@ -1566,5 +1579,5 @@ if __name__ == "__main__":
     d,h,m,s = Fract_Sec(timeit.default_timer() - start_time)
     print("\nTotal Program time elapsed: {0:2}h {1:2}m {2:4.5f}s".format(h,m,s))
 
-    if deployServer:
-        sys.exit(deploy.deploy_to_server())
+    if deploy_server:
+        sys.exit(deploy.deploy_to_server(deploy_args))

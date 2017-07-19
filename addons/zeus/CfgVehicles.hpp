@@ -66,7 +66,6 @@ class CfgVehicles {
     };
     class GVAR(moduleToggleBluforOpfor): EGVAR(common,moduleBase) {
         curatorCanAttach = 1;
-        isGlobal = 0;
         category = QEGVAR(common,zeus_uksf_side);
         displayName = "Toggle Blufor/Opfor Relations";
         function = QFUNC(moduleToggleSideRelations);
@@ -75,7 +74,6 @@ class CfgVehicles {
     };
     class GVAR(moduleToggleIndepBlufor): EGVAR(common,moduleBase) {
         curatorCanAttach = 1;
-        isGlobal = 0;
         category = QEGVAR(common,zeus_uksf_side);
         displayName = "Toggle Indep/Blufor Relations";
         function = QFUNC(moduleToggleSideRelations);
@@ -84,7 +82,6 @@ class CfgVehicles {
     };
     class GVAR(moduleToggleIndepOpfor): EGVAR(common,moduleBase) {
         curatorCanAttach = 1;
-        isGlobal = 0;
         category = QEGVAR(common,zeus_uksf_side);
         displayName = "Toggle Indep/Opfor Relations";
         function = QFUNC(moduleToggleSideRelations);
