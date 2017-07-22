@@ -671,6 +671,14 @@ class CfgWeapons {
     };
 
     class Default;
+    class Put: Default {
+        muzzles[] += { "BreachChargeMuzzle" };
+        class DemoChargeMuzzle;
+        class BreachChargeMuzzle: DemoChargeMuzzle {
+            displayName = "Breach Charge";
+            magazines[] = { "BreachCharge_Remote_Mag" };
+        };
+    };
     class CUP_weapon_mastersafe: Default {
         displayName = "Safe";
         displayNameMagazine = "Safe";

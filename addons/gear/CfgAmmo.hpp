@@ -147,7 +147,7 @@ class CfgAmmo{
         indirectHitRange = 1;
         fusedistance = 0.01;
         inittime = 0.01;
-        timetolive = 0.01;        
+        timetolive = 0.01;
         ace_frag_enabled = 1;
         ace_frag_classes[] = { "ACE_frag_medium", "ACE_frag_medium_HD" };
         ace_frag_metal = 8000;
@@ -155,6 +155,23 @@ class CfgAmmo{
         ace_frag_gurney_c = 2700;
         ace_frag_gurney_k = "1/2";
     };
+    class DemoCharge_Remote_Ammo;
+    class BreachCharge_Remote_Ammo: DemoCharge_Remote_Ammo {
+        hit = 200;
+        indirectHit = 200;
+        indirectHitRange = 1;
+        defaultMagazine = "BreachCharge_Remote_Mag";
+        mineInconspicuousness = 4;
+        mineTrigger = "RemoteTrigger";
+        explosionEffectsRadius = 5;
+        CraterEffects = "GrenadeCrater";
+        CraterWaterEffects = "ImpactEffectsWaterExplosion";
+        explosionEffects = "GrenadeExplosion";
+        SoundSetExplosion[] = { "DS_Ex_Grenade_SoundSet", "DS_Grenade_ExploTail_SoundSet", "DS_exploSmall_Tail_placeholder_SoundSet" };
+        ace_explosives_magazine = "BreachCharge_Remote_Mag";
+        ace_explosives_Explosive = "BreachCharge_Remote_Ammo_Scripted";
+    };
+    class BreachCharge_Remote_Ammo_Scripted: BreachCharge_Remote_Ammo {};
 
     class B_556x45_Ball;
     class B_556x45_Ball_Rubber: B_556x45_Ball {

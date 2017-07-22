@@ -5,7 +5,8 @@ class CfgPatches {
         name = COMPONENT_NAME;
         units[] = {
             "UKSF_B_L39_CAP",
-            "UKSF_B_L39_BMB"
+            "UKSF_B_L39_BMB",
+            "USAF_F35A"
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;

@@ -1009,5 +1009,17 @@ class CfgVehicles {
         model = QPATHTOF(data\AGM114\AGM114Hellfire_proxy.p3d);
     };
 
+    class ACE_Explosives_Place_DemoCharge;
+    class ACE_Explosives_Place_BreachCharge: ACE_Explosives_Place_DemoCharge {
+        author = "UKSF";
+        displayName = "Breach Charge";
+    };
+    class DemoCharge_F;
+    class BreachCharge_F: DemoCharge_F {
+        author = "UKSF";
+        displayName = "Breach Charge";
+        ammo = "BreachCharge_Remote_Ammo";
+    };
+
     #include "CfgVehiclesPrivate.hpp"
 };

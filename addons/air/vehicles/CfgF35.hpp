@@ -60,6 +60,7 @@ class CUP_B_F35B_LGB_BAF: CUP_B_F35B_LGB_USMC {
 class B_Plane_Fighter_01_F: Plane_Fighter_01_Base_F {};
 class USAF_F35A: B_Plane_Fighter_01_F {
     faction = "CUP_B_GB";
+    scopeCurator = 2;
     crew = "UKSF_B_Pilot_617";
     typicalCargo[] = { "UKSF_B_Pilot_617" };
 };
