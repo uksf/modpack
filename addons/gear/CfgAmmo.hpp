@@ -76,6 +76,7 @@ class CfgAmmo{
         model = QPATHTOF(data\AGM114\AGM114Hellfire.p3d);
         proxyShape = QPATHTOF(data\AGM114\AGM114Hellfire_proxy.p3d);
         ace_rearm_dummy = QGVAR(ACE_Hellfire_AGM114);
+        timeToLive = 120;
         effectsMissileInit = "PylonBackEffects";
         CraterEffects = "Hellfire_Smoke";
         explosionEffects = "Hellfire_Explode";
@@ -126,6 +127,21 @@ class CfgAmmo{
                     };
                 };
             };
+        };
+    };
+    class ACE_Hellfire_AGM114K_drone: ACE_Hellfire_AGM114K {
+        class ace_missileguidance: ace_missileguidance {
+            enabled = 1;
+            seekerAngle = 350;
+        };
+    };
+    class ACE_Hellfire_AGM114N: ACE_Hellfire_AGM114K {
+        class ace_missileguidance;
+    };
+    class ACE_Hellfire_AGM114N_drone: ACE_Hellfire_AGM114N {
+        class ace_missileguidance: ace_missileguidance {
+            enabled = 1;
+            seekerAngle = 350;
         };
     };
     class CUP_B_30x113mm_M789_HEDP_Red_Tracer: BulletBase {
