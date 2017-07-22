@@ -193,7 +193,7 @@ def remote_deploy():
         response = channel.recv()
         if response == AUTH_ERROR:
             raise ValueError("Incorrect password")
-        client = rpyc.utils.factory.connect_channel(channel, service=CallbackService)
+        client = rpyc.utils.factory.connect_channel(channel, CallbackService, config={"sync_request_timeout":3000})
         print("Connected to uk-sf.com")
 
         if deploy_all:

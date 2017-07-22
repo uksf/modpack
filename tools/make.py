@@ -1526,7 +1526,8 @@ See the make.cfg file for additional build options.
             shutil.copy(release_zip, release_dir)
             os.remove(release_zip)
             if (os.path.exists(os.path.join(release_dir, "@uksf_ace"))):
-                os.remove(os.path.join(release_dir, "@uksf_ace"))
+                shutil.rmtree(os.path.join(release_dir, "@uksf_ace"))
+
         except:
             raise
             print_error("Could not make release.")
