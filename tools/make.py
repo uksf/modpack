@@ -708,7 +708,7 @@ def version_stamp_pboprefix(module,commitID):
 
     return True
 
-def copy_dependencies():
+def sign_dependencies():
     print_blue("\nSigning dependencies")
 
     if sys.platform == "win32":
@@ -752,7 +752,7 @@ def copy_dependencies():
 
     for file in os.listdir(dependencies_path):
         if (file.endswith(".pbo") and os.path.isfile(os.path.join(dependencies_path, file))
-            and not os.path.isfile(os.path.join(signatures_path, file))
+            and not os.path.isfile(os.path.join(signatures_path, "addons", file))
             and not os.path.isfile(os.path.join(signatures_path, "{}.delete".format(os.path.splitext(os.path.basename(file))[0])))):
             if (key):
                 if (not os.path.isfile(os.path.join(signatures_path, "{}.{}.bisign".format(file, os.path.splitext(os.path.basename(key))[0])))):
@@ -1470,7 +1470,7 @@ See the make.cfg file for additional build options.
     # Done building all modules!
             
     if (sign):
-        ret = copy_dependencies()
+        ret = sign_dependencies()
         if ret == 0:
             print_blue("\nDependencies signed")
         else:
