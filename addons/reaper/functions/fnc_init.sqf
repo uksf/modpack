@@ -18,27 +18,26 @@ params ["_uav"];
 _uav setVariable ["acex_headless_blacklist", true, true];
 
 _uav setVariable [QGVAR(diveMode), false, true];
-_uav setVariable [QGVAR(observationMode), false, true];
-_uav setVariable [QGVAR(targetHeightASL), 1000, true];
+_uav setVariable [QGVAR(observationMode), true, true];
+_uav setVariable [QGVAR(targetHeightASL), 1500, true];
 _uav setVariable [QGVAR(customWaypoint), false, true];
-_heightChanged = false;
-_lastWaypoint = 1;
 
 GVAR(handlerUav) = [{
     params ["_args"];
     _args params ["_uav", "_heightChanged", "_lastWaypoint"];
+
     if (local _uav) then {
-        _height = [200, ((getWPPos [_uav, 1]) select 2)];
-        _diveMode = _uav getVariable QGVAR(diveMode);
-        _observationMode = _uav getVariable QGVAR(observationMode);
-        _targetHeightASL = _uav getVariable QGVAR(targetHeightASL);
-        _customWaypoint = _uav getVariable QGVAR(customWaypoint);
-        _currentWaypoint = currentWaypoint (group _uav);
-        _specificDistance = (getPosATL _uav) select 2;
+        private _height = [200, ((getWPPos [_uav, 1]) select 2)];
+        private _diveMode = _uav getVariable QGVAR(diveMode);
+        private _observationMode = _uav getVariable QGVAR(observationMode);
+        private _targetHeightASL = _uav getVariable QGVAR(targetHeightASL);
+        private _customWaypoint = _uav getVariable QGVAR(customWaypoint);
+        private _currentWaypoint = currentWaypoint (group _uav);
+        private _specificDistance = (getPosATL _uav) select 2;
         if (((getWPPos [_uav, _currentWaypoint]) select 2) != 0) then {
             _specificDistance = (getWPPos [_uav, _currentWaypoint]) select 2;
         };
-        
+
         // Sets the height of all current waypoints to _targetHeightASL if set.
         if (_customWaypoint && !_heightChanged) then {
             if (!(((getWPPos [_uav, _currentWaypoint]) select 2) == _targetHeightASL)) then {
@@ -57,6 +56,7 @@ GVAR(handlerUav) = [{
                 _uav forceSpeed -1;
             };
         };
+
         // Limits speed of the drone when it is getting close to its waypoint (so target can be acquired).
         // Then nosedives the drone in order for the hellfire to get a lock on the laser.
         // Once waypoint is completed drone speed is unlimited and drone climbs back to its original altitude.
@@ -84,4 +84,4 @@ GVAR(handlerUav) = [{
         _args set [1, _heightChanged];
         _args set [2, _currentWaypoint];
     };
-}, 0, [_uav, _heightChanged, _lastWaypoint]] call cba_fnc_addPerFrameHandler;
+}, 0, [_uav, false, 1]] call cba_fnc_addPerFrameHandler;

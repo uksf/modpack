@@ -470,7 +470,7 @@ class CfgVehicles {
             };
             class ACE_Drone_Immobilise {
                 displayName = "Immobilise";
-                condition = QUOTE(speed _target < 5 && {!(_target getVariable [ARR_2(QQGVAR(immobilised),false)])});
+                condition = QUOTE(speed _target < 10 && {!(_target getVariable [ARR_2(QQGVAR(immobilised),false)])});
                 statement = QUOTE([ARR_4(_target,'blockEngine',QQGVAR(immobilise),true)] call ace_common_fnc_statusEffect_set; _target setVariable [ARR_3(QQGVAR(immobilised),true,true)];);
                 showDisabled = 1;
                 enableInside = 1;
@@ -478,7 +478,7 @@ class CfgVehicles {
             };
             class ACE_Drone_Mobilise {
                 displayName = "Mobilise";
-                condition = QUOTE(speed _target < 5 && {(_target getVariable [ARR_2(QQGVAR(immobilised),false)])});
+                condition = QUOTE(speed _target < 10 && {(_target getVariable [ARR_2(QQGVAR(immobilised),false)])});
                 statement = QUOTE([ARR_4(_target,'blockEngine',QQGVAR(immobilise),false)] call ace_common_fnc_statusEffect_set; _target setVariable [ARR_3(QQGVAR(immobilised),false,true)];);
                 showDisabled = 1;
                 enableInside = 1;
