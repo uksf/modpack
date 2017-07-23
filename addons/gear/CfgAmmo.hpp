@@ -132,7 +132,10 @@ class CfgAmmo{
     class ACE_Hellfire_AGM114K_drone: ACE_Hellfire_AGM114K {
         class ace_missileguidance: ace_missileguidance {
             enabled = 1;
-            seekerAngle = 350;
+            seekerAngle = 360;
+            minDeflection = 0.0005; // Minium flap deflection for guidance
+            maxDeflection = 0.02; // Maximum flap deflection for guidance
+            incDeflection = 0.0005; // The incrmeent in which deflection adjusts.
         };
     };
     class ACE_Hellfire_AGM114N: ACE_Hellfire_AGM114K {
@@ -141,7 +144,10 @@ class CfgAmmo{
     class ACE_Hellfire_AGM114N_drone: ACE_Hellfire_AGM114N {
         class ace_missileguidance: ace_missileguidance {
             enabled = 1;
-            seekerAngle = 350;
+            seekerAngle = 360;
+            minDeflection = 0.0005; // Minium flap deflection for guidance
+            maxDeflection = 0.02; // Maximum flap deflection for guidance
+            incDeflection = 0.0005; // The incrmeent in which deflection adjusts.
         };
     };
     class CUP_B_30x113mm_M789_HEDP_Red_Tracer: BulletBase {
