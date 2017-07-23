@@ -7244,7 +7244,7 @@ class Mission
 					flags=5;
 					class Attributes
 					{
-						description="Driver - Pte.Penn.L@Pegasus 1";
+						description="Driver - LCpl.Redcoat.C@Pegasus 1";
 						isPlayable=1;
 					};
 					id=226;
@@ -7493,7 +7493,7 @@ class Mission
 					flags=5;
 					class Attributes
 					{
-						description="Gunner - Pte.Pothoven.B@Pegasus 1";
+						description="Gunner - Pte.Penn.L@Pegasus 1";
 						isPlayable=1;
 					};
 					id=228;
@@ -7779,7 +7779,7 @@ class Mission
 					class Attributes
 					{
 						rank="CORPORAL";
-						description="Commander - Pte.Chase.J@Pegasus 2";
+						description="Commander - Pte.Pothoven.B@Pegasus 2";
 						isPlayable=1;
 					};
 					id=232;
@@ -8028,7 +8028,7 @@ class Mission
 					flags=5;
 					class Attributes
 					{
-						description="Driver@Pegasus 2";
+						description="Driver - Pte.Gustas.J@Pegasus 2";
 						isPlayable=1;
 					};
 					id=233;
@@ -8277,7 +8277,7 @@ class Mission
 					flags=5;
 					class Attributes
 					{
-						description="Gunner - Pte.Bray.A@Pegasus 2";
+						description="Gunner - Pte.Brzozowski.T@Pegasus 2";
 						isPlayable=1;
 					};
 					id=235;
@@ -9062,7 +9062,7 @@ class Mission
 					flags=5;
 					class Attributes
 					{
-						description="Gunner@Pegasus 3";
+						description="Gunner - Pte.Darczuk.M@Pegasus 3";
 						isPlayable=1;
 					};
 					id=241;
