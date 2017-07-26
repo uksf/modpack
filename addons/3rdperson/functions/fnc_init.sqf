@@ -13,8 +13,4 @@
 */
 #include "script_component.hpp"
 
-[{
-    if (cameraView == "EXTERNAL" && cameraOn == player && vehicle player == player) then {
-        cameraOn switchCamera "INTERNAL";
-    };
-}, 0, []] call cba_fnc_addPerFrameHandler;
+
