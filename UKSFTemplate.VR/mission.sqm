@@ -10238,7 +10238,7 @@ class Mission
 					class Attributes
 					{
 						rank="CAPTAIN";
-						description="Wraith - FltLt.Wordy.K@JSFAW";
+						description="Wraith@JSFAW";
 						isPlayable=1;
 					};
 					id=290;
@@ -10545,7 +10545,7 @@ class Mission
 					class Attributes
 					{
 						rank="LIEUTENANT";
-						description="Spectre - PltOff.Kroonen.K@JSFAW";
+						description="Spectre - FgOff.Kroonen.K@JSFAW";
 						isPlayable=1;
 					};
 					id=292;
@@ -10928,7 +10928,7 @@ class Mission
 					class Attributes
 					{
 						rank="LIEUTENANT";
-						description="Phantom 1 - PltOff.Johnson.R@JSFAW";
+						description="Phantom 1 - FgOff.Johnson.R@JSFAW";
 						isPlayable=1;
 					};
 					id=294;
@@ -11310,8 +11310,8 @@ class Mission
 					flags=4;
 					class Attributes
 					{
-						rank="CORPORAL";
-						description="Spectre - SAc.Greaves.A@JSFAW";
+						rank="LIEUTENANT";
+						description="Spectre - PltOff.Greaves.A@JSFAW";
 						isPlayable=1;
 					};
 					id=318;
