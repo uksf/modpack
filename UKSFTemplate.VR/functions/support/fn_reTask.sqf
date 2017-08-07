@@ -22,4 +22,4 @@ private _patrolPosition = (group _leader) getVariable [QGVAR(spawnPosition), ""]
 
 if (_patrolPosition != "") then {
     [[group _leader, _patrolPosition], {[_this select 0, _this select 1] call CBA_fnc_taskPatrol;}] remoteExecCall ["bis_fnc_call", groupOwner (group _leader)];
-};     
+};
