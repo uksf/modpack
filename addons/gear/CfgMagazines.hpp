@@ -33,6 +33,9 @@ class CfgMagazines {
         displayName = "AGM-114K";
         count = 4;
     };
+    class 4Rnd_ACE_Hellfire_AGM114K_drone: 4Rnd_ACE_Hellfire_AGM114K {
+        ammo = "ACE_Hellfire_AGM114K_drone";
+    };
     class 2Rnd_ACE_Hellfire_AGM114K: 6Rnd_ACE_Hellfire_AGM114K {
         displayName = "AGM-114K";
         count = 2;
@@ -64,6 +67,9 @@ class CfgMagazines {
     };
     class 4Rnd_ACE_Hellfire_AGM114N: 6Rnd_ACE_Hellfire_AGM114N {
         count = 4;
+    };
+    class 4Rnd_ACE_Hellfire_AGM114N_drone: 4Rnd_ACE_Hellfire_AGM114N {
+        ammo = "ACE_Hellfire_AGM114N_drone";
     };
     class PylonRack_4Rnd_ACE_Hellfire_AGM114N: PylonRack_4Rnd_ACE_Hellfire_AGM114K {
         displayName = "4x AGM-114N";

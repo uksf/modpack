@@ -702,6 +702,12 @@ class CfgWeapons {
         displayName = "AGM-114N";
         magazines[] = { "2Rnd_ACE_Hellfire_AGM114N", "4Rnd_ACE_Hellfire_AGM114N", "6Rnd_ACE_Hellfire_AGM114N", "PylonMissile_1Rnd_ACE_Hellfire_AGM114N", "PylonRack_1Rnd_ACE_Hellfire_AGM114N", "PylonRack_3Rnd_ACE_Hellfire_AGM114N", "PylonRack_4Rnd_ACE_Hellfire_AGM114N" };
     };
+    class ace_hellfire_launcher_drone: ace_hellfire_launcher {
+        magazines[] = { "4Rnd_ACE_Hellfire_AGM114K_drone" };
+    };
+    class ace_hellfire_launcher_drone_N: ace_hellfire_launcher_N {
+        magazines[] = { "4Rnd_ACE_Hellfire_AGM114N_drone" };
+    };
     class ace_hellfire_launcher_L: ace_hellfire_launcher {
         displayName = "AGM-114L";
         magazines[] = { "4Rnd_ACE_Hellfire_AGM114L", "PylonRack_4Rnd_ACE_Hellfire_AGM114L" };

@@ -16,10 +16,11 @@
 
 params ["_uav", "_strike"];
 
-_group = group _uav;
-_screenPosition = screenToWorld [0.5,0.5];
-_position = [_screenPosition select 0, _screenPosition select 1, (_uav getVariable QGVAR(targetHeightASL))];
-_waypoint = ((waypoints _group) select (count (waypoints _group)) - 1);
+private _group = group _uav;
+private _screenPosition = screenToWorld [0.5,0.5];
+private _position = [_screenPosition select 0, _screenPosition select 1, (_uav getVariable QGVAR(targetHeightASL))];
+private _waypoint = ((waypoints _group) select (count (waypoints _group)) - 1);
+
 if (count (waypoints _group) <= 1) then {
     _waypoint = _group addWaypoint [_position, 0];
 } else {
