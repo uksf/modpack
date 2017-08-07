@@ -46,7 +46,7 @@
 params [["_unit", objNull], "", "", "_shooter", ["_reportDepth", 0]];
 
 if (!local _unit || {isPlayer _unit} || {isNull _unit} || {(group _unit) getVariable [QGVAR(requested), false]} ||
-    {(objectParent _shooter) isKindOf "Air"} || {speed (objectParent _shooter) > 30} || 
+    {(objectParent _shooter) isKindOf "Air"} || {speed (objectParent _shooter) > 30} ||
     {(_unit distance2D _shooter) > 750} ||
     {(random 100) < 33}) exitWith {};
 
@@ -54,16 +54,16 @@ if (!local _unit || {isPlayer _unit} || {isNull _unit} || {(group _unit) getVari
     params ["_unit", "_shooter", ["_reportDepth", 0]];
 
     if (alive _unit && {((_unit knowsAbout _shooter) > 2 || !(_shooter weaponAccessories currentMuzzle _shooter param [0, ""] != ""))}) then {
-        _supportingUnit = selectRandom (((position _unit) nearEntities [["Man"], 500]) select {SUPPORTCONDITION});
+        private _supportingUnit = selectRandom (((position _unit) nearEntities [["Man"], 500]) select {SUPPORTCONDITION});
         if (!isNull _supportingUnit) then {
             (group _unit) setVariable [QGVAR(requested), true, true];
-            _position = [(position _shooter), 50 + ((_unit distance2D _shooter) / 10) + (100 * _reportDepth)] call CBA_fnc_randPos;
-            _radius = ((_supportingUnit distance2D _shooter) / 10) + (50 * _reportDepth);
+            private _position = [(position _shooter), 50 + ((_unit distance2D _shooter) / 10) + (100 * _reportDepth)] call CBA_fnc_randPos;
+            private _radius = ((_supportingUnit distance2D _shooter) / 10) + (50 * _reportDepth);
             (group _supportingUnit) setVariable [QGVAR(tasked), true, true];
-            [group _supportingUnit] call CBA_fnc_clearWaypoints;
+            {deleteWaypoint [group _supportingUnit, 1]; false} count (waypoints (group _supportingUnit));
             [group _supportingUnit, _position, _radius, "SAD", "COMBAT", "RED", "FULL", "WEDGE", QUOTE([this] call FUNC(reTask)), [0,0,0], 20] call CBA_fnc_addWaypoint;
         };
     } else {
         [selectRandom (((position _unit) nearEntities [["Man"], 10]) select {PROXIMITYCONDITION}), "", "", _shooter, _reportDepth + 1] call FUNC(nearbySupport);
     };
-}, [_unit, _shooter, _reportDepth], 2] call CBA_fnc_waitAndExecute;    
+}, [_unit, _shooter, _reportDepth], 2] call CBA_fnc_waitAndExecute;
