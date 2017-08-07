@@ -46,6 +46,11 @@ class CfgVehicles {
         scope = 1;
         scopeCurator = 0;
     };
+    class CUP_B_AH64D_DL_USA;
+    class CUP_B_AH1_DL_BAF: CUP_B_AH64D_DL_USA {
+        scope = 1;
+        scopeCurator = 0;
+    };
 
     class AllVehicles;
     class Air: AllVehicles {

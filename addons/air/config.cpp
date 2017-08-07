@@ -36,4 +36,5 @@ class RscInGameUI {
         controls[] = { "CA_BackgroundVehicle", "CA_BackgroundVehicleTitle", "CA_BackgroundVehicleTitleDark", "CA_BackgroundFuel", "CA_Vehicle", "CA_VehicleRole", "CA_HitZones", "CA_VehicleTogglesBackground", "CA_VehicleToggles", "CA_ValueFuel", "WeaponInfoControlsGroupRight" };
     };
 };
+#include "CfgEventHandlers.hpp"
 #include "CfgVehicles.hpp"
