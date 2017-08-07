@@ -15,8 +15,8 @@
 
 params ["_curator"];
 
-private _index = QGVAR(curatorObjects) find _curator;
+private _index = GVAR(curatorObjects) find _curator;
 if (_index > -1) then {
-    unassignCurator (QGVAR(curatorObjects) select _index);
+    unassignCurator (GVAR(curatorObjects) select _index);
     publicVariable QGVAR(curatorObjects);
 };
