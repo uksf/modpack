@@ -14,6 +14,7 @@
 #include "script_component.hpp"
 
 [QGVAR(curatorAssign), [player]] call CBA_fnc_serverEvent;
-[QEGVAR(common,hint), [format ["%1 logged in", name player]]] call CBA_fnc_localEvent;
-[QEGVAR(common,hint), [format ["%1 logged in", name player], true]] call CBA_fnc_globalEvent;
-[QEGVAR(common,log), [format ["%1 logged in", name player]]] call CBA_fnc_serverEvent;
+private _message = format ["%1 logged in", name player];
+[QEGVAR(common,hint), [_message]] call CBA_fnc_localEvent;
+[QEGVAR(common,hint), [_message, true]] call CBA_fnc_globalEvent;
+[QEGVAR(common,log), [_message]] call CBA_fnc_serverEvent;

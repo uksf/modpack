@@ -7,6 +7,7 @@ ADDON = false;
 // Curator access
 GVAR(curatorGroup) = creategroup sideLogic;
 GVAR(curatorObjects) = [];
+GVAR(curatorPlayers) = [];
 
 // Setup eventhandlers
 if (isServer) then {
@@ -21,14 +22,15 @@ if (hasInterface) then {
 // Start curator access
 if (isServer) then {
     addMissionEventHandler ["HandleDisconnect", {[QGVAR(curatorUnassign), [getAssignedCuratorLogic (_this select 0)]] call CBA_fnc_serverEvent;}];
-    if (isMultiplayer) then {
+    [] spawn {
+        if (!isMultiplayer) then {
+            GVAR(curatorsMax) = 1;
+        };
         for "_i" from 1 to GVAR(curatorsMax) do {
             call FUNC(curatorCreate);
         };
+        missionNamespace setVariable [QGVAR(curatorsCreated), true, true];
     };
-};
-if (!isMultiplayer) then {
-    call FUNC(curatorCreate);
 };
 
 ADDON = true;

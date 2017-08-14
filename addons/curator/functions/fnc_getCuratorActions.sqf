@@ -31,20 +31,19 @@ _action = [QGVAR(curatorKickAll), QUOTE(Kick All), CURATOR_ICON, {[true] call FU
 _actions pushBack [_action, [], player];
 
 {
-    private _curator = _x;
-    if (!isNull (getAssignedCuratorUnit _curator)) then {
+    private _player = _x;
+    if (_player != "") then {
         _action = [
-            format [QGVAR(curatorKick_%1), _curator],
-            format ["Kick: %1", (name (getAssignedCuratorUnit _curator))],
+            format [QGVAR(curatorKick_%1), _player],
+            format ["Kick: %1", _player],
             CURATOR_ICON,
-            {[false, getAssignedCuratorUnit (_this select 2 select 0)] call FUNC(curatorKick)},
+            {[false, ((_this select 2) select 0)] call FUNC(curatorKick)},
             {MULTIPLAYER_ADMIN},
             {},
-            [_curator]
+            [_player]
         ] call ace_interact_menu_fnc_createAction;
         _actions pushBack [_action, [], player];
     };
-    false
-} count GVAR(curatorObjects);
+} forEach GVAR(curatorPlayers);
 
 _actions

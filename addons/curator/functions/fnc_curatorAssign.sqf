@@ -3,23 +3,24 @@
         Tim Beswick
 
     Description:
-        Assigns given curator to given player
-        If no curator given, last created is used instead.
+        Assigns next curator to given player
 
     Parameter(s):
         0: Player <OBJECT>
-        1: Curator <OBJECT> (Optional)
 
     Return Value:
         None
 */
 #include "script_component.hpp"
 
-params ["_player", ["_curator", objNull]];
+params ["_player"];
 
-if (isNull _curator) then {
-    _curator = (GVAR(curatorObjects) select {isNull (getAssignedCuratorUnit _x)}) select 0;
+private _index = GVAR(curatorPlayers) find "";
+if (_index > -1) then {
+    private _curator = GVAR(curatorObjects) select _index;
+    _player assignCurator _curator;
+    GVAR(curatorPlayers) set [_index, name _player];
+    publicVariable QGVAR(curatorObjects);
+    publicVariable QGVAR(curatorPlayers);
+    [QEGVAR(common,addObjectsToCurators), [[_curator]]] call CBA_fnc_localEvent;
 };
-_player assignCurator _curator;
-publicVariable QGVAR(curatorObjects);
-[QEGVAR(common,addObjectsToCurators), [[_curator]]] call CBA_fnc_localEvent;
