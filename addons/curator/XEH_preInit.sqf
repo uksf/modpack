@@ -22,15 +22,15 @@ if (hasInterface) then {
 // Start curator access
 if (isServer) then {
     addMissionEventHandler ["HandleDisconnect", {[QGVAR(curatorUnassign), [getAssignedCuratorLogic (_this select 0)]] call CBA_fnc_serverEvent;}];
-    [] spawn {
-        if (!isMultiplayer) then {
-            GVAR(curatorsMax) = 1;
-        };
-        for "_i" from 1 to GVAR(curatorsMax) do {
-            call FUNC(curatorCreate);
-        };
-        missionNamespace setVariable [QGVAR(curatorsCreated), true, true];
+    if (!isMultiplayer) then {
+        GVAR(curatorsMax) = 1;
     };
+    [EGVAR(common,startLoadingScreen), ["Loading..."]] call CBA_fnc_globalEvent;
+    for "_i" from 1 to GVAR(curatorsMax) do {
+        call FUNC(curatorCreate);
+        [EGVAR(common,progressLoadingScreen), (1 / (GVAR(curatorsMax) - 1)) * _i] call CBA_fnc_globalEvent;
+    };
+    missionNamespace setVariable [QGVAR(curatorsCreated), true, true];
 };
 
 ADDON = true;

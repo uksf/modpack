@@ -27,6 +27,9 @@ if (hasInterface) then {
     call FUNC(fpsAction);
 
     [QGVAR(hint), {_this call FUNC(hint)}] call CBA_fnc_addEventHandler;
+    [QGVAR(startLoadingScreen), {startLoadingScreen _this}] call CBA_fnc_addEventHandler;
+    [QGVAR(progressLoadingScreen), {progressLoadingScreen _this}] call CBA_fnc_addEventHandler;
+    [QGVAR(endLoadingScreen), {endLoadingScreen}] call CBA_fnc_addEventHandler;
 };
 if (!isServer && !hasInterface) then {
     GVAR(fpsEventID) = [QGVAR(fpsGet), {_this call FUNC(fpsGet)}] call CBA_fnc_addEventHandler;
