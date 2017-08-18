@@ -1,7 +1,7 @@
 version=53;
 class EditorData
 {
-	moveGridStep=0.125;
+	moveGridStep=1;
 	angleGridStep=1.5707964;
 	scaleGridStep=1;
 	autoGroupingDist=10;
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=155;
+		nextID=158;
 	};
 	class Camera
 	{
-		pos[]={-13.987848,31.982895,19.379915};
-		dir[]={0.92266256,-0.38231921,-0.050637923};
-		up[]={0.38178107,0.92400688,-0.020953637};
-		aside[]={-0.054803152,-4.1609746e-007,-0.99851364};
+		pos[]={5.511271,18.693302,-6.3186264};
+		dir[]={-0.024571676,-0.69149506,0.72202355};
+		up[]={-0.023522532,0.72223753,0.69122005};
+		aside[]={0.99945801,2.5010377e-007,0.034010611};
 	};
 };
 binarizationWanted=0;
@@ -31,7 +31,6 @@ addons[]=
 {
 	"uksf_units",
 	"A3_Ui_F",
-	"A3_Modules_F_Curator_Curator",
 	"A3_Characters_F",
 	"A3_Characters_F_Common",
 	"uksf_common",
@@ -59,7 +58,7 @@ class AddonsMetaData
 {
 	class List
 	{
-		items=21;
+		items=20;
 		class Item0
 		{
 			className="uksf_units";
@@ -76,123 +75,116 @@ class AddonsMetaData
 		};
 		class Item2
 		{
-			className="A3_Modules_F_Curator";
-			name="Arma 3 Zeus Update - Scripted Modules";
-			author="Bohemia Interactive";
-			url="https://www.arma3.com";
-		};
-		class Item3
-		{
 			className="A3_Characters_F";
 			name="Arma 3 Alpha - Characters and Clothing";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item4
+		class Item3
 		{
 			className="uksf_common";
 			name="UKSF - Common";
 			author="UKSF";
 			url="www.uk-sf.com";
 		};
-		class Item5
+		class Item4
 		{
 			className="A3_Structures_F_Mil";
 			name="Arma 3 - Military Buildings and Structures";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item6
+		class Item5
 		{
 			className="A3_Structures_F_EPA";
 			name="Arma 3 Survive Episode - Buildings and Structures";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item7
+		class Item6
 		{
 			className="ace_cargo";
 			name="ACE3 - Cargo";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
-		class Item8
+		class Item7
 		{
 			className="A3_Structures_F";
 			name="Arma 3 - Buildings and Structures";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item9
+		class Item8
 		{
 			className="A3_Structures_F_Heli";
 			name="Arma 3 Helicopters - Buildings and Structures";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item10
+		class Item9
 		{
 			className="uksf_gear";
 			name="UKSF - Gear";
 			author="UKSF";
 			url="www.uk-sf.com";
 		};
-		class Item11
+		class Item10
 		{
 			className="uksf_apache";
 			name="UKSF - Apache";
 			author="UKSF";
 			url="www.uk-sf.com";
 		};
-		class Item12
+		class Item11
 		{
 			className="CUP_AirVehciles_AW159";
 			name="CUP_AirVehciles_AW159";
 		};
-		class Item13
+		class Item12
 		{
 			className="uksf_air";
 			name="UKSF - Air";
 			author="UKSF";
 			url="www.uk-sf.com";
 		};
-		class Item14
+		class Item13
 		{
 			className="CUP_AirVehicles_CH47";
 			name="CUP_AirVehicles_CH47";
 		};
-		class Item15
+		class Item14
 		{
 			className="uksf_vehicles";
 			name="UKSF - Vehicles";
 			author="UKSF";
 			url="www.uk-sf.com";
 		};
-		class Item16
+		class Item15
 		{
 			className="CUP_WheeledVehicles_LR";
 			name="CUP_WheeledVehicles_LR";
 		};
-		class Item17
+		class Item16
 		{
 			className="CUP_AirVehicles_HC3";
 			name="CUP_AirVehicles_HC3";
 		};
-		class Item18
+		class Item17
 		{
 			className="A3_Supplies_F_Heli";
 			name="Arma 3 Helicopters - Ammoboxes and Supplies";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item19
+		class Item18
 		{
 			className="uksf_reaper";
 			name="UKSF - Reaper";
 			author="UKSF";
 			url="www.uk-sf.com";
 		};
-		class Item20
+		class Item19
 		{
 			className="acre_api";
 			name="ACRE2 - API";
@@ -770,7 +762,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=27;
+		items=24;
 		class Item0
 		{
 			dataType="Group";
@@ -820,7 +812,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -972,7 +964,7 @@ class Mission
 						class Attribute9
 						{
 							property="ace_isHandcuffed";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleHandcuffed}";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
 							class Value
 							{
 								class data
@@ -1010,7 +1002,7 @@ class Mission
 						class Attribute11
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value,  true];};";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"",_value,true];};";
 							class Value
 							{
 								class data
@@ -1108,7 +1100,7 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isHandcuffed";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleHandcuffed}";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
 							class Value
 							{
 								class data
@@ -1127,7 +1119,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -1188,7 +1180,7 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isHandcuffed";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleHandcuffed}";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
 							class Value
 							{
 								class data
@@ -1207,7 +1199,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -1267,7 +1259,7 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isHandcuffed";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleHandcuffed}";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
 							class Value
 							{
 								class data
@@ -1286,7 +1278,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -2290,7 +2282,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -2423,7 +2415,7 @@ class Mission
 						class Attribute8
 						{
 							property="ace_isHandcuffed";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleHandcuffed}";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
 							class Value
 							{
 								class data
@@ -4277,7 +4269,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -4410,7 +4402,7 @@ class Mission
 						class Attribute8
 						{
 							property="ace_isHandcuffed";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleHandcuffed}";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
 							class Value
 							{
 								class data
@@ -5751,337 +5743,7 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={2,5,3};
-			};
-			name="Admin";
-			id=175;
-			type="ModuleCurator_F";
-			class CustomAttributes
-			{
-				class Attribute0
-				{
-					property="ModuleCurator_F_Owner";
-					expression="_this setVariable ['Owner',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="#adminLogged";
-						};
-					};
-				};
-				class Attribute1
-				{
-					property="ModuleCurator_F_Forced";
-					expression="_this setVariable ['Forced',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=0;
-						};
-					};
-				};
-				class Attribute2
-				{
-					property="ModuleCurator_F_Name";
-					expression="_this setVariable ['Name',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="Admin";
-						};
-					};
-				};
-				class Attribute3
-				{
-					property="ModuleInfo";
-					expression="false";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"BOOL"
-								};
-							};
-							value=1;
-						};
-					};
-				};
-				class Attribute4
-				{
-					property="ModuleCurator_F_Addons";
-					expression="_this setVariable ['Addons',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=3;
-						};
-					};
-				};
-				nAttributes=5;
-			};
-		};
-		class Item12
-		{
-			dataType="Logic";
-			class PositionInfo
-			{
-				position[]={6,5,3};
-			};
-			name="Bridg";
-			id=176;
-			type="ModuleCurator_F";
-			class CustomAttributes
-			{
-				class Attribute0
-				{
-					property="ModuleCurator_F_Owner";
-					expression="_this setVariable ['Owner',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="76561198134463722";
-						};
-					};
-				};
-				class Attribute1
-				{
-					property="ModuleCurator_F_Forced";
-					expression="_this setVariable ['Forced',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=0;
-						};
-					};
-				};
-				class Attribute2
-				{
-					property="ModuleCurator_F_Name";
-					expression="_this setVariable ['Name',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="Bridgford";
-						};
-					};
-				};
-				class Attribute3
-				{
-					property="ModuleInfo";
-					expression="false";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"BOOL"
-								};
-							};
-							value=1;
-						};
-					};
-				};
-				class Attribute4
-				{
-					property="ModuleCurator_F_Addons";
-					expression="_this setVariable ['Addons',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=3;
-						};
-					};
-				};
-				nAttributes=5;
-			};
-		};
-		class Item13
-		{
-			dataType="Logic";
-			class PositionInfo
-			{
-				position[]={4,5,3};
-			};
-			name="Beswick";
-			id=177;
-			type="ModuleCurator_F";
-			class CustomAttributes
-			{
-				class Attribute0
-				{
-					property="ModuleCurator_F_Owner";
-					expression="_this setVariable ['Owner',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="76561198041153310";
-						};
-					};
-				};
-				class Attribute1
-				{
-					property="ModuleCurator_F_Forced";
-					expression="_this setVariable ['Forced',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=0;
-						};
-					};
-				};
-				class Attribute2
-				{
-					property="ModuleCurator_F_Name";
-					expression="_this setVariable ['Name',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="Beswick";
-						};
-					};
-				};
-				class Attribute3
-				{
-					property="ModuleInfo";
-					expression="false";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"BOOL"
-								};
-							};
-							value=1;
-						};
-					};
-				};
-				class Attribute4
-				{
-					property="ModuleCurator_F_Addons";
-					expression="_this setVariable ['Addons',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=3;
-						};
-					};
-				};
-				nAttributes=5;
-			};
-		};
-		class Item14
-		{
-			dataType="Logic";
-			class PositionInfo
-			{
-				position[]={6,5.0004883,4};
+				position[]={6,5.0004883,3};
 			};
 			name="Jarvis";
 			isPlayable=1;
@@ -6089,12 +5751,12 @@ class Mission
 			type="HeadlessClient_F";
 			atlOffset=0.00048828125;
 		};
-		class Item15
+		class Item12
 		{
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={4,5.0004883,4};
+				position[]={4,5.0004883,3};
 			};
 			name="TheVision";
 			isPlayable=1;
@@ -6102,12 +5764,12 @@ class Mission
 			type="HeadlessClient_F";
 			atlOffset=0.00048828125;
 		};
-		class Item16
+		class Item13
 		{
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={2,5.0000019,4};
+				position[]={2,5.0000019,3};
 			};
 			name="Ultron";
 			isPlayable=1;
@@ -6115,7 +5777,7 @@ class Mission
 			type="HeadlessClient_F";
 			atlOffset=1.9073486e-006;
 		};
-		class Item17
+		class Item14
 		{
 			dataType="Group";
 			side="West";
@@ -6190,7 +5852,7 @@ class Mission
 			};
 			id=188;
 		};
-		class Item18
+		class Item15
 		{
 			dataType="Group";
 			side="West";
@@ -6976,7 +6638,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item19
+		class Item16
 		{
 			dataType="Group";
 			side="West";
@@ -7760,7 +7422,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item20
+		class Item17
 		{
 			dataType="Group";
 			side="West";
@@ -8544,7 +8206,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item21
+		class Item18
 		{
 			dataType="Group";
 			side="West";
@@ -9330,7 +8992,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item22
+		class Item19
 		{
 			dataType="Layer";
 			name="Service Station";
@@ -9432,7 +9094,7 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isMedicalFacility";
-							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
 							class Value
 							{
 								class data
@@ -9511,7 +9173,7 @@ class Mission
 						class Attribute2
 						{
 							property="ace_isMedicalFacility";
-							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
 							class Value
 							{
 								class data
@@ -9571,7 +9233,7 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isMedicalFacility";
-							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
 							class Value
 							{
 								class data
@@ -9612,7 +9274,7 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isMedicalFacility";
-							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
 							class Value
 							{
 								class data
@@ -9654,7 +9316,7 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isMedicalFacility";
-							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
 							class Value
 							{
 								class data
@@ -9695,7 +9357,7 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isMedicalFacility";
-							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
 							class Value
 							{
 								class data
@@ -9737,7 +9399,7 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isMedicalFacility";
-							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
 							class Value
 							{
 								class data
@@ -9779,7 +9441,7 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isMedicalFacility";
-							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
 							class Value
 							{
 								class data
@@ -9821,7 +9483,7 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isMedicalFacility";
-							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
 							class Value
 							{
 								class data
@@ -9898,7 +9560,7 @@ class Mission
 						class Attribute2
 						{
 							property="ace_isMedicalFacility";
-							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
 							class Value
 							{
 								class data
@@ -9931,7 +9593,7 @@ class Mission
 			id=269;
 			atlOffset=-2.4999955;
 		};
-		class Item23
+		class Item20
 		{
 			dataType="Group";
 			side="West";
@@ -9979,7 +9641,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -10131,7 +9793,7 @@ class Mission
 						class Attribute9
 						{
 							property="ace_isHandcuffed";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleHandcuffed}";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
 							class Value
 							{
 								class data
@@ -10169,7 +9831,7 @@ class Mission
 						class Attribute11
 						{
 							property="ace_advanced_fatigue_performanceFactor";
-							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"", _value, true]";
+							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
 							class Value
 							{
 								class data
@@ -10188,7 +9850,7 @@ class Mission
 						class Attribute12
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value,  true];};";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"",_value,true];};";
 							class Value
 							{
 								class data
@@ -10267,7 +9929,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -10419,7 +10081,7 @@ class Mission
 						class Attribute9
 						{
 							property="ace_isHandcuffed";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleHandcuffed}";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
 							class Value
 							{
 								class data
@@ -10476,7 +10138,7 @@ class Mission
 						class Attribute12
 						{
 							property="ace_advanced_fatigue_performanceFactor";
-							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"", _value, true]";
+							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
 							class Value
 							{
 								class data
@@ -10495,7 +10157,7 @@ class Mission
 						class Attribute13
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value,  true];};";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"",_value,true];};";
 							class Value
 							{
 								class data
@@ -10593,7 +10255,7 @@ class Mission
 						class Attribute2
 						{
 							property="ace_advanced_fatigue_performanceFactor";
-							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"", _value, true]";
+							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
 							class Value
 							{
 								class data
@@ -10612,7 +10274,7 @@ class Mission
 						class Attribute3
 						{
 							property="ace_isHandcuffed";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleHandcuffed}";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
 							class Value
 							{
 								class data
@@ -10764,7 +10426,7 @@ class Mission
 						class Attribute11
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value,  true];};";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"",_value,true];};";
 							class Value
 							{
 								class data
@@ -10859,7 +10521,7 @@ class Mission
 						class Attribute16
 						{
 							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -10976,7 +10638,7 @@ class Mission
 						class Attribute2
 						{
 							property="ace_advanced_fatigue_performanceFactor";
-							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"", _value, true]";
+							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
 							class Value
 							{
 								class data
@@ -10995,7 +10657,7 @@ class Mission
 						class Attribute3
 						{
 							property="ace_isHandcuffed";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleHandcuffed}";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
 							class Value
 							{
 								class data
@@ -11147,7 +10809,7 @@ class Mission
 						class Attribute11
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value,  true];};";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"",_value,true];};";
 							class Value
 							{
 								class data
@@ -11242,7 +10904,7 @@ class Mission
 						class Attribute16
 						{
 							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -11359,7 +11021,7 @@ class Mission
 						class Attribute2
 						{
 							property="ace_advanced_fatigue_performanceFactor";
-							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"", _value, true]";
+							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
 							class Value
 							{
 								class data
@@ -11378,7 +11040,7 @@ class Mission
 						class Attribute3
 						{
 							property="ace_isHandcuffed";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleHandcuffed}";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
 							class Value
 							{
 								class data
@@ -11530,7 +11192,7 @@ class Mission
 						class Attribute11
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value,  true];};";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"",_value,true];};";
 							class Value
 							{
 								class data
@@ -11625,7 +11287,7 @@ class Mission
 						class Attribute16
 						{
 							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -11741,7 +11403,7 @@ class Mission
 						class Attribute2
 						{
 							property="ace_advanced_fatigue_performanceFactor";
-							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"", _value, true]";
+							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
 							class Value
 							{
 								class data
@@ -11760,7 +11422,7 @@ class Mission
 						class Attribute3
 						{
 							property="ace_isHandcuffed";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleHandcuffed}";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
 							class Value
 							{
 								class data
@@ -11912,7 +11574,7 @@ class Mission
 						class Attribute11
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value,  true];};";
+							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"",_value,true];};";
 							class Value
 							{
 								class data
@@ -12007,7 +11669,7 @@ class Mission
 						class Attribute16
 						{
 							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
 							class Value
 							{
 								class data
@@ -12093,7 +11755,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item24
+		class Item21
 		{
 			dataType="Layer";
 			name="Gear";
@@ -12159,7 +11821,7 @@ class Mission
 						class Attribute2
 						{
 							property="ace_isMedicalFacility";
-							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
 							class Value
 							{
 								class data
@@ -12237,7 +11899,7 @@ class Mission
 						class Attribute2
 						{
 							property="ace_isMedicalFacility";
-							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
 							class Value
 							{
 								class data
@@ -12315,7 +11977,7 @@ class Mission
 						class Attribute2
 						{
 							property="ace_isMedicalFacility";
-							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
 							class Value
 							{
 								class data
@@ -12393,7 +12055,7 @@ class Mission
 						class Attribute2
 						{
 							property="ace_isMedicalFacility";
-							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
 							class Value
 							{
 								class data
@@ -12471,7 +12133,7 @@ class Mission
 						class Attribute2
 						{
 							property="ace_isMedicalFacility";
-							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
 							class Value
 							{
 								class data
@@ -12493,7 +12155,7 @@ class Mission
 			};
 			id=284;
 		};
-		class Item25
+		class Item22
 		{
 			dataType="Layer";
 			name="Air";
@@ -12519,7 +12181,7 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isMedicalVehicle";
-							expression="_this setVariable [""ace_medical_medicClass"", _value,  true];";
+							expression="_this setVariable [""ace_medical_medicClass"",_value,true];";
 							class Value
 							{
 								class data
@@ -12576,7 +12238,7 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isMedicalVehicle";
-							expression="_this setVariable [""ace_medical_medicClass"", _value,  true];";
+							expression="_this setVariable [""ace_medical_medicClass"",_value,true];";
 							class Value
 							{
 								class data
@@ -12652,7 +12314,7 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isMedicalVehicle";
-							expression="_this setVariable [""ace_medical_medicClass"", _value,  true];";
+							expression="_this setVariable [""ace_medical_medicClass"",_value,true];";
 							class Value
 							{
 								class data
@@ -12709,7 +12371,7 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isMedicalVehicle";
-							expression="_this setVariable [""ace_medical_medicClass"", _value,  true];";
+							expression="_this setVariable [""ace_medical_medicClass"",_value,true];";
 							class Value
 							{
 								class data
@@ -12802,7 +12464,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isMedicalFacility";
-							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
 							class Value
 							{
 								class data
@@ -12860,7 +12522,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isMedicalFacility";
-							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
 							class Value
 							{
 								class data
@@ -12918,7 +12580,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isMedicalFacility";
-							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
 							class Value
 							{
 								class data
@@ -12976,7 +12638,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isMedicalFacility";
-							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
 							class Value
 							{
 								class data
@@ -13034,7 +12696,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isMedicalFacility";
-							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
 							class Value
 							{
 								class data
@@ -13092,7 +12754,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isMedicalFacility";
-							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
 							class Value
 							{
 								class data
@@ -13150,7 +12812,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isMedicalFacility";
-							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
 							class Value
 							{
 								class data
@@ -13188,7 +12850,7 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isMedicalVehicle";
-							expression="_this setVariable [""ace_medical_medicClass"", _value,  true];";
+							expression="_this setVariable [""ace_medical_medicClass"",_value,true];";
 							class Value
 							{
 								class data
@@ -13245,7 +12907,7 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isMedicalVehicle";
-							expression="_this setVariable [""ace_medical_medicClass"", _value,  true];";
+							expression="_this setVariable [""ace_medical_medicClass"",_value,true];";
 							class Value
 							{
 								class data
@@ -13302,7 +12964,7 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isMedicalVehicle";
-							expression="_this setVariable [""ace_medical_medicClass"", _value,  true];";
+							expression="_this setVariable [""ace_medical_medicClass"",_value,true];";
 							class Value
 							{
 								class data
@@ -13360,7 +13022,7 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isMedicalVehicle";
-							expression="_this setVariable [""ace_medical_medicClass"", _value,  true];";
+							expression="_this setVariable [""ace_medical_medicClass"",_value,true];";
 							class Value
 							{
 								class data
@@ -13398,7 +13060,7 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isMedicalVehicle";
-							expression="_this setVariable [""ace_medical_medicClass"", _value,  true];";
+							expression="_this setVariable [""ace_medical_medicClass"",_value,true];";
 							class Value
 							{
 								class data
@@ -13455,7 +13117,7 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isMedicalVehicle";
-							expression="_this setVariable [""ace_medical_medicClass"", _value,  true];";
+							expression="_this setVariable [""ace_medical_medicClass"",_value,true];";
 							class Value
 							{
 								class data
@@ -13647,7 +13309,7 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isMedicalFacility";
-							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
 							class Value
 							{
 								class data
@@ -13685,7 +13347,7 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isMedicalFacility";
-							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
 							class Value
 							{
 								class data
@@ -13723,7 +13385,7 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isMedicalFacility";
-							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
 							class Value
 							{
 								class data
@@ -13909,12 +13571,12 @@ class Mission
 			id=286;
 			atlOffset=1.9450139e+013;
 		};
-		class Item26
+		class Item23
 		{
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={4,5.0004883,5};
+				position[]={4,5.0004883,4};
 			};
 			id=179;
 			type="acre_api_basicMissionSetup";
