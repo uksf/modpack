@@ -8,6 +8,7 @@ class CUP_Merlin_HC3_Base: Helicopter_Base_H {
         maxFov = 1.25;
         initFov = 0.95;
     };
+    driverCanEject = 1;
     landingSoundInt0[] = { "A3\Sounds_F\vehicles\air\noises\landing_wheels_large_int1", 0.25, 1, 50 };
     landingSoundInt1[] = { "A3\Sounds_F\vehicles\air\noises\landing_wheels_large_int2", 0.25, 1, 50 };
     landingSoundInt[] = { "landingSoundInt0", 0.5, "landingSoundInt1", 0.5 };
