@@ -25,6 +25,15 @@ class CUP_BAF_Jackal2_BASE_D: Car_F {
             armor = 2; // Default: 1
         };
     };
+    class complexGearbox {
+		GearboxRatios[] = { "R1",-3.182, "N",0, "D1",4.182, "D2",2.318, "D3",1.85, "D4",1.55, "D5",1.25, "D6",1 };
+		TransmissionRatios[] = { "High", 5.539 };
+		gearBoxMode = "auto";
+		moveOffGear = 1;
+		driveString = "D";
+		neutralString = "N";
+		reverseString = "R";
+	};
 };
 class CUP_BAF_Jackal2_GMG_D: CUP_BAF_Jackal2_BASE_D {
     class Turrets: Turrets {
