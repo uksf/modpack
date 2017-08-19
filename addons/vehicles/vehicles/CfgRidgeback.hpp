@@ -14,6 +14,7 @@ class CUP_Ridgback_Base: Wheeled_APC_F {
         };
     };
     fuelCapacity = 25; // 45
+    ace_cargo_space = 6; // 4
     REARM_ACTIONS
 };
 class CUP_B_Ridgback_HMG_GB_D: CUP_Ridgback_Base {

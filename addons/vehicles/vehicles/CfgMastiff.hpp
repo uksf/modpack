@@ -14,6 +14,7 @@ class CUP_Mastiff_Base: Wheeled_APC_F {
         };
     };
     fuelCapacity = 25; // 45
+    ace_cargo_space = 8; // 4
     REARM_ACTIONS
 };
 class CUP_B_Mastiff_HMG_GB_D: CUP_Mastiff_Base {
