@@ -9,6 +9,7 @@ PREP(fpsToggle);
 PREP(getNearPlayers);
 PREP(hint);
 PREP(lineOfSight);
+PREP(moduleRespawnPosition);
 PREP(populate);
 PREP(setAllowUnconcious);
 PREP(setSkill);

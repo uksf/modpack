@@ -10,6 +10,16 @@ class CfgVehicles {
         scopeCurator = 2;
     };
 
+    class ModuleRespawnPosition_F;
+    class UKSFModuleRespawnPosition_F: ModuleRespawnPosition_F {
+        scope = 2;
+        displayName = "UKSF Respawn";
+        icon = "\a3\ui_f\data\map\markers\flags\UK_ca.paa";
+        portrait = "\a3\ui_f\data\map\markers\flags\UK_ca.paa";
+        function = QFUNC(moduleRespawnPosition);
+        class Arguments {};
+    };
+
     class NonStrategic;
     class HouseBase: NonStrategic {
         class DestructionEffects;

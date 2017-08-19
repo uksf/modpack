@@ -5,32 +5,31 @@ class EditorData
 	angleGridStep=1.5707964;
 	scaleGridStep=1;
 	autoGroupingDist=10;
-	toggles=141;
+	toggles=9;
 	class ItemIDProvider
 	{
-		nextID=322;
+		nextID=333;
 	};
 	class MarkerIDProvider
 	{
-		nextID=16;
+		nextID=23;
 	};
 	class LayerIndexProvider
 	{
-		nextID=158;
+		nextID=164;
 	};
 	class Camera
 	{
-		pos[]={5.511271,18.693302,-6.3186264};
-		dir[]={-0.024571676,-0.69149506,0.72202355};
-		up[]={-0.023522532,0.72223753,0.69122005};
-		aside[]={0.99945801,2.5010377e-007,0.034010611};
+		pos[]={5.4887195,53.416756,-39.544678};
+		dir[]={-0.11225467,-0.57897097,0.80761451};
+		up[]={-0.07971096,0.81532991,0.57347935};
+		aside[]={0.99050933,1.2351666e-007,0.13767907};
 	};
 };
 binarizationWanted=0;
 addons[]=
 {
 	"uksf_units",
-	"A3_Ui_F",
 	"A3_Characters_F",
 	"A3_Characters_F_Common",
 	"uksf_common",
@@ -42,6 +41,7 @@ addons[]=
 	"A3_Structures_F_Heli_Ind_Machines",
 	"A3_Structures_F_Heli_Civ_Constructions",
 	"uksf_gear",
+	"A3_Ui_F",
 	"uksf_apache",
 	"CUP_AirVehciles_AW159",
 	"uksf_air",
@@ -68,66 +68,66 @@ class AddonsMetaData
 		};
 		class Item1
 		{
-			className="A3_Ui_F";
-			name="Arma 3 - User Interface";
-			author="Bohemia Interactive";
-			url="https://www.arma3.com";
-		};
-		class Item2
-		{
 			className="A3_Characters_F";
 			name="Arma 3 Alpha - Characters and Clothing";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item3
+		class Item2
 		{
 			className="uksf_common";
 			name="UKSF - Common";
 			author="UKSF";
 			url="www.uk-sf.com";
 		};
-		class Item4
+		class Item3
 		{
 			className="A3_Structures_F_Mil";
 			name="Arma 3 - Military Buildings and Structures";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item5
+		class Item4
 		{
 			className="A3_Structures_F_EPA";
 			name="Arma 3 Survive Episode - Buildings and Structures";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item6
+		class Item5
 		{
 			className="ace_cargo";
 			name="ACE3 - Cargo";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
-		class Item7
+		class Item6
 		{
 			className="A3_Structures_F";
 			name="Arma 3 - Buildings and Structures";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item8
+		class Item7
 		{
 			className="A3_Structures_F_Heli";
 			name="Arma 3 Helicopters - Buildings and Structures";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item9
+		class Item8
 		{
 			className="uksf_gear";
 			name="UKSF - Gear";
 			author="UKSF";
 			url="www.uk-sf.com";
+		};
+		class Item9
+		{
+			className="A3_Ui_F";
+			name="Arma 3 - User Interface";
+			author="Bohemia Interactive";
+			url="https://www.arma3.com";
 		};
 		class Item10
 		{
@@ -5730,16 +5730,6 @@ class Mission
 		};
 		class Item10
 		{
-			dataType="Marker";
-			position[]={21,1.6256856e+024,46};
-			name="respawn_west";
-			text="UKSF";
-			type="flag_UK";
-			id=145;
-			atlOffset=1.6256856e+024;
-		};
-		class Item11
-		{
 			dataType="Logic";
 			class PositionInfo
 			{
@@ -5751,7 +5741,7 @@ class Mission
 			type="HeadlessClient_F";
 			atlOffset=0.00048828125;
 		};
-		class Item12
+		class Item11
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -5764,7 +5754,7 @@ class Mission
 			type="HeadlessClient_F";
 			atlOffset=0.00048828125;
 		};
-		class Item13
+		class Item12
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -5777,7 +5767,7 @@ class Mission
 			type="HeadlessClient_F";
 			atlOffset=1.9073486e-006;
 		};
-		class Item14
+		class Item13
 		{
 			dataType="Group";
 			side="West";
@@ -5852,7 +5842,7 @@ class Mission
 			};
 			id=188;
 		};
-		class Item15
+		class Item14
 		{
 			dataType="Group";
 			side="West";
@@ -6638,7 +6628,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item16
+		class Item15
 		{
 			dataType="Group";
 			side="West";
@@ -7422,7 +7412,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item17
+		class Item16
 		{
 			dataType="Group";
 			side="West";
@@ -8206,7 +8196,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item18
+		class Item17
 		{
 			dataType="Group";
 			side="West";
@@ -8992,7 +8982,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item19
+		class Item18
 		{
 			dataType="Layer";
 			name="Service Station";
@@ -9593,7 +9583,7 @@ class Mission
 			id=269;
 			atlOffset=-2.4999955;
 		};
-		class Item20
+		class Item19
 		{
 			dataType="Group";
 			side="West";
@@ -11755,7 +11745,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item21
+		class Item20
 		{
 			dataType="Layer";
 			name="Gear";
@@ -12155,7 +12145,7 @@ class Mission
 			};
 			id=284;
 		};
-		class Item22
+		class Item21
 		{
 			dataType="Layer";
 			name="Air";
@@ -13571,7 +13561,7 @@ class Mission
 			id=286;
 			atlOffset=1.9450139e+013;
 		};
-		class Item23
+		class Item22
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -13698,6 +13688,115 @@ class Mission
 					};
 				};
 				nAttributes=6;
+			};
+		};
+		class Item23
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={21,5,46};
+			};
+			id=331;
+			type="UKSFModuleRespawnPosition_F";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="UKSFModuleRespawnPosition_F_Name";
+					expression="_this setVariable ['Name',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="";
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="UKSFModuleRespawnPosition_F_Marker";
+					expression="_this setVariable ['Marker',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="2";
+						};
+					};
+				};
+				class Attribute2
+				{
+					property="UKSFModuleRespawnPosition_F_Side";
+					expression="_this setVariable ['Side',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="1";
+						};
+					};
+				};
+				class Attribute3
+				{
+					property="UKSFModuleRespawnPosition_F_ShowNotification";
+					expression="_this setVariable ['ShowNotification',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="0";
+						};
+					};
+				};
+				class Attribute4
+				{
+					property="UKSFModuleRespawnPosition_F_Type";
+					expression="_this setVariable ['Type',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="0";
+						};
+					};
+				};
+				nAttributes=5;
 			};
 		};
 	};

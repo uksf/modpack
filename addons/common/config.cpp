@@ -3,7 +3,9 @@
 class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
-        units[] = {};
+        units[] = {
+            "UKSFModuleRespawnPosition_F"
+        };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
@@ -25,6 +27,7 @@ class cba_Extended_EventHandlers;
 #include "CfgEditorSubcategories.hpp"
 #include "CfgFactionClasses.hpp"
 #include "CfgImprecision.hpp"
+#include "CfgMarkerColors.hpp"
 #include "CfgVehicles.hpp"
 
 enableDebugConsole[] = { "76561198041153310" };
