@@ -16,12 +16,7 @@ class Extended_PostInit_EventHandlers {
     };
 };
 
-class Extended_Init_EventHandlers {
-    class All {
-        class ADDON {
-            killed = QUOTE([QGVAR(disableCache), _this] call CBA_fnc_serverEvent;);
-        };
-    };
+class Extended_Init_EventHandlers {    
     class B_UAV_AI {
         class ADDON {
             init = QUOTE((group (_this select 0)) setVariable [ARR_3(QQGVAR(excluded), true, true)];);
@@ -35,6 +30,14 @@ class Extended_Init_EventHandlers {
     class I_UAV_AI {
         class ADDON {
             init = QUOTE((group (_this select 0)) setVariable [ARR_3(QQGVAR(excluded), true, true)];);
+        };
+    };
+};
+
+class Extended_Killed_EventHandlers {
+    class All {
+        class ADDON {
+            killed = QUOTE([QGVAR(disableCache), _this] call CBA_fnc_serverEvent;);
         };
     };
 };
