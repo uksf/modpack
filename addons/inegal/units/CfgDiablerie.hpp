@@ -126,7 +126,7 @@ class Inegal_Diablerie_S: Inegal_Soldier_Base {
     };
     class HitPoints {
         class HitFace {
-            armor = 2;
+            armor = 1.5;
             material = -1;
             name = "face_hub";
             passThrough = 0.1;
@@ -135,7 +135,7 @@ class Inegal_Diablerie_S: Inegal_Soldier_Base {
             minimalHit = 0.01;
         };
         class HitNeck: HitFace {
-            armor = 4;
+            armor = 3.5;
             material = -1;
             name = "neck";
             passThrough = 0.1;
@@ -144,7 +144,7 @@ class Inegal_Diablerie_S: Inegal_Soldier_Base {
             minimalHit = 0.01;
         };
         class HitHead: HitNeck {
-            armor = 3;
+            armor = 2.5;
             material = -1;
             name = "head";
             passThrough = 0.1;
@@ -154,7 +154,7 @@ class Inegal_Diablerie_S: Inegal_Soldier_Base {
             depends = "HitFace max HitNeck";
         };
         class HitPelvis {
-            armor = 8;
+            armor = 6;
             material = -1;
             name = "pelvis";
             passThrough = 0.04;
@@ -164,7 +164,7 @@ class Inegal_Diablerie_S: Inegal_Soldier_Base {
             minimalHit = 0.01;
         };
         class HitAbdomen: HitPelvis {
-            armor = 8;
+            armor = 6;
             material = -1;
             name = "spine1";
             passThrough = 0.04;
@@ -174,7 +174,7 @@ class Inegal_Diablerie_S: Inegal_Soldier_Base {
             minimalHit = 0.01;
         };
         class HitDiaphragm: HitAbdomen {
-            armor = 8;
+            armor = 6;
             material = -1;
             name = "spine2";
             passThrough = 0.04;
@@ -184,7 +184,7 @@ class Inegal_Diablerie_S: Inegal_Soldier_Base {
             minimalHit = 0.01;
         };
         class HitChest: HitDiaphragm {
-            armor = 8;
+            armor = 6;
             material = -1;
             name = "spine3";
             passThrough = 0.04;
@@ -194,7 +194,7 @@ class Inegal_Diablerie_S: Inegal_Soldier_Base {
             minimalHit = 0.01;
         };
         class HitBody: HitChest {
-            armor = 1000;
+            armor = 750;
             material = -1;
             name = "body";
             passThrough = 0.04;
@@ -205,7 +205,7 @@ class Inegal_Diablerie_S: Inegal_Soldier_Base {
             depends = "HitPelvis max HitAbdomen max HitDiaphragm max HitChest";
         };
         class HitArms {
-            armor = 3;
+            armor = 2.5;
             material = -1;
             name = "arms";
             passThrough = 0.4;
@@ -215,7 +215,7 @@ class Inegal_Diablerie_S: Inegal_Soldier_Base {
             minimalHit = 0.01;
         };
         class HitHands: HitArms {
-            armor = 4;
+            armor = 2;
             material = -1;
             name = "hands";
             passThrough = 0.4;
@@ -226,7 +226,7 @@ class Inegal_Diablerie_S: Inegal_Soldier_Base {
             depends = "HitArms";
         };
         class HitLegs {
-            armor = 3;
+            armor = 2.5;
             material = -1;
             name = "legs";
             passThrough = 0.4;
