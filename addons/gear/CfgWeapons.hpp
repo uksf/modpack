@@ -693,6 +693,7 @@ class CfgWeapons {
         reloadTime = 0.01;
         magazineReloadTime = 0.1;
     };
+    class CMFlareLauncher;
     class UK3CB_BAF_CMFlareLauncher: CMFlareLauncher {
         modes[] = {"Single", "Burst1", "AIBurst"};
         class Burst1: Mode_Burst {         
