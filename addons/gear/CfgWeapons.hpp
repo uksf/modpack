@@ -693,6 +693,14 @@ class CfgWeapons {
         reloadTime = 0.01;
         magazineReloadTime = 0.1;
     };
+    class UK3CB_BAF_CMFlareLauncher: CMFlareLauncher {
+        modes[] = {"Single", "Burst1", "AIBurst"};
+        class Burst1: Mode_Burst {         
+            reloadTime = 0.2;
+            displayName = "Flares 10/1s";
+            burst = 5;
+        };
+    };
     class missiles_SCALPEL;
     class ace_hellfire_launcher: missiles_SCALPEL {
         displayName = "AGM-114K";
