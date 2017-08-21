@@ -25,7 +25,11 @@ class CUP_Wolfhound_Base: Wheeled_APC_F {
         neutralString = "N";
         reverseString = "R";
     };
-    REARM_ACTIONS
+    class ACE_Actions: ACE_Actions {
+        class ACE_MainActions: ACE_MainActions {
+            position = "[0,0,1.5]";
+        };
+    };
 };
 class CUP_B_Wolfhound_HMG_GB_D: CUP_Wolfhound_Base {
     class TransportMagazines {
@@ -35,6 +39,7 @@ class CUP_B_Wolfhound_HMG_GB_D: CUP_Wolfhound_Base {
         };
     };
     REARM_ACTIONS
+    COVER_ACTIONS
 };
 class CUP_B_Wolfhound_HMG_GB_W: CUP_Wolfhound_Base {
     class TransportMagazines {
@@ -44,6 +49,7 @@ class CUP_B_Wolfhound_HMG_GB_W: CUP_Wolfhound_Base {
         };
     };
     REARM_ACTIONS
+    COVER_ACTIONS
 };
 class CUP_B_Wolfhound_GMG_GB_D: CUP_Wolfhound_Base {
     class Turrets: Turrets {
@@ -61,6 +67,7 @@ class CUP_B_Wolfhound_GMG_GB_D: CUP_Wolfhound_Base {
         };
     };
     REARM_ACTIONS
+    COVER_ACTIONS
 };
 class CUP_B_Wolfhound_GMG_GB_W: CUP_Wolfhound_Base {
     class Turrets: Turrets {
@@ -78,6 +85,7 @@ class CUP_B_Wolfhound_GMG_GB_W: CUP_Wolfhound_Base {
         };
     };
     REARM_ACTIONS
+    COVER_ACTIONS
 };
 class CUP_B_Wolfhound_LMG_GB_D: CUP_Wolfhound_Base {
     class Turrets: Turrets {
@@ -95,6 +103,7 @@ class CUP_B_Wolfhound_LMG_GB_D: CUP_Wolfhound_Base {
         };
     };
     REARM_ACTIONS
+    COVER_ACTIONS
 };
 class CUP_B_Wolfhound_LMG_GB_W: CUP_Wolfhound_Base {
     class Turrets: Turrets {
@@ -112,4 +121,5 @@ class CUP_B_Wolfhound_LMG_GB_W: CUP_Wolfhound_Base {
         };
     };
     REARM_ACTIONS
+    COVER_ACTIONS
 };

@@ -5,7 +5,7 @@ class EditorData
 	angleGridStep=1.5707964;
 	scaleGridStep=1;
 	autoGroupingDist=10;
-	toggles=9;
+	toggles=13;
 	class ItemIDProvider
 	{
 		nextID=333;
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=164;
+		nextID=170;
 	};
 	class Camera
 	{
-		pos[]={5.4887195,53.416756,-39.544678};
-		dir[]={-0.11225467,-0.57897097,0.80761451};
-		up[]={-0.07971096,0.81532991,0.57347935};
-		aside[]={0.99050933,1.2351666e-007,0.13767907};
+		pos[]={55.121941,36.156979,-41.460365};
+		dir[]={0.73821479,-0.47899577,0.47506967};
+		up[]={0.40292311,0.87772638,0.25929645};
+		aside[]={0.54118526,1.3737008e-007,-0.84095281};
 	};
 };
 binarizationWanted=0;
@@ -43,13 +43,13 @@ addons[]=
 	"uksf_gear",
 	"A3_Ui_F",
 	"uksf_apache",
-	"CUP_AirVehciles_AW159",
+	"UK3CB_BAF_Vehicles_Wildcat",
 	"uksf_air",
 	"CUP_AirVehicles_CH47",
 	"A3_Structures_F_Mil_Helipads",
 	"uksf_vehicles",
-	"CUP_WheeledVehicles_LR",
-	"CUP_AirVehicles_HC3",
+	"UK3CB_BAF_Vehicles_LandRover",
+	"UK3CB_BAF_Vehicles_Merlin",
 	"A3_Supplies_F_Heli_CargoNets",
 	"uksf_reaper",
 	"acre_api"
@@ -138,8 +138,10 @@ class AddonsMetaData
 		};
 		class Item11
 		{
-			className="CUP_AirVehciles_AW159";
-			name="CUP_AirVehciles_AW159";
+			className="UK3CB_BAF_Vehicles_Wildcat";
+			name="3CB BAF Vehicles - Wildcat";
+			author="3 Commando Brigade";
+			url="www.3commandobrigade.com";
 		};
 		class Item12
 		{
@@ -162,13 +164,17 @@ class AddonsMetaData
 		};
 		class Item15
 		{
-			className="CUP_WheeledVehicles_LR";
-			name="CUP_WheeledVehicles_LR";
+			className="UK3CB_BAF_Vehicles_LandRover";
+			name="3CB BAF Vehicles - Land Rover";
+			author="3 Commando Brigade";
+			url="www.3commandobrigade.com";
 		};
 		class Item16
 		{
-			className="CUP_AirVehicles_HC3";
-			name="CUP_AirVehicles_HC3";
+			className="UK3CB_BAF_Vehicles_Merlin";
+			name="3CB BAF Vehicles - Merlin";
+			author="3 Commando Brigade";
+			url="www.3commandobrigade.com";
 		};
 		class Item17
 		{
@@ -12214,7 +12220,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={160.00354,5.0403137,22.58848};
+						position[]={160,7.1106434,21.033318};
 					};
 					side="Empty";
 					flags=4;
@@ -12222,7 +12228,7 @@ class Mission
 					{
 					};
 					id=126;
-					type="CUP_B_AW159_Unarmed_RN_Grey";
+					type="UK3CB_BAF_Wildcat_AH1_TRN_8A";
 					class CustomAttributes
 					{
 						class Attribute0
@@ -12404,7 +12410,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={224.5,7.0170002,41.871552};
+						position[]={224.5,7.4950514,41.871552};
 					};
 					side="Empty";
 					flags=4;
@@ -12413,7 +12419,6 @@ class Mission
 					};
 					id=192;
 					type="USAF_F35A";
-					atlOffset=-0.47805119;
 				};
 				class Item5
 				{
@@ -13005,8 +13010,8 @@ class Mission
 					{
 					};
 					id=134;
-					type="CUP_B_LR_Transport_GB_W";
-					atlOffset=-0.041010857;
+					type="UK3CB_BAF_LandRover_Soft_FFR_Green_A";
+					atlOffset=-0.14250755;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -13036,7 +13041,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={128.22067,5.1204753,40.872337};
+						position[]={128.00009,8.7366047,39.050892};
 					};
 					side="Empty";
 					flags=4;
@@ -13044,7 +13049,8 @@ class Mission
 					{
 					};
 					id=124;
-					type="CUP_B_Merlin_HC3_Armed_GB";
+					type="UK3CB_BAF_Merlin_HC3_18_GPMG";
+					atlOffset=-4.7683716e-007;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -13093,7 +13099,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={128.22067,5.1204753,3.8723381};
+						position[]={128.00009,8.7366047,2.0508919};
 					};
 					side="Empty";
 					flags=4;
@@ -13101,7 +13107,8 @@ class Mission
 					{
 					};
 					id=125;
-					type="CUP_B_Merlin_HC3_Armed_GB";
+					type="UK3CB_BAF_Merlin_HC3_18_GPMG";
+					atlOffset=-4.7683716e-007;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -13544,7 +13551,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={192.00354,5.0403137,40.838478};
+						position[]={192,7.1107478,40.033321};
 					};
 					side="Empty";
 					flags=4;
@@ -13555,7 +13562,7 @@ class Mission
 						reportOwnPosition=1;
 					};
 					id=321;
-					type="CUP_B_AW159_RN_Grey";
+					type="UK3CB_BAF_Wildcat_AH1_CAS_8A";
 				};
 			};
 			id=286;
@@ -13699,105 +13706,6 @@ class Mission
 			};
 			id=331;
 			type="UKSFModuleRespawnPosition_F";
-			class CustomAttributes
-			{
-				class Attribute0
-				{
-					property="UKSFModuleRespawnPosition_F_Name";
-					expression="_this setVariable ['Name',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="";
-						};
-					};
-				};
-				class Attribute1
-				{
-					property="UKSFModuleRespawnPosition_F_Marker";
-					expression="_this setVariable ['Marker',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="2";
-						};
-					};
-				};
-				class Attribute2
-				{
-					property="UKSFModuleRespawnPosition_F_Side";
-					expression="_this setVariable ['Side',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="1";
-						};
-					};
-				};
-				class Attribute3
-				{
-					property="UKSFModuleRespawnPosition_F_ShowNotification";
-					expression="_this setVariable ['ShowNotification',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="0";
-						};
-					};
-				};
-				class Attribute4
-				{
-					property="UKSFModuleRespawnPosition_F_Type";
-					expression="_this setVariable ['Type',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="0";
-						};
-					};
-				};
-				nAttributes=5;
-			};
 		};
 	};
 };

@@ -8,9 +8,7 @@ class CfgPatches {
             "UKSF_Hemtt_Fuel",
             "UKSF_Hemtt_Repair",
             "Land_CanisterFuel_F",
-            "CargoNet_01_barrels_F",
-            "UKSF_B_LR_Ambulance_W",
-            "UKSF_B_LR_Ambulance_D"
+            "CargoNet_01_barrels_F"
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
@@ -21,7 +19,9 @@ class CfgPatches {
             "CUP_WheeledVehicles_Jackal",
             "CUP_WheeledVehicles_Mastiff",
             "CUP_WheeledVehicles_Ridgeback",
-            "CUP_WheeledVehicles_Wolfhound"
+            "CUP_WheeledVehicles_Wolfhound",
+            "UK3CB_BAF_Vehicles_Coyote_Jackal",
+            "UK3CB_BAF_Vehicles_LandRover"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };

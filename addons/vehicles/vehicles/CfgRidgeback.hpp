@@ -25,7 +25,11 @@ class CUP_Ridgback_Base: Wheeled_APC_F {
         neutralString = "N";
         reverseString = "R";
     };
-    REARM_ACTIONS
+    class ACE_Actions: ACE_Actions {
+        class ACE_MainActions: ACE_MainActions {
+            position = "[0,0,1.5]";
+        };
+    };
 };
 class CUP_B_Ridgback_HMG_GB_D: CUP_Ridgback_Base {
     class TransportMagazines {
@@ -34,6 +38,7 @@ class CUP_B_Ridgback_HMG_GB_D: CUP_Ridgback_Base {
             count = 5;
         };
     };
+    COVER_ACTIONS
     REARM_ACTIONS
 };
 class CUP_B_Ridgback_HMG_GB_W: CUP_Ridgback_Base {
@@ -43,6 +48,7 @@ class CUP_B_Ridgback_HMG_GB_W: CUP_Ridgback_Base {
             count = 5;
         };
     };
+    COVER_ACTIONS
     REARM_ACTIONS
 };
 class CUP_B_Ridgback_GMG_GB_D: CUP_Ridgback_Base {
@@ -60,6 +66,7 @@ class CUP_B_Ridgback_GMG_GB_D: CUP_Ridgback_Base {
             count = 5;
         };
     };
+    COVER_ACTIONS
     REARM_ACTIONS
 };
 class CUP_B_Ridgback_GMG_GB_W: CUP_Ridgback_Base {
@@ -77,6 +84,7 @@ class CUP_B_Ridgback_GMG_GB_W: CUP_Ridgback_Base {
             count = 5;
         };
     };
+    COVER_ACTIONS
     REARM_ACTIONS
 };
 class CUP_B_Ridgback_LMG_GB_D: CUP_Ridgback_Base {
@@ -94,6 +102,7 @@ class CUP_B_Ridgback_LMG_GB_D: CUP_Ridgback_Base {
             count = 5;
         };
     };
+    COVER_ACTIONS
     REARM_ACTIONS
 };
 class CUP_B_Ridgback_LMG_GB_W: CUP_Ridgback_Base {
@@ -111,5 +120,6 @@ class CUP_B_Ridgback_LMG_GB_W: CUP_Ridgback_Base {
             count = 5;
         };
     };
+    COVER_ACTIONS
     REARM_ACTIONS
 };

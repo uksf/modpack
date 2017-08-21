@@ -22,6 +22,7 @@
     "sqflint.checkPaths": false,
     "files.associations": {
         "*.ext": "sqf",
+        "*.hpp": "cpp",
         "array": "cpp",
         "xutility": "cpp",
         "xlocale": "cpp",
