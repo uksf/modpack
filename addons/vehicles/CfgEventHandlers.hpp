@@ -11,16 +11,6 @@ class Extended_PreInit_EventHandlers {
 };
 
 class Extended_FiredBIS_EventHandlers {
-    class CUP_BAF_Jackal2_BASE_D {
-        class ADDON {
-            fired = QUOTE(_this call FUNC(fired));
-        };
-    };
-    class CUP_LR_Base {
-        class ADDON {
-            fired = QUOTE(_this call FUNC(fired));
-        };
-    };
     class CUP_Mastiff_Base {
         class ADDON {
             fired = QUOTE(_this call FUNC(fired));

@@ -29,13 +29,13 @@ class CfgVehicles {
         class ACE_Actions: ACE_Actions {
             class ACE_MainActions;
         };
+        class ViewOptics;
         class ViewPilot;
         class Turrets: Turrets {
             class MainTurret;
             class CopilotTurret;
-        };        
+        };
         class Components;
-        class EventHandlers;
     };
     class Heli_Light_01_base_F: Helicopter_Base_H {
         epeImpulseDamageCoef = 0;
@@ -67,7 +67,9 @@ class CfgVehicles {
     #include "vehicles\CfgChinook.hpp"
     #include "vehicles\CfgF35.hpp"
     #include "vehicles\CfgGR9.hpp"
-    #include "vehicles\CfgMerlin.hpp"
     #include "vehicles\CfgPuma.hpp"
+    #include "vehicles\CfgMerlin.hpp"
     #include "vehicles\CfgWildcat.hpp"
+    #include "vehicles\CfgMerlinCUP.hpp"
+    #include "vehicles\CfgWildcatCUP.hpp"
 };

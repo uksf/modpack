@@ -1,6 +1,6 @@
-PREP(deployNet);
-PREP(deployNetMedical);
-PREP(concealNet);
+PREP(deployCover);
+PREP(deployCoverMedical);
+PREP(concealCover);
 PREP(canResupply);
 PREP(resupply);
 PREP(addmagazine);
