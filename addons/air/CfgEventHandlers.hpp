@@ -1,3 +1,9 @@
+class Extended_PreInit_EventHandlers {
+    class ADDON {
+        init = QUOTE(call COMPILE_FILE(XEH_preInit));
+    };
+};
+
 class Extended_Init_EventHandlers {
     class CUP_CH47F_base {
         class ADDON {
