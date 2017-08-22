@@ -38,3 +38,9 @@ class Extended_Init_EventHandlers {
     NVG(CUP_Creatures_Military_USMC_Soldier_Base,CUP_NVG_PVS14); // USMC
     NVG(CUP_Creatures_Military_FR_Soldier_Base,CUP_NVG_PVS14); // USMC
 };
+
+class Extended_DisplayLoad_EventHandlers {
+    class RscDisplayMultiplayerSetup {
+        cba_ui = QUOTE(_this call (uiNamespace getVariable QQFUNC(initDisplayMultiplayerLobby)));
+    };
+};

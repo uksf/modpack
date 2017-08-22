@@ -11,7 +11,8 @@ class CfgPatches {
         requiredAddons[] = {
             "uksf_main",
             "uksf_3rdperson",
-            "3denEnhanced"
+            "3denEnhanced",
+            "cba_ui"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
