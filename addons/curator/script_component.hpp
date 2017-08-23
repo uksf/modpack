@@ -10,9 +10,8 @@
 
 #define CURATOR_ICON "\A3\Ui_F_Curator\Data\Logos\arma3_zeus_icon_ca.paa"
 
-#define MULTIPLAYER_ADMIN isMultiplayer && (ADMIN_OR_HOST)
 #define CONDITION_LOGIN ((ADMIN_OR_HOST) || {!GVAR(curatorsLocked)}) && {(GVAR(curatorPlayers) find (name player)) isEqualTo -1} && {(GVAR(curatorPlayers) find "") > -1}
 #define CONDITION_LOGOUT ((ADMIN_OR_HOST) || {!GVAR(curatorsLocked)}) && {(GVAR(curatorPlayers) find (name player)) != -1}
-#define CONDITION_LOCK MULTIPLAYER_ADMIN && {!GVAR(curatorsLocked)}
-#define CONDITION_UNLOCK MULTIPLAYER_ADMIN && {GVAR(curatorsLocked)}
-#define CONDITION_KICKALL MULTIPLAYER_ADMIN && {({_x != ""} count GVAR(curatorPlayers)) > 1}
+#define CONDITION_LOCK MULTIPLAYER_ADMIN_OR_WHITELISTED && {!GVAR(curatorsLocked)}
+#define CONDITION_UNLOCK MULTIPLAYER_ADMIN_OR_WHITELISTED && {GVAR(curatorsLocked)}
+#define CONDITION_KICKALL MULTIPLAYER_ADMIN_OR_WHITELISTED && {({_x != ""} count GVAR(curatorPlayers)) > 1}
