@@ -80,6 +80,7 @@ nomake = False
 sign = False
 mission = False
 ace = False
+noace = False
 compats = ["ace_compat_rksl_pm_ii"]
 deploy_server = False
 deploy_args = []
@@ -833,6 +834,7 @@ def main(argv):
     global sign
     global mission
     global ace
+    global noace
     global deploy_server
     global deploy_args
     global missingFiles
@@ -975,7 +977,7 @@ See the make.cfg file for additional build options.
 
     if "noace" in argv:
         argv.remove("noace")
-        ace = False
+        noace = True
 
     if "deploy_server" in argv:
         argv.remove("deploy_server")
@@ -997,7 +999,8 @@ See the make.cfg file for additional build options.
         argv.remove("deploy_server_full")
         sign = True
         mission = True
-        ace = True
+        if not noace:
+            ace = True
         make_release_zip = True
         deploy_server = True
 
@@ -1493,7 +1496,7 @@ See the make.cfg file for additional build options.
         os.chdir(make_root)
         playercount.update_player_count()
 
-    if (ace):
+    if (ace and not noace):
         print_blue("\nUpdating ACE...")
         ret = update_ace()
         if ret == 0:
