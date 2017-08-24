@@ -7,6 +7,7 @@ import getpass
 import zipfile
 import ftplib
 import rpyc
+import time
 
 # Copyright (c) André Burgaud
 # http://www.burgaud.com/bring-colors-to-the-windows-console-with-python/
@@ -207,6 +208,7 @@ def remote_deploy():
         if deploy_all or deploy_build:
             print_blue("\nBuilding repo")
             client.root.build_repo()
+            time.sleep(3)
 
         if deploy_all or deploy_sync:
             print_blue("\nUpdating server")
