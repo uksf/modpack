@@ -12,7 +12,7 @@
         Nothing
 */
 #include "script_component.hpp"
-#include "\u\uksf\addons\common\players.hpp"
+#include "\u\uksf\addons\lobby\players.hpp"
 
 #define SEPARATORS "@"
 

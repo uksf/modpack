@@ -8,8 +8,6 @@
 
 #include "\u\uksf\addons\main\script_macros.hpp"
 
-#include "\a3\ui_f\hpp\defineResincl.inc"
-
 #define VERSION_CONFIG_COMMON VERSION_CONFIG;\
     versionDesc = "UKSF Mods";\
     versionAct = QUOTE(call COMPILE_FILE(init_versionTooltip))

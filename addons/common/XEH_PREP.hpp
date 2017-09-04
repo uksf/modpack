@@ -8,7 +8,6 @@ PREP(fpsSet);
 PREP(fpsToggle);
 PREP(getNearPlayers);
 PREP(hint);
-PREP(initDisplayMultiplayerLobby);
 PREP(lineOfSight);
 PREP(moduleRespawnPosition);
 PREP(populate);
