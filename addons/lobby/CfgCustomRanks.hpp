@@ -1,95 +1,107 @@
-class CfgRanks {
-    class 0 {
+class CfgCustomRanks {
+    class Rct {
+        rank = "Recruit";
+        displayName = "Recruit";
+        displayNameShort = "Rct";
+        texture = QPATHTOF(data\Empty.paa);
+    };
+    class AC {
         rank = "Aircraftman";
         displayName = "Aircraftman";
         displayNameShort = "AC";
         texture = QPATHTOF(data\Empty.paa);
     };
-    class 1 {
+    class Pte {
         rank = "Private";
         displayName = "Private";
-        displayNameShort = "Pvt";
+        displayNameShort = "Pte";
         texture = QPATHTOF(data\Empty.paa);
     };
-    class 2 {
+    class LAC {
         rank = "Leading Aircraftman";
         displayName = "Leading Aircraftman";
         displayNameShort = "LAC";
         texture = QPATHTOF(data\LAC.paa);
     };
-    class 3 {
+    class LCpl {
         rank = "Lance Corporal";
         displayName = "Lance Corporal";
         displayNameShort = "LCpl";
         texture = QPATHTOF(data\LCpl.paa);
     };
-    class 4 {
+    class SAC {
         rank = "Senior Aircraftman";
         displayName = "Senior Aircraftman";
         displayNameShort = "SAC";
         texture = QPATHTOF(data\SAC.paa);
     };
-    class 5 {
+    class Cpl {
         rank = "Corporal";
         displayName = "Corporal";
         displayNameShort = "Cpl";
         texture = QPATHTOF(data\Cpl.paa);
     };
-    class 6 {
+    class FS {
         rank = "Flight Sergeant";
         displayName = "Flight Sergeant";
         displayNameShort = "FS";
         texture = QPATHTOF(data\FS.paa);
     };
-    class 7 {
+    class Sgt {
         rank = "Sergeant";
         displayName = "Sergeant";
         displayNameShort = "Sgt";
         texture = QPATHTOF(data\Sgt.paa);
     };
-    class 8 {
+    class OCdt {
+        rank = "Officer Cadet";
+        displayName = "Officer Cadet";
+        displayNameShort = "OCdt";
+        texture = QPATHTOF(data\Empty.paa);
+    };
+    class OffCdt {
         rank = "Officer Cadet";
         displayName = "Officer Cadet";
         displayNameShort = "OffCdt";
         texture = QPATHTOF(data\Empty.paa);
     };
-    class 9 {
+    class 2Lt {
         rank = "Second Lieutenant";
         displayName = "Second Lieutenant";
         displayNameShort = "2Lt";
         texture = QPATHTOF(data\2Lt.paa);
     };
-    class 10 {
+    class PltOff {
         rank = "Pilot Officer";
         displayName = "Pilot Officer";
         displayNameShort = "PltOff";
         texture = QPATHTOF(data\PltOff.paa);
     };
-    class 11 {
+    class Lt {
         rank = "Lieutenant";
         displayName = "Lieutenant";
         displayNameShort = "Lt";
         texture = QPATHTOF(data\Lt.paa);
     };
-    class 12 {
+    class FgOff {
         rank = "Flying Officer";
         displayName = "Flying Officer";
         displayNameShort = "FgOff";
         texture = QPATHTOF(data\FgOff.paa);
     };
-    class 13 {
+    class Capt {
         rank = "Captain";
         displayName = "Captain";
         displayNameShort = "Capt";
         texture = QPATHTOF(data\Capt.paa);
     };
-    class 14 {
+    class SqnLdr {
         rank = "Squadron Leader";
         displayName = "Squadron Leader";
         displayNameShort = "SqnLdr";
         texture = QPATHTOF(data\SqnLdr.paa);
     };
-    class 15 {
+    class Maj {
         rank = "Major";
         displayName = "Major";
         displayNameShort = "Maj";

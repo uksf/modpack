@@ -16,6 +16,6 @@ class CfgPatches {
     };
 };
 
-#include "ACE_Settings.hpp"
 #include "CfgEventHandlers.hpp"
-#include "CfgRanks.hpp"
+#include "CfgCustomRanks.hpp"
+#include "CfgUnitNames.hpp"
