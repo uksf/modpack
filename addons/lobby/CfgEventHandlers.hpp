@@ -20,7 +20,4 @@ class Extended_DisplayLoad_EventHandlers {
     class RscDisplayMultiplayerSetup {
         cba_ui = QUOTE(_this call (uiNamespace getVariable QQFUNC(initDisplayMultiplayerLobby)));
     };
-    class RscDisplayMission {
-        ADDON = QUOTE(_this call COMPILE_FILE(XEH_missionDisplayLoad));
-    };
 };

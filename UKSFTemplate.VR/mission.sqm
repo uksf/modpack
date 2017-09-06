@@ -16,7 +16,7 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=173;
+		nextID=188;
 	};
 	class Camera
 	{
@@ -2472,6 +2472,29 @@ class Mission
 			};
 			id=331;
 			type="UKSFModuleRespawnPosition_F";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="UKSFModuleRespawnPosition_F_Name";
+					expression="_this setVariable ['Name',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="UKSF";
+						};
+					};
+				};
+				nAttributes=1;
+			};
 		};
 		class Item8
 		{
