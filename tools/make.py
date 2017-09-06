@@ -76,9 +76,11 @@ dependencies = "C:/SteamLibrary/_Working/next/@uksf_dependencies/addons"
 signature_blacklist = []
 importantFiles = ["mod.cpp", "README.md", "mod.paa", "modLarge.paa", "AUTHORS.txt", "LICENSE", "UKSFTemplate.VR"]
 versionFiles = ["mod.cpp", "README.md"]
+nomake = False
 sign = False
 mission = False
 ace = False
+noace = False
 compats = ["ace_compat_rksl_pm_ii"]
 deploy_server = False
 deploy_args = []
@@ -828,9 +830,11 @@ def main(argv):
     global dssignfile
     global prefix
     global pbo_name_prefix
+    global nomake
     global sign
     global mission
     global ace
+    global noace
     global deploy_server
     global deploy_args
     global missingFiles
@@ -955,6 +959,10 @@ See the make.cfg file for additional build options.
     else:
         compile_ext = False
 
+    if "nomake" in argv:
+        argv.remove("nomake")
+        nomake = True
+
     if "sign" in argv:
         argv.remove("sign")
         sign = True
@@ -966,6 +974,10 @@ See the make.cfg file for additional build options.
     if "ace" in argv:
         argv.remove("ace")
         ace = True
+
+    if "noace" in argv:
+        argv.remove("noace")
+        noace = True
 
     if "deploy_server" in argv:
         argv.remove("deploy_server")
@@ -987,7 +999,8 @@ See the make.cfg file for additional build options.
         argv.remove("deploy_server_full")
         sign = True
         mission = True
-        ace = True
+        if not noace:
+            ace = True
         make_release_zip = True
         deploy_server = True
 
@@ -1069,405 +1082,407 @@ See the make.cfg file for additional build options.
         print_error("Could not parse make.cfg.")
         sys.exit(1)
 
-    # See if we have been given specific modules to build from command line.
-    if len(argv) > 1 and not make_release_zip:
-        arg_modules = True
-        modules = [a for a in argv[1:] if a[0] != "-"]
-
-    # Find the tools we need.
-    try:
-        tools = find_bi_tools(work_drive)
-        addonbuilder = tools[0]
-        dssignfile = tools[1]
-        dscreatekey = tools[2]
-        cfgconvert = tools[3]
-
-    except:
-        print_error("Arma 3 Tools are not installed correctly or the P: drive has not been created.")
-        sys.exit(1)
-
-    if build_tool == "pboproject":
-        try:
-            depbo_tools = find_depbo_tools("HKLM")
-            if depbo_tools == -1:
-                depbo_tools = find_depbo_tools("HKCU")
-            pboproject = depbo_tools[0]
-            rapifyTool = depbo_tools[1]
-            makepboTool = depbo_tools[2]
-        except:
-            raise
-            print_error("Could not find dePBO tools. Download the needed tools from: https://dev.withsix.com/projects/mikero-pbodll/files")
-            sys.exit(1)
-
-    # Try to open and deserialize build cache file.
-    try:
-        cache = {}
-        with open(os.path.join(make_root, "make.cache"), 'r') as f:
-            cache_raw = f.read()
-
-        cache = json.loads(cache_raw)
-
-    except:
-        print ("No cache found.")
-        cache = {}
-
-    # Check the build version (from main) with cached version - forces a full rebuild when version changes
-    cacheVersion = "None";
-    if 'cacheVersion' in cache:
-        cacheVersion = cache['cacheVersion']
-
-    if (project_version != cacheVersion):
-        cache = {}
-        print("Reseting Cache {0} to New Version {1}".format(cacheVersion, project_version))
-        cache['cacheVersion'] = project_version
-
-    if not os.path.isdir(os.path.join(release_dir, project, "addons")):
-        try:
-            os.makedirs(os.path.join(release_dir, project, "addons"))
-        except:
-            print_error("Cannot create release directory")
-            raise
-
-    if not os.path.isdir(os.path.join(release_dir, project, "keys")):
-        try:
-            os.makedirs(os.path.join(release_dir, project, "keys"))
-        except:
-            print_error("Cannot create release directory")
-            raise
-
+    cache = {}
     failedBuilds = []
     missingFiles = []
 
-    # Update version stamp in all files that contain it
-    # Update version only for release if full update not requested (backup and restore files)
-    print_blue("\nChecking for obsolete version numbers...")
-    if not version_update:
-        stash_version_files_for_building()
-    else:
-        # Set version
-        set_version_in_files();
-        print("Version in files has been changed, make sure you commit and push the updates!")
+    if (not nomake):
+        # See if we have been given specific modules to build from command line.
+        if len(argv) > 1 and not make_release_zip:
+            arg_modules = True
+            modules = [a for a in argv[1:] if a[0] != "-"]
 
-    try:
-        # Get list of subdirs in make root.
-        dirs = next(os.walk(module_root))[1]
+        # Find the tools we need.
+        try:
+            tools = find_bi_tools(work_drive)
+            addonbuilder = tools[0]
+            dssignfile = tools[1]
+            dscreatekey = tools[2]
+            cfgconvert = tools[3]
 
-        # Autodetect what directories to build.
-        if module_autodetect and not arg_modules:
-            modules = []
-            for path in dirs:
-                # Any dir that has a config.cpp in its root is an addon to build.
-                config_path = os.path.join(path, 'config.cpp')
-                if os.path.isfile(config_path) and not path in ignore:
-                    modules.append(path)
+        except:
+            print_error("Arma 3 Tools are not installed correctly or the P: drive has not been created.")
+            sys.exit(1)
 
-        # Make the key specified from command line if necessary.
-        if new_key:
-            if not os.path.isfile(os.path.join(private_key_path, key_name + ".biprivatekey")):
-                print_yellow("\nRequested key does not exist.")
-                try:
-                    os.makedirs(private_key_path)
-                except:
-                    pass
-                curDir = os.getcwd()
-                os.chdir(private_key_path)
-                ret = subprocess.call([dscreatekey, key_name]) # Created in make_root
-                os.chdir(curDir)
-                if ret == 0:
-                    print_green("Created: {}".format(os.path.join(private_key_path, key_name + ".biprivatekey")))
-                    print("Removing any old signature keys...")
-                    purge(os.path.join(module_root, release_dir, project, "addons"), "^.*\.bisign$","*.bisign")
-                    purge(os.path.join(module_root, release_dir, project, "keys"), "^.*\.bikey$","*.bikey")
-                else:
-                    print_error("Failed to create key!")
-
-
-
-            else:
-                print_green("\nNOTE: Using key {}".format(os.path.join(private_key_path, key_name + ".biprivatekey")))
-
+        if build_tool == "pboproject":
             try:
-                print("Copying public key to release directory.")
-
-                try:
-                    os.makedirs(os.path.join(module_root, release_dir, project, "keys"))
-                except:
-                    pass
-
-                # Use biKeyNameAbrev to attempt to minimize problems from this BI Bug REFERENCE: http://feedback.arma3.com/view.php?id=22133
-                biKeyNameAbrev = key_name.split("-")[0]
-                shutil.copyfile(os.path.join(private_key_path, key_name + ".bikey"), os.path.join(module_root, release_dir, project, "keys", "{}.bikey".format(biKeyNameAbrev)))
-
+                depbo_tools = find_depbo_tools("HKLM")
+                if depbo_tools == -1:
+                    depbo_tools = find_depbo_tools("HKCU")
+                pboproject = depbo_tools[0]
+                rapifyTool = depbo_tools[1]
+                makepboTool = depbo_tools[2]
             except:
-                print_error("Could not copy key to release directory.")
+                raise
+                print_error("Could not find dePBO tools. Download the needed tools from: https://dev.withsix.com/projects/mikero-pbodll/files")
+                sys.exit(1)
+
+        # Try to open and deserialize build cache file.
+        try:
+            cache = {}
+            with open(os.path.join(make_root, "make.cache"), 'r') as f:
+                cache_raw = f.read()
+
+            cache = json.loads(cache_raw)
+
+        except:
+            print ("No cache found.")
+            cache = {}
+
+        # Check the build version (from main) with cached version - forces a full rebuild when version changes
+        cacheVersion = "None";
+        if 'cacheVersion' in cache:
+            cacheVersion = cache['cacheVersion']
+
+        if (project_version != cacheVersion):
+            cache = {}
+            print("Reseting Cache {0} to New Version {1}".format(cacheVersion, project_version))
+            cache['cacheVersion'] = project_version
+
+        if not os.path.isdir(os.path.join(release_dir, project, "addons")):
+            try:
+                os.makedirs(os.path.join(release_dir, project, "addons"))
+            except:
+                print_error("Cannot create release directory")
                 raise
 
-            key = os.path.join(private_key_path, "{}.biprivatekey".format(key_name))
+        if not os.path.isdir(os.path.join(release_dir, project, "keys")):
+            try:
+                os.makedirs(os.path.join(release_dir, project, "keys"))
+            except:
+                print_error("Cannot create release directory")
+                raise
 
-        # Remove any obsolete files.
-        print_blue("\nChecking for obsolete files...")
-        obsolete_check_path = os.path.join(module_root, release_dir, project,"addons")
-        for file in os.listdir(obsolete_check_path):
-            if (file.endswith(".pbo") and os.path.isfile(os.path.join(obsolete_check_path,file))):
-                if check_for_obsolete_pbos(module_root, file):
-                    fileName = os.path.splitext(file)[0]
-                    print_yellow("Removing obsolete pbo => {}".format(file))
-                    purge(obsolete_check_path, "{}\..".format(fileName), "{}.*".format(fileName))
+        # Update version stamp in all files that contain it
+        # Update version only for release if full update not requested (backup and restore files)
+        print_blue("\nChecking for obsolete version numbers...")
+        if not version_update:
+            stash_version_files_for_building()
+        else:
+            # Set version
+            set_version_in_files();
+            print("Version in files has been changed, make sure you commit and push the updates!")
 
-        obsolete_check_path = os.path.join(module_root, release_dir, project)
-        for file in os.listdir(obsolete_check_path):
-            if (file.endswith(".dll") and os.path.isfile(os.path.join(obsolete_check_path,file))):
-                if not os.path.exists(os.path.join(module_root_parent, file)):
-                    print_yellow("Removing obsolete dll => {}".format(file))
+        try:
+            # Get list of subdirs in make root.
+            dirs = next(os.walk(module_root))[1]
+
+            # Autodetect what directories to build.
+            if module_autodetect and not arg_modules:
+                modules = []
+                for path in dirs:
+                    # Any dir that has a config.cpp in its root is an addon to build.
+                    config_path = os.path.join(path, 'config.cpp')
+                    if os.path.isfile(config_path) and not path in ignore:
+                        modules.append(path)
+
+            # Make the key specified from command line if necessary.
+            if new_key:
+                if not os.path.isfile(os.path.join(private_key_path, key_name + ".biprivatekey")):
+                    print_yellow("\nRequested key does not exist.")
                     try:
-                        os.remove(os.path.join(obsolete_check_path,file))
+                        os.makedirs(private_key_path)
                     except:
-                        print_error("\nFailed to delete {}".format(os.path.join(obsolete_check_path,file)))
+                        pass
+                    curDir = os.getcwd()
+                    os.chdir(private_key_path)
+                    ret = subprocess.call([dscreatekey, key_name]) # Created in make_root
+                    os.chdir(curDir)
+                    if ret == 0:
+                        print_green("Created: {}".format(os.path.join(private_key_path, key_name + ".biprivatekey")))
+                        print("Removing any old signature keys...")
+                        purge(os.path.join(module_root, release_dir, project, "addons"), "^.*\.bisign$","*.bisign")
+                        purge(os.path.join(module_root, release_dir, project, "keys"), "^.*\.bikey$","*.bikey")
+                    else:
+                        print_error("Failed to create key!")
+
+
+
+                else:
+                    print_green("\nNOTE: Using key {}".format(os.path.join(private_key_path, key_name + ".biprivatekey")))
+
+                try:
+                    print("Copying public key to release directory.")
+
+                    try:
+                        os.makedirs(os.path.join(module_root, release_dir, project, "keys"))
+                    except:
                         pass
 
-        # For each module, prep files and then build.
-        print_blue("\nBuilding...")
-        for module in modules:
-            print_green("\nMaking {}".format(module + "-"*max(1, (60-len(module)))))
-            missing = False
-            sigMissing = False
+                    # Use biKeyNameAbrev to attempt to minimize problems from this BI Bug REFERENCE: http://feedback.arma3.com/view.php?id=22133
+                    biKeyNameAbrev = key_name.split("-")[0]
+                    shutil.copyfile(os.path.join(private_key_path, key_name + ".bikey"), os.path.join(module_root, release_dir, project, "keys", "{}.bikey".format(biKeyNameAbrev)))
 
-            # Cache check
-            if module in cache:
-                old_sha = cache[module]
-            else:
-                old_sha = ""
+                except:
+                    print_error("Could not copy key to release directory.")
+                    raise
 
-            # Hash the module
-            new_sha = get_directory_hash(os.path.join(module_root, module))
+                key = os.path.join(private_key_path, "{}.biprivatekey".format(key_name))
 
-            # Is the pbo or sig file missing?
-            missing = not os.path.isfile(os.path.join(release_dir, project, "addons", "{}{}.pbo".format(pbo_name_prefix,module)))
-            sigFile = "{}{}.pbo.{}.bisign".format(pbo_name_prefix,module,key_name)
-            sigMissing = not os.path.isfile(os.path.join(release_dir, project, "addons", sigFile))
+            # Remove any obsolete files.
+            print_blue("\nChecking for obsolete files...")
+            obsolete_check_path = os.path.join(module_root, release_dir, project,"addons")
+            for file in os.listdir(obsolete_check_path):
+                if (file.endswith(".pbo") and os.path.isfile(os.path.join(obsolete_check_path,file))):
+                    if check_for_obsolete_pbos(module_root, file):
+                        fileName = os.path.splitext(file)[0]
+                        print_yellow("Removing obsolete pbo => {}".format(file))
+                        purge(obsolete_check_path, "{}\..".format(fileName), "{}.*".format(fileName))
 
-            if missing:
-                print_yellow("Missing PBO file {}{}.pbo. Building...".format(pbo_name_prefix,module))
+            obsolete_check_path = os.path.join(module_root, release_dir, project)
+            for file in os.listdir(obsolete_check_path):
+                if (file.endswith(".dll") and os.path.isfile(os.path.join(obsolete_check_path,file))):
+                    if not os.path.exists(os.path.join(module_root_parent, file)):
+                        print_yellow("Removing obsolete dll => {}".format(file))
+                        try:
+                            os.remove(os.path.join(obsolete_check_path,file))
+                        except:
+                            print_error("\nFailed to delete {}".format(os.path.join(obsolete_check_path,file)))
+                            pass
 
-            # Check if it needs rebuilt
-            # print ("Hash:", new_sha)
-            if old_sha == new_sha and not missing:
-                if not force_build:
-                    print("Module has not changed.")
-                    if sigMissing:
-                        if key:
-                            print("Missing Signature key {}".format(sigFile))
-                            build_signature_file(os.path.join(module_root, release_dir, project, "addons", "{}{}.pbo".format(pbo_name_prefix,module)))
-                    # Skip everything else
-                    continue
+            # For each module, prep files and then build.
+            print_blue("\nBuilding...")
+            for module in modules:
+                print_green("\nMaking {}".format(module + "-"*max(1, (60-len(module)))))
+                missing = False
+                sigMissing = False
 
-            # Only do this if the project isn't stored directly on the work drive.
-            # Split the path at the drive name and see if they are on the same drive (usually P:)
-            if os.path.splitdrive(module_root)[0] != os.path.splitdrive(work_drive)[0]:
+                # Cache check
+                if module in cache:
+                    old_sha = cache[module]
+                else:
+                    old_sha = ""
+
+                # Hash the module
+                new_sha = get_directory_hash(os.path.join(module_root, module))
+
+                # Is the pbo or sig file missing?
+                missing = not os.path.isfile(os.path.join(release_dir, project, "addons", "{}{}.pbo".format(pbo_name_prefix,module)))
+                sigFile = "{}{}.pbo.{}.bisign".format(pbo_name_prefix,module,key_name)
+                sigMissing = not os.path.isfile(os.path.join(release_dir, project, "addons", sigFile))
+
+                if missing:
+                    print_yellow("Missing PBO file {}{}.pbo. Building...".format(pbo_name_prefix,module))
+
+                # Check if it needs rebuilt
+                # print ("Hash:", new_sha)
+                if old_sha == new_sha and not missing:
+                    if not force_build:
+                        print("Module has not changed.")
+                        if sigMissing:
+                            if key:
+                                print("Missing Signature key {}".format(sigFile))
+                                build_signature_file(os.path.join(module_root, release_dir, project, "addons", "{}{}.pbo".format(pbo_name_prefix,module)))
+                        # Skip everything else
+                        continue
+
+                # Only do this if the project isn't stored directly on the work drive.
+                # Split the path at the drive name and see if they are on the same drive (usually P:)
+                if os.path.splitdrive(module_root)[0] != os.path.splitdrive(work_drive)[0]:
+                    try:
+                        # Remove old work drive version (ignore errors)
+                        shutil.rmtree(os.path.join(work_drive, prefix, module), True)
+
+                        # Copy module to the work drive
+                        shutil.copytree(module, os.path.join(work_drive, prefix, module))
+
+                    except:
+                        raise
+                        print_error("ERROR: Could not copy module to work drive. Does the module exist?")
+                        input("Press Enter to continue...")
+                        print("Resuming build...")
+                        continue
+                #else:
+                    #print("WARNING: Module is stored on work drive ({}).".format(work_drive))
+
                 try:
-                    # Remove old work drive version (ignore errors)
-                    shutil.rmtree(os.path.join(work_drive, prefix, module), True)
+                    # Remove the old pbo, key, and log
+                    old = os.path.join(module_root, release_dir, project, "addons", "{}{}".format(pbo_name_prefix,module)) + "*"
+                    files = glob.glob(old)
+                    for f in files:
+                        os.remove(f)
 
-                    # Copy module to the work drive
-                    shutil.copytree(module, os.path.join(work_drive, prefix, module))
-
+                    if pbo_name_prefix:
+                        old = os.path.join(module_root, release_dir, project, "addons", "{}{}".format(pbo_name_prefix,module)) + "*"
+                        files = glob.glob(old)
+                        for f in files:
+                            os.remove(f)
                 except:
                     raise
                     print_error("ERROR: Could not copy module to work drive. Does the module exist?")
                     input("Press Enter to continue...")
                     print("Resuming build...")
                     continue
-            #else:
-                #print("WARNING: Module is stored on work drive ({}).".format(work_drive))
 
-            try:
-                # Remove the old pbo, key, and log
-                old = os.path.join(module_root, release_dir, project, "addons", "{}{}".format(pbo_name_prefix,module)) + "*"
-                files = glob.glob(old)
-                for f in files:
-                    os.remove(f)
+                # Build the module into a pbo
+                print_blue("Building: {}".format(os.path.join(work_drive, prefix, module)))
+                print_blue("Destination: {}".format(os.path.join(module_root, release_dir, project, "addons")))
 
-                if pbo_name_prefix:
-                    old = os.path.join(module_root, release_dir, project, "addons", "{}{}".format(pbo_name_prefix,module)) + "*"
-                    files = glob.glob(old)
-                    for f in files:
-                        os.remove(f)
-            except:
-                raise
-                print_error("ERROR: Could not copy module to work drive. Does the module exist?")
-                input("Press Enter to continue...")
-                print("Resuming build...")
-                continue
-
-            # Build the module into a pbo
-            print_blue("Building: {}".format(os.path.join(work_drive, prefix, module)))
-            print_blue("Destination: {}".format(os.path.join(module_root, release_dir, project, "addons")))
-
-            # Make destination folder (if needed)
-            try:
-                os.makedirs(os.path.join(module_root, release_dir, project, "addons"))
-            except:
-                pass
-
-
-            # Run build tool
-            build_successful = False
-            if build_tool == "pboproject":
+                # Make destination folder (if needed)
                 try:
-                    nobinFilePath = os.path.join(work_drive, prefix, module, "$NOBIN$")
-                    backup_config(module)
+                    os.makedirs(os.path.join(module_root, release_dir, project, "addons"))
+                except:
+                    pass
 
-                    version_stamp_pboprefix(module,commit_id)
 
-                    if os.path.isfile(nobinFilePath):
-                        print_green("$NOBIN$ Found. Proceeding with non-binarizing!")
-                        cmd = [makepboTool, "-P","-A","-L","-G","-X=*.backup", os.path.join(work_drive, prefix, module),os.path.join(module_root, release_dir, project,"addons")]
+                # Run build tool
+                build_successful = False
+                if build_tool == "pboproject":
+                    try:
+                        nobinFilePath = os.path.join(work_drive, prefix, module, "$NOBIN$")
+                        backup_config(module)
 
-                    else:
-                        if check_external:
-                            cmd = [pboproject, "-P", os.path.join(work_drive, prefix, module), "+Engine=Arma3", "-S","+Noisy", "+X", "+Clean", "+Mod="+os.path.join(module_root, release_dir, project), "-Key"]
+                        version_stamp_pboprefix(module,commit_id)
+
+                        if os.path.isfile(nobinFilePath):
+                            print_green("$NOBIN$ Found. Proceeding with non-binarizing!")
+                            cmd = [makepboTool, "-P","-A","-L","-G","-X=*.backup", os.path.join(work_drive, prefix, module),os.path.join(module_root, release_dir, project,"addons")]
+
                         else:
-                            cmd = [pboproject, "-P", os.path.join(work_drive, prefix, module), "+Engine=Arma3", "-S","+Noisy", "-X", "+Clean", "+Mod="+os.path.join(module_root, release_dir, project), "-Key"]
+                            if check_external:
+                                cmd = [pboproject, "-P", os.path.join(work_drive, prefix, module), "+Engine=Arma3", "-S","+Noisy", "+X", "+Clean", "+Mod="+os.path.join(module_root, release_dir, project), "-Key"]
+                            else:
+                                cmd = [pboproject, "-P", os.path.join(work_drive, prefix, module), "+Engine=Arma3", "-S","+Noisy", "-X", "+Clean", "+Mod="+os.path.join(module_root, release_dir, project), "-Key"]
 
-                    color("grey")
-                    if quiet:
-                        devnull = open(os.devnull, 'w')
-                        ret = subprocess.call(cmd, stdout=devnull)
-                        devnull.close()
+                        color("grey")
+                        if quiet:
+                            devnull = open(os.devnull, 'w')
+                            ret = subprocess.call(cmd, stdout=devnull)
+                            devnull.close()
+                        else:
+                            ret = subprocess.call(cmd)
+                        color("reset")
+
+                        if ret == 0:
+                            print_green("pboProject return code == {}".format(str(ret)))
+                            # Prettyprefix rename the PBO if requested.
+                            if pbo_name_prefix:
+                                try:
+                                    os.rename(os.path.join(module_root, release_dir, project, "addons", "{}.pbo".format(module)), os.path.join(module_root, release_dir, project, "addons", "{}{}.pbo".format(pbo_name_prefix,module)))
+                                except:
+                                    raise
+                                    print_error("Could not rename built PBO with prefix.")
+                            # Sign result
+                            if (key and not "{}{}.pbo".format(pbo_name_prefix,module) in signature_blacklist):
+                                print("Signing with {}.".format(key))
+                                if pbo_name_prefix:
+                                    ret = subprocess.call([dssignfile, key, os.path.join(module_root, release_dir, project, "addons", "{}{}.pbo".format(pbo_name_prefix,module))])
+                                else:
+                                    ret = subprocess.call([dssignfile, key, os.path.join(module_root, release_dir, project, "addons", "{}.pbo".format(module))])
+
+                                if ret == 0:
+                                    build_successful = True
+                            else:
+                                build_successful = True
+
+                        if not build_successful:
+                            print_error("pboProject return code == {}".format(str(ret)))
+                            print_error("Module not successfully built/signed. Check your {}temp\{}_packing.log for more info.".format(work_drive,module))
+                            print ("Resuming build...")
+                            failedBuilds.append("{}".format(module))
+                            continue
+
+                        # Back to the root
+                        os.chdir(module_root)
+
+                    except:
+                        raise
+                        print_error("Could not run Addon Builder.")
+                        input("Press Enter to continue...")
+                        print ("Resuming build...")
+                        continue
+                    finally:
+                        addon_restore(os.path.join(work_drive, prefix, module))
+
+                elif build_tool== "addonbuilder":
+                    # Detect $NOBIN$ and do not binarize if found.
+                    if os.path.isfile(os.path.join(work_drive, prefix, module, "$NOBIN$")):
+                        do_binarize = False
+                        print("$NOBIN$ file found in module, packing only.")
                     else:
-                        ret = subprocess.call(cmd)
-                    color("reset")
+                        do_binarize = True
+                    try:
+                        # Call AddonBuilder
+                        os.chdir("P:\\")
 
-                    if ret == 0:
-                        print_green("pboProject return code == {}".format(str(ret)))
+                        cmd = [addonbuilder, os.path.join(work_drive, prefix, module), os.path.join(make_root, release_dir, project, "addons"), "-clear", "-project="+work_drive]
+                        if not do_binarize:
+                            cmd.append("-packonly")
+
+                        if quiet:
+                            previousDirectory = os.getcwd()
+                            os.chdir(arma3tools_path)
+                            devnull = open(os.devnull, 'w')
+                            ret = subprocess.call(cmd, stdout=devnull)
+                            devnull.close()
+                            os.chdir(previousDirectory)
+                        else:
+                            previousDirectory = os.getcwd()
+                            os.chdir(arma3tools_path)
+                            print_error("Current directory - {}".format(os.getcwd()))
+                            ret = subprocess.call(cmd)
+                            os.chdir(previousDirectory)
+                            print_error("Current directory - {}".format(os.getcwd()))
+                        color("reset")
+                        print_green("completed")
                         # Prettyprefix rename the PBO if requested.
                         if pbo_name_prefix:
                             try:
-                                os.rename(os.path.join(module_root, release_dir, project, "addons", "{}.pbo".format(module)), os.path.join(module_root, release_dir, project, "addons", "{}{}.pbo".format(pbo_name_prefix,module)))
+                                os.rename(os.path.join(make_root, release_dir, project, "addons", "{}.pbo".format(module)), os.path.join(make_root, release_dir, project, "addons", "{}{}.pbo".format(pbo_name_prefix,module)))
                             except:
                                 raise
                                 print_error("Could not rename built PBO with prefix.")
-                        # Sign result
-                        if (key and not "{}{}.pbo".format(pbo_name_prefix,module) in signature_blacklist):
-                            print("Signing with {}.".format(key))
-                            if pbo_name_prefix:
-                                ret = subprocess.call([dssignfile, key, os.path.join(module_root, release_dir, project, "addons", "{}{}.pbo".format(pbo_name_prefix,module))])
+
+                        if ret == 0:
+                            # Sign result
+
+                            #print_yellow("Sig_fileName: ace_{}.pbo".format(module))
+                            if (key and not "{}{}.pbo".format(pbo_name_prefix,module) in signature_blacklist) :
+                                print("Signing with {}.".format(key))
+                                if pbo_name_prefix:
+                                    ret = subprocess.call([dssignfile, key, os.path.join(make_root, release_dir, project, "addons","{}{}.pbo".format(pbo_name_prefix,module))])
+                                else:
+                                    ret = subprocess.call([dssignfile, key, os.path.join(make_root, release_dir, project, "addons", "{}.pbo".format(module))])
+
+                                if ret == 0:
+                                    build_successful = True
                             else:
-                                ret = subprocess.call([dssignfile, key, os.path.join(module_root, release_dir, project, "addons", "{}.pbo".format(module))])
-
-                            if ret == 0:
                                 build_successful = True
-                        else:
-                            build_successful = True
 
-                    if not build_successful:
-                        print_error("pboProject return code == {}".format(str(ret)))
-                        print_error("Module not successfully built/signed. Check your {}temp\{}_packing.log for more info.".format(work_drive,module))
+                        if not build_successful:
+                            print_error("Module not successfully built. Check your {}temp\{}_packing.log for more info.".format(work_drive,module))
+
+                        # Back to the root
+                        os.chdir(make_root)
+
+                    except:
+                        raise
+                        print_error("Could not run Addon Builder.")
+                        input("Press Enter to continue...")
                         print ("Resuming build...")
-                        failedBuilds.append("{}".format(module))
                         continue
 
-                    # Back to the root
-                    os.chdir(module_root)
-
-                except:
-                    raise
-                    print_error("Could not run Addon Builder.")
-                    input("Press Enter to continue...")
-                    print ("Resuming build...")
-                    continue
-                finally:
-                    addon_restore(os.path.join(work_drive, prefix, module))
-
-            elif build_tool== "addonbuilder":
-                # Detect $NOBIN$ and do not binarize if found.
-                if os.path.isfile(os.path.join(work_drive, prefix, module, "$NOBIN$")):
-                    do_binarize = False
-                    print("$NOBIN$ file found in module, packing only.")
                 else:
-                    do_binarize = True
-                try:
-                    # Call AddonBuilder
-                    os.chdir("P:\\")
+                    print_error("Unknown build_tool {}!".format(build_tool))
 
-                    cmd = [addonbuilder, os.path.join(work_drive, prefix, module), os.path.join(make_root, release_dir, project, "addons"), "-clear", "-project="+work_drive]
-                    if not do_binarize:
-                        cmd.append("-packonly")
+                # Update the hash for a successfully built module
+                if build_successful:
+                    cache[module] = new_sha
 
-                    if quiet:
-                        previousDirectory = os.getcwd()
-                        os.chdir(arma3tools_path)
-                        devnull = open(os.devnull, 'w')
-                        ret = subprocess.call(cmd, stdout=devnull)
-                        devnull.close()
-                        os.chdir(previousDirectory)
-                    else:
-                        previousDirectory = os.getcwd()
-                        os.chdir(arma3tools_path)
-                        print_error("Current directory - {}".format(os.getcwd()))
-                        ret = subprocess.call(cmd)
-                        os.chdir(previousDirectory)
-                        print_error("Current directory - {}".format(os.getcwd()))
-                    color("reset")
-                    print_green("completed")
-                    # Prettyprefix rename the PBO if requested.
-                    if pbo_name_prefix:
-                        try:
-                            os.rename(os.path.join(make_root, release_dir, project, "addons", "{}.pbo".format(module)), os.path.join(make_root, release_dir, project, "addons", "{}{}.pbo".format(pbo_name_prefix,module)))
-                        except:
-                            raise
-                            print_error("Could not rename built PBO with prefix.")
-
-                    if ret == 0:
-                        # Sign result
-
-                        #print_yellow("Sig_fileName: ace_{}.pbo".format(module))
-                        if (key and not "{}{}.pbo".format(pbo_name_prefix,module) in signature_blacklist) :
-                            print("Signing with {}.".format(key))
-                            if pbo_name_prefix:
-                                ret = subprocess.call([dssignfile, key, os.path.join(make_root, release_dir, project, "addons","{}{}.pbo".format(pbo_name_prefix,module))])
-                            else:
-                                ret = subprocess.call([dssignfile, key, os.path.join(make_root, release_dir, project, "addons", "{}.pbo".format(module))])
-
-                            if ret == 0:
-                                build_successful = True
-                        else:
-                            build_successful = True
-
-                    if not build_successful:
-                        print_error("Module not successfully built. Check your {}temp\{}_packing.log for more info.".format(work_drive,module))
-
-                    # Back to the root
-                    os.chdir(make_root)
-
-                except:
-                    raise
-                    print_error("Could not run Addon Builder.")
-                    input("Press Enter to continue...")
-                    print ("Resuming build...")
-                    continue
-
-            else:
-                print_error("Unknown build_tool {}!".format(build_tool))
-
-            # Update the hash for a successfully built module
-            if build_successful:
-                cache[module] = new_sha
-
-    except Exception as e:
-        print_yellow("Cancel or some error detected: {}".format(e))
+        except Exception as e:
+            print_yellow("Cancel or some error detected: {}".format(e))
 
 
-    finally:
-        if compile_ext:
-            compile_extensions(extensions_root, force_build)
+        finally:
+            if compile_ext:
+                compile_extensions(extensions_root, force_build)
 
-        copy_important_files(module_root_parent,os.path.join(release_dir, project))
+            copy_important_files(module_root_parent,os.path.join(release_dir, project))
 
-        if not version_update:
-            restore_version_files()
+            if not version_update:
+                restore_version_files()
 
-    # Done building all modules!
+        # Done building all modules!
             
     if (sign):
         ret = sign_dependencies()
@@ -1481,7 +1496,7 @@ See the make.cfg file for additional build options.
         os.chdir(make_root)
         playercount.update_player_count()
 
-    if (ace):
+    if (ace and not noace):
         print_blue("\nUpdating ACE...")
         ret = update_ace()
         if ret == 0:

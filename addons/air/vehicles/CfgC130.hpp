@@ -1,6 +1,7 @@
 class CUP_C130J_Base: Plane_Base_F {
     memoryPointsGetInCargo = "pos cargo";
     memoryPointsGetInCargoDir = "pos cargo dir";
+    wheelSteeringSensitivity = 3;
 };
 class CUP_B_C130J_GB: CUP_C130J_Base {
     crew = "UKSF_B_Pilot_617";

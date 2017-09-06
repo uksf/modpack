@@ -38,7 +38,7 @@ _actions pushBack [_action, [], player];
             format ["Kick: %1", _player],
             CURATOR_ICON,
             {[false, ((_this select 2) select 0)] call FUNC(curatorKick)},
-            {MULTIPLAYER_ADMIN},
+            {MULTIPLAYER_ADMIN_OR_WHITELISTED},
             {},
             [_player]
         ] call ace_interact_menu_fnc_createAction;

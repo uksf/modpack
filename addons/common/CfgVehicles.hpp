@@ -17,7 +17,13 @@ class CfgVehicles {
         icon = "\a3\ui_f\data\map\markers\flags\UK_ca.paa";
         portrait = "\a3\ui_f\data\map\markers\flags\UK_ca.paa";
         function = QFUNC(moduleRespawnPosition);
-        class Arguments {};
+        class Arguments {
+            class Name {
+                displayName = "Name";
+                description = "Name visible in the respawn menu and on the map";
+                defaultValue = "UKSF";
+            };
+        };
     };
 
     class NonStrategic;

@@ -485,6 +485,28 @@ class CfgVehicles {
                 priority = 1;
             };
         };
+        class Sounds {
+            class EngineLowIn {
+                sound[] = { "CUP\AirVehicles\CUP_AirVehicles_AN2\data\sound\AN2_engine_low_int", 0, 1 };
+                frequency = "1.0 min (rpm + 0.5)";
+                volume = "(1-camPos)*(engineOn*(rpm factor[0.85, 0]))";
+            };
+            class EngineHighIn {
+                sound[] = { "CUP\AirVehicles\CUP_AirVehicles_AN2\data\sound\AN2_engine_high_int", 0, 1 };
+                frequency = "1";
+                volume = "(1-camPos)*(engineOn*(rpm factor[0.55, 1.0]))";
+            };
+            class ForsageIn {
+                sound[] = { "CUP\AirVehicles\CUP_AirVehicles_AN2\data\sound\AN2_engine_high_int", 0, 1.1 };
+                frequency = "1";
+                volume = "(1-camPos)*(engineOn*(thrust factor[0.5, 1.0]))";
+            };
+            class WindNoiseIn {
+                sound[] = { "CUP\AirVehicles\CUP_AirVehicles_AN2\data\sound\int-wind", 0, 0.6 };
+                frequency = "(0.1+(1.2*(speed factor[1, 100])))";
+                volume = "(1-camPos)*(speed factor[1, 100])";
+            };
+        };
     };
     class CUP_B_USMC_MQ9;
     class CUP_B_UKSF_MQ9: CUP_B_USMC_MQ9 {
