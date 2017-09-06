@@ -16,5 +16,5 @@
         };
         progressLoadingScreen ((1 / GVAR(curatorsMax)) * _index);
         _args set [0, _index + 1];
-    }, 0.8, [1, GVAR(curatorsMax)]] call CBA_fnc_addPerFrameHandler;
-}, [], 0.2] call CBA_fnc_waitAndExecute;
+    }, 0.9, [1, GVAR(curatorsMax)]] call CBA_fnc_addPerFrameHandler;
+}, [], 0.5] call CBA_fnc_waitAndExecute;
