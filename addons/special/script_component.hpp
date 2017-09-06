@@ -7,6 +7,3 @@
 // #define CBA_DEBUG_SYNCHRONOUS
 
 #include "\u\uksf\addons\main\script_macros.hpp"
-
-#define RANDOM random
-#define ADDON_RANDOM TRIPLES(PREFIX,COMPONENT,RANDOM)

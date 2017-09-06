@@ -18,7 +18,7 @@ class Extended_PostInit_EventHandlers {
 
 class Extended_Init_EventHandlers {
     class UKSF_O_TK_INS_Suicide_Driver {
-        class ADDON_RANDOM {
+        class GVAR(random) {
             init = QUOTE([(_this select 0)] call FUNC(init));
         };
     };
@@ -33,7 +33,7 @@ class Extended_Init_EventHandlers {
         };
     };
     class UKSF_O_Skoda_Base {
-        class ADDON_RANDOM {
+        class GVAR(random) {
             init = QUOTE([(_this select 0)] call FUNC(init));
         };
     };
