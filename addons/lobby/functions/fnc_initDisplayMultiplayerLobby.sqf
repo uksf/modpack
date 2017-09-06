@@ -27,19 +27,19 @@ private _fnc_update = {
         removeMissionEventHandler ["EachFrame", GVAR(update_EHID)];
     };
 
-    private _unitNames = configFile >> "CfgUnitNames";
+    private _unitNameConfigs = configFile >> "CfgUnitNames";
     private _playerList = _display displayCtrl IDC_MPSETUP_ROLES;
     for "-" from 1 to lbSize _playerList do {
         private _text = _playerList lbText 0;
         private _value = _playerList lbValue 0;
         private _unitName = false;
         _playerList lbDelete 0;
-        if (isArray (_unitNames >> _text) || {isArray (_unitNames >> (_playerList lbText 0))}) then {
+        if (isArray (_unitNameConfigs >> _text) || {isArray (_unitNameConfigs >> (_playerList lbText 0))}) then {
             _unitName = true;
         };
         if (_value == -1) then {
             if (_unitName) then {
-                _text = (getArray (_unitNames >> (_playerList lbText 0))) select 0;
+                _text = (getArray (_unitNameConfigs >> (_playerList lbText 0))) select 0;
             } else {
                 private _callsign = (_playerList lbText 0) splitString SEPARATORS param [1, ""];
 
@@ -49,7 +49,7 @@ private _fnc_update = {
             };
         } else {
             if (_unitName) then {
-                _text = (getArray (_unitNames >> _text)) select 1;
+                _text = (getArray (_unitNameConfigs >> _text)) select 1;
             } else {
                 _text = _text splitString SEPARATORS select 0;
             };
