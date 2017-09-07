@@ -17,10 +17,15 @@ if (!(isServer)) exitWith {
     [QGVAR(disableCache), this] call CBA_fnc_serverEvent;
 };
 
-params [["_group", grpNull, [grpNull]]];
+params [["_group", grpNull, [grpNull, objNull]]];
+
+if (_group isEqualType objNull) then {
+    _group = group _group;
+};
 
 if (dynamicSimulationEnabled _group) then {
     _group enableDynamicSimulation false;
+    _group setVariable [QGVAR(excluded), true, true];
     if (!(isNull (objectParent (leader _group)))) then {
         {
             _x enableSimulationGlobal true;
