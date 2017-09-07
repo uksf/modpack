@@ -246,7 +246,7 @@ class Header {
 };
 respawn = "BASE";
 respawnOnStart = 0;
-respawnDelay = 5;
+respawnDelay = 1;
 respawnDialog = 0;
 respawnTemplates[] = { "MenuPosition" };
 reviveMode = 0;

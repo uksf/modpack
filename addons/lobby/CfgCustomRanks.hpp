@@ -1,4 +1,10 @@
 class CfgCustomRanks {
+    class Cdt {
+        rank = "Candidate";
+        displayName = "Candidate";
+        displayNameShort = "Cdt";
+        texture = QPATHTOF(data\Empty.paa);
+    };
     class Rct {
         rank = "Recruit";
         displayName = "Recruit";

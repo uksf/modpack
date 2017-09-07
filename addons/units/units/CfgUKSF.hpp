@@ -36,6 +36,7 @@ class UKSF_B_MachineGunner: UKSF_B_Rifleman {
 };
 class UKSF_B_AntiTank: UKSF_B_Rifleman {
     displayName = "Rifleman (AT)";
+    engineer = 1;
     icon = "iconManAT";
     editorPreview = QPATHTOEF(common,data\previews\UKSF_B_AntiTank.jpg);
 };
@@ -57,6 +58,7 @@ class UKSF_B_Pilot_7: UKSF_B_Rifleman {
     displayName = "Pilot (7 Sqn.)";
     threat[] = {1, 1, 1};
     attendant = 1;
+    engineer = 1;
     editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Pilot_7.jpg);
     model = "\A3\Characters_F\Common\coveralls.p3d";
     hiddenSelections[] = { "Camo","insignia" };
