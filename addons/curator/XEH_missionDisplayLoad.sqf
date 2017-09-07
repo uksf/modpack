@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 
 [] spawn {
-    uiSleep 0.5;
+    uiSleep 0.8;
     startLoadingScreen ["Loading"];
     for "_index" from 1 to GVAR(curatorsMax) do {
         progressLoadingScreen ((1 / GVAR(curatorsMax)) * _index);

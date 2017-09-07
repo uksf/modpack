@@ -95,16 +95,22 @@ class CfgCustomRanks {
         displayNameShort = "Capt";
         texture = QPATHTOF(data\Capt.paa);
     };
-    class SqnLdr {
-        rank = "Squadron Leader";
-        displayName = "Squadron Leader";
-        displayNameShort = "SqnLdr";
-        texture = QPATHTOF(data\SqnLdr.paa);
+    class FltLt {
+        rank = "Flight Lieutenant";
+        displayName = "Flight Lieutenant";
+        displayNameShort = "FltLt";
+        texture = QPATHTOF(data\FltLt.paa);
     };
     class Maj {
         rank = "Major";
         displayName = "Major";
         displayNameShort = "Maj";
         texture = QPATHTOF(data\Maj.paa);
+    };
+    class SqnLdr {
+        rank = "Squadron Leader";
+        displayName = "Squadron Leader";
+        displayNameShort = "SqnLdr";
+        texture = QPATHTOF(data\SqnLdr.paa);
     };
 };
