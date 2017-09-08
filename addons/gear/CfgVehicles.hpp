@@ -1,7 +1,6 @@
 class CfgVehicles {
     class UK3CB_BAF_B_Bergen_MTP_Medic_L_A;
     class UK3CB_BAF_B_Bergen_MTP_Radio_L_B;
-    class Bag_Base;
     class UKSF_B_Bergen_Medic: UK3CB_BAF_B_Bergen_MTP_Medic_L_A {
         scope = 1;
         scopeArsenal = 0;
@@ -94,10 +93,6 @@ class CfgVehicles {
                 count = 1;
             };
         };
-    };
-    class B_Parachute: Bag_Base {
-        scope = 2;
-        maximumLoad = 320;
     };
     class UK3CB_BAF_B_Bergen_MTP_Rifleman_L_C;
     class UK3CB_BAF_B_Bergen_MTP_Rifleman_L_C_AR: UK3CB_BAF_B_Bergen_MTP_Rifleman_L_C {

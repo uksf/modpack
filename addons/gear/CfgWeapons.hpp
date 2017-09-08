@@ -8,6 +8,13 @@ class CfgWeapons {
     class HeadgearItem;
     class VestItem;
 
+    class ACRE_BaseRadio;
+    class ACRE_PRC117F: ACRE_BaseRadio {
+        class ItemInfo {
+            allowedSlots[] = {701,801,901};
+        };
+    };
+
     class UK3CB_BAF_U_CombatUniform_MTP_TShirt_RM;
     class UK3CB_BAF_U_CombatUniform_MTP_TShirt: UK3CB_BAF_U_CombatUniform_MTP_TShirt_RM {
         scope = 2;
@@ -172,8 +179,8 @@ class CfgWeapons {
         class ItemInfo: UniformItem {
             uniformModel = "-";
             uniformClass = "UKSF_B_Pilot_7";
-            containerClass = "Supply40";
-            mass = 60;
+            containerClass = "Supply100";
+            mass = 50;
         };
     };
     class UK3CB_BAF_U_CombatUniform_MTP;
@@ -184,8 +191,8 @@ class CfgWeapons {
         class ItemInfo: UniformItem {
             uniformModel = "-";
             uniformClass = "UKSF_B_Pilot_656";
-            containerClass = "Supply40";
-            mass = 60;
+            containerClass = "Supply100";
+            mass = 50;
         };
     };
     class U_I_pilotCoveralls;
@@ -197,10 +204,10 @@ class CfgWeapons {
         class ItemInfo: UniformItem {
             uniformModel = "-";
             uniformClass = "UKSF_B_Pilot_617";
-            containerClass = "Supply250";
-            mass = 100;
+            containerClass = "Supply500";
+            mass = 80;
         };
-        ACE_GForceCoef = 0.2;
+        ACE_GForceCoef = 0.3;
     };
     class UKSF_U_RAF_Blues: Uniform_Base {
         scope = 2;
@@ -233,30 +240,6 @@ class CfgWeapons {
     };
 
     class H_Beret_02;
-    class UKSF_H_RAFBeret: H_Beret_02 {
-        scope = 2;
-        author = "UKSF";
-        displayName = "RAF Beret";
-        picture = QPATHTOF(UI\icon_beret_raf_ca.paa);
-        model = "\A3\characters_f_epb\BLUFOR\headgear_beret02";
-        hiddenSelections[] = { "Camo" };
-        hiddenSelectionsTextures[] = { QPATHTOF(data\hats\RAF_Beret.paa) };
-        hiddenSelectionsMaterials[] = { QPATHTOF(data\hats\Beret.rvmat) };
-        class ItemInfo: HeadgearItem {
-            mass = 5;
-            uniformmodel = "\A3\characters_f_epb\BLUFOR\headgear_beret02";
-            modelSides[] = { 6 };
-            class HitpointsProtectionInfo {
-                class Head {
-                    hitpointName = "HitHead";
-                    armor = 0;
-                    passThrough = 0.5;
-                };
-            };
-            hiddenSelectionsTextures[] = { QPATHTOF(data\hats\RAF_Beret.paa) };
-            hiddenSelections[] = { "Camo" };
-        };
-    };
     class UKSF_H_AACBeret: H_Beret_02 {
         scope = 2;
         author = "UKSF";
@@ -292,13 +275,19 @@ class CfgWeapons {
         hiddenSelectionsTextures[] = { QPATHTOF(data\vests\tacticalvest_olive_co.paa) };
         class ItemInfo: VestItem {
             uniformModel = "A3\Characters_F\Common\equip_tacticalvest";
-            containerClass = "Supply200";
+            containerClass = "Supply500";
             mass = 40;
             armor = 20;
             passThrough = 1;
             hiddenSelections[] = { "camo" };
         };
-    };    
+    };
+    class UK3CB_BAF_V_Osprey_Mk2_Base;
+    class UK3CB_BAF_V_Pilot_A: UK3CB_BAF_V_Osprey_Mk2_Base {
+        class ItemInfo: VestItem {
+            containerClass = "Supply500";
+        };
+    };
     class V_PlateCarrier1_rgr;
     class V_PlateCarrier2_rgr: V_PlateCarrier1_rgr {
         class ItemInfo;

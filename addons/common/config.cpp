@@ -31,4 +31,4 @@ class cba_Extended_EventHandlers;
 #include "CfgMarkerColors.hpp"
 #include "CfgVehicles.hpp"
 
-// 1.76: enableDebugConsole[] = { WHITELIST_NOARRAY };
+enableDebugConsole[] = { WHITELIST_NOARRAY };

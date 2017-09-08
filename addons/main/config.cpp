@@ -921,4 +921,4 @@ class CfgMods {
 };
 
 #include "CfgSettings.hpp"
-// 1.76: delete enableDebugConsole;
+delete enableDebugConsole;

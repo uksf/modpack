@@ -252,8 +252,6 @@ respawnTemplates[] = { "MenuPosition" };
 reviveMode = 0;
 disabledAI = 1;
 aiKills = 0;
-// 1.76: //enableDebugConsole = 1;
-enableDebugConsole = 1;
 disableChannels[] = { 0,2,6 };
 #include "CfgFunctions.hpp"
 #include "CfgLoadouts.hpp"
