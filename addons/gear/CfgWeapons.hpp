@@ -8,6 +8,13 @@ class CfgWeapons {
     class HeadgearItem;
     class VestItem;
 
+    class ACRE_BaseRadio;
+    class ACRE_PRC117F: ACRE_BaseRadio {
+        class ItemInfo {
+            allowedSlots[] = {701,801,901};
+        };
+    };
+
     class UK3CB_BAF_U_CombatUniform_MTP_TShirt_RM;
     class UK3CB_BAF_U_CombatUniform_MTP_TShirt: UK3CB_BAF_U_CombatUniform_MTP_TShirt_RM {
         scope = 2;
@@ -871,13 +878,6 @@ class CfgWeapons {
                 soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
             };
             soundContinuous = 0;
-        };
-    };
-
-    class ACRE_BaseRadio;
-    class ACRE_PRC117F: ACRE_BaseRadio {
-        class ItemInfo {
-            allowedSlots[] = { 701,801,901 };
         };
     };
 
