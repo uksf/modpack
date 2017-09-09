@@ -1,1 +1,2 @@
 PREP(initDisplayMultiplayerLobby);
+PREP(missionLoad);

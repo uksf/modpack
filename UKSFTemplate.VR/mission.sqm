@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=215;
+		nextID=221;
 	};
 	class Camera
 	{
-		pos[]={37.447586,25.369493,-18.00045};
-		dir[]={-0.020670807,-0.61039829,0.79188389};
-		up[]={-0.015931392,0.79198539,0.6103195};
-		aside[]={0.99970394,1.134249e-007,0.026094276};
+		pos[]={21.285948,25.369493,-12.385141};
+		dir[]={0.0051529119,-0.62814939,0.77813643};
+		up[]={0.0041604126,0.77798021,0.62826252};
+		aside[]={1.0000229,5.9716513e-008,-0.0066234134};
 	};
 };
 binarizationWanted=0;
@@ -2612,7 +2612,7 @@ class Mission
 					flags=5;
 					class Attributes
 					{
-						description="G1P_3";
+						description="G1P_2";
 						isPlayable=1;
 					};
 					id=346;
@@ -2629,7 +2629,7 @@ class Mission
 					flags=5;
 					class Attributes
 					{
-						description="G1P_2";
+						description="G1P_3";
 						isPlayable=1;
 					};
 					id=344;

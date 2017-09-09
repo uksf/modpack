@@ -12,4 +12,29 @@ if (hasInterface) then {
             };
         };
     }, true, [], true] call CBA_fnc_addClassEventHandler;
+
+    [{
+        !(isNull (findDisplay 46))
+    },{
+        [] spawn {
+            if (isMultiplayer) then {
+                sleep 0.25;
+                while {isNull (uiNamespace getVariable "RscDisplayLoading")} do {
+                    startLoadingScreen ["Loading"];
+                };
+                private _step = (1 / GVAR(curatorsMax));
+                for "_index" from 1 to GVAR(curatorsMax) do {
+                    progressLoadingScreen (_step * _index);
+                    uiSleep 1;
+                };
+                endLoadingScreen;
+                call EFUNC(lobby,missionLoad);
+            };
+
+            call FUNC(addCuratorActions);
+            if (!isMultiplayer) then {
+                call FUNC(curatorLogin);
+            };
+        };
+    }] call CBA_fnc_waitUntilAndExecute;
 };
