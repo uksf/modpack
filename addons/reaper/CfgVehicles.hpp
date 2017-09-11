@@ -381,12 +381,12 @@ class CfgVehicles {
                 class UAV_Altitude_200_Plus {
                     displayName = "+200m";
                     condition = "";
-                    statement = QUOTE(_height = (_target getVariable QQGVAR(targetHeightASL)) + 200; _target setVariable [ARR_3(QQGVAR(targetHeightASL),_height,true)];);
+                    statement = QUOTE(private _height = (_target getVariable QQGVAR(targetHeightASL)) + 200; _target setVariable [ARR_3(QQGVAR(targetHeightASL),_height,true)];);
                 };
                 class UAV_Altitude_200_Minus {
                     displayName = "-200m";
                     condition = "";
-                    statement = QUOTE(_height = (_target getVariable QQGVAR(targetHeightASL)) - 200; _target setVariable [ARR_3(QQGVAR(targetHeightASL),_height,true)];);
+                    statement = QUOTE(private _height = (_target getVariable QQGVAR(targetHeightASL)) - 200; _target setVariable [ARR_3(QQGVAR(targetHeightASL),_height,true)];);
                 };
                 class UAV_Altitude_reset {
                     displayName = "Reset";
@@ -396,35 +396,35 @@ class CfgVehicles {
             };
             class ACE_Drone_Radius {
                 displayName = "Loiter Radius";
-                condition = QUOTE((waypointType [ARR_2(group _target, currentWaypoint group _target)]) isEqualTo 'LOITER');
+                condition = QUOTE((waypointType [ARR_2(group _target,currentWaypoint (group _target))]) isEqualTo 'LOITER');
                 statement = "";
                 showDisabled = 1;
                 enableInside = 1;
                 priority = 1;
                 class UAV_Radius_1000 {
                     displayName = "1000m";
-                    condition = QUOTE((waypointLoiterRadius [ARR_2(group _target, currentWaypoint group _target)]) != 1000);
-                    statement = QUOTE([ARR_2(group _target, currentWaypoint group _target)] setWaypointLoiterRadius 1000;);
+                    condition = QUOTE((waypointLoiterRadius [ARR_2(group _target,currentWaypoint (group _target))]) != 1000);
+                    statement = QUOTE([ARR_2(group _target,currentWaypoint (group _target))] setWaypointLoiterRadius 1000;);
                 };
                 class UAV_Radius_1500 {
                     displayName = "1500m";
-                    condition = QUOTE((waypointLoiterRadius [ARR_2(group _target, currentWaypoint group _target)]) != 1500);
-                    statement = QUOTE([ARR_2(group _target, currentWaypoint group _target)] setWaypointLoiterRadius 1500;);
+                    condition = QUOTE((waypointLoiterRadius [ARR_2(group _target,currentWaypoint (group _target))]) != 1500);
+                    statement = QUOTE([ARR_2(group _target,currentWaypoint (group _target))] setWaypointLoiterRadius 1500;);
                 };
                 class UAV_Radius_2000 {
                     displayName = "2000m";
-                    condition = QUOTE((waypointLoiterRadius [ARR_2(group _target, currentWaypoint group _target)]) != 2000);
-                    statement = QUOTE([ARR_2(group _target, currentWaypoint group _target)] setWaypointLoiterRadius 2000;);
+                    condition = QUOTE((waypointLoiterRadius [ARR_2(group _target,currentWaypoint (group _target))]) != 2000);
+                    statement = QUOTE([ARR_2(group _target,currentWaypoint (group _target))] setWaypointLoiterRadius 2000;);
                 };
                 class UAV_Radius_200_Plus {
                     displayName = "+200m";
                     condition = "";
-                    statement = QUOTE(_radius = (waypointLoiterRadius [ARR_2(group _target, currentWaypoint group _target)]) + 200; [ARR_2(group _target, currentWaypoint group _target)] setWaypointLoiterRadius 2000;);
+                    statement = QUOTE(private _radius = (waypointLoiterRadius [ARR_2(group _target,currentWaypoint (group _target))]) + 200; [ARR_2(group _target,currentWaypoint (group _target))] setWaypointLoiterRadius 2000;);
                 };
                 class UAV_Radius_200_Minus {
                     displayName = "-200m";
                     condition = "";
-                    statement = QUOTE(_radius = (waypointLoiterRadius [ARR_2(group _target, currentWaypoint group _target)]) - 200; [ARR_2(group _target, currentWaypoint group _target)] setWaypointLoiterRadius 2000;);
+                    statement = QUOTE(private _radius = (waypointLoiterRadius [ARR_2(group _target,currentWaypoint (group _target))]) - 200; [ARR_2(group _target,currentWaypoint (group _target))] setWaypointLoiterRadius 2000;);
                 };
             };
             class ACE_Drone_Waypoint {
@@ -436,13 +436,13 @@ class CfgVehicles {
                 priority = 1;
                 class UAV_Waypoint_Loiter {
                     displayName = "Loiter";
-                    condition = QUOTE((waypointType [ARR_2(group _target, currentWaypoint group _target)]) != 'LOITER');
-                    statement = QUOTE([ARR_2(group _target, currentWaypoint group _target)] setWaypointType 'LOITER'; _target setVariable [ARR_3(QQGVAR(diveMode),false,true)]; _target setVariable [ARR_3(QQGVAR(observationMode),true,true)];);
+                    condition = QUOTE((waypointType [ARR_2(group _target,currentWaypoint (group _target))]) != 'LOITER');
+                    statement = QUOTE([ARR_2(group _target,currentWaypoint (group _target))] setWaypointType 'LOITER'; _target setVariable [ARR_3(QQGVAR(diveMode),false,true)]; _target setVariable [ARR_3(QQGVAR(observationMode),true,true)];);
                 };
                 class UAV_Waypoint_Move {
                     displayName = "Move";
-                    condition = QUOTE((waypointType [ARR_2(group _target, currentWaypoint group _target)]) != 'MOVE');
-                    statement = QUOTE([ARR_2(group _target, currentWaypoint group _target)] setWaypointType 'MOVE'; _target setVariable [ARR_3(QQGVAR(diveMode),false,true)]; _target setVariable [ARR_3(QQGVAR(observationMode),false,true)];);
+                    condition = QUOTE((waypointType [ARR_2(group _target,currentWaypoint (group _target))]) != 'MOVE');
+                    statement = QUOTE([ARR_2(group _target,currentWaypoint (group _target))] setWaypointType 'MOVE'; _target setVariable [ARR_3(QQGVAR(diveMode),false,true)]; _target setVariable [ARR_3(QQGVAR(observationMode),false,true)];);
                 };
                 class UAV_Waypoint_Delete {
                     displayName = "Delete";
@@ -452,18 +452,18 @@ class CfgVehicles {
                 class UAV_Waypoint_MoveToCrosshair {
                     displayName = "Move To Crosshair";
                     condition = "";
-                    statement = QUOTE([ARR_2(_target, false)] call FUNC(moveTo););
+                    statement = QUOTE([ARR_2(_target,false)] call FUNC(moveTo););
                 };
                 class UAV_Waypoint_StrikeCrosshair {
                     displayName = "Strike Crosshair";
                     condition = "";
-                    statement = QUOTE([ARR_2(_target, true)] call FUNC(moveTo););
+                    statement = QUOTE([ARR_2(_target,true)] call FUNC(moveTo););
                 };
             };
             class ACE_Drone_Compass {
                 displayName = "Compass";
                 condition = "";
-                statement = QUOTE(private _state = (_target getVariable [ARR_2(QQGVAR(compassState),false)]); [ARR_2(_target, !_state)] call FUNC(compass););
+                statement = QUOTE(private _state = (_target getVariable [ARR_2(QQGVAR(compassState),false)]); [ARR_2(_target,!_state)] call FUNC(compass););
                 showDisabled = 1;
                 enableInside = 1;
                 priority = 1;
@@ -471,7 +471,7 @@ class CfgVehicles {
             class ACE_Drone_Immobilise {
                 displayName = "Immobilise";
                 condition = QUOTE(speed _target < 10 && {!(_target getVariable [ARR_2(QQGVAR(immobilised),false)])});
-                statement = QUOTE([ARR_4(_target,'blockEngine',QQGVAR(immobilise),true)] call ace_common_fnc_statusEffect_set; _target setVariable [ARR_3(QQGVAR(immobilised),true,true)];);
+                statement = QUOTE([ARR_2(_target,true)] call FUNC(immobilise));
                 showDisabled = 1;
                 enableInside = 1;
                 priority = 1;
@@ -479,7 +479,7 @@ class CfgVehicles {
             class ACE_Drone_Mobilise {
                 displayName = "Mobilise";
                 condition = QUOTE(speed _target < 10 && {(_target getVariable [ARR_2(QQGVAR(immobilised),false)])});
-                statement = QUOTE([ARR_4(_target,'blockEngine',QQGVAR(immobilise),false)] call ace_common_fnc_statusEffect_set; _target setVariable [ARR_3(QQGVAR(immobilised),false,true)];);
+                statement = QUOTE([ARR_2(_target,false)] call FUNC(immobilise));
                 showDisabled = 1;
                 enableInside = 1;
                 priority = 1;
