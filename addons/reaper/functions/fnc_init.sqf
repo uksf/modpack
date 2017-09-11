@@ -15,12 +15,13 @@
 
 params ["_uav"];
 
-_uav setVariable ["acex_headless_blacklist", true, true];
-
-_uav setVariable [QGVAR(diveMode), false, true];
-_uav setVariable [QGVAR(observationMode), true, true];
-_uav setVariable [QGVAR(targetHeightASL), 1500, true];
-_uav setVariable [QGVAR(customWaypoint), false, true];
+if (local _uav) then {
+    _uav setVariable ["acex_headless_blacklist", true, true];
+    _uav setVariable [QGVAR(diveMode), false, true];
+    _uav setVariable [QGVAR(observationMode), true, true];
+    _uav setVariable [QGVAR(targetHeightASL), 1500, true];
+    _uav setVariable [QGVAR(customWaypoint), false, true];
+};
 
 GVAR(handlerUav) = [{
     params ["_args"];
