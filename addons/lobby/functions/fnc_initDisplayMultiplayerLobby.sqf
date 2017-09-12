@@ -37,7 +37,7 @@ private _fnc_update = {
         if (isArray (_unitNameConfigs >> _text) || {isArray (_unitNameConfigs >> (_playerList lbText 0))}) then {
             _unitName = true;
         };
-        if (_value == -1) then {
+        if (_value isEqualTo -1) then {
             if (_unitName) then {
                 _text = (getArray (_unitNameConfigs >> (_playerList lbText 0))) select 0;
             } else {
