@@ -14,9 +14,9 @@ if (hasInterface && {isMultiplayer}) then {
                 private _fps = _x getVariable [QGVAR(fps), 0];
                 private _colour = [1,1,1,0.7];
                 private _size = 0.03;
-                if (_fps < 20) then {
+                if (_fps < 15) then {
                     _colour = [1,0,0,0.7];
-                    _size = 0.05;
+                    _size = 0.045;
                 };
                 drawIcon3D ["", _colour, ASLToAGL getPosASL _x, 1, 2, 0, format ["FPS: %1", _fps], 0.1, _size, "PuristaMedium", "center"];
             };

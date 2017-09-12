@@ -266,7 +266,8 @@ def deploy_to_server(argv):
             print_blue("Using {}".format(file_zip))
         else:
             print_error("No zip found")
-            raise Exception
+            if (deploy_all):
+                raise Exception
 
         if deploy_all:
             upload_zip()
