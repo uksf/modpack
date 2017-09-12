@@ -8,7 +8,7 @@ class Cfg3DEN {
                         control = "Checkbox";
                         displayName = QUOTE(Allow 50/50 Unconcious);
                         tooltip = QUOTE(Allow 50/50 unconcious state);
-                        expression = QUOTE(if (!is3DEN) then {[ARR_2(_this, _value)] call EFUNC(common,setAllowUnconcious)};);
+                        expression = QUOTE(if (!is3DEN) then {[ARR_2(_this,_value)] call EFUNC(common,setAllowUnconcious)};);
                         typeName = "BOOL";
                         defaultValue = "(false)";
                         condition = "objectBrain * (1 - objectVehicle)";

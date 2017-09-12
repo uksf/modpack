@@ -17,6 +17,7 @@ params ["_uav"];
 
 if (local _uav) then {
     _uav setVariable ["acex_headless_blacklist", true, true];
+    _uav setVariable ["NOAI", 1, true];
     _uav setVariable [QGVAR(diveMode), false, true];
     _uav setVariable [QGVAR(observationMode), true, true];
     _uav setVariable [QGVAR(targetHeightASL), 1500, true];
