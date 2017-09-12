@@ -22,6 +22,9 @@ if (isArray (_unitNameConfigs >> (roleDescription player))) then {
     private _group = (GVAR(unitGroups) select {(groupId _x) isEqualTo _groupName}) select 0;
     if (isNil "_group") then {
         _group = createGroup west;
+        _group setGroupIdGlobal [_groupName];
+        GVAR(unitGroups) pushBack _group;
+        publicVariable QGVAR(unitGroups);
     };
     private _class = _unitConfig select 2;
     private _unit = _group createUnit [_class, [-1000, -1000, 0], [], 0, "NONE"];

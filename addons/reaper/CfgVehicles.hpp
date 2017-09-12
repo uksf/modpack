@@ -485,6 +485,8 @@ class CfgVehicles {
                 priority = 1;
             };
         };
+        soundEngineOnInt[] = { "A3\Sounds_F\air\UAV_02\UAV_02_start_ext", 0, 1 };
+        soundEngineOffInt[] = { "A3\Sounds_F\air\UAV_02\UAV_02_stop_int", 0, 1 };
         class Sounds {
             class EngineLowIn {
                 sound[] = { "CUP\AirVehicles\CUP_AirVehicles_AN2\data\sound\AN2_engine_low_int", 0, 1 };

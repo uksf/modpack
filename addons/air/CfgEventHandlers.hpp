@@ -5,6 +5,11 @@ class Extended_PreInit_EventHandlers {
 };
 
 class Extended_Init_EventHandlers {
+    class CAManBase {
+        class ADDON {
+            init = QUOTE([ARR_2({(_this select 0) setVariable [ARR_2('UK3CB_voice_enabled',0)];},[])] call CBA_fnc_execNextFrame;);
+        };
+    };
     class CUP_CH47F_base {
         class ADDON {
             init = QUOTE((_this select 0) setVariable [ARR_3('ace_medical_medicClass',1,true)];);

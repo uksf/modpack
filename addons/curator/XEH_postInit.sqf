@@ -19,6 +19,8 @@ if (hasInterface) then {
         [] spawn {
             if (isMultiplayer) then {
                 sleep 0.25;
+                private _volume = soundVolume;
+                1 fadeSound 0;
                 while {isNull (uiNamespace getVariable "RscDisplayLoading")} do {
                     startLoadingScreen ["Loading"];
                 };
@@ -29,12 +31,15 @@ if (hasInterface) then {
                 };
                 endLoadingScreen;
                 call EFUNC(lobby,missionLoad);
+                1 fadeSound _volume;
             };
 
-            call FUNC(addCuratorActions);
-            if (!isMultiplayer) then {
-                call FUNC(curatorLogin);
-            };
+            {
+               call FUNC(addCuratorActions);
+                if (!isMultiplayer) then {
+                    call FUNC(curatorLogin);
+                }; 
+            } call CBA_fnc_directCall;            
         };
     }] call CBA_fnc_waitUntilAndExecute;
 };

@@ -69,13 +69,13 @@ class UK3CB_BAF_Merlin_HC3_Unarmed_Base: UK3CB_BAF_Merlin_HC3_Base {
 class UK3CB_BAF_Merlin_HC3_Armed_Base: UK3CB_BAF_Merlin_HC3_Base {
 };
 class UK3CB_BAF_Merlin_HC3_24: UK3CB_BAF_Merlin_HC3_Unarmed_Base {
-    faction = "CUP_B_GB";
-    displayname = "Merlin HC3";
-};
-class UK3CB_BAF_Merlin_HC3_32: UK3CB_BAF_Merlin_HC3_Unarmed_Base {
     scope = 0;
     scopeCurator = 0;
     faction = "CUP_B_GB";
+};
+class UK3CB_BAF_Merlin_HC3_32: UK3CB_BAF_Merlin_HC3_Unarmed_Base {
+    faction = "CUP_B_GB";
+    displayname = "Merlin HC3";
 };
 class UK3CB_BAF_Merlin_HC3_18: UK3CB_BAF_Merlin_HC3_Unarmed_Base {
     scope = 0;
