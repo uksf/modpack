@@ -14,7 +14,7 @@ class CfgUnitNames {
     G11_1[] = { "Guardian 1-1", "Section Leader", "UKSF_B_SectionLeader" };
     G11_2[] = { "Guardian 1-1", "2iC", "UKSF_B_SectionLeader" };
     G11_3[] = { "Guardian 1-1", "Rifleman", "UKSF_B_Rifleman" };
-    G11_4[] = { "Guardian 1-1", "Rifleman", "UKSF_B_Rifleman" };
+    G11_4[] = { "Guardian 1-1", "AT", "UKSF_B_Rifleman" };
     G11_5[] = { "Guardian 1-1", "Gunner", "UKSF_B_MachineGunner" };
     G11_6[] = { "Guardian 1-1", "Marksman", "UKSF_B_Rifleman" };
     G11_7[] = { "Guardian 1-1", "Reserve", "UKSF_B_Rifleman" };
@@ -44,8 +44,8 @@ class CfgUnitNames {
     G_1[] = { "Ghost", "Commander - Cpl.Blivejazz.M", "UKSF_B_Sniper" };
     G_2[] = { "Ghost", "Sniper", "UKSF_B_Sniper" };
     G_3[] = { "Ghost", "Spotter", "UKSF_B_Sniper" };
-    G_4[] = { "Ghost", "JTAC", "UKSF_B_Rifleman" };
-    G_5[] = { "Ghost", "Medic", "UKSF_B_Medic" };
+    G_4[] = { "Ghost", "Sniper", "UKSF_B_Sniper" };
+    G_5[] = { "Ghost", "Spotter", "UKSF_B_Sniper" };
     P1_1[] = { "Pegasus Crew 1", "Commander", "UKSF_B_AntiTank" };
     P1_2[] = { "Pegasus Crew 1", "Driver", "UKSF_B_AntiTank" };
     P1_3[] = { "Pegasus Crew 1", "Gunner", "UKSF_B_AntiTank" };
