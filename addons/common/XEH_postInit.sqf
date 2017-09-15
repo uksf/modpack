@@ -19,3 +19,8 @@ player addEventHandler ["HandleRating", {
         abs (rating (_this select 0));
     };
 }];
+
+// Add FPS action
+if (hasInterface) then {
+    call FUNC(fpsAction);
+};

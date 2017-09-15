@@ -179,6 +179,8 @@ class CallbackService(rpyc.Service):
         print_blue(message)
 
 deploy_all = False
+deploy_upload = False
+deploy_extract = False
 deploy_update = False
 deploy_build = False
 deploy_sync = False
@@ -197,7 +199,7 @@ def remote_deploy():
         client = rpyc.utils.factory.connect_channel(channel, CallbackService, config={"sync_request_timeout":3000})
         print("Connected to uk-sf.com")
 
-        if deploy_all:
+        if deploy_all or deploy_extract:
             print_blue("\nExtracting remote {}".format(file_zip))
             client.root.extract_zip(file_zip)
 
@@ -227,6 +229,8 @@ def remote_deploy():
 
 def deploy_to_server(argv):
     global deploy_all
+    global deploy_upload
+    global deploy_extract
     global deploy_update
     global deploy_build
     global deploy_sync
@@ -241,6 +245,12 @@ def deploy_to_server(argv):
     if len(argv) == 0:
         deploy_all = True
     else:
+        if "upload" in argv:
+            argv.remove("upload")
+            deploy_upload = True
+        if "extract" in argv:
+            argv.remove("extract")
+            deploy_extract = True
         if "update" in argv:
             argv.remove("update")
             deploy_update = True
@@ -269,7 +279,7 @@ def deploy_to_server(argv):
             if (deploy_all):
                 raise Exception
 
-        if deploy_all:
+        if deploy_all or deploy_upload:
             upload_zip()
 
         remote_deploy()

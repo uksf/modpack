@@ -24,7 +24,6 @@ GVAR(fpsState) = false;
 // Setup events
 if (hasInterface) then {
     GVAR(fpsArray) = [];
-    call FUNC(fpsAction);
 
     [QGVAR(hint), {_this call FUNC(hint)}] call CBA_fnc_addEventHandler;
     [QGVAR(startLoadingScreen), {startLoadingScreen _this}] call CBA_fnc_addEventHandler;
