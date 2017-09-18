@@ -268,6 +268,46 @@ class UK3CB_BAF_LandRover_WMIK_HMG_FFR_Sand_A: UK3CB_BAF_LandRover_WMIK_HMG_Sand
     displayname = "Land Rover WMIK HMG (Sand)";
     COVER_ACTIONS
 };
+class UK3CB_BAF_LandRover_WMIK_GPMG_Base: UK3CB_BAF_LandRover_WMIK_Base {};
+class UK3CB_BAF_LandRover_WMIK_GPMG_Green_A: UK3CB_BAF_LandRover_WMIK_GPMG_Base {
+    scope = 0;
+    scopeCurator = 0;
+    faction = "CUP_B_GB";
+    crew = "CUP_B_BAF_Soldier_MTP";
+    typicalCargo[] = { "CUP_B_BAF_Soldier_MTP" };
+};
+class UK3CB_BAF_LandRover_WMIK_GPMG_Green_B: UK3CB_BAF_LandRover_WMIK_GPMG_Base {
+    scope = 0;
+    scopeCurator = 0;
+    faction = "CUP_B_GB";
+    crew = "CUP_B_BAF_Soldier_MTP";
+    typicalCargo[] = { "CUP_B_BAF_Soldier_MTP" };
+};
+class UK3CB_BAF_LandRover_WMIK_GPMG_Sand_A: UK3CB_BAF_LandRover_WMIK_GPMG_Base {
+    scope = 0;
+    scopeCurator = 0;
+    faction = "CUP_B_GB";
+    crew = "CUP_B_BAF_Soldier_MTP";
+    typicalCargo[] = { "CUP_B_BAF_Soldier_MTP" };
+};
+class UK3CB_BAF_LandRover_WMIK_GPMG_FFR_Green_A: UK3CB_BAF_LandRover_WMIK_GPMG_Green_A {
+    scope = 2;
+    scopeCurator = 2;
+    displayname = "Land Rover WMIK GPMG (Green)";
+    COVER_ACTIONS
+};
+class UK3CB_BAF_LandRover_WMIK_GPMG_FFR_Green_B: UK3CB_BAF_LandRover_WMIK_GPMG_Green_B {
+    scope = 2;
+    scopeCurator = 2;
+    displayname = "Land Rover WMIK GPMG (Green/Black)";
+    COVER_ACTIONS
+};
+class UK3CB_BAF_LandRover_WMIK_GPMG_FFR_Sand_A: UK3CB_BAF_LandRover_WMIK_GPMG_Sand_A {
+    scope = 2;
+    scopeCurator = 2;
+    displayname = "Land Rover WMIK GPMG (Sand)";
+    COVER_ACTIONS
+};
 class UK3CB_BAF_LandRover_WMIK_GMG_Base: UK3CB_BAF_LandRover_WMIK_Base {};
 class UK3CB_BAF_LandRover_WMIK_GMG_Green_A: UK3CB_BAF_LandRover_WMIK_GMG_Base {
     scope = 0;
