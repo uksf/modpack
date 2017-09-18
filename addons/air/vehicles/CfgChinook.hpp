@@ -161,6 +161,7 @@ class CUP_CH47F_base: Helicopter_Base_H {
         };
     };
     #include "MFDGeneral.hpp"
+    ace_cookoff_cookoffSelections[] = { "palivo" };
 };
 class CUP_B_CH47F_GB: CUP_CH47F_base {
     crew = "UKSF_B_Pilot_7";

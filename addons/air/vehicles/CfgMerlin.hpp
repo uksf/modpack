@@ -63,6 +63,7 @@ class UK3CB_BAF_Merlin_HC3_Base: Heli_Transport_02_base_F {
             };
         };
     };
+    ace_cookoff_cookoffSelections[] = { "palivo" };
 };
 class UK3CB_BAF_Merlin_HC3_Unarmed_Base: UK3CB_BAF_Merlin_HC3_Base {
 };

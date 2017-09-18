@@ -63,4 +63,5 @@ class USAF_F35A: B_Plane_Fighter_01_F {
     scopeCurator = 2;
     crew = "UKSF_B_Pilot_617";
     typicalCargo[] = { "UKSF_B_Pilot_617" };
+    ace_cookoff_cookoffSelections[] = { "palivo" };
 };
