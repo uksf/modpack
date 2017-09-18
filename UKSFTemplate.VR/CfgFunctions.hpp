@@ -10,11 +10,4 @@ class CfgFunctions {
             class spawnGroup {};
         };
     };
-    class uksf_support {
-        class support {
-            file = "functions\support";
-            class nearbySupport {};
-            class reTask {};
-        };
-    };
 };
