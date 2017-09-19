@@ -44,18 +44,27 @@ class CUP_F35B_base: Plane {
 };
 class CUP_B_F35B_AA_USMC: CUP_F35B_base {};
 class CUP_B_F35B_AA_BAF: CUP_B_F35B_AA_USMC {
+    scope = 0;
+    scopeCurator = 0;
     crew = "UKSF_B_Pilot_617";
     typicalCargo[] = { "UKSF_B_Pilot_617" };
+    INVENTORY_AIRCRAFT
 };
 class CUP_B_F35B_CAS_USMC: CUP_F35B_base {};
 class CUP_B_F35B_CAS_BAF: CUP_B_F35B_CAS_USMC {
+    scope = 0;
+    scopeCurator = 0;
     crew = "UKSF_B_Pilot_617";
     typicalCargo[] = { "UKSF_B_Pilot_617" };
+    INVENTORY_AIRCRAFT
 };
 class CUP_B_F35B_LGB_USMC: CUP_F35B_base {};
 class CUP_B_F35B_LGB_BAF: CUP_B_F35B_LGB_USMC {
+    scope = 0;
+    scopeCurator = 0;
     crew = "UKSF_B_Pilot_617";
     typicalCargo[] = { "UKSF_B_Pilot_617" };
+    INVENTORY_AIRCRAFT
 };
 class B_Plane_Fighter_01_F: Plane_Fighter_01_Base_F {};
 class USAF_F35A: B_Plane_Fighter_01_F {
@@ -64,4 +73,5 @@ class USAF_F35A: B_Plane_Fighter_01_F {
     crew = "UKSF_B_Pilot_617";
     typicalCargo[] = { "UKSF_B_Pilot_617" };
     ace_cookoff_cookoffSelections[] = { "palivo" };
+    INVENTORY_AIRCRAFT
 };

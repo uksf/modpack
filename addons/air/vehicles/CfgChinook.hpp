@@ -166,9 +166,11 @@ class CUP_CH47F_base: Helicopter_Base_H {
 class CUP_B_CH47F_GB: CUP_CH47F_base {
     crew = "UKSF_B_Pilot_7";
     typicalCargo[] = { "UKSF_B_Pilot_7","UKSF_B_Pilot_7","UKSF_B_Pilot_7" };
+    INVENTORY_AIRCRAFT
 };
-class CUP_CH47F_VIV_Base;
+class CUP_CH47F_VIV_Base: CUP_CH47F_base {};
 class CUP_B_CH47F_VIV_GB: CUP_CH47F_VIV_Base {
     crew = "UKSF_B_Pilot_7";
     typicalCargo[] = { "UKSF_B_Pilot_7","UKSF_B_Pilot_7","UKSF_B_Pilot_7" };
+    INVENTORY_AIRCRAFT
 };

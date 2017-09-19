@@ -336,7 +336,7 @@ class CfgWeapons {
     };
     class UK3CB_BAF_SpecterLDS_3D: UK3CB_BAF_SpecterLDS {
         scope = 2;
-        scopeCUrator = 2;
+        scopeCurator = 2;
         class ItemInfo: InventoryOpticsItem_Base_F {
             allowedSlots[] = {801,701,901};
             mass = 4;
@@ -347,7 +347,7 @@ class CfgWeapons {
             scope = 0;
             type = 201;
             unmountAction = "DismountOptic";
-            modelOptics = "UK3CB_BAF_Weapons\addons\UK3CB_BAF_Weapons_Accessories\Elcan_Optic.p3d";
+            modelOptics = "UK3CB_BAF_Weapons\addons\UK3CB_BAF_Weapons_Accessories\uk3cb_Elcan_Optic.p3d";
             class OpticsModes {
                 class UK3CB_BAF_LDS {
                     cameraDir = "";
@@ -371,8 +371,8 @@ class CfgWeapons {
     };
     class UK3CB_BAF_SpecterLDS_Dot_3D: UK3CB_BAF_SpecterLDS_Dot {
         scope = 2;
-        scopeCUrator = 2;
-        model = "UK3CB_BAF_Weapons\addons\UK3CB_BAF_Weapons_Accessories\Elcan_Reflex.p3d";
+        scopeCurator = 2;
+        model = "UK3CB_BAF_Weapons\addons\UK3CB_BAF_Weapons_Accessories\uk3cb_Elcan_Reflex.p3d";
         modelOptics = "";
         class ItemInfo: InventoryOpticsItem_Base_F {
             allowedSlots[] = {801,701,901};
@@ -384,7 +384,7 @@ class CfgWeapons {
             scope = 0;
             type = 201;
             unmountAction = "DismountOptic";
-            modelOptics = "UK3CB_BAF_Weapons\addons\UK3CB_BAF_Weapons_Accessories\Elcan_Optic.p3d";
+            modelOptics = "UK3CB_BAF_Weapons\addons\UK3CB_BAF_Weapons_Accessories\uk3cb_Elcan_Optic.p3d";
             class OpticsModes {
                 class UK3CB_BAF_LDS {
                     cameraDir = "";

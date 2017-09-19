@@ -22,6 +22,7 @@ class UKSF_B_L39_CAP: CUP_B_L39_CAP_CZ {
             magazines[] = {};
         };
     };
+    INVENTORY_AIRCRAFT
 };
 class CUP_B_L39_BMB_CZ;
 class UKSF_B_L39_BMB: CUP_B_L39_BMB_CZ {
@@ -33,4 +34,5 @@ class UKSF_B_L39_BMB: CUP_B_L39_BMB_CZ {
     hiddenSelectionsTextures[] = { QPATHTOF(data\l_39_body_raf.paa), QPATHTOF(data\l_39_body_1_raf.paa) };
     weapons[] = { "CUP_weapon_mastersafe", "CUP_Vacannon_GSh23L_L39", "CUP_Vblauncher_Fab250_veh" };
     magazines[] = { "CUP_150Rnd_TE2_Green_Tracer_GSh23_23mm_APHE_M", "CUP_4Rnd_FAB250_M" };
+    INVENTORY_AIRCRAFT
 };
