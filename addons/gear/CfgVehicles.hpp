@@ -509,16 +509,16 @@ class CfgVehicles {
                 magazine = "HandGrenade";
                 count = 20;
             };
-            class _xx_SmokeShell {
-                magazine = "SmokeShell";
+            class _xx_UK3CB_BAF_SmokeShell {
+                magazine = "UK3CB_BAF_SmokeShell";
                 count = 20;
             };
-            class _xx_SmokeShellRed {
-                magazine = "SmokeShellRed";
+            class _xx_UK3CB_BAF_SmokeShellRed {
+                magazine = "UK3CB_BAF_SmokeShellRed";
                 count = 20;
             };
-            class _xx_SmokeShellGreen {
-                magazine = "SmokeShellGreen";
+            class _xx_UK3CB_BAF_SmokeShellGreen {
+                magazine = "UK3CB_BAF_SmokeShellGreen";
                 count = 20;
             };
         };
@@ -637,16 +637,16 @@ class CfgVehicles {
                 magazine = "HandGrenade";
                 count = 20;
             };
-            class _xx_SmokeShell {
-                magazine = "SmokeShell";
+            class _xx_UK3CB_BAF_SmokeShell {
+                magazine = "UK3CB_BAF_SmokeShell";
                 count = 10;
             };
-            class _xx_SmokeShellRed {
-                magazine = "SmokeShellRed";
+            class _xx_UK3CB_BAF_SmokeShellRed {
+                magazine = "UK3CB_BAF_SmokeShellRed";
                 count = 10;
             };
-            class _xx_SmokeShellGreen {
-                magazine = "SmokeShellGreen";
+            class _xx_UK3CB_BAF_SmokeShellGreen {
+                magazine = "UK3CB_BAF_SmokeShellGreen";
                 count = 10;
             };
         };

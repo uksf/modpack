@@ -1,5 +1,4 @@
 class CUP_F35B_base: Plane {
-    maxSpeed = 1930;
     envelope[] = { 0, 1.75, 5.9, 7, 9.8, 10.3, 10.5, 10.9, 9.2, 7.8, 5, 3.8, 0.5, 0 };
     aileronSensitivity = 1.2;
     armor = 90;
@@ -44,18 +43,27 @@ class CUP_F35B_base: Plane {
 };
 class CUP_B_F35B_AA_USMC: CUP_F35B_base {};
 class CUP_B_F35B_AA_BAF: CUP_B_F35B_AA_USMC {
+    scope = 0;
+    scopeCurator = 0;
     crew = "UKSF_B_Pilot_617";
     typicalCargo[] = { "UKSF_B_Pilot_617" };
+    INVENTORY_AIRCRAFT
 };
 class CUP_B_F35B_CAS_USMC: CUP_F35B_base {};
 class CUP_B_F35B_CAS_BAF: CUP_B_F35B_CAS_USMC {
+    scope = 0;
+    scopeCurator = 0;
     crew = "UKSF_B_Pilot_617";
     typicalCargo[] = { "UKSF_B_Pilot_617" };
+    INVENTORY_AIRCRAFT
 };
 class CUP_B_F35B_LGB_USMC: CUP_F35B_base {};
 class CUP_B_F35B_LGB_BAF: CUP_B_F35B_LGB_USMC {
+    scope = 0;
+    scopeCurator = 0;
     crew = "UKSF_B_Pilot_617";
     typicalCargo[] = { "UKSF_B_Pilot_617" };
+    INVENTORY_AIRCRAFT
 };
 class B_Plane_Fighter_01_F: Plane_Fighter_01_Base_F {};
 class USAF_F35A: B_Plane_Fighter_01_F {
@@ -63,4 +71,8 @@ class USAF_F35A: B_Plane_Fighter_01_F {
     scopeCurator = 2;
     crew = "UKSF_B_Pilot_617";
     typicalCargo[] = { "UKSF_B_Pilot_617" };
+    // elevatorCoef[] = {0.3, 0.5, 0.66, 0.52, 0.49, 0.46, 0.43, 0.4, 0.35, 0.3, 0.25, 0.18, 0.17, 0.16, 0.15, 0.15};
+    elevatorCoef[] = { 0.4, 0.6, 0.76, 0.62, 0.59, 0.56, 0.53, 0.5, 0.45, 0.4, 0.35, 0.28, 0.27, 0.26, 0.25, 0.25 };
+    ace_cookoff_cookoffSelections[] = { "palivo" };
+    INVENTORY_AIRCRAFT
 };

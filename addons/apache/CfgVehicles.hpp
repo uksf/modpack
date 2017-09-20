@@ -199,9 +199,10 @@ class CfgVehicles {
             class MainTurret: MainTurret {
                 #include "MFDGunner.hpp"
                 turretInfoType = "RscOptics_GENERAL_FLIR";
-                ace_fcs_Enabled = 1;
-                discreteDistance[] = {};
-                discreteDistanceInitIndex = 0;
+                ace_hellfire_addLaserDesignator = 1;
+                ace_fcs_Enabled = 0;
+                discretedistance[] = {100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000};
+                discretedistanceinitindex = 4;
                 initElev = 0;
                 minElev = -60;
                 maxElev = 11;
@@ -214,11 +215,17 @@ class CfgVehicles {
                 gunnerGetInAction = "pilot_Heli_Light_02_Enter";
                 gunnerGetOutAction = "pilot_Heli_Light_02_Exit";
                 memoryPointGunnerOptics = "gunnerview";
+                canEject = 1;
+                showAllTargets = 4;
+                showHMD = 1;
                 allowTabLock = 1;
+                isCopilot = 1;
+                primaryGunner = 1;
                 pilotOpticsShowCursor = 1;
                 gunnerOpticsShowCursor = 1;
                 turretOpticsShowCursor = 1;
                 turretCanSee = "1 + 2 + 4 + 8 + 16";
+                showCrewAim = "1+2";
                 enableManualFire = 1; 
                 gunnerUsesPilotView = 1;
                 commanderUsesPilotView = 1;
@@ -234,31 +241,28 @@ class CfgVehicles {
                         initFov = 0.466;
                         minFov = 0.466;
                         maxFov = 0.466;
-                        directionStabilized = 0;
-                        horizontallyStabilized = 1;
                         visionMode[] = { "Normal", "NVG", "Ti" };
                         thermalMode[] = {0, 1};
                         gunnerOpticsColor[] = {0, 0, 0, 1};
                         gunnerOpticsEffect[] = { "TankCommanderOptics1" };
                         gunnerOpticsModel = "CUP\AirVehicles\CUP_AirVehicles_AH64\gunnerOptics_ah64.p3d";
                         opticsPPEffects[] = { "OpticsCHAbera2", "OpticsBlur2" };
+                        directionStabilized = 0;
                     };
                     class Wide: WideNGS {
                         opticsDisplayName = "W";
                         initFov = 0.466;
                         minFov = 0.466;
                         maxFov = 0.466;
-                        directionStabilized = 1;
-                        horizontallyStabilized = 1;
                         gunnerOpticsModel = "CUP\AirVehicles\CUP_AirVehicles_AH64\gunnerOptics_ah64.p3d";
+                        directionStabilized = 1;
+                        stabilizedInAxes = 4;
                     };
                     class WideL: Wide {
                         opticsDisplayName = "WL";
                         initFov = 0.094;
                         minFov = 0.094;
                         maxFov = 0.094;
-                        directionStabilized = 1;
-                        horizontallyStabilized = 1;
                         gunnerOpticsModel = "CUP\AirVehicles\CUP_AirVehicles_AH64\gunnerOptics_ah64.p3d";
                     };
                     class Medium: Wide {
@@ -266,8 +270,6 @@ class CfgVehicles {
                         initFov = 0.019;
                         minFov = 0.019;
                         maxFov = 0.019;
-                        directionStabilized = 1;
-                        horizontallyStabilized = 1;
                         gunnerOpticsModel = "CUP\AirVehicles\CUP_AirVehicles_AH64\gunnerOptics_ah64.p3d";
                     };
                     class Narrow: Wide {
@@ -857,7 +859,7 @@ class CfgVehicles {
                         };
                         typeRecognitionDistance = 8000;
                         angleRangeHorizontal = 360;
-                        angleRangeVertical = 360;
+                        aimDown = 30;
                         maxGroundNoiseDistance = -1;
                         groundNoiseDistanceCoef = -1;
                         minSpeedThreshold = 0;
@@ -994,6 +996,8 @@ class CfgVehicles {
                 };
             };
         };
+        ace_cookoff_cookoffSelections[] = { "palivo" };
+        INVENTORY_AIRCRAFT
     };
     class UKSF_Apache_AH1: UKSF_Apache_base {
         scope = 2;
