@@ -3,8 +3,8 @@ class CUP_B_USArmy_Soldier_01;
 class CUP_B_US_Soldier_HAT: CUP_B_USArmy_Soldier_01 {
     weapons[] = { "CUP_arifle_M4A1_CCO_flashlight","Throw","Put","UK3CB_BAF_Javelin_Slung_Tube","UK3CB_BAF_Javelin_CLU" };
     respawnWeapons[] = { "CUP_arifle_M4A1_CCO_flashlight","Throw","Put","UK3CB_BAF_Javelin_Slung_Tube","UK3CB_BAF_Javelin_CLU" };
-    magazines[] = { "CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_HandGrenade_M67","SmokeShell" };
-    respawnMagazines[] = { "CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_HandGrenade_M67","SmokeShell" };  
+    magazines[] = { "CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_HandGrenade_M67","UK3CB_BAF_SmokeShell" };
+    respawnMagazines[] = { "CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_HandGrenade_M67","UK3CB_BAF_SmokeShell" };  
 };
 class CUP_B_USMC_Soldier_AT_Base;
 class CUP_B_USMC_Soldier_HAT: CUP_B_USMC_Soldier_AT_Base {

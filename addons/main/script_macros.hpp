@@ -48,7 +48,7 @@ class TransportWeapons {};
 #define INVENTORY_AIRCRAFT class TransportMagazines { \
     MACRO_ADDMAGAZINE(ACE_M14,2); \
     MACRO_ADDMAGAZINE(ACE_HandFlare_Red,2); \
-    MACRO_ADDMAGAZINE(SmokeShellRed,2); \
+    MACRO_ADDMAGAZINE(UK3CB_BAF_SmokeShellRed,2); \
     MACRO_ADDMAGAZINE(B_IR_Grenade,2); \
 }; \
 class TransportItems { \
