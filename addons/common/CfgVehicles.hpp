@@ -9,6 +9,11 @@ class CfgVehicles {
         scope = 1;
         scopeCurator = 2;
     };
+    class VCOM_SupportToggle: GVAR(moduleBase) {
+        curatorCanAttach = 1;
+        displayName = QUOTE(VCOM Support Toggle);
+        function = QFUNC(moduleToggleVCOMSupport);
+    };
 
     class ModuleRespawnPosition_F;
     class UKSFModuleRespawnPosition_F: ModuleRespawnPosition_F {
