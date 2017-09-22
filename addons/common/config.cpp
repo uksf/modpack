@@ -4,6 +4,7 @@ class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
         units[] = {
+            "VCOM_SupportToggle",
             "UKSFModuleRespawnPosition_F"
         };
         weapons[] = {};
