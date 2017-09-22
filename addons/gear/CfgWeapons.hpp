@@ -491,6 +491,17 @@ class CfgWeapons {
         class EGLM: UGL_F {
             magazines[] = { "1Rnd_HE_Grenade_shell","UGL_FlareWhite_F","UGL_FlareGreen_F","UGL_FlareRed_F","UGL_FlareYellow_F","UGL_FlareCIR_F","1Rnd_Smoke_Grenade_shell","1Rnd_SmokeRed_Grenade_shell","1Rnd_SmokeGreen_Grenade_shell","1Rnd_SmokeYellow_Grenade_shell","1Rnd_SmokePurple_Grenade_shell","1Rnd_SmokeBlue_Grenade_shell","1Rnd_SmokeOrange_Grenade_shell","ACE_HuntIR_M203" };
         };
+        ace_barrelLength = 461; // c:441.96, a:518
+    };
+    class UK3CB_BAF_L119_Base: arifle_Mk20_plain_F {
+        ace_barrelLength = 450; // c:410, a:398
+    };
+    class UK3CB_BAF_L119A1_CQB: UK3CB_BAF_L119_Base {
+        ace_barrelLength = 434; // c:250, a:250
+    };
+    class srifle_EBR_F;
+    class UK3CB_BAF_L129A1: srifle_EBR_F {
+        ace_barrelLength = 410;
     };
     class LMG_Zafir_F;
     class UK3CB_BAF_L7A2: LMG_Zafir_F {

@@ -10,6 +10,7 @@ PREP(getNearPlayers);
 PREP(hint);
 PREP(lineOfSight);
 PREP(moduleRespawnPosition);
+PREP(moduleToggleVCOMSupport);
 PREP(populate);
 PREP(setAllowUnconcious);
 PREP(setSkill);

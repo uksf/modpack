@@ -36,10 +36,4 @@ class CfgVehicles {
         function = QFUNC(moduleToggleCaching);
         icon = QPATHTOF(UI\Icon_Module_CachingExclude_ca.paa);
     };
-    class GVAR(moduleCachingInclude): EGVAR(common,moduleBase) {
-        curatorCanAttach = 1;
-        displayName = QUOTE(Caching include);
-        function = QFUNC(moduleToggleCaching);
-        icon = QPATHTOF(UI\Icon_Module_CachingInclude_ca.paa);
-    };
 };

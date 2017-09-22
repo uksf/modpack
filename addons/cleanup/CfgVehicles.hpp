@@ -36,10 +36,4 @@ class CfgVehicles {
         function = QFUNC(moduleToggleCleanup);
         icon = QPATHTOF(UI\Icon_Module_CleanupExclude_ca.paa);
     };
-    class GVAR(moduleCleanupInclude): EGVAR(common,moduleBase) {
-        curatorCanAttach = 1;
-        displayName = QUOTE(Cleanup include);
-        function = QFUNC(moduleToggleCleanup);
-        icon = QPATHTOF(UI\Icon_Module_CleanupInclude_ca.paa);
-    };
 };
