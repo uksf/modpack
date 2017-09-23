@@ -9,8 +9,17 @@ class CfgVehicles {
         scope = 1;
         scopeCurator = 2;
     };
-    class VCOM_SupportToggle: GVAR(moduleBase) {
+    class VCOM_Toggle: GVAR(moduleBase) {
         curatorCanAttach = 1;
+        displayName = QUOTE(VCOM Toggle);
+        function = QFUNC(moduleToggleVCOM);
+    };
+    class VCOM_DisembarkToggle: GVAR(moduleBase) {
+        curatorCanAttach = 1;
+        displayName = QUOTE(VCOM Disembark Toggle);
+        function = QFUNC(moduleToggleVCOMDisembark);
+    };
+    class VCOM_SupportToggle: VCOM_Toggle {
         displayName = QUOTE(VCOM Support Toggle);
         function = QFUNC(moduleToggleVCOMSupport);
     };
