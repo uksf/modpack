@@ -9,9 +9,10 @@ class CfgWeapons {
     class VestItem;
 
     class ACRE_BaseRadio;
+    class CBA_MiscItem_ItemInfo;
     class ACRE_PRC117F: ACRE_BaseRadio {
-        class ItemInfo {
-            allowedSlots[] = {701,801,901};
+        class ItemInfo: CBA_MiscItem_ItemInfo {
+            allowedSlots[] = { 701,801,901 };
         };
     };
 
