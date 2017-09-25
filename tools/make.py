@@ -982,6 +982,8 @@ See the make.cfg file for additional build options.
     if "deploy_server" in argv:
         argv.remove("deploy_server")
         deploy_server = True
+        if not nomake:
+            make_release_zip = True
         if "upload" in argv:
             argv.remove("upload")
             deploy_args.append("upload")

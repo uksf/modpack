@@ -36,7 +36,7 @@ class UKSF_B_MachineGunner: UKSF_B_Rifleman {
 };
 class UKSF_B_AntiTank: UKSF_B_Rifleman {
     displayName = "Rifleman (AT)";
-    threat[] = {1, 1, 0.3};
+    engineer = 1;
     icon = "iconManAT";
     editorPreview = QPATHTOEF(common,data\previews\UKSF_B_AntiTank.jpg);
 };
@@ -58,18 +58,12 @@ class UKSF_B_Pilot_7: UKSF_B_Rifleman {
     displayName = "Pilot (7 Sqn.)";
     threat[] = {1, 1, 1};
     attendant = 1;
+    engineer = 1;
     editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Pilot_7.jpg);
     model = "\A3\Characters_F\Common\coveralls.p3d";
     hiddenSelections[] = { "Camo","insignia" };
     hiddenSelectionsTextures[] = { QPATHTOEF(gear,data\uniforms\pilot_coveralls_7.paa) };
     uniformClass = "UKSF_U_PilotCoveralls_7";
-    backpack = "B_Parachute";
-    weapons[] = { "UK3CB_BAF_L131A1","Throw","Put" };
-    respawnWeapons[] = { "UK3CB_BAF_L131A1","Throw","Put" };
-    magazines[] = { "UK3CB_BAF_9_17Rnd","UK3CB_BAF_9_17Rnd","UK3CB_BAF_9_17Rnd","UK3CB_BAF_9_17Rnd","HandGrenade","HandGrenade","SmokeShell","SmokeShell" };
-    respawnMagazines[] = { "UK3CB_BAF_9_17Rnd","UK3CB_BAF_9_17Rnd","UK3CB_BAF_9_17Rnd","UK3CB_BAF_9_17Rnd","HandGrenade","HandGrenade","SmokeShell","SmokeShell" };
-    linkedItems[] = { "ItemMap","ItemGPS","ItemCompass","ItemWatch","ACE_NVG_Pilot","UKSF_V_Pilot","UK3CB_BAF_H_PilotHelmetHeli_A" };
-    respawnLinkedItems[] = { "ItemMap","ItemGPS","ItemCompass","ItemWatch","ACE_NVG_Pilot","UKSF_V_Pilot","UK3CB_BAF_H_PilotHelmetHeli_A" };
     ACE_GForceCoef = 0.7;
 };
 class UKSF_B_Pilot_656: UKSF_B_Pilot_7 {
@@ -79,13 +73,6 @@ class UKSF_B_Pilot_656: UKSF_B_Pilot_7 {
     hiddenSelections[] = { "Camo","insignia" };
     hiddenSelectionsTextures[] = { QPATHTOEF(gear,data\uniforms\pilot_uniform_656.paa) };
     uniformClass = "UKSF_U_PilotUniform_656";
-    backpack = "B_Parachute";
-    weapons[] = { "UK3CB_BAF_L22A2_Elcan","Throw","Put" };
-    respawnWeapons[] = { "UK3CB_BAF_L22A2_Elcan","Throw","Put" };
-    magazines[] = { "UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","HandGrenade","HandGrenade","SmokeShell","SmokeShell" };
-    respawnMagazines[] = { "UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","HandGrenade","HandGrenade","SmokeShell","SmokeShell" };
-    linkedItems[] = { "ItemMap","ItemGPS","ItemCompass","ItemWatch","ACE_NVG_Pilot","UKSF_V_Pilot","UK3CB_BAF_H_PilotHelmetHeli_A" };
-    respawnLinkedItems[] = { "ItemMap","ItemGPS","ItemCompass","ItemWatch","ACE_NVG_Pilot","UKSF_V_Pilot","UK3CB_BAF_H_PilotHelmetHeli_A" };
     ACE_GForceCoef = 0.7;
 };
 class UKSF_B_Pilot_617: UKSF_B_Pilot_7 {
@@ -95,12 +82,5 @@ class UKSF_B_Pilot_617: UKSF_B_Pilot_7 {
     hiddenSelections[] = { "Camo","insignia" };
     hiddenSelectionsTextures[] = { QPATHTOEF(gear,data\uniforms\pilot_gsuit_617.paa) };
     uniformClass = "UKSF_U_PilotGSuit_617";
-    backpack = "B_Parachute";
-    weapons[] = { "UK3CB_BAF_L131A1","Throw","Put" };
-    respawnWeapons[] = { "UK3CB_BAF_L131A1","Throw","Put" };
-    magazines[] = { "UK3CB_BAF_9_17Rnd","UK3CB_BAF_9_17Rnd","UK3CB_BAF_9_17Rnd","UK3CB_BAF_9_17Rnd","HandGrenade","HandGrenade","SmokeShell","SmokeShell" };
-    respawnMagazines[] = { "UK3CB_BAF_9_17Rnd","UK3CB_BAF_9_17Rnd","UK3CB_BAF_9_17Rnd","UK3CB_BAF_9_17Rnd","HandGrenade","HandGrenade","SmokeShell","SmokeShell" };
-    linkedItems[] = { "ItemMap","ItemGPS","ItemCompass","ItemWatch","ACE_NVG_Pilot","H_PilotHelmetFighter_B" };
-    respawnLinkedItems[] = { "ItemMap","ItemGPS","ItemCompass","ItemWatch","ACE_NVG_Pilot","H_PilotHelmetFighter_B" };
-    ACE_GForceCoef = 0.4;
+    ACE_GForceCoef = 0.5;
 };

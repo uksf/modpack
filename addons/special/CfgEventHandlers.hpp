@@ -16,7 +16,7 @@ class Extended_PostInit_EventHandlers {
     };
 };
 
-class Extended_Init_EventHandlers {
+class Extended_InitPost_EventHandlers {
     class UKSF_O_TK_INS_Suicide_Driver {
         class GVAR(random) {
             init = QUOTE([(_this select 0)] call FUNC(init));
@@ -29,7 +29,7 @@ class Extended_Init_EventHandlers {
     };
     class UKSF_O_TK_INS_Suicide_Deadman {
         class ADDON {
-            init = QUOTE([ARR_2((_this select 0), true)] call FUNC(suicide));
+            init = QUOTE([ARR_2((_this select 0),true)] call FUNC(suicide));
         };
     };
     class UKSF_O_Skoda_Base {
@@ -39,12 +39,12 @@ class Extended_Init_EventHandlers {
     };
     class UKSF_O_Skoda_CarBomb {
         class ADDON {
-            init = QUOTE([ARR_3((_this select 0), false, true)] call FUNC(suicide));
+            init = QUOTE([ARR_3((_this select 0),false,true)] call FUNC(suicide));
         };
     };
     class UKSF_O_Skoda_CarBomb_Deadman {
         class ADDON {
-            init = QUOTE([ARR_3((_this select 0), true, true)] call FUNC(suicide));
+            init = QUOTE([ARR_3((_this select 0),true,true)] call FUNC(suicide));
         };
     };
     class UKSF_O_Skoda_CarBomb_Empty {

@@ -3,7 +3,7 @@
         Tim Beswick
 
     Version:
-        1.2.0
+        1.3.0
 */
 
 //--------------------------------------------------- CHANGE BASED ON MISSION --------------------------------------------------
@@ -232,11 +232,11 @@ loadScreen = "uksf.paa";
 class Header {
     gameType = "Coop";
     minPlayers = 4;
-    maxPlayers = 78;
+    maxPlayers = 63;
 };
 respawn = "BASE";
-respawnOnStart = 1;
-respawnDelay = 5;
+respawnOnStart = 0;
+respawnDelay = 1;
 respawnDialog = 0;
 respawnTemplates[] = { "MenuPosition" };
 reviveMode = 0;
