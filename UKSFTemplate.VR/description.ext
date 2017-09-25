@@ -232,7 +232,7 @@ loadScreen = "uksf.paa";
 class Header {
     gameType = "Coop";
     minPlayers = 4;
-    maxPlayers = 63;
+    maxPlayers = 64;
 };
 respawn = "BASE";
 respawnOnStart = 0;
