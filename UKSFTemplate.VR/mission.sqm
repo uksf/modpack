@@ -2592,6 +2592,7 @@ class Mission
 					{
 						description="S_1";
 						isPlayer=1;
+						isPlayable=1;
 					};
 					id=334;
 					type="UKSF_B_Rifleman";
