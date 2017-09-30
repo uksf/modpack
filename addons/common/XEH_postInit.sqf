@@ -15,9 +15,7 @@ if (isMultiplayer && !is3DENMultiplayer) then {
 
 // Ensure rating never goes below 0.
 player addEventHandler ["HandleRating", {
-    if (rating (_this select 0) < 0) then {
-        abs (rating (_this select 0));
-    };
+    (_this select 0) addRating -rating (_this select 0)
 }];
 
 // Add FPS action

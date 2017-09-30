@@ -10,7 +10,7 @@ if (hasInterface && {isMultiplayer}) then {
     if (MULTIPLAYER_ADMIN_OR_WHITELISTED && {!(isNull (findDisplay 312))}) then {
         {
             private _distance = (ATLToASL (positionCameraToWorld [0,0,0])) distance _x;
-            if (_distance < 500) then {
+            if (_distance < 500 && {(driver (vehicle _x)) isEqualTo _x}) then {
                 private _fps = _x getVariable [QGVAR(fps), 0];
                 private _colour = [1,1,1,0.7];
                 private _size = 0.03;
@@ -18,7 +18,7 @@ if (hasInterface && {isMultiplayer}) then {
                     _colour = [1,0,0,0.7];
                     _size = 0.045;
                 };
-                drawIcon3D ["", _colour, ASLToAGL getPosASL _x, 1, 2, 0, format ["FPS: %1", _fps], 0.1, _size, "PuristaMedium", "center"];
+                drawIcon3D ["", _colour, getPosVisual _x, 1, 2, 0, format ["FPS: %1", _fps], 0.1, _size, "PuristaMedium", "center"];
             };
             false
         } count allPlayers;
