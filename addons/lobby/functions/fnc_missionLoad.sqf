@@ -31,16 +31,19 @@ if (isArray (_unitNameConfigs >> (roleDescription player))) then {
     _unit = _group createUnit [_class, [-1000, -1000, 0], [], 10, "NONE"];
     
 };
-private _oldUnit = player;
+
+[{deleteVehicle _this}, player, 5] call CBA_fnc_waitAndExecute;
 startLoadingScreen ["Loading"];
 if (!(isNull _unit)) then {
     selectPlayer _unit;
 };
+[{deleteVehicle _this}, player, 5] call CBA_fnc_waitAndExecute;
 forceRespawn player;
-deleteVehicle _oldUnit;
+
 [] spawn {
     uiSleep 1;
     progressLoadingScreen 1;
     uiSleep 1;
     endLoadingScreen;
+    [QEGVAR(common,addObjectsToCurators), []] call CBA_fnc_localEvent;
 };
