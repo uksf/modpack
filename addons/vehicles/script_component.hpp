@@ -97,8 +97,8 @@
             radius = 4; \
             priority = 5.92; \
             showwindow = 0; \
-            condition = QUOTE(this call FUNC(canResupply)); \
-            statement = QUOTE(this call FUNC(resupply)); \
+            condition = "this call UK3CB_BAF_Vehicles_Weapons_fnc_can_resupply_ammo"; \
+            statement = "[this, player] call UK3CB_BAF_Vehicles_Weapons_fnc_resupply_ammo"; \
             onlyforplayer = 1; \
         }; \
     };

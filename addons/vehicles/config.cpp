@@ -32,5 +32,4 @@ class CfgPatches {
 
 class cba_Extended_EventHandlers;
 #include "CfgEventHandlers.hpp"
-#include "CfgFunctions.hpp"
 #include "CfgVehicles.hpp"

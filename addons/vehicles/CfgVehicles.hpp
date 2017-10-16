@@ -201,6 +201,110 @@ class CfgVehicles {
                 };
             };
         };
+        armor = 50;
+        fuelExplosionPower = 2;
+        destrType = "DestructBuilding";
+        explosionEffect = "FuelExplosion";
+        class DestructionEffects {
+            class Light1 {
+                simulation = "light";
+                type = "ObjectDestructionLightFuel";
+                position = "destructionEffect1";
+                intensity = 1;
+                interval = 1;
+                lifeTime = 0;
+            };
+            class Smoke1 {
+                simulation = "particles";
+                type = "FuelTruck_Explosion";
+                position = "destructionEffect1";
+                intensity = 1;
+                interval = 1;
+                lifeTime = 0.001;
+            };
+            class LightFlames1 {
+                simulation = "particles";
+                type = "FlameLightBC";
+                position = "destructionEffect1";
+                intensity = 1;
+                interval = 1;
+                lifeTime = 0.5;
+                enabled = "distToWater";
+            };
+            class LightBig1 {
+                simulation = "light";
+                type = "ObjectDestructionLight";
+                position = "destructionEffect1";
+                intensity = 1;
+                interval = 1;
+                lifeTime = 2;
+                enabled = "distToWater";
+            };
+            class Sound {
+                simulation = "sound";
+                position = "destructionEffect1";
+                intensity = 1;
+                interval = 1;
+                lifeTime = 1;
+                type = "Fire";
+            };
+            class FireBig1 {
+                simulation = "particles";
+                type = "ObjectDestructionFire1";
+                position = "destructionEffect1";
+                intensity = 0.15;
+                interval = 1;
+                lifeTime = 3;
+            };
+            class SmokeBig1 {
+                simulation = "particles";
+                type = "ObjectDestructionSmoke";
+                position = "destructionEffect1";
+                intensity = 0.15;
+                interval = 1;
+                lifeTime = 3.5;
+            };
+            class SparksBig1 {
+                simulation = "particles";
+                type = "ObjectDestructionSparks";
+                position = "destructionEffect1";
+                intensity = 1;
+                interval = 1;
+                lifeTime = 0;
+            };
+            class FireSparksBig1 {
+                simulation = "particles";
+                type = "FireSparks";
+                position = "destructionEffect2";
+                intensity = 1;
+                interval = 1;
+                lifeTime = 2.8;
+            };
+            class FireBig2 {
+                simulation = "particles";
+                type = "ObjectDestructionFire2";
+                position = "destructionEffect2";
+                intensity = 0.15;
+                interval = 1;
+                lifeTime = 3;
+            };
+            class SmokeBig1_2 {
+                simulation = "particles";
+                type = "ObjectDestructionSmoke1_2";
+                position = "destructionEffect2";
+                intensity = 0.15;
+                interval = 1;
+                lifeTime = 3.5;
+            };
+            class SmokeBig2 {
+                simulation = "particles";
+                type = "ObjectDestructionSmoke2";
+                position = "destructionEffect2";
+                intensity = 1;
+                interval = 1;
+                lifeTime = 3.2;
+            };
+        };
     };
 
     class Tank_F;
