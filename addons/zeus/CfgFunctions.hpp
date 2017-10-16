@@ -10,7 +10,7 @@ class CfgFunctions {
             class onModuleTreeLoad { file = QPATHTOF(functions\fnc_onModuleTreeLoad.sqf); };
         };
         class ui_f_keyEvents {
-            class HandleCuratorObjectDoubleClicked { file = QPATHTOF(functions\fnc_handleCuratorObjectDoubleClicked.sqf); };
+            class HandleMouseDoubleClicked { file = QPATHTOF(functions\fnc_handleMouseDoubleClicked.sqf); };
         };
     };
     class Ares {
