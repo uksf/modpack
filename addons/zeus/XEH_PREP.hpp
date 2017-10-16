@@ -13,3 +13,4 @@ PREP(moduleTeleportZeus);
 PREP(moduleToggleAllowUnconcious);
 PREP(moduleToggleSideRelations);
 PREP(moduleToggleZeusVisibility);
+PREP(moduleToggleFps);

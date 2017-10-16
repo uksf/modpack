@@ -15,7 +15,8 @@ class CfgPatches {
             QGVAR(moduleToggleAllowUnconcious),
             QGVAR(moduleToggleBluforOpfor),
             QGVAR(moduleToggleIndepBlufor),
-            QGVAR(moduleToggleIndepOpfor)
+            QGVAR(moduleToggleIndepOpfor),
+            QGVAR(moduleToggleFps)
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;

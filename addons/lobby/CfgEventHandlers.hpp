@@ -15,3 +15,11 @@ class Extended_DisplayLoad_EventHandlers {
         cba_ui = QUOTE(_this call (uiNamespace getVariable QQFUNC(initDisplayMultiplayerLobby)));
     };
 };
+
+class Extended_Respawn_EventHandlers {
+    class CAManBase {
+        class ADDON {
+            respawn = QUOTE(_this call FUNC(handleRespawn));
+        };
+    };
+};

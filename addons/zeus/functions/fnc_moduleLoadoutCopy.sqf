@@ -17,7 +17,10 @@
 
 params ["_logic", "_units", "_activated"];
 
-if !(_activated && local _logic) exitWith {};
+if !(_activated && local _logic) exitWith {
+    deleteVehicle _logic;
+};
+deleteVehicle _logic;
 
 (missionNamespace getVariable ["bis_fnc_curatorObjectPlaced_mouseOver", [""]]) params ["_typeName", "_unit"];
 if (_typeName != "OBJECT" || {!(_unit isKindOf "CAManBase")}) then {
@@ -25,5 +28,3 @@ if (_typeName != "OBJECT" || {!(_unit isKindOf "CAManBase")}) then {
 } else {
     GVAR(loadout) = getUnitLoadout _unit;
 };
-
-deleteVehicle _logic;

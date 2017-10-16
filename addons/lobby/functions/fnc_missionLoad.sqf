@@ -37,7 +37,7 @@ startLoadingScreen ["Loading"];
 if (!(isNull _unit)) then {
     selectPlayer _unit;
 };
-[{deleteVehicle _this}, player, 5] call CBA_fnc_waitAndExecute;
+GVAR(firstRespawn) = true;
 forceRespawn player;
 
 [] spawn {
@@ -45,5 +45,4 @@ forceRespawn player;
     progressLoadingScreen 1;
     uiSleep 1;
     endLoadingScreen;
-    [QEGVAR(common,addObjectsToCurators), []] call CBA_fnc_localEvent;
 };

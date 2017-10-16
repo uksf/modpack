@@ -17,9 +17,10 @@
 
 params ["_logic", "_units", "_activated"];
 
-if !(_activated && local _logic) exitWith {};
+if !(_activated && local _logic) exitWith {
+    deleteVehicle _logic;
+};
+deleteVehicle _logic;
 
 [QEGVAR(common,addObjectsToCurators), []] call CBA_fnc_serverEvent;
 ["All objects were added to Zeus"] call ace_common_fnc_displayTextStructured;
-
-deleteVehicle _logic;

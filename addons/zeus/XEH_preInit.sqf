@@ -4,7 +4,7 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
-// Loadout copying
 GVAR(loadout) = "";
+GVAR(fpsEnabled) = false;
 
 ADDON = true;

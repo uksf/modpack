@@ -88,6 +88,14 @@ class CfgVehicles {
         GVAR(sides)[] = {independent, east};
         icon = QPATHTOF(UI\Icon_Module_ToggleIndepOpfor_ca.paa);
     };
+    class GVAR(moduleToggleFps): EGVAR(common,moduleBase) {
+        curatorCanAttach = 1;
+        category = "Curator";
+        displayName = "Toggle FPS";
+        function = QFUNC(moduleToggleFps);
+        icon = "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa";
+        portrait = "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa";
+    };
 
     class Ares_Zeus_Module_Base;
     class Ares_Module_Zeus_Visibility: Ares_Zeus_Module_Base {

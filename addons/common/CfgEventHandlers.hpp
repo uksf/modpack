@@ -25,7 +25,7 @@ class Extended_InitPost_EventHandlers {
     // CUP_NVG_PVS7, CUP_NVG_HMNVS, CUP_NVG_PVS14
     NVG(CUP_Creatures_Military_ACR_Soldier_Base,CUP_NVG_PVS7); // ACR
     NVG(CUP_Creatures_Military_CDF_Soldier_Base,CUP_NVG_PVS7); // CDF
-    NVG(CUP_Creatures_Military_UNO_Soldier_Base,CUP_NVG_PVS7); // CDF
+    NVG(CUP_Creatures_Military_UNO_Soldier_Base,CUP_NVG_PVS7); // UN
     //NVG(CUP_Creatures_Military_OPFINS_Soldier_Base,CUP_NVG_PVS7); // Chedaki
     NVG(CUP_Creatures_Military_GER_Soldier_Base,CUP_NVG_PVS7); // Germany
     NVG(CUP_Creatures_Military_PMC_Soldier_Base,CUP_NVG_PVS14); // PMC
