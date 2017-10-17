@@ -18,7 +18,7 @@
 */
 #include "script_component.hpp"
 
-params ["_logic", "_units", "_activated"];
+params ["_logic", "", "_activated"];
 
 if (_activated) then {
     
@@ -56,7 +56,7 @@ if (_activated) then {
         // --- Prepare admin variable
         private _adminVar = "";
         if (_isAdmin) then {
-            _letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+            private _letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
             _adminVar = "admin_";
             for "_i" from 0 to 9 do {_adminVar = _adminVar + selectRandom _letters};
             _logic setVariable ["adminVar", _adminVar, true];
@@ -70,7 +70,6 @@ if (_activated) then {
 
             if (_adminVar != "") then {_ownerVar = _adminVar;};
 
-            private _forced = _logic getVariable ["forced", 0] > 0;
             private _name = _logic getVariable ["name", ""];
             if (_name isEqualTo "") then {_name = localize "STR_A3_curator";};
 
@@ -172,10 +171,10 @@ if (_activated) then {
                 missionNamespace setVariable [_adminVar, player];
             } else {
                 // --- Client
-                [_logic, _adminVar, _serverCommand] spawn {
+                [_adminVar, _serverCommand] spawn {
                     scriptname "BIS_fnc_moduleCurator: Admin check";
 
-                    params ["_logic", "_adminVar", "_serverCommand"];
+                    params ["_adminVar", "_serverCommand"];
                     while {true} do {
                         waitUntil {sleep 0.1; serverCommandAvailable _serverCommand};
                         missionNamespace setVariable [_adminVar, player];

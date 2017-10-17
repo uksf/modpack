@@ -2,68 +2,101 @@
 
 # Requires: https://github.com/LordGolias/sqf
 
-import fnmatch
-import os
 import sys
+import os
 import argparse
+
 from sqf.parser import parse
 import sqf.analyzer
 from sqf.exceptions import SQFParserError
 
 
-def analyze(filename, out, writer=sys.stdout):
-    with open(filename, 'r') as file:
-        code = file.read()
-        try:
-            result = parse(code)
-        except SQFParserError as ex:
-            out.write("{}:".format(filename))
-            print("{}:".format(filename))
-            out.write('    [%d,%d]:%s\n' % (ex.position[0], ex.position[1] - 1, ex.message))
-            writer.write('    [%d,%d]:%s\n' % (ex.position[0], ex.position[1] - 1, ex.message))
-            return -1
+class Writer:
+    def __init__(self):
+        self.strings = []
 
-        exceptions = sqf.analyzer.analyze(result).exceptions
-        if exceptions:
-            out.write("{}:".format(filename))
-            print("{}:".format(filename))
-            for ex in exceptions:
-                out.write('    [%d,%d]:%s\n' % (ex.position[0], ex.position[1] - 1, ex.message))
-                writer.write('    [%d,%d]:%s\n' % (ex.position[0], ex.position[1] - 1, ex.message))
-            return len(exceptions)
+    def write(self, message):
+        self.strings.append(message)
 
-    return 0
 
-def main():
-    print("#########################")
-    print("# Lint Check #")
-    print("#########################")
+def analyze(code, writer=sys.stdout):
+    try:
+        result = parse(code)
+    except SQFParserError as e:
+        writer.write('[%d,%d]:%s\n' % (e.position[0], e.position[1] - 1, e.message))
+        return
 
-    sqf_list = []
-    all_warnings = 0
-    all_errors = 0
-    out = open("output.txt", "w")
+    exceptions = sqf.analyzer.analyze(result).exceptions
+    for e in exceptions:
+        writer.write('[%d,%d]:%s\n' % (e.position[0], e.position[1] - 1, e.message))
 
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-m', '--module', help='only search specified module folder', required=False, default=".")
-    args = parser.parse_args()
 
-    for root, dirnames, filenames in os.walk('addons' + '\\' + args.module):
-        for filename in fnmatch.filter(filenames, '*.sqf'):
-            sqf_list.append(os.path.join(root, filename))
+def analyze_dir(directory, writer):
+    """
+    Analyzes a directory recursively
+    """
+    for root, dirs, files in os.walk(directory):
+        for file in files:
+            if file.endswith(".sqf"):
+                file_path = os.path.join(root, file)
 
-    for filename in sqf_list:
-        ret = analyze(filename, out)
-        if ret < 0:
-            all_errors = all_errors + 1
-        else:
-            all_warnings = all_warnings + ret
+                writer_helper = Writer()
 
-    print("Parse Errors {0} - Warnings {1}".format(all_errors, all_warnings))
-    out.close()
+                with open(file_path) as f:
+                    analyze(f.read(), writer_helper)
 
-    # return (all_errors + all_warnings)
-    return all_errors
+                if writer_helper.strings:
+                    writer.write(os.path.relpath(file_path, directory) + '\n')
+                    for string in writer_helper.strings:
+                        writer.write('\t%s' % string)
+    return writer
+
+
+def readable_dir(prospective_dir):
+    if not os.path.isdir(prospective_dir):
+        raise Exception("readable_dir:{0} is not a valid path".format(prospective_dir))
+    if os.access(prospective_dir, os.R_OK):
+        return prospective_dir
+    else:
+        raise Exception("readable_dir:{0} is not a readable dir".format(prospective_dir))
+
+
+def parse_args(args):
+    parser = argparse.ArgumentParser(description="Static Analyzer of SQF code")
+    parser.add_argument('file', nargs='?', type=argparse.FileType('r'), default=None,
+                        help='The full path of the file to be analyzed')
+    parser.add_argument('-d', '--directory', nargs='?', type=readable_dir, default=None,
+                        help='The full path of the directory to recursively analyse sqf files on')
+    parser.add_argument('-o', '--output', nargs='?', type=argparse.FileType('w'), default=None,
+                        help='File path to redirect the output to (default to stdout)')
+
+    return parser.parse_args(args)
+
+
+def main(args):
+    args = parse_args(args)
+
+    if args.output is None:
+        writer = sys.stdout
+    else:
+        writer = args.output
+
+    if args.file is None and args.directory is None:
+        code = sys.stdin.read()
+        analyze(code, writer)
+    elif args.file is not None:
+        code = args.file.read()
+        args.file.close()
+        analyze(code, writer)
+    else:
+        analyze_dir(args.directory, writer)
+
+    if args.output is not None:
+        writer.close()
+
+def _main():
+    main(sys.argv[1:])
+
 
 if __name__ == "__main__":
-    main()
+    _main()

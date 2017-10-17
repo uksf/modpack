@@ -15,14 +15,14 @@
 
 private _handled = false;
 
-curatorMouseOver params ["_typeName","_clickedObject"];
+curatorMouseOver params ["_typeName", "_clickedObject"];
 if (_typeName isEqualType objNull) then {
     private _ctrlKeyPressed = param [5];
     
     switch (true) do {
         case (_ctrlKeyPressed): {
             missionnamespace setVariable ["bis_fnc_curatorObjectPlaced_mouseOver",[_typeName, _clickedObject]];
-            _logic = [getPos _clickedObject, "LOGIC"] call Ares_fnc_CreateLogic;
+            private _logic = [getPos _clickedObject, "LOGIC"] call Ares_fnc_CreateLogic;
             [_logic, [], true] call Achilles_fnc_moduleRemoteControl;
             _handled = true;
         };

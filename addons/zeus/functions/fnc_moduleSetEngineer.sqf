@@ -15,7 +15,7 @@
 */
 #include "script_component.hpp"
 
-params ["_logic", "_units", "_activated"];
+params ["_logic", "", "_activated"];
 
 if !(_activated && local _logic) exitWith {
     deleteVehicle _logic;
@@ -26,7 +26,7 @@ deleteVehicle _logic;
 if (_typeName != "OBJECT" || {!(_unit isKindOf "CAManBase")} || {!(alive _unit)}) then {
     ["Place on a living unit"] call ace_common_fnc_displayTextStructured;
 } else {
-    _engineer = [_unit] call ace_repair_fnc_isEngineer;
+    private _engineer = [_unit] call ace_repair_fnc_isEngineer;
     if (!_engineer) then {
         _unit setVariable ["ACE_IsEngineer", true, true];
         ["Unit set as Engineer"] call ace_common_fnc_displayTextStructured;

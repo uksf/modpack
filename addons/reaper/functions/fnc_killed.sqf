@@ -13,8 +13,6 @@
 */
 #include "script_component.hpp"
 
-params ["_uav"];
-
 [[], {
     if (!alive (getConnectedUAV player) && {!isNil QGVAR(handlerCompass)}) then {
         [GVAR(handlerCompass)] call cba_fnc_removePerFrameHandler;

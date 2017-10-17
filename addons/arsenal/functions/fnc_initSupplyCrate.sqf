@@ -19,7 +19,7 @@ params ["_crate"];
 if (GVAR(mainOpGear)) then {
     if (local _crate) then {
         private _data = call compile MAIN_OP_GEAR;
-        _data params [["_input", [], [[]]], ["_isVirtual", true, [true]]];
+        _data params [["_input", [], [[]]]];
         clearWeaponCargoGlobal _crate;
         clearMagazineCargoGlobal _crate;
         clearBackpackCargoGlobal _crate;

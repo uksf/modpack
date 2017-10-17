@@ -40,7 +40,7 @@ success = {
 
 fail = {
     params ["_args"];
-    _args params ["_rover", "_unit"];
+    _args params ["", "_unit"];
     hint "Could not deploy cover";
     [_unit, "", 2] call ace_common_fnc_doAnimation;
 };

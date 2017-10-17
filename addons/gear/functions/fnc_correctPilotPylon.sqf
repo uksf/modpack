@@ -17,7 +17,6 @@ params ["_vehicle"];
 
 if (!local _vehicle) exitWith {};
 
-private _pylons = configProperties [configFile >> "CfgVehicles" >> typeOf _vehicle >> "Components" >> "TransportPylonsComponent" >> "Pylons", "isClass _x"];
 private _magazines = getPylonMagazines _vehicle;
 
 {

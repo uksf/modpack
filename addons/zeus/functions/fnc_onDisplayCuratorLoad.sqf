@@ -16,7 +16,6 @@
 ["onLoad", _this ,"RscDisplayCurator", "CuratorDisplays"] call (uinamespace getvariable "BIS_fnc_initDisplay");
 
 disableSerialization;
-private _displayReload = false;
 if (isNil "Achilles_curator_init_done") then {
     private _mainDisplay = findDisplay 46;
     _mainDisplay displayAddEventHandler ["KeyDown", { _this call Achilles_fnc_HandleRemoteKeyPressed; }];

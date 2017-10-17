@@ -18,9 +18,6 @@ params ["_uav", "_state"];
 
 if (_state) then {
     GVAR(handlerCompass) = [{
-        params ["_args"];
-        _args params ["_uav"];
-
         if ((ACE_controlledUAV select 3) isEqualTo "GUNNER" && {cameraView isEqualTo "GUNNER"}) then {
             private _zoom = (call cba_fnc_getFov) select 1;
             private _factor = 500 / _zoom;
