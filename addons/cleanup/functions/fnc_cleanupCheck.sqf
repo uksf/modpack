@@ -15,11 +15,10 @@
 
 if (GVAR(enabled)) then {
     [{
-        _killed = missionNamespace getVariable [QGVAR(killed), []];
         private _newKilled = [];
         {
             _x params ["_object", "_time"];
-            _multiplier = if (_object isKindOf "Man") then {
+            private _multiplier = if (_object isKindOf "Man") then {
                 1
             } else {
                 2
@@ -32,7 +31,7 @@ if (GVAR(enabled)) then {
                 };                
             };
             false
-        } count _killed;
+        } count (missionNamespace getVariable [QGVAR(killed), []]);
         missionNamespace setVariable [QGVAR(killed), _newKilled, true];
     }, GVAR(delay) / 4, []] call cba_fnc_addPerFrameHandler;
 };

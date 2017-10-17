@@ -16,7 +16,7 @@
 params ["_heli"];
 
 GVAR(soundHandler) = [{
-    params ["_args", "_idPFH"];
+    params ["_args"];
     _args params ["_heli"];
 
     private _damage = _heli getHitPointDamage "HitVRotor";

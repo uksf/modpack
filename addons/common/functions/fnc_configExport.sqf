@@ -18,10 +18,9 @@
 #include "script_component.hpp"
 
 params ["_config", ["_numtabs", 0, [0]], ["_output", "", [""]]];
-private ["_parents", "_numParams", "_param", "_newConfig", "_params"];
 
-_makeTabs = {
-    _tabs = "";
+private _makeTabs = {
+    private _tabs = "";
     for "_t" from 1 to _this do {
         _tabs = _tabs + (toString [9]);
     };
@@ -30,22 +29,22 @@ _makeTabs = {
 
 if (!isClass _config) exitWith {"Input Was Not A Class"};
 
-_newLine = toString [13, 10];
-_parents = [_config] call BIS_fnc_returnParents;
+private _newLine = toString [13, 10];
+private _parents = [_config] call BIS_fnc_returnParents;
 
 _output = _output + (_numTabs call _makeTabs) + "class " + (configName _config) + _newLine + (_numTabs call _makeTabs) + "{" + _newline;
 
-_params = []; 
+private _params = []; 
 {
-    _numParams = (count _x) - 1;
+    private _numParams = (count _x) - 1;
     for "_i" from 0 to _numParams do {
-        _param = configName (_x select _i);
-        _newConfig = _config >> _param;
+        private _param = configName (_x select _i);
+        private _newConfig = _config >> _param;
         if (isClass _newConfig) then {
             _output = [_newConfig, _numTabs + 1, _output] call FUNC(configExport);
         } else {
-            _newParam = _param;
-            _data = nil;
+            private _newParam = _param;
+            private _data = nil;
             switch (true) do {
                 case (isNumber _newConfig): {
                     _data = getNumber _newConfig;

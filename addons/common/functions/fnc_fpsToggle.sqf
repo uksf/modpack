@@ -18,7 +18,7 @@ GVAR(fpsState) = !GVAR(fpsState);
 if (GVAR(fpsState)) then {
     GVAR(fpsEventID) = [QGVAR(fpsSet), {_this call FUNC(fpsSet)}] call CBA_fnc_addEventHandler;
     [{
-        params ["_args", "_idPFH"];
+        params ["", "_idPFH"];
 
         if (!GVAR(fpsState)) exitWith {
             [_idPFH] call CBA_fnc_removePerFrameHandler;

@@ -17,7 +17,7 @@ params ["_object"];
 
 if (GVAR(enabled)) then {
     if (!(_object getVariable [QGVAR(excluded), false])) then {
-        _killed = missionNameSpace getVariable [QGVAR(killed), []];       
+        private _killed = missionNameSpace getVariable [QGVAR(killed), []];       
         _killed pushBack [_object, time];
         missionNamespace setVariable [QGVAR(killed), _killed, true];
     } else {

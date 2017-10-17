@@ -21,7 +21,7 @@
 */
 #include "script_component.hpp"
 
-params ["_logic", "_units", "_activated"];
+params ["_logic", "", "_activated"];
 
 if !(_activated && local _logic) exitWith {
     deleteVehicle _logic;

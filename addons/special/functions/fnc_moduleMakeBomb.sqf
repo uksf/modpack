@@ -15,7 +15,7 @@
 */
 #include "script_component.hpp"
 
-params ["_logic", "_units", "_activated", ["_deadman", false], ["_car", false], ["_empty", false]];
+params ["_logic", "", "_activated", ["_deadman", false], ["_car", false], ["_empty", false]];
 
 if !(_activated && local _logic) exitWith {};
 

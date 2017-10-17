@@ -20,9 +20,7 @@
 
 #define PUSH(a,v) (a) set [count(a),(v)]
 
-private ["_joinString", "_escapeString", "_collectInheritedProperties", "_dumpConfigTree"];
-
-_joinString = {
+private _joinString = {
     params ["_list", "_char", "_size", "_subsize", "_oversize", "_j"];
 
     if (count _list < 1) exitwith {""};
@@ -43,15 +41,14 @@ _joinString = {
     _list select 0;
 };
 
-_escapeString = {
-    private ["_source", "_target", "_start", "_charCode"];
-    _source = toArray _this;
-    _start = _source find 34;
+private _escapeString = {
+    private _source = toArray _this;
+    private _start = _source find 34;
     if (_start > 0) then {
-        _target = +_source;
+        private _target = +_source;
         _target resize _start;
         for "_i" from _start to count _source - 1 do {
-            _charCode = _source select _i;
+            private _charCode = _source select _i;
             PUSH(_target,_charCode);
             if (_charCode == 34) then {
                 PUSH(_target,_charCode);
@@ -63,16 +60,15 @@ _escapeString = {
     };
 };
 
-_collectInheritedProperties = {
-    private ["_config", "_className", "_propertyNameList", "_propertyNameLCList", "_propertyName", "_propertyNameLC"];
-    _config = _this;
-    _propertyNameList = [];
-    _propertyNameLCList = [];
+private _collectInheritedProperties = {
+    private _config = _this;
+    private _propertyNameList = [];
+    private _propertyNameLCList = [];
     while {
-        _className = configName _config;
+        private _className = configName _config;
         for "_i" from 0 to count _config - 1 do {
-            _propertyName = _config select _i;
-            _propertyNameLC = toLower configName _propertyName;
+            private _propertyName = _config select _i;
+            private _propertyNameLC = toLower configName _propertyName;
             if !(_propertyNameLC in _propertyNameLCList) then {
                 PUSH(_propertyNameList,_propertyName);
                 PUSH(_propertyNameLCList,_propertyNameLC);
@@ -85,12 +81,11 @@ _collectInheritedProperties = {
     _propertyNameList;
 };
 
-_dumpConfigTree = {
-    params ["_config", ["_includeInheritedProperties", false], "_specifyParentClass", "_result", "_indents", "_depth", "_pushLine", "_traverse", "_traverseArray"];
+private _dumpConfigTree = {
+    params ["_config", ["_includeInheritedProperties", false], "_specifyParentClass", "_indents", "_depth", "_pushLine", "_traverse", "_traverseArray"];
     _specifyParentClass = !_includeInheritedProperties;
 
     "mb_fileio" callExtension "open_w|config_dump.cpp";
-    _result = [];
     _indents = [""];
     _depth = -1;
     _pushLine = {
@@ -105,8 +100,7 @@ _dumpConfigTree = {
     };
 
     _traverse = {
-        private "_confName";
-        _confName = configName _this;
+        private _confName = configName _this;
         if (isText _this) exitwith {
             _confName + " = " + (getText _this call _escapeString) + ";" call _pushLine;
         };
@@ -136,8 +130,7 @@ _dumpConfigTree = {
 
     _traverseArray = {
         if (typeName _this == "array") exitwith {
-            private "_array";
-            _array = [];
+            private _array = [];
             for "_i" from 0 to count _this - 1 do {
                 PUSH(_array,_this select _i call _traverseArray);
             };
@@ -154,9 +147,7 @@ _dumpConfigTree = {
     "mb_fileio" callExtension "close";
 };
 
-private ["_res", "_startTime", "_endTime"];
-_startTime = diag_tickTime;
-_res = _this call _dumpConfigTree;
-_endTime = diag_tickTime;
+private _startTime = diag_tickTime;
+_this call _dumpConfigTree;
+private _endTime = diag_tickTime;
 hint format ["Config Export Done. %1", _endTime - _startTime];
-_res
