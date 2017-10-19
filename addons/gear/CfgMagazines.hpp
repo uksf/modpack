@@ -56,6 +56,13 @@ class CfgMagazines {
         displayName = "4x AGM-114K";
         hardpoints[] = { "UNI_SCALPEL", "B_HELLFIRE" };
     };
+    class PylonRack_2Rnd_ACE_Hellfire_AGM114K_Drone: PylonRack_4Rnd_ACE_Hellfire_AGM114K {
+        displayName = "2x AGM-114K";
+		model = "\CUP\Weapons\CUP_Weapons_DynamicLoadout\AGM114\CUP_AGM114_dual.p3d";
+        count = 2;
+        pylonWeapon = "ace_hellfire_launcher_drone";
+        hardpoints[] = { "B_HELLFIRE_DRONE" };
+    };
     // Hellfire N
     class 6Rnd_ACE_Hellfire_AGM114N: 6Rnd_ACE_Hellfire_AGM114K {
         displayName = "AGM-114N";
@@ -76,6 +83,13 @@ class CfgMagazines {
         displayNameShort = "AGM-114N";
         descriptionShort = "AGM-114N";
         pylonWeapon = "ace_hellfire_launcher_N";
+    };
+    class PylonRack_2Rnd_ACE_Hellfire_AGM114N_Drone: PylonRack_4Rnd_ACE_Hellfire_AGM114N {
+        displayName = "2x AGM-114N";
+		model = "\CUP\Weapons\CUP_Weapons_DynamicLoadout\AGM114\CUP_AGM114_dual.p3d";
+        count = 2;
+        pylonWeapon = "ace_hellfire_launcher_drone_N";
+        hardpoints[] = { "B_HELLFIRE_DRONE" };
     };
     // Hellfire L
     class 6Rnd_ACE_Hellfire_AGM114L: 6Rnd_ACE_Hellfire_AGM114K {
