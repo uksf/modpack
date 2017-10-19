@@ -6,6 +6,6 @@ ADDON = false;
 
 GVAR(unitGroups) = [];
 GVAR(firstRespawn) = false;
-[QGVAR(respawned), {[QEGVAR(common,addObjectsToCurators), []] call CBA_fnc_localEvent}] call CBA_fnc_addEventHandler;
+[QGVAR(respawned), {[QEGVAR(common,addObjectsToCurators), []] call CBA_fnc_serverEvent}] call CBA_fnc_addEventHandler;
 
 ADDON = true;

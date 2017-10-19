@@ -29,20 +29,21 @@ if (isArray (_unitNameConfigs >> (roleDescription player))) then {
     };
     private _class = _unitConfig select 2;
     _unit = _group createUnit [_class, [-1000, -1000, 0], [], 10, "NONE"];
-    
 };
 
-[{deleteVehicle _this}, player, 5] call CBA_fnc_waitAndExecute;
-startLoadingScreen ["Loading"];
-if (!(isNull _unit)) then {
-    selectPlayer _unit;
-};
-GVAR(firstRespawn) = true;
-forceRespawn player;
+if (playerRespawnTime != -1) then {
+    [{deleteVehicle _this}, player, 5] call CBA_fnc_waitAndExecute;
+    startLoadingScreen ["Loading"];
+    if (!(isNull _unit)) then {
+        selectPlayer _unit;
+    };
+    GVAR(firstRespawn) = true;
+    forceRespawn player;
 
-[] spawn {
-    uiSleep 1;
-    progressLoadingScreen 1;
-    uiSleep 1;
-    endLoadingScreen;
+    [] spawn {
+        uiSleep 1;
+        progressLoadingScreen 1;
+        uiSleep 1;
+        endLoadingScreen;
+    };
 };
