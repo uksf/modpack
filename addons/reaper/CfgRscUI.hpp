@@ -5,7 +5,7 @@ class RscInGameUI {
     class RscOptics_UAV_gunner;
     class RscOptics_UAV_gunnerClean: RscOptics_UAV_gunner {
         idd = 300;
-        controls[] = { "CA_BackgroundVehicle", "CA_BackgroundVehicleTitle", "CA_BackgroundVehicleTitleDark", "CA_BackgroundFuel", "CA_Vehicle", "CA_VehicleRole", "CA_HitZones", "CA_VehicleTogglesBackground", "CA_VehicleToggles", "CA_ValueFuel", "WeaponInfoControlsGroupRight" };
+        controls[] = { "CA_IGUI_elements_group" };
         class VScrollbar;
         class HScrollbar;
         class CA_IGUI_elements_group: RscControlsGroup {
