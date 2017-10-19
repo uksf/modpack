@@ -427,7 +427,7 @@ class CfgVehicles {
             };
             class ACE_Drone_Waypoint {
                 displayName = "Waypoints";
-                condition = QUOTE((count (waypoints group _target)) > 1);
+                condition = "";
                 statement = "";
                 showDisabled = 1;
                 enableInside = 1;
@@ -444,7 +444,7 @@ class CfgVehicles {
                 };
                 class UAV_Waypoint_Delete {
                     displayName = "Delete";
-                    condition = "";
+                    condition = QUOTE((count (waypoints group _target)) > 1);
                     statement = QUOTE({deleteWaypoint [ARR_2(group _target,1)];} forEach (waypoints (group _target)););
                 };
                 class UAV_Waypoint_MoveToCrosshair {
