@@ -22,6 +22,8 @@ if !(_activated && local _logic) exitWith {
 };
 deleteVehicle _logic;
 
+if (!isMultiplayer) exitWith {};
+
 private _message = "FPS active";
 GVAR(fpsEnabled) = !GVAR(fpsEnabled);
 if (!GVAR(fpsEnabled)) then {
