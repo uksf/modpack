@@ -22,6 +22,6 @@ if (hasInterface && {isMultiplayer}) then {
                 drawIcon3D ["", _colour, ASLToAGL (getPosASLVisual (driver (vehicle _x))), 1, 2, 0, format ["FPS: %1", _fps], 0.1, _size, "PuristaMedium", "center"];
             };
             false
-        } count allPlayers;
+        } count (allPlayers - entities "HeadlessClient_F");
     };
 }, 0, []] call CBA_fnc_addPerFrameHandler;
