@@ -21,6 +21,6 @@ if !(_activated && local _logic) exitWith {
     deleteVehicle _logic;
 };
 
-(vehicle player) setPosATL (getPosATL _logic);
+["ace_zeus_moveToRespawnPosition", [(vehicle player), _logic modelToWorld [0,0,0]], (vehicle player)] call CBA_fnc_targetEvent;
 
 deleteVehicle _logic;
