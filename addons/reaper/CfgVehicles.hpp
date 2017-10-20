@@ -21,8 +21,6 @@ class CfgVehicles {
         class Turrets {
             class MainTurret: NewTurret {
                 turretInfoType = "RscOptics_UAV_gunnerClean";
-                weapons[] = { "Laserdesignator_mounted", "ace_hellfire_launcher_drone", "ace_hellfire_launcher_drone_N" };
-                magazines[] = { "Laserbatteries", "4Rnd_ACE_Hellfire_AGM114K_drone", "4Rnd_ACE_Hellfire_AGM114N_drone" };
                 startEngine = 0;
                 maxHorizontalRotSpeed = 1.75;
                 maxVerticalRotSpeed = 1.75;
@@ -429,7 +427,7 @@ class CfgVehicles {
             };
             class ACE_Drone_Waypoint {
                 displayName = "Waypoints";
-                condition = QUOTE((count (waypoints group _target)) > 1);
+                condition = "";
                 statement = "";
                 showDisabled = 1;
                 enableInside = 1;
@@ -446,7 +444,7 @@ class CfgVehicles {
                 };
                 class UAV_Waypoint_Delete {
                     displayName = "Delete";
-                    condition = "";
+                    condition = QUOTE((count (waypoints group _target)) > 1);
                     statement = QUOTE({deleteWaypoint [ARR_2(group _target,1)];} forEach (waypoints (group _target)););
                 };
                 class UAV_Waypoint_MoveToCrosshair {
@@ -510,11 +508,58 @@ class CfgVehicles {
             };
         };
     };
-    class CUP_B_USMC_MQ9;
-    class CUP_B_UKSF_MQ9: CUP_B_USMC_MQ9 {
+    class CUP_MQ9_Dyn_Base: CUP_MQ9_Base {};
+    class CUP_B_USMC_DYN_MQ9: CUP_MQ9_Dyn_Base {};
+    class CUP_B_UKSF_MQ9: CUP_B_USMC_DYN_MQ9 {
         author = "UKSF";
         faction = "CUP_B_GB";
         hiddenSelections[] = { "camo1" };
         hiddenSelectionsTextures[] = { QPATHTOF(data\UKSF_MQ9_co.paa) };
+        class Components: Components {
+            class TransportPylonsComponent {
+                UIPicture = "\CUP\AirVehicles\CUP_AirVehicles_MQ9\data\ui\CUP_MQ9_3DEN_ca.paa";
+                class presets {
+                    class Default {
+                        attachment[] = { "PylonRack_2Rnd_ACE_Hellfire_AGM114K_Drone","PylonRack_2Rnd_ACE_Hellfire_AGM114N_Drone","PylonRack_2Rnd_ACE_Hellfire_AGM114N_Drone","PylonRack_2Rnd_ACE_Hellfire_AGM114K_Drone" };
+                        displayName = "Mixed";
+                    };
+                    class AT {
+                        attachment[] = { "PylonRack_2Rnd_ACE_Hellfire_AGM114K_Drone","PylonRack_2Rnd_ACE_Hellfire_AGM114K_Drone","PylonRack_2Rnd_ACE_Hellfire_AGM114K_Drone","PylonRack_2Rnd_ACE_Hellfire_AGM114K_Drone" };
+                        displayName = "Anti-Tank";
+                    };
+                    class AP {
+                        attachment[] = { "PylonRack_2Rnd_ACE_Hellfire_AGM114N_Drone","PylonRack_2Rnd_ACE_Hellfire_AGM114N_Drone","PylonRack_2Rnd_ACE_Hellfire_AGM114N_Drone","PylonRack_2Rnd_ACE_Hellfire_AGM114N_Drone" };
+                        displayName = "Anti-Personnel";
+                    };
+                };
+                class pylons {
+                    class RightWingOut {
+                        attachment = "PylonRack_2Rnd_ACE_Hellfire_AGM114K_Drone";
+                        hardpoints[] = { "B_HELLFIRE_DRONE" };
+                        maxweight = 300;
+                        priority = 5;
+                        UIposition[] = { 0.3,"0.11+0.0" };
+                        turret[] = {0};
+                    };
+                    class RightWingIn: RightWingOut {
+                        attachment = "PylonRack_2Rnd_ACE_Hellfire_AGM114N_Drone";
+                        maxweight = 500;
+                        priority = 4;
+                        UIposition[] = { 0.3,"0.11+0.05" };
+                        turret[] = {0};
+                    };
+                    class LeftWingIn: RightWingIn {
+                        mirroredMissilePos = 2;
+                        UIposition[] = { 0.3,"0.11+0.29" };
+                        turret[] = {0};
+                    };
+                    class LeftWingOut: RightWingOut {
+                        mirroredMissilePos = 1;
+                        UIposition[] = { 0.3,"0.11+0.34" };
+                        turret[] = {0};
+                    };
+                };
+            };
+        };
     };
 };
