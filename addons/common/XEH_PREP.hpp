@@ -14,5 +14,6 @@ PREP(moduleToggleVCOM);
 PREP(moduleToggleVCOMDisembark);
 PREP(moduleToggleVCOMSupport);
 PREP(populate);
+PREP(releaseCargo);
 PREP(setAllowUnconcious);
 PREP(setSkill);
