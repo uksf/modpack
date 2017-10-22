@@ -21,7 +21,9 @@
     "sqflint.indexWorkspaceTwice": false,
     "sqflint.checkPaths": false,
     "sqflint.includePrefixes": {
-        "\\x\\": "P:/x"
+        "\\x\\": "P:/x",
+        "\\z\\": "P:/z",
+        "\\u\\": "P:/u"
     },
     "files.associations": {
         "*.ext": "sqf",
