@@ -1,4 +1,5 @@
 #include "script_component.hpp"
+#include "keybinds.sqf"
 
 // Delete groups every 5 minutes
 [{
