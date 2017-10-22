@@ -24,6 +24,9 @@ class CfgVehicles {
         typicalCargo[] = { "CUP_B_BAF_Soldier_MTP" };
         fuelCapacity = 15; // Reduced from 100. Gives ~40km range. 230L tank
         hullDamageCauseExplosion = 0;
+        class Turrets: Turrets {
+            class MainTurret;
+        };
         class HitPoints: HitPoints {
             class HitBody: HitBody {
                 armor = 1.5; // Default: 0.7
@@ -50,6 +53,9 @@ class CfgVehicles {
             class HitFuel: HitFuel {
                 armor = 2; // Default: 1
             };
+        };
+        class Turrets: Turrets {
+            class MainTurret;
         };
         COVER_ACTIONS
     };

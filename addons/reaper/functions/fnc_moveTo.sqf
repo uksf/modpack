@@ -3,18 +3,18 @@
         Tim Beswick
 
     Description:
-        Moves drone to crosshair. Performs strike if strike true.
+        Moves drone to crosshair with type.
 
     Parameter(s):
         0: UAV <OBJECT>
-        1: Strike mode <BOOL>
+        1: Mode <SCALAR>
 
     Return Value:
         Nothing
 */
 #include "script_component.hpp"
 
-params ["_uav", "_strike"];
+params ["_uav", "_type"];
 
 private _group = group _uav;
 private _screenPosition = screenToWorld [0.5,0.5];
@@ -29,10 +29,19 @@ if (count (waypoints _group) <= 1) then {
 _waypoint setWaypointType "MOVE";
 _group setCurrentWaypoint _waypoint;
 
-if (_strike) then {
-    _uav setVariable [QGVAR(diveMode), true, true];
-    _uav setVariable [QGVAR(observationMode), false, true];
-} else {
-    _uav setVariable [QGVAR(diveMode), false, true];
-    _uav setVariable [QGVAR(observationMode), false, true];
+switch (_type) do {
+    case 0: {
+        _uav setVariable [QGVAR(diveMode), false, true];
+        _uav setVariable [QGVAR(observationMode), false, true];
+    };
+    case 1: {
+        _uav setVariable [QGVAR(diveMode), false, true];
+        _uav setVariable [QGVAR(observationMode), true, true];
+        _waypoint setWaypointType 'LOITER';
+        _waypoint setWaypointLoiterRadius 1500;
+    };
+    case 2: {
+        _uav setVariable [QGVAR(diveMode), true, true];
+        _uav setVariable [QGVAR(observationMode), false, true];
+    };
 };

@@ -18,4 +18,3 @@ if (local player && !(player getVariable [QGVAR(fpsActionAdded), false])) then {
     [player, 1, ["ACE_SelfActions"], _action] call ace_interact_menu_fnc_addActionToObject;
     player setVariable [QGVAR(fpsActionAdded), true, true];
 };
-

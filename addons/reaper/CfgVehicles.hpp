@@ -18,6 +18,7 @@ class CfgVehicles {
     class CUP_MQ9_Base: UAV {
         camouflage = 0;
         wheelSteeringSensitivity = 1;
+        fuelCapacity = 1850; // 270
         class Turrets {
             class MainTurret: NewTurret {
                 turretInfoType = "RscOptics_UAV_gunnerClean";
@@ -435,7 +436,7 @@ class CfgVehicles {
                 class UAV_Waypoint_Loiter {
                     displayName = "Loiter";
                     condition = QUOTE((waypointType [ARR_2(group _target,currentWaypoint (group _target))]) != 'LOITER');
-                    statement = QUOTE([ARR_2(group _target,currentWaypoint (group _target))] setWaypointType 'LOITER'; _target setVariable [ARR_3(QQGVAR(diveMode),false,true)]; _target setVariable [ARR_3(QQGVAR(observationMode),true,true)];);
+                    statement = QUOTE([ARR_2(group _target,currentWaypoint (group _target))] setWaypointType 'LOITER'; [ARR_2(group _target,currentWaypoint (group _target))] setWaypointLoiterRadius 1500; _target setVariable [ARR_3(QQGVAR(diveMode),false,true)]; _target setVariable [ARR_3(QQGVAR(observationMode),true,true)];);
                 };
                 class UAV_Waypoint_Move {
                     displayName = "Move";
@@ -450,12 +451,17 @@ class CfgVehicles {
                 class UAV_Waypoint_MoveToCrosshair {
                     displayName = "Move To Crosshair";
                     condition = "";
-                    statement = QUOTE([ARR_2(_target,false)] call FUNC(moveTo););
+                    statement = QUOTE([ARR_2(_target,0)] call FUNC(moveTo););
+                };
+                class UAV_Waypoint_LoiterAtCrosshair {
+                    displayName = "Loiter At Crosshair";
+                    condition = "";
+                    statement = QUOTE([ARR_2(_target,1)] call FUNC(moveTo););
                 };
                 class UAV_Waypoint_StrikeCrosshair {
                     displayName = "Strike Crosshair";
                     condition = "";
-                    statement = QUOTE([ARR_2(_target,true)] call FUNC(moveTo););
+                    statement = QUOTE([ARR_2(_target,2)] call FUNC(moveTo););
                 };
             };
             class ACE_Drone_Compass {

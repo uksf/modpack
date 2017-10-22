@@ -117,5 +117,10 @@ class CfgVehicles {
         scopeCurator = 2;
     };
 
+    // Acre antenna
+    class acre_oe_303: House {
+        scopeCurator = 2;
+    };
+
     #include "CfgUniforms.hpp"
 };
