@@ -3,7 +3,7 @@ class CUP_Ridgback_Base: Wheeled_APC_F {
         class MainTurret: NewTurret {
             magazines[] = { "UK3CB_BAF_127_100Rnd" };
             class ViewOptics {
-                visionMode[] = { "Normal", "NVG" };
+                visionMode[] = {};
             };
         };
     };
@@ -55,7 +55,7 @@ class CUP_B_Ridgback_GMG_GB_D: CUP_Ridgback_Base {
         class MainTurret: MainTurret {
             magazines[] = { "UK3CB_BAF_32Rnd_40mm_G_Box" };
             class ViewOptics {
-                visionMode[] = { "Normal", "NVG" };
+                visionMode[] = {};
             };
         };
     };
@@ -73,7 +73,7 @@ class CUP_B_Ridgback_GMG_GB_W: CUP_Ridgback_Base {
         class MainTurret: MainTurret {
             magazines[] = { "UK3CB_BAF_32Rnd_40mm_G_Box" };
             class ViewOptics {
-                visionMode[] = { "Normal", "NVG" };
+                visionMode[] = {};
             };
         };
     };
@@ -91,7 +91,7 @@ class CUP_B_Ridgback_LMG_GB_D: CUP_Ridgback_Base {
         class Mainturret: NewTurret {
             magazines[] = { "UK3CB_BAF_762_100Rnd_T" };
             class ViewOptics {
-                visionMode[] = { "Normal", "NVG" };
+                visionMode[] = {};
             };
         };
     };
@@ -109,7 +109,7 @@ class CUP_B_Ridgback_LMG_GB_W: CUP_Ridgback_Base {
         class Mainturret: NewTurret {
             magazines[] = { "UK3CB_BAF_762_100Rnd_T" };
             class ViewOptics {
-                visionMode[] = { "Normal", "NVG" };
+                visionMode[] = {};
             };
         };
     };
