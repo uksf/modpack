@@ -3,7 +3,7 @@
 // Enable/Disable Collision Lights
 // Remove once added with next ACE update
 ["UKSF", QGVAR(collisionLights), "Collision Lights", {
-    if (!([ACE_player, vehicle ACE_player, []] call EFUNC(common,canInteractWith))) exitWith {false};
+    if (!([ACE_player, vehicle ACE_player, []] call ace_common_fnc_canInteractWith)) exitWith {false};
     if ((ACE_player isEqualTo (vehicle ACE_player)) || {ACE_player != (driver (vehicle ACE_player))}) exitWith {false};
     (vehicle ACE_player) setCollisionLight !(isCollisionLightOn (vehicle ACE_player));
     true
