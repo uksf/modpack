@@ -5,6 +5,12 @@
     {deleteGroup _x; false} count allGroups;
 }, 300, []] call cba_fnc_addPerFrameHandler;
 
+// Set server object
+if (isServer) then {
+    GVAR(server) = player;
+    publicVariable QGVAR(server);
+};
+
 // Set headless client array. Player if singleplayer
 GVAR(HCs) = [];
 if (isMultiplayer && !is3DENMultiplayer) then {
@@ -13,12 +19,14 @@ if (isMultiplayer && !is3DENMultiplayer) then {
     GVAR(HCs) pushBack player;
 };
 
-// Ensure rating never goes below 0.
-player addEventHandler ["HandleRating", {
-    (_this select 0) addRating -rating (_this select 0)
-}];
+[QEGVAR(lobby,respawned), {
+    // Ensure rating never goes below 0.
+    player addEventHandler ["HandleRating", {
+        (_this select 1) max 0
+    }];
 
-// Add FPS action
-if (hasInterface) then {
-    call FUNC(fpsAction);
-};
+    // Add FPS action
+    if (hasInterface) then {
+        call FUNC(fpsAction);
+    };
+}] call CBA_fnc_addEventHandler;

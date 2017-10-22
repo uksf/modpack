@@ -34,8 +34,6 @@ if (!isServer && !hasInterface) then {
     GVAR(fpsEventID) = [QGVAR(fpsGet), {_this call FUNC(fpsGet)}] call CBA_fnc_addEventHandler;
 };
 if (isServer) then {
-    GVAR(server) = player;
-    publicVariable QGVAR(server);
     GVAR(fpsEventID) = [QGVAR(fpsGet), {_this call FUNC(fpsGet)}] call CBA_fnc_addEventHandler;
 
     [QGVAR(addObjectsToCurators), {_this call FUNC(addObjectsToCurators)}] call CBA_fnc_addEventHandler;
