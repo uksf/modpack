@@ -20,6 +20,9 @@
     "sqflint.indexWorkspace": false,
     "sqflint.indexWorkspaceTwice": false,
     "sqflint.checkPaths": false,
+    "sqflint.includePrefixes": {
+        "\\x\\": "P:/x"
+    },
     "files.associations": {
         "*.ext": "sqf",
         "*.hpp": "cpp",
