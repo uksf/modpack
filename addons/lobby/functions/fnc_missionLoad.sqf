@@ -13,7 +13,9 @@
 */
 #include "script_component.hpp"
 
-if (!isMultiplayer) exitWith {};
+if (!isMultiplayer) exitWith {
+    [QGVAR(respawned), [player]] call CBA_fnc_localEvent;
+};
 
 private _unitNameConfigs = configFile >> "CfgUnitNames";
 private _unit = objNull;
