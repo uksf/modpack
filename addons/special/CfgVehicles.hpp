@@ -118,4 +118,51 @@ class CfgVehicles {
         function = QFUNC(moduleMakeBomb);
         icon = "\z\ace\addons\explosives\UI\Icon_Module_Explosives_ca.paa";
     };
+
+    class TargetP_Inf_F;
+    class UKSF_Target_Nopopup: TargetP_Inf_F {
+        scope = 2;
+        scopeCurator = 2;
+        displayName = "Figure 11 Target - No Popup";
+        editorCategory = QEGVAR(common,UKSF);
+        editorSubcategory = QEGVAR(common,support);
+        editorPreview = QPATHTOEF(common,data\previews\UKSF_Target_Nopopup.jpg);
+        class EventHandlers {
+            hitPart = "";
+            class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
+        };
+    };
+    class Sign_sphere10cm_EP1;
+    class UKSF_Target_Moving: Sign_sphere10cm_EP1 {
+        scope = 2;
+        scopeCurator = 2;
+        displayName = "Movable Figure 11 Target";
+        editorCategory = QEGVAR(common,UKSF);
+        editorSubcategory = QEGVAR(common,support);
+        editorPreview = QPATHTOEF(common,data\previews\UKSF_Target_Nopopup.jpg);
+        model = "\A3\Structures_F\Training\Target_PopUp_F.p3d";
+        icon = "iconObject_5x4";
+        class DestructionEffects {
+        };
+        class AnimationSources {
+            class Terc {
+                animPeriod = 0.35;
+            };
+        };
+        hiddenSelections[] = { "camo", "target2", "target3" };
+        hiddenSelectionsTextures[] = { "a3\structures_f\training\data\target_inf_co", "#(argb,8,8,3)color(0,0,0,0,ca)", "#(argb,8,8,3)color(0,0,0,0,ca)" };
+        mapSize = 0.72;
+        class SimpleObject {
+            eden = 0;
+            animate[] = {{"terc", 0}};
+            hide[] = {};
+            verticalOffset = 0.858;
+            verticalOffsetWorld = 0;
+            init = "''";
+        };
+        class EventHandlers {
+            class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+            hitPart = "_this select 0 execVM '\A3\Structures_F\Training\data\scripts\TargetP_Inf_F_hitPart.sqf';";
+        };
+    };
 };
