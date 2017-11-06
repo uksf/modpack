@@ -726,20 +726,6 @@ class CfgVehicles {
         displayName = "Supply Crate (Arsenal)";
     };
 
-    class TargetP_Inf_F;
-    class UKSF_Target_Nopopup: TargetP_Inf_F {
-        scope = 2;
-        scopeCurator = 2;
-        displayName = "Figure 11 Target - No Popup";
-        editorCategory = QEGVAR(common,UKSF);
-        editorSubcategory = QEGVAR(common,support);
-        editorPreview = QPATHTOEF(common,data\previews\UKSF_Target_Nopopup.jpg);
-        class EventHandlers {
-            hitPart = "";
-            class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
-        };
-    };
-
     class CUP_USBasicAmmunitionBox;
     class CUP_USLaunchersBox: CUP_USBasicAmmunitionBox {
         class TransportMagazines {

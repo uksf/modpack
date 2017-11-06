@@ -15,7 +15,8 @@ class CfgPatches {
             QGVAR(moduleMakeSuicideBomberDeadman),
             QGVAR(moduleMakeCarBomber),
             QGVAR(moduleMakeCarBomberDeadman),
-            QGVAR(moduleMakeCarBomb)
+            QGVAR(moduleMakeCarBomb),
+            "UKSF_Target_Nopopup"
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
@@ -31,6 +32,7 @@ class CfgPatches {
     };
 };
 
+class CBA_Extended_EventHandlers;
 #include "CfgEventHandlers.hpp"
 #include "Cfg3den.hpp"
 #include "CfgSounds.hpp"
