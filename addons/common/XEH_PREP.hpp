@@ -13,6 +13,7 @@ PREP(moduleRespawnPosition);
 PREP(moduleToggleVCOM);
 PREP(moduleToggleVCOMDisembark);
 PREP(moduleToggleVCOMSupport);
+PREP(ramp);
 PREP(populate);
 PREP(releaseCargo);
 PREP(setAllowUnconcious);
