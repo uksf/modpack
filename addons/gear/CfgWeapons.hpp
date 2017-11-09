@@ -670,6 +670,31 @@ class CfgWeapons {
             };
         };
     };
+    class M_NLAW_AT_F;
+    class UK3CB_M_NLAW_AT: M_NLAW_AT_F {
+        hit = 400;
+        indirectHit = 20;
+        class ace_missileguidance {
+            enabled = 1;
+            minDeflection = 0.0005;
+            maxDeflection = 0.01;
+            incDeflection = 0.0005;
+            canVanillaLock = 0;
+            defaultSeekerType = "ace_nlaw_seeker";
+            seekerTypes[] = {"ace_nlaw_seeker"};
+            defaultSeekerLockMode = "LOBL";
+            seekerLockModes[] = {"LOBL"};
+            seekLastTargetPos = 0;
+            seekerAngle = 45;
+            seekerAccuracy = 1;
+            seekerMinRange = 0;
+            seekerMaxRange = 10;
+            defaultAttackProfile = "ace_nlaw_directAttack";
+            attackProfiles[] = {"ace_nlaw_directAttack", "ace_nlaw_overflyTopAttack"};
+            showHintOnCycle = 1;
+            onFired = "ace_nlaw_fnc_onFired";
+        };
+    };
 
     class Default;
     class Put: Default {
