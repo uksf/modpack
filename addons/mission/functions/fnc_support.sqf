@@ -45,25 +45,24 @@ params [["_unit", objNull], "", "", "_shooter", ["_reportDepth", 0]];
 if (!local _unit || {isPlayer _unit} || {isNull _unit} || {(group _unit) getVariable [QGVAR(requested), false]} ||
     {(vehicle _shooter) isKindOf "Air"} || {speed (vehicle _shooter) > MAX_SHOOTER_SPEED} ||
     {(_unit distance2D _shooter) > MAX_DISTANCE_TO_SHOOTER} ||
-    {(random 100) < SUPPORT_CHANCE}) exitWith {hint "0";};
-hint "1";
+    {(random 100) < SUPPORT_CHANCE}) exitWith {};
+    
 [{
     params ["_unit", "_shooter", ["_reportDepth", 0]];
-    hint "2";
-    if (alive _unit && {(_unit knowsAbout _shooter) > MIN_SUPPRESSED_KNOWS_ABOUT || {!([_shooter] call EFUNC(common,hasSuppressor))}}) then {
-        hint "3";
-        private _supportingUnit = selectRandom (((position _unit) nearEntities [["Man"], DISTANCE_TO_SUPPORT]) select {CONDITION_SUPPORT});
-        if (alive _supportingUnit) then {
-            hint "4";
-            (group _unit) setVariable [QGVAR(requested), true, true];
-            private _position = [(position _shooter), 50 + ((_unit distance2D _shooter) / 10) + (50 * _reportDepth)] call CBA_fnc_randPos;
-            private _radius = ((_supportingUnit distance2D _shooter) / 10) + (25 * _reportDepth);
-            (group _supportingUnit) setVariable [QGVAR(tasked), true, true];
-            {deleteWaypoint [group _supportingUnit, 1]; false} count (waypoints (group _supportingUnit));
-            [group _supportingUnit, _position, _radius, "SAD", "COMBAT", "RED", "FULL", "WEDGE", QUOTE([this] call FUNC(reTask)), [0,0,0], 10] call CBA_fnc_addWaypoint;
+    
+    if (alive _unit) then {
+        if ((_unit knowsAbout _shooter) > MIN_SUPPRESSED_KNOWS_ABOUT || {!([_shooter] call EFUNC(common,hasSuppressor))}) then {
+            private _supportingUnit = selectRandom (((position _unit) nearEntities [["Man"], DISTANCE_TO_SUPPORT]) select {CONDITION_SUPPORT});
+            if (alive _supportingUnit) then {
+                (group _unit) setVariable [QGVAR(requested), true, true];
+                private _position = [(position _shooter), 50 + ((_unit distance2D _shooter) / 10) + (50 * _reportDepth)] call CBA_fnc_randPos;
+                private _radius = ((_supportingUnit distance2D _shooter) / 10) + (25 * _reportDepth);
+                (group _supportingUnit) setVariable [QGVAR(tasked), true, true];
+                {deleteWaypoint [group _supportingUnit, 1]; false} count (waypoints (group _supportingUnit));
+                [group _supportingUnit, _position, _radius, "SAD", "COMBAT", "RED", "FULL", "WEDGE", QUOTE([this] call FUNC(reTask)), [0,0,0], 10] call CBA_fnc_addWaypoint;
+            };
         };
     } else {
-        hint "4.1";
         [selectRandom (((position _unit) nearEntities [["Man"], DISTANCE_TO_RETRY]) select {CONDITION_PROXIMITY}), "", "", _shooter, _reportDepth + 1] call FUNC(support);
     };
 }, [_unit, _shooter, _reportDepth], 1 + (random 1)] call CBA_fnc_waitAndExecute;
