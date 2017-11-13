@@ -34,14 +34,5 @@ mission.sqm
             Basic: class ace_medical_useLocation_PAK { value = 0; typeName = "SCALAR"; force = 1; };
         To change medical level (Basic or Advanced), simply comment out the uncommented line, and uncomment the commented line. (Clearly indicated)
 
-    spawning.hpp
-        Here you define the spawning parameters for the spawn area markers you have placed in the editor (if any)
-
-    functions/*
-        Should not be changed
-
-    postInit.sqf
-        Should not be changed
-
     uksf.paa
         Should not be changed

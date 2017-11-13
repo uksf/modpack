@@ -8,7 +8,7 @@ class Cfg3DEN {
                         control = "Checkbox";
                         displayName = QUOTE(Caching exclude);
                         tooltip = QUOTE(Excludes group from caching);
-                        expression = QUOTE(if (_value) then {[ARR_2({(_this select 0) setVariable [ARR_3(QUOTE(QGVAR(excluded)),_this select 1,true)];},[ARR_2(_this,_value)])] call cba_fnc_execNextFrame};);
+                        expression = QUOTE(if (_value) then {[ARR_2({(_this select 0) setVariable [ARR_3(QQGVAR(excluded),_this select 1,true)];},[ARR_2(_this,_value)])] call cba_fnc_execNextFrame};);
                         typeName = "BOOL";
                         defaultValue = "(false)";
                     };

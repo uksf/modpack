@@ -1,6 +1,6 @@
 /*
     Author:
-        Julian Alwandy & Tim Beswick
+        Tim Beswick
 
     Description:
        Retasks group of given leader back to their existing patrol.
@@ -21,5 +21,5 @@ private _patrolPosition = (group _leader) getVariable [QGVAR(spawnPosition), ""]
 (group _leader) setVariable [QGVAR(tasked), false, true];
 
 if (_patrolPosition != "") then {
-    [[group _leader, _patrolPosition], {[_this select 0, _this select 1] call CBA_fnc_taskPatrol;}] remoteExecCall ["bis_fnc_call", groupOwner (group _leader)];
+    [QGVAR(reTask), [group _leader, _patrolPosition], groupOwner (group _leader)] call CBA_fnc_targetEvent;
 };

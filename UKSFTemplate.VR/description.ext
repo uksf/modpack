@@ -49,5 +49,4 @@ disabledAI = 1;
 aiKills = 0;
 disableChannels[] = { 0,2,6 };
 EnableTargetDebug = 1;
-#include "CfgFunctions.hpp"
 #include "CfgLoadouts.hpp"

@@ -11,6 +11,7 @@ PREP(moduleLoadoutPaste);
 PREP(moduleSetEngineer);
 PREP(moduleTeleportZeus);
 PREP(moduleToggleAllowUnconcious);
+PREP(moduleToggleFps);
+PREP(moduleToggleHasRadio);
 PREP(moduleToggleSideRelations);
 PREP(moduleToggleZeusVisibility);
-PREP(moduleToggleFps);

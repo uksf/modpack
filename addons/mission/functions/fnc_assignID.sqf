@@ -13,7 +13,7 @@
 */
 #include "script_component.hpp"
 
-private _ID = missionNamespace getVariable [QGVAR(nextID), 0];
-missionNamespace setVariable [QGVAR(nextID), _ID + 1, true];
+private _id = missionNamespace getVariable [QGVAR(nextID), 0];
+missionNamespace setVariable [QGVAR(nextID), _id + 1, true];
 
-_ID
+_id
