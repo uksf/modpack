@@ -15,7 +15,7 @@
 */
 #include "script_component.hpp"
 
-#define PLAYERSAFEDISTANCE 250
+#define PLAYERSAFEDISTANCE 300
 
 params ["_id", "_position", "_factionName"];
 

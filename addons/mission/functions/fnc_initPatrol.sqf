@@ -17,7 +17,7 @@
             ["markername"/trigger object/location, maxGroupsActive, groupPoolSize, factionName] call uksf_mission_fnc_initPatrol;
 
     Parameters:
-        0: Position <MARKER, TRIGGER, LOCATION, ARRAY>
+        0: Position <MARKER, TRIGGER, LOCATION>
         1: Max enemy groups spawned at once (default: 5) <SCALAR>
         2: Enemy pool size (default: 10) <SCALAR>
         3: Faction (default: "") <STRING>
@@ -29,11 +29,10 @@
         Marker: ["markerName", 10, 15, "CUP_O_RU"] call uksf_mission_fnc_initPatrol; (NOTE: The marker name must be given)
         Trigger: [thisTrigger, 4, 100, "CUP_I_UN"] call uksf_mission_fnc_initPatrol; (NOTE: The trigger object)
         Location: [location, 10, 15, "CUP_B_GB"] call uksf_mission_fnc_initPatrol; (NOTE: Custom locations will not work)
-        Array: [[1000, 3000, 0], 10, 15, "CUP_B_GB"] call uksf_mission_fnc_initPatrol;
 */
 #include "script_component.hpp"
 
-params [["_position", objNull, [objNull, "", locationNull, []]], ["_maxGroupsActive", 5], ["_groupPoolSize", 10], ["_factionName", ""]];
+params [["_position", objNull, [objNull, "", locationNull]], ["_maxGroupsActive", 5], ["_groupPoolSize", 10], ["_factionName", ""]];
 
 if (!isServer) exitWith { INFO("Called on client. Exiting.") };
 if (_position isEqualTo objNull) exitWith { INFO("Invalid position. Exiting.") };

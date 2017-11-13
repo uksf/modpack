@@ -3,7 +3,9 @@
 class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
-        units[] = {};
+        units[] = {
+            QGVAR(moduleSpawnArea)
+        };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
@@ -15,6 +17,7 @@ class CfgPatches {
         VERSION_CONFIG;
     };
 };
-// ModuleHideTerrainObjects_F
+
 #include "CfgEventHandlers.hpp"
 #include "Cfg3den.hpp"
+#include "CfgVehicles.hpp"
