@@ -16,7 +16,8 @@ class CfgPatches {
             QGVAR(moduleToggleBluforOpfor),
             QGVAR(moduleToggleIndepBlufor),
             QGVAR(moduleToggleIndepOpfor),
-            QGVAR(moduleToggleFps)
+            QGVAR(moduleToggleFps),
+            QGVAR(moduleToggleHasRadio)
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;

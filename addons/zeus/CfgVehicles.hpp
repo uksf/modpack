@@ -96,6 +96,11 @@ class CfgVehicles {
         icon = "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa";
         portrait = "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa";
     };
+    class GVAR(moduleToggleHasRadio): EGVAR(common,moduleBase) {
+        curatorCanAttach = 1;
+        displayName = "Toggle Unit Support";
+        function = QFUNC(moduleToggleHasRadio);
+    };
 
     class Ares_Zeus_Module_Base;
     class Ares_Module_Zeus_Visibility: Ares_Zeus_Module_Base {

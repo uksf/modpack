@@ -755,7 +755,7 @@ def sign_dependencies():
     for file in os.listdir(dependencies_path):
         if (file.endswith(".pbo") and os.path.isfile(os.path.join(dependencies_path, file))
             and not os.path.isfile(os.path.join(signatures_path, file))
-            and not os.path.isfile(os.path.join(signatures_path, "{}.delete".format(os.path.splitext(os.path.basename(file))[0])))):
+            and not os.path.isfile(os.path.join(signatures_path, "{}.delete".format(os.path.basename(file))))):
             if (key):
                 if (not os.path.isfile(os.path.join(signatures_path, "{}.{}.bisign".format(file, os.path.splitext(os.path.basename(key))[0])))):
                     print("Signing {} with {}.".format(file, key))
