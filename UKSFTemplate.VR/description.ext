@@ -16,11 +16,11 @@ class ACE_Settings {
     //------------------------------- COMMENT OR UNCOMMENT APPROPRIATE LINES FOR MAIN OR SIDE OP -------------------------------
     //------------------------------------------ A COMMENT IS A LINE STARTING WITH // ------------------------------------------
     //-------------------------------------------------------- MAIN OP ---------------------------------------------------------
-    //class ace_medical_useLocation_PAK { value = 0; typeName = "SCALAR"; force = 1; };
-    //class uksf_arsenal_mainOpGear { value = 0; typeName = "BOOL"; force = 1; };
-    //-------------------------------------------------------- SIDE OP ---------------------------------------------------------
     class ace_medical_useLocation_PAK { value = 3; typeName = "SCALAR"; force = 1; };
     class uksf_arsenal_mainOpGear { value = 1; typeName = "BOOL"; force = 1; };
+    //-------------------------------------------------------- SIDE OP ---------------------------------------------------------
+    //class ace_medical_useLocation_PAK { value = 0; typeName = "SCALAR"; force = 1; };
+    //class uksf_arsenal_mainOpGear { value = 0; typeName = "BOOL"; force = 1; };
     //--------------------------------------------------------------------------------------------------------------------------
 
     //----------------------------------------------------- UKSF SETTINGS ------------------------------------------------------
