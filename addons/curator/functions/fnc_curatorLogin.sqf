@@ -13,7 +13,7 @@
 */
 #include "script_component.hpp"
 
-if ((name player) in GVAR(curatorPlayers)) then {
+if (!((name player) in GVAR(curatorPlayers))) then {
     [QGVAR(curatorAssign), [player]] call CBA_fnc_serverEvent;
     private _message = format ["%1 logged in", name player];
     [QEGVAR(common,hint), [_message]] call CBA_fnc_localEvent;
