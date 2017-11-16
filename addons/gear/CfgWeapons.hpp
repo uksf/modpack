@@ -682,6 +682,9 @@ class CfgWeapons {
         ace_overpressure_range = 2;
         ace_overpressure_damage = 0.6;
     };
+    class ACE_launch_NLAW_Used_F: launch_NLAW_F {
+        modelOptics = "\UK3CB_BAF_Weapons\addons\UK3CB_BAF_Weapons_Launchers\uk3cb_nlaw_optic.p3d";
+    };
 
     class Default;
     class Put: Default {
