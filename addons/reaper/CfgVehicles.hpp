@@ -519,6 +519,11 @@ class CfgVehicles {
     class CUP_B_UKSF_MQ9: CUP_B_USMC_DYN_MQ9 {
         author = "UKSF";
         faction = "CUP_B_GB";
+        radarTargetSize = 0.001;
+        radarTarget = 0;
+        visualTarget = 0;
+        nvTarget = 0;
+        irTarget = 0;
         hiddenSelections[] = { "camo1" };
         hiddenSelectionsTextures[] = { QPATHTOF(data\UKSF_MQ9_co.paa) };
         class Components: Components {
