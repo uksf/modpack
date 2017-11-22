@@ -38,6 +38,7 @@ if (isServer) then {
 
     [QGVAR(addObjectsToCurators), {_this call FUNC(addObjectsToCurators)}] call CBA_fnc_addEventHandler;
     [QGVAR(setSideRelation), {(_this select 0) setFriend [(_this select 1), (_this select 2)]}] call CBA_fnc_addEventHandler;
+    [QGVAR(waitAndDelete), {[{deleteVehicle _this}, _this select 0, _this select 1] call CBA_fnc_waitAndExecute}] call CBA_fnc_addEventHandler;
 };
 [QGVAR(log), {INFO(_this select 0)}] call CBA_fnc_addEventHandler;
 

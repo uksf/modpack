@@ -8,7 +8,7 @@ class EditorData
 	toggles=5;
 	class ItemIDProvider
 	{
-		nextID=519;
+		nextID=522;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=230;
+		nextID=257;
 	};
 	class Camera
 	{
-		pos[]={107.25342,20.755941,-23.240921};
-		dir[]={0.24700312,-0.4729844,0.84576195};
-		up[]={0.13259912,0.88106251,0.45403072};
-		aside[]={0.95991766,-3.9592851e-007,-0.28034374};
+		pos[]={34.582703,26.257759,-34.558388};
+		dir[]={-0.065351345,-0.3973299,0.91537732};
+		up[]={-0.028295472,0.91766256,0.39634055};
+		aside[]={0.99748778,-1.8670107e-007,0.071212992};
 	};
 };
 binarizationWanted=0;
@@ -2395,6 +2395,7 @@ class Mission
 					};
 					id=517;
 					type="UK3CB_BAF_Merlin_HC3_32";
+					atlOffset=-4.7683716e-007;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -2490,6 +2491,7 @@ class Mission
 					};
 					id=518;
 					type="UK3CB_BAF_Merlin_HC3_CSAR";
+					atlOffset=-4.7683716e-007;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -2592,7 +2594,7 @@ class Mission
 				};
 			};
 			id=286;
-			atlOffset=-4.7683716e-007;
+			atlOffset=-2.8610229e-006;
 		};
 		class Item7
 		{

@@ -4,7 +4,7 @@ class ACE_Settings {
         displayName = QUOTE(Maximum Curators);
         description = QUOTE(Maximum number of curators allowed);
         typeName = "SCALAR";
-        value = 10;
+        value = 2;
     };
     class GVAR(curatorsLocked) {
         category = "ACE";

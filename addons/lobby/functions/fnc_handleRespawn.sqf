@@ -3,7 +3,7 @@
         Tim Beswick
 
     Description:
-        Deletes corpse
+        Deletes corpse quicker than cleanup
 
     Parameter(s):
         0: Unit <OBJECT>
@@ -14,12 +14,6 @@
 */
 #include "script_component.hpp"
 
-params ["_unit", "_corpse"];
+params ["", "_corpse"];
 
-private _delay = 30;
-if (GVAR(firstRespawn)) then {
-    GVAR(firstRespawn) = false;
-    _delay = 1;
-    [QGVAR(respawned), [_unit]] call CBA_fnc_localEvent;
-};
-[{deleteVehicle _this}, _corpse, _delay] call CBA_fnc_waitAndExecute;
+[QEGVAR(common,waitAndDelete), [_corpse, 30]] call CBA_fnc_serverEvent;
