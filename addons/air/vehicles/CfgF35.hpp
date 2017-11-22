@@ -65,14 +65,61 @@ class CUP_B_F35B_LGB_BAF: CUP_B_F35B_LGB_USMC {
     typicalCargo[] = { "UKSF_B_Pilot_617" };
     INVENTORY_AIRCRAFT
 };
-class B_Plane_Fighter_01_F: Plane_Fighter_01_Base_F {};
+class B_Plane_Fighter_01_F: Plane_Fighter_01_Base_F {
+    class pilotCamera;
+    class MFD;
+};
 class USAF_F35A: B_Plane_Fighter_01_F {
     faction = "CUP_B_GB";
     scopeCurator = 2;
     crew = "UKSF_B_Pilot_617";
     typicalCargo[] = { "UKSF_B_Pilot_617" };
-    // elevatorCoef[] = {0.3, 0.5, 0.66, 0.52, 0.49, 0.46, 0.43, 0.4, 0.35, 0.3, 0.25, 0.18, 0.17, 0.16, 0.15, 0.15};
-    elevatorCoef[] = { 0.4, 0.6, 0.76, 0.62, 0.59, 0.56, 0.53, 0.5, 0.45, 0.4, 0.35, 0.28, 0.27, 0.26, 0.25, 0.25 };
+    acceleration = 250;
     ace_cookoff_cookoffSelections[] = { "palivo" };
+    class pilotCamera: pilotCamera {
+        class OpticsIn {
+            class Wide {
+                opticsDisplayName = "WFOV";
+                initAngleX = 0;
+                minAngleX = 0;
+                maxAngleX = 0;
+                initAngleY = 0;
+                minAngleY = 0;
+                maxAngleY = 0;
+                initFov = "(75 / 120)";
+                minFov = "(75 / 120)";
+                maxFov = "(75 / 120)";
+                directionStabilized = 1;
+                visionMode[] = {"Normal", "NVG", "Ti"};
+                thermalMode[] = {0, 1};
+                gunnerOpticsModel = "\A3\Drones_F\Weapons_F_Gamma\Reticle\UAV_Optics_Gunner_wide_F.p3d";
+                opticsPPEffects[] = {"OpticsCHAbera2", "OpticsBlur2"};
+            };
+            class Medium: Wide {
+                opticsDisplayName = "MFOV";
+                initFov = "(14.4 / 120)";
+                minFov = "(14.4 / 120)";
+                maxFov = "(14.4 / 120)";
+                gunnerOpticsModel = "\A3\Drones_F\Weapons_F_Gamma\Reticle\UAV_Optics_Gunner_medium_F.p3d";
+            };
+            class Narrow: Wide {
+                opticsDisplayName = "NFOV";
+                initFov = "(4.8 / 120)";
+                minFov = "(4.8 / 120)";
+                maxFov = "(4.8 / 120)";
+                gunnerOpticsModel = "\A3\Drones_F\Weapons_F_Gamma\Reticle\UAV_Optics_Gunner_narrow_F.p3d";
+            };
+            class VNarrow: Wide {
+                opticsDisplayName = "VNFOV";
+                initFov = "(2 / 120)";
+                minFov = "(2 / 120)";
+                maxFov = "(2 / 120)";
+                gunnerOpticsModel = "\A3\Drones_F\Weapons_F_Gamma\Reticle\UAV_Optics_Gunner_narrow_F.p3d";
+            };
+        };
+    };
+    unitInfoType = "RscUnitInfoAirPlaneNoSpeed";
+    unitInfoTypeLite = "RscUnitInfoAirPlaneNoSpeed";
+    #include "MFDJet.hpp"
     INVENTORY_AIRCRAFT
 };

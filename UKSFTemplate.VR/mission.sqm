@@ -8,7 +8,7 @@ class EditorData
 	toggles=5;
 	class ItemIDProvider
 	{
-		nextID=517;
+		nextID=519;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=227;
+		nextID=230;
 	};
 	class Camera
 	{
-		pos[]={14.315719,21.438051,2.8643155};
-		dir[]={-0.014809857,-0.819938,0.57227767};
-		up[]={-0.021211633,0.5724529,0.81966323};
-		aside[]={0.99967355,2.677989e-007,0.025869802};
+		pos[]={107.25342,20.755941,-23.240921};
+		dir[]={0.24700312,-0.4729844,0.84576195};
+		up[]={0.13259912,0.88106251,0.45403072};
+		aside[]={0.95991766,-3.9592851e-007,-0.28034374};
 	};
 };
 binarizationWanted=0;
@@ -47,9 +47,9 @@ addons[]=
 	"A3_Structures_F_Mil_Helipads",
 	"uksf_vehicles",
 	"UK3CB_BAF_Vehicles_LandRover",
-	"UK3CB_BAF_Vehicles_Merlin",
 	"A3_Supplies_F_Heli_CargoNets",
 	"uksf_reaper",
+	"UK3CB_BAF_Vehicles_Merlin",
 	"uksf_units"
 };
 class AddonsMetaData
@@ -155,24 +155,24 @@ class AddonsMetaData
 		};
 		class Item14
 		{
-			className="UK3CB_BAF_Vehicles_Merlin";
-			name="3CB BAF Vehicles - Merlin";
-			author="3 Commando Brigade";
-			url="www.3commandobrigade.com";
-		};
-		class Item15
-		{
 			className="A3_Supplies_F_Heli";
 			name="Arma 3 Helicopters - Ammoboxes and Supplies";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item16
+		class Item15
 		{
 			className="uksf_reaper";
 			name="UKSF - Reaper";
 			author="UKSF";
 			url="www.uk-sf.com";
+		};
+		class Item16
+		{
+			className="UK3CB_BAF_Vehicles_Merlin";
+			name="3CB BAF Vehicles - Merlin";
+			author="3 Commando Brigade";
+			url="www.3commandobrigade.com";
 		};
 		class Item17
 		{
@@ -2173,6 +2173,219 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
+						position[]={51,5.8253026,2};
+					};
+					side="Empty";
+					flags=4;
+					class Attributes
+					{
+					};
+					id=101;
+					type="UKSF_S_AmmoMedic";
+				};
+				class Item17
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={51,5.8253026,5};
+					};
+					side="Empty";
+					flags=4;
+					class Attributes
+					{
+					};
+					id=102;
+					type="UKSF_S_AmmoMedic";
+				};
+				class Item18
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={51,5.8253026,8};
+					};
+					side="Empty";
+					flags=4;
+					class Attributes
+					{
+					};
+					id=103;
+					type="UKSF_S_AmmoMedic";
+				};
+				class Item19
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={60,5.8253026,8};
+					};
+					side="Empty";
+					flags=4;
+					class Attributes
+					{
+					};
+					id=104;
+					type="UKSF_S_Ammo";
+				};
+				class Item20
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={60,5.8253026,5};
+					};
+					side="Empty";
+					flags=4;
+					class Attributes
+					{
+					};
+					id=105;
+					type="UKSF_S_Ammo";
+				};
+				class Item21
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={60,5.8253026,2};
+					};
+					side="Empty";
+					flags=4;
+					class Attributes
+					{
+					};
+					id=106;
+					type="UKSF_S_Ammo";
+				};
+				class Item22
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={69,5.8253026,2};
+					};
+					side="Empty";
+					flags=4;
+					class Attributes
+					{
+					};
+					id=107;
+					type="UKSF_S_Medic";
+				};
+				class Item23
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={69,5.8253026,5};
+					};
+					side="Empty";
+					flags=4;
+					class Attributes
+					{
+					};
+					id=108;
+					type="UKSF_S_Medic";
+				};
+				class Item24
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={69,5.8253026,8};
+					};
+					side="Empty";
+					flags=4;
+					class Attributes
+					{
+					};
+					id=109;
+					type="UKSF_S_Medic";
+				};
+				class Item25
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={78,5.5287609,2};
+					};
+					side="Empty";
+					flags=4;
+					class Attributes
+					{
+					};
+					id=311;
+					type="CargoNet_01_barrels_F";
+				};
+				class Item26
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={78,5.5287609,5};
+					};
+					side="Empty";
+					flags=4;
+					class Attributes
+					{
+					};
+					id=312;
+					type="CargoNet_01_barrels_F";
+				};
+				class Item27
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={78,5.5287609,8};
+					};
+					side="Empty";
+					flags=4;
+					class Attributes
+					{
+					};
+					id=313;
+					type="CargoNet_01_barrels_F";
+				};
+				class Item28
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={224.5,6.904613,3.9950609};
+					};
+					side="West";
+					flags=6;
+					class Attributes
+					{
+					};
+					id=191;
+					type="CUP_B_UKSF_MQ9";
+				};
+				class Item29
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={192,7.1107478,40.033321};
+					};
+					side="Empty";
+					flags=4;
+					class Attributes
+					{
+						reportRemoteTargets=1;
+						receiveRemoteTargets=1;
+						reportOwnPosition=1;
+					};
+					id=321;
+					type="UK3CB_BAF_Wildcat_AH1_CAS_8A";
+				};
+				class Item30
+				{
+					dataType="Object";
+					class PositionInfo
+					{
 						position[]={128.00009,8.7366047,39.050892};
 					};
 					side="Empty";
@@ -2180,12 +2393,49 @@ class Mission
 					class Attributes
 					{
 					};
-					id=124;
-					type="UK3CB_BAF_Merlin_HC3_18_GPMG";
-					atlOffset=-4.7683716e-007;
+					id=517;
+					type="UK3CB_BAF_Merlin_HC3_32";
 					class CustomAttributes
 					{
 						class Attribute0
+						{
+							property="Enh_onKilledEvent";
+							expression="if !(_value == 'false') then {_this addEventHandler ['killed',_value]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="false";
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="Enh_onRespawnEvent";
+							expression="if !(_value == 'false') then {_this addEventHandler ['respawn',_value]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="false";
+								};
+							};
+						};
+						class Attribute2
 						{
 							property="ace_isMedicalVehicle";
 							expression="_this setVariable [""ace_medical_medicClass"",_value,true];";
@@ -2204,221 +2454,27 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						class Attribute3
+						{
+							property="Enh_onDamagedEvent";
+							expression="if !(_value == 'false') then {_this addEventHandler ['dammaged',_value]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="false";
+								};
+							};
+						};
+						nAttributes=4;
 					};
-				};
-				class Item17
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={51,5.8253026,2};
-					};
-					side="Empty";
-					flags=4;
-					class Attributes
-					{
-					};
-					id=101;
-					type="UKSF_S_AmmoMedic";
-				};
-				class Item18
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={51,5.8253026,5};
-					};
-					side="Empty";
-					flags=4;
-					class Attributes
-					{
-					};
-					id=102;
-					type="UKSF_S_AmmoMedic";
-				};
-				class Item19
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={51,5.8253026,8};
-					};
-					side="Empty";
-					flags=4;
-					class Attributes
-					{
-					};
-					id=103;
-					type="UKSF_S_AmmoMedic";
-				};
-				class Item20
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={60,5.8253026,8};
-					};
-					side="Empty";
-					flags=4;
-					class Attributes
-					{
-					};
-					id=104;
-					type="UKSF_S_Ammo";
-				};
-				class Item21
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={60,5.8253026,5};
-					};
-					side="Empty";
-					flags=4;
-					class Attributes
-					{
-					};
-					id=105;
-					type="UKSF_S_Ammo";
-				};
-				class Item22
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={60,5.8253026,2};
-					};
-					side="Empty";
-					flags=4;
-					class Attributes
-					{
-					};
-					id=106;
-					type="UKSF_S_Ammo";
-				};
-				class Item23
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={69,5.8253026,2};
-					};
-					side="Empty";
-					flags=4;
-					class Attributes
-					{
-					};
-					id=107;
-					type="UKSF_S_Medic";
-				};
-				class Item24
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={69,5.8253026,5};
-					};
-					side="Empty";
-					flags=4;
-					class Attributes
-					{
-					};
-					id=108;
-					type="UKSF_S_Medic";
-				};
-				class Item25
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={69,5.8253026,8};
-					};
-					side="Empty";
-					flags=4;
-					class Attributes
-					{
-					};
-					id=109;
-					type="UKSF_S_Medic";
-				};
-				class Item26
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={78,5.5287609,2};
-					};
-					side="Empty";
-					flags=4;
-					class Attributes
-					{
-					};
-					id=311;
-					type="CargoNet_01_barrels_F";
-				};
-				class Item27
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={78,5.5287609,5};
-					};
-					side="Empty";
-					flags=4;
-					class Attributes
-					{
-					};
-					id=312;
-					type="CargoNet_01_barrels_F";
-				};
-				class Item28
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={78,5.5287609,8};
-					};
-					side="Empty";
-					flags=4;
-					class Attributes
-					{
-					};
-					id=313;
-					type="CargoNet_01_barrels_F";
-				};
-				class Item29
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={224.5,6.904613,3.9950609};
-					};
-					side="West";
-					flags=6;
-					class Attributes
-					{
-					};
-					id=191;
-					type="CUP_B_UKSF_MQ9";
-				};
-				class Item30
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={192,7.1107478,40.033321};
-					};
-					side="Empty";
-					flags=4;
-					class Attributes
-					{
-						reportRemoteTargets=1;
-						receiveRemoteTargets=1;
-						reportOwnPosition=1;
-					};
-					id=321;
-					type="UK3CB_BAF_Wildcat_AH1_CAS_8A";
 				};
 				class Item31
 				{
@@ -2432,9 +2488,8 @@ class Mission
 					class Attributes
 					{
 					};
-					id=514;
-					type="UK3CB_BAF_Merlin_HC3_32";
-					atlOffset=-4.7683716e-007;
+					id=518;
+					type="UK3CB_BAF_Merlin_HC3_CSAR";
 					class CustomAttributes
 					{
 						class Attribute0
@@ -2537,7 +2592,7 @@ class Mission
 				};
 			};
 			id=286;
-			atlOffset=-2.8610229e-006;
+			atlOffset=-4.7683716e-007;
 		};
 		class Item7
 		{

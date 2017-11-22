@@ -109,7 +109,7 @@ class RscInGameUI {
                     idc = 189;
                     text = "3825";
                     source = "altitudeASL";
-                    sourceScale = 3.2808399;
+                    sourceScale = 3.28084;
                     x = "10.3 * (0.01875 * SafezoneH)";
                     y = "13.2 * (0.025 * SafezoneH)";
                     w = "5 * (0.01875 * SafezoneH)";

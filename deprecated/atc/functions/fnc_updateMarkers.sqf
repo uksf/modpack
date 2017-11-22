@@ -21,8 +21,8 @@ for "_i" from 0 to ((count _targets) - 1) do {
     _curtargetname = getText (configFile >> 'cfgVehicles' >> typeOf _curtarget >> 'displayName');
     _curtargetmkr = (format ["%1%2",str(_curtarget),_i]);
     _speed = ((speed _curtarget)/1.852);
-    _alt = (((getPosATL _curtarget) select 2)*3.2808399);
-    _altS = (((getPosASL _curtarget) select 2)*3.2808399);
+    _alt = (((getPosATL _curtarget) select 2)*3.28084);
+    _altS = (((getPosASL _curtarget) select 2)*3.28084);
     _curtargetdir = if (round(getDir _curtarget) >= 360) then {0} else {round(getDir _curtarget)};
     if (alive _curtarget) then {
         _g = createMarkerLocal [_curtargetmkr,_curtarget];

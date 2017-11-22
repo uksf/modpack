@@ -203,7 +203,7 @@ class MFD {
             class AltNumber {
                 type = "text";
                 source = "altitudeAGL";
-                sourceScale = 3.2808399;
+                sourceScale = 3.28084;
                 sourceOffset = -2;
                 align = "left";
                 scale = 1;
@@ -216,7 +216,7 @@ class MFD {
                 class AltNumberASL {
                     type = "text";
                     source = "altitudeASL";
-                    sourceScale = 3.2808399;
+                    sourceScale = 3.28084;
                     align = "left";
                     scale = 1;
                     pos[] = { { 0.81, 0.16 }, 1 };
@@ -647,7 +647,7 @@ class MFD {
             class RadarHeight {
                 type = "linear";
                 source = "altitudeAGL";
-                sourceScale = 3.2808399;
+                sourceScale = 3.28084;
                 sourceOffset = -2;
                 min = 0;
                 max = 100;
@@ -850,7 +850,7 @@ class MFD {
             class AltNumber {
                 type = "text";
                 source = "altitudeAGL";
-                sourceScale = 3.2808399;
+                sourceScale = 3.28084;
                 sourceOffset = -2;
                 align = "left";
                 scale = 1;
@@ -888,7 +888,7 @@ class MFD {
                 class AltNumberASL {
                     type = "text";
                     source = "altitudeASL";
-                    sourceScale = 3.2808399;
+                    sourceScale = 3.28084;
                     align = "left";
                     scale = 1;
                     pos[] = { { 0.81, 0.16 }, 1 };

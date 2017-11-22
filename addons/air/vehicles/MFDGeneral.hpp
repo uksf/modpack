@@ -67,7 +67,7 @@ class MFD {
             class RadarAltitudeBone {
                 type = "linear";
                 source = "altitudeAGL";
-                sourceScale = 3.2808399;
+                sourceScale = 3.28084;
                 min = 0;
                 max = 60;
                 minPos[] = { 0.965,0.2 };
@@ -390,7 +390,7 @@ class MFD {
             class AltNumber: SpeedNumber {
                 align = "right";
                 source = "altitudeAGL";
-                sourceScale = 3.2808399;
+                sourceScale = 3.28084;
                 pos[] = { { 0.83,0.475 },1 };
                 right[] = { { 0.88,0.475 },1 };
                 down[] = { { 0.83,0.525 },1 };
@@ -398,7 +398,7 @@ class MFD {
             class ASLNumber {
                 type = "text";
                 source = "altitudeASL";
-                sourceScale = 3.2808399;
+                sourceScale = 3.28084;
                 align = "right";
                 scale = 1;
                 pos[] = { { 0.835,0.18 },1 };
