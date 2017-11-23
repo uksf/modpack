@@ -31,3 +31,5 @@ if (isMultiplayer && !is3DENMultiplayer) then {
         call FUNC(fpsAction);
     };
 }] call CBA_fnc_addEventHandler;
+
+call FUNC(configureACRE);
