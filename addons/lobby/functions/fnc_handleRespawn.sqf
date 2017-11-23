@@ -16,4 +16,4 @@
 
 params ["", "_corpse"];
 
-[QEGVAR(common,waitAndDelete), [_corpse, 30]] call CBA_fnc_serverEvent;
+[QEGVAR(common,waitAndDelete), [_corpse, 10]] call CBA_fnc_serverEvent;

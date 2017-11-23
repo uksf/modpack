@@ -2,7 +2,6 @@ PREP(addNVG);
 PREP(addObjectsToCurators);
 PREP(configExport);
 PREP(configExportExtension);
-PREP(configureACRE);
 PREP(fpsAction);
 PREP(fpsGet);
 PREP(fpsSet);

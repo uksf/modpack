@@ -1,8 +1,6 @@
 #include "script_component.hpp"
 #include "keybinds.sqf"
 
-call FUNC(configureACRE);
-
 // Delete groups every 5 minutes
 [{
     {deleteGroup _x; false} count allGroups;
