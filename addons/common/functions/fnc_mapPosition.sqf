@@ -20,7 +20,6 @@ if (_state) then {
         ctrlMapAnimClear ((findDisplay 12) displayCtrl 51);
         ((findDisplay 12) displayCtrl 51) ctrlMapAnimAdd [0, GVAR(mapZoom), GVAR(mapPosition)];
         ctrlMapAnimCommit ((findDisplay 12) displayCtrl 51);
-        INFO_2("Pos - %1, Zoom - %2",GVAR(mapPosition), GVAR(mapZoom));
     };
 } else {
     GVAR(mapPosition) = ((findDisplay 12) displayCtrl 51) ctrlMapScreenToWorld [0.5, 0.5];

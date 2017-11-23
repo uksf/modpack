@@ -7,8 +7,8 @@ class CfgUnitNames {
     G1P_2[] = { "Guardian 1", "Platoon Sergeant - Sgt.Handisides.M", "UKSF_B_SectionLeader" };
     G1P_3[] = { "Guardian 1", "Platoon Medic - Cpl.Darrington.J", "UKSF_B_Medic" };
     G1P_4[] = { "Guardian 1", "Platoon Medic - LCpl.Lars.R", "UKSF_B_Medic" };
-    G1P_5[] = { "Guardian 1", "Platoon Medic - LCpl.Redcoat.C", "UKSF_B_Medic" };
-    G1P_6[] = { "Guardian 1", "Platoon Medic - LCpl.Stanton.M", "UKSF_B_Medic" };
+    G1P_5[] = { "Guardian 1", "Platoon Medic - LCpl.Stanton.M", "UKSF_B_Medic" };
+    G1P_6[] = { "Guardian 1", "Platoon Medic - LCpl.Redcoat.C", "UKSF_B_Medic" };
     G1P_7[] = { "Guardian 1", "Platoon Medic - LCpl.Tam.P", "UKSF_B_Medic" };
     G1P_8[] = { "Guardian 1", "Platoon RTO", "UKSF_B_Rifleman" };
     G1P_9[] = { "Guardian 1", "Platoon FAC", "UKSF_B_Rifleman" };
