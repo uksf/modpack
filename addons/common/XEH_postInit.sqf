@@ -1,6 +1,8 @@
 #include "script_component.hpp"
 #include "keybinds.sqf"
 
+call FUNC(configureACRE);
+
 // Delete groups every 5 minutes
 [{
     {deleteGroup _x; false} count allGroups;
@@ -32,4 +34,9 @@ if (isMultiplayer && !is3DENMultiplayer) then {
     };
 }] call CBA_fnc_addEventHandler;
 
-call FUNC(configureACRE);
+if (hasInterface) then {
+    ["visibleMap", {
+        params ["", "_mapOn"];
+        [_mapOn] call FUNC(mapPosition);
+    }] call CBA_fnc_addPlayerEventHandler;
+};

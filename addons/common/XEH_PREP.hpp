@@ -11,6 +11,7 @@ PREP(getNearPlayers);
 PREP(hint);
 PREP(hasSuppressor);
 PREP(lineOfSight);
+PREP(mapPosition);
 PREP(moduleRespawnPosition);
 PREP(ramp);
 PREP(populate);
