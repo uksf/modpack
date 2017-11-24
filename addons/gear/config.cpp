@@ -71,7 +71,8 @@ class CfgPatches {
             "CUP_launch_Mk153Mod0_Rubber",
             "CUP_launch_FIM92Stinger_Rubber",
             "CUP_AGM114L_Hellfire_II_Launcher_W",
-            "CUP_AGM114N_Hellfire_II_Launcher_W"
+            "CUP_AGM114N_Hellfire_II_Launcher_W",
+            "UK3CB_BAF_Javelin_CLU"
         };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
@@ -127,6 +128,7 @@ class SensorTemplateVisual;
 class SensorTemplateDataLink;
 #include "CfgAmmo.hpp"
 #include "CfgEventHandlers.hpp"
+#include "CfgFunctions.hpp"
 #include "CfgMagazines.hpp"
 #include "CfgWeapons.hpp"
 #include "CfgVehicles.hpp"

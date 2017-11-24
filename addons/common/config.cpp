@@ -29,6 +29,7 @@ class cba_Extended_EventHandlers;
 #include "CfgFactionClasses.hpp"
 #include "CfgImprecision.hpp"
 #include "CfgMarkerColors.hpp"
+#include "CfgWeapons.hpp"
 #include "CfgVehicles.hpp"
 
 enableDebugConsole[] = { WHITELIST_NOARRAY };

@@ -620,15 +620,13 @@ class Inegal_ATJ: Inegal_F {
     threat[] = { 1,0.9,0.9 };
     weapons[] = {
         "CUP_arifle_Mk16_STD_FG_black_Aimpoint",
-        "UK3CB_BAF_Javelin_Slung_Tube",
-        "UK3CB_BAF_Javelin_CLU",
+        "UK3CB_BAF_Javelin_Launcher",
         "Throw",
         "Put"
     };
     respawnWeapons[] = {
         "CUP_arifle_Mk16_STD_FG_black_Aimpoint",
-        "UK3CB_BAF_Javelin_Slung_Tube",
-        "UK3CB_BAF_Javelin_CLU",
+        "UK3CB_BAF_Javelin_Launcher",
         "Throw",
         "Put"
     };
@@ -649,7 +647,8 @@ class Inegal_ATJ: Inegal_F {
         "HandGrenade",
         "MiniGrenade",
         "MiniGrenade",
-        "Laserbatteries"
+        "Laserbatteries",
+        "UK3CB_BAF_Javelin_Mag"
     };
     respawnMagazines[] = {
         "SmokeShellRed",
@@ -668,7 +667,8 @@ class Inegal_ATJ: Inegal_F {
         "HandGrenade",
         "MiniGrenade",
         "MiniGrenade",
-        "Laserbatteries"
+        "Laserbatteries",
+        "UK3CB_BAF_Javelin_Mag"
     };
     linkedItems[] = {
         "H_HelmetB_snakeskin",

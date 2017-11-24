@@ -685,6 +685,19 @@ class CfgWeapons {
     class ACE_launch_NLAW_Used_F: launch_NLAW_F {
         modelOptics = "\UK3CB_BAF_Weapons\addons\UK3CB_BAF_Weapons_Launchers\uk3cb_nlaw_optic.p3d";
     };
+    class CBA_MiscItem;
+    class UK3CB_BAF_Javelin_CLU: CBA_MiscItem {
+        scope = 2;
+        displayName = "Javelin CLU";
+        descriptionShort = "Mid-range fire-and-forget anti-tank missile system<br/>by www.3commandobrigade.com";
+        model = "\UK3CB_BAF_Weapons\addons\UK3CB_BAF_Weapons_Launchers\UK3CB_Javelin_CLU.p3d";
+        picture = "\UK3CB_BAF_Weapons\addons\UK3CB_BAF_Weapons_Launchers\data\clu_javelin_ca.paa";
+        icon = "iconObject_circle";
+        class ItemInfo: CBA_MiscItem_ItemInfo {
+            mass = 64;
+            allowedSlots[] = {901};
+        };
+    };
 
     class Default;
     class Put: Default {
