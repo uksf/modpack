@@ -13,38 +13,70 @@
 */
 #include "script_component.hpp"
 
-[false, true] call acre_api_fnc_setupMission;
 if (hasInterface) then {
     [] spawn {
         waitUntil { !isNull acre_player };
 
-        ["ACRE_PRC117F", "default3", "uksf"] call acre_api_fnc_copyPreset;
-        ["ACRE_PRC117F", "uksf", 30, "name", "AIR DISPATCH"] call acre_api_fnc_setPresetChannelField;
-        ["ACRE_PRC117F", "uksf", 31, "name", "TOWER"] call acre_api_fnc_setPresetChannelField;
-        ["ACRE_PRC117F", "uksf", 32, "name", "GROUND"] call acre_api_fnc_setPresetChannelField;
-        ["ACRE_PRC117F", "uksf", 33, "name", "WING INTERCOM"] call acre_api_fnc_setPresetChannelField;
-        ["ACRE_PRC117F", "uksf", 34, "name", "SQN 7 INTERCOM"] call acre_api_fnc_setPresetChannelField;
-        ["ACRE_PRC117F", "uksf", 35, "name", "SQN 656 INTERCOM"] call acre_api_fnc_setPresetChannelField;
-        ["ACRE_PRC117F", "uksf", 36, "name", "SQN 617 INTERCOM"] call acre_api_fnc_setPresetChannelField;
-        ["ACRE_PRC117F", "uksf", 37, "name", "GROUND 1"] call acre_api_fnc_setPresetChannelField;
-        ["ACRE_PRC117F", "uksf", 38, "name", "GROUND 2"] call acre_api_fnc_setPresetChannelField;
-        ["ACRE_PRC117F", "uksf", 39, "name", "GROUND 3"] call acre_api_fnc_setPresetChannelField;
-        ["ACRE_PRC117F", "uksf", 40, "name", "AIR OPS"] call acre_api_fnc_setPresetChannelField;
-        ["ACRE_PRC117F", "uksf", 41, "name", "AIR OPS 1"] call acre_api_fnc_setPresetChannelField;
-        ["ACRE_PRC117F", "uksf", 42, "name", "AIR OPS 2"] call acre_api_fnc_setPresetChannelField;
-        ["ACRE_PRC117F", "uksf", 43, "name", "AIR OPS 3"] call acre_api_fnc_setPresetChannelField;
-        ["ACRE_PRC117F", "uksf", 44, "name", "AIR OPS 4"] call acre_api_fnc_setPresetChannelField;
-        ["ACRE_PRC117F", "uksf", 45, "name", "AIR OPS 5"] call acre_api_fnc_setPresetChannelField;
-        ["ACRE_PRC117F", "uksf", 46, "name", "AIR OPS 6"] call acre_api_fnc_setPresetChannelField;
-        ["ACRE_PRC117F", "uksf", 47, "name", "AIR OPS 7"] call acre_api_fnc_setPresetChannelField;
-        ["ACRE_PRC117F", "uksf", 48, "name", "AIR OPS 8"] call acre_api_fnc_setPresetChannelField;
-        ["ACRE_PRC117F", "uksf", 49, "name", "AIR OPS 9"] call acre_api_fnc_setPresetChannelField;
-        ["ACRE_PRC117F", "uksf", 50, "name", "FORMATION 1"] call acre_api_fnc_setPresetChannelField;
-        ["ACRE_PRC117F", "uksf", 51, "name", "FORMATION 2"] call acre_api_fnc_setPresetChannelField;
-        ["ACRE_PRC117F", "uksf", 52, "name", "FORMATION 3"] call acre_api_fnc_setPresetChannelField;
-        ["ACRE_PRC117F", "uksf", 53, "name", "FORMATION 4"] call acre_api_fnc_setPresetChannelField;
-        ["ACRE_PRC117F", "uksf", 54, "name", "FORMATION 5"] call acre_api_fnc_setPresetChannelField;
-        ["ACRE_PRC117F", "uksf"] call acre_api_fnc_setPreset;
+        switch (side acre_player) do {
+            case east: {
+                ["ACRE_PRC343", "default2" ] call acre_api_fnc_setPreset;
+                ["ACRE_PRC77", "default2" ] call acre_api_fnc_setPreset;
+                ["ACRE_PRC117F", "default2" ] call acre_api_fnc_setPreset;
+                ["ACRE_PRC152", "default2" ] call acre_api_fnc_setPreset;
+                ["ACRE_PRC148", "default2" ] call acre_api_fnc_setPreset;
+                ["ACRE_PRC77", "default2" ] call acre_api_fnc_setPreset;
+            };
+            case west: {
+                ["ACRE_PRC343", "default3" ] call acre_api_fnc_setPreset;
+                ["ACRE_PRC77", "default3" ] call acre_api_fnc_setPreset;
+                ["ACRE_PRC117F", "default3", "uksf"] call acre_api_fnc_copyPreset;
+                ["ACRE_PRC117F", "uksf", 30, "name", "AIR DISPATCH"] call acre_api_fnc_setPresetChannelField;
+                ["ACRE_PRC117F", "uksf", 31, "name", "TOWER"] call acre_api_fnc_setPresetChannelField;
+                ["ACRE_PRC117F", "uksf", 32, "name", "GROUND"] call acre_api_fnc_setPresetChannelField;
+                ["ACRE_PRC117F", "uksf", 33, "name", "WING INTERCOM"] call acre_api_fnc_setPresetChannelField;
+                ["ACRE_PRC117F", "uksf", 34, "name", "SQN 7 INTERCOM"] call acre_api_fnc_setPresetChannelField;
+                ["ACRE_PRC117F", "uksf", 35, "name", "SQN 656 INTERCOM"] call acre_api_fnc_setPresetChannelField;
+                ["ACRE_PRC117F", "uksf", 36, "name", "SQN 617 INTERCOM"] call acre_api_fnc_setPresetChannelField;
+                ["ACRE_PRC117F", "uksf", 37, "name", "GROUND 1"] call acre_api_fnc_setPresetChannelField;
+                ["ACRE_PRC117F", "uksf", 38, "name", "GROUND 2"] call acre_api_fnc_setPresetChannelField;
+                ["ACRE_PRC117F", "uksf", 39, "name", "GROUND 3"] call acre_api_fnc_setPresetChannelField;
+                ["ACRE_PRC117F", "uksf", 40, "name", "AIR OPS"] call acre_api_fnc_setPresetChannelField;
+                ["ACRE_PRC117F", "uksf", 41, "name", "AIR OPS 1"] call acre_api_fnc_setPresetChannelField;
+                ["ACRE_PRC117F", "uksf", 42, "name", "AIR OPS 2"] call acre_api_fnc_setPresetChannelField;
+                ["ACRE_PRC117F", "uksf", 43, "name", "AIR OPS 3"] call acre_api_fnc_setPresetChannelField;
+                ["ACRE_PRC117F", "uksf", 44, "name", "AIR OPS 4"] call acre_api_fnc_setPresetChannelField;
+                ["ACRE_PRC117F", "uksf", 45, "name", "AIR OPS 5"] call acre_api_fnc_setPresetChannelField;
+                ["ACRE_PRC117F", "uksf", 46, "name", "AIR OPS 6"] call acre_api_fnc_setPresetChannelField;
+                ["ACRE_PRC117F", "uksf", 47, "name", "AIR OPS 7"] call acre_api_fnc_setPresetChannelField;
+                ["ACRE_PRC117F", "uksf", 48, "name", "AIR OPS 8"] call acre_api_fnc_setPresetChannelField;
+                ["ACRE_PRC117F", "uksf", 49, "name", "AIR OPS 9"] call acre_api_fnc_setPresetChannelField;
+                ["ACRE_PRC117F", "uksf", 50, "name", "FORMATION 1"] call acre_api_fnc_setPresetChannelField;
+                ["ACRE_PRC117F", "uksf", 51, "name", "FORMATION 2"] call acre_api_fnc_setPresetChannelField;
+                ["ACRE_PRC117F", "uksf", 52, "name", "FORMATION 3"] call acre_api_fnc_setPresetChannelField;
+                ["ACRE_PRC117F", "uksf", 53, "name", "FORMATION 4"] call acre_api_fnc_setPresetChannelField;
+                ["ACRE_PRC117F", "uksf", 54, "name", "FORMATION 5"] call acre_api_fnc_setPresetChannelField;
+                ["ACRE_PRC117F", "uksf"] call acre_api_fnc_setPreset;
+                ["ACRE_PRC152", "default3" ] call acre_api_fnc_setPreset;
+                ["ACRE_PRC148", "default3" ] call acre_api_fnc_setPreset;
+                ["ACRE_PRC77", "default3" ] call acre_api_fnc_setPreset;
+            };
+            case independent: {
+                ["ACRE_PRC343", "default4" ] call acre_api_fnc_setPreset;
+                ["ACRE_PRC77", "default4" ] call acre_api_fnc_setPreset;
+                ["ACRE_PRC117F", "default4" ] call acre_api_fnc_setPreset;
+                ["ACRE_PRC152", "default4" ] call acre_api_fnc_setPreset;
+                ["ACRE_PRC148", "default4" ] call acre_api_fnc_setPreset;
+                ["ACRE_PRC77", "default4" ] call acre_api_fnc_setPreset;
+            };
+            default {
+                ["ACRE_PRC343", "default" ] call acre_api_fnc_setPreset;
+                ["ACRE_PRC77", "default" ] call acre_api_fnc_setPreset;
+                ["ACRE_PRC117F", "default" ] call acre_api_fnc_setPreset;
+                ["ACRE_PRC152", "default" ] call acre_api_fnc_setPreset;
+                ["ACRE_PRC148", "default" ] call acre_api_fnc_setPreset;
+                ["ACRE_PRC77", "default" ] call acre_api_fnc_setPreset;
+            };
+        };
 
         if (!(isNil QGVAR(arsenalClosed))) then {
             [missionNamespace, "arsenalClosed", GVAR(arsenalClosed)] call BIS_fnc_removeScriptedEventHandler;

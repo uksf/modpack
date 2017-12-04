@@ -18,6 +18,7 @@ if (GVAR(firstRespawn)) then {
     private _unitNameConfigs = configFile >> "CfgUnitNames";
     private _unit = objNull;
     if (isArray (_unitNameConfigs >> (roleDescription player))) then {
+        startLoadingScreen ["Loading"];
         private _unitConfig = (getArray (_unitNameConfigs >> (roleDescription player)));
         private _groupName = _unitConfig select 0;
         private _group = (GVAR(unitGroups) select {(groupId _x) isEqualTo _groupName}) select 0;
@@ -27,15 +28,15 @@ if (GVAR(firstRespawn)) then {
             GVAR(unitGroups) pushBack _group;
             publicVariable QGVAR(unitGroups);
         };
+        progressLoadingScreen 0.5;
         private _class = _unitConfig select 2;
         _unit = _group createUnit [_class, [-1000, -1000, 0], [], 10, "NONE"];
         [QEGVAR(common,waitAndDelete), [player, 5]] call CBA_fnc_serverEvent;
-        startLoadingScreen ["Loading"];
         selectPlayer _unit;
         [] spawn {
-            uiSleep 0.5;
+            uiSleep 0.25;
             progressLoadingScreen 1;
-            uiSleep 0.5;
+            uiSleep 0.25;
             endLoadingScreen;
             forceRespawn player;
             [QGVAR(respawned), [player]] call CBA_fnc_localEvent;
