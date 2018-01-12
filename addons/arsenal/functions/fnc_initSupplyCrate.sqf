@@ -17,26 +17,9 @@
 params ["_crate"];
 
 if (GVAR(mainOpGear)) then {
-    if (local _crate) then {
-        private _data = call compile MAIN_OP_GEAR;
-        _data params [["_input", [], [[]]]];
-        clearWeaponCargoGlobal _crate;
-        clearMagazineCargoGlobal _crate;
-        clearBackpackCargoGlobal _crate;
-        clearItemCargoGlobal _crate;
-        _crate call BIS_fnc_removeVirtualItemCargo;
-        _crate call BIS_fnc_removeVirtualWeaponCargo;
-        _crate call BIS_fnc_removeVirtualMagazineCargo;
-        _crate call BIS_fnc_removeVirtualBackpackCargo;
-        ["AmmoboxInit", _crate] spawn BIS_fnc_arsenal;
-        [_crate, (_input select 0) select 0, true] call BIS_fnc_addVirtualWeaponCargo;
-        [_crate, (_input select 1) select 0, true] call BIS_fnc_addVirtualMagazineCargo;
-        [_crate, (_input select 2) select 0, true] call BIS_fnc_addVirtualItemCargo;
-        [_crate, (_input select 3) select 0, true] call BIS_fnc_addVirtualBackpackCargo;
-        missionnamespace setVariable [QGVAR(mainGear), true, true];
-    };
+    [_crate, call compile MAIN_OP_GEAR, false] call ace_arsenal_fnc_initBox;
+    // missionnamespace setVariable [QGVAR(mainGear), true, true];
 } else {
-    ["AmmoboxInit", [_crate, true]] spawn BIS_fnc_arsenal;
+    [_crate, true, false] call ace_arsenal_fnc_initBox;
 };
-
-
+_crate addAction ["Arsenal", { [_this select 3, player] call ace_arsenal_fnc_openBox; }, _crate, 10, true, true, "", "true", 10];

@@ -36,3 +36,4 @@ class cba_Extended_EventHandlers;
 #include "CfgVehicles.hpp"
 
 enableDebugConsole[] = { WHITELIST_NOARRAY };
+EnableTargetDebug = 1;

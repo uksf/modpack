@@ -34,12 +34,12 @@ if (GVAR(firstRespawn)) then {
         [QEGVAR(common,waitAndDelete), [player, 5]] call CBA_fnc_serverEvent;
         selectPlayer _unit;
         [] spawn {
-            uiSleep 0.25;
-            progressLoadingScreen 1;
-            uiSleep 0.25;
-            endLoadingScreen;
+            uiSleep 0.5;
             forceRespawn player;
+            progressLoadingScreen 1;
+            uiSleep 0.5;
             [QGVAR(respawned), [player]] call CBA_fnc_localEvent;
+            endLoadingScreen;
         };
     } else {
         [QGVAR(respawned), [player]] call CBA_fnc_localEvent;

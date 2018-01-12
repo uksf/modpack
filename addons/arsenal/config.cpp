@@ -19,6 +19,6 @@ class CfgPatches {
 
 #include "ACE_Settings.hpp"
 #include "CfgEventHandlers.hpp"
-#include "CfgFunctions.hpp"
+// #include "CfgFunctions.hpp"
 #include "CfgLoadouts.hpp"
-#include "RscDisplayArsenal.hpp"
+// #include "RscDisplayArsenal.hpp"
