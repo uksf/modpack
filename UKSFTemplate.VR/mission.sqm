@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=275;
+		nextID=281;
 	};
 	class Camera
 	{
-		pos[]={43.531086,9.7908516,11.929958};
-		dir[]={-0.36426613,-0.6075117,0.70592004};
-		up[]={-0.27858669,0.79428953,0.53988075};
-		aside[]={0.8886953,3.9138831e-007,0.45857882};
+		pos[]={-22.468176,35.091064,-23.439157};
+		dir[]={0.8234176,-0.42536303,0.37568632};
+		up[]={0.38701352,0.90499467,0.17657578};
+		aside[]={0.41510496,1.374865e-007,-0.90981811};
 	};
 };
 binarizationWanted=0;
@@ -50,32 +50,13 @@ addons[]=
 	"A3_Supplies_F_Heli_CargoNets",
 	"uksf_reaper",
 	"UK3CB_BAF_Vehicles_Merlin",
-	"uksf_units",
-	"ace_explosives",
-	"UK3CB_BAF_Weapons_SmallArms",
-	"UK3CB_BAF_Weapons_Ammo",
-	"CUP_Weapons_Metis_AT_13",
-	"CUP_Weapons_ACE_compat",
-	"CUP_Weapons_Ammunition",
-	"CUP_Weapons_Revolver",
-	"A3_Weapons_F",
-	"acre_main",
-	"ace_goggles",
-	"ace_nightvision",
-	"achilles_data_f_ares",
-	"ace_attach",
-	"ace_chemlights",
-	"A3_Weapons_F_Items",
-	"ace_medical",
-	"ace_realisticnames",
-	"A3_Weapons_F_Explosives",
-	"A3_Weapons_F_Orange"
+	"uksf_units"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=34;
+		items=18;
 		class Item0
 		{
 			className="A3_Characters_F";
@@ -199,110 +180,6 @@ class AddonsMetaData
 			name="UKSF - Units";
 			author="UKSF";
 			url="www.uk-sf.com";
-		};
-		class Item18
-		{
-			className="ace_explosives";
-			name="ACE3 - Explosives";
-			author="ACE-Team";
-			url="http://ace3mod.com/";
-		};
-		class Item19
-		{
-			className="UK3CB_BAF_Weapons_SmallArms";
-			name="3CB BAF Weapons - Small Arms";
-			author="3 Commando Brigade";
-			url="www.3commandobrigade.com";
-		};
-		class Item20
-		{
-			className="UK3CB_BAF_Weapons_Ammo";
-			name="3CB BAF Weapons - Ammo";
-			author="3 Commando Brigade";
-			url="www.3commandobrigade.com";
-		};
-		class Item21
-		{
-			className="CUP_Weapons_Metis_AT_13";
-			name="CUP_Weapons_Metis_AT_13";
-		};
-		class Item22
-		{
-			className="CUP_Weapons_ACE_compat";
-			name="CUP_Weapons_ACE_compat";
-			author="Community Upgrade Project";
-		};
-		class Item23
-		{
-			className="CUP_Weapons_Ammunition";
-			name="CUP_Weapons_Ammunition";
-		};
-		class Item24
-		{
-			className="CUP_Weapons_Revolver";
-			name="CUP_Weapons_Revolver";
-		};
-		class Item25
-		{
-			className="A3_Weapons_F";
-			name="Arma 3 Alpha - Weapons and Accessories";
-			author="Bohemia Interactive";
-			url="https://www.arma3.com";
-		};
-		class Item26
-		{
-			className="acre_main";
-			name="ACRE2 - Main";
-			author="ACRE2Team";
-			url="https://github.com/IDI-Systems/acre2";
-		};
-		class Item27
-		{
-			className="ace_goggles";
-			name="ACE3 - Goggles";
-			author="ACE-Team";
-			url="http://ace3mod.com/";
-		};
-		class Item28
-		{
-			className="ace_nightvision";
-			name="ACE3 - Night Vision";
-			author="ACE-Team";
-			url="http://ace3mod.com/";
-		};
-		class Item29
-		{
-			className="achilles_data_f_ares";
-			name="achilles_data_f_ares";
-			author="Anton Struyk";
-		};
-		class Item30
-		{
-			className="ace_attach";
-			name="ACE3 - Attach";
-			author="ACE-Team";
-			url="http://ace3mod.com/";
-		};
-		class Item31
-		{
-			className="ace_chemlights";
-			name="ace_chemlights";
-			author="ACE-Team";
-			url="http://ace3mod.com/";
-		};
-		class Item32
-		{
-			className="ace_medical";
-			name="ACE3 - Medical";
-			author="ACE-Team";
-			url="http://ace3mod.com/";
-		};
-		class Item33
-		{
-			className="A3_Weapons_F_Orange";
-			name="Arma 3 Orange - Weapons and Accessories";
-			author="Bohemia Interactive";
-			url="https://www.arma3.com";
 		};
 	};
 };
@@ -5250,7 +5127,26 @@ class CustomAttributes
 				};
 			};
 		};
-		nAttributes=1;
+		class Attribute1
+		{
+			property="cba_settings_hasSettingsFile";
+			expression="false";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+						type[]=
+						{
+							"BOOL"
+						};
+					};
+					value=1;
+				};
+			};
+		};
+		nAttributes=2;
 	};
 };
 class Mission
@@ -5279,7 +5175,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=20;
+		items=19;
 		class Item0
 		{
 			dataType="Logic";
@@ -7200,17 +7096,193 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={10.5,5.0014391,1.5499992};
+						position[]={10.5,5.0014391,1.55};
 					};
 					side="West";
 					flags=7;
 					class Attributes
 					{
 						description="S_1";
+						isPlayer=1;
 						isPlayable=1;
 					};
 					id=334;
 					type="UKSF_B_Rifleman";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="Enh_onDamagedEvent";
+							expression="if !(_value == 'false') then {_this addEventHandler ['dammaged',_value]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="false";
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="Enh_taskPatrol_combatMode";
+							expression="_this setVariable ['Enh_randomPatrol_combatMode',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="YELLOW";
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="Enh_onRespawnEvent";
+							expression="if !(_value == 'false') then {_this addEventHandler ['respawn',_value]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="false";
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="Enh_taskPatrol_formation";
+							expression="_this setVariable ['Enh_randomPatrol_formation',_value]";
+							class Value
+							{
+								class data
+								{
+									nil=1;
+									class type
+									{
+										type[]=
+										{
+											"ANY"
+										};
+									};
+								};
+							};
+						};
+						class Attribute4
+						{
+							property="Enh_taskPatrol_behaviour";
+							expression="_this setVariable ['Enh_randomPatrol_behaviour',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="SAFE";
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="Enh_taskPatrol_speed";
+							expression="_this setVariable ['Enh_randomPatrol_speedMode',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="LIMITED";
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="Enh_onKilledEvent";
+							expression="if !(_value == 'false') then {_this addEventHandler ['killed',_value]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="false";
+								};
+							};
+						};
+						class Attribute7
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1.03;
+								};
+							};
+						};
+						class Attribute8
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male02ENGB";
+								};
+							};
+						};
+						nAttributes=9;
+					};
 				};
 				class Item1
 				{
@@ -11956,344 +12028,6 @@ class Mission
 				};
 				nAttributes=1;
 			};
-		};
-		class Item19
-		{
-			dataType="Group";
-			side="West";
-			class Entities
-			{
-				items=1;
-				class Item0
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={43,5.0014391,17.299999};
-						angles[]={0,4.8406491,0};
-					};
-					side="West";
-					flags=7;
-					class Attributes
-					{
-						isPlayer=1;
-						class Inventory
-						{
-							class primaryWeapon
-							{
-								name="UK3CB_BAF_L128A1";
-								class primaryMuzzleMag
-								{
-									name="UK3CB_BAF_12G_Slugs";
-									ammoLeft=8;
-								};
-							};
-							class secondaryWeapon
-							{
-								name="CUP_launch_Metis";
-								class primaryMuzzleMag
-								{
-									name="CUP_AT13_M";
-									ammoLeft=1;
-								};
-							};
-							class handgun
-							{
-								name="CUP_hgun_TaurusTracker455_gold";
-								class primaryMuzzleMag
-								{
-									name="CUP_6Rnd_45ACP_M";
-									ammoLeft=6;
-								};
-							};
-							class uniform
-							{
-								typeName="U_B_CTRG_2";
-								isBackpack=0;
-								class MagazineCargo
-								{
-									items=1;
-									class Item0
-									{
-										name="Chemlight_green";
-										count=1;
-										ammoLeft=1;
-									};
-								};
-								class ItemCargo
-								{
-									items=3;
-									class Item0
-									{
-										name="FirstAidKit";
-										count=1;
-									};
-									class Item1
-									{
-										name="ACE_Clacker";
-										count=1;
-									};
-									class Item2
-									{
-										name="ACE_DefusalKit";
-										count=1;
-									};
-								};
-							};
-							class vest
-							{
-								typeName="V_PlateCarrierL_CTRG";
-								isBackpack=0;
-								class MagazineCargo
-								{
-									items=5;
-									class Item0
-									{
-										name="HandGrenade";
-										count=2;
-										ammoLeft=1;
-									};
-									class Item1
-									{
-										name="APERSMine_Range_Mag";
-										count=3;
-										ammoLeft=1;
-									};
-									class Item2
-									{
-										name="SmokeShell";
-										count=1;
-										ammoLeft=1;
-									};
-									class Item3
-									{
-										name="SmokeShellGreen";
-										count=1;
-										ammoLeft=1;
-									};
-									class Item4
-									{
-										name="Chemlight_green";
-										count=1;
-										ammoLeft=1;
-									};
-								};
-							};
-							class backpack
-							{
-								typeName="B_Kitbag_rgr_Exp";
-								isBackpack=1;
-								class MagazineCargo
-								{
-									items=4;
-									class Item0
-									{
-										name="APERSBoundingMine_Range_Mag";
-										count=3;
-										ammoLeft=1;
-									};
-									class Item1
-									{
-										name="ClaymoreDirectionalMine_Remote_Mag";
-										count=2;
-										ammoLeft=1;
-									};
-									class Item2
-									{
-										name="SLAMDirectionalMine_Wire_Mag";
-										count=2;
-										ammoLeft=1;
-									};
-									class Item3
-									{
-										name="DemoCharge_Remote_Mag";
-										count=1;
-										ammoLeft=1;
-									};
-								};
-								class ItemCargo
-								{
-									items=1;
-									class Item0
-									{
-										name="MineDetector";
-										count=1;
-									};
-								};
-							};
-							map="ItemMap";
-							compass="ItemCompass";
-							watch="ItemWatch";
-							radio="ItemRadio";
-							goggles="G_Combat";
-							hmd="NVGoggles";
-							headgear="H_Cap_khaki_specops_UK";
-						};
-					};
-					id=523;
-					type="B_CTRG_soldier_engineer_exp_F";
-					class CustomAttributes
-					{
-						class Attribute0
-						{
-							property="Enh_onDamagedEvent";
-							expression="if !(_value == 'false') then {_this addEventHandler ['dammaged',_value]}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="false";
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="Enh_taskPatrol_combatMode";
-							expression="_this setVariable ['Enh_randomPatrol_combatMode',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="YELLOW";
-								};
-							};
-						};
-						class Attribute2
-						{
-							property="Enh_onRespawnEvent";
-							expression="if !(_value == 'false') then {_this addEventHandler ['respawn',_value]}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="false";
-								};
-							};
-						};
-						class Attribute3
-						{
-							property="Enh_taskPatrol_formation";
-							expression="_this setVariable ['Enh_randomPatrol_formation',_value]";
-							class Value
-							{
-								class data
-								{
-									nil=1;
-									class type
-									{
-										type[]=
-										{
-											"ANY"
-										};
-									};
-								};
-							};
-						};
-						class Attribute4
-						{
-							property="Enh_taskPatrol_behaviour";
-							expression="_this setVariable ['Enh_randomPatrol_behaviour',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="SAFE";
-								};
-							};
-						};
-						class Attribute5
-						{
-							property="Enh_taskPatrol_speed";
-							expression="_this setVariable ['Enh_randomPatrol_speedMode',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="LIMITED";
-								};
-							};
-						};
-						class Attribute6
-						{
-							property="Enh_onKilledEvent";
-							expression="if !(_value == 'false') then {_this addEventHandler ['killed',_value]}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="false";
-								};
-							};
-						};
-						class Attribute7
-						{
-							property="pitch";
-							expression="_this setpitch _value;";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"SCALAR"
-										};
-									};
-									value=0.94999999;
-								};
-							};
-						};
-						nAttributes=8;
-					};
-				};
-			};
-			class Attributes
-			{
-			};
-			id=522;
 		};
 	};
 };

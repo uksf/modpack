@@ -9,4 +9,6 @@ if (isServer) then {
 };
 [QGVAR(setDynamicSimulation), {(_this select 0) enableDynamicSimulation (_this select 1)}] call CBA_fnc_addEventHandler;
 
+#include "initSettings.sqf"
+
 ADDON = true;

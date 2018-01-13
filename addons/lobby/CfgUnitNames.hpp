@@ -16,8 +16,8 @@ class CfgUnitNames {
     G11_2[] = { "Guardian 1-1", "2iC - LCpl.Johansson.B", "UKSF_B_SectionLeader" };
     G11_3[] = { "Guardian 1-1", "Pte.Rowe.J", "UKSF_B_Rifleman" };
     G11_4[] = { "Guardian 1-1", "Pte.Gilbert.M", "UKSF_B_Rifleman" };
-    G11_5[] = { "Guardian 1-1", "Pte.Watkins.J", "UKSF_B_MachineGunner" };
-    G11_6[] = { "Guardian 1-1", "Pte.Gray.G", "UKSF_B_Rifleman" };
+    G11_5[] = { "Guardian 1-1", "Pte.Hodor.C", "UKSF_B_MachineGunner" };
+    G11_6[] = { "Guardian 1-1", "Pte.Mercer.N", "UKSF_B_Rifleman" };
     G11_7[] = { "Guardian 1-1", "Reserve", "UKSF_B_Rifleman" };
     G11_8[] = { "Guardian 1-1", "Reserve", "UKSF_B_Rifleman" };
     G12_1[] = { "Guardian 1-2", "Section Leader - Cpl.McClelland.S", "UKSF_B_SectionLeader" };

@@ -38,3 +38,9 @@ if (hasInterface) then {
         [_mapOn] call FUNC(mapPosition);
     }] call CBA_fnc_addPlayerEventHandler;
 };
+
+if (GVAR(mainOp)) then {
+    ["ace_medical_useLocation_PAK", 3, 0, "server", true] call CBA_settings_fnc_set;
+} else {
+    ["ace_medical_useLocation_PAK", 0, 0, "server", true] call CBA_settings_fnc_set;
+};

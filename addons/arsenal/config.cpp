@@ -7,6 +7,7 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
+            "ace_arsenal",
             "uksf_common",
             "uksf_gear"
         };
@@ -17,8 +18,6 @@ class CfgPatches {
     };
 };
 
-#include "ACE_Settings.hpp"
 #include "CfgEventHandlers.hpp"
-// #include "CfgFunctions.hpp"
 #include "CfgLoadouts.hpp"
-// #include "RscDisplayArsenal.hpp"
+#include "RscAttributes.hpp"

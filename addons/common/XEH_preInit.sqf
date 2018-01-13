@@ -42,4 +42,6 @@ if (isServer) then {
 };
 [QGVAR(log), {INFO(_this select 0)}] call CBA_fnc_addEventHandler;
 
+#include "initSettings.sqf"
+
 ADDON = true;

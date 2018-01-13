@@ -4,6 +4,8 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
+#include "initSettings.sqf"
+
 // Curator access
 GVAR(curatorGroup) = createGroup sideLogic;
 GVAR(curatorObjects) = [];

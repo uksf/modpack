@@ -475,9 +475,17 @@ class CfgWeapons {
         scopeArsenal = 2;
         author = "UKSF";
         displayName = "Pilot NVG";
-        ACE_NightVision_grain = 0;
-        ACE_NightVision_blur = 0;
-        ACE_NightVision_radBlur = 0;
+        ace_nightvision_generation = 4;
+    };
+    class NVGoggles;
+    class UK3CB_BAF_HMNVS: NVGoggles {
+        ace_nightvision_generation = 3;
+        ace_nightvision_bluRadius = 0.13;
+        ace_nightvision_border = "\z\ace\addons\nightvision\data\nvg_mask_4096.paa";
+        modelOptics = "";
+    };
+    class Integrated_NVG_F: NVGoggles {
+        ace_nightvision_generation = 4;
     };
 
     class arifle_Mk20_plain_F;

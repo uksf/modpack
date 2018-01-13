@@ -16,7 +16,7 @@
 
 params ["_crate"];
 
-if (GVAR(mainOpGear)) then {
+if (EGVAR(common,mainOp)) then {
     [_crate, call compile MAIN_OP_GEAR, false] call ace_arsenal_fnc_initBox;
     // missionnamespace setVariable [QGVAR(mainGear), true, true];
 } else {

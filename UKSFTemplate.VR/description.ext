@@ -3,7 +3,7 @@
         Tim Beswick
 
     Version:
-        1.4.0
+        1.5.0
 */
 
 //--------------------------------------------------- CHANGE BASED ON MISSION --------------------------------------------------
@@ -11,26 +11,6 @@ onLoadName = "UKSF: Operation";
 onLoadMission = "UKSF: Operation";
 overviewText = "UKSF: Operation";
 //------------------------------------------------------------------------------------------------------------------------------
-
-class ACE_Settings {
-    //------------------------------- COMMENT OR UNCOMMENT APPROPRIATE LINES FOR MAIN OR SIDE OP -------------------------------
-    //------------------------------------------ A COMMENT IS A LINE STARTING WITH // ------------------------------------------
-    //-------------------------------------------------------- MAIN OP ---------------------------------------------------------
-    class ace_medical_useLocation_PAK { value = 3; typeName = "SCALAR"; force = 1; };
-    class uksf_arsenal_mainOpGear { value = 1; typeName = "BOOL"; force = 1; };
-    //-------------------------------------------------------- SIDE OP ---------------------------------------------------------
-    //class ace_medical_useLocation_PAK { value = 0; typeName = "SCALAR"; force = 1; };
-    //class uksf_arsenal_mainOpGear { value = 0; typeName = "BOOL"; force = 1; };
-    //--------------------------------------------------------------------------------------------------------------------------
-
-    //----------------------------------------------------- UKSF SETTINGS ------------------------------------------------------
-    class uksf_curator_curatorsMax { value = 10; typeName = "SCALAR"; force = 1; };
-    class uksf_curator_curatorsLocked { value = 0; typeName = "BOOL"; force = 1; };
-    class uksf_caching_enabled { value = 1; typeName = "BOOL"; force = 1; };
-    class uksf_caching_distance { value = 750; typeName = "SCALAR"; force = 1; };
-    class uksf_cleanup_enabled { value = 1; typeName = "BOOL"; force = 1; };
-    class uksf_cleanup_delay { value = 300; typeName = "SCALAR"; force = 1; };
-};
 //-------------------------------------------------------- DON'T CHANGE --------------------------------------------------------
 author = "UKSF";
 loadScreen = "uksf.paa";
@@ -48,3 +28,4 @@ reviveMode = 0;
 disabledAI = 1;
 aiKills = 0;
 disableChannels[] = { 0,2,6 };
+cba_settings_hasSettingsFile = 1;
