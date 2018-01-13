@@ -18,6 +18,7 @@ PREP(moduleToggleVCOMSupport);
 PREP(ramp);
 PREP(populate);
 PREP(releaseCargo);
+PREP(removeNVG);
 PREP(setAllowUnconcious);
 PREP(setSkill);
 PREP(taskPatrol);

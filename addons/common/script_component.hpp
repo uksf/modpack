@@ -21,3 +21,9 @@
         init = QUOTE([ARR_2(_this select 0,QUOTE(QUOTE(NVG)))] call FUNC(addNVG)); \
     }; \
 }
+
+#define NONVG(UNIT) class UNIT { \
+    class GVAR(nvg) { \
+        init = QUOTE([_this select 0] call FUNC(removeNVG)); \
+    }; \
+}
