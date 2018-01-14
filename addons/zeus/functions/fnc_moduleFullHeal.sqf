@@ -20,7 +20,6 @@ params ["_logic", "", "_activated"];
 if !(_activated && local _logic) exitWith {
     deleteVehicle _logic;
 };
-deleteVehicle _logic;
 
 (missionNamespace getVariable ["bis_fnc_curatorObjectPlaced_mouseOver", [""]]) params ["_typeName", "_unit"];
 if (_typeName != "OBJECT") then {
@@ -30,3 +29,5 @@ if (_typeName != "OBJECT") then {
     _unit setDamage 0;
     ["Unit full healed"] call ace_common_fnc_displayTextStructured;
 };
+
+deleteVehicle _logic;

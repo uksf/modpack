@@ -20,7 +20,6 @@ params ["_logic", "", "_activated"];
 if !(_activated && local _logic) exitWith {
     deleteVehicle _logic;
 };
-deleteVehicle _logic;
 
 (missionNamespace getVariable ["bis_fnc_curatorObjectPlaced_mouseOver", [""]]) params ["_typeName", "_unit"];
 if (_typeName != "OBJECT" || {!(_unit isKindOf "CAManBase")} || {!(alive _unit)}) then {
@@ -32,3 +31,5 @@ if (_typeName != "OBJECT" || {!(_unit isKindOf "CAManBase")} || {!(alive _unit)}
         ["Unit set as Engineer"] call ace_common_fnc_displayTextStructured;
     };
 };
+
+deleteVehicle _logic;

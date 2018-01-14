@@ -118,4 +118,97 @@ class CfgVehicles {
     class Achilles_ACE_Heal_Module: Achilles_ACE_Module_Base {
         function = QFUNC(moduleFullHeal);
     };
+
+    class Ares_Arsenal_Module_Base;
+    class Ares_Module_Arsenal_AddFull: Ares_Arsenal_Module_Base {
+        scopeCurator = 0;
+    };
+    class Ares_Module_Arsenal_AddCustom: Ares_Arsenal_Module_Base {
+        scopeCurator = 0;
+    };
+    class Ares_Module_Arsenal_Copy_To_Clipboard: Ares_Arsenal_Module_Base {
+        scopeCurator = 0;
+    };
+    class Ares_Module_Arsenal_Paste_Replace: Ares_Arsenal_Module_Base {
+        scopeCurator = 0;
+    };
+    class Ares_Module_Arsenal_Paste_Combine: Ares_Arsenal_Module_Base {
+        scopeCurator = 0;
+    };
+    class Ares_Module_Arsenal_Create_Nato: Ares_Arsenal_Module_Base {
+        scopeCurator = 0;
+    };
+    class Ares_Module_Arsenal_Create_Csat: Ares_Arsenal_Module_Base {
+        scopeCurator = 0;
+    };
+    class Ares_Module_Arsenal_Create_Aaf: Ares_Arsenal_Module_Base {
+        scopeCurator = 0;
+    };
+    class Ares_Module_Arsenal_Create_Guerilla: Ares_Arsenal_Module_Base {
+        scopeCurator = 0;
+    };
+    class Ares_Behaviours_Module_Base;
+    class Ares_Module_Bahaviour_SurrenderUnit: Ares_Behaviours_Module_Base {
+        scopeCurator = 0;
+    };
+    class Ares_Module_Bahaviour_Garrison_Nearest: Ares_Behaviours_Module_Base {
+        scopeCurator = 0;
+    };
+    class Ares_Module_Bahaviour_UnGarrison: Ares_Behaviours_Module_Base {
+        scopeCurator = 0;
+    };
+    class Ares_Module_Behaviour_Search_Nearby_Building: Ares_Behaviours_Module_Base {
+        scopeCurator = 0;
+    };
+    class Ares_Module_Behaviour_Search_Nearby_And_Garrison: Ares_Behaviours_Module_Base {
+        scopeCurator = 0;
+    };
+    class Ares_Module_Behaviour_Patrol: Ares_Behaviours_Module_Base {
+        scopeCurator = 0;
+    };
+    class Ares_Player_Module_Base;
+    class Ares_Module_Player_Change_Player_Side: Ares_Player_Module_Base {
+        scopeCurator = 0;
+    };
+    class Ares_Module_Player_Teleport: Ares_Player_Module_Base {
+        scopeCurator = 0;
+    };
+    class Ares_Equipment_Module_Base;
+    class Ares_Module_Equipment_Flashlight_IR_ON_OFF: Ares_Equipment_Module_Base {
+        scopeCurator = 0;
+    };
+    class Ares_Module_Equipment_NVD_TACLIGHT_IR: Ares_Equipment_Module_Base {
+        scopeCurator = 0;
+    };
+    class Ares_Module_Zeus_Add_Remove_Editable_Objects: Ares_Zeus_Module_Base {
+        scopeCurator = 0;
+    };
+    class Ares_Module_Zeus_Switch_Side: Ares_Zeus_Module_Base {
+        scopeCurator = 0;
+    };
+    class Enyo_Behaviours_Module_Base;
+    class Achilles_SuicideBomber_Module: Enyo_Behaviours_Module_Base {
+        scopeCurator = 0;
+    };
+    class Achilles_FireSupport_ModuleBase;
+    class Achilles_Suppressive_Fire_Module: Achilles_FireSupport_ModuleBase {
+        scopeCurator = 0;
+    };
+    class Achilles_Create_Suppression_Target_Module: Achilles_FireSupport_ModuleBase {
+        scopeCurator = 0;
+    };
+    class Achilles_Objects_Module_Base;
+    class Achilles_Toggle_Simulation_Module: Achilles_Objects_Module_Base {
+        scopeCurator = 0;
+    };
+    class Achilles_Zeus_Module_Base;
+    class Achilles_Module_Zeus_SwitchUnit: Achilles_Zeus_Module_Base {
+        scopeCurator = 0;
+    };
+    class Achilles_Module_Zeus_AssignZeus: Achilles_Zeus_Module_Base {
+        scopeCurator = 0;
+    };
+    class ModuleArsenal_F: Module_F {
+        scopeCurator = 0;
+    };
 };

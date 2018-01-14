@@ -20,7 +20,6 @@ params ["_logic", "", "_activated"];
 if !(_activated && local _logic) exitWith {
     deleteVehicle _logic;
 };
-deleteVehicle _logic;
 
 if (!isMultiplayer) exitWith {};
 
@@ -31,3 +30,5 @@ if (!GVAR(fpsEnabled)) then {
 };
 
 [_message] call ace_common_fnc_displayTextStructured;
+
+deleteVehicle _logic;

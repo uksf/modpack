@@ -22,7 +22,7 @@ if !(_activated && local _logic) exitWith {
 };
 
 private _pos = getPos _logic;
-deleteVehicle _logic;
-
 private _ied = "DemoCharge_Remote_Ammo" createVehicle [_pos select 0, _pos select 1, (_pos select 2) + 0.1];
 _ied setDamage 1;
+
+deleteVehicle _logic;
