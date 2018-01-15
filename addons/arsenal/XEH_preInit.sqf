@@ -32,14 +32,14 @@ uiNamespace setVariable [QGVAR(defaultLoadouts), _defaultLoadouts];
             _buttonMainOpGear ctrlShow false;
         };
     } else {
-        {
-            private _display = findDisplay 1127001;
-            private _buttonMainOpGear = _display displayCtrl 1003;
-            if (isMultiplayer) then {
+        if (isMultiplayer) then {
+            {
+                private _display = findDisplay 1127001;
+                private _buttonMainOpGear = _display displayCtrl 1003;
                 _buttonMainOpGear ctrlEnable false;
                 _buttonMainOpGear ctrlShow false;
-            };
-        } call CBA_fnc_execNextFrame;
+            } call CBA_fnc_execNextFrame;
+        };
     };
 }] call CBA_fnc_addEventHandler;
 

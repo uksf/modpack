@@ -550,6 +550,7 @@ class CfgWeapons {
     };
     class Integrated_NVG_F: NVGoggles {
         ace_nightvision_generation = 4;
+        ace_nightvision_bluRadius = 0.36;
     };
 
     class arifle_Mk20_plain_F;

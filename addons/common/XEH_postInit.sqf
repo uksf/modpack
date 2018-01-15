@@ -1,15 +1,16 @@
 #include "script_component.hpp"
 #include "keybinds.sqf"
 
-// Delete groups every 5 minutes
-[{
-    {deleteGroup _x; false} count allGroups;
-}, 300, []] call cba_fnc_addPerFrameHandler;
 
 // Set server object
 if (isServer) then {
     GVAR(server) = player;
     publicVariable QGVAR(server);
+
+    // Delete empty groups every 5 minutes
+    [{
+        [QGVAR(deleteEmptyGroups), []] call CBA_fnc_globalEvent;
+    }, 300, []] call cba_fnc_addPerFrameHandler;
 };
 
 // Set headless client array. Player if singleplayer
