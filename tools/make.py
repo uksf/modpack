@@ -74,7 +74,7 @@ prefix = "uksf"
 pbo_name_prefix = "uksf_"
 dependencies = "C:/SteamLibrary/_Working/next/@uksf_dependencies/addons"
 signature_blacklist = []
-importantFiles = ["mod.cpp", "README.md", "mod.paa", "modLarge.paa", "AUTHORS.txt", "LICENSE", "UKSFTemplate.VR"]
+importantFiles = ["mod.cpp", "README.md", "mod.paa", "modLarge.paa", "AUTHORS.txt", "LICENSE", "UKSFTemplate.VR", "cba_settings.sqf"]
 versionFiles = ["mod.cpp", "README.md"]
 nomake = False
 sign = False
@@ -801,10 +801,13 @@ def update_ace():
         return 1
 
     print_blue("\nCopying compats")
-    for file in os.listdir(os.path.join(ace_release, "optionals")):
-        for compat in compats:
-            if ((compat in file) and not(os.path.isfile(os.path.join(ace_release, "addons", file)))):
-                shutil.copyfile(os.path.join(ace_release, "optionals", file), os.path.join(ace_release, "addons", file))
+    for folder in os.listdir(os.path.join(ace_release, "optionals")):
+        if ("userconfig" in folder):
+            continue
+        for file in os.listdir(os.path.join(ace_release, "optionals", folder, "addons")):
+            for compat in compats:
+                if ((compat in file) and not(os.path.isfile(os.path.join(ace_release, "addons", file)))):
+                    shutil.copyfile(os.path.join(ace_release, "optionals", folder, "addons", file), os.path.join(ace_release, "addons", file))
 
     print_blue("\nCopying ACE release folder")
     shutil.copytree(ace_release, uksf_ace_release)
