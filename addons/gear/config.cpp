@@ -57,6 +57,7 @@ class CfgPatches {
             "UKSF_H_RAFBeret",
             "UKSF_H_AACBeret",
             "UKSF_V_Pilot",
+            "UK3CB_BAF_LLM_Flashlight_Far_Black",
             "ACE_NVG_Pilot",
             "UK3CB_BAF_L85A2_RIS_Elcan",
             "UK3CB_BAF_L22A2_Elcan",
@@ -77,6 +78,7 @@ class CfgPatches {
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             "uksf_common",
+            "ace_chemlights",
             "UK3CB_BAF_Equipment",
             "UK3CB_BAF_Equipment_ACRE_compatibility",
             "UK3CB_BAF_Weapons",
@@ -127,6 +129,7 @@ class SensorTemplatePassiveRadar;
 class SensorTemplateVisual;
 class SensorTemplateDataLink;
 #include "CfgAmmo.hpp"
+#include "CfgEffects.hpp"
 #include "CfgEventHandlers.hpp"
 #include "CfgFunctions.hpp"
 #include "CfgMagazines.hpp"

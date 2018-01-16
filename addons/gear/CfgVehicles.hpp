@@ -1002,5 +1002,24 @@ class CfgVehicles {
         ammo = "BreachCharge_Remote_Ammo";
     };
 
+    class Thing;
+    class ACE_Chemlight_IR_Marker: Thing {
+        brightness = 10;
+        class NVGMarker {
+            diffuse[] = {0.1, 0.1, 0.1};
+            ambient[] = {0.1, 0.1, 0.1};
+            brightness = 0.4;
+            name = "pozicni blik";
+            drawLight = 0;
+            drawLightSize = 0;
+            drawLightCenterSize = 0;
+            activeLight = 0;
+            blinking = 0;
+            dayLight = 0;
+            onlyInNvg = 1;
+            useFlare = 0;
+        };
+    };
+
     #include "CfgVehiclesPrivate.hpp"
 };

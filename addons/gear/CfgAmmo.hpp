@@ -24,6 +24,33 @@ class CfgAmmo{
         hit = 5; // Increased from 2, 4, 10
     };
 
+    class Chemlight_red;
+    class ACE_G_Chemlight_HiRed: Chemlight_red {
+        timeToLive = 3600;
+    };
+    class Chemlight_yellow;
+    class ACE_G_Chemlight_HiYellow: Chemlight_yellow {
+        timeToLive = 3600;
+    };
+    class ACE_G_Chemlight_Orange;
+    class ACE_G_Chemlight_HiOrange: ACE_G_Chemlight_Orange {
+        timeToLive = 3600;
+    };
+    class ACE_G_Chemlight_White;
+    class ACE_G_Chemlight_HiWhite: ACE_G_Chemlight_White {
+        timeToLive = 3600;
+    };
+    class ACE_G_Chemlight_HiBlue: ACE_G_Chemlight_HiWhite {
+        effectsSmoke = "ACE_ChemlightEffect_HiBlue";
+    };
+    class ACE_G_Chemlight_HiGreen: ACE_G_Chemlight_HiWhite {
+        effectsSmoke = "ACE_ChemlightEffect_HiGreen";
+    };
+    class Chemlight_base;
+    class ACE_G_Chemlight_IR: Chemlight_base {
+        timeToLive = 3600;
+    };
+
     class MissileCore;
     class MissileBase: MissileCore {
         timeToLive = 30;

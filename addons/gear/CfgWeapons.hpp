@@ -530,6 +530,62 @@ class CfgWeapons {
             };
         };
     };
+    class UK3CB_BAF_LLM_IR_Tan;
+    class UK3CB_BAF_LLM_IR_Black: UK3CB_BAF_LLM_IR_Tan {
+        mrt_SwitchItemNextClass = "UK3CB_BAF_LLM_Flashlight_Black";
+        mrt_SwitchItemPrevClass = "UK3CB_BAF_LLM_Flashlight_Black";
+        mrt_SwitchItemHintText = "IR";
+        ace_nextModeClass = "UK3CB_BAF_LLM_Flashlight_Black";
+        ace_modeDescription = "IR";
+        UK3CB_nextItem = "UK3CB_BAF_LLM_Flashlight_Black";
+    };
+    class UK3CB_BAF_LLM_Flashlight_Tan;
+    class UK3CB_BAF_LLM_Flashlight_Black: UK3CB_BAF_LLM_Flashlight_Tan {
+        mrt_SwitchItemNextClass = "UK3CB_BAF_LLM_Flashlight_Far_Black";
+        mrt_SwitchItemPrevClass = "UK3CB_BAF_LLM_Flashlight_Far_Black";
+        mrt_SwitchItemHintText = "Flashlight";
+        ace_nextModeClass = "UK3CB_BAF_LLM_Flashlight_Far_Black";
+        ace_modeDescription = "Flashlight";
+        UK3CB_nextItem = "UK3CB_BAF_LLM_Flashlight_Far_Black";
+    };
+    class InventoryFlashLightItem_Base_F;
+    class UK3CB_BAF_LLM_Flashlight_Far_Black: UK3CB_BAF_LLM_Flashlight_Black {
+        displayName = "LLM Mk3 Flashlight Far (Black)";
+        mrt_SwitchItemNextClass = "UK3CB_BAF_LLM_IR_Black";
+        mrt_SwitchItemPrevClass = "UK3CB_BAF_LLM_IR_Black";
+        mrt_SwitchItemHintText = "Flashlight (Far)";
+        ace_nextModeClass = "UK3CB_BAF_LLM_IR_Black";
+        ace_modeDescription = "Flashlight (Far)";
+        UK3CB_nextItem = "UK3CB_BAF_LLM_IR_Black";
+        class ItemInfo: InventoryFlashLightItem_Base_F {
+            mass = 4;
+            class FlashLight {
+                color[] = {180, 156, 120};
+                ambient[] = {0.9, 0.78, 0.6};
+                intensity = 30;
+                size = 1;
+                innerAngle = 5;
+                outerAngle = 50;
+                coneFadeCoef = 10;
+                position = "flash dir";
+                direction = "flash";
+                useFlare = 1;
+                flareSize = 1.4;
+                flareMaxDistance = "100.0f";
+                dayLight = 0;
+                class Attenuation {
+                    start = 0.5;
+                    constant = 0;
+                    linear = 0;
+                    quadratic = 1.1;
+                    hardLimitStart = 50;
+                    hardLimitEnd = 100;
+                };
+                scale[] = {0};
+            };
+        };
+    };
+
     class ACE_NVG_Wide;
     class ACE_NVG_Pilot: ACE_NVG_Wide {
         scope = 2;
@@ -744,7 +800,7 @@ class CfgWeapons {
         };
     };
     class launch_NLAW_F;
-    class UK3CB_BAF_NLAW_Launcher: launch_NLAW_F {        
+    class UK3CB_BAF_NLAW_Launcher: launch_NLAW_F {
         magazines[] = { "ACE_PreloadedMissileDummy" };
         ACE_UsedTube = "ACE_launch_NLAW_Used_F";
         ace_nlaw_enabled = 1;
@@ -781,6 +837,18 @@ class CfgWeapons {
             magazines[] = { "BreachCharge_Remote_Mag" };
         };
     };
+    class GrenadeLauncher;
+    class Throw: GrenadeLauncher {
+        muzzles[] += {"ACE_Chemlight_HiBlueMuzzle", "ACE_Chemlight_HiGreenMuzzle"};
+        class ThrowMuzzle;
+        class ACE_Chemlight_HiBlueMuzzle: ThrowMuzzle {
+            magazines[] = {"ACE_Chemlight_HiBlue"};
+        };
+        class ACE_Chemlight_HiGreenMuzzle: ThrowMuzzle {
+            magazines[] = {"ACE_Chemlight_HiGreen"};
+        };
+    };
+
     class CUP_weapon_mastersafe: Default {
         displayName = "Safe";
         displayNameMagazine = "Safe";
@@ -1165,4 +1233,10 @@ class CfgWeapons {
     };
     
     #include "CfgWeaponsPrivate.hpp"
+};
+class asdg_SlotInfo;
+class asdg_FrontSideRail: asdg_SlotInfo {
+    class compatibleItems {
+        UK3CB_BAF_LLM_Flashlight_Far_Black = 1;
+    };
 };
