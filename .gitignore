@@ -12,5 +12,15 @@ Thumbs.db
 *.zip
 *.bat
 *.pyc
+*.pdb
+*.tlog
+*.sln
+*.vcxproj
+*.vcxproj.*
+extensions/.vs
+extensions/build32
+extensions/build64
+extensions/Win32
+extensions/x64
 tools/service.py
 tools/manage.py
