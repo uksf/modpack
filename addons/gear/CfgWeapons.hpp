@@ -822,6 +822,8 @@ class CfgWeapons {
         model = "\UK3CB_BAF_Weapons\addons\UK3CB_BAF_Weapons_Launchers\UK3CB_Javelin_CLU.p3d";
         picture = "\UK3CB_BAF_Weapons\addons\UK3CB_BAF_Weapons_Launchers\data\clu_javelin_ca.paa";
         icon = "iconObject_circle";
+        delete OpticsModes;
+        delete WeaponSlotsInfo;
         class ItemInfo: CBA_MiscItem_ItemInfo {
             mass = 64;
             allowedSlots[] = {901};
