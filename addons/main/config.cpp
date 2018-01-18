@@ -920,5 +920,6 @@ class CfgMods {
     };
 };
 
+#include "CfgIntercept.hpp"
 #include "CfgSettings.hpp"
 delete enableDebugConsole;

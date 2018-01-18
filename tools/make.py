@@ -74,7 +74,9 @@ prefix = "uksf"
 pbo_name_prefix = "uksf_"
 dependencies = "C:/SteamLibrary/_Working/next/@uksf_dependencies/addons"
 signature_blacklist = []
-importantFiles = ["mod.cpp", "README.md", "mod.paa", "modLarge.paa", "AUTHORS.txt", "LICENSE", "UKSFTemplate.VR", "cba_settings.sqf"]
+importantFiles = ["mod.cpp", "README.md", "mod.paa", "modLarge.paa", "AUTHORS.txt", "LICENSE",
+                  "UKSFTemplate.VR", "cba_settings.sqf", "cba_settings.sqf",
+                  "intercept/uksf.dll", "intercept/uksf_x64.dll"]
 versionFiles = ["mod.cpp", "README.md"]
 nomake = False
 sign = False
@@ -342,28 +344,14 @@ def compile_extensions(extensions_root, force_build):
     try:
         print_blue("\nCompiling extensions in {}".format(extensions_root))
         joinstr = ":rebuild;" if force_build else ";"
+        os.chdir(extensions_root)
 
         # Prepare 32bit build dirs
-        vcproj32 = os.path.join(extensions_root,"vcproj32")
-        if not os.path.exists(vcproj32):
-            os.mkdir(vcproj32)
         # Build
-        os.chdir(vcproj32)
-        subprocess.call(["cmake", "..", "-DUSE_64BIT_BUILD=OFF", "-G", "Visual Studio 15 2017"])
-        print()
-        subprocess.call(["msbuild", "uksf_extension_persistence.sln", "/m", "/p:Configuration=Release"])
-        #subprocess.call(["C:/Program Files (x86)/MSBuild/14.0/Bin/MSBuild.exe", "uksf_extension_persistence.sln", "/tv:14.0", "/m", "/p:Configuration=Release"])
+        subprocess.call(["msbuild", "uksf.sln", "/m", "/p:Configuration=Release", " /p:Platform=x32"])
 
         # Prepare 64bit build dirs
-        vcproj64 = os.path.join(extensions_root,"vcproj64")
-        if not os.path.exists(vcproj64):
-            os.mkdir(vcproj64)
-        # Build
-        os.chdir(vcproj64)
-        subprocess.call(["cmake", "..", "-DUSE_64BIT_BUILD=OFF", "-G", "Visual Studio 15 2017 Win64"])
-        print()
-        subprocess.call(["msbuild", "uksf_extension_persistence.sln", "/m", "/p:Configuration=Release"])
-        #subprocess.call(["C:/Program Files (x86)/MSBuild/14.0/Bin/MSBuild.exe", "uksf_extension_persistence.sln", "/tv:14.0", "/m", "/p:Configuration=Release", "/p:Platform=x64"])
+        subprocess.call(["msbuild", "uksf.sln", "/m", "/p:Configuration=Release", " /p:Platform=x64"])
     except:
         print_error("COMPILING EXTENSIONS.")
         raise

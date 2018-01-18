@@ -29,16 +29,21 @@ def check_for_obsolete_pbos(addonspath, file):
         return True
     return False
 
-def main():
+def main(argv):
     print("""
 #####################
 # UKSF Debug Build #
 #####################
 """)
+    compile_extensions = False
+    if "compile" in argv:
+        argv.remove("compile")
+        compile_extensions = True
 
     scriptpath = os.path.realpath(__file__)
     projectpath = os.path.dirname(os.path.dirname(scriptpath))
     addonspath = os.path.join(projectpath, "addons")
+    extensionspath = os.path.join(projectpath, "extensions")
 
     os.chdir(addonspath)
 
@@ -83,9 +88,24 @@ def main():
             made += 1
             print("  Successfully made {}.".format(p))
 
+    if (compile_extensions):
+        try:
+            print("\nCompiling extensions in {}".format(extensionspath))
+            os.chdir(extensionspath)
+
+            # Prepare 32bit build dirs
+            # Build
+            subprocess.call(["msbuild", "uksf.sln", "/m", "/p:Configuration=Release;Platform=x86"])
+
+            # Prepare 64bit build dirs
+            subprocess.call(["msbuild", "uksf.sln", "/m", "/p:Configuration=Release", "/p:Platform=x64"])
+        except:
+            print("COMPILING EXTENSIONS.")
+            raise
+
     print("\n# Done.")
     print("  Made {}, skipped {}, removed {}, failed to make {}.".format(made, skipped, removed, failed))
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit(main(sys.argv))
