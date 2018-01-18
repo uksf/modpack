@@ -22,4 +22,4 @@ if (EGVAR(common,mainOp)) then {
 } else {
     [_crate, true, false] call ace_arsenal_fnc_initBox;
 };
-_crate addAction ["Arsenal", { [_this select 3, player] call ace_arsenal_fnc_openBox; }, _crate, 10, true, true, "", "true", 10];
+[QGVAR(addArsenalAction), [_crate]] call CBA_fnc_localEvent;

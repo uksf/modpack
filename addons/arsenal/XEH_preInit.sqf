@@ -43,4 +43,18 @@ uiNamespace setVariable [QGVAR(defaultLoadouts), _defaultLoadouts];
     };
 }] call CBA_fnc_addEventHandler;
 
+[QGVAR(addArsenalAction), {
+    params ["_object"];
+    private _id = _object addAction ["Arsenal", {[_this select 3, ace_player] call ace_arsenal_fnc_openBox;}, _object, 10, true, true, "", "true", 5];
+    _object setVariable [QGVAR(arsenalActionId), _id];
+}] call CBA_fnc_addEventHandler;
+
+[QGVAR(removeArsenalAction), {
+    params ["_object"];
+    private _id = _object getVariable [QGVAR(arsenalActionId), -1];
+    if (_id != -1) then {
+        _object removeAction _id;
+    };
+}] call CBA_fnc_addEventHandler;
+
 ADDON = true;

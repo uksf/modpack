@@ -102,6 +102,14 @@ class CfgVehicles {
         function = QFUNC(moduleToggleHasRadio);
     };
 
+    class ace_zeus_moduleBase;
+    class ace_zeus_AddFullArsenal: ace_zeus_moduleBase {
+        function = QFUNC(moduleAddArsenal);
+    };
+    class ace_zeus_RemoveFullArsenal: ace_zeus_moduleBase {
+        function = QFUNC(moduleRemoveArsenal);
+    };
+
     class Ares_Zeus_Module_Base;
     class Ares_Module_Zeus_Visibility: Ares_Zeus_Module_Base {
         displayName = "Toggle Zeus Visibility";

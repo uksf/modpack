@@ -6,6 +6,7 @@ ADDON = false;
 
 GVAR(loadout) = "";
 GVAR(fpsEnabled) = false;
+GVAR(EHIDArray) = [];
 
 [QEGVAR(lobby,respawned), {
     if (hasInterface && {isMultiplayer}) then {
