@@ -20,4 +20,6 @@ class CfgPatches {
 
 #include "CfgEventHandlers.hpp"
 #include "CfgLoadouts.hpp"
+#include "CfgMagazines.hpp"
+#include "CfgWeapons.hpp"
 #include "RscAttributes.hpp"
