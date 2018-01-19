@@ -30,6 +30,7 @@ class cba_Extended_EventHandlers;
 #include "CfgEditorCategories.hpp"
 #include "CfgEditorSubcategories.hpp"
 #include "CfgFactionClasses.hpp"
+#include "CfgGroups.hpp"
 #include "CfgImprecision.hpp"
 #include "CfgMarkerColors.hpp"
 #include "CfgWeapons.hpp"
