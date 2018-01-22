@@ -12,7 +12,7 @@
         Nothing
 */
 #include "script_component.hpp"
-
+/*
 if (GVAR(firstRespawn)) then {
     GVAR(firstRespawn) = false;
     private _unitNameConfigs = configFile >> "CfgUnitNames";
@@ -30,16 +30,12 @@ if (GVAR(firstRespawn)) then {
             private _unit = _group createUnit [_class, [-1000, -1000, 0], [], 10, "NONE"];
             [QEGVAR(common,waitAndDelete), [player, 5]] call CBA_fnc_serverEvent;
             selectPlayer _unit;
-            [] spawn {
-                uiSleep 0.5;
-                forceRespawn player;
-                progressLoadingScreen 1;
-                uiSleep 0.5;
-                [QGVAR(respawned), [player]] call CBA_fnc_localEvent;
-                endLoadingScreen;
-            };
+            forceRespawn player;
+            progressLoadingScreen 1;
+            [QGVAR(respawned), [player]] call CBA_fnc_localEvent;
+            endLoadingScreen;
         }, _unitConfig] call CBA_fnc_waitUntilAndExecute;        
     } else {
         [QGVAR(respawned), [player]] call CBA_fnc_localEvent;
     };
-};
+};*/
