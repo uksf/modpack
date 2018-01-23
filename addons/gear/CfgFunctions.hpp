@@ -7,4 +7,12 @@ class CfgFunctions {
             class assemble_javelin { file = QPATHTOF(functions\fnc_3cbAssembleJavelin.sqf); };
         };
     };
+    class UK3CB_BAF_Weapons_Static {
+        class UK3CB_BAF_Weapons_Static {
+            class static_weapon_init {
+                postInit = 1;
+                file = QPATHTOF(functions\fnc_staticWeaponInit.sqf);
+            };
+        };
+    };
 };

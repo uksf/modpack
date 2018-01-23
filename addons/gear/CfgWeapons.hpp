@@ -1,6 +1,21 @@
 class Mode_SemiAuto;
 class Mode_Burst;
 class Mode_FullAuto;
+class asdg_MuzzleSlot;
+class asdg_OpticRail1913;
+class asdg_SlotInfo;
+class asdg_FrontSideRail: asdg_SlotInfo {
+    class compatibleItems {
+        UK3CB_BAF_LLM_Flashlight_Far_Black = 1;
+    };
+};
+class asdg_MuzzleSlot_556_3CB_L119: asdg_MuzzleSlot {
+    class compatibleItems {
+        UK3CB_BAF_BFA_L85 = 1;
+        UK3CB_BAF_SFFH = 1;
+        muzzle_snds_M = 1;
+    };
+};
 class CfgWeapons {
     class ItemCore;
     class Uniform_Base;
@@ -619,15 +634,41 @@ class CfgWeapons {
             magazines[] = { "1Rnd_HE_Grenade_shell","UGL_FlareWhite_F","UGL_FlareGreen_F","UGL_FlareRed_F","UGL_FlareYellow_F","UGL_FlareCIR_F","1Rnd_Smoke_Grenade_shell","1Rnd_SmokeRed_Grenade_shell","1Rnd_SmokeGreen_Grenade_shell","1Rnd_SmokeYellow_Grenade_shell","1Rnd_SmokePurple_Grenade_shell","1Rnd_SmokeBlue_Grenade_shell","1Rnd_SmokeOrange_Grenade_shell","UK3CB_BAF_1Rnd_HEDP_Grenade_shell","ACE_HuntIR_M203" };
         };
         class EGLM: UGL_F {
-            magazines[] = { "1Rnd_HE_Grenade_shell","UGL_FlareWhite_F","UGL_FlareGreen_F","UGL_FlareRed_F","UGL_FlareYellow_F","UGL_FlareCIR_F","1Rnd_Smoke_Grenade_shell","1Rnd_SmokeRed_Grenade_shell","1Rnd_SmokeGreen_Grenade_shell","1Rnd_SmokeYellow_Grenade_shell","1Rnd_SmokePurple_Grenade_shell","1Rnd_SmokeBlue_Grenade_shell","1Rnd_SmokeOrange_Grenade_shell","ACE_HuntIR_M203" };
+            magazines[] = {"UK3CB_BAF_1Rnd_HE_Grenade_Shell", "UK3CB_BAF_1Rnd_HEDP_Grenade_Shell", "UK3CB_BAF_1Rnd_Blank_Grenade_Shell", "UK3CB_BAF_UGL_FlareWhite_F", "UK3CB_BAF_UGL_FlareRed_F", "UK3CB_BAF_UGL_FlareGreen_F", "UK3CB_BAF_UGL_FlareYellow_F", "UK3CB_BAF_UGL_FlareCIR_F", "UK3CB_BAF_1Rnd_Smoke_Grenade_shell", "UK3CB_BAF_1Rnd_SmokeRed_Grenade_shell", "UK3CB_BAF_1Rnd_SmokeGreen_Grenade_shell", "UK3CB_BAF_1Rnd_SmokeYellow_Grenade_shell", "UK3CB_BAF_1Rnd_SmokePurple_Grenade_shell", "UK3CB_BAF_1Rnd_SmokeBlue_Grenade_shell", "UK3CB_BAF_1Rnd_SmokeOrange_Grenade_shell", "1Rnd_HE_Grenade_shell", "UGL_FlareWhite_F", "UGL_FlareGreen_F", "UGL_FlareRed_F", "UGL_FlareYellow_F", "UGL_FlareCIR_F", "1Rnd_Smoke_Grenade_shell", "1Rnd_SmokeRed_Grenade_shell", "1Rnd_SmokeGreen_Grenade_shell", "1Rnd_SmokeYellow_Grenade_shell", "1Rnd_SmokePurple_Grenade_shell", "1Rnd_SmokeBlue_Grenade_shell", "1Rnd_SmokeOrange_Grenade_shell", "ACE_HuntIR_M203"};
+            
         };
         ace_barrelLength = 461; // c:441.96, a:518
     };
     class UK3CB_BAF_L119_Base: arifle_Mk20_plain_F {
         ace_barrelLength = 450; // c:410, a:398
+        class WeaponSlotsInfo {
+            allowedslots[] = {901};
+            mass = 84;
+            delete asdg_MuzzleSlot_UK3CB_BAF_L85;
+            class asdg_MuzzleSlot_UK3CB_BAF_L119: asdg_MuzzleSlot_556_3CB_L119 {};
+            class asdg_OpticRail_UK3CB_BAF_L85: asdg_OpticRail1913 {};
+            class asdg_FrontSideRail_L85: asdg_FrontSideRail {};
+        };
     };
     class UK3CB_BAF_L119A1_CQB: UK3CB_BAF_L119_Base {
         ace_barrelLength = 434; // c:250, a:250
+        class WeaponSlotsInfo {
+            allowedslots[] = {901};
+            mass = 84;
+            delete asdg_MuzzleSlot_UK3CB_BAF_L85;
+            class asdg_MuzzleSlot_UK3CB_BAF_L119: asdg_MuzzleSlot_556_3CB_L119 {};
+            class asdg_OpticRail_UK3CB_BAF_L85: asdg_OpticRail1913 {};
+        };
+    };
+    class UK3CB_BAF_L119A1: UK3CB_BAF_L119_Base {
+        class WeaponSlotsInfo {
+            allowedslots[] = {901};
+            mass = 84;
+            delete asdg_MuzzleSlot_UK3CB_BAF_L85;
+            class asdg_MuzzleSlot_UK3CB_BAF_L119: asdg_MuzzleSlot_556_3CB_L119 {};
+            class asdg_OpticRail_UK3CB_BAF_L85: asdg_OpticRail1913 {};
+            class asdg_FrontSideRail_L85: asdg_FrontSideRail {};
+        };
     };
     class srifle_EBR_F;
     class UK3CB_BAF_L129A1: srifle_EBR_F {
@@ -822,6 +863,8 @@ class CfgWeapons {
         model = "\UK3CB_BAF_Weapons\addons\UK3CB_BAF_Weapons_Launchers\UK3CB_Javelin_CLU.p3d";
         picture = "\UK3CB_BAF_Weapons\addons\UK3CB_BAF_Weapons_Launchers\data\clu_javelin_ca.paa";
         icon = "iconObject_circle";
+        delete OpticsModes;
+        delete WeaponSlotsInfo;
         class ItemInfo: CBA_MiscItem_ItemInfo {
             mass = 64;
             allowedSlots[] = {901};
@@ -1233,10 +1276,4 @@ class CfgWeapons {
     };
     
     #include "CfgWeaponsPrivate.hpp"
-};
-class asdg_SlotInfo;
-class asdg_FrontSideRail: asdg_SlotInfo {
-    class compatibleItems {
-        UK3CB_BAF_LLM_Flashlight_Far_Black = 1;
-    };
 };

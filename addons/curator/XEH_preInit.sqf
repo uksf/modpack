@@ -40,6 +40,11 @@ if (hasInterface) then {
             };
         };
     }, true, [], true] call CBA_fnc_addClassEventHandler;
+
+    ["CAManBase", "init", {
+        call FUNC(addCuratorActions);
+    }] call CBA_fnc_addClassEventHandler;
+
     [QEGVAR(lobby,respawned), {
         [{
             !(isNull (findDisplay 46))
@@ -55,7 +60,6 @@ if (hasInterface) then {
                     endLoadingScreen;
                 };
             };
-            call FUNC(addCuratorActions);
             if (!isMultiplayer) then {
                 call FUNC(curatorLogin);
             };

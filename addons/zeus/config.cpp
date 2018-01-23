@@ -5,7 +5,9 @@ class CfgPatches {
         name = COMPONENT_NAME;
         units[] = {
             "ModuleCurator_F",
+            "ModuleMine_FlareTripMine_F",
             QGVAR(moduleAddAllObjects),
+            QGVAR(moduleDelete),
             QGVAR(moduleExplosionLarge),
             QGVAR(moduleExplosionSmall),
             QGVAR(moduleLoadoutCopy),

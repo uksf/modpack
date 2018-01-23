@@ -22,11 +22,6 @@ if (isMultiplayer && !is3DENMultiplayer) then {
 };
 
 [QEGVAR(lobby,respawned), {
-    // Ensure rating never goes below 0.
-    player addEventHandler ["HandleRating", {
-        (_this select 1) max 0
-    }];
-
     // Add FPS action
     if (hasInterface) then {
         call FUNC(fpsAction);

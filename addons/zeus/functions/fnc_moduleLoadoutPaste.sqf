@@ -7,29 +7,32 @@
 
     Parameter(s):
         0: The module logic <OBJECT>
-        1: Synchronized units <ARRAY>
-        2: Activated <BOOL>
 
     Return Value:
         None
 */
 #include "script_component.hpp"
 
-params ["_logic", "", "_activated"];
+params ["_logic"];
 
-if !(_activated && local _logic) exitWith {
-    deleteVehicle _logic;
-};
+if (!local _logic) exitWith {};
 
-(missionNamespace getVariable ["bis_fnc_curatorObjectPlaced_mouseOver", [""]]) params ["_typeName", "_unit"];
-if (_typeName != "OBJECT" || {!(_unit isKindOf "CAManBase")} || {!(alive _unit)}) then {
-    ["Place on a living unit"] call ace_common_fnc_displayTextStructured;
-} else {
-    if (GVAR(loadout) isEqualTo "") then {
-        ["Copy a loadout first"] call ace_common_fnc_displayTextStructured;
-    } else {
-        _unit setUnitLoadout GVAR(loadout);
-        ["Loadout pasted"] call ace_common_fnc_displayTextStructured;
+private _object = attachedTo _logic;
+
+switch (true) do {
+    case (isNull _object || {!(_object isKindOf "CAManBase")}): {
+        ["Place on a unit"] call ace_zeus_fnc_showMessage;
+    };
+    case (!(alive _object)): {
+        ["Unit must be alive"] call ace_zeus_fnc_showMessage;
+    };
+    default {
+        if (GVAR(loadout) isEqualTo "") then {
+            ["Copy a loadout first"] call ace_common_fnc_displayTextStructured;
+        } else {
+            _object setUnitLoadout GVAR(loadout);
+            ["Loadout pasted"] call ace_common_fnc_displayTextStructured;
+        };
     };
 };
 

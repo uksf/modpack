@@ -4,6 +4,13 @@ class CfgVehicles {
         function = QFUNC(moduleCurator);
     };
     
+    class ModuleMine_APERSTripMine_F;
+    class ModuleMine_FlareTripMine_F: ModuleMine_APERSTripMine_F {
+        _generalMacro = "ModuleMine_FlareTripMine_F";
+        displayName = "Tripwire Flare";
+        explosive = "ACE_FlareTripMine_Wire_Ammo";
+    };
+    
     class EGVAR(common,moduleBase);
     class GVAR(moduleAddAllObjects): EGVAR(common,moduleBase) {
         curatorCanAttach = 1;
@@ -11,6 +18,13 @@ class CfgVehicles {
         displayName = "Add all objects";
         function = QFUNC(moduleAddAllObjects);
         icon = "\achilles\data_f_achilles\icons\icon_position.paa";
+    };
+    class GVAR(moduleDelete): EGVAR(common,moduleBase) {
+        curatorCanAttach = 1;
+        category = "Curator";
+        displayName = "Force Delete";
+        function = QFUNC(moduleDelete);
+        icon = "\z\ace\addons\zeus\ui\Icon_Module_Zeus_Settings_ca.paa";
     };
     class GVAR(moduleExplosionLarge): EGVAR(common,moduleBase) {
         curatorCanAttach = 1;
@@ -100,6 +114,14 @@ class CfgVehicles {
         curatorCanAttach = 1;
         displayName = "Toggle Unit Support";
         function = QFUNC(moduleToggleHasRadio);
+    };
+
+    class ace_zeus_moduleBase;
+    class ace_zeus_AddFullArsenal: ace_zeus_moduleBase {
+        function = QFUNC(moduleAddArsenal);
+    };
+    class ace_zeus_RemoveFullArsenal: ace_zeus_moduleBase {
+        function = QFUNC(moduleRemoveArsenal);
     };
 
     class Ares_Zeus_Module_Base;
