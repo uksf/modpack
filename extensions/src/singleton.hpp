@@ -1,6 +1,6 @@
 #pragma once
 
-template<typename T>
+template <typename T>
 class singleton {
     singleton(const singleton&) = delete;
     singleton(singleton&&) = delete;
@@ -8,18 +8,16 @@ class singleton {
     singleton& operator=(singleton&&) = delete;
 
 public:
-    static T& getInstance() noexcept {
-        return _singletonInstance;
-    }
+    static T& get_instance() noexcept { return _singleton_instance; }
 
 protected:
     singleton() {}
-    static T _singletonInstance;
+    static T _singleton_instance;
     static bool _initialized;
 };
 
-template<typename T>
-T singleton<T>::_singletonInstance;
+template <typename T>
+T singleton<T>::_singleton_instance;
 
-template<typename T>
+template <typename T>
 bool singleton<T>::_initialized = false;

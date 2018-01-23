@@ -1,16 +1,16 @@
 #pragma once
 //Courtesy of dedmen from TFAR https://github.com/michail-nikolaev/task-force-arma-3-radio/blob/1.0/ts/src/SignalSlot.hpp
 
-template<class sig>
-class Signal;
+template<class Sig>
+class uksf_signal;
 
 template<class ReturnType, class... Args>
-class Signal<ReturnType(Args...)> {
+class uksf_signal<ReturnType(Args...)> {
 private:
-    typedef std::function<ReturnType(Args...)> Slot;
+    typedef std::function<ReturnType(Args...)> slot;
 
 public:
-    void connect(Slot slot) {
+    void connect(slot slot) {
         _slots.push_back(slot);
     }
 
@@ -18,23 +18,23 @@ public:
         return emit(args...);
     }
     std::vector<ReturnType> emit(Args... args) const {
-        std::vector<ReturnType> returnData;
+        std::vector<ReturnType> return_data;
         if (_slots.empty())
             return;
         for (auto &slot : _slots) {
-            returnData.push_back(slot(args...));
+            return_data.push_back(slot(args...));
         }
-        return returnData;
+        return return_data;
     }
-    void removeAllSlots() {
+    void remove_all_slots() {
         _slots.clear();
     }
 private:
-    std::vector<Slot> _slots{};
+    std::vector<slot> _slots{};
 };
 
 template<class... Args>
-class Signal<void(Args...)> {
+class uksf_signal<void(Args...)> {
 private:
     typedef std::function<void(Args...)> Slot;
 
@@ -53,7 +53,7 @@ public:
             slot(args...);
         }
     }
-    void removeAllSlots() {
+    void remove_all_slots() {
         _slots.clear();
     }
 private:

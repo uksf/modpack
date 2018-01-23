@@ -4,64 +4,33 @@ template <class T>
 class threaded {
 public:
     threaded() {
-        /*uksf_ai::getInstance().missionEnded.connect([this]() {
-            singleton<T>::getInstance().stopServerThread();
-            singleton<T>::getInstance().stopClientThread();
-        });*/
-    };
+        uksf::get_instance().mission_ended.connect([this]() {
+            singleton<T>::get_instance().stop_thread();
+        });
+    }
 
     virtual ~threaded() {
-        stopServerThread();
-        stopClientThread();
-    };
+        stop_thread();
+    }
 
-    virtual void serverFunction() {};
-    virtual void clientFunction() {};
+    virtual void function() {}
 
 protected:
-    std::thread _serverThread, _clientThread;
-    bool _serverThreadStop = true;
-    bool _clientThreadStop = true;
+    std::thread _thread;
+    bool _thread_stop = true;
 
-    void startServerThread() {
-        _serverThreadStop = false;
-        _serverThread = std::thread(&threaded<T>::serverThreadFunction, this);
-        _serverThread.detach();
-    };
+    void start_thread() {
+        _thread_stop = false;
+        _thread = std::thread(&threaded<T>::thread_function, this);
+        _thread.detach();
+    }
 
-    void startClientThread() {
-        _clientThreadStop = false;
-        _clientThread = std::thread(&threaded<T>::clientThreadFunction, this);
-        _clientThread.detach();
-    };
-
-    void stopServerThread() {
-        if (_serverThread.joinable()) {
-            _serverThreadStop = true;
-            _serverThread.join();
+    void stop_thread() {
+        if (_thread.joinable()) {
+            _thread_stop = true;
+            _thread.join();
         }
-    };
+    }
 
-    void stopClientThread() {
-        if (_clientThread.joinable()) {
-            _clientThreadStop = true;
-            _clientThread.join();
-        }
-    };
-
-    void serverThreadFunction() {
-        while (!_serverThreadStop) {
-            if (uksf_common::thread_run) {
-                serverFunction();
-            }
-        }
-    };
-
-    void clientThreadFunction() {
-        while (!_clientThreadStop) {
-            if (uksf_common::thread_run) {
-                clientFunction();
-            }
-        }
-    };
+    void thread_function() { while (!_thread_stop) { if (uksf_common::thread_run) { function(); } } }
 };

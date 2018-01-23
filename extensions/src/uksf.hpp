@@ -19,16 +19,15 @@ using namespace intercept;
 #include "logging.hpp"
 #include "signalslot.hpp"
 #include "singleton.hpp"
-#include "threaded.hpp"
 
 class uksf : public singleton<uksf> {
 public:
     uksf();
 
     //Signal<void()> initModule;
-    Signal<void()> preStart;
-    Signal<void()> preInit;
-    Signal<void()> postInit;
-    Signal<void()> onFrame;
-    Signal<void()> missionEnded;
+    uksf_signal<void()> post_start;
+    uksf_signal<void()> pre_init;
+    uksf_signal<void()> post_init;
+    uksf_signal<void()> on_frame;
+    uksf_signal<void()> mission_ended;
 };

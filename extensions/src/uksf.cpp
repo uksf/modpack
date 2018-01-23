@@ -1,34 +1,34 @@
 #include "uksf.hpp"
 #include "common.hpp"
 
-//#include "caching.hpp"
+#include "modules/data/data.hpp"
 
-void __cdecl intercept::pre_start() {
-    LOG(DEBUG) << "MAIN PRESTART";
-    uksf::getInstance().preStart();
+void __cdecl intercept::post_start() {
+    LOG_DEBUG("MAIN PRESTART");
+    uksf::get_instance().post_start();
 }
 
 void __cdecl intercept::pre_init() {
-    LOG(DEBUG) << "MAIN PREINIT";
-    uksf::getInstance().preInit();
+    LOG_DEBUG("MAIN PREINIT");
+    uksf::get_instance().pre_init();
 }
 
 void __cdecl intercept::post_init() {
-    LOG(DEBUG) << "MAIN POSTINIT";
-    uksf::getInstance().postInit();
+    LOG_DEBUG("MAIN POSTINIT");
+    uksf::get_instance().post_init();
 }
 
 void __cdecl intercept::on_frame() {
-    uksf::getInstance().onFrame();
+    uksf::get_instance().on_frame();
 }
 
-/*void __cdecl intercept::mission_end() {
-    LOG(DEBUG) << "MAIN MISSION ENDED";
-    uksf::getInstance().missionEnded();
-}*/
+void __cdecl intercept::mission_ended() {
+    LOG_DEBUG("MAIN MISSION ENDED");
+    uksf::get_instance().mission_ended();
+}
 
 uksf::uksf() {
-    uksf_common::getInstance();
+    uksf_common::get_instance();
 
-    //uksf_ai_caching::getInstance();
+    uksf_data::get_instance();
 }
