@@ -9,10 +9,10 @@ class uksf_common : public singleton<uksf_common> {
 public:
     uksf_common();
 
-    static game_value cba_settings_fnc_init;
-    static bool thread_run;
+    static game_value cbaSettingsFncInit;
+    static bool threadRun;
 
-    static float get_zoom();
-    static bool line_of_sight(object& target, object& source, bool zoom_check, bool group_check);
-    static side get_side(int side_number);
+    static float getZoom();
+    static bool lineOfSight(object& target, object& source, bool zoomCheck, bool groupCheck);
+    static side getSide(int sideNumber);
 };

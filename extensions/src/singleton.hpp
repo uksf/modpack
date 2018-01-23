@@ -8,16 +8,16 @@ class singleton {
     singleton& operator=(singleton&&) = delete;
 
 public:
-    static T& get_instance() noexcept { return _singleton_instance; }
+    static T& getInstance() noexcept { return _singletonInstance; }
 
 protected:
     singleton() {}
-    static T _singleton_instance;
+    static T _singletonInstance;
     static bool _initialized;
 };
 
 template <typename T>
-T singleton<T>::_singleton_instance;
+T singleton<T>::_singletonInstance;
 
 template <typename T>
 bool singleton<T>::_initialized = false;

@@ -5,30 +5,30 @@
 
 void __cdecl intercept::post_start() {
     LOG_DEBUG("MAIN PRESTART");
-    uksf::get_instance().post_start();
+    uksf::getInstance().postStart();
 }
 
 void __cdecl intercept::pre_init() {
     LOG_DEBUG("MAIN PREINIT");
-    uksf::get_instance().pre_init();
+    uksf::getInstance().preInit();
 }
 
 void __cdecl intercept::post_init() {
     LOG_DEBUG("MAIN POSTINIT");
-    uksf::get_instance().post_init();
+    uksf::getInstance().postInit();
 }
 
 void __cdecl intercept::on_frame() {
-    uksf::get_instance().on_frame();
+    uksf::getInstance().onFrame();
 }
 
 void __cdecl intercept::mission_ended() {
     LOG_DEBUG("MAIN MISSION ENDED");
-    uksf::get_instance().mission_ended();
+    uksf::getInstance().missionEnded();
 }
 
 uksf::uksf() {
-    uksf_common::get_instance();
+    uksf_common::getInstance();
 
-    uksf_data::get_instance();
+    uksf_data::getInstance();
 }

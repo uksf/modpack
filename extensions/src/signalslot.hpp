@@ -6,8 +6,8 @@ class uksf_signal;
 
 template<class ReturnType, class... Args>
 class uksf_signal<ReturnType(Args...)> {
-private:
     typedef std::function<ReturnType(Args...)> slot;
+    std::vector<slot> _slots{};
 
 public:
     void connect(slot slot) {
@@ -18,28 +18,26 @@ public:
         return emit(args...);
     }
     std::vector<ReturnType> emit(Args... args) const {
-        std::vector<ReturnType> return_data;
+        std::vector<ReturnType> returnData;
         if (_slots.empty())
             return;
         for (auto &slot : _slots) {
-            return_data.push_back(slot(args...));
+            returnData.push_back(slot(args...));
         }
-        return return_data;
+        return returnData;
     }
-    void remove_all_slots() {
+    void removeAllSlots() {
         _slots.clear();
     }
-private:
-    std::vector<slot> _slots{};
 };
 
 template<class... Args>
 class uksf_signal<void(Args...)> {
-private:
-    typedef std::function<void(Args...)> Slot;
+    typedef std::function<void(Args...)> slot;
+    std::vector<slot> _slots{};
 
 public:
-    void connect(Slot slot) {
+    void connect(slot slot) {
         _slots.push_back(slot);
     }
 
@@ -53,9 +51,7 @@ public:
             slot(args...);
         }
     }
-    void remove_all_slots() {
+    void removeAllSlots() {
         _slots.clear();
     }
-private:
-    std::vector<Slot> _slots{};
 };

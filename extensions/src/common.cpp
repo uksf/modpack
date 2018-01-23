@@ -1,47 +1,47 @@
 #pragma once
 #include "common.hpp"
 
-game_value uksf_common::cba_settings_fnc_init = game_value();
-bool uksf_common::thread_run = false;
+game_value uksf_common::cbaSettingsFncInit = game_value();
+bool uksf_common::threadRun = false;
 
 uksf_common::uksf_common() {
 
-    uksf::get_instance().post_start.connect([this]() {
+    uksf::getInstance().postStart.connect([this]() {
         LOG_DEBUG("COMMON PRESTART");
     });
 
-    uksf::get_instance().pre_init.connect([this]() {
+    uksf::getInstance().preInit.connect([this]() {
         LOG_DEBUG("COMMON PREINIT");
-        cba_settings_fnc_init = sqf::get_variable(sqf::ui_namespace(), "CBA_Settings_fnc_init");
+        cbaSettingsFncInit = sqf::get_variable(sqf::ui_namespace(), "CBA_Settings_fnc_init");
     });
 
-    uksf::get_instance().post_init.connect([this]() { LOG_DEBUG("COMMON POSTINIT"); });
+    uksf::getInstance().postInit.connect([this]() { LOG_DEBUG("COMMON POSTINIT"); });
 
-    uksf::get_instance().on_frame.connect([this]() { thread_run = sqf::time() > int(sqf::get_variable(sqf::mission_namespace(), "CBA_common_lastTime", 0)); });
+    uksf::getInstance().onFrame.connect([this]() { threadRun = sqf::time() > int(sqf::get_variable(sqf::mission_namespace(), "CBA_common_lastTime", 0)) && !sqf::find_display(46).is_nil(); });
 }
 
-float uksf_common::get_zoom() {
-    const float safe_zone_w = sqf::safe_zone_w();
-    const float delta_x = sqf::world_to_screen(sqf::position_camera_to_world(vector3(5000, 0, 10000)))->x - 0.5f;
-    const float trig_ratio = safe_zone_w / 2.0f * 5000.0f / (10000.0f * delta_x);
-    const float config_fov = trig_ratio / (safe_zone_w / sqf::safe_zone_h());
-    return 0.75f / config_fov;
+float uksf_common::getZoom() {
+    const float safeZoneW = sqf::safe_zone_w();
+    const float deltaX = sqf::world_to_screen(sqf::position_camera_to_world(vector3(5000, 0, 10000)))->x - 0.5f;
+    const float trigRatio = safeZoneW / 2.0f * 5000.0f / (10000.0f * deltaX);
+    const float configFov = trigRatio / (safeZoneW / sqf::safe_zone_h());
+    return 0.75f / configFov;
 }
 
-bool uksf_common::line_of_sight(object& target, object& source, const bool zoom_check, const bool group_check) {
-    std::optional<vector2> screen_position = sqf::world_to_screen(sqf::get_pos(target));
-    const bool on_screen = screen_position.has_value() && (abs(screen_position->x) < 1.5f && abs(screen_position->y) < 1.5f);
+bool uksf_common::lineOfSight(object& target, object& source, const bool zoomCheck, const bool groupCheck) {
+    std::optional<vector2> screenPosition = sqf::world_to_screen(sqf::get_pos(target));
+    const bool onScreen = screenPosition.has_value() && (abs(screenPosition->x) < 1.5f && abs(screenPosition->y) < 1.5f);
     const bool visible = sqf::check_visibility(source, "VIEW", sqf::vehicle(source), sqf::eye_pos(source),
                                                sqf::eye_pos(target)) > 0;
-    bool los = on_screen && visible;
+    bool los = onScreen && visible;
 
-    if (on_screen && !los && group_check) {
+    if (onScreen && !los && groupCheck) {
         std::vector<object> units = sqf::units(target);
         for (auto& unit : units) {
-            std::optional<vector2> new_screen_position = sqf::world_to_screen(sqf::get_pos(unit));
-            const bool new_on_screen = new_screen_position.has_value() && (abs(new_screen_position->x) < 1.5f && abs(
-                new_screen_position->y) < 1.5f);
-            los = new_on_screen && sqf::check_visibility(source, "VIEW", sqf::vehicle(source), sqf::eye_pos(source),
+            std::optional<vector2> newScreenPosition = sqf::world_to_screen(sqf::get_pos(unit));
+            const bool newOnScreen = newScreenPosition.has_value() && (abs(newScreenPosition->x) < 1.5f && abs(
+                newScreenPosition->y) < 1.5f);
+            los = newOnScreen && sqf::check_visibility(source, "VIEW", sqf::vehicle(source), sqf::eye_pos(source),
                                                          sqf::eye_pos(unit)) > 0;
             if (los) {
                 target = std::ref(unit);
@@ -50,20 +50,20 @@ bool uksf_common::line_of_sight(object& target, object& source, const bool zoom_
         }
     }
 
-    if (los && zoom_check) {
-        float distance_multiplier = 200 + 4 * 200 * std::max(0.0f, float(sqf::current_vision_mode(source) - 1));
-        if (!sqf::is_kind_of(sqf::vehicle(target), "CAManBase")) { distance_multiplier *= 2.5f; }
-        const float distance_check = std::min(sqf::get_object_view_distance().object_distance,
-                                              1000 + distance_multiplier * get_zoom());
+    if (los && zoomCheck) {
+        float distanceMultiplier = 200 + 4 * 200 * std::max(0.0f, float(sqf::current_vision_mode(source) - 1));
+        if (!sqf::is_kind_of(sqf::vehicle(target), "CAManBase")) { distanceMultiplier *= 2.5f; }
+        const float distanceCheck = std::min(sqf::get_object_view_distance().object_distance,
+                                              1000 + distanceMultiplier * getZoom());
         const float distance = sqf::get_pos_world(target).distance(sqf::get_pos_world(source));
-        los = distance < distance_check;
+        los = distance < distanceCheck;
     }
 
     return los;
 }
 
-side uksf_common::get_side(const int side_number) {
-    switch (side_number) {
+side uksf_common::getSide(const int sideNumber) {
+    switch (sideNumber) {
     case 1:
         return sqf::west();
     case 2:

@@ -4,33 +4,33 @@ template <class T>
 class threaded {
 public:
     threaded() {
-        uksf::get_instance().mission_ended.connect([this]() {
-            singleton<T>::get_instance().stop_thread();
+        uksf::getInstance().missionEnded.connect([this]() {
+            singleton<T>::getInstance().stopThread();
         });
     }
 
     virtual ~threaded() {
-        stop_thread();
+        stopThread();
     }
 
     virtual void function() {}
 
 protected:
     std::thread _thread;
-    bool _thread_stop = true;
+    bool _threadStop = true;
 
-    void start_thread() {
-        _thread_stop = false;
-        _thread = std::thread(&threaded<T>::thread_function, this);
+    void startThread() {
+        _threadStop = false;
+        _thread = std::thread(&threaded<T>::threadFunction, this);
         _thread.detach();
     }
 
-    void stop_thread() {
+    void stopThread() {
         if (_thread.joinable()) {
-            _thread_stop = true;
+            _threadStop = true;
             _thread.join();
         }
     }
 
-    void thread_function() { while (!_thread_stop) { if (uksf_common::thread_run) { function(); } } }
+    void threadFunction() { while (!_threadStop) { if (uksf_common::threadRun) { function(); } } }
 };

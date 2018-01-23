@@ -12,6 +12,7 @@
 #include <functional>
 #include <chrono>
 #include <random>
+#include <future>
 
 #include "intercept.hpp"
 using namespace intercept;
@@ -25,9 +26,9 @@ public:
     uksf();
 
     //Signal<void()> initModule;
-    uksf_signal<void()> post_start;
-    uksf_signal<void()> pre_init;
-    uksf_signal<void()> post_init;
-    uksf_signal<void()> on_frame;
-    uksf_signal<void()> mission_ended;
+    uksf_signal<void()> postStart;
+    uksf_signal<void()> preInit;
+    uksf_signal<void()> postInit;
+    uksf_signal<void()> onFrame;
+    uksf_signal<void()> missionEnded;
 };
