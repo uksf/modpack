@@ -126,6 +126,7 @@ class CfgVehicles {
 
     class Ares_Zeus_Module_Base;
     class Ares_Module_Zeus_Visibility: Ares_Zeus_Module_Base {
+        curatorCanAttach = 1;
         displayName = "Toggle Zeus Visibility";
         function = QFUNC(moduleToggleZeusVisibility);
         icon = "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa";
@@ -133,11 +134,13 @@ class CfgVehicles {
     };
     class Achilles_Module_Base;
     class Achilles_ACE_Module_Base: Achilles_Module_Base {
+        curatorCanAttach = 1;
         category = "ace_zeus_Medical";
         icon = "\z\ace\addons\zeus\ui\Icon_Module_Zeus_Medic_ca.paa";
         portrait = "\z\ace\addons\zeus\ui\Icon_Module_Zeus_Medic_ca.paa";
     };
     class Achilles_ACE_Heal_Module: Achilles_ACE_Module_Base {
+        curatorCanAttach = 1;
         function = QFUNC(moduleFullHeal);
     };
 
