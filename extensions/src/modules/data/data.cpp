@@ -50,32 +50,41 @@ uksf_data::uksf_data() {
 void uksf_data::getData() const {
     std::vector<object> players = sqf::all_players();
     if (players.size() == 0) return;
-    auto jsonString = json::value::object();
-    jsonString[L"mission"] = json::value::string(sqf::mission_name());
-    std::string json = "{";
-    for (std::vector<object>::iterator i = players.begin(); i != players.end(); ++i) {
-        const auto player = *i;
-        if (!sqf::is_kind_of(player, "HeadlessClient_F")) {
-            const std::string playerUid = "\"player\":\"" + sqf::get_player_uid(player) + "\"";
-            const vector3 position = sqf::position(player);
-            const std::string positionString = "\"position\":\"[" + std::to_string(position.x) + "," + std::to_string(position.y) + "," + std::
-                to_string(position.z) + "]\"";
+    json::value json = json::value::object();
+    json[L"missionName"] = json::value::string(conversions::to_string_t(sqf::mission_name()));
+    json::value jsonPlayers = json::value::array();
+    int index = 0;
+    for (const auto player : players) {
+        json::value jsonPlayer = json::value::object();
+        jsonPlayer[L"uid"] = json::value::string(conversions::to_string_t(sqf::get_player_uid(player)));
 
-            if (i != players.begin()) {
-                json += ",";
-            }
-            json += "{" + playerUid + ", {" + positionString + "}}";
+        const vector3 position = sqf::position(player);
+        json::value jsonPosition = json::value::object();
+        jsonPosition[L"x"] = json::value::string(conversions::to_string_t(std::to_string(position.x)));
+        jsonPosition[L"y"] = json::value::string(conversions::to_string_t(std::to_string(position.y)));
+        jsonPosition[L"z"] = json::value::string(conversions::to_string_t(std::to_string(position.z)));
+        jsonPlayer[L"position"] = jsonPosition;
+
+        const object vehicle = sqf::vehicle(player);
+        if (!sqf::is_kind_of(vehicle, "CAManBase")) {
+            jsonPlayer[L"vehicle"] = json::value::string(conversions::to_string_t(sqf::type_of(vehicle)));
+        } else {
+            jsonPlayer[L"vehicle"] = json::value::string(L"");
         }
+
+        jsonPlayers[index] = jsonPlayer;
+        index++;
     }
-    sqf::system_chat(json);
-    sqf::diag_log(json);
-    LOG_DEBUG(json);
-    async(getInstance().sendData, json);
+    json[L"players"] = jsonPlayers;
+    const sqf_string_const_ref jsonString = sqf_string_const_ref(json.serialize().c_str());
+    sqf::system_chat(jsonString);
+    sqf::diag_log(jsonString);
+    LOG_DEBUG(jsonString);
+    std::async(getInstance().sendData, json);
 }
 
-void uksf_data::sendData(std::string json) {
-    http_client client(U("http://localhost:5000/data"));
-    client.request(methods::POST);
-
+void uksf_data::sendData(json::value json) {
+    http_client client(U("http://localhost:5000/api/test/data"));
+    client.request(http::methods::PUT, json.serialize());
 }
 
