@@ -1,6 +1,6 @@
 #pragma once
 #include "data.hpp"
-#include "secret.cpp"
+#include "secret.hpp"
 
 uksf_data::uksf_data() {
     uksf::getInstance().preInit.connect([this]() {
@@ -106,6 +106,23 @@ void uksf_data::getData() const {
     json::string_t jsonString = jsonObject.dump();
     sqf::system_chat(jsonString);
     LOG_DEBUG(jsonString);
-    std::thread sendDataThread(&uksf_secret::sendData, jsonString);
+    std::thread sendDataThread(&uksf_data::sendData, jsonString);
     sendDataThread.detach();
+}
+
+void uksf_data::sendData(json::string_t jsonString) {
+    try {
+        HTTPClientSession session("localhost", 5000);
+        HTTPRequest request(HTTPRequest::HTTP_PUT, "/api/test/data");
+        request.setContentType("application/json");
+        request.setContentLength(jsonString.length());
+        //HTTPBasicCredentials credentials(USERNAME, PASSWORD);
+        //credentials.authenticate(request);
+        std::ostream& ostream = session.sendRequest(request);
+        ostream << jsonString;
+        HTTPResponse response;
+        session.receiveResponse(response);
+    } catch (Poco::Exception& exception) {
+        LOG_DEBUG(exception.displayText());
+    }
 }

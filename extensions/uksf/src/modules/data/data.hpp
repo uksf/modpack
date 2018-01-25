@@ -17,6 +17,7 @@ public:
     uksf_data();
 
     void getData() const;
+    static void sendData(json::string_t jsonString);
 
 private:
     bool _enabled = ENABLED_DEFAULT;
