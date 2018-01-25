@@ -75,8 +75,9 @@ pbo_name_prefix = "uksf_"
 dependencies = "C:/SteamLibrary/_Working/next/@uksf_dependencies/addons"
 signature_blacklist = []
 importantFiles = ["mod.cpp", "README.md", "mod.paa", "modLarge.paa", "AUTHORS.txt", "LICENSE",
-                  "UKSFTemplate.VR", "cba_settings.sqf", "cba_settings.sqf",
-                  "intercept/uksf.dll", "intercept/uksf_x64.dll"]
+                  "UKSFTemplate.VR", "cba_settings.sqf", "cba_settings.sqf"]
+interceptFiles = ["uksf.dll", "uksf_x64.dll", "PocoFoundation.dll",
+                  "PocoFoundation64.dll", "PocoNet.dll", "PocoNet64.dll"]
 versionFiles = ["mod.cpp", "README.md"]
 nomake = False
 sign = False
@@ -382,6 +383,33 @@ def copy_important_files(source_dir,destination_dir):
                 print_error("Failed copying file => {}".format(filePath))
     except:
         print_error("COPYING IMPORTANT FILES.")
+        raise
+
+def copy_intercept_files(source_dir,destination_dir):
+    originalDir = os.getcwd()
+
+    # Copy interceptFiles
+    try:
+        print_blue("\nSearching for important files in {}".format(source_dir))
+        print("Source_dir: {}".format(source_dir))
+        print("Destination_dir: {}".format(destination_dir))
+        if not os.path.exists(destination_dir):
+            os.makedirs(destination_dir)
+
+        for file in interceptFiles:
+            filePath = os.path.join(module_root_parent, "intercept", file)
+            if os.path.exists(filePath):
+                print_green("Copying file => {}".format(filePath))
+                if (os.path.isdir(os.path.join(source_dir,filePath))):
+                    shutil.rmtree(os.path.join(destination_dir, file), True)
+                    shutil.copytree(os.path.join(source_dir, file), os.path.join(destination_dir, file))
+                else:
+                    shutil.copy(os.path.join(source_dir,filePath), destination_dir)
+            else:
+                missingFiles.append("{}".format(filePath))
+                print_error("Failed copying file => {}".format(filePath))
+    except:
+        print_error("COPYING INTERCEPT FILES.")
         raise
 
 
@@ -1477,6 +1505,7 @@ See the make.cfg file for additional build options.
                 compile_extensions(extensions_root, force_build)
 
             copy_important_files(module_root_parent,os.path.join(release_dir, project))
+            copy_intercept_files(os.path.join(module_root_parent, "intercept"), os.path.join(release_dir, project, "intercept"))
 
             if not version_update:
                 restore_version_files()

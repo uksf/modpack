@@ -1,25 +1,21 @@
 #pragma once
 #define NOMINMAX
-#include <windows.h>
-#include <stdio.h>
-#include <cstdint>
-#include <assert.h>
-#include <atomic>
-#include <stdlib.h>
-#include <algorithm>
-#include <variant>
-#include <vector>
-#include <functional>
-#include <chrono>
-#include <random>
-#include <future>
+
+#include "Poco/Net/HTTPClientSession.h"
+#include "Poco/Net/HTTPRequest.h"
+#include "Poco/Net/HTTPResponse.h"
+#include "Poco/Net/HTTPBasicCredentials.h"
+#include "Poco/StreamCopier.h"
+#include "json.hpp"
+#pragma comment(lib,"WS2_32")
+#pragma comment(lib, "iphlpapi.lib")
+
+#include "singleton.hpp"
 
 #include "intercept.hpp"
 using namespace intercept;
 
-#include "logging.hpp"
 #include "signalslot.hpp"
-#include "singleton.hpp"
 
 class uksf : public singleton<uksf> {
 public:

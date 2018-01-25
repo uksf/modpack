@@ -1,5 +1,8 @@
 #pragma once
 #include "uksf.hpp"
+#include "logging.hpp"
+
+#include <random>
 
 #define LOG_DEBUG(A) LOG(INFO) << A
 
@@ -15,4 +18,5 @@ public:
     static float getZoom();
     static bool lineOfSight(object& target, object& source, bool zoomCheck, bool groupCheck);
     static side getSide(int sideNumber);
+    static std::string getTimeStamp();
 };

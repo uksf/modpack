@@ -73,3 +73,12 @@ side uksf_common::getSide(const int sideNumber) {
         return sqf::east();
     }
 }
+
+std::string uksf_common::getTimeStamp() {
+    const std::chrono::system_clock::time_point timePoint = std::chrono::system_clock::now();
+    time_t time = std::chrono::system_clock::to_time_t(timePoint);
+    char timeString[26];
+    ctime_s(timeString, sizeof timeString, &time);
+    return timeString;
+}
+
