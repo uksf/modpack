@@ -2,6 +2,9 @@
 #include "uksf.hpp"
 #include "logging.hpp"
 
+#include "date.h"
+using namespace date;
+
 #include <random>
 
 #define LOG_DEBUG(A) LOG(INFO) << A

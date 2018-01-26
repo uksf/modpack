@@ -68,17 +68,16 @@ side uksf_common::getSide(const int sideNumber) {
         return sqf::west();
     case 2:
         return sqf::independent();
-    case 0:
     default:
         return sqf::east();
     }
 }
 
 std::string uksf_common::getTimeStamp() {
-    const std::chrono::system_clock::time_point timePoint = std::chrono::system_clock::now();
-    time_t time = std::chrono::system_clock::to_time_t(timePoint);
-    char timeString[26];
-    ctime_s(timeString, sizeof timeString, &time);
-    return timeString;
+    const auto now = std::chrono::system_clock::now();
+    const auto today = date::floor<days>(now);
+    std::stringstream ss;
+    ss << today << ' ' << make_time(now - today);
+    return ss.str();
 }
 

@@ -33,7 +33,7 @@ uksf_data::uksf_data() {
         if (_enabled && sqf::is_server()) {
             LOG(INFO) << "Data system is enabled";
             _serverName = sqf::server_name();
-            _mapName = sqf::server_name();
+            _mapName = sqf::world_name();
             _missionName = sqf::mission_name();
         } else {
             LOG(INFO) << "Data system is disabled";
@@ -78,11 +78,23 @@ void uksf_data::getData() const {
 
         // Player damage status
         json jsonStatus = json::object();
-        jsonStatus["vanillaDamage"] = sqf::damage(player);
+        jsonStatus["vanillaDamage"] = std::to_string(sqf::damage(player));
         jsonStatus["unconcious"] = sqf::get_variable(player, "ACE_isUnconscious", false);
-        jsonStatus["hitPoints"] = sqf::get_variable(player, "ace_medical_bodyPartStatus", "[0,0,0,0,0,0]");
         jsonStatus["heartRate"] = sqf::get_variable(player, "ace_medical_heartRate", "0");
-        jsonStatus["bloodPressure"] = sqf::get_variable(player, "ace_medical_bloodPressure", "0");
+        const game_value bodyParts = sqf::get_variable(player, "ace_medical_bodyPartStatus", {"0","0","0","0","0","0"});
+        json jsonBodyParts = json::object();
+        jsonBodyParts["HitHead"] = bodyParts[0];
+        jsonBodyParts["HitBody"] = bodyParts[1];
+        jsonBodyParts["HitLeftArm"] = bodyParts[2];
+        jsonBodyParts["HitRightArm"] = bodyParts[3];
+        jsonBodyParts["HitLeftLeg"] = bodyParts[4];
+        jsonBodyParts["HitRightLeg"] = bodyParts[5];
+        jsonStatus["hitPoints"] = jsonBodyParts;
+        const game_value bloodPressure = sqf::get_variable(player, "ace_medical_bloodPressure", { "0","0" });
+        json jsonBloodPressure = json::object();
+        jsonBloodPressure["bloodPressureL"] = bloodPressure[0];
+        jsonBloodPressure["bloodPressureH"] = bloodPressure[1];
+        jsonStatus["bloodPressure"] = jsonBloodPressure;
         jsonPlayer["status"] = jsonStatus;
 
         // Player equipment
