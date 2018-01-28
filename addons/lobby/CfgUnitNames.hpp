@@ -43,7 +43,7 @@ class CfgUnitNames {
     G1R_5[] = { "Guardian 1-R", "Reserve", "UKSF_B_Rifleman" };
     G1R_6[] = { "Guardian 1-R", "Reserve", "UKSF_B_Rifleman" };
     G_1[] = { "Ghost", "Commander", "UKSF_B_Sniper" };
-    G_2[] = { "Ghost", "Sniper", "UKSF_B_Sniper" };
+    G_2[] = { "Ghost", "Sniper - LCpl.Brady.L", "UKSF_B_Sniper" };
     G_3[] = { "Ghost", "Spotter", "UKSF_B_Sniper" };
     G_4[] = { "Ghost", "Sniper", "UKSF_B_Sniper" };
     G_5[] = { "Ghost", "Spotter", "UKSF_B_Sniper" };
