@@ -1,3 +1,5 @@
+PREP(curatorDisplayLoad);
+PREP(curatorDisplayUnload);
 PREP(moduleCurator);
 PREP(openArsenal);
 

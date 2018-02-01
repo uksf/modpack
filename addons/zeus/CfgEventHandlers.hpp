@@ -9,3 +9,14 @@ class Extended_PreInit_EventHandlers {
         init = QUOTE(call COMPILE_FILE(XEH_preInit));
     };
 };
+
+class Extended_DisplayLoad_EventHandlers {
+    class RscDisplayCurator {
+        ADDON = QUOTE(call (uiNamespace getVariable 'FUNC(curatorDisplayLoad)'));
+    };
+};
+class Extended_DisplayUnload_EventHandlers {
+    class RscDisplayCurator {
+        ADDON = QUOTE(call (uiNamespace getVariable 'FUNC(curatorDisplayUnload)'));
+    };
+};
