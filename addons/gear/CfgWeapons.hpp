@@ -768,6 +768,15 @@ class CfgWeapons {
             };
         };
     };
+    class Rifle;
+    class Rifle_Base_F: Rifle {
+        class WeaponSlotsInfo;
+    };
+    class CUP_arifle_AK_Base: Rifle_Base_F {
+        class WeaponSlotsInfo: WeaponSlotsInfo {
+            class PointerSlot: asdg_FrontSideRail {};
+        };
+    };
 
     class UK3CB_BAF_L85A2_RIS;
     class UK3CB_BAF_L85A2_RIS_Elcan: UK3CB_BAF_L85A2_RIS {
