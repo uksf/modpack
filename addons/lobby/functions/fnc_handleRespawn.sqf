@@ -16,4 +16,9 @@
 
 params ["", "_corpse"];
 
+if (GVAR(firstRespawn)) then {
+    [QGVAR(respawned), [player]] call CBA_fnc_localEvent;
+    GVAR(firstRespawn) = false;
+};
+
 [QEGVAR(common,waitAndDelete), [_corpse, 10]] call CBA_fnc_serverEvent;
