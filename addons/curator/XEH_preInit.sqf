@@ -43,9 +43,9 @@ if (hasInterface) then {
 
     ["CAManBase", "init", {
         call FUNC(addCuratorActions);
-    }] call CBA_fnc_addClassEventHandler;
+    }, true, [], true] call CBA_fnc_addClassEventHandler;
 
-    [QEGVAR(lobby,respawned), {
+    ["CBA_loadingScreenDone", {
         [{
             !(isNull (findDisplay 46))
         }, {

@@ -8,7 +8,7 @@ class EditorData
 	toggles=5;
 	class ItemIDProvider
 	{
-		nextID=525;
+		nextID=527;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=287;
+		nextID=305;
 	};
 	class Camera
 	{
-		pos[]={20.453886,15.623894,-16.490265};
-		dir[]={-0.077294514,-0.52839732,0.84552807};
-		up[]={-0.048105609,0.84896755,0.52622354};
-		aside[]={0.99588853,4.3920591e-007,0.091038845};
+		pos[]={-3.6777821,51.130806,-46.356289};
+		dir[]={0.60594487,-0.54540199,0.57919556};
+		up[]={0.39427611,0.83814496,0.37687111};
+		aside[]={0.69100034,4.0326267e-007,-0.72291505};
 	};
 };
 binarizationWanted=0;
@@ -5439,7 +5439,7 @@ class Mission
 						class Attribute2
 						{
 							property="ace_isMedicalFacility";
-							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
 							class Value
 							{
 								class data
@@ -5992,7 +5992,7 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isMedicalVehicle";
-							expression="_this setVariable [""ace_medical_medicClass"", _value,  true];";
+							expression="_this setVariable [""ace_medical_medicClass"",_value,true];";
 							class Value
 							{
 								class data
@@ -6030,7 +6030,7 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isMedicalVehicle";
-							expression="_this setVariable [""ace_medical_medicClass"", _value,  true];";
+							expression="_this setVariable [""ace_medical_medicClass"",_value,true];";
 							class Value
 							{
 								class data
@@ -6068,7 +6068,7 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isMedicalVehicle";
-							expression="_this setVariable [""ace_medical_medicClass"", _value,  true];";
+							expression="_this setVariable [""ace_medical_medicClass"",_value,true];";
 							class Value
 							{
 								class data
@@ -6106,7 +6106,7 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isMedicalVehicle";
-							expression="_this setVariable [""ace_medical_medicClass"", _value,  true];";
+							expression="_this setVariable [""ace_medical_medicClass"",_value,true];";
 							class Value
 							{
 								class data
@@ -6178,7 +6178,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isMedicalFacility";
-							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
 							class Value
 							{
 								class data
@@ -6235,7 +6235,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isMedicalFacility";
-							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
 							class Value
 							{
 								class data
@@ -6292,7 +6292,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isMedicalFacility";
-							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
 							class Value
 							{
 								class data
@@ -6349,7 +6349,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isMedicalFacility";
-							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
 							class Value
 							{
 								class data
@@ -6406,7 +6406,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isMedicalFacility";
-							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
 							class Value
 							{
 								class data
@@ -6463,7 +6463,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isMedicalFacility";
-							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
 							class Value
 							{
 								class data
@@ -6520,7 +6520,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isMedicalFacility";
-							expression="_this setVariable [""ace_medical_isMedicalFacility"", _value,  true];";
+							expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
 							class Value
 							{
 								class data
@@ -6604,7 +6604,7 @@ class Mission
 						class Attribute0
 						{
 							property="ace_isMedicalVehicle";
-							expression="_this setVariable [""ace_medical_medicClass"", _value,  true];";
+							expression="_this setVariable [""ace_medical_medicClass"",_value,true];";
 							class Value
 							{
 								class data
@@ -6894,7 +6894,7 @@ class Mission
 						class Attribute2
 						{
 							property="ace_isMedicalVehicle";
-							expression="_this setVariable [""ace_medical_medicClass"", _value,  true];";
+							expression="_this setVariable [""ace_medical_medicClass"",_value,true];";
 							class Value
 							{
 								class data
@@ -6990,7 +6990,7 @@ class Mission
 						class Attribute2
 						{
 							property="ace_isMedicalVehicle";
-							expression="_this setVariable [""ace_medical_medicClass"", _value,  true];";
+							expression="_this setVariable [""ace_medical_medicClass"",_value,true];";
 							class Value
 							{
 								class data
