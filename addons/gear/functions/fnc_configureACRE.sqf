@@ -19,6 +19,8 @@ if (hasInterface) then {
 
         ["ACRE_PRC343", "default3" ] call acre_api_fnc_setPreset;
         ["ACRE_PRC77", "default3" ] call acre_api_fnc_setPreset;
+        ["ACRE_PRC117F", "default3", 10, "name", "RAMC"] call acre_api_fnc_setPresetChannelField;
+        ["ACRE_PRC152", "default3", 10, "name", "RAMC"] call acre_api_fnc_setPresetChannelField;
         ["ACRE_PRC117F", "default3", 30, "name", "AIR DISPATCH"] call acre_api_fnc_setPresetChannelField;
         ["ACRE_PRC152", "default3", 30, "name", "AIR DISPATCH"] call acre_api_fnc_setPresetChannelField;
         ["ACRE_PRC117F", "default3", 31, "name", "TOWER"] call acre_api_fnc_setPresetChannelField;
