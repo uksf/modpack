@@ -15,6 +15,7 @@
 
     Example:
         [configFile >> "CfgVehicles" >> "UK3CB_BAF_Box_WpsSpecial"] call uksf_common_fnc_configExportExtension;
+        [configFile] call uksf_common_fnc_configExportExtension;
 */
 #include "script_component.hpp"
 
