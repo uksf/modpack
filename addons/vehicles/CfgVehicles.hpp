@@ -228,4 +228,16 @@ class CfgVehicles {
     class CUP_ZSU23_Base: Tank_F {
         radarType = 2;
     };
+
+    class Boat_F;
+    class Rubber_duck_base_F: Boat_F {
+        class VehicleTransport {
+            class Cargo {
+                parachuteClass = "B_Parachute_02_F";
+                parachuteHeightLimit = 40;
+                canBeTransported = 1;
+                dimensions[] = {"bbox_1_1_pos", "bbox_2_2_pos"};
+            };
+        };
+    };
 };
