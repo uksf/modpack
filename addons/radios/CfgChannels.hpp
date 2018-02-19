@@ -6,8 +6,8 @@ class CfgChannels {
     c05[] = { 5, "GUARDIAN 1" };
     c06[] = { 6, "GUARDIAN 2" };
     c07[] = { 7, "GHOST" };
-    c08[] = { 8, "SHADOW" };
-    c09[] = { 9, "REAPER" };
+    c08[] = { 8, "REAPER" };
+    c09[] = { 9, "FORTUNE" };
     c10[] = { 10, "EMPTY" };
     c11[] = { 11, "EMPTY" };
     c12[] = { 12, "EMPTY" };
