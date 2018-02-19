@@ -23,6 +23,10 @@ class CfgAmmo{
     class UK3CB_BAF_B_12Gauge_Pellets: BulletBase {
         hit = 5; // Increased from 2, 4, 10
     };
+    class B_408_Ball;
+    class UK3CB_BAF_338_Ball_Tracer_Red: B_408_Ball {
+        tracerEndTime = 3; // 1
+    };
 
     class Chemlight_red;
     class ACE_G_Chemlight_HiRed: Chemlight_red {
