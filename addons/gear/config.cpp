@@ -78,6 +78,7 @@ class CfgPatches {
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             "uksf_common",
+            "cba_jr",
             "ace_chemlights",
             "UK3CB_BAF_Equipment",
             "UK3CB_BAF_Equipment_ACRE_compatibility",
@@ -98,9 +99,10 @@ class CfgPatches {
             "CUP_Weapons_VehicleWeapons",
             "CUP_Creatures_StaticWeapons",
             "CUP_Weapons_DynamicLoadout",
+            "CUP_Weapons_AK",
             "CUP_Weapons_M16",
-            "CUP_Weapons_SMAW",
             "CUP_Weapons_M240",
+            "CUP_Weapons_SMAW",
             "DynaSound_DS_w_30mmgatling",
             "DynaSound_DS_m_Explosions",
             "DynaSound_DS_w_MINIGUN762",

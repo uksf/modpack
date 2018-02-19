@@ -577,7 +577,7 @@ class CfgWeapons {
             class FlashLight {
                 color[] = {180, 156, 120};
                 ambient[] = {0.9, 0.78, 0.6};
-                intensity = 30;
+                intensity = 40;
                 size = 1;
                 innerAngle = 5;
                 outerAngle = 50;
@@ -593,8 +593,8 @@ class CfgWeapons {
                     constant = 0;
                     linear = 0;
                     quadratic = 1.1;
-                    hardLimitStart = 50;
-                    hardLimitEnd = 100;
+                    hardLimitStart = 100;
+                    hardLimitEnd = 150;
                 };
                 scale[] = {0};
             };
@@ -705,13 +705,13 @@ class CfgWeapons {
         class Single: Mode_SemiAuto {
             class BaseSoundModeType;
             class StandardSound: BaseSoundModeType {
-                soundSetShot[] = {     "DS_zafir_Closure_SoundSet","DS_zafir_Shot_SoundSet","DS_lmg1_Tail_SoundSet" };
+                soundSetShot[] = { "DS_zafir_Closure_SoundSet","DS_zafir_Shot_SoundSet","DS_lmg1_Tail_SoundSet" };
             };
         };
         class FullAuto: Mode_FullAuto {
             class BaseSoundModeType;
             class StandardSound: BaseSoundModeType {
-                soundSetShot[] = {     "DS_zafir_Closure_SoundSet","DS_zafir_Shot_SoundSet","DS_lmg1_Tail_SoundSet" };
+                soundSetShot[] = { "DS_zafir_Closure_SoundSet","DS_zafir_Shot_SoundSet","DS_lmg1_Tail_SoundSet" };
             };
         };
     };
@@ -719,13 +719,13 @@ class CfgWeapons {
         class Single: Mode_SemiAuto {
             class BaseSoundModeType;
             class StandardSound: BaseSoundModeType {
-                soundSetShot[] = {     "DS_zafir_Closure_SoundSet","DS_zafir_Shot_SoundSet","DS_lmg1_Tail_SoundSet" };
+                soundSetShot[] = { "DS_zafir_Closure_SoundSet","DS_zafir_Shot_SoundSet","DS_lmg1_Tail_SoundSet" };
             };
         };
         class FullAuto: Mode_FullAuto {
             class BaseSoundModeType;
             class StandardSound: BaseSoundModeType {
-                soundSetShot[] = {     "DS_zafir_Closure_SoundSet","DS_zafir_Shot_SoundSet","DS_lmg1_Tail_SoundSet" };
+                soundSetShot[] = { "DS_zafir_Closure_SoundSet","DS_zafir_Shot_SoundSet","DS_lmg1_Tail_SoundSet" };
             };
         };
     };
@@ -766,15 +766,6 @@ class CfgWeapons {
             class StandardSound: BaseSoundModeType {
                 soundSetShot[] = { "DS_sniper1_crackling_SoundSet","DS_lrr_Shot_SoundSet","DS_sniper1_Tail_SoundSet" };
             };
-        };
-    };
-    class Rifle;
-    class Rifle_Base_F: Rifle {
-        class WeaponSlotsInfo;
-    };
-    class CUP_arifle_AK_Base: Rifle_Base_F {
-        class WeaponSlotsInfo: WeaponSlotsInfo {
-            class PointerSlot: asdg_FrontSideRail {};
         };
     };
 
@@ -1074,7 +1065,7 @@ class CfgWeapons {
             };
         };
     };
-    delete gatling_30mm;
+
     class gatling_30mm_base: CannonCore {
         class LowROF: Mode_FullAuto {
             class StandardSound {
@@ -1284,5 +1275,34 @@ class CfgWeapons {
         magazines[] = { "CUP_4Rnd_Stinger_M_Rubber" };
     };
     
+    class Rifle;
+    class Rifle_Base_F: Rifle {
+        class WeaponSlotsInfo;
+    };
+    class CUP_arifle_AK_Base: Rifle_Base_F {
+        class WeaponSlotsInfo: WeaponSlotsInfo {
+            class PointerSlot: asdg_FrontSideRail {
+                iconPosition[] = {0.3, 0.35};
+                iconScale = 0.2;
+            };
+        };
+    };
+    class CUP_arifle_AKS_Base: CUP_arifle_AK_Base {
+        class WeaponSlotsInfo: WeaponSlotsInfo {
+            class PointerSlot: asdg_FrontSideRail {
+                iconPosition[] = {0.3, 0.35};
+                iconScale = 0.2;
+            };
+        };
+    };
+    class CUP_arifle_AK107_Base: CUP_arifle_AK_Base {
+        class WeaponSlotsInfo: WeaponSlotsInfo {
+            class PointerSlot: asdg_FrontSideRail {
+                iconPosition[] = {0.3, 0.35};
+                iconScale = 0.2;
+            };
+        };
+    };
+
     #include "CfgWeaponsPrivate.hpp"
 };
