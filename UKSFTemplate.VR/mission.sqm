@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=308;
+		nextID=311;
 	};
 	class Camera
 	{
-		pos[]={-6.103271,53.316822,-47.452667};
-		dir[]={0.64594907,-0.52360433,0.55559754};
-		up[]={0.39698154,0.85193139,0.34145421};
-		aside[]={0.65212196,3.7299469e-007,-0.75817239};
+		pos[]={-16.502596,52.274578,-52.363186};
+		dir[]={0.66753799,-0.4893688,0.56126362};
+		up[]={0.37458622,0.8720448,0.3149516};
+		aside[]={0.64357883,1.6437843e-007,-0.76544005};
 	};
 };
 binarizationWanted=0;
@@ -40,6 +40,7 @@ addons[]=
 	"A3_Structures_F_Heli_Ind_Machines",
 	"A3_Structures_F_Heli_Civ_Constructions",
 	"uksf_gear",
+	"uksf_radios",
 	"uksf_apache",
 	"UK3CB_BAF_Vehicles_Wildcat",
 	"uksf_air",
@@ -56,7 +57,7 @@ class AddonsMetaData
 {
 	class List
 	{
-		items=18;
+		items=19;
 		class Item0
 		{
 			className="A3_Characters_F";
@@ -115,66 +116,73 @@ class AddonsMetaData
 		};
 		class Item8
 		{
+			className="uksf_radios";
+			name="UKSF - Radios";
+			author="UKSF";
+			url="www.uk-sf.com";
+		};
+		class Item9
+		{
 			className="uksf_apache";
 			name="UKSF - Apache";
 			author="UKSF";
 			url="www.uk-sf.com";
 		};
-		class Item9
+		class Item10
 		{
 			className="UK3CB_BAF_Vehicles_Wildcat";
 			name="3CB BAF Vehicles - Wildcat";
 			author="3 Commando Brigade";
 			url="www.3commandobrigade.com";
 		};
-		class Item10
+		class Item11
 		{
 			className="uksf_air";
 			name="UKSF - Air";
 			author="UKSF";
 			url="www.uk-sf.com";
 		};
-		class Item11
+		class Item12
 		{
 			className="CUP_AirVehicles_CH47";
 			name="CUP_AirVehicles_CH47";
 		};
-		class Item12
+		class Item13
 		{
 			className="uksf_vehicles";
 			name="UKSF - Vehicles";
 			author="UKSF";
 			url="www.uk-sf.com";
 		};
-		class Item13
+		class Item14
 		{
 			className="UK3CB_BAF_Vehicles_LandRover";
 			name="3CB BAF Vehicles - Land Rover";
 			author="3 Commando Brigade";
 			url="www.3commandobrigade.com";
 		};
-		class Item14
+		class Item15
 		{
 			className="A3_Supplies_F_Heli";
 			name="Arma 3 Helicopters - Ammoboxes and Supplies";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item15
+		class Item16
 		{
 			className="uksf_reaper";
 			name="UKSF - Reaper";
 			author="UKSF";
 			url="www.uk-sf.com";
 		};
-		class Item16
+		class Item17
 		{
 			className="UK3CB_BAF_Vehicles_Merlin";
 			name="3CB BAF Vehicles - Merlin";
 			author="3 Commando Brigade";
 			url="www.3commandobrigade.com";
 		};
-		class Item17
+		class Item18
 		{
 			className="uksf_units";
 			name="UKSF - Units";

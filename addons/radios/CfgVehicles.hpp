@@ -1,17 +1,64 @@
 class CfgVehicles {
-    class UKSF_Apache_base;
+    class Helicopter_Base_F;
+    class Heli_Attack_01_base_F: Helicopter_Base_F {
+        class Turrets;
+    };
+    class UKSF_Apache_base: Heli_Attack_01_base_F {
+        class Turrets: Turrets {
+            class MainTurret;
+        };
+        class CargoTurret;
+    };
     class UKSF_Apache_AH1: UKSF_Apache_base {
         class AcreIntercoms {
             class Intercom_1 {
                 displayName = "Crew intercom";
                 shortName = "Crew";
-                allowedPositions[] = {"driver", "copilot"};
+                allowedPositions[] = {"crew"};
                 disabledPositions[] = {{"ffv", "all"}};
                 limitedPositions[] = {};
                 numLimitedPositions = 0;
                 masterPositions[] = {"driver"};
                 connectedByDefault = 1;
             };
+        };
+        class ACRE {
+            class attenuation {
+                class Compartment1 {
+                    Compartment1 = 1;
+                    Compartment2 = 1;
+                    Compartment3 = 1;
+                    Compartment4 = 1;
+                };
+                class Compartment2 {
+                    Compartment1 = 1;
+                    Compartment2 = 1;
+                    Compartment3 = 1;
+                    Compartment4 = 1;
+                };
+                class Compartment3 {
+                    Compartment1 = 1;
+                    Compartment2 = 1;
+                    Compartment3 = 1;
+                    Compartment4 = 1;
+                };
+                class Compartment4 {
+                    Compartment1 = 1;
+                    Compartment2 = 1;
+                    Compartment3 = 1;
+                    Compartment4 = 1;
+                };
+            };
+        };
+        attenuationEffectType = "ThickGlassAttenuation";
+        class Turrets: Turrets {
+            class MainTurret: MainTurret {
+                soundAttenuationTurret = "ThickGlassAttenuation";                
+            };
+            class CargoTurret_01: CargoTurret {
+                disableSoundAttenuation = 1;
+            };
+            class CargoTurret_02: CargoTurret_01 {};
         };
         RACKS_AIR
     };
@@ -48,12 +95,15 @@ class CfgVehicles {
     };
     class Wheeled_APC_F;
     class CUP_Mastiff_Base: Wheeled_APC_F {
+        INTERCOM_GROUND
         RACKS_GROUND
     };
     class CUP_Ridgback_Base: Wheeled_APC_F {
+        INTERCOM_GROUND
         RACKS_GROUND
     };
     class CUP_Wolfhound_Base: Wheeled_APC_F {
+        INTERCOM_GROUND
         RACKS_GROUND
     };
     class B_Truck_01_ammo_F;

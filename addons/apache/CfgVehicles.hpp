@@ -508,11 +508,6 @@ class CfgVehicles {
             rtd_center = "rtd_center";
             RTDconfig = QPATHTOF(RTD_AH_BAF_attack_01.xml);
         };
-        class ACRE {
-            class CVC {
-                hasCVC = 1;
-            };
-        };
         class Reflectors {
             class Middle {
                 color[] = {7000, 7500, 10000};

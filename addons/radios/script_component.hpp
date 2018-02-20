@@ -36,6 +36,20 @@
         }; \
     };
 
+#define INTERCOM_GROUND \
+    class AcreIntercoms { \
+        class Intercom_1 { \
+            displayName = "Crew intercom"; \
+            shortName = "Crew"; \
+            allowedPositions[] = {"crew", {"cargo", "all"}}; \
+            disabledPositions[] = {}; \
+            limitedPositions[] = {}; \
+            masterPositions[] = {"commander"}; \
+            numLimitedPositions = 0; \
+            connectedByDefault = 1; \
+        };
+    };
+
 #define RACKS_AIR \
     class AcreRacks { \
         class Rack_1 { \
@@ -82,6 +96,7 @@
             displayName = "Dashboard Middle"; \
             shortName = "D.Mid"; \
             mountedRadio = ""; \
+            isRadioRemovable = 1; \
         }; \
     };
 
