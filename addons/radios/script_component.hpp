@@ -57,7 +57,7 @@
             displayName = "Dashboard Lower"; \
             shortName = "D.Low"; \
         }; \
-    }; \
+    };
 
 #define RACKS_GROUND \
     class AcreRacks { \
@@ -83,7 +83,7 @@
             shortName = "D.Mid"; \
             mountedRadio = ""; \
         }; \
-    }; \
+    };
 
 #define RACKS_AIR_GROUND \
     class AcreRacks { \
@@ -103,4 +103,4 @@
             shortName = "D.Low"; \
             mountedRadio = "ACRE_PRC117F"; \
         }; \
-    }; \
+    };
