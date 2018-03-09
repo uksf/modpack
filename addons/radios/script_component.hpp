@@ -47,7 +47,7 @@
             masterPositions[] = {"commander"}; \
             numLimitedPositions = 0; \
             connectedByDefault = 1; \
-        };
+        }; \
     };
 
 #define RACKS_AIR \
@@ -83,7 +83,7 @@
             disabledPositions[] = {}; \
             defaultComponents[] = {}; \
             mountedRadio = "ACRE_PRC117F"; \
-            isRadioRemovable = 0; \
+            isRadioRemovable = 1; \
             intercom[] = {}; \
         }; \
         class Rack_2: Rack_1 { \
@@ -96,7 +96,32 @@
             displayName = "Dashboard Middle"; \
             shortName = "D.Mid"; \
             mountedRadio = ""; \
+        }; \
+    };
+
+#define RACKS_GROUND_APC \
+    class AcreRacks { \
+        class Rack_1 { \
+            displayName = "Dashboard Upper"; \
+            shortName = "D.Up"; \
+            componentName = "ACRE_VRC103"; \
+            allowedPositions[] = {"driver", "commander"}; \
+            disabledPositions[] = {}; \
+            defaultComponents[] = {}; \
+            mountedRadio = "ACRE_PRC117F"; \
             isRadioRemovable = 1; \
+            intercom[] = {"intercom_1"}; \
+        }; \
+        class Rack_2: Rack_1 { \
+            displayName = "Dashboard Lower"; \
+            shortName = "D.Low"; \
+            componentName = "ACRE_VRC110"; \
+            mountedRadio = "ACRE_PRC152"; \
+        }; \
+        class Rack_3: Rack_1 { \
+            displayName = "Dashboard Middle"; \
+            shortName = "D.Mid"; \
+            mountedRadio = ""; \
         }; \
     };
 
