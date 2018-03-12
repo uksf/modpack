@@ -1,7 +1,7 @@
 class CUP_CH47F_base: Helicopter_Base_H {
     cyclicAsideForceCoef = 1;
     cyclicForwardForceCoef = 1;
-    fuelCapacity = 40; // 500
+    fuelCapacity = 60; // 500
     armor = 60;
     memoryPointsGetInDriver = "pos cargo";
     memoryPointsGetInDriverDir = "pos cargo dir";
@@ -161,6 +161,7 @@ class CUP_CH47F_base: Helicopter_Base_H {
     };
     #include "MFDGeneral.hpp"
     ace_cookoff_cookoffSelections[] = { "palivo" };
+    ace_refuel_fuelCapacity = 3914;
 };
 class CUP_B_CH47F_GB: CUP_CH47F_base {
     crew = "UKSF_B_Pilot_7";

@@ -120,7 +120,7 @@ class UK3CB_BAF_Wildcat_Base: Heli_light_03_base_F {
             };
         };
     };
-    ace_cookoff_cookoffSelections[] = { "palivo" };
+    ace_cookoff_cookoffSelections[] = { "motor" };
 };
 class UK3CB_BAF_Wildcat_AH1_Base: UK3CB_BAF_Wildcat_Base {
     INVENTORY_AIRCRAFT
