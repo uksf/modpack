@@ -942,7 +942,7 @@ class CfgWeapons {
     class CannonCore;
     class CUP_Vacannon_M230_veh: CannonCore {
         magazines[] = { "CUP_1200Rnd_TE1_Red_Tracer_30x113mm_M789_HEDP_M","CUP_1200Rnd_TE1_Green_Tracer_30x113mm_M789_HEDP_M","CUP_1200Rnd_TE1_Yellow_Tracer_30x113mm_M789_HEDP_M","CUP_1200Rnd_TE1_White_Tracer_30x113mm_M789_HEDP_M" };
-        ballisticsComputer = "4 + 2 + 1";
+        ballisticsComputer = "1 + 2 + 16";
         reloadTime = 0.096;
         modes[] = { "close", "short", "medium", "far", "manual", "burst_15", "burst_25" };
         cursorAim = "EmptyCursor";      
