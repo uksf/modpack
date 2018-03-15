@@ -1,15 +1,15 @@
 class CfgVehicles {
-    class Helicopter_Base_F;
-    class Heli_Attack_01_base_F: Helicopter_Base_F {
+    class Helicopter;
+    class Helicopter_Base_F: Helicopter {
         class Turrets;
     };
-    class UKSF_Apache_base: Heli_Attack_01_base_F {
+    class Heli_Attack_01_base_F: Helicopter_Base_F {
         class Turrets: Turrets {
             class MainTurret;
         };
         class CargoTurret;
     };
-    class UKSF_Apache_AH1: UKSF_Apache_base {
+    class UKSF_Apache_base: Heli_Attack_01_base_F {
         class AcreIntercoms {
             class Intercom_1 {
                 displayName = "Crew intercom";

@@ -7,7 +7,11 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "uksf_lobby"
+            "uksf_air",
+            "uksf_apache",
+            "uksf_common",
+            "uksf_lobby",
+            "uksf_vehicles"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
