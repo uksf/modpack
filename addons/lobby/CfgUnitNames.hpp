@@ -17,7 +17,7 @@ class CfgUnitNames {
     G11_3[] = { "Guardian 1-1", "Pte.Rowe.J", "UKSF_B_Rifleman" };
     G11_4[] = { "Guardian 1-1", "Pte.Gilbert.M", "UKSF_B_Rifleman" };
     G11_5[] = { "Guardian 1-1", "Pte.Hodor.C", "UKSF_B_MachineGunner" };
-    G11_6[] = { "Guardian 1-1", "Pte.Mercer.N", "UKSF_B_Rifleman" };
+    G11_6[] = { "Guardian 1-1", "Pte.Woodward.D", "UKSF_B_Rifleman" };
     G11_7[] = { "Guardian 1-1", "Reserve", "UKSF_B_Rifleman" };
     G11_8[] = { "Guardian 1-1", "Reserve", "UKSF_B_Rifleman" };
     G12_1[] = { "Guardian 1-2", "Section Leader - Cpl.McClelland.S", "UKSF_B_SectionLeader" };
@@ -28,12 +28,12 @@ class CfgUnitNames {
     G12_6[] = { "Guardian 1-2", "LCpl.Carr.C", "UKSF_B_Rifleman" };
     G12_7[] = { "Guardian 1-2", "Reserve", "UKSF_B_Rifleman" };
     G12_8[] = { "Guardian 1-2", "Reserve", "UKSF_B_Rifleman" };
-    G13_1[] = { "Guardian 1-3", "Section Leader - Cpl.Blivejazz.M", "UKSF_B_SectionLeader" };
-    G13_2[] = { "Guardian 1-3", "2iC - LCpl.Clarke.S", "UKSF_B_SectionLeader" };
+    G13_1[] = { "Guardian 1-3", "Section Leader - LCpl.Clarke.S", "UKSF_B_SectionLeader" };
+    G13_2[] = { "Guardian 1-3", "2iC - LCpl.Jenkins.L", "UKSF_B_SectionLeader" };
     G13_3[] = { "Guardian 1-3", "Pte.Mortensen.C", "UKSF_B_Rifleman" };
     G13_4[] = { "Guardian 1-3", "Pte.Sventon.S", "UKSF_B_Rifleman" };
     G13_5[] = { "Guardian 1-3", "Pte.Penn.L", "UKSF_B_MachineGunner" };
-    G13_6[] = { "Guardian 1-3", "Pte.Stanley.E", "UKSF_B_Rifleman" };
+    G13_6[] = { "Guardian 1-3", "Pte.Viney.C", "UKSF_B_Rifleman" };
     G13_7[] = { "Guardian 1-3", "Reserve", "UKSF_B_Rifleman" };
     G13_8[] = { "Guardian 1-3", "Reserve", "UKSF_B_Rifleman" };
     G1R_1[] = { "Guardian 1-R", "Reserve", "UKSF_B_Rifleman" };
@@ -58,7 +58,8 @@ class CfgUnitNames {
     P3_3[] = { "Pegasus Crew 3", "Gunner", "UKSF_B_AntiTank" };
     J_1[] = { "JSFAW", "Commander - SqnLdr.Beswick.T", "UKSF_B_Pilot_617" };
     J_2[] = { "JSFAW", "7 Squadron - FltLt.Johnson.R", "UKSF_B_Pilot_7" };
-    J_3[] = { "JSFAW", "7 Squadron - OffCdt.Conway.M", "UKSF_B_Pilot_7" };
-    J_4[] = { "JSFAW", "656 Squadron - FgOff.Kroonen.K", "UKSF_B_Pilot_656" };
+    J_3[] = { "JSFAW", "7 Squadron - PltOff.Conway.M", "UKSF_B_Pilot_7" };
+    J_4[] = { "JSFAW", "7 Squadron - OffCdt.Jacobs.P", "UKSF_B_Pilot_7" };
     J_5[] = { "JSFAW", "656 Squadron - PltOff.Greaves.A", "UKSF_B_Pilot_656" };
+    J_6[] = { "JSFAW", "656 Squadron - OffCdt.Elliott.D", "UKSF_B_Pilot_656" };
 };

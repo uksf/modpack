@@ -8,7 +8,7 @@ class EditorData
 	toggles=5;
 	class ItemIDProvider
 	{
-		nextID=527;
+		nextID=530;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=311;
+		nextID=314;
 	};
 	class Camera
 	{
-		pos[]={-16.502596,52.274578,-52.363186};
-		dir[]={0.66753799,-0.4893688,0.56126362};
-		up[]={0.37458622,0.8720448,0.3149516};
-		aside[]={0.64357883,1.6437843e-007,-0.76544005};
+		pos[]={36.001019,15.15844,2.4308887};
+		dir[]={-0.44385344,-0.6514141,0.61543775};
+		up[]={-0.38104749,0.75869602,0.52835143};
+		aside[]={0.81111234,3.1245872e-007,0.58497393};
 	};
 };
 binarizationWanted=0;
@@ -40,11 +40,11 @@ addons[]=
 	"A3_Structures_F_Heli_Ind_Machines",
 	"A3_Structures_F_Heli_Civ_Constructions",
 	"uksf_gear",
-	"uksf_radios",
 	"uksf_apache",
 	"UK3CB_BAF_Vehicles_Wildcat",
 	"uksf_air",
 	"CUP_AirVehicles_CH47",
+	"uksf_radios",
 	"A3_Structures_F_Mil_Helipads",
 	"uksf_vehicles",
 	"UK3CB_BAF_Vehicles_LandRover",
@@ -116,36 +116,36 @@ class AddonsMetaData
 		};
 		class Item8
 		{
-			className="uksf_radios";
-			name="UKSF - Radios";
-			author="UKSF";
-			url="www.uk-sf.com";
-		};
-		class Item9
-		{
 			className="uksf_apache";
 			name="UKSF - Apache";
 			author="UKSF";
 			url="www.uk-sf.com";
 		};
-		class Item10
+		class Item9
 		{
 			className="UK3CB_BAF_Vehicles_Wildcat";
 			name="3CB BAF Vehicles - Wildcat";
 			author="3 Commando Brigade";
 			url="www.3commandobrigade.com";
 		};
-		class Item11
+		class Item10
 		{
 			className="uksf_air";
 			name="UKSF - Air";
 			author="UKSF";
 			url="www.uk-sf.com";
 		};
-		class Item12
+		class Item11
 		{
 			className="CUP_AirVehicles_CH47";
 			name="CUP_AirVehicles_CH47";
+		};
+		class Item12
+		{
+			className="uksf_radios";
+			name="UKSF - Radios";
+			author="UKSF";
+			url="www.uk-sf.com";
 		};
 		class Item13
 		{
@@ -6062,44 +6062,6 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={96,8.5504436,41.914787};
-					};
-					side="Empty";
-					flags=4;
-					class Attributes
-					{
-					};
-					id=122;
-					type="CUP_B_CH47F_GB";
-					class CustomAttributes
-					{
-						class Attribute0
-						{
-							property="ace_isMedicalVehicle";
-							expression="_this setVariable [""ace_medical_medicClass"",_value,true];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"SCALAR"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=1;
-					};
-				};
-				class Item3
-				{
-					dataType="Object";
-					class PositionInfo
-					{
 						position[]={96,8.5504436,4.9147887};
 					};
 					side="Empty";
@@ -6133,7 +6095,7 @@ class Mission
 						nAttributes=1;
 					};
 				};
-				class Item4
+				class Item3
 				{
 					dataType="Object";
 					class PositionInfo
@@ -6148,7 +6110,7 @@ class Mission
 					id=192;
 					type="USAF_F35A";
 				};
-				class Item5
+				class Item4
 				{
 					dataType="Object";
 					class PositionInfo
@@ -6205,7 +6167,7 @@ class Mission
 						nAttributes=2;
 					};
 				};
-				class Item6
+				class Item5
 				{
 					dataType="Object";
 					class PositionInfo
@@ -6262,7 +6224,7 @@ class Mission
 						nAttributes=2;
 					};
 				};
-				class Item7
+				class Item6
 				{
 					dataType="Object";
 					class PositionInfo
@@ -6319,7 +6281,7 @@ class Mission
 						nAttributes=2;
 					};
 				};
-				class Item8
+				class Item7
 				{
 					dataType="Object";
 					class PositionInfo
@@ -6376,7 +6338,7 @@ class Mission
 						nAttributes=2;
 					};
 				};
-				class Item9
+				class Item8
 				{
 					dataType="Object";
 					class PositionInfo
@@ -6433,7 +6395,7 @@ class Mission
 						nAttributes=2;
 					};
 				};
-				class Item10
+				class Item9
 				{
 					dataType="Object";
 					class PositionInfo
@@ -6490,7 +6452,7 @@ class Mission
 						nAttributes=2;
 					};
 				};
-				class Item11
+				class Item10
 				{
 					dataType="Object";
 					class PositionInfo
@@ -6547,7 +6509,7 @@ class Mission
 						nAttributes=2;
 					};
 				};
-				class Item12
+				class Item11
 				{
 					dataType="Object";
 					class PositionInfo
@@ -6562,7 +6524,7 @@ class Mission
 					id=131;
 					type="UKSF_Hemtt_Ammo";
 				};
-				class Item13
+				class Item12
 				{
 					dataType="Object";
 					class PositionInfo
@@ -6577,7 +6539,7 @@ class Mission
 					id=132;
 					type="UKSF_Hemtt_Fuel";
 				};
-				class Item14
+				class Item13
 				{
 					dataType="Object";
 					class PositionInfo
@@ -6592,7 +6554,7 @@ class Mission
 					id=133;
 					type="UKSF_Hemtt_Repair";
 				};
-				class Item15
+				class Item14
 				{
 					dataType="Object";
 					class PositionInfo
@@ -6631,7 +6593,7 @@ class Mission
 						nAttributes=1;
 					};
 				};
-				class Item16
+				class Item15
 				{
 					dataType="Object";
 					class PositionInfo
@@ -6646,7 +6608,7 @@ class Mission
 					id=101;
 					type="UKSF_S_AmmoMedic";
 				};
-				class Item17
+				class Item16
 				{
 					dataType="Object";
 					class PositionInfo
@@ -6661,7 +6623,7 @@ class Mission
 					id=102;
 					type="UKSF_S_AmmoMedic";
 				};
-				class Item18
+				class Item17
 				{
 					dataType="Object";
 					class PositionInfo
@@ -6676,7 +6638,7 @@ class Mission
 					id=103;
 					type="UKSF_S_AmmoMedic";
 				};
-				class Item19
+				class Item18
 				{
 					dataType="Object";
 					class PositionInfo
@@ -6691,7 +6653,7 @@ class Mission
 					id=104;
 					type="UKSF_S_Ammo";
 				};
-				class Item20
+				class Item19
 				{
 					dataType="Object";
 					class PositionInfo
@@ -6706,7 +6668,7 @@ class Mission
 					id=105;
 					type="UKSF_S_Ammo";
 				};
-				class Item21
+				class Item20
 				{
 					dataType="Object";
 					class PositionInfo
@@ -6721,7 +6683,7 @@ class Mission
 					id=106;
 					type="UKSF_S_Ammo";
 				};
-				class Item22
+				class Item21
 				{
 					dataType="Object";
 					class PositionInfo
@@ -6736,7 +6698,7 @@ class Mission
 					id=107;
 					type="UKSF_S_Medic";
 				};
-				class Item23
+				class Item22
 				{
 					dataType="Object";
 					class PositionInfo
@@ -6751,7 +6713,7 @@ class Mission
 					id=108;
 					type="UKSF_S_Medic";
 				};
-				class Item24
+				class Item23
 				{
 					dataType="Object";
 					class PositionInfo
@@ -6766,7 +6728,7 @@ class Mission
 					id=109;
 					type="UKSF_S_Medic";
 				};
-				class Item25
+				class Item24
 				{
 					dataType="Object";
 					class PositionInfo
@@ -6781,7 +6743,7 @@ class Mission
 					id=311;
 					type="CargoNet_01_barrels_F";
 				};
-				class Item26
+				class Item25
 				{
 					dataType="Object";
 					class PositionInfo
@@ -6796,7 +6758,7 @@ class Mission
 					id=312;
 					type="CargoNet_01_barrels_F";
 				};
-				class Item27
+				class Item26
 				{
 					dataType="Object";
 					class PositionInfo
@@ -6811,7 +6773,7 @@ class Mission
 					id=313;
 					type="CargoNet_01_barrels_F";
 				};
-				class Item28
+				class Item27
 				{
 					dataType="Object";
 					class PositionInfo
@@ -6826,7 +6788,7 @@ class Mission
 					id=191;
 					type="CUP_B_UKSF_MQ9";
 				};
-				class Item29
+				class Item28
 				{
 					dataType="Object";
 					class PositionInfo
@@ -6844,7 +6806,7 @@ class Mission
 					id=321;
 					type="UK3CB_BAF_Wildcat_AH1_CAS_8A";
 				};
-				class Item30
+				class Item29
 				{
 					dataType="Object";
 					class PositionInfo
@@ -6940,7 +6902,7 @@ class Mission
 						nAttributes=4;
 					};
 				};
-				class Item31
+				class Item30
 				{
 					dataType="Object";
 					class PositionInfo
@@ -7055,9 +7017,104 @@ class Mission
 						nAttributes=5;
 					};
 				};
+				class Item31
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={96.000099,8.7366047,42.050892};
+					};
+					side="Empty";
+					flags=4;
+					class Attributes
+					{
+					};
+					id=529;
+					type="UK3CB_BAF_Merlin_HC3_32";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="Enh_onKilledEvent";
+							expression="if !(_value == 'false') then {_this addEventHandler ['killed',_value]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="false";
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="Enh_onRespawnEvent";
+							expression="if !(_value == 'false') then {_this addEventHandler ['respawn',_value]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="false";
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="ace_isMedicalVehicle";
+							expression="_this setVariable [""ace_medical_medicClass"",_value,true];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1;
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="Enh_onDamagedEvent";
+							expression="if !(_value == 'false') then {_this addEventHandler ['dammaged',_value]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="false";
+								};
+							};
+						};
+						nAttributes=4;
+					};
+				};
 			};
 			id=286;
-			atlOffset=-2.8610229e-006;
+			atlOffset=-1.4305115e-006;
 		};
 		class Item7
 		{
@@ -11617,7 +11674,7 @@ class Mission
 			side="West";
 			class Entities
 			{
-				items=5;
+				items=6;
 				class Item0
 				{
 					dataType="Object";
@@ -11935,7 +11992,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={28,5.0014391,10.550001};
+						position[]={28,5.0014391,10.55};
 					};
 					side="West";
 					flags=5;
@@ -11949,44 +12006,6 @@ class Mission
 					class CustomAttributes
 					{
 						class Attribute0
-						{
-							property="Enh_onKilledEvent";
-							expression="if !(_value == 'false') then {_this addEventHandler ['killed',_value]}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="false";
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="Enh_onRespawnEvent";
-							expression="if !(_value == 'false') then {_this addEventHandler ['respawn',_value]}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="false";
-								};
-							};
-						};
-						class Attribute2
 						{
 							property="Enh_onDamagedEvent";
 							expression="if !(_value == 'false') then {_this addEventHandler ['dammaged',_value]}";
@@ -12005,7 +12024,389 @@ class Mission
 								};
 							};
 						};
-						nAttributes=3;
+						class Attribute1
+						{
+							property="Enh_taskPatrol_combatMode";
+							expression="_this setVariable ['Enh_randomPatrol_combatMode',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="YELLOW";
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="Enh_onRespawnEvent";
+							expression="if !(_value == 'false') then {_this addEventHandler ['respawn',_value]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="false";
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="Enh_taskPatrol_formation";
+							expression="_this setVariable ['Enh_randomPatrol_formation',_value]";
+							class Value
+							{
+								class data
+								{
+									nil=1;
+									class type
+									{
+										type[]=
+										{
+											"ANY"
+										};
+									};
+								};
+							};
+						};
+						class Attribute4
+						{
+							property="Enh_taskPatrol_behaviour";
+							expression="_this setVariable ['Enh_randomPatrol_behaviour',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="SAFE";
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="Enh_onKilledEvent";
+							expression="if !(_value == 'false') then {_this addEventHandler ['killed',_value]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="false";
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="Enh_taskPatrol_speed";
+							expression="_this setVariable ['Enh_randomPatrol_speedMode',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="LIMITED";
+								};
+							};
+						};
+						class Attribute7
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.97000003;
+								};
+							};
+						};
+						class Attribute8
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male01ENGB";
+								};
+							};
+						};
+						class Attribute9
+						{
+							property="acex_headless_blacklist";
+							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=10;
+					};
+				};
+				class Item5
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={28,5.0014391,12.8};
+					};
+					side="West";
+					flags=5;
+					class Attributes
+					{
+						description="J_6";
+						isPlayable=1;
+					};
+					id=528;
+					type="UKSF_B_Rifleman";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="Enh_onDamagedEvent";
+							expression="if !(_value == 'false') then {_this addEventHandler ['dammaged',_value]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="false";
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="Enh_taskPatrol_combatMode";
+							expression="_this setVariable ['Enh_randomPatrol_combatMode',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="YELLOW";
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="Enh_onRespawnEvent";
+							expression="if !(_value == 'false') then {_this addEventHandler ['respawn',_value]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="false";
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="Enh_taskPatrol_formation";
+							expression="_this setVariable ['Enh_randomPatrol_formation',_value]";
+							class Value
+							{
+								class data
+								{
+									nil=1;
+									class type
+									{
+										type[]=
+										{
+											"ANY"
+										};
+									};
+								};
+							};
+						};
+						class Attribute4
+						{
+							property="Enh_taskPatrol_behaviour";
+							expression="_this setVariable ['Enh_randomPatrol_behaviour',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="SAFE";
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="Enh_onKilledEvent";
+							expression="if !(_value == 'false') then {_this addEventHandler ['killed',_value]}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="false";
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="Enh_taskPatrol_speed";
+							expression="_this setVariable ['Enh_randomPatrol_speedMode',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="LIMITED";
+								};
+							};
+						};
+						class Attribute7
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1.01;
+								};
+							};
+						};
+						class Attribute8
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male03ENGB";
+								};
+							};
+						};
+						class Attribute9
+						{
+							property="acex_headless_blacklist";
+							expression="_this setVariable [""acex_headless_blacklist"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=10;
 					};
 				};
 			};
