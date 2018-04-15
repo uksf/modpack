@@ -66,7 +66,7 @@ class CfgPatches {
             "DynaSound_DS_w_CoaxMG",
             "DynaSound_DS_w_LRR",
             "DynaSound_DS_w_Zafir",
-            "acre_sys_prc117f",
+            "acre_sys_prc117f"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
