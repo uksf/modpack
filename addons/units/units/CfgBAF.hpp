@@ -35,7 +35,7 @@ class CUP_Creatures_Military_BAF_Soldier_Base: SoldierWB {
         };
     };
     class EventHandlers {
-        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
+        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
         init = "";
     };
     weapons[] = { "UK3CB_BAF_L85A2_RIS_Elcan","Throw","Put" };

@@ -24,7 +24,7 @@ class Laraka_Hilux_Unarmed_Populated: Genfor_Hilux_Unarmed {
         "Laraka_RPG"
     };
     class EventHandlers {
-        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
+        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
     };
 };
 

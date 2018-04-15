@@ -80,7 +80,7 @@ class CfgVehicles {
         cost = 90000;
         threat[] = {1,0.1,0.1};
         class EventHandlers {
-            class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
+            class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
         };
         class Wounds {
             tex[] = {};
@@ -301,7 +301,7 @@ class CfgVehicles {
         displayName = "Radio Pack";
         class eventhandlers {
             init = "this addItemCargoGlobal [""ACRE_PRC117F"", 2]";
-            class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
+            class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
         };
         class TransportMagazines {
             class _xx_rhs_30Rnd_545x39_AK {

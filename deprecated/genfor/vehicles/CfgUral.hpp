@@ -28,7 +28,7 @@ class Genfor_Ural_Transport: O_mas_cars_Ural {
 class Genfor_Ural_Transport_Populated: Genfor_Ural_Transport {
     displayName = "Ural (Populated)";
     class EventHandlers {
-        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
+        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
     };
 };
 
@@ -58,7 +58,7 @@ class Genfor_Ural_TransportOpen: O_mas_cars_Ural_open {
 class Genfor_Ural_TransportOpen_Populated: Genfor_Ural_TransportOpen {
     displayName = "Ural Open (Populated)";
     class EventHandlers {
-        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
+        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
     };
 };
 
@@ -183,6 +183,6 @@ class Genfor_Ural_ZSU: O_mas_cars_Ural_ZU23 {
     class TransportBackpacks {};
     class EventHandlers {
         init = "(_this select 0) setSkill [""aimingAccuracy"", 0.01]; (_this select 0) setSkill [""aimingSpeed"", 0.01]; (_this select 0) setSkill [""aimingshake"", 0.01]; (_this select 0) setSkill [""spotTime"", 1];";
-        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
+        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
     };
 };

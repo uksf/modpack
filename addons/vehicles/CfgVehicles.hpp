@@ -63,6 +63,7 @@ class CfgVehicles {
         class NewTurret;
     };
 
+    #include "vehicles\CfgBulldog.hpp"
     #include "vehicles\CfgCoyote.hpp"
     #include "vehicles\CfgJackal.hpp"
     #include "vehicles\CfgLandRover.hpp"
@@ -85,7 +86,7 @@ class CfgVehicles {
         editorPreview = QPATHTOEF(common,data\previews\Land_CanisterFuel_F.jpg);
         simulation = "thingX";
         class EventHandlers {
-            class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
+            class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
         };
         SLX_XEH_DISABLED = 0;
         ace_cargo_canLoad = 1;
@@ -240,4 +241,6 @@ class CfgVehicles {
             };
         };
     };
+
+
 };

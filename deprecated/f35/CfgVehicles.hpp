@@ -481,7 +481,7 @@ class CfgVehicles {
         crew = "";
         editorSubcategory = QEGVAR(common,objects);
         class EventHandlers {
-            class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
+            class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
         };
     };
     class USAF_editorMissileObjects;

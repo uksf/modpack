@@ -6,7 +6,7 @@ class Laraka_CarBomb: Laraka_Hilux_Unarmed {
     typicalCargo[] = {};
     weapons[] = { "CarHorn" };
     class EventHandlers {
-        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
+        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
     };
 };
 
@@ -17,7 +17,7 @@ class Laraka_CarBomb_Empty: Laraka_CarBomb {
     crew = "Afghan_Civilian5";
     typicalCargo[] = {};
     class EventHandlers {
-        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
+        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
     };
 };
 
@@ -28,7 +28,7 @@ class Laraka_CarBomb_Deadman: Laraka_CarBomb {
     crew = "Afghan_Civilian5";
     typicalCargo[] = {};
     class EventHandlers {
-        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
+        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
     };
 };
 

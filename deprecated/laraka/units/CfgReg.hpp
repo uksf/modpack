@@ -279,7 +279,7 @@ class Laraka_RPG: TBan_Fighter5 {
         "ItemCompass"
     };
     class EventHandlers {
-        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
+        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
     };
 };
 class Laraka_SVD: TBan_Fighter5 {

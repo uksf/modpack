@@ -195,7 +195,7 @@ class Genfor_Hmmwv_Unarmed_SF_Populated: Genfor_Hmmwv_Unarmed_SF {
     displayName = "HMMWV Unarmed (Populated)";
     editorPreview = QPATHTOEF(common,data\previews\Genfor_Hmmwv_Unarmed_SF_Populated.jpg);
     class EventHandlers {
-        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
+        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
     };
 };
 
@@ -418,7 +418,7 @@ class Genfor_Hmmwv_Unarmed_Desert_SF_Populated: Genfor_Hmmwv_Unarmed_Desert_SF {
     displayName = "HMMWV Unarmed (Desert) (Populated)";
     editorPreview = QPATHTOEF(common,data\previews\Genfor_Hmmwv_Unarmed_Desert_SF_Populated.jpg);
     class EventHandlers {
-        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
+        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
     };
 };
 

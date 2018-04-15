@@ -18,7 +18,7 @@ class CfgPatches {
     };
 };
 
-class cba_Extended_EventHandlers;
+class CBA_Extended_EventHandlers;
 #include "CfgEventHandlers.hpp"
 #include "CfgMoves.hpp"
 #include "CfgSounds.hpp"

@@ -255,7 +255,7 @@ class CfgVehicles {
         displayName = "ACRE Radios";
         class eventhandlers {
             init = "this addItemCargoGlobal [""ACRE_PRC117F"", 10]";
-            class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
+            class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
         };
         class TransportItems {
             class _xx_ACRE_PRC177F {

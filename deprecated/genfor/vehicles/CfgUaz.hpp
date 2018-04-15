@@ -95,7 +95,7 @@ class Genfor_Uaz_Unarmed: O_mas_cars_UAZ_Unarmed {
 class Genfor_Uaz_Unarmed_Populated: Genfor_Uaz_Unarmed {
     displayName = "UAZ Unarmed (Populated)";
     class EventHandlers {
-        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
+        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
     };
 };
 
