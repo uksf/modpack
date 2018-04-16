@@ -546,8 +546,8 @@ class CfgWeapons {
             burst = 5;
         };
     };
-    class missiles_SCALPEL;
-    class ace_hellfire_launcher: missiles_SCALPEL {
+    class RocketPods;
+    class ace_hellfire_launcher: RocketPods {
         displayName = "AGM-114K";
         magazines[] = { "2Rnd_ACE_Hellfire_AGM114K", "4Rnd_ACE_Hellfire_AGM114K", "PylonMissile_1Rnd_ACE_Hellfire_AGM114K", "PylonRack_1Rnd_ACE_Hellfire_AGM114K", "PylonRack_3Rnd_ACE_Hellfire_AGM114K", "PylonRack_4Rnd_ACE_Hellfire_AGM114K" };
     };
