@@ -34,7 +34,7 @@ class ace_arsenal_display {
                     y = QUOTE(8 * GRID_H + WIDTH_GAP);
                 };
                 class buttonMainOp: buttonClose {
-                    idc = 1003;
+                    idc = 1006;
                     x = QUOTE(1 * WIDTH_GAP + 0 * WIDTH_SINGLE);
                     y = QUOTE(0);
                     text = "Toggle Main Op Gear";
