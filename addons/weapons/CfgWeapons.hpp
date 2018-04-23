@@ -18,15 +18,6 @@ class asdg_MuzzleSlot_556_3CB_L119: asdg_MuzzleSlot {
 };
 class CfgWeapons {
     class ItemCore;
-
-    class ACRE_BaseRadio;
-    class CBA_MiscItem_ItemInfo;
-    class ACRE_PRC117F: ACRE_BaseRadio {
-        class ItemInfo: CBA_MiscItem_ItemInfo {
-            allowedSlots[] = { 701,801,901 };
-        };
-    };
-
     class InventoryOpticsItem_Base_F;
     class UK3CB_BAF_SpecterLDS_Dot;
     class UK3CB_BAF_SpecterLDS: ItemCore {
@@ -487,6 +478,7 @@ class CfgWeapons {
         modelOptics = "\UK3CB_BAF_Weapons\addons\UK3CB_BAF_Weapons_Launchers\uk3cb_nlaw_optic.p3d";
     };
     class CBA_MiscItem;
+    class CBA_MiscItem_ItemInfo;
     class UK3CB_BAF_Javelin_CLU: CBA_MiscItem {
         scope = 2;
         displayName = "Javelin CLU";

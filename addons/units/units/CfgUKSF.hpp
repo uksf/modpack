@@ -53,6 +53,10 @@ class UKSF_B_Sniper: UKSF_B_Rifleman {
     camouflage = 0.6;
     editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Sniper.jpg);
 };
+class UKSF_B_Pathfinder: UKSF_B_Rifleman {
+    displayName = "PF Patrolman";
+    uniformClass = "Gen3_Multicam";
+};
 class UKSF_B_Pilot_7: UKSF_B_Rifleman {
     editorSubcategory = QEGVAR(common,jsfaw);
     displayName = "Pilot (7 Sqn.)";
@@ -61,7 +65,7 @@ class UKSF_B_Pilot_7: UKSF_B_Rifleman {
     engineer = 1;
     editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Pilot_7.jpg);
     model = "\A3\Characters_F\Common\coveralls.p3d";
-    hiddenSelections[] = { "Camo","insignia" };
+    hiddenSelections[] = { "camo" };
     hiddenSelectionsTextures[] = { QPATHTOEF(gear,data\uniforms\pilot_coveralls_7.paa) };
     uniformClass = "UKSF_U_PilotCoveralls_7";
     ACE_GForceCoef = 0.7;
@@ -69,9 +73,9 @@ class UKSF_B_Pilot_7: UKSF_B_Rifleman {
 class UKSF_B_Pilot_656: UKSF_B_Pilot_7 {
     displayName = "Pilot (656 Sqn.)";
     editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Pilot_656.jpg);
-    model = "\A3\Characters_F_Beta\INDEP\ia_soldier_01.p3d";
-    hiddenSelections[] = { "Camo","insignia" };
-    hiddenSelectionsTextures[] = { QPATHTOEF(gear,data\uniforms\pilot_uniform_656.paa) };
+    model = "\CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\CUP_BAF_Soldier_1.p3d";
+    hiddenSelections[] = {"Camo", "Camo2", "camo3"};
+    hiddenSelectionsTextures[] = { "cup\creatures\people\military\cup_creatures_people_military_baf\data\MTP\camo_MTP_co.paa", "cup\creatures\people\military\cup_creatures_people_military_baf\data\DPM\armour_DPM_co.paa", QPATHTOEF(gear,data\uniforms\pilot_uniform_656.paa) };
     uniformClass = "UKSF_U_PilotUniform_656";
     ACE_GForceCoef = 0.7;
 };
@@ -79,8 +83,8 @@ class UKSF_B_Pilot_617: UKSF_B_Pilot_7 {
     displayName = "Pilot (617 Sqn.)";
     editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Pilot_617.jpg);
     model = "\A3\characters_F\Common\pilot_f.p3d";
-    hiddenSelections[] = { "Camo","insignia" };
+    hiddenSelections[] = { "camo" };
     hiddenSelectionsTextures[] = { QPATHTOEF(gear,data\uniforms\pilot_gsuit_617.paa) };
     uniformClass = "UKSF_U_PilotGSuit_617";
-    ACE_GForceCoef = 0.5;
+    ACE_GForceCoef = 0.7;
 };

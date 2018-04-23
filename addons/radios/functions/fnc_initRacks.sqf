@@ -18,9 +18,7 @@
     GVAR(presetsDone)
 },{
     params ["_vehicle", "_channels"];
-
     [_vehicle] call acre_api_fnc_initVehicleRacks;
-    [_vehicle] call FUNC(addUseAllAction);
     [{
         params ["_vehicle", "_channels"];    
         [_vehicle] call acre_sys_rack_fnc_configureRackIntercom;
