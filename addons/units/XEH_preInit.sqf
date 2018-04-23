@@ -9,4 +9,8 @@ ADDON = false;
     };
 }, true, [], true] call CBA_fnc_addClassEventHandler;
 
+[QEGVAR(lobby,respawned), {
+    player setUnitTrait ["audibleCoef", 0.7];
+}] call CBA_fnc_addEventHandler;
+
 ADDON = true;
