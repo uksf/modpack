@@ -98,15 +98,11 @@ class CfgVehicles {
         class TransportItems {
             class _xx_ACE_packingBandage {
                 name = "ACE_packingBandage";
-                count = 50;
+                count = 75;
             };
             class _xx_ACE_elasticBandage {
                 name = "ACE_elasticBandage";
-                count = 50;
-            };
-            class _xx_ACE_quikclot {
-                name = "ACE_quikclot";
-                count = 50;
+                count = 75;
             };
             class _xx_ACE_epinephrine {
                 name = "ACE_epinephrine";
@@ -219,15 +215,11 @@ class CfgVehicles {
         class TransportItems {
             class _xx_ACE_packingBandage {
                 name = "ACE_packingBandage";
-                count = 30;
+                count = 40;
             };
             class _xx_ACE_elasticBandage {
                 name = "ACE_elasticBandage";
-                count = 30;
-            };
-            class _xx_ACE_quikclot {
-                name = "ACE_quikclot";
-                count = 30;
+                count = 40;
             };
             class _xx_ACE_epinephrine {
                 name = "ACE_epinephrine";
