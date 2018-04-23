@@ -13,7 +13,6 @@ PREP(moduleFullHeal);
 PREP(moduleLoadoutCopy);
 PREP(moduleLoadoutPaste);
 PREP(moduleRemoveArsenal);
-PREP(moduleSetEngineer);
 PREP(moduleTeleportZeus);
 PREP(moduleToggleAllowUnconcious);
 PREP(moduleToggleFps);

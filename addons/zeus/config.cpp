@@ -12,7 +12,6 @@ class CfgPatches {
             QGVAR(moduleExplosionSmall),
             QGVAR(moduleLoadoutCopy),
             QGVAR(moduleLoadoutPaste),
-            QGVAR(moduleSetEngineer),
             QGVAR(moduleTeleportZeus),
             QGVAR(moduleToggleAllowUnconcious),
             QGVAR(moduleToggleBluforOpfor),

@@ -56,14 +56,6 @@ class CfgVehicles {
         icon = "\achilles\data_f_achilles\icons\icon_default_unit.paa";
         portrait = "\achilles\data_f_achilles\icons\icon_default_unit.paa";
     };
-    class GVAR(moduleSetEngineer): EGVAR(common,moduleBase) {
-        curatorCanAttach = 1;
-        category = "ace_zeus_Repair";
-        displayName = "Assign Engineer";
-        function = QFUNC(moduleSetEngineer);
-        icon = "\achilles\data_f_achilles\icons\icon_default_unit.paa";
-        portrait = "\achilles\data_f_achilles\icons\icon_default_unit.paa";
-    };
     class GVAR(moduleTeleportZeus): EGVAR(common,moduleBase) {
         curatorCanAttach = 1;
         category = "Curator";
@@ -140,10 +132,24 @@ class CfgVehicles {
         portrait = "\z\ace\addons\zeus\ui\Icon_Module_Zeus_Medic_ca.paa";
     };
     class Achilles_ACE_Heal_Module: Achilles_ACE_Module_Base {
-        curatorCanAttach = 1;
-        function = QFUNC(moduleFullHeal);
+        scopeCurator = 0;
     };
-
+    class Achilles_Arsenal_Module_Base;
+    class Achilles_Module_Arsenal_AddFull: Achilles_Arsenal_Module_Base {
+        scopeCurator = 0;
+    };
+    class Achilles_Module_Arsenal_CreateCustom: Achilles_Arsenal_Module_Base {
+        scopeCurator = 0;
+    };
+    class Achilles_Module_Arsenal_CopyToClipboard: Achilles_Arsenal_Module_Base {
+        scopeCurator = 0;
+    };
+    class Achilles_Module_Arsenal_Paste: Achilles_Arsenal_Module_Base {
+        scopeCurator = 0;
+    };
+    class Achilles_Module_Arsenal_Remove: Achilles_Arsenal_Module_Base {
+        scopeCurator = 0;
+    };
     class Ares_Behaviours_Module_Base;
     class Ares_Module_Bahaviour_SurrenderUnit: Ares_Behaviours_Module_Base {
         scopeCurator = 0;
