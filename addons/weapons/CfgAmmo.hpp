@@ -57,12 +57,12 @@ class CfgAmmo{
 
     class MissileCore;
     class MissileBase: MissileCore {
-        timeToLive = 30;
+        timeToLive = 60;
     };
-    class M_PG_AT: MissileBase {
+    class M_Scalpel_AT: MissileBase {
         class Components;
     };
-    class ACE_Hellfire_AGM114K: M_PG_AT {
+    class ACE_Hellfire_AGM114K: M_Scalpel_AT {
         SoundSetExplosion[] = { "DS_Ex_rocket_big_SoundSet", "DS_exploBig_Tail_placeholder_SoundSet" };
         class Components: Components {
             class SensorsManagerComponent {
