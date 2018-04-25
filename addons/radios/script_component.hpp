@@ -56,7 +56,7 @@
             displayName = "Dashboard Upper"; \
             shortName = "D.Up"; \
             componentName = "ACRE_VRC103"; \
-            allowedPositions[] = {"driver", "copilot"}; \
+            allowedPositions[] = {"driver", "copilot", "gunner", "commander"}; \
             disabledPositions[] = {}; \
             defaultComponents[] = {}; \
             mountedRadio = "ACRE_PRC117F"; \
