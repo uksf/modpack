@@ -56,14 +56,6 @@ class CfgVehicles {
         icon = "\achilles\data_f_achilles\icons\icon_default_unit.paa";
         portrait = "\achilles\data_f_achilles\icons\icon_default_unit.paa";
     };
-    class GVAR(moduleSetEngineer): EGVAR(common,moduleBase) {
-        curatorCanAttach = 1;
-        category = "ace_zeus_Repair";
-        displayName = "Assign Engineer";
-        function = QFUNC(moduleSetEngineer);
-        icon = "\achilles\data_f_achilles\icons\icon_default_unit.paa";
-        portrait = "\achilles\data_f_achilles\icons\icon_default_unit.paa";
-    };
     class GVAR(moduleTeleportZeus): EGVAR(common,moduleBase) {
         curatorCanAttach = 1;
         category = "Curator";
@@ -118,10 +110,16 @@ class CfgVehicles {
 
     class ace_zeus_moduleBase;
     class ace_zeus_AddFullArsenal: ace_zeus_moduleBase {
-        function = QFUNC(moduleAddArsenal);
+        scopeCurator = 0;
     };
     class ace_zeus_RemoveFullArsenal: ace_zeus_moduleBase {
-        function = QFUNC(moduleRemoveArsenal);
+        scopeCurator = 0;
+    };
+    class ace_zeus_AddFullAceArsenal: ace_zeus_moduleBase {
+        function = QFUNC(moduleAddAceArsenal);
+    };
+    class ace_zeus_RemoveFullAceArsenal: ace_zeus_moduleBase {
+        function = QFUNC(moduleRemoveAceArsenal);
     };
 
     class Ares_Zeus_Module_Base;
@@ -140,36 +138,22 @@ class CfgVehicles {
         portrait = "\z\ace\addons\zeus\ui\Icon_Module_Zeus_Medic_ca.paa";
     };
     class Achilles_ACE_Heal_Module: Achilles_ACE_Module_Base {
-        curatorCanAttach = 1;
-        function = QFUNC(moduleFullHeal);
-    };
-
-    class Ares_Arsenal_Module_Base;
-    class Ares_Module_Arsenal_AddFull: Ares_Arsenal_Module_Base {
         scopeCurator = 0;
     };
-    class Ares_Module_Arsenal_AddCustom: Ares_Arsenal_Module_Base {
+    class Achilles_Arsenal_Module_Base;
+    class Achilles_Module_Arsenal_AddFull: Achilles_Arsenal_Module_Base {
         scopeCurator = 0;
     };
-    class Ares_Module_Arsenal_Copy_To_Clipboard: Ares_Arsenal_Module_Base {
+    class Achilles_Module_Arsenal_CreateCustom: Achilles_Arsenal_Module_Base {
         scopeCurator = 0;
     };
-    class Ares_Module_Arsenal_Paste_Replace: Ares_Arsenal_Module_Base {
+    class Achilles_Module_Arsenal_CopyToClipboard: Achilles_Arsenal_Module_Base {
         scopeCurator = 0;
     };
-    class Ares_Module_Arsenal_Paste_Combine: Ares_Arsenal_Module_Base {
+    class Achilles_Module_Arsenal_Paste: Achilles_Arsenal_Module_Base {
         scopeCurator = 0;
     };
-    class Ares_Module_Arsenal_Create_Nato: Ares_Arsenal_Module_Base {
-        scopeCurator = 0;
-    };
-    class Ares_Module_Arsenal_Create_Csat: Ares_Arsenal_Module_Base {
-        scopeCurator = 0;
-    };
-    class Ares_Module_Arsenal_Create_Aaf: Ares_Arsenal_Module_Base {
-        scopeCurator = 0;
-    };
-    class Ares_Module_Arsenal_Create_Guerilla: Ares_Arsenal_Module_Base {
+    class Achilles_Module_Arsenal_Remove: Achilles_Arsenal_Module_Base {
         scopeCurator = 0;
     };
     class Ares_Behaviours_Module_Base;

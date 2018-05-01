@@ -120,7 +120,7 @@ class UK3CB_BAF_Wildcat_Base: Heli_light_03_base_F {
             };
         };
     };
-    ace_cookoff_cookoffSelections[] = { "palivo" };
+    ace_cookoff_cookoffSelections[] = { "motor" };
 };
 class UK3CB_BAF_Wildcat_AH1_Base: UK3CB_BAF_Wildcat_Base {
     INVENTORY_AIRCRAFT
@@ -173,16 +173,10 @@ class UK3CB_BAF_Wildcat_AH1_CAS_8D: UK3CB_BAF_Wildcat_AH1_CAS_8A {
 class UK3CB_BAF_Wildcat_AH1_HEL_6A: UK3CB_BAF_Wildcat_AH1_6_Base {
     scope = 0;
     scopeCurator = 0;
-    faction = "CUP_B_GB";
-    crew = "UKSF_B_Pilot_656";
-    typicalCargo[] = { "UKSF_B_Pilot_656" };
 };
 class UK3CB_BAF_Wildcat_AH1_HEL_8A: UK3CB_BAF_Wildcat_AH1_8_Base {
     scope = 0;
     scopeCurator = 0;
-    faction = "CUP_B_GB";
-    crew = "UKSF_B_Pilot_656";
-    typicalCargo[] = { "UKSF_B_Pilot_656" };
 };
 class UK3CB_BAF_Wildcat_HMA2_Base: UK3CB_BAF_Wildcat_Base {
     crew = "UKSF_B_Pilot_7";

@@ -8,7 +8,7 @@ PixelShaderID = "Super";
 VertexShaderID = "Super";
 class Stage1
 {
-    texture = "u\uksf\addons\gear\data\AGM114\data\agm114hellfirepod_nohq.paa";
+    texture = "u\uksf\addons\weapons\data\AGM114\data\agm114hellfirepod_nohq.paa";
     uvSource = "tex";
     class uvTransform
     {
@@ -56,7 +56,7 @@ class Stage4
 };
 class Stage5
 {
-    texture = "u\uksf\addons\gear\data\AGM114\data\agm114hellfirepod_smdi.paa";
+    texture = "u\uksf\addons\weapons\data\AGM114\data\agm114hellfirepod_smdi.paa";
     uvSource = "tex";
     class uvTransform
     {

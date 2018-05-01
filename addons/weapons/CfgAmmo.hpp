@@ -23,6 +23,10 @@ class CfgAmmo{
     class UK3CB_BAF_B_12Gauge_Pellets: BulletBase {
         hit = 5; // Increased from 2, 4, 10
     };
+    class B_408_Ball;
+    class UK3CB_BAF_338_Ball_Tracer_Red: B_408_Ball {
+        tracerEndTime = 3; // 1
+    };
 
     class Chemlight_red;
     class ACE_G_Chemlight_HiRed: Chemlight_red {
@@ -53,12 +57,12 @@ class CfgAmmo{
 
     class MissileCore;
     class MissileBase: MissileCore {
-        timeToLive = 30;
+        timeToLive = 60;
     };
-    class M_PG_AT: MissileBase {
+    class M_Scalpel_AT: MissileBase {
         class Components;
     };
-    class ACE_Hellfire_AGM114K: M_PG_AT {
+    class ACE_Hellfire_AGM114K: M_Scalpel_AT {
         SoundSetExplosion[] = { "DS_Ex_rocket_big_SoundSet", "DS_exploBig_Tail_placeholder_SoundSet" };
         class Components: Components {
             class SensorsManagerComponent {

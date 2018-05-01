@@ -30,18 +30,17 @@ switch (true) do {
         ["Object must be alive"] call ace_zeus_fnc_showMessage;
     };
     default {
-        if (["ACE_Arsenal"] call ace_common_fnc_isModLoaded) then {
-            [_object, true, true] call ace_arsenal_fnc_initBox;
-            if (isMultiplayer && {{_object in _x} count GVAR(EHIDArray) == 0}) then {
-                private _id = [QGVAR(addArsenalAction), [_object]] call CBA_fnc_globalEventJIP;
-                [_id, _object] call CBA_fnc_removeGlobalEventJIP;
-                GVAR(EHIDArray) pushBack [_id, _object];
-                publicVariable QGVAR(EHIDArray);
-            } else {
-                [QEGVAR(arsenal,addArsenalAction), [_object]] call CBA_fnc_localEvent;
-            };
+        [_object, true] call ace_arsenal_fnc_removeBox;
+        [_object, true, true] call ace_arsenal_fnc_initBox;
+        if (isMultiplayer && {{_object in _x} count GVAR(EHIDArray) == 0}) then {
+            [QEGVAR(arsenal,removeArsenalAction), [_object]] call CBA_fnc_globalEvent;
+            private _id = [QEGVAR(arsenal,addArsenalAction), [_object]] call CBA_fnc_globalEventJIP;
+            [_id, _object] call CBA_fnc_removeGlobalEventJIP;
+            GVAR(EHIDArray) pushBack [_id, _object];
+            publicVariable QGVAR(EHIDArray);
         } else {
-            ["AmmoboxInit", [_object, true]] call BIS_fnc_arsenal;
+            [QEGVAR(arsenal,removeArsenalAction), [_object]] call CBA_fnc_localEvent;
+            [QEGVAR(arsenal,addArsenalAction), [_object]] call CBA_fnc_localEvent;
         };
     };
 };

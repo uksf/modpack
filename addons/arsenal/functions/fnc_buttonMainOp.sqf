@@ -14,8 +14,9 @@
 #include "script_component.hpp"
 #include "\u\uksf\addons\arsenal\script_mainOpGear.hpp"
 
+missionNamespace setVariable [QGVAR(togglingMainOpGear), true];
 (_this select 0) closeDisplay 1;
-private _useMainOpGear = missionNamespace getVariable [QGVAR(useMainOpGear), true];
+private _useMainOpGear = missionNamespace getVariable [QGVAR(useMainOpGear), false];
 missionNamespace setVariable [QGVAR(useMainOpGear), !_useMainOpGear];
 
 [{
@@ -25,12 +26,12 @@ missionNamespace setVariable [QGVAR(useMainOpGear), !_useMainOpGear];
     [_box, true, false] call ace_arsenal_fnc_removeVirtualItems;
 
     if (_useMainOpGear) then {
-        [_box, call compile MAIN_OP_GEAR, false] call ace_arsenal_fnc_addVirtualItems;
+        [_box, uiNamespace getVariable [QGVAR(mainOpGear), call compile MAIN_OP_GEAR], false] call ace_arsenal_fnc_addVirtualItems;
         private _emptyLoadout = uiNamespace getVariable QGVAR(emptyLoadout);
         player setUnitLoadout [_emptyLoadout, true];
     } else {
         [_box, true, false] call ace_arsenal_fnc_addVirtualItems;
     };
-
+    
     [_box, _box, false] call ace_arsenal_fnc_openBox;
-}, [_useMainOpGear]]  call CBA_fnc_execNextFrame;
+}, [!_useMainOpGear]]  call CBA_fnc_execNextFrame;

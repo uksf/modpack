@@ -18,8 +18,10 @@ class CfgPatches {
     };
 };
 
+#include "Cfg3den.hpp"
 #include "CfgEventHandlers.hpp"
 #include "CfgLoadouts.hpp"
 #include "CfgMagazines.hpp"
 #include "CfgWeapons.hpp"
-#include "RscAttributes.hpp"
+#include "ui\RscAttributes.hpp"
+#include "ui\RscDisplayMain.hpp"

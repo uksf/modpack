@@ -17,10 +17,10 @@ loadScreen = "uksf.paa";
 class Header {
     gameType = "Coop";
     minPlayers = 4;
-    maxPlayers = 65;
+    maxPlayers = 72;
 };
 respawn = "BASE";
-respawnOnStart = 1;
+respawnOnStart = 0;
 respawnDelay = 1;
 respawnDialog = 0;
 respawnTemplates[] = { "MenuPosition" };

@@ -32,14 +32,14 @@ class Genfor_Hilux_Unarmed_Populated: Genfor_Hilux_Unarmed {
     displayName = "Hilux (Populated)";
     editorPreview = QPATHTOEF(common,data\previews\Genfor_Hilux_Unarmed_Populated.jpg);
     class EventHandlers {
-        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
+        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
     };
 };
 class Genfor_Hilux_Unarmed_Reserves_Populated: Genfor_Hilux_Unarmed_Reserves {
     displayName = "Hilux (Reserves) (Populated)";
     editorPreview = QPATHTOEF(common,data\previews\Genfor_Hilux_Unarmed_Reserves_Populated.jpg);
     class EventHandlers {
-        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
+        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
     };
 };
 

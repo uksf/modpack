@@ -23,11 +23,14 @@ private _defaultLoadouts = [];
 uiNamespace setVariable [QGVAR(defaultLoadouts), _defaultLoadouts];
 
 ["ace_arsenal_displayOpened", {
+    if (missionNamespace getVariable [QGVAR(togglingMainOpGear), false]) then {
+        missionNamespace setVariable [QGVAR(togglingMainOpGear), false];
+    };
     if (is3DEN) then {
         [] spawn {
             disableSerialization;
             private _display = findDisplay 1127001;
-            private _buttonMainOpGear = _display displayCtrl 1003;
+            private _buttonMainOpGear = _display displayCtrl 1006;
             _buttonMainOpGear ctrlEnable false;
             _buttonMainOpGear ctrlShow false;
         };
@@ -35,11 +38,17 @@ uiNamespace setVariable [QGVAR(defaultLoadouts), _defaultLoadouts];
         if (isMultiplayer) then {
             {
                 private _display = findDisplay 1127001;
-                private _buttonMainOpGear = _display displayCtrl 1003;
+                private _buttonMainOpGear = _display displayCtrl 1006;
                 _buttonMainOpGear ctrlEnable false;
                 _buttonMainOpGear ctrlShow false;
             } call CBA_fnc_execNextFrame;
         };
+    };
+}] call CBA_fnc_addEventHandler;
+
+["ace_arsenal_displayClosed", {
+    if (!(missionNamespace getVariable [QGVAR(togglingMainOpGear), false])) then {
+        missionNamespace setVariable [QGVAR(useMainOpGear), false];
     };
 }] call CBA_fnc_addEventHandler;
 

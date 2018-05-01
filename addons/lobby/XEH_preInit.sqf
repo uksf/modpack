@@ -20,4 +20,10 @@ if (isServer) then {
     }] call CBA_fnc_addEventHandler;
 };
 
+if (hasInterface) then {
+    ["CBA_loadingScreenDone", {
+        [] call FUNC(lobbyRespawn);
+    }] call CBA_fnc_addEventHandler;
+};
+
 ADDON = true;

@@ -397,14 +397,14 @@ force force Achilles_var_moduleTreeDLC = true;
 force force Achilles_var_moduleTreeHelmet = false;
 
 // ACRE2
-force force acre_sys_core_fullDuplex = true;
-force force acre_sys_core_ignoreAntennaDirection = true;
-force force acre_sys_core_interference = false;
+force force acre_sys_core_fullDuplex = false;
+force force acre_sys_core_ignoreAntennaDirection = false;
+force force acre_sys_core_interference = true;
 acre_sys_core_postmixGlobalVolume = 1;
 acre_sys_core_premixGlobalVolume = 1;
 force force acre_sys_core_revealToAI = true;
 acre_sys_core_spectatorVolume = 1;
-force force acre_sys_core_terrainLoss = 0;
+force force acre_sys_core_terrainLoss = 0.5;
 force acre_sys_core_ts3ChannelName = "";
 force acre_sys_core_ts3ChannelPassword = "";
 acre_sys_core_ts3ChannelSwitch = true;

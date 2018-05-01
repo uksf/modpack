@@ -23,7 +23,6 @@ class CUP_lmg_L110A1: Rifle_Long_Base_F {
 class CUP_lmg_L110A1_Aim_Laser: CUP_lmg_L110A1 {
     scope = 1;
 };
-class Rifle_Base_F;
 class CUP_srifle_L129A1: Rifle_Base_F {
     scope = 1;
 };

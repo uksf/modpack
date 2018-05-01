@@ -1,17 +1,18 @@
+PREP(curatorDisplayLoad);
+PREP(curatorDisplayUnload);
 PREP(moduleCurator);
 PREP(openArsenal);
 
 // Modules
 PREP(moduleAddAllObjects);
-PREP(moduleAddArsenal);
+PREP(moduleAddAceArsenal);
 PREP(moduleExplosionLarge);
 PREP(moduleExplosionSmall);
 PREP(moduleDelete);
 PREP(moduleFullHeal);
 PREP(moduleLoadoutCopy);
 PREP(moduleLoadoutPaste);
-PREP(moduleRemoveArsenal);
-PREP(moduleSetEngineer);
+PREP(moduleRemoveAceArsenal);
 PREP(moduleTeleportZeus);
 PREP(moduleToggleAllowUnconcious);
 PREP(moduleToggleFps);

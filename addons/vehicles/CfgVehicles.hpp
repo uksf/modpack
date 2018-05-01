@@ -24,6 +24,8 @@ class CfgVehicles {
         typicalCargo[] = { "CUP_B_BAF_Soldier_MTP" };
         fuelCapacity = 15; // Reduced from 100. Gives ~40km range. 230L tank
         hullDamageCauseExplosion = 0;
+        maxSpeed = 129;
+        peakTorque = 800;
         class Turrets: Turrets {
             class MainTurret;
         };
@@ -43,6 +45,8 @@ class CfgVehicles {
         fuelCapacity = 10; // Reduced from 70. Gives ~30km range. 93L tank
         ace_refuel_fuelCapacity = 93;
         hullDamageCauseExplosion = 0;
+        peakTorque = 1000;
+        maxOmega = 550;
         class HitPoints: HitPoints {
             class HitBody: HitBody {
                 armor = 1.5; // Default: 0.7
@@ -63,6 +67,7 @@ class CfgVehicles {
         class NewTurret;
     };
 
+    #include "vehicles\CfgBulldog.hpp"
     #include "vehicles\CfgCoyote.hpp"
     #include "vehicles\CfgJackal.hpp"
     #include "vehicles\CfgLandRover.hpp"
@@ -83,23 +88,9 @@ class CfgVehicles {
         editorCategory = QEGVAR(common,UKSF);
         editorSubcategory = QEGVAR(common,support);
         editorPreview = QPATHTOEF(common,data\previews\Land_CanisterFuel_F.jpg);
-        simulation = "thingX";
-        class EventHandlers {
-            class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
-        };
-        SLX_XEH_DISABLED = 0;
-        ace_cargo_canLoad = 1;
-        ace_cargo_size = 1;
         ace_dragging_canCarry = 1;
-        ace_dragging_canDrag = 1;
         ace_dragging_carryPosition[] = {0, 1, 1};
         ace_dragging_carryDirection = 0;
-        ace_dragging_dragPosition[] = {0, 1.2, 0};
-        ace_dragging_dragDirection = 0;
-        ace_refuel_fuelCapacity = 20;
-        ace_refuel_fuelCargo = 20;
-        ace_refuel_flowRate = 4;
-        ace_refuel_hooks[] = {{0.125,0,0.19}};
     };
     class CargoNet_01_base_F;
     class CargoNet_01_barrels_F: CargoNet_01_base_F {
@@ -227,5 +218,17 @@ class CfgVehicles {
     };
     class CUP_ZSU23_Base: Tank_F {
         radarType = 2;
+    };
+
+    class Boat_F;
+    class Rubber_duck_base_F: Boat_F {
+        class VehicleTransport {
+            class Cargo {
+                parachuteClass = "B_Parachute_02_F";
+                parachuteHeightLimit = 40;
+                canBeTransported = 1;
+                dimensions[] = {"bbox_1_1_pos", "bbox_2_2_pos"};
+            };
+        };
     };
 };

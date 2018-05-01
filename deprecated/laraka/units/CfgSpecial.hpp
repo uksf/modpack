@@ -29,7 +29,7 @@ class Laraka_Special_Suicide: Laraka_AK {
     linkedItems[] = {};
     respawnLinkedItems[] = {};
     class EventHandlers {
-        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
+        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
     };
 };
 class Laraka_Special_SuicideDeadman: Laraka_AK {
@@ -46,7 +46,7 @@ class Laraka_Special_SuicideDeadman: Laraka_AK {
     linkedItems[] = {};
     respawnLinkedItems[] = {};
     class EventHandlers {
-        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
+        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
     };
 };
 class Laraka_Special_SuicideDiscrete: Laraka_Special_Suicide {
@@ -55,7 +55,7 @@ class Laraka_Special_SuicideDiscrete: Laraka_Special_Suicide {
     uniformClass = "U_Afghan03";
     editorPreview = QPATHTOEF(common,data\previews\Laraka_Special_SuicideDiscrete.jpg);
     class EventHandlers {
-        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
+        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
     };
 };
 class Laraka_Special_SuicideDiscreteDeadman: Laraka_Special_Suicide {
@@ -64,7 +64,7 @@ class Laraka_Special_SuicideDiscreteDeadman: Laraka_Special_Suicide {
     uniformClass = "U_Afghan03";
     editorPreview = QPATHTOEF(common,data\previews\Laraka_Special_SuicideDiscreteDeadman.jpg);
     class EventHandlers {
-        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
+        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
     };
 };
 

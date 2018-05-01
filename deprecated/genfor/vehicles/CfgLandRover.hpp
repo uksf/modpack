@@ -40,14 +40,14 @@ class Genfor_LandRover_Unarmed_Populated: Genfor_LandRover_Unarmed {
     displayName = "Land Rover Unarmed (Populated)";
     editorPreview = QPATHTOEF(common,data\previews\Genfor_LandRover_Unarmed_Populated.jpg);
     class EventHandlers {
-        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
+        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
     };
 };
 class Genfor_LandRover_Unarmed_Para_Populated: Genfor_LandRover_Unarmed_Para {
     displayName = "Land Rover Unarmed (Para) (Populated)";
     editorPreview = QPATHTOEF(common,data\previews\Genfor_LandRover_Unarmed_Para_Populated.jpg);
     class EventHandlers {
-        class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
+        class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
     };
 };
 

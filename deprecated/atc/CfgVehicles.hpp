@@ -9,7 +9,7 @@ class CfgVehicles {
         displayname = "ATC Core";
         model = "z\ace\addons\fastroping\data\helper.p3d";
         class EventHandlers {
-            class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
+            class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
         };
         class ACE_Actions {
             class ACE_MainActions {
@@ -45,7 +45,7 @@ class CfgVehicles {
         editorSubcategory = QEGVAR(common,objects);
         displayname = "ATC Station";
         class EventHandlers {
-            class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
+            class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
         };
     };
 };

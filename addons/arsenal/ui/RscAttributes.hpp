@@ -1,3 +1,4 @@
+#include "RscCommon.hpp"
 #define pixelScale  0.25
 #define GRID_W (pixelW * pixelGridNoUIScale * pixelScale)
 #define GRID_H (pixelH * pixelGridNoUIScale * pixelScale)
@@ -6,10 +7,6 @@
 #define WIDTH_GAP (WIDTH_TOTAL / 100)
 #define WIDTH_SINGLE ((WIDTH_TOTAL - 6 * WIDTH_GAP) / 5)
 
-class RscControlsGroupNoScrollbars;
-class ctrlControlsGroupNoScrollbars;
-class ctrlButton;
-class ctrlButtonOK;
 class ace_arsenal_display {
     class controls {
         class menuBar: RscControlsGroupNoScrollbars {
@@ -34,7 +31,7 @@ class ace_arsenal_display {
                     y = QUOTE(8 * GRID_H + WIDTH_GAP);
                 };
                 class buttonMainOp: buttonClose {
-                    idc = 1003;
+                    idc = 1006;
                     x = QUOTE(1 * WIDTH_GAP + 0 * WIDTH_SINGLE);
                     y = QUOTE(0);
                     text = "Toggle Main Op Gear";

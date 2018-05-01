@@ -129,7 +129,7 @@ class CfgVehicles {
         editorPreview = QPATHTOEF(common,data\previews\UKSF_Target_Nopopup.jpg);
         class EventHandlers {
             hitPart = "";
-            class cba_Extended_EventHandlers: cba_Extended_EventHandlers {};
+            class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
         };
     };
     class Sign_sphere10cm_EP1;

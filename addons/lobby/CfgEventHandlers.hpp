@@ -20,9 +20,6 @@ class Extended_DisplayLoad_EventHandlers {
     class RscDisplayMultiplayerSetup {
         cba_ui = QUOTE(_this call (uiNamespace getVariable QQFUNC(initDisplayMultiplayerLobby)));
     };
-    class RscDisplayRespawn {
-        GVAR(ui) = QUOTE(_this call (uiNamespace getVariable QQFUNC(initDisplayRespawn)));
-    };
 };
 
 class Extended_Respawn_EventHandlers {
