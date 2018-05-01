@@ -17,9 +17,7 @@
 params ["_crate"];
 
 if (EGVAR(common,mainOp)) then {
-    [_crate, call compile MAIN_OP_GEAR, false] call ace_arsenal_fnc_initBox;
-    // missionnamespace setVariable [QGVAR(mainGear), true, true];
+    [_crate, uiNamespace getVariable [QGVAR(mainOpGear), call compile MAIN_OP_GEAR]] call FUNC(addArsenal);
 } else {
-    [_crate, true, false] call ace_arsenal_fnc_initBox;
+    [_crate] call FUNC(addArsenal);
 };
-[QGVAR(addArsenalAction), [_crate]] call CBA_fnc_localEvent;

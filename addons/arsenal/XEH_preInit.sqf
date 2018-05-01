@@ -23,6 +23,9 @@ private _defaultLoadouts = [];
 uiNamespace setVariable [QGVAR(defaultLoadouts), _defaultLoadouts];
 
 ["ace_arsenal_displayOpened", {
+    if (missionNamespace getVariable [QGVAR(togglingMainOpGear), false]) then {
+        missionNamespace setVariable [QGVAR(togglingMainOpGear), false];
+    };
     if (is3DEN) then {
         [] spawn {
             disableSerialization;
@@ -40,6 +43,12 @@ uiNamespace setVariable [QGVAR(defaultLoadouts), _defaultLoadouts];
                 _buttonMainOpGear ctrlShow false;
             } call CBA_fnc_execNextFrame;
         };
+    };
+}] call CBA_fnc_addEventHandler;
+
+["ace_arsenal_displayClosed", {
+    if (!(missionNamespace getVariable [QGVAR(togglingMainOpGear), false])) then {
+        missionNamespace setVariable [QGVAR(useMainOpGear), false];
     };
 }] call CBA_fnc_addEventHandler;
 

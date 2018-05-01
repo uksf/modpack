@@ -110,10 +110,16 @@ class CfgVehicles {
 
     class ace_zeus_moduleBase;
     class ace_zeus_AddFullArsenal: ace_zeus_moduleBase {
-        function = QFUNC(moduleAddArsenal);
+        scopeCurator = 0;
     };
     class ace_zeus_RemoveFullArsenal: ace_zeus_moduleBase {
-        function = QFUNC(moduleRemoveArsenal);
+        scopeCurator = 0;
+    };
+    class ace_zeus_AddFullAceArsenal: ace_zeus_moduleBase {
+        function = QFUNC(moduleAddAceArsenal);
+    };
+    class ace_zeus_RemoveFullAceArsenal: ace_zeus_moduleBase {
+        function = QFUNC(moduleRemoveAceArsenal);
     };
 
     class Ares_Zeus_Module_Base;

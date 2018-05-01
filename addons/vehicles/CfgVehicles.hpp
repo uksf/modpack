@@ -88,23 +88,9 @@ class CfgVehicles {
         editorCategory = QEGVAR(common,UKSF);
         editorSubcategory = QEGVAR(common,support);
         editorPreview = QPATHTOEF(common,data\previews\Land_CanisterFuel_F.jpg);
-        simulation = "thingX";
-        class EventHandlers {
-            class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
-        };
-        SLX_XEH_DISABLED = 0;
-        ace_cargo_canLoad = 1;
-        ace_cargo_size = 1;
         ace_dragging_canCarry = 1;
-        ace_dragging_canDrag = 1;
         ace_dragging_carryPosition[] = {0, 1, 1};
         ace_dragging_carryDirection = 0;
-        ace_dragging_dragPosition[] = {0, 1.2, 0};
-        ace_dragging_dragDirection = 0;
-        ace_refuel_fuelCapacity = 20;
-        ace_refuel_fuelCargo = 20;
-        ace_refuel_flowRate = 4;
-        ace_refuel_hooks[] = {{0.125,0,0.19}};
     };
     class CargoNet_01_base_F;
     class CargoNet_01_barrels_F: CargoNet_01_base_F {
