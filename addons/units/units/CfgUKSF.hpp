@@ -57,11 +57,14 @@ class UKSF_B_Pathfinder: UKSF_B_Rifleman {
     displayName = "PF Patrolman";
     uniformClass = "Gen3_Multicam";
 };
+class UKSF_B_PathfinderMedic: UKSF_B_Pathfinder {
+    displayName = "PF Patrolman Medic";
+    attendant = 1;
+};
 class UKSF_B_Pilot_7: UKSF_B_Rifleman {
     editorSubcategory = QEGVAR(common,jsfaw);
     displayName = "Pilot (7 Sqn.)";
     threat[] = {1, 1, 1};
-    attendant = 1;
     engineer = 1;
     editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Pilot_7.jpg);
     model = "\A3\Characters_F\Common\coveralls.p3d";

@@ -57,9 +57,9 @@ class CfgUnitNames {
     P3_2[] = { "Pegasus Crew 3", "Driver", "UKSF_B_AntiTank" };
     P3_3[] = { "Pegasus Crew 3", "Gunner", "UKSF_B_AntiTank" };
     M_1[] = { "Maverick", "Commander - Capt.Bridgford.A", "UKSF_B_Pathfinder" };
-    M_2[] = { "Maverick", "2iC - Cpl.Pothoven.B", "UKSF_B_Pathfinder" };
+    M_2[] = { "Maverick", "2iC - Cpl.Pothoven.B", "UKSF_B_PathfinderMedic" };
     M_3[] = { "Maverick", "LCpl.Carr.C", "UKSF_B_Pathfinder" };
-    M_4[] = { "Maverick", "LCpl.Clarke.S", "UKSF_B_Pathfinder" };
+    M_4[] = { "Maverick", "LCpl.Clarke.S", "UKSF_B_PathfinderMedic" };
     M_5[] = { "Maverick", "Pte.Viney.C", "UKSF_B_Pathfinder" };
     M_6[] = { "Maverick", "Pte.Rowe.J", "UKSF_B_Pathfinder" };
     J_1[] = { "JSFAW", "Commander - SqnLdr.Beswick.T", "UKSF_B_Pilot_617" };
