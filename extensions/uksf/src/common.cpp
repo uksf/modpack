@@ -1,4 +1,3 @@
-#pragma once
 #include "common.hpp"
 
 game_value uksf_common::cbaSettingsFncInit = game_value();
@@ -80,4 +79,3 @@ std::string uksf_common::getTimeStamp() {
     ss << today << ' ' << make_time(now - today);
     return ss.str();
 }
-

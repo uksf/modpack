@@ -3,6 +3,7 @@
 
 #include "modules/data/data.hpp"
 
+// ReSharper disable CppInconsistentNaming
 void __cdecl intercept::post_start() {
     LOG_DEBUG("MAIN PRESTART");
     uksf::getInstance().postStart();
@@ -26,6 +27,7 @@ void __cdecl intercept::mission_ended() {
     LOG_DEBUG("MAIN MISSION ENDED");
     uksf::getInstance().missionEnded();
 }
+// ReSharper restore CppInconsistentNaming
 
 uksf::uksf() {
     uksf_common::getInstance();

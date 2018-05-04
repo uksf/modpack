@@ -1,11 +1,10 @@
-#pragma once
 #include "data.hpp"
 #include "secret.hpp"
 
 uksf_data::uksf_data() {
     uksf::getInstance().preInit.connect([this]() {
         LOG_DEBUG("DATA PREINIT");
-        game_value enabledArgs({
+        const game_value enabledArgs({
             QGVAR(enabled),
             "CHECKBOX",
             "Data System",
@@ -14,7 +13,7 @@ uksf_data::uksf_data() {
             true
         });
         sqf::call(uksf_common::cbaSettingsFncInit, enabledArgs);
-        game_value frequencyArgs({
+        const game_value frequencyArgs({
             QGVAR(frequency),
             "SLIDER",
             "Data System Frequency",
@@ -35,15 +34,9 @@ uksf_data::uksf_data() {
             _serverName = sqf::server_name();
             _mapName = sqf::world_name();
             _missionName = sqf::mission_name();
+            startThread();
         } else {
             LOG(INFO) << "Data system is disabled";
-        }
-    });
-
-    uksf::getInstance().onFrame.connect([this]() {
-        if (_enabled && uksf_common::threadRun && clock() > _delta) {
-            _delta += _frequency * CLOCKS_PER_SEC;
-            getData();
         }
     });
 
@@ -52,9 +45,26 @@ uksf_data::uksf_data() {
     });
 }
 
+void uksf_data::function() {
+    if (_enabled) {
+        /*_currentTime = clock();
+        _delta += (double)(_currentTime - _previousTime);
+        _previousTime = _currentTime;
+        if (_delta > (double)(_frequency * CLOCKS_PER_SEC)) {
+            _delta -= (double)(_frequency * CLOCKS_PER_SEC);
+            getData();
+        }*/
+        {
+            LOCK;
+            getData();
+        }
+        SLEEP(10);
+    }
+}
+
 void uksf_data::getData() const {
     std::vector<object> players = sqf::all_players();
-    if (players.size() == 0) return;
+    if (players.empty()) return;
     json jsonObject;
     jsonObject["timeStamp"] = uksf_common::getTimeStamp();
     jsonObject["serverName"] = _serverName;
@@ -104,7 +114,7 @@ void uksf_data::getData() const {
         const object vehicle = sqf::vehicle(player);
         if (!sqf::is_kind_of(vehicle, "CAManBase")) {
             jsonPlayer["vehicle"] = sqf::type_of(vehicle);
-            jsonPlayer["vehicleRole"] = sqf::assigned_vehicle_role(player);
+            jsonPlayer["vehicleRole"] = sqf::assigned_vehicle_role(player).role;
             jsonPlayer["vehicleDamage"] = sqf::damage(vehicle);
             jsonPlayer["vehicleWeapon"] = sqf::current_weapon(vehicle);
         } else {
@@ -118,11 +128,11 @@ void uksf_data::getData() const {
     json::string_t jsonString = jsonObject.dump();
     sqf::system_chat(jsonString);
     LOG_DEBUG(jsonString);
-    std::thread sendDataThread(&uksf_data::sendData, jsonString);
-    sendDataThread.detach();
+    //std::thread sendDataThread(&uksf_data::sendData, jsonString);
+    //sendDataThread.detach();
 }
 
-void uksf_data::sendData(json::string_t jsonString) {
+void uksf_data::sendData(const json::string_t& jsonString) {
     try {
         HTTPClientSession session("localhost", 5000);
         HTTPRequest request(HTTPRequest::HTTP_PUT, "/api/test/data");
