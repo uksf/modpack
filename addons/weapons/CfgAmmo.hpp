@@ -27,6 +27,22 @@ class CfgAmmo{
     class UK3CB_BAF_338_Ball_Tracer_Red: B_408_Ball {
         tracerEndTime = 3; // 1
     };
+    class Flare_82mm_AMOS_White;
+    class UK3CB_BAF_Flare_81mm_AMOS_White: Flare_82mm_AMOS_White {
+        deflecting = 30;
+        useFlare = 1;
+        lightColor[] = {0.5, 0.5, 0.5, 0.5};
+        smokeColor[] = {1, 1, 1, 0.5};
+        brightness = 12000000;
+        intensity = 8000000;
+        size = 1;
+        flareSize = 24;
+    };
+    class UK3CB_BAF_Flare_60mm_AMOS_White: UK3CB_BAF_Flare_81mm_AMOS_White {
+        brightness = 9000000;
+        intensity = 6000000;
+        flareSize = 18;
+    };
 
     class Chemlight_red;
     class ACE_G_Chemlight_HiRed: Chemlight_red {
