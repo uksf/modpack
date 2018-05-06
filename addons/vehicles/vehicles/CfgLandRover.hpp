@@ -239,6 +239,8 @@ class UK3CB_BAF_LandRover_WMIK_Base: UK3CB_BAF_LandRover_Base {
 class UK3CB_BAF_LandRover_WMIK_HMG_Base: UK3CB_BAF_LandRover_WMIK_Base {
     class Turrets: Turrets {
         class HMG_Turret: MainTurret {
+            gunnerOpticsModel = "UK3CB_BAF_Vehicles\addons\UK3CB_BAF_Vehicles_Coyote_Jackal\Weapons\TA31F_Optic_x3";
+            gunnerOpticsEffect[] = {"OpticsCHAbera1"};
             class ViewOptics {
                 visionMode[] = {};
             };

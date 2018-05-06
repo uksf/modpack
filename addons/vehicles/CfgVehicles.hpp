@@ -46,7 +46,7 @@ class CfgVehicles {
         ace_refuel_fuelCapacity = 93;
         hullDamageCauseExplosion = 0;
         peakTorque = 1000;
-        maxOmega = 550;
+        maxOmega = 450;
         class HitPoints: HitPoints {
             class HitBody: HitBody {
                 armor = 1.5; // Default: 0.7
