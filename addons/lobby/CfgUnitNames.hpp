@@ -68,4 +68,5 @@ class CfgUnitNames {
     J_4[] = { "JSFAW", "7 Squadron - OffCdt.Jacobs.P", "UKSF_B_Pilot_7" };
     J_5[] = { "JSFAW", "656 Squadron - PltOff.Greaves.A", "UKSF_B_Pilot_656" };
     J_6[] = { "JSFAW", "656 Squadron - OffCdt.Elliott.D", "UKSF_B_Pilot_656" };
+    J_7[] = { "JSFAW", "Trainee - OffCdt.Woods.A", "UKSF_B_Pilot_617" };
 };
