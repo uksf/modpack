@@ -50,11 +50,11 @@
         }; \
     };
 
-#define RACKS_AIR \
+#define RACKS_AIR_DEFAULT \
     class AcreRacks { \
         class Rack_1 { \
-            displayName = "Dashboard Upper"; \
-            shortName = "D.Up"; \
+            displayName = "1"; \
+            shortName = "1"; \
             componentName = "ACRE_VRC103"; \
             allowedPositions[] = {"driver", "copilot", "gunner", "commander"}; \
             disabledPositions[] = {}; \
@@ -64,20 +64,31 @@
             intercom[] = {}; \
         }; \
         class Rack_2: Rack_1 { \
-            displayName = "Dashboard Middle"; \
-            shortName = "D.Mid"; \
+            displayName = "2"; \
+            shortName = "2"; \
         }; \
         class Rack_3: Rack_1 { \
-            displayName = "Dashboard Lower"; \
-            shortName = "D.Low"; \
+            displayName = "3"; \
+            shortName = "3"; \
+        };
+
+#define RACKS_AIR \
+    RACKS_AIR_DEFAULT \
+    };
+
+#define RACKS_AIR_FOUR \
+    RACKS_AIR_DEFAULT \
+        class Rack_4: Rack_1 { \
+            displayName = "4"; \
+            shortName = "4"; \
         }; \
     };
 
 #define RACKS_GROUND \
     class AcreRacks { \
         class Rack_1 { \
-            displayName = "Dashboard Upper"; \
-            shortName = "D.Up"; \
+            displayName = "1"; \
+            shortName = "1"; \
             componentName = "ACRE_VRC103"; \
             allowedPositions[] = {"crew", "external"}; \
             disabledPositions[] = {}; \
@@ -87,14 +98,14 @@
             intercom[] = {}; \
         }; \
         class Rack_2: Rack_1 { \
-            displayName = "Dashboard Lower"; \
-            shortName = "D.Low"; \
+            displayName = "2"; \
+            shortName = "2"; \
             componentName = "ACRE_VRC110"; \
             mountedRadio = "ACRE_PRC152"; \
         }; \
         class Rack_3: Rack_1 { \
-            displayName = "Dashboard Middle"; \
-            shortName = "D.Mid"; \
+            displayName = "3"; \
+            shortName = "3"; \
             mountedRadio = ""; \
         }; \
     };
@@ -102,8 +113,8 @@
 #define RACKS_GROUND_APC \
     class AcreRacks { \
         class Rack_1 { \
-            displayName = "Dashboard Upper"; \
-            shortName = "D.Up"; \
+            displayName = "1"; \
+            shortName = "1"; \
             componentName = "ACRE_VRC103"; \
             allowedPositions[] = {"driver", "commander"}; \
             disabledPositions[] = {}; \
@@ -113,14 +124,14 @@
             intercom[] = {"intercom_1"}; \
         }; \
         class Rack_2: Rack_1 { \
-            displayName = "Dashboard Lower"; \
-            shortName = "D.Low"; \
+            displayName = "2"; \
+            shortName = "2"; \
             componentName = "ACRE_VRC110"; \
             mountedRadio = "ACRE_PRC152"; \
         }; \
         class Rack_3: Rack_1 { \
-            displayName = "Dashboard Middle"; \
-            shortName = "D.Mid"; \
+            displayName = "3"; \
+            shortName = "3"; \
             mountedRadio = ""; \
         }; \
     };
@@ -128,8 +139,8 @@
 #define RACKS_AIR_GROUND \
     class AcreRacks { \
         class Rack_1 { \
-            displayName = "Dashboard Upper"; \
-            shortName = "D.Up"; \
+            displayName = "1"; \
+            shortName = "1"; \
             componentName = "ACRE_VRC103"; \
             allowedPositions[] = {"crew", "external"}; \
             disabledPositions[] = {}; \
@@ -139,8 +150,7 @@
             intercom[] = {}; \
         }; \
         class Rack_2: Rack_1 { \
-            displayName = "Dashboard Lower"; \
-            shortName = "D.Low"; \
-            mountedRadio = "ACRE_PRC117F"; \
+            displayName = "2"; \
+            shortName = "2"; \
         }; \
     };

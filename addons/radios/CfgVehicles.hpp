@@ -60,7 +60,7 @@ class CfgVehicles {
             };
             class CargoTurret_02: CargoTurret_01 {};
         };
-        RACKS_AIR
+        RACKS_AIR_FOUR
     };
     class Plane_Base_F;
     class CUP_C130J_Base: Plane_Base_F {
