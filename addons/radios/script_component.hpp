@@ -50,7 +50,7 @@
         }; \
     };
 
-#define RACKS_AIR_DEFAULT \
+#define RACKS_AIR \
     class AcreRacks { \
         class Rack_1 { \
             displayName = "1"; \
@@ -70,14 +70,30 @@
         class Rack_3: Rack_1 { \
             displayName = "3"; \
             shortName = "3"; \
-        };
-
-#define RACKS_AIR \
-    RACKS_AIR_DEFAULT \
+        }; \
     };
 
 #define RACKS_AIR_FOUR \
-    RACKS_AIR_DEFAULT \
+    class AcreRacks { \
+        class Rack_1 { \
+            displayName = "1"; \
+            shortName = "1"; \
+            componentName = "ACRE_VRC103"; \
+            allowedPositions[] = {"driver", "copilot", "gunner", "commander"}; \
+            disabledPositions[] = {}; \
+            defaultComponents[] = {}; \
+            mountedRadio = "ACRE_PRC117F"; \
+            isRadioRemovable = 0; \
+            intercom[] = {}; \
+        }; \
+        class Rack_2: Rack_1 { \
+            displayName = "2"; \
+            shortName = "2"; \
+        }; \
+        class Rack_3: Rack_1 { \
+            displayName = "3"; \
+            shortName = "3"; \
+        }; \
         class Rack_4: Rack_1 { \
             displayName = "4"; \
             shortName = "4"; \
