@@ -14,13 +14,15 @@
 */
 #include "script_component.hpp"
 
+if (!isServer) exitWith {};
+
 [{
     GVAR(presetsDone)
 },{
     params ["_vehicle", "_channels"];
     [_vehicle] call acre_api_fnc_initVehicleRacks;
     [{
-        params ["_vehicle", "_channels"];    
+        params ["_vehicle", "_channels"];
         [_vehicle] call acre_sys_rack_fnc_configureRackIntercom;
         private _radios = ([_vehicle] call acre_api_fnc_getVehicleRacks) apply {[_x] call acre_api_fnc_getMountedRackRadio};
         {
