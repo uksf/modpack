@@ -29,17 +29,6 @@ class UKSF_B_SectionLeader: UKSF_B_Rifleman {
     icon = "iconManLeader";
     editorPreview = QPATHTOEF(common,data\previews\UKSF_B_SectionLeader.jpg);
 };
-class UKSF_B_MachineGunner: UKSF_B_Rifleman {
-    displayName = "Machinegunner";
-    icon = "iconManMG";
-    editorPreview = QPATHTOEF(common,data\previews\UKSF_B_MachineGunner.jpg);
-};
-class UKSF_B_AntiTank: UKSF_B_Rifleman {
-    displayName = "Rifleman (AT)";
-    engineer = 1;
-    icon = "iconManAT";
-    editorPreview = QPATHTOEF(common,data\previews\UKSF_B_AntiTank.jpg);
-};
 class UKSF_B_Medic: UKSF_B_Rifleman {
     displayName = "Combat Medic";
     attendant = 1;
@@ -56,10 +45,25 @@ class UKSF_B_Sniper: UKSF_B_Rifleman {
 class UKSF_B_Pathfinder: UKSF_B_Rifleman {
     displayName = "PF Patrolman";
     uniformClass = "Gen3_Multicam";
+    engineer = 1;
 };
 class UKSF_B_PathfinderMedic: UKSF_B_Pathfinder {
     displayName = "PF Patrolman Medic";
     attendant = 1;
+};
+class UKSF_B_Pilot: UKSF_B_Rifleman {
+    editorSubcategory = QEGVAR(common,jsfaw);
+    displayName = "Pilot";
+    threat[] = {1, 1, 1};
+    engineer = 1;
+    editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Pilot_7.jpg);
+    model = "\A3\characters_F_gamma\Guerrilla\ig_guerrilla2_1.p3d";
+    hiddenSelections[] = { "camo" };
+    hiddenSelectionsTextures[] = { QPATHTOEF(gear,data\uniforms\ATC.paa) };
+    uniformClass = "UKSF_U_RAF_Blues";
+    linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_H_Beret_RAF" };
+    respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_H_Beret_RAF" };
+    ACE_GForceCoef = 0.7;
 };
 class UKSF_B_Pilot_7: UKSF_B_Rifleman {
     editorSubcategory = QEGVAR(common,jsfaw);

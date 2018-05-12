@@ -1,5 +1,5 @@
-#define COMPONENT lobby
-#define COMPONENT_BEAUTIFIED Lobby
+#define COMPONENT ranks
+#define COMPONENT_BEAUTIFIED Ranks
 #include "\u\uksf\addons\main\script_mod.hpp"
 
 // #define DEBUG_MODE_FULL

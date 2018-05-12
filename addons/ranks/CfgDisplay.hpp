@@ -12,9 +12,6 @@ class RscDisplayMainMap {
                 DELETE_RANK
             };
         };
-        class RespawnControlsGroup: RscControlsGroupNoScrollbars {
-            onLoad = QUOTE((_this select 0) ctrlEnable false; _this execVM 'a3\ui_f\scripts\gui\RscRespawnControls.sqf'; _this call (uiNamespace getVariable QQFUNC(initDisplayRespawn)));
-        };
     };
 };
 class RscDisplayDiary {

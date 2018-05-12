@@ -12987,7 +12987,7 @@ class Mission
 			side="West";
 			class Entities
 			{
-				items=6;
+				items=7;
 				class Item0
 				{
 					dataType="Object";
@@ -13722,7 +13722,7 @@ class Mission
 						nAttributes=10;
 					};
 				};
-				class Item5
+				class Item6
 				{
 					dataType="Object";
 					class PositionInfo

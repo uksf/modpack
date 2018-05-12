@@ -6,9 +6,9 @@ ADDON = false;
 
 GVAR(presetsDone) = false;
 
-[QEGVAR(lobby,respawned), {
+["CAManBase", "respawn", {
     [] call FUNC(setChannelNames);
-}] call CBA_fnc_addEventHandler;
+}, true, nil, true] call CBA_fnc_addClassEventHandler;
 
 {
     [_x, "init", {
