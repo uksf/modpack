@@ -53,8 +53,8 @@
 #define RACKS_AIR \
     class AcreRacks { \
         class Rack_1 { \
-            displayName = "1"; \
-            shortName = "1"; \
+            displayName = "R1"; \
+            shortName = "R1"; \
             componentName = "ACRE_VRC103"; \
             allowedPositions[] = {"driver", "copilot", "gunner", "commander"}; \
             disabledPositions[] = {}; \
@@ -64,20 +64,20 @@
             intercom[] = {}; \
         }; \
         class Rack_2: Rack_1 { \
-            displayName = "2"; \
-            shortName = "2"; \
+            displayName = "R2"; \
+            shortName = "R2"; \
         }; \
         class Rack_3: Rack_1 { \
-            displayName = "3"; \
-            shortName = "3"; \
+            displayName = "R3"; \
+            shortName = "R3"; \
         }; \
     };
 
 #define RACKS_AIR_FOUR \
     class AcreRacks { \
         class Rack_1 { \
-            displayName = "1"; \
-            shortName = "1"; \
+            displayName = "R1"; \
+            shortName = "R1"; \
             componentName = "ACRE_VRC103"; \
             allowedPositions[] = {"driver", "copilot", "gunner", "commander"}; \
             disabledPositions[] = {}; \
@@ -87,24 +87,24 @@
             intercom[] = {}; \
         }; \
         class Rack_2: Rack_1 { \
-            displayName = "2"; \
-            shortName = "2"; \
+            displayName = "R2"; \
+            shortName = "R2"; \
         }; \
         class Rack_3: Rack_1 { \
-            displayName = "3"; \
-            shortName = "3"; \
+            displayName = "R3"; \
+            shortName = "R3"; \
         }; \
         class Rack_4: Rack_1 { \
-            displayName = "4"; \
-            shortName = "4"; \
+            displayName = "R4"; \
+            shortName = "R4"; \
         }; \
     };
 
 #define RACKS_GROUND \
     class AcreRacks { \
         class Rack_1 { \
-            displayName = "1"; \
-            shortName = "1"; \
+            displayName = "R1"; \
+            shortName = "R1"; \
             componentName = "ACRE_VRC103"; \
             allowedPositions[] = {"crew", "external"}; \
             disabledPositions[] = {}; \
@@ -114,14 +114,14 @@
             intercom[] = {}; \
         }; \
         class Rack_2: Rack_1 { \
-            displayName = "2"; \
-            shortName = "2"; \
+            displayName = "R2"; \
+            shortName = "R2"; \
             componentName = "ACRE_VRC110"; \
             mountedRadio = "ACRE_PRC152"; \
         }; \
         class Rack_3: Rack_1 { \
-            displayName = "3"; \
-            shortName = "3"; \
+            displayName = "R3"; \
+            shortName = "R3"; \
             mountedRadio = ""; \
         }; \
     };
@@ -129,8 +129,8 @@
 #define RACKS_GROUND_APC \
     class AcreRacks { \
         class Rack_1 { \
-            displayName = "1"; \
-            shortName = "1"; \
+            displayName = "R1"; \
+            shortName = "R1"; \
             componentName = "ACRE_VRC103"; \
             allowedPositions[] = {"driver", "commander"}; \
             disabledPositions[] = {}; \
@@ -140,14 +140,14 @@
             intercom[] = {"intercom_1"}; \
         }; \
         class Rack_2: Rack_1 { \
-            displayName = "2"; \
-            shortName = "2"; \
+            displayName = "R2"; \
+            shortName = "R2"; \
             componentName = "ACRE_VRC110"; \
             mountedRadio = "ACRE_PRC152"; \
         }; \
         class Rack_3: Rack_1 { \
-            displayName = "3"; \
-            shortName = "3"; \
+            displayName = "R3"; \
+            shortName = "R3"; \
             mountedRadio = ""; \
         }; \
     };
@@ -155,8 +155,8 @@
 #define RACKS_AIR_GROUND \
     class AcreRacks { \
         class Rack_1 { \
-            displayName = "1"; \
-            shortName = "1"; \
+            displayName = "R1"; \
+            shortName = "R1"; \
             componentName = "ACRE_VRC103"; \
             allowedPositions[] = {"crew", "external"}; \
             disabledPositions[] = {}; \
@@ -166,7 +166,7 @@
             intercom[] = {}; \
         }; \
         class Rack_2: Rack_1 { \
-            displayName = "2"; \
-            shortName = "2"; \
+            displayName = "R2"; \
+            shortName = "R2"; \
         }; \
     };
