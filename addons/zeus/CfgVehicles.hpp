@@ -182,6 +182,10 @@ class CfgVehicles {
     class Ares_Module_Player_Teleport: Ares_Player_Module_Base {
         scopeCurator = 0;
     };
+    class Achilles_Player_Module_Base;
+    class Achilles_Module_Player_Set_Frequencies: Achilles_Player_Module_Base {
+        scopeCurator = 0;
+    };
     class Ares_Equipment_Module_Base;
     class Ares_Module_Equipment_Flashlight_IR_ON_OFF: Ares_Equipment_Module_Base {
         scopeCurator = 0;
