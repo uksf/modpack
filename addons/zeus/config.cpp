@@ -38,10 +38,11 @@ class CfgPatches {
 
 class CBA_Extended_EventHandlers_base;
 #include "Cfg3den.hpp"
+#include "CfgDialogs.hpp"
 #include "CfgEventHandlers.hpp"
 #include "CfgFunctions.hpp"
 #include "CfgVehicles.hpp"
 #include "RscDisplayCurator.hpp"
-class cfgHints {
+class CfgHints {
     delete Ares;
 };
