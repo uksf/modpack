@@ -5,8 +5,7 @@ class CfgPatches {
         name = COMPONENT_NAME;
         units[] = {};
         weapons[] = { 
-            "UKSF_ATC_Core", 
-            "UKSF_ATC_Station"
+            QGVAR(terminal)
         };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
@@ -19,6 +18,6 @@ class CfgPatches {
     };
 };
 
-class CBA_Extended_EventHandlers;
 #include "CfgEventHandlers.hpp"
-#include "CfgVehicles.hpp"
+#include "CfgMarkers.hpp"
+#include "CfgWeapons.hpp"

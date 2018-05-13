@@ -21,12 +21,6 @@ if (isMultiplayer && !is3DENMultiplayer) then {
     GVAR(HCs) pushBack player;
 };
 
-["CAManBase", "respawn", {
-    if (hasInterface) then {
-        call FUNC(fpsAction);
-    };
-}, true, nil, true] call CBA_fnc_addClassEventHandler;
-
 if (hasInterface) then {
     ["visibleMap", {
         params ["", "_mapOn"];
