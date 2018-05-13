@@ -16,15 +16,20 @@
 
 [{
     GVAR(presetsDone)
-},{
+}, {
     params ["_vehicle", "_channels"];
+
     [_vehicle] call acre_api_fnc_initVehicleRacks;
     [{
         params ["_vehicle", "_channels"];
+
+        if (_vehicle getVariable [QGVAR(channelsSet), false]) exitWith {};
+
         [_vehicle] call acre_sys_rack_fnc_configureRackIntercom;
         private _radios = ([_vehicle] call acre_api_fnc_getVehicleRacks) apply {[_x] call acre_api_fnc_getMountedRackRadio};
         {
             [_x, _channels select _forEachIndex] call acre_api_fnc_setRadioChannel;
         } forEach (_radios select {_x != ""});
+        _vehicle setVariable [QGVAR(channelsSet), true];
     }, _this, 0.5] call CBA_fnc_waitAndExecute;
 }, _this] call CBA_fnc_waitUntilAndExecute;
