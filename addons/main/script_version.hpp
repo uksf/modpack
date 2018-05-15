@@ -1,3 +1,3 @@
 #define MAJOR 5
-#define MINOR 10
-#define PATCHLVL 5
+#define MINOR 11
+#define PATCHLVL 0
