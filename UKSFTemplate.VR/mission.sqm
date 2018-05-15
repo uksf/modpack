@@ -6800,7 +6800,7 @@ class Mission
 					type = "UKSF_B_Officer";
 					class Attributes
 					{
-						isPlayable = 1;
+						isPlayer = 1;
 					};
 				};
 			};
