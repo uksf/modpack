@@ -356,12 +356,12 @@ force force ace_laserpointer_enabled = true;
 force force ace_reload_displayText = true;
 
 // ACE Weather
-force force ace_weather_enabled = false;
+force force ace_weather_enabled = true;
 force force ace_weather_updateInterval = 60;
 force force ace_weather_windSimulation = true;
 
 // ACE Wind Deflection
-force force ace_winddeflection_enabled = false;
+force force ace_winddeflection_enabled = true;
 force force ace_winddeflection_simulationInterval = 0.05;
 force force ace_winddeflection_vehicleEnabled = true;
 

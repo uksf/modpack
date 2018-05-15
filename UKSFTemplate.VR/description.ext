@@ -20,7 +20,7 @@ class Header {
     maxPlayers = 73;
 };
 respawn = "BASE";
-respawnOnStart = 0;
+respawnOnStart = 1;
 respawnDelay = 1;
 respawnDialog = 0;
 respawnTemplates[] = { "MenuPosition" };
