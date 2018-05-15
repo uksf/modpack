@@ -14,6 +14,7 @@
 #include "script_component.hpp"
 
 [] spawn {
+    waitUntil {!(isNil "acre_player")};
     waitUntil {!(isNull acre_player)};
     
     private _channels = configProperties [configFile >> "CfgChannels", "true", false];    

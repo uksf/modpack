@@ -42,7 +42,7 @@ if (hasInterface) then {
     }, true, [], true] call CBA_fnc_addClassEventHandler;
 
     ["CAManBase", "init", {
-        call FUNC(addCuratorActions);
+        _this call FUNC(addCuratorActions);
     }, true, [], true] call CBA_fnc_addClassEventHandler;
 
     ["CBA_loadingScreenDone", {
