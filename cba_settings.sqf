@@ -356,12 +356,12 @@ force force ace_laserpointer_enabled = true;
 force force ace_reload_displayText = true;
 
 // ACE Weather
-force force ace_weather_enabled = true;
+force force ace_weather_enabled = false;
 force force ace_weather_updateInterval = 60;
 force force ace_weather_windSimulation = true;
 
 // ACE Wind Deflection
-force force ace_winddeflection_enabled = true;
+force force ace_winddeflection_enabled = false;
 force force ace_winddeflection_simulationInterval = 0.05;
 force force ace_winddeflection_vehicleEnabled = true;
 
@@ -404,11 +404,66 @@ acre_sys_core_postmixGlobalVolume = 1;
 acre_sys_core_premixGlobalVolume = 1;
 force force acre_sys_core_revealToAI = true;
 acre_sys_core_spectatorVolume = 1;
-force force acre_sys_core_terrainLoss = 0.5;
+force acre_sys_core_terrainLoss = 0.5;
 force acre_sys_core_ts3ChannelName = "";
 force acre_sys_core_ts3ChannelPassword = "";
 acre_sys_core_ts3ChannelSwitch = true;
 acre_sys_core_unmuteClients = true;
+
+// DCG - Approval
+force force dcg_approval_enable = true;
+force dcg_approval_hostileCooldown = 900;
+force dcg_approval_multiplier = 1;
+force force dcg_approval_notify = true;
+
+// DCG - Civilian
+force force dcg_civilian_enable = true;
+force dcg_civilian_multiplier = 1;
+force dcg_civilian_spawnDist = 400;
+force dcg_civilian_vehCooldown = 600;
+force dcg_civilian_vehMaxCount = 5;
+
+// DCG - FOB
+force force dcg_fob_allow = 0;
+force force dcg_fob_enable = true;
+force dcg_fob_range = 100;
+
+// DCG - IED
+force force dcg_ied_enable = true;
+
+// DCG - Main
+force force dcg_main_autoSave = true;
+dcg_main_baseRadius = 1536;
+force force dcg_main_baseSafezone = true;
+force force dcg_main_enable = true;
+force force dcg_main_enemySide = EAST;
+force force dcg_main_loadData = true;
+force force dcg_main_playerSide = WEST;
+
+// DCG - Occupy
+force force dcg_occupy_enable = true;
+force force dcg_occupy_sniper = true;
+force force dcg_occupy_static = true;
+
+// DCG - Patrol
+force dcg_patrol_cooldown = 450;
+force force dcg_patrol_enable = true;
+force dcg_patrol_groupsMaxCount = 5;
+force dcg_patrol_mode = "SAFE";
+force dcg_patrol_speed = "LIMITED";
+force dcg_patrol_vehChance = 0.25;
+
+// DCG - Respawn
+force force dcg_respawn_enable = true;
+
+// DCG - Task
+force force dcg_task_cooldown = 60;
+force force dcg_task_enable = true;
+
+// DCG - Weather
+force force dcg_weather_enable = false;
+force force dcg_weather_month = -1;
+force force dcg_weather_time = -1;
 
 // UKSF
 force uksf_caching_distance = 750;
