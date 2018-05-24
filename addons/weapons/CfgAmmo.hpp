@@ -1,4 +1,4 @@
-class CfgAmmo{
+class CfgAmmo {
     class B_762x51_Ball;
     class UK3CB_BAF_762_Ball: B_762x51_Ball {
         ACE_bulletMass = 10.0438;
