@@ -53,47 +53,6 @@ class CfgVehicles {
             };
         };
     };
-    class UKSF_B_Bergen_ATC: UK3CB_BAF_B_Bergen_MTP_Radio_L_B {
-        scope = 1;
-        scopeArsenal = 0;
-        author = "UKSF";
-        displayName = "Bergen MTP ATC [BAF]";
-        maximumLoad = 400;
-        class TransportItems {
-            class _xx_ACE_packingBandage {
-                name = "ACE_packingBandage";
-                count = 10;
-            };
-            class _xx_ACE_elasticBandage {
-                name = "ACE_elasticBandage";
-                count = 10;
-            };
-            class _xx_ACE_epinephrine {
-                name = "ACE_epinephrine";
-                count = 5;
-            };
-            class _xx_ACE_bloodIV_500 {
-                name = "ACE_bloodIV_500";
-                count = 2;
-            };
-            class _xx_ACE_personalAidKit {
-                name = "ACE_personalAidKit";
-                count = 1;
-            };
-            class _xx_ACE_surgicalKit {
-                name = "ACE_surgicalKit";
-                count = 1;
-            };
-            class _xx_ACRE_PRC117F_ID_1 {
-                name = "ACRE_PRC117F_ID_1";
-                count = 1;
-            };
-            class _xx_ACRE_PRC117F_ID_2 {
-                name = "ACRE_PRC117F_ID_2";
-                count = 1;
-            };
-        };
-    };
     class UK3CB_BAF_B_Bergen_MTP_Rifleman_L_C;
     class UK3CB_BAF_B_Bergen_MTP_Rifleman_L_C_AR: UK3CB_BAF_B_Bergen_MTP_Rifleman_L_C {
         scope = 1;

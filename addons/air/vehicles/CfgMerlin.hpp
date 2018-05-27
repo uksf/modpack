@@ -108,43 +108,43 @@ class UK3CB_BAF_Merlin_HC3_Cargo: UK3CB_BAF_Merlin_HC3_Unarmed_Base {
 class UK3CB_BAF_Merlin_HC3_18_GPMG: UK3CB_BAF_Merlin_HC3_Armed_Base {
     faction = "CUP_B_GB";
     displayname = "Merlin HC3 (Armed)";
-    class TransportMagazines { \
-        MACRO_ADDMAGAZINE(ACE_M14,2); \
-        MACRO_ADDMAGAZINE(ACE_HandFlare_Red,2); \
-        MACRO_ADDMAGAZINE(UK3CB_BAF_SmokeShellRed,2); \
-        MACRO_ADDMAGAZINE(B_IR_Grenade,2); \
-        MACRO_ADDMAGAZINE(UK3CB_BAF_762_200Rnd_T,15); \
-    }; \
-    class TransportItems { \
-        MACRO_ADDITEM(Toolkit,1); \
-        MACRO_ADDITEM(ACE_elasticBandage,4); \
-        MACRO_ADDITEM(ACE_packingBandage,4); \
-        MACRO_ADDITEM(ACE_morphine,4); \
-    }; \
-    class TransportBackpacks { \
-        MACRO_ADDBACKPACK(B_Parachute,6); \
-    }; \
+    class TransportMagazines {
+        MACRO_ADDMAGAZINE(ACE_M14,2);
+        MACRO_ADDMAGAZINE(ACE_HandFlare_Red,2);
+        MACRO_ADDMAGAZINE(UK3CB_BAF_SmokeShellRed,2);
+        MACRO_ADDMAGAZINE(B_IR_Grenade,2);
+        MACRO_ADDMAGAZINE(UK3CB_BAF_762_200Rnd_T,15);
+    };
+    class TransportItems {
+        MACRO_ADDITEM(Toolkit,1);
+        MACRO_ADDITEM(ACE_elasticBandage,4);
+        MACRO_ADDITEM(ACE_packingBandage,4);
+        MACRO_ADDITEM(ACE_morphine,4);
+    };
+    class TransportBackpacks {
+        MACRO_ADDBACKPACK(B_Parachute,6);
+    };
     class TransportWeapons {};
 };
 class UK3CB_BAF_Merlin_HC3_CSAR: UK3CB_BAF_Merlin_HC3_Armed_Base {
     faction = "CUP_B_GB";
     displayname = "Merlin HC3 (CSAR)";
-    class TransportMagazines { \
-        MACRO_ADDMAGAZINE(ACE_M14,2); \
-        MACRO_ADDMAGAZINE(ACE_HandFlare_Red,2); \
-        MACRO_ADDMAGAZINE(UK3CB_BAF_SmokeShellRed,2); \
-        MACRO_ADDMAGAZINE(B_IR_Grenade,2); \
-        MACRO_ADDMAGAZINE(UK3CB_BAF_762_200Rnd_T,15); \
-    }; \
-    class TransportItems { \
-        MACRO_ADDITEM(Toolkit,1); \
-        MACRO_ADDITEM(ACE_elasticBandage,4); \
-        MACRO_ADDITEM(ACE_packingBandage,4); \
-        MACRO_ADDITEM(ACE_morphine,4); \
-    }; \
-    class TransportBackpacks { \
-        MACRO_ADDBACKPACK(B_Parachute,6); \
-    }; \
+    class TransportMagazines {
+        MACRO_ADDMAGAZINE(ACE_M14,2);
+        MACRO_ADDMAGAZINE(ACE_HandFlare_Red,2);
+        MACRO_ADDMAGAZINE(UK3CB_BAF_SmokeShellRed,2);
+        MACRO_ADDMAGAZINE(B_IR_Grenade,2);
+        MACRO_ADDMAGAZINE(UK3CB_BAF_762_200Rnd_T,15);
+    };
+    class TransportItems {
+        MACRO_ADDITEM(Toolkit,1);
+        MACRO_ADDITEM(ACE_elasticBandage,4);
+        MACRO_ADDITEM(ACE_packingBandage,4);
+        MACRO_ADDITEM(ACE_morphine,4);
+    };
+    class TransportBackpacks {
+        MACRO_ADDBACKPACK(B_Parachute,6);
+    };
     class TransportWeapons {};
 };
 class UK3CB_BAF_Merlin_HC4_18: UK3CB_BAF_Merlin_HC3_18 {

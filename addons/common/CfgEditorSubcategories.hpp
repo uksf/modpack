@@ -12,8 +12,8 @@ class CfgEditorSubcategories {
     class GVAR(support) {
         displayName = "Support";
     };
-    class GVAR(objects) {
-        displayName = "Objects";
+    class GVAR(resupply) {
+        displayName = "Resupply";
     };
 
     // Inegal
