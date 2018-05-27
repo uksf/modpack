@@ -8,7 +8,7 @@ class UK3CB_BAF_Wildcat_Base: Heli_light_03_base_F {
     fuelCapacity = 400; // 742
     mainRotorSpeed = 1;
     bodyFrictionCoef = 0.6; // 1
-    liftForceCoef = 2; // 1
+    liftForceCoef = 0.9; // 1
     maxFordingDepth = 1.2; // 0.7
     unitInfoType = "RscUnitInfoNoSpeed";
     attenuationEffectType = "SemiOpenHeliAttenuation";
