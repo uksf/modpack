@@ -26,6 +26,7 @@ class CfgVehicles {
     };
     class UKSF_S_R1: UKSF_S_Empty {
         displayName = "R1 Crate";
+        editorPreview = QPATHTOEF(common,data\previews\UKSF_S_R1.jpg);
         hiddenSelectionsTextures[] = { QPATHTOF(data\R1_co.paa) };
         class TransportMagazines {
             MACRO_ADDMAGAZINE(UK3CB_BAF_556_30Rnd,50);
@@ -63,6 +64,7 @@ class CfgVehicles {
     };
     class UKSF_S_R2: UKSF_S_Empty {
         displayName = "R2 Crate";
+        editorPreview = QPATHTOEF(common,data\previews\UKSF_S_R2.jpg);
         hiddenSelectionsTextures[] = { QPATHTOF(data\R2_co.paa) };
         class TransportMagazines {
             MACRO_ADDMAGAZINE(DemoCharge_Remote_Mag,10);
@@ -82,6 +84,7 @@ class CfgVehicles {
     };
     class UKSF_S_R3: UKSF_S_Empty {
         displayName = "R3 Crate";
+        editorPreview = QPATHTOEF(common,data\previews\UKSF_S_R3.jpg);
         hiddenSelectionsTextures[] = { QPATHTOF(data\R3_co.paa) };
         class TransportMagazines {
             MACRO_ADDMAGAZINE(UK3CB_BAF_127_100Rnd,10);
@@ -94,6 +97,7 @@ class CfgVehicles {
     };
     class UKSF_S_R4: UKSF_S_Empty {
         displayName = "R4 Crate";
+        editorPreview = QPATHTOEF(common,data\previews\UKSF_S_R4.jpg);
         hiddenSelectionsTextures[] = { QPATHTOF(data\R4_co.paa) };
         class TransportMagazines {
             MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_60mm_Mo_Shells,60);
@@ -104,6 +108,7 @@ class CfgVehicles {
     class UKSF_S_R5: UKSF_S_Empty {
         displayName = "R5 Crate";
         disableInventory = 1;
+        editorPreview = QPATHTOEF(common,data\previews\UKSF_S_R5.jpg);
         hiddenSelectionsTextures[] = { QPATHTOF(data\R5_co.paa) };
         class ACE_Cargo {
             class Cargo {
@@ -116,6 +121,7 @@ class CfgVehicles {
     };
     class UKSF_S_RT: UKSF_S_Empty {
         displayName = "RT Crate";
+        editorPreview = QPATHTOEF(common,data\previews\UKSF_S_RT.jpg);
         hiddenSelectionsTextures[] = { QPATHTOF(data\RT_co.paa) };
         class TransportItems {
             MACRO_ADDITEM(ToolKit,1);
@@ -136,6 +142,7 @@ class CfgVehicles {
         scopeCurator = 2;
         faction = "CUP_B_GB";
         displayName = "Medical Box";
+        editorPreview = QPATHTOEF(common,data\previews\UKSF_S_MedicalBox.jpg);
         editorCategory = "EdCat_Supplies";
         editorSubcategory = QEGVAR(common,resupply);
         class TransportItems {

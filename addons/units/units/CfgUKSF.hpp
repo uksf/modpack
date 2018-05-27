@@ -45,10 +45,12 @@ class UKSF_B_Sniper: UKSF_B_Rifleman {
 class UKSF_B_Pathfinder: UKSF_B_Rifleman {
     displayName = "PF Patrolman";
     uniformClass = "Gen3_Multicam";
+    editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Pathfinder.jpg);
     engineer = 1;
 };
 class UKSF_B_PathfinderMedic: UKSF_B_Pathfinder {
     displayName = "PF Patrolman Medic";
+    editorPreview = QPATHTOEF(common,data\previews\UKSF_B_PathfinderMedic.jpg);
     attendant = 1;
 };
 class UKSF_B_Pilot: UKSF_B_Rifleman {
@@ -56,7 +58,7 @@ class UKSF_B_Pilot: UKSF_B_Rifleman {
     displayName = "Pilot";
     threat[] = {1, 1, 1};
     engineer = 1;
-    editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Pilot_7.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Pilot.jpg);
     model = "\A3\characters_F_gamma\Guerrilla\ig_guerrilla2_1.p3d";
     hiddenSelections[] = { "camo" };
     hiddenSelectionsTextures[] = { QPATHTOEF(gear,data\uniforms\ATC.paa) };
