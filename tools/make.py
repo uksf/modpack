@@ -78,7 +78,6 @@ importantFiles = ["mod.cpp", "README.md", "mod.paa", "modLarge.paa", "AUTHORS.tx
 versionFiles = ["mod.cpp", "README.md"]
 nomake = False
 sign = False
-mission = False
 ace = False
 noace = False
 compats = ["ace_compat_rksl_pm_ii"]
@@ -835,7 +834,6 @@ def main(argv):
     global pbo_name_prefix
     global nomake
     global sign
-    global mission
     global ace
     global noace
     global deploy_server
@@ -970,10 +968,6 @@ See the make.cfg file for additional build options.
         argv.remove("sign")
         sign = True
 
-    if "mission" in argv:
-        argv.remove("mission")
-        mission = True
-
     if "ace" in argv:
         argv.remove("ace")
         ace = True
@@ -1009,7 +1003,6 @@ See the make.cfg file for additional build options.
     if not deploy_server and "deploy_server_full" in argv:
         argv.remove("deploy_server_full")
         sign = True
-        mission = True
         if not noace:
             ace = True
         make_release_zip = True
@@ -1501,11 +1494,6 @@ See the make.cfg file for additional build options.
             print_blue("\nDependencies signed")
         else:
             print_error("Could not sign dependencies")
-
-    if (mission):
-        print_blue("\nUpdating player count...")
-        os.chdir(make_root)
-        playercount.update_player_count()
 
     if (ace and not noace):
         print_blue("\nUpdating ACE...")
