@@ -1,0 +1,2082 @@
+class CfgPatches {
+class uksf_weapons {
+name = "UKSF - Weapons";
+units[] = {};
+weapons[] = {
+"UK3CB_BAF_LLM_Flashlight_Far_Black",
+"ACE_NVG_Pilot",
+"UK3CB_BAF_L85A2_RIS_Elcan",
+"UK3CB_BAF_L22A2_Elcan",
+"UK3CB_BAF_L85A2_UGL_Elcan",
+"UK3CB_BAF_L110A3_Elcan",
+"UK3CB_BAF_L129A1_Grippod_Acog",
+"UK3CB_BAF_L115A3_LRPS",
+"UK3CB_BAF_L115A3_DE_LRPS",
+"UK3CB_BAF_L135A1_LRPS",
+"CUP_arifle_M4A1_Acog",
+"CUP_lmg_M240_LDS",
+"CUP_launch_Mk153Mod0_Rubber",
+"CUP_launch_FIM92Stinger_Rubber",
+"CUP_AGM114L_Hellfire_II_Launcher_W",
+"CUP_AGM114N_Hellfire_II_Launcher_W",
+"UK3CB_BAF_Javelin_CLU"
+};
+requiredVersion = 1.68;
+requiredAddons[] = {
+"uksf_common",
+"cba_jr",
+"ace_chemlights",
+"UK3CB_BAF_Equipment",
+"UK3CB_BAF_Equipment_ACRE_compatibility",
+"UK3CB_BAF_Weapons",
+"UK3CB_BAF_Weapons_Ammo",
+"UK3CB_BAF_Weapons_L110",
+"UK3CB_BAF_Weapons_L115",
+"UK3CB_BAF_Weapons_L119",
+"UK3CB_BAF_Weapons_L1A1",
+"UK3CB_BAF_Weapons_Launchers",
+"UK3CB_BAF_Weapons_SmallArms",
+"UK3CB_BAF_Weapons_Static",
+"UK3CB_BAF_Weapons_Accessories",
+"UK3CB_BAF_Weapons_ACE",
+"CUP_Weapons_Stinger",
+"CUP_Weapons_Curator",
+"CUP_Weapons_Ammunition",
+"CUP_Weapons_VehicleWeapons",
+"CUP_Creatures_StaticWeapons",
+"CUP_Weapons_DynamicLoadout",
+"CUP_Weapons_AK",
+"CUP_Weapons_M16",
+"CUP_Weapons_M240",
+"CUP_Weapons_SMAW",
+"DynaSound_DS_w_30mmgatling",
+"DynaSound_DS_m_Explosions",
+"DynaSound_DS_w_MINIGUN762",
+"DynaSound_DS_w_HMG",
+"DynaSound_DS_w_GMG",
+"DynaSound_DS_w_CoaxMG",
+"DynaSound_DS_w_LRR",
+"DynaSound_DS_w_Zafir",
+"acre_sys_prc117f"
+};
+author = "UKSF";
+authors[] = { "Beswick.T" };
+url = "www.uk-sf.com";
+version = 5.11.1; versionStr = "5.11.1"; versionAr[] = {5,11,1};
+};
+};
+class CBA_Extended_EventHandlers;
+class SensorTemplateActiveRadar;
+class SensorTemplateAntiRadiation;
+class SensorTemplateIR;
+class SensorTemplateLaser;
+class SensorTemplateMan;
+class SensorTemplateNV;
+class SensorTemplatePassiveRadar;
+class SensorTemplateVisual;
+class SensorTemplateDataLink;
+class CfgAmmo {
+class B_762x51_Ball;
+class UK3CB_BAF_762_Ball: B_762x51_Ball {
+ACE_bulletMass = 10.0438;
+hit = 14;
+caliber = 1.6;
+};
+class B_762x51_Tracer_Red;
+class UK3CB_BAF_762_Ball_Tracer_Red: B_762x51_Tracer_Red {
+ACE_bulletMass = 10.0438;
+hit = 14;
+caliber = 1.6;
+};
+class UK3CB_BAF_762_Ball_EL: UK3CB_BAF_762_Ball {
+hit = 12;
+tracerEndTime = 4.15957;
+};
+class UK3CB_BAF_762_Ball_Tracer_Red_EL: UK3CB_BAF_762_Ball_Tracer_Red {
+hit = 12;
+tracerEndTime = 4.15957;
+};
+class BulletBase;
+class UK3CB_BAF_B_12Gauge_Pellets: BulletBase {
+hit = 5; 
+};
+class B_408_Ball;
+class UK3CB_BAF_338_Ball_Tracer_Red: B_408_Ball {
+tracerEndTime = 3; 
+};
+class Flare_82mm_AMOS_White;
+class UK3CB_BAF_Flare_81mm_AMOS_White: Flare_82mm_AMOS_White {
+deflecting = 30;
+useFlare = 1;
+lightColor[] = {0.5, 0.5, 0.5, 0.5};
+smokeColor[] = {1, 1, 1, 0.5};
+brightness = 12000000;
+intensity = 8000000;
+size = 1;
+flareSize = 24;
+};
+class UK3CB_BAF_Flare_60mm_AMOS_White: UK3CB_BAF_Flare_81mm_AMOS_White {
+brightness = 9000000;
+intensity = 6000000;
+flareSize = 18;
+};
+class Chemlight_red;
+class ACE_G_Chemlight_HiRed: Chemlight_red {
+timeToLive = 3600;
+};
+class Chemlight_yellow;
+class ACE_G_Chemlight_HiYellow: Chemlight_yellow {
+timeToLive = 3600;
+};
+class ACE_G_Chemlight_Orange;
+class ACE_G_Chemlight_HiOrange: ACE_G_Chemlight_Orange {
+timeToLive = 3600;
+};
+class ACE_G_Chemlight_White;
+class ACE_G_Chemlight_HiWhite: ACE_G_Chemlight_White {
+timeToLive = 3600;
+};
+class ACE_G_Chemlight_HiBlue: ACE_G_Chemlight_HiWhite {
+effectsSmoke = "ACE_ChemlightEffect_HiBlue";
+};
+class ACE_G_Chemlight_HiGreen: ACE_G_Chemlight_HiWhite {
+effectsSmoke = "ACE_ChemlightEffect_HiGreen";
+};
+class Chemlight_base;
+class ACE_G_Chemlight_IR: Chemlight_base {
+timeToLive = 3600;
+};
+class MissileCore;
+class MissileBase: MissileCore {
+timeToLive = 60;
+};
+class M_Scalpel_AT: MissileBase {
+class Components;
+};
+class ACE_Hellfire_AGM114K: M_Scalpel_AT {
+SoundSetExplosion[] = { "DS_Ex_rocket_big_SoundSet", "DS_exploBig_Tail_placeholder_SoundSet" };
+class Components: Components {
+class SensorsManagerComponent {
+class Components {
+class IRSensorComponent: SensorTemplateIR {
+class AirTarget {
+minRange = 8000;
+maxRange = 8000;
+objectDistanceLimitCoef = -1;
+viewDistanceLimitCoef = 1;
+};
+class GroundTarget {
+minRange = 8000;
+maxRange = 8000;
+objectDistanceLimitCoef = 1;
+viewDistanceLimitCoef = 1;
+};
+maxTrackableSpeed = 35;
+angleRangeHorizontal = 45;
+angleRangeVertical = 35;
+};
+class LaserSensorComponent: SensorTemplateLaser {
+class AirTarget {
+minRange = 8000;
+maxRange = 8000;
+objectDistanceLimitCoef = -1;
+viewDistanceLimitCoef = -1;
+};
+class GroundTarget {
+minRange = 8000;
+maxRange = 8000;
+objectDistanceLimitCoef = -1;
+viewDistanceLimitCoef = -1;
+};
+maxTrackableSpeed = 55;
+angleRangeHorizontal = 30;
+angleRangeVertical = 30;
+};
+};
+};
+};
+model = "\u\uksf\addons\weapons\data\AGM114\AGM114Hellfire.p3d";
+proxyShape = "\u\uksf\addons\weapons\data\AGM114\AGM114Hellfire_proxy.p3d";
+ace_rearm_dummy = "uksf_weapons_ACE_Hellfire_AGM114";
+timeToLive = 120;
+effectsMissileInit = "PylonBackEffects";
+CraterEffects = "Hellfire_Smoke";
+explosionEffects = "Hellfire_Explode";
+missileLockMaxDistance = 8000;
+class ace_missileguidance {
+seekerMaxRange = 8000;
+};
+};
+class ACE_Hellfire_AGM114L: ACE_Hellfire_AGM114K {
+displayName = "AGM-114L";
+displayNameShort = "AGM-114L";
+description = "AGM-114L";
+descriptionShort = "AGM-114L";
+weaponLockSystem = "8 + 16";
+cmImmunity = 0.95;
+class ace_missileguidance {
+enabled = 0;
+};
+missileLockCone = 90;
+missileKeepLockedCone = 180;
+missileLockMaxDistance = 8000;
+missileLockMinDistance = 500;
+missileLockMaxSpeed = 55;
+class Components: Components {
+class SensorsManagerComponent {
+class Components {
+class ActiveRadarSensorComponent: SensorTemplateActiveRadar {
+class AirTarget {
+minRange = 8000;
+maxRange = 8000;
+objectDistanceLimitCoef = -1;
+viewDistanceLimitCoef = -1;
+};
+class GroundTarget {
+minRange = 8000;
+maxRange = 8000;
+objectDistanceLimitCoef = -1;
+viewDistanceLimitCoef = -1;
+};
+angleRangeHorizontal = 90;
+angleRangeVertical = 90;
+maxFogSeeThrough = 1;
+maxGroundNoiseDistance = -1;
+groundNoiseDistanceCoef = -1;
+minSpeedThreshold = 0;
+maxSpeedThreshold = 0;
+maxTrackableSpeed = 55;
+};
+};
+};
+};
+};
+class ACE_Hellfire_AGM114K_drone: ACE_Hellfire_AGM114K {
+class ace_missileguidance: ace_missileguidance {
+enabled = 1;
+seekerAngle = 360;
+minDeflection = 0.0005; 
+maxDeflection = 0.02; 
+incDeflection = 0.0005; 
+};
+};
+class ACE_Hellfire_AGM114N: ACE_Hellfire_AGM114K {
+class ace_missileguidance;
+};
+class ACE_Hellfire_AGM114N_drone: ACE_Hellfire_AGM114N {
+class ace_missileguidance: ace_missileguidance {
+enabled = 1;
+seekerAngle = 360;
+minDeflection = 0.0005; 
+maxDeflection = 0.02; 
+incDeflection = 0.0005; 
+};
+};
+class CUP_B_30x113mm_M789_HEDP_Red_Tracer: BulletBase {
+SoundSetExplosion[] = { "DS_Ex_small_impact_SoundSet", "DS_exploSmall_Tail_placeholder_SoundSet", "Explosion_Debris_SoundSet" };
+CraterEffects = "ExploAmmoCrater";
+explosionEffects = "ExploAmmoExplosion";
+class HitEffects {
+hitWater = "ImpactEffectsWater";
+};
+hit = 105;
+indirectHit = 10;
+indirectHitRange = 2;
+tracerEndTime = 30;
+timeToLive = 30;
+caliber = 4.2;
+};
+class M_Titan_AA;
+class UKSF_Dummy_Missile: M_Titan_AA {
+indirectHitRange = 1;
+fusedistance = 0.01;
+inittime = 0.01;
+timetolive = 0.01;
+ace_frag_enabled = 1;
+ace_frag_classes[] = { "ACE_frag_medium", "ACE_frag_medium_HD" };
+ace_frag_metal = 8000;
+ace_frag_charge = 2400;
+ace_frag_gurney_c = 2700;
+ace_frag_gurney_k = "1/2";
+};
+class DemoCharge_Remote_Ammo;
+class BreachCharge_Remote_Ammo: DemoCharge_Remote_Ammo {
+hit = 200;
+indirectHit = 200;
+indirectHitRange = 1;
+defaultMagazine = "BreachCharge_Remote_Mag";
+mineInconspicuousness = 4;
+mineTrigger = "RemoteTrigger";
+explosionEffectsRadius = 5;
+CraterEffects = "GrenadeCrater";
+CraterWaterEffects = "ImpactEffectsWaterExplosion";
+explosionEffects = "GrenadeExplosion";
+SoundSetExplosion[] = { "DS_Ex_Grenade_SoundSet", "DS_Grenade_ExploTail_SoundSet", "DS_exploSmall_Tail_placeholder_SoundSet" };
+ace_explosives_magazine = "BreachCharge_Remote_Mag";
+ace_explosives_Explosive = "BreachCharge_Remote_Ammo_Scripted";
+};
+class BreachCharge_Remote_Ammo_Scripted: BreachCharge_Remote_Ammo {};
+class B_556x45_Ball;
+class B_556x45_Ball_Rubber: B_556x45_Ball {
+hit = 0.25;
+cost = 1;
+model = "\A3\Weapons_f\Data\bullettracer\tracer_white";
+};
+class CUP_B_762x51_Tracer_White;
+class CUP_B_762x51_Tracer_White_Rubber: CUP_B_762x51_Tracer_White {
+hit = 0.25;
+cost = 1;
+};
+class B_127x99_Ball_Tracer_Red;
+class B_127x99_Ball_Tracer_White_Rubber: B_127x99_Ball_Tracer_Red {
+hit = 0.25;
+cost = 1;
+model = "\A3\Weapons_f\Data\bullettracer\tracer_white";
+};
+class CUP_R_SMAW_HEAA_N;
+class CUP_R_SMAW_HEAT_N_Rubber: CUP_R_SMAW_HEAA_N {
+hit = 0.5;
+indirecthit = 0;
+indirecthitrange = 0;
+cost = 1;
+ace_frag_enabled = 0;
+mass = 20;
+};
+class CUP_M_Stinger_AA;
+class CUP_M_Stinger_AA_Rubber: CUP_M_Stinger_AA {
+hit = 31;
+indirecthit = 10;
+indirecthitrange = 1;
+cost = 1;
+ace_frag_enabled = 0;
+};
+class Sh_120mm_APFSDS;
+class Sh_120mm_APFSDS_Tracer_White_Rubber: Sh_120mm_APFSDS {
+hit = 0.5;
+indirectHit = 0;
+indirectHitRange = 0;
+dangerRadiusHit = 0;
+suppressionRadiusHit = 0;
+cost = 1;
+};
+class Sh_120mm_HE;
+class Sh_120mm_HE_Tracer_White_Rubber: Sh_120mm_HE {
+hit = 0.5;
+indirectHit = 0;
+indirectHitRange = 0;
+dangerRadiusHit = 0;
+suppressionRadiusHit = 0;
+cost = 1;
+ace_frag_enabled = 0;
+};
+class CUP_B_25mm_HE_White_Tracer;
+class CUP_B_25mm_HE_White_Tracer_Rubber: CUP_B_25mm_HE_White_Tracer {
+hit = 0.5;
+indirectHit = 0;
+indirectHitRange = 0;
+cost = 1;
+ace_frag_enabled = 0;
+};
+class CUP_B_25mm_APFSDS_White_Tracer;
+class CUP_B_25mm_APFSDS_White_Tracer_Rubber: CUP_B_25mm_APFSDS_White_Tracer {
+hit = 0.5;
+indirectHit = 0;
+indirectHitRange = 0;
+cost = 1;
+ace_frag_enabled = 0;
+};
+};
+class ACE_ChemlightEffect_HiBlue {
+class Light1 {
+simulation = "light";
+type = "ACE_ChemlightEffect_HiBlue";
+};
+};
+class ACE_ChemlightEffect_HiGreen {
+class Light1 {
+simulation = "light";
+type = "ACE_ChemlightEffect_HiGreen";
+};
+};
+class CfgLights {
+class Chemlight_Blue;
+class ACE_ChemlightEffect_HiBlue: Chemlight_Blue {
+intensity = 12000;
+class Attenuation {
+constant = 0;
+linear = 0;
+quadratic = 20;
+hardLimitStart = 3;
+hardLimitEnd = 4;
+};
+};
+class Chemlight_Green;
+class ACE_ChemlightEffect_HiGreen: Chemlight_Green {
+intensity = 12000;
+class Attenuation {
+constant = 0;
+linear = 0;
+quadratic = 20;
+hardLimitStart = 3;
+hardLimitEnd = 4;
+};
+};
+};
+class Extended_PreStart_EventHandlers {
+class uksf_weapons {
+init = "call compile preProcessFileLineNumbers '\u\uksf\addons\weapons\XEH_preStart.sqf'";
+};
+};
+class Extended_PreInit_EventHandlers {
+class uksf_weapons {
+init = "call compile preProcessFileLineNumbers '\u\uksf\addons\weapons\XEH_preInit.sqf'";
+};
+};
+class Extended_PostInit_EventHandlers {
+class uksf_weapons {
+init = "call compile preProcessFileLineNumbers '\u\uksf\addons\weapons\XEH_postInit.sqf'";
+};
+};
+class Extended_InitPost_Eventhandlers {
+class Helicopter {
+class uksf_weapons {
+init = "_this call uksf_weapons_fnc_correctPilotPylon";
+};
+};
+};
+class CfgFunctions {
+class UK3CB_BAF_Weapons_Launchers {
+class UK3CB_BAF_Weapons_Launchers {
+class init_EH { file = "\u\uksf\addons\weapons\functions\fnc_3cbInitEH.sqf"; };
+class can_assemble_javelin { file = "\u\uksf\addons\weapons\functions\fnc_3cbCanAssembleJavelin.sqf"; };
+class can_disassemble_javelin { file = "\u\uksf\addons\weapons\functions\fnc_3cbCanDisassembleJavelin.sqf"; };
+class assemble_javelin { file = "\u\uksf\addons\weapons\functions\fnc_3cbAssembleJavelin.sqf"; };
+};
+};
+class UK3CB_BAF_Weapons_Static {
+class UK3CB_BAF_Weapons_Static {
+class static_weapon_init {
+postInit = 1;
+file = "\u\uksf\addons\weapons\functions\fnc_staticWeaponInit.sqf";
+};
+};
+};
+};
+class CfgMagazines {
+class UK3CB_BAF_762_100Rnd;
+class UK3CB_BAF_762_100Rnd_EL: UK3CB_BAF_762_100Rnd {
+displayname = "7.62mm 100rnd EL Belt";
+displaynameshort = "7.62mm EL";
+ammo = "UK3CB_BAF_762_Ball_EL";
+};
+class UK3CB_BAF_762_100Rnd_T;
+class UK3CB_BAF_762_100Rnd_T_EL: UK3CB_BAF_762_100Rnd_T {
+displayname = "7.62mm 100rnd EL Tracer Belt";
+displaynameshort = "7.62mm EL Tracer";
+ammo = "UK3CB_BAF_762_Ball_Tracer_Red_EL";
+};
+class UK3CB_BAF_762_200Rnd;
+class UK3CB_BAF_762_200Rnd_EL: UK3CB_BAF_762_200Rnd {
+displayname = "7.62mm 200rnd EL Belt";
+displaynameshort = "7.62mm EL";
+ammo = "UK3CB_BAF_762_Ball_EL";
+};
+class UK3CB_BAF_762_200Rnd_T;
+class UK3CB_BAF_762_200Rnd_T_EL: UK3CB_BAF_762_200Rnd_T {
+displayname = "7.62mm 200rnd EL Tracer Belt";
+displaynameshort = "7.62mm EL Tracer";
+ammo = "UK3CB_BAF_762_Ball_Tracer_Red_EL";
+};
+class Chemlight_red;
+class ACE_Chemlight_HiRed: Chemlight_red {
+descriptionShort = "Type: Light - Red Hi<br />Rounds: 1<br />Used in: Hand";
+};
+class Chemlight_yellow;
+class ACE_Chemlight_HiYellow: Chemlight_yellow {
+descriptionShort = "Type: Light - Yellow Hi<br />Rounds: 1<br />Used in: Hand";
+};
+class ACE_Chemlight_Orange;
+class ACE_Chemlight_HiOrange: ACE_Chemlight_Orange {
+descriptionShort = "Type: Light - Orange Hi<br />Rounds: 1<br />Used in: Hand";
+};
+class ACE_Chemlight_White;
+class ACE_Chemlight_HiWhite: ACE_Chemlight_White {
+descriptionShort = "Type: Light - White Hi<br />Rounds: 1<br />Used in: Hand";
+};
+class Chemlight_blue;
+class ACE_Chemlight_HiBlue: Chemlight_blue {
+ACE_Attachable = "ACE_G_Chemlight_HiBlue";
+ACE_Chemlight_Shield = "";
+author = "ACE-Team";
+ammo = "ACE_G_Chemlight_HiBlue";
+displayName = "Chemlight (Hi Blue)";
+displayNameShort = "Blue Hi Light";
+descriptionShort = "Type: Light - Blue Hi<br />Rounds: 1<br />Used in: Hand";
+};
+class Chemlight_green;
+class ACE_Chemlight_HiGreen: Chemlight_green {
+ACE_Attachable = "ACE_G_Chemlight_HiGreen";
+ACE_Chemlight_Shield = "";
+author = "ACE-Team";
+ammo = "ACE_G_Chemlight_HiGreen";
+displayName = "Chemlight (Hi Green)";
+displayNameShort = "Green Hi Light";
+descriptionShort = "Type: Light - Green Hi<br />Rounds: 1<br />Used in: Hand";
+};
+class 12Rnd_PG_missiles;
+class 6Rnd_ACE_Hellfire_AGM114K: 12Rnd_PG_missiles {
+displayName = "AGM-114K";
+};
+class 4Rnd_ACE_Hellfire_AGM114K: 6Rnd_ACE_Hellfire_AGM114K {
+displayName = "AGM-114K";
+count = 4;
+};
+class 4Rnd_ACE_Hellfire_AGM114K_drone: 4Rnd_ACE_Hellfire_AGM114K {
+ammo = "ACE_Hellfire_AGM114K_drone";
+};
+class 2Rnd_ACE_Hellfire_AGM114K: 6Rnd_ACE_Hellfire_AGM114K {
+displayName = "AGM-114K";
+count = 2;
+};
+class PylonMissile_1Rnd_ACE_Hellfire_AGM114K: 6Rnd_ACE_Hellfire_AGM114K {
+displayName = "1x AGM-114K";
+hardpoints[] = { "SCALPEL_1RND" };
+};
+class PylonRack_1Rnd_ACE_Hellfire_AGM114K: 6Rnd_ACE_Hellfire_AGM114K {
+displayName = "1x AGM-114K";
+hardpoints[] = { "B_MISSILE_PYLON", "SCALPEL_1RND_EJECTOR", "B_ASRRAM_EJECTOR", "UNI_SCALPEL" };
+};
+class PylonRack_3Rnd_ACE_Hellfire_AGM114K: 6Rnd_ACE_Hellfire_AGM114K {
+displayName = "3x AGM-114K";
+hardpoints[] = { "B_MISSILE_PYLON", "UNI_SCALPEL" };
+};
+class PylonRack_4Rnd_ACE_Hellfire_AGM114K: 6Rnd_ACE_Hellfire_AGM114K {
+displayName = "4x AGM-114K";
+hardpoints[] = { "UNI_SCALPEL", "B_HELLFIRE" };
+};
+class PylonRack_2Rnd_ACE_Hellfire_AGM114K_Drone: PylonRack_4Rnd_ACE_Hellfire_AGM114K {
+displayName = "2x AGM-114K";
+ammo = "ACE_Hellfire_AGM114K_drone";
+model = "\CUP\Weapons\CUP_Weapons_DynamicLoadout\AGM114\CUP_AGM114_dual_drone.p3d";
+count = 2;
+pylonWeapon = "ace_hellfire_launcher_drone";
+hardpoints[] = { "B_HELLFIRE_DRONE" };
+};
+class 6Rnd_ACE_Hellfire_AGM114N: 6Rnd_ACE_Hellfire_AGM114K {
+displayName = "AGM-114N";
+displayNameShort = "AGM-114N";
+descriptionShort = "AGM-114N";
+};
+class 2Rnd_ACE_Hellfire_AGM114N: 6Rnd_ACE_Hellfire_AGM114N {
+count = 2;
+};
+class 4Rnd_ACE_Hellfire_AGM114N: 6Rnd_ACE_Hellfire_AGM114N {
+count = 4;
+};
+class 4Rnd_ACE_Hellfire_AGM114N_drone: 4Rnd_ACE_Hellfire_AGM114N {
+ammo = "ACE_Hellfire_AGM114N_drone";
+};
+class PylonRack_4Rnd_ACE_Hellfire_AGM114N: PylonRack_4Rnd_ACE_Hellfire_AGM114K {
+displayName = "4x AGM-114N";
+displayNameShort = "AGM-114N";
+descriptionShort = "AGM-114N";
+pylonWeapon = "ace_hellfire_launcher_N";
+};
+class PylonRack_2Rnd_ACE_Hellfire_AGM114N_Drone: PylonRack_4Rnd_ACE_Hellfire_AGM114N {
+displayName = "2x AGM-114N";
+ammo = "ACE_Hellfire_AGM114N_drone";
+model = "\CUP\Weapons\CUP_Weapons_DynamicLoadout\AGM114\CUP_AGM114_dual_drone.p3d";
+count = 2;
+pylonWeapon = "ace_hellfire_launcher_drone_N";
+hardpoints[] = { "B_HELLFIRE_DRONE" };
+};
+class 6Rnd_ACE_Hellfire_AGM114L: 6Rnd_ACE_Hellfire_AGM114K {
+displayName = "AGM-114L";
+displayNameShort = "AGM-114L";
+descriptionShort = "AGM-114L";
+ammo = "ACE_Hellfire_AGM114L";
+};
+class 2Rnd_ACE_Hellfire_AGM114L: 6Rnd_ACE_Hellfire_AGM114L {
+count = 2;
+};
+class 4Rnd_ACE_Hellfire_AGM114L: 6Rnd_ACE_Hellfire_AGM114L {
+count = 4;
+};
+class PylonRack_4Rnd_ACE_Hellfire_AGM114L: PylonRack_4Rnd_ACE_Hellfire_AGM114K {
+displayName = "4x AGM-114L";
+displayNameShort = "AGM-114L";
+descriptionShort = "AGM-114L";
+pylonWeapon = "ace_hellfire_launcher_L";
+ammo = "ACE_Hellfire_AGM114L";
+};
+class CUP_19Rnd_CRV7_FAT_M;
+class CUP_PylonPod_19Rnd_CRV7_FAT_M: CUP_19Rnd_CRV7_FAT_M {
+hardpoints[] += { "B_CRV7" };
+model = "\u\uksf\addons\apache\PylonRocket_19Rnd_CRV7_HEISAP.p3d";
+CUP_PilotControl = 0;
+uksf_weapons_pilotControl = 1;
+};
+class CUP_PylonPod_12Rnd_CRV7_FAT_M: CUP_19Rnd_CRV7_FAT_M {
+CUP_PilotControl = 0;
+uksf_weapons_pilotControl = 1;
+};
+class CUP_1200Rnd_TE1_Red_Tracer_M621_20mm_HE_M;
+class CUP_PylonPod_1200Rnd_TE1_Red_Tracer_M621_20mm_HE_M: CUP_1200Rnd_TE1_Red_Tracer_M621_20mm_HE_M {
+CUP_PilotControl = 0;
+uksf_weapons_pilotControl = 1;
+};
+class DemoCharge_Remote_Mag;
+class BreachCharge_Remote_Mag: DemoCharge_Remote_Mag {
+author = "UKSF";
+mass = 10;
+ammo = "BreachCharge_Remote_Ammo";
+class Library {
+libTextDesc = "Breaching Charge. It can be set to detonate either by the built-in timer or a remote detonator.";
+};
+type = "2 * 256";
+allowedSlots[] = { 901, 701 };
+displayName = "Breaching Charge";
+ace_explosives_SetupObject = "ACE_Explosives_Place_BreachCharge";
+};
+class VehicleMagazine;
+class CUP_100Rnd_127x99_M: VehicleMagazine {
+picture = "\UK3CB_BAF_Weapons\addons\UK3CB_BAF_Weapons_Ammo\data\gear_magazine_belt_tracer_ca.paa";
+};
+class 200Rnd_40mm_G_belt: VehicleMagazine {
+picture = "\UK3CB_BAF_Weapons\addons\UK3CB_BAF_Weapons_Ammo\data\gear_magazine_belt_tracer_ca.paa";
+};
+class CUP_Stinger_M;
+class CUP_Stinger_M_Rubber: CUP_Stinger_M {
+scopeArsenal = 1;
+displayName = "FIM-92F Stinger Rubber";
+displayNameShort = "AA Rubber";
+ammo = "CUP_M_Stinger_AA_Rubber";
+};
+class CUP_4Rnd_Stinger_M;
+class CUP_4Rnd_Stinger_M_Rubber: CUP_4Rnd_Stinger_M {
+displayName = "FIM-92F Stinger Rubber";
+displayNameShort = "AA Rubber";
+ammo = "CUP_M_Stinger_AA_Rubber";
+};
+};
+class Mode_SemiAuto;
+class Mode_Burst;
+class Mode_FullAuto;
+class asdg_MuzzleSlot;
+class asdg_OpticRail1913;
+class asdg_SlotInfo;
+class asdg_FrontSideRail: asdg_SlotInfo {
+class compatibleItems {
+UK3CB_BAF_LLM_Flashlight_Far_Black = 1;
+};
+};
+class asdg_MuzzleSlot_556_3CB_L119: asdg_MuzzleSlot {
+class compatibleItems {
+UK3CB_BAF_BFA_L85 = 1;
+UK3CB_BAF_SFFH = 1;
+muzzle_snds_M = 1;
+};
+};
+class CfgWeapons {
+class ItemCore;
+class InventoryOpticsItem_Base_F;
+class UK3CB_BAF_SpecterLDS_Dot;
+class UK3CB_BAF_SpecterLDS: ItemCore {
+class ItemInfo: InventoryOpticsItem_Base_F {
+class OpticsModes {
+class UK3CB_BAF_LDS {
+visionMode[] = {};
+};
+};
+};
+};
+class UK3CB_BAF_SpecterLDS_3D: UK3CB_BAF_SpecterLDS {
+scope = 2;
+scopeCurator = 2;
+class ItemInfo: InventoryOpticsItem_Base_F {
+allowedSlots[] = {801,701,901};
+mass = 4;
+mountAction = "MountOptic";
+muzzleEnd = "konec hlavne";
+muzzlePos = "usti hlavne";
+optics = 1;
+scope = 0;
+type = 201;
+unmountAction = "DismountOptic";
+modelOptics = "UK3CB_BAF_Weapons\addons\UK3CB_BAF_Weapons_Accessories\uk3cb_Elcan_Optic.p3d";
+class OpticsModes {
+class UK3CB_BAF_LDS {
+cameraDir = "";
+discreteDistance[] = {300};
+discreteDistanceInitIndex = 0;
+distanceZoomMax = 300;
+distanceZoomMin = 300;
+memoryPointCamera = "opticView";
+opticsFlare = 1;
+opticsID = 1;
+opticsPPEffects[] = { "OpticsCHAbera5","OpticsBlur5" };
+opticsZoomInit = 0.09;
+opticsZoomMax = 0.09;
+opticsZoomMin = 0.09;
+visionMode[] = {};
+useModelOptics = 0;
+opticsDisablePeripherialVision = 0;
+};
+};
+};
+};
+class UK3CB_BAF_SpecterLDS_Dot_3D: UK3CB_BAF_SpecterLDS_Dot {
+scope = 2;
+scopeCurator = 2;
+model = "UK3CB_BAF_Weapons\addons\UK3CB_BAF_Weapons_Accessories\uk3cb_Elcan_Reflex.p3d";
+modelOptics = "";
+class ItemInfo: InventoryOpticsItem_Base_F {
+allowedSlots[] = {801,701,901};
+mass = 4;
+mountAction = "MountOptic";
+muzzleEnd = "konec hlavne";
+muzzlePos = "usti hlavne";
+optics = 1;
+scope = 0;
+type = 201;
+unmountAction = "DismountOptic";
+modelOptics = "UK3CB_BAF_Weapons\addons\UK3CB_BAF_Weapons_Accessories\uk3cb_Elcan_Optic.p3d";
+class OpticsModes {
+class UK3CB_BAF_LDS {
+cameraDir = "";
+discreteDistance[] = {300};
+discreteDistanceInitIndex = 0;
+distanceZoomMax = 300;
+distanceZoomMin = 300;
+memoryPointCamera = "opticView";
+opticsFlare = 1;
+opticsID = 1;
+opticsPPEffects[] = { "OpticsCHAbera5","OpticsBlur5" };
+opticsZoomInit = 0.09;
+opticsZoomMax = 0.09;
+opticsZoomMin = 0.09;
+visionMode[] = {};
+useModelOptics = 0;
+opticsDisablePeripherialVision = 0;
+};
+class UK3CB_BAF_LDS_Top {
+cameraDir = "";
+discreteDistance[] = {100};
+discreteDistanceInitIndex = 0;
+distanceZoomMax = 100;
+distanceZoomMin = 100;
+memoryPointCamera = "eye";
+opticsFlare = 1;
+opticsID = 2;
+opticsPPEffects[] = { "OpticsCHAbera5","OpticsBlur5" };
+opticsZoomInit = 0.75;
+opticsZoomMax = 1.1;
+opticsZoomMin = 0.375;
+visionMode[] = {};
+useModelOptics = 0;
+opticsDisablePeripherialVision = 0;
+};
+};
+};
+};
+class UK3CB_BAF_TA31F: ItemCore {
+class ItemInfo: InventoryOpticsItem_Base_F {
+class OpticsModes {
+class UK3CB_BAF_ACOG {
+visionMode[] = {};
+};
+};
+};
+};
+class UK3CB_BAF_TA648: ItemCore {
+class ItemInfo: InventoryOpticsItem_Base_F {
+class OpticsModes {
+class ACOG_scope {
+visionMode[] = {};
+};
+};
+};
+};
+class UK3CB_BAF_SUSAT: ItemCore {
+class ItemInfo: InventoryOpticsItem_Base_F {
+class OpticsModes {
+class UK3CB_BAF_SUSAT {
+visionMode[] = {};
+};
+};
+};
+};
+class RKSL_optic_LDS: ItemCore {
+class ItemInfo: InventoryOpticsItem_Base_F {
+class OpticsModes {
+class LDS {
+visionMode[] = {};
+};
+};
+};
+};
+class optic_LRPS: ItemCore {
+class ItemInfo: InventoryOpticsItem_Base_F {
+class OpticsModes {
+class Snip {
+visionMode[] = {};
+};
+};
+};
+};
+class UK3CB_BAF_LLM_IR_Tan;
+class UK3CB_BAF_LLM_IR_Black: UK3CB_BAF_LLM_IR_Tan {
+mrt_SwitchItemNextClass = "UK3CB_BAF_LLM_Flashlight_Black";
+mrt_SwitchItemPrevClass = "UK3CB_BAF_LLM_Flashlight_Black";
+mrt_SwitchItemHintText = "IR";
+ace_nextModeClass = "UK3CB_BAF_LLM_Flashlight_Black";
+ace_modeDescription = "IR";
+UK3CB_nextItem = "UK3CB_BAF_LLM_Flashlight_Black";
+};
+class UK3CB_BAF_LLM_Flashlight_Tan;
+class UK3CB_BAF_LLM_Flashlight_Black: UK3CB_BAF_LLM_Flashlight_Tan {
+mrt_SwitchItemNextClass = "UK3CB_BAF_LLM_Flashlight_Far_Black";
+mrt_SwitchItemPrevClass = "UK3CB_BAF_LLM_Flashlight_Far_Black";
+mrt_SwitchItemHintText = "Flashlight";
+ace_nextModeClass = "UK3CB_BAF_LLM_Flashlight_Far_Black";
+ace_modeDescription = "Flashlight";
+UK3CB_nextItem = "UK3CB_BAF_LLM_Flashlight_Far_Black";
+};
+class InventoryFlashLightItem_Base_F;
+class UK3CB_BAF_LLM_Flashlight_Far_Black: UK3CB_BAF_LLM_Flashlight_Black {
+displayName = "LLM Mk3 Flashlight Far (Black)";
+mrt_SwitchItemNextClass = "UK3CB_BAF_LLM_IR_Black";
+mrt_SwitchItemPrevClass = "UK3CB_BAF_LLM_IR_Black";
+mrt_SwitchItemHintText = "Flashlight (Far)";
+ace_nextModeClass = "UK3CB_BAF_LLM_IR_Black";
+ace_modeDescription = "Flashlight (Far)";
+UK3CB_nextItem = "UK3CB_BAF_LLM_IR_Black";
+class ItemInfo: InventoryFlashLightItem_Base_F {
+mass = 4;
+class FlashLight {
+color[] = {180, 156, 120};
+ambient[] = {0.9, 0.78, 0.6};
+intensity = 40;
+size = 1;
+innerAngle = 5;
+outerAngle = 50;
+coneFadeCoef = 10;
+position = "flash dir";
+direction = "flash";
+useFlare = 1;
+flareSize = 1.4;
+flareMaxDistance = "100.0f";
+dayLight = 0;
+class Attenuation {
+start = 0.5;
+constant = 0;
+linear = 0;
+quadratic = 1.1;
+hardLimitStart = 100;
+hardLimitEnd = 150;
+};
+scale[] = {0};
+};
+};
+};
+class ACE_NVG_Wide;
+class ACE_NVG_Pilot: ACE_NVG_Wide {
+scope = 2;
+scopeArsenal = 2;
+author = "UKSF";
+displayName = "Pilot NVG";
+ace_nightvision_generation = 4;
+ace_nightvision_bluRadius = 0.26;
+ace_nightvision_border = "\u\uksf\addons\weapons\data\nvg_mask_binos_large_4096.paa";
+modelOptics = "";
+};
+class NVGoggles;
+class UK3CB_BAF_HMNVS: NVGoggles {
+ace_nightvision_generation = 3;
+ace_nightvision_bluRadius = 0.20;
+ace_nightvision_border = "\u\uksf\addons\weapons\data\nvg_mask_large_4096.paa";
+modelOptics = "";
+};
+class Integrated_NVG_F: NVGoggles {
+ace_nightvision_generation = 4;
+ace_nightvision_bluRadius = 0.36;
+};
+class arifle_Mk20_plain_F;
+class UGL_F;
+class UK3CB_BAF_L85A2: arifle_Mk20_plain_F {
+class UK3CB_BAF_L123A2: UGL_F {
+magazines[] = { "UK3CB_BAF_1Rnd_HE_Grenade_Shell", "UK3CB_BAF_1Rnd_HEDP_Grenade_Shell", "UK3CB_BAF_1Rnd_Blank_Grenade_Shell", "UK3CB_BAF_UGL_FlareWhite_F", "UK3CB_BAF_UGL_FlareRed_F", "UK3CB_BAF_UGL_FlareGreen_F", "UK3CB_BAF_UGL_FlareYellow_F", "UK3CB_BAF_UGL_FlareCIR_F", "UK3CB_BAF_1Rnd_Smoke_Grenade_shell", "UK3CB_BAF_1Rnd_SmokeRed_Grenade_shell", "UK3CB_BAF_1Rnd_SmokeGreen_Grenade_shell", "UK3CB_BAF_1Rnd_SmokeYellow_Grenade_shell", "UK3CB_BAF_1Rnd_SmokePurple_Grenade_shell", "UK3CB_BAF_1Rnd_SmokeBlue_Grenade_shell", "UK3CB_BAF_1Rnd_SmokeOrange_Grenade_shell", "1Rnd_HE_Grenade_shell", "UGL_FlareWhite_F", "UGL_FlareGreen_F", "UGL_FlareRed_F", "UGL_FlareYellow_F", "UGL_FlareCIR_F", "1Rnd_Smoke_Grenade_shell", "1Rnd_SmokeRed_Grenade_shell", "1Rnd_SmokeGreen_Grenade_shell", "1Rnd_SmokeYellow_Grenade_shell", "1Rnd_SmokePurple_Grenade_shell", "1Rnd_SmokeBlue_Grenade_shell", "1Rnd_SmokeOrange_Grenade_shell", "ACE_HuntIR_M203", "CUP_1Rnd_StarCluster_White_M203", "CUP_1Rnd_StarCluster_Red_M203", "CUP_1Rnd_StarCluster_Green_M203", "CUP_1Rnd_StarFlare_White_M203", "CUP_1Rnd_StarFlare_Red_M203", "CUP_1Rnd_StarFlare_Green_M203" };
+};
+class UK3CB_BAF_L123A3_V2: UGL_F {
+magazines[] = { "UK3CB_BAF_1Rnd_HE_Grenade_Shell", "UK3CB_BAF_1Rnd_HEDP_Grenade_Shell", "UK3CB_BAF_1Rnd_Blank_Grenade_Shell", "UK3CB_BAF_UGL_FlareWhite_F", "UK3CB_BAF_UGL_FlareRed_F", "UK3CB_BAF_UGL_FlareGreen_F", "UK3CB_BAF_UGL_FlareYellow_F", "UK3CB_BAF_UGL_FlareCIR_F", "UK3CB_BAF_1Rnd_Smoke_Grenade_shell", "UK3CB_BAF_1Rnd_SmokeRed_Grenade_shell", "UK3CB_BAF_1Rnd_SmokeGreen_Grenade_shell", "UK3CB_BAF_1Rnd_SmokeYellow_Grenade_shell", "UK3CB_BAF_1Rnd_SmokePurple_Grenade_shell", "UK3CB_BAF_1Rnd_SmokeBlue_Grenade_shell", "UK3CB_BAF_1Rnd_SmokeOrange_Grenade_shell", "1Rnd_HE_Grenade_shell", "UGL_FlareWhite_F", "UGL_FlareGreen_F", "UGL_FlareRed_F", "UGL_FlareYellow_F", "UGL_FlareCIR_F", "1Rnd_Smoke_Grenade_shell", "1Rnd_SmokeRed_Grenade_shell", "1Rnd_SmokeGreen_Grenade_shell", "1Rnd_SmokeYellow_Grenade_shell", "1Rnd_SmokePurple_Grenade_shell", "1Rnd_SmokeBlue_Grenade_shell", "1Rnd_SmokeOrange_Grenade_shell", "ACE_HuntIR_M203", "CUP_1Rnd_StarCluster_White_M203", "CUP_1Rnd_StarCluster_Red_M203", "CUP_1Rnd_StarCluster_Green_M203", "CUP_1Rnd_StarFlare_White_M203", "CUP_1Rnd_StarFlare_Red_M203", "CUP_1Rnd_StarFlare_Green_M203" };
+};
+class EGLM: UGL_F {
+magazines[] = { "UK3CB_BAF_1Rnd_HE_Grenade_Shell", "UK3CB_BAF_1Rnd_HEDP_Grenade_Shell", "UK3CB_BAF_1Rnd_Blank_Grenade_Shell", "UK3CB_BAF_UGL_FlareWhite_F", "UK3CB_BAF_UGL_FlareRed_F", "UK3CB_BAF_UGL_FlareGreen_F", "UK3CB_BAF_UGL_FlareYellow_F", "UK3CB_BAF_UGL_FlareCIR_F", "UK3CB_BAF_1Rnd_Smoke_Grenade_shell", "UK3CB_BAF_1Rnd_SmokeRed_Grenade_shell", "UK3CB_BAF_1Rnd_SmokeGreen_Grenade_shell", "UK3CB_BAF_1Rnd_SmokeYellow_Grenade_shell", "UK3CB_BAF_1Rnd_SmokePurple_Grenade_shell", "UK3CB_BAF_1Rnd_SmokeBlue_Grenade_shell", "UK3CB_BAF_1Rnd_SmokeOrange_Grenade_shell", "1Rnd_HE_Grenade_shell", "UGL_FlareWhite_F", "UGL_FlareGreen_F", "UGL_FlareRed_F", "UGL_FlareYellow_F", "UGL_FlareCIR_F", "1Rnd_Smoke_Grenade_shell", "1Rnd_SmokeRed_Grenade_shell", "1Rnd_SmokeGreen_Grenade_shell", "1Rnd_SmokeYellow_Grenade_shell", "1Rnd_SmokePurple_Grenade_shell", "1Rnd_SmokeBlue_Grenade_shell", "1Rnd_SmokeOrange_Grenade_shell", "ACE_HuntIR_M203", "CUP_1Rnd_StarCluster_White_M203", "CUP_1Rnd_StarCluster_Red_M203", "CUP_1Rnd_StarCluster_Green_M203", "CUP_1Rnd_StarFlare_White_M203", "CUP_1Rnd_StarFlare_Red_M203", "CUP_1Rnd_StarFlare_Green_M203" };            
+};
+ace_barrelLength = 461; 
+};
+class UK3CB_BAF_L119_Base: arifle_Mk20_plain_F {
+ace_barrelLength = 450; 
+class WeaponSlotsInfo {
+allowedslots[] = {901};
+mass = 84;
+delete asdg_MuzzleSlot_UK3CB_BAF_L85;
+class asdg_MuzzleSlot_UK3CB_BAF_L119: asdg_MuzzleSlot_556_3CB_L119 {};
+class asdg_OpticRail_UK3CB_BAF_L85: asdg_OpticRail1913 {};
+class asdg_FrontSideRail_L85: asdg_FrontSideRail {};
+};
+};
+class UK3CB_BAF_L119A1_CQB: UK3CB_BAF_L119_Base {
+ace_barrelLength = 434; 
+class WeaponSlotsInfo {
+allowedslots[] = {901};
+mass = 84;
+delete asdg_MuzzleSlot_UK3CB_BAF_L85;
+class asdg_MuzzleSlot_UK3CB_BAF_L119: asdg_MuzzleSlot_556_3CB_L119 {};
+class asdg_OpticRail_UK3CB_BAF_L85: asdg_OpticRail1913 {};
+};
+};
+class UK3CB_BAF_L119A1: UK3CB_BAF_L119_Base {
+class WeaponSlotsInfo {
+allowedslots[] = {901};
+mass = 84;
+delete asdg_MuzzleSlot_UK3CB_BAF_L85;
+class asdg_MuzzleSlot_UK3CB_BAF_L119: asdg_MuzzleSlot_556_3CB_L119 {};
+class asdg_OpticRail_UK3CB_BAF_L85: asdg_OpticRail1913 {};
+class asdg_FrontSideRail_L85: asdg_FrontSideRail {};
+};
+};
+class UK3CB_BAF_L119A1_UKUGL: UK3CB_BAF_L119_Base {
+class UK3CB_BAF_L123A2: UGL_F {
+magazines[] = { "UK3CB_BAF_1Rnd_HE_Grenade_Shell", "UK3CB_BAF_1Rnd_HEDP_Grenade_Shell", "UK3CB_BAF_1Rnd_Blank_Grenade_Shell", "UK3CB_BAF_UGL_FlareWhite_F", "UK3CB_BAF_UGL_FlareRed_F", "UK3CB_BAF_UGL_FlareGreen_F", "UK3CB_BAF_UGL_FlareYellow_F", "UK3CB_BAF_UGL_FlareCIR_F", "UK3CB_BAF_1Rnd_Smoke_Grenade_shell", "UK3CB_BAF_1Rnd_SmokeRed_Grenade_shell", "UK3CB_BAF_1Rnd_SmokeGreen_Grenade_shell", "UK3CB_BAF_1Rnd_SmokeYellow_Grenade_shell", "UK3CB_BAF_1Rnd_SmokePurple_Grenade_shell", "UK3CB_BAF_1Rnd_SmokeBlue_Grenade_shell", "UK3CB_BAF_1Rnd_SmokeOrange_Grenade_shell", "1Rnd_HE_Grenade_shell", "UGL_FlareWhite_F", "UGL_FlareGreen_F", "UGL_FlareRed_F", "UGL_FlareYellow_F", "UGL_FlareCIR_F", "1Rnd_Smoke_Grenade_shell", "1Rnd_SmokeRed_Grenade_shell", "1Rnd_SmokeGreen_Grenade_shell", "1Rnd_SmokeYellow_Grenade_shell", "1Rnd_SmokePurple_Grenade_shell", "1Rnd_SmokeBlue_Grenade_shell", "1Rnd_SmokeOrange_Grenade_shell", "ACE_HuntIR_M203", "CUP_1Rnd_StarCluster_White_M203", "CUP_1Rnd_StarCluster_Red_M203", "CUP_1Rnd_StarCluster_Green_M203", "CUP_1Rnd_StarFlare_White_M203", "CUP_1Rnd_StarFlare_Red_M203", "CUP_1Rnd_StarFlare_Green_M203" };
+};
+};
+class srifle_EBR_F;
+class UK3CB_BAF_L129A1: srifle_EBR_F {
+ace_barrelLength = 410;
+};
+class LMG_Zafir_F;
+class UK3CB_BAF_L7A2: LMG_Zafir_F {
+magazines[] = {
+"UK3CB_BAF_762_200Rnd_T","UK3CB_BAF_762_200Rnd","UK3CB_BAF_762_200Rnd_Blank","UK3CB_BAF_762_100Rnd_T","UK3CB_BAF_762_100Rnd","UK3CB_BAF_762_100Rnd_Blank","UK3CB_BAF_762_100Rnd_EL","UK3CB_BAF_762_100Rnd_T_EL","UK3CB_BAF_762_200Rnd_EL","UK3CB_BAF_762_200Rnd_T_EL"
+};
+class Single: Mode_SemiAuto {
+sounds[] = { "StandardSound" };
+class BaseSoundModeType;
+class StandardSound: BaseSoundModeType {
+soundSetShot[] = { "DS_CoaxMG_Closure_SoundSet","DS_CoaxMG_Shot_SoundSet","DS_mmg1_Tail_SoundSet" };
+};
+};
+class FullAuto: Mode_FullAuto {
+sounds[] = { "StandardSound" };
+class BaseSoundModeType;
+class StandardSound: BaseSoundModeType {
+soundSetShot[] = { "DS_CoaxMG_Closure_SoundSet","DS_CoaxMG_Shot_SoundSet","DS_mmg1_Tail_SoundSet" };
+};
+};
+class WeaponSlotsInfo;
+};
+class UK3CB_BAF_L7A2_FIST: UK3CB_BAF_L7A2 {
+class WeaponSlotsInfo: WeaponSlotsInfo {
+mass = 240;
+};
+};
+class Rifle_Long_Base_F;
+class UK3CB_BAF_L110_Base: Rifle_Long_Base_F {
+class Single: Mode_SemiAuto {
+class BaseSoundModeType;
+class StandardSound: BaseSoundModeType {
+soundSetShot[] = { "DS_zafir_Closure_SoundSet","DS_zafir_Shot_SoundSet","DS_lmg1_Tail_SoundSet" };
+};
+};
+class FullAuto: Mode_FullAuto {
+class BaseSoundModeType;
+class StandardSound: BaseSoundModeType {
+soundSetShot[] = { "DS_zafir_Closure_SoundSet","DS_zafir_Shot_SoundSet","DS_lmg1_Tail_SoundSet" };
+};
+};
+};
+class UK3CB_BAF_L110_556_Base: UK3CB_BAF_L110_Base {
+class Single: Mode_SemiAuto {
+class BaseSoundModeType;
+class StandardSound: BaseSoundModeType {
+soundSetShot[] = { "DS_zafir_Closure_SoundSet","DS_zafir_Shot_SoundSet","DS_lmg1_Tail_SoundSet" };
+};
+};
+class FullAuto: Mode_FullAuto {
+class BaseSoundModeType;
+class StandardSound: BaseSoundModeType {
+soundSetShot[] = { "DS_zafir_Closure_SoundSet","DS_zafir_Shot_SoundSet","DS_lmg1_Tail_SoundSet" };
+};
+};
+};
+class UK3CB_BAF_L110_762_Base: UK3CB_BAF_L110_Base {
+class Single: Mode_SemiAuto {
+class BaseSoundModeType;
+class StandardSound: BaseSoundModeType {
+soundSetShot[] = { "DS_CoaxMG_Closure_SoundSet","DS_CoaxMG_Shot_SoundSet","DS_mmg1_Tail_SoundSet" };
+};
+};
+class FullAuto: Mode_FullAuto {
+class BaseSoundModeType;
+class StandardSound: BaseSoundModeType {
+soundSetShot[] = { "DS_CoaxMG_Closure_SoundSet","DS_CoaxMG_Shot_SoundSet","DS_mmg1_Tail_SoundSet" };
+};
+};
+};
+class LMG_RCWS;
+class MGun;
+class UK3CB_BAF_L7A2_veh: LMG_RCWS {
+magazines[] = {
+"UK3CB_BAF_762_200Rnd_T","UK3CB_BAF_762_200Rnd","UK3CB_BAF_762_200Rnd_Blank","UK3CB_BAF_762_100Rnd_T","UK3CB_BAF_762_100Rnd","UK3CB_BAF_762_100Rnd_Blank","UK3CB_BAF_762_100Rnd_EL","UK3CB_BAF_762_100Rnd_T_EL","UK3CB_BAF_762_200Rnd_EL","UK3CB_BAF_762_200Rnd_T_EL"
+};
+class manual: MGun {
+sounds[] = { "StandardSound" };
+class StandardSound {
+soundSetShot[] = { "DS_CoaxMG_Closure_SoundSet","DS_CoaxMG_Shot_SoundSet","DS_lmg1_Tail_SoundSet" };
+};
+};
+};
+class GM6_base_F;
+class srifle_GM6_F: GM6_base_F {
+class Single;
+};
+class UK3CB_BAF_L135A1: srifle_GM6_F {
+class Single: Single {
+class BaseSoundModeType {};
+class StandardSound: BaseSoundModeType {
+soundSetShot[] = { "DS_sniper1_crackling_SoundSet","DS_lrr_Shot_SoundSet","DS_sniper1_Tail_SoundSet" };
+};
+};
+};
+class UK3CB_BAF_L85A2_RIS;
+class UK3CB_BAF_L85A2_RIS_Elcan: UK3CB_BAF_L85A2_RIS {
+class LinkedItems {
+class LinkedItemsOptic {
+slot = "asdg_OpticRail_UK3CB_BAF_L85";
+item = "UK3CB_BAF_SpecterLDS_Dot_3D";
+};
+};
+};
+class UK3CB_BAF_L22A2;
+class UK3CB_BAF_L22A2_Elcan: UK3CB_BAF_L22A2 {
+class LinkedItems {
+class LinkedItemsOptic {
+slot = "asdg_OpticRail_UK3CB_BAF_L85";
+item = "UK3CB_BAF_SpecterLDS_Dot_3D";
+};
+};
+};
+class UK3CB_BAF_L85A2_UGL;
+class UK3CB_BAF_L85A2_UGL_Elcan: UK3CB_BAF_L85A2_UGL {
+class LinkedItems {
+class LinkedItemsOptic {
+slot = "asdg_OpticRail_UK3CB_BAF_L85";
+item = "UK3CB_BAF_SpecterLDS_Dot_3D";
+};
+};
+};
+class UK3CB_BAF_L110A3;
+class UK3CB_BAF_L110A3_Elcan: UK3CB_BAF_L110A3 {
+class LinkedItems {
+class LinkedItemsOptic {
+slot = "asdg_OpticRail_UK3CB_BAF_L110A2";
+item = "UK3CB_BAF_SpecterLDS_Dot_3D";
+};
+};
+};
+class UK3CB_BAF_L129A1_Grippod;
+class UK3CB_BAF_L129A1_Grippod_Acog: UK3CB_BAF_L129A1_Grippod {
+class LinkedItems {
+class LinkedItemsOptic {
+slot = "asdg_OpticRail_UK3CB_BAF_L129A1";
+item = "UK3CB_BAF_TA31F";
+};
+};
+};
+class UK3CB_BAF_L115A3;
+class UK3CB_BAF_L115A3_LRPS: UK3CB_BAF_L115A3 {
+class LinkedItems {
+class LinkedItemsOptic {
+slot = "asdg_OpticRail_UK3CB_BAF_L115";
+item = "optic_LRPS";
+};
+};
+};
+class UK3CB_BAF_L115A3_DE;
+class UK3CB_BAF_L115A3_DE_LRPS: UK3CB_BAF_L115A3_DE {
+class LinkedItems {
+class LinkedItemsOptic {
+slot = "asdg_OpticRail_UK3CB_BAF_L115";
+item = "optic_LRPS";
+};
+};
+};
+class UK3CB_BAF_L135A1_LRPS: UK3CB_BAF_L135A1 {
+class LinkedItems {
+class LinkedItemsOptic {
+slot = "asdg_OpticRail_rifles";
+item = "optic_LRPS";
+};
+};
+};
+class launch_NLAW_F;
+class UK3CB_BAF_NLAW_Launcher: launch_NLAW_F {
+magazines[] = { "ACE_PreloadedMissileDummy" };
+ACE_UsedTube = "ACE_launch_NLAW_Used_F";
+ace_nlaw_enabled = 1;
+uk3cb_used_launcher = "";
+canLock = 1;
+ace_overpressure_priority = 1;
+ace_overpressure_angle = 30;
+ace_overpressure_range = 2;
+ace_overpressure_damage = 0.6;
+};
+class ACE_launch_NLAW_Used_F: launch_NLAW_F {
+modelOptics = "\UK3CB_BAF_Weapons\addons\UK3CB_BAF_Weapons_Launchers\uk3cb_nlaw_optic.p3d";
+};
+class CBA_MiscItem;
+class CBA_MiscItem_ItemInfo;
+class UK3CB_BAF_Javelin_CLU: CBA_MiscItem {
+scope = 2;
+displayName = "Javelin CLU";
+descriptionShort = "Mid-range fire-and-forget anti-tank missile system<br/>by www.3commandobrigade.com";
+model = "\UK3CB_BAF_Weapons\addons\UK3CB_BAF_Weapons_Launchers\UK3CB_Javelin_CLU.p3d";
+picture = "\UK3CB_BAF_Weapons\addons\UK3CB_BAF_Weapons_Launchers\data\clu_javelin_ca.paa";
+icon = "iconObject_circle";
+delete OpticsModes;
+delete WeaponSlotsInfo;
+class ItemInfo: CBA_MiscItem_ItemInfo {
+mass = 64;
+allowedSlots[] = {901};
+};
+};
+class Default;
+class Put: Default {
+muzzles[] += { "BreachChargeMuzzle" };
+class DemoChargeMuzzle;
+class BreachChargeMuzzle: DemoChargeMuzzle {
+displayName = "Breach Charge";
+magazines[] = { "BreachCharge_Remote_Mag" };
+};
+};
+class GrenadeLauncher;
+class Throw: GrenadeLauncher {
+muzzles[] += {"ACE_Chemlight_HiBlueMuzzle", "ACE_Chemlight_HiGreenMuzzle"};
+class ThrowMuzzle;
+class ACE_Chemlight_HiBlueMuzzle: ThrowMuzzle {
+magazines[] = {"ACE_Chemlight_HiBlue"};
+};
+class ACE_Chemlight_HiGreenMuzzle: ThrowMuzzle {
+magazines[] = {"ACE_Chemlight_HiGreen"};
+};
+};
+class CUP_weapon_mastersafe: Default {
+displayName = "Safe";
+displayNameMagazine = "Safe";
+shortNameMagazine = "Safe";
+nameSound = "cannon";
+cursor = "EmptyCursor";
+cursorAim = "EmptyCursor";
+magazines[] = { "FakeMagazine" };
+reloadMagazineSound[] = { "", 1, 1 };
+canLock = 0;
+burst = 0;
+reloadTime = 0.01;
+magazineReloadTime = 0.1;
+};
+class CMFlareLauncher;
+class UK3CB_BAF_CMFlareLauncher: CMFlareLauncher {
+modes[] = {"Single", "Burst1", "AIBurst"};
+class Burst1: Mode_Burst {         
+reloadTime = 0.2;
+displayName = "Flares 10/1s";
+burst = 5;
+};
+};
+class RocketPods;
+class ace_hellfire_launcher: RocketPods {
+displayName = "AGM-114K";
+magazines[] = { "2Rnd_ACE_Hellfire_AGM114K", "4Rnd_ACE_Hellfire_AGM114K", "PylonMissile_1Rnd_ACE_Hellfire_AGM114K", "PylonRack_1Rnd_ACE_Hellfire_AGM114K", "PylonRack_3Rnd_ACE_Hellfire_AGM114K", "PylonRack_4Rnd_ACE_Hellfire_AGM114K" };
+};
+class ace_hellfire_launcher_N: ace_hellfire_launcher {
+displayName = "AGM-114N";
+magazines[] = { "2Rnd_ACE_Hellfire_AGM114N", "4Rnd_ACE_Hellfire_AGM114N", "6Rnd_ACE_Hellfire_AGM114N", "PylonMissile_1Rnd_ACE_Hellfire_AGM114N", "PylonRack_1Rnd_ACE_Hellfire_AGM114N", "PylonRack_3Rnd_ACE_Hellfire_AGM114N", "PylonRack_4Rnd_ACE_Hellfire_AGM114N" };
+};
+class ace_hellfire_launcher_drone: ace_hellfire_launcher {
+magazines[] = { "PylonRack_2Rnd_ACE_Hellfire_AGM114K_Drone" };
+};
+class ace_hellfire_launcher_drone_N: ace_hellfire_launcher_N {
+magazines[] = { "PylonRack_2Rnd_ACE_Hellfire_AGM114N_Drone" };
+};
+class ace_hellfire_launcher_L: ace_hellfire_launcher {
+displayName = "AGM-114L";
+magazines[] = { "4Rnd_ACE_Hellfire_AGM114L", "PylonRack_4Rnd_ACE_Hellfire_AGM114L" };
+ace_hellfire_enabled = 0;
+ace_laser_canSelect = 0;
+weaponLockSystem = 8;
+canLock = 2;
+cmImmunity = 0.95;
+};
+class CannonCore;
+class CUP_Vacannon_M230_veh: CannonCore {
+magazines[] = { "CUP_1200Rnd_TE1_Red_Tracer_30x113mm_M789_HEDP_M","CUP_1200Rnd_TE1_Green_Tracer_30x113mm_M789_HEDP_M","CUP_1200Rnd_TE1_Yellow_Tracer_30x113mm_M789_HEDP_M","CUP_1200Rnd_TE1_White_Tracer_30x113mm_M789_HEDP_M" };
+ballisticsComputer = "1 + 2 + 16";
+reloadTime = 0.096;
+modes[] = { "close", "short", "medium", "far", "manual", "burst_15", "burst_25" };
+cursorAim = "EmptyCursor";      
+class GunParticles {
+class EffectSmokeLeft {
+effectName = "MachineGun2";
+positionName = "usti hlavne";
+directionName = "gun_smoke_left";
+};
+class EffectSmokeRight {
+effectName = "MachineGun2";
+positionName = "usti hlavne";
+directionName = "gun_smoke_right";
+};
+class EffectCartridge {
+positionName = "gun_eject";
+directionName = "gun_eject_dir";
+effectName = "MachineGunCartridge1";
+};
+};
+class manual: CannonCore {
+displayName = "Burst 10";
+textureType = "semi";
+burst = 10;
+soundBurst = 0;
+};
+class burst_15: manual {
+displayName = "Burst 20 ";
+textureType = "burst";
+burst = 20;
+};
+class burst_25: manual {
+displayName = "Full";
+textureType = "fullAuto";
+burst = 1;
+};
+};
+class CUP_Vacannon_M621_AW159_veh: CannonCore {
+class GunParticles {
+class FirstEffect {
+effectName = "machinegun1";
+positionName = "muzzle_1";
+directionName = "chamber_1";
+};
+class EffectCartridge {
+positionName = "eject_1";
+directionName = "eject_1_dir";
+effectName = "MachineGunCartridge";
+};
+};
+cartridgePos = "eject_1";
+cartridgeVel = "eject_1_dir";
+class manual: MGun {
+class StandardSound {
+begin1[] = { "A3\Sounds_F\arsenal\weapons_vehicles\gatling_20mm\20mm_01_burst", 3.98107, 1, 1300, {2, 35740} };
+soundBegin[] = { "begin1", 1 };
+closure1[] = { "A3\Sounds_F\weapons\Closure\sfx10", 0.63095737, 1, 20 };
+closure2[] = { "A3\sounds_f\weapons\closure\sfx11", 0.63095737, 1.2, 20 };
+soundClosure[] = { "closure1", 0.5, "closure2", 0.5 };
+};
+};
+};
+class CUP_Vmlauncher_FFAR_veh;
+class CUP_Vmlauncher_CRV7_veh: CUP_Vmlauncher_FFAR_veh {
+class Single;
+class Double: Single {
+displayName = "Ripple 2";
+};
+class Quadruple: Single {
+displayName = "Ripple 4";
+};
+};
+class CUP_Vlmg_M240_veh: MGun {
+displayName = "L7A2";
+magazines[] = { "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M","CUP_200Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M","CUP_100Rnd_TE4_LRT4_White_Tracer_762x51_Belt_M","CUP_200Rnd_TE4_LRT4_White_Tracer_762x51_Belt_M","CUP_1200Rnd_TE4_White_Tracer_762x51_M240_M","CUP_100Rnd_TE4_White_Tracer_762x51_M240_M","CUP_1200Rnd_TE4_Red_Tracer_762x51_M240_M",,"UK3CB_BAF_762_200Rnd_T","UK3CB_BAF_762_200Rnd","UK3CB_BAF_762_200Rnd_Blank","UK3CB_BAF_762_100Rnd_T","UK3CB_BAF_762_100Rnd","UK3CB_BAF_762_100Rnd_Blank","UK3CB_BAF_762_100Rnd_EL","UK3CB_BAF_762_100Rnd_T_EL","UK3CB_BAF_762_200Rnd_EL","UK3CB_BAF_762_200Rnd_T_EL" };
+class manual: MGun {
+sounds[] = { "StandardSound" };
+class StandardSound {
+soundSetShot[] = { "DS_CoaxMG_Closure_SoundSet","DS_CoaxMG_Shot_SoundSet","DS_lmg1_Tail_SoundSet" };
+};
+};
+};
+class HMG_M2;
+class CUP_Vhmg_M2_veh: HMG_M2 {
+displayName = "L111A1";
+magazines[] = { "CUP_100Rnd_127x99_M","CUP_100Rnd_TE4_Red_Tracer_127x99_M","CUP_100Rnd_TE4_Green_Tracer_127x99_M","CUP_100Rnd_TE4_Yellow_Tracer_127x99_M","CUP_100Rnd_TE4_White_Tracer_127x99_M","CUP_100Rnd_TE1_Red_Tracer_127x99_M","CUP_100Rnd_TE1_Green_Tracer_127x99_M","CUP_100Rnd_TE1_Yellow_Tracer_127x99_M","CUP_100Rnd_TE1_White_Tracer_127x99_M","CUP_200Rnd_TE1_Red_Tracer_127x99_M","UK3CB_BAF_127_100Rnd" };
+class manual: MGun {
+class StandardSound {
+soundSetShot[] = { "DS_HMG_Shot_SoundSet","DS_sniper1_Tail_SoundSet" };
+};
+};
+};
+class GMG_20mm;
+class GMG_F;
+class CUP_Vhmg_AGS30_veh: GMG_20mm {
+class manual: GMG_F {
+sounds[] = { "StandardSound" };
+class StandardSound {
+soundSetShot[] = { "DS_GMG_Shot_SoundSet","DS_mmg1_Tail_SoundSet" };
+};
+};
+};
+class CUP_Vgmg_MK19_veh: CUP_Vhmg_AGS30_veh {
+displayName = "L134A1";
+magazines[] = { "CUP_48Rnd_40mm_MK19_M","CUP_32Rnd_40mm_MK19_M","CUP_96Rnd_40mm_MK19_M","UK3CB_BAF_32Rnd_40mm_G_Box" };
+};
+class MGunCore;
+class CUP_Vlmg_M134_veh: MGunCore {
+class LowROF: Mode_FullAuto {
+sounds[] = { "StandardSound" };
+class StandardSound {
+soundSetShot[] = { "DS_Minigun762_Shot_SoundSet","DS_mmg1_Tail_SoundSet" };
+};
+};
+class HighROF: LowROF {
+sounds[] = { "StandardSound" };
+class StandardSound {
+soundSetShot[] = { "DS_Minigun762_Shot_SoundSet","DS_mmg1_Tail_SoundSet" };
+};
+};
+};
+class gatling_30mm_base: CannonCore {
+class LowROF: Mode_FullAuto {
+class StandardSound {
+soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
+};
+soundContinuous = 0;
+};
+class close: LowROF {
+class StandardSound {
+soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
+};
+soundContinuous = 0;
+};
+class near: close {
+class StandardSound {
+soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
+};
+soundContinuous = 0;
+};
+class short: close {
+class StandardSound {
+soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
+};
+soundContinuous = 0;
+};
+class medium: close {
+class StandardSound {
+soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
+};
+soundContinuous = 0;
+};
+class far: close {
+class StandardSound {
+soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet","DS_sniper1_tail_soundset" };
+};
+soundContinuous = 0;
+};
+};
+class CUP_Vacannon_2A14_veh: CannonCore {
+class manual;
+class close: manual {
+midRange = 200; 
+maxRange = 500; 
+aiDispersionCoefX = 5;
+aiDispersionCoefY = 5;
+};
+class short: close {
+minRange = 300; 
+midRange = 500; 
+maxRange = 800; 
+aiDispersionCoefX = 6;
+aiDispersionCoefY = 6;
+};
+class medium: close {
+minRange = 600; 
+midRange = 800; 
+maxRange = 1100; 
+aiDispersionCoefX = 7;
+aiDispersionCoefY = 7;
+};
+class far: close {
+minRange = 900; 
+midRange = 1100; 
+maxRange = 1400; 
+aiDispersionCoefX = 8;
+aiDispersionCoefY = 8;
+};
+};
+class CUP_Vacannon_GSh302K_veh;
+class CUP_Vacannon_2A38M_veh: CUP_Vacannon_GSh302K_veh {
+class LowROF;
+class close: LowROF {
+midRange = 50; 
+maxRange = 200; 
+aiDispersionCoefX = 5;
+aiDispersionCoefY = 5;
+};
+class near: close {
+midRange = 150; 
+maxRange = 300; 
+aiDispersionCoefX = 5;
+aiDispersionCoefY = 5;
+};
+class short: close {
+minRange = 100; 
+midRange = 300; 
+maxRange = 500; 
+aiDispersionCoefX = 6;
+aiDispersionCoefY = 6;
+};
+class medium: close {
+minRange = 300; 
+midRange = 600; 
+maxRange = 800; 
+aiDispersionCoefX = 7;
+aiDispersionCoefY = 7;
+};
+class far: close {
+minRange = 700; 
+midRange = 900; 
+maxRange = 1400; 
+aiDispersionCoefX = 8;
+aiDispersionCoefY = 8;
+};
+};
+class CUP_Vacannon_AZP23_veh: CannonCore {
+class manual;
+class close: manual {
+midRange = 200; 
+maxRange = 500; 
+aiDispersionCoefX = 5;
+aiDispersionCoefY = 5;
+};
+class short: close {
+minRange = 300; 
+midRange = 500; 
+maxRange = 800; 
+aiDispersionCoefX = 6;
+aiDispersionCoefY = 6;
+};
+class medium: close {
+minRange = 600; 
+midRange = 800; 
+maxRange = 1100; 
+aiDispersionCoefX = 7;
+aiDispersionCoefY = 7;
+};
+class far: close {
+minRange = 900; 
+midRange = 1100; 
+maxRange = 1400; 
+aiDispersionCoefX = 8;
+aiDispersionCoefY = 8;
+};
+};
+class missiles_titan;
+class CUP_Vmlauncher_9M311_veh: missiles_titan {
+midRange = 1000; 
+maxRange = 5000; 
+aiRateOfFire = 7; 
+};
+class CUP_Vmlauncher_Igla_twice_veh: missiles_titan {
+midRange = 1000; 
+maxRange = 4000; 
+aiRateOfFire = 7; 
+};
+class CUP_Vmlauncher_Stinger_vehicle_veh: missiles_titan {
+midRange = 1000; 
+maxRange = 4000; 
+aiRateOfFire = 7; 
+};
+class CUP_Vmlauncher_RBS70_veh: missiles_titan {
+midRange = 1000; 
+maxRange = 4000; 
+aiRateOfFire = 7; 
+};
+class Launcher_Base_F;
+class CUP_launch_Igla: Launcher_Base_F {
+midRange = 1000; 
+maxRange = 3000; 
+aiRateOfFire = 7; 
+};
+class CUP_launch_FIM92Stinger: Launcher_Base_F {
+midRange = 1000; 
+maxRange = 3000; 
+aiRateOfFire = 7; 
+};
+class CUP_launch_9K32Strela: Launcher_Base_F {
+midRange = 1000; 
+maxRange = 3000; 
+aiRateOfFire = 7; 
+};
+class CUP_arifle_M4A1;
+class CUP_arifle_M4A1_Acog: CUP_arifle_M4A1 {
+scopeArsenal = 1;
+class LinkedItems {
+class LinkedItemsOptic {
+slot = "CUP_PicatinnyTopMountM4";
+item = "CUP_optic_RCO";
+};
+};
+};
+class CUP_lmg_M240;
+class CUP_lmg_M240_LDS: CUP_lmg_M240 {
+scopeArsenal = 1;
+class LinkedItems {
+class LinkedItemsOptic {
+slot = "CUP_PicatinnyTopMountM4";
+item = "UK3CB_BAF_SpecterLDS";
+};
+};
+};
+class CUP_launch_FIM92Stinger_Rubber: CUP_launch_FIM92Stinger {
+scopeArsenal = 1;
+magazines[] = { "CUP_Stinger_M_Rubber" };
+ace_overpressure_damage = 0;
+};
+class CUP_Vmlauncher_Stinger_vehicle_veh_Rubber: CUP_Vmlauncher_Stinger_vehicle_veh {
+magazines[] = { "CUP_4Rnd_Stinger_M_Rubber" };
+};
+class Rifle;
+class Rifle_Base_F: Rifle {
+class WeaponSlotsInfo;
+};
+class CUP_arifle_AK_Base: Rifle_Base_F {
+class WeaponSlotsInfo: WeaponSlotsInfo {
+class PointerSlot: asdg_FrontSideRail {
+iconPosition[] = {0.3, 0.35};
+iconScale = 0.2;
+};
+};
+};
+class CUP_arifle_AKS_Base: CUP_arifle_AK_Base {
+class WeaponSlotsInfo: WeaponSlotsInfo {
+class PointerSlot: asdg_FrontSideRail {
+iconPosition[] = {0.3, 0.35};
+iconScale = 0.2;
+};
+};
+};
+class CUP_arifle_AK107_Base: CUP_arifle_AK_Base {
+class WeaponSlotsInfo: WeaponSlotsInfo {
+class PointerSlot: asdg_FrontSideRail {
+iconPosition[] = {0.3, 0.35};
+iconScale = 0.2;
+};
+};
+};
+class CUP_launch_NLAW: Launcher_Base_F {
+scope = 1;
+};
+class CUP_launch_Javelin: Launcher_Base_F {
+scope = 1;
+};
+class CUP_srifle_AWM_Base;
+class CUP_srifle_AWM_des: CUP_srifle_AWM_Base {
+scope = 1;
+};
+class CUP_srifle_AWM_wdl: CUP_srifle_AWM_Base {
+scope = 1;
+};
+class CUP_srifle_AWM_des_SBPMII: CUP_srifle_AWM_des {
+scope = 1;
+};
+class CUP_srifle_AWM_wdl_SBPMII: CUP_srifle_AWM_wdl {
+scope = 1;
+};
+class CUP_lmg_L110A1: Rifle_Long_Base_F {
+scope = 1;
+};
+class CUP_lmg_L110A1_Aim_Laser: CUP_lmg_L110A1 {
+scope = 1;
+};
+class CUP_srifle_L129A1: Rifle_Base_F {
+scope = 1;
+};
+class CUP_srifle_L129A1_HG: CUP_srifle_L129A1 {
+scope = 1;
+};
+class CUP_l85a2_base;
+class CUP_l85a2: CUP_l85a2_base {
+scope = 1;
+};
+class CUP_l85a2_ris: CUP_l85a2_base {
+scope = 1;
+};
+class CUP_l85a2_ris_ng: CUP_l85a2_base {
+scope = 1;
+};
+class CUP_l85a2_ugl: CUP_l85a2_base {
+scope = 1;
+};
+class CUP_arifle_L85A2: CUP_l85a2 {
+scope = 1;
+};
+class CUP_arifle_L85A2_G: CUP_l85a2_ris {
+scope = 1;
+};
+class CUP_arifle_L85A2_NG: CUP_l85a2_ris_ng {
+scope = 1;
+};
+class CUP_arifle_L85A2_GL: CUP_l85a2_ugl {
+scope = 1;
+};
+class CUP_arifle_L86A2: CUP_l85a2 {
+scope = 1;
+};
+class CUP_arifle_L85A2_Holo_laser: CUP_arifle_L85A2_G {
+scope = 1;
+};
+class CUP_arifle_L85A2_GL_Holo_Laser: CUP_arifle_L85A2_GL {
+scope = 1;
+};
+class CUP_arifle_L85A2_SUSAT_Laser: CUP_arifle_L85A2_G {
+scope = 1;
+};
+class CUP_arifle_L85A2_GL_SUSAT_Laser: CUP_arifle_L85A2_GL {
+scope = 1;
+};
+class CUP_arifle_L85A2_CWS_Laser: CUP_arifle_L85A2_G {
+scope = 1;
+};
+class CUP_arifle_L85A2_ACOG_Laser: CUP_arifle_L85A2_G {
+scope = 1;
+};
+class CUP_arifle_L85A2_GL_ACOG_Laser: CUP_arifle_L85A2_GL {
+scope = 1;
+};
+class CUP_arifle_L86A2_ACOG: CUP_arifle_L86A2 {
+scope = 1;
+};
+class CUP_lmg_L7A2: CUP_lmg_M240 {
+scope = 1;
+};
+};
+class CfgVehicles {
+class CUP_USBasicAmmunitionBox;
+class CUP_USLaunchersBox: CUP_USBasicAmmunitionBox {
+class TransportMagazines {
+class _xx_M136_M {
+magazine = "CUP_M136_M";
+count = 45;
+};
+class _xx_Stinger_M {
+magazine = "CUP_Stinger_M";
+count = 4;
+};
+class _xx_SMAW_HEAA_M {
+magazine = "CUP_SMAW_HEAA_M";
+count = 3;
+};
+class _xx_SMAW_HEDP_M {
+magazine = "CUP_SMAW_HEDP_M";
+count = 3;
+};
+};
+class TransportWeapons {
+class _xx_M136 {
+weapon = "CUP_M136";
+count = 15;
+};
+class _xx_Stinger {
+weapon = "CUP_Stinger";
+count = 4;
+};
+class _xx_UK3CB_BAF_Javelin_Slung_Tube {
+weapon = "UK3CB_BAF_Javelin_Slung_Tube";
+count = 1;
+};
+class _xx_UK3CB_BAF_Javelin_CLU {
+weapon = "UK3CB_BAF_Javelin_CLU";
+count = 1;
+};
+class _xx_SMAW {
+weapon = "CUP_SMAW";
+count = 2;
+};
+};
+};
+class CUP_ReammoBox_EP1;
+class CUP_USLaunchers_EP1: CUP_ReammoBox_EP1 {
+class TransportMagazines {
+class _xx_M136_M {
+magazine = "CUP_M136_M";
+count = 20;
+};
+class _xx_MAAWS_HEAT_M {
+magazine = "CUP_MAAWS_HEAT_M";
+count = 10;
+};
+class _xx_MAAWS_HEDP_M {
+magazine = "CUP_MAAWS_HEDP_M";
+count = 10;
+};
+class _xx_Stinger_M {
+magazine = "CUP_Stinger_M";
+count = 10;
+};
+class _xx_1Rnd_HE_M203 {
+magazine = "CUP_1Rnd_HE_M203";
+count = 80;
+};
+class _xx_6Rnd_HE_M203 {
+magazine = "CUP_6Rnd_HE_M203";
+count = 30;
+};
+class _xx_6Rnd_FlareWhite_M203 {
+magazine = "CUP_6Rnd_FlareWhite_M203";
+count = 30;
+};
+class _xx_6Rnd_FlareGreen_M203 {
+magazine = "CUP_6Rnd_FlareGreen_M203";
+count = 30;
+};
+class _xx_6Rnd_FlareRed_M203 {
+magazine = "CUP_6Rnd_FlareRed_M203";
+count = 30;
+};
+class _xx_6Rnd_FlareYellow_M203 {
+magazine = "CUP_6Rnd_FlareYellow_M203";
+count = 30;
+};
+class _xx_6Rnd_Smoke_M203 {
+magazine = "CUP_6Rnd_Smoke_M203";
+count = 30;
+};
+class _xx_6Rnd_SmokeRed_M203 {
+magazine = "CUP_6Rnd_SmokeRed_M203";
+count = 30;
+};
+class _xx_6Rnd_SmokeGreen_M203 {
+magazine = "CUP_6Rnd_SmokeGreen_M203";
+count = 30;
+};
+class _xx_6Rnd_SmokeYellow_M203 {
+magazine = "CUP_6Rnd_SmokeYellow_M203";
+count = 30;
+};
+class _xx_1Rnd_StarFlare_White_M203 {
+magazine = "CUP_1Rnd_StarFlare_White_M203";
+count = 10;
+};
+class _xx_1Rnd_StarFlare_Red_M203 {
+magazine = "CUP_1Rnd_StarFlare_Red_M203";
+count = 10;
+};
+class _xx_1Rnd_StarFlare_Green_M203 {
+magazine = "CUP_1Rnd_StarFlare_Green_M203";
+count = 10;
+};
+class _xx_1Rnd_StarCluster_White_M203 {
+magazine = "CUP_1Rnd_StarCluster_White_M203";
+count = 10;
+};
+class _xx_1Rnd_StarCluster_Red_M203 {
+magazine = "CUP_1Rnd_StarCluster_Red_M203";
+count = 10;
+};
+class _xx_1Rnd_StarCluster_Green_M203 {
+magazine = "CUP_1Rnd_StarCluster_Green_M203";
+count = 10;
+};
+class _xx_HandGrenade_M67 {
+magazine = "CUP_HandGrenade_M67";
+count = 50;
+};
+};
+class TransportWeapons {
+class _xx_M136 {
+weapon = "CUP_M136";
+count = 2;
+};
+class _xx_UK3CB_BAF_Javelin_Slung_Tube {
+weapon = "UK3CB_BAF_Javelin_Slung_Tube";
+count = 1;
+};
+class _xx_UK3CB_BAF_Javelin_CLU {
+weapon = "UK3CB_BAF_Javelin_CLU";
+count = 1;
+};
+class _xx_MAAWS {
+weapon = "CUP_MAAWS";
+count = 2;
+};
+class _xx_Stinger {
+weapon = "CUP_Stinger";
+count = 2;
+};
+class _xx_M32_EP1 {
+weapon = "CUP_M32_EP1";
+count = 2;
+};
+class _xx_Mk13_EP1 {
+weapon = "CUP_Mk13_EP1";
+count = 4;
+};
+};
+};
+class StaticWeapon;
+class StaticMGWeapon: StaticWeapon {
+class Turrets;
+};
+class UK3CB_BAF_Static_MG_Base: StaticMGWeapon {
+faction = "CUP_B_GB";
+crew = "CUP_B_BAF_Soldier_MTP";
+typicalCargo[] = { "CUP_B_BAF_Soldier_MTP" };
+class Turrets: Turrets {
+class MainTurret;
+};
+};
+class UK3CB_BAF_Static_L7A2_Base: UK3CB_BAF_Static_MG_Base {
+class Turrets: Turrets {
+class MainTurret: MainTurret {
+weapons[] = { "CUP_Vlmg_M240_veh" };
+};
+};
+};
+class UK3CB_BAF_Static_L7A2_Low;
+class UK3CB_BAF_Static_L7A2_Deployed_Low: UK3CB_BAF_Static_L7A2_Low {
+faction = "CUP_B_GB";
+crew = "CUP_B_BAF_Soldier_MTP";
+};
+class UK3CB_BAF_Static_L7A2_Mid;
+class UK3CB_BAF_Static_L7A2_Deployed_Mid: UK3CB_BAF_Static_L7A2_Mid {
+faction = "CUP_B_GB";
+crew = "CUP_B_BAF_Soldier_MTP";
+};
+class UK3CB_BAF_Static_L7A2_High;
+class UK3CB_BAF_Static_L7A2_Deployed_High: UK3CB_BAF_Static_L7A2_High {
+faction = "CUP_B_GB";
+crew = "CUP_B_BAF_Soldier_MTP";
+};
+class UK3CB_BAF_Static_L111A1_Base: UK3CB_BAF_Static_MG_Base {
+class Turrets: Turrets {
+class MainTurret: MainTurret {
+weapons[] = { "CUP_Vhmg_M2_veh" };
+};
+};
+};
+class UK3CB_BAF_Static_L111A1_Low;
+class UK3CB_BAF_Static_L111A1_Deployed_Low: UK3CB_BAF_Static_L111A1_Low {
+faction = "CUP_B_GB";
+crew = "CUP_B_BAF_Soldier_MTP";
+};
+class UK3CB_BAF_Static_L111A1_Mid;
+class UK3CB_BAF_Static_L111A1_Deployed_Mid: UK3CB_BAF_Static_L111A1_Mid {
+faction = "CUP_B_GB";
+crew = "CUP_B_BAF_Soldier_MTP";
+};
+class UK3CB_BAF_Static_L111A1_High;
+class UK3CB_BAF_Static_L111A1_Deployed_High: UK3CB_BAF_Static_L111A1_High {
+faction = "CUP_B_GB";
+crew = "CUP_B_BAF_Soldier_MTP";
+};
+class UK3CB_BAF_Static_L134A1_Base: UK3CB_BAF_Static_MG_Base {
+class Turrets: Turrets {
+class MainTurret: MainTurret {
+weapons[] = { "CUP_Vgmg_MK19_veh" };
+};
+};
+};
+class UK3CB_BAF_Static_L134A1_Low;
+class UK3CB_BAF_Static_L134A1_Deployed_Low: UK3CB_BAF_Static_L134A1_Low {
+faction = "CUP_B_GB";
+crew = "CUP_B_BAF_Soldier_MTP";
+};
+class UK3CB_BAF_Static_L134A1_Mid;
+class UK3CB_BAF_Static_L134A1_Deployed_Mid: UK3CB_BAF_Static_L134A1_Mid {
+faction = "CUP_B_GB";
+crew = "CUP_B_BAF_Soldier_MTP";
+};
+class UK3CB_BAF_Static_L134A1_High;
+class UK3CB_BAF_Static_L134A1_Deployed_High: UK3CB_BAF_Static_L134A1_High {
+faction = "CUP_B_GB";
+crew = "CUP_B_BAF_Soldier_MTP";
+};
+class Mortar_01_base_F;
+class UK3CB_BAF_Static_Mortar_Base: Mortar_01_base_F {
+faction = "CUP_B_GB";
+crew = "CUP_B_BAF_Soldier_MTP";
+typicalCargo[] = { "CUP_B_BAF_Soldier_MTP" };
+};
+class UK3CB_BAF_Static_L16;
+class UK3CB_BAF_Static_L16_Deployed: UK3CB_BAF_Static_L16 {
+faction = "CUP_B_GB";
+crew = "CUP_B_BAF_Soldier_MTP";
+};
+class UK3CB_BAF_Static_M6;
+class UK3CB_BAF_Static_M6_Deployed: UK3CB_BAF_Static_M6 {
+faction = "CUP_B_GB";
+crew = "CUP_B_BAF_Soldier_MTP";
+};
+class ace_rearm_defaultCarriedObject;
+class uksf_weapons_ACE_Hellfire_AGM114: ace_rearm_defaultCarriedObject {
+model = "\u\uksf\addons\weapons\data\AGM114\AGM114Hellfire_proxy.p3d";
+};
+class ACE_Explosives_Place_DemoCharge;
+class ACE_Explosives_Place_BreachCharge: ACE_Explosives_Place_DemoCharge {
+author = "UKSF";
+displayName = "Breach Charge";
+};
+class DemoCharge_F;
+class BreachCharge_F: DemoCharge_F {
+author = "UKSF";
+displayName = "Breach Charge";
+ammo = "BreachCharge_Remote_Ammo";
+};
+class Thing;
+class ACE_Chemlight_IR_Marker: Thing {
+brightness = 10;
+class NVGMarker {
+diffuse[] = {0.1, 0.1, 0.1};
+ambient[] = {0.1, 0.1, 0.1};
+brightness = 0.4;
+name = "pozicni blik";
+drawLight = 0;
+drawLightSize = 0;
+drawLightCenterSize = 0;
+activeLight = 0;
+blinking = 0;
+dayLight = 0;
+onlyInNvg = 1;
+useFlare = 0;
+};
+};
+class CUP_BAF_BasicAmmunitionBox: CUP_ReammoBox_EP1 {
+scope = 1;
+scopeCurator = 0;
+};
+class CUP_BAF_BasicWeapons: CUP_ReammoBox_EP1 {
+scope = 1;
+scopeCurator = 0;
+};
+class CUP_BAF_Launchers: CUP_ReammoBox_EP1 {
+scope = 1;
+scopeCurator = 0;
+};
+class CUP_Weapons_Launchers_Base;
+class CUP_Weapon_launch_Javelin: CUP_Weapons_Launchers_Base {
+scope = 1;
+scopeCurator = 0;
+};
+class CUP_Weapons_MachineGuns_Base;
+class CUP_Weapon_lmg_L110A1: CUP_Weapons_MachineGuns_Base {
+scope = 1;
+scopeCurator = 0;
+};
+class CUP_Weapon_lmg_L110A1_Aim_Laser: CUP_Weapons_MachineGuns_Base {
+scope = 1;
+scopeCurator = 0;
+};
+class CUP_Weapon_lmg_L7A2: CUP_Weapons_MachineGuns_Base {
+scope = 1;
+scopeCurator = 0;
+};
+class CUP_Weapons_SniperRifles_Base;
+class CUP_Weapon_srifle_L129A1: CUP_Weapons_SniperRifles_Base {
+scope = 1;
+scopeCurator = 0;
+};
+class CUP_Weapon_srifle_L129A1_HG: CUP_Weapons_SniperRifles_Base {
+scope = 1;
+scopeCurator = 0;
+};
+class CUP_Weapons_AssaultRifles_Base;
+class CUP_Weapon_arifle_L85A2: CUP_Weapons_AssaultRifles_Base {
+scope = 1;
+scopeCurator = 0;
+};
+class CUP_Weapon_arifle_L85A2_G: CUP_Weapons_AssaultRifles_Base {
+scope = 1;
+scopeCurator = 0;
+};
+class CUP_Weapon_arifle_L85A2_Holo_laser: CUP_Weapons_AssaultRifles_Base {
+scope = 1;
+scopeCurator = 0;
+};
+class CUP_Weapon_arifle_L85A2_SUSAT_Laser: CUP_Weapons_AssaultRifles_Base {
+scope = 1;
+scopeCurator = 0;
+};
+class CUP_Weapon_arifle_L85A2_CWS_Laser: CUP_Weapons_AssaultRifles_Base {
+scope = 1;
+scopeCurator = 0;
+};
+class CUP_Weapon_arifle_L85A2_ACOG_Laser: CUP_Weapons_AssaultRifles_Base {
+scope = 1;
+scopeCurator = 0;
+};
+class CUP_Weapon_arifle_L85A2_NG: CUP_Weapons_AssaultRifles_Base {
+scope = 1;
+scopeCurator = 0;
+};
+class CUP_Weapon_arifle_L85A2_GL: CUP_Weapons_AssaultRifles_Base {
+scope = 1;
+scopeCurator = 0;
+};
+class CUP_Weapon_arifle_L85A2_GL_Holo_Laser: CUP_Weapons_AssaultRifles_Base {
+scope = 1;
+scopeCurator = 0;
+};
+class CUP_Weapon_arifle_L85A2_GL_SUSAT_Laser: CUP_Weapons_AssaultRifles_Base {
+scope = 1;
+scopeCurator = 0;
+};
+class CUP_Weapon_arifle_L85A2_GL_ACOG_Laser: CUP_Weapons_AssaultRifles_Base {
+scope = 1;
+scopeCurator = 0;
+};
+class CUP_Weapon_arifle_L86A2: CUP_Weapons_AssaultRifles_Base {
+scope = 1;
+scopeCurator = 0;
+};
+class CUP_Weapon_arifle_L86A2_ACOG: CUP_Weapons_AssaultRifles_Base {
+scope = 1;
+scopeCurator = 0;
+};
+class CUP_L111A1_base;
+class CUP_B_L111A1_BAF_MPT: CUP_L111A1_base {
+scope = 0;
+scopeCurator = 0;
+};
+class CUP_B_L111A1_BAF_DDPM: CUP_L111A1_base{
+scope = 0;
+scopeCurator = 0;
+};
+class CUP_B_L111A1_BAF_WDL: CUP_L111A1_base {
+scope = 0;
+scopeCurator = 0;
+};
+class CUP_L111A1_MiniTripod_base;
+class CUP_B_L111A1_MiniTripod_BAF_MPT: CUP_L111A1_MiniTripod_base {
+scope = 0;
+scopeCurator = 0;
+};
+class CUP_B_L111A1_MiniTripod_BAF_DDPM: CUP_L111A1_MiniTripod_base {
+scope = 0;
+scopeCurator = 0;
+};
+class CUP_B_L111A1_MiniTripod_BAF_WDL: CUP_L111A1_MiniTripod_base {
+scope = 0;
+scopeCurator = 0;
+};
+class CUP_L16A2_base;
+class CUP_B_L16A2_BAF_MPT: CUP_L16A2_base {
+scope = 0;
+scopeCurator = 0;
+};
+class CUP_B_L16A2_BAF_DDPM: CUP_L16A2_base {
+scope = 0;
+scopeCurator = 0;
+};
+class CUP_B_L16A2_BAF_WDL: CUP_L16A2_base {
+scope = 0;
+scopeCurator = 0;
+};
+};

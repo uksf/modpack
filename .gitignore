@@ -27,3 +27,4 @@ extensions/*/packages
 extensions/uksf/src/modules/data/secret.hpp
 tools/service.py
 tools/manage.py
+tools/armake.exe
