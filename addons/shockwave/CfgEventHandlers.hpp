@@ -17,9 +17,9 @@ class Extended_PostInit_EventHandlers {
 };
 
 class Extended_FiredBIS_EventHandlers {
-	class AllVehicles {
-		class ADDON {
-			clientFiredBIS = QUOTE(_this call FUNC(fired));
-		};
-	};
+    class AllVehicles {
+        class ADDON {
+            clientFiredBIS = QUOTE(_this call FUNC(fired));
+        };
+    };
 };
