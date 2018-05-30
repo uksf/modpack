@@ -1,0 +1,14 @@
+PREP(fired);
+PREP(readCacheValues);
+PREP(shockwaveHandler);
+
+SHOCKWAVEPREP(BigBomb);
+SHOCKWAVEPREP(FuelExploSmall);
+SHOCKWAVEPREP(FuelExploBig);
+SHOCKWAVEPREP(BigRocket);
+SHOCKWAVEPREP(SmallRocket);
+SHOCKWAVEPREP(120mm);
+SHOCKWAVEPREP(Arty);
+SHOCKWAVEPREP(Mortar);
+SHOCKWAVEPREP(Satchel);
+SHOCKWAVEPREP(Grenade);
