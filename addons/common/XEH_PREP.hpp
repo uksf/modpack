@@ -12,6 +12,7 @@ PREP(hasSuppressor);
 PREP(lineOfSight);
 PREP(mapPosition);
 PREP(moduleRespawnPosition);
+PREP(moveInside);
 PREP(ramp);
 PREP(populate);
 PREP(releaseCargo);
