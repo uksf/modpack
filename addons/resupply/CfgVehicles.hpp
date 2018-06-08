@@ -22,7 +22,6 @@ class CfgVehicles {
     };
     class UKSF_S_Arsenal: UKSF_S_Empty {
         displayName = "Arsenal Crate";
-        disableInventory = 1;
     };
     class UKSF_S_R1: UKSF_S_Empty {
         displayName = "R1 Crate";
