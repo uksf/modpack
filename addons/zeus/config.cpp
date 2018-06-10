@@ -10,6 +10,7 @@ class CfgPatches {
             QGVAR(moduleDelete),
             QGVAR(moduleExplosionLarge),
             QGVAR(moduleExplosionSmall),
+            QGVAR(moduleHaloHaho),
             QGVAR(moduleLoadoutCopy),
             QGVAR(moduleLoadoutPaste),
             QGVAR(moduleTeleportZeus),

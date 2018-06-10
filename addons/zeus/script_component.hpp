@@ -7,3 +7,5 @@
 // #define CBA_DEBUG_SYNCHRONOUS
 
 #include "\u\uksf\addons\main\script_macros.hpp"
+
+#define IDD_RSCDISPLAYCURATOR 312
