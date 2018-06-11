@@ -13,15 +13,14 @@
 */
 #include "script_component.hpp"
 
-[] spawn {
-    waitUntil {!(isNil "acre_player")};
-    waitUntil {!(isNull acre_player)};
-    
+[{
+    call acre_api_fnc_isInitialized
+}, {    
     private _channels = configProperties [configFile >> "CfgChannels", "true", false];    
     {
         private _channel = getArray _x;
-        ["ACRE_PRC117F", "default3", _channel select 0, "name", _channel select 1] call acre_api_fnc_setPresetChannelField;
-        ["ACRE_PRC152", "default3", _channel select 0, "name", _channel select 1] call acre_api_fnc_setPresetChannelField;
+        ["ACRE_PRC117F", "default3", _channel#0, "name", _channel#1] call acre_api_fnc_setPresetChannelField;
+        ["ACRE_PRC152", "default3", _channel#0, "description", _channel#1] call acre_api_fnc_setPresetChannelField;
         true
     } count _channels;
 
@@ -32,4 +31,4 @@
     ["ACRE_PRC77", "default3"] call acre_api_fnc_setPreset;
 
     GVAR(presetsDone) = true;
-};
+}, []] call CBA_fnc_waitUntilAndExecute;

@@ -5,7 +5,6 @@ ADDON = false;
 #include "XEH_PREP.hpp"
 
 GVAR(presetsDone) = false;
-[] call FUNC(setChannelNames);
 
 {
     [_x, "init", {

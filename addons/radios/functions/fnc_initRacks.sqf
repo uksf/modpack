@@ -25,6 +25,9 @@
     };
 
     [{
+        params ["_vehicle"];
+        _vehicle getVariable ["acre_sys_rack_initialized", false]
+    }, {
         params ["_vehicle", "_channels"];
         
         if (_vehicle getVariable [QGVAR(channelsSet), false]) exitWith {};
@@ -33,5 +36,5 @@
             [_x, _channels select _forEachIndex] call acre_api_fnc_setRadioChannel;
         } forEach (_radios select {_x != ""});
         _vehicle setVariable [QGVAR(channelsSet), true];
-    }, _this, 0.5] call CBA_fnc_waitAndExecute;
+    }, _this, 30] call CBA_fnc_waitUntilAndExecute;
 }, _this] call CBA_fnc_waitUntilAndExecute;
