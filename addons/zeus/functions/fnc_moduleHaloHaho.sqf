@@ -22,7 +22,7 @@ if (!local _logic) exitWith {};
 
 private _display = findDisplay IDD_RSCDISPLAYCURATOR;
 GVAR(curatorSelectionHandle) = _display displayAddEventHandler ["KeyDown", {
-	params ["_display", "_key"];
+    params ["_display", "_key"];
 
     switch (true) do {
         case (_key == DIK_ESCAPE): {
