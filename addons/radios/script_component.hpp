@@ -8,11 +8,9 @@
 
 #include "\u\uksf\addons\main\script_macros.hpp"
 
-#define CHANNELS_SQN_656 [40, 35, 42]
-#define CHANNELS_SQN_617 [40, 36, 43]
-#define CHANNELS_SQN_7 [40, 37, 44]
-
-#define INIT_RACKS(class,channels,exclude) [class, "init", {[_this select 0, channels] call FUNC(initRacks)}, true, exclude, true] call CBA_fnc_addClassEventHandler
+#define CHANNELS_SQN_656 [40, 45, 42]
+#define CHANNELS_SQN_617 [40, 46, 43]
+#define CHANNELS_SQN_7 [40, 47, 44]
 
 #define INTERCOM_AIR \
     class AcreIntercoms { \

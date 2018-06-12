@@ -29,6 +29,4 @@
     ["ACRE_PRC152", "default3"] call acre_api_fnc_setPreset;
     ["ACRE_PRC343", "default3"] call acre_api_fnc_setPreset;
     ["ACRE_PRC77", "default3"] call acre_api_fnc_setPreset;
-
-    GVAR(presetsDone) = true;
 }, []] call CBA_fnc_waitUntilAndExecute;
