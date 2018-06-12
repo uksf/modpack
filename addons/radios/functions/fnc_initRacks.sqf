@@ -7,7 +7,6 @@
 
     Parameters:
         0: Vehicle <OBJECT>
-        1: Channels <ARRAY>
 
     Return value:
         None
