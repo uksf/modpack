@@ -235,6 +235,7 @@ class UK3CB_BAF_LandRover_WMIK_Base: UK3CB_BAF_LandRover_Base {
             };
         };
     };
+    class TransportWeapons;
 };
 class UK3CB_BAF_LandRover_WMIK_HMG_Base: UK3CB_BAF_LandRover_WMIK_Base {
     class Turrets: Turrets {
@@ -245,6 +246,12 @@ class UK3CB_BAF_LandRover_WMIK_HMG_Base: UK3CB_BAF_LandRover_WMIK_Base {
                 visionMode[] = {};
             };
         };
+    };
+    class TransportWeapons: TransportWeapons {
+        delete _xx_UK3CB_BAF_Javelin_CLU;
+    };
+    class TransportItems {
+        MACRO_ADDITEM(UK3CB_BAF_Javelin_CLU,2);
     };
 };
 class UK3CB_BAF_LandRover_WMIK_HMG_Green_A: UK3CB_BAF_LandRover_WMIK_HMG_Base {
@@ -294,6 +301,12 @@ class UK3CB_BAF_LandRover_WMIK_GPMG_Base: UK3CB_BAF_LandRover_WMIK_Base {
             };
         };
     };
+    class TransportWeapons: TransportWeapons {
+        delete _xx_UK3CB_BAF_Javelin_CLU;
+    };
+    class TransportItems {
+        MACRO_ADDITEM(UK3CB_BAF_Javelin_CLU,2);
+    };
 };
 class UK3CB_BAF_LandRover_WMIK_GPMG_Green_A: UK3CB_BAF_LandRover_WMIK_GPMG_Base {
     scope = 0;
@@ -341,6 +354,12 @@ class UK3CB_BAF_LandRover_WMIK_GMG_Base: UK3CB_BAF_LandRover_WMIK_Base {
                 visionMode[] = {};
             };
         };
+    };
+    class TransportWeapons: TransportWeapons {
+        delete _xx_UK3CB_BAF_Javelin_CLU;
+    };
+    class TransportItems {
+        MACRO_ADDITEM(UK3CB_BAF_Javelin_CLU,2);
     };
 };
 class UK3CB_BAF_LandRover_WMIK_GMG_Green_A: UK3CB_BAF_LandRover_WMIK_GMG_Base {
