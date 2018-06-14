@@ -251,7 +251,7 @@ class UK3CB_BAF_LandRover_WMIK_HMG_Base: UK3CB_BAF_LandRover_WMIK_Base {
         delete _xx_UK3CB_BAF_Javelin_CLU;
     };
     class TransportItems {
-        MACRO_ADDITEM(UK3CB_BAF_Javelin_CLU,2);
+        MACRO_ADDITEM(UK3CB_BAF_Javelin_CLU,1);
     };
 };
 class UK3CB_BAF_LandRover_WMIK_HMG_Green_A: UK3CB_BAF_LandRover_WMIK_HMG_Base {
@@ -305,7 +305,7 @@ class UK3CB_BAF_LandRover_WMIK_GPMG_Base: UK3CB_BAF_LandRover_WMIK_Base {
         delete _xx_UK3CB_BAF_Javelin_CLU;
     };
     class TransportItems {
-        MACRO_ADDITEM(UK3CB_BAF_Javelin_CLU,2);
+        MACRO_ADDITEM(UK3CB_BAF_Javelin_CLU,1);
     };
 };
 class UK3CB_BAF_LandRover_WMIK_GPMG_Green_A: UK3CB_BAF_LandRover_WMIK_GPMG_Base {
@@ -359,7 +359,7 @@ class UK3CB_BAF_LandRover_WMIK_GMG_Base: UK3CB_BAF_LandRover_WMIK_Base {
         delete _xx_UK3CB_BAF_Javelin_CLU;
     };
     class TransportItems {
-        MACRO_ADDITEM(UK3CB_BAF_Javelin_CLU,2);
+        MACRO_ADDITEM(UK3CB_BAF_Javelin_CLU,1);
     };
 };
 class UK3CB_BAF_LandRover_WMIK_GMG_Green_A: UK3CB_BAF_LandRover_WMIK_GMG_Base {
