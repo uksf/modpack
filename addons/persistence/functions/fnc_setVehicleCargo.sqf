@@ -18,17 +18,17 @@
 params ["_vehicle", "_cargo", "_inventory"];
 
 [_vehicle, _inventory] spawn {
-	params ["_vehicle", "_inventory"];
+    params ["_vehicle", "_inventory"];
     _inventory params ["_weapons", "_magazines", "_items", "_backpacks"];
         
-	clearWeaponCargoGlobal _vehicle;
-	clearMagazineCargoGlobal _vehicle;
-	clearItemCargoGlobal _vehicle;
-	clearBackpackCargoGlobal _vehicle;
-	{_vehicle addWeaponCargoGlobal [_x, (_weapons#1)#_forEachIndex]} forEach (_weapons#0);
-	{_vehicle addMagazineCargoGlobal [_x, (_magazines#1)#_forEachIndex]} forEach (_magazines#0);
-	{_vehicle addItemCargoGlobal [_x, (_items#1)#_forEachIndex]} forEach (_items#0);
-	{_vehicle addBackpackCargoGlobal [_x, (_backpacks#1)#_forEachIndex]} forEach (_backpacks#0);
+    clearWeaponCargoGlobal _vehicle;
+    clearMagazineCargoGlobal _vehicle;
+    clearItemCargoGlobal _vehicle;
+    clearBackpackCargoGlobal _vehicle;
+    {_vehicle addWeaponCargoGlobal [_x, (_weapons#1)#_forEachIndex]} forEach (_weapons#0);
+    {_vehicle addMagazineCargoGlobal [_x, (_magazines#1)#_forEachIndex]} forEach (_magazines#0);
+    {_vehicle addItemCargoGlobal [_x, (_items#1)#_forEachIndex]} forEach (_items#0);
+    {_vehicle addBackpackCargoGlobal [_x, (_backpacks#1)#_forEachIndex]} forEach (_backpacks#0);
 };
 
 {[_x, _vehicle] call ace_cargo_fnc_removeCargoItem} forEach (_vehicle getVariable ["ace_cargo_loaded", []]);

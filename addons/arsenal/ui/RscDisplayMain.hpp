@@ -14,14 +14,14 @@ class RscDisplayMain: RscStandardDisplay {
                     h = "0";
                 };
                 class ace_arsenal_mission: Arsenal {
-                    h = "1.5 * 	(pixelH * pixelGrid * 2) - 	(pixelH)";
-                    y = "(2 *   1.5) *  (pixelH * pixelGrid * 2) +  (pixelH)";
+                    h = "1.5 * (pixelH * pixelGrid * 2) - (pixelH)";
+                    y = "(2 * 1.5) * (pixelH * pixelGrid * 2) + (pixelH)";
                 };
                 class FieldManual: Bootcamp {
-                    y = "(3 *   1.5) *  (pixelH * pixelGrid * 2) +  (pixelH)";
+                    y = "(3 * 1.5) * (pixelH * pixelGrid * 2) + (pixelH)";
                 };
                 class CommunityGuides: Bootcamp {
-                    y = "(4 *   1.5) *  (pixelH * pixelGrid * 2) +  (pixelH)";
+                    y = "(4 * 1.5) * (pixelH * pixelGrid * 2) + (pixelH)";
                 };
             };
         };
