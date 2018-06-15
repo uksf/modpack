@@ -10,7 +10,7 @@
         0: Vehicle <OBJECT>
 
     Return Value:
-        None
+        ID <STRING>
 */
 #include "script_component.hpp"
 
@@ -20,12 +20,12 @@ if (!isServer) exitWith {
 
 params ["_vehicle"];
 
-if (_vehicle getVariable [QGVAR(persistent), false]) exitWith {};
-
-_vehicle setVariable [QGVAR(persistent), true];
+if (_vehicle getVariable [QGVAR(persistenceID), ""] != "") exitWith {};
 
 private _position = getPos _vehicle;
 private _id = format ["%1:%2:%3:%4", typeOf _vehicle, (round (_position#0 / 1)) * 1, (round (_position#1 / 1)) * 1, _position#2];
 
 _vehicle setVariable [QGVAR(persistenceID), _id];
 [GVAR(hashPersistentVehicles), _id, _vehicle] call CBA_fnc_hashSet;
+
+_id

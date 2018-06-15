@@ -19,6 +19,7 @@ if (!GVAR(enabled)) exitWith {};
 GVAR(hashPersistentVehicles) = [[], true] call CBA_fnc_hashCreate;
 GVAR(hashFirstKilled) = [[], true] call CBA_fnc_hashCreate;
 GVAR(hashFirstRespawn) = [[], true] call CBA_fnc_hashCreate;
+GVAR(persistenceMarkers) = [];
 
 ["All", "init", {_this call FUNC(checkVehicleForPersistence)}, true, nil, true] call CBA_fnc_addClassEventHandler;
 

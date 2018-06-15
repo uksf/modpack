@@ -7,65 +7,49 @@
 
     Parameter(s):
         0: Centre <OBJECT> (Optional)
+        1: Skip update <BOOL> (Optional)
 
     Return Value:
         None
 */
 #include "script_component.hpp"
 
-params [["_centre", objnull]];
+params [["_centre", objnull], ["_skip", false]];
 
 private _vehicles = (GVAR(dataNamespace) getVariable [QGVAR(vehicles), []]);
-private _objects = _centre nearObjects CENTRE_RADIUS;
 
-{
-    _x params ["_id", "_type", "_position", "_vectorDirAndUp", "_damage", "_fuel", "_aceCargo", "_inventory"];
+if (!(isNull _centre)) then {
+    private _objects = (_centre nearObjects CENTRE_RADIUS) select {alive _x && {!(_x isKindOf "Man" || _x isKindOf "Logic")}};
+    {
+        private _object = _x;
+        private _id = _object getVariable [QGVAR(persistenceID), ""];
+        if (_id == "") then { // No ID, mark as persistent
+            _id = [_object] call FUNC(markVehicleAsPersistent);
+        };
 
-    if ([GVAR(hashPersistentVehicles), _id] call CBA_fnc_hashHasKey) then {
-        private _missionVehicle = ([GVAR(hashPersistentVehicles), _id] call CBA_fnc_hashGet);
-        deleteVehicle _missionVehicle;
-    };
+        if (!_skip) then {
+            private _index = _vehicles findIf {_x#0 == _id};
+            if (_index > -1) then { // ID exists, update entry in _vehicles
+                _vehicles set [_index, [_object] call FUNC(getVehicleData)];
+            } else {  // ID not in _vehicles, add
+                _vehicles pushBack ([_object] call FUNC(getVehicleData));
+            };
+        };
+    } forEach _objects;
+} else {
+    // Add/update objects around markers
+    {[_x, true] call FUNC(saveVehicleData)} forEach GVAR(persistenceMarkers);
 
-    private _vehicle = _type createVehicle [-10000,0,0];
-    _vehicle setPosASL _position;
-    _vehicle setVectorDirAndUp _vectorDirAndUp;
-    _vehicle setDamage _damage;
-    _vehicle setFuel _fuel;
-    {[_x, _vehicle] call ace_cargo_fnc_removeCargoItem} forEach (_vehicle getVariable ["ace_cargo_loaded", []]);
-    {[_x, _vehicle] call ace_cargo_fnc_addCargoItem} forEach _aceCargo;
-    [_vehicle, _inventory] spawn {
-		params ["_vehicle", "_inventory"];
-        _inventory params ["_weapons", "_magazines", "_items", "_backpacks"];
-        
-		clearWeaponCargoGlobal _vehicle;
-		clearMagazineCargoGlobal _vehicle;
-		clearItemCargoGlobal _vehicle;
-		clearBackpackCargoGlobal _vehicle;
-		{_vehicle addWeaponCargoGlobal [_x, (_weapons#1)#_forEachIndex]} forEach (_weapons#0);
-		{_vehicle addMagazineCargoGlobal [_x, (_magazines#1)#_forEachIndex]} forEach (_magazines#0);
-		{_vehicle addItemCargoGlobal [_x, (_items#1)#_forEachIndex]} forEach (_items#0);
-		{_vehicle addBackpackCargoGlobal [_x, (_backpacks#1)#_forEachIndex]} forEach (_backpacks#0);
-	};
+    // Add/update hashed vehicles
+    [GVAR(hashPersistentVehicles), {
+        private _index = _vehicles findIf {_x#0 == _key};
+        if (_index > -1) then { // ID exists, update entry in _vehicles
+            _vehicles set [_index, [_value] call FUNC(getVehicleData)];
+        } else {  // ID not in _vehicles, add
+            _vehicles pushBack ([_value] call FUNC(getVehicleData));
+        };
+    }] call CBA_fnc_hashEachPair;
+};
 
-    _vehicle setVariable [QGVAR(persistenceID), _id];
-    [GVAR(hashPersistentVehicles), _id, _vehicle] call CBA_fnc_hashSet;
-} forEach _vehicles;
-
-
-/*
-    _vehicles = [
-        [
-            persistenceID,
-            type,
-            position,
-            direction,
-            vectorUp,
-            damage,
-            fuel,
-            _vehicle getVariable ["ace_cargo_loaded", []],
-            inventory = [
-                getWeaponCargo _x,getMagazineCargo _x,getItemCargo _x,getBackpackCargo _x
-            ]
-        ]
-    ]
-*/
+(GVAR(dataNamespace) setVariable [QGVAR(vehicles), _vehicles]);
+profileNamespace setVariable [GVAR(key), [GVAR(dataNamespace)] call CBA_fnc_serializeNamespace];

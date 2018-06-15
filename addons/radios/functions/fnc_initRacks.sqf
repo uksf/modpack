@@ -17,7 +17,7 @@ params ["_vehicle"];
 
 if (_vehicle getVariable [QGVAR(channelsSet), false]) exitWith {};
 
-private _channels = [];
+private _channels = _vehicle getVariable [QEGVAR(persistence,rackChannels), []];
 private _customChannels = [
     ["UKSF_Apache_AH1", CHANNELS_SQN_656],
     ["UK3CB_BAF_Wildcat_AH1_CAS_6A", CHANNELS_SQN_656],
@@ -31,13 +31,16 @@ private _customChannels = [
     ["UKSF_Hemtt_Fuel", [40, 48]],
     ["UKSF_Hemtt_Repair", [40, 48]]
 ];
-{
-    if (_vehicle isKindOf _x#0) exitWith {
-        _channels = _x#1;
-    };
-} forEach _customChannels;
 
-if ((count _channels) == 0) exitWith {};
+if (count _channels == 0) then {
+    {
+        if (_vehicle isKindOf _x#0) exitWith {
+            _channels = _x#1;
+        };
+    } forEach _customChannels;
+};
+
+if (count _channels == 0) exitWith {};
 [{
     [{
         params ["_vehicle"];
@@ -55,7 +58,7 @@ if ((count _channels) == 0) exitWith {};
             
         private _radios = ([_vehicle] call acre_api_fnc_getVehicleRacks) apply {[_x] call acre_api_fnc_getMountedRackRadio};
         {
-            [_x, _channels select _forEachIndex] call acre_api_fnc_setRadioChannel;
+            [_x, _channels#_forEachIndex] call acre_api_fnc_setRadioChannel;
         } forEach (_radios select {_x != ""});
         _vehicle setVariable [QGVAR(channelsSet), true, true];
     }, _this, 30] call CBA_fnc_waitUntilAndExecute;
