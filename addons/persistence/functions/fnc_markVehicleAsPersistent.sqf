@@ -27,5 +27,6 @@ private _id = format ["%1:%2:%3:%4", typeOf _vehicle, (round (_position#0 / 1)) 
 
 _vehicle setVariable [QGVAR(persistenceID), _id];
 [GVAR(hashPersistentVehicles), _id, _vehicle] call CBA_fnc_hashSet;
+TRACE_1("Vehicle marked as persistent",_id);
 
 _id

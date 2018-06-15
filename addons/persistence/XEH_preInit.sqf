@@ -8,9 +8,6 @@ if (!isMultiplayer) exitWith {};
 
 if (hasInterface) then {
     [QGVAR(initClient), {_this call FUNC(initClient)}] call CBA_fnc_addEventHandler;
-    ["CAManBase", "respawn", {
-        [_unit] call FUNC(addPersistenceActions);
-    }, true, nil, true] call CBA_fnc_addClassEventHandler;
 };
 
 if (isServer) then {
@@ -20,8 +17,8 @@ if (isServer) then {
     GVAR(enabled) = GVAR(key) != "";
     
     private _hash = profileNamespace getVariable [GVAR(key), []];
-    TRACE_1("Saved data",_hash);
     GVAR(dataNamespace) = [_hash] call CBA_fnc_deserializeNamespace;
+    TRACE_1("Loaded data",GVAR(dataNamespace));
     if ((count (allVariables GVAR(dataNamespace))) > 0) then {
         private _world =  GVAR(dataNamespace) getVariable [QGVAR(world), ""];
         if (_world != worldName) then {

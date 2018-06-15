@@ -15,7 +15,8 @@
 */
 #include "script_component.hpp"
 
-params ["_vehicle", "_cargo", "_inventory"];
+params ["_vehicle", "_aceCargo", "_inventory"];
+TRACE_3("Setting vehicle cargo",_vehicle,_aceCargo,_inventory);
 
 [_vehicle, _inventory] spawn {
     params ["_vehicle", "_inventory"];
@@ -33,13 +34,13 @@ params ["_vehicle", "_cargo", "_inventory"];
 
 {[_x, _vehicle] call ace_cargo_fnc_removeCargoItem} forEach (_vehicle getVariable ["ace_cargo_loaded", []]);
 {
-    _x params ["_type", "_cargo", "_inventory"];
+    _x params ["_type", "_xAceCargo", "_inventory"];
 
     private _cargoVehicle = _type;
-    if (count _cargo > 0 || (count (_inventory select {count _x > 0})) > 0) then {
+    if (count _xAceCargo > 0 || (count (_inventory select {count _x > 0})) > 0) then {
         _cargoVehicle = _type createVehicle [-1000 + (random 50), -1000 + (random 50), 0];
-        [_cargoVehicle, _cargo, _inventory] call FUNC(setVehicleCargo);
+        [_cargoVehicle, _xAceCargo, _inventory] call FUNC(setVehicleCargo);
     };
 
     [_cargoVehicle, _vehicle] call ace_cargo_fnc_addCargoItem;
-} forEach _cargo;
+} forEach _aceCargo;

@@ -18,7 +18,7 @@ params ["_unit"];
 private _fnc_children = {
     private _actions = [];
 
-    private _action = [QGVAR(persistenceShutdown), QUOTE(Save & Shutdown), "", {[] call FUNC(shutdown)}, {MULTIPLAYER_ADMIN_OR_WHITELISTED}] call ace_interact_menu_fnc_createAction;
+    private _action = [QGVAR(persistenceShutdown), QUOTE(Save and Shutdown), "", {[] call FUNC(shutdown)}, {MULTIPLAYER_ADMIN_OR_WHITELISTED}] call ace_interact_menu_fnc_createAction;
     _actions pushBack [_action, [], _player];
 
     _actions

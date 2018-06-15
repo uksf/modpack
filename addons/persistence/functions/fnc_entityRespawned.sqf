@@ -23,7 +23,7 @@ private _uid = getPlayerUID _entity;
 private _firstRespawn = [GVAR(hashFirstRespawn), _uid] call CBA_fnc_hashGet;
 if (_firstRespawn) then {
     [GVAR(hashFirstRespawn), _uid, false] call CBA_fnc_hashSet;
-    [QGVAR(firstRespawn), _data, _entity] call CBA_fnc_targetEvent;
+    [QGVAR(firstRespawn), nil, _entity] call CBA_fnc_targetEvent;
 };
 
 deleteVehicle _corpse;
