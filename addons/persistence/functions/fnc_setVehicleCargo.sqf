@@ -32,15 +32,16 @@ TRACE_3("Setting vehicle cargo",_vehicle,_aceCargo,_inventory);
     {_vehicle addBackpackCargoGlobal [_x, (_backpacks#1)#_forEachIndex]} forEach (_backpacks#0);
 };
 
-{[_x, _vehicle] call ace_cargo_fnc_removeCargoItem} forEach (_vehicle getVariable ["ace_cargo_loaded", []]);
+private _initCargo = _vehicle getVariable ["ace_cargo_loaded", []];
+{[_x, _vehicle] call ace_cargo_fnc_removeCargoItem} forEach _initCargo;
+_initCargo = _vehicle getVariable ["ace_cargo_loaded", []];
 {
     _x params ["_type", "_xAceCargo", "_inventory"];
 
     private _cargoVehicle = _type;
-    if (count _xAceCargo > 0 || (count (_inventory select {count _x > 0})) > 0) then {
+    if (count _xAceCargo > 0 || {(count (_inventory select {count _x > 0})) > 0}) then {
         _cargoVehicle = _type createVehicle [-1000 + (random 50), -1000 + (random 50), 0];
-        [_cargoVehicle, _xAceCargo, _inventory] call FUNC(setVehicleCargo);
+        [_cargoVehicle, _xAceCargo, _inventory] call FUNC(setVehicleCargo);        
     };
-
-    [_cargoVehicle, _vehicle, true] call ace_cargo_fnc_addCargoItem;
+    [_cargoVehicle, _vehicle, true] call ace_cargo_fnc_loadItem;
 } forEach _aceCargo;

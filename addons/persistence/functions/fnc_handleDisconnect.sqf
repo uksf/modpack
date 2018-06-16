@@ -17,6 +17,9 @@ params ["_unit", "_id", "_uid", "_name"];
 
 TRACE_4("HandleDisconnect",_unit,_id,_uid,_name);
 
+[GVAR(hashFirstKilled), _uid, true] call CBA_fnc_hashSet;
+[GVAR(hashFirstRespawn), _uid, true] call CBA_fnc_hashSet;
+
 private _data = [
     getPosASL _unit,
     [_unit] call {
@@ -40,7 +43,7 @@ private _data = [
     },
     direction _unit,
     animationState _unit,
-    getUnitLoadout _unit,
+    ([getUnitLoadout _unit] call EFUNC(radios,sanitiseLoadout)),
     damage _unit,
     [_unit] call EFUNC(common,serializeAceMedical),
     (_unit getVariable ["ace_attach_attached", []]) apply {_x#1},
@@ -49,9 +52,10 @@ private _data = [
 TRACE_1("Player disconnect",_data);
 
 GVAR(dataNamespace) setVariable [_uid, _data];
+private _dateTime = date;
+TRACE_1("Saving date time",_dateTime);
+GVAR(dataNamespace) setVariable [QGVAR(dateTime), _dateTime];
 profileNamespace setVariable [GVAR(key), [GVAR(dataNamespace)] call CBA_fnc_serializeNamespace];
-[GVAR(hashFirstKilled), _uid, true] call CBA_fnc_hashSet;
-[GVAR(hashFirstRespawn), _uid, true] call CBA_fnc_hashSet;
 LOG("Saved data");
 
 [_unit] call FUNC(saveVehicleData);

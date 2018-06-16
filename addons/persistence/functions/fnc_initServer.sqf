@@ -58,3 +58,7 @@ addMissionEventHandler ["PlayerDisconnected", {_this call FUNC(playerDisconnecte
 GVAR(dataNamespace) setVariable [QGVAR(world), worldName];
 profileNamespace setVariable [GVAR(key), [GVAR(dataNamespace)] call CBA_fnc_serializeNamespace];
 LOG("Saved data");
+
+private _dateTime = GVAR(dataNamespace) getVariable [QGVAR(dateTime), date];
+TRACE_1("Setting date time",_dateTime);
+setDate _dateTime;

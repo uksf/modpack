@@ -28,7 +28,7 @@ if (count _vehicles == 0) exitWith {};
         deleteVehicle _missionVehicle;
     };
 
-    private _vehicle = _type createVehicle [-10000,0,0];
+    private _vehicle = _type createVehicle [-2000,0,0];
     _vehicle setVariable [QGVAR(persistenceID), _id];
     _vehicle setPosASL _position;
     _vehicle setVectorDirAndUp _vectorDirAndUp;
@@ -43,7 +43,7 @@ if (count _vehicles == 0) exitWith {};
         private _attachList = _vehicle getVariable ["ace_attach_attached", []];
         {
             _x params ["_type", "_offset"];
-            private _attachedObject = _type createVehicle [-10000,0,0];
+            private _attachedObject = _type createVehicle [0,-2000,0];
             _attachedObject attachTo [_vehicle, _offset];
             _attachList pushBack [_attachedObject, _type];
         } forEach _attached;
