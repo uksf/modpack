@@ -2,37 +2,36 @@ class CfgAmmo {
     class Default;
     class BulletCore;
     class BulletBase: Bulletcore {};
-    class ShellCore {
+    class ShellCore: Default {
         shockwaveFunction = QFUNC(120mm);
     };
     class FlareCore;
     class ShotDeployCore;
     class SubmunitionCore;
-    class SubmunitionBase: SubmunitionCore{};
-    class MissileCore {
+    class SubmunitionBase: SubmunitionCore {};
+    class MissileCore: Default {
         shockwaveFunction = QFUNC(BigRocket);
     };
     class Gatling_30mm_HE_Plane_CAS_01_F: BulletBase {
         shockwaveFunction = QFUNC(SmallRocket);
     };
-    class GrenadeCore {
+    class GrenadeCore: Default {
         shockwaveFunction = QFUNC(Grenade);
     };
-    class BombCore {
+    class BombCore: Default {
         shockwaveFunction = QFUNC(BigRocket);
     };
-    class LaserBombCore {
+    class LaserBombCore: BombCore {
         shockwaveFunction = QFUNC(BigBomb);
     };
-    class RocketCore {
+    class RocketCore: Default {
         shockwaveFunction = QFUNC(SmallRocket);
     };
     class MineCore;
     class BoundingMineCore;
     class DirectionalBombCore;
     class PipeBombCore;
-    class ShellBase: ShellCore {
-    };
+    class ShellBase: ShellCore {};
     class MissileBase: MissileCore {
         shockwaveFunction = QFUNC(BigRocket);
     };
@@ -154,7 +153,8 @@ class CfgAmmo {
     class M_Mo_82mm_AT_LG: M_Mo_82mm_AT {
         shockwaveFunction = QFUNC(Mortar);
     };
-    class M_Mo_120mm_AT: MissileBase {
+    class Missile_AGM_02_F;
+    class M_Mo_120mm_AT: Missile_AGM_02_F {
         shockwaveFunction = QFUNC(120mm);
     };
     class M_Mo_120mm_AT_LG: M_Mo_120mm_AT {
@@ -308,10 +308,10 @@ class CfgAmmo {
         shockwaveFunction = QFUNC(Satchel);
     };
     class IEDUrbanSmall_Remote_Ammo: PipeBombBase {
-        shockwaveFunction = "L_fnc_ExShake_IED";
+        shockwaveFunction = QFUNC(IED);
     };
     class IEDLandSmall_Remote_Ammo: PipeBombBase {
-        shockwaveFunction = "L_fnc_ExShake_IED";
+        shockwaveFunction = QFUNC(IED);
     };
     class Bomb_04_F: LaserBombCore {
         shockwaveFunction = QFUNC(BigBomb);
