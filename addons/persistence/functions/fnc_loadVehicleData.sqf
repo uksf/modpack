@@ -49,7 +49,7 @@ if (count _vehicles == 0) exitWith {};
         } forEach _attached;
         _vehicle setVariable ["ace_attach_attached", _attachList, true];
     };
-    _vehicle setVariable [QGVAR(rackChannels), _rackChannels, true];
+    _vehicle setVariable [QEGVAR(radios,rackChannels), _rackChannels, true];
     [_vehicle, _aceCargo, _inventory] call FUNC(setVehicleCargo);
     [GVAR(hashPersistentVehicles), _id, _vehicle] call CBA_fnc_hashSet;
 } forEach _vehicles;

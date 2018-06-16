@@ -50,40 +50,41 @@ if (!GVAR(enabled)) exitWith {};
         [player, _aceStates] call EFUNC(common,deserializeAceMedical);
         {[player, player, [_x], true] call ace_attach_fnc_attach} forEach _attached;
         [{
-            private _radios = ([player] call acre_sys_core_fnc_getGear) select {(_x select [0, 4]) == "ACRE"};
-            TRACE_2("Checking if radios initialised",_radios);
-            {_x call acre_sys_radio_fnc_isUniqueRadio} count _radios == count _radios
-        }, {
-            params ["_radioChannels"];
-            private _radios = ([player] call acre_sys_core_fnc_getGear) select {_x call acre_sys_radio_fnc_isUniqueRadio};
-            TRACE_2("Setting radios to channels",_radios,_radioChannels);
-            {
-                [_x, _radioChannels#_forEachIndex] call acre_api_fnc_setRadioChannel;
-            } forEach _radios;
-        }, [_radioChannels], 15] call CBA_fnc_waitUntilAndExecute;
+            [{
+                private _radios = ([player] call acre_sys_core_fnc_getGear) select {(_x select [0, 4]) == "ACRE"};
+                TRACE_1("Checking if radios initialised",_radios);
+                {_x call acre_sys_radio_fnc_isUniqueRadio} count _radios == count _radios
+            }, {
+                params ["_radioChannels"];
+                private _radios = ([player] call acre_sys_core_fnc_getGear) select {_x call acre_sys_radio_fnc_isUniqueRadio};
+                TRACE_2("Setting radios to channels",_radios,_radioChannels);
+                {
+                    [_x, _radioChannels#_forEachIndex] call acre_api_fnc_setRadioChannel;
+                } forEach _radios;
+            }, _this, 15] call CBA_fnc_waitUntilAndExecute;
+        }, [_radioChannels], 2] call CBA_fnc_waitAndExecute;
 
         _vehicleState params ["_vehicleId"];
         if (_vehicleId != "") then {
-            [{
-                params ["_vehicleId"];
-                [GVAR(hashPersistentVehicles), _vehicleId] call CBA_fnc_hashHasKey
-            }, {
-                params ["_vehicleId", "_role", "_index"];
+            TRACE_1("Supposed to be in vehicle",_vehicleId);
+            [QGVAR(onPersistentVehicleExists), {
+                params ["_vehicle", "_vehicleId", "_role", "_index"];
+                [_thisType, _thisId] call CBA_fnc_removeEventHandler;
 
-                private _vehicle = [GVAR(hashPersistentVehicles), _vehicleId] call CBA_fnc_hashGet;
+                TRACE_4("Vehicle exists",_vehicle,_vehicleId,_role,_index);
                 switch (toLower _role) do {
-                    //"driver", "gunner", "commander", "Turret", or "cargo"
                     case "driver": {player moveInDriver _vehicle};
                     case "gunner": {player moveInGunner _vehicle};
                     case "commander": {player moveInCommander _vehicle};
                     case "turret": {player moveInTurret [_vehicle, _index]};
                     default {player moveInCargo [_vehicle, _index]};
                 };
-            }, _vehicleState, 10] call CBA_fnc_waitUntilAndExecute;
+            }] call CBA_fnc_addEventHandlerArgs;
+            [QGVAR(checkPersistentVehicleExists), [_vehicleState, player]] call CBA_fnc_serverEvent;
         } else {
             [{
                 player playMove ([_this, ANIM_STANDING] select (_this == ANIM_STANDING));
-            }, _animation, 1] call CBA_fnc_waitAndExecute;
+            }, _animation, 0.2] call CBA_fnc_waitAndExecute;
         };
     };
 }] call CBA_fnc_addEventHandler;

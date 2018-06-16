@@ -17,8 +17,8 @@ if (isServer) then {
     GVAR(enabled) = GVAR(key) != "";
     
     private _hash = profileNamespace getVariable [GVAR(key), []];
+    TRACE_1("Loaded data",_hash);
     GVAR(dataNamespace) = [_hash] call CBA_fnc_deserializeNamespace;
-    TRACE_1("Loaded data",GVAR(dataNamespace));
     if ((count (allVariables GVAR(dataNamespace))) > 0) then {
         private _world =  GVAR(dataNamespace) getVariable [QGVAR(world), ""];
         if (_world != worldName) then {

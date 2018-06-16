@@ -17,7 +17,7 @@ params ["_vehicle"];
 
 if (_vehicle getVariable [QGVAR(channelsSet), false]) exitWith {};
 
-private _channels = _vehicle getVariable [QEGVAR(persistence,rackChannels), []];
+private _channels = _vehicle getVariable [QGVAR(rackChannels), []];
 private _customChannels = [
     ["UKSF_Apache_AH1", CHANNELS_SQN_656],
     ["UK3CB_BAF_Wildcat_AH1_CAS_6A", CHANNELS_SQN_656],

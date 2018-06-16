@@ -35,7 +35,7 @@ private _data = [
     magazinesAllTurrets _vehicle,
     [getAmmoCargo _vehicle, getFuelCargo _vehicle, getRepairCargo _vehicle],
     _attachedObjects,
-    (([_vehicle] call acre_api_fnc_getVehicleRacks) apply {[_x] call acre_api_fnc_getMountedRackRadio}) apply {[_x] call acre_api_fnc_getRadioChannel},
+    (((([_vehicle] call acre_api_fnc_getVehicleRacks) select {_x != ""}) apply {[_x] call acre_api_fnc_getMountedRackRadio}) select {_x != ""}) apply {[_x] call acre_api_fnc_getRadioChannel},
     [_vehicle] call FUNC(getVehicleCargo),
     [getWeaponCargo _x, getMagazineCargo _x, getItemCargo _x, getBackpackCargo _x]
 ];

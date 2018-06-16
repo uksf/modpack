@@ -42,5 +42,5 @@ TRACE_3("Setting vehicle cargo",_vehicle,_aceCargo,_inventory);
         [_cargoVehicle, _xAceCargo, _inventory] call FUNC(setVehicleCargo);
     };
 
-    [_cargoVehicle, _vehicle] call ace_cargo_fnc_addCargoItem;
+    [_cargoVehicle, _vehicle, true] call ace_cargo_fnc_addCargoItem;
 } forEach _aceCargo;

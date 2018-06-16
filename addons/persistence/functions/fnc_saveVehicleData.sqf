@@ -17,6 +17,7 @@
 params [["_centre", objnull], ["_skip", false]];
 
 private _vehicles = (GVAR(dataNamespace) getVariable [QGVAR(vehicles), []]);
+_vehicles = _vehicles - [objNull];
 
 if (!(isNull _centre)) then {
     private _objects = (_centre nearObjects CENTRE_RADIUS) select {alive _x && {!(_x isKindOf "Man" || _x isKindOf "Logic" || _x isKindOf "GroundWeaponHolder")}};
@@ -44,18 +45,25 @@ if (!(isNull _centre)) then {
     // Add/update objects around markers
     {[_x, true] call FUNC(saveVehicleData)} forEach GVAR(persistenceMarkers);
 
-    // Add/update hashed vehicles
+    private _remove = [];
+    // Add/update/remove hashed vehicles
     [GVAR(hashPersistentVehicles), {
-        private _index = _vehicles findIf {_x#0 == _key};
-        if (_index > -1) then { // ID exists, update entry in _vehicles
-            _vehicles set [_index, [_value] call FUNC(getVehicleData)];
-        } else {  // ID not in _vehicles, add
-            _vehicles pushBack ([_value] call FUNC(getVehicleData));
+        if (isNull _value || !(alive _value)) then {
+            _remove pushBack _key;
+            _vehicles deleteAt (_vehicles find _value);
+        } else {
+            private _index = _vehicles findIf {_x#0 == _key};
+            if (_index > -1) then { // ID exists, update entry in _vehicles
+                _vehicles set [_index, [_value] call FUNC(getVehicleData)];
+            } else {  // ID not in _vehicles, add
+                _vehicles pushBack ([_value] call FUNC(getVehicleData));
+            };
         };
     }] call CBA_fnc_hashEachPair;
+    {[GVAR(hashPersistentVehicles), _key] call CBA_fnc_hashRem} forEach _remove;
 };
 
 TRACE_1("Vehicles saved",_vehicles);
 GVAR(dataNamespace) setVariable [QGVAR(vehicles), _vehicles];
 profileNamespace setVariable [GVAR(key), [GVAR(dataNamespace)] call CBA_fnc_serializeNamespace];
-TRACE_1("Saved data",GVAR(dataNamespace));
+LOG("Saved data");

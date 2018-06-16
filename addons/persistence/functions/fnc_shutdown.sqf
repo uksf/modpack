@@ -26,7 +26,7 @@ LOG("Shutdown");
         [_idPFH] call CBA_fnc_removePerFrameHandler;
         [] call FUNC(saveVehicleData);
         profileNamespace setVariable [GVAR(key), [GVAR(dataNamespace)] call CBA_fnc_serializeNamespace];
-        TRACE_1("Saved data",GVAR(dataNamespace));
+        LOG("Saved data");
         [{
             SERVER_COMMAND serverCommand "#shutdown";
         }, nil, 2] call CBA_fnc_waitAndExecute;

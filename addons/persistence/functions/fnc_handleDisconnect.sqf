@@ -22,14 +22,16 @@ private _data = [
     [_unit] call {
         params ["_unit"];
         private _id = "";
+        private _role = "";
+        private _index = -1;
         private _vehicle = vehicle _unit;
         if (_vehicle != _unit) then {
             _id = _vehicle getVariable [QGVAR(persistenceID), ""];
             if (_id == "") then {
                 _id = [_vehicle] call FUNC(markVehicleAsPersistent);
             };
-            private _role = _unit call CBA_fnc_vehicleRole;
-            private _index = _vehicle getCargoIndex _unit;
+            _role = _unit call CBA_fnc_vehicleRole;
+            _index = _vehicle getCargoIndex _unit;
             if (_role == "turret") then {
                 _index = _unit call CBA_fnc_turretPath;
             };
@@ -50,6 +52,6 @@ GVAR(dataNamespace) setVariable [_uid, _data];
 profileNamespace setVariable [GVAR(key), [GVAR(dataNamespace)] call CBA_fnc_serializeNamespace];
 [GVAR(hashFirstKilled), _uid, true] call CBA_fnc_hashSet;
 [GVAR(hashFirstRespawn), _uid, true] call CBA_fnc_hashSet;
-TRACE_1("Saved data",GVAR(dataNamespace));
+LOG("Saved data");
 
 [_unit] call FUNC(saveVehicleData);
