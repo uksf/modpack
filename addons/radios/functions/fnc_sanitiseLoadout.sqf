@@ -25,7 +25,7 @@ params ["_inventory", ["_sanitisedInventory", []]];
                 _part = _uniqueBaseClass;
             };
         };
-		_sanitisedPart = _part;
+        _sanitisedPart = _part;
     } else {
         if (_part isEqualType 0 || {_part isEqualType false}) then {
             _sanitisedPart = _part;
