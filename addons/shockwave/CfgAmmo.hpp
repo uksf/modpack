@@ -5,8 +5,6 @@ class CfgAmmo {
     class ShellCore: Default {
         shockwaveFunction = QFUNC(120mm);
     };
-    class FlareCore;
-    class ShotDeployCore;
     class SubmunitionCore;
     class SubmunitionBase: SubmunitionCore {};
     class MissileCore: Default {
@@ -93,7 +91,7 @@ class CfgAmmo {
     class B_40mm_GPR: B_30mm_HE {
         shockwaveFunction = QFUNC(Grenade);
     };
-    class B_40mm_GPR_Tracer_Red: B_40mm_GPR     {
+    class B_40mm_GPR_Tracer_Red: B_40mm_GPR {
         shockwaveFunction = QFUNC(Grenade);
     };
     class B_40mm_GPR_Tracer_Green: B_40mm_GPR {
@@ -105,7 +103,7 @@ class CfgAmmo {
     class B_20mm: BulletBase {
         shockwaveFunction = QFUNC(Grenade);
     };
-    class B_20mm_Tracer_Red: B_20mm     {
+    class B_20mm_Tracer_Red: B_20mm {
         shockwaveFunction = QFUNC(Grenade);
     };
     class B_25mm: BulletBase {
@@ -313,10 +311,11 @@ class CfgAmmo {
     class IEDLandSmall_Remote_Ammo: PipeBombBase {
         shockwaveFunction = QFUNC(IED);
     };
-    class Bomb_04_F: LaserBombCore {
+    class ammo_Bomb_LaserGuidedBase;
+    class Bomb_04_F: ammo_Bomb_LaserGuidedBase {
         shockwaveFunction = QFUNC(BigBomb);
     };
-    class Bo_GBU12_LGB: LaserBombCore {
+    class Bo_GBU12_LGB: ammo_Bomb_LaserGuidedBase {
         shockwaveFunction = QFUNC(BigBomb);
     };
     class Bo_Mk82: BombCore {

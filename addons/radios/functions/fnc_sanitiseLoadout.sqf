@@ -13,8 +13,9 @@
 */
 #include "script_component.hpp"
 
-params ["_inventory", ["_sanitisedInventory", []]];
+params ["_inventory"];
 
+private _sanitisedInventory = [];
 {
     private _part = _x;
     private _sanitisedPart = "";
