@@ -23,6 +23,13 @@ if (!GVAR(enabled)) exitWith {};
     _this call FUNC(addPersistenceActions);
 }, true, nil, true] call CBA_fnc_addClassEventHandler;
 
+["ace_throwableThrown", {
+    params ["", "_throwable"];
+    if (_throwable isKindOf QGVAR(markerAmmo)) then {
+        [QGVAR(addLogisticsMarker), _throwable] call CBA_fnc_serverEvent;
+    };
+}] call CBA_fnc_addEventHandler;
+
 [QGVAR(firstKilled), {
     GVAR(data) = _this;
     TRACE_1("Client first killed",GVAR(data));
@@ -67,6 +74,8 @@ if (!GVAR(enabled)) exitWith {};
             [QGVAR(onPersistentVehicleExists), {
                 params ["_vehicle", "_vehicleId", "_role", "_index"];
                 [_thisType, _thisId] call CBA_fnc_removeEventHandler;
+
+                if (isNull _vehicle) exitWith {};
 
                 switch (toLower _role) do {
                     case "driver": {player moveInDriver _vehicle};

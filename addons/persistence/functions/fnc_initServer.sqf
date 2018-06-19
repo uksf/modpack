@@ -30,6 +30,7 @@ addMissionEventHandler ["HandleDisconnect", {_this call FUNC(handleDisconnect)}]
 addMissionEventHandler ["PlayerDisconnected", {_this call FUNC(playerDisconnected)}];
 
 [QGVAR(shutdown), {_this call FUNC(shutdown)}] call CBA_fnc_addEventHandler;
+[QGVAR(addLogisticsMarker), {GVAR(persistenceMarkers) pushBackUnique _this}] call CBA_fnc_addEventHandler;
 [QGVAR(markVehicleAsPersistent), {_this call FUNC(markVehicleAsPersistent)}] call CBA_fnc_addEventHandler;
 [QGVAR(checkPersistentVehicleExists), {
     [{
@@ -55,6 +56,10 @@ GVAR(dataNamespace) setVariable [QGVAR(world), worldName];
 profileNamespace setVariable [GVAR(key), [GVAR(dataNamespace)] call CBA_fnc_serializeNamespace];
 LOG("Saved data");
 
-private _dateTime = GVAR(dataNamespace) getVariable [QGVAR(dateTime), date];
-TRACE_1("Setting date time",_dateTime);
-setDate _dateTime;
+if (!GVAR(overrideSavedDateTime)) then {
+    private _dateTime = GVAR(dataNamespace) getVariable [QGVAR(dateTime), date];
+    TRACE_1("Setting date time",_dateTime);
+    setDate _dateTime;
+} else {
+    WARNING("Saved datetime overridden by mission");
+};

@@ -4,7 +4,9 @@ class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
         units[] = {};
-        weapons[] = {};
+        weapons[] = {
+            QGVAR(marker)
+        };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             "uksf_common",
@@ -18,4 +20,7 @@ class CfgPatches {
 };
 
 #include "Cfg3den.hpp"
+#include "CfgAmmo.hpp"
 #include "CfgEventHandlers.hpp"
+#include "CfgMagazines.hpp"
+#include "CfgWeapons.hpp"

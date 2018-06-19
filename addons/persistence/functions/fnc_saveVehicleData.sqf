@@ -53,7 +53,7 @@ if (!(isNull _centre)) then {
         };
     } forEach _objects;
 } else {
-    {[_x, true] call FUNC(saveVehicleData)} forEach GVAR(persistenceMarkers);
+    {if (!(isNull _x)) then {[_x, true] call FUNC(saveVehicleData)};} forEach GVAR(persistenceMarkers);
 
     [GVAR(hashPersistentVehicles), {
         private _index = _vehicles findIf {_x#0 == _key};

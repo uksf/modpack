@@ -24,15 +24,16 @@ if (count _vehicles == 0) exitWith {};
     //TRACE_1("...",_aceCargo);
     //TRACE_1("...",_inventory);
 
+    private _vehicle = objNull;
     if ([GVAR(hashPersistentVehicles), _id] call CBA_fnc_hashHasKey) then {
-        TRACE_1("Loading vehicle exists in mission, deleting",_id);
-        private _missionVehicle = ([GVAR(hashPersistentVehicles), _id] call CBA_fnc_hashGet);
-        deleteVehicle _missionVehicle;
+        TRACE_1("Loading vehicle exists in mission, using",_id);
+        _vehicle = ([GVAR(hashPersistentVehicles), _id] call CBA_fnc_hashGet);
+    } else {
+        _vehicle = _type createVehicle [-2000,0,0];
+        _vehicle setVariable [QGVAR(persistenceID), _id];
+        [GVAR(hashPersistentVehicles), _id, _vehicle] call CBA_fnc_hashSet;
     };
 
-    private _vehicle = _type createVehicle [-2000,0,0];
-    [QGVAR(trace), [_id]] call CBA_fnc_globalEvent;
-    _vehicle setVariable [QGVAR(persistenceID), _id];
     _vehicle setPosASL _position;
     _vehicle setVectorDirAndUp _vectorDirAndUp;
     _vehicle setDamage _damage;
@@ -75,9 +76,12 @@ if (count _vehicles == 0) exitWith {};
     };
     _vehicle setVariable [QEGVAR(radios,rackChannels), _rackChannels, true];
     [_vehicle, _aceCargo, _inventory] call FUNC(setVehicleCargo);
-    [GVAR(hashPersistentVehicles), _id, _vehicle] call CBA_fnc_hashSet;
 
     if (_vehicle isKindOf "UAV") then {
         createVehicleCrew _vehicle;
+    };
+
+    if (_vehicle isKindOf QGVAR(markerAmmo)) then {
+        [QGVAR(addLogisticsMarker), _vehicle] call CBA_fnc_localEvent;
     };
 } forEach _vehicles;
