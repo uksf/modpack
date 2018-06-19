@@ -197,6 +197,11 @@ class CfgAmmo {
             incDeflection = 0.0005; // The incrmeent in which deflection adjusts.
         };
     };
+    class Bo_GBU12_LGB;
+    class CUP_Bo_GBU12_LGB: Bo_GBU12_LGB {
+        model = "\A3\Weapons_F\Ammo\Bomb_01_fly_F";
+        proxyShape = "\A3\Weapons_F\Ammo\Bomb_01_F";
+    };
     class CUP_B_30x113mm_M789_HEDP_Red_Tracer: BulletBase {
         SoundSetExplosion[] = { "DS_Ex_small_impact_SoundSet", "DS_exploSmall_Tail_placeholder_SoundSet", "Explosion_Debris_SoundSet" };
         CraterEffects = "ExploAmmoCrater";
@@ -224,6 +229,7 @@ class CfgAmmo {
         ace_frag_gurney_c = 2700;
         ace_frag_gurney_k = "1/2";
     };
+
     class DemoCharge_Remote_Ammo;
     class BreachCharge_Remote_Ammo: DemoCharge_Remote_Ammo {
         hit = 200;

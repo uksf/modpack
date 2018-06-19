@@ -44,10 +44,10 @@ if (!(isNull _centre)) then {
                 TRACE_1("Exists?",_index);
                 if (_index > -1) then {
                     _vehicles set [_index, [_object] call FUNC(getVehicleData)];
-                    TRACE_1("Updated",_vehicles);
+                    TRACE_1("Updated",_id);
                 } else {
                     _vehicles pushBack ([_object] call FUNC(getVehicleData));
-                    TRACE_1("Added",_vehicles);
+                    TRACE_1("Added",_id);
                 };
             };
         };
@@ -65,7 +65,7 @@ if (!(isNull _centre)) then {
     }] call CBA_fnc_hashEachPair;
 };
 
-TRACE_1("Vehicles saved",_vehicles);
+//TRACE_1("Vehicles saved",_vehicles);
 GVAR(dataNamespace) setVariable [QGVAR(vehicles), _vehicles];
 profileNamespace setVariable [GVAR(key), [GVAR(dataNamespace)] call CBA_fnc_serializeNamespace];
 LOG("Saved data");

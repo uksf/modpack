@@ -8,9 +8,9 @@ class Cfg3DEN {
                         control = "Checkbox";
                         displayName = QUOTE(Persistent);
                         tooltip = QUOTE(Marks vehicle as persistent);
-                        expression = QUOTE(if (isServer && _value) then {[_this] call FUNC(markVehicleAsPersistent)};);
+                        expression = QUOTE(if (!is3DEN && {isServer} && {_value}) then {_this call FUNC(markVehicleAsPersistent)};);
                         typeName = "BOOL";
-                        defaultValue = "(false)";
+                        defaultValue = "false";
                         condition = "(1 - objectBrain) * objectVehicle";
                     };
                 };

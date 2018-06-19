@@ -49,7 +49,7 @@ private _data = [
     (_unit getVariable ["ace_attach_attached", []]) apply {_x#1},
     (([_unit] call acre_sys_core_fnc_getGear) select {_x call acre_sys_radio_fnc_isUniqueRadio}) apply {[_x] call acre_api_fnc_getRadioChannel}
 ];
-TRACE_1("Player disconnect",_data);
+//TRACE_1("Player disconnect",_data);
 
 GVAR(dataNamespace) setVariable [_uid, _data];
 private _dateTime = date;
@@ -57,5 +57,8 @@ TRACE_1("Saving date time",_dateTime);
 GVAR(dataNamespace) setVariable [QGVAR(dateTime), _dateTime];
 profileNamespace setVariable [GVAR(key), [GVAR(dataNamespace)] call CBA_fnc_serializeNamespace];
 LOG("Saved data");
+
+private _players = [] call CBA_fnc_players;
+TRACE_1("Remaining players on server:"_players);
 
 [_unit] call FUNC(saveVehicleData);

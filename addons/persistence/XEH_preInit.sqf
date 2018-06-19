@@ -5,6 +5,7 @@ ADDON = false;
 #include "XEH_PREP.hpp"
 
 if (!isMultiplayer) exitWith {};
+[QGVAR(trace), {params ["_id"]; TRACE_1("Vehicle init",_id)}] call CBA_fnc_addEventHandler;
 
 if (hasInterface) then {
     [QGVAR(initClient), {_this call FUNC(initClient)}] call CBA_fnc_addEventHandler;

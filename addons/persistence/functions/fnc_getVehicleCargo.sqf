@@ -27,9 +27,9 @@ private _aceCargo = [];
         _xAceCargo = [_x] call FUNC(getVehicleCargo);
         _inventory = [getWeaponCargo _x, getMagazineCargo _x, getItemCargo _x, getBackpackCargo _x];
     };
-    TRACE_3("Found cargo",_type,_xAceCargo,_inventory);
+    //TRACE_3("Found cargo",_type,_xAceCargo,_inventory);
     _aceCargo pushBack [_type, _xAceCargo, _inventory];
 } forEach _loadedCargo;
 
-TRACE_1("Got cargo",_aceCargo);
+//TRACE_1("Got cargo",_aceCargo);
 _aceCargo

@@ -34,5 +34,5 @@ LOG("Shutdown");
             SERVER_COMMAND serverCommand "#shutdown";
         }, nil, 2] call CBA_fnc_waitAndExecute;
     };
-    SERVER_COMMAND serverCommand (format ["#kick %1", _players#0]);
+    SERVER_COMMAND serverCommand (format ["#kick %1", owner (_players#0)]);
 }, 2, []] call CBA_fnc_addPerFrameHandler;

@@ -31,26 +31,22 @@ addMissionEventHandler ["PlayerDisconnected", {_this call FUNC(playerDisconnecte
 
 [QGVAR(shutdown), {_this call FUNC(shutdown)}] call CBA_fnc_addEventHandler;
 [QGVAR(markVehicleAsPersistent), {_this call FUNC(markVehicleAsPersistent)}] call CBA_fnc_addEventHandler;
-[QGVAR(checkPersistentVehicleExists), {    
+[QGVAR(checkPersistentVehicleExists), {
     [{
-        TRACE_1("Vehicle exist check",_this);
         params ["_vehicleState"];
         _vehicleState params ["_vehicleId"];
         private _exists = [GVAR(hashPersistentVehicles), _vehicleId] call CBA_fnc_hashHasKey;
-        TRACE_1("Vehicle exist?",_exists);
         _exists
     }, {
         params ["_vehicleState", "_client"];
         _vehicleState params ["_vehicleId", "_role", "_index"];
 
         private _vehicle = [GVAR(hashPersistentVehicles), _vehicleId] call CBA_fnc_hashGet;
-        TRACE_4("Vehicle exists",_vehicle,_vehicleId,_role,_index);
         [QGVAR(onPersistentVehicleExists), [_vehicle, _vehicleId, _role, _index], _client] call CBA_fnc_targetEvent;
     }, _this, 10, {
         params ["_vehicleState", "_client"];
         _vehicleState params ["_vehicleId", "_role", "_index"];
 
-        TRACE_3("TIMEOUT vehicle does not exist",_vehicleId,_role,_index);
         [QGVAR(onPersistentVehicleExists), [objNull, _vehicleId, _role, _index], _client] call CBA_fnc_targetEvent;
     }] call CBA_fnc_waitUntilAndExecute;
 }] call CBA_fnc_addEventHandler;

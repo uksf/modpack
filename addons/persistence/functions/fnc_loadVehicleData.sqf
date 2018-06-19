@@ -17,25 +17,49 @@ private _vehicles = (GVAR(dataNamespace) getVariable [QGVAR(vehicles), []]);
 if (count _vehicles == 0) exitWith {};
 
 {
-    _x params ["_id", "_type", "_position", "_vectorDirAndUp", "_damage", "_fuel", "_magazines", "_logisticsCargo", "_attached", "_rackChannels", "_aceCargo", "_inventory"];
+    _x params ["_id", "_type", "_position", "_vectorDirAndUp", "_damage", "_fuel", "_turretWeapons", "_turretMagazines", "_pylonLoadout", "_logisticsCargo", "_attached", "_rackChannels", "_aceCargo", "_inventory"];
     TRACE_7("Loading vehicle...",_id,_type,_position,_vectorDirAndUp,_damage,_fuel,_rackChannels);
-    TRACE_3("...",_magazines,_logisticsCargo,_attached);
-    TRACE_1("...",_aceCargo);
-    TRACE_1("...",_inventory);
+    //TRACE_3("...",_turretWeapons,_turretMagazines,_pylonLoadout);
+    //TRACE_2("...",_logisticsCargo,_attached);
+    //TRACE_1("...",_aceCargo);
+    //TRACE_1("...",_inventory);
 
     if ([GVAR(hashPersistentVehicles), _id] call CBA_fnc_hashHasKey) then {
+        TRACE_1("Loading vehicle exists in mission, deleting",_id);
         private _missionVehicle = ([GVAR(hashPersistentVehicles), _id] call CBA_fnc_hashGet);
         deleteVehicle _missionVehicle;
     };
 
     private _vehicle = _type createVehicle [-2000,0,0];
+    [QGVAR(trace), [_id]] call CBA_fnc_globalEvent;
     _vehicle setVariable [QGVAR(persistenceID), _id];
     _vehicle setPosASL _position;
     _vehicle setVectorDirAndUp _vectorDirAndUp;
     _vehicle setDamage _damage;
     _vehicle setFuel _fuel;
-    {_vehicle removeMagazinesTurret [_x#0, _x#1];} forEach (magazinesAllTurrets _vehicle);
-    {_vehicle addMagazineTurret [_x#0, _x#1, _x#2];} forEach _magazines;
+
+    private _currentTurretMagazines = magazinesAllTurrets _vehicle;
+    private _turretPaths = _currentTurretMagazines apply {_x#1};
+    _turretPaths = _turretPaths arrayIntersect _turretPaths;
+    private _pylonPaths = (configProperties [configFile >> "CfgVehicles" >> typeOf _vehicle >> "Components" >> "TransportPylonsComponent" >> "Pylons", "isClass _x"]) apply {getArray (_x >> "turret")};
+    private _currentTurretWeapons = _turretPaths apply {[_x, _vehicle weaponsTurret _x]};
+    {
+        private _turretPath = _x#0;
+        {_vehicle removeWeaponTurret [_x, _turretPath]} forEach _x#1;
+    } forEach _currentTurretWeapons;
+    {_vehicle removeWeaponGlobal (getText (configFile >> "CfgMagazines" >> _x >> "pylonWeapon"))} forEach (getPylonMagazines _vehicle);
+    {_vehicle removeMagazinesTurret [_x#0, _x#1]} forEach _currentTurretMagazines;
+    {
+        private _turretPath = _x#0;
+        {_vehicle addWeaponTurret [_x, _turretPath]} forEach _x#1;
+    } forEach _turretWeapons;
+    {_vehicle addMagazineTurret [_x#0, _x#1, _x#2]} forEach _turretMagazines;
+    {
+        _vehicle setPylonLoadOut [_forEachIndex + 1, _x#0, true, _pylonPaths select _forEachIndex];
+        _vehicle setAmmoOnPylon [_forEachIndex + 1, _x#1];
+    } forEach _pylonLoadout;
+    [_vehicle] call EFUNC(weapons,correctPilotPylon);
+
     if (finite (_logisticsCargo#0)) then {_vehicle setAmmoCargo _logisticsCargo#0;};
     if (finite (_logisticsCargo#1)) then {_vehicle setFuelCargo _logisticsCargo#1;};
     if (finite (_logisticsCargo#2)) then {_vehicle setRepairCargo _logisticsCargo#2;};
@@ -52,4 +76,8 @@ if (count _vehicles == 0) exitWith {};
     _vehicle setVariable [QEGVAR(radios,rackChannels), _rackChannels, true];
     [_vehicle, _aceCargo, _inventory] call FUNC(setVehicleCargo);
     [GVAR(hashPersistentVehicles), _id, _vehicle] call CBA_fnc_hashSet;
+
+    if (_vehicle isKindOf "UAV") then {
+        createVehicleCrew _vehicle;
+    };
 } forEach _vehicles;

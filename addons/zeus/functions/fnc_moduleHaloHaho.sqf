@@ -50,6 +50,7 @@ GVAR(curatorSelectionHandle) = _display displayAddEventHandler ["KeyDown", {
             GVAR(curatorMapPointHandle) = [findDisplay 312, "MouseButtonDown", {
                 params ["_display", "_mouseButton", "", "", "_shift", "_ctrl", "_alt"];
 
+                // TODO: Draw line between first point and cursor
                 if (_mouseButton != 0) exitWith {};
                 if (ctrlShown (_display displayCtrl 50)) then {
                     private _position = ((_display displayCtrl 50) ctrlMapScreenToWorld getMousePosition);

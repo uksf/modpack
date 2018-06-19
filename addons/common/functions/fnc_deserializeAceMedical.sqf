@@ -28,3 +28,6 @@ if (!local _unit) exitWith {
         _unit setVariable [_variable, _state, true];
     };
 } forEach _states;
+
+[_unit] call ace_medical_fnc_handleDamage_advancedSetDamage;
+[_unit] call ace_medical_fnc_addVitalLoop;
