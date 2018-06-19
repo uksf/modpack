@@ -21,13 +21,6 @@ if (isMultiplayer && !is3DENMultiplayer) then {
     GVAR(HCs) pushBack player;
 };
 
-[QEGVAR(lobby,respawned), {
-    // Add FPS action
-    if (hasInterface) then {
-        call FUNC(fpsAction);
-    };
-}] call CBA_fnc_addEventHandler;
-
 if (hasInterface) then {
     ["visibleMap", {
         params ["", "_mapOn"];

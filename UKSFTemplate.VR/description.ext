@@ -3,13 +3,14 @@
         Tim Beswick
 
     Version:
-        1.5.0
+        1.7.0
 */
 
 //--------------------------------------------------- CHANGE BASED ON MISSION --------------------------------------------------
 onLoadName = "UKSF: Operation";
 onLoadMission = "UKSF: Operation";
 overviewText = "UKSF: Operation";
+persistenceKey = "";
 //------------------------------------------------------------------------------------------------------------------------------
 //-------------------------------------------------------- DON'T CHANGE --------------------------------------------------------
 author = "UKSF";
@@ -17,10 +18,10 @@ loadScreen = "uksf.paa";
 class Header {
     gameType = "Coop";
     minPlayers = 4;
-    maxPlayers = 72;
+    maxPlayers = 4;
 };
 respawn = "BASE";
-respawnOnStart = 0;
+respawnOnStart = 1;
 respawnDelay = 1;
 respawnDialog = 0;
 respawnTemplates[] = { "MenuPosition" };

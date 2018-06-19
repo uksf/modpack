@@ -1,9 +1,22 @@
 #include "script_component.hpp"
 
-if (hasInterface) then {
-    [{
-        if (cameraView isEqualTo "EXTERNAL" && {cameraOn isEqualTo player} && {(vehicle player) isEqualTo player}) then {
-            cameraOn switchCamera "INTERNAL";
-        };
-    }, 0, []] call CBA_fnc_addPerFrameHandler;
+if (!(hasInterface)) exitWith {};
+if (difficultyOption "thirdPersonView" == 0) exitWith {
+    WARNING("View Restriction is enabled, but 3rd person is disabled with server difficulty.");
 };
+
+["cameraView", {
+    params ["", "_newCameraView"];
+
+    private _cameraOn = cameraOn;
+    if (!([_newCameraView, _cameraOn] call FUNC(canChangeCamera))) exitWith {};
+    _cameraOn switchCamera "INTERNAL";
+}] call CBA_fnc_addPlayerEventHandler;
+
+["vehicle", {
+    params ["", "_cameraOn"];
+
+    private _newCameraView = cameraView;
+    if (!([_newCameraView, _cameraOn] call FUNC(canChangeCamera))) exitWith {};
+    _cameraOn switchCamera "INTERNAL";
+}] call CBA_fnc_addPlayerEventHandler;

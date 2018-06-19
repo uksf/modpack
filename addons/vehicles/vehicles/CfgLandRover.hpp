@@ -235,14 +235,23 @@ class UK3CB_BAF_LandRover_WMIK_Base: UK3CB_BAF_LandRover_Base {
             };
         };
     };
+    class TransportWeapons;
 };
 class UK3CB_BAF_LandRover_WMIK_HMG_Base: UK3CB_BAF_LandRover_WMIK_Base {
     class Turrets: Turrets {
         class HMG_Turret: MainTurret {
+            gunnerOpticsModel = "UK3CB_BAF_Vehicles\addons\UK3CB_BAF_Vehicles_Coyote_Jackal\Weapons\TA31F_Optic_x3";
+            gunnerOpticsEffect[] = {"OpticsCHAbera1"};
             class ViewOptics {
                 visionMode[] = {};
             };
         };
+    };
+    class TransportWeapons: TransportWeapons {
+        delete _xx_UK3CB_BAF_Javelin_CLU;
+    };
+    class TransportItems {
+        MACRO_ADDITEM(UK3CB_BAF_Javelin_CLU,1);
     };
 };
 class UK3CB_BAF_LandRover_WMIK_HMG_Green_A: UK3CB_BAF_LandRover_WMIK_HMG_Base {
@@ -292,6 +301,12 @@ class UK3CB_BAF_LandRover_WMIK_GPMG_Base: UK3CB_BAF_LandRover_WMIK_Base {
             };
         };
     };
+    class TransportWeapons: TransportWeapons {
+        delete _xx_UK3CB_BAF_Javelin_CLU;
+    };
+    class TransportItems {
+        MACRO_ADDITEM(UK3CB_BAF_Javelin_CLU,1);
+    };
 };
 class UK3CB_BAF_LandRover_WMIK_GPMG_Green_A: UK3CB_BAF_LandRover_WMIK_GPMG_Base {
     scope = 0;
@@ -339,6 +354,12 @@ class UK3CB_BAF_LandRover_WMIK_GMG_Base: UK3CB_BAF_LandRover_WMIK_Base {
                 visionMode[] = {};
             };
         };
+    };
+    class TransportWeapons: TransportWeapons {
+        delete _xx_UK3CB_BAF_Javelin_CLU;
+    };
+    class TransportItems {
+        MACRO_ADDITEM(UK3CB_BAF_Javelin_CLU,1);
     };
 };
 class UK3CB_BAF_LandRover_WMIK_GMG_Green_A: UK3CB_BAF_LandRover_WMIK_GMG_Base {

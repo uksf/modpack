@@ -1,4 +1,4 @@
-class CfgAmmo{
+class CfgAmmo {
     class B_762x51_Ball;
     class UK3CB_BAF_762_Ball: B_762x51_Ball {
         ACE_bulletMass = 10.0438;
@@ -26,6 +26,22 @@ class CfgAmmo{
     class B_408_Ball;
     class UK3CB_BAF_338_Ball_Tracer_Red: B_408_Ball {
         tracerEndTime = 3; // 1
+    };
+    class Flare_82mm_AMOS_White;
+    class UK3CB_BAF_Flare_81mm_AMOS_White: Flare_82mm_AMOS_White {
+        deflecting = 30;
+        useFlare = 1;
+        lightColor[] = {0.5, 0.5, 0.5, 0.5};
+        smokeColor[] = {1, 1, 1, 0.5};
+        brightness = 12000000;
+        intensity = 8000000;
+        size = 1;
+        flareSize = 24;
+    };
+    class UK3CB_BAF_Flare_60mm_AMOS_White: UK3CB_BAF_Flare_81mm_AMOS_White {
+        brightness = 9000000;
+        intensity = 6000000;
+        flareSize = 18;
     };
 
     class Chemlight_red;
@@ -181,6 +197,11 @@ class CfgAmmo{
             incDeflection = 0.0005; // The incrmeent in which deflection adjusts.
         };
     };
+    class Bo_GBU12_LGB;
+    class CUP_Bo_GBU12_LGB: Bo_GBU12_LGB {
+        model = "\A3\Weapons_F\Ammo\Bomb_01_fly_F";
+        proxyShape = "\A3\Weapons_F\Ammo\Bomb_01_F";
+    };
     class CUP_B_30x113mm_M789_HEDP_Red_Tracer: BulletBase {
         SoundSetExplosion[] = { "DS_Ex_small_impact_SoundSet", "DS_exploSmall_Tail_placeholder_SoundSet", "Explosion_Debris_SoundSet" };
         CraterEffects = "ExploAmmoCrater";
@@ -208,6 +229,7 @@ class CfgAmmo{
         ace_frag_gurney_c = 2700;
         ace_frag_gurney_k = "1/2";
     };
+
     class DemoCharge_Remote_Ammo;
     class BreachCharge_Remote_Ammo: DemoCharge_Remote_Ammo {
         hit = 200;

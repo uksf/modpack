@@ -10,7 +10,6 @@ class CfgPatches {
             "uksf_air",
             "uksf_apache",
             "uksf_common",
-            "uksf_lobby",
             "uksf_vehicles"
         };
         author = QUOTE(UKSF);

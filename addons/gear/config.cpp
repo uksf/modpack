@@ -5,7 +5,6 @@ class CfgPatches {
         name = COMPONENT_NAME;
         units[] = {
             "UKSF_B_Bergen_Medic",
-            "UKSF_B_Bergen_ATC",
             "UK3CB_BAF_B_Bergen_MTP_Rifleman_L_C_AR",
             "UK3CB_BAF_B_Bergen_MTP_Rifleman_L_C_MG",
             "UK3CB_BAF_B_Bergen_MTP_Rifleman_L_C_AA",

@@ -19,6 +19,7 @@ class CfgVehicles {
         camouflage = 0;
         wheelSteeringSensitivity = 1;
         fuelCapacity = 1850; // 270
+        unitInfoType = "RscOptics_AV_airplane_pilot";
         class Turrets {
             class MainTurret: NewTurret {
                 turretInfoType = "RscOptics_UAV_gunnerClean";

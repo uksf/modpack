@@ -14,6 +14,17 @@ class RscDisplayAttributesMan: RscDisplayAttributes {
         class ButtonCargo: ButtonCustomLeft {
             onMouseButtonClick = QUOTE(call FUNC(openArsenal));
         };
+        delete ButtonFlag;
+    };
+};
+class RscDisplayAttributesVehicle: RscDisplayAttributes {
+    class Controls: Controls {
+        delete ButtonFlag;
+    };
+};
+class RscDisplayAttributesVehicleEmpty: RscDisplayAttributes {
+    class Controls: Controls {
+        delete ButtonFlag;
     };
 };
 class CfgScriptPaths {

@@ -6,10 +6,11 @@ PREP(openArsenal);
 // Modules
 PREP(moduleAddAllObjects);
 PREP(moduleAddAceArsenal);
+PREP(moduleDelete);
 PREP(moduleExplosionLarge);
 PREP(moduleExplosionSmall);
-PREP(moduleDelete);
 PREP(moduleFullHeal);
+PREP(moduleHaloHaho);
 PREP(moduleLoadoutCopy);
 PREP(moduleLoadoutPaste);
 PREP(moduleRemoveAceArsenal);

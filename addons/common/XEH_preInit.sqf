@@ -21,15 +21,20 @@ ADDON = false;
 // FPS Debug
 GVAR(fpsState) = false;
 
-// Setup events
 if (hasInterface) then {
     GVAR(fpsArray) = [];
 
     [QGVAR(hint), {_this call FUNC(hint)}] call CBA_fnc_addEventHandler;
+
+    ["CAManBase", "respawn", {
+        call FUNC(fpsAction);
+    }, true, nil, true] call CBA_fnc_addClassEventHandler;
 };
+
 if (!isServer && !hasInterface) then {
     GVAR(fpsEventID) = [QGVAR(fpsGet), {_this call FUNC(fpsGet)}] call CBA_fnc_addEventHandler;
 };
+
 if (isServer) then {
     GVAR(fpsEventID) = [QGVAR(fpsGet), {_this call FUNC(fpsGet)}] call CBA_fnc_addEventHandler;
 

@@ -9,7 +9,8 @@ class CfgPatches {
         requiredAddons[] = {
             "ace_arsenal",
             "uksf_common",
-            "uksf_gear"
+            "uksf_gear",
+            "uksf_resupply"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };

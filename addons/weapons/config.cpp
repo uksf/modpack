@@ -3,14 +3,7 @@
 class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
-        units[] = {
-            "UKSF_S_Empty",
-            "UKSF_S_Ammo",
-            "UKSF_S_Medic",
-            "UKSF_S_AmmoMedic",
-            "UKSF_S_Radios",
-            "UKSF_S_Arsenal"
-        };
+        units[] = {};
         weapons[] = {
             "UK3CB_BAF_LLM_Flashlight_Far_Black",
             "ACE_NVG_Pilot",

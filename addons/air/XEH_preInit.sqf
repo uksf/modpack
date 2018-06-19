@@ -2,8 +2,8 @@
 
 ADDON = false;
 
-[QEGVAR(lobby,respawned), {
+["CAManBase", "respawn", {
     player setVariable ["UK3CB_voice_enabled", 0, true];
-}] call CBA_fnc_addEventHandler;
+}, true, nil, true] call CBA_fnc_addClassEventHandler;
 
 ADDON = true;

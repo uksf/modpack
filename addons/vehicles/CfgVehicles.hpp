@@ -46,7 +46,7 @@ class CfgVehicles {
         ace_refuel_fuelCapacity = 93;
         hullDamageCauseExplosion = 0;
         peakTorque = 1000;
-        maxOmega = 550;
+        maxOmega = 450;
         class HitPoints: HitPoints {
             class HitBody: HitBody {
                 armor = 1.5; // Default: 0.7
@@ -78,139 +78,6 @@ class CfgVehicles {
     #include "vehicles\CfgJackalCUP.hpp"
     #include "vehicles\CfgCoyoteCUP.hpp"
     #include "vehicles\CfgLandRoverCUP.hpp"
-
-    class Items_base_F;
-    class Land_CanisterFuel_F: Items_base_F {
-        scope = 2;
-        scopeCurator = 2;
-        faction = "CUP_B_GB";
-        displayName = "Jerry Can";
-        editorCategory = QEGVAR(common,UKSF);
-        editorSubcategory = QEGVAR(common,support);
-        editorPreview = QPATHTOEF(common,data\previews\Land_CanisterFuel_F.jpg);
-        ace_dragging_canCarry = 1;
-        ace_dragging_carryPosition[] = {0, 1, 1};
-        ace_dragging_carryDirection = 0;
-    };
-    class CargoNet_01_base_F;
-    class CargoNet_01_barrels_F: CargoNet_01_base_F {
-        scope = 2;
-        scopeCurator = 2;
-        faction = "CUP_B_GB";
-        displayName = "Cargo Net (Fuel Barrels)";
-        editorCategory = QEGVAR(common,UKSF);
-        editorSubcategory = QEGVAR(common,support);
-        editorPreview = QPATHTOEF(common,data\previews\CargoNet_01_barrels_F.jpg);
-        ace_refuel_fuelCapacity = 800;
-        ace_refuel_fuelCargo = 800;
-        ace_refuel_flowRate = 2;
-        ace_cargo_hasCargo = 0;
-        ace_refuel_hooks[] = {{0.498,0.27,0.485}};
-        armor = 50;
-        fuelExplosionPower = 2;
-        destrType = "DestructBuilding";
-        explosionEffect = "FuelExplosion";
-        class DestructionEffects {
-            class Light1 {
-                simulation = "light";
-                type = "ObjectDestructionLightFuel";
-                position = "destructionEffect1";
-                intensity = 1;
-                interval = 1;
-                lifeTime = 0;
-            };
-            class Smoke1 {
-                simulation = "particles";
-                type = "FuelTruck_Explosion";
-                position = "destructionEffect1";
-                intensity = 1;
-                interval = 1;
-                lifeTime = 0.001;
-            };
-            class LightFlames1 {
-                simulation = "particles";
-                type = "FlameLightBC";
-                position = "destructionEffect1";
-                intensity = 1;
-                interval = 1;
-                lifeTime = 0.5;
-                enabled = "distToWater";
-            };
-            class LightBig1 {
-                simulation = "light";
-                type = "ObjectDestructionLight";
-                position = "destructionEffect1";
-                intensity = 1;
-                interval = 1;
-                lifeTime = 2;
-                enabled = "distToWater";
-            };
-            class Sound {
-                simulation = "sound";
-                position = "destructionEffect1";
-                intensity = 1;
-                interval = 1;
-                lifeTime = 1;
-                type = "Fire";
-            };
-            class FireBig1 {
-                simulation = "particles";
-                type = "ObjectDestructionFire1";
-                position = "destructionEffect1";
-                intensity = 0.15;
-                interval = 1;
-                lifeTime = 3;
-            };
-            class SmokeBig1 {
-                simulation = "particles";
-                type = "ObjectDestructionSmoke";
-                position = "destructionEffect1";
-                intensity = 0.15;
-                interval = 1;
-                lifeTime = 3.5;
-            };
-            class SparksBig1 {
-                simulation = "particles";
-                type = "ObjectDestructionSparks";
-                position = "destructionEffect1";
-                intensity = 1;
-                interval = 1;
-                lifeTime = 0;
-            };
-            class FireSparksBig1 {
-                simulation = "particles";
-                type = "FireSparks";
-                position = "destructionEffect2";
-                intensity = 1;
-                interval = 1;
-                lifeTime = 2.8;
-            };
-            class FireBig2 {
-                simulation = "particles";
-                type = "ObjectDestructionFire2";
-                position = "destructionEffect2";
-                intensity = 0.15;
-                interval = 1;
-                lifeTime = 3;
-            };
-            class SmokeBig1_2 {
-                simulation = "particles";
-                type = "ObjectDestructionSmoke1_2";
-                position = "destructionEffect2";
-                intensity = 0.15;
-                interval = 1;
-                lifeTime = 3.5;
-            };
-            class SmokeBig2 {
-                simulation = "particles";
-                type = "ObjectDestructionSmoke2";
-                position = "destructionEffect2";
-                intensity = 1;
-                interval = 1;
-                lifeTime = 3.2;
-            };
-        };
-    };
 
     class Tank_F;
     class CUP_2S6_Base: Tank_F {

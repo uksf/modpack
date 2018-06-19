@@ -112,7 +112,7 @@ class CfgVehicles {
         armor = 100;
         fuelCapacity = 200; // 300
         explosionShielding = 0.5;
-        epeImpulseDamageCoef = 0;
+        epeImpulseDamageCoef = 5;
         crewCrashProtection = 0.5;
         enableManualFire = 1;
         copilotHasFlares = 1;

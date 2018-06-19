@@ -15,7 +15,9 @@
 
 params ["_vehicle"];
 
-if (!local _vehicle) exitWith {};
+if (!local _vehicle) exitWith {
+    [QGVAR(correctPilotPylon), _this, _vehicle] call CBA_fnc_targetEvent;
+};
 
 private _magazines = getPylonMagazines _vehicle;
 

@@ -4,9 +4,6 @@ class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
         units[] = {
-            "VCOM_Toggle",
-            "VCOM_DisembarkToggle",
-            "VCOM_SupportToggle",
             "UKSFModuleRespawnPosition_F"
         };
         weapons[] = {};
@@ -27,7 +24,6 @@ class CfgPatches {
 class CBA_Extended_EventHandlers;
 #include "CfgEventHandlers.hpp"
 #include "Cfg3den.hpp"
-#include "CfgEditorCategories.hpp"
 #include "CfgEditorSubcategories.hpp"
 #include "CfgFactionClasses.hpp"
 #include "CfgGroups.hpp"

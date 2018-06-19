@@ -9,13 +9,16 @@ GVAR(fpsEnabled) = false;
 GVAR(EHIDArray) = [];
 GVAR(curatorUnconciousMapID) = 999;
 
-[QEGVAR(lobby,respawned), {
+["CAManBase", "respawn", {
     if (hasInterface && {isMultiplayer}) then {
         GVAR(fpsEnabled) = MULTIPLAYER_ADMIN_OR_WHITELISTED;
         [{
             player setVariable [QGVAR(fps), floor diag_fps, true];
         }, 1, []] call CBA_fnc_addPerFrameHandler;
     };
-}] call CBA_fnc_addEventHandler;
+}, true, nil, true] call CBA_fnc_addClassEventHandler;
+
+[QGVAR(moveInCargo), {_this#0 moveInCargo _this#1}] call CBA_fnc_addEventHandler;
+[QGVAR(textTiles), {_this spawn BIS_fnc_textTiles}] call CBA_fnc_addEventHandler;
 
 ADDON = true;

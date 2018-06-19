@@ -40,6 +40,13 @@ class CfgVehicles {
         function = QFUNC(moduleExplosionSmall);
         icon = QPATHTOF(UI\Icon_Module_Explosion_Small_ca.paa);
     };
+    class GVAR(moduleHaloHaho): EGVAR(common,moduleBase) {
+        curatorCanAttach = 1;
+        category = QEGVAR(common,zeus_uksf_special);
+        displayName = "HALO/HAHO Units";
+        function = QFUNC(moduleHaloHaho);
+        icon = "\achilles\data_f_achilles\icons\icon_dropzone.paa";
+    };
     class GVAR(moduleLoadoutCopy): EGVAR(common,moduleBase) {
         curatorCanAttach = 1;
         category = "Equipment";
@@ -180,6 +187,10 @@ class CfgVehicles {
         scopeCurator = 0;
     };
     class Ares_Module_Player_Teleport: Ares_Player_Module_Base {
+        scopeCurator = 0;
+    };
+    class Achilles_Player_Module_Base;
+    class Achilles_Module_Player_Set_Frequencies: Achilles_Player_Module_Base {
         scopeCurator = 0;
     };
     class Ares_Equipment_Module_Base;

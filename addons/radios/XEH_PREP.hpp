@@ -1,3 +1,3 @@
-PREP(addUseAllAction);
 PREP(initRacks);
+PREP(sanitiseLoadout);
 PREP(setChannelNames);

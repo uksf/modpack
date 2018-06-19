@@ -124,8 +124,6 @@ class CfgVehicles {
         scope = 2;
         scopeCurator = 2;
         displayName = "Figure 11 Target - No Popup";
-        editorCategory = QEGVAR(common,UKSF);
-        editorSubcategory = QEGVAR(common,support);
         editorPreview = QPATHTOEF(common,data\previews\UKSF_Target_Nopopup.jpg);
         class EventHandlers {
             hitPart = "";
@@ -137,8 +135,8 @@ class CfgVehicles {
         scope = 2;
         scopeCurator = 2;
         displayName = "Movable Figure 11 Target";
-        editorCategory = QEGVAR(common,UKSF);
-        editorSubcategory = QEGVAR(common,support);
+        editorCategory = "EdCat_Things";
+        editorSubcategory = "EdSubcat_Targets";
         editorPreview = QPATHTOEF(common,data\previews\UKSF_Target_Nopopup.jpg);
         model = "\A3\Structures_F\Training\Target_PopUp_F.p3d";
         icon = "iconObject_5x4";

@@ -176,12 +176,12 @@ class CfgWeapons {
     class UK3CB_BAF_U_CombatUniform_MTP;
     class UKSF_U_PilotUniform_656: UK3CB_BAF_U_CombatUniform_MTP {
         displayName = "Pilot Uniform (656 Sqn.)";
-        hiddenSelections[] = {"Camo", "Camo2", "camo3"};
-        hiddenSelectionsTextures[] = { "cup\creatures\people\military\cup_creatures_people_military_baf\data\MTP\camo_MTP_co.paa", "cup\creatures\people\military\cup_creatures_people_military_baf\data\DPM\armour_DPM_co.paa", QPATHTOF(data\uniforms\pilot_uniform_656.paa) };
+        hiddenSelections[] = { "camo" };
+        hiddenSelectionsTextures[] = { QPATHTOF(data\uniforms\pilot_uniform_656.paa) };
         class ItemInfo: UniformItem {
             uniformModel = "-";
             uniformClass = "UKSF_B_Pilot_656";
-            containerClass = "Supply40";
+            containerClass = "Supply100";
             mass = 50;
         };
     };

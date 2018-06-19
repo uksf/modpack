@@ -1,1 +1,1 @@
-PREP(init);
+PREP(canChangeCamera);

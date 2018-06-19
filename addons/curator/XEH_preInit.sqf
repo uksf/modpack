@@ -30,6 +30,9 @@ if (isServer) then {
 if (hasInterface) then {
     ["CAManBase", "respawn", {
         params ["_unit"];
+
+        [_unit] call FUNC(addCuratorActions);
+
         private _index = (GVAR(curatorPlayers) find (name _unit));
         if (_index > -1) then {
             [QGVAR(curatorUnassign), [GVAR(curatorObjects) select _index]] call CBA_fnc_serverEvent;
@@ -39,10 +42,6 @@ if (hasInterface) then {
                 call FUNC(curatorLogin);
             };
         };
-    }, true, [], true] call CBA_fnc_addClassEventHandler;
-
-    ["CAManBase", "init", {
-        call FUNC(addCuratorActions);
     }, true, [], true] call CBA_fnc_addClassEventHandler;
 
     ["CBA_loadingScreenDone", {

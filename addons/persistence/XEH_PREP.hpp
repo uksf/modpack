@@ -1,0 +1,15 @@
+PREP(addPersistenceActions);
+PREP(entityKilled);
+PREP(entityRespawned);
+PREP(getVehicleCargo);
+PREP(getVehicleData);
+PREP(handleDisconnect);
+PREP(initClient);
+PREP(initServer);
+PREP(loadVehicleData);
+PREP(markVehicleAsPersistent);
+PREP(playerConnected);
+PREP(playerDisconnected);
+PREP(saveVehicleData);
+PREP(setVehicleCargo);
+PREP(shutdown);

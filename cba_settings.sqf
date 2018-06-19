@@ -158,12 +158,12 @@ force force ace_medical_allowDeadBodyMovement = true;
 force force ace_medical_allowLitterCreation = true;
 force force ace_medical_allowUnconsciousAnimationOnTreatment = true;
 force force ace_medical_amountOfReviveLives = -1;
-force force ace_medical_bleedingCoefficient = 1;
+force ace_medical_bleedingCoefficient = 1;
 force force ace_medical_blood_enabledFor = 2;
 force force ace_medical_consumeItem_PAK = 0;
 force force ace_medical_consumeItem_SurgicalKit = 0;
 force force ace_medical_delayUnconCaptive = 2;
-force force ace_medical_enableAdvancedWounds = true;
+force ace_medical_enableAdvancedWounds = true;
 force force ace_medical_enableFor = 0;
 force force ace_medical_enableOverdosing = true;
 force force ace_medical_enableRevive = 1;
@@ -176,28 +176,28 @@ force force ace_medical_keepLocalSettingsSynced = true;
 force force ace_medical_level = 2;
 force force ace_medical_litterCleanUpDelay = 900;
 force force ace_medical_litterSimulationDetail = 2;
-force force ace_medical_maxReviveTime = 3600;
+force ace_medical_maxReviveTime = 3600;
 force force ace_medical_medicSetting = 2;
 force force ace_medical_medicSetting_basicEpi = 0;
-force force ace_medical_medicSetting_PAK = 1;
-force force ace_medical_medicSetting_SurgicalKit = 1;
+force ace_medical_medicSetting_PAK = 1;
+force ace_medical_medicSetting_SurgicalKit = 1;
 force force ace_medical_menu_allow = 1;
 force force ace_medical_menu_maxRange = 3;
 ace_medical_menu_openAfterTreatment = true;
 ace_medical_menu_useMenu = 1;
 ace_medical_menuTypeStyle = 0;
 force force ace_medical_moveUnitsFromGroupOnUnconscious = false;
-force force ace_medical_painCoefficient = 1;
+force ace_medical_painCoefficient = 1;
 ace_medical_painEffectType = 0;
 force force ace_medical_painIsOnlySuppressed = true;
-force force ace_medical_playerDamageThreshold = 1;
-force force ace_medical_preventInstaDeath = true;
+force ace_medical_playerDamageThreshold = 1;
+force ace_medical_preventInstaDeath = true;
 force force ace_medical_remoteControlledAI = true;
-force force ace_medical_useCondition_PAK = 1;
+force ace_medical_useCondition_PAK = 1;
 force force ace_medical_useCondition_SurgicalKit = 0;
 force force ace_medical_useLocation_basicEpi = 0;
 force ace_medical_useLocation_PAK = 3;
-force force ace_medical_useLocation_SurgicalKit = 0;
+force ace_medical_useLocation_SurgicalKit = 0;
 
 // ACE Mk6 Mortar
 force force ace_mk6mortar_airResistanceEnabled = true;
@@ -404,11 +404,87 @@ acre_sys_core_postmixGlobalVolume = 1;
 acre_sys_core_premixGlobalVolume = 1;
 force force acre_sys_core_revealToAI = true;
 acre_sys_core_spectatorVolume = 1;
-force force acre_sys_core_terrainLoss = 0.5;
+force acre_sys_core_terrainLoss = 0.5;
 force acre_sys_core_ts3ChannelName = "";
 force acre_sys_core_ts3ChannelPassword = "";
 acre_sys_core_ts3ChannelSwitch = true;
 acre_sys_core_unmuteClients = true;
+
+// DCG - Approval
+force force dcg_approval_enable = true;
+force dcg_approval_hostileCooldown = 900;
+force dcg_approval_multiplier = 1;
+force force dcg_approval_notify = true;
+
+// DCG - Civilian
+force force dcg_civilian_enable = true;
+force dcg_civilian_multiplier = 1;
+force dcg_civilian_spawnDist = 400;
+force dcg_civilian_vehCooldown = 600;
+force dcg_civilian_vehMaxCount = 5;
+
+// DCG - FOB
+force force dcg_fob_allow = 0;
+force force dcg_fob_enable = true;
+force dcg_fob_range = 100;
+
+// DCG - IED
+force force dcg_ied_enable = true;
+
+// DCG - Main
+force force dcg_main_autoSave = true;
+dcg_main_baseRadius = 1536;
+force force dcg_main_baseSafezone = true;
+force force dcg_main_enable = true;
+force force dcg_main_enemySide = EAST;
+force force dcg_main_loadData = true;
+force force dcg_main_playerSide = WEST;
+
+// DCG - Occupy
+force force dcg_occupy_enable = true;
+force force dcg_occupy_sniper = true;
+force force dcg_occupy_static = true;
+
+// DCG - Patrol
+force dcg_patrol_cooldown = 450;
+force force dcg_patrol_enable = true;
+force dcg_patrol_groupsMaxCount = 5;
+force dcg_patrol_mode = "SAFE";
+force dcg_patrol_speed = "LIMITED";
+force dcg_patrol_vehChance = 0.25;
+
+// DCG - Respawn
+force force dcg_respawn_enable = true;
+
+// DCG - Task
+force force dcg_task_cooldown = 60;
+force force dcg_task_enable = true;
+
+// DCG - Weather
+force force dcg_weather_enable = false;
+force force dcg_weather_month = -1;
+force force dcg_weather_time = -1;
+
+// VCOM SETTINGS
+force Vcm_ActivateAI = true;
+force VCM_ADVANCEDMOVEMENT = true;
+force VCM_AIDISTANCEVEHPATH = 100;
+force VCM_AIMagLimit = 3;
+force VCM_ARTYDELAY = 600;
+force VCM_ARTYENABLE = true;
+force VCM_ARTYSPREAD = 400;
+force VCM_Debug = false;
+force VCM_FRMCHANGE = true;
+force VCM_HEARINGDISTANCE = 800;
+force VCM_MINECHANCE = 25;
+force VCM_RAGDOLL = true;
+force VCM_RAGDOLLCHC = 25;
+force VCM_SIDEENABLED = [WEST,EAST,GUER];
+force VCM_SKILLCHANGE = true;
+force VCM_STATICARMT = 300;
+force VCM_StealVeh = false;
+force VCM_WARNDELAY = 30;
+force VCM_WARNDIST = 1000;
 
 // UKSF
 force uksf_caching_distance = 750;

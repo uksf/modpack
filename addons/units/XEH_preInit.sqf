@@ -9,8 +9,8 @@ ADDON = false;
     };
 }, true, [], true] call CBA_fnc_addClassEventHandler;
 
-[QEGVAR(lobby,respawned), {
+["CAManBase", "respawn", {
     player setUnitTrait ["audibleCoef", 0.7];
-}] call CBA_fnc_addEventHandler;
+}, true, nil, true] call CBA_fnc_addClassEventHandler;
 
 ADDON = true;

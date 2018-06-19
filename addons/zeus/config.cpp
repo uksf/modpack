@@ -10,6 +10,7 @@ class CfgPatches {
             QGVAR(moduleDelete),
             QGVAR(moduleExplosionLarge),
             QGVAR(moduleExplosionSmall),
+            QGVAR(moduleHaloHaho),
             QGVAR(moduleLoadoutCopy),
             QGVAR(moduleLoadoutPaste),
             QGVAR(moduleTeleportZeus),
@@ -42,6 +43,6 @@ class CBA_Extended_EventHandlers_base;
 #include "CfgFunctions.hpp"
 #include "CfgVehicles.hpp"
 #include "RscDisplayCurator.hpp"
-class cfgHints {
+class CfgHints {
     delete Ares;
 };

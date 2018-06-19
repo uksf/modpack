@@ -29,17 +29,6 @@ class UKSF_B_SectionLeader: UKSF_B_Rifleman {
     icon = "iconManLeader";
     editorPreview = QPATHTOEF(common,data\previews\UKSF_B_SectionLeader.jpg);
 };
-class UKSF_B_MachineGunner: UKSF_B_Rifleman {
-    displayName = "Machinegunner";
-    icon = "iconManMG";
-    editorPreview = QPATHTOEF(common,data\previews\UKSF_B_MachineGunner.jpg);
-};
-class UKSF_B_AntiTank: UKSF_B_Rifleman {
-    displayName = "Rifleman (AT)";
-    engineer = 1;
-    icon = "iconManAT";
-    editorPreview = QPATHTOEF(common,data\previews\UKSF_B_AntiTank.jpg);
-};
 class UKSF_B_Medic: UKSF_B_Rifleman {
     displayName = "Combat Medic";
     attendant = 1;
@@ -56,10 +45,27 @@ class UKSF_B_Sniper: UKSF_B_Rifleman {
 class UKSF_B_Pathfinder: UKSF_B_Rifleman {
     displayName = "PF Patrolman";
     uniformClass = "Gen3_Multicam";
+    editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Pathfinder.jpg);
+    engineer = 1;
 };
 class UKSF_B_PathfinderMedic: UKSF_B_Pathfinder {
     displayName = "PF Patrolman Medic";
+    editorPreview = QPATHTOEF(common,data\previews\UKSF_B_PathfinderMedic.jpg);
     attendant = 1;
+};
+class UKSF_B_Pilot: UKSF_B_Rifleman {
+    editorSubcategory = QEGVAR(common,jsfaw);
+    displayName = "Pilot";
+    threat[] = {1, 1, 1};
+    engineer = 1;
+    editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Pilot.jpg);
+    model = "\A3\characters_F_gamma\Guerrilla\ig_guerrilla2_1.p3d";
+    hiddenSelections[] = { "camo" };
+    hiddenSelectionsTextures[] = { QPATHTOEF(gear,data\uniforms\ATC.paa) };
+    uniformClass = "UKSF_U_RAF_Blues";
+    linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_H_Beret_RAF" };
+    respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_H_Beret_RAF" };
+    ACE_GForceCoef = 0.7;
 };
 class UKSF_B_Pilot_7: UKSF_B_Rifleman {
     editorSubcategory = QEGVAR(common,jsfaw);
@@ -76,9 +82,9 @@ class UKSF_B_Pilot_7: UKSF_B_Rifleman {
 class UKSF_B_Pilot_656: UKSF_B_Pilot_7 {
     displayName = "Pilot (656 Sqn.)";
     editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Pilot_656.jpg);
-    model = "\CUP\Creatures\People\Military\CUP_Creatures_People_Military_BAF\CUP_BAF_Soldier_1.p3d";
-    hiddenSelections[] = {"Camo", "Camo2", "camo3"};
-    hiddenSelectionsTextures[] = { "cup\creatures\people\military\cup_creatures_people_military_baf\data\MTP\camo_MTP_co.paa", "cup\creatures\people\military\cup_creatures_people_military_baf\data\DPM\armour_DPM_co.paa", QPATHTOEF(gear,data\uniforms\pilot_uniform_656.paa) };
+    model = "\A3\Characters_F_Beta\INDEP\ia_soldier_01.p3d";
+    hiddenSelections[] = { "Camo" };
+    hiddenSelectionsTextures[] = { QPATHTOEF(gear,data\uniforms\pilot_uniform_656.paa) };
     uniformClass = "UKSF_U_PilotUniform_656";
     ACE_GForceCoef = 0.7;
 };
