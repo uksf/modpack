@@ -30,6 +30,17 @@ if (!GVAR(enabled)) exitWith {};
     };
 }] call CBA_fnc_addEventHandler;
 
+["created", {
+    private _serializedMarker = _this call FUNC(serializeMarker);
+    if (count _serializedMarker > 0) then {
+        [QGVAR(markerCreated), [_serializedMarker]] call CBA_fnc_serverEvent;
+    };
+}] call CBA_fnc_addMarkerEventHandler;
+
+["deleted", {
+    [QGVAR(markerDeleted), _this] call CBA_fnc_serverEvent;
+}] call CBA_fnc_addMarkerEventHandler;
+
 [QGVAR(firstKilled), {
     GVAR(data) = _this;
     TRACE_1("Client first killed",GVAR(data));

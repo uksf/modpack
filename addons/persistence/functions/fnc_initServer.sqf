@@ -20,6 +20,7 @@ GVAR(hashPersistentVehicles) = [[], true] call CBA_fnc_hashCreate;
 GVAR(hashFirstKilled) = [[], true] call CBA_fnc_hashCreate;
 GVAR(hashFirstRespawn) = [[], true] call CBA_fnc_hashCreate;
 GVAR(persistenceMarkers) = [];
+GVAR(mapMarkers) = GVAR(dataNamespace) getVariable [QGVAR(mapMarkers), []];
 
 ["All", "init", {_this call FUNC(checkVehicleForPersistence)}, true, nil, true] call CBA_fnc_addClassEventHandler;
 
@@ -32,6 +33,7 @@ addMissionEventHandler ["PlayerDisconnected", {_this call FUNC(playerDisconnecte
 [QGVAR(shutdown), {_this call FUNC(shutdown)}] call CBA_fnc_addEventHandler;
 [QGVAR(addLogisticsMarker), {GVAR(persistenceMarkers) pushBackUnique _this}] call CBA_fnc_addEventHandler;
 [QGVAR(markVehicleAsPersistent), {_this call FUNC(markVehicleAsPersistent)}] call CBA_fnc_addEventHandler;
+
 [QGVAR(checkPersistentVehicleExists), {
     [{
         params ["_vehicleState"];
@@ -52,6 +54,18 @@ addMissionEventHandler ["PlayerDisconnected", {_this call FUNC(playerDisconnecte
     }] call CBA_fnc_waitUntilAndExecute;
 }] call CBA_fnc_addEventHandler;
 
+[QGVAR(markerCreated), {
+    params ["_serializedMarker"];
+    if ((GVAR(mapMarkers) findIf {_x#0 == (_serializedMarker#0)}) == -1) then {
+        GVAR(mapMarkers) pushBack _serializedMarker;
+    };
+}] call CBA_fnc_addEventHandler;
+
+[QGVAR(markerDeleted), {
+    params ["_marker"];
+    GVAR(mapMarkers) deleteAt (GVAR(mapMarkers) findIf {_x#0 == _marker});
+}] call CBA_fnc_addEventHandler;
+
 GVAR(dataNamespace) setVariable [QGVAR(world), worldName];
 profileNamespace setVariable [GVAR(key), [GVAR(dataNamespace)] call CBA_fnc_serializeNamespace];
 LOG("Saved data");
@@ -63,3 +77,7 @@ if (!GVAR(overrideSavedDateTime)) then {
 } else {
     WARNING("Saved datetime overridden by mission");
 };
+
+{
+    [_x] call FUNC(deserializeMarker);
+} forEach GVAR(mapMarkers);

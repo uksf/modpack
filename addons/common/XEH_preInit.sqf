@@ -18,7 +18,6 @@ ADDON = false;
     activateAddons GVAR(addons);
 };
 
-// FPS Debug
 GVAR(fpsState) = false;
 
 if (hasInterface) then {
@@ -36,6 +35,8 @@ if (!isServer && !hasInterface) then {
 };
 
 if (isServer) then {
+    GVAR(markerID) = 100000;
+
     GVAR(fpsEventID) = [QGVAR(fpsGet), {_this call FUNC(fpsGet)}] call CBA_fnc_addEventHandler;
 
     [QGVAR(addObjectsToCurators), {_this call FUNC(addObjectsToCurators)}] call CBA_fnc_addEventHandler;
