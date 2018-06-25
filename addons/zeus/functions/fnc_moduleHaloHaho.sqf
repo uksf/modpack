@@ -97,7 +97,11 @@ GVAR(curatorSelectionHandle) = _display displayAddEventHandler ["KeyDown", {
                         private _unitsIn = _plane getVariable [QGVAR(unitsIn), false];
                         if (!_unitsIn && {(_previousPosition distance2D _positionA) < 1000}) then {
                             _plane setVariable [QGVAR(unitsIn), true, true];
-                            {[QGVAR(moveInCargo), [_x, _plane], _x] call CBA_fnc_targetEvent; true} count GVAR(haloHahoUnits);
+                            {
+                                [{
+                                    [QGVAR(moveInCargo), _this, _this#0] call CBA_fnc_targetEvent;
+                                }, [_x, _plane], (1 * _forEachIndex) + 1] call CBA_fnc_waitAndExecute;                                
+                            } forEach GVAR(haloHahoUnits);
                         };
 
                         private _positionPreAReached = _plane getVariable [QGVAR(positionPreAReached), false];
