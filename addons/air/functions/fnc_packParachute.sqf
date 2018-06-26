@@ -17,4 +17,4 @@
 params ["_chute", "_unit"];
 
 deleteVehicle _chute;
-"CUP_T10_Parachute_backpack" createVehicle (getPosATLVisual _unit);
+createVehicle ["CUP_T10_Parachute_backpack", getPosATLVisual _unit, nil, 0, "CAN_COLLIDE"];

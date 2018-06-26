@@ -1,9 +1,10 @@
+#include "script_component.hpp"
 /*
     Author:
         Tim Beswick
 
     Description:
-        Ejects unit from plane with static line parachute
+        Ejects unit from plane and deploys static line parachute
 
     Parameter(s):
         0: Vehicle <OBJECT>
@@ -12,7 +13,6 @@
     Return Value:
         None
 */
-#include "script_component.hpp"
 
 params ["_vehicle", "_unit"];
 
@@ -32,14 +32,23 @@ _unit setVelocity (velocity _vehicle);
     _this set [0, vehicle _unit];
 
     [{
-        ((getPosATLVisual _this#1)#2) < 1
+        ((getPosVisual (_this#1))#2) < 0.5
     }, {
         params ["_chute", "_unit"];
 
+        _unit allowDamage false;
         moveOut _unit;
-        deleteVehicle _chute;
-        _unit switchMove "AmovPercMevaSrasWrflDf_AmovPknlMstpSrasWrflDnon";
-        private _chuteLanded = "T10_Landed" createVehicle (getPos _unit);
-	    _chuteLanded addAction ["Pack Parachute", QUOTE(_this call FUNC(packParachute))];
+        _unit setPos (getPos _unit);
+        [{
+            isTouchingGround (_this#1);
+        }, {
+            params ["_chute", "_unit"];
+
+            deleteVehicle _chute;
+            _unit allowDamage true;
+            _unit switchMove "AmovPercMevaSrasWrflDf_AmovPknlMstpSrasWrflDnon";        
+            private _chuteLanded = "T10_Landed" createVehicle (getPos _unit);
+            _chuteLanded addAction ["Pack Parachute", QUOTE(_this call FUNC(packParachute))];            
+        }, _this] call CBA_fnc_waitUntilAndExecute;        
     }, _this] call CBA_fnc_waitUntilAndExecute;
-}, _this, 1 + (random 1)] call CBA_fnc_waitAndExecute;
+}, _this, 0.5 + (random 0.25)] call CBA_fnc_waitAndExecute;

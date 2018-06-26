@@ -11,9 +11,9 @@ private _particleSourceOld = _vehicle getVariable ["smokeSource", objNull];
 deleteVehicle _objectFollowOld; 
 deleteVehicle _particleSourceOld; 
 if (_mod isEqualTo "off") exitWith { 
-	_vehicle setVariable ["smokeMod", _mod]; 
-	_vehicle setVariable ["smokeEffect", _particleEffect]; 
-	_vehicle getVariable ["objectFollow", objNull]; _vehicle setVariable ["smokeSource", objNull]; 
+    _vehicle setVariable ["smokeMod", _mod]; 
+    _vehicle setVariable ["smokeEffect", _particleEffect]; 
+    _vehicle getVariable ["objectFollow", objNull]; _vehicle setVariable ["smokeSource", objNull]; 
 }; 
 private _objectFollow = "Land_Bucket_F" createVehicle (getPos _vehicle); 
 _objectFollow attachTo [_vehicle, [0.0, -8.0, 0.0]]; 
