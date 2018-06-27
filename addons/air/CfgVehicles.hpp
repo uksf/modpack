@@ -61,11 +61,6 @@ class CfgVehicles {
     class Plane_Fighter_03_base_F: Plane_Base_F {
         epeImpulseDamageCoef = 5;
     };
-
-    class Steerable_Parachute_F;
-    class CUP_T10_Parachute: Steerable_Parachute_F {
-        driverAction = "Para_Pilot";
-    };
     
     #include "vehicles\CfgBuzzard.hpp"
     #include "vehicles\CfgC130.hpp"
