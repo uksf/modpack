@@ -64,7 +64,7 @@ class CfgVehicles {
 
     class Steerable_Parachute_F;
     class CUP_T10_Parachute: Steerable_Parachute_F {
-        ace_hasReserveParachute = 0;
+        driverAction = "Para_Pilot";
     };
     
     #include "vehicles\CfgBuzzard.hpp"
