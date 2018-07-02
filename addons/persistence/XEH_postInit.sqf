@@ -1,6 +1,6 @@
 #include "script_component.hpp"
 
-if (isServer && {GVAR(enabled)}) then {
+if (isServer && {GVAR(dataSaved)}) then {
     [{
         [{
             call FUNC(loadVehicleData);

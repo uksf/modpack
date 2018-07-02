@@ -46,6 +46,7 @@ private _data = [
     ([getUnitLoadout _unit] call EFUNC(radios,sanitiseLoadout)),
     damage _unit,
     [_unit] call EFUNC(common,serializeAceMedical),
+    _unit getVariable ["ACE_hasEarPlugsIn", false];
     (_unit getVariable ["ace_attach_attached", []]) apply {_x#1},
     (([_unit] call acre_sys_core_fnc_getGear) select {_x call acre_sys_radio_fnc_isUniqueRadio}) apply {[_x] call acre_api_fnc_getRadioChannel}
 ];
@@ -56,8 +57,10 @@ private _dateTime = date;
 TRACE_1("Saving date time",_dateTime);
 GVAR(dataNamespace) setVariable [QGVAR(dateTime), _dateTime];
 GVAR(dataNamespace) setVariable [QGVAR(mapMarkers), GVAR(mapMarkers)];
-profileNamespace setVariable [GVAR(key), [GVAR(dataNamespace)] call CBA_fnc_serializeNamespace];
-LOG("Saved data");
+if (GVAR(dataSaved)) then {
+    profileNamespace setVariable [GVAR(key), [GVAR(dataNamespace)] call CBA_fnc_serializeNamespace];
+    LOG("Saved data");
+};
 
 private _players = [] call CBA_fnc_players;
 TRACE_1("Remaining players on server:"_players);

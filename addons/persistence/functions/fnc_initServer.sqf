@@ -3,7 +3,7 @@
         Tim Beswick
 
     Description:
-        Initialises persistence event handlers on client
+        Initialises persistence on server
 
     Parameter(s):
         None
@@ -13,16 +13,12 @@
 */
 #include "script_component.hpp"
 
-TRACE_1("Server init",GVAR(enabled));
-if (!GVAR(enabled)) exitWith {};
-
+TRACE_1("Server init",GVAR(dataSaved));
 GVAR(hashPersistentVehicles) = [[], true] call CBA_fnc_hashCreate;
 GVAR(hashFirstKilled) = [[], true] call CBA_fnc_hashCreate;
 GVAR(hashFirstRespawn) = [[], true] call CBA_fnc_hashCreate;
 GVAR(persistenceMarkers) = [];
 GVAR(mapMarkers) = GVAR(dataNamespace) getVariable [QGVAR(mapMarkers), []];
-
-["All", "init", {_this call FUNC(checkVehicleForPersistence)}, true, nil, true] call CBA_fnc_addClassEventHandler;
 
 addMissionEventHandler ["PlayerConnected", {_this call FUNC(playerConnected)}];
 addMissionEventHandler ["EntityRespawned", {_this call FUNC(entityRespawned)}];
@@ -67,8 +63,10 @@ addMissionEventHandler ["PlayerDisconnected", {_this call FUNC(playerDisconnecte
 }] call CBA_fnc_addEventHandler;
 
 GVAR(dataNamespace) setVariable [QGVAR(world), worldName];
-profileNamespace setVariable [GVAR(key), [GVAR(dataNamespace)] call CBA_fnc_serializeNamespace];
-LOG("Saved data");
+if (GVAR(dataSaved)) then {
+    profileNamespace setVariable [GVAR(key), [GVAR(dataNamespace)] call CBA_fnc_serializeNamespace];
+    LOG("Saved data");
+};
 
 if (!GVAR(overrideSavedDateTime)) then {
     private _dateTime = GVAR(dataNamespace) getVariable [QGVAR(dateTime), date];

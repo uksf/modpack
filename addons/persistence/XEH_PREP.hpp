@@ -1,4 +1,5 @@
 PREP(addPersistenceActions);
+PREP(deletePersistentData);
 PREP(deserializeMarker);
 PREP(entityKilled);
 PREP(entityRespawned);
@@ -10,7 +11,6 @@ PREP(initServer);
 PREP(loadVehicleData);
 PREP(markVehicleAsPersistent);
 PREP(playerConnected);
-PREP(playerDisconnected);
 PREP(saveVehicleData);
 PREP(serializeMarker);
 PREP(setVehicleCargo);

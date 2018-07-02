@@ -11,10 +11,13 @@ if (hasInterface) then {
 };
 
 if (isServer) then {
-    GVAR(enabled) = false;
+    GVAR(dataSaved) = false;
     GVAR(key) = getMissionConfigValue ["persistenceKey", ""];
     TRACE_1("Key",GVAR(key));
-    GVAR(enabled) = GVAR(key) != "";
+    if (GVAR(key) != "") then {
+        GVAR(key) = format [QUOTE(GVAR(key)_%1), GVAR(key)];
+        GVAR(dataSaved) = true;
+    };
     
     private _hash = profileNamespace getVariable [GVAR(key), []];
     TRACE_1("Loaded data",_hash);
@@ -23,7 +26,7 @@ if (isServer) then {
         private _world =  GVAR(dataNamespace) getVariable [QGVAR(world), ""];
         if (_world != worldName) then {
             ERROR_3("World for key %1 is %2 but expected %3",GVAR(key),_world,worldName);
-            GVAR(enabled) = false;
+            GVAR(dataSaved) = false;
         };
     } else {
         GVAR(dataNamespace) = call CBA_fnc_createNamespace;

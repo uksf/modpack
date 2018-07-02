@@ -14,7 +14,7 @@
 #include "script_component.hpp"
 
 params ["_serializedMarker"];
-_serializedMarker params ["_name", "_pos", "_shape", "_type", "_brush", "_size", "_colour", "_alpha", "_dir", "_text"];
+_serializedMarker params ["", "_pos", "_shape", "_type", "_brush", "_size", "_colour", "_alpha", "_dir", "_text"];
 
 private _marker = createMarker [format ["_USER_DEFINED #0/%1/1", EGVAR(common,markerID)], _pos];
 _marker setMarkerShape _shape;

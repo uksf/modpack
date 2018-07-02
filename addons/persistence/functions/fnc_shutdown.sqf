@@ -29,8 +29,10 @@ LOG("Shutdown");
         TRACE_1("Saving date time",_dateTime);
         GVAR(dataNamespace) setVariable [QGVAR(dateTime), _dateTime];
         GVAR(dataNamespace) setVariable [QGVAR(mapMarkers), GVAR(mapMarkers)];
-        profileNamespace setVariable [GVAR(key), [GVAR(dataNamespace)] call CBA_fnc_serializeNamespace];
-        LOG("Saved data");
+        if (GVAR(dataSaved)) then {
+            profileNamespace setVariable [GVAR(key), [GVAR(dataNamespace)] call CBA_fnc_serializeNamespace];
+            LOG("Saved data");
+        };
         [{
             SERVER_COMMAND serverCommand "#shutdown";
         }, nil, 2] call CBA_fnc_waitAndExecute;

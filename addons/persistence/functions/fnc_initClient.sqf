@@ -13,12 +13,6 @@
 */
 #include "script_component.hpp"
 
-params ["_enabled"];
-
-GVAR(enabled) = _enabled;
-TRACE_1("Client init",GVAR(enabled));
-if (!GVAR(enabled)) exitWith {};
-
 ["CAManBase", "respawn", {
     _this call FUNC(addPersistenceActions);
 }, true, nil, true] call CBA_fnc_addClassEventHandler;
@@ -52,7 +46,7 @@ if (!GVAR(enabled)) exitWith {};
 }] call CBA_fnc_addEventHandler;
 
 [QGVAR(firstRespawn), {
-    GVAR(data) params ["_position", "_vehicleState", "_direction", "_animation", "_loadout", "_damage", "_aceStates", "_attached", "_radioChannels"];
+    GVAR(data) params ["_position", "_vehicleState", "_direction", "_animation", "_loadout", "_damage", "_aceStates", "_earplugs", "_attached", "_radioChannels"];
     TRACE_5("Client first respawn...",_position,_vehicleState,_direction,_animation,_radioChannels);
     //TRACE_2("...",_damage,_attached);
     //TRACE_2("...",_loadout,_aceStates);
@@ -66,6 +60,7 @@ if (!GVAR(enabled)) exitWith {};
         player setUnitLoadout _loadout;
         player setDamage _damage;
         [player, _aceStates] call EFUNC(common,deserializeAceMedical);
+        player setVariable ["ACE_hasEarPlugsIn", _earplugs, true];
         {[player, player, [_x], true] call ace_attach_fnc_attach} forEach _attached;
         [{
             [{
@@ -102,5 +97,8 @@ if (!GVAR(enabled)) exitWith {};
                 player playMove ([_this, ANIM_STANDING] select (_this == ANIM_STANDING));
             }, _animation, 0.2] call CBA_fnc_waitAndExecute;
         };
+
+        [[true]] call FUNC(updateVolume);
+        [] call FUNC(updateHearingProtection);
     };
 }] call CBA_fnc_addEventHandler;
