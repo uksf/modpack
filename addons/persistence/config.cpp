@@ -24,5 +24,3 @@ class CfgPatches {
 #include "CfgEventHandlers.hpp"
 #include "CfgMagazines.hpp"
 #include "CfgWeapons.hpp"
-
-_EXEC(uksf_persistence_allVariablesProfileNamespace = allVariables profileNamespace);

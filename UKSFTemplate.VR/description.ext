@@ -30,3 +30,5 @@ disabledAI = 1;
 aiKills = 0;
 disableChannels[] = { 0,2,6 };
 cba_settings_hasSettingsFile = 1;
+
+__EXEC(uksf_persistence_allVariablesProfileNamespace = allVariables profileNamespace);
