@@ -39,6 +39,21 @@
     GVAR(data) = _this;
     TRACE_1("Client first killed",GVAR(data));
     GVAR(data) params ["_position"];
+    //_positionData params ["_position", "_leaderID", "_leaderPosition", "_leaderDirection", "_offset"];
+
+    /*if (_leaderID != -1) then {
+        private _leader = allPlayers select {(getPlayerUID _x) == _leaderID};
+        if (_leader > 0) then { // leader online, calculate relative position from leader position and offset
+            _leader = _leader#0; 
+            _leaderPosition = getPosASL _leader;
+            _leaderPosition = _leader modelToWorld _offset;
+        } else { // leader offline, calculate relative position from stored position, direction, and offset
+
+        };
+        GVAR(groupRespawn) = createMarkerLocal [RESPAWN_GROUP_MARKER, _position];
+        GVAR(groupRespawn) setMarkerTypeLocal "flag_UK";
+        GVAR(groupRespawn) setMarkerTextLocal RESPAWN_GROUP_NAME;
+    };*/
 
     GVAR(respawn) = createMarkerLocal [RESPAWN_MARKER, _position];
     GVAR(respawn) setMarkerTypeLocal "flag_UK";
@@ -47,13 +62,14 @@
 
 [QGVAR(firstRespawn), {
     GVAR(data) params ["_position", "_vehicleState", "_direction", "_animation", "_loadout", "_damage", "_aceStates", "_earplugs", "_attached", "_radioChannels"];
-    TRACE_5("Client first respawn...",_position,_vehicleState,_direction,_animation,_radioChannels);
-    //TRACE_2("...",_damage,_attached);
-    //TRACE_2("...",_loadout,_aceStates);
+    //_positionData params ["_position", "_leaderID", "_leaderPosition", "_leaderDirection", "_relativePosition"];
 
     if (!isNil QGVAR(respawn)) then {
         deleteMarkerLocal GVAR(respawn);
     };
+    /*if (!isNil QGVAR(groupRespawn)) then {
+        deleteMarkerLocal GVAR(groupRespawn);
+    };*/
     
     if (count GVAR(data) > 0 && {(_position distance2D (getPos player)) < 10}) then {
         player setDir _direction;

@@ -22,6 +22,26 @@ TRACE_4("HandleDisconnect",_unit,_id,_uid,_name);
 
 private _data = [
     getPosASL _unit,
+    /*[_unit] call {
+        params ["_unit"];
+        private _position = getPosASL _unit;
+        private _group = group _unit;
+        private _leader = leader _group;
+        private _leaderID = -1;
+        private _leaderPosition = [];
+        private _leaderDirection = -1;
+        private _offset = [];
+        if (_unit == _leader) then {
+            _leader = ((units _group) - [_unit])#0;
+        };
+        if ((_unit distance2D _leader) < 500) then {
+            _leaderID = getPlayerUID _leader;
+            _leaderPosition = getPosASL _leader;
+            _leaderDirection = getDir _leader;
+            _offset = _leader worldToModel _position;
+        };
+        [_position, _leaderID, _leaderPosition, _leaderDirection, _offset]
+    },*/
     [_unit] call {
         params ["_unit"];
         private _id = "";
