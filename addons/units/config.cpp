@@ -44,8 +44,7 @@ class CfgPatches {
             "CUP_Creatures_Military_Taki",
             "CUP_Creatures_Military_TakiInsurgents",
             "CUP_Creatures_Military_USArmy",
-            "CUP_Creatures_Military_USMC",
-            "CFP_O_SOREBEL"
+            "CUP_Creatures_Military_USMC"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
