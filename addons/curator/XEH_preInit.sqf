@@ -36,7 +36,7 @@ if (hasInterface) then {
             [QGVAR(curatorAssign), [_unit]] call CBA_fnc_serverEvent;
         } else {
             if (WHITELISTED) then {
-                call FUNC(curatorLogin);
+                // call FUNC(curatorLogin);
             };
         };
     }, true, [], true] call CBA_fnc_addClassEventHandler;
