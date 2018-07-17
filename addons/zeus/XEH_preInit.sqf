@@ -19,6 +19,5 @@ GVAR(curatorUnconciousMapID) = 999;
 }, true, nil, true] call CBA_fnc_addClassEventHandler;
 
 [QGVAR(moveInCargo), {_this#0 moveInCargo _this#1}] call CBA_fnc_addEventHandler;
-[QGVAR(textTiles), {_this spawn BIS_fnc_textTiles}] call CBA_fnc_addEventHandler;
 
 ADDON = true;
