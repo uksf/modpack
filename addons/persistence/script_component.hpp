@@ -12,8 +12,6 @@
 
 #define RESPAWN_MARKER QUOTE(respawn_west_persistence)
 #define RESPAWN_NAME QUOTE(Re-deploy)
-#define RESPAWN_GROUP_MARKER QUOTE(respawn_west_persistence_group)
-#define RESPAWN_GROUP_NAME QUOTE(Group Re-deploy)
 
 #define ANIM_STANDING QUOTE(amovpercmstpsnonwnondnon)
 
