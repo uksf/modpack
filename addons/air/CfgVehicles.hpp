@@ -40,12 +40,16 @@ class CfgVehicles {
     class Heli_Light_01_base_F: Helicopter_Base_H {
         epeImpulseDamageCoef = 5;
     };
-    class Plane_Base_F;
     class Plane: Air {
         explosionShielding = 0.6;
         epeImpulseDamageCoef = 5;
         crewCrashProtection = 1;
     };
+    class Plane_Base_F: Plane {
+		class Turrets {
+			delete MainTurret;
+		};
+	};
     class Plane_CAS_01_base_F: Plane_Base_F {
         epeImpulseDamageCoef = 5;
     };
