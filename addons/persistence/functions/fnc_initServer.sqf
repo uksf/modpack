@@ -21,7 +21,7 @@ GVAR(hashFirstKilled) = [[], true] call CBA_fnc_hashCreate;
 GVAR(hashFirstRespawn) = [[], true] call CBA_fnc_hashCreate;
 GVAR(persistenceMarkers) = [];
 
-["All", "init", {_this call FUNC(checkVehicleForPersistence)}, true, nil, true] call CBA_fnc_addClassEventHandler;
+["All", "init", {_this call FUNC(markVehicleAsPersistent)}, true, nil, true] call CBA_fnc_addClassEventHandler;
 
 addMissionEventHandler ["PlayerConnected", {_this call FUNC(playerConnected)}];
 addMissionEventHandler ["EntityRespawned", {_this call FUNC(entityRespawned)}];

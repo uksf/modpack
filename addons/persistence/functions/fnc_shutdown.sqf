@@ -18,6 +18,12 @@ if (!isServer) exitWith {
 };
 LOG("Shutdown");
 
+[] call uksf_persistence_fnc_saveVehicleData;
+private _dateTime = date;
+uksf_persistence_dataNamespace setVariable ["uksf_persistence_dateTime", _dateTime];
+profileNamespace setVariable [uksf_persistence_key, [uksf_persistence_dataNamespace] call CBA_fnc_serializeNamespace];
+saveProfileNamespace;
+
 [{
     params ["", "_idPFH"];
 
@@ -29,6 +35,7 @@ LOG("Shutdown");
         TRACE_1("Saving date time",_dateTime);
         GVAR(dataNamespace) setVariable [QGVAR(dateTime), _dateTime];
         profileNamespace setVariable [GVAR(key), [GVAR(dataNamespace)] call CBA_fnc_serializeNamespace];
+        saveProfileNamespace;
         LOG("Saved data");
         [{
             SERVER_COMMAND serverCommand "#shutdown";

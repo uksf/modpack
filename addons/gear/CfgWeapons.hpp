@@ -367,4 +367,6 @@ class CfgWeapons {
             };
         };
     };
+
+	class AFG_1996Leaf_BattleDressUniform : Uniform_Base {};
 };
