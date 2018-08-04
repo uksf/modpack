@@ -35,11 +35,12 @@ LOG("Shutdown");
         GVAR(dataNamespace) setVariable [QGVAR(mapMarkers), GVAR(mapMarkers)];
         if (GVAR(dataSaved)) then {
             profileNamespace setVariable [GVAR(key), [GVAR(dataNamespace)] call CBA_fnc_serializeNamespace];
+            saveProfileNamespace;
             LOG("Saved data");
         };
         [{
             SERVER_COMMAND serverCommand "#shutdown";
-        }, nil, 2] call CBA_fnc_waitAndExecute;
+        }, nil, 4] call CBA_fnc_waitAndExecute;
     };
     SERVER_COMMAND serverCommand (format ["#kick %1", owner (_players#0)]);
 }, 2, []] call CBA_fnc_addPerFrameHandler;
