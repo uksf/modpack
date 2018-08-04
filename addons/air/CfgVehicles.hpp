@@ -46,10 +46,10 @@ class CfgVehicles {
         crewCrashProtection = 1;
     };
     class Plane_Base_F: Plane {
-		class Turrets {
-			delete MainTurret;
-		};
-	};
+        class Turrets {
+            delete MainTurret;
+        };
+    };
     class Plane_CAS_01_base_F: Plane_Base_F {
         epeImpulseDamageCoef = 5;
     };
