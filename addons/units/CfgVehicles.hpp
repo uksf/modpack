@@ -3,5 +3,4 @@ class CfgVehicles {
     #include "units\CfgBAF.hpp"
     #include "units\CfgJavelin.hpp"
     #include "units\CfgUKSF.hpp"
-    #include "units\Cfg3CB.hpp"
 };
