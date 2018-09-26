@@ -993,9 +993,6 @@ See the make.cfg file for additional build options.
         if "build" in argv:
             argv.remove("build")
             deploy_args.append("build")
-        if "sync" in argv:
-            argv.remove("sync")
-            deploy_args.append("sync")
         if "cleanup" in argv:
             argv.remove("cleanup")
             deploy_args.append("cleanup")
