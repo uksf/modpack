@@ -19,7 +19,7 @@ if (!isServer) exitWith {
 LOG("Shutdown");
 
 {
-    [QEGVAR(common,textTiles), [parseText format ["<t align = 'center' color = '#00FF00'>Persistence Shutdown Cycle Started: You will be kicked off the server shortly. Please stand still.</t>"], [0.25, 1, 0.5, 0.05], [2, 3], 2.5], _x] call CBA_fnc_targetEvent;
+    [QEGVAR(common,textTiles), [parseText format ["<t align = 'center' color = '#00FF00'>Persistence Shutdown Cycle Started: You will be kicked off the server shortly. Please stand still.</t>"], [0.25, 1, 0.5, 0.05], [4, 6], 2.5], _x] call CBA_fnc_targetEvent;
 } forEach ([] call CBA_fnc_players);
 
 [{
