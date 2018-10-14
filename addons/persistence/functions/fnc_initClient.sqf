@@ -13,12 +13,6 @@
 */
 #include "script_component.hpp"
 
-params ["_enabled"];
-
-GVAR(enabled) = _enabled;
-TRACE_1("Client init",GVAR(enabled));
-if (!GVAR(enabled)) exitWith {};
-
 ["CAManBase", "respawn", {
     _this call FUNC(addPersistenceActions);
 }, true, nil, true] call CBA_fnc_addClassEventHandler;
@@ -30,10 +24,36 @@ if (!GVAR(enabled)) exitWith {};
     };
 }] call CBA_fnc_addEventHandler;
 
+["created", {
+    private _serializedMarker = _this call FUNC(serializeMarker);
+    if (count _serializedMarker > 0) then {
+        [QGVAR(markerCreated), [_serializedMarker]] call CBA_fnc_serverEvent;
+    };
+}] call CBA_fnc_addMarkerEventHandler;
+
+["deleted", {
+    [QGVAR(markerDeleted), _this] call CBA_fnc_serverEvent;
+}] call CBA_fnc_addMarkerEventHandler;
+
 [QGVAR(firstKilled), {
     GVAR(data) = _this;
     TRACE_1("Client first killed",GVAR(data));
     GVAR(data) params ["_position"];
+    //_positionData params ["_position", "_leaderID", "_leaderPosition", "_leaderDirection", "_offset"];
+
+    /*if (_leaderID != -1) then {
+        private _leader = allPlayers select {(getPlayerUID _x) == _leaderID};
+        if (_leader > 0) then { // leader online, calculate relative position from leader position and offset
+            _leader = _leader#0; 
+            _leaderPosition = getPosASL _leader;
+            _leaderPosition = _leader modelToWorld _offset;
+        } else { // leader offline, calculate relative position from stored position, direction, and offset
+
+        };
+        GVAR(groupRespawn) = createMarkerLocal [RESPAWN_GROUP_MARKER, _position];
+        GVAR(groupRespawn) setMarkerTypeLocal "flag_UK";
+        GVAR(groupRespawn) setMarkerTextLocal RESPAWN_GROUP_NAME;
+    };*/
 
     GVAR(respawn) = createMarkerLocal [RESPAWN_MARKER, _position];
     GVAR(respawn) setMarkerTypeLocal "flag_UK";
@@ -41,20 +61,22 @@ if (!GVAR(enabled)) exitWith {};
 }] call CBA_fnc_addEventHandler;
 
 [QGVAR(firstRespawn), {
-    GVAR(data) params ["_position", "_vehicleState", "_direction", "_animation", "_loadout", "_damage", "_aceStates", "_attached", "_radioChannels"];
-    TRACE_5("Client first respawn...",_position,_vehicleState,_direction,_animation,_radioChannels);
-    //TRACE_2("...",_damage,_attached);
-    //TRACE_2("...",_loadout,_aceStates);
+    GVAR(data) params ["_position", "_vehicleState", "_direction", "_animation", "_loadout", "_damage", "_aceStates", "_earplugs", "_attached", "_radioChannels"];
+    //_positionData params ["_position", "_leaderID", "_leaderPosition", "_leaderDirection", "_relativePosition"];
 
     if (!isNil QGVAR(respawn)) then {
         deleteMarkerLocal GVAR(respawn);
     };
+    /*if (!isNil QGVAR(groupRespawn)) then {
+        deleteMarkerLocal GVAR(groupRespawn);
+    };*/
     
     if (count GVAR(data) > 0 && {(_position distance2D (getPos player)) < 10}) then {
         player setDir _direction;
         player setUnitLoadout _loadout;
         player setDamage _damage;
         [player, _aceStates] call EFUNC(common,deserializeAceMedical);
+        player setVariable ["ACE_hasEarPlugsIn", _earplugs, true];
         {[player, player, [_x], true] call ace_attach_fnc_attach} forEach _attached;
         [{
             [{
@@ -91,5 +113,8 @@ if (!GVAR(enabled)) exitWith {};
                 player playMove ([_this, ANIM_STANDING] select (_this == ANIM_STANDING));
             }, _animation, 0.2] call CBA_fnc_waitAndExecute;
         };
+
+        [[true]] call FUNC(updateVolume);
+        [] call FUNC(updateHearingProtection);
     };
 }] call CBA_fnc_addEventHandler;

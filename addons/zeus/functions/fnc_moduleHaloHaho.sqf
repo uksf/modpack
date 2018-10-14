@@ -63,7 +63,7 @@ GVAR(curatorSelectionHandle) = _display displayAddEventHandler ["KeyDown", {
                     
                     ["Dropping in %1 units", count GVAR(haloHahoUnits)] call ace_zeus_fnc_showMessage;
                     {
-                        [QGVAR(textTiles), [parseText format ["<t align = 'center' color = '#00CC00'>STANDBY FOR PICKUP</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 2.5], _x] call CBA_fnc_targetEvent;
+                        [QEGVAR(common,textTiles), [parseText format ["<t align = 'center' color = '#00CC00'>STANDBY FOR PICKUP</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 2.5], _x] call CBA_fnc_targetEvent;
                         true
                     } count GVAR(haloHahoUnits);
 
@@ -97,7 +97,11 @@ GVAR(curatorSelectionHandle) = _display displayAddEventHandler ["KeyDown", {
                         private _unitsIn = _plane getVariable [QGVAR(unitsIn), false];
                         if (!_unitsIn && {(_previousPosition distance2D _positionA) < 1000}) then {
                             _plane setVariable [QGVAR(unitsIn), true, true];
-                            {[QGVAR(moveInCargo), [_x, _plane], _x] call CBA_fnc_targetEvent; true} count GVAR(haloHahoUnits);
+                            {
+                                [{
+                                    [QGVAR(moveInCargo), _this, _this#0] call CBA_fnc_targetEvent;
+                                }, [_x, _plane], (1 * _forEachIndex) + 1] call CBA_fnc_waitAndExecute;                                
+                            } forEach GVAR(haloHahoUnits);
                         };
 
                         private _positionPreAReached = _plane getVariable [QGVAR(positionPreAReached), false];
@@ -107,14 +111,14 @@ GVAR(curatorSelectionHandle) = _display displayAddEventHandler ["KeyDown", {
                             _plane animate ["ramp_top", 1];
                             _plane animate ["ramp_bottom", 0.7];
                             {
-                                [QGVAR(textTiles), [parseText format ["<t align = 'center' color = '#FF0000'>STANDBY TO JUMP</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 2.5], _x] call CBA_fnc_targetEvent;
+                                [QEGVAR(common,textTiles), [parseText format ["<t align = 'center' color = '#FF0000'>STANDBY TO JUMP</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 2.5], _x] call CBA_fnc_targetEvent;
                                 true
                             } count GVAR(haloHahoUnits);
                         };
                         if (_positionPreAReached && {!_positionAReached} && {(_previousPosition distance2D _positionA) < 25}) then {
                             _args set [8, true];
                             {
-                                [QGVAR(textTiles), [parseText format ["<t align = 'center' color = '#00CC00'>GREEN LIGHT - JUMP</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 5], _x] call CBA_fnc_targetEvent;
+                                [QEGVAR(common,textTiles), [parseText format ["<t align = 'center' color = '#00CC00'>GREEN LIGHT - JUMP</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 5], _x] call CBA_fnc_targetEvent;
                                 true
                             } count GVAR(haloHahoUnits);
                         };

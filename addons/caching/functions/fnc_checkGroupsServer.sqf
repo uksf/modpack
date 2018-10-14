@@ -17,6 +17,7 @@
     private _leader = (leader _x);
     if (
         !(dynamicSimulationEnabled _x) && // 0.0140ms
+        {!(isObjectHidden _leader)} &&
         {!(isPlayer _leader)} && // 0.0148ms
         {!(_x getVariable [QGVAR(excluded), false])} && // 0.0177ms
         {!((vehicle _leader) isKindOf "Air")} && // 0.0198ms

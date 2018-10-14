@@ -16,4 +16,3 @@ class Cfg3DEN {
         };
     };
 };
-

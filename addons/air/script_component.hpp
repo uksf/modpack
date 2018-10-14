@@ -7,3 +7,5 @@
 // #define CBA_DEBUG_SYNCHRONOUS
 
 #include "\u\uksf\addons\main\script_macros.hpp"
+
+#define STATIC_LINE_MINIMUM_ALTITUDE 80

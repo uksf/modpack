@@ -15,5 +15,8 @@
 
 params ["_locked"];
 
-GVAR(curatorsLocked) = _locked;
-publicVariable QGVAR(curatorsLocked);
+if (!isServer) exitWith {
+    [QGVAR(setCuratorsLocked), _this] call CBA_fnc_serverEvent;
+};
+
+[QGVAR(curatorsLocked), _locked, 0, "server", false] call CBA_settings_fnc_set;

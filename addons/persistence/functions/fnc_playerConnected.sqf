@@ -17,4 +17,4 @@ params ["_id", "_uid", "_name", "_jip", "_owner"];
 
 TRACE_5("PlayerConnected",_id,_uid,_name,_jip,_owner);
 
-[QGVAR(initClient), GVAR(enabled), _owner] call CBA_fnc_ownerEvent;
+[QGVAR(initClient), nil, _owner] call CBA_fnc_ownerEvent;

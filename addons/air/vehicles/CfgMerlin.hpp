@@ -121,9 +121,6 @@ class UK3CB_BAF_Merlin_HC3_18_GPMG: UK3CB_BAF_Merlin_HC3_Armed_Base {
         MACRO_ADDITEM(ACE_packingBandage,4);
         MACRO_ADDITEM(ACE_morphine,4);
     };
-    class TransportBackpacks {
-        MACRO_ADDBACKPACK(B_Parachute,6);
-    };
     class TransportWeapons {};
 };
 class UK3CB_BAF_Merlin_HC3_CSAR: UK3CB_BAF_Merlin_HC3_Armed_Base {
@@ -138,12 +135,11 @@ class UK3CB_BAF_Merlin_HC3_CSAR: UK3CB_BAF_Merlin_HC3_Armed_Base {
     };
     class TransportItems {
         MACRO_ADDITEM(Toolkit,1);
-        MACRO_ADDITEM(ACE_elasticBandage,4);
-        MACRO_ADDITEM(ACE_packingBandage,4);
-        MACRO_ADDITEM(ACE_morphine,4);
-    };
-    class TransportBackpacks {
-        MACRO_ADDBACKPACK(B_Parachute,6);
+        MACRO_ADDITEM(ACE_elasticBandage,40);
+        MACRO_ADDITEM(ACE_morphine,30);
+        MACRO_ADDITEM(ACE_bloodIV,20);
+        MACRO_ADDITEM(ACE_bloodIV_500,20);
+        MACRO_ADDITEM(ACE_bloodIV_250,20);
     };
     class TransportWeapons {};
 };

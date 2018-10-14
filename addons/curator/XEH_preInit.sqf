@@ -6,18 +6,15 @@ ADDON = false;
 
 #include "initSettings.sqf"
 
-// Curator access
-GVAR(curatorGroup) = createGroup sideLogic;
-GVAR(curatorObjects) = [];
-GVAR(curatorPlayers) = [];
-
-// Setup eventhandlers
 if (isServer) then {
-    [QGVAR(curatorAssign), { _this call FUNC(curatorAssign) }] call CBA_fnc_addEventHandler;
-    [QGVAR(curatorUnassign), { _this call FUNC(curatorUnassign) }] call CBA_fnc_addEventHandler;
+    GVAR(curatorGroup) = createGroup sideLogic;
+    GVAR(curatorObjects) = [];
+    GVAR(curatorPlayers) = [];
+    [QGVAR(setCuratorsLocked), {_this call FUNC(setCuratorsLocked)}] call CBA_fnc_addEventHandler;
+    [QGVAR(curatorAssign), {_this call FUNC(curatorAssign)}] call CBA_fnc_addEventHandler;
+    [QGVAR(curatorUnassign), {_this call FUNC(curatorUnassign)}] call CBA_fnc_addEventHandler;
 
-    // Start curator access
-    addMissionEventHandler ["HandleDisconnect", { [QGVAR(curatorUnassign), [getAssignedCuratorLogic (_this select 0)]] call CBA_fnc_serverEvent; }];
+    addMissionEventHandler ["HandleDisconnect", {[QGVAR(curatorUnassign), [getAssignedCuratorLogic (_this select 0)]] call CBA_fnc_serverEvent;}];
     if (!isMultiplayer) then {
         GVAR(curatorsMax) = 1;
         publicVariable QGVAR(curatorsMax);
@@ -39,7 +36,7 @@ if (hasInterface) then {
             [QGVAR(curatorAssign), [_unit]] call CBA_fnc_serverEvent;
         } else {
             if (WHITELISTED) then {
-                call FUNC(curatorLogin);
+                // call FUNC(curatorLogin);
             };
         };
     }, true, [], true] call CBA_fnc_addClassEventHandler;

@@ -42,5 +42,6 @@
         "editor.quickSuggestions": false
     },
     "workbench.colorTheme": "[SQF] Dark Theme",
-    "editor.detectIndentation": false
+    "editor.detectIndentation": false,
+    "python.pythonPath": "C:\\Users\\Tim\\AppData\\Local\\Programs\\Python\\Python36-32\\python.exe"
 }

@@ -92,6 +92,7 @@ class CfgVehicles {
             MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_60mm_Mo_Shells,20);
             MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_60mm_Mo_Smoke_White,10);
             MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_60mm_Mo_Flare_White,10);
+            MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_60mm_Mo_AB_Shells,10);
         };
     };
     class UKSF_S_R4: UKSF_S_Empty {
@@ -102,6 +103,7 @@ class CfgVehicles {
             MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_60mm_Mo_Shells,60);
             MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_60mm_Mo_Smoke_White,20);
             MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_60mm_Mo_Flare_White,40);
+            MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_60mm_Mo_AB_Shells,30);
         };
     };
     class UKSF_S_R5: UKSF_S_Empty {
@@ -145,12 +147,11 @@ class CfgVehicles {
         editorCategory = "EdCat_Supplies";
         editorSubcategory = QEGVAR(common,resupply);
         class TransportItems {
-            MACRO_ADDITEM(ACE_packingBandage,50);
-            MACRO_ADDITEM(ACE_elasticBandage,50);
+            MACRO_ADDITEM(ACE_elasticBandage,150);
             MACRO_ADDITEM(ACE_morphine,30);
             MACRO_ADDITEM(ACE_epinephrine,30);
             MACRO_ADDITEM(ACE_bloodIV,30);
-            MACRO_ADDITEM(ACE_bloodIV_500,20);
+            MACRO_ADDITEM(ACE_bloodIV_500,30);
         };
     };
 

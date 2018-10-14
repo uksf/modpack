@@ -67,5 +67,7 @@ if (!(isNull _centre)) then {
 
 //TRACE_1("Vehicles saved",_vehicles);
 GVAR(dataNamespace) setVariable [QGVAR(vehicles), _vehicles];
-profileNamespace setVariable [GVAR(key), [GVAR(dataNamespace)] call CBA_fnc_serializeNamespace];
-LOG("Saved data");
+if (GVAR(dataSaved)) then {
+    profileNamespace setVariable [GVAR(key), [GVAR(dataNamespace)] call CBA_fnc_serializeNamespace];
+    LOG("Saved data");
+};

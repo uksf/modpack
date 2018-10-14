@@ -212,10 +212,6 @@ def remote_deploy():
             client.root.build_repo()
             time.sleep(3)
 
-        if deploy_all or deploy_sync:
-            print_blue("\nUpdating server")
-            client.root.update_server()
-
         if deploy_all or deploy_cleanup:
             print_blue("\nCleaning up")
             client.root.cleanup(file_zip)
@@ -233,7 +229,6 @@ def deploy_to_server(argv):
     global deploy_extract
     global deploy_update
     global deploy_build
-    global deploy_sync
     global deploy_cleanup
     global file_zip
 
@@ -257,9 +252,6 @@ def deploy_to_server(argv):
         if "build" in argv:
             argv.remove("build")
             deploy_build = True
-        if "sync" in argv:
-            argv.remove("sync")
-            deploy_sync = True
         if "cleanup" in argv:
             argv.remove("cleanup")
             deploy_cleanup = True
