@@ -29,7 +29,7 @@ TRACE_1("Removing",_remove);
 {[GVAR(hashPersistentVehicles), _key] call CBA_fnc_hashRem} forEach _remove;
 
 if (!(isNull _centre)) then {
-    private _objects = (_centre nearObjects CENTRE_RADIUS) select {alive _x && {!(_x isKindOf "Man" || _x isKindOf "Logic" || _x isKindOf "GroundWeaponHolder")}};
+    private _objects = (_centre nearObjects CENTRE_RADIUS) select {alive _x && {!(_x isKindOf "Man" || _x isKindOf "Logic" || _x isKindOf "GroundWeaponHolder" || _x isKindOf "Static")}};
     TRACE_2("Objects around centre",_centre,_objects);
     {
         private _object = _x;
