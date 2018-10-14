@@ -7,22 +7,15 @@ class CfgPatches {
             "UKSF_B_Rifleman",
             "UKSF_B_Officer",
             "UKSF_B_SectionLeader",
-            "UKSF_B_MachineGunner",
-            "UKSF_B_AntiTank",
             "UKSF_B_Medic",
             "UKSF_B_Sniper",
+            "UKSF_B_Pathfinder",
+            "UKSF_B_PathfinderMedic",
+            "UKSF_B_SAS",
+            "UKSF_B_Pilot",
             "UKSF_B_Pilot_7",
             "UKSF_B_Pilot_656",
-            "UKSF_B_Pilot_617",
-            "UKSF_TK_Civ_Mullah",
-            "UKSF_TK_Civ_Sheikh",
-            "UKSF_TK_Civ_1",
-            "UKSF_TK_Civ_2",
-            "UKSF_TK_Civ_3",
-            "UKSF_TK_Civ_4",
-            "UKSF_TK_Civ_5",
-            "UKSF_TK_Civ_6",
-            "UKSF_TK_Civ_7"
+            "UKSF_B_Pilot_617"
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;

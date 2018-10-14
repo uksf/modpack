@@ -53,6 +53,12 @@ class UKSF_B_PathfinderMedic: UKSF_B_Pathfinder {
     editorPreview = QPATHTOEF(common,data\previews\UKSF_B_PathfinderMedic.jpg);
     attendant = 1;
 };
+class UKSF_B_SAS: UKSF_B_Rifleman {
+    displayName = "SAS Trooper";
+    uniformClass = "CFP_75th_CRYE_V1b_Full_Clean";
+    editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Pathfinder.jpg);
+    engineer = 1;
+};
 class UKSF_B_Pilot: UKSF_B_Rifleman {
     editorSubcategory = QEGVAR(common,jsfaw);
     displayName = "Pilot";
