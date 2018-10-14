@@ -2,7 +2,7 @@
 #include "secret.hpp"
 
 uksf_data::uksf_data() {
-    uksf::getInstance().preInit.connect([this]() {
+    /*uksf::getInstance().preInit.connect([this]() {
         LOG_DEBUG("DATA PREINIT");
         const game_value enabledArgs({
             QGVAR(enabled),
@@ -42,7 +42,7 @@ uksf_data::uksf_data() {
 
     uksf::getInstance().missionEnded.connect([this]() {
         LOG_DEBUG("DATA MISSION ENDED");
-    });
+    });*/
 }
 
 void uksf_data::function() {
