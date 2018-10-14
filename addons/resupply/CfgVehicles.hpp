@@ -105,6 +105,9 @@ class CfgVehicles {
             MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_60mm_Mo_Flare_White,40);
             MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_60mm_Mo_AB_Shells,30);
         };
+        class TransportWeapons {
+            MACRO_ADDWEAPON(UK3CB_BAF_M6,2);
+        };
     };
     class UKSF_S_R5: UKSF_S_Empty {
         displayName = "R5 Crate";
@@ -118,6 +121,21 @@ class CfgVehicles {
                     amount = 1;
                 };
             };
+        };
+    };
+    class UKSF_S_R6: UKSF_S_Empty {
+        displayName = "R6 Crate";
+        editorPreview = QPATHTOEF(common,data\previews\UKSF_S_R6.jpg);
+        hiddenSelectionsTextures[] = { QPATHTOF(data\R6_co.paa) };
+        class TransportMagazines {
+            MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_81mm_Mo_Shells,50);
+            MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_81mm_Mo_Smoke_White,15);
+            MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_81mm_Mo_Flare_White,15);
+            MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_81mm_Mo_AB_Shells,30);
+        };
+        class TransportWeapons {
+            MACRO_ADDWEAPON(UK3CB_BAF_L16,2);
+            MACRO_ADDWEAPON(UK3CB_BAF_L16_Tripod,2);
         };
     };
     class UKSF_S_RT: UKSF_S_Empty {
