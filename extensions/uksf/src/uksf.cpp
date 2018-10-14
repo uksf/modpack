@@ -32,5 +32,5 @@ void __cdecl intercept::mission_ended() {
 uksf::uksf() {
     uksf_common::getInstance();
 
-    uksf_data::getInstance();
+    //uksf_data::getInstance();
 }

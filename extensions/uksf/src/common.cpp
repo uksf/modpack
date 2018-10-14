@@ -16,7 +16,7 @@ uksf_common::uksf_common() {
 
     uksf::getInstance().postInit.connect([this]() { LOG_DEBUG("COMMON POSTINIT"); });
 
-    uksf::getInstance().onFrame.connect([this]() { threadRun = sqf::time() > int(sqf::get_variable(sqf::mission_namespace(), "CBA_common_lastTime", 0)) && !sqf::find_display(46).is_nil(); });
+    //uksf::getInstance().onFrame.connect([this]() { threadRun = sqf::time() > int(sqf::get_variable(sqf::mission_namespace(), "CBA_common_lastTime", 0)) && !sqf::find_display(46).is_nil(); });
 }
 
 float uksf_common::getZoom() {
