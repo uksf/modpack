@@ -244,6 +244,9 @@ class UK3CB_BAF_LandRover_WMIK_HMG_Base: UK3CB_BAF_LandRover_WMIK_Base {
             gunnerOpticsEffect[] = {"OpticsCHAbera1"};
             class ViewOptics {
                 visionMode[] = {};
+                initFov = 0.0623;
+                minFov = 0.0623;
+                maxFov = 0.0623;
             };
         };
     };

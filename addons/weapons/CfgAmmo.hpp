@@ -79,7 +79,7 @@ class CfgAmmo {
         class Components;
     };
     class ACE_Hellfire_AGM114K: M_Scalpel_AT {
-        SoundSetExplosion[] = { "DS_Ex_rocket_big_SoundSet", "DS_exploBig_Tail_placeholder_SoundSet" };
+        SoundSetExplosion[] = { "JPEX_Missile_EXPLOSION_SoundSet", "JPEX_Missile_REFLECTOR_SoundSet", "JPEX_Big_Debris_SoundSet" };
         class Components: Components {
             class SensorsManagerComponent {
                 class Components {
@@ -203,7 +203,7 @@ class CfgAmmo {
         proxyShape = "\A3\Weapons_F\Ammo\Bomb_01_F";
     };
     class CUP_B_30x113mm_M789_HEDP_Red_Tracer: BulletBase {
-        SoundSetExplosion[] = { "DS_Ex_small_impact_SoundSet", "DS_exploSmall_Tail_placeholder_SoundSet", "Explosion_Debris_SoundSet" };
+        SoundSetExplosion[] = { "JPEX_20mm_EXPLOSION_SoundSet", "JPEX_20mm_REFLECTOR_SoundSet" };
         CraterEffects = "ExploAmmoCrater";
         explosionEffects = "ExploAmmoExplosion";
         class HitEffects {
@@ -242,7 +242,7 @@ class CfgAmmo {
         CraterEffects = "GrenadeCrater";
         CraterWaterEffects = "ImpactEffectsWaterExplosion";
         explosionEffects = "GrenadeExplosion";
-        SoundSetExplosion[] = { "DS_Ex_Grenade_SoundSet", "DS_Grenade_ExploTail_SoundSet", "DS_exploSmall_Tail_placeholder_SoundSet" };
+        SoundSetExplosion[] = { "JPEX_GRENADE_EXPLOSION_SoundSet", "JPEX_GRENADE_REFLECTOR_SoundSet", "JPEX_Medium_Debris_SoundSet" };
         ace_explosives_magazine = "BreachCharge_Remote_Mag";
         ace_explosives_Explosive = "BreachCharge_Remote_Ammo_Scripted";
     };
