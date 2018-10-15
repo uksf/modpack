@@ -33,7 +33,9 @@
         "xlocale": "cpp",
         "functional": "cpp",
         "bitset": "cpp",
-        "ios": "cpp"
+        "ios": "cpp",
+        "future": "cpp",
+        "system_error": "cpp"
     },
     "[cpp]": {
         "editor.quickSuggestions": false

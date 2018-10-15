@@ -30,6 +30,17 @@ class CfgPatches {
         url = QUOTE(www.uk-sf.com);
         VERSION_CONFIG;
     };
+    class UK3CB_BAF_Vehicles_Apache {
+        name = "UK3CB_BAF_Vehicles_Apache";
+        units[] = {};
+        weapons[] = {};
+        requiredVersion = REQUIRED_VERSION;
+        requiredAddons[] = {};
+        author = QUOTE(UKSF);
+        authors[] = { "Beswick.T" };
+        url = QUOTE(www.uk-sf.com);
+        VERSION_CONFIG;
+    };
 };
 
 class RscInGameUI {
