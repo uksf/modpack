@@ -786,8 +786,10 @@ def sign_dependencies():
     for file in os.listdir(temp_path):
         shutil.move(os.path.join(temp_path, file), os.path.join(dependencies_path, file))
 
-    print_blue("\nSigning updated dependencies")
+    print_blue("\nSigning intercept")
     for file in os.listdir(intercept_path):
+        if (file.endswith(".bisign") and os.path.isfile(os.path.join(intercept_path, file))):
+            os.remove(file)
         if (file.endswith(".pbo") and os.path.isfile(os.path.join(intercept_path, file))):
             print("Found: {}.".format(file))
             if (os.path.isfile(os.path.join(intercept_path, "{}.{}.bisign".format(file, os.path.splitext(os.path.basename(key))[0])))):
@@ -798,7 +800,7 @@ def sign_dependencies():
                 if ret == 1:
                     return 1
 
-    print_blue("\nSigning intercept")
+    print_blue("\nSigning updated dependencies")
     for file in os.listdir(signatures_path):
         if (file.endswith(".pbo") and os.path.isfile(os.path.join(signatures_path, file))):
             print("Found: {}.".format(file))
