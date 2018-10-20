@@ -789,7 +789,8 @@ def sign_dependencies():
     print_blue("\nSigning intercept")
     for file in os.listdir(intercept_path):
         if (file.endswith(".bisign") and os.path.isfile(os.path.join(intercept_path, file))):
-            os.remove(file)
+            os.remove(os.path.join(intercept_path, file))
+    for file in os.listdir(intercept_path):
         if (file.endswith(".pbo") and os.path.isfile(os.path.join(intercept_path, file))):
             print("Found: {}.".format(file))
             if (os.path.isfile(os.path.join(intercept_path, "{}.{}.bisign".format(file, os.path.splitext(os.path.basename(key))[0])))):

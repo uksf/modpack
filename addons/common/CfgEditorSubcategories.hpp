@@ -1,7 +1,7 @@
 class CfgEditorSubcategories {
     // UKSF
     class GVAR(1para) {
-        displayName = "Men (1 Para)";
+        displayName = "Men (UKSF)";
     };
     class GVAR(jsfaw) {
         displayName = "Men (JSFAW)";

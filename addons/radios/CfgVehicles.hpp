@@ -86,6 +86,10 @@ class CfgVehicles {
         INTERCOM_AIR
         RACKS_AIR
     };
+    class rksla3_pumahc_base: Helicopter_Base_H {
+        INTERCOM_AIR
+        RACKS_AIR
+    };
     class Car_F;
     class UK3CB_BAF_Jackal_Base_D: Car_F {
         RACKS_GROUND

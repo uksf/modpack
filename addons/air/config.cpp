@@ -23,7 +23,8 @@ class CfgPatches {
             "CUP_AirVehicles_MV22",
             "CUP_AirVehciles_SA330",
             "UK3CB_BAF_Vehicles_Merlin",
-            "UK3CB_BAF_Vehicles_Wildcat"
+            "UK3CB_BAF_Vehicles_Wildcat",
+            "rksla3_pumahc"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
