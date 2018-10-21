@@ -52,9 +52,9 @@ force ace_noradio_enabled = true;
 ace_parachute_hideAltimeter = true;
 
 // ACE Cook off
-force ace_cookoff_ammoCookoffDuration = 1;
+force ace_cookoff_ammoCookoffDuration = 0.25;
 force ace_cookoff_enable = true;
-force ace_cookoff_enableAmmobox = true;
+force ace_cookoff_enableAmmobox = false;
 force ace_cookoff_enableAmmoCookoff = true;
 force ace_cookoff_probabilityCoef = 1;
 
