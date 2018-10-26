@@ -284,6 +284,9 @@ class CfgWeapons {
     class UK3CB_BAF_L129A1: srifle_EBR_F {
         ace_barrelLength = 410;
     };
+    class UK3CB_BAF_L128A1: srifle_EBR_F {
+        magazineWell[] = {};
+    };
 
     class LMG_Zafir_F;
     class UK3CB_BAF_L7A2: LMG_Zafir_F {
