@@ -77,7 +77,7 @@ signature_blacklist = []
 importantFiles = ["mod.cpp", "README.md", "mod.paa", "modLarge.paa", "AUTHORS.txt", "LICENSE",
                   "UKSFTemplate.VR", "cba_settings.sqf", "cba_settings.sqf"]
 interceptFiles = ["uksf.dll", "uksf_x64.dll", "PocoFoundation.dll",
-                  "PocoFoundation64.dll", "PocoNet.dll", "PocoNet64.dll"]
+                  "PocoFoundation64.dll", "PocoNet.dll", "PocoNet64.dll", "PocoJSON.dll", "PocoJSON64.dll", "PocoXML.dll", "PocoXML64.dll", "PocoUtil.dll", "PocoUtil.dll"]
 versionFiles = ["mod.cpp", "README.md"]
 nomake = False
 sign = False
