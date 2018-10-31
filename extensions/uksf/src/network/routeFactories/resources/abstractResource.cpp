@@ -12,8 +12,8 @@ namespace resources {
 
     void abstractResource::handleHttpHeaders(Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response) {
         response.setContentType("application/json; charset=utf-8");
-        if (request.getContentType() != "application/json" || request.get("Accept") != "application/json") {
-            throw exception("Unsupported Media Type", "The only media type supported is application/json. Used: ", 415);
+        if (request.getContentType() != "application/json" && request.get("Accept") != "application/json") {
+            throw exception("Unsupported Media Type", "The only media type supported is application/json. Used: " + request.getContentType() + ", " + request.get("Accept"), 415);
         }
 
         if (request.getMethod() != Poco::Net::HTTPRequest::HTTP_GET &&
@@ -59,18 +59,22 @@ namespace resources {
 
         if (request.getMethod() == Poco::Net::HTTPRequest::HTTP_GET) {
             this->handle_get(request, response);
+            return;
         }
 
         if (request.getMethod() == Poco::Net::HTTPRequest::HTTP_PUT) {
             this->handle_put(request, response);
+            return;
         }
 
         if (request.getMethod() == Poco::Net::HTTPRequest::HTTP_POST) {
             this->handle_post(request, response);
+            return;
         }
 
         if (request.getMethod() == Poco::Net::HTTPRequest::HTTP_DELETE) {
             this->handle_delete(request, response);
+            return;
         }
 
         if (request.getMethod() == Poco::Net::HTTPRequest::HTTP_OPTIONS) {

@@ -1,8 +1,12 @@
 #pragma once
 #define NOMINMAX
+#define WIN32_LEAN_AND_MEAN
 
 #pragma comment(lib,"WS2_32")
 #pragma comment(lib, "iphlpapi.lib")
+
+// ReSharper disable once CppUnusedIncludeDirective
+#include <WinSock2.h>
 
 #include "singleton.hpp"
 

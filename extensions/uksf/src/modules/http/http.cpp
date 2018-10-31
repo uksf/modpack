@@ -3,16 +3,10 @@
 #include <Poco/Net/HTTPServer.h>
 
 uksf_http::uksf_http() {
-    routeFactory = new router();
-
     uksf::getInstance().postStart.connect([this]() {
         LOG_DEBUG("HTTP POSTSTART");
         if (sqf::is_server()) {
-            if (server != nullptr) {
-                server->stop();
-            }
-            server = new Poco::Net::HTTPServer(routeFactory, Poco::Net::ServerSocket(6000), new Poco::Net::HTTPServerParams);
-            server->start();
+            startThread();
         }
     });
 
@@ -29,7 +23,18 @@ uksf_http::uksf_http() {
     });
 }
 
+void uksf_http::initThread() {
+    initOnly = true;
+    routeFactory = new router();
+    if (server != nullptr) {
+        server->stop();
+    }
+    server = new Poco::Net::HTTPServer(routeFactory, Poco::Net::ServerSocket(6000), new Poco::Net::HTTPServerParams);
+    server->start();
+}
+
 uksf_http::~uksf_http() {
     server->stop();
     server = nullptr;
+    stopThread();
 }

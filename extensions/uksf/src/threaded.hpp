@@ -13,11 +13,13 @@ public:
         stopThread();
     }
 
+    virtual void initThread() {}
     virtual void function() {}
 
 protected:
     std::thread _thread;
     bool _threadStop = true;
+    bool initOnly = false;
 
     void startThread() {
         _threadStop = false;
@@ -32,5 +34,13 @@ protected:
         }
     }
 
-    void threadFunction() { while (!_threadStop) { if (uksf_common::threadRun) { function(); } } }
+    void threadFunction() {
+        initThread();
+        if (initOnly) return;
+        while (!_threadStop) {
+            if (uksf_common::threadRun) {
+                function();
+            }
+        }
+    }
 };
