@@ -29,7 +29,20 @@ void uksf_http::initThread() {
     if (server != nullptr) {
         server->stop();
     }
-    server = new Poco::Net::HTTPServer(routeFactory, Poco::Net::ServerSocket(6000), new Poco::Net::HTTPServerParams);
+    std::string arg_line = GetCommandLineA();
+    std::transform(arg_line.begin(), arg_line.end(), arg_line.begin(), ::tolower);
+
+    auto portIterator = arg_line.find("-apiport"sv);
+    if (portIterator != std::string::npos) {
+        auto port_start = portIterator + 8;
+        port_start = arg_line.find_first_not_of("=\"", port_start);
+        size_t port_end = arg_line.find("\"", port_start);
+        std::string port = arg_line.substr(port_start, port_end - port_start);
+
+        server = new Poco::Net::HTTPServer(routeFactory, Poco::Net::ServerSocket(atoi(port.c_str())), new Poco::Net::HTTPServerParams);
+    } else {
+        server = new Poco::Net::HTTPServer(routeFactory, Poco::Net::ServerSocket(6000), new Poco::Net::HTTPServerParams);
+    }
     server->start();
 }
 

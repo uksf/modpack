@@ -10,12 +10,23 @@ namespace resources {
 
     void server::handle_get(Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response) {
         try {
-            std::string serverName = sqf::server_name();
             handleHttpStatusCode(200, response);
             std::ostream& outputStream = response.send();
-
             Poco::DynamicStruct jsonData;
-            jsonData.insert("servername", serverName);
+            std::string serverName = sqf::server_name();
+            if (serverName != "") {
+                std::string map = sqf::world_name();
+                std::string mission = sqf::mission_name();
+                float uptime = sqf::time();
+                size_t players = sqf::all_players().size();
+                size_t maxPlayers = sqf::playable_units().size();
+
+                jsonData.insert("map", map);
+                jsonData.insert("mission", mission);
+                jsonData.insert("uptime", uptime);
+                jsonData.insert("players", players);
+                jsonData.insert("maxPlayers", maxPlayers);
+            }
             outputStream << jsonData.toString();
             outputStream.flush();
         } catch (exception& exception) {
