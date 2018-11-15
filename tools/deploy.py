@@ -153,11 +153,11 @@ def upload_zip():
     try:
         password = getpass.getpass("FTP password:")
         print("Connecting...")
-        session = ftplib.FTP("arma.uk-sf.com", "main", password)
+        session = ftplib.FTP("uk-sf.com", "deploy", password)
         print("Connected to FTP")
 
         print("Switching to deploy directory...")
-        session.cwd("/Users/root/Desktop/Deploy")
+        session.cwd("/Server/Deploy")
         print("Switched to: {}".format(session.pwd()))
 
         print_blue("\nUploading {}".format(file_zip))
@@ -191,13 +191,13 @@ def remote_deploy():
     try:
         password = getpass.getpass("Connection password:")
         print("Connecting...")
-        channel = rpyc.Channel(rpyc.SocketStream.connect("arma.uk-sf.com", 18812))
+        channel = rpyc.Channel(rpyc.SocketStream.connect("uk-sf.com", 18812))
         channel.send(password.encode())
         response = channel.recv()
         if response == AUTH_ERROR:
             raise ValueError("Incorrect password")
         client = rpyc.utils.factory.connect_channel(channel, CallbackService, config={"sync_request_timeout":3000})
-        print("Connected to arma.uk-sf.com")
+        print("Connected to uk-sf.com")
 
         if deploy_all or deploy_extract:
             print_blue("\nExtracting remote {}".format(file_zip))
