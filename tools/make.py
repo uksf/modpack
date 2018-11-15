@@ -52,8 +52,6 @@ import time
 import timeit
 import re
 import fileinput
-import playercount
-import deploy
 
 if sys.platform == "win32":
     import winreg
