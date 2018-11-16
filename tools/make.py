@@ -1433,12 +1433,12 @@ See the make.cfg file for additional build options.
             restore_version_files()
 
     # Done building all modules!
-            
-    ret = sign_dependencies()
-    if ret == 0:
-        print_blue("\nDependencies signed")
-    else:
-        print_error("Could not sign dependencies")
+    if len(failedBuilds) == 0:
+        ret = sign_dependencies()
+        if ret == 0:
+            print_blue("\nDependencies signed")
+        else:
+            print_error("Could not sign dependencies")
 
     # Write out the cache state
     cache_out = json.dumps(cache)
