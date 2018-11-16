@@ -1532,6 +1532,3 @@ if __name__ == "__main__":
     main(sys.argv)
     d,h,m,s = Fract_Sec(timeit.default_timer() - start_time)
     print("\nTotal Program time elapsed: {0:2}h {1:2}m {2:4.5f}s".format(h,m,s))
-
-    if deploy_server:
-        sys.exit(deploy.deploy_to_server(deploy_args))
