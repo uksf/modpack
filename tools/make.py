@@ -77,7 +77,6 @@ importantFiles = ["mod.cpp", "README.md", "mod.paa", "modLarge.paa", "AUTHORS.tx
 interceptFiles = ["uksf.dll", "uksf_x64.dll", "PocoFoundation.dll",
                   "PocoFoundation64.dll", "PocoNet.dll", "PocoNet64.dll"]
 versionFiles = ["mod.cpp", "README.md"]
-compats = ["ace_compat_rksl_pm_ii"]
 
 ###############################################################################
 # http://akiscode.com/articles/sha-1directoryhash.shtml

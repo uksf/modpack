@@ -4,6 +4,7 @@ import shutil
 DEPLOYMENT_DIRECTORY = "D:\\Dev"
 REPO_DIRECTORY = "C:\\Server\\Modpack"
 SERVER_DIRECTORY = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Arma 3 Server"
+ace_compats = ["ace_compat_rksl_pm_ii"]
 
 if __name__ == '__main__':
     os.chdir(REPO_DIRECTORY)
@@ -26,6 +27,8 @@ if __name__ == '__main__':
     shutil.rmtree(repo_folder_uksf_ace, True)
     print("Deleting old @acre2")
     shutil.rmtree(repo_folder_acre, True)
+    print("Deleting old @intercept")
+    shutil.rmtree(repo_folder_intercept)
 
     # Move uksf, uksf_ace, and intercept.
     print("Moving new @uksf")
@@ -34,10 +37,18 @@ if __name__ == '__main__':
     shutil.copytree(deployment_folder_uksf_ace, repo_folder_uksf_ace)
     print("Moving new @acre2")
     shutil.copytree(deployment_folder_acre, repo_folder_acre)
-    if (os.path.exists(repo_folder_intercept)):
-        shutil.rmtree(repo_folder_intercept)
     print("Moving new @intercept")
     shutil.copytree(deployment_folder_intercept, repo_folder_intercept)
+
+    # Move whitelisted ace optionals
+    for folder in os.listdir(os.path.join(repo_folder_uksf_ace, "optionals")):
+        if ("userconfig" in folder):
+            continue
+        for file in os.listdir(os.path.join(repo_folder_uksf_ace, "optionals", folder, "addons")):
+            for compat in ace_compats:
+                if ((compat in file) and not(os.path.isfile(os.path.join(repo_folder_uksf_ace, "addons", file)))):
+                    shutil.copyfile(os.path.join(repo_folder_uksf_ace, "optionals", folder, "addons", file), os.path.join(repo_folder_uksf_ace, "addons", file))
+
 
     # Updated any matching PBOs in dependencies.
     print("\nUpdating dependencies files")
