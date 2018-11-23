@@ -1,283 +1,118 @@
-#!/usr/bin/env python3
 import os
-import sys
 import shutil
-import subprocess
-import getpass
-import zipfile
-import ftplib
-import rpyc
-import time
 
-# Copyright (c) André Burgaud
-# http://www.burgaud.com/bring-colors-to-the-windows-console-with-python/
-if sys.platform == "win32":
-    from ctypes import windll, Structure, c_short, c_ushort, byref
+DEPLOYMENT_DIRECTORY = "D:\\Dev"
+REPO_DIRECTORY = "C:\\Server\\Modpack"
+SERVER_DIRECTORY = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Arma 3 Server"
+ace_compats = ["ace_compat_rksl_pm_ii"]
 
-    SHORT = c_short
-    WORD = c_ushort
+if __name__ == '__main__':
+    os.chdir(REPO_DIRECTORY)
+    repo_folder_uksf = os.path.join(REPO_DIRECTORY, "@uksf")
+    repo_folder_uksf_ace = os.path.join(REPO_DIRECTORY, "@uksf_ace")
+    repo_folder_acre = os.path.join(REPO_DIRECTORY, "@acre2")
+    repo_folder_uksf_dependencies = os.path.join(REPO_DIRECTORY, "@uksf_dependencies")
+    repo_folder_intercept = os.path.join(REPO_DIRECTORY, "@intercept")
+    deployment_folder_uksf = os.path.join(DEPLOYMENT_DIRECTORY, "modpack\\release\\@uksf")
+    deployment_folder_uksf_ace = os.path.join(DEPLOYMENT_DIRECTORY, "ACE3\\release\\@ace")
+    deployment_folder_acre = os.path.join(DEPLOYMENT_DIRECTORY, "acre2\\release\\@acre2")
+    deployment_folder_uksf_dependencies = os.path.join(DEPLOYMENT_DIRECTORY, "modpack\\release\\@uksf_dependencies")
+    deployment_folder_intercept = os.path.join(DEPLOYMENT_DIRECTORY, "modpack\\@intercept")
+    keys_folder = os.path.join(SERVER_DIRECTORY, "Keys")
 
-    class COORD(Structure):
-      """struct in wincon.h."""
-      _fields_ = [
-        ("X", SHORT),
-        ("Y", SHORT)]
+    # Delete uksf and uksf_ace.
+    print("Deleting old @uksf")
+    shutil.rmtree(repo_folder_uksf, True)
+    print("Deleting old @uksf_ace")
+    shutil.rmtree(repo_folder_uksf_ace, True)
+    print("Deleting old @acre2")
+    shutil.rmtree(repo_folder_acre, True)
+    print("Deleting old @intercept")
+    shutil.rmtree(repo_folder_intercept)
 
-    class SMALL_RECT(Structure):
-      """struct in wincon.h."""
-      _fields_ = [
-        ("Left", SHORT),
-        ("Top", SHORT),
-        ("Right", SHORT),
-        ("Bottom", SHORT)]
+    # Move uksf, uksf_ace, and intercept.
+    print("Moving new @uksf")
+    shutil.copytree(deployment_folder_uksf, repo_folder_uksf)
+    print("Moving new @uksf_ace")
+    shutil.copytree(deployment_folder_uksf_ace, repo_folder_uksf_ace)
+    print("Moving new @acre2")
+    shutil.copytree(deployment_folder_acre, repo_folder_acre)
+    print("Moving new @intercept")
+    shutil.copytree(deployment_folder_intercept, repo_folder_intercept)
 
-    class CONSOLE_SCREEN_BUFFER_INFO(Structure):
-      """struct in wincon.h."""
-      _fields_ = [
-        ("dwSize", COORD),
-        ("dwCursorPosition", COORD),
-        ("wAttributes", WORD),
-        ("srWindow", SMALL_RECT),
-        ("dwMaximumWindowSize", COORD)]
+    # Move whitelisted ace optionals
+    for folder in os.listdir(os.path.join(repo_folder_uksf_ace, "optionals")):
+        if ("userconfig" in folder):
+            continue
+        for file in os.listdir(os.path.join(repo_folder_uksf_ace, "optionals", folder, "addons")):
+            for compat in ace_compats:
+                if ((compat in file) and not(os.path.isfile(os.path.join(repo_folder_uksf_ace, "addons", file)))):
+                    shutil.copyfile(os.path.join(repo_folder_uksf_ace, "optionals", folder, "addons", file), os.path.join(repo_folder_uksf_ace, "addons", file))
 
-    # winbase.h
-    STD_INPUT_HANDLE = -10
-    STD_OUTPUT_HANDLE = -11
-    STD_ERROR_HANDLE = -12
 
-    # wincon.h
-    FOREGROUND_BLACK     = 0x0000
-    FOREGROUND_BLUE      = 0x0001
-    FOREGROUND_GREEN     = 0x0002
-    FOREGROUND_CYAN      = 0x0003
-    FOREGROUND_RED       = 0x0004
-    FOREGROUND_MAGENTA   = 0x0005
-    FOREGROUND_YELLOW    = 0x0006
-    FOREGROUND_GREY      = 0x0007
-    FOREGROUND_INTENSITY = 0x0008 # foreground color is intensified.
+    # Updated any matching PBOs in dependencies.
+    print("\nUpdating dependencies files")
+    print("Moving new PBOs and deleting marked PBOs")
+    for file in os.listdir(os.path.join(deployment_folder_uksf_dependencies, "addons")):
+        if (file.endswith(".pbo")
+                and os.path.isfile(os.path.join(deployment_folder_uksf_dependencies, "addons", file))):
+            print("    Found PBO to update: {}".format(file))
+            shutil.copy(os.path.join(deployment_folder_uksf_dependencies, "addons", file), os.path.join(repo_folder_uksf_dependencies, "addons", file))
+            print("    Updated: {}".format(os.path.join(repo_folder_uksf_dependencies, "addons", file)))
+        elif (file.endswith(".delete")
+                and os.path.isfile(os.path.join(deployment_folder_uksf_dependencies, "addons", file))
+                and os.path.isfile(os.path.join(repo_folder_uksf_dependencies, "addons", "{}".format(os.path.splitext(os.path.basename(file))[0])))):
+            file_delete = "{}".format(os.path.splitext(os.path.basename(file))[0])
+            file_zsync_delete = "{}.zsync".format(file_delete)
+            print("    Found PBO to delete: {}".format(file_delete))
+            os.remove(os.path.join(repo_folder_uksf_dependencies, "addons", file_delete))
+            os.remove(os.path.join(repo_folder_uksf_dependencies, "addons", file_zsync_delete))
+            print("    Deleted: {}".format(os.path.join(repo_folder_uksf_dependencies, "addons", file_delete)))
 
-    BACKGROUND_BLACK     = 0x0000
-    BACKGROUND_BLUE      = 0x0010
-    BACKGROUND_GREEN     = 0x0020
-    BACKGROUND_CYAN      = 0x0030
-    BACKGROUND_RED       = 0x0040
-    BACKGROUND_MAGENTA   = 0x0050
-    BACKGROUND_YELLOW    = 0x0060
-    BACKGROUND_GREY      = 0x0070
-    BACKGROUND_INTENSITY = 0x0080 # background color is intensified.
+    # Delete bisigns in dependencies.
+    print("Deleting old bisigns")
+    for file in os.listdir(os.path.join(repo_folder_uksf_dependencies, "addons")):
+        if (file.endswith(".bisign") or file.endswith(".bisign.zsync")
+                and os.path.isfile(os.path.join(repo_folder_uksf_dependencies, "addons", file))):
+            if (file.endswith(".bisign.zsync") or (not (os.path.isfile(os.path.join(deployment_folder_uksf_dependencies, "addons", file))
+                and os.path.basename(file).replace(".bisign", "").split(".", 2)[2] ==
+                os.path.basename(os.path.join(deployment_folder_uksf_dependencies, "addons", file)).replace(".bisign", "").split(".", 2)[2]))):
+                os.remove(os.path.join(repo_folder_uksf_dependencies, "addons", file))
 
-    stdout_handle = windll.kernel32.GetStdHandle(STD_OUTPUT_HANDLE)
-    SetConsoleTextAttribute = windll.kernel32.SetConsoleTextAttribute
-    GetConsoleScreenBufferInfo = windll.kernel32.GetConsoleScreenBufferInfo
+    # Move bisigns for dependencies.
+    print("Moving new bisigns")
+    for file in os.listdir(os.path.join(deployment_folder_uksf_dependencies, "addons")):
+        if (file.endswith(".bisign") and os.path.isfile(os.path.join(deployment_folder_uksf_dependencies, "addons", file))):
+            if (not os.path.isfile(os.path.join(repo_folder_uksf_dependencies, "addons", file)) or not os.path.basename(file).replace(".bisign", "").split(".", 2)[2] ==
+                os.path.basename(os.path.join(repo_folder_uksf_dependencies, "addons", file)).replace(".bisign", "").split(".", 2)[2]):
+                shutil.copy(os.path.join(deployment_folder_uksf_dependencies, "addons", file), os.path.join(repo_folder_uksf_dependencies, "addons", file))
 
-    def get_text_attr():
-        """Returns the character attributes (colors) of the console screen
-        buffer."""
-        csbi = CONSOLE_SCREEN_BUFFER_INFO()
-        GetConsoleScreenBufferInfo(stdout_handle, byref(csbi))
-        return csbi.wAttributes
+    # Delete old keys
+    print("\nUpdating keys")
+    print("Deleting old keys")
+    for file in os.listdir(keys_folder):
+        name = os.path.splitext(file)[0]
+        if (file.endswith(".bikey") and (("uksf" in name and not ("gcam" in name)) or ("ace_3" in name) or ("acre_" in name))
+                and os.path.isfile(os.path.join(keys_folder, file))):
+            print("    Deleting: {}".format(file))
+            os.remove(os.path.join(keys_folder, file))
 
-    def set_text_attr(color):
-        """Sets the character attributes (colors) of the console screen
-        buffer. Color is a combination of foreground and background color,
-        foreground and background intensity."""
-        SetConsoleTextAttribute(stdout_handle, color)
-###############################################################################
+    # Move new keys
+    print("Moving new keys")
+    for file in os.listdir(os.path.join(deployment_folder_uksf, "keys")):
+        if file.endswith(".bikey") and os.path.isfile(os.path.join(deployment_folder_uksf, "keys", file)):
+            print("    Moving: {}".format(file))
+            shutil.copy(os.path.join(deployment_folder_uksf, "keys", file), os.path.join(keys_folder, file))
+    for file in os.listdir(os.path.join(deployment_folder_uksf_ace, "keys")):
+        if file.endswith(".bikey") and os.path.isfile(os.path.join(deployment_folder_uksf_ace, "keys", file)):
+            print("    Moving: {}".format(file))
+            shutil.copy(os.path.join(deployment_folder_uksf_ace, "keys", file), os.path.join(keys_folder, file))
+    for file in os.listdir(os.path.join(deployment_folder_acre, "keys")):
+        if file.endswith(".bikey") and os.path.isfile(os.path.join(deployment_folder_acre, "keys", file)):
+            print("    Moving: {}".format(file))
+            shutil.copy(os.path.join(deployment_folder_acre, "keys", file), os.path.join(keys_folder, file))
 
-def color(color):
-    """Set the color. Works on Win32 and normal terminals."""
-    if sys.platform == "win32":
-        if color == "green":
-            set_text_attr(FOREGROUND_GREEN | get_text_attr() & 0x0070 | FOREGROUND_INTENSITY)
-        elif color == "yellow":
-            set_text_attr(FOREGROUND_YELLOW | get_text_attr() & 0x0070 | FOREGROUND_INTENSITY)
-        elif color == "red":
-            set_text_attr(FOREGROUND_RED | get_text_attr() & 0x0070 | FOREGROUND_INTENSITY)
-        elif color == "blue":
-            set_text_attr(FOREGROUND_BLUE | get_text_attr() & 0x0070 | FOREGROUND_INTENSITY)
-        elif color == "reset":
-            set_text_attr(FOREGROUND_GREY | get_text_attr() & 0x0070)
-        elif color == "grey":
-            set_text_attr(FOREGROUND_GREY | get_text_attr() & 0x0070)
-    else:
-        if color == "green":
-            sys.stdout.write('\033[92m')
-        elif color == "red":
-            sys.stdout.write('\033[91m')
-        elif color == "blue":
-            sys.stdout.write('\033[94m')
-        elif color == "reset":
-            sys.stdout.write('\033[0m')
-
-def print_error(msg):
-    color("red")
-    print("ERROR: {}".format(msg))
-    color("reset")
-
-def print_red(msg):
-    color("red")
-    print(msg)
-    color("reset")
-
-def print_green(msg):
-    color("green")
-    print(msg)
-    color("reset")
-
-def print_blue(msg):
-    color("blue")
-    print(msg)
-    color("reset")
-
-def print_yellow(msg):
-    color("yellow")
-    print(msg)
-    color("reset")
-
-file_zip = ""
-AUTH_ERROR = "1".encode()
-AUTH_SUCCESS = "0".encode()
-upload_total = 0
-upload_progress = 0
-
-def upload_callback(data):
-    global upload_progress
-
-    upload_progress += len(data)
-    percent = float(upload_progress) / upload_total
-    print("\r{}%".format(int(round(percent * 100))), end='', flush=True)
-
-def upload_zip():
-    global upload_total
-
-    try:
-        password = getpass.getpass("FTP password:")
-        print("Connecting...")
-        session = ftplib.FTP("uk-sf.com", "deploy", password)
-        print("Connected to FTP")
-
-        print("Switching to deploy directory...")
-        session.cwd("/Server/Deploy")
-        print("Switched to: {}".format(session.pwd()))
-
-        print_blue("\nUploading {}".format(file_zip))
-        upload_total = os.path.getsize(file_zip)
-        file_send = open(os.path.abspath(file_zip), "rb")
-        session.storbinary("STOR {}".format(file_zip), file_send, 1024, upload_callback)
-        file_send.close()
-        print("\n")
-        session.quit()
-    except ftplib.all_errors as e:
-        print_error(e)
-        raise Exception
-
-class CallbackService(rpyc.Service):
-    def exposed_print(self, message):
-        print(message)
-
-    def exposed_print_blue(self, message):
-        print_blue(message)
-
-deploy_all = False
-deploy_upload = False
-deploy_extract = False
-deploy_update = False
-deploy_build = False
-deploy_sync = False
-deploy_cleanup = False
-
-def remote_deploy():
-    print_blue("\nStarting remote deploy")
-    try:
-        password = getpass.getpass("Connection password:")
-        print("Connecting...")
-        channel = rpyc.Channel(rpyc.SocketStream.connect("uk-sf.com", 18812))
-        channel.send(password.encode())
-        response = channel.recv()
-        if response == AUTH_ERROR:
-            raise ValueError("Incorrect password")
-        client = rpyc.utils.factory.connect_channel(channel, CallbackService, config={"sync_request_timeout":3000})
-        print("Connected to uk-sf.com")
-
-        if deploy_all or deploy_extract:
-            print_blue("\nExtracting remote {}".format(file_zip))
-            client.root.extract_zip(file_zip)
-
-        if deploy_all or deploy_update:
-            print_blue("\nUpdating repo")
-            client.root.update_repo(file_zip)
-
-        if deploy_all or deploy_build:
-            print_blue("\nBuilding repo")
-            client.root.build_repo()
-            time.sleep(3)
-
-        if deploy_all or deploy_cleanup:
-            print_blue("\nCleaning up")
-            client.root.cleanup(file_zip)
-
-        client.close()
-
-    except Exception as e:
-        client.close()
-        print_error(e)
-        raise Exception
-
-def deploy_to_server(argv):
-    global deploy_all
-    global deploy_upload
-    global deploy_extract
-    global deploy_update
-    global deploy_build
-    global deploy_cleanup
-    global file_zip
-
-    print("""
-###############
-# UKSF Deploy #
-###############
-""")
-    if len(argv) == 0:
-        deploy_all = True
-    else:
-        if "upload" in argv:
-            argv.remove("upload")
-            deploy_upload = True
-        if "extract" in argv:
-            argv.remove("extract")
-            deploy_extract = True
-        if "update" in argv:
-            argv.remove("update")
-            deploy_update = True
-        if "build" in argv:
-            argv.remove("build")
-            deploy_build = True
-        if "cleanup" in argv:
-            argv.remove("cleanup")
-            deploy_cleanup = True
-
-    try:
-        # Find the zip file (there should only be one when make is run)
-        os.chdir(os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), "release"))
-        for file in os.listdir():
-            if file.endswith(".zip"):
-                file_zip = file
-                break
-
-        if file_zip != "":
-            print_blue("Using {}".format(file_zip))
-        else:
-            print_error("No zip found")
-            if (deploy_all):
-                raise Exception
-
-        if deploy_all or deploy_upload:
-            upload_zip()
-
-        remote_deploy()
-        print_green("\n# Deploy Complete")
-    except:
-        print_red("\n# Deploy Failed")
-
-if __name__ == "__main__":
-    sys.exit(deploy_to_server(sys.argv))
+    # Move cba_settings.sqf
+    if (os.path.isfile(os.path.join(SERVER_DIRECTORY, "userconfig", "cba_settings.sqf"))):
+        os.remove(os.path.join(SERVER_DIRECTORY, "userconfig", "cba_settings.sqf"))
+        shutil.copy(os.path.join(deployment_folder_uksf, "cba_settings.sqf"), os.path.join(SERVER_DIRECTORY, "userconfig", "cba_settings.sqf"))

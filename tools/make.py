@@ -52,8 +52,6 @@ import time
 import timeit
 import re
 import fileinput
-import playercount
-import deploy
 
 if sys.platform == "win32":
     import winreg
@@ -77,9 +75,8 @@ signature_blacklist = []
 importantFiles = ["mod.cpp", "README.md", "mod.paa", "modLarge.paa", "AUTHORS.txt", "LICENSE",
                   "UKSFTemplate.VR", "cba_settings.sqf", "cba_settings.sqf"]
 interceptFiles = ["uksf.dll", "uksf_x64.dll", "PocoFoundation.dll",
-                  "PocoFoundation64.dll", "PocoNet.dll", "PocoNet64.dll", "PocoJSON.dll", "PocoJSON64.dll", "PocoXML.dll", "PocoXML64.dll", "PocoUtil.dll", "PocoUtil.dll"]
+                  "PocoFoundation64.dll", "PocoNet.dll", "PocoNet64.dll"]
 versionFiles = ["mod.cpp", "README.md"]
-compats = ["ace_compat_rksl_pm_ii"]
 
 ###############################################################################
 # http://akiscode.com/articles/sha-1directoryhash.shtml
@@ -1435,12 +1432,12 @@ See the make.cfg file for additional build options.
             restore_version_files()
 
     # Done building all modules!
-            
-    ret = sign_dependencies()
-    if ret == 0:
-        print_blue("\nDependencies signed")
-    else:
-        print_error("Could not sign dependencies")
+    if len(failedBuilds) == 0:
+        ret = sign_dependencies()
+        if ret == 0:
+            print_blue("\nDependencies signed")
+        else:
+            print_error("Could not sign dependencies")
 
     # Write out the cache state
     cache_out = json.dumps(cache)
@@ -1534,6 +1531,3 @@ if __name__ == "__main__":
     main(sys.argv)
     d,h,m,s = Fract_Sec(timeit.default_timer() - start_time)
     print("\nTotal Program time elapsed: {0:2}h {1:2}m {2:4.5f}s".format(h,m,s))
-
-    if deploy_server:
-        sys.exit(deploy.deploy_to_server(deploy_args))
