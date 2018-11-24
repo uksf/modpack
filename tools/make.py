@@ -339,10 +339,10 @@ def compile_extensions(extensions_root, force_build):
 
         # Prepare 32bit build dirs
         # Build
-        subprocess.call(["msbuild", "uksf.sln", "/m", "/p:Configuration=Release", " /p:Platform=x32"])
+        subprocess.call(["msbuild", "uksf.sln", "/m", "/p:Configuration=Release", "/p:Platform=x32"])
 
         # Prepare 64bit build dirs
-        subprocess.call(["msbuild", "uksf.sln", "/m", "/p:Configuration=Release", " /p:Platform=x64"])
+        subprocess.call(["msbuild", "uksf.sln", "/m", "/p:Configuration=Release", "/p:Platform=x64"])
     except:
         print_error("COMPILING EXTENSIONS.")
         raise

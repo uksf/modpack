@@ -5,7 +5,7 @@
 uksf_http::uksf_http() {
     uksf::getInstance().postStart.connect([this]() {
         LOG_DEBUG("HTTP POSTSTART");
-        if (sqf::is_server()) {
+        if (!sqf::has_interface()) {
             startThread();
         }
     });

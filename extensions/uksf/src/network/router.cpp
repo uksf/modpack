@@ -15,6 +15,7 @@ router::router() {
 
 void router::init() {
     addRoute("/server", "server");
+    addRoute("/server/stop", "stop");
 }
 
 Poco::Net::HTTPRequestHandler * router::createRequestHandler(const Poco::Net::HTTPServerRequest & request) {

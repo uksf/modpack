@@ -19,13 +19,11 @@ namespace resources {
                 std::string mission = sqf::mission_name();
                 float uptime = sqf::time();
                 size_t players = sqf::all_players().size();
-                size_t maxPlayers = sqf::playable_units().size();
 
                 jsonData.insert("map", map);
                 jsonData.insert("mission", mission);
                 jsonData.insert("uptime", uptime);
                 jsonData.insert("players", players);
-                jsonData.insert("maxPlayers", maxPlayers);
             }
             outputStream << jsonData.toString();
             outputStream.flush();
