@@ -72,10 +72,8 @@ prefix = "uksf"
 pbo_name_prefix = "uksf_"
 dependencies = "C:/SteamLibrary/_Working/next/@uksf_dependencies/addons"
 signature_blacklist = []
-importantFiles = ["mod.cpp", "README.md", "mod.paa", "modLarge.paa", "AUTHORS.txt", "LICENSE",
-                  "UKSFTemplate.VR", "cba_settings.sqf", "cba_settings.sqf"]
-interceptFiles = ["uksf.dll", "uksf_x64.dll", "PocoFoundation.dll",
-                  "PocoFoundation64.dll", "PocoNet.dll", "PocoNet64.dll"]
+importantFiles = ["mod.cpp", "README.md", "mod.paa", "modLarge.paa", "AUTHORS.txt", "LICENSE", "UKSFTemplate.VR", "cba_settings.sqf", "cba_settings.sqf"]
+interceptFiles = ["uksf.dll", "uksf_x64.dll", "PocoFoundation.dll", "PocoFoundation64.dll", "PocoJSON.dll", "PocoJSON64.dll", "PocoNet.dll", "PocoNet64.dll", "PocoUtil.dll", "PocoUtil64.dll", "PocoXML.dll", "PocoXML64.dll"]
 versionFiles = ["mod.cpp", "README.md"]
 
 ###############################################################################
@@ -339,10 +337,10 @@ def compile_extensions(extensions_root, force_build):
 
         # Prepare 32bit build dirs
         # Build
-        subprocess.call(["msbuild", "uksf.sln", "/m", "/p:Configuration=Release", " /p:Platform=x32"])
+        subprocess.call(["msbuild", "uksf.sln", "/m", "/p:Configuration=Release", "/p:Platform=x32"])
 
         # Prepare 64bit build dirs
-        subprocess.call(["msbuild", "uksf.sln", "/m", "/p:Configuration=Release", " /p:Platform=x64"])
+        subprocess.call(["msbuild", "uksf.sln", "/m", "/p:Configuration=Release", "/p:Platform=x64"])
     except:
         print_error("COMPILING EXTENSIONS.")
         raise

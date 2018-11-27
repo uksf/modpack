@@ -35,7 +35,8 @@
         "bitset": "cpp",
         "ios": "cpp",
         "future": "cpp",
-        "system_error": "cpp"
+        "system_error": "cpp",
+        "vector": "cpp"
     },
     "[cpp]": {
         "editor.quickSuggestions": false

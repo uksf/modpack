@@ -2,6 +2,7 @@
 #include "common.hpp"
 
 #include "modules/data/data.hpp"
+#include "modules/http/http.hpp"
 
 // ReSharper disable CppInconsistentNaming
 void __cdecl intercept::post_start() {
@@ -33,4 +34,5 @@ uksf::uksf() {
     uksf_common::getInstance();
 
     //uksf_data::getInstance();
+    uksf_http::getInstance();
 }
