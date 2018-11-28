@@ -13,10 +13,13 @@ namespace resources {
             handleHttpStatusCode(200, response);
             std::ostream& outputStream = response.send();
             outputStream.flush();
-            if (sqf::is_dedicated()) {
-                sqf::call(sqf::get_variable(sqf::ui_namespace(), "uksf_persistence_fnc_shutdown"));
-            } else {
-                std::exit(0);
+            {
+                LOCK;
+                if (sqf::is_dedicated()) {
+                    sqf::call(sqf::get_variable(sqf::ui_namespace(), "uksf_persistence_fnc_shutdown"));
+                } else {
+                    std::exit(0);
+                }
             }
         } catch (exception& exception) {
             handleHttpStatusCode(exception.code(), response);
