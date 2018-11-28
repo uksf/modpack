@@ -14,9 +14,6 @@ Thumbs.db
 *.pyc
 *.pdb
 *.tlog
-*.sln
-*.vcxproj
-*.vcxproj.*
 */.vs
 extensions/*/.vs
 extensions/*/build32
