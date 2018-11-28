@@ -16,9 +16,10 @@ Thumbs.db
 *.tlog
 */.vs
 extensions/.vs
+extensions/Release
 extensions/build32
 extensions/build64
-extensions/Win32
+extensions/x86
 extensions/x64
 extensions/packages
 extensions/src/modules/data/secret.hpp

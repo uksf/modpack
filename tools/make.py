@@ -335,7 +335,7 @@ def compile_extensions(extensions_root, force_build):
         print_blue("\nCompiling extensions in {}".format(extensions_root))
         os.chdir(extensions_root)
         print()
-        subprocess.call(["msbuild", "uksf.sln", "/m", "/p:Configuration=Release", "/p:Platform=x32"])
+        subprocess.call(["msbuild", "uksf.sln", "/m", "/p:Configuration=Release", "/p:Platform=x86"])
         print()
         subprocess.call(["msbuild", "uksf.sln", "/m", "/p:Configuration=Release", "/p:Platform=x64"])
     except:
