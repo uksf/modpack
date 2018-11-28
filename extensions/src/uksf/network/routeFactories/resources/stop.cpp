@@ -11,19 +11,18 @@ namespace resources {
     void stop::handle_get(Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response) {
         try {
             handleHttpStatusCode(200, response);
-            response.send();
-            /*{
-                LOCK;
-                if (sqf::is_dedicated()) {
-                    sqf::server_command("#shutdown", "brexit");
-                } else {
-                    std::exit(0);
-                }
-            }*/
+            std::ostream& outputStream = response.send();
+            outputStream.flush();
+            if (sqf::is_dedicated()) {
+                sqf::server_command("#shutdown", "brexit");
+            } else {
+                std::exit(0);
+            }
         } catch (exception& exception) {
             handleHttpStatusCode(exception.code(), response);
             std::ostream& outputStream = response.send();
             outputStream << toJson(exception);
+            outputStream.flush();
         }
     }
 

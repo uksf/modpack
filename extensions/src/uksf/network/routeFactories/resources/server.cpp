@@ -31,6 +31,7 @@ namespace resources {
             handleHttpStatusCode(exception.code(), response);
             std::ostream& outputStream = response.send();
             outputStream << toJson(exception);
+            outputStream.flush();
         }
     }
 
