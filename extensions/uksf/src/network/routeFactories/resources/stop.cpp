@@ -12,11 +12,14 @@ namespace resources {
         try {
             handleHttpStatusCode(200, response);
             response.send();
-            if (sqf::is_dedicated()) {
-                sqf::server_command("#shutdown", "brexit");
-            } else {
-                std::exit(0);
-            }
+            /*{
+                LOCK;
+                if (sqf::is_dedicated()) {
+                    sqf::server_command("#shutdown", "brexit");
+                } else {
+                    std::exit(0);
+                }
+            }*/
         } catch (exception& exception) {
             handleHttpStatusCode(exception.code(), response);
             std::ostream& outputStream = response.send();
