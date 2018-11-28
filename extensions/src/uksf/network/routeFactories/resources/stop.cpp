@@ -14,7 +14,7 @@ namespace resources {
             std::ostream& outputStream = response.send();
             outputStream.flush();
             if (sqf::is_dedicated()) {
-                sqf::server_command("#shutdown", "brexit");
+                sqf::call(sqf::get_variable(sqf::ui_namespace(), "uksf_persistence_fnc_shutdown"));
             } else {
                 std::exit(0);
             }
