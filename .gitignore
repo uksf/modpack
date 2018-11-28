@@ -14,9 +14,6 @@ Thumbs.db
 *.pyc
 *.pdb
 *.tlog
-*.sln
-*.vcxproj
-*.vcxproj.*
 */.vs
 extensions/.vs
 extensions/build32
@@ -25,10 +22,7 @@ extensions/Win32
 extensions/x64
 extensions/packages
 extensions/src/modules/data/secret.hpp
-extensions/vcproj/*
-extensions/vcproj64/*
 tools/service.py
 tools/manage.py
 
-!.gitkeep
 !@intercept/**
