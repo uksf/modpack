@@ -941,11 +941,11 @@ See the make.cfg file for additional build options.
         argv.remove("increment_major")
         version_increments.append("major")
 
-    if "nocompile" in argv:
-        argv.remove("nocompile")
-        compile_ext = False
-    else:
+    if "compile" in argv:
+        argv.remove("compile")
         compile_ext = True
+    else:
+        compile_ext = False
 
     if "sign" in argv:
         argv.remove("sign")
