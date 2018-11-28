@@ -330,17 +330,49 @@ def print_yellow(msg):
 def compile_extensions(extensions_root, force_build):
     originalDir = os.getcwd()
 
+    print_blue("\nCompiling extensions in {}".format(extensions_root))
+
+    if shutil.which("cmake") == None:
+        print_error("Failed to find CMake!")
+        return
+
+    generator = ""
+    msbuild_path = shutil.which("msbuild")
+    if msbuild_path == None:
+        print_error("Failed to find MSBuild!")
+        return
+    elif "15.0" in msbuild_path:
+        generator = "Visual Studio 15 2017"
+    elif "14.0" in msbuild_path:
+        generator = "Visual Studio 14 2015"
+    else:
+        print_error("Failed to find suitable generator!")
+        return
+
     try:
         print_blue("\nCompiling extensions in {}".format(extensions_root))
-        joinstr = ":rebuild;" if force_build else ";"
         os.chdir(extensions_root)
 
         # Prepare 32bit build dirs
         # Build
-        subprocess.call(["msbuild", "uksf.sln", "/m", "/p:Configuration=Release", "/p:Platform=x32"])
+        vcproj32 = os.path.join(extensions_root,"vcproj")
+        if not os.path.exists(vcproj32):
+            os.mkdir(vcproj32)
+        # Build
+        os.chdir(vcproj32)
+        subprocess.call(["cmake", "..", "-G", generator])
+        print()
+        subprocess.call(["msbuild", "uksf.sln", "/m", "/p:Configuration=RelWithDebInfo"])
 
         # Prepare 64bit build dirs
-        subprocess.call(["msbuild", "uksf.sln", "/m", "/p:Configuration=Release", "/p:Platform=x64"])
+        vcproj64 = os.path.join(extensions_root,"vcproj64")
+        if not os.path.exists(vcproj64):
+            os.mkdir(vcproj64)
+        # Build
+        os.chdir(vcproj64)
+        subprocess.call(["cmake", "..", "-G", "{} Win64".format(generator)])
+        print()
+        subprocess.call(["msbuild", "uksf.sln", "/m", "/p:Configuration=RelWithDebInfo"])
     except:
         print_error("COMPILING EXTENSIONS.")
         raise
@@ -941,11 +973,11 @@ See the make.cfg file for additional build options.
         argv.remove("increment_major")
         version_increments.append("major")
 
-    if "compile" in argv:
-        argv.remove("compile")
-        compile_ext = True
-    else:
+    if "nocompile" in argv:
+        argv.remove("nocompile")
         compile_ext = False
+    else:
+        compile_ext = True
 
     if "sign" in argv:
         argv.remove("sign")
