@@ -12,15 +12,20 @@ namespace resources {
         try {
             handleHttpStatusCode(200, response);
             std::ostream& outputStream = response.send();
+            outputStream << "ok";
             outputStream.flush();
+            sqf::diag_log("entering lock");
             {
                 LOCK;
                 if (sqf::is_dedicated()) {
-                    sqf::call(sqf::get_variable(sqf::ui_namespace(), "uksf_persistence_fnc_shutdown"));
+                    sqf::diag_log("dedi");
+                    //sqf::call(sqf::get_variable(sqf::ui_namespace(), "uksf_persistence_fnc_shutdown"));
                 } else {
-                    std::exit(0);
+                    sqf::diag_log("hc");
+                    //std::exit(0);
                 }
             }
+            sqf::diag_log("exiting lock");
         } catch (exception& exception) {
             handleHttpStatusCode(exception.code(), response);
             std::ostream& outputStream = response.send();
