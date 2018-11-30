@@ -95,12 +95,18 @@ def main(argv):
 
             # Prepare 32bit build dirs
             # Build
-            subprocess.call(["msbuild", "uksf.sln", "/m", "/p:Configuration=Release;Platform=x86"])
+            ret = subprocess.call(["msbuild", "uksf.sln", "/m", "/p:Configuration=Release", "/p:Platform=x86"])
+            if ret == 1:
+                print("Failed to compile x86 extension")
+                return 1
 
             # Prepare 64bit build dirs
-            subprocess.call(["msbuild", "uksf.sln", "/m", "/p:Configuration=Release", "/p:Platform=x64"])
+            ret = subprocess.call(["msbuild", "uksf.sln", "/m", "/p:Configuration=Release", "/p:Platform=x64"])
+            if ret == 1:
+                print("Failed to compile x64 extension")
+                return 1
         except:
-            print("COMPILING EXTENSIONS.")
+            print("Failed to compile extensions")
             raise
 
     print("\n# Done.")
