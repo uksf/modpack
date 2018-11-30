@@ -26,6 +26,7 @@
     <ClInclude Include="src\uksf\network\routeFactories\resources\server.hpp" />
     <ClInclude Include="src\uksf\network\routeFactories\resources\stop.hpp" />
     <ClInclude Include="src\uksf\network\routeFactories\serverFactory.hpp" />
+    <ClInclude Include="src\uksf\network\routeFactories\stopFactory.hpp" />
     <ClInclude Include="src\uksf\network\router.hpp" />
     <ClInclude Include="src\uksf\signalslot.hpp" />
     <ClInclude Include="src\uksf\singleton.hpp" />
@@ -45,7 +46,6 @@
     <ClCompile Include="src\uksf\network\routeFactories\resources\abstractResource.cpp" />
     <ClCompile Include="src\uksf\network\routeFactories\resources\server.cpp" />
     <ClCompile Include="src\uksf\network\routeFactories\resources\stop.cpp" />
-    <ClCompile Include="src\uksf\network\routeFactories\serverFactory.cpp" />
     <ClCompile Include="src\uksf\network\router.cpp" />
     <ClCompile Include="src\uksf\uksf.cpp" />
   </ItemGroup>

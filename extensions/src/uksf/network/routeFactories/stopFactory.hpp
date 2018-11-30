@@ -1,11 +1,11 @@
 #pragma once
 
 #include "IFactory.hpp"
-#include "resources/server.hpp"
+#include "resources/stop.hpp"
 
-class serverFactory : public IFactory {
+class stopFactory : public IFactory {
     Poco::Net::HTTPRequestHandler * createResource() override {
-        const auto resource = new resources::server();
+        const auto resource = new resources::stopr();
         return resource;
     }
 };
