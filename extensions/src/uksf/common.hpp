@@ -16,7 +16,6 @@ public:
     uksf_common();
 
     static game_value cbaSettingsFncInit;
-    static game_value cbaCommonPlayers;
     static game_value uksfPersistenceShutdown;
     static bool threadRun;
 
