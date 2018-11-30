@@ -13,20 +13,17 @@ namespace resources {
             handleHttpStatusCode(200, response);
             std::ostream& outputStream = response.send();
             Poco::DynamicStruct jsonData;
-            {
-                LOCK;
-                std::string serverName = sqf::server_name();
-                if (serverName != "") {
-                    std::string map = sqf::world_name();
-                    std::string mission = sqf::mission_name();
-                    float uptime = sqf::time();
-                    size_t players = sqf::call(uksf_common::cbaCommonPlayers).size();
+            std::string serverName = sqf::server_name();
+            if (serverName != "") {
+                std::string map = sqf::world_name();
+                std::string mission = sqf::mission_name();
+                float uptime = sqf::time();
+                size_t players = sqf::call(uksf_common::cbaCommonPlayers).size();
 
-                    jsonData.insert("map", map);
-                    jsonData.insert("mission", mission);
-                    jsonData.insert("uptime", uptime);
-                    jsonData.insert("players", players);
-                }
+                jsonData.insert("map", map);
+                jsonData.insert("mission", mission);
+                jsonData.insert("uptime", uptime);
+                jsonData.insert("players", players);
             }
             outputStream << jsonData.toString();
             outputStream.flush();
