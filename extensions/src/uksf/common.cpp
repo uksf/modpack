@@ -1,7 +1,6 @@
 #include "common.hpp"
 
 game_value uksf_common::cbaSettingsFncInit = game_value();
-game_value uksf_common::cbaCommonPlayers = game_value();
 game_value uksf_common::uksfPersistenceShutdown = game_value();
 bool uksf_common::threadRun = false;
 
