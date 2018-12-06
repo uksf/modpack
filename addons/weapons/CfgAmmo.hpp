@@ -27,6 +27,10 @@ class CfgAmmo {
     class UK3CB_BAF_338_Ball_Tracer_Red: B_408_Ball {
         tracerEndTime = 3; // 1
     };
+    class UK3CB_BAF_B_127x99_Ball;
+    class UK3CB_BAF_B_127x99_T: UK3CB_BAF_B_127x99_Ball {
+        model = "\A3\Weapons_f\Data\bullettracer\tracer_red";
+    };
     class Flare_82mm_AMOS_White;
     class UK3CB_BAF_Flare_81mm_AMOS_White: Flare_82mm_AMOS_White {
         deflecting = 30;
@@ -42,6 +46,14 @@ class CfgAmmo {
         brightness = 9000000;
         intensity = 6000000;
         flareSize = 18;
+    };
+    class UK3CB_BAF_Sh_60mm_AMOS_AB;
+    class UK3CB_BAF_Sh_60mm_AMOS_AB_helper: UK3CB_BAF_Sh_60mm_AMOS_AB {
+        indirectHitRange = 10; // 21
+    };
+    class UK3CB_BAF_Sh_81mm_AMOS_AB;
+    class UK3CB_BAF_Sh_81mm_AMOS_AB_helper: UK3CB_BAF_Sh_81mm_AMOS_AB {
+        indirectHitRange = 18; // 32
     };
 
     class Chemlight_red;
@@ -197,6 +209,10 @@ class CfgAmmo {
             incDeflection = 0.0005; // The incrmeent in which deflection adjusts.
         };
     };
+    class LaserBombCore;
+    class ammo_Bomb_LaserGuidedBase: LaserBombCore {
+        indirectHitRange = 20; // 12
+    }
     class Bo_GBU12_LGB;
     class CUP_Bo_GBU12_LGB: Bo_GBU12_LGB {
         model = "\A3\Weapons_F\Ammo\Bomb_01_fly_F";

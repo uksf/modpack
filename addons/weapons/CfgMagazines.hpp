@@ -23,6 +23,13 @@ class CfgMagazines {
         displaynameshort = "7.62mm EL Tracer";
         ammo = "UK3CB_BAF_762_Ball_Tracer_Red_EL";
     };
+    class UK3CB_BAF_127_10Rnd;
+    class UK3CB_BAF_127_10Rnd_T: UK3CB_BAF_127_10Rnd {
+        displayname = "12.7mm 10rnd Tracer Mag";
+        displaynameshort = "12.7mm Tracer";
+        ammo = "UK3CB_BAF_B_127x99_T";
+        tracersEvery = 1;
+    };
 
     class Chemlight_red;
     class ACE_Chemlight_HiRed: Chemlight_red {
