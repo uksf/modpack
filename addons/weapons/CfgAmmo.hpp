@@ -212,7 +212,7 @@ class CfgAmmo {
     class LaserBombCore;
     class ammo_Bomb_LaserGuidedBase: LaserBombCore {
         indirectHitRange = 20; // 12
-    }
+    };
     class Bo_GBU12_LGB;
     class CUP_Bo_GBU12_LGB: Bo_GBU12_LGB {
         model = "\A3\Weapons_F\Ammo\Bomb_01_fly_F";
