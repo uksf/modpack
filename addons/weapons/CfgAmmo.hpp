@@ -47,6 +47,14 @@ class CfgAmmo {
         intensity = 6000000;
         flareSize = 18;
     };
+    class UK3CB_BAF_Sh_60mm_AMOS_AB;
+    class UK3CB_BAF_Sh_60mm_AMOS_AB_helper: UK3CB_BAF_Sh_60mm_AMOS_AB {
+        indirectHitRange = 10; // 21
+    };
+    class UK3CB_BAF_Sh_81mm_AMOS_AB;
+    class UK3CB_BAF_Sh_81mm_AMOS_AB_helper: UK3CB_BAF_Sh_81mm_AMOS_AB {
+        indirectHitRange = 18; // 32
+    };
 
     class Chemlight_red;
     class ACE_G_Chemlight_HiRed: Chemlight_red {
@@ -201,6 +209,10 @@ class CfgAmmo {
             incDeflection = 0.0005; // The incrmeent in which deflection adjusts.
         };
     };
+    class LaserBombCore;
+    class ammo_Bomb_LaserGuidedBase: LaserBombCore {
+        indirectHitRange = 20; // 12
+    }
     class Bo_GBU12_LGB;
     class CUP_Bo_GBU12_LGB: Bo_GBU12_LGB {
         model = "\A3\Weapons_F\Ammo\Bomb_01_fly_F";
