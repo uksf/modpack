@@ -1,5 +1,2 @@
-- Isla Duala
-    - brg_africa
-    - ibr_dualaobjects
-    - isladuala3
-    - mbg_generic_african_buildings
+- Anizay
+    - tem_anizay
