@@ -27,6 +27,10 @@ class CfgAmmo {
     class UK3CB_BAF_338_Ball_Tracer_Red: B_408_Ball {
         tracerEndTime = 3; // 1
     };
+    class UK3CB_BAF_B_127x99_Ball;
+    class UK3CB_BAF_B_127x99_T: UK3CB_BAF_B_127x99_Ball {
+        model = "\A3\Weapons_f\Data\bullettracer\tracer_red";
+    };
     class Flare_82mm_AMOS_White;
     class UK3CB_BAF_Flare_81mm_AMOS_White: Flare_82mm_AMOS_White {
         deflecting = 30;

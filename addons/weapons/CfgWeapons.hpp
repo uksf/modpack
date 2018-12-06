@@ -370,7 +370,10 @@ class CfgWeapons {
             };
         };
     };
-    class UK3CB_BAF_L135A1;
+    class srifle_GM6_F;
+    class UK3CB_BAF_L135A1: srifle_GM6_F {
+        magazines[] = { "UK3CB_BAF_127_10Rnd", "UK3CB_BAF_127_10Rnd_AP", "UK3CB_BAF_127_10Rnd_T" };
+    };
     class UK3CB_BAF_L135A1_LRPS: UK3CB_BAF_L135A1 {
         class LinkedItems {
             class LinkedItemsOptic {
