@@ -25,7 +25,9 @@ uksf_common::uksf_common() {
 			//threadRun = sqf::time() > int(sqf::get_variable(sqf::mission_namespace(), "CBA_common_lastTime", 0)) && !sqf::find_display(46).is_nil();
 			if (!functionQueue.empty()) {
 				LOCK(this);
+				LOG_DEBUG("function item");
 				int item = functionQueue.front();
+				LOG_DEBUG(item);
 				functionQueue.pop();
 				UNLOCK(this);
 				handleFunction(item);
@@ -36,6 +38,8 @@ uksf_common::uksf_common() {
 
 void uksf_common::addFunction(int functionEnum) {
 	LOCK(this);
+	LOG_DEBUG("adding function item");
+	LOG_DEBUG(functionEnum);
 	functionQueue.push(functionEnum);
 	UNLOCK(this);
 }
@@ -51,6 +55,7 @@ void uksf_common::handleFunction(int functionEnum) {
 }
 
 void uksf_common::functionShutdown() {
+	LOG_DEBUG("running shutdown");
 	if (sqf::is_dedicated()) {
 		sqf::diag_log("dedi");
 		if (uksfPersistenceShutdown.type_enum() == game_data_type::CODE) {
