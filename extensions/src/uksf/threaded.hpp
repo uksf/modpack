@@ -38,7 +38,7 @@ protected:
         initThread();
         if (initOnly) return;
         while (!_threadStop) {
-            if (uksf_common::threadRun) {
+            if (uksf_common::getInstance().threadRun) {
                 function();
             }
         }

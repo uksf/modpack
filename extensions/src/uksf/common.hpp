@@ -6,8 +6,14 @@
 using namespace date;
 
 #include <random>
+#include <queue>
 
 #define LOG_DEBUG(A) LOG(INFO) << A
+
+#define LOCK(x) x->lock();
+#define UNLOCK(x) x->unlock();
+
+#define FUNCTION_ENUM_SHUTDOWN 1
 
 static auto reng = std::default_random_engine{};
 
@@ -15,12 +21,20 @@ class uksf_common : public singleton<uksf_common> {
 public:
     uksf_common();
 
-    static game_value cbaSettingsFncInit;
-    static game_value uksfPersistenceShutdown;
-    static bool threadRun;
+    game_value cbaSettingsFncInit = game_value();
+    game_value uksfPersistenceShutdown = game_value();
+	bool threadRun = false;
 
-    static float getZoom();
-    static bool lineOfSight(object& target, object& source, bool zoomCheck, bool groupCheck);
-    static side getSide(int sideNumber);
-    static std::string getTimeStamp();
+	void addFunction(int functionEnum);
+	void handleFunction(int functionEnum);
+
+	void functionShutdown();
+
+    float getZoom();
+    bool lineOfSight(object& target, object& source, bool zoomCheck, bool groupCheck);
+    side getSide(int sideNumber);
+    std::string getTimeStamp();
+
+private:
+	std::queue<int> functionQueue;
 };

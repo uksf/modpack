@@ -1,5 +1,3 @@
-#pragma once
-
 #define PREFIX uksf
 
 #define QUOTE_NX(A) #A
@@ -12,7 +10,7 @@
 #define GVAR(A) DOUBLES(ADDON, A)
 #define QGVAR(A) QUOTE(GVAR(A))
 
-#define LOCK client::invoker_lock lock
+#define INVOKER_LOCK client::invoker_lock lock
 #define SLEEP(A) Sleep(DWORD(A * CLOCKS_PER_SEC))
 
 #include "../common.hpp"
