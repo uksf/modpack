@@ -38,12 +38,15 @@ uksf_common::uksf_common() {
 }
 
 void uksf_common::addFunction(int functionEnum) {
-	LOCK(this);
-	sqf::diag_log(sqf::time());
-	LOG_DEBUG("adding function item");
-	LOG_DEBUG(functionEnum);
-	functionQueue.push(functionEnum);
-	UNLOCK(this);
+	if (sqf::time() > 0) {
+		LOG_DEBUG("adding function item");
+		LOG_DEBUG(functionEnum);
+		LOCK(this);
+		functionQueue.push(functionEnum);
+		UNLOCK(this);
+	} else {
+		handleFunction(functionEnum);
+	}
 }
 
 void uksf_common::handleFunction(int functionEnum) {
