@@ -19,7 +19,7 @@ namespace resources {
                 //LOCK;
                 if (sqf::is_dedicated()) {
                     sqf::diag_log("dedi");
-                    if (uksf_common::uksfPersistenceShutdown == nullptr) {
+                    if (uksf_common::uksfPersistenceShutdown.type_enum != game_data_type::CODE) {
                         sqf::server_command("#shutdown", "brexit");
                     } else {
                         sqf::call(uksf_common::uksfPersistenceShutdown);
