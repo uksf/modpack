@@ -1,6 +1,7 @@
 #include "common.hpp"
 
 game_value uksf_common::cbaSettingsFncInit = game_value();
+game_value uksf_common::uksfPersistenceShutdown = game_value();
 bool uksf_common::threadRun = false;
 
 uksf_common::uksf_common() {
@@ -12,6 +13,7 @@ uksf_common::uksf_common() {
     uksf::getInstance().preInit.connect([this]() {
         LOG_DEBUG("COMMON PREINIT");
         cbaSettingsFncInit = sqf::get_variable(sqf::ui_namespace(), "CBA_Settings_fnc_init");
+        uksfPersistenceShutdown = sqf::get_variable(sqf::ui_namespace(), "uksf_persistence_fnc_shutdown");
     });
 
     uksf::getInstance().postInit.connect([this]() { LOG_DEBUG("COMMON POSTINIT"); });

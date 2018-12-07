@@ -1,8 +1,11 @@
 #pragma once
 
 #include "IFactory.hpp"
+#include "resources/server.hpp"
 
 class serverFactory : public IFactory {
-public:
-    Poco::Net::HTTPRequestHandler * createResource() override;
+    Poco::Net::HTTPRequestHandler * createResource() override {
+        const auto resource = new resources::server();
+        return resource;
+    }
 };

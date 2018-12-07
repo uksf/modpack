@@ -27,3 +27,5 @@ tools/service.py
 tools/manage.py
 
 !@intercept/**
+
+intercept/uksf*.dll
