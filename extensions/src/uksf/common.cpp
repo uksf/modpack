@@ -22,6 +22,7 @@ uksf_common::uksf_common() {
 
 	uksf::getInstance().onFrame.connect(
 		[this]() {
+			LOG_DEBUG("onframe");
 			//threadRun = sqf::time() > int(sqf::get_variable(sqf::mission_namespace(), "CBA_common_lastTime", 0)) && !sqf::find_display(46).is_nil();
 			if (!functionQueue.empty()) {
 				LOCK(this);
@@ -38,7 +39,7 @@ uksf_common::uksf_common() {
 
 void uksf_common::addFunction(int functionEnum) {
 	LOCK(this);
-	sqf::diag_log(sqf::diag_frameno());
+	sqf::diag_log(sqf::time());
 	LOG_DEBUG("adding function item");
 	LOG_DEBUG(functionEnum);
 	functionQueue.push(functionEnum);
