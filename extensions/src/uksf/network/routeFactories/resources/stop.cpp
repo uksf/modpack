@@ -19,10 +19,10 @@ namespace resources {
                 //LOCK;
                 if (sqf::is_dedicated()) {
                     sqf::diag_log("dedi");
-                    if (uksf_common::uksfPersistenceShutdown.type_enum != game_data_type::CODE) {
-                        sqf::server_command("#shutdown", "brexit");
+                    if (uksf_common::uksfPersistenceShutdown.type_enum() == game_data_type::CODE) {
+						sqf::call(uksf_common::uksfPersistenceShutdown);
                     } else {
-                        sqf::call(uksf_common::uksfPersistenceShutdown);
+						sqf::server_command("#shutdown", "brexit");
                     }
                 } else {
                     sqf::diag_log("hc");
