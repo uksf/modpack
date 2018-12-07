@@ -38,6 +38,7 @@ uksf_common::uksf_common() {
 
 void uksf_common::addFunction(int functionEnum) {
 	LOCK(this);
+	sqf::diag_log(sqf::diag_frameno());
 	LOG_DEBUG("adding function item");
 	LOG_DEBUG(functionEnum);
 	functionQueue.push(functionEnum);
