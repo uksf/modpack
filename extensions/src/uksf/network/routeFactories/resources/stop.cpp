@@ -24,7 +24,10 @@ namespace resources {
 						sqf::call(uksf_common::uksfPersistenceShutdown);
                     } else {
 						sqf::diag_log("shutdown");
-						sqf::server_command("#shutdown", "brexit");
+						{
+							LOCK;
+							sqf::server_command("#shutdown", "brexit");
+						}
                     }
                 } else {
                     sqf::diag_log("hc");
