@@ -22,13 +22,10 @@ uksf_common::uksf_common() {
 
 	uksf::getInstance().onFrame.connect(
 		[this]() {
-			LOG_DEBUG("onframe");
 			//threadRun = sqf::time() > int(sqf::get_variable(sqf::mission_namespace(), "CBA_common_lastTime", 0)) && !sqf::find_display(46).is_nil();
 			if (!functionQueue.empty()) {
 				LOCK(this);
-				LOG_DEBUG("function item");
 				int item = functionQueue.front();
-				LOG_DEBUG(item);
 				functionQueue.pop();
 				UNLOCK(this);
 				handleFunction(item);
@@ -39,8 +36,6 @@ uksf_common::uksf_common() {
 
 void uksf_common::addFunction(int functionEnum) {
 	if (sqf::time() > 0) {
-		LOG_DEBUG("adding function item");
-		LOG_DEBUG(functionEnum);
 		LOCK(this);
 		functionQueue.push(functionEnum);
 		UNLOCK(this);
@@ -60,15 +55,17 @@ void uksf_common::handleFunction(int functionEnum) {
 }
 
 void uksf_common::functionShutdown() {
-	LOG_DEBUG("running shutdown");
 	if (sqf::is_dedicated()) {
 		sqf::diag_log("dedi");
 		if (uksfPersistenceShutdown.type_enum() == game_data_type::CODE) {
 			sqf::diag_log("function");
 			sqf::call(uksfPersistenceShutdown);
-		} else {
+		} else if (sqf::time() > 0) {
 			sqf::diag_log("shutdown");
 			sqf::server_command("#shutdown", "brexit");
+		} else {
+			sqf::diag_log("force");
+			std::exit(0);
 		}
 	} else {
 		sqf::diag_log("hc");
