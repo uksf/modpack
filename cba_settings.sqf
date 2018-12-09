@@ -257,7 +257,7 @@ force force ace_rearm_level = 2;
 force force ace_rearm_supply = 0;
 
 // ACE Respawn
-force force ace_respawn_removeDeadBodiesDisconnected = true;
+force force ace_respawn_removeDeadBodiesDisconnected = false;
 force force ace_respawn_savePreDeathGear = false;
 
 // ACE Scopes
