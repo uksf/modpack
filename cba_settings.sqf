@@ -106,7 +106,7 @@ ace_interact_menu_useListMenu = false;
 
 // ACE Logistics
 force ace_cargo_enable = true;
-force force ace_cargo_paradropTimeCoefficent = 1;
+force force ace_cargo_paradropTimeCoefficent = 0.01;
 force force ace_refuel_hoseLength = 20;
 force force ace_refuel_rate = 1;
 force ace_repair_addSpareParts = true;
