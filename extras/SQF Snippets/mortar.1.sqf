@@ -51,16 +51,3 @@ private _hSTex = getArray (configFile >> "CfgVehicles" >> typeOf _vehicle >> "hi
     _index = ((_index + 1) % 7) mod count LSD_Colors;
     _args set [0, _index];
 }, 0.02, [0, _vehicle, _hSCount, _hSTex]] call CBA_fnc_addPerFrameHandler;
-
-
-21:52:59 Error in expression <VCM_fnc_ClstObj;
-private _Foot = isNull objectParent _Unit;
-if (_Foot) then
-{
-if>
-21:52:59   Error position: <objectParent _Unit;
-if (_Foot) then
-{
-if>
-21:52:59   Error objectparent: Type Array, expected Object
-21:52:59 File \Vcom\Vcom\Functions\fn_ArmStatics.sqf [VCM_fnc_ArmStatics], line 10
