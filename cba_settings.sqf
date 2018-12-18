@@ -380,6 +380,86 @@ force force acex_headless_endMission = 0;
 force force acex_headless_log = false;
 force force acex_sitting_enable = true;
 
+// Achilles - Available Modules
+force force Achilles_var_Achilles_ACE_Heal_Module = false;
+force force Achilles_var_Achilles_ACE_Injury_Module = false;
+force force Achilles_var_Achilles_AddECM_Module = true;
+force force Achilles_var_Achilles_Animation_Module = true;
+force force Achilles_var_Achilles_Attach_To_Module = true;
+force force Achilles_var_Achilles_Bind_Variable_Module = true;
+force force Achilles_var_Achilles_Buildings_Destroy_Module = true;
+force force Achilles_var_Achilles_Buildings_LockDoors_Module = true;
+force force Achilles_var_Achilles_Buildings_ToggleLight_Module = true;
+force force Achilles_var_Achilles_CAS_Module = true;
+force force Achilles_var_Achilles_Change_Ability_Module = true;
+force force Achilles_var_Achilles_Change_Altitude_Module = true;
+force force Achilles_var_Achilles_Chatter_Module = true;
+force force Achilles_var_Achilles_Create_Universal_Target_Module = true;
+force force Achilles_var_Achilles_DevTools_FunctionViewer = true;
+force force Achilles_var_Achilles_DevTools_ShowInAnimViewer = true;
+force force Achilles_var_Achilles_DevTools_ShowInConfig = true;
+force force Achilles_var_Achilles_Earthquake_Module = true;
+force force Achilles_var_Achilles_Hide_Objects_Module = true;
+force force Achilles_var_Achilles_IED_Module = true;
+force force Achilles_var_Achilles_Make_Invincible_Module = true;
+force force Achilles_var_Achilles_Module_Arsenal_AddFull = false;
+force force Achilles_var_Achilles_Module_Arsenal_CopyToClipboard = false;
+force force Achilles_var_Achilles_Module_Arsenal_CreateCustom = false;
+force force Achilles_var_Achilles_Module_Arsenal_Paste = false;
+force force Achilles_var_Achilles_Module_Arsenal_Remove = false;
+force force Achilles_var_Achilles_Module_Change_Side_Relations = true;
+force force Achilles_var_Achilles_Module_Equipment_Attach_Dettach_Effect = true;
+force force Achilles_var_Achilles_Module_FireSupport_CASBomb = true;
+force force Achilles_var_Achilles_Module_FireSupport_CASGun = true;
+force force Achilles_var_Achilles_Module_FireSupport_CASGunMissile = true;
+force force Achilles_var_Achilles_Module_FireSupport_CASMissile = true;
+force force Achilles_var_Achilles_Module_Manage_Advanced_Compositions = true;
+force force Achilles_var_Achilles_Module_Player_Set_Frequencies = false;
+force force Achilles_var_Achilles_Module_Rotation = true;
+force force Achilles_var_Achilles_Module_Spawn_Advanced_Composition = true;
+force force Achilles_var_Achilles_Module_Spawn_Carrier = true;
+force force Achilles_var_Achilles_Module_Spawn_Destroyer = true;
+force force Achilles_var_Achilles_Module_Spawn_Effects = true;
+force force Achilles_var_Achilles_Module_Spawn_Explosives = true;
+force force Achilles_var_Achilles_Module_Spawn_Intel = true;
+force force Achilles_var_Achilles_Module_Supply_Drop = true;
+force force Achilles_var_Achilles_Module_Zeus_AssignZeus = false;
+force force Achilles_var_Achilles_Module_Zeus_SwitchUnit = true;
+force force Achilles_var_Achilles_Nuke_Module = false;
+force force Achilles_var_Achilles_Set_Date_Module = true;
+force force Achilles_var_Achilles_Set_Height_Module = true;
+force force Achilles_var_Achilles_Set_Weather_Module = true;
+force force Achilles_var_Achilles_Sit_On_Chair_Module = true;
+force force Achilles_var_Achilles_SuicideBomber_Module = false;
+force force Achilles_var_Achilles_Suppressive_Fire_Module = false;
+force force Achilles_var_Achilles_Toggle_Simulation_Module = false;
+force force Achilles_var_Achilles_Transfer_Ownership_Module = true;
+force force Achilles_var_Ares_Artillery_Fire_Mission_Module = true;
+force force Achilles_var_Ares_Module_Bahaviour_Garrison_Nearest = false;
+force force Achilles_var_Ares_Module_Bahaviour_SurrenderUnit = false;
+force force Achilles_var_Ares_Module_Bahaviour_UnGarrison = false;
+force force Achilles_var_Ares_Module_Behaviour_Patrol = false;
+force force Achilles_var_Ares_Module_Behaviour_Search_Nearby_And_Garrison = false;
+force force Achilles_var_Ares_Module_Behaviour_Search_Nearby_Building = false;
+force force Achilles_var_Ares_Module_Dev_Tools_Create_Mission_SQF = false;
+force force Achilles_var_Ares_Module_Dev_Tools_Execute_Code = true;
+force force Achilles_var_Ares_Module_Equipment_Flashlight_IR_ON_OFF = false;
+force force Achilles_var_Ares_Module_Equipment_NVD_TACLIGHT_IR = false;
+force force Achilles_var_Ares_Module_Equipment_Turret_Optics = true;
+force force Achilles_var_Ares_Module_Player_Change_Player_Side = false;
+force force Achilles_var_Ares_Module_Player_Create_Teleporter = true;
+force force Achilles_var_Ares_Module_Player_Teleport = false;
+force force Achilles_var_Ares_Module_Reinforcements_Create_Lz = true;
+force force Achilles_var_Ares_Module_Reinforcements_Create_Rp = true;
+force force Achilles_var_Ares_Module_Reinforcements_Spawn_Units = true;
+force force Achilles_var_Ares_Module_Spawn_Submarine = true;
+force force Achilles_var_Ares_Module_Spawn_Trawler = true;
+force force Achilles_var_Ares_Module_Zeus_Add_Remove_Editable_Objects = false;
+force force Achilles_var_Ares_Module_Zeus_Hint = true;
+force force Achilles_var_Ares_Module_Zeus_Switch_Side = true;
+force force Achilles_var_Ares_Module_Zeus_Visibility = true;
+force force Achilles_var_ModulePunishment_F = false;
+
 // Achilles - Curator Vision Modes
 force force achilles_curator_vision_blackhot = false;
 force force achilles_curator_vision_blackhotgreencold = false;
@@ -391,10 +471,21 @@ force force achilles_curator_vision_redhot = false;
 force force achilles_curator_vision_whitehot = true;
 force force achilles_curator_vision_whitehotredcold = false;
 
+// Achilles - Debug
+Achilles_Debug_Output_Enabled = false;
+
+// Achilles - Defaults
+Achilles_var_setRadioFrequenciesLR_Default = "50";
+Achilles_var_setRadioFrequenciesSR_Default = "150";
+
+// Achilles - Icon Selection
+Achilles_var_iconSelection = "Achilles_var_iconSelection_Default";
+
 // Achilles - Modules Interface
 force force Achilles_var_moduleTreeCollapse = true;
-force force Achilles_var_moduleTreeDLC = true;
+force force Achilles_var_moduleTreeDLC = false;
 force force Achilles_var_moduleTreeHelmet = false;
+Achilles_var_moduleTreeSearchPatch = true;
 
 // ACRE2
 force force acre_sys_core_fullDuplex = false;

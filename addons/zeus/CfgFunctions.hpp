@@ -5,10 +5,6 @@ class CfgFunctions {
         };
     };
     class Achilles {
-        class ui_f_eventHandler {
-            class onDisplayCuratorLoad { file = QPATHTOF(functions\fnc_onDisplayCuratorLoad.sqf); };
-            class onModuleTreeLoad { file = QPATHTOF(functions\fnc_onModuleTreeLoad.sqf); };
-        };
         class ui_f_keyEvents {
             class HandleMouseDoubleClicked { file = QPATHTOF(functions\fnc_handleMouseDoubleClicked.sqf); };
         };
