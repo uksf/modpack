@@ -556,27 +556,6 @@ force force dcg_weather_enable = false;
 force force dcg_weather_month = -1;
 force force dcg_weather_time = -1;
 
-// VCOM SETTINGS
-force Vcm_ActivateAI = true;
-force VCM_ADVANCEDMOVEMENT = true;
-force VCM_AIDISTANCEVEHPATH = 100;
-force VCM_AIMagLimit = 3;
-force VCM_ARTYDELAY = 600;
-force VCM_ARTYENABLE = true;
-force VCM_ARTYSPREAD = 400;
-force VCM_Debug = false;
-force VCM_FRMCHANGE = true;
-force VCM_HEARINGDISTANCE = 800;
-force VCM_MINECHANCE = -1;
-force VCM_RAGDOLL = true;
-force VCM_RAGDOLLCHC = 25;
-force VCM_SIDEENABLED = [WEST,EAST,GUER];
-force VCM_SKILLCHANGE = true;
-force VCM_STATICARMT = 300;
-force VCM_StealVeh = false;
-force VCM_WARNDELAY = 30;
-force VCM_WARNDIST = 1000;
-
 // UKSF
 force uksf_caching_distance = 750;
 force uksf_caching_enabled = false;
