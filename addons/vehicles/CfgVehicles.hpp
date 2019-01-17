@@ -47,6 +47,7 @@ class CfgVehicles {
         hullDamageCauseExplosion = 0;
         peakTorque = 1000;
         maxOmega = 450;
+        brakeDistance = 30; // 50
         class HitPoints: HitPoints {
             class HitBody: HitBody {
                 armor = 1.5; // Default: 0.7
