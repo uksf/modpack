@@ -26,7 +26,7 @@ missionNamespace setVariable [QGVAR(useMainOpGear), !_useMainOpGear];
     [_box, true, false] call ace_arsenal_fnc_removeVirtualItems;
 
     if (_useMainOpGear) then {
-        [_box, uiNamespace getVariable [QGVAR(mainOpGear), call compile MAIN_OP_GEAR], false] call ace_arsenal_fnc_addVirtualItems;
+        [_box, uiNamespace getVariable [QGVAR(mainOpGear), MAIN_OP_GEAR], false] call ace_arsenal_fnc_addVirtualItems;
         private _emptyLoadout = uiNamespace getVariable QGVAR(emptyLoadout);
         player setUnitLoadout [_emptyLoadout, true];
     } else {

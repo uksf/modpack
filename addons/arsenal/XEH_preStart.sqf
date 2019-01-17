@@ -3,5 +3,5 @@
 
 #include "XEH_PREP.hpp"
 
-uiNamespace setVariable [QGVAR(mainOpGear), call compile MAIN_OP_GEAR];
+uiNamespace setVariable [QGVAR(mainOpGear), MAIN_OP_GEAR];
 uiNamespace setVariable [QGVAR(configLoadouts), ("true" configClasses (configFile >> QGVAR(loadouts)))];

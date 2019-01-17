@@ -18,7 +18,7 @@ params ["_mainGear"];
 
 private _gear = [[[["%ALL"], []], [["%ALL"], []], [["%ALL"], []], [["%ALL"], []]], true];
 if (_mainGear) then {
-    _gear = call compile MAIN_OP_GEAR;
+    _gear = uiNamespace getVariable [QGVAR(mainOpGear), MAIN_OP_GEAR];
 };
 
 private _cargo = (missionNamespace getVariable ["BIS_fnc_arsenal_cargo", objNull]);

@@ -8,8 +8,8 @@
 
 #include "\u\uksf\addons\main\script_macros.hpp"
 
-#define VERSION_CONFIG_COMMON VERSION_CONFIG;\
-    versionDesc = "UKSF Mods";\
+#define VERSION_CONFIG_COMMON VERSION_CONFIG; \
+    versionDesc = "UKSF Mods"; \
     versionAct = QUOTE(call COMPILE_FILE(init_versionTooltip))
 
 #define DISTANCE_MIN 1000

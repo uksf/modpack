@@ -17,7 +17,7 @@
 params ["_crate"];
 
 if (EGVAR(common,mainOp)) then {
-    [_crate, uiNamespace getVariable [QGVAR(mainOpGear), call compile MAIN_OP_GEAR]] call FUNC(addArsenal);
+    [_crate, uiNamespace getVariable [QGVAR(mainOpGear), MAIN_OP_GEAR]] call FUNC(addArsenal);
 } else {
     [_crate] call FUNC(addArsenal);
 };
