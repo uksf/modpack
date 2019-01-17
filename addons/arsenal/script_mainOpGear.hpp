@@ -872,7 +872,7 @@
     "CFP_OPS2017_Helmet_Multicam", \
     "CFP_OPS2017_Helmet_Multicam2", \
     "CFP_OPS2017_Helmet_OliveFabric", \
-    "COVER_4c", \
+    "COVER_4b", \
     "COVER_4d", \
     "H_Bandanna_camo", \
     "H_Bandanna_cbr", \
