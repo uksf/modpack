@@ -31,94 +31,94 @@ class MFD {
                 pos0[] = { 0.5, 0.53 };
                 pos10[] = { 1.5, 1.53 };
             };
-            class Level0 : Pos10Vector {
+            class Level0: Pos10Vector {
                 pos0[] = { 0.5, 0.4 };
                 pos10[] = { 0.774, 0.67 };
                 type = "horizon";
                 angle = 0;
             };
-            class LevelP5 : Level0 {
+            class LevelP5: Level0 {
                 angle = 5;
             };
-            class LevelM5 : Level0 {
+            class LevelM5: Level0 {
                 angle = -5;
             };
-            class LevelP10 : Level0 {
+            class LevelP10: Level0 {
                 angle = 10;
             };
-            class LevelM10 : Level0 {
+            class LevelM10: Level0 {
                 angle = -10;
             };
-            class LevelP15 : Level0 {
+            class LevelP15: Level0 {
                 angle = 15;
             };
-            class LevelM15 : Level0 {
+            class LevelM15: Level0 {
                 angle = -15;
             };
-            class LevelP20 : Level0 {
+            class LevelP20: Level0 {
                 angle = 20;
             };
-            class LevelM20 : Level0 {
+            class LevelM20: Level0 {
                 angle = -20;
             };
-            class LevelP25 : Level0 {
+            class LevelP25: Level0 {
                 angle = 25;
             };
-            class LevelM25 : Level0 {
+            class LevelM25: Level0 {
                 angle = -25;
             };
-            class LevelP30 : Level0 {
+            class LevelP30: Level0 {
                 angle = 30;
             };
-            class LevelM30 : Level0 {
+            class LevelM30: Level0 {
                 angle = -30;
             };
-            class LevelP35 : Level0 {
+            class LevelP35: Level0 {
                 angle = 35;
             };
-            class LevelM35 : Level0 {
+            class LevelM35: Level0 {
                 angle = -35;
             };
-            class LevelP40 : Level0 {
+            class LevelP40: Level0 {
                 angle = 40;
             };
-            class LevelM40 : Level0 {
+            class LevelM40: Level0 {
                 angle = -40;
             };
-            class LevelP45 : Level0 {
+            class LevelP45: Level0 {
                 angle = 45;
             };
-            class LevelM45 : Level0 {
+            class LevelM45: Level0 {
                 angle = -45;
             };
-            class LevelP50 : Level0 {
+            class LevelP50: Level0 {
                 angle = 50;
             };
-            class LevelM50 : Level0 {
+            class LevelM50: Level0 {
                 angle = -50;
             };
-            class LevelP60 : Level0 {
+            class LevelP60: Level0 {
                 angle = 60;
             };
-            class LevelM60 : Level0 {
+            class LevelM60: Level0 {
                 angle = -60;
             };
-            class LevelP70 : Level0 {
+            class LevelP70: Level0 {
                 angle = 70;
             };
-            class LevelM70 : Level0 {
+            class LevelM70: Level0 {
                 angle = -70;
             };
-            class LevelP80 : Level0 {
+            class LevelP80: Level0 {
                 angle = 80;
             };
-            class LevelM80 : Level0 {
+            class LevelM80: Level0 {
                 angle = -80;
             };
-            class LevelP90 : Level0 {
+            class LevelP90: Level0 {
                 angle = 90;
             };
-            class LevelM90 : Level0 {
+            class LevelM90: Level0 {
                 angle = -90;
             };
         };
@@ -136,7 +136,7 @@ class MFD {
                         width = 3;
                         points[] = { { "Level0",{ 0.75, 0 }, 1 },{ "Level0",{ 0.1, 0 }, 1 },{},{ "Level0",{ -0.1, 0 }, 1 },{ "Level0",{ -0.75, 0 }, 1 } };
                     };
-                    class LevelM5 : Level0 {
+                    class LevelM5: Level0 {
                         type = "line";
                         points[] = { { "LevelM5",{ -0.235, -0.02 }, 1 },{ "LevelM5",{ -0.235, 0 }, 1 },{},{ "LevelM5",{ -0.22, 0 }, 1 },{ "LevelM5",{ -0.205, 0 }, 1 },{},{ "LevelM5",{ -0.19, 0 }, 1 },{ "LevelM5",{ -0.175, 0 }, 1 },{},{ "LevelM5",{ -0.16, 0 }, 1 },{ "LevelM5",{ -0.145, 0 }, 1 },{},{ "LevelM5",{ -0.13, 0 }, 1 },{ "LevelM5",{ -0.115, 0 }, 1 },{},{ "LevelM5",{ -0.1, 0 }, 1 },{ "LevelM5",{ -0.085, 0 }, 1 },{},{ "LevelM5",{ -0.07, 0 }, 1 },{ "LevelM5",{ -0.055, 0 }, 1 },{},{},{ "LevelM5",{ 0.235, -0.02 }, 1 },{ "LevelM5",{ 0.235, 0 }, 1 },{},{ "LevelM5",{ 0.22, 0 }, 1 },{ "LevelM5",{ 0.205, 0 }, 1 },{},{ "LevelM5",{ 0.19, 0 }, 1 },{ "LevelM5",{ 0.175, 0 }, 1 },{},{ "LevelM5",{ 0.16, 0 }, 1 },{ "LevelM5",{ 0.145, 0 }, 1 },{},{ "LevelM5",{ 0.13, 0 }, 1 },{ "LevelM5",{ 0.115, 0 }, 1 },{},{ "LevelM5",{ 0.1, 0 }, 1 },{ "LevelM5",{ 0.085, 0 }, 1 },{},{ "LevelM5",{ 0.07, 0 }, 1 },{ "LevelM5",{ 0.055, 0 }, 1 },{} };
                     };
@@ -162,7 +162,7 @@ class MFD {
                         right[] = { "LevelM5",{ 0.32, -0.032 }, 1 };
                         down[] = { "LevelM5",{ 0.26, 0.018 }, 1 };
                     };
-                    class LevelP5 : Level0 {
+                    class LevelP5: Level0 {
                         type = "line";
                         points[] = { { "LevelP5",{ "-0.22-0.015", 0.02 }, 1 },{ "LevelP5",{ "-0.22-0.015", 0 }, 1 },{ "LevelP5",{ -0.06, 0 }, 1 },{},{ "LevelP5",{ 0.06, 0 }, 1 },{ "LevelP5",{ "+0.22+0.015", 0 }, 1 },{ "LevelP5",{ "+0.22+0.015", 0.02 }, 1 } };
                     };
@@ -188,7 +188,7 @@ class MFD {
                         right[] = { "LevelP5",{ 0.32, -0.017 }, 1 };
                         down[] = { "LevelP5",{ 0.26, 0.033 }, 1 };
                     };
-                    class LevelM10 : Level0 {
+                    class LevelM10: Level0 {
                         type = "line";
                         points[] = { { "LevelM10",{ -0.235, -0.02 }, 1 },{ "LevelM10",{ -0.235, 0 }, 1 },{},{ "LevelM10",{ -0.22, 0 }, 1 },{ "LevelM10",{ -0.205, 0 }, 1 },{},{ "LevelM10",{ -0.19, 0 }, 1 },{ "LevelM10",{ -0.175, 0 }, 1 },{},{ "LevelM10",{ -0.16, 0 }, 1 },{ "LevelM10",{ -0.145, 0 }, 1 },{},{ "LevelM10",{ -0.13, 0 }, 1 },{ "LevelM10",{ -0.115, 0 }, 1 },{},{ "LevelM10",{ -0.1, 0 }, 1 },{ "LevelM10",{ -0.085, 0 }, 1 },{},{ "LevelM10",{ -0.07, 0 }, 1 },{ "LevelM10",{ -0.055, 0 }, 1 },{},{},{ "LevelM10",{ 0.235, -0.02 }, 1 },{ "LevelM10",{ 0.235, 0 }, 1 },{},{ "LevelM10",{ 0.22, 0 }, 1 },{ "LevelM10",{ 0.205, 0 }, 1 },{},{ "LevelM10",{ 0.19, 0 }, 1 },{ "LevelM10",{ 0.175, 0 }, 1 },{},{ "LevelM10",{ 0.16, 0 }, 1 },{ "LevelM10",{ 0.145, 0 }, 1 },{},{ "LevelM10",{ 0.13, 0 }, 1 },{ "LevelM10",{ 0.115, 0 }, 1 },{},{ "LevelM10",{ 0.1, 0 }, 1 },{ "LevelM10",{ 0.085, 0 }, 1 },{},{ "LevelM10",{ 0.07, 0 }, 1 },{ "LevelM10",{ 0.055, 0 }, 1 },{} };
                     };
@@ -214,7 +214,7 @@ class MFD {
                         right[] = { "LevelM10",{ 0.32, -0.032 }, 1 };
                         down[] = { "LevelM10",{ 0.26, 0.018 }, 1 };
                     };
-                    class LevelP10 : Level0 {
+                    class LevelP10: Level0 {
                         type = "line";
                         points[] = { { "LevelP10",{ "-0.22-0.015", 0.02 }, 1 },{ "LevelP10",{ "-0.22-0.015", 0 }, 1 },{ "LevelP10",{ -0.06, 0 }, 1 },{},{ "LevelP10",{ 0.06, 0 }, 1 },{ "LevelP10",{ "+0.22+0.015", 0 }, 1 },{ "LevelP10",{ "+0.22+0.015", 0.02 }, 1 } };
                     };
@@ -240,7 +240,7 @@ class MFD {
                         right[] = { "LevelP10",{ 0.32, -0.017 }, 1 };
                         down[] = { "LevelP10",{ 0.26, 0.033 }, 1 };
                     };
-                    class LevelM15 : Level0 {
+                    class LevelM15: Level0 {
                         type = "line";
                         points[] = { { "LevelM15",{ -0.235, -0.02 }, 1 },{ "LevelM15",{ -0.235, 0 }, 1 },{},{ "LevelM15",{ -0.22, 0 }, 1 },{ "LevelM15",{ -0.205, 0 }, 1 },{},{ "LevelM15",{ -0.19, 0 }, 1 },{ "LevelM15",{ -0.175, 0 }, 1 },{},{ "LevelM15",{ -0.16, 0 }, 1 },{ "LevelM15",{ -0.145, 0 }, 1 },{},{ "LevelM15",{ -0.13, 0 }, 1 },{ "LevelM15",{ -0.115, 0 }, 1 },{},{ "LevelM15",{ -0.1, 0 }, 1 },{ "LevelM15",{ -0.085, 0 }, 1 },{},{ "LevelM15",{ -0.07, 0 }, 1 },{ "LevelM15",{ -0.055, 0 }, 1 },{},{},{ "LevelM15",{ 0.235, -0.02 }, 1 },{ "LevelM15",{ 0.235, 0 }, 1 },{},{ "LevelM15",{ 0.22, 0 }, 1 },{ "LevelM15",{ 0.205, 0 }, 1 },{},{ "LevelM15",{ 0.19, 0 }, 1 },{ "LevelM15",{ 0.175, 0 }, 1 },{},{ "LevelM15",{ 0.16, 0 }, 1 },{ "LevelM15",{ 0.145, 0 }, 1 },{},{ "LevelM15",{ 0.13, 0 }, 1 },{ "LevelM15",{ 0.115, 0 }, 1 },{},{ "LevelM15",{ 0.1, 0 }, 1 },{ "LevelM15",{ 0.085, 0 }, 1 },{},{ "LevelM15",{ 0.07, 0 }, 1 },{ "LevelM15",{ 0.055, 0 }, 1 },{} };
                     };
@@ -266,7 +266,7 @@ class MFD {
                         right[] = { "LevelM15",{ 0.32, -0.032 }, 1 };
                         down[] = { "LevelM15",{ 0.26, 0.018 }, 1 };
                     };
-                    class LevelP15 : Level0 {
+                    class LevelP15: Level0 {
                         type = "line";
                         points[] = { { "LevelP15",{ "-0.22-0.015", 0.02 }, 1 },{ "LevelP15",{ "-0.22-0.015", 0 }, 1 },{ "LevelP15",{ -0.06, 0 }, 1 },{},{ "LevelP15",{ 0.06, 0 }, 1 },{ "LevelP15",{ "+0.22+0.015", 0 }, 1 },{ "LevelP15",{ "+0.22+0.015", 0.02 }, 1 } };
                     };
@@ -292,7 +292,7 @@ class MFD {
                         right[] = { "LevelP15",{ 0.32, -0.017 }, 1 };
                         down[] = { "LevelP15",{ 0.26, 0.033 }, 1 };
                     };
-                    class LevelM20 : Level0 {
+                    class LevelM20: Level0 {
                         type = "line";
                         points[] = { { "LevelM20",{ -0.235, -0.02 }, 1 },{ "LevelM20",{ -0.235, 0 }, 1 },{},{ "LevelM20",{ -0.22, 0 }, 1 },{ "LevelM20",{ -0.205, 0 }, 1 },{},{ "LevelM20",{ -0.19, 0 }, 1 },{ "LevelM20",{ -0.175, 0 }, 1 },{},{ "LevelM20",{ -0.16, 0 }, 1 },{ "LevelM20",{ -0.145, 0 }, 1 },{},{ "LevelM20",{ -0.13, 0 }, 1 },{ "LevelM20",{ -0.115, 0 }, 1 },{},{ "LevelM20",{ -0.1, 0 }, 1 },{ "LevelM20",{ -0.085, 0 }, 1 },{},{ "LevelM20",{ -0.07, 0 }, 1 },{ "LevelM20",{ -0.055, 0 }, 1 },{},{},{ "LevelM20",{ 0.235, -0.02 }, 1 },{ "LevelM20",{ 0.235, 0 }, 1 },{},{ "LevelM20",{ 0.22, 0 }, 1 },{ "LevelM20",{ 0.205, 0 }, 1 },{},{ "LevelM20",{ 0.19, 0 }, 1 },{ "LevelM20",{ 0.175, 0 }, 1 },{},{ "LevelM20",{ 0.16, 0 }, 1 },{ "LevelM20",{ 0.145, 0 }, 1 },{},{ "LevelM20",{ 0.13, 0 }, 1 },{ "LevelM20",{ 0.115, 0 }, 1 },{},{ "LevelM20",{ 0.1, 0 }, 1 },{ "LevelM20",{ 0.085, 0 }, 1 },{},{ "LevelM20",{ 0.07, 0 }, 1 },{ "LevelM20",{ 0.055, 0 }, 1 },{} };
                     };
@@ -318,7 +318,7 @@ class MFD {
                         right[] = { "LevelM20",{ 0.32, -0.032 }, 1 };
                         down[] = { "LevelM20",{ 0.26, 0.018 }, 1 };
                     };
-                    class LevelP20 : Level0 {
+                    class LevelP20: Level0 {
                         type = "line";
                         points[] = { { "LevelP20",{ "-0.22-0.015", 0.02 }, 1 },{ "LevelP20",{ "-0.22-0.015", 0 }, 1 },{ "LevelP20",{ -0.06, 0 }, 1 },{},{ "LevelP20",{ 0.06, 0 }, 1 },{ "LevelP20",{ "+0.22+0.015", 0 }, 1 },{ "LevelP20",{ "+0.22+0.015", 0.02 }, 1 } };
                     };
@@ -344,7 +344,7 @@ class MFD {
                         right[] = { "LevelP20",{ 0.32, -0.017 }, 1 };
                         down[] = { "LevelP20",{ 0.26, 0.033 }, 1 };
                     };
-                    class LevelM25 : Level0 {
+                    class LevelM25: Level0 {
                         type = "line";
                         points[] = { { "LevelM25",{ -0.235, -0.02 }, 1 },{ "LevelM25",{ -0.235, 0 }, 1 },{},{ "LevelM25",{ -0.22, 0 }, 1 },{ "LevelM25",{ -0.205, 0 }, 1 },{},{ "LevelM25",{ -0.19, 0 }, 1 },{ "LevelM25",{ -0.175, 0 }, 1 },{},{ "LevelM25",{ -0.16, 0 }, 1 },{ "LevelM25",{ -0.145, 0 }, 1 },{},{ "LevelM25",{ -0.13, 0 }, 1 },{ "LevelM25",{ -0.115, 0 }, 1 },{},{ "LevelM25",{ -0.1, 0 }, 1 },{ "LevelM25",{ -0.085, 0 }, 1 },{},{ "LevelM25",{ -0.07, 0 }, 1 },{ "LevelM25",{ -0.055, 0 }, 1 },{},{},{ "LevelM25",{ 0.235, -0.02 }, 1 },{ "LevelM25",{ 0.235, 0 }, 1 },{},{ "LevelM25",{ 0.22, 0 }, 1 },{ "LevelM25",{ 0.205, 0 }, 1 },{},{ "LevelM25",{ 0.19, 0 }, 1 },{ "LevelM25",{ 0.175, 0 }, 1 },{},{ "LevelM25",{ 0.16, 0 }, 1 },{ "LevelM25",{ 0.145, 0 }, 1 },{},{ "LevelM25",{ 0.13, 0 }, 1 },{ "LevelM25",{ 0.115, 0 }, 1 },{},{ "LevelM25",{ 0.1, 0 }, 1 },{ "LevelM25",{ 0.085, 0 }, 1 },{},{ "LevelM25",{ 0.07, 0 }, 1 },{ "LevelM25",{ 0.055, 0 }, 1 },{} };
                     };
@@ -370,7 +370,7 @@ class MFD {
                         right[] = { "LevelM25",{ 0.32, -0.032 }, 1 };
                         down[] = { "LevelM25",{ 0.26, 0.018 }, 1 };
                     };
-                    class LevelP25 : Level0 {
+                    class LevelP25: Level0 {
                         type = "line";
                         points[] = { { "LevelP25",{ "-0.22-0.015", 0.02 }, 1 },{ "LevelP25",{ "-0.22-0.015", 0 }, 1 },{ "LevelP25",{ -0.06, 0 }, 1 },{},{ "LevelP25",{ 0.06, 0 }, 1 },{ "LevelP25",{ "+0.22+0.015", 0 }, 1 },{ "LevelP25",{ "+0.22+0.015", 0.02 }, 1 } };
                     };
@@ -396,7 +396,7 @@ class MFD {
                         right[] = { "LevelP25",{ 0.32, -0.017 }, 1 };
                         down[] = { "LevelP25",{ 0.26, 0.033 }, 1 };
                     };
-                    class LevelM30 : Level0 {
+                    class LevelM30: Level0 {
                         type = "line";
                         points[] = { { "LevelM30",{ -0.235, -0.02 }, 1 },{ "LevelM30",{ -0.235, 0 }, 1 },{},{ "LevelM30",{ -0.22, 0 }, 1 },{ "LevelM30",{ -0.205, 0 }, 1 },{},{ "LevelM30",{ -0.19, 0 }, 1 },{ "LevelM30",{ -0.175, 0 }, 1 },{},{ "LevelM30",{ -0.16, 0 }, 1 },{ "LevelM30",{ -0.145, 0 }, 1 },{},{ "LevelM30",{ -0.13, 0 }, 1 },{ "LevelM30",{ -0.115, 0 }, 1 },{},{ "LevelM30",{ -0.1, 0 }, 1 },{ "LevelM30",{ -0.085, 0 }, 1 },{},{ "LevelM30",{ -0.07, 0 }, 1 },{ "LevelM30",{ -0.055, 0 }, 1 },{},{},{ "LevelM30",{ 0.235, -0.02 }, 1 },{ "LevelM30",{ 0.235, 0 }, 1 },{},{ "LevelM30",{ 0.22, 0 }, 1 },{ "LevelM30",{ 0.205, 0 }, 1 },{},{ "LevelM30",{ 0.19, 0 }, 1 },{ "LevelM30",{ 0.175, 0 }, 1 },{},{ "LevelM30",{ 0.16, 0 }, 1 },{ "LevelM30",{ 0.145, 0 }, 1 },{},{ "LevelM30",{ 0.13, 0 }, 1 },{ "LevelM30",{ 0.115, 0 }, 1 },{},{ "LevelM30",{ 0.1, 0 }, 1 },{ "LevelM30",{ 0.085, 0 }, 1 },{},{ "LevelM30",{ 0.07, 0 }, 1 },{ "LevelM30",{ 0.055, 0 }, 1 },{} };
                     };
@@ -422,7 +422,7 @@ class MFD {
                         right[] = { "LevelM30",{ 0.32, -0.032 }, 1 };
                         down[] = { "LevelM30",{ 0.26, 0.018 }, 1 };
                     };
-                    class LevelP30 : Level0 {
+                    class LevelP30: Level0 {
                         type = "line";
                         points[] = { { "LevelP30",{ "-0.22-0.015", 0.02 }, 1 },{ "LevelP30",{ "-0.22-0.015", 0 }, 1 },{ "LevelP30",{ -0.06, 0 }, 1 },{},{ "LevelP30",{ 0.06, 0 }, 1 },{ "LevelP30",{ "+0.22+0.015", 0 }, 1 },{ "LevelP30",{ "+0.22+0.015", 0.02 }, 1 } };
                     };
@@ -448,7 +448,7 @@ class MFD {
                         right[] = { "LevelP30",{ 0.32, -0.017 }, 1 };
                         down[] = { "LevelP30",{ 0.26, 0.033 }, 1 };
                     };
-                    class LevelM35 : Level0 {
+                    class LevelM35: Level0 {
                         type = "line";
                         points[] = { { "LevelM35",{ -0.235, -0.02 }, 1 },{ "LevelM35",{ -0.235, 0 }, 1 },{},{ "LevelM35",{ -0.22, 0 }, 1 },{ "LevelM35",{ -0.205, 0 }, 1 },{},{ "LevelM35",{ -0.19, 0 }, 1 },{ "LevelM35",{ -0.175, 0 }, 1 },{},{ "LevelM35",{ -0.16, 0 }, 1 },{ "LevelM35",{ -0.145, 0 }, 1 },{},{ "LevelM35",{ -0.13, 0 }, 1 },{ "LevelM35",{ -0.115, 0 }, 1 },{},{ "LevelM35",{ -0.1, 0 }, 1 },{ "LevelM35",{ -0.085, 0 }, 1 },{},{ "LevelM35",{ -0.07, 0 }, 1 },{ "LevelM35",{ -0.055, 0 }, 1 },{},{},{ "LevelM35",{ 0.235, -0.02 }, 1 },{ "LevelM35",{ 0.235, 0 }, 1 },{},{ "LevelM35",{ 0.22, 0 }, 1 },{ "LevelM35",{ 0.205, 0 }, 1 },{},{ "LevelM35",{ 0.19, 0 }, 1 },{ "LevelM35",{ 0.175, 0 }, 1 },{},{ "LevelM35",{ 0.16, 0 }, 1 },{ "LevelM35",{ 0.145, 0 }, 1 },{},{ "LevelM35",{ 0.13, 0 }, 1 },{ "LevelM35",{ 0.115, 0 }, 1 },{},{ "LevelM35",{ 0.1, 0 }, 1 },{ "LevelM35",{ 0.085, 0 }, 1 },{},{ "LevelM35",{ 0.07, 0 }, 1 },{ "LevelM35",{ 0.055, 0 }, 1 },{} };
                     };
@@ -474,7 +474,7 @@ class MFD {
                         right[] = { "LevelM35",{ 0.32, -0.032 }, 1 };
                         down[] = { "LevelM35",{ 0.26, 0.018 }, 1 };
                     };
-                    class LevelP35 : Level0 {
+                    class LevelP35: Level0 {
                         type = "line";
                         points[] = { { "LevelP35",{ "-0.22-0.015", 0.02 }, 1 },{ "LevelP35",{ "-0.22-0.015", 0 }, 1 },{ "LevelP35",{ -0.06, 0 }, 1 },{},{ "LevelP35",{ 0.06, 0 }, 1 },{ "LevelP35",{ "+0.22+0.015", 0 }, 1 },{ "LevelP35",{ "+0.22+0.015", 0.02 }, 1 } };
                     };
@@ -500,7 +500,7 @@ class MFD {
                         right[] = { "LevelP35",{ 0.32, -0.017 }, 1 };
                         down[] = { "LevelP35",{ 0.26, 0.033 }, 1 };
                     };
-                    class LevelM40 : Level0 {
+                    class LevelM40: Level0 {
                         type = "line";
                         points[] = { { "LevelM40",{ -0.235, -0.02 }, 1 },{ "LevelM40",{ -0.235, 0 }, 1 },{},{ "LevelM40",{ -0.22, 0 }, 1 },{ "LevelM40",{ -0.205, 0 }, 1 },{},{ "LevelM40",{ -0.19, 0 }, 1 },{ "LevelM40",{ -0.175, 0 }, 1 },{},{ "LevelM40",{ -0.16, 0 }, 1 },{ "LevelM40",{ -0.145, 0 }, 1 },{},{ "LevelM40",{ -0.13, 0 }, 1 },{ "LevelM40",{ -0.115, 0 }, 1 },{},{ "LevelM40",{ -0.1, 0 }, 1 },{ "LevelM40",{ -0.085, 0 }, 1 },{},{ "LevelM40",{ -0.07, 0 }, 1 },{ "LevelM40",{ -0.055, 0 }, 1 },{},{},{ "LevelM40",{ 0.235, -0.02 }, 1 },{ "LevelM40",{ 0.235, 0 }, 1 },{},{ "LevelM40",{ 0.22, 0 }, 1 },{ "LevelM40",{ 0.205, 0 }, 1 },{},{ "LevelM40",{ 0.19, 0 }, 1 },{ "LevelM40",{ 0.175, 0 }, 1 },{},{ "LevelM40",{ 0.16, 0 }, 1 },{ "LevelM40",{ 0.145, 0 }, 1 },{},{ "LevelM40",{ 0.13, 0 }, 1 },{ "LevelM40",{ 0.115, 0 }, 1 },{},{ "LevelM40",{ 0.1, 0 }, 1 },{ "LevelM40",{ 0.085, 0 }, 1 },{},{ "LevelM40",{ 0.07, 0 }, 1 },{ "LevelM40",{ 0.055, 0 }, 1 },{} };
                     };
@@ -526,7 +526,7 @@ class MFD {
                         right[] = { "LevelM40",{ 0.32, -0.032 }, 1 };
                         down[] = { "LevelM40",{ 0.26, 0.018 }, 1 };
                     };
-                    class LevelP40 : Level0 {
+                    class LevelP40: Level0 {
                         type = "line";
                         points[] = { { "LevelP40",{ "-0.22-0.015", 0.02 }, 1 },{ "LevelP40",{ "-0.22-0.015", 0 }, 1 },{ "LevelP40",{ -0.06, 0 }, 1 },{},{ "LevelP40",{ 0.06, 0 }, 1 },{ "LevelP40",{ "+0.22+0.015", 0 }, 1 },{ "LevelP40",{ "+0.22+0.015", 0.02 }, 1 } };
                     };
@@ -552,7 +552,7 @@ class MFD {
                         right[] = { "LevelP40",{ 0.32, -0.017 }, 1 };
                         down[] = { "LevelP40",{ 0.26, 0.033 }, 1 };
                     };
-                    class LevelM45 : Level0 {
+                    class LevelM45: Level0 {
                         type = "line";
                         points[] = { { "LevelM45",{ -0.235, -0.02 }, 1 },{ "LevelM45",{ -0.235, 0 }, 1 },{},{ "LevelM45",{ -0.22, 0 }, 1 },{ "LevelM45",{ -0.205, 0 }, 1 },{},{ "LevelM45",{ -0.19, 0 }, 1 },{ "LevelM45",{ -0.175, 0 }, 1 },{},{ "LevelM45",{ -0.16, 0 }, 1 },{ "LevelM45",{ -0.145, 0 }, 1 },{},{ "LevelM45",{ -0.13, 0 }, 1 },{ "LevelM45",{ -0.115, 0 }, 1 },{},{ "LevelM45",{ -0.1, 0 }, 1 },{ "LevelM45",{ -0.085, 0 }, 1 },{},{ "LevelM45",{ -0.07, 0 }, 1 },{ "LevelM45",{ -0.055, 0 }, 1 },{},{},{ "LevelM45",{ 0.235, -0.02 }, 1 },{ "LevelM45",{ 0.235, 0 }, 1 },{},{ "LevelM45",{ 0.22, 0 }, 1 },{ "LevelM45",{ 0.205, 0 }, 1 },{},{ "LevelM45",{ 0.19, 0 }, 1 },{ "LevelM45",{ 0.175, 0 }, 1 },{},{ "LevelM45",{ 0.16, 0 }, 1 },{ "LevelM45",{ 0.145, 0 }, 1 },{},{ "LevelM45",{ 0.13, 0 }, 1 },{ "LevelM45",{ 0.115, 0 }, 1 },{},{ "LevelM45",{ 0.1, 0 }, 1 },{ "LevelM45",{ 0.085, 0 }, 1 },{},{ "LevelM45",{ 0.07, 0 }, 1 },{ "LevelM45",{ 0.055, 0 }, 1 },{} };
                     };
@@ -578,7 +578,7 @@ class MFD {
                         right[] = { "LevelM45",{ 0.32, -0.032 }, 1 };
                         down[] = { "LevelM45",{ 0.26, 0.018 }, 1 };
                     };
-                    class LevelP45 : Level0 {
+                    class LevelP45: Level0 {
                         type = "line";
                         points[] = { { "LevelP45",{ "-0.22-0.015", 0.02 }, 1 },{ "LevelP45",{ "-0.22-0.015", 0 }, 1 },{ "LevelP45",{ -0.06, 0 }, 1 },{},{ "LevelP45",{ 0.06, 0 }, 1 },{ "LevelP45",{ "+0.22+0.015", 0 }, 1 },{ "LevelP45",{ "+0.22+0.015", 0.02 }, 1 } };
                     };
@@ -604,7 +604,7 @@ class MFD {
                         right[] = { "LevelP45",{ 0.32, -0.017 }, 1 };
                         down[] = { "LevelP45",{ 0.26, 0.033 }, 1 };
                     };
-                    class LevelM50 : Level0 {
+                    class LevelM50: Level0 {
                         type = "line";
                         points[] = { { "LevelM50",{ -0.235, -0.02 }, 1 },{ "LevelM50",{ -0.235, 0 }, 1 },{},{ "LevelM50",{ -0.22, 0 }, 1 },{ "LevelM50",{ -0.205, 0 }, 1 },{},{ "LevelM50",{ -0.19, 0 }, 1 },{ "LevelM50",{ -0.175, 0 }, 1 },{},{ "LevelM50",{ -0.16, 0 }, 1 },{ "LevelM50",{ -0.145, 0 }, 1 },{},{ "LevelM50",{ -0.13, 0 }, 1 },{ "LevelM50",{ -0.115, 0 }, 1 },{},{ "LevelM50",{ -0.1, 0 }, 1 },{ "LevelM50",{ -0.085, 0 }, 1 },{},{ "LevelM50",{ -0.07, 0 }, 1 },{ "LevelM50",{ -0.055, 0 }, 1 },{},{},{ "LevelM50",{ 0.235, -0.02 }, 1 },{ "LevelM50",{ 0.235, 0 }, 1 },{},{ "LevelM50",{ 0.22, 0 }, 1 },{ "LevelM50",{ 0.205, 0 }, 1 },{},{ "LevelM50",{ 0.19, 0 }, 1 },{ "LevelM50",{ 0.175, 0 }, 1 },{},{ "LevelM50",{ 0.16, 0 }, 1 },{ "LevelM50",{ 0.145, 0 }, 1 },{},{ "LevelM50",{ 0.13, 0 }, 1 },{ "LevelM50",{ 0.115, 0 }, 1 },{},{ "LevelM50",{ 0.1, 0 }, 1 },{ "LevelM50",{ 0.085, 0 }, 1 },{},{ "LevelM50",{ 0.07, 0 }, 1 },{ "LevelM50",{ 0.055, 0 }, 1 },{} };
                     };
@@ -630,7 +630,7 @@ class MFD {
                         right[] = { "LevelM50",{ 0.32, -0.032 }, 1 };
                         down[] = { "LevelM50",{ 0.26, 0.018 }, 1 };
                     };
-                    class LevelP50 : Level0 {
+                    class LevelP50: Level0 {
                         type = "line";
                         points[] = { { "LevelP50",{ "-0.22-0.015", 0.02 }, 1 },{ "LevelP50",{ "-0.22-0.015", 0 }, 1 },{ "LevelP50",{ -0.06, 0 }, 1 },{},{ "LevelP50",{ 0.06, 0 }, 1 },{ "LevelP50",{ "+0.22+0.015", 0 }, 1 },{ "LevelP50",{ "+0.22+0.015", 0.02 }, 1 } };
                     };
@@ -656,7 +656,7 @@ class MFD {
                         right[] = { "LevelP50",{ 0.32, -0.017 }, 1 };
                         down[] = { "LevelP50",{ 0.26, 0.033 }, 1 };
                     };
-                    class LevelM60 : Level0 {
+                    class LevelM60: Level0 {
                         type = "line";
                         points[] = { { "LevelM60",{ -0.235, -0.02 }, 1 },{ "LevelM60",{ -0.235, 0 }, 1 },{},{ "LevelM60",{ -0.22, 0 }, 1 },{ "LevelM60",{ -0.205, 0 }, 1 },{},{ "LevelM60",{ -0.19, 0 }, 1 },{ "LevelM60",{ -0.175, 0 }, 1 },{},{ "LevelM60",{ -0.16, 0 }, 1 },{ "LevelM60",{ -0.145, 0 }, 1 },{},{ "LevelM60",{ -0.13, 0 }, 1 },{ "LevelM60",{ -0.115, 0 }, 1 },{},{ "LevelM60",{ -0.1, 0 }, 1 },{ "LevelM60",{ -0.085, 0 }, 1 },{},{ "LevelM60",{ -0.07, 0 }, 1 },{ "LevelM60",{ -0.055, 0 }, 1 },{},{},{ "LevelM60",{ 0.235, -0.02 }, 1 },{ "LevelM60",{ 0.235, 0 }, 1 },{},{ "LevelM60",{ 0.22, 0 }, 1 },{ "LevelM60",{ 0.205, 0 }, 1 },{},{ "LevelM60",{ 0.19, 0 }, 1 },{ "LevelM60",{ 0.175, 0 }, 1 },{},{ "LevelM60",{ 0.16, 0 }, 1 },{ "LevelM60",{ 0.145, 0 }, 1 },{},{ "LevelM60",{ 0.13, 0 }, 1 },{ "LevelM60",{ 0.115, 0 }, 1 },{},{ "LevelM60",{ 0.1, 0 }, 1 },{ "LevelM60",{ 0.085, 0 }, 1 },{},{ "LevelM60",{ 0.07, 0 }, 1 },{ "LevelM60",{ 0.055, 0 }, 1 },{} };
                     };
@@ -682,7 +682,7 @@ class MFD {
                         right[] = { "LevelM60",{ 0.32, -0.032 }, 1 };
                         down[] = { "LevelM60",{ 0.26, 0.018 }, 1 };
                     };
-                    class LevelP60 : Level0 {
+                    class LevelP60: Level0 {
                         type = "line";
                         points[] = { { "LevelP60",{ "-0.22-0.015", 0.02 }, 1 },{ "LevelP60",{ "-0.22-0.015", 0 }, 1 },{ "LevelP60",{ -0.06, 0 }, 1 },{},{ "LevelP60",{ 0.06, 0 }, 1 },{ "LevelP60",{ "+0.22+0.015", 0 }, 1 },{ "LevelP60",{ "+0.22+0.015", 0.02 }, 1 } };
                     };
@@ -708,7 +708,7 @@ class MFD {
                         right[] = { "LevelP60",{ 0.32, -0.017 }, 1 };
                         down[] = { "LevelP60",{ 0.26, 0.033 }, 1 };
                     };
-                    class LevelM70 : Level0 {
+                    class LevelM70: Level0 {
                         type = "line";
                         points[] = { { "LevelM70",{ -0.235, -0.02 }, 1 },{ "LevelM70",{ -0.235, 0 }, 1 },{},{ "LevelM70",{ -0.22, 0 }, 1 },{ "LevelM70",{ -0.205, 0 }, 1 },{},{ "LevelM70",{ -0.19, 0 }, 1 },{ "LevelM70",{ -0.175, 0 }, 1 },{},{ "LevelM70",{ -0.16, 0 }, 1 },{ "LevelM70",{ -0.145, 0 }, 1 },{},{ "LevelM70",{ -0.13, 0 }, 1 },{ "LevelM70",{ -0.115, 0 }, 1 },{},{ "LevelM70",{ -0.1, 0 }, 1 },{ "LevelM70",{ -0.085, 0 }, 1 },{},{ "LevelM70",{ -0.07, 0 }, 1 },{ "LevelM70",{ -0.055, 0 }, 1 },{},{},{ "LevelM70",{ 0.235, -0.02 }, 1 },{ "LevelM70",{ 0.235, 0 }, 1 },{},{ "LevelM70",{ 0.22, 0 }, 1 },{ "LevelM70",{ 0.205, 0 }, 1 },{},{ "LevelM70",{ 0.19, 0 }, 1 },{ "LevelM70",{ 0.175, 0 }, 1 },{},{ "LevelM70",{ 0.16, 0 }, 1 },{ "LevelM70",{ 0.145, 0 }, 1 },{},{ "LevelM70",{ 0.13, 0 }, 1 },{ "LevelM70",{ 0.115, 0 }, 1 },{},{ "LevelM70",{ 0.1, 0 }, 1 },{ "LevelM70",{ 0.085, 0 }, 1 },{},{ "LevelM70",{ 0.07, 0 }, 1 },{ "LevelM70",{ 0.055, 0 }, 1 },{} };
                     };
@@ -734,7 +734,7 @@ class MFD {
                         right[] = { "LevelM70",{ 0.32, -0.032 }, 1 };
                         down[] = { "LevelM70",{ 0.26, 0.018 }, 1 };
                     };
-                    class LevelP70 : Level0 {
+                    class LevelP70: Level0 {
                         type = "line";
                         points[] = { { "LevelP70",{ "-0.22-0.015", 0.02 }, 1 },{ "LevelP70",{ "-0.22-0.015", 0 }, 1 },{ "LevelP70",{ -0.06, 0 }, 1 },{},{ "LevelP70",{ 0.06, 0 }, 1 },{ "LevelP70",{ "+0.22+0.015", 0 }, 1 },{ "LevelP70",{ "+0.22+0.015", 0.02 }, 1 } };
                     };
@@ -760,7 +760,7 @@ class MFD {
                         right[] = { "LevelP70",{ 0.32, -0.017 }, 1 };
                         down[] = { "LevelP70",{ 0.26, 0.033 }, 1 };
                     };
-                    class LevelM80 : Level0 {
+                    class LevelM80: Level0 {
                         type = "line";
                         points[] = { { "LevelM80",{ -0.235, -0.02 }, 1 },{ "LevelM80",{ -0.235, 0 }, 1 },{},{ "LevelM80",{ -0.22, 0 }, 1 },{ "LevelM80",{ -0.205, 0 }, 1 },{},{ "LevelM80",{ -0.19, 0 }, 1 },{ "LevelM80",{ -0.175, 0 }, 1 },{},{ "LevelM80",{ -0.16, 0 }, 1 },{ "LevelM80",{ -0.145, 0 }, 1 },{},{ "LevelM80",{ -0.13, 0 }, 1 },{ "LevelM80",{ -0.115, 0 }, 1 },{},{ "LevelM80",{ -0.1, 0 }, 1 },{ "LevelM80",{ -0.085, 0 }, 1 },{},{ "LevelM80",{ -0.07, 0 }, 1 },{ "LevelM80",{ -0.055, 0 }, 1 },{},{},{ "LevelM80",{ 0.235, -0.02 }, 1 },{ "LevelM80",{ 0.235, 0 }, 1 },{},{ "LevelM80",{ 0.22, 0 }, 1 },{ "LevelM80",{ 0.205, 0 }, 1 },{},{ "LevelM80",{ 0.19, 0 }, 1 },{ "LevelM80",{ 0.175, 0 }, 1 },{},{ "LevelM80",{ 0.16, 0 }, 1 },{ "LevelM80",{ 0.145, 0 }, 1 },{},{ "LevelM80",{ 0.13, 0 }, 1 },{ "LevelM80",{ 0.115, 0 }, 1 },{},{ "LevelM80",{ 0.1, 0 }, 1 },{ "LevelM80",{ 0.085, 0 }, 1 },{},{ "LevelM80",{ 0.07, 0 }, 1 },{ "LevelM80",{ 0.055, 0 }, 1 },{} };
                     };
@@ -786,7 +786,7 @@ class MFD {
                         right[] = { "LevelM80",{ 0.32, -0.032 }, 1 };
                         down[] = { "LevelM80",{ 0.26, 0.018 }, 1 };
                     };
-                    class LevelP80 : Level0 {
+                    class LevelP80: Level0 {
                         type = "line";
                         points[] = { { "LevelP80",{ "-0.22-0.015", 0.02 }, 1 },{ "LevelP80",{ "-0.22-0.015", 0 }, 1 },{ "LevelP80",{ -0.06, 0 }, 1 },{},{ "LevelP80",{ 0.06, 0 }, 1 },{ "LevelP80",{ "+0.22+0.015", 0 }, 1 },{ "LevelP80",{ "+0.22+0.015", 0.02 }, 1 } };
                     };
@@ -812,7 +812,7 @@ class MFD {
                         right[] = { "LevelP80",{ 0.32, -0.017 }, 1 };
                         down[] = { "LevelP80",{ 0.26, 0.033 }, 1 };
                     };
-                    class LevelM90 : Level0 {
+                    class LevelM90: Level0 {
                         type = "line";
                         points[] = { { "LevelM90",{ -0.235, -0.02 }, 1 },{ "LevelM90",{ -0.235, 0 }, 1 },{},{ "LevelM90",{ -0.22, 0 }, 1 },{ "LevelM90",{ -0.205, 0 }, 1 },{},{ "LevelM90",{ -0.19, 0 }, 1 },{ "LevelM90",{ -0.175, 0 }, 1 },{},{ "LevelM90",{ -0.16, 0 }, 1 },{ "LevelM90",{ -0.145, 0 }, 1 },{},{ "LevelM90",{ -0.13, 0 }, 1 },{ "LevelM90",{ -0.115, 0 }, 1 },{},{ "LevelM90",{ -0.1, 0 }, 1 },{ "LevelM90",{ -0.085, 0 }, 1 },{},{ "LevelM90",{ -0.07, 0 }, 1 },{ "LevelM90",{ -0.055, 0 }, 1 },{},{},{ "LevelM90",{ 0.235, -0.02 }, 1 },{ "LevelM90",{ 0.235, 0 }, 1 },{},{ "LevelM90",{ 0.22, 0 }, 1 },{ "LevelM90",{ 0.205, 0 }, 1 },{},{ "LevelM90",{ 0.19, 0 }, 1 },{ "LevelM90",{ 0.175, 0 }, 1 },{},{ "LevelM90",{ 0.16, 0 }, 1 },{ "LevelM90",{ 0.145, 0 }, 1 },{},{ "LevelM90",{ 0.13, 0 }, 1 },{ "LevelM90",{ 0.115, 0 }, 1 },{},{ "LevelM90",{ 0.1, 0 }, 1 },{ "LevelM90",{ 0.085, 0 }, 1 },{},{ "LevelM90",{ 0.07, 0 }, 1 },{ "LevelM90",{ 0.055, 0 }, 1 },{} };
                     };
@@ -838,7 +838,7 @@ class MFD {
                         right[] = { "LevelM90",{ 0.32, -0.032 }, 1 };
                         down[] = { "LevelM90",{ 0.26, 0.018 }, 1 };
                     };
-                    class LevelP90 : Level0 {
+                    class LevelP90: Level0 {
                         type = "line";
                         points[] = { { "LevelP90",{ "-0.22-0.015", 0.02 }, 1 },{ "LevelP90",{ "-0.22-0.015", 0 }, 1 },{ "LevelP90",{ -0.06, 0 }, 1 },{},{ "LevelP90",{ 0.06, 0 }, 1 },{ "LevelP90",{ "+0.22+0.015", 0 }, 1 },{ "LevelP90",{ "+0.22+0.015", 0.02 }, 1 } };
                     };
@@ -937,47 +937,47 @@ class MFD {
                 pylon = 1;
                 name = "Plane_Fighter_01";
             };
-            class Pylon2 : Pylon1 {
+            class Pylon2: Pylon1 {
                 pos[] = { { 0.16, 0.5 }, 1 };
                 pylon = 2;
             };
-            class Pylon3 : Pylon1 {
+            class Pylon3: Pylon1 {
                 pos[] = { { 0.715, 0.44 }, 1 };
                 pylon = 3;
             };
-            class Pylon4 : Pylon1 {
+            class Pylon4: Pylon1 {
                 pos[] = { { 0.275, 0.44 }, 1 };
                 pylon = 4;
             };
-            class Pylon5 : Pylon1 {
+            class Pylon5: Pylon1 {
                 pos[] = { { 0.615, 0.37 }, 1 };
                 pylon = 5;
             };
-            class Pylon6 : Pylon1 {
+            class Pylon6: Pylon1 {
                 pos[] = { { 0.375, 0.37 }, 1 };
                 pylon = 6;
             };
-            class Pylon7 : Pylon1 {
+            class Pylon7: Pylon1 {
                 pos[] = { { 0.665, 0.58 }, 1 };
                 pylon = 7;
             };
-            class Pylon8 : Pylon1 {
+            class Pylon8: Pylon1 {
                 pos[] = { { 0.325, 0.58 }, 1 };
                 pylon = 8;
             };
-            class Pylon9 : Pylon1 {
+            class Pylon9: Pylon1 {
                 pos[] = { { 0.595, 0.55 }, 1 };
                 pylon = 9;
             };
-            class Pylon10 : Pylon1 {
+            class Pylon10: Pylon1 {
                 pos[] = { { 0.395, 0.55 }, 1 };
                 pylon = 10;
             };
-            class Pylon11 : Pylon1 {
+            class Pylon11: Pylon1 {
                 pos[] = { { 0.53, 0.52 }, 1 };
                 pylon = 11;
             };
-            class Pylon12 : Pylon1 {
+            class Pylon12: Pylon1 {
                 pos[] = { { 0.46, 0.52 }, 1 };
                 pylon = 12;
             };
@@ -1075,7 +1075,7 @@ class MFD {
                 pos[] = { 0.5, 0.5 };
                 pos10[] = { 0.774, 0.77 };
             };
-            class Velocity : Pos10Vector {
+            class Velocity: Pos10Vector {
                 type = "vector";
                 source = "velocityToView";
                 pos0[] = { 0.5, 0.5 };
@@ -1105,79 +1105,79 @@ class MFD {
                 maxAngle = 18;
                 aspectRatio = 0.985402;
             };
-            class MissileFlightTimeRot2 : MissileFlightTimeRot1 {
+            class MissileFlightTimeRot2: MissileFlightTimeRot1 {
                 maxAngle = 36;
                 max = 1;
             };
-            class MissileFlightTimeRot3 : MissileFlightTimeRot1 {
+            class MissileFlightTimeRot3: MissileFlightTimeRot1 {
                 maxAngle = 54;
                 max = 1.5;
             };
-            class MissileFlightTimeRot4 : MissileFlightTimeRot1 {
+            class MissileFlightTimeRot4: MissileFlightTimeRot1 {
                 maxAngle = 72;
                 max = 2;
             };
-            class MissileFlightTimeRot5 : MissileFlightTimeRot1 {
+            class MissileFlightTimeRot5: MissileFlightTimeRot1 {
                 maxAngle = 90;
                 max = 2.5;
             };
-            class MissileFlightTimeRot6 : MissileFlightTimeRot1 {
+            class MissileFlightTimeRot6: MissileFlightTimeRot1 {
                 maxAngle = 108;
                 max = 3;
             };
-            class MissileFlightTimeRot7 : MissileFlightTimeRot1 {
+            class MissileFlightTimeRot7: MissileFlightTimeRot1 {
                 maxAngle = 126;
                 max = 3.5;
             };
-            class MissileFlightTimeRot8 : MissileFlightTimeRot1 {
+            class MissileFlightTimeRot8: MissileFlightTimeRot1 {
                 maxAngle = 144;
                 max = 4;
             };
-            class MissileFlightTimeRot9 : MissileFlightTimeRot1 {
+            class MissileFlightTimeRot9: MissileFlightTimeRot1 {
                 maxAngle = 162;
                 max = 4.5;
             };
-            class MissileFlightTimeRot10 : MissileFlightTimeRot1 {
+            class MissileFlightTimeRot10: MissileFlightTimeRot1 {
                 maxAngle = 180;
                 max = 5;
             };
-            class MissileFlightTimeRot11 : MissileFlightTimeRot1 {
+            class MissileFlightTimeRot11: MissileFlightTimeRot1 {
                 maxAngle = 198;
                 max = 5.5;
             };
-            class MissileFlightTimeRot12 : MissileFlightTimeRot1 {
+            class MissileFlightTimeRot12: MissileFlightTimeRot1 {
                 maxAngle = 216;
                 max = 6;
             };
-            class MissileFlightTimeRot13 : MissileFlightTimeRot1 {
+            class MissileFlightTimeRot13: MissileFlightTimeRot1 {
                 maxAngle = 234;
                 max = 6.5;
             };
-            class MissileFlightTimeRot14 : MissileFlightTimeRot1 {
+            class MissileFlightTimeRot14: MissileFlightTimeRot1 {
                 maxAngle = 252;
                 max = 7;
             };
-            class MissileFlightTimeRot15 : MissileFlightTimeRot1 {
+            class MissileFlightTimeRot15: MissileFlightTimeRot1 {
                 maxAngle = 270;
                 max = 7.5;
             };
-            class MissileFlightTimeRot16 : MissileFlightTimeRot1 {
+            class MissileFlightTimeRot16: MissileFlightTimeRot1 {
                 maxAngle = 288;
                 max = 8;
             };
-            class MissileFlightTimeRot17 : MissileFlightTimeRot1 {
+            class MissileFlightTimeRot17: MissileFlightTimeRot1 {
                 maxAngle = 306;
                 max = 8.5;
             };
-            class MissileFlightTimeRot18 : MissileFlightTimeRot1 {
+            class MissileFlightTimeRot18: MissileFlightTimeRot1 {
                 maxAngle = 324;
                 max = 9;
             };
-            class MissileFlightTimeRot19 : MissileFlightTimeRot1 {
+            class MissileFlightTimeRot19: MissileFlightTimeRot1 {
                 maxAngle = 342;
                 max = 9.5;
             };
-            class MissileFlightTimeRot20 : MissileFlightTimeRot1 {
+            class MissileFlightTimeRot20: MissileFlightTimeRot1 {
                 maxAngle = 360;
                 max = 10;
             };
@@ -1224,7 +1224,7 @@ class MFD {
                 pos0[] = { 0.5, 0.5 };
                 pos10[] = { 0.774, 0.77 };
             };
-            class WPPointToView : WPPoint {
+            class WPPointToView: WPPoint {
                 source = "WPPointToView";
             };
             class Airport1 {
@@ -1233,13 +1233,13 @@ class MFD {
                 pos0[] = { 0.5, 0.5 };
                 pos10[] = { 0.774, 0.77 };
             };
-            class Airport2 : Airport1 {
+            class Airport2: Airport1 {
                 source = "airportCorner2ToView";
             };
-            class Airport3 : Airport1 {
+            class Airport3: Airport1 {
                 source = "airportCorner3ToView";
             };
-            class Airport4 : Airport1 {
+            class Airport4: Airport1 {
                 source = "airportCorner4ToView";
             };
             class ILS_H {
@@ -1247,7 +1247,7 @@ class MFD {
                 pos0[] = { 0.5, 0.5 };
                 pos3[] = { 0.5822, 0.5 };
             };
-            class ILS_W : ILS_H {
+            class ILS_W: ILS_H {
                 pos3[] = { 0.5, 0.581 };
             };
             class HorizonBankRot {
@@ -1260,94 +1260,94 @@ class MFD {
                 maxAngle = "180.75+30";
                 aspectRatio = 1;
             };
-            class Level0 : Pos10Vector {
+            class Level0: Pos10Vector {
                 pos0[] = { 0.5, 0.5 };
                 pos10[] = { 0.884, 0.88 };
                 type = "horizontoview";
                 angle = 0;
             };
-            class LevelP5 : Level0 {
+            class LevelP5: Level0 {
                 angle = 5;
             };
-            class LevelM5 : Level0 {
+            class LevelM5: Level0 {
                 angle = -5;
             };
-            class LevelP10 : Level0 {
+            class LevelP10: Level0 {
                 angle = 10;
             };
-            class LevelM10 : Level0 {
+            class LevelM10: Level0 {
                 angle = -10;
             };
-            class LevelP15 : Level0 {
+            class LevelP15: Level0 {
                 angle = 15;
             };
-            class LevelM15 : Level0 {
+            class LevelM15: Level0 {
                 angle = -15;
             };
-            class LevelP20 : Level0 {
+            class LevelP20: Level0 {
                 angle = 20;
             };
-            class LevelM20 : Level0 {
+            class LevelM20: Level0 {
                 angle = -20;
             };
-            class LevelP25 : Level0 {
+            class LevelP25: Level0 {
                 angle = 25;
             };
-            class LevelM25 : Level0 {
+            class LevelM25: Level0 {
                 angle = -25;
             };
-            class LevelP30 : Level0 {
+            class LevelP30: Level0 {
                 angle = 30;
             };
-            class LevelM30 : Level0 {
+            class LevelM30: Level0 {
                 angle = -30;
             };
-            class LevelP35 : Level0 {
+            class LevelP35: Level0 {
                 angle = 35;
             };
-            class LevelM35 : Level0 {
+            class LevelM35: Level0 {
                 angle = -35;
             };
-            class LevelP40 : Level0 {
+            class LevelP40: Level0 {
                 angle = 40;
             };
-            class LevelM40 : Level0 {
+            class LevelM40: Level0 {
                 angle = -40;
             };
-            class LevelP45 : Level0 {
+            class LevelP45: Level0 {
                 angle = 45;
             };
-            class LevelM45 : Level0 {
+            class LevelM45: Level0 {
                 angle = -45;
             };
-            class LevelP50 : Level0 {
+            class LevelP50: Level0 {
                 angle = 50;
             };
-            class LevelM50 : Level0 {
+            class LevelM50: Level0 {
                 angle = -50;
             };
-            class LevelP60 : Level0 {
+            class LevelP60: Level0 {
                 angle = 60;
             };
-            class LevelM60 : Level0 {
+            class LevelM60: Level0 {
                 angle = -60;
             };
-            class LevelP70 : Level0 {
+            class LevelP70: Level0 {
                 angle = 70;
             };
-            class LevelM70 : Level0 {
+            class LevelM70: Level0 {
                 angle = -70;
             };
-            class LevelP80 : Level0 {
+            class LevelP80: Level0 {
                 angle = 80;
             };
-            class LevelM80 : Level0 {
+            class LevelM80: Level0 {
                 angle = -80;
             };
-            class LevelP90 : Level0 {
+            class LevelP90: Level0 {
                 angle = 90;
             };
-            class LevelM90 : Level0 {
+            class LevelM90: Level0 {
                 angle = -90;
             };
             class LarAmmoMax {
@@ -1359,10 +1359,10 @@ class MFD {
                 minPos[] = { 0, 1 };
                 maxPos[] = { 0, 0 };
             };
-            class LarAmmoMin : LarAmmoMax {
+            class LarAmmoMin: LarAmmoMax {
                 source = "LarAmmoMin";
             };
-            class LarTargetDist : LarAmmoMax {
+            class LarTargetDist: LarAmmoMax {
                 source = "LarTargetDist";
             };
         };
@@ -1441,7 +1441,7 @@ class MFD {
                     down[] = { { 0.22, 0.57 }, 1 };
                     align = "right";
                 };
-                class MiddleText : TopText {
+                class MiddleText: TopText {
                     source = "LarTop";
                     sourcePrecision = -1;
                     sourceScale = 0.0005;
@@ -1449,7 +1449,7 @@ class MFD {
                     right[] = { { 0.26, 0.61 }, 1 };
                     down[] = { { 0.22, 0.65 }, 1 };
                 };
-                class SpeedText : TopText {
+                class SpeedText: TopText {
                     source = "LarTargetSpeed";
                     align = "left";
                     sourceScale = 3.6;
@@ -1951,7 +1951,7 @@ class MFD {
                             width = 2;
                             points[] = {};
                         };
-                        class LevelM5 : Level0 {
+                        class LevelM5: Level0 {
                             type = "line";
                             points[] = { { "LevelM5",{ -0.235, -0.02 }, 1 },{ "LevelM5",{ -0.235, 0 }, 1 },{},{ "LevelM5",{ -0.22, 0 }, 1 },{ "LevelM5",{ -0.205, 0 }, 1 },{},{ "LevelM5",{ -0.19, 0 }, 1 },{ "LevelM5",{ -0.175, 0 }, 1 },{},{ "LevelM5",{ -0.16, 0 }, 1 },{ "LevelM5",{ -0.145, 0 }, 1 },{},{ "LevelM5",{ -0.13, 0 }, 1 },{ "LevelM5",{ -0.115, 0 }, 1 },{},{ "LevelM5",{ -0.1, 0 }, 1 },{ "LevelM5",{ -0.085, 0 }, 1 },{},{ "LevelM5",{ -0.07, 0 }, 1 },{ "LevelM5",{ -0.055, 0 }, 1 },{},{},{ "LevelM5",{ 0.235, -0.02 }, 1 },{ "LevelM5",{ 0.235, 0 }, 1 },{},{ "LevelM5",{ 0.22, 0 }, 1 },{ "LevelM5",{ 0.205, 0 }, 1 },{},{ "LevelM5",{ 0.19, 0 }, 1 },{ "LevelM5",{ 0.175, 0 }, 1 },{},{ "LevelM5",{ 0.16, 0 }, 1 },{ "LevelM5",{ 0.145, 0 }, 1 },{},{ "LevelM5",{ 0.13, 0 }, 1 },{ "LevelM5",{ 0.115, 0 }, 1 },{},{ "LevelM5",{ 0.1, 0 }, 1 },{ "LevelM5",{ 0.085, 0 }, 1 },{},{ "LevelM5",{ 0.07, 0 }, 1 },{ "LevelM5",{ 0.055, 0 }, 1 },{} };
                         };
@@ -1977,7 +1977,7 @@ class MFD {
                             right[] = { "LevelM5",{ 0.32, -0.032 }, 1 };
                             down[] = { "LevelM5",{ 0.26, 0.018 }, 1 };
                         };
-                        class LevelP5 : Level0 {
+                        class LevelP5: Level0 {
                             type = "line";
                             points[] = { { "LevelP5",{ "-0.22-0.015", 0.02 }, 1 },{ "LevelP5",{ "-0.22-0.015", 0 }, 1 },{ "LevelP5",{ -0.06, 0 }, 1 },{},{ "LevelP5",{ 0.06, 0 }, 1 },{ "LevelP5",{ "+0.22+0.015", 0 }, 1 },{ "LevelP5",{ "+0.22+0.015", 0.02 }, 1 } };
                         };
@@ -2003,7 +2003,7 @@ class MFD {
                             right[] = { "LevelP5",{ 0.32, -0.017 }, 1 };
                             down[] = { "LevelP5",{ 0.26, 0.033 }, 1 };
                         };
-                        class LevelM10 : Level0 {
+                        class LevelM10: Level0 {
                             type = "line";
                             points[] = { { "LevelM10",{ -0.235, -0.02 }, 1 },{ "LevelM10",{ -0.235, 0 }, 1 },{},{ "LevelM10",{ -0.22, 0 }, 1 },{ "LevelM10",{ -0.205, 0 }, 1 },{},{ "LevelM10",{ -0.19, 0 }, 1 },{ "LevelM10",{ -0.175, 0 }, 1 },{},{ "LevelM10",{ -0.16, 0 }, 1 },{ "LevelM10",{ -0.145, 0 }, 1 },{},{ "LevelM10",{ -0.13, 0 }, 1 },{ "LevelM10",{ -0.115, 0 }, 1 },{},{ "LevelM10",{ -0.1, 0 }, 1 },{ "LevelM10",{ -0.085, 0 }, 1 },{},{ "LevelM10",{ -0.07, 0 }, 1 },{ "LevelM10",{ -0.055, 0 }, 1 },{},{},{ "LevelM10",{ 0.235, -0.02 }, 1 },{ "LevelM10",{ 0.235, 0 }, 1 },{},{ "LevelM10",{ 0.22, 0 }, 1 },{ "LevelM10",{ 0.205, 0 }, 1 },{},{ "LevelM10",{ 0.19, 0 }, 1 },{ "LevelM10",{ 0.175, 0 }, 1 },{},{ "LevelM10",{ 0.16, 0 }, 1 },{ "LevelM10",{ 0.145, 0 }, 1 },{},{ "LevelM10",{ 0.13, 0 }, 1 },{ "LevelM10",{ 0.115, 0 }, 1 },{},{ "LevelM10",{ 0.1, 0 }, 1 },{ "LevelM10",{ 0.085, 0 }, 1 },{},{ "LevelM10",{ 0.07, 0 }, 1 },{ "LevelM10",{ 0.055, 0 }, 1 },{} };
                         };
@@ -2029,7 +2029,7 @@ class MFD {
                             right[] = { "LevelM10",{ 0.32, -0.032 }, 1 };
                             down[] = { "LevelM10",{ 0.26, 0.018 }, 1 };
                         };
-                        class LevelP10 : Level0 {
+                        class LevelP10: Level0 {
                             type = "line";
                             points[] = { { "LevelP10",{ "-0.22-0.015", 0.02 }, 1 },{ "LevelP10",{ "-0.22-0.015", 0 }, 1 },{ "LevelP10",{ -0.06, 0 }, 1 },{},{ "LevelP10",{ 0.06, 0 }, 1 },{ "LevelP10",{ "+0.22+0.015", 0 }, 1 },{ "LevelP10",{ "+0.22+0.015", 0.02 }, 1 } };
                         };
@@ -2055,7 +2055,7 @@ class MFD {
                             right[] = { "LevelP10",{ 0.32, -0.017 }, 1 };
                             down[] = { "LevelP10",{ 0.26, 0.033 }, 1 };
                         };
-                        class LevelM15 : Level0 {
+                        class LevelM15: Level0 {
                             type = "line";
                             points[] = { { "LevelM15",{ -0.235, -0.02 }, 1 },{ "LevelM15",{ -0.235, 0 }, 1 },{},{ "LevelM15",{ -0.22, 0 }, 1 },{ "LevelM15",{ -0.205, 0 }, 1 },{},{ "LevelM15",{ -0.19, 0 }, 1 },{ "LevelM15",{ -0.175, 0 }, 1 },{},{ "LevelM15",{ -0.16, 0 }, 1 },{ "LevelM15",{ -0.145, 0 }, 1 },{},{ "LevelM15",{ -0.13, 0 }, 1 },{ "LevelM15",{ -0.115, 0 }, 1 },{},{ "LevelM15",{ -0.1, 0 }, 1 },{ "LevelM15",{ -0.085, 0 }, 1 },{},{ "LevelM15",{ -0.07, 0 }, 1 },{ "LevelM15",{ -0.055, 0 }, 1 },{},{},{ "LevelM15",{ 0.235, -0.02 }, 1 },{ "LevelM15",{ 0.235, 0 }, 1 },{},{ "LevelM15",{ 0.22, 0 }, 1 },{ "LevelM15",{ 0.205, 0 }, 1 },{},{ "LevelM15",{ 0.19, 0 }, 1 },{ "LevelM15",{ 0.175, 0 }, 1 },{},{ "LevelM15",{ 0.16, 0 }, 1 },{ "LevelM15",{ 0.145, 0 }, 1 },{},{ "LevelM15",{ 0.13, 0 }, 1 },{ "LevelM15",{ 0.115, 0 }, 1 },{},{ "LevelM15",{ 0.1, 0 }, 1 },{ "LevelM15",{ 0.085, 0 }, 1 },{},{ "LevelM15",{ 0.07, 0 }, 1 },{ "LevelM15",{ 0.055, 0 }, 1 },{} };
                         };
@@ -2081,7 +2081,7 @@ class MFD {
                             right[] = { "LevelM15",{ 0.32, -0.032 }, 1 };
                             down[] = { "LevelM15",{ 0.26, 0.018 }, 1 };
                         };
-                        class LevelP15 : Level0 {
+                        class LevelP15: Level0 {
                             type = "line";
                             points[] = { { "LevelP15",{ "-0.22-0.015", 0.02 }, 1 },{ "LevelP15",{ "-0.22-0.015", 0 }, 1 },{ "LevelP15",{ -0.06, 0 }, 1 },{},{ "LevelP15",{ 0.06, 0 }, 1 },{ "LevelP15",{ "+0.22+0.015", 0 }, 1 },{ "LevelP15",{ "+0.22+0.015", 0.02 }, 1 } };
                         };
@@ -2107,7 +2107,7 @@ class MFD {
                             right[] = { "LevelP15",{ 0.32, -0.017 }, 1 };
                             down[] = { "LevelP15",{ 0.26, 0.033 }, 1 };
                         };
-                        class LevelM20 : Level0 {
+                        class LevelM20: Level0 {
                             type = "line";
                             points[] = { { "LevelM20",{ -0.235, -0.02 }, 1 },{ "LevelM20",{ -0.235, 0 }, 1 },{},{ "LevelM20",{ -0.22, 0 }, 1 },{ "LevelM20",{ -0.205, 0 }, 1 },{},{ "LevelM20",{ -0.19, 0 }, 1 },{ "LevelM20",{ -0.175, 0 }, 1 },{},{ "LevelM20",{ -0.16, 0 }, 1 },{ "LevelM20",{ -0.145, 0 }, 1 },{},{ "LevelM20",{ -0.13, 0 }, 1 },{ "LevelM20",{ -0.115, 0 }, 1 },{},{ "LevelM20",{ -0.1, 0 }, 1 },{ "LevelM20",{ -0.085, 0 }, 1 },{},{ "LevelM20",{ -0.07, 0 }, 1 },{ "LevelM20",{ -0.055, 0 }, 1 },{},{},{ "LevelM20",{ 0.235, -0.02 }, 1 },{ "LevelM20",{ 0.235, 0 }, 1 },{},{ "LevelM20",{ 0.22, 0 }, 1 },{ "LevelM20",{ 0.205, 0 }, 1 },{},{ "LevelM20",{ 0.19, 0 }, 1 },{ "LevelM20",{ 0.175, 0 }, 1 },{},{ "LevelM20",{ 0.16, 0 }, 1 },{ "LevelM20",{ 0.145, 0 }, 1 },{},{ "LevelM20",{ 0.13, 0 }, 1 },{ "LevelM20",{ 0.115, 0 }, 1 },{},{ "LevelM20",{ 0.1, 0 }, 1 },{ "LevelM20",{ 0.085, 0 }, 1 },{},{ "LevelM20",{ 0.07, 0 }, 1 },{ "LevelM20",{ 0.055, 0 }, 1 },{} };
                         };
@@ -2133,7 +2133,7 @@ class MFD {
                             right[] = { "LevelM20",{ 0.32, -0.032 }, 1 };
                             down[] = { "LevelM20",{ 0.26, 0.018 }, 1 };
                         };
-                        class LevelP20 : Level0 {
+                        class LevelP20: Level0 {
                             type = "line";
                             points[] = { { "LevelP20",{ "-0.22-0.015", 0.02 }, 1 },{ "LevelP20",{ "-0.22-0.015", 0 }, 1 },{ "LevelP20",{ -0.06, 0 }, 1 },{},{ "LevelP20",{ 0.06, 0 }, 1 },{ "LevelP20",{ "+0.22+0.015", 0 }, 1 },{ "LevelP20",{ "+0.22+0.015", 0.02 }, 1 } };
                         };
@@ -2159,7 +2159,7 @@ class MFD {
                             right[] = { "LevelP20",{ 0.32, -0.017 }, 1 };
                             down[] = { "LevelP20",{ 0.26, 0.033 }, 1 };
                         };
-                        class LevelM25 : Level0 {
+                        class LevelM25: Level0 {
                             type = "line";
                             points[] = { { "LevelM25",{ -0.235, -0.02 }, 1 },{ "LevelM25",{ -0.235, 0 }, 1 },{},{ "LevelM25",{ -0.22, 0 }, 1 },{ "LevelM25",{ -0.205, 0 }, 1 },{},{ "LevelM25",{ -0.19, 0 }, 1 },{ "LevelM25",{ -0.175, 0 }, 1 },{},{ "LevelM25",{ -0.16, 0 }, 1 },{ "LevelM25",{ -0.145, 0 }, 1 },{},{ "LevelM25",{ -0.13, 0 }, 1 },{ "LevelM25",{ -0.115, 0 }, 1 },{},{ "LevelM25",{ -0.1, 0 }, 1 },{ "LevelM25",{ -0.085, 0 }, 1 },{},{ "LevelM25",{ -0.07, 0 }, 1 },{ "LevelM25",{ -0.055, 0 }, 1 },{},{},{ "LevelM25",{ 0.235, -0.02 }, 1 },{ "LevelM25",{ 0.235, 0 }, 1 },{},{ "LevelM25",{ 0.22, 0 }, 1 },{ "LevelM25",{ 0.205, 0 }, 1 },{},{ "LevelM25",{ 0.19, 0 }, 1 },{ "LevelM25",{ 0.175, 0 }, 1 },{},{ "LevelM25",{ 0.16, 0 }, 1 },{ "LevelM25",{ 0.145, 0 }, 1 },{},{ "LevelM25",{ 0.13, 0 }, 1 },{ "LevelM25",{ 0.115, 0 }, 1 },{},{ "LevelM25",{ 0.1, 0 }, 1 },{ "LevelM25",{ 0.085, 0 }, 1 },{},{ "LevelM25",{ 0.07, 0 }, 1 },{ "LevelM25",{ 0.055, 0 }, 1 },{} };
                         };
@@ -2185,7 +2185,7 @@ class MFD {
                             right[] = { "LevelM25",{ 0.32, -0.032 }, 1 };
                             down[] = { "LevelM25",{ 0.26, 0.018 }, 1 };
                         };
-                        class LevelP25 : Level0 {
+                        class LevelP25: Level0 {
                             type = "line";
                             points[] = { { "LevelP25",{ "-0.22-0.015", 0.02 }, 1 },{ "LevelP25",{ "-0.22-0.015", 0 }, 1 },{ "LevelP25",{ -0.06, 0 }, 1 },{},{ "LevelP25",{ 0.06, 0 }, 1 },{ "LevelP25",{ "+0.22+0.015", 0 }, 1 },{ "LevelP25",{ "+0.22+0.015", 0.02 }, 1 } };
                         };
@@ -2211,7 +2211,7 @@ class MFD {
                             right[] = { "LevelP25",{ 0.32, -0.017 }, 1 };
                             down[] = { "LevelP25",{ 0.26, 0.033 }, 1 };
                         };
-                        class LevelM30 : Level0 {
+                        class LevelM30: Level0 {
                             type = "line";
                             points[] = { { "LevelM30",{ -0.235, -0.02 }, 1 },{ "LevelM30",{ -0.235, 0 }, 1 },{},{ "LevelM30",{ -0.22, 0 }, 1 },{ "LevelM30",{ -0.205, 0 }, 1 },{},{ "LevelM30",{ -0.19, 0 }, 1 },{ "LevelM30",{ -0.175, 0 }, 1 },{},{ "LevelM30",{ -0.16, 0 }, 1 },{ "LevelM30",{ -0.145, 0 }, 1 },{},{ "LevelM30",{ -0.13, 0 }, 1 },{ "LevelM30",{ -0.115, 0 }, 1 },{},{ "LevelM30",{ -0.1, 0 }, 1 },{ "LevelM30",{ -0.085, 0 }, 1 },{},{ "LevelM30",{ -0.07, 0 }, 1 },{ "LevelM30",{ -0.055, 0 }, 1 },{},{},{ "LevelM30",{ 0.235, -0.02 }, 1 },{ "LevelM30",{ 0.235, 0 }, 1 },{},{ "LevelM30",{ 0.22, 0 }, 1 },{ "LevelM30",{ 0.205, 0 }, 1 },{},{ "LevelM30",{ 0.19, 0 }, 1 },{ "LevelM30",{ 0.175, 0 }, 1 },{},{ "LevelM30",{ 0.16, 0 }, 1 },{ "LevelM30",{ 0.145, 0 }, 1 },{},{ "LevelM30",{ 0.13, 0 }, 1 },{ "LevelM30",{ 0.115, 0 }, 1 },{},{ "LevelM30",{ 0.1, 0 }, 1 },{ "LevelM30",{ 0.085, 0 }, 1 },{},{ "LevelM30",{ 0.07, 0 }, 1 },{ "LevelM30",{ 0.055, 0 }, 1 },{} };
                         };
@@ -2237,7 +2237,7 @@ class MFD {
                             right[] = { "LevelM30",{ 0.32, -0.032 }, 1 };
                             down[] = { "LevelM30",{ 0.26, 0.018 }, 1 };
                         };
-                        class LevelP30 : Level0 {
+                        class LevelP30: Level0 {
                             type = "line";
                             points[] = { { "LevelP30",{ "-0.22-0.015", 0.02 }, 1 },{ "LevelP30",{ "-0.22-0.015", 0 }, 1 },{ "LevelP30",{ -0.06, 0 }, 1 },{},{ "LevelP30",{ 0.06, 0 }, 1 },{ "LevelP30",{ "+0.22+0.015", 0 }, 1 },{ "LevelP30",{ "+0.22+0.015", 0.02 }, 1 } };
                         };
@@ -2263,7 +2263,7 @@ class MFD {
                             right[] = { "LevelP30",{ 0.32, -0.017 }, 1 };
                             down[] = { "LevelP30",{ 0.26, 0.033 }, 1 };
                         };
-                        class LevelM35 : Level0 {
+                        class LevelM35: Level0 {
                             type = "line";
                             points[] = { { "LevelM35",{ -0.235, -0.02 }, 1 },{ "LevelM35",{ -0.235, 0 }, 1 },{},{ "LevelM35",{ -0.22, 0 }, 1 },{ "LevelM35",{ -0.205, 0 }, 1 },{},{ "LevelM35",{ -0.19, 0 }, 1 },{ "LevelM35",{ -0.175, 0 }, 1 },{},{ "LevelM35",{ -0.16, 0 }, 1 },{ "LevelM35",{ -0.145, 0 }, 1 },{},{ "LevelM35",{ -0.13, 0 }, 1 },{ "LevelM35",{ -0.115, 0 }, 1 },{},{ "LevelM35",{ -0.1, 0 }, 1 },{ "LevelM35",{ -0.085, 0 }, 1 },{},{ "LevelM35",{ -0.07, 0 }, 1 },{ "LevelM35",{ -0.055, 0 }, 1 },{},{},{ "LevelM35",{ 0.235, -0.02 }, 1 },{ "LevelM35",{ 0.235, 0 }, 1 },{},{ "LevelM35",{ 0.22, 0 }, 1 },{ "LevelM35",{ 0.205, 0 }, 1 },{},{ "LevelM35",{ 0.19, 0 }, 1 },{ "LevelM35",{ 0.175, 0 }, 1 },{},{ "LevelM35",{ 0.16, 0 }, 1 },{ "LevelM35",{ 0.145, 0 }, 1 },{},{ "LevelM35",{ 0.13, 0 }, 1 },{ "LevelM35",{ 0.115, 0 }, 1 },{},{ "LevelM35",{ 0.1, 0 }, 1 },{ "LevelM35",{ 0.085, 0 }, 1 },{},{ "LevelM35",{ 0.07, 0 }, 1 },{ "LevelM35",{ 0.055, 0 }, 1 },{} };
                         };
@@ -2289,7 +2289,7 @@ class MFD {
                             right[] = { "LevelM35",{ 0.32, -0.032 }, 1 };
                             down[] = { "LevelM35",{ 0.26, 0.018 }, 1 };
                         };
-                        class LevelP35 : Level0 {
+                        class LevelP35: Level0 {
                             type = "line";
                             points[] = { { "LevelP35",{ "-0.22-0.015", 0.02 }, 1 },{ "LevelP35",{ "-0.22-0.015", 0 }, 1 },{ "LevelP35",{ -0.06, 0 }, 1 },{},{ "LevelP35",{ 0.06, 0 }, 1 },{ "LevelP35",{ "+0.22+0.015", 0 }, 1 },{ "LevelP35",{ "+0.22+0.015", 0.02 }, 1 } };
                         };
@@ -2315,7 +2315,7 @@ class MFD {
                             right[] = { "LevelP35",{ 0.32, -0.017 }, 1 };
                             down[] = { "LevelP35",{ 0.26, 0.033 }, 1 };
                         };
-                        class LevelM40 : Level0 {
+                        class LevelM40: Level0 {
                             type = "line";
                             points[] = { { "LevelM40",{ -0.235, -0.02 }, 1 },{ "LevelM40",{ -0.235, 0 }, 1 },{},{ "LevelM40",{ -0.22, 0 }, 1 },{ "LevelM40",{ -0.205, 0 }, 1 },{},{ "LevelM40",{ -0.19, 0 }, 1 },{ "LevelM40",{ -0.175, 0 }, 1 },{},{ "LevelM40",{ -0.16, 0 }, 1 },{ "LevelM40",{ -0.145, 0 }, 1 },{},{ "LevelM40",{ -0.13, 0 }, 1 },{ "LevelM40",{ -0.115, 0 }, 1 },{},{ "LevelM40",{ -0.1, 0 }, 1 },{ "LevelM40",{ -0.085, 0 }, 1 },{},{ "LevelM40",{ -0.07, 0 }, 1 },{ "LevelM40",{ -0.055, 0 }, 1 },{},{},{ "LevelM40",{ 0.235, -0.02 }, 1 },{ "LevelM40",{ 0.235, 0 }, 1 },{},{ "LevelM40",{ 0.22, 0 }, 1 },{ "LevelM40",{ 0.205, 0 }, 1 },{},{ "LevelM40",{ 0.19, 0 }, 1 },{ "LevelM40",{ 0.175, 0 }, 1 },{},{ "LevelM40",{ 0.16, 0 }, 1 },{ "LevelM40",{ 0.145, 0 }, 1 },{},{ "LevelM40",{ 0.13, 0 }, 1 },{ "LevelM40",{ 0.115, 0 }, 1 },{},{ "LevelM40",{ 0.1, 0 }, 1 },{ "LevelM40",{ 0.085, 0 }, 1 },{},{ "LevelM40",{ 0.07, 0 }, 1 },{ "LevelM40",{ 0.055, 0 }, 1 },{} };
                         };
@@ -2341,7 +2341,7 @@ class MFD {
                             right[] = { "LevelM40",{ 0.32, -0.032 }, 1 };
                             down[] = { "LevelM40",{ 0.26, 0.018 }, 1 };
                         };
-                        class LevelP40 : Level0 {
+                        class LevelP40: Level0 {
                             type = "line";
                             points[] = { { "LevelP40",{ "-0.22-0.015", 0.02 }, 1 },{ "LevelP40",{ "-0.22-0.015", 0 }, 1 },{ "LevelP40",{ -0.06, 0 }, 1 },{},{ "LevelP40",{ 0.06, 0 }, 1 },{ "LevelP40",{ "+0.22+0.015", 0 }, 1 },{ "LevelP40",{ "+0.22+0.015", 0.02 }, 1 } };
                         };
@@ -2367,7 +2367,7 @@ class MFD {
                             right[] = { "LevelP40",{ 0.32, -0.017 }, 1 };
                             down[] = { "LevelP40",{ 0.26, 0.033 }, 1 };
                         };
-                        class LevelM45 : Level0 {
+                        class LevelM45: Level0 {
                             type = "line";
                             points[] = { { "LevelM45",{ -0.235, -0.02 }, 1 },{ "LevelM45",{ -0.235, 0 }, 1 },{},{ "LevelM45",{ -0.22, 0 }, 1 },{ "LevelM45",{ -0.205, 0 }, 1 },{},{ "LevelM45",{ -0.19, 0 }, 1 },{ "LevelM45",{ -0.175, 0 }, 1 },{},{ "LevelM45",{ -0.16, 0 }, 1 },{ "LevelM45",{ -0.145, 0 }, 1 },{},{ "LevelM45",{ -0.13, 0 }, 1 },{ "LevelM45",{ -0.115, 0 }, 1 },{},{ "LevelM45",{ -0.1, 0 }, 1 },{ "LevelM45",{ -0.085, 0 }, 1 },{},{ "LevelM45",{ -0.07, 0 }, 1 },{ "LevelM45",{ -0.055, 0 }, 1 },{},{},{ "LevelM45",{ 0.235, -0.02 }, 1 },{ "LevelM45",{ 0.235, 0 }, 1 },{},{ "LevelM45",{ 0.22, 0 }, 1 },{ "LevelM45",{ 0.205, 0 }, 1 },{},{ "LevelM45",{ 0.19, 0 }, 1 },{ "LevelM45",{ 0.175, 0 }, 1 },{},{ "LevelM45",{ 0.16, 0 }, 1 },{ "LevelM45",{ 0.145, 0 }, 1 },{},{ "LevelM45",{ 0.13, 0 }, 1 },{ "LevelM45",{ 0.115, 0 }, 1 },{},{ "LevelM45",{ 0.1, 0 }, 1 },{ "LevelM45",{ 0.085, 0 }, 1 },{},{ "LevelM45",{ 0.07, 0 }, 1 },{ "LevelM45",{ 0.055, 0 }, 1 },{} };
                         };
@@ -2393,7 +2393,7 @@ class MFD {
                             right[] = { "LevelM45",{ 0.32, -0.032 }, 1 };
                             down[] = { "LevelM45",{ 0.26, 0.018 }, 1 };
                         };
-                        class LevelP45 : Level0 {
+                        class LevelP45: Level0 {
                             type = "line";
                             points[] = { { "LevelP45",{ "-0.22-0.015", 0.02 }, 1 },{ "LevelP45",{ "-0.22-0.015", 0 }, 1 },{ "LevelP45",{ -0.06, 0 }, 1 },{},{ "LevelP45",{ 0.06, 0 }, 1 },{ "LevelP45",{ "+0.22+0.015", 0 }, 1 },{ "LevelP45",{ "+0.22+0.015", 0.02 }, 1 } };
                         };
@@ -2419,7 +2419,7 @@ class MFD {
                             right[] = { "LevelP45",{ 0.32, -0.017 }, 1 };
                             down[] = { "LevelP45",{ 0.26, 0.033 }, 1 };
                         };
-                        class LevelM50 : Level0 {
+                        class LevelM50: Level0 {
                             type = "line";
                             points[] = { { "LevelM50",{ -0.235, -0.02 }, 1 },{ "LevelM50",{ -0.235, 0 }, 1 },{},{ "LevelM50",{ -0.22, 0 }, 1 },{ "LevelM50",{ -0.205, 0 }, 1 },{},{ "LevelM50",{ -0.19, 0 }, 1 },{ "LevelM50",{ -0.175, 0 }, 1 },{},{ "LevelM50",{ -0.16, 0 }, 1 },{ "LevelM50",{ -0.145, 0 }, 1 },{},{ "LevelM50",{ -0.13, 0 }, 1 },{ "LevelM50",{ -0.115, 0 }, 1 },{},{ "LevelM50",{ -0.1, 0 }, 1 },{ "LevelM50",{ -0.085, 0 }, 1 },{},{ "LevelM50",{ -0.07, 0 }, 1 },{ "LevelM50",{ -0.055, 0 }, 1 },{},{},{ "LevelM50",{ 0.235, -0.02 }, 1 },{ "LevelM50",{ 0.235, 0 }, 1 },{},{ "LevelM50",{ 0.22, 0 }, 1 },{ "LevelM50",{ 0.205, 0 }, 1 },{},{ "LevelM50",{ 0.19, 0 }, 1 },{ "LevelM50",{ 0.175, 0 }, 1 },{},{ "LevelM50",{ 0.16, 0 }, 1 },{ "LevelM50",{ 0.145, 0 }, 1 },{},{ "LevelM50",{ 0.13, 0 }, 1 },{ "LevelM50",{ 0.115, 0 }, 1 },{},{ "LevelM50",{ 0.1, 0 }, 1 },{ "LevelM50",{ 0.085, 0 }, 1 },{},{ "LevelM50",{ 0.07, 0 }, 1 },{ "LevelM50",{ 0.055, 0 }, 1 },{} };
                         };
@@ -2445,7 +2445,7 @@ class MFD {
                             right[] = { "LevelM50",{ 0.32, -0.032 }, 1 };
                             down[] = { "LevelM50",{ 0.26, 0.018 }, 1 };
                         };
-                        class LevelP50 : Level0 {
+                        class LevelP50: Level0 {
                             type = "line";
                             points[] = { { "LevelP50",{ "-0.22-0.015", 0.02 }, 1 },{ "LevelP50",{ "-0.22-0.015", 0 }, 1 },{ "LevelP50",{ -0.06, 0 }, 1 },{},{ "LevelP50",{ 0.06, 0 }, 1 },{ "LevelP50",{ "+0.22+0.015", 0 }, 1 },{ "LevelP50",{ "+0.22+0.015", 0.02 }, 1 } };
                         };
@@ -2471,7 +2471,7 @@ class MFD {
                             right[] = { "LevelP50",{ 0.32, -0.017 }, 1 };
                             down[] = { "LevelP50",{ 0.26, 0.033 }, 1 };
                         };
-                        class LevelM60 : Level0 {
+                        class LevelM60: Level0 {
                             type = "line";
                             points[] = { { "LevelM60",{ -0.235, -0.02 }, 1 },{ "LevelM60",{ -0.235, 0 }, 1 },{},{ "LevelM60",{ -0.22, 0 }, 1 },{ "LevelM60",{ -0.205, 0 }, 1 },{},{ "LevelM60",{ -0.19, 0 }, 1 },{ "LevelM60",{ -0.175, 0 }, 1 },{},{ "LevelM60",{ -0.16, 0 }, 1 },{ "LevelM60",{ -0.145, 0 }, 1 },{},{ "LevelM60",{ -0.13, 0 }, 1 },{ "LevelM60",{ -0.115, 0 }, 1 },{},{ "LevelM60",{ -0.1, 0 }, 1 },{ "LevelM60",{ -0.085, 0 }, 1 },{},{ "LevelM60",{ -0.07, 0 }, 1 },{ "LevelM60",{ -0.055, 0 }, 1 },{},{},{ "LevelM60",{ 0.235, -0.02 }, 1 },{ "LevelM60",{ 0.235, 0 }, 1 },{},{ "LevelM60",{ 0.22, 0 }, 1 },{ "LevelM60",{ 0.205, 0 }, 1 },{},{ "LevelM60",{ 0.19, 0 }, 1 },{ "LevelM60",{ 0.175, 0 }, 1 },{},{ "LevelM60",{ 0.16, 0 }, 1 },{ "LevelM60",{ 0.145, 0 }, 1 },{},{ "LevelM60",{ 0.13, 0 }, 1 },{ "LevelM60",{ 0.115, 0 }, 1 },{},{ "LevelM60",{ 0.1, 0 }, 1 },{ "LevelM60",{ 0.085, 0 }, 1 },{},{ "LevelM60",{ 0.07, 0 }, 1 },{ "LevelM60",{ 0.055, 0 }, 1 },{} };
                         };
@@ -2497,7 +2497,7 @@ class MFD {
                             right[] = { "LevelM60",{ 0.32, -0.032 }, 1 };
                             down[] = { "LevelM60",{ 0.26, 0.018 }, 1 };
                         };
-                        class LevelP60 : Level0 {
+                        class LevelP60: Level0 {
                             type = "line";
                             points[] = { { "LevelP60",{ "-0.22-0.015", 0.02 }, 1 },{ "LevelP60",{ "-0.22-0.015", 0 }, 1 },{ "LevelP60",{ -0.06, 0 }, 1 },{},{ "LevelP60",{ 0.06, 0 }, 1 },{ "LevelP60",{ "+0.22+0.015", 0 }, 1 },{ "LevelP60",{ "+0.22+0.015", 0.02 }, 1 } };
                         };
@@ -2523,7 +2523,7 @@ class MFD {
                             right[] = { "LevelP60",{ 0.32, -0.017 }, 1 };
                             down[] = { "LevelP60",{ 0.26, 0.033 }, 1 };
                         };
-                        class LevelM70 : Level0 {
+                        class LevelM70: Level0 {
                             type = "line";
                             points[] = { { "LevelM70",{ -0.235, -0.02 }, 1 },{ "LevelM70",{ -0.235, 0 }, 1 },{},{ "LevelM70",{ -0.22, 0 }, 1 },{ "LevelM70",{ -0.205, 0 }, 1 },{},{ "LevelM70",{ -0.19, 0 }, 1 },{ "LevelM70",{ -0.175, 0 }, 1 },{},{ "LevelM70",{ -0.16, 0 }, 1 },{ "LevelM70",{ -0.145, 0 }, 1 },{},{ "LevelM70",{ -0.13, 0 }, 1 },{ "LevelM70",{ -0.115, 0 }, 1 },{},{ "LevelM70",{ -0.1, 0 }, 1 },{ "LevelM70",{ -0.085, 0 }, 1 },{},{ "LevelM70",{ -0.07, 0 }, 1 },{ "LevelM70",{ -0.055, 0 }, 1 },{},{},{ "LevelM70",{ 0.235, -0.02 }, 1 },{ "LevelM70",{ 0.235, 0 }, 1 },{},{ "LevelM70",{ 0.22, 0 }, 1 },{ "LevelM70",{ 0.205, 0 }, 1 },{},{ "LevelM70",{ 0.19, 0 }, 1 },{ "LevelM70",{ 0.175, 0 }, 1 },{},{ "LevelM70",{ 0.16, 0 }, 1 },{ "LevelM70",{ 0.145, 0 }, 1 },{},{ "LevelM70",{ 0.13, 0 }, 1 },{ "LevelM70",{ 0.115, 0 }, 1 },{},{ "LevelM70",{ 0.1, 0 }, 1 },{ "LevelM70",{ 0.085, 0 }, 1 },{},{ "LevelM70",{ 0.07, 0 }, 1 },{ "LevelM70",{ 0.055, 0 }, 1 },{} };
                         };
@@ -2549,7 +2549,7 @@ class MFD {
                             right[] = { "LevelM70",{ 0.32, -0.032 }, 1 };
                             down[] = { "LevelM70",{ 0.26, 0.018 }, 1 };
                         };
-                        class LevelP70 : Level0 {
+                        class LevelP70: Level0 {
                             type = "line";
                             points[] = { { "LevelP70",{ "-0.22-0.015", 0.02 }, 1 },{ "LevelP70",{ "-0.22-0.015", 0 }, 1 },{ "LevelP70",{ -0.06, 0 }, 1 },{},{ "LevelP70",{ 0.06, 0 }, 1 },{ "LevelP70",{ "+0.22+0.015", 0 }, 1 },{ "LevelP70",{ "+0.22+0.015", 0.02 }, 1 } };
                         };
@@ -2575,7 +2575,7 @@ class MFD {
                             right[] = { "LevelP70",{ 0.32, -0.017 }, 1 };
                             down[] = { "LevelP70",{ 0.26, 0.033 }, 1 };
                         };
-                        class LevelM80 : Level0 {
+                        class LevelM80: Level0 {
                             type = "line";
                             points[] = { { "LevelM80",{ -0.235, -0.02 }, 1 },{ "LevelM80",{ -0.235, 0 }, 1 },{},{ "LevelM80",{ -0.22, 0 }, 1 },{ "LevelM80",{ -0.205, 0 }, 1 },{},{ "LevelM80",{ -0.19, 0 }, 1 },{ "LevelM80",{ -0.175, 0 }, 1 },{},{ "LevelM80",{ -0.16, 0 }, 1 },{ "LevelM80",{ -0.145, 0 }, 1 },{},{ "LevelM80",{ -0.13, 0 }, 1 },{ "LevelM80",{ -0.115, 0 }, 1 },{},{ "LevelM80",{ -0.1, 0 }, 1 },{ "LevelM80",{ -0.085, 0 }, 1 },{},{ "LevelM80",{ -0.07, 0 }, 1 },{ "LevelM80",{ -0.055, 0 }, 1 },{},{},{ "LevelM80",{ 0.235, -0.02 }, 1 },{ "LevelM80",{ 0.235, 0 }, 1 },{},{ "LevelM80",{ 0.22, 0 }, 1 },{ "LevelM80",{ 0.205, 0 }, 1 },{},{ "LevelM80",{ 0.19, 0 }, 1 },{ "LevelM80",{ 0.175, 0 }, 1 },{},{ "LevelM80",{ 0.16, 0 }, 1 },{ "LevelM80",{ 0.145, 0 }, 1 },{},{ "LevelM80",{ 0.13, 0 }, 1 },{ "LevelM80",{ 0.115, 0 }, 1 },{},{ "LevelM80",{ 0.1, 0 }, 1 },{ "LevelM80",{ 0.085, 0 }, 1 },{},{ "LevelM80",{ 0.07, 0 }, 1 },{ "LevelM80",{ 0.055, 0 }, 1 },{} };
                         };
@@ -2601,7 +2601,7 @@ class MFD {
                             right[] = { "LevelM80",{ 0.32, -0.032 }, 1 };
                             down[] = { "LevelM80",{ 0.26, 0.018 }, 1 };
                         };
-                        class LevelP80 : Level0 {
+                        class LevelP80: Level0 {
                             type = "line";
                             points[] = { { "LevelP80",{ "-0.22-0.015", 0.02 }, 1 },{ "LevelP80",{ "-0.22-0.015", 0 }, 1 },{ "LevelP80",{ -0.06, 0 }, 1 },{},{ "LevelP80",{ 0.06, 0 }, 1 },{ "LevelP80",{ "+0.22+0.015", 0 }, 1 },{ "LevelP80",{ "+0.22+0.015", 0.02 }, 1 } };
                         };
@@ -2627,7 +2627,7 @@ class MFD {
                             right[] = { "LevelP80",{ 0.32, -0.017 }, 1 };
                             down[] = { "LevelP80",{ 0.26, 0.033 }, 1 };
                         };
-                        class LevelM90 : Level0 {
+                        class LevelM90: Level0 {
                             type = "line";
                             points[] = { { "LevelM90",{ -0.235, -0.02 }, 1 },{ "LevelM90",{ -0.235, 0 }, 1 },{},{ "LevelM90",{ -0.22, 0 }, 1 },{ "LevelM90",{ -0.205, 0 }, 1 },{},{ "LevelM90",{ -0.19, 0 }, 1 },{ "LevelM90",{ -0.175, 0 }, 1 },{},{ "LevelM90",{ -0.16, 0 }, 1 },{ "LevelM90",{ -0.145, 0 }, 1 },{},{ "LevelM90",{ -0.13, 0 }, 1 },{ "LevelM90",{ -0.115, 0 }, 1 },{},{ "LevelM90",{ -0.1, 0 }, 1 },{ "LevelM90",{ -0.085, 0 }, 1 },{},{ "LevelM90",{ -0.07, 0 }, 1 },{ "LevelM90",{ -0.055, 0 }, 1 },{},{},{ "LevelM90",{ 0.235, -0.02 }, 1 },{ "LevelM90",{ 0.235, 0 }, 1 },{},{ "LevelM90",{ 0.22, 0 }, 1 },{ "LevelM90",{ 0.205, 0 }, 1 },{},{ "LevelM90",{ 0.19, 0 }, 1 },{ "LevelM90",{ 0.175, 0 }, 1 },{},{ "LevelM90",{ 0.16, 0 }, 1 },{ "LevelM90",{ 0.145, 0 }, 1 },{},{ "LevelM90",{ 0.13, 0 }, 1 },{ "LevelM90",{ 0.115, 0 }, 1 },{},{ "LevelM90",{ 0.1, 0 }, 1 },{ "LevelM90",{ 0.085, 0 }, 1 },{},{ "LevelM90",{ 0.07, 0 }, 1 },{ "LevelM90",{ 0.055, 0 }, 1 },{} };
                         };
@@ -2653,7 +2653,7 @@ class MFD {
                             right[] = { "LevelM90",{ 0.32, -0.032 }, 1 };
                             down[] = { "LevelM90",{ 0.26, 0.018 }, 1 };
                         };
-                        class LevelP90 : Level0 {
+                        class LevelP90: Level0 {
                             type = "line";
                             points[] = { { "LevelP90",{ "-0.22-0.015", 0.02 }, 1 },{ "LevelP90",{ "-0.22-0.015", 0 }, 1 },{ "LevelP90",{ -0.06, 0 }, 1 },{},{ "LevelP90",{ 0.06, 0 }, 1 },{ "LevelP90",{ "+0.22+0.015", 0 }, 1 },{ "LevelP90",{ "+0.22+0.015", 0.02 }, 1 } };
                         };

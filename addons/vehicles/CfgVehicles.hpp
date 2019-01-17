@@ -32,9 +32,11 @@ class CfgVehicles {
         class HitPoints: HitPoints {
             class HitBody: HitBody {
                 armor = 1.5; // Default: 0.7
+                passThrough = 0;
             };
             class HitEngine: HitEngine {
                 armor = 4; // Default: 2
+                passThrough = 0;
             };
             class HitFuel: HitFuel {
                 armor = 2; // Default: 1
@@ -51,9 +53,11 @@ class CfgVehicles {
         class HitPoints: HitPoints {
             class HitBody: HitBody {
                 armor = 1.5; // Default: 0.7
+                passThrough = 0;
             };
             class HitEngine: HitEngine {
                 armor = 4; // Default: 2
+                passThrough = 0;
             };
             class HitFuel: HitFuel {
                 armor = 2; // Default: 1
@@ -66,19 +70,26 @@ class CfgVehicles {
     };
     class Wheeled_APC_F: Car_F {
         class NewTurret;
+        class HitPoints: HitPoints {
+            class HitLFWheel;
+            class HitLF2Wheel;
+            class HitRFWheel;
+            class HitRF2Wheel;
+        };
     };
 
     #include "vehicles\CfgBulldog.hpp"
     #include "vehicles\CfgCoyote.hpp"
+    #include "vehicles\CfgCoyoteCUP.hpp"
+    #include "vehicles\CfgHemtt.hpp"
     #include "vehicles\CfgJackal.hpp"
+    #include "vehicles\CfgJackalCUP.hpp"
     #include "vehicles\CfgLandRover.hpp"
+    #include "vehicles\CfgLandRoverCUP.hpp"
     #include "vehicles\CfgMastiff.hpp"
+    #include "vehicles\CfgPanther.hpp"
     #include "vehicles\CfgRidgeback.hpp"
     #include "vehicles\CfgWolfhound.hpp"
-    #include "vehicles\CfgHemtt.hpp"
-    #include "vehicles\CfgJackalCUP.hpp"
-    #include "vehicles\CfgCoyoteCUP.hpp"
-    #include "vehicles\CfgLandRoverCUP.hpp"
 
     class Tank_F;
     class CUP_2S6_Base: Tank_F {

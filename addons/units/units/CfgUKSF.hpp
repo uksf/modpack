@@ -2,6 +2,7 @@
 class UKSF_B_Rifleman: CUP_B_BAF_Soldier_MTP {
     scope = 2;
     author = "UKSF";
+    faction = "UKSF_GB";
     editorSubcategory = QEGVAR(common,1para);
     displayName = "Rifleman";
     cost = 100000;
