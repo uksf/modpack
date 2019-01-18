@@ -166,8 +166,6 @@
     "ACE_VectorDay", \
     "ACE_Yardage450", \
     "Binocular", \
-    "CUP_arifle_HK417_12", \
-    "CUP_arifle_HK417_12_M203", \
     "CUP_launch_FIM92Stinger", \
     "Rangefinder", \
     "SMA_HK416CQBGLOD", \
