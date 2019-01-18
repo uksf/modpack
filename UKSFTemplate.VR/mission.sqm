@@ -6433,7 +6433,7 @@ class Mission
 					{
 					};
 					id=131;
-					type="UKSF_Hemtt_Ammo";
+					type="UK3CB_BAF_MAN_HX58_Rearm_Green";
 				};
 				class Item12
 				{
@@ -6448,7 +6448,7 @@ class Mission
 					{
 					};
 					id=132;
-					type="UKSF_Hemtt_Fuel";
+					type="UK3CB_BAF_MAN_HX58_Fuel_Green";
 				};
 				class Item13
 				{
@@ -6463,7 +6463,7 @@ class Mission
 					{
 					};
 					id=133;
-					type="UKSF_Hemtt_Repair";
+					type="UK3CB_BAF_MAN_HX58_Repair_Green";
 				};
 				class Item14
 				{

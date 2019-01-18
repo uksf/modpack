@@ -86,6 +86,7 @@ class CfgVehicles {
     #include "vehicles\CfgJackalCUP.hpp"
     #include "vehicles\CfgLandRover.hpp"
     #include "vehicles\CfgLandRoverCUP.hpp"
+    #include "vehicles\CfgMan.hpp"
     #include "vehicles\CfgMastiff.hpp"
     #include "vehicles\CfgPanther.hpp"
     #include "vehicles\CfgRidgeback.hpp"
