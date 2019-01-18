@@ -23,13 +23,17 @@ class CfgPatches {
 };
 
 class CBA_Extended_EventHandlers;
-#include "CfgEventHandlers.hpp"
 #include "Cfg3den.hpp"
+#include "CfgAILevelPresets.hpp"
+#include "CfgAISkill.hpp"
+#include "CfgDifficultyPresets.hpp"
+#include "CfgEventHandlers.hpp"
 #include "CfgEditorSubcategories.hpp"
 #include "CfgFactionClasses.hpp"
 #include "CfgGroups.hpp"
 #include "CfgImprecision.hpp"
 #include "CfgMarkerColors.hpp"
+#include "CfgSurfaces.hpp"
 #include "CfgWeapons.hpp"
 #include "CfgVehicles.hpp"
 
