@@ -28,9 +28,7 @@ private _customChannels = [
     ["UK3CB_BAF_Merlin_Base", CHANNELS_SQN_7],
     ["rksla3_pumahc_base", CHANNELS_SQN_7],
     ["UK3CB_BAF_Wildcat_Base", CHANNELS_SQN_7],
-    ["UKSF_Hemtt_Ammo", [40, 48]],
-    ["UKSF_Hemtt_Fuel", [40, 48]],
-    ["UKSF_Hemtt_Repair", [40, 48]]
+    ["UK3CB_BAF_MAN_HX60_Base", [40, 48]]
 ];
 
 if (count _channels == 0) then {
