@@ -5,7 +5,7 @@ class CfgPatches {
         name = COMPONENT_NAME;
         units[] = {
             "UKSF_B_L39",
-            "USAF_F35A"
+            "UKSF_B_L39_Unarmed"
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
@@ -28,7 +28,7 @@ class CfgPatches {
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
-        url = QUOTE(www.uk-sf.com);
+        url = QUOTE(www.uk - sf.com);
         VERSION_CONFIG;
     };
     class UK3CB_BAF_Vehicles_Apache {
@@ -39,18 +39,18 @@ class CfgPatches {
         requiredAddons[] = {};
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
-        url = QUOTE(www.uk-sf.com);
+        url = QUOTE(www.uk - sf.com);
         VERSION_CONFIG;
     };
 };
 
 class RscInGameUI {
     class RscUnitInfoAir;
-    class RscUnitInfoNoSpeed: RscUnitInfoAir {
+    class RscUnitInfoNoSpeed : RscUnitInfoAir {
         controls[] = { "CA_BackgroundVehicle", "CA_BackgroundVehicleTitle", "CA_BackgroundVehicleTitleDark", "CA_BackgroundFuel", "CA_Vehicle", "CA_VehicleRole", "CA_HitZones", "CA_VehicleTogglesBackground", "CA_VehicleToggles", "CA_ValueFuel", "WeaponInfoControlsGroupRight" };
     };
     class RscUnitInfoAirPlane;
-    class RscUnitInfoAirPlaneNoSpeed: RscUnitInfoAirPlane {
+    class RscUnitInfoAirPlaneNoSpeed : RscUnitInfoAirPlane {
         controls[] = { "CA_BackgroundVehicle", "CA_BackgroundVehicleTitle", "CA_BackgroundVehicleTitleDark", "CA_BackgroundFuel", "CA_Vehicle", "CA_VehicleRole", "CA_HitZones", "CA_VehicleTogglesBackground", "CA_VehicleToggles", "CA_ValueFuel", "WeaponInfoControlsGroupRight", "CA_Throttle" };
     };
 };
