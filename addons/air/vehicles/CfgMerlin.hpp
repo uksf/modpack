@@ -122,6 +122,7 @@ class UK3CB_BAF_Merlin_HC3_18_GPMG: UK3CB_BAF_Merlin_HC3_Armed_Base {
         MACRO_ADDITEM(ACE_morphine,4);
     };
     class TransportWeapons {};
+    class TransportBackpacks {};
 };
 class UK3CB_BAF_Merlin_HC3_CSAR: UK3CB_BAF_Merlin_HC3_Armed_Base {
     faction = "CUP_B_GB";
@@ -142,6 +143,7 @@ class UK3CB_BAF_Merlin_HC3_CSAR: UK3CB_BAF_Merlin_HC3_Armed_Base {
         MACRO_ADDITEM(ACE_bloodIV_250,20);
     };
     class TransportWeapons {};
+    class TransportBackpacks {};
 };
 class UK3CB_BAF_Merlin_HC4_18: UK3CB_BAF_Merlin_HC3_18 {
     scope = 0;

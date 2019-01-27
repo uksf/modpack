@@ -4,24 +4,18 @@ class CUP_Ridgback_Base : Wheeled_APC_F {
     hullDamageCauseExplosion = 0;
     class Turrets {
         class MainTurret : NewTurret {
-            magazines[] = {"UK3CB_BAF_127_100Rnd"};
+            magazines[] = { "UK3CB_BAF_127_100Rnd" };
             class ViewOptics {
                 visionMode[] = {};
             };
         };
     };
-    class TransportMagazines {
-        class _xx_UK3CB_BAF_127_100Rnd {
-            magazine = "UK3CB_BAF_127_100Rnd";
-            count = 5;
-        };
-    };
     fuelCapacity = 25;    // 45
     ace_cargo_space = 6;  // 4
     class complexGearbox {
-        GearboxRatios[] = {"R1", -10.094, "N",  0,     "D1", 5.562, "D2", 3.456,
-                           "D3", 2.623,   "D4", 1.678, "D5", 1.078, "D6", 1};
-        TransmissionRatios[] = {"High", 5.0};
+        GearboxRatios[] = { "R1", -10.094, "N", 0, "D1", 5.562, "D2", 3.456,
+                            "D3", 2.623, "D4", 1.678, "D5", 1.078, "D6", 1 };
+        TransmissionRatios[] = { "High", 5.0 };
         gearBoxMode = "auto";
         moveOffGear = 1;
         driveString = "D";
@@ -65,23 +59,39 @@ class CUP_Ridgback_Base : Wheeled_APC_F {
             position = "[0,0,1.5]";
         };
     };
+    class TransportMagazines {
+        MACRO_ADDMAGAZINE(CUP_1Rnd_StarFlare_White_M203, 10);
+        MACRO_ADDMAGAZINE(SmokeShell, 10);
+        MACRO_ADDMAGAZINE(SmokeShellBlue, 2);
+        MACRO_ADDMAGAZINE(DemoCharge_Remote_Mag, 2);
+        MACRO_ADDMAGAZINE(UK3CB_BAF_762_20Rnd_T, 5);
+        MACRO_ADDMAGAZINE(SMA_30Rnd_556x45_M855A1_Tracer, 20);
+    };
+    class TransportItems {
+        MACRO_ADDITEM(ACE_M26_Clacker, 1);
+        MACRO_ADDITEM(ACRE_PRC117F, 1);
+        MACRO_ADDITEM(ACE_CableTie, 5);
+        MACRO_ADDITEM(ACE_EarPlugs, 2);
+        MACRO_ADDITEM(CUP_NVG_PVS15_black, 2);
+        MACRO_ADDITEM(Toolkit, 1);
+        MACRO_ADDITEM(UK3CB_BAF_Javelin_CLU, 1);
+    };
+    class TransportBackpacks {};
+    class TransportWeapons {
+        MACRO_ADDWEAPON(UK3CB_BAF_Javelin_Slung_Tube, 2);
+        MACRO_ADDWEAPON(UK3CB_BAF_AT4_CS_AT_Launcher, 2);
+    };
 };
 class CUP_B_Ridgback_HMG_GB_D : CUP_Ridgback_Base {
-    class TransportMagazines {
-        class _xx_UK3CB_BAF_127_100Rnd {
-            magazine = "UK3CB_BAF_127_100Rnd";
-            count = 5;
-        };
+    class TransportMagazines : TransportMagazines {
+        MACRO_ADDMAGAZINE(UK3CB_BAF_127_100Rnd, 9);
     };
     COVER_ACTIONS
     REARM_ACTIONS
 };
 class CUP_B_Ridgback_HMG_GB_W : CUP_Ridgback_Base {
-    class TransportMagazines {
-        class _xx_UK3CB_BAF_127_100Rnd {
-            magazine = "UK3CB_BAF_127_100Rnd";
-            count = 5;
-        };
+    class TransportMagazines : TransportMagazines {
+        MACRO_ADDMAGAZINE(UK3CB_BAF_127_100Rnd, 9);
     };
     COVER_ACTIONS
     REARM_ACTIONS
@@ -89,17 +99,14 @@ class CUP_B_Ridgback_HMG_GB_W : CUP_Ridgback_Base {
 class CUP_B_Ridgback_GMG_GB_D : CUP_Ridgback_Base {
     class Turrets : Turrets {
         class MainTurret : MainTurret {
-            magazines[] = {"UK3CB_BAF_32Rnd_40mm_G_Box"};
+            magazines[] = { "UK3CB_BAF_32Rnd_40mm_G_Box" };
             class ViewOptics {
                 visionMode[] = {};
             };
         };
     };
-    class TransportMagazines {
-        class _xx_UK3CB_BAF_32Rnd_40mm_G_Box {
-            magazine = "UK3CB_BAF_32Rnd_40mm_G_Box";
-            count = 5;
-        };
+    class TransportMagazines : TransportMagazines {
+        MACRO_ADDMAGAZINE(UK3CB_BAF_32Rnd_40mm_G_Box, 9);
     };
     COVER_ACTIONS
     REARM_ACTIONS
@@ -107,17 +114,14 @@ class CUP_B_Ridgback_GMG_GB_D : CUP_Ridgback_Base {
 class CUP_B_Ridgback_GMG_GB_W : CUP_Ridgback_Base {
     class Turrets : Turrets {
         class MainTurret : MainTurret {
-            magazines[] = {"UK3CB_BAF_32Rnd_40mm_G_Box"};
+            magazines[] = { "UK3CB_BAF_32Rnd_40mm_G_Box" };
             class ViewOptics {
                 visionMode[] = {};
             };
         };
     };
-    class TransportMagazines {
-        class _xx_UK3CB_BAF_32Rnd_40mm_G_Box {
-            magazine = "UK3CB_BAF_32Rnd_40mm_G_Box";
-            count = 5;
-        };
+    class TransportMagazines : TransportMagazines {
+        MACRO_ADDMAGAZINE(UK3CB_BAF_32Rnd_40mm_G_Box, 9);
     };
     COVER_ACTIONS
     REARM_ACTIONS
@@ -125,17 +129,14 @@ class CUP_B_Ridgback_GMG_GB_W : CUP_Ridgback_Base {
 class CUP_B_Ridgback_LMG_GB_D : CUP_Ridgback_Base {
     class Turrets : Turrets {
         class Mainturret : NewTurret {
-            magazines[] = {"UK3CB_BAF_762_100Rnd_T"};
+            magazines[] = { "UK3CB_BAF_762_100Rnd_T" };
             class ViewOptics {
                 visionMode[] = {};
             };
         };
     };
-    class TransportMagazines {
-        class _xx_UK3CB_BAF_762_100Rnd_T {
-            magazine = "UK3CB_BAF_762_100Rnd_T";
-            count = 5;
-        };
+    class TransportMagazines : TransportMagazines {
+        MACRO_ADDMAGAZINE(UK3CB_BAF_762_100Rnd_T, 9);
     };
     COVER_ACTIONS
     REARM_ACTIONS
@@ -143,17 +144,14 @@ class CUP_B_Ridgback_LMG_GB_D : CUP_Ridgback_Base {
 class CUP_B_Ridgback_LMG_GB_W : CUP_Ridgback_Base {
     class Turrets : Turrets {
         class Mainturret : NewTurret {
-            magazines[] = {"UK3CB_BAF_762_100Rnd_T"};
+            magazines[] = { "UK3CB_BAF_762_100Rnd_T" };
             class ViewOptics {
                 visionMode[] = {};
             };
         };
     };
-    class TransportMagazines {
-        class _xx_UK3CB_BAF_762_100Rnd_T {
-            magazine = "UK3CB_BAF_762_100Rnd_T";
-            count = 5;
-        };
+    class TransportMagazines : TransportMagazines {
+        MACRO_ADDMAGAZINE(UK3CB_BAF_762_100Rnd_T, 9);
     };
     COVER_ACTIONS
     REARM_ACTIONS

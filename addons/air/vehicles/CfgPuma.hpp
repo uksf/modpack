@@ -117,6 +117,7 @@ class rksla3_puma_hc1_troop: rksla3_pumahc_base {
         MACRO_ADDITEM(ACE_bloodIV_250,20);
     };
     class TransportWeapons {};
+    class TransportBackpacks {};
 };
 class rksla3_puma_hc1_1gpmg: rksla3_pumahc_base {
     faction = "CUP_B_GB";
