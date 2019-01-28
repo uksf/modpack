@@ -176,7 +176,7 @@ force force ace_medical_keepLocalSettingsSynced = true;
 force force ace_medical_level = 2;
 force force ace_medical_litterCleanUpDelay = 900;
 force force ace_medical_litterSimulationDetail = 2;
-force ace_medical_maxReviveTime = 3600;
+force ace_medical_maxReviveTime = 900;
 force force ace_medical_medicSetting = 2;
 force force ace_medical_medicSetting_basicEpi = 0;
 force ace_medical_medicSetting_PAK = 1;
@@ -196,7 +196,7 @@ force force ace_medical_remoteControlledAI = true;
 force ace_medical_useCondition_PAK = 1;
 force force ace_medical_useCondition_SurgicalKit = 0;
 force force ace_medical_useLocation_basicEpi = 0;
-force ace_medical_useLocation_PAK = 3;
+force ace_medical_useLocation_PAK = 2;
 force ace_medical_useLocation_SurgicalKit = 0;
 
 // ACE Mk6 Mortar
