@@ -1,24 +1,24 @@
-class CUP_CH47F_base: Helicopter_Base_H {
+class CUP_CH47F_base : Helicopter_Base_H {
     cyclicAsideForceCoef = 1;
     cyclicForwardForceCoef = 1;
-    fuelCapacity = 60; // 500
+    fuelCapacity = 60;  // 500
     armor = 60;
     memoryPointsGetInDriver = "pos cargo";
     memoryPointsGetInDriverDir = "pos cargo dir";
     driverCanEject = 1;
-    class ViewPilot: ViewPilot {
+    class ViewPilot : ViewPilot {
         minFov = 0.25;
         maxFov = 1.25;
         initFov = 0.95;
     };
-    class Turrets: Turrets {
-        class CopilotTurret: CopilotTurret {
+    class Turrets : Turrets {
+        class CopilotTurret : CopilotTurret {
             memoryPointsGetInGunner = "pos cargo";
             memoryPointsGetInGunnerDir = "pos cargo dir";
             CanEject = 1;
             showHMD = 1;
             class Components {
-                class VehicleSystemsDisplayManagerComponentLeft: DefaultVehicleSystemsDisplayManagerLeft {
+                class VehicleSystemsDisplayManagerComponentLeft : DefaultVehicleSystemsDisplayManagerLeft {
                     defaultDisplay = "EmptyDisplay";
                     class Components {
                         class SensorsDisplay {
@@ -39,7 +39,7 @@ class CUP_CH47F_base: Helicopter_Base_H {
                         };
                     };
                 };
-                class VehicleSystemsDisplayManagerComponentRight: DefaultVehicleSystemsDisplayManagerRight {
+                class VehicleSystemsDisplayManagerComponentRight : DefaultVehicleSystemsDisplayManagerRight {
                     defaultDisplay = "SensorsDisplay";
                     class Components {
                         class SensorsDisplay {
@@ -62,13 +62,13 @@ class CUP_CH47F_base: Helicopter_Base_H {
                 };
             };
         };
-        class MainTurret: MainTurret {
+        class MainTurret : MainTurret {
             soundAttenuationTurret = "HeliAttenuationGunner";
         };
-        class RightDoorGun: MainTurret {
+        class RightDoorGun : MainTurret {
             soundAttenuationTurret = "HeliAttenuationGunner";
         };
-        class BackDoorGun: MainTurret {
+        class BackDoorGun : MainTurret {
             soundAttenuationTurret = "HeliAttenuationGunner";
         };
     };
@@ -109,8 +109,8 @@ class CUP_CH47F_base: Helicopter_Base_H {
             volume = "(1-camPos)*3*(rotorThrust-0.9)";
         };
     };
-    class Components: Components {
-        class VehicleSystemsDisplayManagerComponentLeft: DefaultVehicleSystemsDisplayManagerLeft {
+    class Components : Components {
+        class VehicleSystemsDisplayManagerComponentLeft : DefaultVehicleSystemsDisplayManagerLeft {
             defaultDisplay = "EmptyDisplay";
             class Components {
                 class SensorsDisplay {
@@ -131,7 +131,7 @@ class CUP_CH47F_base: Helicopter_Base_H {
                 };
             };
         };
-        class VehicleSystemsDisplayManagerComponentRight: DefaultVehicleSystemsDisplayManagerRight {
+        class VehicleSystemsDisplayManagerComponentRight : DefaultVehicleSystemsDisplayManagerRight {
             defaultDisplay = "SensorsDisplay";
             class Components {
                 class SensorsDisplay {
@@ -154,27 +154,28 @@ class CUP_CH47F_base: Helicopter_Base_H {
         };
         class SensorsManagerComponent {
             class Components {
-                class PassiveSensorComponent: SensorTemplatePassiveRadar {};
-                class DataLinkSensorComponent: SensorTemplateDataLink {};
+                class PassiveSensorComponent : SensorTemplatePassiveRadar {};
+                class DataLinkSensorComponent : SensorTemplateDataLink {};
             };
         };
     };
-    #include "MFDGeneral.hpp"
+#include "MFDGeneral.hpp"
     ace_cookoff_cookoffSelections[] = { "palivo" };
     ace_refuel_fuelCapacity = 3914;
 };
-class CUP_B_CH47F_GB: CUP_CH47F_base {
+class CUP_B_CH47F_GB : CUP_CH47F_base {
     crew = "UKSF_B_Pilot_7";
-    typicalCargo[] = { "UKSF_B_Pilot_7","UKSF_B_Pilot_7","UKSF_B_Pilot_7" };
+    typicalCargo[] = { "UKSF_B_Pilot_7", "UKSF_B_Pilot_7", "UKSF_B_Pilot_7" };
     INVENTORY_AIRCRAFT
 };
-class CUP_CH47F_VIV_Base: CUP_CH47F_base {};
-class CUP_B_CH47F_VIV_GB: CUP_CH47F_VIV_Base {
+class CUP_CH47F_VIV_Base : CUP_CH47F_base {};
+class CUP_B_CH47F_VIV_GB : CUP_CH47F_VIV_Base {
     crew = "UKSF_B_Pilot_7";
-    typicalCargo[] = { "UKSF_B_Pilot_7","UKSF_B_Pilot_7","UKSF_B_Pilot_7" };
+    typicalCargo[] = { "UKSF_B_Pilot_7", "UKSF_B_Pilot_7", "UKSF_B_Pilot_7" };
     INVENTORY_AIRCRAFT
 };
-class CUP_B_MH47E_GB: CUP_B_MH47E_USA {
+class CUP_B_MH47E_USA;
+class CUP_B_MH47E_GB : CUP_B_MH47E_USA {
     scope = 0;
     scopeCurator = 0;
 };

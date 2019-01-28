@@ -1,7 +1,6 @@
 // Place your settings in this file to overwrite default and user settings.
 {
     "files.autoSave": "afterDelay",
-    "extensions.autoUpdate": true,
     "git.confirmSync": false,
     "files.insertFinalNewline": true,
     "editor.dragAndDrop": true,
@@ -13,7 +12,7 @@
         "editor.insertSpaces": true,
         "editor.detectIndentation": true,
         "editor.trimAutoWhitespace": true,
-        "editor.autoClosingBrackets": true
+        "editor.autoClosingBrackets": "always"
     },
     "sqf.maxNumberOfProblems": 1000,
     "sqflint.warnings": false,
@@ -46,5 +45,7 @@
     },
     "workbench.colorTheme": "[SQF] Dark Theme",
     "editor.detectIndentation": false,
-    "python.pythonPath": "C:\\Users\\Tim\\AppData\\Local\\Programs\\Python\\Python36-32\\python.exe"
+    "python.pythonPath": "C:\\Users\\Tim\\AppData\\Local\\Programs\\Python\\Python36-32\\python.exe",
+    "C_Cpp.clang_format_path": "E:\\Workspace\\build\\Debug\\bin\\clang-format.exe",
+    "C_Cpp.loggingLevel": "Debug"
 }

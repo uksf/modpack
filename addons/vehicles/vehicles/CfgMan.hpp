@@ -1,7 +1,7 @@
 class Truck_01_base_F;
 class UK3CB_BAF_MAN_HX60_Base : Truck_01_base_F {
     faction = "CUP_B_GB";
-    editorSubcategory = QEGVAR(common, support);
+    editorSubcategory = QEGVAR(common,support);
 };
 class UK3CB_BAF_MAN_HX60_Cargo_Base : UK3CB_BAF_MAN_HX60_Base {
     faction = "CUP_B_GB";
