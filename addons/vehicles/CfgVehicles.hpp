@@ -88,6 +88,38 @@ class CfgVehicles {
         class Turrets : Turrets {
             class MainTurret;
         };
+        class Reflectors {
+            class Left {
+                ambient[] = { 5, 5, 6 };
+                color[] = { 130, 130, 140 };
+                intensity = 10;
+                size = 1;
+                position = "lights_front_left";
+                direction = "lights_front_left_dir";
+                hitpoint = "lights_front_left";
+                selection = "lights_front_left";
+                innerAngle = 80;
+                outerAngle = 160;
+                useFlare = 1;
+                flareSize = 1;
+                coneFadeCoef = 10;
+                daylight = 0;
+                class Attenuation {
+                    start = 1;
+                    constant = 0;
+                    linear = 0;
+                    quadratic = 0.01;
+                    hardLimitStart = 50;
+                    hardLimitEnd = 80;
+                };
+            };
+            class Right : Left {
+                position = "lights_front_right";
+                direction = "lights_front_right_dir";
+                hitpoint = "lights_front_right";
+                selection = "lights_front_right";
+            };
+        };
         COVER_ACTIONS
     };
     class Wheeled_APC_F : Car_F {
