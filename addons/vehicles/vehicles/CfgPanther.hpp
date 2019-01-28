@@ -22,7 +22,7 @@ class UK3CB_BAF_Panther_Base : MRAP_01_base_F {
 class UK3CB_BAF_Panther_GPMG_Sand_A : UK3CB_BAF_Panther_Base {
     faction = "CUP_B_GB";
     crew = "CUP_B_BAF_Soldier_MTP";
-    typicalCargo[] = {"CUP_B_BAF_Soldier_MTP"};
+    typicalCargo[] = { "CUP_B_BAF_Soldier_MTP" };
     COVER_ACTIONS
 };
 class UK3CB_BAF_Panther_GPMG_Green_A : UK3CB_BAF_Panther_GPMG_Sand_A {

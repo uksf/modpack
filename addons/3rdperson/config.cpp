@@ -9,7 +9,7 @@ class CfgPatches {
         requiredAddons[] = {};
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
-        url = QUOTE(www.uk-sf.com);
+        url = URL;
         VERSION_CONFIG;
     };
 };

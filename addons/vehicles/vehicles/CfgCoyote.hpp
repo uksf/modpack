@@ -10,8 +10,8 @@ class UK3CB_BAF_Coyote_L111A1_Base_D : UK3CB_BAF_Jackal_Base_D {
         };
     };
     class TransportMagazines : TransportMagazines {
-        MACRO_ADDMAGAZINE(UK3CB_BAF_127_100Rnd, 9);
-        MACRO_ADDMAGAZINE(UK3CB_BAF_762_100Rnd_T, 5);
+        MACRO_ADDMAGAZINE(UK3CB_BAF_127_100Rnd,9);
+        MACRO_ADDMAGAZINE(UK3CB_BAF_762_100Rnd_T,5);
     };
 };
 class UK3CB_BAF_Coyote_Passenger_L111A1_D : UK3CB_BAF_Coyote_L111A1_Base_D {
@@ -26,8 +26,8 @@ class UK3CB_BAF_Coyote_L134A1_Base_D : UK3CB_BAF_Jackal_Base_D {
         };
     };
     class TransportMagazines : TransportMagazines {
-        MACRO_ADDMAGAZINE(UK3CB_BAF_32Rnd_40mm_G_Box, 9);
-        MACRO_ADDMAGAZINE(UK3CB_BAF_762_100Rnd_T, 5);
+        MACRO_ADDMAGAZINE(UK3CB_BAF_32Rnd_40mm_G_Box,9);
+        MACRO_ADDMAGAZINE(UK3CB_BAF_762_100Rnd_T,5);
     };
 };
 class UK3CB_BAF_Coyote_Passenger_L134A1_D : UK3CB_BAF_Coyote_L134A1_Base_D {
