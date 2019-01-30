@@ -800,11 +800,6 @@ def sign_dependencies():
             print("     Found PBO to update: {}".format(file))
             shutil.copy(os.path.join(deployment_folder_f35, "addons", file), os.path.join(signatures_path, file))
             print("     Updated: {}".format(os.path.join(signatures_path, file)))
-            if (key):
-                print("Signing with: {}.".format(key))
-                ret = subprocess.call([dssignfile, key, os.path.join(signatures_path, "{}".format(file))])
-                if ret == 1:
-                    return 1
 
     print_blue("\nSigning updated dependencies")
     for file in os.listdir(signatures_path):

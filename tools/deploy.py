@@ -51,7 +51,7 @@ if __name__ == '__main__':
     for folder in os.listdir(os.path.join(repo_folder_uksf_ace, "optionals")):
         if ("userconfig" in folder):
             continue
-        for file in os.listdir(os.path.join(repo_folder_uksf_ace, "optionals", folder, "addons")):
+        for file in os.listdir(os.path.join(repo_folder_uksf_ace, "optionals")):
             for compat in ace_optionals:
                 if ((compat in file) and not(os.path.isfile(os.path.join(repo_folder_uksf_ace, "addons", file)))):
                     shutil.copyfile(os.path.join(repo_folder_uksf_ace, "optionals", folder, "addons", file), os.path.join(repo_folder_uksf_ace, "addons", file))
@@ -60,10 +60,10 @@ if __name__ == '__main__':
     for folder in os.listdir(os.path.join(repo_folder_cfp, "optionals")):
         if ("userconfig" in folder):
             continue
-        for file in os.listdir(os.path.join(repo_folder_cfp, "optionals", folder, "addons")):
+        for file in os.listdir(os.path.join(repo_folder_cfp, "optionals")):
             for compat in cfp_optionals:
                 if ((compat in file) and not(os.path.isfile(os.path.join(repo_folder_cfp, "addons", file)))):
-                    shutil.copyfile(os.path.join(repo_folder_cfp, "optionals", folder, "addons", file), os.path.join(repo_folder_cfp, "addons", file))
+                    shutil.copyfile(os.path.join(repo_folder_cfp, "optionals", file), os.path.join(repo_folder_cfp, "addons", file))
 
 
     # Updated any matching PBOs in dependencies.
