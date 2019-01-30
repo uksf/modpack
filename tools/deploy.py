@@ -50,9 +50,10 @@ if __name__ == '__main__':
 
     # Move f35 addons to dependencues
     for file in os.listdir(os.path.join(deployment_folder_f35, "addons")):
-        print("    Found PBO to update: {}".format(file))
-        shutil.copy(os.path.join(deployment_folder_f35, "addons", file), os.path.join(deployment_folder_uksf_dependencies, "addons", file))
-        print("    Updated: {}".format(os.path.join(deployment_folder_uksf_dependencies, "addons", file)))
+        if (file.endswith(".pbo")
+            print("    Found PBO to update: {}".format(file))
+            shutil.copy(os.path.join(deployment_folder_f35, "addons", file), os.path.join(deployment_folder_uksf_dependencies, "addons", file))
+            print("    Updated: {}".format(os.path.join(deployment_folder_uksf_dependencies, "addons", file)))
 
     # Move whitelisted ace optionals
     for folder in os.listdir(os.path.join(repo_folder_uksf_ace, "optionals")):
