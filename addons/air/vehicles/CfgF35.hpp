@@ -62,6 +62,11 @@ class CUP_B_F35B_LGB_BAF : CUP_B_F35B_LGB_USMC {
     scope = 0;
     scopeCurator = 0;
 };
+class CUP_B_F35B_Stealth_USMC;
+class CUP_B_F35B_Stealth_BAF: CUP_B_F35B_Stealth_USMC {
+    scope = 0;
+    scopeCurator = 0;
+};
 class CUP_B_F35B_Stealth_USMC_OCimport_02;
 class CFP_B_GBARMY_F35B_Lightning_II_Stealth_WDL_01: CUP_B_F35B_Stealth_USMC_OCimport_02 {
     scope = 0;
