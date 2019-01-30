@@ -28,7 +28,7 @@ class CfgPatches {
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
-        url = QUOTE(www.uk - sf.com);
+        url = URL;
         VERSION_CONFIG;
     };
     class UK3CB_BAF_Vehicles_Apache {
@@ -39,7 +39,7 @@ class CfgPatches {
         requiredAddons[] = {};
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
-        url = QUOTE(www.uk - sf.com);
+        url = URL;
         VERSION_CONFIG;
     };
 };
@@ -55,4 +55,5 @@ class RscInGameUI {
     };
 };
 #include "CfgEventHandlers.hpp"
+#include "CfgFunctions.hpp"
 #include "CfgVehicles.hpp"
