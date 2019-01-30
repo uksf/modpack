@@ -69,6 +69,7 @@ class CfgVehicles {
     #include "vehicles\CfgBuzzard.hpp"
     #include "vehicles\CfgC130.hpp"
     #include "vehicles\CfgChinook.hpp"
+    #include "vehicles\CfgDauphin.hpp"
     #include "vehicles\CfgF35.hpp"
     #include "vehicles\CfgGR9.hpp"
     #include "vehicles\CfgPuma.hpp"

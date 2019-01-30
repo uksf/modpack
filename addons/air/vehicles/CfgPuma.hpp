@@ -129,7 +129,22 @@ class rksla3_puma_hc1_1gpmg: rksla3_pumahc_base {
             weapons[] = {"UK3CB_BAF_Safe", "rksla3_pumahc1_mounted_GPMG_R"};
         };
     };
-    INVENTORY_AIRCRAFT
+    class TransportMagazines {
+        MACRO_ADDMAGAZINE(ACE_M14,2);
+        MACRO_ADDMAGAZINE(ACE_HandFlare_Red,2);
+        MACRO_ADDMAGAZINE(UK3CB_BAF_SmokeShellRed,2);
+        MACRO_ADDMAGAZINE(B_IR_Grenade,2);
+    };
+    class TransportItems {
+        MACRO_ADDITEM(Toolkit,1);
+        MACRO_ADDITEM(ACE_elasticBandage,40);
+        MACRO_ADDITEM(ACE_morphine,30);
+        MACRO_ADDITEM(ACE_bloodIV,20);
+        MACRO_ADDITEM(ACE_bloodIV_500,20);
+        MACRO_ADDITEM(ACE_bloodIV_250,20);
+    };
+    class TransportWeapons {};
+    class TransportBackpacks {};
 };
 class rksla3_puma_hc1_2gpmg: rksla3_pumahc_base {
     faction = "CUP_B_GB";
@@ -144,7 +159,22 @@ class rksla3_puma_hc1_2gpmg: rksla3_pumahc_base {
             weapons[] = {"UK3CB_BAF_Safe", "rksla3_pumahc1_mounted_GPMG_L"};
         };
     };
-    INVENTORY_AIRCRAFT
+    class TransportMagazines {
+        MACRO_ADDMAGAZINE(ACE_M14,2);
+        MACRO_ADDMAGAZINE(ACE_HandFlare_Red,2);
+        MACRO_ADDMAGAZINE(UK3CB_BAF_SmokeShellRed,2);
+        MACRO_ADDMAGAZINE(B_IR_Grenade,2);
+    };
+    class TransportItems {
+        MACRO_ADDITEM(Toolkit,1);
+        MACRO_ADDITEM(ACE_elasticBandage,40);
+        MACRO_ADDITEM(ACE_morphine,30);
+        MACRO_ADDITEM(ACE_bloodIV,20);
+        MACRO_ADDITEM(ACE_bloodIV_500,20);
+        MACRO_ADDITEM(ACE_bloodIV_250,20);
+    };
+    class TransportWeapons {};
+    class TransportBackpacks {};
 };
 
 class CUP_SA330_Base: Helicopter_Base_H {};

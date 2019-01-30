@@ -62,10 +62,10 @@ class CUP_B_F35B_LGB_BAF : CUP_B_F35B_LGB_USMC {
     scope = 0;
     scopeCurator = 0;
 };
-class B_Plane_Fighter_01_F : Plane_Fighter_01_Base_F {
-    class pilotCamera;
-    class MFD;
-};
+// class B_Plane_Fighter_01_F : Plane_Fighter_01_Base_F {
+//     class pilotCamera;
+//     class MFD;
+// };
 // class USAF_F35A : B_Plane_Fighter_01_F {
 //     faction = "CUP_B_GB";
 //     scopeCurator = 2;

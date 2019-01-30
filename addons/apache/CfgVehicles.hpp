@@ -1000,5 +1000,6 @@ class CfgVehicles {
         displayName = "Apache AH1";
         editorPreview = QPATHTOEF(common,data\previews\UKSF_Apache_AH1.jpg);
         hiddenSelectionsTextures[] = { QPATHTOF(data\ah1_baf_body_co.paa), "", "", "", QPATHTOF(data\decals_ca.paa) };
+        class TransportBackpacks {};
     };
 };

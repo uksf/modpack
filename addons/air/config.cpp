@@ -5,7 +5,8 @@ class CfgPatches {
         name = COMPONENT_NAME;
         units[] = {
             "UKSF_B_L39",
-            "UKSF_B_L39_Unarmed"
+            "UKSF_B_L39_Unarmed",
+            QGVAR(dauphin)
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
@@ -24,7 +25,8 @@ class CfgPatches {
             "CUP_AirVehciles_SA330",
             "UK3CB_BAF_Vehicles_Merlin",
             "UK3CB_BAF_Vehicles_Wildcat",
-            "rksla3_pumahc"
+            "rksla3_pumahc",
+            "MEA_Panther"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
