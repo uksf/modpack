@@ -108,7 +108,7 @@ if __name__ == '__main__':
     print("Deleting old keys")
     for file in os.listdir(keys_folder):
         name = os.path.splitext(file)[0]
-        if (file.endswith(".bikey") and (("uksf" in name and not ("gcam" in name)) or ("ace_3" in name) or ("acre_" in name))
+        if (file.endswith(".bikey") and (("uksf" in name and not ("gcam" in name)) or ("ace_3" in name) or ("acre_" in name) or ("cfp_" in name))
                 and os.path.isfile(os.path.join(keys_folder, file))):
             print("    Deleting: {}".format(file))
             os.remove(os.path.join(keys_folder, file))
