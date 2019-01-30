@@ -37,6 +37,7 @@ class CUP_B_Wolfhound_HMG_GB_D : CUP_Wolfhound_Base {
             count = 5;
         };
     };
+    RIDGEBACK_INVENTORY_HMG
     REARM_ACTIONS
     COVER_ACTIONS
 };
@@ -47,6 +48,7 @@ class CUP_B_Wolfhound_HMG_GB_W : CUP_Wolfhound_Base {
             count = 5;
         };
     };
+    RIDGEBACK_INVENTORY_HMG
     REARM_ACTIONS
     COVER_ACTIONS
 };
@@ -65,6 +67,7 @@ class CUP_B_Wolfhound_GMG_GB_D : CUP_Wolfhound_Base {
             count = 5;
         };
     };
+    RIDGEBACK_INVENTORY_GMG
     REARM_ACTIONS
     COVER_ACTIONS
 };
@@ -83,6 +86,7 @@ class CUP_B_Wolfhound_GMG_GB_W : CUP_Wolfhound_Base {
             count = 5;
         };
     };
+    RIDGEBACK_INVENTORY_GMG
     REARM_ACTIONS
     COVER_ACTIONS
 };
@@ -101,6 +105,7 @@ class CUP_B_Wolfhound_LMG_GB_D : CUP_Wolfhound_Base {
             count = 5;
         };
     };
+    RIDGEBACK_INVENTORY_GPMG
     REARM_ACTIONS
     COVER_ACTIONS
 };
@@ -119,6 +124,7 @@ class CUP_B_Wolfhound_LMG_GB_W : CUP_Wolfhound_Base {
             count = 5;
         };
     };
+    RIDGEBACK_INVENTORY_GPMG
     REARM_ACTIONS
     COVER_ACTIONS
 };

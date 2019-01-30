@@ -37,6 +37,7 @@ class CUP_B_Mastiff_HMG_GB_D : CUP_Mastiff_Base {
             count = 5;
         };
     };
+    RIDGEBACK_INVENTORY_HMG
     COVER_ACTIONS
     REARM_ACTIONS
 };
@@ -47,6 +48,7 @@ class CUP_B_Mastiff_HMG_GB_W : CUP_Mastiff_Base {
             count = 5;
         };
     };
+    RIDGEBACK_INVENTORY_HMG
     COVER_ACTIONS
     REARM_ACTIONS
 };
@@ -65,6 +67,7 @@ class CUP_B_Mastiff_GMG_GB_D : CUP_Mastiff_Base {
             count = 5;
         };
     };
+    RIDGEBACK_INVENTORY_GMG
     COVER_ACTIONS
     REARM_ACTIONS
 };
@@ -83,6 +86,7 @@ class CUP_B_Mastiff_GMG_GB_W : CUP_Mastiff_Base {
             count = 5;
         };
     };
+    RIDGEBACK_INVENTORY_GMG
     COVER_ACTIONS
     REARM_ACTIONS
 };
@@ -101,6 +105,7 @@ class CUP_B_Mastiff_LMG_GB_D : CUP_Mastiff_Base {
             count = 5;
         };
     };
+    RIDGEBACK_INVENTORY_GPMG
     COVER_ACTIONS
     REARM_ACTIONS
 };
@@ -119,6 +124,7 @@ class CUP_B_Mastiff_LMG_GB_W : CUP_Mastiff_Base {
             count = 5;
         };
     };
+    RIDGEBACK_INVENTORY_GPMG
     COVER_ACTIONS
     REARM_ACTIONS
 };
