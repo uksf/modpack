@@ -19,7 +19,6 @@ if __name__ == '__main__':
     deployment_folder_uksf_ace = os.path.join(DEPLOYMENT_DIRECTORY, "ACE3\\release\\@ace")
     deployment_folder_acre = os.path.join(DEPLOYMENT_DIRECTORY, "acre2\\release\\@acre2")
     deployment_folder_cfp = os.path.join(DEPLOYMENT_DIRECTORY, "cfp\\release\\@Community_Factions_Project")
-    deployment_folder_f35 = os.path.join(DEPLOYMENT_DIRECTORY, "f35\\release\\@uksf_f35")
     deployment_folder_uksf_dependencies = os.path.join(DEPLOYMENT_DIRECTORY, "modpack\\release\\@uksf_dependencies")
     deployment_folder_intercept = os.path.join(DEPLOYMENT_DIRECTORY, "modpack\\@intercept")
     keys_folder = os.path.join(SERVER_DIRECTORY, "Keys")
@@ -47,13 +46,6 @@ if __name__ == '__main__':
     shutil.copytree(deployment_folder_cfp, repo_folder_cfp)
     print("Moving new @intercept")
     shutil.copytree(deployment_folder_intercept, repo_folder_intercept)
-
-    # Move f35 addons to dependencues
-    for file in os.listdir(os.path.join(deployment_folder_f35, "addons")):
-        if (file.endswith(".pbo")
-            print("    Found PBO to update: {}".format(file))
-            shutil.copy(os.path.join(deployment_folder_f35, "addons", file), os.path.join(deployment_folder_uksf_dependencies, "addons", file))
-            print("    Updated: {}".format(os.path.join(deployment_folder_uksf_dependencies, "addons", file)))
 
     # Move whitelisted ace optionals
     for folder in os.listdir(os.path.join(repo_folder_uksf_ace, "optionals")):

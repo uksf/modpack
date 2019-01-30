@@ -793,6 +793,19 @@ def sign_dependencies():
                 if ret == 1:
                     return 1
 
+    deployment_folder_f35 = os.path.join("D:\\Dev\\f35\\release\\@uksf_f35")
+    print_blue("\nCopy F-35")
+    for file in os.listdir(os.path.join(deployment_folder_f35, "addons")):
+        if (file.endswith(".pbo")):
+            print("     Found PBO to update: {}".format(file))
+            shutil.copy(os.path.join(deployment_folder_f35, "addons", file), os.path.join(signatures_path, file))
+            print("     Updated: {}".format(os.path.join(signatures_path, file)))
+            if (key):
+                print("Signing with: {}.".format(key))
+                ret = subprocess.call([dssignfile, key, os.path.join(signatures_path, "{}".format(file))])
+                if ret == 1:
+                    return 1
+
     print_blue("\nSigning updated dependencies")
     for file in os.listdir(signatures_path):
         if (file.endswith(".pbo") and os.path.isfile(os.path.join(signatures_path, file))):
