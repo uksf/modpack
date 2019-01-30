@@ -62,6 +62,13 @@ class CUP_B_F35B_LGB_BAF : CUP_B_F35B_LGB_USMC {
     scope = 0;
     scopeCurator = 0;
 };
+class CUP_B_F35B_Stealth_USMC_OCimport_02;
+class CFP_B_GBARMY_F35B_Lightning_II_Stealth_WDL_01: CUP_B_F35B_Stealth_USMC_OCimport_02 {
+    scope = 0;
+    scopeCurator = 0;
+};
+class uksf_f35_plane_raf;
+class USAF_F35A : uksf_f35_plane_raf {};
 // class B_Plane_Fighter_01_F : Plane_Fighter_01_Base_F {
 //     class pilotCamera;
 //     class MFD;
