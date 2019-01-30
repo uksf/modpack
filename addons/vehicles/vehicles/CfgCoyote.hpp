@@ -9,14 +9,6 @@ class UK3CB_BAF_Coyote_L111A1_Base_D : UK3CB_BAF_Jackal_Base_D {
             };
         };
     };
-    class TransportMagazines : TransportMagazines {
-        MACRO_ADDMAGAZINE(UK3CB_BAF_127_100Rnd,9);
-        MACRO_ADDMAGAZINE(UK3CB_BAF_762_100Rnd_T,5);
-        delete _xx_UK3CB_BAF_762_200Rnd_T;
-    };
-};
-class UK3CB_BAF_Coyote_Passenger_L111A1_D : UK3CB_BAF_Coyote_L111A1_Base_D {
-    COVER_ACTIONS
 };
 class UK3CB_BAF_Coyote_L134A1_Base_D : UK3CB_BAF_Jackal_Base_D {
     class Turrets : Turrets {
@@ -26,30 +18,36 @@ class UK3CB_BAF_Coyote_L134A1_Base_D : UK3CB_BAF_Jackal_Base_D {
             };
         };
     };
-    class TransportMagazines : TransportMagazines {
-        MACRO_ADDMAGAZINE(UK3CB_BAF_32Rnd_40mm_G_Box,9);
-        MACRO_ADDMAGAZINE(UK3CB_BAF_762_100Rnd_T,5);
-        delete _xx_UK3CB_BAF_762_200Rnd_T;
-    };
+};
+class UK3CB_BAF_Coyote_Passenger_L111A1_D : UK3CB_BAF_Coyote_L111A1_Base_D {
+    JACKAL_INVENTORY_HMG
+    COVER_ACTIONS
 };
 class UK3CB_BAF_Coyote_Passenger_L134A1_D : UK3CB_BAF_Coyote_L134A1_Base_D {
+    JACKAL_INVENTORY_GMG
     COVER_ACTIONS
 };
 class UK3CB_BAF_Coyote_Passenger_L111A1_W : UK3CB_BAF_Coyote_Passenger_L111A1_D {
+    JACKAL_INVENTORY_HMG
     COVER_ACTIONS
 };
 class UK3CB_BAF_Coyote_Passenger_L134A1_W : UK3CB_BAF_Coyote_Passenger_L134A1_D {
+    JACKAL_INVENTORY_GMG
     COVER_ACTIONS
 };
 class UK3CB_BAF_Coyote_Logistics_L111A1_D : UK3CB_BAF_Coyote_Passenger_L111A1_D {
+    JACKAL_INVENTORY_HMG
     COVER_ACTIONS
 };
 class UK3CB_BAF_Coyote_Logistics_L111A1_W : UK3CB_BAF_Coyote_Logistics_L111A1_D {
+    JACKAL_INVENTORY_HMG
     COVER_ACTIONS
 };
 class UK3CB_BAF_Coyote_Logistics_L134A1_D : UK3CB_BAF_Coyote_Passenger_L134A1_D {
+    JACKAL_INVENTORY_GMG
     COVER_ACTIONS
 };
 class UK3CB_BAF_Coyote_Logistics_L134A1_W : UK3CB_BAF_Coyote_Logistics_L134A1_D {
+    JACKAL_INVENTORY_GMG
     COVER_ACTIONS
 };

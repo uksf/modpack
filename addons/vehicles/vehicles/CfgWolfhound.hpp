@@ -7,12 +7,6 @@ class CUP_Wolfhound_Base : Wheeled_APC_F {
             };
         };
     };
-    class TransportMagazines {
-        class _xx_UK3CB_BAF_127_100Rnd {
-            magazine = "UK3CB_BAF_127_100Rnd";
-            count = 5;
-        };
-    };
     fuelCapacity = 25;    // 45
     ace_cargo_space = 8;  // 4
     class complexGearbox {
@@ -31,23 +25,11 @@ class CUP_Wolfhound_Base : Wheeled_APC_F {
     };
 };
 class CUP_B_Wolfhound_HMG_GB_D : CUP_Wolfhound_Base {
-    class TransportMagazines {
-        class _xx_UK3CB_BAF_127_100Rnd {
-            magazine = "UK3CB_BAF_127_100Rnd";
-            count = 5;
-        };
-    };
     RIDGEBACK_INVENTORY_HMG
     REARM_ACTIONS
     COVER_ACTIONS
 };
 class CUP_B_Wolfhound_HMG_GB_W : CUP_Wolfhound_Base {
-    class TransportMagazines {
-        class _xx_UK3CB_BAF_127_100Rnd {
-            magazine = "UK3CB_BAF_127_100Rnd";
-            count = 5;
-        };
-    };
     RIDGEBACK_INVENTORY_HMG
     REARM_ACTIONS
     COVER_ACTIONS
@@ -59,12 +41,6 @@ class CUP_B_Wolfhound_GMG_GB_D : CUP_Wolfhound_Base {
             class ViewOptics {
                 visionMode[] = {};
             };
-        };
-    };
-    class TransportMagazines {
-        class _xx_UK3CB_BAF_32Rnd_40mm_G_Box {
-            magazine = "UK3CB_BAF_32Rnd_40mm_G_Box";
-            count = 5;
         };
     };
     RIDGEBACK_INVENTORY_GMG
@@ -80,12 +56,6 @@ class CUP_B_Wolfhound_GMG_GB_W : CUP_Wolfhound_Base {
             };
         };
     };
-    class TransportMagazines {
-        class _xx_UK3CB_BAF_32Rnd_40mm_G_Box {
-            magazine = "UK3CB_BAF_32Rnd_40mm_G_Box";
-            count = 5;
-        };
-    };
     RIDGEBACK_INVENTORY_GMG
     REARM_ACTIONS
     COVER_ACTIONS
@@ -99,12 +69,6 @@ class CUP_B_Wolfhound_LMG_GB_D : CUP_Wolfhound_Base {
             };
         };
     };
-    class TransportMagazines {
-        class _xx_UK3CB_BAF_762_100Rnd_T {
-            magazine = "UK3CB_BAF_762_100Rnd_T";
-            count = 5;
-        };
-    };
     RIDGEBACK_INVENTORY_GPMG
     REARM_ACTIONS
     COVER_ACTIONS
@@ -116,12 +80,6 @@ class CUP_B_Wolfhound_LMG_GB_W : CUP_Wolfhound_Base {
             class ViewOptics {
                 visionMode[] = {};
             };
-        };
-    };
-    class TransportMagazines {
-        class _xx_UK3CB_BAF_762_100Rnd_T {
-            magazine = "UK3CB_BAF_762_100Rnd_T";
-            count = 5;
         };
     };
     RIDGEBACK_INVENTORY_GPMG
