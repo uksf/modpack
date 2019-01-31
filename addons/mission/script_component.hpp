@@ -20,7 +20,7 @@
 
 #define DEFAULT_WHITELISTED_GEAR ["Binocular"]
 
-#define SET_CONSPICUOUS(STATE) [_player, "setCaptive", QGVAR(conspicuous), STATE] call ace_common_fnc_statusEffect_set
+#define SET_CONSPICUOUS(STATE) [_player, "setCaptive", QGVAR(conspicuous), !STATE] call ace_common_fnc_statusEffect_set
 
 #define CHECK_GEAR_CONSPICUITY(CHECK) \
 if (CHECK != "" && {!(CHECK in GVAR(conspicuityGearWhitelist))}) exitWith { \
