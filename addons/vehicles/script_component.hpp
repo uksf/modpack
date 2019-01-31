@@ -112,13 +112,6 @@
         MACRO_ADDMAGAZINE(UK3CB_BAF_762_20Rnd_T,5); \
         MACRO_ADDMAGAZINE(SMA_30Rnd_556x45_M855A1_Tracer,20); \
         MACRO_ADDMAGAZINE(AMMO,9); \
-        delete _xx_CUP_30Rnd_556x45_Stanag; \
-        delete _xx_CUP_200Rnd_TE4_Red_Tracer_556x45_M249; \
-        delete _xx_CUP_1Rnd_HEDP_M203; \
-        delete _xx_CUP_M136_M; \
-        delete _xx_CUP_HandGrenade_M67; \
-        delete _xx_SmokeShellOrange; \
-        delete _xx_Chemlight_Red; \
     }; \
     class TransportItems { \
         MACRO_ADDITEM(ACE_M26_Clacker,1); \
@@ -128,18 +121,12 @@
         MACRO_ADDITEM(CUP_NVG_PVS15_black,2); \
         MACRO_ADDITEM(Toolkit,1); \
         MACRO_ADDITEM(UK3CB_BAF_Javelin_CLU,1); \
-        delete _xx_FirstAidKit; \
-        delete _xx_MediKit; \
     }; \
     class TransportWeapons { \
         MACRO_ADDWEAPON(UK3CB_BAF_Javelin_Slung_Tube,2); \
         MACRO_ADDWEAPON(UK3CB_BAF_AT4_CS_AT_Launcher,2); \
-        delete _xx_CUP_arifle_L85A2_G; \
-        delete _xx_CUP_launch_M136; \
     }; \
-    class TransportBackpacks { \
-        delete _xx_CUP_B_Bergen_BAF; \
-    };
+    class TransportBackpacks {};
 
 #define RIDGEBACK_INVENTORY_HMG RIDGEBACK_INVENTORY(UK3CB_BAF_127_100Rnd)
 #define RIDGEBACK_INVENTORY_GMG RIDGEBACK_INVENTORY(UK3CB_BAF_32Rnd_40mm_G_Box)

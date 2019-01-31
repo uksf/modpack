@@ -14,11 +14,9 @@ class CfgPatches {
             "CUP_WheeledVehicles_LR",
             "CUP_WheeledVehicles_Coyote",
             "CUP_WheeledVehicles_Jackal",
-            "CUP_WheeledVehicles_Mastiff",
-            "CUP_WheeledVehicles_Ridgeback",
-            "CUP_WheeledVehicles_Wolfhound",
+            "UK3CB_BAF_Vehicles_LandRover",
             "UK3CB_BAF_Vehicles_Coyote_Jackal",
-            "UK3CB_BAF_Vehicles_LandRover"
+            QGVAR(prep)
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
