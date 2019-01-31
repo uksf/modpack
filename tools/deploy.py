@@ -127,6 +127,10 @@ if __name__ == '__main__':
         if file.endswith(".bikey") and os.path.isfile(os.path.join(deployment_folder_acre, "keys", file)):
             print("    Moving: {}".format(file))
             shutil.copy(os.path.join(deployment_folder_acre, "keys", file), os.path.join(keys_folder, file))
+    for file in os.listdir(os.path.join(deployment_folder_cfp, "keys")):
+        if file.endswith(".bikey") and os.path.isfile(os.path.join(deployment_folder_cfp, "keys", file)):
+            print("    Moving: {}".format(file))
+            shutil.copy(os.path.join(deployment_folder_cfp, "keys", file), os.path.join(keys_folder, file))
 
     # Move cba_settings.sqf
     if (os.path.isfile(os.path.join(SERVER_DIRECTORY, "userconfig", "cba_settings.sqf"))):
