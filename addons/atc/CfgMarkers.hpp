@@ -29,12 +29,12 @@ class CfgMarkers {
         icon = QPATHTOF(data\markers\icon_wilcat_unarmed_ca.paa);
         texture = QPATHTOF(data\markers\icon_wilcat_unarmed_ca.paa);
     };
-    class GVAR(jet): GVAR(apache) {
-        icon = "\A3\Air_F_Jets\Plane_Fighter_01\Data\UI\Fighter01_icon_ca.paa";
-        texture = "\A3\Air_F_Jets\Plane_Fighter_01\Data\UI\Fighter01_icon_ca.paa";
-    };
     class GVAR(l39): GVAR(apache) {
         icon = "CUP\AirVehicles\CUP_AirVehicles_L39\Data\ui\icon_l39_ca.paa";
         texture = "CUP\AirVehicles\CUP_AirVehicles_L39\Data\ui\icon_l39_ca.paa";
+    };
+    class GVAR(f35): GVAR(apache) {
+        icon = "u\uksf_f35\addons\plane\data\ui\icon.paa";
+        texture = "u\uksf_f35\addons\plane\data\ui\icon.paa";
     };
 };

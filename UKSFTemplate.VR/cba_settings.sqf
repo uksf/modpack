@@ -10,3 +10,11 @@ force uksf_curator_curatorsMax = 8;
 
 // Change to true to use mission datetime with a persistence save
 force uksf_persistence_overrideSavedDateTime = false;
+
+// Change to false to disable AI support functions
+force uksf_mission_support = true;
+
+// Change to true to enable conspicuity
+force uksf_mission_conspicuity = false;
+// Add class names of gear to whitelist in conspicuity checks. Works with weapon and backpack classnames ONLY. e.g "['B_fieldPack_blk','Rangefinder']"
+force uksf_mission_conspicuityGearWhitelistString = "[]";

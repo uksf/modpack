@@ -1,4 +1,5 @@
 PREP(assignID);
+PREP(conspicuity);
 PREP(getConfigGroups);
 PREP(initPatrol);
 PREP(moduleSpawn);

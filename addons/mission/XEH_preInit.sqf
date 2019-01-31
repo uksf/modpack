@@ -4,6 +4,8 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
+#include "initSettings.sqf"
+
 call FUNC(getConfigGroups);
 
 [QGVAR(initPatrol), {_this call FUNC(initPatrol)}] call CBA_fnc_addEventHandler;

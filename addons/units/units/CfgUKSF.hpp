@@ -74,33 +74,24 @@ class UKSF_B_Pilot: UKSF_B_Rifleman {
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_H_Beret_RAF" };
     ACE_GForceCoef = 0.7;
 };
-class UKSF_B_Pilot_7: UKSF_B_Rifleman {
-    editorSubcategory = QEGVAR(common,jsfaw);
+class UKSF_B_Pilot_7: UKSF_B_Pilot {
     displayName = "Pilot (7 Sqn.)";
-    threat[] = {1, 1, 1};
-    engineer = 1;
     editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Pilot_7.jpg);
     model = "\A3\Characters_F\Common\coveralls.p3d";
-    hiddenSelections[] = { "camo" };
     hiddenSelectionsTextures[] = { QPATHTOEF(gear,data\uniforms\pilot_coveralls_7.paa) };
     uniformClass = "UKSF_U_PilotCoveralls_7";
-    ACE_GForceCoef = 0.7;
 };
-class UKSF_B_Pilot_656: UKSF_B_Pilot_7 {
+class UKSF_B_Pilot_656: UKSF_B_Pilot {
     displayName = "Pilot (656 Sqn.)";
     editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Pilot_656.jpg);
     model = "\A3\Characters_F_Beta\INDEP\ia_soldier_01.p3d";
-    hiddenSelections[] = { "Camo" };
     hiddenSelectionsTextures[] = { QPATHTOEF(gear,data\uniforms\pilot_uniform_656.paa) };
     uniformClass = "UKSF_U_PilotUniform_656";
-    ACE_GForceCoef = 0.7;
 };
-class UKSF_B_Pilot_617: UKSF_B_Pilot_7 {
+class UKSF_B_Pilot_617: UKSF_B_Pilot {
     displayName = "Pilot (617 Sqn.)";
     editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Pilot_617.jpg);
     model = "\A3\characters_F\Common\pilot_f.p3d";
-    hiddenSelections[] = { "camo" };
     hiddenSelectionsTextures[] = { QPATHTOEF(gear,data\uniforms\pilot_gsuit_617.paa) };
     uniformClass = "UKSF_U_PilotGSuit_617";
-    ACE_GForceCoef = 0.7;
 };

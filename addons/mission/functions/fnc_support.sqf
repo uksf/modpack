@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
     Author:
         Tim Beswick
@@ -31,8 +32,6 @@
     Return value:
         Nothing
 */
-#include "script_component.hpp"
-
 #define MAX_SHOOTER_SPEED 30
 #define MAX_DISTANCE_TO_SHOOTER 1000
 #define SUPPORT_CHANCE 25
@@ -52,7 +51,7 @@ if ((random 100) < SUPPORT_CHANCE || {(_unit distance2D _shooter) > MAX_DISTANCE
     
     if (alive _unit) then {
         if ((_unit knowsAbout _shooter) > MIN_SUPPRESSED_KNOWS_ABOUT || {!([_shooter] call EFUNC(common,hasSuppressor))}) then {
-            private _supportingUnit = selectRandom (((position _unit) nearEntities [["Man"], DISTANCE_TO_SUPPORT]) select {CONDITION_SUPPORT});
+            private _supportingUnit = selectRandom (((position _unit) nearEntities [["CAManBase"], DISTANCE_TO_SUPPORT]) select {CONDITION_SUPPORT});
             if (alive _supportingUnit) then {
                 (group _unit) setVariable [QGVAR(requested), true, true];
                 private _position = [(position _shooter), 50 + ((_unit distance2D _shooter) / 10) + (50 * _reportDepth)] call CBA_fnc_randPos;
@@ -63,6 +62,6 @@ if ((random 100) < SUPPORT_CHANCE || {(_unit distance2D _shooter) > MAX_DISTANCE
             };
         };
     } else {
-        [selectRandom (((position _unit) nearEntities [["Man"], DISTANCE_TO_RETRY]) select {CONDITION_PROXIMITY}), "", "", _shooter, _reportDepth + 1] call FUNC(support);
+        [selectRandom (((position _unit) nearEntities [["CAManBase"], DISTANCE_TO_RETRY]) select {CONDITION_PROXIMITY}), "", "", _shooter, _reportDepth + 1] call FUNC(support);
     };
 }, [_unit, _shooter, _reportDepth], 1 + (random 1)] call CBA_fnc_waitAndExecute;

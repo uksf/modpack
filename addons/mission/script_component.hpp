@@ -17,3 +17,12 @@
 
 #define CONDITION_PROXIMITY ((faction _x) isEqualTo (faction _unit)) && \
     {_x getVariable [QGVAR(hasRadio), true]}
+
+#define DEFAULT_WHITELISTED_GEAR ["Binocular"]
+
+#define SET_CONSPICUOUS(STATE) [_player, "setCaptive", QGVAR(conspicuous), STATE] call ace_common_fnc_statusEffect_set
+
+#define CHECK_GEAR_CONSPICUITY(CHECK) \
+if (CHECK != "" && {!(CHECK in GVAR(conspicuityGearWhitelist))}) exitWith { \
+    SET_CONSPICUOUS(true); \
+}
