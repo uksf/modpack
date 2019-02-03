@@ -58,7 +58,7 @@ if ((random 100) < SUPPORT_CHANCE || {(_unit distance2D _shooter) > MAX_DISTANCE
                 private _radius = ((_supportingUnit distance2D _shooter) / 10) + (25 * _reportDepth);
                 (group _supportingUnit) setVariable [QGVAR(tasked), true, true];
                 {deleteWaypoint [group _supportingUnit, 1]; false} count (waypoints (group _supportingUnit));
-                [group _supportingUnit, _position, _radius, "SAD", "COMBAT", "RED", "FULL", "WEDGE", QUOTE([this] call FUNC(reTask)), [0,0,0], 10] call CBA_fnc_addWaypoint;
+                [group _supportingUnit, _position, _radius, "SAD", "AWARE", "RED", "FULL", "WEDGE", QUOTE([this] call FUNC(reTask)), [0,0,0], 10] call CBA_fnc_addWaypoint;
             };
         };
     } else {
