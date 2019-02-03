@@ -682,6 +682,11 @@ class CfgWeapons {
         };
     };
 
+    class Binocular;
+    class UK3CB_BAF_Soflam_Laserdesignator: Binocular {
+        distanceZoomMax = 10000;
+    };
+
     // AA weapons range changes
     // Ural ZU-23, BMP-2 ZU-23, ZU-23
     class CUP_Vacannon_2A14_veh : CannonCore {

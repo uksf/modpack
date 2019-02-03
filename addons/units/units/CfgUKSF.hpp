@@ -87,6 +87,8 @@ class UKSF_B_Pilot_656: UKSF_B_Pilot {
     model = "\A3\Characters_F_Beta\INDEP\ia_soldier_01.p3d";
     hiddenSelectionsTextures[] = { QPATHTOEF(gear,data\uniforms\pilot_uniform_656.paa) };
     uniformClass = "UKSF_U_PilotUniform_656";
+    linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_H_Beret_AAC" };
+    respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_H_Beret_AAC" };
 };
 class UKSF_B_Pilot_617: UKSF_B_Pilot {
     displayName = "Pilot (617 Sqn.)";
