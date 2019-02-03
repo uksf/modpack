@@ -8,9 +8,11 @@ class UK3CB_BAF_MAN_HX60_Cargo_Base : UK3CB_BAF_MAN_HX60_Base {
 };
 class UK3CB_BAF_MAN_HX60_Fuel_Base : UK3CB_BAF_MAN_HX60_Base {
     faction = "CUP_B_GB";
+    transportFuel = 0;
 };
 class UK3CB_BAF_MAN_HX60_Repair_Base : UK3CB_BAF_MAN_HX60_Base {
     faction = "CUP_B_GB";
+    transportRepair = 0;
 };
 class UK3CB_BAF_MAN_HX60_Transport_Base : UK3CB_BAF_MAN_HX60_Base {
     faction = "CUP_B_GB";
@@ -53,9 +55,11 @@ class UK3CB_BAF_MAN_HX58_Cargo_Base : UK3CB_BAF_MAN_HX58_Base {
 };
 class UK3CB_BAF_MAN_HX58_Fuel_Base : UK3CB_BAF_MAN_HX58_Base {
     faction = "CUP_B_GB";
+    transportFuel = 0;
 };
 class UK3CB_BAF_MAN_HX58_Repair_Base : UK3CB_BAF_MAN_HX58_Base {
     faction = "CUP_B_GB";
+    transportRepair = 0;
 };
 class UK3CB_BAF_MAN_HX58_Transport_Base : UK3CB_BAF_MAN_HX58_Base {
     faction = "CUP_B_GB";
