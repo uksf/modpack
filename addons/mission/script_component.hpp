@@ -23,6 +23,6 @@
 #define SET_CONSPICUOUS(STATE) [_player, "setCaptive", QGVAR(conspicuous), !STATE] call ace_common_fnc_statusEffect_set
 
 #define CHECK_GEAR_CONSPICUITY(CHECK) \
-if (CHECK != "" && {!(CHECK in GVAR(conspicuityGearWhitelist))}) exitWith { \
+if (CHECK != "" && {({_x == CHECK} count GVAR(conspicuityGearWhitelist)) == 0}) exitWith { \
     SET_CONSPICUOUS(true); \
 }
