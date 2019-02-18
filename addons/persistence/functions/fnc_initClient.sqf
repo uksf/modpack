@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
     Author:
         Tim Beswick
@@ -11,10 +12,9 @@
     Return Value:
         None
 */
-#include "script_component.hpp"
 
 ["CAManBase", "respawn", {
-    _this call FUNC(addPersistenceActions);
+    call FUNC(addPersistenceActions);
 }, true, nil, true] call CBA_fnc_addClassEventHandler;
 
 ["ace_throwableThrown", {
@@ -25,7 +25,7 @@
 }] call CBA_fnc_addEventHandler;
 
 ["created", {
-    private _serializedMarker = _this call FUNC(serializeMarker);
+    private _serializedMarker = call FUNC(serializeMarker);
     if (count _serializedMarker > 0) then {
         [QGVAR(markerCreated), [_serializedMarker]] call CBA_fnc_serverEvent;
     };
@@ -44,7 +44,7 @@
     /*if (_leaderID != -1) then {
         private _leader = allPlayers select {(getPlayerUID _x) == _leaderID};
         if (_leader > 0) then { // leader online, calculate relative position from leader position and offset
-            _leader = _leader#0; 
+            _leader = _leader#0;
             _leaderPosition = getPosASL _leader;
             _leaderPosition = _leader modelToWorld _offset;
         } else { // leader offline, calculate relative position from stored position, direction, and offset
@@ -61,7 +61,7 @@
 }] call CBA_fnc_addEventHandler;
 
 [QGVAR(firstRespawn), {
-    GVAR(data) params ["_position", "_vehicleState", "_direction", "_animation", "_loadout", "_damage", "_aceStates", "_earplugs", "_attached", "_radioChannels"];
+    GVAR(data) params ["_position", "_vehicleState", "_direction", "_animation", "_loadout", "_damage", "_aceStates", "_earplugs", "_attached", "_radios"];
     //_positionData params ["_position", "_leaderID", "_leaderPosition", "_leaderDirection", "_relativePosition"];
 
     if (!isNil QGVAR(respawn)) then {
@@ -70,7 +70,7 @@
     /*if (!isNil QGVAR(groupRespawn)) then {
         deleteMarkerLocal GVAR(groupRespawn);
     };*/
-    
+
     if (count GVAR(data) > 0 && {(_position distance2D (getPos player)) < 10}) then {
         player setDir _direction;
         player setUnitLoadout _loadout;
@@ -79,17 +79,8 @@
         player setVariable ["ACE_hasEarPlugsIn", _earplugs, true];
         {[player, player, [_x], true] call ace_attach_fnc_attach} forEach _attached;
         [{
-            [{
-                private _radios = ([player] call acre_sys_core_fnc_getGear) select {(_x select [0, 4]) == "ACRE"};
-                {_x call acre_sys_radio_fnc_isUniqueRadio} count _radios == count _radios
-            }, {
-                params ["_radioChannels"];
-                private _radios = ([player] call acre_sys_core_fnc_getGear) select {_x call acre_sys_radio_fnc_isUniqueRadio};
-                {
-                    [_x, _radioChannels#_forEachIndex] call acre_api_fnc_setRadioChannel;
-                } forEach _radios;
-            }, _this, 15] call CBA_fnc_waitUntilAndExecute;
-        }, [_radioChannels], 2] call CBA_fnc_waitAndExecute;
+            call EFUNC(radios,deserializeRadios);
+        }, [_radios], 2] call CBA_fnc_waitAndExecute;
 
         _vehicleState params ["_vehicleId"];
         if (_vehicleId != "") then {
@@ -114,7 +105,7 @@
             }, _animation, 0.2] call CBA_fnc_waitAndExecute;
         };
 
-        [[true]] call FUNC(updateVolume);
-        [] call FUNC(updateHearingProtection);
+        [[true]] call ace_hearing_fnc_updateVolume;
+        [] call ace_hearing_fnc_updateHearingProtection;
     };
 }] call CBA_fnc_addEventHandler;

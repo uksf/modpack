@@ -19,27 +19,27 @@ class Extended_PostInit_EventHandlers {
 class Extended_Killed_EventHandlers {
     class CAManBase {
         class ADDON {
-            killed = QUOTE(_this call FUNC(handleKilled));
+            killed = QUOTE(call FUNC(handleKilled));
         };
     };
     class Car {
         class ADDON {
-            killed = QUOTE(_this call FUNC(handleKilled));
+            killed = QUOTE(call FUNC(handleKilled));
         };
     };
     class Tank {
         class ADDON {
-            killed = QUOTE(_this call FUNC(handleKilled));
+            killed = QUOTE(call FUNC(handleKilled));
         };
     };
     class Air {
         class ADDON {
-            killed = QUOTE(_this call FUNC(handleKilled));
+            killed = QUOTE(call FUNC(handleKilled));
         };
     };
     class Ship {
         class ADDON {
-            killed = QUOTE(_this call FUNC(handleKilled));
+            killed = QUOTE(call FUNC(handleKilled));
         };
     };
 };

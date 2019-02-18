@@ -842,7 +842,7 @@ class CUP_B_BAF_Pilot_WDL: CUP_B_BAF_Soldier_01_DPM {
 };
 class CUP_B_BAF_Crew_WDL: CUP_B_BAF_Soldier_01_DPM {
     scope = 2;
-    scopeCurator = 2;    
+    scopeCurator = 2;
     displayName = "Crewman (DPMW)";
     accuracy = 3.4;
     camouflage = 1.4;
@@ -1268,7 +1268,7 @@ class CUP_B_BAF_Pilot_DDPM: CUP_B_BAF_Soldier_01_DDPM {
 };
 class CUP_B_BAF_Crew_DDPM: CUP_B_BAF_Soldier_01_DDPM {
     scope = 2;
-    scopeCurator = 2;    
+    scopeCurator = 2;
     displayName = "Crewman (DDPM)";
     accuracy = 3.4;
     camouflage = 1.4;

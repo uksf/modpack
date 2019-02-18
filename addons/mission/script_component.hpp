@@ -15,7 +15,7 @@
     {!((group _x) getVariable [QGVAR(tasked), false])} && \
     {!((behaviour leader (group _x)) isEqualTo "COMBAT")}
 
-#define CONDITION_PROXIMITY ((faction _x) isEqualTo (faction _unit)) && \
+#define CONDITION_PROXIMITY ((side _x) isEqualTo (side _unit)) && \
     {_x getVariable [QGVAR(hasRadio), true]}
 
 #define DEFAULT_WHITELISTED_GEAR ["Binocular"]

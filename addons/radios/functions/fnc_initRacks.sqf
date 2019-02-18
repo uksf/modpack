@@ -1,7 +1,7 @@
 /*
     Author:
         Tim Beswick
-        
+
     Description:
         Initialises radio racks for vehicles using given channels
 
@@ -12,7 +12,7 @@
         None
 */
 #include "script_component.hpp"
-        
+
 params ["_vehicle"];
 
 if (_vehicle getVariable [QGVAR(channelsSet), false]) exitWith {};
@@ -54,7 +54,7 @@ if (count _channels == 0) exitWith {};
         _return
     }, {
         params ["_vehicle", "_channels"];
-            
+
         private _radios = ([_vehicle] call acre_api_fnc_getVehicleRacks) apply {[_x] call acre_api_fnc_getMountedRackRadio};
         {
             [_x, _channels#_forEachIndex] call acre_api_fnc_setRadioChannel;

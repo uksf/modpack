@@ -18,7 +18,7 @@ private _handled = false;
 curatorMouseOver params ["_typeName", "_clickedObject"];
 if (_typeName isEqualType objNull) then {
     private _ctrlKeyPressed = param [5];
-    
+
     switch (true) do {
         case (_ctrlKeyPressed): {
             missionnamespace setVariable ["bis_fnc_curatorObjectPlaced_mouseOver",[_typeName, _clickedObject]];

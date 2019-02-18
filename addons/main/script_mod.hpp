@@ -5,13 +5,14 @@
 
 #define URL QUOTE(uk-sf.co.uk)
 
-#include "\u\uksf\addons\main\script_version.hpp"
+#include "script_version.hpp"
+
 #define VERSION MAJOR.MINOR.PATCHLVL
 #define VERSION_AR MAJOR,MINOR,PATCHLVL
 
 // MINIMAL required version for the Mod. Components can specify others..
-#define REQUIRED_VERSION 1.68
-#define REQUIRED_CBA_VERSION {3,1,2}
+#define REQUIRED_VERSION 1.88
+#define REQUIRED_CBA_VERSION {3,9,1}
 
 #ifdef COMPONENT_BEAUTIFIED
     #define COMPONENT_NAME QUOTE(UKSF - COMPONENT_BEAUTIFIED)

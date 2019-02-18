@@ -1,6 +1,6 @@
 class CfgVehicles {
     class O_Soldier_VR_F;
-    class UKSF_O_Rifleman: O_Soldier_VR_F {  
+    class UKSF_O_Rifleman: O_Soldier_VR_F {
         scope = 2;
         scopeCurator = 2;
         author = "UKSF";
@@ -219,19 +219,19 @@ class CfgVehicles {
         class Damage {
             tex[] = {};
             mat[] = {
-                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat), 
-                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat), 
-                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat), 
-                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat), 
-                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat), 
-                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat), 
-                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat), 
-                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat), 
-                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat), 
-                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat), 
                 QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat),
-                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat), 
-                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat), 
+                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat),
+                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat),
+                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat),
+                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat),
+                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat),
+                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat),
+                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat),
+                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat),
+                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat),
+                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat),
+                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat),
+                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat),
                 QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat)
             };
         };
@@ -250,12 +250,12 @@ class CfgVehicles {
         hiddenSelectionsMaterials[] = { QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\alive.rvmat) };
         class Damage {
             tex[] = {};
-            mat[] = { 
-                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat), 
-                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat), 
-                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat), 
-                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat), 
-                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat), 
+            mat[] = {
+                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat),
+                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat),
+                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat),
+                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat),
+                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat),
                 QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat)
             };
         };
@@ -281,12 +281,12 @@ class CfgVehicles {
         hiddenSelectionsMaterials[] = { QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\alive.rvmat) };
         class Damage {
             tex[] = {};
-            mat[] = { 
-                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat), 
-                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat), 
-                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat), 
-                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat), 
-                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat), 
+            mat[] = {
+                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat),
+                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat),
+                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat),
+                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat),
+                QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat),
                 QPATHTO_R(data\alive.rvmat), QPATHTO_R(data\damage.rvmat), QPATHTO_R(data\dead.rvmat)
             };
         };

@@ -72,7 +72,7 @@ GVAR(soundHandler) = [{
         if (_damage >= 0.8) then {
             _heli removemagazine "UK3CB_BAF_1200Rnd_30mm_M230_HEDP_T";
             _heli addmagazine "UK3CB_BAF_JAM_30mm_M230_HEDP_T";
-            
+
             [QGVAR(gunActuatorFailure), 1.9] call FUNC(audio);
         };
         _heli setVariable [QGVAR(previousGunDamage), _damage, true];

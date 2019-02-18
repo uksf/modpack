@@ -19,7 +19,7 @@ class Extended_PostInit_EventHandlers {
 class Extended_InitPost_Eventhandlers {
     class Helicopter {
         class ADDON {
-            init = QUOTE(_this call FUNC(correctPilotPylon));
+            init = QUOTE(call FUNC(correctPilotPylon));
         };
     };
 };

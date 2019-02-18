@@ -68,7 +68,7 @@ private _data = [
     [_unit] call EFUNC(common,serializeAceMedical),
     _unit getVariable ["ACE_hasEarPlugsIn", false],
     (_unit getVariable ["ace_attach_attached", []]) apply {_x#1},
-    (([_unit] call acre_sys_core_fnc_getGear) select {_x call acre_sys_radio_fnc_isUniqueRadio}) apply {[_x] call acre_api_fnc_getRadioChannel}
+    [_unit] call EFUNC(radios,serializeRadios)
 ];
 //TRACE_1("Player disconnect",_data);
 

@@ -3,14 +3,14 @@ class CfgVehicles {
     class ModuleCurator_F: Module_F {
         function = QFUNC(moduleCurator);
     };
-    
+
     class ModuleMine_APERSTripMine_F;
     class ModuleMine_FlareTripMine_F: ModuleMine_APERSTripMine_F {
         _generalMacro = "ModuleMine_FlareTripMine_F";
         displayName = "Tripwire Flare";
         explosive = "ACE_FlareTripMine_Wire_Ammo";
     };
-    
+
     class EGVAR(common,moduleBase);
     class GVAR(moduleAddAllObjects): EGVAR(common,moduleBase) {
         curatorCanAttach = 1;

@@ -60,7 +60,7 @@ GVAR(curatorSelectionHandle) = _display displayAddEventHandler ["KeyDown", {
                 if ((count GVAR(haloHahoMapPoints)) >= 2) exitWith {
                     _display displayRemoveEventHandler ["MouseButtonDown", GVAR(curatorMapPointHandle)];
                     _display displayRemoveEventHandler ["KeyDown", GVAR(curatorCancelHandle)];
-                    
+
                     ["Dropping in %1 units", count GVAR(haloHahoUnits)] call ace_zeus_fnc_showMessage;
                     {
                         [QEGVAR(common,textTiles), [parseText format ["<t align = 'center' color = '#00CC00'>STANDBY FOR PICKUP</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 2.5], _x] call CBA_fnc_targetEvent;
@@ -100,7 +100,7 @@ GVAR(curatorSelectionHandle) = _display displayAddEventHandler ["KeyDown", {
                             {
                                 [{
                                     [QGVAR(moveInCargo), _this, _this#0] call CBA_fnc_targetEvent;
-                                }, [_x, _plane], (1 * _forEachIndex) + 1] call CBA_fnc_waitAndExecute;                                
+                                }, [_x, _plane], (1 * _forEachIndex) + 1] call CBA_fnc_waitAndExecute;
                             } forEach GVAR(haloHahoUnits);
                         };
 

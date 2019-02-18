@@ -13,17 +13,17 @@ class Extended_PreInit_EventHandlers {
 class Extended_FiredBIS_EventHandlers {
     class CUP_Mastiff_Base {
         class ADDON {
-            firedBIS = QUOTE(_this call UK3CB_BAF_Vehicles_Coyote_Jackal_fnc_fired_EH);
+            firedBIS = QUOTE(call UK3CB_BAF_Vehicles_Coyote_Jackal_fnc_fired_EH);
         };
     };
     class CUP_Ridgback_Base {
         class ADDON {
-            firedBIS = QUOTE(_this call UK3CB_BAF_Vehicles_Coyote_Jackal_fnc_fired_EH);
+            firedBIS = QUOTE(call UK3CB_BAF_Vehicles_Coyote_Jackal_fnc_fired_EH);
         };
     };
     class CUP_Wolfhound_Base {
         class ADDON {
-            firedBIS = QUOTE(_this call UK3CB_BAF_Vehicles_Coyote_Jackal_fnc_fired_EH);
+            firedBIS = QUOTE(call UK3CB_BAF_Vehicles_Coyote_Jackal_fnc_fired_EH);
         };
     };
 };

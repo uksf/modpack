@@ -4,7 +4,7 @@ class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
         units[] = {};
-        weapons[] = { 
+        weapons[] = {
             QGVAR(terminal)
         };
         requiredVersion = REQUIRED_VERSION;

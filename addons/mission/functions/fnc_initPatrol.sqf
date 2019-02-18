@@ -1,19 +1,19 @@
 /*
     Author:
         Tim Beswick
-        
+
     Description:
         Sets up patrol spawning on given position.
         Position can be a marker, trigger, or location.
         Markers must be area markers. In editor: Markers > Areas (Circle overlapping rectangle icon)
-        
+
         Parameters for function call:
             0: position - This can be a marker name passed as a string, a trigger object, or a location
             1: maxGroupsActive (default: 5) - The maximum number of groups that will be active on this position at any time
             2: groupPoolSize (default: 10) - The total number of enemy groups that will ever spawn on this position
             3: factionName (default: "") - The name of the faction to spawn
 
-        Format: 
+        Format:
             ["markername"/trigger object/location, maxGroupsActive, groupPoolSize, factionName] call uksf_mission_fnc_initPatrol;
 
     Parameters:

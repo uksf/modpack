@@ -10,9 +10,9 @@ if (isServer) then {
     GVAR(curatorGroup) = createGroup sideLogic;
     GVAR(curatorObjects) = [];
     GVAR(curatorPlayers) = [];
-    [QGVAR(setCuratorsLocked), {_this call FUNC(setCuratorsLocked)}] call CBA_fnc_addEventHandler;
-    [QGVAR(curatorAssign), {_this call FUNC(curatorAssign)}] call CBA_fnc_addEventHandler;
-    [QGVAR(curatorUnassign), {_this call FUNC(curatorUnassign)}] call CBA_fnc_addEventHandler;
+    [QGVAR(setCuratorsLocked), {call FUNC(setCuratorsLocked)}] call CBA_fnc_addEventHandler;
+    [QGVAR(curatorAssign), {call FUNC(curatorAssign)}] call CBA_fnc_addEventHandler;
+    [QGVAR(curatorUnassign), {call FUNC(curatorUnassign)}] call CBA_fnc_addEventHandler;
 
     addMissionEventHandler ["HandleDisconnect", {[QGVAR(curatorUnassign), [getAssignedCuratorLogic (_this select 0)]] call CBA_fnc_serverEvent;}];
     if (!isMultiplayer) then {

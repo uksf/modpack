@@ -1,6 +1,6 @@
 class Heli_light_03_base_F: Helicopter_Base_F {
     class Components;
-}; 
+};
 class UK3CB_BAF_Wildcat_Base: Heli_light_03_base_F {
     faction = "CUP_B_GB";
     crew = "UKSF_B_Pilot_7";

@@ -1,7 +1,7 @@
 /*
     Author:
         joko, Tim Beswick
-        
+
     Description:
         Returns unique ID.
 

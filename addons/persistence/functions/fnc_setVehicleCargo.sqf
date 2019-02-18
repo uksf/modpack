@@ -21,7 +21,7 @@ TRACE_3("Setting vehicle cargo",_vehicle,_aceCargo,_inventory);
 [_vehicle, _inventory] spawn {
     params ["_vehicle", "_inventory"];
     _inventory params ["_weapons", "_magazines", "_items", "_backpacks"];
-        
+
     clearWeaponCargoGlobal _vehicle;
     clearMagazineCargoGlobal _vehicle;
     clearItemCargoGlobal _vehicle;
@@ -41,7 +41,7 @@ _initCargo = _vehicle getVariable ["ace_cargo_loaded", []];
     private _cargoVehicle = _type;
     if (count _xAceCargo > 0 || {(count (_inventory select {count _x > 0})) > 0}) then {
         _cargoVehicle = _type createVehicle [-1000 + (random 50), -1000 + (random 50), 0];
-        [_cargoVehicle, _xAceCargo, _inventory] call FUNC(setVehicleCargo);        
+        [_cargoVehicle, _xAceCargo, _inventory] call FUNC(setVehicleCargo);
     };
     [_cargoVehicle, _vehicle, true] call ace_cargo_fnc_loadItem;
 } forEach _aceCargo;

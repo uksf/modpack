@@ -2,7 +2,7 @@
 /*
     Author:
         Tim Beswick
-        
+
     Description:
         Checks if unit should be conspicuous based on their gear and settings
 

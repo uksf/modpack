@@ -13,7 +13,7 @@ class Extended_PreInit_EventHandlers {
 class Extended_Init_EventHandlers {
     class CUP_MQ9_Base {
         class ADDON {
-            init = QUOTE(_this call FUNC(init));
+            init = QUOTE(call FUNC(init));
         };
     };
 };
@@ -21,7 +21,7 @@ class Extended_Init_EventHandlers {
 class Extended_Killed_EventHandlers {
     class CUP_MQ9_Base {
         class ADDON {
-            killed = QUOTE(_this call FUNC(killed));
+            killed = QUOTE(call FUNC(killed));
         };
     };
 };

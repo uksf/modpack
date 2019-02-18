@@ -13,7 +13,7 @@
 */
 #include "script_component.hpp"
 
-GVAR(factionMap) = [];
+private _factionMap = [];
 
 private _configFactions = [];
 {
@@ -27,6 +27,8 @@ private _configFactions = [];
         _groups append ("true" configClasses _x);
         false
     } count ("(str _x find ""Infantry"") != -1" configClasses _x);
-    GVAR(factionMap) pushBack [configName _x, _groups];
+    _factionMap pushBack [configName _x, _groups];
     false
 } count _configFactions;
+
+uiNamespace setVariable [QGVAR(factionMap), _factionMap];

@@ -45,7 +45,7 @@ if (local _heli && {alive _heli} && {player isEqualTo (driver _heli)} && {isEngi
         private _missileAlt = "low";
         if (_posHeli select 2 < _posMissile select 2) then {
             _missileAlt = "high";
-        };    
+        };
         private _missileDirection = ((_posMissile select 0) - (_posHeli select 0)) atan2 ((_posMissile select 1) - (_posHeli select 1));
         if (_missileDirection < 0) then {
             _missileDirection = _missileDirection + 360;

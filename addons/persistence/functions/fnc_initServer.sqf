@@ -20,15 +20,15 @@ GVAR(hashFirstRespawn) = [[], true] call CBA_fnc_hashCreate;
 GVAR(persistenceMarkers) = [];
 GVAR(mapMarkers) = GVAR(dataNamespace) getVariable [QGVAR(mapMarkers), []];
 
-addMissionEventHandler ["PlayerConnected", {_this call FUNC(playerConnected)}];
-addMissionEventHandler ["EntityRespawned", {_this call FUNC(entityRespawned)}];
-addMissionEventHandler ["EntityKilled", {_this call FUNC(entityKilled)}];
-addMissionEventHandler ["HandleDisconnect", {_this call FUNC(handleDisconnect)}];
-addMissionEventHandler ["PlayerDisconnected", {_this call FUNC(playerDisconnected)}];
+addMissionEventHandler ["PlayerConnected", {call FUNC(playerConnected)}];
+addMissionEventHandler ["EntityRespawned", {call FUNC(entityRespawned)}];
+addMissionEventHandler ["EntityKilled", {call FUNC(entityKilled)}];
+addMissionEventHandler ["HandleDisconnect", {call FUNC(handleDisconnect)}];
+addMissionEventHandler ["PlayerDisconnected", {call FUNC(playerDisconnected)}];
 
-[QGVAR(shutdown), {_this call FUNC(shutdown)}] call CBA_fnc_addEventHandler;
+[QGVAR(shutdown), {call FUNC(shutdown)}] call CBA_fnc_addEventHandler;
 [QGVAR(addLogisticsMarker), {GVAR(persistenceMarkers) pushBackUnique _this}] call CBA_fnc_addEventHandler;
-[QGVAR(markVehicleAsPersistent), {_this call FUNC(markVehicleAsPersistent)}] call CBA_fnc_addEventHandler;
+[QGVAR(markVehicleAsPersistent), {call FUNC(markVehicleAsPersistent)}] call CBA_fnc_addEventHandler;
 
 [QGVAR(checkPersistentVehicleExists), {
     [{

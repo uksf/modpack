@@ -103,22 +103,22 @@ private _dumpConfigTree = {
     _traverse = {
         private _confName = configName _this;
         if (isText _this) exitwith {
-            _confName + " = " + (getText _this call _escapeString) + ";" call _pushLine;
+            _confName + " = " + (getText call _escapeString) + ";" call _pushLine;
         };
         if (isNumber _this) exitwith {
             _confName + " = " + str getNumber _this + ";" call _pushLine;
         };
         if (isArray _this) exitwith {
-            _confName + "[] = " + (getArray _this call _traverseArray) + ";" call _pushLine;
+            _confName + "[] = " + (getArray call _traverseArray) + ";" call _pushLine;
         };
         if (isClass _this) exitwith {
             "class " + _confName + (
-                configName inheritsFrom _this call {
+                configName inheritsFrom call {
                     if (_this == "" || !_specifyParentClass) then {"" } else {": " + _this }
                 }
             ) + " {" call _pushLine;
             if (_includeInheritedProperties) then {
-                _this = _this call _collectInheritedProperties;
+                _this = call _collectInheritedProperties;
             };
             _depth = _depth + 1;
             for "_i" from 0 to count _this - 1 do {
@@ -138,7 +138,7 @@ private _dumpConfigTree = {
             "{" + ([_array, ", "] call _joinString) + "}";
         };
         if (typeName _this == "string") exitwith {
-            _this call _escapeString;
+            call _escapeString;
         };
         str _this;
     };
@@ -149,6 +149,6 @@ private _dumpConfigTree = {
 };
 
 private _startTime = diag_tickTime;
-_this call _dumpConfigTree;
+call _dumpConfigTree;
 private _endTime = diag_tickTime;
 hint format ["Config Export Done. %1", _endTime - _startTime];

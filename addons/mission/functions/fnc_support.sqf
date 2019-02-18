@@ -41,14 +41,14 @@
 
 params [["_unit", objNull], "", "", "_shooter", ["_reportDepth", 0]];
 
-if (!local _unit || {isPlayer _unit} || {isNull _unit}) exitWith {};    
+if (!local _unit || {isPlayer _unit} || {isNull _unit}) exitWith {};
 if ((group _unit) getVariable [QGVAR(requested), false] || {!(_unit getVariable [QGVAR(hasRadio), true])}) exitWith {};
 if ((vehicle _shooter) isKindOf "Air" || {speed (vehicle _shooter) > MAX_SHOOTER_SPEED}) exitWith {};
 if ((random 100) < SUPPORT_CHANCE || {(_unit distance2D _shooter) > MAX_DISTANCE_TO_SHOOTER}) exitWith {};
-    
+
 [{
     params ["_unit", "_shooter", ["_reportDepth", 0]];
-    
+
     if (alive _unit) then {
         if ((_unit knowsAbout _shooter) > MIN_SUPPRESSED_KNOWS_ABOUT || {!([_shooter] call EFUNC(common,hasSuppressor))}) then {
             private _supportingUnit = selectRandom (((position _unit) nearEntities [["CAManBase"], DISTANCE_TO_SUPPORT]) select {CONDITION_SUPPORT});

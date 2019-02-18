@@ -120,7 +120,7 @@ class CfgVehicles {
         memoryPointRMissile = "missile_2";
         memoryPointLRocket = "Rocket_1";
         memoryPointRRocket = "Rocket_2";
-        memoryPointCM[] = { "flare_launcher1", "flare_launcher2" }; 
+        memoryPointCM[] = { "flare_launcher1", "flare_launcher2" };
         memoryPointCMDir[] = { "flare_launcher1_dir", "flare_launcher2_dir" };
         radarType = 4;
         lockDetectionSystem = "1 + 2 + 4 + 8";
@@ -226,7 +226,7 @@ class CfgVehicles {
                 turretOpticsShowCursor = 1;
                 turretCanSee = "1 + 2 + 4 + 8 + 16";
                 showCrewAim = "1+2";
-                enableManualFire = 1; 
+                enableManualFire = 1;
                 gunnerUsesPilotView = 1;
                 commanderUsesPilotView = 1;
                 class OpticsIn {
@@ -475,7 +475,7 @@ class CfgVehicles {
                 minTurn = 30;
                 maxTurn = -30;
                 isPersonTurret = 0;
-                ejectDeadGunner = 0; 
+                ejectDeadGunner = 0;
                 enabledByAnimationSource = "";
                 usepip = 0;
                 gunnerOutOpticsModel = "";

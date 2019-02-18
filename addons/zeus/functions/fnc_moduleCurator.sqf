@@ -21,7 +21,7 @@
 params ["_logic", "", "_activated"];
 
 if (_activated) then {
-    
+
     // --- Terminate when not created on the server
     if (!isServer && {local _logic} && {isNull (getAssignedCuratorUnit _logic)}) exitwith {
         [format ["%1 is trying to create curator logic ModuleCurator_F", profilename], "bis_fnc_error", false] call bis_fnc_mp;
@@ -47,9 +47,6 @@ if (_activated) then {
 
     // --- Wipe out the variable so clients can't access it
     _logic setVariable ["owner", nil];
-
-    waitUntil {!isNil QEGVAR(common,addons)};
-    _logic addcuratoraddons (EGVAR(common,addons) - (curatorAddons _logic));
 
     // --- Server
     if (isserver) then {
@@ -77,8 +74,8 @@ if (_activated) then {
             waitUntil {time > 0}; // NOTE: DO NOT CHANGE TO CBA_missionTime, IT BREAKS THE MODULE
 
             // --- Refresh addon list, so it's broadcasted to clients
-            waitUntil {!isNil QEGVAR(common,addons)};
-            _logic addcuratoraddons (EGVAR(common,addons) - (curatorAddons _logic));
+            private _addons = uiNamespace getVariable ["CBA_common_unitAddons", []];
+            _logic addCuratorAddons (_addons - (curatorAddons _logic));
 
             while {true} do {
                 // --- Wait for player to become Zeus
@@ -198,7 +195,7 @@ if (_activated) then {
             if (count (actionkeys "curatorInterface") isEqualTo 0) then {
                 [
                     format [
-                        localize "str_a3_cfgvehicles_modulecurator_f_keyNotAssigned", 
+                        localize "str_a3_cfgvehicles_modulecurator_f_keyNotAssigned",
                         (["IGUI", "WARNING_RGB"] call bis_fnc_displaycolorget) call bis_fnc_colorRGBAtoHTML
                     ]
                 ] call bis_fnc_guiMessage;
@@ -206,19 +203,19 @@ if (_activated) then {
         };
 
 
-        _logic addEventHandler ["CuratorObjectPlaced", {_this call bis_fnc_curatorObjectPlaced}];
-        _logic addEventHandler ["CuratorObjectPlaced", {_this call Achilles_fnc_HandleCuratorObjectPlaced}];
-        _logic addEventHandler ["curatorObjectEdited", {_this call bis_fnc_curatorObjectEdited}];
-        _logic addEventHandler ["CuratorObjectEdited", {_this call Achilles_fnc_HandleCuratorObjectEdited}];
-        _logic addEventHandler ["CuratorGroupPlaced", {_this call Achilles_fnc_HandleCuratorGroupPlaced}];
-        _logic addEventHandler ["curatorWaypointPlaced", {_this call bis_fnc_curatorWaypointPlaced}];
-        _logic addEventHandler ["curatorFeedbackMessage", {_this call bis_fnc_showCuratorFeedbackMessage}];
+        _logic addEventHandler ["CuratorObjectPlaced", {call bis_fnc_curatorObjectPlaced}];
+        _logic addEventHandler ["CuratorObjectPlaced", {call Achilles_fnc_HandleCuratorObjectPlaced}];
+        _logic addEventHandler ["curatorObjectEdited", {call bis_fnc_curatorObjectEdited}];
+        _logic addEventHandler ["CuratorObjectEdited", {call Achilles_fnc_HandleCuratorObjectEdited}];
+        _logic addEventHandler ["CuratorGroupPlaced", {call Achilles_fnc_HandleCuratorGroupPlaced}];
+        _logic addEventHandler ["curatorWaypointPlaced", {call bis_fnc_curatorWaypointPlaced}];
+        _logic addEventHandler ["curatorFeedbackMessage", {call bis_fnc_showCuratorFeedbackMessage}];
         _logic addEventHandler ["curatorObjectDoubleClicked", {(_this select 1) call bis_fnc_showCuratorAttributes}];
-        _logic addEventHandler ["CuratorObjectDoubleClicked", {_this call Achilles_fnc_HandleCuratorObjectDoubleClicked}];
+        _logic addEventHandler ["CuratorObjectDoubleClicked", {call Achilles_fnc_HandleCuratorObjectDoubleClicked}];
         _logic addEventHandler ["curatorGroupDoubleClicked", {(_this select 1) call bis_fnc_showCuratorAttributes}];
         _logic addEventHandler ["curatorWaypointDoubleClicked", {(_this select 1) call bis_fnc_showCuratorAttributes}];
         _logic addEventHandler ["curatorMarkerDoubleClicked", {(_this select 1) call bis_fnc_showCuratorAttributes}];
-            
+
         _logic setVariable ["BIS_fnc_curatorAttributesplayer", ["%ALL"]];
         _logic setVariable ["BIS_fnc_curatorAttributesobject", ["%ALL"]];
         _logic setVariable ["BIS_fnc_curatorAttributesgroup", ["%ALL"]];

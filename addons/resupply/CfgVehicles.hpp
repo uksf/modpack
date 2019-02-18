@@ -292,7 +292,7 @@ class CfgVehicles {
             };
         };
     };
-    
+
     class UKSF_S_Ammo: UKSF_S_R1 {
         scope = 1;
         scopeCurator = 1;

@@ -94,7 +94,7 @@ class CfgVehicles {
             };
         };
         class TransportMagazines {};
-    }; 
+    };
     class UK3CB_BAF_B_Bergen_DPMW_Rifleman_A;
     class UK3CB_BAF_B_Bergen_DPMW_Rifleman_A_AR: UK3CB_BAF_B_Bergen_DPMW_Rifleman_A {
         scope = 1;
@@ -216,7 +216,7 @@ class CfgVehicles {
                 count = 1;
             };
         };
-    };    
+    };
     class UKSF_B_Bergen_Medic_DDPM: UK3CB_BAF_B_Bergen_DDPM_Rifleman_A {
         displayName = "Bergen DDPM Medic [BAF]";
         class TransportItems {

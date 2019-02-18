@@ -1,7 +1,7 @@
 /*
     Author:
         Tim Beswick
-        
+
     Description:
         Executes init patrol for spawn module
 

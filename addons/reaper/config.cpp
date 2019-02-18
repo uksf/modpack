@@ -8,7 +8,7 @@ class CfgPatches {
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {        
+        requiredAddons[] = {
             "uksf_gear",
             "CUP_AirVehicles_MQ9"
         };

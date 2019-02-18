@@ -28,7 +28,7 @@ if (GVAR(enabled)) then {
                     deleteVehicle _object;
                 } else {
                     _newKilled pushBack _x;
-                };                
+                };
             };
             false
         } count (missionNamespace getVariable [QGVAR(killed), []]);

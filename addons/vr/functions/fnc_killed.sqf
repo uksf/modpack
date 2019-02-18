@@ -1,4 +1,4 @@
-/* 
+/*
     Author:
         Tim Beswick
 
@@ -10,7 +10,7 @@
 
     Return value:
         Nothing
-*/ 
+*/
 #include "script_component.hpp"
 
 params ["_unit"];

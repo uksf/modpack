@@ -969,7 +969,7 @@ class CfgGroups {
             };
             class SpecOps {
                 name = "SpecOps";
-                aliveCategory = "SpecOps";                
+                aliveCategory = "SpecOps";
             };
             class Support {
                 name = "Support";

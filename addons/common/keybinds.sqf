@@ -7,4 +7,4 @@
 ["UKSF", QGVAR(releaseCargoRear), "Release Cargo (Rear)", {false}, {["Rear"] call FUNC(releaseCargo);}, [0, [false, false, false]]] call CBA_fnc_addKeybind;
 
 // Open Ramp
-["UKSF", QGVAR(ramp), "Open/Close Ramp", {false}, {_this call FUNC(ramp);}, [0, [false, false, false]]] call CBA_fnc_addKeybind;
+["UKSF", QGVAR(ramp), "Open/Close Ramp", {false}, {call FUNC(ramp);}, [0, [false, false, false]]] call CBA_fnc_addKeybind;

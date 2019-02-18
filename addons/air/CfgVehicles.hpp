@@ -65,7 +65,7 @@ class CfgVehicles {
     class Plane_Fighter_03_base_F: Plane_Base_F {
         epeImpulseDamageCoef = 5;
     };
-    
+
     #include "vehicles\CfgBuzzard.hpp"
     #include "vehicles\CfgC130.hpp"
     #include "vehicles\CfgChinook.hpp"

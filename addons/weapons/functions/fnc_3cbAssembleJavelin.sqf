@@ -17,10 +17,10 @@ if (!(alive ACE_player)) exitWith {false};
 
 private _assembleWeapon = {
     ACE_player selectWeapon (secondaryWeapon ACE_player);
-    ACE_player removeItemFromBackpack "UK3CB_BAF_Javelin_CLU"; 
+    ACE_player removeItemFromBackpack "UK3CB_BAF_Javelin_CLU";
     ACE_player playMove "ReloadRPGKneel";
     ACE_player addWeapon "UK3CB_BAF_Javelin_Launcher";
-    ACE_player selectWeapon "UK3CB_BAF_Javelin_Launcher"; 
+    ACE_player selectWeapon "UK3CB_BAF_Javelin_Launcher";
 };
 
 private _disassembleWeapon = {
@@ -54,7 +54,7 @@ if ("UK3CB_BAF_Javelin_Launcher" isEqualTo (secondaryWeapon ACE_player)) then {
             _handled = true;
             ACE_player addSecondaryWeaponItem "UK3CB_BAF_Javelin_Mag";
             ACE_player setWeaponReloadingTime [ACE_player, "UK3CB_BAF_Javelin_Launcher", 1];
-        } else { 
+        } else {
             if ("UK3CB_BAF_Javelin_Slung_Tube_Used" isEqualTo (secondaryWeapon ACE_player)) then {
                 call _assembleWeapon;
                 _handled = true;

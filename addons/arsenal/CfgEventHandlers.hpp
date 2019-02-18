@@ -19,7 +19,7 @@ class Extended_PostInit_EventHandlers {
 class Extended_InitPost_Eventhandlers {
     class UKSF_S_Arsenal {
         class ADDON {
-            init = QUOTE(_this call FUNC(initSupplyCrate));
+            init = QUOTE(call FUNC(initSupplyCrate));
         };
     };
 };

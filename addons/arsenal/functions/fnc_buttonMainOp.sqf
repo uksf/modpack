@@ -32,6 +32,6 @@ missionNamespace setVariable [QGVAR(useMainOpGear), !_useMainOpGear];
     } else {
         [_box, true, false] call ace_arsenal_fnc_addVirtualItems;
     };
-    
+
     [_box, _box, false] call ace_arsenal_fnc_openBox;
 }, [!_useMainOpGear]]  call CBA_fnc_execNextFrame;

@@ -4,7 +4,7 @@
     Description:
     Creates a hold action for launching player's aircraft from the carrier.
     Edit:
-        Add exclude check via config setting 
+        Add exclude check via config setting
 
     Parameter(s):
         0: trigger that is adding the action

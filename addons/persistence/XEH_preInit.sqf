@@ -7,7 +7,7 @@ ADDON = false;
 if (!isMultiplayer) exitWith {};
 
 if (hasInterface) then {
-    [QGVAR(initClient), {_this call FUNC(initClient)}] call CBA_fnc_addEventHandler;
+    [QGVAR(initClient), {call FUNC(initClient)}] call CBA_fnc_addEventHandler;
 };
 
 if (isServer) then {
@@ -18,7 +18,7 @@ if (isServer) then {
         GVAR(key) = format [QUOTE(GVAR(key)_%1), GVAR(key)];
         GVAR(dataSaved) = true;
     };
-    
+
     private _hash = profileNamespace getVariable [GVAR(key), []];
     TRACE_1("Loaded data",_hash);
     GVAR(dataNamespace) = [_hash] call CBA_fnc_deserializeNamespace;

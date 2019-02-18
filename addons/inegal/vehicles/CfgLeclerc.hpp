@@ -11,12 +11,12 @@ class Inegal_Tank_Leclerc: I_MBT_03_cannon_F {
     };
     hiddenSelections[] = { "Camo1", "Camo2", "Camo3", "HideHull", "HideTurret", "pasoffsetl", "pasoffsetp" };
     hiddenSelectionsTextures[] = {
-        QPATHTOF(data\TankBodyTexture.paa), 
-        QPATHTOF(data\TankTurretTexture.paa), 
-        QPATHTOF(data\TankTurretMGTexture.paa), 
-        QPATHTOF(data\TankTurretTexture.paa), 
-        QPATHTOF(data\TankTurretTexture.paa), 
-        QPATHTOF(data\TankTrackTexture.paa), 
+        QPATHTOF(data\TankBodyTexture.paa),
+        QPATHTOF(data\TankTurretTexture.paa),
+        QPATHTOF(data\TankTurretMGTexture.paa),
+        QPATHTOF(data\TankTurretTexture.paa),
+        QPATHTOF(data\TankTurretTexture.paa),
+        QPATHTOF(data\TankTrackTexture.paa),
         QPATHTOF(data\TankTrackTexture.paa)
     };
     class TransportMagazines {};

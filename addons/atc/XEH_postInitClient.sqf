@@ -3,7 +3,7 @@
 ["visibleMap", {
     params ["_player", "_mapOn"];
 
-    if (!(QGVAR(terminal) in (assignedItems _player)) || {(vehicle _player) != _player}) exitWith {};
+    if (!(QGVAR(terminal) in (assignedItems _player))) exitWith {};
 
     if (_mapOn) then {
         [_player, true] call FUNC(loop);

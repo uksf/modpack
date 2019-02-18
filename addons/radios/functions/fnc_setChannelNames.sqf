@@ -15,8 +15,8 @@
 
 [{
     call acre_api_fnc_isInitialized
-}, {    
-    private _channels = configProperties [configFile >> "CfgChannels", "true", false];    
+}, {
+    private _channels = configProperties [configFile >> "CfgChannels", "true", false];
     {
         private _channel = getArray _x;
         ["ACRE_PRC117F", "default3", _channel#0, "name", _channel#1] call acre_api_fnc_setPresetChannelField;

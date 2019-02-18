@@ -39,10 +39,10 @@ for "_i" from 1 to _count do {
     private _theta = (_i % 2) * 180 + sin (deg (_step * _i)) * _offset + _step * _i;
 
     _this set [1, _position getPos [_rad, _theta]];
-    _this call CBA_fnc_addWaypoint;
+    call CBA_fnc_addWaypoint;
 };
 
 _this set [1, _position];
 _this set [2, _radius];
 _this set [3, "CYCLE"];
-_this call CBA_fnc_addWaypoint;
+call CBA_fnc_addWaypoint;

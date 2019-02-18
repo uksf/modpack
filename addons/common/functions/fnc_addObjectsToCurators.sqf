@@ -14,16 +14,16 @@
 */
 #include "script_component.hpp"
 
-params [["_curators", allCurators]];
+params [["_objects", allMissionObjects "all"], ["_curators", allCurators]];
 
 if (!isServer) exitWith {
-    [QGVAR(addObjectsToCurators), [_curators]] call CBA_fnc_serverEvent;
+    [QGVAR(addObjectsToCurators), _this] call CBA_fnc_serverEvent;
 };
 
 {
-    [_x] spawn {
-        (_this select 0) addCuratorEditableObjects [(allMissionObjects "all"), true];
-        (_this select 0) removeCuratorEditableObjects [allCurators, true];
+    _x spawn {
+        _this addCuratorEditableObjects [_objects, true];
+        _this removeCuratorEditableObjects [allCurators, true];
     };
     false
 } count _curators;

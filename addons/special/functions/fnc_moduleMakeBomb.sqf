@@ -30,8 +30,8 @@ if (_logic isKindOf QGVAR(moduleMakeCarBomb)) then {
 };
 
 (missionNamespace getVariable ["bis_fnc_curatorObjectPlaced_mouseOver", [""]]) params ["_typeName", "_unit"];
-if (_typeName != "OBJECT") then {  
-    ["Place on a living unit or an occupied land vehicle"] call ace_common_fnc_displayTextStructured;  
+if (_typeName != "OBJECT") then {
+    ["Place on a living unit or an occupied land vehicle"] call ace_common_fnc_displayTextStructured;
 } else {
     if (_empty && {!(_unit isKindOf "LandVehicle")}) then {
         ["Place on a land vehicle"] call ace_common_fnc_displayTextStructured;
@@ -49,13 +49,13 @@ if (_typeName != "OBJECT") then {
                     } else {
                         [_unit, _deadman, _car] remoteExecCall [QFUNC(suicide), owner _unit];
                         ["Unit/vehicle is now a bomber"] call ace_common_fnc_displayTextStructured;
-                    };        
+                    };
                 } else {
                     ["Unit or vehicle is already a bomb"] call ace_common_fnc_displayTextStructured;
                 };
             };
         };
-    };    
+    };
 };
 
 deleteVehicle _logic;

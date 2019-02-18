@@ -6,10 +6,8 @@ ADDON = false;
 
 #include "initSettings.sqf"
 
-call FUNC(getConfigGroups);
-
-[QGVAR(initPatrol), {_this call FUNC(initPatrol)}] call CBA_fnc_addEventHandler;
-[QGVAR(spawnGroup), {_this call FUNC(spawnGroup)}] call CBA_fnc_addEventHandler;
-[QGVAR(reTask), {_this call CBA_fnc_taskPatrol;}] call CBA_fnc_addEventHandler;
+[QGVAR(initPatrol), {call FUNC(initPatrol)}] call CBA_fnc_addEventHandler;
+[QGVAR(spawnGroup), {call FUNC(spawnGroup)}] call CBA_fnc_addEventHandler;
+[QGVAR(reTask), {call CBA_fnc_taskPatrol;}] call CBA_fnc_addEventHandler;
 
 ADDON = true;

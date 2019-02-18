@@ -34,7 +34,7 @@ private _parents = [_config] call BIS_fnc_returnParents;
 
 _output = _output + (_numTabs call _makeTabs) + "class " + (configName _config) + _newLine + (_numTabs call _makeTabs) + "{" + _newline;
 
-private _params = []; 
+private _params = [];
 {
     private _numParams = (count _x) - 1;
     for "_i" from 0 to _numParams do {

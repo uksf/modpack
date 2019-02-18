@@ -46,9 +46,9 @@ _unit setVelocity (velocity _vehicle);
 
             deleteVehicle _chute;
             _unit allowDamage true;
-            _unit switchMove "AmovPercMevaSrasWrflDf_AmovPknlMstpSrasWrflDnon";        
+            _unit switchMove "AmovPercMevaSrasWrflDf_AmovPknlMstpSrasWrflDnon";
             private _chuteLanded = "T10_Landed" createVehicle (getPos _unit);
-            _chuteLanded addAction ["Pack Parachute", QUOTE(_this call FUNC(packParachute))];            
-        }, _this] call CBA_fnc_waitUntilAndExecute;        
+            _chuteLanded addAction ["Pack Parachute", QUOTE(call FUNC(packParachute))];
+        }, _this] call CBA_fnc_waitUntilAndExecute;
     }, _this] call CBA_fnc_waitUntilAndExecute;
 }, _this, 0.5 + (random 0.25)] call CBA_fnc_waitAndExecute;
