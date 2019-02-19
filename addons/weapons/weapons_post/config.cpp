@@ -143,9 +143,6 @@ class CfgAmmo {
     class CUP_R_SMAW_HEDP_N : RocketBase {
         AMMO_USAGE_INFVEHAIRARM;
     };
-    class R_PG7_F : RocketBase {
-        AMMO_USAGE_INFVEHAIRARM;
-    };
     class R_MRAAWS_HEAT_F;
     class R_MRAAWS_HE_F : R_MRAAWS_HEAT_F {
         AMMO_USAGE_INFVEHAIRARM;
