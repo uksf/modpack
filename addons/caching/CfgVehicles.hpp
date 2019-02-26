@@ -3,7 +3,7 @@ class CfgVehicles {
     class GVAR(moduleSettings): ACE_Module {
         scope = 2;
         displayName = QUOTE(Caching);
-        icon = QPATHTOF(UI\Icon_Module_Caching_ca.paa);
+        icon = QPATHTOF(ui\Icon_Module_Caching_ca.paa);
         category = "UKSF";
         function = QFUNC(initModuleSettings);
         functionPriority = 1;
@@ -34,6 +34,6 @@ class CfgVehicles {
         curatorCanAttach = 1;
         displayName = QUOTE(Caching exclude);
         function = QFUNC(moduleToggleCaching);
-        icon = QPATHTOF(UI\Icon_Module_CachingExclude_ca.paa);
+        icon = QPATHTOF(ui\Icon_Module_CachingExclude_ca.paa);
     };
 };

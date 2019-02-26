@@ -28,5 +28,5 @@ class RscDisplayAttributesVehicleEmpty: RscDisplayAttributes {
     };
 };
 class CfgScriptPaths {
-    GVAR(Displays) = "\u\uksf\addons\zeus\UI\";
+    GVAR(Displays) = "\u\uksf\addons\zeus\ui\";
 };

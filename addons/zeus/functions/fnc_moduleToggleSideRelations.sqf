@@ -13,15 +13,16 @@
 */
 #include "script_component.hpp"
 
+#define SIDES [west,east,independent]
+
 params ["_logic"];
 
 if (!local _logic) exitWith {};
 
-private _sides = getArray (configFile >> "CfgVehicles" >> typeOf _logic >> QGVAR(sides));
-
+private _sides = parseSimpleArray (getText (configFile >> "CfgVehicles" >> typeOf _logic >> QGVAR(sides)));
 _sides params ["_side1", "_side2"];
-_side1 = call compile _side1;
-_side2 = call compile _side2;
+_side1 = SIDES#_side1;
+_side2 = SIDES#_side2;
 
 private _message = "%1 is now FRIENDLY to %2";
 private _value = if ((_side1 getFriend _side2) < 0.6) then {

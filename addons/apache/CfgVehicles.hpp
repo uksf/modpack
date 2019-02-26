@@ -106,8 +106,8 @@ class CfgVehicles {
         DLC = "CUP_Vehicles";
         displayName = "AH64D Apache Base";
         model = QPATHTOF(AH_BAF.p3d);
-        picture = QPATHTOF(data\UI\Picture_ah64d_CA.paa);
-        icon = QPATHTOF(data\UI\Icon_ah64d_CA.paa);
+        picture = QPATHTOF(data\ui\Picture_ah64d_CA.paa);
+        icon = QPATHTOF(data\ui\Icon_ah64d_CA.paa);
         availableForSupportTypes[] = { "CAS_Heli" };
         armor = 100;
         fuelCapacity = 200; // 300
@@ -941,7 +941,7 @@ class CfgVehicles {
                 };
             };
             class TransportPylonsComponent {
-                uiPicture = QPATHTOF(data\UI\Apache_EDEN_CA.paa);
+                uiPicture = QPATHTOF(data\ui\Apache_EDEN_CA.paa);
                 class Pylons {
                     class PylonLeft1 {
                         attachment = "CUP_PylonPod_19Rnd_CRV7_HE_M";

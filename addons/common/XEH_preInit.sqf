@@ -27,15 +27,15 @@ if (isServer) then {
     GVAR(fpsEventID) = [QGVAR(fpsGet), {call FUNC(fpsGet)}] call CBA_fnc_addEventHandler;
 
     [QGVAR(addObjectsToCurators), {call FUNC(addObjectsToCurators)}] call CBA_fnc_addEventHandler;
-    [QGVAR(setSideRelation), {(_this select 0) setFriend [(_this select 1), (_this select 2)]}] call CBA_fnc_addEventHandler;
+    [QGVAR(setSideRelation), {(_this#0) setFriend [(_this#1), (_this#2)]}] call CBA_fnc_addEventHandler;
     [QGVAR(waitAndDelete), {
         [{
             deleteVehicle _this;
             [QGVAR(deleteEmptyGroups), []] call CBA_fnc_globalEvent;
-        }, _this select 0, _this select 1] call CBA_fnc_waitAndExecute
+        }, _this#0, _this#1] call CBA_fnc_waitAndExecute
     }] call CBA_fnc_addEventHandler;
 };
-[QGVAR(log), {INFO(_this select 0)}] call CBA_fnc_addEventHandler;
+[QGVAR(log), {INFO(_this#0)}] call CBA_fnc_addEventHandler;
 [QGVAR(deleteEmptyGroups), {{deleteGroup _x; true} count allGroups}] call CBA_fnc_addEventHandler;
 
 #include "initSettings.sqf"

@@ -31,14 +31,14 @@ class CfgVehicles {
         category = "Spawn";
         displayName = "Large Explosion";
         function = QFUNC(moduleExplosionLarge);
-        icon = QPATHTOF(UI\Icon_Module_Explosion_Large_ca.paa);
+        icon = QPATHTOF(ui\Icon_Module_Explosion_Large_ca.paa);
     };
     class GVAR(moduleExplosionSmall): EGVAR(common,moduleBase) {
         curatorCanAttach = 1;
         category = "Spawn";
         displayName = "Small Explosion";
         function = QFUNC(moduleExplosionSmall);
-        icon = QPATHTOF(UI\Icon_Module_Explosion_Small_ca.paa);
+        icon = QPATHTOF(ui\Icon_Module_Explosion_Small_ca.paa);
     };
     class GVAR(moduleHaloHaho): EGVAR(common,moduleBase) {
         curatorCanAttach = 1;
@@ -82,24 +82,24 @@ class CfgVehicles {
         category = QEGVAR(common,zeus_uksf_side);
         displayName = "Toggle Blufor/Opfor Relations";
         function = QFUNC(moduleToggleSideRelations);
-        GVAR(sides)[] = {west, east};
-        icon = QPATHTOF(UI\Icon_Module_ToggleBluforOpfor_ca.paa);
+        GVAR(sides) = "[0,1]";
+        icon = QPATHTOF(ui\Icon_Module_ToggleBluforOpfor_ca.paa);
     };
     class GVAR(moduleToggleIndepBlufor): EGVAR(common,moduleBase) {
         curatorCanAttach = 1;
         category = QEGVAR(common,zeus_uksf_side);
         displayName = "Toggle Indep/Blufor Relations";
         function = QFUNC(moduleToggleSideRelations);
-        GVAR(sides)[] = {independent, west};
-        icon = QPATHTOF(UI\Icon_Module_ToggleIndepBlufor_ca.paa);
+        GVAR(sides) = "[2,0]";
+        icon = QPATHTOF(ui\Icon_Module_ToggleIndepBlufor_ca.paa);
     };
     class GVAR(moduleToggleIndepOpfor): EGVAR(common,moduleBase) {
         curatorCanAttach = 1;
         category = QEGVAR(common,zeus_uksf_side);
         displayName = "Toggle Indep/Opfor Relations";
         function = QFUNC(moduleToggleSideRelations);
-        GVAR(sides)[] = {independent, east};
-        icon = QPATHTOF(UI\Icon_Module_ToggleIndepOpfor_ca.paa);
+        GVAR(sides) = "[2,1]";
+        icon = QPATHTOF(ui\Icon_Module_ToggleIndepOpfor_ca.paa);
     };
     class GVAR(moduleToggleFps): EGVAR(common,moduleBase) {
         curatorCanAttach = 1;

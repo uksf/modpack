@@ -12,11 +12,11 @@ class Extended_PreInit_EventHandlers {
 
 class Extended_DisplayLoad_EventHandlers {
     class RscDisplayCurator {
-        ADDON = QUOTE(call (uiNamespace getVariable 'FUNC(curatorDisplayLoad)'));
+        ADDON = QUOTE(call (uiNamespace getVariable QQFUNC(curatorDisplayLoad)));
     };
 };
 class Extended_DisplayUnload_EventHandlers {
     class RscDisplayCurator {
-        ADDON = QUOTE(call (uiNamespace getVariable 'FUNC(curatorDisplayUnload)'));
+        ADDON = QUOTE(call (uiNamespace getVariable QQFUNC(curatorDisplayUnload)));
     };
 };

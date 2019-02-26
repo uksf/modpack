@@ -23,7 +23,7 @@ class CfgWeapons {
         DLC = "UK3CB_BAF_Equipment";
         displayName = "Combat Uniform MTP 1Para";
         descriptionShort = "BAF Combat Uniform MTP<br/>by www.3commandobrigade.com";
-        picture = QPATHTOF(UI\icon_uniform_mtp_1para_ca.paa);
+        picture = QPATHTOF(ui\icon_uniform_mtp_1para_ca.paa);
         hiddenSelections[] = { "Camo" };
         hiddenSelectionsTextures[] = { QPATHTOF(data\uniforms\mtp_uk_1para.paa) };
         class ItemInfo : UniformItem {
@@ -40,7 +40,7 @@ class CfgWeapons {
         DLC = "UK3CB_BAF_Equipment";
         displayName = "Combat Uniform MTP 1Para Rolled";
         descriptionShort = "BAF Combat Uniform MTP<br>Sleeves Rolled-Up<br/>by www.3commandobrigade.com";
-        picture = QPATHTOF(UI\icon_uniform_mtp_1para_rolledup_ca.paa);
+        picture = QPATHTOF(ui\icon_uniform_mtp_1para_rolledup_ca.paa);
         hiddenSelections[] = { "Camo" };
         hiddenSelectionsTextures[] = { QPATHTOF(data\uniforms\mtp_uk_1para.paa) };
         class ItemInfo : UniformItem {
@@ -56,7 +56,7 @@ class CfgWeapons {
         DLC = "UK3CB_BAF_Equipment";
         displayName = "Combat Uniform MTP CSMR";
         descriptionShort = "BAF Combat Uniform MTP<br/>by www.3commandobrigade.com";
-        picture = QPATHTOF(UI\icon_uniform_mtp_csmr_ca.paa);
+        picture = QPATHTOF(ui\icon_uniform_mtp_csmr_ca.paa);
         hiddenSelections[] = { "Camo" };
         hiddenSelectionsTextures[] = { QPATHTOF(data\uniforms\mtp_uk_csmr.paa) };
         class ItemInfo : UniformItem {
@@ -72,7 +72,7 @@ class CfgWeapons {
         DLC = "UK3CB_BAF_Equipment";
         displayName = "Combat Uniform MTP CSMR Rolled";
         descriptionShort = "BAF Combat Uniform MTP<br>Sleeves Rolled-Up<br/>by www.3commandobrigade.com";
-        picture = QPATHTOF(UI\icon_uniform_mtp_csmr_rolledup_ca.paa);
+        picture = QPATHTOF(ui\icon_uniform_mtp_csmr_rolledup_ca.paa);
         hiddenSelections[] = { "Camo" };
         hiddenSelectionsTextures[] = { QPATHTOF(data\uniforms\mtp_uk_csmr.paa) };
         class ItemInfo : UniformItem {
@@ -88,7 +88,7 @@ class CfgWeapons {
         DLC = "UK3CB_BAF_Equipment";
         displayName = "Combat Uniform MTP Pathfinder";
         descriptionShort = "BAF Combat Uniform MTP<br/>by www.3commandobrigade.com";
-        picture = QPATHTOF(UI\icon_uniform_mtp_path_ca.paa);
+        picture = QPATHTOF(ui\icon_uniform_mtp_path_ca.paa);
         hiddenSelections[] = { "Camo" };
         hiddenSelectionsTextures[] = { QPATHTOF(data\uniforms\mtp_uk_path.paa) };
         class ItemInfo : UniformItem {
@@ -104,7 +104,7 @@ class CfgWeapons {
         DLC = "UK3CB_BAF_Equipment";
         displayName = "Combat Uniform MTP Pathfinder Rolled";
         descriptionShort = "BAF Combat Uniform MTP<br>Sleeves Rolled-Up<br/>by www.3commandobrigade.com";
-        picture = QPATHTOF(UI\icon_uniform_mtp_path_rolledup_ca.paa);
+        picture = QPATHTOF(ui\icon_uniform_mtp_path_rolledup_ca.paa);
         hiddenSelections[] = { "Camo" };
         hiddenSelectionsTextures[] = { QPATHTOF(data\uniforms\mtp_uk_path.paa) };
         class ItemInfo : UniformItem {
@@ -120,7 +120,7 @@ class CfgWeapons {
         DLC = "UK3CB_BAF_Equipment";
         displayName = "Combat Uniform MTP Signals";
         descriptionShort = "BAF Combat Uniform MTP<br/>by www.3commandobrigade.com";
-        picture = QPATHTOF(UI\icon_uniform_mtp_sig_ca.paa);
+        picture = QPATHTOF(ui\icon_uniform_mtp_sig_ca.paa);
         hiddenSelections[] = { "Camo" };
         hiddenSelectionsTextures[] = { QPATHTOF(data\uniforms\mtp_uk_sig.paa) };
         class ItemInfo : UniformItem {
@@ -136,7 +136,7 @@ class CfgWeapons {
         DLC = "UK3CB_BAF_Equipment";
         displayName = "Combat Uniform MTP Signals Rolled";
         descriptionShort = "BAF Combat Uniform MTP<br>Sleeves Rolled-Up<br/>by www.3commandobrigade.com";
-        picture = QPATHTOF(UI\icon_uniform_mtp_sig_rolledup_ca.paa);
+        picture = QPATHTOF(ui\icon_uniform_mtp_sig_rolledup_ca.paa);
         hiddenSelections[] = { "Camo" };
         hiddenSelectionsTextures[] = { QPATHTOF(data\uniforms\mtp_uk_sig.paa) };
         class ItemInfo : UniformItem {
@@ -203,7 +203,7 @@ class CfgWeapons {
         scope = 2;
         author = "UKSF";
         displayName = "RAF Blues";
-        picture = QPATHTOF(UI\icon_uniform_atc_ca.paa);
+        picture = QPATHTOF(ui\icon_uniform_atc_ca.paa);
         model = "\A3\Characters_F\Common\Suitpacks\suitpack_blufor_diver";
         class ItemInfo : UniformItem {
             uniformModel = "-";
@@ -234,7 +234,7 @@ class CfgWeapons {
         scope = 2;
         author = "UKSF";
         displayName = "AAC Beret";
-        picture = QPATHTOF(UI\icon_beret_aac_ca.paa);
+        picture = QPATHTOF(ui\icon_beret_aac_ca.paa);
         model = "\A3\characters_f_epb\BLUFOR\headgear_beret02";
         hiddenSelections[] = { "Camo" };
         hiddenSelectionsTextures[] = { QPATHTOF(data\hats\AAC_Beret.paa) };
@@ -260,7 +260,7 @@ class CfgWeapons {
         scope = 2;
         author = "UKSF";
         displayName = "Pilot vest";
-        picture = QPATHTOF(UI\icon_v_tacvest_khk_ca.paa);
+        picture = QPATHTOF(ui\icon_v_tacvest_khk_ca.paa);
         hiddenSelections[] = { "camo" };
         hiddenSelectionsTextures[] = { QPATHTOF(data\vests\tacticalvest_olive_co.paa) };
         class ItemInfo : VestItem {

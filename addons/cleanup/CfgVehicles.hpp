@@ -3,7 +3,7 @@ class CfgVehicles {
     class GVAR(moduleSettings): ACE_Module {
         scope = 2;
         displayName = QUOTE(Cleanup);
-        icon = QPATHTOF(UI\Icon_Module_Cleanup_ca.paa);
+        icon = QPATHTOF(ui\Icon_Module_Cleanup_ca.paa);
         category = "UKSF";
         function = QFUNC(initModuleSettings);
         functionPriority = 1;
@@ -34,6 +34,6 @@ class CfgVehicles {
         curatorCanAttach = 1;
         displayName = QUOTE(Cleanup exclude);
         function = QFUNC(moduleToggleCleanup);
-        icon = QPATHTOF(UI\Icon_Module_CleanupExclude_ca.paa);
+        icon = QPATHTOF(ui\Icon_Module_CleanupExclude_ca.paa);
     };
 };
