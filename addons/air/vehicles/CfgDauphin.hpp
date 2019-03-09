@@ -5,7 +5,7 @@ class MEA_Pantera_Base : Helicopter_Base_H {
     unitInfoTypeLite = "RscUnitInfoNoSpeed";
     cyclicAsideForceCoef = 0.9;
     cyclicForwardForceCoef = 0.7;
-    fuelCapacity = 50;  // 500
+    fuelCapacity = 250;  // 500
     camouflage = 10;
     audible = 25;
     radarTargetSize = 0.5;
