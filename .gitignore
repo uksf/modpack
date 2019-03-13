@@ -22,7 +22,7 @@ extensions/build64
 extensions/x86
 extensions/x64
 extensions/packages
-extensions/src/modules/data/secret.hpp
+extensions/src/uksf/modules/data/secret.hpp
 tools/service.py
 tools/manage.py
 
