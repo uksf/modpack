@@ -14,7 +14,7 @@ namespace resources {
 			std::ostream& outputStream = response.send();
 			outputStream << "ok";
 			outputStream.flush();
-			uksf_common::getInstance().addFunction(FUNCTION_ENUM_SHUTDOWN);
+			std::thread([]() { uksf_common::getInstance().addFunction(FUNCTION_ENUM_SHUTDOWN); }).detach();
 		} catch (exception& exception) {
 			handleHttpStatusCode(exception.code(), response);
 			std::ostream& outputStream = response.send();

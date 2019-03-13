@@ -127,12 +127,12 @@ class CfgPatches {
 };
 
 class CBA_Extended_EventHandlers;
-#include "CfgEventHandlers.hpp"
 #include "CfgAmmo.hpp"
-#include "CfgMagazines.hpp"
-#include "CfgWeapons.hpp"
-#include "CfgVehicles.hpp"
+#include "CfgEventHandlers.hpp"
 #include "CfgGroups.hpp"
+#include "CfgMagazines.hpp"
+#include "CfgVehicles.hpp"
+#include "CfgWeapons.hpp"
 
 class CfgWorlds {
     class GenericNames {
