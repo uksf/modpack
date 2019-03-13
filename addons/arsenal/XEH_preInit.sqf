@@ -13,7 +13,7 @@ if (isClass (missionConfigFile >> QGVAR(loadouts))) then {
 private _defaultLoadouts = [];
 {
     private _name = getText (_x >> "name");
-    private _inventory = parseSimpleArray (getText (_x >> "loadout"));
+    private _inventory = call compile (getText (_x >> "loadout"));
     if (_name == "Empty") then {
         uiNamespace setVariable [QGVAR(emptyLoadout), _inventory];
     };
