@@ -5,7 +5,7 @@ DEPLOYMENT_DIRECTORY = "D:\\Dev"
 REPO_DIRECTORY = "C:\\Server\\Modpack"
 SERVER_DIRECTORY = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Arma 3 Server"
 ace_optionals = ["ace_compat_rksl_pm_ii"]
-cfp_optionals = ["cfp_alive_logistics"]
+cfp_optionals = []
 
 if __name__ == '__main__':
     os.chdir(REPO_DIRECTORY)
