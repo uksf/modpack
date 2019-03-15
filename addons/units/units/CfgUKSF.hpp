@@ -72,7 +72,7 @@ class UKSF_B_Pilot: UKSF_B_Rifleman {
     uniformClass = "UKSF_U_RAF_Blues";
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_H_Beret_RAF" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_H_Beret_RAF" };
-    ACE_GForceCoef = 0.7;
+    ACE_GForceCoef = 0.5;
 };
 class UKSF_B_Pilot_7: UKSF_B_Pilot {
     displayName = "Pilot (7 Sqn.)";

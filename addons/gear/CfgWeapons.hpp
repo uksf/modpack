@@ -197,7 +197,7 @@ class CfgWeapons {
             containerClass = "Supply150";
             mass = 80;
         };
-        ACE_GForceCoef = 0.2;
+        ACE_GForceCoef = 0.3;
     };
     class UKSF_U_RAF_Blues : Uniform_Base {
         scope = 2;
