@@ -74,8 +74,8 @@ if (_activated) then {
             waitUntil {time > 0}; // NOTE: DO NOT CHANGE TO CBA_missionTime, IT BREAKS THE MODULE
 
             // --- Refresh addon list, so it's broadcasted to clients
-            // private _addons = uiNamespace getVariable ["CBA_common_unitAddons", []];
-            // _logic addCuratorAddons (_addons - (curatorAddons _logic));
+            private _addons = uiNamespace getVariable ["CBA_common_unitAddons", []];
+            _logic addCuratorAddons (_addons - (curatorAddons _logic));
 
             while {true} do {
                 // --- Wait for player to become Zeus
