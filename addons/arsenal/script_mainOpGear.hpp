@@ -870,6 +870,14 @@
     "CFP_OPS2017_Helmet_Multicam", \
     "CFP_OPS2017_Helmet_Multicam2", \
     "CFP_OPS2017_Helmet_OliveFabric", \
+    "CFP_OpsC_Covered_PF", \
+    "CFP_OpsC_Covered2_PF", \
+    "CFP_OpsC_Uncov_Goggles_PF", \
+    "CFP_OpsC_Uncov_Full_PF", \
+    "CFP_OpsC_Cov_Goggles_Off_PF", \
+    "CFP_OpsC_Cov_Full_PF", \
+    "CFP_OpsC_Med_PF", \
+    "CFP_OpsC_Uncov_Shemagh_PF", \
     "COVER_4b", \
     "COVER_4d", \
     "H_Bandanna_camo", \
