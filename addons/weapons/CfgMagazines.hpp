@@ -31,43 +31,6 @@ class CfgMagazines {
         tracersEvery = 1;
     };
 
-    class Chemlight_red;
-    class ACE_Chemlight_HiRed: Chemlight_red {
-        descriptionShort = "Type: Light - Red Hi<br />Rounds: 1<br />Used in: Hand";
-    };
-    class Chemlight_yellow;
-    class ACE_Chemlight_HiYellow: Chemlight_yellow {
-        descriptionShort = "Type: Light - Yellow Hi<br />Rounds: 1<br />Used in: Hand";
-    };
-    class ACE_Chemlight_Orange;
-    class ACE_Chemlight_HiOrange: ACE_Chemlight_Orange {
-        descriptionShort = "Type: Light - Orange Hi<br />Rounds: 1<br />Used in: Hand";
-    };
-    class ACE_Chemlight_White;
-    class ACE_Chemlight_HiWhite: ACE_Chemlight_White {
-        descriptionShort = "Type: Light - White Hi<br />Rounds: 1<br />Used in: Hand";
-    };
-    class Chemlight_blue;
-    class ACE_Chemlight_HiBlue: Chemlight_blue {
-        ACE_Attachable = "ACE_G_Chemlight_HiBlue";
-        ACE_Chemlight_Shield = "";
-        author = "ACE-Team";
-        ammo = "ACE_G_Chemlight_HiBlue";
-        displayName = "Chemlight (Hi Blue)";
-        displayNameShort = "Blue Hi Light";
-        descriptionShort = "Type: Light - Blue Hi<br />Rounds: 1<br />Used in: Hand";
-    };
-    class Chemlight_green;
-    class ACE_Chemlight_HiGreen: Chemlight_green {
-        ACE_Attachable = "ACE_G_Chemlight_HiGreen";
-        ACE_Chemlight_Shield = "";
-        author = "ACE-Team";
-        ammo = "ACE_G_Chemlight_HiGreen";
-        displayName = "Chemlight (Hi Green)";
-        displayNameShort = "Green Hi Light";
-        descriptionShort = "Type: Light - Green Hi<br />Rounds: 1<br />Used in: Hand";
-    };
-
     // Hellfire K
     class 12Rnd_PG_missiles;
     class 6Rnd_ACE_Hellfire_AGM114K: 12Rnd_PG_missiles {

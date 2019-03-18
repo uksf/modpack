@@ -64,22 +64,16 @@ class CfgAmmo {
     class ACE_G_Chemlight_HiYellow : Chemlight_yellow {
         timeToLive = 3600;
     };
-    class ACE_G_Chemlight_Orange;
-    class ACE_G_Chemlight_HiOrange : ACE_G_Chemlight_Orange {
-        timeToLive = 3600;
-    };
     class ACE_G_Chemlight_White;
     class ACE_G_Chemlight_HiWhite : ACE_G_Chemlight_White {
         timeToLive = 3600;
     };
-    class ACE_G_Chemlight_HiBlue : ACE_G_Chemlight_HiWhite {
-        effectsSmoke = "ACE_ChemlightEffect_HiBlue";
+    class Chemlight_Blue;
+    class ACE_G_Chemlight_HiBlue : Chemlight_Blue {
+        timeToLive = 3600;
     };
-    class ACE_G_Chemlight_HiGreen : ACE_G_Chemlight_HiWhite {
-        effectsSmoke = "ACE_ChemlightEffect_HiGreen";
-    };
-    class Chemlight_base;
-    class ACE_G_Chemlight_IR : Chemlight_base {
+    class Chemlight_Green;
+    class ACE_G_Chemlight_HiGreen : Chemlight_Green {
         timeToLive = 3600;
     };
 
