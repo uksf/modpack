@@ -80,7 +80,6 @@ class SensorTemplatePassiveRadar;
 class SensorTemplateVisual;
 class SensorTemplateDataLink;
 #include "CfgAmmo.hpp"
-#include "CfgEffects.hpp"
 #include "CfgEventHandlers.hpp"
 #include "CfgFunctions.hpp"
 #include "CfgMagazines.hpp"

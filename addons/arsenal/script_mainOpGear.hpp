@@ -20,7 +20,7 @@
     "ACE_20Rnd_762x51_Mk319_Mod_0_Mag", \
     "ACE_Chemlight_HiBlue", \
     "ACE_Chemlight_HiGreen", \
-    "ACE_Chemlight_HiOrange", \
+    "ACE_Chemlight_UltraHiOrange", \
     "ACE_Chemlight_HiRed", \
     "ACE_Chemlight_HiWhite", \
     "ACE_Chemlight_HiYellow", \

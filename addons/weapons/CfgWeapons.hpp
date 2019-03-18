@@ -457,17 +457,6 @@ class CfgWeapons {
             magazines[] = { "BreachCharge_Remote_Mag" };
         };
     };
-    class GrenadeLauncher;
-    class Throw : GrenadeLauncher {
-        muzzles[] += { "ACE_Chemlight_HiBlueMuzzle", "ACE_Chemlight_HiGreenMuzzle" };
-        class ThrowMuzzle;
-        class ACE_Chemlight_HiBlueMuzzle : ThrowMuzzle {
-            magazines[] = { "ACE_Chemlight_HiBlue" };
-        };
-        class ACE_Chemlight_HiGreenMuzzle : ThrowMuzzle {
-            magazines[] = { "ACE_Chemlight_HiGreen" };
-        };
-    };
 
     class CUP_weapon_mastersafe : Default {
         displayName = "Safe";
