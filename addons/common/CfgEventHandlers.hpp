@@ -19,7 +19,7 @@ class Extended_PostInit_EventHandlers {
 class Extended_InitPost_EventHandlers {
     class CAManBase {
         class ADDON {
-            init = QUOTE(call FUNC(fpsAction));
+            init = QUOTE(call FUNC(addSelfActions));
         };
     };
     // CUP_NVG_PVS7, CUP_NVG_HMNVS, CUP_NVG_PVS14

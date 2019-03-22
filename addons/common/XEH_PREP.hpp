@@ -1,9 +1,9 @@
 PREP(addNVG);
 PREP(addObjectsToCurators);
+PREP(addSelfActions);
 PREP(configExport);
 PREP(configExportExtension);
 PREP(deserializeAceMedical);
-PREP(fpsAction);
 PREP(fpsGet);
 PREP(fpsSet);
 PREP(fpsToggle);
