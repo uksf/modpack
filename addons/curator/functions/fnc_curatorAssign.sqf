@@ -22,4 +22,5 @@ if (_index > -1) then {
     GVAR(curatorPlayers) set [_index, name _player];
     publicVariable QGVAR(curatorObjects);
     publicVariable QGVAR(curatorPlayers);
+    [{[QEGVAR(common,addObjectsToCurators), [allMissionObjects "all", _curator]] call CBA_fnc_localEvent;}, []] call CBA_fnc_execNextFrame;
 };

@@ -61,7 +61,7 @@ GVAR(loopHandle) = [{
     } else {
         {
             private _step = CBA_missionTime - _time;
-            _x setMarkerAlphaLocal (1 - _step);
+            _x setMarkerAlphaLocal (0.25 + (1 - _step));
             true
         } count GVAR(markers);
     };
