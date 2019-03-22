@@ -447,6 +447,10 @@ class CfgWeapons {
             allowedSlots[] = { 901 };
         };
     };
+    class launch_B_Titan_short_F;
+    class UK3CB_BAF_Javelin_Launcher : launch_B_Titan_short_F {
+        modes[] = {"Single","TopDown"};
+    };
 
     class Default;
     class Put : Default {

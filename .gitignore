@@ -29,3 +29,4 @@ tools/manage.py
 !@intercept/**
 
 intercept/uksf*.dll
+.vscode/ipch/
