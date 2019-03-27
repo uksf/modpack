@@ -12,6 +12,12 @@ class CfgFactionClasses {
         priority = 1;
         side = 0;
     };
+    class UKSF_PROR {
+        displayName = "PROR";
+        icon = "\A3\Structures_F\Mil\Flags\Data\Mast_civ_CO.paa";
+        priority = 1;
+        side = 0;
+    };
     class UKSF_VR {
         displayName = "Virtual Army";
         icon = "ca\ca_pmc\flag_ion_white_co";
