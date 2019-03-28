@@ -115,73 +115,120 @@ class CfgVehicles {
             };
         };
         class TransportBackpacks {};
+   };
+    
+   ////// SF Backpacks /////
+    
+   class PROR_SF_AssPack : B_AssaultPack_blk {
+        scope = 1;
+        author = "UKSF";
+        displayName = "PROR SF Ass Pack";
+        class TransportWeapons {}; 
+        class TransportMagazines {
+            class _xx_9Rnd_45ACP_Mag {
+                magazine = "9Rnd_45ACP_Mag";
+                count = 3;
+            };
+            class _xx_CUP_30Rnd_556x45_Emag_Tracer_Yellow {
+                magazine = "CUP_30Rnd_556x45_Emag_Tracer_Yellow";
+                count = 4;
+            };
+            class _xx_ACE_M14 {
+                magazine = "ACE_M14";
+                count = 2;
+            };
+            class _xx_SmokeShell {
+                magazine = "SmokeShell";
+                count = 3;
+            };
+            class _xx_HandGrenade {
+                magazine = "HandGrenade";
+                count = 2;
+            };
+        };
     };
-    // class Inegal_B_C : Inegal_B_F {
-    //     displayName = "Commander Pack";
-    //     class TransportMagazines : TransportMagazines {
-    //         class _xx_1Rnd_HE_Grenade_shell {
-    //             magazine = "1Rnd_HE_Grenade_shell";
-    //             count = 10;
-    //         };
-    //         class _xx_30Rnd_556x45_Stanag {
-    //             magazine = "30Rnd_556x45_Stanag";
-    //             count = 10;
-    //         };
-    //     };
-    // };
-    // class B_TacticalPack_oli;
-    // class Inegal_B_Med : B_TacticalPack_oli {
-    //     scope = 1;
-    //     author = "UKSF";
-    //     displayName = "Medical Pack";
-    //     class TransportWeapons {};
-    //     class TransportMagazines {};
-    //     class TransportItems {
-    //         class _xx_ACE_packingBandage {
-    //             name = "ACE_packingBandage";
-    //             count = 50;
-    //         };
-    //         class _xx_ACE_elasticBandage {
-    //             name = "ACE_elasticBandage";
-    //             count = 50;
-    //         };
-    //         class _xx_ACE_tourniquet {
-    //             name = "ACE_tourniquet";
-    //             count = 5;
-    //         };
-    //         class _xx_ACE_ACE_atropine {
-    //             name = "ACE_atropine";
-    //             count = 6;
-    //         };
-    //         class _xx_ACE_ACE_adenosinee {
-    //             name = "ACE_adenosine";
-    //             count = 6;
-    //         };
-    //         class _xx_ACE_morphine {
-    //             name = "ACE_morphine";
-    //             count = 25;
-    //         };
-    //         class _xx_ACE_epinephrine {
-    //             name = "ACE_epinephrine";
-    //             count = 25;
-    //         };
-    //         class _xx_ACE_bloodIV_500 {
-    //             name = "ACE_bloodIV_500";
-    //             count = 5;
-    //         };
-    //         class _xx_ACE_bloodIV {
-    //             name = "ACE_bloodIV";
-    //             count = 5;
-    //         };
-    //         class _xx_ACE_personalAidKit {
-    //             name = "ACE_personalAidKit";
-    //             count = 1;
-    //         };
-    //         class _xx_ACE_surgicalKit {
-    //             name = "ACE_surgicalKit";
-    //             count = 1;
-    //         };
-    //     };
-    //     class TransportBackpacks {};
-    // };
-};
+    class PROR_SF_TL_AssPack : PROR_SF_AssPack {
+        scope = 1;
+        author = "UKSF";
+        displayName = "PROR SF Ass Pack (TL)";
+        class TransportMagazines {
+            class _xx_1Rnd_HE_Grenade_shell {
+                magazine = "1Rnd_HE_Grenade_shell";
+                count = 5;
+            class _xx_UK3CB_BAF_1Rnd_SmokeRed_Grenade_shell {
+                magazine = "UK3CB_BAF_1Rnd_SmokeRed_Grenade_shell";
+                count = 3;
+            };
+        };
+    };
+    class PROR_SF_Kitbag_AR {
+        scope = 1;
+        author = "UKSF";
+        displayName = "PROR SF Kitbag (AR)";
+        class TransportWeapons {}; 
+        class TransportMagazines {
+            class _xx_9Rnd_45ACP_Mag {
+                magazine = "9Rnd_45ACP_Mag";
+                count = 3;
+            };
+            class _xx_CUP_200Rnd_TE4_Yellow_Tracer_556x45_L110A1 {
+                magazine = "CUP_200Rnd_TE4_Yellow_Tracer_556x45_L110A1";
+                count = 2;
+            };
+            class _xx_ACE_M14 {
+                magazine = "ACE_M14";
+                count = 2;
+            };
+            class _xx_SmokeShell {
+                magazine = "SmokeShell";
+                count = 3;
+            };
+            class _xx_HandGrenade {
+                magazine = "HandGrenade";
+                count = 2;
+            };
+        };
+    };
+    class PROR_SF_MedicBag {
+        scope = 1;
+        author = "UKSF";
+        displayName = "PROR SF Medic bag";
+        class TransportItems {
+            class _xx_ACE_elasticBandage {
+                name = "ACE_elasticBandage";
+                count = 50;
+            };
+            class _xx_ACE_bloodIV_250 {
+                name = "ACE_bloodIV_250";
+                count = 3;
+            };
+            class _xx_ACE_bloodIV {
+                name = "ACE_bloodIV";
+                count = 2;
+            };
+            class _xx_ACE_bloodIV_500 {
+                name = "ACE_bloodIV_500";
+                count = 3;
+            };
+            class _xx_ACE_epinephrine {
+                name = "ACE_epinephrine";
+                count = 15;
+            };
+            class _xx_ACE_morphine {
+                name = "ACE_morphine";
+                count = 15;
+            };
+            class _xx_ACE_packingBandage {
+                name = "ACE_packingBandage";
+                count = 50; 
+            };
+            class _xx_ACE_personalAidKit {
+                name = "ACE_personalAidKit";
+                count = 1; 
+            };
+            class _xx_ACE_ACE_surgicalKit {
+                name = "ACE_surgicalKit";
+                count = 1; 
+            };
+        };
+    };
