@@ -75,7 +75,8 @@ class CfgVehicles {
     // #include "vehicles\CfgHeli.hpp"
     // #include "vehicles\CfgJet.hpp"
     // #include "vehicles\CfgStatic.hpp"
-
+	
+	class B_AssaultPack_blk;
     class B_FieldPack_oli; // Base class
     class PROR_B_R : B_FieldPack_oli { // Custom class, inheriting from base. Custom class needs to be in units[] array in config.cpp
         scope = 1;
@@ -155,6 +156,7 @@ class CfgVehicles {
             class _xx_1Rnd_HE_Grenade_shell {
                 magazine = "1Rnd_HE_Grenade_shell";
                 count = 5;
+			};
             class _xx_UK3CB_BAF_1Rnd_SmokeRed_Grenade_shell {
                 magazine = "UK3CB_BAF_1Rnd_SmokeRed_Grenade_shell";
                 count = 3;
@@ -231,6 +233,7 @@ class CfgVehicles {
                 count = 1; 
             };
         };
+	};
         
         /////////// normal backpacks /////////////
         
@@ -254,4 +257,4 @@ class CfgVehicles {
             };
         };
     };
-    };
+};
