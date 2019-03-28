@@ -1058,7 +1058,7 @@ class PROR_Para_SL : PROR_R {
         "Throw",
         "Put"
     };
-    weapons[] = {
+    respawnWeapons[] = {
         "arifle_CTAR_GL_blk_F_aco_grn",
         "Throw",
         "Put"
