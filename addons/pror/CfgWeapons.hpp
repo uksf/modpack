@@ -25,290 +25,104 @@ class CfgWeapons {
     };
 
     class arifle_CTAR_blk_F; // Base class
-    class arifle_CTAR_blk_F_Eotech: arifle_CTAR_blk_F { // Custom class, inheriting from base. Custom class needs to be in weapons[] array in config.cpp. Naming convention is <base class>_<attachment>_<attachment>
+    class arifle_CTAR_blk_F_aco_grn: arifle_CTAR_blk_F { // Custom class, inheriting from base. Custom class needs to be in weapons[] array in config.cpp. Naming convention is <base class>_<attachment>_<attachment>
         class LinkedItems {
             class LinkedItemsOptic {
                 slot = "CowsSlot"; // Name of the attachment slot. Defined by the base weapon, in WeaponSlotsInfo. Determines what attachments can be fitted to this slot. Not all can to any slot
-                item = "UK3CB_BAF_Eotech";
+                item = "optic_aco_grn";
             };
         };
     };
-    // class CUP_arifle_Mk16_STD_EGLM_black;
-    // class CUP_arifle_Mk16_STD_EGLM_black_Aimpoint: CUP_arifle_Mk16_STD_EGLM_black {
-    //     class LinkedItems {
-    //         class LinkedItemsOptic {
-    //             slot = "CUP_PicatinnyTopMountSCAR";
-    //             item = "CUP_optic_CompM2_Black";
-    //         };
-    //     };
-    // };
-    // class CUP_arifle_Mk16_CQC_EGLM_black;
-    // class CUP_arifle_Mk16_CQC_EGLM_black_Aimpoint: CUP_arifle_Mk16_CQC_EGLM_black {
-    //     class LinkedItems {
-    //         class LinkedItemsOptic {
-    //             slot = "CUP_PicatinnyTopMountSCAR";
-    //             item = "CUP_optic_CompM2_Black";
-    //         };
-    //     };
-    // };
-    // class CUP_arifle_Mk16_STD_black;
-    // class CUP_arifle_Mk16_STD_black_Aimpoint: CUP_arifle_Mk16_STD_black {
-    //     class LinkedItems {
-    //         class LinkedItemsOptic {
-    //             slot = "CUP_PicatinnyTopMountSCAR";
-    //             item = "CUP_optic_CompM2_Black";
-    //         };
-    //     };
-    // };
-    // class CUP_lmg_Mk48_des;
-    // class CUP_lmg_Mk48_des_Aimpoint: CUP_lmg_Mk48_des {
-    //     class LinkedItems {
-    //         class LinkedItemsOptic {
-    //             slot = "CUP_PicatinnyTopMountMk48";
-    //             item = "CUP_optic_CompM2_Desert";
-    //         };
-    //     };
-    // };
-    // class CUP_srifle_M110;
-    // class CUP_srifle_M110_Leupold: CUP_srifle_M110 {
-    //     class LinkedItems {
-    //         class LinkedItemsOptic {
-    //             slot = "CUP_PicatinnyTopMountM110";
-    //             item = "CUP_optic_LeupoldMk4_MRT_tan";
-    //         };
-    //         class LinkedItemsAcc {
-    //             slot = "CUP_PicatinnySideMountM110";
-    //             item = "CUP_acc_ANPEQ_15";
-    //         };
-    //         class LinkedItemsUnder {
-    //             slot = "CUP_PicatinnyUnderMountM110";
-    //             item = "CUP_bipod_VLTOR_Modpod";
-    //         };
-    //     };
-    // };
-    // class srifle_DMR_02_F;
-    // class srifle_DMR_02_F_PMII: srifle_DMR_02_F {
-    //     class LinkedItems {
-    //         class LinkedItemsOptic {
-    //             slot = "CowsSlot";
-    //             item = "RKSL_optic_PMII_312";
-    //         };
-    //         class LinkedItemsAcc {
-    //             slot = "PointerSlot";
-    //             item = "acc_pointer_IR";
-    //         };
-    //         class LinkedItemsUnder {
-    //             slot = "UnderBarrelSlot";
-    //             item = "bipod_01_F_blk";
-    //         };
-    //     };
-    // };
-    // class arifle_SPAR_01_blk_F;
-    // class arifle_SPAR_01_blk_F_eotech_lamp_bipod: arifle_SPAR_01_blk_F {
-    //     class LinkedItems {
-    //         class LinkedItemsOptic {
-    //             slot = "CowsSlot";
-    //             item = "UK3CB_BAF_Eotech";
-    //         };
-    //         class LinkedItemsAcc {
-    //             slot = "PointerSlot";
-    //             item = "acc_flashlight";
-    //         };
-    //         class LinkedItemsUnder {
-    //             slot = "UnderBarrelSlot";
-    //             item = "bipod_01_F_blk";
-    //         };
-    //     };
-    // };
-    // class arifle_SPAR_01_GL_blk_F;
-    // class arifle_SPAR_01_GL_blk_F_eotech: arifle_SPAR_01_GL_blk_F {
-    //     class LinkedItems {
-    //         class LinkedItemsOptic {
-    //             slot = "CowsSlot";
-    //             item = "UK3CB_BAF_Eotech";
-    //         };
-    //         class LinkedItemsAcc {
-    //             slot = "PointerSlot";
-    //             item = "acc_flashlight";
-    //         };
-    //     };
-    // };
-    // class arifle_SPAR_03_blk_F;
-    // class arifle_SPAR_03_blk_F_dms_bipod: arifle_SPAR_03_blk_F {
-    //     class LinkedItems {
-    //         class LinkedItemsOptic {
-    //             slot = "CowsSlot";
-    //             item = "optic_DMS";
-    //         };
-    //         class LinkedItemsUnder {
-    //             slot = "UnderBarrelSlot";
-    //             item = "bipod_01_F_blk";
-    //         };
-    //     };
-    // };
-    // class arifle_SPAR_01_blk_F_erco_laser_bipod_suppressor: arifle_SPAR_01_blk_F {
-    //     class LinkedItems {
-    //         class LinkedItemsOptic {
-    //             slot = "CowsSlot";
-    //             item = "optic_ERCO_blk_F";
-    //         };
-    //         class LinkedItemsAcc {
-    //             slot = "PointerSlot";
-    //             item = "acc_pointer_IR";
-    //         };
-    //         class LinkedItemsMuzzle {
-    //             slot = "MuzzleSlot";
-    //             item = "muzzle_snds_M";
-    //         };
-    //         class LinkedItemsUnder {
-    //             slot = "UnderBarrelSlot";
-    //             item = "bipod_01_F_blk";
-    //         };
-    //     };
-    // };
-    // class arifle_SPAR_01_GL_blk_F_erco_laser_suppressor: arifle_SPAR_01_GL_blk_F {
-    //     class LinkedItems {
-    //         class LinkedItemsOptic {
-    //             slot = "CowsSlot";
-    //             item = "optic_ERCO_blk_F";
-    //         };
-    //         class LinkedItemsAcc {
-    //             slot = "PointerSlot";
-    //             item = "acc_pointer_IR";
-    //         };
-    //         class LinkedItemsMuzzle {
-    //             slot = "MuzzleSlot";
-    //             item = "muzzle_snds_M";
-    //         };
-    //     };
-    // };
-    // class arifle_SPAR_03_blk_F_dms_bipod_suppressor_laser: arifle_SPAR_03_blk_F {
-    //     class LinkedItems {
-    //         class LinkedItemsOptic {
-    //             slot = "CowsSlot";
-    //             item = "optic_DMS";
-    //         };
-    //         class LinkedItemsAcc {
-    //             slot = "PointerSlot";
-    //             item = "acc_pointer_IR";
-    //         };
-    //         class LinkedItemsMuzzle {
-    //             slot = "MuzzleSlot";
-    //             item = "muzzle_snds_B";
-    //         };
-    //         class LinkedItemsUnder {
-    //             slot = "UnderBarrelSlot";
-    //             item = "bipod_01_F_blk";
-    //         };
-    //     };
-    // };
-    // class Rifle_Long_Base_F;
-    // class CUP_srifle_M107_Base: Rifle_Long_Base_F {
-    //     magazines[] = { "CUP_10Rnd_127x99_m107", "CUP_10Rnd_127x99_M107_Mk211" };
-    // };
-    // class CUP_srifle_M107_Base_PMII: CUP_srifle_M107_Base {
-    //     class LinkedItems {
-    //         class LinkedItemsOptic {
-    //             slot = "CUP_PicatinnyTopMountM107";
-    //             item = "RKSL_optic_PMII_525";
-    //         };
-    //     };
-    // };
-    // class CUP_arifle_Mk16_CQC_EGLM_black_Eotech: CUP_arifle_Mk16_CQC_EGLM_black {
-    //     class LinkedItems {
-    //         class LinkedItemsOptic {
-    //             slot = "CUP_PicatinnyTopMountSCAR";
-    //             item = "optic_Holosight_blk_F";
-    //         };
-    //     };
-    // };
-    // class CUP_arifle_Mk16_CQC_black;
-    // class CUP_arifle_Mk16_CQC_black_Eotech: CUP_arifle_Mk16_CQC_black {
-    //     class LinkedItems {
-    //         class LinkedItemsOptic {
-    //             slot = "CUP_PicatinnyTopMountSCAR";
-    //             item = "optic_Holosight_blk_F";
-    //         };
-    //     };
-    // };
-    // class CUP_launch_MAAWS;
-    // class CUP_launch_MAAWS_Scope: CUP_launch_MAAWS {
-    //     class LinkedItems {
-    //         class LinkedItemsOptic {
-    //             slot = "CowsSlot";
-    //             item = "CUP_optic_MAAWS_Scope";
-    //         };
-    //     };
-    // };
-
-    // class SMG_05_F;
-    // class SMG_05_F_Aco: SMG_05_F {
-    //     class LinkedItems {
-    //         class LinkedItemsOptic {
-    //             slot = "CowsSlot";
-    //             item = "optic_Aco";
-    //         };
-    //     };
-    // };
-
-    // class V_PlateCarrier2_rgr;
-    // class V_PlateCarrier2_rgr_noflag_F: V_PlateCarrier2_rgr {
-    //     class ItemInfo;
-    // };
-    // class Inegal_Diablerie_Vest: V_PlateCarrier2_rgr_noflag_F {
-    //     class ItemInfo: ItemInfo {
-    //         containerClass = "Supply100";
-    //         mass = 80;
-    //         hiddenSelections[] = { "camo" };
-    //         class HitpointsProtectionInfo {
-    //             class Neck {
-    //                 hitpointName = "HitNeck";
-    //                 armor = 25;
-    //                 passThrough = 0.25;
-    //             };
-    //             class Arms {
-    //                 hitpointName = "HitArms";
-    //                 armor = 25;
-    //                 passThrough = 0.25;
-    //             };
-    //             class Chest {
-    //                 hitpointName = "HitChest";
-    //                 armor = 45;
-    //                 passThrough = 0.1;
-    //             };
-    //             class Diaphragm {
-    //                 hitpointName = "HitDiaphragm";
-    //                 armor = 45;
-    //                 passThrough = 0.1;
-    //             };
-    //             class Abdomen {
-    //                 hitpointName = "HitAbdomen";
-    //                 armor = 45;
-    //                 passThrough = 0.1;
-    //             };
-    //             class Body {
-    //                 hitpointName = "HitBody";
-    //                 passThrough = 0.1;
-    //             };
-    //         };
-    //     };
-    // };
-
-    // class H_HelmetB;
-    // class H_HelmetB_TI_tna_F: H_HelmetB {
-    //     class ItemInfo;
-    // };
-    // class Inegal_Diablerie_Helmet: H_HelmetB_TI_tna_F {
-    //     class ItemInfo: ItemInfo {
-    //         mass = 50;
-    //         modelSides[] = { 0, 1, 2 ,3 };
-    //         class HitpointsProtectionInfo {
-    //             class Head {
-    //                 hitpointName = "HitHead";
-    //                 armor = 25;
-    //                 passThrough = 0.1;
-    //             };
-    //         };
-    //     };
-    // };
+    class arifle_CTAR_GL_blk_F;
+    class arifle_CTAR_GL_blk_F_aco_grn : arifle_CTAR_GL_blk_F {
+        class LinkedItems {
+            class LinkedItemsOptic {
+                slot = "CowsSlot";
+                item = "optic_aco_grn";
+            };
+        };
+    };
+    class arifle_CTARS_blk_F;
+    class arifle_CTARS_blk_F_aimpoint : arifle_CTARS_blk_F {
+        class LinkedItems {
+            class LinkedItemsOptic {
+                slot = "CowsSlot";
+                item = "cup_optic_commp4";
+            };
+        };
+    };
+    class srifle_DMR_05_olive_F;
+    class srifle_DMR_05_olive_F_khs : srifle_DMR_05_olive_F {
+        class LinkedItems {
+            class LinkedItemsOptic {
+                slot = "CowsSlot";
+                item = "optic_khs_old";
+            };
+        };
+    };
+    class mmg_02_black_f;
+    class mmg_02_black_f_sig_bravo4 : mmg_02_black_f {
+        class LinkedItems {
+            class LinkedItemsOptic {
+                slot = "CowsSlot";
+                item = "optic_erco_blk_f";
+            };
+        };
+    };
+    class SMA_MK18MOEOD;
+    class SMA_MK18MOEOD_CCO_LLCTop_blk : SMA_MK18MOEOD {
+        class LinkedItems {
+            class LinkedItemsOptic {
+                slot = "asdg_OpticRail_SMAAssault";
+                item = "cup_optic_compm2_black";
+            };
+            class LinkedItemsAcc {
+                slot = "asdg_FrontSideRail_SMAAssault";
+                item = "sma_sfped_mk18top_blk";
+            };
+            class LinkedItemsMuzzle {
+                slot = "MuzzleSlot";
+                item = "sma_supp1bod_556";
+            };
+        };
+    };
+    class SMA_MK18OD_GL;
+    class SMA_MK18OD_GL_CCO_LLCTop_blk : SMA_MK18OD_GL {
+        class LinkedItems {
+            class LinkedItemsOptic {
+                slot = "asdg_OpticRail_SMAAssault";
+                item = "cup_optic_compm2_black";
+            };
+            class LinkedItemsAcc {
+                slot = "asdg_FrontSideRail_SMAAssault";
+                item = "sma_sfped_mk18top_blk";
+            };
+            class LinkedItemsMuzzle {
+                slot = "MuzzleSlot";
+                item = "sma_supp1bod_556";
+            };
+        };
+    };
+    class CUP_lmg_m249_SQuantoon;
+    class CUP_lmg_m249_SQuantoon_LDS : CUP_lmg_m249_SQuantoon {
+        class LinkedItems {
+            class LinkedItemsOptic {
+                slot = "CowsSlot";
+                item = "uk3cb_baf_specterlds_dot_3d";
+            };
+        };
+    };
+    class SMA_HK417_16in;
+    class SMA_HK417_16in_ACOG : SMA_HK417_16in {
+        class LinkedItems {
+            class LinkedItemsOptic {
+                slot = "asdg_OpticRail_SMAAssault";
+                item = "uk3cb_baf_ta648";
+            };
+            class LinkedItemsMuzzle {
+                slot = "MuzzleSlot";
+                item = "sma_supp_762";
+            };
+        };
+    };
 };
