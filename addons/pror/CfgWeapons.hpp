@@ -47,12 +47,12 @@ class CfgWeapons {
         class LinkedItems {
             class LinkedItemsOptic {
                 slot = "CowsSlot";
-                item = "cup_optic_commp4";
+                item = "cup_optic_compm4";
             };
         };
     };
-    class srifle_DMR_05_olive_F;
-    class srifle_DMR_05_olive_F_khs : srifle_DMR_05_olive_F {
+    class srifle_DMR_06_olive_F;
+    class srifle_DMR_06_olive_F_khs : srifle_DMR_06_olive_F {
         class LinkedItems {
             class LinkedItemsOptic {
                 slot = "CowsSlot";
@@ -125,4 +125,11 @@ class CfgWeapons {
             };
         };
     };
+    class srifle_LRR_tna_F;
+    class srifle_LRR_tna_F_NXS : srifle_LRR_tna_F {
+        class LinkedItems {
+            class LinkedItemsOptic {
+                slot = "CowsSlot";
+                item = "optic_lrps_tna_f";
+            };
 };
