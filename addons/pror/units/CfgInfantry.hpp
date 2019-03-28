@@ -18,38 +18,34 @@ class PROR_R : PROR_Soldier_Base {
         "Put"
     };
     magazines[] = {
-        "30Rnd_580x42_Mag_F",
-        "30Rnd_580x42_Mag_F",
-        "30Rnd_580x42_Mag_F",
-        "30Rnd_580x42_Mag_F",
-        "30Rnd_580x42_Mag_F",
-        "30Rnd_580x42_Mag_Tracer_F",
-        "30Rnd_580x42_Mag_Tracer_F",
-        "30Rnd_580x42_Mag_Tracer_F",
-        "30Rnd_580x42_Mag_Tracer_F",
-        "30Rnd_580x42_Mag_Tracer_F",
-        "SmokeShell",
-        "SmokeShell",
-        "SmokeShell",
-        "HandGrenade",
-        "HandGrenade"
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_Tracer_F",
+       "30Rnd_580x42_Mag_Tracer_F",
+       "SmokeShell",
+       "SmokeShell",
+       "HandGrenade"
     };
     respawnMagazines[] = {
-        "30Rnd_580x42_Mag_F",
-        "30Rnd_580x42_Mag_F",
-        "30Rnd_580x42_Mag_F",
-        "30Rnd_580x42_Mag_F",
-        "30Rnd_580x42_Mag_F",
-        "30Rnd_580x42_Mag_Tracer_F",
-        "30Rnd_580x42_Mag_Tracer_F",
-        "30Rnd_580x42_Mag_Tracer_F",
-        "30Rnd_580x42_Mag_Tracer_F",
-        "30Rnd_580x42_Mag_Tracer_F",
-        "SmokeShell",
-        "SmokeShell",
-        "SmokeShell",
-        "HandGrenade",
-        "HandGrenade"
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_Tracer_F",
+       "30Rnd_580x42_Mag_Tracer_F",
+       "SmokeShell",
+       "SmokeShell",
+       "HandGrenade"
     };
     items[] = {
         "ACE_EarPlugs",
@@ -119,14 +115,46 @@ class PROR_AR : PROR_R {
         "Throw",
         "Put"
     };
+    magazines[] = {
+        "100Rnd_580x42_Mag_Tracer_F",
+        "100Rnd_580x42_Mag_Tracer_F",
+        "100Rnd_580x42_Mag_F",
+        "100Rnd_580x42_Mag_F",
+        "SmokeShell",
+        "SmokeShell",
+        "HandGrenade"
+    };
+    respawnMagazines[] = {
+        "100Rnd_580x42_Mag_Tracer_F",
+        "100Rnd_580x42_Mag_Tracer_F",
+        "100Rnd_580x42_Mag_F",
+        "100Rnd_580x42_Mag_F",
+        "SmokeShell",
+        "SmokeShell",
+        "HandGrenade"
+    };
     linkedItems[] = {
         "CFP_Basic_Helmet_M81",
         "CUP_V_B_RRV_Scout",
+        "CFP_ANPVS15_Camo_V3",
+        "ItemMap",
+        "ItemCompass",
+        "ItemWatch",
+        "ItemRadioAcreFlagged",
+        "ItemGPS",
+        "Binocular",
         "CFP_Shemagh_Neck_M81"
     };
     respawnLinkedItems[] = {
         "CFP_Basic_Helmet_M81",
         "CUP_V_B_RRV_Scout",
+        "CFP_ANPVS15_Camo_V3",
+        "ItemMap",
+        "ItemCompass",
+        "ItemWatch",
+        "ItemRadioAcreFlagged",
+        "ItemGPS",
+        "Binocular",
         "CFP_Shemagh_Neck_M81"
     };
 };
@@ -136,7 +164,7 @@ class PROR_MG : PROR_R {
     editorPreview = QPATHTOEF(common,data\previews\Inegal_O.jpg);
     icon = "iconMan";
     uniformClass = "CFP_U_FieldUniform_M81light";
-    backpack = "UK3CB_BAF_B_Carryall_Oli";
+    backpack = "PROR_MG_Carryall";
     weapons[] = {
         "mmg_02_black_f_sig_bravo4",
         "Throw",
@@ -150,8 +178,6 @@ class PROR_MG : PROR_R {
     magazines[] = {
         "130Rnd_338_Mag",
         "130Rnd_338_Mag",
-        "130Rnd_338_Mag",
-        "130Rnd_338_Mag",
         "SmokeShell",
         "SmokeShell",
         "SmokeShell",
@@ -161,44 +187,36 @@ class PROR_MG : PROR_R {
     respawnMagazines[] = {
         "130Rnd_338_Mag",
         "130Rnd_338_Mag",
-        "130Rnd_338_Mag",
-        "130Rnd_338_Mag",
         "SmokeShell",
         "SmokeShell",
         "SmokeShell",
         "HandGrenade",
         "HandGrenade"
     };
-    items[] = {
-        "ACE_EarPlugs",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage"
-    };
-    respawnItems[] = {
-        "ACE_EarPlugs",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage"
-    };
+    items[] = {};
+    respawnItems[] = {};
     linkedItems[] = {
+        "CFP_Basic_Helmet_M81",
         "CUP_V_B_RRV_Scout2",
+        "CFP_ANPVS15_Camo_V3",
+        "ItemMap",
+        "ItemCompass",
+        "ItemWatch",
+        "ItemRadioAcreFlagged",
+        "ItemGPS",
+        "Binocular",
         "CFP_Shemagh_Neck_M81"
     };
     respawnLinkedItems[] = {
+        "CFP_Basic_Helmet_M81",
         "CUP_V_B_RRV_Scout2",
+        "CFP_ANPVS15_Camo_V3",
+        "ItemMap",
+        "ItemCompass",
+        "ItemWatch",
+        "ItemRadioAcreFlagged",
+        "ItemGPS",
+        "Binocular",
         "CFP_Shemagh_Neck_M81"
     };
 };
@@ -483,11 +501,27 @@ class PROR_Medic : PROR_R {
         "ACE_BloodIV_500"
     };
     linkedItems[] = {
+        "CFP_Basic_Helmet_M81",
         "CUP_V_B_RRV_Medic",
+        "CFP_ANPVS15_Camo_V3",
+        "ItemMap",
+        "ItemCompass",
+        "ItemWatch",
+        "ItemRadioAcreFlagged",
+        "ItemGPS",
+        "Binocular",
         "CFP_Shemagh_Neck_M81"
     };
     respawnLinkedItems[] = {
+        "CFP_Basic_Helmet_M81",
         "CUP_V_B_RRV_Medic",
+        "CFP_ANPVS15_Camo_V3",
+        "ItemMap",
+        "ItemCompass",
+        "ItemWatch",
+        "ItemRadioAcreFlagged",
+        "ItemGPS",
+        "Binocular",
         "CFP_Shemagh_Neck_M81"
     };
 };
@@ -565,12 +599,12 @@ class PROR_Marksman : PROR_R {
     uniformClass = "CFP_U_FieldUniform_M81light";
     icon = "iconMan";
     weapons[] = {
-        "srifle_DMR_05_olive_F_khs",
+        "srifle_DMR_06_olive_F_khs",
         "Throw",
         "Put"
     };
     respawnWeapons[] = {
-        "srifle_DMR_05_olive_F_khs",
+        "srifle_DMR_06_olive_F_khs",
         "Throw",
         "Put"
     };
@@ -601,9 +635,27 @@ class PROR_Marksman : PROR_R {
         "HandGrenade"
     };
     linkedItems[] = {
+        "CFP_Basic_Helmet_M81",
+        "CUP_V_B_RRV_Scout2",
+        "CFP_ANPVS15_Camo_V3",
+        "ItemMap",
+        "ItemCompass",
+        "ItemWatch",
+        "ItemRadioAcreFlagged",
+        "ItemGPS",
+        "Binocular",
         "CFP_Shemagh_Neck_M81"
     };
     respawnLinkedItems[] = {
+        "CFP_Basic_Helmet_M81",
+        "CUP_V_B_RRV_Scout2",
+        "CFP_ANPVS15_Camo_V3",
+        "ItemMap",
+        "ItemCompass",
+        "ItemWatch",
+        "ItemRadioAcreFlagged",
+        "ItemGPS",
+        "Binocular",
         "CFP_Shemagh_Neck_M81"
     };
 };
@@ -688,14 +740,31 @@ class PROR_SL : PROR_Officer {
     displayName = "Section Leader";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_ATJ.jpg);
     uniformClass = "CFP_U_FieldUniform_M81light";
+    backpack = "CUP_B_Kombat_Radio_Olive";
     icon = "iconManLeader";
     linkedItems[] = {
         "CFP_Basic_Helmet_M81",
-        "CUP_V_B_RRV_TL"
+        "CUP_V_B_RRV_TL",
+        "CFP_ANPVS15_Camo_V3",
+        "ItemMap",
+        "ItemCompass",
+        "ItemWatch",
+        "ItemRadioAcreFlagged",
+        "ItemGPS",
+        "Binocular",
+        "CFP_Shemagh_Neck_M81"
     };
     respawnLinkedItems[] = {
         "CFP_Basic_Helmet_M81",
-        "CUP_V_B_RRV_TL"
+        "CUP_V_B_RRV_TL",
+        "CFP_ANPVS15_Camo_V3",
+        "ItemMap",
+        "ItemCompass",
+        "ItemWatch",
+        "ItemRadioAcreFlagged",
+        "ItemGPS",
+        "Binocular",
+        "CFP_Shemagh_Neck_M81"
     };
 };
 class PROR_FOO : PROR_R {
@@ -763,12 +832,28 @@ class PROR_FOO : PROR_R {
         "HandGrenade"
     };
     linkedItems[] = {
-        "Laserdesignator_03",
-        "CUP_V_B_RRV_Officer"
+        "CFP_Basic_Helmet_M81",
+        "CUP_V_B_RRV_TL",
+        "CFP_ANPVS15_Camo_V3",
+        "ItemMap",
+        "ItemCompass",
+        "ItemWatch",
+        "ItemRadioAcreFlagged",
+        "ItemGPS",
+        "Binocular",
+        "CFP_Shemagh_Neck_M81"
     };
     respawnLinkedItems[] = {
-        "Laserdesignator_03",
-        "CUP_V_B_RRV_Officer"
+        "CFP_Basic_Helmet_M81",
+        "CUP_V_B_RRV_TL",
+        "CFP_ANPVS15_Camo_V3",
+        "ItemMap",
+        "ItemCompass",
+        "ItemWatch",
+        "ItemRadioAcreFlagged",
+        "ItemGPS",
+        "Binocular",
+        "CFP_Shemagh_Neck_M81"
     };
 };
 class PROR_FAC : PROR_FOO {
@@ -777,13 +862,8 @@ class PROR_FAC : PROR_FOO {
     editorPreview = QPATHTOEF(common,data\previews\Inegal_FAC.jpg);
     uniformClass = "CFP_U_FieldUniform_M81light";
     backpack = "UK3CB_BAF_B_Bergen_OLI_JTAC_H_A";
-    linkedItems[] = {
-        "CUP_V_B_RRV_TL"
-    };
-    respawnLinkedItems[] = {
-        "CUP_V_B_RRV_TL"
-    };
 };
+
 class PROR_Sniper : PROR_R {
     _generalMacro = "PROR_Sniper";
     displayName = "Sniper";
@@ -791,12 +871,12 @@ class PROR_Sniper : PROR_R {
     uniformClass = "U_I_FullGhillie_lsh";
     backpack = "B_TacticalPack_blk";
     weapons[] = {
-        "srifle_LRR_tna_F",
+        "srifle_LRR_tna_F_NXS",
         "Throw",
         "Put"
     };
     respawnWeapons[] = {
-        "srifle_LRR_tna_F",
+        "srifle_LRR_tna_F_NXS",
         "Throw",
         "Put"
     };
@@ -829,11 +909,13 @@ class PROR_Sniper : PROR_R {
     linkedItems[] = {
         "CUP_PMC_Facewrap_Tropical",
         "CUP_NVG_PVS15_green",
+        "V_TacVest_oli",
         "Rangefinder"
     };
     respawnLinkedItems[] = {
         "CUP_PMC_Facewrap_Tropical",
         "CUP_NVG_PVS15_green",
+        "V_TacVest_oli",
         "Rangefinder"
     };    
 };        
@@ -844,28 +926,74 @@ class PROR_AA : PROR_R {
     displayName = "AA";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_MG.jpg);
     uniformClass = "CFP_U_FieldUniform_M81light";
-    icon = "iconManAA";
+    icon = "iconMan";
     backpack = "B_AssaultPack_rgr";
     weapons[] = {
+        "arifle_CTAR_blk_F_aco_grn",
         "launch_B_Titan_tna_F",
         "Throw",
         "Put"
     };
     respawnWeapons[] = {
+        "arifle_CTAR_blk_F_aco_grn",
         "launch_B_Titan_tna_F",
         "Throw",
         "Put"
     };
     magazines[] = {
-        "Titan_AA"
+       "Titan_AA",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_Tracer_F",
+       "30Rnd_580x42_Mag_Tracer_F",
+       "SmokeShell",
+       "SmokeShell",
+       "HandGrenade"
     };
     respawnMagazines[] = {
-        "Titan_AA"
+       "Titan_AA",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_Tracer_F",
+       "30Rnd_580x42_Mag_Tracer_F",
+       "SmokeShell",
+       "SmokeShell",
+       "HandGrenade"
     };
     linkedItems[] = {
+        "CFP_Basic_Helmet_M81",
+        "CUP_V_B_RRV_Scout2",
+        "CFP_ANPVS15_Camo_V3",
+        "ItemMap",
+        "ItemCompass",
+        "ItemWatch",
+        "ItemRadioAcreFlagged",
+        "ItemGPS",
+        "Binocular",
         "CFP_Shemagh_Neck_M81"
     };
     respawnLinkedItems[] = {
+        "CFP_Basic_Helmet_M81",
+        "CUP_V_B_RRV_Scout2",
+        "CFP_ANPVS15_Camo_V3",
+        "ItemMap",
+        "ItemCompass",
+        "ItemWatch",
+        "ItemRadioAcreFlagged",
+        "ItemGPS",
+        "Binocular",
         "CFP_Shemagh_Neck_M81"
     };
 };
@@ -883,6 +1011,41 @@ class PROR_Para : PROR_R {
         "Throw",
         "Put"
     };
+    respawnWeapons[] = {
+        "arifle_CTAR_blk_F_aco_grn",
+        "Throw",
+        "Put"
+    };
+    magazines[] = {
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_Tracer_F",
+       "30Rnd_580x42_Mag_Tracer_F",
+       "SmokeShell",
+       "SmokeShell",
+       "HandGrenade"
+    };
+    respawnMagazines[] = {
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_Tracer_F",
+       "30Rnd_580x42_Mag_Tracer_F",
+       "SmokeShell",
+       "SmokeShell",
+       "HandGrenade"
+    };
 };      
 class PROR_Para_SL : PROR_R {
     _generalMacro = "PROR_Para_SL";
@@ -895,15 +1058,20 @@ class PROR_Para_SL : PROR_R {
         "Throw",
         "Put"
     };
+    weapons[] = {
+        "arifle_CTAR_GL_blk_F_aco_grn",
+        "Throw",
+        "Put"
+    };
     magazines[] = {
        "30Rnd_580x42_Mag_F",
        "30Rnd_580x42_Mag_F",
        "30Rnd_580x42_Mag_F",
        "30Rnd_580x42_Mag_F",
        "30Rnd_580x42_Mag_F",
-       "30Rnd_580x42_Mag_Tracer_F",
-       "30Rnd_580x42_Mag_Tracer_F",
-       "30Rnd_580x42_Mag_Tracer_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
        "30Rnd_580x42_Mag_Tracer_F",
        "30Rnd_580x42_Mag_Tracer_F",
        "1Rnd_HE_Grenade_shell",
@@ -924,9 +1092,9 @@ class PROR_Para_SL : PROR_R {
        "30Rnd_580x42_Mag_F",
        "30Rnd_580x42_Mag_F",
        "30Rnd_580x42_Mag_F",
-       "30Rnd_580x42_Mag_Tracer_F",
-       "30Rnd_580x42_Mag_Tracer_F",
-       "30Rnd_580x42_Mag_Tracer_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
+       "30Rnd_580x42_Mag_F",
        "30Rnd_580x42_Mag_Tracer_F",
        "30Rnd_580x42_Mag_Tracer_F",
        "1Rnd_HE_Grenade_shell",
@@ -942,10 +1110,28 @@ class PROR_Para_SL : PROR_R {
        "Smokeshell"
     };
     linkedItems[] = {
-        "CUP_V_B_RRV_TL"
+        "CFP_Basic_Helmet_M81",
+        "CUP_V_B_RRV_TL",
+        "CFP_ANPVS15_Camo_V3",
+        "ItemMap",
+        "ItemCompass",
+        "ItemWatch",
+        "ItemRadioAcreFlagged",
+        "ItemGPS",
+        "Binocular",
+        "CFP_Shemagh_Neck_M81"
     };
     respawnLinkedItems[] = {
-        "CUP_V_B_RRV_TL"
+        "CFP_Basic_Helmet_M81",
+        "CUP_V_B_RRV_TL",
+        "CFP_ANPVS15_Camo_V3",
+        "ItemMap",
+        "ItemCompass",
+        "ItemWatch",
+        "ItemRadioAcreFlagged",
+        "ItemGPS",
+        "Binocular",
+        "CFP_Shemagh_Neck_M81"
     };
 };
 class PROR_Para_AR : PROR_R {
@@ -959,23 +1145,52 @@ class PROR_Para_AR : PROR_R {
         "Throw",
         "Put"
     };
+    respawnWeapons[] = {
+        "arifle_CTARS_blk_F_aimpoint",
+        "Throw",
+        "Put"
+    };
      magazines[] = {
-       "100Rnd_580x42_Mag_Fl",
-       "100Rnd_580x42_Mag_Fl",
+       "100Rnd_580x42_Mag_F",
+       "100Rnd_580x42_Mag_F",
        "100Rnd_580x42_Mag_Tracer_F",
-       "100Rnd_580x42_Mag_Tracer_F"
+       "100Rnd_580x42_Mag_Tracer_F",
+       "SmokeShell",
+       "SmokeShell",
+       "HandGrenade"
     };
     respawnMagazines[] = {
-       "100Rnd_580x42_Mag_Fl",
-       "100Rnd_580x42_Mag_Fl",
+       "100Rnd_580x42_Mag_F",
+       "100Rnd_580x42_Mag_F",
        "100Rnd_580x42_Mag_Tracer_F",
-       "100Rnd_580x42_Mag_Tracer_F"
+       "100Rnd_580x42_Mag_Tracer_F",
+       "SmokeShell",
+       "SmokeShell",
+       "HandGrenade"
     };
     linkedItems[] = {
-        "CUP_V_B_RRV_Scout"
+        "CFP_Basic_Helmet_M81",
+        "CUP_V_B_RRV_Scout",
+        "CFP_ANPVS15_Camo_V3",
+        "ItemMap",
+        "ItemCompass",
+        "ItemWatch",
+        "ItemRadioAcreFlagged",
+        "ItemGPS",
+        "Binocular",
+        "CFP_Shemagh_Neck_M81"
     };
     respawnLinkedItems[] = {
-        "CUP_V_B_RRV_Scout"
+        "CFP_Basic_Helmet_M81",
+        "CUP_V_B_RRV_Scout",
+        "CFP_ANPVS15_Camo_V3",
+        "ItemMap",
+        "ItemCompass",
+        "ItemWatch",
+        "ItemRadioAcreFlagged",
+        "ItemGPS",
+        "Binocular",
+        "CFP_Shemagh_Neck_M81"
     };
 };
 class PROR_Para_Marks : PROR_R {
@@ -985,7 +1200,12 @@ class PROR_Para_Marks : PROR_R {
     uniformClass = "CFP_U_FieldUniform_M81light";
     backpack = "B_Parachute";
     weapons[] = {
-        "srifle_DMR_05_olive_F_khs",
+        "srifle_DMR_06_olive_F_khs",
+        "Throw",
+        "Put"
+    };
+    respawnWeapons[] = {
+        "srifle_DMR_06_olive_F_khs",
         "Throw",
         "Put"
     };
@@ -996,16 +1216,22 @@ class PROR_Para_Marks : PROR_R {
         "20Rnd_762x51_Mag",
         "20Rnd_762x51_Mag",
         "20Rnd_762x51_Mag",
-        "20Rnd_762x51_Mag"
+        "20Rnd_762x51_Mag",
+        "SmokeShell",
+        "SmokeShell",
+        "HandGrenade"
     };
     respawnMagazines[] = {
-       "20Rnd_762x51_Mag",
         "20Rnd_762x51_Mag",
         "20Rnd_762x51_Mag",
         "20Rnd_762x51_Mag",
         "20Rnd_762x51_Mag",
         "20Rnd_762x51_Mag",
-        "20Rnd_762x51_Mag"
+        "20Rnd_762x51_Mag",
+        "20Rnd_762x51_Mag",
+        "SmokeShell",
+        "SmokeShell",
+        "HandGrenade"
     };
 };
 class PROR_Para_AT : PROR_Para {
@@ -1016,7 +1242,13 @@ class PROR_Para_AT : PROR_Para {
     backpack = "B_Parachute";
     weapons[] = {
         "arifle_CTAR_blk_F_aco_grn",
-        "launch_MRAWS_green_rail_F",
+        "CUP_launch_M72A6",
+        "Throw",
+        "Put"
+    };
+    respawnWeapons[] = {
+        "arifle_CTAR_blk_F_aco_grn",
+        "CUP_launch_M72A6",
         "Throw",
         "Put"
     };
@@ -1024,7 +1256,7 @@ class PROR_Para_AT : PROR_Para {
 
 /////////////////////// SPECIAL FORCES ///////////////////////
 
-class PROR_SF_R {
+class PROR_SF_R : PROR_Soldier_Base {
     _generalMacro = "PROR_SF_R";
     scope = 2;
     displayName = "SF Rifleman";
@@ -1035,7 +1267,6 @@ class PROR_SF_R {
     backpack = "PROR_SF_AssPack";
     weapons[] = {
         "SMA_MK18MOEOD_CCO_LLCTop_blk",
-        "hgun_ACPC2_F",
         "hgun_ACPC2_F",
         "Throw",
         "Put"
@@ -1351,10 +1582,28 @@ class PROR_Crew : PROR_R {
         "HandGreande"
     };
     linkedItems[] = {
-        "H_HelmetCrew_I"
+        "CFP_Basic_Helmet_M81",
+        "CUP_V_B_RRV_Scout2",
+        "CFP_ANPVS15_Camo_V3",
+        "ItemMap",
+        "ItemCompass",
+        "ItemWatch",
+        "ItemRadioAcreFlagged",
+        "ItemGPS",
+        "Binocular",
+        "CFP_Shemagh_Neck_M81"
     };
     respawnLinkedItems[] = {
-        "H_HelmetCrew_I"
+        "CFP_Basic_Helmet_M81",
+        "CUP_V_B_RRV_Scout2",
+        "CFP_ANPVS15_Camo_V3",
+        "ItemMap",
+        "ItemCompass",
+        "ItemWatch",
+        "ItemRadioAcreFlagged",
+        "ItemGPS",
+        "Binocular",
+        "CFP_Shemagh_Neck_M81"
     };
 };
 
@@ -1369,10 +1618,28 @@ class PROR_Jet_Pilot : PROR_Crew {
     backpack = "B_Parachute";
    
     linkedItems[] = {
-        "H_PilotHelmetFighter_O"
+        "CFP_Basic_Helmet_M81",
+        "H_PilotHelmetFighter_O",
+        "CFP_ANPVS15_Camo_V3",
+        "ItemMap",
+        "ItemCompass",
+        "ItemWatch",
+        "ItemRadioAcreFlagged",
+        "ItemGPS",
+        "Binocular",
+        "CFP_Shemagh_Neck_M81"
     };
     respawnLinkedItems[] = {
-        "H_PilotHelmetFighter_O"
+        "CFP_Basic_Helmet_M81",
+        "H_PilotHelmetFighter_O",
+        "CFP_ANPVS15_Camo_V3",
+        "ItemMap",
+        "ItemCompass",
+        "ItemWatch",
+        "ItemRadioAcreFlagged",
+        "ItemGPS",
+        "Binocular",
+        "CFP_Shemagh_Neck_M81"
     };
 };
 
@@ -1385,9 +1652,27 @@ class PROR_Heli_Pilot : PROR_Crew {
     backpack = "";
    
     linkedItems[] = {
-        "H_PilotHelmetHeli_O"
+        "CFP_Basic_Helmet_M81",
+        "H_PilotHelmetHeli_O",
+        "CFP_ANPVS15_Camo_V3",
+        "ItemMap",
+        "ItemCompass",
+        "ItemWatch",
+        "ItemRadioAcreFlagged",
+        "ItemGPS",
+        "Binocular",
+        "CFP_Shemagh_Neck_M81"
     };
     respawnLinkedItems[] = {
-        "H_PilotHelmetHeli_O"
+        "CFP_Basic_Helmet_M81",
+        "H_PilotHelmetHeli_O",
+        "CFP_ANPVS15_Camo_V3",
+        "ItemMap",
+        "ItemCompass",
+        "ItemWatch",
+        "ItemRadioAcreFlagged",
+        "ItemGPS",
+        "Binocular",
+        "CFP_Shemagh_Neck_M81"
     };
 };
