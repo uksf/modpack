@@ -231,4 +231,27 @@ class CfgVehicles {
                 count = 1; 
             };
         };
+        
+        /////////// normal backpacks /////////////
+        
+        class PROR_MG_Carryall : B_AssaultPack_blk {
+        scope = 1;
+        author = "UKSF";
+        displayName = "PROR MG Carryall";
+        class TransportWeapons {}; 
+        class TransportMagazines {
+            class _xx_130Rnd_338_Mag {
+                magazine = "130Rnd_338_Mag";
+                count = 4;
+            };
+            class _xx_SmokeShell {
+                magazine = "SmokeShell";
+                count = 2;
+            };
+            class _xx_ACE_packingBandage {
+                name = "ACE_packingBandage";
+                count = 5;
+            };
+        };
+    };
     };
