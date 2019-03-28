@@ -913,7 +913,7 @@ class PROR_Para_SL : PROR_R {
        "1Rnd_HE_Grenade_shell",
        "1Rnd_HE_Grenade_shell",
        "1Rnd_HE_Grenade_shell",
-       "1Rnd_HE_Grenade_shell"
+       "1Rnd_HE_Grenade_shell",
        "Smokeshell",
        "Smokeshell",
        "Smokeshell"
