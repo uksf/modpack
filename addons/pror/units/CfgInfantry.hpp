@@ -533,12 +533,14 @@ class PROR_AT_L : PROR_R {
     icon = "iconManAT";
     backpack = "B_AssaultPack_rgr";
     weapons[] = {
-        "launch_MRAWS_green_rail_F",
+        "arifle_CTAR_blk_F_aco_grn",
+		"launch_MRAWS_green_rail_F",
         "Throw",
         "Put"
     };
     respawnWeapons[] = {
-        "launch_MRAWS_green_rail_F",
+        "arifle_CTAR_blk_F_aco_grn",
+		"launch_MRAWS_green_rail_F",
         "Throw",
         "Put"
     };
@@ -553,9 +555,27 @@ class PROR_AT_L : PROR_R {
         "MRAWS_HEAT_F"
     };
     linkedItems[] = {
+        "CFP_Basic_Helmet_M81",
+        "CUP_V_B_RRV_Scout2",
+        "CFP_ANPVS15_Camo_V3",
+        "ItemMap",
+        "ItemCompass",
+        "ItemWatch",
+        "ItemRadioAcreFlagged",
+        "ItemGPS",
+        "Binocular",
         "CFP_Shemagh_Neck_M81"
     };
     respawnLinkedItems[] = {
+        "CFP_Basic_Helmet_M81",
+        "CUP_V_B_RRV_Scout2",
+        "CFP_ANPVS15_Camo_V3",
+        "ItemMap",
+        "ItemCompass",
+        "ItemWatch",
+        "ItemRadioAcreFlagged",
+        "ItemGPS",
+        "Binocular",
         "CFP_Shemagh_Neck_M81"
     };
 };
@@ -564,14 +584,16 @@ class PROR_AT_H : PROR_R {
     displayName = "AT (Heavy)";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_Mark.jpg);
     uniformClass = "CFP_U_FieldUniform_M81light";
-    backpack = "B_TacticalPack_blk";
+    backpack = "B_AssaultPack_rgr";
     weapons[] = {
-        "launch_O_Vorona_green_F",
+		"launch_O_Vorona_green_F",
+        "arifle_CTAR_blk_F_aco_grn",
         "Throw",
         "Put"
     };
     respawnWeapons[] = {
         "launch_O_Vorona_green_F",
+		"arifle_CTAR_blk_F_aco_grn",
         "Throw",
         "Put"
     };
@@ -584,11 +606,27 @@ class PROR_AT_H : PROR_R {
         "Vorona_HEAT"
     };
     linkedItems[] = {
+        "CFP_Basic_Helmet_M81",
         "CUP_V_B_RRV_Scout2",
+        "CFP_ANPVS15_Camo_V3",
+        "ItemMap",
+        "ItemCompass",
+        "ItemWatch",
+        "ItemRadioAcreFlagged",
+        "ItemGPS",
+        "Binocular",
         "CFP_Shemagh_Neck_M81"
     };
     respawnLinkedItems[] = {
+        "CFP_Basic_Helmet_M81",
         "CUP_V_B_RRV_Scout2",
+        "CFP_ANPVS15_Camo_V3",
+        "ItemMap",
+        "ItemCompass",
+        "ItemWatch",
+        "ItemRadioAcreFlagged",
+        "ItemGPS",
+        "Binocular",
         "CFP_Shemagh_Neck_M81"
     };
 };
@@ -926,7 +964,6 @@ class PROR_AA : PROR_R {
     displayName = "AA";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_MG.jpg);
     uniformClass = "CFP_U_FieldUniform_M81light";
-    icon = "iconMan";
     backpack = "B_AssaultPack_rgr";
     weapons[] = {
         "arifle_CTAR_blk_F_aco_grn",
@@ -1367,13 +1404,13 @@ class PROR_SF_TL : PROR_SF_R {
     model = "\A3\characters_F_gamma\Guerrilla\ig_guerrilla2_1.p3d";
     backpack = "PROR_SF_TL_AssPack";
     weapons[] = {
-        "SMA_MK18OD_GL_CCO_LLCTop_blk ",
+        "SMA_MK18OD_GL_CCO_LLCTop_blk",
         "hgun_ACPC2_F",
         "Throw",
         "Put"
     };
     respawnWeapons[] = {
-        "SMA_MK18OD_GL_CCO_LLCTop_blk ",
+        "SMA_MK18OD_GL_CCO_LLCTop_blk",
         "hgun_ACPC2_F",
         "Throw",
         "Put"
@@ -1445,10 +1482,28 @@ class PROR_SF_Marks : PROR_SF_R {
         "SMA_20Rnd_762x51mm_M80A1_EPR"
     };
     linkedItems[] = {
-        "G_Bandanna_sport"
+        "CFP_OPS2017_Helmet_M81",
+        "CFP_PlateCarrier1_M81",
+        "NVGogglesB_blk_F",
+        "ItemMap",
+        "ItemCompass",
+        "ItemWatch",
+        "ItemRadioAcreFlagged",
+        "ItemGPS",
+        "Binocular",
+        "G_Bandanna_oli"
     };
     respawnLinkedItems[] = {
-        "G_Bandanna_sport"
+        "CFP_OPS2017_Helmet_M81",
+        "CFP_PlateCarrier1_M81",
+        "NVGogglesB_blk_F",
+        "ItemMap",
+        "ItemCompass",
+        "ItemWatch",
+        "ItemRadioAcreFlagged",
+        "ItemGPS",
+        "Binocular",
+        "G_Bandanna_oli"
     };
 };
 
@@ -1551,7 +1606,6 @@ class PROR_Crew : PROR_R {
     displayName = "Crewman";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_MG.jpg);
     uniformClass = "CFP_U_FieldUniform_M81light";
-    icon = "iconManCrew";
     backpack = "";
     weapons[] = {
         "SMG_03C_TR_black",
@@ -1582,7 +1636,7 @@ class PROR_Crew : PROR_R {
         "HandGreande"
     };
     linkedItems[] = {
-        "CFP_Basic_Helmet_M81",
+        "H_HelmetCrew_I",
         "CUP_V_B_RRV_Scout2",
         "CFP_ANPVS15_Camo_V3",
         "ItemMap",
@@ -1594,7 +1648,7 @@ class PROR_Crew : PROR_R {
         "CFP_Shemagh_Neck_M81"
     };
     respawnLinkedItems[] = {
-        "CFP_Basic_Helmet_M81",
+        "H_HelmetCrew_I",
         "CUP_V_B_RRV_Scout2",
         "CFP_ANPVS15_Camo_V3",
         "ItemMap",
@@ -1614,13 +1668,12 @@ class PROR_Jet_Pilot : PROR_Crew {
     displayName = "Jet Pilot";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_MG.jpg);
     uniformClass = "CFP_U_FieldUniform_M81light";
-    icon = "iconManCrew";
     backpack = "B_Parachute";
    
     linkedItems[] = {
-        "CFP_Basic_Helmet_M81",
-        "H_PilotHelmetFighter_O",
+        "CUP_H_RUS_ZSH_Shield_Down",
         "CFP_ANPVS15_Camo_V3",
+		"CUP_V_B_PilotVest",
         "ItemMap",
         "ItemCompass",
         "ItemWatch",
@@ -1630,9 +1683,9 @@ class PROR_Jet_Pilot : PROR_Crew {
         "CFP_Shemagh_Neck_M81"
     };
     respawnLinkedItems[] = {
-        "CFP_Basic_Helmet_M81",
-        "H_PilotHelmetFighter_O",
+        "CUP_H_RUS_ZSH_Shield_Down",
         "CFP_ANPVS15_Camo_V3",
+		"CUP_V_B_PilotVest",
         "ItemMap",
         "ItemCompass",
         "ItemWatch",
@@ -1648,12 +1701,11 @@ class PROR_Heli_Pilot : PROR_Crew {
     displayName = "Heli Pilot";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_MG.jpg);
     uniformClass = "CFP_U_FieldUniform_M81light";
-    icon = "iconManCrew";
     backpack = "";
    
     linkedItems[] = {
-        "CFP_Basic_Helmet_M81",
         "H_PilotHelmetHeli_O",
+		"CUP_V_B_PilotVest",
         "CFP_ANPVS15_Camo_V3",
         "ItemMap",
         "ItemCompass",
@@ -1664,8 +1716,8 @@ class PROR_Heli_Pilot : PROR_Crew {
         "CFP_Shemagh_Neck_M81"
     };
     respawnLinkedItems[] = {
-        "CFP_Basic_Helmet_M81",
         "H_PilotHelmetHeli_O",
+		"CUP_V_B_PilotVest",
         "CFP_ANPVS15_Camo_V3",
         "ItemMap",
         "ItemCompass",
