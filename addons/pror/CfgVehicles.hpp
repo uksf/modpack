@@ -120,11 +120,11 @@ class CfgVehicles {
     
    ////// SF Backpacks /////
     
-   class PROR_SF_AssPack : B_AssaultPack_blk {
+   class CFP_AssaultPack_M81;
+   class PROR_SF_AssPack : CFP_AssaultPack_M81 {
         scope = 1;
         author = "UKSF";
         displayName = "PROR SF Ass Pack";
-        class TransportWeapons {}; 
         class TransportMagazines {
             class _xx_9Rnd_45ACP_Mag {
                 magazine = "9Rnd_45ACP_Mag";
@@ -161,9 +161,30 @@ class CfgVehicles {
                 magazine = "UK3CB_BAF_1Rnd_SmokeRed_Grenade_shell";
                 count = 3;
             };
+			class _xx_9Rnd_45ACP_Mag {
+                magazine = "9Rnd_45ACP_Mag";
+                count = 3;
+            };
+            class _xx_CUP_30Rnd_556x45_Emag_Tracer_Yellow {
+                magazine = "CUP_30Rnd_556x45_Emag_Tracer_Yellow";
+                count = 4;
+            };
+            class _xx_ACE_M14 {
+                magazine = "ACE_M14";
+                count = 2;
+            };
+            class _xx_SmokeShell {
+                magazine = "SmokeShell";
+                count = 3;
+            };
+            class _xx_HandGrenade {
+                magazine = "HandGrenade";
+                count = 2;
+            };
         };
     };
-    class PROR_SF_Kitbag_AR {
+	class CFP_Kitbag_M81;
+    class PROR_SF_Kitbag_AR : CFP_Kitbag_M81 {
         scope = 1;
         author = "UKSF";
         displayName = "PROR SF Kitbag (AR)";
@@ -191,7 +212,7 @@ class CfgVehicles {
             };
         };
     };
-    class PROR_SF_MedicBag {
+    class PROR_SF_MedicBag : CFP_Kitbag_M81 {
         scope = 1;
         author = "UKSF";
         displayName = "PROR SF Medic bag";
@@ -237,7 +258,8 @@ class CfgVehicles {
         
         /////////// normal backpacks /////////////
         
-        class PROR_MG_Carryall : B_AssaultPack_blk {
+		class UK3CB_BAF_B_Carryall_OLI;
+        class PROR_MG_Carryall : UK3CB_BAF_B_Carryall_OLI {
         scope = 1;
         author = "UKSF";
         displayName = "PROR MG Carryall";
