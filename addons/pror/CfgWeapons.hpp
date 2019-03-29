@@ -69,8 +69,8 @@ class CfgWeapons {
             };
         };
     };
-    class SMA_MK18MOEOD;
-    class SMA_MK18MOEOD_CCO_LLCTop_blk : SMA_MK18MOEOD {
+    class SMA_MK18MOE;
+    class SMA_MK18MOEOD_CCO_LLCTop_blk : SMA_MK18MOE {
         class LinkedItems {
             class LinkedItemsOptic {
                 slot = "asdg_OpticRail_SMAAssault";
@@ -82,11 +82,11 @@ class CfgWeapons {
             };
             class LinkedItemsMuzzle {
                 slot = "MuzzleSlot";
-                item = "sma_supp1bod_556";
+                item = "sma_gemtech_one_wdl";
             };
         };
     };
-    class SMA_MK18OD_GL;
+	class SMA_MK18OD_GL;
     class SMA_MK18OD_GL_CCO_LLCTop_blk : SMA_MK18OD_GL {
         class LinkedItems {
             class LinkedItemsOptic {
@@ -99,7 +99,7 @@ class CfgWeapons {
             };
             class LinkedItemsMuzzle {
                 slot = "MuzzleSlot";
-                item = "sma_supp1bod_556";
+                item = "sma_gemtech_one_wdl";
             };
         };
     };
@@ -132,4 +132,6 @@ class CfgWeapons {
                 slot = "CowsSlot";
                 item = "optic_lrps_tna_f";
             };
+		};
+	};
 };
