@@ -7,7 +7,6 @@ class CfgGroups {
             class Infantry {
                 name = "Infantry";
                 aliveCategory = "Infantry";
-                // Regular
                 class PROR_InfSection {
                     faction = "UKSF_PROR";
                     name = "Infantry Section";
@@ -28,13 +27,13 @@ class CfgGroups {
                         position[] = { -5, -5, 0 };
                         rank = "PRIVATE";
                         side = 0;
-                        vehicle = "PROR_r";
+                        vehicle = "PROR_R";
                     };
                     class Unit3 {
                         position[] = { 10, -10, 0 };
                         rank = "PRIVATE";
                         side = 0;
-                        vehicle = "PROR_r";
+                        vehicle = "PROR_R";
                     };
                     class Unit4 {
                         position[] = { -10, -10, 0 };
@@ -52,7 +51,7 @@ class CfgGroups {
                         position[] = { -15, -15, 0 };
                         rank = "PRIVATE";
                         side = 0;
-                        vehicle = "PROR_Marks";
+                        vehicle = "PROR_Marksman";
                     };
                     class Unit7 {
                         position[] = { 20, -20, 0 };
@@ -61,7 +60,6 @@ class CfgGroups {
                         vehicle = "PROR_MG";
                     };
                 };
-                
                 class PROR_MGSection {
                     faction = "UKSF_PROR";
                     name = "MG Section";
@@ -88,7 +86,7 @@ class CfgGroups {
                         position[] = { 10, -10, 0 };
                         rank = "PRIVATE";
                         side = 0;
-                        vehicle = "PROR_r";
+                        vehicle = "PROR_R";
                     };
                     class Unit4 {
                         position[] = { -10, -10, 0 };
@@ -100,7 +98,7 @@ class CfgGroups {
                         position[] = { 15, -15, 0 };
                         rank = "CORPORAL";
                         side = 0;
-                        vehicle = "PROR_r";
+                        vehicle = "PROR_R";
                     };
                     class Unit6 {
                         position[] = { -15, -15, 0 };
@@ -112,10 +110,9 @@ class CfgGroups {
                         position[] = { 20, -20, 0 };
                         rank = "PRIVATE";
                         side = 0;
-                        vehicle = "PROR_r";
+                        vehicle = "PROR_R";
                     };
                 };
-                
                 class PROR_ATSection {
                     faction = "UKSF_PROR";
                     name = "AT Section";
@@ -124,7 +121,7 @@ class CfgGroups {
                         position[] = { 0, 0, 0 };
                         rank = "SERGEANT";
                         side = 0;
-                        vehicle = "PROR_r";
+                        vehicle = "PROR_R";
                     };
                     class Unit1 {
                         position[] = { 5, -5, 0 };
@@ -142,7 +139,7 @@ class CfgGroups {
                         position[] = { 10, -10, 0 };
                         rank = "PRIVATE";
                         side = 0;
-                        vehicle = "PROR_r";
+                        vehicle = "PROR_R";
                     };
                     class Unit4 {
                         position[] = { -10, -10, 0 };
@@ -169,7 +166,6 @@ class CfgGroups {
                         vehicle = "PROR_MG";
                     };
                 };
-                
                 class PROR_AATeam {
                     faction = "UKSF_PROR";
                     name = "AA Team";
@@ -193,7 +189,6 @@ class CfgGroups {
                         vehicle = "PROR_AA";
                     };
                 };
-                
                 class PROR_PARA_Section {
                     faction = "UKSF_PROR";
                     name = "PARA Section";
@@ -235,7 +230,6 @@ class CfgGroups {
                         vehicle = "PROR_Para_AT";
                     };
                 };
-                
                 class PROR_Sentry {
                     faction = "UKSF_PROR";
                     name = "Sentry";
@@ -253,7 +247,6 @@ class CfgGroups {
                         vehicle = "PROR_SL";
                     };
                 };
-                
                 class PROR_Fireteam {
                     faction = "UKSF_PROR";
                     name = "Fireteam";
@@ -280,10 +273,9 @@ class CfgGroups {
                         position[] = { 10, -10, 0 };
                         rank = "PRIVATE";
                         side = 0;
-                        vehicle = "PROR_r";
+                        vehicle = "PROR_R";
                     };
                 };
-                
                 class PROR_SniperPair {
                     faction = "UKSF_PROR";
                     name = "Sniper Pair";
@@ -301,7 +293,6 @@ class CfgGroups {
                         vehicle = "PROR_Sniper";
                     };
                 };
-                
                 class PROR_SFTeam {
                     faction = "UKSF_PROR";
                     name = "SF Team";
@@ -325,25 +316,24 @@ class CfgGroups {
                         vehicle = "PROR_SF_AR";
                     };
                     class Unit3 {
-                        position[] = { -5, -5, 0 };
+                        position[] = { 10, -10, 0 };
                         rank = "PRIVATE";
                         side = 0;
                         vehicle = "PROR_SF_Marks";
                     };
                     class Unit4 {
-                        position[] = { -5, -5, 0 };
+                        position[] = { -10, -10, 0 };
                         rank = "PRIVATE";
                         side = 0;
                         vehicle = "PROR_SF_Med";
                     };
                     class Unit5 {
-                        position[] = { 0, 0, 0 };
+                        position[] = { 15, -15, 0 };
                         rank = "PRIVATE";
                         side = 0;
                         vehicle = "PROR_SF_R";
                     };
                 };
-                
                 class PROR_HQSection {
                     faction = "UKSF_PROR";
                     name = "HQ Section";
@@ -367,25 +357,25 @@ class CfgGroups {
                         vehicle = "PROR_FAC";
                     };
                     class Unit3 {
-                        position[] = { -5, -5, 0 };
+                        position[] = { 10, -10, 0 };
                         rank = "PRIVATE";
                         side = 0;
                         vehicle = "PROR_Medic";
                     };
                     class Unit4 {
-                        position[] = { -5, -5, 0 };
+                        position[] = { -10, -10, 0 };
                         rank = "PRIVATE";
                         side = 0;
-                        vehicle = "PROR_Marks";
+                        vehicle = "PROR_Marksman";
                     };
                     class Unit5 {
-                        position[] = { 0, 0, 0 };
+                        position[] = { 15, -15, 0 };
                         rank = "PRIVATE";
                         side = 0;
                         vehicle = "PROR_MG";
                     };
                 };
             };
-    };
+        };
     };
 };

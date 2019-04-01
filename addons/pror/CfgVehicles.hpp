@@ -67,65 +67,47 @@ class CfgVehicles {
         };
     };
 
+#include "units\CfgCrew.hpp"
 #include "units\CfgInfantry.hpp"
-#include "vehicles\CfgMRAP.hpp"
-#include "vehicles\CfgPolaris.hpp"
-#include "vehicles\CfgStriker.hpp"
+#include "units\CfgParas.hpp"
+#include "units\CfgSF.hpp"
+#include "vehicles\CfgHeli.hpp"
+#include "vehicles\CfgJet.hpp"
 #include "vehicles\CfgLAV.hpp"
 #include "vehicles\CfgM60.hpp"
+#include "vehicles\CfgMRAP.hpp"
+#include "vehicles\CfgPolaris.hpp"
+#include "vehicles\CfgStatic.hpp"
+#include "vehicles\CfgStriker.hpp"
 #include "vehicles\CfgTRM.hpp"
 #include "vehicles\CfgWiesel.hpp"
-#include "vehicles\CfgStatic.hpp"
-#include "vehicles\CfgJet.hpp"
-#include "vehicles\CfgHeli.hpp" 
 
-    
-    class B_AssaultPack_blk;
-    class B_FieldPack_oli; // Base class
-    class PROR_B_R : B_FieldPack_oli { // Custom class, inheriting from base. Custom class needs to be in units[] array in config.cpp
+    class UK3CB_BAF_B_Carryall_OLI;
+    class PROR_B_MG_Carryall : UK3CB_BAF_B_Carryall_OLI {
         scope = 1;
         author = "UKSF";
-        displayName = "Rifleman Pack";
-        class TransportWeapons {}; // Weapons
-        class TransportMagazines { // Magazines
-            class _xx_30Rnd_556x45_Stanag { // Classname is irrelevant, but must be unique to the others. Naming convention is _xx_<magazine class name>
-                magazine = "30Rnd_556x45_Stanag"; // Exact classname of the magazine (note property name is magazine)
-                count = 10;
-            };
-            class _xx_ClaymoreDirectionalMine_Remote_Mag {
-                magazine = "ClaymoreDirectionalMine_Remote_Mag";
-                count = 2;
-            };
-            class _xx_APERSMine_Range_Mag {
-                magazine = "APERSMine_Range_Mag";
-                count = 2;
-            };
-        };
-        class TransportItems { // Items
-            class _xx_ACE_M26_Clacker {
-                name = "ACE_M26_Clacker"; // Exact classname of the item (note property name is name)
-                count = 1;
-            };
-            class _xx_ACE_Cellphone {
-                name = "ACE_Cellphone";
-                count = 1;
-            };
-            class _xx_ACE_CableTie {
-                name = "ACE_CableTie";
+        displayName = "PROR MG Carryall";
+        class TransportWeapons {};
+        class TransportMagazines {
+            class _xx_130Rnd_338_Mag {
+                magazine = "130Rnd_338_Mag";
                 count = 4;
             };
-            class _xx_ACE_DefusalKit {
-                name = "ACE_DefusalKit";
-                count = 1;
+            class _xx_SmokeShell {
+                magazine = "SmokeShell";
+                count = 2;
             };
         };
-        class TransportBackpacks {};
-   };
-    
-   ////// SF Backpacks /////
-    
-   class CFP_AssaultPack_M81;
-   class PROR_SF_AssPack : CFP_AssaultPack_M81 {
+        class TransportItems {
+            class _xx_ACE_packingBandage {
+                name = "ACE_packingBandage";
+                count = 5;
+            };
+        };
+    };
+
+    class CFP_AssaultPack_M81;
+    class PROR_B_SF_AssPack : CFP_AssaultPack_M81 {
         scope = 1;
         author = "UKSF";
         displayName = "PROR SF Ass Pack";
@@ -152,7 +134,7 @@ class CfgVehicles {
             };
         };
     };
-    class PROR_SF_TL_AssPack : PROR_SF_AssPack {
+    class PROR_B_SF_TL_AssPack : PROR_SF_AssPack {
         scope = 1;
         author = "UKSF";
         displayName = "PROR SF Ass Pack (TL)";
@@ -188,11 +170,11 @@ class CfgVehicles {
         };
     };
     class CFP_Kitbag_M81;
-    class PROR_SF_Kitbag_AR : CFP_Kitbag_M81 {
+    class PROR_B_SF_Kitbag_AR : CFP_Kitbag_M81 {
         scope = 1;
         author = "UKSF";
         displayName = "PROR SF Kitbag (AR)";
-        class TransportWeapons {}; 
+        class TransportWeapons {};
         class TransportMagazines {
             class _xx_9Rnd_45ACP_Mag {
                 magazine = "9Rnd_45ACP_Mag";
@@ -216,7 +198,7 @@ class CfgVehicles {
             };
         };
     };
-    class PROR_SF_MedicBag : CFP_Kitbag_M81 {
+    class PROR_B_SF_MedicBag : CFP_Kitbag_M81 {
         scope = 1;
         author = "UKSF";
         displayName = "PROR SF Medic bag";
@@ -247,39 +229,15 @@ class CfgVehicles {
             };
             class _xx_ACE_packingBandage {
                 name = "ACE_packingBandage";
-                count = 50; 
+                count = 50;
             };
             class _xx_ACE_personalAidKit {
                 name = "ACE_personalAidKit";
-                count = 1; 
+                count = 1;
             };
             class _xx_ACE_ACE_surgicalKit {
                 name = "ACE_surgicalKit";
-                count = 1; 
-            };
-        };
-    };
-        
-        /////////// normal backpacks /////////////
-        
-        class UK3CB_BAF_B_Carryall_OLI;
-        class PROR_MG_Carryall : UK3CB_BAF_B_Carryall_OLI {
-        scope = 1;
-        author = "UKSF";
-        displayName = "PROR MG Carryall";
-        class TransportWeapons {}; 
-        class TransportMagazines {
-            class _xx_130Rnd_338_Mag {
-                magazine = "130Rnd_338_Mag";
-                count = 4;
-            };
-            class _xx_SmokeShell {
-                magazine = "SmokeShell";
-                count = 2;
-            };
-            class _xx_ACE_packingBandage {
-                name = "ACE_packingBandage";
-                count = 5;
+                count = 1;
             };
         };
     };

@@ -1,22 +1,14 @@
-class Mode_SemiAuto;
-class Mode_Burst;
-class Mode_FullAuto;
-class SlotInfo;
-class CowsSlot;
-class MuzzleSlot;
-class PointerSlot;
-class UnderBarrelSlot;
 class CfgWeapons {
     class U_BasicBody;
     class UniformItem;
-    class PROR_U_Base: U_BasicBody {
+    class PROR_U_Base : U_BasicBody {
         author = "UKSF";
         scope = 1;
         displayName = "$STR_A3_Underwear1";
         picture = "\A3\characters_f\data\ui\icon_U_BasicBody_ca.paa";
         hiddenSelections[] = { "camo" };
         hiddenSelectionsTextures[] = { "\A3\Characters_F\Common\Data\basicbody_black_co.paa" };
-        class ItemInfo: UniformItem {
+        class ItemInfo : UniformItem {
             uniformModel = "-";
             uniformClass = "PROR_Soldier_Underwear";
             containerClass = "Supply0";
@@ -24,11 +16,11 @@ class CfgWeapons {
         };
     };
 
-    class arifle_CTAR_blk_F; // Base class
-    class arifle_CTAR_blk_F_aco_grn: arifle_CTAR_blk_F { // Custom class, inheriting from base. Custom class needs to be in weapons[] array in config.cpp. Naming convention is <base class>_<attachment>_<attachment>
+    class arifle_CTAR_blk_F;
+    class arifle_CTAR_blk_F_aco_grn : arifle_CTAR_blk_F {
         class LinkedItems {
             class LinkedItemsOptic {
-                slot = "CowsSlot"; // Name of the attachment slot. Defined by the base weapon, in WeaponSlotsInfo. Determines what attachments can be fitted to this slot. Not all can to any slot
+                slot = "CowsSlot";
                 item = "optic_aco_grn";
             };
         };

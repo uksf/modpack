@@ -6,16 +6,31 @@ class CfgPatches {
         units[] = {
             // Units
             "PROR_R",
-            "PROR_MG",
             "PROR_AR",
-            "PROR_AT_L",
-            "PROR_Officer",
-            "PROR_FOO",
-            "PROR_JTAC",
-            "PROR_Marksman",
+            "PROR_MG",
             "PROR_Medic",
-            "PROR_SL",
+            "PROR_AT_L",
             "PROR_AT_H",
+            "PROR_Marksman",
+            "PROR_Officer",
+            "PROR_SL",
+            "PROR_FOO",
+            "PROR_FAC",
+            "PROR_Sniper",
+            "PROR_AA",
+            "PROR_Para",
+            "PROR_Para_SL",
+            "PROR_Para_AR",
+            "PROR_Para_Marks",
+            "PROR_Para_AT",
+            "PROR_SF_R",
+            "PROR_SF_TL",
+            "PROR_SF_Med",
+            "PROR_SF_Marks",
+            "PROR_SF_AR",
+            "PROR_Crew",
+            "PROR_Jet_Pilot",
+            "PROR_Heli_Pilot",
 
             // Vehicles
             "PROR_MRAP_Unarmed",
@@ -33,28 +48,37 @@ class CfgPatches {
             "PROR_TRM_Ammo",
             "PROR_TRM_Repair",
             "PROR_TRM_Fuel",
-            
-            // Air
             "PROR_Jet_Harrier",
             "PROR_Heli_Huey",
             "PROR_Heli_Chinook",
-            
-            // Statics
             "PROR_Static_M119",
             "PROR_Static_HMG_High",
             "PROR_Static_HMG_Low",
             "PROR_Static_GMG_Low",
             "PROR_Static_GMG_High",
-            "PROR_Static_AA"
-            
-            
+            "PROR_Static_AA",
+
+            // Backpacks
+            "PROR_B_MG_Carryall",
+            "PROR_B_SF_AssPack",
+            "PROR_B_SF_TL_AssPack",
+            "PROR_B_SF_Kitbag_AR",
+            "PROR_B_SF_MedicBag"
         };
         weapons[] = {
-            "arifle_CTAR_blk_F_Eotech"
+            "arifle_CTAR_blk_F_aco_grn",
+            "arifle_CTAR_GL_blk_F_aco_grn",
+            "arifle_CTARS_blk_F_aimpoint",
+            "srifle_DMR_06_olive_F_khssrifle_DMR_06_olive_F_khs",
+            "mmg_02_black_f_sig_bravo4",
+            "SMA_MK18MOEOD_CCO_LLCTop_blk",
+            "SMA_MK18OD_GL_CCO_LLCTop_blk",
+            "CUP_lmg_m249_SQuantoon_LDS",
+            "SMA_HK417_16in_ACOG",
+            "srifle_LRR_tna_F_NXS"
         };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "uksf_main",
             "uksf_common"
         };
         author = QUOTE(UKSF);
@@ -64,10 +88,6 @@ class CfgPatches {
     };
 };
 
-class CBA_Extended_EventHandlers;
-//#include "CfgAmmo.hpp"
-//#include "CfgEventHandlers.hpp"
 #include "CfgGroups.hpp"
-//#include "CfgMagazines.hpp"
-#include "CfgWeapons.hpp"
 #include "CfgVehicles.hpp"
+#include "CfgWeapons.hpp"
