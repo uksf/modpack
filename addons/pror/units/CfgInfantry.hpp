@@ -3,7 +3,6 @@ class PROR_R : PROR_Soldier_Base {
     scope = 2;
     displayName = "Rifleman";
     editorSubcategory = "EdSubcat_Personnel";
-    editorPreview = QPATHTOEF(common,data\previews\Inegal_F.jpg);
     uniformClass = "CFP_U_FieldUniform_M81light";
     model = "\A3\characters_F_gamma\Guerrilla\ig_guerrilla2_1.p3d";
     backpack = "";
@@ -101,7 +100,6 @@ class PROR_R : PROR_Soldier_Base {
 class PROR_AR : PROR_R {
     _generalMacro = "PROR_AR";
     displayName = "Autorifleman";
-    editorPreview = QPATHTOEF(common,data\previews\Inegal_C.jpg);
     uniformClass = "CFP_U_FieldUniform_M81light";
     icon = "iconMan";
     backpack = "B_TacticalPack_blk";
@@ -161,7 +159,6 @@ class PROR_AR : PROR_R {
 class PROR_MG : PROR_R {
     _generalMacro = "PROR_MG";
     displayName = "Machinegunner";
-    editorPreview = QPATHTOEF(common,data\previews\Inegal_O.jpg);
     icon = "iconMan";
     uniformClass = "CFP_U_FieldUniform_M81light";
     backpack = "PROR_MG_Carryall";
@@ -225,7 +222,6 @@ class PROR_Medic : PROR_R {
     displayName = "Medic";
     icon = "iconManMedic";
     attendant = 1;
-    editorPreview = QPATHTOEF(common,data\previews\Inegal_MED.jpg);
     picture = "pictureHeal";
     uniformClass = "CFP_U_FieldUniform_M81light";
     backpack = "CUP_B_Kombat_Olive";
@@ -528,7 +524,6 @@ class PROR_Medic : PROR_R {
 class PROR_AT_L : PROR_R {
     _generalMacro = "PROR_AT_L";
     displayName = "AT (Light)";
-    editorPreview = QPATHTOEF(common,data\previews\Inegal_MG.jpg);
     uniformClass = "CFP_U_FieldUniform_M81light";
     icon = "iconManAT";
     backpack = "B_AssaultPack_rgr";
@@ -582,7 +577,6 @@ class PROR_AT_L : PROR_R {
 class PROR_AT_H : PROR_R {
     _generalMacro = "PROR_AT_H";
     displayName = "AT (Heavy)";
-    editorPreview = QPATHTOEF(common,data\previews\Inegal_Mark.jpg);
     uniformClass = "CFP_U_FieldUniform_M81light";
     backpack = "B_AssaultPack_rgr";
     weapons[] = {
@@ -633,7 +627,6 @@ class PROR_AT_H : PROR_R {
 class PROR_Marksman : PROR_R {
     _generalMacro = "PROR_Marksman";
     displayName = "Marksman";
-    editorPreview = QPATHTOEF(common,data\previews\Inegal_AA.jpg);
     uniformClass = "CFP_U_FieldUniform_M81light";
     icon = "iconMan";
     weapons[] = {
@@ -700,7 +693,6 @@ class PROR_Marksman : PROR_R {
 class PROR_Officer : PROR_R {
     _generalMacro = "PROR_Officer";
     displayName = "Officer";
-    editorPreview = QPATHTOEF(common,data\previews\Inegal_ATE.jpg);
     uniformClass = "CFP_U_FieldUniform_M81light";
     icon = "iconManOfficer";
     backpack = "CUP_B_Kombat_Olive";
@@ -776,7 +768,6 @@ class PROR_Officer : PROR_R {
 class PROR_SL : PROR_Officer {
     _generalMacro = "PROR_SL";
     displayName = "Section Leader";
-    editorPreview = QPATHTOEF(common,data\previews\Inegal_ATJ.jpg);
     uniformClass = "CFP_U_FieldUniform_M81light";
     backpack = "CUP_B_Kombat_Radio_Olive";
     icon = "iconManLeader";
@@ -808,7 +799,6 @@ class PROR_SL : PROR_Officer {
 class PROR_FOO : PROR_R {
     _generalMacro = "PROR_FOO";
     displayName = "Forward Observer";
-    editorPreview = QPATHTOEF(common,data\previews\Inegal_Sniper.jpg);
     uniformClass = "CFP_U_FieldUniform_M81light";
     backpack = "UK3CB_BAF_B_Bergen_OLI_JTAC_A";
     weapons[] = {
@@ -897,7 +887,6 @@ class PROR_FOO : PROR_R {
 class PROR_FAC : PROR_FOO {
     _generalMacro = "PROR_FAC";
     displayName = "FAC";
-    editorPreview = QPATHTOEF(common,data\previews\Inegal_FAC.jpg);
     uniformClass = "CFP_U_FieldUniform_M81light";
     backpack = "UK3CB_BAF_B_Bergen_OLI_JTAC_H_A";
 };
@@ -905,7 +894,6 @@ class PROR_FAC : PROR_FOO {
 class PROR_Sniper : PROR_R {
     _generalMacro = "PROR_Sniper";
     displayName = "Sniper";
-    editorPreview = QPATHTOEF(common,data\previews\Inegal_FAC.jpg);
     uniformClass = "U_I_FullGhillie_lsh";
     backpack = "B_TacticalPack_blk";
     weapons[] = {
@@ -962,7 +950,6 @@ class PROR_Sniper : PROR_R {
 class PROR_AA : PROR_R {
     _generalMacro = "PROR_AA";
     displayName = "AA";
-    editorPreview = QPATHTOEF(common,data\previews\Inegal_MG.jpg);
     uniformClass = "CFP_U_FieldUniform_M81light";
     backpack = "B_AssaultPack_rgr";
     weapons[] = {
@@ -1040,7 +1027,6 @@ class PROR_AA : PROR_R {
 class PROR_Para : PROR_R {
     _generalMacro = "PROR_Para";
     displayName = "Paratrooper";
-    editorPreview = QPATHTOEF(common,data\previews\Inegal_FAC.jpg);
     uniformClass = "CFP_U_FieldUniform_M81light";
     backpack = "B_Parachute";
     weapons[] = {
@@ -1087,7 +1073,6 @@ class PROR_Para : PROR_R {
 class PROR_Para_SL : PROR_R {
     _generalMacro = "PROR_Para_SL";
     displayName = "Para Section Leader";
-    editorPreview = QPATHTOEF(common,data\previews\Inegal_FAC.jpg);
     uniformClass = "CFP_U_FieldUniform_M81light";
     backpack = "B_Parachute";
     weapons[] = {
@@ -1174,7 +1159,6 @@ class PROR_Para_SL : PROR_R {
 class PROR_Para_AR : PROR_R {
     _generalMacro = "PROR_Para_AR";
     displayName = "Para Autorifleman";
-    editorPreview = QPATHTOEF(common,data\previews\Inegal_FAC.jpg);
     uniformClass = "CFP_U_FieldUniform_M81light";
     backpack = "B_Parachute";
     weapons[] = {
@@ -1233,7 +1217,6 @@ class PROR_Para_AR : PROR_R {
 class PROR_Para_Marks : PROR_R {
     _generalMacro = "PROR_Para_Marks";
     displayName = "Para Marksman";
-    editorPreview = QPATHTOEF(common,data\previews\Inegal_FAC.jpg);
     uniformClass = "CFP_U_FieldUniform_M81light";
     backpack = "B_Parachute";
     weapons[] = {
@@ -1274,7 +1257,6 @@ class PROR_Para_Marks : PROR_R {
 class PROR_Para_AT : PROR_Para {
     _generalMacro = "PROR_Para_AT";
     displayName = "Para AT";
-    editorPreview = QPATHTOEF(common,data\previews\Inegal_FAC.jpg);
     uniformClass = "CFP_U_FieldUniform_M81light";
     backpack = "B_Parachute";
     weapons[] = {
@@ -1298,7 +1280,6 @@ class PROR_SF_R : PROR_Soldier_Base {
     scope = 2;
     displayName = "SF Rifleman";
     editorSubcategory = "EdSubcat_Personnel";
-    editorPreview = QPATHTOEF(common,data\previews\Inegal_F.jpg);
     uniformClass = "CFP_GUER_M81";
     model = "\A3\characters_F_gamma\Guerrilla\ig_guerrilla2_1.p3d";
     backpack = "PROR_SF_AssPack";
@@ -1399,7 +1380,6 @@ class PROR_SF_TL : PROR_SF_R {
     scope = 2;
     displayName = "SF Team Leader";
     editorSubcategory = "EdSubcat_Personnel";
-    editorPreview = QPATHTOEF(common,data\previews\Inegal_F.jpg);
     uniformClass = "CFP_GUER_M81";
     model = "\A3\characters_F_gamma\Guerrilla\ig_guerrilla2_1.p3d";
     backpack = "PROR_SF_TL_AssPack";
@@ -1422,7 +1402,6 @@ class PROR_SF_Med : PROR_SF_R {
     scope = 2;
     displayName = "SF Medic";
     editorSubcategory = "EdSubcat_Personnel";
-    editorPreview = QPATHTOEF(common,data\previews\Inegal_F.jpg);
     uniformClass = "CFP_GUER_M81";
     model = "\A3\characters_F_gamma\Guerrilla\ig_guerrilla2_1.p3d";
     backpack = "PROR_SF_MedicBag";
@@ -1445,7 +1424,6 @@ class PROR_SF_Marks : PROR_SF_R {
     scope = 2;
     displayName = "SF Marksman";
     editorSubcategory = "EdSubcat_Personnel";
-    editorPreview = QPATHTOEF(common,data\previews\Inegal_F.jpg);
     uniformClass = "CFP_GUER_M81";
     model = "\A3\characters_F_gamma\Guerrilla\ig_guerrilla2_1.p3d";
     backpack = "";
@@ -1512,7 +1490,6 @@ class PROR_SF_AR : PROR_SF_R {
     scope = 2;
     displayName = "SF Autorifleman";
     editorSubcategory = "EdSubcat_Personnel";
-    editorPreview = QPATHTOEF(common,data\previews\Inegal_F.jpg);
     uniformClass = "CFP_GUER_M81";
     model = "\A3\characters_F_gamma\Guerrilla\ig_guerrilla2_1.p3d";
     backpack = "PROR_SF_Kitbag_AR";
@@ -1604,7 +1581,6 @@ class PROR_SF_AR : PROR_SF_R {
 class PROR_Crew : PROR_R {
     _generalMacro = "PROR_Crew";
     displayName = "Crewman";
-    editorPreview = QPATHTOEF(common,data\previews\Inegal_MG.jpg);
     uniformClass = "CFP_U_FieldUniform_M81light";
     backpack = "";
     weapons[] = {
@@ -1666,7 +1642,6 @@ class PROR_Crew : PROR_R {
 class PROR_Jet_Pilot : PROR_Crew {
     _generalMacro = "PROR_Jet_Pilot";
     displayName = "Jet Pilot";
-    editorPreview = QPATHTOEF(common,data\previews\Inegal_MG.jpg);
     uniformClass = "CFP_U_FieldUniform_M81light";
     backpack = "B_Parachute";
    
@@ -1699,7 +1674,6 @@ class PROR_Jet_Pilot : PROR_Crew {
 class PROR_Heli_Pilot : PROR_Crew {
     _generalMacro = "PROR_Heli_Pilot";
     displayName = "Heli Pilot";
-    editorPreview = QPATHTOEF(common,data\previews\Inegal_MG.jpg);
     uniformClass = "CFP_U_FieldUniform_M81light";
     backpack = "";
    
