@@ -68,13 +68,17 @@ class CfgVehicles {
     };
 
 #include "units\CfgInfantry.hpp"
-#include "vehicles\CfgVAB.hpp"
-    // #include "vehicles\CfgTRM.hpp"
-    // #include "vehicles\CfgVBCI.hpp"
-    // #include "vehicles\CfgLeclerc.hpp"
-    // #include "vehicles\CfgHeli.hpp"
-    // #include "vehicles\CfgJet.hpp"
-    // #include "vehicles\CfgStatic.hpp"
+#include "vehicles\CfgMRAP.hpp"
+#include "vehicles\CfgPolaris.hpp"
+#include "vehicles\CfgStriker.hpp"
+#include "vehicles\CfgLAV.hpp"
+#include "vehicles\CfgM60.hpp"
+#include "vehicles\CfgTRM.hpp"
+#include "vehicles\CfgWiesel.hpp"
+#include "vehicles\CfgStatic.hpp"
+#include "vehicles\CfgJet.hpp"
+#include "vehicles\CfgHeli.hpp" 
+
 	
 	class B_AssaultPack_blk;
     class B_FieldPack_oli; // Base class
