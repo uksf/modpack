@@ -1,41 +1,98 @@
-// HMG
-class I_HMG_01_high_F;
-class Inegal_Static_HMG: I_HMG_01_high_F {
+// m119
+class CUP_B_M119_US;
+class PROR_Static_M119: CUP_B_M119_US {
     scope = 2;
     side = 0;
-    faction = "UKSF_Inegal";
-    displayName = "HMG";
-    editorPreview = QPATHTOEF(common,data\previews\Inegal_Static_HMG.jpg);
-    crew = "Inegal_F";
+    faction = "UKSF_PROR";
+    displayName = "M119";
+    editorPreview = "CUP\Creatures\People\Military\CUP_Creatures_StaticWeapons\Data\preview\CUP_B_M119_US.jpg";
+    crew = "PROR_R";
     typicalCargo[] = {
-        "Inegal_F"
+        "PROR_R"
+    };
+};
+
+// HMG
+
+class B_HMG_01_high_F;
+class PROR_Static_HMG_High: B_HMG_01_high_F {
+    scope = 2;
+    side = 0;
+    faction = "UKSF_PROR";
+    displayName = "HMG (High)";
+    editorPreview = QPATHTOEF(common,data\previews\PROR_Static_GMG.jpg);
+    crew = "PROR_R";
+    typicalCargo[] = {
+        "PROR_R"
+    };
+};
+
+class B_HMG_01_F;
+class PROR_Static_HMG_Low: B_HMG_01_F {
+    scope = 2;
+    side = 0;
+    faction = "UKSF_PROR";
+    displayName = "HMG (Low)";
+    editorPreview = QPATHTOEF(common,data\previews\PROR_Static_GMG.jpg);
+    crew = "PROR_R";
+    typicalCargo[] = {
+        "PROR_R"
     };
 };
 
 // GMG
-class I_GMG_01_high_F;
-class Inegal_Static_GMG: I_HMG_01_high_F {
+class B_GMG_01_F;
+class PROR_Static_GMG_Low: B_GMG_01_F {
     scope = 2;
     side = 0;
-    faction = "UKSF_Inegal";
-    displayName = "GMG";
-    editorPreview = QPATHTOEF(common,data\previews\Inegal_Static_GMG.jpg);
-    crew = "Inegal_F";
+    faction = "UKSF_PROR";
+    displayName = "GMG (Low)";
+    editorPreview = QPATHTOEF(common,data\previews\PROR_Static_GMG.jpg);
+    crew = "PROR_R";
     typicalCargo[] = {
-        "Inegal_F"
+        "PROR_R"
+    };
+};
+
+class B_GMG_01_high_F;
+class PROR_Static_GMG_High: B_GMG_01_high_F {
+    scope = 2;
+    side = 0;
+    faction = "UKSF_PROR";
+    displayName = "GMG (High)";
+    editorPreview = QPATHTOEF(common,data\previews\PROR_Static_GMG.jpg);
+    crew = "PROR_R";
+    typicalCargo[] = {
+        "PROR_R"
     };
 };
 
 // Mortar
-class I_Mortar_01_F;
-class Inegal_Static_Mortar: I_Mortar_01_F {
+class B_G_Mortar_01_F;
+class PROR_Static_Mortar: B_G_Mortar_01_F {
     scope = 2;
     side = 0;
-    faction = "UKSF_Inegal";
+    faction = "UKSF_PROR";
     displayName = "Mk6";
-    editorPreview = QPATHTOEF(common,data\previews\Inegal_Static_Mortar.jpg);
-    crew = "Inegal_F";
+    editorPreview = QPATHTOEF(common,data\previews\PROR_Static_Mortar.jpg);
+    crew = "PROR_R";
     typicalCargo[] = {
-        "Inegal_F"
+        "PROR_R"
     };
 };
+
+// AA
+
+class B_T_Static_AA_F;
+class PROR_Static_AA: B_T_Static_AA_F {
+    scope = 2;
+    side = 0;
+    faction = "UKSF_PROR";
+    displayName = "AA Launcher";
+    editorPreview = "\A3\EditorPreviews_F_Exp\Data\CfgVehicles\B_T_Static_AA_F.jpg";
+    crew = "PROR_R";
+    typicalCargo[] = {
+        "PROR_R"
+    };
+};
+
