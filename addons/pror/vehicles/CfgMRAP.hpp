@@ -7,9 +7,7 @@ class PROR_MRAP_Unarmed : B_T_MRAP_01_F {
     editorPreview = QPATHTOEF(common,data\previews\PROR_VAB_Unarmed.jpg);
 	crew = "PROR_R";
     typicalCargo[] = {
-        "PROR_R",
-		"PROR_R",
-		"PROR_SL"
+        "PROR_R"
     };
     hiddenSelectionsTextures[] = { "\A3\soft_F_Exp\MRAP_01\data\MRAP_01_base_olive_CO.paa","\A3\soft_F_Exp\MRAP_01\data\MRAP_01_adds_olive_CO.paa","\A3\Data_F_Exp\Vehicles\Turret_olive_CO.paa" };
     class TransportMagazines {};
@@ -27,11 +25,8 @@ class PROR_MRAP_Unarmed : B_T_MRAP_01_F {
      editorPreview = QPATHTOEF(common,data\previews\PROR_VAB_HMG.jpg);
      crew = "PROR_R";
      typicalCargo[] = {
-        "PROR_R",
-		"PROR_R",
-		"PROR_SL"
+        "PROR_R"
      };
-     //hiddenSelectionsTextures[] = { "\A3\soft_F_Exp\MRAP_01\data\MRAP_01_base_olive_CO.paa","\A3\soft_F_Exp\MRAP_01\data\MRAP_01_adds_olive_CO.paa","\A3\Data_F_Exp\Vehicles\Turret_olive_CO.paa" };
      class TransportMagazines {};
      class TransportItems {};
      class TransportWeapons {};
@@ -47,11 +42,8 @@ class PROR_MRAP_Unarmed : B_T_MRAP_01_F {
      editorPreview = QPATHTOEF(common,data\previews\PROR_VAB_GMG.jpg);
      crew = "PROR_R";
      typicalCargo[] = {
-        "PROR_R",
-		"PROR_R",
-		"PROR_SL"
+        "PROR_R"
      };
-     //hiddenSelectionsTextures[] = { "\A3\soft_F_Exp\MRAP_01\data\MRAP_01_base_olive_CO.paa","\A3\soft_F_Exp\MRAP_01\data\MRAP_01_adds_olive_CO.paa","\A3\Data_F_Exp\Vehicles\Turret_olive_CO.paa" };
      class TransportMagazines {};
      class TransportItems {};
      class TransportWeapons {};
