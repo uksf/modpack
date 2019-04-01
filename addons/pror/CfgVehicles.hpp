@@ -67,8 +67,8 @@ class CfgVehicles {
         };
     };
 
-#include "units\CfgCrew.hpp"
 #include "units\CfgInfantry.hpp"
+#include "units\CfgCrew.hpp"
 #include "units\CfgParas.hpp"
 #include "units\CfgSF.hpp"
 #include "vehicles\CfgHeli.hpp"
@@ -87,7 +87,6 @@ class CfgVehicles {
         scope = 1;
         author = "UKSF";
         displayName = "PROR MG Carryall";
-        class TransportWeapons {};
         class TransportMagazines {
             class _xx_130Rnd_338_Mag {
                 magazine = "130Rnd_338_Mag";
@@ -102,6 +101,43 @@ class CfgVehicles {
             class _xx_ACE_packingBandage {
                 name = "ACE_packingBandage";
                 count = 5;
+            };
+        };
+    };
+    class PROR_B_ATL_Carryall : UK3CB_BAF_B_Carryall_OLI {
+        scope = 1;
+        author = "UKSF";
+        displayName = "PROR AT-L Carryall";
+        class TransportMagazines {
+            class _xx_MRAWS_HE_F {
+                magazine = "MRAWS_HE_F";
+                count = 2;
+            };
+            class _xx_MRAWS_HEAT_F {
+                magazine = "MRAWS_HEAT_F";
+                count = 2;
+            };
+        };
+    };
+    class PROR_B_ATH_Carryall : UK3CB_BAF_B_Carryall_OLI {
+        scope = 1;
+        author = "UKSF";
+        displayName = "PROR AT-H Carryall";
+        class TransportMagazines {
+            class _xx_Vorona_HEAT {
+                magazine = "Vorona_HEAT";
+                count = 3;
+            };
+        };
+    };
+    class PROR_B_AA_Carryall : UK3CB_BAF_B_Carryall_OLI {
+        scope = 1;
+        author = "UKSF";
+        displayName = "PROR AA Carryall";
+        class TransportMagazines {
+            class _xx_Titan_AA {
+                magazine = "Titan_AA";
+                count = 2;
             };
         };
     };
@@ -134,7 +170,7 @@ class CfgVehicles {
             };
         };
     };
-    class PROR_B_SF_TL_AssPack : PROR_SF_AssPack {
+    class PROR_B_SF_TL_AssPack : PROR_B_SF_AssPack {
         scope = 1;
         author = "UKSF";
         displayName = "PROR SF Ass Pack (TL)";

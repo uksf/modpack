@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 
 class CfgPatches {
-    class PROP {
+    class ADDON {
         name = COMPONENT_NAME;
         units[] = {
             // Units
@@ -60,6 +60,9 @@ class CfgPatches {
 
             // Backpacks
             "PROR_B_MG_Carryall",
+            "PROR_B_ATL_Carryall",
+            "PROR_B_ATH_Carryall",
+            "PROR_B_AA_Carryall",
             "PROR_B_SF_AssPack",
             "PROR_B_SF_TL_AssPack",
             "PROR_B_SF_Kitbag_AR",

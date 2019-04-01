@@ -2,6 +2,7 @@ class PROR_R : PROR_Soldier_Base {
     scope = 2;
     displayName = "Rifleman";
     editorSubcategory = "EdSubcat_Personnel";
+    editorPreview = QPATHTOEF(common,data\previews\PROR_R.jpg);
     uniformClass = "CFP_U_FieldUniform_M81light";
     model = "\A3\characters_F_gamma\Guerrilla\ig_guerrilla2_1.p3d";
     backpack = "";
@@ -98,8 +99,8 @@ class PROR_R : PROR_Soldier_Base {
 };
 class PROR_AR : PROR_R {
     displayName = "Autorifleman";
-    uniformClass = "CFP_U_FieldUniform_M81light";
-    icon = "iconMan";
+    editorPreview = QPATHTOEF(common,data\previews\PROR_AR.jpg);
+    icon = "iconManMG";
     backpack = "B_TacticalPack_blk";
     weapons[] = {
         "arifle_CTARS_blk_F_aimpoint",
@@ -156,9 +157,9 @@ class PROR_AR : PROR_R {
 };
 class PROR_MG : PROR_R {
     displayName = "Machinegunner";
-    icon = "iconMan";
-    uniformClass = "CFP_U_FieldUniform_M81light";
-    backpack = "PROR_MG_Carryall";
+    editorPreview = QPATHTOEF(common,data\previews\PROR_MG.jpg);
+    icon = "iconManMG";
+    backpack = "PROR_B_MG_Carryall";
     weapons[] = {
         "mmg_02_black_f_sig_bravo4",
         "Throw",
@@ -216,282 +217,11 @@ class PROR_MG : PROR_R {
 };
 class PROR_Medic : PROR_R {
     displayName = "Medic";
+    editorPreview = QPATHTOEF(common,data\previews\PROR_Medic.jpg);
     icon = "iconManMedic";
     attendant = 1;
     picture = "pictureHeal";
-    uniformClass = "CFP_U_FieldUniform_M81light";
     backpack = "CUP_B_Kombat_Olive";
-
-    items[] = {
-        "ACE_EarPlugs",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_personalAidKit",
-        "ACE_surgicalKit",
-        "ACE_Morphine",
-        "ACE_Morphine",
-        "ACE_Morphine",
-        "ACE_Morphine",
-        "ACE_Morphine",
-        "ACE_Morphine",
-        "ACE_Morphine",
-        "ACE_Morphine",
-        "ACE_Morphine",
-        "ACE_Morphine",
-        "ACE_Epinephrine",
-        "ACE_Epinephrine",
-        "ACE_Epinephrine",
-        "ACE_Epinephrine",
-        "ACE_Epinephrine",
-        "ACE_Epinephrine",
-        "ACE_Epinephrine",
-        "ACE_Epinephrine",
-        "ACE_Epinephrine",
-        "ACE_Epinephrine",
-        "ACE_BloodIV",
-        "ACE_BloodIV",
-        "ACE_BloodIV",
-        "ACE_BloodIV",
-        "ACE_BloodIV",
-        "ACE_BloodIV_250",
-        "ACE_BloodIV_250",
-        "ACE_BloodIV_250",
-        "ACE_BloodIV_250",
-        "ACE_BloodIV_250",
-        "ACE_BloodIV_500",
-        "ACE_BloodIV_500",
-        "ACE_BloodIV_500",
-        "ACE_BloodIV_500",
-        "ACE_BloodIV_500"
-    };
-    respawnItems[] = {
-        "ACE_EarPlugs",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_elasticBandage",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_quickclot",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_packingBandage",
-        "ACE_personalAidKit",
-        "ACE_surgicalKit",
-        "ACE_Morphine",
-        "ACE_Morphine",
-        "ACE_Morphine",
-        "ACE_Morphine",
-        "ACE_Morphine",
-        "ACE_Morphine",
-        "ACE_Morphine",
-        "ACE_Morphine",
-        "ACE_Morphine",
-        "ACE_Morphine",
-        "ACE_Epinephrine",
-        "ACE_Epinephrine",
-        "ACE_Epinephrine",
-        "ACE_Epinephrine",
-        "ACE_Epinephrine",
-        "ACE_Epinephrine",
-        "ACE_Epinephrine",
-        "ACE_Epinephrine",
-        "ACE_Epinephrine",
-        "ACE_Epinephrine",
-        "ACE_BloodIV",
-        "ACE_BloodIV",
-        "ACE_BloodIV",
-        "ACE_BloodIV",
-        "ACE_BloodIV",
-        "ACE_BloodIV_250",
-        "ACE_BloodIV_250",
-        "ACE_BloodIV_250",
-        "ACE_BloodIV_250",
-        "ACE_BloodIV_250",
-        "ACE_BloodIV_500",
-        "ACE_BloodIV_500",
-        "ACE_BloodIV_500",
-        "ACE_BloodIV_500",
-        "ACE_BloodIV_500"
-    };
     linkedItems[] = {
         "CFP_Basic_Helmet_M81",
         "CUP_V_B_RRV_Medic",
@@ -519,9 +249,9 @@ class PROR_Medic : PROR_R {
 };
 class PROR_AT_L : PROR_R {
     displayName = "AT (Light)";
-    uniformClass = "CFP_U_FieldUniform_M81light";
+    editorPreview = QPATHTOEF(common,data\previews\PROR_AT_L.jpg);
     icon = "iconManAT";
-    backpack = "B_AssaultPack_rgr";
+    backpack = "PROR_B_ATL_Carryall";
     weapons[] = {
         "arifle_CTAR_blk_F_aco_grn",
         "launch_MRAWS_green_rail_F",
@@ -533,16 +263,6 @@ class PROR_AT_L : PROR_R {
         "launch_MRAWS_green_rail_F",
         "Throw",
         "Put"
-    };
-    magazines[] = {
-        "MRAWS_HE_F",
-        "MRAWS_HE_F",
-        "MRAWS_HEAT_F"
-    };
-    respawnMagazines[] = {
-        "MRAWS_HE_F",
-        "MRAWS_HE_F",
-        "MRAWS_HEAT_F"
     };
     linkedItems[] = {
         "CFP_Basic_Helmet_M81",
@@ -571,8 +291,9 @@ class PROR_AT_L : PROR_R {
 };
 class PROR_AT_H : PROR_R {
     displayName = "AT (Heavy)";
-    uniformClass = "CFP_U_FieldUniform_M81light";
-    backpack = "B_AssaultPack_rgr";
+    editorPreview = QPATHTOEF(common,data\previews\PROR_AT_H.jpg);
+    icon = "iconManAT";
+    backpack = "PROR_B_ATH_Carryall";
     weapons[] = {
         "launch_O_Vorona_green_F",
         "arifle_CTAR_blk_F_aco_grn",
@@ -584,14 +305,6 @@ class PROR_AT_H : PROR_R {
         "arifle_CTAR_blk_F_aco_grn",
         "Throw",
         "Put"
-    };
-    magazines[] = {
-        "Vorona_HEAT",
-        "Vorona_HEAT"
-    };
-    respawnMagazines[] = {
-        "Vorona_HEAT",
-        "Vorona_HEAT"
     };
     linkedItems[] = {
         "CFP_Basic_Helmet_M81",
@@ -620,8 +333,7 @@ class PROR_AT_H : PROR_R {
 };
 class PROR_Marksman : PROR_R {
     displayName = "Marksman";
-    uniformClass = "CFP_U_FieldUniform_M81light";
-    icon = "iconMan";
+    editorPreview = QPATHTOEF(common,data\previews\PROR_Marksman.jpg);
     weapons[] = {
         "srifle_DMR_06_olive_F_khs",
         "Throw",
@@ -685,7 +397,7 @@ class PROR_Marksman : PROR_R {
 };
 class PROR_Officer : PROR_R {
     displayName = "Officer";
-    uniformClass = "CFP_U_FieldUniform_M81light";
+    editorPreview = QPATHTOEF(common,data\previews\PROR_Officer.jpg);
     icon = "iconManOfficer";
     backpack = "CUP_B_Kombat_Olive";
     weapons[] = {
@@ -759,9 +471,9 @@ class PROR_Officer : PROR_R {
 };
 class PROR_SL : PROR_Officer {
     displayName = "Section Leader";
-    uniformClass = "CFP_U_FieldUniform_M81light";
-    backpack = "CUP_B_Kombat_Radio_Olive";
+    editorPreview = QPATHTOEF(common,data\previews\PROR_SL.jpg);
     icon = "iconManLeader";
+    backpack = "CUP_B_Kombat_Radio_Olive";
     linkedItems[] = {
         "CFP_Basic_Helmet_M81",
         "CUP_V_B_RRV_TL",
@@ -789,7 +501,7 @@ class PROR_SL : PROR_Officer {
 };
 class PROR_FOO : PROR_R {
     displayName = "Forward Observer";
-    uniformClass = "CFP_U_FieldUniform_M81light";
+    editorPreview = QPATHTOEF(common,data\previews\PROR_FOO.jpg);
     backpack = "UK3CB_BAF_B_Bergen_OLI_JTAC_A";
     weapons[] = {
         "arifle_CTAR_blk_F_aco_grn",
@@ -876,11 +588,12 @@ class PROR_FOO : PROR_R {
 };
 class PROR_FAC : PROR_FOO {
     displayName = "FAC";
-    uniformClass = "CFP_U_FieldUniform_M81light";
+    editorPreview = QPATHTOEF(common,data\previews\PROR_FAC.jpg);
     backpack = "UK3CB_BAF_B_Bergen_OLI_JTAC_H_A";
 };
 class PROR_Sniper : PROR_R {
     displayName = "Sniper";
+    editorPreview = QPATHTOEF(common,data\previews\PROR_Sniper.jpg);
     uniformClass = "U_I_FullGhillie_lsh";
     backpack = "B_TacticalPack_blk";
     weapons[] = {
@@ -934,8 +647,9 @@ class PROR_Sniper : PROR_R {
 };
 class PROR_AA : PROR_R {
     displayName = "AA";
-    uniformClass = "CFP_U_FieldUniform_M81light";
-    backpack = "B_AssaultPack_rgr";
+    editorPreview = QPATHTOEF(common,data\previews\PROR_AA.jpg);
+    icon = "iconManAT";
+    backpack = "PROR_B_AA_Carryall";
     weapons[] = {
         "arifle_CTAR_blk_F_aco_grn",
         "launch_B_Titan_tna_F",
@@ -949,7 +663,6 @@ class PROR_AA : PROR_R {
         "Put"
     };
     magazines[] = {
-        "Titan_AA",
         "30Rnd_580x42_Mag_F",
         "30Rnd_580x42_Mag_F",
         "30Rnd_580x42_Mag_F",
@@ -965,7 +678,6 @@ class PROR_AA : PROR_R {
         "HandGrenade"
     };
     respawnMagazines[] = {
-        "Titan_AA",
         "30Rnd_580x42_Mag_F",
         "30Rnd_580x42_Mag_F",
         "30Rnd_580x42_Mag_F",

@@ -69,8 +69,8 @@ class CfgWeapons {
                 item = "cup_optic_compm2_black";
             };
             class LinkedItemsAcc {
-                slot = "asdg_FrontSideRail_SMAAssault";
-                item = "sma_sfped_mk18top_blk";
+                slot = "PointerSlot";
+                item = "SMA_SFPEQ_MK18TOP_BLK";
             };
             class LinkedItemsMuzzle {
                 slot = "MuzzleSlot";
@@ -86,8 +86,8 @@ class CfgWeapons {
                 item = "cup_optic_compm2_black";
             };
             class LinkedItemsAcc {
-                slot = "asdg_FrontSideRail_SMAAssault";
-                item = "sma_sfped_mk18top_blk";
+                slot = "PointerSlot";
+                item = "SMA_SFPEQ_MK18TOP_BLK";
             };
             class LinkedItemsMuzzle {
                 slot = "MuzzleSlot";

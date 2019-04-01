@@ -4,7 +4,7 @@ class PROR_MRAP_Unarmed : B_T_MRAP_01_F {
     side = 0;
     faction = "UKSF_PROR";
     displayName = "MRAP Unarmed";
-    // editorPreview = QPATHTOEF(common,data\previews\PROR_VAB_Unarmed.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\PROR_MRAP_Unarmed.jpg);
     crew = "PROR_R";
     typicalCargo[] = {
         "PROR_R"
@@ -22,7 +22,7 @@ class PROR_MRAP_HMG : B_T_MRAP_01_hmg_F {
     side = 0;
     faction = "UKSF_PROR";
     displayName = "MRAP HMG";
-    // editorPreview = QPATHTOEF(common,data\previews\PROR_VAB_HMG.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\PROR_MRAP_HMG.jpg);
     crew = "PROR_R";
     typicalCargo[] = {
         "PROR_R"
@@ -35,7 +35,7 @@ class PROR_MRAP_GMG : B_T_MRAP_01_gmg_F {
     side = 0;
     faction = "UKSF_PROR";
     displayName = "MRAP GMG";
-    // editorPreview = QPATHTOEF(common,data\previews\PROR_VAB_GMG.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\PROR_MRAP_GMG.jpg);
     crew = "PROR_R";
     typicalCargo[] = {
         "PROR_R"

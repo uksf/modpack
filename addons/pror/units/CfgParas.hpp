@@ -1,6 +1,7 @@
 class PROR_Para : PROR_R {
     displayName = "Paratrooper";
-    uniformClass = "CFP_U_FieldUniform_M81light";
+    editorPreview = QPATHTOEF(common,data\previews\PROR_Para.jpg);
+    editorSubcategory = QEGVAR(common,para);
     backpack = "B_Parachute";
     weapons[] = {
         "arifle_CTAR_blk_F_aco_grn",
@@ -43,10 +44,10 @@ class PROR_Para : PROR_R {
         "HandGrenade"
     };
 };
-class PROR_Para_SL : PROR_R {
+class PROR_Para_SL : PROR_Para {
     displayName = "Para Section Leader";
-    uniformClass = "CFP_U_FieldUniform_M81light";
-    backpack = "B_Parachute";
+    editorPreview = QPATHTOEF(common,data\previews\PROR_Para_SL.jpg);
+    icon = "iconManLeader";
     weapons[] = {
         "arifle_CTAR_GL_blk_F_aco_grn",
         "Throw",
@@ -128,10 +129,10 @@ class PROR_Para_SL : PROR_R {
         "CFP_Shemagh_Neck_M81"
     };
 };
-class PROR_Para_AR : PROR_R {
+class PROR_Para_AR : PROR_Para {
     displayName = "Para Autorifleman";
-    uniformClass = "CFP_U_FieldUniform_M81light";
-    backpack = "B_Parachute";
+    editorPreview = QPATHTOEF(common,data\previews\PROR_Para_AR.jpg);
+    icon = "iconManMG";
     weapons[] = {
         "arifle_CTARS_blk_F_aimpoint",
         "Throw",
@@ -185,10 +186,9 @@ class PROR_Para_AR : PROR_R {
         "CFP_Shemagh_Neck_M81"
     };
 };
-class PROR_Para_Marks : PROR_R {
+class PROR_Para_Marks : PROR_Para {
     displayName = "Para Marksman";
-    uniformClass = "CFP_U_FieldUniform_M81light";
-    backpack = "B_Parachute";
+    editorPreview = QPATHTOEF(common,data\previews\PROR_Para_Marks.jpg);
     weapons[] = {
         "srifle_DMR_06_olive_F_khs",
         "Throw",
@@ -226,8 +226,8 @@ class PROR_Para_Marks : PROR_R {
 };
 class PROR_Para_AT : PROR_Para {
     displayName = "Para AT";
-    uniformClass = "CFP_U_FieldUniform_M81light";
-    backpack = "B_Parachute";
+    editorPreview = QPATHTOEF(common,data\previews\PROR_Para_AT.jpg);
+    icon = "iconManAT";
     weapons[] = {
         "arifle_CTAR_blk_F_aco_grn",
         "CUP_launch_M72A6",

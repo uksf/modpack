@@ -1,10 +1,10 @@
-class PROR_SF_R : PROR_Soldier_Base {
-    scope = 2;
+class PROR_SF_R : PROR_R {
     displayName = "SF Rifleman";
-    editorSubcategory = "EdSubcat_Personnel";
-    uniformClass = "CFP_GUER_M81";
+    editorSubcategory = QEGVAR(common,sf);
+    editorPreview = QPATHTOEF(common,data\previews\PROR_SF_R.jpg);
     model = "\A3\characters_F_gamma\Guerrilla\ig_guerrilla2_1.p3d";
-    backpack = "PROR_SF_AssPack";
+    uniformClass = "CFP_GUER_M81";
+    backpack = "PROR_B_SF_AssPack";
     weapons[] = {
         "SMA_MK18MOEOD_CCO_LLCTop_blk",
         "hgun_ACPC2_F",
@@ -97,12 +97,10 @@ class PROR_SF_R : PROR_Soldier_Base {
     };
 };
 class PROR_SF_TL : PROR_SF_R {
-    scope = 2;
     displayName = "SF Team Leader";
-    editorSubcategory = "EdSubcat_Personnel";
-    uniformClass = "CFP_GUER_M81";
-    model = "\A3\characters_F_gamma\Guerrilla\ig_guerrilla2_1.p3d";
-    backpack = "PROR_SF_TL_AssPack";
+    editorPreview = QPATHTOEF(common,data\previews\PROR_SF_TL.jpg);
+    icon = "iconManLeader";
+    backpack = "PROR_B_SF_TL_AssPack";
     weapons[] = {
         "SMA_MK18OD_GL_CCO_LLCTop_blk",
         "hgun_ACPC2_F",
@@ -117,12 +115,11 @@ class PROR_SF_TL : PROR_SF_R {
     };
 };
 class PROR_SF_Med : PROR_SF_R {
-    scope = 2;
     displayName = "SF Medic";
-    editorSubcategory = "EdSubcat_Personnel";
-    uniformClass = "CFP_GUER_M81";
-    model = "\A3\characters_F_gamma\Guerrilla\ig_guerrilla2_1.p3d";
-    backpack = "PROR_SF_MedicBag";
+    editorPreview = QPATHTOEF(common,data\previews\PROR_SF_Med.jpg);
+    icon = "iconManMedic";
+    picture = "pictureHeal";
+    backpack = "PROR_B_SF_MedicBag";
     weapons[] = {
         "SMA_MK18MOEOD_CCO_LLCTop_blk",
         "hgun_ACPC2_F",
@@ -137,11 +134,8 @@ class PROR_SF_Med : PROR_SF_R {
     };
 };
 class PROR_SF_Marks : PROR_SF_R {
-    scope = 2;
     displayName = "SF Marksman";
-    editorSubcategory = "EdSubcat_Personnel";
-    uniformClass = "CFP_GUER_M81";
-    model = "\A3\characters_F_gamma\Guerrilla\ig_guerrilla2_1.p3d";
+    editorPreview = QPATHTOEF(common,data\previews\PROR_SF_Marks.jpg);
     backpack = "";
     weapons[] = {
         "SMA_HK417_16in_ACOG",
@@ -201,12 +195,10 @@ class PROR_SF_Marks : PROR_SF_R {
     };
 };
 class PROR_SF_AR : PROR_SF_R {
-    scope = 2;
     displayName = "SF Autorifleman";
-    editorSubcategory = "EdSubcat_Personnel";
-    uniformClass = "CFP_GUER_M81";
-    model = "\A3\characters_F_gamma\Guerrilla\ig_guerrilla2_1.p3d";
-    backpack = "PROR_SF_Kitbag_AR";
+    editorPreview = QPATHTOEF(common,data\previews\PROR_SF_AR.jpg);
+    icon = "iconManMG";
+    backpack = "PROR_B_SF_Kitbag_AR";
     weapons[] = {
         "CUP_lmg_m249_SQuantoon_LDS",
         "hgun_ACPC2_F",

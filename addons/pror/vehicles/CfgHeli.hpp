@@ -5,6 +5,7 @@ class PROR_Heli_Huey : CFP_B_USCIA_UH_1H_01 {
     side = 0;
     faction = "UKSF_PROR";
     displayName = "Huey";
+    editorPreview = QPATHTOEF(common,data\previews\PROR_Heli_Huey.jpg);
     crew = "PROR_Heli_Pilot";
     typicalCargo[] = {
         "PROR_Heli_Pilot"
@@ -18,11 +19,7 @@ class PROR_Heli_Chinook : B_Heli_Transport_03_unarmed_F {
     side = 0;
     faction = "UKSF_PROR";
     displayName = "Chinook";
-    hiddenSelections[] = { "camo1", "camo2" };
-    hiddenSelectionsTextures[] = {
-        "\A3\Air_F_Heli\Heli_Transport_03\Data\Heli_Transport_03_ext01_black_CO.paa",
-        "\a3\air_f_heli\heli_transport_03\data\heli_transport_03_ext02_black_co.paa"
-    };
+    editorPreview = QPATHTOEF(common,data\previews\PROR_Heli_Chinook.jpg);
     crew = "PROR_Heli_Pilot";
     typicalCargo[] = {
         "PROR_Heli_Pilot"

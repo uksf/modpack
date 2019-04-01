@@ -1,6 +1,7 @@
 class PROR_Crew : PROR_R {
     displayName = "Crewman";
-    uniformClass = "CFP_U_FieldUniform_M81light";
+    editorPreview = QPATHTOEF(common,data\previews\PROR_Crew.jpg);
+    editorSubcategory = QEGVAR(common,crew);
     backpack = "";
     weapons[] = {
         "SMG_03C_TR_black",
@@ -19,7 +20,7 @@ class PROR_Crew : PROR_R {
         "SmokeShell",
         "SmokeShell",
         "SmokeShell",
-        "HandGreande"
+        "HandGrenade"
     };
     respawnMagazines[] = {
         "50Rnd_570x28_SMG_03",
@@ -28,7 +29,7 @@ class PROR_Crew : PROR_R {
         "SmokeShell",
         "SmokeShell",
         "SmokeShell",
-        "HandGreande"
+        "HandGrenade"
     };
     linkedItems[] = {
         "H_HelmetCrew_I",
@@ -57,9 +58,8 @@ class PROR_Crew : PROR_R {
 };
 class PROR_Jet_Pilot : PROR_Crew {
     displayName = "Jet Pilot";
-    uniformClass = "CFP_U_FieldUniform_M81light";
+    editorPreview = QPATHTOEF(common,data\previews\PROR_Jet_Pilot.jpg);
     backpack = "B_Parachute";
-
     linkedItems[] = {
         "CUP_H_RUS_ZSH_Shield_Down",
         "CFP_ANPVS15_Camo_V3",
@@ -87,9 +87,7 @@ class PROR_Jet_Pilot : PROR_Crew {
 };
 class PROR_Heli_Pilot : PROR_Crew {
     displayName = "Heli Pilot";
-    uniformClass = "CFP_U_FieldUniform_M81light";
-    backpack = "";
-
+    editorPreview = QPATHTOEF(common,data\previews\PROR_Heli_Pilot.jpg);
     linkedItems[] = {
         "H_PilotHelmetHeli_O",
         "CUP_V_B_PilotVest",

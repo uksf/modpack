@@ -15,11 +15,17 @@ class CfgEditorSubcategories {
     class GVAR(resupply) {
         displayName = "Resupply";
     };
+    class GVAR(crew) {
+        displayName = "Men (Crew)";
+    };
+    class GVAR(para) {
+        displayName = "Men (Paras)";
+    };
+    class GVAR(sf) {
+        displayName = "Men (SF)";
+    };
 
     // Inegal
-    class GVAR(crew) {
-        displayName = "Crew";
-    };
     class GVAR(combattants) {
         displayName = "Combattants";
     };

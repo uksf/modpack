@@ -5,6 +5,7 @@ class PROR_Static_M119 : CUP_B_M119_US {
     side = 0;
     faction = "UKSF_PROR";
     displayName = "M119";
+    editorPreview = QPATHTOEF(common,data\previews\PROR_Static_M119.jpg);
     crew = "PROR_R";
     typicalCargo[] = {
         "PROR_R"
@@ -18,7 +19,7 @@ class PROR_Static_HMG_High : B_HMG_01_high_F {
     side = 0;
     faction = "UKSF_PROR";
     displayName = "HMG (High)";
-    // editorPreview = QPATHTOEF(common,data\previews\PROR_Static_GMG.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\PROR_Static_HMG_High.jpg);
     crew = "PROR_R";
     typicalCargo[] = {
         "PROR_R"
@@ -30,7 +31,7 @@ class PROR_Static_HMG_Low : B_HMG_01_F {
     side = 0;
     faction = "UKSF_PROR";
     displayName = "HMG (Low)";
-    // editorPreview = QPATHTOEF(common,data\previews\PROR_Static_GMG.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\PROR_Static_HMG_Low.jpg);
     crew = "PROR_R";
     typicalCargo[] = {
         "PROR_R"
@@ -44,7 +45,7 @@ class PROR_Static_GMG_Low : B_GMG_01_F {
     side = 0;
     faction = "UKSF_PROR";
     displayName = "GMG (Low)";
-    // editorPreview = QPATHTOEF(common,data\previews\PROR_Static_GMG.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\PROR_Static_GMG_Low.jpg);
     crew = "PROR_R";
     typicalCargo[] = {
         "PROR_R"
@@ -56,7 +57,7 @@ class PROR_Static_GMG_High : B_GMG_01_high_F {
     side = 0;
     faction = "UKSF_PROR";
     displayName = "GMG (High)";
-    // editorPreview = QPATHTOEF(common,data\previews\PROR_Static_GMG.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\PROR_Static_GMG_High.jpg);
     crew = "PROR_R";
     typicalCargo[] = {
         "PROR_R"
@@ -70,7 +71,7 @@ class PROR_Static_Mortar : B_G_Mortar_01_F {
     side = 0;
     faction = "UKSF_PROR";
     displayName = "Mk6";
-    // editorPreview = QPATHTOEF(common,data\previews\PROR_Static_Mortar.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\PROR_Static_Mortar.jpg);
     crew = "PROR_R";
     typicalCargo[] = {
         "PROR_R"
@@ -84,6 +85,7 @@ class PROR_Static_AA : B_T_Static_AA_F {
     side = 0;
     faction = "UKSF_PROR";
     displayName = "AA Launcher";
+    editorPreview = QPATHTOEF(common,data\previews\PROR_Static_AA.jpg);
     crew = "PROR_R";
     typicalCargo[] = {
         "PROR_R"
