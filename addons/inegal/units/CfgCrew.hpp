@@ -1,6 +1,5 @@
 // Crew
 class Inegal_Crew_HP: Inegal_Soldier_Base {
-    _generalMacro = "Inegal_Crew_HP";
     scope = 2;
     displayName = "Heli Pilot";
     editorSubcategory = QEGVAR(common,crew);
@@ -89,7 +88,6 @@ class Inegal_Crew_HP: Inegal_Soldier_Base {
     };
 };
 class Inegal_Crew_HC: Inegal_Crew_HP {
-    _generalMacro = "Inegal_Crew_HC";
     displayName = "Heli Crew";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_Crew_HC.jpg);
     linkedItems[] = {
@@ -114,7 +112,6 @@ class Inegal_Crew_HC: Inegal_Crew_HP {
     };
 };
 class Inegal_Crew_C: Inegal_Crew_HP {
-    _generalMacro = "Inegal_Crew_C";
     displayName = "Crew";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_Crew_C.jpg);
     linkedItems[] = {
@@ -139,7 +136,6 @@ class Inegal_Crew_C: Inegal_Crew_HP {
     };
 };
 class Inegal_Crew_P: Inegal_Crew_HP {
-    _generalMacro = "Inegal_Crew_P";
     displayName = "Pilot";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_Crew_P.jpg);
     uniformClass = "U_B_PilotCoveralls";

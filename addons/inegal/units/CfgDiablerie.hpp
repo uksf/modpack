@@ -1,5 +1,4 @@
 class Inegal_Diablerie_S: Inegal_Soldier_Base {
-    _generalMacro = "Inegal_Mortel_R";
     scope = 2;
     displayName = "Specialist";
     editorSubcategory = QEGVAR(common,diablerie);
@@ -241,7 +240,6 @@ class Inegal_Diablerie_S: Inegal_Soldier_Base {
     explosionShielding = 0.1;
 };
 class Inegal_Diablerie_C: Inegal_Diablerie_S {
-    _generalMacro = "Inegal_Diablerie_C";
     displayName = "Commander";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_Diablerie_C.jpg);
     icon = "iconManLeader";
@@ -258,7 +256,6 @@ class Inegal_Diablerie_C: Inegal_Diablerie_S {
     };
 };
 class Inegal_Diablerie_G: Inegal_Diablerie_S {
-    _generalMacro = "Inegal_Diablerie_G";
     displayName = "General";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_Diablerie_G.jpg);
     icon = "iconManOfficer";
@@ -349,7 +346,6 @@ class Inegal_Diablerie_G: Inegal_Diablerie_S {
     };
 };
 class Inegal_Diablerie_Su: Inegal_Diablerie_S {
-    _generalMacro = "Inegal_Diablerie_Su";
     displayName = "Surgeon";
     icon = "iconManMedic";
     attendant = 1;
@@ -358,7 +354,6 @@ class Inegal_Diablerie_Su: Inegal_Diablerie_S {
     backpack = "Inegal_B_D_Surgeon";
 };
 class Inegal_Diablerie_B: Inegal_Diablerie_S {
-    _generalMacro = "Inegal_Diablerie_B";
     displayName = "Brute";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_Diablerie_B.jpg);
     icon = "iconManMG";
@@ -375,7 +370,6 @@ class Inegal_Diablerie_B: Inegal_Diablerie_S {
     };
 };
 class Inegal_Diablerie_Sh: Inegal_Diablerie_S {
-    _generalMacro = "Inegal_Diablerie_Sh";
     displayName = "Sharpshooter";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_Diablerie_Sh.jpg);
     backpack = "Inegal_B_D_Sharpshooter";
@@ -391,7 +385,6 @@ class Inegal_Diablerie_Sh: Inegal_Diablerie_S {
     };
 };
 class Inegal_Diablerie_A: Inegal_Diablerie_S {
-    _generalMacro = "Inegal_Diablerie_A";
     displayName = "Arsonist";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_Diablerie_A.jpg);
     icon = "iconManAT";
@@ -411,13 +404,11 @@ class Inegal_Diablerie_A: Inegal_Diablerie_S {
     };
 };
 class Inegal_Diablerie_Se: Inegal_Diablerie_S {
-    _generalMacro = "Inegal_Diablerie_Se";
     displayName = "Sentinel";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_Diablerie_Se.jpg);
     backpack = "Inegal_B_D_Sentinel";
 };
 class Inegal_Diablerie_As: Inegal_Diablerie_S {
-    _generalMacro = "Inegal_Diablerie_As";
     displayName = "Assassin";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_Diablerie_As.jpg);
     uniformClass = "U_I_FullGhillie_sard";

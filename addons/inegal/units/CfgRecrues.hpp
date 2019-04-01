@@ -1,5 +1,4 @@
 class Inegal_Recrues_C: Inegal_Soldier_Base {
-    _generalMacro = "Inegal_Recrues_C";
     scope = 2;
     displayName = "Conscript";
     editorSubcategory = QEGVAR(common,recrues);
@@ -82,7 +81,6 @@ class Inegal_Recrues_C: Inegal_Soldier_Base {
     };
 };
 class Inegal_Recrues_L: Inegal_Recrues_C {
-    _generalMacro = "Inegal_Recrues_L";
     displayName = "Leader";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_Recrues_L.jpg);
     icon = "iconManLeader";
@@ -142,7 +140,6 @@ class Inegal_Recrues_L: Inegal_Recrues_C {
     };
 };
 class Inegal_Recrues_R: Inegal_Recrues_C {
-    _generalMacro = "Inegal_Recrues_R";
     displayName = "Recruit";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_Recrues_R.jpg);
     uniformClass = "U_B_CTRG_1";

@@ -399,7 +399,6 @@ class CfgVehicles {
     class Supply500;
     class Supply1000: Supply500 {
         author = "Bohemia Interactive";
-        _generalMacro = "Supply1000";
         maximumLoad = 1000;
     };
 };
