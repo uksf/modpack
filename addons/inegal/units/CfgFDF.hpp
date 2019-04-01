@@ -1,5 +1,4 @@
 class Inegal_FDF_S: Inegal_Soldier_Base {
-    _generalMacro = "Inegal_FDF_S";
     scope = 2;
     displayName = "Specialist";
     editorSubcategory = QEGVAR(common,fdf);
@@ -103,7 +102,6 @@ class Inegal_FDF_S: Inegal_Soldier_Base {
     };
 };
 class Inegal_FDF_V: Inegal_FDF_S {
-    _generalMacro = "Inegal_FDF_V";
     displayName = "Veteran";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_FDF_V.jpg);
     icon = "iconManLeader";
@@ -201,7 +199,6 @@ class Inegal_FDF_V: Inegal_FDF_S {
     };
 };
 class Inegal_FDF_B: Inegal_FDF_S {
-    _generalMacro = "Inegal_FDF_B";
     displayName = "Brute";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_FDF_B.jpg);
     icon = "iconManMG";
@@ -258,7 +255,6 @@ class Inegal_FDF_B: Inegal_FDF_S {
     };
 };
 class Inegal_FDF_Sh: Inegal_FDF_S {
-    _generalMacro = "Inegal_FDF_Sh";
     displayName = "Sharpshooter";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_FDF_Sh.jpg);
     uniformClass = "U_C_HunterBody_grn";
@@ -329,7 +325,6 @@ class Inegal_FDF_Sh: Inegal_FDF_S {
     };
 };
 class Inegal_FDF_A: Inegal_FDF_S {
-    _generalMacro = "Inegal_ATE";
     displayName = "Arsonist";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_FDF_A.jpg);
     icon = "iconManAT";
@@ -431,7 +426,6 @@ class Inegal_FDF_A: Inegal_FDF_S {
     };
 };
 class Inegal_FDF_Se: Inegal_FDF_S {
-    _generalMacro = "Inegal_FDF_Se";
     displayName = "Sentinel";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_FDF_Se.jpg);
     uniformClass = "U_I_C_Soldier_Bandit_3_F";

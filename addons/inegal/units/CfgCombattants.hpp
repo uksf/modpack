@@ -1,5 +1,4 @@
 class Inegal_F: Inegal_Soldier_Base {
-    _generalMacro = "Inegal_F";
     scope = 2;
     displayName = "Fusilier";
     editorSubcategory = QEGVAR(common,combattants);
@@ -119,7 +118,6 @@ class Inegal_F: Inegal_Soldier_Base {
     };
 };
 class Inegal_C: Inegal_F {
-    _generalMacro = "Inegal_C";
     displayName = "Commander";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_C.jpg);
     uniformClass = "U_BG_Guerilla3_1";
@@ -137,7 +135,6 @@ class Inegal_C: Inegal_F {
     };
 };
 class Inegal_O: Inegal_F {
-    _generalMacro = "Inegal_O";
     displayName = "Officer";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_O.jpg);
     icon = "iconManOfficer";
@@ -230,7 +227,6 @@ class Inegal_O: Inegal_F {
     };
 };
 class Inegal_MED: Inegal_F {
-    _generalMacro = "Inegal_MED";
     displayName = "Medic";
     icon = "iconManMedic";
     attendant = 1;
@@ -312,7 +308,6 @@ class Inegal_MED: Inegal_F {
     };
 };
 class Inegal_MG: Inegal_F {
-    _generalMacro = "Inegal_MG";
     displayName = "Machinegunner";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_MG.jpg);
     uniformClass = "U_BG_Guerilla2_2";
@@ -374,7 +369,6 @@ class Inegal_MG: Inegal_F {
     };
 };
 class Inegal_Mark: Inegal_F {
-    _generalMacro = "Inegal_Mark";
     displayName = "Marksman";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_Mark.jpg);
     uniformClass = "U_BG_Guerilla2_3";
@@ -451,7 +445,6 @@ class Inegal_Mark: Inegal_F {
     };
 };
 class Inegal_AA: Inegal_F {
-    _generalMacro = "Inegal_AA";
     displayName = "Anti-Air";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_AA.jpg);
     uniformClass = "U_BG_Guerilla3_1";
@@ -531,7 +524,6 @@ class Inegal_AA: Inegal_F {
     };
 };
 class Inegal_ATE: Inegal_F {
-    _generalMacro = "Inegal_ATE";
     displayName = "Anti-Tank (AT13)";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_ATE.jpg);
     uniformClass = "U_BG_Guerilla2_1";
@@ -612,7 +604,6 @@ class Inegal_ATE: Inegal_F {
     };
 };
 class Inegal_ATJ: Inegal_F {
-    _generalMacro = "Inegal_ATJ";
     displayName = "Anti-Tank (Javelin)";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_ATJ.jpg);
     uniformClass = "U_BG_Guerilla2_3";
@@ -694,7 +685,6 @@ class Inegal_ATJ: Inegal_F {
     };
 };
 class Inegal_Sniper: Inegal_F {
-    _generalMacro = "Inegal_Sniper";
     displayName = "Sniper";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_Sniper.jpg);
     uniformClass = "U_I_FullGhillie_sard";
@@ -757,7 +747,6 @@ class Inegal_Sniper: Inegal_F {
     };
 };
 class Inegal_FAC: Inegal_F {
-    _generalMacro = "Inegal_FAC";
     displayName = "FAC";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_FAC.jpg);
     uniformClass = "U_BG_Guerilla2_2";
