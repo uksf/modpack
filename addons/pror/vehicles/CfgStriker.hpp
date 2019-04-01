@@ -8,9 +8,9 @@ class PROR_Striker_GMG: CUP_B_M1126_ICV_MK19_Woodland {
     crew = "PROR_R";
     typicalCargo[] = {
         "PROR_R",
-		"PROR_SL"
+        "PROR_SL"
     };
-	
+    
     class TransportMagazines {};
     class TransportItems {};
     class TransportWeapons {};
@@ -27,9 +27,9 @@ class PROR_Striker_HMG: CUP_B_M1126_ICV_M2_Woodland {
     crew = "PROR_R";
     typicalCargo[] = {
         "PROR_R",
-		"PROR_SL"
+        "PROR_SL"
     };
-	
+    
     class TransportMagazines {};
     class TransportItems {};
     class TransportWeapons {};
@@ -46,9 +46,9 @@ class PROR_Striker_AT: CUP_B_M1128_MGS_Woodland {
     crew = "PROR_R";
     typicalCargo[] = {
         "PROR_R",
-		"PROR_SL"
+        "PROR_SL"
     };
-	
+    
     class TransportMagazines {};
     class TransportItems {};
     class TransportWeapons {};

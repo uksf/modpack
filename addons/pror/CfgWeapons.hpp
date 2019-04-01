@@ -86,7 +86,7 @@ class CfgWeapons {
             };
         };
     };
-	class SMA_MK18OD_GL;
+    class SMA_MK18OD_GL;
     class SMA_MK18OD_GL_CCO_LLCTop_blk : SMA_MK18OD_GL {
         class LinkedItems {
             class LinkedItemsOptic {
@@ -132,6 +132,6 @@ class CfgWeapons {
                 slot = "CowsSlot";
                 item = "optic_lrps_tna_f";
             };
-		};
-	};
+        };
+    };
 };

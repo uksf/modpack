@@ -529,13 +529,13 @@ class PROR_AT_L : PROR_R {
     backpack = "B_AssaultPack_rgr";
     weapons[] = {
         "arifle_CTAR_blk_F_aco_grn",
-		"launch_MRAWS_green_rail_F",
+        "launch_MRAWS_green_rail_F",
         "Throw",
         "Put"
     };
     respawnWeapons[] = {
         "arifle_CTAR_blk_F_aco_grn",
-		"launch_MRAWS_green_rail_F",
+        "launch_MRAWS_green_rail_F",
         "Throw",
         "Put"
     };
@@ -580,14 +580,14 @@ class PROR_AT_H : PROR_R {
     uniformClass = "CFP_U_FieldUniform_M81light";
     backpack = "B_AssaultPack_rgr";
     weapons[] = {
-		"launch_O_Vorona_green_F",
+        "launch_O_Vorona_green_F",
         "arifle_CTAR_blk_F_aco_grn",
         "Throw",
         "Put"
     };
     respawnWeapons[] = {
         "launch_O_Vorona_green_F",
-		"arifle_CTAR_blk_F_aco_grn",
+        "arifle_CTAR_blk_F_aco_grn",
         "Throw",
         "Put"
     };
@@ -1648,7 +1648,7 @@ class PROR_Jet_Pilot : PROR_Crew {
     linkedItems[] = {
         "CUP_H_RUS_ZSH_Shield_Down",
         "CFP_ANPVS15_Camo_V3",
-		"CUP_V_B_PilotVest",
+        "CUP_V_B_PilotVest",
         "ItemMap",
         "ItemCompass",
         "ItemWatch",
@@ -1660,7 +1660,7 @@ class PROR_Jet_Pilot : PROR_Crew {
     respawnLinkedItems[] = {
         "CUP_H_RUS_ZSH_Shield_Down",
         "CFP_ANPVS15_Camo_V3",
-		"CUP_V_B_PilotVest",
+        "CUP_V_B_PilotVest",
         "ItemMap",
         "ItemCompass",
         "ItemWatch",
@@ -1679,7 +1679,7 @@ class PROR_Heli_Pilot : PROR_Crew {
    
     linkedItems[] = {
         "H_PilotHelmetHeli_O",
-		"CUP_V_B_PilotVest",
+        "CUP_V_B_PilotVest",
         "CFP_ANPVS15_Camo_V3",
         "ItemMap",
         "ItemCompass",
@@ -1691,7 +1691,7 @@ class PROR_Heli_Pilot : PROR_Crew {
     };
     respawnLinkedItems[] = {
         "H_PilotHelmetHeli_O",
-		"CUP_V_B_PilotVest",
+        "CUP_V_B_PilotVest",
         "CFP_ANPVS15_Camo_V3",
         "ItemMap",
         "ItemCompass",

@@ -8,9 +8,9 @@ class PROR_LAV: CUP_B_LAV25M240_green {
     crew = "PROR_Crew";
     typicalCargo[] = {
         "PROR_Crew",
-		"PROR_Crew"
+        "PROR_Crew"
     };
-	
+    
     class TransportMagazines {};
     class TransportItems {};
     class TransportWeapons {};

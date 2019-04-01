@@ -5,7 +5,7 @@ class PROR_MRAP_Unarmed : B_T_MRAP_01_F {
     faction = "UKSF_PROR";
     displayName = "MRAP Unarmed";
     editorPreview = QPATHTOEF(common,data\previews\PROR_VAB_Unarmed.jpg);
-	crew = "PROR_R";
+    crew = "PROR_R";
     typicalCargo[] = {
         "PROR_R"
     };
