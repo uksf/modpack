@@ -21,9 +21,11 @@ if (!isServer) exitWith {
 };
 
 {
-    _x spawn {
-        _this addCuratorEditableObjects [_objects, true];
-        _this removeCuratorEditableObjects [allCurators, true];
+    [_x, _objects] spawn {
+        params ["_curator", "_objects"];
+
+        _curator addCuratorEditableObjects [_objects, true];
+        _curator removeCuratorEditableObjects [allCurators, true];
     };
     false
 } count _curators;

@@ -16,7 +16,7 @@ class MFD {
         helmetRight[] = { 0,0,0 };
         helmetDown[] = { 0,0,0 };
     };
-    class Kimi_HUD_1 {
+    class AirplaneHUD2 {
         topLeft = "HUD_top_left";
         topRight = "HUD_top_right";
         bottomLeft = "HUD_bottom_left";
@@ -491,7 +491,7 @@ class MFD {
         helmetRight[] = { 0.08,0,0 };
         helmetDown[] = { 0,-0.08,0 };
     };
-    class Kimi_HUD_2 {
+    class AirplaneHUD3 {
         topLeft = "HUD_top_left";
         topRight = "HUD_top_right";
         bottomLeft = "HUD_bottom_left";

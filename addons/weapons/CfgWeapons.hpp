@@ -345,16 +345,16 @@ class CfgWeapons {
         class FullAuto;
     };
     class SMA_M4_BASE : SMA_556_RIFLEBASE {
-        class Single : Single {
-            class SilencedSound {
-                soundSetShot[] = { "DS_Tavor_ShotSD_SoundSet", "TRG20_silencerTail_SoundSet", "TRG20_silencerInteriorTail_SoundSet" };
-            };
-        };
-        class FullAuto : FullAuto {
-            class SilencedSound {
-                soundSetShot[] = { "DS_Tavor_ShotSD_SoundSet", "TRG20_silencerTail_SoundSet", "TRG20_silencerInteriorTail_SoundSet" };
-            };
-        };
+        // class Single : Single {
+        //     class SilencedSound {
+        //         soundSetShot[] = { "DS_Tavor_ShotSD_SoundSet", "TRG20_silencerTail_SoundSet", "TRG20_silencerInteriorTail_SoundSet" };
+        //     };
+        // };
+        // class FullAuto : FullAuto {
+        //     class SilencedSound {
+        //         soundSetShot[] = { "DS_Tavor_ShotSD_SoundSet", "TRG20_silencerTail_SoundSet", "TRG20_silencerInteriorTail_SoundSet" };
+        //     };
+        // };
     };
     class UK3CB_BAF_L110_Base;
     class UK3CB_BAF_L110_556_Base : UK3CB_BAF_L110_Base {
@@ -416,7 +416,10 @@ class CfgWeapons {
             };
         };
     };
-    class launch_NLAW_F;
+    class Launcher_Base_F;
+    class launch_NLAW_F: Launcher_Base_F {
+        modes[] = {"Overfly", "Single"};
+    };
     class UK3CB_BAF_NLAW_Launcher : launch_NLAW_F {
         magazines[] = { "ACE_PreloadedMissileDummy" };
         ACE_UsedTube = "ACE_launch_NLAW_Used_F";
@@ -803,7 +806,6 @@ class CfgWeapons {
         maxRange = 4000;   // 5200
         aiRateOfFire = 7;  // 5
     };
-    class Launcher_Base_F;
     class CUP_launch_Igla : Launcher_Base_F {
         midRange = 1000;   // 2500
         maxRange = 3000;   // 4800
