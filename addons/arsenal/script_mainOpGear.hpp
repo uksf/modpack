@@ -769,7 +769,7 @@
     "CFP_Kitbag_MCam_Grn", \
     "CFP_Kitbag_Olive", \
     "CUP_B_USMC_AssaultPack", \
-    "CUP_T10_Parachute_backpack", \
+    "ACE_NonSteerableParachute", \
     "SP_Carryall_ATacsAU", \
     "SP_Carryall_ATacsFG", \
     "SP_Carryall_Tan", \

@@ -6,6 +6,8 @@ class CfgPatches {
         units[] = {
             "UKSF_B_L39",
             "UKSF_B_L39_Unarmed",
+            "CUP_B_C130J_GB",
+            "CUP_B_C130J_Cargo_GB",
             QGVAR(dauphin)
         };
         weapons[] = {};
@@ -15,7 +17,6 @@ class CfgPatches {
             "uksf_units",
             "CUP_AirVehicles_AV8B",
             "CUP_AirVehciles_AW159",
-            "CUP_AirVehicles_C130J",
             "CUP_AirVehicles_CH47",
             "CUP_AirVehicles_F35",
             "CUP_AirVehicles_HC3",
@@ -23,10 +24,12 @@ class CfgPatches {
             "CUP_AirVehicles_Merlin",
             "CUP_AirVehicles_MV22",
             "CUP_AirVehciles_SA330",
+            "CUP_AirVehciles_StaticLine",
             "UK3CB_BAF_Vehicles_Merlin",
             "UK3CB_BAF_Vehicles_Wildcat",
             "rksla3_pumahc",
-            "MEA_Panther"
+            "MEA_Panther",
+            QGVAR(prep)
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };

@@ -1,37 +1,25 @@
-class CUP_C130J_Base : Plane_Base_F {
+class CUP_C130J_Base;
+class GVAR(C130_Base) : CUP_C130J_Base {
+    side = 1;
+    faction = "CUP_B_GB";
     memoryPointsGetInCargo = "pos cargo";
     memoryPointsGetInCargoDir = "pos cargo dir";
     ace_cookoff_cookoffSelections[] = { "palivo" };
+    unitInfoType = "RscUnitInfoAirPlaneNoSpeed";
+    unitInfoTypeLite = "RscUnitInfoAirPlaneNoSpeed";
+    maximumLoad = 2500;
     altFullForce = 8535;
     altNoForce = 17000;
     wheelSteeringSensitivity = 5;
     maxSpeed = 648;
     stallSpeed = 180;
     stallWarningTreshold = 0.5;
-    // angleOfIndicence = "3*3.1415/180";
-    // rudderInfluence = 0.866;
-    // rudderControlsSensitivityCoef = 1;
-    // rudderCoef[] = { 0, 0.4, 1, 1.4, 1.8, 2, 2.2, 2.3, 2.4, 2.5, 2.5, 2.5, 2.6 };
-    // aileronSensitivity = 1;
-    // aileronControlsSensitivityCoef = 1;
-    // aileronCoef[] = { 0, 0.5, 1, 1.2, 1.4, 1.5, 1.6 };
-    // elevatorSensitivity = 1;
-    // elevatorControlsSensitivityCoef = 3;
-    // elevatorCoef[] = { 0, 1, 1.2, 1.4, 1.5, 1.6, 1.6 };
-    // flapsFrictionCoef = 2;
-    // draconicForceXCoef = 25;
-    // draconicForceYCoef = 0.5;
-    // draconicForceZCoef = 0.2;
-    // draconicTorqueXCoef[] = { 36, 35, 34, 33, 32, 33, 34, 35, 36, 37, 38 };
-    // draconicTorqueYCoef[] = { 1, 1.4, 2, 4, 7, 8, 7, 6.8, 6.6, 6.4, 6.2, 5.5, 5, 4.5, 3.9, 3, 1 };
     flapsFrictionCoef = 0.5;
-    angleOfIndicence = "3*3.1415/180";
-    envelope[] = { 0, 0.05, 0.3, 1.2, 3.4, 3.8, 4, 4.1, 4.2, 4.3, 4.3, 4.1, 3.8, 1 };
-    aileronSensitivity = 0.5;
+    aileronSensitivity = 1;
     aileronCoef[] = { 0, 0.5, 0.9, 1, 1.05, 1.1, 1.12 };
     elevatorSensitivity = 1.1;
     elevatorCoef[] = { 0, 0.4, 0.9, 1, 1.05, 1.1, 1.15 };
-    rudderInfluence = 0.848;
+    rudderInfluence = 1;
     rudderCoef[] = { 0, 0.8, 1.5, 1.9, 2.2, 2.4, 2.5, 2.5, 2.6, 2.6, 2.6 };
     aileronControlsSensitivityCoef = 1;
     elevatorControlsSensitivityCoef = 2;
@@ -39,7 +27,7 @@ class CUP_C130J_Base : Plane_Base_F {
     draconicForceXCoef = 10;
     draconicForceYCoef = 0.2;
     draconicForceZCoef = 1;
-    draconicTorqueXCoef[] = { 16, 15.5, 15, 14.5, 14, 14, 14.5, 15, 16, 17, 18 };
+    draconicTorqueXCoef[] = { 22, 21.5, 21, 20.5, 20, 20, 20.5, 21, 22, 23, 24 };
     draconicTorqueYCoef[] = { 1, 1.2, 1.4, 2, 4, 7, 6.8, 6.6, 6.4, 6.2, 5.5, 5, 4.5, 3.9, 3, 1 };
     soundGetIn[] = { QPATHTOF(data\sounds\close),0.31622776,1 };
     soundGetOut[] = { QPATHTOF(data\sounds\open),0.31622776,1,40 };
@@ -162,16 +150,46 @@ class CUP_C130J_Base : Plane_Base_F {
             tireForceAppPointOffset = "Wheel_3_2_center";
         };
     };
-#include "MFDGeneral.hpp"
+    INVENTORY_AIRCRAFT
+#include "MFDC130.hpp"
 };
-class CUP_B_C130J_GB : CUP_C130J_Base {
+class GVAR(C130_VIV_Base) : GVAR(C130_Base) {
+    displayName = "C-130J (VIV)";
+    model = "CUP\AirVehicles\CUP_AirVehicles_C130J\CUP_c130j_Cargo.p3d";
+    transportSoldier = 1;
+    class VehicleTransport {
+        class Carrier {
+            cargoBayDimensions[] = { "VTV_limit_1", "VTV_limit_2" };
+            disableHeightLimit = 0;
+            maxLoadMass = 20000;
+            cargoAlignment[] = { "center", "front" };
+            cargoSpacing[] = { 0, 0, 0 };
+            exits[] = { "VTV_exit_1" };
+            unloadingInterval = 3;
+            loadingDistance = 10;
+            loadingAngle = 60;
+            parachuteClassDefault = "B_Parachute_02_F";
+            parachuteHeightLimitDefault = 50;
+        };
+    };
+};
+class CUP_B_C130J_GB : GVAR(C130_Base) {
+    scope = 2;
+    editorPreview = "CUP\AirVehicles\CUP_AirVehicles_C130J\Data\preview\CUP_B_C130J_GB.jpg";
     crew = "UKSF_B_Pilot_617";
     typicalCargo[] = { "UKSF_B_Pilot_617" };
-    INVENTORY_AIRCRAFT
+    hiddenSelectionsTextures[] = {
+        "CUP\AirVehicles\CUP_AirVehicles_C130J\data\textures\c130j_body_raf1_co.paa",
+        "CUP\AirVehicles\CUP_AirVehicles_C130J\data\textures\c130j_wings_raf1_co.paa"
+    };
 };
-class CUP_C130J_VIV_Base : CUP_C130J_Base {};
-class CUP_B_C130J_Cargo_GB : CUP_C130J_VIV_Base {
+class CUP_B_C130J_Cargo_GB : GVAR(C130_VIV_Base) {
+    scope = 2;
+    editorPreview = "CUP\AirVehicles\CUP_AirVehicles_C130J\Data\preview\CUP_B_C130J_Cargo_GB.jpg";
     crew = "UKSF_B_Pilot_617";
     typicalCargo[] = { "UKSF_B_Pilot_617" };
-    INVENTORY_AIRCRAFT
+    hiddenSelectionsTextures[] = {
+        "CUP\AirVehicles\CUP_AirVehicles_C130J\data\textures\c130j_body_raf2_co.paa",
+        "CUP\AirVehicles\CUP_AirVehicles_C130J\data\textures\c130j_wings_raf2_co.paa"
+    };
 };

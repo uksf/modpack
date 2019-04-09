@@ -45,10 +45,14 @@
     count = COUNT; \
 }
 
-#define INVENTORY_EMPTY class TransportMagazines {}; \
-class TransportItems {}; \
-class TransportBackpacks {}; \
-class TransportWeapons {};
+#define INVENTORY_EMPTY delete TransportMagazines; \
+    delete TransportItems; \
+    delete TransportWeapons; \
+    delete TransportBackpacks;
+
+#define RESET_INVENTORY(CLASS,BASE) class CLASS : BASE { \
+    INVENTORY_EMPTY \
+}
 
 #define INVENTORY_AIRCRAFT class TransportMagazines { \
     MACRO_ADDMAGAZINE(ACE_M14,2); \

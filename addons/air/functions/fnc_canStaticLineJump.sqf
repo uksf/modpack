@@ -18,4 +18,4 @@ params ["_vehicle", "_unit"];
 
 (_vehicle getCargoIndex _unit) >= 0 &&
 {(getPosATL _vehicle)#2 > STATIC_LINE_MINIMUM_ALTITUDE} &&
-{(backpack _unit) == "CUP_T10_Parachute_backpack"}
+{(backpack _unit) == "ACE_NonSteerableParachute"}
