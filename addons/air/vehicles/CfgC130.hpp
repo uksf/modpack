@@ -151,7 +151,7 @@ class GVAR(C130_Base) : CUP_C130J_Base {
         };
     };
     INVENTORY_AIRCRAFT
-#include "MFDC130.hpp"
+//#include "MFDC130.hpp"
 };
 class GVAR(C130_VIV_Base) : GVAR(C130_Base) {
     displayName = "C-130J (VIV)";
