@@ -18,6 +18,6 @@ class CfgPatches {
 };
 
 class CfgVehicles {
-    // delete CUP_B_C130J_GB;
-    // delete CUP_B_C130J_Cargo_GB;
+    delete CUP_B_C130J_GB;
+    delete CUP_B_C130J_Cargo_GB;
 };
