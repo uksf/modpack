@@ -18,6 +18,7 @@ GVAR(curatorUnconciousMapID) = 999;
     };
 }, true, nil, true] call CBA_fnc_addClassEventHandler;
 
+[QGVAR(paradrop), {call FUNC(paradrop)}] call CBA_fnc_addEventHandler;
 [QGVAR(moveInCargo), {_this#0 moveInCargo _this#1}] call CBA_fnc_addEventHandler;
 
 ADDON = true;
