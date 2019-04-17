@@ -49,4 +49,4 @@ _unit setVelocity (velocity _vehicle);
             _unit switchMove "AmovPercMevaSrasWrflDf_AmovPknlMstpSrasWrflDnon";
         }, _this] call CBA_fnc_waitUntilAndExecute;
     }, _this] call CBA_fnc_waitUntilAndExecute;
-}, _this, 2 + (random 1)] call CBA_fnc_waitAndExecute;
+}, _this, 2 + (random 0.5)] call CBA_fnc_waitAndExecute;
