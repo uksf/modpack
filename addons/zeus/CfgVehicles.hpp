@@ -40,11 +40,11 @@ class CfgVehicles {
         function = QFUNC(moduleExplosionSmall);
         icon = QPATHTOF(ui\Icon_Module_Explosion_Small_ca.paa);
     };
-    class GVAR(moduleHaloHaho): EGVAR(common,moduleBase) {
+    class GVAR(moduleParadrop): EGVAR(common,moduleBase) {
         curatorCanAttach = 1;
         category = QEGVAR(common,zeus_uksf_special);
-        displayName = "HALO/HAHO Units";
-        function = QFUNC(moduleHaloHaho);
+        displayName = "Paradrop Units";
+        function = QFUNC(moduleParadrop);
         icon = "\achilles\data_f_achilles\icons\icon_dropzone.paa";
     };
     class GVAR(moduleLoadoutCopy): EGVAR(common,moduleBase) {
