@@ -80,5 +80,5 @@ private _markers = +GVAR(mapMarkers);
 GVAR(mapMarkers) = [];
 {
     private _marker = [_x] call FUNC(deserializeMarker);
-    GVAR(mapMarkers) pushBack _marker;
+    GVAR(mapMarkers) pushBack ([_marker] call FUNC(serializeMarker));
 } forEach _markers;
