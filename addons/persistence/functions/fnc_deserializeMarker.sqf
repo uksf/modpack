@@ -9,7 +9,7 @@
         0: Serialized marker <ARRAY>
 
     Return Value:
-        None
+        Marker
 */
 #include "script_component.hpp"
 
@@ -27,3 +27,5 @@ _marker setMarkerDir _dir;
 _marker setMarkerText _text;
 
 EGVAR(common,markerID) = EGVAR(common,markerID) + 1;
+
+_marker

@@ -76,6 +76,9 @@ if (!GVAR(overrideSavedDateTime)) then {
     WARNING("Saved datetime overridden by mission");
 };
 
+private _markers = +GVAR(mapMarkers);
+GVAR(mapMarkers) = [];
 {
-    [_x] call FUNC(deserializeMarker);
-} forEach GVAR(mapMarkers);
+    private _marker = [_x] call FUNC(deserializeMarker);
+    GVAR(mapMarkers) pushBack _marker;
+} forEach _markers;
