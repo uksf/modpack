@@ -23,7 +23,7 @@ GVAR(curatorUnconciousMapID) = (_display displayCtrl 50) ctrlAddEventHandler ["D
             private _text = "Unconscious";
             if (_reviveStartTime > 0) then {
                 private _time = round (ace_medical_maxReviveTime - (CBA_missionTime - _reviveStartTime));
-                private _minutes = _time / 60;
+                private _minutes = floor (_time / 60);
                 private _seconds = _time % 60;
                 _text = if (_minutes > 0) then {
                     format ["Unconscious (%1m%2s)", _minutes, _seconds]
