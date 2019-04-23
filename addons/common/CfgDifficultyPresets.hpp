@@ -1,10 +1,9 @@
 class CfgDifficultyPresets {
-    class Custom;
-    class PREFIX : Custom {
+    class Custom {
         description = "Difficulty preset for UKSF operations";
         displayName = "UKSF";
         optionDescription = "Difficulty preset for UKSF operations";
-        levelAI = QUOTE(PREFIX);
+        levelAI = "Custom";
         class Options {
             cameraShake = 1;
             stanceIndicator = 1;
@@ -34,5 +33,5 @@ class CfgDifficultyPresets {
             weaponCrosshair = 0;
         };
     };
-    defaultPreset = QUOTE(PREFIX);
+    defaultPreset = "Custom";
 };
