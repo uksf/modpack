@@ -241,13 +241,25 @@ class CfgVehicles {
         faction = "CUP_B_GB";
         crew = "CUP_B_BAF_Soldier_MTP";
     };
-    class Mortar_01_base_F;
+    class StaticMortar;
+    class Mortar_01_base_F: StaticMortar {
+        class Turrets;
+    };
     class UK3CB_BAF_Static_Mortar_Base: Mortar_01_base_F {
         faction = "CUP_B_GB";
         crew = "CUP_B_BAF_Soldier_MTP";
         typicalCargo[] = { "CUP_B_BAF_Soldier_MTP" };
+        class Turrets: Turrets {
+            class MainTurret;
+        };
     };
-    class UK3CB_BAF_Static_L16;
+    class UK3CB_BAF_Static_L16: UK3CB_BAF_Static_Mortar_Base {
+        class Turrets: Turrets {
+            class MainTurret: MainTurret {
+                gunnerAction = "UK3CB_BAF_L16_Gunner";
+            };
+        };
+    };
     class UK3CB_BAF_Static_L16_Deployed: UK3CB_BAF_Static_L16 {
         faction = "CUP_B_GB";
         crew = "CUP_B_BAF_Soldier_MTP";
