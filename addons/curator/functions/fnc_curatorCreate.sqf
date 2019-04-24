@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
     Author:
         Tim Beswick
@@ -11,7 +12,7 @@
     Return Value:
         None
 */
-#include "script_component.hpp"
+#define IDD_DISPLAY3DEN 313
 
 if (isNull GVAR(curatorGroup)) then {
     GVAR(curatorGroup) = creategroup sideLogic;
@@ -21,3 +22,8 @@ GVAR(curatorObjects) pushBack _curator;
 GVAR(curatorPlayers) pushBack "";
 publicVariable QGVAR(curatorObjects);
 publicVariable QGVAR(curatorPlayers);
+
+if (!isMultiplayer && {!isNull findDisplay IDD_DISPLAY3DEN}) then {
+    removeAllCuratorAddons _curator;
+    _curator addCuratorAddons EGVAR(common,addons);
+};

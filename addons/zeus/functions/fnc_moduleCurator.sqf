@@ -59,6 +59,9 @@ if (_activated) then {
             _logic setVariable ["adminVar", _adminVar, true];
         };
 
+        removeAllCuratorAddons _logic;
+        _logic addCuratorAddons EGVAR(common,addons);
+
         // --- Handle ownership
         [_logic, _ownerVar, _ownerUID, _adminVar] spawn {
             scriptname "BIS_fnc_moduleCurator: Owner";
@@ -74,8 +77,8 @@ if (_activated) then {
             waitUntil {time > 0}; // NOTE: DO NOT CHANGE TO CBA_missionTime, IT BREAKS THE MODULE
 
             // --- Refresh addon list, so it's broadcasted to clients
-            private _addons = call (uiNamespace getVariable ["CBA_common_addons", {[]}]);
-            _logic addCuratorAddons (_addons - (curatorAddons _logic));
+            removeAllCuratorAddons _logic;
+            _logic addCuratorAddons EGVAR(common,addons);
 
             while {true} do {
                 // --- Wait for player to become Zeus
