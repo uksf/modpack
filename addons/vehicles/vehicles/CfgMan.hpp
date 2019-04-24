@@ -228,11 +228,13 @@ class UK3CB_BAF_MAN_HX60_Rearm_Sand : UK3CB_BAF_MAN_HX60_Cargo_Sand_B {
     };
 };
 
+class UK3CB_BAF_MAN_HX60_Container_Green;
 class UK3CB_BAF_MAN_HX60_Container_ReArm : UK3CB_BAF_MAN_HX60_Container_Green {
     transportAmmo = 0;
     ace_rearm_defaultSupply = 1200;
 };
 
+class UK3CB_BAF_MAN_HX58_Container_Green;
 class UK3CB_BAF_MAN_HX58_Container_ReArm : UK3CB_BAF_MAN_HX58_Container_Green {
     transportAmmo = 0;
     ace_rearm_defaultSupply = 1200;
