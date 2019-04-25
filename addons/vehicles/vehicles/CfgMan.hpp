@@ -123,15 +123,33 @@ class UK3CB_BAF_MAN_HX58_Rearm_Green : UK3CB_BAF_MAN_HX58_Cargo_Green_B {
     secondaryExplosion = 10000;
     class UserActions : UserActions {
         class ContainerGhost_Show {
+            displayName = "Check Unload Area";
+            textToolTip = "Check Unload Area";
+            shortcut = "";
+            priority = 2.3;
+            position = "container_control";
+            radius = 4;
+            showWindow = 1;
+            onlyForPlayer = 1;
             condition = "false";
+            statement = "this animateSource ['ContainerGhost_Hide', 0];";
         };
-        class ContainerGhost_Hide {
+        class ContainerGhost_Hide : ContainerGhost_Show {
             condition = "false";
         };
         class Container_Unload {
+            displayName = "Container Unload";
+            textToolTip = "Container Unload";
+            shortcut = "";
+            priority = 2.4;
+            position = "container_control";
+            radius = 4;
+            showWindow = 1;
+            onlyForPlayer = 1;
             condition = "false";
+            statement = "[this, 'UK3CB_BAF_MAN_HX60_Container_Green'] call UK3CB_BAF_Vehicles_MAN_fnc_unload_container";
         };
-        class Container_Load {
+        class Container_Load : Container_Unload {
             condition = "false";
         };
     };
@@ -151,15 +169,33 @@ class UK3CB_BAF_MAN_HX58_Rearm_Sand : UK3CB_BAF_MAN_HX58_Cargo_Sand_B {
     secondaryExplosion = 10000;
     class UserActions : UserActions {
         class ContainerGhost_Show {
+            displayName = "Check Unload Area";
+            textToolTip = "Check Unload Area";
+            shortcut = "";
+            priority = 2.3;
+            position = "container_control";
+            radius = 4;
+            showWindow = 1;
+            onlyForPlayer = 1;
             condition = "false";
+            statement = "this animateSource ['ContainerGhost_Hide', 0];";
         };
-        class ContainerGhost_Hide {
+        class ContainerGhost_Hide : ContainerGhost_Show {
             condition = "false";
         };
         class Container_Unload {
+            displayName = "Container Unload";
+            textToolTip = "Container Unload";
+            shortcut = "";
+            priority = 2.4;
+            position = "container_control";
+            radius = 4;
+            showWindow = 1;
+            onlyForPlayer = 1;
             condition = "false";
+            statement = "[this, 'UK3CB_BAF_MAN_HX60_Container_Green'] call UK3CB_BAF_Vehicles_MAN_fnc_unload_container";
         };
-        class Container_Load {
+        class Container_Load : Container_Unload {
             condition = "false";
         };
     };
@@ -179,15 +215,33 @@ class UK3CB_BAF_MAN_HX60_Rearm_Green : UK3CB_BAF_MAN_HX60_Cargo_Green_B {
     secondaryExplosion = 10000;
     class UserActions : UserActions {
         class ContainerGhost_Show {
+            displayName = "Check Unload Area";
+            textToolTip = "Check Unload Area";
+            shortcut = "";
+            priority = 2.3;
+            position = "container_control";
+            radius = 4;
+            showWindow = 1;
+            onlyForPlayer = 1;
             condition = "false";
+            statement = "this animateSource ['ContainerGhost_Hide', 0];";
         };
-        class ContainerGhost_Hide {
+        class ContainerGhost_Hide : ContainerGhost_Show {
             condition = "false";
         };
         class Container_Unload {
+            displayName = "Container Unload";
+            textToolTip = "Container Unload";
+            shortcut = "";
+            priority = 2.4;
+            position = "container_control";
+            radius = 4;
+            showWindow = 1;
+            onlyForPlayer = 1;
             condition = "false";
+            statement = "[this, 'UK3CB_BAF_MAN_HX60_Container_Green'] call UK3CB_BAF_Vehicles_MAN_fnc_unload_container";
         };
-        class Container_Load {
+        class Container_Load : Container_Unload {
             condition = "false";
         };
     };
@@ -207,15 +261,33 @@ class UK3CB_BAF_MAN_HX60_Rearm_Sand : UK3CB_BAF_MAN_HX60_Cargo_Sand_B {
     secondaryExplosion = 10000;
     class UserActions : UserActions {
         class ContainerGhost_Show {
+            displayName = "Check Unload Area";
+            textToolTip = "Check Unload Area";
+            shortcut = "";
+            priority = 2.3;
+            position = "container_control";
+            radius = 4;
+            showWindow = 1;
+            onlyForPlayer = 1;
             condition = "false";
+            statement = "this animateSource ['ContainerGhost_Hide', 0];";
         };
-        class ContainerGhost_Hide {
+        class ContainerGhost_Hide : ContainerGhost_Show {
             condition = "false";
         };
         class Container_Unload {
+            displayName = "Container Unload";
+            textToolTip = "Container Unload";
+            shortcut = "";
+            priority = 2.4;
+            position = "container_control";
+            radius = 4;
+            showWindow = 1;
+            onlyForPlayer = 1;
             condition = "false";
+            statement = "[this, 'UK3CB_BAF_MAN_HX60_Container_Green'] call UK3CB_BAF_Vehicles_MAN_fnc_unload_container";
         };
-        class Container_Load {
+        class Container_Load : Container_Unload {
             condition = "false";
         };
     };
