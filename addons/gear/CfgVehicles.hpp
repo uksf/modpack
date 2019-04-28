@@ -281,6 +281,7 @@ class CfgVehicles {
     class UKSF_B_Carryall_Mortar_MTP : UK3CB_BAF_B_Carryall_MTP {
         displayName = "Carryall MTP (Mortar)";
         maximumLoad = 400;
+        mass = 80;
     };
 
     class B_AssaultPack_blk;
