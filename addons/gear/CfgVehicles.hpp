@@ -277,6 +277,12 @@ class CfgVehicles {
         };
         class TransportMagazines {};
     };
+    class UK3CB_BAF_B_Carryall_MTP;
+    class UKSF_B_Carryall_Mortar_MTP : UK3CB_BAF_B_Carryall_MTP {
+        displayName = "Carryall MTP (Mortar)";
+        maximumLoad = 400;
+    };
+
     class B_AssaultPack_blk;
     class B_AssaultPack_VR_AT: B_AssaultPack_blk {
         scopeArsenal = 1;

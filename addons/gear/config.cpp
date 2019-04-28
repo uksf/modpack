@@ -19,6 +19,7 @@ class CfgPatches {
             "UK3CB_BAF_B_Bergen_DDPM_Rifleman_A_AA",
             "UKSF_B_Bergen_Medic_DDPM",
             "UK3CB_BAF_B_Bergen_DDPM_Rifleman_A_Toolkit",
+            "UKSF_B_Carryall_Mortar_MTP",
             "B_AssaultPack_VR_AT",
             "B_AssaultPack_VR_AA",
             "UK3CB_BAF_Soldier_MTP_1para_LongSleeve_base",

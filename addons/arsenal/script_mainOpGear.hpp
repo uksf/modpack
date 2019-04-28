@@ -733,27 +733,7 @@
     "cpc_weapons_mc", \
     "cpc_weapons_rngr", \
     "cpc_weaponsbelt_mc", \
-    "cpc_weaponsbelt_rngr", \
-    "mpx_virtus", \
-    "mpx_virtus2", \
-    "mpx_virtus2_p", \
-    "mpx_virtus3", \
-    "mpx_virtus3_p", \
-    "mpx_virtus4", \
-    "mpx_virtus4_p", \
-    "mpx_virtus_Medic", \
-    "mpx_virtus_Medic_p", \
-    "mpx_virtus_admin", \
-    "mpx_virtus_admin_p", \
-    "mpx_virtus_ato", \
-    "mpx_virtus_ato_p", \
-    "mpx_virtus_p", \
-    "mpx_virtus_taco", \
-    "mpx_virtus_taco2", \
-    "mpx_virtus_taco2_p", \
-    "mpx_virtus_taco_p", \
-    "mpx_webbing", \
-    "mpx_webbing_p"
+    "cpc_weaponsbelt_rngr"
 
 #define MAIN_OP_BACKPACKS \
     "B_AssaultPack_rgr", \
@@ -847,18 +827,7 @@
     "UK3CB_BAF_B_Kitbag_OLI", \
     "UK3CB_BAF_B_Kitbag_TAN", \
     "UKSF_B_Bergen_Medic_DDPM", \
-    "mpx_camel", \
-    "mpx_camel2", \
-    "mpx_daysack", \
-    "mpx_daysack10", \
-    "mpx_daysack2", \
-    "mpx_daysack3", \
-    "mpx_daysack4", \
-    "mpx_daysack5", \
-    "mpx_daysack6", \
-    "mpx_daysack7", \
-    "mpx_daysack8", \
-    "mpx_daysack9"
+    "UKSF_B_Carryall_Mortar_MTP"
 
 #define MAIN_OP_HELMETS \
     "CFP_BoonieHat_Multicam", \
@@ -971,13 +940,7 @@
     "UK3CB_BAF_H_Mk7_Scrim_F", \
     "UK3CB_BAF_H_Mk7_Win_A", \
     "UK3CB_BAF_H_Mk7_Win_ESS_A", \
-    "UK3CB_BAF_H_PilotHelmetHeli_A", \
-    "mpx_cobra", \
-    "mpx_cobra_catseyes", \
-    "mpx_cobra_patch", \
-    "mpx_cobra_scrim", \
-    "mpx_cobra_scrim2", \
-    "mpx_cobra_visor"
+    "UK3CB_BAF_H_PilotHelmetHeli_A"
 
 #define MAIN_OP_GLASSES \
     "CFP_Neck_Plain2", \
