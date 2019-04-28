@@ -710,8 +710,6 @@
     "UK3CB_BAF_V_PLCE_Webbing_Winter", \
     "UK3CB_BAF_V_Pilot_A", \
     "UKSF_V_Pilot", \
-    "V_PlateCarrierH_CTRG", \
-    "V_PlateCarrierL_CTRG", \
     "cpc_Fast_mc", \
     "cpc_Fast_rngr", \
     "cpc_Fastbelt_mc", \

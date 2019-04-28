@@ -307,66 +307,6 @@ class CfgWeapons {
             };
         };
     };
-    class V_PlateCarrierL_CTRG : V_PlateCarrier1_rgr {
-        class ItemInfo : ItemInfo {
-            class HitpointsProtectionInfo {
-                class Neck {
-                    HitpointName = "HitNeck";
-                    armor = 12;
-                    PassThrough = 0.4;
-                };
-                class Chest {
-                    HitpointName = "HitChest";
-                    armor = 26;  // 16
-                    PassThrough = 0.3;
-                };
-                class Diaphragm {
-                    HitpointName = "HitDiaphragm";
-                    armor = 26;  // 16
-                    PassThrough = 0.3;
-                };
-                class Abdomen {
-                    hitpointName = "HitAbdomen";
-                    armor = 22;  // 16
-                    passThrough = 0.3;
-                };
-                class Body {
-                    hitpointName = "HitBody";
-                    passThrough = 0.3;
-                };
-            };
-        };
-    };
-    class V_PlateCarrierH_CTRG : V_PlateCarrier2_rgr {
-        class ItemInfo : ItemInfo {
-            class HitpointsProtectionInfo {
-                class Neck {
-                    HitpointName = "HitNeck";
-                    armor = 18;
-                    PassThrough = 0.3;
-                };
-                class Chest {
-                    HitpointName = "HitChest";
-                    armor = 34;  // 20
-                    PassThrough = 0.2;
-                };
-                class Diaphragm {
-                    HitpointName = "HitDiaphragm";
-                    armor = 34;  // 20
-                    PassThrough = 0.2;
-                };
-                class Abdomen {
-                    hitpointName = "HitAbdomen";
-                    armor = 34;  // 20
-                    passThrough = 0.2;
-                };
-                class Body {
-                    hitpointName = "HitBody";
-                    passThrough = 0.2;
-                };
-            };
-        };
-    };
 
     class AFG_1996Leaf_BattleDressUniform : Uniform_Base {};
 
