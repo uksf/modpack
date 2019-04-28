@@ -1,5 +1,3 @@
-- Anizay
-    - tem_anizay
 - Rosche
     - hag_objects
     - WL_Rosche
