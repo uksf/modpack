@@ -552,7 +552,8 @@
     "ItemWatch", \
     "ToolKit", \
     "UK3CB_BAF_Javelin_CLU", \
-    "uksf_atc_terminal"
+    "uksf_atc_terminal", \
+    "ItemAndroid"
 
 #define MAIN_OP_UNIFORMS \
     "CFP_75th_CRYEG3_V2_Clean", \
