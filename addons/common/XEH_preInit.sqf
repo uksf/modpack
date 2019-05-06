@@ -4,8 +4,10 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
-GVAR(addons) = ('true' configClasses (configFile >> "CfgPatches")) apply {configName _x};
-activateAddons GVAR(addons);
+[] spawn {
+    GVAR(addons) = ('true' configClasses (configFile >> "CfgPatches")) apply {configName _x};
+    activateAddons GVAR(addons);
+};
 
 GVAR(fpsState) = false;
 
