@@ -21,7 +21,7 @@ class UK3CB_BAF_Merlin_Base : Heli_Transport_02_base_F {
         minMoveZ = -0.2;
         maxMoveZ = 0.2;
         speedZoomMaxSpeed = 0;
-        speedZoomMaxFOV = 0.75;
+        speedZoomMaxFOV = 0.95;
     };
     unitInfoType = "RscUnitInfoNoSpeed";
 #include "MFDMerlin.hpp"

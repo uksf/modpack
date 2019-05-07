@@ -11,67 +11,67 @@ class SensorTemplateVisual;
 class SensorTemplateDataLink;
 class CfgNonAIVehicles {
     class ProxyWeapon;
-    class ProxyPylonRocket_19Rnd_CRV7_HEISAP: ProxyWeapon {
+    class ProxyPylonRocket_19Rnd_CRV7_HEISAP : ProxyWeapon {
         model = QPATHTOF(PylonRocket_19Rnd_CRV7_HEISAP.p3d);
         simulation = "pylonpod";
     };
-    class ProxyPylonPod_4x_Missile_LG_scalpel_F: ProxyWeapon {
+    class ProxyPylonPod_4x_Missile_LG_scalpel_F : ProxyWeapon {
         model = "\A3\Weapons_F\DynamicLoadout\PylonPod_4x_Missile_LG_scalpel_F.p3d";
         simulation = "pylonpod";
     };
 };
 class CfgVehicles {
     class CUP_B_AH64D_NO_USA;
-    class CUP_B_AH1_NO_BAF: CUP_B_AH64D_NO_USA {
+    class CUP_B_AH1_NO_BAF : CUP_B_AH64D_NO_USA {
         scope = 1;
         scopeCurator = 0;
     };
     class CUP_B_AH64D_AT_USA;
-    class CUP_B_AH1_AT_BAF: CUP_B_AH64D_AT_USA {
+    class CUP_B_AH1_AT_BAF : CUP_B_AH64D_AT_USA {
         scope = 1;
         scopeCurator = 0;
     };
     class CUP_B_AH64D_ES_USA;
-    class CUP_B_AH1_ES_BAF: CUP_B_AH64D_ES_USA {
+    class CUP_B_AH1_ES_BAF : CUP_B_AH64D_ES_USA {
         scope = 1;
         scopeCurator = 0;
     };
     class CUP_B_AH64D_USA;
-    class CUP_B_AH1_BAF: CUP_B_AH64D_USA {
+    class CUP_B_AH1_BAF : CUP_B_AH64D_USA {
         scope = 1;
         scopeCurator = 0;
     };
     class CUP_B_AH64D_MR_USA;
-    class CUP_B_AH1_MR_BAF: CUP_B_AH64D_MR_USA {
+    class CUP_B_AH1_MR_BAF : CUP_B_AH64D_MR_USA {
         scope = 1;
         scopeCurator = 0;
     };
     class CUP_B_AH64D_DL_USA;
-    class CUP_B_AH1_DL_BAF: CUP_B_AH64D_DL_USA {
+    class CUP_B_AH1_DL_BAF : CUP_B_AH64D_DL_USA {
         scope = 1;
         scopeCurator = 0;
     };
 
     class AllVehicles;
-    class Air: AllVehicles {
+    class Air : AllVehicles {
         class MarkerLights;
     };
-    class Helicopter: Air {
+    class Helicopter : Air {
         class HitPoints;
     };
-    class Helicopter_Base_F: Helicopter {
+    class Helicopter_Base_F : Helicopter {
         class Turrets;
         class AnimationSources;
     };
-    class Heli_Attack_01_base_F: Helicopter_Base_F {
-        class Turrets: Turrets {
+    class Heli_Attack_01_base_F : Helicopter_Base_F {
+        class Turrets : Turrets {
             class MainTurret;
         };
-        class AnimationSources: AnimationSources {
+        class AnimationSources : AnimationSources {
             class Gatling;
             class Muzzle_flash;
         };
-        class HitPoints: HitPoints {
+        class HitPoints : HitPoints {
             class HitHull;
             class HitAvionics;
             class HitVRotor;
@@ -98,7 +98,7 @@ class CfgVehicles {
         class Sounds;
         class Components;
     };
-    class UKSF_Apache_base: Heli_Attack_01_base_F {
+    class UKSF_Apache_base : Heli_Attack_01_base_F {
         scope = 1;
         author = "UKSF";
         side = 1;
@@ -110,7 +110,7 @@ class CfgVehicles {
         icon = QPATHTOF(data\ui\Icon_ah64d_CA.paa);
         availableForSupportTypes[] = { "CAS_Heli" };
         armor = 100;
-        fuelCapacity = 200; // 300
+        fuelCapacity = 200;  // 300
         explosionShielding = 0.5;
         epeImpulseDamageCoef = 5;
         crewCrashProtection = 0.5;
@@ -124,7 +124,7 @@ class CfgVehicles {
         memoryPointCMDir[] = { "flare_launcher1_dir", "flare_launcher2_dir" };
         radarType = 4;
         lockDetectionSystem = "1 + 2 + 4 + 8";
-        showAllTargets = 2;
+        showAllTargets = 0;
         destrType = "DestructWreck";
         crew = "UKSF_B_Pilot_656";
         typicalCargo[] = { "UKSF_B_Pilot_656", "UKSF_B_Pilot_656" };
@@ -153,55 +153,54 @@ class CfgVehicles {
         tailBladeCenter = "rotor_02_center";
         tailBladeRadius = 1.6;
         driveOnComponent[] = { "wheel_1_1", "wheel_2_1", "wheel_12_2" };
-        soundgetin[] = { QPATHTOF(data\sounds\close.ogg), 1, 1 };
-        soundgetout[] = { QPATHTOF(data\sounds\open.ogg), 1, 1, 40 };
-        class Sounds: Sounds {
+        soundgetin[] = { QPATHTOF(data\sounds\close.ogg),1,1 };
+        soundgetout[] = { QPATHTOF(data\sounds\open.ogg),1,1,40 };
+        class Sounds : Sounds {
             class RotorExt {
-                sound[] = { QPATHTOF(data\sounds\ah64_rotor_ext), 1.4, 1, 1000 };
+                sound[] = { QPATHTOF(data\sounds\ah64_rotor_ext),1.4,1,1000 };
                 frequency = "(rotorSpeed factor [0.3, 0.7]) * (rotorSpeed factor [0.3, 1]) * (1 - rotorThrust/4)";
                 volume = "camPos * (rotorSpeed factor [0.3, 1]) * (1 + rotorThrust)";
             };
             class RotorInt {
-                sound[] = { QPATHTOF(data\sounds\ah64_rotor_int), 0.7, 1 };
+                sound[] = { QPATHTOF(data\sounds\ah64_rotor_int),0.7,1 };
                 frequency = "(rotorSpeed factor [0.3, 0.7]) * (rotorSpeed factor [0.3, 1]) * (1 - rotorThrust/4)";
                 volume = "(1 - camPos) * (rotorSpeed factor [0.3, 0.7]) * (1 + rotorThrust) * 0.7";
             };
             class RotorSwist {
-                sound[] = { QPATHTOF(data\sounds\ah64_trotor_ext), 1, 1, 500 };
+                sound[] = { QPATHTOF(data\sounds\ah64_trotor_ext),1,1,500 };
                 frequency = 1;
                 volume = 0;
-                cone[] = {0.7, 1.3, 1, 0};
+                cone[] = { 0.7, 1.3, 1, 0 };
             };
         };
         class SoundsExt {
             class Sounds {
                 class RotorExt {
-                    sound[] = { QPATHTOF(data\sounds\ah64_rotor_ext), 1.4, 1, 1000 };
+                    sound[] = { QPATHTOF(data\sounds\ah64_rotor_ext),1.4,1,1000 };
                     frequency = "(rotorSpeed factor [0.3, 0.7]) * (rotorSpeed factor [0.3, 1]) * (1 - rotorThrust/4)";
                     volume = "camPos * (rotorSpeed factor [0.3, 1]) * (1 + rotorThrust)";
                 };
                 class RotorInt {
-                    sound[] = { QPATHTOF(data\sounds\ah64_rotor_int), 0.7, 1 };
+                    sound[] = { QPATHTOF(data\sounds\ah64_rotor_int),0.7,1 };
                     frequency = "(rotorSpeed factor [0.3, 0.7]) * (rotorSpeed factor [0.3, 1]) * (1 - rotorThrust/4)";
                     volume = "(1 - camPos) * (rotorSpeed factor [0.3, 0.7]) * (1 + rotorThrust) * 0.7";
                 };
                 class RotorSwist {
-                    sound[] = { QPATHTOF(data\sounds\ah64_trotor_ext), 0, 1, 0 };
+                    sound[] = { QPATHTOF(data\sounds\ah64_trotor_ext),0,1,0 };
                     frequency = 1;
                     volume = 0;
-                    cone[] = {0.7, 1.3, 1, 0};
+                    cone[] = { 0.7, 1.3, 1, 0 };
                 };
             };
         };
         weapons[] = { "CUP_weapon_mastersafe", "CMFlareLauncher" };
         magazines[] = { "168Rnd_CMFlare_Chaff_Magazine" };
-        class Turrets: Turrets {
-            class MainTurret: MainTurret {
-                #include "MFDGunner.hpp"
+        class Turrets : Turrets {
+            class MainTurret : MainTurret {
+#include "MFDGunner.hpp"
                 turretInfoType = "RscOptics_GENERAL_FLIR";
                 ace_hellfire_addLaserDesignator = 1;
-                ace_fcs_Enabled = 0;
-                discretedistance[] = {100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000};
+                discretedistance[] = { 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000 };
                 discretedistanceinitindex = 4;
                 initElev = 0;
                 minElev = -60;
@@ -215,20 +214,21 @@ class CfgVehicles {
                 gunnerGetInAction = "pilot_Heli_Light_02_Enter";
                 gunnerGetOutAction = "pilot_Heli_Light_02_Exit";
                 memoryPointGunnerOptics = "gunnerview";
-                canEject = 1;
-                showAllTargets = 4;
-                showHMD = 1;
-                allowTabLock = 1;
-                isCopilot = 1;
-                primaryGunner = 1;
-                pilotOpticsShowCursor = 1;
-                gunnerOpticsShowCursor = 1;
-                turretOpticsShowCursor = 1;
-                turretCanSee = "1 + 2 + 4 + 8 + 16";
-                showCrewAim = "1+2";
-                enableManualFire = 1;
-                gunnerUsesPilotView = 1;
-                commanderUsesPilotView = 1;
+                // canEject = 1;
+                // showAllTargets = 4;
+                // showHMD = 1;
+                // allowTabLock = 0;
+                // isCopilot = 1;
+                // primaryGunner = 1;
+                // stabilizedInAxes = 3;
+                // pilotOpticsShowCursor = 0;
+                // gunnerOpticsShowCursor = 0;
+                // turretOpticsShowCursor = 0;
+                // turretCanSee = "1 + 2 + 4 + 8 + 16";
+                // showCrewAim = 0;
+                // enableManualFire = 1;
+                // gunnerUsesPilotView = 1;
+                // commanderUsesPilotView = 1;
                 class OpticsIn {
                     class WideNGS {
                         opticsDisplayName = "WNGS";
@@ -242,43 +242,42 @@ class CfgVehicles {
                         minFov = 0.466;
                         maxFov = 0.466;
                         visionMode[] = { "Normal", "NVG", "Ti" };
-                        thermalMode[] = {0, 1};
-                        gunnerOpticsColor[] = {0, 0, 0, 1};
+                        thermalMode[] = { 0, 1 };
+                        gunnerOpticsColor[] = { 0, 0, 0, 1 };
                         gunnerOpticsEffect[] = { "TankCommanderOptics1" };
                         gunnerOpticsModel = "CUP\AirVehicles\CUP_AirVehicles_AH64\gunnerOptics_ah64.p3d";
                         opticsPPEffects[] = { "OpticsCHAbera2", "OpticsBlur2" };
                         directionStabilized = 0;
                     };
-                    class Wide: WideNGS {
+                    class Wide : WideNGS {
                         opticsDisplayName = "W";
                         initFov = 0.466;
                         minFov = 0.466;
                         maxFov = 0.466;
                         gunnerOpticsModel = "CUP\AirVehicles\CUP_AirVehicles_AH64\gunnerOptics_ah64.p3d";
                         directionStabilized = 1;
-                        stabilizedInAxes = 4;
+                        horizontallyStabilized = 1;
+                        stabilizedInAxes = 3;
                     };
-                    class WideL: Wide {
+                    class WideL : Wide {
                         opticsDisplayName = "WL";
                         initFov = 0.094;
                         minFov = 0.094;
                         maxFov = 0.094;
                         gunnerOpticsModel = "CUP\AirVehicles\CUP_AirVehicles_AH64\gunnerOptics_ah64.p3d";
                     };
-                    class Medium: Wide {
+                    class Medium : Wide {
                         opticsDisplayName = "M";
                         initFov = 0.019;
                         minFov = 0.019;
                         maxFov = 0.019;
                         gunnerOpticsModel = "CUP\AirVehicles\CUP_AirVehicles_AH64\gunnerOptics_ah64.p3d";
                     };
-                    class Narrow: Wide {
+                    class Narrow : Wide {
                         opticsDisplayName = "N";
                         initFov = 0.006;
                         minFov = 0.006;
                         maxFov = 0.006;
-                        directionStabilized = 1;
-                        horizontallyStabilized = 1;
                         gunnerOpticsModel = "CUP\AirVehicles\CUP_AirVehicles_AH64\gunnerOptics_ah64.p3d";
                     };
                 };
@@ -299,7 +298,7 @@ class CfgVehicles {
                         directionStabilized = 0;
                     };
                 };
-                class VehicleSystemsDisplayManagerComponentLeft: DefaultVehicleSystemsDisplayManagerLeft {
+                class VehicleSystemsDisplayManagerComponentLeft : DefaultVehicleSystemsDisplayManagerLeft {
                     defaultDisplay = "EmptyDisplay";
                     class Components {
                         class MissileDisplay {
@@ -328,7 +327,7 @@ class CfgVehicles {
                         };
                     };
                 };
-                class VehicleSystemsDisplayManagerComponentRight: DefaultVehicleSystemsDisplayManagerRight {
+                class VehicleSystemsDisplayManagerComponentRight : DefaultVehicleSystemsDisplayManagerRight {
                     defaultDisplay = "SensorsDisplay";
                     class Components {
                         class MissileDisplay {
@@ -359,7 +358,7 @@ class CfgVehicles {
                 };
                 class SensorsManagerComponent {
                     class Components {
-                        class ActiveRadarComponent: SensorTemplateActiveRadar {
+                        class ActiveRadarComponent : SensorTemplateActiveRadar {
                             class AirTarget {
                                 maxRange = 8000;
                                 minRange = 8000;
@@ -380,7 +379,7 @@ class CfgVehicles {
                             minSpeedThreshold = 0;
                             maxSpeedThreshold = 24;
                         };
-                        class IRSensorComponent: SensorTemplateIR {
+                        class IRSensorComponent : SensorTemplateIR {
                             class AirTarget {
                                 maxRange = 8000;
                                 minRange = 50;
@@ -399,7 +398,7 @@ class CfgVehicles {
                             angleRangeVertical = 60;
                             maxTrackableSpeed = 110;
                         };
-                        class VisualSensorComponent: SensorTemplateVisual {
+                        class VisualSensorComponent : SensorTemplateVisual {
                             class AirTarget {
                                 maxRange = 8000;
                                 minRange = 50;
@@ -418,8 +417,8 @@ class CfgVehicles {
                             angleRangeVertical = 60;
                             maxTrackableSpeed = 110;
                         };
-                        class PassiveSensorComponent: SensorTemplatePassiveRadar {};
-                        class NVSensorComponent: SensorTemplateNV {
+                        class PassiveSensorComponent : SensorTemplatePassiveRadar {};
+                        class NVSensorComponent : SensorTemplateNV {
                             class AirTarget {
                                 maxRange = 2000;
                                 minRange = 50;
@@ -438,7 +437,7 @@ class CfgVehicles {
                             angleRangeVertical = 60;
                             maxTrackableSpeed = 110;
                         };
-                        class LaserSensorComponent: SensorTemplateLaser {
+                        class LaserSensorComponent : SensorTemplateLaser {
                             class AirTarget {
                                 maxRange = 8000;
                                 minRange = 500;
@@ -457,11 +456,11 @@ class CfgVehicles {
                             angleRangeVertical = 180;
                             maxTrackableSpeed = 110;
                         };
-                        class DataLinkSensorComponent: SensorTemplateDataLink {};
+                        class DataLinkSensorComponent : SensorTemplateDataLink {};
                     };
                 };
             };
-            class CargoTurret_01: CargoTurret {
+            class CargoTurret_01 : CargoTurret {
                 gunnerAction = "passenger_bench_1";
                 gunnerCompartments = "";
                 memoryPointsGetInGunner = "pos cargo right";
@@ -487,7 +486,7 @@ class CfgVehicles {
                 commanding = -2;
                 selectionFireAnim = "";
             };
-            class CargoTurret_02: CargoTurret_01 {
+            class CargoTurret_02 : CargoTurret_01 {
                 memoryPointsGetInGunner = "pos cargo left";
                 memoryPointsGetInGunnerDir = "pos cargo dir left";
                 gunnerName = "Passenger (Left Jumpseat)";
@@ -503,15 +502,15 @@ class CfgVehicles {
         hiddenSelections[] = { "camo1", "id1", "id2", "id3", "decals" };
         unitInfoType = "RscUnitInfoNoSpeed";
         unitInfoTypeLite = "RscUnitInfoNoSpeed";
-        #include "MFDPilot.hpp"
-        class RotorLibHelicopterProperties: RotorLibHelicopterProperties {
+#include "MFDPilot.hpp"
+        class RotorLibHelicopterProperties : RotorLibHelicopterProperties {
             rtd_center = "rtd_center";
             RTDconfig = QPATHTOF(RTD_AH_BAF_attack_01.xml);
         };
         class Reflectors {
             class Middle {
-                color[] = {7000, 7500, 10000};
-                ambient[] = {70, 75, 100};
+                color[] = { 7000, 7500, 10000 };
+                ambient[] = { 70, 75, 100 };
                 intensity = 200;
                 size = 1;
                 innerAngle = 20;
@@ -531,40 +530,40 @@ class CfgVehicles {
                     quadratic = 4;
                 };
             };
-            class Middle_LensBloom: Middle {
+            class Middle_LensBloom : Middle {
                 innerAngle = 170;
                 outerAngle = 180;
                 flareSize = 0.1;
-                class Attenuation: Attenuation {
+                class Attenuation : Attenuation {
                     start = 0;
                     hardLimitStart = 0.05;
                     hardLimitEnd = 0.1;
                 };
             };
         };
-        class HitPoints: HitPoints {
-            class HitHull: HitHull {
+        class HitPoints : HitPoints {
+            class HitHull : HitHull {
                 name = "NEtrup";
                 convexComponent = "NEtrup";
                 visual = "trup";
                 armor = 2;
                 radius = 0.3;
             };
-            class HitAvionics: HitAvionics {
+            class HitAvionics : HitAvionics {
                 name = "elektronika";
                 convexComponent = "elektronika";
                 visual = "elektronika";
                 armor = 2;
                 radius = 0.3;
             };
-            class HitMissiles: HitMissiles {
+            class HitMissiles : HitMissiles {
                 name = "munice";
                 convexComponent = "munice";
                 visual = "munice";
                 armor = 2;
                 radius = 0.3;
             };
-            class HitEngine1: HitEngine1 {
+            class HitEngine1 : HitEngine1 {
                 name = "motor_1";
                 convexComponent = "motor_1";
                 visual = "motor_1";
@@ -573,7 +572,7 @@ class CfgVehicles {
                 radius = 0.3;
                 explosionShielding = 4;
             };
-            class HitEngine2: HitEngine2 {
+            class HitEngine2 : HitEngine2 {
                 name = "motor_2";
                 convexComponent = "motor_2";
                 visual = "motor_2";
@@ -582,7 +581,7 @@ class CfgVehicles {
                 radius = 0.3;
                 explosionShielding = 4;
             };
-            class HitEngine: HitEngine {
+            class HitEngine : HitEngine {
                 name = "";
                 convexComponent = "";
                 minimalHit = 0.09;
@@ -590,7 +589,7 @@ class CfgVehicles {
                 radius = 0.3;
                 explosionShielding = 4;
             };
-            class HitHRotor: HitHRotor {
+            class HitHRotor : HitHRotor {
                 name = "velka vrtule";
                 convexComponent = "velka vrtule";
                 visual = "velka vrtule staticka";
@@ -599,7 +598,7 @@ class CfgVehicles {
                 minimalHit = 0.09;
                 explosionShielding = 2.5;
             };
-            class HitVRotor: HitVRotor {
+            class HitVRotor : HitVRotor {
                 name = "mala vrtule";
                 convexComponent = "mala vrtule";
                 visual = "mala vrtule staticka";
@@ -608,47 +607,47 @@ class CfgVehicles {
                 minimalHit = 0.05;
                 explosionShielding = 6;
             };
-            class HitGear: HitGear {
+            class HitGear : HitGear {
                 name = "gear";
                 radius = 0.3;
             };
-            class HitFuel: HitFuel {
+            class HitFuel : HitFuel {
                 name = "fuel";
                 armor = 1;
                 radius = 0.25;
             };
-            class HitGlass1: HitGlass1 {
+            class HitGlass1 : HitGlass1 {
                 radius = 0.25;
                 armor = 0.5;
             };
-            class HitGlass2: HitGlass2 {
+            class HitGlass2 : HitGlass2 {
                 radius = 0.25;
                 armor = 0.5;
             };
-            class HitGlass3: HitGlass3 {
+            class HitGlass3 : HitGlass3 {
                 radius = 0.3;
                 armor = 0.5;
             };
-            class HitGlass4: HitGlass4 {
+            class HitGlass4 : HitGlass4 {
                 radius = 0.3;
                 armor = 0.5;
             };
-            class HitGlass5: HitGlass5 {
+            class HitGlass5 : HitGlass5 {
                 radius = 0.4;
                 armor = 3;
             };
-            class HitGlass6: HitGlass6 {
+            class HitGlass6 : HitGlass6 {
                 radius = 0.4;
                 armor = 3;
             };
         };
-        class AnimationSources: AnimationSources {
-            class Muzzle_flash: Muzzle_flash {
+        class AnimationSources : AnimationSources {
+            class Muzzle_flash : Muzzle_flash {
                 weapon = "CUP_Vacannon_M230_veh";
             };
         };
-        dammageHalf[] = { QPATHTOF(data\AH64D_mfd_normal_co.paa), QPATHTOF(data\AH64D_mfd_malfc_co.paa) };
-        dammageFull[] = { QPATHTOF(data\AH64D_mfd_normal_co.paa), QPATHTOF(data\AH64D_mfd_malfc_co.paa) };
+        dammageHalf[] = { QPATHTOF(data\AH64D_mfd_normal_co.paa),QPATHTOF(data\AH64D_mfd_malfc_co.paa) };
+        dammageFull[] = { QPATHTOF(data\AH64D_mfd_normal_co.paa),QPATHTOF(data\AH64D_mfd_malfc_co.paa) };
         class Damage {
             tex[] = {};
             mat[] = {
@@ -675,7 +674,7 @@ class CfgVehicles {
                 QPATHTO_R(data\default_destruct.rvmat)
             };
         };
-        class ViewPilot: ViewPilot {
+        class ViewPilot : ViewPilot {
             initAngleX = 0;
             minAngleX = -60;
             maxAngleX = +60;
@@ -689,7 +688,7 @@ class CfgVehicles {
             gunnerOpticsModel = "";
             gunnerOpticsEffect[] = {};
         };
-        class ViewOptics: ViewOptics {
+        class ViewOptics : ViewOptics {
             initFov = 0.75;
             minFov = 0.25;
             maxFov = 1.25;
@@ -700,8 +699,8 @@ class CfgVehicles {
         class RenderTargets {};
         class MarkerLights {
             class PositionRed {
-                color[] = {0.8, 0, 0};
-                ambient[] = {0.08, 0, 0};
+                color[] = { 0.8, 0, 0 };
+                ambient[] = { 0.08, 0, 0 };
                 intensity = 75;
                 name = "cerveny pozicni";
                 drawLight = 1;
@@ -720,30 +719,30 @@ class CfgVehicles {
                     hardLimitEnd = 1;
                 };
             };
-            class PositionGreen: PositionRed {
-                color[] = {0, 0.8, 0};
-                ambient[] = {0, 0.08, 0};
+            class PositionGreen : PositionRed {
+                color[] = { 0, 0.8, 0 };
+                ambient[] = { 0, 0.08, 0 };
                 name = "zeleny pozicni";
             };
-            class PositionWhite: PositionRed {
-                color[] = {1, 1, 1};
-                ambient[] = {0.1, 0.1, 0.1};
+            class PositionWhite : PositionRed {
+                color[] = { 1, 1, 1 };
+                ambient[] = { 0.1, 0.1, 0.1 };
                 name = "bily pozicni";
             };
-            class CollisionWhite: PositionRed {
-                color[] = {1, 1, 1};
-                ambient[] = {0.1, 0.1, 0.1};
+            class CollisionWhite : PositionRed {
+                color[] = { 1, 1, 1 };
+                ambient[] = { 0.1, 0.1, 0.1 };
                 intensity = 10000;
                 name = "Strobe_left";
                 drawLightSize = 0.2;
                 drawLightCenterSize = 0.08;
                 blinking = 1;
-                blinkingPattern[] = {0.1, 2.1};
+                blinkingPattern[] = { 0.1, 2.1 };
                 blinkingPatternGuarantee = 0;
             };
-            class CollisionRed: CollisionWhite {
+            class CollisionRed : CollisionWhite {
                 name = "Strobe_right";
-                blinkingPattern[] = {0.1, 1.9};
+                blinkingPattern[] = { 0.1, 1.9 };
             };
         };
         class UserActions {
@@ -754,8 +753,8 @@ class CfgVehicles {
                 priority = 4;
                 onlyForPlayer = 0;
                 hideOnUse = 0;
-                condition = QUOTE((player isEqualTo (driver this) || player isEqualTo (gunner this)) && {(this getVariable [ARR_2(QQGVAR(jammerMode),0)]) != 1});
-                statement = QUOTE(this setVariable [ARR_3(QQGVAR(jammerMode),1,true)]);
+                condition = QUOTE((player isEqualTo(driver this) || player isEqualTo(gunner this)) && { (this getVariable[ARR_2(QQGVAR(jammerMode),0)]) != 1 });
+                statement = QUOTE(this setVariable[ARR_3(QQGVAR(jammerMode),1,true)]);
             };
             class jammerAuto {
                 displayName = "<t color = '#217cd1'>Jammer Auto</t>";
@@ -764,8 +763,8 @@ class CfgVehicles {
                 priority = 4;
                 onlyForPlayer = 0;
                 hideOnUse = 0;
-                condition = QUOTE((player isEqualTo (driver this) || player isEqualTo (gunner this)) && {(this getVariable [ARR_2(QQGVAR(jammerMode),0)]) != 2});
-                statement = QUOTE(this setVariable [ARR_3(QQGVAR(jammerMode),2,true)]);
+                condition = QUOTE((player isEqualTo(driver this) || player isEqualTo(gunner this)) && { (this getVariable[ARR_2(QQGVAR(jammerMode),0)]) != 2 });
+                statement = QUOTE(this setVariable[ARR_3(QQGVAR(jammerMode),2,true)]);
             };
             class jammerOff {
                 displayName = "<t color = '#217cd1'>Jammer Off</t>";
@@ -774,12 +773,12 @@ class CfgVehicles {
                 priority = 4;
                 onlyForPlayer = 0;
                 hideOnUse = 0;
-                condition = QUOTE((player isEqualTo (driver this) || player isEqualTo (gunner this)) && {(this getVariable [ARR_2(QQGVAR(jammerMode),0)]) != 0});
-                statement = QUOTE(this setVariable [ARR_3(QQGVAR(jammerMode),0,true)]);
+                condition = QUOTE((player isEqualTo(driver this) || player isEqualTo(gunner this)) && { (this getVariable[ARR_2(QQGVAR(jammerMode),0)]) != 0 });
+                statement = QUOTE(this setVariable[ARR_3(QQGVAR(jammerMode),0,true)]);
             };
         };
-        class Components: Components {
-            class VehicleSystemsDisplayManagerComponentLeft: DefaultVehicleSystemsDisplayManagerLeft {
+        class Components : Components {
+            class VehicleSystemsDisplayManagerComponentLeft : DefaultVehicleSystemsDisplayManagerLeft {
                 defaultDisplay = "EmptyDisplay";
                 class Components {
                     class MissileDisplay {
@@ -808,7 +807,7 @@ class CfgVehicles {
                     };
                 };
             };
-            class VehicleSystemsDisplayManagerComponentRight: DefaultVehicleSystemsDisplayManagerRight {
+            class VehicleSystemsDisplayManagerComponentRight : DefaultVehicleSystemsDisplayManagerRight {
                 defaultDisplay = "SensorsDisplay";
                 class Components {
                     class MissileDisplay {
@@ -839,7 +838,7 @@ class CfgVehicles {
             };
             class SensorsManagerComponent {
                 class Components {
-                    class ActiveRadarComponent: SensorTemplateActiveRadar {
+                    class ActiveRadarComponent : SensorTemplateActiveRadar {
                         class AirTarget {
                             maxRange = 8000;
                             minRange = 8000;
@@ -860,7 +859,7 @@ class CfgVehicles {
                         minSpeedThreshold = 0;
                         maxSpeedThreshold = 24;
                     };
-                    class IRSensorComponent: SensorTemplateIR {
+                    class IRSensorComponent : SensorTemplateIR {
                         class AirTarget {
                             maxRange = 8000;
                             minRange = 50;
@@ -879,7 +878,7 @@ class CfgVehicles {
                         angleRangeVertical = 60;
                         maxTrackableSpeed = 110;
                     };
-                    class VisualSensorComponent: SensorTemplateVisual {
+                    class VisualSensorComponent : SensorTemplateVisual {
                         class AirTarget {
                             maxRange = 8000;
                             minRange = 50;
@@ -898,8 +897,8 @@ class CfgVehicles {
                         angleRangeVertical = 60;
                         maxTrackableSpeed = 110;
                     };
-                    class PassiveSensorComponent: SensorTemplatePassiveRadar {};
-                    class NVSensorComponent: SensorTemplateNV {
+                    class PassiveSensorComponent : SensorTemplatePassiveRadar {};
+                    class NVSensorComponent : SensorTemplateNV {
                         class AirTarget {
                             maxRange = 2000;
                             minRange = 50;
@@ -918,7 +917,7 @@ class CfgVehicles {
                         angleRangeVertical = 60;
                         maxTrackableSpeed = 110;
                     };
-                    class LaserSensorComponent: SensorTemplateLaser {
+                    class LaserSensorComponent : SensorTemplateLaser {
                         class AirTarget {
                             maxRange = 8000;
                             minRange = 500;
@@ -937,7 +936,7 @@ class CfgVehicles {
                         angleRangeVertical = 180;
                         maxTrackableSpeed = 110;
                     };
-                    class DataLinkSensorComponent: SensorTemplateDataLink {};
+                    class DataLinkSensorComponent : SensorTemplateDataLink {};
                 };
             };
             class TransportPylonsComponent {
@@ -951,18 +950,18 @@ class CfgVehicles {
                         UIposition[] = { 0.13, 0.3 };
                         turret[] = { 0 };
                     };
-                    class PylonLeft2: PylonLeft1 {
+                    class PylonLeft2 : PylonLeft1 {
                         attachment = "PylonRack_4Rnd_ACE_Hellfire_AGM114N";
                         priority = 4;
                         hardpoints[] = { "B_CRV7", "B_HELLFIRE" };
                         UIposition[] = { 0.19, 0.35 };
                     };
-                    class PylonRight2: PylonLeft2 {
+                    class PylonRight2 : PylonLeft2 {
                         attachment = "PylonRack_4Rnd_ACE_Hellfire_AGM114L";
                         mirroredMissilePos = 2;
                         UIposition[] = { 0.43, 0.35 };
                     };
-                    class PylonRight1: PylonLeft1 {
+                    class PylonRight1 : PylonLeft1 {
                         mirroredMissilePos = 1;
                         UIposition[] = { 0.50, 0.3 };
                     };
@@ -994,12 +993,12 @@ class CfgVehicles {
         ace_cookoff_cookoffSelections[] = { "palivo" };
         INVENTORY_AIRCRAFT
     };
-    class UKSF_Apache_AH1: UKSF_Apache_base {
+    class UKSF_Apache_AH1 : UKSF_Apache_base {
         scope = 2;
         scopeCurator = 2;
         displayName = "Apache AH1";
         editorPreview = QPATHTOEF(common,data\previews\UKSF_Apache_AH1.jpg);
-        hiddenSelectionsTextures[] = { QPATHTOF(data\ah1_baf_body_co.paa), "", "", "", QPATHTOF(data\decals_ca.paa) };
+        hiddenSelectionsTextures[] = { QPATHTOF(data\ah1_baf_body_co.paa),"","","",QPATHTOF(data\decals_ca.paa) };
         class TransportBackpacks {};
     };
 };

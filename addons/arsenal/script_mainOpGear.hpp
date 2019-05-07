@@ -343,6 +343,7 @@
     "RKSL_optic_PMII_525", \
     "RKSL_optic_PMII_525_des", \
     "RKSL_optic_PMII_525_wdl", \
+    "RKSL_optic_PMII_525_NV", \
     "SMA_ANPEQ15_BLK", \
     "SMA_ANPEQ15_TAN", \
     "SMA_ANPEQ15_TOP_417BLK", \

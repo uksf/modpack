@@ -2,8 +2,13 @@ class Mode_SemiAuto;
 class Mode_Burst;
 class Mode_FullAuto;
 class asdg_MuzzleSlot;
-class asdg_OpticRail1913;
 class asdg_SlotInfo;
+class asdg_OpticRail;
+class asdg_OpticRail1913: asdg_OpticRail {
+    class compatibleItems {
+        RKSL_optic_PMII_525_NV = 1;
+    };
+};
 class asdg_FrontSideRail : asdg_SlotInfo {
     class compatibleItems {
         UK3CB_BAF_LLM_Flashlight_Far_Black = 1;
@@ -159,6 +164,43 @@ class CfgWeapons {
             class OpticsModes {
                 class Snip {
                     visionMode[] = {};
+                };
+            };
+        };
+    };
+    class RKSL_optic_PMII_525 : ItemCore {
+        class ItemInfo;
+    };
+    class RKSL_optic_PMII_525_NV : RKSL_optic_PMII_525 {
+        displayName = "S+B 5-25x56 PM II (NV)";
+        class ItemInfo : ItemInfo {
+            opticType = 2;
+            mass = 30;
+            class OpticsModes {
+                class Snip {
+                    opticsID = 1;
+                    opticsDisplayName = "WFOV";
+                    useModelOptics = 1;
+                    opticsPPEffects[] = { "OpticsCHAbera1", "OpticsBlur1" };
+                    opticsZoomMin = 0.01;
+                    opticsZoomMax = 0.025;
+                    opticsZoomInit = 0.05;
+                    discreteDistance[] = { 100 };
+                    distanceZoomMin = 300;
+                    distanceZoomMax = 2300;
+                    discretefov[] = { 0.05, 0.025, 0.0167, 0.0125, 0.01 };
+                    discreteInitIndex = 0;
+                    memoryPointCamera = "opticView";
+                    modelOptics[] = { "\RKSL_PM_525\Optic\RKSL_Mildot-5x", "\RKSL_PM_525\Optic\RKSL_Mildot-10x", "\RKSL_PM_525\Optic\RKSL_Mildot-15x", "\RKSL_PM_525\Optic\RKSL_Mildot-20x", "\RKSL_PM_525\Optic\RKSL_Mildot-25x" };
+                    visionMode[] = { "Normal", "NVG" };
+                    opticsFlare = 1;
+                    opticsDisablePeripherialVision = 1;
+                    cameraDir = "";
+                    discreteDistanceInitIndex = 0;
+                };
+                class Snip_Illum : Snip {
+                    opticsID = 2;
+                    modelOptics[] = { "\RKSL_PM_525\Optic\RKSL_Mildot-5x_Illum", "\RKSL_PM_525\Optic\RKSL_Mildot-10x_Illum", "\RKSL_PM_525\Optic\RKSL_Mildot-15x_Illum", "\RKSL_PM_525\Optic\RKSL_Mildot-20x_Illum", "\RKSL_PM_525\Optic\RKSL_Mildot-25x_Illum" };
                 };
             };
         };
@@ -417,8 +459,8 @@ class CfgWeapons {
         };
     };
     class Launcher_Base_F;
-    class launch_NLAW_F: Launcher_Base_F {
-        modes[] = {"Overfly", "Single"};
+    class launch_NLAW_F : Launcher_Base_F {
+        modes[] = { "Overfly", "Single" };
     };
     class UK3CB_BAF_NLAW_Launcher : launch_NLAW_F {
         magazines[] = { "ACE_PreloadedMissileDummy" };
@@ -452,7 +494,7 @@ class CfgWeapons {
     };
     class launch_B_Titan_short_F;
     class UK3CB_BAF_Javelin_Launcher : launch_B_Titan_short_F {
-        modes[] = {"Single","TopDown"};
+        modes[] = { "Single", "TopDown" };
     };
 
     class Default;
@@ -516,6 +558,7 @@ class CfgWeapons {
     class CUP_Vacannon_M230_veh : CannonCore {
         magazines[] = { "CUP_1200Rnd_TE1_Red_Tracer_30x113mm_M789_HEDP_M", "CUP_1200Rnd_TE1_Green_Tracer_30x113mm_M789_HEDP_M", "CUP_1200Rnd_TE1_Yellow_Tracer_30x113mm_M789_HEDP_M", "CUP_1200Rnd_TE1_White_Tracer_30x113mm_M789_HEDP_M" };
         ballisticsComputer = "1 + 2 + 16";
+        canLock = 0;
         reloadTime = 0.096;
         modes[] = { "close", "short", "medium", "far", "manual", "burst_15", "burst_25" };
         cursorAim = "EmptyCursor";
@@ -679,7 +722,7 @@ class CfgWeapons {
     };
 
     class Binocular;
-    class UK3CB_BAF_Soflam_Laserdesignator: Binocular {
+    class UK3CB_BAF_Soflam_Laserdesignator : Binocular {
         distanceZoomMax = 10000;
     };
 

@@ -225,6 +225,7 @@ class CfgAmmo {
         tracerEndTime = 30;
         timeToLive = 30;
         caliber = 4.2;
+        manualControl = 0;
     };
     class M_Titan_AA;
     class UKSF_Dummy_Missile : M_Titan_AA {
