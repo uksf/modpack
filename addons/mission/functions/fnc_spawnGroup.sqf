@@ -27,7 +27,7 @@ missionNamespace setVariable [format [QGVAR(isSpawning_%1), _id], true, true];
 ([_factionName] call FUNC(selectGroup)) params ["_side", "_selectedGroup"];
 if (count _selectedGroup < 1) exitWith { INFO("Invalid group. Exiting") };
 private _group = [_randomSpawn, _side, _selectedGroup] call BIS_fnc_spawnGroup;
-[QEGVAR(common,addObjectsToCurators), [[units _group]]] call CBA_fnc_serverEvent;
+[QEGVAR(common,addObjectsToCurators), [units _group]] call CBA_fnc_serverEvent;
 
 private _area = [_position] call CBA_fnc_getArea;
 private _patrolRadius = (random [(_area select 1), ((_area select 1) + (_area select 2)) / 2, (_area select 2)]) max 50;
