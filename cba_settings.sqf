@@ -373,12 +373,12 @@ force force ace_zeus_revealMines = 0;
 force force ace_zeus_zeusAscension = false;
 force force ace_zeus_zeusBird = false;
 
-// ACEX Uncategorized
+// ACEX Headless
 force force acex_headless_delay = 15;
 force force acex_headless_enabled = true;
 force force acex_headless_endMission = 0;
 force force acex_headless_log = false;
-force force acex_sitting_enable = true;
+force force acex_headless_transferLoadout = 1;
 
 // Achilles - Available Modules
 force force Achilles_var_Achilles_ACE_Heal_Module = false;
@@ -555,6 +555,16 @@ force force dcg_task_enable = true;
 force force dcg_weather_enable = false;
 force force dcg_weather_month = -1;
 force force dcg_weather_time = -1;
+
+// LAxemann's Suppress
+force force L_Suppress_buildup = 1;
+force force L_Suppress_enabled = true;
+force force L_Suppress_flyByEffects = true;
+force force L_Suppress_flyByIntensity = 1;
+force force L_Suppress_halting = true;
+force force L_Suppress_intensity = 1;
+force force L_Suppress_playerSwabEnabled = true;
+force force L_Suppress_recovery = 1;
 
 // UKSF
 force uksf_caching_distance = 750;
