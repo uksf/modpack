@@ -1,5 +1,6 @@
 import os
 import shutil
+import subprocess
 
 DEPLOYMENT_DIRECTORY = "D:\\Dev"
 REPO_DIRECTORY = "C:\\Server\\Modpack"
@@ -21,6 +22,7 @@ if __name__ == '__main__':
     deployment_folder_cfp = os.path.join(DEPLOYMENT_DIRECTORY, "cfp\\release\\@Community_Factions_Project")
     deployment_folder_uksf_dependencies = os.path.join(DEPLOYMENT_DIRECTORY, "modpack\\release\\@uksf_dependencies")
     deployment_folder_intercept = os.path.join(DEPLOYMENT_DIRECTORY, "modpack\\@intercept")
+    
     keys_folder = os.path.join(SERVER_DIRECTORY, "Keys")
 
     # Delete uksf and uksf_ace.
@@ -34,6 +36,31 @@ if __name__ == '__main__':
     shutil.rmtree(repo_folder_cfp, True)
     print("Deleting old @intercept")
     shutil.rmtree(repo_folder_intercept)
+
+    # Find dlls
+    dlls = []
+    for file in os.listdir(deployment_folder_intercept):
+        if (file.endswith(".dll")):
+            dlls.append(os.path.join(deployment_folder_intercept, file))
+    for file in os.listdir(os.path.join(deployment_folder_intercept, "intercept")):
+        if (file.endswith(".dll")):
+            dlls.append(os.path.join(deployment_folder_intercept, "intercept", file))
+    for file in os.listdir(os.path.join(deployment_folder_uksf, "intercept")):
+        if (file.endswith(".dll")):
+            dlls.append(os.path.join(deployment_folder_uksf, "intercept", file))
+            
+
+    # Sign intercept dlls
+    for file in dlls:
+        try:
+            print("\nSigning {}".format(file))
+            print()
+            ret = subprocess.call(["signtool", "sign", "/v", "/f", "D:\\Dev\\certs\\UKSFCert.pfx", "/t", "http://timestamp.comodoca.com/authenticode", file])
+            if ret == 1:
+                raise Exception()
+        except:
+            print("\nFailed to sign {}".format(file))
+            raise
 
     # Move uksf, uksf_ace, and intercept.
     print("Moving new @uksf")
