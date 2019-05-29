@@ -55,7 +55,7 @@ if __name__ == '__main__':
         try:
             print("\nSigning {}".format(file))
             print()
-            ret = subprocess.call(["signtool", "sign", "/v", "/f", "D:\\Dev\\certs\\UKSFCert.pfx", "/t", "http://timestamp.comodoca.com/authenticode", file])
+            ret = subprocess.call(["signtool", "sign", "/v", "/f", "D:\\Dev\\certs\\UKSFCert.pfx", "/t", "http://timestamp.comodoca.com/authenticode", "{}".format(file)])
             if ret == 1:
                 raise Exception()
         except:
