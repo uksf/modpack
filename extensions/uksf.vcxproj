@@ -38,7 +38,6 @@
     <ClCompile Include="src\uksf\common.cpp" />
     <ClCompile Include="src\uksf\main.cpp" />
     <ClCompile Include="src\uksf\modules\data\data.cpp" />
-    <ClCompile Include="src\uksf\modules\data\secret.hpp" />
     <ClCompile Include="src\uksf\network\exception.cpp" />
     <ClCompile Include="src\uksf\network\routeFactories\factory.cpp" />
     <ClCompile Include="src\uksf\network\routeFactories\IFactory.hpp" />
