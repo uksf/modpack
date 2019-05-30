@@ -21,9 +21,9 @@ if __name__ == '__main__':
     deployment_folder_acre = os.path.join(DEPLOYMENT_DIRECTORY, "acre2\\release\\@acre2")
     deployment_folder_cfp = os.path.join(DEPLOYMENT_DIRECTORY, "cfp\\release\\@Community_Factions_Project")
     deployment_folder_uksf_dependencies = os.path.join(DEPLOYMENT_DIRECTORY, "modpack\\release\\@uksf_dependencies")
-    deployment_folder_intercept = os.path.join(DEPLOYMENT_DIRECTORY, "modpack\\@intercept")
-    
+    deployment_folder_intercept = os.path.join(DEPLOYMENT_DIRECTORY, "modpack\\@intercept")    
     keys_folder = os.path.join(SERVER_DIRECTORY, "Keys")
+    signtool = "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.17763.0\\x64\\signtool.exe"
 
     # Delete uksf and uksf_ace.
     print("Deleting old @uksf")
@@ -55,7 +55,7 @@ if __name__ == '__main__':
         try:
             print("\nSigning {}".format(file))
             print()
-            ret = subprocess.call(["signtool", "sign", "/v", "/f", "D:\\Dev\\certs\\UKSFCert.pfx", "/t", "http://timestamp.comodoca.com/authenticode", file])
+            ret = subprocess.call([signtool, "sign", "/v", "/f", "D:\\Dev\\certs\\UKSFCert.pfx", "/t", "http://timestamp.comodoca.com/authenticode", file])
             if ret == 1:
                 raise Exception()
         except:
