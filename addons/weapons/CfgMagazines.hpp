@@ -68,6 +68,7 @@ class CfgMagazines {
         ammo = "ACE_Hellfire_AGM114K_drone";
         model = "\CUP\Weapons\CUP_Weapons_DynamicLoadout\AGM114\CUP_AGM114_dual_drone.p3d";
         count = 2;
+        mass = 170;
         pylonWeapon = "ace_hellfire_launcher_drone";
         hardpoints[] = { "B_HELLFIRE_DRONE" };
     };
@@ -97,6 +98,7 @@ class CfgMagazines {
         ammo = "ACE_Hellfire_AGM114N_drone";
         model = "\CUP\Weapons\CUP_Weapons_DynamicLoadout\AGM114\CUP_AGM114_dual_drone.p3d";
         count = 2;
+        mass = 170;
         pylonWeapon = "ace_hellfire_launcher_drone_N";
         hardpoints[] = { "B_HELLFIRE_DRONE" };
     };
