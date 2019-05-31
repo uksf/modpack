@@ -14,11 +14,43 @@ enableDynamicSimulationSystem true;
 "IsMoving" setDynamicSimulationDistanceCoef 1.5;
 
 if (isServer) then {
-    [{call FUNC(checkGroupsServer)}, 5, []] call cba_fnc_addPerFrameHandler;
+    [{
+        private _groups = allGroups;
+        private _count = count _groups;
+        private _perFrame = ceil (_count / (diag_fps * 5));
+        [{
+            params ["_args", "_idPFH"];
+            _args params ["_groups", "_count", "_perFrame", "_index"];
+            
+            if (_index >= _count) exitWith {
+                [_idPFH] call CBA_fnc_removePerFrameHandler;
+            };
+
+            [_groups select [_index, _perFrame]] call FUNC(checkGroupsServer);
+
+            _args set [3, _index + _perFrame];
+        }, 0, [_groups, _count, _perFrame, 0]] call cba_fnc_addPerFrameHandler;
+    }, 5, []] call cba_fnc_addPerFrameHandler;
 };
 
 if (hasInterface) then {
-    [{call FUNC(checkGroupsClient)}, 1, []] call cba_fnc_addPerFrameHandler;
+    [{
+        private _groups = allGroups;
+        private _count = count _groups;
+        private _perFrame = ceil (_count / diag_fps);
+        [{
+            params ["_args", "_idPFH"];
+            _args params ["_groups", "_count", "_perFrame", "_index"];
+            
+            if (_index >= _count) exitWith {
+                [_idPFH] call CBA_fnc_removePerFrameHandler;
+            };
+
+            [_groups select [_index, _perFrame]] call FUNC(checkGroupsClient);
+
+            _args set [3, _index + _perFrame];
+        }, 0, [_groups, _count, _perFrame, 0]] call cba_fnc_addPerFrameHandler;
+    }, 1, []] call cba_fnc_addPerFrameHandler;
 };
 
 // Debug shizzle
@@ -33,7 +65,7 @@ onEachFrame {
         if (!(isPlayer _x)) then {
             private _colour = [1,0,0,1];
             private _pos = worldToScreen (getPosVisual _x);
-            private _onScreen = ((count _pos) > 0) && {(abs (_pos select 0)) < 1.5} && {(abs (_pos select 1)) < 1.5};
+            private _onScreen = (count _pos) > 0 && {_pos#0 > uksf_common_bufferedSafeX && _pos#0 < uksf_common_bufferedSafeW && _pos#1 > uksf_common_bufferedSafeY && _pos#1 < uksf_common_bufferedSafeH};
             if (_onScreen) then {
                 _colour = [1,1,0,1];
                 private _distanceMultiplier = (200 + (4 * 200 * (((currentVisionMode _player) - 1) max 0)));
@@ -69,7 +101,7 @@ onEachFrame {
         if (!(isPlayer _unit)) then {
             private _colour = [1,0,0,1];
             private _pos = worldToScreen (getPos _unit);
-            private _onScreen = ((count _pos) > 0) && {(abs (_pos select 0)) < 1.5} && {(abs (_pos select 1)) < 1.5};
+            private _onScreen = (count _pos) > 0 && {_pos#0 > uksf_common_bufferedSafeX && _pos#0 < uksf_common_bufferedSafeW && _pos#1 > uksf_common_bufferedSafeY && _pos#1 < uksf_common_bufferedSafeH};
             if (_onScreen) then {
                 _colour = [1,1,0,1];
                 private _distance = (getObjectViewDistance select 0) min (1000 + ((200 + (4 * 200 * ((currentVisionMode _player) - 1) max 0)) * ((call CBA_fnc_getFov) select 1)));
@@ -111,4 +143,29 @@ onEachFrame {
         };
     } count allUnits;
 };
+                if ((abs (_pos select 0)) < (safeZoneW - abs safeZoneX) && (abs (_pos select 1)) < (safeZoneH - abs safeZoneY)) then {
+                    _colour = [0,1,0,1];
+                };
+onEachFrame { 
+    { 
+        private _unit = leader _x; 
+        if (!(isPlayer _unit)) then { 
+            private _colour = [1,0,0,1];               
+            private _pos = worldToScreen (getPosWorld _unit);
+            if (!(_pos isEqualTo [])) then {
+                private _text = format ["%1,%2", _pos select 0, _pos select 1];
+                if (_pos#0 > uksf_common_bufferedSafeX && _pos#0 < uksf_common_bufferedSafeW && _pos#1 > uksf_common_bufferedSafeY && _pos#1 < uksf_common_bufferedSafeH) then {
+                    _colour = [0,1,0,1];
+                };
+                drawIcon3D ["\a3\ui_f_curator\data\logos\arma3_curator_eye_32_ca.paa", _colour, getPos _unit, 0.5, 0.5, 0, _text, 0, 0.025, "TahomaB", "center", true];
+            }; 
+        };
+    } count allGroups;
+    drawLine3D [screenToWorld [safeZoneX, safeZoneY], screenToWorld [safeZoneX + safeZoneW, safeZoneY], [0,0,1,1]];
+    drawLine3D [screenToWorld [safeZoneX + safeZoneW, safeZoneY], screenToWorld [safeZoneX + safeZoneW, safeZoneY + safeZoneH], [0,0,1,1]];
+    drawLine3D [screenToWorld [safeZoneX + safeZoneW, safeZoneY + safeZoneH], screenToWorld [safeZoneX, safeZoneY + safeZoneH], [0,0,1,1]];
+    drawLine3D [screenToWorld [safeZoneX, safeZoneY + safeZoneH], screenToWorld [safeZoneX, safeZoneY], [0,0,1,1]];
+};
 */
+
+

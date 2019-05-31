@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
     Author:
         Tim Beswick
@@ -6,12 +7,12 @@
         Checks groups to cache for server
 
     Parameter(s):
-        None
+        0: Groups to check <ARRAY>
 
     Return Value:
         None
 */
-#include "script_component.hpp"
+params [["_groups", []]];
 
 {
     private _leader = (leader _x);
@@ -26,4 +27,4 @@
         [QGVAR(setDynamicSimulation), [_x, true]] call CBA_fnc_globalEvent;
     };
     false
-} count allGroups;
+} count _groups;

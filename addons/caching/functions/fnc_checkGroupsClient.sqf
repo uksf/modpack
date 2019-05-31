@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
     Author:
         Tim Beswick
@@ -6,12 +7,12 @@
         Checks groups to cache for client using LOS checks
 
     Parameter(s):
-        None
+        0: Groups to check <ARRAY>
 
     Return Value:
         None
 */
-#include "script_component.hpp"
+params [["_groups", []]];
 
 private _player = if (!(isNull (getConnectedUAV player))) then {
     (gunner (getConnectedUAV player))
@@ -40,4 +41,4 @@ private _objectViewDistance = (getObjectViewDistance select 0);
         _leader setVariable [QGVAR(time), diag_tickTime, true];
     };
     false
-} count allGroups;
+} count _groups;

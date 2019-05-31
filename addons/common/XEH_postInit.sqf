@@ -1,7 +1,6 @@
 #include "script_component.hpp"
 #include "keybinds.sqf"
 
-
 // Set server object
 if (isServer) then {
     GVAR(server) = player;
@@ -26,6 +25,12 @@ if (hasInterface) then {
         params ["", "_mapOn"];
         [_mapOn] call FUNC(mapPosition);
     }] call CBA_fnc_addPlayerEventHandler;
+
+    private _buffer = safeZoneW / 10;
+    GVAR(bufferedSafeX) = safeZoneX - _buffer;
+    GVAR(bufferedSafeW) = safeZoneX + safeZoneW + _buffer;
+    GVAR(bufferedSafeY) = safeZoneY - _buffer;
+    GVAR(bufferedSafeH) = safeZoneY + safeZoneH + _buffer;
 };
 
 if (isServer) then {

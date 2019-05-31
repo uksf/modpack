@@ -21,16 +21,20 @@
 params [["_target", objNull, [objNull]], ["_source", objNull, [objNull]], ["_zoomCheck", false], ["_groupCheck", false]];
 
 private _pos = worldToScreen (getPosWorld _target);
-private _los = ((count _pos) > 0) && {(abs (_pos select 0)) < 1.5} && {(abs (_pos select 1)) < 1.5} &&
-    {([_source, "VIEW", (vehicle _source)] checkVisibility [eyePos _source, eyePos _target]) > 0};
+private _los = ((count _pos) > 0 &&
+                {_pos#0 > GVAR(bufferedSafeX) && _pos#0 < GVAR(bufferedSafeW) && _pos#1 > GVAR(bufferedSafeY) && _pos#1 < GVAR(bufferedSafeH) &&
+                {([_source, "VIEW", (vehicle _source)] checkVisibility [eyePos _source, eyePos _target]) > 0}});
 
 if (!_los && {_groupCheck}) then {
     _los = (({
         private _pos = worldToScreen (getPosWorld _x);
-        if (
-            ((count _pos) > 0) && {(abs (_pos select 0)) < 1.5} && {(abs (_pos select 1)) < 1.5} &&
-            {([_source, "VIEW", (vehicle _source)] checkVisibility [eyePos _source, eyePos _x]) > 0}
-        ) exitWith {_target = _x; 1};
+        if ((count _pos) > 0 &&
+            {_pos#0 > GVAR(bufferedSafeX) && _pos#0 < GVAR(bufferedSafeW) && _pos#1 > GVAR(bufferedSafeY) && _pos#1 < GVAR(bufferedSafeH) &&
+            {([_source, "VIEW", (vehicle _source)] checkVisibility [eyePos _source, eyePos _x]) > 0}}
+        ) exitWith {
+            _target = _x;
+            1
+        };
     } count ((units (group _target)) - [_target])) > 0);
 };
 
