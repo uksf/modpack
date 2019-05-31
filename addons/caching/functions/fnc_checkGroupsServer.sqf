@@ -22,9 +22,10 @@ params [["_groups", []]];
         {!(isPlayer _leader)} && // 0.0148ms
         {!(_x getVariable [QGVAR(excluded), false])} && // 0.0177ms
         {!((vehicle _leader) isKindOf "Air")} && // 0.0198ms
-        {((_leader getVariable [QGVAR(time), 0]) + 15) < diag_tickTime} // 0.0237ms
+        {((_leader getVariable [QGVAR(time), 0]) + 17) < diag_tickTime} // 0.0237ms
     ) then {
         [QGVAR(setDynamicSimulation), [_x, true]] call CBA_fnc_globalEvent;
+        [QGVAR(hideObjectGlobal), [_x, true]] call CBA_fnc_localEvent;
     };
     false
 } count _groups;

@@ -29,9 +29,14 @@ if (dynamicSimulationEnabled _group) then {
     if (!(isNull (objectParent (leader _group)))) then {
         {
             _x enableSimulationGlobal true;
+            _x hideObjectGlobal false;
             (group _x) setVariable [QGVAR(excluded), true, true];
             false
         } count (crew (objectParent (leader _group)));
     };
-    {_x enableSimulationGlobal true; false} count (units _group);
+    {
+        _x enableSimulationGlobal true;
+        _x hideObjectGlobal false;
+        false
+    } count (units _group);
 };
