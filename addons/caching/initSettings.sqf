@@ -10,7 +10,7 @@
 [
     QGVAR(distance),
     "SLIDER",
-    ["Caching Distance", "Sets distance in metres from players AI will cache/uncache"],
+    ["Caching Distance", "Sets distance from players in metres within which AI will always uncache"],
     "UKSF",
     [300, 2000, 750, 0],
     1
