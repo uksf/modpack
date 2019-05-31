@@ -18,9 +18,9 @@ params [["_groups", []]];
     private _leader = (leader _x);
     if (
         !(dynamicSimulationEnabled _x) && // 0.0140ms
-        {!(isObjectHidden _leader)} &&
         {!(isPlayer _leader)} && // 0.0148ms
         {!(_x getVariable [QGVAR(excluded), false])} && // 0.0177ms
+        {!(isObjectHidden _leader)} &&
         {!((vehicle _leader) isKindOf "Air")} && // 0.0198ms
         {((_leader getVariable [QGVAR(time), 0]) + 17) < diag_tickTime} // 0.0237ms
     ) then {
