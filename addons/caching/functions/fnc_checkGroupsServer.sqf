@@ -15,17 +15,19 @@
 params [["_groups", []]];
 
 {
-    private _leader = (leader _x);
-    if (
-        !(dynamicSimulationEnabled _x) && // 0.0140ms
-        {!(isPlayer _leader)} && // 0.0148ms
-        {!(_x getVariable [QGVAR(excluded), false])} && // 0.0177ms
-        {!(isObjectHidden _leader)} &&
-        {!((vehicle _leader) isKindOf "Air")} && // 0.0198ms
-        {((_leader getVariable [QGVAR(time), 0]) + 17) < diag_tickTime} // 0.0237ms
-    ) then {
-        [QGVAR(setDynamicSimulation), [_x, true]] call CBA_fnc_globalEvent;
-        [QGVAR(hideObjectGlobal), [_x, true]] call CBA_fnc_localEvent;
+    private _leader = leader _x;
+    if (dynamicSimulationEnabled _x) then {
+        [QGVAR(hideObjectGlobal), [_x, !(simulationEnabled (leader _x))]] call CBA_fnc_localEvent;
+    } else {
+        if (
+            !(isPlayer _leader) &&
+            {!(_x getVariable [QGVAR(excluded), false])} &&
+            {!(isObjectHidden _leader)} &&
+            {!((vehicle _leader) isKindOf "Air")} &&
+            {((_leader getVariable [QGVAR(time), 0]) + 15) < diag_tickTime}
+        ) then {
+            [QGVAR(setDynamicSimulation), [_x, true]] call CBA_fnc_globalEvent;
+            [QGVAR(hideObjectGlobal), [_x, true]] call CBA_fnc_localEvent;
+        };
     };
-    false
-} count _groups;
+} forEach _groups;

@@ -22,7 +22,7 @@ if (isServer) then {
             params ["_args", "_idPFH"];
             _args params ["_groups", "_count", "_perFrame", "_index"];
             
-            if (_index >= _count) exitWith {
+            if (_index > _count) exitWith {
                 [_idPFH] call CBA_fnc_removePerFrameHandler;
             };
 
@@ -42,7 +42,7 @@ if (hasInterface) then {
             params ["_args", "_idPFH"];
             _args params ["_groups", "_count", "_perFrame", "_index"];
             
-            if (_index >= _count) exitWith {
+            if (_index > _count) exitWith {
                 [_idPFH] call CBA_fnc_removePerFrameHandler;
             };
 
