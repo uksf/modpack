@@ -1,4 +1,6 @@
 #include "script_component.hpp"
+#define SERVER_DELAY 3
+#define CLIENT_DELAY 1
 
 if (!GVAR(enabled)) exitWith {
     INFO("Caching is disabled.");
@@ -17,7 +19,7 @@ if (isServer) then {
     [{
         private _groups = allGroups;
         private _count = count _groups;
-        private _perFrame = ceil (_count / (diag_fps * 5));
+        private _perFrame = ceil (_count / (25 * SERVER_DELAY));
         [{
             params ["_args", "_idPFH"];
             _args params ["_groups", "_count", "_perFrame", "_index"];
@@ -30,14 +32,14 @@ if (isServer) then {
 
             _args set [3, _index + _perFrame];
         }, 0, [_groups, _count, _perFrame, 0]] call cba_fnc_addPerFrameHandler;
-    }, 5, []] call cba_fnc_addPerFrameHandler;
+    }, SERVER_DELAY, []] call cba_fnc_addPerFrameHandler;
 };
 
 if (hasInterface) then {
     [{
         private _groups = allGroups;
         private _count = count _groups;
-        private _perFrame = ceil (_count / diag_fps);
+        private _perFrame = ceil (_count / 25);
         [{
             params ["_args", "_idPFH"];
             _args params ["_groups", "_count", "_perFrame", "_index"];
@@ -50,7 +52,7 @@ if (hasInterface) then {
 
             _args set [3, _index + _perFrame];
         }, 0, [_groups, _count, _perFrame, 0]] call cba_fnc_addPerFrameHandler;
-    }, 1, []] call cba_fnc_addPerFrameHandler;
+    }, CLIENT_DELAY, []] call cba_fnc_addPerFrameHandler;
 };
 
 // Debug shizzle

@@ -208,7 +208,7 @@ class CfgWeapons {
     class UK3CB_BAF_LLM_IR_Tan;
     class UK3CB_BAF_LLM_IR_Black : UK3CB_BAF_LLM_IR_Tan {
         mrt_SwitchItemNextClass = "UK3CB_BAF_LLM_Flashlight_Black";
-        mrt_SwitchItemPrevClass = "UK3CB_BAF_LLM_Flashlight_Black";
+        mrt_SwitchItemPrevClass = "UK3CB_BAF_LLM_Flashlight_Far_Black";
         mrt_SwitchItemHintText = "IR";
         ace_nextModeClass = "UK3CB_BAF_LLM_Flashlight_Black";
         ace_modeDescription = "IR";
@@ -217,7 +217,7 @@ class CfgWeapons {
     class UK3CB_BAF_LLM_Flashlight_Tan;
     class UK3CB_BAF_LLM_Flashlight_Black : UK3CB_BAF_LLM_Flashlight_Tan {
         mrt_SwitchItemNextClass = "UK3CB_BAF_LLM_Flashlight_Far_Black";
-        mrt_SwitchItemPrevClass = "UK3CB_BAF_LLM_Flashlight_Far_Black";
+        mrt_SwitchItemPrevClass = "UK3CB_BAF_LLM_IR_Black";
         mrt_SwitchItemHintText = "Flashlight";
         ace_nextModeClass = "UK3CB_BAF_LLM_Flashlight_Far_Black";
         ace_modeDescription = "Flashlight";
@@ -227,7 +227,7 @@ class CfgWeapons {
     class UK3CB_BAF_LLM_Flashlight_Far_Black : UK3CB_BAF_LLM_Flashlight_Black {
         displayName = "LLM Mk3 Flashlight Far (Black)";
         mrt_SwitchItemNextClass = "UK3CB_BAF_LLM_IR_Black";
-        mrt_SwitchItemPrevClass = "UK3CB_BAF_LLM_IR_Black";
+        mrt_SwitchItemPrevClass = "UK3CB_BAF_LLM_Flashlight_Black";
         mrt_SwitchItemHintText = "Flashlight (Far)";
         ace_nextModeClass = "UK3CB_BAF_LLM_IR_Black";
         ace_modeDescription = "Flashlight (Far)";
