@@ -23,20 +23,18 @@ if (_group isEqualType objNull) then {
     _group = group _group;
 };
 
-if (dynamicSimulationEnabled _group) then {
-    _group enableDynamicSimulation false;
-    _group setVariable [QGVAR(excluded), true, true];
-    if (!(isNull (objectParent (leader _group)))) then {
-        {
-            _x enableSimulationGlobal true;
-            _x hideObjectGlobal false;
-            (group _x) setVariable [QGVAR(excluded), true, true];
-            false
-        } count (crew (objectParent (leader _group)));
-    };
+_group enableDynamicSimulation false;
+_group setVariable [QGVAR(excluded), true, true];
+{
+    _x enableSimulationGlobal true;
+    _x hideObjectGlobal false;
+    false
+} count (units _group);
+if (!(isNull (objectParent (leader _group)))) then {
     {
         _x enableSimulationGlobal true;
         _x hideObjectGlobal false;
+        (group _x) setVariable [QGVAR(excluded), true, true];
         false
-    } count (units _group);
+    } count (crew (objectParent (leader _group)));
 };
