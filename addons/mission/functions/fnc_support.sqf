@@ -36,7 +36,6 @@
 #define MAX_DISTANCE_TO_SHOOTER 1000
 #define SUPPORT_CHANCE 25
 #define MIN_SUPPRESSED_KNOWS_ABOUT 2
-#define DISTANCE_TO_SUPPORT 500
 #define DISTANCE_TO_RETRY 10
 
 params [["_unit", objNull], "", "", "_shooter", ["_reportDepth", 0]];
@@ -51,7 +50,7 @@ if ((random 100) < SUPPORT_CHANCE || {(_unit distance2D _shooter) > MAX_DISTANCE
 
     if (alive _unit) then {
         if ((_unit knowsAbout _shooter) > MIN_SUPPRESSED_KNOWS_ABOUT || {!([_shooter] call EFUNC(common,hasSuppressor))}) then {
-            private _supportingUnit = selectRandom (((position _unit) nearEntities [["CAManBase"], DISTANCE_TO_SUPPORT]) select {CONDITION_SUPPORT});
+            private _supportingUnit = selectRandom (((position _unit) nearEntities [["CAManBase"], GVAR(supportDistance)]) select {CONDITION_SUPPORT});
             if (alive _supportingUnit) then {
                 (group _unit) setVariable [QGVAR(requested), true, true];
                 private _position = [(position _shooter), 50 + ((_unit distance2D _shooter) / 10) + (50 * _reportDepth)] call CBA_fnc_randPos;

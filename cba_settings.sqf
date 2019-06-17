@@ -488,35 +488,47 @@ force force Achilles_var_moduleTreeHelmet = false;
 Achilles_var_moduleTreeSearchPatch = true;
 
 // ACRE2
+acre_sys_core_automaticAntennaDirection = false;
 force force acre_sys_core_fullDuplex = false;
 force force acre_sys_core_ignoreAntennaDirection = false;
 force force acre_sys_core_interference = true;
 acre_sys_core_postmixGlobalVolume = 1;
 acre_sys_core_premixGlobalVolume = 1;
+force acre_sys_core_rememberUsedRackRadios = true;
 force force acre_sys_core_revealToAI = 1;
 acre_sys_core_spectatorVolume = 1;
-force acre_sys_core_terrainLoss = 0.5;
+force force acre_sys_core_terrainLoss = 0.5;
 force acre_sys_core_ts3ChannelName = "";
 force acre_sys_core_ts3ChannelPassword = "";
 acre_sys_core_ts3ChannelSwitch = true;
 acre_sys_core_unmuteClients = true;
+force acre_sys_signal_signalModel = 2;
+
+// ACRE2 Zeus
+acre_sys_zeus_zeusCanSpectate = true;
+acre_sys_zeus_zeusDefaultVoiceSource = false;
+acre_sys_zeus_zeusListenViaCamera = true;
 
 // DCG - Approval
 force force dcg_approval_enable = true;
 force dcg_approval_hostileCooldown = 900;
+force dcg_approval_hostileHint = true;
 force dcg_approval_multiplier = 1;
-force force dcg_approval_notify = true;
 
 // DCG - Civilian
+force dcg_civilian_blacklist = "pier,airbase,air base,airfield,terminal";
 force force dcg_civilian_enable = true;
-force dcg_civilian_multiplier = 1;
 force dcg_civilian_spawnDist = 400;
+force dcg_civilian_unitLimit = 16;
 force dcg_civilian_vehCooldown = 600;
-force dcg_civilian_vehMaxCount = 5;
+force dcg_civilian_vehLimit = 8;
 
 // DCG - FOB
 force force dcg_fob_allow = 0;
 force force dcg_fob_enable = true;
+force dcg_fob_name = "FOB Tiger";
+force dcg_fob_pbnames = "PB Leopard,PB Jaguar,PB Cougar,PB Cheetah,PB Lynx";
+force dcg_fob_pbrange = 100;
 force dcg_fob_range = 100;
 
 // DCG - IED
@@ -524,37 +536,45 @@ force force dcg_ied_enable = true;
 
 // DCG - Main
 force force dcg_main_autoSave = true;
-dcg_main_baseRadius = 1536;
-force force dcg_main_baseSafezone = true;
+force dcg_main_baseName = "MOB Lion";
+force dcg_main_baseRadius = 1500;
 force force dcg_main_enable = true;
-force force dcg_main_enemySide = EAST;
+force dcg_main_factionsCiv = "CUP_C_CHERNARUS";
+force dcg_main_factionsEast = "CUP_O_SLA";
+force dcg_main_factionsInd = "IND_F";
+force dcg_main_factionsWest = "CUP_B_GB";
+force dcg_main_filtersCiv = "driver,vr ,pilot,construction,kart";
+force dcg_main_filtersEast = "diver,vr ,pilot,survivor,crew,rifleman (unarmed),competitor";
+force dcg_main_filtersInd = "diver,vr ,pilot,survivor,crew,rifleman (unarmed),competitor";
+force dcg_main_filtersWest = "diver,vr ,pilot,survivor,crew,rifleman (unarmed),competitor";
 force force dcg_main_loadData = true;
-force force dcg_main_playerSide = WEST;
+force dcg_main_mortarPoolEastString = "['O_Mortar_01_F']";
+force dcg_main_safezoneEnable = true;
+force dcg_main_safezoneMarkersDisplay = 0;
+force dcg_main_sides = [WEST,EAST];
+force dcg_main_staticPoolEastString = "['O_static_AT_F','O_GMG_01_F','O_GMG_01_high_F','O_GMG_01_A_F','O_HMG_01_F','O_HMG_01_high_F','O_HMG_01_A_F']";
 
 // DCG - Occupy
 force force dcg_occupy_enable = true;
+force dcg_occupy_multiplier = 1;
 force force dcg_occupy_sniper = true;
 force force dcg_occupy_static = true;
 
 // DCG - Patrol
-force dcg_patrol_cooldown = 450;
+force dcg_patrol_cooldown = 60;
 force force dcg_patrol_enable = true;
-force dcg_patrol_groupsMaxCount = 5;
-force dcg_patrol_mode = "SAFE";
-force dcg_patrol_speed = "LIMITED";
-force dcg_patrol_vehChance = 0.25;
-
-// DCG - Respawn
-force force dcg_respawn_enable = true;
-
-// DCG - Task
-force force dcg_task_cooldown = 60;
-force force dcg_task_enable = true;
+force dcg_patrol_groupLimit = 20;
+force dcg_patrol_mode = "AWARE";
+force dcg_patrol_speed = "NORMAL";
+force dcg_patrol_vehicleProbability = 0.35;
 
 // DCG - Weather
+force dcg_weather_cloudsOverride = -1;
 force force dcg_weather_enable = false;
+force dcg_weather_hour = -1;
 force force dcg_weather_month = -1;
-force force dcg_weather_time = -1;
+force dcg_weather_precipitationOverride = -1;
+force dcg_weather_variance = 1;
 
 // LAxemann's Suppress
 force force L_Suppress_buildup = 1;
@@ -576,5 +596,6 @@ force uksf_curator_curatorsLocked = false;
 force uksf_curator_curatorsMax = 8;
 force uksf_persistence_overrideSavedDateTime = false;
 force uksf_mission_support = true;
+force uksf_mission_supportDistance = 500;
 force uksf_mission_conspicuity = false;
 force uksf_mission_conspicuityGearWhitelistString = "[]";
