@@ -6019,7 +6019,7 @@ class Mission
 					{
 					};
 					id=192;
-					type="USAF_F35A";
+					type="uksf_f35_plane_raf";
 				};
 				class Item4
 				{
