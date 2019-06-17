@@ -24,7 +24,7 @@ CHECK_GEAR_CONSPICUITY(_weapon);
 CHECK_GEAR_CONSPICUITY(primaryWeapon _player);
 CHECK_GEAR_CONSPICUITY(secondaryWeapon _player);
 CHECK_GEAR_CONSPICUITY(backpack _player);
-// CHECK_GEAR_CONSPICUITY(uniform _player);
+CHECK_GEAR_CONSPICUITY(uniform _player);
 // CHECK_GEAR_CONSPICUITY(vest _player);
 // CHECK_GEAR_CONSPICUITY(headgear _player);
 // CHECK_GEAR_CONSPICUITY(hmd _player);
