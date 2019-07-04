@@ -1,0 +1,35 @@
+//////////////////////////////////////////////////////////////////////
+// Spawn AI from markers and give WP to player pos (run from trigger)
+// 1. Place 3 markers in eden called reinf1, reinf2 and reinf3
+// 2. Check what kind of group you want (CfgGroups in config viewer).
+// 3. Copy the config path similar to one below
+// 4. Copy below script into a trigger, dont include the removePerFrameHandler line
+// 5. Create a second trigger and copy in the removePerFramehandler line
+//
+// Default value here is 600 (10 minutes) and will spawn two groups every ten minutes.
+//////////////////////////////////////////////////////////////////////
+
+
+spawnAI = [{
+				private _groupCount = [1,2];
+				{
+					private _reinfPos = selectRandom [getMarkerPos "reinf1", getMarkerPos "reinf2", getMarkerPos "reinf3"];
+
+					private _players = call CBA_fnc_players;
+					private _validPlayerTypes = _players select {_x isKindOf "UKSF_B_SAS" || _x isKindOf "UKSF_B_PATHFINDER" || _x isKindOf "UKSF_B_Rifleman" || _x isKindOf "UKSF_B_SectionLeader"};
+					private _playerPos = selectRandom _validPlayerTypes;
+					
+					private _grp = [_reinfPos, EAST, (configfile >> "CfgGroups" >> "East" >> "UKSF_PROR" >> "Infantry" >> "PROR_InfSection")] call BIS_fnc_spawnGroup;
+					[_grp] call UKSF_caching_fnc_disableCache;
+
+					private _wp = _grp addWaypoint [_playerPos, 0];
+					_wp setWaypointCompletionRadius 50;
+					_wp setWaypointBehaviour "AWARE";
+					_wp setWaypointFormation "WEDGE";
+					_wp setWaypointSpeed "FULL";
+				} forEach _groupCount;
+				
+			}, 600] call CBA_fnc_addPerFrameHandler;
+
+			
+[spawnai] call CBA_fnc_removePerFrameHandler; // remove PFEH
