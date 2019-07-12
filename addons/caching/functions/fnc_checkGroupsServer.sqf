@@ -21,7 +21,6 @@ params [["_groups", []]];
     } else {
         if (
             !(isPlayer _leader) &&
-            {!(_x getVariable [QGVAR(excluded), false])} &&
             {!(isObjectHidden _leader)} &&
             {!((vehicle _leader) isKindOf "Air")} &&
             {((_leader getVariable [QGVAR(time), 0]) + 15) < diag_tickTime}

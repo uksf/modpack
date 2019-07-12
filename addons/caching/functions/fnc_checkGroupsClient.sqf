@@ -14,17 +14,18 @@
 */
 params [["_groups", []]];
 
-private _player = if (!(isNull (getConnectedUAV player))) then {
-    (gunner (getConnectedUAV player))
-} else {
-    (missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", player])
+ACE_controlledUAV params ["", "_player", "", "_seat"];
+if (isNull _player) then {
+    _player = call ace_common_fnc_player;
+    _seat = "GUNNER"
 };
-private _objectViewDistance = (getObjectViewDistance select 0);
+if (_seat != "GUNNER") exitWith {};
+
+private _objectViewDistance = (getObjectViewDistance#0);
 {
     private _leader = leader _x;
     if (
         !(isPlayer _leader) &&
-        {!(_x getVariable [QGVAR(excluded), false])} &&
         {!((vehicle _leader) isKindOf "Air")} &&
         {((_leader getVariable [QGVAR(time), 0]) + 10) < diag_tickTime || {!(simulationEnabled _leader)}} &&
         {(_leader distance _player) > GVAR(distance)} &&

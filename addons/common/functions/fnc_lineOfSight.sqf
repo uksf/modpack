@@ -20,14 +20,14 @@
 
 params [["_target", objNull, [objNull]], ["_source", objNull, [objNull]], ["_zoomCheck", false], ["_groupCheck", false]];
 
-private _pos = worldToScreen (getPosWorld _target);
+private _pos = worldToScreen (getPos _target);
 private _los = ((count _pos) > 0 &&
                 {_pos#0 > GVAR(bufferedSafeX) && _pos#0 < GVAR(bufferedSafeW) && _pos#1 > GVAR(bufferedSafeY) && _pos#1 < GVAR(bufferedSafeH) &&
                 {([_source, "VIEW", (vehicle _source)] checkVisibility [eyePos _source, eyePos _target]) > 0}});
 
 if (!_los && {_groupCheck}) then {
     _los = (({
-        private _pos = worldToScreen (getPosWorld _x);
+        private _pos = worldToScreen (getPos _x);
         if ((count _pos) > 0 &&
             {_pos#0 > GVAR(bufferedSafeX) && _pos#0 < GVAR(bufferedSafeW) && _pos#1 > GVAR(bufferedSafeY) && _pos#1 < GVAR(bufferedSafeH) &&
             {([_source, "VIEW", (vehicle _source)] checkVisibility [eyePos _source, eyePos _x]) > 0}}
@@ -39,11 +39,11 @@ if (!_los && {_groupCheck}) then {
 };
 
 if (_los && {_zoomCheck}) then {
-    private _distanceMultiplier = (200 + (4 * 200 * (((currentVisionMode _source) - 1) max 0)));
+    private _distanceMultiplier = (400 + (4 * 200 * (((currentVisionMode _source) - 1) max 0)));
     if (!((vehicle _target) isKindOf "CAManBase")) then {
         _distanceMultiplier = _distanceMultiplier * VEHICLE_MULTIPLIER;
     };
-    private _distance = (getObjectViewDistance select 0) min (DISTANCE_MIN + (_distanceMultiplier * ((call CBA_fnc_getFov) select 1)));
+    private _distance = (getObjectViewDistance#0) min (DISTANCE_MIN + (_distanceMultiplier * ((call CBA_fnc_getFov)#1)));
     _los = ((_target distance _source) < _distance);
 };
 

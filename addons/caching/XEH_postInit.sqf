@@ -17,7 +17,7 @@ enableDynamicSimulationSystem true;
 
 if (isServer) then {
     [{
-        private _groups = allGroups;
+        private _groups = allGroups select {!(_x getVariable [QGVAR(excluded), false])};
         private _count = count _groups;
         private _perFrame = ceil (_count / (25 * SERVER_DELAY));
         [{
@@ -37,7 +37,7 @@ if (isServer) then {
 
 if (hasInterface) then {
     [{
-        private _groups = allGroups;
+        private _groups = allGroups select {!(_x getVariable [QGVAR(excluded), false])};
         private _count = count _groups;
         private _perFrame = ceil (_count / 25);
         [{
@@ -56,6 +56,58 @@ if (hasInterface) then {
 };
 
 // Debug shizzle
+/*
+onEachFrame {
+    private _player = if (!(isNull (getConnectedUAV player))) then {
+        (gunner (getConnectedUAV player))
+    } else {
+        (missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", player])
+    };
+    (call CBA_fnc_getFov) params ["", "_zoom"];
+    {
+        private _leader = leader _x;
+        if (!(isPlayer _leader)) then {
+            private _colour = [1,0,0,1];
+            private _pos = worldToScreen (getPos _leader);
+            private _inView = ((count _pos) > 0 &&
+                {_pos#0 > uksf_common_bufferedSafeX && _pos#0 < uksf_common_bufferedSafeW && (_pos#1 / _zoom) > uksf_common_bufferedSafeY && (_pos#1 / _zoom) < uksf_common_bufferedSafeH});
+            if (_inView) then {
+                _colour = [1,1,0,1];
+                private _los = ([_player, "VIEW", (vehicle _player)] checkVisibility [eyePos _player, eyePos _leader]) > 0;
+                if (_los) then {
+                    _colour = [0,1,0,1];
+                };
+            };
+            private _text = format ["%1", count _pos];
+            if ((count _pos) > 0) then {
+                _text = format ["%1, %2", _pos#0, (_pos#1 / _zoom)];
+            };
+            drawIcon3D ["\a3\ui_f_curator\data\logos\arma3_curator_eye_32_ca.paa", _colour, getPosVisual _leader, 0.5, 0.5, 0, _text, 0, 0.05, "TahomaB", "center", true];
+        };
+    } count allGroups;
+};
+onEachFrame {
+    private _player = if (!(isNull (getConnectedUAV player))) then {
+        (gunner (getConnectedUAV player))
+    } else {
+        (missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", player])
+    };
+    {
+        private _leader = leader _x;
+        if (!(isPlayer _leader)) then {
+            private _colour = [1,0,0,1];
+            private _los = [_leader, _player, true, true] call uksf_common_fnc_lineOfSight;
+            if (_los) then {
+                _colour = [0,1,0,1];
+            };
+            private _text = "CANNOT MOVE";
+            if (simulationEnabled _leader) then {
+                _text = "CAN MOVE";
+            };
+            drawIcon3D ["\a3\ui_f_curator\data\logos\arma3_curator_eye_32_ca.paa", _colour, getPosVisual _leader, 0.5, 0.5, 0, _text, 0, 0.01, "TahomaB", "center", true];
+        };
+    } count allGroups;
+};
 /*
 onEachFrame {
     private _player = if (!(isNull (getConnectedUAV player))) then {
@@ -153,7 +205,7 @@ onEachFrame {
         private _unit = leader _x; 
         if (!(isPlayer _unit)) then { 
             private _colour = [1,0,0,1];               
-            private _pos = worldToScreen (getPosWorld _unit);
+            private _pos = worldToScreen (getPos _unit);
             if (!(_pos isEqualTo [])) then {
                 private _text = format ["%1,%2", _pos select 0, _pos select 1];
                 if (_pos#0 > uksf_common_bufferedSafeX && _pos#0 < uksf_common_bufferedSafeW && _pos#1 > uksf_common_bufferedSafeY && _pos#1 < uksf_common_bufferedSafeH) then {
