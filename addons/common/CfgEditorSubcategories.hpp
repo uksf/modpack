@@ -25,7 +25,7 @@ class CfgEditorSubcategories {
         displayName = "Men (SF)";
     };
     class GVAR(undercover_civ) {
-        displayName = "Men (undercover Civs)";
+        displayName = "Men (Undercover Civs)";
     };
 
     // Inegal

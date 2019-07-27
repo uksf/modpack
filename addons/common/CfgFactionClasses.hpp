@@ -24,6 +24,12 @@ class CfgFactionClasses {
         priority = 1;
         side = 0;
     };
+    class UKSF_AUG {
+        displayName = "Altis Unionist Group";
+        icon = "\a3\Data_f\Flags\flag_Altis_co.paa";
+        priority = 1;
+        side = 0;
+    };
     class UKSF_VR {
         displayName = "Virtual Army";
         icon = "ca\ca_pmc\flag_ion_white_co";
