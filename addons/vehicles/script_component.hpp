@@ -110,7 +110,7 @@
         MACRO_ADDMAGAZINE(SmokeShellBlue,2); \
         MACRO_ADDMAGAZINE(DemoCharge_Remote_Mag,2); \
         MACRO_ADDMAGAZINE(UK3CB_BAF_762_L42A1_20Rnd_T,5); \
-        MACRO_ADDMAGAZINE(SMA_30Rnd_556x45_M855A1_Tracer,20); \
+        MACRO_ADDMAGAZINE(UK3CB_BAF_556_30Rnd_T,20); \
         MACRO_ADDMAGAZINE(AMMO,9); \
     }; \
     class TransportItems { \
@@ -139,7 +139,7 @@
         MACRO_ADDMAGAZINE(SmokeShellBlue,2); \
         MACRO_ADDMAGAZINE(DemoCharge_Remote_Mag,2); \
         MACRO_ADDMAGAZINE(UK3CB_BAF_762_L42A1_20Rnd_T,4); \
-        MACRO_ADDMAGAZINE(SMA_30Rnd_556x45_M855A1_Tracer,10); \
+        MACRO_ADDMAGAZINE(UK3CB_BAF_556_30Rnd_T,10); \
         MACRO_ADDMAGAZINE(UK3CB_BAF_762_100Rnd_T,5); \
         MACRO_ADDMAGAZINE(AMMO,9); \
     }; \

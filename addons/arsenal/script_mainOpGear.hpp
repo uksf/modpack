@@ -60,24 +60,6 @@
     "Laserbatteries", \
     "MiniGrenade", \
     "SLAMDirectionalMine_Wire_Mag", \
-    "SMA_20Rnd_762x51mm_Lapua_FMJ_Subsonic", \
-    "SMA_20Rnd_762x51mm_Lapua_FMJ_Subsonic_IR", \
-    "SMA_20Rnd_762x51mm_Lapua_FMJ_Subsonic_Tracer", \
-    "SMA_20Rnd_762x51mm_M80A1_EPR", \
-    "SMA_20Rnd_762x51mm_M80A1_EPR_IR", \
-    "SMA_20Rnd_762x51mm_M80A1_EPR_Tracer", \
-    "SMA_20Rnd_762x51mm_Mk316_Mod_0_Special_Long_Range", \
-    "SMA_20Rnd_762x51mm_Mk316_Mod_0_Special_Long_Range_IR", \
-    "SMA_20Rnd_762x51mm_Mk316_Mod_0_Special_Long_Range_Tracer", \
-    "SMA_30Rnd_556x45_M855A1", \
-    "SMA_30Rnd_556x45_M855A1_IR", \
-    "SMA_30Rnd_556x45_M855A1_Tracer", \
-    "SMA_30Rnd_556x45_Mk262", \
-    "SMA_30Rnd_556x45_Mk262_IR", \
-    "SMA_30Rnd_556x45_Mk262_Tracer", \
-    "SMA_30Rnd_556x45_Mk318", \
-    "SMA_30Rnd_556x45_Mk318_IR", \
-    "SMA_30Rnd_556x45_Mk318_Tracer", \
     "SatchelCharge_Remote_Mag", \
     "SmokeShell", \
     "SmokeShellBlue", \
@@ -153,7 +135,22 @@
     "UK3CB_BAF_UGL_FlareRed_F", \
     "UK3CB_BAF_UGL_FlareWhite_F", \
     "UK3CB_BAF_UGL_FlareYellow_F", \
-    "uksf_persistence_marker"
+    "uksf_persistence_marker", \
+    "SSQN_30Rnd_556x45_Stanag", \
+    "SSQN_30Rnd_556x45_T_Stanag", \
+    "SSQN_30Rnd_556x45_TM_Stanag", \
+    "SSQN_30Rnd_556x45_IRT_Stanag", \
+    "SSQN_30Rnd_556x45_IRTM_Stanag", \
+    "SSQN_200Rnd_556x45mm", \
+    "SSQN_200Rnd_556x45mm_T", \
+    "SSQN_200Rnd_556x45mm_IR", \
+    "SSQN_100Rnd_556x45mm", \
+    "SSQN_100Rnd_556x45mm_T", \
+    "SSQN_100Rnd_556x45mm_IR", \
+    "SSQN_5Rnd_127x99", \
+    "SSQN_5Rnd_127x99_HEIAP", \
+    "SSQN_5Rnd_127x99_Tracer", \
+    "SSQN_5Rnd_127x99_HEIAP_Tracer"
 
 #define MAIN_OP_WEAPONS \
     "ACE_MX2A", \
@@ -168,99 +165,6 @@
     "Binocular", \
     "CUP_launch_FIM92Stinger", \
     "Rangefinder", \
-    "SMA_HK416CQBGLOD", \
-    "SMA_HK416CQBMOEOD", \
-    "SMA_HK416CQB_vfg_ODPAINTED", \
-    "SMA_HK416CQBafgOD", \
-    "SMA_HK416CUSTOMCQBafg", \
-    "SMA_HK416CUSTOMCQBafgB", \
-    "SMA_HK416CUSTOMCQBafgODP", \
-    "SMA_HK416CUSTOMCQBvfg", \
-    "SMA_HK416CUSTOMCQBvfgB", \
-    "SMA_HK416CUSTOMCQBvfgODP", \
-    "SMA_HK416CUSTOMafg", \
-    "SMA_HK416CUSTOMafgB", \
-    "SMA_HK416CUSTOMafgODP", \
-    "SMA_HK416CUSTOMvfg", \
-    "SMA_HK416CUSTOMvfgB", \
-    "SMA_HK416CUSTOMvfgODP", \
-    "SMA_HK416GL", \
-    "SMA_HK416GLCQB", \
-    "SMA_HK416GLCQB_B", \
-    "SMA_HK416GLCQB_ODP", \
-    "SMA_HK416GLOD", \
-    "SMA_HK416MOEOD", \
-    "SMA_HK416_GL_ODPAINTED", \
-    "SMA_HK416_afg_ODPAINTED", \
-    "SMA_HK416_vfg_ODPAINTED", \
-    "SMA_HK416afg", \
-    "SMA_HK416afgOD", \
-    "SMA_HK416afgQCB", \
-    "SMA_HK416vfg", \
-    "SMA_HK417", \
-    "SMA_HK417_16in", \
-    "SMA_HK417vfg", \
-    "SMA_M4CQBR", \
-    "SMA_M4CQBRMOE", \
-    "SMA_M4MOE", \
-    "SMA_M4MOE_BLK1", \
-    "SMA_M4MOE_BLK1_SM", \
-    "SMA_M4MOE_OD", \
-    "SMA_M4MOE_OD_SM", \
-    "SMA_M4MOE_SM", \
-    "SMA_M4MOE_Tan", \
-    "SMA_M4MOE_Tan_SM", \
-    "SMA_M4_GL", \
-    "SMA_M4_GL_SM", \
-    "SMA_M4afg", \
-    "SMA_M4afgSTOCK", \
-    "SMA_M4afg_BLK1", \
-    "SMA_M4afg_BLK1_SM", \
-    "SMA_M4afg_OD", \
-    "SMA_M4afg_OD_SM", \
-    "SMA_M4afg_SM", \
-    "SMA_M4afg_Tan", \
-    "SMA_M4afg_Tan_SM", \
-    "SMA_MICRO_T2", \
-    "SMA_MICRO_T2_3XDOWN", \
-    "SMA_MICRO_T2_3XUP", \
-    "SMA_MICRO_T2_LM", \
-    "SMA_MK18BLK_GL", \
-    "SMA_MK18BLK_GL_SM", \
-    "SMA_MK18MOE", \
-    "SMA_MK18MOEBLK", \
-    "SMA_MK18MOEBLKTAN", \
-    "SMA_MK18MOEBLKTAN_SM", \
-    "SMA_MK18MOEBLK_SM", \
-    "SMA_MK18MOEOD", \
-    "SMA_MK18MOEODBLK", \
-    "SMA_MK18MOEODBLK_SM", \
-    "SMA_MK18MOEOD_SM", \
-    "SMA_MK18MOETAN", \
-    "SMA_MK18MOETAN_SM", \
-    "SMA_MK18MOE_SM", \
-    "SMA_MK18ODBLK_GL", \
-    "SMA_MK18ODBLK_GL_SM", \
-    "SMA_MK18OD_GL", \
-    "SMA_MK18OD_GL_SM", \
-    "SMA_MK18TANBLK_GL", \
-    "SMA_MK18TANBLK_GL_SM", \
-    "SMA_MK18TAN_GL", \
-    "SMA_MK18TAN_GL_SM", \
-    "SMA_MK18_GL", \
-    "SMA_MK18_GL_SM", \
-    "SMA_MK18afg", \
-    "SMA_MK18afgBLK", \
-    "SMA_MK18afgBLK_SM", \
-    "SMA_MK18afgOD", \
-    "SMA_MK18afgODBLK", \
-    "SMA_MK18afgODBLK_SM", \
-    "SMA_MK18afgOD_SM", \
-    "SMA_MK18afgTAN", \
-    "SMA_MK18afgTANBLK", \
-    "SMA_MK18afgTANBLK_SM", \
-    "SMA_MK18afgTAN_SM", \
-    "SMA_MK18afg_SM", \
     "UK3CB_BAF_AT4_CS_AP_Launcher", \
     "UK3CB_BAF_AT4_CS_AT_Launcher", \
     "UK3CB_BAF_Javelin_Slung_Tube", \
@@ -280,10 +184,6 @@
     "UK3CB_BAF_L118A1_Covert", \
     "UK3CB_BAF_L118A1_Covert_BL", \
     "UK3CB_BAF_L118A1_Covert_DE", \
-    "UK3CB_BAF_L119A1", \
-    "UK3CB_BAF_L119A1_CQB", \
-    "UK3CB_BAF_L119A1_FG", \
-    "UK3CB_BAF_L119A1_UKUGL", \
     "UK3CB_BAF_L128A1", \
     "UK3CB_BAF_L129A1", \
     "UK3CB_BAF_L131A1", \
@@ -305,7 +205,35 @@
     "UK3CB_BAF_L9A1", \
     "UK3CB_BAF_M6", \
     "UK3CB_BAF_NLAW_Launcher", \
-    "UK3CB_BAF_Soflam_Laserdesignator"
+    "UK3CB_BAF_Soflam_Laserdesignator", \
+    "SSQN_L119A1_CQB", \
+    "SSQN_L119A1_CQB_v2", \
+    "SSQN_L119A1_CQB_v3", \
+    "SSQN_L119A1_CQB_C1", \
+    "SSQN_L119A1_CQB_v2_C1", \
+    "SSQN_L119A1_CQB_v3_C1", \
+    "SSQN_L119A1_CQB_C2", \
+    "SSQN_L119A1_CQB_v2_C2", \
+    "SSQN_L119A1_CQB_v3_C2", \
+    "SSQN_L119A1_CQB_C3", \
+    "SSQN_L119A1_CQB_v2_C3", \
+    "SSQN_L119A1_CQB_v3_C3", \
+    "SSQN_L119A1_UGL", \
+    "SSQN_L119A1_UGL_v2", \
+    "SSQN_L119A1_UGL_C1", \
+    "SSQN_L119A1_UGL_v2_C1", \
+    "SSQN_L119A1_UGL_C2", \
+    "SSQN_L119A1_UGL_v2_C2", \
+    "SSQN_L119A1_UGL_C3", \
+    "SSQN_L119A1_UGL_v2_C3", \
+    "SSQN_L110A1", \
+    "SSQN_L110A1_C1", \
+    "SSQN_L110A1_C2", \
+    "SSQN_L110A1_C3", \
+    "SSQN_L110A1_CQB", \
+    "SSQN_L110A1_CQB_C1", \
+    "SSQN_L110A1_CQB_C2", \
+    "SSQN_L110A1_CQB_C3"
 
 #define MAIN_OP_ATTACHMENTS \
     "ACE_optic_LRPS_2D", \
@@ -344,105 +272,6 @@
     "RKSL_optic_PMII_525_des", \
     "RKSL_optic_PMII_525_wdl", \
     "RKSL_optic_PMII_525_NV", \
-    "SMA_ANPEQ15_BLK", \
-    "SMA_ANPEQ15_TAN", \
-    "SMA_ANPEQ15_TOP_417BLK", \
-    "SMA_ANPEQ15_TOP_417TAN", \
-    "SMA_ANPEQ15_TOP_BLK", \
-    "SMA_ANPEQ15_TOP_BLK_ACR", \
-    "SMA_ANPEQ15_TOP_BLK_M4", \
-    "SMA_ANPEQ15_TOP_BLK_MK18", \
-    "SMA_ANPEQ15_TOP_BLK_SCAR", \
-    "SMA_ANPEQ15_TOP_TAN", \
-    "SMA_ANPEQ15_TOP_TAN_ACR", \
-    "SMA_ANPEQ15_TOP_TAN_M4", \
-    "SMA_ANPEQ15_TOP_TAN_MK18", \
-    "SMA_ANPEQ15_TOP_TAN_SCAR", \
-    "SMA_FLASHHIDER1", \
-    "SMA_FLASHHIDER2", \
-    "SMA_Gripod_01", \
-    "SMA_RAILGUARD_BLK_HK", \
-    "SMA_RAILGUARD_OD_HK", \
-    "SMA_RAILGUARD_TAN_HK", \
-    "SMA_SFFL_BLK", \
-    "SMA_SFFL_TAN", \
-    "SMA_SFLIGHT_TOPM4", \
-    "SMA_SFPEQ_ACRTOP_BLK", \
-    "SMA_SFPEQ_ACRTOP_BLK_LIGHT", \
-    "SMA_SFPEQ_ACRTOP_TAN", \
-    "SMA_SFPEQ_ACRTOP_TAN_LIGHT", \
-    "SMA_SFPEQ_AUGCQC_BLK", \
-    "SMA_SFPEQ_AUGCQC_BLK_LIGHT", \
-    "SMA_SFPEQ_AUGCQC_TAN", \
-    "SMA_SFPEQ_AUGCQC_TAN_LIGHT", \
-    "SMA_SFPEQ_HK417TOP_BLK", \
-    "SMA_SFPEQ_HK417TOP_BLK_LIGHT", \
-    "SMA_SFPEQ_HK417TOP_TAN", \
-    "SMA_SFPEQ_HK417TOP_TAN_LIGHT", \
-    "SMA_SFPEQ_HKTOP_BLK", \
-    "SMA_SFPEQ_HKTOP_BLK_LIGHT", \
-    "SMA_SFPEQ_HKTOP_TAN", \
-    "SMA_SFPEQ_HKTOP_TAN_LIGHT", \
-    "SMA_SFPEQ_M4TOP_BLK", \
-    "SMA_SFPEQ_M4TOP_BLK_LIGHT", \
-    "SMA_SFPEQ_M4TOP_TAN", \
-    "SMA_SFPEQ_M4TOP_TAN_LIGHT", \
-    "SMA_SFPEQ_MK18TOP_BLK", \
-    "SMA_SFPEQ_MK18TOP_BLK_LIGHT", \
-    "SMA_SFPEQ_MK18TOP_TAN", \
-    "SMA_SFPEQ_MK18TOP_TAN_LIGHT", \
-    "SMA_SFPEQ_SCARTOP_BLK", \
-    "SMA_SFPEQ_SCARTOP_BLK_LIGHT", \
-    "SMA_SFPEQ_SCARTOP_TAN", \
-    "SMA_SFPEQ_SCARTOP_TAN_LIGHT", \
-    "SMA_Silencer_556", \
-    "SMA_Silencer_556_Bronze", \
-    "SMA_Silencer_556_Silver", \
-    "SMA_eotech", \
-    "SMA_eotech552", \
-    "SMA_eotech552_3XDOWN", \
-    "SMA_eotech552_3XDOWN_des", \
-    "SMA_eotech552_3XDOWN_wdl", \
-    "SMA_eotech552_3XUP", \
-    "SMA_eotech552_3XUP_des", \
-    "SMA_eotech552_3XUP_wdl", \
-    "SMA_eotech552_kf", \
-    "SMA_eotech552_kf_des", \
-    "SMA_eotech552_kf_wdl", \
-    "SMA_eotechG33_3XDOWN", \
-    "SMA_eotechG33_3XUP", \
-    "SMA_eotechG33_grn_3XDOWN", \
-    "SMA_eotechG33_grn_3XUP", \
-    "SMA_eotechG33_tan_3XDOWN", \
-    "SMA_eotechG33_tan_3XUP", \
-    "SMA_eotech_G", \
-    "SMA_eotech_T", \
-    "SMA_rotex_blk", \
-    "SMA_rotex_gry", \
-    "SMA_rotex_tan", \
-    "SMA_supp1BB_556", \
-    "SMA_supp1BOD_556", \
-    "SMA_supp1BT_556", \
-    "SMA_supp1Bwht_556", \
-    "SMA_supp1TB_556", \
-    "SMA_supp1TOD_556", \
-    "SMA_supp1TT_556", \
-    "SMA_supp1TW_556", \
-    "SMA_supp1b_556", \
-    "SMA_supp1tan_556", \
-    "SMA_supp2BOD_556", \
-    "SMA_supp2BT_556", \
-    "SMA_supp2BW_556", \
-    "SMA_supp2TB_556", \
-    "SMA_supp2TOD_556", \
-    "SMA_supp2TWH_556", \
-    "SMA_supp2T_556", \
-    "SMA_supp2b_556", \
-    "SMA_supp2btan_556", \
-    "SMA_supp2smaB_556", \
-    "SMA_supp2smaT_556", \
-    "SMA_supp_762", \
-    "SMA_supptan_762", \
     "UK3CB_BAF_Eotech", \
     "UK3CB_BAF_Flashlight_L131A1", \
     "UK3CB_BAF_Kite", \
@@ -486,7 +315,133 @@
     "uk3cb_baf_flashlight_l105a1", \
     "uk3cb_baf_l105a1_llm_ir_g", \
     "uk3cb_baf_l105a1_llm_ir_r", \
-    "uk3cb_baf_silencer_l105a1"
+    "uk3cb_baf_silencer_l105a1", \
+    "SSQN_FA556212_Suppressor", \
+    "SSQN_FA556212_Suppressor_C1", \
+    "SSQN_FA556212_Suppressor_C2", \
+    "SSQN_FA556212_Suppressor_C3", \
+    "SSQN_BFA", \
+    "SSQN_AR_ACOG", \
+    "SSQN_AR_ACOG_C1", \
+    "SSQN_AR_ACOG_C2", \
+    "SSQN_AR_ACOG_C3", \
+    "SSQN_AR_ACOG_DR", \
+    "SSQN_AR_ACOG_DR_C1", \
+    "SSQN_AR_ACOG_DR_C2", \
+    "SSQN_AR_ACOG_DR_C3", \
+    "SSQN_AR_AimpointCompM4", \
+    "SSQN_AR_AimpointCompM4_C1", \
+    "SSQN_AR_AimpointCompM4_C2", \
+    "SSQN_AR_AimpointCompM4_C3", \
+    "SSQN_AR_AimpointCompM4_Mag_OFF", \
+    "SSQN_AR_AimpointCompM4_Mag_OFF_C1", \
+    "SSQN_AR_AimpointCompM4_Mag_OFF_C2", \
+    "SSQN_AR_AimpointCompM4_Mag_OFF_C3", \
+    "SSQN_AR_AimpointCompM4_Mag_ON", \
+    "SSQN_AR_AimpointCompM4_Mag_ON_C1", \
+    "SSQN_AR_AimpointCompM4_Mag_ON_C2", \
+    "SSQN_AR_AimpointCompM4_Mag_ON_C3", \
+    "SSQN_AR_AimpointMicroT1", \
+    "SSQN_AR_AimpointMicroT1_C1", \
+    "SSQN_AR_AimpointMicroT1_C2", \
+    "SSQN_AR_AimpointMicroT1_C3", \
+    "SSQN_AR_AimpointMicroT1_CQB", \
+    "SSQN_AR_AimpointMicroT1_CQB_C1", \
+    "SSQN_AR_AimpointMicroT1_CQB_C2", \
+    "SSQN_AR_AimpointMicroT1_CQB_C3", \
+    "SSQN_AR_EOTech553", \
+    "SSQN_AR_EOTech553_C1", \
+    "SSQN_AR_EOTech553_C2", \
+    "SSQN_AR_EOTech553_C3", \
+    "SSQN_AR_EOTech553_CQB", \
+    "SSQN_AR_EOTech553_CQB_C1", \
+    "SSQN_AR_EOTech553_CQB_C2", \
+    "SSQN_AR_EOTech553_CQB_C3", \
+    "SSQN_AR_EOTech553_Mag_OFF", \
+    "SSQN_AR_EOTech553_Mag_OFF_C1", \
+    "SSQN_AR_EOTech553_Mag_OFF_C2", \
+    "SSQN_AR_EOTech553_Mag_OFF_C3", \
+    "SSQN_AR_EOTech553_Mag_ON", \
+    "SSQN_AR_EOTech553_Mag_ON_C1", \
+    "SSQN_AR_EOTech553_Mag_ON_C2", \
+    "SSQN_AR_EOTech553_Mag_ON_C3", \
+    "SSQN_RailCovers_3", \
+    "SSQN_RailCovers_3_C1", \
+    "SSQN_RailCovers_3_C2", \
+    "SSQN_RailCovers_3_C3", \
+    "SSQN_RailCovers_2", \
+    "SSQN_RailCovers_2_C1", \
+    "SSQN_RailCovers_2_C2", \
+    "SSQN_RailCovers_2_C3", \
+    "SSQN_Flashlight_RC", \
+    "SSQN_Flashlight_RC_C1", \
+    "SSQN_Flashlight_RC_C2", \
+    "SSQN_Flashlight_RC_C3", \
+    "SSQN_Flashlight", \
+    "SSQN_Flashlight_C1", \
+    "SSQN_Flashlight_C2", \
+    "SSQN_Flashlight_C3", \
+    "SSQN_PEQ_R_RC", \
+    "SSQN_PEQ_R_RC_C1", \
+    "SSQN_PEQ_R_RC_C2", \
+    "SSQN_PEQ_R_RC_C3", \
+    "SSQN_PEQ_R", \
+    "SSQN_PEQ_R_C1", \
+    "SSQN_PEQ_R_C2", \
+    "SSQN_PEQ_R_C3", \
+    "SSQN_PEQ_R_NoSwitch", \
+    "SSQN_PEQ_R_NoSwitch_C1", \
+    "SSQN_PEQ_R_NoSwitch_C2", \
+    "SSQN_PEQ_R_NoSwitch_C3", \
+    "SSQN_PEQ_T_RC", \
+    "SSQN_PEQ_T_RC_C1", \
+    "SSQN_PEQ_T_RC_C2", \
+    "SSQN_PEQ_T_RC_C3", \
+    "SSQN_PEQ_T", \
+    "SSQN_PEQ_T_C1", \
+    "SSQN_PEQ_T_C2", \
+    "SSQN_PEQ_T_C3", \
+    "SSQN_PEQ_T_NoSwitch", \
+    "SSQN_PEQ_T_NoSwitch_C1", \
+    "SSQN_PEQ_T_NoSwitch_C2", \
+    "SSQN_PEQ_T_NoSwitch_C3", \
+    "SSQN_PEQ_Flashlight", \
+    "SSQN_PEQ_Flashlight_C1", \
+    "SSQN_PEQ_Flashlight_C2", \
+    "SSQN_PEQ_Flashlight_C3", \
+    "SSQN_Flashlight_PEQ", \
+    "SSQN_Flashlight_PEQ_C1", \
+    "SSQN_Flashlight_PEQ_C2", \
+    "SSQN_Flashlight_PEQ_C3", \
+    "SSQN_PEQ_Flashlight_RC", \
+    "SSQN_PEQ_Flashlight_RC_C1", \
+    "SSQN_PEQ_Flashlight_RC_C2", \
+    "SSQN_PEQ_Flashlight_RC_C3", \
+    "SSQN_Flashlight_PEQ_RC", \
+    "SSQN_Flashlight_PEQ_RC_C1", \
+    "SSQN_Flashlight_PEQ_RC_C2", \
+    "SSQN_Flashlight_PEQ_RC_C3", \
+    "SSQN_PEQ_Flashlight_RC_NoSwitch", \
+    "SSQN_PEQ_Flashlight_RC_NoSwitch_C1", \
+    "SSQN_PEQ_Flashlight_RC_NoSwitch_C2", \
+    "SSQN_PEQ_Flashlight_RC_NoSwitch_C3", \
+    "SSQN_Flashlight_PEQ_RC_NoSwitch", \
+    "SSQN_Flashlight_PEQ_RC_NoSwitch_C1", \
+    "SSQN_Flashlight_PEQ_RC_NoSwitch_C2", \
+    "SSQN_Flashlight_PEQ_RC_NoSwitch_C3", \
+    "SSQN_PEQ_Flashlight_NoSwitch", \
+    "SSQN_PEQ_Flashlight_NoSwitch_C1", \
+    "SSQN_PEQ_Flashlight_NoSwitch_C2", \
+    "SSQN_PEQ_Flashlight_NoSwitch_C3", \
+    "SSQN_Flashlight_PEQ_NoSwitch", \
+    "SSQN_Flashlight_PEQ_NoSwitch_C1", \
+    "SSQN_Flashlight_PEQ_NoSwitch_C2", \
+    "SSQN_Flashlight_PEQ_NoSwitch_C3", \
+    "SSQN_FA556MG_Suppressor", \
+    "SSQN_FA556MG_Suppressor_C1", \
+    "SSQN_FA556MG_Suppressor_C2", \
+    "SSQN_FA556MG_Suppressor_C3", \
+    "SSQN_FA556MG_Suppressor_C4"
 
 #define MAIN_OP_NVGS \
     "ACE_NVG_Pilot", \

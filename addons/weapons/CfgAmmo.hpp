@@ -328,40 +328,4 @@ class CfgAmmo {
         cost = 1;
         ace_frag_enabled = 0;
     };
-    class B_SMA_M80A1_EPR : B_762x51_Ball {
-        model = "\A3\Weapons_f\Data\bullettracer\tracer_red";
-    };
-    class B_SMA_M80A1_EPR_Yellow : B_SMA_M80A1_EPR {
-        model = "\A3\Weapons_f\Data\bullettracer\tracer_red";
-    };
-    class B_SMA_Mk316_Mod_O_Long_Range : B_762x51_Ball {
-        model = "\A3\Weapons_f\Data\bullettracer\tracer_red";
-    };
-    class B_SMA_Mk316_Mod_O_Long_Range_Yellow : B_SMA_Mk316_Mod_O_Long_Range {
-        model = "\A3\Weapons_f\Data\bullettracer\tracer_red";
-    };
-    class B_SMA_Lapua_Full_Metal_Jacket_SUBSONIC : B_762x51_Ball {
-        model = "\A3\Weapons_f\Data\bullettracer\tracer_red";
-    };
-    class B_SMA_Lapua_Full_Metal_Jacket_SUBSONIC_Yellow : B_SMA_Lapua_Full_Metal_Jacket_SUBSONIC {
-        model = "\A3\Weapons_f\Data\bullettracer\tracer_red";
-    };
-    class B_SMA_556x45_M855A1_Ball : B_556x45_Ball {
-        model = "\A3\Weapons_f\Data\bullettracer\tracer_red";
-    };
-    class B_SMA_556x45_M855A1_Yellow_Ball : B_SMA_556x45_M855A1_Ball {
-        model = "\A3\Weapons_f\Data\bullettracer\tracer_red";
-    };
-    class B_SMA_556x45_Mk318_Ball : B_556x45_Ball {
-        model = "\A3\Weapons_f\Data\bullettracer\tracer_red";
-    };
-    class B_SMA_556x45_Mk318_Red_Ball : B_SMA_556x45_Mk318_Ball {
-        model = "\A3\Weapons_f\Data\bullettracer\tracer_red";
-    };
-    class B_SMA_556x45_Mk262_Ball : B_556x45_Ball {
-        model = "\A3\Weapons_f\Data\bullettracer\tracer_red";
-    };
-    class B_SMA_556x45_Mk262_Green_Ball : B_SMA_556x45_Mk262_Ball {
-        model = "\A3\Weapons_f\Data\bullettracer\tracer_red";
-    };
 };

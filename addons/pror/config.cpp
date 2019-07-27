@@ -74,11 +74,11 @@ class CfgPatches {
             "arifle_CTARS_blk_F_aimpoint",
             "srifle_DMR_06_olive_F_khssrifle_DMR_06_olive_F_khs",
             "mmg_02_black_f_sig_bravo4",
-            "SMA_MK18MOEOD_CCO_LLCTop_blk",
-            "SMA_MK18OD_GL_CCO_LLCTop_blk",
             "CUP_lmg_m249_SQuantoon_LDS",
-            "SMA_HK417_16in_ACOG",
-            "srifle_LRR_tna_F_NXS"
+            "srifle_LRR_tna_F_NXS",
+            "CUP_arifle_mk18_black_acog",
+            "CUP_arifle_mk18_m203_black_acog",
+            "arifle_SPAR_03_blk_F_leupold"
         };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {

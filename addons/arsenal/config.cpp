@@ -8,6 +8,9 @@ class CfgPatches {
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             "ace_arsenal",
+            "SSQN_L119A1sPack",
+            "SSQN_MachinegunsPack",
+            "SSQN_DMR_Pack",
             "uksf_common",
             "uksf_gear",
             "uksf_resupply"

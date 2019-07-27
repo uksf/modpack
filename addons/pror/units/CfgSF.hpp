@@ -6,13 +6,13 @@ class PROR_SF_R : PROR_R {
     uniformClass = "CFP_GUER_M81";
     backpack = "PROR_B_SF_AssPack";
     weapons[] = {
-        "SMA_MK18MOEOD_CCO_LLCTop_blk",
+        "CUP_arifle_mk18_black_acog",
         "hgun_ACPC2_F",
         "Throw",
         "Put"
     };
     respawnWeapons[] = {
-        "SMA_MK18MOEOD_CCO_LLCTop_blk",
+        "CUP_arifle_mk18_black_acog",
         "hgun_ACPC2_F",
         "Throw",
         "Put"
@@ -102,13 +102,13 @@ class PROR_SF_TL : PROR_SF_R {
     icon = "iconManLeader";
     backpack = "PROR_B_SF_TL_AssPack";
     weapons[] = {
-        "SMA_MK18OD_GL_CCO_LLCTop_blk",
+        "CUP_arifle_mk18_m203_black_acog",
         "hgun_ACPC2_F",
         "Throw",
         "Put"
     };
     respawnWeapons[] = {
-        "SMA_MK18OD_GL_CCO_LLCTop_blk",
+        "CUP_arifle_mk18_m203_black_acog",
         "hgun_ACPC2_F",
         "Throw",
         "Put"
@@ -121,13 +121,13 @@ class PROR_SF_Med : PROR_SF_R {
     picture = "pictureHeal";
     backpack = "PROR_B_SF_MedicBag";
     weapons[] = {
-        "SMA_MK18MOEOD_CCO_LLCTop_blk",
+        "CUP_arifle_mk18_black_acog",
         "hgun_ACPC2_F",
         "Throw",
         "Put"
     };
     respawnWeapons[] = {
-        "SMA_MK18MOEOD_CCO_LLCTop_blk",
+        "CUP_arifle_mk18_black_acog",
         "hgun_ACPC2_F",
         "Throw",
         "Put"
@@ -138,13 +138,13 @@ class PROR_SF_Marks : PROR_SF_R {
     editorPreview = QPATHTOEF(common,data\previews\PROR_SF_Marks.jpg);
     backpack = "";
     weapons[] = {
-        "SMA_HK417_16in_ACOG",
+        "arifle_SPAR_03_blk_F_leupold",
         "hgun_ACPC2_F",
         "Throw",
         "Put"
     };
     respawnWeapons[] = {
-        "SMA_HK417_16in_ACOG",
+        "arifle_SPAR_03_blk_F_leupold",
         "hgun_ACPC2_F",
         "Throw",
         "Put"
@@ -153,21 +153,21 @@ class PROR_SF_Marks : PROR_SF_R {
         "9Rnd_45ACP_Mag",
         "9Rnd_45ACP_Mag",
         "9Rnd_45ACP_Mag",
-        "SMA_20Rnd_762x51mm_M80A1_EPR",
-        "SMA_20Rnd_762x51mm_M80A1_EPR",
-        "SMA_20Rnd_762x51mm_M80A1_EPR",
-        "SMA_20Rnd_762x51mm_M80A1_EPR",
-        "SMA_20Rnd_762x51mm_M80A1_EPR"
+        "20Rnd_762x51_Mag",
+        "20Rnd_762x51_Mag",
+        "20Rnd_762x51_Mag",
+        "20Rnd_762x51_Mag",
+        "20Rnd_762x51_Mag"
     };
     respawnMagazines[] = {
         "9Rnd_45ACP_Mag",
         "9Rnd_45ACP_Mag",
         "9Rnd_45ACP_Mag",
-        "SMA_20Rnd_762x51mm_M80A1_EPR",
-        "SMA_20Rnd_762x51mm_M80A1_EPR",
-        "SMA_20Rnd_762x51mm_M80A1_EPR",
-        "SMA_20Rnd_762x51mm_M80A1_EPR",
-        "SMA_20Rnd_762x51mm_M80A1_EPR"
+        "20Rnd_762x51_Mag",
+        "20Rnd_762x51_Mag",
+        "20Rnd_762x51_Mag",
+        "20Rnd_762x51_Mag",
+        "20Rnd_762x51_Mag"
     };
     linkedItems[] = {
         "CFP_OPS2017_Helmet_M81",

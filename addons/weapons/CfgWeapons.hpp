@@ -381,35 +381,6 @@ class CfgWeapons {
             };
         };
     };
-    class SMA_AssaultBase;
-    class SMA_556_RIFLEBASE : SMA_AssaultBase {
-        class Single;
-        class FullAuto;
-    };
-    class SMA_M4_BASE : SMA_556_RIFLEBASE {
-        // class Single : Single {
-        //     class SilencedSound {
-        //         soundSetShot[] = { "DS_Tavor_ShotSD_SoundSet", "TRG20_silencerTail_SoundSet", "TRG20_silencerInteriorTail_SoundSet" };
-        //     };
-        // };
-        // class FullAuto : FullAuto {
-        //     class SilencedSound {
-        //         soundSetShot[] = { "DS_Tavor_ShotSD_SoundSet", "TRG20_silencerTail_SoundSet", "TRG20_silencerInteriorTail_SoundSet" };
-        //     };
-        // };
-    };
-    class UK3CB_BAF_L110_Base;
-    class UK3CB_BAF_L110_556_Base : UK3CB_BAF_L110_Base {
-        class FullAuto : Mode_FullAuto {
-            class BaseSoundModeType {};
-            class StandardSound : BaseSoundModeType {
-                soundSetShot[] = { "SMA_Minimi_Shot_Soundset", "FRAME_CALIBER_5x56MM", "ALL_DIST_TAIL" };
-            };
-            class SilencedSound : BaseSoundModeType {
-                soundSetShot[] = { "SMA_Minimi_SilencerShot_Soundset", "FRAME_CALIBER_5x56MM_SILENCED" };
-            };
-        };
-    };
     class UK3CB_BAF_L110A3;
     class UK3CB_BAF_L110A3_Elcan : UK3CB_BAF_L110A3 {
         class LinkedItems {

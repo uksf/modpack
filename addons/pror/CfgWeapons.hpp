@@ -61,37 +61,29 @@ class CfgWeapons {
             };
         };
     };
-    class SMA_MK18MOE;
-    class SMA_MK18MOEOD_CCO_LLCTop_blk : SMA_MK18MOE {
+    class CUP_arifle_mk18_black;
+    class CUP_arifle_mk18_black_acog : CUP_arifle_mk18_black {
         class LinkedItems {
             class LinkedItemsOptic {
-                slot = "asdg_OpticRail_SMAAssault";
-                item = "cup_optic_compm2_black";
+                slot = "CUP_PicatinnyTopMountMk18";
+                item = "cup_optic_acog";
             };
             class LinkedItemsAcc {
-                slot = "PointerSlot";
-                item = "SMA_SFPEQ_MK18TOP_BLK";
-            };
-            class LinkedItemsMuzzle {
-                slot = "MuzzleSlot";
-                item = "sma_gemtech_one_wdl";
+                slot = "CUP_PicatinnySideMountMk18";
+                item = "cup_acc_flashlight_desert";
             };
         };
     };
-    class SMA_MK18OD_GL;
-    class SMA_MK18OD_GL_CCO_LLCTop_blk : SMA_MK18OD_GL {
+    class CUP_arifle_mk18_m203_black;
+    class CUP_arifle_mk18_m203_black_acog : CUP_arifle_mk18_m203_black {
         class LinkedItems {
             class LinkedItemsOptic {
-                slot = "asdg_OpticRail_SMAAssault";
-                item = "cup_optic_compm2_black";
+                slot = "CUP_PicatinnyTopMountMk18";
+                item = "cup_optic_acog";
             };
             class LinkedItemsAcc {
-                slot = "PointerSlot";
-                item = "SMA_SFPEQ_MK18TOP_BLK";
-            };
-            class LinkedItemsMuzzle {
-                slot = "MuzzleSlot";
-                item = "sma_gemtech_one_wdl";
+                slot = "CUP_PicatinnySideMountMk18";
+                item = "cup_acc_flashlight_desert";
             };
         };
     };
@@ -104,16 +96,16 @@ class CfgWeapons {
             };
         };
     };
-    class SMA_HK417_16in;
-    class SMA_HK417_16in_ACOG : SMA_HK417_16in {
+    class arifle_SPAR_03_blk_F;
+    class arifle_SPAR_03_blk_F_leupold : arifle_SPAR_03_blk_F {
         class LinkedItems {
             class LinkedItemsOptic {
-                slot = "asdg_OpticRail_SMAAssault";
-                item = "uk3cb_baf_ta648";
+                slot = "CowsSlot";
+                item = "cup_optic_leupoldmk4_cq_t";
             };
             class LinkedItemsMuzzle {
-                slot = "MuzzleSlot";
-                item = "sma_supp_762";
+                slot = "PointerSlot";
+                item = "cup_acc_flashlight";
             };
         };
     };

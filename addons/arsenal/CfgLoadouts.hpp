@@ -25,7 +25,7 @@ class GVAR(loadouts) {
     };
     class GVAR(loadout_sfsgLMG) {
         name = "SFSG: LMG";
-        loadout = "[['UK3CB_BAF_L110A3','','UK3CB_BAF_LLM_Flashlight_Black','SMA_eotech552',['UK3CB_BAF_556_200Rnd',200],[],''],[],['UK3CB_BAF_L131A1','','','',['UK3CB_BAF_9_17Rnd',17],[],''],['UK3CB_BAF_U_CombatUniform_MTP_1Para',[['ACE_CableTie',2],['ACE_Flashlight_XL50',1],['ACE_EarPlugs',1],['ACE_MapTools',1],['ACE_packingBandage',15],['ACE_tourniquet',4],['ACRE_PRC152',1],['ACRE_PRC343',1]]],['UK3CB_BAF_V_Osprey_SL_B',[['UK3CB_BAF_556_200Rnd',2,200]]],['UK3CB_BAF_B_Carryall_MTP',[['ACE_EntrenchingTool',1],['CUP_NVG_PVS15_green',1],['ACE_elasticBandage',10],['B_IR_Grenade',1,1],['UK3CB_BAF_SmokeShell',2,1],['UK3CB_BAF_556_200Rnd',1,200],['UK3CB_BAF_9_17Rnd',2,17]]],'UK3CB_BAF_H_Mk7_Camo_B','',['Rangefinder','','','',[],[],''],['ItemMap','ItemGPS','','ItemCompass','ItemWatch','']]";
+        loadout = "[['UK3CB_BAF_L110A3','','UK3CB_BAF_LLM_Flashlight_Black','UK3CB_BAF_Eotech',['UK3CB_BAF_556_200Rnd',200],[],''],[],['UK3CB_BAF_L131A1','','','',['UK3CB_BAF_9_17Rnd',17],[],''],['UK3CB_BAF_U_CombatUniform_MTP_1Para',[['ACE_CableTie',2],['ACE_Flashlight_XL50',1],['ACE_EarPlugs',1],['ACE_MapTools',1],['ACE_packingBandage',15],['ACE_tourniquet',4],['ACRE_PRC152',1],['ACRE_PRC343',1]]],['UK3CB_BAF_V_Osprey_SL_B',[['UK3CB_BAF_556_200Rnd',2,200]]],['UK3CB_BAF_B_Carryall_MTP',[['ACE_EntrenchingTool',1],['CUP_NVG_PVS15_green',1],['ACE_elasticBandage',10],['B_IR_Grenade',1,1],['UK3CB_BAF_SmokeShell',2,1],['UK3CB_BAF_556_200Rnd',1,200],['UK3CB_BAF_9_17Rnd',2,17]]],'UK3CB_BAF_H_Mk7_Camo_B','',['Rangefinder','','','',[],[],''],['ItemMap','ItemGPS','','ItemCompass','ItemWatch','']]";
     };
     class GVAR(loadout_sfsgIRS) {
         name = "SFSG: IRS";
