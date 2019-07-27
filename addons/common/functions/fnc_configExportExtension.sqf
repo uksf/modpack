@@ -1,6 +1,7 @@
+#include "script_component.hpp"
 /*
     Author:
-        Denis Usenko, Tim Beswick
+        Denis Usenko, Pennyworth, Tim Beswick
 
     Description:
         Exports Specified config entry and copies to clipboard.
@@ -17,42 +18,26 @@
         [configFile >> "CfgVehicles" >> "UK3CB_BAF_Box_WpsSpecial"] call uksf_common_fnc_configExportExtension;
         [configFile] call uksf_common_fnc_configExportExtension;
 */
-#include "script_component.hpp"
+#define arg(x)          (_this select (x))
+#define argIf(x)        if(count _this > (x))
+#define argIfType(x,t)  if(argIf(x)then{typeName arg(x) == (t)}else{false})
+#define argSafe(x)      argIf(x)then{arg(x)}
+#define argOr(x,v)      (argSafe(x)else{v})
+#define push(a,v)       (a)pushBack(v)
 
-#define PUSH(a,v) (a) set [count(a),(v)]
-
-private _joinString = {
-    params ["_list", "_char", "_size", "_subsize", "_oversize", "_j"];
-
-    if (count _list < 1) exitwith {""};
-    for "_a" from 1 to (ceil ((log (count _list)) / 0.3010299956639812)) do {
-        _size = count _list / 2;
-        _subsize = floor _size;
-        _oversize = ceil _size;
-        _j = 0;
-        for "_i" from 0 to _subsize - 1 do {
-            _list set [_i, (_list select _j) + _char + (_list select (_j+1))];
-            _j = _j + 2;
-        };
-        if (_subsize != _oversize) then {
-            _list set [_j/2, _list select _j];
-        };
-        _list resize _oversize;
-    };
-    _list select 0;
-};
+"ConfigDumpFileIO" callExtension format ["open:AllInOne.1%1.cpp", (productVersion select 2) % 100];
 
 private _escapeString = {
     private _source = toArray _this;
     private _start = _source find 34;
-    if (_start > 0) then {
+    if(_start != -1) then {
         private _target = +_source;
         _target resize _start;
         for "_i" from _start to count _source - 1 do {
             private _charCode = _source select _i;
-            PUSH(_target,_charCode);
-            if (_charCode == 34) then {
-                PUSH(_target,_charCode);
+            push(_target, _charCode);
+            if(_charCode isEqualTo 34) then {
+                push(_target, _charCode);
             };
         };
         str toString _target;
@@ -70,9 +55,9 @@ private _collectInheritedProperties = {
         for "_i" from 0 to count _config - 1 do {
             private _propertyName = _config select _i;
             private _propertyNameLC = toLower configName _propertyName;
-            if !(_propertyNameLC in _propertyNameLCList) then {
-                PUSH(_propertyNameList,_propertyName);
-                PUSH(_propertyNameLCList,_propertyNameLC);
+            if!(_propertyNameLC in _propertyNameLCList) then {
+                push(_propertyNameList, _propertyName);
+                push(_propertyNameLCList, _propertyNameLC);
             };
         };
         _className != "";
@@ -83,42 +68,40 @@ private _collectInheritedProperties = {
 };
 
 private _dumpConfigTree = {
-    params ["_config", ["_includeInheritedProperties", false], "_specifyParentClass", "_indents", "_depth", "_pushLine", "_traverse", "_traverseArray"];
-    _specifyParentClass = !_includeInheritedProperties;
+    private _includeInheritedProperties = argOr(1, false);
+    private _specifyParentClass = argOr(2, !_includeInheritedProperties);
 
-    "mb_fileio" callExtension "open_w|config_dump.cpp";
-    _indents = [""];
-    _depth = -1;
-    _pushLine = {
-        if (_depth < 0) then {
-            "mb_fileio" callExtension format ["write|/* %1 %2.%3 */", ProductVersion select 0, ProductVersion select 2, ProductVersion select 3];
-        } else {
-            if (_depth >= count _indents) then {
-                _indents set [_depth, (_indents select _depth-1) + "    "];
-            };
-            "mb_fileio" callExtension format ["write|%1%2", _indents select _depth, _this];
+    private _result = [];
+    private _indents = [""];
+    private _depth = 0;
+    
+    private _pushLine = {
+        if(_depth >= count _indents) then {
+            _indents set [_depth, (_indents select _depth-1) + toString[9]];
         };
+        _myString = (_indents select _depth) + (_this);
+        "ConfigDumpFileIO" callExtension ("write:" +  _myString);
     };
 
-    _traverse = {
+    private _traverse = {
         private _confName = configName _this;
-        if (isText _this) exitwith {
-            _confName + " = " + (getText call _escapeString) + ";" call _pushLine;
+        if( isText _this ) exitwith {
+            _confName + " = " + (getText _this call _escapeString) + ";" call _pushLine;
         };
-        if (isNumber _this) exitwith {
+        if( isNumber _this ) exitwith {
             _confName + " = " + str getNumber _this + ";" call _pushLine;
         };
-        if (isArray _this) exitwith {
-            _confName + "[] = " + (getArray call _traverseArray) + ";" call _pushLine;
+        if( isArray _this ) exitwith {
+            _confName + "[] = " + (getArray _this call _traverseArray) + ";" call _pushLine;
         };
-        if (isClass _this) exitwith {
+        if( isClass _this ) exitwith {
             "class " + _confName + (
-                configName inheritsFrom call {
-                    if (_this == "" || !_specifyParentClass) then {"" } else {": " + _this }
+                configName inheritsFrom _this call {
+                    if( _this isEqualTo "" || !_specifyParentClass ) then { "" } else { ": " + _this }
                 }
-            ) + " {" call _pushLine;
-            if (_includeInheritedProperties) then {
-                _this = call _collectInheritedProperties;
+            ) + "{" call _pushLine;
+            if( _includeInheritedProperties ) then {
+                _this = _this call _collectInheritedProperties;
             };
             _depth = _depth + 1;
             for "_i" from 0 to count _this - 1 do {
@@ -128,27 +111,28 @@ private _dumpConfigTree = {
             "};" call _pushLine;
         };
     };
-
-    _traverseArray = {
-        if (typeName _this == "array") exitwith {
+    
+    private _traverseArray = {
+        if(_this isEqualType []) exitwith {
             private _array = [];
             for "_i" from 0 to count _this - 1 do {
-                PUSH(_array,_this select _i call _traverseArray);
+                push(_array, _this select _i call _traverseArray);
             };
-            "{" + ([_array, ", "] call _joinString) + "}";
+            "{" + (_array joinString ", ") + "}";
         };
-        if (typeName _this == "string") exitwith {
-            call _escapeString;
+        if(_this isEqualType "") exitwith {
+            _this call _escapeString;
         };
         str _this;
     };
 
-    _config call _traverse;
-
-    "mb_fileio" callExtension "close";
+    arg(0) call _traverse;
+    
+    "ConfigDumpFileIO" callExtension "close:yes";
+    true
 };
 
 private _startTime = diag_tickTime;
-call _dumpConfigTree;
+private _finished = _this call _dumpConfigTree;
 private _endTime = diag_tickTime;
-hint format ["Config Export Done. %1", _endTime - _startTime];
+hint format ["Ready\nNow get config from the ConfigDumpFileIO directory\ntime: %1", _endTime - _startTime];

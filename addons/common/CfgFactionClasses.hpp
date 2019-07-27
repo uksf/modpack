@@ -18,6 +18,12 @@ class CfgFactionClasses {
         priority = 1;
         side = 0;
     };
+    class UKSF_Spetsnaz {
+        displayName = "Spetsnaz";
+        icon = "\a3\Data_F_Enoch\FactionIcons\icon_RUS_CA.paa";
+        priority = 1;
+        side = 0;
+    };
     class UKSF_VR {
         displayName = "Virtual Army";
         icon = "ca\ca_pmc\flag_ion_white_co";
@@ -25,15 +31,22 @@ class CfgFactionClasses {
         side = 0;
     };
     class NO_CATEGORY;
-    class GVAR(zeus_uksf): NO_CATEGORY {
+    class GVAR(zeus_uksf) : NO_CATEGORY {
         displayName = "UKSF";
         priority = 2;
         side = 7;
     };
-    class GVAR(zeus_uksf_special): GVAR(zeus_uksf) {
+    class GVAR(zeus_uksf_special) : GVAR(zeus_uksf) {
         displayName = "UKSF Special";
     };
-    class GVAR(zeus_uksf_side): GVAR(zeus_uksf) {
+    class GVAR(zeus_uksf_side) : GVAR(zeus_uksf) {
         displayName = "Side";
+    };
+    class OPF_R_F {
+        displayName = "Spetsnaz (Future)";
+        priority = 3;
+        side = 0;
+        icon = "\a3\Data_F_Enoch\FactionIcons\icon_RUS_CA.paa";
+        flag = "\a3\Data_F_Enoch\Flags\flag_RUS_co.paa";
     };
 };
