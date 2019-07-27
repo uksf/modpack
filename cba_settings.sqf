@@ -576,6 +576,24 @@ force force dcg_weather_month = -1;
 force dcg_weather_precipitationOverride = -1;
 force dcg_weather_variance = 1;
 
+// DUI - Squad Radar - Main
+diwako_dui_ace_hide_interaction = false;
+diwako_dui_main_hide_ui_by_default = true;
+
+// DUI - Squad Radar - Radar
+force force diwako_dui_compass_hide_alone_group = true;
+force force diwako_dui_compass_hide_blip_alone_group = true;
+force force diwako_dui_compassRange = 35;
+force force diwako_dui_compassRefreshrate = 0;
+force force diwako_dui_enable_compass_dir = 0;
+force force diwako_dui_enable_occlusion = true;
+force force diwako_dui_enable_occlusion_cone = 210;
+force force diwako_dui_radar_ace_finger = false;
+force force diwako_dui_radar_group_by_vehicle = true;
+force force diwako_dui_radar_occlusion_fade_time = 20;
+force force diwako_dui_radar_sortType = "fireteam";
+force force diwako_dui_radar_sqlFirst = true;
+
 // LAxemann's Suppress
 force force L_Suppress_buildup = 1;
 force force L_Suppress_enabled = true;
