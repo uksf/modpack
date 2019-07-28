@@ -17,6 +17,7 @@
     {
         params ["_value"];
         diwako_dui_main_toggled_off = _value;
+        ["diwako_dui_main_hudToggled", [diwako_dui_main_toggled_off]] call CBA_fnc_localEvent;
     }
 ] call CBA_Settings_fnc_init;
 
