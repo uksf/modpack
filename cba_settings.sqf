@@ -587,10 +587,10 @@ force force diwako_dui_compassRange = 35;
 force force diwako_dui_compassRefreshrate = 0;
 force force diwako_dui_enable_compass_dir = 0;
 force force diwako_dui_enable_occlusion = true;
-force force diwako_dui_enable_occlusion_cone = 210;
+force force diwako_dui_enable_occlusion_cone = 270;
 force force diwako_dui_radar_ace_finger = false;
 force force diwako_dui_radar_group_by_vehicle = true;
-force force diwako_dui_radar_occlusion_fade_time = 20;
+force force diwako_dui_radar_occlusion_fade_time = 30;
 force force diwako_dui_radar_sortType = "fireteam";
 force force diwako_dui_radar_sqlFirst = true;
 
