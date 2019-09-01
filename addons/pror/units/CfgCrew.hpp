@@ -34,7 +34,7 @@ class PROR_Crew : PROR_R {
     linkedItems[] = {
         "H_HelmetCrew_I",
         "CUP_V_B_RRV_Scout2",
-        "CFP_ANPVS15_Camo_V3",
+        "CUP_NVG_PVS15_black",
         "ItemMap",
         "ItemCompass",
         "ItemWatch",
@@ -46,7 +46,7 @@ class PROR_Crew : PROR_R {
     respawnLinkedItems[] = {
         "H_HelmetCrew_I",
         "CUP_V_B_RRV_Scout2",
-        "CFP_ANPVS15_Camo_V3",
+        "CUP_NVG_PVS15_black",
         "ItemMap",
         "ItemCompass",
         "ItemWatch",
@@ -62,7 +62,7 @@ class PROR_Jet_Pilot : PROR_Crew {
     backpack = "B_Parachute";
     linkedItems[] = {
         "CUP_H_RUS_ZSH_Shield_Down",
-        "CFP_ANPVS15_Camo_V3",
+        "CUP_NVG_PVS15_black",
         "CUP_V_B_PilotVest",
         "ItemMap",
         "ItemCompass",
@@ -74,7 +74,7 @@ class PROR_Jet_Pilot : PROR_Crew {
     };
     respawnLinkedItems[] = {
         "CUP_H_RUS_ZSH_Shield_Down",
-        "CFP_ANPVS15_Camo_V3",
+        "CUP_NVG_PVS15_black",
         "CUP_V_B_PilotVest",
         "ItemMap",
         "ItemCompass",
@@ -91,7 +91,7 @@ class PROR_Heli_Pilot : PROR_Crew {
     linkedItems[] = {
         "H_PilotHelmetHeli_O",
         "CUP_V_B_PilotVest",
-        "CFP_ANPVS15_Camo_V3",
+        "CUP_NVG_PVS15_black",
         "ItemMap",
         "ItemCompass",
         "ItemWatch",
@@ -103,7 +103,7 @@ class PROR_Heli_Pilot : PROR_Crew {
     respawnLinkedItems[] = {
         "H_PilotHelmetHeli_O",
         "CUP_V_B_PilotVest",
-        "CFP_ANPVS15_Camo_V3",
+        "CUP_NVG_PVS15_black",
         "ItemMap",
         "ItemCompass",
         "ItemWatch",

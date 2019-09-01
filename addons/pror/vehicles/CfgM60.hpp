@@ -1,5 +1,5 @@
-class CFP_B_USMC_M60A3_Patton_DES_01;
-class PROR_Tank_M60 : CFP_B_USMC_M60A3_Patton_DES_01 {
+class CUP_B_M60A3_USMC_OCimport_02;
+class PROR_Tank_M60 : CUP_B_M60A3_USMC_OCimport_02 {
     scope = 2;
     side = 0;
     faction = "UKSF_PROR";

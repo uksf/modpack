@@ -512,25 +512,6 @@
     "ItemAndroid"
 
 #define MAIN_OP_UNIFORMS \
-    "CFP_75th_CRYEG3_V2_Clean", \
-    "CFP_75th_CRYEG3_V2b_Clean", \
-    "CFP_75th_CRYEG3_V4_Clean", \
-    "CFP_75th_CRYE_V1b_Full_Clean", \
-    "CFP_75th_CRYE_V1b_sleeved_Clean", \
-    "CFP_75th_CRYE_V2_Full_Clean", \
-    "CFP_75th_CRYE_V2_sleeved_Clean", \
-    "CFP_75th_CRYE_V2b_Full_Clean", \
-    "CFP_75th_CRYE_V2b_sleeved_Clean", \
-    "CFP_75th_CRYE_V3_Full_Clean", \
-    "CFP_75th_CRYE_V3_sleeved_Clean", \
-    "CFP_75th_CRYE_V3b_Full_Clean", \
-    "CFP_75th_CRYE_V3b_sleeved_Clean", \
-    "CFP_75th_CRYE_V4_Full_Clean", \
-    "CFP_75th_CRYE_V4_sleeved_Clean", \
-    "CFP_75th_CRYE_V4b_Full_Clean", \
-    "CFP_75th_CRYE_V4b_sleeved_Clean", \
-    "CFP_U_Crye_ATacsAU", \
-    "CFP_U_Crye_ATacsAU_SS", \
     "Gen3_Blk", \
     "Gen3_M81", \
     "Gen3_Multicam", \
@@ -569,38 +550,6 @@
     "U_B_T_Sniper_F"
 
 #define MAIN_OP_VESTS \
-    "CFP_CarrierRig_Gunner_Multicam", \
-    "CFP_CarrierRig_Gunner_OGA", \
-    "CFP_CarrierRig_Gunner_OGA_OD", \
-    "CFP_CarrierRig_Gunner_multicamTropic", \
-    "CFP_CarrierRig_Operator_Multicam", \
-    "CFP_CarrierRig_Operator_OGA", \
-    "CFP_CarrierRig_Operator_OGA_OD", \
-    "CFP_CarrierRig_Operator_multicamTropic", \
-    "CFP_FAPC_MG_Multicam", \
-    "CFP_FAPC_MG_MulticamTropic", \
-    "CFP_FAPC_MG_OGA", \
-    "CFP_FAPC_MG_OGA_OD", \
-    "CFP_FAPC_Operator_Multicam", \
-    "CFP_FAPC_Operator_MulticamTropic", \
-    "CFP_FAPC_Operator_OGA", \
-    "CFP_FAPC_Operator_OGA_OD", \
-    "CFP_LBT6094_MG_Multicam", \
-    "CFP_LBT6094_MG_OGA", \
-    "CFP_LBT6094_MG_OGA_OD", \
-    "CFP_LBT6094_MG_multicamTropic", \
-    "CFP_LBT6094_operator_Multicam", \
-    "CFP_LBT6094_operator_OGA", \
-    "CFP_LBT6094_operator_OGA_OD", \
-    "CFP_LBT6094_operator_multicamTropic", \
-    "CFP_RAV_MG_Multicam", \
-    "CFP_RAV_MG_MulticamTropic", \
-    "CFP_RAV_MG_OGA", \
-    "CFP_RAV_MG_OGA_OD", \
-    "CFP_RAV_operator_Multicam", \
-    "CFP_RAV_operator_MulticamTropic", \
-    "CFP_RAV_operator_OGA", \
-    "CFP_RAV_operator_OGA_OD", \
     "UK3CB_BAF_V_HiVis", \
     "UK3CB_BAF_V_Osprey", \
     "UK3CB_BAF_V_Osprey_Belt_A", \
@@ -697,12 +646,6 @@
     "B_Kitbag_mcamo", \
     "B_Kitbag_rgr", \
     "B_Parachute", \
-    "CFP_AssaultPack_Multicam", \
-    "CFP_Carryall_Multicam", \
-    "CFP_Kitbag_Brown", \
-    "CFP_Kitbag_Drab", \
-    "CFP_Kitbag_MCam_Grn", \
-    "CFP_Kitbag_Olive", \
     "CUP_B_USMC_AssaultPack", \
     "ACE_NonSteerableParachute", \
     "SP_Carryall_ATacsAU", \
@@ -787,21 +730,6 @@
     "UKSF_B_Carryall_Mortar_MTP"
 
 #define MAIN_OP_HELMETS \
-    "CFP_BoonieHat_Multicam", \
-    "CFP_ECHHelmet_AtacsAU", \
-    "CFP_OPS2017_Helmet_ATACS", \
-    "CFP_OPS2017_Helmet_ATACSAU", \
-    "CFP_OPS2017_Helmet_Multicam", \
-    "CFP_OPS2017_Helmet_Multicam2", \
-    "CFP_OPS2017_Helmet_OliveFabric", \
-    "CFP_OpsC_Covered_PF", \
-    "CFP_OpsC_Covered2_PF", \
-    "CFP_OpsC_Uncov_Goggles_PF", \
-    "CFP_OpsC_Uncov_Full_PF", \
-    "CFP_OpsC_Cov_Goggles_Off_PF", \
-    "CFP_OpsC_Cov_Full_PF", \
-    "CFP_OpsC_Med_PF", \
-    "CFP_OpsC_Uncov_Shemagh_PF", \
     "COVER_4b", \
     "COVER_4d", \
     "H_Bandanna_camo", \
@@ -900,10 +828,6 @@
     "UK3CB_BAF_H_PilotHelmetHeli_A"
 
 #define MAIN_OP_GLASSES \
-    "CFP_Neck_Plain2", \
-    "CFP_Neck_Plain3", \
-    "CFP_Neck_Plain_Atacs", \
-    "CFP_Neck_Plain_Atacs2", \
     "CUP_FR_NeckScarf", \
     "CUP_FR_NeckScarf2", \
     "CUP_H_FR_BandannaGreen", \

@@ -319,25 +319,4 @@ class CfgWeapons {
         ace_hearing_protection = 0.75;
         ace_hearing_lowerVolume = 0;
     };
-    class VSM_OPS2017_Helmet_Tan;
-    class CFP_OPS2017_Helmet_Multicam : VSM_OPS2017_Helmet_Tan {
-        ace_hearing_protection = 0.75;
-        ace_hearing_lowerVolume = 0;
-    };
-    class CFP_OPS2017_Helmet_Multicam2 : VSM_OPS2017_Helmet_Tan {
-        ace_hearing_protection = 0.75;
-        ace_hearing_lowerVolume = 0;
-    };
-    class CFP_OPS2017_Helmet_OliveFabric : VSM_OPS2017_Helmet_Tan {
-        ace_hearing_protection = 0.75;
-        ace_hearing_lowerVolume = 0;
-    };
-    class CFP_OPS2017_Helmet_ATACS : VSM_OPS2017_Helmet_Tan {
-        ace_hearing_protection = 0.75;
-        ace_hearing_lowerVolume = 0;
-    };
-    class CFP_OPS2017_Helmet_ATACSAU : VSM_OPS2017_Helmet_Tan {
-        ace_hearing_protection = 0.75;
-        ace_hearing_lowerVolume = 0;
-    };
 };

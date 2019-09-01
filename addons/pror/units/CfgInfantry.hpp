@@ -75,7 +75,7 @@ class PROR_R : PROR_Soldier_Base {
     linkedItems[] = {
         "CFP_Basic_Helmet_M81",
         "CUP_V_B_RRV_Scout2",
-        "CFP_ANPVS15_Camo_V3",
+        "CUP_NVG_PVS15_black",
         "ItemMap",
         "ItemCompass",
         "ItemWatch",
@@ -87,7 +87,7 @@ class PROR_R : PROR_Soldier_Base {
     respawnLinkedItems[] = {
         "CFP_Basic_Helmet_M81",
         "CUP_V_B_RRV_Scout2",
-        "CFP_ANPVS15_Camo_V3",
+        "CUP_NVG_PVS15_black",
         "ItemMap",
         "ItemCompass",
         "ItemWatch",
@@ -133,7 +133,7 @@ class PROR_AR : PROR_R {
     linkedItems[] = {
         "CFP_Basic_Helmet_M81",
         "CUP_V_B_RRV_Scout",
-        "CFP_ANPVS15_Camo_V3",
+        "CUP_NVG_PVS15_black",
         "ItemMap",
         "ItemCompass",
         "ItemWatch",
@@ -145,7 +145,7 @@ class PROR_AR : PROR_R {
     respawnLinkedItems[] = {
         "CFP_Basic_Helmet_M81",
         "CUP_V_B_RRV_Scout",
-        "CFP_ANPVS15_Camo_V3",
+        "CUP_NVG_PVS15_black",
         "ItemMap",
         "ItemCompass",
         "ItemWatch",
@@ -193,7 +193,7 @@ class PROR_MG : PROR_R {
     linkedItems[] = {
         "CFP_Basic_Helmet_M81",
         "CUP_V_B_RRV_Scout2",
-        "CFP_ANPVS15_Camo_V3",
+        "CUP_NVG_PVS15_black",
         "ItemMap",
         "ItemCompass",
         "ItemWatch",
@@ -205,7 +205,7 @@ class PROR_MG : PROR_R {
     respawnLinkedItems[] = {
         "CFP_Basic_Helmet_M81",
         "CUP_V_B_RRV_Scout2",
-        "CFP_ANPVS15_Camo_V3",
+        "CUP_NVG_PVS15_black",
         "ItemMap",
         "ItemCompass",
         "ItemWatch",
@@ -225,7 +225,7 @@ class PROR_Medic : PROR_R {
     linkedItems[] = {
         "CFP_Basic_Helmet_M81",
         "CUP_V_B_RRV_Medic",
-        "CFP_ANPVS15_Camo_V3",
+        "CUP_NVG_PVS15_black",
         "ItemMap",
         "ItemCompass",
         "ItemWatch",
@@ -237,7 +237,7 @@ class PROR_Medic : PROR_R {
     respawnLinkedItems[] = {
         "CFP_Basic_Helmet_M81",
         "CUP_V_B_RRV_Medic",
-        "CFP_ANPVS15_Camo_V3",
+        "CUP_NVG_PVS15_black",
         "ItemMap",
         "ItemCompass",
         "ItemWatch",
@@ -267,7 +267,7 @@ class PROR_AT_L : PROR_R {
     linkedItems[] = {
         "CFP_Basic_Helmet_M81",
         "CUP_V_B_RRV_Scout2",
-        "CFP_ANPVS15_Camo_V3",
+        "CUP_NVG_PVS15_black",
         "ItemMap",
         "ItemCompass",
         "ItemWatch",
@@ -279,7 +279,7 @@ class PROR_AT_L : PROR_R {
     respawnLinkedItems[] = {
         "CFP_Basic_Helmet_M81",
         "CUP_V_B_RRV_Scout2",
-        "CFP_ANPVS15_Camo_V3",
+        "CUP_NVG_PVS15_black",
         "ItemMap",
         "ItemCompass",
         "ItemWatch",
@@ -309,7 +309,7 @@ class PROR_AT_H : PROR_R {
     linkedItems[] = {
         "CFP_Basic_Helmet_M81",
         "CUP_V_B_RRV_Scout2",
-        "CFP_ANPVS15_Camo_V3",
+        "CUP_NVG_PVS15_black",
         "ItemMap",
         "ItemCompass",
         "ItemWatch",
@@ -321,7 +321,7 @@ class PROR_AT_H : PROR_R {
     respawnLinkedItems[] = {
         "CFP_Basic_Helmet_M81",
         "CUP_V_B_RRV_Scout2",
-        "CFP_ANPVS15_Camo_V3",
+        "CUP_NVG_PVS15_black",
         "ItemMap",
         "ItemCompass",
         "ItemWatch",
@@ -373,7 +373,7 @@ class PROR_Marksman : PROR_R {
     linkedItems[] = {
         "CFP_Basic_Helmet_M81",
         "CUP_V_B_RRV_Scout2",
-        "CFP_ANPVS15_Camo_V3",
+        "CUP_NVG_PVS15_black",
         "ItemMap",
         "ItemCompass",
         "ItemWatch",
@@ -385,7 +385,7 @@ class PROR_Marksman : PROR_R {
     respawnLinkedItems[] = {
         "CFP_Basic_Helmet_M81",
         "CUP_V_B_RRV_Scout2",
-        "CFP_ANPVS15_Camo_V3",
+        "CUP_NVG_PVS15_black",
         "ItemMap",
         "ItemCompass",
         "ItemWatch",
@@ -477,7 +477,7 @@ class PROR_SL : PROR_Officer {
     linkedItems[] = {
         "CFP_Basic_Helmet_M81",
         "CUP_V_B_RRV_TL",
-        "CFP_ANPVS15_Camo_V3",
+        "CUP_NVG_PVS15_black",
         "ItemMap",
         "ItemCompass",
         "ItemWatch",
@@ -489,7 +489,7 @@ class PROR_SL : PROR_Officer {
     respawnLinkedItems[] = {
         "CFP_Basic_Helmet_M81",
         "CUP_V_B_RRV_TL",
-        "CFP_ANPVS15_Camo_V3",
+        "CUP_NVG_PVS15_black",
         "ItemMap",
         "ItemCompass",
         "ItemWatch",
@@ -564,7 +564,7 @@ class PROR_FOO : PROR_R {
     linkedItems[] = {
         "CFP_Basic_Helmet_M81",
         "CUP_V_B_RRV_TL",
-        "CFP_ANPVS15_Camo_V3",
+        "CUP_NVG_PVS15_black",
         "ItemMap",
         "ItemCompass",
         "ItemWatch",
@@ -576,7 +576,7 @@ class PROR_FOO : PROR_R {
     respawnLinkedItems[] = {
         "CFP_Basic_Helmet_M81",
         "CUP_V_B_RRV_TL",
-        "CFP_ANPVS15_Camo_V3",
+        "CUP_NVG_PVS15_black",
         "ItemMap",
         "ItemCompass",
         "ItemWatch",
@@ -695,7 +695,7 @@ class PROR_AA : PROR_R {
     linkedItems[] = {
         "CFP_Basic_Helmet_M81",
         "CUP_V_B_RRV_Scout2",
-        "CFP_ANPVS15_Camo_V3",
+        "CUP_NVG_PVS15_black",
         "ItemMap",
         "ItemCompass",
         "ItemWatch",
@@ -707,7 +707,7 @@ class PROR_AA : PROR_R {
     respawnLinkedItems[] = {
         "CFP_Basic_Helmet_M81",
         "CUP_V_B_RRV_Scout2",
-        "CFP_ANPVS15_Camo_V3",
+        "CUP_NVG_PVS15_black",
         "ItemMap",
         "ItemCompass",
         "ItemWatch",
