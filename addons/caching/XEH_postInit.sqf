@@ -58,11 +58,12 @@ if (hasInterface) then {
 // Debug shizzle
 /*
 onEachFrame {
-    private _player = if (!(isNull (getConnectedUAV player))) then {
-        (gunner (getConnectedUAV player))
-    } else {
-        (missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", player])
+    ACE_controlledUAV params ["", "_player", "", "_seat"];
+    if (isNull _player) then {
+        _player = call ace_common_fnc_player;
+        _seat = "GUNNER"
     };
+    if (_seat != "GUNNER") exitWith {};
     (call CBA_fnc_getFov) params ["", "_zoom"];
     {
         private _leader = leader _x;
@@ -87,11 +88,12 @@ onEachFrame {
     } count allGroups;
 };
 onEachFrame {
-    private _player = if (!(isNull (getConnectedUAV player))) then {
-        (gunner (getConnectedUAV player))
-    } else {
-        (missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", player])
+    ACE_controlledUAV params ["", "_player", "", "_seat"];
+    if (isNull _player) then {
+        _player = call ace_common_fnc_player;
+        _seat = "GUNNER"
     };
+    if (_seat != "GUNNER") exitWith {};
     {
         private _leader = leader _x;
         if (!(isPlayer _leader)) then {
@@ -110,11 +112,12 @@ onEachFrame {
 };
 /*
 onEachFrame {
-    private _player = if (!(isNull (getConnectedUAV player))) then {
-        (gunner (getConnectedUAV player))
-    } else {
-        (missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", player])
+    ACE_controlledUAV params ["", "_player", "", "_seat"];
+    if (isNull _player) then {
+        _player = call ace_common_fnc_player;
+        _seat = "GUNNER"
     };
+    if (_seat != "GUNNER") exitWith {};
     {
         if (!(isPlayer _x)) then {
             private _colour = [1,0,0,1];
@@ -145,11 +148,12 @@ onEachFrame {
     } count allUnits;
 };
 onEachFrame {
-    private _player = if (!(isNull (getConnectedUAV player))) then {
-        (gunner (getConnectedUAV player))
-    } else {
-        (missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", player])
+    ACE_controlledUAV params ["", "_player", "", "_seat"];
+    if (isNull _player) then {
+        _player = call ace_common_fnc_player;
+        _seat = "GUNNER"
     };
+    if (_seat != "GUNNER") exitWith {};
     {
         private _unit = leader _x;
         if (!(isPlayer _unit)) then {
