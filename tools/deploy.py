@@ -30,7 +30,7 @@ if __name__ == '__main__':
     print("Deleting old @acre2")
     shutil.rmtree(repo_folder_acre, True)
     print("Deleting old @intercept")
-    shutil.rmtree(repo_folder_intercept)
+    shutil.rmtree(repo_folder_intercept, True)
 
     # Find dlls
     dlls = []
