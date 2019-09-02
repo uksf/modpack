@@ -855,7 +855,7 @@
     "UK3CB_BAF_H_Mk7_Scrim_F", \
     "UK3CB_BAF_H_Mk7_Win_A", \
     "UK3CB_BAF_H_Mk7_Win_ESS_A", \
-    "UK3CB_BAF_H_PilotHelmetHeli_A",
+    "UK3CB_BAF_H_PilotHelmetHeli_A", \
     "USP_OPSCORE_FASTMTC_C", \
     "USP_OPSCORE_FASTMTC_CG", \
     "USP_OPSCORE_FASTMTC_CS"
