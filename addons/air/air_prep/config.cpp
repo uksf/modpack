@@ -7,8 +7,7 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "CUP_AirVehicles_C130J",            
-            "cfp_cup_b_gb"
+            "CUP_AirVehicles_C130J"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };

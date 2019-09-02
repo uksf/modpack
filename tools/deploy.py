@@ -6,20 +6,17 @@ DEPLOYMENT_DIRECTORY = "D:\\Dev"
 REPO_DIRECTORY = "C:\\Server\\Modpack"
 SERVER_DIRECTORY = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Arma 3 Server"
 ace_optionals = ["ace_compat_rksl_pm_ii"]
-cfp_optionals = []
 
 if __name__ == '__main__':
     os.chdir(REPO_DIRECTORY)
     repo_folder_uksf = os.path.join(REPO_DIRECTORY, "@uksf")
     repo_folder_uksf_ace = os.path.join(REPO_DIRECTORY, "@uksf_ace")
     repo_folder_acre = os.path.join(REPO_DIRECTORY, "@acre2")
-    repo_folder_cfp = os.path.join(REPO_DIRECTORY, "@Community_Factions_Project")
     repo_folder_uksf_dependencies = os.path.join(REPO_DIRECTORY, "@uksf_dependencies")
     repo_folder_intercept = os.path.join(REPO_DIRECTORY, "@intercept")
     deployment_folder_uksf = os.path.join(DEPLOYMENT_DIRECTORY, "modpack\\release\\@uksf")
     deployment_folder_uksf_ace = os.path.join(DEPLOYMENT_DIRECTORY, "ACE3\\release\\@ace")
     deployment_folder_acre = os.path.join(DEPLOYMENT_DIRECTORY, "acre2\\release\\@acre2")
-    deployment_folder_cfp = os.path.join(DEPLOYMENT_DIRECTORY, "cfp\\release\\@Community_Factions_Project")
     deployment_folder_uksf_dependencies = os.path.join(DEPLOYMENT_DIRECTORY, "modpack\\release\\@uksf_dependencies")
     deployment_folder_intercept = os.path.join(DEPLOYMENT_DIRECTORY, "modpack\\@intercept")    
     keys_folder = os.path.join(SERVER_DIRECTORY, "Keys")
@@ -32,8 +29,6 @@ if __name__ == '__main__':
     shutil.rmtree(repo_folder_uksf_ace, True)
     print("Deleting old @acre2")
     shutil.rmtree(repo_folder_acre, True)
-    print("Deleting old @Community_Factions_Project")
-    shutil.rmtree(repo_folder_cfp, True)
     print("Deleting old @intercept")
     shutil.rmtree(repo_folder_intercept)
 
@@ -69,8 +64,6 @@ if __name__ == '__main__':
     shutil.copytree(deployment_folder_uksf_ace, repo_folder_uksf_ace)
     print("Moving new @acre2")
     shutil.copytree(deployment_folder_acre, repo_folder_acre)
-    print("Moving new @Community_Factions_Project")
-    shutil.copytree(deployment_folder_cfp, repo_folder_cfp)
     print("Moving new @intercept")
     shutil.copytree(deployment_folder_intercept, repo_folder_intercept)
 
@@ -82,15 +75,6 @@ if __name__ == '__main__':
             for compat in ace_optionals:
                 if ((compat in file) and not(os.path.isfile(os.path.join(repo_folder_uksf_ace, "addons", file)))):
                     shutil.copyfile(os.path.join(repo_folder_uksf_ace, "optionals", folder, "addons", file), os.path.join(repo_folder_uksf_ace, "addons", file))
-
-    # # Move whitelisted cfp optionals
-    # for folder in os.listdir(os.path.join(repo_folder_cfp, "optionals")):
-    #     if ("userconfig" in folder):
-    #         continue
-    #     for file in os.listdir(os.path.join(repo_folder_cfp, "optionals")):
-    #         for compat in cfp_optionals:
-    #             if ((compat in file) and not(os.path.isfile(os.path.join(repo_folder_cfp, "addons", file)))):
-    #                 shutil.copyfile(os.path.join(repo_folder_cfp, "optionals", file), os.path.join(repo_folder_cfp, "addons", file))
 
 
     # Updated any matching PBOs in dependencies.
@@ -135,7 +119,7 @@ if __name__ == '__main__':
     print("Deleting old keys")
     for file in os.listdir(keys_folder):
         name = os.path.splitext(file)[0]
-        if (file.endswith(".bikey") and (("uksf" in name and not ("gcam" in name)) or ("ace_3" in name) or ("acre_" in name) or ("cfp_" in name))
+        if (file.endswith(".bikey") and (("uksf" in name and not ("gcam" in name)) or ("ace_3" in name) or ("acre_" in name))
                 and os.path.isfile(os.path.join(keys_folder, file))):
             print("    Deleting: {}".format(file))
             os.remove(os.path.join(keys_folder, file))
@@ -154,10 +138,6 @@ if __name__ == '__main__':
         if file.endswith(".bikey") and os.path.isfile(os.path.join(deployment_folder_acre, "keys", file)):
             print("    Moving: {}".format(file))
             shutil.copy(os.path.join(deployment_folder_acre, "keys", file), os.path.join(keys_folder, file))
-    for file in os.listdir(os.path.join(deployment_folder_cfp, "keys")):
-        if file.endswith(".bikey") and os.path.isfile(os.path.join(deployment_folder_cfp, "keys", file)):
-            print("    Moving: {}".format(file))
-            shutil.copy(os.path.join(deployment_folder_cfp, "keys", file), os.path.join(keys_folder, file))
 
     # Move cba_settings.sqf
     if (os.path.isfile(os.path.join(SERVER_DIRECTORY, "userconfig", "cba_settings.sqf"))):

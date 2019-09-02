@@ -1,6 +1,6 @@
 // Huey
-class CFP_B_USCIA_UH_1H_01;
-class PROR_Heli_Huey : CFP_B_USCIA_UH_1H_01 {
+class CUP_I_UH1H_TK_GUE_OCimport_02;
+class PROR_Heli_Huey : CUP_I_UH1H_TK_GUE_OCimport_02 {
     scope = 2;
     side = 0;
     faction = "UKSF_PROR";

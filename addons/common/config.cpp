@@ -13,7 +13,6 @@ class CfgPatches {
             "uksf_3rdperson",
             "3denEnhanced",
             "cba_ui",
-            "cfp_o_syarmy",
             "diwako_dui_main"
         };
         author = QUOTE(UKSF);

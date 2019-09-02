@@ -1,5 +1,5 @@
-class CFP_B_ILIDF_MDT_David_01;
-class GVAR(landrover_transport) : CFP_B_ILIDF_MDT_David_01 {
+class CUP_B_LR_Transport_CZ_W;
+class GVAR(landrover_transport) : CUP_B_LR_Transport_CZ_W {
     faction = "UKSF_AUG";
     side = 0;
     displayName = "Landrover Transport";
