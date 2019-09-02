@@ -56,7 +56,7 @@ class UKSF_B_PathfinderMedic: UKSF_B_Pathfinder {
 };
 class UKSF_B_SAS: UKSF_B_Rifleman {
     displayName = "SAS Trooper";
-    uniformClass = "";
+    uniformClass = "USP_CRYE_G3C_SHORT";
     editorPreview = QPATHTOEF(common,data\previews\UKSF_B_SAS.jpg);
     engineer = 1;
 };

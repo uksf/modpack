@@ -1,5 +1,5 @@
-class CUP_B_LR_Transport_CZ_W_OCimport_02;
-class GVAR(landrover_transport) : CUP_B_LR_Transport_CZ_W_OCimport_02 {
+class CUP_B_LR_Transport_CZ_W;
+class GVAR(landrover_transport) : CUP_B_LR_Transport_CZ_W {
     faction = "UKSF_AUG";
     side = 0;
     displayName = "Landrover Transport";
