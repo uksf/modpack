@@ -34,13 +34,12 @@ if (count _vehicles == 0) exitWith {};
         [GVAR(hashPersistentVehicles), _id, _vehicle] call CBA_fnc_hashSet;
     };
     
-    _vehicle setVehiclePosition [ASLToATL _position, [], 0];
-    private _newPosition = getPosASL _vehicle;
-    private _size = sizeOf _type;
-    if ((_position distance _newPosition) < _size) then {
-        WARNING_3("Aborted loading vehicle %1. Placed position (%2) was too far from saved position (%3). Probably another vehicle is in the way.",_id,_newPosition,_position);
+    private _positions = _position findEmptyPosition [0, sizeOf _type, _type];
+    if (_positions isEqualTo []) then {
+        WARNING_2("Aborted loading vehicle %1. Couldn't find safe position at saved position (%2). Probably another vehicle is in the way.",_id,_position);
         deleteVehicle _vehicle;
     } else {
+        _vehicle setPosASL _position;
         _vehicle setVectorDirAndUp _vectorDirAndUp;
         _vehicle setDamage _damage;
         _vehicle setFuel _fuel;
