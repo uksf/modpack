@@ -21,7 +21,7 @@ private _radios = ([_unit] call acre_sys_core_fnc_getGear) select {_x call acre_
 private _local = local _unit;
 private _pttAssignments = [];
 if (_local) then {
-    _pttAssignments = [] call acre_api_fnc_getMultiPushToTalkAssignment;
+    _pttAssignments = +ACRE_ASSIGNED_PTT_RADIOS;
 };
 
 private _radioData = [];

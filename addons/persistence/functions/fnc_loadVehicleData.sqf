@@ -36,7 +36,7 @@ if (count _vehicles == 0) exitWith {};
 
     _vehicle setPosASL _position;
     _vehicle setVectorDirAndUp _vectorDirAndUp;
-    _vehicle setDamage _damage;
+    // _vehicle setDamage _damage;
     _vehicle setFuel _fuel;
 
     private _currentTurretMagazines = magazinesAllTurrets _vehicle;
