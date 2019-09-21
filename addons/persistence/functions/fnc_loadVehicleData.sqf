@@ -34,6 +34,7 @@ if (count _vehicles == 0) exitWith {};
         [GVAR(hashPersistentVehicles), _id, _vehicle] call CBA_fnc_hashSet;
     };
     
+    // TODO: Improve this logic to consider smaller objects being loaded, then a large object not being able to load.
     private _size = (sizeOf _type) / 1.3;
     if (({((getPosASL _x) distance _position) < _size} count vehicles) > 0) then {
         WARNING_3("Aborted loading vehicle %1. Saved position (%2) has another vehicle within %3m of it.",_id,_position,_size);
