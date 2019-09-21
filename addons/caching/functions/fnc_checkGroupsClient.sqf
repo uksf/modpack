@@ -22,12 +22,13 @@ if (isNull _player) then {
 if (_seat != "GUNNER") exitWith {};
 
 private _objectViewDistance = (getObjectViewDistance#0);
+
 {
     private _leader = leader _x;
     if (
         !(isPlayer _leader) &&
         {!((vehicle _leader) isKindOf "Air")} &&
-        {((_leader getVariable [QGVAR(time), 0]) + 10) < diag_tickTime || {!(simulationEnabled _leader)}} &&
+        {((_leader getVariable [QGVAR(time), 0]) + 10) < CBA_missionTime || {!(simulationEnabled _leader)}} &&
         {(_leader distance _player) > GVAR(distance)} &&
         {(_leader distance _player) < _objectViewDistance} &&
         {[_leader, _player, true, true] call EFUNC(common,lineOfSight)}
@@ -42,6 +43,6 @@ private _objectViewDistance = (getObjectViewDistance#0);
                 } forEach (crew (vehicle _leader));
             };
         };
-        _leader setVariable [QGVAR(time), diag_tickTime, true];
+        _leader setVariable [QGVAR(time), CBA_missionTime, true];
     };
 } forEach _groups;

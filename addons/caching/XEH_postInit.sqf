@@ -19,7 +19,7 @@ if (isServer) then {
     [{
         private _groups = allGroups select {!(_x getVariable [QGVAR(excluded), false])};
         private _count = count _groups;
-        private _perFrame = ceil (_count / (25 * SERVER_DELAY));
+        private _perFrame = ceil (_count / (diag_fpsMin * SERVER_DELAY));
         [{
             params ["_args", "_idPFH"];
             _args params ["_groups", "_count", "_perFrame", "_index"];
@@ -39,7 +39,7 @@ if (hasInterface) then {
     [{
         private _groups = allGroups select {!(_x getVariable [QGVAR(excluded), false])};
         private _count = count _groups;
-        private _perFrame = ceil (_count / 25);
+        private _perFrame = ceil (_count / diag_fpsMin);
         [{
             params ["_args", "_idPFH"];
             _args params ["_groups", "_count", "_perFrame", "_index"];
@@ -172,7 +172,7 @@ onEachFrame {
                     };
                 };
             };
-            private _text = ((_unit getVariable ["uksf_caching_time", diag_tickTime]) - diag_tickTime) toFixed 0;
+            private _text = ((_unit getVariable ["uksf_caching_time", CBA_missionTime]) - CBA_missionTime) toFixed 0;
             drawIcon3D ["\a3\ui_f_curator\data\logos\arma3_curator_eye_32_ca.paa", _colour, getPos _unit, 0.5, 0.5, 0, _text, 0, 0.025, "TahomaB", "center", true];
         };
     } count allGroups;
@@ -185,7 +185,7 @@ onEachFrame {
             if (simulationEnabled _unit) then {
                 _colour = [0,1,0,1];
             };
-            private _text = ((_unit getVariable ["uksf_caching_time", diag_tickTime]) - diag_tickTime) toFixed 0;
+            private _text = ((_unit getVariable ["uksf_caching_time", CBA_missionTime]) - CBA_missionTime) toFixed 0;
             drawIcon3D ["\a3\ui_f_curator\data\logos\arma3_curator_eye_32_ca.paa", _colour, getPos _unit, 0.5, 0.5, 0, _text, 0, 0.025, "TahomaB", "center", true];
         };
     } count allGroups;

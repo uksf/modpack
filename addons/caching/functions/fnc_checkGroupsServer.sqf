@@ -23,7 +23,7 @@ params [["_groups", []]];
             !(isPlayer _leader) &&
             {!(isObjectHidden _leader)} &&
             {!((vehicle _leader) isKindOf "Air")} &&
-            {((_leader getVariable [QGVAR(time), 0]) + 15) < diag_tickTime}
+            {((_leader getVariable [QGVAR(time), 0]) + 15) < CBA_missionTime}
         ) then {
             [QGVAR(setDynamicSimulation), [_x, true]] call CBA_fnc_globalEvent;
             [QGVAR(hideObjectGlobal), [_x, true]] call CBA_fnc_localEvent;
