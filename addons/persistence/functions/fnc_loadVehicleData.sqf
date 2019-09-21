@@ -40,7 +40,7 @@ if (count _vehicles == 0) exitWith {};
         WARNING_3("Aborted loading vehicle %1. Saved position (%2) has another vehicle within %3m of it.",_id,_position,_size);
         deleteVehicle _vehicle;
     } else {
-        _vehicle setPosASL _vehicle;
+        _vehicle setPosASL _position;
         _vehicle setVectorDirAndUp _vectorDirAndUp;
         _vehicle setDamage _damage;
         _vehicle setFuel _fuel;
