@@ -34,12 +34,12 @@ if (count _vehicles == 0) exitWith {};
         [GVAR(hashPersistentVehicles), _id, _vehicle] call CBA_fnc_hashSet;
     };
     
-    private _positions = _position findEmptyPosition [0, sizeOf _type, _type];
-    if (_positions isEqualTo []) then {
-        WARNING_2("Aborted loading vehicle %1. Couldn't find safe position at saved position (%2). Probably another vehicle is in the way.",_id,_position);
+    private _size = (sizeOf _type) / 1.3;
+    if (({((getPosASL _x) distance _position) < _size} count vehicles) > 0) then {
+        WARNING_3("Aborted loading vehicle %1. Saved position (%2) has another vehicle within %3m of it.",_id,_position,_size);
         deleteVehicle _vehicle;
     } else {
-        _vehicle setPosASL _position;
+        _vehicle setPosASL _vehicle;
         _vehicle setVectorDirAndUp _vectorDirAndUp;
         _vehicle setDamage _damage;
         _vehicle setFuel _fuel;
