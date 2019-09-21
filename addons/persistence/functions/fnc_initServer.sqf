@@ -65,6 +65,7 @@ addMissionEventHandler ["PlayerDisconnected", {call FUNC(playerDisconnected)}];
 GVAR(dataNamespace) setVariable [QGVAR(world), worldName];
 if (GVAR(dataSaved)) then {
     profileNamespace setVariable [GVAR(key), [GVAR(dataNamespace)] call CBA_fnc_serializeNamespace];
+    saveProfileNamespace;
     LOG("Saved data");
 };
 
