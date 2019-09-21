@@ -29,7 +29,7 @@ if (count _vehicles == 0) exitWith {};
         TRACE_1("Loading vehicle exists in mission, using",_id);
         _vehicle = ([GVAR(hashPersistentVehicles), _id] call CBA_fnc_hashGet);
     } else {
-        _vehicle = _type createVehicle [(random 2000) - 6000, (random 2000) - 6000,0];
+        _vehicle = _type createVehicle [(random 2000) - 6000, (random 2000) - 6000, 0];
         _vehicle setVariable [QGVAR(persistenceID), _id];
         [GVAR(hashPersistentVehicles), _id, _vehicle] call CBA_fnc_hashSet;
     };
@@ -38,7 +38,7 @@ if (count _vehicles == 0) exitWith {};
     private _newPosition = getPosASL _vehicle;
     private _size = sizeOf _type;
     if ((_position distance _newPosition) < _size) then {
-        WARNING_1("Aborted loading vehicle %1. Placed position (%2) was too far from saved position (%3). Probably another vehicle is in the way.",_id,_newPosition,_position);
+        WARNING_3("Aborted loading vehicle %1. Placed position (%2) was too far from saved position (%3). Probably another vehicle is in the way.",_id,_newPosition,_position);
         deleteVehicle _vehicle;
     } else {
         _vehicle setVectorDirAndUp _vectorDirAndUp;
