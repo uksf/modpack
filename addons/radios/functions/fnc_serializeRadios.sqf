@@ -22,6 +22,9 @@ private _local = local _unit;
 private _pttAssignments = [];
 if (_local) then {
     _pttAssignments = +ACRE_ASSIGNED_PTT_RADIOS;
+    if (_pttAssignments isEqualTo []) then {
+        _pttAssignments = call acre_sys_data_fnc_getPlayerRadioList;
+    };
 };
 
 private _radioData = [];

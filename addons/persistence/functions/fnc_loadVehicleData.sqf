@@ -33,7 +33,7 @@ if (count _vehicles == 0) exitWith {};
         _vehicle setVariable [QGVAR(persistenceID), _id];
         [GVAR(hashPersistentVehicles), _id, _vehicle] call CBA_fnc_hashSet;
     };
-
+    _vehicle enableSimulationGlobal false;
     _vehicle setPosASL _position;
     _vehicle setVectorDirAndUp _vectorDirAndUp;
     // _vehicle setDamage _damage;
