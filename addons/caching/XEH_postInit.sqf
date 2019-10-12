@@ -4,16 +4,16 @@
 
 if (!GVAR(enabled)) exitWith {
     INFO("Caching is disabled.");
-    enableDynamicSimulationSystem false;
+    // enableDynamicSimulationSystem false;
 };
 
 INFO("Caching is enabled.");
-enableDynamicSimulationSystem true;
-"Group" setDynamicSimulationDistance GVAR(distance);
-"Vehicle" setDynamicSimulationDistance GVAR(distance);
-"EmptyVehicle" setDynamicSimulationDistance 250;
-"Prop" setDynamicSimulationDistance 50;
-"IsMoving" setDynamicSimulationDistanceCoef 1.5;
+// enableDynamicSimulationSystem true;
+// "Group" setDynamicSimulationDistance GVAR(distance);
+// "Vehicle" setDynamicSimulationDistance GVAR(distance);
+// "EmptyVehicle" setDynamicSimulationDistance 250;
+// "Prop" setDynamicSimulationDistance 50;
+// "IsMoving" setDynamicSimulationDistanceCoef 1.5;
 
 if (isServer) then {
     [{
@@ -57,6 +57,86 @@ if (hasInterface) then {
 
 // Debug shizzle
 /*
+onEachFrame {
+    ACE_controlledUAV params ["", "_player", "", "_seat"];
+    if (isNull _player) then {
+        _player = call ace_common_fnc_player;
+        _seat = "GUNNER"
+    };
+    if (_seat != "GUNNER") exitWith {};
+    private _objectViewDistance = (getObjectViewDistance#0);
+    {
+        private _leader = leader _x;
+        if (!(isPlayer _leader)) then {
+            private _colour = [1,0,0,1];
+            if ((_leader distance _player) <= uksf_caching_distance) then {
+                _colour = [0,0,1,1];
+            };
+            if ((_leader distance _player) < _objectViewDistance && {[_leader, _player, true, true] call uksf_common_fnc_lineOfSight}) then {
+                _colour = [0,1,0,1];
+            };
+            private _text = ((_leader getVariable ["uksf_caching_time", CBA_missionTime]) - CBA_missionTime) toFixed 0;
+            drawIcon3D ["\a3\ui_f_curator\data\logos\arma3_curator_eye_32_ca.paa", _colour, getPos _leader, 0.5, 0.5, 0, _text, 0, 0.025, "TahomaB", "center", true];
+        };
+    } count allGroups;
+};
+onEachFrame {
+    ACE_controlledUAV params ["", "_player", "", "_seat"];
+    if (isNull _player) then {
+        _player = call ace_common_fnc_player;
+        _seat = "GUNNER"
+    };
+    if (_seat != "GUNNER") exitWith {};
+    (call CBA_fnc_getFov) params ["", "_zoom"];
+    {
+        private _leader = leader _x;
+        if (!(isPlayer _leader)) then {
+            private _colour = [1,0,0,1];
+            private _pos = worldToScreen (getPos _leader);
+            private _inView = ((count _pos) > 0 &&
+                {_pos#0 > uksf_common_bufferedSafeX && _pos#0 < uksf_common_bufferedSafeW && (_pos#1 / _zoom) > uksf_common_bufferedSafeY && (_pos#1 / _zoom) < uksf_common_bufferedSafeH});
+            if (_inView) then {
+                _colour = [1,1,0,1];
+                private _los = ([_player, "VIEW", (vehicle _player)] checkVisibility [eyePos _player, eyePos _leader]) > 0;
+                if (_los) then {
+                    _colour = [0,1,0,1];
+                };
+            };
+            private _text = _leader getVariable ["uksf_caching_time", 0];
+            drawIcon3D ["\a3\ui_f_curator\data\logos\arma3_curator_eye_32_ca.paa", _colour, getPosVisual _leader, 0.5, 0.5, 0, _text, 0, 0.05, "TahomaB", "center", true];
+        };
+    } count allGroups;
+};
+onEachFrame {
+    ACE_controlledUAV params ["", "_player", "", "_seat"];
+    if (isNull _player) then {
+        _player = call ace_common_fnc_player;
+        _seat = "GUNNER"
+    };
+    if (_seat != "GUNNER") exitWith {};
+    (call CBA_fnc_getFov) params ["", "_zoom"];
+    {
+        private _leader = leader _x;
+        if (!(isPlayer _leader)) then {
+            private _colour = [1,0,0,1];
+            private _pos = worldToScreen (getPos _leader);
+            private _inView = ((count _pos) > 0 &&
+                {_pos#0 > uksf_common_bufferedSafeX && _pos#0 < uksf_common_bufferedSafeW && (_pos#1 / _zoom) > uksf_common_bufferedSafeY && (_pos#1 / _zoom) < uksf_common_bufferedSafeH});
+            if (_inView) then {
+                _colour = [1,1,0,1];
+                private _los = ([_player, "VIEW", (vehicle _player)] checkVisibility [eyePos _player, eyePos _leader]) > 0;
+                if (_los) then {
+                    _colour = [0,1,0,1];
+                };
+            };
+            private _text = format ["%1", count _pos];
+            if ((count _pos) > 0) then {
+                _text = format ["%1, %2", _pos#0, (_pos#1 / _zoom)];
+            };
+            drawIcon3D ["\a3\ui_f_curator\data\logos\arma3_curator_eye_32_ca.paa", _colour, getPosVisual _leader, 0.5, 0.5, 0, _text, 0, 0.05, "TahomaB", "center", true];
+        };
+    } count allGroups;
+};
 onEachFrame {
     ACE_controlledUAV params ["", "_player", "", "_seat"];
     if (isNull _player) then {
@@ -171,19 +251,6 @@ onEachFrame {
                         _colour = [0,1,0,1];
                     };
                 };
-            };
-            private _text = ((_unit getVariable ["uksf_caching_time", CBA_missionTime]) - CBA_missionTime) toFixed 0;
-            drawIcon3D ["\a3\ui_f_curator\data\logos\arma3_curator_eye_32_ca.paa", _colour, getPos _unit, 0.5, 0.5, 0, _text, 0, 0.025, "TahomaB", "center", true];
-        };
-    } count allGroups;
-};
-onEachFrame {
-    {
-        private _unit = leader _x;
-        if (!(isPlayer _unit)) then {
-            private _colour = [1,0,0,1];
-            if (simulationEnabled _unit) then {
-                _colour = [0,1,0,1];
             };
             private _text = ((_unit getVariable ["uksf_caching_time", CBA_missionTime]) - CBA_missionTime) toFixed 0;
             drawIcon3D ["\a3\ui_f_curator\data\logos\arma3_curator_eye_32_ca.paa", _colour, getPos _unit, 0.5, 0.5, 0, _text, 0, 0.025, "TahomaB", "center", true];

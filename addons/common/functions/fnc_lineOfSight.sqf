@@ -40,7 +40,7 @@ if (!_los && {_groupCheck}) then {
 
 if (_los && {_zoomCheck}) then {
     private _distanceMultiplier = (400 + (4 * 200 * (((currentVisionMode _source) - 1) max 0)));
-    if (!((vehicle _target) isKindOf "CAManBase")) then {
+    if (isNull (objectParent _target)) then {
         _distanceMultiplier = _distanceMultiplier * VEHICLE_MULTIPLIER;
     };
     private _distance = (getObjectViewDistance#0) min (DISTANCE_MIN + (_distanceMultiplier * ((call CBA_fnc_getFov)#1)));
