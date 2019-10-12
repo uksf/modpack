@@ -101,12 +101,20 @@ class CfgVehicles {
         hiddenSelectionsTextures[] = { QPATHTOF(data\R4_co.paa) };
         class TransportMagazines {
             MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_60mm_Mo_Shells,60);
-            MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_60mm_Mo_Smoke_White,20);
-            MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_60mm_Mo_Flare_White,40);
-            MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_60mm_Mo_AB_Shells,30);
+            MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_60mm_Mo_AB_Shells,25);
+            MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_60mm_Mo_Smoke_White,30);
+            MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_60mm_Mo_Flare_White,30);
         };
         class TransportWeapons {
             MACRO_ADDWEAPON(UK3CB_BAF_M6,2);
+        };
+        class ACE_Cargo {
+            class Cargo {
+                class UK3CB_BAF_Box_M6_Ammo_Mixed {
+                    type = "UK3CB_BAF_Box_M6_Ammo_Mixed";
+                    amount = 1;
+                };
+            };
         };
     };
     class UKSF_S_R5: UKSF_S_Empty {
@@ -128,14 +136,22 @@ class CfgVehicles {
         editorPreview = QPATHTOEF(common,data\previews\UKSF_S_R6.jpg);
         hiddenSelectionsTextures[] = { QPATHTOF(data\R6_co.paa) };
         class TransportMagazines {
-            MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_81mm_Mo_Shells,50);
-            MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_81mm_Mo_Smoke_White,15);
-            MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_81mm_Mo_Flare_White,15);
-            MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_81mm_Mo_AB_Shells,30);
+            MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_81mm_Mo_Shells,60);
+            // MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_81mm_Mo_AB_Shells,30);
+            MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_81mm_Mo_Smoke_White,25);
+            MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_81mm_Mo_Flare_White,20);
         };
         class TransportWeapons {
             MACRO_ADDWEAPON(UK3CB_BAF_L16,2);
             MACRO_ADDWEAPON(UK3CB_BAF_L16_Tripod,2);
+        };
+        class ACE_Cargo {
+            class Cargo {
+                class UK3CB_BAF_Box_L16_Ammo_Mixed {
+                    type = "UK3CB_BAF_Box_L16_Ammo_Mixed";
+                    amount = 1;
+                };
+            };
         };
     };
     class UKSF_S_RT: UKSF_S_Empty {
