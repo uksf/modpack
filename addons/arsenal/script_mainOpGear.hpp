@@ -515,9 +515,6 @@
     "ItemAndroid"
 
 #define MAIN_OP_UNIFORMS \
-    "Gen3_Blk", \
-    "Gen3_M81", \
-    "Gen3_Multicam", \
     "SP_0000_Standard_TacticalUniform_ATacsFG", \
     "SP_0000_Standard_TacticalUniform_ATacsFG_SS", \
     "UK3CB_BAF_U_CombatUniform_Arctic_Ghillie_RM", \
@@ -625,30 +622,6 @@
     "UK3CB_BAF_V_PLCE_Webbing_Winter", \
     "UK3CB_BAF_V_Pilot_A", \
     "UKSF_V_Pilot", \
-    "cpc_Fast_mc", \
-    "cpc_Fast_rngr", \
-    "cpc_Fastbelt_mc", \
-    "cpc_Fastbelt_rngr", \
-    "cpc_communications_mc", \
-    "cpc_communications_rngr", \
-    "cpc_communicationsbelt_mc", \
-    "cpc_communicationsbelt_rngr", \
-    "cpc_light_mc", \
-    "cpc_light_rngr", \
-    "cpc_lightbelt_mc", \
-    "cpc_lightbelt_rngr", \
-    "cpc_medical_mc", \
-    "cpc_medical_rngr", \
-    "cpc_medicalbelt_mc", \
-    "cpc_medicalbelt_rngr", \
-    "cpc_tl_mc", \
-    "cpc_tl_rngr", \
-    "cpc_tlbelt_mc", \
-    "cpc_tlbelt_rngr", \
-    "cpc_weapons_mc", \
-    "cpc_weapons_rngr", \
-    "cpc_weaponsbelt_mc", \
-    "cpc_weaponsbelt_rngr", \
     "USP_CRYE_CPC_COMMS_MC", \
     "USP_CRYE_CPC_COMMS_BELT_MC", \
     "USP_CRYE_CPC_FAST_MC", \

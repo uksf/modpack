@@ -43,17 +43,6 @@ class UKSF_B_Sniper: UKSF_B_Rifleman {
     camouflage = 0.6;
     editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Sniper.jpg);
 };
-class UKSF_B_Pathfinder: UKSF_B_Rifleman {
-    displayName = "PF Patrolman";
-    uniformClass = "Gen3_Multicam";
-    editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Pathfinder.jpg);
-    engineer = 1;
-};
-class UKSF_B_PathfinderMedic: UKSF_B_Pathfinder {
-    displayName = "PF Patrolman Medic";
-    editorPreview = QPATHTOEF(common,data\previews\UKSF_B_PathfinderMedic.jpg);
-    attendant = 1;
-};
 class UKSF_B_SAS: UKSF_B_Rifleman {
     displayName = "SAS Trooper";
     uniformClass = "USP_CRYE_G3C_SHORT";

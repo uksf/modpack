@@ -9,8 +9,6 @@ class CfgPatches {
             "UKSF_B_SectionLeader",
             "UKSF_B_Medic",
             "UKSF_B_Sniper",
-            "UKSF_B_Pathfinder",
-            "UKSF_B_PathfinderMedic",
             "UKSF_B_SAS",
             "UKSF_B_Pilot",
             "UKSF_B_Pilot_7",
