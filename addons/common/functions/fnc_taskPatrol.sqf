@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
     Author:
         CBA, Tim Beswick
@@ -9,7 +10,6 @@
     Parameters:
         https://github.com/CBATeam/CBA_A3/blob/master/addons/ai/fnc_taskPatrol.sqf#L7
 */
-#include "script_component.hpp"
 
 params [
     ["_group", grpNull, [grpNull, objNull]],

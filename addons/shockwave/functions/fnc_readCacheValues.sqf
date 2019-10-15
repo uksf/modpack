@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
     Author:
         joko, Tim Beswick
@@ -13,7 +14,6 @@
     Return value:
         Cached Value <ANY>
 */
-#include "script_component.hpp"
 
 params [["_config", configNull, [configNull, []]], ["_varName", "", [""]], ["_default", ""]];
 

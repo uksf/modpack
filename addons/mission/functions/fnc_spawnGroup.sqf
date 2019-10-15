@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
     Author:
         Tim Beswick
@@ -13,7 +14,6 @@
     Return value:
         Nothing
 */
-#include "script_component.hpp"
 
 #define PLAYERSAFEDISTANCE 300
 

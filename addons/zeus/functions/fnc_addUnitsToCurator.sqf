@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
     Author:
         Kex, Tim Beswick
@@ -12,7 +13,6 @@
     Return Value:
         None
 */
-#include "script_component.hpp"
 
 params [["_unitsToModify", [], [[]]], ["_addToCurator", true, [true]]];
 

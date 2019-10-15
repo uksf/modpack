@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
     Author:
         Tim Beswick
@@ -12,7 +13,6 @@
     Return Value:
         None
 */
-#include "script_component.hpp"
 
 #define INTERVAL 1
 #define MULTIPLIER_FEET 3.28084

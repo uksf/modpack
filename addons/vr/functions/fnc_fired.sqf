@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
     Author:
         Tim Beswick
@@ -17,7 +18,6 @@
     Return value:
         Nothing
 */
-#include "script_component.hpp"
 
 #define BASE_ROUNDS ["B_556x45_Ball","CUP_B_762x51_Tracer_White","CUP_B_762x51_Tracer_Red","B_762x51_Tracer_Red","B_127x99_Ball_Tracer_Red","CUP_R_SMAW_HEAA_N","Sh_120mm_APFSDS_Tracer_Red","Sh_120mm_HE_Tracer_Red","CUP_B_25mm_HE_Red_Tracer","CUP_B_25mm_APFSDS_Red_Tracer"]
 #define REPLACE_ROUNDS ["B_556x45_Ball_Rubber","CUP_B_762x51_Tracer_White_Rubber","CUP_B_762x51_Tracer_White_Rubber","CUP_B_762x51_Tracer_White_Rubber","B_127x99_Ball_Tracer_White_Rubber","CUP_R_SMAW_HEAT_N_Rubber","Sh_120mm_APFSDS_Tracer_White_Rubber","Sh_120mm_HE_Tracer_White_Rubber","CUP_B_25mm_HE_White_Tracer_Rubber","CUP_B_25mm_APFSDS_White_Tracer_Rubber"]

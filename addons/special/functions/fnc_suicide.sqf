@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
     Author:
         Tim Beswick
@@ -13,7 +14,6 @@
     Return Value:
         Nothing
 */
-#include "script_component.hpp"
 
 #define DISTANCE_MOVE 100
 

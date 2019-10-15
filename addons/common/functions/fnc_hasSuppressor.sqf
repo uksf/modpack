@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
     Author:
         Tim Beswick
@@ -11,7 +12,6 @@
     Return value:
         Has suppressor <BOOL>
 */
-#include "script_component.hpp"
 
 params ["_unit"];
 

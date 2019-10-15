@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
     Author:
         Tim Beswick
@@ -13,7 +14,6 @@
     Return Value:
         None
 */
-#include "script_component.hpp"
 
 params ["_vehicle", "_aceCargo", "_inventory"];
 TRACE_3("Setting vehicle cargo",_vehicle,_aceCargo,_inventory);

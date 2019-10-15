@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
     Author:
         Kex, edited by Tim Beswick
@@ -11,7 +12,6 @@
     Return Value:
         Boolean
 */
-#include "script_component.hpp"
 
 private _handled = false;
 

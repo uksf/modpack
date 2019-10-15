@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
     Author:
         Tim Beswick
@@ -14,7 +15,6 @@
     Return value:
         Nothing
 */
-#include "script_component.hpp"
 
 GVAR(soundPlaying) = false;
 [GVAR(soundHandler)] call cba_fnc_removePerFrameHandler;

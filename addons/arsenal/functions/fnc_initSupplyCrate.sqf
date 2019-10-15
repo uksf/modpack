@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+#include "\u\uksf\addons\arsenal\script_mainOpGear.hpp"
 /*
     Author:
         Tim Beswick
@@ -11,8 +13,6 @@
     Return Value:
         None
 */
-#include "script_component.hpp"
-#include "\u\uksf\addons\arsenal\script_mainOpGear.hpp"
 
 params ["_crate"];
 

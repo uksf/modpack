@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
     Author:
         joko, Tim Beswick
@@ -11,7 +12,6 @@
     Return value:
         None
 */
-#include "script_component.hpp"
 
 params ["_shooter", "_weapon", "", "", "_ammo", "", "_projectile"];
 

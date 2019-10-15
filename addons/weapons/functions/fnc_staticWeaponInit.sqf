@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+#include "\a3\editor_f\Data\Scripts\dikCodes.h"
 /*
     Author:
         www.3commandobrigade.com, Tim Beswick
@@ -11,8 +13,6 @@
     Return Value:
         None
 */
-#include "script_component.hpp"
-#include "\a3\editor_f\Data\Scripts\dikCodes.h"
 
 /*if ((alive player)) then {
     player addEventHandler ["Put", "call UK3CB_BAF_Weapons_Static_fnc_player_put_EH"];

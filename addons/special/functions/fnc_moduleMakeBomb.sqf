@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
     Author:
         Tim Beswick
@@ -13,7 +14,6 @@
     Return Value:
         None
 */
-#include "script_component.hpp"
 
 params ["_logic", "", "_activated", ["_deadman", false], ["_car", false], ["_empty", false]];
 

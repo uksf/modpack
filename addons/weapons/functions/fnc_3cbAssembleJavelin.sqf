@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
     Author:
         Tim Beswick
@@ -11,7 +12,6 @@
     Return value:
         Boolean
 */
-#include "script_component.hpp"
 
 if (!(alive ACE_player)) exitWith {false};
 

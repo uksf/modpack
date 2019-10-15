@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
     Author:
         Tim Beswick
@@ -11,7 +12,6 @@
     Return Value:
         Nothing
 */
-#include "script_component.hpp"
 
 [[], {
     if (!alive (getConnectedUAV player) && {!isNil QGVAR(handlerCompass)}) then {

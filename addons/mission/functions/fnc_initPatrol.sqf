@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
     Author:
         Tim Beswick
@@ -30,7 +31,6 @@
         Trigger: [thisTrigger, 4, 100, "CUP_I_UN"] call uksf_mission_fnc_initPatrol; (NOTE: The trigger object)
         Location: [location, 10, 15, "CUP_B_GB"] call uksf_mission_fnc_initPatrol; (NOTE: Custom locations will not work)
 */
-#include "script_component.hpp"
 
 params [["_position", objNull, [objNull, "", locationNull]], ["_maxGroupsActive", 5], ["_groupPoolSize", 10], ["_factionName", ""]];
 

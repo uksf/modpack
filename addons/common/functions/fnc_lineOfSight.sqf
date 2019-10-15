@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
     Author:
         Tim Beswick
@@ -16,7 +17,6 @@
     Return value:
         Boolean
 */
-#include "script_component.hpp"
 
 params [["_target", objNull, [objNull]], ["_source", objNull, [objNull]], ["_zoomCheck", false], ["_groupCheck", false]];
 

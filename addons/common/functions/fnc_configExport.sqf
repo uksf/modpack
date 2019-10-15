@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
     Author:
         dreadedentity, Tim Beswick
@@ -15,7 +16,6 @@
     Example:
         [configFile >> "CfgVehicles" >> "UK3CB_BAF_Box_WpsSpecial"] call uksf_common_fnc_configExport;
 */
-#include "script_component.hpp"
 
 params ["_config", ["_numtabs", 0, [0]], ["_output", "", [""]]];
 

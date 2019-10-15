@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
     Author:
         Tim Beswick
@@ -11,7 +12,6 @@
     Return Value:
         None
 */
-#include "script_component.hpp"
 
 [QGVAR(curatorUnassign), [getAssignedCuratorLogic player]] call CBA_fnc_serverEvent;
 [QEGVAR(common,hint), [format ["%1 logged out", name player]]] call CBA_fnc_localEvent;

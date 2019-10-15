@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
     Author:
         Tim Beswick
@@ -12,7 +13,6 @@
     Return Value:
         Array of ace medical states
 */
-#include "script_component.hpp"
 
 params ["_unit"];
 

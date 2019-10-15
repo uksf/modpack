@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
     Author:
         Tim Beswick
@@ -12,7 +13,6 @@
     Return value:
         None
 */
-#include "script_component.hpp"
 
 params ["_client", "_fps"];
 

@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
     Author:
         Tim Beswick
@@ -11,7 +12,6 @@
     Return Value:
         Sanitised inventory <ARRAY>
 */
-#include "script_component.hpp"
 
 params ["_inventory"];
 

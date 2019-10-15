@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
     Author:
         Tim Beswick
@@ -12,7 +13,6 @@
     Return Value:
         ID <STRING>
 */
-#include "script_component.hpp"
 
 if (!isServer) exitWith {
     [QGVAR(markVehicleAsPersistent), _this] call CBA_fnc_serverEvent;

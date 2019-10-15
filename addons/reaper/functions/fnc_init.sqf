@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
     Author:
         Karel Kroonen & Tim Beswick
@@ -11,7 +12,6 @@
     Return Value:
         Nothing
 */
-#include "script_component.hpp"
 
 params ["_uav"];
 

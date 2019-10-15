@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
     Author:
         Tim Beswick, adapted from Gruppe Adler Mod https://github.com/gruppe-adler/gruppe_adler_mod/tree/master/addons/screenshotMode
@@ -11,7 +12,6 @@
     Return Value:
         Nothing
 */
-#include "script_component.hpp"
 
 params [["_state", false]];
 

@@ -1,4 +1,5 @@
- /*
+#include "script_component.hpp"
+/*
     Author:
         Bohemia Interactive, edited by ACE, edited by Tim Beswick
 
@@ -16,7 +17,6 @@
     Return Value:
         None
 */
-#include "script_component.hpp"
 
 params ["_logic", "", "_activated"];
 

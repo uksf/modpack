@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
     Author:
         Tim Beswick
@@ -19,7 +20,6 @@
     Example:
         [_target, (direction _target) + 90, 10, 2, 10, 2] call uksf_special_fnc_movingTarget;
 */
-#include "script_component.hpp"
 
 params ["_target", "_direction", "_distance", "_speed", ["_timeout", 10], ["_pause", 2]];
 

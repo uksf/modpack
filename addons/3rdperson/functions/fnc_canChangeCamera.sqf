@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
     Author:
         Jonpas, Tim Beswick
@@ -12,7 +13,6 @@
     Return Value:
         Can Change Camera <BOOL>
 */
-#include "script_component.hpp"
 
 #define VEHICLE_WHITELIST ["UAV", "UAV_01_base_F", "Air"]
 

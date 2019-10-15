@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
     Author:
         Tim Beswick
@@ -11,7 +12,6 @@
     Return Value:
         Data <ARRAY>
 */
-#include "script_component.hpp"
 
 params ["_vehicle"];
 TRACE_1("Getting vehicle data for",_vehicle);

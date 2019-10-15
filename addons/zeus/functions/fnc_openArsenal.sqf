@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
     Author:
         Tim Beswick
@@ -11,7 +12,6 @@
     Return Value:
         None
 */
-#include "script_component.hpp"
 
 (findDisplay -1) closeDisplay 1;
 [BIS_fnc_initCuratorAttributes_target, BIS_fnc_initCuratorAttributes_target, true] call ace_arsenal_fnc_openBox;

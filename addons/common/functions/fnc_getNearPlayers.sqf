@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
     Author:
         Tim Beswick
@@ -12,7 +13,6 @@
     Return value:
         Players within radius from center <ARRAY>
 */
-#include "script_component.hpp"
 
 params ["_pos", "_radius"];
 private _players = [];

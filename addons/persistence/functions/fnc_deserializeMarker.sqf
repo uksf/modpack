@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
     Author:
         Tim Beswick
@@ -11,7 +12,6 @@
     Return Value:
         Marker
 */
-#include "script_component.hpp"
 
 params ["_serializedMarker"];
 _serializedMarker params ["", "_pos", "_shape", "_type", "_brush", "_size", "_colour", "_alpha", "_dir", "_text"];
