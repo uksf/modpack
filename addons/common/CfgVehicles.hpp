@@ -20,7 +20,7 @@ class CfgVehicles {
         class Arguments {
             class Name {
                 displayName = "Name";
-                description = "Name visible in the respawn menu and on the map";
+                description = "Name shown in the respawn menu and on the map";
                 defaultValue = "UKSF";
             };
         };
