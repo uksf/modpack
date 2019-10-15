@@ -1,3 +1,4 @@
+#include "\a3\functions_f_jets\functions\aircraftcarrier\defines.inc"
 /*
     Author: Jiri Wainar, edited by Tim Beswick
 
@@ -15,8 +16,6 @@
     Example:
     [_trigger,_target] call bis_fnc_carrier01CatapultActionAdd;
 */
-
-#include "\a3\functions_f_jets\functions\aircraftcarrier\defines.inc"
 
 //debug
 /*
