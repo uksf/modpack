@@ -1,0 +1,8 @@
+name = "UKSF"
+prefix = "uksf"
+author = "UKSF"
+template = "cba"
+mainprefix = "z"
+include = ["./include"]
+files = ["mod.cpp"]
+sig_version = 3

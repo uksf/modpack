@@ -1,0 +1,18 @@
+name = "UKSF"
+prefix = "uksf"
+author = "UKSF"
+files = [
+    "mod.cpp",
+    "README.md",
+    "mod.paa",
+    "modLarge.paa",
+    "AUTHORS.txt",
+    "LICENSE",
+    "UKSFTemplate.VR",
+    "intercept"
+]
+headerexts = [
+    "version={{git \"id 8\"}}"
+]
+keyname = "{{prefix}}_{{version}}"
+signame = "{{prefix}}_{{version}}-{{git \"id 8\"}}"
