@@ -6,10 +6,10 @@
         <img src="https://img.shields.io/github/issues/uksf/modpack.svg?style=flat-square&label=Issues" alt="Issues">
     </a>
     <a href="https://github.com/uksf/modpack/blob/master/LICENSE">
-        <img src="https://img.shields.io/badge/license-GPLv3-blue.svg?style=flat-square" alt="License">
+        <img src="https://img.shields.io/badge/license-GPLv3-blue.svg?style=flat-square&label=License" alt="License">
     </a>
-    <a href="https://travis-ci.org/uksf/modpack">
-        <img src="https://img.shields.io/travis/uksf/modpack.svg?style=flat-square&label=Build" alt="Build Status">
+    <a href="https://github.com/uksf/modpack/workflows/Arma">
+        <img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fuksf%2Fmodpack%2Fbadge&style=flat-square&label=Build" alt="Build Status" />
     </a>
 </p>
 
@@ -28,7 +28,7 @@ If it involves more than a couple of scripts/features, then use the CBA framewor
 
 Follow the ACE3 guide on how to set this up.
 Certain areas will not apply (you don't need to clone ACE3, for example)
-Best talk to SqnLdr.Beswick.T for help on setting this up.
+Best talk to Beswick.T for help on setting this up.
 - [Setting up the development environment](http://ace3mod.com/wiki/development/setting-up-the-development-environment.html)
 
 ## Bugs, Issues, Suggestions
