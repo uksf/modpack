@@ -8,7 +8,7 @@
     <a href="https://github.com/uksf/modpack/blob/master/LICENSE">
         <img src="https://img.shields.io/badge/license-GPLv3-blue.svg?style=flat-square&label=License" alt="License">
     </a>
-    <a href="https://github.com/uksf/modpack/workflows/Arma">
+    <a href="https://github.com/uksf/modpack/actions?workflow=Arma">
         <img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fuksf%2Fmodpack%2Fbadge&style=flat-square&label=Build" alt="Build Status" />
     </a>
 </p>
