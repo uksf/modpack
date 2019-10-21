@@ -1,8 +1,5 @@
 #include "script_component.hpp"
 
 if (isServer) then {
-    missionNamespace setVariable [QGVAR(killed), [], true];
-    [{
-        call FUNC(cleanupCheck);
-    }, [], 5] call cba_fnc_waitAndExecute;
+    [QGVAR(addKilled), {GVAR(killed) pushback [_this, CBA_missionTime]}] call CBA_fnc_addEventHandler;
 };

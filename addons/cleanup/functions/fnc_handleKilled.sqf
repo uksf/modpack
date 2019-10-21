@@ -12,15 +12,12 @@
     Return value:
         Nothing
 */
+if (!GVAR(enabled)) exitWith {};
 
 params ["_object"];
 
-if (GVAR(enabled)) then {
-    if (!(_object getVariable [QGVAR(excluded), false])) then {
-        private _killed = missionNameSpace getVariable [QGVAR(killed), []];
-        _killed pushBack [_object, time];
-        missionNamespace setVariable [QGVAR(killed), _killed, true];
-    } else {
-        _object setVariable [QGVAR(handled), false, true];
-    };
+if (!(_object getVariable [QGVAR(excluded), false])) then {
+    [QGVAR(addKilled), _object] call CBA_fnc_serverEvent;
+} else {
+    _object setVariable [QGVAR(handled), false, true];
 };
