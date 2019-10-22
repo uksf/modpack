@@ -32,7 +32,7 @@ if (
     {!local _unit ||
     {isPlayer _unit}}
 ) exitWith {};
-TRACE_2("Unit hit raw"_unit,_shooter);
+TRACE_2("Unit hit raw",_unit,_shooter);
 [QGVAR(hitRaw), [_unit, _shooter]] call CBA_fnc_localEvent;
 
 if (
@@ -40,6 +40,6 @@ if (
     {(vehicle _shooter) isKindOf "Air" ||
     {speed (vehicle _shooter) > HIT_MAX_SHOOTER_SPEED ||
     {(_unit distance2D _shooter) > HIT_MAX_DISTANCE_TO_SHOOTER}}}
-) exitWith {};
-TRACE_2("Unit hit filtered"_unit,_shooter);
+) exitWith {TRACE_1("Unit hit did not pass filter",_unit);};
+TRACE_2("Unit hit filtered",_unit,_shooter);
 [QGVAR(hitFiltered), [_unit, _shooter]] call CBA_fnc_localEvent;

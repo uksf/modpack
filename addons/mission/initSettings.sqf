@@ -131,7 +131,7 @@
     1,
     {
         params ["_value"];
-        GVAR(artillerySupportRtoBackpacks) = call compile _value;
+        GVAR(artillerySupportFoBackpacks) = call compile _value;
     }
 ] call CBA_settings_fnc_init;
 
@@ -144,6 +144,6 @@
     1,
     {
         params ["_value"];
-        GVAR(artillerySupportRtoBackpacks) = call compile _value;
+        GVAR(artillerySupportMastObjects) = call compile _value;
     }
 ] call CBA_settings_fnc_init;

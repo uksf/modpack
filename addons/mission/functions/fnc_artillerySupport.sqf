@@ -29,37 +29,50 @@
 params ["_unit", "_shooter", ["_reportDepth", 0]];
 
 if (!GVAR(artillerySupport) || {GVAR(artillerySupportUnits) isEqualTo []}) exitWith {};
+TRACE_3("Unit hit, trying artillery support",_unit,_shooter,_reportDepth);
 
 private _group = group _unit;
 if (
-    _group getVariable [QGVAR(artillerySupportRequesting), false] ||
+    _unit getVariable [QGVAR(artillerySupportRequesting), false] ||
     {_group getVariable [QGVAR(artillerySupportRequested), false] ||
     {INVERSE_CHANCE(GVAR(artillerySupportChance)) ||
     {(_unit countFriendly (_shooter nearEntities [["CAManBase", "Car"], ARTILLERY_SUPPORT_DISTANCE_TO_AVOID])) > 0}}}
-) exitWith {};
-_group setVariable [QGVAR(artillerySupportRequesting), true, true];
+) exitWith {
+    DEBUG_3("Artillery support did not pass filters: requesting=%1, requested=%2, near friendlies=%3",_unit getVariable [ARR_2(QGVAR(artillerySupportRequesting),false)],_group getVariable [ARR_2(QGVAR(artillerySupportRequested),false)],(_unit countFriendly (_shooter nearEntities [ARR_2([ARR_2("CAManBase","Car")],ARTILLERY_SUPPORT_DISTANCE_TO_AVOID)])) > 0);
+};
+_unit setVariable [QGVAR(artillerySupportRequesting), true, true];
+TRACE_1("Starting artillery request",_unit);
 
 [{
     params ["_unit", "_group", "_shooter", ["_reportDepth", 0]];
 
     if (alive _unit) then {
+        TRACE_1("Alive",_unit);
         if ((_unit knowsAbout _shooter) > SUPPORT_MIN_SUPPRESSED_KNOWS_ABOUT || {!([_shooter] call EFUNC(common,hasSuppressor))}) then {
+            TRACE_1("Knows about",_unit);
             private _artillery = [_unit, _shooter] call FUNC(selectArtillery);
-            if (alive _artillery) then {
+            if (!(isNull _artillery)) then {
+                TRACE_1("Artillery alive",_artillery);
                 private _targetPosition = [_shooter, ARTILLERY_SUPPORT_BASE_DISTANCE + (ARTILLERY_SUPPORT_BASE_REPORT_RANDOMNESS * _reportDepth)] call CBA_fnc_randPos;
                 [QGVAR(fireMission), [_unit, _artillery, _targetPosition, _unit distance2D _artillery], _artillery] call CBA_fnc_targetEvent;
                 _group setVariable [QGVAR(artillerySupportRequested), true, true];
 
+#ifdef DEBUG_MODE_FULL
                 [QEGVAR(common,log), [format ["Artillery support called in by a '%1' at '%2' from a '%3' with radio range of '%4'", typeOf _unit, _targetPosition, typeOf _artillery, _unit distance2D _artillery]]] call CBA_fnc_serverEvent;
-                // deleteMarker marker1; deleteMarker marker2; deleteMarker marker3; deleteMarker marker4; deleteMarker marker5; deleteMarker marker6; deleteMarker marker7;
-                // marker1 = createMarker [str random 9999, _targetPosition]; marker1 setMarkerShape "ELLIPSE"; marker1 setMarkerBrush "Solid"; marker1 setMarkerColor "ColorGreen"; marker1 setMarkerAlpha 0.3; marker1 setMarkerSize [100, 100];
-                // marker2 = createMarker [str random 9999, _targetPosition]; marker2 setMarkerShape "ELLIPSE"; marker2 setMarkerBrush "Solid"; marker2 setMarkerColor "ColorYellow"; marker2 setMarkerAlpha 0.4; marker2 setMarkerSize [50, 50];
-                // marker3 = createMarker [str random 9999, _targetPosition]; marker3 setMarkerShape "ELLIPSE"; marker3 setMarkerBrush "Solid"; marker3 setMarkerColor "ColorRed"; marker3 setMarkerAlpha 0.5; marker3 setMarkerSize [12.5, 12.5];
-                // marker4 = createMarker [str random 9999, _targetPosition]; marker4 setMarkerShape "ICON"; marker4 setMarkerType "hd_dot"; marker4 setMarkerColor "ColorBlack";
+                deleteMarker marker1; deleteMarker marker2; deleteMarker marker3; deleteMarker marker4; deleteMarker marker5; deleteMarker marker6; deleteMarker marker7;
+                marker4 = createMarker [str random 9999, _targetPosition]; marker4 setMarkerShape "ICON"; marker4 setMarkerType "hd_dot"; marker4 setMarkerColor "ColorBlack";
+#endif
             };
-            _group setVariable [QGVAR(artillerySupportRequesting), false, true];
+            _unit setVariable [QGVAR(artillerySupportRequesting), false, true];
         };
     } else {
-        [selectRandom (((position _unit) nearEntities [["CAManBase"], SUPPORT_DISTANCE_TO_RETRY]) select {SUPPORT_CONDITION_PROXIMITY}), _shooter, _reportDepth + 1] call FUNC(artillerySupport);
+        TRACE_1("Unit dead, trying to find nearby help",_unit);
+        private _nearUnit = selectRandom (((position _unit) nearEntities [["CAManBase"], SUPPORT_DISTANCE_TO_RETRY]) select {SUPPORT_CONDITION_PROXIMITY});
+        if (!(isNull _nearUnit)) then {
+            TRACE_1("Found nearby help",_nearUnit);
+            [_nearUnit, _shooter, _reportDepth + 1] call FUNC(artillerySupport);
+        } else {
+            TRACE_1("Could not find help, stopping request",_unit);
+        };
     };
 }, [_unit, _group, _shooter, _reportDepth], 1 + (random 1)] call CBA_fnc_waitAndExecute;

@@ -37,11 +37,13 @@ private _unitSide = side _unit;
 private _targetPosition = getPos _target;
 private _index = GVAR(artillerySupportUnits) findIf {
     !(_x getVariable [QGVAR(artillerySupportTasked), false]) &&
-    {!isNull (driver _x) &&
+    {alive _x &&
+    {!isNull (gunner _x) &&
     {side _x == _unitSide &&
     {count (magazinesAmmo _x) > 0 &&
     {_targetPosition inRangeOfArtillery [[_x], currentMagazine _x] &&
-    {[_unit, _x] call FUNC(inRadioRange)}}}}}
+    {[_unit, _x] call FUNC(inRadioRange)}}}}}}
 };
+DEBUG_2("Selected aritllery index %1 of %2",_index,GVAR(artillerySupportUnits));
 
-[objNull, GVAR(artillerySupportUnits)#_index] select {_index > -1}
+call ([{objNull}, {GVAR(artillerySupportUnits)#_index}] select (_index > -1));

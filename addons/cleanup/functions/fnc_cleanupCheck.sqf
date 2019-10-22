@@ -19,7 +19,7 @@ private _newKilled = [];
     _x params ["_object", "_time"];
     
     if (!(_object getVariable [QGVAR(excluded), false])) then {                
-        private _multiplier = [2, 1] select {_object isKindOf "Man"};
+        private _multiplier = [2, 1] select (_object isKindOf "Man");
         if ((_time + (GVAR(delay) * _multiplier)) < CBA_missionTime) then {
             deleteVehicle _object;
         } else {

@@ -33,13 +33,16 @@ if (_artillery isKindOf "StaticMortar") then {
         } else {
             // Try to communicate through RTO and mast, first check if any valid masts in range of artillery, then check if any rtos in range of those masts
             // We already have the rto units which are in range of the caller, so no need to get that again
-            private _masts = (nearestObjects [_artillery, GVAR(artillerySupportMastObjects), GVAR(artillerySupportMastDistance), true]) select {alive _x && {damage _x < 0.5}};
-            _inRange = (_masts findIf {
-                private _mast = _x;
-                (_rtoUnits findIf {
-                    (_x distance2D _mast) <= GVAR(artillerySupportRtoDistance)
+            private _masts = nearestObjects [_artillery, GVAR(artillerySupportMastObjects), GVAR(artillerySupportMastDistance), true];
+            if (!(_mast isEqualTo [])) then {
+                _masts = _masts select {alive _x && {damage _x < 0.5}};
+                _inRange = (_masts findIf {
+                    private _mast = _x;
+                    (_rtoUnits findIf {
+                        (_x distance2D _mast) <= GVAR(artillerySupportRtoDistance)
+                    }) != -1;
                 }) != -1;
-            }) != -1;
+            };
         };
     };
 } else {

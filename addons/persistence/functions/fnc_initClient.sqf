@@ -15,7 +15,7 @@
 
 ["CAManBase", "respawn", {
     call FUNC(addPersistenceActions);
-}, true, nil, true] call CBA_fnc_addClassEventHandler;
+}] call CBA_fnc_addClassEventHandler;
 
 ["ace_throwableThrown", {
     params ["", "_throwable"];

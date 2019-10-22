@@ -12,8 +12,8 @@ GVAR(artillerySupportUnits) = [];
 [QGVAR(spawnGroup), {call FUNC(spawnGroup)}] call CBA_fnc_addEventHandler;
 [QGVAR(reTask), {call CBA_fnc_taskPatrol}] call CBA_fnc_addEventHandler;
 
-[QGVAR(filtered), {call FUNC(support)}] call CBA_fnc_addEventHandler;
-[QGVAR(filtered), {call FUNC(artillerySupport)}] call CBA_fnc_addEventHandler;
+[QGVAR(hitFiltered), {call FUNC(support)}] call CBA_fnc_addEventHandler;
+[QGVAR(hitFiltered), {call FUNC(artillerySupport)}] call CBA_fnc_addEventHandler;
 [QGVAR(fireMission), {call FUNC(fireMission)}] call CBA_fnc_addEventHandler;
 
 ["CAManBase", "init", {_this#0 addMPEventHandler ["MPHit", {call FUNC(hit)}]}] call CBA_fnc_addClassEventHandler;
