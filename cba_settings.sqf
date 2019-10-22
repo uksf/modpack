@@ -613,7 +613,3 @@ force uksf_common_mainOp = false;
 force uksf_curator_curatorsLocked = false;
 force uksf_curator_curatorsMax = 8;
 force uksf_persistence_overrideSavedDateTime = false;
-force uksf_mission_support = true;
-force uksf_mission_supportDistance = 500;
-force uksf_mission_conspicuity = false;
-force uksf_mission_conspicuityGearWhitelistString = "[]";

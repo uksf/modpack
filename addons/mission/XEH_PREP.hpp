@@ -1,9 +1,15 @@
+PREP(addArtillerySupportUnit);
+PREP(artillerySupport);
 PREP(assignID);
 PREP(conspicuity);
+PREP(fireMission);
 PREP(getConfigGroups);
+PREP(hit);
 PREP(initPatrol);
+PREP(inRadioRange);
 PREP(moduleSpawn);
-PREP(support);
 PREP(reTask);
+PREP(selectArtillery);
 PREP(selectGroup);
 PREP(spawnGroup);
+PREP(support);

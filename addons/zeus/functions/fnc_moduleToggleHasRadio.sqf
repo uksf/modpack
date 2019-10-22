@@ -30,12 +30,12 @@ switch (true) do {
         ["Unit must be alive"] call ace_zeus_fnc_showMessage;
     };
     default {
-        private _state = _object getVariable [QGVAR(hasRadio), true];
+        private _state = _object getVariable [QEGVAR(mission,hasSupportRadio), true];
         if (!_state) then {
-            _object setVariable [QGVAR(hasRadio), true, true];
+            _object setVariable [QEGVAR(mission,hasSupportRadio), true, true];
             ["Unit will support"] call ace_common_fnc_displayTextStructured;
         } else {
-            _object setVariable [QGVAR(hasRadio), false, true];
+            _object setVariable [QEGVAR(mission,hasSupportRadio), false, true];
             ["Unit won't support"] call ace_common_fnc_displayTextStructured;
         };
     };

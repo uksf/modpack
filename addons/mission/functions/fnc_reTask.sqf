@@ -12,14 +12,15 @@
     Return value:
         Nothing
 */
-
 params ["_leader"];
 
-if (!isServer) exitWith {};
+if (!local _leader) exitWith {};
 
-private _patrolPosition = (group _leader) getVariable [QGVAR(spawnPosition), ""];
-(group _leader) setVariable [QGVAR(tasked), false, true];
+private _group = group _leader;
+private _patrolPosition = _group getVariable [QGVAR(spawnPosition), ""];
+_group setVariable [QGVAR(supportTasked), false, true];
 
-if (_patrolPosition != "") then {
-    [QGVAR(reTask), [group _leader, _patrolPosition], groupOwner (group _leader)] call CBA_fnc_targetEvent;
+if (_patrolPosition == "") then {
+    _patrolPosition = getPos _leader;
 };
+[QGVAR(reTask), [_group, _patrolPosition]] call CBA_fnc_localEvent;

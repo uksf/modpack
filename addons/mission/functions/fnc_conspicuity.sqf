@@ -20,13 +20,13 @@ params ["_player", ["_weapon", currentWeapon _player]];
 // Ignore pilots
 if (_player isKindOf "UKSF_B_Pilot") exitWith {};
 
-CHECK_GEAR_CONSPICUITY(_weapon);
-CHECK_GEAR_CONSPICUITY(primaryWeapon _player);
-CHECK_GEAR_CONSPICUITY(secondaryWeapon _player);
-CHECK_GEAR_CONSPICUITY(backpack _player);
-CHECK_GEAR_CONSPICUITY(uniform _player);
-// CHECK_GEAR_CONSPICUITY(vest _player);
-// CHECK_GEAR_CONSPICUITY(headgear _player);
-// CHECK_GEAR_CONSPICUITY(hmd _player);
+CONSPICUITY_CHECK_GEAR(_weapon);
+CONSPICUITY_CHECK_GEAR(primaryWeapon _player);
+CONSPICUITY_CHECK_GEAR(secondaryWeapon _player);
+CONSPICUITY_CHECK_GEAR(backpack _player);
+CONSPICUITY_CHECK_GEAR(uniform _player);
+// CONSPICUITY_CHECK_GEAR(vest _player);
+// CONSPICUITY_CHECK_GEAR(headgear _player);
+// CONSPICUITY_CHECK_GEAR(hmd _player);
 
-SET_CONSPICUOUS(false);
+CONSPICUITY_SET(false);
