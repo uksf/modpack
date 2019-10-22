@@ -29,7 +29,7 @@ GVAR(artillerySupportUnits) = GVAR(artillerySupportUnits) select {!isNull _x && 
 private _allArtillery = +GVAR(artillerySupportUnits);
 GVAR(artillerySupportUnits) = [];
 for "_i" from count _allArtillery to 1 step -1 do {
-	GVAR(artillerySupportUnits) pushBack (_allArtillery deleteAt floor random _i);
+    GVAR(artillerySupportUnits) pushBack (_allArtillery deleteAt floor random _i);
 };
 
 // Select a piece that matches all conditions
