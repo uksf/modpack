@@ -12,7 +12,7 @@
             0: position - This can be a marker name passed as a string, a trigger object, or a location
             1: maxGroupsActive (default: 5) - The maximum number of groups that will be active on this position at any time
             2: groupPoolSize (default: 10) - The total number of enemy groups that will ever spawn on this position
-            3: factionName (default: "") - The name of the faction to spawn
+            3: factionName (default: "OPF_F") - The name of the faction to spawn
 
         Format:
             ["markername"/trigger object/location, maxGroupsActive, groupPoolSize, factionName] call uksf_mission_fnc_initPatrol;
@@ -21,7 +21,7 @@
         0: Position <MARKER, TRIGGER, LOCATION>
         1: Max enemy groups spawned at once (default: 5) <SCALAR>
         2: Enemy pool size (default: 10) <SCALAR>
-        3: Faction (default: "") <STRING>
+        3: Faction (default: "OPF_F") <STRING>
 
     Return value:
         Nothing
@@ -32,7 +32,7 @@
         Location: [location, 10, 15, "CUP_B_GB"] call uksf_mission_fnc_initPatrol; (NOTE: Custom locations will not work)
 */
 
-params [["_position", objNull, [objNull, "", locationNull]], ["_maxGroupsActive", 5], ["_groupPoolSize", 10], ["_factionName", ""]];
+params [["_position", objNull, [objNull, "", locationNull]], ["_maxGroupsActive", 5], ["_groupPoolSize", 10], ["_factionName", "OPF_F"]];
 
 if (!isServer) exitWith { INFO("Called on client. Exiting.") };
 if (_position isEqualTo objNull) exitWith { INFO("Invalid position. Exiting.") };

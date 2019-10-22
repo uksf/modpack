@@ -14,7 +14,6 @@
     Return value:
         Nothing
 */
-
 #define PLAYERSAFEDISTANCE 300
 
 params ["_id", "_position", "_factionName"];
