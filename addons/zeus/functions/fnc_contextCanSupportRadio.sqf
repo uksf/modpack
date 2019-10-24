@@ -1,0 +1,30 @@
+#include "script_component.hpp"
+/*
+    Author:
+        Tim Beswick
+
+    Description:
+        Can use support radio context action
+
+    Parameter(s):
+        0: Action Parameters
+
+    Return Value:
+        Boolean
+*/
+params ["", "_selectedObjects", "_selectedGroups", "", "", "_hoveredEntity"];
+
+if (!isNull _hoveredEntity && {_hoveredEntity isKindOf "CAManBase" && {alive _hoveredEntity}}) exitWith {
+    true
+};
+
+if (!(_selectedObjects isEqualTo [])) exitWith {
+    ({_x isKindOf "CAManBase" && {alive _x}} count _selectedObjects) > 0
+};
+
+if (!(_selectedGroups isEqualTo [])) exitWith {
+    _selectedGroups apply {_selectedObjects append (units _x)};
+    ({_x isKindOf "CAManBase" && {alive _x}} count _selectedObjects) > 0
+};
+
+false

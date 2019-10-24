@@ -11,11 +11,6 @@ class CfgPatches {
             "UKSF_O_Skoda_CarBomb",
             "UKSF_O_Skoda_CarBomb_Deadman",
             "UKSF_O_Skoda_CarBomb_Empty",
-            QGVAR(moduleMakeSuicideBomber),
-            QGVAR(moduleMakeSuicideBomberDeadman),
-            QGVAR(moduleMakeCarBomber),
-            QGVAR(moduleMakeCarBomberDeadman),
-            QGVAR(moduleMakeCarBomb),
             "UKSF_Target_Nopopup"
         };
         weapons[] = {};

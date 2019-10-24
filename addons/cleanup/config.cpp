@@ -3,9 +3,7 @@
 class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
-        units[] = {
-            QGVAR(moduleCleanupExclude)
-        };
+        units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
@@ -20,4 +18,3 @@ class CfgPatches {
 
 #include "CfgEventHandlers.hpp"
 #include "Cfg3den.hpp"
-#include "CfgVehicles.hpp"

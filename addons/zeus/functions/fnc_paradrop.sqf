@@ -17,11 +17,13 @@
 */
 #define BASE_SPEED 60
 
-params ["_units", "_positionStart", "_positionEnd", ["_altitude", 2000]];
+params ["_units", "_positionStart", "_positionEnd", ["_altitude", 6000]];
 
 if (!isServer) exitWith {
     [QGVAR(paradrop), _this] call CBA_fnc_serverEvent;
 };
+
+_altitude = _altitude / 3.28084; // Convert feet to metres
 
 ["Dropping in %1 units", count _units] call ace_zeus_fnc_showMessage;
 {

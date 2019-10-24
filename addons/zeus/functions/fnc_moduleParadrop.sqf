@@ -57,7 +57,6 @@ GVAR(curatorSelectionHandle) = _display displayAddEventHandler ["KeyDown", {
                 if (_mouseButton != 0) exitWith {};
                 if (ctrlShown (_display displayCtrl 50)) then {
                     private _position = ((_display displayCtrl 50) ctrlMapScreenToWorld getMousePosition);
-                    _position set [2, 2000];
                     GVAR(paradropMapPoints) pushBack _position;
 
                     if ((count GVAR(paradropMapPoints)) == 1) then {
@@ -75,7 +74,14 @@ GVAR(curatorSelectionHandle) = _display displayAddEventHandler ["KeyDown", {
                     _display displayRemoveEventHandler ["KeyDown", GVAR(curatorCancelHandle)];
                     (_display displayCtrl 50) ctrlRemoveEventHandler ["Draw", GVAR(curatorMapDrawEH)];
                     showMap false;
-                    _display createDisplay QGVAR(RscAltitude);
+                    ["Paradrop Altitude", [
+                        ["SLIDER", ["Altitude (ft)", "Sets the altitude for the paradrop in feet (1m = ~3.3ft)"], [300, 20000, 6000, 0]]
+                    ], {
+                        params ["_dialogValues"];
+                        _dialogValues params ["_altitude"];
+
+                        [QGVAR(paradrop), [GVAR(paradropUnits), GVAR(paradropMapPoints)#0, GVAR(paradropMapPoints)#1, _altitude]] call CBA_fnc_serverEvent;
+                    }, {}] call zen_dialog_fnc_create;
                 };
             }] call CBA_fnc_addBISEventHandler;
 

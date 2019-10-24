@@ -7,19 +7,20 @@
         Opens arsenal of target unit and sends log to server
 
     Parameter(s):
-        None
+        0: Unit <OBJECT> (Optional)
 
     Return Value:
         None
 */
+params [["_unit", BIS_fnc_initCuratorAttributes_target]];
 
 (findDisplay -1) closeDisplay 1;
-[BIS_fnc_initCuratorAttributes_target, BIS_fnc_initCuratorAttributes_target, true] call ace_arsenal_fnc_openBox;
-[QEGVAR(common,log), [format ["%1 opened Arsenal on %2", name player, name BIS_fnc_initCuratorAttributes_target]]] call CBA_fnc_serverEvent;
+[_unit, _unit, true] call ace_arsenal_fnc_openBox;
+[QEGVAR(common,log), [format ["%1 opened Arsenal on %2", name player, name _unit]]] call CBA_fnc_serverEvent;
 
 GVAR(arsenalCloseEvent) = ["ace_arsenal_displayClosed", {
     ["ace_arsenal_displayClosed", GVAR(arsenalCloseEvent)] call CBA_fnc_removeEventHandler;
-    private _loadout = getUnitLoadout BIS_fnc_initCuratorAttributes_target;
-    private _curatorSelected = ["man"] call Achilles_fnc_getCuratorSelected;
-    {_x setUnitLoadout _loadout; false} count _curatorSelected;
+    private _loadout = getUnitLoadout _unit;
+    private _units = [_unit] call zen_attributes_fnc_getAttributeEntities;
+    {_x setUnitLoadout _loadout; false} count _units;
 }] call CBA_fnc_addEventHandler;

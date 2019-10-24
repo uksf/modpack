@@ -1,15 +1,4 @@
 class CfgVehicles {
-    class Module_F;
-    class GVAR(moduleBase): Module_F {
-        author = QUOTE(UKSF);
-        category = GVAR(zeus_uksf);
-        functionPriority = 1;
-        isGlobal = 1;
-        isTriggerActivated = 0;
-        scope = 1;
-        scopeCurator = 2;
-    };
-
     class ModuleRespawnPosition_F;
     class UKSFModuleRespawnPosition_F: ModuleRespawnPosition_F {
         scope = 2;

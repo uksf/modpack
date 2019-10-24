@@ -8,6 +8,7 @@ ADDON = false;
 
 if (isServer) then {
     [QGVAR(addKilled), {GVAR(killed) pushback [_this, CBA_missionTime]}] call CBA_fnc_addEventHandler;
+    [QGVAR(setCleanupState), {call FUNC(setCleanupState)}] call CBA_fnc_addEventHandler;
 };
 
 ADDON = true;

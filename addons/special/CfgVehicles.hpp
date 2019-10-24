@@ -77,48 +77,6 @@ class CfgVehicles {
         typicalCargo[] = { "" };
     };
 
-    class EGVAR(common,moduleBase);
-    class GVAR(moduleMakeSuicideBomber): EGVAR(common,moduleBase) {
-        curatorCanAttach = 1;
-        scopeCurator = 2;
-        category = QEGVAR(common,zeus_uksf_special);
-        displayName = QUOTE(Make Suicide Bomber);
-        function = QFUNC(moduleMakeBomb);
-        icon = "\z\ace\addons\explosives\UI\Icon_Module_Explosives_ca.paa";
-    };
-    class GVAR(moduleMakeSuicideBomberDeadman): EGVAR(common,moduleBase) {
-        curatorCanAttach = 1;
-        scopeCurator = 2;
-        category = QEGVAR(common,zeus_uksf_special);
-        displayName = QUOTE(Make Deadman Suicide Bomber);
-        function = QFUNC(moduleMakeBomb);
-        icon = "\z\ace\addons\explosives\UI\Icon_Module_Explosives_ca.paa";
-    };
-    class GVAR(moduleMakeCarBomber): EGVAR(common,moduleBase) {
-        curatorCanAttach = 1;
-        scopeCurator = 2;
-        category = QEGVAR(common,zeus_uksf_special);
-        displayName = QUOTE(Make Car Bomber);
-        function = QFUNC(moduleMakeBomb);
-        icon = "\z\ace\addons\explosives\UI\Icon_Module_Explosives_ca.paa";
-    };
-    class GVAR(moduleMakeCarBomberDeadman): EGVAR(common,moduleBase) {
-        curatorCanAttach = 1;
-        scopeCurator = 2;
-        category = QEGVAR(common,zeus_uksf_special);
-        displayName = QUOTE(Make Deadman Car Bomber);
-        function = QFUNC(moduleMakeBomb);
-        icon = "\z\ace\addons\explosives\UI\Icon_Module_Explosives_ca.paa";
-    };
-    class GVAR(moduleMakeCarBomb): EGVAR(common,moduleBase) {
-        curatorCanAttach = 1;
-        scopeCurator = 2;
-        category = QEGVAR(common,zeus_uksf_special);
-        displayName = QUOTE(Make Car Bomb);
-        function = QFUNC(moduleMakeBomb);
-        icon = "\z\ace\addons\explosives\UI\Icon_Module_Explosives_ca.paa";
-    };
-
     class TargetP_Inf_F;
     class UKSF_Target_Nopopup: TargetP_Inf_F {
         scope = 2;

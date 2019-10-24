@@ -11,5 +11,6 @@ PREP(moduleSpawn);
 PREP(reTask);
 PREP(selectArtillery);
 PREP(selectGroup);
+PREP(setSupportRadio);
 PREP(spawnGroup);
 PREP(support);

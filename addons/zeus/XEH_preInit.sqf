@@ -16,9 +16,13 @@ GVAR(curatorUnconciousMapID) = 999;
             player setVariable [QGVAR(fps), floor diag_fps, true];
         }, 1, []] call CBA_fnc_addPerFrameHandler;
     };
-}, true, nil, true] call CBA_fnc_addClassEventHandler;
+}] call CBA_fnc_addClassEventHandler;
 
 [QGVAR(paradrop), {call FUNC(paradrop)}] call CBA_fnc_addEventHandler;
 [QGVAR(moveInCargo), {_this#0 moveInCargo _this#1}] call CBA_fnc_addEventHandler;
+
+if (hasInterface) then {
+    call FUNC(addContextActions);
+};
 
 ADDON = true;

@@ -1,6 +1,5 @@
 PREP(curatorDisplayLoad);
 PREP(curatorDisplayUnload);
-PREP(moduleCurator);
 PREP(openArsenal);
 PREP(paradrop);
 
@@ -10,17 +9,21 @@ PREP(moduleAddAceArsenal);
 PREP(moduleDelete);
 PREP(moduleExplosionLarge);
 PREP(moduleExplosionSmall);
-PREP(moduleFullHeal);
+PREP(moduleMakeBomb);
 PREP(moduleParadrop);
-PREP(moduleLoadoutCopy);
-PREP(moduleLoadoutPaste);
 PREP(moduleRemoveAceArsenal);
-PREP(moduleTeleportZeus);
 PREP(moduleToggleAllowUnconcious);
+PREP(moduleToggleCaching);
+PREP(moduleToggleCleanup);
 PREP(moduleToggleFps);
 PREP(moduleToggleHasRadio);
-PREP(moduleToggleSideRelations);
 PREP(moduleToggleZeusVisibility);
 
-// UI
-PREP(ui_altitude);
+// Context actions
+PREP(addContextActions);
+PREP(contextCanSupportRadio);
+PREP(contextSupportRadio);
+PREP(contextSupportRadioModifier);
+PREP(contextCanCaching);
+PREP(contextCaching);
+PREP(contextCachingModifier);

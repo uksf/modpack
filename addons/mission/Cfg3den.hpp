@@ -7,7 +7,7 @@ class Cfg3DEN {
                         property = QGVAR(hasSupportRadio);
                         control = "Checkbox";
                         displayName = QUOTE(Has support radio);
-                        tooltip = QUOTE(Determines if unit can support or call for support);
+                        tooltip = QUOTE(Determines if unit has support radio);
                         expression = QUOTE(if (!_value) then {_this setVariable [ARR_3(QQGVAR(hasSupportRadio),_value,true)];};);
                         typeName = "BOOL";
                         defaultValue = "(true)";

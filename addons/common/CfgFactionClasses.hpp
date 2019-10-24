@@ -45,8 +45,8 @@ class CfgFactionClasses {
     class GVAR(zeus_uksf_special) : GVAR(zeus_uksf) {
         displayName = "UKSF Special";
     };
-    class GVAR(zeus_uksf_side) : GVAR(zeus_uksf) {
-        displayName = "Side";
+    class GVAR(zeus_uksf_ai) : GVAR(zeus_uksf) {
+        displayName = "$STR_Team_Switch_AI";
     };
     class OPF_R_F {
         displayName = "Spetsnaz (Future)";

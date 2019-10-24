@@ -12,6 +12,7 @@
     Return Value:
         None
 */
+if (!GVAR(enabled)) exitWith {};
 
 if (!(isServer)) exitWith {
     [QGVAR(disableCache), this] call CBA_fnc_serverEvent;

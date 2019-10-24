@@ -1,9 +1,5 @@
 class CfgVehicles {
-    class Module_F;
-    class ModuleCurator_F: Module_F {
-        function = QFUNC(moduleCurator);
-    };
-
+    // Edit vanilla modules
     class ModuleMine_APERSTripMine_F;
     class ModuleMine_FlareTripMine_F: ModuleMine_APERSTripMine_F {
         _generalMacro = "ModuleMine_FlareTripMine_F";
@@ -11,116 +7,34 @@ class CfgVehicles {
         explosive = "ACE_FlareTripMine_Wire_Ammo";
     };
 
-    class EGVAR(common,moduleBase);
-    class GVAR(moduleAddAllObjects): EGVAR(common,moduleBase) {
-        curatorCanAttach = 1;
-        category = "Curator";
-        displayName = "Add all objects";
-        function = QFUNC(moduleAddAllObjects);
-        icon = "\achilles\data_f_achilles\icons\icon_position.paa";
+    // Edit zen modules
+    class zen_modules_moduleEditableObjects;
+    class zen_modules_moduleArsenal: zen_modules_moduleBase {
+        scopeCurator = 1;
     };
-    class GVAR(moduleDelete): EGVAR(common,moduleBase) {
-        curatorCanAttach = 1;
-        category = "Curator";
-        displayName = "Force Delete";
-        function = QFUNC(moduleDelete);
-        icon = "\z\ace\addons\zeus\ui\Icon_Module_Zeus_Settings_ca.paa";
+    class zen_modules_moduleAddFullArsenal: zen_modules_moduleBase {
+        scopeCurator = 1;
     };
-    class GVAR(moduleExplosionLarge): EGVAR(common,moduleBase) {
-        curatorCanAttach = 1;
-        category = "Spawn";
-        displayName = "Large Explosion";
-        function = QFUNC(moduleExplosionLarge);
-        icon = QPATHTOF(ui\Icon_Module_Explosion_Large_ca.paa);
+    class zen_modules_moduleRemoveArsenal: zen_modules_moduleBase {
+        scopeCurator = 1;
     };
-    class GVAR(moduleExplosionSmall): EGVAR(common,moduleBase) {
-        curatorCanAttach = 1;
-        category = "Spawn";
-        displayName = "Small Explosion";
-        function = QFUNC(moduleExplosionSmall);
-        icon = QPATHTOF(ui\Icon_Module_Explosion_Small_ca.paa);
+    class zen_modules_moduleAssignZeus: zen_modules_moduleBase {
+        scopeCurator = 1;
     };
-    class GVAR(moduleParadrop): EGVAR(common,moduleBase) {
-        curatorCanAttach = 1;
-        category = QEGVAR(common,zeus_uksf_special);
-        displayName = "Paradrop Units";
-        function = QFUNC(moduleParadrop);
-        icon = "\achilles\data_f_achilles\icons\icon_dropzone.paa";
+    class zen_modules_moduleAttachFlag: zen_modules_moduleBase {
+        scopeCurator = 1;
     };
-    class GVAR(moduleLoadoutCopy): EGVAR(common,moduleBase) {
-        curatorCanAttach = 1;
-        category = "Equipment";
-        displayName = "Loadout Copy";
-        function = QFUNC(moduleLoadoutCopy);
-        icon = "\achilles\data_f_achilles\icons\icon_default_unit.paa";
-        portrait = "\achilles\data_f_achilles\icons\icon_default_unit.paa";
-    };
-    class GVAR(moduleLoadoutPaste): EGVAR(common,moduleBase) {
-        curatorCanAttach = 1;
-        category = "Equipment";
-        displayName = "Loadout Paste";
-        function = QFUNC(moduleLoadoutPaste);
-        icon = "\achilles\data_f_achilles\icons\icon_default_unit.paa";
-        portrait = "\achilles\data_f_achilles\icons\icon_default_unit.paa";
-    };
-    class GVAR(moduleTeleportZeus): EGVAR(common,moduleBase) {
-        curatorCanAttach = 1;
-        category = "Curator";
-        displayName = "Teleport Zeus";
-        function = QFUNC(moduleTeleportZeus);
-        icon = "\achilles\data_f_achilles\icons\icon_position.paa";
-    };
-    class GVAR(moduleToggleAllowUnconcious): EGVAR(common,moduleBase) {
-        curatorCanAttach = 1;
-        category = "ace_zeus_Medical";
-        displayName = "Toggle Allow Unconcious";
-        function = QFUNC(moduleToggleAllowUnconcious);
-        icon = "\z\ace\addons\zeus\ui\Icon_Module_Zeus_Unconscious_ca.paa";
-    };
-    class GVAR(moduleToggleBluforOpfor): EGVAR(common,moduleBase) {
-        curatorCanAttach = 1;
-        category = QEGVAR(common,zeus_uksf_side);
-        displayName = "Toggle Blufor/Opfor Relations";
-        function = QFUNC(moduleToggleSideRelations);
-        GVAR(sides) = "[0,1]";
-        icon = QPATHTOF(ui\Icon_Module_ToggleBluforOpfor_ca.paa);
-    };
-    class GVAR(moduleToggleIndepBlufor): EGVAR(common,moduleBase) {
-        curatorCanAttach = 1;
-        category = QEGVAR(common,zeus_uksf_side);
-        displayName = "Toggle Indep/Blufor Relations";
-        function = QFUNC(moduleToggleSideRelations);
-        GVAR(sides) = "[2,0]";
-        icon = QPATHTOF(ui\Icon_Module_ToggleIndepBlufor_ca.paa);
-    };
-    class GVAR(moduleToggleIndepOpfor): EGVAR(common,moduleBase) {
-        curatorCanAttach = 1;
-        category = QEGVAR(common,zeus_uksf_side);
-        displayName = "Toggle Indep/Opfor Relations";
-        function = QFUNC(moduleToggleSideRelations);
-        GVAR(sides) = "[2,1]";
-        icon = QPATHTOF(ui\Icon_Module_ToggleIndepOpfor_ca.paa);
-    };
-    class GVAR(moduleToggleFps): EGVAR(common,moduleBase) {
-        curatorCanAttach = 1;
-        category = "Curator";
-        displayName = "Toggle FPS";
-        function = QFUNC(moduleToggleFps);
-        icon = "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa";
-        portrait = "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa";
-    };
-    class GVAR(moduleToggleHasRadio): EGVAR(common,moduleBase) {
-        curatorCanAttach = 1;
-        displayName = "Toggle Unit Support";
-        function = QFUNC(moduleToggleHasRadio);
+    class zen_modules_moduleHideZeus: zen_modules_moduleBase {
+        scopeCurator = 1;
     };
 
+    // Edit ace modules
     class ace_zeus_moduleBase;
     class ace_zeus_AddFullArsenal: ace_zeus_moduleBase {
-        scopeCurator = 0;
+        scopeCurator = 1;
     };
     class ace_zeus_RemoveFullArsenal: ace_zeus_moduleBase {
-        scopeCurator = 0;
+        scopeCurator = 1;
     };
     class ace_zeus_AddFullAceArsenal: ace_zeus_moduleBase {
         function = QFUNC(moduleAddAceArsenal);
@@ -129,22 +43,123 @@ class CfgVehicles {
         function = QFUNC(moduleRemoveAceArsenal);
     };
 
-    class Ares_Zeus_Module_Base;
-    class Ares_Module_Zeus_Visibility: Ares_Zeus_Module_Base {
-        curatorCanAttach = 1;
+    // Custom modules
+    class Module_F;
+    class GVAR(moduleBase): Module_F {
+        author = QUOTE(UKSF);
+        category = QGVAR(uksf);
+        functionPriority = 1;
+        isGlobal = 1;
+        isTriggerActivated = 0;
+        scope = 1;
+        scopeCurator = 2;
+    };
+    class GVAR(moduleAddAllObjects): GVAR(moduleBase) {
+        category = "Curator";
+        displayName = "Add all objects";
+        function = QFUNC(moduleAddAllObjects);
+        icon = "\x\zen\addons\modules\ui\edit_obj_ca.paa";
+    };
+    class GVAR(moduleToggleZeusVisibility): GVAR(moduleBase) {
+        category = "Curator";
         displayName = "Toggle Zeus Visibility";
         function = QFUNC(moduleToggleZeusVisibility);
         icon = "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa";
-        portrait = "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa";
     };
-    class Achilles_Module_Base;
-    class Achilles_ACE_Module_Base: Achilles_Module_Base {
+    class GVAR(moduleDelete): GVAR(moduleBase) {
+        curatorCanAttach = 1;
+        category = "Curator";
+        displayName = "Force Delete";
+        function = QFUNC(moduleDelete);
+        icon = "\z\ace\addons\zeus\ui\Icon_Module_Zeus_Settings_ca.paa";
+    };
+    class GVAR(moduleExplosionLarge): GVAR(moduleBase) {
+        curatorCanAttach = 1;
+        category = "Spawn";
+        displayName = "Large Explosion";
+        function = QFUNC(moduleExplosionLarge);
+        icon = QPATHTOF(ui\Icon_Module_Explosion_Large_ca.paa);
+    };
+    class GVAR(moduleExplosionSmall): GVAR(moduleBase) {
+        curatorCanAttach = 1;
+        category = "Spawn";
+        displayName = "Small Explosion";
+        function = QFUNC(moduleExplosionSmall);
+        icon = QPATHTOF(ui\Icon_Module_Explosion_Small_ca.paa);
+    };
+    class GVAR(moduleToggleAllowUnconcious): GVAR(moduleBase) {
         curatorCanAttach = 1;
         category = "ace_zeus_Medical";
-        icon = "\z\ace\addons\zeus\ui\Icon_Module_Zeus_Medic_ca.paa";
-        portrait = "\z\ace\addons\zeus\ui\Icon_Module_Zeus_Medic_ca.paa";
+        displayName = "Toggle Allow Unconcious";
+        function = QFUNC(moduleToggleAllowUnconcious);
+        icon = "\z\ace\addons\zeus\ui\Icon_Module_Zeus_Unconscious_ca.paa";
     };
-    class ModuleArsenal_F: Module_F {
-        scopeCurator = 0;
+    class GVAR(moduleToggleFps): GVAR(moduleBase) {
+        category = "Curator";
+        displayName = "Toggle FPS";
+        function = QFUNC(moduleToggleFps);
+        icon = "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa";
+    };
+    class GVAR(moduleToggleHasRadio): GVAR(moduleBase) {
+        curatorCanAttach = 1;
+        category = QGVAR(ai);
+        displayName = "Toggle Unit Support";
+        function = QFUNC(moduleToggleHasRadio);
+    };
+    class GVAR(moduleCachingToggle): GVAR(moduleBase) {
+        curatorCanAttach = 1;
+        category = QGVAR(ai);
+        displayName = QUOTE(Caching Toggle);
+        function = QFUNC(moduleToggleCaching);
+        icon = QPATHTOF(ui\Icon_Module_Caching_ca.paa);
+    };
+    class GVAR(moduleCleanupToggle): GVAR(moduleBase) {
+        curatorCanAttach = 1;
+        category = QGVAR(ai);
+        displayName = QUOTE(Cleanup Toggle);
+        function = QFUNC(moduleToggleCleanup);
+        icon = QPATHTOF(ui\Icon_Module_Cleanup_ca.paa);
+    };
+    class GVAR(moduleParadrop): GVAR(moduleBase) {
+        curatorCanAttach = 1;
+        category = QGVAR(special);
+        displayName = "Paradrop Units";
+        function = QFUNC(moduleParadrop);
+        icon = QPATHTOF(ui\Icon_Module_Dropzone.paa);
+    };
+    class GVAR(moduleMakeSuicideBomber): GVAR(moduleBase) {
+        curatorCanAttach = 1;
+        category = GVAR(special);
+        displayName = QUOTE(Make Suicide Bomber);
+        function = QFUNC(moduleMakeBomb);
+        icon = QPATHTOF(ui\Icon_Module_Explosion_Large_ca.paa);
+    };
+    class GVAR(moduleMakeSuicideBomberDeadman): GVAR(moduleBase) {
+        curatorCanAttach = 1;
+        category = GVAR(special);
+        displayName = QUOTE(Make Deadman Suicide Bomber);
+        function = QFUNC(moduleMakeBomb);
+        icon = QPATHTOF(ui\Icon_Module_Explosion_Large_ca.paa);
+    };
+    class GVAR(moduleMakeCarBomber): GVAR(moduleBase) {
+        curatorCanAttach = 1;
+        category = GVAR(special);
+        displayName = QUOTE(Make Car Bomber);
+        function = QFUNC(moduleMakeBomb);
+        icon = QPATHTOF(ui\Icon_Module_Explosion_Large_ca.paa);
+    };
+    class GVAR(moduleMakeCarBomberDeadman): GVAR(moduleBase) {
+        curatorCanAttach = 1;
+        category = GVAR(special);
+        displayName = QUOTE(Make Deadman Car Bomber);
+        function = QFUNC(moduleMakeBomb);
+        icon = QPATHTOF(ui\Icon_Module_Explosion_Large_ca.paa);
+    };
+    class GVAR(moduleMakeCarBomb): GVAR(moduleBase) {
+        curatorCanAttach = 1;
+        category = GVAR(special);
+        displayName = QUOTE(Make Car Bomb);
+        function = QFUNC(moduleMakeBomb);
+        icon = QPATHTOF(ui\Icon_Module_Explosion_Large_ca.paa);
     };
 };

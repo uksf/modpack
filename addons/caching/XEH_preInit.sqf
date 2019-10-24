@@ -6,6 +6,7 @@ ADDON = false;
 
 if (isServer) then {
     [QGVAR(disableCache), {call FUNC(disableCache)}] call CBA_fnc_addEventHandler;
+    [QGVAR(enableCache), {call FUNC(enableCache)}] call CBA_fnc_addEventHandler;
     // [QGVAR(hideObjectGlobal), {
     //     params [["_object", objNull, [objNull, grpNull]], "_state"];
 
