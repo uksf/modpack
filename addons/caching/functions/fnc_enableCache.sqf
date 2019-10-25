@@ -20,7 +20,7 @@ if (!(isServer)) exitWith {
     [QGVAR(enableCache), this] call CBA_fnc_serverEvent;
 };
 
-params [["_group", grpNull, [grpNull, objNull]];
+params [["_group", grpNull, [grpNull, objNull]]];
 
 if (_group isEqualType objNull) then {
     _group = group _group;
