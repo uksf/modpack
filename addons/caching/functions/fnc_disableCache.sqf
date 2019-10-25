@@ -7,7 +7,7 @@
         Excludes a group from caching. If group is in a vehicle, all units of the leader's vehicle are also excluded
 
     Parameter(s):
-        0: Group to exclude from caching
+        0: Unit/Group <OBJECT/GROUP>
 
     Return Value:
         None

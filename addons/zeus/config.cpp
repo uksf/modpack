@@ -10,10 +10,11 @@ class CfgPatches {
             QGVAR(moduleExplosionLarge),
             QGVAR(moduleExplosionSmall),
             QGVAR(moduleToggleAllowUnconcious),
-            QGVAR(moduleToggleFps),
-            QGVAR(moduleToggleHasRadio),
             QGVAR(moduleToggleCaching),
             QGVAR(moduleToggleCleanup),
+            QGVAR(moduleToggleFps),
+            QGVAR(moduleToggleHasRadio),
+            QGVAR(moduleToggleZeusVisibility),
             QGVAR(moduleParadrop),
             QGVAR(moduleMakeSuicideBomber),
             QGVAR(moduleMakeSuicideBomberDeadman),
@@ -24,7 +25,11 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "uksf_common",
+            "uksf_curator",
+            "uksf_caching",
+            "uksf_cleanup",
+            "uksf_mission",
+            "uksf_special",
             "zen_modules",
             "zen_context_menu",
             "zen_custom_modules",
@@ -41,6 +46,7 @@ class CBA_Extended_EventHandlers_base;
 #include "Cfg3den.hpp"
 #include "CfgContext.hpp"
 #include "CfgEventHandlers.hpp"
+#include "CfgFactionClasses.hpp"
 #include "CfgFunctions.hpp"
 #include "CfgVehicles.hpp"
 #include "RscDisplayCurator.hpp"

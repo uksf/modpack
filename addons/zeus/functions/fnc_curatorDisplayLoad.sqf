@@ -12,7 +12,6 @@
     Return Value:
         None
 */
-
 params ["_display"];
 
 (_display displayCtrl 50) ctrlRemoveEventHandler ["Draw", GVAR(curatorUnconciousMapID)];

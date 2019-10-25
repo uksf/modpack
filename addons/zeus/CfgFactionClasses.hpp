@@ -8,7 +8,4 @@ class CfgFactionClasses {
     class GVAR(special) : GVAR(uksf) {
         displayName = "UKSF Special";
     };
-    class GVAR(ai) : GVAR(uksf) {
-        displayName = "$STR_Team_Switch_AI";
-    };
 };

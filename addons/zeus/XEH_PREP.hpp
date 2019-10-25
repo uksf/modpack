@@ -27,3 +27,6 @@ PREP(contextSupportRadioModifier);
 PREP(contextCanCaching);
 PREP(contextCaching);
 PREP(contextCachingModifier);
+PREP(contextCanCleanup);
+PREP(contextCleanup);
+PREP(contextCleanupModifier);

@@ -8,7 +8,7 @@ class CfgVehicles {
     };
 
     // Edit zen modules
-    class zen_modules_moduleEditableObjects;
+    class zen_modules_moduleBase;
     class zen_modules_moduleArsenal: zen_modules_moduleBase {
         scopeCurator = 1;
     };
@@ -27,20 +27,26 @@ class CfgVehicles {
     class zen_modules_moduleHideZeus: zen_modules_moduleBase {
         scopeCurator = 1;
     };
+    class zen_modules_moduleHeal: zen_modules_moduleBase {
+        scopeCurator = 1;
+    };
 
     // Edit ace modules
     class ace_zeus_moduleBase;
+    class ace_zeus_AddFullAceArsenal: ace_zeus_moduleBase {
+        function = QFUNC(moduleAddAceArsenal);
+    };
+    class ace_zeus_RemoveFullAceArsenal: ace_zeus_moduleBase {
+        function = QFUNC(moduleRemoveAceArsenal);
+    };
     class ace_zeus_AddFullArsenal: ace_zeus_moduleBase {
         scopeCurator = 1;
     };
     class ace_zeus_RemoveFullArsenal: ace_zeus_moduleBase {
         scopeCurator = 1;
     };
-    class ace_zeus_AddFullAceArsenal: ace_zeus_moduleBase {
-        function = QFUNC(moduleAddAceArsenal);
-    };
-    class ace_zeus_RemoveFullAceArsenal: ace_zeus_moduleBase {
-        function = QFUNC(moduleRemoveAceArsenal);
+    class ace_zeus_moduleEditableObjects: ace_zeus_moduleBase {
+        scopeCurator = 1;
     };
 
     // Custom modules
@@ -102,20 +108,20 @@ class CfgVehicles {
     };
     class GVAR(moduleToggleHasRadio): GVAR(moduleBase) {
         curatorCanAttach = 1;
-        category = QGVAR(ai);
+        category = "zen_modules_AI";
         displayName = "Toggle Unit Support";
         function = QFUNC(moduleToggleHasRadio);
     };
-    class GVAR(moduleCachingToggle): GVAR(moduleBase) {
+    class GVAR(moduleToggleCaching): GVAR(moduleBase) {
         curatorCanAttach = 1;
-        category = QGVAR(ai);
+        category = "zen_modules_AI";
         displayName = QUOTE(Caching Toggle);
         function = QFUNC(moduleToggleCaching);
         icon = QPATHTOF(ui\Icon_Module_Caching_ca.paa);
     };
-    class GVAR(moduleCleanupToggle): GVAR(moduleBase) {
+    class GVAR(moduleToggleCleanup): GVAR(moduleBase) {
         curatorCanAttach = 1;
-        category = QGVAR(ai);
+        category = "zen_modules_AI";
         displayName = QUOTE(Cleanup Toggle);
         function = QFUNC(moduleToggleCleanup);
         icon = QPATHTOF(ui\Icon_Module_Cleanup_ca.paa);

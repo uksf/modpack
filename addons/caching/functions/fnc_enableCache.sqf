@@ -8,8 +8,7 @@
         Any units inside another unit's vehicle will also be enabled
 
     Parameter(s):
-        0: Unit/Units/Group <OBJECT/ARRAY/GROUP>
-        1: State <BOOLEAN>
+        0: Unit/Group <OBJECT/GROUP>
 
     Return Value:
         None

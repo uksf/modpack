@@ -23,7 +23,7 @@ if (_objects isEqualType objNull) then {
 
 {
     _x setVariable [QGVAR(excluded), _state, true];
-    if (!(_x getVariable [QGVAR(handled), false] || alive _x)) then {
+    if (!_state && {!(_x getVariable [QGVAR(handled), false] || alive _x)}) then {
         [_x] call FUNC(handleKilled);
     };
     false

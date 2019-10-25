@@ -12,10 +12,12 @@
     Return Value:
         Boolean
 */
-params ["", "_selectedObjects", "_selectedGroups", "", "", "_hoveredEntity"];
+params ["", "_selectedObjects", "_selectedGroups"];
 
-if (!isNull _hoveredEntity && {_hoveredEntity isKindOf "CAManBase" && {alive _hoveredEntity}}) exitWith {
-    true
+if (!EGVAR(caching,enabled)) exitWith {false};
+
+if (!(_selectedGroups isEqualTo [])) exitWith {
+    ({({alive _x} count (units _x)) > 0} count _selectedGroups) > 0
 };
 
 if (!(_selectedObjects isEqualTo [])) exitWith {
@@ -26,10 +28,6 @@ if (!(_selectedObjects isEqualTo [])) exitWith {
             false
         };
     } count (_selectedObjects select {_x isKindOf "CAManBase" && {alive _x}})) > 0
-};
-
-if (!(_selectedGroups isEqualTo [])) exitWith {
-    ({({alive _x} count (units _x)) > 0} count _selectedGroups) > 0
 };
 
 false
