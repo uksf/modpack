@@ -24,7 +24,6 @@
     Return Value:
         None
 */
-
 params [["_unit", objNull], "", "", "_shooter"];
 
 if (

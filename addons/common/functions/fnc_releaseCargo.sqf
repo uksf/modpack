@@ -12,7 +12,6 @@
     Return Value:
         Nothing
 */
-
 params ["_position"];
 
 private _vehicle = vehicle player;

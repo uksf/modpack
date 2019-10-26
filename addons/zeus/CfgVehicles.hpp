@@ -77,18 +77,16 @@ class CfgVehicles {
         category = "Curator";
         displayName = "Force Delete";
         function = QFUNC(moduleDelete);
-        icon = "\z\ace\addons\zeus\ui\Icon_Module_Zeus_Settings_ca.paa";
+        icon = "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa";
     };
     class GVAR(moduleExplosionLarge): GVAR(moduleBase) {
-        curatorCanAttach = 1;
-        category = "Spawn";
+        category = "zen_modules_Spawn";
         displayName = "Large Explosion";
         function = QFUNC(moduleExplosionLarge);
         icon = QPATHTOF(ui\Icon_Module_Explosion_Large_ca.paa);
     };
     class GVAR(moduleExplosionSmall): GVAR(moduleBase) {
-        curatorCanAttach = 1;
-        category = "Spawn";
+        category = "zen_modules_Spawn";
         displayName = "Small Explosion";
         function = QFUNC(moduleExplosionSmall);
         icon = QPATHTOF(ui\Icon_Module_Explosion_Small_ca.paa);

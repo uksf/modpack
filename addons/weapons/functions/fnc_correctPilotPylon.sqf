@@ -12,7 +12,6 @@
     Return Value:
         None
 */
-
 params ["_vehicle"];
 
 if (!local _vehicle) exitWith {

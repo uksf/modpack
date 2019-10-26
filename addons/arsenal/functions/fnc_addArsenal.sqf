@@ -13,7 +13,6 @@
     Return Value:
         None
 */
-
 params ["_crate", ["_classes", true, [[], true]]];
 
 [_crate, true] call ace_arsenal_fnc_removeBox;

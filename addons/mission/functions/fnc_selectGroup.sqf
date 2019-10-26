@@ -12,7 +12,6 @@
     Return value:
         [Side, Group config] <ARRAY>
 */
-
 params ["_factionName"];
 
 private _return = [];

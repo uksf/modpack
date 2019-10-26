@@ -12,7 +12,6 @@
     Return Value:
         Nothing
 */
-
 params [["_unit", objNull]];
 
 if (local _unit) then {

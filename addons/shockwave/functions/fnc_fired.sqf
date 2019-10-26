@@ -12,7 +12,6 @@
     Return value:
         None
 */
-
 params ["_shooter", "_weapon", "", "", "_ammo", "", "_projectile"];
 
 if ((toLower _weapon) isEqualTo "put") exitWith {};

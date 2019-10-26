@@ -12,7 +12,6 @@
     Return Value:
         None
 */
-
 params ["_unit", "_killer", "_instigator", "_useEffects"];
 
 TRACE_4("EntityKilled",_unit,_killer,_instigator,_useEffects);

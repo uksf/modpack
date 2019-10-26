@@ -13,7 +13,6 @@
     Return Value:
         Boolean
 */
-
 params ["_vehicle", "_unit"];
 
 (_vehicle getCargoIndex _unit) >= 0 &&

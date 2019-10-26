@@ -13,7 +13,6 @@
     Return Value:
         Array of ace medical states
 */
-
 params ["_unit"];
 
 if (!local _unit) exitWith {

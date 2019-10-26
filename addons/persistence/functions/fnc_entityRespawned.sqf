@@ -12,7 +12,6 @@
     Return Value:
         None
 */
-
 params ["_entity", "_corpse"];
 
 TRACE_2("EntityRespawned",_entity,_corpse);

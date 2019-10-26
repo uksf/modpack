@@ -16,7 +16,6 @@
     Example:
         [configFile >> "CfgVehicles" >> "UK3CB_BAF_Box_WpsSpecial"] call uksf_common_fnc_configExport;
 */
-
 params ["_config", ["_numtabs", 0, [0]], ["_output", "", [""]]];
 
 private _makeTabs = {

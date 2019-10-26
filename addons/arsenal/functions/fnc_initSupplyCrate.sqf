@@ -13,7 +13,6 @@
     Return Value:
         None
 */
-
 params ["_crate"];
 
 if (EGVAR(common,mainOp)) then {

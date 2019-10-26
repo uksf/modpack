@@ -19,7 +19,6 @@
     Return value:
         OBJECT
 */
-
 params ["_unit", "_target"];
 
 // Delete null or dead artillery pieces

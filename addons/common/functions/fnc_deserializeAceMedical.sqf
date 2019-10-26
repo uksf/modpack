@@ -14,7 +14,6 @@
     Return Value:
         Nothing
 */
-
 params ["_unit", "_states"];
 
 if (!local _unit) exitWith {

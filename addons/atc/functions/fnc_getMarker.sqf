@@ -12,7 +12,6 @@
     Return Value:
         None
 */
-
 params ["_aircraft"];
 
 private _markerType = "b_air";

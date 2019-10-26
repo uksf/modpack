@@ -13,7 +13,6 @@
     Return Value:
         Nothing
 */
-
 params ["_uav", "_type"];
 
 private _group = group _uav;

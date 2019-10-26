@@ -15,7 +15,6 @@
     Return value:
         Nothing
 */
-
 params ["_heli"];
 
 if (player isEqualTo (driver _heli) || {player isEqualTo (gunner _heli)}) then {

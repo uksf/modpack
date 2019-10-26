@@ -16,7 +16,6 @@
     Return Value:
         None
 */
-
 params ["_rover", "_unit", "_coverType", "_offset", "_angle"];
 
 

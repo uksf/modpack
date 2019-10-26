@@ -12,7 +12,6 @@
     Return value:
         None
 */
-
 params ["_vehicle"];
 
 if (_vehicle getVariable [QGVAR(channelsSet), false]) exitWith {};

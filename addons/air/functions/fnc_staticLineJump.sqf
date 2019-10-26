@@ -13,7 +13,6 @@
     Return Value:
         None
 */
-
 params ["_vehicle", "_unit"];
 
 private _jumpPoints = getArray (configFile >> "CfgVehicles" >> typeOf _vehicle >> "CUP_JumpPoint");

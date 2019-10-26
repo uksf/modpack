@@ -14,7 +14,6 @@
     Return Value:
         None
 */
-
 params ["_vehicle", "_aceCargo", "_inventory"];
 TRACE_3("Setting vehicle cargo",_vehicle,_aceCargo,_inventory);
 

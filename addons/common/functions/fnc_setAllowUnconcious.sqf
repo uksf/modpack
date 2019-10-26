@@ -13,7 +13,6 @@
     Return Value:
         None
 */
-
 params ["_unit", "_value"];
 
 if (isPlayer _unit) exitWith {};

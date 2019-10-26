@@ -14,7 +14,6 @@
     Return value:
         Unique ID <SCALAR>
 */
-
 params ["_player", ["_weapon", currentWeapon _player]];
 
 // Ignore pilots

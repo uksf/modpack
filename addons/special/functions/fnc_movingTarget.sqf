@@ -20,7 +20,6 @@
     Example:
         [_target, (direction _target) + 90, 10, 2, 10, 2] call uksf_special_fnc_movingTarget;
 */
-
 params ["_target", "_direction", "_distance", "_speed", ["_timeout", 10], ["_pause", 2]];
 
 if (!local _target) exitWith {

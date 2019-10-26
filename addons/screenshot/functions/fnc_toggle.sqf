@@ -12,7 +12,6 @@
     Return Value:
         Nothing
 */
-
 params [["_state", false]];
 
 private _staminaBar = uiNamespace getVariable ["ace_advanced_fatigue_staminaBarContainer", controlNull];

@@ -12,7 +12,6 @@
     Return value:
         Nothing
 */
-
 params ["_unit"];
 
 {

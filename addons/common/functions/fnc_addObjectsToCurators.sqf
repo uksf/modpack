@@ -8,24 +8,23 @@
         NOTE: Can only be executed on the server
 
     Parameter(s):
-        0: Curators <ARRAY> (Optional)
+        0: Objects <ARRAY> (Optional)
+        1: Curators <ARRAY> (Optional)
 
     Return Value:
         None
 */
-
-params [["_objects", allMissionObjects "all"], ["_curators", allCurators]];
-
 if (!isServer) exitWith {
     [QGVAR(addObjectsToCurators), _this] call CBA_fnc_serverEvent;
 };
 
-{
-    [_x, _objects] spawn {
-        params ["_curator", "_objects"];
+params [["_objects", allMissionObjects "all"], ["_curators", allCurators]];
+_objects = _objects - allCurators;
 
-        _curator addCuratorEditableObjects [_objects, true];
-        _curator removeCuratorEditableObjects [allCurators, true];
-    };
-    false
-} count _curators;
+[{
+    params ["_objects", "_curators"];
+    {
+        _x addCuratorEditableObjects [_objects, true];
+        false
+    } count _curators;
+}, [_objects, _curators]] call CBA_fnc_execNextFrame;

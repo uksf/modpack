@@ -12,7 +12,6 @@
     Return value:
         Has suppressor <BOOL>
 */
-
 params ["_unit"];
 
 private _silencer = (_unit weaponAccessories (currentWeapon _unit)) select 0;

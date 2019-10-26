@@ -13,7 +13,6 @@
     Return value:
         None
 */
-
 params ["_client", "_fps"];
 
 if (_client isEqualType 0) then {

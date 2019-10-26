@@ -16,7 +16,6 @@
     Example:
     [_trigger,_target] call bis_fnc_carrier01CatapultActionAdd;
 */
-
 //debug
 /*
 if (player getVariable ["addDebug",true]) then

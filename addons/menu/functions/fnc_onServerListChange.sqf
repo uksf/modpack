@@ -13,7 +13,6 @@
     Return Value:
         Nothing
 */
-
 params ["_control", "_index"];
 
 private _port = _control lbData _index;

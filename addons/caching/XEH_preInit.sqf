@@ -7,19 +7,6 @@ ADDON = false;
 if (isServer) then {
     [QGVAR(disableCache), {call FUNC(disableCache)}] call CBA_fnc_addEventHandler;
     [QGVAR(enableCache), {call FUNC(enableCache)}] call CBA_fnc_addEventHandler;
-    // [QGVAR(hideObjectGlobal), {
-    //     params [["_object", objNull, [objNull, grpNull]], "_state"];
-
-    //     if (_object isEqualType grpNull) then {
-    //         {                
-    //             _x hideObjectGlobal _state;
-    //             _x setVariable [QGVAR(hiddenByCaching), _state, true];
-    //         } forEach (units _object);
-    //     } else {
-    //         _object hideObjectGlobal _state;
-    //         _object setVariable [QGVAR(hiddenByCaching), _state, true];
-    //     };
-    // }] call CBA_fnc_addEventHandler;
 
     [QGVAR(cache), {
         params ["_group"];

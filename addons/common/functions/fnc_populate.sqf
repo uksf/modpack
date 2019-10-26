@@ -40,7 +40,6 @@ if (isServer) then {
 
                 if (_index isEqualTo (count _units) || {isNull _vehicle} || {time > (_time + TIMEOUT)}) exitWith {
                     [_idPFH] call CBA_fnc_removePerFrameHandler;
-                    [QGVAR(addObjectsToCurators), [[_vehicle]]] call CBA_fnc_serverEvent;
                     if (count _turrets > 0) then {
                         [{
                             params ["_vehicle", "_turrets"];

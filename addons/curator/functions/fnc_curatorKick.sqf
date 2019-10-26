@@ -13,7 +13,6 @@
     Return Value:
         None
 */
-
 params ["_kickAll", ["_player", ""]];
 
 if (_kickAll) then {

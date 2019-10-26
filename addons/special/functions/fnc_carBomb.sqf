@@ -12,7 +12,6 @@
     Return Value:
         Nothing
 */
-
 params ["_car"];
 
 if (!local _car || {_car getVariable [QGVAR(isBomber), false]}) exitWith {};

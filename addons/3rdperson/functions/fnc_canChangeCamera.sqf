@@ -13,7 +13,6 @@
     Return Value:
         Can Change Camera <BOOL>
 */
-
 #define VEHICLE_WHITELIST ["UAV", "UAV_01_base_F", "Air"]
 
 params ["_newCameraView", "_cameraOn"];

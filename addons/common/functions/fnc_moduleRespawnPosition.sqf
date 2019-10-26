@@ -12,7 +12,6 @@
     Return value:
         None
 */
-
 params ["_logic", "", "_activated"];
 
 if (_activated) then {

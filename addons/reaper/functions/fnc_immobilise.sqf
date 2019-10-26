@@ -13,7 +13,6 @@
     Return Value:
         Nothing
 */
-
 params ["_uav", "_state"];
 
 if (_state) then {

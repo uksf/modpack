@@ -20,7 +20,6 @@
     Return Value:
         None
 */
-
 params ["_mode", "_params"];
 
 switch _mode do {

@@ -12,7 +12,6 @@
     Return Value:
         Sanitised inventory <ARRAY>
 */
-
 params ["_inventory"];
 
 private _sanitisedInventory = [];

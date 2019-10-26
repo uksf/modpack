@@ -70,4 +70,4 @@ GVAR(curatorUnconciousID) = [{
         };
         true
     } count (allPlayers - entities "HeadlessClient_F");
-}, 0, []] call CBA_fnc_addPerFrameHandler;
+}, 0] call CBA_fnc_addPerFrameHandler;

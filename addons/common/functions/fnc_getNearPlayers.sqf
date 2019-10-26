@@ -13,7 +13,6 @@
     Return value:
         Players within radius from center <ARRAY>
 */
-
 params ["_pos", "_radius"];
 private _players = [];
 

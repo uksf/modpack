@@ -12,7 +12,6 @@
     Return Value:
         None
 */
-
 params ["_unit"];
 
 if (local _unit && {!(_unit getVariable [QGVAR(curatorActionsAdded), false])}) then {

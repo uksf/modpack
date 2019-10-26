@@ -13,7 +13,6 @@
     Return Value:
         None
 */
-
 params [["_centre", objnull], ["_skip", false]];
 
 private _vehicles = (GVAR(dataNamespace) getVariable [QGVAR(vehicles), []]);

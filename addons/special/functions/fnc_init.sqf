@@ -12,7 +12,6 @@
     Return Value:
         Nothing
 */
-
 params ["_bomber"];
 
 if (!local _bomber) exitWith {};

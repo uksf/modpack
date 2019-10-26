@@ -13,7 +13,6 @@
     Return Value:
         Nothing
 */
-
 params [["_unit", objNull], ["_nvg", ""]];
 
 if (local _unit) then {

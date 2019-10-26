@@ -12,7 +12,6 @@
     Return Value:
         Nothing
 */
-
 params ["_uav"];
 
 if (local _uav) then {

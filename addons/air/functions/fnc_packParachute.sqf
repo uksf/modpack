@@ -13,7 +13,6 @@
     Return Value:
         None
 */
-
 params ["_chute", "_unit"];
 
 deleteVehicle _chute;

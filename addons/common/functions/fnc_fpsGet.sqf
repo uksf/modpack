@@ -12,7 +12,6 @@
     Return value:
         None
 */
-
 params ["_player"];
 
 if (isServer) then {

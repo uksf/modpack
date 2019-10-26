@@ -16,7 +16,6 @@
     Return value:
         Nothing
 */
-
 params [["_sound1", ""], ["_delay1", 0], ["_sound2", ""], ["_delay2", 0], ["_sound3", ""], ["_delay3", 0]];
 
 [{

@@ -12,7 +12,6 @@
     Return Value:
         None
 */
-
 params ["_locked"];
 
 if (!isServer) exitWith {

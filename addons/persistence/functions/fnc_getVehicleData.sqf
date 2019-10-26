@@ -12,7 +12,6 @@
     Return Value:
         Data <ARRAY>
 */
-
 params ["_vehicle"];
 TRACE_1("Getting vehicle data for",_vehicle);
 

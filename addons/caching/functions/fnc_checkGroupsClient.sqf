@@ -12,7 +12,6 @@
     Return Value:
         None
 */
-
 params [["_groups", []]];
 
 ACE_controlledUAV params ["", "_player", "", "_seat"];

@@ -12,7 +12,6 @@
     Return Value:
         Cargo <ARRAY>
 */
-
 params ["_vehicle"];
 
 private _loadedCargo = _vehicle getVariable ["ace_cargo_loaded", []];

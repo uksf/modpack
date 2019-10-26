@@ -12,7 +12,6 @@
     Return Value:
         None
 */
-
 params ["_unit"];
 
 private _fnc_children = {

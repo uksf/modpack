@@ -14,7 +14,6 @@
         Array of radio data <ARRAY>
         Formatted as: [type, channel, volume, ear, pttIndex]
 */
-
 params ["_unit"];
 
 private _radios = ([_unit] call acre_sys_core_fnc_getGear) select {_x call acre_sys_radio_fnc_isUniqueRadio};

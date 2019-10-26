@@ -12,7 +12,6 @@
     Return Value:
         Nothing
 */
-
 params ["_state"];
 
 if (_state) then {

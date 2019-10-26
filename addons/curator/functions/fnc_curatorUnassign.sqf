@@ -12,7 +12,6 @@
     Return Value:
         None
 */
-
 params ["_curator"];
 
 private _index = GVAR(curatorObjects) find _curator;

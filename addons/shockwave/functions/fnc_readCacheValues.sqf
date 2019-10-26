@@ -14,7 +14,6 @@
     Return value:
         Cached Value <ANY>
 */
-
 params [["_config", configNull, [configNull, []]], ["_varName", "", [""]], ["_default", ""]];
 
 private _var = GVAR(variableHandler) getVariable _varName;

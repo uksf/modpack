@@ -12,7 +12,6 @@
     Return Value:
         None
 */
-
 params ["_logic"];
 
 if (!local _logic) exitWith {};

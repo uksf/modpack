@@ -17,7 +17,6 @@
     Return value:
         Boolean
 */
-
 params [["_target", objNull, [objNull]], ["_source", objNull, [objNull]], ["_zoomCheck", false], ["_groupCheck", false]];
 
 private _pos = worldToScreen (getPos _target);

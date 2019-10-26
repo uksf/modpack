@@ -12,7 +12,6 @@
     Return Value:
         Nothing
 */
-
 params ["_control"];
 
 lbClear _control;

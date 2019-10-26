@@ -10,7 +10,6 @@
     Parameters:
         https://github.com/CBATeam/CBA_A3/blob/master/addons/ai/fnc_taskPatrol.sqf#L7
 */
-
 params [
     ["_group", grpNull, [grpNull, objNull]],
     ["_position", [], [[], objNull, grpNull, locationNull], [2, 3]],

@@ -12,7 +12,6 @@
     Return Value:
         Array of marker information
 */
-
 params ["_marker"];
 
 private _serializedMarker = [];

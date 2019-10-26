@@ -12,7 +12,6 @@
     Return Value:
         None
 */
-
 params ["_unit", "_id", "_uid", "_name"];
 
 TRACE_4("HandleDisconnect",_unit,_id,_uid,_name);

@@ -13,7 +13,6 @@
     Return Value:
         None
 */
-
 params ["_unit", ["_setting", 0]];
 
 switch (_setting) do {

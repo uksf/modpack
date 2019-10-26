@@ -12,7 +12,6 @@
     Return Value:
         None
 */
-
 params ["_id", "_uid", "_name", "_jip", "_owner"];
 
 TRACE_5("PlayerConnected",_id,_uid,_name,_jip,_owner);

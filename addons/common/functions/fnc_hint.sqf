@@ -13,7 +13,6 @@
     Return Value:
         None
 */
-
 params ["_message", ["_admin", false]];
 
 if (_admin && !(ADMIN_OR_HOST)) exitWith {};
