@@ -69,7 +69,7 @@ private _data = [
     (_unit getVariable ["ace_attach_attached", []]) apply {_x#1},
     [_unit] call EFUNC(radios,serializeRadios)
 ];
-//TRACE_1("Player disconnect",_data);
+TRACE_1("Player disconnect",_data);
 
 GVAR(dataNamespace) setVariable [_uid, _data];
 private _dateTime = date;

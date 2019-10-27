@@ -64,7 +64,7 @@ if (!(isNull _centre)) then {
     }] call CBA_fnc_hashEachPair;
 };
 
-//TRACE_1("Vehicles saved",_vehicles);
+TRACE_1("Vehicles saved",_vehicles);
 GVAR(dataNamespace) setVariable [QGVAR(vehicles), _vehicles];
 if (GVAR(dataSaved)) then {
     profileNamespace setVariable [GVAR(key), [GVAR(dataNamespace)] call CBA_fnc_serializeNamespace];

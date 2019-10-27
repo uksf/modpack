@@ -50,6 +50,6 @@ private _data = [
     [_vehicle] call FUNC(getVehicleCargo),
     [getWeaponCargo _vehicle, getMagazineCargo _vehicle, getItemCargo _vehicle, getBackpackCargo _vehicle]
 ];
-//TRACE_1("Got vehicle data",_data);
+TRACE_1("Got vehicle data",_data);
 
 _data

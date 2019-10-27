@@ -4,6 +4,8 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
+#include "initSettings.sqf"
+
 if (!isMultiplayer) exitWith {};
 
 if (hasInterface) then {
@@ -34,7 +36,5 @@ if (isServer) then {
 
     call FUNC(initServer);
 };
-
-#include "initSettings.sqf"
 
 ADDON = true;
