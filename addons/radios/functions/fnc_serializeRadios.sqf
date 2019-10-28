@@ -30,7 +30,7 @@ private _radioData = [];
 {
     private _type = [_x] call acre_api_fnc_getBaseRadio;
     private _channel = [_x] call acre_api_fnc_getRadioChannel;
-    private _volume = ([_x] call acre_api_fnc_getRadioVolume)^(1/3);
+    private _volume = [_x] call acre_api_fnc_getRadioVolume;
     private _spatial = [_x] call acre_api_fnc_getRadioSpatial;
     private _ptt = [0, _pttAssignments find _x] select (count _pttAssignments == count _radios);
     if (!(_volume isEqualType 0)) then {_volume = 1};
