@@ -5,7 +5,7 @@ import subprocess
 DEPLOYMENT_DIRECTORY = "D:\\Dev"
 REPO_DIRECTORY = "C:\\Server\\Modpack"
 SERVER_DIRECTORY = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Arma 3 Server"
-ace_optionals = ["ace_compat_rksl_pm_ii"]
+ace_optionals = ["ace_compat_rksl_pm_ii", "nouniformrestrictions"]
 
 if __name__ == '__main__':
     os.chdir(REPO_DIRECTORY)
@@ -50,9 +50,11 @@ if __name__ == '__main__':
         try:
             print("\nSigning {}".format(file))
             print()
-            ret = subprocess.call([signtool, "sign", "/v", "/f", "D:\\Dev\\certs\\UKSFCert.pfx", "/t", "http://timestamp.comodoca.com/authenticode", file])
+            ret = subprocess.call([signtool, "verify", "/pa", file])
             if ret == 1:
-                raise Exception()
+                ret = subprocess.call([signtool, "sign", "/f", "D:\\Dev\\certs\\UKSFCert.pfx", "/t", "http://timestamp.comodoca.com/authenticode", file])
+                if ret == 1:
+                    raise Exception()
         except:
             print("\nFailed to sign {}".format(file))
             raise
