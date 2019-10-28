@@ -97,5 +97,18 @@ class CfgVehicles {
         scopeCurator = 2;
     };
 
-    #include "CfgUniforms.hpp"
+    // Disable lambs fsm temporarily
+    class CAManBase;
+    class SoldierWB: CAManBase {
+        fsmDanger = "-";
+    };
+    class SoldierEB: CAManBase {
+        fsmDanger = "-";
+    };
+    class SoldierGB: CAManBase {
+        fsmDanger = "-";
+    };
+    class Civilian_F : CAManBase {
+        fsmDanger = "A3\characters_f\scripts\formationCDanger.fsm";
+    };
 };

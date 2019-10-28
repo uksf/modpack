@@ -13,7 +13,8 @@ class CfgPatches {
             "uksf_3rdperson",
             "3denEnhanced",
             "cba_ui",
-            "diwako_dui_main"
+            "diwako_dui_main",
+            "lambs_danger"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
