@@ -233,7 +233,8 @@
     "SSQN_L110A1_CQB", \
     "SSQN_L110A1_CQB_C1", \
     "SSQN_L110A1_CQB_C2", \
-    "SSQN_L110A1_CQB_C3"
+    "SSQN_L110A1_CQB_C3", \
+    "SSQN_AW50"
 
 #define MAIN_OP_ATTACHMENTS \
     "ACE_optic_LRPS_2D", \
@@ -441,7 +442,8 @@
     "SSQN_FA556MG_Suppressor_C1", \
     "SSQN_FA556MG_Suppressor_C2", \
     "SSQN_FA556MG_Suppressor_C3", \
-    "SSQN_FA556MG_Suppressor_C4"
+    "SSQN_FA556MG_Suppressor_C4", \
+    "SSQN_FiftyCal_Suppressor"
 
 #define MAIN_OP_NVGS \
     "ACE_NVG_Pilot", \

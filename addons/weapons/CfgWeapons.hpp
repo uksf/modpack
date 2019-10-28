@@ -4,7 +4,7 @@ class Mode_FullAuto;
 class asdg_MuzzleSlot;
 class asdg_SlotInfo;
 class asdg_OpticRail;
-class asdg_OpticRail1913: asdg_OpticRail {
+class asdg_OpticRail1913 : asdg_OpticRail {
     class compatibleItems {
         RKSL_optic_PMII_525_NV = 1;
     };
@@ -330,6 +330,10 @@ class CfgWeapons {
         magazineWell[] = {};
     };
 
+    class UK3CB_BAF_L110_Base;
+    class UK3CB_BAF_L110_556_Base : UK3CB_BAF_L110_Base {
+        magazines[] = { "UK3CB_BAF_556_200Rnd", "UK3CB_BAF_556_200Rnd_Blank", "UK3CB_BAF_556_200Rnd_T", "UK3CB_BAF_556_100Rnd", "UK3CB_BAF_556_100Rnd_Blank", "UK3CB_BAF_556_100Rnd_T" };
+    };
     class LMG_Zafir_F;
     class UK3CB_BAF_L7A2 : LMG_Zafir_F {
         magazines[] = {
