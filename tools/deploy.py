@@ -32,18 +32,27 @@ if __name__ == '__main__':
     print("Deleting old @intercept")
     shutil.rmtree(repo_folder_intercept, True)
 
+    # Move uksf, uksf_ace, and intercept.
+    print("Moving new @uksf")
+    shutil.copytree(deployment_folder_uksf, repo_folder_uksf)
+    print("Moving new @uksf_ace")
+    shutil.copytree(deployment_folder_uksf_ace, repo_folder_uksf_ace)
+    print("Moving new @acre2")
+    shutil.copytree(deployment_folder_acre, repo_folder_acre)
+    print("Moving new @intercept")
+    shutil.copytree(deployment_folder_intercept, repo_folder_intercept)
+
     # Find dlls
     dlls = []
-    for file in os.listdir(deployment_folder_intercept):
+    for file in os.listdir(repo_folder_intercept):
         if (file.endswith(".dll")):
-            dlls.append(os.path.join(deployment_folder_intercept, file))
-    for file in os.listdir(os.path.join(deployment_folder_intercept, "intercept")):
+            dlls.append(os.path.join(repo_folder_intercept, file))
+    for file in os.listdir(os.path.join(repo_folder_intercept, "intercept")):
         if (file.endswith(".dll")):
-            dlls.append(os.path.join(deployment_folder_intercept, "intercept", file))
-    for file in os.listdir(os.path.join(deployment_folder_uksf, "intercept")):
+            dlls.append(os.path.join(repo_folder_intercept, "intercept", file))
+    for file in os.listdir(os.path.join(repo_folder_uksf, "intercept")):
         if (file.endswith(".dll")):
-            dlls.append(os.path.join(deployment_folder_uksf, "intercept", file))
-            
+            dlls.append(os.path.join(repo_folder_uksf, "intercept", file))
 
     # Sign intercept dlls
     for file in dlls:
@@ -58,16 +67,6 @@ if __name__ == '__main__':
         except:
             print("\nFailed to sign {}".format(file))
             raise
-
-    # Move uksf, uksf_ace, and intercept.
-    print("Moving new @uksf")
-    shutil.copytree(deployment_folder_uksf, repo_folder_uksf)
-    print("Moving new @uksf_ace")
-    shutil.copytree(deployment_folder_uksf_ace, repo_folder_uksf_ace)
-    print("Moving new @acre2")
-    shutil.copytree(deployment_folder_acre, repo_folder_acre)
-    print("Moving new @intercept")
-    shutil.copytree(deployment_folder_intercept, repo_folder_intercept)
 
     # Move whitelisted ace optionals
     for folder in os.listdir(os.path.join(repo_folder_uksf_ace, "optionals")):
@@ -112,8 +111,12 @@ if __name__ == '__main__':
     print("Moving new bisigns")
     for file in os.listdir(os.path.join(deployment_folder_uksf_dependencies, "addons")):
         if (file.endswith(".bisign") and os.path.isfile(os.path.join(deployment_folder_uksf_dependencies, "addons", file))):
-            if (not os.path.isfile(os.path.join(repo_folder_uksf_dependencies, "addons", file)) or not os.path.basename(file).replace(".bisign", "").split(".", 2)[2] ==
-                os.path.basename(os.path.join(repo_folder_uksf_dependencies, "addons", file)).replace(".bisign", "").split(".", 2)[2]):
+            if (not os.path.isfile(os.path.join(repo_folder_uksf_dependencies, "addons", file)) or
+                not os.path.basename(file).replace(".bisign", "").split(".", 2)[2] ==
+                    os.path.basename(os.path.join(repo_folder_uksf_dependencies, "addons", file)).replace(".bisign", "").split(".", 2)[2] or
+                not os.path.getmtime(os.path.join(repo_folder_uksf_dependencies, "addons", file)) ==
+                    os.path.getmtime(os.path.join(deployment_folder_uksf_dependencies, "addons", file))
+                ):
                 shutil.copy(os.path.join(deployment_folder_uksf_dependencies, "addons", file), os.path.join(repo_folder_uksf_dependencies, "addons", file))
 
     # Delete old keys
