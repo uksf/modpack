@@ -20,3 +20,12 @@ if (difficultyOption "thirdPersonView" == 0) exitWith {
     if (!([_newCameraView, _cameraOn] call FUNC(canChangeCamera))) exitWith {};
     _cameraOn switchCamera "INTERNAL";
 }] call CBA_fnc_addPlayerEventHandler;
+
+["turret", {
+    params ["", ""];
+
+    private _newCameraView = cameraView;
+    private _cameraOn = cameraOn;
+    if (!([_newCameraView, _cameraOn] call FUNC(canChangeCamera))) exitWith {};
+    _cameraOn switchCamera "INTERNAL";
+}, true] call CBA_fnc_addPlayerEventHandler;
