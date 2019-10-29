@@ -6,7 +6,6 @@ class RscDisplayMain: RscStandardDisplay {
         };
         class GroupTutorials: GroupSingleplayer {
             h = "(5 *   1.5) *  (pixelH * pixelGrid * 2)";
-
             class Controls: Controls {
                 class Bootcamp;
                 class VRTraining;

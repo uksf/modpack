@@ -1,3 +1,3 @@
 PREP(addArsenal);
-PREP(buttonMainOp);
 PREP(initSupplyCrate);
+PREP(switchMainOpGear);

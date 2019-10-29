@@ -9,9 +9,7 @@
     "1Rnd_Smoke_Grenade_shell", \
     "20Rnd_762x51_Mag", \
     "30Rnd_556x45_Stanag", \
-    "30Rnd_556x45_Stanag_Tracer_Green", \
     "30Rnd_556x45_Stanag_Tracer_Red", \
-    "30Rnd_556x45_Stanag_Tracer_Yellow", \
     "ACE_20Rnd_762x51_M118LR_Mag", \
     "ACE_20Rnd_762x51_M993_AP_Mag", \
     "ACE_20Rnd_762x51_Mag_Tracer", \
@@ -136,17 +134,6 @@
     "UK3CB_BAF_UGL_FlareWhite_F", \
     "UK3CB_BAF_UGL_FlareYellow_F", \
     "uksf_persistence_marker", \
-    "SSQN_30Rnd_556x45_Stanag", \
-    "SSQN_30Rnd_556x45_T_Stanag", \
-    "SSQN_30Rnd_556x45_TM_Stanag", \
-    "SSQN_30Rnd_556x45_IRT_Stanag", \
-    "SSQN_30Rnd_556x45_IRTM_Stanag", \
-    "SSQN_200Rnd_556x45mm", \
-    "SSQN_200Rnd_556x45mm_T", \
-    "SSQN_200Rnd_556x45mm_IR", \
-    "SSQN_100Rnd_556x45mm", \
-    "SSQN_100Rnd_556x45mm_T", \
-    "SSQN_100Rnd_556x45mm_IR", \
     "SSQN_5Rnd_127x99", \
     "SSQN_5Rnd_127x99_HEIAP", \
     "SSQN_5Rnd_127x99_Tracer", \
@@ -207,25 +194,21 @@
     "UK3CB_BAF_NLAW_Launcher", \
     "UK3CB_BAF_Soflam_Laserdesignator", \
     "SSQN_L119A1_CQB", \
-    "SSQN_L119A1_CQB_v2", \
-    "SSQN_L119A1_CQB_v3", \
     "SSQN_L119A1_CQB_C1", \
-    "SSQN_L119A1_CQB_v2_C1", \
-    "SSQN_L119A1_CQB_v3_C1", \
     "SSQN_L119A1_CQB_C2", \
-    "SSQN_L119A1_CQB_v2_C2", \
-    "SSQN_L119A1_CQB_v3_C2", \
     "SSQN_L119A1_CQB_C3", \
+    "SSQN_L119A1_CQB_v2", \
+    "SSQN_L119A1_CQB_v2_C1", \
+    "SSQN_L119A1_CQB_v2_C2", \
     "SSQN_L119A1_CQB_v2_C3", \
-    "SSQN_L119A1_CQB_v3_C3", \
-    "SSQN_L119A1_UGL", \
-    "SSQN_L119A1_UGL_v2", \
-    "SSQN_L119A1_UGL_C1", \
-    "SSQN_L119A1_UGL_v2_C1", \
-    "SSQN_L119A1_UGL_C2", \
-    "SSQN_L119A1_UGL_v2_C2", \
-    "SSQN_L119A1_UGL_C3", \
-    "SSQN_L119A1_UGL_v2_C3", \
+    "SSQN_L119A1_SFW", \
+    "SSQN_L119A1_SFW_C1", \
+    "SSQN_L119A1_SFW_C2", \
+    "SSQN_L119A1_SFW_C3", \
+    "SSQN_L119A1_SFW_v2", \
+    "SSQN_L119A1_SFW_v2_C1", \
+    "SSQN_L119A1_SFW_v2_C2", \
+    "SSQN_L119A1_SFW_v2_C3", \
     "SSQN_L110A1", \
     "SSQN_L110A1_C1", \
     "SSQN_L110A1_C2", \
@@ -234,33 +217,10 @@
     "SSQN_L110A1_CQB_C1", \
     "SSQN_L110A1_CQB_C2", \
     "SSQN_L110A1_CQB_C3", \
+    "UK3CB_BAF_L119A1_UKUGL", \
     "SSQN_AW50"
 
 #define MAIN_OP_ATTACHMENTS \
-    "ACE_optic_LRPS_2D", \
-    "ACE_optic_LRPS_PIP", \
-    "CUP_Muzzle_snds_M16", \
-    "CUP_Muzzle_snds_M16_camo", \
-    "CUP_muzzle_snds_AWM", \
-    "CUP_muzzle_snds_L85", \
-    "CUP_muzzle_snds_M9", \
-    "CUP_optic_ELCAN_SpecterDR", \
-    "CUP_optic_Elcan", \
-    "CUP_optic_Elcan_reflex", \
-    "CUP_optic_Eotech533", \
-    "CUP_optic_Eotech533Grey", \
-    "CUP_optic_HoloBlack", \
-    "CUP_optic_HoloDesert", \
-    "CUP_optic_RCO", \
-    "CUP_optic_RCO_desert", \
-    "CUP_optic_TrijiconRx01_black", \
-    "CUP_optic_TrijiconRx01_desert", \
-    "CUP_optic_acog", \
-    "CUP_optic_compm2_black", \
-    "CUP_optic_compm2_desert", \
-    "CUP_optic_compm2_woodland", \
-    "CUP_optic_desert", \
-    "CUP_optic_holowdl", \
     "RKSL_optic_LDS", \
     "RKSL_optic_LDS_C", \
     "RKSL_optic_PMII_312", \
@@ -273,22 +233,18 @@
     "RKSL_optic_PMII_525_des", \
     "RKSL_optic_PMII_525_wdl", \
     "RKSL_optic_PMII_525_NV", \
-    "UK3CB_BAF_Eotech", \
     "UK3CB_BAF_Flashlight_L131A1", \
     "UK3CB_BAF_Kite", \
     "UK3CB_BAF_LLM_Flashlight_Black", \
     "UK3CB_BAF_LLM_Flashlight_Far_Black", \
     "UK3CB_BAF_LLM_IR_Black", \
     "UK3CB_BAF_MaxiKite", \
-    "UK3CB_BAF_SUSAT", \
     "UK3CB_BAF_Silencer_L110", \
     "UK3CB_BAF_Silencer_L115A3", \
     "UK3CB_BAF_Silencer_L85", \
     "UK3CB_BAF_SpecterLDS", \
     "UK3CB_BAF_SpecterLDS_3D", \
     "UK3CB_BAF_SpecterLDS_Dot_3D", \
-    "UK3CB_BAF_TA31F", \
-    "UK3CB_BAF_TA31F_Hornbill", \
     "UK3CB_BAF_TA648", \
     "UK3CB_BAF_TA648_308", \
     "UK3CB_BAF_Tripod", \
@@ -298,21 +254,7 @@
     "UK3CB_underbarrel_acc_fgrip_bipod", \
     "UK3CB_underbarrel_acc_grippod", \
     "acc_pointer_IR", \
-    "bipod_01_F_blk", \
-    "bipod_01_F_khk", \
-    "bipod_01_F_mtp", \
-    "bipod_01_F_snd", \
-    "muzzle_snds_338_black", \
-    "muzzle_snds_338_green", \
-    "muzzle_snds_338_sand", \
-    "muzzle_snds_B", \
-    "muzzle_snds_B_khk_F", \
-    "muzzle_snds_B_snd_F", \
     "muzzle_snds_L", \
-    "muzzle_snds_M", \
-    "muzzle_snds_m_khk_F", \
-    "muzzle_snds_m_snd_F", \
-    "optic_LRPS", \
     "uk3cb_baf_flashlight_l105a1", \
     "uk3cb_baf_l105a1_llm_ir_g", \
     "uk3cb_baf_l105a1_llm_ir_r", \

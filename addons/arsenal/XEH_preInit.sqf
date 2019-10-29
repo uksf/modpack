@@ -10,45 +10,32 @@ if (isClass (missionConfigFile >> QGVAR(loadouts))) then {
     _loadoutConfigs = _loadoutConfigs select {private _config = configName _x; ({(configName _x) isEqualTo _config} count _missionLoadouts) isEqualTo 0};
     _loadoutConfigs append _missionLoadouts;
 };
-private _defaultLoadouts = [];
-{
-    private _name = getText (_x >> "name");
-    private _inventory = call compile (getText (_x >> "loadout"));
-    if (_name == "Empty") then {
-        uiNamespace setVariable [QGVAR(emptyLoadout), _inventory];
-    };
-    _defaultLoadouts pushBack [_name, _inventory];
-    true
-} count _loadoutConfigs;
+private _defaultLoadouts = _loadoutConfigs apply {[getText (_x >> "name"), call compile (getText (_x >> "loadout"))]};
 uiNamespace setVariable [QGVAR(defaultLoadouts), _defaultLoadouts];
 
-["ace_arsenal_displayOpened", {
-    if (missionNamespace getVariable [QGVAR(togglingMainOpGear), false]) then {
-        missionNamespace setVariable [QGVAR(togglingMainOpGear), false];
-    };
-    if (is3DEN) then {
-        [] spawn {
-            disableSerialization;
-            private _display = findDisplay 1127001;
-            private _buttonMainOpGear = _display displayCtrl 1006;
-            _buttonMainOpGear ctrlEnable false;
-            _buttonMainOpGear ctrlShow false;
-        };
-    } else {
-        if (isMultiplayer) then {
-            {
-                private _display = findDisplay 1127001;
-                private _buttonMainOpGear = _display displayCtrl 1006;
-                _buttonMainOpGear ctrlEnable false;
-                _buttonMainOpGear ctrlShow false;
-            } call CBA_fnc_execNextFrame;
-        };
-    };
-}] call CBA_fnc_addEventHandler;
+GVAR(useMainOpGear) = false;
+GVAR(cachedMainOpGear) = [];
+GVAR(cachedFullGear) = [];
 
-["ace_arsenal_displayClosed", {
-    if (!(missionNamespace getVariable [QGVAR(togglingMainOpGear), false])) then {
-        missionNamespace setVariable [QGVAR(useMainOpGear), false];
+["ace_arsenal_displayOpened", {
+    params ["_display"];
+
+    if (isMultiplayer) exitWith {
+        _buttonMainOpGear ctrlEnable false;
+        _buttonMainOpGear ctrlShow false;
+    };
+
+    private _buttonMainOpGear = _display displayCtrl IDC_buttonMainOpGear;
+    _buttonMainOpGear ctrlSetText (["Turn On Main Op Gear", "Turn Off Main Op Gear"] select GVAR(useMainOpGear));
+
+    if (is3DEN) then {
+        GVAR(useMainOpGear) = true;
+        [_display] call FUNC(switchMainOpGear);
+    } else {
+        GVAR(useMainOpGear) = !GVAR(useMainOpGear); // switchMainOpGear toggles state, so flip beforehand
+        [{
+            [_this] call FUNC(switchMainOpGear);
+        }, _display] call CBA_fnc_execNextFrame;
     };
 }] call CBA_fnc_addEventHandler;
 
