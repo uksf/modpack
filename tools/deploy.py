@@ -20,7 +20,6 @@ if __name__ == '__main__':
     deployment_folder_uksf_dependencies = os.path.join(DEPLOYMENT_DIRECTORY, "modpack\\release\\@uksf_dependencies")
     deployment_folder_intercept = os.path.join(DEPLOYMENT_DIRECTORY, "modpack\\@intercept")    
     keys_folder = os.path.join(SERVER_DIRECTORY, "Keys")
-    signtool = "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.17763.0\\x64\\signtool.exe"
 
     # Delete uksf and uksf_ace.
     print("Deleting old @uksf")
@@ -41,32 +40,6 @@ if __name__ == '__main__':
     shutil.copytree(deployment_folder_acre, repo_folder_acre)
     print("Moving new @intercept")
     shutil.copytree(deployment_folder_intercept, repo_folder_intercept)
-
-    # Find dlls
-    dlls = []
-    for file in os.listdir(repo_folder_intercept):
-        if (file.endswith(".dll")):
-            dlls.append(os.path.join(repo_folder_intercept, file))
-    for file in os.listdir(os.path.join(repo_folder_intercept, "intercept")):
-        if (file.endswith(".dll")):
-            dlls.append(os.path.join(repo_folder_intercept, "intercept", file))
-    for file in os.listdir(os.path.join(repo_folder_uksf, "intercept")):
-        if (file.endswith(".dll")):
-            dlls.append(os.path.join(repo_folder_uksf, "intercept", file))
-
-    # Sign intercept dlls
-    for file in dlls:
-        try:
-            print("\nSigning {}".format(file))
-            print()
-            ret = subprocess.call([signtool, "verify", "/pa", file])
-            if ret == 1:
-                ret = subprocess.call([signtool, "sign", "/f", "D:\\Dev\\certs\\UKSFCert.pfx", "/t", "http://timestamp.comodoca.com/authenticode", file])
-                if ret == 1:
-                    raise Exception()
-        except:
-            print("\nFailed to sign {}".format(file))
-            raise
 
     # Move whitelisted ace optionals
     for folder in os.listdir(os.path.join(repo_folder_uksf_ace, "optionals")):

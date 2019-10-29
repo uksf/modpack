@@ -1432,7 +1432,36 @@ See the make.cfg file for additional build options.
 
     finally:
         if compile_ext:
-            compile_extensions(extensions_root, force_build)
+            compile_extensions(extensions_root, force_build)        
+
+        signtool = "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.17763.0\\x64\\signtool.exe"
+        intercept_dll_path = os.path.join(module_root_parent, "@intercept")
+        uksf_intercept_dll_path = os.path.join(module_root_parent, "intercept")
+        # Find dlls
+        dlls = []
+        for file in os.listdir(intercept_dll_path):
+            if (file.endswith(".dll")):
+                dlls.append(os.path.join(intercept_dll_path, file))
+        for file in os.listdir(os.path.join(intercept_dll_path, "intercept")):
+            if (file.endswith(".dll")):
+                dlls.append(os.path.join(intercept_dll_path, "intercept", file))
+        for file in os.listdir(uksf_intercept_dll_path):
+            if (file.endswith(".dll")):
+                dlls.append(os.path.join(uksf_intercept_dll_path, file))
+
+        # Sign intercept dlls
+        for file in dlls:
+            try:
+                print("\nSigning {}".format(file))
+                print()
+                ret = subprocess.call([signtool, "verify", "/pa", file])
+                if ret == 1:
+                    ret = subprocess.call([signtool, "sign", "/f", "D:\\Dev\\certs\\UKSFCert.pfx", "/t", "http://timestamp.comodoca.com/authenticode", file])
+                    if ret == 1:
+                        raise Exception()
+            except:
+                print("\nFailed to sign {}".format(file))
+                raise
 
         copy_important_files(module_root_parent,os.path.join(release_dir, project))
         copy_intercept_files(os.path.join(module_root_parent, "intercept"), os.path.join(release_dir, project, "intercept"))
