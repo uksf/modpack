@@ -20,12 +20,12 @@ GVAR(cachedFullGear) = [];
 ["ace_arsenal_displayOpened", {
     params ["_display"];
 
+    private _buttonMainOpGear = _display displayCtrl IDC_buttonMainOpGear;
     if (isMultiplayer) exitWith {
         _buttonMainOpGear ctrlEnable false;
         _buttonMainOpGear ctrlShow false;
     };
 
-    private _buttonMainOpGear = _display displayCtrl IDC_buttonMainOpGear;
     _buttonMainOpGear ctrlSetText (["Turn On Main Op Gear", "Turn Off Main Op Gear"] select GVAR(useMainOpGear));
 
     if (is3DEN) then {
