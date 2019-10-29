@@ -102,9 +102,13 @@ if __name__ == '__main__':
     for file in os.listdir(os.path.join(repo_folder_uksf_dependencies, "addons")):
         if (file.endswith(".bisign") or file.endswith(".bisign.zsync")
                 and os.path.isfile(os.path.join(repo_folder_uksf_dependencies, "addons", file))):
-            if (file.endswith(".bisign.zsync") or (not (os.path.isfile(os.path.join(deployment_folder_uksf_dependencies, "addons", file))
-                and os.path.basename(file).replace(".bisign", "").split(".", 2)[2] ==
-                os.path.basename(os.path.join(deployment_folder_uksf_dependencies, "addons", file)).replace(".bisign", "").split(".", 2)[2]))):
+            if (file.endswith(".bisign.zsync") or 
+                    (not (os.path.isfile(os.path.join(deployment_folder_uksf_dependencies, "addons", file)) and
+                        os.path.basename(file).replace(".bisign", "").split(".", 2)[2] ==
+                        os.path.basename(os.path.join(deployment_folder_uksf_dependencies, "addons", file)).replace(".bisign", "").split(".", 2)[2]) and
+                    not os.path.getmtime(os.path.join(repo_folder_uksf_dependencies, "addons", file)) ==
+                        os.path.getmtime(os.path.join(deployment_folder_uksf_dependencies, "addons", file)))
+                ):
                 os.remove(os.path.join(repo_folder_uksf_dependencies, "addons", file))
 
     # Move bisigns for dependencies.
