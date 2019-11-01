@@ -23,7 +23,7 @@ if !(local _group) exitWith {};
 _position = [_position,_group] select (_position isEqualTo []);
 _position = _position call CBA_fnc_getPos;
 
-{deleteWaypoint [_group, 1]; false} count (waypoints _group);
+{deleteWaypoint [_group, 1]} forEach (waypoints _group);
 
 _this =+ _this;
 _this set [2, 0];

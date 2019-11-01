@@ -26,9 +26,7 @@ private _newKilled = [];
             _newKilled pushBack _x;
         };
     };
-
-    false
-} count GVAR(killed);
+} forEach GVAR(killed);
 GVAR(killed) = _newKilled;
 
 [{[] call FUNC(cleanupCheck)}, [], GVAR(delay) / 4] call CBA_fnc_waitAndExecute;

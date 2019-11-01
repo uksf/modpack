@@ -32,8 +32,7 @@ GVAR(curatorUnconciousMapID) = (_display displayCtrl 50) ctrlAddEventHandler ["D
             };
             (_this#0) drawIcon ["#(argb,8,8,3)color(0,0,0,0)", [1,0,0,0.7], _x, 40, 1, 0, _text, 0.1, 0.04, "PuristaBold", "left"];
         };
-        true
-    } count (allPlayers - entities "HeadlessClient_F");
+    } forEach (allPlayers - entities "HeadlessClient_F");
 }];
 
 [GVAR(curatorUnconciousID)] call CBA_fnc_removePerFrameHandler;
@@ -68,6 +67,5 @@ GVAR(curatorUnconciousID) = [{
                 drawIcon3D ["", [1,0,0,0.7], ASLToAGL (getPosASLVisual (driver (vehicle _x))), 1, -2.5, 0, _text, 0.1, 0.04, "PuristaBold", "center"];
             };
         };
-        true
-    } count (allPlayers - entities "HeadlessClient_F");
+    } forEach (allPlayers - entities "HeadlessClient_F");
 }, 0] call CBA_fnc_addPerFrameHandler;

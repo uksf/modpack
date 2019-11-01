@@ -22,5 +22,5 @@ GVAR(arsenalCloseEvent) = ["ace_arsenal_displayClosed", {
     ["ace_arsenal_displayClosed", GVAR(arsenalCloseEvent)] call CBA_fnc_removeEventHandler;
     private _loadout = getUnitLoadout _unit;
     private _units = [_unit] call zen_attributes_fnc_getAttributeEntities;
-    {_x setUnitLoadout _loadout; false} count _units;
+    {_x setUnitLoadout _loadout} forEach _units;
 }] call CBA_fnc_addEventHandler;

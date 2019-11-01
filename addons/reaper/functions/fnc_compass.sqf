@@ -26,7 +26,7 @@ if (_state) then {
                 _x params ["_letter", "_color", "_offset1", "_offset2"];
                 drawIcon3D ["", _color, _center vectorAdd _offset1, 0, 0, 0, _letter, 2, 0.05, "PuristaMedium"];
                 drawIcon3D ["", _color, _center vectorAdd _offset2, 0, 0, 0, ".", 2, 0.05, "PuristaMedium"];
-            } count [
+            } forEach [
                 ["N", [1,1,1,1], [0,_factor,0], [0,_halfFactor,0]],
                 ["S", [1,1,1,0.7], [0,-_factor,0], [0,-_halfFactor,0]],
                 ["E", [1,1,1,0.7], [_factor,0,0], [_halfFactor,0,0]],

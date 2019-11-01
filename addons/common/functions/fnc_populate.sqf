@@ -46,8 +46,7 @@ if (isServer) then {
                             {
                                 [_vehicle turretUnit [_x]] join grpNull;
                                 deleteVehicle (_vehicle turretUnit [_x]);
-                                false
-                            } count _turrets;
+                            } forEach _turrets;
                         }, [_vehicle, _turrets], 2] call cba_fnc_waitAndExecute;
                     };
                 };

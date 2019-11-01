@@ -21,6 +21,5 @@ if (local _unit) then {
             _unit unassignItem _x;
             _unit removeItem _x;
         };
-        true
-    } count _items;
+    } forEach _items;
 };

@@ -28,8 +28,7 @@ _altitude = _altitude / 3.28084; // Convert feet to metres
 ["Dropping in %1 units", count _units] call ace_zeus_fnc_showMessage;
 {
     [QEGVAR(common,textTiles), [parseText format ["<t align = 'center' color = '#00CC00'>STANDBY FOR PICKUP</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 2.5], _x] call CBA_fnc_targetEvent;
-    true
-} count _units;
+} forEach _units;
 
 private _vectorDirection = _positionStart vectorFromTo _positionEnd;
 private _heading = (_vectorDirection#0 atan2 _vectorDirection#1);
@@ -74,15 +73,13 @@ _plane setPosASL _start;
         _plane animate ["ramp_bottom", 0.7];
         {
             [QEGVAR(common,textTiles), [parseText format ["<t align = 'center' color = '#FF0000'>STANDBY TO JUMP</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 2.5], _x] call CBA_fnc_targetEvent;
-            true
-        } count _units;
+        } forEach _units;
     };
     if (_positionPreStartReached && {!_startReached} && {(_previousPosition distance2D _positionStart) < 25}) then {
         _args set [9, true];
         {
             [QEGVAR(common,textTiles), [parseText format ["<t align = 'center' color = '#00CC00'>GREEN LIGHT - JUMP</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 5], _x] call CBA_fnc_targetEvent;
-            true
-        } count _units;
+        } forEach _units;
     };
     if (_positionPreStartReached && {_startReached} && {!_endReached} && {(_previousPosition distance2D _positionEnd) < 25}) then {
         _args set [10, true];

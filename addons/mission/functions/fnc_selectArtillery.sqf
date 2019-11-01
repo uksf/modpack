@@ -25,11 +25,7 @@ params ["_unit", "_target"];
 GVAR(artillerySupportUnits) = GVAR(artillerySupportUnits) select {!isNull _x && {alive _x}};
 
 // Shuffle the array
-private _allArtillery = +GVAR(artillerySupportUnits);
-GVAR(artillerySupportUnits) = [];
-for "_i" from count _allArtillery to 1 step -1 do {
-    GVAR(artillerySupportUnits) pushBack (_allArtillery deleteAt floor random _i);
-};
+[GVAR(artillerySupportUnits), true] call CBA_fnc_shuffle;
 
 // Select a piece that matches all conditions
 private _unitSide = side _unit;

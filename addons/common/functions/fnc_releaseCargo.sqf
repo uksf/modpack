@@ -20,8 +20,7 @@ player setVariable ["ASL_Release_Cargo_Index_Vehicle", _vehicle];
 if (_position isEqualTo "All") then {
     {
         [_x] call ASL_Release_Cargo_Index_Action;
-        false
-    } count [0,1,2];
+    } forEach [0,1,2];
 } else {
     private _ropesAndCargo = [_vehicle] call ASL_Get_Active_Ropes_With_Cargo;
     private _ropeAndCargo = (_ropesAndCargo select {(_x select 1) isEqualTo _position}) select 0;

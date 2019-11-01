@@ -26,5 +26,4 @@ if (_objects isEqualType objNull) then {
     if (!_state && {!(_x getVariable [QGVAR(handled), false] || alive _x)}) then {
         [_x] call FUNC(handleKilled);
     };
-    false
-} count _objects;
+} forEach _objects;

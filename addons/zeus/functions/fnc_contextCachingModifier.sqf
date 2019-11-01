@@ -29,8 +29,7 @@ if (!(_selectedObjects isEqualTo [])) exitWith {
         if (({alive _x} count (units _x)) > 0) then {
             _selectedGroups pushBackUnique (group _x);
         };
-        false
-    } count (_selectedObjects select {_x isKindOf "CAManBase" && {alive _x}});
+    } forEach (_selectedObjects select {_x isKindOf "CAManBase" && {alive _x}});
     private _state = (_selectedGroups findIf {!(_x getVariable [QEGVAR(caching,excluded), false])}) != -1; // At least 1 included = true
     _action set [1, ["Include In Caching", "Exclude From Caching"] select _state]; // If any group included, show exclude
     _action set [2, [QPATHTOF(ui\Icon_Module_Caching_Include_ca.paa), QPATHTOF(ui\Icon_Module_Caching_Exclude_ca.paa)] select _state];

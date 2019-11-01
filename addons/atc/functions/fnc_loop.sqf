@@ -23,7 +23,7 @@ params ["_player", "_state"];
 
 if (!_state) exitWith {
     [GVAR(loopHandle)] call CBA_fnc_removePerFrameHandler;
-    {deleteMarkerLocal _x; true} count GVAR(markers);
+    {deleteMarkerLocal _x} forEach GVAR(markers);
     GVAR(markers) = [];
 };
 
@@ -32,7 +32,7 @@ GVAR(loopHandle) = [{
     _args params ["_player", "_time"];
 
     if (CBA_missionTime > (_time + INTERVAL)) then {
-        {deleteMarkerLocal _x; true} count GVAR(markers);
+        {deleteMarkerLocal _x} forEach GVAR(markers);
         GVAR(markers) = [];
         GVAR(aircraft) = GVAR(aircraft) select {!isNull _x && {alive _x}};
         {
@@ -55,14 +55,12 @@ GVAR(loopHandle) = [{
                 _marker setMarkerColorLocal "ColorWEST";
             };
             GVAR(markers) pushBack _marker;
-            true
-        } count (GVAR(aircraft) select {(isEngineOn _x || isCollisionLightOn _x) && {(_x distance2D _player) <= RADIUS_2D}});
+        } forEach (GVAR(aircraft) select {(isEngineOn _x || isCollisionLightOn _x) && {(_x distance2D _player) <= RADIUS_2D}});
         _args set [1, CBA_missionTime];
     } else {
         {
             private _step = CBA_missionTime - _time;
             _x setMarkerAlphaLocal (0.25 + (1 - _step));
-            true
-        } count GVAR(markers);
+        } forEach GVAR(markers);
     };
 }, 0, [_player, INTERVAL]] call CBA_fnc_addPerFrameHandler;

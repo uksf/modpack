@@ -20,9 +20,7 @@ private _var = GVAR(variableHandler) getVariable _varName;
 if (isNil "_var") then {
     if (IS_ARRAY(_config)) then {
         _path = configFile;
-        {
-            _path = _path >> _x;
-        } count _config;
+        {_path = _path >> _x} forEach _config;
         _config = _path;
     };
     _var = switch (true) do {

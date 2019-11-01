@@ -19,8 +19,8 @@ if (_unit isEqualType objNull) exitWith {
     _unit setVariable [QGVAR(hasSupportRadio), _state, true];
 };
 if (_unit isEqualType []) exitWith {
-    {_x setVariable [QGVAR(hasSupportRadio), _state, true]; false} count _unit;
+    {_x setVariable [QGVAR(hasSupportRadio), _state, true]} forEach _unit;
 };
 if (_unit isEqualType grpNull) exitWith {
-    {_x setVariable [QGVAR(hasSupportRadio), _state, true]; false} count (units _unit);
+    {_x setVariable [QGVAR(hasSupportRadio), _state, true]} forEach (units _unit);
 };

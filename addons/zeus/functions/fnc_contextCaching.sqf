@@ -19,8 +19,7 @@ if (!(_selectedGroups isEqualTo [])) exitWith {
     private _state = (_selectedGroups findIf {!(_x getVariable [QEGVAR(caching,excluded), false])}) != -1; // At least 1 included = true
     {
         [[QEGVAR(caching,enableCache), QEGVAR(caching,disableCache)] select _state, [_x]] call CBA_fnc_serverEvent; // If included, exclude
-        false
-    } count _selectedGroups;
+    } forEach _selectedGroups;
 };
 
 if (!(_selectedObjects isEqualTo [])) exitWith {
@@ -29,11 +28,9 @@ if (!(_selectedObjects isEqualTo [])) exitWith {
         if (({alive _x} count (units _x)) > 0) then {
             _selectedGroups pushBackUnique (group _x);
         };
-        false
-    } count (_selectedObjects select {_x isKindOf "CAManBase" && {alive _x}});
+    } forEach (_selectedObjects select {_x isKindOf "CAManBase" && {alive _x}});
     private _state = (_selectedGroups findIf {!(_x getVariable [QEGVAR(caching,excluded), false])}) != -1; // At least 1 included = true
     {
         [[QEGVAR(caching,enableCache), QEGVAR(caching,disableCache)] select _state, [_x]] call CBA_fnc_serverEvent; // If included, exclude
-        false
-    } count _selectedGroups;
+    } forEach _selectedGroups;
 };

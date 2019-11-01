@@ -25,6 +25,5 @@ _objects = _objects - allCurators;
     params ["_objects", "_curators"];
     {
         _x addCuratorEditableObjects [_objects, true];
-        false
-    } count _curators;
+    } forEach _curators;
 }, [_objects, _curators]] call CBA_fnc_execNextFrame;

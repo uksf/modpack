@@ -21,8 +21,7 @@
         private _channel = getArray _x;
         ["ACRE_PRC117F", "default3", _channel#0, "name", _channel#1] call acre_api_fnc_setPresetChannelField;
         ["ACRE_PRC152", "default3", _channel#0, "description", _channel#1] call acre_api_fnc_setPresetChannelField;
-        true
-    } count _channels;
+    } forEach _channels;
 
     ["ACRE_PRC117F", "default3"] call acre_api_fnc_setPreset;
     ["ACRE_PRC148", "default3"] call acre_api_fnc_setPreset;

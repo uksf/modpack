@@ -48,7 +48,7 @@ _group setVariable [QGVAR(supportRequesting), true, true];
                 private _supportingGroup = group _supportingUnit;
                 private _position = [_shooter, 50 + ((_unit distance2D _shooter) / 10) + (50 * _reportDepth)] call CBA_fnc_randPos;
                 private _radius = ((_supportingUnit distance2D _shooter) / 10) + (25 * _reportDepth);
-                {deleteWaypoint [_supportingGroup, 1]; false} count (waypoints _supportingGroup);
+                {deleteWaypoint [_supportingGroup, 1]} forEach (waypoints _supportingGroup);
                 [_supportingGroup, _position, _radius, "SAD", "AWARE", "RED", "FULL", "WEDGE", QUOTE([this] call FUNC(reTask)), [0,0,0], 10] call CBA_fnc_addWaypoint;
                 _supportingGroup setVariable [QGVAR(supportTasked), true, true];
                 _group setVariable [QGVAR(supportRequested), true, true];
