@@ -69,6 +69,23 @@ if __name__ == '__main__':
             os.remove(os.path.join(repo_folder_uksf_dependencies, "addons", file_delete))
             os.remove(os.path.join(repo_folder_uksf_dependencies, "addons", file_zsync_delete))
             print("    Deleted: {}".format(os.path.join(repo_folder_uksf_dependencies, "addons", file_delete)))
+    
+    # Update other dependencies files
+    print("Updating other dependencies files")
+    for file in os.listdir(os.path.join(deployment_folder_uksf_dependencies)):
+        if (os.path.isfile(os.path.join(deployment_folder_uksf_dependencies, file))):
+            print("    Found file to update: {}".format(file))
+            shutil.copy(os.path.join(deployment_folder_uksf_dependencies, file), os.path.join(repo_folder_uksf_dependencies, file))
+            print("    Updated: {}".format(os.path.join(repo_folder_uksf_dependencies, file)))
+        elif (file.endswith(".delete")
+                and os.path.isfile(os.path.join(deployment_folder_uksf_dependencies, file))
+                and os.path.isfile(os.path.join(repo_folder_uksf_dependencies, "{}".format(os.path.splitext(os.path.basename(file))[0])))):
+            file_delete = "{}".format(os.path.splitext(os.path.basename(file))[0])
+            file_zsync_delete = "{}.zsync".format(file_delete)
+            print("    Found file to delete: {}".format(file_delete))
+            os.remove(os.path.join(repo_folder_uksf_dependencies, file_delete))
+            os.remove(os.path.join(repo_folder_uksf_dependencies, file_zsync_delete))
+            print("    Deleted: {}".format(os.path.join(repo_folder_uksf_dependencies, file_delete)))
 
     # Delete bisigns in dependencies.
     print("Deleting old bisigns")
