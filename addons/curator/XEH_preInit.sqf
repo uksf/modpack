@@ -19,9 +19,6 @@ if (isServer) then {
         GVAR(curatorsMax) = 1;
         publicVariable QGVAR(curatorsMax);
     };
-    for "_i" from 1 to GVAR(curatorsMax) do {
-        call FUNC(curatorCreate);
-    };
 };
 
 if (hasInterface) then {
@@ -40,27 +37,6 @@ if (hasInterface) then {
             };
         };
     }, true, [], true] call CBA_fnc_addClassEventHandler;
-
-    ["CBA_loadingScreenDone", {
-        [{
-            !(isNull (findDisplay 46))
-        }, {
-            [] spawn {
-                if (isMultiplayer) then {
-                    startLoadingScreen ["Loading"];
-                    private _step = (1 / GVAR(curatorsMax));
-                    for "_index" from 1 to GVAR(curatorsMax) do {
-                        progressLoadingScreen (_step * _index);
-                        uiSleep 1;
-                    };
-                    endLoadingScreen;
-                };
-            };
-            if (!isMultiplayer) then {
-                call FUNC(curatorLogin);
-            };
-        }] call CBA_fnc_waitUntilAndExecute;
-    }] call CBA_fnc_addEventHandler;
 };
 
 ADDON = true;

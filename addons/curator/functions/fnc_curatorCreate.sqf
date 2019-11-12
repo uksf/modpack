@@ -22,8 +22,4 @@ GVAR(curatorObjects) pushBack _curator;
 GVAR(curatorPlayers) pushBack "";
 publicVariable QGVAR(curatorObjects);
 publicVariable QGVAR(curatorPlayers);
-
-// if (!isMultiplayer && {!isNull findDisplay IDD_DISPLAY3DEN}) then {
-//     removeAllCuratorAddons _curator;
-//     _curator addCuratorAddons EGVAR(common,addons);
-// };
+removeAllCuratorAddons _curator;
