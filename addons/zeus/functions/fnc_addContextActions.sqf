@@ -48,4 +48,4 @@ _action = [QGVAR(object), "Object", "", {}, {true}, [], {
 [_action, [], -85] call zen_context_menu_fnc_addAction;
 
 _action = [QGVAR(toggleFPS), "Toggle FPS", "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa", {GVAR(fpsEnabled) = !GVAR(fpsEnabled)}, {isMultiplayer}] call zen_context_menu_fnc_createAction;
-[_action, [], -100] call zen_context_menu_fnc_addAction;
+[_action, [], -200] call zen_context_menu_fnc_addAction;

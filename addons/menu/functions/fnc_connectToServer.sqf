@@ -16,7 +16,7 @@
 
 #define ADDRESS QUOTE(uk-sf.co.uk)
 #define IP QUOTE(54.37.244.72:%1)
-#define CONNECTTIMEOUT 5
+#define CONNECTTIMEOUT 3
 
 onEachFrame {
     GVAR(directConnectStartTime) = diag_tickTime;
@@ -43,6 +43,7 @@ onEachFrame {
 
                         if (diag_tickTime > (GVAR(directConnectStartTime) + CONNECTTIMEOUT)) exitWith {
                             ERROR_1("direct connect on port %1 timed out", GVAR(directConnectPort));
+                            ctrlActivate (findDisplay IDD_MULTIPLAYER displayCtrl IDC_CANCEL);
                             onEachFrame {};
                             true
                         };
