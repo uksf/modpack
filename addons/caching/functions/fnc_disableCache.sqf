@@ -26,18 +26,22 @@ if (_group isEqualType objNull) then {
 
 _group setVariable [QGVAR(excluded), true, true];
 {
-    _x enableSimulationGlobal true;
-    _x hideObjectGlobal false;
-    _x setVariable [QGVAR(hiddenByCaching), true, true];
+    if (_x getVariable [QGVAR(hiddenByCaching), false]) then {
+        _x enableSimulationGlobal true;
+        _x hideObjectGlobal false;
+        _x setVariable [QGVAR(hiddenByCaching), true, true];
+    };
 } forEach (units _group);
 
 private _leader = leader _group;
 private _vehicle = objectParent _leader;
 if (!(isNull _vehicle)) then {
     {
-        _x enableSimulationGlobal true;
-        _x hideObjectGlobal false;
-        _x setVariable [QGVAR(hiddenByCaching), true, true];
         (group _x) setVariable [QGVAR(excluded), true, true];
+        if (_x getVariable [QGVAR(hiddenByCaching), false]) then {
+            _x enableSimulationGlobal true;
+            _x hideObjectGlobal false;
+            _x setVariable [QGVAR(hiddenByCaching), true, true];
+        };
     } forEach (crew _vehicle);
 };
