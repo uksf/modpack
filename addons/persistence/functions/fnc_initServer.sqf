@@ -12,7 +12,6 @@
     Return Value:
         None
 */
-
 TRACE_1("Server init",GVAR(dataSaved));
 GVAR(hashPersistentVehicles) = [[], true] call CBA_fnc_hashCreate;
 GVAR(hashFirstKilled) = [[], true] call CBA_fnc_hashCreate;

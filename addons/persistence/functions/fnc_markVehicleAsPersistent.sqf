@@ -13,6 +13,7 @@
     Return Value:
         ID <STRING>
 */
+if (!isMultiplayer) exitWith {};
 
 if (!isServer) exitWith {
     [QGVAR(markVehicleAsPersistent), _this] call CBA_fnc_serverEvent;

@@ -455,8 +455,8 @@ acre_sys_list_ToggleHeadsetColor = [0.66,0.05,1,1];
 
 // ACRE2 Zeus
 force force acre_sys_zeus_zeusCanSpectate = true;
-force force acre_sys_zeus_zeusCommunicateViaCamera = true;
-force force acre_sys_zeus_zeusDefaultVoiceSource = false;
+force acre_sys_zeus_zeusCommunicateViaCamera = true;
+force acre_sys_zeus_zeusDefaultVoiceSource = false;
 
 // CBA UI
 cba_ui_notifyLifetime = 4;
@@ -644,7 +644,7 @@ zen_editor_disableLiveSearch = false;
 zen_editor_moveDisplayToEdge = true;
 force force zen_editor_removeWatermark = true;
 force force zen_editor_unitRadioMessages = 0;
-zen_visibility_enabled = true;
+zen_visibility_enabled = false;
 force force zen_vision_enableBlackHot = true;
 force force zen_vision_enableBlackHotGreenCold = false;
 force force zen_vision_enableBlackHotRedCold = false;
