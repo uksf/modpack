@@ -1,27 +1,55 @@
 #pragma once
-#define NOMINMAX
-#define WIN32_LEAN_AND_MEAN
 
-#pragma comment(lib,"WS2_32")
-#pragma comment(lib, "iphlpapi.lib")
+#include "Shared/Shared.hpp"
+#include "Shared/Singleton.hpp"
+#include "Shared/SignalSlot.hpp"
+#include "Shared/Lockable.h"
+#include <functional>
+#include <concurrent_queue.h>
+#include "Shared/ServerMessage.h"
+#include "Shared/ClientMessage.h"
 
-// ReSharper disable once CppUnusedIncludeDirective
-#include <WinSock2.h>
-
-#include "singleton.hpp"
-
-#include "intercept.hpp"
-using namespace intercept;
-
-#include "signalslot.hpp"
-
-class uksf : public singleton<uksf> {
+class UKSF : public Singleton<UKSF>, public Lockable {
 public:
-    uksf();
+    UKSF();
+	~UKSF();
 
-    uksf_signal<void()> postStart;
-    uksf_signal<void()> preInit;
-    uksf_signal<void()> postInit;
-    uksf_signal<void()> onFrame;
-    uksf_signal<void()> missionEnded;
+	void initialize();
+	void start();
+	void stop();
+
+	Signal<void()> preStart;
+    Signal<void()> postStart;
+    Signal<void()> preInit;
+    Signal<void()> postInit;
+    Signal<void()> onFrame;
+    Signal<void()> missionEnded;
+	Signal<void()> threadTick;
+
+	[[nodiscard]] STATE getState() const;
+
+	void addToGameFunctionQueue(std::function<void()> function);
+	void addToFunctionQueue(std::function<void()> function);
+	void addToSendQueue(ServerMessage message);
+	void addToReceiveQueue(ClientMessage message);
+
+	std::string name;
+	std::string port;
+	bool isClient = false;
+	bool isDedicated = false;
+	bool masterThreadRun = false;
+
+private:
+	STATE m_state = STATE::STOPPED;
+	bool m_stopRequested = false;
+	std::thread m_workerThread;
+	Concurrency::concurrent_queue<std::function<void()>> m_gameFunctionQueue{};
+	Concurrency::concurrent_queue<std::function<void()>> m_functionQueue{};
+	Concurrency::concurrent_queue<ServerMessage> m_sendQueue{};
+	Concurrency::concurrent_queue<ClientMessage> m_receiveQueue{};
+
+	std::string getUrlString();
+	void setNewState(STATE state);
+	void clearQueues();
+	void doWork();
 };

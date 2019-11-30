@@ -1,9 +1,9 @@
-#include "data.hpp"
+#include "Data.hpp"
 // #include "secret.hpp"
 
 //uksf_data::uksf_data() {
-//    /*uksf::getInstance().preInit.connect([this]() {
-//        LOG_DEBUG("DATA PREINIT");
+//    /*uksf::getInstance()->preInit.connect([this]() {
+//        logMessage("DATA PREINIT");
 //        const game_value enabledArgs({
 //            QGVAR(enabled),
 //            "CHECKBOX",
@@ -24,8 +24,8 @@
 //        sqf::call(uksf_common::cbaSettingsFncInit, frequencyArgs);
 //    });
 //
-//    uksf::getInstance().postInit.connect([this]() {
-//        LOG_DEBUG("DATA POSTINIT");
+//    uksf::getInstance()->postInit.connect([this]() {
+//        logMessage("DATA POSTINIT");
 //        _enabled = sqf::get_variable(sqf::mission_namespace(), QGVAR(enabled), ENABLED_DEFAULT);
 //        _frequency = sqf::get_variable(sqf::mission_namespace(), QGVAR(frequency), FREQUENCY_DEFAULT);
 //
@@ -40,8 +40,8 @@
 //        }
 //    });
 //
-//    uksf::getInstance().missionEnded.connect([this]() {
-//        LOG_DEBUG("DATA MISSION ENDED");
+//    uksf::getInstance()->missionEnded.connect([this]() {
+//        logMessage("DATA MISSION ENDED");
 //    });*/
 //}
 //
@@ -127,7 +127,7 @@
 //    jsonObject["players"] = jsonPlayers;
 //    json::string_t jsonString = jsonObject.dump();
 //    sqf::system_chat(jsonString);
-//    LOG_DEBUG(jsonString);
+//    logMessage(jsonString);
 //    //std::thread sendDataThread(&uksf_data::sendData, jsonString);
 //    //sendDataThread.detach();
 //}
@@ -145,6 +145,6 @@
 //        Poco::Net::HTTPResponse response;
 //        session.receiveResponse(response);
 //    } catch (Poco::Exception& exception) {
-//        LOG_DEBUG(exception.displayText());
+//        logMessage(exception.displayText());
 //    }
 //}

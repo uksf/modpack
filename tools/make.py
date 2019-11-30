@@ -73,7 +73,7 @@ pbo_name_prefix = "uksf_"
 dependencies = "C:/SteamLibrary/_Working/next/@uksf_dependencies/addons"
 signature_blacklist = []
 importantFiles = ["mod.cpp", "README.md", "mod.paa", "modLarge.paa", "AUTHORS.txt", "LICENSE", "UKSFTemplate.VR", "cba_settings.sqf", "cba_settings.sqf"]
-interceptFiles = ["uksf.dll", "uksf_x64.dll", "PocoFoundation.dll", "PocoFoundation64.dll", "PocoJSON.dll", "PocoJSON64.dll", "PocoNet.dll", "PocoNet64.dll", "PocoUtil.dll", "PocoUtil64.dll", "PocoXML.dll", "PocoXML64.dll"]
+interceptFiles = ["uksf_x64.dll", "PocoFoundation.dll", "PocoFoundation64.dll", "PocoJSON.dll", "PocoJSON64.dll", "PocoNet.dll", "PocoNet64.dll", "PocoUtil.dll", "PocoUtil64.dll", "PocoXML.dll", "PocoXML64.dll"]
 versionFiles = ["mod.cpp", "README.md"]
 
 ###############################################################################
@@ -335,10 +335,6 @@ def compile_extensions(extensions_root, force_build):
         print_blue("\nCompiling extensions in {}".format(extensions_root))
         os.chdir(extensions_root)
         print()
-        ret = subprocess.call(["msbuild", "uksf.sln", "/m", "/p:Configuration=Release", "/p:Platform=x86"])
-        if ret == 1:
-            print_error("\nFailed to compile x86 extension")
-            return 1
         print()
         ret = subprocess.call(["msbuild", "uksf.sln", "/m", "/p:Configuration=Release", "/p:Platform=x64"])
         if ret == 1:
@@ -352,8 +348,6 @@ def compile_extensions(extensions_root, force_build):
 
 
 def copy_important_files(source_dir,destination_dir):
-    originalDir = os.getcwd()
-
     # Copy importantFiles
     try:
         print_blue("\nSearching for important files in {}".format(source_dir))
@@ -377,9 +371,7 @@ def copy_important_files(source_dir,destination_dir):
         raise
 
 def copy_intercept_files(source_dir,destination_dir):
-    originalDir = os.getcwd()
-
-    # Copy interceptFiles
+    # Copy intercept files
     try:
         print_blue("\nSearching for important files in {}".format(source_dir))
         print("Source_dir: {}".format(source_dir))
@@ -387,18 +379,23 @@ def copy_intercept_files(source_dir,destination_dir):
         if not os.path.exists(destination_dir):
             os.makedirs(destination_dir)
 
-        for file in interceptFiles:
-            filePath = os.path.join(module_root_parent, "intercept", file)
-            if os.path.exists(filePath):
-                print_green("Copying file => {}".format(filePath))
-                if (os.path.isdir(os.path.join(source_dir,filePath))):
-                    shutil.rmtree(os.path.join(destination_dir, file), True)
-                    shutil.copytree(os.path.join(source_dir, file), os.path.join(destination_dir, file))
-                else:
-                    shutil.copy(os.path.join(source_dir,filePath), destination_dir)
-            else:
-                missingFiles.append("{}".format(filePath))
-                print_error("Failed copying file => {}".format(filePath))
+        for file in os.listdir(source_dir):
+            if (file.endswith(".dll")):
+                print_green("Copying file => {}".format(file))
+                shutil.copy(os.path.join(source_dir,file), destination_dir)
+
+        # for file in interceptFiles:
+        #     filePath = os.path.join(module_root_parent, "intercept", file)
+        #     if os.path.exists(filePath):
+        #         print_green("Copying file => {}".format(filePath))
+        #         if (os.path.isdir(os.path.join(source_dir,filePath))):
+        #             shutil.rmtree(os.path.join(destination_dir, file), True)
+        #             shutil.copytree(os.path.join(source_dir, file), os.path.join(destination_dir, file))
+        #         else:
+        #             shutil.copy(os.path.join(source_dir,filePath), destination_dir)
+        #     else:
+        #         missingFiles.append("{}".format(filePath))
+        #         print_error("Failed copying file => {}".format(filePath))
     except:
         print_error("COPYING INTERCEPT FILES.")
         raise

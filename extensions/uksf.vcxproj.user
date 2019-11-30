@@ -3,4 +3,16 @@
   <PropertyGroup>
     <ShowAllFiles>true</ShowAllFiles>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LocalDebuggerCommand>B:\Steam\steamapps\common\Arma 3\arma3server_x64.exe</LocalDebuggerCommand>
+    <LocalDebuggerCommandArguments>-config=C:\Users\Tim\Desktop\servers\configs\MainServer.cfg -profiles=C:\Users\Tim\Desktop\servers\Profiles -cfg=C:\Users\Tim\Desktop\servers\perf.cfg -name=Main -port=2302  -mod=uksf/@acre2;uksf/@CBA_A3;uksf/@CUP_Terrains_ACE_compat;uksf/@CUP_Terrains_Core;uksf/@CUP_Terrains_Maps;uksf/@CUP_Units;uksf/@CUP_Vehicles;uksf/@CUP_Vehicles_ACE_compat;uksf/@CUP_Weapons;uksf/@CUP_Weapons_ACE_compat;uksf/@uksf_ace;uksf/@uksf_dependencies;@cache;u/uksf;z/intercept_cba/rv/intercept-cba;z/intercept_cba/intercept/rv; -enableHT -high -bandwidthAlg=2 -hugepages -noSounds -loadMissionToMemory -filePatching</LocalDebuggerCommandArguments>
+    <LocalDebuggerWorkingDirectory>B:\Steam\steamapps\common\Arma 3</LocalDebuggerWorkingDirectory>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LocalDebuggerCommand>B:\Steam\steamapps\common\Arma 3\arma3server_x64.exe</LocalDebuggerCommand>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerCommandArguments>-config=C:\Users\Tim\Desktop\servers\configs\MainServer.cfg -profiles=C:\Users\Tim\Desktop\servers\Profiles -cfg=C:\Users\Tim\Desktop\servers\perf.cfg -name=Main -port=2302  -mod=uksf/@acre2;uksf/@CBA_A3;uksf/@CUP_Terrains_ACE_compat;uksf/@CUP_Terrains_Core;uksf/@CUP_Terrains_Maps;uksf/@CUP_Units;uksf/@CUP_Vehicles;uksf/@CUP_Vehicles_ACE_compat;uksf/@CUP_Weapons;uksf/@CUP_Weapons_ACE_compat;uksf/@uksf_ace;uksf/@uksf_dependencies;@cache;u/uksf;z/intercept_cba/rv/intercept-cba;z/intercept_cba/intercept/rv; -enableHT -high -bandwidthAlg=2 -hugepages -noSounds -loadMissionToMemory -filePatching</LocalDebuggerCommandArguments>
+    <LocalDebuggerWorkingDirectory>B:\Steam\steamapps\common\Arma 3</LocalDebuggerWorkingDirectory>
+  </PropertyGroup>
 </Project>

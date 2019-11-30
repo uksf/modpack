@@ -15,108 +15,93 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\uksf\modules\http\http.hpp">
+    <ClInclude Include="src\UKSF\Modules\Data\Data.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\uksf\common.hpp">
+    <ClInclude Include="src\UKSF\UKSF.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\uksf\date.h">
+    <ClInclude Include="src\UKSF\Shared\Lockable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\uksf\easyloggingc++.hpp">
+    <ClInclude Include="src\UKSF\Shared\Date.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\uksf\json.hpp">
+    <ClInclude Include="src\UKSF\Shared\EasyLogging.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\uksf\logging.hpp">
+    <ClInclude Include="src\UKSF\Shared\Json.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\uksf\modules\common_component.hpp">
+    <ClInclude Include="src\UKSF\Shared\Logging.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\uksf\modules\data\data.hpp">
+    <ClInclude Include="src\UKSF\Shared\SignalSlot.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\uksf\network\exception.hpp">
+    <ClInclude Include="src\UKSF\Shared\Singleton.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\uksf\network\routeFactories\factory.hpp">
+    <ClInclude Include="src\UKSF\Shared\Threaded.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\uksf\network\routeFactories\resourceNotFound.hpp">
+    <ClInclude Include="src\UKSF\Modules\Common\Common.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\uksf\network\routeFactories\resources\abstractResource.hpp">
+    <ClInclude Include="src\UKSF\Shared\Shared.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\uksf\network\routeFactories\resources\server.hpp">
+    <ClInclude Include="src\UKSF\Modules\SharedComponent.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\uksf\network\routeFactories\resources\stop.hpp">
+    <ClInclude Include="src\UKSF\Shared\ClientMessage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\uksf\network\router.hpp">
+    <ClInclude Include="src\UKSF\Shared\ServerMessage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\uksf\signalslot.hpp">
+    <ClInclude Include="src\UKSF\Shared\SignalrClient.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\uksf\singleton.hpp">
+    <ClInclude Include="src\UKSF\Shared\ProcedureEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\uksf\threaded.hpp">
+    <ClInclude Include="src\UKSF\Shared\IProcedure.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\uksf\uksf.hpp">
+    <ClInclude Include="src\UKSF\Procedures\Shutdown.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\uksf\network\routeFactories\serverFactory.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\uksf\network\routeFactories\stopFactory.hpp">
+    <ClInclude Include="src\UKSF\Modules\Server\Server.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\uksf\modules\http\http.cpp">
+    <ClCompile Include="src\UKSF\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\uksf\common.cpp">
+    <ClCompile Include="src\UKSF\Modules\Data\Data.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\uksf\main.cpp">
+    <ClCompile Include="src\UKSF\UKSF.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\uksf\modules\data\data.cpp">
+    <ClCompile Include="src\UKSF\Modules\Common\Common.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\uksf\network\exception.cpp">
+    <ClCompile Include="src\UKSF\Shared\ClientMessage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\uksf\network\routeFactories\factory.cpp">
+    <ClCompile Include="src\UKSF\Shared\ServerMessage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\uksf\network\routeFactories\IFactory.hpp">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\uksf\network\routeFactories\resourceNotFound.cpp">
+    <ClCompile Include="src\UKSF\Shared\SignalrClient.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\uksf\network\routeFactories\resources\abstractResource.cpp">
+    <ClCompile Include="src\UKSF\Shared\ProcedureEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\uksf\network\routeFactories\resources\server.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\uksf\network\routeFactories\resources\stop.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\uksf\network\router.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\uksf\uksf.cpp">
+    <ClCompile Include="src\UKSF\Modules\Server\Server.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

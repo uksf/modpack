@@ -1,43 +1,63 @@
-#include "common.hpp"
-#include "uksf.hpp"
+#include "Shared/Shared.hpp"
+#include "UKSF.hpp"
 
 INITIALIZE_EASYLOGGINGPP
 
 // ReSharper disable once CppInconsistentNaming
 int __cdecl intercept::api_version() {
-    return 1;
+	return 1;
 }
 
-void init(void) {
-    el::Configurations conf;
+void InitLogging() {
+	spdlog::set_pattern("[%H:%M:%S]-{%l}- %v");
+	try {
+		logging::logfile = spdlog::rotating_logger_mt("logfile", "logs/uksf_dll.log", 1024000, 10);
+		logging::logfile->flush_on(spdlog::level::info);
+	} catch (const spdlog::spdlog_ex&) {
+		spdlog::set_level(spdlog::level::off);
+		logging::logfile = spdlog::stdout_logger_mt("Intercept Core");
+	}
+}
 
-    conf.setGlobally(el::ConfigurationType::Filename, "logs/uksf_dll.log");
-    conf.setGlobally(el::ConfigurationType::MaxLogFileSize, "10240");
-    #ifdef _DEBUG
-    el::Loggers::reconfigureAllLoggers(el::ConfigurationType::Format, "[%datetime] - %level - {%loc}t:%thread- %msg");
-    conf.setGlobally(el::ConfigurationType::PerformanceTracking, "true");
-    #else
-    el::Loggers::reconfigureAllLoggers(el::ConfigurationType::Format, "%datetime-{%level}- %msg");
-    #endif
-    el::Loggers::setDefaultConfigurations(conf, true);
+void CleanupLogging() {
+	if (logging::logfile) {
+		logging::logfile->flush();
+	}
+	spdlog::drop_all();
+}
 
-    LOG(INFO) << "#####################################################################################";
-    LOG(INFO) << "UKSF Intercept DLL Loaded";
+void init() {
+	InitLogging();
 
-    uksf::getInstance();
+	logMessage("#####################################################################################");
+	logMessage("UKSF Intercept DLL Loaded");
+
+	UKSF::getInstance();
+}
+
+void stop() {
+	logMessage("#####################################################################################");
+	logMessage("UKSF Intercept DLL Stopping");
+
+	UKSF::getInstance()->stop();
+
+	CleanupLogging();
 }
 
 // ReSharper disable once CppInconsistentNaming
 // ReSharper disable once CppParameterMayBeConst
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved) {
-    switch (ul_reason_for_call) {
-    case DLL_PROCESS_ATTACH:
-        init();
-        break;
-    case DLL_THREAD_ATTACH:
-    case DLL_THREAD_DETACH:
-    case DLL_PROCESS_DETACH:
-        break;
-    }
-    return TRUE;
+	switch (ul_reason_for_call) {
+		case DLL_PROCESS_ATTACH:
+			init();
+			break;
+		case DLL_PROCESS_DETACH:
+			stop();
+			break;
+		case DLL_THREAD_ATTACH:
+		case DLL_THREAD_DETACH:
+		default:
+			break;
+	}
+	return TRUE;
 }
