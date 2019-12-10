@@ -24,6 +24,7 @@ class UKSF_B_Officer: UKSF_B_Rifleman {
     editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Officer.jpg);
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_H_Beret_PR" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_H_Beret_PR" };
+    uniformClass = "USP_CRYE_G3F_G";
 };
 class UKSF_B_SectionLeader: UKSF_B_Rifleman {
     displayName = "Section Leader";
