@@ -9,7 +9,7 @@ class GVAR(loadouts) {
     };
     class GVAR(loadout_sfsgGPMG) {
         name = "SFSG: GPMG";
-        loadout = "[['UK3CB_BAF_L7A2','','','',['UK3CB_BAF_762_100Rnd_T_EL',100],[],''],[],['UK3CB_BAF_L131A1','','UK3CB_BAF_Flashlight_L131A1','',['UK3CB_BAF_9_17Rnd',17],[],''],['UK3CB_BAF_U_CombatUniform_MTP_1Para',[['ACE_CableTie',2],['ACE_Flashlight_XL50',1],['ACE_EarPlugs',1],['ACE_MapTools',1],['ACE_packingBandage',15],['ACE_tourniquet',4],['ACRE_PRC152',1],['ACRE_PRC343',1]]],['UK3CB_BAF_V_Osprey_MG_B',[['ACE_EntrenchingTool',1],['CUP_NVG_PVS15_green',1],['ACE_elasticBandage',10],['UK3CB_BAF_SmokeShell',3,1],['UK3CB_BAF_9_17Rnd',2,17],['UK3CB_BAF_762_100Rnd',2,100]]],['UK3CB_BAF_B_Carryall_MTP',[['UK3CB_BAF_762_100Rnd',1,100]]],'UK3CB_BAF_H_Mk7_Camo_B','',['Rangefinder','','','',[],[],''],['ItemMap','ItemGPS','','ItemCompass','ACE_Altimeter','']]";
+        loadout = "[['UK3CB_BAF_L7A2','','','',['UK3CB_BAF_762_100Rnd_T_EL',100],[],''],[],['UK3CB_BAF_L131A1','','','',['UK3CB_BAF_9_17Rnd',17],[],''],['USP_CRYE_G3FC_G',[['ACE_EarPlugs',1],['ACE_MapTools',1],['ACE_Flashlight_XL50',1],['ACE_microDAGR',1],['ACE_CableTie',2]]],['USP_CRYE_CPC_LIGHT_BELT_MC',[['ACRE_PRC343',1],['ACRE_PRC152',1],['UK3CB_BAF_9_17Rnd',2,17],['UK3CB_BAF_SmokeShell',3,1],['B_IR_Grenade',1,1],['UK3CB_BAF_762_100Rnd_T_EL',2,100]]],['UK3CB_BAF_B_Kitbag_MTP',[['ACE_EntrenchingTool',1],['ACE_elasticBandage',10],['ACE_packingBandage',10],['ACE_tourniquet',4],['muzzle_snds_L',1],['usp_l3_pvs31_compact',1],['UK3CB_BAF_762_100Rnd_T_EL',1,100]]],'USP_OPSCORE_FASTMTC_C','',['Rangefinder','','','',[],[],''],['ItemMap','ItemGPS','','ItemCompass','ACE_Altimeter','']]";
     };
     class GVAR(loadout_sfsgGrenadier) {
         name = "SFSG: Grenadier";
