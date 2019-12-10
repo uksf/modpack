@@ -37,7 +37,6 @@ class UKSF_B_Medic: UKSF_B_Rifleman {
     icon = "iconManMedic";
     picture = "pictureHeal";
     editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Medic.jpg);
-    uniformClass = "UK3CB_BAF_U_CombatUniform_MTP_CSMR";
 };
 class UKSF_B_Sniper: UKSF_B_Rifleman {
     displayName = "Sniper";
