@@ -1434,7 +1434,7 @@ See the make.cfg file for additional build options.
         if compile_ext:
             compile_extensions(extensions_root, force_build)        
 
-        signtool = "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.17763.0\\x64\\signtool.exe"
+        signtool = "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.18362.0\\x64\\signtool.exe"
         intercept_dll_path = os.path.join(module_root_parent, "@intercept")
         uksf_intercept_dll_path = os.path.join(module_root_parent, "intercept")
         # Find dlls
