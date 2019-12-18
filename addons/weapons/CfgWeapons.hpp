@@ -287,11 +287,11 @@ class CfgWeapons {
     class arifle_Mk20_plain_F;
     class UGL_F;
     class UK3CB_BAF_L85A2 : arifle_Mk20_plain_F {
-        ace_barrelLength = 461;  // c:441.96, a:518
+        ace_barrelLength = 518;  // c:441.96, a:518
     };
 
     class UK3CB_BAF_L119_Base : arifle_Mk20_plain_F {
-        ace_barrelLength = 450;  // c:410, a:398
+        ace_barrelLength = 398;  // c:410, a:398
         class WeaponSlotsInfo {
             allowedslots[] = { 901 };
             mass = 84;
@@ -302,7 +302,7 @@ class CfgWeapons {
         };
     };
     class UK3CB_BAF_L119A1_CQB : UK3CB_BAF_L119_Base {
-        ace_barrelLength = 434;  // c:250, a:250
+        ace_barrelLength = 254;  // c:250, a:250
         class WeaponSlotsInfo {
             allowedslots[] = { 901 };
             mass = 84;
@@ -358,11 +358,11 @@ class CfgWeapons {
             "UK3CB_BAF_762_200Rnd_T", "UK3CB_BAF_762_200Rnd", "UK3CB_BAF_762_200Rnd_Blank", "UK3CB_BAF_762_100Rnd_T", "UK3CB_BAF_762_100Rnd", "UK3CB_BAF_762_100Rnd_Blank", "UK3CB_BAF_762_100Rnd_EL", "UK3CB_BAF_762_100Rnd_T_EL", "UK3CB_BAF_762_200Rnd_EL", "UK3CB_BAF_762_200Rnd_T_EL"
         };
     };
-    class UK3CB_BAF_L85A2_RIS;
-    class UK3CB_BAF_L85A2_RIS_Elcan : UK3CB_BAF_L85A2_RIS {
+    class UK3CB_BAF_L85A3_Grippod;
+    class UK3CB_BAF_L85A3_Grippod_Elcan : UK3CB_BAF_L85A3_Grippod {
         class LinkedItems {
             class LinkedItemsOptic {
-                slot = "asdg_OpticRail_UK3CB_BAF_L85";
+                slot = "asdg_OpticRail_UK3CB_BAF_L85A3";
                 item = "UK3CB_BAF_SpecterLDS_Dot_3D";
             };
         };
@@ -376,11 +376,11 @@ class CfgWeapons {
             };
         };
     };
-    class UK3CB_BAF_L85A2_UGL;
-    class UK3CB_BAF_L85A2_UGL_Elcan : UK3CB_BAF_L85A2_UGL {
+    class UK3CB_BAF_L85A3_UGL;
+    class UK3CB_BAF_L85A3_UGL_Elcan : UK3CB_BAF_L85A3_UGL {
         class LinkedItems {
             class LinkedItemsOptic {
-                slot = "asdg_OpticRail_UK3CB_BAF_L85";
+                slot = "asdg_OpticRail_UK3CB_BAF_L85A3";
                 item = "UK3CB_BAF_SpecterLDS_Dot_3D";
             };
         };

@@ -110,9 +110,11 @@ class CfgVehicles {
         };
     };
 
+#include "vehicles\CfgBoats.hpp"
 #include "vehicles\CfgBulldog.hpp"
 #include "vehicles\CfgCoyote.hpp"
 #include "vehicles\CfgCoyoteCUP.hpp"
+#include "vehicles\CfgHusky.hpp"
 #include "vehicles\CfgJackal.hpp"
 #include "vehicles\CfgJackalCUP.hpp"
 #include "vehicles\CfgLandRover.hpp"
@@ -121,6 +123,7 @@ class CfgVehicles {
 #include "vehicles\CfgMastiff.hpp"
 #include "vehicles\CfgPanther.hpp"
 #include "vehicles\CfgRidgeback.hpp"
+#include "vehicles\CfgWarrior.hpp"
 #include "vehicles\CfgWolfhound.hpp"
 
     class Tank_F;

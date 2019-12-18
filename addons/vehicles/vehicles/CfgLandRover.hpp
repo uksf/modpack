@@ -452,3 +452,16 @@ class UK3CB_BAF_LandRover_WMIK_Milan_FFR_Sand_A : UK3CB_BAF_LandRover_WMIK_Milan
     displayname = "Land Rover WMIK Milan (Sand)";
     COVER_ACTIONS
 };
+class UK3CB_BAF_LandRover_Panama_Base : UK3CB_BAF_LandRover_Base {};
+class UK3CB_BAF_LandRover_Panama_Green_A : UK3CB_BAF_LandRover_Panama_Base {
+    faction = "CUP_B_GB";
+    crew = "CUP_B_BAF_Soldier_MTP";
+    typicalCargo[] = { "CUP_B_BAF_Soldier_MTP" };
+    COVER_ACTIONS
+};
+class UK3CB_BAF_LandRover_Panama_Sand_A : UK3CB_BAF_LandRover_Panama_Base {
+    faction = "CUP_B_GB";
+    crew = "CUP_B_BAF_Soldier_MTP";
+    typicalCargo[] = { "CUP_B_BAF_Soldier_MTP" };
+    COVER_ACTIONS
+};

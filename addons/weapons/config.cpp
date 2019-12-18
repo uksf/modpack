@@ -7,9 +7,9 @@ class CfgPatches {
         weapons[] = {
             "UK3CB_BAF_LLM_Flashlight_Far_Black",
             "ACE_NVG_Pilot",
-            "UK3CB_BAF_L85A2_RIS_Elcan",
+            "UK3CB_BAF_L85A3_Grippod_Elcan",
             "UK3CB_BAF_L22A2_Elcan",
-            "UK3CB_BAF_L85A2_UGL_Elcan",
+            "UK3CB_BAF_L85A3_UGL_Elcan",
             "UK3CB_BAF_L110A3_Elcan",
             "UK3CB_BAF_L129A1_Grippod_Acog",
             "UK3CB_BAF_L115A3_LRPS",
