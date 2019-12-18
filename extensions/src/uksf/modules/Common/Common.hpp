@@ -18,4 +18,7 @@ public:
 
 	registered_sqf_function uksfCommonSendApiMessage;
 	static game_value uksfCommonSendApiMessageFunction(game_value_parameter param);
+
+private:
+	bool safeShutdownCalled;
 };

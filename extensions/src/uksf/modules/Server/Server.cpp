@@ -66,12 +66,10 @@ void Server::sendUpdate() {
 
 void Server::addBasicInformation(std::map<std::string, signalr::value>& dataMap) {
 	logMessage("Server update Port '%s', Name '%s'", UKSF::getInstance()->port.c_str(), UKSF::getInstance()->name.c_str());
-    const char* port = UKSF::getInstance()->port.c_str();
-	const char* name = UKSF::getInstance()->name.c_str();
 	dataMap.insert(std::pair<std::string, signalr::value>("timestamp", signalr::value(getTimeStamp())));
-	dataMap.insert(std::pair<std::string, signalr::value>("port", signalr::value(port)));
+	dataMap.insert(std::pair<std::string, signalr::value>("port", signalr::value(UKSF::getInstance()->port.c_str())));
 	dataMap.insert(std::pair<std::string, signalr::value>("type", signalr::value(double(UKSF::getInstance()->isDedicated ? 0 : 1))));
-	dataMap.insert(std::pair<std::string, signalr::value>("name", signalr::value(name)));
+	dataMap.insert(std::pair<std::string, signalr::value>("name", signalr::value(UKSF::getInstance()->name.c_str())));
 	dataMap.insert(std::pair<std::string, signalr::value>("processId", signalr::value(double(GetCurrentProcessId()))));
 	dataMap.insert(std::pair<std::string, signalr::value>("state", signalr::value(sqf::get_client_state_number())));
 	dataMap.insert(std::pair<std::string, signalr::value>("uptime", signalr::value(float(clock()))));

@@ -36,25 +36,25 @@ game_value Common::uksfCommonSendApiMessageFunction(game_value_parameter params)
 }
 
 void Common::safeShutdown() {
-	UKSF::getInstance()->addToSendQueue(ServerMessage(SERVER_MESSAGE_TYPE::SAFE_SHUTDOWN, signalr::value()));
+	safeShutdownCalled = true;
+	UKSF::getInstance()->addToSendQueue(ServerMessage(SERVER_MESSAGE_TYPE::SAFE_SHUTDOWN, signalr::value(UKSF::getInstance()->name.c_str())));
 }
-
 
 void Common::serverShutdown() const {
     if (UKSF::getInstance()->isDedicated) {
-        sqf::diag_log("dedi");
-        if (uksfPersistenceShutdown.type_enum() == game_data_type::CODE) {
-            sqf::diag_log("function");
+        sqf::diag_log("Dedicated called shutdown");
+        if (uksfPersistenceShutdown.type_enum() == game_data_type::CODE && !safeShutdownCalled) {
+            sqf::diag_log("Safe shutdown");
             sqf::call(uksfPersistenceShutdown);
         } else if (sqf::time() > 0) {
-            sqf::diag_log("shutdown");
+            sqf::diag_log("Normal shutdown");
             sqf::server_command("#shutdown", "brexit");
         } else {
-            sqf::diag_log("force");
+            sqf::diag_log("Force shutdown");
             std::exit(0);
         }
     } else if (!sqf::has_interface() && !sqf::is_dedicated()) {
-        sqf::diag_log("hc");
+        sqf::diag_log("HC shutdown");
         std::exit(0);
     }
 }
