@@ -82,7 +82,7 @@
     <LinkIncremental>false</LinkIncremental>
     <TargetName>$(ProjectName)_x64</TargetName>
     <OutDir>$(ProjectDir)build64\$(Configuration)\</OutDir>
-  </PropertyGroup>  
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>P:\z\intercept_cba\intercept\src\client\headers;include\signalrclient;include\spdlog;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -96,7 +96,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <Optimization>Disabled</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>

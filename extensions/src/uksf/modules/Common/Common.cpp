@@ -1,8 +1,10 @@
 #include "Common.hpp"
 
 Common::Common() {
-    UKSF::getInstance()->postStart.connect([]() {
+    UKSF::getInstance()->postStart.connect([this]() {
         logMessage("COMMON POSTSTART");
+
+		this->uksfCommonSendApiMessage = client::host::register_sqf_command("uksfCommonSendApiMessage", "Sends message to API", userFunctionWrapper<uksfCommonSendApiMessageFunction>, game_data_type::NOTHING, game_data_type::ARRAY);
     });
 
     UKSF::getInstance()->preInit.connect([this]() {
@@ -15,6 +17,28 @@ Common::Common() {
         logMessage("COMMON POSTINIT");
     });
 }
+
+game_value Common::uksfCommonSendApiMessageFunction(game_value_parameter params) {
+	if (params.size() < 1) return {};
+
+    const auto procedure = static_cast<SERVER_MESSAGE_TYPE>(static_cast<int>(params[0]));
+
+    switch (procedure) {
+		case SERVER_MESSAGE_TYPE::SAFE_SHUTDOWN: {
+			getInstance()->safeShutdown();
+			break;
+		}
+		default:
+			break;
+    }
+
+	return {};
+}
+
+void Common::safeShutdown() {
+	UKSF::getInstance()->addToSendQueue(ServerMessage(SERVER_MESSAGE_TYPE::SAFE_SHUTDOWN, signalr::value()));
+}
+
 
 void Common::serverShutdown() const {
     if (UKSF::getInstance()->isDedicated) {

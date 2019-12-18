@@ -5,7 +5,7 @@ INITIALIZE_EASYLOGGINGPP
 
 // ReSharper disable once CppInconsistentNaming
 int __cdecl intercept::api_version() {
-	return 1;
+	return INTERCEPT_SDK_API_VERSION;
 }
 
 void InitLogging() {

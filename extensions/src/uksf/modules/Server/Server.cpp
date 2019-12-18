@@ -61,7 +61,7 @@ void Server::sendUpdate() {
 		}
 	}
 
-	UKSF::getInstance()->addToSendQueue(ServerMessage(SERVER_MESSAGE_TYPE::SERVER_INFO, signalr::value(dataMap)));
+    UKSF::getInstance()->addToSendQueue(ServerMessage(SERVER_MESSAGE_TYPE::UPDATE_SERVER_STATUS, signalr::value(dataMap)));
 }
 
 void Server::addBasicInformation(std::map<std::string, signalr::value>& dataMap) {

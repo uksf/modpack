@@ -3,12 +3,15 @@
 #include "ServerMessage.h"
 #include "../UKSF.hpp"
 #include <future>
+#include <hub_connection_builder.h>
 
-void SignalrClient::initialize(std::string url) {
+void SignalrClient::initialize(const std::string url) {
 	logMessage("Signalr: Initialising");
 	this->setNewState(CONNECTION_STATE::DISCONNECTED);
 
-	this->m_connection = std::make_shared<signalr::hub_connection>(url, signalr::trace_level::errors, std::make_shared<logger>());
+	this->m_connection = std::make_shared<signalr::hub_connection>(signalr::hub_connection_builder::create(url)
+																   .with_logging(std::make_shared <logger>(), signalr::trace_level::errors)
+																   .build());
 
 	this->m_connection->on("Receive", [](const signalr::value& value) {
 		logMessage("Signalr: received message tid: %u", std::this_thread::get_id());
