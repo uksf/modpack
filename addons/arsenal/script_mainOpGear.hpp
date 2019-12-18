@@ -775,7 +775,7 @@
     "UK3CB_BAF_H_PilotHelmetHeli_A", \
     "USP_OPSCORE_FASTMTC_C", \
     "USP_OPSCORE_FASTMTC_CG", \
-    "USP_OPSCORE_FASTMTC_CS",
+    "USP_OPSCORE_FASTMTC_CS", \
     "usp_ops_fastxp_tan_mc_06", \
     "usp_ops_fastxp_tan_mc_07"
 
