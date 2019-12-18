@@ -1875,7 +1875,7 @@ class Mission
 					{
 					};
 					id=191;
-					type="CUP_B_UKSF_MQ9";
+					type="UK3CB_BAF_MQ9_Reaper";
 				};
 				class Item16
 				{

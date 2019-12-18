@@ -23,7 +23,7 @@ switch (true) do {
     case (_aircraft isKindOf "CUP_L39_base"): {_markerType = QGVAR(l39)};
     case (_aircraft isKindOf "uksf_f35_plane_base"): {_markerType = QGVAR(f35)};
     case (_aircraft isKindOf "UK3CB_BAF_Merlin_Base"): {_markerType = QGVAR(merlin)};
-    case (_aircraft isKindOf "CUP_B_UKSF_MQ9"): {_markerType = QGVAR(reaper)};
+    case (_aircraft isKindOf "UK3CB_BAF_MQ9_Reaper"): {_markerType = QGVAR(reaper)};
     case (_aircraft isKindOf "UK3CB_BAF_Wildcat_AH1_CAS_6A"): {_markerType = QGVAR(wildcat)};
     case (_aircraft isKindOf "UK3CB_BAF_Wildcat_AH1_CAS_8A"): {_markerType = QGVAR(wildcat)};
     case (_aircraft isKindOf "UK3CB_BAF_Wildcat_Base"): {_markerType = QGVAR(wildcat_unarmed)};

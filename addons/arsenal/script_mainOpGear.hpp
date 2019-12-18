@@ -189,6 +189,18 @@
     "UK3CB_BAF_L85A2_RIS_Tan", \
     "UK3CB_BAF_L85A2_UGL", \
     "UK3CB_BAF_L85A2_UGL_HWS", \
+    "UK3CB_BAF_L85A3", \
+    "UK3CB_BAF_L85A3_AFG", \
+    "UK3CB_BAF_L85A3_AFG_D", \
+    "UK3CB_BAF_L85A3_AFG_G", \
+    "UK3CB_BAF_L85A3_AFG_T", \
+    "UK3CB_BAF_L85A3_AFG_W", \
+    "UK3CB_BAF_L85A3_Grippod", \
+    "UK3CB_BAF_L85A3_Grippod_D", \
+    "UK3CB_BAF_L85A3_Grippod_G", \
+    "UK3CB_BAF_L85A3_Grippod_T", \
+    "UK3CB_BAF_L85A3_Grippod_W", \
+    "UK3CB_BAF_L85A3_UGL", \
     "UK3CB_BAF_L9A1", \
     "UK3CB_BAF_M6", \
     "UK3CB_BAF_NLAW_Launcher", \

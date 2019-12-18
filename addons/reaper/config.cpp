@@ -10,6 +10,7 @@ class CfgPatches {
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             "uksf_gear",
+            "UK3CB_BAF_Vehicles_MQ9_Reaper",
             "CUP_AirVehicles_MQ9"
         };
         author = QUOTE(UKSF);
