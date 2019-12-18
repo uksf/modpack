@@ -56,6 +56,7 @@ GVAR(curatorSelectionHandle) = _display displayAddEventHandler ["KeyDown", {
                 if (_mouseButton != 0) exitWith {};
                 if (ctrlShown (_display displayCtrl 50)) then {
                     private _position = ((_display displayCtrl 50) ctrlMapScreenToWorld getMousePosition);
+                    _position set [2, 0];
                     GVAR(paradropMapPoints) pushBack _position;
 
                     if ((count GVAR(paradropMapPoints)) == 1) then {
