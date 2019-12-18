@@ -7,7 +7,7 @@ class UKSF_B_Rifleman: CUP_B_BAF_Soldier_MTP {
     displayName = "Rifleman";
     cost = 100000;
     editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Rifleman.jpg);
-    uniformClass = "UK3CB_BAF_U_CombatUniform_MTP_1Para";
+    uniformClass = "USP_CRYE_G3FC_G";
     backpack = "";
     weapons[] = { "Throw","Put" };
     respawnWeapons[] = { "Throw","Put" };
@@ -24,6 +24,7 @@ class UKSF_B_Officer: UKSF_B_Rifleman {
     editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Officer.jpg);
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_H_Beret_PR" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_H_Beret_PR" };
+    uniformClass = "USP_CRYE_G3F_G";
 };
 class UKSF_B_SectionLeader: UKSF_B_Rifleman {
     displayName = "Section Leader";
@@ -36,7 +37,6 @@ class UKSF_B_Medic: UKSF_B_Rifleman {
     icon = "iconManMedic";
     picture = "pictureHeal";
     editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Medic.jpg);
-    uniformClass = "UK3CB_BAF_U_CombatUniform_MTP_CSMR";
 };
 class UKSF_B_Sniper: UKSF_B_Rifleman {
     displayName = "Sniper";
