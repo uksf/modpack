@@ -12,6 +12,7 @@ class CfgWeapons {
         scopeArsenal = 2;
         baseWeapon = "UK3CB_BAF_L85A2_RIS_AFG_Tan";
     };
+    class UK3CB_BAF_L85A3;
     class UK3CB_BAF_L85A3_Grippod : UK3CB_BAF_L85A3 {
         scopeArsenal = 2;
         baseWeapon = "UK3CB_BAF_L85A3_Grippod";
