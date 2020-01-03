@@ -509,7 +509,18 @@
     "USP_CRYE_G3F_G", \
     "USP_CRYE_G3FC_G", \
     "USP_CRYE_G3FC", \
-    "USP_CRYE_G3F_mcalp"
+    "USP_CRYE_G3F_mcalp", \
+    "VSM_Multicam_Crye_Camo", \
+    "VSM_Scorpion_Crye_Camo", \
+    "VSM_Multicam_Crye_SS_Camo", \
+    "VSM_Scorpion_Crye_SS_Camo", \
+    "Alpine_Crye_Camo", \
+    "Black_Black_Camo", \
+    "Black_Black_SS_Camo", \
+    "black_Crye_Camo", \
+    "Multicam_black_casual_Camo", \
+    "Black_Crye_SS_Camo", \
+    "black_Crye2_Camo"
 
 #define MAIN_OP_VESTS \
     "UK3CB_BAF_V_HiVis", \
@@ -595,7 +606,28 @@
     "USP_CRYE_JPC_GRB", \
     "USP_CRYE_JPC_MGB", \
     "USP_CRYE_JPC_DMB", \
-    "USP_CRYE_JPC_TLB"
+    "USP_CRYE_JPC_TLB", \
+    "VSM_LBT1961_Black", \
+    "VSM_FAPC_MG_Multicam", \
+    "VSM_FAPC_Operator_Multicam", \
+    "VSM_CarrierRig_Gunner_Multicam", \
+    "VSM_CarrierRig_Operator_Multicam", \
+    "VSM_LBT6094_MG_Multicam", \
+    "VSM_LBT6094_operator_Multicam", \
+    "VSM_RAV_MG_Multicam", \
+    "VSM_RAV_operator_Multicam", \
+    "dr_ALPfacp_mg", \
+    "dr_ALPfacp_op", \
+    "dr_ALPlbt_mg", \
+    "dr_ALPpar_mg", \
+    "dr_ALPpar_op", \
+    "dr_ALPlbt_op", \
+    "dr_BLKfacp_mg", \
+    "dr_BLKfacp_op", \
+    "dr_BLKlbt_mg", \
+    "dr_BLKlbt_op", \
+    "dr_BLKpar_mg", \
+    "dr_BLKpar_op"
 
 #define MAIN_OP_BACKPACKS \
     "B_AssaultPack_rgr", \
@@ -686,7 +718,16 @@
     "UKSF_B_Carryall_Mortar_MTP", \
     "USP_CRYE_BELT_PACK_MC", \
     "USP_PATROL_PACK_MCA", \
-    "USP_PATROL_PACK"
+    "USP_PATROL_PACK", \
+    "VSM_Multicam_carryall", \
+    "VSM_Multicam_Backpack_Compact", \
+    "VSM_Multicam_Backpack_Kitbag", \
+    "Alpine_Carryall", \
+    "Alpine_Backpack_Compact", \
+    "Alpine_backpack_kitbag", \
+    "Black_Carryall", \
+    "Black_Backpack_Compact", \
+    "Black_Backpack_kitbag"
 
 #define MAIN_OP_HELMETS \
     "COVER_4b", \
@@ -789,7 +830,17 @@
     "USP_OPSCORE_FASTMTC_CG", \
     "USP_OPSCORE_FASTMTC_CS", \
     "usp_ops_fastxp_tan_mc_06", \
-    "usp_ops_fastxp_tan_mc_07"
+    "usp_ops_fastxp_tan_mc_07", \
+    "VSM_Black_OPS", \
+    "VSM_OPS_multicam", \
+    "VSM_Black_OPS_2", \
+    "VSM_OPS_2_multicam", \
+    "ALP_opscore_2", \
+    "BLK_opscore_2", \
+    "WHT_opscore_2", \
+    "ALP_opscore", \
+    "BLK2_opscore", \
+    "WHT_opscore"
 
 #define MAIN_OP_GLASSES \
     "CUP_FR_NeckScarf", \
