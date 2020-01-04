@@ -13,12 +13,12 @@ class UK3CB_BAF_Jackal2_L134A1_D : UK3CB_BAF_Jackal2_L134A1_Base {
     COVER_ACTIONS
 };
 class UK3CB_BAF_Jackal2_L111A1_D2 : UK3CB_BAF_Jackal2_L111A1_D {
-	displayname = "Jackal 2 HMG Desert (CR)";
+    displayname = "Jackal 2 HMG Desert (CR)";
     JACKAL_INVENTORY_HMG
     COVER_ACTIONS
 };
 class UK3CB_BAF_Jackal2_L134A1_D2 : UK3CB_BAF_Jackal2_L134A1_D {
-	displayname = "Jackal 2 GMG Desert (CR)";
+    displayname = "Jackal 2 GMG Desert (CR)";
     JACKAL_INVENTORY_HMG
     COVER_ACTIONS
 };

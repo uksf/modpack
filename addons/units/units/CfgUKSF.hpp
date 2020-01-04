@@ -7,7 +7,7 @@ class UKSF_B_Rifleman: CUP_B_BAF_Soldier_MTP {
     displayName = "Rifleman";
     cost = 100000;
     editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Rifleman.jpg);
-    uniformClass = "USP_CRYE_G3FC_G";
+    uniformClass = "VSM_Multicam_Crye_Camo";
     backpack = "";
     weapons[] = { "Throw","Put" };
     respawnWeapons[] = { "Throw","Put" };
@@ -24,7 +24,6 @@ class UKSF_B_Officer: UKSF_B_Rifleman {
     editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Officer.jpg);
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_H_Beret_PR" };
     respawnLinkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_H_Beret_PR" };
-    uniformClass = "USP_CRYE_G3F_G";
 };
 class UKSF_B_SectionLeader: UKSF_B_Rifleman {
     displayName = "Section Leader";
@@ -45,7 +44,7 @@ class UKSF_B_Sniper: UKSF_B_Rifleman {
 };
 class UKSF_B_SAS: UKSF_B_Rifleman {
     displayName = "SAS Trooper";
-    uniformClass = "USP_CRYE_G3C_SHORT";
+    uniformClass = "VSM_Multicam_Crye_SS_Camo";
     editorPreview = QPATHTOEF(common,data\previews\UKSF_B_SAS.jpg);
     engineer = 1;
 };

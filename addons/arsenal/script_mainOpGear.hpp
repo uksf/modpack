@@ -405,10 +405,7 @@
     "CUP_NVG_PVS15_green", \
     "CUP_NVG_PVS15_tan", \
     "CUP_NVG_PVS15_winter", \
-    "UK3CB_BAF_HMNVS", \
-    "usp_l3_pvs31", \
-    "usp_l3_pvs31_compact", \
-    "usp_l3_pvs31_compact"
+    "UK3CB_BAF_HMNVS"
 
 #define MAIN_OP_ITEMS \
     "ACE_ATragMX", \
@@ -504,16 +501,8 @@
     "U_B_GhillieSuit", \
     "U_B_T_FullGhillie_tna_F", \
     "U_B_T_Sniper_F", \
-    "USP_CRYE_G3C_SHORT", \
-    "USP_CRYE_G3F", \
-    "USP_CRYE_G3F_G", \
-    "USP_CRYE_G3FC_G", \
-    "USP_CRYE_G3FC", \
-    "USP_CRYE_G3F_mcalp", \
     "VSM_Multicam_Crye_Camo", \
-    "VSM_Scorpion_Crye_Camo", \
     "VSM_Multicam_Crye_SS_Camo", \
-    "VSM_Scorpion_Crye_SS_Camo", \
     "Alpine_Crye_Camo", \
     "Black_Black_Camo", \
     "Black_Black_SS_Camo", \
@@ -589,24 +578,6 @@
     "UK3CB_BAF_V_PLCE_Webbing_Winter", \
     "UK3CB_BAF_V_Pilot_A", \
     "UKSF_V_Pilot", \
-    "USP_CRYE_CPC_COMMS_MC", \
-    "USP_CRYE_CPC_COMMS_BELT_MC", \
-    "USP_CRYE_CPC_FAST_MC", \
-    "USP_CRYE_CPC_FAST_BELT_MC", \
-    "USP_CRYE_CPC_LEAD_MC", \
-    "USP_CRYE_CPC_LEAD_MC", \
-    "USP_CRYE_CPC_LEAD_BELT_MC", \
-    "USP_CRYE_CPC_LIGHT_MC", \
-    "USP_CRYE_CPC_LIGHT_BELT_MC", \
-    "USP_CRYE_CPC_MEDIC_MC", \
-    "USP_CRYE_CPC_MEDIC_BELT_MC", \
-    "USP_CRYE_CPC_WEAPON_MC", \
-    "USP_CRYE_CPC_WEAPON_BELT_MC", \
-    "USP_CRYE_JPC_ASLTB", \
-    "USP_CRYE_JPC_GRB", \
-    "USP_CRYE_JPC_MGB", \
-    "USP_CRYE_JPC_DMB", \
-    "USP_CRYE_JPC_TLB", \
     "VSM_LBT1961_Black", \
     "VSM_FAPC_MG_Multicam", \
     "VSM_FAPC_Operator_Multicam", \
@@ -716,9 +687,6 @@
     "UK3CB_BAF_B_Kitbag_TAN", \
     "UKSF_B_Bergen_Medic_DDPM", \
     "UKSF_B_Carryall_Mortar_MTP", \
-    "USP_CRYE_BELT_PACK_MC", \
-    "USP_PATROL_PACK_MCA", \
-    "USP_PATROL_PACK", \
     "VSM_Multicam_carryall", \
     "VSM_Multicam_Backpack_Compact", \
     "VSM_Multicam_Backpack_Kitbag", \
@@ -826,11 +794,6 @@
     "UK3CB_BAF_H_Mk7_Win_A", \
     "UK3CB_BAF_H_Mk7_Win_ESS_A", \
     "UK3CB_BAF_H_PilotHelmetHeli_A", \
-    "USP_OPSCORE_FASTMTC_C", \
-    "USP_OPSCORE_FASTMTC_CG", \
-    "USP_OPSCORE_FASTMTC_CS", \
-    "usp_ops_fastxp_tan_mc_06", \
-    "usp_ops_fastxp_tan_mc_07", \
     "VSM_Black_OPS", \
     "VSM_OPS_multicam", \
     "VSM_Black_OPS_2", \
@@ -852,12 +815,6 @@
     "UK3CB_BAF_G_Tactical_Clear", \
     "UK3CB_BAF_G_Tactical_Grey", \
     "UK3CB_BAF_G_Tactical_Orange", \
-    "UK3CB_BAF_G_Tactical_Yellow", \
-    "USP_BALACLAVA", \
-    "USP_BALACLAVA_rgr", \
-    "USP_BALACLAVA_tan", \
-    "USP_FACE_shmgh_TAN", \
-    "USP_FACE_shmgh_WHT", \
-    "USP_FACE_SOLR_MASK"
+    "UK3CB_BAF_G_Tactical_Yellow"
 
 #define MAIN_OP_GEAR [MAIN_OP_MAGAZINES, MAIN_OP_WEAPONS, MAIN_OP_ATTACHMENTS, MAIN_OP_NVGS, MAIN_OP_ITEMS, MAIN_OP_UNIFORMS, MAIN_OP_VESTS, MAIN_OP_BACKPACKS, MAIN_OP_HELMETS, MAIN_OP_GLASSES]

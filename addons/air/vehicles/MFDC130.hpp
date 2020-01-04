@@ -502,9 +502,9 @@ class MFD {
                 sourceScale = 1;
                 align = "center";
                 scale = 1;
-                pos[] = { "PlaneW", { 0, "(-0.5			)" }, 1 };
-                right[] = { "PlaneW", { 0.03, "(-0.5			)" }, 1 };
-                down[] = { "PlaneW", { 0, "(-0.5 + 0.045	)" }, 1 };
+                pos[] = { "PlaneW", { 0, "(-0.5)" }, 1 };
+                right[] = { "PlaneW", { 0.03, "(-0.5)" }, 1 };
+                down[] = { "PlaneW", { 0, "(-0.5 + 0.045)" }, 1 };
             };
             class HorizonBankRot {
                 type = "line";

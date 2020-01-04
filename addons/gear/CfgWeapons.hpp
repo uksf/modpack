@@ -319,12 +319,4 @@ class CfgWeapons {
         ace_hearing_protection = 0.75;
         ace_hearing_lowerVolume = 0;
     };
-
-    class NVGoggles;
-    class usp_l3_pvs31 : NVGoggles {
-        modelOptics = "";
-        ace_nightvision_border = "z\ace\addons\nightvision\data\nvg_mask_binos_4096.paa";
-        ace_nightvision_bluRadius = 0.13;
-        ace_nightvision_generation = 3;
-    };
 };

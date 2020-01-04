@@ -278,7 +278,7 @@ class Display3DEN {
                 data = "Arsenal";
                 value = 0;
                 action = QUOTE(call ace_arsenal_fnc_open3DEN);
-                conditionShow = "hoverObjectBrain 	* (1 - (hoverObjectVehicle))";
+                conditionShow = "hoverObjectBrain * (1 - (hoverObjectVehicle))";
                 picture = "\a3\3DEN\Data\Displays\Display3DEN\EntityMenu\arsenal_ca.paa";
                 opensNewWindow = 1;
             };
