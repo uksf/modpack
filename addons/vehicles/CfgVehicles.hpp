@@ -18,7 +18,7 @@ class CfgVehicles {
             class HitFuel;
         };
     };
-    class UK3CB_BAF_Jackal_Base_D : Car_F {
+    class UK3CB_BAF_Jackal_Base: Car_F {
         faction = "CUP_B_GB";
         crew = "CUP_B_BAF_Soldier_MTP";
         typicalCargo[] = { "CUP_B_BAF_Soldier_MTP" };
