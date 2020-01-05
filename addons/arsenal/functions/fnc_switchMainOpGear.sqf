@@ -16,6 +16,9 @@
 */
 params ["_display"];
 
+ace_arsenal_center call cba_optics_fnc_changePIPOpticClass;
+ace_arsenal_center call cba_optics_fnc_changeCarryHandleOpticClass;
+
 private _buttonMainOpGear = _display displayCtrl IDC_buttonMainOpGear;
 ace_arsenal_center setVariable ["ace_arsenal_virtualItems", [[[],[],[]],[[],[],[],[]],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]];
 
@@ -40,3 +43,4 @@ if (GVAR(useMainOpGear)) then {
 _buttonMainOpGear ctrlSetText (["Turn On Main Op Gear", "Turn Off Main Op Gear"] select GVAR(useMainOpGear));
 call ace_arsenal_fnc_updateUniqueItemsList;
 [_display, _display displayCtrl ace_arsenal_currentLeftPanel] call ace_arsenal_fnc_fillLeftPanel;
+[_display, _display displayCtrl ace_arsenal_currentRightPanel] call ace_arsenal_fnc_fillRightPanel;
