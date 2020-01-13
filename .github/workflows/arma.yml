@@ -3,7 +3,7 @@ name: Arma
 on:
   push:
     branches-ignore:
-    - release
+    - 'release'
   pull_request:
 
 jobs:
