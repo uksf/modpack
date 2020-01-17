@@ -11,7 +11,7 @@ jobs:
     - uses: actions/stale@v1
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        stale-issue-message:
+        stale-issue-message: 'This issue has been automatically marked as stale because it has been open for 28 days without activity. Remove the stale label or comment or else this issue will be closed in 14 days.'
         days-before-stale: 28
         days-before-close: 14
         stale-issue-label: 'status/stale'
