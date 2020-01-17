@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "armitxes.sqf",
+        "editorconfig.editorconfig",
+        "ms-vscode.cpptools",
+        "skacekachna.sqflint"
+    ],
+}
