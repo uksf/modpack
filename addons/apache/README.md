@@ -1,4 +1,3 @@
-
 # Apache
 
-Apache conversion with custom functions and configurations
+Apache conversion with custom functions and configurations.

@@ -1,4 +1,3 @@
+# Vr
 
-# Laraka
-
-Contains all Laraka faction unit and vehicle definitions. Also contains Azadi definitions.
+Contains all Virtual Army unit and vehicle definitions.

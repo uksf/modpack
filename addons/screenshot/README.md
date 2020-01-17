@@ -1,4 +1,3 @@
+# Screenshot
 
-# Screenshot Mode
-
-Adds keybind to toggle UI elements for better screenshots
+Adds keybind to toggle UI elements for better screenshots.

@@ -1,4 +1,3 @@
-
 # Special
 
-Adds special units such as suicide bombers and car bombs
+Adds special units such as suicide bombers and car bombs.
