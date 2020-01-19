@@ -1,3 +1,3 @@
-# Reaper
+# Resupply
 
-UKSF resupply crates, R's 1–6 and T.
+UKSF resupply crates, R1–6 and T.
