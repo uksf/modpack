@@ -1,4 +1,3 @@
+# Shockwave
 
-# Mission
-
-Adds mission spawning and support functionality
+Adds mission spawning and support functionality.

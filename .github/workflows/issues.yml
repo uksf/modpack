@@ -1,0 +1,18 @@
+name: Issues
+
+on:
+  schedule:
+  - cron: "0 0 * * *"
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/stale@v1
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        stale-issue-message: 'This issue has been automatically marked as stale because it has been open for 28 days without activity. Remove the stale label or comment or else this issue will be closed in 14 days.'
+        days-before-stale: 28
+        days-before-close: 14
+        stale-issue-label: 'status/stale'
+        exempt-issue-label: 'type/bug'

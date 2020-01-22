@@ -1,4 +1,3 @@
-
 # Persistence
 
-Handles player persistence across missions
+Handles player persistence across missions.

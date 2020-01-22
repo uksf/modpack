@@ -1,4 +1,3 @@
-
 # Caching
 
 Caches AI groups using vanilla Dynamic Simulation System.

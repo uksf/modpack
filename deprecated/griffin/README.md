@@ -1,4 +1,3 @@
-
 # Griffin
 
-Griffin HT1 Training Helicopter
+Griffin HT1 Training Helicopter.

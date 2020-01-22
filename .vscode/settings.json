@@ -1,29 +1,8 @@
-// Place your settings in this file to overwrite default and user settings.
 {
+    // Files
     "files.autoSave": "afterDelay",
-    "git.confirmSync": false,
     "files.insertFinalNewline": true,
-    "editor.dragAndDrop": true,
-    "sqf.enableCBA": true,
-    "sqf.enableACE3": true,
-    "[sqf]": {
-        "editor.quickSuggestions": true,
-        "editor.tabSize": 4,
-        "editor.insertSpaces": true,
-        "editor.detectIndentation": true,
-        "editor.trimAutoWhitespace": true,
-        "editor.autoClosingBrackets": "always"
-    },
-    "sqf.maxNumberOfProblems": 1000,
-    "sqflint.warnings": false,
-    "sqflint.indexWorkspace": false,
-    "sqflint.indexWorkspaceTwice": false,
-    "sqflint.checkPaths": false,
-    "sqflint.includePrefixes": {
-        "\\x\\": "P:/x",
-        "\\z\\": "P:/z",
-        "\\u\\": "P:/u"
-    },
+    "files.trimTrailingWhitespace": true,
     "files.associations": {
         "*.ext": "sqf",
         "*.hpp": "cpp",
@@ -46,15 +25,34 @@
         "xstring": "cpp",
         "xtree": "cpp"
     },
-    "[cpp]": {
-        "editor.quickSuggestions": false
-    },
+
+    // Git
+    "git.confirmSync": false,
+
+    // Languages
     "[c]": {
         "editor.quickSuggestions": false
     },
-    "workbench.colorTheme": "[SQF] Dark Theme",
-    "editor.detectIndentation": false,
-    "python.pythonPath": "C:\\Users\\Tim\\AppData\\Local\\Programs\\Python\\Python36-32\\python.exe",
-    "C_Cpp.clang_format_path": "E:\\Workspace\\build\\Debug\\bin\\clang-format.exe",
-    "C_Cpp.loggingLevel": "Debug"
+    "[cpp]": {
+        "editor.quickSuggestions": false
+    },
+
+    "[sqf]": {
+        "editor.quickSuggestions": true,
+        "editor.detectIndentation": true,
+        "editor.trimAutoWhitespace": true,
+        "editor.autoClosingBrackets": "always"
+    },
+    "sqf.enableCBA": true,
+    "sqf.enableACE3": true,
+    "sqf.maxNumberOfProblems": 1000,
+    "sqflint.checkPaths": false,
+    "sqflint.indexWorkspace": false,
+    "sqflint.indexWorkspaceTwice": false,
+    "sqflint.warnings": true,
+    "sqflint.includePrefixes": {
+        "\\u\\": "P:/u",
+        "\\x\\": "P:/x",
+        "\\z\\": "P:/z"
+    }
 }
