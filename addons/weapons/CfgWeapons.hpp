@@ -463,13 +463,26 @@ class CfgWeapons {
         delete OpticsModes;
         delete WeaponSlotsInfo;
         class ItemInfo : CBA_MiscItem_ItemInfo {
-            mass = 64;
+            mass = 141;
             allowedSlots[] = { 901 };
         };
     };
     class launch_B_Titan_short_F;
     class UK3CB_BAF_Javelin_Launcher : launch_B_Titan_short_F {
         modes[] = { "Single", "TopDown" };
+        class WeaponSlotsInfo {
+            mass = 231;
+        };
+    };
+    class UK3CB_BAF_Javelin_Slung_Tube : Launcher_Base_F {
+        class WeaponSlotsInfo {
+            mass = 350;
+        };
+    }
+    class UK3CB_BAF_Javelin_Slung_Tube_Used : UK3CB_BAF_Javelin_Slung_Tube {
+        class WeaponSlotsInfo {
+            mass = 90;
+        };
     };
 
     class Default;

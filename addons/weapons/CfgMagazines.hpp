@@ -31,6 +31,12 @@ class CfgMagazines {
         tracersEvery = 1;
     };
 
+    // Javelin
+    class CA_LauncherMagazine;
+    class UK3CB_BAF_Javelin_Mag : CA_LauncherMagazine {
+        mass = 260;
+    };
+
     // Hellfire K
     class 12Rnd_PG_missiles;
     class 6Rnd_ACE_Hellfire_AGM114K: 12Rnd_PG_missiles {
