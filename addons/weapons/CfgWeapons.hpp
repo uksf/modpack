@@ -433,7 +433,10 @@ class CfgWeapons {
             };
         };
     };
-    class Launcher_Base_F;
+    class Launcher;
+    class Launcher_Base_F : Launcher {
+        class WeaponSlotsInfo;
+    };
     class launch_NLAW_F : Launcher_Base_F {
         modes[] = { "Overfly", "Single" };
     };
@@ -467,20 +470,23 @@ class CfgWeapons {
             allowedSlots[] = { 901 };
         };
     };
-    class launch_B_Titan_short_F;
+    class launch_Titan_short_base;
+    class launch_B_Titan_short_F : launch_Titan_short_base {
+        class WeaponSlotsInfo;
+    };
     class UK3CB_BAF_Javelin_Launcher : launch_B_Titan_short_F {
         modes[] = { "Single", "TopDown" };
-        class WeaponSlotsInfo {
+        class WeaponSlotsInfo : WeaponSlotsInfo {
             mass = 231;
         };
     };
     class UK3CB_BAF_Javelin_Slung_Tube : Launcher_Base_F {
-        class WeaponSlotsInfo {
+        class WeaponSlotsInfo : WeaponSlotsInfo {
             mass = 350;
         };
     }
     class UK3CB_BAF_Javelin_Slung_Tube_Used : UK3CB_BAF_Javelin_Slung_Tube {
-        class WeaponSlotsInfo {
+        class WeaponSlotsInfo : WeaponSlotsInfo {
             mass = 90;
         };
     };
