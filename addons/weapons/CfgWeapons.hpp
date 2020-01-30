@@ -824,17 +824,17 @@ class CfgWeapons {
         maxRange = 4000;   // 5200
         aiRateOfFire = 7;  // 5
     };
-    class CUP_launch_Igla : Launcher_Base_F {
+    class CUP_launch_Igla_loaded : Launcher_Base_F {
         midRange = 1000;   // 2500
         maxRange = 3000;   // 4800
         aiRateOfFire = 7;  // 5
     };
-    class CUP_launch_FIM92Stinger : Launcher_Base_F {
+    class CUP_launch_FIM92Stinger_loaded : Launcher_Base_F {
         midRange = 1000;   // 2500
         maxRange = 3000;   // 4800
         aiRateOfFire = 7;  // 5
     };
-    class CUP_launch_9K32Strela : Launcher_Base_F {
+    class CUP_launch_9K32Strela_loaded : Launcher_Base_F {
         midRange = 1000;   // 2500
         maxRange = 3000;   // 4800
         aiRateOfFire = 7;  // 5
@@ -861,7 +861,7 @@ class CfgWeapons {
             };
         };
     };
-    class CUP_launch_FIM92Stinger_Rubber : CUP_launch_FIM92Stinger {
+    class CUP_launch_FIM92Stinger_Rubber : CUP_launch_FIM92Stinger_loaded {
         scopeArsenal = 1;
         magazines[] = { "CUP_Stinger_M_Rubber" };
         ace_overpressure_damage = 0;
