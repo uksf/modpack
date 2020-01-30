@@ -1,4 +1,4 @@
-class CUP_launch_NLAW: Launcher_Base_F {
+class CUP_launch_NLAW_loaded: Launcher_Base_F {
     scope = 1;
 };
 class CUP_launch_Javelin: Launcher_Base_F {
