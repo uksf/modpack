@@ -8,7 +8,7 @@ jobs:
   stale:
     runs-on: ubuntu-latest
     steps:
-    - uses: uksf/stale@1.1.1
+    - uses: uksf/stale@v1.1.1
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         stale-issue-message: 'This issue has been automatically marked as stale because it has been open for 56 days without activity. Remove the stale label or comment or else this issue will be closed in 28 days.'
