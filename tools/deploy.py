@@ -4,7 +4,7 @@ import subprocess
 
 DEPLOYMENT_DIRECTORY = "D:\\Dev"
 REPO_DIRECTORY = "C:\\Server\\Modpack"
-SERVER_DIRECTORY = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Arma 3 Server"
+SERVER_DIRECTORY = "C:\\Server\\SteamCMD\\steamapps\\common\\Arma 3 Server"
 ace_optionals = ["ace_compat_rksl_pm_ii", "nouniformrestrictions"]
 
 if __name__ == '__main__':
@@ -18,7 +18,7 @@ if __name__ == '__main__':
     deployment_folder_uksf_ace = os.path.join(DEPLOYMENT_DIRECTORY, "ACE3\\release\\@ace")
     deployment_folder_acre = os.path.join(DEPLOYMENT_DIRECTORY, "acre2\\release\\@acre2")
     deployment_folder_uksf_dependencies = os.path.join(DEPLOYMENT_DIRECTORY, "modpack\\release\\@uksf_dependencies")
-    deployment_folder_intercept = os.path.join(DEPLOYMENT_DIRECTORY, "modpack\\@intercept")    
+    deployment_folder_intercept = os.path.join(DEPLOYMENT_DIRECTORY, "modpack\\@intercept")
     keys_folder = os.path.join(SERVER_DIRECTORY, "Keys")
 
     # Delete uksf and uksf_ace.
@@ -69,7 +69,7 @@ if __name__ == '__main__':
             os.remove(os.path.join(repo_folder_uksf_dependencies, "addons", file_delete))
             os.remove(os.path.join(repo_folder_uksf_dependencies, "addons", file_zsync_delete))
             print("    Deleted: {}".format(os.path.join(repo_folder_uksf_dependencies, "addons", file_delete)))
-    
+
     # Update other dependencies files
     print("Updating other dependencies files")
     for file in os.listdir(os.path.join(deployment_folder_uksf_dependencies)):
@@ -92,7 +92,7 @@ if __name__ == '__main__':
     for file in os.listdir(os.path.join(repo_folder_uksf_dependencies, "addons")):
         if ((file.endswith(".bisign") or file.endswith(".bisign.zsync")) and os.path.isfile(os.path.join(repo_folder_uksf_dependencies, "addons", file))):
             if (
-                    file.endswith(".bisign.zsync") or 
+                    file.endswith(".bisign.zsync") or
                     (
                         not os.path.isfile(os.path.join(deployment_folder_uksf_dependencies, "addons", file)) or
                         not os.path.basename(file).replace(".bisign", "").split(".", 2)[2] == os.path.basename(os.path.join(deployment_folder_uksf_dependencies, "addons", file)).replace(".bisign", "").split(".", 2)[2] or
