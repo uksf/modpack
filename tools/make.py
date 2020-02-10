@@ -70,7 +70,6 @@ key = ""
 dssignfile = ""
 prefix = "uksf"
 pbo_name_prefix = "uksf_"
-dependencies = "C:/SteamLibrary/_Working/next/@uksf_dependencies/addons"
 signature_blacklist = []
 importantFiles = ["mod.cpp", "README.md", "mod.paa", "modLarge.paa", "AUTHORS.txt", "LICENSE", "UKSFTemplate.VR", "cba_settings.sqf", "cba_settings.sqf"]
 interceptFiles = ["uksf.dll", "uksf_x64.dll", "PocoFoundation.dll", "PocoFoundation64.dll", "PocoJSON.dll", "PocoJSON64.dll", "PocoNet.dll", "PocoNet64.dll", "PocoUtil.dll", "PocoUtil64.dll", "PocoXML.dll", "PocoXML64.dll"]
@@ -740,13 +739,13 @@ def sign_dependencies():
         except:
             print_error("Cannot create dependencies directory")
             raise
-    
+
     for file in os.listdir(signatures_path):
         if (file.endswith(".bisign") and os.path.isfile(os.path.join(signatures_path, file))):
             if (os.path.splitext(os.path.basename(key))[0] not in file):
                 os.remove(os.path.join(signatures_path, file))
-    
-    
+
+
     dependencies_path = "C:\\Server\\Modpack\\@uksf_dependencies\\addons"
     temp_path = os.path.join(release_dir, "signatures")
     if not os.path.isdir(temp_path):
@@ -755,7 +754,7 @@ def sign_dependencies():
         except:
             print_error("Cannot create temp directory")
             raise
-            
+
     for file in os.listdir(dependencies_path):
         if (file.endswith(".bisign") and os.path.isfile(os.path.join(dependencies_path, file))):
             shutil.move(os.path.join(dependencies_path, file), os.path.join(temp_path, file))
@@ -1432,7 +1431,7 @@ See the make.cfg file for additional build options.
 
     finally:
         if compile_ext:
-            compile_extensions(extensions_root, force_build)        
+            compile_extensions(extensions_root, force_build)
 
         signtool = "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.18362.0\\x64\\signtool.exe"
         intercept_dll_path = os.path.join(module_root_parent, "@intercept")

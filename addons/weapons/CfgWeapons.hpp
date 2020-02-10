@@ -484,7 +484,7 @@ class CfgWeapons {
         class WeaponSlotsInfo : WeaponSlotsInfo {
             mass = 350;
         };
-    }
+    };
     class UK3CB_BAF_Javelin_Slung_Tube_Used : UK3CB_BAF_Javelin_Slung_Tube {
         class WeaponSlotsInfo : WeaponSlotsInfo {
             mass = 90;
