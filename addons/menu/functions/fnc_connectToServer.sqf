@@ -15,7 +15,7 @@
 */
 
 #define ADDRESS QUOTE(uk-sf.co.uk)
-#define IP QUOTE(54.37.244.72:%1)
+#define IP QUOTE(54.36.165.77:%1)
 #define CONNECTTIMEOUT 3
 
 onEachFrame {
