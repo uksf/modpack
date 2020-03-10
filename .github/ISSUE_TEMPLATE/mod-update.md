@@ -6,4 +6,4 @@ labels: type/mod update
 <!-- Provide a general summary of the issue in the Title above -->
 
 # Changelog
-<!-- Link to changelog the mod, one of: workshop, armaholic, bi forums, github -->
+<!-- Link to changelog for new version of the mod, one of: github, bi forums, workshop -->
