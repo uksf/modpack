@@ -50,15 +50,8 @@ class CfgVehicles {
     };
 
     // Custom modules
-    class Module_F;
-    class GVAR(moduleBase): Module_F {
+    class GVAR(moduleBase): zen_modules_moduleBase {
         author = QUOTE(UKSF);
-        category = QGVAR(uksf);
-        functionPriority = 1;
-        isGlobal = 1;
-        isTriggerActivated = 0;
-        scope = 1;
-        scopeCurator = 2;
     };
     class GVAR(moduleAddAllObjects): GVAR(moduleBase) {
         category = "Curator";

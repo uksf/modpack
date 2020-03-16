@@ -1,5 +1,5 @@
-#define COMPONENT shockwave
-#define COMPONENT_BEAUTIFIED Shockwave
+#define COMPONENT immersion
+#define COMPONENT_BEAUTIFIED Immersion
 #include "\u\uksf\addons\main\script_mod.hpp"
 
 // #define DEBUG_MODE_FULL

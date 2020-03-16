@@ -442,6 +442,7 @@ acre_sys_core_unmuteClients = true;
 force force acre_sys_signal_signalModel = 3;
 
 // ACRE2 UI
+acre_sys_gui_volumeColorScale = [[1,1,0,0.5],[1,0.83,0,0.5],[1,0.65,0,0.5],[1,0.44,0,0.5],[1,0,0,0.5]];
 acre_sys_list_CycleRadiosColor = [0.66,0.05,1,1];
 acre_sys_list_DefaultPTTColor = [1,0.8,0,1];
 acre_sys_list_HintBackgroundColor = [0,0,0,0.8];
@@ -586,16 +587,46 @@ diwako_dui_radar_trackingColor = [0.93,0.26,0.93,1];
 diwako_dui_reset_ui_pos = false;
 diwako_dui_use_layout_editor = false;
 
-// LAMBS - Danger
+// LAMBS Danger
+force lambs_danger_CQB_formations_COLUMN = false;
+force lambs_danger_CQB_formations_DIAMOND = true;
+force lambs_danger_CQB_formations_ECH LEFT = false;
+force lambs_danger_CQB_formations_ECH RIGHT = false;
+force lambs_danger_CQB_formations_FILE = true;
+force lambs_danger_CQB_formations_LINE = false;
+force lambs_danger_CQB_formations_STAG COLUMN = false;
+force lambs_danger_CQB_formations_VEE = false;
+force lambs_danger_CQB_formations_WEDGE = false;
 force lambs_danger_CQB_range = 50;
+force lambs_danger_debug_Drawing = false;
+force lambs_danger_debug_FSM = false;
+force lambs_danger_debug_FSM_civ = false;
+force lambs_danger_debug_functions = false;
+force lambs_danger_disableAIAutonomousManoeuvres = false;
+force lambs_danger_disableAICallouts = false;
+force lambs_danger_disableAIFleeing = false;
+force lambs_danger_disableAIGestures = false;
+force lambs_danger_disableAIHideFromTanksAndAircraft = false;
+force lambs_danger_disableAIImediateAction = false;
 force force lambs_danger_disableAIPlayerGroup = false;
+force lambs_danger_disableAIPlayerGroupReaction = false;
+force lambs_danger_disableAIPlayerGroupSuppression = false;
 force lambs_danger_minSuppression_range = 25;
 force lambs_danger_panic_chance = 15;
 force lambs_danger_radio_backpack = 2000;
+force lambs_danger_radio_disabled = false;
 force lambs_danger_radio_EAST = 1000;
 force lambs_danger_radio_GUER = 1000;
 force lambs_danger_radio_shout = 50;
 force lambs_danger_radio_WEST = 1000;
+force lambs_danger_RenderExpectedDestination = false;
+
+// LAMBS Danger Eventhandlers
+force lambs_eventhandlers_ExplosionEventHandlerEnabled = true;
+force lambs_eventhandlers_ExplosionReactionTime = 9;
+
+// LAMBS Danger WP
+force lambs_wp_autoAddArtillery = false;
 
 // LAxemann's Suppress
 force force L_Suppress_buildup = 1;
@@ -615,6 +646,8 @@ force uksf_cleanup_enabled = true;
 force uksf_common_mainOp = false;
 force uksf_curator_curatorsLocked = false;
 force uksf_curator_curatorsMax = 5;
+force force uksf_immersion_force = true;
+force force uksf_immersion_recoil = true;
 force uksf_mission_artillerySupport = true;
 force uksf_mission_artillerySupportBaseDistance = 500;
 force uksf_mission_artillerySupportChance = 5;
@@ -628,6 +661,7 @@ force uksf_mission_conspicuityGearWhitelistString = "[]";
 force uksf_mission_support = true;
 force uksf_mission_supportChance = 25;
 force uksf_mission_supportDistance = 500;
+force uksf_persistence_overrideSavedDateTime = false;
 
 // Zeus Enhanced
 zen_camera_adaptiveSpeed = true;
@@ -639,11 +673,15 @@ force force zen_common_darkMode = true;
 force force zen_common_disableGearAnim = true;
 force force zen_common_preferredArsenal = 1;
 force force zen_context_menu_enabled = 2;
+zen_editor_addGroupIcons = false;
 force force zen_editor_declutterEmptyTree = true;
 zen_editor_disableLiveSearch = false;
 zen_editor_moveDisplayToEdge = true;
+force force zen_editor_parachuteSounds = false;
+zen_editor_previews_enabled = true;
 force force zen_editor_removeWatermark = true;
 force force zen_editor_unitRadioMessages = 0;
+force force zen_placement_enabled = true;
 zen_visibility_enabled = false;
 force force zen_vision_enableBlackHot = true;
 force force zen_vision_enableBlackHotGreenCold = false;

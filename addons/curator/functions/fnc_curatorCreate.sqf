@@ -12,14 +12,11 @@
     Return Value:
         None
 */
-#define IDD_DISPLAY3DEN 313
 
-if (isNull GVAR(curatorGroup)) then {
-    GVAR(curatorGroup) = creategroup sideLogic;
-};
-private _curator = (GVAR(curatorGroup) createUnit ["ModuleCurator_F", [0,0,0], [], 0, "NONE"]);
+private _curator = (createGroup [sideLogic, true]) createUnit ["ModuleCurator_F", [0,0,0], [], 0, "NONE"];
+_curator setVariable ["BIS_fnc_initModules_disableAutoActivation", false, true];
+removeAllCuratorAddons _curator;
 GVAR(curatorObjects) pushBack _curator;
 GVAR(curatorPlayers) pushBack "";
 publicVariable QGVAR(curatorObjects);
 publicVariable QGVAR(curatorPlayers);
-removeAllCuratorAddons _curator;

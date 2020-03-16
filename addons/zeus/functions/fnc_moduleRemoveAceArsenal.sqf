@@ -14,9 +14,8 @@
 */
 params ["_logic"];
 
-if (!local _logic) exitWith {};
-
 private _object = attachedTo _logic;
+deleteVehicle _logic;
 
 if (isNull _object) exitWith {["Place on an object"] call ace_zeus_fnc_showMessage;};
 if (isPlayer _object) exitWith {["str_a3_cfgvehicles_moduleremotecontrol_f_errorPlayer"] call ace_zeus_fnc_showMessage;};
@@ -34,5 +33,3 @@ if (isMultiplayer && {{_object in _x} count GVAR(EHIDArray) == 0}) then {
 } else {
     [QEGVAR(arsenal,removeArsenalAction), [_object]] call CBA_fnc_localEvent;
 };
-
-deleteVehicle _logic;

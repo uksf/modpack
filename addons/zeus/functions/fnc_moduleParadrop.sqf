@@ -15,7 +15,7 @@
 */
 params ["_logic"];
 
-if (!local _logic) exitWith {};
+deleteVehicle _logic;
 
 ["Select units and press 'Return'. Press 'Escape' to cancel"] call ace_zeus_fnc_showMessage;
 GVAR(paradropAltitude) = 2000;
@@ -89,5 +89,3 @@ GVAR(curatorSelectionHandle) = _display displayAddEventHandler ["KeyDown", {
         };
     };
 }];
-
-deleteVehicle _logic;

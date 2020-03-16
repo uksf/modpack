@@ -8,7 +8,7 @@ params ["_dist"];
 // addCamShake [_force, _length, _frequency];
 // [_force, _length, _frequency]
 
-private _force = 7 - (_dist / 400);
+private _force = 20 - (_dist / 400);
 private _length = 2.5 - (_dist / 750);
 private _frequency = 40 - (_dist / 50);
 

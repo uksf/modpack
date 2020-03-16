@@ -1,4 +1,8 @@
 PREP(fired);
+PREP(firedPlayerForce);
+PREP(firedPlayerRecoil);
+PREP(firedShockwave);
+PREP(firedTwitch);
 PREP(readCacheValues);
 PREP(shockwaveHandler);
 

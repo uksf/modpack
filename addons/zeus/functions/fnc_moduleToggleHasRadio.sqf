@@ -14,9 +14,8 @@
 */
 params ["_logic"];
 
-if (!local _logic) exitWith {};
-
 private _unit = attachedTo _logic;
+deleteVehicle _logic;
 
 if (isNull _unit || {!(_unit isKindOf "CAManBase")}) exitWith {["Place on a unit"] call ace_zeus_fnc_showMessage;};
 if (isPlayer _unit) exitWith {["Unit must be AI"] call ace_zeus_fnc_showMessage;};
@@ -25,5 +24,3 @@ if (!(alive _unit)) exitWith {["Unit must be alive"] call ace_zeus_fnc_showMessa
 private _state = _unit getVariable [QEGVAR(mission,hasSupportRadio), true];
 [QEGVAR(mission,setSupportRadio), [_unit, !_state]] call CBA_fnc_serverEvent;
 [["Gave support radio", "Removed support radio"] select _state] call ace_common_fnc_displayTextStructured;
-
-deleteVehicle _logic;

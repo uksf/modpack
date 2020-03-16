@@ -14,10 +14,9 @@
 */
 params ["_logic"];
 
-if (!local _logic) exitWith {};
-
 private _pos = getPos _logic;
+deleteVehicle _logic;
+
 private _bomb = "Bo_Mk82" createVehicle [_pos select 0, _pos select 1, (_pos select 2) + 0.1];
 _bomb setDamage 1;
 
-deleteVehicle _logic;

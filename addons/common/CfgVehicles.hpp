@@ -98,17 +98,17 @@ class CfgVehicles {
     };
 
     // Disable lambs fsm temporarily
-    class CAManBase;
-    class SoldierWB: CAManBase {
-        fsmDanger = "-";
-    };
-    class SoldierEB: CAManBase {
-        fsmDanger = "-";
-    };
-    class SoldierGB: CAManBase {
-        fsmDanger = "-";
-    };
-    class Civilian_F : CAManBase {
-        fsmDanger = "A3\characters_f\scripts\formationCDanger.fsm";
-    };
+    // class CAManBase;
+    // class SoldierWB: CAManBase {
+    //     fsmDanger = "-";
+    // };
+    // class SoldierEB: CAManBase {
+    //     fsmDanger = "-";
+    // };
+    // class SoldierGB: CAManBase {
+    //     fsmDanger = "-";
+    // };
+    // class Civilian_F : CAManBase {
+    //     fsmDanger = "A3\characters_f\scripts\formationCDanger.fsm";
+    // };
 };

@@ -14,12 +14,10 @@
 */
 params ["_logic"];
 
-if (!local _logic) exitWith {};
+deleteVehicle _logic;
 
 private _state = isObjectHidden player;
 player allowDamage _state;
 player setCaptive !_state;
 ["zen_common_hideObjectGlobal", [player, !_state]] call CBA_fnc_serverEvent;
 [["Zeus Hidden", "Zeus Shown"] select _state] call ace_common_fnc_displayTextStructured;
-
-deleteVehicle _logic;

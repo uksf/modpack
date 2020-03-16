@@ -14,9 +14,8 @@
 */
 params ["_logic"];
 
-if (!local _logic) exitWith {};
-
 private _object = attachedTo _logic;
+deleteVehicle _logic;
 
 if (isNull _object || {!(_object isKindOf "CAManBase")}) exitWith {["Place on a unit"] call ace_zeus_fnc_showMessage;};
 if (isPlayer _object) exitWith {["Unit must be AI"] call ace_zeus_fnc_showMessage;};
@@ -32,5 +31,3 @@ if (_state != 2) then {
         ["Unit unconciousness set to 'Disabled'"] call ace_common_fnc_displayTextStructured;
     };
 };
-
-deleteVehicle _logic;

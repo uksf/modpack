@@ -7,7 +7,6 @@ ADDON = false;
 #include "initSettings.sqf"
 
 if (isServer) then {
-    GVAR(curatorGroup) = createGroup sideLogic;
     GVAR(curatorObjects) = [];
     GVAR(curatorPlayers) = [];
     [QGVAR(setCuratorsLocked), {call FUNC(setCuratorsLocked)}] call CBA_fnc_addEventHandler;
@@ -15,10 +14,6 @@ if (isServer) then {
     [QGVAR(curatorUnassign), {call FUNC(curatorUnassign)}] call CBA_fnc_addEventHandler;
 
     addMissionEventHandler ["HandleDisconnect", {[QGVAR(curatorUnassign), [getAssignedCuratorLogic (_this select 0)]] call CBA_fnc_serverEvent;}];
-    if (!isMultiplayer) then {
-        GVAR(curatorsMax) = 1;
-        publicVariable QGVAR(curatorsMax);
-    };
 };
 
 if (hasInterface) then {
