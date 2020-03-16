@@ -25,6 +25,10 @@ params ["_newCameraView", "_cameraOn"];
 {ACE_player == _cameraOn || vehicle ACE_player == _cameraOn} &&
 {"" isEqualTo call CBA_fnc_getActiveFeatureCamera} &&
 {!(_cameraOn isKindOf "UAV" || _cameraOn isKindOf "UAV_01_base_F")} &&
-{!(vehicle ACE_player != ACE_player && {ACE_player == driver (vehicle ACE_player)})}
+{!(vehicle ACE_player != ACE_player &&
+    {ACE_player == driver (vehicle ACE_player) ||
+    {ACE_player == gunner (vehicle ACE_player) &&
+    {(vehicle ACE_player) isKindOf "Air"}}}
+)}
 
 //&& {(VEHICLE_WHITELIST findIf {_cameraOn isKindOf _x}) != -1}
