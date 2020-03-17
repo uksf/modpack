@@ -14,7 +14,7 @@
 */
 params ["", "_weapon"];
 
-if !(isNull (ACE_controlledUAV#0)) exitWith {};
+if (!(isNull (ACE_controlledUAV#0)) || {GVAR(zeusOpen)}) exitWith {};
 
 if ((toLower _weapon) isEqualTo "put" || (toLower _weapon) isEqualTo "throw") exitWith {};
 
