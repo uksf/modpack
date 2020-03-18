@@ -1,17 +1,71 @@
 [
-    QGVAR(force),
+    QGVAR(firing_force),
     "CHECKBOX",
     ["Enable Weapon Force", "Adds a slight radial blur and darkens the screen a bit for a split second when firing"],
-    ["UKSF", QUOTE(COMPONENT_BEAUTIFIED)],
+    [QUOTE(UKSF COMPONENT_BEAUTIFIED), "Firing"],
     true,
     1
 ] call CBA_settings_fnc_init;
 
 [
-    QGVAR(recoil),
+    QGVAR(firing_recoil),
     "CHECKBOX",
-    ["Enable Recoil", "Adds a slight CamShake when shooting, should make shooting the guns feel more satisfying"],
-    ["UKSF", QUOTE(COMPONENT_BEAUTIFIED)],
+    ["Enable Weapon Recoil", "Adds a slight CamShake when shooting, should make shooting the guns feel more satisfying"],
+    [QUOTE(UKSF COMPONENT_BEAUTIFIED), "Firing"],
     true,
     1
 ] call CBA_settings_fnc_init;
+
+[
+    QGVAR(suppression_enabled),
+    "CHECKBOX",
+    ["Enable the mod", "Enables player suppression effects"],
+    [QUOTE(UKSF COMPONENT_BEAUTIFIED), "Suppression"],
+    true,
+    1
+] call CBA_Settings_fnc_init;
+
+[
+    QGVAR(suppression_recoveryFactor),
+    "SLIDER",
+    ["Recovery speed", "How slow or quick you recover from being suppressed. Lower value = longer lasting effects. (0.25 - 3)"],
+    [QUOTE(UKSF COMPONENT_BEAUTIFIED), "Suppression"],
+    [0.25, 3, 1, 2],
+    1
+] call CBA_Settings_fnc_init;
+
+[
+    QGVAR(suppression_buildup),
+    "SLIDER",
+    ["Suppression build-up speed", "How fast the player will get suppressed. (0.25 - 3)"],
+    [QUOTE(UKSF COMPONENT_BEAUTIFIED), "Suppression"],
+    [0.25, 3, 1, 2],
+    1
+] call CBA_Settings_fnc_init;
+
+[
+    QGVAR(suppression_intensity),
+    "SLIDER",
+    ["Suppression effect Intensity", "Overall intensity of the suppression effect. (0 - 3)"],
+    [QUOTE(UKSF COMPONENT_BEAUTIFIED), "Suppression"],
+    [0, 3, 1, 2],
+    1
+] call CBA_Settings_fnc_init;
+
+[
+    QGVAR(suppression_flyByIntensity),
+    "SLIDER",
+    ["Flyby effect Intensity", "Overall intensity of the flyby effect. (0 - 3)"],
+    [QUOTE(UKSF COMPONENT_BEAUTIFIED), "Suppression"],
+    [0, 3, 1, 2],
+    1
+] call CBA_Settings_fnc_init;
+
+[
+    QGVAR(suppression_haltRecovery),
+    "CHECKBOX",
+    ["Halt recovery when getting shot", "When turned on, recovery of suppression effects stagnates for a while when being shot at again."],
+    [QUOTE(UKSF COMPONENT_BEAUTIFIED), "Suppression"],
+    true,
+    1
+] call CBA_Settings_fnc_init;

@@ -49,7 +49,7 @@
     "sqflint.checkPaths": false,
     "sqflint.indexWorkspace": false,
     "sqflint.indexWorkspaceTwice": false,
-    "sqflint.warnings": true,
+    "sqflint.warnings": false,
     "sqflint.includePrefixes": {
         "\\u\\": "P:/u",
         "\\x\\": "P:/x",

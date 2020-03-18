@@ -456,8 +456,8 @@ acre_sys_list_ToggleHeadsetColor = [0.66,0.05,1,1];
 
 // ACRE2 Zeus
 force force acre_sys_zeus_zeusCanSpectate = true;
-force acre_sys_zeus_zeusCommunicateViaCamera = true;
-force acre_sys_zeus_zeusDefaultVoiceSource = false;
+acre_sys_zeus_zeusCommunicateViaCamera = false;
+acre_sys_zeus_zeusDefaultVoiceSource = false;
 
 // CBA UI
 cba_ui_notifyLifetime = 4;
@@ -471,73 +471,6 @@ cba_optics_usePipOptics = true;
 
 // CUP
 force force CUP_Vehicles_PreventBarrelClip = false;
-
-// DCG - Approval
-force force dcg_approval_enable = true;
-force dcg_approval_hostileCooldown = 900;
-force dcg_approval_hostileHint = true;
-force dcg_approval_multiplier = 1;
-
-// DCG - Civilian
-force dcg_civilian_blacklist = "pier,airbase,air base,airfield,terminal";
-force force dcg_civilian_enable = true;
-force dcg_civilian_spawnDist = 400;
-force dcg_civilian_unitLimit = 16;
-force dcg_civilian_vehCooldown = 600;
-force dcg_civilian_vehLimit = 8;
-
-// DCG - FOB
-force force dcg_fob_allow = 0;
-force force dcg_fob_enable = true;
-force dcg_fob_name = "FOB Tiger";
-force dcg_fob_pbnames = "PB Leopard,PB Jaguar,PB Cougar,PB Cheetah,PB Lynx";
-force dcg_fob_pbrange = 100;
-force dcg_fob_range = 100;
-
-// DCG - IED
-force force dcg_ied_enable = true;
-
-// DCG - Main
-force force dcg_main_autoSave = true;
-force dcg_main_baseName = "MOB Lion";
-force dcg_main_baseRadius = 1500;
-force force dcg_main_enable = true;
-force dcg_main_factionsCiv = "CUP_C_CHERNARUS";
-force dcg_main_factionsEast = "CUP_O_SLA";
-force dcg_main_factionsInd = "IND_F";
-force dcg_main_factionsWest = "CUP_B_GB";
-force dcg_main_filtersCiv = "driver,vr ,pilot,construction,kart";
-force dcg_main_filtersEast = "diver,vr ,pilot,survivor,crew,rifleman (unarmed),competitor";
-force dcg_main_filtersInd = "diver,vr ,pilot,survivor,crew,rifleman (unarmed),competitor";
-force dcg_main_filtersWest = "diver,vr ,pilot,survivor,crew,rifleman (unarmed),competitor";
-force force dcg_main_loadData = true;
-force dcg_main_mortarPoolEastString = "['O_Mortar_01_F']";
-force dcg_main_safezoneEnable = true;
-force dcg_main_safezoneMarkersDisplay = 0;
-force dcg_main_sides = [WEST,EAST];
-force dcg_main_staticPoolEastString = "['O_static_AT_F','O_GMG_01_F','O_GMG_01_high_F','O_GMG_01_A_F','O_HMG_01_F','O_HMG_01_high_F','O_HMG_01_A_F']";
-
-// DCG - Occupy
-force force dcg_occupy_enable = true;
-force dcg_occupy_multiplier = 1;
-force force dcg_occupy_sniper = true;
-force force dcg_occupy_static = true;
-
-// DCG - Patrol
-force dcg_patrol_cooldown = 60;
-force force dcg_patrol_enable = true;
-force dcg_patrol_groupLimit = 20;
-force dcg_patrol_mode = "AWARE";
-force dcg_patrol_speed = "NORMAL";
-force dcg_patrol_vehicleProbability = 0.35;
-
-// DCG - Weather
-force dcg_weather_cloudsOverride = -1;
-force force dcg_weather_enable = false;
-force dcg_weather_hour = -1;
-force force dcg_weather_month = -1;
-force dcg_weather_precipitationOverride = -1;
-force dcg_weather_variance = 1;
 
 // DUI - Squad Radar - Main
 diwako_dui_ace_hide_interaction = false;
@@ -628,16 +561,6 @@ force lambs_eventhandlers_ExplosionReactionTime = 9;
 // LAMBS Danger WP
 force lambs_wp_autoAddArtillery = false;
 
-// LAxemann's Suppress
-force force L_Suppress_buildup = 1;
-force force L_Suppress_enabled = true;
-force force L_Suppress_flyByEffects = true;
-force force L_Suppress_flyByIntensity = 1;
-force force L_Suppress_halting = true;
-force force L_Suppress_intensity = 1;
-force force L_Suppress_playerSwabEnabled = true;
-force force L_Suppress_recovery = 1;
-
 // UKSF
 force uksf_caching_distance = 750;
 force uksf_caching_enabled = false;
@@ -646,8 +569,6 @@ force uksf_cleanup_enabled = true;
 force uksf_common_mainOp = false;
 force uksf_curator_curatorsLocked = false;
 force uksf_curator_curatorsMax = 5;
-force force uksf_immersion_force = true;
-force force uksf_immersion_recoil = true;
 force uksf_mission_artillerySupport = true;
 force uksf_mission_artillerySupportBaseDistance = 500;
 force uksf_mission_artillerySupportChance = 5;
@@ -662,6 +583,16 @@ force uksf_mission_support = true;
 force uksf_mission_supportChance = 25;
 force uksf_mission_supportDistance = 500;
 force uksf_persistence_overrideSavedDateTime = false;
+
+// UKSF Immersion
+force force uksf_immersion_firing_force = true;
+force force uksf_immersion_firing_recoil = true;
+force force uksf_immersion_suppression_buildup = 1;
+force force uksf_immersion_suppression_enabled = true;
+force force uksf_immersion_suppression_flyByIntensity = 1;
+force force uksf_immersion_suppression_haltRecovery = true;
+force force uksf_immersion_suppression_intensity = 1;
+force force uksf_immersion_suppression_recoveryFactor = 1;
 
 // Zeus Enhanced
 zen_camera_adaptiveSpeed = true;
@@ -692,3 +623,70 @@ force force zen_vision_enableRedGreenThermal = false;
 force force zen_vision_enableRedHotCold = false;
 force force zen_vision_enableWhiteHot = true;
 force force zen_vision_enableWhiteHotRedCold = false;
+
+// DCG - Approval
+force force dcg_approval_enable = true;
+force dcg_approval_hostileCooldown = 900;
+force dcg_approval_hostileHint = true;
+force dcg_approval_multiplier = 1;
+
+// DCG - Civilian
+force dcg_civilian_blacklist = "pier,airbase,air base,airfield,terminal";
+force force dcg_civilian_enable = true;
+force dcg_civilian_spawnDist = 400;
+force dcg_civilian_unitLimit = 16;
+force dcg_civilian_vehCooldown = 600;
+force dcg_civilian_vehLimit = 8;
+
+// DCG - FOB
+force force dcg_fob_allow = 0;
+force force dcg_fob_enable = true;
+force dcg_fob_name = "FOB Tiger";
+force dcg_fob_pbnames = "PB Leopard,PB Jaguar,PB Cougar,PB Cheetah,PB Lynx";
+force dcg_fob_pbrange = 100;
+force dcg_fob_range = 100;
+
+// DCG - IED
+force force dcg_ied_enable = true;
+
+// DCG - Main
+force force dcg_main_autoSave = true;
+force dcg_main_baseName = "MOB Lion";
+force dcg_main_baseRadius = 1500;
+force force dcg_main_enable = true;
+force dcg_main_factionsCiv = "CUP_C_CHERNARUS";
+force dcg_main_factionsEast = "CUP_O_SLA";
+force dcg_main_factionsInd = "IND_F";
+force dcg_main_factionsWest = "CUP_B_GB";
+force dcg_main_filtersCiv = "driver,vr ,pilot,construction,kart";
+force dcg_main_filtersEast = "diver,vr ,pilot,survivor,crew,rifleman (unarmed),competitor";
+force dcg_main_filtersInd = "diver,vr ,pilot,survivor,crew,rifleman (unarmed),competitor";
+force dcg_main_filtersWest = "diver,vr ,pilot,survivor,crew,rifleman (unarmed),competitor";
+force force dcg_main_loadData = true;
+force dcg_main_mortarPoolEastString = "['O_Mortar_01_F']";
+force dcg_main_safezoneEnable = true;
+force dcg_main_safezoneMarkersDisplay = 0;
+force dcg_main_sides = [WEST,EAST];
+force dcg_main_staticPoolEastString = "['O_static_AT_F','O_GMG_01_F','O_GMG_01_high_F','O_GMG_01_A_F','O_HMG_01_F','O_HMG_01_high_F','O_HMG_01_A_F']";
+
+// DCG - Occupy
+force force dcg_occupy_enable = true;
+force dcg_occupy_multiplier = 1;
+force force dcg_occupy_sniper = true;
+force force dcg_occupy_static = true;
+
+// DCG - Patrol
+force dcg_patrol_cooldown = 60;
+force force dcg_patrol_enable = true;
+force dcg_patrol_groupLimit = 20;
+force dcg_patrol_mode = "AWARE";
+force dcg_patrol_speed = "NORMAL";
+force dcg_patrol_vehicleProbability = 0.35;
+
+// DCG - Weather
+force dcg_weather_cloudsOverride = -1;
+force force dcg_weather_enable = false;
+force dcg_weather_hour = -1;
+force force dcg_weather_month = -1;
+force dcg_weather_precipitationOverride = -1;
+force dcg_weather_variance = 1;

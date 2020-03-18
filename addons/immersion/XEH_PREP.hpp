@@ -1,10 +1,14 @@
 PREP(fired);
-PREP(firedPlayerForce);
-PREP(firedPlayerRecoil);
+PREP(firedForce);
+PREP(firedRecoil);
 PREP(firedShockwave);
-PREP(firedTwitch);
+PREP(firedSuppression);
 PREP(readCacheValues);
 PREP(shockwaveHandler);
+PREP(suppressionHandler);
+PREP(suppressionImpact);
+PREP(suppressionPinnedDown);
+PREP(suppressionRecovery);
 
 SHOCKWAVEPREP(120mm);
 SHOCKWAVEPREP(Arty);

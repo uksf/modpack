@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 /*
     Author:
-        joko, Tim Beswick
+        LAxemann, Jokoho482, Tim Beswick
 
     Description:
         Returns unique ID.

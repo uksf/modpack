@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 /*
     Author:
-        joko, Tim Beswick
+        LAxemann, Jokoho482, Tim Beswick
 
     Description:
         Fired Event
@@ -14,7 +14,7 @@
 */
 params ["", "", "", "", "_ammo", "", "_projectile", "_ammoConfig"];
 
-private _fncName = [_ammoConfig >> "shockwaveFunction", QGVAR(function) + _ammo, ""] call FUNC(readCacheValues);
+private _fncName = [_ammoConfig >> "shockwaveFunction", format [QGVAR(shockwave_function_%1), _ammo], ""] call FUNC(readCacheValues);
 if (_fncName != "") then {
     GVAR(shockwaveArray) pushBack [_projectile, _fncName];
 };
