@@ -14,7 +14,7 @@ GVAR(firing_RBlur) ppEffectAdjust [0, 0, 0, 0];
 GVAR(firing_RBlur) ppEffectCommit 0;
 
 GVAR(suppression_cc) = ppEffectCreate ["colorCorrections", 1501];
-GVAR(suppression_cc) ppEffectAdjust [1, 1, 0, [0,0,0,0], [1,1,1,1],[1,1,1,0]];
+GVAR(suppression_cc) ppEffectAdjust [1, 1, 0, [0, 0, 0, 0], [1, 1, 1, 1], [1, 1, 1, 0]];
 GVAR(suppression_cc) ppEffectEnable true;
 GVAR(suppression_cc) ppEffectCommit 0;
 
@@ -29,7 +29,7 @@ GVAR(suppression_rBlur) ppEffectCommit 0;
 GVAR(suppression_rBlur) ppEffectEnable true;
 
 GVAR(suppression_impactCC) = ppEffectCreate ["colorCorrections", 1499];
-GVAR(suppression_impactCC) ppEffectAdjust [1, 1, 0, [0,0,0,0], [1,1,1,1],[1,1,1,0]];
+GVAR(suppression_impactCC) ppEffectAdjust [1, 1, 0, [0, 0, 0, 0], [1, 1, 1, 1], [1, 1, 1, 0]];
 GVAR(suppression_impactCC) ppEffectEnable true;
 GVAR(suppression_impactCC) ppEffectCommit 0;
 

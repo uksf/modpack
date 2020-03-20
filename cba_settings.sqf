@@ -585,8 +585,6 @@ force uksf_mission_supportDistance = 500;
 force uksf_persistence_overrideSavedDateTime = false;
 
 // UKSF Immersion
-force force uksf_immersion_firing_force = true;
-force force uksf_immersion_firing_recoil = true;
 force force uksf_immersion_suppression_buildup = 1;
 force force uksf_immersion_suppression_enabled = true;
 force force uksf_immersion_suppression_flyByIntensity = 1;

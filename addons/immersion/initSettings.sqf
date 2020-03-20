@@ -1,22 +1,4 @@
 [
-    QGVAR(firing_force),
-    "CHECKBOX",
-    ["Enable Weapon Force", "Adds a slight radial blur and darkens the screen a bit for a split second when firing"],
-    [QUOTE(UKSF COMPONENT_BEAUTIFIED), "Firing"],
-    true,
-    1
-] call CBA_settings_fnc_init;
-
-[
-    QGVAR(firing_recoil),
-    "CHECKBOX",
-    ["Enable Weapon Recoil", "Adds a slight CamShake when shooting, should make shooting the guns feel more satisfying"],
-    [QUOTE(UKSF COMPONENT_BEAUTIFIED), "Firing"],
-    true,
-    1
-] call CBA_settings_fnc_init;
-
-[
     QGVAR(suppression_enabled),
     "CHECKBOX",
     ["Enable the mod", "Enables player suppression effects"],

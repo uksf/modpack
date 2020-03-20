@@ -31,11 +31,11 @@ private _deleted = false;
 
             if (_distanceToPlayer <= _detectionDistance) then {
                 private _factor  = 1 - (_distanceToPlayer / _detectionDistance);
-                private _divisor = 25 - (9 * _factor);
+                private _divisor = 50 - (10 * _factor);
                 GVAR(suppression_lastShotAt) = time;
 
                 if ((vehicle GVAR(suppression_currentUnit)) == GVAR(suppression_currentUnit) || {isTurnedOut GVAR(suppression_currentUnit)}) then {
-                    [_factor] call FUNC(suppressionImpact);
+                    [_hit, _factor] call FUNC(suppressionImpact);
 
                     if (_divisor != 0) then {
                         private _add = GVAR(suppression_buildup) * (_hit / _divisor);

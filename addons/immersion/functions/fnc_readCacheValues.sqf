@@ -5,38 +5,30 @@
 
     Description:
         Read Value from config and save it in the cache Location and read and save the value if the value not exist if config entry not exist return the Default Value
+        Get value from cache or if not found use config path to set value in cache
 
     Parameters:
-        0: Config Path or Array with Config Path <CONFIG, ARRAY>
-        1: Variable Name for Saving <STRING>
-        2: Default Return <ANY> (Default: "")
+        0: Variable Name for Saving <STRING>
+        1: Code to call to get config path <CODE>
 
     Return value:
         Cached Value <ANY>
 */
-params [["_config", configNull, [configNull, []]], ["_varName", "", [""]], ["_default", ""]];
+params [["_name", "", [""]], ["_configCallback", {}, [{}]]];
 
-private _var = GVAR(variableHandler) getVariable _varName;
-if (isNil "_var") then {
-    if (IS_ARRAY(_config)) then {
-        _path = configFile;
-        {_path = _path >> _x} forEach _config;
-        _config = _path;
-    };
-    _var = switch (true) do {
-        case (isNumber _config): {
-            getNumber _config;
-        };
-        case (isText _config): {
-            getText _config;
-        };
-        case (isArray _config): {
-            getArray _config;
-        };
-        default {_default};
+private _value = [GVAR(valueCache), _name] call CBA_fnc_hashGet;
+if (isNil "_value") then {
+    private _config = call _configCallback;
+    _value = [_config] call {
+        params ["_config"];
+
+        if (isNumber _config) exitWith {getNumber _config};
+        if (isText _config) exitWith {getText _config};
+        if (isArray _config) exitWith {getArray _config};
+        ""
     };
 
-    GVAR(variableHandler) setVariable [_varName, _var];
+    [GVAR(valueCache), _name, _value] call CBA_fnc_hashSet;
 };
 
-_var
+_value

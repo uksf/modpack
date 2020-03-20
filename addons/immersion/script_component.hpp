@@ -14,5 +14,5 @@
     #define SHOCKWAVEPREP(fncName) [QPATHTOF(effects\fncName.sqf), QFUNC(fncName)] call CBA_fnc_compileFunction
 #endif
 
-#define SUPPRESSION_MAX_VALUE 30
+#define SUPPRESSION_MAX_VALUE 25
 #define SUPPRESSION_BORDER 8

@@ -4,17 +4,18 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
-GVAR(variableHandler) = call CBA_fnc_createNamespace;
+GVAR(valueCache) = [] call CBA_fnc_hashCreate;
 GVAR(ammoConfig) = configFile >> "CfgAmmo";
 GVAR(shockwaveArray) = [];
 GVAR(suppressionArray)    = [];
 GVAR(suppression_currentUnit) = objNull;
 GVAR(suppression_suppressed) = false;
 GVAR(suppression_threshold) = 0; // Changing value
-GVAR(suppression_lastShotAt) = 0; // The time the player got shot at last time (Just creates the variable)
-GVAR(suppression_maxDistance);
+GVAR(suppression_lastShotAt) = 0; // The time the player got shot at last time
 
 if (hasInterface) then {
+    ["AllVehicles", "Fired", {call FUNC(fired)}] call CBA_fnc_addClassEventHandler;
+
     ["unit", {
         params ["_newPlayer"];
 

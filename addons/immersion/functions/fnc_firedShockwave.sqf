@@ -4,17 +4,18 @@
         LAxemann, Jokoho482, Tim Beswick
 
     Description:
-        Fired Event
+        Fired Event for shockwave
 
     Parameters:
-        Fired Event Parameters
+        0: Ammo name <STRING>
+        1: Projectile <OBJECT>
 
     Return value:
         None
 */
-params ["", "", "", "", "_ammo", "", "_projectile", "_ammoConfig"];
+params ["_ammo", "_projectile"];
 
-private _fncName = [_ammoConfig >> "shockwaveFunction", format [QGVAR(shockwave_function_%1), _ammo], ""] call FUNC(readCacheValues);
-if (_fncName != "") then {
-    GVAR(shockwaveArray) pushBack [_projectile, _fncName];
+private _function = [[QGVAR(shockwaveFunction_), _ammo] joinString "", {GVAR(ammoConfig) >> _ammo >> "shockwaveFunction"}] call FUNC(readCacheValues);
+if (_function != "") then {
+    GVAR(shockwaveArray) pushBack [_projectile, _function];
 };

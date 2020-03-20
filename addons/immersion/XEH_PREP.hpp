@@ -1,6 +1,5 @@
 PREP(fired);
-PREP(firedForce);
-PREP(firedRecoil);
+PREP(firedPlayerEffects);
 PREP(firedShockwave);
 PREP(firedSuppression);
 PREP(readCacheValues);
