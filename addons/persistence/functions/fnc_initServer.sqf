@@ -61,6 +61,23 @@ addMissionEventHandler ["PlayerDisconnected", {call FUNC(playerDisconnected)}];
     GVAR(mapMarkers) deleteAt (GVAR(mapMarkers) findIf {_x#0 == _marker});
 }] call CBA_fnc_addEventHandler;
 
+["acex_fortify_objectPlaced", {
+    params ["", "", "_object"];
+
+    [_object] call FUNC(markVehicleAsPersistent);
+}] call CBA_fnc_addEventHandler;
+
+["acex_fortify_objectDeleted", {
+    params ["", "", "_object"];
+
+    private _id = _object getVariable [QGVAR(persistenceID), ""];
+    if (_id == "") exitWith {
+        WARNING("Vehicle has no id so cannot remove from persistence hash. Vehicle saving should filter out null objects though.");
+    };
+
+    [GVAR(hashPersistentVehicles), _id] call CBA_fnc_hashRem;
+}] call CBA_fnc_addEventHandler;
+
 GVAR(dataNamespace) setVariable [QGVAR(world), worldName];
 if (GVAR(dataSaved)) then {
     profileNamespace setVariable [GVAR(key), [GVAR(dataNamespace)] call CBA_fnc_serializeNamespace];
