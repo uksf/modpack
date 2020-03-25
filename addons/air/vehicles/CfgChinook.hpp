@@ -26,6 +26,15 @@ class CUP_CH47F_base : Helicopter_Base_H {
         speedZoomMaxFOV = 0.95;
     };
     class Turrets : Turrets {
+        class MainTurret : MainTurret {
+            soundAttenuationTurret = "HeliAttenuationGunner";
+        };
+        class RightDoorGun : MainTurret {
+            soundAttenuationTurret = "HeliAttenuationGunner";
+        };
+        class BackDoorGun : MainTurret {
+            soundAttenuationTurret = "HeliAttenuationGunner";
+        };
         class CopilotTurret : CopilotTurret {
             memoryPointsGetInGunner = "pos cargo";
             memoryPointsGetInGunnerDir = "pos cargo dir";
@@ -75,15 +84,6 @@ class CUP_CH47F_base : Helicopter_Base_H {
                     };
                 };
             };
-        };
-        class MainTurret : MainTurret {
-            soundAttenuationTurret = "HeliAttenuationGunner";
-        };
-        class RightDoorGun : MainTurret {
-            soundAttenuationTurret = "HeliAttenuationGunner";
-        };
-        class BackDoorGun : MainTurret {
-            soundAttenuationTurret = "HeliAttenuationGunner";
         };
     };
     attenuationEffectType = "SemiOpenHeliAttenuation";
@@ -182,8 +182,8 @@ class CUP_B_CH47F_GB : CUP_CH47F_base {
     typicalCargo[] = { "UKSF_B_Pilot_7", "UKSF_B_Pilot_7", "UKSF_B_Pilot_7" };
     INVENTORY_AIRCRAFT
 };
-class CUP_CH47F_VIV_Base : CUP_CH47F_base {};
-class CUP_B_CH47F_VIV_GB : CUP_CH47F_VIV_Base {
+class CUP_CH47F_VIV_base : CUP_CH47F_base {};
+class CUP_B_CH47F_VIV_GB : CUP_CH47F_VIV_base {
     crew = "UKSF_B_Pilot_7";
     typicalCargo[] = { "UKSF_B_Pilot_7", "UKSF_B_Pilot_7", "UKSF_B_Pilot_7" };
     INVENTORY_AIRCRAFT
