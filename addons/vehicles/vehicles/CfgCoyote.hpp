@@ -39,7 +39,7 @@ class UK3CB_BAF_Coyote_Passenger_L111A1_D2 : UK3CB_BAF_Coyote_Passenger_L111A1_D
 };
 class UK3CB_BAF_Coyote_Passenger_L134A1_G : UK3CB_BAF_Coyote_Passenger_L134A1_D {
     displayname = "Coyote P GMG Woodland (CR)";
-    JACKAL_INVENTORY_HMG
+    JACKAL_INVENTORY_GMG
     COVER_ACTIONS
 };
 class UK3CB_BAF_Coyote_Passenger_L111A1_G : UK3CB_BAF_Coyote_Passenger_L111A1_D {
@@ -48,7 +48,7 @@ class UK3CB_BAF_Coyote_Passenger_L111A1_G : UK3CB_BAF_Coyote_Passenger_L111A1_D 
     COVER_ACTIONS
 };
 class UK3CB_BAF_Coyote_Passenger_L134A1_W : UK3CB_BAF_Coyote_Passenger_L134A1_D {
-    JACKAL_INVENTORY_HMG
+    JACKAL_INVENTORY_GMG
     COVER_ACTIONS
 };
 class UK3CB_BAF_Coyote_Passenger_L111A1_W : UK3CB_BAF_Coyote_Passenger_L111A1_D {
@@ -60,12 +60,12 @@ class UK3CB_BAF_Coyote_Logistics_L111A1_D : UK3CB_BAF_Coyote_Passenger_L111A1_D 
     COVER_ACTIONS
 };
 class UK3CB_BAF_Coyote_Logistics_L134A1_D : UK3CB_BAF_Coyote_Passenger_L134A1_D {
-    JACKAL_INVENTORY_HMG
+    JACKAL_INVENTORY_GMG
     COVER_ACTIONS
 };
 class UK3CB_BAF_Coyote_Logistics_L134A1_D2 : UK3CB_BAF_Coyote_Logistics_L134A1_D {
     displayname = "Coyote L GMG Desert (CR)";
-    JACKAL_INVENTORY_HMG
+    JACKAL_INVENTORY_GMG
     COVER_ACTIONS
 };
 class UK3CB_BAF_Coyote_Logistics_L111A1_D2 : UK3CB_BAF_Coyote_Logistics_L111A1_D {
@@ -75,7 +75,7 @@ class UK3CB_BAF_Coyote_Logistics_L111A1_D2 : UK3CB_BAF_Coyote_Logistics_L111A1_D
 };
 class UK3CB_BAF_Coyote_Logistics_L134A1_G : UK3CB_BAF_Coyote_Logistics_L134A1_D {
     displayname = "Coyote L GMG Woodland (CR)";
-    JACKAL_INVENTORY_HMG
+    JACKAL_INVENTORY_GMG
     COVER_ACTIONS
 };
 class UK3CB_BAF_Coyote_Logistics_L111A1_G : UK3CB_BAF_Coyote_Logistics_L111A1_D {
@@ -84,7 +84,7 @@ class UK3CB_BAF_Coyote_Logistics_L111A1_G : UK3CB_BAF_Coyote_Logistics_L111A1_D 
     COVER_ACTIONS
 };
 class UK3CB_BAF_Coyote_Logistics_L134A1_W : UK3CB_BAF_Coyote_Logistics_L134A1_D {
-    JACKAL_INVENTORY_HMG
+    JACKAL_INVENTORY_GMG
     COVER_ACTIONS
 };
 class UK3CB_BAF_Coyote_Logistics_L111A1_W : UK3CB_BAF_Coyote_Logistics_L111A1_D {

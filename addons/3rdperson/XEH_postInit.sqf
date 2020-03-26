@@ -5,6 +5,12 @@ if (difficultyOption "thirdPersonView" == 0) exitWith {
     WARNING("View Restriction is enabled, but 3rd person is disabled with server difficulty.");
 };
 
+[{
+    if (inputAction "personView" > 0 && {cameraView == "INTERNAL" && {["EXTERNAL", ACE_player] call FUNC(canChangeCamera)}}) then {
+        ACE_player switchCamera "INTERNAL";
+    };
+}, 0, []] call CBA_fnc_addPerFrameHandler;
+
 ["cameraView", {
     params ["", "_newCameraView"];
 
