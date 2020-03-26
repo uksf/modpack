@@ -62,8 +62,10 @@ addMissionEventHandler ["PlayerDisconnected", {call FUNC(playerDisconnected)}];
 }] call CBA_fnc_addEventHandler;
 
 ["acex_fortify_objectPlaced", {
-    params ["", "", "_object"];
+    params ["", "_side", "_object"];
 
+    _object setVariable [QGVAR(isAcexFortification), true];
+    _object setVariable [QGVAR(acexFortifySide), _side];
     [_object] call FUNC(markVehicleAsPersistent);
 }] call CBA_fnc_addEventHandler;
 

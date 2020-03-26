@@ -48,7 +48,8 @@ private _data = [
     _attachedObjects,
     (((([_vehicle] call acre_api_fnc_getVehicleRacks) select {_x != ""}) apply {[_x] call acre_api_fnc_getMountedRackRadio}) select {_x != ""}) apply {[_x] call acre_api_fnc_getRadioChannel},
     [_vehicle] call FUNC(getVehicleCargo),
-    [getWeaponCargo _vehicle, getMagazineCargo _vehicle, getItemCargo _vehicle, getBackpackCargo _vehicle]
+    [getWeaponCargo _vehicle, getMagazineCargo _vehicle, getItemCargo _vehicle, getBackpackCargo _vehicle],
+    [_vehicle getVariable [QGVAR(isAcexFortification), false], _vehicle getVariable [QGVAR(acexFortifySide), west]]
 ];
 TRACE_1("Got vehicle data",_data);
 

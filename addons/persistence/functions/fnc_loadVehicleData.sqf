@@ -17,12 +17,13 @@ private _vehicles = (GVAR(dataNamespace) getVariable [QGVAR(vehicles), []]);
 if (count _vehicles == 0) exitWith {};
 
 {
-    _x params ["_id", "_type", "_position", "_vectorDirAndUp", "_damage", "_fuel", "_turretWeapons", "_turretMagazines", "_pylonLoadout", "_logisticsCargo", "_attached", "_rackChannels", "_aceCargo", "_inventory"];
+    _x params ["_id", "_type", "_position", "_vectorDirAndUp", "_damage", "_fuel", "_turretWeapons", "_turretMagazines", "_pylonLoadout", "_logisticsCargo", "_attached", "_rackChannels", "_aceCargo", "_inventory", ["_acexFortifyData", [false]]];
     TRACE_7("Loading vehicle...",_id,_type,_position,_vectorDirAndUp,_damage,_fuel,_rackChannels);
     //TRACE_3("...",_turretWeapons,_turretMagazines,_pylonLoadout);
     //TRACE_2("...",_logisticsCargo,_attached);
     //TRACE_1("...",_aceCargo);
     //TRACE_1("...",_inventory);
+    TRACE_1("...",_acexFortifyData);
 
     private _vehicle = objNull;
     if ([GVAR(hashPersistentVehicles), _id] call CBA_fnc_hashHasKey) then {
@@ -33,7 +34,7 @@ if (count _vehicles == 0) exitWith {};
         _vehicle setVariable [QGVAR(persistenceID), _id];
         [GVAR(hashPersistentVehicles), _id, _vehicle] call CBA_fnc_hashSet;
     };
-    
+
     // TODO: Improve this logic to consider smaller objects being loaded, then a large object not being able to load.
     private _size = (sizeOf _type) / 1.3;
     if (({((getPosASL _x) distance _position) < _size} count vehicles) > 0) then {
@@ -82,6 +83,11 @@ if (count _vehicles == 0) exitWith {};
         };
         _vehicle setVariable [QEGVAR(radios,rackChannels), _rackChannels, true];
         [_vehicle, _aceCargo, _inventory] call FUNC(setVehicleCargo);
+
+        _acexFortifyData params ["_isAcexFortification", "_acexFortifySide"];
+        if (_isAcexFortification) then {
+            ["acex_fortify_objectPlaced", [objNull, _acexFortifySide, _vehicle]] call CBA_fnc_globalEvent;
+        };
 
         if (_vehicle isKindOf "UAV") then {
             createVehicleCrew _vehicle;
