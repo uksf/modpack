@@ -43,4 +43,8 @@ class CfgFactionClasses {
         icon = "\a3\Data_F_Enoch\FactionIcons\icon_RUS_CA.paa";
         flag = "\a3\Data_F_Enoch\Flags\flag_RUS_co.paa";
     };
+    class NO_CATEGORY;
+    class GVAR(eden): NO_CATEGORY{
+        displayName = "UKSF";
+    };
 };

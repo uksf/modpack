@@ -15,7 +15,7 @@
 */
 params ["_ammo", "_projectile"];
 
-private _hit = [[QGVAR(hit_), _ammo] joinString "", {GVAR(ammoConfig) >> _ammo >> "hit"}] call FUNC(readCacheValues);
+private _hit = [[QGVAR(hit_), _ammo] joinString "", {EGVAR(common,configAmmo) >> _ammo >> "hit"}] call EFUNC(common,readCacheValues);
 if (_hit == 0) exitWith {};
 
 private _detectionDistance = (7 + (_hit / 2)) min 28;

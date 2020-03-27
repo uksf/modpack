@@ -20,10 +20,14 @@ class CfgVehicles {
         explosionShielding = 0.7;
         epeImpulseDamageCoef = 5;
         crewCrashProtection = 1;
+        class Turrets;
     };
     class Helicopter_Base_F : Helicopter {
         class ACE_Actions;
-        class Turrets;
+        class Turrets : Turrets {
+            class MainTurret;
+            class NewTurret;
+        };
     };
     class Helicopter_Base_H : Helicopter_Base_F {
         class ACE_Actions : ACE_Actions {

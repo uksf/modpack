@@ -19,7 +19,7 @@
         4: Stage <SCALAR>
         5: Previous firing position <ARRAY>
         5: Spread <SCALAR>
-        
+
     Return value:
         NOTHING
 */
@@ -44,9 +44,9 @@ if (_stage == 0) exitWith {
         params ["", "_artillery", "_targetPosition", "_spread"];
 
         // Scale targert area size based on indirectHit and indirectHitRange of the artillery's ammo
-        private _ammo = getText (configFile >> "CfgMagazines" >> currentMagazine _artillery >> "ammo");
-        private _indirectHit = getNumber (configFile >> "CfgAmmo" >> _ammo >> "indirectHit");
-        private _indirectHitRange = getNumber (configFile >> "CfgAmmo" >> _ammo >> "indirectHitRange");
+        private _ammo = getText (EGVAR(common,configMagazines) >> currentMagazine _artillery >> "ammo");
+        private _indirectHit = getNumber (EGVAR(common,configAmmo) >> _ammo >> "indirectHit");
+        private _indirectHitRange = getNumber (EGVAR(common,configAmmo) >> _ammo >> "indirectHitRange");
         _spread = (ARTILLERY_FIRE_MISSION_BASE_DISTANCE * (_indirectHit / _indirectHitRange)) min 300;
 
         private _direction = random 360;

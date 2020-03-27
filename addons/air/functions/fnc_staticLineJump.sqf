@@ -15,7 +15,7 @@
 */
 params ["_vehicle", "_unit"];
 
-private _jumpPoints = getArray (configFile >> "CfgVehicles" >> typeOf _vehicle >> "CUP_JumpPoint");
+private _jumpPoints = getArray (EGVAR(common,configVehicles) >> typeOf _vehicle >> "CUP_JumpPoint");
 private _jumpPosition = _vehicle modelToWorldVisualWorld (_vehicle selectionPosition (_jumpPoints select ((_vehicle getCargoIndex _unit) % 2)));
 _unit allowDamage false;
 moveOut _unit;

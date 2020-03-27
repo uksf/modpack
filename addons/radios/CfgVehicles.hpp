@@ -91,7 +91,7 @@ class CfgVehicles {
         RACKS_AIR
     };
     class Car_F;
-    class UK3CB_BAF_Jackal_Base_D : Car_F {
+    class UK3CB_BAF_Jackal_Base : Car_F {
         RACKS_GROUND
     };
     class UK3CB_BAF_LandRover_Base : Car_F {

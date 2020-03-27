@@ -2,7 +2,6 @@ PREP(fired);
 PREP(firedPlayerEffects);
 PREP(firedShockwave);
 PREP(firedSuppression);
-PREP(readCacheValues);
 PREP(shockwaveHandler);
 PREP(suppressionHandler);
 PREP(suppressionImpact);

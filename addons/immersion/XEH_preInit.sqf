@@ -4,8 +4,6 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
-GVAR(valueCache) = [] call CBA_fnc_hashCreate;
-GVAR(ammoConfig) = configFile >> "CfgAmmo";
 GVAR(shockwaveArray) = [];
 GVAR(suppressionArray)    = [];
 GVAR(suppression_currentUnit) = objNull;

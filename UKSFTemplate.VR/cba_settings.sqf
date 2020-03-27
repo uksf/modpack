@@ -39,3 +39,34 @@ force uksf_mission_artillerySupportMastObjectsString = "['Land_antenna','Land_Co
 force uksf_mission_conspicuity = false;
 // Allows items to be ignored in conspicuity checks. Supports weapons, backpacks, and uniforms only. e.g "['B_fieldPack_blk','Rangefinder']"
 force uksf_mission_conspicuityGearWhitelistString = "[]";
+
+// Determines if basic random patrol spawning is enabled
+force uksf_mission_patrolEnabled = false;
+// Time in seconds between patrol group spawns [60, 3600, 600, 0]
+force uksf_mission_patrolCooldown = 60;
+// Maximum number of active patrol groups allowed [1, 15, 10, 0]
+force uksf_mission_patrolGroupLimit = 10;
+// Probability of spawning a vehicle in place of a group [0, 1, 0.2, 2]
+force uksf_mission_patrolVehicleProbability = 0.2;
+// Combat mode of spawned patrol groups ["SAFE", "AWARE", "COMBAT"]
+force uksf_mission_patrolCombatMode = "SAFE";
+// Speed of spawned patrol groups ["LIMITED","NORMAL","FULL"]
+force uksf_mission_patrolSpeed = "LIMITED";
+// Patrols will not spawn near the player if they are within this distance to safe zones (respawn points) [1500, 7500, 3000, 0]
+force uksf_mission_patrolSafeZoneDistance = 3000;
+// Patrols will spawn beyond this distance from the player [500, 1500, 750, 0]
+force uksf_mission_patrolDistance = 750;
+// Minimum number of groups per patrol. There will be random deviations above this number [1, 3, 1, 0]
+force uksf_mission_patrolMinGroups = 1;
+// Maximum number of units per patrol. There will be random deviations below this number [1, 4, 2, 0]
+force uksf_mission_patrolMaxGroups = 2;
+// Minimum number of units per patrol group. There will be random deviations above this number [2, 11, 3, 0]
+force uksf_mission_patrolMinUnits = 3;
+// Maximum number of units per patrol group. There will be random deviations below this number [4, 12, 6, 0]
+force uksf_mission_patrolMaxUnits = 6;
+// Class names of units that can spawn in patrol groups. Comma-separated list of class names in single quotes, no spaces
+force uksf_mission_patrolUnitPoolString = "['O_Soldier_F']";
+// Class names of vehicles that can spawn in patrol groups. Comma-separated list of class names in single quotes, no spaces
+force uksf_mission_patrolVehiclePoolString = "['O_MBT_02_cannon_F']";
+// Side of spawned patrol groups [EAST, INDEPENDENT, WEST]
+force uksf_mission_patrolUnitSide = EAST;

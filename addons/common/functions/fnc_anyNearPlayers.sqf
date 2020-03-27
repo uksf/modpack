@@ -4,15 +4,15 @@
         Tim Beswick
 
     Description:
-        Gets near players to given centre
+        Returns true if any near players to given centre
 
     Parameters:
         0: Centre position <ARRAY>
         1: Radius <SCALAR>
 
     Return value:
-        Players within radius from center <ARRAY>
+        True if any players are near <BOOLEAN>
 */
 params ["_centre", "_radius"];
 
-ALL_PLAYERS select {_x distance _centre <= _radius}
+(ALL_PLAYERS findIf {_x distance _centre <= _radius}) != -1

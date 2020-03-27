@@ -30,7 +30,7 @@ if (count _vehicles == 0) exitWith {};
         TRACE_1("Loading vehicle exists in mission, using",_id);
         _vehicle = ([GVAR(hashPersistentVehicles), _id] call CBA_fnc_hashGet);
     } else {
-        _vehicle = _type createVehicle [(random 2000) - 6000, (random 2000) - 6000, 0];
+        _vehicle = _type createVehicle [(random 2000) - 6000, (random 2000) - 6000, 20];
         _vehicle setVariable [QGVAR(persistenceID), _id];
         [GVAR(hashPersistentVehicles), _id, _vehicle] call CBA_fnc_hashSet;
     };
@@ -49,13 +49,13 @@ if (count _vehicles == 0) exitWith {};
         private _currentTurretMagazines = magazinesAllTurrets _vehicle;
         private _turretPaths = _currentTurretMagazines apply {_x#1};
         _turretPaths = _turretPaths arrayIntersect _turretPaths;
-        private _pylonPaths = (configProperties [configFile >> "CfgVehicles" >> typeOf _vehicle >> "Components" >> "TransportPylonsComponent" >> "Pylons", "isClass _x"]) apply {getArray (_x >> "turret")};
+        private _pylonPaths = (configProperties [EGVAR(common,configVehicles) >> typeOf _vehicle >> "Components" >> "TransportPylonsComponent" >> "Pylons", "isClass _x"]) apply {getArray (_x >> "turret")};
         private _currentTurretWeapons = _turretPaths apply {[_x, _vehicle weaponsTurret _x]};
         {
             private _turretPath = _x#0;
             {_vehicle removeWeaponTurret [_x, _turretPath]} forEach _x#1;
         } forEach _currentTurretWeapons;
-        {_vehicle removeWeaponGlobal (getText (configFile >> "CfgMagazines" >> _x >> "pylonWeapon"))} forEach (getPylonMagazines _vehicle);
+        {_vehicle removeWeaponGlobal (getText (EGVAR(common,configMagazines) >> _x >> "pylonWeapon"))} forEach (getPylonMagazines _vehicle);
         {_vehicle removeMagazinesTurret [_x#0, _x#1]} forEach _currentTurretMagazines;
         {
             private _turretPath = _x#0;

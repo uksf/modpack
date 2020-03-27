@@ -20,7 +20,7 @@ private _sanitisedInventory = [];
     private _sanitisedPart = "";
     if (_part isEqualType "") then {
         if ((_part select [0, 4]) isEqualTo "ACRE") then {
-            private _uniqueBaseClass = getText (configFile >> "CfgWeapons" >> _part >> "ace_arsenal_uniqueBase");
+            private _uniqueBaseClass = getText (EGVAR(common,configWeapons) >> _part >> "ace_arsenal_uniqueBase");
             if (_uniqueBaseClass != "") then {
                 _part = _uniqueBaseClass;
             };

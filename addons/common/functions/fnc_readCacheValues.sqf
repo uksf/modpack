@@ -4,7 +4,6 @@
         LAxemann, Jokoho482, Tim Beswick
 
     Description:
-        Read Value from config and save it in the cache Location and read and save the value if the value not exist if config entry not exist return the Default Value
         Get value from cache or if not found use config path to set value in cache
 
     Parameters:

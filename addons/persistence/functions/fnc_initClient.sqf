@@ -42,7 +42,7 @@
     //_positionData params ["_position", "_leaderID", "_leaderPosition", "_leaderDirection", "_offset"];
 
     /*if (_leaderID != -1) then {
-        private _leader = allPlayers select {(getPlayerUID _x) == _leaderID};
+        private _leader = ALL_PLAYERS select {(getPlayerUID _x) == _leaderID};
         if (_leader > 0) then { // leader online, calculate relative position from leader position and offset
             _leader = _leader#0;
             _leaderPosition = getPosASL _leader;

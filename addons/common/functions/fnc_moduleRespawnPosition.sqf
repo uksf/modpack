@@ -20,4 +20,5 @@ if (_activated) then {
     private _name = _logic getvariable ["Name", "UKSF"];
     _marker setMarkerType "flag_UK";
     _marker setMarkerText _name;
+    GVAR(respawnPositions) pushBack _marker;
 };

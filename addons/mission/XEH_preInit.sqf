@@ -7,6 +7,8 @@ ADDON = false;
 #include "initSettings.sqf"
 
 GVAR(artillerySupportUnits) = [];
+GVAR(patrolGroups) = [];
+GVAR(patrolBlacklistAreas) = [];
 
 [QGVAR(reTask), {call CBA_fnc_taskPatrol}] call CBA_fnc_addEventHandler;
 [QGVAR(initPatrol), {call FUNC(initPatrol)}] call CBA_fnc_addEventHandler;

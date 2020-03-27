@@ -11,6 +11,14 @@ ADDON = false;
 
 GVAR(fpsState) = false;
 
+GVAR(respawnPositions) = [];
+
+GVAR(valueCache) = [] call CBA_fnc_hashCreate;
+GVAR(configAmmo) = configFile >> "CfgAmmo";
+GVAR(configMagazines) = configFile >> "CfgMagazines";
+GVAR(configWeapons) = configFile >> "CfgWeapons";
+GVAR(configVehicles) = configFile >> "CfgVehicles";
+
 if (hasInterface) then {
     GVAR(fpsArray) = [];
 
@@ -40,6 +48,7 @@ if (isServer) then {
         }, _this#0, _this#1] call CBA_fnc_waitAndExecute
     }] call CBA_fnc_addEventHandler;
 };
+
 [QGVAR(log), {INFO(_this#0)}] call CBA_fnc_addEventHandler;
 [QGVAR(deleteEmptyGroups), {{deleteGroup _x} forEach allGroups}] call CBA_fnc_addEventHandler;
 

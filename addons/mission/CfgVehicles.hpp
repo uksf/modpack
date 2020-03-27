@@ -14,7 +14,7 @@ class CfgVehicles {
         canSetArea = 1;
         canSetAreaHeight = 0;
         canSetAreaShape = 1;
-        category = EGVAR(common,zeus_uksf);
+        category = EGVAR(common,eden);
         class AttributeValues {
             size3[] = {500, 500, -1};
             isRectangle = 0;
@@ -44,6 +44,23 @@ class CfgVehicles {
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(faction),_value,true)]);
                 defaultValue = "OPF_F";
             };
+        };
+    };
+    class GVAR(modulePatrolBlacklistArea): Module_F {
+        scope = 2;
+        is3DEN = 1;
+        displayName = "Patrol Blacklist Area";
+        icon = "A3\Modules_F\Data\portraitsector_ca.paa";
+        portrait = "A3\Modules_F\Data\portraitsector_ca.paa";
+        function = QFUNC(modulePatrolBlacklistArea);
+        functionPriority = 25;
+        canSetArea = 1;
+        canSetAreaHeight = 0;
+        canSetAreaShape = 1;
+        category = EGVAR(common,eden);
+        class AttributeValues {
+            size3[] = {500, 500, -1};
+            isRectangle = 0;
         };
     };
 };

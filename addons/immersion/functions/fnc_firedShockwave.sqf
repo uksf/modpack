@@ -15,7 +15,7 @@
 */
 params ["_ammo", "_projectile"];
 
-private _function = [[QGVAR(shockwaveFunction_), _ammo] joinString "", {GVAR(ammoConfig) >> _ammo >> "shockwaveFunction"}] call FUNC(readCacheValues);
+private _function = [[QGVAR(shockwaveFunction_), _ammo] joinString "", {EGVAR(common,configAmmo) >> _ammo >> "shockwaveFunction"}] call EFUNC(common,readCacheValues);
 if (_function != "") then {
     GVAR(shockwaveArray) pushBack [_projectile, _function];
 };

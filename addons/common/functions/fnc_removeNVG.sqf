@@ -17,7 +17,7 @@ params [["_unit", objNull]];
 if (local _unit) then {
     private _items = assignedItems _unit;
     {
-        if (getText (configFile >> "CfgWeapons" >> _x >> "simulation") isEqualTo "NVGoggles") then {
+        if (getText (GVAR(configWeapons) >> _x >> "simulation") isEqualTo "NVGoggles") then {
             _unit unassignItem _x;
             _unit removeItem _x;
         };

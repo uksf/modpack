@@ -23,7 +23,7 @@ if ((driver _car) != objNull) then {
 if (_car isKindOf "UKSF_O_Skoda_Base") then {
     [_car, ["White", 0.25, "Red", 0.25, "Blue", 0.25, "Green", 0.25]] call BIS_fnc_initVehicle;
 };
-private _side = switch (getNumber (configFile >> "CfgVehicles" >> typeOf _car >> "side")) do {
+private _side = switch (getNumber (EGVAR(common,configVehicles) >> typeOf _car >> "side")) do {
     case 1: { west };
     case 2: { independent };
     default { east };

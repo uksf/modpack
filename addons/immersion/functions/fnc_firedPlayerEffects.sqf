@@ -23,7 +23,7 @@ if (
 ) exitWith {};
 
 // Use ammo hit value to scale effects (higher hit = heavier effects)
-private _hit = [[QGVAR(hit_), _ammo] joinString "", {GVAR(ammoConfig) >> _ammo >> "hit"}] call FUNC(readCacheValues);
+private _hit = [[QGVAR(hit_), _ammo] joinString "", {EGVAR(common,configAmmo) >> _ammo >> "hit"}] call EFUNC(common,readCacheValues);
 if (_hit == 0) exitWith {};
 private _powerCoefficient = linearConversion [1, 120, _hit, 0.05, 1.2, true];
 private _randomness = (random (_powerCoefficient / 10)) - (_powerCoefficient / 10);

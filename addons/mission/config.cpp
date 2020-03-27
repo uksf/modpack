@@ -4,7 +4,8 @@ class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
         units[] = {
-            QGVAR(moduleSpawnArea)
+            QGVAR(moduleSpawnArea),
+            QGVAR(modulePatrolBlacklistArea)
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;

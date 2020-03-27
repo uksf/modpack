@@ -50,6 +50,8 @@
 #define ADMIN_OR_WHITELISTED ADMIN_OR_HOST || {WHITELISTED}
 #define MULTIPLAYER_ADMIN_OR_WHITELISTED isMultiplayer && {ADMIN_OR_WHITELISTED}
 
+#define ALL_PLAYERS (allPlayers - entities "HeadlessClient_F")
+
 #define MACRO_ADDWEAPON(WEAPON,COUNT) class _xx_##WEAPON { \
     weapon = #WEAPON; \
     count = COUNT; \

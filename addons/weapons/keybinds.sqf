@@ -4,7 +4,7 @@
     // Conditions: canInteract
     if !([ACE_player, objNull, ["isNotInside"]] call EFUNC(common,canInteractWith)) exitWith {false};
     // Conditions: specific
-    if !(((currentWeapon ACE_player) isKindOf ["UK3CB_BAF_Soflam_Laserdesignator", configFile >> "CfgWeapons"]) && {cameraView == "GUNNER"} && {isLaserOn ACE_player}) exitWith {false};
+    if !(((currentWeapon ACE_player) isKindOf ["UK3CB_BAF_Soflam_Laserdesignator", EGVAR(common,configWeapons)]) && {cameraView == "GUNNER"} && {isLaserOn ACE_player}) exitWith {false};
 
     // Get data
     private _distance = call FUNC(getSoflamDistance);

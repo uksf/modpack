@@ -1,4 +1,5 @@
 #include "\a3\functions_f_jets\functions\aircraftcarrier\defines.inc"
+#include "script_component.hpp"
 /*
     Author: Jiri Wainar, edited by Tim Beswick
 
@@ -50,7 +51,7 @@ if (isNull _target) exitWith {["[x] Adding of launch action failed, valid airpla
 if ({GET_ACTION_ID(_x) > -1} count [vehicle player,cameraOn] > 0) exitWith {};
 
 // Exclude aircraft if explicitly excluded in config
-if (getNumber (configFile >> "CfgVehicles" >> typeOf _target >> "CatapultExclude") == 1) exitWith {};
+if (getNumber (EGVAR(common,configVehicles) >> typeOf _target >> "CatapultExclude") == 1) exitWith {};
 
 //["[ ] Catapult action successfully added to airplane %1 (%2).",_target,typeOf _target] call bis_fnc_logFormat;
 

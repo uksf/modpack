@@ -569,6 +569,17 @@ force uksf_cleanup_enabled = true;
 force uksf_common_mainOp = false;
 force uksf_curator_curatorsLocked = false;
 force uksf_curator_curatorsMax = 5;
+force uksf_persistence_overrideSavedDateTime = false;
+
+// UKSF - Immersion
+force force uksf_immersion_suppression_buildup = 1;
+force force uksf_immersion_suppression_enabled = true;
+force force uksf_immersion_suppression_flyByIntensity = 1;
+force force uksf_immersion_suppression_haltRecovery = true;
+force force uksf_immersion_suppression_intensity = 1;
+force force uksf_immersion_suppression_recoveryFactor = 1;
+
+// UKSF - Mission
 force uksf_mission_artillerySupport = true;
 force uksf_mission_artillerySupportBaseDistance = 500;
 force uksf_mission_artillerySupportChance = 5;
@@ -579,18 +590,24 @@ force uksf_mission_artillerySupportRtoBackpacksString = "['UK3CB_BAF_B_Bergen_OL
 force uksf_mission_artillerySupportRtoDistance = 1000;
 force uksf_mission_conspicuity = false;
 force uksf_mission_conspicuityGearWhitelistString = "[]";
+force uksf_mission_patrolCombatMode = "SAFE";
+force uksf_mission_patrolCooldown = 600;
+force uksf_mission_patrolDistance = 750;
+force uksf_mission_patrolEnabled = false;
+force uksf_mission_patrolGroupLimit = 10;
+force uksf_mission_patrolMaxGroups = 2;
+force uksf_mission_patrolMinGroups = 1;
+force uksf_mission_patrolMaxUnits = 6;
+force uksf_mission_patrolMinUnits = 3;
+force uksf_mission_patrolSafeZoneDistance = 3000;
+force uksf_mission_patrolSpeed = "LIMITED";
+force uksf_mission_patrolUnitPoolString = "['O_Soldier_F']";
+force uksf_mission_patrolUnitSide = EAST;
+force uksf_mission_patrolVehiclePoolString = "['O_MBT_02_cannon_F']";
+force uksf_mission_patrolVehicleProbability = 0.2;
 force uksf_mission_support = true;
 force uksf_mission_supportChance = 25;
 force uksf_mission_supportDistance = 500;
-force uksf_persistence_overrideSavedDateTime = false;
-
-// UKSF Immersion
-force force uksf_immersion_suppression_buildup = 1;
-force force uksf_immersion_suppression_enabled = true;
-force force uksf_immersion_suppression_flyByIntensity = 1;
-force force uksf_immersion_suppression_haltRecovery = true;
-force force uksf_immersion_suppression_intensity = 1;
-force force uksf_immersion_suppression_recoveryFactor = 1;
 
 // Zeus Enhanced
 zen_camera_adaptiveSpeed = true;
