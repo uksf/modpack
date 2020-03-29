@@ -40,6 +40,7 @@ class CfgVehicles {
             class CopilotTurret;
         };
         class Components;
+        class AnimationSources;
     };
     class Heli_Light_01_base_F : Helicopter_Base_H {
         epeImpulseDamageCoef = 5;

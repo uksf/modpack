@@ -3,6 +3,7 @@ class CUP_CH47F_base : Helicopter_Base_H {
     cyclicForwardForceCoef = 1.7;
     fuelCapacity = 60;  // 500
     armor = 60;
+    maximumLoad = 2500;
     memoryPointsGetInDriver = "pos cargo";
     memoryPointsGetInDriverDir = "pos cargo dir";
     driverCanEject = 1;
@@ -27,6 +28,8 @@ class CUP_CH47F_base : Helicopter_Base_H {
     };
     class Turrets : Turrets {
         class MainTurret : MainTurret {
+            gunnerName = "Crew Chief";
+            primaryGunner = 0;
             soundAttenuationTurret = "HeliAttenuationGunner";
         };
         class RightDoorGun : MainTurret {
@@ -36,6 +39,7 @@ class CUP_CH47F_base : Helicopter_Base_H {
             soundAttenuationTurret = "HeliAttenuationGunner";
         };
         class CopilotTurret : CopilotTurret {
+            primaryGunner = 1;
             memoryPointsGetInGunner = "pos cargo";
             memoryPointsGetInGunnerDir = "pos cargo dir";
             CanEject = 1;
@@ -86,6 +90,7 @@ class CUP_CH47F_base : Helicopter_Base_H {
             };
         };
     };
+    class AnimationSources;
     attenuationEffectType = "SemiOpenHeliAttenuation";
     unitInfoType = "RscUnitInfoNoSpeed";
     unitInfoTypeLite = "RscUnitInfoNoSpeed";
@@ -173,13 +178,216 @@ class CUP_CH47F_base : Helicopter_Base_H {
             };
         };
     };
-#include "MFDGeneral.hpp"
     ace_cookoff_cookoffSelections[] = { "palivo" };
     ace_refuel_fuelCapacity = 3914;
+#include "MFDGeneral.hpp"
 };
 class CUP_B_CH47F_GB : CUP_CH47F_base {
+    scope = 2;
+    scopeCurator = 2;
+    side = 1;
+    faction = "CUP_B_GB";
+    displayName = "Chinook HC-4";
     crew = "UKSF_B_Pilot_7";
     typicalCargo[] = { "UKSF_B_Pilot_7", "UKSF_B_Pilot_7", "UKSF_B_Pilot_7" };
+    hiddenSelectionsTextures[] = { "cup\airvehicles\cup_airvehicles_ch47\data\ch47_ext_1_baf_co.paa", "cup\airvehicles\cup_airvehicles_ch47\data\ch47_ext_2_baf_co.paa", "", "cup\airvehicles\cup_airvehicles_ch47\data\ch47_ext_mlod_co.paa" };
+    editorPreview = "CUP\AirVehicles\CUP_AirVehicles_CH47\Data\preview\CUP_B_CH47F_GB.jpg";
+    class Turrets : Turrets {
+        class MainTurret : MainTurret {
+            gunnerName = "Crew Chief";
+            body = "mainTurret";
+            gun = "mainGun";
+            minElev = -50;
+            maxElev = 30;
+            initElev = -30;
+            minTurn = -3;
+            maxTurn = 173;
+            initTurn = 0;
+            soundServo[] = { "db-40", 1.0 };
+            animationSourceHatch = "";
+            stabilizedInAxes = 0;
+            gunBeg = "muzzle_1";
+            gunEnd = "chamber_1";
+            weapons[] = { "CUP_M134" };
+            magazines[] = { "CUP_2000Rnd_TE1_Red_Tracer_762x51_M134_M" };
+            gunnerName = "$STR_CUP_POSITION_Core_CC";
+            gunnerOpticsModel = "\A3\weapons_f\reticle\optics_empty";
+            gunnerOutOpticsShowCursor = 1;
+            gunnerOpticsShowCursor = 1;
+            gunnerAction = "CUP_CH47_Gunner";
+            gunnerInAction = "CUP_CH47_Gunner";
+            commanding = -2;
+            primaryGunner = 0;
+            class ViewOptics {
+                initAngleX = 0;
+                minAngleX = -30;
+                maxAngleX = 30;
+                initAngleY = 0;
+                minAngleY = -100;
+                maxAngleY = 100;
+                initFov = 0.7;
+                minFov = 0.25;
+                maxFov = 1.1;
+            };
+            gunnerCompartments = "Compartment2";
+            memoryPointsGetInGunner = "pos gunner";
+            memoryPointsGetInGunnerDir = "pos gunner dir";
+            isCopilot = 0;
+            selectionFireAnim = "zasleh";
+            slingLoadOperator = 0;
+        };
+        class RightDoorGun : MainTurret {
+            body = "Turret2";
+            gun = "Gun_2";
+            minElev = -60;
+            maxElev = 30;
+            initElev = -30;
+            minTurn = -173;
+            maxTurn = 3;
+            initTurn = 0;
+            animationSourceBody = "Turret_2";
+            animationSourceGun = "Gun_2";
+            stabilizedInAxes = 0;
+            selectionFireAnim = "zasleh_1";
+            proxyIndex = 2;
+            weapons[] = { "CUP_M134_2" };
+            magazines[] = { "CUP_2000Rnd_TE1_Red_Tracer_762x51_M134_M" };
+            gunnerOpticsModel = "\A3\weapons_f\reticle\optics_empty";
+            gunnerOutOpticsShowCursor = 1;
+            gunnerOpticsShowCursor = 1;
+            gunnerName = "$STR_A3_RIGHT_GUNNER";
+            commanding = -2;
+            gunBeg = "muzzle_2";
+            gunEnd = "chamber_2";
+            primaryGunner = 0;
+            preciseGetInOut = 1;
+            memoryPointGun = "machinegun_2";
+            memoryPointGunnerOptics = "gunnerview_2";
+            gunnerCompartments = "Compartment2";
+            memoryPointsGetInGunner = "pos gunner";
+            memoryPointsGetInGunnerDir = "pos gunner dir";
+            isCopilot = 0;
+            turretFollowFreeLook = 0;
+            slingLoadOperator = 0;
+        };
+        class BackDoorGun : MainTurret {
+            body = "Turret3";
+            gun = "Gun_3";
+            minTurn = 130;
+            maxTurn = 230;
+            initTurn = 180;
+            minElev = -50;
+            maxElev = 50;
+            initElev = 0;
+            animationSourceBody = "Turret_3";
+            animationSourceGun = "Gun_3";
+            stabilizedInAxes = 0;
+            selectionFireAnim = "zasleh_3";
+            proxyIndex = 3;
+            gunnerName = "$STR_A3_REAR_GUNNER";
+            gunnerOpticsShowCursor = 0;
+            commanding = -1;
+            gunnerAction = "CUP_CH47_Gunner01";
+            gunnerInAction = "CUP_CH47_Gunner01";
+            weapons[] = { "CUP_Vlmg_L7A2_veh" };
+            magazines[] = { "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M" };
+            gunBeg = "muzzle_3";
+            gunEnd = "chamber_3";
+            primaryGunner = 0;
+            memoryPointGun = "machinegun_3";
+            memoryPointGunnerOptics = "gunnerview_3";
+            memoryPointsGetInGunner = "pos gunner";
+            memoryPointsGetInGunnerDir = "pos gunner dir";
+            gunnerCompartments = "Compartment2";
+            isCopilot = 0;
+            slingLoadOperator = 0;
+        };
+        class CopilotTurret : CopilotTurret {
+            CanEject = 0;
+            gunnerAction = "CUP_CH47_Pilot";
+            gunnerInAction = "CUP_CH47_Pilot";
+            memoryPointsGetInGunner = "pos cargo";
+            memoryPointsGetInGunnerDir = "pos cargo dir";
+            gunnerGetInAction = "GetInHeli_Transport_01Cargo";
+            gunnerGetOutAction = "GetOutLow";
+            preciseGetInOut = 0;
+            GunnerDoor = "";
+            gunnerLeftHandAnimName = "lever_copilot";
+            gunnerRightHandAnimName = "stick_copilot";
+            gunnerLeftLegAnimName = "";
+            gunnerRightLegAnimName = "";
+            proxyIndex = 4;
+            LODTurnedIn = 1100;
+            LODTurnedOut = 1100;
+            gunnerCompartments = "Compartment3";
+            commanding = -3;
+            isCopilot = 1;
+            primaryGunner = 1;
+            slingLoadOperator = 0;
+            class Components {
+                class VehicleSystemsDisplayManagerComponentLeft : DefaultVehicleSystemsDisplayManagerLeft {
+                    defaultDisplay = "EmptyDisplay";
+                    class Components {
+                        class SensorsDisplay {
+                            componentType = "SensorsDisplayComponent";
+                            range[] = { 16000, 8000, 4000, 2000 };
+                            resource = "RscCustomInfoSensors";
+                        };
+                        class CrewDisplay {
+                            componentType = "CrewDisplayComponent";
+                            resource = "RscCustomInfoCrew";
+                        };
+                        class MinimapDisplay {
+                            componentType = "MinimapDisplayComponent";
+                            resource = "RscCustomInfoMiniMap";
+                        };
+                        class EmptyDisplay {
+                            componentType = "EmptyDisplayComponent";
+                        };
+                    };
+                };
+                class VehicleSystemsDisplayManagerComponentRight : DefaultVehicleSystemsDisplayManagerRight {
+                    defaultDisplay = "SensorsDisplay";
+                    class Components {
+                        class SensorsDisplay {
+                            componentType = "SensorsDisplayComponent";
+                            range[] = { 16000, 8000, 4000, 2000 };
+                            resource = "RscCustomInfoSensors";
+                        };
+                        class CrewDisplay {
+                            componentType = "CrewDisplayComponent";
+                            resource = "RscCustomInfoCrew";
+                        };
+                        class MinimapDisplay {
+                            componentType = "MinimapDisplayComponent";
+                            resource = "RscCustomInfoMiniMap";
+                        };
+                        class EmptyDisplay {
+                            componentType = "EmptyDisplayComponent";
+                        };
+                    };
+                };
+            };
+        };
+    };
+    class AnimationSources : AnimationSources {
+        class machinegun_muzzle_rot {
+            source = "ammorandom";
+            weapon = "CUP_Vlmg_L7A2_veh";
+        };
+        class ReloadAnim {
+            source = "reload";
+            weapon = "CUP_Vlmg_L7A2_veh";
+        };
+        class ReloadMagazine {
+            source = "reloadmagazine";
+            weapon = "CUP_Vlmg_L7A2_veh";
+        };
+        class Revolving {
+            source = "revolving";
+            weapon = "CUP_Vlmg_L7A2_veh";
+        };
+    };
     INVENTORY_AIRCRAFT
 };
 class CUP_CH47F_VIV_base : CUP_CH47F_base {};

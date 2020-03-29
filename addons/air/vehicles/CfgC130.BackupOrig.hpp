@@ -29,53 +29,53 @@ class CUP_B_C130J_GB : CUP_C130J_Base {
     draconicForceZCoef = 1;
     draconicTorqueXCoef[] = { 22, 21.5, 21, 20.5, 20, 20, 20.5, 21, 22, 23, 24 };
     draconicTorqueYCoef[] = { 1, 1.2, 1.4, 2, 4, 7, 6.8, 6.6, 6.4, 6.2, 5.5, 5, 4.5, 3.9, 3, 1 };
-    soundGetIn[] = { QPATHTOF(data\sounds\close),0.31622776,1 };
-    soundGetOut[] = { QPATHTOF(data\sounds\open),0.31622776,1,40 };
-    soundDammage[] = { QPATHTOF(data\sounds\int_alarm_loop),0.56234133,1 };
-    soundEngineOnInt[] = { QPATHTOF(data\sounds\int_start_1),0.39810717,1 };
-    soundEngineOnExt[] = { QPATHTOF(data\sounds\ext_start_1),0.39810717,1,700 };
-    soundEngineOffInt[] = { QPATHTOF(data\sounds\int_stop_1),0.39810717,1 };
-    soundEngineOffExt[] = { QPATHTOF(data\sounds\ext_stop_1),0.39810717,1,700 };
+    soundGetIn[] = { QPATHTOF(data\c130\sounds\close),0.31622776,1 };
+    soundGetOut[] = { QPATHTOF(data\c130\sounds\open),0.31622776,1,40 };
+    soundDammage[] = { QPATHTOF(data\c130\sounds\int_alarm_loop),0.56234133,1 };
+    soundEngineOnInt[] = { QPATHTOF(data\c130\sounds\int_start_1),0.39810717,1 };
+    soundEngineOnExt[] = { QPATHTOF(data\c130\sounds\ext_start_1),0.39810717,1,700 };
+    soundEngineOffInt[] = { QPATHTOF(data\c130\sounds\int_stop_1),0.39810717,1 };
+    soundEngineOffExt[] = { QPATHTOF(data\c130\sounds\ext_stop_1),0.39810717,1,700 };
     soundIncommingMissile[] = { "\A3\Sounds_F\weapons\Rockets\locked_3", 0.1, 1.5 };
     class Sounds {
         class EngineLowOut {
-            sound[] = { QPATHTOF(data\sounds\ext_engine_low),2.7782794,1,900 };
+            sound[] = { QPATHTOF(data\c130\sounds\ext_engine_low),2.7782794,1,900 };
             frequency = "1.0 min (rpm + 0.5)";
             volume = "camPos*engineOn*(rpm factor[0.85, 0])";
         };
         class EngineHighOut {
-            sound[] = { QPATHTOF(data\sounds\ext_engine_hi),2.7782794,1,1100 };
+            sound[] = { QPATHTOF(data\c130\sounds\ext_engine_hi),2.7782794,1,1100 };
             frequency = "1";
             volume = "camPos*engineOn*(rpm factor[0.55, 1.0])";
         };
         class ForsageOut {
-            sound[] = { QPATHTOF(data\sounds\ext_forsage_1),2.4125376,1,1500 };
+            sound[] = { QPATHTOF(data\c130\sounds\ext_forsage_1),2.4125376,1,1500 };
             frequency = "1";
             volume = "camPos*engineOn*(thrust factor[0.5, 1.0])";
             cone[] = { 1.14, 3.9200001, 2, 0.4 };
         };
         class WindNoiseOut {
-            sound[] = { QPATHTOF(data\sounds\ext_wind1),0.001,0.6,150 };
+            sound[] = { QPATHTOF(data\c130\sounds\ext_wind1),0.001,0.6,150 };
             frequency = "(0.1+(1.2*(speed factor[1, 100])))";
             volume = "camPos*(speed factor[1, 100])";
         };
         class EngineLowIn {
-            sound[] = { QPATHTOF(data\sounds\int_engine_low),1,1 };
+            sound[] = { QPATHTOF(data\c130\sounds\int_engine_low),1,1 };
             frequency = "1.0 min (rpm + 0.5)";
             volume = "(1-camPos)*(engineOn*(rpm factor[0.85, 0]))";
         };
         class EngineHighIn {
-            sound[] = { QPATHTOF(data\sounds\int_engine_hi),1,1 };
+            sound[] = { QPATHTOF(data\c130\sounds\int_engine_hi),1,1 };
             frequency = "1";
             volume = "(1-camPos)*(engineOn*(rpm factor[0.55, 1.0]))";
         };
         class ForsageIn {
-            sound[] = { QPATHTOF(data\sounds\int_forsage_1),2.4125376,1.1 };
+            sound[] = { QPATHTOF(data\c130\sounds\int_forsage_1),2.4125376,1.1 };
             frequency = "1";
             volume = "(1-camPos)*(engineOn*(thrust factor[0.5, 1.0]))";
         };
         class WindNoiseIn {
-            sound[] = { QPATHTOF(data\sounds\int_wind1),0.001,0.6 };
+            sound[] = { QPATHTOF(data\c130\sounds\int_wind1),0.001,0.6 };
             frequency = "(0.1+(1.2*(speed factor[1, 100])))";
             volume = "(1-camPos)*(speed factor[1, 100])";
         };
@@ -184,53 +184,53 @@ class CUP_B_C130J_Cargo_GB : CUP_C130J_VIV_Base {
     draconicForceZCoef = 1;
     draconicTorqueXCoef[] = { 22, 21.5, 21, 20.5, 20, 20, 20.5, 21, 22, 23, 24 };
     draconicTorqueYCoef[] = { 1, 1.2, 1.4, 2, 4, 7, 6.8, 6.6, 6.4, 6.2, 5.5, 5, 4.5, 3.9, 3, 1 };
-    soundGetIn[] = { QPATHTOF(data\sounds\close),0.31622776,1 };
-    soundGetOut[] = { QPATHTOF(data\sounds\open),0.31622776,1,40 };
-    soundDammage[] = { QPATHTOF(data\sounds\int_alarm_loop),0.56234133,1 };
-    soundEngineOnInt[] = { QPATHTOF(data\sounds\int_start_1),0.39810717,1 };
-    soundEngineOnExt[] = { QPATHTOF(data\sounds\ext_start_1),0.39810717,1,700 };
-    soundEngineOffInt[] = { QPATHTOF(data\sounds\int_stop_1),0.39810717,1 };
-    soundEngineOffExt[] = { QPATHTOF(data\sounds\ext_stop_1),0.39810717,1,700 };
+    soundGetIn[] = { QPATHTOF(data\c130\sounds\close),0.31622776,1 };
+    soundGetOut[] = { QPATHTOF(data\c130\sounds\open),0.31622776,1,40 };
+    soundDammage[] = { QPATHTOF(data\c130\sounds\int_alarm_loop),0.56234133,1 };
+    soundEngineOnInt[] = { QPATHTOF(data\c130\sounds\int_start_1),0.39810717,1 };
+    soundEngineOnExt[] = { QPATHTOF(data\c130\sounds\ext_start_1),0.39810717,1,700 };
+    soundEngineOffInt[] = { QPATHTOF(data\c130\sounds\int_stop_1),0.39810717,1 };
+    soundEngineOffExt[] = { QPATHTOF(data\c130\sounds\ext_stop_1),0.39810717,1,700 };
     soundIncommingMissile[] = { "\A3\Sounds_F\weapons\Rockets\locked_3", 0.1, 1.5 };
     class Sounds {
         class EngineLowOut {
-            sound[] = { QPATHTOF(data\sounds\ext_engine_low),2.7782794,1,900 };
+            sound[] = { QPATHTOF(data\c130\sounds\ext_engine_low),2.7782794,1,900 };
             frequency = "1.0 min (rpm + 0.5)";
             volume = "camPos*engineOn*(rpm factor[0.85, 0])";
         };
         class EngineHighOut {
-            sound[] = { QPATHTOF(data\sounds\ext_engine_hi),2.7782794,1,1100 };
+            sound[] = { QPATHTOF(data\c130\sounds\ext_engine_hi),2.7782794,1,1100 };
             frequency = "1";
             volume = "camPos*engineOn*(rpm factor[0.55, 1.0])";
         };
         class ForsageOut {
-            sound[] = { QPATHTOF(data\sounds\ext_forsage_1),2.4125376,1,1500 };
+            sound[] = { QPATHTOF(data\c130\sounds\ext_forsage_1),2.4125376,1,1500 };
             frequency = "1";
             volume = "camPos*engineOn*(thrust factor[0.5, 1.0])";
             cone[] = { 1.14, 3.9200001, 2, 0.4 };
         };
         class WindNoiseOut {
-            sound[] = { QPATHTOF(data\sounds\ext_wind1),0.001,0.6,150 };
+            sound[] = { QPATHTOF(data\c130\sounds\ext_wind1),0.001,0.6,150 };
             frequency = "(0.1+(1.2*(speed factor[1, 100])))";
             volume = "camPos*(speed factor[1, 100])";
         };
         class EngineLowIn {
-            sound[] = { QPATHTOF(data\sounds\int_engine_low),1,1 };
+            sound[] = { QPATHTOF(data\c130\sounds\int_engine_low),1,1 };
             frequency = "1.0 min (rpm + 0.5)";
             volume = "(1-camPos)*(engineOn*(rpm factor[0.85, 0]))";
         };
         class EngineHighIn {
-            sound[] = { QPATHTOF(data\sounds\int_engine_hi),1,1 };
+            sound[] = { QPATHTOF(data\c130\sounds\int_engine_hi),1,1 };
             frequency = "1";
             volume = "(1-camPos)*(engineOn*(rpm factor[0.55, 1.0]))";
         };
         class ForsageIn {
-            sound[] = { QPATHTOF(data\sounds\int_forsage_1),2.4125376,1.1 };
+            sound[] = { QPATHTOF(data\c130\sounds\int_forsage_1),2.4125376,1.1 };
             frequency = "1";
             volume = "(1-camPos)*(engineOn*(thrust factor[0.5, 1.0]))";
         };
         class WindNoiseIn {
-            sound[] = { QPATHTOF(data\sounds\int_wind1),0.001,0.6 };
+            sound[] = { QPATHTOF(data\c130\sounds\int_wind1),0.001,0.6 };
             frequency = "(0.1+(1.2*(speed factor[1, 100])))";
             volume = "(1-camPos)*(speed factor[1, 100])";
         };
