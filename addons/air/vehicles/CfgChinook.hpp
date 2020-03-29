@@ -210,7 +210,6 @@ class CUP_B_CH47F_GB : CUP_CH47F_base {
             gunEnd = "chamber_1";
             weapons[] = { "CUP_M134" };
             magazines[] = { "CUP_2000Rnd_TE1_Red_Tracer_762x51_M134_M" };
-            gunnerName = "$STR_CUP_POSITION_Core_CC";
             gunnerOpticsModel = "\A3\weapons_f\reticle\optics_empty";
             gunnerOutOpticsShowCursor = 1;
             gunnerOpticsShowCursor = 1;
