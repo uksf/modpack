@@ -2,20 +2,25 @@ class Truck_01_base_F;
 class UK3CB_BAF_MAN_HX60_Base : Truck_01_base_F {
     faction = "CUP_B_GB";
     editorSubcategory = QEGVAR(common,support);
+    ace_cargo_space = 30;
 };
 class UK3CB_BAF_MAN_HX60_Cargo_Base : UK3CB_BAF_MAN_HX60_Base {
     faction = "CUP_B_GB";
+    ace_cargo_space = 30;
 };
 class UK3CB_BAF_MAN_HX60_Fuel_Base : UK3CB_BAF_MAN_HX60_Base {
     faction = "CUP_B_GB";
     transportFuel = 0;
+    ace_cargo_space = 12;
 };
 class UK3CB_BAF_MAN_HX60_Repair_Base : UK3CB_BAF_MAN_HX60_Base {
     faction = "CUP_B_GB";
     transportRepair = 0;
+    ace_cargo_space = 18;
 };
 class UK3CB_BAF_MAN_HX60_Transport_Base : UK3CB_BAF_MAN_HX60_Base {
     faction = "CUP_B_GB";
+    ace_cargo_space = 12;
 };
 class UK3CB_BAF_MAN_HX60_Cargo_Green_A : UK3CB_BAF_MAN_HX60_Cargo_Base {
     faction = "CUP_B_GB";
@@ -57,22 +62,28 @@ class UK3CB_BAF_MAN_HX60_Repair_Sand : UK3CB_BAF_MAN_HX60_Repair_Base {
 class UK3CB_BAF_MAN_HX60_Transport_Sand : UK3CB_BAF_MAN_HX60_Transport_Base {
     faction = "CUP_B_GB";
 };
+
 class UK3CB_BAF_MAN_HX58_Base : UK3CB_BAF_MAN_HX60_Base {
     faction = "CUP_B_GB";
+    ace_cargo_space = 40;
 };
 class UK3CB_BAF_MAN_HX58_Cargo_Base : UK3CB_BAF_MAN_HX58_Base {
     faction = "CUP_B_GB";
+    ace_cargo_space = 40;
 };
 class UK3CB_BAF_MAN_HX58_Fuel_Base : UK3CB_BAF_MAN_HX58_Base {
     faction = "CUP_B_GB";
     transportFuel = 0;
+    ace_cargo_space = 16;
 };
 class UK3CB_BAF_MAN_HX58_Repair_Base : UK3CB_BAF_MAN_HX58_Base {
     faction = "CUP_B_GB";
     transportRepair = 0;
+    ace_cargo_space = 24;
 };
 class UK3CB_BAF_MAN_HX58_Transport_Base : UK3CB_BAF_MAN_HX58_Base {
     faction = "CUP_B_GB";
+    ace_cargo_space = 16;
 };
 class UK3CB_BAF_MAN_HX58_Cargo_Green_A : UK3CB_BAF_MAN_HX58_Cargo_Base {
     faction = "CUP_B_GB";
