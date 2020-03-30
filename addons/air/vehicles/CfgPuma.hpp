@@ -9,6 +9,7 @@ class rksla3_pumahc_base: Helicopter_Base_H {
     cyclicAsideForceCoef = 0.9;
     cyclicForwardForceCoef = 0.9;
     backRotorForceCoef = 0.9;
+    startDuration = 40;
     class Components: Components {
         class SensorsManagerComponent {
             class Components {

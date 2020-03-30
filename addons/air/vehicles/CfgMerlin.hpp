@@ -4,6 +4,7 @@ class UK3CB_BAF_Merlin_Base : Heli_Transport_02_base_F {
     crew = "UKSF_B_Pilot_7";
     typicalCargo[] = { "UKSF_B_Pilot_7" };
     fuelCapacity = 1750;  // 2500
+    startDuration = 60;
     class ViewPilot : ViewPilot {
         minFov = 0.25;
         maxFov = 1.25;

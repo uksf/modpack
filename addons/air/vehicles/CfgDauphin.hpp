@@ -77,4 +77,5 @@ class GVAR(dauphin) : MEA_Pantera_Base {
     class TransportBackpacks {};
     hiddenSelections[] = { "decals" };
     hiddenSelectionsTextures[] = { "" };
+    startDuration = 45;
 };

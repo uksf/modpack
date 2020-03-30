@@ -3,6 +3,7 @@ class CUP_CH47F_base : Helicopter_Base_H {
     cyclicForwardForceCoef = 1.7;
     fuelCapacity = 60;  // 500
     armor = 60;
+    startDuration = 90;
     maximumLoad = 2500;
     memoryPointsGetInDriver = "pos cargo";
     memoryPointsGetInDriverDir = "pos cargo dir";

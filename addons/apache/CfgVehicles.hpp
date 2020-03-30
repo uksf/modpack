@@ -111,6 +111,7 @@ class CfgVehicles {
         availableForSupportTypes[] = { "CAS_Heli" };
         armor = 100;
         fuelCapacity = 200;  // 300
+        startDuration = 70;
         explosionShielding = 0.5;
         epeImpulseDamageCoef = 5;
         crewCrashProtection = 0.5;
