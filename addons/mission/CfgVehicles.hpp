@@ -63,4 +63,21 @@ class CfgVehicles {
             isRectangle = 0;
         };
     };
+    class GVAR(modulePatrolWhitelistArea): Module_F {
+        scope = 2;
+        is3DEN = 1;
+        displayName = "Patrol Whitelist Area";
+        icon = "A3\Modules_F\Data\portraitsector_ca.paa";
+        portrait = "A3\Modules_F\Data\portraitsector_ca.paa";
+        function = QFUNC(modulePatrolWhitelistArea);
+        functionPriority = 25;
+        canSetArea = 1;
+        canSetAreaHeight = 0;
+        canSetAreaShape = 1;
+        category = EGVAR(common,eden);
+        class AttributeValues {
+            size3[] = {500, 500, -1};
+            isRectangle = 0;
+        };
+    };
 };

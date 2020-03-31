@@ -9,6 +9,7 @@ ADDON = false;
 GVAR(artillerySupportUnits) = [];
 GVAR(patrolGroups) = [];
 GVAR(patrolBlacklistAreas) = [];
+GVAR(patrolWhitelistAreas) = [];
 
 [QGVAR(reTask), {call CBA_fnc_taskPatrol}] call CBA_fnc_addEventHandler;
 [QGVAR(initPatrol), {call FUNC(initPatrol)}] call CBA_fnc_addEventHandler;

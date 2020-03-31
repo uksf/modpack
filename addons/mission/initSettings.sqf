@@ -220,6 +220,15 @@
 ] call CBA_settings_fnc_init;
 
 [
+    QGVAR(patrolVehicleDistanceCoef),
+    "SLIDER",
+    ["Patrol Vehicle Spawn Distance Coef", "Patrol vehicles will spawn beyond the base spawn distance multiplied by this coefficient from the player"],
+    [COMPONENT_NAME, "Patrol"],
+    [0.1, 5, 2, 1],
+    1
+] call CBA_settings_fnc_init;
+
+[
     QGVAR(patrolMinUnits),
     "SLIDER",
     ["Patrol Minimum Units", "Minimum number of units per patrol group. There will be random deviations above this number"],

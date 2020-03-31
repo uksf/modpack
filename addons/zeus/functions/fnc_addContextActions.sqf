@@ -49,3 +49,6 @@ _action = [QGVAR(object), "Object", "", {}, {true}, [], {
 
 _action = [QGVAR(toggleFPS), "Toggle FPS", "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa", {GVAR(fpsEnabled) = !GVAR(fpsEnabled)}, {isMultiplayer}] call zen_context_menu_fnc_createAction;
 [_action, [], -200] call zen_context_menu_fnc_addAction;
+
+_action = [QGVAR(toggleZeusVisibility), "Toggle Zeus Visibility", "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa", {[objNull] call FUNC(moduleToggleZeusVisibility)}, {true}] call zen_context_menu_fnc_createAction;
+[_action, [], -300] call zen_context_menu_fnc_addAction;

@@ -5,6 +5,7 @@ PREP(anyNearPlayers);
 PREP(configExport);
 PREP(configExportExtension);
 PREP(deserializeAceMedical);
+PREP(findNearRoad);
 PREP(fpsGet);
 PREP(fpsSet);
 PREP(fpsToggle);

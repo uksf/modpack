@@ -38,10 +38,12 @@ if (_distMin > 0) then {
     _positions = _positions select {!(_x inArea [_centre, _distMin, _distMin, 0, false, -1])};
 };
 
+_positions = _positions select {(_x isFlatEmpty [-1, -1, -1, 1, 2]) isEqualTo []};
 // _positions = _positions select {[_x, _distObj] call FUNC(isPositionSafe)};
 
 {
     _x set [2, ((getTerrainHeightASL _x) max 0)];
 } forEach _positions;
 
+[_positions, true] call CBA_fnc_shuffle;
 _positions

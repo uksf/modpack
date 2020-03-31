@@ -67,6 +67,7 @@ private _count = (_vehicle emptyPositions "driver") + count _turrets + round ((_
         [_idPFH] call CBA_fnc_removePerFrameHandler;
 
         if (_allSpawned) then {
+            _group selectLeader (commander _vehicle);
             _callbackArgs pushBack _group;
             _callbackArgs call _callback;
         };

@@ -56,6 +56,8 @@ force uksf_mission_patrolSpeed = "LIMITED";
 force uksf_mission_patrolSafeZoneDistance = 3000;
 // Patrols will spawn beyond this distance from the player [500, 1500, 750, 0]
 force uksf_mission_patrolDistance = 750;
+// Patrol vehicles will spawn beyond the base spawn distance multiplied by this coefficient from the player [0.1, 5, 2, 1]
+force uksf_mission_patrolVehicleDistanceCoef = 2;
 // Minimum number of groups per patrol. There will be random deviations above this number [1, 3, 1, 0]
 force uksf_mission_patrolMinGroups = 1;
 // Maximum number of units per patrol. There will be random deviations below this number [1, 4, 2, 0]

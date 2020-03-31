@@ -603,6 +603,7 @@ force uksf_mission_patrolSafeZoneDistance = 3000;
 force uksf_mission_patrolSpeed = "LIMITED";
 force uksf_mission_patrolUnitPoolString = "['O_Soldier_F']";
 force uksf_mission_patrolUnitSide = EAST;
+force uksf_mission_patrolVehicleDistanceCoef = 2;
 force uksf_mission_patrolVehiclePoolString = "['O_MBT_02_cannon_F']";
 force uksf_mission_patrolVehicleProbability = 0.2;
 force uksf_mission_support = true;

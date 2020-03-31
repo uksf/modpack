@@ -8,6 +8,7 @@ PREP(hit);
 PREP(initPatrol);
 PREP(inRadioRange);
 PREP(modulePatrolBlacklistArea);
+PREP(modulePatrolWhitelistArea);
 PREP(moduleSpawn);
 PREP(patrol);
 PREP(reTask);
