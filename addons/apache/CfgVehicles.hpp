@@ -357,109 +357,109 @@ class CfgVehicles {
                         };
                     };
                 };
-                class SensorsManagerComponent {
-                    class Components {
-                        class ActiveRadarComponent : SensorTemplateActiveRadar {
-                            class AirTarget {
-                                maxRange = 8000;
-                                minRange = 8000;
-                                objectDistanceLimitCoef = -1;
-                                viewDistanceLimitCoef = -1;
-                            };
-                            class GroundTarget {
-                                maxRange = 8000;
-                                minRange = 8000;
-                                objectDistanceLimitCoef = -1;
-                                viewDistanceLimitCoef = -1;
-                            };
-                            typeRecognitionDistance = 8000;
-                            angleRangeHorizontal = 360;
-                            angleRangeVertical = 360;
-                            maxGroundNoiseDistance = -1;
-                            groundNoiseDistanceCoef = -1;
-                            minSpeedThreshold = 0;
-                            maxSpeedThreshold = 24;
-                        };
-                        class IRSensorComponent : SensorTemplateIR {
-                            class AirTarget {
-                                maxRange = 8000;
-                                minRange = 50;
-                                objectDistanceLimitCoef = 1;
-                                viewDistanceLimitCoef = 1;
-                            };
-                            class GroundTarget {
-                                maxRange = 8000;
-                                minRange = 50;
-                                objectDistanceLimitCoef = 1;
-                                viewDistanceLimitCoef = 1;
-                            };
-                            aimDown = 30;
-                            animDirection = "MainTurret";
-                            angleRangeHorizontal = 60;
-                            angleRangeVertical = 60;
-                            maxTrackableSpeed = 110;
-                        };
-                        class VisualSensorComponent : SensorTemplateVisual {
-                            class AirTarget {
-                                maxRange = 8000;
-                                minRange = 50;
-                                objectDistanceLimitCoef = 1;
-                                viewDistanceLimitCoef = 1;
-                            };
-                            class GroundTarget {
-                                maxRange = 8000;
-                                minRange = 50;
-                                objectDistanceLimitCoef = 1;
-                                viewDistanceLimitCoef = 1;
-                            };
-                            aimDown = 30;
-                            animDirection = "MainTurret";
-                            angleRangeHorizontal = 60;
-                            angleRangeVertical = 60;
-                            maxTrackableSpeed = 110;
-                        };
-                        class PassiveSensorComponent : SensorTemplatePassiveRadar {};
-                        class NVSensorComponent : SensorTemplateNV {
-                            class AirTarget {
-                                maxRange = 2000;
-                                minRange = 50;
-                                objectDistanceLimitCoef = 1;
-                                viewDistanceLimitCoef = 1;
-                            };
-                            class GroundTarget {
-                                maxRange = 2000;
-                                minRange = 50;
-                                objectDistanceLimitCoef = 1;
-                                viewDistanceLimitCoef = 1;
-                            };
-                            aimDown = 30;
-                            animDirection = "MainTurret";
-                            angleRangeHorizontal = 60;
-                            angleRangeVertical = 60;
-                            maxTrackableSpeed = 110;
-                        };
-                        class LaserSensorComponent : SensorTemplateLaser {
-                            class AirTarget {
-                                maxRange = 8000;
-                                minRange = 500;
-                                objectDistanceLimitCoef = 1;
-                                viewDistanceLimitCoef = 1;
-                            };
-                            class GroundTarget {
-                                maxRange = 8000;
-                                minRange = 500;
-                                objectDistanceLimitCoef = 1;
-                                viewDistanceLimitCoef = 1;
-                            };
-                            aimDown = 30;
-                            animDirection = "MainTurret";
-                            angleRangeHorizontal = 180;
-                            angleRangeVertical = 180;
-                            maxTrackableSpeed = 110;
-                        };
-                        class DataLinkSensorComponent : SensorTemplateDataLink {};
-                    };
-                };
+                // class SensorsManagerComponent {
+                //     class Components {
+                //         class ActiveRadarComponent : SensorTemplateActiveRadar {
+                //             class AirTarget {
+                //                 maxRange = 8000;
+                //                 minRange = 8000;
+                //                 objectDistanceLimitCoef = -1;
+                //                 viewDistanceLimitCoef = -1;
+                //             };
+                //             class GroundTarget {
+                //                 maxRange = 8000;
+                //                 minRange = 8000;
+                //                 objectDistanceLimitCoef = -1;
+                //                 viewDistanceLimitCoef = -1;
+                //             };
+                //             typeRecognitionDistance = 8000;
+                //             angleRangeHorizontal = 360;
+                //             angleRangeVertical = 360;
+                //             maxGroundNoiseDistance = -1;
+                //             groundNoiseDistanceCoef = -1;
+                //             minSpeedThreshold = 0;
+                //             maxSpeedThreshold = 24;
+                //         };
+                //         class IRSensorComponent : SensorTemplateIR {
+                //             class AirTarget {
+                //                 maxRange = 8000;
+                //                 minRange = 50;
+                //                 objectDistanceLimitCoef = 1;
+                //                 viewDistanceLimitCoef = 1;
+                //             };
+                //             class GroundTarget {
+                //                 maxRange = 8000;
+                //                 minRange = 50;
+                //                 objectDistanceLimitCoef = 1;
+                //                 viewDistanceLimitCoef = 1;
+                //             };
+                //             aimDown = 30;
+                //             animDirection = "MainTurret";
+                //             angleRangeHorizontal = 60;
+                //             angleRangeVertical = 60;
+                //             maxTrackableSpeed = 110;
+                //         };
+                //         class VisualSensorComponent : SensorTemplateVisual {
+                //             class AirTarget {
+                //                 maxRange = 8000;
+                //                 minRange = 50;
+                //                 objectDistanceLimitCoef = 1;
+                //                 viewDistanceLimitCoef = 1;
+                //             };
+                //             class GroundTarget {
+                //                 maxRange = 8000;
+                //                 minRange = 50;
+                //                 objectDistanceLimitCoef = 1;
+                //                 viewDistanceLimitCoef = 1;
+                //             };
+                //             aimDown = 30;
+                //             animDirection = "MainTurret";
+                //             angleRangeHorizontal = 60;
+                //             angleRangeVertical = 60;
+                //             maxTrackableSpeed = 110;
+                //         };
+                //         class PassiveSensorComponent : SensorTemplatePassiveRadar {};
+                //         class NVSensorComponent : SensorTemplateNV {
+                //             class AirTarget {
+                //                 maxRange = 2000;
+                //                 minRange = 50;
+                //                 objectDistanceLimitCoef = 1;
+                //                 viewDistanceLimitCoef = 1;
+                //             };
+                //             class GroundTarget {
+                //                 maxRange = 2000;
+                //                 minRange = 50;
+                //                 objectDistanceLimitCoef = 1;
+                //                 viewDistanceLimitCoef = 1;
+                //             };
+                //             aimDown = 30;
+                //             animDirection = "MainTurret";
+                //             angleRangeHorizontal = 60;
+                //             angleRangeVertical = 60;
+                //             maxTrackableSpeed = 110;
+                //         };
+                //         class LaserSensorComponent : SensorTemplateLaser {
+                //             class AirTarget {
+                //                 maxRange = 8000;
+                //                 minRange = 500;
+                //                 objectDistanceLimitCoef = 1;
+                //                 viewDistanceLimitCoef = 1;
+                //             };
+                //             class GroundTarget {
+                //                 maxRange = 8000;
+                //                 minRange = 500;
+                //                 objectDistanceLimitCoef = 1;
+                //                 viewDistanceLimitCoef = 1;
+                //             };
+                //             aimDown = 30;
+                //             animDirection = "MainTurret";
+                //             angleRangeHorizontal = 180;
+                //             angleRangeVertical = 180;
+                //             maxTrackableSpeed = 110;
+                //         };
+                //         class DataLinkSensorComponent : SensorTemplateDataLink {};
+                //     };
+                // };
             };
             class CargoTurret_01 : CargoTurret {
                 gunnerAction = "passenger_bench_1";
@@ -898,7 +898,6 @@ class CfgVehicles {
                         angleRangeVertical = 60;
                         maxTrackableSpeed = 110;
                     };
-                    class PassiveSensorComponent : SensorTemplatePassiveRadar {};
                     class NVSensorComponent : SensorTemplateNV {
                         class AirTarget {
                             maxRange = 2000;
@@ -937,6 +936,7 @@ class CfgVehicles {
                         angleRangeVertical = 180;
                         maxTrackableSpeed = 110;
                     };
+                    class PassiveSensorComponent : SensorTemplatePassiveRadar {};
                     class DataLinkSensorComponent : SensorTemplateDataLink {};
                 };
             };
