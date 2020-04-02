@@ -4,7 +4,7 @@
         Tim Beswick
 
     Description:
-        Loads saved vehicle data
+        Loads saved object data
 
     Parameter(s):
         None
@@ -13,88 +13,85 @@
         None
 */
 
-private _vehicles = (GVAR(dataNamespace) getVariable [QGVAR(vehicles), []]);
-if (count _vehicles == 0) exitWith {};
-
 {
     _x params ["_id", "_type", "_position", "_vectorDirAndUp", "_damage", "_fuel", "_turretWeapons", "_turretMagazines", "_pylonLoadout", "_logisticsCargo", "_attached", "_rackChannels", "_aceCargo", "_inventory", ["_acexFortifyData", [false]]];
-    TRACE_7("Loading vehicle...",_id,_type,_position,_vectorDirAndUp,_damage,_fuel,_rackChannels);
-    //TRACE_3("...",_turretWeapons,_turretMagazines,_pylonLoadout);
-    //TRACE_2("...",_logisticsCargo,_attached);
-    //TRACE_1("...",_aceCargo);
-    //TRACE_1("...",_inventory);
-    TRACE_1("...",_acexFortifyData);
+    _acexFortifyData params ["_isAcexFortification", "_acexFortifySide"];
+    TRACE_7("Loading object...",_id,_type,_position,_vectorDirAndUp,_damage,_fuel,_rackChannels);
+    // TRACE_3("...",_turretWeapons,_turretMagazines,_pylonLoadout);
+    // TRACE_2("...",_logisticsCargo,_attached);
+    // TRACE_1("...",_aceCargo);
+    // TRACE_1("...",_inventory);
+    // TRACE_1("...",_acexFortifyData);
 
-    private _vehicle = objNull;
+    private _object = objNull;
     if ([GVAR(hashPersistentVehicles), _id] call CBA_fnc_hashHasKey) then {
-        TRACE_1("Loading vehicle exists in mission, using",_id);
-        _vehicle = ([GVAR(hashPersistentVehicles), _id] call CBA_fnc_hashGet);
+        TRACE_1("Loading object exists in mission, using",_id);
+        _object = ([GVAR(hashPersistentVehicles), _id] call CBA_fnc_hashGet);
+        GVAR(missionObjects) deleteAt (GVAR(missionObjects) find _object);
     } else {
-        _vehicle = _type createVehicle [(random 2000) - 6000, (random 2000) - 6000, 20];
-        _vehicle setVariable [QGVAR(persistenceID), _id];
-        [GVAR(hashPersistentVehicles), _id, _vehicle] call CBA_fnc_hashSet;
+        _object = _type createVehicle [(random 2000) - 6000, (random 2000) - 6000, 20];
+        _object setVariable [QGVAR(persistenceID), _id];
+        [GVAR(hashPersistentVehicles), _id, _object] call CBA_fnc_hashSet;
     };
 
-    // TODO: Improve this logic to consider smaller objects being loaded, then a large object not being able to load.
-    private _size = (sizeOf _type) / 1.3;
-    if (({((getPosASL _x) distance _position) < _size} count vehicles) > 0) then {
-        WARNING_3("Aborted loading vehicle %1. Saved position (%2) has another vehicle within %3m of it.",_id,_position,_size);
-        deleteVehicle _vehicle;
+    if !([ASLToAGL _position, _object, (_vectorDirAndUp#0) call CBA_fnc_vectDir, GVAR(missionObjects)] call EFUNC(common,isPositionSafe)) then {
+        WARNING_2("Aborted loading object %1. Saved position %2 will clip with a mission placed object. Deleting object but marking it to not be removed from persistence data.",_id,_position);
+        deleteVehicle _object;
+        GVAR(dontDeleteObjects) pushBackUnique _id;
     } else {
-        _vehicle setPosASL _position;
-        _vehicle setVectorDirAndUp _vectorDirAndUp;
-        _vehicle setDamage _damage;
-        _vehicle setFuel _fuel;
+        _object setPosASL _position;
+        _object setVectorDirAndUp _vectorDirAndUp;
+        _object setDamage _damage;
+        _object setFuel _fuel;
 
-        private _currentTurretMagazines = magazinesAllTurrets _vehicle;
+        private _currentTurretMagazines = magazinesAllTurrets _object;
         private _turretPaths = _currentTurretMagazines apply {_x#1};
         _turretPaths = _turretPaths arrayIntersect _turretPaths;
-        private _pylonPaths = (configProperties [EGVAR(common,configVehicles) >> typeOf _vehicle >> "Components" >> "TransportPylonsComponent" >> "Pylons", "isClass _x"]) apply {getArray (_x >> "turret")};
-        private _currentTurretWeapons = _turretPaths apply {[_x, _vehicle weaponsTurret _x]};
+        private _pylonPaths = (configProperties [EGVAR(common,configVehicles) >> typeOf _object >> "Components" >> "TransportPylonsComponent" >> "Pylons", "isClass _x"]) apply {getArray (_x >> "turret")};
+        private _currentTurretWeapons = _turretPaths apply {[_x, _object weaponsTurret _x]};
         {
             private _turretPath = _x#0;
-            {_vehicle removeWeaponTurret [_x, _turretPath]} forEach _x#1;
+            {_object removeWeaponTurret [_x, _turretPath]} forEach _x#1;
         } forEach _currentTurretWeapons;
-        {_vehicle removeWeaponGlobal (getText (EGVAR(common,configMagazines) >> _x >> "pylonWeapon"))} forEach (getPylonMagazines _vehicle);
-        {_vehicle removeMagazinesTurret [_x#0, _x#1]} forEach _currentTurretMagazines;
+        {_object removeWeaponGlobal (getText (EGVAR(common,configMagazines) >> _x >> "pylonWeapon"))} forEach (getPylonMagazines _object);
+        {_object removeMagazinesTurret [_x#0, _x#1]} forEach _currentTurretMagazines;
         {
             private _turretPath = _x#0;
-            {_vehicle addWeaponTurret [_x, _turretPath]} forEach _x#1;
+            {_object addWeaponTurret [_x, _turretPath]} forEach _x#1;
         } forEach _turretWeapons;
-        {_vehicle addMagazineTurret [_x#0, _x#1, _x#2]} forEach _turretMagazines;
+        {_object addMagazineTurret [_x#0, _x#1, _x#2]} forEach _turretMagazines;
         {
-            _vehicle setPylonLoadOut [_forEachIndex + 1, _x#0, true, _pylonPaths select _forEachIndex];
-            _vehicle setAmmoOnPylon [_forEachIndex + 1, _x#1];
+            _object setPylonLoadOut [_forEachIndex + 1, _x#0, true, _pylonPaths select _forEachIndex];
+            _object setAmmoOnPylon [_forEachIndex + 1, _x#1];
         } forEach _pylonLoadout;
-        [_vehicle] call EFUNC(weapons,correctPilotPylon);
+        [_object] call EFUNC(weapons,correctPilotPylon);
 
-        if (finite (_logisticsCargo#0)) then {_vehicle setAmmoCargo _logisticsCargo#0;};
-        if (finite (_logisticsCargo#1)) then {_vehicle setFuelCargo _logisticsCargo#1;};
-        if (finite (_logisticsCargo#2)) then {_vehicle setRepairCargo _logisticsCargo#2;};
+        if (finite (_logisticsCargo#0)) then {_object setAmmoCargo _logisticsCargo#0;};
+        if (finite (_logisticsCargo#1)) then {_object setFuelCargo _logisticsCargo#1;};
+        if (finite (_logisticsCargo#2)) then {_object setRepairCargo _logisticsCargo#2;};
         if (count _attached > 0) then {
-            private _attachList = _vehicle getVariable ["ace_attach_attached", []];
+            private _attachList = _object getVariable ["ace_attach_attached", []];
             {
                 _x params ["_type", "_offset"];
                 private _attachedObject = _type createVehicle [0,-2000,0];
-                _attachedObject attachTo [_vehicle, _offset];
+                _attachedObject attachTo [_object, _offset];
                 _attachList pushBack [_attachedObject, _type];
             } forEach _attached;
-            _vehicle setVariable ["ace_attach_attached", _attachList, true];
+            _object setVariable ["ace_attach_attached", _attachList, true];
         };
-        _vehicle setVariable [QEGVAR(radios,rackChannels), _rackChannels, true];
-        [_vehicle, _aceCargo, _inventory] call FUNC(setVehicleCargo);
+        _object setVariable [QEGVAR(radios,rackChannels), _rackChannels, true];
+        [_object, _aceCargo, _inventory] call FUNC(setVehicleCargo);
 
-        _acexFortifyData params ["_isAcexFortification", "_acexFortifySide"];
         if (_isAcexFortification) then {
-            ["acex_fortify_objectPlaced", [objNull, _acexFortifySide, _vehicle]] call CBA_fnc_globalEvent;
+            ["acex_fortify_objectPlaced", [objNull, _acexFortifySide, _object]] call CBA_fnc_globalEvent;
         };
 
-        if (_vehicle isKindOf "UAV") then {
-            createVehicleCrew _vehicle;
+        if (_object isKindOf "UAV") then {
+            createVehicleCrew _object;
         };
 
-        if (_vehicle isKindOf QGVAR(markerAmmo)) then {
-            [QGVAR(addLogisticsMarker), _vehicle] call CBA_fnc_localEvent;
+        if (_object isKindOf QGVAR(markerAmmo)) then {
+            [QGVAR(addLogisticsMarker), _object] call CBA_fnc_localEvent;
         };
     };
-} forEach _vehicles;
+} forEach ((GVAR(dataNamespace) getVariable [QGVAR(vehicles), []]) select {_x#0 != ""});

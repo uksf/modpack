@@ -12,6 +12,8 @@
 #define DISTANCE_MULTIPLIER 200
 #define VEHICLE_MULTIPLIER 2.5
 
+#define SAFE_POSITION_OBJECTS_IGNORE ["HeliH","Logic"]
+
 #define NVG(UNIT,NVG) class UNIT { \
     class GVAR(nvg) { \
         init = QUOTE([ARR_2(_this select 0,QUOTE(QUOTE(NVG)))] call FUNC(addNVG)); \

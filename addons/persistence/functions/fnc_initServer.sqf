@@ -13,7 +13,11 @@
         None
 */
 TRACE_1("Server init",GVAR(dataSaved));
+
+GVAR(missionObjects) = [];
 GVAR(hashPersistentVehicles) = [[], true] call CBA_fnc_hashCreate;
+GVAR(deletedPersistentObjects) = GVAR(dataNamespace) getVariable [QGVAR(deletedObjects), []];
+GVAR(dontDeleteObjects) = [];
 GVAR(hashFirstKilled) = [[], true] call CBA_fnc_hashCreate;
 GVAR(hashFirstRespawn) = [[], true] call CBA_fnc_hashCreate;
 GVAR(persistenceMarkers) = [];
@@ -74,7 +78,7 @@ addMissionEventHandler ["PlayerDisconnected", {call FUNC(playerDisconnected)}];
 
     private _id = _object getVariable [QGVAR(persistenceID), ""];
     if (_id == "") exitWith {
-        WARNING("Vehicle has no id so cannot remove from persistence hash. Vehicle saving should filter out null objects though.");
+        WARNING("Object has no id so cannot remove from persistence hash. Object saving should filter out null objects.");
     };
 
     [GVAR(hashPersistentVehicles), _id] call CBA_fnc_hashRem;

@@ -1,6 +1,8 @@
 PREP(addPersistenceActions);
+PREP(checkboxChanged);
 PREP(deletePersistentData);
 PREP(deserializeMarker);
+PREP(edenAttributeChanged);
 PREP(entityKilled);
 PREP(entityRespawned);
 PREP(getVehicleCargo);

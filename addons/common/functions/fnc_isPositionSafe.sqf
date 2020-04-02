@@ -9,57 +9,63 @@
     Parameters:
         0: Position <ARRAY>
         1: Search radius, minimum distance from objects or object used to calculate search radius <NUMBER, OBJECT>
+        2: Object direction to rotate bounding checks by (Optional) <SCALAR>
+        3: Objects to check position safety against (Optional) <ARRAY>
+        4: Object types to ignore during safety checks (Optional) <ARRAY>
 
     Return value:
         Boolean
 */
-params [["_position", [], [[]]], ["_check", 5, [0, objNull]]];
+params [["_position", [], [[]]], ["_check", 5, [0, objNull]], ["_objectDirection", -1, [0]], ["_objects", [], [[]]], ["_ignore", SAFE_POSITION_OBJECTS_IGNORE, [[]]]];
 
-// convert to position3D for surface and bounding box checks
+TRACE_2("Checking safety of position",_position,_check);
+
 if (count _position isEqualTo 2) then {
     _position =+ _position;
     _position pushBack 0;
 };
 
-private _bbCheck = objNull;
-
+private _object = objNull;
 if (_check isEqualType objNull) then {
-    _bbCheck = _check;
-    private _bb = boundingBoxReal _check;
-    private _maxWidth = abs ((_bb select 1 select 0) - (_bb select 0 select 0));
-    private _maxLength = abs ((_bb select 1 select 1) - (_bb select 0 select 1));
+    _object = _check;
+    private _boundingBox = 2 boundingBoxReal _check;
+    private _maxWidth = abs ((_boundingBox#1#0) - (_boundingBox#0#0));
+    private _maxLength = abs ((_boundingBox#1#1) - (_boundingBox#0#1));
 
-    // get radius from object bounding box
     _check = (_maxWidth max _maxLength) * 2;
 };
 
-// cap radius at 50m
 _check = _check min 50;
+TRACE_2("Position safety check distance",_check,_object);
 
 // check water, water accepts -1, 0 or 2
-if ((_position isFlatEmpty [-1, -1, -1, 1, 2]) isEqualTo []) exitWith {false};
+// if ((_position isFlatEmpty [-1, -1, -1, 1, 2]) isEqualTo []) exitWith {false};
 
-// in order for an object to be detected by nearObjects and nearestTerrainObjects, the object's pivot (not bounding box) must be in search radius
+if (_objects isEqualTo []) then {
+    _objects = _position nearObjects ["All", _check];
+};
 
-// get near entities and filter ignored objects and game logics
-private _objs = _position nearObjects ["All", _check];
-_objs = _objs select {
-    !(_x isKindOf "Logic") &&
+private _distance = _check * 2;
+_objects = _objects select {
+    private _checkObject = _x;
+    ((_ignore findIf {_checkObject isKindOf _x}) == -1) &&
+    {(_checkObject distance _object) < _distance} &&
     {([[QGVAR(scope_), typeOf _x] joinString "", {GVAR(configVehicles) >> typeOf _x >> "scope"}] call FUNC(readCacheValues)) > 1}
 };
+TRACE_1("Found nearby objects",_objects);
 
-// get terrain objects, 2d search radius
-_objs append (nearestTerrainObjects [_position, [], _check, false, true]);
+// _objects append (nearestTerrainObjects [_position, [], _check, false, true]);
 
 // filter out thin objects that should not realistically harm position safety, not ideal
-_objs = _objs select {
-    (abs (((boundingBoxReal _x) select 1 select 2) - ((boundingBoxReal _x) select 0 select 2))) >= 1.5
-};
+// _objects = _objects select {
+//     (abs (((0 boundingBoxReal _x)#1#2) - ((0 boundingBoxReal _x)#0#2))) >= 1.5
+// };
+// TRACE_1("Filtered nearby objects",_objects);
 
 // check if under surface
-private _z = lineIntersectsSurfaces [AGLToASL _position, (AGLToASL _position) vectorAdd [0, 0, 50], objNull, objNull, false, 1, "GEOM", "NONE"] isEqualTo [];
+// private _z = lineIntersectsSurfaces [AGLToASL _position, (AGLToASL _position) vectorAdd [0, 0, 50], objNull, objNull, false, 1, "GEOM", "NONE"] isEqualTo [];
 
-if (isNull _bbCheck) exitWith {_z && {_objs isEqualTo []}};
+if (isNull _object) exitWith {_objects isEqualTo []};
 
 // check bounding box intersections if object provided
-_z && {_objs findIf {[[_bbCheck, _position], _x] call FUNC(inBoundingBox)} < 0}
+_objects findIf {[[_object, _position, _objectDirection], _x] call FUNC(inBoundingBox)} < 0

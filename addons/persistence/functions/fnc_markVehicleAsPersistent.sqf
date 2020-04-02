@@ -4,30 +4,35 @@
         Tim Beswick
 
     Description:
-        Marks a vehicle as persistent, and assigns an ID.
+        Marks an object as persistent, and assigns an ID.
         Should be called on server
 
     Parameter(s):
-        0: Vehicle <OBJECT>
+        0: Object <OBJECT>
+        1: ID <STRING>
 
     Return Value:
         ID <STRING>
 */
-if (!isMultiplayer) exitWith {};
+if (!isMultiplayer || is3DEN) exitWith {};
 
 if (!isServer) exitWith {
     [QGVAR(markVehicleAsPersistent), _this] call CBA_fnc_serverEvent;
 };
 
-params ["_vehicle"];
+params ["_object", ["_id", "", [""]]];
 
-if (_vehicle getVariable [QGVAR(persistenceID), ""] != "") exitWith {};
+// ID already set
+if (_object getVariable [QGVAR(persistenceID), ""] != "") exitWith {};
 
-private _position = getPos _vehicle;
-private _id = format ["%1:%2:%3:%4", typeOf _vehicle, round (_position#0), round (_position#1), round (_position#2)];
+// Generate ID if empty
+if (_id == "") then {
+    _id = format ["%1_%2_%3", typeOf _object, diag_frameNo, round random 99999];
+    TRACE_1("Object marked as persistent has no ID, generating one",_id);
+};
 
-_vehicle setVariable [QGVAR(persistenceID), _id];
-[GVAR(hashPersistentVehicles), _id, _vehicle] call CBA_fnc_hashSet;
-TRACE_1("Vehicle marked as persistent",_id);
+_object setVariable [QGVAR(persistenceID), _id];
+[GVAR(hashPersistentVehicles), _id, _object] call CBA_fnc_hashSet;
+TRACE_2("Object marked as persistent",_object,_id);
 
 _id

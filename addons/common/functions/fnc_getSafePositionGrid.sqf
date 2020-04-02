@@ -19,17 +19,17 @@
 params [["_centre", [], [[]]], ["_gridSpacing", 64, [0]], ["_distMax", 256, [0]], ["_distMin", 0, [0]], ["_distObj", 0, [0]]];
 
 private _positions = [];
-private _origin = [(_centre select 0) - (_distMax * 0.5), (_centre select 1) - (_distMax * 0.5)];
+private _origin = [(_centre#0) - (_distMax * 0.5), (_centre#1) - (_distMax * 0.5)];
 private _count = floor (_distMax / _gridSpacing);
 private _column = [];
 private _row = [];
 
 for "_y" from 0 to _count do {
-    _column = [_origin select 0, (_origin select 1) + (_gridSpacing * _y)];
+    _column = [_origin#0, (_origin#1) + (_gridSpacing * _y)];
     _positions pushBack _column;
 
     for "_x" from 1 to _count do {
-        _row = [(_column select 0) + (_gridSpacing * _x), _column select 1];
+        _row = [(_column#0) + (_gridSpacing * _x), _column#1];
         _positions pushBack _row;
     };
 };
