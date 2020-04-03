@@ -1,0 +1,21 @@
+#define COMPONENT civilian
+#define COMPONENT_BEAUTIFIED Civilian
+#include "\u\uksf\addons\main\script_mod.hpp"
+
+#define DEBUG_MODE_FULL
+// #define DISABLE_COMPILE_CACHE
+// #define CBA_DEBUG_SYNCHRONOUS
+
+#include "\u\uksf\addons\main\script_macros.hpp"
+
+#define GESTURE_COOLDOWN 0.5
+#define GESTURE_SEARCH_DISTANCE 100
+#define GESTURE_SEARCH_CLOSE_DISTANCE 15
+#define VISION_ARC 60
+#define VISION_WIDE_ARC 100
+
+#define STOP_IGNORE_CHANCE 2
+#define STOP_STATEMACHINE_INTERVAL 5
+#define STOP_STATEMACHINE_ANNOYED_THRESHOLD 50
+#define STOP_STATEMACHINE_BOREDOM_INCREMENT_CHANCE 5
+#define STOP_STATEMACHINE_BOREDOM_THRESHOLD 100

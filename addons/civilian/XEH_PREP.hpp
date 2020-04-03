@@ -1,0 +1,11 @@
+PREP(addStopEventTransitions);
+PREP(addStopStates);
+PREP(addStopTransitions);
+PREP(carGetOut);
+PREP(carGo);
+PREP(carMove);
+PREP(carSlow);
+PREP(carStop);
+PREP(fireHorn);
+PREP(handleGesture);
+PREP(startStopStatemachine);
