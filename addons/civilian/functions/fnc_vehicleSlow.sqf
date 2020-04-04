@@ -14,13 +14,10 @@
 */
 params ["_unit"];
 
-if (time < (GVAR(lastGesture) + GESTURE_COOLDOWN)) exitWith {DEBUG("Slow called within cooldown, exiting")};
-GVAR(lastGesture) = time;
-
-private _vehicles = _unit nearEntities [["Car", "Motorcycle", "Tank"], GESTURE_SEARCH_DISTANCE];
+private _vehicles = _unit nearEntities [["Car", "Motorcycle", "Tank"], GESTURE_VEHICLE_SEARCH_DISTANCE];
 if (_vehicles isEqualTo []) exitWith {
     DEBUG("No entities found, reducing cooldown timeout");
-    GVAR(lastGesture) = time - (GESTURE_COOLDOWN / 2);
+    GVAR(lastGesture) = CBA_missionTime - (GESTURE_COOLDOWN / 2);
 };
 
 _vehicles = _vehicles apply {[_x distance _unit, _x]};
@@ -40,8 +37,8 @@ _vehicles = _vehicles select {
     {side _driver == civilian} &&
     {!(_driver getVariable [QGVAR(commandedToStop), false])} &&
     {!(_driver getVariable [QGVAR(ignoringStop), false])} &&
-    {(acos ((vectorDirVisual _unit) vectorCos ((eyePos _unit) vectorFromTo (eyePos _driver)))) < VISION_WIDE_ARC} &&
-    {(acos ((eyeDirection _driver) vectorCos ((eyePos _driver) vectorFromTo (eyePos _unit)))) < VISION_WIDE_ARC} &&
+    {(acos ((vectorDirVisual _unit) vectorCos ((eyePos _unit) vectorFromTo (eyePos _driver)))) < VEHICLE_VISION_ARC_WIDE} &&
+    {(acos ((eyeDirection _driver) vectorCos ((eyePos _driver) vectorFromTo (eyePos _unit)))) < VEHICLE_VISION_ARC_WIDE} &&
     {!(lineIntersects [eyePos _driver, eyePos _unit, _unit, _vehicle])}
 };
 TRACE_1("Valid vehicles?",_vehicles);
@@ -52,7 +49,7 @@ TRACE_1("Valid vehicles?",_vehicles);
 
     if (random 100 < STOP_IGNORE_CHANCE) exitWith {
         _driver setVariable [QGVAR(ignoringStop), true, true];
-        [QGVAR(fireHorn), [_vehicle, _driver, 2], _vehicle] call CBA_fnc_targetEvent;
+        [QGVAR(horn), [_vehicle, _driver, 2], _vehicle] call CBA_fnc_targetEvent;
         [{_driver setVariable [QGVAR(ignoringStop), false, true]}, [_driver], 60] call CBA_fnc_waitAndExecute;
         TRACE_2("Slow ignored",_vehicle,_driver);
     };

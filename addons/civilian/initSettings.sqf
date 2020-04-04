@@ -1,17 +1,17 @@
 [
     QGVAR(enableGestures),
     "CHECKBOX",
-    ["Cleanup", "Enables gesture interaction with civilians"],
-    ["UKSF", QUOTE(COMPONENT_BEAUTIFIED)],
+    ["Enable Gestures", "Enables gesture interaction with civilians"],
+    COMPONENT_NAME,
     true,
     1
 ] call CBA_settings_fnc_init;
 
 [
-    QGVAR(delay),
-    "SLIDER",
-    ["Cleanup Delay", "Delay in seconds between death and cleanup"],
-    ["UKSF", QUOTE(COMPONENT_BEAUTIFIED)],
-    [5, 600, 300, 0],
+    QGVAR(allowDebug),
+    "CHECKBOX",
+    ["Allow Debug", "Allows debug to run"],
+    COMPONENT_NAME,
+    false,
     1
 ] call CBA_settings_fnc_init;

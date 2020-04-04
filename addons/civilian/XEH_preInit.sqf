@@ -6,10 +6,28 @@ ADDON = false;
 
 #include "initSettings.sqf"
 
-GVAR(lastGesture) = 0;
-GVAR(stop_statemachine) = locationNull;
-GVAR(stop_statemachine_vehicles) = [];
+["CBA_settingsInitialized", {
+    if (!GVAR(enableGestures)) exitWith {};
 
-[QGVAR(fireHorn), {call FUNC(fireHorn)}] call CBA_fnc_addEventHandler;
+    GVAR(vehicle_statemachine) = locationNull;
+    GVAR(vehicle_statemachine_vehicles) = [];
+    GVAR(unit_statemachine) = locationNull;
+    GVAR(unit_statemachine_units) = [];
+
+    if (hasInterface) then {
+        GVAR(lastGesture) = 0;
+
+        if (GVAR(allowDebug)) then {
+            GVAR(debugDrawId) = -1;
+            GVAR(debugPFHId) = -1;
+            GVAR(debugBroadcastPFHId) = -1;
+            GVAR(debugVehicles) = [];
+            GVAR(debugUnits) = [];
+            GVAR(debugVehicleSpheres) = [];
+            GVAR(debugVehicleMoveCommandSpheres) = [];
+            GVAR(debugVehicleFollowCommandSpheres) = [];
+        };
+    };
+}] call CBA_fnc_addEventHandler;
 
 ADDON = true;

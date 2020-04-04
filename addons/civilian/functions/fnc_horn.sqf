@@ -4,7 +4,7 @@
         Tim Beswick
 
     Description:
-        Fires vehicle horn given number of times if it exists
+        Fires vehicle horn given number of CBA_missionTimes if it exists
 
     Parameters:
         0: Vehicle <OBJECT>
@@ -16,7 +16,7 @@
 params ["_vehicle", ["_unit", objNull], ["_count", 2]];
 
 if !(local _vehicle) exitWith {
-    [QGVAR(fireHorn), _this, _vehicle] call CBA_fnc_targetEvent;
+    [QGVAR(horn), _this, _vehicle] call CBA_fnc_targetEvent;
 };
 
 if (isNull _unit) then {
