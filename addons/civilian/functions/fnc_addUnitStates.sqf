@@ -130,11 +130,13 @@
     // On Entered -
     params ["_unit"];
 
+    _unit setBehaviour "CARELESS";
     TRACE_2("Enter move",_unit);
 }, {
     // On Leaving - Reset move command values
     params ["_unit"];
 
+    _unit setBehaviour "SAFE";
     _unit setVariable [QGVAR(unit_movePosition), [], true];
     _unit setVariable [QGVAR(unit_moveCommander), objNull, true];
     TRACE_2("Exit move",_unit);
@@ -166,11 +168,13 @@
     // On Entered -
     params ["_unit"];
 
+    _unit setBehaviour "CARELESS";
     TRACE_2("Enter follow",_unit);
 }, {
     // On Leaving - Reset move command values
     params ["_unit"];
 
+    _unit setBehaviour "SAFE";
     _unit setVariable [QGVAR(unit_followCommander), objNull, true];
     TRACE_2("Exit follow",_unit);
 }, QGVAR(unit_state_follow)] call CBA_statemachine_fnc_addState;

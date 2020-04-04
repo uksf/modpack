@@ -158,12 +158,14 @@
     params ["_vehicle"];
 
     private _driver = driver _vehicle;
+    _driver setBehaviour "CARELESS";
     TRACE_2("Enter move",_vehicle,_driver);
 }, {
     // On Leaving - Reset move command values
     params ["_vehicle"];
 
     private _driver = driver _vehicle;
+    _driver setBehaviour "SAFE";
     _vehicle setVariable [QGVAR(vehicle_movePosition), [], true];
     _vehicle setVariable [QGVAR(vehicle_moveCommander), objNull, true];
     TRACE_2("Exit move",_vehicle,_driver);
@@ -198,12 +200,14 @@
     params ["_vehicle"];
 
     private _driver = driver _vehicle;
+    _driver setBehaviour "CARELESS";
     TRACE_2("Enter follow",_vehicle,_driver);
 }, {
     // On Leaving - Reset move command values
     params ["_vehicle"];
 
     private _driver = driver _vehicle;
+    _driver setBehaviour "SAFE";
     _vehicle setVariable [QGVAR(vehicle_followCommander), objNull, true];
     TRACE_2("Exit follow",_vehicle,_driver);
 }, QGVAR(vehicle_state_follow)] call CBA_statemachine_fnc_addState;
@@ -242,6 +246,7 @@
     private _driver = _vehicle getVariable [QGVAR(vehicle_driver), objNull];
     if (isNull _driver) exitWith {};
 
+    _driver setBehaviour "CARELESS";
     _driver enableAI "PATH";
     _driver enableAI "MOVE";
     _driver assignAsDriver _vehicle;
@@ -256,6 +261,7 @@
     params ["_vehicle"];
 
     private _driver = driver _vehicle;
+    _driver setBehaviour "SAFE";
     _driver enableAI "PATH";
     _driver disableAI "MOVE";
     _driver forceWalk false;
