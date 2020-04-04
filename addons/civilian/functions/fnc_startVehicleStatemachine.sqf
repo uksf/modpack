@@ -30,8 +30,9 @@ call FUNC(addVehicleEventTransitions);
 
 // Temporary patch to transfer non-local units to their client. Should be fixed on ambient vehicle spawning side
 [{
+    private _nonLocal = (GVAR(vehicle_statemachine_vehicles) select {!(local _x)});
     {
         GVAR(vehicle_statemachine_vehicles) deleteAt (GVAR(vehicle_statemachine_vehicles) find _x);
         [QGVAR(startVehicleStatemachine), [_x], _x] call CBA_fnc_targetEvent;
-    } forEach GVAR(vehicle_statemachine_vehicles) select {!(local _x)};
+    } forEach _nonLocal;
 }, 5] call CBA_fnc_addPerFrameHandler;
