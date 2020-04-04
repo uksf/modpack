@@ -28,18 +28,18 @@ private _index = _entities findIf {
     private _vehicle = _x#1;
     private _driver = driver _vehicle;
     // if (isNull _driver) then {
-    //     _driver = _vehicle getVariable [QGVAR(vehicle_statemachine_driver), objNull];
+    //     _driver = _vehicle getVariable [QGVAR(vehicle_driver), objNull];
     // };
 
-    TRACE_5("Valid?",_vehicle,_driver,side _driver,_driver getVariable [ARR_2(QGVAR(commandedToStop),false)],_driver getVariable [ARR_2(QGVAR(ignoringStop),false)]);
+    TRACE_6("Valid?",_vehicle,_driver,side _driver,_driver getVariable [ARR_2(QGVAR(vehicle_ignoreCommands),false)],_driver getVariable [ARR_2(QGVAR(vehicle_commandedToStop),false)],_driver getVariable [ARR_2(QGVAR(vehicle_ignoringStop),false)]);
     TRACE_2("LOS?",acos ((eyeDirection _driver) vectorCos ((eyePos _driver) vectorFromTo (eyePos _unit))),lineIntersects [ARR_4(eyePos _driver,eyePos _unit,_unit,_vehicle)]);
 
     !(isNull _driver) &&
     {!(isPlayer _driver)} &&
     {side _driver == civilian} &&
-    {!(_vehicle getVariable [QGVAR(ignoreCommands), false])} &&
-    {_driver getVariable [QGVAR(commandedToStop), false]} &&
-    {!(_driver getVariable [QGVAR(ignoringStop), false])} &&
+    {!(_vehicle getVariable [QGVAR(vehicle_ignoreCommands), false])} &&
+    {_driver getVariable [QGVAR(vehicle_commandedToStop), false]} &&
+    {!(_driver getVariable [QGVAR(vehicle_ignoringStop), false])} &&
     {(acos ((eyeDirection _driver) vectorCos ((eyePos _driver) vectorFromTo (eyePos _unit)))) < VEHICLE_VISION_ARC} &&
     {!(lineIntersects [eyePos _driver, eyePos _unit, _unit, _vehicle])}
 };
@@ -51,10 +51,11 @@ if (_index != -1) then {
     TRACE_1("Selected vehicle",_vehicle);
 
     // Fake some mental delay before executing go event
-    [{[QGVAR(goCommand), _this, _this#0] call CBA_fnc_targetEvent}, [_vehicle], random 0.5] call CBA_fnc_waitAndExecute;
+    [{[QGVAR(goCommand), _this, _this#0] call CBA_fnc_targetEvent}, [_vehicle], random 0.5 + (linearConversion [10, GESTURE_VEHICLE_SEARCH_DISTANCE / 2, _unit distance _vehicle, 0.5, 1, true])] call CBA_fnc_waitAndExecute;
 };
 
 // Vehicle valid if:
+// Has driver
 // Driver is not a player
 // Driver side is civilian
 // Vehicle is not set to ignore orders

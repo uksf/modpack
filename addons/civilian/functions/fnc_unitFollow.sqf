@@ -4,7 +4,7 @@
         Tim Beswick
 
     Description:
-        Searches for civilian units in front of unit, and stops closest ones if found (max 5)
+        Searches for civilian units in front of unit, and commands them to follow unit
 
     Parameters:
         0: Unit <OBJECT>
@@ -35,7 +35,7 @@ private _index = _entities findIf {
     {(vehicle _civilian) == _civilian} &&
     {side _civilian == civilian} &&
     {!(_civilian getVariable [QGVAR(unit_ignoreCommands), false])} &&
-    {!(_civilian getVariable [QGVAR(unit_stopped), false])} &&
+    {_civilian getVariable [QGVAR(unit_commandedToStop), false]} &&
     {!(_civilian getVariable [QGVAR(unit_ignoringStop), false])} &&
     {(acos ((vectorDirVisual _unit) vectorCos ((eyePos _unit) vectorFromTo (eyePos _civilian)))) < UNIT_VISION_ARC} &&
     {(acos ((eyeDirection _civilian) vectorCos ((eyePos _civilian) vectorFromTo (eyePos _unit)))) < UNIT_VISION_ARC} &&
@@ -47,32 +47,10 @@ if (_index != -1) then {
     private _civilian = _entities#_index#1;
     TRACE_1("Selected civilian",_civilian);
 
-    private _stopCommanded = _civilian getVariable [QGVAR(unit_commandedToStop), false];
-    if (_stopCommanded) exitWith {
-        TRACE_1("Civilian already commanded to stop (forcing)",_civilian);
-        [{[QGVAR(stopCommand), _this, _this#0] call CBA_fnc_targetEvent}, [_civilian], random 0.2 + (linearConversion [1, 50, _unit distance _civilian, 0.2, 0.8, true])] call CBA_fnc_waitAndExecute;
-    };
+    _civilian setVariable [QGVAR(unit_followCommander), _unit, true];
 
-    if (random 100 < STOP_IGNORE_CHANCE) exitWith {
-        _civilian setVariable [QGVAR(unit_ignoringStop), true, true];
-        [{_this setVariable [QGVAR(unit_ignoringStop), false, true]}, _civilian, 60] call CBA_fnc_waitAndExecute;
-        TRACE_1("Stop ignored",_civilian);
-    };
-
-    _civilian setVariable [QGVAR(unit_commandedToStop), true, true];
-
-    // If unit is within a small arc to the front of civilian, set position in front of unit as move command poisition (should make civilian walk up to unit)
-    if ((acos ((eyeDirection _civilian) vectorCos ((eyePos _civilian) vectorFromTo (eyePos _unit)))) < (UNIT_VISION_ARC / 1.5) && {(random 100) < UNIT_STOP_WALK_TO_PLAYER_CHANCE}) then {
-        private _commandPosition = (positionCameraToWorld [0,0,0]) vectorAdd ((vectorDirVisual _unit) vectorMultiply 5);
-        _commandPosition set [2, 0];
-        _civilian setVariable [QGVAR(unit_statemachine_movePosition), _commandPosition, true];
-        _civilian setVariable [QGVAR(unit_statemachine_moveCommander), _unit, true];
-        _civilian setVariable [QGVAR(unit_statemachine_forceMoveUpdate), true, true];
-        TRACE_1("Stop command given move position",_commandPosition);
-    };
-
-    // Fake some mental delay before starting unit statemachine based on distance
-    [{[QGVAR(startUnitStatemachine), _this, _this#0] call CBA_fnc_targetEvent}, [_civilian], random 0.5 + (linearConversion [10, GESTURE_UNIT_SEARCH_DISTANCE, _unit distance _civilian, 0.1, 0.5, true])] call CBA_fnc_waitAndExecute;
+    // Fake some mental delay before executing follow event
+    [{[QGVAR(followCommand), _this, _this#0] call CBA_fnc_targetEvent}, [_civilian], random 0.5 + (linearConversion [2, GESTURE_UNIT_SEARCH_DISTANCE / 2, _unit distance _civilian, 0.1, 0.5, true])] call CBA_fnc_waitAndExecute;
 };
 
 // Civilian valid if:
@@ -83,5 +61,4 @@ if (_index != -1) then {
 // Civilian has not stopped
 // Civilian is not ignoring stop
 // Unit hand is inside Civilian sight arc
-// Civilian is inside unit sight arc
 // Unit is visible to Civilian

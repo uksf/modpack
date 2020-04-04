@@ -28,15 +28,15 @@ _vehicles = _vehicles select {
     private _vehicle = _x#1;
     private _driver = driver _vehicle;
 
-    TRACE_5("Valid?",_vehicle,_driver,side _driver,_driver getVariable [ARR_2(QGVAR(commandedToStop),false)],_driver getVariable [ARR_2(QGVAR(ignoringStop),false)]);
+    TRACE_5("Valid?",_vehicle,_driver,side _driver,_driver getVariable [ARR_2(QGVAR(vehicle_commandedToStop),false)],_driver getVariable [ARR_2(QGVAR(vehicle_ignoringStop),false)]);
     TRACE_3("LOS?",acos ((vectorDirVisual _unit) vectorCos ((eyePos _unit) vectorFromTo (eyePos _driver))),acos ((eyeDirection _driver) vectorCos ((eyePos _driver) vectorFromTo (eyePos _unit))),lineIntersects [ARR_4(eyePos _driver,eyePos _unit,_unit,_vehicle)]);
 
     !(isNull _driver) &&
     {!(isPlayer _driver)} &&
     {(speed _vehicle) > 20} &&
     {side _driver == civilian} &&
-    {!(_driver getVariable [QGVAR(commandedToStop), false])} &&
-    {!(_driver getVariable [QGVAR(ignoringStop), false])} &&
+    {!(_driver getVariable [QGVAR(vehicle_commandedToStop), false])} &&
+    {!(_driver getVariable [QGVAR(vehicle_ignoringStop), false])} &&
     {(acos ((vectorDirVisual _unit) vectorCos ((eyePos _unit) vectorFromTo (eyePos _driver)))) < VEHICLE_VISION_ARC_WIDE} &&
     {(acos ((eyeDirection _driver) vectorCos ((eyePos _driver) vectorFromTo (eyePos _unit)))) < VEHICLE_VISION_ARC_WIDE} &&
     {!(lineIntersects [eyePos _driver, eyePos _unit, _unit, _vehicle])}
@@ -48,9 +48,9 @@ TRACE_1("Valid vehicles?",_vehicles);
     private _driver = driver _vehicle;
 
     if (random 100 < STOP_IGNORE_CHANCE) exitWith {
-        _driver setVariable [QGVAR(ignoringStop), true, true];
+        _driver setVariable [QGVAR(vehicle_ignoringStop), true, true];
         [QGVAR(horn), [_vehicle, _driver, 2], _vehicle] call CBA_fnc_targetEvent;
-        [{_driver setVariable [QGVAR(ignoringStop), false, true]}, [_driver], 60] call CBA_fnc_waitAndExecute;
+        [{_this setVariable [QGVAR(vehicle_ignoringStop), false, true]}, _driver, 60] call CBA_fnc_waitAndExecute;
         TRACE_2("Slow ignored",_vehicle,_driver);
     };
 
@@ -59,7 +59,7 @@ TRACE_1("Valid vehicles?",_vehicles);
         _this forceSpeed 2.5;
         // Reset speed after some time
         [{ _this forceSpeed -1;}, _this, random 20 + random 10] call CBA_fnc_waitAndExecute;
-    }, _vehicle, random 0.5 + (linearConversion [30, 100, _unit distance _vehicle, 0.5, 1, true])] call CBA_fnc_waitAndExecute;
+    }, _vehicle, random 0.5 + (linearConversion [30, GESTURE_VEHICLE_SEARCH_DISTANCE, _unit distance _vehicle, 0.5, 1, true])] call CBA_fnc_waitAndExecute;
 } forEach _vehicles;
 
 // Vehicle valid if:

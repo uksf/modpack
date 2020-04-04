@@ -2,36 +2,46 @@
 
 if (!GVAR(enableGestures)) exitWith {};
 
+[QGVAR(horn), {call FUNC(horn)}] call CBA_fnc_addEventHandler;
+
 [QGVAR(addVehicleInteractions), {call FUNC(addVehicleInteractions)}] call CBA_fnc_addEventHandler;
 [QGVAR(removeVehicleInteractions), {
     params ["_vehicle"];
 
-    [_vehicle, 0, ["ACE_MainActions", QGVAR(ignoreCommands)]] call ace_interact_menu_fnc_removeActionFromObject;
-    [_vehicle, 0, ["ACE_MainActions", QGVAR(followCommands)]] call ace_interact_menu_fnc_removeActionFromObject;
-    [_vehicle, 0, ["ACE_MainActions", QGVAR(getOut)]] call ace_interact_menu_fnc_removeActionFromObject;
-    [driver _vehicle, 0, ["ACE_MainActions", QGVAR(getIn)]] call ace_interact_menu_fnc_removeActionFromObject;
+    [_vehicle, 0, ["ACE_MainActions", QGVAR(vehicle_ignoreCommands)]] call ace_interact_menu_fnc_removeActionFromObject;
+    [_vehicle, 0, ["ACE_MainActions", QGVAR(vehicle_followCommands)]] call ace_interact_menu_fnc_removeActionFromObject;
+    [_vehicle, 0, ["ACE_MainActions", QGVAR(vehicle_getOut)]] call ace_interact_menu_fnc_removeActionFromObject;
+    [driver _vehicle, 0, ["ACE_MainActions", QGVAR(vehicle_getIn)]] call ace_interact_menu_fnc_removeActionFromObject;
 }] call CBA_fnc_addEventHandler;
-[QGVAR(horn), {call FUNC(horn)}] call CBA_fnc_addEventHandler;
+
+[QGVAR(addUnitInteractions), {call FUNC(addUnitInteractions)}] call CBA_fnc_addEventHandler;
+[QGVAR(removeUnitInteractions), {
+    params ["_civilian"];
+
+    [_civilian, 0, ["ACE_MainActions", QGVAR(unit_ignoreCommands)]] call ace_interact_menu_fnc_removeActionFromObject;
+    [_civilian, 0, ["ACE_MainActions", QGVAR(unit_followCommands)]] call ace_interact_menu_fnc_removeActionFromObject;
+}] call CBA_fnc_addEventHandler;
 
 [QGVAR(startVehicleStatemachine), {call FUNC(startVehicleStatemachine)}] call CBA_fnc_addEventHandler;
 [QGVAR(startUnitStatemachine), {call FUNC(startUnitStatemachine)}] call CBA_fnc_addEventHandler;
+[QGVAR(stopUnitStatemachine), {call FUNC(stopUnitStatemachine)}] call CBA_fnc_addEventHandler;
 
 if (GVAR(allowDebug)) then {
     [QGVAR(debugBroadcast), {
         GVAR(debugBroadcastPFHId) = [{
-            private _data = [];
+            private _data = [[], []];
 
             if !(isNull GVAR(vehicle_statemachine)) then {
                 private _vehicles = GVAR(vehicle_statemachine_vehicles) apply {[_x, [_x, GVAR(vehicle_statemachine)] call CBA_statemachine_fnc_getCurrentState]};
-                _data pushBack _vehicles;
+                _data set [0, _vehicles];
             };
 
             if !(isNull GVAR(unit_statemachine)) then {
                 private _units = GVAR(unit_statemachine_units) apply {[_x, [_x, GVAR(unit_statemachine)] call CBA_statemachine_fnc_getCurrentState]};
-                _data pushBack _units;
+                _data set [1, _units];
             };
 
-            if !(_data isEqualTo []) then {
+            if !(_data isEqualTo [[], []]) then {
                 [QGVAR(debugReceive), _data] call CBA_fnc_globalEvent;
             };
         }] call CBA_fnc_addPerFrameHandler;

@@ -23,25 +23,26 @@ GVAR(lastGesture) = CBA_missionTime;
 
 if ("ace_gestures_warning" in _gesture) exitWith {
     call FUNC(vehicleSlow);
+    // call FUNC(unitAway); // send units away from commanding player
 };
 
 if ("ace_gestures_hold" in _gesture) exitWith {
     call FUNC(vehicleStop);
-    // call FUNC(unitStop);
+    call FUNC(unitStop);
 };
 
 if ("ace_gestures_point" in _gesture) exitWith {
     call FUNC(vehicleMove);
-    // call FUNC(unitMove);
+    call FUNC(unitMove);
 };
 
 if ("ace_gestures_forward" in _gesture) exitWith {
     call FUNC(vehicleGo);
-    // call FUNC(unitGo);
+    call FUNC(unitGo);
 };
 
 if ("follow" in _gesture) exitWith {
     call FUNC(vehicleFollow);
-    // call FUNC(unitFollow);
+    call FUNC(unitFollow);
 };
 

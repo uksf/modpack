@@ -14,6 +14,27 @@
 */
 // Add transition: FromState, ToState, Condition, OnTransition, Name
 
+// Vehicle or driver alive or null exit conditions first (transitions execute in added order)
+private _fnc_isVehicleOrDriverNullOrDead = {
+    params ["_vehicle"];
+    private _driver = driver _vehicle;
+    if (isNull _driver) then {
+        _driver = _vehicle getVariable [QGVAR(vehicle_driver), objNull];
+    };
+
+    isNull _vehicle || {isNull _driver} || {!alive _vehicle} || {!alive _driver}
+};
+
+[GVAR(vehicle_statemachine), QGVAR(vehicle_state_enter), QGVAR(vehicle_state_exit), _fnc_isVehicleOrDriverNullOrDead, {}, QGVAR(vehicle_transition_enter_exit_null)] call CBA_statemachine_fnc_addTransition;
+[GVAR(vehicle_statemachine), QGVAR(vehicle_state_stopping), QGVAR(vehicle_state_exit), _fnc_isVehicleOrDriverNullOrDead, {}, QGVAR(vehicle_transition_stopping_exit_null)] call CBA_statemachine_fnc_addTransition;
+[GVAR(vehicle_statemachine), QGVAR(vehicle_state_stopped), QGVAR(vehicle_state_exit), _fnc_isVehicleOrDriverNullOrDead, {}, QGVAR(vehicle_transition_stopped_exit_null)] call CBA_statemachine_fnc_addTransition;
+[GVAR(vehicle_statemachine), QGVAR(vehicle_state_move), QGVAR(vehicle_state_exit), _fnc_isVehicleOrDriverNullOrDead, {}, QGVAR(vehicle_transition_move_exit_null)] call CBA_statemachine_fnc_addTransition;
+[GVAR(vehicle_statemachine), QGVAR(vehicle_state_follow), QGVAR(vehicle_state_exit), _fnc_isVehicleOrDriverNullOrDead, {}, QGVAR(vehicle_transition_follow_exit_null)] call CBA_statemachine_fnc_addTransition;
+[GVAR(vehicle_statemachine), QGVAR(vehicle_state_getOut), QGVAR(vehicle_state_exit), _fnc_isVehicleOrDriverNullOrDead, {}, QGVAR(vehicle_transition_getOut_exit_null)] call CBA_statemachine_fnc_addTransition;
+[GVAR(vehicle_statemachine), QGVAR(vehicle_state_getIn), QGVAR(vehicle_state_exit), _fnc_isVehicleOrDriverNullOrDead, {}, QGVAR(vehicle_transition_getIn_exit_null)] call CBA_statemachine_fnc_addTransition;
+
+// --------------------------------------------------------------------------------------------------------------
+
 // Transition - enter -> stopping
 [GVAR(vehicle_statemachine), QGVAR(vehicle_state_enter), QGVAR(vehicle_state_stopping), {
     // Condition - vehicle has slowed down
@@ -27,15 +48,15 @@
     // Condition - driver is annoyed (threshold)
     params ["_vehicle"];
 
-    private _annoyed = _vehicle getVariable [QGVAR(vehicle_statemachine_annoyed), 0];
-    !alive _vehicle || {!alive _driver} || {_annoyed > VEHICLE_STOP_ANNOYED_THRESHOLD}
+    private _driver = driver _vehicle;
+    private _annoyed = _vehicle getVariable [QGVAR(vehicle_annoyed), 0];
+    _annoyed > VEHICLE_STOP_ANNOYED_THRESHOLD
 }, {
     // OnTransition - set driver as ignoring stop (annoyed)
     params ["_vehicle"];
 
     private _driver = driver _vehicle;
-    _driver setVariable [QGVAR(ignoringStop), true, true];
-    private _annoyed = _vehicle getVariable [QGVAR(vehicle_statemachine_annoyed), 0];
+    _driver setVariable [QGVAR(vehicle_ignoringStop), true, true];
     TRACE_3("Exit triggered. Annoyed?",_vehicle,_annoyed,VEHICLE_STOP_ANNOYED_THRESHOLD);
 }, QGVAR(vehicle_transition_stopping_stopped)] call CBA_statemachine_fnc_addTransition;
 
@@ -46,7 +67,7 @@
 
     private _driver = driver _vehicle;
 
-    !alive _vehicle || {!alive _driver} || {speed _vehicle < 0.1}
+    speed _vehicle < 0.1
 }, {
     // OnTransition -
 }, QGVAR(vehicle_transition_stopping_stopped)] call CBA_statemachine_fnc_addTransition;
@@ -57,9 +78,9 @@
     params ["_vehicle"];
 
     private _driver = driver _vehicle;
-    private _commandPosition = _vehicle getVariable [QGVAR(vehicle_statemachine_movePosition), []];
+    private _commandPosition = _vehicle getVariable [QGVAR(vehicle_movePosition), []];
 
-    alive _vehicle && {alive _driver} && {!(_commandPosition isEqualTo [])}
+    !(_commandPosition isEqualTo [])
 }, {
     // OnTransition -
 }, QGVAR(vehicle_transition_stopping_move)] call CBA_statemachine_fnc_addTransition;
@@ -70,36 +91,35 @@
     params ["_vehicle"];
 
     private _driver = driver _vehicle;
-    private _commandPosition = _vehicle getVariable [QGVAR(vehicle_statemachine_movePosition), getPos (_vehicle getVariable [QGVAR(vehicle_statemachine_moveCommander), _driver])];
+    private _commandPosition = _vehicle getVariable [QGVAR(vehicle_movePosition), getPos (_vehicle getVariable [QGVAR(vehicle_moveCommander), _driver])];
     private _vehicleLength = _vehicle getVariable [QGVAR(vehicleLength), 4];
 
-    !alive _vehicle || {!alive _driver} || {(_vehicle distance _commandPosition) < _vehicleLength}
+    (_vehicle distance _commandPosition) <= _vehicleLength
 }, {
     // OnTransition -
 }, QGVAR(vehicle_transition_move_stopping)] call CBA_statemachine_fnc_addTransition;
 
-// Transition - stopped -> exit (boredom || annoyed || bypass)
+// Transition - stopped -> exit (boredom || annoyed)
 [GVAR(vehicle_statemachine), QGVAR(vehicle_state_stopped), QGVAR(vehicle_state_exit), {
-    // Condition - driver is bored (threshold) OR bypass has been issued
+    // Condition - driver is bored (threshold) OR annoyed (threshold)
     params ["_vehicle"];
 
     private _driver = driver _vehicle;
-    private _bypass = _vehicle getVariable [QGVAR(vehicle_statemachine_bypass), false];
-    private _boredom = _vehicle getVariable [QGVAR(vehicle_statemachine_boredom), 0];
-    private _annoyed = _vehicle getVariable [QGVAR(vehicle_statemachine_annoyed), 0];
+    private _boredom = _vehicle getVariable [QGVAR(vehicle_boredom), 0];
+    private _annoyed = _vehicle getVariable [QGVAR(vehicle_annoyed), 0];
 
-    !alive _vehicle || {!alive _driver} || {_bypass} || {_boredom > VEHICLE_STOP_BOREDOM_THRESHOLD} || {_annoyed > VEHICLE_STOP_ANNOYED_THRESHOLD}
+    _boredom > VEHICLE_STOP_BOREDOM_THRESHOLD || {_annoyed > VEHICLE_STOP_ANNOYED_THRESHOLD}
 }, {
     // OnTransition -
     params ["_vehicle"];
 
     private _driver = driver _vehicle;
-    private _boredom = _vehicle getVariable [QGVAR(vehicle_statemachine_boredom), 0];
-    private _annoyed = _vehicle getVariable [QGVAR(vehicle_statemachine_annoyed), 0];
+    private _boredom = _vehicle getVariable [QGVAR(vehicle_boredom), 0];
+    private _annoyed = _vehicle getVariable [QGVAR(vehicle_annoyed), 0];
 
     if (_annoyed > VEHICLE_STOP_ANNOYED_THRESHOLD) exitWith {
-        _driver setVariable [QGVAR(ignoringStop), true, true];
-        [{_driver setVariable [QGVAR(ignoringStop), false, true]}, [_driver], 360] call CBA_fnc_waitAndExecute;
+        _driver setVariable [QGVAR(vehicle_ignoringStop), true, true];
+        [{_this setVariable [QGVAR(vehicle_ignoringStop), false, true]}, _driver, 360] call CBA_fnc_waitAndExecute;
         [QGVAR(horn), [_vehicle, _driver, 2], _vehicle] call CBA_fnc_targetEvent;
         TRACE_3("Exit triggered. Annoyed",_vehicle,_annoyed,VEHICLE_STOP_ANNOYED_THRESHOLD);
     };
@@ -112,11 +132,11 @@
     // Condition - driver is in vehicle
     params ["_vehicle"];
 
-    private _driver = _vehicle getVariable [QGVAR(vehicle_statemachine_driver), objNull];
-    !alive _vehicle || {!alive _driver} || {_driver == (driver _vehicle)}
+    private _driver = _vehicle getVariable [QGVAR(vehicle_driver), objNull];
+    _driver == (driver _vehicle)
 }, {
     // OnTransition - unset stored driver
     params ["_vehicle"];
 
-    _vehicle setVariable [QGVAR(vehicle_statemachine_driver), objNull, true];
+    _vehicle setVariable [QGVAR(vehicle_driver), objNull, true];
 }, QGVAR(vehicle_transition_getIn_stopped)] call CBA_statemachine_fnc_addTransition;
