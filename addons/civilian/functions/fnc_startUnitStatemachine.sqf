@@ -27,3 +27,11 @@ GVAR(unit_statemachine) = [{GVAR(unit_statemachine_units)}, true] call CBA_state
 call FUNC(addUnitStates);
 call FUNC(addUnitTransitions);
 call FUNC(addUnitEventTransitions);
+
+// Temporary patch to transfer non-local units to their client. Should be fixed on ambient civ spawning side
+[{
+    {
+        GVAR(unit_statemachine_units) deleteAt (GVAR(unit_statemachine_units) find _x);
+        [QGVAR(startUnitStatemachine), [_x], _x] call CBA_fnc_targetEvent;
+    } forEach GVAR(unit_statemachine_units) select {!(local _x)};
+}, 5] call CBA_fnc_addPerFrameHandler;
