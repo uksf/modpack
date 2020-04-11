@@ -187,6 +187,7 @@ class CfgVehicles {
             MACRO_ADDITEM(ACE_epinephrine,30);
             MACRO_ADDITEM(ACE_bloodIV,30);
             MACRO_ADDITEM(ACE_bloodIV_500,30);
+            MACRO_ADDITEM(ACE_bloodIV_250,30);
         };
     };
 
