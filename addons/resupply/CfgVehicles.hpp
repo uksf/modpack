@@ -183,10 +183,12 @@ class CfgVehicles {
         class TransportItems {
             MACRO_ADDITEM(ACE_elasticBandage,150);
             MACRO_ADDITEM(ACE_packingBandage,150);
+            MACRO_ADDITEM(ACE_adenosine,30);
             MACRO_ADDITEM(ACE_morphine,30);
             MACRO_ADDITEM(ACE_epinephrine,30);
             MACRO_ADDITEM(ACE_bloodIV,30);
             MACRO_ADDITEM(ACE_bloodIV_500,30);
+            MACRO_ADDITEM(ACE_bloodIV_250,30);
         };
     };
 
