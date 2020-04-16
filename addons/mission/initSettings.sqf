@@ -229,6 +229,24 @@
 ] call CBA_settings_fnc_init;
 
 [
+    QGVAR(patrolWaypointDistance),
+    "SLIDER",
+    ["Patrol Waypoint Distance", "Distance away from a player for the waypoint of a patrol"],
+    [COMPONENT_NAME, "Patrol"],
+    [10, 500, 100, 0],
+    1
+] call CBA_settings_fnc_init;
+
+[
+    QGVAR(patrolVehicleWaypointDistance),
+    "SLIDER",
+    ["Patrol Vehicle Waypoint Distance", "Distance away from a player for the waypoint of a vehicle patrol"],
+    [COMPONENT_NAME, "Patrol"],
+    [50, 750, 200, 0],
+    1
+] call CBA_settings_fnc_init;
+
+[
     QGVAR(patrolMinUnits),
     "SLIDER",
     ["Patrol Minimum Units", "Minimum number of units per patrol group. There will be random deviations above this number"],

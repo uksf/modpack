@@ -58,6 +58,10 @@ force uksf_mission_patrolSafeZoneDistance = 3000;
 force uksf_mission_patrolDistance = 750;
 // Patrol vehicles will spawn beyond the base spawn distance multiplied by this coefficient from the player [0.1, 5, 2, 1]
 force uksf_mission_patrolVehicleDistanceCoef = 2;
+// Distance away from a player for the waypoint of a patrol [10, 500, 100, 0]
+force uksf_mission_patrolWaypointDistance = 100;
+// Distance away from a player for the waypoint of a vehicle patrol [50, 750, 200, 0]
+force uksf_mission_patrolVehicleWaypointDistance = 200;
 // Minimum number of groups per patrol. There will be random deviations above this number [1, 3, 1, 0]
 force uksf_mission_patrolMinGroups = 1;
 // Maximum number of units per patrol. There will be random deviations below this number [1, 4, 2, 0]

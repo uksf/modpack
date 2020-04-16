@@ -37,8 +37,8 @@ private _index = _entities findIf {
     {!(_civilian getVariable [QGVAR(unit_ignoreCommands), false])} &&
     {_civilian getVariable [QGVAR(unit_commandedToStop), false]} &&
     {!(_civilian getVariable [QGVAR(unit_ignoringStop), false])} &&
-    {(acos ((vectorDirVisual _unit) vectorCos ((eyePos _unit) vectorFromTo (eyePos _civilian)))) < UNIT_VISION_ARC} &&
-    {(acos ((eyeDirection _civilian) vectorCos ((eyePos _civilian) vectorFromTo (eyePos _unit)))) < UNIT_VISION_ARC} &&
+    {(acos ((vectorDirVisual _unit) vectorCos ((eyePos _unit) vectorFromTo (eyePos _civilian)))) < VISION_ARC} &&
+    {(acos ((eyeDirection _civilian) vectorCos ((eyePos _civilian) vectorFromTo (eyePos _unit)))) < VISION_ARC} &&
     {!(lineIntersects [eyePos _civilian, eyePos _unit, _unit, _civilian])}
 };
 TRACE_1("Valid civilian?",_index);

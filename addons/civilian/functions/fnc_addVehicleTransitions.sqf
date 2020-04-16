@@ -49,15 +49,15 @@ private _fnc_isVehicleOrDriverNullOrDead = {
     params ["_vehicle"];
 
     private _driver = driver _vehicle;
-    private _annoyed = _vehicle getVariable [QGVAR(vehicle_annoyed), 0];
-    _annoyed > VEHICLE_STOP_ANNOYED_THRESHOLD
+    private _annoyed = _vehicle getVariable [QGVAR(annoyed), 0];
+    _annoyed > STOP_ANNOYED_THRESHOLD
 }, {
     // OnTransition - set driver as ignoring stop (annoyed)
     params ["_vehicle"];
 
     private _driver = driver _vehicle;
     _driver setVariable [QGVAR(vehicle_ignoringStop), true, true];
-    TRACE_3("Exit triggered. Annoyed?",_vehicle,_annoyed,VEHICLE_STOP_ANNOYED_THRESHOLD);
+    TRACE_3("Exit triggered. Annoyed?",_vehicle,_annoyed,STOP_ANNOYED_THRESHOLD);
 }, QGVAR(vehicle_transition_stopping_stopped)] call CBA_statemachine_fnc_addTransition;
 
 // Transition - stopping -> stopped
@@ -105,26 +105,26 @@ private _fnc_isVehicleOrDriverNullOrDead = {
     params ["_vehicle"];
 
     private _driver = driver _vehicle;
-    private _boredom = _vehicle getVariable [QGVAR(vehicle_boredom), 0];
-    private _annoyed = _vehicle getVariable [QGVAR(vehicle_annoyed), 0];
+    private _boredom = _vehicle getVariable [QGVAR(boredom), 0];
+    private _annoyed = _vehicle getVariable [QGVAR(annoyed), 0];
 
-    _boredom > VEHICLE_STOP_BOREDOM_THRESHOLD || {_annoyed > VEHICLE_STOP_ANNOYED_THRESHOLD}
+    _boredom > STOP_BOREDOM_THRESHOLD || {_annoyed > STOP_ANNOYED_THRESHOLD}
 }, {
     // OnTransition -
     params ["_vehicle"];
 
     private _driver = driver _vehicle;
-    private _boredom = _vehicle getVariable [QGVAR(vehicle_boredom), 0];
-    private _annoyed = _vehicle getVariable [QGVAR(vehicle_annoyed), 0];
+    private _boredom = _vehicle getVariable [QGVAR(boredom), 0];
+    private _annoyed = _vehicle getVariable [QGVAR(annoyed), 0];
 
-    if (_annoyed > VEHICLE_STOP_ANNOYED_THRESHOLD) exitWith {
+    if (_annoyed > STOP_ANNOYED_THRESHOLD) exitWith {
         _driver setVariable [QGVAR(vehicle_ignoringStop), true, true];
         [{_this setVariable [QGVAR(vehicle_ignoringStop), false, true]}, _driver, 360] call CBA_fnc_waitAndExecute;
         [QGVAR(horn), [_vehicle, _driver, 2], _vehicle] call CBA_fnc_targetEvent;
-        TRACE_3("Exit triggered. Annoyed",_vehicle,_annoyed,VEHICLE_STOP_ANNOYED_THRESHOLD);
+        TRACE_3("Exit triggered. Annoyed",_vehicle,_annoyed,STOP_ANNOYED_THRESHOLD);
     };
 
-    TRACE_3("Exit triggered. Bored",_vehicle,_boredom,VEHICLE_STOP_BOREDOM_THRESHOLD);
+    TRACE_3("Exit triggered. Bored",_vehicle,_boredom,STOP_BOREDOM_THRESHOLD);
 }, QGVAR(vehicle_transition_stopped_exit)] call CBA_statemachine_fnc_addTransition;
 
 // Transition - getOut -> stopped

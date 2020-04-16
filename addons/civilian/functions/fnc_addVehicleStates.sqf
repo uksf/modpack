@@ -50,15 +50,15 @@
     _driver enableAI "FSM";
     _driver enableAI "MOVE";
     _driver enableAI "PATH";
-    _driver doMove ([_vehicle, 500, getDir _vehicle, 60] call CBA_fnc_randPos); // (let ambient driving module handle afterwards)
+    _driver doMove ([_vehicle, 100, getDir _vehicle, 60] call CBA_fnc_randPos); // (let ambient driving module handle afterwards)
     _vehicle forceSpeed -1;
 
     _driver setVariable [QGVAR(vehicle_commandedToStop), false, true];
     _driver setVariable [QGVAR(vehicle_vehicle), objNull, true];
     _vehicle setVariable [QGVAR(vehicle_ignoreCommands), false, true];
     _vehicle setVariable [QGVAR(vehicle_lastTime), 0, true];
-    _vehicle setVariable [QGVAR(vehicle_boredom), (_vehicle getVariable [QGVAR(vehicle_boredom), 0]) / 4, true];
-    _vehicle setVariable [QGVAR(vehicle_annoyed), (_vehicle getVariable [QGVAR(vehicle_annoyed), 0]) / 4, true];
+    _vehicle setVariable [QGVAR(boredom), (_vehicle getVariable [QGVAR(boredom), 0]) / 4, true];
+    _vehicle setVariable [QGVAR(annoyed), (_vehicle getVariable [QGVAR(annoyed), 0]) / 4, true];
     _vehicle setVariable [QGVAR(vehicle_forceMoveUpdate), false, true];
     _vehicle setVariable [QGVAR(vehicle_moveCommander), objNull, true];
     _vehicle setVariable [QGVAR(vehicle_movePosition), [], true];
@@ -111,12 +111,12 @@
     if (CBA_missionTime < (_lastTime + VEHICLE_STOP_INTERVAL)) exitWith {};
     _vehicle setVariable [QGVAR(vehicle_lastTime), CBA_missionTime];
 
-    private _boredom = _vehicle getVariable [QGVAR(vehicle_boredom), 0];
+    private _boredom = _vehicle getVariable [QGVAR(boredom), 0];
     private _random = random 100;
     if (_random < VEHICLE_STOP_BOREDOM_INCREMENT_CHANCE) then {
         private _increment = [1, 0.5] select (_vehicle getVariable [QGVAR(vehicle_ignoreCommands), false]);
-        _vehicle setVariable [QGVAR(vehicle_boredom), _boredom + _increment, true];
-        TRACE_3("Adding to boredom",_vehicle,_boredom,_vehicle getVariable [ARR_2(QGVAR(vehicle_boredom),0)]);
+        _vehicle setVariable [QGVAR(boredom), _boredom + _increment, true];
+        TRACE_3("Adding to boredom",_vehicle,_boredom,_vehicle getVariable [ARR_2(QGVAR(boredom),0)]);
     };
 }, {
     // On Entered - disable AI move
@@ -246,11 +246,10 @@
     private _driver = _vehicle getVariable [QGVAR(vehicle_driver), objNull];
     if (isNull _driver) exitWith {};
 
-    _driver setBehaviour "CARELESS";
     _driver enableAI "PATH";
     _driver enableAI "MOVE";
     _driver assignAsDriver _vehicle;
-    [_driver, _vehicle, 0, "GETIN"] call CBA_fnc_addWaypoint;
+    [_driver, _vehicle, 0, "GETIN", "CARELESS", "BLUE", "LIMITED"] call CBA_fnc_addWaypoint;
     _driver forceWalk true;
 
     [QGVAR(stopUnitStatemachine), [_driver], _driver] call CBA_fnc_targetEvent;

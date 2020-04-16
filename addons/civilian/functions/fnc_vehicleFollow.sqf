@@ -37,7 +37,7 @@ private _index = _entities findIf {
     {!(_vehicle getVariable [QGVAR(vehicle_ignoreCommands), false])} &&
     {_driver getVariable [QGVAR(vehicle_commandedToStop), false]} &&
     {!(_driver getVariable [QGVAR(vehicle_ignoringStop), false])} &&
-    {(acos ((eyeDirection _driver) vectorCos ((eyePos _driver) vectorFromTo (eyePos _unit)))) < (VEHICLE_VISION_ARC * 1.5)} &&
+    {(acos ((eyeDirection _driver) vectorCos ((eyePos _driver) vectorFromTo (eyePos _unit)))) < (VISION_ARC * 1.5)} &&
     {!(lineIntersects [eyePos _driver, eyePos _unit, _unit, _vehicle])}
 };
 TRACE_1("Valid vehicle?",_index);

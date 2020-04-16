@@ -41,15 +41,15 @@ private _fnc_isVehicleOrDriverNullOrDead = {
     // Condition - unit is annoyed (threshold)
     params ["_unit"];
 
-    private _annoyed = _unit getVariable [QGVAR(unit_annoyed), 0];
-    _annoyed > UNIT_STOP_ANNOYED_THRESHOLD
+    private _annoyed = _unit getVariable [QGVAR(annoyed), 0];
+    _annoyed > STOP_ANNOYED_THRESHOLD
 }, {
     // OnTransition - set unit as ignoring stop (annoyed)
     params ["_unit"];
 
     _unit setVariable [QGVAR(unit_ignoringStop), true, true];
-    private _annoyed = _unit getVariable [QGVAR(unit_annoyed), 0];
-    TRACE_3("Exit triggered. Annoyed?",_unit,_annoyed,UNIT_STOP_ANNOYED_THRESHOLD);
+    private _annoyed = _unit getVariable [QGVAR(annoyed), 0];
+    TRACE_3("Exit triggered. Annoyed?",_unit,_annoyed,STOP_ANNOYED_THRESHOLD);
 }, QGVAR(unit_transition_stopped_stopped)] call CBA_statemachine_fnc_addTransition;
 
 // Transition - stopped -> move
@@ -81,22 +81,22 @@ private _fnc_isVehicleOrDriverNullOrDead = {
     // Condition - unit is bored (threshold) OR annoyed (threshold)
     params ["_unit"];
 
-    private _boredom = _unit getVariable [QGVAR(unit_boredom), 0];
-    private _annoyed = _unit getVariable [QGVAR(unit_annoyed), 0];
+    private _boredom = _unit getVariable [QGVAR(boredom), 0];
+    private _annoyed = _unit getVariable [QGVAR(annoyed), 0];
 
-    _boredom > UNIT_STOP_BOREDOM_THRESHOLD || {_annoyed > UNIT_STOP_ANNOYED_THRESHOLD}
+    _boredom > STOP_BOREDOM_THRESHOLD || {_annoyed > STOP_ANNOYED_THRESHOLD}
 }, {
     // OnTransition -
     params ["_unit"];
 
-    private _boredom = _unit getVariable [QGVAR(unit_boredom), 0];
-    private _annoyed = _unit getVariable [QGVAR(unit_annoyed), 0];
+    private _boredom = _unit getVariable [QGVAR(boredom), 0];
+    private _annoyed = _unit getVariable [QGVAR(annoyed), 0];
 
-    if (_annoyed > UNIT_STOP_ANNOYED_THRESHOLD) exitWith {
+    if (_annoyed > STOP_ANNOYED_THRESHOLD) exitWith {
         _unit setVariable [QGVAR(unit_ignoringStop), true, true];
         [{_this setVariable [QGVAR(unit_ignoringStop), false, true]}, _unit, 360] call CBA_fnc_waitAndExecute;
-        TRACE_3("Exit triggered. Annoyed",_unit,_annoyed,UNIT_STOP_ANNOYED_THRESHOLD);
+        TRACE_3("Exit triggered. Annoyed",_unit,_annoyed,STOP_ANNOYED_THRESHOLD);
     };
 
-    TRACE_3("Exit triggered. Bored",_unit,_boredom,UNIT_STOP_BOREDOM_THRESHOLD);
+    TRACE_3("Exit triggered. Bored",_unit,_boredom,STOP_BOREDOM_THRESHOLD);
 }, QGVAR(unit_transition_stopped_exit)] call CBA_statemachine_fnc_addTransition;
