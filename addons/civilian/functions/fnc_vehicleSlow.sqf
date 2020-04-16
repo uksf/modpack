@@ -37,8 +37,8 @@ _vehicles = _vehicles select {
     {side _driver == civilian} &&
     {!(_driver getVariable [QGVAR(vehicle_commandedToStop), false])} &&
     {!(_driver getVariable [QGVAR(vehicle_ignoringStop), false])} &&
-    {(acos ((vectorDirVisual _unit) vectorCos ((eyePos _unit) vectorFromTo (eyePos _driver)))) < VEHICLE_VISION_ARC_WIDE} &&
-    {(acos ((eyeDirection _driver) vectorCos ((eyePos _driver) vectorFromTo (eyePos _unit)))) < VEHICLE_VISION_ARC_WIDE} &&
+    {(acos ((vectorDirVisual _unit) vectorCos ((eyePos _unit) vectorFromTo (eyePos _driver)))) < VISION_ARC_WIDE} &&
+    {(acos ((eyeDirection _driver) vectorCos ((eyePos _driver) vectorFromTo (eyePos _unit)))) < VISION_ARC_WIDE} &&
     {!(lineIntersects [eyePos _driver, eyePos _unit, _unit, _vehicle])}
 };
 TRACE_1("Valid vehicles?",_vehicles);

@@ -91,7 +91,7 @@ if (count GVAR(patrolGroups) <= ceil GVAR(patrolGroupLimit)) then {
 
                 GVAR(patrolGroups) pushBack _group;
 
-                private _waypointPosition = _player getPos [200, random 360];
+                private _waypointPosition = _player getPos [GVAR(patrolVehicleWaypointDistance), random 360];
                 if (surfaceIsWater _waypointPosition) then {
                     _waypointPosition = getPos _player;
                 };
@@ -111,7 +111,7 @@ if (count GVAR(patrolGroups) <= ceil GVAR(patrolGroupLimit)) then {
 
                 GVAR(patrolGroups) pushBack _group;
 
-                private _waypointPosition = _player getPos [100, random 360];
+                private _waypointPosition = _player getPos [GVAR(patrolWaypointDistance), random 360];
                 if (surfaceIsWater _waypointPosition) then {
                     _waypointPosition = getPos _player;
                 };

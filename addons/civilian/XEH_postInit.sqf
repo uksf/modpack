@@ -57,17 +57,17 @@ if (hasInterface) then {
         [QGVAR(debugReceive), {
             params ["_vehicles", "_units"];
 
-            private _deleteVehicles = GVAR(debugVehicles) select {private _vehicle = _x#0; isNull _vehicle || {(_vehicles findIf {(_x#0) == _vehicle}) == -1}};
-            {
-                _x params ["_vehicle"];
-                GVAR(debugVehicles) deleteAt (GVAR(debugVehicles) findIf {(_x#0) == _vehicle});
-            } forEach _deleteVehicles;
+            // private _deleteVehicles = GVAR(debugVehicles) select {private _vehicle = _x#0; isNull _vehicle || {(_vehicles findIf {(_x#0) == _vehicle}) == -1}};
+            // {
+            //     _x params ["_vehicle"];
+            //     GVAR(debugVehicles) deleteAt (GVAR(debugVehicles) findIf {(_x#0) == _vehicle});
+            // } forEach _deleteVehicles;
 
-            private _deleteUnits = GVAR(debugUnits) select {private _unit = _x#0; isNull _unit || {(_units findIf {(_x#0) == _unit}) == -1}};
-            {
-                _x params ["_unit"];
-                GVAR(debugUnits) deleteAt (GVAR(debugUnits) findIf {(_x#0) == _unit});
-            } forEach _deleteUnits;
+            // private _deleteUnits = GVAR(debugUnits) select {private _unit = _x#0; isNull _unit || {(_units findIf {(_x#0) == _unit}) == -1}};
+            // {
+            //     _x params ["_unit"];
+            //     GVAR(debugUnits) deleteAt (GVAR(debugUnits) findIf {(_x#0) == _unit});
+            // } forEach _deleteUnits;
 
             {
                 private _vehicle = _x#0;

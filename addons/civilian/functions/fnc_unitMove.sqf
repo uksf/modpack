@@ -28,7 +28,7 @@ private _index = _entities findIf {
     private _civilian = _x#1;
 
     TRACE_6("Valid?",_civilian,vehicle _civilian,side _civilian,_civilian getVariable [ARR_2(QGVAR(unit_ignoreCommands),false)],_civilian getVariable [ARR_2(QGVAR(unit_stopped),false)],_civilian getVariable [ARR_2(QGVAR(unit_ignoringStop),false)]);
-    TRACE_2("LOS?",,acos ((eyeDirection _civilian) vectorCos ((eyePos _civilian) vectorFromTo (eyePos _unit))),lineIntersects [ARR_4(eyePos _civilian,eyePos _unit,_unit,_civilian)]);
+    TRACE_2("LOS?",acos ((eyeDirection _civilian) vectorCos ((eyePos _civilian) vectorFromTo (eyePos _unit))),lineIntersects [ARR_4(eyePos _civilian,eyePos _unit,_unit,_civilian)]);
 
     !(isNull _civilian) &&
     {!(isPlayer _civilian)} &&
@@ -37,7 +37,7 @@ private _index = _entities findIf {
     {!(_civilian getVariable [QGVAR(unit_ignoreCommands), false])} &&
     {_civilian getVariable [QGVAR(unit_commandedToStop), false]} &&
     {!(_civilian getVariable [QGVAR(unit_ignoringStop), false])} &&
-    {(acos ((eyeDirection _civilian) vectorCos ((eyePos _civilian) vectorFromTo (eyePos _unit)))) < UNIT_VISION_ARC} &&
+    {(acos ((eyeDirection _civilian) vectorCos ((eyePos _civilian) vectorFromTo (eyePos _unit)))) < VISION_ARC} &&
     {!(lineIntersects [eyePos _civilian, eyePos _unit, _unit, _civilian])}
 };
 TRACE_1("Valid civilian?",_index);

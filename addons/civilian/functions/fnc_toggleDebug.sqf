@@ -22,9 +22,9 @@ if (_state) then {
             _x params ["_vehicle", "_sphere"];
 
             private _ignoreCommands = _vehicle getVariable [QGVAR(vehicle_ignoreCommands), false];
-            private _boredom = _vehicle getVariable [QGVAR(vehicle_boredom), 0];
-            private _annoyed = _vehicle getVariable [QGVAR(vehicle_annoyed), 0];
-            private _text = format ["IgCom: %1 | B: %2/%3 | A: %4/%5", _ignoreCommands, _boredom, VEHICLE_STOP_BOREDOM_THRESHOLD, _annoyed, VEHICLE_STOP_ANNOYED_THRESHOLD];
+            private _boredom = _vehicle getVariable [QGVAR(boredom), 0];
+            private _annoyed = _vehicle getVariable [QGVAR(annoyed), 0];
+            private _text = format ["IgCom: %1 | B: %2/%3 | A: %4/%5", _ignoreCommands, _boredom, STOP_BOREDOM_THRESHOLD, _annoyed, STOP_ANNOYED_THRESHOLD];
 
             drawIcon3D ["", [0,0,0,1], getPosVisual _sphere, 0.5, 0.5, 0, _text, 0, 0.025, "TahomaB", "center"];
         } foreach GVAR(debugVehicleSpheres);
@@ -33,9 +33,9 @@ if (_state) then {
             _x params ["_civilian", "_sphere"];
 
             private _ignoreCommands = _civilian getVariable [QGVAR(unit_ignoreCommands), false];
-            private _boredom = _civilian getVariable [QGVAR(unit_boredom), 0];
-            private _annoyed = _civilian getVariable [QGVAR(unit_annoyed), 0];
-            private _text = format ["IgCom: %1 | B: %2/%3 | A: %4/%5", _ignoreCommands, _boredom, UNIT_STOP_BOREDOM_THRESHOLD, _annoyed, UNIT_STOP_ANNOYED_THRESHOLD];
+            private _boredom = _civilian getVariable [QGVAR(boredom), 0];
+            private _annoyed = _civilian getVariable [QGVAR(annoyed), 0];
+            private _text = format ["IgCom: %1 | B: %2/%3 | A: %4/%5", _ignoreCommands, _boredom, STOP_BOREDOM_THRESHOLD, _annoyed, STOP_ANNOYED_THRESHOLD];
 
             drawIcon3D ["", [0,0,0,1], getPosVisual _sphere, 0.5, 0.5, 0, _text, 0, 0.025, "TahomaB", "center"];
         } foreach GVAR(debugUnitSpheres);

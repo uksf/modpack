@@ -36,8 +36,8 @@ private _index = _entities findIf {
     {!(_vehicle getVariable [QGVAR(vehicle_ignoreCommands), false])} &&
     {!(_driver getVariable [QGVAR(vehicle_stopped), false])} &&
     {!(_driver getVariable [QGVAR(vehicle_ignoringStop), false])} &&
-    {(acos ((vectorDirVisual _unit) vectorCos ((eyePos _unit) vectorFromTo (eyePos _driver)))) < VEHICLE_VISION_ARC} &&
-    {(acos ((eyeDirection _driver) vectorCos ((eyePos _driver) vectorFromTo (eyePos _unit)))) < VEHICLE_VISION_ARC} &&
+    {(acos ((vectorDirVisual _unit) vectorCos ((eyePos _unit) vectorFromTo (eyePos _driver)))) < VISION_ARC} &&
+    {(acos ((eyeDirection _driver) vectorCos ((eyePos _driver) vectorFromTo (eyePos _unit)))) < VISION_ARC} &&
     {!(lineIntersects [eyePos _driver, eyePos _unit, _unit, _vehicle])}
 };
 TRACE_1("Valid vehicle?",_index);
@@ -66,7 +66,7 @@ if (_index != -1) then {
     _vehicle setVariable [QGVAR(vehicleLength), _length, true];
 
     // If unit is within a small arc to the front of driver, set position in front of unit as move command poisition (should make driver pull up to unit)
-    if ((acos ((eyeDirection _driver) vectorCos ((eyePos _driver) vectorFromTo (eyePos _unit)))) < (VEHICLE_VISION_ARC / 1.5)) then {
+    if ((acos ((eyeDirection _driver) vectorCos ((eyePos _driver) vectorFromTo (eyePos _unit)))) < (VISION_ARC / 1.5)) then {
         private _commandPosition = (positionCameraToWorld [0,0,0]) vectorAdd ((vectorDirVisual _unit) vectorMultiply 7);
         _commandPosition = _commandPosition vectorAdd ((vectorDirVisual _vehicle) vectorMultiply 4);
         _commandPosition set [2, 0];

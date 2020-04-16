@@ -22,9 +22,9 @@
     // OnTransition - add some to annoyed value
     params ["_unit"];
 
-    private _annoyed = _unit getVariable [QGVAR(unit_annoyed), 0];
-    _unit setVariable [QGVAR(unit_annoyed), _annoyed + RANDOM_ANNOYED_STOPPED_TO_MOVE, true];
-    TRACE_3("Adding to annoyed",_unit,_annoyed,_unit getVariable [ARR_2(QGVAR(unit_annoyed),0)]);
+    private _annoyed = _unit getVariable [QGVAR(annoyed), 0];
+    _unit setVariable [QGVAR(annoyed), _annoyed + RANDOM_ANNOYED_STOPPED_TO_MOVE, true];
+    TRACE_3("Adding to annoyed",_unit,_annoyed,_unit getVariable [ARR_2(QGVAR(annoyed),0)]);
 }, QGVAR(unit_event_transition_stopped_move)] call CBA_statemachine_fnc_addEventTransition;
 
 // Event Transition - stopped -> follow (followCommand)
@@ -41,11 +41,11 @@
     // OnTransition - add some to annoyed value
     params ["_unit"];
 
-    private _annoyed = _unit getVariable [QGVAR(unit_annoyed), 0];
-    _unit setVariable [QGVAR(unit_annoyed), _annoyed + RANDOM_ANNOYED_MOVE_TO_STOPPED, true];
+    private _annoyed = _unit getVariable [QGVAR(annoyed), 0];
+    _unit setVariable [QGVAR(annoyed), _annoyed + RANDOM_ANNOYED_MOVE_TO_STOPPED, true];
     _unit setVariable [QGVAR(unit_movePosition), [], true];
     _unit setVariable [QGVAR(unit_moveCommander), objNull, true];
-    TRACE_3("Adding to annoyed",_unit,_annoyed,_unit getVariable [ARR_2(QGVAR(unit_annoyed),0)]);
+    TRACE_3("Adding to annoyed",_unit,_annoyed,_unit getVariable [ARR_2(QGVAR(annoyed),0)]);
 }, QGVAR(unit_event_transition_move_stopped)] call CBA_statemachine_fnc_addEventTransition;
 
 // Event Transition - move -> follow (followCommand)

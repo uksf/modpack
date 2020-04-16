@@ -24,9 +24,9 @@
     params ["_vehicle"];
 
     private _driver = driver _vehicle;
-    private _annoyed = _vehicle getVariable [QGVAR(vehicle_annoyed), 0];
-    _vehicle setVariable [QGVAR(vehicle_annoyed), _annoyed + RANDOM_ANNOYED_STOPPING_TO_MOVE, true];
-    TRACE_3("Adding to annoyed",_vehicle,_annoyed,_vehicle getVariable [ARR_2(QGVAR(vehicle_annoyed),0)]);
+    private _annoyed = _vehicle getVariable [QGVAR(annoyed), 0];
+    _vehicle setVariable [QGVAR(annoyed), _annoyed + RANDOM_ANNOYED_STOPPING_TO_MOVE, true];
+    TRACE_3("Adding to annoyed",_vehicle,_annoyed,_vehicle getVariable [ARR_2(QGVAR(annoyed),0)]);
 }, QGVAR(vehicle_event_transition_stopping_move)] call CBA_statemachine_fnc_addEventTransition;
 
 // Event Transition - stopped -> move (moveCommand)
@@ -35,9 +35,9 @@
     params ["_vehicle"];
 
     private _driver = driver _vehicle;
-    private _annoyed = _vehicle getVariable [QGVAR(vehicle_annoyed), 0];
-    _vehicle setVariable [QGVAR(vehicle_annoyed), _annoyed + RANDOM_ANNOYED_STOPPED_TO_MOVE, true];
-    TRACE_3("Adding to annoyed",_vehicle,_annoyed,_vehicle getVariable [ARR_2(QGVAR(vehicle_annoyed),0)]);
+    private _annoyed = _vehicle getVariable [QGVAR(annoyed), 0];
+    _vehicle setVariable [QGVAR(annoyed), _annoyed + RANDOM_ANNOYED_STOPPED_TO_MOVE, true];
+    TRACE_3("Adding to annoyed",_vehicle,_annoyed,_vehicle getVariable [ARR_2(QGVAR(annoyed),0)]);
 }, QGVAR(vehicle_event_transition_stopped_move)] call CBA_statemachine_fnc_addEventTransition;
 
 // Event Transition - stopped -> follow (followCommand)
@@ -58,11 +58,11 @@
     params ["_vehicle"];
 
     private _driver = driver _vehicle;
-    private _annoyed = _vehicle getVariable [QGVAR(vehicle_annoyed), 0];
-    _vehicle setVariable [QGVAR(vehicle_annoyed), _annoyed + RANDOM_ANNOYED_MOVE_TO_STOPPING, true];
+    private _annoyed = _vehicle getVariable [QGVAR(annoyed), 0];
+    _vehicle setVariable [QGVAR(annoyed), _annoyed + RANDOM_ANNOYED_MOVE_TO_STOPPING, true];
     _vehicle setVariable [QGVAR(vehicle_movePosition), [], true];
     _vehicle setVariable [QGVAR(vehicle_moveCommander), objNull, true];
-    TRACE_3("Adding to annoyed",_vehicle,_annoyed,_vehicle getVariable [ARR_2(QGVAR(vehicle_annoyed),0)]);
+    TRACE_3("Adding to annoyed",_vehicle,_annoyed,_vehicle getVariable [ARR_2(QGVAR(annoyed),0)]);
 }, QGVAR(vehicle_event_transition_move_stopping)] call CBA_statemachine_fnc_addEventTransition;
 
 // Event Transition - move -> follow (followCommand)
