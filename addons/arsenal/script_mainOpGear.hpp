@@ -401,11 +401,7 @@
     "CUP_optic_Elcan_SpecterDR_RMR_black", \
     "CUP_optic_Elcan_SpecterDR_RMR_coyote", \
     "CUP_optic_Elcan_SpecterDR_RMR_od", \
-    "CUP_optic_Elcan_SpecterDR_RMR", \
-    "CUP_optic_Elcan_SpecterDR_KF_RMR_black", \
-    "CUP_optic_Elcan_SpecterDR_KF_RMR_coyote", \
-    "CUP_optic_Elcan_SpecterDR_KF_RMR_od", \
-    "CUP_optic_Elcan_SpecterDR_KF_RMR"
+    "CUP_optic_Elcan_SpecterDR_RMR"
 
 #define MAIN_OP_NVGS \
     "ACE_NVG_Pilot", \
