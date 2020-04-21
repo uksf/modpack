@@ -187,9 +187,9 @@ class CfgVehicles {
             MACRO_ADDITEM(U_B_T_FullGhillie_tna_F,5);
             MACRO_ADDITEM(ACE_Sandbag_empty,25);
         };
-		class TransportBackpacks {
-			MACRO_ADDBACKPACK (UK3CB_BAF_B_Bergen_MTP_Rifleman_XL_A,5);
-		};
+        class TransportBackpacks {
+            MACRO_ADDBACKPACK (UK3CB_BAF_B_Bergen_MTP_Rifleman_XL_A,5);
+        };
     };
     class UKSF_S_RT: UKSF_S_Empty {
         displayName = "RT Crate";
