@@ -397,7 +397,15 @@
     "SSQN_FA556MG_Suppressor_C2", \
     "SSQN_FA556MG_Suppressor_C3", \
     "SSQN_FA556MG_Suppressor_C4", \
-    "SSQN_FiftyCal_Suppressor"
+    "SSQN_FiftyCal_Suppressor", \
+    "CUP_optic_Elcan_SpecterDR_RMR_black", \
+    "CUP_optic_Elcan_SpecterDR_RMR_coyote", \
+    "CUP_optic_Elcan_SpecterDR_RMR_od", \
+    "CUP_optic_Elcan_SpecterDR_RMR", \
+    "CUP_optic_Elcan_SpecterDR_KF_RMR_black", \
+    "CUP_optic_Elcan_SpecterDR_KF_RMR_coyote", \
+    "CUP_optic_Elcan_SpecterDR_KF_RMR_od", \
+    "CUP_optic_Elcan_SpecterDR_KF_RMR"
 
 #define MAIN_OP_NVGS \
     "ACE_NVG_Pilot", \
