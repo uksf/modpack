@@ -165,7 +165,7 @@ class CfgVehicles {
             MACRO_ADDMAGAZINE(UK3CB_BAF_127_10Rnd_T,30);
             MACRO_ADDMAGAZINE(UK3CB_BAF_338_5Rnd,50);
             MACRO_ADDMAGAZINE(UK3CB_BAF_338_5Rnd_Tracer,50);
-			MACRO_ADDMAGAZINE(DemoCharge_Remote_Mag,5);
+            MACRO_ADDMAGAZINE(DemoCharge_Remote_Mag,5);
         };
         class TransportWeapons {
             MACRO_ADDWEAPON(SSQN_AW50,5);
@@ -175,17 +175,17 @@ class CfgVehicles {
         };
         class TransportItems {
             MACRO_ADDITEM(SSQN_FiftyCal_Suppressor,5);
-			MACRO_ADDITEM(RKSL_optic_PMII_525,5);
-			MACRO_ADDITEM(RKSL_optic_PMII_312,5);
-			MACRO_ADDITEM(UK3CB_BAF_Silencer_L115A3,5);
-			MACRO_ADDITEM(ACE_SpottingScope,1);
-			MACRO_ADDITEM(ACE_Tripod,1);
-			MACRO_ADDITEM(ACE_RangeCard,5);
-			MACRO_ADDITEM(U_B_FullGhillie_lsh,5);
-			MACRO_ADDITEM(U_B_FullGhillie_sard,5);
-			MACRO_ADDITEM(U_B_FullGhillie_ard,5);
-			MACRO_ADDITEM(U_B_T_FullGhillie_tna_F,5);
-			MACRO_ADDITEM(ACE_Sandbag_empty,25);
+            MACRO_ADDITEM(RKSL_optic_PMII_525,5);
+            MACRO_ADDITEM(RKSL_optic_PMII_312,5);
+            MACRO_ADDITEM(UK3CB_BAF_Silencer_L115A3,5);
+            MACRO_ADDITEM(ACE_SpottingScope,1);
+            MACRO_ADDITEM(ACE_Tripod,1);
+            MACRO_ADDITEM(ACE_RangeCard,5);
+            MACRO_ADDITEM(U_B_FullGhillie_lsh,5);
+            MACRO_ADDITEM(U_B_FullGhillie_sard,5);
+            MACRO_ADDITEM(U_B_FullGhillie_ard,5);
+            MACRO_ADDITEM(U_B_T_FullGhillie_tna_F,5);
+            MACRO_ADDITEM(ACE_Sandbag_empty,25);
         };
 		class TransportBackpacks {
 			MACRO_ADDBACKPACK (UK3CB_BAF_B_Bergen_MTP_Rifleman_XL_A,5);
