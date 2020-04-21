@@ -8,7 +8,7 @@
     "1Rnd_SmokeYellow_Grenade_shell", \
     "1Rnd_Smoke_Grenade_shell", \
     "20Rnd_762x51_Mag", \
-    "30Rnd_556x45_Stanag", \
+    "30Rnd_556x45_Stanag_red", \
     "30Rnd_556x45_Stanag_Tracer_Red", \
     "ACE_20Rnd_762x51_M118LR_Mag", \
     "ACE_20Rnd_762x51_M993_AP_Mag", \
