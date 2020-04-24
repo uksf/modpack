@@ -154,6 +154,43 @@ class CfgVehicles {
             };
         };
     };
+    class UKSF_S_R7: UKSF_S_Empty {
+        displayName = "R7 Crate";
+        editorPreview = QPATHTOEF(common,data\previews\UKSF_S_R7.jpg);
+        hiddenSelectionsTextures[] = { QPATHTOF(data\R7_co.paa) };
+        class TransportMagazines {
+            MACRO_ADDMAGAZINE(SSQN_5Rnd_127x99_HEIAP,30);
+            MACRO_ADDMAGAZINE(SSQN_5Rnd_127x99_HEIAP_Tracer,30);
+            MACRO_ADDMAGAZINE(UK3CB_BAF_127_10Rnd_AP,30);
+            MACRO_ADDMAGAZINE(UK3CB_BAF_127_10Rnd_T,30);
+            MACRO_ADDMAGAZINE(UK3CB_BAF_338_5Rnd,50);
+            MACRO_ADDMAGAZINE(UK3CB_BAF_338_5Rnd_Tracer,50);
+            MACRO_ADDMAGAZINE(DemoCharge_Remote_Mag,5);
+        };
+        class TransportWeapons {
+            MACRO_ADDWEAPON(SSQN_AW50,5);
+            MACRO_ADDWEAPON(UK3CB_BAF_L135A1,5);
+            MACRO_ADDWEAPON(UK3CB_BAF_L115A3,5);
+            MACRO_ADDWEAPON(UK3CB_BAF_L115A3_Ghillie,5);
+        };
+        class TransportItems {
+            MACRO_ADDITEM(SSQN_FiftyCal_Suppressor,5);
+            MACRO_ADDITEM(RKSL_optic_PMII_525,5);
+            MACRO_ADDITEM(RKSL_optic_PMII_312,5);
+            MACRO_ADDITEM(UK3CB_BAF_Silencer_L115A3,5);
+            MACRO_ADDITEM(ACE_SpottingScope,1);
+            MACRO_ADDITEM(ACE_Tripod,1);
+            MACRO_ADDITEM(ACE_RangeCard,5);
+            MACRO_ADDITEM(U_B_FullGhillie_lsh,5);
+            MACRO_ADDITEM(U_B_FullGhillie_sard,5);
+            MACRO_ADDITEM(U_B_FullGhillie_ard,5);
+            MACRO_ADDITEM(U_B_T_FullGhillie_tna_F,5);
+            MACRO_ADDITEM(ACE_Sandbag_empty,25);
+        };
+        class TransportBackpacks {
+            MACRO_ADDBACKPACK (UK3CB_BAF_B_Bergen_MTP_Rifleman_XL_A,5);
+        };
+    };
     class UKSF_S_RT: UKSF_S_Empty {
         displayName = "RT Crate";
         editorPreview = QPATHTOEF(common,data\previews\UKSF_S_RT.jpg);
