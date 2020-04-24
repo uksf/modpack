@@ -516,6 +516,7 @@ class CfgVehicles {
     };
     class UK3CB_BAF_MQ9_Reaper : UK3CB_BAF_MQ9_Reaper_Base {
         faction = "CUP_B_GB";
+        editorPreview = QPATHTOEF(common,data\previews\UK3CB_BAF_MQ9_Reaper.jpg);
         radarTargetSize = 0.001;
         radarTarget = 0;
         visualTarget = 0;

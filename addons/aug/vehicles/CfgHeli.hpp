@@ -5,4 +5,5 @@ class GVAR(kasatka) : CUP_I_Ka60_Digi_AAF {
     displayName = "Kasatka Rockets";
     crew = QGVAR(crew_heli);
     typicalCargo[] = { QGVAR(crew_heli),QGVAR(crew_heli) };
+    editorPreview = QPATHTOEF(common,data\previews\GVAR(kasatka).jpg);
 };

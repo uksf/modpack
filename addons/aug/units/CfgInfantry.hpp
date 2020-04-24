@@ -1,7 +1,7 @@
 class GVAR(rifleman) : GVAR(base) {
     scope = 2;
     displayName = "Rifleman";
-    editorPreview = QPATHTOEF(common,data\previews\PROR_R.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\GVAR(rifleman).jpg);
     backpack = "";
     weapons[] = { "arifle_TRG21_F" };
     respawnWeapons[] = { "arifle_TRG21_F" };
@@ -14,7 +14,7 @@ class GVAR(rifleman) : GVAR(base) {
 };
 class GVAR(grenadier) : GVAR(rifleman) {
     displayName = "Grenadier";
-    editorPreview = QPATHTOEF(common,data\previews\PROR_R.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\GVAR(grenadier).jpg);
     uniformClass = "U_OG_Guerilla2_3";
     weapons[] = { "arifle_AK12_GL_F" };
     respawnWeapons[] = { "arifle_AK12_GL_F" };
@@ -25,7 +25,7 @@ class GVAR(grenadier) : GVAR(rifleman) {
 };
 class GVAR(sl) : GVAR(rifleman) {
     displayName = "Squad Leader";
-    editorPreview = QPATHTOEF(common,data\previews\PROR_R.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\GVAR(sl).jpg);
     icon = "iconManLeader";
     uniformClass = "U_OG_leader";
     backpack = "STKR_PackCom";
@@ -38,7 +38,7 @@ class GVAR(sl) : GVAR(rifleman) {
 };
 class GVAR(tl) : GVAR(sl) {
     displayName = "Team Leader";
-    editorPreview = QPATHTOEF(common,data\previews\PROR_R.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\GVAR(tl).jpg);
     backpack = "";
     weapons[] = { "arifle_Mk20_GL_ACO_F_grn", "hgun_ACPC2_F" };
     respawnWeapons[] = { "arifle_Mk20_GL_ACO_F_grn", "hgun_ACPC2_F" };
@@ -49,7 +49,7 @@ class GVAR(tl) : GVAR(sl) {
 };
 class GVAR(officer) : GVAR(sl) {
     displayName = "Officer";
-    editorPreview = QPATHTOEF(common,data\previews\PROR_R.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\GVAR(officer).jpg);
     icon = "iconManOfficer";
     uniformClass = "U_OG_Guerilla2_3";
     backpack = "";
@@ -62,7 +62,7 @@ class GVAR(officer) : GVAR(sl) {
 };
 class GVAR(mg) : GVAR(rifleman) {
     displayName = "Machinegunner";
-    editorPreview = QPATHTOEF(common,data\previews\PROR_MG.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\GVAR(mg).jpg);
     icon = "iconManMG";
     uniformClass = "U_OG_Guerilla2_1";
     backpack = "B_TacticalPack_oli";
@@ -77,7 +77,7 @@ class GVAR(mg) : GVAR(rifleman) {
 };
 class GVAR(medic) : GVAR(rifleman) {
     displayName = "Medic";
-    editorPreview = QPATHTOEF(common,data\previews\PROR_Medic.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\GVAR(medic).jpg);
     icon = "iconManMedic";
     attendant = 1;
     picture = "pictureHeal";
@@ -93,7 +93,7 @@ class GVAR(medic) : GVAR(rifleman) {
 };
 class GVAR(marksman) : GVAR(rifleman) {
     displayName = "Marksman";
-    editorPreview = QPATHTOEF(common,data\previews\PROR_Marksman.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\GVAR(marksman).jpg);
     uniformClass = "U_OG_Guerilla3_1";
     backpack = "";
     weapons[] = { "Binocular", "srifle_EBR_F_snds_MRCO" };
@@ -107,7 +107,7 @@ class GVAR(marksman) : GVAR(rifleman) {
 };
 class GVAR(sniper) : GVAR(rifleman) {
     displayName = "Sniper";
-    editorPreview = QPATHTOEF(common,data\previews\PROR_Sniper.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\GVAR(sniper).jpg);
     uniformClass = "U_OG_leader";
     weapons[] = { "CUP_srifle_SVD_des_GOSHAWK", "hgun_ACPC2_F" };
     respawnWeapons[] = { "CUP_srifle_SVD_des_GOSHAWK", "hgun_ACPC2_F" };
@@ -120,7 +120,7 @@ class GVAR(sniper) : GVAR(rifleman) {
 };
 class GVAR(at) : GVAR(rifleman) {
     displayName = "AT Rifleman";
-    editorPreview = QPATHTOEF(common,data\previews\PROR_AT_L.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\GVAR(at).jpg);
     icon = "iconManAT";
     uniformClass = "U_OG_Guerrilla_6_1";
     backpack = "G_FieldPack_LAT";
@@ -135,7 +135,7 @@ class GVAR(at) : GVAR(rifleman) {
 };
 class GVAR(aa) : GVAR(at) {
     displayName = "AA Specialist";
-    editorPreview = QPATHTOEF(common,data\previews\PROR_AT_L.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\GVAR(aa).jpg);
     weapons[] = { "arifle_AKS_F", "launch_B_Titan_tna_F" };
     respawnWeapons[] = { "arifle_AKS_F", "launch_B_Titan_tna_F" };
     magazines[] = { "Chemlight_blue", "SmokeShell", "SmokeShell", "Chemlight_blue", "30Rnd_545x39_Mag_F", "30Rnd_545x39_Mag_F", "30Rnd_545x39_Mag_F", "30Rnd_545x39_Mag_F", "30Rnd_545x39_Mag_F", "Titan_AA", "Titan_AA" };

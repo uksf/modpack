@@ -4,4 +4,5 @@ class GVAR(kasatka) : CUP_O_Ka60_Whale_CSAT {
     displayName = "Kasatka Special Ops";
     crew = QGVAR(crew_heli);
     typicalCargo[] = { QGVAR(crew_heli), QGVAR(crew_heli) };
+    editorPreview = QPATHTOEF(common,data\previews\GVAR(kasatka).jpg);
 };

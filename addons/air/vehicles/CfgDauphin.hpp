@@ -74,6 +74,7 @@ class GVAR(dauphin) : MEA_Pantera_Base {
     scopeCurator = 2;
     faction = "CUP_B_GB";
     displayName = "AS365N3 Dauphin II";
+    editorPreview = QPATHTOEF(common,data\previews\GVAR(dauphin).jpg);
     class TransportBackpacks {};
     hiddenSelections[] = { "decals" };
     hiddenSelectionsTextures[] = { "" };
