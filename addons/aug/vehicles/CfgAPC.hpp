@@ -5,4 +5,5 @@ class GVAR(pandur) : I_APC_Wheeled_03_cannon_F {
     displayName = "Pandur APC";
     crew = QGVAR(crewman);
     typicalCargo[] = { QGVAR(crewman) };
+    editorPreview = QPATHTOEF(common,data\previews\GVAR(pandur).jpg);
 };

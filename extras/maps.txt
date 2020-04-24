@@ -1,4 +1,0 @@
-- Kujari
-    - tem_kujari
-- Ruha
-    - ruha

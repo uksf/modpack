@@ -5,4 +5,5 @@ class GVAR(lmv) : UK3CB_BAF_Panther_GPMG_Green_A {
     displayName = "LMV Rys";
     crew = QGVAR(tl);
     typicalCargo[] = { QGVAR(tl) };
+    editorPreview = QPATHTOEF(common,data\previews\GVAR(lmv).jpg);
 };

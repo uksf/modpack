@@ -1,12 +1,12 @@
 class GVAR(crewman) : GVAR(rifleman) {
     displayName = "Crewman";
-    editorPreview = QPATHTOEF(common,data\previews\PROR_R.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\GVAR(crewman).jpg);
     editorSubcategory = QEGVAR(common,crew);
     uniformClass = "U_OG_Guerilla1_1";
 };
 class GVAR(crew_heli) : GVAR(crewman) {
     displayName = "Helicopter Pilot";
-    editorPreview = QPATHTOEF(common,data\previews\PROR_R.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\GVAR(crew_heli).jpg);
     uniformClass = "U_BG_Guerilla2_1";
     backpack = "";
     weapons[] = { "hgun_PDW2000_Holo_F_Holosight" };
@@ -18,6 +18,6 @@ class GVAR(crew_heli) : GVAR(crewman) {
 };
 class GVAR(crew_jet) : GVAR(crew_heli) {
     displayName = "Jet Pilot";
-    editorPreview = QPATHTOEF(common,data\previews\PROR_R.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\GVAR(crew_jet).jpg);
     backpack = "B_Parachute";
 };

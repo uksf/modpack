@@ -168,6 +168,15 @@ class CfgWeapons {
             };
         };
     };
+    class CUP_optic_Elcan_SpecterDR : ItemCore {
+        class ItemInfo : InventoryOpticsItem_Base_F {
+            class OpticsModes {
+                class Specter4x {
+                    visionMode[] = {};
+                };
+            };
+        };
+    };
     class RKSL_optic_PMII_525 : ItemCore {
         class ItemInfo;
     };

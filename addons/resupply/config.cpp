@@ -12,6 +12,7 @@ class CfgPatches {
             "UKSF_S_R4",
             "UKSF_S_R5",
             "UKSF_S_R6",
+            "UKSF_S_R7",
             "UKSF_S_RT",
             "UKSF_S_MedicalBox",
             "UKSF_S_Ammo",
