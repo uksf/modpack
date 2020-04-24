@@ -1,7 +1,7 @@
 class GVAR(crew_jet) : GVAR(base) {
     scope = 2;
     displayName = "Jet Pilot";
-    editorPreview = QPATHTOEF(common,data\previews\PROR_R.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\GVAR(crew_jet).jpg);
     editorSubcategory = QEGVAR(common,crew);
     uniformClass = "CUP_U_B_CZ_Pilot_WDL";
     backpack = "ACE_NonSteerableParachute";
@@ -16,7 +16,7 @@ class GVAR(crew_jet) : GVAR(base) {
 };
 class GVAR(crew_heli) : GVAR(crew_jet) {
     displayName = "Heli Pilot";
-    editorPreview = QPATHTOEF(common,data\previews\PROR_R.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\GVAR(crew_heli).jpg);
     uniformClass = "CUP_U_B_CZ_Pilot_WDL";
     backpack = "";
     weapons[] = { "CUP_arifle_AKS74U" };

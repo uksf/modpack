@@ -5,4 +5,5 @@ class GVAR(gripen) : I_Plane_Fighter_04_F {
     displayName = "Gripen";
     crew = QGVAR(crew_jet);
     typicalCargo[] = { QGVAR(crew_jet) };
+    editorPreview = QPATHTOEF(common,data\previews\GVAR(gripen).jpg);
 };

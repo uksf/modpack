@@ -1,7 +1,7 @@
 class GVAR(tl) : GVAR(base) {
     scope = 2;
     displayName = "Team Leader";
-    editorPreview = QPATHTOEF(common,data\previews\PROR_R.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\GVAR(tl).jpg);
     icon = "iconManLeader";
     backpack = "";
     weapons[] = {
@@ -32,7 +32,7 @@ class GVAR(tl) : GVAR(base) {
 class GVAR(mg) : GVAR(base) {
     scope = 2;
     displayName = "Machinegunner";
-    editorPreview = QPATHTOEF(common,data\previews\PROR_MG.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\GVAR(mg).jpg);
     icon = "iconManMG";
     backpack = "B_AssaultPack_khk";
     weapons[] = { "Binocular", "CUP_lmg_Pecheneg", "CUP_hgun_PB6P9_snds" };
@@ -47,7 +47,7 @@ class GVAR(mg) : GVAR(base) {
 class GVAR(medic) : GVAR(base) {
     scope = 2;
     displayName = "Patrol Medic";
-    editorPreview = QPATHTOEF(common,data\previews\PROR_Medic.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\GVAR(medic).jpg);
     icon = "iconManMedic";
     attendant = 1;
     picture = "pictureHeal";
@@ -64,7 +64,7 @@ class GVAR(medic) : GVAR(base) {
 class GVAR(at) : GVAR(base) {
     scope = 2;
     displayName = "AT Rifleman";
-    editorPreview = QPATHTOEF(common,data\previews\PROR_AT_L.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\GVAR(at).jpg);
     icon = "iconManAT";
     backpack = "";
     weapons[] = { "Binocular", "CUP_arifle_AK74M_camo_acc_flashlight", "CUP_launch_RPG18", "CUP_hgun_PB6P9_snds" };
@@ -79,7 +79,7 @@ class GVAR(at) : GVAR(base) {
 class GVAR(marksman) : GVAR(base) {
     scope = 2;
     displayName = "Marksman";
-    editorPreview = QPATHTOEF(common,data\previews\PROR_Marksman.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\GVAR(marksman).jpg);
     backpack = "";
     weapons[] = { "Binocular", "CUP_srifle_SVD_des_PSO_camo", "CUP_hgun_PB6P9_snds" };
     respawnWeapons[] = { "Binocular", "CUP_srifle_SVD_des_PSO_camo", "CUP_hgun_PB6P9_snds" };
@@ -93,7 +93,7 @@ class GVAR(marksman) : GVAR(base) {
 class GVAR(diver) : GVAR(base) {
     scope = 2;
     displayName = "Diver";
-    editorPreview = QPATHTOEF(common,data\previews\PROR_FOO.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\GVAR(diver).jpg);
     uniformClass = "U_B_Wetsuit";
     backpack = "B_AssaultPack_blk";
     weapons[] = { "ACE_MX2A", "CUP_arifle_AKS74U_top_rail", "hgun_Pistol_01_F" };
@@ -108,7 +108,7 @@ class GVAR(diver) : GVAR(base) {
 class GVAR(explosive_specialist) : GVAR(base) {
     scope = 2;
     displayName = "Explosive Specialist";
-    editorPreview = QPATHTOEF(common,data\previews\PROR_FOO.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\GVAR(explosive_specialist).jpg);
     backpack = "B_AssaultPack_rgr";
     weapons[] = { "Binocular", "CUP_arifle_AK74M_camo_acc_flashlight", "CUP_hgun_PB6P9_snds" };
     respawnWeapons[] = { "Binocular", "CUP_arifle_AK74M_camo_acc_flashlight", "CUP_hgun_PB6P9_snds" };
@@ -122,7 +122,7 @@ class GVAR(explosive_specialist) : GVAR(base) {
 class GVAR(sniper) : GVAR(base) {
     scope = 2;
     displayName = "Sniper";
-    editorPreview = QPATHTOEF(common,data\previews\PROR_Sniper.jpg);
+    editorPreview = QPATHTOEF(common,data\previews\GVAR(sniper).jpg);
     uniformClass = "U_I_FullGhillie_lsh";
     backpack = "";
     weapons[] = { "CUP_srifle_SVD_PSO_camo", "hgun_Pistol_01_F" };
