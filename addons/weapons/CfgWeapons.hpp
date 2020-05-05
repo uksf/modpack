@@ -484,7 +484,7 @@ class CfgWeapons {
         class WeaponSlotsInfo;
     };
     class UK3CB_BAF_Javelin_Launcher : launch_B_Titan_short_F {
-        modes[] = { "Single", "TopDown" };
+        modes[] = { "TopDown", "Single"  };
         class WeaponSlotsInfo : WeaponSlotsInfo {
             mass = 231;
         };
