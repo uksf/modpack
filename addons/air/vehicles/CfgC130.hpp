@@ -1,4 +1,8 @@
-class CUP_C130J_Base;
+class CUP_C130J_Base : Plane_Base_F {
+    class Turrets : Turrets {
+        class MainTurret;
+    };
+};
 class GVAR(C130_Base) : CUP_C130J_Base {
     side = 1;
     faction = "CUP_B_GB";
@@ -8,8 +12,8 @@ class GVAR(C130_Base) : CUP_C130J_Base {
     unitInfoType = "RscUnitInfoAirPlaneNoSpeed";
     unitInfoTypeLite = "RscUnitInfoAirPlaneNoSpeed";
     maximumLoad = 2500;
-    altFullForce = 8535;
-    altNoForce = 17000;
+    altFullForce = 7000;
+    altNoForce = 10000;
     wheelSteeringSensitivity = 5;
     stallSpeed = 180;
     stallWarningTreshold = 0.5;
@@ -24,18 +28,19 @@ class GVAR(C130_Base) : CUP_C130J_Base {
     elevatorControlsSensitivityCoef = 2;
     rudderControlsSensitivityCoef = 1;
     draconicForceXCoef = 10;
-    draconicForceYCoef = 0.2;
-    draconicForceZCoef = 1;
+    draconicForceYCoef = 0;
+    draconicForceZCoef = 0;
     draconicTorqueXCoef[] = { 22, 21.5, 21, 20.5, 20, 20, 20.5, 21, 22, 23, 24 };
     draconicTorqueYCoef[] = { 1, 1.2, 1.4, 2, 4, 7, 6.8, 6.6, 6.4, 6.2, 5.5, 5, 4.5, 3.9, 3, 1 };
-    soundGetIn[] = { QPATHTOF(data\c130\sounds\close),0.31622776,1 };
-    soundGetOut[] = { QPATHTOF(data\c130\sounds\open),0.31622776,1,40 };
+    maxOmega = 2000;
+    soundGetIn[] = { QPATHTOF(data\c130\sounds\close),1,1 };
+    soundGetOut[] = { QPATHTOF(data\c130\sounds\open),1,1,40 };
     soundDammage[] = { QPATHTOF(data\c130\sounds\int_alarm_loop),0.56234133,1 };
-    soundEngineOnInt[] = { QPATHTOF(data\c130\sounds\int_start_1),0.39810717,1 };
-    soundEngineOnExt[] = { QPATHTOF(data\c130\sounds\ext_start_1),0.39810717,1,700 };
-    soundEngineOffInt[] = { QPATHTOF(data\c130\sounds\int_stop_1),0.39810717,1 };
-    soundEngineOffExt[] = { QPATHTOF(data\c130\sounds\ext_stop_1),0.39810717,1,700 };
-    soundIncommingMissile[] = { "\A3\Sounds_F\weapons\Rockets\locked_3", 0.1, 1.5 };
+    soundEngineOnInt[] = { QPATHTOF(data\c130\sounds\int_start_1),1,1 };
+    soundEngineOnExt[] = { QPATHTOF(data\c130\sounds\ext_start_1),1.41254,1,700 };
+    soundEngineOffInt[] = { QPATHTOF(data\c130\sounds\int_stop_1),1,1 };
+    soundEngineOffExt[] = { QPATHTOF(data\c130\sounds\ext_stop_1),1.41254,1,700 };
+    soundIncommingMissile[] = { "\A3\Sounds_F\weapons\Rockets\locked_3", 1, 1.5 };
     class Sounds {
         class EngineLowOut {
             sound[] = { QPATHTOF(data\c130\sounds\ext_engine_low),2.7782794,1,900 };
@@ -79,7 +84,6 @@ class GVAR(C130_Base) : CUP_C130J_Base {
             volume = "(1-camPos)*(speed factor[1, 100])";
         };
     };
-    maxOmega = 2000;
     driveOnComponent[] = {};
     class Wheels {
         disableWheelsWhenDestroyed = 1;
@@ -149,6 +153,81 @@ class GVAR(C130_Base) : CUP_C130J_Base {
             tireForceAppPointOffset = "Wheel_3_2_center";
         };
     };
+    class Turrets : Turrets {
+        class MainTurret : MainTurret {
+            primaryGunner = 1;
+            isCopilot = 1;
+            showHMD = 1;
+            class ViewGunner {
+                initFov = 1;
+                minFov = 0.3;
+                maxFov = 1.2;
+                initAngleX = 0;
+                minAngleX = -75;
+                maxAngleX = 85;
+                initAngleY = 0;
+                minAngleY = -170;
+                maxAngleY = 170;
+                minMoveX = -0.2;
+                maxMoveX = 0.2;
+                minMoveY = -0.025;
+                maxMoveY = 0.1;
+                minMoveZ = -0.2;
+                maxMoveZ = 0.2;
+                speedZoomMaxSpeed = 0;
+                speedZoomMaxFOV = 1;
+            };
+            class ViewPilot {
+                initFov = 1;
+                minFov = 0.3;
+                maxFov = 1.2;
+                initAngleX = 0;
+                minAngleX = -75;
+                maxAngleX = 85;
+                initAngleY = 0;
+                minAngleY = -170;
+                maxAngleY = 170;
+                minMoveX = -0.2;
+                maxMoveX = 0.2;
+                minMoveY = -0.025;
+                maxMoveY = 0.1;
+                minMoveZ = -0.2;
+                maxMoveZ = 0.2;
+                speedZoomMaxSpeed = 0;
+                speedZoomMaxFOV = 1;
+            };
+            class OpticsOut {
+                class Monocular {
+                    initFov = 1;
+                    minFov = 0.3;
+                    maxFov = 1.2;
+                    initAngleX = 0;
+                    minAngleX = -75;
+                    maxAngleX = 85;
+                    initAngleY = 0;
+                    minAngleY = -170;
+                    maxAngleY = 170;
+                    minMoveX = -0.2;
+                    maxMoveX = 0.2;
+                    minMoveY = -0.025;
+                    maxMoveY = 0.1;
+                    minMoveZ = -0.2;
+                    maxMoveZ = 0.2;
+                    speedZoomMaxSpeed = 0;
+                    speedZoomMaxFOV = 1;
+                    visionMode[] = { "Normal", "NVG" };
+                    gunnerOpticsModel = "";
+                    gunnerOpticsEffect[] = {};
+                    directionStabilized = 0;
+                };
+            };
+            speedZoomMaxSpeed = 0;
+            speedZoomMaxFOV = 1;
+#include "MFDC130.hpp"
+        };
+    };
+    delete CarrierOpsCompatability;
+    CatapultExclude = 1;
     INVENTORY_AIRCRAFT
 #include "MFDC130.hpp"
 };

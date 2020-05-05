@@ -308,10 +308,10 @@
     ["Player and Enemy Sides", "Side of spawned patrol groups"],
     [COMPONENT_NAME, "Patrol"],
     [
-        [EAST, INDEPENDENT, WEST],
+        [0, 1, 2],
         ["East", "Independent", "West"],
         0
     ],
     1,
-    {GVAR(patrolSide) = _this;}
+    {GVAR(patrolSide) = ([EAST, INDEPENDENT, WEST]#_this);}
 ] call CBA_Settings_fnc_init;
