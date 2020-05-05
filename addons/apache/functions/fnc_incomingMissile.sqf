@@ -45,12 +45,17 @@ if (local _heli && {alive _heli} && {player isEqualTo (driver _heli)} && {isEngi
         if (_posHeli select 2 < _posMissile select 2) then {
             _missileAlt = "high";
         };
+
         private _missileDirection = ((_posMissile select 0) - (_posHeli select 0)) atan2 ((_posMissile select 1) - (_posHeli select 1));
         if (_missileDirection < 0) then {
             _missileDirection = _missileDirection + 360;
         };
+
         private _oclock = floor ((((360 + (_missileDirection - (direction _heli))) mod 360) + 15) / 30);
-        if (_oclock isEqualTo 0) then { _oclock = 12; };
+        if (_oclock isEqualTo 0) then {
+            _oclock = 12;
+        };
+        
         private _sounds = [format [QUOTE(GVAR(%1oclock)), _oclock], 1.7, format [QUOTE(GVAR(%1)), _missileAlt], 0.5];
         _sounds call FUNC(audio);
         if ((gunner _heli) != objNull) then {
@@ -80,10 +85,8 @@ if (local _heli && {alive _heli} && {player isEqualTo (driver _heli)} && {isEngi
             _prevDistanceToTarget = _distanceToTarget;
             _distanceToTarget = vectorMagnitude _vectorToTarget;
             if ((_distanceToTarget < DETONATIONDISTANCE || {_distanceToTarget > _prevDistanceToTarget}) && {((typeOf _trackTo) isEqualTo "CMflare_Chaff_Ammo") || {(typeOf _trackTo) isEqualTo "CMflareAmmo"}}) then {
-                private _dummyMissile = createVehicle ["UKSF_Dummy_Missile", [0,0,0], [], 0, "FLY"];
-                _dummyMissile setPosATL (getPosATL _missile);
                 triggerAmmo _missile;
-                deleteVehicle _trackTo;
+                _missile setDamage 1;
                 _missile = objNull;
             } else {
                 private _up = (_dir vectorCrossProduct [0,0,1]) vectorCrossProduct _dir;

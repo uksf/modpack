@@ -1043,7 +1043,6 @@ class MFD {
             };
             class RocketCross {
                 condition = "rocket";
-                width = 4;
                 class Circle {
                     type = "line";
                     width = 4;

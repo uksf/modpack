@@ -685,6 +685,8 @@ class CfgVehicles {
             initFov = 0.75;
             minFov = 0.25;
             maxFov = 1.25;
+            speedZoomMaxSpeed = 0;
+            speedZoomMaxFOV = 0.75;
             visionMode[] = { "Normal", "NVG" };
             gunnerOpticsModel = "";
             gunnerOpticsEffect[] = {};

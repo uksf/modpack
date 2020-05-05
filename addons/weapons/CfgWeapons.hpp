@@ -589,7 +589,7 @@ class CfgWeapons {
             soundBurst = 0;
         };
         class burst_15 : manual {
-            displayName = "Burst 20 ";
+            displayName = "Burst 20";
             textureType = "burst";
             burst = 20;
         };
