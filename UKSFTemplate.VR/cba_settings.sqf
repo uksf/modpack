@@ -77,5 +77,5 @@ force uksf_mission_patrolMaxUnits = 6;
 force uksf_mission_patrolUnitPoolString = "['O_Soldier_F']";
 // Class names of vehicles that can spawn in patrol groups. Comma-separated list of class names in single quotes, no spaces
 force uksf_mission_patrolVehiclePoolString = "['O_MBT_02_cannon_F']";
-// Side of spawned patrol groups [EAST, INDEPENDENT, WEST]
-force uksf_mission_patrolUnitSide = EAST;
+// Side of spawned patrol groups [0: EAST, 1: INDEPENDENT, 2: WEST]
+force uksf_mission_patrolUnitSide = 0;
