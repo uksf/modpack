@@ -48,7 +48,7 @@ if (_objects isEqualTo []) then {
 private _distance = _check * 2;
 _objects = _objects select {
     private _checkObject = _x;
-    [_ignore, {_checkObject isKindOf _x}] call FUNC(arrayNone)
+    [_ignore, {_checkObject isKindOf _x}] call FUNC(arrayNone) &&
     {(_checkObject distance _object) < _distance} &&
     {([[QGVAR(scope_), typeOf _x] joinString "", {GVAR(configVehicles) >> typeOf _x >> "scope"}] call FUNC(readCacheValues)) > 1}
 };
