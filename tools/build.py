@@ -93,20 +93,12 @@ def main(argv):
             print("\nCompiling extensions in {}".format(extensionspath))
             os.chdir(extensionspath)
 
-            # Prepare 32bit build dirs
-            # Build
-            ret = subprocess.call(["msbuild", "uksf.sln", "/m", "/p:Configuration=Release", "/p:Platform=x86"])
-            if ret == 1:
-                print("Failed to compile x86 extension")
-                return 1
-
             # Prepare 64bit build dirs
             ret = subprocess.call(["msbuild", "uksf.sln", "/m", "/p:Configuration=Release", "/p:Platform=x64"])
             if ret == 1:
-                print("Failed to compile x64 extension")
                 return 1
         except:
-            print("Failed to compile extensions")
+            print("Failed to compile extension")
             raise
 
     print("\n# Done.")

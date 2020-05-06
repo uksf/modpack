@@ -15,4 +15,4 @@
 */
 params ["_centre", "_radius"];
 
-(ALL_PLAYERS findIf {_x distance _centre <= _radius}) != -1
+[ALL_PLAYERS, {_x distance _centre <= _radius}] call FUNC(arrayAny)

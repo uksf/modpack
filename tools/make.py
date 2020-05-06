@@ -334,17 +334,11 @@ def compile_extensions(extensions_root, force_build):
         print_blue("\nCompiling extensions in {}".format(extensions_root))
         os.chdir(extensions_root)
         print()
-        ret = subprocess.call(["msbuild", "uksf.sln", "/m", "/p:Configuration=Release", "/p:Platform=x86"])
-        if ret == 1:
-            print_error("\nFailed to compile x86 extension")
-            return 1
-        print()
         ret = subprocess.call(["msbuild", "uksf.sln", "/m", "/p:Configuration=Release", "/p:Platform=x64"])
         if ret == 1:
-            print_error("\nFailed to compile x64 extension")
             return 1
     except:
-        print_error("Failed to compile extenions")
+        print_error("Failed to compile extenion")
         raise
     finally:
         os.chdir(originalDir)

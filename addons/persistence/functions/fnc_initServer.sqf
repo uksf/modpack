@@ -55,7 +55,7 @@ addMissionEventHandler ["PlayerDisconnected", {call FUNC(playerDisconnected)}];
 
 [QGVAR(markerCreated), {
     params ["_serializedMarker"];
-    if ((GVAR(mapMarkers) findIf {_x#0 == (_serializedMarker#0)}) == -1) then {
+    if ([GVAR(mapMarkers), {_x#0 == (_serializedMarker#0)}] call FUNC(arrayNone)) then {
         GVAR(mapMarkers) pushBack _serializedMarker;
     };
 }] call CBA_fnc_addEventHandler;

@@ -31,8 +31,8 @@ private _groupsToDelete = GVAR(patrolGroups) select {
     _x call CBA_fnc_deleteEntity;
 } forEach _groupsToDelete;
 
-// Player can't be in range of respawn positions
-// AND Player can't be in an air vehicle
+// Player can't be in an air vehicle
+// AND Player can't be in range of respawn positions
 // AND (
     // Player can't be in blacklisted locations
     // AND IF whitelisted locations exist Player must be in whitelisted locations
@@ -40,26 +40,26 @@ private _groupsToDelete = GVAR(patrolGroups) select {
 if (count GVAR(patrolGroups) <= ceil GVAR(patrolGroupLimit)) then {
     private _players = call CBA_fnc_players select {
         private _player = _x;
-        (EGVAR(common,respawnPositions) findIf {
-            (getMarkerPos _x) distance2D _player <= GVAR(patrolSafeZoneDistance)
-        }) == -1 &&
-        {!((vehicle _player) isKindOf "Air")} && {
-            GVAR(patrolBlacklistAreas) findIf {
-                private _area = _x getVariable ["objectarea", []];
-                _area params ["_a", "_b", "_angle", "_isRectangle"];
-                _player inArea [_x, _a, _b, _angle, _isRectangle]
-            } == -1
-        } && {
-            GVAR(patrolWhitelistAreas) isEqualTo [] || {
-                GVAR(patrolWhitelistAreas) findIf {
-                    private _area = _x getVariable ["objectarea", []];
-                    _area params ["_a", "_b", "_angle", "_isRectangle"];
-                    _player inArea [_x, _a, _b, _angle, _isRectangle]
-                } != -1
-            }
+        !((vehicle _player) isKindOf "Air") &&
+        {[EGVAR(common,respawnPositions), {(getMarkerPos _x) distance2D _player <= GVAR(patrolSafeZoneDistance)}] call EFUNC(common,arrayNone)} &&
+        {[GVAR(patrolBlacklistAreas), {[_player, _x getVariable ["objectarea", []]] call EFUNC(common,objectInArea)}] call EFUNC(common,arrayNone)} &&
+        {
+            GVAR(patrolWhitelistAreas) isEqualTo [] ||
+            {[GVAR(patrolWhitelistAreas), {[_player, _x getVariable ["objectarea", []]] call EFUNC(common,objectInArea)}] call EFUNC(common,arrayAny)}
         }
     };
     if (_players isEqualTo []) exitWith {};
+
+    private _player = selectRandom _players;
+    private _spawnChance = 100;
+    private _random = random 100;
+    private _whitelistAreas = GVAR(patrolWhitelistAreas) select {[_player, _x getVariable ["objectarea", []]] call EFUNC(common,objectInArea)};
+    if !(_whitelistAreas isEqualTo []) then {
+        _spawnChance = (_whitelistAreas#0) getVariable [QGVAR(spawnChance), 100];
+        _spawnChance = (_spawnChance min 100) max 0;
+    };
+
+    if (_random > _spawnChance) exitWith {};
 
     private _useVehicle = GVAR(patrolVehicleProbability) > random 1;
     private _spawnDistance = GVAR(patrolDistance);
@@ -67,7 +67,6 @@ if (count GVAR(patrolGroups) <= ceil GVAR(patrolGroupLimit)) then {
         _spawnDistance = GVAR(patrolDistance) * GVAR(patrolVehicleDistanceCoef);
     };
 
-    private _player = selectRandom _players;
     private _positionArray = [getPosATL _player, 100, _spawnDistance * 1.25, _spawnDistance * 0.75, 10] call EFUNC(common,getSafePositionGrid);
     if (_positionArray isEqualTo []) exitWith {
         // Retry

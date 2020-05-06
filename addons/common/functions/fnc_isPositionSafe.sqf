@@ -48,7 +48,7 @@ if (_objects isEqualTo []) then {
 private _distance = _check * 2;
 _objects = _objects select {
     private _checkObject = _x;
-    ((_ignore findIf {_checkObject isKindOf _x}) == -1) &&
+    [_ignore, {_checkObject isKindOf _x}] call FUNC(arrayNone)
     {(_checkObject distance _object) < _distance} &&
     {([[QGVAR(scope_), typeOf _x] joinString "", {GVAR(configVehicles) >> typeOf _x >> "scope"}] call FUNC(readCacheValues)) > 1}
 };
@@ -68,4 +68,4 @@ TRACE_1("Found nearby objects",_objects);
 if (isNull _object) exitWith {_objects isEqualTo []};
 
 // check bounding box intersections if object provided
-_objects findIf {[[_object, _position, _objectDirection], _x] call FUNC(inBoundingBox)} < 0
+[_objects, {[[_object, _position, _objectDirection], _x] call FUNC(inBoundingBox)}] call FUNC(arrayAny)

@@ -9,7 +9,7 @@
     Parameters:
         0: Caller <OBJECT>
         1: Artillery <OBJECT>
-        
+
     Return value:
         BOOLEAN
 */
@@ -26,9 +26,7 @@ if (_artillery isKindOf "StaticMortar") then {
     } else {
         // Try to communicate through RTO
         private _rtoUnits = (_caller nearEntities ["CAManBase", GVAR(artillerySupportBaseDistance)]) select {(backpack _x) in GVAR(artillerySupportRtoBackpacks)};
-        private _index = _rtoUnits findIf {(_x distance2D _artillery) <= GVAR(artillerySupportRtoDistance)};
-
-        if (_index != -1) then {
+        if ([_rtoUnits, {(_x distance2D _artillery) <= GVAR(artillerySupportRtoDistance)}] call FUNC(arrayAny)) then {
             _inRange = true;
         } else {
             // Try to communicate through RTO and mast, first check if any valid masts in range of artillery, then check if any rtos in range of those masts
@@ -36,19 +34,16 @@ if (_artillery isKindOf "StaticMortar") then {
             private _masts = nearestObjects [_artillery, GVAR(artillerySupportMastObjects), GVAR(artillerySupportMastDistance), true];
             if (!(_mast isEqualTo [])) then {
                 _masts = _masts select {alive _x && {damage _x < 0.5}};
-                _inRange = (_masts findIf {
+                _inRange = [_masts, {
                     private _mast = _x;
-                    (_rtoUnits findIf {
-                        (_x distance2D _mast) <= GVAR(artillerySupportRtoDistance)
-                    }) != -1;
-                }) != -1;
+                    [_rtoUnits, {(_x distance2D _mast) <= GVAR(artillerySupportRtoDistance)}] call FUNC(arrayAny)
+                }] call FUNC(arrayAny);
             };
         };
     };
 } else {
     // Is not mortar, must be FO in range
-    private _index = (_caller nearEntities ["CAManBase", GVAR(artillerySupportBaseDistance)]) findIf {(backpack _x) in GVAR(artillerySupportFoBackpacks)};
-    if (_index != -1) then {
+    if ([_caller nearEntities ["CAManBase", GVAR(artillerySupportBaseDistance)], {(backpack _x) in GVAR(artillerySupportFoBackpacks)}] call FUNC(arrayAny)) then {
         _inRange = true;
     };
 };

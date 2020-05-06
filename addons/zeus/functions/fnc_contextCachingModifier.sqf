@@ -18,7 +18,7 @@ _actionParams params ["", "_selectedObjects", "_selectedGroups"];
 
 if (!(_selectedGroups isEqualTo [])) exitWith {
     _selectedGroups = _selectedGroups select {({alive _x} count (units _x)) > 0};
-    private _state = (_selectedGroups findIf {!(_x getVariable [QEGVAR(caching,excluded), false])}) != -1; // At least 1 included = true
+    private _state = [_selectedGroups, {!(_x getVariable [QEGVAR(caching,excluded), false])}] call FUNC(arrayAny); // At least 1 included = true
     _action set [1, ["Include In Caching", "Exclude From Caching"] select _state]; // If any group included, show exclude
     _action set [2, [QPATHTOF(ui\Icon_Module_Caching_Include_ca.paa), QPATHTOF(ui\Icon_Module_Caching_Exclude_ca.paa)] select _state];
 };
@@ -30,7 +30,7 @@ if (!(_selectedObjects isEqualTo [])) exitWith {
             _selectedGroups pushBackUnique (group _x);
         };
     } forEach (_selectedObjects select {_x isKindOf "CAManBase" && {alive _x}});
-    private _state = (_selectedGroups findIf {!(_x getVariable [QEGVAR(caching,excluded), false])}) != -1; // At least 1 included = true
+    private _state = [_selectedObjects, {!(_x getVariable [QEGVAR(caching,excluded), false])}] call FUNC(arrayAny); // At least 1 included = true
     _action set [1, ["Include In Caching", "Exclude From Caching"] select _state]; // If any group included, show exclude
     _action set [2, [QPATHTOF(ui\Icon_Module_Caching_Include_ca.paa), QPATHTOF(ui\Icon_Module_Caching_Exclude_ca.paa)] select _state];
 };

@@ -77,4 +77,4 @@ if (_object1 isEqualType []) then {
 };
 
 TRACE_1("Running polygon check",_object1);
-(_boundingBox1 findIf {_x inPolygon _boundingBox2} >= 0) || {_boundingBox2 findIf {_x inPolygon _boundingBox1} >= 0}
+[_boundingBox1, {_x inPolygon _boundingBox2}] call FUNC(arrayAny) || [_boundingBox2, {_x inPolygon _boundingBox1}] call FUNC(arrayAny)
