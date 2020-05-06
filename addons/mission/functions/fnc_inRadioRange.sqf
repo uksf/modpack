@@ -26,7 +26,7 @@ if (_artillery isKindOf "StaticMortar") then {
     } else {
         // Try to communicate through RTO
         private _rtoUnits = (_caller nearEntities ["CAManBase", GVAR(artillerySupportBaseDistance)]) select {(backpack _x) in GVAR(artillerySupportRtoBackpacks)};
-        if ([_rtoUnits, {(_x distance2D _artillery) <= GVAR(artillerySupportRtoDistance)}] call FUNC(arrayAny)) then {
+        if ([_rtoUnits, {(_x distance2D _artillery) <= GVAR(artillerySupportRtoDistance)}] call EFUNC(common,arrayAny)) then {
             _inRange = true;
         } else {
             // Try to communicate through RTO and mast, first check if any valid masts in range of artillery, then check if any rtos in range of those masts
@@ -36,14 +36,14 @@ if (_artillery isKindOf "StaticMortar") then {
                 _masts = _masts select {alive _x && {damage _x < 0.5}};
                 _inRange = [_masts, {
                     private _mast = _x;
-                    [_rtoUnits, {(_x distance2D _mast) <= GVAR(artillerySupportRtoDistance)}] call FUNC(arrayAny)
-                }] call FUNC(arrayAny);
+                    [_rtoUnits, {(_x distance2D _mast) <= GVAR(artillerySupportRtoDistance)}] call EFUNC(common,arrayAny)
+                }] call EFUNC(common,arrayAny);
             };
         };
     };
 } else {
     // Is not mortar, must be FO in range
-    if ([_caller nearEntities ["CAManBase", GVAR(artillerySupportBaseDistance)], {(backpack _x) in GVAR(artillerySupportFoBackpacks)}] call FUNC(arrayAny)) then {
+    if ([_caller nearEntities ["CAManBase", GVAR(artillerySupportBaseDistance)], {(backpack _x) in GVAR(artillerySupportFoBackpacks)}] call EFUNC(common,arrayAny)) then {
         _inRange = true;
     };
 };
