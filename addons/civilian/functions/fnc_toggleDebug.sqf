@@ -82,6 +82,7 @@ if (_state) then {
                 "#(rgb,8,8,3)color(1,1,1,1)"
             };
             _sphere setObjectTextureGlobal [0, _colour];
+            _sphere setObjectMaterialGlobal [0, "A3\data_f\default.rvmat"];
 
             _sphere = objNull;
             _index = GVAR(debugVehicleMoveCommandSpheres) findIf {(_x#0) == _vehicle};
@@ -120,7 +121,7 @@ if (_state) then {
                 if (_commander != _driver) then {
                     private _commandPosition = getPos _commander;
                     private _direction = (getPos _vehicle) vectorFromTo _commandPosition;
-                    _commandPosition = _commandPosition vectorAdd (_direction vectorMultiply 2);
+                    _commandPosition = _commandPosition vectorAdd (_direction vectorMultiply -3);
                     if (isNull _sphere) then {
                         _sphere = createVehicle ["Sign_Sphere25cm_F", _commandPosition, [], 0, "CAN_COLLIDE"];
                         GVAR(debugVehicleFollowCommandSpheres) pushBack [_vehicle, _sphere];
@@ -162,6 +163,7 @@ if (_state) then {
                 "#(rgb,8,8,3)color(1,1,1,1)"
             };
             _sphere setObjectTextureGlobal [0, _colour];
+            _sphere setObjectMaterialGlobal [0, "A3\data_f\default.rvmat"];
 
             _sphere = objNull;
             _index = GVAR(debugUnitMoveCommandSpheres) findIf {(_x#0) == _civilian};

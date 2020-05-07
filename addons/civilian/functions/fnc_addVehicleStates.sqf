@@ -49,8 +49,8 @@
     private _driver = driver _vehicle;
     _driver enableAI "FSM";
     _driver enableAI "MOVE";
-    _driver enableAI "PATH";
-    _driver doMove ([_vehicle, 100, getDir _vehicle, 60] call CBA_fnc_randPos); // (let ambient driving module handle afterwards)
+    doStop _driver;
+    [group _driver, [_vehicle, 100, getDir _vehicle, 60] call CBA_fnc_randPos] call CBA_fnc_addWaypoint;
     _vehicle forceSpeed -1;
 
     _driver setVariable [QGVAR(vehicle_commandedToStop), false, true];
@@ -63,6 +63,7 @@
     _vehicle setVariable [QGVAR(vehicle_moveCommander), objNull, true];
     _vehicle setVariable [QGVAR(vehicle_movePosition), [], true];
     _vehicle setVariable [QGVAR(vehicle_followCommander), objNull, true];
+    _vehicle setVariable [QGVAR(vehicle_followCachedPosition), [], true];
     _vehicle setVariable [QGVAR(vehicle_driver), objNull, true];
 
     private _jipId = _vehicle getVariable [QGVAR(vehicle_interaction_jipId), ""];
@@ -144,14 +145,16 @@
     private _lastTime = _vehicle getVariable [QGVAR(vehicle_lastTime), 0];
     private _forceMoveUpdate = _vehicle getVariable [QGVAR(vehicle_forceMoveUpdate), false];
     private _commandPosition = _vehicle getVariable [QGVAR(vehicle_movePosition), getPos (_vehicle getVariable [QGVAR(vehicle_moveCommander), _driver])];
-    private _vehicleLength = _vehicle getVariable [QGVAR(vehicleLength), 4];
+    private _vehicleLength = _vehicle getVariable [QGVAR(vehicleLength), 5];
+    private _vehicleFrontPosition = _vehicle modelToWorld [0, _vehicleLength / 2, 0];
+    _vehicleFrontPosition set [2, 0];
 
-    if (_forceMoveUpdate || {CBA_missionTime > (_lastTime + VEHICLE_STOP_INTERVAL) && {(_vehicle distance _commandPosition) > _vehicleLength}}) then {
+    if (_forceMoveUpdate || {CBA_missionTime > (_lastTime + VEHICLE_STOP_INTERVAL) && {(_vehicleFrontPosition distance2D _commandPosition) > 5}}) then {
         _vehicle setVariable [QGVAR(vehicle_lastTime), CBA_missionTime];
         _vehicle setVariable [QGVAR(vehicle_forceMoveUpdate), false, true];
         _driver enableAI "MOVE";
         _driver doMove _commandPosition;
-        TRACE_5("Moving",_vehicle,_driver,_commandPosition,_vehicle distance _commandPosition,_vehicleLength);
+        TRACE_5("Moving",_vehicle,_driver,_commandPosition,_vehicleFrontPosition,_vehicleFrontPosition distance2D _commandPosition);
     };
 }, {
     // On Entered -
@@ -178,21 +181,31 @@
 
     private _driver = driver _vehicle;
     private _lastTime = _vehicle getVariable [QGVAR(vehicle_lastTime), 0];
-    private _commandPosition = getPos (_vehicle getVariable [QGVAR(vehicle_followCommander), _driver]);
-    private _direction = (getPos _vehicle) vectorFromTo _commandPosition;
-    _commandPosition = _commandPosition vectorAdd (_direction vectorMultiply 3);
-    private _vehicleLength = _vehicle getVariable [QGVAR(vehicleLength), 4];
 
     if (CBA_missionTime > (_lastTime + VEHICLE_STOP_INTERVAL)) then {
         _vehicle setVariable [QGVAR(vehicle_lastTime), CBA_missionTime];
-        if ((_vehicle distance _commandPosition) > _vehicleLength) then {
+
+        private _commandPosition = getPos (_vehicle getVariable [QGVAR(vehicle_followCommander), _driver]);
+        private _direction = (getPos _vehicle) vectorFromTo _commandPosition;
+        _commandPosition = _commandPosition vectorAdd (_direction vectorMultiply -3);
+        _commandPosition set [2, 0];
+        private _vehicleLength = _vehicle getVariable [QGVAR(vehicleLength), 5];
+        private _vehicleFrontPosition = _vehicle modelToWorld [0, _vehicleLength / 2, 0];
+        _vehicleFrontPosition set [2, 0];
+        if ((_vehicleFrontPosition distance2D _commandPosition) > 5) then {
             _driver enableAI "MOVE";
-            _driver doMove _commandPosition;
-            TRACE_5("Following",_vehicle,_driver,_commandPosition,_vehicle distance _commandPosition,_vehicleLength);
+            private _cachedPosition = _vehicle getVariable [QGVAR(vehicle_followCachedPosition), []];
+            if (_cachedPosition isEqualTo [] || {(_cachedPosition distance2D _commandPosition) > 5}) then {
+                _vehicle setVariable [QGVAR(vehicle_followCachedPosition), _commandPosition, true];
+                _driver doMove _commandPosition;
+                TRACE_6("Following",_vehicle,_driver,_commandPosition,_vehicleFrontPosition,_vehicleFrontPosition distance2D _commandPosition,_vehicleLength);
+            } else {
+                TRACE_5("Following (cached)",_vehicle,_driver,_commandPosition,_cachedPosition,_cachedPosition distance2D _commandPosition);
+            };
         } else {
             _driver disableAI "MOVE";
             doStop _driver;
-            TRACE_5("Holding follow",_vehicle,_driver,_commandPosition,_vehicle distance _commandPosition,_vehicleLength);
+            TRACE_6("Holding follow",_vehicle,_driver,_commandPosition,_vehicleFrontPosition,_vehicleFrontPosition distance2D _commandPosition,_vehicleLength);
         };
     };
 }, {
@@ -201,6 +214,7 @@
 
     private _driver = driver _vehicle;
     _driver setBehaviour "CARELESS";
+    _vehicle forceSpeed 3;
     TRACE_2("Enter follow",_vehicle,_driver);
 }, {
     // On Leaving - Reset move command values
@@ -209,6 +223,8 @@
     private _driver = driver _vehicle;
     _driver setBehaviour "SAFE";
     _vehicle setVariable [QGVAR(vehicle_followCommander), objNull, true];
+    _vehicle setVariable [QGVAR(vehicle_followCachedPosition), [], true];
+    _vehicle forceSpeed 8;
     TRACE_2("Exit follow",_vehicle,_driver);
 }, QGVAR(vehicle_state_follow)] call CBA_statemachine_fnc_addState;
 
@@ -246,7 +262,6 @@
     private _driver = _vehicle getVariable [QGVAR(vehicle_driver), objNull];
     if (isNull _driver) exitWith {};
 
-    _driver enableAI "PATH";
     _driver enableAI "MOVE";
     _driver assignAsDriver _vehicle;
     [_driver, _vehicle, 0, "GETIN", "CARELESS", "BLUE", "LIMITED"] call CBA_fnc_addWaypoint;
@@ -261,7 +276,6 @@
 
     private _driver = driver _vehicle;
     _driver setBehaviour "SAFE";
-    _driver enableAI "PATH";
     _driver disableAI "MOVE";
     _driver forceWalk false;
     TRACE_2("Exit get in",_vehicle,_driver);

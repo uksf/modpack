@@ -61,9 +61,9 @@ if (_index != -1) then {
     };
 
     private _boundingBox = 0 boundingBoxReal _vehicle;
-    private _length = (abs (((_boundingBox#1)#1) - ((_boundingBox#0)#1))) * 1.5;
-    _driver setVariable [QGVAR(vehicle_commandedToStop), true, true];
+    private _length = abs ((_boundingBox#1#1) - (_boundingBox#0#1));
     _vehicle setVariable [QGVAR(vehicleLength), _length, true];
+    _driver setVariable [QGVAR(vehicle_commandedToStop), true, true];
 
     // If unit is within a small arc to the front of driver, set position in front of unit as move command poisition (should make driver pull up to unit)
     if ((acos ((eyeDirection _driver) vectorCos ((eyePos _driver) vectorFromTo (eyePos _unit)))) < (VISION_ARC / 1.5)) then {

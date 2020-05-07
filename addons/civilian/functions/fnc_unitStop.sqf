@@ -47,6 +47,8 @@ if (_index != -1) then {
     private _civilian = _entities#_index#1;
     TRACE_1("Selected civilian",_civilian);
 
+    _civilian setVariable [QGVAR(unit_stopCommander), _unit, true];
+
     private _stopCommanded = _civilian getVariable [QGVAR(unit_commandedToStop), false];
     if (_stopCommanded) exitWith {
         TRACE_1("Civilian already commanded to stop (forcing)",_civilian);
@@ -65,9 +67,9 @@ if (_index != -1) then {
     if ((acos ((eyeDirection _civilian) vectorCos ((eyePos _civilian) vectorFromTo (eyePos _unit)))) < (VISION_ARC / 1.5) && {(random 100) < UNIT_STOP_WALK_TO_PLAYER_CHANCE}) then {
         private _commandPosition = (positionCameraToWorld [0,0,0]) vectorAdd ((vectorDirVisual _unit) vectorMultiply 5);
         _commandPosition set [2, 0];
-        _civilian setVariable [QGVAR(unit_statemachine_movePosition), _commandPosition, true];
-        _civilian setVariable [QGVAR(unit_statemachine_moveCommander), _unit, true];
-        _civilian setVariable [QGVAR(unit_statemachine_forceMoveUpdate), true, true];
+        _civilian setVariable [QGVAR(unit_movePosition), _commandPosition, true];
+        _civilian setVariable [QGVAR(unit_moveCommander), _unit, true];
+        _civilian setVariable [QGVAR(unit_forceMoveUpdate), true, true];
         TRACE_1("Stop command given move position",_commandPosition);
     };
 

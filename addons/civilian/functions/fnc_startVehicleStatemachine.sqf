@@ -32,6 +32,10 @@ call FUNC(addVehicleEventTransitions);
 [{
     private _nonLocal = (GVAR(vehicle_statemachine_vehicles) select {!(local _x)});
     {
+        private _jipId = _x getVariable [QGVAR(vehicle_interaction_jipId), ""];
+        [_jipId] call CBA_fnc_removeGlobalEventJIP;
+        [QGVAR(removeVehicleInteractions), [_x]] call CBA_fnc_globalEvent;
+        
         GVAR(vehicle_statemachine_vehicles) deleteAt (GVAR(vehicle_statemachine_vehicles) find _x);
         [QGVAR(startVehicleStatemachine), [_x], _x] call CBA_fnc_targetEvent;
     } forEach _nonLocal;

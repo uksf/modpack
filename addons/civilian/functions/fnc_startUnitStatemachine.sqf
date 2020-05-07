@@ -32,6 +32,10 @@ call FUNC(addUnitEventTransitions);
 [{
     private _nonLocal = (GVAR(unit_statemachine_units) select {!(local _x)});
     {
+        private _jipId = _x getVariable [QGVAR(unit_interaction_jipId), ""];
+        [_jipId] call CBA_fnc_removeGlobalEventJIP;
+        [QGVAR(removeUnitInteractions), [_x]] call CBA_fnc_globalEvent;
+
         GVAR(unit_statemachine_units) deleteAt (GVAR(unit_statemachine_units) find _x);
         [QGVAR(startUnitStatemachine), [_x], _x] call CBA_fnc_targetEvent;
     } forEach _nonLocal;

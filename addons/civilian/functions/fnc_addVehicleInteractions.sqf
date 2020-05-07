@@ -16,6 +16,7 @@ params ["_vehicle"];
 
 private _action = [QGVAR(vehicle_ignoreCommands), "Please wait there", "", {
     _target setVariable [QGVAR(vehicle_ignoreCommands), true, true];
+    [QGVAR(stopCommand), [_target], _target] call CBA_fnc_targetEvent;
 }, {
     !(_target getVariable [QGVAR(vehicle_ignoreCommands), false])
 }, {}, [], [0,0,0], 7, [false, true, false, false, false]] call ace_interact_menu_fnc_createAction;

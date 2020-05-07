@@ -92,9 +92,8 @@ private _fnc_isVehicleOrDriverNullOrDead = {
 
     private _driver = driver _vehicle;
     private _commandPosition = _vehicle getVariable [QGVAR(vehicle_movePosition), getPos (_vehicle getVariable [QGVAR(vehicle_moveCommander), _driver])];
-    private _vehicleLength = _vehicle getVariable [QGVAR(vehicleLength), 4];
 
-    (_vehicle distance _commandPosition) <= _vehicleLength
+    (_vehicle distance2D _commandPosition) <= 5
 }, {
     // OnTransition -
 }, QGVAR(vehicle_transition_move_stopping)] call CBA_statemachine_fnc_addTransition;
