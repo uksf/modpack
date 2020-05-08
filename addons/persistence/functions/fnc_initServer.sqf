@@ -94,7 +94,7 @@ addMissionEventHandler ["PlayerDisconnected", {call FUNC(playerDisconnected)}];
     params ["_player"];
 
     private _objects = [];
-    [GVAR(hashHasRedeployed), {_objects pushBack [_key, _value];}] call CBA_fnc_hashEachPair;
+    [GVAR(persistentObjectsHash), {_objects pushBack [_key, _value];}] call CBA_fnc_hashEachPair;
     [QGVAR(receivePersistentObjectsHash), [_objects], _player] call CBA_fnc_targetEvent;
 }] call CBA_fnc_addEventHandler;
 

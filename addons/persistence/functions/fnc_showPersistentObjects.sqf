@@ -19,7 +19,7 @@ GVAR(persistentObjectIconsPFHID) = [{
     _args params ["_time"];
 
     if (CBA_missionTime > (_time + INTERVAL)) then {
-        [QGAR(requestPersistentObjectsHash), [player]] call CBA_fnc_serverEvent;
+        [QGVAR(requestPersistentObjectsHash), [player]] call CBA_fnc_serverEvent;
     };
 
     _args set [0, CBA_missionTime];
