@@ -12,9 +12,21 @@
     Return Value:
         None
 */
+#define INTERVAL 10
 
 GVAR(persistentObjectIconsPFHID) = [{
-    [GVAR(persistentObjectsHash), {
-        drawIcon3D ["", [0,0,1,1], _value modelToWorld [0,0,0], 0.5, 0.5, 0, format ["%1", _key], 0, 0.03, "TahomaB", "center"];
-    }] call CBA_fnc_hashEachPair;
-}, 0] call CBA_fnc_addPerFrameHandler;
+    params ["_args"];
+    _args params ["_time"];
+
+    if (CBA_missionTime > (_time + INTERVAL)) then {
+        [QGAR(requestPersistentObjectsHash), [player]] call CBA_fnc_serverEvent;
+    };
+
+    _args set [0, CBA_missionTime];
+
+    {
+        params ["_id", "_object"];
+
+        drawIcon3D ["", [0,0,1,1], _object modelToWorld [0,0,0], 0.5, 0.5, 0, _id, 0, 0.03, "TahomaB", "center"];
+    } forEach GVAR(persistentObjects);
+}, 0, [CBA_missionTime]] call CBA_fnc_addPerFrameHandler;

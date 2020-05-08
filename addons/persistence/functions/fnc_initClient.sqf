@@ -13,6 +13,7 @@
         None
 */
 
+GVAR(persistentObjects) = [];
 GVAR(dontDeleteObjectIds) = [];
 GVAR(unmarkedObjectIds) = [];
 GVAR(persistentObjectIconsPFHID) = -1;
@@ -42,7 +43,7 @@ GVAR(abortedObjectGhostPFHID) = -1;
     [QGVAR(markerDeleted), _this] call CBA_fnc_serverEvent;
 }] call CBA_fnc_addMarkerEventHandler;
 
-[QGVAR(sendRedeployData), {
+[QGVAR(receiveRedeployData), {
     GVAR(data) = _this;
     TRACE_1("Receiving redeploy data",GVAR(data));
     GVAR(data) params ["_position"];
@@ -66,6 +67,8 @@ GVAR(abortedObjectGhostPFHID) = -1;
     GVAR(respawn) setMarkerTypeLocal "flag_UK";
     GVAR(respawn) setMarkerTextLocal RESPAWN_NAME;
 }] call CBA_fnc_addEventHandler;
+
+[QGVAR(receivePersistentObjectsHash), {GVAR(persistentObjects) = _this#0}] call CBA_fnc_addEventHandler;
 
 [QGVAR(firstRespawn), {
     GVAR(data) params ["_position", "_vehicleState", "_direction", "_animation", "_loadout", "_damage", "_aceStates", "_earplugs", "_attached", "_radios"];

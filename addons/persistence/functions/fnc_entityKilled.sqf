@@ -25,6 +25,6 @@ if !(_hasRedployed) then {
     private _data = GVAR(dataNamespace) getVariable [_uid, []];
     TRACE_1("Sending player data",_data);
     if (count _data > 0) then {
-        [QGVAR(sendRedeployData), _data, _unit] call CBA_fnc_targetEvent;
+        [QGVAR(receiveRedeployData), _data, _unit] call CBA_fnc_targetEvent;
     };
 };

@@ -85,9 +85,17 @@ addMissionEventHandler ["PlayerDisconnected", {call FUNC(playerDisconnected)}];
         private _data = GVAR(dataNamespace) getVariable [_uid, []];
         TRACE_1("Sending player redeploy data",_data);
         if (count _data > 0) then {
-            [QGVAR(sendRedeployData), _data, _player] call CBA_fnc_targetEvent;
+            [QGVAR(receiveRedeployData), _data, _player] call CBA_fnc_targetEvent;
         };
     };
+}] call CBA_fnc_addEventHandler;
+
+[QGVAR(requestPersistentObjectsHash), {
+    params ["_player"];
+
+    private _objects = [];
+    [GVAR(hashHasRedeployed), {_objects pushBack [_key, _value];}] call CBA_fnc_hashEachPair;
+    [QGVAR(receivePersistentObjectsHash), [_objects], _player] call CBA_fnc_targetEvent;
 }] call CBA_fnc_addEventHandler;
 
 [QGVAR(checkPersistentVehicleExists), {
