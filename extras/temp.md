@@ -315,7 +315,7 @@ This would add the player object to all curators.
 - Can only be raised onto the `server`
 - Parameters: [`_object` \<OBJECT\>]
 
-#### uksf_persistence_markVehicleAsPersistent
+#### uksf_persistence_markObjectAsPersistent
 
 - Marks a vehicle as persistent so it will be saved
 - Raised by the EDEN attribute `Marks vehicle as persistent`, when a player

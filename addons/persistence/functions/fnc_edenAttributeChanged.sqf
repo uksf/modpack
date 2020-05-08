@@ -41,7 +41,7 @@ if (_delete) exitWith {
     };
 };
 
-// Vehicle is marked as persistent
+// Object is marked as persistent
 if (_persistent) then {
     // ID is already set
     if (_id != "") then {
@@ -72,7 +72,7 @@ if (_persistent) then {
         [GVAR(edenPersistenceIdHash), _id, _object] call CBA_fnc_hashSet;
     };
 } else {
-    // Vehicle is not marked as persistent, set its ID to empty, and remove ID from hash if present
+    // Object is not marked as persistent, set its ID to empty, and remove ID from hash if present
     _object clear3DENAttribute QGVAR(persistenceID);
     if ([GVAR(edenPersistenceIdHash), _id] call CBA_fnc_hashHasKey) then {
         [GVAR(edenPersistenceIdHash), _id] call CBA_fnc_hashRem;

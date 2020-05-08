@@ -16,7 +16,7 @@ params ["_unit", "_id", "_uid", "_name"];
 
 TRACE_4("HandleDisconnect",_unit,_id,_uid,_name);
 
-[GVAR(hashFirstKilled), _uid, true] call CBA_fnc_hashSet;
+[GVAR(hashHasRedeployed), _uid, false] call CBA_fnc_hashSet;
 [GVAR(hashFirstRespawn), _uid, true] call CBA_fnc_hashSet;
 
 private _data = [
@@ -50,7 +50,7 @@ private _data = [
         if (_vehicle != _unit) then {
             _id = _vehicle getVariable [QGVAR(persistenceID), ""];
             if (_id == "") then {
-                _id = [_vehicle] call FUNC(markVehicleAsPersistent);
+                _id = [_vehicle] call FUNC(markObjectAsPersistent);
             };
             _role = _unit call CBA_fnc_vehicleRole;
             _index = _vehicle getCargoIndex _unit;
@@ -82,7 +82,4 @@ if (GVAR(dataSaved)) then {
     LOG("Saved data");
 };
 
-private _players = [] call CBA_fnc_players;
-TRACE_1("Remaining players on server:"_players);
-
-[_unit] call FUNC(saveVehicleData);
+[_unit] call FUNC(saveObjectData);

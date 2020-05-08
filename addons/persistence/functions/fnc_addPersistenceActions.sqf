@@ -17,14 +17,33 @@ params ["_unit"];
 private _fnc_children = {
     private _actions = [];
 
-    private _action = [QGVAR(persistenceShutdown), QUOTE(Save and Shutdown), "", {[] call FUNC(shutdown)}, {MULTIPLAYER_ADMIN_OR_WHITELISTED}] call ace_interact_menu_fnc_createAction;
+    private _action = [QGVAR(shutdown), "Save and Shutdown", "", {[] call FUNC(shutdown)}, {MULTIPLAYER_ADMIN_OR_WHITELISTED}] call ace_interact_menu_fnc_createAction;
+    _actions pushBack [_action, [], _player];
+
+    _action = [QGVAR(showPersistentObjects), "Show Persistent Objects", "", {[] call FUNC(showPersistentObjects)}, {MULTIPLAYER_ADMIN_OR_WHITELISTED && {GVAR(persistentObjectIconsPFHID) == -1}}] call ace_interact_menu_fnc_createAction;
+    _actions pushBack [_action, [], _player];
+
+    _action = [QGVAR(hidePersistentObjects), "Hide Persistent Object Markers", "", {
+        [GVAR(persistentObjectIconsPFHID)] call CBA_fnc_removePerFrameHandler;
+    }, {MULTIPLAYER_ADMIN_OR_WHITELISTED && {GVAR(persistentObjectIconsPFHID) != -1}}] call ace_interact_menu_fnc_createAction;
+    _actions pushBack [_action, [], _player];
+
+    _action = [QGVAR(showAbortedObjectGhosts), "Show Aborted Object Ghosts", "", {[] call FUNC(showAbortedObjectGhosts)}, {MULTIPLAYER_ADMIN_OR_WHITELISTED && {count GVAR(dontDeleteObjectIds) > 0} && {GVAR(abortedObjectGhosts) isEqualTo []}}] call ace_interact_menu_fnc_createAction;
+    _actions pushBack [_action, [], _player];
+
+    _action = [QGVAR(hideAbortedObjectGhosts), "Hide Aborted Object Ghosts", "", {
+        [GVAR(abortedObjectGhostPFHID)] call CBA_fnc_removePerFrameHandler;
+        {deleteVehicle _x#1} forEach GVAR(abortedObjectGhostInteractionObjects);
+        GVAR(abortedObjectGhostInteractionObjects) = [];
+        GVAR(abortedObjectGhosts) = [];
+    }, {MULTIPLAYER_ADMIN_OR_WHITELISTED && {!(GVAR(abortedObjectGhosts) isEqualTo [])}}] call ace_interact_menu_fnc_createAction;
     _actions pushBack [_action, [], _player];
 
     _actions
 };
 
-if (local _unit && {!(_unit getVariable [QGVAR(persistenceActionsAdded), false])}) then {
-    private _action = [QGVAR(persistenceActions), QUOTE(Persistence), "", {}, {true}, _fnc_children] call ace_interact_menu_fnc_createAction;
+if (local _unit && {!(_unit getVariable [QGVAR(actionsAdded), false])}) then {
+    private _action = [QGVAR(actions), "Persistence", "", {}, {true}, _fnc_children] call ace_interact_menu_fnc_createAction;
     [_unit, 1, ["ACE_SelfActions"], _action] call ace_interact_menu_fnc_addActionToObject;
-    _unit setVariable [QGVAR(persistenceActionsAdded), true];
+    _unit setVariable [QGVAR(actionsAdded), true];
 };

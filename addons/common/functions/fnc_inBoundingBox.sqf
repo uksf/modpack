@@ -16,13 +16,13 @@
 */
 params [["_object1", objNull, [objNull, []]], ["_object2", objNull, [objNull]], ["_object1Direction", -1, [0]]];
 
-TRACE_2("Checking bounding box intersection",_object1,_object2);
-private _boundingBox2 = 2 boundingBoxReal _object2;
+private _boundingBox2 = boundingBoxReal _object2;
 private _width2 = (abs (((_boundingBox2#1)#0) - ((_boundingBox2#0)#0))) * 0.5;
 private _length2 = (abs (((_boundingBox2#1)#1) - ((_boundingBox2#0)#1))) * 0.5;
 private _height2 = (abs (((_boundingBox2#1)#2) - ((_boundingBox2#0)#2))) * 0.5;
-private _position = [0,0,0];
 
+private _object1Source = _object1;
+private _position = [0,0,0];
 if (_object1 isEqualType objNull) then {
     _position = getPosATL _object1;
 } else {
@@ -30,7 +30,7 @@ if (_object1 isEqualType objNull) then {
     _object1 = _object1#0;
 };
 
-private _boundingBox1 = 2 boundingBoxReal _object1;
+private _boundingBox1 = boundingBoxReal _object1;
 private _width1 = (abs (((_boundingBox1#1)#0) - ((_boundingBox1#0)#0))) * 0.5;
 private _length1 = (abs (((_boundingBox1#1)#1) - ((_boundingBox1#0)#1))) * 0.5;
 private _height1 = (abs (((_boundingBox1#1)#2) - ((_boundingBox1#0)#2))) * 0.5;
@@ -49,32 +49,14 @@ if (_object2 inArea [_position, _width1, _length1, _object1Direction, true,_heig
     true
 };
 
-private _getBoundingBox = {
-    private _boundingBox = _this#1;
-    private _boundingBoxX = [_boundingBox#0#0, _boundingBox#1#0];
-    private _boundingBoxY = [_boundingBox#0#1, _boundingBox#1#1];
-    private _boundingBoxResult = [];
+_boundingBox1 = [_object1, _boundingBox1] call FUNC(getBoundingBox);
+_boundingBox2 = [_object2, _boundingBox2] call FUNC(getBoundingBox);
 
-    {
-        private _y = _x;
-
-        {
-            _boundingBoxResult pushBack ((_this#0) modelToWorld [_x, _y, (_boundingBox#0#2) min (_boundingBox#1#2)]);
-        } forEach _boundingBoxX;
-        reverse _boundingBoxX;
-    } forEach _boundingBoxY;
-
-    _boundingBoxResult
-};
-
-_boundingBox1 = [_object1, _boundingBox1] call _getBoundingBox;
-_boundingBox2 = [_object2, _boundingBox2] call _getBoundingBox;
-
-if (_object1 isEqualType []) then {
+if (_object1Source isEqualType []) then {
     {
         _boundingBox1 set [_forEachIndex, _position vectorAdd _x vectorDiff (getPosATL _object1)];
     } forEach _boundingBox1;
 };
 
-TRACE_1("Running polygon check",_object1);
+_position inPolygon _boundingBox2 || (getPosATL _object2) inPolygon _boundingBox1 ||
 [_boundingBox1, {_x inPolygon _boundingBox2}] call FUNC(arrayAny) || [_boundingBox2, {_x inPolygon _boundingBox1}] call FUNC(arrayAny)

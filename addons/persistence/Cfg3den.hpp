@@ -7,7 +7,7 @@ class Cfg3DEN {
                         property = QGVAR(persistent);
                         control = QGVAR(Checkbox);
                         displayName = QUOTE(Persistent);
-                        tooltip = QUOTE(Marks vehicle as persistent);
+                        tooltip = QUOTE(Marks object as persistent);
                         expression = "";
                         typeName = "BOOL";
                         defaultValue = "false";
@@ -18,7 +18,7 @@ class Cfg3DEN {
                         control = QGVAR(Edit);
                         displayName = QUOTE(Persistence ID);
                         tooltip = QUOTE(Set persistence ID - Must be unique);
-                        expression = QUOTE(if (!is3DEN && { isServer }) then {[ARR_2(_this,_value)] call FUNC(markVehicleAsPersistent) };);
+                        expression = QUOTE(if (!is3DEN && { isServer }) then {[ARR_2(_this,_value)] call FUNC(markObjectAsPersistent) };);
                         typeName = "STRING";
                         defaultValue = "''";
                         validate = "variable";

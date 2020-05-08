@@ -11,6 +11,7 @@ PREP(findNearRoad);
 PREP(fpsGet);
 PREP(fpsSet);
 PREP(fpsToggle);
+PREP(getBoundingBox);
 PREP(getNearPlayers);
 PREP(getSafePositionGrid);
 PREP(hint);

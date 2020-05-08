@@ -47,7 +47,7 @@ private _data = [
     [getAmmoCargo _object, getFuelCargo _object, getRepairCargo _object],
     _attachedObjects,
     (((([_object] call acre_api_fnc_getVehicleRacks) select {_x != ""}) apply {[_x] call acre_api_fnc_getMountedRackRadio}) select {_x != ""}) apply {[_x] call acre_api_fnc_getRadioChannel},
-    [_object] call FUNC(getVehicleCargo),
+    [_object] call FUNC(getObjectCargo),
     [getWeaponCargo _object, getMagazineCargo _object, getItemCargo _object, getBackpackCargo _object],
     [_object getVariable [QGVAR(isAcexFortification), false], _object getVariable [QGVAR(acexFortifySide), west]]
 ];

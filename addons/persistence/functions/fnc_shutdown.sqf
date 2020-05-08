@@ -28,7 +28,7 @@ LOG("Shutdown");
     private _players = [] call CBA_fnc_players;
     if (count _players == 0) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
-        [] call FUNC(saveVehicleData);
+        [] call FUNC(saveObjectData);
         private _dateTime = date;
         TRACE_1("Saving date time",_dateTime);
         GVAR(dataNamespace) setVariable [QGVAR(dateTime), _dateTime];

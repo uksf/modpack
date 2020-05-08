@@ -19,9 +19,9 @@ if (is3DEN) then {
 };
 
 if (!isMultiplayer) exitWith {};
-
+uksf_common_boundingBoxes = [];
 if (hasInterface) then {
-    [QGVAR(initClient), {call FUNC(initClient)}] call CBA_fnc_addEventHandler;
+    call FUNC(initClient);
 };
 
 if (isServer) then {

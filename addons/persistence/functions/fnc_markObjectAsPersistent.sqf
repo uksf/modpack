@@ -17,7 +17,7 @@
 if (!isMultiplayer || is3DEN) exitWith {};
 
 if (!isServer) exitWith {
-    [QGVAR(markVehicleAsPersistent), _this] call CBA_fnc_serverEvent;
+    [QGVAR(markObjectAsPersistent), _this] call CBA_fnc_serverEvent;
 };
 
 params ["_object", ["_id", "", [""]]];
@@ -32,7 +32,7 @@ if (_id == "") then {
 };
 
 _object setVariable [QGVAR(persistenceID), _id];
-[GVAR(hashPersistentVehicles), _id, _object] call CBA_fnc_hashSet;
+[GVAR(persistentObjectsHash), _id, _object] call CBA_fnc_hashSet;
 TRACE_2("Object marked as persistent",_object,_id);
 
 _id

@@ -36,23 +36,23 @@ if (_check isEqualType objNull) then {
 };
 
 _check = _check min 50;
-TRACE_2("Position safety check distance",_check,_object);
+TRACE_3("Checking safety of position",_object,_position,_check);
 
 // check water, water accepts -1, 0 or 2
 // if ((_position isFlatEmpty [-1, -1, -1, 1, 2]) isEqualTo []) exitWith {false};
 
 if (_objects isEqualTo []) then {
-    _objects = _position nearObjects ["All", _check];
+    _objects = _position nearObjects _check;
 };
 
 private _distance = _check * 2;
 _objects = _objects select {
     private _checkObject = _x;
     [_ignore, {_checkObject isKindOf _x}] call FUNC(arrayNone) &&
-    {(_checkObject distance _object) < _distance} &&
-    {([[QGVAR(scope_), typeOf _x] joinString "", {GVAR(configVehicles) >> typeOf _x >> "scope"}] call FUNC(readCacheValues)) > 1}
+    {(_checkObject distance _position) < _distance} //&&
+    // {([[QGVAR(scope_), typeOf _x] joinString "", {GVAR(configVehicles) >> typeOf _x >> "scope"}] call FUNC(readCacheValues)) > 1}
 };
-TRACE_1("Found nearby objects",_objects);
+TRACE_1("Filtered nearby objects",_objects);
 
 // _objects append (nearestTerrainObjects [_position, [], _check, false, true]);
 
@@ -68,4 +68,4 @@ TRACE_1("Found nearby objects",_objects);
 if (isNull _object) exitWith {_objects isEqualTo []};
 
 // check bounding box intersections if object provided
-[_objects, {[[_object, _position, _objectDirection], _x] call FUNC(inBoundingBox)}] call FUNC(arrayAny)
+[_objects, {[[_object, _position], _x, _objectDirection] call FUNC(inBoundingBox)}] call FUNC(arrayNone)

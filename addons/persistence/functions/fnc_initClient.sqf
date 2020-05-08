@@ -13,6 +13,13 @@
         None
 */
 
+GVAR(dontDeleteObjectIds) = [];
+GVAR(unmarkedObjectIds) = [];
+GVAR(persistentObjectIconsPFHID) = -1;
+GVAR(abortedObjectGhosts) = [];
+GVAR(abortedObjectGhostInteractionObjects) = [];
+GVAR(abortedObjectGhostPFHID) = -1;
+
 ["CAManBase", "respawn", {
     call FUNC(addPersistenceActions);
 }] call CBA_fnc_addClassEventHandler;
@@ -35,9 +42,9 @@
     [QGVAR(markerDeleted), _this] call CBA_fnc_serverEvent;
 }] call CBA_fnc_addMarkerEventHandler;
 
-[QGVAR(firstKilled), {
+[QGVAR(sendRedeployData), {
     GVAR(data) = _this;
-    TRACE_1("Client first killed",GVAR(data));
+    TRACE_1("Receiving redeploy data",GVAR(data));
     GVAR(data) params ["_position"];
     //_positionData params ["_position", "_leaderID", "_leaderPosition", "_leaderDirection", "_offset"];
 
@@ -65,7 +72,7 @@
     //_positionData params ["_position", "_leaderID", "_leaderPosition", "_leaderDirection", "_relativePosition"];
 
     if (!isNil QGVAR(respawn)) then {
-        deleteMarkerLocal GVAR(respawn);
+        [{deleteMarkerLocal GVAR(respawn);}, [], 1] call CBA_fnc_waitAndExecute;
     };
     /*if (!isNil QGVAR(groupRespawn)) then {
         deleteMarkerLocal GVAR(groupRespawn);
@@ -107,5 +114,20 @@
 
         [[true]] call ace_hearing_fnc_updateVolume;
         [] call ace_hearing_fnc_updateHearingProtection;
+    };
+}] call CBA_fnc_addEventHandler;
+
+[QGVAR(removeAbortedObjectGhost), {
+    params ["_id"];
+
+    private _interactionObjectIndex = GVAR(abortedObjectGhostInteractionObjects) findIf {_x#0 == _id};
+    if (_interactionObjectIndex != -1) then {
+        deleteVehicle (GVAR(abortedObjectGhostInteractionObjects)#_interactionObjectIndex#1);
+    };
+    GVAR(abortedObjectGhostInteractionObjects) deleteAt _interactionObjectIndex;
+    GVAR(abortedObjectGhosts) deleteAt (GVAR(abortedObjectGhosts) findIf {_x#0 == _id});
+
+    if (GVAR(abortedObjectGhostPFHID) != -1 && {GVAR(abortedObjectGhosts) isEqualTo []}) then {
+        [GVAR(abortedObjectGhostPFHID)] call CBA_fnc_removePerFrameHandler;
     };
 }] call CBA_fnc_addEventHandler;

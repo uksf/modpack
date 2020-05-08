@@ -15,4 +15,4 @@
 
 #define ANIM_STANDING QUOTE(amovpercmstpsnonwnondnon)
 
-#define CENTRE_RADIUS 20
+#define CENTRE_RADIUS 30
