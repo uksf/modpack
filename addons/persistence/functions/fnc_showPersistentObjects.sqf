@@ -25,7 +25,7 @@ GVAR(persistentObjectIconsPFHID) = [{
 
 
     {
-        params ["_id", "_object"];
+        _x params ["_id", "_object"];
 
         drawIcon3D ["", [0,0,1,1], _object modelToWorld [0,0,0], 0.5, 0.5, 0, _id, 0, 0.03, "TahomaB", "center"];
     } forEach GVAR(persistentObjects);
