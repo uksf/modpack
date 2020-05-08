@@ -25,6 +25,7 @@ private _fnc_children = {
 
     _action = [QGVAR(hidePersistentObjects), "Hide Persistent Object Markers", "", {
         [GVAR(persistentObjectIconsPFHID)] call CBA_fnc_removePerFrameHandler;
+        GVAR(persistentObjectIconsPFHID) = -1;
         [QGVAR(stopPersistentObjectsHash), [player]] call CBA_fnc_serverEvent;
     }, {MULTIPLAYER_ADMIN_OR_WHITELISTED && {GVAR(persistentObjectIconsPFHID) != -1}}] call ace_interact_menu_fnc_createAction;
     _actions pushBack [_action, [], _player];
@@ -34,6 +35,7 @@ private _fnc_children = {
 
     _action = [QGVAR(hideAbortedObjectGhosts), "Hide Aborted Object Ghosts", "", {
         [GVAR(abortedObjectGhostPFHID)] call CBA_fnc_removePerFrameHandler;
+        GVAR(abortedObjectGhostPFHID) = -1;
         {deleteVehicle _x#1} forEach GVAR(abortedObjectGhostInteractionObjects);
         GVAR(abortedObjectGhostInteractionObjects) = [];
         GVAR(abortedObjectGhosts) = [];

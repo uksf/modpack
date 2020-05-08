@@ -20,13 +20,13 @@ GVAR(persistentObjectIconsPFHID) = [{
 
     if (CBA_missionTime > (_time + INTERVAL)) then {
         [QGVAR(requestPersistentObjectsHash), [player]] call CBA_fnc_serverEvent;
+        _args set [0, CBA_missionTime];
     };
 
-    _args set [0, CBA_missionTime];
 
     {
         params ["_id", "_object"];
 
         drawIcon3D ["", [0,0,1,1], _object modelToWorld [0,0,0], 0.5, 0.5, 0, _id, 0, 0.03, "TahomaB", "center"];
     } forEach GVAR(persistentObjects);
-}, 0, [CBA_missionTime]] call CBA_fnc_addPerFrameHandler;
+}, 0, [0]] call CBA_fnc_addPerFrameHandler;
