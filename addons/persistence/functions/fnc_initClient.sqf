@@ -69,6 +69,7 @@ GVAR(abortedObjectGhostPFHID) = -1;
 }] call CBA_fnc_addEventHandler;
 
 [QGVAR(receivePersistentObjectsHash), {GVAR(persistentObjects) = _this#0}] call CBA_fnc_addEventHandler;
+[QGVAR(receiveAbortedObjects), {call FUNC(showAbortedObjects)}] call CBA_fnc_addEventHandler;
 
 [QGVAR(firstRespawn), {
     GVAR(data) params ["_position", "_vehicleState", "_direction", "_animation", "_loadout", "_damage", "_aceStates", "_earplugs", "_attached", "_radios"];

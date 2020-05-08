@@ -18,6 +18,6 @@ PREP(playerConnected);
 PREP(saveObjectData);
 PREP(serializeMarker);
 PREP(setObjectCargo);
-PREP(showAbortedObjectGhosts);
+PREP(showAbortedObjects);
 PREP(showPersistentObjects);
 PREP(shutdown);

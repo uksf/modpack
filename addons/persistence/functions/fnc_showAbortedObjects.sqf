@@ -7,14 +7,12 @@
         Creates ghost objects of those that aborted loading
 
     Parameter(s):
-        None
+        0: Objects <ARRAY>
 
     Return Value:
         None
 */
-
-private _objects = (GVAR(dataNamespace) getVariable [QGVAR(objects), []]) select {_x#0 != ""};
-_objects = _objects select {private _id = _x#0; [GVAR(dontDeleteObjectIds), {_x == _id}] call EFUNC(common,arrayAny)};
+params ["_objects"];
 
 GVAR(abortedObjectGhosts) = [];
 GVAR(abortedObjectGhostInteractionObjects) = [];

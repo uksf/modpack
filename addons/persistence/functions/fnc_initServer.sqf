@@ -98,6 +98,14 @@ addMissionEventHandler ["PlayerDisconnected", {call FUNC(playerDisconnected)}];
     [QGVAR(receivePersistentObjectsHash), [_objects], _player] call CBA_fnc_targetEvent;
 }] call CBA_fnc_addEventHandler;
 
+[QGVAR(requestAbortedObjects), {
+    params ["_player"];
+
+    private _objects = (GVAR(dataNamespace) getVariable [QGVAR(objects), []]) select {_x#0 != ""};
+    _objects = _objects select {private _id = _x#0; [GVAR(dontDeleteObjectIds), {_x == _id}] call EFUNC(common,arrayAny)};
+    [QGVAR(receiveAbortedObjects), [_objects], _player] call CBA_fnc_targetEvent;
+}] call CBA_fnc_addEventHandler;
+
 [QGVAR(checkPersistentVehicleExists), {
     [{
         params ["_vehicleState"];
