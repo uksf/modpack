@@ -56,7 +56,10 @@ private _fnc_isVehicleOrDriverNullOrDead = {
     params ["_vehicle"];
 
     private _driver = driver _vehicle;
+    private _annoyed = _vehicle getVariable [QGVAR(annoyed), 0];
+    [QGVAR(horn), [_vehicle, _driver, 2], _vehicle] call CBA_fnc_targetEvent;
     _driver setVariable [QGVAR(vehicle_ignoringStop), true, true];
+    [{_this setVariable [QGVAR(vehicle_ignoringStop), false, true]}, _driver, 360] call CBA_fnc_waitAndExecute;
     TRACE_3("Exit triggered. Annoyed?",_vehicle,_annoyed,STOP_ANNOYED_THRESHOLD);
 }, QGVAR(vehicle_transition_stopping_stopped)] call CBA_statemachine_fnc_addTransition;
 
@@ -117,9 +120,9 @@ private _fnc_isVehicleOrDriverNullOrDead = {
     private _annoyed = _vehicle getVariable [QGVAR(annoyed), 0];
 
     if (_annoyed > STOP_ANNOYED_THRESHOLD) exitWith {
+        [QGVAR(horn), [_vehicle, _driver, 2], _vehicle] call CBA_fnc_targetEvent;
         _driver setVariable [QGVAR(vehicle_ignoringStop), true, true];
         [{_this setVariable [QGVAR(vehicle_ignoringStop), false, true]}, _driver, 360] call CBA_fnc_waitAndExecute;
-        [QGVAR(horn), [_vehicle, _driver, 2], _vehicle] call CBA_fnc_targetEvent;
         TRACE_3("Exit triggered. Annoyed",_vehicle,_annoyed,STOP_ANNOYED_THRESHOLD);
     };
 

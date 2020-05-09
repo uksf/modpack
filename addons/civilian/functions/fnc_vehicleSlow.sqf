@@ -14,7 +14,7 @@
 */
 params ["_unit"];
 
-private _vehicles = _unit nearEntities [["Car", "Motorcycle", "Tank"], GESTURE_VEHICLE_SEARCH_DISTANCE];
+private _vehicles = _unit nearEntities [["Car", "Motorcycle", "Tank"], GESTURE_VEHICLE_SEARCH_DISTANCE * 1.5];
 if (_vehicles isEqualTo []) exitWith {
     DEBUG("No entities found, reducing cooldown timeout");
     GVAR(lastGesture) = CBA_missionTime - (GESTURE_COOLDOWN / 2);
@@ -48,15 +48,15 @@ TRACE_1("Valid vehicles?",_vehicles);
     private _driver = driver _vehicle;
 
     if (random 100 < STOP_IGNORE_CHANCE) exitWith {
-        _driver setVariable [QGVAR(vehicle_ignoringStop), true, true];
         [QGVAR(horn), [_vehicle, _driver, 2], _vehicle] call CBA_fnc_targetEvent;
+        _driver setVariable [QGVAR(vehicle_ignoringStop), true, true];
         [{_this setVariable [QGVAR(vehicle_ignoringStop), false, true]}, _driver, 60] call CBA_fnc_waitAndExecute;
         TRACE_2("Slow ignored",_vehicle,_driver);
     };
 
     // Fake some mental delay before slowing vehicle
     [{
-        _this forceSpeed 2.5;
+        _this forceSpeed 4;
         // Reset speed after some time
         [{ _this forceSpeed -1;}, _this, random 20 + random 10] call CBA_fnc_waitAndExecute;
     }, _vehicle, random 0.5 + (linearConversion [30, GESTURE_VEHICLE_SEARCH_DISTANCE, _unit distance _vehicle, 0.5, 1, true])] call CBA_fnc_waitAndExecute;

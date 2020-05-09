@@ -20,16 +20,16 @@
     params ["_unit"];
 
     private _lastTime = _unit getVariable [QGVAR(unit_lastTime), 0];
-    if (CBA_missionTime < (_lastTime + UNIT_STOP_INTERVAL)) exitWith {};
-    _unit setVariable [QGVAR(unit_lastTime), CBA_missionTime];
+    if (CBA_missionTime > (_lastTime + UNIT_STOP_INTERVAL)) then {
+        _unit setVariable [QGVAR(unit_lastTime), CBA_missionTime];
 
-    doStop _unit;
-    TRACE_1("Re-issuing stop",_unit);
+        doStop _unit;
+        TRACE_1("Re-issuing stop",_unit);
+    };
 }, {
     // On Entered - disable AI behaviour
     params ["_unit"];
 
-    _unit disableAI "FSM";
     _unit forceWalk true;
     doStop _unit;
 
@@ -52,35 +52,40 @@
 }, {
     // On Entered - reset variables and states, remove unit from statemachine, give move command (let ambient module handle afterwards)
     params ["_unit"];
+    TRACE_1("Exiting statemachine",_unit);
 
-    _unit enableAI "FSM";
-    _unit enableAI "MOVE";
-    _unit enableAI "PATH";
-    doStop _unit;
-    [group _unit, [_unit, 100, getDir _unit, 60] call CBA_fnc_randPos] call CBA_fnc_addWaypoint;
-    _unit forceWalk false;
+    if !(isNull _unit) then {
+        _unit enableAI "FSM";
+        _unit enableAI "MOVE";
+        _unit enableAI "PATH";
 
-    _unit setVariable [QGVAR(unit_commandedToStop), false, true];
-    _unit setVariable [QGVAR(unit_ignoreCommands), false, true];
-    _unit setVariable [QGVAR(unit_lastTime), 0, true];
-    _unit setVariable [QGVAR(boredom), (_unit getVariable [QGVAR(boredom), 0]) / 4, true];
-    _unit setVariable [QGVAR(annoyed), (_unit getVariable [QGVAR(annoyed), 0]) / 4, true];
-    _unit setVariable [QGVAR(unit_stopCommander), objNull, true];
-    _unit setVariable [QGVAR(unit_forceMoveUpdate), false, true];
-    _unit setVariable [QGVAR(unit_moveCommander), objNull, true];
-    _unit setVariable [QGVAR(unit_movePosition), [], true];
-    _unit setVariable [QGVAR(unit_followCommander), objNull, true];
+        private _vehicle = _unit getVariable [QGVAR(vehicle_vehicle), objNull];
+        if !(isNull _vehicle) then {
+            [QGVAR(getInCommand), [_vehicle], _vehicle] call CBA_fnc_targetEvent;
+        } else {
+            _unit doFollow _unit;
+            [group _unit, [_unit, 250, getDir _unit, 60] call CBA_fnc_randPos] call CBA_fnc_addWaypoint;
+        };
 
-    private _jipId = _unit getVariable [QGVAR(unit_interaction_jipId), ""];
-    [_jipId] call CBA_fnc_removeGlobalEventJIP;
-    [QGVAR(removeUnitInteractions), [_unit]] call CBA_fnc_globalEvent;
+        _unit forceWalk false;
+        _unit setVariable [QGVAR(unit_commandedToStop), false, true];
+        _unit setVariable [QGVAR(unit_ignoreCommands), false, true];
+        _unit setVariable [QGVAR(unit_lastTime), 0, true];
+        _unit setVariable [QGVAR(boredom), (_unit getVariable [QGVAR(boredom), 0]) / 4, true];
+        _unit setVariable [QGVAR(annoyed), (_unit getVariable [QGVAR(annoyed), 0]) / 4, true];
+        _unit setVariable [QGVAR(unit_stopCommander), objNull, true];
+        _unit setVariable [QGVAR(unit_forceMoveUpdate), false, true];
+        _unit setVariable [QGVAR(unit_moveCommander), objNull, true];
+        _unit setVariable [QGVAR(unit_movePosition), [], true];
+        _unit setVariable [QGVAR(unit_followCommander), objNull, true];
+        _unit setVariable [QGVAR(unit_followCachedPosition), [], true];
+
+        private _jipId = _unit getVariable [QGVAR(unit_interaction_jipId), ""];
+        [_jipId] call CBA_fnc_removeGlobalEventJIP;
+        [QGVAR(removeUnitInteractions), [_unit]] call CBA_fnc_globalEvent;
+    };
 
     GVAR(unit_statemachine_units) deleteAt (GVAR(unit_statemachine_units) find _unit);
-
-    private _vehicle = _unit getVariable [QGVAR(vehicle_vehicle), objNull];
-    if !(isNull _vehicle) then {
-        [QGVAR(getInCommand), [_vehicle], _vehicle] call CBA_fnc_targetEvent;
-    };
     TRACE_1("Exited statemachine",_unit);
 }, {
     // On Leaving -
@@ -92,37 +97,40 @@
     params ["_unit"];
 
     private _lastTime = _unit getVariable [QGVAR(unit_lastTime), 0];
-    if (CBA_missionTime < (_lastTime + UNIT_STOP_INTERVAL)) exitWith {};
-    _unit setVariable [QGVAR(unit_lastTime), CBA_missionTime];
+    if (CBA_missionTime > (_lastTime + UNIT_STOP_INTERVAL)) then {
+        _unit setVariable [QGVAR(unit_lastTime), CBA_missionTime];
 
-    private _boredom = _unit getVariable [QGVAR(boredom), 0];
-    private _random = random 100;
-    if (_random < UNIT_STOP_BOREDOM_INCREMENT_CHANCE) then {
-        private _increment = [1, 0.5] select (_unit getVariable [QGVAR(unit_ignoreCommands), false]);
-        _unit setVariable [QGVAR(boredom), _boredom + _increment, true];
-        TRACE_3("Adding to boredom",_unit,_boredom,_unit getVariable [ARR_2(QGVAR(boredom),0)]);
-    };
-
-    if !(_unit getVariable [QGVAR(unit_ignoreCommands), false]) then {
-        // Make unit look at stop commander, until they are facing them
-        private _stopCommander = _unit getVariable [QGVAR(unit_stopCommander), objNull];
-        private _position = [getPos _stopCommander, (getPos _unit) vectorAdd ((vectorDirVisual _unit) vectorMultiply 3)] select (isNull _stopCommander);
-
-        if ((acos ((vectorDirVisual _unit) vectorCos ((eyePos _unit) vectorFromTo _position))) < VISION_ARC / 3) exitWith {
-            TRACE_2("Watching position",_unit,_position);
-            _unit disableAI "MOVE";
-            _unit enableAI "PATH";
+        private _boredom = _unit getVariable [QGVAR(boredom), 0];
+        private _random = random 100;
+        if (_random < UNIT_STOP_BOREDOM_INCREMENT_CHANCE) then {
+            private _increment = [1, 0.5] select (_unit getVariable [QGVAR(unit_ignoreCommands), false]);
+            _unit setVariable [QGVAR(boredom), _boredom + _increment, true];
+            TRACE_3("Adding to boredom",_unit,_boredom,_unit getVariable [ARR_2(QGVAR(boredom),0)]);
         };
 
-        _unit enableAI "MOVE";
-        _unit disableAI "PATH";
-        _unit doWatch _position;
-        TRACE_2("Watch position",_unit,_position);
+        if !(_unit getVariable [QGVAR(unit_ignoreCommands), false]) then {
+            // Make unit look at stop commander, until they are facing them
+            private _stopCommander = _unit getVariable [QGVAR(unit_stopCommander), objNull];
+            if !(isNull _stopCommander) then {
+                private _position = getPos _stopCommander;
+                if ((acos ((vectorDirVisual _unit) vectorCos ((eyePos _unit) vectorFromTo _position))) < VISION_ARC / 3) exitWith {
+                    TRACE_2("Watching stop commander",_unit,_position);
+                    _unit disableAI "MOVE";
+                    _unit enableAI "PATH";
+                };
+
+                _unit enableAI "MOVE";
+                _unit disableAI "PATH";
+                _unit doWatch _position;
+                TRACE_2("Watch stop commander",_unit,_position);
+            };
+        };
     };
 }, {
     // On Entered - disable AI move
     params ["_unit"];
 
+    _unit disableAI "FSM";
     _unit disableAI "MOVE";
     _unit setVariable [QGVAR(unit_stopped), true, true];
     TRACE_1("Enter stopped",_unit);
@@ -132,6 +140,8 @@
 
     _unit disableAI "MOVE";
     _unit enableAI "PATH";
+    _unit enableAI "FSM";
+    _unit doWatch objNull;
     _unit setVariable [QGVAR(unit_stopped), false, true];
     TRACE_1("Exit stopped",_unit);
 }, QGVAR(unit_state_stopped)] call CBA_statemachine_fnc_addState;
@@ -143,28 +153,41 @@
 
     private _lastTime = _unit getVariable [QGVAR(unit_lastTime), 0];
     private _forceMoveUpdate = _unit getVariable [QGVAR(unit_forceMoveUpdate), false];
-    private _commandPosition = _unit getVariable [QGVAR(unit_movePosition), getPos (_unit getVariable [QGVAR(unit_moveCommander), _unit])];
 
-    if (_forceMoveUpdate || {CBA_missionTime > (_lastTime + UNIT_STOP_INTERVAL) && {(_unit distance2D _commandPosition) > 2}}) then {
+    if (_forceMoveUpdate || {CBA_missionTime > (_lastTime + UNIT_STOP_INTERVAL)}) then {
         _unit setVariable [QGVAR(unit_lastTime), CBA_missionTime];
         _unit setVariable [QGVAR(unit_forceMoveUpdate), false, true];
-        _unit enableAI "MOVE";
-        _unit doMove _commandPosition;
-        TRACE_3("Moving",_unit,_commandPosition,_unit distance2D _commandPosition);
+
+        private _commandPosition = _unit getVariable [QGVAR(unit_movePosition), getPos (_unit getVariable [QGVAR(unit_moveCommander), _unit])];
+
+        if ((_unit distance2D _commandPosition) > 2) then {
+            private _moveOrdered = _unit getVariable [QGVAR(unit_moveOrdered), false];
+            if !(_moveOrdered) then {
+                _unit setVariable [QGVAR(unit_moveOrdered), true, true];
+                _unit enableAI "MOVE";
+                _unit doMove _commandPosition;
+                TRACE_3("Moving",_unit,_commandPosition,_unit distance2D _commandPosition);
+            };
+        };
     };
 }, {
     // On Entered -
     params ["_unit"];
 
+    _unit enableAI "FSM";
     _unit setBehaviour "CARELESS";
+    _unit setVariable [QGVAR(unit_moveOrdered), false, true];
     TRACE_1("Enter move",_unit);
 }, {
     // On Leaving - Reset move command values
     params ["_unit"];
 
+    _unit disableAI "MOVE";
+    _unit enableAI "FSM";
     _unit setBehaviour "SAFE";
     _unit setVariable [QGVAR(unit_movePosition), [], true];
     _unit setVariable [QGVAR(unit_moveCommander), objNull, true];
+    _unit setVariable [QGVAR(unit_moveOrdered), false, true];
     TRACE_1("Exit move",_unit);
 }, QGVAR(unit_state_move)] call CBA_statemachine_fnc_addState;
 
@@ -174,16 +197,24 @@
     params ["_unit"];
 
     private _lastTime = _unit getVariable [QGVAR(unit_lastTime), 0];
-    private _commandPosition = getPos (_unit getVariable [QGVAR(unit_followCommander), _unit]);
-    private _direction = (getPos _unit) vectorFromTo _commandPosition;
-    _commandPosition = _commandPosition vectorAdd (_direction vectorMultiply -2);
-
     if (CBA_missionTime > (_lastTime + UNIT_STOP_INTERVAL)) then {
         _unit setVariable [QGVAR(unit_lastTime), CBA_missionTime];
+
+        private _commandPosition = getPos (_unit getVariable [QGVAR(unit_followCommander), _unit]);
+        private _direction = (getPos _unit) vectorFromTo _commandPosition;
+        _commandPosition = _commandPosition vectorAdd (_direction vectorMultiply -2);
+        _commandPosition set [2, 0];
+
         if ((_unit distance2D _commandPosition) > 2) then {
             _unit enableAI "MOVE";
-            _unit doMove _commandPosition;
-            TRACE_3("Following",_unit,_commandPosition,_unit distance2D _commandPosition);
+            private _cachedPosition = _unit getVariable [QGVAR(unit_followCachedPosition), []];
+            if (_cachedPosition isEqualTo [] || {(_cachedPosition distance2D _commandPosition) > 1}) then {
+                _unit setVariable [QGVAR(unit_followCachedPosition), _commandPosition, true];
+                _unit doMove _commandPosition;
+                TRACE_3("Following",_unit,_commandPosition,_unit distance2D _commandPosition);
+            } else {
+                TRACE_4("Following (cached)",_unit,_commandPosition,_cachedPosition,_cachedPosition distance2D _commandPosition);
+            };
         } else {
             _unit disableAI "MOVE";
             doStop _unit;
@@ -194,13 +225,17 @@
     // On Entered -
     params ["_unit"];
 
+    _unit enableAI "FSM";
     _unit setBehaviour "CARELESS";
     TRACE_1("Enter follow",_unit);
 }, {
     // On Leaving - Reset move command values
     params ["_unit"];
 
+    _unit disableAI "MOVE";
+    _unit enableAI "FSM";
     _unit setBehaviour "SAFE";
     _unit setVariable [QGVAR(unit_followCommander), objNull, true];
+    _unit setVariable [QGVAR(unit_followCachedPosition), [], true];
     TRACE_1("Exit follow",_unit);
 }, QGVAR(unit_state_follow)] call CBA_statemachine_fnc_addState;

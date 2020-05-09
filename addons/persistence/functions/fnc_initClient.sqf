@@ -17,9 +17,9 @@ GVAR(persistentObjects) = [];
 GVAR(dontDeleteObjectIds) = [];
 GVAR(unmarkedObjectIds) = [];
 GVAR(persistentObjectIconsPFHID) = -1;
-GVAR(abortedObjectGhosts) = [];
-GVAR(abortedObjectGhostInteractionObjects) = [];
-GVAR(abortedObjectGhostPFHID) = -1;
+GVAR(abortedObjects) = [];
+GVAR(abortedObjectInteractionObjects) = [];
+GVAR(abortedObjectPFHID) = -1;
 
 ["CAManBase", "respawn", {
     call FUNC(addPersistenceActions);
@@ -121,17 +121,17 @@ GVAR(abortedObjectGhostPFHID) = -1;
     };
 }] call CBA_fnc_addEventHandler;
 
-[QGVAR(removeAbortedObjectGhost), {
+[QGVAR(removeabortedObject), {
     params ["_id"];
 
-    private _interactionObjectIndex = GVAR(abortedObjectGhostInteractionObjects) findIf {_x#0 == _id};
+    private _interactionObjectIndex = GVAR(abortedObjectInteractionObjects) findIf {_x#0 == _id};
     if (_interactionObjectIndex != -1) then {
-        deleteVehicle (GVAR(abortedObjectGhostInteractionObjects)#_interactionObjectIndex#1);
+        deleteVehicle (GVAR(abortedObjectInteractionObjects)#_interactionObjectIndex#1);
     };
-    GVAR(abortedObjectGhostInteractionObjects) deleteAt _interactionObjectIndex;
-    GVAR(abortedObjectGhosts) deleteAt (GVAR(abortedObjectGhosts) findIf {_x#0 == _id});
+    GVAR(abortedObjectInteractionObjects) deleteAt _interactionObjectIndex;
+    GVAR(abortedObjects) deleteAt (GVAR(abortedObjects) findIf {_x#0 == _id});
 
-    if (GVAR(abortedObjectGhostPFHID) != -1 && {GVAR(abortedObjectGhosts) isEqualTo []}) then {
-        [GVAR(abortedObjectGhostPFHID)] call CBA_fnc_removePerFrameHandler;
+    if (GVAR(abortedObjectPFHID) != -1 && {GVAR(abortedObjects) isEqualTo []}) then {
+        [GVAR(abortedObjectPFHID)] call CBA_fnc_removePerFrameHandler;
     };
 }] call CBA_fnc_addEventHandler;

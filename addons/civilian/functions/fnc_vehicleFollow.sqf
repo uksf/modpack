@@ -47,10 +47,14 @@ if (_index != -1) then {
     private _driver = driver _vehicle;
     TRACE_1("Selected vehicle",_vehicle);
 
-    _vehicle setVariable [QGVAR(vehicle_followCommander), _unit, true];
 
     // Fake some mental delay before executing follow event
-    [{[QGVAR(followCommand), _this, _this#0] call CBA_fnc_targetEvent}, [_vehicle], random 0.5 + (linearConversion [10, GESTURE_VEHICLE_SEARCH_DISTANCE / 2, _unit distance _vehicle, 0.5, 1, true])] call CBA_fnc_waitAndExecute;
+    [{
+        params ["_vehicle", "_unit"];
+
+        _vehicle setVariable [QGVAR(vehicle_followCommander), _unit, true];
+        [QGVAR(followCommand), [_vehicle], _vehicle] call CBA_fnc_targetEvent;
+    }, [_vehicle, _unit], random 0.5 + (linearConversion [10, GESTURE_VEHICLE_SEARCH_DISTANCE / 2, _unit distance _vehicle, 0.5, 1, true])] call CBA_fnc_waitAndExecute;
 };
 
 // Vehicle valid if:

@@ -19,7 +19,10 @@ if !(local _unit) exitWith {};
 GVAR(unit_statemachine_units) pushBack _unit;
 
 if !(isNull GVAR(unit_statemachine)) exitWith {
-    [_unit, GVAR(unit_statemachine), QGVAR(unit_state_enter), QGVAR(unit_state_enter)] call CBA_statemachine_fnc_manualTransition;
+    private _id = GVAR(unit_statemachine) getVariable "cba_statemachine_ID";
+    private _currentState = _unit getVariable ("cba_statemachine_state" + str _id);
+
+    [_unit, GVAR(unit_statemachine), _currentState, QGVAR(unit_state_enter)] call CBA_statemachine_fnc_manualTransition;
 };
 
 GVAR(unit_statemachine) = [{GVAR(unit_statemachine_units)}, true] call CBA_statemachine_fnc_create;

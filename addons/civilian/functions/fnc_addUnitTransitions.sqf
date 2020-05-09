@@ -15,16 +15,16 @@
 // Add transition: FromState, ToState, Condition, OnTransition, Name
 
 // Unit alive or null exit conditions first (transitions execute in added order)
-private _fnc_isVehicleOrDriverNullOrDead = {
+private _fnc_isUnitNullOrDead = {
     params ["_unit"];
 
     isNull _unit || {!alive _unit}
 };
 
-[GVAR(unit_statemachine), QGVAR(unit_state_enter), QGVAR(unit_state_exit), _fnc_isVehicleOrDriverNullOrDead, {}, QGVAR(unit_transition_enter_exit_null)] call CBA_statemachine_fnc_addTransition;
-[GVAR(unit_statemachine), QGVAR(unit_state_stopped), QGVAR(unit_state_exit), _fnc_isVehicleOrDriverNullOrDead, {}, QGVAR(unit_transition_stopped_exit_null)] call CBA_statemachine_fnc_addTransition;
-[GVAR(unit_statemachine), QGVAR(unit_state_move), QGVAR(unit_state_exit), _fnc_isVehicleOrDriverNullOrDead, {}, QGVAR(unit_transition_move_exit_null)] call CBA_statemachine_fnc_addTransition;
-[GVAR(unit_statemachine), QGVAR(unit_state_follow), QGVAR(unit_state_exit), _fnc_isVehicleOrDriverNullOrDead, {}, QGVAR(unit_transition_follow_exit_null)] call CBA_statemachine_fnc_addTransition;
+[GVAR(unit_statemachine), QGVAR(unit_state_enter), QGVAR(unit_state_exit), _fnc_isUnitNullOrDead, {}, QGVAR(unit_transition_enter_exit_null)] call CBA_statemachine_fnc_addTransition;
+[GVAR(unit_statemachine), QGVAR(unit_state_stopped), QGVAR(unit_state_exit), _fnc_isUnitNullOrDead, {}, QGVAR(unit_transition_stopped_exit_null)] call CBA_statemachine_fnc_addTransition;
+[GVAR(unit_statemachine), QGVAR(unit_state_move), QGVAR(unit_state_exit), _fnc_isUnitNullOrDead, {}, QGVAR(unit_transition_move_exit_null)] call CBA_statemachine_fnc_addTransition;
+[GVAR(unit_statemachine), QGVAR(unit_state_follow), QGVAR(unit_state_exit), _fnc_isUnitNullOrDead, {}, QGVAR(unit_transition_follow_exit_null)] call CBA_statemachine_fnc_addTransition;
 
 // --------------------------------------------------------------------------------------------------------------
 

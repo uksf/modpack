@@ -64,17 +64,26 @@ if (_index != -1) then {
     _civilian setVariable [QGVAR(unit_commandedToStop), true, true];
 
     // If unit is within a small arc to the front of civilian, set position in front of unit as move command poisition (should make civilian walk up to unit)
+    private _commandPosition = [];
+    private _commandUnit = objNull;
+    private _forceMoveUpdate = false;
     if ((acos ((eyeDirection _civilian) vectorCos ((eyePos _civilian) vectorFromTo (eyePos _unit)))) < (VISION_ARC / 1.5) && {(random 100) < UNIT_STOP_WALK_TO_PLAYER_CHANCE}) then {
-        private _commandPosition = (positionCameraToWorld [0,0,0]) vectorAdd ((vectorDirVisual _unit) vectorMultiply 5);
+        _commandPosition = (positionCameraToWorld [0,0,0]) vectorAdd ((vectorDirVisual _unit) vectorMultiply 5);
         _commandPosition set [2, 0];
-        _civilian setVariable [QGVAR(unit_movePosition), _commandPosition, true];
-        _civilian setVariable [QGVAR(unit_moveCommander), _unit, true];
-        _civilian setVariable [QGVAR(unit_forceMoveUpdate), true, true];
+        _commandUnit = _unit;
+        _forceMoveUpdate = true;
         TRACE_1("Stop command given move position",_commandPosition);
     };
 
     // Fake some mental delay before starting unit statemachine based on distance
-    [{[QGVAR(startUnitStatemachine), _this, _this#0] call CBA_fnc_targetEvent}, [_civilian], random 0.5 + (linearConversion [10, GESTURE_UNIT_SEARCH_DISTANCE, _unit distance _civilian, 0.1, 0.5, true])] call CBA_fnc_waitAndExecute;
+    [{
+        params ["_civilian", "_commandPosition", "_commandUnit", "_forceMoveUpdate"];
+
+        _civilian setVariable [QGVAR(unit_movePosition), _commandPosition, true];
+        _civilian setVariable [QGVAR(unit_moveCommander), _commandUnit, true];
+        _civilian setVariable [QGVAR(unit_forceMoveUpdate), _forceMoveUpdate, true];
+        [QGVAR(startUnitStatemachine), [_civilian], _civilian] call CBA_fnc_targetEvent;
+    }, [_civilian, _commandPosition, _commandUnit, _forceMoveUpdate], random 0.5 + (linearConversion [10, GESTURE_UNIT_SEARCH_DISTANCE, _unit distance _civilian, 0.1, 0.5, true])] call CBA_fnc_waitAndExecute;
 };
 
 // Civilian valid if:

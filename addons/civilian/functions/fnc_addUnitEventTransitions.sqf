@@ -43,8 +43,6 @@
 
     private _annoyed = _unit getVariable [QGVAR(annoyed), 0];
     _unit setVariable [QGVAR(annoyed), _annoyed + RANDOM_ANNOYED_MOVE_TO_STOPPED, true];
-    _unit setVariable [QGVAR(unit_movePosition), [], true];
-    _unit setVariable [QGVAR(unit_moveCommander), objNull, true];
     TRACE_3("Adding to annoyed",_unit,_annoyed,_unit getVariable [ARR_2(QGVAR(annoyed),0)]);
 }, QGVAR(unit_event_transition_move_stopped)] call CBA_statemachine_fnc_addEventTransition;
 

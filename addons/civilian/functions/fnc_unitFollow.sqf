@@ -47,10 +47,13 @@ if (_index != -1) then {
     private _civilian = _entities#_index#1;
     TRACE_1("Selected civilian",_civilian);
 
-    _civilian setVariable [QGVAR(unit_followCommander), _unit, true];
-
     // Fake some mental delay before executing follow event
-    [{[QGVAR(followCommand), _this, _this#0] call CBA_fnc_targetEvent}, [_civilian], random 0.5 + (linearConversion [2, GESTURE_UNIT_SEARCH_DISTANCE / 2, _unit distance _civilian, 0.1, 0.5, true])] call CBA_fnc_waitAndExecute;
+    [{
+        params ["_civilian", "_unit"];
+
+        _civilian setVariable [QGVAR(unit_followCommander), _unit, true];
+        [QGVAR(followCommand), [_civilian], _civilian] call CBA_fnc_targetEvent;
+    }, [_civilian, _unit], random 0.5 + (linearConversion [2, GESTURE_UNIT_SEARCH_DISTANCE / 2, _unit distance _civilian, 0.1, 0.5, true])] call CBA_fnc_waitAndExecute;
 };
 
 // Civilian valid if:

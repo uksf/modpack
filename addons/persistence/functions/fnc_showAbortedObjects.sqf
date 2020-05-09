@@ -4,7 +4,7 @@
         Tim Beswick
 
     Description:
-        Creates ghost objects of those that aborted loading
+        Creates visual for aborted objects
 
     Parameter(s):
         0: Objects <ARRAY>
@@ -14,8 +14,8 @@
 */
 params ["_objects"];
 
-GVAR(abortedObjectGhosts) = [];
-GVAR(abortedObjectGhostInteractionObjects) = [];
+GVAR(abortedObjects) = [];
+GVAR(abortedObjectInteractionObjects) = [];
 {
     _x params ["_id", "_type", "_position", "_vectorDirAndUp"];
 
@@ -33,19 +33,19 @@ GVAR(abortedObjectGhostInteractionObjects) = [];
         _object modelToWorld [0,0,0]
     ];
 
-    GVAR(abortedObjectGhosts) pushBack [_id, _points, [1,0,0,1]];
+    GVAR(abortedObjects) pushBack [_id, _points, [1,0,0,1]];
     deleteVehicle _object;
 
     private _interactionObject = "Sign_Sphere25cm_F" createVehicleLocal [0,0,0];
     _interactionObject setPosATL (_points#8);
     _interactionObject enableSimulation false;
-    GVAR(abortedObjectGhostInteractionObjects) pushBack [_id, _interactionObject];
+    GVAR(abortedObjectInteractionObjects) pushBack [_id, _interactionObject];
 
     private _action = [QGVAR(actions), "Persistence", "", {}, {true}, {call FUNC(getAbortedObjectInterations)}, [_id], [0,0,0], 10] call ace_interact_menu_fnc_createAction;
     [_interactionObject, 0, [], _action] call ace_interact_menu_fnc_addActionToObject;
 } forEach _objects;
 
-GVAR(abortedObjectGhostPFHID) = [{
+GVAR(abortedObjectPFHID) = [{
     {
         _x params ["_text", "_points", "_colour"];
         _points params ["_cornerTop1", "_cornerTop2", "_cornerTop3", "_cornerTop4", "_cornerBottom1", "_cornerBottom2", "_cornerBottom3", "_cornerBottom4", "_centre"];
@@ -64,7 +64,7 @@ GVAR(abortedObjectGhostPFHID) = [{
         drawLine3D [_cornerBottom2, _cornerTop4, _colour];
         drawLine3D [_cornerBottom3, _cornerTop1, _colour];
         drawLine3D [_cornerBottom4, _cornerTop2, _colour];
-    } forEach GVAR(abortedObjectGhosts);
+    } forEach GVAR(abortedObjects);
 }, 0] call CBA_fnc_addPerFrameHandler;
 
 
@@ -81,8 +81,8 @@ GVAR(abortedObjectGhostPFHID) = [{
 //     box1 modelToWorld _bottom1, box1 modelToWorld [_top1#0, _bottom1#1, _bottom1#2], box1 modelToWorld [_top1#0, _top1#1, _bottom1#2], box1 modelToWorld [_bottom1#0, _top1#1, _bottom1#2],
 //     box1 modelToWorld [0,0,0]
 // ];
-// [abortedObjectGhostPFHID1] call CBA_fnc_removePerFrameHandler;
-// abortedObjectGhostPFHID1 = [{
+// [abortedObjectPFHID1] call CBA_fnc_removePerFrameHandler;
+// abortedObjectPFHID1 = [{
 //     boxBoundingBox1 params ["_cornerTop1", "_cornerTop2", "_cornerTop3", "_cornerTop4", "_cornerBottom1", "_cornerBottom2", "_cornerBottom3", "_cornerBottom4", "_centre"];
 
 //     drawIcon3D ["", [1,0,0,1], _centre, 0.5, 0.5, 0, typeOf box1, 0, 0.03, "TahomaB", "center"];
@@ -111,8 +111,8 @@ GVAR(abortedObjectGhostPFHID) = [{
 //     box2 modelToWorld _bottom2, box2 modelToWorld [_top2#0, _bottom2#1, _bottom2#2], box2 modelToWorld [_top2#0, _top2#1, _bottom2#2], box2 modelToWorld [_bottom2#0, _top2#1, _bottom2#2],
 //     box2 modelToWorld [0,0,0]
 // ];
-// [abortedObjectGhostPFHID2] call CBA_fnc_removePerFrameHandler;
-// abortedObjectGhostPFHID2 = [{
+// [abortedObjectPFHID2] call CBA_fnc_removePerFrameHandler;
+// abortedObjectPFHID2 = [{
 //     boxBoundingBox2 params ["_cornerTop1", "_cornerTop2", "_cornerTop3", "_cornerTop4", "_cornerBottom1", "_cornerBottom2", "_cornerBottom3", "_cornerBottom4", "_centre"];
 
 //     drawIcon3D ["", [1,0,0,1], _centre, 0.5, 0.5, 0, typeOf box2, 0, 0.03, "TahomaB", "center"];
@@ -156,8 +156,8 @@ GVAR(abortedObjectGhostPFHID) = [{
 // {
 //     boxBoundingBox1 set [_forEachIndex, (ASLToAGL [14773.6,16836.9,17.9384]) vectorAdd _x vectorDiff (getPosATL box1)];
 // } forEach boxBoundingBox1;
-// [abortedObjectGhostPFHID1] call CBA_fnc_removePerFrameHandler;
-// abortedObjectGhostPFHID1 = [{
+// [abortedObjectPFHID1] call CBA_fnc_removePerFrameHandler;
+// abortedObjectPFHID1 = [{
 //     boxBoundingBox1 params ["_cornerTop1", "_cornerTop2", "_cornerTop3", "_cornerTop4"];
 
 //     drawLine3D [_cornerTop1, _cornerTop2, [1,0,0,1]];
@@ -169,8 +169,8 @@ GVAR(abortedObjectGhostPFHID) = [{
 // boxPosition2 = ASLToAGL (getPosASL box2);
 // boxVector2 = [vectorDir box2, vectorUp box2];
 // boxBoundingBox2 = [box2, boundingBoxReal box2] call getBoundingBox;
-// [abortedObjectGhostPFHID2] call CBA_fnc_removePerFrameHandler;
-// abortedObjectGhostPFHID2 = [{
+// [abortedObjectPFHID2] call CBA_fnc_removePerFrameHandler;
+// abortedObjectPFHID2 = [{
 //     boxBoundingBox2 params ["_cornerTop1", "_cornerTop2", "_cornerTop3", "_cornerTop4"];
 
 //     drawLine3D [_cornerTop1, _cornerTop2, [0,1,0,1]];

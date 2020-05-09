@@ -60,8 +60,6 @@
     private _driver = driver _vehicle;
     private _annoyed = _vehicle getVariable [QGVAR(annoyed), 0];
     _vehicle setVariable [QGVAR(annoyed), _annoyed + RANDOM_ANNOYED_MOVE_TO_STOPPING, true];
-    _vehicle setVariable [QGVAR(vehicle_movePosition), [], true];
-    _vehicle setVariable [QGVAR(vehicle_moveCommander), objNull, true];
     TRACE_3("Adding to annoyed",_vehicle,_annoyed,_vehicle getVariable [ARR_2(QGVAR(annoyed),0)]);
 }, QGVAR(vehicle_event_transition_move_stopping)] call CBA_statemachine_fnc_addEventTransition;
 

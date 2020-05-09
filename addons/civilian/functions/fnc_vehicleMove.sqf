@@ -59,12 +59,15 @@ if (_index != -1) then {
     _commandPosition set [2, 0];
     TRACE_1("Move command position",_commandPosition);
 
-    _vehicle setVariable [QGVAR(vehicle_movePosition), _commandPosition, true];
-    _vehicle setVariable [QGVAR(vehicle_moveCommander), _unit, true];
-    _vehicle setVariable [QGVAR(vehicle_forceMoveUpdate), true, true];
-
     // Fake some mental delay before executing move event
-    [{[QGVAR(moveCommand), _this, _this#0] call CBA_fnc_targetEvent}, [_vehicle], random 0.5 + (linearConversion [10, GESTURE_VEHICLE_SEARCH_DISTANCE / 2, _unit distance _vehicle, 0.5, 1, true])] call CBA_fnc_waitAndExecute;
+    [{
+        params ["_vehicle", "_commandPosition", "_unit"];
+
+        _vehicle setVariable [QGVAR(vehicle_movePosition), _commandPosition, true];
+        _vehicle setVariable [QGVAR(vehicle_moveCommander), _unit, true];
+        _vehicle setVariable [QGVAR(vehicle_forceMoveUpdate), true, true];
+        [QGVAR(moveCommand), [_vehicle], _vehicle] call CBA_fnc_targetEvent;
+    }, [_vehicle, _commandPosition, _unit], random 0.5 + (linearConversion [10, GESTURE_VEHICLE_SEARCH_DISTANCE / 2, _unit distance _vehicle, 0.5, 1, true])] call CBA_fnc_waitAndExecute;
 };
 
 // Vehicle valid if:

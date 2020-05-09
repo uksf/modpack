@@ -54,8 +54,8 @@ if (_index != -1) then {
     };
 
     if (random 100 < STOP_IGNORE_CHANCE) exitWith {
-        _driver setVariable [QGVAR(vehicle_ignoringStop), true, true];
         [QGVAR(horn), [_vehicle, _driver, 2], _vehicle] call CBA_fnc_targetEvent;
+        _driver setVariable [QGVAR(vehicle_ignoringStop), true, true];
         [{_this setVariable [QGVAR(vehicle_ignoringStop), false, true]}, _driver, 60] call CBA_fnc_waitAndExecute;
         TRACE_2("Stop ignored",_vehicle,_driver);
     };
@@ -66,18 +66,27 @@ if (_index != -1) then {
     _driver setVariable [QGVAR(vehicle_commandedToStop), true, true];
 
     // If unit is within a small arc to the front of driver, set position in front of unit as move command poisition (should make driver pull up to unit)
-    if ((acos ((eyeDirection _driver) vectorCos ((eyePos _driver) vectorFromTo (eyePos _unit)))) < (VISION_ARC / 1.5)) then {
-        private _commandPosition = (positionCameraToWorld [0,0,0]) vectorAdd ((vectorDirVisual _unit) vectorMultiply 7);
-        _commandPosition = _commandPosition vectorAdd ((vectorDirVisual _vehicle) vectorMultiply 4);
+    private _commandPosition = [];
+    private _commandUnit = objNull;
+    private _forceMoveUpdate = false;
+    if ((acos ((eyeDirection _driver) vectorCos ((eyePos _driver) vectorFromTo (eyePos _unit)))) < (VISION_ARC / 1.2)) then {
+        _commandPosition = (positionCameraToWorld [0,0,0]) vectorAdd ((vectorDirVisual _unit) vectorMultiply 5);
+        // _commandPosition = _commandPosition vectorAdd ((vectorDirVisual _vehicle) vectorMultiply 5);
         _commandPosition set [2, 0];
-        _vehicle setVariable [QGVAR(vehicle_movePosition), _commandPosition, true];
-        _vehicle setVariable [QGVAR(vehicle_moveCommander), _unit, true];
-        _vehicle setVariable [QGVAR(vehicle_forceMoveUpdate), true, true];
+        _commandUnit = _unit;
+        _forceMoveUpdate = true;
         TRACE_1("Stop command given move position",_commandPosition);
     };
 
     // Fake some mental delay before starting vehicle statemachine based on distance
-    [{[QGVAR(startVehicleStatemachine), _this, _this#0] call CBA_fnc_targetEvent}, [_vehicle], random 0.5 + (linearConversion [30, GESTURE_VEHICLE_SEARCH_DISTANCE, _unit distance _vehicle, 0.5, 1, true])] call CBA_fnc_waitAndExecute;
+    [{
+        params ["_vehicle", "_commandPosition", "_commandUnit", "_forceMoveUpdate"];
+
+        _vehicle setVariable [QGVAR(vehicle_movePosition), _commandPosition, true];
+        _vehicle setVariable [QGVAR(vehicle_moveCommander), _commandUnit, true];
+        _vehicle setVariable [QGVAR(vehicle_forceMoveUpdate), _forceMoveUpdate, true];
+        [QGVAR(startVehicleStatemachine), [_vehicle], _vehicle] call CBA_fnc_targetEvent;
+    }, [_vehicle, _commandPosition, _commandUnit, _forceMoveUpdate], random 0.5 + (linearConversion [30, GESTURE_VEHICLE_SEARCH_DISTANCE, _unit distance _vehicle, 0.5, 1, true])] call CBA_fnc_waitAndExecute;
 };
 
 // Vehicle valid if:
