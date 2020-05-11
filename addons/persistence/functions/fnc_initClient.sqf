@@ -75,10 +75,10 @@ GVAR(abortedObjectPFHID) = -1;
     GVAR(data) params ["_position", "_vehicleState", "_direction", "_animation", "_loadout", "_damage", "_aceStates", "_earplugs", "_attached", "_radios"];
     //_positionData params ["_position", "_leaderID", "_leaderPosition", "_leaderDirection", "_relativePosition"];
 
-    if (!isNil QGVAR(respawn)) then {
+    if !(isNil QGVAR(respawn)) then {
         [{deleteMarkerLocal GVAR(respawn);}, [], 1] call CBA_fnc_waitAndExecute;
     };
-    /*if (!isNil QGVAR(groupRespawn)) then {
+    /*if !(isNil QGVAR(groupRespawn)) then {
         deleteMarkerLocal GVAR(groupRespawn);
     };*/
 

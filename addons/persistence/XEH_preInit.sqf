@@ -19,7 +19,7 @@ if (is3DEN) then {
 };
 
 if (!isMultiplayer) exitWith {};
-uksf_common_boundingBoxes = [];
+
 if (hasInterface) then {
     call FUNC(initClient);
 };

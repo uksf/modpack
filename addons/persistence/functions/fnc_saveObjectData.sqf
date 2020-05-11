@@ -37,14 +37,15 @@ TRACE_1("Removing objects from persistent data, adding to deleted list",_remove)
 {GVAR(deletedPersistentObjects) pushBackUnique _x} forEach (_remove select {!(_x in GVAR(dontDeleteObjectIds))});
 {[GVAR(persistentObjectsHash), _x] call CBA_fnc_hashRem} forEach _remove;
 
-if (!(isNull _centre)) then {
+if !(isNull _centre) then {
     private _terrainObjects = nearestTerrainObjects [_centre, [], CENTRE_RADIUS, false];
     private _nearObjects = (_centre nearObjects CENTRE_RADIUS) select {
         private _object = _x;
-        [["Building","AllVehicles","Thing"], {_object isKindOf _x}] call EFUNC(common,arrayAny) &&
-        {[["Man","ThingEffect"], {_object isKindOf _x}] call EFUNC(common,arrayNone)} &&
-        {[_terrainObjects, {_x == _object}] call EFUNC(common,arrayNone)}
+        [_terrainObjects, {_x == _object}] call EFUNC(common,arrayNone) &&
+        {[["Building","AllVehicles","Thing"], {_object isKindOf _x}] call EFUNC(common,arrayAny)} &&
+        {[["Man","ThingEffect"], {_object isKindOf _x}] call EFUNC(common,arrayNone)}
     };
+
     TRACE_2("Objects around centre",_centre,_nearObjects);
     {
         private _object = _x;
@@ -68,7 +69,7 @@ if (!(isNull _centre)) then {
         };
     } forEach _nearObjects;
 } else {
-    {if (!(isNull _x)) then {[_x, true] call FUNC(saveObjectData)};} forEach GVAR(persistenceMarkers);
+    {[_x, true] call FUNC(saveObjectData)} forEach (GVAR(persistenceMarkers) select {!(isNull _x)});
 
     [GVAR(persistentObjectsHash), {
         private _index = _objects findIf {_x#0 == _key};
@@ -80,7 +81,7 @@ if (!(isNull _centre)) then {
     }] call CBA_fnc_hashEachPair;
 };
 
-TRACE_1("Objects saved",_objects);
+INFO_1("Number of objects saved: %1",count _objects);
 GVAR(dataNamespace) setVariable [QGVAR(deletedObjects), GVAR(deletedPersistentObjects)];
 GVAR(dataNamespace) setVariable [QGVAR(objects), _objects];
 if (GVAR(dataSaved)) then {

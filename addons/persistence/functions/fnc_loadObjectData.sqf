@@ -31,7 +31,7 @@ if ([GVAR(persistentObjectsHash), _id] call CBA_fnc_hashHasKey) then {
     _object = ([GVAR(persistentObjectsHash), _id] call CBA_fnc_hashGet);
     GVAR(missionObjects) deleteAt (GVAR(missionObjects) find _object);
 } else {
-    _object = _type createVehicle [(random 2000) - 6000, (random 2000) - 6000, 20];
+    _object = _type createVehicle [0,0,0];
     _object setVectorDirAndUp _vectorDirAndUp;
 };
 
@@ -39,7 +39,6 @@ if (!_forceLoad && {!([ASLToAGL _position, _object, (_vectorDirAndUp#0) call CBA
     WARNING_2("Aborted loading object %1. Saved position %2 will clip with a mission placed object. Deleting object but marking it to not be removed from persistence data.",_id,_position);
     deleteVehicle _object;
     GVAR(dontDeleteObjectIds) pushBackUnique _id;
-    publicVariable QGVAR(dontDeleteObjectIds);
 } else {
     _object setVariable [QGVAR(persistenceID), _id];
     [GVAR(persistentObjectsHash), _id, _object] call CBA_fnc_hashSet;
@@ -79,7 +78,7 @@ if (!_forceLoad && {!([ASLToAGL _position, _object, (_vectorDirAndUp#0) call CBA
         private _attachList = _object getVariable ["ace_attach_attached", []];
         {
             _x params ["_type", "_offset"];
-            private _attachedObject = _type createVehicle [0,-2000,0];
+            private _attachedObject = _type createVehicle [0,0,0];
             _attachedObject attachTo [_object, _offset];
             _attachList pushBack [_attachedObject, _type];
         } forEach _attached;

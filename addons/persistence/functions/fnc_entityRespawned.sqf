@@ -16,7 +16,7 @@ params ["_entity", "_corpse"];
 
 TRACE_2("EntityRespawned",_entity,_corpse);
 
-if (!(isPlayer _entity)) exitWith {};
+if !(isPlayer _entity) exitWith {};
 
 private _uid = getPlayerUID _entity;
 private _firstRespawn = [GVAR(hashFirstRespawn), _uid] call CBA_fnc_hashGet;
