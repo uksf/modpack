@@ -4,16 +4,16 @@
         Tim Beswick
 
     Description:
-        Creates a new curator
+        Initialises curator
 
     Parameter(s):
-        None
+        0: Curator entity <OBJECT>
 
     Return Value:
         None
 */
+params ["_curator"];
 
-private _curator = (createGroup [sideLogic, true]) createUnit ["ModuleCurator_F", [0,0,0], [], 0, "NONE"];
 _curator setVariable ["BIS_fnc_initModules_disableAutoActivation", false, true];
 removeAllCuratorAddons _curator;
 GVAR(curatorObjects) pushBack _curator;

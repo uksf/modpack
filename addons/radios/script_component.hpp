@@ -8,9 +8,9 @@
 
 #include "\u\uksf\addons\main\script_macros.hpp"
 
-#define CHANNELS_SQN_656 [40, 45, 42]
-#define CHANNELS_SQN_617 [40, 46, 43]
-#define CHANNELS_SQN_7 [40, 47, 44]
+#define CHANNELS_SQN_656 [45, 40, 41]
+#define CHANNELS_SQN_617 [46, 40, 41]
+#define CHANNELS_SQN_7 [47, 40, 41]
 
 #define INTERCOM_AIR \
     class AcreIntercoms { \

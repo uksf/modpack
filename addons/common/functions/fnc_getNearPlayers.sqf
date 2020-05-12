@@ -15,4 +15,4 @@
 */
 params ["_centre", "_radius"];
 
-ALL_PLAYERS select {_x distance _centre <= _radius}
+ALL_PLAYERS select {(_x distance _centre) <= _radius}

@@ -4,7 +4,7 @@
         Tim Beswick
 
     Description:
-        Sends FPS value back to given player.
+        Creates FPS marker globally
 
     Parameters:
         0: Return Player <OBJECT>

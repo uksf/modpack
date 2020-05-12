@@ -7,7 +7,8 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "uksf_common"
+            "uksf_common",
+            "ace_zeus"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
@@ -17,3 +18,4 @@ class CfgPatches {
 };
 
 #include "CfgEventHandlers.hpp"
+#include "CfgVehicles.hpp"

@@ -15,7 +15,7 @@
 params ["_player"];
 
 private _index = GVAR(curatorPlayers) find "";
-if (_index > -1) then {
+if (_index != -1) then {
     private _curator = GVAR(curatorObjects) select _index;
     _player assignCurator _curator;
     GVAR(curatorPlayers) set [_index, name _player];

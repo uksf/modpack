@@ -40,4 +40,5 @@ if (GVAR(fpsState)) then {
     }, 0.5, []] call CBA_fnc_addPerFrameHandler;
 } else {
     [QGVAR(fpsSet), GVAR(fpsEventID)] call CBA_fnc_removeEventHandler;
+    hintSilent "";
 };
