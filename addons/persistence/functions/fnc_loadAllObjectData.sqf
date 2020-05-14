@@ -38,7 +38,7 @@ INFO_4("Objects sorted by ASL height, lowest: %1 at %2, highest: %3 at %4",(_all
         publicVariable QGVAR(dontDeleteObjectIds);
     };
 
-    INFO_3("Running load for %1/%2. FPS: %4",_index,count _allObjects,diag_fps);
+    INFO_3("Running load for %1/%2. FPS: %3",_index,count _allObjects,diag_fps);
     [_allObjects#_index] call FUNC(loadObjectData);
 
     _args set [1, _index + 1];
