@@ -123,7 +123,7 @@
       <Command>setlocal
 "C:\Program Files\CMake\bin\cmake.exe" -E copy build32/$(Configuration)/uksf.dll ../intercept/uksf.dll
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E copy build32/$(Configuration)/uksf.pdb ../intercept/x86/uksf.pdb
+"C:\Program Files\CMake\bin\cmake.exe" -E copy build32/$(Configuration)/uksf.pdb ../intercept/uksf.pdb
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -162,7 +162,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Command>setlocal
 "C:\Program Files\CMake\bin\cmake.exe" -E copy build64/$(Configuration)/uksf_x64.dll ../intercept/uksf_x64.dll
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E copy build64/$(Configuration)/uksf_x64.pdb ../intercept/x64/uksf.pdb
+"C:\Program Files\CMake\bin\cmake.exe" -E copy build64/$(Configuration)/uksf_x64.pdb ../intercept/uksf.pdb
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone

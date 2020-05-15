@@ -84,5 +84,5 @@ class SensorTemplateDataLink;
 #include "CfgFunctions.hpp"
 #include "CfgMagazines.hpp"
 #include "CfgMagazineWells.hpp"
-#include "CfgWeapons.hpp"
 #include "CfgVehicles.hpp"
+#include "CfgWeapons.hpp"

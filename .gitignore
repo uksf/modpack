@@ -680,3 +680,8 @@ release
 tools/temp
 tools/service.py
 tools/manage.py
+
+# Hemtt
+.hemtt/local
+releases/*
+keys/*

@@ -637,7 +637,7 @@ class CfgWeapons {
     };
     class CUP_Vlmg_M240_veh : MGun {
         displayName = "L7A2";
-        magazines[] = { "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "CUP_200Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "CUP_100Rnd_TE4_LRT4_White_Tracer_762x51_Belt_M", "CUP_200Rnd_TE4_LRT4_White_Tracer_762x51_Belt_M", "CUP_1200Rnd_TE4_White_Tracer_762x51_M240_M", "CUP_100Rnd_TE4_White_Tracer_762x51_M240_M", "CUP_1200Rnd_TE4_Red_Tracer_762x51_M240_M", , "UK3CB_BAF_762_200Rnd_T", "UK3CB_BAF_762_200Rnd", "UK3CB_BAF_762_200Rnd_Blank", "UK3CB_BAF_762_100Rnd_T", "UK3CB_BAF_762_100Rnd", "UK3CB_BAF_762_100Rnd_Blank", "UK3CB_BAF_762_100Rnd_EL", "UK3CB_BAF_762_100Rnd_T_EL", "UK3CB_BAF_762_200Rnd_EL", "UK3CB_BAF_762_200Rnd_T_EL" };
+        magazines[] = { "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "CUP_200Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "CUP_100Rnd_TE4_LRT4_White_Tracer_762x51_Belt_M", "CUP_200Rnd_TE4_LRT4_White_Tracer_762x51_Belt_M", "CUP_1200Rnd_TE4_White_Tracer_762x51_M240_M", "CUP_100Rnd_TE4_White_Tracer_762x51_M240_M", "CUP_1200Rnd_TE4_Red_Tracer_762x51_M240_M", "UK3CB_BAF_762_200Rnd_T", "UK3CB_BAF_762_200Rnd", "UK3CB_BAF_762_200Rnd_Blank", "UK3CB_BAF_762_100Rnd_T", "UK3CB_BAF_762_100Rnd", "UK3CB_BAF_762_100Rnd_Blank", "UK3CB_BAF_762_100Rnd_EL", "UK3CB_BAF_762_100Rnd_T_EL", "UK3CB_BAF_762_200Rnd_EL", "UK3CB_BAF_762_200Rnd_T_EL" };
         class manual : MGun {
             sounds[] = { "StandardSound" };
             class StandardSound {

@@ -1,18 +1,56 @@
+# HEMTT: https://github.com/synixebrett/HEMTT/commit/a837c9561a871507063208648d8f5304e42e03d1
 name = "UKSF"
 prefix = "uksf"
 author = "UKSF"
 files = [
     "mod.cpp",
-    "README.md",
     "mod.paa",
     "modLarge.paa",
     "AUTHORS.txt",
+    "README.md",
     "LICENSE",
     "UKSFTemplate.VR",
+    "cba_settings.sqf",
     "intercept"
 ]
-headerexts = [
-    "version={{git \"id 8\"}}"
+
+modname = "uksf"
+key_name = "{{prefix}}_{{version}}"
+authority = "{{prefix}}_{{version}}-{{git \"id 8\"}}"
+
+check = [
+    "!version_set"
 ]
-keyname = "{{prefix}}_{{version}}"
-signame = "{{prefix}}_{{version}}-{{git \"id 8\"}}"
+releasebuild = [
+    "@zip uksf_{{version}}"
+]
+prebuild = [
+    "!extension"
+]
+
+[header_exts]
+version = "{{git \"id 8\"}}"
+
+[scripts.version_set]
+steps_linux = [
+    "echo Setting version",
+    "sed -i -r -s 's/[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+/{{semver.major}}.{{semver.minor}}.{{semver.patch}}.{{semver.build}}/g' README.md",
+    "sed -i -r -s 's/[0-9]+\\.[0-9]+\\.[0-9]+/{{semver.major}}.{{semver.minor}}.{{semver.patch}}/g' README.md docs/_data/sidebar.yml"
+]
+steps_windows = [
+    "echo Setting version",
+    "powershell -Command foreach ($f in 'README.md') {(Get-Content $f) -replace '[0-9]+\\.[0-9]+\\.[0-9]+', '{{semver.major}}.{{semver.minor}}.{{semver.patch}}' -join \"`n\" ^| Set-Content -NoNewline $f; Add-Content -NoNewline \"`n\" $f}"
+]
+only_release = true
+show_output = true
+
+[scripts.extension]
+steps_linux = [
+    "echo can't make linux yet"
+]
+steps_windows = [
+    "echo make windows",
+    "cd .\\extensions\\ && msbuild uksf.sln /m /p:Configuration=Release /p:Platform=x64"
+]
+only_release = true
+show_output = true
