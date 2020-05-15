@@ -39,8 +39,6 @@ if (hasInterface) then {
     ["CAManBase", "respawn", {
         params ["_unit"];
 
-        call FUNC(addCuratorActions);
-
         private _index = (GVAR(curatorPlayers) find (name _unit));
         if (_index != -1) then {
             GVAR(curatorUnassignedEHID) = [QGVAR(curatorUnassigned), {
@@ -54,6 +52,8 @@ if (hasInterface) then {
             };
         };
     }, true, [], true] call CBA_fnc_addClassEventHandler;
+
+    call FUNC(addCuratorActions);
 };
 
 ADDON = true;

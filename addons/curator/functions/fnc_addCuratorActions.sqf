@@ -12,6 +12,5 @@
     Return Value:
         None
 */
-
 private _action = [QGVAR(curatorActions), QUOTE(Curator), CURATOR_ICON, {}, {true}, {call FUNC(getCuratorActions)}] call ace_interact_menu_fnc_createAction;
-[ACE_player, 1, ["ACE_SelfActions"], _action] call ace_interact_menu_fnc_addActionToObject;
+["CAManBase", 1, ["ACE_SelfActions"], _action, true] call ace_interact_menu_fnc_addActionToClass;

@@ -12,11 +12,7 @@
         };
     };
 
-    if (hasInterface) then {
-        call FUNC(addCuratorActions);
-
-        if (!isMultiplayer) then {
-            call FUNC(curatorLogin);
-        };
+    if (hasInterface && {!isMultiplayer}) then {
+        call FUNC(curatorLogin);
     };
 }, [], 0.1] call CBA_fnc_waitAndExecute;
