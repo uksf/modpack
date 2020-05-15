@@ -27,5 +27,5 @@ if (_index != -1) then {
 
 if !(isNull _unit) then {
     TRACE_1("",_unit);
-    [{[QGVAR(curatorUnassigned), [_this], _this] call CBA_fnc_targetEvent}, _unit, 1] call CBA_fnc_waitAndExecute;
+    [{[QGVAR(curatorUnassigned), [_this], _this] call CBA_fnc_targetEvent}, _unit, 0.1] call CBA_fnc_waitAndExecute;
 };
