@@ -18,6 +18,7 @@ params ["_curator", ["_unit", objNull]];
 
 private _index = GVAR(curatorObjects) find _curator;
 if (_index != -1) then {
+    TRACE_2("",_curator,_index);
     unassignCurator (GVAR(curatorObjects) select _index);
     GVAR(curatorPlayers) set [_index, ""];
     publicVariable QGVAR(curatorObjects);
@@ -25,5 +26,6 @@ if (_index != -1) then {
 };
 
 if !(isNull _unit) then {
-    [QGVAR(curatorUnassigned), [_unit], _unit] call CBA_fnc_targetEvent;
+    TRACE_1("",_unit);
+    [{[QGVAR(curatorUnassigned), [_this], _this] call CBA_fnc_targetEvent}, _unit, 1] call CBA_fnc_waitAndExecute;
 };

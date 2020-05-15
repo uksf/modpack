@@ -36,24 +36,34 @@ if (isServer) then {
 };
 
 if (hasInterface) then {
+    GVAR(curatorUnassignedEHID) = -1;
+    call FUNC(addCuratorActions);
+
     ["CAManBase", "respawn", {
         params ["_unit"];
 
+        TRACE_2("",_unit,name _unit);
         private _index = (GVAR(curatorPlayers) find (name _unit));
         if (_index != -1) then {
+            if (GVAR(curatorUnassignedEHID) != -1) then {
+                [QGVAR(curatorUnassigned), GVAR(curatorUnassignedEHID)] call CBA_fnc_removeEventHandler;
+                GVAR(curatorUnassignedEHID) = -1;
+            };
+
             GVAR(curatorUnassignedEHID) = [QGVAR(curatorUnassigned), {
+                TRACE_2("",_this);
                 [QGVAR(curatorAssign), _this] call CBA_fnc_serverEvent;
                 [QGVAR(curatorUnassigned), GVAR(curatorUnassignedEHID)] call CBA_fnc_removeEventHandler;
+                GVAR(curatorUnassignedEHID) = -1;
             }] call CBA_fnc_addEventHandler;
+
             [QGVAR(curatorUnassign), [GVAR(curatorObjects)#_index, _unit]] call CBA_fnc_serverEvent;
         } else {
             if (WHITELISTED) then {
-                // call FUNC(curatorLogin);
+                // call FUNC(curatorLogin); // disabled due to zeus crashes, still no cause found
             };
         };
     }, true, [], true] call CBA_fnc_addClassEventHandler;
-
-    call FUNC(addCuratorActions);
 };
 
 ADDON = true;
