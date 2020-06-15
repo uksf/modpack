@@ -6,5 +6,5 @@ PREP(curatorLogin);
 PREP(curatorLogout);
 PREP(curatorUnassign);
 PREP(getCuratorActions);
-PREP(pre_moduleCurator);
+PREP(bi_moduleCurator);
 PREP(setCuratorsLocked);

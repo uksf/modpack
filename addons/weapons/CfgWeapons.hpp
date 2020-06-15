@@ -331,6 +331,11 @@ class CfgWeapons {
         };
     };
 
+    class Tavor_base_F;
+    class SSQN_L119A1_Base : Tavor_base_F {
+        magazines[] = { "UK3CB_BAF_556_30Rnd", "UK3CB_BAF_556_30Rnd_T", "30Rnd_556x45_Stanag_red", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag_Tracer_Red" };
+    };
+
     class srifle_EBR_F;
     class UK3CB_BAF_L129A1 : srifle_EBR_F {
         ace_barrelLength = 410;
@@ -484,7 +489,7 @@ class CfgWeapons {
         class WeaponSlotsInfo;
     };
     class UK3CB_BAF_Javelin_Launcher : launch_B_Titan_short_F {
-        modes[] = { "TopDown", "Single"  };
+        modes[] = { "TopDown", "Single" };
         class WeaponSlotsInfo : WeaponSlotsInfo {
             mass = 231;
         };

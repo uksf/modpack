@@ -8,7 +8,9 @@ class CfgPatches {
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             "uksf_common",
-            "ace_zeus"
+            "ace_zeus",
+            "zen_modules",
+            "zen_compat_ace"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };

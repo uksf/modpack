@@ -15,4 +15,4 @@
     if (hasInterface && {!isMultiplayer}) then {
         call FUNC(curatorLogin);
     };
-}, [], 0.1] call CBA_fnc_waitAndExecute;
+}, [], 0.2] call CBA_fnc_waitAndExecute;

@@ -17,7 +17,7 @@
 params ["_unit"];
 
 private _radios = ([_unit] call acre_sys_core_fnc_getGear) select {_x call acre_sys_radio_fnc_isUniqueRadio};
-private _local = local _unit && !isServer;
+private _local = local _unit && !isDedicated;
 TRACE_2("Unit local?",_unit,_local);
 private _pttAssignments = [];
 if (_local) then {
