@@ -21,6 +21,9 @@ TRACE_2("Gesture event",_unit,_gesture);
 if (CBA_missionTime < (GVAR(lastGesture) + GESTURE_COOLDOWN)) exitWith {DEBUG("Gesture called within cooldown, exiting")};
 GVAR(lastGesture) = CBA_missionTime;
 
+// TODO: Further filtering by using a list of civilian men with init EH. Filter units too far away and send that list to gesture functions for further filtering.
+// TODO: Add common filtering here before sending list to gesture functions
+
 if ("ace_gestures_warning" in _gesture) exitWith {
     call FUNC(vehicleSlow);
     // call FUNC(unitAway); // send units away from commanding player
