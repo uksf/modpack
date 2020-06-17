@@ -30,6 +30,7 @@ ADDON = false;
                 GVAR(debugUnitFollowCommandSpheres) = [];
             };
         };
+    };
 }] call CBA_fnc_addEventHandler;
 
 ["ace_captives_doEscort", {
@@ -41,33 +42,42 @@ ADDON = false;
 }] call CBA_fnc_addEventHandler;
 
 ["weapon", {
+    if !(GVAR(enableEscort)) exitWith {};
     if !(ACE_player getVariable ["ace_captives_isEscorting", false]) exitWith {};
 
-    params ["_unit", "_newWeapon"];
+    ACE_player switchMove "HubSpectator_stand";
 
-    private _animState = configName (configFile >> getText (configFile >> "CfgVehicles" >> typeOf ACE_player >> "moves") >> "States" >> (animationState ACE_player));
-    if (_newWeapon == primaryWeapon _unit) then {
-        _animState = [_animState, "pst", "rfl"] call CBA_fnc_replace;
-    } else {
-        if (_newWeapon == handgunWeapon _unit) then {
-            _animState = [_animState, "rfl", "pst"] call CBA_fnc_replace;
+    [{
+        params ["", "_newWeapon"];
+
+        private _animState = configName (configFile >> getText (EGVAR(common,configVehicles) >> typeOf ACE_player >> "moves") >> "States" >> (animationState ACE_player));
+        if (_newWeapon == primaryWeapon ACE_player) then {
+            _animState = [_animState, "pst", "rfl"] call CBA_fnc_replace;
+        } else {
+            if (_newWeapon == handgunWeapon ACE_player) then {
+                _animState = [_animState, "rfl", "pst"] call CBA_fnc_replace;
+            };
         };
-    };
 
-    ["ace_common_switchMove", [_unit, ""]] call CBA_fnc_globalEvent;
-    ["ace_common_switchMove", [_unit, _animState]] call CBA_fnc_globalEvent;
-
-    private _holdAnim = [QGVAR(holdhvt), QGVAR(holdhvtpistol)] select (_newWeapon == (handgunWeapon ACE_player));
-    private _jipId = ["ace_common_playActionNow", [ACE_player, _holdAnim]] call CBA_fnc_globalEventJIP;
-    [_jipId, ACE_player] call CBA_fnc_removeGlobalEventJIP;
+        private _holdAnim = [QGVAR(holdhvt), QGVAR(holdhvtpistol)] select (_newWeapon == (handgunWeapon ACE_player));
+        ACE_player playActionNow _holdAnim;
+        ACE_player switchMove "";
+    }, _this, 2] call CBA_fnc_waitAndExecute;
 }] call CBA_fnc_addPlayerEventHandler;
 
-["CAManBase", "Take", {
+["loadout", {
+    if !(GVAR(enableEscort)) exitWith {};
     if !(ACE_player getVariable ["ace_captives_isEscorting", false]) exitWith {};
 
-    private _holdAnim = [QGVAR(holdhvt), QGVAR(holdhvtpistol)] select (_newWeapon == (handgunWeapon ACE_player));
-    private _jipId = ["ace_common_playActionNow", [ACE_player, _holdAnim]] call CBA_fnc_globalEventJIP;
-    [_jipId, ACE_player] call CBA_fnc_removeGlobalEventJIP;
-}] call CBA_fnc_addClassEventHandler;
+    ACE_player switchMove "HubSpectator_stand";
+
+    [{
+        !ace_common_isReloading
+    }, {
+        private _holdAnim = [QGVAR(holdhvt), QGVAR(holdhvtpistol)] select ((currentWeapon ACE_player) == (handgunWeapon ACE_player));
+        ACE_player playActionNow _holdAnim;
+        ACE_player switchMove "";
+    }, []] call CBA_fnc_waitUntilAndExecute;
+}] call CBA_fnc_addPlayerEventHandler;
 
 ADDON = true;

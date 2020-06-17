@@ -1,17 +1,9 @@
 class CfgMovesBasic {
     class ManActions {
-        GVAR(clearAction) = QGVAR(clearAction);
-        GVAR(hvtdefault) = QGVAR(hvtdefault);
-        GVAR(holdhvt) = QGVAR(holdhvt);
-        GVAR(holdhvtpistol) = QGVAR(holdhvtpistol);
-    };
-    class Actions {
-        class NoActions : ManActions {
-            GVAR(clearAction)[] = { QGVAR(clearAction),"gesture" };
-            GVAR(hvtdefault)[] = { QGVAR(hvtdefault),"gesture" };
-            GVAR(holdhvt)[] = { QGVAR(holdhvt),"gesture" };
-            GVAR(holdhvtpistol)[] = { QGVAR(holdhvtpistol),"gesture" };
-        };
+        GVAR(clearAction)[] = { QGVAR(clearAction),"gesture" };
+        GVAR(hvtdefault)[] = { QGVAR(hvtdefault),"gesture" };
+        GVAR(holdhvt)[] = { QGVAR(holdhvt),"gesture" };
+        GVAR(holdhvtpistol)[] = { QGVAR(holdhvtpistol),"gesture" };
     };
 };
 class CfgGesturesMale {

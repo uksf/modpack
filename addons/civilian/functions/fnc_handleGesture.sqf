@@ -16,9 +16,11 @@
 params ["_unit", "_gesture"];
 
 _gesture = toLower _gesture;
-TRACE_2("Gesture event",_unit,_gesture);
+// TRACE_2("Gesture event",_unit,_gesture);
 
-if (CBA_missionTime < (GVAR(lastGesture) + GESTURE_COOLDOWN)) exitWith {DEBUG("Gesture called within cooldown, exiting")};
+if (CBA_missionTime < (GVAR(lastGesture) + GESTURE_COOLDOWN)) exitWith {
+    // DEBUG("Gesture called within cooldown, exiting")
+};
 GVAR(lastGesture) = CBA_missionTime;
 
 // TODO: Further filtering by using a list of civilian men with init EH. Filter units too far away and send that list to gesture functions for further filtering.
