@@ -6,6 +6,8 @@ PREP(addVehicleEventTransitions);
 PREP(addVehicleInteractions);
 PREP(addVehicleStates);
 PREP(addVehicleTransitions);
+PREP(captiveEscortStart);
+PREP(captiveEscortStop);
 PREP(handleGesture);
 PREP(horn);
 PREP(startUnitStatemachine);

@@ -10,4 +10,13 @@ class zen_context_menu_actions {
     class TeleportZeus {
         priority = -490;
     };
+    class lambs_wp {
+        priority = 95;
+    };
+    class lambs_search {
+        priority = 96;
+    };
+    class lambs_danger {
+        priority = 97;
+    };
 };

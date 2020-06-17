@@ -699,7 +699,19 @@
     "Alpine_backpack_kitbag", \
     "Black_Carryall", \
     "Black_Backpack_Compact", \
-    "Black_Backpack_kitbag"
+    "Black_Backpack_kitbag", \
+    "tfw_ilbe_b", \
+    "tfw_ilbe_w", \
+    "tfw_ilbe_vsm", \
+    "tfw_ilbe_a_b", \
+    "tfw_ilbe_a_w", \
+    "tfw_ilbe_a_vsm", \
+    "tfw_ilbe_dd_b", \
+    "tfw_ilbe_dd_w", \
+    "tfw_ilbe_dd_vsm", \
+    "tfw_ilbe_blade_b", \
+    "tfw_ilbe_blade_w", \
+    "tfw_ilbe_blade_vsm"
 
 #define MAIN_OP_HELMETS \
     "COVER_4b", \

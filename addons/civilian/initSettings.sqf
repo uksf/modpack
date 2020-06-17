@@ -1,4 +1,13 @@
 [
+    QGVAR(allowDebug),
+    "CHECKBOX",
+    ["Allow Debug", "Allows debug to run"],
+    COMPONENT_NAME,
+    false,
+    1
+] call CBA_settings_fnc_init;
+
+[
     QGVAR(enableGestures),
     "CHECKBOX",
     ["Enable Gestures", "Enables gesture interaction with civilians"],
@@ -8,10 +17,10 @@
 ] call CBA_settings_fnc_init;
 
 [
-    QGVAR(allowDebug),
+    QGVAR(enableEscort),
     "CHECKBOX",
-    ["Allow Debug", "Allows debug to run"],
+    ["Enable Escort", "Enables captive escort animations"],
     COMPONENT_NAME,
-    false,
+    true,
     1
 ] call CBA_settings_fnc_init;
