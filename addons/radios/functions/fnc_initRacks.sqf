@@ -18,11 +18,11 @@ if (_vehicle getVariable [QGVAR(channelsSet), false]) exitWith {};
 
 private _channels = _vehicle getVariable [QGVAR(rackChannels), []];
 private _customChannels = [
-    ["UKSF_Apache_AH1", CHANNELS_SQN_656],
+    ["UKSF_Apache_AH1", CHANNELS_SQN_656_APACHE],
     ["UK3CB_BAF_Wildcat_AH1_CAS_6A", CHANNELS_SQN_656],
     ["UK3CB_BAF_Wildcat_AH1_CAS_8A", CHANNELS_SQN_656],
     ["CUP_C130J_Base", CHANNELS_SQN_617],
-    ["USAF_F35A", CHANNELS_SQN_617],
+    ["uksf_f35_plane_base", CHANNELS_SQN_617],
     ["CUP_CH47F_base", CHANNELS_SQN_7],
     ["UK3CB_BAF_Merlin_Base", CHANNELS_SQN_7],
     ["rksla3_pumahc_base", CHANNELS_SQN_7],
@@ -31,17 +31,18 @@ private _customChannels = [
 ];
 
 if (count _channels == 0) then {
-    {
-        if (_vehicle isKindOf _x#0) exitWith {
-            _channels = _x#1;
-        };
-    } forEach _customChannels;
+    private _index = _customChannels findIf {_vehicle isKindOf _x#0};
+    if (_index != -1) then {
+        _channels = (_customChannels#_index)#1;
+    };
 };
 
 if (count _channels == 0) exitWith {};
+
 [{
     [{
         params ["_vehicle"];
+
         private _return = false;
         if (_vehicle getVariable ["acre_sys_rack_initialized", false]) then {
             private _radios = ([_vehicle] call acre_api_fnc_getVehicleRacks) apply {[_x] call acre_api_fnc_getMountedRackRadio};
@@ -50,6 +51,7 @@ if (count _channels == 0) exitWith {};
                 _return = true;
             };
         };
+
         _return
     }, {
         params ["_vehicle", "_channels"];
@@ -58,6 +60,7 @@ if (count _channels == 0) exitWith {};
         {
             [_x, _channels#_forEachIndex] call acre_api_fnc_setRadioChannel;
         } forEach (_radios select {_x != ""});
+
         _vehicle setVariable [QGVAR(channelsSet), true, true];
     }, _this, 30] call CBA_fnc_waitUntilAndExecute;
 }, [_vehicle, _channels], 1] call CBA_fnc_waitAndExecute;

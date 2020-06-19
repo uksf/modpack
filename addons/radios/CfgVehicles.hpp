@@ -67,8 +67,8 @@ class CfgVehicles {
         INTERCOM_AIR
         RACKS_AIR
     };
-    class uksf_f35_plane_base;
-    class uksf_f35_plane_raf : uksf_f35_plane_base {
+    class Plane_Fighter_01_Base_F;
+    class uksf_f35_plane_base : Plane_Fighter_01_Base_F {
         RACKS_AIR
     };
     class Helicopter_Base_H;

@@ -13,7 +13,7 @@ class zen_context_menu_actions {
     class lambs_wp {
         priority = 95;
     };
-    class lambs_search {
+    class lambs_wp_Search {
         priority = 96;
     };
     class lambs_danger {
