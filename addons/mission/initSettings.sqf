@@ -138,48 +138,48 @@
     {GVAR(artillerySupportMastObjects) = call compile _this;}
 ] call CBA_settings_fnc_init;
 
-// Patrols
+// Dynamic Patrols
 [
-    QGVAR(patrolEnabled),
+    QGVAR(dynamicPatrolEnabled),
     "CHECKBOX",
-    ["Patrols Enbled", "Determines if basic random patrol spawning is enabled"],
-    [COMPONENT_NAME, "Patrol"],
+    ["Dynamic Patrols Enbled", "Determines if basic dynamic patrol spawning is enabled"],
+    [COMPONENT_NAME, "Dynamic Patrol"],
     false,
     1
 ] call CBA_settings_fnc_init;
 
 [
-    QGVAR(patrolCooldown),
+    QGVAR(dynamicPatrolCooldown),
     "SLIDER",
-    ["Patrol Spawn Cooldown", "Time in seconds between patrol group spawns"],
-    [COMPONENT_NAME, "Patrol"],
+    ["Dynamic Patrol Spawn Cooldown", "Time in seconds between dynamic patrol group spawns"],
+    [COMPONENT_NAME, "Dynamic Patrol"],
     [60, 3600, 600, 0],
     1
 ] call CBA_settings_fnc_init;
 
 [
-    QGVAR(patrolGroupLimit),
+    QGVAR(dynamicPatrolGroupLimit),
     "SLIDER",
-    ["Patrol Group Limit", "Maximum number of active patrol groups allowed"],
-    [COMPONENT_NAME, "Patrol"],
+    ["Dynamic Patrol Group Limit", "Maximum number of active dynamic patrol groups allowed"],
+    [COMPONENT_NAME, "Dynamic Patrol"],
     [1, 15, 10, 0],
     1
 ] call CBA_settings_fnc_init;
 
 [
-    QGVAR(patrolVehicleProbability),
+    QGVAR(dynamicPatrolVehicleProbability),
     "SLIDER",
-    ["Patrol Vehicle Spawn Probability", "Probability of spawning a vehicle in place of a group"],
-    [COMPONENT_NAME, "Patrol"],
+    ["Dynamic Patrol Vehicle Spawn Probability", "Probability of spawning a vehicle in place of a group"],
+    [COMPONENT_NAME, "Dynamic Patrol"],
     [0, 1, 0.2, 2],
     1
 ] call CBA_settings_fnc_init;
 
 [
-    QGVAR(patrolCombatMode),
+    QGVAR(dynamicPatrolCombatMode),
     "LIST",
-    ["Patrol Group Combat Mode", "Combat mode of spawned patrol groups"],
-    [COMPONENT_NAME, "Patrol"],
+    ["Dynamic Patrol Group Combat Mode", "Combat mode of spawned dynamic patrol groups"],
+    [COMPONENT_NAME, "Dynamic Patrol"],
     [
         ["SAFE", "AWARE", "COMBAT"],
         ["SAFE", "AWARE", "COMBAT"],
@@ -189,10 +189,10 @@
 ] call CBA_settings_fnc_init;
 
 [
-    QGVAR(patrolSpeed),
+    QGVAR(dynamicPatrolSpeed),
     "LIST",
-    ["Patrol Group Speed", "Speed of spawned patrol groups"],
-    [COMPONENT_NAME, "Patrol"],
+    ["Dynamic Patrol Group Speed", "Speed of spawned dynamic patrol groups"],
+    [COMPONENT_NAME, "Dynamic Patrol"],
     [
         ["LIMITED","NORMAL","FULL"],
         ["LIMITED","NORMAL","FULL"],
@@ -202,116 +202,116 @@
 ] call CBA_settings_fnc_init;
 
 [
-    QGVAR(patrolSafeZoneDistance),
+    QGVAR(dynamicPatrolSafeZoneDistance),
     "SLIDER",
-    ["Patrol Safe Zone Distance", "Patrols will not spawn near the player if they are within this distance to safe zones (respawn points by default)"],
-    [COMPONENT_NAME, "Patrol"],
+    ["Dynamic Patrol Safe Zone Distance", "Dynamic patrols will not spawn near the player if they are within this distance to safe zones (respawn points by default)"],
+    [COMPONENT_NAME, "Dynamic Patrol"],
     [1500, 7500, 3000, 0],
     1
 ] call CBA_settings_fnc_init;
 
 [
-    QGVAR(patrolDistance),
+    QGVAR(dynamicPatrolDistance),
     "SLIDER",
-    ["Patrol Spawn Distance", "Patrols will spawn beyond this distance from the player"],
-    [COMPONENT_NAME, "Patrol"],
+    ["Dynamic Patrol Spawn Distance", "Dynamic patrols will spawn beyond this distance from the player"],
+    [COMPONENT_NAME, "Dynamic Patrol"],
     [500, 1500, 750, 0],
     1
 ] call CBA_settings_fnc_init;
 
 [
-    QGVAR(patrolVehicleDistanceCoef),
+    QGVAR(dynamicPatrolVehicleDistanceCoef),
     "SLIDER",
-    ["Patrol Vehicle Spawn Distance Coef", "Patrol vehicles will spawn beyond the base spawn distance multiplied by this coefficient from the player"],
-    [COMPONENT_NAME, "Patrol"],
+    ["Dynamic Patrol Vehicle Spawn Distance Coef", "Dynamic patrol vehicles will spawn beyond the base spawn distance multiplied by this coefficient from the player"],
+    [COMPONENT_NAME, "Dynamic Patrol"],
     [0.1, 5, 2, 1],
     1
 ] call CBA_settings_fnc_init;
 
 [
-    QGVAR(patrolWaypointDistance),
+    QGVAR(dynamicPatrolWaypointDistance),
     "SLIDER",
-    ["Patrol Waypoint Distance", "Distance away from a player for the waypoint of a patrol"],
-    [COMPONENT_NAME, "Patrol"],
+    ["Dynamic Patrol Waypoint Distance", "Distance away from a player for the waypoint of a dynamic patrol"],
+    [COMPONENT_NAME, "Dynamic Patrol"],
     [10, 500, 100, 0],
     1
 ] call CBA_settings_fnc_init;
 
 [
-    QGVAR(patrolVehicleWaypointDistance),
+    QGVAR(dynamicPatrolVehicleWaypointDistance),
     "SLIDER",
-    ["Patrol Vehicle Waypoint Distance", "Distance away from a player for the waypoint of a vehicle patrol"],
-    [COMPONENT_NAME, "Patrol"],
+    ["Dynamic Patrol Vehicle Waypoint Distance", "Distance away from a player for the waypoint of a dynamic vehicle patrol"],
+    [COMPONENT_NAME, "Dynamic Patrol"],
     [50, 750, 200, 0],
     1
 ] call CBA_settings_fnc_init;
 
 [
-    QGVAR(patrolMinUnits),
+    QGVAR(dynamicPatrolMinUnits),
     "SLIDER",
-    ["Patrol Minimum Units", "Minimum number of units per patrol group. There will be random deviations above this number"],
-    [COMPONENT_NAME, "Patrol"],
+    ["Dynamic Patrol Minimum Units", "Minimum number of units per dynamic patrol group. There will be random deviations above this number"],
+    [COMPONENT_NAME, "Dynamic Patrol"],
     [2, 11, 3, 0],
     1
 ] call CBA_settings_fnc_init;
 
 [
-    QGVAR(patrolMaxUnits),
+    QGVAR(dynamicPatrolMaxUnits),
     "SLIDER",
-    ["Patrol Maximum Units", "Maximum number of units per patrol group. There will be random deviations below this number"],
-    [COMPONENT_NAME, "Patrol"],
+    ["Dynamic Patrol Maximum Units", "Maximum number of units per dynamic patrol group. There will be random deviations below this number"],
+    [COMPONENT_NAME, "Dynamic Patrol"],
     [4, 12, 6, 0],
     1
 ] call CBA_settings_fnc_init;
 
 [
-    QGVAR(patrolMinGroups),
+    QGVAR(dynamicPatrolMinGroups),
     "SLIDER",
-    ["Patrol Minimum Groups", "Minimum number of groups per patrol. There will be random deviations above this number"],
-    [COMPONENT_NAME, "Patrol"],
+    ["Dynamic Patrol Minimum Groups", "Minimum number of groups per dynamic patrol. There will be random deviations above this number"],
+    [COMPONENT_NAME, "Dynamic Patrol"],
     [1, 3, 1, 0],
     1
 ] call CBA_settings_fnc_init;
 
 [
-    QGVAR(patrolMaxGroups),
+    QGVAR(dynamicPatrolMaxGroups),
     "SLIDER",
-    ["Patrol Maximum Groups", "Maximum number of units per patrol. There will be random deviations below this number"],
-    [COMPONENT_NAME, "Patrol"],
+    ["Dynamic Patrol Maximum Groups", "Maximum number of units per dynamic patrol. There will be random deviations below this number"],
+    [COMPONENT_NAME, "Dynamic Patrol"],
     [1, 4, 2, 0],
     1
 ] call CBA_settings_fnc_init;
 
 [
-    QGVAR(patrolUnitPoolString),
+    QGVAR(dynamicPatrolUnitPoolString),
     "EDITBOX",
-    ["Patrol Units Pool", "Class names of units that can spawn in patrol groups. Comma-separated list of class names in single quotes, no spaces"],
-    [COMPONENT_NAME, "Patrol"],
+    ["Dynamic Patrol Units Pool", "Class names of units that can spawn in dynamic patrol groups. Comma-separated list of class names in single quotes, no spaces"],
+    [COMPONENT_NAME, "Dynamic Patrol"],
     "['O_Soldier_F']",
     1,
-    {GVAR(patrolUnitPool) = call compile _this;}
+    {GVAR(dynamicPatrolUnitPool) = call compile _this;}
 ] call CBA_settings_fnc_init;
 
 [
-    QGVAR(patrolVehiclePoolString),
+    QGVAR(dynamicPatrolVehiclePoolString),
     "EDITBOX",
-    ["Patrol Vehicles Pool", "Class names of vehicles that can spawn in patrol groups. Comma-separated list of class names in single quotes, no spaces"],
-    [COMPONENT_NAME, "Patrol"],
+    ["Dynamic Patrol Vehicles Pool", "Class names of vehicles that can spawn in dynamic patrol groups. Comma-separated list of class names in single quotes, no spaces"],
+    [COMPONENT_NAME, "Dynamic Patrol"],
     "['O_MBT_02_cannon_F']",
     1,
-    {GVAR(patrolVehiclePool) = call compile _this;}
+    {GVAR(dynamicPatrolVehiclePool) = call compile _this;}
 ] call CBA_settings_fnc_init;
 
 [
-    QGVAR(patrolUnitSide),
+    QGVAR(dynamicPatrolUnitSide),
     "LIST",
-    ["Player and Enemy Sides", "Side of spawned patrol groups"],
-    [COMPONENT_NAME, "Patrol"],
+    ["Dynamic Patrol Side", "Side of spawned dynamic patrol groups"],
+    [COMPONENT_NAME, "Dynamic Patrol"],
     [
         [0, 1, 2],
         ["East", "Independent", "West"],
         0
     ],
     1,
-    {GVAR(patrolSide) = ([EAST, INDEPENDENT, WEST]#_this);}
+    {GVAR(dynamicPatrolSide) = ([EAST, INDEPENDENT, WEST]#_this);}
 ] call CBA_Settings_fnc_init;

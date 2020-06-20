@@ -20,7 +20,7 @@
 #define SPAWN_DELAY 1
 #define TIMEOUT 30
 
-params [["_position", [], [[]]], ["_type", 0, [0]], ["_count", 1, [0]], ["_side", GVAR(patrolSide), [sideUnknown]], ["_callback", {}, [{}]], ["_callbackArgs", [], [[]]]];
+params [["_position", [], [[]]], ["_type", 0, [0]], ["_count", 1, [0]], ["_side", GVAR(dynamicPatrolSide), [sideUnknown]], ["_unitPool", []], ["_vehiclePool", []], ["_callback", {}, [{}]], ["_callbackArgs", [], [[]]]];
 
 private _group = createGroup _side;
 _position = +_position;
@@ -31,9 +31,9 @@ _position resize 2;
 if (_type isEqualTo 0) exitWith {
     [{
         params ["_args", "_idPFH"];
-        _args params ["_position", "_group", "_count", "_check", "_time", "_callback", "_callbackArgs"];
+        _args params ["_position", "_group", "_unitPool", "_count", "_check", "_time", "_callback", "_callbackArgs"];
 
-        private _allSpawned = count _check isEqualTo _count;
+        private _allSpawned = (count _check) isEqualTo _count;
         if (_allSpawned || {time > (_time + TIMEOUT)}) exitWith {
             [_idPFH] call CBA_fnc_removePerFrameHandler;
 
@@ -43,13 +43,13 @@ if (_type isEqualTo 0) exitWith {
             };
         };
 
-        (selectRandom GVAR(patrolUnitPool)) createUnit [_position, _group];
+        (selectRandom _unitPool) createUnit [_position, _group];
 
         _check pushBack 0;
-    }, SPAWN_DELAY, [_position, _group, _count, [], time, _callback, _callbackArgs]] call CBA_fnc_addPerFrameHandler;
+    }, SPAWN_DELAY, [_position, _group, _unitPool, _count, [], time, _callback, _callbackArgs]] call CBA_fnc_addPerFrameHandler;
 };
 
-private _vehicle = createVehicle [selectRandom GVAR(patrolVehiclePool), _position, [], 0, "NONE"];
+private _vehicle = createVehicle [selectRandom _vehiclePool, _position, [], 0, "NONE"];
 _vehicle setVectorUp (surfaceNormal (getPos _vehicle));
 
 _group addVehicle _vehicle;
@@ -60,9 +60,9 @@ private _count = (_vehicle emptyPositions "driver") + count _turrets + round ((_
 
 [{
     params ["_args", "_idPFH"];
-    _args params ["_group", "_vehicle", "_count", "_turrets", "_time", "_callback", "_callbackArgs"];
+    _args params ["_group", "_vehicle", "_unitPool", "_count", "_turrets", "_time", "_callback", "_callbackArgs"];
 
-    private _allSpawned = count crew _vehicle >= _count;
+    private _allSpawned = (count (crew _vehicle)) >= _count;
     if (!(alive _vehicle) || {_allSpawned} || {time > (_time + TIMEOUT)}) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
 
@@ -73,7 +73,7 @@ private _count = (_vehicle emptyPositions "driver") + count _turrets + round ((_
         };
     };
 
-    private _unit = _group createUnit [selectRandom GVAR(patrolUnitPool), [0, 0, 2000], [], 0, "NONE"];
+    private _unit = _group createUnit [selectRandom _unitPool, [0, 0, 2000], [], 0, "NONE"];
 
     if ((_vehicle emptyPositions "driver") > 0) exitWith {
         _unit assignAsDriver _vehicle;
@@ -91,4 +91,4 @@ private _count = (_vehicle emptyPositions "driver") + count _turrets + round ((_
         _unit assignAsCargo _vehicle;
         _unit moveInCargo _vehicle;
     };
-}, SPAWN_DELAY, [_group, _vehicle, _count, _turrets, time, _callback, _callbackArgs]] call CBA_fnc_addPerFrameHandler;
+}, SPAWN_DELAY, [_group, _vehicle, _unitPool, _count, _turrets, time, _callback, _callbackArgs]] call CBA_fnc_addPerFrameHandler;

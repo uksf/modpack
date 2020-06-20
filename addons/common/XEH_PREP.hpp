@@ -12,6 +12,7 @@ PREP(fpsGet);
 PREP(fpsSet);
 PREP(fpsToggle);
 PREP(getBoundingBox);
+PREP(getConfigEntry);
 PREP(getNearPlayers);
 PREP(getSafePositionGrid);
 PREP(hint);

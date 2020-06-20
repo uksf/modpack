@@ -18,14 +18,7 @@ params [["_name", "", [""]], ["_configCallback", {}, [{}]]];
 private _value = [GVAR(valueCache), _name] call CBA_fnc_hashGet;
 if (isNil "_value") then {
     private _config = call _configCallback;
-    _value = [_config] call {
-        params ["_config"];
-
-        if (isNumber _config) exitWith {getNumber _config};
-        if (isText _config) exitWith {getText _config};
-        if (isArray _config) exitWith {getArray _config};
-        ""
-    };
+    _value = [_config] call EFUNC(common,getConfigEntry);
 
     [GVAR(valueCache), _name, _value] call CBA_fnc_hashSet;
 };

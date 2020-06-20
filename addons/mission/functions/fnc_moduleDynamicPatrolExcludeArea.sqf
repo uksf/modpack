@@ -4,7 +4,7 @@
         Tim Beswick
 
     Description:
-        Adds module area to patrol blacklist
+        Adds module area to dynamic patrol exclude areas
 
     Parameters:
         0: The module logic <OBJECT>
@@ -17,4 +17,7 @@
 
 if (!(local _logic)) exitWith {};
 
-GVAR(patrolBlacklistAreas) pushBackUnique _logic;
+private _area = _logic getVariable ["objectarea", []];
+if (_area isEqualTo []) exitWith {};
+
+GVAR(dynamicPatrolExcludeAreas) pushBack [_logic, _area];

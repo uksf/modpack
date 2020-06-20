@@ -43,39 +43,39 @@ force uksf_mission_conspicuity = false;
 // Allows items to be ignored in conspicuity checks. Supports weapons, backpacks, and uniforms only. e.g "['B_fieldPack_blk','Rangefinder']"
 force uksf_mission_conspicuityGearWhitelistString = "[]";
 
-// Determines if basic random patrol spawning is enabled
-force uksf_mission_patrolEnabled = false;
-// Time in seconds between patrol group spawns [60, 3600, 600, 0]
-force uksf_mission_patrolCooldown = 60;
-// Maximum number of active patrol groups allowed [1, 15, 10, 0]
-force uksf_mission_patrolGroupLimit = 10;
+// Determines if basic dynamic patrol spawning is enabled
+force uksf_mission_dynamicPatrolEnabled = false;
+// Time in seconds between dynamic patrol group spawns [60, 3600, 600, 0]
+force uksf_mission_dynamicPatrolCooldown = 60;
+// Maximum number of active dynamic patrol groups allowed [1, 15, 10, 0]
+force uksf_mission_dynamicPatrolGroupLimit = 10;
 // Probability of spawning a vehicle in place of a group [0, 1, 0.2, 2]
-force uksf_mission_patrolVehicleProbability = 0.2;
-// Combat mode of spawned patrol groups ["SAFE", "AWARE", "COMBAT"]
-force uksf_mission_patrolCombatMode = "SAFE";
-// Speed of spawned patrol groups ["LIMITED","NORMAL","FULL"]
-force uksf_mission_patrolSpeed = "LIMITED";
-// Patrols will not spawn near the player if they are within this distance to safe zones (respawn points) [1500, 7500, 3000, 0]
-force uksf_mission_patrolSafeZoneDistance = 3000;
-// Patrols will spawn beyond this distance from the player [500, 1500, 750, 0]
-force uksf_mission_patrolDistance = 750;
-// Patrol vehicles will spawn beyond the base spawn distance multiplied by this coefficient from the player [0.1, 5, 2, 1]
-force uksf_mission_patrolVehicleDistanceCoef = 2;
-// Distance away from a player for the waypoint of a patrol [10, 500, 100, 0]
-force uksf_mission_patrolWaypointDistance = 100;
-// Distance away from a player for the waypoint of a vehicle patrol [50, 750, 200, 0]
-force uksf_mission_patrolVehicleWaypointDistance = 200;
-// Minimum number of groups per patrol. There will be random deviations above this number [1, 3, 1, 0]
-force uksf_mission_patrolMinGroups = 1;
-// Maximum number of units per patrol. There will be random deviations below this number [1, 4, 2, 0]
-force uksf_mission_patrolMaxGroups = 2;
-// Minimum number of units per patrol group. There will be random deviations above this number [2, 11, 3, 0]
-force uksf_mission_patrolMinUnits = 3;
-// Maximum number of units per patrol group. There will be random deviations below this number [4, 12, 6, 0]
-force uksf_mission_patrolMaxUnits = 6;
-// Class names of units that can spawn in patrol groups. Comma-separated list of class names in single quotes, no spaces
-force uksf_mission_patrolUnitPoolString = "['O_Soldier_F']";
-// Class names of vehicles that can spawn in patrol groups. Comma-separated list of class names in single quotes, no spaces
-force uksf_mission_patrolVehiclePoolString = "['O_MBT_02_cannon_F']";
-// Side of spawned patrol groups [0: EAST, 1: INDEPENDENT, 2: WEST]
-force uksf_mission_patrolUnitSide = 0;
+force uksf_mission_dynamicPatrolVehicleProbability = 0.2;
+// Combat mode of spawned dynamic patrol groups ["SAFE", "AWARE", "COMBAT"]
+force uksf_mission_dynamicPatrolCombatMode = "SAFE";
+// Speed of spawned dynamic patrol groups ["LIMITED","NORMAL","FULL"]
+force uksf_mission_dynamicPatrolSpeed = "LIMITED";
+// Dynamic patrols will not spawn near the player if they are within this distance to safe zones (respawn points) [1500, 7500, 3000, 0]
+force uksf_mission_dynamicPatrolSafeZoneDistance = 3000;
+// Dynamic patrols will spawn beyond this distance from the player [500, 1500, 750, 0]
+force uksf_mission_dynamicPatrolDistance = 750;
+// Dynamic patrol vehicles will spawn beyond the base spawn distance multiplied by this coefficient from the player [0.1, 5, 2, 1]
+force uksf_mission_dynamicPatrolVehicleDistanceCoef = 2;
+// Distance away from a player for the waypoint of a dynamic patrol [10, 500, 100, 0]
+force uksf_mission_dynamicPatrolWaypointDistance = 100;
+// Distance away from a player for the waypoint of a dynamic vehicle patrol [50, 750, 200, 0]
+force uksf_mission_dynamicPatrolVehicleWaypointDistance = 200;
+// Minimum number of groups per dynamic patrol. There will be random deviations above this number [1, 3, 1, 0]
+force uksf_mission_dynamicPatrolMinGroups = 1;
+// Maximum number of units per dynamic patrol. There will be random deviations below this number [1, 4, 2, 0]
+force uksf_mission_dynamicPatrolMaxGroups = 2;
+// Minimum number of units per dynamic patrol group. There will be random deviations above this number [2, 11, 3, 0]
+force uksf_mission_dynamicPatrolMinUnits = 3;
+// Maximum number of units per dynamic patrol group. There will be random deviations below this number [4, 12, 6, 0]
+force uksf_mission_dynamicPatrolMaxUnits = 6;
+// Class names of units that can spawn in dynamic patrol groups. Comma-separated list of class names in single quotes, no spaces
+force uksf_mission_dynamicPatrolUnitPoolString = "['O_Soldier_F']";
+// Class names of vehicles that can spawn in dynamic patrol groups. Comma-separated list of class names in single quotes, no spaces
+force uksf_mission_dynamicPatrolVehiclePoolString = "['O_MBT_02_cannon_F']";
+// Side of spawned dynamic patrol groups [0: EAST, 1: INDEPENDENT, 2: WEST]
+force uksf_mission_dynamicPatrolUnitSide = 0;

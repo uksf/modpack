@@ -5,7 +5,9 @@ class CfgPatches {
         name = COMPONENT_NAME;
         units[] = {
             QGVAR(moduleSpawnArea),
-            QGVAR(modulePatrolBlacklistArea)
+            QGVAR(moduleDynamicPatrolExcludeArea),
+            QGVAR(moduleDynamicPatrolIncludeArea),
+            QGVAR(moduleDynamicPatrolArea)
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;

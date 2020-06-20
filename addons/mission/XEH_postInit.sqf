@@ -1,19 +1,19 @@
 #include "script_component.hpp"
-#define GROUP_DELAY 2
 
 if (!isServer) exitWith {};
 
 ["CBA_settingsInitialized", {
-    if (!GVAR(patrolEnabled)) exitWith {};
+    if (!GVAR(dynamicPatrolEnabled)) exitWith {};
 
-    [{
-        [{
-            private _groupCount = round (random [GVAR(patrolMinGroups), round (GVAR(patrolMaxGroups) / 1.5) max GVAR(patrolMinGroups), GVAR(patrolMaxGroups) + 1]);
+    // Presence of any dynamic patrol area will stop basic spawning functionality
+    if !(GVAR(dynamicPatrolAreas) isEqualTo []) exitWith {
+        {
+            private _data = _x call FUNC(initDynamicPatrolArea);
+            [{
+                [QGVAR(dynamicPatrolArea), _this, selectRandom EGVAR(common,HCs)] call CBA_fnc_targetEvent;
+            }, _data, _data#0#0 + random 10] call CBA_fnc_waitAndExecute;
+        } forEach GVAR(dynamicPatrolAreas);
+    };
 
-            while {_groupCount > 0} do {
-                [{call FUNC(patrol)}, [], _groupCount * GROUP_DELAY] call CBA_fnc_waitAndExecute;
-                _groupCount = _groupCount - 1;
-            };
-        }, GVAR(patrolCooldown), []] call CBA_fnc_addPerFrameHandler;
-    }, [], GVAR(patrolCooldown)] call CBA_fnc_waitAndExecute;
+    [{call FUNC(dynamicPatrol)}, [], GVAR(dynamicPatrolCooldown)] call CBA_fnc_waitAndExecute;
 }] call CBA_fnc_addEventHandler;

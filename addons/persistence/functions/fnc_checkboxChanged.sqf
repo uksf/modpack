@@ -14,9 +14,6 @@
 */
 params ["_ctrlCheckbox"];
 
-// Load
-// _this spawn {};
-
 private _object = (get3DENSelected "object")#0;
 private _state = [false, true] select (cbChecked _ctrlCheckbox);
 private _ctrlEditbox = ((allcontrols (ctrlParent _ctrlCheckbox) - [ctrlParentControlsGroup _ctrlCheckbox]) select {ctrlClassName _x == QGVAR(Edit)})#0;
@@ -32,6 +29,3 @@ if (_state) then {
     [_object, false, true] call FUNC(edenAttributeChanged);
     _ctrlEditboxValue ctrlSetText "";
 };
-
-
-
