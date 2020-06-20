@@ -24,7 +24,7 @@ class CfgVehicles {
         displayName = "Arsenal Crate";
     };
     class UKSF_S_R1: UKSF_S_Empty {
-        displayName = "R1 Crate";
+        displayName = "R1 (AM) Crate";
         editorPreview = QPATHTOEF(common,data\previews\UKSF_S_R1.jpg);
         hiddenSelectionsTextures[] = { QPATHTOF(data\R1_co.paa) };
         class TransportMagazines {
@@ -62,7 +62,7 @@ class CfgVehicles {
         };
     };
     class UKSF_S_R2: UKSF_S_Empty {
-        displayName = "R2 Crate";
+        displayName = "R2 (AT) Crate";
         editorPreview = QPATHTOEF(common,data\previews\UKSF_S_R2.jpg);
         hiddenSelectionsTextures[] = { QPATHTOF(data\R2_co.paa) };
         class TransportMagazines {
@@ -82,7 +82,7 @@ class CfgVehicles {
         };
     };
     class UKSF_S_R3: UKSF_S_Empty {
-        displayName = "R3 Crate";
+        displayName = "R3 (AH) Crate";
         editorPreview = QPATHTOEF(common,data\previews\UKSF_S_R3.jpg);
         hiddenSelectionsTextures[] = { QPATHTOF(data\R3_co.paa) };
         class TransportMagazines {
@@ -96,7 +96,7 @@ class CfgVehicles {
         };
     };
     class UKSF_S_R4: UKSF_S_Empty {
-        displayName = "R4 Crate";
+        displayName = "R4 (AMo) Crate";
         editorPreview = QPATHTOEF(common,data\previews\UKSF_S_R4.jpg);
         hiddenSelectionsTextures[] = { QPATHTOF(data\R4_co.paa) };
         class TransportMagazines {
@@ -118,7 +118,7 @@ class CfgVehicles {
         };
     };
     class UKSF_S_R5: UKSF_S_Empty {
-        displayName = "R5 Crate";
+        displayName = "R5 (MED) Crate";
         disableInventory = 1;
         editorPreview = QPATHTOEF(common,data\previews\UKSF_S_R5.jpg);
         hiddenSelectionsTextures[] = { QPATHTOF(data\R5_co.paa) };
@@ -132,7 +132,7 @@ class CfgVehicles {
         };
     };
     class UKSF_S_R6: UKSF_S_Empty {
-        displayName = "R6 Crate";
+        displayName = "R6 (Mo) Crate";
         editorPreview = QPATHTOEF(common,data\previews\UKSF_S_R6.jpg);
         hiddenSelectionsTextures[] = { QPATHTOF(data\R6_co.paa) };
         class TransportMagazines {
@@ -155,7 +155,7 @@ class CfgVehicles {
         };
     };
     class UKSF_S_R7: UKSF_S_Empty {
-        displayName = "R7 Crate";
+        displayName = "R7 (Sn) Crate";
         editorPreview = QPATHTOEF(common,data\previews\UKSF_S_R7.jpg);
         hiddenSelectionsTextures[] = { QPATHTOF(data\R7_co.paa) };
         class TransportMagazines {
