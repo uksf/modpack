@@ -44,11 +44,11 @@ GVAR(curatorUnconciousID) = [{
                 private _fps = _x getVariable [QGVAR(fps), 0];
                 private _colour = [1,1,1,0.7];
                 private _size = 0.03;
-                if (_fps < 15) then {
+                if (_fps <= 15) then {
                     _colour = [1,0,0,0.7];
                     _size = 0.045;
                 };
-                drawIcon3D ["", _colour, ASLToAGL (getPosASLVisual (driver (vehicle _x))), 1, 2, 0, format ["FPS: %1", _fps], 0.1, _size, "PuristaMedium", "center"];
+                drawIcon3D ["", _colour, ASLToAGL (vehicle _x), 1, 2, 0, format ["%1 FPS", _fps], 0.1, _size, "PuristaMedium", "center"];
             };
             if (_x getVariable ["ACE_isUnconscious", false]) then {
                 private _reviveStartTime = _x getVariable ["ace_medical_reviveStartTime", 0];
