@@ -28,7 +28,7 @@ GVAR(handlerUav) = [{
     _args params ["_uav", "_heightChanged", "_lastWaypoint"];
 
     if (local _uav) then {
-        private _height = [200, ((getWPPos [_uav, 1]) select 2)];
+        private _height = ((getWPPos [_uav, 1])#2);
         private _diveMode = _uav getVariable QGVAR(diveMode);
         private _observationMode = _uav getVariable QGVAR(observationMode);
         private _targetHeightASL = _uav getVariable QGVAR(targetHeightASL);
@@ -45,7 +45,7 @@ GVAR(handlerUav) = [{
                 {
                     _x setWPpos [((getWPPos _x) select 0), ((getWPPos _x) select 1), _targetHeightASL];
                 } forEach waypoints (group _uav);
-                _height = [200, _targetHeightASL];
+                _height = _targetHeightASL;
             };
         };
 
@@ -61,10 +61,10 @@ GVAR(handlerUav) = [{
         // Limits speed of the drone when it is getting close to its waypoint (so target can be acquired).
         // Then nosedives the drone in order for the hellfire to get a lock on the laser.
         // Once waypoint is completed drone speed is unlimited and drone climbs back to its original altitude.
-        if (_diveMode && ((getPosATL _uav) distance2D (getWPPos [_uav, _currentWaypoint]) < [4000, _specificDistance * 3] call BIS_fnc_lowestNum) && !_heightChanged) then {
+        if (_diveMode && ((getPosATL _uav) distance2D (getWPPos [_uav, _currentWaypoint]) < (4000 min (_specificDistance * 3))) && !_heightChanged) then {
             _uav forceSpeed 33;
             if (((getPosATL _uav) distance2D (getWPPos [_uav, _currentWaypoint])) < (_specificDistance * 1.5)) then {
-                _targetHeightASL = ([200, (_specificDistance - 200)] call BIS_fnc_greatestNUM);
+                _targetHeightASL = 200 max (_specificDistance - 200);
                 _heightChanged = true;
                 _uav forceSpeed -1;
             };
@@ -73,7 +73,7 @@ GVAR(handlerUav) = [{
                 _heightChanged = false;
                 _uav setVariable [QGVAR(diveMode), false, true];
                 _uav forceSpeed -1;
-                _targetHeightASL = (_height call BIS_fnc_greatestNUM);
+                _targetHeightASL = 200 max _height;
             };
         };
 
@@ -81,7 +81,7 @@ GVAR(handlerUav) = [{
         _uav flyinHeight 200;
         _uav flyInHeightASL [_targetHeightASL, _targetHeightASL, _targetHeightASL];
 
-        //Update vars
+        // Update vars
         _args set [1, _heightChanged];
         _args set [2, _currentWaypoint];
     };

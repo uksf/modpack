@@ -17,10 +17,9 @@ params ["_uav", "_state"];
 
 if (_state) then {
     _uav setVariable [QGVAR(immobilised), true, true];
-    deleteVehicle (driver (ACE_controlledUAV  select 0));
+    deleteVehicle (driver (ACE_controlledUAV#0));
     _uav engineOn false;
 } else {
-    private _driver = (group (ACE_controlledUAV  select 0)) createUnit ["B_UAV_AI", [-1000,-1000,0], [], 0, "NONE"];
-    _driver moveInDriver _uav;
+    createVehicleCrew _uav;
     _uav setVariable [QGVAR(immobilised), false, true];
 };

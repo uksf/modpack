@@ -16,8 +16,8 @@
 params ["_uav", "_type"];
 
 private _group = group _uav;
-private _screenPosition = screenToWorld [0.5,0.5];
-private _position = [_screenPosition select 0, _screenPosition select 1, (_uav getVariable QGVAR(targetHeightASL))];
+private _screenPosition = screenToWorld [0.5, 0.5];
+private _position = [_screenPosition#0, _screenPosition#1, (_uav getVariable QGVAR(targetHeightASL))];
 private _waypoint = ((waypoints _group) select (count (waypoints _group)) - 1);
 
 if (count (waypoints _group) <= 1) then {

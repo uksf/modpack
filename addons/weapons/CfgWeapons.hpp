@@ -592,6 +592,7 @@ class CfgWeapons {
             textureType = "semi";
             burst = 10;
             soundBurst = 0;
+            dispersion = 0.00015;
         };
         class burst_15 : manual {
             displayName = "Burst 20";

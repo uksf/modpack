@@ -752,7 +752,7 @@ class CfgVehicles {
         };
         class UserActions {
             class jammerSemi {
-                displayName = "<t color = '#217cd1'>Jammer Semi-Auto</t>";
+                displayName = "<t color = '#217cd1'>CM Semi-Auto</t>";
                 position = "zamerny";
                 radius = 10;
                 priority = 4;
@@ -762,7 +762,7 @@ class CfgVehicles {
                 statement = QUOTE(this setVariable[ARR_3(QQGVAR(jammerMode),1,true)]);
             };
             class jammerAuto {
-                displayName = "<t color = '#217cd1'>Jammer Auto</t>";
+                displayName = "<t color = '#217cd1'>CM Auto</t>";
                 position = "zamerny";
                 radius = 10;
                 priority = 4;
@@ -772,7 +772,7 @@ class CfgVehicles {
                 statement = QUOTE(this setVariable[ARR_3(QQGVAR(jammerMode),2,true)]);
             };
             class jammerOff {
-                displayName = "<t color = '#217cd1'>Jammer Off</t>";
+                displayName = "<t color = '#217cd1'>CM Man</t>";
                 position = "zamerny";
                 radius = 10;
                 priority = 4;
