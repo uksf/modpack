@@ -48,7 +48,7 @@ GVAR(curatorUnconciousID) = [{
                     _colour = [1,0,0,0.7];
                     _size = 0.045;
                 };
-                drawIcon3D ["", _colour, ASLToAGL (vehicle _x), 1, 2, 0, format ["%1 FPS", _fps], 0.1, _size, "PuristaMedium", "center"];
+                drawIcon3D ["", _colour, ASLToAGL (getPosASLVisual (vehicle _x)), 1, 2, 0, format ["%1 FPS", _fps], 0.1, _size, "PuristaMedium", "center"];
             };
             if (_x getVariable ["ACE_isUnconscious", false]) then {
                 private _reviveStartTime = _x getVariable ["ace_medical_reviveStartTime", 0];
@@ -64,7 +64,7 @@ GVAR(curatorUnconciousID) = [{
                     };
                 };
 
-                drawIcon3D ["", [1,0,0,0.7], ASLToAGL (getPosASLVisual (driver (vehicle _x))), 1, -2.5, 0, _text, 0.1, 0.04, "PuristaBold", "center"];
+                drawIcon3D ["", [1,0,0,0.7], ASLToAGL (getPosASLVisual (vehicle _x)), 1, -2.5, 0, _text, 0.1, 0.04, "PuristaBold", "center"];
             };
         };
     } forEach ALL_PLAYERS;
