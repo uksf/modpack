@@ -74,4 +74,10 @@ if ((_values#12) isEqualTo []) then {
     _values set [12, GVAR(dynamicPatrolVehiclePool)];
 };
 
+// Resolve values from index for combatMode, patrolSpeed, and side
+_values set [13, ['SAFE', 'AWARE', 'COMBAT']#(_values#13)];
+_values set [14, ['LIMITED', 'NORMAL', 'FULL']#(_values#14)];
+_values set [15, [EAST, INDEPENDENT, WEST]#(_values#15)];
+
+
 [_values, _logic, _area]

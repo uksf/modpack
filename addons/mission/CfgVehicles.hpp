@@ -241,7 +241,7 @@ class CfgVehicles {
                 displayName = "Vehicles Pool";
                 tooltip = "Class names of vehicles that can spawn in dynamic patrol groups. Comma-separated list of class names in single quotes, no spaces";
                 control = "Edit";
-                defaultValue = "";
+                defaultValue = "[]";
                 compileString = 1;
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(vehiclePoolString),_value,true)]);
             };
@@ -250,7 +250,7 @@ class CfgVehicles {
                 displayName = "Group Combat Mode";
                 tooltip = "Combat mode of spawned dynamic patrol groups";
                 control = "Combo";
-                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(combatMode),[ARR_3('SAFE','AWARE','COMBAT')]#_value,true)]);
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(combatMode),_value,true)]);
                 typeName = "NUMBER";
                 defaultValue = 0;
                 class values {
@@ -273,7 +273,7 @@ class CfgVehicles {
                 displayName = "Group Speed";
                 tooltip = "Speed of spawned dynamic patrol groups";
                 control = "Combo";
-                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(patrolSpeed),[ARR_3('LIMITED','NORMAL','FULL')]#_value,true)]);
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(patrolSpeed),_value,true)]);
                 typeName = "NUMBER";
                 defaultValue = 0;
                 class values {
@@ -296,7 +296,7 @@ class CfgVehicles {
                 displayName = "Side";
                 tooltip = "Side of spawned dynamic patrol groups";
                 control = "Combo";
-                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(side),[ARR_3(EAST,INDEPENDENT,WEST)]#_value,true)]);
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(side),_value,true)]);
                 typeName = "NUMBER";
                 defaultValue = 0;
                 class values {
