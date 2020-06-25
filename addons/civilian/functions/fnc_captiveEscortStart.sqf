@@ -24,7 +24,7 @@ _unit attachTo [ACE_player, [-0.2, 0.9, 0]];
 
 private _animChangedEHID = _unit getVariable ["ace_captives_handcuffAnimEHID", -1];
 _unit removeEventHandler ["AnimChanged", _animChangedEHID];
-_unit setVariable ["ace_captives_handcuffAnimEHID", -1, true];
+_unit setVariable ["ace_captives_handcuffAnimEHID", -2, true];
 
 ["ace_common_switchMove", [_unit, animationState ACE_player], _unit] call CBA_fnc_targetEvent;
 ["ace_common_playActionNow", [_unit, QGVAR(hvtdefault)], _unit] call CBA_fnc_targetEvent;

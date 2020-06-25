@@ -28,12 +28,13 @@ _unit lookAt _pos;
     ["ace_common_playActionNow", [_unit, QGVAR(clearAction)], _unit] call CBA_fnc_targetEvent;
 
     private _animChangedEHID = _unit getVariable ["ace_captives_handcuffAnimEHID", -1];
-    if (_animChangedEHID != -1) then {
+    if (_animChangedEHID >= 0) then {
         _unit removeEventHandler ["AnimChanged", _animChangedEHID];
     };
 
     if ((stance ACE_player) == "CROUCH") then {
         ["ace_common_switchMove", [_unit, "acts_aidlpsitmstpssurwnondnon05"], _unit] call CBA_fnc_targetEvent;
+
         _animChangedEHID = _unit addEventHandler ["AnimChanged", {
             params ["_unit", "_newAnimation"];
 

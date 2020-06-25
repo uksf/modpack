@@ -26,30 +26,6 @@ if (!GVAR(enableGestures)) exitWith {};
 [QGVAR(startUnitStatemachine), {call FUNC(startUnitStatemachine)}] call CBA_fnc_addEventHandler;
 [QGVAR(stopUnitStatemachine), {call FUNC(stopUnitStatemachine)}] call CBA_fnc_addEventHandler;
 
-if (GVAR(allowDebug)) then {
-    [QGVAR(debugBroadcast), {
-        GVAR(debugBroadcastPFHId) = [{
-            private _data = [[], []];
-
-            if !(isNull GVAR(vehicle_statemachine)) then {
-                private _vehicles = GVAR(vehicle_statemachine_vehicles) apply {[_x, [_x, GVAR(vehicle_statemachine)] call CBA_statemachine_fnc_getCurrentState]};
-                _data set [0, _vehicles];
-            };
-
-            if !(isNull GVAR(unit_statemachine)) then {
-                private _units = GVAR(unit_statemachine_units) apply {[_x, [_x, GVAR(unit_statemachine)] call CBA_statemachine_fnc_getCurrentState]};
-                _data set [1, _units];
-            };
-
-            if !(_data isEqualTo [[], []]) then {
-                [QGVAR(debugReceive), _data] call CBA_fnc_globalEvent;
-            };
-        }] call CBA_fnc_addPerFrameHandler;
-    }] call CBA_fnc_addEventHandler;
-
-    [QGVAR(debugStopBroadcast), {[GVAR(debugBroadcastPFHId)] call CBA_fnc_removePerFrameHandler;}] call CBA_fnc_addEventHandler;
-};
-
 if (hasInterface) then {
     ["ace_common_playActionNow", {call FUNC(handleGesture)}] call CBA_fnc_addEventHandler;
 
@@ -90,4 +66,28 @@ if (hasInterface) then {
             } forEach _units;
         }] call CBA_fnc_addEventHandler;
     };
+};
+
+if (GVAR(allowDebug)) then {
+    [QGVAR(debugBroadcast), {
+        GVAR(debugBroadcastPFHId) = [{
+            private _data = [[], []];
+
+            if !(isNull GVAR(vehicle_statemachine)) then {
+                private _vehicles = GVAR(vehicle_statemachine_vehicles) apply {[_x, [_x, GVAR(vehicle_statemachine)] call CBA_statemachine_fnc_getCurrentState]};
+                _data set [0, _vehicles];
+            };
+
+            if !(isNull GVAR(unit_statemachine)) then {
+                private _units = GVAR(unit_statemachine_units) apply {[_x, [_x, GVAR(unit_statemachine)] call CBA_statemachine_fnc_getCurrentState]};
+                _data set [1, _units];
+            };
+
+            if !(_data isEqualTo [[], []]) then {
+                [QGVAR(debugReceive), _data] call CBA_fnc_globalEvent;
+            };
+        }] call CBA_fnc_addPerFrameHandler;
+    }] call CBA_fnc_addEventHandler;
+
+    [QGVAR(debugStopBroadcast), {[GVAR(debugBroadcastPFHId)] call CBA_fnc_removePerFrameHandler;}] call CBA_fnc_addEventHandler;
 };
