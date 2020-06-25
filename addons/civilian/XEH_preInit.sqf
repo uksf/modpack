@@ -80,4 +80,28 @@ ADDON = false;
     }, []] call CBA_fnc_waitUntilAndExecute;
 }] call CBA_fnc_addPlayerEventHandler;
 
+[QGVAR(addAnimChangedEH), {
+    params ["_unit", "_function"];
+
+    if !(local _unit) exitWith {};
+
+    private _animChangedEHID = _unit addEventHandler ["AnimChanged", _function];
+    _unit setVariable ["ace_captives_handcuffAnimEHID", _animChangedEHID, true];
+}] call CBA_fnc_addEventHandler;
+
+[QGVAR(removeAnimChangedEH), {
+    params ["_unit", ["_animChangedEHID", -3], ["_nullID", -1]];
+
+    if !(local _unit) exitWith {};
+
+    if (_animChangedEHID == -3) then {
+        _animChangedEHID = _unit getVariable ["ace_captives_handcuffAnimEHID", -1];
+    };
+
+    if (_animChangedEHID >= 0) then {
+        _unit removeEventHandler ["AnimChanged", _animChangedEHID];
+        _unit setVariable ["ace_captives_handcuffAnimEHID", _nullID, true];
+    };
+}] call CBA_fnc_addEventHandler;
+
 ADDON = true;
