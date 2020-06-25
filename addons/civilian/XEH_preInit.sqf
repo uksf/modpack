@@ -51,7 +51,9 @@ ADDON = false;
 
     params ["_unit", "_target"];
 
-    _unit playActionNow QGVAR(clearAction);
+    if !(ace_common_isReloading) then {
+        _unit playActionNow QGVAR(clearAction);
+    };
 
     [QGVAR(doEscort), [_unit, _target, false], _target] call CBA_fnc_targetEvent;
 }] call CBA_fnc_addEventHandler;
@@ -85,22 +87,26 @@ ADDON = false;
         ACE_player playActionNow _holdAnim;
 
         ["ace_common_switchMove", [ACE_player, ""]] call CBA_fnc_globalEvent;
-    }, _this, 2.5] call CBA_fnc_waitAndExecute;
+    }, _this, 2] call CBA_fnc_waitAndExecute;
 }] call CBA_fnc_addPlayerEventHandler;
 
 ["loadout", {
     if !(GVAR(enableEscort)) exitWith {};
     if !(ACE_player getVariable ["ace_captives_isEscorting", false]) exitWith {};
+    if !(ace_common_isReloading) exitWith {};
 
     ["ace_common_switchMove", [ACE_player, "HubSpectator_stand"]] call CBA_fnc_globalEvent;
 
     [{
-        !ace_common_isReloading
-    }, {
+        !ace_common_isReloading || !(ACE_player getVariable ["ace_captives_isEscorting", false])
+    },{
+        ["ace_common_switchMove", [ACE_player, ""]] call CBA_fnc_globalEvent;
+
+        if !(ACE_player getVariable ["ace_captives_isEscorting", false]) exitWith {};
+
         private _holdAnim = [QGVAR(holdhvt), QGVAR(holdhvtpistol)] select ((currentWeapon ACE_player) == (handgunWeapon ACE_player));
         ACE_player playActionNow _holdAnim;
-        ["ace_common_switchMove", [ACE_player, ""]] call CBA_fnc_globalEvent;
-    }, []] call CBA_fnc_waitUntilAndExecute;
+    }] call CBA_fnc_waitUntilAndExecute;
 }] call CBA_fnc_addPlayerEventHandler;
 
 ADDON = true;
