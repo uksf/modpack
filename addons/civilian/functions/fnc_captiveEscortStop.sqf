@@ -46,5 +46,5 @@ _unit lookAt _pos;
         _animChangedEHID = _unit addEventHandler ["AnimChanged", {call ace_captives_fnc_handleAnimChangedHandcuffed}];
     };
 
-    _unit setVariable ["ace_captives_handcuffAnimEHID", _animChangedEHID];
+    _unit setVariable ["ace_captives_handcuffAnimEHID", _animChangedEHID, true];
 }, _this, 0.1] call CBA_fnc_waitAndExecute;
