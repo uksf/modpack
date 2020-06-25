@@ -7,39 +7,47 @@
         Stops captive escort animations
 
     Parameters:
-        0: Captive unit <OBJECT>
+        0: Escorting unit <OBJECT>
+        1: Captive unit <OBJECT>
 
     Return value:
         Nothing
 */
-params ["_unit"];
+params ["_escorter", "_unit"];
 
-[GVAR(escortPFHID)] call CBA_fnc_removePerFrameHandler;
+private _idPFH = _unit getVariable [QGVAR(escortIdPFH), -1];
+[_idPFH] call CBA_fnc_removePerFrameHandler;
 
-ACE_player playActionNow QGVAR(clearAction);
-
-private _pos = (getPos ACE_player) vectorAdd ((vectorDir ACE_player) vectorMultiply 2);
-_pos set [2, ((getPosATL ACE_player)#2) + 1.65];
-_unit lookAt _pos;
+if !(isNull _escorter) then {
+    private _pos = (getPos _escorter) vectorAdd ((vectorDir _escorter) vectorMultiply 2);
+    _pos set [2, ((getPosATL _escorter)#2) + 1.65];
+    _unit lookAt _pos;
+};
 
 [{
-    params ["_unit"];
+    params ["_escorter", "_unit"];
 
-    [QGVAR(removeAnimChangedEH), [_unit], _unit] call CBA_fnc_targetEvent;
-    ["ace_common_playActionNow", [_unit, QGVAR(clearAction)], _unit] call CBA_fnc_targetEvent;
+    private _animChangedEHID = _unit getVariable ["ace_captives_handcuffAnimEHID", -1];
+    if (_animChangedEHID >= 0) then {
+        _unit removeEventHandler ["AnimChanged", _animChangedEHID];
+    };
 
-    if ((stance ACE_player) == "CROUCH") then {
-        ["ace_common_switchMove", [_unit, "acts_aidlpsitmstpssurwnondnon05"], _unit] call CBA_fnc_targetEvent;
+    _unit playActionNow QGVAR(clearAction);
 
-        [QGVAR(addAnimChangedEH), [_unit, {
+    if (!(isNull _escorter) && {(stance _escorter) == "CROUCH"}) then {
+        ["ace_common_switchMove", [_unit, "acts_aidlpsitmstpssurwnondnon05"]] call CBA_fnc_globalEvent;
+
+        _animChangedEHID = _unit addEventHandler ["AnimChanged", {
             params ["_unit", "_newAnimation"];
 
             if ((_newAnimation != "acts_aidlpsitmstpssurwnondnon05") && {!(_unit getVariable ["ACE_isUnconscious", false])}) then {
-                ["ace_common_switchMove", [_unit, "acts_aidlpsitmstpssurwnondnon05"], _unit] call CBA_fnc_targetEvent;
+                ["ace_common_switchMove", [_unit, "acts_aidlpsitmstpssurwnondnon05"]] call CBA_fnc_globalEvent;
             };
-        }], _unit] call CBA_fnc_targetEvent;
+        }];
     } else {
-        ["ace_common_switchMove", [_unit, "ace_amovpercmstpscapwnondnon"], _unit] call CBA_fnc_targetEvent;
-        [QGVAR(addAnimChangedEH), [_unit, {call ace_captives_fnc_handleAnimChangedHandcuffed}], _unit] call CBA_fnc_targetEvent;
+        ["ace_common_switchMove", [_unit, "ace_amovpercmstpscapwnondnon"]] call CBA_fnc_globalEvent;
+        _animChangedEHID = _unit addEventHandler ["AnimChanged", {call ace_captives_fnc_handleAnimChangedHandcuffed}];
     };
-}, _this, 0.1] call CBA_fnc_waitAndExecute;
+
+    _unit setVariable ["ace_captives_handcuffAnimEHID", _animChangedEHID];
+}, _this, 0.2] call CBA_fnc_waitAndExecute;
