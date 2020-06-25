@@ -22,7 +22,7 @@ if !(ace_common_isReloading) then {
 detach _unit;
 _unit attachTo [ACE_player, [-0.2, 0.9, 0]];
 
-[QGVAR(removeAnimChangedEH), [_unit, -3, -2]] call CBA_fnc_targetEvent;
+[QGVAR(removeAnimChangedEH), [_unit, -3, -2], _unit] call CBA_fnc_targetEvent;
 
 ["ace_common_switchMove", [_unit, animationState ACE_player], _unit] call CBA_fnc_targetEvent;
 ["ace_common_playActionNow", [_unit, QGVAR(hvtdefault)], _unit] call CBA_fnc_targetEvent;
