@@ -25,7 +25,7 @@ if (!GVAR(dynamicPatrolEnabled) || {_retries > MAX_RETRIES}) exitWith {};
 // AND Player can't be in range of respawn positions
 // AND Player can't be in excluded areas
 // AND IF area logic is given Player must be in area
-// AND IF include areas exist and area logic does not exist Player must be in an include area
+// AND IF area logic does not exist and include areas exist Player must be in an include area
 
 private _players = (call CBA_fnc_players) select {
     private _player = _x;
