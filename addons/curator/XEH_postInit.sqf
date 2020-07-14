@@ -3,6 +3,8 @@
 // Delay is necessary to allow curators created in progress to properly initialise as Zeus objects
 [{
     if (isServer) then {
+        GVAR(curatorObjects) = GVAR(curatorObjects) - [objNull];
+        publicVariable QGVAR(curatorObjects);
         private _neededCurators = GVAR(curatorsMax) - (count GVAR(curatorObjects));
         if (_neededCurators > 0) then {
             INFO_1("Need to create %1 curators",_neededCurators);

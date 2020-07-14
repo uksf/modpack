@@ -50,6 +50,13 @@ GVAR(curatorSelectionHandle) = _display displayAddEventHandler ["KeyDown", {
                 };
             }];
 
+            GVAR(curatorMapDrawEH) = [_display displayCtrl 50, "Draw", {
+                params ["_control"];
+
+                private _mousePosition = _control ctrlMapScreenToWorld getMousePosition;
+                _control drawIcon ["\a3\ui_f\data\IGUI\Cfg\Cursors\select_target_ca.paa", [1,0,0,1], _mousePosition, 24, 24, 0, "", 1, 0.03, "TahomaB", "right"];
+            }, [_object, _text, _icon]] call CBA_fnc_addBISEventHandler;
+
             GVAR(curatorMapPointHandle) = [findDisplay 312, "MouseButtonDown", {
                 params ["_display", "_mouseButton"];
 
@@ -60,15 +67,18 @@ GVAR(curatorSelectionHandle) = _display displayAddEventHandler ["KeyDown", {
                     GVAR(paradropMapPoints) pushBack _position;
 
                     if ((count GVAR(paradropMapPoints)) == 1) then {
+                        (_display displayCtrl 50) ctrlRemoveEventHandler ["Draw", GVAR(curatorMapDrawEH)];
                         GVAR(curatorMapDrawEH) = [_display displayCtrl 50, "Draw", {
                             params ["_control"];
 
                             private _mousePosition = _control ctrlMapScreenToWorld getMousePosition;
+                            _control drawIcon ["\a3\ui_f\data\IGUI\Cfg\Cursors\select_target_ca.paa", [1,0,0,1], GVAR(paradropMapPoints)#0, 24, 24, 0, "", 1, 0.03, "TahomaB", "right"];
                             _control drawIcon ["\a3\ui_f\data\IGUI\Cfg\Cursors\select_target_ca.paa", [1,0,0,1], _mousePosition, 24, 24, 0, "", 1, 0.03, "TahomaB", "right"];
                             _control drawLine [GVAR(paradropMapPoints)#0, _mousePosition, [1,0,0,1]];
                         }, [_object, _text, _icon]] call CBA_fnc_addBISEventHandler;
                     };
                 };
+                
                 if ((count GVAR(paradropMapPoints)) >= 2) exitWith {
                     _display displayRemoveEventHandler ["MouseButtonDown", GVAR(curatorMapPointHandle)];
                     _display displayRemoveEventHandler ["KeyDown", GVAR(curatorCancelHandle)];
