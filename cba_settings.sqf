@@ -1,3 +1,13 @@
+// A3TI
+force force A3TI_ALLOW_TANK_DRIVER = false;
+force force A3TI_ALLOW_VANILLA_TI = false;
+force force A3TI_ENABLE_ZEUS = true;
+force force A3TI_HD_VISION_FIGHTER = false;
+force force A3TI_HD_VISION_LANDVEH = false;
+force force A3TI_HD_VISION_SHIP = false;
+force force A3TI_HD_VISION_UAV = false;
+force force A3TI_REMOVE_FILMGRAIN_RHS = true;
+
 // ACE Advanced Ballistics
 force force ace_advanced_ballistics_ammoTemperatureEnabled = true;
 force force ace_advanced_ballistics_barrelLengthInfluenceEnabled = true;
@@ -441,6 +451,19 @@ acre_sys_core_ts3ChannelSwitch = true;
 acre_sys_core_unmuteClients = true;
 force force acre_sys_signal_signalModel = 3;
 
+// ACRE2 Animations
+force force radioAnims_cba_ads = true;
+force force radioAnims_cba_Earpieces = "[""G_WirelessEarpiece_F""]";
+force force radioAnims_cba_main = true;
+force force radioAnims_cba_preference_Others = "Hand";
+force force radioAnims_cba_preference_PRC148 = "Hand";
+force force radioAnims_cba_preference_PRC152 = "Vest";
+force force radioAnims_cba_preference_PRC343 = "Vest";
+force force radioAnims_cba_preference_SEM52SL = "Vest";
+force force radioAnims_cba_vehicles = true;
+force force radioAnims_cba_vestarmor = true;
+force force radioAnims_cba_vests = "[]";
+
 // ACRE2 UI
 acre_sys_gui_volumeColorScale = [[1,1,0,0.5],[1,0.83,0,0.5],[1,0.65,0,0.5],[1,0.44,0,0.5],[1,0,0,0.5]];
 acre_sys_list_CycleRadiosColor = [0.66,0.05,1,1];
@@ -458,6 +481,23 @@ acre_sys_list_ToggleHeadsetColor = [0.66,0.05,1,1];
 force force acre_sys_zeus_zeusCanSpectate = true;
 acre_sys_zeus_zeusCommunicateViaCamera = false;
 acre_sys_zeus_zeusDefaultVoiceSource = false;
+
+// AWESome Aerodynamics
+force force orbis_aerodynamics_enabled = true;
+force force orbis_aerodynamics_pylonDragMultiplierGlobal = 1;
+force force orbis_aerodynamics_pylonMassMultiplierGlobal = 1;
+force force orbis_aerodynamics_windMultiplier = 1;
+
+// AWESome Cockpit
+force force orbis_cockpit_checklistUnits = "KIAS";
+force force orbis_cockpit_groundMultiplier = 1;
+force force orbis_cockpit_shakeEnabled = true;
+force force orbis_cockpit_speedMultiplier = 1;
+
+// AWESome GPWS
+force force orbis_gpws_automaticTransponder = true;
+orbis_gpws_defaultVolumeLow = false;
+force force orbis_gpws_personalDefault = "f16";
 
 // CBA UI
 cba_ui_notifyLifetime = 4;
@@ -560,6 +600,9 @@ force lambs_eventhandlers_ExplosionReactionTime = 9;
 
 // LAMBS Danger WP
 force lambs_wp_autoAddArtillery = false;
+
+// NMAB Settings
+force force NMAB_setting_particlesEnabled = true;
 
 // UKSF
 force uksf_caching_distance = 750;
