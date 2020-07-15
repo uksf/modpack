@@ -131,8 +131,8 @@ class CfgAmmo {
         ace_rearm_dummy = QGVAR(ACE_Hellfire_AGM114);
         timeToLive = 120;
         effectsMissileInit = "PylonBackEffects";
-        CraterEffects = "Hellfire_Smoke";
-        explosionEffects = "Hellfire_Explode";
+        // CraterEffects = "Hellfire_Smoke";
+        // explosionEffects = "Hellfire_Explode";
         missileLockMaxDistance = 8000;
         class ace_missileguidance {
             seekerMaxRange = 8000;
