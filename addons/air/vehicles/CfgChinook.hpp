@@ -1,6 +1,6 @@
 class CUP_CH47F_base : Helicopter_Base_H {
-    cyclicAsideForceCoef = 1.7;
-    cyclicForwardForceCoef = 1.7;
+    cyclicAsideForceCoef = 2; // 1.7
+    cyclicForwardForceCoef = 1.8; // 1.7
     fuelCapacity = 60;  // 500
     armor = 60;
     startDuration = 90;

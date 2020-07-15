@@ -140,8 +140,8 @@ class CfgVehicles {
         getInAction = "pilot_Heli_Light_02_Enter";
         getOutAction = "pilot_Heli_Light_02_Exit";
         maximumLoad = 2000;
-        cyclicAsideForceCoef = 1.75; // 1.06
-        cyclicForwardForceCoef = 1.5; // 1
+        cyclicAsideForceCoef = 2; // 1.75 // 1.06
+        cyclicForwardForceCoef = 1.6; // 1.5 // 1
         backRotorForceCoef = 1.8;
         backRotorSpeed = 3.0;
         gearRetracting = 0;

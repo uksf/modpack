@@ -14,6 +14,8 @@ class UK3CB_BAF_Wildcat_Base : Heli_light_03_base_F {
     bodyFrictionCoef = 0.5;  // 1
     liftForceCoef = 0.95;    // 1
     maxFordingDepth = 1.2;   // 0.7
+    cyclicAsideForceCoef = 1.2; // 1
+    cyclicForwardForceCoef = 1.1; // 1
     unitInfoType = "RscUnitInfoNoSpeed";
     attenuationEffectType = "SemiOpenHeliAttenuation";
 #include "MFDCAS.hpp"
