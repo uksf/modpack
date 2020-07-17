@@ -250,101 +250,60 @@ class CfgVehicles {
         class DestructionEffects {
             class Light1 {
                 simulation = "light";
-                type = "ObjectDestructionLightFuel";
-                position = "destructionEffect1";
-                intensity = 1;
+                type = "fxp_VEELight";
+                intensity = 0.001;
                 interval = 1;
-                lifeTime = 0;
-            };
-            class Smoke1 {
-                simulation = "particles";
-                type = "FuelTruck_Explosion";
                 position = "destructionEffect1";
-                intensity = 1;
-                interval = 1;
-                lifeTime = 0.001;
-            };
-            class LightFlames1 {
-                simulation = "particles";
-                type = "FlameLightBC";
-                position = "destructionEffect1";
-                intensity = 1;
-                interval = 1;
-                lifeTime = 0.5;
-                enabled = "distToWater";
-            };
-            class LightBig1 {
-                simulation = "light";
-                type = "ObjectDestructionLight";
-                position = "destructionEffect1";
-                intensity = 1;
-                interval = 1;
-                lifeTime = 2;
+                lifeTime = 20;
+                start = "damage-0.99";
                 enabled = "distToWater";
             };
             class Sound {
                 simulation = "sound";
+                type = "Fire";
                 position = "destructionEffect1";
                 intensity = 1;
                 interval = 1;
                 lifeTime = 1;
-                type = "Fire";
             };
-            class FireBig1 {
+            class FireBig {
                 simulation = "particles";
                 type = "ObjectDestructionFire1";
+                position = "destructionEffect2";
+                intensity = 0.15;
+                interval = 1;
+                lifeTime = 0.1;
+            };
+            class SmokeDest : FireBig {
+                type = "fxp_CarFuelDestructionSmoke";
+                lifeTime = 20;
+            };
+            class ExpFuel : SmokeDest {
+                type = "fxp_CarFuelExp";
                 position = "destructionEffect1";
-                intensity = 0.15;
-                interval = 1;
-                lifeTime = 3;
+                lifeTime = 0.001;
             };
-            class SmokeBig1 {
-                simulation = "particles";
-                type = "ObjectDestructionSmoke";
-                position = "destructionEffect1";
-                intensity = 0.15;
-                interval = 1;
-                lifeTime = 3.5;
+            class Spark : ExpFuel {
+                type = "fxp_CarFuelSparks";
+                lifeTime = 20;
             };
-            class SparksBig1 {
-                simulation = "particles";
-                type = "ObjectDestructionSparks";
-                position = "destructionEffect1";
-                intensity = 1;
-                interval = 1;
-                lifeTime = 0;
+            class Fire1 : Spark {
+                type = "fxp_objectdestructionfire1";
             };
-            class FireSparksBig1 {
-                simulation = "particles";
-                type = "FireSparks";
-                position = "destructionEffect2";
-                intensity = 1;
-                interval = 1;
-                lifeTime = 2.8;
+            class Fire2 : Fire1 {
+                type = "fxp_objectdestructionfire1a";
             };
-            class FireBig2 {
-                simulation = "particles";
-                type = "ObjectDestructionFire2";
-                position = "destructionEffect2";
-                intensity = 0.15;
-                interval = 1;
-                lifeTime = 3;
+            class Fire3 : Fire2 {
+                type = "fxp_objectdestructionfire1b";
             };
-            class SmokeBig1_2 {
-                simulation = "particles";
-                type = "ObjectDestructionSmoke1_2";
-                position = "destructionEffect2";
-                intensity = 0.15;
-                interval = 1;
-                lifeTime = 3.5;
+            class Smok1 : Fire3 {
+                type = "ObjectDestructionSmoke1_2Smallx";
             };
-            class SmokeBig2 {
-                simulation = "particles";
-                type = "ObjectDestructionSmoke2";
-                position = "destructionEffect2";
-                intensity = 1;
-                interval = 1;
-                lifeTime = 3.2;
+            class Smok2 : Smok1 {
+                type = "fxp_CarFuelDestSmoke";
+            };
+            class Refrc : Smok2 {
+                type = "ObjectDestructionRefract";
             };
         };
     };
