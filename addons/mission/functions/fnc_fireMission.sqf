@@ -14,28 +14,28 @@
     Parameters:
         0: Caller <OBJECT>
         1: Artillery <OBJECT>
-        2: Target <BOOLEAN>
-        3: Caller distance <SCALAR>
-        4: Stage <SCALAR>
-        5: Previous firing position <ARRAY>
-        5: Spread <SCALAR>
+        2: Target <ARRAY>
+        3: Stage <SCALAR> (Optional, don't specify unless skipping a stage)
+        4: Previous firing position <ARRAY> (Optional, required if stage is not 0)
+        5: Spread <SCALAR> (Optional, required if stage is not 0, overwritten if stage 0 runs first)
 
     Return value:
-        NOTHING
+        Nothing
 */
-params ["_caller", "_artillery", "_targetPosition", "_callerDistance", ["_stage", 0], ["_previousPosition", [0,0,0]], ["_spread", 50]];
+params [["_caller", objNull, [objNull]], ["_artillery", objNull, [objNull]], ["_targetPosition", [], [[]]], ["_stage", 0, [0]], ["_previousPosition", [0,0,0], [[]]], ["_spread", 50, [0]]];
 
-if (!(local _artillery)) exitWith {
-    [QGVAR(fireMission), _this, _artillery] call CBA_fnc_targetEvent;
+private _gunner = gunner _artillery;
+if !(local _gunner) exitWith {
+    [QGVAR(fireMission), _this, _gunner] call CBA_fnc_targetEvent; // doArtilleryFire only seems to work when run on the machine where the artillery gunner is local
 };
+
 if (_stage == 0 && {_artillery getVariable [QGVAR(artillerySupportTasked), false]}) exitWith {};
 
 #ifdef DEBUG_MODE_FULL
 private _delay = 15;
 #else
-private _delay = ARTILLERY_FIRE_MISSION_BASE_DELAY + linearConversion [500, 2000, _callerDistance, 5, 20, true] + random 10;
+private _delay = ARTILLERY_FIRE_MISSION_BASE_DELAY + linearConversion [500, 2000, _caller distance2D _artillery, 5, 20, true] + random 10;
 #endif
-
 
 // Stage 0 Check round (far)
 if (_stage == 0) exitWith {
@@ -59,9 +59,9 @@ if (_stage == 0) exitWith {
         marker5 = createMarker [str random 9999, _position]; marker5 setMarkerShape "ICON"; marker5 setMarkerType "hd_dot"; marker5 setMarkerColor "ColorGreen";
 #endif
 
-        _this set [4, 1];
-        _this set [5, _position];
-        _this set [6, _spread];
+        _this set [3, 1];
+        _this set [4, _position];
+        _this set [5, _spread];
         _this call FUNC(fireMission);
     }, _this, _delay] call CBA_fnc_waitAndExecute;
 };
@@ -96,8 +96,8 @@ _delay = _delay + (_artillery getArtilleryETA [_targetPosition, currentMagazine 
 #endif
 
     if (!_isStage2) exitWith {
-        _this set [4, 2];
-        _this set [5, _position];
+        _this set [3, 2];
+        _this set [4, _position];
         _this call FUNC(fireMission);
     };
 
