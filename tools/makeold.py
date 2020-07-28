@@ -710,6 +710,106 @@ def version_stamp_pboprefix(module,commitID):
 
     return True
 
+def sign_dependencies():
+    print_blue("\nSigning dependencies")
+
+    if sys.platform == "win32":
+        reg = winreg.ConnectRegistry(None, winreg.HKEY_LOCAL_MACHINE)
+        try:
+            k = winreg.OpenKey(reg, r"SOFTWARE\Wow6432Node\Bohemia Interactive\Arma 3")
+            a3_path = winreg.EnumValue(k, 1)[1]
+            winreg.CloseKey(k)
+        except:
+            print_error("Could not find Arma 3's directory in the registry.")
+            return 1
+    else:
+        a3_path = cygwin_a3path
+
+    intercept_path = os.path.join(module_root_parent, "@intercept\\addons")
+    signatures_path = os.path.join(release_dir, "@uksf_dependencies\\addons")
+    if not os.path.isdir(signatures_path):
+        try:
+            os.makedirs(signatures_path)
+        except:
+            print_error("Cannot create dependencies directory")
+            raise
+
+    for file in os.listdir(signatures_path):
+        if (file.endswith(".bisign") and os.path.isfile(os.path.join(signatures_path, file))):
+            if (os.path.splitext(os.path.basename(key))[0] not in file):
+                os.remove(os.path.join(signatures_path, file))
+
+
+    dependencies_path = "C:\\Server\\Modpack\\@uksf_dependencies\\addons"
+    temp_path = os.path.join(release_dir, "signatures")
+    if not os.path.isdir(temp_path):
+        try:
+            os.makedirs(temp_path)
+        except:
+            print_error("Cannot create temp directory")
+            raise
+
+    for file in os.listdir(dependencies_path):
+        if (file.endswith(".bisign") and os.path.isfile(os.path.join(dependencies_path, file))):
+            shutil.move(os.path.join(dependencies_path, file), os.path.join(temp_path, file))
+
+    for file in os.listdir(dependencies_path):
+        if (file.endswith(".pbo") and os.path.isfile(os.path.join(dependencies_path, file))
+            and not os.path.isfile(os.path.join(signatures_path, file))
+            and not os.path.isfile(os.path.join(signatures_path, "{}.delete".format(os.path.basename(file))))):
+            if (key):
+                if (not os.path.isfile(os.path.join(signatures_path, "{}.{}.bisign".format(file, os.path.splitext(os.path.basename(key))[0])))):
+                    print("Signing {} with {}.".format(file, key))
+                    ret = subprocess.call([dssignfile, key, os.path.join(dependencies_path, "{}".format(file))])
+                    if ret == 1:
+                        return 1
+
+    for file in os.listdir(dependencies_path):
+        if (file.endswith(".bisign") and os.path.isfile(os.path.join(dependencies_path, file))):
+            shutil.move(os.path.join(dependencies_path, file), os.path.join(signatures_path, file))
+
+    for file in os.listdir(temp_path):
+        shutil.move(os.path.join(temp_path, file), os.path.join(dependencies_path, file))
+
+    print_blue("\nSigning intercept")
+    for file in os.listdir(intercept_path):
+        if (file.endswith(".bisign") and os.path.isfile(os.path.join(intercept_path, file))):
+            os.remove(os.path.join(intercept_path, file))
+    for file in os.listdir(intercept_path):
+        if (file.endswith(".pbo") and os.path.isfile(os.path.join(intercept_path, file))):
+            print("Found: {}.".format(file))
+            if (os.path.isfile(os.path.join(intercept_path, "{}.{}.bisign".format(file, os.path.splitext(os.path.basename(key))[0])))):
+                os.remove(os.path.join(intercept_path, "{}.{}.bisign".format(file, os.path.splitext(os.path.basename(key))[0])))
+            if (key):
+                print("Signing with: {}.".format(key))
+                ret = subprocess.call([dssignfile, key, os.path.join(intercept_path, "{}".format(file))])
+                if ret == 1:
+                    return 1
+
+    deployment_folder_f35 = os.path.join("D:\\Dev\\f35\\release\\@uksf_f35")
+    print_blue("\nCopy F-35")
+    for file in os.listdir(os.path.join(deployment_folder_f35, "addons")):
+        if (file.endswith(".pbo")):
+            print("     Found PBO to update: {}".format(file))
+            shutil.copy(os.path.join(deployment_folder_f35, "addons", file), os.path.join(signatures_path, file))
+            print("     Updated: {}".format(os.path.join(signatures_path, file)))
+
+    print_blue("\nSigning updated dependencies")
+    for file in os.listdir(signatures_path):
+        if (file.endswith(".pbo") and os.path.isfile(os.path.join(signatures_path, file))):
+            print("Found: {}.".format(file))
+            if (os.path.isfile(os.path.join(signatures_path, "{}.{}.bisign".format(file, os.path.splitext(os.path.basename(key))[0])))):
+                os.remove(os.path.join(signatures_path, "{}.{}.bisign".format(file, os.path.splitext(os.path.basename(key))[0])))
+            if (key):
+                print("Signing with: {}.".format(key))
+                ret = subprocess.call([dssignfile, key, os.path.join(signatures_path, "{}".format(file))])
+                if ret == 1:
+                    return 1
+
+    shutil.rmtree(temp_path)
+
+    return 0
+
 ###############################################################################
 
 
@@ -850,6 +950,10 @@ See the make.cfg file for additional build options.
         compile_ext = False
     else:
         compile_ext = True
+
+    if "sign" in argv:
+        argv.remove("sign")
+        sign = True
 
     print_yellow("\nCheck external references is set to {}".format(str(check_external)))
 
@@ -1323,11 +1427,48 @@ See the make.cfg file for additional build options.
         if compile_ext:
             compile_extensions(extensions_root, force_build)
 
+        signtool = "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.18362.0\\x64\\signtool.exe"
+        intercept_dll_path = os.path.join(module_root_parent, "@intercept")
+        uksf_intercept_dll_path = os.path.join(module_root_parent, "intercept")
+        # Find dlls
+        dlls = []
+        for file in os.listdir(intercept_dll_path):
+            if (file.endswith(".dll")):
+                dlls.append(os.path.join(intercept_dll_path, file))
+        for file in os.listdir(os.path.join(intercept_dll_path, "intercept")):
+            if (file.endswith(".dll")):
+                dlls.append(os.path.join(intercept_dll_path, "intercept", file))
+        for file in os.listdir(uksf_intercept_dll_path):
+            if (file.endswith(".dll")):
+                dlls.append(os.path.join(uksf_intercept_dll_path, file))
+
+        # Sign intercept dlls
+        for file in dlls:
+            try:
+                print("\nSigning {}".format(file))
+                print()
+                ret = subprocess.call([signtool, "verify", "/pa", file])
+                if ret == 1:
+                    ret = subprocess.call([signtool, "sign", "/f", "D:\\Dev\\certs\\UKSFCert.pfx", "/t", "http://timestamp.comodoca.com/authenticode", file])
+                    if ret == 1:
+                        raise Exception()
+            except:
+                print("\nFailed to sign {}".format(file))
+                raise
+
         copy_important_files(module_root_parent,os.path.join(release_dir, project))
         copy_intercept_files(os.path.join(module_root_parent, "intercept"), os.path.join(release_dir, project, "intercept"))
 
         if not version_update:
             restore_version_files()
+
+    # Done building all modules!
+    if len(failedBuilds) == 0:
+        ret = sign_dependencies()
+        if ret == 0:
+            print_blue("\nDependencies signed")
+        else:
+            print_error("Could not sign dependencies")
 
     # Write out the cache state
     cache_out = json.dumps(cache)
