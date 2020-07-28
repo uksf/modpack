@@ -25,6 +25,10 @@ TRACE_6("Loading object...",_id,_type,_position,_vectorDirAndUp,_damage,_fuel);
 // TRACE_1("...",_inventory);
 // TRACE_1("...",_acexFortifyData);
 
+if !(_type isEqualType "") exitWith {
+    WARNING_1("Tried to load empty data for id %1",_id);
+};
+
 private _object = objNull;
 if ([GVAR(persistentObjectsHash), _id] call CBA_fnc_hashHasKey) then {
     TRACE_1("Loading object exists in mission, using",_id);

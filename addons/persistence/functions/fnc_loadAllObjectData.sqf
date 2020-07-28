@@ -21,6 +21,7 @@ if (_allObjects isEqualTo []) then {
     GVAR(dataNamespace) setVariable [QGVAR(objects), _allObjects];
     GVAR(dataNamespace) setVariable [QGVAR(vehicles), nil];
 };
+
 _allObjects = _allObjects select {_x#0 != ""};
 INFO_1("Number of objects to load: %1",count _allObjects);
 

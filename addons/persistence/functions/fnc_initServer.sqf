@@ -23,6 +23,8 @@ GVAR(hashHasRedeployed) = [[], false] call CBA_fnc_hashCreate;
 GVAR(hashFirstRespawn) = [[], true] call CBA_fnc_hashCreate;
 GVAR(persistenceMarkers) = [];
 GVAR(mapMarkers) = GVAR(dataNamespace) getVariable [QGVAR(mapMarkers), []];
+GVAR(saveObjectQueue) = [];
+GVAR(saveObjectQueueProcessing) = false;
 
 // addMissionEventHandler ["PlayerConnected", {call FUNC(playerConnected)}];
 addMissionEventHandler ["EntityRespawned", {call FUNC(entityRespawned)}];
