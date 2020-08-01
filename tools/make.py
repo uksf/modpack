@@ -341,7 +341,7 @@ def print_green(msg):
 def print_blue(msg):
     global redirectColours
     if (redirectColours):
-        print_as_json(msg, "#2060dd")
+        print_as_json(msg, "#165ead")
     else:
         color("blue")
         print(msg)
