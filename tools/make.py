@@ -333,7 +333,6 @@ def compile_extensions(extensions_root, force_build):
     try:
         os.chdir(extensions_root)
         print()
-        print(os.environ["PATH"])
         ret = subprocess.call(["msbuild", "uksf.sln", "/m", "/p:Configuration=Release", "/p:Platform=x64"])
         if ret == 1:
             return 1
