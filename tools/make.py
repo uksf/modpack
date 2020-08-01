@@ -313,7 +313,7 @@ def color(color):
 
 
 def print_as_json(message, colour):
-    print('JSON:\"{{\\"message\\": \\"{}\\", \\"colour\\": \\"{}\\"}}\"'.format(message.replace('\n', '\\n'), colour))
+    print('JSON:\\"{{\\"message\\": \\"{}\\", \\"colour\\": \\"{}\\"}}\\"'.format(message.replace('\n', '\\n'), colour))
 
 
 def print_error(msg):
