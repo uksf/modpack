@@ -319,7 +319,7 @@ def print_as_json(message, colour):
 def print_error(msg):
     global redirectColours
     if (redirectColours):
-        print_as_json("ERROR: {}".format(msg), "#cd3b3a")
+        print_as_json("ERROR: {}".format(msg), "#f14c4c")
     else:
         color("red")
         print("ERROR: {}".format(msg))
@@ -331,7 +331,7 @@ def print_error(msg):
 def print_green(msg):
     global redirectColours
     if (redirectColours):
-        print_as_json(msg, "#21b16a")
+        print_as_json(msg, "#20d18b")
     else:
         color("green")
         print(msg)
@@ -341,7 +341,7 @@ def print_green(msg):
 def print_blue(msg):
     global redirectColours
     if (redirectColours):
-        print_as_json(msg, "#2e6ac1")
+        print_as_json(msg, "#24b8db")
     else:
         color("blue")
         print(msg)
@@ -351,7 +351,7 @@ def print_blue(msg):
 def print_yellow(msg):
     global redirectColours
     if (redirectColours):
-        print_as_json(msg, "#d8db36")
+        print_as_json(msg, "#f5f543")
     else:
         color("yellow")
         print(msg)
