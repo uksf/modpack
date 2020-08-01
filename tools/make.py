@@ -357,6 +357,14 @@ def print_yellow(msg):
         print(msg)
         color("reset")
 
+def execute(cmd):
+    popen = subprocess.Popen(cmd, stdout=subprocess.PIPE, universal_newlines=True)
+    for stdout_line in iter(popen.stdout.readline, ""):
+        yield stdout_line
+    popen.stdout.close()
+    return_code = popen.wait()
+    if return_code:
+        raise subprocess.CalledProcessError(return_code, cmd)
 
 def compile_extensions(extensions_root, force_build):
     originalDir = os.getcwd()
@@ -365,9 +373,11 @@ def compile_extensions(extensions_root, force_build):
     try:
         os.chdir(extensions_root)
         print()
-        ret = subprocess.call(["msbuild", "uksf.sln", "/m", "/p:Configuration=Release", "/p:Platform=x64"])
-        if ret == 1:
-            return 1
+        for path in execute(["msbuild", "uksf.sln", "/m", "/p:Configuration=Release", "/p:Platform=x64"]):
+            print(path, end="")
+        # ret = subprocess.call(["msbuild", "uksf.sln", "/m", "/p:Configuration=Release", "/p:Platform=x64"])
+        # if ret == 1:
+        #     return 1
     except:
         print_error("Failed to compile extension")
         raise
