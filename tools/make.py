@@ -74,6 +74,8 @@ signature_blacklist = []
 importantFiles = ["mod.cpp", "README.md", "mod.paa", "modLarge.paa", "AUTHORS.txt", "LICENSE", "UKSFTemplate.VR", "cba_settings.sqf"]
 interceptFiles = ["uksf_x64.dll", "PocoFoundation64.dll", "PocoJSON64.dll", "PocoNet64.dll", "PocoUtil64.dll", "PocoXML64.dll"]
 versionFiles = ["mod.cpp", "README.md"]
+printedErrors = 0
+redirectColours = False
 
 ###############################################################################
 # http://akiscode.com/articles/sha-1directoryhash.shtml
@@ -305,26 +307,42 @@ def color(color):
             sys.stdout.write('\033[0m')
 
 def print_error(msg):
-    color("red")
-    print ("ERROR: {}".format(msg))
-    color("reset")
+    global redirectColours
+    if (redirectColours):
+        print ("JSON:{{\"message\": \"ERROR: {}\", \"color\": \"red\"}}".format(msg))
+    else:
+        color("red")
+        print ("ERROR: {}".format(msg))
+        color("reset")
     global printedErrors
     printedErrors += 1
 
 def print_green(msg):
-    color("green")
-    print(msg)
-    color("reset")
+    global redirectColours
+    if (redirectColours):
+        print ("JSON:{{\"message\": \"{}\", \"color\": \"green\"}}".format(msg))
+    else:
+        color("green")
+        print(msg)
+        color("reset")
 
 def print_blue(msg):
-    color("blue")
-    print(msg)
-    color("reset")
+    global redirectColours
+    if (redirectColours):
+        print ("JSON:{{\"message\": \"{}\", \"color\": \"blue\"}}".format(msg))
+    else:
+        color("blue")
+        print(msg)
+        color("reset")
 
 def print_yellow(msg):
-    color("yellow")
-    print(msg)
-    color("reset")
+    global redirectColours
+    if (redirectColours):
+        print ("JSON:{{\"message\": \"{}\", \"color\": \"yellow\"}}".format(msg))
+    else:
+        color("yellow")
+        print(msg)
+        color("reset")
 
 def compile_extensions(extensions_root, force_build):
     originalDir = os.getcwd()
@@ -731,6 +749,7 @@ def main(argv):
     global missingFiles
     global failedBuilds
     global printedErrors
+    global redirectColours
 
     printedErrors = 0
 
@@ -849,6 +868,12 @@ See the make.cfg file for additional build options.
         compile_ext = False
     else:
         compile_ext = True
+
+    if "redirect" in argv:
+        argv.remove("redirect")
+        redirectColours = True
+    else:
+        redirectColours = False
 
     print_yellow("\nCheck external references is set to {}".format(str(check_external)))
 
