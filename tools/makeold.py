@@ -30,20 +30,6 @@
 
 ###############################################################################
 
-import fileinput
-import re
-import timeit
-import time
-import traceback
-import json
-import configparser
-import hashlib
-import subprocess
-import glob
-import platform
-import shutil
-import os.path
-import os
 __version__ = "0.8"
 
 import sys
@@ -52,6 +38,20 @@ if sys.version_info[0] == 2:
     print("Python 3 is required.")
     sys.exit(1)
 
+import os
+import os.path
+import shutil
+import platform
+import glob
+import subprocess
+import hashlib
+import configparser
+import json
+import traceback
+import time
+import timeit
+import re
+import fileinput
 
 if sys.platform == "win32":
     import winreg
@@ -71,11 +71,9 @@ dssignfile = ""
 prefix = "uksf"
 pbo_name_prefix = "uksf_"
 signature_blacklist = []
-importantFiles = ["mod.cpp", "README.md", "mod.paa", "modLarge.paa", "AUTHORS.txt", "LICENSE", "UKSFTemplate.VR", "cba_settings.sqf"]
-interceptFiles = ["uksf_x64.dll", "PocoFoundation64.dll", "PocoJSON64.dll", "PocoNet64.dll", "PocoUtil64.dll", "PocoXML64.dll"]
+importantFiles = ["mod.cpp", "README.md", "mod.paa", "modLarge.paa", "AUTHORS.txt", "LICENSE", "UKSFTemplate.VR", "cba_settings.sqf", "cba_settings.sqf"]
+interceptFiles = ["uksf.dll", "uksf_x64.dll", "PocoFoundation.dll", "PocoFoundation64.dll", "PocoJSON.dll", "PocoJSON64.dll", "PocoNet.dll", "PocoNet64.dll", "PocoUtil.dll", "PocoUtil64.dll", "PocoXML.dll", "PocoXML64.dll"]
 versionFiles = ["mod.cpp", "README.md"]
-printedErrors = 0
-redirectColours = False
 
 ###############################################################################
 # http://akiscode.com/articles/sha-1directoryhash.shtml
@@ -85,11 +83,9 @@ redirectColours = False
 # Error Codes:
 #   -1 -> Directory does not exist
 #   -2 -> General error (see stack traceback)
-
-
-def get_directory_hash(directory):
+def  get_directory_hash(directory):
     directory_hash = hashlib.sha1()
-    if not os.path.exists(directory):
+    if not os.path.exists (directory):
         return -1
 
     try:
@@ -106,8 +102,7 @@ def get_directory_hash(directory):
                 while 1:
                     # Read file in as little chunks
                     buf = f.read(4096)
-                    if not buf:
-                        break
+                    if not buf: break
                     new = hashlib.sha1(buf)
                     directory_hash.update(new.digest())
                 f.close()
@@ -121,7 +116,6 @@ def get_directory_hash(directory):
     #print_yellow("Hash Value for {} is {}".format(directory,retVal))
     return directory_hash.hexdigest()
 
-
 def Fract_Sec(s):
     temp = float()
     temp = float(s) / (60*60*24)
@@ -132,9 +126,8 @@ def Fract_Sec(s):
     m = int(temp)
     temp = (temp - m) * 60
     sec = temp
-    return d, h, m, sec
-    # endef Fract_Sec
-
+    return d,h,m,sec
+    #endef Fract_Sec
 
 # Copyright (c) André Burgaud
 # http://www.burgaud.com/bring-colors-to-the-windows-console-with-python/
@@ -145,27 +138,27 @@ if sys.platform == "win32":
     WORD = c_ushort
 
     class COORD(Structure):
-        """struct in wincon.h."""
-        _fields_ = [
-            ("X", SHORT),
-            ("Y", SHORT)]
+      """struct in wincon.h."""
+      _fields_ = [
+        ("X", SHORT),
+        ("Y", SHORT)]
 
     class SMALL_RECT(Structure):
-        """struct in wincon.h."""
-        _fields_ = [
-            ("Left", SHORT),
-            ("Top", SHORT),
-            ("Right", SHORT),
-            ("Bottom", SHORT)]
+      """struct in wincon.h."""
+      _fields_ = [
+        ("Left", SHORT),
+        ("Top", SHORT),
+        ("Right", SHORT),
+        ("Bottom", SHORT)]
 
     class CONSOLE_SCREEN_BUFFER_INFO(Structure):
-        """struct in wincon.h."""
-        _fields_ = [
-            ("dwSize", COORD),
-            ("dwCursorPosition", COORD),
-            ("wAttributes", WORD),
-            ("srWindow", SMALL_RECT),
-            ("dwMaximumWindowSize", COORD)]
+      """struct in wincon.h."""
+      _fields_ = [
+        ("dwSize", COORD),
+        ("dwCursorPosition", COORD),
+        ("wAttributes", WORD),
+        ("srWindow", SMALL_RECT),
+        ("dwMaximumWindowSize", COORD)]
 
     # winbase.h
     STD_INPUT_HANDLE = -10
@@ -173,44 +166,43 @@ if sys.platform == "win32":
     STD_ERROR_HANDLE = -12
 
     # wincon.h
-    FOREGROUND_BLACK = 0x0000
-    FOREGROUND_BLUE = 0x0001
-    FOREGROUND_GREEN = 0x0002
-    FOREGROUND_CYAN = 0x0003
-    FOREGROUND_RED = 0x0004
-    FOREGROUND_MAGENTA = 0x0005
-    FOREGROUND_YELLOW = 0x0006
-    FOREGROUND_GREY = 0x0007
-    FOREGROUND_INTENSITY = 0x0008  # foreground color is intensified.
+    FOREGROUND_BLACK     = 0x0000
+    FOREGROUND_BLUE      = 0x0001
+    FOREGROUND_GREEN     = 0x0002
+    FOREGROUND_CYAN      = 0x0003
+    FOREGROUND_RED       = 0x0004
+    FOREGROUND_MAGENTA   = 0x0005
+    FOREGROUND_YELLOW    = 0x0006
+    FOREGROUND_GREY      = 0x0007
+    FOREGROUND_INTENSITY = 0x0008 # foreground color is intensified.
 
-    BACKGROUND_BLACK = 0x0000
-    BACKGROUND_BLUE = 0x0010
-    BACKGROUND_GREEN = 0x0020
-    BACKGROUND_CYAN = 0x0030
-    BACKGROUND_RED = 0x0040
-    BACKGROUND_MAGENTA = 0x0050
-    BACKGROUND_YELLOW = 0x0060
-    BACKGROUND_GREY = 0x0070
-    BACKGROUND_INTENSITY = 0x0080  # background color is intensified.
+    BACKGROUND_BLACK     = 0x0000
+    BACKGROUND_BLUE      = 0x0010
+    BACKGROUND_GREEN     = 0x0020
+    BACKGROUND_CYAN      = 0x0030
+    BACKGROUND_RED       = 0x0040
+    BACKGROUND_MAGENTA   = 0x0050
+    BACKGROUND_YELLOW    = 0x0060
+    BACKGROUND_GREY      = 0x0070
+    BACKGROUND_INTENSITY = 0x0080 # background color is intensified.
 
     stdout_handle = windll.kernel32.GetStdHandle(STD_OUTPUT_HANDLE)
     SetConsoleTextAttribute = windll.kernel32.SetConsoleTextAttribute
     GetConsoleScreenBufferInfo = windll.kernel32.GetConsoleScreenBufferInfo
 
     def get_text_attr():
-        """Returns the character attributes (colors) of the console screen
-        buffer."""
-        csbi = CONSOLE_SCREEN_BUFFER_INFO()
-        GetConsoleScreenBufferInfo(stdout_handle, byref(csbi))
-        return csbi.wAttributes
+      """Returns the character attributes (colors) of the console screen
+      buffer."""
+      csbi = CONSOLE_SCREEN_BUFFER_INFO()
+      GetConsoleScreenBufferInfo(stdout_handle, byref(csbi))
+      return csbi.wAttributes
 
     def set_text_attr(color):
-        """Sets the character attributes (colors) of the console screen
-        buffer. Color is a combination of foreground and background color,
-        foreground and background intensity."""
-        SetConsoleTextAttribute(stdout_handle, color)
+      """Sets the character attributes (colors) of the console screen
+      buffer. Color is a combination of foreground and background color,
+      foreground and background intensity."""
+      SetConsoleTextAttribute(stdout_handle, color)
 ###############################################################################
-
 
 def find_bi_tools(work_drive):
     """Find BI tools."""
@@ -221,7 +213,7 @@ def find_bi_tools(work_drive):
         arma3tools_path = winreg.QueryValueEx(k, "path")[0]
         winreg.CloseKey(k)
     except:
-        raise Exception("BadTools", "Arma 3 Tools are not installed correctly or the P: drive needs to be created.")
+        raise Exception("BadTools","Arma 3 Tools are not installed correctly or the P: drive needs to be created.")
 
     addonbuilder_path = os.path.join(arma3tools_path, "AddonBuilder", "AddonBuilder.exe")
     dssignfile_path = os.path.join(arma3tools_path, "DSSignFile", "DSSignFile.exe")
@@ -231,7 +223,7 @@ def find_bi_tools(work_drive):
     if os.path.isfile(addonbuilder_path) and os.path.isfile(dssignfile_path) and os.path.isfile(dscreatekey_path) and os.path.isfile(cfgconvert_path):
         return [addonbuilder_path, dssignfile_path, dscreatekey_path, cfgconvert_path]
     else:
-        raise Exception("BadTools", "Arma 3 Tools are not installed correctly or the P: drive needs to be created.")
+        raise Exception("BadTools","Arma 3 Tools are not installed correctly or the P: drive needs to be created.")
 
 
 def find_depbo_tools(regKey):
@@ -282,8 +274,9 @@ def find_depbo_tools(regKey):
             raise Exception("BadDePBO", "DePBO tools not installed correctly")
         return -1
 
-    # Strip any quotations from the path due to a MikeRo tool bug which leaves a trailing space in some of its registry paths.
-    return [pboproject_path.strip('"'), rapify_path.strip('"'), makepbo_path.strip('"')]
+
+    #Strip any quotations from the path due to a MikeRo tool bug which leaves a trailing space in some of its registry paths.
+    return [pboproject_path.strip('"'),rapify_path.strip('"'),makepbo_path.strip('"')]
 
 
 def color(color):
@@ -301,7 +294,7 @@ def color(color):
             set_text_attr(FOREGROUND_GREY | get_text_attr() & 0x0070)
         elif color == "grey":
             set_text_attr(FOREGROUND_GREY | get_text_attr() & 0x0070)
-    else:
+    else :
         if color == "green":
             sys.stdout.write('\033[92m')
         elif color == "red":
@@ -311,81 +304,47 @@ def color(color):
         elif color == "reset":
             sys.stdout.write('\033[0m')
 
-
-def print_as_json(message, colour):
-    print('JSON:{{"message": "{}", "colour": "{}"}}'.format(message.replace('\n', '\\n'), colour))
-
-
 def print_error(msg):
-    global redirectColours
-    if (redirectColours):
-        print_as_json("ERROR: {}".format(msg), "#f14c4c")
-    else:
-        color("red")
-        print("ERROR: {}".format(msg))
-        color("reset")
+    color("red")
+    print ("ERROR: {}".format(msg))
+    color("reset")
     global printedErrors
     printedErrors += 1
 
-
 def print_green(msg):
-    global redirectColours
-    if (redirectColours):
-        print_as_json(msg, "#20d18b")
-    else:
-        color("green")
-        print(msg)
-        color("reset")
-
+    color("green")
+    print(msg)
+    color("reset")
 
 def print_blue(msg):
-    global redirectColours
-    if (redirectColours):
-        print_as_json(msg, "#165ead")
-    else:
-        color("blue")
-        print(msg)
-        color("reset")
-
+    color("blue")
+    print(msg)
+    color("reset")
 
 def print_yellow(msg):
-    global redirectColours
-    if (redirectColours):
-        print_as_json(msg, "#f5f543")
-    else:
-        color("yellow")
-        print(msg)
-        color("reset")
-
-def execute(cmd):
-    popen = subprocess.Popen(cmd, stdout=subprocess.PIPE, universal_newlines=True)
-    for stdout_line in iter(popen.stdout.readline, ""):
-        yield stdout_line
-    popen.stdout.close()
-    return_code = popen.wait()
-    if return_code:
-        raise subprocess.CalledProcessError(return_code, cmd)
+    color("yellow")
+    print(msg)
+    color("reset")
 
 def compile_extensions(extensions_root, force_build):
     originalDir = os.getcwd()
     print_blue("\nCompiling extensions in {}".format(extensions_root))
 
     try:
+        print_blue("\nCompiling extensions in {}".format(extensions_root))
         os.chdir(extensions_root)
         print()
-        for path in execute(["msbuild", "uksf.sln", "/m", "/p:Configuration=Release", "/p:Platform=x64"]):
-            print(path, end="")
-        # ret = subprocess.call(["msbuild", "uksf.sln", "/m", "/p:Configuration=Release", "/p:Platform=x64"])
-        # if ret == 1:
-        #     return 1
+        ret = subprocess.call(["msbuild", "uksf.sln", "/m", "/p:Configuration=Release", "/p:Platform=x64"])
+        if ret == 1:
+            return 1
     except:
-        print_error("Failed to compile extension")
+        print_error("Failed to compile extenion")
         raise
     finally:
         os.chdir(originalDir)
 
 
-def copy_important_files(source_dir, destination_dir):
+def copy_important_files(source_dir,destination_dir):
     originalDir = os.getcwd()
 
     # Copy importantFiles
@@ -398,11 +357,11 @@ def copy_important_files(source_dir, destination_dir):
             filePath = os.path.join(module_root_parent, file)
             if os.path.exists(filePath):
                 print_green("Copying file => {}".format(filePath))
-                if (os.path.isdir(os.path.join(source_dir, filePath))):
+                if (os.path.isdir(os.path.join(source_dir,filePath))):
                     shutil.rmtree(os.path.join(destination_dir, file), True)
                     shutil.copytree(os.path.join(source_dir, file), os.path.join(destination_dir, file))
                 else:
-                    shutil.copy(os.path.join(source_dir, filePath), destination_dir)
+                    shutil.copy(os.path.join(source_dir,filePath), destination_dir)
             else:
                 missingFiles.append("{}".format(filePath))
                 print_error("Failed copying file => {}".format(filePath))
@@ -410,8 +369,7 @@ def copy_important_files(source_dir, destination_dir):
         print_error("COPYING IMPORTANT FILES.")
         raise
 
-
-def copy_intercept_files(source_dir, destination_dir):
+def copy_intercept_files(source_dir,destination_dir):
     originalDir = os.getcwd()
 
     # Copy interceptFiles
@@ -426,11 +384,11 @@ def copy_intercept_files(source_dir, destination_dir):
             filePath = os.path.join(module_root_parent, "intercept", file)
             if os.path.exists(filePath):
                 print_green("Copying file => {}".format(filePath))
-                if (os.path.isdir(os.path.join(source_dir, filePath))):
+                if (os.path.isdir(os.path.join(source_dir,filePath))):
                     shutil.rmtree(os.path.join(destination_dir, file), True)
                     shutil.copytree(os.path.join(source_dir, file), os.path.join(destination_dir, file))
                 else:
-                    shutil.copy(os.path.join(source_dir, filePath), destination_dir)
+                    shutil.copy(os.path.join(source_dir,filePath), destination_dir)
             else:
                 missingFiles.append("{}".format(filePath))
                 print_error("Failed copying file => {}".format(filePath))
@@ -440,7 +398,7 @@ def copy_intercept_files(source_dir, destination_dir):
 
 
 def purge(dir, pattern, friendlyPattern="files"):
-    print_green("Deleting {} files from directory: {}".format(friendlyPattern, dir))
+    print_green("Deleting {} files from directory: {}".format(friendlyPattern,dir))
     if os.path.exists(dir):
         for f in os.listdir(dir):
             if re.search(pattern, f):
@@ -471,7 +429,7 @@ def check_for_obsolete_pbos(addonspath, file):
 
 
 def backup_config(module):
-    # backup original $PBOPREFIX$
+    #backup original $PBOPREFIX$
     global work_drive
     global prefix
 
@@ -487,9 +445,8 @@ def backup_config(module):
 
     return True
 
-
 def addon_restore(modulePath):
-    # restore original $PBOPREFIX$
+    #restore original $PBOPREFIX$
     try:
         if os.path.isfile(os.path.join(modulePath, "$PBOPREFIX$.backup")):
             if os.path.isfile(os.path.join(modulePath, "$PBOPREFIX$")):
@@ -504,7 +461,7 @@ def addon_restore(modulePath):
 def get_project_version(version_increments=[]):
     global project_version
     versionStamp = project_version
-    # do the magic based on https://github.com/acemod/ACE3/issues/806#issuecomment-95639048
+    #do the magic based on https://github.com/acemod/ACE3/issues/806#issuecomment-95639048
 
     try:
         scriptModPath = os.path.join(module_root, "main\script_version.hpp")
@@ -531,7 +488,7 @@ def get_project_version(version_increments=[]):
                     elif "patch" in version_increments:
                         patchText = int(patchText) + 1
 
-                    print_green("Incrementing version to {}.{}.{}".format(majorText, minorText, patchText))
+                    print_green("Incrementing version to {}.{}.{}".format(majorText,minorText,patchText))
                     with open(scriptModPath, "w", newline="\n") as file:
                         file.writelines([
                             "#define MAJOR {}\n".format(majorText),
@@ -540,7 +497,7 @@ def get_project_version(version_increments=[]):
                         ])
 
                 if majorText:
-                    versionStamp = "{}.{}.{}".format(majorText, minorText, patchText)
+                    versionStamp = "{}.{}.{}".format(majorText,minorText,patchText)
 
         else:
             print_error("A Critical file seems to be missing or inaccessible: {}".format(scriptModPath))
@@ -554,7 +511,7 @@ def get_project_version(version_increments=[]):
         input("Press Enter to continue...")
         print("Resuming build...")
 
-    print_yellow("{} VERSION set to {}".format(project.lstrip("@").upper(), versionStamp))
+    print_yellow("{} VERSION set to {}".format(project.lstrip("@").upper(),versionStamp))
     project_version = versionStamp
     return project_version
 
@@ -562,15 +519,15 @@ def get_project_version(version_increments=[]):
 def replace_file(filePath, oldSubstring, newSubstring):
     for line in fileinput.input(filePath, inplace=True):
         # Use stdout directly, print() adds newlines automatically
-        sys.stdout.write(line.replace(oldSubstring, newSubstring))
+        sys.stdout.write(line.replace(oldSubstring,newSubstring))
 
 
 def set_version_in_files():
-    newVersion = project_version  # MAJOR.MINOR.PATCH
+    newVersion = project_version # MAJOR.MINOR.PATCH
     newVersionArr = newVersion.split(".")
 
     # Regex patterns
-    pattern = re.compile(r"([\d]+\.[\d]+\.[\d]+)")  # MAJOR.MINOR.PATCH
+    pattern = re.compile(r"([\d]+\.[\d]+\.[\d]+)") # MAJOR.MINOR.PATCH
 
     # Change versions in files containing version
     for i in versionFiles:
@@ -594,7 +551,7 @@ def set_version_in_files():
                     for versionFound in versionsFound:
                         if versionFound:
                             # Use the same version length as the one found
-                            newVersionUsed = ""  # In case undefined
+                            newVersionUsed = "" # In case undefined
                             if versionFound.count(".") == newVersion.count("."):
                                 newVersionUsed = newVersion
 
@@ -656,11 +613,11 @@ def restore_version_files():
     return True
 
 
-def get_private_keyname(commitID, module="main"):
+def get_private_keyname(commitID,module="main"):
     global pbo_name_prefix
     global project_version
 
-    keyName = str("{prefix}{version}-{commit_id}".format(prefix=pbo_name_prefix, version=project_version, commit_id=commitID))
+    keyName = str("{prefix}{version}-{commit_id}".format(prefix=pbo_name_prefix,version=project_version,commit_id=commitID))
     return keyName
 
 
@@ -715,9 +672,9 @@ def get_commit_ID():
     return commit_id
 
 
-def version_stamp_pboprefix(module, commitID):
-    # Update pboPrefix with the correct version stamp. Use commit_id as the build number.
-    # This function will not handle any $PBOPREFIX$ backup or cleanup.
+def version_stamp_pboprefix(module,commitID):
+    ### Update pboPrefix with the correct version stamp. Use commit_id as the build number.
+    #This function will not handle any $PBOPREFIX$ backup or cleanup.
     global work_drive
     global prefix
 
@@ -740,7 +697,7 @@ def version_stamp_pboprefix(module, commitID):
                     os.rename(os.path.join(work_drive, prefix, module, "$PBOPREFIX$.backup"), os.path.join(work_drive, prefix, module, "$PBOPREFIX$"))
             else:
                 if configtext:
-                    # append version info
+                    #append version info
                     f = open(configpath, "a")
                     f.write("\nversion = {}".format(commitID))
                     f.close()
@@ -753,17 +710,110 @@ def version_stamp_pboprefix(module, commitID):
 
     return True
 
+def sign_dependencies():
+    print_blue("\nSigning dependencies")
+
+    if sys.platform == "win32":
+        reg = winreg.ConnectRegistry(None, winreg.HKEY_LOCAL_MACHINE)
+        try:
+            k = winreg.OpenKey(reg, r"SOFTWARE\Wow6432Node\Bohemia Interactive\Arma 3")
+            a3_path = winreg.EnumValue(k, 1)[1]
+            winreg.CloseKey(k)
+        except:
+            print_error("Could not find Arma 3's directory in the registry.")
+            return 1
+    else:
+        a3_path = cygwin_a3path
+
+    intercept_path = os.path.join(module_root_parent, "@intercept\\addons")
+    signatures_path = os.path.join(release_dir, "@uksf_dependencies\\addons")
+    if not os.path.isdir(signatures_path):
+        try:
+            os.makedirs(signatures_path)
+        except:
+            print_error("Cannot create dependencies directory")
+            raise
+
+    for file in os.listdir(signatures_path):
+        if (file.endswith(".bisign") and os.path.isfile(os.path.join(signatures_path, file))):
+            if (os.path.splitext(os.path.basename(key))[0] not in file):
+                os.remove(os.path.join(signatures_path, file))
+
+
+    dependencies_path = "C:\\Server\\Modpack\\@uksf_dependencies\\addons"
+    temp_path = os.path.join(release_dir, "signatures")
+    if not os.path.isdir(temp_path):
+        try:
+            os.makedirs(temp_path)
+        except:
+            print_error("Cannot create temp directory")
+            raise
+
+    for file in os.listdir(dependencies_path):
+        if (file.endswith(".bisign") and os.path.isfile(os.path.join(dependencies_path, file))):
+            shutil.move(os.path.join(dependencies_path, file), os.path.join(temp_path, file))
+
+    for file in os.listdir(dependencies_path):
+        if (file.endswith(".pbo") and os.path.isfile(os.path.join(dependencies_path, file))
+            and not os.path.isfile(os.path.join(signatures_path, file))
+            and not os.path.isfile(os.path.join(signatures_path, "{}.delete".format(os.path.basename(file))))):
+            if (key):
+                if (not os.path.isfile(os.path.join(signatures_path, "{}.{}.bisign".format(file, os.path.splitext(os.path.basename(key))[0])))):
+                    print("Signing {} with {}.".format(file, key))
+                    ret = subprocess.call([dssignfile, key, os.path.join(dependencies_path, "{}".format(file))])
+                    if ret == 1:
+                        return 1
+
+    for file in os.listdir(dependencies_path):
+        if (file.endswith(".bisign") and os.path.isfile(os.path.join(dependencies_path, file))):
+            shutil.move(os.path.join(dependencies_path, file), os.path.join(signatures_path, file))
+
+    for file in os.listdir(temp_path):
+        shutil.move(os.path.join(temp_path, file), os.path.join(dependencies_path, file))
+
+    print_blue("\nSigning intercept")
+    for file in os.listdir(intercept_path):
+        if (file.endswith(".bisign") and os.path.isfile(os.path.join(intercept_path, file))):
+            os.remove(os.path.join(intercept_path, file))
+    for file in os.listdir(intercept_path):
+        if (file.endswith(".pbo") and os.path.isfile(os.path.join(intercept_path, file))):
+            print("Found: {}.".format(file))
+            if (os.path.isfile(os.path.join(intercept_path, "{}.{}.bisign".format(file, os.path.splitext(os.path.basename(key))[0])))):
+                os.remove(os.path.join(intercept_path, "{}.{}.bisign".format(file, os.path.splitext(os.path.basename(key))[0])))
+            if (key):
+                print("Signing with: {}.".format(key))
+                ret = subprocess.call([dssignfile, key, os.path.join(intercept_path, "{}".format(file))])
+                if ret == 1:
+                    return 1
+
+    deployment_folder_f35 = os.path.join("D:\\Dev\\f35\\release\\@uksf_f35")
+    print_blue("\nCopy F-35")
+    for file in os.listdir(os.path.join(deployment_folder_f35, "addons")):
+        if (file.endswith(".pbo")):
+            print("     Found PBO to update: {}".format(file))
+            shutil.copy(os.path.join(deployment_folder_f35, "addons", file), os.path.join(signatures_path, file))
+            print("     Updated: {}".format(os.path.join(signatures_path, file)))
+
+    print_blue("\nSigning updated dependencies")
+    for file in os.listdir(signatures_path):
+        if (file.endswith(".pbo") and os.path.isfile(os.path.join(signatures_path, file))):
+            print("Found: {}.".format(file))
+            if (os.path.isfile(os.path.join(signatures_path, "{}.{}.bisign".format(file, os.path.splitext(os.path.basename(key))[0])))):
+                os.remove(os.path.join(signatures_path, "{}.{}.bisign".format(file, os.path.splitext(os.path.basename(key))[0])))
+            if (key):
+                print("Signing with: {}.".format(key))
+                ret = subprocess.call([dssignfile, key, os.path.join(signatures_path, "{}".format(file))])
+                if ret == 1:
+                    return 1
+
+    shutil.rmtree(temp_path)
+
+    return 0
+
 ###############################################################################
 
 
 def main(argv):
-    global redirectColours
-    if "redirect" in argv:
-        argv.remove("redirect")
-        redirectColours = True
-    else:
-        redirectColours = False
-
     """Build an Arma addon suite in a directory from rules in a make.cfg file."""
     print_blue("\nmake.py for Arma, modified for UKSF v{}".format(__version__))
 
@@ -795,19 +845,19 @@ def main(argv):
         arma3tools_path = winreg.QueryValueEx(k, "path")[0]
         winreg.CloseKey(k)
     except:
-        raise Exception("BadTools", "Arma 3 Tools are not installed correctly or the P: drive needs to be created.")
+        raise Exception("BadTools","Arma 3 Tools are not installed correctly or the P: drive needs to be created.")
 
     # Default behaviors
-    test = False  # Copy to Arma 3 directory?
-    arg_modules = False  # Only build modules on command line?
-    use_pboproject = True  # Default to pboProject build tool
-    make_target = "DEFAULT"  # Which section in make.cfg to use for the build
-    new_key = True  # Make a new key and use it to sign?
-    quiet = False  # Suppress output from build tool?
+    test = False # Copy to Arma 3 directory?
+    arg_modules = False # Only build modules on command line?
+    use_pboproject = True # Default to pboProject build tool
+    make_target = "DEFAULT" # Which section in make.cfg to use for the build
+    new_key = True # Make a new key and use it to sign?
+    quiet = False # Suppress output from build tool?
 
     # Parse arguments
     if "help" in argv or "-h" in argv or "--help" in argv:
-        print("""
+        print ("""
 make.py [help] [test] [force] [key <name>] [target <name>] [release <version>]
         [module name] [module name] [...]
 
@@ -901,6 +951,10 @@ See the make.cfg file for additional build options.
     else:
         compile_ext = True
 
+    if "sign" in argv:
+        argv.remove("sign")
+        sign = True
+
     print_yellow("\nCheck external references is set to {}".format(str(check_external)))
 
     # Get the directory the make script is in.
@@ -908,7 +962,7 @@ See the make.cfg file for additional build options.
     make_root_parent = os.path.abspath(os.path.join(os.getcwd(), os.pardir))
     os.chdir(make_root)
 
-    cfg = configparser.ConfigParser()
+    cfg = configparser.ConfigParser();
     try:
         cfg.read(os.path.join(make_root, "make.cfg"))
 
@@ -950,8 +1004,8 @@ See the make.cfg file for additional build options.
         # Release/build directory, relative to script dir
         release_dir = cfg.get(make_target, "release_dir", fallback="release")
 
-        # Directory to copy the final built PBO's for a test run.
-        test_dir = cfg.get(make_target, "test_dir", fallback=os.path.join(os.environ["USERPROFILE"], r"documents\Arma 3"))
+        #Directory to copy the final built PBO's for a test run.
+        test_dir = cfg.get(make_target, "test_dir", fallback=os.path.join(os.environ["USERPROFILE"],r"documents\Arma 3"))
 
         # Project PBO file prefix (files are renamed to prefix_name.pbo)
         pbo_name_prefix = cfg.get(make_target, "pbo_name_prefix", fallback=None)
@@ -964,15 +1018,15 @@ See the make.cfg file for additional build options.
         if (os.path.isdir(module_root)):
             os.chdir(module_root)
         else:
-            print_error("Directory {} does not exist.".format(module_root))
+            print_error ("Directory {} does not exist.".format(module_root))
             sys.exit(1)
 
         commit_id = get_commit_ID()
         get_project_version(version_increments)
         key_name = versionStamp = get_private_keyname(commit_id)
-        print_green("module_root: {}".format(module_root))
+        print_green ("module_root: {}".format(module_root))
 
-        print_green("release_dir: {}".format(release_dir))
+        print_green ("release_dir: {}".format(release_dir))
 
     except:
         raise
@@ -1022,11 +1076,11 @@ See the make.cfg file for additional build options.
         cache = json.loads(cache_raw)
 
     except:
-        print("No cache found.")
+        print ("No cache found.")
         cache = {}
 
     # Check the build version (from main) with cached version - forces a full rebuild when version changes
-    cacheVersion = "None"
+    cacheVersion = "None";
     if 'cacheVersion' in cache:
         cacheVersion = cache['cacheVersion']
 
@@ -1056,7 +1110,7 @@ See the make.cfg file for additional build options.
         stash_version_files_for_building()
     else:
         # Set version
-        set_version_in_files()
+        set_version_in_files();
         print("Version in files has been changed, make sure you commit and push the updates!")
 
     try:
@@ -1082,15 +1136,17 @@ See the make.cfg file for additional build options.
                     pass
                 curDir = os.getcwd()
                 os.chdir(private_key_path)
-                ret = subprocess.call([dscreatekey, key_name])  # Created in make_root
+                ret = subprocess.call([dscreatekey, key_name]) # Created in make_root
                 os.chdir(curDir)
                 if ret == 0:
                     print_green("Created: {}".format(os.path.join(private_key_path, key_name + ".biprivatekey")))
                     print("Removing any old signature keys...")
-                    purge(os.path.join(module_root, release_dir, project, "addons"), "^.*\.bisign$", "*.bisign")
-                    purge(os.path.join(module_root, release_dir, project, "keys"), "^.*\.bikey$", "*.bikey")
+                    purge(os.path.join(module_root, release_dir, project, "addons"), "^.*\.bisign$","*.bisign")
+                    purge(os.path.join(module_root, release_dir, project, "keys"), "^.*\.bikey$","*.bikey")
                 else:
                     print_error("Failed to create key!")
+
+
 
             else:
                 print_green("\nNOTE: Using key {}".format(os.path.join(private_key_path, key_name + ".biprivatekey")))
@@ -1115,9 +1171,9 @@ See the make.cfg file for additional build options.
 
         # Remove any obsolete files.
         print_blue("\nChecking for obsolete files...")
-        obsolete_check_path = os.path.join(module_root, release_dir, project, "addons")
+        obsolete_check_path = os.path.join(module_root, release_dir, project,"addons")
         for file in os.listdir(obsolete_check_path):
-            if (file.endswith(".pbo") and os.path.isfile(os.path.join(obsolete_check_path, file))):
+            if (file.endswith(".pbo") and os.path.isfile(os.path.join(obsolete_check_path,file))):
                 if check_for_obsolete_pbos(module_root, file):
                     fileName = os.path.splitext(file)[0]
                     print_yellow("Removing obsolete pbo => {}".format(file))
@@ -1125,13 +1181,13 @@ See the make.cfg file for additional build options.
 
         obsolete_check_path = os.path.join(module_root, release_dir, project)
         for file in os.listdir(obsolete_check_path):
-            if (file.endswith(".dll") and os.path.isfile(os.path.join(obsolete_check_path, file))):
+            if (file.endswith(".dll") and os.path.isfile(os.path.join(obsolete_check_path,file))):
                 if not os.path.exists(os.path.join(module_root_parent, file)):
                     print_yellow("Removing obsolete dll => {}".format(file))
                     try:
-                        os.remove(os.path.join(obsolete_check_path, file))
+                        os.remove(os.path.join(obsolete_check_path,file))
                     except:
-                        print_error("\nFailed to delete {}".format(os.path.join(obsolete_check_path, file)))
+                        print_error("\nFailed to delete {}".format(os.path.join(obsolete_check_path,file)))
                         pass
 
         # For each module, prep files and then build.
@@ -1151,12 +1207,12 @@ See the make.cfg file for additional build options.
             new_sha = get_directory_hash(os.path.join(module_root, module))
 
             # Is the pbo or sig file missing?
-            missing = not os.path.isfile(os.path.join(release_dir, project, "addons", "{}{}.pbo".format(pbo_name_prefix, module)))
-            sigFile = "{}{}.pbo.{}.bisign".format(pbo_name_prefix, module, key_name)
+            missing = not os.path.isfile(os.path.join(release_dir, project, "addons", "{}{}.pbo".format(pbo_name_prefix,module)))
+            sigFile = "{}{}.pbo.{}.bisign".format(pbo_name_prefix,module,key_name)
             sigMissing = not os.path.isfile(os.path.join(release_dir, project, "addons", sigFile))
 
             if missing:
-                print_yellow("Missing PBO file {}{}.pbo. Building...".format(pbo_name_prefix, module))
+                print_yellow("Missing PBO file {}{}.pbo. Building...".format(pbo_name_prefix,module))
 
             # Check if it needs rebuilt
             # print ("Hash:", new_sha)
@@ -1166,7 +1222,7 @@ See the make.cfg file for additional build options.
                     if sigMissing:
                         if key:
                             print("Missing Signature key {}".format(sigFile))
-                            build_signature_file(os.path.join(module_root, release_dir, project, "addons", "{}{}.pbo".format(pbo_name_prefix, module)))
+                            build_signature_file(os.path.join(module_root, release_dir, project, "addons", "{}{}.pbo".format(pbo_name_prefix,module)))
                     # Skip everything else
                     continue
 
@@ -1186,18 +1242,18 @@ See the make.cfg file for additional build options.
                     input("Press Enter to continue...")
                     print("Resuming build...")
                     continue
-            # else:
+            #else:
                 #print("WARNING: Module is stored on work drive ({}).".format(work_drive))
 
             try:
                 # Remove the old pbo, key, and log
-                old = os.path.join(module_root, release_dir, project, "addons", "{}{}".format(pbo_name_prefix, module)) + "*"
+                old = os.path.join(module_root, release_dir, project, "addons", "{}{}".format(pbo_name_prefix,module)) + "*"
                 files = glob.glob(old)
                 for f in files:
                     os.remove(f)
 
                 if pbo_name_prefix:
-                    old = os.path.join(module_root, release_dir, project, "addons", "{}{}".format(pbo_name_prefix, module)) + "*"
+                    old = os.path.join(module_root, release_dir, project, "addons", "{}{}".format(pbo_name_prefix,module)) + "*"
                     files = glob.glob(old)
                     for f in files:
                         os.remove(f)
@@ -1218,6 +1274,7 @@ See the make.cfg file for additional build options.
             except:
                 pass
 
+
             # Run build tool
             build_successful = False
             if build_tool == "pboproject":
@@ -1225,11 +1282,11 @@ See the make.cfg file for additional build options.
                     nobinFilePath = os.path.join(work_drive, prefix, module, "$NOBIN$")
                     backup_config(module)
 
-                    version_stamp_pboprefix(module, commit_id)
+                    version_stamp_pboprefix(module,commit_id)
 
                     if os.path.isfile(nobinFilePath):
                         print_green("$NOBIN$ Found. Proceeding with non-binarizing!")
-                        cmd = [makepboTool, "-P", "-A", "-L", "-G", "-X=*.backup", os.path.join(work_drive, prefix, module), os.path.join(module_root, release_dir, project, "addons")]
+                        cmd = [makepboTool, "-P","-A","-L","-G","-X=*.backup", os.path.join(work_drive, prefix, module),os.path.join(module_root, release_dir, project,"addons")]
 
                     else:
                         if check_external:
@@ -1251,15 +1308,15 @@ See the make.cfg file for additional build options.
                         # Prettyprefix rename the PBO if requested.
                         if pbo_name_prefix:
                             try:
-                                os.rename(os.path.join(module_root, release_dir, project, "addons", "{}.pbo".format(module)), os.path.join(module_root, release_dir, project, "addons", "{}{}.pbo".format(pbo_name_prefix, module)))
+                                os.rename(os.path.join(module_root, release_dir, project, "addons", "{}.pbo".format(module)), os.path.join(module_root, release_dir, project, "addons", "{}{}.pbo".format(pbo_name_prefix,module)))
                             except:
                                 raise
                                 print_error("Could not rename built PBO with prefix.")
                         # Sign result
-                        if (key and not "{}{}.pbo".format(pbo_name_prefix, module) in signature_blacklist):
+                        if (key and not "{}{}.pbo".format(pbo_name_prefix,module) in signature_blacklist):
                             print("Signing with {}.".format(key))
                             if pbo_name_prefix:
-                                ret = subprocess.call([dssignfile, key, os.path.join(module_root, release_dir, project, "addons", "{}{}.pbo".format(pbo_name_prefix, module))])
+                                ret = subprocess.call([dssignfile, key, os.path.join(module_root, release_dir, project, "addons", "{}{}.pbo".format(pbo_name_prefix,module))])
                             else:
                                 ret = subprocess.call([dssignfile, key, os.path.join(module_root, release_dir, project, "addons", "{}.pbo".format(module))])
 
@@ -1270,8 +1327,8 @@ See the make.cfg file for additional build options.
 
                     if not build_successful:
                         print_error("pboProject return code == {}".format(str(ret)))
-                        print_error("Module not successfully built/signed. Check your {}temp\{}_packing.log for more info.".format(work_drive, module))
-                        print("Resuming build...")
+                        print_error("Module not successfully built/signed. Check your {}temp\{}_packing.log for more info.".format(work_drive,module))
+                        print ("Resuming build...")
                         failedBuilds.append("{}".format(module))
                         continue
 
@@ -1282,12 +1339,12 @@ See the make.cfg file for additional build options.
                     raise
                     print_error("Could not run Addon Builder.")
                     input("Press Enter to continue...")
-                    print("Resuming build...")
+                    print ("Resuming build...")
                     continue
                 finally:
                     addon_restore(os.path.join(work_drive, prefix, module))
 
-            elif build_tool == "addonbuilder":
+            elif build_tool== "addonbuilder":
                 # Detect $NOBIN$ and do not binarize if found.
                 if os.path.isfile(os.path.join(work_drive, prefix, module, "$NOBIN$")):
                     do_binarize = False
@@ -1321,7 +1378,7 @@ See the make.cfg file for additional build options.
                     # Prettyprefix rename the PBO if requested.
                     if pbo_name_prefix:
                         try:
-                            os.rename(os.path.join(make_root, release_dir, project, "addons", "{}.pbo".format(module)), os.path.join(make_root, release_dir, project, "addons", "{}{}.pbo".format(pbo_name_prefix, module)))
+                            os.rename(os.path.join(make_root, release_dir, project, "addons", "{}.pbo".format(module)), os.path.join(make_root, release_dir, project, "addons", "{}{}.pbo".format(pbo_name_prefix,module)))
                         except:
                             raise
                             print_error("Could not rename built PBO with prefix.")
@@ -1330,10 +1387,10 @@ See the make.cfg file for additional build options.
                         # Sign result
 
                         #print_yellow("Sig_fileName: ace_{}.pbo".format(module))
-                        if (key and not "{}{}.pbo".format(pbo_name_prefix, module) in signature_blacklist):
+                        if (key and not "{}{}.pbo".format(pbo_name_prefix,module) in signature_blacklist) :
                             print("Signing with {}.".format(key))
                             if pbo_name_prefix:
-                                ret = subprocess.call([dssignfile, key, os.path.join(make_root, release_dir, project, "addons", "{}{}.pbo".format(pbo_name_prefix, module))])
+                                ret = subprocess.call([dssignfile, key, os.path.join(make_root, release_dir, project, "addons","{}{}.pbo".format(pbo_name_prefix,module))])
                             else:
                                 ret = subprocess.call([dssignfile, key, os.path.join(make_root, release_dir, project, "addons", "{}.pbo".format(module))])
 
@@ -1343,7 +1400,7 @@ See the make.cfg file for additional build options.
                             build_successful = True
 
                     if not build_successful:
-                        print_error("Module not successfully built. Check your {}temp\{}_packing.log for more info.".format(work_drive, module))
+                        print_error("Module not successfully built. Check your {}temp\{}_packing.log for more info.".format(work_drive,module))
 
                     # Back to the root
                     os.chdir(make_root)
@@ -1352,7 +1409,7 @@ See the make.cfg file for additional build options.
                     raise
                     print_error("Could not run Addon Builder.")
                     input("Press Enter to continue...")
-                    print("Resuming build...")
+                    print ("Resuming build...")
                     continue
 
             else:
@@ -1365,15 +1422,53 @@ See the make.cfg file for additional build options.
     except Exception as e:
         print_yellow("Cancel or some error detected: {}".format(e))
 
+
     finally:
         if compile_ext:
             compile_extensions(extensions_root, force_build)
 
-        copy_important_files(module_root_parent, os.path.join(release_dir, project))
+        signtool = "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.18362.0\\x64\\signtool.exe"
+        intercept_dll_path = os.path.join(module_root_parent, "@intercept")
+        uksf_intercept_dll_path = os.path.join(module_root_parent, "intercept")
+        # Find dlls
+        dlls = []
+        for file in os.listdir(intercept_dll_path):
+            if (file.endswith(".dll")):
+                dlls.append(os.path.join(intercept_dll_path, file))
+        for file in os.listdir(os.path.join(intercept_dll_path, "intercept")):
+            if (file.endswith(".dll")):
+                dlls.append(os.path.join(intercept_dll_path, "intercept", file))
+        for file in os.listdir(uksf_intercept_dll_path):
+            if (file.endswith(".dll")):
+                dlls.append(os.path.join(uksf_intercept_dll_path, file))
+
+        # Sign intercept dlls
+        for file in dlls:
+            try:
+                print("\nSigning {}".format(file))
+                print()
+                ret = subprocess.call([signtool, "verify", "/pa", file])
+                if ret == 1:
+                    ret = subprocess.call([signtool, "sign", "/f", "D:\\Dev\\certs\\UKSFCert.pfx", "/t", "http://timestamp.comodoca.com/authenticode", file])
+                    if ret == 1:
+                        raise Exception()
+            except:
+                print("\nFailed to sign {}".format(file))
+                raise
+
+        copy_important_files(module_root_parent,os.path.join(release_dir, project))
         copy_intercept_files(os.path.join(module_root_parent, "intercept"), os.path.join(release_dir, project, "intercept"))
 
         if not version_update:
             restore_version_files()
+
+    # Done building all modules!
+    if len(failedBuilds) == 0:
+        ret = sign_dependencies()
+        if ret == 0:
+            print_blue("\nDependencies signed")
+        else:
+            print_error("Could not sign dependencies")
 
     # Write out the cache state
     cache_out = json.dumps(cache)
@@ -1446,7 +1541,7 @@ See the make.cfg file for additional build options.
                 print_error("Could not copy files. Is Arma 3 running?")
 
     tracedErrors = len(failedBuilds) + len(missingFiles)
-    if printedErrors > 0:  # printedErrors includes tracedErrors
+    if printedErrors > 0: # printedErrors includes tracedErrors
         printedOnlyErrors = printedErrors - tracedErrors
         print()
         print_error("Failed with {} errors.".format(printedErrors))
@@ -1462,9 +1557,8 @@ See the make.cfg file for additional build options.
     else:
         print_green("\nCompleted with 0 errors.")
 
-
 if __name__ == "__main__":
     start_time = timeit.default_timer()
     main(sys.argv)
-    d, h, m, s = Fract_Sec(timeit.default_timer() - start_time)
-    print("\nTotal Program time elapsed: {0:2}h {1:2}m {2:4.5f}s".format(h, m, s))
+    d,h,m,s = Fract_Sec(timeit.default_timer() - start_time)
+    print("\nTotal Program time elapsed: {0:2}h {1:2}m {2:4.5f}s".format(h,m,s))
