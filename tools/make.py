@@ -1246,7 +1246,7 @@ See the make.cfg file for additional build options.
                         try:
                             i = 0
                             for path in execute(cmd):
-                                i++
+                                i += 1
                                 print(path, end="", flush=i % 10 == 0)
                         except:
                             ret = 1
