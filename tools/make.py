@@ -1238,6 +1238,7 @@ See the make.cfg file for additional build options.
                             cmd = [pboproject, "-P", os.path.join(work_drive, prefix, module), "+Engine=Arma3", "-S", "+Noisy", "-G", "+Clean", "+Mod="+os.path.join(module_root, release_dir, project), "-Key"]
 
                     color("grey")
+                    ret = 0
                     if quiet:
                         devnull = open(os.devnull, 'w')
                         ret = subprocess.call(cmd, stdout=devnull)
