@@ -1162,7 +1162,7 @@ See the make.cfg file for additional build options.
             # print ("Hash:", new_sha)
             if old_sha == new_sha and not missing:
                 if not force_build:
-                    print("Module has not changed.")
+                    print("Module has not changed.", flush=True)
                     if sigMissing:
                         if key:
                             print("Missing Signature key {}".format(sigFile))
@@ -1184,7 +1184,7 @@ See the make.cfg file for additional build options.
                     raise
                     print_error("ERROR: Could not copy module to work drive. Does the module exist?")
                     input("Press Enter to continue...")
-                    print("Resuming build...")
+                    print("Resuming build...", flush=True)
                     continue
             # else:
                 #print("WARNING: Module is stored on work drive ({}).".format(work_drive))
@@ -1205,7 +1205,7 @@ See the make.cfg file for additional build options.
                 raise
                 print_error("ERROR: Could not copy module to work drive. Does the module exist?")
                 input("Press Enter to continue...")
-                print("Resuming build...")
+                print("Resuming build...", flush=True)
                 continue
 
             # Build the module into a pbo
@@ -1243,7 +1243,13 @@ See the make.cfg file for additional build options.
                         ret = subprocess.call(cmd, stdout=devnull)
                         devnull.close()
                     else:
-                        ret = subprocess.call(cmd)
+                        try:
+                            i = 0
+                            for path in execute(cmd):
+                                i++
+                                print(path, end="", flush=i % 10 == 0)
+                        except:
+                            ret = 1
                     color("reset")
 
                     if ret == 0:
@@ -1257,7 +1263,7 @@ See the make.cfg file for additional build options.
                                 print_error("Could not rename built PBO with prefix.")
                         # Sign result
                         if (key and not "{}{}.pbo".format(pbo_name_prefix, module) in signature_blacklist):
-                            print("Signing with {}.".format(key))
+                            print("Signing with {}.".format(key), flush=True)
                             if pbo_name_prefix:
                                 ret = subprocess.call([dssignfile, key, os.path.join(module_root, release_dir, project, "addons", "{}{}.pbo".format(pbo_name_prefix, module))])
                             else:
@@ -1271,7 +1277,7 @@ See the make.cfg file for additional build options.
                     if not build_successful:
                         print_error("pboProject return code == {}".format(str(ret)))
                         print_error("Module not successfully built/signed. Check your {}temp\{}_packing.log for more info.".format(work_drive, module))
-                        print("Resuming build...")
+                        print("Resuming build...", flush=True)
                         failedBuilds.append("{}".format(module))
                         continue
 
@@ -1282,7 +1288,7 @@ See the make.cfg file for additional build options.
                     raise
                     print_error("Could not run Addon Builder.")
                     input("Press Enter to continue...")
-                    print("Resuming build...")
+                    print("Resuming build...", flush=True)
                     continue
                 finally:
                     addon_restore(os.path.join(work_drive, prefix, module))
