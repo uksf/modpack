@@ -33,7 +33,7 @@ _altitude = _altitude / 3.28084; // Convert feet to metres
 private _speed = BASE_SPEED + (random 10);
 private _vectorDirection = _positionStart vectorFromTo _positionEnd;
 private _heading = (_vectorDirection#0 atan2 _vectorDirection#1);
-private _start = _positionStart getPos [1500, _heading - 180];
+private _start = _positionStart getPos [2000, _heading - 180];
 private _end = _positionEnd getPos [1000, _heading];
 private _fail = _positionStart getPos [(_positionStart distance2D _positionEnd) / 2, _heading];
 _start set [2, _altitude];
@@ -63,18 +63,18 @@ _plane forceSpeed _speed;
         private _remainingUnits = assignedCargo _plane;
         {
             [QEGVAR(common,textTiles), [parseText format ["<t align = 'center' size = '1.2' color = '#FF0000'>FAILED TO JUMP</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 5], _x] call CBA_fnc_targetEvent;
-            _x setPosATL _fail;
+            _x setPosATL ([_fail, 15] call CBA_fnc_randPos);
         } forEach _remainingUnits;
         {deleteVehicle _x} forEach (crew _plane);
         deleteVehicle _plane;
     };
 
-    if (!_unitsIn && {(_position distance2D _positionStart) < 1000}) then {
+    if (!_unitsIn && {(_position distance2D _positionStart) < 1500}) then {
         _states set [0, true];
         {
             [{
                 [QGVAR(moveInCargo), _this, _this#0] call CBA_fnc_targetEvent;
-            }, [_x, _plane], (0.1 * _forEachIndex) + 1] call CBA_fnc_waitAndExecute;
+            }, [_x, _plane], (0.5 * _forEachIndex) + 1] call CBA_fnc_waitAndExecute;
         } forEach _units;
     };
 
