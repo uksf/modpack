@@ -19,30 +19,35 @@ GVAR(saveObjectQueueProcessing) = true;
 
     if (GVAR(saveObjectQueue) isEqualTo []) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
-        GVAR(saveObjectQueueProcessing) = false;
+        call FUNC(finishSaveObjectDataPfh);
     };
 
-    INFO_3("Running save. %1 remaining. FPS: %2",count _allObjects,diag_fps);
-
-    (GVAR(saveObjectQueue) deleteAt 0) params ["_object", "_skip"];
-
-    if (isNull (attachedTo _object)) then {
-        private _id = _object getVariable [QGVAR(persistenceID), ""];
-        if (_id == "") then {
-            _id = [_object] call FUNC(markObjectAsPersistent);
-        };
-        TRACE_1("Object ID",_id);
-
-        if (!_skip) then {
-            private _index = _objects findIf {_x#0 == _id};
-            TRACE_1("Exists?",_index);
-            if (_index > -1) then {
-                _objects set [_index, [_object] call FUNC(getObjectData)];
-                TRACE_1("Updated",_id);
-            } else {
-                _objects pushBack ([_object] call FUNC(getObjectData));
-                TRACE_1("Added",_id);
-            };
-        };
+    if (diag_fps < 20) exitWith {
+        INFO_1("FPS is too low, won't load any objects this frame (%1)",diag_fps);
     };
+
+    INFO_2("Running object data save. %1 remaining. FPS: %2",count GVAR(saveObjectQueue),diag_fps);
+
+    private _object = GVAR(saveObjectQueue) deleteAt 0;
+
+    if !(isNull (attachedTo _object)) exitWith {};
+
+    private _id = _object getVariable [QGVAR(persistenceID), ""];
+    if (_id == "") then {
+        _id = [_object] call FUNC(markObjectAsPersistent);
+    };
+    TRACE_1("Object ID",_id);
+
+    private _objects = GVAR(dataNamespace) getVariable [QGVAR(objects), []];
+    private _index = _objects findIf {_x#0 == _id};
+    TRACE_1("Exists?",_index);
+    if (_index > -1) then {
+        _objects set [_index, [_object] call FUNC(getObjectData)];
+        TRACE_1("Updated",_id);
+    } else {
+        _objects pushBack ([_object] call FUNC(getObjectData));
+        TRACE_1("Added",_id);
+    };
+
+    GVAR(dataNamespace) setVariable [QGVAR(objects), _objects];
 }, 0] call CBA_fnc_addPerFrameHandler;

@@ -86,12 +86,12 @@ GVAR(abortedObjectPFHID) = -1;
         player setDir _direction;
         player setUnitLoadout _loadout;
         player setDamage _damage;
+
         [player, _aceStates] call EFUNC(common,deserializeAceMedical);
         player setVariable ["ACE_hasEarPlugsIn", _earplugs, true];
         {[player, player, [_x], true] call ace_attach_fnc_attach} forEach _attached;
-        [{
-            call EFUNC(radios,deserializeRadios);
-        }, [_radios], 2] call CBA_fnc_waitAndExecute;
+
+        [{call EFUNC(radios,deserializeRadios)}, [_radios], 2] call CBA_fnc_waitAndExecute;
 
         _vehicleState params ["_vehicleId"];
         if (_vehicleId != "") then {
@@ -121,7 +121,7 @@ GVAR(abortedObjectPFHID) = -1;
     };
 }] call CBA_fnc_addEventHandler;
 
-[QGVAR(removeabortedObject), {
+[QGVAR(removeAbortedObject), {
     params ["_id"];
 
     private _interactionObjectIndex = GVAR(abortedObjectInteractionObjects) findIf {_x#0 == _id};

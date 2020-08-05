@@ -17,7 +17,14 @@ params ["_unit"];
 private _fnc_children = {
     private _actions = [];
 
-    private _action = [QGVAR(shutdown), "Save and Shutdown", "", {[] call FUNC(shutdown)}, {MULTIPLAYER_ADMIN_OR_WHITELISTED}] call ace_interact_menu_fnc_createAction;
+    private _action = [QGVAR(shutdown), "Save and Shutdown", "", {}, {MULTIPLAYER_ADMIN_OR_WHITELISTED}, {
+        private _actions = [];
+
+        private _action = [QGVAR(shutdownConfirm), "Confirm", "", {[] call FUNC(shutdown)}, {MULTIPLAYER_ADMIN_OR_WHITELISTED}] call ace_interact_menu_fnc_createAction;
+        _actions pushBack [_action, [], _player];
+
+        _actions
+    }] call ace_interact_menu_fnc_createAction;
     _actions pushBack [_action, [], _player];
 
     _action = [QGVAR(showPersistentObjects), "Show Persistent Objects", "", {[] call FUNC(showPersistentObjects)}, {MULTIPLAYER_ADMIN_OR_WHITELISTED && {GVAR(persistentObjectIconsPFHID) == -1}}] call ace_interact_menu_fnc_createAction;

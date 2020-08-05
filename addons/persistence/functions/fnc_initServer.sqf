@@ -69,11 +69,7 @@ addMissionEventHandler ["PlayerDisconnected", {call FUNC(playerDisconnected)}];
 
         _allObjects deleteAt _index;
         GVAR(dataNamespace) setVariable [QGVAR(objects), _allObjects];
-        if (GVAR(dataSaved)) then {
-            profileNamespace setVariable [GVAR(key), [GVAR(dataNamespace)] call CBA_fnc_serializeNamespace];
-            saveProfileNamespace;
-            LOG("Saved data");
-        };
+        call FUNC(saveData);
     };
 }] call CBA_fnc_addEventHandler;
 
@@ -161,11 +157,7 @@ addMissionEventHandler ["PlayerDisconnected", {call FUNC(playerDisconnected)}];
 }] call CBA_fnc_addEventHandler;
 
 GVAR(dataNamespace) setVariable [QGVAR(world), worldName];
-if (GVAR(dataSaved)) then {
-    profileNamespace setVariable [GVAR(key), [GVAR(dataNamespace)] call CBA_fnc_serializeNamespace];
-    saveProfileNamespace;
-    LOG("Saved data");
-};
+call FUNC(saveData);
 
 if (!GVAR(overrideSavedDateTime)) then {
     private _dateTime = GVAR(dataNamespace) getVariable [QGVAR(dateTime), date];

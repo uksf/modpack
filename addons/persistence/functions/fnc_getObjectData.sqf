@@ -49,7 +49,9 @@ private _data = [
     (((([_object] call acre_api_fnc_getVehicleRacks) select {_x != ""}) apply {[_x] call acre_api_fnc_getMountedRackRadio}) select {_x != ""}) apply {[_x] call acre_api_fnc_getRadioChannel},
     [_object] call FUNC(getObjectCargo),
     [getWeaponCargo _object, getMagazineCargo _object, getItemCargo _object, getBackpackCargo _object],
-    [_object getVariable [QGVAR(isAcexFortification), false], _object getVariable [QGVAR(acexFortifySide), west]]
+    [_object getVariable [QGVAR(isAcexFortification), false], _object getVariable [QGVAR(acexFortifySide), west]],
+    [_object getVariable ["ace_medical_medicClass", 0], _object getVariable ["ace_medical_isMedicalFacility", false]],
+    [_object getVariable ["ace_isRepairVehicle", 0], _object getVariable ["ace_isRepairFacility", 0]]
 ];
 TRACE_1("Got object data",_data);
 

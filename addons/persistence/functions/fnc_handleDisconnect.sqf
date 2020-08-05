@@ -76,10 +76,6 @@ private _dateTime = date;
 TRACE_1("Saving date time",_dateTime);
 GVAR(dataNamespace) setVariable [QGVAR(dateTime), _dateTime];
 GVAR(dataNamespace) setVariable [QGVAR(mapMarkers), GVAR(mapMarkers)];
-if (GVAR(dataSaved)) then {
-    profileNamespace setVariable [GVAR(key), [GVAR(dataNamespace)] call CBA_fnc_serializeNamespace];
-    saveProfileNamespace;
-    LOG("Saved data");
-};
+call FUNC(saveData);
 
 [_unit] call FUNC(saveObjectData);

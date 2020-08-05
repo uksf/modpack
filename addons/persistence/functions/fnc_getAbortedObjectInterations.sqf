@@ -24,7 +24,7 @@ private _action = [QGVAR(forceLoadAbortedObject), "Force Load Aborted Object", "
     params ["_target", "", "_params"];
     _params params ["_id"];
 
-    [QGVAR(removeabortedObject), _id] call CBA_fnc_globalEvent;
+    [QGVAR(removeAbortedObject), _id] call CBA_fnc_globalEvent;
     [QGVAR(forceLoadAbortedObject), _id] call CBA_fnc_serverEvent;
 }, {true}, {}, [_id]] call ace_interact_menu_fnc_createAction;
 _actions pushBack [_action, [], _target];
@@ -33,7 +33,7 @@ private _action = [QGVAR(removeAbortedObjectFromPersistence), "Remove Aborted Ob
     params ["_target", "", "_params"];
     _params params ["_id"];
 
-    [QGVAR(removeabortedObject), _id] call CBA_fnc_globalEvent;
+    [QGVAR(removeAbortedObject), _id] call CBA_fnc_globalEvent;
     [QGVAR(removeAbortedObjectFromPersistence), _id] call CBA_fnc_serverEvent;
 }, {
     params ["", "", "_params"];
