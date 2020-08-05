@@ -54,7 +54,7 @@ TRACE_1("Starting artillery request",_unit);
             if (!(isNull _artillery)) then {
                 TRACE_1("Artillery alive",_artillery);
                 private _targetPosition = [_shooter, ARTILLERY_SUPPORT_BASE_DISTANCE + (ARTILLERY_SUPPORT_BASE_REPORT_RANDOMNESS * _reportDepth)] call CBA_fnc_randPos;
-                [QGVAR(fireMission), [_unit, _artillery, _targetPosition], _artillery] call CBA_fnc_targetEvent;
+                [QGVAR(fireMission), [_unit, _artillery, _targetPosition], gunner _artillery] call CBA_fnc_targetEvent;
                 _group setVariable [QGVAR(artillerySupportRequested), true, true];
 
 #ifdef DEBUG_MODE_FULL
