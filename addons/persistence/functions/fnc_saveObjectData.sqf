@@ -12,6 +12,8 @@
     Return Value:
         None
 */
+#define TYPE_EXCLUDE_LIST ["UK3CB_BAF_1Rnd_60mm_Mo_Shells_spent","UK3CB_BAF_1Rnd_60mm_Mo_Shells_spent"]
+
 params [["_centre", objnull]];
 
 if (isNull _centre) exitWith {
@@ -39,7 +41,8 @@ private _nearObjects = (_centre nearObjects CENTRE_RADIUS) select {
     private _object = _x;
     [_terrainObjects, {_x == _object}] call EFUNC(common,arrayNone) &&
     {[["Building", "AllVehicles", "Thing"], {_object isKindOf _x}] call EFUNC(common,arrayAny)} &&
-    {[["Man", "ThingEffect"], {_object isKindOf _x}] call EFUNC(common,arrayNone)}
+    {[["Man", "ThingEffect"], {_object isKindOf _x}] call EFUNC(common,arrayNone)} &&
+    {[TYPE_EXCLUDE_LIST, {_object isKindOf _x}] call EFUNC(common,arrayNone)}
 };
 
 TRACE_2("Objects around centre",_centre,count _nearObjects);

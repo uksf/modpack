@@ -17,8 +17,8 @@ if (!GVAR(enabled)) exitWith {};
 private _newKilled = [];
 {
     _x params ["_object", "_time"];
-    
-    if (!(_object getVariable [QGVAR(excluded), false])) then {                
+
+    if (!(_object getVariable [QGVAR(excluded), false])) then {
         private _multiplier = [2, 1] select (_object isKindOf "Man");
         if ((_time + (GVAR(delay) * _multiplier)) < CBA_missionTime) then {
             deleteVehicle _object;
@@ -29,4 +29,4 @@ private _newKilled = [];
 } forEach GVAR(killed);
 GVAR(killed) = _newKilled;
 
-[{[] call FUNC(cleanupCheck)}, [], GVAR(delay) / 4] call CBA_fnc_waitAndExecute;
+[{call FUNC(cleanupCheck)}, [], GVAR(delay) / 4] call CBA_fnc_waitAndExecute;

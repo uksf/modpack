@@ -9,7 +9,7 @@
         params ["_value"];
 
         if (isServer && _value) then {
-            [{[] call FUNC(cleanupCheck)}, [], 0] call CBA_fnc_waitAndExecute;
+            [{call FUNC(cleanupCheck)}, [], 0] call CBA_fnc_waitAndExecute;
         };
     }
 ] call CBA_settings_fnc_init;
