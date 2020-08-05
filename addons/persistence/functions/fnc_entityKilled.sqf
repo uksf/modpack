@@ -14,9 +14,9 @@
 */
 params ["_unit", "_killer", "_instigator", "_useEffects"];
 
-TRACE_4("EntityKilled",_unit,_killer,_instigator,_useEffects);
-
 if !(isPlayer _unit) exitWith {};
+
+TRACE_4("EntityKilled",_unit,_killer,_instigator,_useEffects);
 
 private _uid = getPlayerUID _unit;
 private _hasRedployed = [GVAR(hashHasRedeployed), _uid] call CBA_fnc_hashGet;
