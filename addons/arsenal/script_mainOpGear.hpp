@@ -513,7 +513,9 @@
     "black_Crye_Camo", \
     "Multicam_black_casual_Camo", \
     "Black_Crye_SS_Camo", \
-    "black_Crye2_Camo"
+    "black_Crye2_Camo", \
+    "U_B_Wetsuit", \
+    "U_B_survival_uniform"
 
 #define MAIN_OP_VESTS \
     "UK3CB_BAF_V_HiVis", \
@@ -602,7 +604,8 @@
     "dr_BLKlbt_mg", \
     "dr_BLKlbt_op", \
     "dr_BLKpar_mg", \
-    "dr_BLKpar_op"
+    "dr_BLKpar_op", \
+    "V_RebreatherB"
 
 #define MAIN_OP_BACKPACKS \
     "B_AssaultPack_rgr", \
@@ -711,7 +714,8 @@
     "tfw_ilbe_dd_vsm", \
     "tfw_ilbe_blade_b", \
     "tfw_ilbe_blade_w", \
-    "tfw_ilbe_blade_vsm"
+    "tfw_ilbe_blade_vsm", \
+    "B_MAV_B_BACKPACK"
 
 #define MAIN_OP_HELMETS \
     "COVER_4b", \
@@ -831,6 +835,7 @@
     "UK3CB_BAF_G_Tactical_Clear", \
     "UK3CB_BAF_G_Tactical_Grey", \
     "UK3CB_BAF_G_Tactical_Orange", \
-    "UK3CB_BAF_G_Tactical_Yellow"
+    "UK3CB_BAF_G_Tactical_Yellow", \
+    "G_B_Diving"
 
 #define MAIN_OP_GEAR [MAIN_OP_MAGAZINES, MAIN_OP_WEAPONS, MAIN_OP_ATTACHMENTS, MAIN_OP_NVGS, MAIN_OP_ITEMS, MAIN_OP_UNIFORMS, MAIN_OP_VESTS, MAIN_OP_BACKPACKS, MAIN_OP_HELMETS, MAIN_OP_GLASSES]
