@@ -30,6 +30,5 @@ PREP(populate);
 PREP(releaseCargo);
 PREP(removeNVG);
 PREP(serializeAceMedical);
-PREP(setAllowUnconcious);
 PREP(setSkill);
 PREP(taskPatrol);

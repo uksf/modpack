@@ -18,6 +18,7 @@ TRACE_4("HandleDisconnect",_unit,_id,_uid,_name);
 
 [GVAR(hashHasRedeployed), _uid, false] call CBA_fnc_hashSet;
 [GVAR(hashFirstRespawn), _uid, true] call CBA_fnc_hashSet;
+[GVAR(hashBodies), _uid, _unit] call CBA_fnc_hashSet;
 
 private _data = [
     getPosASL _unit,

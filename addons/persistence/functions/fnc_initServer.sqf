@@ -21,6 +21,7 @@ GVAR(dontDeleteObjectIds) = [];
 GVAR(unmarkedObjectIds) = [];
 GVAR(hashHasRedeployed) = [[], false] call CBA_fnc_hashCreate;
 GVAR(hashFirstRespawn) = [[], true] call CBA_fnc_hashCreate;
+GVAR(hashBodies) = [[], objNull] call CBA_fnc_hashCreate;
 GVAR(persistenceMarkers) = [];
 GVAR(mapMarkers) = GVAR(dataNamespace) getVariable [QGVAR(mapMarkers), []];
 GVAR(saveObjectQueue) = [];

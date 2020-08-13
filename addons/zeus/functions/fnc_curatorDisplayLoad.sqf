@@ -18,12 +18,11 @@ params ["_display"];
 GVAR(curatorUnconciousMapID) = (_display displayCtrl 50) ctrlAddEventHandler ["Draw", {
     {
         if ((driver (vehicle _x)) isEqualTo _x && {_x getVariable ["ACE_isUnconscious", false]}) then {
-            private _reviveStartTime = _x getVariable ["ace_medical_reviveStartTime", 0];
+            private _cardiacArrestTimeLeft = _x getVariable ["ace_medical_statemachine_cardiacArrestTimeLeft", -1];
             private _text = "Unconscious";
-            if (_reviveStartTime > 0) then {
-                private _time = round (ace_medical_maxReviveTime - (CBA_missionTime - _reviveStartTime));
-                private _minutes = floor (_time / 60);
-                private _seconds = _time % 60;
+            if (_cardiacArrestTimeLeft > -1) then {
+                private _minutes = floor (_cardiacArrestTimeLeft / 60);
+                private _seconds = _cardiacArrestTimeLeft % 60;
                 _text = if (_minutes > 0) then {
                     format ["Unconscious (%1m%2s)", _minutes, _seconds]
                 } else {
@@ -51,12 +50,11 @@ GVAR(curatorUnconciousID) = [{
                 drawIcon3D ["", _colour, ASLToAGL (getPosASLVisual (vehicle _x)), 1, 2, 0, format ["%1 FPS", _fps], 0.1, _size, "PuristaMedium", "center"];
             };
             if (_x getVariable ["ACE_isUnconscious", false]) then {
-                private _reviveStartTime = _x getVariable ["ace_medical_reviveStartTime", 0];
+                private _cardiacArrestTimeLeft = _x getVariable ["ace_medical_statemachine_cardiacArrestTimeLeft", -1];
                 private _text = "Unconscious";
-                if (_reviveStartTime > 0) then {
-                    private _time = round (ace_medical_maxReviveTime - (CBA_missionTime - _reviveStartTime));
-                    private _minutes = floor (_time / 60);
-                    private _seconds = _time % 60;
+                if (_cardiacArrestTimeLeft > -1) then {
+                    private _minutes = floor (_cardiacArrestTimeLeft / 60);
+                    private _seconds = _cardiacArrestTimeLeft % 60;
                     _text = if (_minutes > 0) then {
                         format ["Unconscious (%1m%2s)", _minutes, _seconds]
                     } else {

@@ -12,7 +12,6 @@ PREP(moduleExplosionSmall);
 PREP(moduleMakeBomb);
 PREP(moduleParadrop);
 PREP(moduleRemoveAceArsenal);
-PREP(moduleToggleAllowUnconcious);
 PREP(moduleToggleCaching);
 PREP(moduleToggleCleanup);
 PREP(moduleToggleFps);

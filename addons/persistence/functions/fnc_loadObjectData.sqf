@@ -16,7 +16,7 @@
 params ["_data", ["_forceLoad", false]];
 _data params ["_id", "_type", "_position", "_vectorDirAndUp", "_damage", "_fuel", "_turretWeapons", "_turretMagazines", "_pylonLoadout", "_logisticsCargo", "_attached", "_rackChannels", "_aceCargo", "_inventory", ["_acexFortifyData", [false]], ["_aceMedical", [0, false]], ["_aceRepair", [0, 0]]];
 _acexFortifyData params ["_isAcexFortification", "_acexFortifySide"];
-_aceMedical params ["_medicalVehicle", "_medicalFacility"];
+_aceMedical params ["_medicalClass", "_medicalVehicle", "_medicalFacility"];
 _aceRepair params ["_repairVehicle", "_repairFacility"];
 
 if (isNil "_id" || isNil "_type") exitWith {
@@ -101,7 +101,8 @@ if (!_forceLoad && {!([ASLToAGL _position, _object, (_vectorDirAndUp#0) call CBA
         ["acex_fortify_objectPlaced", [objNull, _acexFortifySide, _object]] call CBA_fnc_globalEvent;
     };
 
-    _object setVariable ["ace_medical_medicClass", _medicalVehicle, true];
+    _object setVariable ["ace_medical_medicClass", _medicalClass, true];
+    _object setVariable ["ace_medical_isMedicalVehicle", _medicalVehicle, true];
     _object setVariable ["ace_medical_isMedicalFacility", _medicalFacility, true];
     _object setVariable ["ace_isRepairVehicle", _repairVehicle, true];
     _object setVariable ["ace_isRepairFacility", _repairFacility, true];
