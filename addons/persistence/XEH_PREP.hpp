@@ -15,7 +15,6 @@ PREP(initServer);
 PREP(loadAllObjectData);
 PREP(loadObjectData);
 PREP(markObjectAsPersistent);
-PREP(playerConnected);
 PREP(saveData);
 PREP(saveObjectData);
 PREP(serializeMarker);

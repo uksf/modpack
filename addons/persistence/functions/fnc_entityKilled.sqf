@@ -28,3 +28,10 @@ if !(_hasRedployed) then {
         [QGVAR(receiveRedeployData), _data, _unit] call CBA_fnc_targetEvent;
     };
 };
+
+private _body = [GVAR(hashBodies), _uid] call CBA_fnc_hashGet;
+TRACE_1("Deleting old body",_body);
+if !(isNull _body) then {
+    [GVAR(hashBodies), _uid, objNull] call CBA_fnc_hashSet;
+    deleteVehicle _body;
+};

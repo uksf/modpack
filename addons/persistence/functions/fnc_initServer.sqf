@@ -27,7 +27,6 @@ GVAR(mapMarkers) = GVAR(dataNamespace) getVariable [QGVAR(mapMarkers), []];
 GVAR(saveObjectQueue) = [];
 GVAR(saveObjectQueueProcessing) = false;
 
-// addMissionEventHandler ["PlayerConnected", {call FUNC(playerConnected)}];
 addMissionEventHandler ["EntityRespawned", {call FUNC(entityRespawned)}];
 addMissionEventHandler ["EntityKilled", {call FUNC(entityKilled)}];
 addMissionEventHandler ["HandleDisconnect", {call FUNC(handleDisconnect)}];
