@@ -18,7 +18,7 @@
 params ["_values", "_logic", "_area"];
 _values params ["_cooldown", "_distance", "_groupLimit", "", "", "_minGroups", "_maxGroups"];
 
-if !(GVAR(dynamicPatrolEnabled)) exitWith {};
+if !(GVAR(dynamicPatrolAreasEnabled)) exitWith {};
 
 [GVAR(dynamicPatrolDistance), _logic, _distance] call FUNC(cleanupDynamicPatrolGroups);
 

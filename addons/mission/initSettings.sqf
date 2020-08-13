@@ -206,7 +206,7 @@
     "SLIDER",
     ["Dynamic Patrol Safe Zone Distance", "Dynamic patrols will not spawn near the player if they are within this distance to safe zones (respawn points by default)"],
     [COMPONENT_NAME, "Dynamic Patrol"],
-    [1500, 7500, 3000, 0],
+    [250, 7500, 3000, 0],
     1
 ] call CBA_settings_fnc_init;
 

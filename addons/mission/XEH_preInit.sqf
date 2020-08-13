@@ -6,6 +6,8 @@ ADDON = false;
 
 #include "initSettings.sqf"
 
+GVAR(dynamicPatrolAreasEnabled) = false;
+
 GVAR(dynamicPatrolAreaAttributeConfig) = EGVAR(common,configVehicles) >> QGVAR(moduleDynamicPatrolArea) >> "Attributes";
 
 GVAR(artillerySupportUnits) = [];

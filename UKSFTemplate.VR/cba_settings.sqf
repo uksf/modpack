@@ -55,7 +55,7 @@ force uksf_mission_dynamicPatrolVehicleProbability = 0.2;
 force uksf_mission_dynamicPatrolCombatMode = "SAFE";
 // Speed of spawned dynamic patrol groups ["LIMITED","NORMAL","FULL"]
 force uksf_mission_dynamicPatrolSpeed = "LIMITED";
-// Dynamic patrols will not spawn near the player if they are within this distance to safe zones (respawn points) [1500, 7500, 3000, 0]
+// Dynamic patrols will not spawn near the player if they are within this distance to safe zones (respawn points) [250, 7500, 3000, 0]
 force uksf_mission_dynamicPatrolSafeZoneDistance = 3000;
 // Dynamic patrols will spawn beyond this distance from the player [500, 1500, 750, 0]
 force uksf_mission_dynamicPatrolDistance = 750;

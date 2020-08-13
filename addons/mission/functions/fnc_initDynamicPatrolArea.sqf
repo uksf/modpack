@@ -37,12 +37,12 @@ private _values = [];
 
     private _compileString = [_propertyConfig >> "compileString"] call EFUNC(common,getConfigEntry);
     if (!(_compileString isEqualType "") || {_compileString != "" && {_compileString == 1}}) then {
-        if (_value != "") then {
-            _value = call compile _value;
-        };
-
-        if ((_value isEqualType "" && {_value == ""})) then {
-            _value = [];
+        if (_value isEqualType "") then {
+            if (_value != "") then {
+                _value = call compile _value;
+            } else {
+                _value = [];
+            };
         };
     };
 
@@ -78,6 +78,5 @@ if ((_values#12) isEqualTo []) then {
 _values set [13, ['SAFE', 'AWARE', 'COMBAT']#(_values#13)];
 _values set [14, ['LIMITED', 'NORMAL', 'FULL']#(_values#14)];
 _values set [15, [EAST, INDEPENDENT, WEST]#(_values#15)];
-
 
 [_values, _logic, _area]
