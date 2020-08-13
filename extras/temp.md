@@ -297,9 +297,9 @@ This would add the player object to all curators.
     `_caller` \<OBJECT\>,
     `_artillery` \<OBJECT\>,
     `_targetPosition` \<ARRAY\>,
-    `_callerDistance` \<SCALAR\>,
-    `_stage` \<OBJECT\> (Optional, Default: 0),
-    `_previousPosition` \<ARRAY\> (Optional)
+    `_stage` \<OBJECT\> (Optional, Don't specify unless skipping a stage, Default: 0),
+    `_previousPosition` \<ARRAY\> (Optional, Required if stage is not 0),
+    `_spread` \<SCALAR\> (Optional, Required if stage is not 0, Overwritten if stage 0 runs first)
   ]
 - The `_stage` parameter determines the type of fire mission. Stage 0 Check
   round (far), Stage 1 Check round (near), Stage 2 Barrage (close)

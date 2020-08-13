@@ -16,7 +16,7 @@
 */
 params ["_distance", ["_logic", objNull], ["_logicDistance", 750]];
 
-if !(GVAR(dynamicPatrolEnabled)) exitWith {};
+if (!GVAR(dynamicPatrolEnabled) && !GVAR(dynamicPatrolAreasEnabled)) exitWith {};
 
 private _groupsToDelete = GVAR(dynamicPatrolGroups) select {
     isNull _x ||

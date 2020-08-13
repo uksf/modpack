@@ -1,3 +1,5 @@
+class CBA_Extended_EventHandlers_base;
+
 class CfgVehicles {
     class CUP_USBasicAmmunitionBox;
     class CUP_USLaunchersBox: CUP_USBasicAmmunitionBox {
@@ -303,6 +305,19 @@ class CfgVehicles {
             dayLight = 0;
             onlyInNvg = 1;
             useFlare = 0;
+        };
+    };
+
+    class UK3CB_BAF_1Rnd_60mm_Mo_Shells_spent: Thing {
+        SLX_XEH_DISABLED = 0;
+        class EventHandlers {
+            class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers_base {};
+        };
+    };
+    class UK3CB_BAF_1Rnd_81mm_Mo_Shells_spent: Thing {
+        SLX_XEH_DISABLED = 0;
+        class EventHandlers {
+            class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers_base {};
         };
     };
 

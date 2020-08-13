@@ -9,7 +9,6 @@ class CfgPatches {
             QGVAR(moduleDelete),
             QGVAR(moduleExplosionLarge),
             QGVAR(moduleExplosionSmall),
-            QGVAR(moduleToggleAllowUnconcious),
             QGVAR(moduleToggleCaching),
             QGVAR(moduleToggleCleanup),
             QGVAR(moduleToggleFps),

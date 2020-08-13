@@ -84,13 +84,6 @@ class CfgVehicles {
         function = QFUNC(moduleExplosionSmall);
         icon = QPATHTOF(ui\Icon_Module_Explosion_Small_ca.paa);
     };
-    class GVAR(moduleToggleAllowUnconcious): GVAR(moduleBase) {
-        curatorCanAttach = 1;
-        category = "ace_zeus_Medical";
-        displayName = "Toggle Allow Unconcious";
-        function = QFUNC(moduleToggleAllowUnconcious);
-        icon = "\z\ace\addons\zeus\ui\Icon_Module_Zeus_Unconscious_ca.paa";
-    };
     class GVAR(moduleToggleFps): GVAR(moduleBase) {
         category = "Curator";
         displayName = "Toggle FPS";

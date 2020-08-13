@@ -3,10 +3,11 @@
 if (!isServer) exitWith {};
 
 ["CBA_settingsInitialized", {
-    if (!GVAR(dynamicPatrolEnabled)) exitWith {};
-
     // Presence of any dynamic patrol area will stop basic spawning functionality
     if !(GVAR(dynamicPatrolAreas) isEqualTo []) exitWith {
+        GVAR(dynamicPatrolAreasEnabled) = true;
+        publicVariable QGVAR(dynamicPatrolAreasEnabled);
+
         {
             private _data = _x call FUNC(initDynamicPatrolArea);
             [{
@@ -15,5 +16,7 @@ if (!isServer) exitWith {};
         } forEach GVAR(dynamicPatrolAreas);
     };
 
-    [{call FUNC(dynamicPatrol)}, [], GVAR(dynamicPatrolCooldown)] call CBA_fnc_waitAndExecute;
+    if (GVAR(dynamicPatrolEnabled)) then {
+        [{call FUNC(dynamicPatrol)}, [], GVAR(dynamicPatrolCooldown)] call CBA_fnc_waitAndExecute;
+    };
 }] call CBA_fnc_addEventHandler;

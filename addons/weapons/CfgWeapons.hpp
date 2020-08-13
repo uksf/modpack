@@ -293,8 +293,11 @@ class CfgWeapons {
         ace_nightvision_bluRadius = 0.36;
     };
 
-    class arifle_Mk20_plain_F;
-    class UGL_F;
+    class arifle_Mk20_F;
+    class arifle_Mk20_plain_F : arifle_Mk20_F {
+        class Single;
+        class FullAuto;
+    };
     class UK3CB_BAF_L85A2 : arifle_Mk20_plain_F {
         ace_barrelLength = 518;  // c:441.96, a:518
     };
@@ -308,6 +311,18 @@ class CfgWeapons {
             class asdg_MuzzleSlot_UK3CB_BAF_L119 : asdg_MuzzleSlot_556_3CB_L119 {};
             class asdg_OpticRail_UK3CB_BAF_L85 : asdg_OpticRail1913 {};
             class asdg_FrontSideRail_L85 : asdg_FrontSideRail {};
+        };
+        class Single : Single {
+            class BaseSoundModeType;
+            class SilencedSound : BaseSoundModeType {
+                soundSetShot[] = { "3CB_BAF_M4_Closure_SoundSet", "3CB_BAF_M4_ShotSD_SoundSet", "3CB_BAF_Rifle1_SD_Tail_SoundSet" };
+            };
+        };
+        class FullAuto : FullAuto {
+            class BaseSoundModeType;
+            class SilencedSound : BaseSoundModeType {
+                soundSetShot[] = { "3CB_BAF_M4_Closure_SoundSet", "3CB_BAF_M4_ShotSD_SoundSet", "3CB_BAF_Rifle1_SD_Tail_SoundSet" };
+            };
         };
     };
     class UK3CB_BAF_L119A1_CQB : UK3CB_BAF_L119_Base {
@@ -331,9 +346,34 @@ class CfgWeapons {
         };
     };
 
-    class Tavor_base_F;
+    class Rifle;
+    class Rifle_Base_F : Rifle {
+        class WeaponSlotsInfo;
+    };
+    class Tavor_base_F : Rifle_Base_F {
+        class Single;
+        class FullAuto;
+    };
     class SSQN_L119A1_Base : Tavor_base_F {
         magazines[] = { "UK3CB_BAF_556_30Rnd", "UK3CB_BAF_556_30Rnd_T", "30Rnd_556x45_Stanag_red", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag_Tracer_Red" };
+        class Single : Single {
+            class BaseSoundModeType;
+            class StandardSound : BaseSoundModeType {
+                soundSetShot[] = { "L119_Shot_SoundSet", "FRAME_CALIBER_5x56MM", "ALL_DIST_TAIL" };
+            };
+            class SilencedSound : BaseSoundModeType {
+                soundSetShot[] = { "3CB_BAF_M4_Closure_SoundSet", "3CB_BAF_M4_ShotSD_SoundSet", "3CB_BAF_Rifle1_SD_Tail_SoundSet" };
+            };
+        };
+        class FullAuto : FullAuto {
+            class BaseSoundModeType;
+            class StandardSound : BaseSoundModeType {
+                soundSetShot[] = { "L119_Shot_SoundSet", "FRAME_CALIBER_5x56MM", "ALL_DIST_TAIL" };
+            };
+            class SilencedSound : BaseSoundModeType {
+                soundSetShot[] = { "3CB_BAF_M4_Closure_SoundSet", "3CB_BAF_M4_ShotSD_SoundSet", "3CB_BAF_Rifle1_SD_Tail_SoundSet" };
+            };
+        };
     };
 
     class srifle_EBR_F;
@@ -347,7 +387,22 @@ class CfgWeapons {
     class UK3CB_BAF_L110_Base;
     class UK3CB_BAF_L110_556_Base : UK3CB_BAF_L110_Base {
         magazines[] = { "UK3CB_BAF_556_200Rnd", "UK3CB_BAF_556_200Rnd_Blank", "UK3CB_BAF_556_200Rnd_T", "UK3CB_BAF_556_100Rnd", "UK3CB_BAF_556_100Rnd_Blank", "UK3CB_BAF_556_100Rnd_T" };
+        class FullAuto : Mode_FullAuto {
+            class BaseSoundModeType;
+            class SilencedSound : BaseSoundModeType {
+                SoundSetShot[] = { "DS_lim_Closure_SoundSet", "DS_lim_ShotSD_SoundSet", "DS_rifle1_SD_Tail_SoundSet" };
+            };
+        };
     };
+    class UK3CB_BAF_L110_762_Base : UK3CB_BAF_L110_Base {
+        class FullAuto : Mode_FullAuto {
+            class BaseSoundModeType;
+            class SilencedSound : BaseSoundModeType {
+                SoundSetShot[] = { "DS_lim_Closure_SoundSet", "DS_lim_ShotSD_SoundSet", "DS_rifle1_SD_Tail_SoundSet" };
+            };
+        };
+    };
+
     class LMG_Zafir_F;
     class UK3CB_BAF_L7A2 : LMG_Zafir_F {
         magazines[] = {
@@ -902,11 +957,6 @@ class CfgWeapons {
     };
     class CUP_Vmlauncher_Stinger_vehicle_veh_Rubber : CUP_Vmlauncher_Stinger_vehicle_veh {
         magazines[] = { "CUP_4Rnd_Stinger_M_Rubber" };
-    };
-
-    class Rifle;
-    class Rifle_Base_F : Rifle {
-        class WeaponSlotsInfo;
     };
     class CUP_arifle_AK_Base : Rifle_Base_F {
         class WeaponSlotsInfo : WeaponSlotsInfo {

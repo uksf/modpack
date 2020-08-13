@@ -19,7 +19,7 @@
 params ["_values", ["_logic", objNull], ["_area", []], ["_retries", 0]];
 _values params ["", "_distance", "", "_minUnits", "_maxUnits", "", "", "_vehicleProbability", "_vehicleDistanceCoef", "_waypointDistance", "_vehicleWaypointDistance", "_unitPool", "_vehiclePool", "_combatMode", "_patrolSpeed", "_side"];
 
-if (!GVAR(dynamicPatrolEnabled) || {_retries > MAX_RETRIES}) exitWith {};
+if ((!GVAR(dynamicPatrolEnabled) && !GVAR(dynamicPatrolAreasEnabled)) || {_retries > MAX_RETRIES}) exitWith {};
 
 // Player can't be in an air vehicle
 // AND Player can't be in range of respawn positions

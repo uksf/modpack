@@ -41,7 +41,7 @@ private _delay = ARTILLERY_FIRE_MISSION_BASE_DELAY + linearConversion [500, 2000
 if (_stage == 0) exitWith {
     _artillery setVariable [QGVAR(artillerySupportTasked), true, true];
     [{
-        params ["", "_artillery", "_targetPosition", "_spread"];
+        params ["", "_artillery", "_targetPosition", "", "", "_spread"];
 
         // Scale targert area size based on indirectHit and indirectHitRange of the artillery's ammo
         private _ammo = getText (EGVAR(common,configMagazines) >> currentMagazine _artillery >> "ammo");
@@ -71,7 +71,7 @@ _delay = _delay + (_artillery getArtilleryETA [_targetPosition, currentMagazine 
 #endif
 
 [{ // Stage 1 Check round (near) & Stage 2 Barrage (close)
-    params ["_caller", "_artillery", "_targetPosition", "", "_stage", "_previousPosition", "_spread"];
+    params ["_caller", "_artillery", "_targetPosition", "_stage", "_previousPosition", "_spread"];
 
     private _isStage2 = _stage == 2;
     private _distance = [(random (_spread * 0.5)) + (_spread * 0.5), random (_spread * 0.25)] select _isStage2;
