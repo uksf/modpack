@@ -978,7 +978,7 @@ class CfgVehicles {
                     };
                     class Default {
                         displayName = "CAS";
-                        attachment[] = { "CUP_PylonPod_19Rnd_CRV7_HE_M", "PylonRack_4Rnd_ACE_Hellfire_AGM114N", "PylonRack_4Rnd_ACE_Hellfire_AGM114L", "CUP_PylonPod_19Rnd_CRV7_HE_M" };
+                        attachment[] = { "CUP_PylonPod_19Rnd_CRV7_FAT_M", "PylonRack_4Rnd_ACE_Hellfire_AGM114N", "PylonRack_4Rnd_ACE_Hellfire_AGM114L", "CUP_PylonPod_19Rnd_CRV7_HE_M" };
                     };
                     class AT {
                         displayName = "AT";
@@ -986,7 +986,7 @@ class CfgVehicles {
                     };
                     class Escort {
                         displayName = "Escort";
-                        attachment[] = { "CUP_PylonPod_19Rnd_CRV7_HE_M", "CUP_PylonPod_19Rnd_CRV7_HE_M", "CUP_PylonPod_19Rnd_CRV7_HE_M", "CUP_PylonPod_19Rnd_CRV7_HE_M" };
+                        attachment[] = { "CUP_PylonPod_19Rnd_CRV7_FAT_M", "CUP_PylonPod_19Rnd_CRV7_HE_M", "CUP_PylonPod_19Rnd_CRV7_HE_M", "CUP_PylonPod_19Rnd_CRV7_FAT_M" };
                     };
                     class Strike {
                         displayName = "Strike";

@@ -146,6 +146,7 @@ class UK3CB_BAF_Merlin_HC3_CSAR : UK3CB_BAF_Merlin_HC3_Armed_Base {
         MACRO_ADDITEM(ACE_bloodIV,20);
         MACRO_ADDITEM(ACE_bloodIV_500,20);
         MACRO_ADDITEM(ACE_bloodIV_250,20);
+        MACRO_ADDITEM(ACE_splint,10);
     };
     class TransportWeapons {};
     class TransportBackpacks {};

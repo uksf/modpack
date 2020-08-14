@@ -42,7 +42,7 @@ LOG("Shutdown");
                 call FUNC(saveData);
             };
 
-            [{SERVER_COMMAND serverCommand "#shutdown";}, [], 4] call CBA_fnc_waitAndExecute;
+            [{SERVER_COMMAND serverCommand "#shutdown"}, [], 4] call CBA_fnc_waitAndExecute;
         }] call CBA_fnc_waitUntilAndExecute;
     };
 

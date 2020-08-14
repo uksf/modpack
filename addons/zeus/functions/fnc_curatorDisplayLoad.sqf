@@ -18,7 +18,7 @@ params ["_display"];
 GVAR(curatorUnconciousMapID) = (_display displayCtrl 50) ctrlAddEventHandler ["Draw", {
     {
         if ((driver (vehicle _x)) isEqualTo _x && {_x getVariable ["ACE_isUnconscious", false]}) then {
-            private _cardiacArrestTimeLeft = _x getVariable ["ace_medical_statemachine_cardiacArrestTimeLeft", -1];
+            private _cardiacArrestTimeLeft = round (_x getVariable ["ace_medical_statemachine_cardiacArrestTimeLeft", -1]);
             private _text = "Unconscious";
             if (_cardiacArrestTimeLeft > -1) then {
                 private _minutes = floor (_cardiacArrestTimeLeft / 60);
@@ -50,7 +50,7 @@ GVAR(curatorUnconciousID) = [{
                 drawIcon3D ["", _colour, ASLToAGL (getPosASLVisual (vehicle _x)), 1, 2, 0, format ["%1 FPS", _fps], 0.1, _size, "PuristaMedium", "center"];
             };
             if (_x getVariable ["ACE_isUnconscious", false]) then {
-                private _cardiacArrestTimeLeft = _x getVariable ["ace_medical_statemachine_cardiacArrestTimeLeft", -1];
+                private _cardiacArrestTimeLeft = round (_x getVariable ["ace_medical_statemachine_cardiacArrestTimeLeft", -1]);
                 private _text = "Unconscious";
                 if (_cardiacArrestTimeLeft > -1) then {
                     private _minutes = floor (_cardiacArrestTimeLeft / 60);
@@ -67,3 +67,5 @@ GVAR(curatorUnconciousID) = [{
         };
     } forEach ALL_PLAYERS;
 }, 0] call CBA_fnc_addPerFrameHandler;
+
+[true, player] call ace_common_fnc_setVolume;

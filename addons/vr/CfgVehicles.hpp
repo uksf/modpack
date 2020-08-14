@@ -102,26 +102,26 @@ class CfgVehicles {
                 minimalHit = 0.01;
                 depends = "HitPelvis max HitAbdomen max HitDiaphragm max HitChest";
             };
-            class hand_l {
-                armor = 10;
-                material = -1;
-                name = "hand_l";
-                passThrough = 1;
-                radius = 0.1;
-                explosionShielding = 1;
-                visual = "Camo_arm_left";
-                minimalHit = 0.01;
-            };
-            class hand_r {
-                armor = 10;
-                material = -1;
-                name = "hand_r";
-                passThrough = 1;
-                radius = 0.1;
-                explosionShielding = 1;
-                visual = "Camo_arm_right";
-                minimalHit = 0.01;
-            };
+            // class hand_l {
+            //     armor = 10;
+            //     material = -1;
+            //     name = "hand_l";
+            //     passThrough = 1;
+            //     radius = 0.1;
+            //     explosionShielding = 1;
+            //     visual = "Camo_arm_left";
+            //     minimalHit = 0.01;
+            // };
+            // class hand_r {
+            //     armor = 10;
+            //     material = -1;
+            //     name = "hand_r";
+            //     passThrough = 1;
+            //     radius = 0.1;
+            //     explosionShielding = 1;
+            //     visual = "Camo_arm_right";
+            //     minimalHit = 0.01;
+            // };
             class HitArms {
                 armor = 10;
                 material = -1;
@@ -143,26 +143,26 @@ class CfgVehicles {
                 minimalHit = 0.01;
                 depends = "HitArms";
             };
-            class leg_l {
-                armor = 10;
-                material = -1;
-                name = "leg_l";
-                passThrough = 1;
-                radius = 0.12;
-                explosionShielding = 1;
-                visual = "Camo_leg_left";
-                minimalHit = 0.01;
-            };
-            class leg_r {
-                armor = 10;
-                material = -1;
-                name = "leg_r";
-                passThrough = 1;
-                radius = 0.12;
-                explosionShielding = 1;
-                visual = "Camo_leg_right";
-                minimalHit = 0.01;
-            };
+            // class leg_l {
+            //     armor = 10;
+            //     material = -1;
+            //     name = "leg_l";
+            //     passThrough = 1;
+            //     radius = 0.12;
+            //     explosionShielding = 1;
+            //     visual = "Camo_leg_left";
+            //     minimalHit = 0.01;
+            // };
+            // class leg_r {
+            //     armor = 10;
+            //     material = -1;
+            //     name = "leg_r";
+            //     passThrough = 1;
+            //     radius = 0.12;
+            //     explosionShielding = 1;
+            //     visual = "Camo_leg_right";
+            //     minimalHit = 0.01;
+            // };
             class HitLegs {
                 armor = 10;
                 material = -1;
@@ -173,6 +173,7 @@ class CfgVehicles {
                 visual = "injury_legs";
                 minimalHit = 0.01;
             };
+            ADD_ACE_HITPOINTS(10,10);
         };
         armor = 5;
         armorStructural = 0.5;

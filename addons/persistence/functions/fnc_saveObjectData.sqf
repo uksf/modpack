@@ -16,6 +16,9 @@
 
 params [["_centre", objnull]];
 
+// Add already persistent marked objects to saving queue
+[GVAR(persistentObjectsHash), {GVAR(saveObjectQueue) pushBack _value}] call CBA_fnc_hashEachPair;
+
 if (isNull _centre) exitWith {
     GVAR(persistenceMarkers) = GVAR(persistenceMarkers) - [objNull];
     TRACE_1("Found %1 persistence markers",count GVAR(persistenceMarkers));
@@ -39,7 +42,8 @@ if (isNull _centre) exitWith {
 private _terrainObjects = nearestTerrainObjects [_centre, [], CENTRE_RADIUS, false];
 private _nearObjects = (_centre nearObjects CENTRE_RADIUS) select {
     private _object = _x;
-    [_terrainObjects, {_x == _object}] call EFUNC(common,arrayNone) &&
+    !(_object in GVAR(saveObjectQueue)) &&
+    {[_terrainObjects, {_x == _object}] call EFUNC(common,arrayNone)} &&
     {[["Building", "AllVehicles", "Thing"], {_object isKindOf _x}] call EFUNC(common,arrayAny)} &&
     {[["Man", "ThingEffect"], {_object isKindOf _x}] call EFUNC(common,arrayNone)} &&
     {[TYPE_EXCLUDE_LIST, {_object isKindOf _x}] call EFUNC(common,arrayNone)}

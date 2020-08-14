@@ -455,6 +455,7 @@
     "ACE_salineIV", \
     "ACE_salineIV_250", \
     "ACE_salineIV_500", \
+    "ACE_splint", \
     "ACE_surgicalKit", \
     "ACE_tourniquet", \
     "ACE_wirecutter", \
@@ -605,7 +606,8 @@
     "dr_BLKlbt_op", \
     "dr_BLKpar_mg", \
     "dr_BLKpar_op", \
-    "V_RebreatherB"
+    "V_RebreatherB", \
+    "V_RebreatherIA"
 
 #define MAIN_OP_BACKPACKS \
     "B_AssaultPack_rgr", \

@@ -40,7 +40,9 @@ if ([GVAR(persistentObjectsHash), _id] call CBA_fnc_hashHasKey) then {
     TRACE_1("Loading object exists in mission, using",_id);
     _object = ([GVAR(persistentObjectsHash), _id] call CBA_fnc_hashGet);
     GVAR(missionObjects) deleteAt (GVAR(missionObjects) find _object);
-} else {
+};
+
+if (isNull _object) then {
     _object = _type createVehicle [0,0,0];
     _object setVectorDirAndUp _vectorDirAndUp;
 };
@@ -52,6 +54,7 @@ if (!_forceLoad && {!([ASLToAGL _position, _object, (_vectorDirAndUp#0) call CBA
 } else {
     _object setVariable [QGVAR(persistenceID), _id];
     [GVAR(persistentObjectsHash), _id, _object] call CBA_fnc_hashSet;
+    GVAR(dontDeleteObjectIds) deleteAt (GVAR(dontDeleteObjectIds) find _id);
 
     _object setPosASL _position;
     _object setVectorDirAndUp _vectorDirAndUp;

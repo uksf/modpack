@@ -365,6 +365,8 @@ class CfgVehicles {
         nvTarget = 0;
         irTarget = 0;
         camouflage = 0;
+        aileronSensitivity = 1;
+        elevatorSensitivity = 1;
         wheelSteeringSensitivity = 1;
         fuelCapacity = 1850;  // 270
         unitInfoType = "RscOptics_AV_airplane_pilot";

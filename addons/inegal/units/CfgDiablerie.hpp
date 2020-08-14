@@ -234,6 +234,7 @@ class Inegal_Diablerie_S: Inegal_Soldier_Base {
             visual = "injury_legs";
             minimalHit = 0.01;
         };
+        ADD_ACE_HITPOINTS(2.5,2.5);
     };
     armor = 10;
     armorStructural = 0.9;

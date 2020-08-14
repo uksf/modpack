@@ -15,7 +15,7 @@
                 };
             } forEach (GVAR(dataNamespace) getVariable [QGVAR(deletedObjects), []]);
 
-            [{call FUNC(loadAllObjectData)}] call CBA_fnc_execNextFrame;
+            [{[] call FUNC(loadAllObjectData)}] call CBA_fnc_execNextFrame;
         }] call CBA_fnc_execNextFrame;
     };
 
