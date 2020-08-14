@@ -26,6 +26,7 @@ GVAR(persistenceMarkers) = [];
 GVAR(mapMarkers) = GVAR(dataNamespace) getVariable [QGVAR(mapMarkers), []];
 GVAR(saveObjectQueue) = [];
 GVAR(saveObjectQueueProcessing) = false;
+GVAR(saveObjectMarkersProcessed) = false;
 
 addMissionEventHandler ["EntityRespawned", {call FUNC(entityRespawned)}];
 addMissionEventHandler ["EntityKilled", {call FUNC(entityKilled)}];
