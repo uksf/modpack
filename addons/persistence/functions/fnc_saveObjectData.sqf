@@ -14,29 +14,41 @@
 */
 #define TYPE_EXCLUDE_LIST ["UK3CB_BAF_1Rnd_60mm_Mo_Shells_spent","UK3CB_BAF_1Rnd_60mm_Mo_Shells_spent"]
 
-params [["_centre", objnull]];
+params [["_centre", objNull]];
 
-// Add already persistent marked objects to saving queue
-[GVAR(persistentObjectsHash), {GVAR(saveObjectQueue) pushBack _value}] call CBA_fnc_hashEachPair;
+// Reset this to true. Wil lbe set to false if markers need processing, before it can be read by the saving queue pfh exit
+GVAR(saveObjectMarkersProcessed) = true;
 
 if (isNull _centre) exitWith {
+    // Add already persistent marked objects to saving queue
+    [GVAR(persistentObjectsHash), {GVAR(saveObjectQueue) pushBack _value}] call CBA_fnc_hashEachPair;
+
+    if (!GVAR(saveObjectQueueProcessing)) then {
+        call FUNC(startSaveObjectDataPfh);
+    };
+
     GVAR(persistenceMarkers) = GVAR(persistenceMarkers) - [objNull];
-    TRACE_1("Found %1 persistence markers",count GVAR(persistenceMarkers));
     private _markers = +GVAR(persistenceMarkers);
-    private _marker = _markers deleteAt 0;
-    [_marker] call FUNC(saveObjectData); // Ensure queue is running to avoid race condition during shutdown
-
-    [{
-        params ["_args", "_idPFH"];
-        _args params ["_markers"];
-
-        if (_markers isEqualTo []) exitWith {
-            [_idPFH] call CBA_fnc_removePerFrameHandler;
-        };
-
+    if !(_markers isEqualTo []) then {
+        TRACE_1("Found persistence markers",count _markers);
+        GVAR(saveObjectMarkersProcessed) = false;
         private _marker = _markers deleteAt 0;
-        [_marker] call FUNC(saveObjectData);
-    }, 0, [_markers]] call CBA_fnc_addPerFrameHandler;
+        [_marker] call FUNC(saveObjectData); // Ensure queue is running to avoid race condition during shutdown
+
+        [{
+            params ["_args", "_idPFH"];
+            _args params ["_markers"];
+
+            if (_markers isEqualTo []) exitWith {
+                [_idPFH] call CBA_fnc_removePerFrameHandler;
+                GVAR(saveObjectMarkersProcessed) = true;
+            };
+
+            private _marker = _markers deleteAt 0;
+            [_marker] call FUNC(saveObjectData);
+            GVAR(saveObjectMarkersProcessed) = false;
+        }, 0, [_markers]] call CBA_fnc_addPerFrameHandler;
+    };
 };
 
 private _terrainObjects = nearestTerrainObjects [_centre, [], CENTRE_RADIUS, false];

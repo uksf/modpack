@@ -17,7 +17,7 @@ GVAR(saveObjectQueueProcessing) = true;
 [{
     params ["", "_idPFH"];
 
-    if (GVAR(saveObjectQueue) isEqualTo []) exitWith {
+    if (GVAR(saveObjectQueue) isEqualTo [] && GVAR(saveObjectMarkersProcessed)) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
         call FUNC(finishSaveObjectDataPfh);
     };
