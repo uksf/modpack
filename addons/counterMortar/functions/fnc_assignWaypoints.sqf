@@ -8,7 +8,7 @@
 
     Parameters:
         None
-        
+
     Return value:
         Nothing
 */
@@ -24,6 +24,7 @@ _fnc_getWPPos = {
 private _groupStartPos = getPos leader _group;
 
 private _initialWPPos = [_bluforMortarPos] call _fnc_getWPPos;
+private _helipad = "Land_HelipadEmpty_F" createVehicle _initialWPPos;
 
 if ((_bluforMortarPos distance2D _initialWPPos) < 700) then {
     private _initialWPPos = [_bluforMortarPos] call _fnc_getWPPos;
