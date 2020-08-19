@@ -4,7 +4,7 @@
         Adam Bridgford
 
     Description:
-        Adds module to add units to the counter battery array
+        Adds an air spawn location to the array
 
     Parameters:
         0: The module object <OBJECT>
@@ -15,8 +15,9 @@
 
 (_this select 1) params ["_module"];
 
+diag_log format ["UKSF Counter Mortar: %1",_this];
+
 if (!isServer) exitWith {};
 
-{
-    GVAR(counterBatteryUnits) pushBack _x;
-} forEach synchronizedObjects _module;
+GVAR(airForceSpawns) pushBack _module;
+

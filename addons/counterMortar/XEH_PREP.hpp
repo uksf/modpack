@@ -4,5 +4,7 @@ PREP(createAirForce);
 PREP(createGroundForce);
 PREP(handleDelete);
 PREP(moduleAddCounterBatteryUnits);
+PREP(moduleGroundSpawn);
+PREP(moduleHeliSpawn);
 PREP(selectResponse);
 PREP(selectSpawnLocation);

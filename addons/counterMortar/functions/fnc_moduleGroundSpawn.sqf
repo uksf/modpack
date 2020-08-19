@@ -4,7 +4,7 @@
         Adam Bridgford
 
     Description:
-        Adds module to add units to the counter battery array
+        Adds an ground spawn location to the array
 
     Parameters:
         0: The module object <OBJECT>
@@ -17,6 +17,5 @@
 
 if (!isServer) exitWith {};
 
-{
-    GVAR(counterBatteryUnits) pushBack _x;
-} forEach synchronizedObjects _module;
+GVAR(airForceSpawns) pushBack _module;
+

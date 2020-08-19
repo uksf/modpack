@@ -3,7 +3,11 @@
 class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
-        units[] = {};
+        units[] = {
+            QGVAR(counterBatteryModule),
+            QGVAR(airSpawnModule),
+            QGVAR(groundSpawnModule)
+        };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {};
