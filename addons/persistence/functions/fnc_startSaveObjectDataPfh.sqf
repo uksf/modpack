@@ -23,7 +23,7 @@ GVAR(saveObjectQueueProcessing) = true;
     };
 
     if (diag_fps < 20) exitWith {
-        INFO_1("FPS is too low, won't load any objects this frame (%1)",diag_fps);
+        INFO_1("FPS is too low, won't save any objects this frame (%1)",diag_fps);
     };
 
     INFO_2("Running object data save. %1 remaining. FPS: %2",count GVAR(saveObjectQueue),diag_fps);
