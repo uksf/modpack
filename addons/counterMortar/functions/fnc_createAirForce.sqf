@@ -8,7 +8,7 @@
 
     Parameters:
         None
-        
+
     Return value:
         Nothing
 */
@@ -42,11 +42,11 @@ _veh addMPEventHandler ["MPHit", {
         _result = {
             [_x] joinSilent _passengerGroup;
         } forEach assignedCargo _veh;
-        [_passengerGroup, _bluforMortarPos, 0, "SAD","AWARE","YELLOW","NORMAL","LINE","[group this, getPos this, 300] call BIS_fnc_taskPatrol"] call CBA_fnc_addWaypoint;
+        [_passengerGroup, _bluforMortarPos, 0, "SAD","AWARE","YELLOW","NORMAL","LINE","[this] call uksf_counterMortar_fnc_handleDelete;",[40,50,60]] call CBA_fnc_addWaypoint;
         [_pilotGroup,_bluforMortarPos] call FUNC(assignWaypoints);
     };
     private _unit = _pilotGroup createUnit [selectRandom GVAR(soldierList),getPos _veh,[],2,"NONE"];
-    _unit moveInAny _veh;   
+    _unit moveInAny _veh;
 
     _args set [2, _currentUnitCount];
 },0.5,[_spawnPosition,_pilotGroup,_currentUnitCount,_veh,_bluforMortarPos,_passengerGroup]] call cba_fnc_addPerFramehandler;

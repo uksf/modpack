@@ -6,5 +6,6 @@ PREP(handleDelete);
 PREP(moduleAddCounterBatteryUnits);
 PREP(moduleGroundSpawn);
 PREP(moduleHeliSpawn);
+PREP(moduleUnitPools);
 PREP(selectResponse);
 PREP(selectSpawnLocation);

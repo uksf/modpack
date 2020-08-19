@@ -15,8 +15,6 @@
 
 (_this select 1) params ["_module"];
 
-diag_log format ["UKSF Counter Mortar: %1",_this];
-
 if (!isServer) exitWith {};
 
 GVAR(airForceSpawns) pushBack _module;
