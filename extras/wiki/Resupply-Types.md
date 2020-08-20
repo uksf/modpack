@@ -56,10 +56,15 @@
 Contents inside medical box, loaded into crate
 
 - 150 x bandage elastic
+- 150 x bandage packing
+- 30 x adenosine auto injectors
 - 30 x morphine auto injectors
 - 30 x epinephrine auto injectors
 - 30 x 1000 ml blood bags
-- 20 x 500 ml blood bags
+- 30 x 500 ml blood bags
+- 30 x 250 ml blood bags
+- 30 x splints
+- 30 x painkillers
 
 ### ROMEO 6 - Mortar
 
