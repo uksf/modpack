@@ -89,6 +89,7 @@ class TransportItems { \
     MACRO_ADDITEM(ACE_elasticBandage,4); \
     MACRO_ADDITEM(ACE_packingBandage,4); \
     MACRO_ADDITEM(ACE_morphine,4); \
+    MACRO_ADDITEM(ACE_painkillers,4); \
 }; \
 class TransportBackpacks { \
     MACRO_ADDBACKPACK(B_Parachute,6); \

@@ -447,6 +447,7 @@
     "ACE_microDAGR", \
     "ACE_morphine", \
     "ACE_packingBandage", \
+    "ACE_painkillers", \
     "ACE_personalAidKit", \
     "ACE_plasmaIV", \
     "ACE_plasmaIV_250", \
