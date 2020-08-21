@@ -4,43 +4,40 @@
         Tim Beswick
 
     Description:
-        Runs basic dynamic patrol handling. Spawns groups of units and vehicles from a unit pool
+        Cleans up dynamic patrol groups
 
     Parameters:
         0: Distance <SCALAR>
-        1: Area Logic (Optional) <OBJECT>
-        2: Area logic distance (Optional) <SCALAR>
+        1: Vehicle distance coef <SCALAR>
+        2: Area Logic (Optional) <OBJECT>
 
     Return value:
         Nothing
 */
-params ["_distance", ["_logic", objNull], ["_logicDistance", 750]];
+params ["_distance", "_vehicleDistanceCoef", ["_logic", objNull]];
 
 if (!GVAR(dynamicPatrolEnabled) && !GVAR(dynamicPatrolAreasEnabled)) exitWith {};
 
-private _groupsToDelete = GVAR(dynamicPatrolGroups) select {
-    isNull _x ||
-    {!([getPosATL (leader _x), _distance * 2] call EFUNC(common,anyNearPlayers))}
+private _groups = [_logic getVariable [QGVAR(groups), []], GVAR(dynamicPatrolGroups)] select (isNull _logic);
+_groups = _groups - [grpNull];
+
+_groupsToDelete = _groups select {
+    private _distanceForGroup = _distance * 1.5;
+    if !(isNull (_x getVariable [QGVAR(assignedVehicle), objNull])) then {
+        _distanceForGroup = _distanceForGroup * _vehicleDistanceCoef;
+    };
+    !([getPosATL (leader _x), _distanceForGroup] call EFUNC(common,anyNearPlayers))
 };
 
 {
-    GVAR(dynamicPatrolGroups) deleteAt (GVAR(dynamicPatrolGroups) find _x);
-    ((leader _x) getVariable [QGVAR(assignedVehicle), objNull]) call CBA_fnc_deleteEntity;
+    _groups deleteAt (_groups find _x);
+    (_x getVariable [QGVAR(assignedVehicle), objNull]) call CBA_fnc_deleteEntity;
     _x call CBA_fnc_deleteEntity;
 } forEach _groupsToDelete;
-publicVariable QGVAR(dynamicPatrolGroups);
 
 if !(isNull _logic) then {
-    private _areaGroups = _logic getVariable [QGVAR(groups), []];
-    _groupsToDelete = _areaGroups select {
-        isNull _x ||
-        {!([getPosATL (leader _x), _logicDistance * 2] call EFUNC(common,anyNearPlayers))}
-    };
-
-    {
-        _areaGroups deleteAt (_areaGroups find _x);
-        ((leader _x) getVariable [QGVAR(assignedVehicle), objNull]) call CBA_fnc_deleteEntity;
-        _x call CBA_fnc_deleteEntity;
-    } forEach _groupsToDelete;
-    _logic setVariable [QGVAR(groups), _areaGroups, true];
+    _logic setVariable [QGVAR(groups), _groups, true];
+} else {
+    GVAR(dynamicPatrolGroups) = _groups;
+    publicVariable QGVAR(dynamicPatrolGroups);
 };

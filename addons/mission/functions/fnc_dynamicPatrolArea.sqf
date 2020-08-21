@@ -16,19 +16,20 @@
         Nothing
 */
 params ["_values", "_logic", "_area"];
-_values params ["_cooldown", "_distance", "_groupLimit", "", "", "_minGroups", "_maxGroups"];
+_values params ["_cooldown", "_distance", "_groupLimit", "", "", "_minGroups", "_maxGroups", "", "_vehicleDistanceCoef"];
 
 if !(GVAR(dynamicPatrolAreasEnabled)) exitWith {};
 
-[GVAR(dynamicPatrolDistance), _logic, _distance] call FUNC(cleanupDynamicPatrolGroups);
+[_distance, _vehicleDistanceCoef, _logic] call FUNC(cleanupDynamicPatrolGroups);
+[GVAR(dynamicPatrolDistance), GVAR(dynamicPatrolVehicleDistanceCoef)] call FUNC(cleanupDynamicPatrolGroups);
 
-private _areaGroups = _logic getVariable [QGVAR(groups), []];
-if (count _areaGroups > _groupLimit || count GVAR(dynamicPatrolGroups) > GVAR(dynamicPatrolGroupLimit)) exitWith {};
-
-private _groupCount = round (random [_minGroups, round (_maxGroups / 1.5) max _minGroups, _maxGroups + 1]);
-while {_groupCount > 0} do {
-    [{call FUNC(dynamicPatrolSpawn)}, _this, _groupCount * 2] call CBA_fnc_waitAndExecute;
-    _groupCount = _groupCount - 1;
+private _areaGroupCount = count (_logic getVariable [QGVAR(groups), []]);
+private _addGroupCount = round (random [_minGroups, round (_maxGroups / 1.5) max _minGroups, _maxGroups + 1]);
+if ((_areaGroupCount + _addGroupCount) < _groupLimit && count GVAR(dynamicPatrolGroups) < GVAR(dynamicPatrolGroupLimit)) then {
+    while {_addGroupCount > 0} do {
+        [{call FUNC(dynamicPatrolSpawn)}, _this, _addGroupCount * 2] call CBA_fnc_waitAndExecute;
+        _addGroupCount = _addGroupCount - 1;
+    };
 };
 
 [{call FUNC(dynamicPatrolArea)}, _this, _cooldown] call CBA_fnc_waitAndExecute;
