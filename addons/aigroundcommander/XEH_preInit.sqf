@@ -37,14 +37,13 @@ if (!isServer) exitWith {};
 GVAR(stagingAreas) = [];
 
 // spawn locations
-GVAR(infLocations) = [];
+GVAR(infantryLocations) = [];
 GVAR(carLocations) = [];
 GVAR(apcLocations) = [];
 GVAR(tankLocations) = [];
-GVAR(heliLocations) = [];
 
 // unit cap
-GVAR(maxUnitCount) = 150;
+GVAR(maxUnitCount) = 80;
 GVAR(currentUnitCount) = 0;
 
 // response groups

@@ -26,14 +26,14 @@ if (_chance <= 5) then {
             [_idPFH] call CBA_fnc_removePerFrameHandler;
         };   
 
-        private _spawnLocation = GVAR(infLocations) findIf {alive _x};
+        private _spawnLocation = GVAR(infantryLocations) findIf {alive _x};
 
         if (_spawnLocation == -1) exitWith {
             [_idPFH] call CBA_fnc_removePerFrameHandler;
         };
 
-        private _spawnPosition = (GVAR(infLocations) select _spawnLocation);
-        [GVAR(infLocations), true] call cba_fnc_shuffle;
+        private _spawnPosition = (GVAR(infantryLocations) select _spawnLocation);
+        [GVAR(infantryLocations), true] call cba_fnc_shuffle;
 
         private _stagingArea = [_spawnPosition] call FUNC(getStagingAreas);
         private _player = [_stagingArea] call FUNC(getPlayers);

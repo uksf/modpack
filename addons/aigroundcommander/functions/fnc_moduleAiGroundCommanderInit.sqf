@@ -9,13 +9,15 @@
             - Establish time conditions for responses base on commander skil level
 
     Parameters:
-        0: Commander Skill <NUMBER>
+        0: module for skill <NUMBER>
         
     Return value:
         Nothing
 */
 
-params ["_skill"];
+(_this select 1) params ["_module"];
+
+private _skill = _module getVariable [QGVAR(aiGroundCommanderSkill),0];
 
 if (_skill == 1) exitWith {[{call FUNC(selectResponse)},1200] call cba_fnc_addPerFrameHandler;};
 if (_skill == 2) exitWith {[{call FUNC(selectResponse)},900] call cba_fnc_addPerFrameHandler;};
