@@ -17,3 +17,4 @@ PREP(responseTankAndAPC);
 PREP(selectResponse);
 PREP(selectStayBehindForce);
 PREP(unloadTransport);
+PREP(removePlayersWhoHaveFired);

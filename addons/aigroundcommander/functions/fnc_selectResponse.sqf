@@ -21,17 +21,17 @@ if (GVAR(enemyAggressionLevel) < GVAR(aggressionLevel20) && GVAR(enemyAggression
 };
 
 // infantry + combat light vehicles
-if (GVAR(enemyAggressionLevel) >= GVAR(aggressionLevel20) && GVAR(enemyAggressionLevel) <= 39) exitWith {
+if (GVAR(enemyAggressionLevel) >= GVAR(aggressionLevel20) && GVAR(enemyAggressionLevel) <= 79) exitWith {
     call FUNC(responseCarAndInfantry);
 };
 
 // motor motor inf + APC
-if (GVAR(enemyAggressionLevel) >= GVAR(aggressionLevel40) && GVAR(enemyAggressionLevel) <= 59) exitWith {
+if (GVAR(enemyAggressionLevel) >= GVAR(aggressionLevel40) && GVAR(enemyAggressionLevel) <= 119) exitWith {
    call FUNC(responseMotorInfantryAndAPC);
 };
 
 // Tank + APC -- TIER 2 response
-if (GVAR(enemyAggressionLevel) >= GVAR(aggressionLevel60) && GVAR(enemyAggressionLevel) <= 79) exitWith {
+if (GVAR(enemyAggressionLevel) >= GVAR(aggressionLevel60) && GVAR(enemyAggressionLevel) <= 159) exitWith {
     if (GVAR(tier2ResponseDeployed) == 1) exitWith {
         call FUNC(responseInfantryOrMotorInfantry);
     };

@@ -14,7 +14,9 @@
         Nothing
 */
 
-GVAR(aggressionLevel20) = 20;
-GVAR(aggressionLevel40) = 40;
-GVAR(aggressionLevel60) = 60;
-GVAR(aggressionLevel80) = 80;
+GVAR(aggressionLevel20) = 40;
+GVAR(aggressionLevel40) = 80;
+GVAR(aggressionLevel60) = 120;
+GVAR(aggressionLevel80) = 160;
+
+call FUNC(removePlayersWhoHaveFired);
