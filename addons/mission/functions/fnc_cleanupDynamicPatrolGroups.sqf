@@ -33,8 +33,15 @@ _groupsToDelete = _groups select {
 
 {
     _groups deleteAt (_groups find _x);
-    (_x getVariable [QGVAR(assignedVehicle), objNull]) call CBA_fnc_deleteEntity;
-    _x call CBA_fnc_deleteEntity;
+
+    private _aliveUnits = (units _x) select {alive _x}; // Let cleanup handle dead units
+    _aliveUnits call CBA_fnc_deleteEntity;
+
+    private _vehicle = _x getVariable [QGVAR(assignedVehicle), objNull];
+    if (!(isNull _vehicle) && {alive _vehicle}) then {
+        (_x getVariable [QGVAR(assignedVehicle), objNull]) call CBA_fnc_deleteEntity;
+    };
+
 } forEach _groupsToDelete;
 
 if !(isNull _logic) then {
