@@ -24,11 +24,12 @@ if !(GVAR(dynamicPatrolAreasEnabled)) exitWith {};
 [GVAR(dynamicPatrolDistance), GVAR(dynamicPatrolVehicleDistanceCoef)] call FUNC(cleanupDynamicPatrolGroups);
 
 private _areaGroupCount = count (_logic getVariable [QGVAR(groups), []]);
-private _addGroupCount = round (random [_minGroups, round (_maxGroups / 1.5) max _minGroups, _maxGroups + 1]);
-if ((_areaGroupCount + _addGroupCount) < _groupLimit && count GVAR(dynamicPatrolGroups) < GVAR(dynamicPatrolGroupLimit)) then {
-    while {_addGroupCount > 0} do {
-        [{call FUNC(dynamicPatrolSpawn)}, _this, _addGroupCount * 2] call CBA_fnc_waitAndExecute;
-        _addGroupCount = _addGroupCount - 1;
+private _globalGroupCount = count GVAR(dynamicPatrolGroups);
+private _groupCountToAdd = round (random [_minGroups, round (_maxGroups / 1.5) max _minGroups, _maxGroups + 1]);
+if ((_areaGroupCount + _groupCountToAdd) <= _groupLimit && (_globalGroupCount + _groupCountToAdd) < GVAR(dynamicPatrolGroupLimit)) then {
+    while {_groupCountToAdd > 0} do {
+        [{call FUNC(dynamicPatrolSpawn)}, _this, _groupCountToAdd * 2] call CBA_fnc_waitAndExecute;
+        _groupCountToAdd = _groupCountToAdd - 1;
     };
 };
 
