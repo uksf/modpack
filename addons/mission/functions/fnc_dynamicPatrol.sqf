@@ -15,35 +15,42 @@
 
 if !(GVAR(dynamicPatrolEnabled)) exitWith {};
 
-[GVAR(dynamicPatrolDistance)] call FUNC(cleanupDynamicPatrolGroups);
+[GVAR(dynamicPatrolDistance), GVAR(dynamicPatrolVehicleDistanceCoef)] call FUNC(cleanupDynamicPatrolGroups);
 
-if (count GVAR(dynamicPatrolGroups) > _groupLimit) exitWith {};
+private _groupCount = count GVAR(dynamicPatrolGroups);
+private _groupCountToAdd = round (random [GVAR(dynamicPatrolMinGroups), round (GVAR(dynamicPatrolMaxGroups) / 1.5) max GVAR(dynamicPatrolMinGroups), GVAR(dynamicPatrolMaxGroups) + 1]);
 
-private _values = [
-    GVAR(dynamicPatrolCooldown),
-    GVAR(dynamicPatrolDistance),
-    GVAR(dynamicPatrolGroupLimit),
-    GVAR(dynamicPatrolMinUnits),
-    GVAR(dynamicPatrolMaxUnits),
-    GVAR(dynamicPatrolMinGroups),
-    GVAR(dynamicPatrolMaxGroups),
-    GVAR(dynamicPatrolVehicleProbability),
-    GVAR(dynamicPatrolVehicleDistanceCoef),
-    GVAR(dynamicPatrolWaypointDistance),
-    GVAR(dynamicPatrolVehicleWaypointDistance),
-    GVAR(dynamicPatrolUnitPool),
-    GVAR(dynamicPatrolVehiclePool),
-    GVAR(dynamicPatrolCombatMode),
-    GVAR(dynamicPatrolSpeed),
-    GVAR(dynamicPatrolSide)
-];
+// Don't spawn more groups than the limit
+if ((_groupCount + _groupCountToAdd) > GVAR(dynamicPatrolGroupLimit)) then {
+    _groupCountToAdd = GVAR(dynamicPatrolGroupLimit) - _groupCount;
+};
 
-private _groupCount = round (random [GVAR(dynamicPatrolMinGroups), round (GVAR(dynamicPatrolMaxGroups) / 1.5) max GVAR(dynamicPatrolMinGroups), GVAR(dynamicPatrolMaxGroups) + 1]);
-while {_groupCount > 0} do {
-    [{
-        [QGVAR(dynamicPatrolSpawn), _this, selectRandom EGVAR(common,HCs)] call CBA_fnc_targetEvent;
-    }, [_values], _groupCount * 2] call CBA_fnc_waitAndExecute;
-    _groupCount = _groupCount - 1;
+if (_groupCountToAdd > 0) then {
+    private _values = [
+        GVAR(dynamicPatrolCooldown),
+        GVAR(dynamicPatrolDistance),
+        GVAR(dynamicPatrolGroupLimit),
+        GVAR(dynamicPatrolMinUnits),
+        GVAR(dynamicPatrolMaxUnits),
+        GVAR(dynamicPatrolMinGroups),
+        GVAR(dynamicPatrolMaxGroups),
+        GVAR(dynamicPatrolVehicleProbability),
+        GVAR(dynamicPatrolVehicleDistanceCoef),
+        GVAR(dynamicPatrolWaypointDistance),
+        GVAR(dynamicPatrolVehicleWaypointDistance),
+        GVAR(dynamicPatrolUnitPool),
+        GVAR(dynamicPatrolVehiclePool),
+        GVAR(dynamicPatrolCombatMode),
+        GVAR(dynamicPatrolSpeed),
+        GVAR(dynamicPatrolSide)
+    ];
+
+    while {_groupCountToAdd > 0} do {
+        [{
+            [QGVAR(dynamicPatrolSpawn), _this, selectRandom EGVAR(common,HCs)] call CBA_fnc_targetEvent;
+        }, [_values], _groupCountToAdd * 2] call CBA_fnc_waitAndExecute;
+        _groupCountToAdd = _groupCountToAdd - 1;
+    };
 };
 
 [{call FUNC(dynamicPatrol)}, [], GVAR(dynamicPatrolCooldown)] call CBA_fnc_waitAndExecute;

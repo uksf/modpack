@@ -51,6 +51,7 @@ if (_type isEqualTo 0) exitWith {
 
 private _vehicle = createVehicle [selectRandom _vehiclePool, _position, [], 0, "NONE"];
 _vehicle setVectorUp (surfaceNormal (getPos _vehicle));
+_group setVariable [QGVAR(assignedVehicle), _vehicle];
 
 _group addVehicle _vehicle;
 _vehicle setUnloadInCombat [true, true];
@@ -78,7 +79,6 @@ private _count = (_vehicle emptyPositions "driver") + count _turrets + round ((_
     if ((_vehicle emptyPositions "driver") > 0) exitWith {
         _unit assignAsDriver _vehicle;
         _unit moveInDriver _vehicle;
-        _unit setVariable [QGVAR(assignedVehicle), assignedVehicle (_unit)];
     };
 
     if (isNull (_vehicle turretUnit (_turrets#0))) exitWith {
