@@ -26,7 +26,9 @@ _groupsToDelete = _groups select {
     if !(isNull (_x getVariable [QGVAR(assignedVehicle), objNull])) then {
         _distanceForGroup = _distanceForGroup * _vehicleDistanceCoef;
     };
-    !([getPosATL (leader _x), _distanceForGroup] call EFUNC(common,anyNearPlayers))
+
+    !([units _x, {alive _x}] call EFUNC(common,arrayAny))
+    || !([getPosATL (leader _x), _distanceForGroup] call EFUNC(common,anyNearPlayers))
 };
 
 {

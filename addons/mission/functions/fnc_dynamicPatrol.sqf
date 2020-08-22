@@ -19,7 +19,7 @@ if !(GVAR(dynamicPatrolEnabled)) exitWith {};
 
 private _groupCount = count GVAR(dynamicPatrolGroups);
 private _groupCountToAdd = round (random [GVAR(dynamicPatrolMinGroups), round (GVAR(dynamicPatrolMaxGroups) / 1.5) max GVAR(dynamicPatrolMinGroups), GVAR(dynamicPatrolMaxGroups) + 1]);
-if ((_groupCount + _groupCountToAdd) < GVAR(dynamicPatrolGroupLimit)) then {
+if ((_groupCount + _groupCountToAdd) <= GVAR(dynamicPatrolGroupLimit)) then {
     private _values = [
         GVAR(dynamicPatrolCooldown),
         GVAR(dynamicPatrolDistance),
