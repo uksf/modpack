@@ -18,9 +18,9 @@ private _players = [];
 
 {
     private _player = _x select 0;
-	if (((typeOf _player) == "UKSF_B_Officer") || ((typeOf _player) == "UKSF_B_SectionLeader") || ((typeOf _player) == "UKSF_B_Rifleman")) then {
-		_players pushBack _player;
-	};
+    if (((typeOf _player) == "UKSF_B_Officer") || ((typeOf _player) == "UKSF_B_SectionLeader") || ((typeOf _player) == "UKSF_B_Rifleman")) then {
+    _players pushBack _player;
+    };
 } forEach EGVAR(aiGroundCommander,playersThatHaveFired);
 private _player = selectRandom _players;
 
