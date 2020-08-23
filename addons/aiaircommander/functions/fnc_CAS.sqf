@@ -26,8 +26,8 @@ private _player = selectRandom _players;
 
 if (vehicle (leader _group) isKindOf "helicopter") then {
     vehicle (leader _group) flyInHeight 300;
-    _group reveal [_player,4];
-    [_group,_player,100,"SAD","AWARE","RED","NORMAL"] call cba_fnc_addWaypoint;
+    _group reveal [_player, 4];
+    [_group, _player, 100, "SAD", "AWARE", "YELLOW", "NORMAL"] call cba_fnc_addWaypoint;
 } else {
     _group setVariable ["lambs_danger_disableGroupAI",true];
     vehicle (leader _group) flyInHeight 500;

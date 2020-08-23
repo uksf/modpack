@@ -9,7 +9,7 @@ class CfgVehicles {
         displayName = "Commander Module";
         icon = "A3\ui_f\data\map\markers\nato\o_hq.paa";
         portrait = "A3\ui_f\data\map\markers\nato\o_hq.paa";
-        function = QFUNC(moduleAiCommanderInit);
+        function = QFUNC(moduleAiGroundCommanderInit);
         functionPriority = 1;
         canSetArea = 0;
         canSetAreaHeight = 0;
@@ -106,8 +106,8 @@ class CfgVehicles {
         scope = 2;
         is3DEN = 1;
         displayName = "Staging Area";
-        icon = "A3\ui_f\data\map\markers\nato\join_ca.paa";
-        portrait = "A3\ui_f\data\map\markers\nato\join_ca.paa";
+        icon = "A3\ui_f\data\map\markers\military\join_ca.paa";
+        portrait = "A3\ui_f\data\map\markers\military\join_ca.paa";
         function = QFUNC(moduleStagingArea);
         functionPriority = 1;
         canSetArea = 0;

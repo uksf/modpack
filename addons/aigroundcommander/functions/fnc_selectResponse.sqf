@@ -16,7 +16,7 @@ if (!isServer) exitWith {};
 if (GVAR(currentUnitCount) >= GVAR(maxUnitcount)) exitWith {};
 
 // inf or motor inf
-if (GVAR(enemyAggressionLevel) < GVAR(aggressionLevel20) && GVAR(enemyAggressionLevel) > 11) exitWith {
+if (GVAR(enemyAggressionLevel) < GVAR(aggressionLevel20) && GVAR(enemyAggressionLevel) > 22) exitWith {
     call FUNC(responseInfantryOrMotorInfantry);    
 };
 

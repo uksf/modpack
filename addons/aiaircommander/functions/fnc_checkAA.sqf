@@ -14,11 +14,11 @@
 */
 
 // to find if alive instead of in area
-private _emptyAALocations = GVAR(aaLocations) select {(_x nearEntities ["LandVehicle", 200]) isEqualTo []}; // AA vehicle class name needs changing
+private _emptyaaSites = GVAR(aaSites) select {(_x nearEntities ["LandVehicle", 200]) isEqualTo []}; // AA vehicle class name needs changing
 
 {
     [{
         params ["_x"];
         [_x] call FUNC(createGroupAA);
     },_x,random [10,15,20]] call cba_fnc_waitAndExecute;
-} forEach _emptyAALocations;
+} forEach _emptyaaSites;

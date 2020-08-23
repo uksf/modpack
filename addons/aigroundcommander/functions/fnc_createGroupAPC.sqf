@@ -68,6 +68,7 @@ private _count = (_veh emptyPositions "driver") + count _turrets;
     };
 
     private _unit = _group createUnit [selectRandom EGVAR(gear,gearCrew), [0, 0, 2000], [], 0, "NONE"];
+    GVAR(currentUnitCount) = GVAR(currentUnitCount) + 1;
 
     _unit addMPEventHandler ["MPKilled", {
        GVAR(currentUnitCount) = GVAR(currentUnitCount) - 1;

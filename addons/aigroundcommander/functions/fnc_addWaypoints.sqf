@@ -28,7 +28,7 @@ params ["_group","_spawnPosition","_stagingArea","_player","_numberOfResponseGro
 
     // default move to staging area for all groups 
     [_group,_stagingArea,50,"MOVE","AWARE","YELLOW","NORMAL","WEDGE","uksf_groundCommander_readyAtStagingArea = uksf_groundCommander_readyAtStagingArea + 1;", [0,0,0], 50] call cba_fnc_addWaypoint;
-    //(leader _group) doMove (getPos _stagingArea);
+    // (leader _group) doMove (getPos _stagingArea);
 
     // for helis
     if (vehicle (leader _group) isKindOf "helicopter") exitWith {
@@ -48,7 +48,6 @@ params ["_group","_spawnPosition","_stagingArea","_player","_numberOfResponseGro
             [_idPFH] call CBA_fnc_removePerFrameHandler;
 
             [_group, _player, 200, "SAD", "AWARE", "YELLOW", "NORMAL", "FILE", "[(group this)] call uksf_groundCommander_fnc_selectStayBehindForce;"] call cba_fnc_addWaypoint;
-            // GVAR(readyAtStagingAreaTimeout) = 0; // Not needed
         };
     }, 10, [_group,_player,_numberOfResponseGroupsToBeSpawned, floor (_numberOfResponseGroupsToBeSpawned * 0.75), time + TIMEOUT]] call CBA_fnc_addPerFrameHandler;
 },[_group,_spawnPosition,_stagingArea,_player,_numberOfResponseGroupsToBeSpawned]] call cba_fnc_waitUntilAndExecute;

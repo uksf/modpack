@@ -15,10 +15,10 @@
         Nothing
 */
 
-GVAR(aaLocations) = [];
+GVAR(aaSites) = [];
 GVAR(airspaceCentre) = [];
 GVAR(enemyAirfields) = [];
 
-GVAR(airSpawns) = [];
-GVAR(aaSpawns) = []; // for jets
+GVAR(airSpawnLocations) = []; // for jets
+GVAR(aaSpawnLocations) = []; 
 GVAR(heliLocations) = [];
