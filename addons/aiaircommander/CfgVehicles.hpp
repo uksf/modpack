@@ -74,7 +74,7 @@ class CfgVehicles {
         displayName = "Enemy Airfield";
         icon = "A3\ui_f\data\map\markers\nato\o_service.paa";
         portrait = "A3\ui_f\data\map\markers\nato\o_service.paa";
-        function = QFUNC(moduleAirSpawnLocation);
+        function = QFUNC(moduleEnemyAirfield);
         functionPriority = 1;
         canSetArea = 0;
         canSetAreaHeight = 0;
@@ -87,7 +87,7 @@ class CfgVehicles {
         displayName = "Helicopter Spawn Location";
         icon = "A3\ui_f\data\map\markers\nato\o_air.paa";
         portrait = "A3\ui_f\data\map\markers\nato\o_air.paa";
-        function = QFUNC(moduleHeliLocations);
+        function = QFUNC(moduleHeliLocation);
         functionPriority = 1;
         canSetArea = 0;
         canSetAreaHeight = 0;

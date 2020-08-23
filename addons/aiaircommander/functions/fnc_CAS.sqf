@@ -17,10 +17,11 @@ params ["_group"];
 private _players = [];
 
 {
-	if (((typeOf _x) == "UKSF_B_Officer") || ((typeOf _x) == "UKSF_B_SectionLeader") || ((typeOf _x) == "UKSF_B_Rifleman")) then {
-		_players pushBack _x;
+    private _player = _x select 0;
+	if (((typeOf _player) == "UKSF_B_Officer") || ((typeOf _player) == "UKSF_B_SectionLeader") || ((typeOf _player) == "UKSF_B_Rifleman")) then {
+		_players pushBack _player;
 	};
-} forEach ([] call CBA_fnc_players);
+} forEach EGVAR(aiGroundCommander,playersThatHaveFired);
 private _player = selectRandom _players;
 
 
@@ -33,8 +34,8 @@ if (vehicle (leader _group) isKindOf "helicopter") then {
     vehicle (leader _group) flyInHeight 500;
     [_group,_player,random[2000,2250,2500],"MOVE","AWARE","YELLOW","NORMAL"] call cba_fnc_addWaypoint;
     [_group,_player,random[2000,2250,2500],"MOVE","AWARE","YELLOW","NORMAL"] call cba_fnc_addWaypoint;
-    [_group,_player,20,"MOVE","AWARE","YELLOW","NORMAL","","[vehicle this] call uksf_airCommander_fnc_doCAS;"] call cba_fnc_addWaypoint;
+    [_group,_player,20,"MOVE","AWARE","YELLOW","NORMAL","","[vehicle this] call uksf_aiairCommander_fnc_doCAS;"] call cba_fnc_addWaypoint;
 };
 
-private _airSpawn = getPos (selectRandom GVAR(airSpawns));
-[_group,_airSpawn,50,"MOVE","AWARE","YELLOW","NORMAL","","[this] call uksf_airCommander_fnc_handleDelete;"] call cba_fnc_addWaypoint;
+private _airSpawn = getPos (selectRandom GVAR(airSpawnLocations));
+[_group,_airSpawn,50,"MOVE","AWARE","YELLOW","NORMAL","","[this] call uksf_aiairCommander_fnc_handleDelete;"] call cba_fnc_addWaypoint;

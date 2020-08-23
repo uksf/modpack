@@ -21,11 +21,12 @@ private _nearbyFriendlies = [];
 private _fnc_getNearEnemies = {
     params ["_checkCount","_bombPos","_vehicle"];
     private _nearbyFriendlies = _bombPos nearEntities ["O_Soldier_base_F",100];
-
-    // systemChat format ["FNC: cc: %1, bp: %2, v: %3, nf: %4",_checkCount,_bombPos,_vehicle,_nearbyFriendlies];
     
     if (count _nearbyFriendlies == 0) then {
-        private _bomb = createVehicle ["Bomb_04_F",_bombPos,[],20,"NONE"];
+        [{
+            params ["_bombPos"];
+            createVehicle ["Bomb_04_F",_bombPos,[],20,"NONE"];
+        },[_bombPos],5] call cba_fnc_waitAndExecute;        
     } else {
         _checkCount = _checkCount + 1;
         if (_checkCount < 3) exitWith {

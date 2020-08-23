@@ -17,7 +17,7 @@
 
 private _cargo = [];
 
-private _veh = createVehicle [selectRandom EGVAR(gear,gearPlane), (selectRandom GVAR(airSpawns))];
+private _veh = createVehicle [selectRandom EGVAR(gear,gearPlane), (selectRandom GVAR(airSpawnLocations))];
 private _group = createGroup EAST;
 
 private _vehPosition = count(fullCrew[_veh,"",true]);

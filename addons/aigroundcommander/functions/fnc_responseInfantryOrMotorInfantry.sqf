@@ -14,7 +14,7 @@
 */
 
 private _chance = random 10;
-// private _chance = 1; // for debug
+// private _chance = 6; // for debug
 
 if (_chance <= 5) then {
 

@@ -1,4 +1,12 @@
 #include "script_component.hpp"
+
+ADDON = false;
+
+#include "XEH_PREP.hpp"
+
+#include "initSettings.sqf"
+
+
 /*
     Author:
         Bridg
@@ -22,3 +30,5 @@ GVAR(enemyAirfields) = [];
 GVAR(airSpawnLocations) = []; // for jets
 GVAR(aaSpawnLocations) = []; 
 GVAR(heliLocations) = [];
+
+ADDON = true;

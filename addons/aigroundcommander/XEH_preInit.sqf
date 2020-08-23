@@ -6,7 +6,6 @@ ADDON = false;
 
 #include "initSettings.sqf"
 
-#include "script_component.hpp"
 /*
     Author:
         Bridg

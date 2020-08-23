@@ -6,7 +6,6 @@ PREP(createGroupAttackHeli);
 PREP(createGroupPlane);
 PREP(doCAS);
 PREP(handleDelete);
-PREP(init);
 PREP(moduleAASite);
 PREP(moduleAASpawnLocation);
 PREP(moduleAirCommanderInit);

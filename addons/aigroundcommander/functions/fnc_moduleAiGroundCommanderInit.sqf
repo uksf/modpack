@@ -18,7 +18,6 @@
 (_this select 1) params ["_module"];
 
 private _skill = _module getVariable [QGVAR(aiGroundCommanderSkill),0];
-systemChat format ["%1",_module getVariable [QGVAR(aiGroundCommanderSkill),0]];
 
 
 if (_skill == 1) exitWith {[{call FUNC(selectResponse)},1200] call cba_fnc_addPerFrameHandler;};

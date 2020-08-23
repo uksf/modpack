@@ -15,14 +15,9 @@
 
 params ["_group"];
 
-private _seadPos = selectRandom GVAR(enemyAirfields);
-private _wp = _group addWaypoint [getPos _seadPos,500];
-_wp setWaypointType "SAD"; 
-_wp setWaypointCombatMode "RED";
-_group setCurrentWaypoint [_group, 1];
+private _seadPos = getPos (selectRandom GVAR(enemyAirfields));
+[_group,_seadPos,500,"SAD","AWARE"] call cba_fnc_addWaypoint;
 vehicle (leader _group) flyInHeight 500;
 
-private _wp1 = _group addWaypoint [getPos (selectRandom GVAR(airSpawns)),0];
-_wp1 setWaypointType "MOVE"; 
-_wp1 setWaypointCombatMode "YELLOW";
-_wp1 setWaypointStatements ["true", "[this] call uksf_airCommander_fnc_handleDelete;"];
+[_group,getPos (selectRandom GVAR(airSpawnLocations)),1,"MOVE","AWARE","YELLOW","NORMAL","","[this] call uksf_aiairCommander_fnc_handleDelete;"] call cba_fnc_addWaypoint;
+

@@ -28,7 +28,7 @@ if (_group getVariable [QGVAR(isStayBehindGroup),false]) then {
     deleteVehicle (vehicle (leader _group));
 } else {
     [_group,(getPos (assignedVehicle (leader _group))),0,"GETIN","AWARE","YELLOW","NORMAL"] call cba_fnc_addWaypoint;
-    [_group,(_group getVariable [QGVAR(spawnPosition),[0,0,0]]),50,"MOVE","AWARE","YELLOW","FULL","FILE","[this] call uksf_groundCommander_fnc_handleDelete"] call cba_fnc_addWaypoint;
+    [_group,(_group getVariable [QGVAR(spawnPosition),[0,0,0]]),50,"MOVE","AWARE","YELLOW","FULL","FILE","[this] call uksf_aigroundCommander_fnc_handleDelete"] call cba_fnc_addWaypoint;
 };
 
 
