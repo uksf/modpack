@@ -17,7 +17,7 @@ ADDON = false;
 
     Parameters:
         None
-        
+
     Return value:
         Nothing
 */
@@ -58,5 +58,7 @@ GVAR(enemyAggressionLevel) = 0;
 
 // list of players that have fired their weapon
 GVAR(playersThatHaveFired) = [];
+
+call FUNC(removePlayersWhoHaveFired);
 
 ADDON = true;

@@ -7,17 +7,22 @@
         Checks aggression level and executes appropriate response script
     Parameters:
         None.
-        
+
     Return value:
         Nothing
 */
+
+#define AGGRESSION_LEVEL_40 40;
+#define AGGRESSION_LEVEL_80 80;
+#define AGGRESSION_LEVEL_120 120;
+#define AGGRESSION_LEVEL_160 160;
 
 if (!isServer) exitWith {};
 if (GVAR(currentUnitCount) >= GVAR(maxUnitcount)) exitWith {};
 
 // inf or motor inf
 if (GVAR(enemyAggressionLevel) < GVAR(aggressionLevel40) && GVAR(enemyAggressionLevel) > 22) exitWith {
-    call FUNC(responseInfantryOrMotorInfantry);    
+    call FUNC(responseInfantryOrMotorInfantry);
 };
 
 // infantry + combat light vehicles

@@ -8,7 +8,7 @@
 
     Parameters:
         0: _stagingArea (staging area position) <POSITION>
-        
+
     Return value:
         Nothing
 */
@@ -18,10 +18,7 @@ params ["_stagingArea"];
 private _players = [];
 
 {
-    private _player = _x select 0;
-    if (((typeOf _player) == "UKSF_B_Officer") || ((typeOf _player) == "UKSF_B_SectionLeader") || ((typeOf _player) == "UKSF_B_Rifleman")) then {
-    _players pushBack _player;
-};
+    _players pushBack _x;
 } forEach GVAR(playersThatHaveFired);
 
 _players = _players select {(_stagingArea distance2D _x) < 2000};

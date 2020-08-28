@@ -8,7 +8,7 @@
 
     Parameters:
         None.
-        
+
     Return value:
         Nothing
 */
@@ -27,10 +27,10 @@ private _aircraftChance = random 10;
 // CAP
 if (_chance <= 5) exitWith {
     if (_aircraftChance <= 5) then {
-        (call FUNC(createGroupPlane)) params ["_group"];
+        private _group = call FUNC(createGroupPlane);
         [_group] call FUNC(CAP);
     } else {
-        (call FUNC(createGroupAttackHeli)) params ["_group"];
+        private _group = call FUNC(createGroupAttackHeli);
         [_group] call FUNC(CAP);
     };
 };
@@ -38,16 +38,16 @@ if (_chance <= 5) exitWith {
 // CAS
 if ((_chance > 5) && (_chance <= 8) && (EGVAR(aigroundCommander,enemyAggressionLevel) >= 80)) exitWith {
     if (_aircraftChance <= 5) then {
-        (call FUNC(createGroupPlane)) params ["_group"];
+        private _group = call FUNC(createGroupPlane);
         [_group] call FUNC(CAS);
     } else {
-        (call FUNC(createGroupAttackHeli)) params ["_group"];
+        private _group = call FUNC(createGroupAttackHeli);
         [_group] call FUNC(CAS);
     };
 };
 
 // SEAD
 if (_chance > 8) exitWith {
-    (call FUNC(createGroupPlane)) params ["_group"];
+    private _group = call FUNC(createGroupPlane);
     [_group] call FUNC(SEAD);
 };
