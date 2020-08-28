@@ -30,6 +30,7 @@ if (!isServer) exitWith {};
         if (!(_killer isKindOf "Air")) then {
             GVAR(enemyAggressionLevel) = GVAR(enemyAggressionLevel) + 1;
             if (_instigator isEqualTo objNull || !isPlayer _instigator || surfaceIsWater (getPos _instigator)) exitWith {};
+            GVAR(playersThatHaveFired) pushBack _instigator;
             private _index = GVAR(playersThatHaveFired) findIf {_instigator == (_x#0)};
             if (_index != -1) then {
                 GVAR(playersThatHaveFired) set [_index, [_instigator,time]];
