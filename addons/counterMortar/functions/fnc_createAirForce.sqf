@@ -39,7 +39,7 @@ _veh addMPEventHandler ["MPHit", {
         [_idPFH] call cba_fnc_removePerFrameHandler;
         if ((count(fullCrew[_veh,"",false]) == 0)) then {deleteVehicle _veh;};
         // seperate passenger group from initial _pilotGroup
-        _result = {
+        {
             [_x] joinSilent _passengerGroup;
         } forEach assignedCargo _veh;
         [_passengerGroup, _bluforMortarPos, 0, "SAD","AWARE","YELLOW","NORMAL","LINE","[this] call uksf_counterMortar_fnc_handleDelete;",[40,50,60]] call CBA_fnc_addWaypoint;

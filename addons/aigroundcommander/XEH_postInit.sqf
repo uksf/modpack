@@ -4,8 +4,7 @@
         Bridg
 
     Description:
-        PostInit for:
-            - Set aggression level thresholds
+        calls function for removal of players who have fired from the array
 
     Parameters:
         None
@@ -15,4 +14,4 @@
 */
 
 
-
+call FUNC(removePlayersWhoHaveFired);

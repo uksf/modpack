@@ -11,7 +11,7 @@
         1: _spawnPosition <OBJECT>
         2: _stagingArea <OBJECT>
         3: _player <OBJECT>
-        
+
     Return value:
         Nothing
 */
@@ -26,7 +26,7 @@ params ["_group","_spawnPosition","_stagingArea","_player","_numberOfResponseGro
     params ["_group","_spawnPosition","_stagingArea","_player","_numberOfResponseGroupsToBeSpawned"];
     _group setVariable [QGVAR(spawnPosition),_spawnPosition,true]; // used in selectStayBehindForce
 
-    // default move to staging area for all groups 
+    // default move to staging area for all groups
     [_group,_stagingArea,50,"MOVE","AWARE","YELLOW","NORMAL","WEDGE","uksf_aigroundCommander_readyAtStagingArea = uksf_aigroundCommander_readyAtStagingArea + 1;", [0,0,0], 50] call cba_fnc_addWaypoint;
     // (leader _group) doMove (getPos _stagingArea);
 
@@ -43,8 +43,7 @@ params ["_group","_spawnPosition","_stagingArea","_player","_numberOfResponseGro
     [{
         params ["_args", "_idPFH"];
         _args params ["_group", "_player", "_numberOfResponseGroupsToBeSpawned", "_75Percent", "_timeout"];
-        systemChat format ["75: %1",_75Percent];
-        
+
         if (GVAR(readyAtStagingArea) >= _75Percent || _timeout > time) exitWith {
             [_idPFH] call CBA_fnc_removePerFrameHandler;
 

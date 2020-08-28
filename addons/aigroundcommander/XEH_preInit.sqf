@@ -26,10 +26,14 @@ if (!isServer) exitWith {};
 
 ["O_Soldier_base_F","init", {
     _this#0 addMPEventHandler ["MPKilled", {
-        if (!(_this#1 isKindOf "Air")) then {
+        params ["", "_killer", "_instigator"];
+        if (!(_killer isKindOf "Air")) then {
             GVAR(enemyAggressionLevel) = GVAR(enemyAggressionLevel) + 1;
-            if ((_this#2) isEqualTo objNull || !isPlayer (_this#2) || surfaceIsWater (getPos (_this#2))) exitWith {};
-            GVAR(playersThatHaveFired) pushBack [(_this#2), time];
+            if (_instigator isEqualTo objNull || !isPlayer _instigator || surfaceIsWater (getPos _instigator)) exitWith {};
+            private _index = GVAR(playersThatHaveFired) findIf {_instigator == (_x#0)};
+            if (_index != -1) then {
+                GVAR(playersThatHaveFired) set [_index, [_instigator,time]];
+            };
         };
 }]}] call cba_fnc_addClassEventHandler;
 
@@ -58,7 +62,5 @@ GVAR(enemyAggressionLevel) = 0;
 
 // list of players that have fired their weapon
 GVAR(playersThatHaveFired) = [];
-
-call FUNC(removePlayersWhoHaveFired);
 
 ADDON = true;

@@ -12,31 +12,31 @@
         Nothing
 */
 
-#define AGGRESSION_LEVEL_40 40;
-#define AGGRESSION_LEVEL_80 80;
-#define AGGRESSION_LEVEL_120 120;
-#define AGGRESSION_LEVEL_160 160;
+#define AGGRESSION_LEVEL_40 40
+#define AGGRESSION_LEVEL_80 80
+#define AGGRESSION_LEVEL_120 120
+#define AGGRESSION_LEVEL_160 160
 
 if (!isServer) exitWith {};
 if (GVAR(currentUnitCount) >= GVAR(maxUnitcount)) exitWith {};
 
 // inf or motor inf
-if (GVAR(enemyAggressionLevel) < GVAR(aggressionLevel40) && GVAR(enemyAggressionLevel) > 22) exitWith {
+if (GVAR(enemyAggressionLevel) < AGGRESSION_LEVEL_40 && GVAR(enemyAggressionLevel) > 22) exitWith {
     call FUNC(responseInfantryOrMotorInfantry);
 };
 
 // infantry + combat light vehicles
-if (GVAR(enemyAggressionLevel) >= GVAR(aggressionLevel40) && GVAR(enemyAggressionLevel) <= 79) exitWith {
+if (GVAR(enemyAggressionLevel) >= AGGRESSION_LEVEL_40 && GVAR(enemyAggressionLevel) <= 79) exitWith {
     call FUNC(responseCarAndInfantry);
 };
 
 // motor motor inf + APC
-if (GVAR(enemyAggressionLevel) >= GVAR(aggressionLevel80) && GVAR(enemyAggressionLevel) <= 119) exitWith {
+if (GVAR(enemyAggressionLevel) >= AGGRESSION_LEVEL_80 && GVAR(enemyAggressionLevel) <= 119) exitWith {
    call FUNC(responseMotorInfantryAndAPC);
 };
 
 // Tank + APC -- TIER 2 response
-if (GVAR(enemyAggressionLevel) >= GVAR(aggressionLevel120) && GVAR(enemyAggressionLevel) <= 159) exitWith {
+if (GVAR(enemyAggressionLevel) >= AGGRESSION_LEVEL_120 && GVAR(enemyAggressionLevel) <= 159) exitWith {
     if (GVAR(tier2ResponseDeployed) == 1) exitWith {
         call FUNC(responseInfantryOrMotorInfantry);
     };
@@ -45,7 +45,7 @@ if (GVAR(enemyAggressionLevel) >= GVAR(aggressionLevel120) && GVAR(enemyAggressi
 };
 
 // Motor Inf + Attack Heli -- TIER 1 response
-if (GVAR(enemyAggressionLevel) >= GVAR(aggressionLevel160)) exitWith {
+if (GVAR(enemyAggressionLevel) >= AGGRESSION_LEVEL_160) exitWith {
     if (GVAR(tier1ResponseDeployed) == 1) exitWith {
         call FUNC(responseCarAndInfantry);
     };

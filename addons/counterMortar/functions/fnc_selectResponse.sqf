@@ -17,8 +17,9 @@ params ["_counterBatteryUnit"];
 
 if (GVAR(counterInProgress) == 1) exitWith {};
 
-if (count (GVAR(groundVehicleTypes) + GVAR(airVehicleTypes) + GVAR(counterBatteryUnits)) == 0) exitWith {diag_log "UKSF: ANTI MORTAR --- No counter units defined, check preInit ---"};
-// probably needs some kind of removal of the class EH to prevent spam
+// below moved to preInit
+//if (count (GVAR(groundVehicleTypes) + GVAR(airVehicleTypes) + GVAR(counterBatteryUnits)) == 0) exitWith {diag_log "UKSF: ANTI MORTAR --- No counter units defined, check preInit ---"};
+
 
 // private _forceChance = 4; // for debug
 private _forceChance = random 10;

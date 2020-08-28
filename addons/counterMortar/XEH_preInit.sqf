@@ -27,6 +27,7 @@ GVAR(counterBatteryUnits) = [];
 GVAR(counterInProgress) = 0;
 GVAR(soldierList) = [];
 
+if (count (GVAR(groundVehicleTypes) + GVAR(airVehicleTypes) + GVAR(counterBatteryUnits)) == 0) exitWith {diag_log "UKSF: ANTI MORTAR --- No counter units defined ---"};
 
 ["UK3CB_BAF_Static_Mortar_Base", "Fired", {
     params ["_unit"];
@@ -34,11 +35,5 @@ GVAR(soldierList) = [];
         [_unit] call FUNC(selectResponse);
     };
 }] call cba_fnc_addClassEventHandler;
-
-
-[QGVAR(artilleryFire), {
-    params ["_caller", "_artillery", "_targetPosition", "_callerDistance", "_stage", "_previousPosition", "_spread"];
-    [_caller, _artillery, _targetPosition, _callerDistance, _stage, _previousPosition, _spread] call uksf_mission_fnc_fireMission;
-}] call CBA_fnc_addEventHandler;
 
 ADDON = true;
