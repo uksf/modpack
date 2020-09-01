@@ -42,7 +42,7 @@ _veh addMPEventHandler ["MPHit", {
         {
             [_x] joinSilent _passengerGroup;
         } forEach assignedCargo _veh;
-        [_passengerGroup, _bluforMortarPos, 0, "SAD","AWARE","YELLOW","NORMAL","LINE","[this] call uksf_counterMortar_fnc_handleDelete;",[40,50,60]] call CBA_fnc_addWaypoint;
+        [_passengerGroup, _bluforMortarPos, 0, "SAD","AWARE","YELLOW","NORMAL","LINE","[this] call uksf_aicountermortar_fnc_handleDelete;",[40,50,60]] call CBA_fnc_addWaypoint;
         [_pilotGroup,_bluforMortarPos] call FUNC(assignWaypoints);
     };
     private _unit = _pilotGroup createUnit [selectRandom GVAR(soldierList),getPos _veh,[],2,"NONE"];

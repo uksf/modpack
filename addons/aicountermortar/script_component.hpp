@@ -1,5 +1,5 @@
-#define COMPONENT counterMortar
-#define COMPONENT_BEAUTIFIED Counter Mortar
+#define COMPONENT aicountermortar
+#define COMPONENT_BEAUTIFIED AI Counter Mortar
 #include "\u\uksf\addons\main\script_mod.hpp"
 
 // #define DEBUG_MODE_FULL
