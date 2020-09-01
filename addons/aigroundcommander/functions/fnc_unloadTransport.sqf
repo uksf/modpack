@@ -8,7 +8,7 @@
 
     Parameters:
         0: _leader <OBJECT>
-        
+
     Return value:
         Nothing
 */
@@ -23,7 +23,7 @@ private _group = group _leader;
 
 {unassignVehicle _x} forEach units _group;
 
-private _spawnPos = _group getVariable [QGVAR(spawnPosition),(getPos selectRandom GVAR(carLocations))];
+private _spawnPos = _group getVariable [QGVAR(spawnPosition),(getPos selectRandom GVAR(carSpawns))];
 private _stagingArea = _group getVariable [QGVAR(SAPos),(getPos selectRandom GVAR(stagingAreas))];
 private _player = [_stagingArea] call FUNC(getPlayers);
 

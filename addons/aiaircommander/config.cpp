@@ -3,7 +3,15 @@
 class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
-        units[] = {};
+        units[] = {
+            QGVAR(commanderModule),
+            QGVAR(airspaceCentreModule),
+            QGVAR(enemyAirfieldModule),
+            QGVAR(planeSpawnModule),
+            QGVAR(heliSpawnModule),
+            QGVAR(aaSiteModule),
+            QGVAR(aaSpawnModule)
+        };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {};
@@ -14,7 +22,7 @@ class CfgPatches {
     };
 };
 
+// #include "Cfg3den.hpp"
 #include "CfgEventHandlers.hpp"
-#include "Cfg3den.hpp"
-#include "CfgVehicles.hpp"
 #include "CfgFactionClasses.hpp"
+#include "CfgVehicles.hpp"

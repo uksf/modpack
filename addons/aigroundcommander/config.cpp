@@ -4,11 +4,11 @@ class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
         units[] = {
-            QGVAR(aiGroundCommanderModule),
-            QGVAR(infantryLocationsModule),
-            QGVAR(carLocationsModule),
-            QGVAR(apcLocationsModule),
-            QGVAR(tankLocationsModule),
+            QGVAR(commanderModule),
+            QGVAR(infantrySpawnModule),
+            QGVAR(carSpawnModule),
+            QGVAR(apcSpawnModule),
+            QGVAR(tankSpawnModule),
             QGVAR(stagingAreaModule)
         };
         weapons[] = {};
@@ -21,7 +21,7 @@ class CfgPatches {
     };
 };
 
+// #include "Cfg3den.hpp"
 #include "CfgEventHandlers.hpp"
-#include "Cfg3den.hpp"
-#include "CfgVehicles.hpp"
 #include "CfgFactionClasses.hpp"
+#include "CfgVehicles.hpp"

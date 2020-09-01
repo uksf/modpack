@@ -13,7 +13,7 @@
         created group and their spawn position
 */
 private _cargo = [];
-private _spawnBuilding = selectRandom GVAR(heliLocations);
+private _spawnBuilding = selectRandom GVAR(heliSpawns);
 if (isNull _spawnBuilding) exitWith {call FUNC(selectMission)};
 private _helipads = nearestObjects [_spawnBuilding, ["Land_HelipadSquare_F","Land_HelipadCircle_F"],50,true];
 private _spawnPosition = _spawnBuilding getPos [20,random 360];

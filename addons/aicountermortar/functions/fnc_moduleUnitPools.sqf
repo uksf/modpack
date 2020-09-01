@@ -37,6 +37,6 @@ private _units = [_module, QGVAR(unitPoolString)] call _fnc_getArrayFromModule;
 private _groundVehicles = [_module, QGVAR(groundVehiclePoolString)] call _fnc_getArrayFromModule;
 private _airVehicles = [_module, QGVAR(airVehiclePoolString)] call _fnc_getArrayFromModule;
 
-{GVAR(soldierList) pushBackUnique _x;} forEach _units;
-{GVAR(groundVehicleTypes) pushBackUnique _x;} forEach _groundVehicles;
-{GVAR(airVehicleTypes) pushBackUnique _x;} forEach _airVehicles;
+{GVAR(unitPool) pushBackUnique _x;} forEach _units;
+{GVAR(groundVehiclePool) pushBackUnique _x;} forEach _groundVehicles;
+{GVAR(airVehiclePool) pushBackUnique _x;} forEach _airVehicles;

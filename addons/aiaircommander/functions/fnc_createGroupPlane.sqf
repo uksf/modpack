@@ -8,7 +8,7 @@
 
     Parameters:
         0: _responseType <NUMBER>
-        
+
     Return value:
         Nothing
 */
@@ -17,7 +17,7 @@
 
 private _cargo = [];
 
-private _veh = createVehicle [selectRandom EGVAR(gear,gearPlane), (selectRandom GVAR(airSpawnLocations))];
+private _veh = createVehicle [selectRandom EGVAR(gear,gearPlane), (selectRandom GVAR(planeSpawns))];
 private _group = createGroup EAST;
 
 private _vehPosition = count(fullCrew[_veh,"",true]);

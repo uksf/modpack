@@ -17,5 +17,5 @@
 
 if (!isServer) exitWith {};
 
-GVAR(airForceSpawns) pushBack _module;
+GVAR(airSpawns) pushBack _module;
 

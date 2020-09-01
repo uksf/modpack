@@ -8,7 +8,7 @@
 
     Parameters:
         0: _group <GROUP>
-        
+
     Return value:
         Nothing
 */
@@ -19,5 +19,5 @@ private _seadPos = getPos (selectRandom GVAR(enemyAirfields));
 [_group,_seadPos,500,"SAD","AWARE"] call cba_fnc_addWaypoint;
 vehicle (leader _group) flyInHeight 500;
 
-[_group,getPos (selectRandom GVAR(airSpawnLocations)),1,"MOVE","AWARE","YELLOW","NORMAL","","[this] call uksf_aiairCommander_fnc_handleDelete;"] call cba_fnc_addWaypoint;
+[_group,getPos (selectRandom GVAR(planeSpawns)),1,"MOVE","AWARE","YELLOW","NORMAL","","[this] call uksf_aiairCommander_fnc_handleDelete;"] call cba_fnc_addWaypoint;
 

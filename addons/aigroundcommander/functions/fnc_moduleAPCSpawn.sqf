@@ -8,11 +8,11 @@
 
     Parameters:
         0: module <OBJECT>
-        
+
     Return value:
         Nothing
 */
 
 (_this select 1) params ["_module"];
 
-GVAR(aaSpawnLocations) pushBack _module;
+GVAR(apcSpawns) pushBack _module;

@@ -4,10 +4,10 @@ class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
         units[] = {
-            QGVAR(counterBatteryModule),
+            QGVAR(counterBatteryUnitsModule),
             QGVAR(airSpawnModule),
             QGVAR(groundSpawnModule),
-            QGVAR(unitPoolsModule)
+            QGVAR(unitPoolsunitPoolsModuleModule)
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
@@ -19,6 +19,7 @@ class CfgPatches {
     };
 };
 
+// #include "Cfg3den.hpp"
 #include "CfgEventHandlers.hpp"
-#include "Cfg3den.hpp"
+#include "CfgFactionClasses.hpp"
 #include "CfgVehicles.hpp"

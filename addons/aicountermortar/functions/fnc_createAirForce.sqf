@@ -20,7 +20,7 @@ params ["_spawnPosition","_bluforMortarPos"];
 private _pilotGroup = createGroup EAST;
 private _passengerGroup = createGroup EAST;
 
-private _veh = createVehicle [selectRandom GVAR(airVehicleTypes), _spawnPosition];
+private _veh = createVehicle [selectRandom GVAR(airVehiclePool), _spawnPosition];
 _veh setUnloadInCombat [true,true];
 private _unitCount = count(fullCrew[_veh,"",true]);
 private _currentUnitCount = _unitCount;
@@ -45,7 +45,7 @@ _veh addMPEventHandler ["MPHit", {
         [_passengerGroup, _bluforMortarPos, 0, "SAD","AWARE","YELLOW","NORMAL","LINE","[this] call uksf_aicountermortar_fnc_handleDelete;",[40,50,60]] call CBA_fnc_addWaypoint;
         [_pilotGroup,_bluforMortarPos] call FUNC(assignWaypoints);
     };
-    private _unit = _pilotGroup createUnit [selectRandom GVAR(soldierList),getPos _veh,[],2,"NONE"];
+    private _unit = _pilotGroup createUnit [selectRandom GVAR(unitPool),getPos _veh,[],2,"NONE"];
     _unit moveInAny _veh;
 
     _args set [2, _currentUnitCount];

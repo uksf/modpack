@@ -8,11 +8,11 @@
 
     Parameters:
         0: module <OBJECT>
-        
+
     Return value:
         Nothing
 */
 
 (_this select 1) params ["_module"];
 
-GVAR(apcLocations) pushBack _module;
+GVAR(tankSpawns) pushBack _module;

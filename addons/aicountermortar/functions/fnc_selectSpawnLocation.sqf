@@ -9,19 +9,19 @@
     Parameters:
         0: _bluforMortarPos <POSITION>
         1: _forceType <NUMBER>
-        
+
     Return value:
         Nothing
 */
 
 params ["_bluforMortarPos","_forceType"];
 
-if (_forceType == 1) exitWith { // ground vehicle    
-    private _spawnPosition = selectRandom GVAR(groundForceSpawns);
+if (_forceType == 1) exitWith { // ground vehicle
+    private _spawnPosition = selectRandom GVAR(groundSpawns);
     [_spawnPosition,_bluforMortarPos] call FUNC(createGroundForce);
 };
 
 if (_forceType == 2) exitWith { // air
-    private _spawnPosition = selectRandom GVAR(airForceSpawns);
+    private _spawnPosition = selectRandom GVAR(airSpawns);
     [_spawnPosition,_bluforMortarPos] call FUNC(createAirForce);
 };

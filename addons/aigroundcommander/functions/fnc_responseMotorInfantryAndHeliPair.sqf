@@ -8,7 +8,7 @@
 
     Parameters:
         None.
-        
+
     Return value:
         Nothing
 */
@@ -21,16 +21,16 @@
 
     if (_groupCount == 0) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
-    };   
+    };
 
-    private _spawnLocation = GVAR(carLocations) findIf {alive _x};
+    private _spawnLocation = GVAR(carSpawns) findIf {alive _x};
 
     if (_spawnLocation == -1) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
     };
 
-    private _spawnPosition = (GVAR(carLocations) select _spawnLocation);
-    [GVAR(carLocations), true] call cba_fnc_shuffle;
+    private _spawnPosition = (GVAR(carSpawns) select _spawnLocation);
+    [GVAR(carSpawns), true] call cba_fnc_shuffle;
 
     private _stagingArea = [_spawnPosition] call FUNC(getStagingAreas);
     private _player = [_stagingArea] call FUNC(getPlayers);
@@ -40,7 +40,7 @@
         [{
             call FUNC(responseMotorInfantryAndHeliPair);
         },300] call cba_fnc_waitAndExecute;
-    };    
+    };
 
     private _group = [_spawnPosition, {
             params ["_spawnPosition", "_stagingArea", "_player", "_numberOfResponseGroupsToBeSpawned", "_group"];
@@ -61,16 +61,16 @@
 
     if (_groupCount == 0) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
-    };   
+    };
 
-    private _spawnLocation = EGVAR(airCommander,heliLocations) findIf {alive _x};
+    private _spawnLocation = EGVAR(airCommander,heliSpawns) findIf {alive _x};
 
     if (_spawnLocation == -1) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
     };
 
-    private _spawnPosition = (EGVAR(airCommander,heliLocations) select _spawnLocation);
-    [EGVAR(airCommander,heliLocations), true] call cba_fnc_shuffle;
+    private _spawnPosition = (EGVAR(airCommander,heliSpawns) select _spawnLocation);
+    [EGVAR(airCommander,heliSpawns), true] call cba_fnc_shuffle;
 
     private _stagingArea = [_spawnPosition] call FUNC(getStagingAreas);
     private _player = [_stagingArea] call FUNC(getPlayers);
@@ -80,7 +80,7 @@
         [{
             call FUNC(responseMotorInfantryAndHeliPair);
         },300] call cba_fnc_waitAndExecute;
-    };    
+    };
 
     private _group = [_spawnPosition] call EFUNC(airCommander,createGroupAttackHeli);
     GVAR(responseGroups) pushBack _group;

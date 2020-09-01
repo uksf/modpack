@@ -1,6 +1,6 @@
 class CfgFactionClasses {
     class EGVAR(common,eden);
-    class GVAR(aiAirCommander): EGVAR(common,eden){
+    class ADDON: EGVAR(common,eden){
         displayName = "AI Air Commander";
     };
 };

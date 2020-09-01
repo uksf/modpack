@@ -18,7 +18,7 @@ params ["_counterBatteryUnit"];
 if (GVAR(counterInProgress) == 1) exitWith {};
 
 // below moved to preInit
-//if (count (GVAR(groundVehicleTypes) + GVAR(airVehicleTypes) + GVAR(counterBatteryUnits)) == 0) exitWith {diag_log "UKSF: ANTI MORTAR --- No counter units defined, check preInit ---"};
+//if (count (GVAR(groundVehiclePool) + GVAR(airVehiclePool) + GVAR(counterBatteryUnits)) == 0) exitWith {diag_log "UKSF: ANTI MORTAR --- No counter units defined, check preInit ---"};
 
 
 // private _forceChance = 4; // for debug
@@ -28,13 +28,13 @@ private _bluforMortarPos = getPos _counterBatteryUnit;
 GVAR(counterInProgress) = 1; // set in progress to 1 to stop spam missions
 
 // create a motor force
-if (_forceChance > 0 && _forceChance <= 2.5 && (count GVAR(groundVehicleTypes)) != 0) exitWith {
+if (_forceChance > 0 && _forceChance <= 2.5 && (count GVAR(groundVehiclePool)) != 0) exitWith {
     [_bluforMortarPos,1] call FUNC(selectSpawnLocation);
 };
 
 
 // create a heli force
-if (_forceChance > 2.5 && _forceChance <= 5 && (count GVAR(airVehicleTypes)) != 0) exitWith {
+if (_forceChance > 2.5 && _forceChance <= 5 && (count GVAR(airVehiclePool)) != 0) exitWith {
     [_bluforMortarPos,2] call FUNC(selectSpawnLocation);
 };
 

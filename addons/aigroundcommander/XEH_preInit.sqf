@@ -4,23 +4,7 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
-#include "initSettings.sqf"
-
-/*
-    Author:
-        Bridg
-
-    Description:
-        PreInit for:
-            - Init AI Aggression Level <NUMBER>
-            - Add MP Killed EH to units for aggression calc <EH>
-
-    Parameters:
-        None
-
-    Return value:
-        Nothing
-*/
+// #include "initSettings.sqf"
 
 if (!isServer) exitWith {};
 
@@ -42,10 +26,10 @@ if (!isServer) exitWith {};
 GVAR(stagingAreas) = [];
 
 // spawn locations
-GVAR(infantryLocations) = [];
-GVAR(carLocations) = [];
-GVAR(apcLocations) = [];
-GVAR(tankLocations) = [];
+GVAR(infantrySpawns) = [];
+GVAR(carSpawns) = [];
+GVAR(apcSpawns) = [];
+GVAR(tankSpawns) = [];
 
 // unit cap
 GVAR(maxUnitCount) = 80;

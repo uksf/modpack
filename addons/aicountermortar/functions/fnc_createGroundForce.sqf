@@ -8,7 +8,7 @@
 
     Parameters:
         None
-        
+
     Return value:
         Nothing
 */
@@ -20,7 +20,7 @@ params ["_spawnPosition","_bluforMortarPos"];
 
 private _group = createGroup EAST;
 
-private _veh = createVehicle [selectRandom GVAR(groundVehicleTypes), _spawnPosition];
+private _veh = createVehicle [selectRandom GVAR(groundVehiclePool), _spawnPosition];
 _veh setUnloadInCombat [true,true];
 private _unitCount = count(fullCrew[_veh,"",true]);
 private _currentUnitCount = _unitCount;
@@ -39,8 +39,8 @@ _veh addMPEventHandler ["MPHit", {
         [_idPFH] call cba_fnc_removePerFrameHandler;
         if ((count(fullCrew[_veh,"",false]) == 0)) then {deleteVehicle _veh;};
     };
-    private _unit = _group createUnit [selectRandom GVAR(soldierList),getPos _veh,[],2,"NONE"];
-    _unit moveInAny _veh;   
+    private _unit = _group createUnit [selectRandom GVAR(unitPool),getPos _veh,[],2,"NONE"];
+    _unit moveInAny _veh;
 
     _args set [2, _currentUnitCount];
 },0.5,[_spawnPosition,_group,_currentUnitCount,_veh]] call cba_fnc_addPerFramehandler;

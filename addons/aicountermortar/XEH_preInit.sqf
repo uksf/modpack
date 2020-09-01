@@ -4,30 +4,17 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
-#include "initSettings.sqf"
+// #include "initSettings.sqf"
 
-/*
-    Author:
-        Bridg
-
-    Description:
-        creates variables and Fired EH
-
-    Parameters:
-        None
-
-    Return value:
-        Nothing
-*/
-GVAR(groundForceSpawns) = [];
-GVAR(airForceSpawns) = [];
-GVAR(groundVehicleTypes) = [];
-GVAR(airVehicleTypes) = [];
+GVAR(groundSpawns) = [];
+GVAR(airSpawns) = [];
+GVAR(groundVehiclePool) = [];
+GVAR(airVehiclePool) = [];
 GVAR(counterBatteryUnits) = [];
 GVAR(counterInProgress) = 0;
-GVAR(soldierList) = [];
+GVAR(unitPool) = [];
 
-if (count (GVAR(groundVehicleTypes) + GVAR(airVehicleTypes) + GVAR(counterBatteryUnits)) == 0) exitWith {diag_log "UKSF: ANTI MORTAR --- No counter units defined ---"};
+if (count (GVAR(groundVehiclePool) + GVAR(airVehiclePool) + GVAR(counterBatteryUnits)) == 0) exitWith {diag_log "UKSF: ANTI MORTAR --- No counter units defined ---"};
 
 ["UK3CB_BAF_Static_Mortar_Base", "Fired", {
     params ["_unit"];

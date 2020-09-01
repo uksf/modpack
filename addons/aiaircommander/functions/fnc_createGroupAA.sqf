@@ -8,7 +8,7 @@
 
     Parameters:
         None
-        
+
     Return value:
         Nothing
 */
@@ -16,7 +16,7 @@
 params ["_emptyLocation"];
 
 private _cargo = [];
-private _veh = createVehicle [selectRandom EGVAR(gear,gearVehAA), (selectRandom GVAR(aaSpawnLocations))];
+private _veh = createVehicle [selectRandom EGVAR(gear,gearVehAA), (selectRandom GVAR(aaSpawns))];
 private _group = createGroup EAST;
 
 private _vehCrewPositions = count(fullCrew[_veh,"",true]);

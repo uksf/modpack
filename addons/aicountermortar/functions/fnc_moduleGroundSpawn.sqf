@@ -17,5 +17,5 @@
 
 if (!isServer) exitWith {};
 
-GVAR(groundForceSpawns) pushBack _module;
+GVAR(groundSpawns) pushBack _module;
 

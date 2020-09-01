@@ -30,5 +30,5 @@ if (vehicle (leader _group) isKindOf "helicopter") then {
     [_group,_player,20,"MOVE","AWARE","YELLOW","NORMAL","","[vehicle this] call uksf_aiairCommander_fnc_doCAS;"] call cba_fnc_addWaypoint;
 };
 
-private _airSpawn = getPos (selectRandom GVAR(airSpawnLocations));
+private _airSpawn = getPos (selectRandom GVAR(planeSpawns));
 [_group,_airSpawn,50,"MOVE","AWARE","YELLOW","NORMAL","","[this] call uksf_aiairCommander_fnc_handleDelete;"] call cba_fnc_addWaypoint;

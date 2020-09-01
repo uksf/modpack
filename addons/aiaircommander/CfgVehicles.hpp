@@ -3,95 +3,60 @@ class CfgVehicles {
     class Module_F : Logic {
         class AttributesBase;
     };
-    class GVAR(aiAirCommanderModule) : Module_F {
-        scope = 2;
+    class GVAR(module) : Module_F {
+        scope = 1;
         is3DEN = 1;
-        displayName = "Commander Module";
+        functionPriority = 1;
+        category = ADDON;
+    };
+    class GVAR(commanderModule) : GVAR(module) {
+        scope = 2;
+        displayName = "(AC) Commander Module";
         icon = "A3\ui_f\data\map\markers\nato\o_hq.paa";
         portrait = "A3\ui_f\data\map\markers\nato\o_hq.paa";
-        function = QFUNC(moduleAirCommanderInit);
-        functionPriority = 1;
-        canSetArea = 0;
-        canSetAreaHeight = 0;
-        canSetAreaShape = 0;
-        category = GVAR(aiAirCommander);
+        function = QFUNC(moduleCommander);
     };
-    class GVAR(aaSiteModule) : Module_F {
+    class GVAR(airspaceCentreModule) : GVAR(module) {
         scope = 2;
-        is3DEN = 1;
-        displayName = "AA Site";
-        icon = "A3\ui_f\data\map\markers\nato\o_installation.paa";
-        portrait = "A3\ui_f\data\map\markers\nato\o_installation.paa";
-        function = QFUNC(moduleAASite);
-        functionPriority = 1;
-        canSetArea = 0;
-        canSetAreaHeight = 0;
-        canSetAreaShape = 0;
-        category = GVAR(aiAirCommander);
-    };
-    class GVAR(aaSpawnLocationModule) : Module_F {
-        scope = 2;
-        is3DEN = 1;
-        displayName = "AA Spawn Location";
-        icon = "A3\ui_f\data\map\markers\nato\o_antiair.paa";
-        portrait = "A3\ui_f\data\map\markers\nato\o_antiair.paa";
-        function = QFUNC(moduleAASpawnLocation);
-        functionPriority = 1;
-        canSetArea = 0;
-        canSetAreaHeight = 0;
-        canSetAreaShape = 0;
-        category = GVAR(aiAirCommander);
-    };
-    class GVAR(airspaceCentreModule) : Module_F {
-        scope = 2;
-        is3DEN = 1;
-        displayName = "Airspace Centre";
+        displayName = "(AC) Airspace Centre";
         icon = "A3\modules_f\data\iconmodule_ca.paa";
         portrait = "A3\modules_f\data\iconmodule_ca.paa";
         function = QFUNC(moduleAirspaceCentre);
-        functionPriority = 1;
-        canSetArea = 0;
-        canSetAreaHeight = 0;
-        canSetAreaShape = 0;
-        category = GVAR(aiAirCommander);
     };
-    class GVAR(airSpawnLocationModule) : Module_F {
+    class GVAR(enemyAirfieldModule) : GVAR(module) {
         scope = 2;
         is3DEN = 1;
-        displayName = "Air Spawn Location";
-        icon = "A3\ui_f\data\map\markers\nato\o_plane.paa";
-        portrait = "A3\ui_f\data\map\markers\nato\o_plane.paa";
-        function = QFUNC(moduleAirSpawnLocation);
-        functionPriority = 1;
-        canSetArea = 0;
-        canSetAreaHeight = 0;
-        canSetAreaShape = 0;
-        category = GVAR(aiAirCommander);
-    };
-    class GVAR(enemyAirfieldModule) : Module_F {
-        scope = 2;
-        is3DEN = 1;
-        displayName = "Enemy Airfield";
+        displayName = "(AC) Enemy Airfield";
         icon = "A3\ui_f\data\map\markers\nato\o_service.paa";
         portrait = "A3\ui_f\data\map\markers\nato\o_service.paa";
         function = QFUNC(moduleEnemyAirfield);
-        functionPriority = 1;
-        canSetArea = 0;
-        canSetAreaHeight = 0;
-        canSetAreaShape = 0;
-        category = GVAR(aiAirCommander);
     };
-    class GVAR(heliLocationModule) : Module_F {
+    class GVAR(planeSpawnModule) : GVAR(module) {
         scope = 2;
-        is3DEN = 1;
-        displayName = "Helicopter Spawn Location";
+        displayName = "(AC) Plane Spawn";
+        icon = "A3\ui_f\data\map\markers\nato\o_plane.paa";
+        portrait = "A3\ui_f\data\map\markers\nato\o_plane.paa";
+        function = QFUNC(modulePlaneSpawn);
+    };
+    class GVAR(heliSpawnModule) : GVAR(module) {
+        scope = 2;
+        displayName = "(AC) Helicopter Spawn";
         icon = "A3\ui_f\data\map\markers\nato\o_air.paa";
         portrait = "A3\ui_f\data\map\markers\nato\o_air.paa";
-        function = QFUNC(moduleHeliLocation);
-        functionPriority = 1;
-        canSetArea = 0;
-        canSetAreaHeight = 0;
-        canSetAreaShape = 0;
-        category = GVAR(aiAirCommander);
+        function = QFUNC(moduleHeliSpawn);
+    };
+    class GVAR(aaSiteModule) : GVAR(module) {
+        scope = 2;
+        displayName = "(AC) AA Site";
+        icon = "A3\ui_f\data\map\markers\nato\o_installation.paa";
+        portrait = "A3\ui_f\data\map\markers\nato\o_installation.paa";
+        function = QFUNC(moduleAASite);
+    };
+    class GVAR(aaSpawnModule) : GVAR(module) {
+        scope = 2;
+        displayName = "(AC) AA Spawn";
+        icon = "A3\ui_f\data\map\markers\nato\o_antiair.paa";
+        portrait = "A3\ui_f\data\map\markers\nato\o_antiair.paa";
+        function = QFUNC(moduleAASpawn);
     };
 };

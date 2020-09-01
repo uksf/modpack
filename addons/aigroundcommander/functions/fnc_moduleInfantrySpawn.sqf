@@ -8,11 +8,11 @@
 
     Parameters:
         0: module <OBJECT>
-        
+
     Return value:
         Nothing
 */
 
 (_this select 1) params ["_module"];
 
-GVAR(carLocations) pushBack _module;
+GVAR(infantrySpawns) pushBack _module;

@@ -8,11 +8,11 @@
 
     Parameters:
         0: module <OBJECT>
-        
+
     Return value:
         Nothing
 */
 
 (_this select 1) params ["_module"];
 
-GVAR(heliLocations) pushBack _module;
+GVAR(planeSpawns) pushBack _module;
