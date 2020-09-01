@@ -12,7 +12,6 @@
     Return value:
         Nothing
 */
-
 (_this select 1) params ["_module"];
 
 GVAR(planeSpawns) pushBack _module;

@@ -4,28 +4,15 @@
         Bridg
 
     Description:
-        Delete the AI that are finished with, usually called from last waypoint. 
-        Currently only used for infantry and ground vehicles
+        Delete the AI and vehicles that have finished their task
 
     Parameters:
-        0: _leader <OBJECT>
-        
+        0: Group leader <OBJECT>
+
     Return value:
         Nothing
 */
-
 params ["_leader"];
 
-GVAR(responseGroups) deleteAt (GVAR(responseGroups) find (group _leader));
-
-private _groupUnitCount = count (units group _leader);
-GVAR(currentUnitCount) = GVAR(currentUnitCount) - _groupUnitCount;
-
-if ((vehicle _leader) isKindOf "MAN") exitWith {
-    {deleteVehicle _x} forEach units (group _leader);
-};
-
-deleteVehicle (vehicle _leader);
-{deleteVehicle _x} forEach units (group _leader);
-
-GVAR(numberOfStayBehindGroups) = 1;
+(_leader getVariable [QEGVAR(common,assignedVehicle), objNull]) call CBA_fnc_deleteEntity;
+(group _leader) call CBA_fnc_deleteEntity;

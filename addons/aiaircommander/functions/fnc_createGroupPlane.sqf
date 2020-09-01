@@ -7,33 +7,20 @@
         Create a jet
 
     Parameters:
-        0: _responseType <NUMBER>
+        0: Callback <CODE> (Optional)
 
     Return value:
         Nothing
 */
+params [["_callback", {}, [{}]]];
 
-// Plane
+[selectRandom GVAR(planeSpawns), 1, 0, EAST, EGVAR(gear,gearJetPilot), EGVAR(gear,gearPlane), {
+    params ["_vehicle", "_turrets"];
 
-private _cargo = [];
+    (_vehicle emptyPositions "driver") + count _turrets
+}, {
+    params ["_callback", "_group"];
 
-private _veh = createVehicle [selectRandom EGVAR(gear,gearPlane), (selectRandom GVAR(planeSpawns))];
-private _group = createGroup EAST;
-
-private _vehPosition = count(fullCrew[_veh,"",true]);
-for "_i" from 1 to _vehPosition do {
-    _cargo pushBack (selectRandom EGVAR(gear,gearJetPilot));
-};
-
-private _crew = [[0,0,0],EAST,_cargo] call BIS_fnc_spawnGroup;
-
-{_x moveInAny _veh; [_x] joinSilent _group} forEach units _crew;
-
-// [_group] call EFUNC(gear,addGear);
-
-// EGVAR(resupply,vehPoolCurrent) = EGVAR(resupply,vehPoolCurrent) - 1;
-
-_group
-
-
-
+    (vehicle leader _group) flyInHeight 300;
+    [_group] call _callback;
+}, [_callback]] call EFUNC(common,spawnGroup);

@@ -21,6 +21,6 @@ if (count (GVAR(groundVehiclePool) + GVAR(airVehiclePool) + GVAR(counterBatteryU
     if (isServer) then {
         [_unit] call FUNC(selectResponse);
     };
-}] call cba_fnc_addClassEventHandler;
+}] call CBA_fnc_addClassEventHandler;
 
 ADDON = true;

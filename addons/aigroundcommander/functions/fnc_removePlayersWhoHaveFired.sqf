@@ -21,4 +21,4 @@ if (!isServer) exitWith {};
     params ["_time"];
     GVAR(playersThatHaveFired) = (GVAR(playersThatHaveFired) select {_time < ((_x#1) + 600}));
     call FUNC(removePlayersWhoHaveFired);
-},[time],600] call cba_fnc_waitandexecute;
+},[time],600] call CBA_fnc_waitandexecute;

@@ -8,7 +8,7 @@
 
     Parameters:
         None.
-        
+
     Return value:
         Nothing
 */
@@ -27,10 +27,10 @@ private _safeSpawn = _spawnPosition getPos [10,random 360];
     _currentUnitCount = _currentUnitCount - 1;
 
     if (_currentUnitCount == 0 || (GVAR(currentUnitCount) >= GVAR(maxUnitcount))) exitWith {
-        [_idPFH] call cba_fnc_removePerFrameHandler;
+        [_idPFH] call CBA_fnc_removePerFrameHandler;
     };
     private _unit = _group createUnit [selectRandom EGVAR(gear,gearSoldier),_safeSpawn,[],2,"NONE"];
-    GVAR(currentUnitCount) = GVAR(currentUnitCount) + 1;   
+    GVAR(currentUnitCount) = GVAR(currentUnitCount) + 1;
 
     _unit addMPEventHandler ["MPKilled", {
        GVAR(currentUnitCount) = GVAR(currentUnitCount) - 1;
@@ -41,6 +41,6 @@ private _safeSpawn = _spawnPosition getPos [10,random 360];
     }];
 
     _args set [2, _currentUnitCount];
-},2,[_safeSpawn,_group,_currentUnitCount]] call cba_fnc_addPerFramehandler;
+},2,[_safeSpawn,_group,_currentUnitCount]] call CBA_fnc_addPerFramehandler;
 
 _group

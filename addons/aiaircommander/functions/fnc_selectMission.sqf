@@ -7,47 +7,33 @@
         Select mission to run based on RNG
 
     Parameters:
-        None.
+        None
 
     Return value:
         Nothing
 */
-
-// for debug
-//private _chance = 6;
-//private _aircraftChance = 6;
-
-
-
 private _chance = random 10;
 private _aircraftChance = random 10;
-
-
 
 // CAP
 if (_chance <= 5) exitWith {
     if (_aircraftChance <= 5) then {
-        private _group = call FUNC(createGroupPlane);
-        [_group] call FUNC(CAP);
+        [{call FUNC(CAP)}] call FUNC(createGroupPlane);
     } else {
-        private _group = call FUNC(createGroupAttackHeli);
-        [_group] call FUNC(CAP);
+        [{call FUNC(CAP)}] call FUNC(createGroupAttackHeli);
     };
 };
 
 // CAS
-if ((_chance > 5) && (_chance <= 8) && (EGVAR(aigroundCommander,enemyAggressionLevel) >= 80)) exitWith {
+if ((_chance > 5) && (_chance <= 8) && (EGVAR(aigroundcommander,enemyAggressionLevel) >= 80)) exitWith {
     if (_aircraftChance <= 5) then {
-        private _group = call FUNC(createGroupPlane);
-        [_group] call FUNC(CAS);
+        [{call FUNC(CAS)}] call FUNC(createGroupPlane);
     } else {
-        private _group = call FUNC(createGroupAttackHeli);
-        [_group] call FUNC(CAS);
+        [{call FUNC(CAS)}] call FUNC(createGroupAttackHeli);
     };
 };
 
 // SEAD
 if (_chance > 8) exitWith {
-    private _group = call FUNC(createGroupPlane);
-    [_group] call FUNC(SEAD);
+    [{call FUNC(SEAD)}] call FUNC(createGroupPlane);
 };

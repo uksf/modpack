@@ -8,17 +8,12 @@
 
     Parameters:
         None
-        
+
     Return value:
         Nothing
 */
-
-// to find if alive instead of in area
-private _emptyaaSites = GVAR(aaSites) select {(_x nearEntities ["LandVehicle", 200]) isEqualTo []}; // AA vehicle class name needs changing
+private _emptyAASites = GVAR(aaSites) select {(_x nearEntities ["LandVehicle", 200]) isEqualTo []}; // TODO: Find if alive instead of in area
 
 {
-    [{
-        params ["_x"];
-        [_x] call FUNC(createGroupAA);
-    },_x,random [10,15,20]] call cba_fnc_waitAndExecute;
-} forEach _emptyaaSites;
+    [{call FUNC(createGroupAA)}, _x, (5 * _forEachIndex) + 5] call CBA_fnc_waitAndExecute;
+} forEach _emptyAASites;

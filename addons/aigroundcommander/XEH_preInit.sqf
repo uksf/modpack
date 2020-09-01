@@ -21,7 +21,7 @@ if (!isServer) exitWith {};
                 GVAR(playersThatHaveFired) pushBack _instigator;
             };
         };
-}]}] call cba_fnc_addClassEventHandler;
+}]}] call CBA_fnc_addClassEventHandler;
 
 GVAR(stagingAreas) = [];
 

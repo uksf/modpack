@@ -30,7 +30,7 @@
     };
 
     private _spawnPosition = (GVAR(apcSpawns) select _spawnLocation);
-    [GVAR(apcSpawns), true] call cba_fnc_shuffle;
+    [GVAR(apcSpawns), true] call CBA_fnc_shuffle;
 
     private _stagingArea = [_spawnPosition] call FUNC(getStagingAreas);
     private _player = [_stagingArea] call FUNC(getPlayers);
@@ -39,7 +39,7 @@
         [_idPFH] call CBA_fnc_removePerFrameHandler;
         [{
             call FUNC(responseTankAndAPC);
-        },300] call cba_fnc_waitAndExecute;
+        },300] call CBA_fnc_waitAndExecute;
     };
 
     private _group = [_spawnPosition, {
@@ -71,7 +71,7 @@
     };
 
     private _spawnPosition = (GVAR(tankSpawns) select _spawnLocation);
-    [GVAR(tankSpawns), true] call cba_fnc_shuffle;
+    [GVAR(tankSpawns), true] call CBA_fnc_shuffle;
 
     private _stagingArea = [_spawnPosition] call FUNC(getStagingAreas);
     private _player = [_stagingArea] call FUNC(getPlayers);
@@ -80,7 +80,7 @@
         [_idPFH] call CBA_fnc_removePerFrameHandler;
         [{
             call FUNC(responseTankAndAPC);
-        },300] call cba_fnc_waitAndExecute;
+        },300] call CBA_fnc_waitAndExecute;
     };
 
     private _group = [_spawnPosition, {

@@ -8,7 +8,7 @@
 
     Parameters:
         0: Group <GROUP>
-        
+
     Return value:
         Nothing
 */
@@ -24,11 +24,11 @@ if (GVAR(numberOfStayBehindGroups) > 0) then {
 };
 
 if (_group getVariable [QGVAR(isStayBehindGroup),false]) then {
-    [_group,(getPos (leader _group)), 300, 7,"MOVE","SAFE"] call cba_fnc_taskPatrol;
+    [_group,(getPos (leader _group)), 300, 7,"MOVE","SAFE"] call CBA_fnc_taskPatrol;
     deleteVehicle (vehicle (leader _group));
 } else {
-    [_group,(getPos (assignedVehicle (leader _group))),0,"GETIN","AWARE","YELLOW","NORMAL"] call cba_fnc_addWaypoint;
-    [_group,(_group getVariable [QGVAR(spawnPosition),[0,0,0]]),50,"MOVE","AWARE","YELLOW","FULL","FILE","[this] call uksf_aigroundCommander_fnc_handleDelete"] call cba_fnc_addWaypoint;
+    [_group,(getPos (assignedVehicle (leader _group))),0,"GETIN","AWARE","YELLOW","NORMAL"] call CBA_fnc_addWaypoint;
+    [_group,(_group getVariable [QGVAR(spawnPosition),[0,0,0]]),50,"MOVE","AWARE","YELLOW","FULL","FILE","[this] call uksf_aigroundCommander_fnc_handleDelete"] call CBA_fnc_addWaypoint;
 };
 
 

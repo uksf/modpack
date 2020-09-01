@@ -4,11 +4,10 @@
         Bridg
 
     Description:
-        Init for air commander:
-            - Inits PFH for missions
+        Init pfh for air commander
 
     Parameters:
-        None.
+        None
 
     Return value:
         Nothing
@@ -16,12 +15,13 @@
 
 if (!isServer) exitWith {};
 
-// mission PFH
 [{
-    params ["_args","_idPFH"];
+    params ["_args", "_idPFH"];
+
     if (!alive atc) then {
-        [_idPFH] call cba_fnc_removePerFrameHandler;
+        [_idPFH] call CBA_fnc_removePerFrameHandler;
     };
+
     call FUNC(selectMission);
     call FUNC(checkAA);
-},1200]call cba_fnc_addPerFrameHandler;
+},1200]call CBA_fnc_addPerFrameHandler;

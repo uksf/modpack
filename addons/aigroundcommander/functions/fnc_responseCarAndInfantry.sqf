@@ -29,7 +29,7 @@
     };
 
     private _spawnPosition = (GVAR(carSpawns) select _spawnLocation);
-    [GVAR(carSpawns), true] call cba_fnc_shuffle;
+    [GVAR(carSpawns), true] call CBA_fnc_shuffle;
 
     private _stagingArea = [_spawnPosition] call FUNC(getStagingAreas);
     private _player = [_stagingArea] call FUNC(getPlayers);
@@ -38,7 +38,7 @@
         [_idPFH] call CBA_fnc_removePerFrameHandler;
         [{
             call FUNC(responseCarAndInfantry);
-        },300] call cba_fnc_waitAndExecute;
+        },300] call CBA_fnc_waitAndExecute;
     };
 
     private _group = [_spawnPosition, {
@@ -69,7 +69,7 @@
     };
 
     private _spawnPosition = (GVAR(infantrySpawns) select _spawnLocation);
-    [GVAR(infantrySpawns), true] call cba_fnc_shuffle;
+    [GVAR(infantrySpawns), true] call CBA_fnc_shuffle;
 
     private _stagingArea = [_spawnPosition] call FUNC(getStagingAreas);
     private _player = [_stagingArea] call FUNC(getPlayers);
@@ -78,7 +78,7 @@
         [_idPFH] call CBA_fnc_removePerFrameHandler;
         [{
             call FUNC(responseCarAndInfantry);
-        },300] call cba_fnc_waitAndExecute;
+        },300] call CBA_fnc_waitAndExecute;
     };
 
     private _group = [_spawnPosition] call FUNC(createGroupInfantry);

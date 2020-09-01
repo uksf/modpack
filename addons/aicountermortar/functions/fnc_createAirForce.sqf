@@ -28,7 +28,7 @@ private _currentUnitCount = _unitCount;
 _veh addMPEventHandler ["MPHit", {
     [{
         GVAR(counterInProgress) = 0;
-    },[],900] call cba_fnc_waitAndExecute; // 15 minute wait time between tasks so mortars dont get spammed each time they fire
+    },[],900] call CBA_fnc_waitAndExecute; // 15 minute wait time between tasks so mortars dont get spammed each time they fire
 }];
 
 [{
@@ -36,7 +36,7 @@ _veh addMPEventHandler ["MPHit", {
     _args params ["_spawnPosition","_pilotGroup","_currentUnitCount","_veh","_bluforMortarPos","_passengerGroup"];
     _currentUnitCount = _currentUnitCount - 1;
     if (_currentUnitCount == 0) exitWith {
-        [_idPFH] call cba_fnc_removePerFrameHandler;
+        [_idPFH] call CBA_fnc_removePerFrameHandler;
         if ((count(fullCrew[_veh,"",false]) == 0)) then {deleteVehicle _veh;};
         // seperate passenger group from initial _pilotGroup
         {
@@ -49,4 +49,4 @@ _veh addMPEventHandler ["MPHit", {
     _unit moveInAny _veh;
 
     _args set [2, _currentUnitCount];
-},0.5,[_spawnPosition,_pilotGroup,_currentUnitCount,_veh,_bluforMortarPos,_passengerGroup]] call cba_fnc_addPerFramehandler;
+},0.5,[_spawnPosition,_pilotGroup,_currentUnitCount,_veh,_bluforMortarPos,_passengerGroup]] call CBA_fnc_addPerFramehandler;

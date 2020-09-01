@@ -8,7 +8,7 @@
 
     Parameters:
         None
-        
+
     Return value:
         Nothing
 */
@@ -21,4 +21,4 @@ params ["_bluforMortarPos","_counterBatteryUnit"];
 
 [{
     GVAR(counterInProgress) = 0;
-},[],1200] call cba_fnc_waitAndExecute;
+},[],1200] call CBA_fnc_waitAndExecute;
