@@ -202,7 +202,6 @@ class CfgVehicles {
             class MainTurret : MainTurret {
 #include "MFDGunner.hpp"
                 turretInfoType = "RscOptics_GENERAL_FLIR";
-                ace_hellfire_addLaserDesignator = 1;
                 discretedistance[] = { 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000 };
                 discretedistanceinitindex = 4;
                 initElev = 0;
