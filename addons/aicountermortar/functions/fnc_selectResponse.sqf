@@ -4,46 +4,39 @@
         Bridg
 
     Description:
-        selects response between air units, ground units and counter battery
+        Selects response to unit firing a mortar between air units, ground units and counter battery
 
     Parameters:
-        0: _counterBatteryUnit <OBJECT>
+        0: Unit who fired a mortar <OBJECT>
 
     Return value:
         Nothing
 */
-
 params ["_counterBatteryUnit"];
 
-if (GVAR(counterInProgress) == 1) exitWith {};
+if (GVAR(counterInProgress)) exitWith {};
 
-// below moved to preInit
-//if (count (GVAR(groundVehiclePool) + GVAR(airVehiclePool) + GVAR(counterBatteryUnits)) == 0) exitWith {diag_log "UKSF: ANTI MORTAR --- No counter units defined, check preInit ---"};
-
+GVAR(counterInProgress) = true;
 
 // private _forceChance = 4; // for debug
 private _forceChance = random 10;
-private _bluforMortarPos = getPos _counterBatteryUnit;
-
-GVAR(counterInProgress) = 1; // set in progress to 1 to stop spam missions
+private _mortarPosition = getPos _counterBatteryUnit;
 
 // create a motor force
-if (_forceChance > 0 && _forceChance <= 2.5 && (count GVAR(groundVehiclePool)) != 0) exitWith {
-    [_bluforMortarPos,1] call FUNC(selectSpawnLocation);
+if (_forceChance <= 2.5 && !(GVAR(groundVehiclePool) isEqualTo [])) exitWith {
+    [_mortarPosition, 1] call FUNC(selectSpawnLocation);
 };
-
 
 // create a heli force
-if (_forceChance > 2.5 && _forceChance <= 5 && (count GVAR(airVehiclePool)) != 0) exitWith {
-    [_bluforMortarPos,2] call FUNC(selectSpawnLocation);
+if (_forceChance > 2.5 && _forceChance <= 5 && !(GVAR(airVehiclePool) isEqualTo [])) exitWith {
+    [_mortarPosition, 2] call FUNC(selectSpawnLocation);
 };
 
-
 // counter battery
-if (_forceChance > 5 && _forceChance <= 10  && (count GVAR(counterBatteryUnits)) != 0) exitWith {
-    private _index = GVAR(counterBatteryUnits) findIf {_bluforMortarPos inRangeOfArtillery [[_x], currentMagazine _x];};
-    if (_index > -1) then {
-        private _counterBatteryUnit = GVAR(counterBatteryUnits) select _index;
-        [_bluforMortarPos,_counterBatteryUnit] call FUNC(counterBattery);
+if (_forceChance > 5  && !(GVAR(counterBatteryUnits) isEqualTo [])) exitWith {
+    private _inRangeUnits = GVAR(counterBatteryUnits) select {_mortarPosition inRangeOfArtillery [[_x], currentMagazine _x]};
+    if !(_inRangeUnits isEqualTo []) then {
+        private _counterBatteryUnit = selectRandom _inRangeUnits;
+        [_mortarPosition, _counterBatteryUnit] call FUNC(counterBattery);
     };
 };

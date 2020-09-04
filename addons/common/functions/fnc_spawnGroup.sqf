@@ -15,7 +15,7 @@
         4: Unit classname pool <ARRAY>
         5: Vehicle classname pool <ARRAY>
         6: Code to resolve vehicle crew count (Args passed: [_vehicle, _turrets]) <CODE> (Optional)
-        7: Callback once spawning complete <CODE> (Optional)
+        7: Callback once spawning complete (Args passed: [callback args, _group, (_vehicle)]) <CODE> (Optional)
         8: Callback arguments <ARRAY> (Optional)
 
     Return value:
@@ -74,6 +74,7 @@ if (_count == -1) then {
         if (_allSpawned) then {
             _group selectLeader (commander _vehicle);
             _callbackArgs pushBack _group;
+            _callbackArgs pushBack _vehicle;
             _callbackArgs call _callback;
         };
     };

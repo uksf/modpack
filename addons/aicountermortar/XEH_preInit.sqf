@@ -8,19 +8,10 @@ ADDON = false;
 
 GVAR(groundSpawns) = [];
 GVAR(airSpawns) = [];
+GVAR(unitPool) = [];
 GVAR(groundVehiclePool) = [];
 GVAR(airVehiclePool) = [];
 GVAR(counterBatteryUnits) = [];
-GVAR(counterInProgress) = 0;
-GVAR(unitPool) = [];
-
-if (count (GVAR(groundVehiclePool) + GVAR(airVehiclePool) + GVAR(counterBatteryUnits)) == 0) exitWith {diag_log "UKSF: ANTI MORTAR --- No counter units defined ---"};
-
-["UK3CB_BAF_Static_Mortar_Base", "Fired", {
-    params ["_unit"];
-    if (isServer) then {
-        [_unit] call FUNC(selectResponse);
-    };
-}] call CBA_fnc_addClassEventHandler;
+GVAR(counterInProgress) = false;
 
 ADDON = true;

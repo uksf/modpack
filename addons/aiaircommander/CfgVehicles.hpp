@@ -1,13 +1,11 @@
 class CfgVehicles {
-    class Logic;
-    class Module_F : Logic {
-        class AttributesBase;
-    };
+    class Module_F;
     class GVAR(module) : Module_F {
         scope = 1;
         is3DEN = 1;
         functionPriority = 1;
         category = ADDON;
+        class AttributesBase;
     };
     class GVAR(commanderModule) : GVAR(module) {
         scope = 2;

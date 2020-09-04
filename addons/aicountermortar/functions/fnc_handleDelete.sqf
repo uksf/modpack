@@ -4,22 +4,23 @@
         Bridg
 
     Description:
-        Delete the AI that are finished with, usually called from last waypoint. 
-        Currently only used for infantry and ground vehicles
+        Delete the AI and vehicles that have finished their task
+        Also resets the in progress state to false
 
     Parameters:
-        0: _leader <OBJECT>
-        
+        0: Group leader <OBJECT>
+
     Return value:
         Nothing
 */
-
 params ["_leader"];
 
+// TODO: Change this to use a common component for spawned AI deletion
 
-if (vehicle _leader isKindOf "MAN") exitWith {
-    {deleteVehicle _x} forEach units (group _leader);
-};
+(_leader getVariable [QEGVAR(common,assignedVehicle), objNull]) call CBA_fnc_deleteEntity;
+(group _leader) call CBA_fnc_deleteEntity;
 
-deleteVehicle (vehicle _leader);
-{deleteVehicle _x} forEach units (group _leader);
+// MPHit is a risky method as it could never fire so the in progress sate would never reset, this has been added to supplement it for now.
+// This guarantees that the state will reset after the in progress group have finished their task if they aren't killed
+// There are still edge cases where the state may never be reset
+[{GVAR(counterInProgress) = false}, [], 900] call CBA_fnc_waitAndExecute; // Reset in progress state after 15 minutes

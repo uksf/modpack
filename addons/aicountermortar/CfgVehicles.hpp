@@ -1,13 +1,11 @@
 class CfgVehicles {
-    class Logic;
-    class Module_F : Logic {
-        class AttributesBase;
-    };
+    class Module_F;
     class GVAR(module) : Module_F {
         scope = 1;
         is3DEN = 1;
         functionPriority = 1;
         category = ADDON;
+        class AttributesBase;
     };
     class GVAR(counterBatteryUnitsModule) : GVAR(module) {
         scope = 2;
@@ -40,7 +38,7 @@ class CfgVehicles {
             class GVAR(unitPoolString) {
                 property = QGVAR(unitPoolString);
                 displayName = "Unit Pool";
-                tooltip = "Class names of units that can spawn for counter-mortar groups. Comma-separated list of class names in single quotes, no spaces";
+                tooltip = "Class names of units to spawn for counter-mortar groups. Comma-separated list of class names in single quotes, no spaces";
                 control = "Edit";
                 defaultValue = "[]";
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(unitPoolString),_value,true)]);
@@ -48,7 +46,7 @@ class CfgVehicles {
             class GVAR(groundVehiclePoolString) {
                 property = QGVAR(groundVehiclePoolString);
                 displayName = "Ground Vehicle Pool";
-                tooltip = "Class names of ground vehicles that will be created for counter-mortar. Comma-separated list of class names in single quotes, no spaces";
+                tooltip = "Class names of ground vehicles used to counter player mortars. Comma-separated list of class names in single quotes, no spaces";
                 control = "Edit";
                 defaultValue = "[]";
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(groundVehiclePoolString),_value,true)]);
@@ -56,7 +54,7 @@ class CfgVehicles {
             class GVAR(airVehiclePoolString) {
                 property = QGVAR(airVehiclePoolString);
                 displayName = "Air Vehicle Pool";
-                tooltip = "Class names of air vehicles that will be created for counter-mortar. Comma-separated list of class names in single quotes, no spaces";
+                tooltip = "Class names of air vehicles used to counter player mortars. Comma-separated list of class names in single quotes, no spaces";
                 control = "Edit";
                 defaultValue = "[]";
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(airVehiclePoolString),_value,true)]);

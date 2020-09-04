@@ -4,45 +4,24 @@
         Bridg
 
     Description:
-        creates ground hunter force type, uses re-gear script units so must have re-gear script in place
+        Creates ground hunter force type
 
     Parameters:
-        None
+        0: Spawn position <ARRAY>
+        1: Mortar position <ARRAY>
 
     Return value:
         Nothing
 */
+params ["_spawnPosition", "_mortarPosition"];
 
-if (!isServer) exitWith {};
+[_spawnPosition, 1, 0, EAST, GVAR(unitPool), GVAR(groundVehiclePool), {-1}, {
+    params ["_mortarPosition", "_group", "_vehicle"];
 
+    _vehicle setUnloadInCombat [true, true];
+    [_group, _mortarPosition] call FUNC(assignWaypoints);
 
-params ["_spawnPosition","_bluforMortarPos"];
-
-private _group = createGroup EAST;
-
-private _veh = createVehicle [selectRandom GVAR(groundVehiclePool), _spawnPosition];
-_veh setUnloadInCombat [true,true];
-private _unitCount = count(fullCrew[_veh,"",true]);
-private _currentUnitCount = _unitCount;
-
-_veh addMPEventHandler ["MPHit", {
-    [{
-        GVAR(counterInProgress) = 0;
-    },[],900] call CBA_fnc_waitAndExecute; // 15 minute wait time between tasks so mortars dont get spammed each time they fire
-}];
-
-[{
-    params ["_args","_idPFH"];
-    _args params ["_spawnPosition","_group","_currentUnitCount","_veh"];
-    _currentUnitCount = _currentUnitCount - 1;
-    if (_currentUnitCount == 0) exitWith {
-        [_idPFH] call CBA_fnc_removePerFrameHandler;
-        if ((count(fullCrew[_veh,"",false]) == 0)) then {deleteVehicle _veh;};
-    };
-    private _unit = _group createUnit [selectRandom GVAR(unitPool),getPos _veh,[],2,"NONE"];
-    _unit moveInAny _veh;
-
-    _args set [2, _currentUnitCount];
-},0.5,[_spawnPosition,_group,_currentUnitCount,_veh]] call CBA_fnc_addPerFramehandler;
-
-[_group,_bluforMortarPos] call FUNC(assignWaypoints);
+    _vehicle addMPEventHandler ["MPHit", {
+        [{GVAR(counterInProgress) = 0}, [], 900] call CBA_fnc_waitAndExecute; // 15 minute wait time between tasks so mortars dont get spammed each time they fire
+    }];
+}, [_mortarPosition]] call EFUNC(common,spawnGroup);

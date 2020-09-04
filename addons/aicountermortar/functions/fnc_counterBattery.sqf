@@ -4,21 +4,16 @@
         Bridg
 
     Description:
-        sets up and executes counter battery fire
+        Sets up and executes counter battery fire
 
     Parameters:
-        None
+        0: Mortar position <ARRAY>
+        1: Counter battery unit <ARRAY>
 
     Return value:
         Nothing
 */
+params ["_mortarPosition", "_counterBatteryUnit"];
 
-if (!isServer) exitWith {};
-
-params ["_bluforMortarPos","_counterBatteryUnit"];
-
-[_counterBatteryUnit,_counterBatteryUnit,_bluforMortarPos] call EFUNC(mission,fireMission);
-
-[{
-    GVAR(counterInProgress) = 0;
-},[],1200] call CBA_fnc_waitAndExecute;
+[QEGVAR(mission,fireMission), [_counterBatteryUnit, _counterBatteryUnit, _mortarPosition], gunner _counterBatteryUnit] call CBA_fnc_targetEvent;
+[{GVAR(counterInProgress) = false}, [], 1200] call CBA_fnc_waitAndExecute;
