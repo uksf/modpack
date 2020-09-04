@@ -25,4 +25,4 @@ if !(GVAR(stayBehindGroupSelected)) exitWith {
 };
 
 [_group, (getPos (assignedVehicle _leader)), 0, "GETIN", "AWARE", "YELLOW", "NORMAL"] call CBA_fnc_addWaypoint;
-[_group, (_group getVariable [QGVAR(spawnPosition), getPos _leader]), 50, "MOVE", "AWARE", "YELLOW", "FULL", "FILE", QUOTE((group this) setVariable [ARR_2(QQGVAR(hasFinishedTask),false)])] call CBA_fnc_addWaypoint;
+[_group, (_group getVariable [QGVAR(spawnPosition), getPos _leader]), 50, "MOVE", "AWARE", "YELLOW", "FULL", "FILE", QUOTE((group this) setVariable [ARR_2(QQGVAR(hasFinishedTask),true)])] call CBA_fnc_addWaypoint;

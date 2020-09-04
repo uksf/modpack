@@ -21,9 +21,11 @@ private _groupsToDelete = GVAR(responseGroups) select {
     isNull _x
     || {
         _x getVariable [QGVAR(hasFinishedTask), false]
-        && {!([getPosATL (leader _x), _distance * 2] call EFUNC(common,anyNearPlayers))}
+        && {!([getPosATL (leader _x), 1000] call EFUNC(common,anyNearPlayers))}
     }
+    || {!([getPosATL (leader _x), 3000] call EFUNC(common,anyNearPlayers))}
 };
+// TODO: Make these distances settings (part of common component, might need to register custom conditions for each group, or a handler for each component)
 
 {
     GVAR(responseGroups) deleteAt (GVAR(responseGroups) find _x);

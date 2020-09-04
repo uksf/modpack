@@ -75,8 +75,8 @@ if (_chance <= 5) then {
             params ["", "", "", "", "_group"];
 
             GVAR(responseGroups) pushBack _group;
-            call FUNC(addWaypointsTpt);
-        }, [_spawnPosition, _stagingArea, _player, _numberOfResponseGroupsToBeSpawned]] call FUNC(createGroupCarTpt);
+            call FUNC(addWaypointsTransport);
+        }, [_spawnPosition, _stagingArea, _player, _numberOfResponseGroupsToBeSpawned]] call FUNC(createGroupCarTransport);
 
         _args set [0, _groupCount - 1];
     }, 15, [2, 2]] call CBA_fnc_addPerFrameHandler;

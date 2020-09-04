@@ -1,10 +1,10 @@
 PREP(addWaypoints);
-PREP(addWaypointsTpt);
+PREP(addWaypointsTransport);
 PREP(cleanup);
 PREP(createGroupAPC);
 PREP(createGroupAttackHeli);
 PREP(createGroupCar);
-PREP(createGroupCarTpt);
+PREP(createGroupCarTransport);
 PREP(createGroupInfantry);
 PREP(createGroupTank);
 PREP(getPlayer);
@@ -23,5 +23,3 @@ PREP(responseTankAndAPC);
 PREP(selectResponse);
 PREP(selectStayBehindForce);
 PREP(unloadTransport);
-
-// TODO: Rename tpt

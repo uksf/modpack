@@ -29,7 +29,7 @@ if ((vehicle (leader _group)) isKindOf "helicopter") exitWith {
     [_group, _player, 100, "SAD", "COMBAT", "AWARE", "YELLOW", "NORMAL"] call CBA_fnc_addWaypoint;
     [_group, _player, 300, "SAD", "COMBAT", "AWARE", "YELLOW", "NORMAL", QUOTE((vehicle this) flyInHeight 100)] call CBA_fnc_addWaypoint;
     [_group, _spawnPosition, 50, "MOVE", "AWARE", "YELLOW", "FULL", "FILE", QUOTE((vehicle this) land 'LAND')] call CBA_fnc_addWaypoint;
-    [_group, _spawnPosition, 1, "MOVE", "AWARE", "YELLOW", "FULL", "FILE", QUOTE((group this) setVariable [ARR_2(QQGVAR(hasFinishedTask),false)])] call CBA_fnc_addWaypoint;
+    [_group, _spawnPosition, 1, "MOVE", "AWARE", "YELLOW", "FULL", "FILE", QUOTE((group this) setVariable [ARR_2(QQGVAR(hasFinishedTask),true)])] call CBA_fnc_addWaypoint;
 };
 
 [{
