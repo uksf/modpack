@@ -14,32 +14,15 @@
 */
 params ["_group"];
 
-if (!local (leader _group)) exitWith {};
+if !(local _group) exitWith {};
 
-if (GVAR(numberOfStayBehindGroups) > 0) then {
-    private _stayBehindGroup = selectRandom GVAR(responseGroups);
-    _stayBehindGroup setVariable [QGVAR(isStayBehindGroup),true,true];
-    GVAR(responseGroups) deleteAt (GVAR(responseGroups) find _stayBehindGroup);
-    GVAR(numberOfStayBehindGroups) = 0;
+private _leader = leader _group;
+if !(GVAR(stayBehindGroupSelected)) exitWith {
+    GVAR(stayBehindGroupSelected) = true;
+    private _stayBehindGroup = selectRandom GVAR(transportGroups);
+    [_group, (getPos _leader), 300, 7, "MOVE", "SAFE"] call CBA_fnc_taskPatrol;
+    deleteVehicle (_group getVariable [QEGVAR(common,assignedVehicle), objNull]);
 };
 
-if (_group getVariable [QGVAR(isStayBehindGroup),false]) then {
-    [_group,(getPos (leader _group)), 300, 7,"MOVE","SAFE"] call CBA_fnc_taskPatrol;
-    deleteVehicle (vehicle (leader _group));
-} else {
-    [_group,(getPos (assignedVehicle (leader _group))),0,"GETIN","AWARE","YELLOW","NORMAL"] call CBA_fnc_addWaypoint;
-    [_group,(_group getVariable [QGVAR(spawnPosition),[0,0,0]]),50,"MOVE","AWARE","YELLOW","FULL","FILE","[this] call uksf_aigroundCommander_fnc_handleDelete"] call CBA_fnc_addWaypoint;
-};
-
-
-
-
-// params array syntax does default value and typechecking
-// grpNull sets _group as grpNull when nothing is passed to the function
-// [grpNull, objNull] does type checking against those types and only allows the parameter to be those types. any other type will throw a script error
-// params [["_group", grpNull, [grpNull, objNull]]];
-
-// if you need the parameter to eventually be a single type, you can compare against one type and convert it with a command
-// if (_group isEqualType objNull) then {
-//     _group = group _group;
-// };
+[_group, (getPos (assignedVehicle _leader)), 0, "GETIN", "AWARE", "YELLOW", "NORMAL"] call CBA_fnc_addWaypoint;
+[_group, (_group getVariable [QGVAR(spawnPosition), getPos _leader]), 50, "MOVE", "AWARE", "YELLOW", "FULL", "FILE", QUOTE((group this) setVariable [ARR_2(QQGVAR(hasFinishedTask),false)])] call CBA_fnc_addWaypoint;

@@ -9,26 +9,39 @@
             - Establish time conditions for responses base on commander skil level
 
     Parameters:
-        0: module for skill <NUMBER>
+        0: Module <OBJECT>
 
     Return value:
         Nothing
 */
+#define PLAYER_FIRED_TIMEOUT 600
 
 (_this select 1) params ["_module"];
 
-private _skill = _module getVariable [QGVAR(aiGroundCommanderSkill),0];
+private _interval = _module getVariable [QGVAR(interval), 900];
+[{call FUNC(selectResponse)}, _interval] call CBA_fnc_addPerFrameHandler;
 
-
-if (_skill == 1) exitWith {[{call FUNC(selectResponse)},1200] call CBA_fnc_addPerFrameHandler;};
-if (_skill == 2) exitWith {[{call FUNC(selectResponse)},900] call CBA_fnc_addPerFrameHandler;};
-if (_skill == 3) exitWith {[{call FUNC(selectResponse)},600] call CBA_fnc_addPerFrameHandler;};
-
-//debugging value
-if (_skill == 10) exitWith {[{call FUNC(selectResponse);},180] call CBA_fnc_addPerFrameHandler;};
-
-// add tier 1 and 2 response reset every 30mins
 [{
-    GVAR(tier1ResponseDeployed) = 0;
-    GVAR(tier2ResponseDeployed) = 0;
-},1800] call CBA_fnc_addPerFrameHandler;
+    GVAR(tier1ResponseDeployed) = false;
+    GVAR(tier2ResponseDeployed) = false;
+}, _interval * 1.5] call CBA_fnc_addPerFrameHandler;
+
+call FUNC(cleanup);
+
+["CAManBase", "init", {
+    _this#0 addMPEventHandler ["MPKilled", {
+        params ["_unit", "_killer", "_instigator"];
+
+        if (side _unit != EAST) exitWith {}; // TODO: This side check should be a setting, for cases where we're not fighting OPFOR
+        if (isNull _instigator || {!isPlayer _instigator || {surfaceIsWater (getPos _instigator) || {(vehicle _instigator) isKindOf "Air"}}}) exitWith {};
+
+        GVAR(enemyAggressionLevel) = GVAR(enemyAggressionLevel) + 1;
+
+        private _index = GVAR(killerPlayers) findIf {_instigator == (_x#0)};
+        if (_index != -1) then {
+            GVAR(killerPlayers) set [_index, [_instigator, time + PLAYER_FIRED_TIMEOUT]];
+        } else {
+            GVAR(killerPlayers) pushBack [_instigator, time + PLAYER_FIRED_TIMEOUT];
+        };
+    }]
+}] call CBA_fnc_addClassEventHandler;

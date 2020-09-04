@@ -8,34 +8,30 @@
         adds waypoints to AI groups to move to staging areas then dismount
 
     Parameters:
-        0: _group <GROUP>
-        1: _spawnPosition <POSITION>
+        0: Spawn position module <OBJECT>
+        1: Staging area module <OBJECT>
+        2: Target player <OBJECT>
+        3: Nubmer of response Groups to spawn <SCALAR>
+        4: Group <GROUP>
 
     Return value:
         Nothing
 */
+#define TIMEOUT 420
 
-params ["_group","_spawnPosition","_stagingArea","_player","_numberOfResponseGroupsToBeSpawned"];
+params ["_spawnPosition", "_stagingArea", "_player", "_numberOfResponseGroupsToBeSpawned", "_group"];
 
-[{alive leader (_this select 0)},{
+_group setVariable [QGVAR(spawnPosition), _spawnPosition, true];
+_group setVariable [QGVAR(stagingArea), _stagingArea, true];
 
-    params ["_group","_spawnPosition","_stagingArea","_player","_numberOfResponseGroupsToBeSpawned"];
+[_group, _stagingArea, 50, "MOVE", "AWARE", "YELLOW", "NORMAL", "FILE", QUOTE(GVAR(readyAtStagingArea) = GVAR(readyAtStagingArea) + 1)] call CBA_fnc_addWaypoint;
 
-    _group setVariable [QGVAR(spawnPosition),_spawnPosition,true]; // needed as I can't pass spawn point into the wp as a param
-    _group setVariable [QGVAR(SAPos),_stagingArea,true]; // needed as I can't pass spawn point into the wp as a param
+[{
+    params ["_args", "_idPFH"];
+    _args params ["_group", "_player", "", "_75Percent", "_timeout"];
 
-    [_group,_stagingArea,50,"MOVE","AWARE","YELLOW","NORMAL","FILE","uksf_aigroundCommander_readyAtStagingArea = uksf_aigroundCommander_readyAtStagingArea + 1;"] call CBA_fnc_addWaypoint;
-
-    [{
-        params ["_group","_player","_numberOfResponseGroupsToBeSpawned"];
-        (GVAR(readyAtStagingArea) >= floor(_numberOfResponseGroupsToBeSpawned * 0.75))}, {
-
-        params ["_group","_player","_numberOfResponseGroupsToBeSpawned"];
-
-        [_group,_player,300,"GETOUT","AWARE","YELLOW","NORMAL","FILE","[this] call uksf_aigroundCommander_fnc_unloadTransport;"] call CBA_fnc_addWaypoint;
-        GVAR(readyAtStagingAreaTimeout) = 0;
-    },[_group,_player,_numberOfResponseGroupsToBeSpawned],420,{
-        [_group,_player,300,"GETOUT","AWARE","YELLOW","NORMAL","FILE","[this] call uksf_aigroundCommander_fnc_unloadTransport;"] call CBA_fnc_addWaypoint;
-        GVAR(readyAtStagingAreaTimeout) = 0;
-    }] call CBA_fnc_waitUntilAndExecute;
-},[_group,_spawnPosition,_stagingArea,_player,_numberOfResponseGroupsToBeSpawned]] call CBA_fnc_waitUntilAndExecute;
+    if (GVAR(readyAtStagingArea) >= _75Percent || _timeout > time) exitWith {
+        [_idPFH] call CBA_fnc_removePerFrameHandler;
+        [_group, _player, 300, "GETOUT", "AWARE", "YELLOW", "NORMAL", "FILE", QUOTE([this] call FUNC(unloadTransport))] call CBA_fnc_addWaypoint;
+    };
+}, 10, [_group, _player, _numberOfResponseGroupsToBeSpawned, floor (_numberOfResponseGroupsToBeSpawned * 0.75), time + TIMEOUT]] call CBA_fnc_addPerFrameHandler;

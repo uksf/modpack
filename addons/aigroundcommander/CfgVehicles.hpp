@@ -14,30 +14,30 @@ class CfgVehicles {
         portrait = "A3\ui_f\data\map\markers\nato\o_hq.paa";
         function = QFUNC(moduleCommanderInit);
         class Attributes : AttributesBase {
-            class GVAR(aiGroundCommanderSkill) {
-                property = QGVAR(aiGroundCommanderSkill);
+            class GVAR(skill) {
+                property = QGVAR(skill);
                 displayName = "Commander Skill";
                 tooltip = "Defines the skill of the AI commander, high skill = more frequent responses. Debug does very fast responses for testing (~3mins)";
                 control = "Combo";
-                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(aiGroundCommanderSkill),_value,true)]);
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(interval),_value,true)]);
                 typeName = "NUMBER";
                 defaultValue = 1;
                 class values {
                     class Low {
                         name = "Low";
-                        value = 1;
+                        value = 1200;
                     };
                     class Medium {
                         name = "Medium";
-                        value = 2;
+                        value = 900;
                     };
                     class High {
                         name = "High";
-                        value = 3;
+                        value = 600;
                     };
                     class Debug {
                         name = "Debug";
-                        value = 10;
+                        value = 180;
                     };
                 };
             };

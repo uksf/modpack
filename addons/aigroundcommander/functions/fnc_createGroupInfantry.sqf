@@ -4,43 +4,24 @@
         Bridg
 
     Description:
-        create Infantry group
+        Create Infantry group
 
     Parameters:
-        None.
+        0: Spawn position module <OBJECT>
+        1: Callback once spawning complete <CODE> (Optional)
+        2: Callback arguments <ARRAY> (Optional)
 
     Return value:
         Nothing
 */
+params ["_spawnPosition", ["_callback", {}, [{}]], ["_callbackArgs", [], [[]]]];
 
-params ["_spawnPosition"];
+if !(alive _spawnPosition) exitWith {};
 
-private _unitCount = ceil(random[6,8,10]);
-private _currentUnitCount = _unitCount;
-private _group = createGroup EAST;
+private _unitCount = ceil ((random 4) + 6);
+[_spawnPosition getPos [10, random 360], 0, _unitCount, EAST, EGVAR(gear,gearSoldier), [], {}, {
+    params ["_callback", "_callbackArgs", "_group"];
 
-private _safeSpawn = _spawnPosition getPos [10,random 360];
-
-[{
-    params ["_args","_idPFH"];
-    _args params ["_safeSpawn","_group","_currentUnitCount"];
-    _currentUnitCount = _currentUnitCount - 1;
-
-    if (_currentUnitCount == 0 || (GVAR(currentUnitCount) >= GVAR(maxUnitcount))) exitWith {
-        [_idPFH] call CBA_fnc_removePerFrameHandler;
-    };
-    private _unit = _group createUnit [selectRandom EGVAR(gear,gearSoldier),_safeSpawn,[],2,"NONE"];
-    GVAR(currentUnitCount) = GVAR(currentUnitCount) + 1;
-
-    _unit addMPEventHandler ["MPKilled", {
-       GVAR(currentUnitCount) = GVAR(currentUnitCount) - 1;
-        private _killedUnitGroup = group (_this#0);
-        if ({alive _x} count units (_this#0) <= 2) then {
-            GVAR(responseGroups) deleteAt (GVAR(responseGroups) find _killedUnitGroup);
-        };
-    }];
-
-    _args set [2, _currentUnitCount];
-},2,[_safeSpawn,_group,_currentUnitCount]] call CBA_fnc_addPerFramehandler;
-
-_group
+    _callbackArgs pushBack _group;
+    _callbackArgs call _callback;
+}, [_callback, _callbackArgs]] call EFUNC(common,spawnGroup);

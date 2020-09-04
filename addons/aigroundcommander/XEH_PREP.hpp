@@ -1,20 +1,20 @@
 PREP(addWaypoints);
 PREP(addWaypointsTpt);
+PREP(cleanup);
 PREP(createGroupAPC);
+PREP(createGroupAttackHeli);
 PREP(createGroupCar);
 PREP(createGroupCarTpt);
 PREP(createGroupInfantry);
 PREP(createGroupTank);
-PREP(getPlayers);
+PREP(getPlayer);
 PREP(getStagingAreas);
-PREP(handleDelete);
 PREP(moduleAPCSpawn);
 PREP(moduleCarSpawn);
 PREP(moduleCommanderInit);
 PREP(moduleInfantrySpawn);
 PREP(moduleStagingArea);
 PREP(moduleTankSpawn);
-PREP(removePlayersWhoHaveFired);
 PREP(responseCarAndInfantry);
 PREP(responseInfantryOrMotorInfantry);
 PREP(responseMotorInfantryAndHeliPair);
@@ -23,3 +23,5 @@ PREP(responseTankAndAPC);
 PREP(selectResponse);
 PREP(selectStayBehindForce);
 PREP(unloadTransport);
+
+// TODO: Rename tpt

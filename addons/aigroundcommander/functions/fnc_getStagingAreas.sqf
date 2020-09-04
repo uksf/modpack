@@ -4,17 +4,15 @@
         Bridg
 
     Description:
-        Gets nearest staging location to given spawn position
+        Gets nearest staging location to given spawn position module
 
     Parameters:
-        0: _spawnPosition <OBJECT>
-        
+        0: Spawn position module <OBJECT>
+
     Return value:
         Nothing
 */
 params ["_spawnPosition"];
-
-// private _spawnPositionArray = getPos _spawnPosition;
 
 private _stagingAreas = GVAR(stagingAreas) apply {[_x distance2D _spawnPosition, _x]};
 _stagingAreas sort true;

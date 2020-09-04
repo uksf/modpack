@@ -14,7 +14,7 @@
 */
 params ["_group"];
 
-private _player = selectRandom EGVAR(aiGroundCommander,playersThatHaveFired);
+private _player = selectRandom EGVAR(aiGroundCommander,killerPlayers);
 if (isNull _player) exitWith {
     [leader _group] call FUNC(handleDelete);
 };
