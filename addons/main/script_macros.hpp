@@ -72,10 +72,10 @@
 #define INVENTORY_EMPTY delete TransportMagazines; \
     delete TransportItems; \
     delete TransportWeapons; \
-    delete TransportBackpacks;
+    delete TransportBackpacks
 
 #define RESET_INVENTORY(CLASS,BASE) class CLASS : BASE { \
-    INVENTORY_EMPTY \
+    INVENTORY_EMPTY; \
 }
 
 #define INVENTORY_AIRCRAFT class TransportMagazines { \

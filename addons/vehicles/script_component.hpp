@@ -105,26 +105,14 @@
 
 #define RIDGEBACK_INVENTORY(AMMO) \
     class TransportMagazines { \
-        MACRO_ADDMAGAZINE(CUP_1Rnd_StarFlare_White_M203,10); \
-        MACRO_ADDMAGAZINE(SmokeShell,10); \
-        MACRO_ADDMAGAZINE(SmokeShellBlue,2); \
-        MACRO_ADDMAGAZINE(DemoCharge_Remote_Mag,2); \
-        MACRO_ADDMAGAZINE(UK3CB_BAF_762_L42A1_20Rnd_T,5); \
-        MACRO_ADDMAGAZINE(UK3CB_BAF_556_30Rnd_T,20); \
         MACRO_ADDMAGAZINE(AMMO,9); \
     }; \
     class TransportItems { \
-        MACRO_ADDITEM(ACE_M26_Clacker,1); \
-        MACRO_ADDITEM(ACRE_PRC117F,1); \
-        MACRO_ADDITEM(ACE_CableTie,5); \
-        MACRO_ADDITEM(ACE_EarPlugs,2); \
-        MACRO_ADDITEM(CUP_NVG_PVS15_black,2); \
         MACRO_ADDITEM(Toolkit,1); \
         MACRO_ADDITEM(UK3CB_BAF_Javelin_CLU,1); \
     }; \
     class TransportWeapons { \
         MACRO_ADDWEAPON(UK3CB_BAF_Javelin_Slung_Tube,2); \
-        MACRO_ADDWEAPON(UK3CB_BAF_AT4_CS_AT_Launcher,2); \
     }; \
     class TransportBackpacks {};
 
@@ -134,27 +122,14 @@
 
 #define JACKAL_INVENTORY(AMMO) \
     class TransportMagazines { \
-        MACRO_ADDMAGAZINE(CUP_1Rnd_StarFlare_White_M203,10); \
-        MACRO_ADDMAGAZINE(SmokeShell,10); \
-        MACRO_ADDMAGAZINE(SmokeShellBlue,2); \
-        MACRO_ADDMAGAZINE(DemoCharge_Remote_Mag,2); \
-        MACRO_ADDMAGAZINE(UK3CB_BAF_762_L42A1_20Rnd_T,4); \
-        MACRO_ADDMAGAZINE(UK3CB_BAF_556_30Rnd_T,10); \
-        MACRO_ADDMAGAZINE(UK3CB_BAF_762_100Rnd_T,5); \
         MACRO_ADDMAGAZINE(AMMO,9); \
     }; \
     class TransportItems { \
-        MACRO_ADDITEM(ACE_M26_Clacker,1); \
-        MACRO_ADDITEM(ACRE_PRC117F,1); \
-        MACRO_ADDITEM(ACE_CableTie,5); \
-        MACRO_ADDITEM(ACE_EarPlugs,2); \
-        MACRO_ADDITEM(CUP_NVG_PVS15_black,2); \
         MACRO_ADDITEM(Toolkit,1); \
         MACRO_ADDITEM(UK3CB_BAF_Javelin_CLU,1); \
     }; \
     class TransportWeapons { \
         MACRO_ADDWEAPON(UK3CB_BAF_Javelin_Slung_Tube,2); \
-        MACRO_ADDWEAPON(UK3CB_BAF_AT4_CS_AT_Launcher,2); \
     }; \
     class TransportBackpacks {};
 
