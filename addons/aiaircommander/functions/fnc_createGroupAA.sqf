@@ -14,7 +14,7 @@
 */
 params ["_emptyLocation"];
 
-[selectRandom GVAR(aaSpawns), 1, 0, EAST, EGVAR(gear,gearCrew), EGVAR(gear,gearVehAA), {
+[getPos (selectRandom GVAR(aaSpawns)), 1, 0, EAST, EGVAR(gear,gearCrew), EGVAR(gear,gearVehAA), {
     params ["_vehicle", "_turrets"];
 
     (_vehicle emptyPositions "driver") + count _turrets

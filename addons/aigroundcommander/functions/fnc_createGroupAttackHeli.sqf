@@ -16,7 +16,7 @@
 */
 params ["_spawnPosition", ["_callback", {}, [{}]], ["_callbackArgs", [], [[]]]];
 
-[_spawnPosition, 1, 0, EAST, EGVAR(gear,gearHeliPilot), EGVAR(gear,gearAttackHeli), {
+[getPos _spawnPosition, 1, 0, EAST, EGVAR(gear,gearHeliPilot), EGVAR(gear,gearAttackHeli), {
     params ["_vehicle", "_turrets"];
 
     (_vehicle emptyPositions "driver") + count _turrets

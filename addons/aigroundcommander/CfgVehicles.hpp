@@ -12,7 +12,7 @@ class CfgVehicles {
         displayName = "(GC) Commander Module";
         icon = "A3\ui_f\data\map\markers\nato\o_hq.paa";
         portrait = "A3\ui_f\data\map\markers\nato\o_hq.paa";
-        function = QFUNC(moduleCommanderInit);
+        function = QFUNC(moduleCommander);
         class Attributes : AttributesBase {
             class GVAR(skill) {
                 property = QGVAR(skill);

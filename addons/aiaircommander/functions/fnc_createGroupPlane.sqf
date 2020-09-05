@@ -14,7 +14,7 @@
 */
 params [["_callback", {}, [{}]]];
 
-[selectRandom GVAR(planeSpawns), 1, 0, EAST, EGVAR(gear,gearJetPilot), EGVAR(gear,gearPlane), {
+[getPos (selectRandom GVAR(planeSpawns)), 1, 0, EAST, EGVAR(gear,gearJetPilot), EGVAR(gear,gearPlane), {
     params ["_vehicle", "_turrets"];
 
     (_vehicle emptyPositions "driver") + count _turrets

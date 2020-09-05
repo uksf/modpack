@@ -32,6 +32,7 @@ call FUNC(cleanup);
     _this#0 addMPEventHandler ["MPKilled", {
         params ["_unit", "_killer", "_instigator"];
 
+        TRACE_3("",_unit,_killer,_instigator);
         if (side _unit != EAST) exitWith {}; // TODO: This side check should be a setting, for cases where we're not fighting OPFOR
         if (isNull _instigator || {!isPlayer _instigator || {surfaceIsWater (getPos _instigator) || {(vehicle _instigator) isKindOf "Air"}}}) exitWith {};
 
@@ -44,4 +45,4 @@ call FUNC(cleanup);
             GVAR(killerPlayers) pushBack [_instigator, time + PLAYER_FIRED_TIMEOUT];
         };
     }]
-}] call CBA_fnc_addClassEventHandler;
+}, true, [], true] call CBA_fnc_addClassEventHandler;

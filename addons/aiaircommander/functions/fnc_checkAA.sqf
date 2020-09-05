@@ -15,5 +15,5 @@
 private _emptyAASites = GVAR(aaSites) select {(_x nearEntities ["LandVehicle", 200]) isEqualTo []}; // TODO: Find if alive instead of in area
 
 {
-    [{call FUNC(createGroupAA)}, _x, (5 * _forEachIndex) + 5] call CBA_fnc_waitAndExecute;
+    [{call FUNC(createGroupAA)}, [_x], (5 * _forEachIndex) + 5] call CBA_fnc_waitAndExecute;
 } forEach _emptyAASites;

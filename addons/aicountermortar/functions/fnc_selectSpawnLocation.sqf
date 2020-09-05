@@ -17,10 +17,10 @@ params ["_mortarPosition", "_forceType"];
 
 if (_forceType == 1) exitWith { // ground vehicle
     private _spawnPosition = selectRandom GVAR(groundSpawns);
-    [_spawnPosition, _mortarPosition] call FUNC(createGroundForce);
+    [getPos _spawnPosition, _mortarPosition] call FUNC(createGroundForce);
 };
 
 if (_forceType == 2) exitWith { // air
     private _spawnPosition = selectRandom GVAR(airSpawns);
-    [_spawnPosition, _mortarPosition] call FUNC(createAirForce);
+    [getPos _spawnPosition, _mortarPosition] call FUNC(createAirForce);
 };
