@@ -31,4 +31,5 @@ PREP(releaseCargo);
 PREP(removeNVG);
 PREP(serializeAceMedical);
 PREP(setSkill);
+PREP(spawnGroup);
 PREP(taskPatrol);

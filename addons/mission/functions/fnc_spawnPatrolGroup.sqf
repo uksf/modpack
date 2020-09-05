@@ -20,6 +20,8 @@
 #define SPAWN_DELAY 1
 #define TIMEOUT 30
 
+// TODO: Use common function
+
 params [["_position", [], [[]]], ["_type", 0, [0]], ["_count", 1, [0]], ["_side", GVAR(dynamicPatrolSide), [sideUnknown]], ["_unitPool", []], ["_vehiclePool", []], ["_callback", {}, [{}]], ["_callbackArgs", [], [[]]]];
 
 private _group = createGroup _side;
@@ -68,7 +70,7 @@ private _count = (_vehicle emptyPositions "driver") + count _turrets + round ((_
         [_idPFH] call CBA_fnc_removePerFrameHandler;
 
         if (_allSpawned) then {
-            _group selectLeader (commander _vehicle);
+            _group selectLeader (effectiveCommander _vehicle);
             _callbackArgs pushBack _group;
             _callbackArgs call _callback;
         };

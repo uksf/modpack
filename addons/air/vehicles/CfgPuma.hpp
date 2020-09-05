@@ -95,7 +95,7 @@ class rksla3_pumahc_base: Helicopter_Base_H {
     memoryPointDriverOptics = "slingLoad_cam_pos";
     weapons[] = {"UK3CB_BAF_CMFlareLauncher", "UK3CB_BAF_IRJammer"};
     magazines[] = {"120Rnd_CMFlare_Chaff_Magazine", "UK3CB_BAF_IRJammer_Magazine"};
-    INVENTORY_EMPTY
+    INVENTORY_EMPTY;
     #include "MFDMerlin.hpp"
 };
 class rksla3_puma_hc1_troop: rksla3_pumahc_base {

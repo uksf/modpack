@@ -1,0 +1,17 @@
+PREP(CAP);
+PREP(CAS);
+PREP(checkAA);
+PREP(createGroupAA);
+PREP(createGroupAttackHeli);
+PREP(createGroupPlane);
+PREP(doCAS);
+PREP(handleDelete);
+PREP(moduleAASite);
+PREP(moduleAASpawn);
+PREP(moduleAirspaceCentre);
+PREP(moduleCommander);
+PREP(moduleEnemyAirfield);
+PREP(moduleHeliSpawn);
+PREP(modulePlaneSpawn);
+PREP(SEAD);
+PREP(selectMission);

@@ -85,107 +85,23 @@ class CfgAmmo {
     class MissileBase : MissileCore {
         timeToLive = 60;
     };
-    class M_Scalpel_AT : MissileBase {
-        class Components;
-    };
+    class M_Scalpel_AT;
     class ACE_Hellfire_AGM114K : M_Scalpel_AT {
         SoundSetExplosion[] = { "JPEX_Missile_EXPLOSION_SoundSet", "JPEX_Missile_REFLECTOR_SoundSet", "JPEX_Big_Debris_SoundSet" };
-        class Components : Components {
-            class SensorsManagerComponent {
-                class Components {
-                    class IRSensorComponent : SensorTemplateIR {
-                        class AirTarget {
-                            minRange = 8000;
-                            maxRange = 8000;
-                            objectDistanceLimitCoef = -1;
-                            viewDistanceLimitCoef = 1;
-                        };
-                        class GroundTarget {
-                            minRange = 8000;
-                            maxRange = 8000;
-                            objectDistanceLimitCoef = 1;
-                            viewDistanceLimitCoef = 1;
-                        };
-                        maxTrackableSpeed = 35;
-                        angleRangeHorizontal = 45;
-                        angleRangeVertical = 35;
-                    };
-                    class LaserSensorComponent : SensorTemplateLaser {
-                        class AirTarget {
-                            minRange = 8000;
-                            maxRange = 8000;
-                            objectDistanceLimitCoef = -1;
-                            viewDistanceLimitCoef = -1;
-                        };
-                        class GroundTarget {
-                            minRange = 8000;
-                            maxRange = 8000;
-                            objectDistanceLimitCoef = -1;
-                            viewDistanceLimitCoef = -1;
-                        };
-                        maxTrackableSpeed = 55;
-                        angleRangeHorizontal = 30;
-                        angleRangeVertical = 30;
-                    };
-                };
-            };
-        };
         model = QPATHTOF(data\AGM114\AGM114Hellfire.p3d);
         proxyShape = QPATHTOF(data\AGM114\AGM114Hellfire_proxy.p3d);
         ace_rearm_dummy = QGVAR(ACE_Hellfire_AGM114);
-        timeToLive = 120;
         effectsMissileInit = "PylonBackEffects";
-        // CraterEffects = "Hellfire_Smoke";
-        // explosionEffects = "Hellfire_Explode";
-        missileLockMaxDistance = 8000;
-        class ace_missileguidance {
-            seekerMaxRange = 8000;
-        };
+        class ace_missileguidance;
     };
     class ACE_Hellfire_AGM114L : ACE_Hellfire_AGM114K {
-        displayName = "AGM-114L";
-        displayNameShort = "AGM-114L";
-        description = "AGM-114L";
-        descriptionShort = "AGM-114L";
-        weaponLockSystem = "8 + 16";
-        cmImmunity = 0.95;
-        class ace_missileguidance {
-            enabled = 0;
-        };
-        missileLockCone = 90;
-        missileKeepLockedCone = 180;
-        missileLockMaxDistance = 8000;
-        missileLockMinDistance = 500;
-        missileLockMaxSpeed = 55;
-        class Components : Components {
-            class SensorsManagerComponent {
-                class Components {
-                    class ActiveRadarSensorComponent : SensorTemplateActiveRadar {
-                        class AirTarget {
-                            minRange = 8000;
-                            maxRange = 8000;
-                            objectDistanceLimitCoef = -1;
-                            viewDistanceLimitCoef = -1;
-                        };
-                        class GroundTarget {
-                            minRange = 8000;
-                            maxRange = 8000;
-                            objectDistanceLimitCoef = -1;
-                            viewDistanceLimitCoef = -1;
-                        };
-                        angleRangeHorizontal = 90;
-                        angleRangeVertical = 90;
-                        maxFogSeeThrough = 1;
-                        maxGroundNoiseDistance = -1;
-                        groundNoiseDistanceCoef = -1;
-                        minSpeedThreshold = 0;
-                        maxSpeedThreshold = 0;
-                        maxTrackableSpeed = 55;
-                    };
-                };
-            };
+        class ace_missileguidance: ace_missileguidance {
+            enabled = 1;
+            defaultSeekerLockMode = "LOBL";
+            seekerLockModes[] = { "LOBL" };
         };
     };
+
     class ACE_Hellfire_AGM114K_drone : ACE_Hellfire_AGM114K {
         class ace_missileguidance : ace_missileguidance {
             enabled = 1;
@@ -207,6 +123,7 @@ class CfgAmmo {
             incDeflection = 0.0005;  // The incrmeent in which deflection adjusts.
         };
     };
+
     class LaserBombCore;
     class ammo_Bomb_LaserGuidedBase : LaserBombCore {
         indirectHitRange = 20;  // 12
@@ -216,6 +133,7 @@ class CfgAmmo {
         model = "\A3\Weapons_F\Ammo\Bomb_01_fly_F";
         proxyShape = "\A3\Weapons_F\Ammo\Bomb_01_F";
     };
+
     class CUP_B_30x113mm_M789_HEDP_Red_Tracer : BulletBase {
         SoundSetExplosion[] = { "JPEX_20mm_EXPLOSION_SoundSet", "JPEX_20mm_REFLECTOR_SoundSet" };
         CraterEffects = "ExploAmmoCrater";
@@ -231,6 +149,7 @@ class CfgAmmo {
         caliber = 4.2;
         manualControl = 0;
     };
+
     class M_Titan_AA;
     class UKSF_Dummy_Missile : M_Titan_AA {
         indirectHitRange = 1;
