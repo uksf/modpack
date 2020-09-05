@@ -1,3 +1,4 @@
+// TODO: inventories https://github.com/uksf/modpack/issues/708
 class UK3CB_BAF_Husky_Base;
 class UK3CB_BAF_Husky_GPMG_Base : UK3CB_BAF_Husky_Base {
     faction = "CUP_B_GB";

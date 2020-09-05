@@ -250,10 +250,13 @@ class UK3CB_BAF_LandRover_WMIK_HMG_Base : UK3CB_BAF_LandRover_WMIK_Base {
             };
         };
     };
+    // TODO: Change this to similar system as ridgeback etc
     class TransportWeapons : TransportWeapons {
         delete _xx_UK3CB_BAF_Javelin_CLU;
+        MACRO_ADDWEAPON(UK3CB_BAF_Javelin_Slung_Tube,2);
     };
     class TransportItems {
+        MACRO_ADDITEM(Toolkit,1);
         MACRO_ADDITEM(UK3CB_BAF_Javelin_CLU,1);
     };
 };
@@ -306,8 +309,10 @@ class UK3CB_BAF_LandRover_WMIK_GPMG_Base : UK3CB_BAF_LandRover_WMIK_Base {
     };
     class TransportWeapons : TransportWeapons {
         delete _xx_UK3CB_BAF_Javelin_CLU;
+        MACRO_ADDWEAPON(UK3CB_BAF_Javelin_Slung_Tube,2);
     };
     class TransportItems {
+        MACRO_ADDITEM(Toolkit,1);
         MACRO_ADDITEM(UK3CB_BAF_Javelin_CLU,1);
     };
 };
@@ -360,8 +365,10 @@ class UK3CB_BAF_LandRover_WMIK_GMG_Base : UK3CB_BAF_LandRover_WMIK_Base {
     };
     class TransportWeapons : TransportWeapons {
         delete _xx_UK3CB_BAF_Javelin_CLU;
+        MACRO_ADDWEAPON(UK3CB_BAF_Javelin_Slung_Tube,2);
     };
     class TransportItems {
+        MACRO_ADDITEM(Toolkit,1);
         MACRO_ADDITEM(UK3CB_BAF_Javelin_CLU,1);
     };
 };
@@ -411,6 +418,14 @@ class UK3CB_BAF_LandRover_WMIK_Milan_Base : UK3CB_BAF_LandRover_WMIK_Base {
                 visionMode[] = {};
             };
         };
+    };
+    class TransportWeapons : TransportWeapons {
+        delete _xx_UK3CB_BAF_Javelin_CLU;
+        MACRO_ADDWEAPON(UK3CB_BAF_Javelin_Slung_Tube,2);
+    };
+    class TransportItems {
+        MACRO_ADDITEM(Toolkit,1);
+        MACRO_ADDITEM(UK3CB_BAF_Javelin_CLU,1);
     };
 };
 class UK3CB_BAF_LandRover_WMIK_Milan_Green_A : UK3CB_BAF_LandRover_WMIK_Milan_Base {

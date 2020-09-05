@@ -436,6 +436,7 @@
     "ACE_SpraypaintGreen", \
     "ACE_SpraypaintRed", \
     "ACE_adenosine", \
+    "ACE_amantadineIV", \
     "ACE_atropine", \
     "ACE_bloodIV", \
     "ACE_bloodIV_250", \
@@ -448,6 +449,7 @@
     "ACE_morphine", \
     "ACE_packingBandage", \
     "ACE_painkillers", \
+    "ACE_penTorch", \
     "ACE_personalAidKit", \
     "ACE_plasmaIV", \
     "ACE_plasmaIV_250", \

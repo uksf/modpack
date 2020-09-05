@@ -610,12 +610,7 @@ class CfgWeapons {
     };
     class ace_hellfire_launcher_L : ace_hellfire_launcher {
         displayName = "AGM-114L";
-        magazines[] = { "4Rnd_ACE_Hellfire_AGM114L", "PylonRack_4Rnd_ACE_Hellfire_AGM114L" };
-        ace_hellfire_enabled = 0;
-        ace_laser_canSelect = 0;
-        weaponLockSystem = 8;
-        canLock = 2;
-        cmImmunity = 0.95;
+        magazines[] = { "2Rnd_ACE_Hellfire_AGM114L", "4Rnd_ACE_Hellfire_AGM114L", "PylonMissile_1Rnd_ACE_Hellfire_AGM114L", "PylonRack_1Rnd_ACE_Hellfire_AGM114L", "PylonRack_3Rnd_ACE_Hellfire_AGM114L", "PylonRack_4Rnd_ACE_Hellfire_AGM114L" };
     };
     class CannonCore;
     class CUP_Vacannon_M230_veh : CannonCore {
