@@ -26,9 +26,9 @@ private _spawnPosition = [getPos (selectRandom _helipads), _spawn getPos [20, ra
 
     (_vehicle emptyPositions "driver") + count _turrets
 }, {
-    params ["_callback", "_callbackArgs", "_group"];
+    params ["_callback", "_callbackArgs", "_group", "_vehicle"];
 
-    (vehicle leader _group) flyInHeight 150;
+    _vehicle flyInHeight 150;
     _callbackArgs pushBack _group;
     _callbackArgs call _callback;
 }, [_callback, _callbackArgs]] call EFUNC(common,spawnGroup);

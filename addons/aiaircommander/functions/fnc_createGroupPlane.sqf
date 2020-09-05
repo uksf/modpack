@@ -19,9 +19,13 @@ params [["_callback", {}, [{}]], ["_callbackArgs", [], [[]]]];
 
     (_vehicle emptyPositions "driver") + count _turrets
 }, {
-    params ["_callback", "_callbackArgs", "_group"];
+    params ["_callback", "_callbackArgs", "_group", "_vehicle"];
 
-    (vehicle leader _group) flyInHeight 300;
+    private _position = getPosATL _vehicle;
+    _position set [2, 300];
+    _vehicle setPosATL _position;
+    _vehicle setVelocity ((vectorDir _vehicle) vectorMultiply 150);
+    _vehicle flyInHeight 300;
     _callbackArgs pushBack _group;
     _callbackArgs call _callback;
 }, [_callback, _callbackArgs]] call EFUNC(common,spawnGroup);

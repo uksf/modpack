@@ -18,14 +18,18 @@
 
 (_this select 1) params ["_module"];
 
-private _interval = _module getVariable [QGVAR(interval), 900];
-[{call FUNC(selectResponse)}, _interval] call CBA_fnc_addPerFrameHandler;
-[{call FUNC(cleanup)}, _interval / 4] call CBA_fnc_addPerFrameHandler;
-
 [{
-    GVAR(tier1ResponseDeployed) = false;
-    GVAR(tier2ResponseDeployed) = false;
-}, _interval * 1.5] call CBA_fnc_addPerFrameHandler;
+    params ["_module"];
+
+    private _interval = _module getVariable [QGVAR(interval), 900];
+    [{call FUNC(selectResponse)}, _interval] call CBA_fnc_addPerFrameHandler;
+    [{call FUNC(cleanup)}, _interval / 4] call CBA_fnc_addPerFrameHandler;
+
+    [{
+        GVAR(tier1ResponseDeployed) = false;
+        GVAR(tier2ResponseDeployed) = false;
+    }, _interval * 1.5] call CBA_fnc_addPerFrameHandler;
+}, [_module], 60] call CBA_fnc_waitAndExecute;
 
 
 ["CAManBase", "init", {

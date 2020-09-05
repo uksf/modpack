@@ -16,12 +16,16 @@
 if (!isServer) exitWith {};
 
 [{
-    params ["_args", "_idPFH"];
+    [{
+        params ["_args", "_idPFH"];
 
-    if (!alive atc) then {
-        [_idPFH] call CBA_fnc_removePerFrameHandler;
-    };
+        if (!alive atc) then {
+            [_idPFH] call CBA_fnc_removePerFrameHandler;
+        };
 
-    call FUNC(selectMission);
-    call FUNC(checkAA);
-},1200]call CBA_fnc_addPerFrameHandler;
+        call FUNC(selectMission);
+        call FUNC(checkAA);
+    }, 1200] call CBA_fnc_addPerFrameHandler;
+}, [], 60] call CBA_fnc_waitAndExecute;
+
+
