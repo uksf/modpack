@@ -11,7 +11,7 @@ PREP(getPlayer);
 PREP(getStagingAreas);
 PREP(moduleAPCSpawn);
 PREP(moduleCarSpawn);
-PREP(moduleCommanderInit);
+PREP(moduleCommander);
 PREP(moduleInfantrySpawn);
 PREP(moduleStagingArea);
 PREP(moduleTankSpawn);
