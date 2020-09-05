@@ -38,7 +38,7 @@ if (_chance <= 5) then {
         private _player = [_stagingArea] call FUNC(getPlayer);
         if (isNull _player) exitWith {
             [_idPFH] call CBA_fnc_removePerFrameHandler;
-            [{call FUNC(responseInfantryOrMotorInfantry)}, 300] call CBA_fnc_waitAndExecute;
+            [{call FUNC(responseInfantryOrMotorInfantry)}, [], 300] call CBA_fnc_waitAndExecute;
         };
 
         [_spawnPosition, {
@@ -70,7 +70,7 @@ if (_chance <= 5) then {
         private _player = [_stagingArea] call FUNC(getPlayer);
         if (isNull _player) exitWith {
             [_idPFH] call CBA_fnc_removePerFrameHandler;
-            [{call FUNC(responseInfantryOrMotorInfantry)}, 300] call CBA_fnc_waitAndExecute;
+            [{call FUNC(responseInfantryOrMotorInfantry)}, [], 300] call CBA_fnc_waitAndExecute;
         };
 
         [_spawnPosition, {

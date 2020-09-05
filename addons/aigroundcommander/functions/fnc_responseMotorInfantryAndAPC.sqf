@@ -35,7 +35,7 @@ if (!isServer || {count GVAR(responseGroups) > GVAR(groupLimit)}) exitWith {};
     private _player = [_stagingArea] call FUNC(getPlayer);
     if (isNull _player) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
-        [{call FUNC(responseMotorInfantryAndAPC)}, 300] call CBA_fnc_waitAndExecute;
+        [{call FUNC(responseMotorInfantryAndAPC)}, [], 300] call CBA_fnc_waitAndExecute;
     };
 
     [_spawnPosition, {
@@ -68,7 +68,7 @@ if (!isServer || {count GVAR(responseGroups) > GVAR(groupLimit)}) exitWith {};
     private _player = [_stagingArea] call FUNC(getPlayer);
     if (isNull _player) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
-        [{call FUNC(responseMotorInfantryAndAPC)}, 300] call CBA_fnc_waitAndExecute; // TODO: This will queue the function to run twice if the PFH above also fails to find a player
+        [{call FUNC(responseMotorInfantryAndAPC)}, [], 300] call CBA_fnc_waitAndExecute; // TODO: This will queue the function to run twice if the PFH above also fails to find a player
     };
 
     [_spawnPosition, {
