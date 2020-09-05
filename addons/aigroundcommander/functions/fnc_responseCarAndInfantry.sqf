@@ -13,12 +13,14 @@
         Nothing
 */
 
+if (!isServer || {count GVAR(responseGroups) > GVAR(groupLimit)}) exitWith {};
+
 // light attack vehs
 [{
     params ["_args", "_idPFH"];
     _args params ["_groupCount", "_numberOfResponseGroupsToBeSpawned"];
 
-    if (_groupCount == 0) exitWith {
+    if (_groupCount == 0 || {count GVAR(responseGroups) > GVAR(groupLimit)}) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
     };
 
@@ -51,7 +53,7 @@
     params ["_args", "_idPFH"];
     _args params ["_groupCount", "_numberOfResponseGroupsToBeSpawned"];
 
-    if (_groupCount == 0) exitWith {
+    if (_groupCount == 0 || {count GVAR(responseGroups) > GVAR(groupLimit)}) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
     };
 
