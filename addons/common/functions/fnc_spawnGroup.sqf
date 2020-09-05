@@ -1,18 +1,22 @@
 #include "script_component.hpp"
 /*
     Author:
-        Nicholas Clark (SENSEI), Tim Beswick
+        Tim Beswick
 
     Description:
-        Spawns patrol group based on unit and vehicle pools. Creates units over time to avoid performance degradation
+        Spawns group based on mode with given unit and vehicle pools. Creates units over time to avoid performance degradation
+        Group is disabled from caching
 
     Parameters:
         0: Position where group will spawn <ARRAY>
         1: Type of group (0 = infantry, 1 = vehicle) <NUMBER>
-        2: Number of units in group <NUMBER>
+        2: Number of units in group (only applies for infantry spawn) <NUMBER>
         3: Side of group <SIDE>
-        4: Callback once spawning complete <CODE>
-        5: Callback arguments <ARRAY>
+        4: Unit classname pool <ARRAY>
+        5: Vehicle classname pool <ARRAY>
+        6: Code to resolve vehicle crew count (Args passed: [_vehicle, _turrets]) <CODE> (Optional)
+        7: Callback once spawning complete (Args passed: [callback args, _group, (_vehicle)]) <CODE> (Optional)
+        8: Callback arguments <ARRAY> (Optional)
 
     Return value:
         Nothing
@@ -20,9 +24,7 @@
 #define SPAWN_DELAY 1
 #define TIMEOUT 30
 
-// TODO: Use common function
-
-params [["_position", [], [[]]], ["_type", 0, [0]], ["_count", 1, [0]], ["_side", GVAR(dynamicPatrolSide), [sideUnknown]], ["_unitPool", []], ["_vehiclePool", []], ["_callback", {}, [{}]], ["_callbackArgs", [], [[]]]];
+params [["_position", [], [[]]], ["_type", 0, [0]], ["_count", 1, [0]], ["_side", EAST, [sideUnknown]], ["_unitPool", []], ["_vehiclePool", []], ["_countCode", {-1}, [{}]], ["_callback", {}, [{}]], ["_callbackArgs", [], [[]]]];
 
 private _group = createGroup _side;
 _position = +_position;
@@ -53,13 +55,13 @@ if (_type isEqualTo 0) exitWith {
 
 private _vehicle = createVehicle [selectRandom _vehiclePool, _position, [], 0, "NONE"];
 _vehicle setVectorUp (surfaceNormal (getPos _vehicle));
-_group setVariable [QGVAR(assignedVehicle), _vehicle];
-
 _group addVehicle _vehicle;
-_vehicle setUnloadInCombat [true, true];
 
 private _turrets = allTurrets _vehicle;
-private _count = (_vehicle emptyPositions "driver") + count _turrets + round ((_vehicle emptyPositions "cargo") / 1.5);
+_count = [_vehicle, _turrets] call _countCode;
+if (_count == -1) then {
+    _count = (_vehicle emptyPositions "driver") + count _turrets + round ((_vehicle emptyPositions "cargo") / 1.5);
+};
 
 [{
     params ["_args", "_idPFH"];
@@ -72,6 +74,7 @@ private _count = (_vehicle emptyPositions "driver") + count _turrets + round ((_
         if (_allSpawned) then {
             _group selectLeader (effectiveCommander _vehicle);
             _callbackArgs pushBack _group;
+            _callbackArgs pushBack _vehicle;
             _callbackArgs call _callback;
         };
     };
@@ -81,16 +84,19 @@ private _count = (_vehicle emptyPositions "driver") + count _turrets + round ((_
     if ((_vehicle emptyPositions "driver") > 0) exitWith {
         _unit assignAsDriver _vehicle;
         _unit moveInDriver _vehicle;
+        _unit setVariable [QGVAR(assignedVehicle), assignedVehicle _unit]; // TODO: Find cleaner way of doing this with no repeated code below
     };
 
     if (isNull (_vehicle turretUnit (_turrets#0))) exitWith {
         _unit assignAsTurret [_vehicle, (_turrets#0)];
         _unit moveInTurret [_vehicle, (_turrets#0)];
+        _unit setVariable [QGVAR(assignedVehicle), assignedVehicle _unit];
         _turrets deleteAt 0;
     };
 
     if ((_vehicle emptyPositions "cargo") > 0) exitWith {
         _unit assignAsCargo _vehicle;
         _unit moveInCargo _vehicle;
+        _unit setVariable [QGVAR(assignedVehicle), assignedVehicle _unit];
     };
 }, SPAWN_DELAY, [_group, _vehicle, _unitPool, _count, _turrets, time, _callback, _callbackArgs]] call CBA_fnc_addPerFrameHandler;
