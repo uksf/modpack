@@ -12,15 +12,16 @@
     Return value:
         Nothing
 */
-params [["_callback", {}, [{}]]];
+params [["_callback", {}, [{}]], ["_callbackArgs", [], [[]]]];
 
 [getPos (selectRandom GVAR(planeSpawns)), 1, 0, EAST, EGVAR(gear,gearJetPilot), EGVAR(gear,gearPlane), {
     params ["_vehicle", "_turrets"];
 
     (_vehicle emptyPositions "driver") + count _turrets
 }, {
-    params ["_callback", "_group"];
+    params ["_callback", "_callbackArgs", "_group"];
 
     (vehicle leader _group) flyInHeight 300;
-    [_group] call _callback;
-}, [_callback]] call EFUNC(common,spawnGroup);
+    _callbackArgs pushBack _group;
+    _callbackArgs call _callback;
+}, [_callback, _callbackArgs]] call EFUNC(common,spawnGroup);
