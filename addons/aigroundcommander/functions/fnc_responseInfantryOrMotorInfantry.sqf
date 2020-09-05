@@ -13,6 +13,8 @@
         Nothing
 */
 
+if (!isServer || {count GVAR(responseGroups) > GVAR(groupLimit)}) exitWith {};
+
 private _chance = random 10;
 // private _chance = 6; // for debug
 
@@ -21,7 +23,7 @@ if (_chance <= 5) then {
         params ["_args", "_idPFH"];
         _args params ["_groupCount", "_numberOfResponseGroupsToBeSpawned"];
 
-        if (_groupCount == 0) exitWith {
+        if (_groupCount == 0 || {count GVAR(responseGroups) > GVAR(groupLimit)}) exitWith {
             [_idPFH] call CBA_fnc_removePerFrameHandler;
         };
 
@@ -36,7 +38,7 @@ if (_chance <= 5) then {
         private _player = [_stagingArea] call FUNC(getPlayer);
         if (isNull _player) exitWith {
             [_idPFH] call CBA_fnc_removePerFrameHandler;
-            [{call FUNC(responseInfantryOrMotorInfantry)}, 300] call CBA_fnc_waitAndExecute;
+            [{call FUNC(responseInfantryOrMotorInfantry)}, [], 300] call CBA_fnc_waitAndExecute;
         };
 
         [_spawnPosition, {
@@ -53,7 +55,7 @@ if (_chance <= 5) then {
         params ["_args", "_idPFH"];
         _args params ["_groupCount", "_numberOfResponseGroupsToBeSpawned"];
 
-        if (_groupCount == 0) exitWith {
+        if (_groupCount == 0 || {count GVAR(responseGroups) > GVAR(groupLimit)}) exitWith {
             [_idPFH] call CBA_fnc_removePerFrameHandler;
         };
 
@@ -68,7 +70,7 @@ if (_chance <= 5) then {
         private _player = [_stagingArea] call FUNC(getPlayer);
         if (isNull _player) exitWith {
             [_idPFH] call CBA_fnc_removePerFrameHandler;
-            [{call FUNC(responseInfantryOrMotorInfantry)}, 300] call CBA_fnc_waitAndExecute;
+            [{call FUNC(responseInfantryOrMotorInfantry)}, [], 300] call CBA_fnc_waitAndExecute;
         };
 
         [_spawnPosition, {
