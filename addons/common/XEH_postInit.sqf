@@ -36,11 +36,13 @@ if (hasInterface) then {
 if (isServer) then {
     if (GVAR(mainOp)) then {
         ["ace_medical_treatment_locationPAK", 2, 0, "server", false] call CBA_settings_fnc_set;
+        ["ace_medical_treatment_locationAmantadine", 2, 0, "server", false] call CBA_settings_fnc_set;
         ["ace_medical_spontaneousWakeUpEpinephrineBoost", 4, 0, "server", false] call CBA_settings_fnc_set;
         ["ace_medical_simplePAK", false, 0, "server", false] call CBA_settings_fnc_set;
         ["uksf_curator_curatorsLocked", true, 0, "server", false] call CBA_settings_fnc_set;
     } else {
         ["ace_medical_treatment_locationPAK", 0, 0, "server", false] call CBA_settings_fnc_set;
+        ["ace_medical_treatment_locationAmantadine", 0, 0, "server", false] call CBA_settings_fnc_set;
         ["ace_medical_spontaneousWakeUpEpinephrineBoost", 5, 0, "server", false] call CBA_settings_fnc_set;
         ["ace_medical_simplePAK", true, 0, "server", false] call CBA_settings_fnc_set;
         ["uksf_curator_curatorsLocked", false, 0, "server", false] call CBA_settings_fnc_set;
