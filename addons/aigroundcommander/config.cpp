@@ -13,7 +13,10 @@ class CfgPatches {
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {};
+        requiredAddons[] = {
+            "uksf_common",
+            "uksf_mission"
+        };
         author = QUOTE(UKSF);
         authors[] = { "Bridgford.A" };
         url = URL;
