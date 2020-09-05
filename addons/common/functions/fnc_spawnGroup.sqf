@@ -72,7 +72,7 @@ if (_count == -1) then {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
 
         if (_allSpawned) then {
-            _group selectLeader (commander _vehicle);
+            _group selectLeader (effectiveCommander _vehicle);
             _callbackArgs pushBack _group;
             _callbackArgs pushBack _vehicle;
             _callbackArgs call _callback;

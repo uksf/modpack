@@ -14,7 +14,7 @@
 */
 params ["_stagingArea"];
 
-private _players = GVAR(killerPlayers) select {(_stagingArea distance2D _x) < 2000};
+private _players = (GVAR(killerPlayers) apply {_x#0}) select {(_stagingArea distance2D _x) < 2000};
 if (_players isEqualTo []) exitWith {objNull};
 
 _players = _players apply {[_stagingArea distance2D _x, _x]};

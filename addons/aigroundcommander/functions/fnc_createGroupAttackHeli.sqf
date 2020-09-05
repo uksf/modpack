@@ -23,7 +23,7 @@ params ["_spawnPosition", ["_callback", {}, [{}]], ["_callbackArgs", [], [[]]]];
 }, {
     params ["_callback", "_callbackArgs", "_group"];
 
-    (vehicle leader _group) flyInHeight 300;
+    (vehicle leader _group) flyInHeight 150;
     _callbackArgs pushBack _group;
     _callbackArgs call _callback;
 }, [_callback, _callbackArgs]] call EFUNC(common,spawnGroup);

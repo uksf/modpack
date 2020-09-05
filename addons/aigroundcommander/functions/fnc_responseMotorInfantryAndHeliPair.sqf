@@ -55,13 +55,13 @@
         [_idPFH] call CBA_fnc_removePerFrameHandler;
     };
 
-    [EGVAR(airCommander,heliSpawns), true] call CBA_fnc_shuffle;
-    private _index = EGVAR(airCommander,heliSpawns) findIf {alive _x};
+    [EGVAR(aiaircommander,heliSpawns), true] call CBA_fnc_shuffle;
+    private _index = EGVAR(aiaircommander,heliSpawns) findIf {alive _x};
     if (_index == -1) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
     };
 
-    private _spawnPosition = EGVAR(airCommander,heliSpawns) select _index;
+    private _spawnPosition = EGVAR(aiaircommander,heliSpawns) select _index;
     private _stagingArea = [_spawnPosition] call FUNC(getStagingAreas);
     private _player = [_stagingArea] call FUNC(getPlayer);
     if (isNull _player) exitWith {

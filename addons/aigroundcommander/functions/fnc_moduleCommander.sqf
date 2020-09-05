@@ -20,24 +20,28 @@
 
 private _interval = _module getVariable [QGVAR(interval), 900];
 [{call FUNC(selectResponse)}, _interval] call CBA_fnc_addPerFrameHandler;
+[{call FUNC(cleanup)}, _interval / 4] call CBA_fnc_addPerFrameHandler;
 
 [{
     GVAR(tier1ResponseDeployed) = false;
     GVAR(tier2ResponseDeployed) = false;
 }, _interval * 1.5] call CBA_fnc_addPerFrameHandler;
 
-call FUNC(cleanup);
 
 ["CAManBase", "init", {
-    _this#0 addMPEventHandler ["MPKilled", {
+    params ["_unit"];
+
+    if (side _unit != EAST) exitWith {TRACE_1("exit side",side _unit)}; // TODO: This side check should be a setting, for cases where we're not fighting OPFOR
+
+    _unit addMPEventHandler ["MPKilled", {
         params ["_unit", "_killer", "_instigator"];
 
         TRACE_3("",_unit,_killer,_instigator);
-        if (side _unit != EAST) exitWith {}; // TODO: This side check should be a setting, for cases where we're not fighting OPFOR
-        if (isNull _instigator || {!isPlayer _instigator || {surfaceIsWater (getPos _instigator) || {(vehicle _instigator) isKindOf "Air"}}}) exitWith {};
+        if (isNull _instigator || {!isPlayer _instigator || {surfaceIsWater (getPos _instigator) || {(vehicle _instigator) isKindOf "Air"}}}) exitWith {TRACE_4("exit other",isNull _instigator,isPlayer _instigator,surfaceIsWater (getPos _instigator),(vehicle _instigator) isKindOf "Air")};
 
         GVAR(enemyAggressionLevel) = GVAR(enemyAggressionLevel) + 1;
 
+        TRACE_1("",GVAR(enemyAggressionLevel));
         private _index = GVAR(killerPlayers) findIf {_instigator == (_x#0)};
         if (_index != -1) then {
             GVAR(killerPlayers) set [_index, [_instigator, time + PLAYER_FIRED_TIMEOUT]];

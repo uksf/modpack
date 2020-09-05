@@ -19,6 +19,7 @@
 #define AGGRESSION_LEVEL_120 120
 #define AGGRESSION_LEVEL_160 160
 
+call FUNC(cleanup);
 if (!isServer || {count GVAR(responseGroups) > GVAR(groupLimit)}) exitWith {};
 
 GVAR(readyAtStagingArea) = 0;

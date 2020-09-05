@@ -20,7 +20,7 @@ if !(alive _spawnPosition) exitWith {};
 
 private _nearRoads = _spawnPosition nearRoads 100;
 private _roadSpawn = selectRandom _nearRoads;
-_spawnPosition = [getPos _roadSpawn, _spawnPosition getPos [20, random 360]] select (isNull _nearRoads);
+_spawnPosition = [getPos _roadSpawn, _spawnPosition getPos [20, random 360]] select (isNull _roadSpawn);
 
 [_spawnPosition, 1, 0, EAST, EGVAR(gear,gearSoldier), EGVAR(gear,gearCarTpt), {
     params ["_vehicle", "_turrets"];

@@ -23,7 +23,7 @@ private _groupsToDelete = GVAR(responseGroups) select {
         _x getVariable [QGVAR(hasFinishedTask), false]
         && {!([getPosATL (leader _x), 1000] call EFUNC(common,anyNearPlayers))}
     }
-    || {!([getPosATL (leader _x), 3000] call EFUNC(common,anyNearPlayers))}
+    || {!([getPosATL (leader _x), 7500] call EFUNC(common,anyNearPlayers))}
 };
 // TODO: Make these distances settings (part of common component, might need to register custom conditions for each group, or a handler for each component)
 
@@ -37,5 +37,3 @@ GVAR(transportGroups) = GVAR(transportGroups) - [objNull];
 if (GVAR(transportGroups) isEqualTo []) then {
     GVAR(stayBehindGroupSelected) = false;
 };
-
-[{call FUNC(cleanup)}, [], 150] call CBA_fnc_waitandexecute;
