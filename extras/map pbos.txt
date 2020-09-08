@@ -1,6 +1,2 @@
-- Kapaulio
-    - kapaulio
-    - kapaulio_config
-    - kapaulio_data
-    - mbg_killhouses_a3 **
-    - RSPN_Assets **
+- Al Rayak
+    - projeta3-10
