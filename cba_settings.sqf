@@ -218,7 +218,6 @@ force force ace_medical_painCoefficient = 1;
 force force ace_medical_playerDamageThreshold = 1;
 force force ace_medical_spontaneousWakeUpChance = 0.20;
 force ace_medical_spontaneousWakeUpEpinephrineBoost = 4;
-force force ace_medical_simplePAK = true;
 force force ace_medical_statemachine_AIUnconsciousness = false;
 force force ace_medical_statemachine_cardiacArrestTime = 780;
 force force ace_medical_statemachine_comaTime = 1800;
