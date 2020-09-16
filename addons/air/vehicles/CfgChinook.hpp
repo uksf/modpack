@@ -179,7 +179,7 @@ class CUP_CH47F_base : Helicopter_Base_H {
             };
         };
     };
-    ace_cookoff_cookoffSelections[] = { "palivo" };
+    ace_cookoff_cookoffSelections[] = { "exhaust_1" };
     ace_refuel_fuelCapacity = 3914;
 #include "MFDGeneral.hpp"
 };

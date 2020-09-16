@@ -510,7 +510,8 @@ class CfgWeapons {
         modes[] = { "Overfly", "Single" };
     };
     class UK3CB_BAF_NLAW_Launcher : launch_NLAW_F {
-        magazines[] = { "ACE_PreloadedMissileDummy" };
+        magazines[] = {"ACE_PreloadedMissileDummy"};
+        magazineWell[] = {"NLAW"};
         ACE_UsedTube = "ACE_launch_NLAW_Used_F";
         ace_nlaw_enabled = 1;
         uk3cb_used_launcher = "";

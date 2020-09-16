@@ -328,9 +328,6 @@ class CfgVehicles {
         side = 1;
         faction = "BLU_F";
         crew = "B_soldier_f";
-        class assembleInfo: assembleInfo{
-            dissasembleTo[] = {"B_AA_01_weapon_F", "B_HMG_01_support_F"};
-        };
         displayName = "Rappelling Helper";
     };
 

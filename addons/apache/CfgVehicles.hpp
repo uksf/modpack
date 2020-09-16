@@ -994,7 +994,7 @@ class CfgVehicles {
                 };
             };
         };
-        ace_cookoff_cookoffSelections[] = { "palivo" };
+        ace_cookoff_cookoffSelections[] = { "zamerny" };
         INVENTORY_AIRCRAFT
     };
     class UKSF_Apache_AH1 : UKSF_Apache_base {
