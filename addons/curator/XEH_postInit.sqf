@@ -1,6 +1,7 @@
 #include "script_component.hpp"
 
 // Delay is necessary to allow curators created in progress to properly initialise as Zeus objects
+// Note: This spawning is only a backup. Mission patching should be placing curator modules as part of its patching process.
 [{
     if (isServer) then {
         GVAR(curatorObjects) = GVAR(curatorObjects) - [objNull];

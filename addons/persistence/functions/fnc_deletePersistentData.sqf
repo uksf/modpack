@@ -16,6 +16,7 @@
 if (!isServer) exitWith {};
 
 params [["_key", GVAR(key)]];
+
 if (_key == "") exitWith {};
 
 WARNING_1("Deleting persistence data for key %1",_key);

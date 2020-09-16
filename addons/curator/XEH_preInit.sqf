@@ -45,6 +45,8 @@ if (hasInterface) then {
     ["CAManBase", "respawn", {
         params ["_unit"];
 
+        [QEGVAR(common,addObjectsToCurators), [[_unit]]] call CBA_fnc_serverEvent;
+
         TRACE_2("",_unit,name _unit);
         private _index = (GVAR(curatorPlayers) find (name _unit));
         if (_index != -1) then {
@@ -63,7 +65,7 @@ if (hasInterface) then {
             [QGVAR(curatorUnassign), [GVAR(curatorObjects)#_index, _unit]] call CBA_fnc_serverEvent;
         } else {
             if (WHITELISTED) then {
-                // call FUNC(curatorLogin); // disabled due to zeus crashes, still no cause found
+                call FUNC(curatorLogin);
             };
         };
     }, true, [], true] call CBA_fnc_addClassEventHandler;

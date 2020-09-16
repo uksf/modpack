@@ -18,11 +18,17 @@ if (!isServer) exitWith {
     [QGVAR(addObjectsToCurators), _this] call CBA_fnc_serverEvent;
 };
 
-params [["_objects", allMissionObjects "all"], ["_curators", allCurators]];
+params [["_objects", []], ["_curators", allCurators]];
+
+if (_objects isEqualTo []) then {
+    _objects = allMissionObjects "all";
+};
+
 _objects = _objects - allCurators;
 
 [{
     params ["_objects", "_curators"];
+
     {
         _x addCuratorEditableObjects [_objects, true];
     } forEach _curators;

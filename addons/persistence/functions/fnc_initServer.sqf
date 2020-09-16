@@ -157,7 +157,6 @@ addMissionEventHandler ["PlayerDisconnected", {call FUNC(playerDisconnected)}];
     [GVAR(persistentObjectsHash), _id] call CBA_fnc_hashRem;
 }] call CBA_fnc_addEventHandler;
 
-GVAR(dataNamespace) setVariable [QGVAR(world), worldName];
 call FUNC(saveData);
 
 if (!GVAR(overrideSavedDateTime)) then {

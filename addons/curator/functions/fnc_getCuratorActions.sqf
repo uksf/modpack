@@ -15,10 +15,10 @@
 
 private _actions = [];
 
-private _action = [QGVAR(curatorLogin), QUOTE(Login), CURATOR_ICON, {[] call FUNC(curatorLogin)}, {CONDITION_LOGIN}] call ace_interact_menu_fnc_createAction;
+private _action = [QGVAR(curatorLogin), QUOTE(Login), CURATOR_ICON, {call FUNC(curatorLogin)}, {CONDITION_LOGIN}] call ace_interact_menu_fnc_createAction;
 _actions pushBack [_action, [], player];
 
-_action = [QGVAR(curatorLogout), QUOTE(Logout), CURATOR_ICON, {[] call FUNC(curatorLogout)}, {CONDITION_LOGOUT}] call ace_interact_menu_fnc_createAction;
+_action = [QGVAR(curatorLogout), QUOTE(Logout), CURATOR_ICON, {call FUNC(curatorLogout)}, {CONDITION_LOGOUT}] call ace_interact_menu_fnc_createAction;
 _actions pushBack [_action, [], player];
 
 _action = [QGVAR(curatorsLock), QUOTE(Lock Curators), CURATOR_ICON, {[true] call FUNC(setCuratorsLocked)}, {CONDITION_LOCK}] call ace_interact_menu_fnc_createAction;
@@ -37,7 +37,7 @@ _actions pushBack [_action, [], player];
             format [QGVAR(curatorKick_%1), _player],
             format ["Kick: %1", _player],
             CURATOR_ICON,
-            {[false, ((_this select 2) select 0)] call FUNC(curatorKick)},
+            {[false, _this#2#0] call FUNC(curatorKick)},
             {MULTIPLAYER_ADMIN_OR_WHITELISTED},
             {},
             [_player]
