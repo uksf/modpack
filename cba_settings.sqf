@@ -710,6 +710,14 @@ force uksf_mission_support = true;
 force uksf_mission_supportChance = 25;
 force uksf_mission_supportDistance = 500;
 
+// VET_Unflipping
+force force vet_unflipping_require_serviceVehicle = false;
+force force vet_unflipping_require_toolkit = false;
+force force vet_unflipping_time = 5;
+force force vet_unflipping_unit_man_limit = 5;
+force force vet_unflipping_unit_mass_limit = 3000;
+force force vet_unflipping_vehicle_mass_limit = 20000;
+
 // Zeus Enhanced
 zen_camera_adaptiveSpeed = true;
 zen_camera_defaultSpeedCoef = 1;
