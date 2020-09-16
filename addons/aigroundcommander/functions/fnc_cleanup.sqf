@@ -33,7 +33,7 @@ private _groupsToDelete = GVAR(responseGroups) select {
     _x call CBA_fnc_deleteEntity;
 } forEach _groupsToDelete;
 
-GVAR(transportGroups) = GVAR(transportGroups) - [objNull];
+GVAR(transportGroups) = GVAR(transportGroups) - [grpNull];
 if (GVAR(transportGroups) isEqualTo []) then {
     GVAR(stayBehindGroupSelected) = false;
 };

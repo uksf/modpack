@@ -10,13 +10,23 @@
         0: Staging area module (staging area position) <POSITION>
 
     Return value:
-        Nothing
+        Player position <ARRAY>
 */
 params ["_stagingArea"];
 
+if (GVAR(killerPlayers) isEqualTo []) exitWith {
+    []
+};
+
 private _players = (GVAR(killerPlayers) apply {_x#0}) select {(_stagingArea distance2D _x) < 2000};
-if (_players isEqualTo []) exitWith {objNull};
+if (_players isEqualTo []) exitWith {
+    []
+};
 
 _players = _players apply {[_stagingArea distance2D _x, _x]};
+if (_players isEqualTo []) exitWith {
+    []
+};
+
 _players sort true;
-_players#0#1
+_players apply {getPos _x#1}

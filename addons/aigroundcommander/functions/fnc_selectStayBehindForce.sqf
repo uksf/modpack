@@ -18,10 +18,12 @@ if !(local _group) exitWith {};
 
 private _leader = leader _group;
 if !(GVAR(stayBehindGroupSelected)) exitWith {
-    GVAR(stayBehindGroupSelected) = true;
     private _stayBehindGroup = selectRandom GVAR(transportGroups);
+    if (isNull _stayBehindGroup) exitWith {};
+
+    GVAR(stayBehindGroupSelected) = true;
     [_group, (getPos _leader), 300, 7, "MOVE", "SAFE"] call CBA_fnc_taskPatrol;
-    deleteVehicle (_group getVariable [QEGVAR(common,assignedVehicle), objNull]);
+    _group leaveVehicle (_group getVariable [QEGVAR(common,assignedVehicle), objNull]);
 };
 
 [_group, (getPos (assignedVehicle _leader)), 0, "GETIN", "AWARE", "YELLOW", "NORMAL"] call CBA_fnc_addWaypoint;

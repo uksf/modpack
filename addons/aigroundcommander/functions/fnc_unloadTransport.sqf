@@ -20,14 +20,15 @@ if !(local _leader) exitWith {};
 
 private _group = group _leader;
 {unassignVehicle _x} forEach units _group;
-
-private _spawnPos = _group getVariable [QGVAR(spawnPosition), getPos (selectRandom GVAR(carSpawns))];
-private _stagingArea = _group getVariable [QGVAR(stagingArea), getPos (selectRandom GVAR(stagingAreas))];
-private _player = [_stagingArea] call FUNC(getPlayer);
-// TODO: Need to handle when no player is selected
+_group setBehaviour "AWARE";
 
 [{
-    params ["_group", "_spawnPos", "_player"];
+    params ["_group"];
 
-    [_group, _player, 100, "SAD", "AWARE", "YELLOW", "NORMAL", "LINE", QUOTE([group this] call FUNC(selectStayBehindForce))] call CBA_fnc_addWaypoint;
-}, [_group, _spawnPos, _player], (2 max (count units _group)) * TIME_PER_UNIT] call CBA_fnc_waitAndExecute;
+    private _playerPosition = _group getVariable [QGVAR(playerPosition), []];
+    if (_playerPosition isEqualTo []) exitWith {
+        [_group, _group, 300, "SAD", "AWARE"] call CBA_fnc_taskPatrol;
+    };
+
+    [_group, _playerPosition, 100, "SAD", "AWARE", "YELLOW", "NORMAL", "LINE", QUOTE([group this] call FUNC(selectStayBehindForce))] call CBA_fnc_addWaypoint;
+}, [_group], (2 max (count units _group)) * TIME_PER_UNIT] call CBA_fnc_waitAndExecute;

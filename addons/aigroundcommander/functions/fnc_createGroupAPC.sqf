@@ -7,14 +7,15 @@
         Create APC with only crew, no dismounts
 
     Parameters:
-        0: Spawn position module <OBJECT>
-        1: Callback once spawning complete <CODE> (Optional)
-        2: Callback arguments <ARRAY> (Optional)
+        0: Spawn position <ARRAY>
+        1: Staging area position <ARRAY>
+        2: Player position <ARRAY>
+        3: Spawn count <SCALAR>
 
     Return value:
         Nothing
 */
-params ["_spawnPosition", ["_callback", {}, [{}]], ["_callbackArgs", [], [[]]]];
+params ["_spawnPosition", "_stagingAreaPosition", "_playerPosition", "_count"];
 
 if !(alive _spawnPosition) exitWith {};
 
@@ -23,8 +24,8 @@ if !(alive _spawnPosition) exitWith {};
 
     (_vehicle emptyPositions "driver") + count _turrets
 }, {
-    params ["_callback", "_callbackArgs", "_group"];
+    params ["", "", "", "", "_group"];
 
-    _callbackArgs pushBack _group;
-    _callbackArgs call _callback;
-}, [_callback, _callbackArgs]] call EFUNC(common,spawnGroup);
+    GVAR(responseGroups) pushBack _group;
+    call FUNC(addWaypoints);
+}, [_spawnPosition, _stagingAreaPosition, _playerPosition, _count]] call EFUNC(common,spawnGroup);

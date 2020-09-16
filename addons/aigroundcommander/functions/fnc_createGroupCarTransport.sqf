@@ -7,16 +7,15 @@
         Create transport vehicle and fill with AI
 
     Parameters:
-        0: Spawn position module <OBJECT>
-        1: Callback once spawning complete <CODE> (Optional)
-        2: Callback arguments <ARRAY> (Optional)
+        0: Spawn position <ARRAY>
+        1: Staging area position <ARRAY>
+        2: Player position <ARRAY>
+        3: Spawn count <SCALAR>
 
     Return value:
         Nothing
 */
-params ["_spawnPosition", ["_callback", {}, [{}]], ["_callbackArgs", [], [[]]]];
-
-if !(alive _spawnPosition) exitWith {};
+params ["_spawnPosition", "_stagingAreaPosition", "_playerPosition", "_count"];
 
 private _nearRoads = _spawnPosition nearRoads 100;
 private _roadSpawn = selectRandom _nearRoads;
@@ -27,9 +26,8 @@ _spawnPosition = [getPos _roadSpawn, _spawnPosition getPos [20, random 360]] sel
 
     (_vehicle emptyPositions "driver") + count _turrets + (_vehicle emptyPositions "cargo")
 }, {
-    params ["_callback", "_callbackArgs", "_group"];
+    params ["", "", "", "", "_group"];
 
     GVAR(transportGroups) pushback _group;
-    _callbackArgs pushBack _group;
-    _callbackArgs call _callback;
-}, [_callback, _callbackArgs]] call EFUNC(common,spawnGroup);
+    call FUNC(addWaypointsTransport);
+}, [_spawnPosition, _stagingAreaPosition, _playerPosition, _count]] call EFUNC(common,spawnGroup);

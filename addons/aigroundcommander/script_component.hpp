@@ -7,3 +7,6 @@
 // #define CBA_DEBUG_SYNCHRONOUS
 
 #include "\u\uksf\addons\main\script_macros.hpp"
+
+#define RESPONSE_MAX_RETRIES 3
+#define RESPONSE_RETRY_DELAY 100
