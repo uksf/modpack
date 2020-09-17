@@ -329,6 +329,9 @@ class CfgVehicles {
         faction = "BLU_F";
         crew = "B_soldier_f";
         displayName = "Rappelling Helper";
+        class ace_csw {
+            enabled = 0;
+        };
     };
 
     #include "CfgVehiclesPrivate.hpp"
