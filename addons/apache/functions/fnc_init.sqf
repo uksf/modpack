@@ -21,7 +21,7 @@ if (local _heli) then {
     _heli setVariable [QGVAR(previousE2Damage), 0, true];
     _heli setVariable [QGVAR(previousGunDamage), 0, true];
     _heli setVariable [QGVAR(previousInsDamage), 0, true];
-    _heli setVariable [QGVAR(jammerMode), 0, true];
+    _heli setVariable [QGVAR(cmMode), 0, true];
 };
 
 if (player in _heli) then {
