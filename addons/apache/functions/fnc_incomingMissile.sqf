@@ -88,6 +88,8 @@ if (isEngineOn _aircraft && _cmMode > 0) then {
 
     if !(alive _missile) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
+        GVAR(trackedMissiles) deleteAt (GVAR(trackedMissiles) find _missile);
+        GVAR(trackedMissiles) = GVAR(trackedMissiles) - [objNull];
     };
 
     if (CBA_missionTime == _lastCheckTime) exitWith {};
