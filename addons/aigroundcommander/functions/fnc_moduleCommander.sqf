@@ -18,6 +18,8 @@
 
 (_this select 1) params ["_module"];
 
+// TODO: Tick aggression down based on number of killer players at tick (more killers = less reduction)
+
 [{
     params ["_module"];
 
