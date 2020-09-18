@@ -14,7 +14,7 @@
     Return value:
         Nothing
 */
-#define PLAYER_FIRED_TIMEOUT 600
+#define PLAYER_FIRED_TIMEOUT 1200
 
 (_this select 1) params ["_module"];
 

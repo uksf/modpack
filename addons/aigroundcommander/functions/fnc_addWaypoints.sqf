@@ -20,6 +20,8 @@
 
 params ["_spawnPosition", "_stagingAreaPosition", "_playerPosition", "_groupCount", "_group"];
 
+TRACE_1("",_this);
+
 _group setVariable [QGVAR(spawnPosition), _spawnPosition, true]; // used in selectStayBehindForce
 
 // default move to staging area for all groups
@@ -36,7 +38,7 @@ if ((vehicle (leader _group)) isKindOf "helicopter") exitWith {
     params ["_args", "_idPFH"];
     _args params ["_group", "_playerPosition", "_groupCount", "_75Percent", "_timeout"];
 
-    if (GVAR(readyAtStagingArea) >= _75Percent || _timeout > time) exitWith {
+    if (GVAR(readyAtStagingArea) >= _75Percent || time > _timeout) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
         [_group, _playerPosition, 200, "SAD", "AWARE", "YELLOW", "NORMAL", "FILE", QUOTE([group this] call FUNC(selectStayBehindForce))] call CBA_fnc_addWaypoint;
     };

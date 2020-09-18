@@ -29,4 +29,4 @@ if (_players isEqualTo []) exitWith {
 };
 
 _players sort true;
-_players apply {getPos _x#1}
+_players apply {getPos (_x#1)}

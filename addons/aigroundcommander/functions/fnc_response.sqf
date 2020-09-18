@@ -21,6 +21,7 @@ params ["_spawnLogics", "_delay", "_count", "_creationFunction", ["_retry", 0]];
 if (!isServer || {_retry > RESPONSE_MAX_RETRIES} || {count GVAR(responseGroups) > GVAR(groupLimit)}) exitWith {};
 
 private _spawns = [_spawnLogics] call FUNC(getValidResponseParameters);
+TRACE_1("",_spawns);
 if (_spawns isEqualType false && {!_spawns}) exitWith {}; // Exit without retry, no spawns available
 
 if (_spawns isEqualTo []) exitWith {
@@ -38,10 +39,11 @@ if (_spawns isEqualTo []) exitWith {
 
     private _spawn = selectRandom _spawns;
     private _spawnPosition = _spawn#0;
-    private _stagingArea = selectRandom (_spawns#1);
+    private _stagingArea = selectRandom (_spawn#1);
     private _stagingAreaPosition = _stagingArea#0;
     private _playerPosition = selectRandom (_stagingArea#1);
 
+    TRACE_5("",_spawns,_spawnPosition,_stagingAreaPosition,_playerPosition,_count);
     [_spawnPosition, _stagingAreaPosition, _playerPosition, _count] call _creationFunction;
 
     _args set [3, _currentCount + 1];

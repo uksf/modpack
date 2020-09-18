@@ -24,4 +24,4 @@ if (_stagingAreas isEqualTo []) exitWith {
 };
 
 _stagingAreas sort true;
-_stagingAreas apply {getPos _x#1}
+_stagingAreas apply {getPos (_x#1)}

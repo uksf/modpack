@@ -21,7 +21,7 @@ class CfgVehicles {
                 control = "Combo";
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(interval),_value,true)]);
                 typeName = "NUMBER";
-                defaultValue = 1;
+                defaultValue = 1200;
                 class values {
                     class Low {
                         name = "Low";

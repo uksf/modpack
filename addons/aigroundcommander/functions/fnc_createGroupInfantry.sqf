@@ -16,11 +16,13 @@
         Nothing
 */
 params ["_spawnPosition", "_stagingAreaPosition", "_playerPosition", "_count"];
+TRACE_1("",_this);
 
 private _unitCount = ceil ((random 4) + 6);
 [_spawnPosition getPos [10, random 360], 0, _unitCount, EAST, EGVAR(gear,gearSoldier), [], {}, {
     params ["", "", "", "", "_group"];
 
     GVAR(responseGroups) pushBack _group;
+    TRACE_1("",_this);
     call FUNC(addWaypoints);
 }, [_spawnPosition, _stagingAreaPosition, _playerPosition, _count]] call EFUNC(common,spawnGroup);
