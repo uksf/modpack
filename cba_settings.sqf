@@ -236,7 +236,7 @@ force force ace_medical_treatment_clearTraumaAfterBandage = true;
 force force ace_medical_treatment_consumePAK = 0;
 force force ace_medical_treatment_consumeSurgicalKit = 0;
 force force ace_medical_treatment_convertItems = 0;
-force force ace_medical_treatment_cprSuccessChance = 0.4;
+force force ace_medical_treatment_cprSuccessChance = 0.3;
 force force ace_medical_treatment_holsterRequired = 0;
 force force ace_medical_treatment_litterCleanupDelay = 600;
 force force ace_medical_treatment_locationEpinephrine = 0;
@@ -709,6 +709,14 @@ force uksf_mission_dynamicPatrolWaypointDistance = 100;
 force uksf_mission_support = true;
 force uksf_mission_supportChance = 25;
 force uksf_mission_supportDistance = 500;
+
+// VET_Unflipping
+force force vet_unflipping_require_serviceVehicle = false;
+force force vet_unflipping_require_toolkit = false;
+force force vet_unflipping_time = 5;
+force force vet_unflipping_unit_man_limit = 5;
+force force vet_unflipping_unit_mass_limit = 3000;
+force force vet_unflipping_vehicle_mass_limit = 20000;
 
 // Zeus Enhanced
 zen_camera_adaptiveSpeed = true;

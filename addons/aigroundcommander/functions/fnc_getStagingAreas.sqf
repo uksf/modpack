@@ -10,10 +10,18 @@
         0: Spawn position module <OBJECT>
 
     Return value:
-        Nothing
+        Staging area positions <ARRAY>
 */
 params ["_spawnPosition"];
 
+if (GVAR(stagingAreas) isEqualTo []) exitWith {
+    []
+};
+
 private _stagingAreas = GVAR(stagingAreas) apply {[_x distance2D _spawnPosition, _x]};
+if (_stagingAreas isEqualTo []) exitWith {
+    []
+};
+
 _stagingAreas sort true;
-_stagingAreas#0#1
+_stagingAreas apply {getPos (_x#1)}

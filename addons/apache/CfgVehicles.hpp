@@ -109,10 +109,10 @@ class CfgVehicles {
         picture = QPATHTOF(data\ui\Picture_ah64d_CA.paa);
         icon = QPATHTOF(data\ui\Icon_ah64d_CA.paa);
         availableForSupportTypes[] = { "CAS_Heli" };
-        armor = 100;
+        armor = 150;
         fuelCapacity = 200;  // 300
         startDuration = 70;
-        explosionShielding = 0.5;
+        explosionShielding = 2;
         epeImpulseDamageCoef = 5;
         crewCrashProtection = 0.5;
         enableManualFire = 1;
@@ -548,14 +548,14 @@ class CfgVehicles {
                 name = "NEtrup";
                 convexComponent = "NEtrup";
                 visual = "trup";
-                armor = 2;
+                armor = 4;
                 radius = 0.3;
             };
             class HitAvionics : HitAvionics {
                 name = "elektronika";
                 convexComponent = "elektronika";
                 visual = "elektronika";
-                armor = 2;
+                armor = 3;
                 radius = 0.3;
             };
             class HitMissiles : HitMissiles {
@@ -570,7 +570,7 @@ class CfgVehicles {
                 convexComponent = "motor_1";
                 visual = "motor_1";
                 minimalHit = 0.09;
-                armor = 1;
+                armor = 2;
                 radius = 0.3;
                 explosionShielding = 4;
             };
@@ -579,7 +579,7 @@ class CfgVehicles {
                 convexComponent = "motor_2";
                 visual = "motor_2";
                 minimalHit = 0.09;
-                armor = 1;
+                armor = 2;
                 radius = 0.3;
                 explosionShielding = 4;
             };
@@ -587,7 +587,7 @@ class CfgVehicles {
                 name = "";
                 convexComponent = "";
                 minimalHit = 0.09;
-                armor = 1;
+                armor = 2;
                 radius = 0.3;
                 explosionShielding = 4;
             };
@@ -595,7 +595,7 @@ class CfgVehicles {
                 name = "velka vrtule";
                 convexComponent = "velka vrtule";
                 visual = "velka vrtule staticka";
-                armor = 4;
+                armor = 5;
                 radius = 0.1;
                 minimalHit = 0.09;
                 explosionShielding = 2.5;
@@ -604,7 +604,7 @@ class CfgVehicles {
                 name = "mala vrtule";
                 convexComponent = "mala vrtule";
                 visual = "mala vrtule staticka";
-                armor = 4;
+                armor = 6;
                 radius = 0.06;
                 minimalHit = 0.05;
                 explosionShielding = 6;
@@ -757,8 +757,8 @@ class CfgVehicles {
                 priority = 4;
                 onlyForPlayer = 0;
                 hideOnUse = 0;
-                condition = QUOTE((player isEqualTo(driver this) || player isEqualTo(gunner this)) && { (this getVariable[ARR_2(QQGVAR(jammerMode),0)]) != 1 });
-                statement = QUOTE(this setVariable[ARR_3(QQGVAR(jammerMode),1,true)]);
+                condition = QUOTE((player isEqualTo(driver this) || player isEqualTo(gunner this)) && { (this getVariable[ARR_2(QQGVAR(cmMode),0)]) != 1 });
+                statement = QUOTE(this setVariable[ARR_3(QQGVAR(cmMode),1,true)]);
             };
             class jammerAuto {
                 displayName = "<t color = '#217cd1'>CM Auto</t>";
@@ -767,8 +767,8 @@ class CfgVehicles {
                 priority = 4;
                 onlyForPlayer = 0;
                 hideOnUse = 0;
-                condition = QUOTE((player isEqualTo(driver this) || player isEqualTo(gunner this)) && { (this getVariable[ARR_2(QQGVAR(jammerMode),0)]) != 2 });
-                statement = QUOTE(this setVariable[ARR_3(QQGVAR(jammerMode),2,true)]);
+                condition = QUOTE((player isEqualTo(driver this) || player isEqualTo(gunner this)) && { (this getVariable[ARR_2(QQGVAR(cmMode),0)]) != 2 });
+                statement = QUOTE(this setVariable[ARR_3(QQGVAR(cmMode),2,true)]);
             };
             class jammerOff {
                 displayName = "<t color = '#217cd1'>CM Man</t>";
@@ -777,8 +777,8 @@ class CfgVehicles {
                 priority = 4;
                 onlyForPlayer = 0;
                 hideOnUse = 0;
-                condition = QUOTE((player isEqualTo(driver this) || player isEqualTo(gunner this)) && { (this getVariable[ARR_2(QQGVAR(jammerMode),0)]) != 0 });
-                statement = QUOTE(this setVariable[ARR_3(QQGVAR(jammerMode),0,true)]);
+                condition = QUOTE((player isEqualTo(driver this) || player isEqualTo(gunner this)) && { (this getVariable[ARR_2(QQGVAR(cmMode),0)]) != 0 });
+                statement = QUOTE(this setVariable[ARR_3(QQGVAR(cmMode),0,true)]);
             };
         };
         class Components : Components {
@@ -994,7 +994,7 @@ class CfgVehicles {
                 };
             };
         };
-        ace_cookoff_cookoffSelections[] = { "palivo" };
+        ace_cookoff_cookoffSelections[] = { "zamerny" };
         INVENTORY_AIRCRAFT
     };
     class UKSF_Apache_AH1 : UKSF_Apache_base {

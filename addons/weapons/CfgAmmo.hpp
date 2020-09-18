@@ -85,8 +85,15 @@ class CfgAmmo {
     class MissileBase : MissileCore {
         timeToLive = 60;
     };
+    class ammo_Penetrator_Scalpel;
+    class ammo_Penetrator_Hellfire: ammo_Penetrator_Scalpel{
+        caliber = 70;
+        hit = 1550;
+    };
     class M_Scalpel_AT;
     class ACE_Hellfire_AGM114K : M_Scalpel_AT {
+        hit = 400; // 150 (javelin 350)
+        submunitionAmmo = "ammo_Penetrator_Hellfire";
         SoundSetExplosion[] = { "JPEX_Missile_EXPLOSION_SoundSet", "JPEX_Missile_REFLECTOR_SoundSet", "JPEX_Big_Debris_SoundSet" };
         model = QPATHTOF(data\AGM114\AGM114Hellfire.p3d);
         proxyShape = QPATHTOF(data\AGM114\AGM114Hellfire_proxy.p3d);
@@ -106,9 +113,9 @@ class CfgAmmo {
         class ace_missileguidance : ace_missileguidance {
             enabled = 1;
             seekerAngle = 360;
-            minDeflection = 0.0005;  // Minium flap deflection for guidance
+            minDeflection = 0.0005;  // Minimum flap deflection for guidance
             maxDeflection = 0.02;    // Maximum flap deflection for guidance
-            incDeflection = 0.0005;  // The incrmeent in which deflection adjusts.
+            incDeflection = 0.0005;  // The increment in which deflection adjusts.
         };
     };
     class ACE_Hellfire_AGM114N : ACE_Hellfire_AGM114K {
@@ -118,9 +125,9 @@ class CfgAmmo {
         class ace_missileguidance : ace_missileguidance {
             enabled = 1;
             seekerAngle = 360;
-            minDeflection = 0.0005;  // Minium flap deflection for guidance
+            minDeflection = 0.0005;  // Minimum flap deflection for guidance
             maxDeflection = 0.02;    // Maximum flap deflection for guidance
-            incDeflection = 0.0005;  // The incrmeent in which deflection adjusts.
+            incDeflection = 0.0005;  // The increment in which deflection adjusts.
         };
     };
 

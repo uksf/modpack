@@ -321,5 +321,18 @@ class CfgVehicles {
         };
     };
 
+    class AA_01_base_F;
+    class GVAR(rappelling_helper): AA_01_base_F {
+        editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\B_static_AA_F.jpg";
+        scope = 2;
+        side = 1;
+        faction = "BLU_F";
+        crew = "B_soldier_f";
+        displayName = "Rappelling Helper";
+        class ace_csw {
+            enabled = 0;
+        };
+    };
+
     #include "CfgVehiclesPrivate.hpp"
 };

@@ -14,9 +14,11 @@
     Return value:
         Nothing
 */
-#define PLAYER_FIRED_TIMEOUT 600
+#define PLAYER_FIRED_TIMEOUT 1200
 
 (_this select 1) params ["_module"];
+
+// TODO: Tick aggression down based on number of killer players at tick (more killers = less reduction)
 
 [{
     params ["_module"];

@@ -80,7 +80,7 @@ class UK3CB_BAF_Merlin_Base : Heli_Transport_02_base_F {
             };
         };
     };
-    ace_cookoff_cookoffSelections[] = { "palivo" };
+    ace_cookoff_cookoffSelections[] = { "motor" };
 };
 class UK3CB_BAF_Merlin_HC3_Base : UK3CB_BAF_Merlin_Base {
     INVENTORY_AIRCRAFT
