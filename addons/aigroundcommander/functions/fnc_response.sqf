@@ -26,7 +26,7 @@ if (_spawns isEqualType false && {!_spawns}) exitWith {}; // Exit without retry,
 
 if (_spawns isEqualTo []) exitWith {
     // Retry with some delay
-    [{[_spawnLogics, _creationFunction, _retry + 1] call FUNC(response)}, [], (random RESPONSE_RETRY_DELAY) + RESPONSE_RETRY_DELAY] call CBA_fnc_waitAndExecute;
+    [{[_spawnLogics, _delay, _count, _creationFunction, _retry + 1] call FUNC(response)}, [], (random RESPONSE_RETRY_DELAY) + RESPONSE_RETRY_DELAY] call CBA_fnc_waitAndExecute;
 };
 
 [{
