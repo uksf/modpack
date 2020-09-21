@@ -18,8 +18,8 @@ if (GVAR(counterInProgress)) exitWith {};
 
 GVAR(counterInProgress) = true;
 
-// private _forceChance = 4; // for debug
-private _forceChance = random 10;
+private _forceChance = 4; // for debug
+// private _forceChance = random 10;
 private _mortarPosition = getPos _counterBatteryUnit;
 
 // create a motor force
@@ -33,7 +33,7 @@ if (_forceChance > 2.5 && _forceChance <= 5 && !(GVAR(airVehiclePool) isEqualTo 
 };
 
 // counter battery
-if (_forceChance > 5  && !(GVAR(counterBatteryUnits) isEqualTo [])) exitWith {
+if (_forceChance > 5  && _forceChance <= 8 && !(GVAR(counterBatteryUnits) isEqualTo [])) exitWith {
     private _inRangeUnits = GVAR(counterBatteryUnits) select {_mortarPosition inRangeOfArtillery [[_x], currentMagazine _x]};
     if !(_inRangeUnits isEqualTo []) then {
         private _counterBatteryUnit = selectRandom _inRangeUnits;

@@ -24,6 +24,7 @@ if ((vehicle _leader) isKindOf "Helicopter") then {
     private _helipad = "Land_HelipadEmpty_F" createVehicle _waypointPosition; // TODO: Needs safety checking. What if this ends up in a forest or out to sea?
     [_group, _waypointPosition, 0, "TR UNLOAD"] call CBA_fnc_addWaypoint;
     [_group, _groupPosition, 0, "MOVE", "AWARE", "YELLOW", "FULL", "", QUOTE([this] call FUNC(handleDelete))] call CBA_fnc_addWaypoint;
+    _helipad
 } else {
     [_group, _waypointPosition, 0, "GETOUT", "AWARE", "YELLOW", "NORMAL", "WEDGE", "", [20, 25, 30]] call CBA_fnc_addWaypoint;
     [_group, _mortarPosition, 0, "SAD", "AWARE", "YELLOW", "NORMAL", "WEDGE", QUOTE([this] call FUNC(handleDelete)), [40, 50, 60]] call CBA_fnc_addWaypoint;
