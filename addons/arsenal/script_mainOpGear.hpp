@@ -156,10 +156,7 @@
     "UK3CB_BAF_AT4_CS_AT_Launcher", \
     "UK3CB_BAF_Javelin_Slung_Tube", \
     "UK3CB_BAF_L105A2", \
-    "UK3CB_BAF_L110A1", \
-    "UK3CB_BAF_L110A2", \
     "UK3CB_BAF_L110A2RIS", \
-    "UK3CB_BAF_L110A3", \
     "UK3CB_BAF_L111A1", \
     "UK3CB_BAF_L115A3", \
     "UK3CB_BAF_L115A3_BL", \
@@ -221,14 +218,7 @@
     "SSQN_L119A1_SFW_v2_C1", \
     "SSQN_L119A1_SFW_v2_C2", \
     "SSQN_L119A1_SFW_v2_C3", \
-    "SSQN_L110A1", \
-    "SSQN_L110A1_C1", \
-    "SSQN_L110A1_C2", \
-    "SSQN_L110A1_C3", \
     "SSQN_L110A1_CQB", \
-    "SSQN_L110A1_CQB_C1", \
-    "SSQN_L110A1_CQB_C2", \
-    "SSQN_L110A1_CQB_C3", \
     "UK3CB_BAF_L119A1_UKUGL", \
     "SSQN_AW50"
 
