@@ -20,7 +20,7 @@ params ["_spawnPosition", "_mortarPosition"];
 
     (_vehicle emptyPositions "driver") + (_vehicle emptyPositions "cargo") + count _turrets
 }, {
-    params ["_mortarPosition", "", "_vehicle"];
+    params ["_mortarPosition", "_group", "_vehicle"];
 
     private _helipad = [_group, _mortarPosition] call FUNC(assignWaypoints);
     _vehicle setUnloadInCombat [true, true];
