@@ -7,12 +7,12 @@
         Selects response to unit firing a mortar between air units, ground units and counter battery
 
     Parameters:
-        0: Unit who fired a mortar <OBJECT>
+        0: Unit who fired <OBJECT>
 
     Return value:
         Nothing
 */
-params ["_counterBatteryUnit"];
+params ["_target"];
 
 if (GVAR(counterInProgress)) exitWith {};
 
@@ -20,23 +20,32 @@ GVAR(counterInProgress) = true;
 
 private _forceChance = 7; // for debug
 // private _forceChance = random 10;
-private _mortarPosition = getPos _counterBatteryUnit;
+private _targetPosition = getPos _target;
 
-// create a motor force
-if (_forceChance <= 2.5 && !(GVAR(groundVehiclePool) isEqualTo [])) exitWith {
-    [_mortarPosition, 1] call FUNC(selectSpawnLocation);
+// Do nothing
+if (_forceChance > 8) exitWith {
+    [{GVAR(counterInProgress) = false}, [], 1200] call CBA_fnc_waitAndExecute;
 };
 
-// create a heli force
-if (_forceChance > 2.5 && _forceChance <= 5 && !(GVAR(airVehiclePool) isEqualTo [])) exitWith {
-    [_mortarPosition, 2] call FUNC(selectSpawnLocation);
-};
-
-// counter battery
-if (_forceChance > 5  && _forceChance <= 8 && !(GVAR(counterBatteryUnits) isEqualTo [])) exitWith {
-    private _inRangeUnits = GVAR(counterBatteryUnits) select {_mortarPosition inRangeOfArtillery [[_x], currentMagazine _x]};
-    if !(_inRangeUnits isEqualTo []) then {
-        private _counterBatteryUnit = selectRandom _inRangeUnits;
-        [_mortarPosition, _counterBatteryUnit] call FUNC(counterBattery);
+// Counter battery
+if (_forceChance > 5 && !(GVAR(counterBatteryUnits) isEqualTo [])) exitWith {
+    private _inRangeCounterArtillery = GVAR(counterBatteryUnits) select {_targetPosition inRangeOfArtillery [[_x], currentMagazine _x]};
+    if !(_inRangeCounterArtillery isEqualTo []) then {
+        private _counterArtillery = selectRandom _inRangeCounterArtillery;
+        [QEGVAR(mission,fireMission), [_counterArtillery, _counterArtillery, _targetPosition], gunner _counterArtillery] call CBA_fnc_targetEvent;
     };
+
+    [{GVAR(counterInProgress) = false}, [], 1200] call CBA_fnc_waitAndExecute;
+};
+
+// Create an airborne force
+if (_forceChance > 2.5 && !(GVAR(airVehiclePool) isEqualTo [])) exitWith {
+    private _spawnPosition = selectRandom GVAR(airSpawns);
+    [getPos _spawnPosition, _targetPosition] call FUNC(createAirForce);
+};
+
+// Create a motor force
+if !(GVAR(groundVehiclePool) isEqualTo []) exitWith {
+    private _spawnPosition = selectRandom GVAR(groundSpawns);
+    [getPos _spawnPosition, _targetPosition] call FUNC(createGroundForce);
 };
