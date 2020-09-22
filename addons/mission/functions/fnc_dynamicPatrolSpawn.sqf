@@ -22,25 +22,18 @@ _values params ["", "_distance", "", "_minUnits", "_maxUnits", "", "", "_vehicle
 if ((!GVAR(dynamicPatrolEnabled) && !GVAR(dynamicPatrolAreasEnabled)) || {_retries > MAX_RETRIES}) exitWith {};
 
 // Player can't be in an air vehicle
-// AND Player can't be in range of respawn positions
+// AND IF area logic does not exist THEN Player can't be in range of respawn positions
 // AND Player can't be in excluded areas
-// AND IF area logic is given Player must be in area
-// AND IF area logic does not exist and include areas exist Player must be in an include area
+// AND IF area logic is given THEN Player must be in area
+// AND IF area logic does not exist and include areas exist THEN Player must be in an include area
 
 private _players = (call CBA_fnc_players) select {
     private _player = _x;
-    !((vehicle _player) isKindOf "Air") &&
-    {[EGVAR(common,respawnPositions), {(getMarkerPos _x) distance2D _player <= GVAR(dynamicPatrolSafeZoneDistance)}] call EFUNC(common,arrayNone)} &&
-    {[GVAR(dynamicPatrolExcludeAreas), {[_player, _x#0, _x#1] call EFUNC(common,objectInArea)}] call EFUNC(common,arrayNone)} &&
-    {
-        isNull _logic ||
-        {[_player, _logic, _area] call EFUNC(common,objectInArea)}
-    } &&
-    {
-        !(isNull _logic) ||
-        {GVAR(dynamicPatrolIncludeAreas) isEqualTo [] ||
-        {[GVAR(dynamicPatrolIncludeAreas), {[_player, _x#0, _x#1] call EFUNC(common,objectInArea)}] call EFUNC(common,arrayAny)}}
-    }
+    !((vehicle _player) isKindOf "Air")
+    && {isNull _logic || {[EGVAR(common,respawnPositions), {(getMarkerPos _x) distance2D _player <= GVAR(dynamicPatrolSafeZoneDistance)}] call EFUNC(common,arrayNone)}}
+    && {[GVAR(dynamicPatrolExcludeAreas), {[_player, _x#0, _x#1] call EFUNC(common,objectInArea)}] call EFUNC(common,arrayNone)}
+    && {isNull _logic || {[_player, _logic, _area] call EFUNC(common,objectInArea)}}
+    && {!(isNull _logic) || {GVAR(dynamicPatrolIncludeAreas) isEqualTo [] || {[GVAR(dynamicPatrolIncludeAreas), {[_player, _x#0, _x#1] call EFUNC(common,objectInArea)}] call EFUNC(common,arrayAny)}}}
 };
 if (_players isEqualTo []) exitWith {};
 
