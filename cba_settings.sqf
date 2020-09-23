@@ -699,6 +699,7 @@ force uksf_mission_dynamicPatrolMinGroups = 1;
 force uksf_mission_dynamicPatrolMinUnits = 3;
 force uksf_mission_dynamicPatrolSafeZoneDistance = 3000;
 force uksf_mission_dynamicPatrolSpeed = "LIMITED";
+force uksf_mission_dynamicPatrolStartDelay = 0;
 force uksf_mission_dynamicPatrolUnitPoolString = "['O_Soldier_F']";
 force uksf_mission_dynamicPatrolUnitSide = 0;
 force uksf_mission_dynamicPatrolVehicleDistanceCoef = 2;

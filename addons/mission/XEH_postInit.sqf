@@ -10,13 +10,15 @@ if (!isServer) exitWith {};
 
         {
             private _data = _x call FUNC(initDynamicPatrolArea);
+            private _delay = _data#0#DYNAMIC_PATROL_INDEX_START_DELAY + (_data#0#0 + random 10);
             [{
                 [QGVAR(dynamicPatrolArea), _this, selectRandom EGVAR(common,HCs)] call CBA_fnc_targetEvent;
-            }, _data, _data#0#0 + random 10] call CBA_fnc_waitAndExecute;
+            }, _data, _delay] call CBA_fnc_waitAndExecute;
         } forEach GVAR(dynamicPatrolAreas);
     };
 
     if (GVAR(dynamicPatrolEnabled)) then {
-        [{call FUNC(dynamicPatrol)}, [], GVAR(dynamicPatrolCooldown)] call CBA_fnc_waitAndExecute;
+        private _delay = [QGVAR(dynamicPatrolStartDelay), GVAR(dynamicPatrolCooldown)] select (QGVAR(dynamicPatrolStartDelay) == 0);
+        [{call FUNC(dynamicPatrol)}, [], _delay] call CBA_fnc_waitAndExecute;
     };
 }] call CBA_fnc_addEventHandler;

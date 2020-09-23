@@ -21,5 +21,4 @@ PREP(selectArtillery);
 PREP(selectGroup);
 PREP(setSupportRadio);
 PREP(spawnGroup);
-PREP(spawnPatrolGroup);
 PREP(support);
