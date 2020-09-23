@@ -315,3 +315,12 @@
     1,
     {GVAR(dynamicPatrolSide) = ([EAST, INDEPENDENT, WEST]#_this);}
 ] call CBA_Settings_fnc_init;
+
+[
+    QGVAR(dynamicPatrolStartDelay),
+    "SLIDER",
+    ["Dynamic Patrol Start Delay", "Time in minutes to delay running the dynamic patrol system from the start of the mission"],
+    [COMPONENT_NAME, "Dynamic Patrol"],
+    [0, 120, 0, 0],
+    1
+] call CBA_settings_fnc_init;

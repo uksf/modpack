@@ -13,6 +13,7 @@
     Return value:
         Nothing
 */
+
 params ["_logic", "_area"];
 
 if !(isServer) exitWith {};
@@ -63,20 +64,32 @@ private _values = [];
     QGVAR(vehiclePoolString),
     QGVAR(combatMode),
     QGVAR(patrolSpeed),
-    QGVAR(side)
+    QGVAR(side),
+    QGVAR(startDelay),
+    QGVAR(condition)
 ];
 
 // Set pools to global if no value given for zone
-if ((_values#11) isEqualTo []) then {
-    _values set [11, GVAR(dynamicPatrolUnitPool)];
-};
-if ((_values#12) isEqualTo []) then {
-    _values set [12, GVAR(dynamicPatrolVehiclePool)];
+if ((_values#DYNAMIC_PATROL_INDEX_UNIT_POOL) isEqualTo []) then {
+    _values set [DYNAMIC_PATROL_INDEX_UNIT_POOL, GVAR(dynamicPatrolUnitPool)];
 };
 
-// Resolve values from index for combatMode, patrolSpeed, and side
-_values set [13, ['SAFE', 'AWARE', 'COMBAT']#(_values#13)];
-_values set [14, ['LIMITED', 'NORMAL', 'FULL']#(_values#14)];
-_values set [15, [EAST, INDEPENDENT, WEST]#(_values#15)];
+if ((_values#DYNAMIC_PATROL_INDEX_VEHICLE_POOL) isEqualTo []) then {
+    _values set [DYNAMIC_PATROL_INDEX_VEHICLE_POOL, GVAR(dynamicPatrolVehiclePool)];
+};
+
+// Resolve values from DYNAMIC_PATROL_INDEX for combatMode, patrolSpeed, and side
+_values set [DYNAMIC_PATROL_INDEX_COMBAT_MODE, ['SAFE', 'AWARE', 'COMBAT']#(_values#DYNAMIC_PATROL_INDEX_COMBAT_MODE)];
+_values set [DYNAMIC_PATROL_INDEX_PATROL_SPEED, ['LIMITED', 'NORMAL', 'FULL']#(_values#DYNAMIC_PATROL_INDEX_PATROL_SPEED)];
+_values set [DYNAMIC_PATROL_INDEX_SIDE, [EAST, INDEPENDENT, WEST]#(_values#DYNAMIC_PATROL_INDEX_SIDE)];
+
+// Test condition and store as code in values
+private _condition = compile (_values#DYNAMIC_PATROL_INDEX_CONDITION);
+private _result = [_values, _logic, _area, []] call _condition;
+if !(_result isEqualType false) then {
+    ERROR("Invalid condition for dynamic patrol area module");
+    _condition = {true};
+};
+_values set [DYNAMIC_PATROL_INDEX_CONDITION, _condition];
 
 [_values, _logic, _area]

@@ -15,6 +15,8 @@
 */
 params ["_leader"];
 
+if !(isServer) exitWith {};
+
 // TODO: Change this to use a common component for spawned AI deletion
 
 (_leader getVariable [QEGVAR(common,assignedVehicle), objNull]) call CBA_fnc_deleteEntity;

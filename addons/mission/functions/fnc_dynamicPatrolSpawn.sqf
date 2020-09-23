@@ -17,30 +17,23 @@
 #define MAX_RETRIES 4
 
 params ["_values", ["_logic", objNull], ["_area", []], ["_retries", 0]];
-_values params ["", "_distance", "", "_minUnits", "_maxUnits", "", "", "_vehicleProbability", "_vehicleDistanceCoef", "_waypointDistance", "_vehicleWaypointDistance", "_unitPool", "_vehiclePool", "_combatMode", "_patrolSpeed", "_side"];
+_values params ["", "_distance", "", "_minUnits", "_maxUnits", "", "", "_vehicleProbability", "_vehicleDistanceCoef", "_waypointDistance", "_vehicleWaypointDistance", "_unitPool", "_vehiclePool", "_combatMode", "_patrolSpeed", "_side", "", "_condition"];
 
 if ((!GVAR(dynamicPatrolEnabled) && !GVAR(dynamicPatrolAreasEnabled)) || {_retries > MAX_RETRIES}) exitWith {};
 
 // Player can't be in an air vehicle
-// AND Player can't be in range of respawn positions
+// AND IF area logic does not exist THEN Player can't be in range of respawn positions
 // AND Player can't be in excluded areas
-// AND IF area logic is given Player must be in area
-// AND IF area logic does not exist and include areas exist Player must be in an include area
+// AND IF area logic is given THEN Player must be in area
+// AND IF area logic does not exist and include areas exist THEN Player must be in an include area
 
 private _players = (call CBA_fnc_players) select {
     private _player = _x;
-    !((vehicle _player) isKindOf "Air") &&
-    {[EGVAR(common,respawnPositions), {(getMarkerPos _x) distance2D _player <= GVAR(dynamicPatrolSafeZoneDistance)}] call EFUNC(common,arrayNone)} &&
-    {[GVAR(dynamicPatrolExcludeAreas), {[_player, _x#0, _x#1] call EFUNC(common,objectInArea)}] call EFUNC(common,arrayNone)} &&
-    {
-        isNull _logic ||
-        {[_player, _logic, _area] call EFUNC(common,objectInArea)}
-    } &&
-    {
-        !(isNull _logic) ||
-        {GVAR(dynamicPatrolIncludeAreas) isEqualTo [] ||
-        {[GVAR(dynamicPatrolIncludeAreas), {[_player, _x#0, _x#1] call EFUNC(common,objectInArea)}] call EFUNC(common,arrayAny)}}
-    }
+    !((vehicle _player) isKindOf "Air")
+    && {isNull _logic || {[EGVAR(common,respawnPositions), {(getMarkerPos _x) distance2D _player <= GVAR(dynamicPatrolSafeZoneDistance)}] call EFUNC(common,arrayNone)}}
+    && {[GVAR(dynamicPatrolExcludeAreas), {[_player, _x#0, _x#1] call EFUNC(common,objectInArea)}] call EFUNC(common,arrayNone)}
+    && {isNull _logic || {[_player, _logic, _area] call EFUNC(common,objectInArea)}}
+    && {!(isNull _logic) || {GVAR(dynamicPatrolIncludeAreas) isEqualTo [] || {[GVAR(dynamicPatrolIncludeAreas), {[_player, _x#0, _x#1] call EFUNC(common,objectInArea)}] call EFUNC(common,arrayAny)}}}
 };
 if (_players isEqualTo []) exitWith {};
 
@@ -60,10 +53,14 @@ if (_useVehicle) then {
     _spawnDistance = _distance * _vehicleDistanceCoef;
 };
 
+if !([_values, _logic, _area, _players] call _condition) exitWith {
+    DEBUG("Condition not satisfied");
+};
+
 private _positionArray = [getPosATL _player, 32, _spawnDistance * 1.25, _spawnDistance * 0.75, 10] call EFUNC(common,getSafePositionGrid);
 if (_positionArray isEqualTo []) exitWith {
     // Retry
-    [{call FUNC(dynamicPatrolSpawn)}, [_retries + 1], 5 + random 5] call CBA_fnc_waitAndExecute;
+    [{call FUNC(dynamicPatrolSpawn)}, [_values, _logic, _area, _retries + 1], 5 + random 5] call CBA_fnc_waitAndExecute;
 };
 
 private _position = selectRandom _positionArray;
@@ -78,7 +75,7 @@ if ([_position, 100] call EFUNC(common,getNearPlayers) isEqualTo [] && {{([objNu
             _position = getPosATL _road;
         };
 
-        [_position, 1, 1, _side, _unitPool, _vehiclePool, {
+        [_position, 1, 1, _side, _unitPool, _vehiclePool, {-1}, {
             params ["_logic", "_player", "_position", "_spawnDistance", "_vehicleWaypointDistance", "_group"];
 
             GVAR(dynamicPatrolGroups) pushBack _group;
@@ -101,10 +98,10 @@ if ([_position, 100] call EFUNC(common,getNearPlayers) isEqualTo [] && {{([objNu
             ];
 
             INFO_1("Spawned vehicle patrol at %1",_position);
-        }, [_logic, _player, _position, _spawnDistance, _vehicleWaypointDistance]] call FUNC(spawnPatrolGroup);
+        }, [_logic, _player, _position, _spawnDistance, _vehicleWaypointDistance]] call EFUNC(common,spawnGroup);
     } else {
         private _count = round (random [_minUnits, round (_maxUnits / 1.5) max _minUnits, _maxUnits + 1]);
-        [_position, 0, _count, _side, _unitPool, _vehiclePool, {
+        [_position, 0, _count, _side, _unitPool, _vehiclePool, {-1}, {
             params ["_logic", "_player", "_position", "_count", "_spawnDistance", "_waypointDistance", "_combatMode", "_patrolSpeed", "_group"];
 
             GVAR(dynamicPatrolGroups) pushBack _group;
@@ -127,6 +124,6 @@ if ([_position, 100] call EFUNC(common,getNearPlayers) isEqualTo [] && {{([objNu
             ];
 
             INFO_1("Spawned infantry patrol at %1",_position);
-        }, [_logic, _player, _position, _count, _spawnDistance, _waypointDistance, _combatMode, _patrolSpeed]] call FUNC(spawnPatrolGroup);
+        }, [_logic, _player, _position, _count, _spawnDistance, _waypointDistance, _combatMode, _patrolSpeed]] call EFUNC(common,spawnGroup);
     };
 };

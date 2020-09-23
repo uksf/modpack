@@ -79,3 +79,5 @@ force uksf_mission_dynamicPatrolUnitPoolString = "['O_Soldier_F']";
 force uksf_mission_dynamicPatrolVehiclePoolString = "['O_MBT_02_cannon_F']";
 // Side of spawned dynamic patrol groups [0: EAST, 1: INDEPENDENT, 2: WEST]
 force uksf_mission_dynamicPatrolUnitSide = 0;
+// Time in minutes to delay running the dynamic patrol system from the start of the mission [0, 120, 0, 0]
+force uksf_mission_dynamicPatrolStartDelay = 0;
