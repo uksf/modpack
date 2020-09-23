@@ -16,8 +16,8 @@
         Nothing
 */
 #define DETONATION_DISTANCE 20
-#define TRACK_CHANCE_LOW 30
-#define TRACK_CHANCE_HIGH 15
+#define TRACK_CHANCE_LOW 50
+#define TRACK_CHANCE_HIGH 25
 #define FLARE_SEARCH_RADIUS 20
 #define TIMESTEP_FACTOR 0.01
 #define CM_BASE_TYPE "CMflareAmmo"
