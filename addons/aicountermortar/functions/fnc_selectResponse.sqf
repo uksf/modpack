@@ -18,8 +18,8 @@ if (GVAR(counterInProgress)) exitWith {};
 
 GVAR(counterInProgress) = true;
 
-private _forceChance = 7; // for debug
-// private _forceChance = random 10;
+// private _forceChance = 7; // for debug
+private _forceChance = random 10;
 private _targetPosition = getPos _target;
 
 // Do nothing
