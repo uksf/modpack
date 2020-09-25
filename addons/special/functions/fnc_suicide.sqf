@@ -43,7 +43,7 @@ _bomber allowfleeing 0;
 
     if ((!alive _bomber && _deadman) || {_bomber getVariable [QGVAR(explode), false]}) then {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
-        [_bomber, [QGVAR(trigger), 100]] remoteExecCall ["say3D", 0];
+        [_bomber, [[QGVAR(alarm), QGVAR(nokia)] select (random 1 > 0.5), 100]] remoteExecCall ["say3D", 0];
         [{
             params ["_bomber"];
             createVehicle ["R_TBG32V_F", (getPosATL _bomber), [] , 0, "CAN_COLLIDE"];
