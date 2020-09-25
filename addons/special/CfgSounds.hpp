@@ -14,4 +14,9 @@ class CfgSounds {
         sound[] = { QPATHTOF(data\sounds\alarm), 20, 1, 200 };
         titles[] = {};
     };
+    class GVAR(nokia) {
+        name = QGVAR(nokia);
+        sound[] = { QPATHTOF(data\sounds\nokia), 20, 1, 200 };
+        titles[] = {};
+    };
 };
