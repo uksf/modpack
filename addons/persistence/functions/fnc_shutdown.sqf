@@ -48,3 +48,21 @@ LOG("Shutdown");
 
     SERVER_COMMAND serverCommand (format ["#kick %1", owner (_players#0)]);
 }, 2, []] call CBA_fnc_addPerFrameHandler;
+
+// For local MP debug
+// [] call FUNC(saveObjectData);
+
+// [{
+//     !GVAR(saveObjectQueueProcessing)
+// }, {
+//     if (GVAR(dataSaved)) then {
+//         private _dateTime = date;
+//         TRACE_1("Saving date time",_dateTime);
+//         GVAR(dataNamespace) setVariable [QGVAR(dateTime), _dateTime];
+//         GVAR(dataNamespace) setVariable [QGVAR(mapMarkers), GVAR(mapMarkers)];
+//         call FUNC(saveData);
+//     };
+
+//     systemChat "done";
+//     // [{SERVER_COMMAND serverCommand "#shutdown"}, [], 4] call CBA_fnc_waitAndExecute;
+// }] call CBA_fnc_waitUntilAndExecute;

@@ -12,11 +12,11 @@
     Return Value:
         None
 */
-#define TYPE_EXCLUDE_LIST ["UK3CB_BAF_1Rnd_60mm_Mo_Shells_spent","UK3CB_BAF_1Rnd_60mm_Mo_Shells_spent"]
+#define TYPE_EXCLUDE_LIST ["UK3CB_BAF_1Rnd_60mm_Mo_Shells_spent","UK3CB_BAF_1Rnd_60mm_Mo_Shells_spent","Helper_Base_F"]
 
 params [["_centre", objNull]];
 
-// Reset this to true. Wil lbe set to false if markers need processing, before it can be read by the saving queue pfh exit
+// Reset this to true. Will be set to false if markers need processing, before it can be read by the saving queue pfh exit
 GVAR(saveObjectMarkersProcessed) = true;
 
 if (isNull _centre) exitWith {

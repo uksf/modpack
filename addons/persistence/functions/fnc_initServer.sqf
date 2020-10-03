@@ -161,7 +161,7 @@ call FUNC(saveData);
 
 if (!GVAR(overrideSavedDateTime)) then {
     private _dateTime = GVAR(dataNamespace) getVariable [QGVAR(dateTime), date];
-    TRACE_1("Setting date time",_dateTime);
+    TRACE_1("Setting datetime",_dateTime);
     setDate _dateTime;
 } else {
     WARNING("Saved datetime overridden by mission");
