@@ -1,9 +1,6 @@
 name: Arma
 
 on:
-  push:
-    branches-ignore:
-    - 'release'
   pull_request:
 
 jobs:
