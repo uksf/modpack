@@ -137,7 +137,10 @@
     "SSQN_5Rnd_127x99", \
     "SSQN_5Rnd_127x99_HEIAP", \
     "SSQN_5Rnd_127x99_Tracer", \
-    "SSQN_5Rnd_127x99_HEIAP_Tracer"
+    "SSQN_5Rnd_127x99_HEIAP_Tracer", \
+    "MRAWS_HEAT_F", \
+    "MRAWS_HE_F", \
+    "MRAWS_HEAT55_F"
 
 #define MAIN_OP_WEAPONS \
     "ACE_MX2A", \
@@ -220,7 +223,10 @@
     "SSQN_L119A1_SFW_v2_C3", \
     "SSQN_L110A1_CQB", \
     "UK3CB_BAF_L119A1_UKUGL", \
-    "SSQN_AW50"
+    "SSQN_AW50", \
+    "launch_MRAWS_olive_F", \
+    "launch_MRAWS_green_F", \
+    "launch_MRAWS_sand_F"
 
 #define MAIN_OP_ATTACHMENTS \
     "RKSL_optic_LDS", \
