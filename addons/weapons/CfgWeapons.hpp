@@ -586,6 +586,11 @@ class CfgWeapons {
             mass = 90;
         };
     };
+    class launch_MRAWS_base_F : Launcher_Base_F {
+        class WeaponSlotsInfo: WeaponSlotsInfo {
+            mass = 150;
+        };
+    };
 
     class Default;
     class Put : Default {
