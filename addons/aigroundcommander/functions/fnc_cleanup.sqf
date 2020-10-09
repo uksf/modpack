@@ -37,3 +37,7 @@ GVAR(transportGroups) = GVAR(transportGroups) - [grpNull];
 if (GVAR(transportGroups) isEqualTo []) then {
     GVAR(stayBehindGroupSelected) = false;
 };
+
+if (GVAR(enemyAggressionLevel) > 22 && GVAR(killerPlayers) isEqualTo []) then {
+    GVAR(enemyAggressionLevel) = GVAR(enemyAggressionLevel) - 20;
+};

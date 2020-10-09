@@ -47,7 +47,7 @@ if !(_includeAreas isEqualTo []) then {
 
 if (_random > _spawnChance) exitWith {};
 
-private _useVehicle = _vehicleProbability > random 1;
+private _useVehicle = [_vehicleProbability > random 1, false] select (_vehiclePool isEqualTo []);
 private _spawnDistance = _distance;
 if (_useVehicle) then {
     _spawnDistance = _distance * _vehicleDistanceCoef;
@@ -57,6 +57,7 @@ if !([_values, _logic, _area, _players] call _condition) exitWith {
     DEBUG("Condition not satisfied");
 };
 
+// TODO: Consider all players for safe position
 private _positionArray = [getPosATL _player, 32, _spawnDistance * 1.25, _spawnDistance * 0.75, 10] call EFUNC(common,getSafePositionGrid);
 if (_positionArray isEqualTo []) exitWith {
     // Retry
