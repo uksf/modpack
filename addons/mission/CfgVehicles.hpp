@@ -108,7 +108,7 @@ class CfgVehicles {
             isRectangle = 1;
         };
         class Attributes : AttributesBase {
-            // Add active validation for min and max values
+            // TODO: Add active validation for min and max values
             class GVAR(cooldown) {
                 property = QGVAR(cooldown);
                 displayName = "Spawn Cooldown";
@@ -313,6 +313,26 @@ class CfgVehicles {
                         value = 2;
                     };
                 };
+            };
+            class GVAR(startDelay) {
+                property = QGVAR(startDelay);
+                displayName = "Start Delay";
+                tooltip = "Time in minutes to delay running the dynamic patrol system from the start of the mission (0 - 120, default: 0)";
+                control = "EditShort";
+                validate = "NUMBER";
+                min = 0;
+                max = 120;
+                defaultValue = "0";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(startDelay),_value,true)]);
+            };
+            class GVAR(condition) {
+                property = QGVAR(condition);
+                defaultValue = "'true'";
+                value = "'true'";
+                control = "EditCodeMulti3";
+                displayName = "Spawn condition";
+                tooltip = "Code required to evaluate to true for spawning to run. Must return a boolean. Condition is evaluate every iteration. This is optional, leave as 'true' if not needed. Make the code as short as possible or call a function if more than 1 line.\n\nThe following arguments are passed to the condition: ['_values', '_logic', '_area', '_players'].\n'_players' is an array of players that meet the spawning requirements for this area.";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(condition),_value,true)]);
             };
         };
     };

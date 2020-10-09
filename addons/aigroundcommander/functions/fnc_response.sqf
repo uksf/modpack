@@ -16,7 +16,7 @@
     Return value:
         Nothing
 */
-params ["_spawnLogics", "_delay", "_count", "_creationFunction", ["_retry", 0]];
+params [["_spawnLogics", [], [[]]], ["_delay", 5, [0]], ["_count", 0, [0]], ["_creationFunction", {}, [{}]], ["_retry", 0]];
 
 if (!isServer || {_retry > RESPONSE_MAX_RETRIES} || {count GVAR(responseGroups) > GVAR(groupLimit)}) exitWith {};
 
@@ -26,7 +26,8 @@ if (_spawns isEqualType false && {!_spawns}) exitWith {}; // Exit without retry,
 
 if (_spawns isEqualTo []) exitWith {
     // Retry with some delay
-    [{[_spawnLogics, _creationFunction, _retry + 1] call FUNC(response)}, [], (random RESPONSE_RETRY_DELAY) + RESPONSE_RETRY_DELAY] call CBA_fnc_waitAndExecute;
+    _this set [4, _retry + 1];
+    [{call FUNC(response)}, _this, (random RESPONSE_RETRY_DELAY) + RESPONSE_RETRY_DELAY] call CBA_fnc_waitAndExecute;
 };
 
 [{

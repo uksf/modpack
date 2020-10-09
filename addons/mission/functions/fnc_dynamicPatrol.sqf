@@ -42,7 +42,9 @@ if (_groupCountToAdd > 0) then {
         GVAR(dynamicPatrolVehiclePool),
         GVAR(dynamicPatrolCombatMode),
         GVAR(dynamicPatrolSpeed),
-        GVAR(dynamicPatrolSide)
+        GVAR(dynamicPatrolSide),
+        QGVAR(dynamicPatrolStartDelay),
+        {true}
     ];
 
     while {_groupCountToAdd > 0} do {

@@ -36,6 +36,19 @@ class CfgMagazines {
     class UK3CB_BAF_Javelin_Mag : CA_LauncherMagazine {
         mass = 260;
     };
+    // MAAWS
+    class MRAWS_HEAT_F: CA_LauncherMagazine{
+        displayName = "MAAWS HEAT 75 Round";
+        mass = 75;
+    };
+    class MRAWS_HE_F: MRAWS_HEAT_F{
+        displayName = "MAAWS HE 44 Round";
+        mass = 44;
+    };
+    class MRAWS_HEAT55_F: MRAWS_HEAT_F{
+        displayName = "MAAWS HEAT 55 Round";
+        mass = 55;
+    };
 
     // Hellfire K
     class 12Rnd_PG_missiles;

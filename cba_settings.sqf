@@ -80,8 +80,8 @@ force force ace_cookoff_enableAmmoCookoff = true;
 force force ace_cookoff_probabilityCoef = 1;
 
 // ACE Crew Served Weapons
-force force ace_csw_ammoHandling = 2;
-force force ace_csw_defaultAssemblyMode = true;
+force force ace_csw_ammoHandling = 1;
+force force ace_csw_defaultAssemblyMode = false;
 ace_csw_dragAfterDeploy = false;
 force force ace_csw_handleExtraMagazines = true;
 force force ace_csw_progressBarTimeCoefficent = 1;
@@ -439,7 +439,7 @@ force force ace_weaponselect_displayText = true;
 force force ace_weather_enabled = true;
 ace_weather_showCheckAirTemperature = true;
 force force ace_weather_updateInterval = 60;
-force force ace_weather_windSimulation = true;
+force ace_weather_windSimulation = true;
 
 // ACE Wind Deflection
 force force ace_winddeflection_enabled = true;
@@ -699,6 +699,7 @@ force uksf_mission_dynamicPatrolMinGroups = 1;
 force uksf_mission_dynamicPatrolMinUnits = 3;
 force uksf_mission_dynamicPatrolSafeZoneDistance = 3000;
 force uksf_mission_dynamicPatrolSpeed = "LIMITED";
+force uksf_mission_dynamicPatrolStartDelay = 0;
 force uksf_mission_dynamicPatrolUnitPoolString = "['O_Soldier_F']";
 force uksf_mission_dynamicPatrolUnitSide = 0;
 force uksf_mission_dynamicPatrolVehicleDistanceCoef = 2;

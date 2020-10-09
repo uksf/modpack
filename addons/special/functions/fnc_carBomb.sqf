@@ -36,7 +36,7 @@ private _distance = 25 + ((random 10) - 5);
 
     if (({alive _x && {side _x != civilian} && {((side _x) getFriend (_side)) < 0.6}} count (_car nearEntities [["CAManBase", "LandVehicle"], _distance])) > 0) exitWith {
         [_idPFH] call cba_fnc_removePerFrameHandler;
-        [_car, [QGVAR(alarm), 200]] remoteExecCall ["say3D", 0];
+        [_car, [[QGVAR(alarm), QGVAR(nokia)] select (random 1 > 0.5), 200]] remoteExecCall ["say3D", 0];
         [{
             params ["_car"];
             [_car, [QGVAR(trigger), 50]] remoteExecCall ["say3D", 0];
