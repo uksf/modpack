@@ -69,6 +69,9 @@ class CfgVehicles {
             MACRO_ADDMAGAZINE(DemoCharge_Remote_Mag,10);
             MACRO_ADDMAGAZINE(SatchelCharge_Remote_Mag,5);
             MACRO_ADDMAGAZINE(BreachCharge_Remote_Mag,5);
+            MACRO_ADDMAGAZINE(MRAWS_HEAT_F,20);
+            MACRO_ADDMAGAZINE(MRAWS_HE_F,20);
+            MACRO_ADDMAGAZINE(MRAWS_HEAT55_F,10);
         };
         class TransportWeapons {
             MACRO_ADDWEAPON(UK3CB_BAF_NLAW_Launcher,10);
