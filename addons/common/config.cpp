@@ -34,6 +34,7 @@ class CBA_Extended_EventHandlers;
 #include "CfgGroups.hpp"
 #include "CfgImprecision.hpp"
 #include "CfgMarkerColors.hpp"
+#include "CfgMoves.hpp"
 #include "CfgSurfaces.hpp"
 #include "CfgWeapons.hpp"
 #include "CfgVehicles.hpp"
