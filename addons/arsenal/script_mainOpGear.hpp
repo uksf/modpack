@@ -226,7 +226,8 @@
     "SSQN_AW50", \
     "launch_MRAWS_olive_F", \
     "launch_MRAWS_green_F", \
-    "launch_MRAWS_sand_F"
+    "launch_MRAWS_sand_F", \
+    "CUP_arifle_mk18_black"
 
 #define MAIN_OP_ATTACHMENTS \
     "RKSL_optic_LDS", \

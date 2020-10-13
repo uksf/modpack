@@ -376,6 +376,17 @@ class CfgWeapons {
         };
     };
 
+    class arifle_SPAR_01_blk_F;
+    class arifle_L119A2_F: arifle_SPAR_01_blk_F {
+        magazines[] = { "UK3CB_BAF_556_30Rnd", "UK3CB_BAF_556_30Rnd_T", "30Rnd_556x45_Stanag_red", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag_Tracer_Red" };
+        magazineWell[] = {};
+        ACE_barrelTwist = 178;
+        ACE_barrelLength = 398;
+    };
+    class arifle_L119A2_S_F: arifle_L119A2_F {
+        ACE_barrelLength = 262;
+    };
+
     class srifle_EBR_F;
     class UK3CB_BAF_L129A1 : srifle_EBR_F {
         ace_barrelLength = 410;
@@ -480,6 +491,7 @@ class CfgWeapons {
             };
         };
     };
+
     class UK3CB_BAF_L110A3;
     class UK3CB_BAF_L110A3_Elcan : UK3CB_BAF_L110A3 {
         class LinkedItems {
@@ -489,6 +501,7 @@ class CfgWeapons {
             };
         };
     };
+
     class UK3CB_BAF_L129A1_Grippod;
     class UK3CB_BAF_L129A1_Grippod_Acog : UK3CB_BAF_L129A1_Grippod {
         class LinkedItems {
@@ -498,6 +511,7 @@ class CfgWeapons {
             };
         };
     };
+
     class UK3CB_BAF_L115A3;
     class UK3CB_BAF_L115A3_LRPS : UK3CB_BAF_L115A3 {
         class LinkedItems {
@@ -528,6 +542,20 @@ class CfgWeapons {
             };
         };
     };
+
+    class CUP_arifle_M4_Base;
+    class CUP_arifle_M4A1_BUIS_Base: CUP_arifle_M4_Base {
+        class WeaponSlotsInfo;
+    };
+    class CUP_arifle_mk18_black: CUP_arifle_M4A1_BUIS_Base {
+        magazines[] = { "UK3CB_BAF_556_30Rnd", "UK3CB_BAF_556_30Rnd_T", "30Rnd_556x45_Stanag_red", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag_Tracer_Red" };
+        magazineWell[] = {};
+        class WeaponSlotsInfo: WeaponSlotsInfo {
+            delete MuzzleSlot;
+            class asdg_MuzzleSlot_UK3CB_BAF_L119 : asdg_MuzzleSlot_556_3CB_L119 {};
+        };
+    };
+
     class Launcher;
     class Launcher_Base_F : Launcher {
         class WeaponSlotsInfo;
