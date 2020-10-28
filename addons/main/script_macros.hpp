@@ -45,7 +45,7 @@
 
 #define SERVER_COMMAND QUOTE(brexit)
 
-#define WHITELISTED (getPlayerUID player) in WHITELIST=
+#define WHITELISTED (getPlayerUID player) in WHITELIST
 #define ADMIN_OR_HOST IS_ADMIN || {isServer && {hasInterface}}
 #define ADMIN_OR_WHITELISTED ADMIN_OR_HOST || {WHITELISTED}
 #define MULTIPLAYER_ADMIN_OR_WHITELISTED isMultiplayer && {ADMIN_OR_WHITELISTED}
