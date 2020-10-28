@@ -10,8 +10,14 @@
 
 #define CURATOR_ICON "\A3\Ui_F_Curator\Data\Logos\arma3_zeus_icon_ca.paa"
 
-#define CONDITION_LOGIN ((ADMIN_OR_WHITELISTED) || {!GVAR(curatorsLocked)}) && {(GVAR(curatorPlayers) find (name player)) isEqualTo -1} && {(GVAR(curatorPlayers) find "") > -1}
-#define CONDITION_LOGOUT ((ADMIN_OR_WHITELISTED) || {!GVAR(curatorsLocked)}) && {(GVAR(curatorPlayers) find (name player)) != -1}
-#define CONDITION_LOCK MULTIPLAYER_ADMIN_OR_WHITELISTED && {!GVAR(curatorsLocked)}
-#define CONDITION_UNLOCK MULTIPLAYER_ADMIN_OR_WHITELISTED && {GVAR(curatorsLocked)}
-#define CONDITION_KICKALL MULTIPLAYER_ADMIN_OR_WHITELISTED && {({_x != ""} count GVAR(curatorPlayers)) > 1}
+#define CURATOR_WHITELIST (WHITELIST + [UID_JOHNSON, UID_HOREHEY])
+#define CURATOR_WHITELISTED (getPlayerUID player) in CURATOR_WHITELIST
+#define CURATOR_ADMIN_OR_HOST IS_ADMIN || {isServer && {hasInterface}}
+#define CURATOR_ADMIN_OR_WHITELISTED CURATOR_ADMIN_OR_HOST || {CURATOR_WHITELISTED}
+#define CURATOR_MULTIPLAYER_ADMIN_OR_WHITELISTED isMultiplayer && {CURATOR_ADMIN_OR_WHITELISTED}
+
+#define CONDITION_LOGIN ((CURATOR_ADMIN_OR_WHITELISTED) || {!GVAR(curatorsLocked)}) && {(GVAR(curatorPlayers) find (name player)) isEqualTo -1} && {(GVAR(curatorPlayers) find "") > -1}
+#define CONDITION_LOGOUT ((CURATOR_ADMIN_OR_WHITELISTED) || {!GVAR(curatorsLocked)}) && {(GVAR(curatorPlayers) find (name player)) != -1}
+#define CONDITION_LOCK CURATOR_MULTIPLAYER_ADMIN_OR_WHITELISTED && {!GVAR(curatorsLocked)}
+#define CONDITION_UNLOCK CURATOR_MULTIPLAYER_ADMIN_OR_WHITELISTED && {GVAR(curatorsLocked)}
+#define CONDITION_KICKALL CURATOR_MULTIPLAYER_ADMIN_OR_WHITELISTED && {({_x != ""} count GVAR(curatorPlayers)) > 1}
