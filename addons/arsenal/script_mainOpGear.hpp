@@ -406,7 +406,8 @@
     "CUP_NVG_PVS15_green", \
     "CUP_NVG_PVS15_tan", \
     "CUP_NVG_PVS15_winter", \
-    "UK3CB_BAF_HMNVS"
+    "UK3CB_BAF_HMNVS", \
+    "cxs_lightsticks"
 
 #define MAIN_OP_ITEMS \
     "ACE_ATragMX", \

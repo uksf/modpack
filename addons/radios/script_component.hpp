@@ -8,7 +8,7 @@
 
 #include "\u\uksf\addons\main\script_macros.hpp"
 
-#define CHANNELS_SQN_656_APACHE [40, 41, 31, 41]
+#define CHANNELS_SQN_656_APACHE [41, 40, 31, 32]
 #define CHANNELS_SQN_656 [31, 40, 41]
 #define CHANNELS_SQN_617 [31, 40, 41]
 #define CHANNELS_SQN_7 [31, 40, 41]
