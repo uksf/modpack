@@ -1,19 +1,6 @@
 class RscStandardDisplay;
 class RscDisplayMain : RscStandardDisplay {
     class Controls {
-        // class GroupSingleplayer : RscControlsGroupNoScrollbars {
-        //     h = "(6 * 1.5) * (pixelH * pixelGrid * 2)";
-        //     class Controls {
-        //         class Editor;
-        //         class EditorOpen : Editor {
-        //             idc = 354789;
-        //             text = "Editor (Open Mission)";
-        //             tooltip = "Open Editor Mission";
-        //             y = "(5 * 1.5) * (pixelH * pixelGrid * 2) + (pixelH)";
-        //             onbuttonclick = "do3DENAction 'MissionLoad'";
-        //         };
-        //     };
-        // };
         class GVAR(directConnectLogo) : RscPictureKeepAspectAllowPixelSplit {
             text = QPATHTOEF(common,data\icon_uksf_ca.paa);
             x = DIRECTCONNECTLOGO_X;
@@ -29,17 +16,6 @@ class RscDisplayMain : RscStandardDisplay {
             y = "safezoneY + 2 * (pixelH * pixelGrid * 2)";
             w = "9 * (pixelW * pixelGrid * 2)";
             h = "2 * (pixelH * pixelGrid * 2)";
-            // class Items {
-            //     class Primary {
-            //         text="Primary";
-            //         default=1;
-            //         value= 0;
-            //     };
-            //     class Secondary {
-            //         text="Secondary";
-            //         value= 1;
-            //     };
-            // };
         };
         class GVAR(directConnectButton) : RscButtonMenu {
             idc = 56568;

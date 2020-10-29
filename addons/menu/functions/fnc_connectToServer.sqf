@@ -15,8 +15,18 @@
 */
 
 #define ADDRESS QUOTE(uk-sf.co.uk)
-#define IP QUOTE(54.36.165.77:%1)
+#define IP 54.36.165.77
+#define IP_AND_PORT QUOTE(IP:%1)
 #define CONNECTTIMEOUT 3
+
+private _passwordCache = profileNamespace getVariable ['cba_ui_ServerPasswords', [[], []]];
+private _port = uiNamespace getVariable [QGVAR(selectedPort), "2302"];
+private _index = (_passwordCache#0) find (format [IP_AND_PORT, _port]);
+private _password = (_passwordCache#1) param [_index, ''];
+
+if (_password != '') exitWith {
+    connectToServer [QUOTE(IP), _port, _password];
+};
 
 onEachFrame {
     GVAR(directConnectStartTime) = diag_tickTime;
@@ -48,7 +58,7 @@ onEachFrame {
                             true
                         };
 
-                        if (_serverData isEqualTo format [IP, GVAR(directConnectPort)]) exitWith {
+                        if (_serverData isEqualTo format [IP_AND_PORT, GVAR(directConnectPort)]) exitWith {
                             findDisplay IDD_MULTIPLAYER displayCtrl IDC_MULTI_SESSIONS lbSetCurSel _i;
 
                             onEachFrame {
@@ -68,7 +78,7 @@ onEachFrame {
                                         if (!isNull _passwordEditBoxCtrl && {ctrlText _passwordEditBoxCtrl == ""}) exitWith {
                                             onEachFrame {};
                                         };
-                                        
+
                                         ctrlActivate (_display displayCtrl IDC_OK);
                                     };
 

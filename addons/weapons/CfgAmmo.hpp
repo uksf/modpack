@@ -85,6 +85,19 @@ class CfgAmmo {
     class MissileBase : MissileCore {
         timeToLive = 60;
     };
+    class CUP_R_70mm_Hydra_HE;
+    class CUP_R_CRV7_C18_HE: CUP_R_70mm_Hydra_HE {
+        ace_rearm_dummy = QGVAR(CUP_R_CRV7_C18_HE);
+    };
+    class ammo_Missile_ShortRangeAABase;
+    class ammo_Missile_BIM9X: ammo_Missile_ShortRangeAABase {
+        ace_rearm_dummy = QGVAR(ammo_Missile_BIM9X);
+    };
+    class ammo_Missile_MediumRangeAABase;
+    class ammo_Missile_AMRAAM_D: ammo_Missile_MediumRangeAABase {
+        ace_rearm_dummy = QGVAR(ammo_Missile_AMRAAM_D);
+    };
+
     class ammo_Penetrator_Scalpel;
     class ammo_Penetrator_Hellfire: ammo_Penetrator_Scalpel{
         caliber = 70;
