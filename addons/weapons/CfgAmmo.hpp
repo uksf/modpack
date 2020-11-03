@@ -86,26 +86,26 @@ class CfgAmmo {
         timeToLive = 60;
     };
     class CUP_R_70mm_Hydra_HE;
-    class CUP_R_CRV7_C18_HE: CUP_R_70mm_Hydra_HE {
+    class CUP_R_CRV7_C18_HE : CUP_R_70mm_Hydra_HE {
         ace_rearm_dummy = QGVAR(CUP_R_CRV7_C18_HE);
     };
     class ammo_Missile_ShortRangeAABase;
-    class ammo_Missile_BIM9X: ammo_Missile_ShortRangeAABase {
+    class ammo_Missile_BIM9X : ammo_Missile_ShortRangeAABase {
         ace_rearm_dummy = QGVAR(ammo_Missile_BIM9X);
     };
     class ammo_Missile_MediumRangeAABase;
-    class ammo_Missile_AMRAAM_D: ammo_Missile_MediumRangeAABase {
+    class ammo_Missile_AMRAAM_D : ammo_Missile_MediumRangeAABase {
         ace_rearm_dummy = QGVAR(ammo_Missile_AMRAAM_D);
     };
 
     class ammo_Penetrator_Scalpel;
-    class ammo_Penetrator_Hellfire: ammo_Penetrator_Scalpel{
+    class ammo_Penetrator_Hellfire : ammo_Penetrator_Scalpel {
         caliber = 70;
         hit = 1550;
     };
     class M_Scalpel_AT;
     class ACE_Hellfire_AGM114K : M_Scalpel_AT {
-        hit = 400; // 150 (javelin 350)
+        hit = 400;  // 150 (javelin 350)
         submunitionAmmo = "ammo_Penetrator_Hellfire";
         SoundSetExplosion[] = { "JPEX_Missile_EXPLOSION_SoundSet", "JPEX_Missile_REFLECTOR_SoundSet", "JPEX_Big_Debris_SoundSet" };
         model = QPATHTOF(data\AGM114\AGM114Hellfire.p3d);
@@ -115,7 +115,7 @@ class CfgAmmo {
         class ace_missileguidance;
     };
     class ACE_Hellfire_AGM114L : ACE_Hellfire_AGM114K {
-        class ace_missileguidance: ace_missileguidance {
+        class ace_missileguidance : ace_missileguidance {
             enabled = 1;
             defaultSeekerLockMode = "LOBL";
             seekerLockModes[] = { "LOBL" };

@@ -969,6 +969,17 @@ class CfgVehicles {
                         mirroredMissilePos = 1;
                         UIposition[] = { 0.50, 0.3 };
                     };
+                    class PylonWingLeft1 : PylonLeft1 {
+                        attachment = "PylonPod_2Rnd_Starstreak2_HVM_F";
+                        hardpoints[] = { "B_STARSTREAK" };
+                        UIposition[] = { 0.06, 0.25 };
+                    };
+                    class PylonWingRight1 : PylonRight1 {
+                        attachment = "PylonPod_2Rnd_Starstreak2_HVM_F";
+                        hardpoints[] = { "B_STARSTREAK" };
+                        mirroredMissilePos = 5;
+                        UIposition[] = { 0.57, 0.25 };
+                    };
                 };
                 class Presets {
                     class Empty {
@@ -977,19 +988,19 @@ class CfgVehicles {
                     };
                     class Default {
                         displayName = "CAS";
-                        attachment[] = { "CUP_PylonPod_19Rnd_CRV7_FAT_M", "PylonRack_4Rnd_ACE_Hellfire_AGM114N", "PylonRack_4Rnd_ACE_Hellfire_AGM114L", "CUP_PylonPod_19Rnd_CRV7_HE_M" };
+                        attachment[] = { "CUP_PylonPod_19Rnd_CRV7_FAT_M", "PylonRack_4Rnd_ACE_Hellfire_AGM114N", "PylonRack_4Rnd_ACE_Hellfire_AGM114L", "CUP_PylonPod_19Rnd_CRV7_HE_M", "PylonPod_2Rnd_Starstreak2_HVM_F", "PylonPod_2Rnd_Starstreak2_HVM_F" };
                     };
                     class AT {
                         displayName = "AT";
-                        attachment[] = { "PylonRack_4Rnd_ACE_Hellfire_AGM114L", "PylonRack_4Rnd_ACE_Hellfire_AGM114L", "PylonRack_4Rnd_ACE_Hellfire_AGM114L", "PylonRack_4Rnd_ACE_Hellfire_AGM114L" };
+                        attachment[] = { "PylonRack_4Rnd_ACE_Hellfire_AGM114L", "PylonRack_4Rnd_ACE_Hellfire_AGM114L", "PylonRack_4Rnd_ACE_Hellfire_AGM114L", "PylonRack_4Rnd_ACE_Hellfire_AGM114L", "PylonPod_2Rnd_Starstreak2_HVM_F", "PylonPod_2Rnd_Starstreak2_HVM_F" };
                     };
                     class Escort {
                         displayName = "Escort";
-                        attachment[] = { "CUP_PylonPod_19Rnd_CRV7_FAT_M", "CUP_PylonPod_19Rnd_CRV7_HE_M", "CUP_PylonPod_19Rnd_CRV7_HE_M", "CUP_PylonPod_19Rnd_CRV7_FAT_M" };
+                        attachment[] = { "CUP_PylonPod_19Rnd_CRV7_FAT_M", "CUP_PylonPod_19Rnd_CRV7_HE_M", "CUP_PylonPod_19Rnd_CRV7_HE_M", "CUP_PylonPod_19Rnd_CRV7_FAT_M", "PylonPod_2Rnd_Starstreak2_HVM_F", "PylonPod_2Rnd_Starstreak2_HVM_F" };
                     };
                     class Strike {
                         displayName = "Strike";
-                        attachment[] = { "PylonRack_4Rnd_ACE_Hellfire_AGM114L", "PylonRack_4Rnd_ACE_Hellfire_AGM114N", "PylonRack_4Rnd_ACE_Hellfire_AGM114K", "PylonRack_4Rnd_ACE_Hellfire_AGM114L" };
+                        attachment[] = { "PylonRack_4Rnd_ACE_Hellfire_AGM114L", "PylonRack_4Rnd_ACE_Hellfire_AGM114N", "PylonRack_4Rnd_ACE_Hellfire_AGM114K", "PylonRack_4Rnd_ACE_Hellfire_AGM114L", "PylonPod_2Rnd_Starstreak2_HVM_F", "PylonPod_2Rnd_Starstreak2_HVM_F" };
                     };
                 };
             };
