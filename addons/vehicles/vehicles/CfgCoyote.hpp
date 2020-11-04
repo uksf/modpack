@@ -56,10 +56,16 @@ class UK3CB_BAF_Coyote_Passenger_L111A1_W : UK3CB_BAF_Coyote_Passenger_L111A1_D 
     COVER_ACTIONS
 };
 class UK3CB_BAF_Coyote_Logistics_L111A1_D : UK3CB_BAF_Coyote_Passenger_L111A1_D {
+    transportAmmo = 0;
+    transportFuel = 0;
+    transportRepair = 0;
     JACKAL_INVENTORY_HMG
     COVER_ACTIONS
 };
 class UK3CB_BAF_Coyote_Logistics_L134A1_D : UK3CB_BAF_Coyote_Passenger_L134A1_D {
+    transportAmmo = 0;
+    transportFuel = 0;
+    transportRepair = 0;
     JACKAL_INVENTORY_GMG
     COVER_ACTIONS
 };
