@@ -1,20 +1,20 @@
 class CfgChannels {
     c01[] = { 1, "EMPTY" };
     c02[] = { 2, "HQ" };
-    c03[] = { 3, "EMPTY" };
-    c04[] = { 4, "PEGASUS" };
-    c05[] = { 5, "GUARDIAN" };
+    c03[] = { 3, "GUARDIAN 1" };
+    c04[] = { 4, "GUARDIAN 2" };
+    c05[] = { 5, "GUARDIAN 3" };
     c06[] = { 6, "CHAOS" };
     c07[] = { 7, "GHOST" };
     c08[] = { 8, "REAPER" };
     c09[] = { 9, "FORTUNE" };
-    c10[] = { 10, "MAVERICK" };
+    c10[] = { 10, "EMPTY" };
     c11[] = { 11, "FIRE MISSIONS" };
     c12[] = { 12, "EMPTY" };
     c13[] = { 13, "CONVOY Z" };
     c14[] = { 14, "CONVOY G1" };
-    c15[] = { 15, "CONVOY G1-1" };
-    c16[] = { 16, "CONVOY G1-2" };
+    c15[] = { 15, "CONVOY G2" };
+    c16[] = { 16, "CONVOY G3" };
     c17[] = { 17, "EMPTY" };
     c18[] = { 18, "CONVOY M1" };
     c19[] = { 19, "EMPTY" };
