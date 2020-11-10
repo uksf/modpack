@@ -16,7 +16,7 @@ class CfgChannels {
     c15[] = { 15, "CONVOY G2" };
     c16[] = { 16, "CONVOY G3" };
     c17[] = { 17, "EMPTY" };
-    c18[] = { 18, "CONVOY M1" };
+    c18[] = { 18, "EMPTY" };
     c19[] = { 19, "EMPTY" };
     c20[] = { 20, "EMPTY" };
     c21[] = { 21, "EMPTY" };
