@@ -15,17 +15,19 @@
 GVAR(saveObjectQueueProcessing) = true;
 
 [{
-    params ["", "_idPFH"];
+    params ["_args", "_idPFH"];
+    _args params ["_lastSave"];
 
     if (GVAR(saveObjectQueue) isEqualTo [] && GVAR(saveObjectMarkersProcessed)) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
         call FUNC(finishSaveObjectDataPfh);
     };
 
-    if (diag_fps < 20) exitWith {
+    if (diag_fps < 20 && _lastSave > CBA_missionTime) exitWith {
         INFO_1("FPS is too low, won't save any objects this frame (%1)",diag_fps);
     };
 
+    _args set [0, CBA_missionTime + 0.5];
     INFO_2("Running object data save. %1 remaining. FPS: %2",count GVAR(saveObjectQueue),diag_fps);
 
     private _object = GVAR(saveObjectQueue) deleteAt 0;

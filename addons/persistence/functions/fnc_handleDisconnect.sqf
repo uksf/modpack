@@ -73,4 +73,7 @@ private _data = [
 TRACE_1("Player disconnect",_data);
 
 GVAR(dataNamespace) setVariable [_uid, _data];
-[_unit] call FUNC(saveObjectData);
+
+if (GVAR(dataSaved)) then {
+    [_unit] call FUNC(saveObjectData);
+};

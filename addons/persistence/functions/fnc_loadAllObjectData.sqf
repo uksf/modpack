@@ -37,7 +37,7 @@ INFO_4("Objects sorted by ASL height, lowest: %1 at %2, highest: %3 at %4",(_obj
 
 [{
     params ["_args", "_idPFH"];
-    _args params ["_objects", "_count", "_index", "_retry"];
+    _args params ["_objects", "_count", "_index", "_lastLoad", "_retry"];
 
     if (_index >= _count) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
@@ -52,7 +52,7 @@ INFO_4("Objects sorted by ASL height, lowest: %1 at %2, highest: %3 at %4",(_obj
         };
     };
 
-    if (diag_fps < 20) exitWith {
+    if (diag_fps < 20 && _lastLoad > CBA_missionTime) exitWith {
         INFO_1("FPS is too low, won't load any objects this frame (%1)",diag_fps);
     };
 
@@ -60,4 +60,5 @@ INFO_4("Objects sorted by ASL height, lowest: %1 at %2, highest: %3 at %4",(_obj
     [_objects#_index] call FUNC(loadObjectData);
 
     _args set [2, _index + 1];
-}, 0, [_objects, _count, 0, _retry]] call CBA_fnc_addPerFrameHandler;
+    _args set [3, CBA_missionTime + 0.5];
+}, 0, [_objects, _count, 0, 0, _retry]] call CBA_fnc_addPerFrameHandler;
