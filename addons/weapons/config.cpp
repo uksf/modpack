@@ -19,8 +19,6 @@ class CfgPatches {
             "UK3CB_BAF_L135A1_LRPS",
             "CUP_arifle_M4A1_Acog",
             "CUP_lmg_M240_LDS",
-            "CUP_launch_Mk153Mod0_Rubber",
-            "CUP_launch_FIM92Stinger_Rubber",
             "CUP_AGM114L_Hellfire_II_Launcher_W",
             "CUP_AGM114N_Hellfire_II_Launcher_W",
             "UK3CB_BAF_Javelin_CLU"
