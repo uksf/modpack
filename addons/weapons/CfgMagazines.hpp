@@ -181,18 +181,4 @@ class CfgMagazines {
     class 200Rnd_40mm_G_belt : VehicleMagazine {
         picture = "\UK3CB_BAF_Weapons\addons\UK3CB_BAF_Weapons_Ammo\data\gear_magazine_belt_tracer_ca.paa";
     };
-
-    class CUP_Stinger_M;
-    class CUP_Stinger_M_Rubber : CUP_Stinger_M {
-        scopeArsenal = 1;
-        displayName = "FIM-92F Stinger Rubber";
-        displayNameShort = "AA Rubber";
-        ammo = "CUP_M_Stinger_AA_Rubber";
-    };
-    class CUP_4Rnd_Stinger_M;
-    class CUP_4Rnd_Stinger_M_Rubber : CUP_4Rnd_Stinger_M {
-        displayName = "FIM-92F Stinger Rubber";
-        displayNameShort = "AA Rubber";
-        ammo = "CUP_M_Stinger_AA_Rubber";
-    };
 };

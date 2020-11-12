@@ -284,30 +284,6 @@ class CfgVehicles {
         mass = 80;
     };
 
-    class B_AssaultPack_blk;
-    class B_AssaultPack_VR_AT: B_AssaultPack_blk {
-        scopeArsenal = 1;
-        displayName = "AT Pack (VR)";
-        hiddenSelectionsTextures[] = { "#(argb,8,8,3)color(0.85,0.05,0.05,1,ca)" };
-        hiddenSelectionsMaterials[] = { "\A3\Characters_F_Bootcamp\Common\Data\O_VR_Soldier_F.rvmat" };
-        maximumLoad = 500;
-        class TransportMagazines {
-            class _xx_CUP_SMAW_HEAA_M {
-                magazine = "CUP_SMAW_HEAA_M";
-                count = 2;
-            };
-        };
-    };
-    class B_AssaultPack_VR_AA: B_AssaultPack_VR_AT {
-        displayName = "AA Pack (VR)";
-        class TransportMagazines {
-            class _xx_CUP_Stinger_M_Rubber {
-                magazine = "CUP_Stinger_M_Rubber";
-                count = 2;
-            };
-        };
-    };
-
     class I_soldier_F;
     class I_Soldier_02_F;
     class B_Helipilot_F;

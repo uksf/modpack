@@ -845,197 +845,42 @@ class CfgWeapons {
         distanceZoomMax = 10000;
     };
 
-    // AA weapons range changes
-    // Ural ZU-23, BMP-2 ZU-23, ZU-23
-    class CUP_Vacannon_2A14_veh : CannonCore {
-        class manual;
-        class close : manual {
-            midRange = 200;  // 300
-            maxRange = 500;  // 600
-            aiDispersionCoefX = 5;
-            aiDispersionCoefY = 5;
-        };
-        class short : close {
-            minRange = 300;  // 400
-            midRange = 500;  // 600
-            maxRange = 800;  // 900
-            aiDispersionCoefX = 6;
-            aiDispersionCoefY = 6;
-        };
-        class medium : close {
-            minRange = 600;   // 700
-            midRange = 800;   // 900
-            maxRange = 1100;  // 1200
-            aiDispersionCoefX = 7;
-            aiDispersionCoefY = 7;
-        };
-        class far : close {
-            minRange = 900;   // 1000
-            midRange = 1100;  // 1200
-            maxRange = 1400;  // 1500
-            aiDispersionCoefX = 8;
-            aiDispersionCoefY = 8;
-        };
-    };
-    // Tunguska
-    class CUP_Vacannon_GSh302K_veh;
-    class CUP_Vacannon_2A38M_veh : CUP_Vacannon_GSh302K_veh {
-        class LowROF;
-        class close : LowROF {
-            midRange = 50;   // 150
-            maxRange = 200;  // 300
-            aiDispersionCoefX = 5;
-            aiDispersionCoefY = 5;
-        };
-        class near : close {
-            midRange = 150;  // 250
-            maxRange = 300;  // 400
-            aiDispersionCoefX = 5;
-            aiDispersionCoefY = 5;
-        };
-        class short : close {
-            minRange = 100;  // 200
-            midRange = 300;  // 400
-            maxRange = 500;  // 600
-            aiDispersionCoefX = 6;
-            aiDispersionCoefY = 6;
-        };
-        class medium : close {
-            minRange = 300;  // 400
-            midRange = 600;  // 700
-            maxRange = 800;  // 900
-            aiDispersionCoefX = 7;
-            aiDispersionCoefY = 7;
-        };
-        class far : close {
-            minRange = 700;   // 800
-            midRange = 900;   // 1000
-            maxRange = 1400;  // 1500
-            aiDispersionCoefX = 8;
-            aiDispersionCoefY = 8;
-        };
-    };
-    // ZSU-23-4
-    class CUP_Vacannon_AZP23_veh : CannonCore {
-        class manual;
-        class close : manual {
-            midRange = 200;  // 300
-            maxRange = 500;  // 600
-            aiDispersionCoefX = 5;
-            aiDispersionCoefY = 5;
-        };
-        class short : close {
-            minRange = 300;  // 400
-            midRange = 500;  // 600
-            maxRange = 800;  // 900
-            aiDispersionCoefX = 6;
-            aiDispersionCoefY = 6;
-        };
-        class medium : close {
-            minRange = 600;   // 700
-            midRange = 800;   // 900
-            maxRange = 1100;  // 1200
-            aiDispersionCoefX = 7;
-            aiDispersionCoefY = 7;
-        };
-        class far : close {
-            minRange = 900;   // 1000
-            midRange = 1100;  // 1200
-            maxRange = 1400;  // 1500
-            aiDispersionCoefX = 8;
-            aiDispersionCoefY = 8;
-        };
-    };
     // Tunguska
     class missiles_titan;
     class CUP_Vmlauncher_9M311_veh : missiles_titan {
-        midRange = 1000;   // 4500
+        midRange = 2000;   // 4500
         maxRange = 5000;   // 8000
         aiRateOfFire = 7;  // 5
     };
     class CUP_Vmlauncher_Igla_twice_veh : missiles_titan {
-        midRange = 1000;   // 3100
+        midRange = 2000;   // 3100
         maxRange = 4000;   // 5200
         aiRateOfFire = 7;  // 5
     };
     class CUP_Vmlauncher_Stinger_vehicle_veh : missiles_titan {
-        midRange = 1000;   // 3100
+        midRange = 2000;   // 3100
         maxRange = 4000;   // 5200
         aiRateOfFire = 7;  // 5
     };
     class CUP_Vmlauncher_RBS70_veh : missiles_titan {
-        midRange = 1000;   // 3100
+        midRange = 2000;   // 3100
         maxRange = 4000;   // 5200
         aiRateOfFire = 7;  // 5
     };
     class CUP_launch_Igla_loaded : Launcher_Base_F {
-        midRange = 1000;   // 2500
+        midRange = 2000;   // 2500
         maxRange = 3000;   // 4800
         aiRateOfFire = 7;  // 5
     };
     class CUP_launch_FIM92Stinger_loaded : Launcher_Base_F {
-        midRange = 1000;   // 2500
+        midRange = 2000;   // 2500
         maxRange = 3000;   // 4800
         aiRateOfFire = 7;  // 5
     };
     class CUP_launch_9K32Strela_loaded : Launcher_Base_F {
-        midRange = 1000;   // 2500
+        midRange = 2000;   // 2500
         maxRange = 3000;   // 4800
         aiRateOfFire = 7;  // 5
-    };
-
-    // Weapons for virtual army faction
-    class CUP_arifle_M4A1;
-    class CUP_arifle_M4A1_Acog : CUP_arifle_M4A1 {
-        scopeArsenal = 1;
-        class LinkedItems {
-            class LinkedItemsOptic {
-                slot = "CUP_PicatinnyTopMountM4";
-                item = "CUP_optic_RCO";
-            };
-        };
-    };
-    class CUP_lmg_M240;
-    class CUP_lmg_M240_LDS : CUP_lmg_M240 {
-        scopeArsenal = 1;
-        class LinkedItems {
-            class LinkedItemsOptic {
-                slot = "CUP_PicatinnyTopMountM4";
-                item = "UK3CB_BAF_SpecterLDS";
-            };
-        };
-    };
-    class CUP_launch_FIM92Stinger_Rubber : CUP_launch_FIM92Stinger_loaded {
-        scopeArsenal = 1;
-        magazines[] = { "CUP_Stinger_M_Rubber" };
-        ace_overpressure_damage = 0;
-    };
-    class CUP_Vmlauncher_Stinger_vehicle_veh_Rubber : CUP_Vmlauncher_Stinger_vehicle_veh {
-        magazines[] = { "CUP_4Rnd_Stinger_M_Rubber" };
-    };
-    class CUP_arifle_AK_Base : Rifle_Base_F {
-        class WeaponSlotsInfo : WeaponSlotsInfo {
-            class PointerSlot : asdg_FrontSideRail {
-                iconPosition[] = { 0.3, 0.35 };
-                iconScale = 0.2;
-            };
-        };
-    };
-    class CUP_arifle_AKS_Base : CUP_arifle_AK_Base {
-        class WeaponSlotsInfo : WeaponSlotsInfo {
-            class PointerSlot : asdg_FrontSideRail {
-                iconPosition[] = { 0.3, 0.35 };
-                iconScale = 0.2;
-            };
-        };
-    };
-    class CUP_arifle_AK107_Base : CUP_arifle_AK_Base {
-        class WeaponSlotsInfo : WeaponSlotsInfo {
-            class PointerSlot : asdg_FrontSideRail {
-                iconPosition[] = { 0.3, 0.35 };
-                iconScale = 0.2;
-            };
-        };
     };
 
 #include "CfgWeaponsPrivate.hpp"
