@@ -377,13 +377,13 @@ class CfgWeapons {
     };
 
     class arifle_SPAR_01_blk_F;
-    class arifle_L119A2_F: arifle_SPAR_01_blk_F {
+    class arifle_L119A2_F : arifle_SPAR_01_blk_F {
         magazines[] = { "UK3CB_BAF_556_30Rnd", "UK3CB_BAF_556_30Rnd_T", "30Rnd_556x45_Stanag_red", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag_Tracer_Red" };
         magazineWell[] = {};
         ACE_barrelTwist = 178;
         ACE_barrelLength = 398;
     };
-    class arifle_L119A2_S_F: arifle_L119A2_F {
+    class arifle_L119A2_S_F : arifle_L119A2_F {
         ACE_barrelLength = 262;
     };
 
@@ -419,13 +419,13 @@ class CfgWeapons {
         magazines[] = { "UK3CB_BAF_556_200Rnd", "UK3CB_BAF_556_200Rnd_Blank", "UK3CB_BAF_556_200Rnd_T", "UK3CB_BAF_556_100Rnd", "UK3CB_BAF_556_100Rnd_Blank", "UK3CB_BAF_556_100Rnd_T", "UK3CB_BAF_556_30Rnd", "UK3CB_BAF_556_30Rnd_T" };
         magazineWell[] = {};
         modes[] = { "FullAuto", "close", "short", "medium", "far_optic1", "far_optic2" };
-        class FullAuto: Mode_FullAuto {
+        class FullAuto : Mode_FullAuto {
             sounds[] = { "StandardSound", "SilencedSound" };
             class BaseSoundModeType;
-            class StandardSound: BaseSoundModeType {
+            class StandardSound : BaseSoundModeType {
                 soundSetShot[] = { "L110_Shot_SoundSet", "FRAME_CALIBER_5x56MM", "ALL_DIST_TAIL" };
             };
-            class SilencedSound: BaseSoundModeType {
+            class SilencedSound : BaseSoundModeType {
                 SoundSetShot[] = { "DS_lim_Closure_SoundSet", "DS_lim_ShotSD_SoundSet", "DS_rifle1_SD_Tail_SoundSet" };
             };
             reloadTime = 0.08278;
@@ -544,13 +544,13 @@ class CfgWeapons {
     };
 
     class CUP_arifle_M4_Base;
-    class CUP_arifle_M4A1_BUIS_Base: CUP_arifle_M4_Base {
+    class CUP_arifle_M4A1_BUIS_Base : CUP_arifle_M4_Base {
         class WeaponSlotsInfo;
     };
-    class CUP_arifle_mk18_black: CUP_arifle_M4A1_BUIS_Base {
+    class CUP_arifle_mk18_black : CUP_arifle_M4A1_BUIS_Base {
         magazines[] = { "UK3CB_BAF_556_30Rnd", "UK3CB_BAF_556_30Rnd_T", "30Rnd_556x45_Stanag_red", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag_Tracer_Red" };
         magazineWell[] = {};
-        class WeaponSlotsInfo: WeaponSlotsInfo {
+        class WeaponSlotsInfo : WeaponSlotsInfo {
             delete MuzzleSlot;
             class asdg_MuzzleSlot_UK3CB_BAF_L119 : asdg_MuzzleSlot_556_3CB_L119 {};
         };
@@ -564,8 +564,8 @@ class CfgWeapons {
         modes[] = { "Overfly", "Single" };
     };
     class UK3CB_BAF_NLAW_Launcher : launch_NLAW_F {
-        magazines[] = {"ACE_PreloadedMissileDummy"};
-        magazineWell[] = {"NLAW"};
+        magazines[] = { "ACE_PreloadedMissileDummy" };
+        magazineWell[] = { "NLAW" };
         ACE_UsedTube = "ACE_launch_NLAW_Used_F";
         ace_nlaw_enabled = 1;
         uk3cb_used_launcher = "";
@@ -615,7 +615,7 @@ class CfgWeapons {
         };
     };
     class launch_MRAWS_base_F : Launcher_Base_F {
-        class WeaponSlotsInfo: WeaponSlotsInfo {
+        class WeaponSlotsInfo : WeaponSlotsInfo {
             mass = 150;
         };
     };
@@ -881,6 +881,50 @@ class CfgWeapons {
         midRange = 2000;   // 2500
         maxRange = 3000;   // 4800
         aiRateOfFire = 7;  // 5
+    };
+
+    class mortar_82mm : CannonCore {
+        class Single1;
+        class Single2;
+        class Single3;
+    };
+    class UK3CB_BAF_L16_veh : mortar_82mm {
+        modes[] = { "Single1", "Single2", "Single3", "Single4", "Single5", "Single6", "Single7", "Burst1", "Burst2", "Burst3" };
+        class Single1 : Single1 {
+            // Charge 0 -> 14/61
+            displayName = "Charge 0";
+            artilleryCharge = 0.2295;
+        };
+        class Single2 : Single2 {
+            // Charge 1 -> 28/61
+            displayName = "Charge 1";
+            artilleryCharge = 0.459;
+        };
+        class Single3 : Single3 {
+            // Charge 2 -> 40/61
+            displayName = "Charge 2";
+            artilleryCharge = 0.6557;
+        };
+        class Single4 : Single3 {
+            // Charge 3 -> 46/61
+            displayName = "Charge 3";
+            artilleryCharge = 0.7541;
+        };
+        class Single5 : Single3 {
+            // Charge 4 -> 51/61
+            displayName = "Charge 4";
+            artilleryCharge = 0.836;
+        };
+        class Single6 : Single3 {
+            // Charge 5 -> 56/61
+            displayName = "Charge 5";
+            artilleryCharge = 0.918;
+        };
+        class Single7 : Single3 {
+            // Charge 6 -> 1
+            displayName = "Charge 6";
+            artilleryCharge = 1;
+        };
     };
 
 #include "CfgWeaponsPrivate.hpp"

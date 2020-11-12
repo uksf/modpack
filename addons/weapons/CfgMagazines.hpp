@@ -181,4 +181,34 @@ class CfgMagazines {
     class 200Rnd_40mm_G_belt : VehicleMagazine {
         picture = "\UK3CB_BAF_Weapons\addons\UK3CB_BAF_Weapons_Ammo\data\gear_magazine_belt_tracer_ca.paa";
     };
+
+    class 8Rnd_82mm_Mo_shells;
+    class UK3CB_BAF_1Rnd_81mm_Mo_Shells : 8Rnd_82mm_Mo_shells {
+        initSpeed = 305;  // 200
+    };
+    class UK3CB_BAF_1Rnd_81mm_Mo_AB_Shells : 8Rnd_82mm_Mo_shells {
+        initSpeed = 305;  // 200
+    };
+    class 8Rnd_82mm_Mo_Flare_white;
+    class UK3CB_BAF_1Rnd_81mm_Mo_Flare_White : 8Rnd_82mm_Mo_Flare_white {
+        initSpeed = 305;  // 200
+    };
+    class UK3CB_BAF_1Rnd_81mm_Mo_IRFlare_White : 8Rnd_82mm_Mo_Flare_white {
+        initSpeed = 305;  // 200
+    };
+    class 8Rnd_82mm_Mo_Smoke_white;
+    class UK3CB_BAF_1Rnd_81mm_Mo_Smoke_White : 8Rnd_82mm_Mo_Smoke_white {
+        initSpeed = 305;  // 200
+    };
+    class UK3CB_BAF_1Rnd_81mm_Mo_WPSmoke_White : 8Rnd_82mm_Mo_Smoke_white {
+        initSpeed = 305;  // 200
+    };
+    class 8Rnd_82mm_Mo_guided;
+    class UK3CB_BAF_1Rnd_81mm_Mo_Guided : 8Rnd_82mm_Mo_guided {
+        initSpeed = 305;  // 200
+    };
+    class 8Rnd_82mm_Mo_LG;
+    class UK3CB_BAF_1Rnd_81mm_Mo_LG : 8Rnd_82mm_Mo_LG {
+        initSpeed = 305;  // 200
+    };
 };

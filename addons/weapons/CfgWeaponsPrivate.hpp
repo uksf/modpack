@@ -82,6 +82,7 @@ class CUP_arifle_L85A2_GL_ACOG_Laser: CUP_arifle_L85A2_GL {
 class CUP_arifle_L86A2_ACOG: CUP_arifle_L86A2 {
     scope = 1;
 };
+class CUP_lmg_M240;
 class CUP_lmg_L7A2: CUP_lmg_M240 {
     scope = 1;
 };
