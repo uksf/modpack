@@ -29,7 +29,11 @@ LOG("Shutdown");
     private _players = call CBA_fnc_players;
     if (_players isEqualTo []) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
-        [] call FUNC(saveObjectData);
+        if (GVAR(dataSaved)) then {
+            [] call FUNC(saveObjectData);
+        } else {
+            GVAR(saveObjectQueueProcessing) = false;
+        };
 
         [{
             !GVAR(saveObjectQueueProcessing)
