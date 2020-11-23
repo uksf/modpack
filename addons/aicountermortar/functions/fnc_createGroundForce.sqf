@@ -27,7 +27,7 @@ params ["_spawnPosition", "_targetPosition"];
         private _index = _vehicle getVariable [QGVAR(hitEHID), -1];
         _vehicle removeMPEventHandler ["MPKilled", _index];
 
-        [{GVAR(counterInProgress) = 0}, [], 900] call CBA_fnc_waitAndExecute; // 15 minute wait time between tasks so mortars dont get spammed each time they fire
+        [{GVAR(counterInProgress) = false}, [], 900] call CBA_fnc_waitAndExecute; // 15 minute wait time between tasks so mortars dont get spammed each time they fire
     }];
 
     _vehicle setVariable [QGVAR(hitEHID), _index, true];
