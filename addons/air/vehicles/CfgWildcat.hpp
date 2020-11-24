@@ -11,11 +11,11 @@ class UK3CB_BAF_Wildcat_Base : Heli_light_03_base_F {
     fuelCapacity = 400;  // 742
     startDuration = 30;
     mainRotorSpeed = 1;
-    bodyFrictionCoef = 0.5;  // 1
-    liftForceCoef = 0.95;    // 1
-    maxFordingDepth = 1.2;   // 0.7
-    cyclicAsideForceCoef = 1.2; // 1
-    cyclicForwardForceCoef = 1.1; // 1
+    bodyFrictionCoef = 0.5;        // 1
+    liftForceCoef = 0.95;          // 1
+    maxFordingDepth = 1.2;         // 0.7
+    cyclicAsideForceCoef = 1.2;    // 1
+    cyclicForwardForceCoef = 1.1;  // 1
     unitInfoType = "RscUnitInfoNoSpeed";
     attenuationEffectType = "SemiOpenHeliAttenuation";
 #include "MFDCAS.hpp"
@@ -313,4 +313,15 @@ class UK3CB_BAF_Wildcat_HMA2_8_Base : UK3CB_BAF_Wildcat_HMA2_Base {
 };
 class UK3CB_BAF_Wildcat_HMA2_TRN_8A : UK3CB_BAF_Wildcat_HMA2_8_Base {
     faction = "CUP_B_GB";
+};
+class rksla3_aw159_base;
+class rksla3_aw159_hma2 : rksla3_aw159_base {
+    faction = "CUP_B_GB";
+    vehicleClass = "Air";
+    crew = "UKSF_B_Pilot_7";
+    typicalCargo[] = { "UKSF_B_Pilot_7" };
+    fuelCapacity = 400;  // 742
+    startDuration = 30;
+    weapons[] = { "CUP_weapon_mastersafe", "CMFlareLauncher" };
+    magazines[] = { "300Rnd_CMFlare_Chaff_Magazine" };
 };
