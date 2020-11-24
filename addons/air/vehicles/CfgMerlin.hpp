@@ -163,23 +163,15 @@ class UK3CB_BAF_Merlin_HC4_24 : UK3CB_BAF_Merlin_HC3_24 {
     faction = "CUP_B_GB";
 };
 class UK3CB_BAF_Merlin_HC4_32 : UK3CB_BAF_Merlin_HC3_32 {
-    scope = 0;
-    scopeCurator = 0;
     faction = "CUP_B_GB";
 };
 class UK3CB_BAF_Merlin_HC4_Cargo : UK3CB_BAF_Merlin_HC3_Cargo {
-    scope = 0;
-    scopeCurator = 0;
     faction = "CUP_B_GB";
 };
 class UK3CB_BAF_Merlin_HC4_18_GPMG : UK3CB_BAF_Merlin_HC3_18_GPMG {
-    scope = 0;
-    scopeCurator = 0;
     faction = "CUP_B_GB";
 };
 class UK3CB_BAF_Merlin_HC4_CSAR : UK3CB_BAF_Merlin_HC3_CSAR {
-    scope = 0;
-    scopeCurator = 0;
     faction = "CUP_B_GB";
 };
 class UK3CB_BAF_Merlin_HM2_Base : UK3CB_BAF_Merlin_Base {
@@ -194,7 +186,5 @@ class UK3CB_BAF_Merlin_HM2_Unarmed_Base : UK3CB_BAF_Merlin_HM2_Base {
     faction = "CUP_B_GB";
 };
 class UK3CB_BAF_Merlin_HM2_18 : UK3CB_BAF_Merlin_HM2_Unarmed_Base {
-    scope = 0;
-    scopeCurator = 0;
     faction = "CUP_B_GB";
 };

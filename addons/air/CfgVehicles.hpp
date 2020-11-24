@@ -75,6 +75,7 @@ class CfgVehicles {
 #include "vehicles\CfgDauphin.hpp"
 #include "vehicles\CfgF35.hpp"
 #include "vehicles\CfgGR9.hpp"
+#include "vehicles\CfgHC135.hpp"
 #include "vehicles\CfgMerlin.hpp"
 #include "vehicles\CfgMerlinCUP.hpp"
 #include "vehicles\CfgPuma.hpp"

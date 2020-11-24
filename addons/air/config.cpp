@@ -29,6 +29,7 @@ class CfgPatches {
             "UK3CB_BAF_Vehicles_Wildcat",
             "rksla3_pumahc",
             "MEA_Panther",
+            "HAFM_EC635",
             "uksf_f35_plane",
             QGVAR(prep)
         };
