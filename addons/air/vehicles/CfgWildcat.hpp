@@ -324,4 +324,5 @@ class rksla3_aw159_hma2 : rksla3_aw159_base {
     startDuration = 30;
     weapons[] = { "CUP_weapon_mastersafe", "CMFlareLauncher" };
     magazines[] = { "300Rnd_CMFlare_Chaff_Magazine" };
+#include "MFDCAS.hpp"
 };
