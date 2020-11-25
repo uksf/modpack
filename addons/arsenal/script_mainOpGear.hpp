@@ -870,7 +870,6 @@
     "UK3CB_BAF_G_Tactical_Orange", \
     "UK3CB_BAF_G_Tactical_Yellow", \
     "G_B_Diving", \
-    "halo_mask", \
     "ade_item_goggles"
 
 #define MAIN_OP_GEAR [MAIN_OP_MAGAZINES, MAIN_OP_WEAPONS, MAIN_OP_ATTACHMENTS, MAIN_OP_NVGS, MAIN_OP_ITEMS, MAIN_OP_UNIFORMS, MAIN_OP_VESTS, MAIN_OP_BACKPACKS, MAIN_OP_HELMETS, MAIN_OP_GLASSES]
