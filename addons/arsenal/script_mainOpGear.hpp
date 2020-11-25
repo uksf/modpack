@@ -470,7 +470,34 @@
     "ToolKit", \
     "UK3CB_BAF_Javelin_CLU", \
     "uksf_atc_terminal", \
-    "ItemAndroid"
+    "ItemAndroid", \
+    "ade_item_DiveComputer", \
+    "ade_item_cylinder_single_6ltr_300bar_compressedAir", \
+    "ade_item_cylinder_linked_6ltr_300bar_compressedAir", \
+    "ade_item_cylinder_single_6ltr_300bar_EAN28", \
+    "ade_item_cylinder_linked_6ltr_300bar_EAN28", \
+    "ade_item_cylinder_single_6ltr_300bar_EAN32", \
+    "ade_item_cylinder_linked_6ltr_300bar_EAN32", \
+    "ade_item_cylinder_single_6ltr_300bar_EAN36", \
+    "ade_item_cylinder_linked_6ltr_300bar_EAN36", \
+    "ade_item_cylinder_single_6ltr_300bar_EAN40", \
+    "ade_item_cylinder_linked_6ltr_300bar_EAN40", \
+    "ade_item_cylinder_single_6ltr_300bar_Heliox85", \
+    "ade_item_cylinder_linked_6ltr_300bar_Heliox85", \
+    "ade_item_cylinder_single_6ltr_300bar_Heliox12", \
+    "ade_item_cylinder_linked_6ltr_300bar_Heliox12", \
+    "ade_item_cylinder_single_6ltr_300bar_Heliox21", \
+    "ade_item_cylinder_linked_6ltr_300bar_Heliox21", \
+    "ade_item_cylinder_single_6ltr_300bar_Tx2135", \
+    "ade_item_cylinder_linked_6ltr_300bar_Tx2135", \
+    "ade_item_cylinder_single_6ltr_300bar_Tx1845", \
+    "ade_item_cylinder_linked_6ltr_300bar_Tx1845", \
+    "ade_item_cylinder_single_6ltr_300bar_Tx1555", \
+    "ade_item_cylinder_linked_6ltr_300bar_Tx1555", \
+    "ade_item_cylinder_single_6ltr_300bar_Tx1265", \
+    "ade_item_cylinder_linked_6ltr_300bar_Tx1265", \
+    "ade_item_cylinder_single_6ltr_300bar_Tx1070", \
+    "ade_item_cylinder_linked_6ltr_300bar_Tx1070"
 
 #define MAIN_OP_UNIFORMS \
     "SP_0000_Standard_TacticalUniform_ATacsFG", \
@@ -609,7 +636,8 @@
     "V_RebreatherB", \
     "V_RebreatherIA", \
     "UKSF_LARV_1", \
-    "UKSF_LARV_2"
+    "UKSF_LARV_2", \
+    "ade_item_rebreather"
 
 #define MAIN_OP_BACKPACKS \
     "B_AssaultPack_rgr", \
@@ -719,7 +747,8 @@
     "tfw_ilbe_blade_b", \
     "tfw_ilbe_blade_w", \
     "tfw_ilbe_blade_vsm", \
-    "B_MAV_B_BACKPACK"
+    "B_MAV_B_BACKPACK", \
+    "ade_item_bag"
 
 #define MAIN_OP_HELMETS \
     "COVER_4b", \
@@ -841,6 +870,7 @@
     "UK3CB_BAF_G_Tactical_Orange", \
     "UK3CB_BAF_G_Tactical_Yellow", \
     "G_B_Diving", \
-    "halo_mask"
+    "halo_mask", \
+    "ade_item_goggles"
 
 #define MAIN_OP_GEAR [MAIN_OP_MAGAZINES, MAIN_OP_WEAPONS, MAIN_OP_ATTACHMENTS, MAIN_OP_NVGS, MAIN_OP_ITEMS, MAIN_OP_UNIFORMS, MAIN_OP_VESTS, MAIN_OP_BACKPACKS, MAIN_OP_HELMETS, MAIN_OP_GLASSES]
