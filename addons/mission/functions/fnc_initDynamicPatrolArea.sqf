@@ -16,7 +16,9 @@
 
 params ["_logic", "_area"];
 
-if !(isServer) exitWith {};
+if !(isServer) exitWith {
+    INFO("3) Area data init failed server check");
+};
 
 private _values = [];
 
@@ -25,16 +27,19 @@ private _values = [];
     private _propertyConfig = GVAR(dynamicPatrolAreaAttributeConfig) >> _property;
     private _default = [_propertyConfig] call EFUNC(common,getConfigEntry);
     private _value = _logic getVariable [_property, _default];
+    TRACE_3("3) Area data init resolved variable",_property,_value,_default);
 
     private _min = [_propertyConfig >> "min"] call EFUNC(common,getConfigEntry);
     if (!(_min isEqualType "") || {_min != ""}) then {
         _value = _value max _min;
     };
+    TRACE_4("3) Area data init resolved variable after min",_property,_value,_default,_min);
 
     private _max = [_propertyConfig >> "max"] call EFUNC(common,getConfigEntry);
     if (!(_max isEqualType "") || {_max != ""}) then {
         _value = _value min _max;
     };
+    TRACE_5("3) Area data init resolved variable after max",_property,_value,_default,_min,_max);
 
     private _compileString = [_propertyConfig >> "compileString"] call EFUNC(common,getConfigEntry);
     if (!(_compileString isEqualType "") || {_compileString != "" && {_compileString == 1}}) then {
@@ -46,6 +51,8 @@ private _values = [];
             };
         };
     };
+
+    TRACE_6("3) Area data init resolved variable final",_property,_value,_default,_min,_max,_compileString);
 
     _values pushBack _value;
 } forEach [
@@ -69,19 +76,24 @@ private _values = [];
     QGVAR(condition)
 ];
 
+TRACE_3("3) Area data init resolved variables",_logic,_area,_values);
+
 // Set pools to global if no value given for zone
 if ((_values#DYNAMIC_PATROL_INDEX_UNIT_POOL) isEqualTo []) then {
     _values set [DYNAMIC_PATROL_INDEX_UNIT_POOL, GVAR(dynamicPatrolUnitPool)];
 };
+TRACE_1("3) Area data init resolved unit pool",_values#DYNAMIC_PATROL_INDEX_UNIT_POOL);
 
 if ((_values#DYNAMIC_PATROL_INDEX_VEHICLE_POOL) isEqualTo []) then {
     _values set [DYNAMIC_PATROL_INDEX_VEHICLE_POOL, GVAR(dynamicPatrolVehiclePool)];
 };
+TRACE_1("3) Area data init resolved vehicle pool",_values#DYNAMIC_PATROL_INDEX_VEHICLE_POOL);
 
 // Resolve values from DYNAMIC_PATROL_INDEX for combatMode, patrolSpeed, and side
 _values set [DYNAMIC_PATROL_INDEX_COMBAT_MODE, ['SAFE', 'AWARE', 'COMBAT']#(_values#DYNAMIC_PATROL_INDEX_COMBAT_MODE)];
 _values set [DYNAMIC_PATROL_INDEX_PATROL_SPEED, ['LIMITED', 'NORMAL', 'FULL']#(_values#DYNAMIC_PATROL_INDEX_PATROL_SPEED)];
 _values set [DYNAMIC_PATROL_INDEX_SIDE, [EAST, INDEPENDENT, WEST]#(_values#DYNAMIC_PATROL_INDEX_SIDE)];
+TRACE_3("3) Area data init resolved combat mode, patro speed, side",_values#DYNAMIC_PATROL_INDEX_COMBAT_MODE,_values#DYNAMIC_PATROL_INDEX_PATROL_SPEED,_values#DYNAMIC_PATROL_INDEX_SIDE);
 
 // Test condition and store as code in values
 private _condition = compile (_values#DYNAMIC_PATROL_INDEX_CONDITION);
@@ -91,5 +103,6 @@ if !(_result isEqualType false) then {
     _condition = {true};
 };
 _values set [DYNAMIC_PATROL_INDEX_CONDITION, _condition];
+TRACE_1("3) Area data init resolved condition",_values#DYNAMIC_PATROL_INDEX_CONDITION);
 
 [_values, _logic, _area]
