@@ -19,6 +19,7 @@ PREP(hint);
 PREP(inBoundingBox);
 PREP(isPositionSafe);
 PREP(hasSuppressor);
+PREP(headlessEvent);
 PREP(lineOfSight);
 PREP(mapPosition);
 PREP(moduleRespawnPosition);

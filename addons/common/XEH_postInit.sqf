@@ -12,12 +12,9 @@ if (isServer) then {
     }, 300, []] call cba_fnc_addPerFrameHandler;
 };
 
-// Set headless client array. Player if singleplayer
-GVAR(HCs) = [];
-if (isMultiplayer && !is3DENMultiplayer) then {
-    GVAR(HCs) = (entities "HeadlessClient_F");
-} else {
-    GVAR(HCs) pushBack player;
+// Set headless client array to player if singleplayer
+if (!isMultiplayer || is3DENMultiplayer) then {
+    acex_headless_headlessClients = [player];
 };
 
 if (hasInterface) then {

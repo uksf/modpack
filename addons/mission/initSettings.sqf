@@ -153,7 +153,7 @@
     "SLIDER",
     ["Dynamic Patrol Spawn Cooldown", "Time in seconds between dynamic patrol group spawns"],
     [COMPONENT_NAME, "Dynamic Patrol"],
-    [60, 3600, 600, 0],
+    [10, 3600, 600, 0],
     1
 ] call CBA_settings_fnc_init;
 

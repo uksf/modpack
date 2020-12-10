@@ -11,9 +11,6 @@ labels: type/bug, status/investigate
 # Expected Behaviour
 <!-- A clear and concise description of the expected behaviour. -->
 
-# Actual Behaviour
-<!-- A clear and concise description of the actual behaviour. -->
-
 # Steps to Reproduce
 
 - Step 1
@@ -21,7 +18,7 @@ labels: type/bug, status/investigate
 - Step 3
 
 # Additional context
-<!-- Add any additional context. -->
+<!-- Add any additional context. REMOVE IF UNUSED -->
 
 # Screenshots
-<!-- Add screenshots to help explain your problem as you feel necessary -->
+<!-- Add screenshots to help explain your problem as you feel necessary REMOVE IF UNUSED  -->

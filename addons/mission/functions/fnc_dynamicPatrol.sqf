@@ -49,10 +49,12 @@ if (_groupCountToAdd > 0) then {
 
     while {_groupCountToAdd > 0} do {
         [{
-            [QGVAR(dynamicPatrolSpawn), _this, selectRandom EGVAR(common,HCs)] call CBA_fnc_targetEvent;
+            [QGVAR(dynamicPatrolSpawn), _this] call EFUNC(common,headlessEvent);
         }, [_values], _groupCountToAdd * 2] call CBA_fnc_waitAndExecute;
         _groupCountToAdd = _groupCountToAdd - 1;
     };
 };
 
-[{call FUNC(dynamicPatrol)}, [], GVAR(dynamicPatrolCooldown)] call CBA_fnc_waitAndExecute;
+[{
+    [QGVAR(dynamicPatrol), []] call EFUNC(common,headlessEvent);
+}, [], GVAR(dynamicPatrolCooldown)] call CBA_fnc_waitAndExecute;

@@ -47,6 +47,13 @@ if (isServer) then {
     }] call CBA_fnc_addEventHandler;
 };
 
+acex_headless_headlessClients = [];
+["acex_headless_headlessClientJoined", {
+    params ["_headlessClient"];
+
+    acex_headless_headlessClients pushBackUnique _headlessClient;
+}] call CBA_fnc_addEventHandler;
+
 [QGVAR(log), {INFO(_this#0)}] call CBA_fnc_addEventHandler;
 [QGVAR(deleteEmptyGroups), {{deleteGroup _x} forEach allGroups}] call CBA_fnc_addEventHandler;
 

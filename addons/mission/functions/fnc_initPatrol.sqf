@@ -59,6 +59,6 @@ missionNamespace setVariable [format [QGVAR(isSpawning_%1), _id], false, true];
     missionNamespace setVariable [format [QGVAR(currentGroupsActive_%1), _id], _currentGroupsActive, true];
 
     if ((count _currentGroupsActive) < _maxGroupsActive && {!(missionNamespace getVariable [format [QGVAR(isSpawning_%1), _id], false])}) then {
-        [QGVAR(spawnGroup), [_id, _position, _factionName], selectRandom EGVAR(common,HCs)] call CBA_fnc_targetEvent;
+        [QGVAR(spawnGroup), [_id, _position, _factionName]] call EFUNC(common,headlessEvent);
     };
 }, 20 + (random 10), [_id, _position, _maxGroupsActive, _factionName]] call CBA_fnc_addPerFrameHandler;
