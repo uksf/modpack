@@ -25,7 +25,7 @@ if !(alive _logic) exitWith {
 if !(GVAR(dynamicPatrolAreasEnabled)) exitWith {
     TRACE_1("4) Area failed enabled check, re-queueing execution",GVAR(dynamicPatrolAreasEnabled));
     [{
-        [QGVAR(dynamicPatrolArea), _this, selectRandom EGVAR(common,HCs)] call CBA_fnc_targetEvent;
+        [QGVAR(dynamicPatrolArea), _this] call EFUNC(common,headlessEvent);
     }, _this, _cooldown] call CBA_fnc_waitAndExecute;
 };
 
@@ -62,5 +62,5 @@ if (_groupCountToAdd > 0) then {
 };
 
 [{
-    [QGVAR(dynamicPatrolArea), _this, selectRandom EGVAR(common,HCs)] call CBA_fnc_targetEvent;
+    [QGVAR(dynamicPatrolArea), _this] call EFUNC(common,headlessEvent);
 }, _this, _cooldown] call CBA_fnc_waitAndExecute;

@@ -18,7 +18,8 @@ if (!isServer) exitWith {
             private _delay = _data#0#DYNAMIC_PATROL_INDEX_START_DELAY + (_data#0#0 + random 10);
             TRACE_1("2) Area delay",_delay);
             [{
-                [QGVAR(dynamicPatrolArea), _this, selectRandom EGVAR(common,HCs)] call CBA_fnc_targetEvent;
+                TRACE_1("2) Area headless client pool",acex_headless_headlessClients);
+                [QGVAR(dynamicPatrolArea), _this] call EFUNC(common,headlessEvent);
             }, _data, _delay] call CBA_fnc_waitAndExecute;
         } forEach GVAR(dynamicPatrolAreas);
     };
