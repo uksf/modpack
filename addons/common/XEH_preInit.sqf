@@ -47,7 +47,7 @@ if (isServer) then {
     }] call CBA_fnc_addEventHandler;
 };
 
-[acex_headless_headlessClientJoined, {
+["acex_headless_headlessClientJoined", {
     params ["_headlessClient"];
 
     acex_headless_headlessClients pushBackUnique _headlessClient;
