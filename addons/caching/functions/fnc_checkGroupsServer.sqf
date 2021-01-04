@@ -46,3 +46,4 @@ params [["_groups", []]];
     //         [QGVAR(hideObjectGlobal), [_x, true]] call CBA_fnc_localEvent;
     //     };
     // };
+
