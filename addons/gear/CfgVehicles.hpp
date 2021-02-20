@@ -379,6 +379,12 @@ class CfgVehicles {
         hiddenSelectionsTextures[] = { QPATHTOF(data\uniforms\ATC.paa) };
     };
 
+    class Bag_Base;
+    class tfw_ilbe_b : Bag_Base {
+        maximumLoad = 270; // Original: 240, Kitbag: 280 (Slightly smaller)
+        mass = 60; // Original: 80, Kitbag: 50 (Slightly heavier due to aerial)
+    };
+
     class Supply500;
     class Supply1000: Supply500 {
         author = "Bohemia Interactive";
