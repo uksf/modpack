@@ -94,4 +94,4 @@ class TransportItems { \
 class TransportBackpacks { \
     MACRO_ADDBACKPACK(B_Parachute,6); \
 }; \
-class TransportWeapons {};
+class TransportWeapons {}

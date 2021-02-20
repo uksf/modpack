@@ -995,7 +995,7 @@ class CfgVehicles {
             };
         };
         ace_cookoff_cookoffSelections[] = { "zamerny" };
-        INVENTORY_AIRCRAFT
+        INVENTORY_AIRCRAFT;
     };
     class UKSF_Apache_AH1 : UKSF_Apache_base {
         scope = 2;

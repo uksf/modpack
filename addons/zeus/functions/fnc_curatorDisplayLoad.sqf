@@ -37,7 +37,7 @@ GVAR(curatorUnconciousMapID) = (_display displayCtrl 50) ctrlAddEventHandler ["D
 [GVAR(curatorUnconciousID)] call CBA_fnc_removePerFrameHandler;
 GVAR(curatorUnconciousID) = [{
     {
-        private _distance = (ATLToASL (positionCameraToWorld [0,0,0])) distance _x;
+        private _distance = (positionCameraToWorld [0,0,0]) distance _x;
         if (_distance < 500 && {(driver (vehicle _x)) isEqualTo _x}) then {
             if (GVAR(fpsEnabled)) then {
                 private _fps = _x getVariable [QGVAR(fps), 0];

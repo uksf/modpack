@@ -21,7 +21,8 @@ class CfgPatches {
             "CUP_lmg_M240_LDS",
             "CUP_AGM114L_Hellfire_II_Launcher_W",
             "CUP_AGM114N_Hellfire_II_Launcher_W",
-            "UK3CB_BAF_Javelin_CLU"
+            "UK3CB_BAF_Javelin_CLU",
+            QGVAR(CMFlareLauncher_C130)
         };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {

@@ -388,13 +388,13 @@ class CUP_B_CH47F_GB : CUP_CH47F_base {
             weapon = "CUP_Vlmg_L7A2_veh";
         };
     };
-    INVENTORY_AIRCRAFT
+    INVENTORY_AIRCRAFT;
 };
 class CUP_CH47F_VIV_base : CUP_CH47F_base {};
 class CUP_B_CH47F_VIV_GB : CUP_CH47F_VIV_base {
     crew = "UKSF_B_Pilot_7";
     typicalCargo[] = { "UKSF_B_Pilot_7", "UKSF_B_Pilot_7", "UKSF_B_Pilot_7" };
-    INVENTORY_AIRCRAFT
+    INVENTORY_AIRCRAFT;
 };
 class CUP_B_MH47E_USA;
 class CUP_B_MH47E_GB : CUP_B_MH47E_USA {

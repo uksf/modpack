@@ -31,6 +31,6 @@ class H135_Juno_HT1_ZM521 : Helicopter_Base_H {
         speedZoomMaxSpeed = 0;
         speedZoomMaxFOV = 0.95;
     };
-    INVENTORY_AIRCRAFT
+    INVENTORY_AIRCRAFT;
 #include "MFDGeneral.hpp"
 };

@@ -66,7 +66,7 @@ class MEA_Pantera_Base : Helicopter_Base_H {
     extCameraPosition[] = { 0, 0, -15 };
     ace_fastroping_enabled = 1;
     ace_fastroping_ropeOrigins[] = { { 1.4, 1.15, 0.5 } };
-    INVENTORY_AIRCRAFT
+    INVENTORY_AIRCRAFT;
 #include "MFDGeneral.hpp"
 };
 class GVAR(dauphin) : MEA_Pantera_Base {

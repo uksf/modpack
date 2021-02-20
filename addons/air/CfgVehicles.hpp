@@ -18,7 +18,7 @@ class CfgVehicles {
     };
     class Helicopter : Air {
         explosionShielding = 0.7;
-        epeImpulseDamageCoef = 5;
+        epeImpulseDamageCoef = 4;
         crewCrashProtection = 1;
         class Turrets;
     };
@@ -43,30 +43,31 @@ class CfgVehicles {
         class AnimationSources;
     };
     class Heli_Light_01_base_F : Helicopter_Base_H {
-        epeImpulseDamageCoef = 5;
+        epeImpulseDamageCoef = 4;
     };
     class Plane : Air {
         explosionShielding = 0.6;
-        epeImpulseDamageCoef = 5;
+        epeImpulseDamageCoef = 4;
         crewCrashProtection = 1;
     };
     class Plane_Base_F : Plane {
         class Turrets;
+        class Components;
     };
     class Plane_CAS_01_base_F : Plane_Base_F {
-        epeImpulseDamageCoef = 5;
+        epeImpulseDamageCoef = 4;
     };
     class Plane_CAS_02_base_F : Plane_Base_F {
-        epeImpulseDamageCoef = 5;
+        epeImpulseDamageCoef = 4;
     };
     class Plane_Fighter_01_Base_F : Plane_Base_F {
-        epeImpulseDamageCoef = 5;
+        epeImpulseDamageCoef = 4;
     };
     class Plane_Fighter_02_Base_F : Plane_Base_F {
-        epeImpulseDamageCoef = 5;
+        epeImpulseDamageCoef = 4;
     };
     class Plane_Fighter_03_base_F : Plane_Base_F {
-        epeImpulseDamageCoef = 5;
+        epeImpulseDamageCoef = 4;
     };
 
 #include "vehicles\CfgBuzzard.hpp"

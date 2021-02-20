@@ -228,7 +228,7 @@ class GVAR(C130_Base) : CUP_C130J_Base {
     };
     delete CarrierOpsCompatability;
     CatapultExclude = 1;
-    INVENTORY_AIRCRAFT
+    INVENTORY_AIRCRAFT;
 #include "MFDC130.hpp"
 };
 class GVAR(C130_VIV_Base) : GVAR(C130_Base) {

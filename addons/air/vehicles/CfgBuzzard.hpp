@@ -13,7 +13,7 @@ class UKSF_B_L39 : CUP_B_L39_CZ {
     class Components : Components {
         class TransportPylonsComponent;
     };
-    INVENTORY_AIRCRAFT
+    INVENTORY_AIRCRAFT;
 };
 class UKSF_B_L39_Unarmed : UKSF_B_L39 {
     author = "UKSF";
@@ -30,5 +30,5 @@ class UKSF_B_L39_Unarmed : UKSF_B_L39 {
             class pylons {};
         };
     };
-    INVENTORY_AIRCRAFT
+    INVENTORY_AIRCRAFT;
 };
