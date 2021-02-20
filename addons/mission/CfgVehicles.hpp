@@ -115,7 +115,7 @@ class CfgVehicles {
                 tooltip = "Time in seconds between dynamic patrol group spawns (60 - 3600, default: 600)";
                 control = "EditShort";
                 validate = "NUMBER";
-                min = 10;
+                min = 60;
                 max = 3600;
                 defaultValue = "600";
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(cooldown),_value,true)]);
@@ -123,10 +123,10 @@ class CfgVehicles {
             class GVAR(distance) {
                 property = QGVAR(distance);
                 displayName = "Spawn Distance";
-                tooltip = "Dynamic patrols will spawn beyond this distance from the player (500 - 1500, default: 750)";
+                tooltip = "Dynamic patrols will spawn beyond this distance from the player (100 - 1500, default: 750)";
                 control = "EditShort";
                 validate = "NUMBER";
-                min = 500;
+                min = 100;
                 max = 1500;
                 defaultValue = "750";
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(distance),_value,true)]);
@@ -208,10 +208,10 @@ class CfgVehicles {
             class GVAR(waypointDistance) {
                 property = QGVAR(waypointDistance);
                 displayName = "Waypoint Distance";
-                tooltip = "Distance away from a player for the waypoint of a dynamic patrol (50 - 500, default: 100)";
+                tooltip = "Distance away from a player for the waypoint of a dynamic patrol (10 - 500, default: 100)";
                 control = "EditShort";
                 validate = "NUMBER";
-                min = 50;
+                min = 10;
                 max = 500;
                 defaultValue = "100";
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(waypointDistance),_value,true)]);
