@@ -134,6 +134,10 @@ class CfgMagazines {
         displayName = "4x AGM-114L";
     };
 
+    class CUP_14Rnd_FFAR_M;
+    class CUP_12Rnd_CRV7_FAT_M : CUP_14Rnd_FFAR_M {
+        initSpeed = 900;
+    };
     class CUP_19Rnd_CRV7_FAT_M;
     class CUP_PylonPod_19Rnd_CRV7_FAT_M : CUP_19Rnd_CRV7_FAT_M {
         hardpoints[] += { "B_CRV7" };
@@ -155,6 +159,10 @@ class CfgMagazines {
         CUP_PilotControl = 0;
         GVAR(pilotControl) = 1;
     };
+    class VehicleMagazine;
+    class UK3CB_BAF_12Rnd_CRV7_Base_PG : VehicleMagazine {
+        initSpeed = 900;
+    };
     class CUP_1200Rnd_TE1_Red_Tracer_M621_20mm_HE_M;
     class CUP_PylonPod_1200Rnd_TE1_Red_Tracer_M621_20mm_HE_M : CUP_1200Rnd_TE1_Red_Tracer_M621_20mm_HE_M {
         CUP_PilotControl = 0;
@@ -174,7 +182,6 @@ class CfgMagazines {
         ace_explosives_SetupObject = "ACE_Explosives_Place_BreachCharge";
     };
 
-    class VehicleMagazine;
     class CUP_100Rnd_127x99_M : VehicleMagazine {
         picture = "\UK3CB_BAF_Weapons\addons\UK3CB_BAF_Weapons_Ammo\data\gear_magazine_belt_tracer_ca.paa";
     };

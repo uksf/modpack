@@ -62,7 +62,8 @@ class CfgPatches {
             "JSRS_SOUNDMOD_Explosions",
             "3CB_L7A2",
             "3CB_L135A1",
-            "fxp_GrenadeSmoke"
+            "fxp_GrenadeSmoke",
+            "rksla3_aw159"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };

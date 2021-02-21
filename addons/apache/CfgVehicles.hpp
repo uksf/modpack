@@ -210,7 +210,7 @@ class CfgVehicles {
                 initTurn = 0;
                 minTurn = -110;
                 maxTurn = 110;
-                weapons[] = { "CUP_weapon_mastersafe", "Laserdesignator_mounted", "CUP_Vacannon_M230_veh" };
+                weapons[] = { "Laserdesignator_mounted", "CUP_Vacannon_M230_veh" };
                 magazines[] = { "Laserbatteries", "CUP_1200Rnd_TE1_Red_Tracer_30x113mm_M789_HEDP_M" };
                 gunnerAction = "AH64_gunner_EP1";
                 gunnerGetInAction = "pilot_Heli_Light_02_Enter";

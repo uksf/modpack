@@ -802,6 +802,43 @@ class CfgWeapons {
             displayName = "Ripple 4";
         };
     };
+    class missiles_DAR;
+    class rksla3_aw159_wpn_crv7_lau5003 : missiles_DAR {
+        modes[] = { "Far_AI", "Medium_AI", "Ripple1", "Ripple2", "Ripple4" };
+        class Ripple1 : RocketPods {
+            displayName = "Ripple 1";
+            textureType = "semi";
+            burst = 1;
+            soundContinuous = 0;
+            autoFire = 0;
+            reloadTime = 0.08;
+            dispersion = 0.015;
+            aiRateOfFire = 1;
+            aiRateOfFireDistance = 10;
+            minRange = 0;
+            minRangeProbab = 0.01;
+            midRange = 1;
+            midRangeProbab = 0.01;
+            maxRange = 2;
+            maxRangeProbab = 0.01;
+            sounds[] = { "StandardSound" };
+            class StandardSound {
+                begin1[] = { "A3\Sounds_F\weapons\Rockets\new_rocket_8", 1.77828, 1.2, 1600 };
+                soundBegin[] = { "begin1", 1 };
+                soundSetShot[] = { "DS_launcher_Small_Shot_SoundSet", "DS_rifle1_Tail_SoundSet" };
+            };
+        };
+        class Ripple2 : Ripple1 {
+            displayName = "Ripple 2";
+            textureType = "burst";
+            burst = 2;
+        };
+        class Ripple4 : Ripple1 {
+            displayName = "Ripple 4";
+            textureType = "fullAuto";
+            burst = 4;
+        };
+    };
     class CUP_Vlmg_M240_veh : MGun {
         displayName = "L7A2";
         magazines[] = { "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "CUP_200Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "CUP_100Rnd_TE4_LRT4_White_Tracer_762x51_Belt_M", "CUP_200Rnd_TE4_LRT4_White_Tracer_762x51_Belt_M", "CUP_1200Rnd_TE4_White_Tracer_762x51_M240_M", "CUP_100Rnd_TE4_White_Tracer_762x51_M240_M", "CUP_1200Rnd_TE4_Red_Tracer_762x51_M240_M", , "UK3CB_BAF_762_200Rnd_T", "UK3CB_BAF_762_200Rnd", "UK3CB_BAF_762_200Rnd_Blank", "UK3CB_BAF_762_100Rnd_T", "UK3CB_BAF_762_100Rnd", "UK3CB_BAF_762_100Rnd_Blank", "UK3CB_BAF_762_100Rnd_EL", "UK3CB_BAF_762_100Rnd_T_EL", "UK3CB_BAF_762_200Rnd_EL", "UK3CB_BAF_762_200Rnd_T_EL" };

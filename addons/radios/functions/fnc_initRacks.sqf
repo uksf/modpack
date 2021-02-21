@@ -18,15 +18,16 @@ if (_vehicle getVariable [QGVAR(channelsSet), false]) exitWith {};
 
 private _channels = _vehicle getVariable [QGVAR(rackChannels), []];
 private _customChannels = [
-    ["UKSF_Apache_AH1", CHANNELS_SQN_656_APACHE],
-    ["UK3CB_BAF_Wildcat_AH1_CAS_6A", CHANNELS_SQN_656],
-    ["UK3CB_BAF_Wildcat_AH1_CAS_8A", CHANNELS_SQN_656],
-    ["CUP_C130J_Base", CHANNELS_SQN_617],
-    ["uksf_f35_plane_base", CHANNELS_SQN_617],
-    ["CUP_CH47F_base", CHANNELS_SQN_7],
-    ["UK3CB_BAF_Merlin_Base", CHANNELS_SQN_7],
-    ["rksla3_pumahc_base", CHANNELS_SQN_7],
-    ["UK3CB_BAF_Wildcat_Base", CHANNELS_SQN_7],
+    ["UKSF_Apache_AH1", CHANNELS_AIR_FOUR],
+    ["UK3CB_BAF_Wildcat_AH1_CAS_6A", CHANNELS_AIR_THREE],
+    ["UK3CB_BAF_Wildcat_AH1_CAS_8A", CHANNELS_AIR_THREE],
+    ["rksla3_aw159_hma2", CHANNELS_AIR_THREE],
+    ["CUP_C130J_Base", CHANNELS_AIR_THREE],
+    ["uksf_f35_plane_base", CHANNELS_AIR_THREE],
+    ["CUP_CH47F_base", CHANNELS_AIR_THREE],
+    ["UK3CB_BAF_Merlin_Base", CHANNELS_AIR_THREE],
+    ["rksla3_pumahc_base", CHANNELS_AIR_THREE],
+    ["UK3CB_BAF_Wildcat_Base", CHANNELS_AIR_THREE],
     ["UK3CB_BAF_MAN_HX60_Base", [40, 48]]
 ];
 

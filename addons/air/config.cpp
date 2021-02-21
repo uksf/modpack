@@ -28,6 +28,7 @@ class CfgPatches {
             "UK3CB_BAF_Vehicles_Merlin",
             "UK3CB_BAF_Vehicles_Wildcat",
             "rksla3_pumahc",
+            "rksla3_aw159",
             "MEA_Panther",
             "HAFM_EC635",
             "uksf_f35_plane",
