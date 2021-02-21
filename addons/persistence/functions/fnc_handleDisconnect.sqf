@@ -44,6 +44,7 @@ private _data = [
     },*/
     [_unit] call {
         params ["_unit"];
+
         private _id = "";
         private _role = "";
         private _index = -1;
@@ -53,7 +54,7 @@ private _data = [
             if (_id == "") then {
                 _id = [_vehicle] call FUNC(markObjectAsPersistent);
             };
-            _role = _unit call CBA_fnc_vehicleRole;
+            _role = toLower (_unit call CBA_fnc_vehicleRole);
             _index = _vehicle getCargoIndex _unit;
             if (_role == "turret") then {
                 _index = _unit call CBA_fnc_turretPath;

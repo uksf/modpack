@@ -70,10 +70,9 @@ if !([_values, _logic, _area, _players] call _condition) exitWith {
     DEBUG("Condition not satisfied");
 };
 
-// TODO: Consider all players for safe position
-private _positionArray = [getPosATL _player, 32, _spawnDistance * 1.25, _spawnDistance * 0.75, 10] call EFUNC(common,getSafePositionGrid);
+private _positionArray = [getPosATL _player, _spawnDistance / 15, _spawnDistance * 1.25, _spawnDistance * 0.75, 10] call EFUNC(common,getSafePositionGrid);
 TRACE_1("5) Dynamic spawn resolved positions",_positionArray);
-_positionArray = _positionArray select {([_x, _spawnDistance * 0.75] call EFUNC(common,getNearPlayers)) isEqualTo []};
+_positionArray = _positionArray select {([_x, _spawnDistance * 0.7] call EFUNC(common,getNearPlayers)) isEqualTo []};
 TRACE_1("5) Dynamic spawn resolved positions outside range of all players",_positionArray);
 if (_positionArray isEqualTo []) exitWith {
     // Retry
