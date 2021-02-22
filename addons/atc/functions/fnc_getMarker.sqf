@@ -27,6 +27,7 @@ switch (true) do {
     case (_aircraft isKindOf "UK3CB_BAF_Wildcat_AH1_CAS_6A"): {_markerType = QGVAR(wildcat)};
     case (_aircraft isKindOf "UK3CB_BAF_Wildcat_AH1_CAS_8A"): {_markerType = QGVAR(wildcat)};
     case (_aircraft isKindOf "UK3CB_BAF_Wildcat_Base"): {_markerType = QGVAR(wildcat_unarmed)};
+    case (_aircraft isKindOf "rksla3_aw159_hma2"): {_markerType = QGVAR(wildcat_rksl)};
     default {_markerType = "b_air"; };
 };
 

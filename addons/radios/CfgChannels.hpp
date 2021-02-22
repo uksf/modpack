@@ -43,9 +43,9 @@ class CfgChannels {
     c42[] = { 42, "FORMATION 1" };
     c43[] = { 43, "FORMATION 2" };
     c44[] = { 44, "FORMATION 3" };
-    c45[] = { 45, "SQN 656 INTERCOM" };
-    c46[] = { 46, "SQN 617 INTERCOM" };
-    c47[] = { 47, "SQN 7 INTERCOM" };
-    c48[] = { 48, "GROUND 1" };
-    c49[] = { 49, "GROUND 2" };
+    c45[] = { 45, "FORMATION 4" };
+    c46[] = { 46, "CAS 1" };
+    c47[] = { 47, "CAS 2" };
+    c48[] = { 48, "CAS 3" };
+    c49[] = { 49, "CAS 4" };
 };

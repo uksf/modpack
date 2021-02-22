@@ -32,7 +32,8 @@ TRACE_1("5) Dynamic spawn data",_this);
 // AND IF area logic is given THEN Player must be in area
 // AND IF area logic does not exist and include areas exist THEN Player must be in an include area
 
-private _players = (call CBA_fnc_players) select {
+private _allPlayers = call CBA_fnc_players;
+private _players = _allPlayers select {
     private _player = _x;
     !((vehicle _player) isKindOf "Air")
     && {isNull _logic || {[EGVAR(common,respawnPositions), {(getMarkerPos _x) distance2D _player <= GVAR(dynamicPatrolSafeZoneDistance)}] call EFUNC(common,arrayNone)}}
@@ -69,9 +70,10 @@ if !([_values, _logic, _area, _players] call _condition) exitWith {
     DEBUG("Condition not satisfied");
 };
 
-// TODO: Consider all players for safe position
-private _positionArray = [getPosATL _player, 32, _spawnDistance * 1.25, _spawnDistance * 0.75, 10] call EFUNC(common,getSafePositionGrid);
+private _positionArray = [getPosATL _player, _spawnDistance / 15, _spawnDistance * 1.25, _spawnDistance * 0.75, 10] call EFUNC(common,getSafePositionGrid);
 TRACE_1("5) Dynamic spawn resolved positions",_positionArray);
+_positionArray = _positionArray select {([_x, _spawnDistance * 0.7] call EFUNC(common,getNearPlayers)) isEqualTo []};
+TRACE_1("5) Dynamic spawn resolved positions outside range of all players",_positionArray);
 if (_positionArray isEqualTo []) exitWith {
     // Retry
     INFO("5) Dynamic spawn failed to find positions");

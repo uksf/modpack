@@ -25,6 +25,7 @@ PREP(mapPosition);
 PREP(moduleRespawnPosition);
 PREP(moveInside);
 PREP(objectInArea);
+PREP(paradropCargo);
 PREP(ramp);
 PREP(readCacheValues);
 PREP(populate);

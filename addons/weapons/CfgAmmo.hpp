@@ -87,7 +87,17 @@ class CfgAmmo {
     };
     class CUP_R_70mm_Hydra_HE;
     class CUP_R_CRV7_C18_HE : CUP_R_70mm_Hydra_HE {
-        ace_rearm_dummy = QGVAR(CUP_R_CRV7_C18_HE);
+        ace_rearm_dummy = QGVAR(crv7);
+        ACE_caliber = 70;
+    };
+    class UK3CB_BAF_M_CRV7_Base : MissileBase {
+        ace_rearm_dummy = QGVAR(crv7);
+        ACE_caliber = 70;
+    };
+    class M_AT;
+    class rksla3_aw159_crv7_amo_M151 : M_AT {
+        ace_rearm_dummy = QGVAR(crv7);
+        ACE_caliber = 70;
     };
     class ammo_Missile_ShortRangeAABase;
     class ammo_Missile_BIM9X : ammo_Missile_ShortRangeAABase {
@@ -96,6 +106,10 @@ class CfgAmmo {
     class ammo_Missile_MediumRangeAABase;
     class ammo_Missile_AMRAAM_D : ammo_Missile_MediumRangeAABase {
         ace_rearm_dummy = QGVAR(ammo_Missile_AMRAAM_D);
+    };
+    class ammo_Bomb_SmallDiameterBase;
+    class ammo_Bomb_SDB : ammo_Bomb_SmallDiameterBase {
+        ace_rearm_dummy = QGVAR(ammo_Bomb_SDB);
     };
 
     class ammo_Penetrator_Scalpel;
@@ -166,8 +180,9 @@ class CfgAmmo {
         indirectHitRange = 2;
         tracerEndTime = 30;
         timeToLive = 30;
-        caliber = 4.2;
+        caliber = 9;
         manualControl = 0;
+        explosive = 0.5;
     };
 
     class M_Titan_AA;

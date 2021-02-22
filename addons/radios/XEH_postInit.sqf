@@ -1,8 +1,6 @@
 #include "script_component.hpp"
 
 call FUNC(setChannelNames);
-// if (hasInterface) then {
-// };
 
 ["vehicle", {
     params ["_player", "_vehicle"];

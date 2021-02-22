@@ -57,7 +57,7 @@ force uksf_mission_dynamicPatrolCombatMode = "SAFE";
 force uksf_mission_dynamicPatrolSpeed = "LIMITED";
 // Dynamic patrols will not spawn near the player if they are within this distance to safe zones (respawn points) [250, 7500, 3000, 0]
 force uksf_mission_dynamicPatrolSafeZoneDistance = 3000;
-// Dynamic patrols will spawn beyond this distance from the player [500, 1500, 750, 0]
+// Dynamic patrols will spawn beyond this distance from the player [100, 1500, 750, 0]
 force uksf_mission_dynamicPatrolDistance = 750;
 // Dynamic patrol vehicles will spawn beyond the base spawn distance multiplied by this coefficient from the player [0.1, 5, 2, 1]
 force uksf_mission_dynamicPatrolVehicleDistanceCoef = 2;

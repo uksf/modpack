@@ -245,7 +245,7 @@ class UK3CB_BAF_Wildcat_Base : Heli_light_03_base_F {
         };
     };
     ace_cookoff_cookoffSelections[] = { "motor" };
-    INVENTORY_AIRCRAFT
+    INVENTORY_AIRCRAFT;
 };
 class UK3CB_BAF_Wildcat_AH1_Base : UK3CB_BAF_Wildcat_Base {
 };
@@ -314,7 +314,11 @@ class UK3CB_BAF_Wildcat_HMA2_8_Base : UK3CB_BAF_Wildcat_HMA2_Base {
 class UK3CB_BAF_Wildcat_HMA2_TRN_8A : UK3CB_BAF_Wildcat_HMA2_8_Base {
     faction = "CUP_B_GB";
 };
-class rksla3_aw159_base;
+class rksla3_aw159_base : Helicopter_Base_F {
+    class Turrets : Turrets {
+        class MainTurret;
+    };
+};
 class rksla3_aw159_hma2 : rksla3_aw159_base {
     faction = "CUP_B_GB";
     vehicleClass = "Air";
@@ -322,7 +326,92 @@ class rksla3_aw159_hma2 : rksla3_aw159_base {
     typicalCargo[] = { "UKSF_B_Pilot_7" };
     fuelCapacity = 400;  // 742
     startDuration = 30;
-    weapons[] = { "CUP_weapon_mastersafe", "CMFlareLauncher" };
-    magazines[] = { "300Rnd_CMFlare_Chaff_Magazine" };
-#include "MFDCAS.hpp"
+    unitInfoType = "RscUnitInfoNoSpeed";
+    attenuationEffectType = "SemiOpenHeliAttenuation";
+    weapons[] = { "UK3CB_BAF_Safe", "CMFlareLauncher" };
+    magazines[] = { "168Rnd_CMFlare_Chaff_Magazine" };
+    class Turrets : Turrets {
+        class MainTurret : MainTurret {
+            weapons[] = { "Laserdesignator_mounted" };
+            magazines[] = { "Laserbatteries" };
+            primaryGunner = 1;
+            canEject = 1;
+            showHMD = 1;
+            lockDetectionSystem = "4 + 8";
+            incomingMissileDetectionSystem = "16";
+            canLock = 2;
+            turretInfoType = "RscOptics_Wildcat_gunner_zeroing";
+            stabilizedInAxes = 3;
+            ace_laser_canLockLaser = 1;
+            ace_laser_selfDesignate_enabled = 1;
+            showCrewAim = "1 + 2";
+            class OpticsIn {
+                class WideNGS {
+                    visionMode[] = { "Normal", "NVG", "Ti" };
+                    thermalMode[] = { 0, 1 };
+                    gunnerOpticsColor[] = { 0, 0, 0, 1 };
+                    opticsPPEffects[] = { "OpticsCHAbera2", "OpticsBlur2" };
+                    opticsDisplayName = "WNGS";
+                    initAngleX = 0;
+                    minAngleX = -35;
+                    maxAngleX = 10;
+                    initAngleY = 0;
+                    minAngleY = -100;
+                    maxAngleY = 100;
+                    initFov = 0.5;
+                    minFov = 0.5;
+                    maxFov = 0.5;
+                    gunnerOpticsModel = "\A3\weapons_f\reticle\Optics_Commander_02_F";
+                    directionStabilized = 0;
+                };
+                class Wide : WideNGS {
+                    gunnerOpticsModel = "\A3\weapons_f\reticle\Optics_Commander_02_F";
+                    gunnerOpticsEffect[] = { "TankCommanderOptics1" };
+                    opticsDisplayName = "W";
+                    initFov = 0.466;
+                    minFov = 0.466;
+                    maxFov = 0.466;
+                    directionStabilized = 1;
+                    horizontallyStabilized = 1;
+                    stabilizedInAxes = 3;
+                };
+                class WideL : Wide {
+                    opticsDisplayName = "WL";
+                    initFov = 0.094;
+                    minFov = 0.094;
+                    maxFov = 0.094;
+                };
+                class Medium : Wide {
+                    opticsDisplayName = "M";
+                    initFov = 0.019;
+                    minFov = 0.019;
+                    maxFov = 0.019;
+                };
+                class Narrow : Wide {
+                    opticsDisplayName = "N";
+                    initFov = 0.006;
+                    minFov = 0.006;
+                    maxFov = 0.006;
+                };
+            };
+            class OpticsOut {
+                class Monocular {
+                    visionMode[] = { "Normal", "NVG" };
+                    gunnerOpticsEffect[] = {};
+                    minAngleX = -65;
+                    maxAngleX = 85;
+                    initAngleX = 0;
+                    minAngleY = -150;
+                    maxAngleY = 150;
+                    initAngleY = 0;
+                    minFov = 0.25;
+                    maxFov = 1.25;
+                    initFov = 0.75;
+                    gunnerOpticsModel = "";
+                    directionStabilized = 0;
+                };
+            };
+        };
+    };
+#include "MFDRKSLWildcat.hpp"
 };

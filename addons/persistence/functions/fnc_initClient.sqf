@@ -105,12 +105,16 @@ GVAR(abortedObjectPFHID) = -1;
 
                 if (isNull _vehicle) exitWith {};
 
-                switch (toLower _role) do {
+                switch (_role) do {
                     case "driver": {player moveInDriver _vehicle};
                     case "gunner": {player moveInGunner _vehicle};
                     case "commander": {player moveInCommander _vehicle};
                     case "turret": {player moveInTurret [_vehicle, _index]};
                     default {player moveInCargo [_vehicle, _index]};
+                };
+
+                if (objectParent player != _vehicle) then {
+                    player moveInCargo _vehicle;
                 };
             }] call CBA_fnc_addEventHandlerArgs;
             [QGVAR(checkPersistentVehicleExists), [_vehicleState, player]] call CBA_fnc_serverEvent;
