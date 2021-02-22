@@ -180,8 +180,9 @@ class CfgAmmo {
         indirectHitRange = 2;
         tracerEndTime = 30;
         timeToLive = 30;
-        caliber = 4.2;
+        caliber = 9;
         manualControl = 0;
+        explosive = 0.5;
     };
 
     class M_Titan_AA;
