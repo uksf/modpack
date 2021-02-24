@@ -24,10 +24,7 @@ class CfgPatches {
             "ace_hellfire",
             "ace_interaction",
             "ace_rearm",
-            "ace_refuel",
-
-            // Other
-            "ArmaZeusCache"
+            "ace_refuel"
         };
         author = QUOTE(UKSF);
         url = URL;
