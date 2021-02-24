@@ -315,6 +315,7 @@ class UK3CB_BAF_Wildcat_HMA2_TRN_8A : UK3CB_BAF_Wildcat_HMA2_8_Base {
     faction = "CUP_B_GB";
 };
 class rksla3_aw159_base : Helicopter_Base_F {
+    class ViewPilot;
     class Turrets : Turrets {
         class MainTurret;
     };
