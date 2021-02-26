@@ -16,11 +16,11 @@ params ["", "_selectedObjects", "_selectedGroups"];
 
 if (!EGVAR(cleanup,enabled)) exitWith {false};
 
-if (!(_selectedGroups isEqualTo [])) exitWith {
+if (_selectedGroups isNotEqualTo []) exitWith {
     ({(count (units _x)) > 0} count _selectedGroups) > 0
 };
 
-if (!(_selectedObjects isEqualTo [])) exitWith {
+if (_selectedObjects isNotEqualTo []) exitWith {
     (count _selectedObjects) > 0
 };
 

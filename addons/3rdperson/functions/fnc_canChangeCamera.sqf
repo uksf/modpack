@@ -17,18 +17,19 @@
 
 params ["_newCameraView", "_cameraOn"];
 
-!(_newCameraView isEqualTo "GUNNER") &&
-{!(_newCameraView isEqualTo "GROUP")} &&
+_newCameraView isNotEqualTo "GUNNER" &&
+{_newCameraView isNotEqualTo "GROUP"} &&
 {!isNull ACE_player} &&
 {player == ACE_player} &&
 {alive ACE_player} &&
 {ACE_player == _cameraOn || vehicle ACE_player == _cameraOn} &&
-{"" isEqualTo call CBA_fnc_getActiveFeatureCamera} &&
-{!(_cameraOn isKindOf "UAV" || _cameraOn isKindOf "UAV_01_base_F")} &&
+{"" isEqualTo (call CBA_fnc_getActiveFeatureCamera)} &&
+{_cameraOn isNotEqualTo "UAV" && _cameraOn isNotEqualTo "UAV_01_base_F"} &&
 {!(vehicle ACE_player != ACE_player &&
-    {ACE_player == driver (vehicle ACE_player) ||
-    {ACE_player == gunner (vehicle ACE_player) &&
-    {(vehicle ACE_player) isKindOf "Air"}}}
+    {
+        ACE_player == driver (vehicle ACE_player) ||
+        {(vehicle ACE_player) isKindOf "Air"}
+    }
 )}
 
 //&& {(VEHICLE_WHITELIST findIf {_cameraOn isKindOf _x}) != -1}

@@ -83,7 +83,7 @@ if (GVAR(allowDebug)) then {
                 _data set [1, _units];
             };
 
-            if !(_data isEqualTo [[], []]) then {
+            if (_data isNotEqualTo [[], []]) then {
                 [QGVAR(debugReceive), _data] call CBA_fnc_globalEvent;
             };
         }] call CBA_fnc_addPerFrameHandler;

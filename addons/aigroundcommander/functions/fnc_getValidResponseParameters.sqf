@@ -33,13 +33,13 @@ if (_validSpawns isEqualTo []) exitWith {
 };
 
 _validSpawns = _validSpawns apply {[getPos _x, [_x] call FUNC(getStagingAreas)]};
-_validSpawns = _validSpawns select {!(_x#1 isEqualTo [])};
+_validSpawns = _validSpawns select {_x#1 isNotEqualTo []};
 if (_validSpawns isEqualTo []) exitWith {
     []
 };
 
 _validSpawns = _validSpawns apply {[_x#0, _x#1 apply {[_x, [_x] call FUNC(getPlayers)]}]};
-_validSpawns = _validSpawns select {!((_x#1 select {!(_x#1 isEqualTo [])}) isEqualTo [])};
+_validSpawns = _validSpawns select {(_x#1 select {_x#1 isNotEqualTo []}) isNotEqualTo []};
 if (_validSpawns isEqualTo []) exitWith {
     []
 };

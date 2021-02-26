@@ -16,14 +16,14 @@
 params ["_action", "_actionParams"];
 _actionParams params ["", "_selectedObjects", "_selectedGroups"];
 
-if (!(_selectedGroups isEqualTo [])) exitWith {
+if (_selectedGroups isNotEqualTo []) exitWith {
     _selectedGroups apply {_selectedObjects append (units _x)};
     private _state = [_selectedGroups, {!(_x getVariable [QEGVAR(cleanup,excluded), false])}] call EFUNC(common,arrayAny); // At least 1 included = true
     _action set [1, ["Include In Cleanup", "Exclude From Cleanup"] select _state]; // If any objects included, show exclude
     _action set [2, [QPATHTOF(ui\Icon_Module_Cleanup_Include_ca.paa), QPATHTOF(ui\Icon_Module_Cleanup_Exclude_ca.paa)] select _state];
 };
 
-if (!(_selectedObjects isEqualTo [])) exitWith {
+if (_selectedObjects isNotEqualTo []) exitWith {
     private _state = [_selectedObjects, {!(_x getVariable [QEGVAR(cleanup,excluded), false])}] call EFUNC(common,arrayAny); // At least 1 included = true
     _action set [1, ["Include In Cleanup", "Exclude From Cleanup"] select _state]; // If any objects included, show exclude
     _action set [2, [QPATHTOF(ui\Icon_Module_Cleanup_Include_ca.paa), QPATHTOF(ui\Icon_Module_Cleanup_Exclude_ca.paa)] select _state];

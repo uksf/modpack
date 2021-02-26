@@ -23,7 +23,7 @@ if (isServer) then {
         [{
             params ["_args", "_idPFH"];
             _args params ["_groups", "_count", "_perFrame", "_index"];
-            
+
             if (_index > _count) exitWith {
                 [_idPFH] call CBA_fnc_removePerFrameHandler;
             };
@@ -43,7 +43,7 @@ if (hasInterface) then {
         [{
             params ["_args", "_idPFH"];
             _args params ["_groups", "_count", "_perFrame", "_index"];
-            
+
             if (_index > _count) exitWith {
                 [_idPFH] call CBA_fnc_removePerFrameHandler;
             };
@@ -271,19 +271,19 @@ onEachFrame {
                 if ((abs (_pos select 0)) < (safeZoneW - abs safeZoneX) && (abs (_pos select 1)) < (safeZoneH - abs safeZoneY)) then {
                     _colour = [0,1,0,1];
                 };
-onEachFrame { 
-    { 
-        private _unit = leader _x; 
-        if (!(isPlayer _unit)) then { 
-            private _colour = [1,0,0,1];               
+onEachFrame {
+    {
+        private _unit = leader _x;
+        if (!(isPlayer _unit)) then {
+            private _colour = [1,0,0,1];
             private _pos = worldToScreen (getPos _unit);
-            if (!(_pos isEqualTo [])) then {
+            if (_pos isNotEqualTo []) then {
                 private _text = format ["%1,%2", _pos select 0, _pos select 1];
                 if (_pos#0 > uksf_common_bufferedSafeX && _pos#0 < uksf_common_bufferedSafeW && _pos#1 > uksf_common_bufferedSafeY && _pos#1 < uksf_common_bufferedSafeH) then {
                     _colour = [0,1,0,1];
                 };
                 drawIcon3D ["\a3\ui_f_curator\data\logos\arma3_curator_eye_32_ca.paa", _colour, getPos _unit, 0.5, 0.5, 0, _text, 0, 0.025, "TahomaB", "center", true];
-            }; 
+            };
         };
     } count allGroups;
     drawLine3D [screenToWorld [safeZoneX, safeZoneY], screenToWorld [safeZoneX + safeZoneW, safeZoneY], [0,0,1,1]];

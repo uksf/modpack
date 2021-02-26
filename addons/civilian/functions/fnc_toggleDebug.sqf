@@ -92,7 +92,7 @@ if (_state) then {
 
             if (_state == QGVAR(vehicle_state_move)) then {
                 private _commandPosition = _vehicle getVariable [QGVAR(vehicle_movePosition), []];
-                if !(_commandPosition isEqualTo []) then {
+                if (_commandPosition isNotEqualTo []) then {
                     if (isNull _sphere) then {
                         _sphere = createVehicle ["Sign_Sphere25cm_F", _commandPosition, [], 0, "CAN_COLLIDE"];
                         GVAR(debugVehicleMoveCommandSpheres) pushBack [_vehicle, _sphere];
@@ -173,7 +173,7 @@ if (_state) then {
 
             if (_state == QGVAR(unit_state_move)) then {
                 private _commandPosition = _civilian getVariable [QGVAR(unit_movePosition), []];
-                if !(_commandPosition isEqualTo []) then {
+                if (_commandPosition isNotEqualTo []) then {
                     if (isNull _sphere) then {
                         _sphere = createVehicle ["Sign_Sphere25cm_F", _commandPosition, [], 0, "CAN_COLLIDE"];
                         GVAR(debugUnitMoveCommandSpheres) pushBack [_civilian, _sphere];

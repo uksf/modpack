@@ -18,7 +18,7 @@ params ["_position"];
 private _roads = [];
 {
     _roads = _position nearRoads _x;
-    if !(_roads isEqualTo []) exitWith {};
+    if (_roads isNotEqualTo []) exitWith {};
 } forEach [50, 100, 250, 500, 750, 1000, 1500, 2000];
 
 if (_roads isEqualTo []) exitWith {objNull};

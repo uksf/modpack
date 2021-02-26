@@ -25,7 +25,7 @@ private _deleted = false;
         if (_distanceToPlayer <= _detectionDistance) then {
             private _pPos = getPosATL _projectile;
             private _lis = lineIntersectsSurfaces [ATLToASL _pPos, eyePos GVAR(suppression_currentUnit), GVAR(suppression_currentUnit)];
-            if !(_lis isEqualTo []) then {
+            if (_lis isNotEqualTo []) then {
                 _detectionDistance = _detectionDistance * 0.65;
             };
 

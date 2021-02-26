@@ -16,12 +16,12 @@ params ["", "_selectedObjects", "_selectedGroups"];
 
 if (!EGVAR(mission,support) && {!EGVAR(mission,artillerySupport)}) exitWith {false};
 
-if (!(_selectedGroups isEqualTo [])) exitWith {
+if (_selectedGroups isNotEqualTo []) exitWith {
     _selectedGroups apply {_selectedObjects append (units _x)};
     ({_x isKindOf "CAManBase" && {alive _x}} count _selectedObjects) > 0
 };
 
-if (!(_selectedObjects isEqualTo [])) exitWith {
+if (_selectedObjects isNotEqualTo []) exitWith {
     ({_x isKindOf "CAManBase" && {alive _x}} count _selectedObjects) > 0
 };
 

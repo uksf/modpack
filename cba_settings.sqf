@@ -663,7 +663,7 @@ force uksf_cleanup_delay = 300;
 force uksf_cleanup_enabled = true;
 force uksf_common_mainOp = false;
 force uksf_curator_curatorsLocked = false;
-force uksf_curator_curatorsMax = 5;
+force uksf_curator_curatorsMax = 8;
 force uksf_persistence_overrideSavedDateTime = false;
 
 // UKSF - Civilian

@@ -29,7 +29,7 @@ if (isNull _centre) exitWith {
 
     GVAR(persistenceMarkers) = GVAR(persistenceMarkers) - [objNull];
     private _markers = +GVAR(persistenceMarkers);
-    if !(_markers isEqualTo []) then {
+    if (_markers isNotEqualTo []) then {
         TRACE_1("Found persistence markers",count _markers);
         GVAR(saveObjectMarkersProcessed) = false;
         private _marker = _markers deleteAt 0;
@@ -64,6 +64,6 @@ private _nearObjects = (_centre nearObjects CENTRE_RADIUS) select {
 TRACE_2("Objects around centre",_centre,count _nearObjects);
 GVAR(saveObjectQueue) append _nearObjects;
 
-if (!GVAR(saveObjectQueueProcessing) && !(GVAR(saveObjectQueue) isEqualTo [])) then {
+if (!GVAR(saveObjectQueueProcessing) && (GVAR(saveObjectQueue) isNotEqualTo [])) then {
     call FUNC(startSaveObjectDataPfh);
 };

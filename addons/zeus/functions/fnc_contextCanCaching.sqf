@@ -16,11 +16,11 @@ params ["", "_selectedObjects", "_selectedGroups"];
 
 if (!EGVAR(caching,enabled)) exitWith {false};
 
-if (!(_selectedGroups isEqualTo [])) exitWith {
+if (_selectedGroups isNotEqualTo []) exitWith {
     ({({alive _x} count (units _x)) > 0} count _selectedGroups) > 0
 };
 
-if (!(_selectedObjects isEqualTo [])) exitWith {
+if (_selectedObjects isNotEqualTo []) exitWith {
     ({
         if (({alive _x} count (units _x)) > 0) then {
             true

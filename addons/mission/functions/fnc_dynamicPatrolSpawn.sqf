@@ -50,7 +50,7 @@ private _player = selectRandom _players;
 private _spawnChance = 100;
 private _random = random 100;
 private _includeAreas = GVAR(dynamicPatrolIncludeAreas) select {[_player, _x#0, _x#1] call EFUNC(common,objectInArea)};
-if !(_includeAreas isEqualTo []) then {
+if (_includeAreas isNotEqualTo []) then {
     _spawnChance = (((_includeAreas#0)#2) min 100) max 0;
 };
 TRACE_4("5) Dynamic spawn chance values",_player,_spawnChance,_random,_includeAreas);
@@ -118,7 +118,7 @@ if (_playersNearToPosition isEqualTo [] && {_playersWithPositionVisibility isEqu
 
             private _waypoint = [_group, _waypointPosition, 0, "MOVE", "SAFE", "YELLOW", "NORMAL", "STAG COLUMN", "", [0,0,0], 100] call CBA_fnc_addWaypoint;
             _waypoint setWaypointStatements [
-                "!((behaviour this) isEqualTo ""COMBAT"")",
+                "(behaviour this) isNotEqualTo ""COMBAT""",
                 format ["[this, this, %1, 5, ""MOVE"", ""SAFE"", ""YELLOW"", ""NORMAL"", ""STAG COLUMN"", """", [5, 10, 15]] call CBA_fnc_taskPatrol;", _spawnDistance]
             ];
 
@@ -150,7 +150,7 @@ if (_playersNearToPosition isEqualTo [] && {_playersWithPositionVisibility isEqu
 
             private _waypoint = [_group, _waypointPosition, 0, "MOVE", _combatMode, "YELLOW", _patrolSpeed, "STAG COLUMN", "", [0,0,0], 50] call CBA_fnc_addWaypoint;
             _waypoint setWaypointStatements [
-                "!((behaviour this) isEqualTo ""COMBAT"")",
+                "(behaviour this) isNotEqualTo ""COMBAT""",
                 format ["[this, this, %1, 5, ""MOVE"", ""%2"", ""YELLOW"", ""%3"", ""STAG COLUMN"", """", [0, 0, 0]] call CBA_fnc_taskPatrol;", _spawnDistance, _combatMode, _patrolSpeed]
             ];
 
