@@ -3,7 +3,7 @@
         Tim Beswick
 
     Version:
-        1.7.0
+        1.8.0
 */
 
 //--------------------------------------------------- CHANGE BASED ON MISSION --------------------------------------------------
@@ -30,3 +30,4 @@ disabledAI = 1;
 aiKills = 0;
 disableChannels[] = { 0,2,6 };
 cba_settings_hasSettingsFile = 1;
+#include "CfgFunctions.hpp"
