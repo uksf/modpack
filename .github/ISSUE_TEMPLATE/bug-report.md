@@ -1,15 +1,17 @@
 ---
 name: Bug Report
 about: Report a bug in the modpack
-labels: type/bug, status/investigate
+title: "<Area> - <Bug>"
+labels: status/investigate, type/bug
+assignees: ''
+
 ---
-<!-- Provide a general summary of the issue in the Title above -->
 
 # Description
-<!-- A clear and concise description of what the bug is. -->
+<!-- A clear and concise description of what the bug is -->
 
 # Expected Behaviour
-<!-- A clear and concise description of the expected behaviour. -->
+<!-- A clear and concise description of the expected behaviour -->
 
 # Steps to Reproduce
 
@@ -21,4 +23,4 @@ labels: type/bug, status/investigate
 <!-- Add any additional context. REMOVE IF UNUSED -->
 
 # Screenshots
-<!-- Add screenshots to help explain your problem as you feel necessary REMOVE IF UNUSED  -->
+<!-- Add screenshots to help explain your problem as you feel necessary. REMOVE IF UNUSED  -->

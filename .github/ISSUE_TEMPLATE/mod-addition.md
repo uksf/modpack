@@ -1,12 +1,14 @@
 ---
 name: Mod Request
 about: Suggest a mod to be added to the modpack
-labels: type/mod addition, status/discussion
+title: "<Area> - <Mod Name>"
+labels: status/discussion, type/mod addition
+assignees: ''
+
 ---
-<!-- Provide a general summary of the issue in the Title above -->
 
 # Description
-<!-- A clear and concise description of what the mod is/does. -->
+<!-- A clear and concise description of what the mod is/does -->
 
 # Additional context
 <!-- Add any additional context and why you think it should be added -->

@@ -1,12 +1,14 @@
 ---
 name: Feature Request
 about: Suggest a new feature for the modpack
-labels: type/feature, status/discussion
+title: "<Area> - <Requested Feature>"
+labels: status/discussion, type/feature
+assignees: ''
+
 ---
-<!-- Provide a general summary of the issue in the Title above -->
 
 # Description
-<!-- A clear and concise description of what the feature is. -->
+<!-- A clear and concise description of what the feature is -->
 
 # Context
 <!-- Why should we add this feature? -->
