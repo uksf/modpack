@@ -6,6 +6,7 @@ PREP(arrayAny);
 PREP(arrayNone);
 PREP(configExport);
 PREP(configExportExtension);
+PREP(createDiorama);
 PREP(deserializeAceMedical);
 PREP(findNearRoad);
 PREP(fpsGet);
