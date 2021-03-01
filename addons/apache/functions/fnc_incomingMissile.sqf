@@ -98,7 +98,7 @@ if (isEngineOn _aircraft && _cmMode > 0) then {
     if (CBA_missionTime > _lastCheckTime) then {
         if (!_typeIsCm && {([TRACK_CHANCE_LOW, TRACK_CHANCE_HIGH] select (_missileRelativeVertical == "high")) > random 100}) then {
             private _flareList = _aircraft nearObjects [CM_BASE_TYPE, FLARE_SEARCH_RADIUS];
-            if !(_flareList isEqualTo []) then {
+            if (_flareList isNotEqualTo []) then {
                 _trackTo = selectRandom _flareList;
                 _trackToType = typeOf _trackTo;
                 _args set [3, _trackTo];

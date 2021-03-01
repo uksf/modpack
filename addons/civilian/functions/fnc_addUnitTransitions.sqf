@@ -59,7 +59,7 @@ private _fnc_isUnitNullOrDead = {
 
     private _commandPosition = _unit getVariable [QGVAR(unit_movePosition), []];
 
-    !(_commandPosition isEqualTo [])
+    _commandPosition isNotEqualTo []
 }, {
     // OnTransition -
 }, QGVAR(unit_transition_stopped_move)] call CBA_statemachine_fnc_addTransition;

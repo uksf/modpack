@@ -79,7 +79,7 @@ if (_activated) then {
             _logic setVariable ["adminVar", _adminVar, true];
         };
 
-        // Nope. Armazeuscache overwrites this garbage
+        _logic addCuratorAddons EGVAR(common,addons);
         // // Update curator module addons based on the allowed addons
         // private _addonsType = _logic getVariable ["Addons", 2];
 

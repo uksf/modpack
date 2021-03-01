@@ -28,9 +28,9 @@ if (_forceChance > 8) exitWith {
 };
 
 // Counter battery
-if (_forceChance > 5 && !(GVAR(counterBatteryUnits) isEqualTo [])) exitWith {
+if (_forceChance > 5 && (GVAR(counterBatteryUnits) isNotEqualTo [])) exitWith {
     private _inRangeCounterArtillery = GVAR(counterBatteryUnits) select {_targetPosition inRangeOfArtillery [[_x], currentMagazine _x]};
-    if !(_inRangeCounterArtillery isEqualTo []) then {
+    if (_inRangeCounterArtillery isNotEqualTo []) then {
         private _counterArtillery = selectRandom _inRangeCounterArtillery;
         [QEGVAR(mission,fireMission), [_counterArtillery, _counterArtillery, _targetPosition], gunner _counterArtillery] call CBA_fnc_targetEvent;
     };
@@ -39,13 +39,13 @@ if (_forceChance > 5 && !(GVAR(counterBatteryUnits) isEqualTo [])) exitWith {
 };
 
 // Create an airborne force
-if (_forceChance > 2.5 && !(GVAR(airVehiclePool) isEqualTo [])) exitWith {
+if (_forceChance > 2.5 && (GVAR(airVehiclePool) isNotEqualTo [])) exitWith {
     private _spawnPosition = selectRandom GVAR(airSpawns);
     [getPos _spawnPosition, _targetPosition] call FUNC(createAirForce);
 };
 
 // Create a motor force
-if !(GVAR(groundVehiclePool) isEqualTo []) exitWith {
+if (GVAR(groundVehiclePool) isNotEqualTo []) exitWith {
     private _spawnPosition = selectRandom GVAR(groundSpawns);
     [getPos _spawnPosition, _targetPosition] call FUNC(createGroundForce);
 };

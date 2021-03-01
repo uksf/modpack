@@ -14,13 +14,13 @@
 */
 params ["", "_selectedObjects", "_selectedGroups"];
 
-if (!(_selectedGroups isEqualTo [])) exitWith {
+if (_selectedGroups isNotEqualTo []) exitWith {
     _selectedGroups apply {_selectedObjects append (units _x)};
     private _state = [_selectedGroups, {!(_x getVariable [QEGVAR(cleanup,excluded), false])}] call EFUNC(common,arrayAny); // At least 1 included = true
     [QEGVAR(cleanup,setCleanupState), [_selectedObjects, _state]] call CBA_fnc_serverEvent; // If included, exclude
 };
 
-if (!(_selectedObjects isEqualTo [])) exitWith {
+if (_selectedObjects isNotEqualTo []) exitWith {
     private _state = [_selectedObjects, {!(_x getVariable [QEGVAR(cleanup,excluded), false])}] call EFUNC(common,arrayAny); // At least 1 included = true
     [QEGVAR(cleanup,setCleanupState), [_selectedObjects, _state]] call CBA_fnc_serverEvent; // If included, exclude
 };

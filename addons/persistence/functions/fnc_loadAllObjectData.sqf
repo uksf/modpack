@@ -43,7 +43,7 @@ INFO_4("Objects sorted by ASL height, lowest: %1 at %2, highest: %3 at %4",(_obj
         [_idPFH] call CBA_fnc_removePerFrameHandler;
         publicVariable QGVAR(dontDeleteObjectIds);
 
-        if !(GVAR(dontDeleteObjectIds) isEqualTo []) then {
+        if (GVAR(dontDeleteObjectIds) isNotEqualTo []) then {
             private _abortedObjects = ((GVAR(dataNamespace) getVariable [QGVAR(objects), []]) select {_x#0 in GVAR(dontDeleteObjectIds)});
             if (_abortedObjects isEqualTo []) exitWith {};
 

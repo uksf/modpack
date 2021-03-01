@@ -1,9 +1,11 @@
 ---
 name: Mod Update
 about: Tracking for update of external mod
+title: "<Mod Name> <New Version>"
 labels: type/mod update
+assignees: ''
+
 ---
-<!-- Provide a general summary of the issue in the Title above -->
 
 # Changelog
 <!-- Link to changelog for new version of the mod, one of: github, bi forums, workshop -->

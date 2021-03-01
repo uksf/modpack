@@ -7,7 +7,7 @@ if (!isServer) exitWith {
 ["CBA_settingsInitialized", {
     INFO("2) Settings initialized");
     // Presence of any dynamic patrol area will stop basic spawning functionality
-    if !(GVAR(dynamicPatrolAreas) isEqualTo []) exitWith {
+    if (GVAR(dynamicPatrolAreas) isNotEqualTo []) exitWith {
         INFO("2) Areas present");
         GVAR(dynamicPatrolAreasEnabled) = true;
         publicVariable QGVAR(dynamicPatrolAreasEnabled);

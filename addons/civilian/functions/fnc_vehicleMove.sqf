@@ -50,7 +50,7 @@ if (_index != -1) then {
     private _origin = AGLtoASL positionCameraToWorld [0,0,0];
     private _commandPosition = AGLtoASL positionCameraToWorld [0,0,30];
     private _intersections = lineIntersectsSurfaces [_origin, _commandPosition, _unit, _vehicle, true, 1];
-    if !(_intersections isEqualTo []) then {
+    if (_intersections isNotEqualTo []) then {
         _commandPosition = ASLToAGL (_intersections#0#0);
     };
 

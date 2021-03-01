@@ -14,7 +14,7 @@
 */
 private _action = [QGVAR(ai), "AI", "", {}, {
     params ["", "_selectedObjects"];
-    !(_selectedObjects isEqualTo []) && {({isPlayer _x} count _selectedObjects) == 0}
+    _selectedObjects isNotEqualTo [] && {({isPlayer _x} count _selectedObjects) == 0}
 }, [], {
     private _actions = [];
 
@@ -39,7 +39,7 @@ _action = [QGVAR(object), "Object", "", {}, {true}, [], {
         {deleteVehicle _x} forEach _selectedObjects;
     }, {
         params ["", "_selectedObjects"];
-        !(_selectedObjects isEqualTo []) && {({isPlayer _x} count _selectedObjects) == 0}
+        _selectedObjects isNotEqualTo [] && {({isPlayer _x} count _selectedObjects) == 0}
     }] call zen_context_menu_fnc_createAction;
     _actions pushBack [_action, [], 100];
 

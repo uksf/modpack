@@ -14,7 +14,7 @@
 */
 params ["", "_selectedObjects", "_selectedGroups"];
 
-if (!(_selectedGroups isEqualTo [])) exitWith {
+if (_selectedGroups isNotEqualTo []) exitWith {
     _selectedGroups = _selectedGroups select {({alive _x} count (units _x)) > 0};
     private _state = [_selectedGroups, {!(_x getVariable [QEGVAR(caching,excluded), false])}] call EFUNC(common,arrayAny); // At least 1 included = true
     {
@@ -22,7 +22,7 @@ if (!(_selectedGroups isEqualTo [])) exitWith {
     } forEach _selectedGroups;
 };
 
-if (!(_selectedObjects isEqualTo [])) exitWith {
+if (_selectedObjects isNotEqualTo []) exitWith {
     _selectedGroups = [];
     {
         if (({alive _x} count (units _x)) > 0) then {

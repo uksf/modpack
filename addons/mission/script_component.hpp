@@ -32,7 +32,7 @@ if (CHECK != "" && {({_x == CHECK} count GVAR(conspicuityGearWhitelist)) == 0}) 
     {_x isEqualTo (leader _group) && \
     {_x getVariable [QGVAR(hasSupportRadio), true] && \
     {!(_group getVariable [QGVAR(supportTasked), false]) && \
-    {!((behaviour _unit) isEqualTo "COMBAT")}}}}}
+    {(behaviour _unit) isNotEqualTo "COMBAT"}}}}}
 
 #define SUPPORT_CONDITION_PROXIMITY ((side _x) isEqualTo (side _unit)) && \
     {_x getVariable [QGVAR(hasSupportRadio), true]}
