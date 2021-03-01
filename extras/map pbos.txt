@@ -1,12 +1,9 @@
 - Kidal
     - kidal
     - RSPN_Assets (already in before adding)
-- Bozcaada
-    - bozcaada
-- Sangin
-    - JBAD
-    - billboards
-    - hellskitchenfix
-    - Hesco
-    - ied_blast1
-    - smoke_hellskitchen_map_data
+- Reshmaan
+    - mad_lights
+    - mad_roads
+    - mad_signs
+    - reshmaan
+    - UK3CB_Reshmaan_Fix
