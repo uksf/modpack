@@ -70,22 +70,22 @@ GVAR(curatorUnconciousID) = [{
 
 [true, player] call ace_common_fnc_setVolume;
 
-FPS_COLLECTDATA = true;
-FPS_PFHID = [{
+// FPS_COLLECTDATA = true;
+// FPS_PFHID = [{
 
-    if !(FPS_COLLECTDATA) exitWith {};
+//     if !(FPS_COLLECTDATA) exitWith {};
 
-    private _frameData = [];
-    {
-        private _fps = _x getVariable ["uksf_zeus_fps", 0];
-        private _name = name _x;
+//     private _frameData = [];
+//     {
+//         private _fps = _x getVariable ["uksf_zeus_fps", 0];
+//         private _name = name _x;
 
-        _frameData pushBack [_name, _fps];
-    } forEach (allPlayers - entities "HeadlessClient_F");
+//         _frameData pushBack [_name, _fps];
+//     } forEach (allPlayers - entities "HeadlessClient_F");
 
-    private _allUnits = allUnits select {!(isPlayer _x)};
-    private _simulatedUnits = {simulationEnabled _x} count _allUnits;
-    private _allGroups = allGroups select {!(isPlayer (leader _x))};
-    private _simulatedGroups = {simulationEnabled (leader _x)} count _allGroups;
-    diag_log ["FPS DATA FRAME", CBA_missionTime, count _allUnits, _simulatedUnits, count _allGroups, _simulatedGroups, _frameData];
-}, 1, []] call CBA_fnc_addPerFrameHandler;
+//     private _allUnits = allUnits select {!(isPlayer _x)};
+//     private _simulatedUnits = {simulationEnabled _x} count _allUnits;
+//     private _allGroups = allGroups select {!(isPlayer (leader _x))};
+//     private _simulatedGroups = {simulationEnabled (leader _x)} count _allGroups;
+//     diag_log ["FPS DATA FRAME", CBA_missionTime, count _allUnits, _simulatedUnits, count _allGroups, _simulatedGroups, _frameData];
+// }, 1, []] call CBA_fnc_addPerFrameHandler;
