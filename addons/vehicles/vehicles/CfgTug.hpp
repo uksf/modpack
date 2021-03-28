@@ -3,7 +3,7 @@ class rksla3_aircraft_tug_base : Truck_F {
     delete editorcategory;
 };
 class rksla3_aircraft_tug_blufor : rksla3_aircraft_tug_base {
-    faction = "UKSF_GB";
+    faction = "CUP_B_GB";
 };
 class rksla3_aircraft_tug_opfor : rksla3_aircraft_tug_base {
     faction = "OPF_F";

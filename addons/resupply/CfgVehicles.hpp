@@ -313,19 +313,6 @@ class CfgVehicles {
         };
     };
 
-    class UKSF_S_Ammo: UKSF_S_R1 {
-        scope = 1;
-        scopeCurator = 1;
-    };
-    class UKSF_S_AmmoMedic: UKSF_S_R1 {
-        scope = 1;
-        scopeCurator = 1;
-    };
-    class UKSF_S_Medic: UKSF_S_R5 {
-        scope = 1;
-        scopeCurator = 1;
-    };
-
     class Items_base_F;
     class Land_CanisterFuel_F: Items_base_F {
         scope = 2;
@@ -356,6 +343,18 @@ class CfgVehicles {
         editorSubcategory = QEGVAR(common,resupply);
     };
     class ACE_Wheel: ACE_RepairItem_Base {
+        editorCategory = "EdCat_Supplies";
+        editorSubcategory = QEGVAR(common,resupply);
+    };
+
+    class UK3CB_BAF_MAN_HX60_Container_Green;
+    class GVAR(container) : UK3CB_BAF_MAN_HX60_Container_Green {
+        scope = 2;
+        scopeCurator = 2;
+        author = "UKSF";
+        dlc = "";
+        faction = "CUP_B_GB";
+        displayName = "Resupply Container";
         editorCategory = "EdCat_Supplies";
         editorSubcategory = QEGVAR(common,resupply);
     };

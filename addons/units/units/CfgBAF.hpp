@@ -1,7 +1,7 @@
 // CUP BAF
 class CUP_Creatures_Military_BAF_Soldier_Base: SoldierWB {
     author = "$STR_CUP_AUTHOR_STRING";
-    faction = "UKSF_GB";
+    faction = "CUP_B_GB";
     identityTypes[] = { "LanguageENGB_F","Head_NATO","G_GUERIL_default" };
     model = "\A3\Characters_F\BLUFOR\b_soldier_01.p3d";
     icon = "iconMan";

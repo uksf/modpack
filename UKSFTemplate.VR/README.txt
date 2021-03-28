@@ -22,7 +22,7 @@ mission
         The modules, virtual entities, and units should be left where they are.
         Headless clients should not be touched.
         The respawn module must be moved, else the default spawn will be in the sea/middle of nowhere.
-        Everything else (boxes, aircraft, etc) should be moved to where they are needed, or deleted. Select everything in map view to ensure markers are selected as well.
+        Everything else (boxes, aircraft, etc) should be moved to where they are needed, or deleted.
 
 description.ext
     Some things in here can be changed and are clearly labelled.

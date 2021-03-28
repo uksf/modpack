@@ -15,9 +15,7 @@ class CfgPatches {
             "UKSF_S_R7",
             "UKSF_S_RT",
             "UKSF_S_MedicalBox",
-            "UKSF_S_Ammo",
-            "UKSF_S_AmmoMedic",
-            "UKSF_S_Medic"
+            QGVAR(container)
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
@@ -43,4 +41,5 @@ class CfgPatches {
     };
 };
 
+#include "CfgEventHandlers.hpp"
 #include "CfgVehicles.hpp"
