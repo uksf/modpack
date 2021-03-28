@@ -15,15 +15,15 @@
 
 # UKSF Modpack
 
-UKSF SR11 Mod Development and issue/feature tracking
+UKSF SR3 Mod Development and issue/feature tracking
 
 #### Contributing
 
 To contribute to our modpack, you are welcome to work on your own mods.
-They must be cleared by SR11 and command beforehand, otherwise you may be let
+They must be cleared by SR3 and command beforehand, otherwise you may be let
 down once it's done. You can help out with the ongoing development by looking
 for potential bugs in our modpack, or by contributing new features. To
-contribute something to our mods, submit pull requests for review by SR11. Mods
+contribute something to our mods, submit pull requests for review by SR3. Mods
 must be based on the CBA framework.
 
 - [How to make a feature request](https://github.com/uksf/modpack/wiki/How-to-make-a-feature-request)

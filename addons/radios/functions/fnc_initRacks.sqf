@@ -23,7 +23,7 @@ private _customChannels = [
     ["UK3CB_BAF_Wildcat_AH1_CAS_8A", CHANNELS_AIR_THREE],
     ["rksla3_aw159_hma2", CHANNELS_AIR_THREE],
     ["CUP_C130J_Base", CHANNELS_AIR_THREE],
-    ["uksf_f35_plane_base", CHANNELS_AIR_THREE],
+    ["uksf_air_f35_base", CHANNELS_AIR_THREE],
     ["CUP_CH47F_base", CHANNELS_AIR_THREE],
     ["UK3CB_BAF_Merlin_Base", CHANNELS_AIR_THREE],
     ["rksla3_pumahc_base", CHANNELS_AIR_THREE],

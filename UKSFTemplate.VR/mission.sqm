@@ -36,7 +36,7 @@ addons[]=
 	"uksf_apache",
 	"CUP_AirVehicles_CH47",
 	"uksf_air",
-	"uksf_f35_plane",
+	"uksf_air_f35",
 	"A3_Structures_F_Mil_Helipads",
 	"uksf_vehicles",
 	"UK3CB_BAF_Vehicles_MAN",
@@ -91,8 +91,8 @@ class AddonsMetaData
 		};
 		class Item5
 		{
-			className="uksf_f35_plane";
-			name="UKSF F35 - Plane";
+			className="uksf_air_f35";
+			name="UKSF Air - F-35";
 			author="UKSF";
 			url="uk-sf.co.uk";
 		};
@@ -729,7 +729,7 @@ class Mission
 					{
 					};
 					id=192;
-					type="uksf_f35_plane_raf";
+					type="uksf_air_f35_raf";
 				};
 				class Item3
 				{
