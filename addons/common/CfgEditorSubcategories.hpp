@@ -1,3 +1,6 @@
+class CfgEditorCategories {
+    delete RKSLA3_Airfield_Support;
+};
 class CfgEditorSubcategories {
     // UKSF
     class GVAR(1para) {
