@@ -17,7 +17,7 @@ class UK3CB_BAF_Wildcat_Base : Heli_light_03_base_F {
     cyclicAsideForceCoef = 1.2;    // 1
     cyclicForwardForceCoef = 1.1;  // 1
     unitInfoType = "RscUnitInfoNoSpeed";
-    attenuationEffectType = "SemiOpenHeliAttenuation";
+    attenuationEffectType = "HeliAttenuation";
 #include "MFDCAS.hpp"
     class Components : Components {
         class VehicleSystemsDisplayManagerComponentLeft : DefaultVehicleSystemsDisplayManagerLeft {
@@ -328,7 +328,7 @@ class rksla3_aw159_hma2 : rksla3_aw159_base {
     fuelCapacity = 400;  // 742
     startDuration = 30;
     unitInfoType = "RscUnitInfoNoSpeed";
-    attenuationEffectType = "SemiOpenHeliAttenuation";
+    attenuationEffectType = "HeliAttenuation";
     weapons[] = { "UK3CB_BAF_Safe", "CMFlareLauncher" };
     magazines[] = { "168Rnd_CMFlare_Chaff_Magazine" };
     class ViewPilot : ViewPilot {

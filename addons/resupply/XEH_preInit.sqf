@@ -17,13 +17,16 @@ _action = [QGVAR(containerLoad), "Load into container", "", {
         deleteVehicle _crate;
     }, {
         hint "Failed to load into container";
-    }, "Loading crate into container"] call ace_common_fnc_progressBar;
+    }, "Loading into container"] call ace_common_fnc_progressBar;
 }, {
     params ["_crate"];
 
     private _containers = _crate nearEntities [QGVAR(container), 25];
     _containers isNotEqualTo []
 }] call ace_interact_menu_fnc_createAction;
+
 ["UKSF_S_Empty", 0, ["ACE_MainActions"], _action, true] call ace_interact_menu_fnc_addActionToClass;
+["UKSF_S_MedicalBox", 0, ["ACE_MainActions"], _action, true] call ace_interact_menu_fnc_addActionToClass;
+["CargoNet_01_barrels_F", 0, ["ACE_MainActions"], _action, true] call ace_interact_menu_fnc_addActionToClass;
 
 ADDON = true;
