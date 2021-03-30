@@ -18,16 +18,16 @@ params ["_target"];
 
 private _resupplyTypes = [
     [QGVAR(re), "Empty", "Empty Crate"],
-    [QGVAR(r1), "R1", "Ammo | Launchers"],
-    [QGVAR(r2), "R2", "Explosives | Launchers"],
-    [QGVAR(r3), "R3", "Vehicle Ammo | M6 Ammo"],
-    [QGVAR(r4), "R4", "M6 | M6 Ammo"],
-    [QGVAR(r5), "R5", "Medical (Cargo)"],
-    [QGVAR(r6), "R6", "L16 | L16 Ammo"],
-    [QGVAR(r7), "R7", "Sniper Equipment"],
-    [QGVAR(rt), "RT", "6x Tyres"],
-    [QGVAR(rf), "RF", "Fuel"],
-    [QGVAR(gmed), "Medical", "Medical Supplies"]
+    [QGVAR(r1), "R1", "Small Arms Ammo"],
+    [QGVAR(r2), "R2", "Anti-Tank, Demolitions"],
+    [QGVAR(r3), "R3", "Vehicle Ammo"],
+    [QGVAR(r4), "R4", "Medical"],
+    [QGVAR(r5), "R5", "Light Mortar"],
+    [QGVAR(r6), "R6", "Medium Mortar"],
+    [QGVAR(r7), "R7", "Sniper Ammo"],
+    [QGVAR(rt), "RT", "10x Tyres, Toolkits"],
+    [QGVAR(rf), "RF", "Fuel Barrels"],
+    [QGVAR(gmed), "Medical", "Grab Box - Medical"]
 ];
 
 private _actions = [];
