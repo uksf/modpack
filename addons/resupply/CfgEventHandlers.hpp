@@ -15,11 +15,3 @@ class Extended_PostInit_EventHandlers {
         init = QUOTE(call COMPILE_FILE(XEH_postInit));
     };
 };
-
-class Extended_InitPost_Eventhandlers {
-    class GVAR(arsenal) {
-        class ADDON {
-            init = QUOTE(call FUNC(initSupplyCrate));
-        };
-    };
-};

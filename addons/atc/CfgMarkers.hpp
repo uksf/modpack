@@ -38,7 +38,7 @@ class CfgMarkers {
         texture = "CUP\AirVehicles\CUP_AirVehicles_L39\Data\ui\icon_l39_ca.paa";
     };
     class GVAR(f35): GVAR(apache) {
-        icon = "u\uksf_f35\addons\plane\data\ui\icon.paa";
-        texture = "u\uksf_f35\addons\plane\data\ui\icon.paa";
+        icon = "u\uksf_air\addons\f35\data\ui\icon.paa";
+        texture = "u\uksf_air\addons\f35\data\ui\icon.paa";
     };
 };

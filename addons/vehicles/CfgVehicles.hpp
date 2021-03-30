@@ -123,6 +123,7 @@ class CfgVehicles {
 #include "vehicles\CfgMastiff.hpp"
 #include "vehicles\CfgPanther.hpp"
 #include "vehicles\CfgRidgeback.hpp"
+#include "vehicles\CfgTug.hpp"
 #include "vehicles\CfgWarrior.hpp"
 #include "vehicles\CfgWolfhound.hpp"
 

@@ -4,20 +4,32 @@ class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
         units[] = {
-            "UKSF_S_Empty",
-            "UKSF_S_Arsenal",
-            "UKSF_S_R1",
-            "UKSF_S_R2",
-            "UKSF_S_R3",
-            "UKSF_S_R4",
-            "UKSF_S_R5",
-            "UKSF_S_R6",
-            "UKSF_S_R7",
-            "UKSF_S_RT",
-            "UKSF_S_MedicalBox",
-            "UKSF_S_Ammo",
-            "UKSF_S_AmmoMedic",
-            "UKSF_S_Medic"
+            QGVAR(container),
+            QGVAR(re),
+            QGVAR(arsenal),
+            QGVAR(r1),
+            QGVAR(r2),
+            QGVAR(r3),
+            QGVAR(r4),
+            QGVAR(r5),
+            QGVAR(r6),
+            QGVAR(r7),
+            QGVAR(rt),
+            QGVAR(ge),
+            QGVAR(gsa),
+            QGVAR(ggpmg),
+            QGVAR(gat),
+            QGVAR(ghat),
+            QGVAR(ghmg),
+            QGVAR(ggmg),
+            QGVAR(gmil),
+            QGVAR(glmhe),
+            QGVAR(glmsmk),
+            QGVAR(gmmhe),
+            QGVAR(gmmsmk),
+            QGVAR(gsn),
+            QGVAR(gsnh),
+            QGVAR(gmed)
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
@@ -43,4 +55,5 @@ class CfgPatches {
     };
 };
 
+#include "CfgEventHandlers.hpp"
 #include "CfgVehicles.hpp"

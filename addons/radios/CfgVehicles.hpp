@@ -68,7 +68,7 @@ class CfgVehicles {
         RACKS_AIR
     };
     class Plane_Fighter_01_Base_F;
-    class uksf_f35_plane_base : Plane_Fighter_01_Base_F {
+    class uksf_air_f35_base : Plane_Fighter_01_Base_F {
         RACKS_AIR
     };
     class Helicopter_Base_H;

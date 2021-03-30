@@ -68,6 +68,10 @@
     backpack = #BACKPACK; \
     count = COUNT; \
 }
+#define MACRO_ADDACECARGO(CARGO,COUNT) class CARGO { \
+    type = #CARGO; \
+    amount = COUNT; \
+}
 
 #define INVENTORY_EMPTY delete TransportMagazines; \
     delete TransportItems; \
@@ -95,3 +99,13 @@ class TransportBackpacks { \
     MACRO_ADDBACKPACK(B_Parachute,6); \
 }; \
 class TransportWeapons {}
+
+// TODO: Auto-replace obsolete classes in website patching? Throw warnings?
+#define OBSOLETE_CLASS(CLASS,BASE) class CLASS : BASE { \
+    scope = 1; \
+}
+
+#define OBSOLETE_CLASS_WITH_BASE(CLASS,BASE) class BASE; \
+class CLASS : BASE { \
+    scope = 1; \
+}

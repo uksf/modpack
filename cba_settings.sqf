@@ -372,7 +372,7 @@ force force ace_laser_dispersionCount = 2;
 force force ace_microdagr_mapDataAvailable = 2;
 force force ace_microdagr_waypointPrecision = 3;
 force force ace_optionsmenu_showNewsOnMainMenu = false;
-force force ace_overpressure_distanceCoefficient = 1;
+force ace_overpressure_distanceCoefficient = 1;
 ace_tagging_quickTag = 1;
 
 // ACE User Interface

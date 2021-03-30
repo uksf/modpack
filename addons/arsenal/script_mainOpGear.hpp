@@ -140,7 +140,8 @@
     "SSQN_5Rnd_127x99_HEIAP_Tracer", \
     "MRAWS_HEAT_F", \
     "MRAWS_HE_F", \
-    "MRAWS_HEAT55_F"
+    "MRAWS_HEAT55_F", \
+    "UK3CB_BAF_1Rnd_Milan"
 
 #define MAIN_OP_WEAPONS \
     "ACE_MX2A", \

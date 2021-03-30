@@ -89,18 +89,18 @@ class CfgAmmo {
     class CUP_R_CRV7_C18_HE : CUP_R_70mm_Hydra_HE {
         ace_rearm_dummy = QGVAR(crv7);
         ACE_caliber = 70;
-        ACE_hearing_caliber = 30;
+        ACE_hearing_caliber = 15;
     };
     class UK3CB_BAF_M_CRV7_Base : MissileBase {
         ace_rearm_dummy = QGVAR(crv7);
         ACE_caliber = 70;
-        ACE_hearing_caliber = 30;
+        ACE_hearing_caliber = 15;
     };
     class M_AT;
     class rksla3_aw159_crv7_amo_M151 : M_AT {
         ace_rearm_dummy = QGVAR(crv7);
         ACE_caliber = 70;
-        ACE_hearing_caliber = 30;
+        ACE_hearing_caliber = 15;
     };
     class ammo_Missile_ShortRangeAABase;
     class ammo_Missile_BIM9X : ammo_Missile_ShortRangeAABase {
