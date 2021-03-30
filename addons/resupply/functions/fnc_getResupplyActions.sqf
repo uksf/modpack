@@ -14,18 +14,20 @@
 */
 params ["_target"];
 
+// TODO: Re-write this to get info from the classes with inheritance directly, and a separate option for golf boxes
+
 private _resupplyTypes = [
-    ["UKSF_S_Empty", "Empty", "Empty Crate"],
-    ["UKSF_S_R1", "R1", "Ammo | Launchers"],
-    ["UKSF_S_R2", "R2", "Explosives | Launchers"],
-    ["UKSF_S_R3", "R3", "Vehicle Ammo | M6 Ammo"],
-    ["UKSF_S_R4", "R4", "M6 | M6 Ammo"],
-    ["UKSF_S_R5", "R5", "Medical (Cargo)"],
-    ["UKSF_S_R6", "R6", "L16 | L16 Ammo"],
-    ["UKSF_S_R7", "R7", "Sniper Equipment"],
-    ["UKSF_S_RT", "RT", "6x Tyres"],
-    ["CargoNet_01_barrels_F", "RF", "Fuel"],
-    ["UKSF_S_MedicalBox", "Medical", "Medical Supplies"]
+    [QGVAR(re), "Empty", "Empty Crate"],
+    [QGVAR(r1), "R1", "Ammo | Launchers"],
+    [QGVAR(r2), "R2", "Explosives | Launchers"],
+    [QGVAR(r3), "R3", "Vehicle Ammo | M6 Ammo"],
+    [QGVAR(r4), "R4", "M6 | M6 Ammo"],
+    [QGVAR(r5), "R5", "Medical (Cargo)"],
+    [QGVAR(r6), "R6", "L16 | L16 Ammo"],
+    [QGVAR(r7), "R7", "Sniper Equipment"],
+    [QGVAR(rt), "RT", "6x Tyres"],
+    [QGVAR(rf), "RF", "Fuel"],
+    [QGVAR(gmed), "Medical", "Medical Supplies"]
 ];
 
 private _actions = [];

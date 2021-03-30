@@ -114,7 +114,7 @@ This would add the player object to all curators.
 #### uksf_arsenal_addArsenalAction
 
 - Adds an arsenal action to the given object with local effect
-- Raised when a UKSF arsenal crate `UKSF_S_Arsenal` is created, and when the
+- Raised when a UKSF arsenal crate `uksf_resupply_arsenal` is created, and when the
   `Add full ACE Arsenal` module is placed on an object
 - Parameters: [
     `_crate` \<OBJECT\>

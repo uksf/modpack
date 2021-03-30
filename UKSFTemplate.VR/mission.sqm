@@ -390,7 +390,7 @@ class Mission
 						name="Box_1";
 					};
 					id=211;
-					type="UKSF_S_Arsenal";
+					type="uksf_resupply_arsenal";
 					atlOffset=-0.067120075;
 					class CustomAttributes
 					{
@@ -450,7 +450,7 @@ class Mission
 						name="Box_2";
 					};
 					id=213;
-					type="UKSF_S_Arsenal";
+					type="uksf_resupply_arsenal";
 					atlOffset=-0.067120075;
 					class CustomAttributes
 					{
@@ -510,7 +510,7 @@ class Mission
 						name="Box_3";
 					};
 					id=214;
-					type="UKSF_S_Arsenal";
+					type="uksf_resupply_arsenal";
 					atlOffset=-0.067120075;
 					class CustomAttributes
 					{
@@ -570,7 +570,7 @@ class Mission
 						name="Box_4";
 					};
 					id=215;
-					type="UKSF_S_Arsenal";
+					type="uksf_resupply_arsenal";
 					atlOffset=-0.067120075;
 					class CustomAttributes
 					{
@@ -630,7 +630,7 @@ class Mission
 						name="Box_5";
 					};
 					id=216;
-					type="UKSF_S_Arsenal";
+					type="uksf_resupply_arsenal";
 					atlOffset=-0.067120075;
 					class CustomAttributes
 					{
