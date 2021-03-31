@@ -1,13 +1,15 @@
 class B_supplyCrate_F;
-class GVAR(re) : B_supplyCrate_F {
+class GVAR(rx) : B_supplyCrate_F {
     author = "UKSF";
     faction = "CUP_B_GB";
     scope = 2;
     scopeCurator = 2;
     editorCategory = "EdCat_Supplies";
     editorSubcategory = QEGVAR(common,romeos);
-    displayName = "Empty Romeo Crate";
-    editorPreview = QPATHTOEF(common,data\previews\UKSF_S_Empty.jpg);
+    displayName = "RX (Empty)";
+    description = "Crate - Empty";
+    PREVIEW(rx);
+    hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\rx.paa) };
     maximumLoad = 100000;
     transportMaxWeapons = 200;
     transportMaxMagazines = 1000;
@@ -19,11 +21,11 @@ class GVAR(re) : B_supplyCrate_F {
     class TransportItems {};
     class TransportBackpacks {};
 };
-class GVAR(r1) : GVAR(re) {
+class GVAR(r1) : GVAR(rx) {
     displayName = "R1 (SA)";
     description = "Crate - Small Arms Ammo";
-    editorPreview = QPATHTOEF(common,data\previews\UKSF_S_R1.jpg);
-    hiddenSelectionsTextures[] = { QPATHTOF(data\R1_co.paa) };
+    PREVIEW(r1);
+    hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\r1.paa) };
     class TransportMagazines {
         MACRO_ADDMAGAZINE(UK3CB_BAF_556_30Rnd,80);
         MACRO_ADDMAGAZINE(UK3CB_BAF_556_30Rnd_T,40);
@@ -46,16 +48,16 @@ class GVAR(r1) : GVAR(re) {
     };
     class ACE_Cargo {
         class Cargo {
-            MACRO_ADDACECARGO(GVAR(gsa),3);
-            MACRO_ADDACECARGO(GVAR(ggpmg),1);
+            MACRO_ADDACECARGO(GVAR(g1),3);
+            MACRO_ADDACECARGO(GVAR(g2),1);
         };
     };
 };
-class GVAR(r2) : GVAR(re) {
+class GVAR(r2) : GVAR(rx) {
     displayName = "R2 (AT)";
     description = "Crate - Anti-Tank, Demolitions";
-    editorPreview = QPATHTOEF(common,data\previews\UKSF_S_R2.jpg);
-    hiddenSelectionsTextures[] = { QPATHTOF(data\R2_co.paa) };
+    PREVIEW(r2);
+    hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\r2.paa) };
     class TransportMagazines {
         MACRO_ADDMAGAZINE(MRAWS_HEAT_F,20);
         MACRO_ADDMAGAZINE(MRAWS_HE_F,5);
@@ -75,16 +77,16 @@ class GVAR(r2) : GVAR(re) {
     };
     class ACE_Cargo {
         class Cargo {
-            MACRO_ADDACECARGO(GVAR(gat),3);
-            MACRO_ADDACECARGO(GVAR(ghat),2);
+            MACRO_ADDACECARGO(GVAR(g3),3);
+            MACRO_ADDACECARGO(GVAR(g4),2);
         };
     };
 };
-class GVAR(r3) : GVAR(re) {
+class GVAR(r3) : GVAR(rx) {
     displayName = "R3 (VA)";
     description = "Crate - Vehicle Ammo";
-    editorPreview = QPATHTOEF(common,data\previews\UKSF_S_R3.jpg);
-    hiddenSelectionsTextures[] = { QPATHTOF(data\R3_co.paa) };
+    PREVIEW(r3);
+    hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\r3.paa) };
     class TransportMagazines {
         MACRO_ADDMAGAZINE(UK3CB_BAF_127_100Rnd,30);
         MACRO_ADDMAGAZINE(UK3CB_BAF_32Rnd_40mm_G_Box,20);
@@ -92,44 +94,44 @@ class GVAR(r3) : GVAR(re) {
     };
     class ACE_Cargo {
         class Cargo {
-            MACRO_ADDACECARGO(GVAR(ghmg),3);
-            MACRO_ADDACECARGO(GVAR(ggmg),2);
-            MACRO_ADDACECARGO(GVAR(gmil),2);
+            MACRO_ADDACECARGO(GVAR(g5),3);
+            MACRO_ADDACECARGO(GVAR(g6),2);
+            MACRO_ADDACECARGO(GVAR(g7),2);
         };
     };
 };
-class GVAR(r4) : GVAR(re) {
+class GVAR(r4) : GVAR(rx) {
     displayName = "R4 (ME)";
     description = "Crate - Medical";
-    editorPreview = QPATHTOEF(common,data\previews\UKSF_S_R4.jpg);
-    hiddenSelectionsTextures[] = { QPATHTOF(data\R4_co.paa) };
+    PREVIEW(r4);
+    hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\r4.paa) };
     disableInventory = 1;
     class ACE_Cargo {
         class Cargo {
-            MACRO_ADDACECARGO(GVAR(gmed),1);
+            MACRO_ADDACECARGO(GVAR(g14),1);
         };
     };
 };
-class GVAR(r5) : GVAR(re) {
+class GVAR(r5) : GVAR(rx) {
     displayName = "R5 (LM)";
     description = "Crate - Light Mortar";
-    editorPreview = QPATHTOEF(common,data\previews\UKSF_S_R5.jpg);
-    hiddenSelectionsTextures[] = { QPATHTOF(data\R5_co.paa) };
+    PREVIEW(r5);
+    hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\r5.paa) };
     class TransportWeapons {
         MACRO_ADDWEAPON(UK3CB_BAF_M6,1);
     };
     class ACE_Cargo {
         class Cargo {
-            MACRO_ADDACECARGO(GVAR(glmhe),4);
-            MACRO_ADDACECARGO(GVAR(glmsmk),2);
+            MACRO_ADDACECARGO(GVAR(g8),4);
+            MACRO_ADDACECARGO(GVAR(g9),2);
         };
     };
 };
-class GVAR(r6) : GVAR(re) {
+class GVAR(r6) : GVAR(rx) {
     displayName = "R6 (MM)";
     description = "Crate - Medium Mortar";
-    editorPreview = QPATHTOEF(common,data\previews\UKSF_S_R6.jpg);
-    hiddenSelectionsTextures[] = { QPATHTOF(data\R6_co.paa) };
+    PREVIEW(r6);
+    hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\r6.paa) };
     class TransportMagazines {
         MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_81mm_Mo_Flare_White,20);
     };
@@ -139,16 +141,16 @@ class GVAR(r6) : GVAR(re) {
     };
     class ACE_Cargo {
         class Cargo {
-            MACRO_ADDACECARGO(GVAR(gmmhe),8);
-            MACRO_ADDACECARGO(GVAR(gmmsmk),2);
+            MACRO_ADDACECARGO(GVAR(g10),8);
+            MACRO_ADDACECARGO(GVAR(g11),2);
         };
     };
 };
-class GVAR(r7) : GVAR(re) {
+class GVAR(r7) : GVAR(rx) {
     displayName = "R7 (Sniper)";
     description = "Crate - Sniper Ammo";
-    editorPreview = QPATHTOEF(common,data\previews\UKSF_S_R7.jpg);
-    hiddenSelectionsTextures[] = { QPATHTOF(data\R7_co.paa) };
+    PREVIEW(r7);
+    hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\r7.paa) };
     class TransportMagazines {
         MACRO_ADDMAGAZINE(SSQN_5Rnd_127x99_HEIAP,30);
         MACRO_ADDMAGAZINE(SSQN_5Rnd_127x99_HEIAP_Tracer,30);
@@ -159,16 +161,16 @@ class GVAR(r7) : GVAR(re) {
     };
     class ACE_Cargo {
         class Cargo {
-            MACRO_ADDACECARGO(GVAR(gsn),2);
-            MACRO_ADDACECARGO(GVAR(gsnh),1);
+            MACRO_ADDACECARGO(GVAR(g12),2);
+            MACRO_ADDACECARGO(GVAR(g13),1);
         };
     };
 };
-class GVAR(rt) : GVAR(re) {
+class GVAR(rt) : GVAR(rx) {
     displayName = "RT (Tyres)";
     description = "Crate - Tyres, Toolkits";
-    editorPreview = QPATHTOEF(common,data\previews\UKSF_S_RT.jpg);
-    hiddenSelectionsTextures[] = { QPATHTOF(data\RT_co.paa) };
+    PREVIEW(rt);
+    hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\rt.paa) };
     class TransportItems {
         MACRO_ADDITEM(ToolKit,2);
     };
@@ -181,6 +183,7 @@ class GVAR(rt) : GVAR(re) {
         };
     };
 };
+
 class CargoNet_01_barrels_F;
 class GVAR(rf) : CargoNet_01_barrels_F {
     scope = 2;
@@ -190,7 +193,7 @@ class GVAR(rf) : CargoNet_01_barrels_F {
     description = "Fuel Barrels";
     editorCategory = "EdCat_Supplies";
     editorSubcategory = QEGVAR(common,romeos);
-    editorPreview = QPATHTOEF(common,data\previews\CargoNet_01_barrels_F.jpg);
+    PREVIEW(rf);
     disableInventory = 1;
     ace_refuel_fuelCapacity = 800;
     ace_refuel_fuelCargo = 800;

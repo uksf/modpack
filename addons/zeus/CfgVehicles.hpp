@@ -28,15 +28,17 @@ class CfgVehicles {
         scopeCurator = 1;
     };
     class zen_modules_moduleHeal: zen_modules_moduleBase {
-        scopeCurator = 1;
+        category = "ace_zeus_Medical";
     };
 
     // Edit ace modules
     class ace_zeus_moduleBase;
     class ace_zeus_AddFullAceArsenal: ace_zeus_moduleBase {
+        scopeCurator = 2;
         function = QFUNC(moduleAddAceArsenal);
     };
     class ace_zeus_RemoveFullAceArsenal: ace_zeus_moduleBase {
+        scopeCurator = 2;
         function = QFUNC(moduleRemoveAceArsenal);
     };
     class ace_zeus_AddFullArsenal: ace_zeus_moduleBase {

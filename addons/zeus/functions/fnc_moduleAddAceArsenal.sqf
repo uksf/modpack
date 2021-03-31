@@ -26,13 +26,13 @@ if (!alive _object) exitWith {["Object must be alive"] call ace_zeus_fnc_showMes
 [_object, true] call ace_arsenal_fnc_removeBox;
 [_object, true, true] call ace_arsenal_fnc_initBox;
 if (isMultiplayer && {{_object in _x} count GVAR(EHIDArray) == 0}) then {
-    [QEGVAR(arsenal,removeArsenalAction), [_object]] call CBA_fnc_globalEvent;
-    private _jipId = [QEGVAR(arsenal,addArsenalAction), [_object]] call CBA_fnc_globalEventJIP;
+    [QEGVAR(arsenal,removeArsenal), [_object]] call CBA_fnc_globalEvent;
+    private _jipId = [QEGVAR(arsenal,addArsenal), [_object]] call CBA_fnc_globalEventJIP;
     [_jipId, _object] call CBA_fnc_removeGlobalEventJIP;
     GVAR(EHIDArray) pushBack [_jipId, _object];
     publicVariable QGVAR(EHIDArray);
 } else {
-    [QEGVAR(arsenal,removeArsenalAction), [_object]] call CBA_fnc_localEvent;
-    [QEGVAR(arsenal,addArsenalAction), [_object]] call CBA_fnc_localEvent;
+    [QEGVAR(arsenal,removeArsenal), [_object]] call CBA_fnc_localEvent;
+    [QEGVAR(arsenal,addArsenal), [_object]] call CBA_fnc_localEvent;
 };
 

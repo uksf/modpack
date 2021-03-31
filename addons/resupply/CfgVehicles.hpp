@@ -2,9 +2,12 @@ class CfgVehicles {
 #include "crates\CfgGolfs.hpp"
 #include "crates\CfgRomeos.hpp"
 
-    class GVAR(arsenal) : GVAR(re) {
+    class GVAR(arsenal) : GVAR(rx) {
         displayName = "Arsenal Crate";
         editorSubcategory = QEGVAR(common,resupply);
+        PREVIEW(arsenal);
+        hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\ra.paa) };
+        containerIgnore = 1;
     };
 
     class UK3CB_BAF_MAN_HX60_Container_Green;
@@ -17,6 +20,7 @@ class CfgVehicles {
         displayName = "Resupply Container";
         editorCategory = "EdCat_Supplies";
         editorSubcategory = QEGVAR(common,resupply);
+        PREVIEW(container);
     };
 
     class Items_base_F;

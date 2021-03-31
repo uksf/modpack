@@ -9,15 +9,16 @@ ADDON = false;
     activateAddons GVAR(addons);
 };
 
+GVAR(configAmmo) = configFile >> "CfgAmmo";
+GVAR(configMagazines) = configFile >> "CfgMagazines";
+GVAR(configWeapons) = configFile >> "CfgWeapons";
+GVAR(configVehicles) = configFile >> "CfgVehicles";
+
 GVAR(fpsState) = false;
 
 GVAR(respawnPositions) = [];
 
 GVAR(valueCache) = [] call CBA_fnc_hashCreate;
-GVAR(configAmmo) = configFile >> "CfgAmmo";
-GVAR(configMagazines) = configFile >> "CfgMagazines";
-GVAR(configWeapons) = configFile >> "CfgWeapons";
-GVAR(configVehicles) = configFile >> "CfgVehicles";
 
 if (hasInterface) then {
     GVAR(fpsArray) = [];
