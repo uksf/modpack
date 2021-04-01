@@ -4,7 +4,38 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
-private _action = [QGVAR(containerAtions), "Resupply", "", {}, {true}, {call FUNC(getResupplyActions)}] call ace_interact_menu_fnc_createAction;
+private _romeoClasses = QUOTE(
+    getNumber (_x >> 'scope') == 2
+    && getNumber (_x >> 'containerIgnore') == 0
+    && inheritsFrom _x == (EGVAR(common,configVehicles) >> QQGVAR(rx))
+) configClasses EGVAR(common,configVehicles);
+_romeoClasses = [QGVAR(rx), QGVAR(rf)] + (_romeoClasses apply {configName _x});
+
+GVAR(romeoClasses) = _romeoClasses apply {
+    private _class = EGVAR(common,configVehicles) >> _x;
+    private _name = getText (_class >> "displayName");
+    private _description = getText (_class >> "description");
+    [_x, _name, _description]
+};
+
+private _golfClasses = QUOTE(
+    getNumber (_x >> 'scope') == 2
+    && getNumber (_x >> 'containerIgnore') == 0
+    && inheritsFrom _x == (EGVAR(common,configVehicles) >> QQGVAR(gx))
+) configClasses EGVAR(common,configVehicles);
+_golfClasses = [QGVAR(gx), QGVAR(gmed)] + (_golfClasses apply {configName _x});
+
+GVAR(golfClasses) = _golfClasses apply {
+    private _class = EGVAR(common,configVehicles) >> _x;
+    private _name = getText (_class >> "displayName");
+    private _description = getText (_class >> "description");
+    [_x, _name, _description]
+};
+
+private _action = [QGVAR(containerRomeoActions), "Resupply - Romeo", "", {}, {true}, {call FUNC(getRomeoActions)}] call ace_interact_menu_fnc_createAction;
+[QGVAR(container), 0, ["ACE_MainActions"], _action] call ace_interact_menu_fnc_addActionToClass;
+
+_action = [QGVAR(containerGolfActions), "Resupply - Golf", "", {}, {true}, {call FUNC(getGolfActions)}] call ace_interact_menu_fnc_createAction;
 [QGVAR(container), 0, ["ACE_MainActions"], _action] call ace_interact_menu_fnc_addActionToClass;
 
 _action = [QGVAR(containerLoad), "Load into container", "", {
@@ -21,12 +52,12 @@ _action = [QGVAR(containerLoad), "Load into container", "", {
 }, {
     params ["_crate"];
 
-    private _containers = _crate nearEntities [QGVAR(container), 25];
+    private _containers = _crate nearEntities [QGVAR(container), 10];
     _containers isNotEqualTo []
 }] call ace_interact_menu_fnc_createAction;
 
-["UKSF_S_Empty", 0, ["ACE_MainActions"], _action, true] call ace_interact_menu_fnc_addActionToClass;
-["UKSF_S_MedicalBox", 0, ["ACE_MainActions"], _action, true] call ace_interact_menu_fnc_addActionToClass;
-["CargoNet_01_barrels_F", 0, ["ACE_MainActions"], _action, true] call ace_interact_menu_fnc_addActionToClass;
+{
+    [_x, 0, ["ACE_MainActions"], _action, true] call ace_interact_menu_fnc_addActionToClass;
+} forEach [QGVAR(rx), QGVAR(rf), QGVAR(gx), QGVAR(gmed)];
 
 ADDON = true;

@@ -594,6 +594,16 @@ class CfgWeapons {
             allowedSlots[] = { 901 };
         };
     };
+    // class UK3CB_BAF_Javelin_CLU : Binocular {
+    //     icon = "iconObject_circle";
+    //     simulation = "Weapon";
+    //     type = 131072;
+    //     muzzles[] = {};
+    //     class ItemInfo : CBA_MiscItem_ItemInfo {
+    //         mass = 141;
+    //         allowedSlots[] = { 901 };
+    //     };
+    // };
     class launch_Titan_short_base;
     class launch_B_Titan_short_F : launch_Titan_short_base {
         class WeaponSlotsInfo;

@@ -106,6 +106,6 @@ class TransportWeapons {}
 }
 
 #define OBSOLETE_CLASS_WITH_BASE(CLASS,BASE) class BASE; \
-class CLASS : BASE { \
-    scope = 1; \
-}
+OBSOLETE_CLASS(CLASS,BASE)
+
+#define PREVIEW(NAME) editorPreview = QPATHTOF(data\previews\GVAR(NAME).jpg)

@@ -28,8 +28,8 @@ if (isMultiplayer && {{_object in _x} count GVAR(EHIDArray) == 0}) then {
         [_id select 0] call CBA_fnc_removeGlobalEventJIP;
         GVAR(EHIDArray) deleteAt (GVAR(EHIDArray) find _id);
         publicVariable QGVAR(EHIDArray);
-        [QEGVAR(arsenal,removeArsenalAction), [_object]] call CBA_fnc_globalEvent;
+        [QEGVAR(arsenal,removeArsenal), [_object]] call CBA_fnc_globalEvent;
     };
 } else {
-    [QEGVAR(arsenal,removeArsenalAction), [_object]] call CBA_fnc_localEvent;
+    [QEGVAR(arsenal,removeArsenal), [_object]] call CBA_fnc_localEvent;
 };

@@ -32,7 +32,8 @@ class CfgPatches {
             "zen_modules",
             "zen_context_menu",
             "zen_custom_modules",
-            "zen_dialog"
+            "zen_dialog",
+            "zen_compat_ace"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };

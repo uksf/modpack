@@ -1,1 +1,2 @@
-PREP(getResupplyActions);
+PREP(getRomeoActions);
+PREP(getGolfActions);

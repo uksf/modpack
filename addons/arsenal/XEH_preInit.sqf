@@ -39,17 +39,25 @@ GVAR(cachedFullGear) = [];
     };
 }] call CBA_fnc_addEventHandler;
 
-[QGVAR(addArsenalAction), {
+[QGVAR(addArsenal), {
     params ["_object"];
     private _id = _object addAction ["Arsenal", {[_this select 3, ace_player] call ace_arsenal_fnc_openBox;}, _object, 10, true, true, "", "true", 5];
     _object setVariable [QGVAR(arsenalActionId), _id];
+
+    if (typeOf _object == QEGVAR(resupply,rx)) then {
+        _object setObjectTexture [0, QPATHTOEF(resupply,data\romeo\ra.paa)];
+    };
 }] call CBA_fnc_addEventHandler;
 
-[QGVAR(removeArsenalAction), {
+[QGVAR(removeArsenal), {
     params ["_object"];
     private _id = _object getVariable [QGVAR(arsenalActionId), -1];
     if (_id != -1) then {
         _object removeAction _id;
+    };
+
+    if (typeOf _object == QEGVAR(resupply,rx)) then {
+        _object setObjectTexture [0, QPATHTOEF(resupply,data\romeo\rx.paa)];
     };
 }] call CBA_fnc_addEventHandler;
 

@@ -111,7 +111,7 @@ This would add the player object to all curators.
 
 ### Arsenal
 
-#### uksf_arsenal_addArsenalAction
+#### uksf_arsenal_addArsenal
 
 - Adds an arsenal action to the given object with local effect
 - Raised when a UKSF arsenal crate `uksf_resupply_arsenal` is created, and when the
@@ -120,13 +120,13 @@ This would add the player object to all curators.
     `_crate` \<OBJECT\>
   ]
 
-#### uksf_arsenal_removeArsenalAction
+#### uksf_arsenal_removeArsenal
 
 - Removes an arsenal action from the given object with local effect
 - Raised when the `Add full ACE Arsenal` and `Remove ACE Arsenal` modules are
   placed on an object
 - In the case of the `Add full ACE Arsenal` module, this event is raised before
-  the `uksf_arsenal_addArsenalAction` event
+  the `uksf_arsenal_addArsenal` event
 - Parameters: [
     `_object` \<OBJECT\>
   ]
