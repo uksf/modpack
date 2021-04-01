@@ -17,7 +17,7 @@ class Extended_PostInit_EventHandlers {
 };
 
 class Extended_InitPost_Eventhandlers {
-    class GVAR(arsenal) {
+    class EGVAR(resupply,arsenal) {
         class ADDON {
             init = QUOTE(call FUNC(initSupplyCrate));
         };
