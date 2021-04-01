@@ -9,7 +9,7 @@ private _romeoClasses = QUOTE(
     && getNumber (_x >> 'containerIgnore') == 0
     && inheritsFrom _x == (EGVAR(common,configVehicles) >> QQGVAR(rx))
 ) configClasses EGVAR(common,configVehicles);
-_romeoClasses = [QGVAR(rx), QGVAR(rf)] + (_romeoClasses apply {configName _x});
+_romeoClasses = [QGVAR(rx)] + (_romeoClasses apply {configName _x}) + [QGVAR(rf)];
 
 GVAR(romeoClasses) = _romeoClasses apply {
     private _class = EGVAR(common,configVehicles) >> _x;
@@ -23,7 +23,7 @@ private _golfClasses = QUOTE(
     && getNumber (_x >> 'containerIgnore') == 0
     && inheritsFrom _x == (EGVAR(common,configVehicles) >> QQGVAR(gx))
 ) configClasses EGVAR(common,configVehicles);
-_golfClasses = [QGVAR(gx), QGVAR(gmed)] + (_golfClasses apply {configName _x});
+_golfClasses = [QGVAR(gx)] + (_golfClasses apply {configName _x}) + [QGVAR(g14)];
 
 GVAR(golfClasses) = _golfClasses apply {
     private _class = EGVAR(common,configVehicles) >> _x;
@@ -58,6 +58,6 @@ _action = [QGVAR(containerLoad), "Load into container", "", {
 
 {
     [_x, 0, ["ACE_MainActions"], _action, true] call ace_interact_menu_fnc_addActionToClass;
-} forEach [QGVAR(rx), QGVAR(rf), QGVAR(gx), QGVAR(gmed)];
+} forEach [QGVAR(rx), QGVAR(rf), QGVAR(gx), QGVAR(g14)];
 
 ADDON = true;

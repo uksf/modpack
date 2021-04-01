@@ -1,115 +1,245 @@
-# Resupply Types
+# Resupply (Romeo) Crates
 
-### ROMEO 1 - Ammo Mixed
+## RX - Crate - Empty
 
-- 30 x 30rnd 5.56mm mags
-- 30 x 30rnd 5.56mm tracer mags
-- 5 x 200rnd 5.56mm box mags
-- 5 x 200rnd 5.56mm tracer box mags
-- 5 x 100rnd 7.62mm belts
-- 5 x 100rnd 7.62mm tracer belts
-- 10 x 20rnd 7.62mm mags (L129)
-- 10 x 5rnd .338 mags
-- 10 x 17rnd 9mm mags
-- 5 x NLAW
-- 5 x Javelin tubes
-- 5 x ILAW HP
-- 5 x ILAW HEDP
-- 2 x Javelin CLU
-- 20 x hand grenades
-- 40 x mixed smoke grenades
-- 40 x UGL HE rounds
-- 20 x mixed UGL smoke rounds
-- 10 x mixed UGL flare rounds
+Empty crate
+<br/>
 
-### ROMEO 2 - AT
+## R1 - Crate - Small Arms Ammo
 
-- 10 x Javelin tubes
-- 10 x NLAW
-- 10 x ILAW HP
-- 10 x ILAW HEDP
-- 2 x Javelin CLU
-- 10 x Dem blocks
-- 5 x breach charges
-- 5 x satchel charges
-- 5 x M152 firing devices
+<details>
+<summary>Contents</summary>
+<br/>
 
-### ROMEO 3 - Ammo Heavy
+| Item | Count |
+| ----- | ----- |
+| 5.56mm 30rnd STANAG | 80 |
+| 5.56mm 30rnd STANAG Tracer | 40 |
+| 5.56mm 200rnd Belt | 20 |
+| 7.62mm 20rnd Marksman Mag | 20 |
+| 7.62mm 100rnd GPMG Belt | 10 |
+| 40mm Grenade | 30 |
+| 40mm White Smoke | 20 |
+| 40mm Red Smoke | 10 |
+| 40mm Green Smoke | 10 |
+| 40mm Blue Smoke | 10 |
+| Frag Grenade | 20 |
+| White Smoke Grenade | 20 |
+| Red Smoke Grenade | 10 |
+| Green Smoke Grenade | 10 |
+| Blue Smoke Grenade | 10 |
+| Purple Smoke Grenade | 10 |
+| Flashbang Grenade | 20 |
+| 9mm 17rnd Mag | 10 |
 
-- 10 x 100rnd 50.cal belts
-- 10 x 32rnd 40mm belts
-- 10 x 200rnd 7.62mm tracer belts
-- 20 x 60mm HE rounds
-- 10 x 60mm SMOKE rounds
-- 10 x 60mm FLARE rounds
+<br/>
+</details>
 
-### ROMEO 4 - Ammo Mortar
+<details>
+<summary>Cargo</summary>
+<br/>
 
-- 60 x 60mm HE rounds
-- 40 x 60mm FLARE rounds
-- 20 x 60mm SMOKE rounds
-- 30 x 60mm AB rounds
-- 2 x 60mm Mortar Tube
+| Item | Count |
+| ----- | ----- |
+| G1 - Small Arms Ammo | 3 |
+| G2 - GPMG Ammo | 1 |
 
-### ROMEO 5 - Medical
+<br/>
+</details>
+<br/>
 
-Contents inside medical box, loaded into crate
+## R2 - Crate - Anti-Tank, Demolitions
 
-- 150 x bandage elastic
-- 150 x bandage packing
-- 30 x adenosine auto injectors
-- 30 x morphine auto injectors
-- 30 x epinephrine auto injectors
-- 30 x 1000 ml blood bags
-- 30 x 500 ml blood bags
-- 30 x 250 ml blood bags
-- 30 x splints
-- 30 x painkillers
+<details>
+<summary>Contents</summary>
+<br/>
 
-### ROMEO 6 - Mortar
+| Item | Count |
+| ----- | ----- |
+| Javelin Tube | 10 |
+| ILAW HP Tube | 10 |
+| ILAW HEDP Tube | 10 |
+| NLAW Tube | 10 |
+| MAAWS HEAT 75 | 20 |
+| MAAWS HE 44 | 5 |
+| CLU | 3 |
+| M57 Clacker | 3 |
+| Dem-block | 10 |
+| Satchel Charge | 5 |
+| Breaching Charge | 10 |
 
-- 50 x 81mm HE rounds
-- 15 x 81mm FLARE rounds
-- 15 x 81mm SMOKE rounds
-- 30 x 81mm AB rounds
-- 2 x 81mm Mortar Tube
-- 2 x 81mm Mortar Tripod
+<br/>
+</details>
 
-### ROMEO 7 - Sniper
+<details>
+<summary>Cargo</summary>
+<br/>
 
-- 30 x 5rnd .50 HEIAP rounds (AW50)
-- 30 x 5rnd .50 HEIAP tracer rounds (AW50)
-- 30 x 10rnd .50 AP rounds (L135A1)
-- 30 x 10rnd .50 tracer rounds (L135A1)
-- 30 x 5rnd .338 rounds (L115A3)
-- 30 x 5rnd .338 tracer rounds (L115A3)
-- 5 x AW50 rifle
-- 5 x L135A1 rifle
-- 5 x L115A3 rifle
-- 5 x L115A3 ghillie rifle
-- 5 x AW50 suppressor
-- 5 x L115A3 suppressor
-- 5 x S+B 5-25x56 PM II scope
-- 5 x S+B 3-12x50 PM II scope
-- 1 x ACE spotting scope
-- 1 x ACE tripod
-- 5 x ACE range card
-- 25 x Sandbag (Empty)
-- 5 x Ghillie (Lush)
-- 5 x Ghillie (Semi-Arid)
-- 5 x Ghillie (Arid)
-- 5 x Ghillie (Jungle)
-- 5 x Bergen MTP Rifleman XL (A)
+| Item | Count |
+| ----- | ----- |
+| G3 - Anti-Tank | 3 |
+| G4 - Heavy Anti-Tank | 2 |
 
-### ROMEO FOXTROT - Fuel
+<br/>
+</details>
+<br/>
 
-- Vehicle Refuel barrel
+## R3 - Crate - Vehicle Ammo
 
-### ROMEO TANGO - Tyres
+<details>
+<summary>Contents</summary>
+<br/>
 
-- 6 x tyres
-- 1 x tool kit
+| Item | Count |
+| ----- | ----- |
+| 12.7mm 100rnd Belt | 30 |
+| 40mm 32rnd Belt | 20 |
+| 7.62mm 200rnd Box | 20 |
 
-### ROMEO XRAY
+<br/>
+</details>
 
-Specify contents of resupply AFTER receiving callsign has advised ready
+<details>
+<summary>Cargo</summary>
+<br/>
+
+| Item | Count |
+| ----- | ----- |
+| G5 - HMG Ammo | 3 |
+| G6 - GMG Ammo | 2 |
+| G7 - MILAN Ammo | 1 |
+
+<br/>
+</details>
+<br/>
+
+## R4 - Crate - Medical
+
+<details>
+<summary>Cargo</summary>
+<br/>
+
+| Item | Count |
+| ----- | ----- |
+| G14 - Medical | 1 |
+
+<br/>
+</details>
+<br/>
+
+## R5 - Crate - Light Mortar
+
+<details>
+<summary>Contents</summary>
+<br/>
+
+| Item | Count |
+| ----- | ----- |
+| 60mm Mortar | 1 |
+
+<br/>
+</details>
+
+<details>
+<summary>Cargo</summary>
+<br/>
+
+| Item | Count |
+| ----- | ----- |
+| G8 - Light Mortar HE Ammo | 4 |
+| G9 - Light Mortar Smoke Ammo | 2 |
+
+<br/>
+</details>
+<br/>
+
+## R6 - Crate - Medium Mortar
+
+<details>
+<summary>Contents</summary>
+<br/>
+
+| Item | Count |
+| ----- | ----- |
+| 81mm Mortar | 1 |
+| Tripod | 1 |
+| Illumination Rounds | 20 |
+
+<br/>
+</details>
+
+<details>
+<summary>Cargo</summary>
+<br/>
+
+| Item | Count |
+| ----- | ----- |
+| G10 - Medium Mortar HE Ammo | 8 |
+| G11 - Medium Mortar Smoke Ammo | 2 |
+
+<br/>
+</details>
+<br/>
+
+## R7 - Crate - Sniper Ammo
+
+<details>
+<summary>Contents</summary>
+<br/>
+
+| Item | Count |
+| ----- | ----- |
+| 5rnd .50 HEIAP rounds (AW50) | 30 |
+| 5rnd .50 HEIAP tracer rounds (AW50) | 30 |
+| 10rnd .50 AP rounds (L135A1) | 30 |
+| 10rnd .50 tracer rounds (L135A1) | 30 |
+| 5rnd .338 rounds (L115A3) | 30 |
+| 5rnd .338 tracer rounds (L115A3) | 30 |
+
+<br/>
+</details>
+
+<details>
+<summary>Cargo</summary>
+<br/>
+
+| Item | Count |
+| ----- | ----- |
+| G12 - Sniper Ammo | 2 |
+| G13 - Heavy Sniper Ammo | 1 |
+
+<br/>
+</details>
+<br/>
+
+## RT - Crate - Tyres, Toolkits
+
+<details>
+<summary>Contents</summary>
+<br/>
+
+| Item | Count |
+| ----- | ----- |
+| ToolKit | 2 |
+
+<br/>
+</details>
+
+<details>
+<summary>Cargo</summary>
+<br/>
+
+| Item | Count |
+| ----- | ----- |
+| Wheel | 10 |
+
+<br/>
+</details>
+<br/>
+
+## RF - Fuel Barrels
+
+Fuel barrels
+
+<br/>
+

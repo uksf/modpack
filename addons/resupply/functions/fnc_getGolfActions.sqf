@@ -51,6 +51,6 @@ _actions pushBack [_action, [], _target];
     }, {true}, {}, [_class, _name]] call ace_interact_menu_fnc_createAction;
 
     _actions pushBack [_action, [], _target];
-} forEach _resupplyTypes;
+} forEach GVAR(golfClasses);
 
 _actions
