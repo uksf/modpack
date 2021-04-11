@@ -30,164 +30,9 @@ binarizationWanted=0;
 sourceName="MASTER";
 addons[]=
 {
-	"A3_Characters_F",
-	"A3_Characters_F_Common",
-	"uksf_resupply",
-	"uksf_apache",
-	"CUP_AirVehicles_CH47",
-	"uksf_air",
-	"uksf_air_f35",
-	"A3_Structures_F_Mil_Helipads",
-	"uksf_vehicles",
-	"UK3CB_BAF_Vehicles_MAN",
-	"UK3CB_BAF_Vehicles_LandRover",
-	"UK3CB_BAF_Vehicles_MQ9_Reaper",
-	"uksf_reaper",
-	"UK3CB_BAF_Vehicles_Wildcat",
-	"UK3CB_BAF_Vehicles_Merlin",
-	"rksla3_aw159",
-	"uksf_radios",
-	"uksf_common",
-	"uksf_units",
-	"rksla3_aircraft_tug"
 };
 class AddonsMetaData
 {
-	class List
-	{
-		items=19;
-		class Item0
-		{
-			className="A3_Characters_F";
-			name="Arma 3 Alpha - Characters and Clothing";
-			author="Bohemia Interactive";
-			url="https://www.arma3.com";
-		};
-		class Item1
-		{
-			className="uksf_resupply";
-			name="UKSF - Resupply";
-			author="UKSF";
-			url="uk-sf.co.uk";
-		};
-		class Item2
-		{
-			className="uksf_apache";
-			name="UKSF - Apache";
-			author="UKSF";
-			url="uk-sf.co.uk";
-		};
-		class Item3
-		{
-			className="CUP_AirVehicles_CH47";
-			name="CUP_AirVehicles_CH47";
-		};
-		class Item4
-		{
-			className="uksf_air";
-			name="UKSF - Air";
-			author="UKSF";
-			url="uk-sf.co.uk";
-		};
-		class Item5
-		{
-			className="uksf_air_f35";
-			name="UKSF Air - F-35";
-			author="UKSF";
-			url="uk-sf.co.uk";
-		};
-		class Item6
-		{
-			className="A3_Structures_F_Mil";
-			name="Arma 3 - Military Buildings and Structures";
-			author="Bohemia Interactive";
-			url="https://www.arma3.com";
-		};
-		class Item7
-		{
-			className="uksf_vehicles";
-			name="UKSF - Vehicles";
-			author="UKSF";
-			url="uk-sf.co.uk";
-		};
-		class Item8
-		{
-			className="UK3CB_BAF_Vehicles_MAN";
-			name="3CB BAF Vehicles - MAN Truck";
-			author="AUTHOR_3CB";
-			url="www.3commandobrigade.com";
-		};
-		class Item9
-		{
-			className="UK3CB_BAF_Vehicles_LandRover";
-			name="3CB BAF Vehicles - Land Rover";
-			author="3 Commando Brigade";
-			url="www.3commandobrigade.com";
-		};
-		class Item10
-		{
-			className="UK3CB_BAF_Vehicles_MQ9_Reaper";
-			name="3CB BAF Vehicles - MQ-9 Reaper";
-			author="AUTHOR_3CB";
-			url="www.3commandobrigade.com";
-		};
-		class Item11
-		{
-			className="uksf_reaper";
-			name="UKSF - Reaper";
-			author="UKSF";
-			url="uk-sf.co.uk";
-		};
-		class Item12
-		{
-			className="UK3CB_BAF_Vehicles_Wildcat";
-			name="3CB BAF Vehicles - Wildcat";
-			author="3 Commando Brigade";
-			url="www.3commandobrigade.com";
-		};
-		class Item13
-		{
-			className="UK3CB_BAF_Vehicles_Merlin";
-			name="3CB BAF Vehicles - Merlin";
-			author="3 Commando Brigade";
-			url="www.3commandobrigade.com";
-		};
-		class Item14
-		{
-			className="A3_Air_F_Beta";
-			name="Arma 3 Beta - Aircraft";
-			author="Bohemia Interactive";
-			url="https://www.arma3.com";
-		};
-		class Item15
-		{
-			className="uksf_radios";
-			name="UKSF - Radios";
-			author="UKSF";
-			url="uk-sf.co.uk";
-		};
-		class Item16
-		{
-			className="uksf_common";
-			name="UKSF - Common";
-			author="UKSF";
-			url="uk-sf.co.uk";
-		};
-		class Item17
-		{
-			className="uksf_units";
-			name="UKSF - Units";
-			author="UKSF";
-			url="uk-sf.co.uk";
-		};
-		class Item18
-		{
-			className="rksla3_aircraft_tug";
-			name="MX50 Aircraft Tug";
-			author="RKSL_Studios";
-			url="http://www.rkslstudios.info/";
-		};
-	};
 };
 randomSeed=8237654;
 class ScenarioData
@@ -699,7 +544,7 @@ class Mission
 					{
 					};
 					id=129;
-					type="UKSF_Apache_AH1";
+					type="uksf_air_apache_aac";
 				};
 				class Item1
 				{
@@ -1283,7 +1128,7 @@ class Mission
 					{
 					};
 					id=191;
-					type="UK3CB_BAF_MQ9_Reaper";
+					type="uksf_air_reaper_raf";
 					atlOffset=0.10233974;
 				};
 				class Item15

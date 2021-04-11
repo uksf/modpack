@@ -64,7 +64,7 @@ if (!_forceLoad && {!([ASLToAGL _position, _object, (_vectorDirAndUp#0) call CBA
     private _currentTurretMagazines = magazinesAllTurrets _object;
     private _turretPaths = _currentTurretMagazines apply {_x#1};
     _turretPaths = _turretPaths arrayIntersect _turretPaths;
-    private _pylonPaths = (configProperties [EGVAR(common,configVehicles) >> typeOf _object >> "Components" >> "TransportPylonsComponent" >> "Pylons", "isClass _x"]) apply {getArray (_x >> "turret")};
+    private _pylonPaths = (configProperties [configOf _object >> "Components" >> "TransportPylonsComponent" >> "Pylons", "isClass _x"]) apply {getArray (_x >> "turret")};
     private _currentTurretWeapons = _turretPaths apply {[_x, _object weaponsTurret _x]};
     {
         private _turretPath = _x#0;

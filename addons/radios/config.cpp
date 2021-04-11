@@ -7,8 +7,6 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "uksf_air",
-            "uksf_apache",
             "uksf_common",
             "uksf_vehicles"
         };
@@ -21,5 +19,4 @@ class CfgPatches {
 
 #include "CfgChannels.hpp"
 #include "CfgEventHandlers.hpp"
-#include "CfgSoundEffects.hpp"
 #include "CfgVehicles.hpp"

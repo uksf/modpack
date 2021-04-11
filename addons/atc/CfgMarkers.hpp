@@ -33,10 +33,6 @@ class CfgMarkers {
         icon = QPATHTOF(data\markers\icon_wilcat_unarmed_ca.paa);
         texture = QPATHTOF(data\markers\icon_wilcat_unarmed_ca.paa);
     };
-    class GVAR(l39): GVAR(apache) {
-        icon = "CUP\AirVehicles\CUP_AirVehicles_L39\Data\ui\icon_l39_ca.paa";
-        texture = "CUP\AirVehicles\CUP_AirVehicles_L39\Data\ui\icon_l39_ca.paa";
-    };
     class GVAR(f35): GVAR(apache) {
         icon = "u\uksf_air\addons\f35\data\ui\icon.paa";
         texture = "u\uksf_air\addons\f35\data\ui\icon.paa";
