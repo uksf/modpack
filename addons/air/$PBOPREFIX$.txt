@@ -1,6 +1,0 @@
-﻿//<'uksf_air.pbo' properties via Mikero's dos tools, dll version 7.46>
-prefix=u\uksf\addons\air;
-Mikero=DePbo.dll.7.46;
-version=2302dfff;
-PboType=Arma Addon;
-//</properties>
