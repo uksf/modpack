@@ -25,7 +25,7 @@
 #define argOr(x,v)      (argSafe(x)else{v})
 #define push(a,v)       (a)pushBack(v)
 
-"ConfigDumpFileIO" callExtension format ["open:AllInOne.1%1.cpp", (productVersion select 2) % 100];
+"ConfigDumpFileIO" callExtension format ["open:AllInOne%1.cpp", productVersion#2];
 
 private _escapeString = {
     private _source = toArray _this;
@@ -74,7 +74,7 @@ private _dumpConfigTree = {
     private _result = [];
     private _indents = [""];
     private _depth = 0;
-    
+
     private _pushLine = {
         if(_depth >= count _indents) then {
             _indents set [_depth, (_indents select _depth-1) + toString[9]];
@@ -111,7 +111,7 @@ private _dumpConfigTree = {
             "};" call _pushLine;
         };
     };
-    
+
     private _traverseArray = {
         if(_this isEqualType []) exitwith {
             private _array = [];
@@ -127,7 +127,7 @@ private _dumpConfigTree = {
     };
 
     arg(0) call _traverse;
-    
+
     "ConfigDumpFileIO" callExtension "close:yes";
     true
 };

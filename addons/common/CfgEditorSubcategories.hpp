@@ -1,3 +1,6 @@
+class CfgEditorCategories {
+    delete RKSLA3_Airfield_Support;
+};
 class CfgEditorSubcategories {
     // UKSF
     class GVAR(1para) {
@@ -14,6 +17,12 @@ class CfgEditorSubcategories {
     };
     class GVAR(resupply) {
         displayName = "Resupply";
+    };
+    class GVAR(romeos) {
+        displayName = "Romeo Crates";
+    };
+    class GVAR(golfs) {
+        displayName = "Golf Boxes";
     };
     class GVAR(crew) {
         displayName = "Men (Crew)";

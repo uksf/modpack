@@ -1,11 +1,4 @@
 class CfgFactionClasses {
-    class UKSF_GB {
-        displayName = "British Army (UKSF)";
-        icon = "a3\data_f\Flags\flag_uk_co.paa";
-        flag = "a3\data_f\Flags\flag_uk_co.paa";
-        priority = 1;
-        side = 0;
-    };
     class UKSF_Inegal {
         displayName = "Inegal";
         icon = "\A3\Structures_F\Mil\Flags\Data\Mast_civ_CO.paa";

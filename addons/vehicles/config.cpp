@@ -31,6 +31,7 @@ class CfgPatches {
             "UK3CB_BAF_Vehicles_Panther",
             "UK3CB_BAF_Vehicles_RHIB",
             "UK3CB_BAF_Vehicles_Warrior_a3",
+            "rksla3_aircraft_tug",
             QGVAR(prep)
         };
         author = QUOTE(UKSF);

@@ -8,5 +8,5 @@ logoOver = "mod.paa";
 tooltip = "UKSF";
 tooltipOwned = "UKSF";
 overview = "UKSF Mods";
-author = "UKSF SR11 Team";
+author = "UKSF SR3 Team";
 overviewPicture = "modLarge.paa";
