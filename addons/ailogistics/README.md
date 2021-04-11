@@ -1,3 +1,3 @@
-# AI Counter Mortar
+# AI Logistics
 
-An AI system to counter friendly mortars
+An AI system for emulating logistics

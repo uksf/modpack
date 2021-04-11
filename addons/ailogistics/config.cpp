@@ -5,7 +5,8 @@ class CfgPatches {
         name = COMPONENT_NAME;
         units[] = {
             QGVAR(logisticsDestination),
-            QGVAR(logisticsStart)
+            QGVAR(logisticsStart),
+            QGVAR(logisticsPicketGroup)
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;

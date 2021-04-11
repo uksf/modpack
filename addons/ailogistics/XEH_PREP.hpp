@@ -1,4 +1,6 @@
-PREP(logisticsMain);
-PREP(patrol);
-PREP(logisticWaypoints);
+PREP(createLogisticVehicle);
+PREP(createPickets);
 PREP(handleDelete);
+PREP(logisticWaypoints);
+PREP(moduleLogisticsStart);
+PREP(picketBehaviour);
