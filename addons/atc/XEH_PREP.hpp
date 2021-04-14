@@ -1,2 +1,0 @@
-PREP(loop);
-PREP(getMarker);
