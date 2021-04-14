@@ -60,6 +60,8 @@ acex_headless_headlessClients = [];
 [QGVAR(log), {INFO(_this#0)}] call CBA_fnc_addEventHandler;
 [QGVAR(deleteEmptyGroups), {{deleteGroup _x} forEach allGroups}] call CBA_fnc_addEventHandler;
 
+[QGVAR(spawnGroup), {call FUNC(spawnGroup)}] call CBA_fnc_addEventHandler;
+
 #include "initSettings.sqf"
 
 ADDON = true;
