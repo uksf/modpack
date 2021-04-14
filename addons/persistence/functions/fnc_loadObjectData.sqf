@@ -81,7 +81,7 @@ if (!_forceLoad && {!([ASLToAGL _position, _object, (_vectorDirAndUp#0) call CBA
         _object setPylonLoadOut [_forEachIndex + 1, _x#0, true, _pylonPaths select _forEachIndex];
         _object setAmmoOnPylon [_forEachIndex + 1, _x#1];
     } forEach _pylonLoadout;
-    [_object] call EFUNC(weapons,correctPilotPylon);
+    [_object] call EFUNC(air_weapons,correctPilotPylon);
 
     if (finite (_logisticsCargo#0)) then {_object setAmmoCargo _logisticsCargo#0;};
     if (finite (_logisticsCargo#1)) then {_object setFuelCargo _logisticsCargo#1;};
