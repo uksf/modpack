@@ -19,10 +19,7 @@ class CfgPatches {
             "UK3CB_BAF_L135A1_LRPS",
             "CUP_arifle_M4A1_Acog",
             "CUP_lmg_M240_LDS",
-            "CUP_AGM114L_Hellfire_II_Launcher_W",
-            "CUP_AGM114N_Hellfire_II_Launcher_W",
-            "UK3CB_BAF_Javelin_CLU",
-            QGVAR(CMFlareLauncher_C130)
+            "UK3CB_BAF_Javelin_CLU"
         };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
@@ -62,8 +59,7 @@ class CfgPatches {
             "JSRS_SOUNDMOD_Explosions",
             "3CB_L7A2",
             "3CB_L135A1",
-            "fxp_GrenadeSmoke",
-            "rksla3_aw159"
+            "fxp_GrenadeSmoke"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };

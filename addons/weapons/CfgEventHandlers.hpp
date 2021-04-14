@@ -15,11 +15,3 @@ class Extended_PostInit_EventHandlers {
         init = QUOTE(call COMPILE_FILE(XEH_postInit));
     };
 };
-
-class Extended_InitPost_Eventhandlers {
-    class Helicopter {
-        class ADDON {
-            init = QUOTE(call FUNC(correctPilotPylon));
-        };
-    };
-};

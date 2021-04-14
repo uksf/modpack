@@ -15,7 +15,7 @@
 params [["_mode", 0]];
 
 private _vehicle = vehicle ACE_player;
-if (!(_vehicle isKindOf QEGVAR(air,C130_Base))) exitWith {};
+if (!(_vehicle isKindOf QEGVAR(air_c130,base))) exitWith {};
 
 private _loaded = _vehicle getVariable ["ace_cargo_loaded", []];
 private _vivLoaded = getVehicleCargo _vehicle;
