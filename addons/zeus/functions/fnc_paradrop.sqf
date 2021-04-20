@@ -69,9 +69,9 @@ _waypoint setWaypointBehaviour "CARELESS";
     if (!(alive _plane) || {(_position distance2D _end) < 50}) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
         private _remainingUnits = _units select {vehicle _x == _plane};
-        [QEGVAR(common,textTiles), [parseText format ["<t align = 'center' size = '1.2' color = '#FF0000'>FAILED TO JUMP</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 5], _remainingUnits] call CBA_fnc_targetEvent;
         {
-            _x setPosATL ([_fail, 15] call CBA_fnc_randPos);
+            moveOut _x;
+            [QGVAR(paradropFail), [_x, _fail], _x] call CBA_fnc_targetEvent;
         } forEach _remainingUnits;
         {deleteVehicle _x} forEach (crew _plane);
         deleteVehicle _plane;
