@@ -16,6 +16,7 @@
         None
 */
 #define BASE_SPEED 60
+#define CREW_LOADOUT [[],[],[],[],["UKSF_V_Pilot",[]],[],"UK3CB_BAF_H_PilotHelmetHeli_A","",[],["ItemMap","","","ItemCompass","ItemWatch",""]]
 
 params ["_units", "_positionStart", "_positionEnd", ["_altitude", 6000]];
 
@@ -25,32 +26,37 @@ if (!isServer) exitWith {
 
 _altitude = _altitude / 3.28084; // Convert feet to metres
 
-["Dropping in %1 units", count _units] call ace_zeus_fnc_showMessage;
-{
-    [QEGVAR(common,textTiles), [parseText format ["<t align = 'center' size = '1.2' color = '#00CC00'>STANDBY FOR C-130 PICKUP</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 2.5], _x] call CBA_fnc_targetEvent;
-} forEach _units;
+["Paradrop for %1 units", count _units] call ace_zeus_fnc_showMessage;
+[QEGVAR(common,textTiles), [parseText format ["<t align = 'center' size = '1.2' color = '#00CC00'>STANDBY FOR C-130 PICKUP</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 2.5], _units] call CBA_fnc_targetEvent;
 
 private _speed = BASE_SPEED + (random 10);
 private _vectorDirection = _positionStart vectorFromTo _positionEnd;
 private _heading = (_vectorDirection#0 atan2 _vectorDirection#1);
-private _start = _positionStart getPos [2000, _heading - 180];
-private _end = _positionEnd getPos [1000, _heading];
+private _start = _positionStart getPos [3000, _heading - 180];
+private _end = _positionEnd getPos [1500, _heading];
 private _fail = _positionStart getPos [(_positionStart distance2D _positionEnd) / 2, _heading];
 _start set [2, _altitude];
 _end set [2, _altitude];
 _fail set [2, 0.05];
 
-private _plane = createVehicle ["CUP_B_C130J_GB", [0, 0, _altitude], [], 0, "FLY"];
+private _plane = createVehicle [QEGVAR(air_c130,raf), [0, 0, _altitude], [], 0, "FLY"];
 createVehicleCrew _plane;
-_plane setVariable ["acex_headless_blacklist", true, true];
+{_x setUnitLoadout CREW_LOADOUT} forEach crew _plane;
 _plane setPosASL _start;
 _plane setVectorDirAndUp [_vectorDirection, [0, 0, 1]];
 _plane setVelocity (_vectorDirection vectorMultiply _speed);
-_plane setSpeedMode "LIMITED";
-_plane setBehaviour "CARELESS";
-_plane doMove _end;
 _plane flyInHeightASL [_altitude, _altitude, _altitude];
 _plane forceSpeed _speed;
+
+private _pilot = driver _plane;
+private _group = group _pilot;
+_pilot setVariable ["acex_headless_blacklist", true, true];
+_group setSpeedMode "LIMITED";
+_group setBehaviourStrong "CARELESS";
+
+private _waypoint = _group addWaypoint [_end, 0];
+_waypoint setWaypointCompletionRadius 0;
+_waypoint setWaypointBehaviour "CARELESS";
 
 [{
     params ["_args", "_idPFH"];
@@ -61,15 +67,15 @@ _plane forceSpeed _speed;
     if (!(alive _plane) || {(_position distance2D _end) < 50}) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
         private _remainingUnits = assignedCargo _plane;
+        [QEGVAR(common,textTiles), [parseText format ["<t align = 'center' size = '1.2' color = '#FF0000'>FAILED TO JUMP</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 5], _remainingUnits] call CBA_fnc_targetEvent;
         {
-            [QEGVAR(common,textTiles), [parseText format ["<t align = 'center' size = '1.2' color = '#FF0000'>FAILED TO JUMP</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 5], _x] call CBA_fnc_targetEvent;
             _x setPosATL ([_fail, 15] call CBA_fnc_randPos);
         } forEach _remainingUnits;
         {deleteVehicle _x} forEach (crew _plane);
         deleteVehicle _plane;
     };
 
-    if (!_unitsIn && {(_position distance2D _positionStart) < 1500}) then {
+    if (!_unitsIn && {(_position distance2D _positionStart) < 2500}) then {
         _states set [0, true];
         {
             [{
@@ -78,23 +84,20 @@ _plane forceSpeed _speed;
         } forEach _units;
     };
 
-    if (!_positionPreStartReached && {(_position distance2D _positionStart) < 500}) then {
+    if (!_positionPreStartReached && {(_position distance2D _positionStart) < 1000}) then {
         _positionPreStartReached = true;
         _states set [1, true];
-        _plane animate ["ramp_top", 1];
-        _plane animate ["ramp_bottom", 0.7];
-        {
-            [QEGVAR(common,textTiles), [parseText format ["<t align = 'center' size = '1.2' color = '#FFFF00'>STANDBY FOR JUMP</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 2.5], _x] call CBA_fnc_targetEvent;
-        } forEach _units;
+        [_plane, 1] call EFUNC(air_c130,jumpLightControl);
+        [_plane, 1] call EFUNC(air_c130,rampControl);
+        [QEGVAR(common,textTiles), [parseText format ["<t align = 'center' size = '1.2' color = '#FFFF00'>RED LIGHT - STANDBY FOR JUMP</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 2.5], _units] call CBA_fnc_targetEvent;
     };
 
     if (_positionPreStartReached && !_startReached) then {
         private _distance = _position distance2D _positionStart;
         if (_distance > _previousDistanceStart) then {
             _states set [2, true];
-            {
-                [QEGVAR(common,textTiles), [parseText format ["<t align = 'center' size = '1.2' color = '#00CC00'>GREEN LIGHT - JUMP</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 2.5], _x] call CBA_fnc_targetEvent;
-            } forEach _units;
+            [_plane, 2] call EFUNC(air_c130,jumpLightControl);
+            [QEGVAR(common,textTiles), [parseText format ["<t align = 'center' size = '1.2' color = '#00CC00'>GREEN LIGHT - JUMP</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 2.5], _units] call CBA_fnc_targetEvent;
         };
 
         _args set [6, _distance];
@@ -104,8 +107,8 @@ _plane forceSpeed _speed;
         private _distance = _position distance2D _positionEnd;
         if (_distance > _previousDistanceEnd) then {
             _states set [3, true];
-            _plane animate ["ramp_top", 0];
-            _plane animate ["ramp_bottom", 0];
+            [_plane, 0] call EFUNC(air_c130,rampControl);
+            [_plane, 1] call EFUNC(air_c130,jumpLightControl);
             private _remainingUnits = assignedCargo _plane;
             {
                 [QEGVAR(common,textTiles), [parseText format ["<t align = 'center' size = '1.2' color = '#FF0000'>RED LIGHT - DON'T JUMP</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 5], _x] call CBA_fnc_targetEvent;
