@@ -33,7 +33,7 @@ private _speed = BASE_SPEED + (random 10);
 private _vectorDirection = _positionStart vectorFromTo _positionEnd;
 private _heading = (_vectorDirection#0 atan2 _vectorDirection#1);
 private _start = _positionStart getPos [3000, _heading - 180];
-private _end = _positionEnd getPos [1500, _heading];
+private _end = _positionEnd getPos [1000, _heading];
 private _fail = _positionStart getPos [(_positionStart distance2D _positionEnd) / 2, _heading];
 _start set [2, _altitude];
 _end set [2, _altitude];
@@ -53,6 +53,8 @@ private _group = group _pilot;
 _pilot setVariable ["acex_headless_blacklist", true, true];
 _group setSpeedMode "LIMITED";
 _group setBehaviourStrong "CARELESS";
+_pilot disableAi "LIGHTS";
+_plane setCollisionLight true;
 
 private _waypoint = _group addWaypoint [_end, 0];
 _waypoint setWaypointCompletionRadius 0;
@@ -66,7 +68,7 @@ _waypoint setWaypointBehaviour "CARELESS";
     private _position = getPosASL _plane;
     if (!(alive _plane) || {(_position distance2D _end) < 50}) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
-        private _remainingUnits = assignedCargo _plane;
+        private _remainingUnits = _units select {vehicle _x == _plane};
         [QEGVAR(common,textTiles), [parseText format ["<t align = 'center' size = '1.2' color = '#FF0000'>FAILED TO JUMP</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 5], _remainingUnits] call CBA_fnc_targetEvent;
         {
             _x setPosATL ([_fail, 15] call CBA_fnc_randPos);
