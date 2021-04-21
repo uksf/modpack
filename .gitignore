@@ -676,7 +676,7 @@ release
 # Signing keys
 *.biprivatekey
 
-# Tools
-tools/temp
-tools/service.py
-tools/manage.py
+# HEMTT
+releases/*
+keys/*
+.hemtt/local
