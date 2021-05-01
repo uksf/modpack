@@ -470,7 +470,7 @@
     "ItemWatch", \
     "ToolKit", \
     "UK3CB_BAF_Javelin_CLU", \
-    "uksf_atc_terminal", \
+    "uksf_air_atc_terminal", \
     "ItemAndroid", \
     "ade_item_DiveComputer", \
     "ade_item_cylinder_single_6ltr_300bar_compressedAir", \
