@@ -380,6 +380,24 @@ class CfgWeapons {
     class arifle_L119A2_F : arifle_SPAR_01_blk_F {
         magazines[] = { "UK3CB_BAF_556_30Rnd", "UK3CB_BAF_556_30Rnd_T", "30Rnd_556x45_Stanag_red", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag_Tracer_Red" };
         magazineWell[] = {};
+        class Single : Mode_SemiAuto {
+            class BaseSoundModeType;
+            class StandardSound : BaseSoundModeType {
+                soundSetShot[] = { "L119_Shot_SoundSet", "FRAME_CALIBER_5x56MM", "ALL_DIST_TAIL" };
+            };
+            class SilencedSound : BaseSoundModeType {
+                soundSetShot[] = { "3CB_BAF_M4_Closure_SoundSet", "L119A2_ShotSD_SoundSet", "3CB_BAF_Rifle1_SD_Tail_SoundSet" };
+            };
+        };
+        class FullAuto : Mode_FullAuto {
+            class BaseSoundModeType;
+            class StandardSound : BaseSoundModeType {
+                soundSetShot[] = { "L119_Shot_SoundSet", "FRAME_CALIBER_5x56MM", "ALL_DIST_TAIL" };
+            };
+            class SilencedSound : BaseSoundModeType {
+                soundSetShot[] = { "3CB_BAF_M4_Closure_SoundSet", "L119A2_ShotSD_SoundSet", "3CB_BAF_Rifle1_SD_Tail_SoundSet" };
+            };
+        };
         ACE_barrelTwist = 178;
         ACE_barrelLength = 398;
     };

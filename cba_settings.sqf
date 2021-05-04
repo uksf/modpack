@@ -9,7 +9,6 @@ force force A3TI_HD_VISION_SHIP = false;
 force force A3TI_HD_VISION_UAV = false;
 force force A3TI_REMOVE_FILMGRAIN_RHS = true;
 
-
 // ACE Advanced Ballistics
 force force ace_advanced_ballistics_ammoTemperatureEnabled = true;
 force force ace_advanced_ballistics_barrelLengthInfluenceEnabled = true;
@@ -605,6 +604,54 @@ diwako_dui_radar_trackingColor = [0.93,0.26,0.93,1];
 diwako_dui_reset_ui_pos = false;
 diwako_dui_use_layout_editor = false;
 
+// Helicopter Turbulence
+force force TURBULENCE_ENABLE_MASTER = true;
+force force TURBULENCE_ENABLE_WEATHEREFFECT = true;
+force force TURBULENCE_MAX_TURBULENCE = 20;
+force force TURBULENCE_MIN_TURBULENCE = 1;
+
+// LAMBS Danger
+force lambs_danger_cqbRange = 60;
+force lambs_danger_disableAIAutonomousManoeuvres = false;
+lambs_danger_disableAIDeployStaticWeapons = false;
+lambs_danger_disableAIFindStaticWeapons = false;
+force lambs_danger_disableAIHideFromTanksAndAircraft = false;
+force force lambs_danger_disableAIPlayerGroup = false;
+force lambs_danger_disableAIPlayerGroupReaction = false;
+lambs_danger_disableAutonomousFlares = false;
+force lambs_danger_panicChance = 0.1;
+
+// LAMBS Danger Eventhandlers
+force lambs_eventhandlers_ExplosionEventHandlerEnabled = true;
+force lambs_eventhandlers_ExplosionReactionTime = 9;
+
+// LAMBS Danger WP
+force lambs_wp_autoAddArtillery = false;
+
+// LAMBS Main
+force lambs_main_combatShareRange = 200;
+force lambs_main_debug_drawAllUnitsInVehicles = false;
+force lambs_main_debug_Drawing = false;
+force lambs_main_debug_FSM = false;
+force lambs_main_debug_FSM_civ = false;
+force lambs_main_debug_functions = false;
+force lambs_main_debug_RenderExpectedDestination = false;
+lambs_main_disableAICallouts = false;
+lambs_main_disableAIDodge = false;
+lambs_main_disableAIFleeing = false;
+lambs_main_disableAIGestures = false;
+lambs_main_disablePlayerGroupSuppression = false;
+force lambs_main_indoorMove = 0.1;
+force lambs_main_maxRevealValue = 1;
+force lambs_main_minFriendlySuppressionDistance = 5;
+force lambs_main_minSuppressionRange = 28;
+force lambs_main_radioBackpack = 2000;
+lambs_main_radioDisabled = false;
+force lambs_main_radioEast = 500;
+force lambs_main_radioGuer = 500;
+force lambs_main_radioShout = 100;
+force lambs_main_radioWest = 500;
+
 // LAMBS Danger
 force lambs_danger_combatShareRange = 200;
 force lambs_danger_CQB_formations_COLUMN = false;
@@ -645,13 +692,6 @@ force lambs_danger_radio_GUER = 1000;
 force lambs_danger_radio_shout = 50;
 force lambs_danger_radio_WEST = 1000;
 force lambs_danger_RenderExpectedDestination = false;
-
-// LAMBS Danger Eventhandlers
-force lambs_eventhandlers_ExplosionEventHandlerEnabled = true;
-force lambs_eventhandlers_ExplosionReactionTime = 9;
-
-// LAMBS Danger WP
-force lambs_wp_autoAddArtillery = false;
 
 // NMAB Settings
 force force NMAB_setting_particlesEnabled = true;

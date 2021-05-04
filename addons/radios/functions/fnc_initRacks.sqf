@@ -19,8 +19,8 @@ if (_vehicle getVariable [QGVAR(channelsSet), false]) exitWith {};
 private _channels = _vehicle getVariable [QGVAR(rackChannels), []];
 if (_channels isEqualTo []) then {
     private _channelsConfig = configOf _vehicle >> QGVAR(rackChannels);
-    if (isArray _configChannels) then {
-        _channels = getArray _configChannels;
+    if (isArray _channelsConfig) then {
+        _channels = getArray _channelsConfig;
     };
 };
 
@@ -31,16 +31,12 @@ _vehicle setVariable [QGVAR(channelsSet), true, true];
     [{
         params ["_vehicle"];
 
-        private _return = false;
-        if (_vehicle getVariable ["acre_sys_rack_initialized", false]) then {
+        _vehicle getVariable ["acre_sys_rack_initialized", false]
+        && {
             private _radios = ([_vehicle] call acre_api_fnc_getVehicleRacks) apply {[_x] call acre_api_fnc_getMountedRackRadio};
             private _initialisedRadios = ({!([_x] call acre_api_fnc_isBaseRadio)} count _radios);
-            if (_initialisedRadios > 0 && {_initialisedRadios == count _radios}) then {
-                _return = true;
-            };
-        };
-
-        _return
+            _initialisedRadios > 0 && _initialisedRadios == count _radios
+        }
     }, {
         params ["_vehicle", "_channels"];
 

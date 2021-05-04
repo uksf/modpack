@@ -74,5 +74,6 @@ class CfgPatches {
 #include "CfgFunctions.hpp"
 #include "CfgMagazineWells.hpp"
 #include "CfgMagazines.hpp"
+#include "CfgSounds.hpp"
 #include "CfgVehicles.hpp"
 #include "CfgWeapons.hpp"
