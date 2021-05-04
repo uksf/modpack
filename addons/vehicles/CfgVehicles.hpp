@@ -121,6 +121,7 @@ class CfgVehicles {
 #include "vehicles\CfgLandRoverCUP.hpp"
 #include "vehicles\CfgMan.hpp"
 #include "vehicles\CfgMastiff.hpp"
+#include "vehicles\CfgMTVR.hpp"
 #include "vehicles\CfgPanther.hpp"
 #include "vehicles\CfgRidgeback.hpp"
 #include "vehicles\CfgTug.hpp"
