@@ -88,6 +88,7 @@ GVAR(abortedObjectPFHID) = -1;
 
     if (count GVAR(data) > 0 && {(_position distance2D (getPos player)) < 10}) then {
         player setDir _direction;
+        player setPosASL _position;
         player setUnitLoadout _loadout;
         player setDamage _damage;
 

@@ -408,7 +408,7 @@
     "CUP_NVG_PVS15_tan", \
     "CUP_NVG_PVS15_winter", \
     "UK3CB_BAF_HMNVS", \
-    "cxs_lightsticks"
+    "uksf_air_equipment_marshallSticks"
 
 #define MAIN_OP_ITEMS \
     "ACE_ATragMX", \
@@ -470,7 +470,7 @@
     "ItemWatch", \
     "ToolKit", \
     "UK3CB_BAF_Javelin_CLU", \
-    "uksf_atc_terminal", \
+    "uksf_air_atc_terminal", \
     "ItemAndroid", \
     "ade_item_DiveComputer", \
     "ade_item_cylinder_single_6ltr_300bar_compressedAir", \

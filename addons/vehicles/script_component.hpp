@@ -8,6 +8,9 @@
 
 #include "\u\uksf\addons\main\script_macros.hpp"
 
+#define INVALID_TURRET 999
+#define SWAP_TIMEOUT 1
+
 #define COVER_DEPLOY_TIME 15
 
 #define COVER_ACTIONS \
