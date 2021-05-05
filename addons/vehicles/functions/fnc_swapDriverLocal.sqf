@@ -30,7 +30,7 @@ GVAR(driverframe) = diag_frameNo;
     isNull (objectParent _unit)
     && {local _vehicle == (_vehicle turretLocal [-1])}
     && {_swapperCargoIndex == -1 || {isNull (_vehicle getCargoIndex _swapperCargoIndex)}}
-    && {_swapperTurret isEqualTo [] || {isNull (_vehicle turretUnit _swapperTurret)}}
+    && {_swapperTurret isEqualTo [] || {isNull (_vehicle turretUnit _swapperTurret) && {local _vehicle == (_vehicle turretLocal _swapperTurret)}}}
 }, {
     params ["_vehicle", "_unit", "_moveInCode", "_moveInParams"];
     TRACE_1("swap driver local available",_this);
