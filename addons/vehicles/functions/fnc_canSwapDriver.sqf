@@ -18,6 +18,7 @@ params ["_vehicle", "_player"];
 private _driver = driver _vehicle;
 
 !(isNull _driver)
+&& {alive _driver}
 && {_player != _driver}
 && {_driver getVariable ["ACE_isUnconscious", false]}
 && {
