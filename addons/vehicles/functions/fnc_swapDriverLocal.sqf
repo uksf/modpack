@@ -49,7 +49,7 @@ GVAR(driverframe) = diag_frameNo;
 
         LOG_1("Move in of driver after %1 frames",diag_frameno - GVAR(driverframe));
         _unit enableSimulation true;
-        [{[_this, true] call ace_medical_engine_fnc_setUnconsciousAnim}, _unit] call CBA_fnc_execNextFrame;
+        [{[_this#0, true] call ace_medical_engine_fnc_setUnconsciousAnim}, [_unit], 1] call CBA_fnc_waitAndExecute;
     }, _this, SWAP_TIMEOUT, {
         params ["_vehicle", "_unit"];
 
