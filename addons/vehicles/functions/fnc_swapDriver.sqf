@@ -79,9 +79,10 @@ if (_role == "cargo") then {
             _unit enableSimulation true;
         }] call CBA_fnc_waitUntilAndExecute;
     }, _this, SWAP_TIMEOUT * 2, {
-        params ["", "_unit"];
+        params ["_vehicle", "_unit"];
 
         LOG_1("Failed swap available after %1 frames",diag_frameno - GVAR(frame));
+        _unit moveInAny _vehicle;
         _unit enableSimulation true;
     }] call CBA_fnc_waitUntilAndExecute;
 }, [_vehicle, _unit, _currentTurret, _unitMoveBackCode, _unitMoveBackParams]] call CBA_fnc_execNextFrame;

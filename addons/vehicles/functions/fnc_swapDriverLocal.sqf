@@ -58,9 +58,10 @@ GVAR(driverframe) = diag_frameNo;
         _unit enableSimulation true;
     }] call CBA_fnc_waitUntilAndExecute;
 }, _this, SWAP_TIMEOUT * 2, {
-    params ["", "_unit"];
+    params ["_vehicle", "_unit"];
 
     LOG_1("Failed swap out of driver available after %1 frames",diag_frameno - GVAR(driverframe));
+    _unit moveInAny _vehicle;
     _unit enableSimulation true;
 }] call CBA_fnc_waitUntilAndExecute;
 
