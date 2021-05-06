@@ -36,7 +36,6 @@ GVAR(driverframe) = diag_frameNo;
     TRACE_1("swap driver local available",_this);
 
     LOG_1("Swap out of driver available after %1 frames",diag_frameNo - GVAR(driverframe));
-    [_unit, _moveInParams] call _moveInCode;
 
     GVAR(driverframe) = diag_frameNo;
     [{

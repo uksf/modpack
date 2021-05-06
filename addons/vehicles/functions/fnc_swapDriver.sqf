@@ -57,7 +57,6 @@ if (_role == "cargo") then {
         params ["_vehicle", "_unit", "_currentTurret", "_moveBackCode", "_moveBackParams"];
 
         LOG_1("Swap to driver available after %1 frames",diag_frameNo - GVAR(frame));
-        _unit moveInDriver _vehicle;
 
         GVAR(frame) = diag_frameNo;
         [{
