@@ -21,10 +21,6 @@ GVAR(abortedObjects) = [];
 GVAR(abortedObjectInteractionObjects) = [];
 GVAR(abortedObjectPFHID) = -1;
 
-["CAManBase", "respawn", {
-    call FUNC(addPersistenceActions);
-}] call CBA_fnc_addClassEventHandler;
-
 ["ace_throwableThrown", {
     params ["", "_throwable"];
     if (_throwable isKindOf QGVAR(markerAmmo)) then {
@@ -32,16 +28,35 @@ GVAR(abortedObjectPFHID) = -1;
     };
 }] call CBA_fnc_addEventHandler;
 
-["created", {
+addMissionEventHandler ["MarkerCreated", {
+	params ["_marker", "_channelNumber", "", "_local"];
+
+    if (!_local || _channelNumber != 1) exitWith {};
+
     private _serializedMarker = call FUNC(serializeMarker);
     if (count _serializedMarker > 0) then {
         [QGVAR(markerCreated), [_serializedMarker]] call CBA_fnc_serverEvent;
     };
-}] call CBA_fnc_addMarkerEventHandler;
+}];
 
-["deleted", {
+addMissionEventHandler ["MarkerUpdated", {
+	params ["_marker", "_local"];
+
+    if (!_local || (markerChannel _marker) != 1) exitWith {};
+
+    private _serializedMarker = call FUNC(serializeMarker);
+    if (count _serializedMarker > 0) then {
+        [QGVAR(markerCreated), [_serializedMarker]] call CBA_fnc_serverEvent;
+    };
+}];
+
+addMissionEventHandler ["MarkerDeleted", {
+	params ["_marker", "_local"];
+
+    if (!_local) exitWith {};
+
     [QGVAR(markerDeleted), _this] call CBA_fnc_serverEvent;
-}] call CBA_fnc_addMarkerEventHandler;
+}];
 
 [QGVAR(receiveRedeployData), {
     GVAR(data) = _this;
@@ -76,7 +91,8 @@ GVAR(abortedObjectPFHID) = -1;
 [QGVAR(receiveAbortedObjects), {call FUNC(showAbortedObjects)}] call CBA_fnc_addEventHandler;
 
 [QGVAR(firstRespawn), {
-    GVAR(data) params ["_position", "_vehicleState", "_direction", "_animation", "_loadout", "_damage", "_aceStates", "_earplugs", "_attached", "_radios"];
+    GVAR(data) params ["_position", "_vehicleState", "_direction", "_animation", "_loadout", "_damage", "_aceStates", "_earplugs", "_attached", "_radios", ["_diveState", [false]]];
+    TRACE_1("First respawn",GVAR(data));
     //_positionData params ["_position", "_leaderID", "_leaderPosition", "_leaderDirection", "_relativePosition"];
 
     if !(isNil QGVAR(respawn)) then {
@@ -86,9 +102,13 @@ GVAR(abortedObjectPFHID) = -1;
         deleteMarkerLocal GVAR(groupRespawn);
     };*/
 
-    if (count GVAR(data) > 0 && {(_position distance2D (getPos player)) < 10}) then {
+    private _respawnSelection = lbCurSel (uiNamespace getVariable "BIS_RscRespawnControlsMap_ctrlLocList");
+    private _respawnData = ["get", _respawnSelection] call BIS_fnc_showRespawnMenuPositionMetadata;
+    TRACE_2("Respawned at",_respawnSelection,_respawnData);
+
+    if (count GVAR(data) > 0 && {_respawnData#0#0 == RESPAWN_MARKER}) then {
+        DEBUG("Respawn is persistence load");
         player setDir _direction;
-        player setPosASL _position;
         player setUnitLoadout _loadout;
         player setDamage _damage;
 
@@ -121,12 +141,17 @@ GVAR(abortedObjectPFHID) = -1;
             [QGVAR(checkPersistentVehicleExists), [_vehicleState, player]] call CBA_fnc_serverEvent;
         } else {
             [{
-                player playMove ([_this, ANIM_STANDING] select (_this == ANIM_STANDING));
-            }, _animation, 0.2] call CBA_fnc_waitAndExecute;
+                params ["_position", "_animation"];
+
+                player setPosASL _position;
+                player playMove _animation;
+            }, [_position, _animation], 0.5] call CBA_fnc_waitAndExecute;
         };
 
         [[true]] call ace_hearing_fnc_updateVolume;
         [] call ace_hearing_fnc_updateHearingProtection;
+
+        [_diveState] call EFUNC(diving,deserialiseState);
     };
 }] call CBA_fnc_addEventHandler;
 

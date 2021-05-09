@@ -17,7 +17,9 @@ class CfgPatches {
             "RKSL_EOT552",
             "uksf_common",
             "uksf_gear",
-            "uksf_resupply"
+            "uksf_resupply",
+            "uksf_diving",
+            "uksf_air_atc"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };

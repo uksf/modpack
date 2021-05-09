@@ -26,8 +26,6 @@ if (hasInterface) then {
     [QGVAR(hint), {call FUNC(hint)}] call CBA_fnc_addEventHandler;
     [QGVAR(textTiles), {_this spawn BIS_fnc_textTiles}] call CBA_fnc_addEventHandler;
 
-    ["CAManBase", "respawn", {call FUNC(addSelfActions)}, true, nil, true] call CBA_fnc_addClassEventHandler;
-
     GVAR(paradropInProgress) = false;
 };
 

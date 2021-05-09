@@ -20,6 +20,8 @@ if (isMultiplayer && !is3DENMultiplayer) then {
 };
 
 if (hasInterface) then {
+    call FUNC(addSelfActions);
+    
     ["visibleMap", {
         params ["", "_mapOn"];
         [_mapOn] call FUNC(mapPosition);

@@ -69,7 +69,8 @@ private _data = [
     [_unit] call EFUNC(common,serializeAceMedical),
     _unit getVariable ["ACE_hasEarPlugsIn", false],
     (_unit getVariable ["ace_attach_attached", []]) apply {_x#1},
-    [_unit] call EFUNC(radios,serializeRadios)
+    [_unit] call EFUNC(radios,serializeRadios),
+    [_uid] call EFUNC(diving,getPlayerData)
 ];
 TRACE_1("Player disconnect",_data);
 
