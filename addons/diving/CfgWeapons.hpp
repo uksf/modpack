@@ -7,15 +7,10 @@ class CfgWeapons {
         author = "UKSF";
         displayName = "Rebreather (Adv)";
         descriptionShort = "Milspec rebreather for various gases.";
-        hiddenSelectionsTextures[] = { "\A3\characters_f\common\data\diver_equip_nato_co.paa", "\A3\characters_f\common\data\diver_equip_nato_co.paa", "\A3\characters_f\data\visors_ca.paa" };
-        hiddenUnderwaterSelections[] = {"hide"};
-        hiddenUnderwaterSelectionsTextures[] = { "\A3\characters_f\data\visors_ca.paa" };
         class ItemInfo : ItemInfo {
             containerClass = "Supply100";
             armor = 1;
             passThrough = 0.8;
-            hiddenSelectionsTextures[] = { "\A3\characters_f\common\data\diver_equip_nato_co.paa", "\A3\characters_f\common\data\diver_equip_nato_co.paa", "\A3\characters_f\data\visors_ca.paa" };
-            hiddenUnderwaterSelectionsTextures[] = { "\A3\characters_f\data\visors_ca.paa" };
         };
     };
     DEPRECATE_CLASS(ade_item_rebreather,GVAR(rebreather));

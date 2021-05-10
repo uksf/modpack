@@ -35,3 +35,9 @@ class CYLINDER(GVAR(cylinderDouble),varNAME) : GVAR(cylinderDoubleBase) { \
     GVAR(cylinderPercentHe) = varHE; \
     GVAR(usedReplacement) = QGVAR(cylinderDoubleEmpty); \
 }
+
+#define SPEED_NORMAL 0.5
+#define SPEED_FAST 2
+#define AIR_USAGE_IDLE 10
+#define AIR_USAGE_NORMAL 20
+#define AIR_USAGE_FAST 40

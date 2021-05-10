@@ -42,9 +42,11 @@ GVAR(updatePFHID) = [{
         };
     };
 
+    private _speed = vectorMagnitude (velocity player);
+    private _breathingVolumePerMinute = [[AIR_USAGE_IDLE, AIR_USAGE_NORMAL] select (_speed > SPEED_NORMAL), AIR_USAGE_FAST] select (_speed > SPEED_FAST);
+
     GVAR(currentDepth) = (((getPosASL player) select 2) * -1);
     GVAR(currentAmbientPressure) = ((GVAR(currentDepth) / 10) + 1);
-    private _breathingVolumePerMinute = [14.5, 25] select ((speed player) > 9);
     private _currentAirUsage = GVAR(currentAmbientPressure) * (_breathingVolumePerMinute / 60);
     GVAR(currentGasLiters) = (GVAR(currentGasLiters) - _currentAirUsage);
     GVAR(elapsedDiveTime) = GVAR(elapsedDiveTime) + 1;
