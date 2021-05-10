@@ -1,7 +1,7 @@
 class CfgVehicles {
     class UK3CB_BAF_B_Bergen_MTP_Medic_L_A;
     class UK3CB_BAF_B_Bergen_MTP_Radio_L_B;
-    class UKSF_B_Bergen_Medic: UK3CB_BAF_B_Bergen_MTP_Medic_L_A {
+    class UKSF_B_Bergen_Medic : UK3CB_BAF_B_Bergen_MTP_Medic_L_A {
         scope = 1;
         scopeArsenal = 0;
         author = "UKSF";
@@ -54,7 +54,7 @@ class CfgVehicles {
         };
     };
     class UK3CB_BAF_B_Bergen_MTP_Rifleman_L_C;
-    class UK3CB_BAF_B_Bergen_MTP_Rifleman_L_C_AR: UK3CB_BAF_B_Bergen_MTP_Rifleman_L_C {
+    class UK3CB_BAF_B_Bergen_MTP_Rifleman_L_C_AR : UK3CB_BAF_B_Bergen_MTP_Rifleman_L_C {
         scope = 1;
         scopeArsenal = 0;
         author = "UKSF";
@@ -66,7 +66,7 @@ class CfgVehicles {
             };
         };
     };
-    class UK3CB_BAF_B_Bergen_MTP_Rifleman_L_C_MG: UK3CB_BAF_B_Bergen_MTP_Rifleman_L_C_AR {
+    class UK3CB_BAF_B_Bergen_MTP_Rifleman_L_C_MG : UK3CB_BAF_B_Bergen_MTP_Rifleman_L_C_AR {
         displayName = "Bergen MTP MG [BAF]";
         class TransportMagazines {
             class _xx_UK3CB_BAF_762_100Rnd_T {
@@ -75,7 +75,7 @@ class CfgVehicles {
             };
         };
     };
-    class UK3CB_BAF_B_Bergen_MTP_Rifleman_L_C_AA: UK3CB_BAF_B_Bergen_MTP_Rifleman_L_C_AR {
+    class UK3CB_BAF_B_Bergen_MTP_Rifleman_L_C_AA : UK3CB_BAF_B_Bergen_MTP_Rifleman_L_C_AR {
         displayName = "Bergen MTP AA [BAF]";
         class TransportMagazines {
             class _xx_CUP_Stinger_M {
@@ -85,7 +85,7 @@ class CfgVehicles {
         };
     };
     class UK3CB_BAF_B_Bergen_MTP_Engineer_L_A;
-    class UK3CB_BAF_B_Bergen_MTP_Engineer_L_A_Toolkit: UK3CB_BAF_B_Bergen_MTP_Engineer_L_A {
+    class UK3CB_BAF_B_Bergen_MTP_Engineer_L_A_Toolkit : UK3CB_BAF_B_Bergen_MTP_Engineer_L_A {
         displayName = "Bergen MTP Toolkit [BAF]";
         class TransportItems {
             class _xx_ToolKit {
@@ -96,7 +96,7 @@ class CfgVehicles {
         class TransportMagazines {};
     };
     class UK3CB_BAF_B_Bergen_DPMW_Rifleman_A;
-    class UK3CB_BAF_B_Bergen_DPMW_Rifleman_A_AR: UK3CB_BAF_B_Bergen_DPMW_Rifleman_A {
+    class UK3CB_BAF_B_Bergen_DPMW_Rifleman_A_AR : UK3CB_BAF_B_Bergen_DPMW_Rifleman_A {
         scope = 1;
         scopeArsenal = 0;
         author = "UKSF";
@@ -108,7 +108,7 @@ class CfgVehicles {
             };
         };
     };
-    class UK3CB_BAF_B_Bergen_DPMW_Rifleman_A_MG: UK3CB_BAF_B_Bergen_DPMW_Rifleman_A_AR {
+    class UK3CB_BAF_B_Bergen_DPMW_Rifleman_A_MG : UK3CB_BAF_B_Bergen_DPMW_Rifleman_A_AR {
         displayName = "Bergen DPM Wdl MG [BAF]";
         class TransportMagazines {
             class _xx_UK3CB_BAF_762_100Rnd_T {
@@ -117,7 +117,7 @@ class CfgVehicles {
             };
         };
     };
-    class UK3CB_BAF_B_Bergen_DPMW_Rifleman_A_AA: UK3CB_BAF_B_Bergen_DPMW_Rifleman_A_AR {
+    class UK3CB_BAF_B_Bergen_DPMW_Rifleman_A_AA : UK3CB_BAF_B_Bergen_DPMW_Rifleman_A_AR {
         displayName = "Bergen DPM Wdl AA [BAF]";
         class TransportMagazines {
             class _xx_CUP_Stinger_M {
@@ -126,7 +126,7 @@ class CfgVehicles {
             };
         };
     };
-    class UKSF_B_Bergen_Medic_DPMW: UK3CB_BAF_B_Bergen_DPMW_Rifleman_A_AR {
+    class UKSF_B_Bergen_Medic_DPMW : UK3CB_BAF_B_Bergen_DPMW_Rifleman_A_AR {
         displayName = "Bergen DPM Wdl Medic [BAF]";
         class TransportItems {
             class _xx_ACE_packingBandage {
@@ -176,7 +176,7 @@ class CfgVehicles {
         };
         class TransportMagazines {};
     };
-    class UK3CB_BAF_B_Bergen_DPMW_Rifleman_A_Toolkit: UK3CB_BAF_B_Bergen_DPMW_Rifleman_A_AR {
+    class UK3CB_BAF_B_Bergen_DPMW_Rifleman_A_Toolkit : UK3CB_BAF_B_Bergen_DPMW_Rifleman_A_AR {
         displayName = "Bergen DPM Wdl Toolkit [BAF]";
         class TransportItems {
             class _xx_ToolKit {
@@ -187,7 +187,7 @@ class CfgVehicles {
         class TransportMagazines {};
     };
     class UK3CB_BAF_B_Bergen_DDPM_Rifleman_A;
-    class UK3CB_BAF_B_Bergen_DDPM_Rifleman_A_AR: UK3CB_BAF_B_Bergen_DDPM_Rifleman_A {
+    class UK3CB_BAF_B_Bergen_DDPM_Rifleman_A_AR : UK3CB_BAF_B_Bergen_DDPM_Rifleman_A {
         scope = 1;
         scopeArsenal = 0;
         author = "UKSF";
@@ -199,7 +199,7 @@ class CfgVehicles {
             };
         };
     };
-    class UK3CB_BAF_B_Bergen_DDPM_Rifleman_A_MG: UK3CB_BAF_B_Bergen_DDPM_Rifleman_A_AR {
+    class UK3CB_BAF_B_Bergen_DDPM_Rifleman_A_MG : UK3CB_BAF_B_Bergen_DDPM_Rifleman_A_AR {
         displayName = "Bergen DDPM MG [BAF]";
         class TransportMagazines {
             class _xx_UK3CB_BAF_762_100Rnd_T {
@@ -208,7 +208,7 @@ class CfgVehicles {
             };
         };
     };
-    class UK3CB_BAF_B_Bergen_DDPM_Rifleman_A_AA: UK3CB_BAF_B_Bergen_DDPM_Rifleman_A_AR {
+    class UK3CB_BAF_B_Bergen_DDPM_Rifleman_A_AA : UK3CB_BAF_B_Bergen_DDPM_Rifleman_A_AR {
         displayName = "Bergen DDPM AA [BAF]";
         class TransportMagazines {
             class _xx_CUP_Stinger_M {
@@ -217,7 +217,7 @@ class CfgVehicles {
             };
         };
     };
-    class UKSF_B_Bergen_Medic_DDPM: UK3CB_BAF_B_Bergen_DDPM_Rifleman_A {
+    class UKSF_B_Bergen_Medic_DDPM : UK3CB_BAF_B_Bergen_DDPM_Rifleman_A {
         displayName = "Bergen DDPM Medic [BAF]";
         class TransportItems {
             class _xx_ACE_packingBandage {
@@ -267,7 +267,7 @@ class CfgVehicles {
         };
         class TransportMagazines {};
     };
-    class UK3CB_BAF_B_Bergen_DDPM_Rifleman_A_Toolkit: UK3CB_BAF_B_Bergen_DDPM_Rifleman_A_AR {
+    class UK3CB_BAF_B_Bergen_DDPM_Rifleman_A_Toolkit : UK3CB_BAF_B_Bergen_DDPM_Rifleman_A_AR {
         displayName = "Bergen DDPM Toolkit [BAF]";
         class TransportItems {
             class _xx_ToolKit {
@@ -287,7 +287,7 @@ class CfgVehicles {
     class I_soldier_F;
     class I_Soldier_02_F;
     class B_Helipilot_F;
-    class UK3CB_BAF_Soldier_MTP_1para_LongSleeve_base: I_soldier_F {
+    class UK3CB_BAF_Soldier_MTP_1para_LongSleeve_base : I_soldier_F {
         scope = 1;
         scopeCurator = 0;
         author = "UKSF";
@@ -300,7 +300,7 @@ class CfgVehicles {
         hiddenSelections[] = { "Camo", "insignia" };
         hiddenSelectionsTextures[] = { QPATHTOF(data\uniforms\mtp_uk_1para.paa) };
     };
-    class UK3CB_BAF_Soldier_MTP_1para_ShortSleeve_base: I_Soldier_02_F {
+    class UK3CB_BAF_Soldier_MTP_1para_ShortSleeve_base : I_Soldier_02_F {
         scope = 1;
         scopeCurator = 0;
         author = "UKSF";
@@ -313,43 +313,43 @@ class CfgVehicles {
         hiddenSelections[] = { "Camo", "insignia" };
         hiddenSelectionsTextures[] = { QPATHTOF(data\uniforms\mtp_uk_1para.paa) };
     };
-    class UK3CB_BAF_Soldier_MTP_CSMR_LongSleeve_base: UK3CB_BAF_Soldier_MTP_1para_LongSleeve_base {
+    class UK3CB_BAF_Soldier_MTP_CSMR_LongSleeve_base : UK3CB_BAF_Soldier_MTP_1para_LongSleeve_base {
         displayName = "Base Soldier MTP CSMR";
         uniformClass = "UK3CB_BAF_U_CombatUniform_MTP_CSMR";
         hiddenSelections[] = { "Camo", "insignia" };
         hiddenSelectionsTextures[] = { QPATHTOF(data\uniforms\mtp_uk_csmr.paa) };
     };
-    class UK3CB_BAF_Soldier_MTP_CSMR_ShortSleeve_base: UK3CB_BAF_Soldier_MTP_1para_ShortSleeve_base {
+    class UK3CB_BAF_Soldier_MTP_CSMR_ShortSleeve_base : UK3CB_BAF_Soldier_MTP_1para_ShortSleeve_base {
         displayName = "Base Soldier MTP CSMR Rolled";
         uniformClass = "UK3CB_BAF_U_CombatUniform_MTP_CSMR_ShortSleeve";
         hiddenSelections[] = { "Camo", "insignia" };
         hiddenSelectionsTextures[] = { QPATHTOF(data\uniforms\mtp_uk_csmr.paa) };
     };
-    class UK3CB_BAF_Soldier_MTP_Path_LongSleeve_base: UK3CB_BAF_Soldier_MTP_1para_LongSleeve_base {
+    class UK3CB_BAF_Soldier_MTP_Path_LongSleeve_base : UK3CB_BAF_Soldier_MTP_1para_LongSleeve_base {
         displayName = "Base Soldier MTP Pathfinder";
         uniformClass = "UK3CB_BAF_U_CombatUniform_MTP_Path";
         hiddenSelections[] = { "Camo", "insignia" };
         hiddenSelectionsTextures[] = { QPATHTOF(data\uniforms\mtp_uk_path.paa) };
     };
-    class UK3CB_BAF_Soldier_MTP_Path_ShortSleeve_base: UK3CB_BAF_Soldier_MTP_1para_ShortSleeve_base {
+    class UK3CB_BAF_Soldier_MTP_Path_ShortSleeve_base : UK3CB_BAF_Soldier_MTP_1para_ShortSleeve_base {
         displayName = "Base Soldier MTP Pathfinder Rolled";
         uniformClass = "UK3CB_BAF_U_CombatUniform_MTP_Path_ShortSleeve";
         hiddenSelections[] = { "Camo", "insignia" };
         hiddenSelectionsTextures[] = { QPATHTOF(data\uniforms\mtp_uk_path.paa) };
     };
-    class UK3CB_BAF_Soldier_MTP_Sig_LongSleeve_base: UK3CB_BAF_Soldier_MTP_1para_LongSleeve_base {
+    class UK3CB_BAF_Soldier_MTP_Sig_LongSleeve_base : UK3CB_BAF_Soldier_MTP_1para_LongSleeve_base {
         displayName = "Base Soldier MTP Signals";
         uniformClass = "UK3CB_BAF_U_CombatUniform_MTP_Path";
         hiddenSelections[] = { "Camo", "insignia" };
         hiddenSelectionsTextures[] = { QPATHTOF(data\uniforms\mtp_uk_sig.paa) };
     };
-    class UK3CB_BAF_Soldier_MTP_Sig_ShortSleeve_base: UK3CB_BAF_Soldier_MTP_1para_ShortSleeve_base {
+    class UK3CB_BAF_Soldier_MTP_Sig_ShortSleeve_base : UK3CB_BAF_Soldier_MTP_1para_ShortSleeve_base {
         displayName = "Base Soldier MTP Signals Rolled";
         uniformClass = "UK3CB_BAF_U_CombatUniform_MTP_Path_ShortSleeve";
         hiddenSelections[] = { "Camo", "insignia" };
         hiddenSelectionsTextures[] = { QPATHTOF(data\uniforms\mtp_uk_sig.paa) };
     };
-    class UK3CB_BAF_HeliPilot_RAF_base: B_Helipilot_F {
+    class UK3CB_BAF_HeliPilot_RAF_base : B_Helipilot_F {
         scope = 1;
         scopeCurator = 0;
         author = "UKSF";
@@ -363,7 +363,7 @@ class CfgVehicles {
         hiddenSelections[] = { "Camo", "insignia" };
         hiddenSelectionsTextures[] = { QPATHTOF(data\uniforms\pilot_coveralls_raf.paa) };
     };
-    class UKSF_B_ATC_base: B_Helipilot_F {
+    class UKSF_B_ATC_base : B_Helipilot_F {
         scope = 1;
         scopeCurator = 0;
         author = "UKSF";
@@ -381,12 +381,12 @@ class CfgVehicles {
 
     class Bag_Base;
     class tfw_ilbe_b : Bag_Base {
-        maximumLoad = 270; // Original: 240, Kitbag: 280 (Slightly smaller)
-        mass = 60; // Original: 80, Kitbag: 50 (Slightly heavier due to aerial)
+        maximumLoad = 270;  // Original: 240, Kitbag: 280 (Slightly smaller)
+        mass = 60;          // Original: 80, Kitbag: 50 (Slightly heavier due to aerial)
     };
 
     class Supply500;
-    class Supply1000: Supply500 {
+    class Supply1000 : Supply500 {
         author = "Bohemia Interactive";
         maximumLoad = 1000;
     };
