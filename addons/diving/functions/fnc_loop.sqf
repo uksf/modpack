@@ -33,12 +33,8 @@ GVAR(updatePFHID) = [{
     if (!_inWater) exitWith {
         if (GVAR(currentDepth) != 0) then {
             call FUNC(reset);
+            player allowSprint true;
             call FUNC(publishDataState);
-
-            // TODO: continue effects of toxicity
-            // if (GVAR(toxicDeepStopTimeout) < 180) then {
-            //     [{player allowSprint true}, [], 180 - GVAR(toxicDeepStopTimeout)] call CBA_fnc_waitAndExecute;
-            // };
         };
     };
 
@@ -112,7 +108,7 @@ GVAR(updatePFHID) = [{
         GVAR(needDeepStop) = true;
     };
 
-    if ((GVAR(needDecompress)) && !(_depthToDecompress > 1) && !(_depthToDecompress < - 1)) then {
+    if ((GVAR(needDecompress)) && !(_depthToDecompress > 1) && !(_depthToDecompress < -1)) then {
         GVAR(decompressTime) = GVAR(decompressTime) - 1;
     };
 
@@ -122,7 +118,7 @@ GVAR(updatePFHID) = [{
         GVAR(needDecompress) = false;
     };
 
-    if (GVAR(needDeepStop) && !(_depthToDeepStop > 1) && !(_depthToDeepStop < - 1)) then {
+    if (GVAR(needDeepStop) && !(_depthToDeepStop > 1) && !(_depthToDeepStop < -1)) then {
         GVAR(deepStopTime) = GVAR(deepStopTime) - 1;
     };
 
