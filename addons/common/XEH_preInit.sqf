@@ -18,7 +18,7 @@ GVAR(fpsState) = false;
 
 GVAR(respawnPositions) = [];
 
-GVAR(valueCache) = [] call CBA_fnc_hashCreate;
+GVAR(valueCache) = createHashMap;
 
 if (hasInterface) then {
     GVAR(fpsArray) = [];
