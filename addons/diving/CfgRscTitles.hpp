@@ -22,7 +22,7 @@ class RscTitles {
         name = QGVAR(diveComputerDialog);
         movingEnable = 0;
         enableSimulation = 1;
-        onLoad = QUOTE(uiNamespace setVariable [ARR_2(QQGVAR(diveComputerDialog),_this#0)]);
+        onLoad = QUOTE(uiNamespace setVariable [ARR_2(QQGVAR(diveComputerDialog),_this select 0)]);
         fadein = 0;
         fadeout = 0;
         duration = 1e+11;
