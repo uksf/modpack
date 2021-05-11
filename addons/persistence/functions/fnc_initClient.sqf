@@ -20,6 +20,7 @@ GVAR(persistentObjectIconsPFHID) = -1;
 GVAR(abortedObjects) = [];
 GVAR(abortedObjectInteractionObjects) = [];
 GVAR(abortedObjectPFHID) = -1;
+GVAR(selectedRespawn) = "";
 
 ["ace_throwableThrown", {
     params ["", "_throwable"];
@@ -102,13 +103,12 @@ addMissionEventHandler ["MarkerDeleted", {
         deleteMarkerLocal GVAR(groupRespawn);
     };*/
 
-    private _respawnSelection = lbCurSel (uiNamespace getVariable "BIS_RscRespawnControlsMap_ctrlLocList");
-    private _respawnData = ["get", _respawnSelection] call BIS_fnc_showRespawnMenuPositionMetadata;
-    TRACE_2("Respawned at",_respawnSelection,_respawnData);
+    TRACE_1("Respawned at",GVAR(selectedRespawn));
 
-    if (count GVAR(data) > 0 && {_respawnData#0#0 == RESPAWN_MARKER}) then {
+    if (count GVAR(data) > 0 && {GVAR(selectedRespawn) == RESPAWN_MARKER || {(_position distance2D (getPos player)) < 10}}) then {
         DEBUG("Respawn is persistence load");
         player setDir _direction;
+        player setPosASL _position;
         player setUnitLoadout _loadout;
         player setDamage _damage;
 

@@ -24,3 +24,5 @@ class CfgPatches {
 #include "CfgEventHandlers.hpp"
 #include "CfgMagazines.hpp"
 #include "CfgWeapons.hpp"
+#include "RscCommon.hpp"
+#include "RscDisplayMainMap.hpp"

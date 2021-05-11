@@ -23,3 +23,4 @@ PREP(showAbortedObjects);
 PREP(showPersistentObjects);
 PREP(shutdown);
 PREP(startSaveObjectDataPfh);
+PREP(ui_onLoadDisplayRespawn);

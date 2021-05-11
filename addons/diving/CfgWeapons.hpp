@@ -28,7 +28,6 @@ class CfgWeapons {
             mass = 1;
         };
     };
-    DEPRECATE_CLASS(ade_item_DiveComputer,GVAR(diveComputer));
 
     class CBA_MiscItem_ItemInfo;
     class CBA_MiscItem;
