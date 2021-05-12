@@ -4,29 +4,31 @@
         Tim Beswick
 
     Description:
-        Sets selected respawn point on respawn button click
+        Adds ButtonDown event handler to store selected respawn point on respawn
 
     Parameter(s):
-        0 COntrol Group <CONTROL>
+        0 Control Group <CONTROL>
 
     Return Value:
         None
 */
+#define IDC_RSCRESPAWNCONTROLS_HEADERRESPAWNBUTTON 88829
 
 disableSerialization;
 
-with uiNamespace do {
+[{
     params ["_controlGroup"];
 
-    private _parentDisplay = ctrlParent _controlGroup;
 
+    private _parentDisplay = ctrlParent _controlGroup;
     if (_parentDisplay != findDisplay 12) exitWith {};
 
-    (uiNamespace getVariable ["BIS_RscRespawnControlsMap_ctrlHeaderRespawnButton", controlNull]) ctrlAddEventhandler ["ButtonDown", {
+    private _controlRespawnButton = _controlGroup controlsGroupCtrl IDC_RSCRESPAWNCONTROLS_HEADERRESPAWNBUTTON;
+    _controlRespawnButton ctrlAddEventhandler ["ButtonDown", {
         private _respawnSelection = lbCurSel (uiNamespace getVariable "BIS_RscRespawnControlsMap_ctrlLocList");
         private _respawnData = ["get", _respawnSelection] call BIS_fnc_showRespawnMenuPositionMetadata;
         TRACE_2("Respawn button pressed",_respawnSelection,_respawnData);
 
         GVAR(selectedRespawn) = _respawnData#0#0;
     }];
-};
+}, _this] call CBA_fnc_execNextFrame;
