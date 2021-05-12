@@ -124,7 +124,7 @@ GVAR(updatePFHID) = [{
 
     call FUNC(handleEffects);
 
-    if (CBA_missionTime > (GVAR(dataPublishTime) + 10)) then {
+    if (CBA_missionTime > (GVAR(dataPublishTime) + 5)) then {
         GVAR(dataPublishTime) = CBA_missionTime;
         call FUNC(publishDataState);
     };

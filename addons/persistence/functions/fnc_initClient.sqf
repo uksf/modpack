@@ -112,6 +112,16 @@ addMissionEventHandler ["MarkerDeleted", {
         player setUnitLoadout _loadout;
         player setDamage _damage;
 
+        // Workaround for goggles disappearing due to server setting block
+        [{
+            if (goggles player != _this) then {
+                removeGoggles player;
+                if (_this != "") then {
+                    player addGoggles _this;
+                };
+            };
+        }, _loadout#7, 0.1] call CBA_fnc_waitAndExecute;
+
         [player, _aceStates] call EFUNC(common,deserializeAceMedical);
         player setVariable ["ACE_hasEarPlugsIn", _earplugs, true];
         {[player, player, [_x], true] call ace_attach_fnc_attach} forEach _attached;
@@ -145,7 +155,7 @@ addMissionEventHandler ["MarkerDeleted", {
 
                 player setPosASL _position;
                 player playMove _animation;
-            }, [_position, _animation], 0.5] call CBA_fnc_waitAndExecute;
+            }, [_position, _animation], 0.2] call CBA_fnc_waitAndExecute;
         };
 
         [[true]] call ace_hearing_fnc_updateVolume;
