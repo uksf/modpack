@@ -66,39 +66,24 @@ if (_vehicleId != "") exitWith {
 };
 
 [{
-    params ["_position", "_direction"];
+    params ["_position", "_direction", "_animation"];
 
     private _currentPosition = getPosASL player;
     private _currentDirection = getDir player;
+    private _currentAnimation = animationState player;
 
-    if ((_currentPosition distance _position) <= 1 && _currentDirection == _direction) exitWith {
+    if ((_currentPosition distance _position) <= 1 && _currentDirection == _direction && _currentAnimation == _animation) exitWith {
         true
     };
 
-    if ((_currentPosition distance _position) > 1) then {
+    if ((_currentPosition distance _position) > 1 || _currentDirection != _direction) then {
+        player setDir _direction;
         player setPosASL _position;
     };
 
-    if (_currentDirection != _direction) then {
-        player setDir _direction;
+    if (_currentAnimation != _animation) then {
+        player switchMove _animation;
     };
 
     false
-}, {}, [_position, _direction], 1] call CBA_fnc_waitUntilAndExecute;
-
-
-// Don't set animation if diving
-if (_diveState#0 && ((eyePos player)#2) < 0) exitWith {};
-
-[{
-    params ["_animation"];
-
-    if ((animationState player) == _animation) exitWith {
-        true
-    };
-
-    player playMove _animation;
-
-    false
-}, {}, [_animation], 1] call CBA_fnc_waitUntilAndExecute;
-
+}, {}, [_position, _direction, _animation], 1] call CBA_fnc_waitUntilAndExecute;
