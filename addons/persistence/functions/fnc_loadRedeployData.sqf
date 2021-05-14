@@ -73,15 +73,18 @@ if (_vehicleId != "") exitWith {
     private _currentAnimation = animationState player;
 
     if ((_currentPosition distance _position) <= 1 && _currentDirection == _direction && _currentAnimation == _animation) exitWith {
+        DEBUG("State correct");
         true
     };
 
     if ((_currentPosition distance _position) > 1 || _currentDirection != _direction) then {
+        TRACE_4("Pos or dir incorrect",_currentPosition,_position,_currentDirection,_direction);
         player setDir _direction;
         player setPosASL _position;
     };
 
     if (_currentAnimation != _animation) then {
+        TRACE_2("Anim incorrect",_currentAnimation,_animation);
         player switchMove _animation;
     };
 
