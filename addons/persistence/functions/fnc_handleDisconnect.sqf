@@ -20,29 +20,16 @@ TRACE_4("HandleDisconnect",_unit,_id,_uid,_name);
 [GVAR(hashFirstRespawn), _uid, true] call CBA_fnc_hashSet;
 [GVAR(hashBodies), _uid, _unit] call CBA_fnc_hashSet;
 
-TRACE_2("Goggles",(getUnitLoadout _unit)#7, goggles _unit);
+private _loadout = [getUnitLoadout _unit] call EFUNC(radios,sanitiseLoadout);
+private _facewear = _unit getVariable [QGVAR(facewear), goggles _unit];
+TRACE_1("Loadout before",_loadout);
+if (_loadout#7 != _facewear) then {
+    _loadout set [7, _facewear];
+};
+TRACE_2("Loadout after",_loadout,_facewear);
+
 private _data = [
     getPosASL _unit,
-    /*[_unit] call {
-        params ["_unit"];
-        private _position = getPosASL _unit;
-        private _group = group _unit;
-        private _leader = leader _group;
-        private _leaderID = -1;
-        private _leaderPosition = [];
-        private _leaderDirection = -1;
-        private _offset = [];
-        if (_unit == _leader) then {
-            _leader = ((units _group) - [_unit])#0;
-        };
-        if ((_unit distance2D _leader) < 500) then {
-            _leaderID = getPlayerUID _leader;
-            _leaderPosition = getPosASL _leader;
-            _leaderDirection = getDir _leader;
-            _offset = _leader worldToModel _position;
-        };
-        [_position, _leaderID, _leaderPosition, _leaderDirection, _offset]
-    },*/
     [_unit] call {
         params ["_unit"];
 
@@ -65,7 +52,7 @@ private _data = [
     },
     direction _unit,
     animationState _unit,
-    ([getUnitLoadout _unit] call EFUNC(radios,sanitiseLoadout)),
+    _loadout,
     damage _unit,
     [_unit] call EFUNC(common,serializeAceMedical),
     _unit getVariable ["ACE_hasEarPlugsIn", false],
@@ -80,3 +67,24 @@ GVAR(dataNamespace) setVariable [_uid, _data];
 if (GVAR(dataSaved)) then {
     [_unit] call FUNC(saveObjectData);
 };
+
+/*[_unit] call {
+    params ["_unit"];
+    private _position = getPosASL _unit;
+    private _group = group _unit;
+    private _leader = leader _group;
+    private _leaderID = -1;
+    private _leaderPosition = [];
+    private _leaderDirection = -1;
+    private _offset = [];
+    if (_unit == _leader) then {
+        _leader = ((units _group) - [_unit])#0;
+    };
+    if ((_unit distance2D _leader) < 500) then {
+        _leaderID = getPlayerUID _leader;
+        _leaderPosition = getPosASL _leader;
+        _leaderDirection = getDir _leader;
+        _offset = _leader worldToModel _position;
+    };
+    [_position, _leaderID, _leaderPosition, _leaderDirection, _offset]
+},*/

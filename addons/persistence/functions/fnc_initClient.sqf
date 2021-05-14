@@ -59,6 +59,10 @@ addMissionEventHandler ["MarkerDeleted", {
     [QGVAR(markerDeleted), _this] call CBA_fnc_serverEvent;
 }];
 
+["loadout", {
+    player setVariable [QGVAR(facewear), goggles player, true];
+}] call CBA_fnc_addPlayerEventHandler;
+
 [QGVAR(receiveRedeployData), {
     GVAR(data) = _this;
     TRACE_1("Receiving redeploy data",GVAR(data));

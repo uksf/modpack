@@ -91,6 +91,7 @@ if (_vehicleId != "") exitWith {
     false
 }, {}, [_position, _direction, _animation], 1] call CBA_fnc_waitUntilAndExecute;
 
+// TODO: Might not need this
 // Server setting to block profile glasses causes the saved loadout glasses to not load correctly.
 [{
     params ["_glasses"];
