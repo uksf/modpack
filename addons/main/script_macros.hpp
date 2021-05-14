@@ -104,6 +104,7 @@ class TransportWeapons {}
 #define DEPRECATE_CLASS(CLASS,BASE) class CLASS : BASE { \
     scope = 1; \
     scopeCurator = 0; \
+    scopeArsenal = 0; \
     class Attributes { \
         class GVAR(deprecated) { \
             property = QGVAR(deprecated); \
@@ -124,6 +125,7 @@ DEPRECATE_CLASS(CLASS,BASE)
 #define HIDE_CLASS(CLASS,BASE) class CLASS : BASE { \
     scope = 0; \
     scopeCurator = 0; \
+    scopeArsenal = 0; \
 }
 
 #define HIDE_CLASS_WITH_BASE(CLASS,BASE) class BASE; \

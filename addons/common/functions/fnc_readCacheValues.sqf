@@ -16,12 +16,12 @@
 */
 params [["_name", "", [""]], ["_configCallback", {}, [{}]], ["_defaultValue", ""]];
 
-private _value = [GVAR(valueCache), _name] call CBA_fnc_hashGet;
+private _value = GVAR(valueCache) get _name;
 if (isNil "_value") then {
     private _config = call _configCallback;
     _value = [_config, _defaultValue] call FUNC(getConfigEntry);
 
-    [GVAR(valueCache), _name, _value] call CBA_fnc_hashSet;
+    GVAR(valueCache) insert [[_name, _value]];
 };
 
 _value

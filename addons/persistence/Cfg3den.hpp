@@ -18,7 +18,7 @@ class Cfg3DEN {
                         control = QGVAR(Edit);
                         displayName = QUOTE(Persistence ID);
                         tooltip = QUOTE(Set persistence ID - Must be unique);
-                        expression = QUOTE(if (!is3DEN && { isServer }) then {[ARR_2(_this,_value)] call FUNC(markObjectAsPersistent) };);
+                        expression = QUOTE(if (!is3DEN && {isServer}) then {[ARR_2(_this,_value)] call FUNC(markObjectAsPersistent) };);
                         typeName = "STRING";
                         defaultValue = "''";
                         validate = "variable";

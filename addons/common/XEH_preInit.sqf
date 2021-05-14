@@ -18,15 +18,13 @@ GVAR(fpsState) = false;
 
 GVAR(respawnPositions) = [];
 
-GVAR(valueCache) = [] call CBA_fnc_hashCreate;
+GVAR(valueCache) = createHashMap;
 
 if (hasInterface) then {
     GVAR(fpsArray) = [];
 
     [QGVAR(hint), {call FUNC(hint)}] call CBA_fnc_addEventHandler;
     [QGVAR(textTiles), {_this spawn BIS_fnc_textTiles}] call CBA_fnc_addEventHandler;
-
-    ["CAManBase", "respawn", {call FUNC(addSelfActions)}, true, nil, true] call CBA_fnc_addClassEventHandler;
 
     GVAR(paradropInProgress) = false;
 };

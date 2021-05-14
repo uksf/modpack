@@ -14,7 +14,7 @@
     Return Value:
         ID <STRING>
 */
-if (!is3DEN) exitWith {};
+if !(is3DEN) exitWith {};
 
 if (_this isEqualTo []) exitWith {
     {[_x] call FUNC(edenAttributeChanged);} forEach (all3DENEntities select 0);
@@ -22,7 +22,7 @@ if (_this isEqualTo []) exitWith {
 
 params ["_object", ["_persistent", false], ["_delete", false]];
 
-if (!_persistent) then {
+if !(_persistent) then {
     _persistent = (_object get3DENAttribute QGVAR(persistent))#0;
 };
 
@@ -30,7 +30,6 @@ private _id = (_object get3DENAttribute QGVAR(persistenceID))#0;
 if (_id isEqualType true) then {
     _id = "";
 };
-
 
 if (_delete) exitWith {
     _object clear3DENAttribute QGVAR(persistenceID);

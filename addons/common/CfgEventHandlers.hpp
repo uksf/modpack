@@ -17,11 +17,6 @@ class Extended_PostInit_EventHandlers {
 };
 
 class Extended_InitPost_EventHandlers {
-    class CAManBase {
-        class ADDON {
-            init = QUOTE(call FUNC(addSelfActions));
-        };
-    };
     // CUP_NVG_PVS7, CUP_NVG_HMNVS, CUP_NVG_PVS14
     NONVG(CUP_Creatures_Military_ACR_Soldier_Base); // ACR
     NONVG(CUP_Creatures_Military_CDF_Soldier_Base); // CDF

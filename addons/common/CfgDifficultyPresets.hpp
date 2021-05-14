@@ -7,7 +7,7 @@ class CfgDifficultyPresets {
         class Options {
             cameraShake = 1;
             stanceIndicator = 1;
-            thirdPersonView = 1;
+            thirdPersonView = 2;
             weaponInfo = 1;
             autoReport = 0;
             commands = 0;
