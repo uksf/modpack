@@ -66,27 +66,31 @@ if (_vehicleId != "") exitWith {
 };
 
 [{
-    params ["_position", "_direction", "_animation"];
+    params ["_position", "_direction"];
 
-    private _currentPosition = getPosASL player;
-    private _currentDirection = getDir player;
-    private _currentAnimation = animationState player;
-
-    if ((_currentPosition distance _position) <= 1 && _currentDirection == _direction && _currentAnimation == _animation) exitWith {
-        DEBUG("State correct");
+    if (((getPosASL player) distance _position) <= 1 && (round (getDir player)) == _direction) exitWith {
         true
     };
 
-    if ((_currentPosition distance _position) > 1 || _currentDirection != _direction) then {
-        TRACE_4("Pos or dir incorrect",_currentPosition,_position,_currentDirection,_direction);
-        player setDir _direction;
-        player setPosASL _position;
-    };
-
-    if (_currentAnimation != _animation) then {
-        TRACE_2("Anim incorrect",_currentAnimation,_animation);
-        player switchMove _animation;
-    };
+    player setDir _direction;
+    player setPosASL _position;
 
     false
-}, {}, [_position, _direction, _animation], 1] call CBA_fnc_waitUntilAndExecute;
+}, {}, [_position, round _direction], 0.5] call CBA_fnc_waitUntilAndExecute;
+
+// Don't set animation if diving, does not work
+if (_divingState#0 && _position#2 < 0) exitWith {};
+
+[{
+    params ["_animation"];
+
+    private _currentAnimation = animationState player;
+
+    if (animationState player == _animation) exitWith {
+        true
+    };
+
+    player switchMove _animation;
+
+    false
+}, {}, [_animation], 0.5] call CBA_fnc_waitUntilAndExecute;
