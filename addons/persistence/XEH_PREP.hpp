@@ -14,6 +14,7 @@ PREP(initClient);
 PREP(initServer);
 PREP(loadAllObjectData);
 PREP(loadObjectData);
+PREP(loadRedeployData);
 PREP(markObjectAsPersistent);
 PREP(saveData);
 PREP(saveObjectData);
