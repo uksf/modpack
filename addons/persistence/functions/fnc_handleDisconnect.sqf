@@ -20,6 +20,7 @@ TRACE_4("HandleDisconnect",_unit,_id,_uid,_name);
 [GVAR(hashFirstRespawn), _uid, true] call CBA_fnc_hashSet;
 [GVAR(hashBodies), _uid, _unit] call CBA_fnc_hashSet;
 
+TRACE_2("Goggles",(getUnitLoadout _unit)#7, goggles _unit);
 private _data = [
     getPosASL _unit,
     /*[_unit] call {
