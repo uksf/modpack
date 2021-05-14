@@ -66,13 +66,12 @@ if (_vehicleId != "") exitWith {
 };
 
 [{
-    params ["_position", "_direction", "_animation"];
+    params ["_position", "_direction"];
 
     private _currentPosition = getPosASL player;
     private _currentDirection = getDir player;
-    private _currentAnimation = animationState player;
 
-    if ((_currentPosition distance _position) <= 1 && _currentDirection == _direction && _currentAnimation == _animation) exitWith {
+    if ((_currentPosition distance _position) <= 1 && _currentDirection == _direction) exitWith {
         true
     };
 
@@ -84,27 +83,22 @@ if (_vehicleId != "") exitWith {
         player setDir _direction;
     };
 
-    if (_currentAnimation != _animation) then {
-        player playMove _animation;
-    };
-
     false
-}, {}, [_position, _direction, _animation], 1] call CBA_fnc_waitUntilAndExecute;
+}, {}, [_position, _direction], 1] call CBA_fnc_waitUntilAndExecute;
 
-// TODO: Might not need this
-// Server setting to block profile glasses causes the saved loadout glasses to not load correctly.
+
+// Don't set animation if diving
+if (_diveState#0 && ((eyePos player)#2) < 0) exitWith {};
+
 [{
-    params ["_glasses"];
+    params ["_animation"];
 
-    if (goggles player == _glasses) exitWith {
+    if ((animationState player) == _animation) exitWith {
         true
     };
 
-    removeGoggles player;
-    if (_glasses != "") then {
-        player addGoggles _this;
-    };
+    player playMove _animation;
 
     false
-}, {}, [_loadout#7], 1] call CBA_fnc_waitUntilAndExecute;
+}, {}, [_animation], 1] call CBA_fnc_waitUntilAndExecute;
 

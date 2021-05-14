@@ -20,13 +20,12 @@ TRACE_4("HandleDisconnect",_unit,_id,_uid,_name);
 [GVAR(hashFirstRespawn), _uid, true] call CBA_fnc_hashSet;
 [GVAR(hashBodies), _uid, _unit] call CBA_fnc_hashSet;
 
+// Fix for disappearing facewear
 private _loadout = [getUnitLoadout _unit] call EFUNC(radios,sanitiseLoadout);
 private _facewear = _unit getVariable [QGVAR(facewear), goggles _unit];
-TRACE_1("Loadout before",_loadout);
 if (_loadout#7 != _facewear) then {
     _loadout set [7, _facewear];
 };
-TRACE_2("Loadout after",_loadout,_facewear);
 
 private _data = [
     getPosASL _unit,
