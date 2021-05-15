@@ -26,7 +26,7 @@ if !(isNil QGVAR(respawn)) then {
 
 TRACE_1("Respawned at",GVAR(selectedRespawn));
 
-if (GVAR(data) isEqualTo [] || {GVAR(selectedRespawn) != RESPAWN_MARKER && {(_position distance2D (getPos player)) > 5}}) exitWith {};
+if (isNil QGVAR(data) || {GVAR(data) isEqualTo []} || {GVAR(selectedRespawn) != RESPAWN_MARKER && {(_position distance2D (getPos player)) > 5}}) exitWith {};
 
 DEBUG("Respawn is redeploy");
 
