@@ -128,7 +128,7 @@ addMissionEventHandler ["HandleDisconnect", {call FUNC(handleDisconnect)}];
 [QGVAR(markerCreated), {
     params ["_serializedMarker"];
 
-    GVAR(mapMarkers) deleteAt (GVAR(mapMarkers) findIf {_x#0 == _marker});
+    GVAR(mapMarkers) deleteAt (GVAR(mapMarkers) findIf {_x#0 == _serializedMarker#0});
     GVAR(mapMarkers) pushBack _serializedMarker;
 }] call CBA_fnc_addEventHandler;
 
