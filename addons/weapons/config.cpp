@@ -59,7 +59,7 @@ class CfgPatches {
             "JSRS_SOUNDMOD_Explosions",
             "3CB_L7A2",
             "3CB_L135A1",
-            "fxp_GrenadeSmoke"
+            // "fxp_GrenadeSmoke" // TODO_Debug: Undo once deemed not cause of server instability
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
