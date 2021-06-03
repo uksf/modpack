@@ -228,11 +228,7 @@
     "launch_MRAWS_olive_F", \
     "launch_MRAWS_green_F", \
     "launch_MRAWS_sand_F", \
-    "CUP_arifle_mk18_black", \
-    "arifle_L119A2_S_F", \
-    "arifle_L119A2_S_F_NC", \
-    "arifle_L119A2_S_G_F", \
-    "arifle_L119A2_S_D_F"
+    "CUP_arifle_mk18_black"
 
 #define MAIN_OP_ATTACHMENTS \
     "RKSL_optic_LDS", \
@@ -878,3 +874,10 @@
     "G_B_Diving"
 
 #define MAIN_OP_GEAR [MAIN_OP_MAGAZINES, MAIN_OP_WEAPONS, MAIN_OP_ATTACHMENTS, MAIN_OP_NVGS, MAIN_OP_ITEMS, MAIN_OP_UNIFORMS, MAIN_OP_VESTS, MAIN_OP_BACKPACKS, MAIN_OP_HELMETS, MAIN_OP_GLASSES]
+
+// TODO_Debug: Undo once deemed not cause of server instability
+// , \
+//     "arifle_L119A2_S_F", \
+//     "arifle_L119A2_S_F_NC", \
+//     "arifle_L119A2_S_G_F", \
+//     "arifle_L119A2_S_D_F"
