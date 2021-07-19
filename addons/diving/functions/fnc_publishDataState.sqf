@@ -13,7 +13,6 @@
         Nothing
 */
 
-// TODO_Debug: Undo once deemed not cause of server instability
-// private _data = call FUNC(serialiseState);
+private _data = call FUNC(serialiseState);
 
-// [QGVAR(playerDataPublish), [getPlayerUID player, _data]] call CBA_fnc_serverEvent;
+[QGVAR(playerDataPublish), [getPlayerUID player, _data]] call CBA_fnc_serverEvent;
