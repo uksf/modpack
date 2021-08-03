@@ -1,5 +1,5 @@
 PREP(getRoadSide);
-PREP(setupSuicideIEDs);
+PREP(setWaypoint);
 PREP(moduleIEDArea);
 PREP(moduleVBIEDArea);
 PREP(moduleIEDExcludeArea);

@@ -7,7 +7,6 @@ ADDON = false;
 #include "initSettings.sqf"
 
 // code here
-GVAR(suicideIEDAreas) = [];
 GVAR(iedExcludeAreas) = [];
 
 ADDON = true;

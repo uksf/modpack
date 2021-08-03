@@ -80,35 +80,14 @@ class CfgVehicles {
     class GVAR(suicidePlacementModule) : GVAR(module) {
         scope = 2;
         displayName = "(IED) Suicide IED Placement Zone";
+        canSetArea = 1;
+        canSetAreaHeight = 0;
+        canSetAreaShape = 1;
         // icon = "a3\ui_f\data\gui\cfg\hints\ieds_ca.paa";
         // portrait = "a3\ui_f\data\gui\cfg\hints\ieds_ca.paa";
         function = QFUNC(moduleSuicideIEDArea);
 
         class Attributes : AttributesBase {
-            class GVAR(suicideIEDBoolean) {
-                property = QGVAR(suicideIEDBoolean);
-                displayName = "Sucide IED";
-                tooltip = "Tick for suicide bombers. Note they are placed at the start of a mission.";
-                control = "Checkbox";
-                defaultValue = true;
-                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(suicideIEDBoolean),_value,true)]);
-            };
-            class GVAR(suicideIEDInCarBoolean) {
-                property = QGVAR(suicideIEDInCarBoolean);
-                displayName = "Sucide bomber in car ";
-                tooltip = "Tick for suicide bombers to be in cars. Note they are placed at the start of a mission.";
-                control = "Checkbox";
-                defaultValue = true;
-                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(suicideIEDInCarBoolean),_value,true)]);
-            };
-            class GVAR(suicideIEDVehicleClasses) {
-                property = QGVAR(suicideIEDVehicleClasses);
-                displayName = "Suicide Backpack / Vest Classnames";
-                tooltip = "Backpack or vest classnames for bombers not in cars. Comma-separated list of class names in single quotes, no spaces";
-                control = "Edit";
-                defaultValue = "[]";
-                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(suicideIEDVehicleClasses),_value,true)]);
-            };
             class GVAR(suicideIEDClasses) {
                 property = QGVAR(suicideIEDClasses);
                 displayName = "Suicide Classnames";
@@ -119,11 +98,27 @@ class CfgVehicles {
             };
             class GVAR(suicideIEDItemClasses) {
                 property = QGVAR(suicideIEDItemClasses);
-                displayName = "Suicide Backpack / Vest Classnames";
-                tooltip = "Backpack or vest classnames for bombers not in cars. Comma-separated list of class names in single quotes, no spaces";
+                displayName = "Suicide Backpack Classnames";
+                tooltip = "Backpack classnames for bombers not in cars. Comma-separated list of class names in single quotes, no spaces";
                 control = "Edit";
                 defaultValue = "[]";
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(suicideIEDItemClasses),_value,true)]);
+            };
+            class GVAR(suicideIEDInCarBoolean) {
+                property = QGVAR(suicideIEDInCarBoolean);
+                displayName = "Use vehicle";
+                tooltip = "Tick for suicide bombers to be in cars. Note they are placed at the start of a mission.";
+                control = "Checkbox";
+                defaultValue = true;
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(suicideIEDInCarBoolean),_value,true)]);
+            };
+            class GVAR(suicideIEDVehicleClasses) {
+                property = QGVAR(suicideIEDVehicleClasses);
+                displayName = "Vehicle classes";
+                tooltip = "Vehicles for suicide bombers. Comma-separated list of class names in single quotes, no spaces";
+                control = "Edit";
+                defaultValue = "[]";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(suicideIEDVehicleClasses),_value,true)]);
             };
         };
     };
