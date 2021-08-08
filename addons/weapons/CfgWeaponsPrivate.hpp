@@ -1,6 +1,10 @@
 class CUP_launch_NLAW_loaded: Launcher_Base_F {
     scope = 1;
 };
+class CUP_launch_NLAW: CUP_launch_NLAW_Loaded {
+    scope = 1;
+    scopeArsenal = 1;
+};
 class CUP_launch_Javelin: Launcher_Base_F {
     scope = 1;
 };

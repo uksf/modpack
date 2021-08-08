@@ -56,7 +56,7 @@ class GVAR(g3) : GVAR(gx) {
     };
     class TransportWeapons {
         MACRO_ADDWEAPON(UK3CB_BAF_AT4_CS_AT_Launcher,5);
-        MACRO_ADDWEAPON(UK3CB_BAF_NLAW_Launcher,5);
+        MACRO_ADDWEAPON(launch_NLAW_F,5);
     };
 };
 class GVAR(g4) : GVAR(gx) {

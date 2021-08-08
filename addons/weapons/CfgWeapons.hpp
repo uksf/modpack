@@ -580,21 +580,13 @@ class CfgWeapons {
     };
     class launch_NLAW_F : Launcher_Base_F {
         modes[] = { "Overfly", "Single" };
-    };
-    class UK3CB_BAF_NLAW_Launcher : launch_NLAW_F {
-        magazines[] = { "ACE_PreloadedMissileDummy" };
-        magazineWell[] = { "NLAW" };
-        ACE_UsedTube = "ACE_launch_NLAW_Used_F";
-        ace_nlaw_enabled = 1;
-        uk3cb_used_launcher = "";
-        canLock = 1;
-        ace_overpressure_priority = 1;
-        ace_overpressure_angle = 30;
-        ace_overpressure_range = 2;
-        ace_overpressure_damage = 0.6;
-    };
-    class ACE_launch_NLAW_Used_F : launch_NLAW_F {
-        modelOptics = "\UK3CB_BAF_Weapons\addons\UK3CB_BAF_Weapons_Launchers\uk3cb_nlaw_optic.p3d";
+        class WeaponSlotsInfo: WeaponSlotsInfo {
+            mass = 125;
+        };
+        descriptionShort = "Short-range fire-and-forget anti-tank missile system";
+        class Library{
+            libTextDesc = "The NLAW is a short-range fire-and-forget anti-tank missile system.";
+        };
     };
     class CBA_MiscItem;
     class CBA_MiscItem_ItemInfo;
@@ -612,16 +604,6 @@ class CfgWeapons {
             allowedSlots[] = { 901 };
         };
     };
-    // class UK3CB_BAF_Javelin_CLU : Binocular {
-    //     icon = "iconObject_circle";
-    //     simulation = "Weapon";
-    //     type = 131072;
-    //     muzzles[] = {};
-    //     class ItemInfo : CBA_MiscItem_ItemInfo {
-    //         mass = 141;
-    //         allowedSlots[] = { 901 };
-    //     };
-    // };
     class launch_Titan_short_base;
     class launch_B_Titan_short_F : launch_Titan_short_base {
         class WeaponSlotsInfo;

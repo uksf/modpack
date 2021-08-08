@@ -204,7 +204,7 @@
     "UK3CB_BAF_L85A3_UGL", \
     "UK3CB_BAF_L9A1", \
     "UK3CB_BAF_M6", \
-    "UK3CB_BAF_NLAW_Launcher", \
+    "launch_NLAW_F", \
     "UK3CB_BAF_Soflam_Laserdesignator", \
     "SSQN_L119A1_CQB", \
     "SSQN_L119A1_CQB_C1", \
