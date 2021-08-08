@@ -413,6 +413,12 @@
     "CUP_NVG_PVS15_tan", \
     "CUP_NVG_PVS15_winter", \
     "UK3CB_BAF_HMNVS", \
+    "ACE_NVG_Pilot_WP", \
+    "CUP_NVG_PVS15_black_WP", \
+    "CUP_NVG_PVS15_green_WP", \
+    "CUP_NVG_PVS15_tan_WP", \
+    "CUP_NVG_PVS15_winter_WP", \
+    "UK3CB_BAF_HMNVS_WP", \
     "uksf_air_equipment_marshallSticks"
 
 #define MAIN_OP_ITEMS \

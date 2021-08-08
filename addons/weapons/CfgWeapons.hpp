@@ -281,12 +281,40 @@ class CfgWeapons {
         ace_nightvision_border = QPATHTOF(data\nvg_mask_binos_large_4096.paa);
         modelOptics = "";
     };
+    class ACE_NVG_Pilot_WP : ACE_NVG_Pilot {
+        displayName = "Pilot NVG (WP)";
+        colorPreset[] = {0, {0.0, 0.0, 0.0, 0.0}, {1.1, 0.8, 1.9, 0.9}, {1, 1, 6, 0.0}};
+    };
     class NVGoggles;
     class UK3CB_BAF_HMNVS : NVGoggles {
         ace_nightvision_generation = 3;
         ace_nightvision_bluRadius = 0.20;
         ace_nightvision_border = QPATHTOF(data\nvg_mask_large_4096.paa);
         modelOptics = "";
+    };
+    class UK3CB_BAF_HMNVS_WP : UK3CB_BAF_HMNVS {
+        displayName = "Head-Mounted NV System (WP) [BAF]";
+        colorPreset[] = {0, {0.0, 0.0, 0.0, 0.0}, {1.1, 0.8, 1.9, 0.9}, {1, 1, 6, 0.0}};
+    };
+    class CUP_NVG_PVS15_black;
+    class CUP_NVG_PVS15_black_WP : CUP_NVG_PVS15_black {
+        displayname = "AN/PVS-15 WP (Black)";
+        colorPreset[] = {0, {0.0, 0.0, 0.0, 0.0}, {1.1, 0.8, 1.9, 0.9}, {1, 1, 6, 0.0}};
+    };
+    class CUP_NVG_PVS15_green;
+    class CUP_NVG_PVS15_green_WP : CUP_NVG_PVS15_green {
+        displayname = "AN/PVS-15 WP (Green)";
+        colorPreset[] = {0, {0.0, 0.0, 0.0, 0.0}, {1.1, 0.8, 1.9, 0.9}, {1, 1, 6, 0.0}};
+    };
+    class CUP_NVG_PVS15_tan;
+    class CUP_NVG_PVS15_tan_WP : CUP_NVG_PVS15_tan {
+        displayname = "AN/PVS-15 WP (Tan)";
+        colorPreset[] = {0, {0.0, 0.0, 0.0, 0.0}, {1.1, 0.8, 1.9, 0.9}, {1, 1, 6, 0.0}};
+    };
+    class CUP_NVG_PVS15_winter;
+    class CUP_NVG_PVS15_winter_WP : CUP_NVG_PVS15_winter {
+        displayname = "AN/PVS-15 WP (Winter)";
+        colorPreset[] = {0, {0.0, 0.0, 0.0, 0.0}, {1.1, 0.8, 1.9, 0.9}, {1, 1, 6, 0.0}};
     };
     class Integrated_NVG_F : NVGoggles {
         ace_nightvision_generation = 4;
@@ -580,9 +608,6 @@ class CfgWeapons {
     };
     class launch_NLAW_F : Launcher_Base_F {
         modes[] = { "Overfly", "Single" };
-        class WeaponSlotsInfo: WeaponSlotsInfo {
-            mass = 125;
-        };
         descriptionShort = "Short-range fire-and-forget anti-tank missile system";
         class Library{
             libTextDesc = "The NLAW is a short-range fire-and-forget anti-tank missile system.";
