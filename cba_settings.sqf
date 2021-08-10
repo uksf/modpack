@@ -607,8 +607,8 @@ diwako_dui_use_layout_editor = false;
 // Helicopter Turbulence
 force force TURBULENCE_ENABLE_MASTER = true;
 force force TURBULENCE_ENABLE_WEATHEREFFECT = true;
-force force TURBULENCE_MAX_TURBULENCE = 20;
-force force TURBULENCE_MIN_TURBULENCE = 1;
+force force TURBULENCE_MAX_TURBULENCE = 15;
+force force TURBULENCE_MIN_TURBULENCE = 0.1;
 
 // LAMBS Danger
 force lambs_danger_cqbRange = 60;
