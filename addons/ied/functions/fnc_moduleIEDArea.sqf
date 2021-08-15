@@ -27,7 +27,12 @@ private _hiddenClassesParsed = parseSimpleArray (_logic getVariable [QGVAR(iedHi
 private _moduleHiddenChance = _logic getVariable [QGVAR(iedHideChance), 0];
 private _moduleSecondaryChance = _logic getVariable [QGVAR(iedSecondaryChance), 0];
 private _useRoads = _logic getVariable [QGVAR(useRoads), true];
+private _usePlanters = _logic getVariable [QGVAR(useIEDPlanters), false];
+private _planterBackpacks = parseSimpleArray (_logic getVariable [QGVAR(IEDPlanterBackpackClasses), []]);
 
+if (_usePlanters) then {
+    [_logic, _area, _planterBackpacks] call FUNC(IEDPlanters);
+};
 
 // creating the IED PFH
 [{

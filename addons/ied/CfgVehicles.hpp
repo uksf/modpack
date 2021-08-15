@@ -72,6 +72,22 @@ class CfgVehicles {
                 defaultValue = "0.2";
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(iedSecondaryChance),_value,true)]);
             };
+            class GVAR(useIEDPlanters) {
+                property = QGVAR(useIEDPlanters);
+                displayName = "Use IED Planters";
+                tooltip = "Tick to for units to place IEDs. Synchronized objects will become planters.";
+                control = "Checkbox";
+                defaultValue = false;
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(useIEDPlanters),_value,true)]);
+            };
+            class GVAR(IEDPlanterBackpackClasses) {
+                property = QGVAR(IEDPlanterBackpackClasses);
+                displayName = "Backpack Classnames";
+                tooltip = "Backpack classnames for the planter. Comma-separated list of class names in single quotes, no spaces";
+                control = "Edit";
+                defaultValue = "[]";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(IEDPlanterBackpackClasses),_value,true)]);
+            };
         };
     };
 
