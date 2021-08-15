@@ -28,4 +28,4 @@ private _position = [_areaArray] call CBA_fnc_randPosArea;
 private _planterHome = _planter getVariable [QGVAR(planterHome), ObjNull];
 
 [_planter, _position, 2, "MOVE", "SAFE", "YELLOW", "LIMITED", "COLUMN", "[this] call uksf_ied_fnc_layIED;"] call cba_fnc_addWaypoint;
-[_planter, _planterHome, 0, "MOVE", "CARELESS", "YELLOW", "LIMITED", "COLUMN", "[this] call uksf_ied_fnc_setWaypointPlanter", [3, 4, 5]] call cba_fnc_addWaypoint;
+[_planter, _planterHome, 0, "MOVE", "CARELESS", "YELLOW", "LIMITED", "COLUMN", "[this] call uksf_ied_fnc_setWaypointPlanter", [60, 180, 240]] call cba_fnc_addWaypoint;
