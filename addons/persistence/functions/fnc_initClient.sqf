@@ -30,7 +30,7 @@ GVAR(selectedRespawn) = "";
 }] call CBA_fnc_addEventHandler;
 
 addMissionEventHandler ["MarkerCreated", {
-	params ["_marker", "_channelNumber", "", "_local"];
+    params ["_marker", "_channelNumber", "", "_local"];
 
     if (!_local || _channelNumber != 1) exitWith {};
 
@@ -41,7 +41,7 @@ addMissionEventHandler ["MarkerCreated", {
 }];
 
 addMissionEventHandler ["MarkerUpdated", {
-	params ["_marker", "_local"];
+    params ["_marker", "_local"];
 
     if (!_local || (markerChannel _marker) != 1) exitWith {};
 
@@ -52,7 +52,7 @@ addMissionEventHandler ["MarkerUpdated", {
 }];
 
 addMissionEventHandler ["MarkerDeleted", {
-	params ["_marker", "_local"];
+    params ["_marker", "_local"];
 
     if (!_local) exitWith {};
 
