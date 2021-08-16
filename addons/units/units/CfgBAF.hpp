@@ -233,8 +233,8 @@ class CUP_B_BAF_Soldier_AT_MTP: CUP_B_BAF_Soldier_01_MTP {
     icon = "iconManAT";
     editorPreview = QPATHTOEF(common,data\previews\CUP_B_BAF_Soldier_AT_MTP.jpg);
     backpack = "";
-    weapons[] = { "UK3CB_BAF_NLAW_Launcher","UK3CB_BAF_L85A3_Grippod_Elcan","Throw","Put" };
-    respawnWeapons[] = { "UK3CB_BAF_NLAW_Launcher","UK3CB_BAF_L85A3_Grippod_Elcan","Throw","Put" };
+    weapons[] = { "launch_NLAW_F","UK3CB_BAF_L85A3_Grippod_Elcan","Throw","Put" };
+    respawnWeapons[] = { "launch_NLAW_F","UK3CB_BAF_L85A3_Grippod_Elcan","Throw","Put" };
     magazines[] = { "UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","HandGrenade","HandGrenade","UK3CB_BAF_SmokeShell","UK3CB_BAF_SmokeShell" };
     respawnMagazines[] = { "UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","HandGrenade","HandGrenade","UK3CB_BAF_SmokeShell","UK3CB_BAF_SmokeShell" };
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_Rifleman_A","UK3CB_BAF_H_Mk7_Camo_D" };
@@ -670,8 +670,8 @@ class CUP_B_BAF_Soldier_AT_WDL: CUP_B_BAF_Soldier_01_DPM {
     icon = "iconManAT";
     editorPreview = QPATHTOEF(common,data\previews\CUP_B_BAF_Soldier_AT_WDL.jpg);
     backpack = "";
-    weapons[] = { "UK3CB_BAF_NLAW_Launcher","UK3CB_BAF_L85A3_Grippod_Elcan","Throw","Put" };
-    respawnWeapons[] = { "UK3CB_BAF_NLAW_Launcher","UK3CB_BAF_L85A3_Grippod_Elcan","Throw","Put" };
+    weapons[] = { "launch_NLAW_F","UK3CB_BAF_L85A3_Grippod_Elcan","Throw","Put" };
+    respawnWeapons[] = { "launch_NLAW_F","UK3CB_BAF_L85A3_Grippod_Elcan","Throw","Put" };
     magazines[] = { "UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","HandGrenade","HandGrenade","UK3CB_BAF_SmokeShell","UK3CB_BAF_SmokeShell" };
     respawnMagazines[] = { "UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","HandGrenade","HandGrenade","UK3CB_BAF_SmokeShell","UK3CB_BAF_SmokeShell" };
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DPMW1","UK3CB_BAF_H_Mk6_DPMW_B" };
@@ -1095,8 +1095,8 @@ class CUP_B_BAF_Soldier_AT_DDPM: CUP_B_BAF_Soldier_01_DDPM {
     icon = "iconManAT";
     editorPreview = QPATHTOEF(common,data\previews\CUP_B_BAF_Soldier_AT_DDPM.jpg);
     backpack = "";
-    weapons[] = { "UK3CB_BAF_NLAW_Launcher","UK3CB_BAF_L85A3_Grippod_Elcan","Throw","Put" };
-    respawnWeapons[] = { "UK3CB_BAF_NLAW_Launcher","UK3CB_BAF_L85A3_Grippod_Elcan","Throw","Put" };
+    weapons[] = { "launch_NLAW_F","UK3CB_BAF_L85A3_Grippod_Elcan","Throw","Put" };
+    respawnWeapons[] = { "launch_NLAW_F","UK3CB_BAF_L85A3_Grippod_Elcan","Throw","Put" };
     magazines[] = { "UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","HandGrenade","HandGrenade","UK3CB_BAF_SmokeShell","UK3CB_BAF_SmokeShell" };
     respawnMagazines[] = { "UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","UK3CB_BAF_556_30Rnd","HandGrenade","HandGrenade","UK3CB_BAF_SmokeShell","UK3CB_BAF_SmokeShell" };
     linkedItems[] = { "ItemMap","ItemCompass","ItemWatch","UK3CB_BAF_HMNVS","UK3CB_BAF_V_Osprey_DDPM1","UK3CB_BAF_H_Mk6_DDPM_B" };
