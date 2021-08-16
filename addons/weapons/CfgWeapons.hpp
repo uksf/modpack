@@ -281,12 +281,40 @@ class CfgWeapons {
         ace_nightvision_border = QPATHTOF(data\nvg_mask_binos_large_4096.paa);
         modelOptics = "";
     };
+    class ACE_NVG_Pilot_WP : ACE_NVG_Pilot {
+        displayName = "Pilot NVG (WP)";
+        colorPreset[] = {0, {0.0, 0.0, 0.0, 0.0}, {1.1, 0.8, 1.9, 0.9}, {1, 1, 6, 0.0}};
+    };
     class NVGoggles;
     class UK3CB_BAF_HMNVS : NVGoggles {
         ace_nightvision_generation = 3;
         ace_nightvision_bluRadius = 0.20;
         ace_nightvision_border = QPATHTOF(data\nvg_mask_large_4096.paa);
         modelOptics = "";
+    };
+    class UK3CB_BAF_HMNVS_WP : UK3CB_BAF_HMNVS {
+        displayName = "Head-Mounted NV System (WP) [BAF]";
+        colorPreset[] = {0, {0.0, 0.0, 0.0, 0.0}, {1.1, 0.8, 1.9, 0.9}, {1, 1, 6, 0.0}};
+    };
+    class CUP_NVG_PVS15_black;
+    class CUP_NVG_PVS15_black_WP : CUP_NVG_PVS15_black {
+        displayname = "AN/PVS-15 WP (Black)";
+        colorPreset[] = {0, {0.0, 0.0, 0.0, 0.0}, {1.1, 0.8, 1.9, 0.9}, {1, 1, 6, 0.0}};
+    };
+    class CUP_NVG_PVS15_green;
+    class CUP_NVG_PVS15_green_WP : CUP_NVG_PVS15_green {
+        displayname = "AN/PVS-15 WP (Green)";
+        colorPreset[] = {0, {0.0, 0.0, 0.0, 0.0}, {1.1, 0.8, 1.9, 0.9}, {1, 1, 6, 0.0}};
+    };
+    class CUP_NVG_PVS15_tan;
+    class CUP_NVG_PVS15_tan_WP : CUP_NVG_PVS15_tan {
+        displayname = "AN/PVS-15 WP (Tan)";
+        colorPreset[] = {0, {0.0, 0.0, 0.0, 0.0}, {1.1, 0.8, 1.9, 0.9}, {1, 1, 6, 0.0}};
+    };
+    class CUP_NVG_PVS15_winter;
+    class CUP_NVG_PVS15_winter_WP : CUP_NVG_PVS15_winter {
+        displayname = "AN/PVS-15 WP (Winter)";
+        colorPreset[] = {0, {0.0, 0.0, 0.0, 0.0}, {1.1, 0.8, 1.9, 0.9}, {1, 1, 6, 0.0}};
     };
     class Integrated_NVG_F : NVGoggles {
         ace_nightvision_generation = 4;
@@ -580,21 +608,10 @@ class CfgWeapons {
     };
     class launch_NLAW_F : Launcher_Base_F {
         modes[] = { "Overfly", "Single" };
-    };
-    class UK3CB_BAF_NLAW_Launcher : launch_NLAW_F {
-        magazines[] = { "ACE_PreloadedMissileDummy" };
-        magazineWell[] = { "NLAW" };
-        ACE_UsedTube = "ACE_launch_NLAW_Used_F";
-        ace_nlaw_enabled = 1;
-        uk3cb_used_launcher = "";
-        canLock = 1;
-        ace_overpressure_priority = 1;
-        ace_overpressure_angle = 30;
-        ace_overpressure_range = 2;
-        ace_overpressure_damage = 0.6;
-    };
-    class ACE_launch_NLAW_Used_F : launch_NLAW_F {
-        modelOptics = "\UK3CB_BAF_Weapons\addons\UK3CB_BAF_Weapons_Launchers\uk3cb_nlaw_optic.p3d";
+        descriptionShort = "Short-range fire-and-forget anti-tank missile system";
+        class Library{
+            libTextDesc = "The NLAW is a short-range fire-and-forget anti-tank missile system.";
+        };
     };
     class CBA_MiscItem;
     class CBA_MiscItem_ItemInfo;
@@ -612,16 +629,6 @@ class CfgWeapons {
             allowedSlots[] = { 901 };
         };
     };
-    // class UK3CB_BAF_Javelin_CLU : Binocular {
-    //     icon = "iconObject_circle";
-    //     simulation = "Weapon";
-    //     type = 131072;
-    //     muzzles[] = {};
-    //     class ItemInfo : CBA_MiscItem_ItemInfo {
-    //         mass = 141;
-    //         allowedSlots[] = { 901 };
-    //     };
-    // };
     class launch_Titan_short_base;
     class launch_B_Titan_short_F : launch_Titan_short_base {
         class WeaponSlotsInfo;
