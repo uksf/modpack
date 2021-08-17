@@ -41,10 +41,6 @@ if (_usePlanters) then {
 
     // exit asap
     if (_numberOfIEDsToSpawn < 1) then {
-        {
-            CIVILIAN revealMine _x;
-            EAST revealMine _x;
-        } forEach allMines;
         [_idPFH] call cba_fnc_removePerFrameHandler;
     };
 
@@ -74,6 +70,9 @@ if (_usePlanters) then {
                 ([objNull, _roadSide, _dir, selectRandom _iedClassesParsed, "PressurePlate", []] call ACE_Explosives_fnc_placeExplosive) params ["_explosive"];
                 _explosive setVectorUp surfaceNormal position _explosive;
                 _currentExplosive pushBack _explosive;
+                INDEPENDENT revealMine _explosive;
+                CIVILIAN revealMine _explosive;
+                EAST revealMine _explosive;
 
                 // chance to spawn IED cover object
                 if (_hiddenChanceRNG < _moduleHiddenChance) then {
@@ -85,10 +84,16 @@ if (_usePlanters) then {
             } else {
                 ([objNull, getPos _road, random 360, selectRandom _iedClassesParsed, "PressurePlate", []] call ACE_Explosives_fnc_placeExplosive) params ["_explosive"];
                 _currentExplosive pushBack _explosive;
+                INDEPENDENT revealMine _explosive;
+                CIVILIAN revealMine _explosive;
+                EAST revealMine _explosive;
             };
         } else {
             ([objNull, _position, random 360, selectRandom _iedClassesParsed, "PressurePlate", []] call ACE_Explosives_fnc_placeExplosive) params ["_explosive"];
             _currentExplosive pushBack _explosive;
+            INDEPENDENT revealMine _explosive;
+            CIVILIAN revealMine _explosive;
+            EAST revealMine _explosive;
         };
 
         // create secondary
@@ -96,8 +101,11 @@ if (_usePlanters) then {
             private _randomDistance = random [20,30,40];
             private _secondaryPosition = (_currentExplosive select 0) getPos [_randomDistance, random 360]; // possible place for object check to avoid houses etc?
             ([objNull, _secondaryPosition, random 360, selectRandom _iedClassesParsed, "PressurePlate", []] call ACE_Explosives_fnc_placeExplosive) params ["_explosiveSecondary"];
+            INDEPENDENT revealMine _explosiveSecondary;
+            CIVILIAN revealMine _explosiveSecondary;
+            EAST revealMine _explosiveSecondary;
         };
         _currentExplosive deleteAt 0;
         _args set [0, _numberOfIEDsToSpawn - 1];
     };
-}, 1, [_numberOfIEDsToSpawn, _logic, _area, _iedClassesParsed, _hiddenClassesParsed, _moduleHiddenChance, _moduleSecondaryChance, _useRoads]] call cba_fnc_addPerFrameHandler;
+}, 0.2, [_numberOfIEDsToSpawn, _logic, _area, _iedClassesParsed, _hiddenClassesParsed, _moduleHiddenChance, _moduleSecondaryChance, _useRoads]] call cba_fnc_addPerFrameHandler;

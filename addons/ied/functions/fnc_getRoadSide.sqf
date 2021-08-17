@@ -1,15 +1,19 @@
-/*
-Author:
-Nicholas Clark (SENSEI)
-Description:
-find positionAGL at roadside
-Arguments:
-0: road <OBJECT>
-1: offset distance from roadside <NUMBER>
-Return:
-position
-__________________________________________________________________*/
 #include "script_component.hpp"
+
+/*
+    Author:
+        Nicholas Clark (SENSEI)
+
+    Description:
+        find positionAGL at roadside
+
+    Parameters:
+        0: road <OBJECT>
+        1: offset distance from roadside <NUMBER>
+
+    Return value:
+        position
+*/
 
 params [
     ["_road",objNull,[objNull]],
