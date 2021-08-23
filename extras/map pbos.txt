@@ -9,3 +9,7 @@
     - UK3CB_Reshmaan_Fix
 - Colombia
     - UMB_Colombia
+- Rosche
+    - hag_objects
+    - WL_Buildings
+    - WL_Rosche
