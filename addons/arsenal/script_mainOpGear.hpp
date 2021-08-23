@@ -555,7 +555,8 @@
     "Black_Crye_SS_Camo", \
     "black_Crye2_Camo", \
     "U_B_Wetsuit", \
-    "U_B_survival_uniform"
+    "U_B_survival_uniform", \
+    "CUP_U_CRYE_G3C_MC_V3"
 
 #define MAIN_OP_VESTS \
     "UK3CB_BAF_V_HiVis", \
@@ -649,7 +650,33 @@
     "V_RebreatherIA", \
     "UKSF_LARV_1", \
     "UKSF_LARV_2", \
-    "uksf_diving_rebreather"
+    "uksf_diving_rebreather", \
+    "CUP_V_CPC_communications_mc", \
+    "CUP_V_CPC_Fast_mc", \
+    "CUP_V_CPC_light_mc", \
+    "CUP_V_CPC_medical_mc", \
+    "CUP_V_CPC_tl_mc", \
+    "CUP_V_CPC_weapons_mc", \
+    "CUP_V_CPC_communicationsbelt_mc", \
+    "CUP_V_CPC_Fastbelt_mc", \
+    "CUP_V_CPC_medicalbelt_mc", \
+    "CUP_V_CPC_tlbelt_mc", \
+    "CUP_V_CPC_weaponsbelt_mc", \
+    "CUP_V_B_JPC_MCam_Light", \
+    "CUP_V_JPC_communications_mc", \
+    "CUP_V_JPC_Fast_mc", \
+    "CUP_V_JPC_medical_mc", \
+    "CUP_V_JPC_tl_mc", \
+    "CUP_V_JPC_weapons_mc", \
+    "CUP_V_JPC_communicationsbelt_mc", \
+    "CUP_V_JPC_Fastbelt_mc", \
+    "CUP_V_JPC_lightbelt_mc", \
+    "CUP_V_JPC_medicalbelt_mc", \
+    "CUP_V_JPC_tlbelt_mc", \
+    "CUP_V_JPC_weaponsbelt_mc", \
+    "CUP_V_B_Armatus_MCam", \
+    "CUP_V_B_Armatus_BB_MCam", \
+    "CUP_V_B_LBT_LBV_MCam" 
 
 #define MAIN_OP_BACKPACKS \
     "B_AssaultPack_rgr", \
