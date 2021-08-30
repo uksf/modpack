@@ -4,15 +4,19 @@
         Bridg
 
     Description:
-        Delete the AI and vehicles that have finished their task
+        Assign the route pickets their patrol routes
 
     Parameters:
-        0: Group leader <OBJECT>
+        0: _group <GROUP>
 
     Return value:
         Nothing
 */
+
 params ["_leader"];
 
 (vehicle _leader) call CBA_fnc_deleteEntity;
-(group _leader) call CBA_fnc_deleteEntity;
+{
+    _x call CBA_fnc_deleteEntity;
+} forEach units (group _leader);
+
