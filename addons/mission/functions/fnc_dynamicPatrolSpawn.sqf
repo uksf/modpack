@@ -32,14 +32,16 @@ TRACE_1("5) Dynamic spawn data",_this);
 // AND IF area logic is given THEN Player must be in area
 // AND IF area logic does not exist and include areas exist THEN Player must be in an include area
 
+private _isAreaModule = !(isNull _logic);
+
 private _allPlayers = call CBA_fnc_players;
 private _players = _allPlayers select {
     private _player = _x;
     !((vehicle _player) isKindOf "Air")
-    && {isNull _logic || {[EGVAR(common,respawnPositions), {(getMarkerPos _x) distance2D _player <= GVAR(dynamicPatrolSafeZoneDistance)}] call EFUNC(common,arrayNone)}}
+    && {_isAreaModule || {[EGVAR(common,respawnPositions), {(getMarkerPos _x) distance2D _player <= GVAR(dynamicPatrolSafeZoneDistance)}] call EFUNC(common,arrayNone)}}
     && {[GVAR(dynamicPatrolExcludeAreas), {[_player, _x#0, _x#1] call EFUNC(common,objectInArea)}] call EFUNC(common,arrayNone)}
-    && {isNull _logic || {[_player, _logic, _area] call EFUNC(common,objectInArea)}}
-    && {!(isNull _logic) || {GVAR(dynamicPatrolIncludeAreas) isEqualTo [] || {[GVAR(dynamicPatrolIncludeAreas), {[_player, _x#0, _x#1] call EFUNC(common,objectInArea)}] call EFUNC(common,arrayAny)}}}
+    && {!_isAreaModule || {[_player, _logic, _area] call EFUNC(common,objectInArea)}}
+    && {_isAreaModule || {GVAR(dynamicPatrolIncludeAreas) isEqualTo [] || {[GVAR(dynamicPatrolIncludeAreas), {[_player, _x#0, _x#1] call EFUNC(common,objectInArea)}] call EFUNC(common,arrayAny)}}}
 };
 TRACE_1("5) Dynamic spawn resolved players",_players);
 if (_players isEqualTo []) exitWith {
