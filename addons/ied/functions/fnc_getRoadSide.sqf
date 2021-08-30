@@ -14,16 +14,12 @@
     Return value:
         position
 */
-
-params [
-    ["_road",objNull,[objNull]],
-    ["_offset",0,[0]]
-];
+params [["_road", objNull, [objNull]], ["_offset", 0, [0]]];
 
 private _info = getRoadInfo _road;
-private _dir = (_info select 6) getDir (_info select 7);
+private _dir = (_info#6) getDir (_info#7);
 _dir = _dir + (180 * round (random 1));
 
-private _position = _road getRelPos [((_info select 1) * 0.5) + _offset, _dir + 90];
+private _position = _road getRelPos [((_info#1) * 0.5) + _offset, _dir + 90];
 
 [_position, _dir]

@@ -6,7 +6,14 @@ ADDON = false;
 
 #include "initSettings.sqf"
 
-// code here
 GVAR(iedExcludeAreas) = [];
+
+[QGVAR(revealMineToAllExceptBlufor), {
+    params ["_mine"];
+
+    east revealMine _mine;
+    civilian revealMine _mine;
+    independent revealMine _mine;
+}] call CBA_fnc_addEventHandler;
 
 ADDON = true;

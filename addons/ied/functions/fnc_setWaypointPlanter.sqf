@@ -17,6 +17,8 @@
 
 params ["_planter", ["_retries", 0]];
 
+if (_retries >= MAX_RETRIES) exitWith {};
+
 _planter addItemToBackpack "IEDUrbanSmall_Remote_Mag";
 
 private _module = _planter getVariable [QGVAR(moduleObject), ObjNull];
@@ -26,18 +28,11 @@ _area deleteAt 4;
 private _areaArray = [(getPos _module)] + _area;
 private _position = [_areaArray] call CBA_fnc_randPosArea;
 
-if (
-    [GVAR(iedExcludeAreas), {
-        [_position, _x#0, _x#1] call EFUNC(common,objectInArea)
-    }] call EFUNC(common,arrayNone)
-) exitWith {
-    private _planterHome = _planter getVariable [QGVAR(planterHome), ObjNull];
-    [_planter, _position, 2, "MOVE", "SAFE", "YELLOW", "LIMITED", "COLUMN", "[this] call uksf_ied_fnc_layIED;"] call cba_fnc_addWaypoint;
-    [_planter, _planterHome, 0, "MOVE", "CARELESS", "YELLOW", "LIMITED", "COLUMN", "[this] call uksf_ied_fnc_setWaypointPlanter", [60, 180, 240]] call cba_fnc_addWaypoint;
+private _inExcludeArea = [GVAR(iedExcludeAreas), {[_position, _x#0, _x#1] call EFUNC(common,objectInArea)}] call EFUNC(common,arrayAny);
+if (_inExcludeArea) exitWith {
+    [_planter, _retries + 1] call FUNC(setWaypointPlanter);
 };
 
-// runs if above doesn't exit
-_retries + 1;
-if (MAX_RETRIES > _retries) then {
-    [_planter, _retries] call FUNC(setWaypointPlanter);
-};
+private _planterHome = _planter getVariable [QGVAR(planterHome), ObjNull];
+[_planter, _position, 2, "MOVE", "SAFE", "YELLOW", "LIMITED", "COLUMN", "[this] call uksf_ied_fnc_layIED;"] call CBA_fnc_addWaypoint;
+[_planter, _planterHome, 0, "MOVE", "CARELESS", "YELLOW", "LIMITED", "COLUMN", "[this] call uksf_ied_fnc_setWaypointPlanter", [60, 180, 240]] call CBA_fnc_addWaypoint;

@@ -8,7 +8,6 @@ class CfgVehicles {
         class AttributesBase;
     };
 
-    // static IEDs
     class GVAR(IEDPlacementModule) : GVAR(module) {
         scope = 2;
         displayName = "(IED) IED Placement Zone";
@@ -91,8 +90,6 @@ class CfgVehicles {
         };
     };
 
-
-    // suicide IEDs
     class GVAR(suicidePlacementModule) : GVAR(module) {
         scope = 2;
         displayName = "(IED) Suicide IED Placement Zone";
@@ -102,7 +99,6 @@ class CfgVehicles {
         // icon = "a3\ui_f\data\gui\cfg\hints\ieds_ca.paa";
         // portrait = "a3\ui_f\data\gui\cfg\hints\ieds_ca.paa";
         function = QFUNC(moduleSuicideIEDArea);
-
         class Attributes : AttributesBase {
             class GVAR(suicideIEDClasses) {
                 property = QGVAR(suicideIEDClasses);
@@ -139,7 +135,6 @@ class CfgVehicles {
         };
     };
 
-    // VBIED
     class GVAR(VBIEDPlacementModule) : GVAR(module) {
         scope = 2;
         displayName = "(IED) VBIED Placement Zone";

@@ -4,17 +4,22 @@
         Bridg
 
     Description:
-        sets up a waypoint inside the area for suicide bombers to follow
+        Sets up a waypoint inside the area for suicide bombers to follow
 
     Parameters:
-        0: _group <GROUP>
+        0: Suicide unit <OBJECT>
 
     Return value:
         Nothing
 */
-params ["_group", "_areaArray"];
+params ["_unit"];
+
+private _group = _unit getVariable [QGVAR(sucideUnitGroup), grpNull];
+private _areaArray = _unit getVariable [QGVAR(areaArray), []];
+
+if (isNUll group || _areaArray isEqualTo []) exitWith {};
 
 private _position = [_areaArray] call CBA_fnc_randPosArea;
 
-private _waypoint = [_group, _position, 0, "MOVE", "SAFE", "YELLOW", "LIMITED", "WEDGE", "[(this getVariable ['uksf_ied_sucideUnitGroup', grpNull]), (this getVariable ['uksf_ied_areaArray', []])] call uksf_ied_fnc_setWaypoint", [0,0,0], 30] call CBA_fnc_addWaypoint;
+private _waypoint = [_group, _position, 0, "MOVE", "SAFE", "YELLOW", "LIMITED", "WEDGE", "[this] call uksf_ied_fnc_setWaypoint", [0,0,0], 30] call CBA_fnc_addWaypoint;
 
