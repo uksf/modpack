@@ -1,6 +1,7 @@
 class Truck_F;
 class rksla3_aircraft_tug_base : Truck_F {
     delete editorcategory;
+    editorSubcategory = QEGVAR(common,support);
 };
 class rksla3_aircraft_tug_blufor : rksla3_aircraft_tug_base {
     faction = "CUP_B_GB";

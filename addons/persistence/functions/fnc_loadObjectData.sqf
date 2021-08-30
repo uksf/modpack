@@ -64,7 +64,7 @@ if (!_forceLoad && {!([ASLToAGL _position, _object, (_vectorDirAndUp#0) call CBA
     private _currentTurretMagazines = magazinesAllTurrets _object;
     private _turretPaths = _currentTurretMagazines apply {_x#1};
     _turretPaths = _turretPaths arrayIntersect _turretPaths;
-    private _pylonPaths = (configProperties [EGVAR(common,configVehicles) >> typeOf _object >> "Components" >> "TransportPylonsComponent" >> "Pylons", "isClass _x"]) apply {getArray (_x >> "turret")};
+    private _pylonPaths = (configProperties [configOf _object >> "Components" >> "TransportPylonsComponent" >> "Pylons", "isClass _x"]) apply {getArray (_x >> "turret")};
     private _currentTurretWeapons = _turretPaths apply {[_x, _object weaponsTurret _x]};
     {
         private _turretPath = _x#0;
@@ -81,7 +81,7 @@ if (!_forceLoad && {!([ASLToAGL _position, _object, (_vectorDirAndUp#0) call CBA
         _object setPylonLoadOut [_forEachIndex + 1, _x#0, true, _pylonPaths select _forEachIndex];
         _object setAmmoOnPylon [_forEachIndex + 1, _x#1];
     } forEach _pylonLoadout;
-    [_object] call EFUNC(weapons,correctPilotPylon);
+    [_object] call EFUNC(air_weapons,correctPilotPylon);
 
     if (finite (_logisticsCargo#0)) then {_object setAmmoCargo _logisticsCargo#0;};
     if (finite (_logisticsCargo#1)) then {_object setFuelCargo _logisticsCargo#1;};

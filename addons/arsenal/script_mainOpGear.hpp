@@ -204,7 +204,7 @@
     "UK3CB_BAF_L85A3_UGL", \
     "UK3CB_BAF_L9A1", \
     "UK3CB_BAF_M6", \
-    "UK3CB_BAF_NLAW_Launcher", \
+    "launch_NLAW_F", \
     "UK3CB_BAF_Soflam_Laserdesignator", \
     "SSQN_L119A1_CQB", \
     "SSQN_L119A1_CQB_C1", \
@@ -228,7 +228,11 @@
     "launch_MRAWS_olive_F", \
     "launch_MRAWS_green_F", \
     "launch_MRAWS_sand_F", \
-    "CUP_arifle_mk18_black"
+    "CUP_arifle_mk18_black", \
+    "arifle_L119A2_S_F", \
+    "arifle_L119A2_S_F_NC", \
+    "arifle_L119A2_S_G_F", \
+    "arifle_L119A2_S_D_F"
 
 #define MAIN_OP_ATTACHMENTS \
     "RKSL_optic_LDS", \
@@ -399,7 +403,8 @@
     "CUP_optic_Elcan_SpecterDR_RMR_black", \
     "CUP_optic_Elcan_SpecterDR_RMR_coyote", \
     "CUP_optic_Elcan_SpecterDR_RMR_od", \
-    "CUP_optic_Elcan_SpecterDR_RMR"
+    "CUP_optic_Elcan_SpecterDR_RMR", \
+    "cup_muzzle_snds_m16"
 
 #define MAIN_OP_NVGS \
     "ACE_NVG_Pilot", \
@@ -408,7 +413,13 @@
     "CUP_NVG_PVS15_tan", \
     "CUP_NVG_PVS15_winter", \
     "UK3CB_BAF_HMNVS", \
-    "cxs_lightsticks"
+    "ACE_NVG_Pilot_WP", \
+    "CUP_NVG_PVS15_black_WP", \
+    "CUP_NVG_PVS15_green_WP", \
+    "CUP_NVG_PVS15_tan_WP", \
+    "CUP_NVG_PVS15_winter_WP", \
+    "UK3CB_BAF_HMNVS_WP", \
+    "uksf_air_equipment_marshallSticks"
 
 #define MAIN_OP_ITEMS \
     "ACE_ATragMX", \
@@ -470,35 +481,35 @@
     "ItemWatch", \
     "ToolKit", \
     "UK3CB_BAF_Javelin_CLU", \
-    "uksf_atc_terminal", \
+    "uksf_air_atc_terminal", \
     "ItemAndroid", \
-    "ade_item_DiveComputer", \
-    "ade_item_cylinder_single_6ltr_300bar_compressedAir", \
-    "ade_item_cylinder_linked_6ltr_300bar_compressedAir", \
-    "ade_item_cylinder_single_6ltr_300bar_EAN28", \
-    "ade_item_cylinder_linked_6ltr_300bar_EAN28", \
-    "ade_item_cylinder_single_6ltr_300bar_EAN32", \
-    "ade_item_cylinder_linked_6ltr_300bar_EAN32", \
-    "ade_item_cylinder_single_6ltr_300bar_EAN36", \
-    "ade_item_cylinder_linked_6ltr_300bar_EAN36", \
-    "ade_item_cylinder_single_6ltr_300bar_EAN40", \
-    "ade_item_cylinder_linked_6ltr_300bar_EAN40", \
-    "ade_item_cylinder_single_6ltr_300bar_Heliox85", \
-    "ade_item_cylinder_linked_6ltr_300bar_Heliox85", \
-    "ade_item_cylinder_single_6ltr_300bar_Heliox12", \
-    "ade_item_cylinder_linked_6ltr_300bar_Heliox12", \
-    "ade_item_cylinder_single_6ltr_300bar_Heliox21", \
-    "ade_item_cylinder_linked_6ltr_300bar_Heliox21", \
-    "ade_item_cylinder_single_6ltr_300bar_Tx2135", \
-    "ade_item_cylinder_linked_6ltr_300bar_Tx2135", \
-    "ade_item_cylinder_single_6ltr_300bar_Tx1845", \
-    "ade_item_cylinder_linked_6ltr_300bar_Tx1845", \
-    "ade_item_cylinder_single_6ltr_300bar_Tx1555", \
-    "ade_item_cylinder_linked_6ltr_300bar_Tx1555", \
-    "ade_item_cylinder_single_6ltr_300bar_Tx1265", \
-    "ade_item_cylinder_linked_6ltr_300bar_Tx1265", \
-    "ade_item_cylinder_single_6ltr_300bar_Tx1070", \
-    "ade_item_cylinder_linked_6ltr_300bar_Tx1070"
+    "uksf_diving_diveComputer", \
+    "uksf_diving_cylinderSingleCompressedAir", \
+    "uksf_diving_cylinderDoubleCompressedAir", \
+    "uksf_diving_cylinderSingleEan28", \
+    "uksf_diving_cylinderDoubleEan28", \
+    "uksf_diving_cylinderSingleEan32", \
+    "uksf_diving_cylinderDoubleEan32", \
+    "uksf_diving_cylinderSingleEan36", \
+    "uksf_diving_cylinderDoubleEan36", \
+    "uksf_diving_cylinderSingleEan40", \
+    "uksf_diving_cylinderDoubleEan40", \
+    "uksf_diving_cylinderSingleHeliox85", \
+    "uksf_diving_cylinderDoubleHeliox85", \
+    "uksf_diving_cylinderSingleHeliox12", \
+    "uksf_diving_cylinderDoubleHeliox12", \
+    "uksf_diving_cylinderSingleHeliox21", \
+    "uksf_diving_cylinderDoubleHeliox21", \
+    "uksf_diving_cylinderSingleTx2135", \
+    "uksf_diving_cylinderDoubleTx2135", \
+    "uksf_diving_cylinderSingleTx1845", \
+    "uksf_diving_cylinderDoubleTx1845", \
+    "uksf_diving_cylinderSingleTx1555", \
+    "uksf_diving_cylinderDoubleTx1555", \
+    "uksf_diving_cylinderSingleTx1265", \
+    "uksf_diving_cylinderDoubleTx1265", \
+    "uksf_diving_cylinderDoubleTx1070", \
+    "uksf_diving_cylinderSingleTx107"
 
 #define MAIN_OP_UNIFORMS \
     "SP_0000_Standard_TacticalUniform_ATacsFG", \
@@ -544,7 +555,8 @@
     "Black_Crye_SS_Camo", \
     "black_Crye2_Camo", \
     "U_B_Wetsuit", \
-    "U_B_survival_uniform"
+    "U_B_survival_uniform", \
+    "CUP_U_CRYE_G3C_MC_V3"
 
 #define MAIN_OP_VESTS \
     "UK3CB_BAF_V_HiVis", \
@@ -638,7 +650,33 @@
     "V_RebreatherIA", \
     "UKSF_LARV_1", \
     "UKSF_LARV_2", \
-    "ade_item_rebreather"
+    "uksf_diving_rebreather", \
+    "CUP_V_CPC_communications_mc", \
+    "CUP_V_CPC_Fast_mc", \
+    "CUP_V_CPC_light_mc", \
+    "CUP_V_CPC_medical_mc", \
+    "CUP_V_CPC_tl_mc", \
+    "CUP_V_CPC_weapons_mc", \
+    "CUP_V_CPC_communicationsbelt_mc", \
+    "CUP_V_CPC_Fastbelt_mc", \
+    "CUP_V_CPC_medicalbelt_mc", \
+    "CUP_V_CPC_tlbelt_mc", \
+    "CUP_V_CPC_weaponsbelt_mc", \
+    "CUP_V_B_JPC_MCam_Light", \
+    "CUP_V_JPC_communications_mc", \
+    "CUP_V_JPC_Fast_mc", \
+    "CUP_V_JPC_medical_mc", \
+    "CUP_V_JPC_tl_mc", \
+    "CUP_V_JPC_weapons_mc", \
+    "CUP_V_JPC_communicationsbelt_mc", \
+    "CUP_V_JPC_Fastbelt_mc", \
+    "CUP_V_JPC_lightbelt_mc", \
+    "CUP_V_JPC_medicalbelt_mc", \
+    "CUP_V_JPC_tlbelt_mc", \
+    "CUP_V_JPC_weaponsbelt_mc", \
+    "CUP_V_B_Armatus_MCam", \
+    "CUP_V_B_Armatus_BB_MCam", \
+    "CUP_V_B_LBT_LBV_MCam" 
 
 #define MAIN_OP_BACKPACKS \
     "B_AssaultPack_rgr", \
@@ -749,7 +787,7 @@
     "tfw_ilbe_blade_w", \
     "tfw_ilbe_blade_vsm", \
     "B_MAV_B_BACKPACK", \
-    "ade_item_bag"
+    "uksf_diving_bag"
 
 #define MAIN_OP_HELMETS \
     "COVER_4b", \
@@ -870,7 +908,6 @@
     "UK3CB_BAF_G_Tactical_Grey", \
     "UK3CB_BAF_G_Tactical_Orange", \
     "UK3CB_BAF_G_Tactical_Yellow", \
-    "G_B_Diving", \
-    "ade_item_goggles"
+    "G_B_Diving"
 
 #define MAIN_OP_GEAR [MAIN_OP_MAGAZINES, MAIN_OP_WEAPONS, MAIN_OP_ATTACHMENTS, MAIN_OP_NVGS, MAIN_OP_ITEMS, MAIN_OP_UNIFORMS, MAIN_OP_VESTS, MAIN_OP_BACKPACKS, MAIN_OP_HELMETS, MAIN_OP_GLASSES]

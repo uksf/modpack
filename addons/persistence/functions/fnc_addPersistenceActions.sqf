@@ -12,7 +12,6 @@
     Return Value:
         None
 */
-params ["_unit"];
 
 private _fnc_children = {
     private _actions = [];
@@ -52,8 +51,5 @@ private _fnc_children = {
     _actions
 };
 
-if (local _unit && {!(_unit getVariable [QGVAR(actionsAdded), false])}) then {
-    private _action = [QGVAR(actions), "Persistence", "", {}, {true}, _fnc_children] call ace_interact_menu_fnc_createAction;
-    [_unit, 1, ["ACE_SelfActions"], _action] call ace_interact_menu_fnc_addActionToObject;
-    _unit setVariable [QGVAR(actionsAdded), true];
-};
+private _action = [QGVAR(actions), "Persistence", "", {}, {true}, _fnc_children] call ace_interact_menu_fnc_createAction;
+["CAManBase", 1, ["ACE_SelfActions"], _action, true] call ace_interact_menu_fnc_addActionToClass;

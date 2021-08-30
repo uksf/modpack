@@ -20,10 +20,7 @@ GVAR(persistentObjectIconsPFHID) = -1;
 GVAR(abortedObjects) = [];
 GVAR(abortedObjectInteractionObjects) = [];
 GVAR(abortedObjectPFHID) = -1;
-
-["CAManBase", "respawn", {
-    call FUNC(addPersistenceActions);
-}] call CBA_fnc_addClassEventHandler;
+GVAR(selectedRespawn) = "";
 
 ["ace_throwableThrown", {
     params ["", "_throwable"];
@@ -32,16 +29,39 @@ GVAR(abortedObjectPFHID) = -1;
     };
 }] call CBA_fnc_addEventHandler;
 
-["created", {
+addMissionEventHandler ["MarkerCreated", {
+    params ["_marker", "_channelNumber", "", "_local"];
+
+    if (!_local || _channelNumber != 1) exitWith {};
+
     private _serializedMarker = call FUNC(serializeMarker);
     if (count _serializedMarker > 0) then {
         [QGVAR(markerCreated), [_serializedMarker]] call CBA_fnc_serverEvent;
     };
-}] call CBA_fnc_addMarkerEventHandler;
+}];
 
-["deleted", {
+addMissionEventHandler ["MarkerUpdated", {
+    params ["_marker", "_local"];
+
+    if (!_local || (markerChannel _marker) != 1) exitWith {};
+
+    private _serializedMarker = call FUNC(serializeMarker);
+    if (count _serializedMarker > 0) then {
+        [QGVAR(markerCreated), [_serializedMarker]] call CBA_fnc_serverEvent;
+    };
+}];
+
+addMissionEventHandler ["MarkerDeleted", {
+    params ["_marker", "_local"];
+
+    if (!_local) exitWith {};
+
     [QGVAR(markerDeleted), _this] call CBA_fnc_serverEvent;
-}] call CBA_fnc_addMarkerEventHandler;
+}];
+
+["loadout", {
+    player setVariable [QGVAR(facewear), goggles player, true];
+}] call CBA_fnc_addPlayerEventHandler;
 
 [QGVAR(receiveRedeployData), {
     GVAR(data) = _this;
@@ -75,59 +95,7 @@ GVAR(abortedObjectPFHID) = -1;
 [QGVAR(receivePersistentObjectsHash), {GVAR(persistentObjects) = _this#0}] call CBA_fnc_addEventHandler;
 [QGVAR(receiveAbortedObjects), {call FUNC(showAbortedObjects)}] call CBA_fnc_addEventHandler;
 
-[QGVAR(firstRespawn), {
-    GVAR(data) params ["_position", "_vehicleState", "_direction", "_animation", "_loadout", "_damage", "_aceStates", "_earplugs", "_attached", "_radios"];
-    //_positionData params ["_position", "_leaderID", "_leaderPosition", "_leaderDirection", "_relativePosition"];
-
-    if !(isNil QGVAR(respawn)) then {
-        [{deleteMarkerLocal GVAR(respawn);}, [], 1] call CBA_fnc_waitAndExecute;
-    };
-    /*if !(isNil QGVAR(groupRespawn)) then {
-        deleteMarkerLocal GVAR(groupRespawn);
-    };*/
-
-    if (count GVAR(data) > 0 && {(_position distance2D (getPos player)) < 10}) then {
-        player setDir _direction;
-        player setUnitLoadout _loadout;
-        player setDamage _damage;
-
-        [player, _aceStates] call EFUNC(common,deserializeAceMedical);
-        player setVariable ["ACE_hasEarPlugsIn", _earplugs, true];
-        {[player, player, [_x], true] call ace_attach_fnc_attach} forEach _attached;
-
-        [{call EFUNC(radios,deserializeRadios)}, [_radios], 2] call CBA_fnc_waitAndExecute;
-
-        _vehicleState params ["_vehicleId"];
-        if (_vehicleId != "") then {
-            [QGVAR(onPersistentVehicleExists), {
-                params ["_vehicle", "_vehicleId", "_role", "_index"];
-                [_thisType, _thisId] call CBA_fnc_removeEventHandler;
-
-                if (isNull _vehicle) exitWith {};
-
-                switch (_role) do {
-                    case "driver": {player moveInDriver _vehicle};
-                    case "gunner": {player moveInGunner _vehicle};
-                    case "commander": {player moveInCommander _vehicle};
-                    case "turret": {player moveInTurret [_vehicle, _index]};
-                    default {player moveInCargo [_vehicle, _index]};
-                };
-
-                if (objectParent player != _vehicle) then {
-                    player moveInCargo _vehicle;
-                };
-            }] call CBA_fnc_addEventHandlerArgs;
-            [QGVAR(checkPersistentVehicleExists), [_vehicleState, player]] call CBA_fnc_serverEvent;
-        } else {
-            [{
-                player playMove ([_this, ANIM_STANDING] select (_this == ANIM_STANDING));
-            }, _animation, 0.2] call CBA_fnc_waitAndExecute;
-        };
-
-        [[true]] call ace_hearing_fnc_updateVolume;
-        [] call ace_hearing_fnc_updateHearingProtection;
-    };
-}] call CBA_fnc_addEventHandler;
+[QGVAR(firstRespawn), {call FUNC(loadRedeployData)}] call CBA_fnc_addEventHandler;
 
 [QGVAR(removeAbortedObject), {
     params ["_id"];

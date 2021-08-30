@@ -18,15 +18,13 @@ GVAR(fpsState) = false;
 
 GVAR(respawnPositions) = [];
 
-GVAR(valueCache) = [] call CBA_fnc_hashCreate;
+GVAR(valueCache) = createHashMap;
 
 if (hasInterface) then {
     GVAR(fpsArray) = [];
 
     [QGVAR(hint), {call FUNC(hint)}] call CBA_fnc_addEventHandler;
     [QGVAR(textTiles), {_this spawn BIS_fnc_textTiles}] call CBA_fnc_addEventHandler;
-
-    ["CAManBase", "respawn", {call FUNC(addSelfActions)}, true, nil, true] call CBA_fnc_addClassEventHandler;
 
     GVAR(paradropInProgress) = false;
 };
@@ -59,6 +57,8 @@ acex_headless_headlessClients = [];
 
 [QGVAR(log), {INFO(_this#0)}] call CBA_fnc_addEventHandler;
 [QGVAR(deleteEmptyGroups), {{deleteGroup _x} forEach allGroups}] call CBA_fnc_addEventHandler;
+
+[QGVAR(spawnGroup), {call FUNC(spawnGroup)}] call CBA_fnc_addEventHandler;
 
 #include "initSettings.sqf"
 

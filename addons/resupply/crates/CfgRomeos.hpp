@@ -69,7 +69,7 @@ class GVAR(r2) : GVAR(rx) {
         MACRO_ADDWEAPON(UK3CB_BAF_Javelin_Slung_Tube,10);
         MACRO_ADDWEAPON(UK3CB_BAF_AT4_CS_AT_Launcher,10);
         MACRO_ADDWEAPON(UK3CB_BAF_AT4_CS_AP_Launcher,10);
-        MACRO_ADDWEAPON(UK3CB_BAF_NLAW_Launcher,10);
+        MACRO_ADDWEAPON(launch_NLAW_F,10);
     };
     class TransportItems {
         MACRO_ADDITEM(UK3CB_BAF_Javelin_CLU,3);

@@ -1,0 +1,13 @@
+PREP(addDiverActions);
+PREP(deserialiseState);
+PREP(effectToxicDecompression);
+PREP(effectToxicN2);
+PREP(effectToxicO2);
+PREP(getPlayerData);
+PREP(handleEffects);
+PREP(loop);
+PREP(publishDataState);
+PREP(reset);
+PREP(serialiseState);
+PREP(toggleDiveComputer);
+PREP(useCylinder);

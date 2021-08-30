@@ -64,6 +64,10 @@ private _nearObjects = (_centre nearObjects CENTRE_RADIUS) select {
 TRACE_2("Objects around centre",_centre,count _nearObjects);
 GVAR(saveObjectQueue) append _nearObjects;
 
-if (!GVAR(saveObjectQueueProcessing) && (GVAR(saveObjectQueue) isNotEqualTo [])) then {
-    call FUNC(startSaveObjectDataPfh);
+if (!GVAR(saveObjectQueueProcessing)) then {
+    if (GVAR(saveObjectQueue) isNotEqualTo []) then {
+        call FUNC(saveData);
+    } else {
+        call FUNC(startSaveObjectDataPfh);
+    };
 };

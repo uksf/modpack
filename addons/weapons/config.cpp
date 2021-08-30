@@ -9,6 +9,12 @@ class CfgPatches {
         weapons[] = {
             "UK3CB_BAF_LLM_Flashlight_Far_Black",
             "ACE_NVG_Pilot",
+            "ACE_NVG_Pilot_WP",
+            "CUP_NVG_PVS15_black_WP",
+            "CUP_NVG_PVS15_green_WP",
+            "CUP_NVG_PVS15_tan_WP",
+            "CUP_NVG_PVS15_winter_WP",
+            "UK3CB_BAF_HMNVS_WP",
             "UK3CB_BAF_L85A3_Grippod_Elcan",
             "UK3CB_BAF_L22A2_Elcan",
             "UK3CB_BAF_L85A3_UGL_Elcan",
@@ -19,10 +25,7 @@ class CfgPatches {
             "UK3CB_BAF_L135A1_LRPS",
             "CUP_arifle_M4A1_Acog",
             "CUP_lmg_M240_LDS",
-            "CUP_AGM114L_Hellfire_II_Launcher_W",
-            "CUP_AGM114N_Hellfire_II_Launcher_W",
-            "UK3CB_BAF_Javelin_CLU",
-            QGVAR(CMFlareLauncher_C130)
+            "UK3CB_BAF_Javelin_CLU"
         };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
@@ -62,8 +65,7 @@ class CfgPatches {
             "JSRS_SOUNDMOD_Explosions",
             "3CB_L7A2",
             "3CB_L135A1",
-            "fxp_GrenadeSmoke",
-            "rksla3_aw159"
+            // "fxp_GrenadeSmoke" // TODO_Debug: Undo once deemed not cause of server instability
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
@@ -78,5 +80,6 @@ class CfgPatches {
 #include "CfgFunctions.hpp"
 #include "CfgMagazineWells.hpp"
 #include "CfgMagazines.hpp"
+#include "CfgSounds.hpp"
 #include "CfgVehicles.hpp"
 #include "CfgWeapons.hpp"

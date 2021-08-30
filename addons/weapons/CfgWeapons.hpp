@@ -281,12 +281,40 @@ class CfgWeapons {
         ace_nightvision_border = QPATHTOF(data\nvg_mask_binos_large_4096.paa);
         modelOptics = "";
     };
+    class ACE_NVG_Pilot_WP : ACE_NVG_Pilot {
+        displayName = "Pilot NVG (WP)";
+        colorPreset[] = {0, {0.0, 0.0, 0.0, 0.0}, {1.1, 0.8, 1.9, 0.9}, {1, 1, 6, 0.0}};
+    };
     class NVGoggles;
     class UK3CB_BAF_HMNVS : NVGoggles {
         ace_nightvision_generation = 3;
         ace_nightvision_bluRadius = 0.20;
         ace_nightvision_border = QPATHTOF(data\nvg_mask_large_4096.paa);
         modelOptics = "";
+    };
+    class UK3CB_BAF_HMNVS_WP : UK3CB_BAF_HMNVS {
+        displayName = "Head-Mounted NV System (WP) [BAF]";
+        colorPreset[] = {0, {0.0, 0.0, 0.0, 0.0}, {1.1, 0.8, 1.9, 0.9}, {1, 1, 6, 0.0}};
+    };
+    class CUP_NVG_PVS15_black;
+    class CUP_NVG_PVS15_black_WP : CUP_NVG_PVS15_black {
+        displayname = "AN/PVS-15 WP (Black)";
+        colorPreset[] = {0, {0.0, 0.0, 0.0, 0.0}, {1.1, 0.8, 1.9, 0.9}, {1, 1, 6, 0.0}};
+    };
+    class CUP_NVG_PVS15_green;
+    class CUP_NVG_PVS15_green_WP : CUP_NVG_PVS15_green {
+        displayname = "AN/PVS-15 WP (Green)";
+        colorPreset[] = {0, {0.0, 0.0, 0.0, 0.0}, {1.1, 0.8, 1.9, 0.9}, {1, 1, 6, 0.0}};
+    };
+    class CUP_NVG_PVS15_tan;
+    class CUP_NVG_PVS15_tan_WP : CUP_NVG_PVS15_tan {
+        displayname = "AN/PVS-15 WP (Tan)";
+        colorPreset[] = {0, {0.0, 0.0, 0.0, 0.0}, {1.1, 0.8, 1.9, 0.9}, {1, 1, 6, 0.0}};
+    };
+    class CUP_NVG_PVS15_winter;
+    class CUP_NVG_PVS15_winter_WP : CUP_NVG_PVS15_winter {
+        displayname = "AN/PVS-15 WP (Winter)";
+        colorPreset[] = {0, {0.0, 0.0, 0.0, 0.0}, {1.1, 0.8, 1.9, 0.9}, {1, 1, 6, 0.0}};
     };
     class Integrated_NVG_F : NVGoggles {
         ace_nightvision_generation = 4;
@@ -380,6 +408,24 @@ class CfgWeapons {
     class arifle_L119A2_F : arifle_SPAR_01_blk_F {
         magazines[] = { "UK3CB_BAF_556_30Rnd", "UK3CB_BAF_556_30Rnd_T", "30Rnd_556x45_Stanag_red", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag_Tracer_Red" };
         magazineWell[] = {};
+        class Single : Mode_SemiAuto {
+            class BaseSoundModeType;
+            class StandardSound : BaseSoundModeType {
+                soundSetShot[] = { "L119_Shot_SoundSet", "FRAME_CALIBER_5x56MM", "ALL_DIST_TAIL" };
+            };
+            class SilencedSound : BaseSoundModeType {
+                soundSetShot[] = { "3CB_BAF_M4_Closure_SoundSet", "L119A2_ShotSD_SoundSet", "3CB_BAF_Rifle1_SD_Tail_SoundSet" };
+            };
+        };
+        class FullAuto : Mode_FullAuto {
+            class BaseSoundModeType;
+            class StandardSound : BaseSoundModeType {
+                soundSetShot[] = { "L119_Shot_SoundSet", "FRAME_CALIBER_5x56MM", "ALL_DIST_TAIL" };
+            };
+            class SilencedSound : BaseSoundModeType {
+                soundSetShot[] = { "3CB_BAF_M4_Closure_SoundSet", "L119A2_ShotSD_SoundSet", "3CB_BAF_Rifle1_SD_Tail_SoundSet" };
+            };
+        };
         ACE_barrelTwist = 178;
         ACE_barrelLength = 398;
     };
@@ -562,21 +608,10 @@ class CfgWeapons {
     };
     class launch_NLAW_F : Launcher_Base_F {
         modes[] = { "Overfly", "Single" };
-    };
-    class UK3CB_BAF_NLAW_Launcher : launch_NLAW_F {
-        magazines[] = { "ACE_PreloadedMissileDummy" };
-        magazineWell[] = { "NLAW" };
-        ACE_UsedTube = "ACE_launch_NLAW_Used_F";
-        ace_nlaw_enabled = 1;
-        uk3cb_used_launcher = "";
-        canLock = 1;
-        ace_overpressure_priority = 1;
-        ace_overpressure_angle = 30;
-        ace_overpressure_range = 2;
-        ace_overpressure_damage = 0.6;
-    };
-    class ACE_launch_NLAW_Used_F : launch_NLAW_F {
-        modelOptics = "\UK3CB_BAF_Weapons\addons\UK3CB_BAF_Weapons_Launchers\uk3cb_nlaw_optic.p3d";
+        descriptionShort = "Short-range fire-and-forget anti-tank missile system";
+        class Library{
+            libTextDesc = "The NLAW is a short-range fire-and-forget anti-tank missile system.";
+        };
     };
     class CBA_MiscItem;
     class CBA_MiscItem_ItemInfo;
@@ -594,16 +629,6 @@ class CfgWeapons {
             allowedSlots[] = { 901 };
         };
     };
-    // class UK3CB_BAF_Javelin_CLU : Binocular {
-    //     icon = "iconObject_circle";
-    //     simulation = "Weapon";
-    //     type = 131072;
-    //     muzzles[] = {};
-    //     class ItemInfo : CBA_MiscItem_ItemInfo {
-    //         mass = 141;
-    //         allowedSlots[] = { 901 };
-    //     };
-    // };
     class launch_Titan_short_base;
     class launch_B_Titan_short_F : launch_Titan_short_base {
         class WeaponSlotsInfo;
@@ -640,215 +665,7 @@ class CfgWeapons {
         };
     };
 
-    class CUP_weapon_mastersafe : Default {
-        displayName = "Safe";
-        displayNameMagazine = "Safe";
-        shortNameMagazine = "Safe";
-        nameSound = "cannon";
-        cursor = "EmptyCursor";
-        cursorAim = "EmptyCursor";
-        magazines[] = { "FakeMagazine" };
-        reloadMagazineSound[] = { "", 1, 1 };
-        canLock = 0;
-        burst = 0;
-        reloadTime = 0.01;
-        magazineReloadTime = 0.1;
-    };
-    class CMFlareLauncher;
-    class UK3CB_BAF_CMFlareLauncher : CMFlareLauncher {
-        modes[] = { "Single", "Burst1", "AIBurst" };
-        class Burst1 : Mode_Burst {
-            reloadTime = 0.2;
-            displayName = "Flares 10/1s";
-            burst = 5;
-        };
-    };
-    class GVAR(CMFlareLauncher_C130) : CMFlareLauncher {
-        modes[] = { "Single", "Burst1", "Burst2", "Burst3", "Burst4", "Burst5", "Burst6", "AIBurst" };
-        class Single : Mode_SemiAuto {
-            reloadTime = 0.125;
-            autoFire = "false";
-            displayName = "4F/-";
-            burst = 1;
-            multiplier = 4;
-            sounds[] = { "StandardSound" };
-            class StandardSound {
-                begin1[] = { "A3\Sounds_F\weapons\HMG\HMG_grenade", 1, 1, 300 };
-                soundBegin[] = { "begin1", 1 };
-                weaponSoundEffect = "DefaultRifle";
-            };
-        };
-        class Burst1 : Mode_Burst {
-            reloadTime = 0.125;
-            autoFire = "true";
-            displayName = "40F/1.25S";
-            burst = 10;
-            sounds[] = { "StandardSound" };
-            class StandardSound {
-                begin1[] = { "A3\Sounds_F\weapons\HMG\HMG_grenade", 1, 1, 300 };
-                soundBegin[] = { "begin1", 1 };
-                weaponSoundEffect = "DefaultRifle";
-            };
-        };
-        class Burst2 : Burst1 {
-            reloadTime = 0.25;
-            displayName = "40F/2.5S";
-        };
-        class Burst3 : Burst2 {
-            reloadTime = 0.5;
-            displayName = "40F/5S";
-            burst = 10;
-        };
-        class Burst4 : Burst3 {
-            reloadTime = 0.125;
-            displayName = "80F/2.5S";
-            burst = 20;
-        };
-        class Burst5 : Burst4 {
-            reloadTime = 0.25;
-            displayName = "80F/5S";
-        };
-        class Burst6 : Burst5 {
-            reloadTime = 0.5;
-            displayName = "80F/10S";
-        };
-    };
-
-    class RocketPods;
-    class ace_hellfire_launcher : RocketPods {
-        displayName = "AGM-114K";
-        magazines[] = { "2Rnd_ACE_Hellfire_AGM114K", "4Rnd_ACE_Hellfire_AGM114K", "PylonMissile_1Rnd_ACE_Hellfire_AGM114K", "PylonRack_1Rnd_ACE_Hellfire_AGM114K", "PylonRack_3Rnd_ACE_Hellfire_AGM114K", "PylonRack_4Rnd_ACE_Hellfire_AGM114K" };
-    };
-    class ace_hellfire_launcher_N : ace_hellfire_launcher {
-        displayName = "AGM-114N";
-        magazines[] = { "2Rnd_ACE_Hellfire_AGM114N", "4Rnd_ACE_Hellfire_AGM114N", "6Rnd_ACE_Hellfire_AGM114N", "PylonMissile_1Rnd_ACE_Hellfire_AGM114N", "PylonRack_1Rnd_ACE_Hellfire_AGM114N", "PylonRack_3Rnd_ACE_Hellfire_AGM114N", "PylonRack_4Rnd_ACE_Hellfire_AGM114N" };
-    };
-    class ace_hellfire_launcher_drone : ace_hellfire_launcher {
-        magazines[] = { "PylonRack_2Rnd_ACE_Hellfire_AGM114K_Drone" };
-    };
-    class ace_hellfire_launcher_drone_N : ace_hellfire_launcher_N {
-        magazines[] = { "PylonRack_2Rnd_ACE_Hellfire_AGM114N_Drone" };
-    };
-    class ace_hellfire_launcher_L : ace_hellfire_launcher {
-        displayName = "AGM-114L";
-        magazines[] = { "2Rnd_ACE_Hellfire_AGM114L", "4Rnd_ACE_Hellfire_AGM114L", "PylonMissile_1Rnd_ACE_Hellfire_AGM114L", "PylonRack_1Rnd_ACE_Hellfire_AGM114L", "PylonRack_3Rnd_ACE_Hellfire_AGM114L", "PylonRack_4Rnd_ACE_Hellfire_AGM114L" };
-    };
-    class CannonCore;
-    class CUP_Vacannon_M230_veh : CannonCore {
-        magazines[] = { "CUP_1200Rnd_TE1_Red_Tracer_30x113mm_M789_HEDP_M", "CUP_1200Rnd_TE1_Green_Tracer_30x113mm_M789_HEDP_M", "CUP_1200Rnd_TE1_Yellow_Tracer_30x113mm_M789_HEDP_M", "CUP_1200Rnd_TE1_White_Tracer_30x113mm_M789_HEDP_M" };
-        ballisticsComputer = "1 + 2 + 16";
-        canLock = 0;
-        reloadTime = 0.096;
-        modes[] = { "close", "short", "medium", "far", "manual", "burst_15", "burst_25" };
-        cursorAim = "EmptyCursor";
-        class GunParticles {
-            class EffectSmokeLeft {
-                effectName = "MachineGun2";
-                positionName = "usti hlavne";
-                directionName = "gun_smoke_left";
-            };
-            class EffectSmokeRight {
-                effectName = "MachineGun2";
-                positionName = "usti hlavne";
-                directionName = "gun_smoke_right";
-            };
-            class EffectCartridge {
-                positionName = "gun_eject";
-                directionName = "gun_eject_dir";
-                effectName = "MachineGunCartridge1";
-            };
-        };
-        class manual : CannonCore {
-            displayName = "Burst 10";
-            textureType = "semi";
-            burst = 10;
-            soundBurst = 0;
-            dispersion = 0.00015;
-        };
-        class burst_15 : manual {
-            displayName = "Burst 20";
-            textureType = "burst";
-            burst = 20;
-        };
-        class burst_25 : manual {
-            displayName = "Full";
-            textureType = "fullAuto";
-            burst = 1;
-        };
-    };
     class MGun;
-    class CUP_Vacannon_M621_AW159_veh : CannonCore {
-        class GunParticles {
-            class FirstEffect {
-                effectName = "machinegun1";
-                positionName = "muzzle_1";
-                directionName = "chamber_1";
-            };
-            class EffectCartridge {
-                positionName = "eject_1";
-                directionName = "eject_1_dir";
-                effectName = "MachineGunCartridge";
-            };
-        };
-        cartridgePos = "eject_1";
-        cartridgeVel = "eject_1_dir";
-        class manual : MGun {
-            class StandardSound {
-                begin1[] = { "A3\Sounds_F\arsenal\weapons_vehicles\gatling_20mm\20mm_01_burst", 3.98107, 1, 1300, { 2, 35740 } };
-                soundBegin[] = { "begin1", 1 };
-                closure1[] = { "A3\Sounds_F\weapons\Closure\sfx10", 0.63095737, 1, 20 };
-                closure2[] = { "A3\sounds_f\weapons\closure\sfx11", 0.63095737, 1.2, 20 };
-                soundClosure[] = { "closure1", 0.5, "closure2", 0.5 };
-            };
-        };
-    };
-    class CUP_Vmlauncher_FFAR_veh;
-    class CUP_Vmlauncher_CRV7_veh : CUP_Vmlauncher_FFAR_veh {
-        class Single;
-        class Double : Single {
-            displayName = "Ripple 2";
-        };
-        class Quadruple : Single {
-            displayName = "Ripple 4";
-        };
-    };
-    class missiles_DAR;
-    class rksla3_aw159_wpn_crv7_lau5003 : missiles_DAR {
-        modes[] = { "Far_AI", "Medium_AI", "Ripple1", "Ripple2", "Ripple4" };
-        class Ripple1 : RocketPods {
-            displayName = "Ripple 1";
-            textureType = "semi";
-            burst = 1;
-            soundContinuous = 0;
-            autoFire = 0;
-            reloadTime = 0.08;
-            dispersion = 0.015;
-            aiRateOfFire = 1;
-            aiRateOfFireDistance = 10;
-            minRange = 0;
-            minRangeProbab = 0.01;
-            midRange = 1;
-            midRangeProbab = 0.01;
-            maxRange = 2;
-            maxRangeProbab = 0.01;
-            sounds[] = { "StandardSound" };
-            class StandardSound {
-                begin1[] = { "A3\Sounds_F\weapons\Rockets\new_rocket_8", 1.77828, 1.2, 1600 };
-                soundBegin[] = { "begin1", 1 };
-                soundSetShot[] = { "DS_launcher_Small_Shot_SoundSet", "DS_rifle1_Tail_SoundSet" };
-            };
-        };
-        class Ripple2 : Ripple1 {
-            displayName = "Ripple 2";
-            textureType = "burst";
-            burst = 2;
-        };
-        class Ripple4 : Ripple1 {
-            displayName = "Ripple 4";
-            textureType = "fullAuto";
-            burst = 4;
-        };
-    };
     class CUP_Vlmg_M240_veh : MGun {
         displayName = "L7A2";
         magazines[] = { "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "CUP_200Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "CUP_100Rnd_TE4_LRT4_White_Tracer_762x51_Belt_M", "CUP_200Rnd_TE4_LRT4_White_Tracer_762x51_Belt_M", "CUP_1200Rnd_TE4_White_Tracer_762x51_M240_M", "CUP_100Rnd_TE4_White_Tracer_762x51_M240_M", "CUP_1200Rnd_TE4_Red_Tracer_762x51_M240_M", , "UK3CB_BAF_762_200Rnd_T", "UK3CB_BAF_762_200Rnd", "UK3CB_BAF_762_200Rnd_Blank", "UK3CB_BAF_762_100Rnd_T", "UK3CB_BAF_762_100Rnd", "UK3CB_BAF_762_100Rnd_Blank", "UK3CB_BAF_762_100Rnd_EL", "UK3CB_BAF_762_100Rnd_T_EL", "UK3CB_BAF_762_200Rnd_EL", "UK3CB_BAF_762_200Rnd_T_EL" };
@@ -899,45 +716,6 @@ class CfgWeapons {
         };
     };
 
-    class gatling_30mm_base : CannonCore {
-        class LowROF : Mode_FullAuto {
-            class StandardSound {
-                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet", "DS_sniper1_tail_soundset" };
-            };
-            soundContinuous = 0;
-        };
-        class close : LowROF {
-            class StandardSound {
-                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet", "DS_sniper1_tail_soundset" };
-            };
-            soundContinuous = 0;
-        };
-        class near : close {
-            class StandardSound {
-                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet", "DS_sniper1_tail_soundset" };
-            };
-            soundContinuous = 0;
-        };
-        class short : close {
-            class StandardSound {
-                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet", "DS_sniper1_tail_soundset" };
-            };
-            soundContinuous = 0;
-        };
-        class medium : close {
-            class StandardSound {
-                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet", "DS_sniper1_tail_soundset" };
-            };
-            soundContinuous = 0;
-        };
-        class far : close {
-            class StandardSound {
-                soundSetShot[] = { "DS_30mmgatling_Shot_SoundSet", "DS_sniper1_tail_soundset" };
-            };
-            soundContinuous = 0;
-        };
-    };
-
     class Binocular;
     class UK3CB_BAF_Soflam_Laserdesignator : Binocular {
         distanceZoomMax = 10000;
@@ -981,6 +759,7 @@ class CfgWeapons {
         aiRateOfFire = 7;  // 5
     };
 
+    class CannonCore;
     class mortar_82mm : CannonCore {
         class Single1;
         class Single2;

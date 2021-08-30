@@ -1,6 +1,6 @@
 #include "script_component.hpp"
 
-if (!(hasInterface)) exitWith {};
+if !(hasInterface) exitWith {};
 if (difficultyOption "thirdPersonView" == 0) exitWith {
     WARNING("View Restriction is enabled, but 3rd person is disabled with server difficulty.");
 };
