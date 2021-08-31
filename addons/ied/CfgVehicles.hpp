@@ -1,3 +1,5 @@
+class CBA_Extended_EventHandlers_base;
+
 class CfgVehicles {
     class Module_F;
     class GVAR(module) : Module_F {
@@ -166,14 +168,14 @@ class CfgVehicles {
                 defaultValue = "15";
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(VBIEDNumber),_value,true)]);
             };
-            class GVAR(VBIEDChance) {
-                property = QGVAR(VBIEDChance);
-                displayName = "VBIED Chance";
-                tooltip = "Chance that a vehicle will be a VBIED.";
-                control = "Slider";
-                defaultValue = "0.2";
-                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(VBIEDChance),_value,true)]);
-            };
+            // class GVAR(VBIEDChance) {
+            //     property = QGVAR(VBIEDChance);
+            //     displayName = "VBIED Chance";
+            //     tooltip = "Chance that a vehicle will be a VBIED.";
+            //     control = "Slider";
+            //     defaultValue = "0.2";
+            //     expression = QUOTE(_this setVariable [ARR_3(QQGVAR(VBIEDChance),_value,true)]);
+            // };
         };
     };
 
@@ -189,6 +191,19 @@ class CfgVehicles {
         class AttributeValues {
             size3[] = { 500, 500, -1 };
             isRectangle = 0;
+        };
+    };
+
+    class ThingX;
+    class GVAR(helper): ThingX {
+        scope = 1;
+        displayName = "IED Helper";
+        model = "\z\ace\addons\fastroping\data\helper.p3d";
+        icon = "\A3\ui_f\data\map\vehicleicons\iconExplosiveGP_ca.paa";
+        armor = 1;
+        SLX_XEH_DISABLED = 0;
+        class EventHandlers {
+            class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers_base {};
         };
     };
 };

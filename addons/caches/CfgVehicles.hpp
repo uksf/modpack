@@ -4,14 +4,12 @@ class CfgVehicles {
         scope = 1;
         is3DEN = 1;
         functionPriority = 1;
-        category = ADDON;
+        category = EGVAR(common,eden);
         class AttributesBase;
     };
     class GVAR(cacheAreaModule) : GVAR(module) {
         scope = 2;
         displayName = "(Caches) Spawn Module";
-        icon = "";
-        portrait = "";
         function = QFUNC(moduleInitCaches);
         canSetArea = 1;
         canSetAreaHeight = 0;

@@ -4,16 +4,15 @@ class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
         units[] = {
-            QGVAR(cacheAreaModule),
+            QGVAR(moduleRatingArea)
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "uksf_common",
-            "uksf_mission"
+            "uksf_common"
         };
         author = QUOTE(UKSF);
-        authors[] = { "Bridgford.A" };
+        authors[] = { "Beswick.T" };
         url = URL;
         VERSION_CONFIG;
     };

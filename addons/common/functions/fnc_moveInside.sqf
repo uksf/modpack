@@ -89,11 +89,11 @@ _unit forceWalk true;
 
     private _intersects = lineIntersects [((getPosASLVisual _unit) vectorAdd ((vectorUp _unit) vectorMultiply 1.25)), ((getPosASLVisual _unit) vectorAdd ((vectorUp _unit) vectorMultiply -4)), _unit];
     if (!_intersects && {time > (_time + TIMEOUT)}) exitWith {
-        diag_log "EXIT";
         [_idPFH] call CBA_fnc_removePerFrameHandler;
         _unit setVelocity (velocity _vehicle);
         _unit forceWalk false;
         _unit playMoveNow "halofreefall_non";
+        
         [{
             params ["_unit"];
             _unit allowDamage true;

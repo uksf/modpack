@@ -24,7 +24,7 @@ if (!(local _module)) exitWith {};
 {
     private _planterHome = nearestBuilding _x;
 
-    if (_planterHome == objNull) exitWith {diag_log format ["(UKSF IED ERROR): %1 at position %2 has no nearby building", _x, getPos _x]};
+    if (isNull _planterHome) exitWith {ERROR_2("%1 at position %2 has no nearby building",_x,getPos _x);};
 
     _x setVariable [QGVAR(planterHome), _planterHome];
 
@@ -34,6 +34,15 @@ if (!(local _module)) exitWith {};
 
     removeGoggles _x;
     _x addBackpack (selectRandom _planterBackpacks);
+
+    _x addMPEventHandler ["MPKilled", {
+        params ["_unit", "_killer", "_instigator"];
+
+        TRACE_3("",_unit,_killer,_instigator);
+        if (side _killer != west && side _instigator != west) exitWith {};
+
+        [QGVAR(planterKilled), _unit] call CBA_fnc_serverEvent;
+    }];
 
     [_x] call FUNC(setWaypointPlanter);
 } forEach (synchronizedObjects _module);

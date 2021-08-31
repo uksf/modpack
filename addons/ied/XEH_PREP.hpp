@@ -1,3 +1,4 @@
+PREP(createIEDHelper);
 PREP(getRoadSide);
 PREP(setWaypoint);
 PREP(moduleIEDArea);

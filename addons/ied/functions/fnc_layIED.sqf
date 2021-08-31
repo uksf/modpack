@@ -26,8 +26,9 @@ _planter removeItem 'IEDUrbanSmall_Remote_Mag';
     // plant IED 1m to front of planter
     private _planterDir = getDir _planter;
     private _iedPos = _planter getPos [1.1, _planterDir];
-    ([objNull, _iedPos, random 360, "IEDUrbanSmall_Remote_Mag", "PressurePlate", []] call ACE_Explosives_fnc_placeExplosive) params ["_explosive"];
-    _explosive setVectorUp surfaceNormal position _explosive;
+    private _explosive = [objNull, _iedPos, random 360, "IEDUrbanSmall_Remote_Mag", "PressurePlate", []] call ace_explosives_fnc_placeExplosive;
+
+    [_explosive] call FUNC(createIEDHelper);
     [QGVAR(revealMineToAllExceptBlufor), [_explosive]] call CBA_fnc_globalEvent;
     _planter call BIS_fnc_ambientAnim__terminate;
 }, [_planter], 20] call CBA_fnc_waitAndExecute;
