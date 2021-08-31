@@ -24,7 +24,7 @@ if (!(local _module)) exitWith {};
 {
     private _planterHome = nearestBuilding _x;
 
-    if (isNull _planterHome) exitWith {ERROR_2("%1 at position %2 has no nearby building", _x, getPos _x};
+    if (isNull _planterHome) exitWith {ERROR_2("%1 at position %2 has no nearby building",_x,getPos _x);};
 
     _x setVariable [QGVAR(planterHome), _planterHome];
 
