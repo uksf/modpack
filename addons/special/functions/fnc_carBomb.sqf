@@ -46,8 +46,7 @@ private _distance = 40 + ((random 10) - 5);
             [{
                 params ["_car"];
 
-                private _pos = getPosATL _car;
-                private _explosive = "IEDLandBig_Remote_Ammo" createVehicle [_pos#0, _pos#1, (_pos#2) + 0.2];
+                private _explosive = createVehicle ["Bo_Mk82", _car, [], 0, "CAN_COLLIDE"];
 
                 _explosive setDamage 1;
                 _car setDamage 1;
@@ -57,5 +56,8 @@ private _distance = 40 + ((random 10) - 5);
 
     if (!alive _car) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
+
+        private _explosive = createVehicle ["Bo_Mk82", _car, [], 0, "CAN_COLLIDE"];
+        _explosive setDamage 1;
     };
 }, 5, [_car, _side, _distance]] call CBA_fnc_addPerFrameHandler;

@@ -11,7 +11,7 @@
         1: Area array <ARRAY>
 
     Return value:
-        Nothing
+        Data array
 */
 
 params ["_logic", "_area"];

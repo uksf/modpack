@@ -21,8 +21,10 @@ private _area = _logic getVariable ["objectarea", []];
 if (_area isEqualTo []) exitWith {};
 
 private _numberOfVBIEDsToSpawn = _logic getVariable [QGVAR(VBIEDNumber), 0];
-private _VBIEDVehiclesParsed = parseSimpleArray (_logic getVariable [QGVAR(VBIEDVehicleClasses), []]);
+private _VBIEDVehiclesParsed = parseSimpleArray (_logic getVariable [QGVAR(VBIEDVehicleClasses), "[]"]);
 private _moduleVBIEDChance = _logic getVariable [QGVAR(VBIEDChance), 0];
+
+if (_VBIEDVehiclesParsed isEqualTo []) exitWith {};
 
 [{
     params ["_args", "_idPFH"];
@@ -43,6 +45,15 @@ private _moduleVBIEDChance = _logic getVariable [QGVAR(VBIEDChance), 0];
         private _vehicle = createVehicle [selectRandom _VBIEDVehiclesParsed, _roadSide, [], 0, "NONE"];
         _vehicle setDir _dir;
         [_vehicle] call EFUNC(special,carBomb);
+
+        _vehicle addMPEventHandler ["MPKilled", {
+            params ["_vehicle", "_killer", "_instigator"];
+
+            TRACE_3("",_vehicle,_killer,_instigator);
+            if (side _killer != west && side _instigator != west) exitWith {};
+
+            [QGVAR(iedDestroyed), _vehicle] call CBA_fnc_serverEvent;
+        }];
 
         _args set [0, _numberOfVBIEDsToSpawn - 1];
     };

@@ -1,0 +1,9 @@
+PREP(addDebugActions);
+PREP(getAreaRating);
+PREP(getGlobalRating);
+PREP(getRating);
+PREP(initRatingArea);
+PREP(moduleRatingArea);
+PREP(ratingChanged);
+PREP(recalculateGlobalRatingEvents);
+PREP(toggleDebugInfo);
