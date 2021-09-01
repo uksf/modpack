@@ -22,7 +22,7 @@ private _globalMin = 0;
 private _globalMax = 0;
 
 {
-    _x params ["_logic", "_area", "_values"];
+    _x params ["", "_logic", "_area", "_values"];
 
     private _ratingStart = _values get QGVAR(ratingStart);
     private _ratingCurrent = _values get QGVAR(ratingCurrent);

@@ -13,7 +13,7 @@
     Return value:
         Data array
 */
-params ["_logic", "_area"];
+params ["_persistenceId", "_logic", "_area"];
 
 if !(isServer) exitWith {};
 
@@ -77,4 +77,4 @@ if (_ratingStart > _ratingMax) then {
 _values set [QGVAR(ratingStart), _ratingStart];
 _values set [QGVAR(ratingCurrent), _ratingStart];
 
-[_logic, _area, _values]
+[_persistenceId, _logic, _area, _values]

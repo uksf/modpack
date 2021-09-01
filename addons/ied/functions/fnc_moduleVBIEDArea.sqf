@@ -37,13 +37,17 @@ if (_VBIEDVehiclesParsed isEqualTo []) exitWith {};
     _area deleteAt 4;
     private _areaArray = [(getPos _logic)] + _area;
     private _position = [_areaArray] call CBA_fnc_randPosArea;
+    private _direction = random 360;
     private _road = [_position] call EFUNC(common,findNearRoad);
+    if !(isNull _road) then {
+        ([_road, 1] call FUNC(getRoadSide)) params ["_roadSide", "_direction"];
+        _position = _roadSide;
+    };
 
-    private _canCreate = [GVAR(iedExcludeAreas), {[_road, _x#0, _x#1] call EFUNC(common,objectInArea)}] call EFUNC(common,arrayNone);
+    private _canCreate = [GVAR(iedExcludeAreas), {[_position, _x#0, _x#1] call EFUNC(common,objectInArea)}] call EFUNC(common,arrayNone);
     if (_canCreate) then {
-        ([_road, 1] call FUNC(getRoadSide)) params  ["_roadSide", "_dir"];
-        private _vehicle = createVehicle [selectRandom _VBIEDVehiclesParsed, _roadSide, [], 0, "NONE"];
-        _vehicle setDir _dir;
+        private _vehicle = createVehicle [selectRandom _VBIEDVehiclesParsed, _position, [], 0, "NONE"];
+        _vehicle setDir (_direction + (random 40) - 20);
         [_vehicle] call EFUNC(special,carBomb);
 
         _vehicle addMPEventHandler ["MPKilled", {

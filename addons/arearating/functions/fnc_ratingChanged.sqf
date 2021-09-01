@@ -30,10 +30,10 @@ if (_position isEqualType objNull) then {
 
 TRACE_3("",_type,_data,_position);
 
-private _areas = GVAR(ratingAreas) select {[_position, _x#0, _x#1] call EFUNC(common,objectInArea)};
+private _areas = GVAR(ratingAreas) select {[_position, _x#1, _x#2] call EFUNC(common,objectInArea)};
 TRACE_1("",_areas);
 {
-    _x params ["_logic", "_area", "_values"];
+    _x params ["", "_logic", "_area", "_values"];
 
     private _ratingCurrent = _values get QGVAR(ratingCurrent);
     private _ratingMin = _values get QGVAR(ratingMin);

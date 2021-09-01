@@ -123,6 +123,15 @@ class CfgVehicles {
                 defaultValue = "-8";
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(civ_killed),_value,true)]);
             };
+
+            class GVAR(persistenceID) {
+                property = QGVAR(persistenceID);
+                displayName = "Persistence ID";
+                tooltip = "The persistence ID used to save rating area value between missions";
+                control = "Edit";
+                defaultValue = "format ['%1_%2_%3', typeOf _this, diag_frameNo, round random 99999]";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(persistenceID),_value,true)]);
+            };
         };
     };
 };

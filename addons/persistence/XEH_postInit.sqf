@@ -15,13 +15,13 @@
                 };
             } forEach (GVAR(dataNamespace) getVariable [QGVAR(deletedObjects), []]);
 
-            [{[] call FUNC(loadAllObjectData)}] call CBA_fnc_execNextFrame;
+            call FUNC(loadAllData);
         }] call CBA_fnc_execNextFrame;
     };
 
     if (hasInterface) then {
         call FUNC(addPersistenceActions);
-        
+
         TRACE_1("Requesting player redeploy data",_data);
         [QGVAR(requestRedeployData), [player]] call CBA_fnc_serverEvent;
     };

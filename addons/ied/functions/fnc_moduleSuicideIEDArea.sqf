@@ -27,7 +27,7 @@ private _useVehicle = _logic getVariable [QGVAR(suicideIEDInCarBoolean), false];
 if (_manClassesParsed isEqualTo [] || _suicideItems isEqualTo []) exitWith {};
 
 _area deleteAt 4;
-private _areaArray = [(getPos _logic)] + _area;
+private _areaArray = [getPos _logic] + _area;
 private _position = [_areaArray] call CBA_fnc_randPosArea;
 _position set [2, 0];
 

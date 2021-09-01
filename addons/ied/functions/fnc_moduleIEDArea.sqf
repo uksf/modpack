@@ -45,33 +45,29 @@ if (_usePlanters) then {
     _area deleteAt 4;
     private _areaArray = [getPos _logic] + _area;
     private _position = [_areaArray] call CBA_fnc_randPosArea;
+    private _direction = random 360;
     _position set [2, 0];
 
-    private _canCreate = [GVAR(iedExcludeAreas), {[_position, _x#0, _x#1] call EFUNC(common,objectInArea)}] call EFUNC(common,arrayNone);
-    if (_canCreate) then {
-        private _explosive = objNull;
-
-        if (_useRoads) then {
-            private _road = [_position] call EFUNC(common,findNearRoad);
+    if (_useRoads) then {
+        private _road = [_position] call EFUNC(common,findNearRoad);
+        if !(isNull _road) then {
             private _sideOfRoadchance = random 10;
 
             if (_sideOfRoadchance > 5) then {
                 ([_road, 1] call FUNC(getRoadSide)) params ["_roadSide", "_dir"];
-                _explosive = [objNull, _roadSide, _dir, selectRandom _iedClassesParsed, "PressurePlate", []] call ace_explosives_fnc_placeExplosive;
-
-                private _hiddenChance = random 1;
-                if (_hiddenClassesParsed isNotEqualTo [] && _hiddenChance < _moduleHiddenChance) then {
-                    private _hideObject = createVehicle [selectRandom _hiddenClassesParsed, _roadSide, [], 0, "CAN_COLLIDE"];
-                    _hideObject setDir (random 360);
-                    _hideObject setVectorUp surfaceNormal position _hideObject;
-                    _hideObject enableSimulationGlobal false; // TODO: This is bad
-                };
+                _position = _roadSide;
+                _direction = _dir;
             } else {
-                _explosive = [objNull, getPos _road, random 360, selectRandom _iedClassesParsed, "PressurePlate", []] call ace_explosives_fnc_placeExplosive;
+                _position = getPos _road;
             };
-        } else {
-            _explosive = [objNull, _position, random 360, selectRandom _iedClassesParsed, "PressurePlate", []] call ace_explosives_fnc_placeExplosive;
         };
+    };
+
+    private _canCreate = [GVAR(iedExcludeAreas), {[_position, _x#0, _x#1] call EFUNC(common,objectInArea)}] call EFUNC(common,arrayNone);
+    if (_canCreate) then {
+        private _explosive = [objNull, _position, _direction, selectRandom _iedClassesParsed, "PressurePlate", []] call ace_explosives_fnc_placeExplosive;
+        [_explosive] call FUNC(createIEDHelper);
+        [QGVAR(revealMineToAllExceptBlufor), [_explosive]] call CBA_fnc_globalEvent;
 
         private _secondaryChance = random 1;
         if (_secondaryChance < _moduleSecondaryChance) then {
@@ -82,9 +78,17 @@ if (_usePlanters) then {
             [_explosiveSecondary] call FUNC(createIEDHelper);
             [QGVAR(revealMineToAllExceptBlufor), [_explosiveSecondary]] call CBA_fnc_globalEvent;
         };
+        
+        if (_useRoads) then {
+            private _hiddenChance = random 1;
+            if (_hiddenClassesParsed isNotEqualTo [] && _hiddenChance < _moduleHiddenChance) then {
+                private _hideObject = createVehicle [selectRandom _hiddenClassesParsed, _position, [], 0, "CAN_COLLIDE"];
+                _hideObject setDir (random 360);
+                _hideObject setVectorUp surfaceNormal position _hideObject;
+                _hideObject enableSimulationGlobal false; // TODO: This is bad
+            };
+        };
 
-        [_explosive] call FUNC(createIEDHelper);
-        [QGVAR(revealMineToAllExceptBlufor), [_explosive]] call CBA_fnc_globalEvent;
         _args set [0, _numberOfIEDsToSpawn - 1];
     };
 }, 0.2, [_numberOfIEDsToSpawn, _logic, _area, _iedClassesParsed, _hiddenClassesParsed, _moduleHiddenChance, _moduleSecondaryChance, _useRoads]] call CBA_fnc_addPerFrameHandler;
