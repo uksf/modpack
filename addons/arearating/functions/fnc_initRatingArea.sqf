@@ -7,13 +7,15 @@
         Initialises data for rating area
 
     Parameters:
-        0: The module logic <OBJECT>
-        1: Area array <ARRAY>
+        0: Area id <STRING>
+        1: Area display name <STRING>
+        2: Area logic <OBJECT>
+        3: Area shape <ARRAY>
 
     Return value:
         Data array
 */
-params ["_persistenceId", "_logic", "_area"];
+params ["_id", "_displayName", "_logic", "_area"];
 
 if !(isServer) exitWith {};
 
@@ -77,4 +79,4 @@ if (_ratingStart > _ratingMax) then {
 _values set [QGVAR(ratingStart), _ratingStart];
 _values set [QGVAR(ratingCurrent), _ratingStart];
 
-[_persistenceId, _logic, _area, _values]
+[_id, _displayName, _logic, _area, _values]

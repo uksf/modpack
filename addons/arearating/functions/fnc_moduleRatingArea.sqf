@@ -19,9 +19,11 @@ if !(isServer) exitWith {};
 private _area = _logic getVariable ["objectarea", []];
 if (_area isEqualTo []) exitWith {};
 
-private _persistenceId = _logic getVariable [QGVAR(persistenceID), ""];
-if (_persistenceId isEqualTo "") exitWith {
-    ERROR("Rating area does not have a persistence ID");
+private _id = _logic getVariable [QGVAR(id), ""];
+if (_id isEqualTo "") exitWith {
+    ERROR("Rating area does not have an ID");
 };
 
-GVAR(ratingAreaModules) pushBack [_persistenceId, _logic, _area];
+private _displayName = _logic getVariable [QGVAR(displayName), ""];
+
+GVAR(ratingAreaModules) pushBack [_id, _displayName, _logic, _area];

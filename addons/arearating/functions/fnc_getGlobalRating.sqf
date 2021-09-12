@@ -16,13 +16,17 @@
 
 if !(isServer) exitWith {};
 
+if (GVAR(ratingAreas) isEqualTo []) exitWith {
+    [[0, 0, 0, 0], [0, 0]]
+};
+
 private _globalStart = 0;
 private _globalCurrent = 0;
 private _globalMin = 0;
 private _globalMax = 0;
 
 {
-    _x params ["", "_logic", "_area", "_values"];
+    _x params ["", "", "_logic", "_area", "_values"];
 
     private _ratingStart = _values get QGVAR(ratingStart);
     private _ratingCurrent = _values get QGVAR(ratingCurrent);

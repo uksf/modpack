@@ -4,16 +4,16 @@
         Tim Beswick
 
     Description:
-        Serialize rating area values for persistence data
+        Serialize rating area for persistence
 
     Parameter(s):
         None
 
     Return Value:
-        Persistence data <ARRAY>
-        [[Persistence ID, Values], ...]
+        Serialized data <ARRAY>
+        [[ID, Values], ...]
 */
 
 if !(isServer) exitWith {};
 
-GVAR(ratingAreas) apply {[_x#0, _x#3]}
+GVAR(ratingAreas) apply {[_x#0, _x#4]}

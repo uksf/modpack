@@ -7,11 +7,11 @@
         Get current rating for area for a given object or position
 
     Parameters:
-        0: Event object or position <OBJECT/ARRAY>
+        0: Object or position <OBJECT/ARRAY>
 
     Return value:
         Array of area ratings <ARRAY>
-        [[Persistence ID, Area, Logic, [Rating start, Rating current, Rating min, Rating max], [Percentage start, Percentage current]], ...]
+        [[ID, Display name, Logic, Area, [Rating start, Rating current, Rating min, Rating max], [Percentage start, Percentage current]], ...]
 */
 params [["_data", objNull, [objNull, []]]];
 
@@ -26,5 +26,5 @@ if (_position isEqualType objNull) then {
     _position = getPosASL _data;
 };
 
-private _areas = GVAR(ratingAreas) select {[_position, _x#1, _x#2] call EFUNC(common,objectInArea)};
+private _areas = GVAR(ratingAreas) select {[_position, _x#2, _x#3] call EFUNC(common,objectInArea)};
 _areas apply {[_x] call FUNC(getAreaRating)};

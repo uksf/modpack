@@ -45,7 +45,7 @@ GVAR(debugPFHID) = [{
 
     {
         private _areaInfo = [_x] call FUNC(getAreaRating);
-        _areaInfo params ["_persistenceId", "_area", "_logic", "_ratings", "_percentages"];
+        _areaInfo params ["_id", "_displayName", "_area", "_logic", "_ratings", "_percentages"];
         _area params ["_a", "_b", "_angle", "_isRectangle"];
         _ratings params ["_ratingStart", "_ratingCurrent", "_ratingMin", "_ratingMax"];
         _percentages params ["_percentageStart", "_percentageCurrent"];
@@ -66,18 +66,22 @@ GVAR(debugPFHID) = [{
         };
 
         private _marker = createMarkerLocal [format [QGVAR(debugMarker_areaId_%1), _forEachIndex], _position];
-        _marker setMarkerShapeLocal "ICON"; _marker setMarkerTypeLocal "hd_dot"; _marker setMarkerColorLocal _colour; _marker setMarkerTextLocal (format ["Area ID: %1", _persistenceId]);
+        _marker setMarkerShapeLocal "ICON"; _marker setMarkerTypeLocal "hd_dot"; _marker setMarkerColorLocal _colour; _marker setMarkerTextLocal (format ["Area ID: %1", _id]);
         GVAR(debugMarkers) pushBack _marker;
 
-        _marker = createMarkerLocal [format [QGVAR(debugMarker_areaText_%1), _forEachIndex], [_position#0, _position#1 - 100, _position#2]];
+        _marker = createMarkerLocal [format [QGVAR(debugMarker_areaDisplayName_%1), _forEachIndex], [_position#0, _position#1 - 100, _position#2]];
+        _marker setMarkerShapeLocal "ICON"; _marker setMarkerTypeLocal "hd_dot"; _marker setMarkerColorLocal _colour; _marker setMarkerTextLocal (format ["Area Name: %1", _displayName]);
+        GVAR(debugMarkers) pushBack _marker;
+
+        _marker = createMarkerLocal [format [QGVAR(debugMarker_areaText_%1), _forEachIndex], [_position#0, _position#1 - 200, _position#2]];
         _marker setMarkerShapeLocal "ICON"; _marker setMarkerTypeLocal "hd_dot"; _marker setMarkerColorLocal _colour; _marker setMarkerTextLocal "Area Ratings (Start, Current, Min, Max)";
         GVAR(debugMarkers) pushBack _marker;
 
-        _marker = createMarkerLocal [format [QGVAR(debugMarker_areaRatings_%1), _forEachIndex], [_position#0, _position#1 - 200, _position#2]];
+        _marker = createMarkerLocal [format [QGVAR(debugMarker_areaRatings_%1), _forEachIndex], [_position#0, _position#1 - 300, _position#2]];
         _marker setMarkerShapeLocal "ICON"; _marker setMarkerTypeLocal "hd_dot"; _marker setMarkerColorLocal _colour; _marker setMarkerTextLocal (format ["Ratings: %1, %2, %3, %4", _ratingStart, _ratingCurrent, _ratingMin, _ratingMax]);
         GVAR(debugMarkers) pushBack _marker;
 
-        _marker = createMarkerLocal [format [QGVAR(debugMarker_areaPercentages_%1), _forEachIndex], [_position#0, _position#1 - 300, _position#2]];
+        _marker = createMarkerLocal [format [QGVAR(debugMarker_areaPercentages_%1), _forEachIndex], [_position#0, _position#1 - 400, _position#2]];
         _marker setMarkerShapeLocal "ICON"; _marker setMarkerTypeLocal "hd_dot"; _marker setMarkerColorLocal _colour; _marker setMarkerTextLocal (format ["Percentages: %1, %2", _percentageStart, _percentageCurrent]);
         GVAR(debugMarkers) pushBack _marker;
 

@@ -4,7 +4,7 @@
         Tim Beswick
 
     Description:
-        Adds persistence actions
+        Adds debug actions
 
     Parameter(s):
         None

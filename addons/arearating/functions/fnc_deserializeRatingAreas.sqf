@@ -4,10 +4,10 @@
         Tim Beswick
 
     Description:
-        Deserialize rating area values from persistence data
+        Deserialize rating area values from serialized data
 
     Parameter(s):
-        0: Persistence data <ARRAY>
+        0: Serialized data <ARRAY>
 
     Return Value:
         None
@@ -17,15 +17,15 @@ params [["_data", []]];
 if !(isServer) exitWith {};
 
 {
-    _x params ["_persistenceId", "_logic", "_area", "_values"];
+    _x params ["_id", "_displayName", "_logic", "_area", "_values"];
 
-    private _persistentDataIndex = _data findIf {_x#0 == _persistenceId};
-    if (_persistentDataIndex == -1) exitWith {};
+    private _dataIndex = _data findIf {_x#0 == _id};
+    if (_dataIndex == -1) exitWith {};
 
-    private _persistentData = _data#_persistentDataIndex;
-    _persistentData params ["", "_persistentValues"];
+    private _areaData = _data#_dataIndex;
+    _areaData params ["", "_areaDataValues"];
 
-    private _ratingCurrent = _persistentValues get QGVAR(ratingCurrent);
+    private _ratingCurrent = _areaDataValues get QGVAR(ratingCurrent);
     private _ratingMin = _values get QGVAR(ratingMin);
     private _ratingMax = _values get QGVAR(ratingMax);
 

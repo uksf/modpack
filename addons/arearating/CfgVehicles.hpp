@@ -20,6 +20,23 @@ class CfgVehicles {
             isRectangle = 0;
         };
         class Attributes : AttributesBase {
+            class GVAR(id) {
+                property = QGVAR(id);
+                displayName = "ID";
+                tooltip = "The ID used to identify save rating area value between missions";
+                control = "Edit";
+                defaultValue = "format ['%1_%2_%3', typeOf _this, diag_frameNo, round random 99999]";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(id),_value,true)]);
+            };
+            class GVAR(displayName) {
+                property = QGVAR(displayName);
+                displayName = "Display name";
+                tooltip = "Display name of the area to use in any player interactions";
+                control = "Edit";
+                defaultValue = "format ['%1', round random 99999]";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(displayName),_value,true)]);
+            };
+
             class GVAR(ratingStart) {
                 property = QGVAR(ratingStart);
                 displayName = "Start rating";
@@ -122,15 +139,6 @@ class CfgVehicles {
                 max = 100;
                 defaultValue = "-8";
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(civ_killed),_value,true)]);
-            };
-
-            class GVAR(persistenceID) {
-                property = QGVAR(persistenceID);
-                displayName = "Persistence ID";
-                tooltip = "The persistence ID used to save rating area value between missions";
-                control = "Edit";
-                defaultValue = "format ['%1_%2_%3', typeOf _this, diag_frameNo, round random 99999]";
-                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(persistenceID),_value,true)]);
             };
         };
     };
