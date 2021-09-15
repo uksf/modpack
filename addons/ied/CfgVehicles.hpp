@@ -35,7 +35,7 @@ class CfgVehicles {
             class GVAR(iedNumber) {
                 property = QGVAR(iedNumber);
                 displayName = "Number of IEDs";
-                tooltip = "Number of IEDs to place on and/or near roads.";
+                tooltip = "Number of IEDs to create";
                 control = "EditShort";
                 validate = "NUMBER";
                 defaultValue = "50";
@@ -44,7 +44,7 @@ class CfgVehicles {
             class GVAR(useRoads) {
                 property = QGVAR(useRoads);
                 displayName = "Use roads";
-                tooltip = "Tick to place IEDs only on or next to roads.";
+                tooltip = "Enable to create IEDs only on or next to roads";
                 control = "Checkbox";
                 defaultValue = true;
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(useRoads),_value,true)]);
@@ -52,7 +52,7 @@ class CfgVehicles {
             class GVAR(iedHideChance) {
                 property = QGVAR(iedHideChance);
                 displayName = "IED Hidden Chance";
-                tooltip = "Chance that an IED will be hidden under another object such as a cart. Only happens on IEDs at the side of the road. Set to 0 for no cover.";
+                tooltip = "Chance that an IED will be hidden under another object such as a cart. Only happens on IEDs at the side of a road. Set to 0 for no cover";
                 control = "Slider";
                 defaultValue = "0.2";
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(iedHideChance),_value,true)]);
@@ -68,7 +68,7 @@ class CfgVehicles {
             class GVAR(iedSecondaryChance) {
                 property = QGVAR(iedSecondaryChance);
                 displayName = "Chance of secondary IEDs";
-                tooltip = "Chance that an IED will have secondary IEDs nearby.";
+                tooltip = "Chance that an IED will have secondary IEDs nearby";
                 control = "Slider";
                 defaultValue = "0.2";
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(iedSecondaryChance),_value,true)]);
@@ -76,7 +76,7 @@ class CfgVehicles {
             class GVAR(useIEDPlanters) {
                 property = QGVAR(useIEDPlanters);
                 displayName = "Use IED Planters";
-                tooltip = "Tick to for units to place IEDs. Synchronized objects will become planters.";
+                tooltip = "Enable for units to place IEDs. Synchronized objects will become planters";
                 control = "Checkbox";
                 defaultValue = false;
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(useIEDPlanters),_value,true)]);
@@ -105,7 +105,7 @@ class CfgVehicles {
             class GVAR(suicideIEDClasses) {
                 property = QGVAR(suicideIEDClasses);
                 displayName = "Suicide Classnames";
-                tooltip = "Civ/Soldier classnames to use for IEDs. Comma-separated list of class names in single quotes, no spaces";
+                tooltip = "Classnames to use for suicide bombers. Comma-separated list of class names in single quotes, no spaces";
                 control = "Edit";
                 defaultValue = "[]";
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(suicideIEDClasses),_value,true)]);
@@ -113,7 +113,7 @@ class CfgVehicles {
             class GVAR(suicideIEDItemClasses) {
                 property = QGVAR(suicideIEDItemClasses);
                 displayName = "Suicide Backpack Classnames";
-                tooltip = "Backpack classnames for bombers not in cars. Comma-separated list of class names in single quotes, no spaces";
+                tooltip = "Backpack classnames for bombers. Comma-separated list of class names in single quotes, no spaces";
                 control = "Edit";
                 defaultValue = "[]";
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(suicideIEDItemClasses),_value,true)]);
@@ -121,7 +121,7 @@ class CfgVehicles {
             class GVAR(suicideIEDInCarBoolean) {
                 property = QGVAR(suicideIEDInCarBoolean);
                 displayName = "Use vehicle";
-                tooltip = "Tick for suicide bombers to be in cars. Note they are placed at the start of a mission.";
+                tooltip = "Enable for suicide bombers to use vehicles";
                 control = "Checkbox";
                 defaultValue = true;
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(suicideIEDInCarBoolean),_value,true)]);
@@ -129,7 +129,7 @@ class CfgVehicles {
             class GVAR(suicideIEDVehicleClasses) {
                 property = QGVAR(suicideIEDVehicleClasses);
                 displayName = "Vehicle classes";
-                tooltip = "Vehicles for suicide bombers. Comma-separated list of class names in single quotes, no spaces";
+                tooltip = "Vehicle classnames for suicide bomber vehicles. Comma-separated list of class names in single quotes, no spaces";
                 control = "Edit";
                 defaultValue = "[]";
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(suicideIEDVehicleClasses),_value,true)]);
@@ -154,15 +154,15 @@ class CfgVehicles {
             class GVAR(VBIEDVehicleClasses) {
                 property = QGVAR(VBIEDVehicleClasses);
                 displayName = "VBIED Classnames";
-                tooltip = "Vehicle classnames to use for IEDs. Comma-separated list of class names in single quotes, no spaces";
+                tooltip = "Vehicle classnames to use for VBIEDs. Comma-separated list of class names in single quotes, no spaces";
                 control = "Edit";
                 defaultValue = "[]";
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(VBIEDVehicleClasses),_value,true)]);
             };
             class GVAR(VBIEDNumber) {
                 property = QGVAR(VBIEDNumber);
-                displayName = "Number of Vehicles";
-                tooltip = "Number of vehicles to place on and/or near roads.";
+                displayName = "Number of VBIEDs";
+                tooltip = "Number of VBIEDs to create";
                 control = "EditShort";
                 validate = "NUMBER";
                 defaultValue = "15";

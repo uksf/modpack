@@ -20,8 +20,8 @@ private _area = _logic getVariable ["objectarea", []];
 if (_area isEqualTo []) exitWith {};
 
 private _numberOfCaches = _logic getVariable [QGVAR(cacheNumber), 0];
-private _cacheTypes = parseSimpleArray (_logic getVariable [QGVAR(cachePoolString), "[]"]);
-private _contentTypes = parseSimpleArray (_logic getVariable [QGVAR(cacheContentPoolString), "[]"]);
+private _cacheTypes = [_logic getVariable [QGVAR(cachePoolString), []]] call EFUNC(common,convertToArray);
+private _contentTypes = [_logic getVariable [QGVAR(cacheContentPoolString), []]] call EFUNC(common,convertToArray);
 
 if (_cacheTypes isEqualTo [] || _contentTypes isEqualTo []) exitWith {};
 

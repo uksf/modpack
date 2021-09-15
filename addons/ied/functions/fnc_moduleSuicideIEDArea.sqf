@@ -19,9 +19,9 @@ if !(isServer) exitWith {};
 private _area = _logic getVariable ["objectarea", []];
 if (_area isEqualTo []) exitWith {};
 
-private _manClassesParsed = parseSimpleArray (_logic getVariable [QGVAR(suicideIEDClasses), "[]"]);
-private _suicideItems = parseSimpleArray (_logic getVariable [QGVAR(suicideIEDItemClasses), "[]"]);
-private _vehicleClassesParsed = parseSimpleArray (_logic getVariable [QGVAR(suicideIEDVehicleClasses), "[]"]);
+private _manClassesParsed = [_logic getVariable [QGVAR(suicideIEDClasses), []]] call EFUNC(common,convertToArray);
+private _suicideItems = [_logic getVariable [QGVAR(suicideIEDItemClasses), []]] call EFUNC(common,convertToArray);
+private _vehicleClassesParsed = [_logic getVariable [QGVAR(suicideIEDVehicleClasses), []]] call EFUNC(common,convertToArray);
 private _useVehicle = _logic getVariable [QGVAR(suicideIEDInCarBoolean), false];
 
 if (_manClassesParsed isEqualTo [] || _suicideItems isEqualTo []) exitWith {};

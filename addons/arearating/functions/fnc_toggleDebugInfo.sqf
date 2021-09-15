@@ -45,7 +45,7 @@ GVAR(debugPFHID) = [{
 
     {
         private _areaInfo = [_x] call FUNC(getAreaRating);
-        _areaInfo params ["_id", "_displayName", "_area", "_logic", "_ratings", "_percentages"];
+        _areaInfo params ["_id", "_displayName", "_logic", "_area", "_ratings", "_percentages"];
         _area params ["_a", "_b", "_angle", "_isRectangle"];
         _ratings params ["_ratingStart", "_ratingCurrent", "_ratingMin", "_ratingMax"];
         _percentages params ["_percentageStart", "_percentageCurrent"];

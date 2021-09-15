@@ -20,14 +20,6 @@ class CfgVehicles {
             isRectangle = 0;
         };
         class Attributes : AttributesBase {
-            class GVAR(id) {
-                property = QGVAR(id);
-                displayName = "ID";
-                tooltip = "The ID used to identify save rating area value between missions";
-                control = "Edit";
-                defaultValue = "format ['%1_%2_%3', typeOf _this, diag_frameNo, round random 99999]";
-                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(id),_value,true)]);
-            };
             class GVAR(displayName) {
                 property = QGVAR(displayName);
                 displayName = "Display name";
@@ -74,7 +66,7 @@ class CfgVehicles {
             // Good
             class GVAR(ied_planter) {
                 property = QGVAR(ied_planter);
-                displayName = "Rating change for: IED planter killed";
+                displayName = "Rating change: IED planter killed";
                 tooltip = "The value the current rating will change by when an IED planter is killed";
                 control = "EditShort";
                 validate = "NUMBER";
@@ -85,7 +77,7 @@ class CfgVehicles {
             };
             class GVAR(ied_destroyed) {
                 property = QGVAR(ied_destroyed);
-                displayName = "Rating change for: IED destroyed";
+                displayName = "Rating change: IED destroyed";
                 tooltip = "The value the current rating will change by when an IED is purposefully detonated";
                 control = "EditShort";
                 validate = "NUMBER";
@@ -96,7 +88,7 @@ class CfgVehicles {
             };
             class GVAR(caches_destroyed) {
                 property = QGVAR(caches_destroyed);
-                displayName = "Rating change for: Cache destroyed";
+                displayName = "Rating change: Cache destroyed";
                 tooltip = "The value the current rating will change by when a cache is denied by friendly forces";
                 control = "EditShort";
                 validate = "NUMBER";
@@ -107,7 +99,7 @@ class CfgVehicles {
             };
             class GVAR(safehouse_destroyed) {
                 property = QGVAR(safehouse_destroyed);
-                displayName = "Rating change for: Safehouse destroyed";
+                displayName = "Rating change: Safehouse destroyed";
                 tooltip = "The value the current rating will change by when a safehouse is destroyed by friendly forces";
                 control = "EditShort";
                 validate = "NUMBER";
@@ -120,7 +112,7 @@ class CfgVehicles {
             // Bad
             class GVAR(civ_hit) {
                 property = QGVAR(civ_hit);
-                displayName = "Rating change for: Civilian hit";
+                displayName = "Rating change: Civilian hit";
                 tooltip = "The value the current rating will change by when a civilian is hit by friendly fire";
                 control = "EditShort";
                 validate = "NUMBER";
@@ -131,7 +123,7 @@ class CfgVehicles {
             };
             class GVAR(civ_killed) {
                 property = QGVAR(civ_killed);
-                displayName = "Rating change for: Civilian killed";
+                displayName = "Rating change: Civilian killed";
                 tooltip = "The value the current rating will change by when a civilian is killed by friendly fire";
                 control = "EditShort";
                 validate = "NUMBER";

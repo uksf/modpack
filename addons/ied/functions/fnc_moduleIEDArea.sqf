@@ -20,13 +20,13 @@ private _area = _logic getVariable ["objectarea", []];
 if (_area isEqualTo []) exitWith {};
 
 private _numberOfIEDsToSpawn = _logic getVariable [QGVAR(iedNumber), 0];
-private _iedClassesParsed = parseSimpleArray (_logic getVariable [QGVAR(iedClasses), "[]"]);
-private _hiddenClassesParsed = parseSimpleArray (_logic getVariable [QGVAR(iedHideClasses), "[]"]);
+private _iedClassesParsed = [_logic getVariable [QGVAR(iedClasses), []]] call EFUNC(common,convertToArray);
+private _hiddenClassesParsed = [_logic getVariable [QGVAR(iedHideClasses), []]] call EFUNC(common,convertToArray);
 private _moduleHiddenChance = _logic getVariable [QGVAR(iedHideChance), 0];
 private _moduleSecondaryChance = _logic getVariable [QGVAR(iedSecondaryChance), 0];
 private _useRoads = _logic getVariable [QGVAR(useRoads), true];
 private _usePlanters = _logic getVariable [QGVAR(useIEDPlanters), false];
-private _planterBackpacks = parseSimpleArray (_logic getVariable [QGVAR(IEDPlanterBackpackClasses), "[]"]);
+private _planterBackpacks = [_logic getVariable [QGVAR(IEDPlanterBackpackClasses), []]] call EFUNC(common,convertToArray);
 
 if (_iedClassesParsed isEqualTo []) exitWith {};
 
@@ -78,7 +78,7 @@ if (_usePlanters) then {
             [_explosiveSecondary] call FUNC(createIEDHelper);
             [QGVAR(revealMineToAllExceptBlufor), [_explosiveSecondary]] call CBA_fnc_globalEvent;
         };
-        
+
         if (_useRoads) then {
             private _hiddenChance = random 1;
             if (_hiddenClassesParsed isNotEqualTo [] && _hiddenChance < _moduleHiddenChance) then {

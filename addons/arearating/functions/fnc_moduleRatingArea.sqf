@@ -19,7 +19,7 @@ if !(isServer) exitWith {};
 private _area = _logic getVariable ["objectarea", []];
 if (_area isEqualTo []) exitWith {};
 
-private _id = _logic getVariable [QGVAR(id), ""];
+private _id = _logic getVariable [QEGVAR(common,id), ""];
 if (_id isEqualTo "") exitWith {
     ERROR("Rating area does not have an ID");
 };

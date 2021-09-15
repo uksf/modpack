@@ -21,7 +21,7 @@ private _area = _logic getVariable ["objectarea", []];
 if (_area isEqualTo []) exitWith {};
 
 private _numberOfVBIEDsToSpawn = _logic getVariable [QGVAR(VBIEDNumber), 0];
-private _VBIEDVehiclesParsed = parseSimpleArray (_logic getVariable [QGVAR(VBIEDVehicleClasses), "[]"]);
+private _VBIEDVehiclesParsed = [_logic getVariable [QGVAR(VBIEDVehicleClasses), []]] call EFUNC(common,convertToArray);
 private _moduleVBIEDChance = _logic getVariable [QGVAR(VBIEDChance), 0];
 
 if (_VBIEDVehiclesParsed isEqualTo []) exitWith {};
