@@ -30,3 +30,12 @@ if (!isServer) exitWith {
         [{call FUNC(dynamicPatrol)}, [], _delay * 60] call CBA_fnc_waitAndExecute;
     };
 }] call CBA_fnc_addEventHandler;
+
+GVAR(missionObjects) = (allMissionObjects "All") - allUnits;
+{
+    _x call FUNC(initSafehousePrefab);
+} forEach GVAR(safehousePrefabAreaModules);
+
+[QGVAR(loadingFinished), {
+
+}] call CBA_fnc_addEventHandler;

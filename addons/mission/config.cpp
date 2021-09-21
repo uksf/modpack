@@ -7,7 +7,9 @@ class CfgPatches {
             QGVAR(moduleSpawnArea),
             QGVAR(moduleDynamicPatrolExcludeArea),
             QGVAR(moduleDynamicPatrolIncludeArea),
-            QGVAR(moduleDynamicPatrolArea)
+            QGVAR(moduleDynamicPatrolArea),
+            QGVAR(moduleSafehousePrefabArea),
+            QGVAR(moduleSafehouseLocation)
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
