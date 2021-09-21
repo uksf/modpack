@@ -17,10 +17,9 @@ private _deleted = false;
 {
     _x params ["_projectile", "_fncName"];
 
-    private _position = getPosATL _projectile;
-    if (alive _projectile) then {
-        GVAR(shockwaveArray) set [_forEachIndex, [_projectile, _fncName]];
-    } else {
+    if !(alive _projectile) then {
+        diag_log _projectile;
+        private _position = getPosATL _projectile;
         if (([objNull, "VIEW"] checkVisibility [eyePos player, ATLToASL _position]) > 0) then {
             private _dist = ((positionCameraToworld [0,0,0]) distance _position);
             private _data = _dist call (missionNamespace getVariable [_fncName, {[0, 0, 0]}]);

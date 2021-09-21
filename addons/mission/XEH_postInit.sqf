@@ -27,6 +27,6 @@ if (!isServer) exitWith {
     if (GVAR(dynamicPatrolEnabled)) then {
         INFO("2) Global enabled");
         private _delay = [GVAR(dynamicPatrolStartDelay), GVAR(dynamicPatrolCooldown)] select (GVAR(dynamicPatrolStartDelay) == 0);
-        [{call FUNC(dynamicPatrol)}, [], _delay] call CBA_fnc_waitAndExecute;
+        [{call FUNC(dynamicPatrol)}, [], _delay * 60] call CBA_fnc_waitAndExecute;
     };
 }] call CBA_fnc_addEventHandler;

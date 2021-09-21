@@ -42,7 +42,7 @@ private _driver = driver _vehicle;
 
     private _compartment = "";
     if (_role == "cargo") then {
-        _compartment = GVAR(cargoCompartmentHash) get [_vehicleType, _cargoIndex];
+        _compartment = GVAR(cargoCompartmentHash) getOrDefault [_vehicleType, _cargoIndex];
         if (isNil "_compartment") then {
             private _vehicleConfig = configOf _vehicle;
             private _cargoCompartments = getArray (_vehicleConfig >> "cargoCompartments");
@@ -52,7 +52,7 @@ private _driver = driver _vehicle;
             GVAR(cargoCompartmentHash) insert [[[_vehicleType, _cargoIndex], _compartment]];
         };
     } else {
-        _compartment = GVAR(turretCompartmentHash) get [_vehicleType, _turretPath];
+        _compartment = GVAR(turretCompartmentHash) getOrDefault [_vehicleType, _turretPath];
         if (isNil "_compartment") then {
             private _vehicleConfig = configOf _vehicle;
             private _turretConfig = [_vehicleConfig, _turretPath] call CBA_fnc_getTurret;

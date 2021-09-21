@@ -54,5 +54,5 @@
         } else {
             GVAR(killerPlayers) pushBack [_instigator, time + PLAYER_FIRED_TIMEOUT];
         };
-    }]
+    }];
 }, true, [], true] call CBA_fnc_addClassEventHandler;

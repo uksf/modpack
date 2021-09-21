@@ -41,6 +41,7 @@ LOG("Shutdown");
                 TRACE_1("Saving date time",_dateTime);
                 GVAR(dataNamespace) setVariable [QGVAR(dateTime), _dateTime];
                 GVAR(dataNamespace) setVariable [QGVAR(mapMarkers), GVAR(mapMarkers)];
+                GVAR(dataNamespace) setVariable [QGVAR(ratingAreas), call EFUNC(arearating,serializeRatingAreas)];
                 call FUNC(saveData);
             };
 
@@ -52,19 +53,20 @@ LOG("Shutdown");
 }, 2, []] call CBA_fnc_addPerFrameHandler;
 
 // For local MP debug
-// [] call FUNC(saveObjectData);
+/*
+[] call uksf_persistence_fnc_saveObjectData;
 
-// [{
-//     !GVAR(saveObjectQueueProcessing)
-// }, {
-//     if (GVAR(dataSaved)) then {
-//         private _dateTime = date;
-//         TRACE_1("Saving date time",_dateTime);
-//         GVAR(dataNamespace) setVariable [QGVAR(dateTime), _dateTime];
-//         GVAR(dataNamespace) setVariable [QGVAR(mapMarkers), GVAR(mapMarkers)];
-//         call FUNC(saveData);
-//     };
+[{
+    !uksf_persistence_saveObjectQueueProcessing
+}, {
+    if (uksf_persistence_dataSaved) then {
+        private _dateTime = date;
+        uksf_persistence_dataNamespace setVariable ["uksf_persistence_dateTime", _dateTime];
+        uksf_persistence_dataNamespace setVariable ["uksf_persistence_mapMarkers", uksf_persistence_mapMarkers];
+        uksf_persistence_dataNamespace setVariable ["uksf_persistence_ratingAreas", call uksf_arearating_fnc_serializeRatingAreas];
+        call uksf_persistence_fnc_saveData;
+    };
 
-//     systemChat "done";
-//     // [{SERVER_COMMAND serverCommand "#shutdown"}, [], 4] call CBA_fnc_waitAndExecute;
-// }] call CBA_fnc_waitUntilAndExecute;
+    systemChat "done";
+}] call CBA_fnc_waitUntilAndExecute;
+*/

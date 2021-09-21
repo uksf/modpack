@@ -11,7 +11,7 @@
         1: Area array <ARRAY>
 
     Return value:
-        Nothing
+        Data array
 */
 
 params ["_logic", "_area"];
@@ -43,13 +43,7 @@ private _values = [];
 
     private _compileString = [_propertyConfig >> "compileString"] call EFUNC(common,getConfigEntry);
     if (!(_compileString isEqualType "") || {_compileString != "" && {_compileString == 1}}) then {
-        if (_value isEqualType "") then {
-            if (_value != "") then {
-                _value = call compile _value;
-            } else {
-                _value = [];
-            };
-        };
+        _value = [_value] call EFUNC(common,convertToArray);
     };
 
     TRACE_6("3) Area data init resolved variable final",_property,_value,_default,_min,_max,_compileString);

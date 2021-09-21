@@ -32,10 +32,11 @@ private _allObjects = nearestTerrainObjects [getPos _originCentre, [], _scanRadi
 private _visibleObjects = _allObjects select {!(isObjectHidden _x)};
 
 {
-    private _pos = _modelPitObject getPos [(_centreObject distance _x) * _scale, _centreObject getDir _x];
+    private _pos = _dioramaCentre getPos [(_originCentre distance _x) * _scale, _originCentre getDir _x];
     private _heightDiff = ((getPosWorld _x) vectorDiff (getPosASL _x))#2;
     private _scaledHeightDiff = _heightDiff * _scale;
     _pos set [2, _scaledHeightDiff];
+
     private _object = createSimpleObject [(getModelInfo _x)#1, ATLToASL _pos, true];
     _object setDir (getDir _x);
     _object setObjectScale _scale;

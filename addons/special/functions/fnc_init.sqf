@@ -19,6 +19,7 @@ if (!local _bomber) exitWith {};
 if (_bomber isKindOf "UKSF_O_Skoda_Base") exitWith {
     [_bomber, ["White", 0.25, "Red", 0.25, "Blue", 0.25, "Green", 0.25]] call BIS_fnc_initVehicle;
 };
+
 if (_bomber isKindOf "UKSF_O_TK_INS_Suicide_Driver") exitWith {
     removeUniform _bomber;
     removeVest _bomber;

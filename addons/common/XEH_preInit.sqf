@@ -20,6 +20,8 @@ GVAR(respawnPositions) = [];
 
 GVAR(valueCache) = createHashMap;
 
+GVAR(edenLogicIdMap) = createHashMap;
+
 if (hasInterface) then {
     GVAR(fpsArray) = [];
 

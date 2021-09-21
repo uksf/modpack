@@ -12,6 +12,7 @@ PREP(getObjectData);
 PREP(handleDisconnect);
 PREP(initClient);
 PREP(initServer);
+PREP(loadAllData);
 PREP(loadAllObjectData);
 PREP(loadObjectData);
 PREP(loadRedeployData);

@@ -28,28 +28,36 @@ private _side = switch (getNumber (configOf _car >> "side")) do {
     case 2: { independent };
     default { east };
 };
-private _distance = 25 + ((random 10) - 5);
+private _distance = 40 + ((random 10) - 5);
 
 [{
     params ["_args", "_idPFH"];
     _args params ["_car", "_side", "_distance"];
 
     if (({alive _x && {side _x != civilian} && {((side _x) getFriend (_side)) < 0.6}} count (_car nearEntities [["CAManBase", "LandVehicle"], _distance])) > 0) exitWith {
-        [_idPFH] call cba_fnc_removePerFrameHandler;
+        [_idPFH] call CBA_fnc_removePerFrameHandler;
         [_car, [[QGVAR(alarm), QGVAR(nokia)] select (random 1 > 0.5), 200]] remoteExecCall ["say3D", 0];
+
         [{
             params ["_car"];
+
             [_car, [QGVAR(trigger), 50]] remoteExecCall ["say3D", 0];
+
             [{
                 params ["_car"];
-                private _pos = getPosATL _car;
-                "R_TBG32V_F" createVehicle [_pos select 0, _pos select 1, (_pos select 2) + 0.2];
+
+                private _explosive = createVehicle ["Bo_Mk82", _car, [], 0, "CAN_COLLIDE"];
+
+                _explosive setDamage 1;
                 _car setDamage 1;
             }, [_car], 0.5] call CBA_fnc_waitAndExecute;
-        }, [_car], 2.5] call cba_fnc_waitAndExecute;
+        }, [_car], 2.5] call CBA_fnc_waitAndExecute;
     };
 
     if (!alive _car) exitWith {
-        [_idPFH] call cba_fnc_removePerFrameHandler;
+        [_idPFH] call CBA_fnc_removePerFrameHandler;
+
+        private _explosive = createVehicle ["Bo_Mk82", _car, [], 0, "CAN_COLLIDE"];
+        _explosive setDamage 1;
     };
-}, 5, [_car, _side, _distance]] call cba_fnc_addPerFrameHandler;
+}, 5, [_car, _side, _distance]] call CBA_fnc_addPerFrameHandler;
