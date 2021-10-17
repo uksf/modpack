@@ -676,7 +676,7 @@
     "CUP_V_JPC_weaponsbelt_mc", \
     "CUP_V_B_Armatus_MCam", \
     "CUP_V_B_Armatus_BB_MCam", \
-    "CUP_V_B_LBT_LBV_MCam" 
+    "CUP_V_B_LBT_LBV_MCam"
 
 #define MAIN_OP_BACKPACKS \
     "B_AssaultPack_rgr", \
@@ -908,6 +908,7 @@
     "UK3CB_BAF_G_Tactical_Grey", \
     "UK3CB_BAF_G_Tactical_Orange", \
     "UK3CB_BAF_G_Tactical_Yellow", \
-    "G_B_Diving"
+    "G_B_Diving", \
+    "G_mas_usl_jumpmask"
 
 #define MAIN_OP_GEAR [MAIN_OP_MAGAZINES, MAIN_OP_WEAPONS, MAIN_OP_ATTACHMENTS, MAIN_OP_NVGS, MAIN_OP_ITEMS, MAIN_OP_UNIFORMS, MAIN_OP_VESTS, MAIN_OP_BACKPACKS, MAIN_OP_HELMETS, MAIN_OP_GLASSES]
