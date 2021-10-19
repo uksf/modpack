@@ -165,6 +165,9 @@ class CfgAmmo {
     class M_Vorona_HE : M_Vorona_HEAT {
         AMMO_USAGE_INFVEHARM;
     };
+    class CUP_R_TOW_AT : M_Titan_AT {
+        airLock = 0;
+    };
 
     class ShellBase;
     class CUP_Sh_PG15V : ShellBase {
