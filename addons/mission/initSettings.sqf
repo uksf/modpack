@@ -11,8 +11,16 @@
 
         if (hasInterface) then {
             if (_value) then {
-                GVAR(conspicuityLoadoutEHID) = ["loadout", {[_this#0] call FUNC(conspicuity)}] call CBA_fnc_addPlayerEventHandler;
+                GVAR(conspicuityLoadoutEHID) = ["loadout", {[_this#0] call FUNC(conspicuity)}, true] call CBA_fnc_addPlayerEventHandler;
                 GVAR(conspicuityWeaponEHID) = ["weapon", {call FUNC(conspicuity)}, true] call CBA_fnc_addPlayerEventHandler;
+
+                private _fnc_check = {
+                    if !(GVAR(conspicuity)) exitWith {};
+
+                    [player] call FUNC(conspicuity);
+                    [_this, _this, 180] call CBA_fnc_waitAndExecute;
+                };
+                [_fnc_check, _fnc_check, 180] call CBA_fnc_waitAndExecute;
             } else {
                 ["loadout", GVAR(conspicuityLoadoutEHID)] call CBA_fnc_removePlayerEventHandler;
                 ["weapon", GVAR(conspicuityWeaponEHID)] call CBA_fnc_removePlayerEventHandler;

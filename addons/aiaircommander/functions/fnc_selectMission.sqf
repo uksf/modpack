@@ -12,28 +12,34 @@
     Return value:
         Nothing
 */
+#define MAX_RETRIES 4
+
+params [["_retries", 0]];
+
+if (_retries > MAX_RETRIES) exitWith {};
+
 private _chance = random 10;
 private _aircraftChance = random 10;
 
 // CAP
 if (_chance <= 5) exitWith {
     if (_aircraftChance <= 5) then {
-        [{call FUNC(CAP)}] call FUNC(createGroupPlane);
+        [{call FUNC(CAP)}, [], _retries] call FUNC(createGroupPlane);
     } else {
-        [{call FUNC(CAP)}] call FUNC(createGroupAttackHeli);
+        [{call FUNC(CAP)}, [], _retries] call FUNC(createGroupAttackHeli);
     };
 };
 
 // CAS
 if ((_chance > 5) && (_chance <= 8) && (EGVAR(aigroundcommander,enemyAggressionLevel) >= 80)) exitWith {
     if (_aircraftChance <= 5) then {
-        [{call FUNC(CAS)}] call FUNC(createGroupPlane);
+        [{call FUNC(CAS)}, [], _retries] call FUNC(createGroupPlane);
     } else {
-        [{call FUNC(CAS)}] call FUNC(createGroupAttackHeli);
+        [{call FUNC(CAS)}, [], _retries] call FUNC(createGroupAttackHeli);
     };
 };
 
 // SEAD
 if (_chance > 8) exitWith {
-    [{call FUNC(SEAD)}] call FUNC(createGroupPlane);
+    [{call FUNC(SEAD)}, [], _retries] call FUNC(createGroupPlane);
 };

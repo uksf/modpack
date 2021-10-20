@@ -17,14 +17,14 @@
 */
 params ["_spawnPosition", "_stagingAreaPosition", "_playerPosition", "_count"];
 
-[_spawnPosition, 1, 0, EAST, EGVAR(gear,gearHeliPilot), EGVAR(gear,gearAttackHeli), {
+[_spawnPosition, EAST, EGVAR(gear,gearHeliPilot), EGVAR(gear,gearAttackHeli), {
     params ["_vehicle", "_turrets"];
 
     (_vehicle emptyPositions "driver") + count _turrets
 }, {
-    params ["", "", "", "", "_group", "_vehicle"];
+    params ["_group", "_vehicle"];
 
     _vehicle flyInHeight 150;
     GVAR(responseGroups) pushBack _group;
     call FUNC(addWaypoints);
-}, [_spawnPosition, _stagingAreaPosition, _playerPosition, _count]] call EFUNC(common,spawnGroup);
+}] call EFUNC(common,spawnGroupVehicle);
