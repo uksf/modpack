@@ -15,7 +15,7 @@
 */
 params ["_spawnPosition", "_targetPosition"];
 
-[_spawnPosition, 1, 0, EAST, GVAR(unitPool), GVAR(airVehiclePool), {
+[_spawnPosition, EAST, GVAR(unitPool), GVAR(airVehiclePool), {
     params ["_vehicle", "_turrets"];
 
     (_vehicle emptyPositions "driver") + count _turrets + (_vehicle emptyPositions "cargo")
@@ -41,4 +41,4 @@ params ["_spawnPosition", "_targetPosition"];
     }];
 
     _vehicle setVariable [QGVAR(hitEHID), _index, true];
-}, [_targetPosition]] call EFUNC(common,spawnGroup);
+}, [_targetPosition]] call EFUNC(common,spawnGroupVehicle);

@@ -8,13 +8,20 @@
 
     Parameters:
         0: Callback <CODE> (Optional)
+        1: Callback arguments <ARRAY> (Optional)
+        2: Retries <SCALAR> (Optional)
 
     Return value:
         Nothing
 */
-params [["_callback", {}, [{}]], ["_callbackArgs", [], [[]]]];
+params [["_callback", {}, [{}]], ["_callbackArgs", [], [[]]], ["_retries", 0]];
 
-[getPos (selectRandom GVAR(planeSpawns)), 1, 0, EAST, EGVAR(gear,gearJetPilot), EGVAR(gear,gearPlane), {
+private _spawn = selectRandom GVAR(planeSpawns);
+if (isNull _spawn) exitWith {
+    [{call FUNC(selectMission)}, [_callback, _callbackArgs, _retries + 1], 5 + random 5] call CBA_fnc_waitAndExecute;
+};
+
+[getPos _spawn, EAST, EGVAR(gear,gearJetPilot), EGVAR(gear,gearPlane), {
     params ["_vehicle", "_turrets"];
 
     (_vehicle emptyPositions "driver") + count _turrets
@@ -28,4 +35,4 @@ params [["_callback", {}, [{}]], ["_callbackArgs", [], [[]]]];
     _vehicle flyInHeight 300;
     _callbackArgs pushBack _group;
     _callbackArgs call _callback;
-}, [_callback, _callbackArgs]] call EFUNC(common,spawnGroup);
+}, [_callback, _callbackArgs]] call EFUNC(common,spawnGroupVehicle);

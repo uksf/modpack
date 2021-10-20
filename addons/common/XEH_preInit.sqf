@@ -61,6 +61,8 @@ acex_headless_headlessClients = [];
 [QGVAR(deleteEmptyGroups), {{deleteGroup _x} forEach allGroups}] call CBA_fnc_addEventHandler;
 
 [QGVAR(spawnGroup), {call FUNC(spawnGroup)}] call CBA_fnc_addEventHandler;
+[QGVAR(spawnGroupInfantry), {call FUNC(spawnGroupInfantry)}] call CBA_fnc_addEventHandler;
+[QGVAR(spawnGroupVehicle), {call FUNC(spawnGroupVehicle)}] call CBA_fnc_addEventHandler;
 
 #include "initSettings.sqf"
 

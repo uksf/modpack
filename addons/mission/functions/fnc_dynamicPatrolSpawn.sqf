@@ -26,26 +26,14 @@ if ((!GVAR(dynamicPatrolEnabled) && !GVAR(dynamicPatrolAreasEnabled)) || {_retri
 
 TRACE_1("5) Dynamic spawn data",_this);
 
-// Player can't be in an air vehicle
-// AND IF area logic does not exist THEN Player can't be in range of respawn positions
-// AND Player can't be in excluded areas
-// AND IF area logic is given THEN Player must be in area
-// AND IF area logic does not exist and include areas exist THEN Player must be in an include area
 
-private _isAreaModule = !(isNull _logic);
-
-private _allPlayers = call CBA_fnc_players;
-private _players = _allPlayers select {
-    private _player = _x;
-    !((vehicle _player) isKindOf "Air")
-    && {_isAreaModule || {[EGVAR(common,respawnPositions), {(getMarkerPos _x) distance2D _player <= GVAR(dynamicPatrolSafeZoneDistance)}] call EFUNC(common,arrayNone)}}
-    && {[GVAR(dynamicPatrolExcludeAreas), {[_player, _x#0, _x#1] call EFUNC(common,objectInArea)}] call EFUNC(common,arrayNone)}
-    && {!_isAreaModule || {[_player, _logic, _area] call EFUNC(common,objectInArea)}}
-    && {_isAreaModule || {GVAR(dynamicPatrolIncludeAreas) isEqualTo [] || {[GVAR(dynamicPatrolIncludeAreas), {[_player, _x#0, _x#1] call EFUNC(common,objectInArea)}] call EFUNC(common,arrayAny)}}}
-};
-TRACE_1("5) Dynamic spawn resolved players",_players);
-if (_players isEqualTo []) exitWith {
-    INFO("5) Dynamic spawn failed players check");
+(call ([FUNC(dynamicPatrolAreaGetPlayers), FUNC(dynamicPatrolGetPlayers)] select (isNull _logic))) params ["_players", "_allPlayersAreValid"];
+if !(_allPlayersAreValid) then {
+    // If there are no valid players, allow unconscious/inconspicuous but increase distances
+    TRACE_1("5) Dynamic spawn found only invalid players",_players);
+    _distance = _distance * 1.5;
+    _waypointDistance = _waypointDistance * 2.5;
+    _vehicleWaypointDistance = _vehicleWaypointDistance * 2.5;
 };
 
 private _player = selectRandom _players;
@@ -99,65 +87,13 @@ if (_playersNearToPosition isEqualTo [] && {_playersWithPositionVisibility isEqu
         };
         TRACE_2("5) Dynamic spawn found road",_road,_position);
 
-        [_position, 1, 1, _side, _unitPool, _vehiclePool, {-1}, {
-            params ["_logic", "_player", "_position", "_spawnDistance", "_vehicleWaypointDistance", "_group"];
-            TRACE_1("7) Dynamic spawn vehicle callback data",_this);
-
-            GVAR(dynamicPatrolGroups) pushBack _group;
-            publicVariable QGVAR(dynamicPatrolGroups);
-            if !(isNull _logic) then {
-                private _areaGroups = _logic getVariable [QGVAR(groups), []];
-                _areaGroups pushBack _group;
-                _logic setVariable [QGVAR(groups), _areaGroups, true];
-            };
-            TRACE_2("7) Dynamic spawn vehicle callback groups",GVAR(dynamicPatrolGroups),_logic getVariable [QGVAR(groups), []]);
-
-            private _waypointPosition = _player getPos [_vehicleWaypointDistance, random 360];
-            if (surfaceIsWater _waypointPosition) then {
-                _waypointPosition = getPos _player;
-            };
-            TRACE_1("7) Dynamic spawn vehicle waypoint position",_waypointPosition);
-
-            private _waypoint = [_group, _waypointPosition, 0, "MOVE", "SAFE", "YELLOW", "NORMAL", "STAG COLUMN", "", [0,0,0], 100] call CBA_fnc_addWaypoint;
-            _waypoint setWaypointStatements [
-                "(behaviour this) isNotEqualTo ""COMBAT""",
-                format ["[this, this, %1, 5, ""MOVE"", ""SAFE"", ""YELLOW"", ""NORMAL"", ""STAG COLUMN"", """", [5, 10, 15]] call CBA_fnc_taskPatrol;", _spawnDistance]
-            ];
-
-            INFO_1("Spawned vehicle patrol at %1",_position);
-        }, [_logic, _player, _position, _spawnDistance, _vehicleWaypointDistance]] call EFUNC(common,spawnGroup);
+        [_position, _side, _unitPool, _vehiclePool, {-1}, FUNC(dynamicPatrolCallbackVehicle), [_logic, _player, _position, _spawnDistance, _vehicleWaypointDistance]] call EFUNC(common,spawnGroupVehicle);
     } else {
         INFO("5) Dynamic spawn use infantry");
         private _count = round (random [_minUnits, round (_maxUnits / 1.5) max _minUnits, _maxUnits + 1]);
         TRACE_1("5) Dynamic spawn unit count",_count);
 
-        [_position, 0, _count, _side, _unitPool, _vehiclePool, {-1}, {
-            params ["_logic", "_player", "_position", "_count", "_spawnDistance", "_waypointDistance", "_combatMode", "_patrolSpeed", "_group"];
-            TRACE_1("7) Dynamic spawn unit callback data",_this);
-
-            GVAR(dynamicPatrolGroups) pushBack _group;
-            publicVariable QGVAR(dynamicPatrolGroups);
-            if !(isNull _logic) then {
-                private _areaGroups = _logic getVariable [QGVAR(groups), []];
-                _areaGroups pushBack _group;
-                _logic setVariable [QGVAR(groups), _areaGroups, true];
-            };
-            TRACE_2("7) Dynamic spawn unit callback groups",GVAR(dynamicPatrolGroups),_logic getVariable [QGVAR(groups), []]);
-
-            private _waypointPosition = _player getPos [_waypointDistance, random 360];
-            if (surfaceIsWater _waypointPosition) then {
-                _waypointPosition = getPos _player;
-            };
-            TRACE_1("7) Dynamic spawn unit waypoint position",_waypointPosition);
-
-            private _waypoint = [_group, _waypointPosition, 0, "MOVE", _combatMode, "YELLOW", _patrolSpeed, "STAG COLUMN", "", [0,0,0], 50] call CBA_fnc_addWaypoint;
-            _waypoint setWaypointStatements [
-                "(behaviour this) isNotEqualTo ""COMBAT""",
-                format ["[this, this, %1, 5, ""MOVE"", ""%2"", ""YELLOW"", ""%3"", ""STAG COLUMN"", """", [0, 0, 0]] call CBA_fnc_taskPatrol;", _spawnDistance, _combatMode, _patrolSpeed]
-            ];
-
-            INFO_1("Spawned infantry patrol at %1",_position);
-        }, [_logic, _player, _position, _count, _spawnDistance, _waypointDistance, _combatMode, _patrolSpeed]] call EFUNC(common,spawnGroup);
+        [_position, _count, _side, _unitPool, FUNC(dynamicPatrolCallbackInfantry), [_logic, _player, _position, _spawnDistance, _waypointDistance, _combatMode, _patrolSpeed]] call EFUNC(common,spawnGroupInfantry);
     };
 } else {
     TRACE_2("5) Dynamic spawn failed proximity or visibility check",_playersNearToPosition,_playersWithPositionVisibility);
