@@ -8,7 +8,6 @@
 
     Parameters:
         0: planter <OBJECT>
-        1: planterHome <OBJECT>
 
     Return value:
         Nothing
@@ -34,6 +33,6 @@ if (_inExcludeArea) exitWith {
     [_planter, _retries + 1] call FUNC(setWaypointPlanter);
 };
 
-private _planterHome = _planter getVariable [QGVAR(planterHome), ObjNull];
+private _planterHome = _planter getVariable [QGVAR(planterHome), objNull];
 [_planter, _position, 2, "MOVE", "SAFE", "YELLOW", "LIMITED", "COLUMN", "[this] call uksf_ied_fnc_layIED;"] call CBA_fnc_addWaypoint;
 [_planter, _planterHome, 0, "MOVE", "CARELESS", "YELLOW", "LIMITED", "COLUMN", "[this] call uksf_ied_fnc_setWaypointPlanter", [60, 180, 240]] call CBA_fnc_addWaypoint;
