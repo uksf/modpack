@@ -21,7 +21,7 @@ private _nearRoads = _spawnPosition nearRoads 100;
 private _roadSpawn = selectRandom _nearRoads;
 _spawnPosition = [getPos _roadSpawn, _spawnPosition getPos [20, random 360]] select (isNull _roadSpawn);
 
-[_spawnPosition, 1, 0, EAST, EGVAR(gear,gearSoldier), EGVAR(gear,gearCar), {
+[_spawnPosition, EAST, EGVAR(gear,gearSoldier), EGVAR(gear,gearCar), {
     params ["_vehicle", "_turrets"];
 
     (_vehicle emptyPositions "driver") + count _turrets + (_vehicle emptyPositions "cargo")
@@ -30,4 +30,4 @@ _spawnPosition = [getPos _roadSpawn, _spawnPosition getPos [20, random 360]] sel
 
     GVAR(responseGroups) pushBack _group;
     call FUNC(addWaypoints);
-}, [_spawnPosition, _stagingAreaPosition, _playerPosition, _count]] call EFUNC(common,spawnGroup);
+}, [_spawnPosition, _stagingAreaPosition, _playerPosition, _count]] call EFUNC(common,spawnGroupVehicle);

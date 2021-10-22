@@ -15,7 +15,7 @@
 */
 params ["_spawnPosition", "_targetPosition"];
 
-[_spawnPosition, 1, 0, EAST, GVAR(unitPool), GVAR(groundVehiclePool), {-1}, {
+[_spawnPosition, EAST, GVAR(unitPool), GVAR(groundVehiclePool), {-1}, {
     params ["_targetPosition", "_group", "_vehicle"];
 
     _vehicle setUnloadInCombat [true, true];
@@ -31,4 +31,4 @@ params ["_spawnPosition", "_targetPosition"];
     }];
 
     _vehicle setVariable [QGVAR(hitEHID), _index, true];
-}, [_targetPosition]] call EFUNC(common,spawnGroup);
+}, [_targetPosition]] call EFUNC(common,spawnGroupVehicle);
