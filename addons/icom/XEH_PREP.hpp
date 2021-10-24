@@ -1,0 +1,2 @@
+PREP(icomScan);
+PREP(icomWaypointCheck);
