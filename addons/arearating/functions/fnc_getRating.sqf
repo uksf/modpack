@@ -13,17 +13,12 @@
         Array of area ratings <ARRAY>
         [[ID, Display name, Logic, Area, [Rating start, Rating current, Rating min, Rating max], [Percentage start, Percentage current]], ...]
 */
-params [["_data", objNull, [objNull, []]]];
+params [["_position", objNull, [objNull, []]]];
 
 if !(isServer) exitWith {};
 
-if (_type == "") exitWith {};
-if (_data isEqualType objNull && {isNull _data}) exitWith {};
-if (_data isEqualType []) exitWith {};
-
-private _position = _data;
 if (_position isEqualType objNull) then {
-    _position = getPosASL _data;
+    _position = getPosASL _position;
 };
 
 private _areas = GVAR(ratingAreas) select {[_position, _x#2, _x#3] call EFUNC(common,objectInArea)};

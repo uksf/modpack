@@ -38,4 +38,6 @@ PREP(removeNVG);
 PREP(serializeAceMedical);
 PREP(setSkill);
 PREP(spawnGroup);
+PREP(spawnGroupInfantry);
+PREP(spawnGroupVehicle);
 PREP(taskPatrol);
