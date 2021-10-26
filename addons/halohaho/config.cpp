@@ -9,7 +9,7 @@ class CfgPatches {
         };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "ade_core"
+            "mas_usa_lite_common"
         };
         author = QUOTE(UKSF);
         authors[] = { "Bridg" };
@@ -21,3 +21,4 @@ class CfgPatches {
 #include "CfgEventHandlers.hpp"
 #include "CfgSounds.hpp"
 #include "CfgWeapons.hpp"
+#include "CfgGlasses.hpp"

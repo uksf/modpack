@@ -4,16 +4,19 @@
         Tim Beswick
 
     Description:
-        Runs effects for toxic O2
+        Runs effects for Hypoxia
 
     Parameter(s):
-        None
+        0: Player <OBJECT>
 
     Return Value:
         None
 */
 
-[] spawn {
+params ["_player"];
+
+[_player] spawn {
+    params ["_player"];
     private _color = ppEffectCreate ["colorCorrections", 1001];
     private _blur = ppEffectCreate ["radialBlur", 1002];
     private _dynamicBlur = ppEffectCreate ["DynamicBlur", 1003];
@@ -43,6 +46,6 @@
     ppEffectDestroy _chroma;
     ppEffectDestroy _color;
 
-    GVAR(pain) = player getVariable ["ace_medical_pain", 0];
-    [player, GVAR(pain) + 0.1] call ace_medical_fnc_adjustPainLevel;
+    GVAR(pain) = _player getVariable ["ace_medical_pain", 0];
+    [_player, GVAR(pain) + 0.2] call ace_medical_fnc_adjustPainLevel;
 };

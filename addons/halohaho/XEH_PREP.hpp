@@ -1,5 +1,3 @@
-PREP(checkOxygenisConnected);
-PREP(handleEffects);
-PREP(effectToxicO2);
+PREP(applyHypoxicEffects);
 PREP(initSystem);
 

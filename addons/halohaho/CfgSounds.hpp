@@ -5,9 +5,9 @@ class CfgSounds {
         sound[] = { QPATHTOF(data\sounds\hiss.ogg),1,1 };
         titles[] = {};
     };
-    class GVAR(breatheOxygen) {
-        name = "breatheOxygen";
-        sound[] = { QPATHTOF(data\sounds\breatheOxygen.ogg),1,1 };
+    class GVAR(breatheOxygenShort) {
+        name = "breatheOxygenShort";
+        sound[] = { QPATHTOF(data\sounds\breatheOxygenShort.ogg),0.5,1 };
         titles[] = {};
     };
 };
