@@ -17,7 +17,7 @@
 params ["_target"];
 
 hint "Scanning for communications...";
-playSound QGVAR(tuneRadio);
+playSound3D [QGVAR(tuneRadio), _target];
 
 GVAR(scanInProgress) = true;
 
@@ -27,15 +27,14 @@ GVAR(scanInProgress) = true;
     GVAR(scanInProgress) = false;
 
     private _nearestAI = nearestObjects [_target, ["CAManBase"], 400];
-    if(count _nearestAI == 0) exitWith {hint format ["Scan Result: No communication detected."]}; // exit if no units found
+    if (_nearestAI isEqualTo []) exitWith {hint ["Scan Result: No communication detected."]}; // exit if no units found
 
-    private _nearestAI = _nearestAI select {side _x == EAST};
-    if(count _nearestAI == 0) exitWith {hint format ["Scan Result: No communication detected."]}; // exit if EAST units not found.
+    _nearestAI = _nearestAI select {side _x == EAST};
+    if (_nearestAI isEqualTo []) exitWith {hint ["Scan Result: No communication detected."]}; // exit if EAST units not found.
 
-    private _groupLeaders = _nearestAI select {_x == leader (group _x)};
-    private _selectedGroupLeader = selectRandom _groupLeaders;
+    private _randomAI = selectRandom _nearestAI;
 
-    [group _selectedGroupLeader, _target] call FUNC(icomWaypointCheck);
+    [group _randomAI, _target] call FUNC(icomWaypointCheck);
 
 }, [_target], 25] call cba_fnc_waitAndExecute;
 
