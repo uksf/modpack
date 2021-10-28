@@ -9,6 +9,7 @@ class CfgPatches {
         };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
+            "ade_core",
             "mas_usa_lite_common"
         };
         author = QUOTE(UKSF);
