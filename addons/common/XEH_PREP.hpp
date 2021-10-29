@@ -9,6 +9,7 @@ PREP(configExportExtension);
 PREP(convertToArray);
 PREP(createDiorama);
 PREP(deserializeAceMedical);
+PREP(edenCopyId);
 PREP(edenIdAttributeChanged);
 PREP(edenSetIdAttribute);
 PREP(findNearRoad);

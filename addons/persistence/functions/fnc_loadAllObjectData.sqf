@@ -18,6 +18,7 @@ params [["_objects", []], ["_retry", 0]];
 
 if (_retry >= MAX_ABORTED_RETRIES) exitWith {
     INFO_1("Max retries reached with %1 aborted objects left unloaded",count _objects);
+    [QGVAR(loadingFinished), []] call CBA_fnc_localEvent;
 };
 
 if (_objects isEqualTo []) then {
@@ -27,7 +28,9 @@ if (_objects isEqualTo []) then {
     INFO_1("Number of objects to load: %1",count _objects);
 };
 
-if (_objects isEqualTo []) exitWith {};
+if (_objects isEqualTo []) exitWith {
+    [QGVAR(loadingFinished), []] call CBA_fnc_localEvent;
+};
 
 private _count = count _objects;
 _objects = _objects apply {[(_x#2)#2, _x]};
@@ -45,10 +48,14 @@ INFO_4("Objects sorted by ASL height, lowest: %1 at %2, highest: %3 at %4",(_obj
 
         if (GVAR(dontDeleteObjectIds) isNotEqualTo []) then {
             private _abortedObjects = ((GVAR(dataNamespace) getVariable [QGVAR(objects), []]) select {_x#0 in GVAR(dontDeleteObjectIds)});
-            if (_abortedObjects isEqualTo []) exitWith {};
+            if (_abortedObjects isEqualTo []) exitWith {
+                [QGVAR(loadingFinished), []] call CBA_fnc_localEvent;
+            };
 
             INFO_1("Retrying %1 aborted objects in 5 seconds",count _abortedObjects);
             [{call FUNC(loadAllObjectData)}, [_abortedObjects, _retry + 1], 5] call CBA_fnc_waitAndExecute;
+        } else {
+            [QGVAR(loadingFinished), []] call CBA_fnc_localEvent;
         };
     };
 

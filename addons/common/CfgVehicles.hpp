@@ -3,8 +3,8 @@ class CfgVehicles {
     class UKSFModuleRespawnPosition_F: ModuleRespawnPosition_F {
         scope = 2;
         displayName = "UKSF Respawn";
-        icon = "\a3\ui_f\data\map\markers\flags\UK_ca.paa";
-        portrait = "\a3\ui_f\data\map\markers\flags\UK_ca.paa";
+        icon = QPATHTOF(data\ui\uk_ca.paa);
+        portrait = QPATHTOF(data\ui\uk_ca.paa);
         function = QFUNC(moduleRespawnPosition);
         class Arguments {
             class Name {

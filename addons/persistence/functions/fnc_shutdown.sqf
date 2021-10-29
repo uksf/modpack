@@ -28,6 +28,10 @@ LOG("Shutdown");
     if (_players isEqualTo []) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
         if (GVAR(dataSaved)) then {
+            {
+                private _marker = createVehicle [QGVAR(markerAmmo), _x, [], 0, "CAN_COLLIDE"];
+                GVAR(persistenceMarkers) pushBack _marker;
+            } forEach (values GVAR(disconnectedPlayerPositions));
             [] call FUNC(saveObjectData);
         } else {
             GVAR(saveObjectQueueProcessing) = false;
@@ -42,6 +46,7 @@ LOG("Shutdown");
                 GVAR(dataNamespace) setVariable [QGVAR(dateTime), _dateTime];
                 GVAR(dataNamespace) setVariable [QGVAR(mapMarkers), GVAR(mapMarkers)];
                 GVAR(dataNamespace) setVariable [QGVAR(ratingAreas), call EFUNC(arearating,serializeRatingAreas)];
+                GVAR(dataNamespace) setVariable [QGVAR(safehouses), call EFUNC(safehouses,serialize)];
                 call FUNC(saveData);
             };
 
@@ -54,6 +59,11 @@ LOG("Shutdown");
 
 // For local MP debug
 /*
+[player, "", getPlayerUID player, name player] call uksf_persistence_fnc_handleDisconnect;
+{
+    private _marker = createVehicle ["uksf_persistence_markerAmmo", _x, [], 0, "CAN_COLLIDE"];
+    uksf_persistence_persistenceMarkers pushBack _marker;
+} forEach (values uksf_persistence_disconnectedPlayerPositions);
 [] call uksf_persistence_fnc_saveObjectData;
 
 [{
@@ -64,6 +74,7 @@ LOG("Shutdown");
         uksf_persistence_dataNamespace setVariable ["uksf_persistence_dateTime", _dateTime];
         uksf_persistence_dataNamespace setVariable ["uksf_persistence_mapMarkers", uksf_persistence_mapMarkers];
         uksf_persistence_dataNamespace setVariable ["uksf_persistence_ratingAreas", call uksf_arearating_fnc_serializeRatingAreas];
+        uksf_persistence_dataNamespace setVariable ["uksf_persistence_safehouses", call uksf_safehouses_fnc_serialize];
         call uksf_persistence_fnc_saveData;
     };
 

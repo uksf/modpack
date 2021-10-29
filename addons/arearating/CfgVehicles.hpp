@@ -7,8 +7,8 @@ class CfgVehicles {
         scope = 2;
         is3DEN = 1;
         displayName = "Rating Area";
-        icon = "A3\Modules_F\Data\portraitsector_ca.paa";
-        portrait = "A3\Modules_F\Data\portraitsector_ca.paa";
+        icon = QPATHTOF(data\ui\Icon_Module_RatingArea_ca.paa);
+        portrait = QPATHTOF(data\ui\Icon_Module_RatingArea_ca.paa);
         function = QFUNC(moduleRatingArea);
         functionPriority = 25;
         canSetArea = 1;

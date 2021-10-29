@@ -30,8 +30,11 @@ GVAR(saveObjectQueueProcessing) = true;
     _args set [0, CBA_missionTime + 0.5];
     INFO_2("Running object data save. %1 remaining. FPS: %2",count GVAR(saveObjectQueue),diag_fps);
 
-    private _object = GVAR(saveObjectQueue) deleteAt 0;
+    if (GVAR(saveObjectQueue) isEqualTo []) exitWith {
+        INFO("Object save queue is empty but markers are still processing. Allowing the marker processing to end the queue processing.");
+    };
 
+    private _object = GVAR(saveObjectQueue) deleteAt 0;
     if !(isNull (attachedTo _object)) exitWith {};
 
     private _id = _object getVariable [QGVAR(persistenceID), ""];

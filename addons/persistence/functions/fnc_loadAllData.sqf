@@ -16,4 +16,7 @@
 private _ratingAreas = GVAR(dataNamespace) getVariable [QGVAR(ratingAreas), []];
 [_ratingAreas] call EFUNC(arearating,deserializeRatingAreas);
 
+private _safehouses = GVAR(dataNamespace) getVariable [QGVAR(safehouses), []];
+[_safehouses] call EFUNC(safehouses,deserialize);
+
 [{call FUNC(loadAllObjectData)}] call CBA_fnc_execNextFrame;

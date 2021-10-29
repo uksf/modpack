@@ -1,3 +1,4 @@
+class ctrlButtonPictureKeepAspect;
 class Cfg3DEN {
     class Object {
         class AttributeCategories {
@@ -17,7 +18,7 @@ class Cfg3DEN {
                 class Attributes {
                     class GVAR(id) {
                         property = QGVAR(id);
-                        control = QGVAR(EditId);
+                        control = QGVAR(editId);
                         displayName = "ID";
                         tooltip = "Unique ID for this Logic";
                         condition = "1";
@@ -48,11 +49,22 @@ class Cfg3DEN {
                 class Value;
             };
         };
-        class GVAR(EditId) : Edit {
+        class GVAR(editId) : Edit {
             class Controls : Controls {
                 class Title : Title {};
                 class Value : Value {
+                    x = "48 * (pixelW * pixelGrid * 0.50)";
+                    w = "76 * (pixelW * pixelGrid * 0.50)";
+                    h = "5 * (pixelH * pixelGrid * 0.50)";
                     onLoad = QUOTE(_this spawn {disableserialization; call FUNC(edenIdAttributeChanged)});
+                };
+                class Copy : ctrlButtonPictureKeepAspect {
+                    idc = 101;
+                    x = "(48 + 76 + 1) * (pixelW * pixelGrid * 0.50)";
+                    w = "5 * (pixelW * pixelGrid * 0.50)";
+                    h = "5 * (pixelH * pixelGrid * 0.50)";
+                    text = QPATHTOF(data\ui\clipboard_ca.paa);
+                    onMouseButtonClick = QUOTE(_this spawn {disableserialization; call FUNC(edenCopyId)});
                 };
             };
         };
