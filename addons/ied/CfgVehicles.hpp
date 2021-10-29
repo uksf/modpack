@@ -95,6 +95,8 @@ class CfgVehicles {
     class GVAR(suicidePlacementModule) : GVAR(module) {
         scope = 2;
         displayName = "Suicide Bomber Area";
+        icon = QPATHTOF(data\ui\Icon_Module_IedArea_Suicide_ca.paa);
+        portrait = QPATHTOF(data\ui\Icon_Module_IedArea_Suicide_ca.paa);
         canSetArea = 1;
         canSetAreaHeight = 0;
         canSetAreaShape = 1;
@@ -102,8 +104,6 @@ class CfgVehicles {
             size3[] = { 500, 500, -1 };
             isRectangle = 0;
         };
-        icon = QPATHTOF(data\ui\Icon_Module_IedArea_Suicide_ca.paa);
-        portrait = QPATHTOF(data\ui\Icon_Module_IedArea_Suicide_ca.paa);
         function = QFUNC(moduleSuicideIEDArea);
         class Attributes : AttributesBase {
             class GVAR(suicideIEDClasses) {
