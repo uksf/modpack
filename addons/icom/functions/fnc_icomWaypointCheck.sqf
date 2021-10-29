@@ -21,6 +21,6 @@ params ["_group", "_source"];
 private _waypointPosition = waypointPosition [_group, 1];
 private _currentPos = getPosATL (leader _group);
 
-if (_waypointPosition distance _source <= 100) exitWith {hint format ["Scan Result: Communication suggests insurgents are heading our way."]};
-if (_currentPos distance _source < 400) exitWith {hint format ["Scan Result: Communication suggests insurgents are nearby."]};
-hint format ["Scan Result: No communication detected."];
+if (_waypointPosition distance _source <= 100) exitWith {hint "Scan Result: Communication suggests insurgents are heading our way."};
+if (_currentPos distance _source < 400) exitWith {hint "Scan Result: Communication suggests insurgents are nearby."};
+hint "Scan Result: No communication detected.";

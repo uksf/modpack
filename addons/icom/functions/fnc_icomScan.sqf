@@ -17,7 +17,7 @@
 params ["_target"];
 
 hint "Scanning for communications...";
-playSound3D [QGVAR(tuneRadio), _target];
+playSound QGVAR(tuneRadio);
 
 GVAR(scanInProgress) = true;
 
@@ -27,10 +27,10 @@ GVAR(scanInProgress) = true;
     GVAR(scanInProgress) = false;
 
     private _nearestAI = nearestObjects [_target, ["CAManBase"], 400];
-    if (_nearestAI isEqualTo []) exitWith {hint ["Scan Result: No communication detected."]}; // exit if no units found
+    if (_nearestAI isEqualTo []) exitWith {hint "Scan Result: No communication detected."}; // exit if no units found
 
     _nearestAI = _nearestAI select {side _x == EAST};
-    if (_nearestAI isEqualTo []) exitWith {hint ["Scan Result: No communication detected."]}; // exit if EAST units not found.
+    if (_nearestAI isEqualTo []) exitWith {hint "Scan Result: No communication detected."}; // exit if EAST units not found.
 
     private _randomAI = selectRandom _nearestAI;
 
