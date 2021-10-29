@@ -33,7 +33,7 @@ addMissionEventHandler ["EntityRespawned", {call FUNC(entityRespawned)}];
 addMissionEventHandler ["EntityKilled", {call FUNC(entityKilled)}];
 addMissionEventHandler ["HandleDisconnect", {call FUNC(handleDisconnect)}];
 addMissionEventHandler ["BuildingChanged", {
-	params ["", "_newObject", "_isRuin"];
+    params ["", "_newObject", "_isRuin"];
 
     // TODO: Persistent ruins?
     if (_isRuin) then {
