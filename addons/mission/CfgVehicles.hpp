@@ -50,8 +50,8 @@ class CfgVehicles {
         scope = 2;
         is3DEN = 1;
         displayName = "Patrol Exclude Area";
-        icon = "A3\Modules_F\Data\portraitsector_ca.paa";
-        portrait = "A3\Modules_F\Data\portraitsector_ca.paa";
+        icon = QPATHTOF(data\ui\Icon_Module_PatrolArea_Exclude_ca.paa);
+        portrait = QPATHTOF(data\ui\Icon_Module_PatrolArea_Exclude_ca.paa);
         function = QFUNC(moduleDynamicPatrolExcludeArea);
         functionPriority = 25;
         canSetArea = 1;
@@ -67,8 +67,8 @@ class CfgVehicles {
         scope = 2;
         is3DEN = 1;
         displayName = "Patrol Include Area";
-        icon = "A3\Modules_F\Data\portraitsector_ca.paa";
-        portrait = "A3\Modules_F\Data\portraitsector_ca.paa";
+        icon = QPATHTOF(data\ui\Icon_Module_PatrolArea_Include_ca.paa);
+        portrait = QPATHTOF(data\ui\Icon_Module_PatrolArea_Include_ca.paa);
         function = QFUNC(moduleDynamicPatrolIncludeArea);
         functionPriority = 25;
         canSetArea = 1;
@@ -95,8 +95,8 @@ class CfgVehicles {
         scope = 2;
         is3DEN = 1;
         displayName = "Dynamic Patrol Area";
-        icon = "A3\Modules_F\Data\portraitsector_ca.paa";
-        portrait = "A3\Modules_F\Data\portraitsector_ca.paa";
+        icon = QPATHTOF(data\ui\Icon_Module_PatrolArea_ca.paa);
+        portrait = QPATHTOF(data\ui\Icon_Module_PatrolArea_ca.paa);
         function = QFUNC(moduleDynamicPatrolArea);
         functionPriority = 25;
         canSetArea = 1;
@@ -333,48 +333,6 @@ class CfgVehicles {
                 displayName = "Spawn condition";
                 tooltip = "Code required to evaluate to true for spawning to run. Must return a boolean. Condition is evaluate every iteration. This is optional, leave as 'true' if not needed. Make the code as short as possible or call a function if more than 1 line.\n\nThe following arguments are passed to the condition: ['_values', '_logic', '_area', '_players'].\n'_players' is an array of players that meet the spawning requirements for this area.";
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(condition),_value,true)]);
-            };
-        };
-    };
-
-    class GVAR(moduleSafehousePrefabArea) : Module_F {
-        scope = 2;
-        is3DEN = 1;
-        displayName = "Safehouse Prefab";
-        icon = "A3\Modules_F\Data\portraitsector_ca.paa";
-        portrait = "A3\Modules_F\Data\portraitsector_ca.paa";
-        function = QFUNC(moduleSafehousePrefabArea);
-        functionPriority = 25;
-        canSetArea = 1;
-        canSetAreaHeight = 1;
-        canSetAreaShape = 1;
-        category = EGVAR(common,eden);
-        class AttributeValues {
-            size3[] = { 20, 20, 20 };
-            isRectangle = 1;
-        };
-        // class Attributes : AttributesBase {
-
-        // };
-    };
-    class GVAR(moduleSafehouseLocation) : Module_F {
-        scope = 2;
-        is3DEN = 1;
-        displayName = "Safehouse Location";
-        icon = "A3\Modules_F\Data\portraitsector_ca.paa";
-        portrait = "A3\Modules_F\Data\portraitsector_ca.paa";
-        function = QFUNC(moduleSafehouseLocation);
-        functionPriority = 25;
-        canSetArea = 0;
-        category = EGVAR(common,eden);
-        class Attributes : AttributesBase {
-            class GVAR(persistenceID) {
-                property = QGVAR(persistenceID);
-                displayName = "Persistence ID";
-                tooltip = "The persistence ID used to save safehouses between missions";
-                control = "Edit";
-                defaultValue = "format ['%1_%2_%3', typeOf _this, diag_frameNo, round random 99999]";
-                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(persistenceID),_value,true)]);
             };
         };
     };

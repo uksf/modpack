@@ -56,3 +56,5 @@ TRACE_1("",_areas);
 } forEach _areas;
 
 [_areas] call FUNC(recalculateGlobalRatingEvents);
+
+// TODO: Function to change area

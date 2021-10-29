@@ -10,11 +10,11 @@ class CfgVehicles {
         class AttributesBase;
     };
 
-    class GVAR(IEDPlacementModule) : GVAR(module) {
+    class GVAR(iedPlacementModule) : GVAR(module) {
         scope = 2;
-        displayName = "(IED) IED Placement Zone";
-        // icon = "a3\ui_f\data\gui\cfg\hints\ieds_ca.paa";
-        // portrait = "a3\ui_f\data\gui\cfg\hints\ieds_ca.paa";
+        displayName = "IED Area";
+        icon = QPATHTOF(data\ui\Icon_Module_IedArea_ca.paa);
+        portrait = QPATHTOF(data\ui\Icon_Module_IedArea_ca.paa);
         canSetArea = 1;
         canSetAreaHeight = 0;
         canSetAreaShape = 1;
@@ -94,12 +94,16 @@ class CfgVehicles {
 
     class GVAR(suicidePlacementModule) : GVAR(module) {
         scope = 2;
-        displayName = "(IED) Suicide IED Placement Zone";
+        displayName = "Suicide Bomber Area";
         canSetArea = 1;
         canSetAreaHeight = 0;
         canSetAreaShape = 1;
-        // icon = "a3\ui_f\data\gui\cfg\hints\ieds_ca.paa";
-        // portrait = "a3\ui_f\data\gui\cfg\hints\ieds_ca.paa";
+        class AttributeValues {
+            size3[] = { 500, 500, -1 };
+            isRectangle = 0;
+        };
+        icon = QPATHTOF(data\ui\Icon_Module_IedArea_Suicide_ca.paa);
+        portrait = QPATHTOF(data\ui\Icon_Module_IedArea_Suicide_ca.paa);
         function = QFUNC(moduleSuicideIEDArea);
         class Attributes : AttributesBase {
             class GVAR(suicideIEDClasses) {
@@ -137,11 +141,11 @@ class CfgVehicles {
         };
     };
 
-    class GVAR(VBIEDPlacementModule) : GVAR(module) {
+    class GVAR(vbIedPlacementModule) : GVAR(module) {
         scope = 2;
-        displayName = "(IED) VBIED Placement Zone";
-        // icon = "a3\ui_f\data\gui\cfg\hints\ieds_ca.paa";
-        // portrait = "a3\ui_f\data\gui\cfg\hints\ieds_ca.paa";
+        displayName = "VBIED Area";
+        icon = QPATHTOF(data\ui\Icon_Module_IedArea_Vbied_ca.paa);
+        portrait = QPATHTOF(data\ui\Icon_Module_IedArea_Vbied_ca.paa);
         canSetArea = 1;
         canSetAreaHeight = 0;
         canSetAreaShape = 1;
@@ -179,11 +183,11 @@ class CfgVehicles {
         };
     };
 
-    class GVAR(IEDExclusionModule) : GVAR(module) {
+    class GVAR(iedExclusionModule) : GVAR(module) {
         scope = 2;
-        displayName = "(IED) IED Exclusion Zone";
-        //icon = "a3\ui_f\data\gui\cfg\hints\ieds_ca.paa";
-        //portrait = "a3\ui_f\data\gui\cfg\hints\ieds_ca.paa";
+        displayName = "IED Exclude Area";
+        icon = QPATHTOF(data\ui\Icon_Module_IedArea_Exclude_ca.paa);
+        portrait = QPATHTOF(data\ui\Icon_Module_IedArea_Exclude_ca.paa);
         canSetArea = 1;
         canSetAreaHeight = 0;
         canSetAreaShape = 1;

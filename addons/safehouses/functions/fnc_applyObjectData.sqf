@@ -4,28 +4,27 @@
         Tim Beswick
 
     Description:
-        Creates safehouse object
+        Applies prefab object data to given object
 
     Parameters:
-        0: Anchor <OBJECT>
+        0: Object <OBJECT>
         1: Object data <ARRAY>
-        2: Anchor persistence ID <STRING>
 
     Return value:
-        Created object <OBJECT>
+        Nothing
 */
-params ["_anchor", "_objectData", "_anchorPersistenceId"];
+params ["_object", "_objectData"];
 
 if !(isServer) exitWith {};
 
-_objectData params ["_type", "_anchorOffset", "_vectorDirAndUp", "_hidden", "_damage", "_fuel", "_inventory", "_aceMedical", "_aceRepair"];
+_objectData params ["", "_objectState"];
+_objectState params ["_hidden", "_damageAllowed", "_simulationEnabled", "_damage", "_fuel", "_inventory", "_aceMedical", "_aceRepair"];
 _aceMedical params ["_medicalVehicle", "_medicalFacility"];
 _aceRepair params ["_repairVehicle", "_repairFacility"];
 
-private _position = _anchor modelToWorld _anchorOffset;
-private _object = createVehicle [_type, _position, [], 0, "CAN_COLLIDE"];
-_object setVectorDirAndUp _vectorDirAndUp;
 _object hideObjectGlobal _hidden;
+_object allowDamage _damageAllowed;
+_object enableSimulationGlobal _simulationEnabled;
 _object setDamage _damage;
 _object setFuel _fuel;
 
@@ -48,18 +47,4 @@ _object setVariable ["ace_medical_isMedicalFacility", _medicalFacility, true];
 _object setVariable ["ace_isRepairVehicle", _repairVehicle, true];
 _object setVariable ["ace_isRepairFacility", _repairFacility, true];
 
-_object setVariable [QGVAR(safehouseAnchorPersistenceId), _anchorPersistenceId, true];
-
-[_vehicle] call EFUNC(persistence,markObjectAsPersistent);
-
-_object
-
-// TODO:
-// Mark all objects as persistent
-// Mark all objects as belonging to a safehouse (use PID of anchor object)
-// Add safehouse id to persistence
-// Killed EH on anchor object, when destroyed:
-    // Delete all safehouse objects
-    // Remove id from persistence
-    // Add id to destroyed persistence
-    // Create destruction object (destroyed anchor) and mark as persistent and exclude from cleanup
+_object setVariable [QEGVAR(persistence,excluded), true];

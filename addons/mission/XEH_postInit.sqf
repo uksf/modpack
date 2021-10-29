@@ -31,11 +31,3 @@ if (!isServer) exitWith {
     };
 }] call CBA_fnc_addEventHandler;
 
-GVAR(missionObjects) = (allMissionObjects "All") - allUnits;
-{
-    _x call FUNC(initSafehousePrefab);
-} forEach GVAR(safehousePrefabAreaModules);
-
-[QGVAR(loadingFinished), {
-
-}] call CBA_fnc_addEventHandler;

@@ -17,10 +17,9 @@ GVAR(debugPFHID) = -1;
 GVAR(ratingAreaAttributeConfig) = EGVAR(common,configVehicles) >> QGVAR(moduleRatingArea) >> "Attributes";
 
 [QEGVAR(ied,planterKilled), {[QGVAR(ied_planter), _this] call FUNC(ratingChanged)}] call CBA_fnc_addEventHandler;
-[QEGVAR(caches,cacheDestroyed), {[QGVAR(caches_destroyed), _this] call FUNC(ratingChanged)}] call CBA_fnc_addEventHandler;
-[QEGVAR(safehouses,safehouseDestroyed), {[QGVAR(safehouse_destroyed), _this] call FUNC(ratingChanged)}] call CBA_fnc_addEventHandler;
-
 [QEGVAR(ied,iedDestroyed), {[QGVAR(ied_destroyed), _this] call FUNC(ratingChanged)}] call CBA_fnc_addEventHandler;
+[QEGVAR(caches,cacheDestroyed), {[QGVAR(caches_destroyed), _this] call FUNC(ratingChanged)}] call CBA_fnc_addEventHandler;
+[QEGVAR(safehouses,destroyed), {[QGVAR(safehouse_destroyed), _this] call FUNC(ratingChanged)}] call CBA_fnc_addEventHandler;
 
 ["CAManBase", "init", {
     params ["_unit"];

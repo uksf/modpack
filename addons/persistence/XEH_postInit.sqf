@@ -3,7 +3,7 @@
 [{
     if (isServer) then {
         if (GVAR(dataSaved)) then {
-            GVAR(missionObjects) = allMissionObjects "All";
+            GVAR(missionObjects) = +EGVAR(common,missionObjectsMinusUnits);
             TRACE_1("Mission objects",GVAR(missionObjects));
             [{
                 {
@@ -19,6 +19,7 @@
                 call FUNC(loadAllData);
             }] call CBA_fnc_execNextFrame;
         } else {
+            INFO("No data saved, loading finished");
             [QGVAR(loadingFinished), []] call CBA_fnc_localEvent;
         };
     };

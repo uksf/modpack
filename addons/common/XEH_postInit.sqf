@@ -21,7 +21,7 @@ if (isMultiplayer && !is3DENMultiplayer) then {
 
 if (hasInterface) then {
     call FUNC(addSelfActions);
-    
+
     ["visibleMap", {
         params ["", "_mapOn"];
         [_mapOn] call FUNC(mapPosition);
@@ -33,6 +33,9 @@ if (hasInterface) then {
     GVAR(bufferedSafeY) = safeZoneY - _buffer;
     GVAR(bufferedSafeH) = safeZoneY + safeZoneH + _buffer;
 };
+
+GVAR(missionObjects) = (allMissionObjects "All") - (allMissionObjects "Logic");
+GVAR(missionObjectsMinusUnits) = GVAR(missionObjects) - allUnits;
 
 if (isServer) then {
     if (GVAR(mainOp)) then {

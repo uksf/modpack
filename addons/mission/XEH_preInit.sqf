@@ -16,10 +16,6 @@ GVAR(dynamicPatrolAreas) = [];
 GVAR(dynamicPatrolExcludeAreas) = [];
 GVAR(dynamicPatrolIncludeAreas) = [];
 
-GVAR(safehousePrefabAreaModules) = [];
-GVAR(safehouseLocationModules) = [];
-GVAR(safehousePrefabs) = [];
-
 [QGVAR(reTask), {call CBA_fnc_taskPatrol}] call CBA_fnc_addEventHandler;
 [QGVAR(initPatrol), {call FUNC(initPatrol)}] call CBA_fnc_addEventHandler;
 [QGVAR(spawnGroup), {call FUNC(spawnGroup)}] call CBA_fnc_addEventHandler;
