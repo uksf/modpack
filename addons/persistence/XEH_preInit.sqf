@@ -18,13 +18,14 @@ if (is3DEN) then {
     }, true, [], true] call CBA_fnc_addClassEventHandler;
 };
 
+GVAR(dataSaved) = false;
+
 if (isMultiplayer) then {
     if (hasInterface) then {
         call FUNC(initClient);
     };
 
     if (isServer) then {
-        GVAR(dataSaved) = false;
         GVAR(key) = getMissionConfigValue ["persistenceKey", ""];
         INFO_1("Mission Key: %1",GVAR(key));
         if (GVAR(key) != "") then {

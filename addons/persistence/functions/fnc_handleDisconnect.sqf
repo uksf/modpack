@@ -64,7 +64,8 @@ TRACE_1("Player disconnect",_data);
 GVAR(dataNamespace) setVariable [_uid, _data];
 
 if (GVAR(dataSaved)) then {
-    [_unit] call FUNC(saveObjectData);
+    // [_unit] call FUNC(saveObjectData);
+    GVAR(disconnectedPlayerPositions) set [_uid, getPos _unit];
 };
 
 /*[_unit] call {
