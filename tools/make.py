@@ -30,27 +30,28 @@
 
 ###############################################################################
 
-import fileinput
-import re
-import timeit
-import time
-import traceback
-import json
-import configparser
-import hashlib
-import subprocess
-import glob
-import platform
-import shutil
-import os.path
-import os
-__version__ = "0.8"
+__version__ = "0.9"
 
 import sys
 
 if sys.version_info[0] == 2:
     print("Python 3 is required.")
     sys.exit(1)
+
+import os
+import os.path
+import shutil
+import platform
+import glob
+import subprocess
+import hashlib
+import configparser
+import json
+import traceback
+import time
+import timeit
+import re
+from tempfile import mkstemp
 
 
 if sys.platform == "win32":
@@ -555,9 +556,16 @@ def get_project_version(version_increments=[]):
 
 
 def replace_file(filePath, oldSubstring, newSubstring):
-    for line in fileinput.input(filePath, inplace=True):
-        # Use stdout directly, print() adds newlines automatically
-        sys.stdout.write(line.replace(oldSubstring, newSubstring))
+    global work_drive
+    fh, absPath = mkstemp(None, None, work_drive + "temp")
+    os.close(fh)
+    with open(absPath, "w", encoding="utf-8") as newFile:
+        with open(filePath, encoding="utf-8") as oldFile:
+            for line in oldFile:
+                newFile.write(line.replace(oldSubstring, newSubstring))
+    newFile.close()
+    os.remove(filePath)
+    shutil.move(absPath, filePath)
 
 
 def set_version_in_files():

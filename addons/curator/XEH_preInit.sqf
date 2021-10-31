@@ -56,7 +56,7 @@ if (hasInterface) then {
             };
 
             GVAR(curatorUnassignedEHID) = [QGVAR(curatorUnassigned), {
-                TRACE_2("",_this);
+                TRACE_1("",_this);
                 [QGVAR(curatorAssign), _this] call CBA_fnc_serverEvent;
                 [QGVAR(curatorUnassigned), GVAR(curatorUnassignedEHID)] call CBA_fnc_removeEventHandler;
                 GVAR(curatorUnassignedEHID) = -1;
