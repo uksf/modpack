@@ -799,7 +799,7 @@ def main(argv):
     make_target = "DEFAULT"  # Which section in make.cfg to use for the build
     new_key = True  # Make a new key and use it to sign?
     quiet = False  # Suppress output from build tool?
-    sqfc_compiling = False
+    sqfc_compiling = True
 
     # Parse arguments
     if "help" in argv or "-h" in argv or "--help" in argv:
