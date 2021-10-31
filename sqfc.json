@@ -1,0 +1,18 @@
+{
+    "inputDirs": [
+        "P:/u/uksf/addons/"
+    ],
+    "includePaths": [
+        "P:/"
+    ],
+    "excludeList": [
+        "initsettings.sqf",
+        "initkeybinds.sqf",
+        "xeh_prep.sqf",
+        "\\deprecated\\",
+        "\\UKSFTemplate.VR\\",
+        "cba_settings.sqf"
+    ],
+    "outputDir": "P:/",
+    "workerThreads": 12
+}
