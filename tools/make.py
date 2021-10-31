@@ -221,7 +221,7 @@ def find_bi_tools(work_drive):
         arma3tools_path = winreg.QueryValueEx(k, "path")[0]
         winreg.CloseKey(k)
     except:
-        raise Exception("BadTools", "Arma 3 Tools are not installed correctly or the P: drive needs to be created.")
+        raise Exception("BadTools","Arma 3 Tools are not installed correctly or the P: drive needs to be created.")
 
     addonbuilder_path = os.path.join(arma3tools_path, "AddonBuilder", "AddonBuilder.exe")
     dssignfile_path = os.path.join(arma3tools_path, "DSSignFile", "DSSignFile.exe")
@@ -231,59 +231,54 @@ def find_bi_tools(work_drive):
     if os.path.isfile(addonbuilder_path) and os.path.isfile(dssignfile_path) and os.path.isfile(dscreatekey_path) and os.path.isfile(cfgconvert_path):
         return [addonbuilder_path, dssignfile_path, dscreatekey_path, cfgconvert_path]
     else:
-        raise Exception("BadTools", "Arma 3 Tools are not installed correctly or the P: drive needs to be created.")
+        raise Exception("BadTools","Arma 3 Tools are not installed correctly or the P: drive needs to be created.")
 
+def mikero_windows_registry(path, access=winreg.KEY_READ):
+    try:
+        return winreg.OpenKey(winreg.HKEY_CURRENT_USER, r"Software\Mikero\{}".format(path), access=access)
+    except FileNotFoundError:
+        try:
+            return winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, r"Software\Mikero\{}".format(path), access=access)
+        except FileNotFoundError:
+            try:
+                return winreg.OpenKey(winreg.HKEY_CURRENT_USER, r"Software\Wow6432Node\Mikero\{}".format(path), access=access)
+            except FileNotFoundError:
+                return winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, r"Software\Wow6432Node\Mikero\{}".format(path), access=access)
 
-def find_depbo_tools(regKey):
+def find_depbo_tools():
     """Use registry entries to find DePBO-based tools."""
-    stop = False
+    requiredToolPaths = {"pboProject": None, "rapify": None, "MakePbo": None}
+    failed = False
 
-    if regKey == "HKCU":
-        reg = winreg.ConnectRegistry(None, winreg.HKEY_CURRENT_USER)
-        stop = True
-    else:
-        reg = winreg.ConnectRegistry(None, winreg.HKEY_LOCAL_MACHINE)
+    for tool in requiredToolPaths:
+        try:
+            k = mikero_windows_registry(tool)
+            path = winreg.QueryValueEx(k, "exe")[0]
+        except FileNotFoundError:
+            print_error("Could not find {}".format(tool))
+            failed = True
+        else:
+            #Strip any quotations from the path due to a MikeRo tool bug which leaves a trailing space in some of its registry paths.
+            requiredToolPaths[tool] = path.strip('"')
+            print_green("Found {}.".format(tool))
+        finally:
+            winreg.CloseKey(k)
+
+    if failed:
+        raise Exception("BadDePBO", "DePBO tools not installed correctly")
+
+    return requiredToolPaths
+
+def pboproject_settings():
+    """Use registry entries to configure needed pboproject settings."""
+    value_exclude = "thumbs.db,*.txt,*.h,*.dep,*.cpp,*.bak,*.png,*.log,*.pew,source,*.tga"
 
     try:
-        try:
-            k = winreg.OpenKey(reg, r"Software\Wow6432Node\Mikero\pboProject")
-        except FileNotFoundError:
-            k = winreg.OpenKey(reg, r"Software\Mikero\pboProject")
-        try:
-            pboproject_path = winreg.QueryValueEx(k, "exe")[0]
-            winreg.CloseKey(k)
-            print("Found pboproject.")
-        except:
-            print_error("ERROR: Could not find pboProject.")
-
-        try:
-            k = winreg.OpenKey(reg, r"Software\Wow6432Node\Mikero\rapify")
-        except FileNotFoundError:
-            k = winreg.OpenKey(reg, r"Software\Mikero\rapify")
-        try:
-            rapify_path = winreg.QueryValueEx(k, "exe")[0]
-            winreg.CloseKey(k)
-            print("Found rapify.")
-        except:
-            print_error("Could not find rapify.")
-
-        try:
-            k = winreg.OpenKey(reg, r"Software\Wow6432Node\Mikero\MakePbo")
-        except FileNotFoundError:
-            k = winreg.OpenKey(reg, r"Software\Mikero\MakePbo")
-        try:
-            makepbo_path = winreg.QueryValueEx(k, "exe")[0]
-            winreg.CloseKey(k)
-            print("Found makepbo.")
-        except:
-            print_error("Could not find makepbo.")
+        k = mikero_windows_registry(r"pboProject\Settings", access=winreg.KEY_SET_VALUE)
+        winreg.SetValueEx(k, "m_exclude", 0, winreg.REG_SZ, value_exclude)
+        winreg.SetValueEx(k, "m_exclude2", 0, winreg.REG_SZ, value_exclude)
     except:
-        if stop == True:
-            raise Exception("BadDePBO", "DePBO tools not installed correctly")
-        return -1
-
-    # Strip any quotations from the path due to a MikeRo tool bug which leaves a trailing space in some of its registry paths.
-    return [pboproject_path.strip('"'), rapify_path.strip('"'), makepbo_path.strip('"')]
+        raise Exception("BadDePBO", "pboProject not installed correctly, make sure to run it at least once")
 
 
 def color(color):
@@ -1003,12 +998,11 @@ See the make.cfg file for additional build options.
 
     if build_tool == "pboproject":
         try:
-            depbo_tools = find_depbo_tools("HKLM")
-            if depbo_tools == -1:
-                depbo_tools = find_depbo_tools("HKCU")
-            pboproject = depbo_tools[0]
-            rapifyTool = depbo_tools[1]
-            makepboTool = depbo_tools[2]
+            depbo_tools = find_depbo_tools()
+            pboproject = depbo_tools["pboProject"]
+            rapifyTool = depbo_tools["rapify"]
+            makepboTool = depbo_tools["MakePbo"]
+            pboproject_settings()
         except:
             raise
             print_error("Could not find dePBO tools. Download the needed tools from: https://dev.withsix.com/projects/mikero-pbodll/files")
@@ -1247,13 +1241,10 @@ See the make.cfg file for additional build options.
 
                     if os.path.isfile(nobinFilePath):
                         print_green("$NOBIN$ Found. Proceeding with non-binarizing!")
-                        cmd = [makepboTool, "-P", "-A", "-L", "-G", "-X=*.backup", os.path.join(work_drive, prefix, module), os.path.join(module_root, release_dir, project, "addons")]
+                        cmd = [makepboTool, "-P", "-A", "-X=*.backup", os.path.join(work_drive, prefix, module), os.path.join(module_root, release_dir, project, "addons")]
 
                     else:
-                        if check_external:
-                            cmd = [pboproject, "-P", os.path.join(work_drive, prefix, module), "+Engine=Arma3", "-S", "+Noisy", "+G", "+Clean", "+Mod="+os.path.join(module_root, release_dir, project), "-Key"]
-                        else:
-                            cmd = [pboproject, "-P", os.path.join(work_drive, prefix, module), "+Engine=Arma3", "-S", "+Noisy", "-G", "+Clean", "+Mod="+os.path.join(module_root, release_dir, project), "-Key"]
+                        cmd = [pboproject, "-B", "-P", os.path.join(work_drive, prefix, module), "+Engine=Arma3", "-S", "+Noisy", "+Clean", "-Warnings", "+Mod="+os.path.join(module_root, release_dir, project), "-Key"]
 
                     color("grey")
                     ret = 0
