@@ -26,8 +26,13 @@ if ((!GVAR(dynamicPatrolEnabled) && !GVAR(dynamicPatrolAreasEnabled)) || {_retri
 
 TRACE_1("5) Dynamic spawn data",_this);
 
+private _getPlayersResult = call ([FUNC(dynamicPatrolAreaGetPlayers), FUNC(dynamicPatrolGetPlayers)] select (isNull _logic));
+_getPlayersResult params ["_players", "_allPlayersAreValid"];
 
-(call ([FUNC(dynamicPatrolAreaGetPlayers), FUNC(dynamicPatrolGetPlayers)] select (isNull _logic))) params ["_players", "_allPlayersAreValid"];
+if (_players isEqualTo []) exitWith {
+    INFO("5) Dynamic spawn failed players check");
+};
+
 if !(_allPlayersAreValid) then {
     // If there are no valid players, allow unconscious/inconspicuous but increase distances
     TRACE_1("5) Dynamic spawn found only invalid players",_players);

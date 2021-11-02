@@ -1,5 +1,5 @@
 #include "script_component.hpp"
-#include "keybinds.sqf"
+#include "initKeybinds.sqf"
 
 ["ade_item_bag", QGVAR(bag)] call ace_common_fnc_registerItemReplacement;
 ["ade_item_rebreather", QGVAR(rebreather)] call ace_common_fnc_registerItemReplacement;

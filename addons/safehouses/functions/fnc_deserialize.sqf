@@ -36,7 +36,7 @@ if !(isServer) exitWith {};
     if (_prefabId in GVAR(prefabs)) then {
         [_id, _position, _prefabId] call FUNC(loadDestroyed);
     } else {
-        ERROR_1("Could not find prefab id %1 for destroyed safehouse id %2",_prefabId,_id);
+        ERROR_2("Could not find prefab id %1 for destroyed safehouse id %2",_prefabId,_id);
     };
 } forEach _destroyed;
 

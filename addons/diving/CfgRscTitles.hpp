@@ -1,5 +1,4 @@
 class RscText_Dive {
-    access = 0;
     idc = -1;
     type = 0;
     style = 0;

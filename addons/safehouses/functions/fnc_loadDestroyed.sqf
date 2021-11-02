@@ -45,6 +45,6 @@ if (isNull _anchorObject) then {
     _anchorObject setVectorUp _vectorUp;
 };
 
-_anchorObject setDamage 1;
+_anchorObject setDamage [1, false];
 
 GVAR(destroyed) set [_id, [_id, _position, _prefabId]];

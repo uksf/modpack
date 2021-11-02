@@ -30,7 +30,7 @@ private _players = _allPlayers select {
 };
 TRACE_1("5) Dynamic spawn resolved players",_players);
 if (_players isEqualTo []) exitWith {
-    INFO("5) Dynamic spawn failed players check");
+    [[], true]
 };
 
 // Get only awake and conspicuous players
