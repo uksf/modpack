@@ -15,6 +15,7 @@
 
 params ["_player"];
 
+
 [_player] spawn {
     params ["_player"];
     private _color = ppEffectCreate ["colorCorrections", 1001];
@@ -26,7 +27,7 @@ params ["_player"];
 
     titleText ["", "BLACK IN", 1];
     _color ppEffectEnable true;
-    _color ppEffectAdjust [1, 1, 0, [1.0, 0.0, 0.0, 0.2], [0, 1, 0, 0.5], [0, 0, 0, 0]];
+    _color ppEffectAdjust [0, 0, 0, [1.0, 0.0, 0.0, 0.2], [0, 1, 0, 0.5], [0, 0, 0, 0]];
     _color ppEffectCommit 2;
     _blur ppEffectEnable true;
     _blur ppEffectAdjust [0.001, 0.001, 0.15, 0.15];
@@ -49,3 +50,4 @@ params ["_player"];
     GVAR(pain) = _player getVariable ["ace_medical_pain", 0];
     [_player, GVAR(pain) + 0.2] call ace_medical_fnc_adjustPainLevel;
 };
+
