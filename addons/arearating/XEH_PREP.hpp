@@ -1,4 +1,5 @@
 PREP(addDebugActions);
+PREP(changeRating);
 PREP(deserializeRatingAreas);
 PREP(getAreaRating);
 PREP(getGlobalRating);
