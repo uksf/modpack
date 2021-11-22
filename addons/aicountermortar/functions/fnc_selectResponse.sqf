@@ -23,7 +23,7 @@ private _forceChance = random 10;
 private _targetPosition = getPos _target;
 
 // Do nothing
-if (_forceChance > 8) exitWith {
+if (_forceChance > 7) exitWith {
     [{GVAR(counterInProgress) = false}, [], 1200] call CBA_fnc_waitAndExecute;
 };
 
