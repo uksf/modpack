@@ -35,7 +35,7 @@ private _areas = GVAR(ratingAreas) select {[_position, _x#2, _x#3] call EFUNC(co
 TRACE_1("",_areas);
 
 {
-    _x params ["", "", "_logic", "_area", "_values"];
+    _x params ["", "", "", "", "_values"];
 
     private _ratingCurrent = _values get QGVAR(ratingCurrent);
     private _ratingMin = _values get QGVAR(ratingMin);
@@ -43,18 +43,9 @@ TRACE_1("",_areas);
     private _ratingChange = _values get _type;
 
     _ratingCurrent = _ratingCurrent + _ratingChange;
-
-    if (_ratingCurrent < _ratingMin) then {
-        _ratingCurrent = _ratingMin;
-    };
-
-    if (_ratingCurrent > _ratingMax) then {
-        _ratingCurrent = _ratingMax;
-    };
+    _ratingCurrent = (_ratingCurrent max _ratingMin) min _ratingMax;
 
     _values set [QGVAR(ratingCurrent), _ratingCurrent];
 } forEach _areas;
 
 [_areas] call FUNC(recalculateGlobalRatingEvents);
-
-// TODO: Function to change area
