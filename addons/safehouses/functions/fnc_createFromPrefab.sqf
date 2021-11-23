@@ -59,9 +59,13 @@ _logic setVariable [QGVAR(anchor), _anchorObject];
 
 GVAR(locations) set [_id, [_id, _prefabId, _position]];
 
+GVAR(runCreate) = false;
 [{
     params ["_args", "_idPFH"];
     _args params ["_anchorObject", "_objectDataArray", "_objects", "_count", "_index", "_lastLoad"];
+
+    if (!GVAR(runCreate)) exitWith {};
+    GVAR(runCreate) = false;
 
     if (_index >= _count) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
@@ -79,7 +83,7 @@ GVAR(locations) set [_id, [_id, _prefabId, _position]];
     _objects pushBack _object;
 
     _args set [4, _index + 1];
-    _args set [5, CBA_missionTime + 0.5];
+    _args set [5, CBA_missionTime + 0.1];
 }, 0, [_anchorObject, _objectData, [], count _objectData, 0, 0]] call CBA_fnc_addPerFrameHandler;
 
 

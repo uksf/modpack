@@ -21,13 +21,20 @@ if !(isServer) exitWith {};
 private _fnc_getPefabObjectData = {
     params ["_object", "_anchor"];
 
+    private _position = getPosASL _object;
+    private _anchorTerrainHeight = getTerrainHeightASL (getPosASL _anchor);
+    private _terrainHeightAtPosition = getTerrainHeightASL _position;
+    private _anchorTerrainHeightDiff = _terrainHeightAtPosition - _anchorTerrainHeight;
+    DEBUG_3("TH anchor %1.. TH at pos %2.. TH anchor diff %3",_anchorTerrainHeight,_terrainHeightAtPosition,_anchorTerrainHeightDiff);
+
     [
         [
             typeOf _object,
-            _anchor worldToModel (getPos _object),
+            _anchor worldToModel (ASLToAGL _position),
             getDir _object,
             getDir _anchor,
-            vectorUp _object
+            vectorUp _object,
+            _anchorTerrainHeightDiff
         ],
         [
             isObjectHidden _object,

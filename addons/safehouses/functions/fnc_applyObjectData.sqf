@@ -24,7 +24,7 @@ _aceRepair params ["_repairVehicle", "_repairFacility"];
 
 _object hideObjectGlobal _hidden;
 _object allowDamage _damageAllowed;
-_object enableSimulationGlobal _simulationEnabled;
+_object enableSimulationGlobal false;
 _object setDamage _damage;
 _object setFuel _fuel;
 
