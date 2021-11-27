@@ -38,6 +38,8 @@ if (!(local _module)) exitWith {};
     _x addMPEventHandler ["MPKilled", {
         params ["_unit", "_killer", "_instigator"];
 
+        if !(isServer) exitWith {};
+
         TRACE_3("",_unit,_killer,_instigator);
         if (side _killer != west && side _instigator != west) exitWith {};
 

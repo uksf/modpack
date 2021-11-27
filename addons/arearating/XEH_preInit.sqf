@@ -29,7 +29,8 @@ GVAR(ratingAreaAttributeConfig) = EGVAR(common,configVehicles) >> QGVAR(moduleRa
     _this#0 addMPEventHandler ["MPHit", {
         params ["_unit", "", "", "_instigator"];
 
-        if (side _instigator != west) exitWith {};
+        if !(isServer) exitWith {};
+        if (isPlayer _unit || side _instigator != west) exitWith {};
 
         if (_unit in GVAR(hitUnitCache)) exitWith {};
         GVAR(hitUnitCache) pushBack _unit;
@@ -41,6 +42,7 @@ GVAR(ratingAreaAttributeConfig) = EGVAR(common,configVehicles) >> QGVAR(moduleRa
     _this#0 addMPEventHandler ["MPKilled", {
         params ["_unit", "_killer", "_instigator"];
 
+        if !(isServer) exitWith {};
         if (side _killer != west && side _instigator != west) exitWith {};
 
         [QGVAR(civ_killed), _unit] call FUNC(ratingChanged);
