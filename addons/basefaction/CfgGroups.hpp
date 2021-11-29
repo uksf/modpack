@@ -2,7 +2,7 @@ class CfgGroups {
     class East {
         name = "OPFOR";
         side = 0;
-        class UKSF_Base_Faction {
+        class UKSF_Base {
             name = "Base Faction";
             class Infantry {
                 name = "Infantry";
@@ -753,6 +753,7 @@ class CfgGroups {
                         vehicle = "uksf_Base_SF_Operator";
                         rank = "PRIVATE";
                         position[] = { 0,-6,0 };
+                    };
                     class Unit3 {
                         side = 0;
                         vehicle = "uksf_Base_SF_Operator";

@@ -2,7 +2,7 @@ class uksf_Base_Para: uksf_base_Soldier_Base {
     scope = 2;
     displayName = "Paratrooper";
     editorSubcategory = QEGVAR(common,men);
-    editorPreview = QPATHTOEF(common,data\previews\Inegal_F.jpg);
+    editorPreview = "a3\editorpreviews_f\data\cfgvehicles\o_officer_f.jpg";
     uniformClass = "U_O_officer_noInsignia_hex_F";
     model = "\A3\characters_F_gamma\Guerrilla\ig_guerrilla2_1.p3d";
 };
