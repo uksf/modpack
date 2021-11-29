@@ -50,4 +50,18 @@ class CfgEditorSubcategories {
     class GVAR(recrues) {
         displayName = "Recrues";
     };
+
+    // Base Faction
+    class GVAR(Infantry) {
+        displayName = "Infantry";
+    };
+    class GVAR(Recce) {
+        displayName = "Recce";
+    };
+    class GVAR(Paras) {
+        displayName = "Paras";
+    };
+    class GVAR(Base_SF) {
+        displayName = "Special Forces";
+    };
 };

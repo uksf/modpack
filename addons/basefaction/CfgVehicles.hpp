@@ -26,7 +26,7 @@ class CfgVehicles {
         scope = 0;
         faction = "UKSF_Base_Faction";
         displayName = "UKSF Base";
-        nakedUniform = "Inegal_U_Base";
+        nakedUniform = "U_O_officer_noInsignia_hex_F";
         uniformClass = "U_O_officer_noInsignia_hex_F";
         model = "\A3\characters_F\OPFOR\o_soldier_01.p3d";
         // identityTypes[] = { "LanguageENGFRE_F", "Head_Euro" };

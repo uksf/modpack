@@ -574,7 +574,7 @@ class CfgGroups {
                     };
                 };
             };
-            class Paras {
+            class Paratroopers {
                 name = "Paratroopers";
                 aliveCategory = "Paratroopers";
                 class UKSF_Base_Para_Section {

@@ -1,7 +1,7 @@
 class uksf_Base_Recce_Rifleman: uksf_base_Soldier_Base {
     scope = 2;
     displayName = "Recce (Rifleman)";
-    editorSubcategory = QEGVAR(common,basefaction);
+    editorSubcategory = QEGVAR(common,recce);
     editorPreview = "a3\editorpreviews_f\data\cfgvehicles\o_officer_f.jpg";
     uniformClass = "U_O_officer_noInsignia_hex_F";
     model = "\A3\characters_F_gamma\Guerrilla\ig_guerrilla2_1.p3d";
