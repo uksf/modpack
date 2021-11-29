@@ -19,7 +19,7 @@
 // AND Player can't be in excluded areas
 // AND IF include areas exist THEN Player must be in an include area
 
-private _allPlayers = call CBA_fnc_players;
+private _allPlayers = call FUNC(getPlayers);
 private _players = _allPlayers select {
     private _player = _x;
 

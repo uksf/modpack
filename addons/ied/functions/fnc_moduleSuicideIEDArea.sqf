@@ -43,6 +43,8 @@ _suicideUnit setVariable [QGVAR(areaArray), _areaArray, true];
 _suicideUnit addMPEventHandler ["MPKilled", {
     params ["_suicideUnit", "_killer", "_instigator"];
 
+    if !(isServer) exitWith {};
+
     TRACE_3("",_suicideUnit,_killer,_instigator);
     if (side _killer != west && side _instigator != west) exitWith {};
 

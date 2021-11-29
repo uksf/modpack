@@ -21,7 +21,7 @@ params ["", "_logic", "_area"];
 // AND Player can't be in excluded areas
 // AND Player must be in area
 
-private _allPlayers = call CBA_fnc_players;
+private _allPlayers = call FUNC(getPlayers);
 private _players = _allPlayers select {
     private _player = _x;
 

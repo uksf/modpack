@@ -134,6 +134,8 @@ addMissionEventHandler ["BuildingChanged", {
 
 [QGVAR(addLogisticsMarker), {GVAR(persistenceMarkers) pushBackUnique _this}] call CBA_fnc_addEventHandler;
 
+[QGVAR(setObjectCargo), {[{call FUNC(setObjectCargo)}, _this] call CBA_fnc_execNextFrame}] call CBA_fnc_addEventHandler;
+
 [QGVAR(markerCreated), {
     params ["_serializedMarker"];
 

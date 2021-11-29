@@ -68,13 +68,7 @@ private _ratingStart = _values get QGVAR(ratingStart);
 private _ratingMin = _values get QGVAR(ratingMin);
 private _ratingMax = _values get QGVAR(ratingMax);
 
-if (_ratingStart < _ratingMin) then {
-    _ratingStart = _ratingMin;
-};
-
-if (_ratingStart > _ratingMax) then {
-    _ratingStart = _ratingMax;
-};
+_ratingStart = (_ratingStart max _ratingMin) min _ratingMax;
 
 _values set [QGVAR(ratingStart), _ratingStart];
 _values set [QGVAR(ratingCurrent), _ratingStart];
