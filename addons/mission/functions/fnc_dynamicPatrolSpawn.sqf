@@ -19,9 +19,18 @@
 params ["_values", ["_logic", objNull], ["_area", []], ["_retries", 0]];
 _values params ["", "_distance", "", "_minUnits", "_maxUnits", "", "", "_vehicleProbability", "_vehicleDistanceCoef", "_waypointDistance", "_vehicleWaypointDistance", "_unitPool", "_vehiclePool", "_combatMode", "_patrolSpeed", "_side", "", "_condition"];
 
+private _id = _logic getVariable [QEGVAR(common,id), ""];
+private _debugData = GVAR(dynamicPatrolDebugMap) getOrDefault [_id, createHashMap];
+private _iteration = GVAR(dynamicPatrolDebugMap) getOrDefault [format ["%1_iteration", _id], 0];
+if (_retries == 0) then {
+    _iteration = _iteration + 1;
+};
+private _iterationDebugData = _debugData getOrDefault [_iteration, createHashMap];
+
 if ((!GVAR(dynamicPatrolEnabled) && !GVAR(dynamicPatrolAreasEnabled)) || {_retries > MAX_RETRIES}) exitWith {
     TRACE_3("5) Dynamic spawn failed enabled or retries check",GVAR(dynamicPatrolEnabled),GVAR(dynamicPatrolAreasEnabled),_retries);
     TRACE_2("5) ...",!GVAR(dynamicPatrolEnabled) && !GVAR(dynamicPatrolAreasEnabled),_retries > MAX_RETRIES);
+    _iterationDebugData set ["exitCode", 1];
 };
 
 TRACE_1("5) Dynamic spawn data",_this);
@@ -31,6 +40,7 @@ _getPlayersResult params ["_players", "_allPlayersAreValid"];
 
 if (_players isEqualTo []) exitWith {
     INFO("5) Dynamic spawn failed players check");
+    _iterationDebugData set ["exitCode", 1];
 };
 
 if !(_allPlayersAreValid) then {
@@ -52,6 +62,7 @@ TRACE_4("5) Dynamic spawn chance values",_player,_spawnChance,_random,_includeAr
 
 if (_random > _spawnChance) exitWith {
     TRACE_2("5) Dynamic spawn failed spawn chance check",_random,_spawnChance);
+    _iterationDebugData set ["exitCode", 1];
 };
 
 private _useVehicle = [_vehicleProbability > random 1, false] select (_vehiclePool isEqualTo []);
@@ -63,43 +74,63 @@ TRACE_4("5) Dynamic spawn distance",_vehicleProbability,_vehiclePool,_useVehicle
 
 if !([_values, _logic, _area, _players] call _condition) exitWith {
     DEBUG("Condition not satisfied");
+    _iterationDebugData set ["exitCode", 1];
 };
 
 private _positionArray = [getPosATL _player, _spawnDistance / 15, _spawnDistance * 1.25, _spawnDistance * 0.75, 10] call EFUNC(common,getSafePositionGrid);
 TRACE_1("5) Dynamic spawn resolved positions",_positionArray);
-_positionArray = _positionArray select {([_x, _spawnDistance * 0.7] call EFUNC(common,getNearPlayers)) isEqualTo []};
+_positionArray = _positionArray select {([ASLtoAGL _x, _spawnDistance * 0.7] call FUNC(getNearPlayers)) isEqualTo []};
 TRACE_1("5) Dynamic spawn resolved positions outside range of all players",_positionArray);
 if (_positionArray isEqualTo []) exitWith {
     // Retry
     INFO("5) Dynamic spawn failed to find positions");
-    [{call FUNC(dynamicPatrolSpawn)}, [_values, _logic, _area, _retries + 1], 5 + random 5] call CBA_fnc_waitAndExecute;
+    [{call FUNC(dynamicPatrolSpawn)}, [_values, _logic, _area, _retries + 1], DYNAMIC_PATROL_RETRY_DELAY + random DYNAMIC_PATROL_RETRY_DELAY] call CBA_fnc_waitAndExecute;
 };
 
 private _position = selectRandom _positionArray;
-_players = [getPosATL _player, 100] call EFUNC(common,getNearPlayers);
+_players = [_player, 100] call FUNC(getNearPlayers);
 TRACE_2("5) Dynamic spawn position and players near player",_position,_players);
 
-private _playersNearToPosition = [_position, 100] call EFUNC(common,getNearPlayers);
-private _playersWithPositionVisibility = {([objNull, "VIEW", objNull] checkVisibility [[_position#0, _position#1, (_position#2) + 1.5], eyePos _x]) > 0} count _players;
-if (_playersNearToPosition isEqualTo [] && {_playersWithPositionVisibility isEqualTo 0}) then {
-    _position = ASLtoAGL _position;
-
-    if (_useVehicle) then {
-        TRACE_1("5) Dynamic spawn use vehicle",_useVehicle);
-        private _road = [_position] call EFUNC(common,findNearRoad);
-        if (!isNull _road) then {
-            _position = getPosATL _road;
-        };
-        TRACE_2("5) Dynamic spawn found road",_road,_position);
-
-        [_position, _side, _unitPool, _vehiclePool, {-1}, FUNC(dynamicPatrolCallbackVehicle), [_logic, _player, _position, _spawnDistance, _vehicleWaypointDistance]] call EFUNC(common,spawnGroupVehicle);
-    } else {
-        INFO("5) Dynamic spawn use infantry");
-        private _count = round (random [_minUnits, round (_maxUnits / 1.5) max _minUnits, _maxUnits + 1]);
-        TRACE_1("5) Dynamic spawn unit count",_count);
-
-        [_position, _count, _side, _unitPool, FUNC(dynamicPatrolCallbackInfantry), [_logic, _player, _position, _spawnDistance, _waypointDistance, _combatMode, _patrolSpeed]] call EFUNC(common,spawnGroupInfantry);
-    };
-} else {
-    TRACE_2("5) Dynamic spawn failed proximity or visibility check",_playersNearToPosition,_playersWithPositionVisibility);
+private _playersNearToPosition = [ASLtoAGL _position, 100] call FUNC(getNearPlayers);
+if (_playersNearToPosition isNotEqualTo []) exitWith {
+    TRACE_1("5) Dynamic spawn failed proximity check",_playersNearToPosition);
+    _iterationDebugData set ["exitCode", 1];
 };
+
+private _playersWithPositionVisibility = [call FUNC(getPlayers), {([objNull, "VIEW", objNull] checkVisibility [[_position#0, _position#1, (_position#2) + 1.5], eyePos _x]) > 0}] call EFUNC(common,arrayNone);
+if (_playersWithPositionVisibility) exitWith {
+    TRACE_1("5) Dynamic spawn failed visibility check",_playersWithPositionVisibility);
+    _iterationDebugData set ["exitCode", 1];
+};
+
+#ifdef DEBUG_MODE_ANALYSIS
+_iterationDebugData set ["exitCode", 0];
+_iterationDebugData set ["positions", _positionArray];
+_iterationDebugData set ["position", _position];
+_iterationDebugData set ["players", _players apply {getPosASL _x}];
+_iterationDebugData set ["player", _player apply {getPosASL _x}];
+_iterationDebugData set ["playersNearToPosition", _playersNearToPosition apply {getPosASL _x}];
+
+_debugData set [_iteration, _iterationDebugData];
+GVAR(dynamicPatrolDebugMap) set [_id, _debugData];
+#else
+
+_position = ASLtoAGL _position;
+
+if (_useVehicle) then {
+    TRACE_1("5) Dynamic spawn use vehicle",_useVehicle);
+    private _road = [_position] call EFUNC(common,findNearRoad);
+    if (!isNull _road) then {
+        _position = getPosATL _road;
+    };
+    TRACE_2("5) Dynamic spawn found road",_road,_position);
+
+    [_position, _side, _unitPool, _vehiclePool, {-1}, FUNC(dynamicPatrolCallbackVehicle), [_logic, _player, _position, _spawnDistance, _vehicleWaypointDistance]] call EFUNC(common,spawnGroupVehicle);
+} else {
+    INFO("5) Dynamic spawn use infantry");
+    private _count = round (random [_minUnits, round (_maxUnits / 1.5) max _minUnits, _maxUnits + 1]);
+    TRACE_1("5) Dynamic spawn unit count",_count);
+
+    [_position, _count, _side, _unitPool, FUNC(dynamicPatrolCallbackInfantry), [_logic, _player, _position, _spawnDistance, _waypointDistance, _combatMode, _patrolSpeed]] call EFUNC(common,spawnGroupInfantry);
+};
+#endif

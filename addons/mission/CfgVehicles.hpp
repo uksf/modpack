@@ -115,7 +115,11 @@ class CfgVehicles {
                 tooltip = "Time in seconds between dynamic patrol group spawns (60 - 3600, default: 600)";
                 control = "EditShort";
                 validate = "NUMBER";
+#ifdef DEBUG_MODE_ANALYSIS
+                min = 10;
+#else
                 min = 60;
+#endif
                 max = 3600;
                 defaultValue = "600";
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(cooldown),_value,true)]);
