@@ -18,7 +18,7 @@ params ["_anchorObject", "_objectData"];
 if !(isServer) exitWith {};
 
 _objectData params ["_objectPlacement"];
-_objectPlacement params ["_type", "_anchorOffset", "_dir", "_prefabAnchorDir", "_vectorUp", "_anchorTerrainHeightDiff"];
+_objectPlacement params ["_type", "_anchorOffset", "_dir", "_prefabAnchorDir", "_vectorUp"];
 
 private _position = _anchorObject modelToWorld _anchorOffset;
 if ((_position#2) < 0) then {
