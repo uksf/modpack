@@ -24,7 +24,7 @@ private _fnc_getPefabObjectData = {
     [
         [
             typeOf _object,
-            _anchor worldToModel (getPos _object),
+            _anchor worldToModel (ASLToAGL getPosASL _object),
             getDir _object,
             getDir _anchor,
             vectorUp _object

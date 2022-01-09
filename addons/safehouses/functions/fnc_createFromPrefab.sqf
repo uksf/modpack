@@ -76,10 +76,11 @@ GVAR(locations) set [_id, [_id, _prefabId, _position]];
     private _objectData = _objectDataArray#_index;
     private _object = [_anchorObject, _objectData] call FUNC(createObject);
     [_object, _objectData] call FUNC(applyObjectData);
+    [_object] call FUNC(fixObjectHeights);
     _objects pushBack _object;
 
     _args set [4, _index + 1];
-    _args set [5, CBA_missionTime + 0.5];
+    _args set [5, CBA_missionTime + 0.1];
 }, 0, [_anchorObject, _objectData, [], count _objectData, 0, 0]] call CBA_fnc_addPerFrameHandler;
 
 

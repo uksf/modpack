@@ -3,6 +3,7 @@ PREP(createFromPrefab);
 PREP(createObject);
 PREP(deserialize);
 PREP(destroy);
+PREP(fixObjectHeights);
 PREP(getLocationBuildings);
 PREP(getPrefabAnchor);
 PREP(initLocations);
