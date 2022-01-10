@@ -25,18 +25,13 @@ if ((_position#2) < 0) then {
     _position set [2, 0];
 };
 
-private _object = createVehicle [_type, _position, [], 0, "CAN_COLLIDE"];
+private _object = createVehicle [_type, [0,0,0], [], 0, "CAN_COLLIDE"];
 
 private _anchorDir = getDir _anchorObject;
 _dir = _dir + (_anchorDir - _prefabAnchorDir);
 _object setDir _dir;
 _object setVectorUp _vectorUp;
 
-_object setPos _position;
-_position = getPos _object;
-if ((_position#2) > 0) then {
-    _position set [2, 0];
-    _object setPos _position;
-};
+_object setPosASL (AGLToASL _position);
 
 _object

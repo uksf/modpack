@@ -12,7 +12,6 @@
     Return value:
         Nothing
 */
-
 if !(isServer) exitWith {};
 if (GVAR(locationModules) isEqualTo []) exitWith {
     INFO("No location modules found");
