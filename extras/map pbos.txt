@@ -1,15 +1,9 @@
-- Kidal
-    - kidal
-    - RSPN_Assets (already in before adding)
-- Reshmaan
-    - mad_lights
-    - mad_roads
-    - mad_signs
-    - reshmaan
-    - UK3CB_Reshmaan_Fix
-- Colombia
-    - UMB_Colombia
-- Rosche
-    - hag_objects
-    - WL_Buildings
-    - WL_Rosche
+- Angola
+    - brg_africa
+    - chongo
+    - chongo_art
+    - chongo_c
+    - chongo_layer1
+    - chongo_layer2
+    - seangola
+    - seangola_obj
