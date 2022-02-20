@@ -4,9 +4,9 @@ class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
         units[] = {
-            QGVAR(IEDPlacementModule),
+            QGVAR(iedPlacementModule),
             QGVAR(suicidePlacementModule),
-            QGVAR(IEDExclusionModule),
+            QGVAR(iedExclusionModule),
             QGVAR(helper)
         };
         weapons[] = {};

@@ -53,6 +53,8 @@ if (_VBIEDVehiclesParsed isEqualTo []) exitWith {};
         _vehicle addMPEventHandler ["MPKilled", {
             params ["_vehicle", "_killer", "_instigator"];
 
+            if !(isServer) exitWith {};
+
             TRACE_3("",_vehicle,_killer,_instigator);
             if (side _killer != west && side _instigator != west) exitWith {};
 

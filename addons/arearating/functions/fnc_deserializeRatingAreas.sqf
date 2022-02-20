@@ -29,13 +29,7 @@ if !(isServer) exitWith {};
     private _ratingMin = _values get QGVAR(ratingMin);
     private _ratingMax = _values get QGVAR(ratingMax);
 
-    if (_ratingCurrent < _ratingMin) then {
-        _ratingCurrent = _ratingMin;
-    };
-
-    if (_ratingCurrent > _ratingMax) then {
-        _ratingCurrent = _ratingMax;
-    };
+    _ratingCurrent = (_ratingCurrent max _ratingMin) min _ratingMax;
 
     _values set [QGVAR(ratingCurrent), _ratingCurrent];
 } forEach GVAR(ratingAreas);

@@ -30,3 +30,4 @@ if (!isServer) exitWith {
         [{call FUNC(dynamicPatrol)}, [], _delay * 60] call CBA_fnc_waitAndExecute;
     };
 }] call CBA_fnc_addEventHandler;
+

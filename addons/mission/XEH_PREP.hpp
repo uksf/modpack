@@ -12,6 +12,8 @@ PREP(dynamicPatrolGetPlayers);
 PREP(dynamicPatrolSpawn);
 PREP(fireMission);
 PREP(getConfigGroups);
+PREP(getNearPlayers);
+PREP(getPlayers);
 PREP(hit);
 PREP(initDynamicPatrolArea);
 PREP(initPatrol);

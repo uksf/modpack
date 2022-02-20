@@ -21,10 +21,10 @@ _helper setVariable [QGVAR(explosive), _explosive, true];
 _helper addMPEventHandler ["MPKilled", {
     params ["_helper"];
 
-    if !(local _helper) exitWith {};
+    if !(isServer) exitWith {};
 
-    private _nearbyPeople = _helper nearEntities [["CAManBase"], 10];
-    if (_nearbyPeople isEqualTo []) then {
+    private _nearbyEntities = _helper nearEntities [["CAManBase", "Car", "Motorcycle", "Tank"], 20];
+    if (_nearbyEntities isEqualTo []) then {
         [QGVAR(iedDestroyed), _helper] call CBA_fnc_serverEvent;
     };
 

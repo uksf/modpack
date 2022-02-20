@@ -11,6 +11,7 @@ class CfgPatches {
             "A3_Data_F_Tank_Loadorder",
 
             // CBA
+            "cba_main",
             "cba_ui",
             "cba_xeh",
             "cba_jr",

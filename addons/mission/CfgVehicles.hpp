@@ -50,8 +50,8 @@ class CfgVehicles {
         scope = 2;
         is3DEN = 1;
         displayName = "Patrol Exclude Area";
-        icon = "A3\Modules_F\Data\portraitsector_ca.paa";
-        portrait = "A3\Modules_F\Data\portraitsector_ca.paa";
+        icon = QPATHTOF(data\ui\Icon_Module_PatrolArea_Exclude_ca.paa);
+        portrait = QPATHTOF(data\ui\Icon_Module_PatrolArea_Exclude_ca.paa);
         function = QFUNC(moduleDynamicPatrolExcludeArea);
         functionPriority = 25;
         canSetArea = 1;
@@ -67,8 +67,8 @@ class CfgVehicles {
         scope = 2;
         is3DEN = 1;
         displayName = "Patrol Include Area";
-        icon = "A3\Modules_F\Data\portraitsector_ca.paa";
-        portrait = "A3\Modules_F\Data\portraitsector_ca.paa";
+        icon = QPATHTOF(data\ui\Icon_Module_PatrolArea_Include_ca.paa);
+        portrait = QPATHTOF(data\ui\Icon_Module_PatrolArea_Include_ca.paa);
         function = QFUNC(moduleDynamicPatrolIncludeArea);
         functionPriority = 25;
         canSetArea = 1;
@@ -95,8 +95,8 @@ class CfgVehicles {
         scope = 2;
         is3DEN = 1;
         displayName = "Dynamic Patrol Area";
-        icon = "A3\Modules_F\Data\portraitsector_ca.paa";
-        portrait = "A3\Modules_F\Data\portraitsector_ca.paa";
+        icon = QPATHTOF(data\ui\Icon_Module_PatrolArea_ca.paa);
+        portrait = QPATHTOF(data\ui\Icon_Module_PatrolArea_ca.paa);
         function = QFUNC(moduleDynamicPatrolArea);
         functionPriority = 25;
         canSetArea = 1;
@@ -115,7 +115,11 @@ class CfgVehicles {
                 tooltip = "Time in seconds between dynamic patrol group spawns (60 - 3600, default: 600)";
                 control = "EditShort";
                 validate = "NUMBER";
+#ifdef DEBUG_MODE_ANALYSIS
+                min = 10;
+#else
                 min = 60;
+#endif
                 max = 3600;
                 defaultValue = "600";
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(cooldown),_value,true)]);

@@ -9,7 +9,7 @@ class CfgVehicles {
     };
     class GVAR(cacheAreaModule) : GVAR(module) {
         scope = 2;
-        displayName = "(Caches) Spawn Module";
+        displayName = "Caches Area";
         function = QFUNC(moduleInitCaches);
         canSetArea = 1;
         canSetAreaHeight = 0;

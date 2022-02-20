@@ -263,32 +263,32 @@ class CfgWeapons {
             class HitpointsProtectionInfo {
                 class Neck {
                     hitpointName = "HitNeck";
-                    armor = 25;
-                    passThrough = 0.25;
+                    armor = 15; // ..., 25, 15
+                    passThrough = 0.3; // ..., 0.4, 0.3
                 };
                 class Arms {
                     hitpointName = "HitArms";
-                    armor = 25;
-                    passThrough = 0.25;
+                    armor = 15; // ..., 25, 15
+                    passThrough = 0.3; // ..., 0.4, 0.3
                 };
                 class Chest {
                     hitpointName = "HitChest";
-                    armor = 45;
-                    passThrough = 0.1;
+                    armor = 35; // 20, 45, 35
+                    passThrough = 0.15; // 0.2, 0.1, 0.15
                 };
                 class Diaphragm {
                     hitpointName = "HitDiaphragm";
-                    armor = 45;
-                    passThrough = 0.1;
+                    armor = 35; // 20, 45, 35
+                    passThrough = 0.15; // 0.2, 0.1, 0.15
                 };
                 class Abdomen {
                     hitpointName = "HitAbdomen";
-                    armor = 45;
-                    passThrough = 0.1;
+                    armor = 35; // 20, 45, 35
+                    passThrough = 0.15; // 0.2, 0.1, 0.15
                 };
                 class Body {
                     hitpointName = "HitBody";
-                    passThrough = 0.1;
+                    passThrough = 0.15; // 0.2, 0.1, 0.15
                 };
             };
         };
@@ -305,8 +305,13 @@ class CfgWeapons {
             class HitpointsProtectionInfo {
                 class Head {
                     hitpointName = "HitHead";
-                    armor = 25;
-                    passThrough = 0.1;
+                    armor = 25; // 6, 25, 25
+                    passThrough = 0.1; // 0.5, 0.1, 0.2
+                };
+                class Face {
+                    hitpointName = "HitFace";
+                    armor = 20; // 4, ..., 20
+                    passThrough = 0.1; // 0.5, ..., 0.1
                 };
             };
         };

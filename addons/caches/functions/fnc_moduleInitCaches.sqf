@@ -14,7 +14,7 @@
 */
 (_this#1) params ["_logic"];
 
-if (!isServer) exitWith {};
+if !(isServer) exitWith {};
 
 private _area = _logic getVariable ["objectarea", []];
 if (_area isEqualTo []) exitWith {};
@@ -44,6 +44,8 @@ for "_i" from 1 to _numberOfCaches do {
 
     _cache addMPEventHandler ["MPKilled", {
         params ["_cache", "_killer", "_instigator"];
+
+        if !(isServer) exitWith {};
 
         GVAR(caches) deleteAt (GVAR(caches) find _cache);
         publicVariable QGVAR(caches);

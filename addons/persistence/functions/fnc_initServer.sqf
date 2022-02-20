@@ -25,12 +25,21 @@ GVAR(hashBodies) = [[], objNull] call CBA_fnc_hashCreate;
 GVAR(persistenceMarkers) = [];
 GVAR(mapMarkers) = GVAR(dataNamespace) getVariable [QGVAR(mapMarkers), []];
 GVAR(saveObjectQueue) = [];
+GVAR(disconnectedPlayerPositions) = createHashMap;
 GVAR(saveObjectQueueProcessing) = false;
 GVAR(saveObjectMarkersProcessed) = false;
 
 addMissionEventHandler ["EntityRespawned", {call FUNC(entityRespawned)}];
 addMissionEventHandler ["EntityKilled", {call FUNC(entityKilled)}];
 addMissionEventHandler ["HandleDisconnect", {call FUNC(handleDisconnect)}];
+addMissionEventHandler ["BuildingChanged", {
+    params ["", "_newObject", "_isRuin"];
+
+    // TODO: Persistent ruins?
+    if (_isRuin) then {
+        _newObject setVariable [QGVAR(excluded), true];
+    };
+}];
 
 [QGVAR(shutdown), {call FUNC(shutdown)}] call CBA_fnc_addEventHandler;
 
@@ -107,8 +116,8 @@ addMissionEventHandler ["HandleDisconnect", {call FUNC(handleDisconnect)}];
     [{
         params ["_vehicleState"];
         _vehicleState params ["_vehicleId"];
-        private _exists = [GVAR(persistentObjectsHash), _vehicleId] call CBA_fnc_hashHasKey;
-        _exists
+
+        [GVAR(persistentObjectsHash), _vehicleId] call CBA_fnc_hashHasKey
     }, {
         params ["_vehicleState", "_client"];
         _vehicleState params ["_vehicleId", "_role", "_index"];
@@ -124,6 +133,8 @@ addMissionEventHandler ["HandleDisconnect", {call FUNC(handleDisconnect)}];
 }] call CBA_fnc_addEventHandler;
 
 [QGVAR(addLogisticsMarker), {GVAR(persistenceMarkers) pushBackUnique _this}] call CBA_fnc_addEventHandler;
+
+[QGVAR(setObjectCargo), {[{call FUNC(setObjectCargo)}, _this] call CBA_fnc_execNextFrame}] call CBA_fnc_addEventHandler;
 
 [QGVAR(markerCreated), {
     params ["_serializedMarker"];
