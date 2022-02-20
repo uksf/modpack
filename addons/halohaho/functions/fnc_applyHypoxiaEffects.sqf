@@ -17,7 +17,7 @@ if !(canSuspend) exitWith {
     [] spawn FUNC(applyHypoxiaEffects);
 };
 
-if (GVAR(hypoxiaLevel) == 0) exitWith {};
+if (GVAR(hypoxiaLevel) < 10) exitWith {};
 
 private _hypoxiaCoef = linearConversion [1, 100, GVAR(hypoxiaLevel), 0.5, 1.5];
 private _effectDelay = 1 * _hypoxiaCoef;
