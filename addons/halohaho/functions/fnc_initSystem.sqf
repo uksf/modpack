@@ -32,12 +32,17 @@
         Nothing
 */
 
-[{
+if (GVAR(systemPFHID) != -1) then {
+    [GVAR(systemPFHID)] call CBA_fnc_removePerFrameHandler;
+};
+
+GVAR(systemPFHID) = [{
     params ["_args", "_idPFH"];
 
     if (!alive player) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
 
+        GVAR(systemPFHID) = -1;
         GVAR(oxygenConnected) = false;
         GVAR(hypoxiaLevel) = 0;
         GVAR(maxHypoxiaLevel) = 0;
@@ -76,6 +81,7 @@
 
     if (_altitude < SYSTEM_RESET_ALTITUDE && !_hasMask && !_hypoxic) then {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
+        GVAR(systemPFHID) = -1;
 
         if (GVAR(maxHypoxiaLevel) > 0) then {
             private _resetDelay = linearConversion [0, 100, GVAR(maxHypoxiaLevel), 180, 300];
