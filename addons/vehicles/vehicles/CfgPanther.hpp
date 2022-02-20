@@ -1,6 +1,3 @@
-class MRAP_01_base_F : Car_F {
-    class HitPoints;
-};
 class UK3CB_BAF_Panther_Base : MRAP_01_base_F {
     armor = 200;
     armorStructural = 20;
