@@ -1,7 +1,7 @@
 class CfgWeapons {
     class CBA_MiscItem_ItemInfo;
     class CBA_MiscItem;
-    class GVAR(haloAirSupply) : CBA_MiscItem {
+    class GVAR(airSupply) : CBA_MiscItem {
         model = "\ade_core\data\models\SingleBottle";
         author = "UKSF";
         scope = 2;

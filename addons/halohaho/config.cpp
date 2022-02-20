@@ -5,7 +5,7 @@ class CfgPatches {
         name = COMPONENT_NAME;
         units[] = {};
         weapons[] = {
-            QGVAR(halohahoAirSupply)
+            QGVAR(airSupply)
         };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
@@ -20,6 +20,6 @@ class CfgPatches {
 };
 
 #include "CfgEventHandlers.hpp"
+#include "CfgGlasses.hpp"
 #include "CfgSounds.hpp"
 #include "CfgWeapons.hpp"
-#include "CfgGlasses.hpp"

@@ -7,3 +7,13 @@
 // #define CBA_DEBUG_SYNCHRONOUS
 
 #include "\u\uksf\addons\main\script_macros.hpp"
+
+// 300 feet
+#define SYSTEM_RESET_ALTITUDE 100
+// 10,000 feet
+#define HYPOXIA_ALTITUDE 3000
+// 20,000 feet
+#define HYPOXIA_UPPER_ALTITUDE 6000
+
+// Gives 10 minutes of oxygen
+#define OXYGEN_TIME 10 * 60
