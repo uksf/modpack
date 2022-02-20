@@ -1,5 +1,8 @@
 // TODO: inventories https://github.com/uksf/modpack/issues/708
-class UK3CB_BAF_Husky_Base;
+class UK3CB_BAF_Husky_Base : MRAP_01_base_F {
+    fuelCapacity = 15;  // Reduced from 151. Gives ~40km range. 230L tank
+    ace_refuel_fuelCapacity = 230;
+};
 class UK3CB_BAF_Husky_GPMG_Base : UK3CB_BAF_Husky_Base {
     faction = "CUP_B_GB";
     crew = "CUP_B_BAF_Soldier_MTP";
