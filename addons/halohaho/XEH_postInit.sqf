@@ -5,7 +5,7 @@ if (hasInterface) then {
 
     ["loadout", {
         if (goggles player == "G_mas_usl_jumpmask") then {
-			[] call FUNC(initSystem);
-		};
+            [] call FUNC(initSystem);
+        };
     }] call CBA_fnc_addPlayerEventHandler;
 };
