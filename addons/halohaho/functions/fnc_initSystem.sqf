@@ -20,7 +20,7 @@
             -> If player is not above hypoxia altitude and has oxygen connected and goggles on
                 -> Reduce hypoxia level by set value
             -> Apply hypoxia effects
-        - Player is below reset altitude and has no goggles on and is not hypoxic
+        - Player is below reset altitude and is not hypoxic
             -> Turn off, reset
             -> If player had hypoxia
                 -> Reset walk status after delay
@@ -32,14 +32,14 @@
         Nothing
 */
 
-if (GVAR(systemPFHID) != -1) then {
-    [GVAR(systemPFHID)] call CBA_fnc_removePerFrameHandler;
-};
+if (GVAR(systemPFHID) != -1) exitWith {};
 
 GVAR(systemPFHID) = [{
     params ["_args", "_idPFH"];
+    _args params ["_runEffects"];
 
     if (!alive player) exitWith {
+        DEBUG("Player dead, exiting system");
         [_idPFH] call CBA_fnc_removePerFrameHandler;
 
         GVAR(systemPFHID) = -1;
@@ -48,45 +48,76 @@ GVAR(systemPFHID) = [{
         GVAR(maxHypoxiaLevel) = 0;
     };
 
+    if (CBA_missionTime <= GVAR(previousTime)) exitWith {};
+    GVAR(previousTime) = CBA_missionTime;
+
     private _altitude = (getPosASL player)#2;
     private _aboveHypoxiaAltitude = _altitude >= HYPOXIA_ALTITUDE;
     private _hypoxic = GVAR(hypoxiaLevel) > 0;
-    private _hasMask = goggles player == "G_mas_usl_jumpmask";
+    private _hasMask = goggles player == HALOHAHO_MASK;
     private _hasEquipmentConnected = GVAR(oxygenConnected) && _hasMask;
+    TRACE_7(""_altitude,_aboveHypoxiaAltitude,GVAR(hypoxiaLevel),_hypoxic,_hasMask,GVAR(oxygenConnected),_hasEquipmentConnected);
 
     if (_aboveHypoxiaAltitude && !_hypoxic && !_hasEquipmentConnected) then {
+        DEBUG("Player is becoming hypoxic");
         _hypoxic = true;
         [player, "forceWalk", QGVAR(hypoxic), true] call ace_common_fnc_statusEffect_set;
-        ace_advanced_fatigue_anReserve = 10; // Sets stamina right down
     };
 
     if (_hypoxic) then {
         private _hypoxiaModifier = 0;
         switch (true) do {
             case (_aboveHypoxiaAltitude && !_hasEquipmentConnected): {
-                _hypoxiaModifier = linearConversion [HYPOXIA_ALTITUDE, HYPOXIA_UPPER_ALTITUDE, _altitude, 5, 20];
+                _hypoxiaModifier = linearConversion [HYPOXIA_ALTITUDE, HYPOXIA_UPPER_ALTITUDE, _altitude, 5, 10];
+                TRACE_2("Adjusting hypoxia, player is above altitude and does not have equipment",_altitude,_hypoxiaModifier);
             };
             case (!_aboveHypoxiaAltitude && !_hasEquipmentConnected): {
-                _hypoxiaModifier = linearConversion [HYPOXIA_ALTITUDE, SYSTEM_RESET_ALTITUDE, _altitude, -2, -10];
+                _hypoxiaModifier = linearConversion [HYPOXIA_ALTITUDE, SYSTEM_RESET_ALTITUDE, _altitude, -1, -4];
+                TRACE_2("Adjusting hypoxia, player is not above altitude and does not have equipment",_altitude,_hypoxiaModifier);
             };
             case (!_aboveHypoxiaAltitude && _hasEquipmentConnected): {
-                _hypoxiaModifier = -15;
+                _hypoxiaModifier = -8;
+                TRACE_2("Adjusting hypoxia, player is not above altitude and does have equipment",_altitude,_hypoxiaModifier);
             };
         };
 
         GVAR(hypoxiaLevel) = ((GVAR(hypoxiaLevel) + _hypoxiaModifier) min 100) max 0;
         GVAR(maxHypoxiaLevel) = GVAR(maxHypoxiaLevel) max GVAR(hypoxiaLevel);
-        [] spawn FUNC(applyHypoxiaEffects);
+        TRACE_2("",GVAR(hypoxiaLevel),GVAR(maxHypoxiaLevel));
+
+        if (_runEffects) then {
+            [] spawn FUNC(applyHypoxiaEffects);
+        };
+        _args set [0, !_runEffects];
     };
 
-    if (_altitude < SYSTEM_RESET_ALTITUDE && !_hasMask && !_hypoxic) then {
-        [_idPFH] call CBA_fnc_removePerFrameHandler;
-        GVAR(systemPFHID) = -1;
+    if (!_hypoxic) then {
+        if (_altitude < SYSTEM_RESET_ALTITUDE && !_hasMask) then {
+            DEBUG("Player is below reset altitude and does not have a mask");
+            [_idPFH] call CBA_fnc_removePerFrameHandler;
+            GVAR(systemPFHID) = -1;
+        };
 
         if (GVAR(maxHypoxiaLevel) > 0) then {
-            private _resetDelay = linearConversion [0, 100, GVAR(maxHypoxiaLevel), 180, 300];
-            [{[player, "forceWalk", QGVAR(hypoxic), false] call ace_common_fnc_statusEffect_set}, [], _resetDelay] call CBA_fnc_waitAndExecute;
+            ace_advanced_fatigue_anFatigue = linearConversion [5, 100, GVAR(maxHypoxiaLevel), 0.5, 0.2];
+            private _resetDelay = linearConversion [1, 100, GVAR(maxHypoxiaLevel), 10, 30];
+            TRACE_2("Player had hypoxia, resetting walking and effects",GVAR(maxHypoxiaLevel),_resetDelay);
             GVAR(maxHypoxiaLevel) = 0;
+
+            [{
+                if (GVAR(hypoxiaLevel) == 0) then {
+                    [player, "forceWalk", QGVAR(hypoxic), false] call ace_common_fnc_statusEffect_set;
+                };
+            }, [], _resetDelay] call CBA_fnc_waitAndExecute;
+
+            GVAR(ppColour) ppEffectAdjust [1, 1, 0, [0, 0, 0, 0], [1, 1, 1, 1], [0, 0, 0, 0]];
+            GVAR(ppColour) ppEffectCommit _resetDelay;
+            GVAR(ppBlur) ppEffectAdjust [0, 0, 0, 0];
+            GVAR(ppBlur) ppEffectCommit _resetDelay;
+            GVAR(ppDynamicBlur) ppEffectAdjust [0];
+            GVAR(ppDynamicBlur) ppEffectCommit _resetDelay;
+            GVAR(ppChroma) ppEffectAdjust [0, 0, true];
+            GVAR(ppChroma) ppEffectCommit _resetDelay;
         };
     };
-}, 5, []] call CBA_fnc_addPerFrameHandler;
+}, 5, [false]] call CBA_fnc_addPerFrameHandler;
