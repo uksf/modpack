@@ -9,7 +9,7 @@ class CfgPatches {
         };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "ade_core",
+            "uksf_diving",
             "mas_usa_lite_common"
         };
         author = QUOTE(UKSF);
@@ -20,6 +20,5 @@ class CfgPatches {
 };
 
 #include "CfgEventHandlers.hpp"
-#include "CfgGlasses.hpp"
 #include "CfgSounds.hpp"
 #include "CfgWeapons.hpp"
