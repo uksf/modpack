@@ -48,6 +48,9 @@ if (isServer) then {
             [QGVAR(deleteEmptyGroups), []] call CBA_fnc_globalEvent;
         }, _this#0, _this#1] call CBA_fnc_waitAndExecute
     }] call CBA_fnc_addEventHandler;
+
+    GVAR(updateHeadlessClientPosition) = true;
+    GVAR(updateHeadlessClientDelay) = 180;
 };
 
 acex_headless_headlessClients = [];

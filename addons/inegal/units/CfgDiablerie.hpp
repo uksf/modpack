@@ -1,4 +1,4 @@
-class Inegal_Diablerie_S: Inegal_Soldier_Base {
+class Inegal_Diablerie_S : Inegal_Soldier_Base {
     scope = 2;
     displayName = "Specialist";
     editorSubcategory = QEGVAR(common,diablerie);
@@ -125,122 +125,172 @@ class Inegal_Diablerie_S: Inegal_Soldier_Base {
     };
     class HitPoints {
         class HitFace {
-            armor = 1.5;
+            armor = 1;
             material = -1;
             name = "face_hub";
-            passThrough = 0.1;
+            passThrough = 0.8;
             radius = 0.08;
             explosionShielding = 0.1;
             minimalHit = 0.01;
         };
-        class HitNeck: HitFace {
-            armor = 3.5;
+        class HitNeck : HitFace {
+            armor = 6;
             material = -1;
             name = "neck";
-            passThrough = 0.1;
+            passThrough = 0.8;
             radius = 0.1;
             explosionShielding = 0.5;
             minimalHit = 0.01;
         };
-        class HitHead: HitNeck {
-            armor = 2.5;
+        class HitHead : HitNeck {
+            armor = 1;
             material = -1;
             name = "head";
-            passThrough = 0.1;
+            passThrough = 0.8;
             radius = 0.2;
             explosionShielding = 0.5;
             minimalHit = 0.01;
             depends = "HitFace max HitNeck";
         };
-        class HitPelvis {
-            armor = 6;
+        class HitPelvis : HitHead {
+            armor = 8;
             material = -1;
             name = "pelvis";
-            passThrough = 0.04;
-            radius = 0.2;
+            passThrough = 0.33;
+            radius = 0.24;
             explosionShielding = 1;
             visual = "injury_body";
             minimalHit = 0.01;
+            depends = "0";
         };
-        class HitAbdomen: HitPelvis {
-            armor = 6;
+        class HitAbdomen : HitPelvis {
+            armor = 8;
             material = -1;
             name = "spine1";
-            passThrough = 0.04;
-            radius = 0.15000001;
+            passThrough = 0.33;
+            radius = 0.16;
             explosionShielding = 1;
             visual = "injury_body";
             minimalHit = 0.01;
         };
-        class HitDiaphragm: HitAbdomen {
-            armor = 6;
+        class HitDiaphragm : HitAbdomen {
+            armor = 8;
             material = -1;
             name = "spine2";
-            passThrough = 0.04;
-            radius = 0.15;
+            passThrough = 0.33;
+            radius = 0.18;
             explosionShielding = 1.5;
             visual = "injury_body";
             minimalHit = 0.01;
         };
-        class HitChest: HitDiaphragm {
-            armor = 6;
+        class HitChest : HitDiaphragm {
+            armor = 8;
             material = -1;
             name = "spine3";
-            passThrough = 0.04;
-            radius = 0.15000001;
+            passThrough = 0.33;
+            radius = 0.18;
             explosionShielding = 1.5;
             visual = "injury_body";
             minimalHit = 0.01;
         };
-        class HitBody: HitChest {
-            armor = 750;
+        class HitBody : HitChest {
+            armor = 1000;
             material = -1;
             name = "body";
-            passThrough = 0.04;
-            radius = 0.16;
+            passThrough = 1;
+            radius = 0;
             explosionShielding = 1.5;
             visual = "injury_body";
             minimalHit = 0.01;
             depends = "HitPelvis max HitAbdomen max HitDiaphragm max HitChest";
         };
-        class HitArms {
-            armor = 2.5;
+        class HitArms : HitBody {
+            armor = 8;
             material = -1;
             name = "arms";
-            passThrough = 0.4;
+            passThrough = 0.7;
             radius = 0.1;
-            explosionShielding = 0.3;
+            explosionShielding = 0.1;
             visual = "injury_hands";
             minimalHit = 0.01;
+            depends = "0";
         };
-        class HitHands: HitArms {
-            armor = 2;
+        class HitHands : HitArms {
+            armor = 8;
             material = -1;
             name = "hands";
-            passThrough = 0.4;
+            passThrough = 0.7;
             radius = 0.1;
-            explosionShielding = 0.3;
+            explosionShielding = 0.1;
             visual = "injury_hands";
             minimalHit = 0.01;
             depends = "HitArms";
         };
-        class HitLegs {
-            armor = 2.5;
+        class HitLegs : HitHands {
+            armor = 8;
             material = -1;
             name = "legs";
-            passThrough = 0.4;
-            radius = 0.12;
-            explosionShielding = 0.3;
+            passThrough = 0.7;
+            radius = 0.14;
+            explosionShielding = 0.1;
+            visual = "injury_legs";
+            minimalHit = 0.01;
+            depends = "0";
+        };
+        class Incapacitated : HitLegs {
+            armor = 1000;
+            material = -1;
+            name = "body";
+            passThrough = 1;
+            radius = 0;
+            explosionShielding = 1;
+            visual = "";
+            minimalHit = 0;
+            depends = "(((Total - 0.25) max 0) + ((HitHead - 0.25) max 0) + ((HitBody - 0.25) max 0)) * 1.45";
+        };
+        class HitLeftArm {
+            armor = 3;
+            material = -1;
+            name = "hand_l";
+            passThrough = 1;
+            radius = 0.08;
+            explosionShielding = 1;
+            visual = "injury_hands";
+            minimalHit = 0.01;
+        };
+        class HitRightArm : HitLeftArm {
+            name = "hand_r";
+        };
+        class HitLeftLeg {
+            armor = 3;
+            material = -1;
+            name = "leg_l";
+            passThrough = 1;
+            radius = 0.1;
+            explosionShielding = 1;
             visual = "injury_legs";
             minimalHit = 0.01;
         };
-        ADD_ACE_HITPOINTS(2.5,2.5);
+        class HitRightLeg : HitLeftLeg {
+            name = "leg_r";
+        };
+        class ACE_HDBracket {
+            armor = 1;
+            material = -1;
+            name = "head";
+            passThrough = 0;
+            radius = 1;
+            explosionShielding = 1;
+            visual = "";
+            minimalHit = 0;
+            depends = "HitHead";
+        };
     };
-    armor = 10;
-    armorStructural = 0.9;
-    explosionShielding = 0.1;
+    armor = 2;
+    armorStructural = 4;
+    explosionShielding = 0.4;
 };
-class Inegal_Diablerie_C: Inegal_Diablerie_S {
+class Inegal_Diablerie_C : Inegal_Diablerie_S {
     displayName = "Commander";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_Diablerie_C.jpg);
     icon = "iconManLeader";
@@ -256,7 +306,7 @@ class Inegal_Diablerie_C: Inegal_Diablerie_S {
         "Put"
     };
 };
-class Inegal_Diablerie_G: Inegal_Diablerie_S {
+class Inegal_Diablerie_G : Inegal_Diablerie_S {
     displayName = "General";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_Diablerie_G.jpg);
     icon = "iconManOfficer";
@@ -346,7 +396,7 @@ class Inegal_Diablerie_G: Inegal_Diablerie_S {
         "ItemGPS"
     };
 };
-class Inegal_Diablerie_Su: Inegal_Diablerie_S {
+class Inegal_Diablerie_Su : Inegal_Diablerie_S {
     displayName = "Surgeon";
     icon = "iconManMedic";
     attendant = 1;
@@ -354,7 +404,7 @@ class Inegal_Diablerie_Su: Inegal_Diablerie_S {
     picture = "pictureHeal";
     backpack = "Inegal_B_D_Surgeon";
 };
-class Inegal_Diablerie_B: Inegal_Diablerie_S {
+class Inegal_Diablerie_B : Inegal_Diablerie_S {
     displayName = "Brute";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_Diablerie_B.jpg);
     icon = "iconManMG";
@@ -370,7 +420,7 @@ class Inegal_Diablerie_B: Inegal_Diablerie_S {
         "Put"
     };
 };
-class Inegal_Diablerie_Sh: Inegal_Diablerie_S {
+class Inegal_Diablerie_Sh : Inegal_Diablerie_S {
     displayName = "Sharpshooter";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_Diablerie_Sh.jpg);
     backpack = "Inegal_B_D_Sharpshooter";
@@ -385,11 +435,11 @@ class Inegal_Diablerie_Sh: Inegal_Diablerie_S {
         "Put"
     };
 };
-class Inegal_Diablerie_A: Inegal_Diablerie_S {
+class Inegal_Diablerie_A : Inegal_Diablerie_S {
     displayName = "Arsonist";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_Diablerie_A.jpg);
     icon = "iconManAT";
-    threat[] = { 1,0.9,0.9 };
+    threat[] = { 1, 0.9, 0.9 };
     backpack = "Inegal_B_D_Arsonist";
     weapons[] = {
         "arifle_SPAR_01_blk_F_erco_laser_bipod_suppressor",
@@ -404,12 +454,12 @@ class Inegal_Diablerie_A: Inegal_Diablerie_S {
         "Put"
     };
 };
-class Inegal_Diablerie_Se: Inegal_Diablerie_S {
+class Inegal_Diablerie_Se : Inegal_Diablerie_S {
     displayName = "Sentinel";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_Diablerie_Se.jpg);
     backpack = "Inegal_B_D_Sentinel";
 };
-class Inegal_Diablerie_As: Inegal_Diablerie_S {
+class Inegal_Diablerie_As : Inegal_Diablerie_S {
     displayName = "Assassin";
     editorPreview = QPATHTOEF(common,data\previews\Inegal_Diablerie_As.jpg);
     uniformClass = "U_I_FullGhillie_sard";

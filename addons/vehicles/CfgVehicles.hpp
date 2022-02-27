@@ -18,6 +18,9 @@ class CfgVehicles {
             class HitFuel;
         };
     };
+    class MRAP_01_base_F : Car_F {
+        class HitPoints;
+    };
     class UK3CB_BAF_Jackal_Base: Car_F {
         faction = "CUP_B_GB";
         crew = "CUP_B_BAF_Soldier_MTP";

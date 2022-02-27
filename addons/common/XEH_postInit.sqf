@@ -10,6 +10,8 @@ if (isServer) then {
     [{
         [QGVAR(deleteEmptyGroups), []] call CBA_fnc_globalEvent;
     }, 300, []] call cba_fnc_addPerFrameHandler;
+
+    [] call FUNC(updateHeadlessClientPosition);
 };
 
 // Set headless client array to player if singleplayer

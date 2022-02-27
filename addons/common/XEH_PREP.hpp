@@ -42,3 +42,4 @@ PREP(spawnGroup);
 PREP(spawnGroupInfantry);
 PREP(spawnGroupVehicle);
 PREP(taskPatrol);
+PREP(updateHeadlessClientPosition);
