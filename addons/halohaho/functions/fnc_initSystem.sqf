@@ -51,12 +51,12 @@ GVAR(systemPFHID) = [{
     if (CBA_missionTime <= GVAR(previousTime)) exitWith {};
     GVAR(previousTime) = CBA_missionTime;
 
-    private _altitude = (getPosASL player)#2;
-    private _aboveHypoxiaAltitude = _altitude >= HYPOXIA_ALTITUDE;
+    private _altitudeASL = (getPosASL player)#2;
+    private _aboveHypoxiaAltitude = _altitudeASL >= HYPOXIA_ALTITUDE;
     private _hypoxic = GVAR(hypoxiaLevel) > 0;
     private _hasMask = goggles player == HALOHAHO_MASK;
     private _hasEquipmentConnected = GVAR(oxygenConnected) && _hasMask;
-    TRACE_7(""_altitude,_aboveHypoxiaAltitude,GVAR(hypoxiaLevel),_hypoxic,_hasMask,GVAR(oxygenConnected),_hasEquipmentConnected);
+    TRACE_7(""_altitudeASL,_aboveHypoxiaAltitude,GVAR(hypoxiaLevel),_hypoxic,_hasMask,GVAR(oxygenConnected),_hasEquipmentConnected);
 
     if (_aboveHypoxiaAltitude && !_hypoxic && !_hasEquipmentConnected) then {
         DEBUG("Player is becoming hypoxic");
@@ -68,16 +68,16 @@ GVAR(systemPFHID) = [{
         private _hypoxiaModifier = 0;
         switch (true) do {
             case (_aboveHypoxiaAltitude && !_hasEquipmentConnected): {
-                _hypoxiaModifier = linearConversion [HYPOXIA_ALTITUDE, HYPOXIA_UPPER_ALTITUDE, _altitude, 5, 10];
-                TRACE_2("Adjusting hypoxia, player is above altitude and does not have equipment",_altitude,_hypoxiaModifier);
+                _hypoxiaModifier = linearConversion [HYPOXIA_ALTITUDE, HYPOXIA_UPPER_ALTITUDE, _altitudeASL, 5, 10];
+                TRACE_2("Adjusting hypoxia, player is above altitude and does not have equipment",_altitudeASL,_hypoxiaModifier);
             };
             case (!_aboveHypoxiaAltitude && !_hasEquipmentConnected): {
-                _hypoxiaModifier = linearConversion [HYPOXIA_ALTITUDE, SYSTEM_RESET_ALTITUDE, _altitude, -1, -4];
-                TRACE_2("Adjusting hypoxia, player is not above altitude and does not have equipment",_altitude,_hypoxiaModifier);
+                _hypoxiaModifier = linearConversion [HYPOXIA_ALTITUDE, SYSTEM_RESET_ALTITUDE, _altitudeASL, -1, -4];
+                TRACE_2("Adjusting hypoxia, player is not above altitude and does not have equipment",_altitudeASL,_hypoxiaModifier);
             };
             case (!_aboveHypoxiaAltitude && _hasEquipmentConnected): {
                 _hypoxiaModifier = -8;
-                TRACE_2("Adjusting hypoxia, player is not above altitude and does have equipment",_altitude,_hypoxiaModifier);
+                TRACE_2("Adjusting hypoxia, player is not above altitude and does have equipment",_altitudeASL,_hypoxiaModifier);
             };
         };
 
@@ -92,7 +92,8 @@ GVAR(systemPFHID) = [{
     };
 
     if (!_hypoxic) then {
-        if (_altitude < SYSTEM_RESET_ALTITUDE && !_hasMask) then {
+        private _altitudeATL = (getPosATL player)#2;
+        if (_altitudeATL < SYSTEM_RESET_ALTITUDE && !_hasMask) then {
             DEBUG("Player is below reset altitude and does not have a mask");
             [_idPFH] call CBA_fnc_removePerFrameHandler;
             GVAR(systemPFHID) = -1;

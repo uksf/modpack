@@ -10,11 +10,11 @@
 
 #define HALOHAHO_MASK "G_mas_usl_jumpmask"
 
-// 300 feet
+// 300 feet ATL
 #define SYSTEM_RESET_ALTITUDE 100
-// 10,000 feet
+// 10,000 feet ASL
 #define HYPOXIA_ALTITUDE 3000
-// 20,000 feet
+// 20,000 feet ASL
 #define HYPOXIA_UPPER_ALTITUDE 6000
 
 // Gives 15 minutes of oxygen
