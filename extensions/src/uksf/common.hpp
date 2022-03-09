@@ -33,7 +33,7 @@ public:
     float getZoom();
     bool lineOfSight(object& target, object& source, bool zoomCheck, bool groupCheck);
     side getSide(int sideNumber);
-    std::string getTimeStamp();
+    // std::string getTimeStamp();
 
 private:
 	std::queue<int> functionQueue;

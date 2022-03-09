@@ -126,10 +126,10 @@ side uksf_common::getSide(const int sideNumber) {
 	}
 }
 
-std::string uksf_common::getTimeStamp() {
-	const auto now = std::chrono::system_clock::now();
-	const auto today = date::floor<days>(now);
-	std::stringstream ss;
-	ss << today << ' ' << make_time(now - today);
-	return ss.str();
-}
+// std::string uksf_common::getTimeStamp() {
+// 	const auto now = std::chrono::system_clock::now();
+// 	const auto today = date::floor<days>(now);
+// 	std::stringstream ss;
+// 	ss << today << ' ' << make_time(now - today);
+// 	return ss.str();
+// }
