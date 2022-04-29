@@ -514,7 +514,7 @@ force acre_sys_core_ts3ChannelName = "";
 force acre_sys_core_ts3ChannelPassword = "";
 acre_sys_core_ts3ChannelSwitch = true;
 acre_sys_core_unmuteClients = true;
-force force acre_sys_signal_signalModel = 3;
+force force acre_sys_signal_signalModel = 2;
 
 // ACRE2 Gestures
 force force acre_sys_gestures_enabled = true;
