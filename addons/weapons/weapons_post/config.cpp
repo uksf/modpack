@@ -19,8 +19,8 @@ class CfgPatches {
 // https://github.com/nk3nny/LambsMods/blob/master/addons/rpg/config.cpp
 class Mode_SemiAuto;
 class CfgWeapons {
-    class LauncherBase_F;
-    class Launch_RPG7_F : LauncherBase_F {
+    class Launcher_Base_F;
+    class Launch_RPG7_F : Launcher_Base_F {
         primary = 11;
         class Single : Mode_SemiAuto {
             aiDispersionCoefX = 1.7;
@@ -38,7 +38,7 @@ class CfgWeapons {
             sounds[] = {"StandardSound"};
         };
     };
-    class launch_RPG32_F : LauncherBase_F {
+    class launch_RPG32_F : Launcher_Base_F {
         class Single : Mode_SemiAuto {
             aiDispersionCoefX = 1.7;
             aiDispersionCoefY = 2.2;

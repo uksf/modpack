@@ -9,4 +9,4 @@
 
 #define AMMO_USAGE_BUFF airLock = 1; \
 allowAgainstInfantry = 1; \
-cost = 40;
+cost = 40
