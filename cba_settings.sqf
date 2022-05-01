@@ -121,7 +121,7 @@ force acex_field_rations_waterSourceActions = 2;
 // ACE Fire
 force force ace_fire_dropWeapon = 2;
 force force ace_fire_enabled = true;
-force force ace_fire_enableFlare = true;
+force force ace_fire_enableFlare = false;
 ace_fire_enableScreams = true;
 
 // ACE Fortify
