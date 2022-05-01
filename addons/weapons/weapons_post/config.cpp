@@ -16,6 +16,47 @@ class CfgPatches {
     };
 };
 
+// https://github.com/nk3nny/LambsMods/blob/master/addons/rpg/config.cpp
+class Mode_SemiAuto;
+class CfgWeapons {
+    class LauncherBase_F;
+    class Launch_RPG7_F : LauncherBase_F {
+        primary = 11;
+        class Single : Mode_SemiAuto {
+            aiDispersionCoefX = 1.7;
+            aiDispersionCoefY = 2.2;
+            aiRateOfFire = 10;
+            aiRateOfFireDistance = 300;
+            aiRateOfFireDispersion = 10;
+            minRange = 5;
+            minRangeProbab = 0.56;
+            midRange = 250;
+            midRangeProbab = 0.9;
+            maxRange = 500;
+            maxRangeProbab = 0.4;
+            recoil = "recoil_single_law";
+            sounds[] = {"StandardSound"};
+        };
+    };
+    class launch_RPG32_F : LauncherBase_F {
+        class Single : Mode_SemiAuto {
+            aiDispersionCoefX = 1.7;
+            aiDispersionCoefY = 2.2;
+            aiRateOfFire = 12;
+            aiRateOfFireDistance = 400;
+            aiRateOfFireDispersion = 3;
+            minRange = 10;
+            minRangeProbab = 0.3;
+            midRange = 200;
+            midRangeProbab = 0.85;
+            maxRange = 600;
+            maxRangeProbab = 0.85;
+            recoil = "recoil_single_law";
+            sounds[] = {"StandardSound"};
+        };
+    };
+};
+
 class CfgAmmo {
     class BulletBase;
     class B_19mm_HE : BulletBase {
@@ -106,46 +147,60 @@ class CfgAmmo {
     class RocketBase;
     class R_PG32V_F : RocketBase {
         AMMO_USAGE_INFVEHAIRARM;
+        AMMO_USAGE_BUFF;
     };
     class R_TBG32V_F : R_PG32V_F {
         AMMO_USAGE_INFVEHAIR;
+        AMMO_USAGE_BUFF;
     };
     class R_PG7_F : RocketBase {
         AMMO_USAGE_INFVEHAIRARM;
+        AMMO_USAGE_BUFF;
     };
     class CUP_R_PG7V_AT : RocketBase {
         AMMO_USAGE_INFVEHAIRARM;
+        AMMO_USAGE_BUFF;
     };
     class CUP_R_PG7VM_AT : RocketBase {
         AMMO_USAGE_INFVEHAIRARM;
+        AMMO_USAGE_BUFF;
     };
     class CUP_R_PG7VL_AT : RocketBase {
         AMMO_USAGE_INFVEHAIRARM;
+        AMMO_USAGE_BUFF;
     };
     class CUP_R_PG7VR_AT : RocketBase {
         AMMO_USAGE_INFVEHAIRARM;
+        AMMO_USAGE_BUFF;
     };
     class CUP_R_TBG7V_AT : RocketBase {
         AMMO_USAGE_INFVEHAIRARM;
+        AMMO_USAGE_BUFF;
     };
     class CUP_R_OG7_AT : RocketBase {
         AMMO_USAGE_INFVEHAIRARM;
+        AMMO_USAGE_BUFF;
     };
     class CUP_R_70mm_Hydra_HE : RocketBase {
         AMMO_USAGE_INFVEHAIRARM;
+        AMMO_USAGE_BUFF;
     };
     class CUP_R_RPG18_AT : RocketBase {
         AMMO_USAGE_INFVEHAIRARM;
+        AMMO_USAGE_BUFF;
     };
     class CUP_R_SMAW_HEDP : RocketBase {
         AMMO_USAGE_INFVEHAIRARM;
+        AMMO_USAGE_BUFF;
     };
     class CUP_R_SMAW_HEDP_N : RocketBase {
         AMMO_USAGE_INFVEHAIRARM;
+        AMMO_USAGE_BUFF;
     };
     class R_MRAAWS_HEAT_F;
     class R_MRAAWS_HE_F : R_MRAAWS_HEAT_F {
         AMMO_USAGE_INFVEHAIRARM;
+        AMMO_USAGE_BUFF;
     };
 
     class MissileBase;
