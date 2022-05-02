@@ -15,6 +15,7 @@ class CfgPatches {
             QGVAR(r6),
             QGVAR(r7),
             QGVAR(rt),
+            QGVAR(rr),
             QGVAR(gx),
             QGVAR(g1),
             QGVAR(g2),
@@ -46,7 +47,8 @@ class CfgPatches {
             "UK3CB_BAF_Weapons_SmallArms",
             "UK3CB_BAF_Weapons_Static",
             "UK3CB_BAF_Weapons_Accessories",
-            "UK3CB_BAF_Weapons_ACE"
+            "UK3CB_BAF_Weapons_ACE",
+            "uksf_radios"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };

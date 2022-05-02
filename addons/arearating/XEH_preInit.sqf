@@ -15,6 +15,8 @@ if (isServer) then {
     GVAR(debugMarkers) = [];
     GVAR(debugPFHID) = -1;
 
+    [QGVAR(persistenceData), FUNC(serializeRatingAreas), FUNC(deserializeRatingAreas)] call EFUNC(persistence,registerSerializer);
+
     GVAR(ratingAreaAttributeConfig) = EGVAR(common,configVehicles) >> QGVAR(moduleRatingArea) >> "Attributes";
 
     [QEGVAR(ied,planterKilled), {[QGVAR(ied_planter), _this] call FUNC(ratingChanged)}] call CBA_fnc_addEventHandler;

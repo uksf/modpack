@@ -28,6 +28,8 @@ GVAR(saveObjectQueue) = [];
 GVAR(disconnectedPlayerPositions) = createHashMap;
 GVAR(saveObjectQueueProcessing) = false;
 GVAR(saveObjectMarkersProcessed) = false;
+GVAR(serializers) = [];
+GVAR(deserializers) = [];
 
 addMissionEventHandler ["EntityRespawned", {call FUNC(entityRespawned)}];
 addMissionEventHandler ["EntityKilled", {call FUNC(entityKilled)}];
@@ -43,6 +45,7 @@ addMissionEventHandler ["BuildingChanged", {
 
 [QGVAR(shutdown), {call FUNC(shutdown)}] call CBA_fnc_addEventHandler;
 
+[QGVAR(registerSerializer), {call FUNC(registerSerializer)}] call CBA_fnc_addEventHandler;
 [QGVAR(markObjectAsPersistent), {call FUNC(markObjectAsPersistent)}] call CBA_fnc_addEventHandler;
 
 [QGVAR(forceLoadAbortedObject), {

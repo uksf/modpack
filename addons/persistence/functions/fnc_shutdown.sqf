@@ -45,8 +45,14 @@ LOG("Shutdown");
                 TRACE_1("Saving date time",_dateTime);
                 GVAR(dataNamespace) setVariable [QGVAR(dateTime), _dateTime];
                 GVAR(dataNamespace) setVariable [QGVAR(mapMarkers), GVAR(mapMarkers)];
-                GVAR(dataNamespace) setVariable [QGVAR(ratingAreas), call EFUNC(arearating,serializeRatingAreas)];
-                GVAR(dataNamespace) setVariable [QGVAR(safehouses), call EFUNC(safehouses,serialize)];
+
+                {
+                    _x params ["_id", "_function"];
+
+                    private _data = [] call _function;
+                    GVAR(dataNamespace) setVariable [_id, _data];
+                } forEach GVAR(serializers);
+
                 call FUNC(saveData);
             };
 
@@ -73,8 +79,12 @@ LOG("Shutdown");
         private _dateTime = date;
         uksf_persistence_dataNamespace setVariable ["uksf_persistence_dateTime", _dateTime];
         uksf_persistence_dataNamespace setVariable ["uksf_persistence_mapMarkers", uksf_persistence_mapMarkers];
-        uksf_persistence_dataNamespace setVariable ["uksf_persistence_ratingAreas", call uksf_arearating_fnc_serializeRatingAreas];
-        uksf_persistence_dataNamespace setVariable ["uksf_persistence_safehouses", call uksf_safehouses_fnc_serialize];
+        {
+            _x params ["_id", "_function"];
+
+            private _data = [] call _function;
+            uksf_persistence_dataNamespace setVariable [_id, _data];
+        } forEach uksf_persistence_serializers;
         call uksf_persistence_fnc_saveData;
     };
 

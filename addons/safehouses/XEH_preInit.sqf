@@ -15,6 +15,8 @@ if (isServer) then {
     GVAR(destroyed) = createHashMap;
 
     [QEGVAR(persistence,loadingFinished), {call FUNC(initLocations)}] call CBA_fnc_addEventHandler;
+
+    [QGVAR(persistenceData), FUNC(serialize), FUNC(deserialize)] call EFUNC(persistence,registerSerializer);
 };
 
 ADDON = true;

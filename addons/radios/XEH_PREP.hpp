@@ -1,4 +1,10 @@
+PREP(assembleRebroStation);
 PREP(deserializeRadios);
+PREP(disassembleRebroStation);
+PREP(getRebroStationRadio);
+PREP(getRebroStationSignal);
+PREP(handleCustomSignal);
+PREP(initialiseRebroStation);
 PREP(initRacks);
 PREP(sanitiseLoadout);
 PREP(serializeRadios);

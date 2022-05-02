@@ -92,3 +92,6 @@
             shortName = "R2"; \
         }; \
     }
+
+#define RACK_NAME_REBRO QUOTE(RBro)
+#define REBRO_POWER 50000
