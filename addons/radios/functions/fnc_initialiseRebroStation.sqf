@@ -18,8 +18,7 @@ if (!isServer) exitWith {
 
 params ["_mast"];
 
-[_mast, {}] call acre_api_fnc_initVehicleRacks;
-[_mast, ["ACRE_VRC103", "ReBro Rack", RACK_NAME_REBRO, false, [], [], "ACRE_PRC117F", [], []], false, {}] call acre_api_fnc_addRackToVehicle;
+[_mast, ["ACRE_VRC103", "ReBro Rack", RACK_NAME_REBRO, false, [], [], "ACRE_PRC117F", [], []], true, {true}] call acre_api_fnc_addRackToVehicle;
 
 [{
     (_this#0) getVariable ["acre_sys_rack_initialized", false]
