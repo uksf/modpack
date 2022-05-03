@@ -11,6 +11,8 @@
 
     Return value:
         None
+
+    [] call uksf_arearating_fnc_toggleDebugInfo
 */
 
 if (GVAR(debugMode)) exitWith {

@@ -17,6 +17,7 @@ PREP(loadAllObjectData);
 PREP(loadObjectData);
 PREP(loadRedeployData);
 PREP(markObjectAsPersistent);
+PREP(registerSerializer);
 PREP(saveData);
 PREP(saveObjectData);
 PREP(serializeMarker);

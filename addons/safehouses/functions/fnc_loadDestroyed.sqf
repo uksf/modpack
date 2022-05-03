@@ -23,7 +23,7 @@ _selection params ["_prefab", "_anchorObject"];
 _prefab params ["", "", "_area", "_anchorObjectData"];
 _area params ["_a", "_b", "_angle", "_isRectangle", "_c"];
 
-_anchorObjectData params ["_objectPlacement"];
+_anchorObjectData params ["_anchorObjectPlacement"];
 _anchorObjectPlacement params ["_type", "", "_dir", "_prefabAnchorDir", "_vectorUp"];
 
 if !(isNull _anchorObject) then {

@@ -6,3 +6,7 @@
 #define AMMO_USAGE_INFVEHAIR aiAmmoUsageFlags = 448
 #define AMMO_USAGE_INFVEHAIRARM aiAmmoUsageFlags = 960
 #define AMMO_USAGE_INFVEHARM aiAmmoUsageFlags = 704
+
+#define AMMO_USAGE_BUFF airLock = 1; \
+allowAgainstInfantry = 1; \
+cost = 40
