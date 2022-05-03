@@ -31,6 +31,16 @@ class CfgAmmo {
     class UK3CB_BAF_338_Ball_Tracer_Red : B_408_Ball {
         tracerEndTime = 3;  // 1
     };
+    class B_127x99_Ball : BulletBase {
+        hit = 45;  // 30
+    };
+    class B_127x99_SLAP : B_127x99_Ball {
+        hit = 75;  // 50
+    };
+    class SSQN_127x99_HEIAP : B_127x99_Ball {
+        hit = 90;         // 70
+        explosive = 0.2;  // 0
+    };
     class UK3CB_BAF_B_127x99_Ball;
     class UK3CB_BAF_B_127x99_T : UK3CB_BAF_B_127x99_Ball {
         model = "\A3\Weapons_f\Data\bullettracer\tracer_red";
