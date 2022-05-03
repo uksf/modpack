@@ -15,7 +15,7 @@ class CfgPatches {
             QGVAR(r6),
             QGVAR(r7),
             QGVAR(rt),
-            QGVAR(rr),
+            QGVAR(rb),
             QGVAR(gx),
             QGVAR(g1),
             QGVAR(g2),

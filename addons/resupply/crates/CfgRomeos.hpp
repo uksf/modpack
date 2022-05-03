@@ -183,11 +183,11 @@ class GVAR(rt) : GVAR(rx) {
         };
     };
 };
-class GVAR(rr) : GVAR(rx) {
-    displayName = "RR (ReBro)";
+class GVAR(rb) : GVAR(rx) {
+    displayName = "RB (ReBro)";
     description = "Crate - Re-broadcasting Station";
-    PREVIEW(rx);
-    hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\rr.paa) };
+    PREVIEW(rx); // TODO
+    hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\rb.paa) };
     class ACE_Cargo {
         class Cargo {
             MACRO_ADDACECARGO(EGVAR(radios,rebroStationBox),1);
