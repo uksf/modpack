@@ -18,10 +18,22 @@ if (!isServer) exitWith {
 
 params ["_mast"];
 
+private _radioId = [_mast] call FUNC(getRebroStationRadio);
+if (_radioId != "") exitWith {
+    WARNING_1("Rebro station is already initialised",_radioId);
+};
+
 [_mast, ["ACRE_VRC103", "ReBro Rack", RACK_NAME_REBRO, false, [], [], "ACRE_PRC117F", [], []], true, {true}] call acre_api_fnc_addRackToVehicle;
 
 [{
-    (_this#0) getVariable ["acre_sys_rack_initialized", false]
+    params ["_mast"];
+
+    _mast getVariable ["acre_sys_rack_initialized", false]
+    && {
+        private _radioId = [_mast] call FUNC(getRebroStationRadio);
+
+        _radioId != ""
+    }
 }, {
     params ["_mast"];
 
