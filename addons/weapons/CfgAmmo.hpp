@@ -38,8 +38,16 @@ class CfgAmmo {
         hit = 75;  // 50
     };
     class SSQN_127x99_HEIAP : B_127x99_Ball {
-        hit = 90;         // 70
-        explosive = 0.2;  // 0
+        hit = 80;                 // 70
+        indirectHit = 3;          // 0
+        indirectHitRange = 0.75;  // 0
+        explosive = 0.2;          // 0
+        explosionEffects = "ExploAmmoExplosion";
+        craterEffects = "ExploAmmoCrater";
+        class HitEffects {
+            hitWater = "ImpactEffectsWater";
+        };
+        SoundSetExplosion[] = { "JPEX_20mm_EXPLOSION_SoundSet", "JPEX_20mm_REFLECTOR_SoundSet" };
     };
     class UK3CB_BAF_B_127x99_Ball;
     class UK3CB_BAF_B_127x99_T : UK3CB_BAF_B_127x99_Ball {
