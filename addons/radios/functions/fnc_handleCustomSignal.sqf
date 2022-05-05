@@ -17,26 +17,25 @@
 */
 params ["_frequency", "_power", "_receiverId", "_transmitterId"];
 
-GVAR(rebroStations) = GVAR(rebroStations) select {alive _x};
-INFO_2("Transmission: %1, Rebro stations: %2",_this,GVAR(rebroStations));
-
 private _bestResult = [0, -992];
 private _originalResult = call acre_sys_signal_fnc_getSignalCore;
-TRACE_1("",_originalResult);
 
 _bestResult = +_originalResult;
 _bestResult params ["_bestPx", "_bestSignal"];
 
-{
-    private _result = [_x, _this, _originalResult] call FUNC(getRebroStationSignal);
-    _result params ["_px", "_signal"];
-    TRACE_1("",_result);
+if (GVAR(useRebros)) then {
+    GVAR(rebroStations) = GVAR(rebroStations) select {alive _x};
 
-    if (_px > _bestPx || _signal > _bestSignal) then {
-        _bestResult = _result;
-    };
+    {
+        private _result = [_x, _this, _originalResult] call FUNC(getRebroStationSignal);
+        _result params ["_px", "_signal"];
 
-} forEach GVAR(rebroStations);
+        if (_px > _bestPx || _signal > _bestSignal) then {
+            _bestResult = _result;
+        };
 
-TRACE_1("",_bestResult);
+    } forEach GVAR(rebroStations);
+};
+
+REBRO_TRACE_2("",_originalResult,_bestResult);
 _bestResult

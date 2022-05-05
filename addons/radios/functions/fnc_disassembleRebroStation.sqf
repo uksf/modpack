@@ -12,22 +12,12 @@
     Return Value:
         None
 */
-if (!isServer) exitWith {
-    [QGVAR(disassembleRebroStation), _this] call CBA_fnc_serverEvent;
-};
-
-TRACE_1("disassemble",_this);
-
 params ["_equipment"];
 
 private _mast = _equipment getVariable [QGVAR(rebroMast), objNull];
 private _objects = _equipment getVariable [QGVAR(rebroObjects), [objNull]];
 
-[QGVAR(removeRebroStation), _mast] call CBA_fnc_globalEvent;
-
-{
-    [_mast, _x] call acre_api_fnc_removeRackFromVehicle;
-} forEach ([_mast] call acre_api_fnc_getVehicleRacks);
+[QGVAR(deinitialiseRebroStation), [_mast]] call CBA_fnc_serverEvent;
 
 private _position = getPosATL _equipment;
 private _dir = getDir _equipment;

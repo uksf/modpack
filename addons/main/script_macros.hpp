@@ -8,6 +8,10 @@
 #define DFUNC(var1) TRIPLES(ADDON,fnc,var1)
 #define DEFUNC(var1,var2) TRIPLES(DOUBLES(PREFIX,var1),fnc,var2)
 
+#define AIRGVAR(var1,var2) TRIPLES(uksf_air,var1,var2)
+#define QAIRGVAR(var1,var2) QUOTE(AIRGVAR(var1,var2))
+#define QQAIRGVAR(var1,var2) QUOTE(QAIRGVAR(var1,var2))
+
 #ifdef DISABLE_COMPILE_CACHE
     #undef PREP
     #define PREP(fncName) DFUNC(fncName) = compile preprocessFileLineNumbers QPATHTOF(functions\DOUBLES(fnc,fncName).sqf)

@@ -1,11 +1,14 @@
+PREP(addVehicleRebroActions);
 PREP(assembleRebroStation);
+PREP(deinitialiseRebroStation);
 PREP(deserializeRadios);
 PREP(disassembleRebroStation);
 PREP(getRebroStationRadio);
 PREP(getRebroStationSignal);
 PREP(handleCustomSignal);
 PREP(initialiseRebroStation);
-PREP(initRacks);
+PREP(initialiseVehicleRacks);
+PREP(isRackInitialisationComplete);
 PREP(sanitiseLoadout);
 PREP(serializeRadios);
 PREP(setChannelNames);

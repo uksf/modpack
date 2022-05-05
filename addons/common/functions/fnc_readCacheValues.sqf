@@ -13,6 +13,9 @@
 
     Return value:
         Cached Value <ANY>
+
+    Example:
+        ["id1", {configFile >> "Thing" >> "cost"}, 100] call EFUNC(common,readCacheValues)
 */
 params [["_name", "", [""]], ["_configCallback", {}, [{}]], ["_defaultValue", ""]];
 
