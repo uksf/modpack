@@ -29,7 +29,7 @@ _position set [2, 0];
 deleteVehicle _equipment;
 deleteVehicle _mast;
 
-private _box = createVehicle [QGVAR(rebroStationBox), _position, [], 0, "NONE"];
+private _box = createVehicle [QGVAR(rebroStationBox), _position, [], 0, "CAN_COLLIDE"];
 // _box setPosATL _position;
 _box setDir _dir;
 _box setVectorUp _vectorUp;
