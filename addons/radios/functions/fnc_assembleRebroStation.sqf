@@ -13,10 +13,6 @@
     Return Value:
         None
 */
-if (!isServer) exitWith {
-    [QGVAR(assembleRebroStation), _this] call CBA_fnc_serverEvent;
-};
-
 params [["_box", objNull], ["_data", [[], 0, []]]];
 _data params ["_position", "_dir"];
 
@@ -61,4 +57,4 @@ _router setVariable [QEGVAR(persistence,excluded), true];
 _lid setVariable [QEGVAR(persistence,excluded), true];
 _mast setVariable [QEGVAR(persistence,excluded), true];
 
-[{[QGVAR(initialiseRebroStation), _this] call CBA_fnc_serverEvent}, [_mast]] call CBA_fnc_execNextFrame;
+[QGVAR(initialiseRebroStation), [_mast]] call CBA_fnc_serverEvent;

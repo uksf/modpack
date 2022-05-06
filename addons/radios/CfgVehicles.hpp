@@ -49,6 +49,7 @@ class CfgVehicles {
     class vhf30108Item;
     class GVAR(rebroStationMast): vhf30108Item {
         scope = 1;
+        scopeCurator = 1;
         displayName = "Re-broadcasting Station Mast";
 
         class AcreComponents {};
@@ -58,6 +59,7 @@ class CfgVehicles {
     class Land_PortableServer_01_black_F;
     class GVAR(rebroStationEquipment): Land_PortableServer_01_black_F {
         scope = 1;
+        scopeCurator = 1;
         displayName = "Re-broadcasting Station Equipment";
 
         class EventHandlers {
