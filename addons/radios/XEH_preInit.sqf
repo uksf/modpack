@@ -36,7 +36,7 @@ _action = [QGVAR(disassembleRebroStation), "Disassemble ReBro Station", "", {
         _args params ["_target", "_player"];
 
         [_player, "", 2] call ace_common_fnc_doAnimation;
-        [_target] call FUNC(disassembleRebroStation);
+        [_target, _player] call FUNC(disassembleRebroStation);
     }, {
         params ["_args"];
         _args params ["_target", "_player"];

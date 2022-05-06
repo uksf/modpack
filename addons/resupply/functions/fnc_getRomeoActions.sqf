@@ -36,7 +36,7 @@ _actions pushBack [_action, [], _target];
             params ["_args"];
             _args params ["_container", "_class", "", "_player"];
 
-            private _position = [_container, "_class", _player, 10, true] call ace_common_fnc_findUnloadPosition;
+            private _position = [_container, _class, _player, 10, true] call ace_common_fnc_findUnloadPosition;
             if (_position isNotEqualTo []) then {
                 createVehicle [_class, _position, [], 0, "CAN_COLLIDE"];
             } else {

@@ -8,11 +8,12 @@
 
     Parameter(s):
         0: Station equipment <OBJECT>
+        1: Disassembling unit <OBJECT>
 
     Return Value:
         None
 */
-params ["_equipment"];
+params ["_equipment", "_player"];
 
 private _mast = _equipment getVariable [QGVAR(rebroMast), objNull];
 private _objects = _equipment getVariable [QGVAR(rebroObjects), [objNull]];
@@ -28,7 +29,7 @@ _position set [2, 0];
 deleteVehicle _equipment;
 deleteVehicle _mast;
 
-private _box = createVehicle [QGVAR(rebroStationBox), [0,0,0], [], 0, "NONE"];
-_box setPosATL _position;
+private _box = createVehicle [QGVAR(rebroStationBox), _position, [], 0, "NONE"];
+// _box setPosATL _position;
 _box setDir _dir;
 _box setVectorUp _vectorUp;
