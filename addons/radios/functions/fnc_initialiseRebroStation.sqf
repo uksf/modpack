@@ -27,6 +27,8 @@ if (_rebroId != "") exitWith {
 
 [_vehicle, ["ACRE_VRC103", "ReBro Rack", RACK_NAME_REBRO, false, [], [], "ACRE_PRC117F", [], []], !([_vehicle] call acre_api_fnc_areVehicleRacksInitialized), {true}] call acre_api_fnc_addRackToVehicle;
 
+_vehicle addEventHandler ["Killed", {[QGVAR(deinitialiseRebroStation), _this] call CBA_fnc_serverEvent}];
+
 [{
     params ["_vehicle"];
 
@@ -54,7 +56,8 @@ if (_rebroId != "") exitWith {
         [_rebroId, "setState", ["externalAntennaConnected", [true, _vehicle]]] call acre_sys_data_fnc_dataEvent;
     };
 
-    [QGVAR(addRebroStation), _vehicle] call CBA_fnc_globalEvent;
+    GVAR(rebroStations) pushBack _vehicle;
+    publicVariable QGVAR(rebroStations);
     REBRO_TRACE_3("Rebro initialised",_vehicle,_rackId,_rebroId);
 }, [_vehicle], 15, {
     WARNING_1("Failed to initialise rebro station after timeout %1",_this);

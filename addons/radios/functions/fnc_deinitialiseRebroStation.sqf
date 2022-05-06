@@ -21,9 +21,13 @@ params ["_vehicle"];
 private _rebroData = [_vehicle] call FUNC(getRebroStationRadio);
 _rebroData params ["_rackId", "_rebroId"];
 
-if (_rebroId != "") exitWith {
-    WARNING_2("Rebro station is not initialised - Rack ID: %1, Radio ID: %2",_rackId,_rebroId);
+if (_rebroId == "") exitWith {
+    WARNING_2("Rebro station is not initialised during deinitialisation - Rack ID: %1, Radio ID: %2",_rackId,_rebroId);
 };
 
 [_vehicle, _rackId] call acre_api_fnc_removeRackFromVehicle;
-REBRO_TRACE_3("Rebro initialised",_vehicle,_rackId,_rebroId);
+REBRO_TRACE_3("Rebro deinitialised",_vehicle,_rackId,_rebroId);
+
+GVAR(rebroStations) deleteAt (GVAR(rebroStations) find _vehicle);
+GVAR(rebroStations) = GVAR(rebroStations) select {alive _x};
+publicVariable QGVAR(rebroStations);
