@@ -59,6 +59,12 @@ class CfgCustomRanks {
         displayNameShort = "Sgt";
         texture = QPATHTOF(data\Sgt.paa);
     };
+    class WO2 {
+        rank = "Warrant Officer 2";
+        displayName = "Warrant Officer 2";
+        displayNameShort = "WO2";
+        texture = QPATHTOF(data\WO2.paa);
+    };
     class OCdt {
         rank = "Officer Cadet";
         displayName = "Officer Cadet";

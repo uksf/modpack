@@ -378,7 +378,8 @@ force force ace_nightvision_noiseScaling = 0.7;
 force force ace_nightvision_shutterEffects = true;
 
 // ACE Overheating
-force force ace_overheating_cookoffCoef = 1;
+// Set to stupid value to avoid happening until fixed
+force force ace_overheating_cookoffCoef = 5;
 force force ace_overheating_coolingCoef = 1;
 ace_overheating_displayTextOnJam = true;
 force force ace_overheating_enabled = true;
@@ -461,19 +462,19 @@ force force ace_trenches_allowGigantEnvelope = true;
 force force ace_trenches_allowShortEnvelope = true;
 force force ace_trenches_allowSmallEnvelope = true;
 force force ace_trenches_allowVehicleEnvelope = true;
-force force ace_trenches_bigEnvelopeDigTime = 25;
-force force ace_trenches_bigEnvelopeRemovalTime = 15;
+force force ace_trenches_bigEnvelopeDigDuration = 25;
+force force ace_trenches_bigEnvelopeRemovalDuration = 15;
 force force ace_trenches_buildFatigueFactor = 1;
 force force ace_trenches_camouflageRequireEntrenchmentTool = true;
 force force ace_trenches_digRequireEntrenchmentTool = true;
-force force ace_trenches_gigantEnvelopeDigTime = 30;
-force force ace_trenches_gigantEnvelopeRemovalTime = 20;
-force force ace_trenches_shortEnvelopeDigTime = 15;
-force force ace_trenches_shortEnvelopeRemovalTime = 10;
-force force ace_trenches_smallEnvelopeDigTime = 20;
-force force ace_trenches_smallEnvelopeRemovalTime = 12;
-force force ace_trenches_vehicleEnvelopeDigTime = 60;
-force force ace_trenches_vehicleEnvelopeRemovalTime = 30;
+force force ace_trenches_gigantEnvelopeDigDuration = 30;
+force force ace_trenches_gigantEnvelopeRemovalDuration = 20;
+force force ace_trenches_shortEnvelopeDigDuration = 15;
+force force ace_trenches_shortEnvelopeRemovalDuration = 10;
+force force ace_trenches_smallEnvelopeDigDuration = 20;
+force force ace_trenches_smallEnvelopeRemovalDuration = 12;
+force force ace_trenches_vehicleEnvelopeDigDuration = 60;
+force force ace_trenches_vehicleEnvelopeRemovalDuration = 30;
 
 // ACE Uncategorized
 force force ace_fastroping_requireRopeItems = false;
