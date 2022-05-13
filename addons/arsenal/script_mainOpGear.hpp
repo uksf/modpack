@@ -161,6 +161,7 @@
     "UK3CB_BAF_Javelin_Slung_Tube", \
     "UK3CB_BAF_L105A2", \
     "UK3CB_BAF_L110A2RIS", \
+    "UK3CB_BAF_L110A3", \
     "UK3CB_BAF_L111A1", \
     "UK3CB_BAF_L115A3", \
     "UK3CB_BAF_L115A3_BL", \
@@ -535,6 +536,9 @@
     "UK3CB_BAF_U_CombatUniform_MTP_Sig_ShortSleeve", \
     "UK3CB_BAF_U_CombatUniform_MTP_TShirt", \
     "UK3CB_BAF_U_Smock_Arctic", \
+    "UK3CB_BAF_U_HeliPilotCoveralls_Army", \
+    "UK3CB_BAF_U_HeliPilotCoveralls_RN", \
+    "UK3CB_BAF_U_HeliPilotCoveralls_RAF", \
     "UKSF_U_PilotCoveralls_7", \
     "UKSF_U_PilotGSuit_617", \
     "UKSF_U_PilotUniform_656", \
@@ -676,7 +680,8 @@
     "CUP_V_JPC_weaponsbelt_mc", \
     "CUP_V_B_Armatus_MCam", \
     "CUP_V_B_Armatus_BB_MCam", \
-    "CUP_V_B_LBT_LBV_MCam"
+    "CUP_V_B_LBT_LBV_MCam", \
+    "Aircrew_vest_2_NH"
 
 #define MAIN_OP_BACKPACKS \
     "B_AssaultPack_rgr", \

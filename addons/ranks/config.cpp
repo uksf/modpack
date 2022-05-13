@@ -18,3 +18,4 @@ class CfgPatches {
 
 #include "CfgCustomRanks.hpp"
 #include "CfgDisplay.hpp"
+#include "CfgEventHandlers.hpp"

@@ -349,20 +349,6 @@ class CfgVehicles {
         hiddenSelections[] = { "Camo", "insignia" };
         hiddenSelectionsTextures[] = { QPATHTOF(data\uniforms\mtp_uk_sig.paa) };
     };
-    class UK3CB_BAF_HeliPilot_RAF_base : B_Helipilot_F {
-        scope = 1;
-        scopeCurator = 0;
-        author = "UKSF";
-        side = 1;
-        faction = "CUP_B_GB";
-        identityTypes[] = { "LanguageENGB_F", "Head_NATO", "G_NATO_default" };
-        displayName = "Base Helicopter Pilot RAF";
-        genericNames = "EnglishMen";
-        uniformClass = "UK3CB_BAF_U_HeliPilotCoveralls_RAF";
-        model = "\A3\Characters_F\Common\coveralls.p3d";
-        hiddenSelections[] = { "Camo", "insignia" };
-        hiddenSelectionsTextures[] = { QPATHTOF(data\uniforms\pilot_coveralls_raf.paa) };
-    };
     class UKSF_B_ATC_base : B_Helipilot_F {
         scope = 1;
         scopeCurator = 0;

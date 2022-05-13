@@ -23,7 +23,10 @@ if (isNull _projectile) then {
     _this set [6, _projectile];
 };
 
-_shooter = (getShotParents _projectile)#1;
+private _shotParents = getShotParents _projectile;
+if (_shotParents isEqualTo []) exitWith {};
+
+_shooter = _shotParents#1;
 _this set [0, _shooter];
 
 [_ammo] call FUNC(firedPlayerEffects);
