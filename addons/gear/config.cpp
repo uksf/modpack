@@ -30,7 +30,6 @@ class CfgPatches {
             "UK3CB_BAF_Soldier_MTP_Path_ShortSleeve_base",
             "UK3CB_BAF_Soldier_MTP_Sig_LongSleeve_base",
             "UK3CB_BAF_Soldier_MTP_Sig_ShortSleeve_base",
-            "UK3CB_BAF_HeliPilot_RAF_base",
             "UKSF_B_ATC_base",
             "Supply1000"
         };
@@ -43,6 +42,7 @@ class CfgPatches {
             "UK3CB_BAF_U_CombatUniform_MTP_Path_ShortSleeve",
             "UK3CB_BAF_U_CombatUniform_MTP_Sig",
             "UK3CB_BAF_U_CombatUniform_MTP_Sig_ShortSleeve",
+            "UK3CB_BAF_U_HeliPilotCoveralls_RN",
             "UK3CB_BAF_U_HeliPilotCoveralls_RAF",
             "UKSF_U_PilotCoveralls_7",
             "UKSF_U_PilotUniform_656",

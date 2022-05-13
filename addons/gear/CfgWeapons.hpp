@@ -148,19 +148,15 @@ class CfgWeapons {
     };
 
     class U_B_HeliPilotCoveralls;
+    class UK3CB_BAF_U_HeliPilotCoveralls_RN : U_B_HeliPilotCoveralls {
+        scope = 2;
+        author = "UKSF";
+        displayName = "Pilot Coveralls (RN)";
+    };
     class UK3CB_BAF_U_HeliPilotCoveralls_RAF : U_B_HeliPilotCoveralls {
         scope = 2;
         author = "UKSF";
-        displayName = "Pilot Coveralls [BAF]";
-        model = "\A3\Characters_F\Common\Suitpacks\suitpack_civilian_F.p3d";
-        hiddenSelections[] = { "camo" };
-        hiddenSelectionsTextures[] = { QPATHTOF(data\uniforms\pilot_coveralls_raf.paa) };
-        class ItemInfo : UniformItem {
-            uniformModel = "-";
-            uniformClass = "UK3CB_BAF_HeliPilot_RAF_base";
-            containerClass = "Supply40";
-            mass = 60;
-        };
+        displayName = "Pilot Coveralls (RAF)";
     };
     class UKSF_U_PilotCoveralls_7 : UK3CB_BAF_U_HeliPilotCoveralls_RAF {
         displayName = "Pilot Coveralls (7 Sqn.)";

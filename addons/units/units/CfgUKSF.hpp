@@ -43,6 +43,8 @@ class UKSF_B_Sniper: UKSF_B_Rifleman {
     editorPreview = QPATHTOEF(common,data\previews\UKSF_B_Sniper.jpg);
 };
 class UKSF_B_SAS: UKSF_B_Rifleman {
+    scope = 1;
+    scopeCurator = 1;
     displayName = "SAS Trooper";
     uniformClass = "VSM_Multicam_Crye_SS_Camo";
     editorPreview = QPATHTOEF(common,data\previews\UKSF_B_SAS.jpg);
