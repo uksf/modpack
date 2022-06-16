@@ -116,4 +116,56 @@ class CfgAmmo {
         ace_explosives_Explosive = "BreachCharge_Remote_Ammo_Scripted";
     };
     class BreachCharge_Remote_Ammo_Scripted : BreachCharge_Remote_Ammo {};
+
+    class ACE_Javelin_FGM148;
+    class UK3CB_M_Javelin_AT: ACE_Javelin_FGM148 {
+        irLock = 1;
+        laserLock = 0;
+        airLock = 0;
+        manualControl = 0;
+        hit = 1400;  // 800, 300
+        indirectHit = 20;
+        indirectHitRange = 2;
+        initTime = 0.5;
+        class ace_missileguidance {
+            enabled = 1;
+            pitchRate = 100; // degrees per second
+            yawRate = 100;
+            bangBangGuidance = 0;
+            canVanillaLock = 0;
+            defaultSeekerType = "Optic";
+            seekerTypes[] = { "Optic" };
+
+            defaultSeekerLockMode = "LOBL";
+            seekerLockModes[] = { "LOBL" };
+
+            defaultNavigationType = "Direct";
+            navigationTypes[] = { "Direct", "ZeroEffortMiss" };
+
+            navigationGain = 3;
+            seekerAngle = 180;   // Angle in front of the missile which can be searched
+            seekerAccuracy = 1;  // seeker accuracy multiplier
+            seekerMinRange = 0;
+            seekerMaxRange = 2500;  // Range from the missile which the seeker can visually search
+            seekLastTargetPos = 1;  // seek last target position [if seeker loses LOS of target, continue to last known pos]
+
+            // Attack profile type selection
+            defaultAttackProfile = "JAV_TOP";
+            attackProfiles[] = { "JAV_TOP", "JAV_DIR" };
+            useModeForAttackProfile = 1;
+
+            class navigationStates {
+                class initial {
+                    transitionCondition = "ace_missileguidance_fnc_javelin_midCourseTransition";
+                    navigationType = "Direct";
+                };
+                class terminal {
+                    transitionCondition = "";
+                    navigationType = "ZeroEffortMiss";
+                };
+                // transitions from initial -> termimal
+                states[] = {"initial", "terminal"};
+            };
+        };
+    };
 };
