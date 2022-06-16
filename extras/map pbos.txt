@@ -7,3 +7,10 @@
     - chongo_layer2
     - seangola
     - seangola_obj
+- Lythium
+    - anrop_jbad_legacy_compat_main
+    - ffaa_casas_af
+    - lythium
+    - lythiumenv
+    - map_lythium_scenes
+    - TFL_Maps
