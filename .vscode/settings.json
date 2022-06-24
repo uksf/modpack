@@ -31,14 +31,26 @@
 
     // Languages
     "[c]": {
-        "editor.quickSuggestions": false
+        "editor.quickSuggestions": {
+            "comments": "off",
+            "strings": "off",
+            "other": "off"
+        }
     },
     "[cpp]": {
-        "editor.quickSuggestions": false
+        "editor.quickSuggestions": {
+            "comments": "off",
+            "strings": "off",
+            "other": "off"
+        }
     },
 
     "[sqf]": {
-        "editor.quickSuggestions": true,
+        "editor.quickSuggestions": {
+            "comments": "on",
+            "strings": "on",
+            "other": "on"
+        },
         "editor.detectIndentation": true,
         "editor.trimAutoWhitespace": true,
         "editor.autoClosingBrackets": "always"
