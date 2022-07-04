@@ -535,8 +535,8 @@ force ace_vehiclelock_lockVehicleInventory = false;
 force ace_vehiclelock_vehicleStartingLockState = -1;
 
 // ACE Vehicles
-ace_vehicles_hideEjectAction = true;
-force ace_vehicles_keepEngineRunning = false;
+force force ace_vehicles_hideEjectAction = true;
+force force ace_vehicles_keepEngineRunning = true;
 ace_vehicles_speedLimiterStep = 5;
 
 // ACE View Distance Limiter
