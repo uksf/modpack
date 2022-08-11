@@ -66,6 +66,10 @@ force force ace_captives_allowSurrender = true;
 force force ace_captives_requireSurrender = 1;
 force force ace_captives_requireSurrenderAi = false;
 
+// ACE Casings
+ace_casings_enabled = true;
+ace_casings_maxCasings = 250;
+
 // ACE Common
 force force ace_common_allowFadeMusic = true;
 force force ace_common_checkPBOsAction = 0;
@@ -80,6 +84,7 @@ ace_common_settingProgressBarLocation = 0;
 
 // ACE Cook off
 force force ace_cookoff_ammoCookoffDuration = 0.25;
+force force ace_cookoff_destroyVehicleAfterCookoff = true;
 force force ace_cookoff_enable = 2;
 force force ace_cookoff_enableAmmobox = false;
 force force ace_cookoff_enableAmmoCookoff = true;
@@ -125,7 +130,7 @@ force force ace_fire_enableFlare = false;
 ace_fire_enableScreams = true;
 
 // ACE Fortify
-force ace_fortify_markObjectsOnMap = 1;
+force force ace_fortify_markObjectsOnMap = 1;
 force ace_fortify_timeCostCoefficient = 1;
 force ace_fortify_timeMin = 1.5;
 force force acex_fortify_settingHint = 1;
@@ -194,7 +199,17 @@ ace_interact_menu_textSize = 2;
 ace_interact_menu_useListMenu = false;
 ace_interact_menu_useListMenuSelf = false;
 
+// ACE Iron Dome
+force ace_iron_dome_enable = false;
+force ace_iron_dome_launchAcceptableAngle = 10;
+force ace_iron_dome_launchAcceptableElevation = 5;
+force ace_iron_dome_proximityFuseFailureChance = 0;
+force ace_iron_dome_proximityFuseRange = 10;
+force ace_iron_dome_targetRecycleTime = 15;
+force ace_iron_dome_timeBetweenLaunches = 1;
+
 // ACE Logistics
+ace_cargo_carryAfterUnload = true;
 force force ace_cargo_enable = true;
 force force ace_cargo_enableRename = true;
 force force ace_cargo_loadTimeCoefficient = 5;
@@ -378,8 +393,7 @@ force force ace_nightvision_noiseScaling = 0.7;
 force force ace_nightvision_shutterEffects = true;
 
 // ACE Overheating
-// Set to stupid value to avoid happening until fixed
-force force ace_overheating_cookoffCoef = 5;
+force force ace_overheating_cookoffCoef = 2.5;
 force force ace_overheating_coolingCoef = 1;
 ace_overheating_displayTextOnJam = true;
 force force ace_overheating_enabled = true;
@@ -455,26 +469,10 @@ force force ace_switchunits_switchToIndependent = false;
 force force ace_switchunits_switchToWest = false;
 
 // ACE Trenches
-force force ace_trenches_allowBigEnvelope = true;
-force force ace_trenches_allowCamouflage = true;
-force force ace_trenches_allowDigging = true;
-force force ace_trenches_allowGigantEnvelope = true;
-force force ace_trenches_allowShortEnvelope = true;
-force force ace_trenches_allowSmallEnvelope = true;
-force force ace_trenches_allowVehicleEnvelope = true;
 force force ace_trenches_bigEnvelopeDigDuration = 25;
-force force ace_trenches_bigEnvelopeRemovalDuration = 15;
-force force ace_trenches_buildFatigueFactor = 1;
-force force ace_trenches_camouflageRequireEntrenchmentTool = true;
-force force ace_trenches_digRequireEntrenchmentTool = true;
-force force ace_trenches_gigantEnvelopeDigDuration = 30;
-force force ace_trenches_gigantEnvelopeRemovalDuration = 20;
-force force ace_trenches_shortEnvelopeDigDuration = 15;
-force force ace_trenches_shortEnvelopeRemovalDuration = 10;
+force force ace_trenches_bigEnvelopeRemoveDuration = 15;
 force force ace_trenches_smallEnvelopeDigDuration = 20;
-force force ace_trenches_smallEnvelopeRemovalDuration = 12;
-force force ace_trenches_vehicleEnvelopeDigDuration = 60;
-force force ace_trenches_vehicleEnvelopeRemovalDuration = 30;
+force force ace_trenches_smallEnvelopeRemoveDuration = 12;
 
 // ACE Uncategorized
 force force ace_fastroping_requireRopeItems = false;
@@ -482,6 +480,8 @@ force force ace_gunbag_swapGunbagEnabled = true;
 force force ace_hitreactions_minDamageToTrigger = 0.1;
 ace_inventory_inventoryDisplaySize = 0;
 force force ace_laser_dispersionCount = 2;
+force force ace_laser_showLaserOnMap = 2;
+force ace_marker_flags_placeAnywhere = false;
 force force ace_microdagr_mapDataAvailable = 2;
 force force ace_microdagr_waypointPrecision = 3;
 force force ace_noradio_enabled = true;
@@ -509,6 +509,7 @@ ace_ui_gunnerWeaponLowerInfoBackground = true;
 ace_ui_gunnerWeaponName = true;
 ace_ui_gunnerWeaponNameBackground = true;
 ace_ui_gunnerZeroing = true;
+ace_ui_hideDefaultActionIcon = false;
 ace_ui_magCount = true;
 ace_ui_soldierVehicleWeaponInfo = true;
 ace_ui_staminaBar = true;
@@ -536,8 +537,9 @@ force ace_vehiclelock_vehicleStartingLockState = -1;
 
 // ACE Vehicles
 ace_vehicles_hideEjectAction = true;
-force ace_vehicles_keepEngineRunning = false;
+force force ace_vehicles_keepEngineRunning = true;
 ace_vehicles_speedLimiterStep = 5;
+force force ace_viewports_enabled = true;
 
 // ACE View Distance Limiter
 force force ace_viewdistance_enabled = false;
@@ -710,6 +712,43 @@ diwako_dui_radar_trackingColor = [0.93,0.26,0.93,1];
 diwako_dui_reset_ui_pos = false;
 diwako_dui_use_layout_editor = false;
 
+// GRAD Trenches
+force force grad_trenches_functions_allowBigEnvelope = true;
+force force grad_trenches_functions_allowCamouflage = true;
+force force grad_trenches_functions_allowDigging = true;
+force force grad_trenches_functions_allowEffects = true;
+force force grad_trenches_functions_allowGiantEnvelope = true;
+force force grad_trenches_functions_allowHitDecay = true;
+force force grad_trenches_functions_allowLongEnvelope = true;
+force force grad_trenches_functions_allowShortEnvelope = true;
+force force grad_trenches_functions_allowSmallEnvelope = true;
+force force grad_trenches_functions_allowTrenchDecay = false;
+force force grad_trenches_functions_allowVehicleEnvelope = true;
+force force grad_trenches_functions_bigEnvelopeDamageMultiplier = 2;
+force force grad_trenches_functions_bigEnvelopeDigTime = 40;
+force force grad_trenches_functions_bigEnvelopeRemovalTime = -1;
+force force grad_trenches_functions_buildFatigueFactor = 1;
+force force grad_trenches_functions_camouflageRequireEntrenchmentTool = true;
+force force grad_trenches_functions_createTrenchMarker = false;
+force force grad_trenches_functions_decayTime = 1800;
+force force grad_trenches_functions_giantEnvelopeDamageMultiplier = 1;
+force force grad_trenches_functions_giantEnvelopeDigTime = 90;
+force force grad_trenches_functions_giantEnvelopeRemovalTime = -1;
+force force grad_trenches_functions_hitDecayMultiplier = 1;
+force force grad_trenches_functions_LongEnvelopeDigTime = 100;
+force force grad_trenches_functions_LongEnvelopeRemovalTime = -1;
+force force grad_trenches_functions_shortEnvelopeDamageMultiplier = 2;
+force force grad_trenches_functions_shortEnvelopeDigTime = 15;
+force force grad_trenches_functions_shortEnvelopeRemovalTime = -1;
+force force grad_trenches_functions_smallEnvelopeDamageMultiplier = 3;
+force force grad_trenches_functions_smallEnvelopeDigTime = 30;
+force force grad_trenches_functions_smallEnvelopeRemovalTime = -1;
+force force grad_trenches_functions_stopBuildingAtFatigueMax = true;
+force force grad_trenches_functions_timeoutToDecay = 7200;
+force force grad_trenches_functions_vehicleEnvelopeDamageMultiplier = 1;
+force force grad_trenches_functions_vehicleEnvelopeDigTime = 120;
+force force grad_trenches_functions_vehicleEnvelopeRemovalTime = -1;
+
 // Helicopter Turbulence
 force force TURBULENCE_ENABLE_MASTER = true;
 force force TURBULENCE_ENABLE_WEATHEREFFECT = true;
@@ -725,6 +764,7 @@ force force lambs_danger_disableAIHideFromTanksAndAircraft = false;
 force force lambs_danger_disableAIPlayerGroup = true;
 force force lambs_danger_disableAIPlayerGroupReaction = true;
 force force lambs_danger_disableAutonomousFlares = false;
+force force lambs_danger_disableAutonomousSmokeGrenades = false;
 force lambs_danger_panicChance = 0.1;
 
 // LAMBS Danger Eventhandlers
@@ -763,7 +803,7 @@ force force lambs_main_radioWest = 500;
 // Metis Marker
 mts_markers_saveLastSelection = false;
 mts_markers_showPresetsUI = false;
-mts_markers_useVanillaColors = false;
+force force mts_markers_useVanillaColors = false;
 
 // NMAB Settings
 force force NMAB_setting_particlesEnabled = true;

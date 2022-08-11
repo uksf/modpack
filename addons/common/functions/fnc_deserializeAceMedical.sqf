@@ -9,18 +9,25 @@
 
     Parameter(s):
         0: Unit <OBJECT>
-        1: Medical states <ARRAY>
+        1: Medical state <STRING>
 
     Return Value:
         Nothing
 */
-params ["_unit", "_allStates"];
-_allStates params ["_unconciousStates", "_variables", "_logVariables", "_stateMachineState"];
-_unconciousStates params ["_unconciousState", "_cardiacArrestState"];
+params ["_unit", "_state"];
 
 if (!local _unit) exitWith {
-    WARNING("Serialization of ACE Medical not called locally. This has not run!");
+    WARNING("Deserialization of ACE Medical not called locally. This has not run!");
 };
+
+if (_state isEqualType "") exitWith {
+    [_unit, _state] call ace_medical_fnc_deserializeState;
+};
+
+// Old format, won't be saved
+WARNING("ACE Medical state saved in old format");
+_state params ["_unconciousStates", "_variables", "_logVariables", "_stateMachineState"];
+_unconciousStates params ["_unconciousState", "_cardiacArrestState"];
 
 [_unit, ace_medical_state_machine, "Dead", _stateMachineState] call CBA_statemachine_fnc_manualTransition;
 [_unit, _cardiacArrestState] call ace_medical_status_fnc_setCardiacArrestState;
