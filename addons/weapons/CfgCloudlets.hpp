@@ -3,12 +3,11 @@ class CfgCloudlets {
     class SmokeShellWhite : Default {
         particleEffects = "";
     };
-    // TODO_Debug: Undo once deemed not cause of server instability
-    // class fxp_smokeshelLinkl;
-    // class SmokeShellWhite3 : fxp_smokeshelLinkl {
-    //     interval = 0.3;
-    //     colorCoef[] = { "colorR", "colorG", "colorB", "colorA" };
-    // };
+    class fxp_smokeshelLinkl;
+    class SmokeShellWhite3 : fxp_smokeshelLinkl {
+        interval = 0.3;
+        colorCoef[] = { "colorR", "colorG", "colorB", "colorA" };
+    };
 };
 class SmokeShellWhiteEffect {
     class SmokeShell {

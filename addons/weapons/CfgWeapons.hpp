@@ -21,10 +21,16 @@ class asdg_MuzzleSlot_556_3CB_L119 : asdg_MuzzleSlot {
         muzzle_snds_M = 1;
     };
 };
+class UK3CB_MuzzleSlot_900;
+class UK3CB_MuzzleSlot_900_L131 : UK3CB_MuzzleSlot_900 {
+    class compatibleItems {
+        muzzle_snds_L = 1;
+        // rhsusf_acc_omega9k = 1; // Fix 3CB's mistakes
+    };
+};
 class CfgWeapons {
     class ItemCore;
     class InventoryOpticsItem_Base_F;
-    class UK3CB_BAF_SpecterLDS_Dot;
     class UK3CB_BAF_SpecterLDS : ItemCore {
         class ItemInfo : InventoryOpticsItem_Base_F {
             class OpticsModes {
@@ -69,6 +75,7 @@ class CfgWeapons {
             };
         };
     };
+    class UK3CB_BAF_SpecterLDS_Dot;
     class UK3CB_BAF_SpecterLDS_Dot_3D : UK3CB_BAF_SpecterLDS_Dot {
         scope = 2;
         scopeCurator = 2;
@@ -283,7 +290,7 @@ class CfgWeapons {
     };
     class ACE_NVG_Pilot_WP : ACE_NVG_Pilot {
         displayName = "Pilot NVG (WP)";
-        colorPreset[] = {0, {0.0, 0.0, 0.0, 0.0}, {1.1, 0.8, 1.9, 0.9}, {1, 1, 6, 0.0}};
+        COLOUR_PRESET_WP;
     };
     class NVGoggles;
     class UK3CB_BAF_HMNVS : NVGoggles {
@@ -294,27 +301,27 @@ class CfgWeapons {
     };
     class UK3CB_BAF_HMNVS_WP : UK3CB_BAF_HMNVS {
         displayName = "Head-Mounted NV System (WP) [BAF]";
-        colorPreset[] = {0, {0.0, 0.0, 0.0, 0.0}, {1.1, 0.8, 1.9, 0.9}, {1, 1, 6, 0.0}};
+        COLOUR_PRESET_WP;
     };
     class CUP_NVG_PVS15_black;
     class CUP_NVG_PVS15_black_WP : CUP_NVG_PVS15_black {
         displayname = "AN/PVS-15 WP (Black)";
-        colorPreset[] = {0, {0.0, 0.0, 0.0, 0.0}, {1.1, 0.8, 1.9, 0.9}, {1, 1, 6, 0.0}};
+        COLOUR_PRESET_WP;
     };
     class CUP_NVG_PVS15_green;
     class CUP_NVG_PVS15_green_WP : CUP_NVG_PVS15_green {
         displayname = "AN/PVS-15 WP (Green)";
-        colorPreset[] = {0, {0.0, 0.0, 0.0, 0.0}, {1.1, 0.8, 1.9, 0.9}, {1, 1, 6, 0.0}};
+        COLOUR_PRESET_WP;
     };
     class CUP_NVG_PVS15_tan;
     class CUP_NVG_PVS15_tan_WP : CUP_NVG_PVS15_tan {
         displayname = "AN/PVS-15 WP (Tan)";
-        colorPreset[] = {0, {0.0, 0.0, 0.0, 0.0}, {1.1, 0.8, 1.9, 0.9}, {1, 1, 6, 0.0}};
+        COLOUR_PRESET_WP;
     };
     class CUP_NVG_PVS15_winter;
     class CUP_NVG_PVS15_winter_WP : CUP_NVG_PVS15_winter {
         displayname = "AN/PVS-15 WP (Winter)";
-        colorPreset[] = {0, {0.0, 0.0, 0.0, 0.0}, {1.1, 0.8, 1.9, 0.9}, {1, 1, 6, 0.0}};
+        COLOUR_PRESET_WP;
     };
     class Integrated_NVG_F : NVGoggles {
         ace_nightvision_generation = 4;
@@ -576,6 +583,11 @@ class CfgWeapons {
             };
         };
     };
+    class UK3CB_BAF_L115_Base;
+    class UK3CB_BAF_L118A1_Covert : UK3CB_BAF_L115_Base {
+        magazines[] = { "UK3CB_BAF_338_5Rnd", "UK3CB_BAF_338_5Rnd_Blank", "UK3CB_BAF_338_5Rnd_Tracer" };
+    };
+
     class srifle_GM6_F;
     class UK3CB_BAF_L135A1 : srifle_GM6_F {
         magazines[] = { "UK3CB_BAF_127_10Rnd", "UK3CB_BAF_127_10Rnd_AP", "UK3CB_BAF_127_10Rnd_T" };
@@ -609,7 +621,7 @@ class CfgWeapons {
     class launch_NLAW_F : Launcher_Base_F {
         modes[] = { "Overfly", "Single" };
         descriptionShort = "Short-range fire-and-forget anti-tank missile system";
-        class Library{
+        class Library {
             libTextDesc = "The NLAW is a short-range fire-and-forget anti-tank missile system.";
         };
     };
@@ -719,44 +731,6 @@ class CfgWeapons {
     class Binocular;
     class UK3CB_BAF_Soflam_Laserdesignator : Binocular {
         distanceZoomMax = 10000;
-    };
-
-    // Tunguska
-    class missiles_titan;
-    class CUP_Vmlauncher_9M311_veh : missiles_titan {
-        midRange = 2000;   // 4500
-        maxRange = 5000;   // 8000
-        aiRateOfFire = 7;  // 5
-    };
-    class CUP_Vmlauncher_Igla_twice_veh : missiles_titan {
-        midRange = 2000;   // 3100
-        maxRange = 4000;   // 5200
-        aiRateOfFire = 7;  // 5
-    };
-    class CUP_Vmlauncher_Stinger_vehicle_veh : missiles_titan {
-        midRange = 2000;   // 3100
-        maxRange = 4000;   // 5200
-        aiRateOfFire = 7;  // 5
-    };
-    class CUP_Vmlauncher_RBS70_veh : missiles_titan {
-        midRange = 2000;   // 3100
-        maxRange = 4000;   // 5200
-        aiRateOfFire = 7;  // 5
-    };
-    class CUP_launch_Igla_loaded : Launcher_Base_F {
-        midRange = 2000;   // 2500
-        maxRange = 3000;   // 4800
-        aiRateOfFire = 7;  // 5
-    };
-    class CUP_launch_FIM92Stinger_loaded : Launcher_Base_F {
-        midRange = 2000;   // 2500
-        maxRange = 3000;   // 4800
-        aiRateOfFire = 7;  // 5
-    };
-    class CUP_launch_9K32Strela_loaded : Launcher_Base_F {
-        midRange = 2000;   // 2500
-        maxRange = 3000;   // 4800
-        aiRateOfFire = 7;  // 5
     };
 
     class CannonCore;

@@ -31,6 +31,11 @@ class CfgMagazines {
         tracersEvery = 1;
     };
 
+    class 7Rnd_408_Mag;
+    class UK3CB_BAF_338_5Rnd: 7Rnd_408_Mag {
+        tracersevery = 0;
+    };
+
     // Javelin
     class CA_LauncherMagazine;
     class UK3CB_BAF_Javelin_Mag : CA_LauncherMagazine {
@@ -60,7 +65,7 @@ class CfgMagazines {
         displayName = "Breaching Charge";
         ace_explosives_SetupObject = "ACE_Explosives_Place_BreachCharge";
     };
-    
+
     class VehicleMagazine;
     class CUP_100Rnd_127x99_M : VehicleMagazine {
         picture = "\UK3CB_BAF_Weapons\addons\UK3CB_BAF_Weapons_Ammo\data\gear_magazine_belt_tracer_ca.paa";
