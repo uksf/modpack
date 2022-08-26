@@ -2,6 +2,7 @@ class Truck_F;
 class rksla3_aircraft_tug_base : Truck_F {
     delete editorcategory;
     editorSubcategory = QEGVAR(common,support);
+    LESH_AxisOffsetTower[] = { 0, -1.964, 0.32 };
 };
 class rksla3_aircraft_tug_blufor : rksla3_aircraft_tug_base {
     faction = "CUP_B_GB";
