@@ -267,3 +267,5 @@ class ctrlMapEmpty;
 class ctrlMapMain;
 class ctrlListNBox;
 class ctrlCheckboxToolbar;
+
+class RscStandardDisplay;

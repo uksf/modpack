@@ -1,4 +1,3 @@
-class RscStandardDisplay;
 class RscDisplayMain : RscStandardDisplay {
     class Controls {
         class GVAR(directConnectLogo) : RscPictureKeepAspectAllowPixelSplit {

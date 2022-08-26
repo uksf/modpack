@@ -18,4 +18,5 @@ class CfgPatches {
 
 #include "CfgEventHandlers.hpp"
 #include "RscCommon.hpp"
+#include "RscDisplayDebriefing.hpp"
 #include "RscDisplayMain.hpp"
