@@ -26,16 +26,16 @@ private _fnc_update = {
         removeMissionEventHandler ["EachFrame", GVAR(updateEHID)];
     };
 
-    private _playerList = _display displayCtrl IDC_MPSETUP_ROLES;
+    private _roles = _display displayCtrl IDC_MPSETUP_ROLES;
     private _playerName = toLower profileName;
 
-    for "_i" from 1 to lbSize _playerList do {
-        private _text = toLower (_playerList lbText _i);
-        private _value = _playerList lbValue _i;
-        private _data = _playerList lbData _i;
+    for "_i" from 0 to lbSize _roles do {
+        private _text = toLower (_roles lbText _i);
+        private _value = _roles lbValue _i;
+        private _data = _roles lbData _i;
 
         if (_playerName in _text) exitWith {
-            _playerList lbSetCurSel _i;
+            _roles lbSetCurSel _i;
 
             removeMissionEventHandler ["EachFrame", GVAR(updateEHID)];
         };
