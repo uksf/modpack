@@ -1300,8 +1300,8 @@ See the make.cfg file for additional build options.
                 else:
                     print_error("ArmaScriptCompiler.exe returned unexpected {}".format(ret))
 
-        # Set macro configuration
-        print_blue("\Setting macro configuration...")
+        # Set configuration
+        print_blue("\nSetting configuration...")
         set_configuration(configuration)
 
         # For each module, prep files and then build.
