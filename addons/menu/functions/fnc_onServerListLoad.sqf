@@ -21,10 +21,14 @@ private _servers = [
     ["Quaternary","2342"]
 ];
 
+if (CONFIGURATION_IS_RC) then {
+    _servers insert [0, [
+        ["Rc","2392"]
+    ]];
+};
 if (CONFIGURATION_IS_DEVELOPMENT) then {
     _servers insert [0, [
-        ["Dev","2382"],
-        ["Rc","2392"]
+        ["Dev","2382"]
     ]];
 };
 TRACE_2("servers",CONFIGURATION,_servers);
