@@ -31,7 +31,6 @@ if (CONFIGURATION_IS_DEVELOPMENT) then {
         ["Dev","2382"]
     ]];
 };
-TRACE_2("servers",CONFIGURATION,_servers);
 
 lbClear _control;
 {
