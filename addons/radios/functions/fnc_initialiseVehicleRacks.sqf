@@ -47,4 +47,4 @@ if (_channels isEqualTo []) exitWith {};
             };
         } forEach (_radios select {_x != ""});
     };
-}, 2, [_vehicle, _channels]] call CBA_fnc_addPerFrameHandler;
+}, 1, [_vehicle, _channels]] call CBA_fnc_addPerFrameHandler;

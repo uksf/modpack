@@ -353,6 +353,33 @@ def print_yellow(msg):
         print(msg)
         color("reset")
 
+
+def set_configuration(configuration):
+    configurationFile = os.path.join(module_root, "main\script_configuration.hpp")
+
+    try:
+        if os.path.isfile(configurationFile):
+            f = open(configurationFile, "r")
+            hppText = f.read()
+            f.close()
+
+            if hppText:
+                print_green("Setting configuration to {}".format(configuration))
+                with open(configurationFile, "w", newline="\n") as file:
+                    file.writelines([
+                        "#define CONFIGURATION '{}'\n".format(configuration)
+                    ])
+
+        else:
+            print_error("A Critical file seems to be missing or inaccessible: {}".format(configurationFile))
+            raise FileNotFoundError("File Not Found: {}".format(configurationFile))
+
+    except Exception as e:
+        print_error("Failed to set configuration: {}".format(e))
+        print_error("Check the integrity of the file: {}".format(configurationFile))
+        raise
+
+
 def execute(cmd):
     popen = subprocess.Popen(cmd, stdout=subprocess.PIPE, universal_newlines=True)
     for stdout_line in iter(popen.stdout.readline, ""):
@@ -361,6 +388,7 @@ def execute(cmd):
     return_code = popen.wait()
     if return_code:
         raise subprocess.CalledProcessError(return_code, cmd)
+
 
 def compile_extensions(extensions_root, force_build):
     originalDir = os.getcwd()
@@ -812,10 +840,11 @@ def main(argv):
     # Parse arguments
     if "help" in argv or "-h" in argv or "--help" in argv:
         print("""
-make.py [help] [test] [force] [key <name>] [target <name>] [release <version>]
+make.py [help] [configuration <development|release>] [test] [force] [key <name>] [target <name>] [release <version>]
         [module name] [module name] [...]
 
 test -- Copy result to Arma 3.
+configuration <development|release> -- Sets configuration used by modpack macros
 release <version> -- Make archive with <version>.
 force -- Ignore cache and build all.
 checkexternal -- Check External Files
@@ -843,6 +872,17 @@ If a file called $NOBIN$ is found in the module directory, that module will not 
 See the make.cfg file for additional build options.
 """)
         sys.exit(0)
+
+    if "configuration" in argv:
+        configuration = argv[argv.index("configuration") + 1]
+
+        if not configuration in ["development", "release"]:
+            print_error("Invalid configuration ({})\nAllowed values: <development|release>".format(configuration))
+            sys.exit(1)
+
+        argv.remove("configuration")
+        argv.remove(configuration)
+        print_yellow("Configuration set: {}".format(configuration))
 
     if "force" in argv:
         argv.remove("force")
@@ -1153,6 +1193,10 @@ See the make.cfg file for additional build options.
                     print_green("sqfc finished")
                 else:
                     print_error("ArmaScriptCompiler.exe returned unexpected {}".format(ret))
+
+        # Set macro configuration
+        print_blue("\Setting macro configuration...")
+        set_configuration(configuration)
 
         # For each module, prep files and then build.
         print_blue("\nBuilding...")
