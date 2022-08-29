@@ -14,9 +14,8 @@
 */
 params ["_vehicle"];
 
-if (!(_vehicle getVariable ["acre_sys_rack_initialized", false])) exitWith {false};
+if !(_vehicle getVariable ["acre_sys_rack_initialized", false]) exitWith {false};
 
 private _baseRadios = ([_vehicle] call acre_api_fnc_getVehicleRacks) apply {[_x] call acre_api_fnc_getMountedRackRadio} select {[_x] call acre_api_fnc_isBaseRadio};
-if (_baseRadios isNotEqualTo []) exitWith {false};
 
-true
+_baseRadios isEqualTo []

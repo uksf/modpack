@@ -7,8 +7,7 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "uksf_common",
-            "cba_ui"
+            "UK3CB_BAF_Weapons_Accessories",
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
@@ -17,7 +16,7 @@ class CfgPatches {
     };
 };
 
-#include "CfgEventHandlers.hpp"
-#include "RscCommon.hpp"
-#include "RscDisplayDebriefing.hpp"
-#include "RscDisplayMain.hpp"
+class UK3CB_MuzzleSlot_900;
+class UK3CB_MuzzleSlot_900_L131 : UK3CB_MuzzleSlot_900 {
+    delete compatibleItems;
+};

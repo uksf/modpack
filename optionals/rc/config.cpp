@@ -7,8 +7,7 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "uksf_common",
-            "cba_ui"
+            "uksf_main"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
@@ -16,8 +15,3 @@ class CfgPatches {
         VERSION_CONFIG;
     };
 };
-
-#include "CfgEventHandlers.hpp"
-#include "RscCommon.hpp"
-#include "RscDisplayDebriefing.hpp"
-#include "RscDisplayMain.hpp"

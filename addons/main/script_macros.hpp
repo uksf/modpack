@@ -3,6 +3,14 @@
 #include "\x\cba\addons\main\script_macros_common.hpp"
 #include "\x\cba\addons\xeh\script_xeh.hpp"
 
+#include "\u\uksf\addons\main\script_configuration.hpp"
+#define CONFIGURATION_DEVELOPMENT 'development'
+#define CONFIGURATION_RC 'rc'
+#define CONFIGURATION_RELEASE 'release'
+#define CONFIGURATION_IS_DEVELOPMENT CONFIGURATION == CONFIGURATION_DEVELOPMENT
+#define CONFIGURATION_IS_RC CONFIGURATION == CONFIGURATION_RC || isClass (configFile >> 'CfgPatches' >> 'uksf_rc')
+#define CONFIGURATION_IS_RELEASE CONFIGURATION == CONFIGURATION_RELEASE
+
 #include "\u\uksf\addons\main\whitelist.hpp"
 
 #define DFUNC(var1) TRIPLES(ADDON,fnc,var1)

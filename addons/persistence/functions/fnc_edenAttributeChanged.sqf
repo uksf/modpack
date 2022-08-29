@@ -26,6 +26,8 @@ if !(_persistent) then {
     _persistent = (_object get3DENAttribute QGVAR(persistent))#0;
 };
 
+TRACE_1("",_object);
+TRACE_1("",_object get3DENAttribute QGVAR(persistenceID));
 private _id = (_object get3DENAttribute QGVAR(persistenceID))#0;
 if (_id isEqualType true) then {
     _id = "";

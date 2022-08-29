@@ -40,6 +40,7 @@ class CfgPatches {
             "UK3CB_BAF_Weapons_L115",
             "UK3CB_BAF_Weapons_L119",
             "UK3CB_BAF_Weapons_L1A1",
+            "UK3CB_BAF_Weapons_L131a1",
             "UK3CB_BAF_Weapons_Launchers",
             "UK3CB_BAF_Weapons_SmallArms",
             "UK3CB_BAF_Weapons_Static",
@@ -65,7 +66,8 @@ class CfgPatches {
             "JSRS_SOUNDMOD_Explosions",
             "3CB_L7A2",
             "3CB_L135A1",
-            // "fxp_GrenadeSmoke" // TODO_Debug: Undo once deemed not cause of server instability
+            "fxp_GrenadeSmoke",
+            QGVAR(prep)
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
