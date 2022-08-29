@@ -1122,6 +1122,10 @@ See the make.cfg file for additional build options.
         print_error("Could not parse make.cfg.")
         sys.exit(1)
 
+    # Set configuration
+    print_blue("\nSetting configuration...")
+    set_configuration(configuration)
+
     # See if we have been given specific modules to build from command line.
     if len(argv) > 1 and not make_release_zip:
         arg_modules = True
@@ -1177,14 +1181,21 @@ See the make.cfg file for additional build options.
         try:
             os.makedirs(os.path.join(release_dir, project, "addons"))
         except:
-            print_error("Cannot create release directory")
+            print_error("Cannot create release addons directory")
+            raise
+
+    if not os.path.isdir(os.path.join(release_dir, project, "optionals")):
+        try:
+            os.makedirs(os.path.join(release_dir, project, "optionals"))
+        except:
+            print_error("Cannot create release optionals directory")
             raise
 
     if not os.path.isdir(os.path.join(release_dir, project, "keys")):
         try:
             os.makedirs(os.path.join(release_dir, project, "keys"))
         except:
-            print_error("Cannot create release directory")
+            print_error("Cannot create release keys directory")
             raise
 
     failedBuilds = []
@@ -1299,10 +1310,6 @@ See the make.cfg file for additional build options.
                     print_green("sqfc finished")
                 else:
                     print_error("ArmaScriptCompiler.exe returned unexpected {}".format(ret))
-
-        # Set configuration
-        print_blue("\nSetting configuration...")
-        set_configuration(configuration)
 
         # For each module, prep files and then build.
         print_blue("\nBuilding...")
