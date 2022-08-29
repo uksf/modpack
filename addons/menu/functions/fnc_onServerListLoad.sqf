@@ -27,10 +27,12 @@ if (CONFIGURATION_IS_DEVELOPMENT) then {
         ["Rc","2392"]
     ]];
 };
+TRACE_2("servers",CONFIGURATION,_servers);
 
 lbClear _control;
 {
     _x params ["_name", "_port"];
+
     private _index = _control lbAdd _name;
     _control lbSetData [_index, _port];
 } forEach _servers;
