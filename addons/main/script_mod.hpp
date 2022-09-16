@@ -13,7 +13,7 @@
 
 // MINIMAL required version for the Mod. Components can specify others
 #define REQUIRED_VERSION 2.10
-#define REQUIRED_CBA_VERSION {3,15,7}
+#define REQUIRED_CBA_VERSION {3,15,8}
 
 #ifdef COMPONENT_BEAUTIFIED
     #define COMPONENT_NAME QUOTE(UKSF - COMPONENT_BEAUTIFIED)
