@@ -1,0 +1,3 @@
+# Equipment
+
+Contains equipment definitions
