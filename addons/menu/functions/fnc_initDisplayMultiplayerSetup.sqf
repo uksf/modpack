@@ -29,12 +29,15 @@ private _fnc_update = {
     private _roles = _display displayCtrl IDC_MPSETUP_ROLES;
     private _playerName = toLower profileName;
 
-    for "_i" from 0 to lbSize _roles do {
+    private _count = lbSize _roles;
+    for "_i" from 0 to _count do {
         private _text = toLower (_roles lbText _i);
         private _value = _roles lbValue _i;
         private _data = _roles lbData _i;
 
         if (_playerName in _text) exitWith {
+            private _scrollFixIndex = (_i + 6) min (_count - 1);
+            _roles lbSetCurSel _scrollFixIndex;
             _roles lbSetCurSel _i;
 
             removeMissionEventHandler ["EachFrame", GVAR(updateEHID)];

@@ -36,6 +36,7 @@ class CfgPatches {
             "CUP_Creatures_Military_TakiInsurgents",
             "CUP_Creatures_Military_USArmy",
             "CUP_Creatures_Military_USMC",
+            "CUP_Vehicles_cfgGroups",
             "rksla3_aircraft_tug"
         };
         author = QUOTE(UKSF);

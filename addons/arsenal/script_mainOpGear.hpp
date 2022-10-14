@@ -510,7 +510,8 @@
     "uksf_diving_cylinderSingleTx1265", \
     "uksf_diving_cylinderDoubleTx1265", \
     "uksf_diving_cylinderDoubleTx1070", \
-    "uksf_diving_cylinderSingleTx107"
+    "uksf_diving_cylinderSingleTx107", \
+    "uksf_halohaho_airSupply"
 
 #define MAIN_OP_UNIFORMS \
     "SP_0000_Standard_TacticalUniform_ATacsFG", \
