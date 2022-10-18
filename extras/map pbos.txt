@@ -5,13 +5,11 @@
     - lythiumenv
     - map_lythium_scenes
     - TFL_Maps
-- Cham
-    - tem_cham
-    - tem_chamw
-    - tem_chamw_snow
 - N'ziwasogo
     - pja305_sounds_new
     - ProjetA3005
     - roads_nziwasogo
     - Tanoa_305
     - TPW_NZIWASOGO
+- Ruha
+    - ruha
