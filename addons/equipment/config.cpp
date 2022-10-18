@@ -18,4 +18,6 @@ class CfgPatches {
     };
 };
 
+#include "Cfg3den.hpp"
+#include "CfgEventHandlers.hpp"
 #include "CfgVehicles.hpp"

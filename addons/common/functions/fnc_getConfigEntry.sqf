@@ -12,6 +12,9 @@
 
     Return value:
         Value (Any type)
+
+    Example:
+        [_config, "thing"] call EFUNC(common,getConfigEntry)
 */
 params ["_config", ["_defaultValue", ""]];
 
