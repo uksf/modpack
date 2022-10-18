@@ -10,11 +10,12 @@
         0: Object <OBJECT>
         1: Ace Cargo <ARRAY>
         2: Inventory <ARRAY>
+        3: Custom name <STRING>
 
     Return Value:
         None
 */
-params ["_object", "_aceCargo", "_inventory"];
+params ["_object", "_aceCargo", "_inventory", "_customName"];
 TRACE_3("Setting object cargo",_object,_aceCargo,_inventory);
 
 [_object, _inventory] spawn {
@@ -35,13 +36,22 @@ private _initCargo = _object getVariable ["ace_cargo_loaded", []];
 {[_x, _object] call ace_cargo_fnc_removeCargoItem} forEach _initCargo;
 
 {
-    _x params ["_type", "_xAceCargo", "_inventory"];
+    _x params ["_type", "_xAceCargo", "_inventory", ["_customName", ""]];
 
     private _cargoObject = _type;
     if (count _xAceCargo > 0 || {(count (_inventory select {count _x > 0})) > 0}) then {
-        _cargoObject = _type createVehicle [-1000 + (random 50), -1000 + (random 50), 0];
-        [QGVAR(setObjectCargo), [_cargoObject, _xAceCargo, _inventory]] call CBA_fnc_localEvent;
+        _cargoObject = createVehicle [_type, [0,0,0], [], 0, "NONE"];
+        [QGVAR(setObjectCargo), [_cargoObject, _xAceCargo, _inventory, _customName]] call CBA_fnc_localEvent;
+    };
+
+    if (_cargoObject isEqualType "" && _customName != "") then {
+        _cargoObject = createVehicle [_type, [0,0,0], [], 0, "NONE"];
+        _cargoObject setVariable ["ace_cargo_customName", _customName, true];
     };
 
     [_cargoObject, _object, true] call ace_cargo_fnc_loadItem;
 } forEach _aceCargo;
+
+if (_customName != "") then {
+    _object setVariable ["ace_cargo_customName", _customName, true];
+};

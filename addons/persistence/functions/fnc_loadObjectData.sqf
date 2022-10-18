@@ -14,7 +14,7 @@
         None
 */
 params ["_data", ["_forceLoad", false]];
-_data params ["_id", "_type", "_position", "_vectorDirAndUp", "_damage", "_fuel", "_turretWeapons", "_turretMagazines", "_pylonLoadout", "_logisticsCargo", "_attached", "_rackChannels", "_aceCargo", "_inventory", ["_acexFortifyData", [false]], ["_aceMedical", [0, false]], ["_aceRepair", [0, 0]]];
+_data params ["_id", "_type", "_position", "_vectorDirAndUp", "_damage", "_fuel", "_turretWeapons", "_turretMagazines", "_pylonLoadout", "_logisticsCargo", "_attached", "_rackChannels", "_aceCargo", "_inventory", ["_acexFortifyData", [false]], ["_aceMedical", [0, false]], ["_aceRepair", [0, 0]], ["_customName", ""]];
 _acexFortifyData params ["_isAcexFortification", "_acexFortifySide"];
 _aceMedical params ["_medicalClass", "_medicalVehicle", "_medicalFacility"];
 _aceRepair params ["_repairVehicle", "_repairFacility"];
@@ -98,7 +98,7 @@ if (!_forceLoad && {!([ASLToAGL _position, _object, (_vectorDirAndUp#0) call CBA
         _object setVariable ["ace_attach_attached", _attachList, true];
     };
     _object setVariable [QEGVAR(radios,rackChannels), _rackChannels, true];
-    [QGVAR(setObjectCargo), [_object, _aceCargo, _inventory]] call CBA_fnc_localEvent;
+    [QGVAR(setObjectCargo), [_object, _aceCargo, _inventory, _customName]] call CBA_fnc_localEvent;
 
     if (_isAcexFortification) then {
         ["acex_fortify_objectPlaced", [objNull, _acexFortifySide, _object]] call CBA_fnc_globalEvent;
