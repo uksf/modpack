@@ -98,7 +98,7 @@ if (!_forceLoad && {!([ASLToAGL _position, _object, (_vectorDirAndUp#0) call CBA
         _object setVariable ["ace_attach_attached", _attachList, true];
     };
     _object setVariable [QEGVAR(radios,rackChannels), _rackChannels, true];
-    [QGVAR(setObjectCargo), [_object, _aceCargo, _inventory]] call CBA_fnc_localEvent;
+    [QGVAR(setObjectCargo), [_object, _aceCargo, _inventory, _customName]] call CBA_fnc_localEvent;
 
     if (_isAceFortification) then {
         ["acex_fortify_objectPlaced", [objNull, _aceFortifySide, _object]] call CBA_fnc_globalEvent;
