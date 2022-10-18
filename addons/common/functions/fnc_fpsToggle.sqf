@@ -26,7 +26,7 @@ if (GVAR(fpsState)) then {
 
         {
             [QGVAR(fpsGet), [player], _x] call CBA_fnc_targetEvent;
-        } forEach acex_headless_headlessClients;
+        } forEach ace_headless_headlessClients;
         [QGVAR(fpsGet), [player]] call CBA_fnc_serverEvent;
 
         private _text = [lineBreak, "FPS Debug:", lineBreak, lineBreak];

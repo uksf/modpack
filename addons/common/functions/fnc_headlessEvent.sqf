@@ -16,8 +16,8 @@
 */
 params [["_eventName", "", [""]], ["_params", []]];
 
-if (acex_headless_headlessClients isEqualTo []) exitWith {
+if (ace_headless_headlessClients isEqualTo []) exitWith {
     [_eventName, _params] call CBA_fnc_serverEvent;
 };
 
-[_eventName, _params, selectRandom acex_headless_headlessClients] call CBA_fnc_targetEvent;
+[_eventName, _params, selectRandom ace_headless_headlessClients] call CBA_fnc_targetEvent;

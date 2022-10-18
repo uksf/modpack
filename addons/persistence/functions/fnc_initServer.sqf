@@ -155,8 +155,8 @@ addMissionEventHandler ["BuildingChanged", {
 ["acex_fortify_objectPlaced", {
     params ["", "_side", "_object"];
 
-    _object setVariable [QGVAR(isAcexFortification), true];
-    _object setVariable [QGVAR(acexFortifySide), _side];
+    _object setVariable [QGVAR(isAceFortification), true];
+    _object setVariable [QGVAR(aceFortifySide), _side];
     [_object] call FUNC(markObjectAsPersistent);
 }] call CBA_fnc_addEventHandler;
 

@@ -16,9 +16,9 @@ if (isServer) then {
 
 // Set headless client array to player if singleplayer
 if (isMultiplayer && !is3DENMultiplayer) then {
-    acex_headless_headlessClients = entities "HeadlessClient_F";
+    ace_headless_headlessClients = entities "HeadlessClient_F";
 } else {
-    acex_headless_headlessClients = [player];
+    ace_headless_headlessClients = [player];
 };
 
 if (hasInterface) then {

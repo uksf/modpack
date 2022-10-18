@@ -50,7 +50,7 @@ _plane forceSpeed _speed;
 
 private _pilot = driver _plane;
 private _group = group _pilot;
-_pilot setVariable ["acex_headless_blacklist", true, true];
+_pilot setVariable ["ace_headless_blacklist", true, true];
 _group setSpeedMode "LIMITED";
 _group setBehaviourStrong "CARELESS";
 _pilot disableAi "LIGHTS";
