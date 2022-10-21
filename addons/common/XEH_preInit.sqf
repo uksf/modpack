@@ -53,11 +53,11 @@ if (isServer) then {
     GVAR(updateHeadlessClientDelay) = 180;
 };
 
-acex_headless_headlessClients = [];
-["acex_headless_headlessClientJoined", {
+ace_headless_headlessClients = [];
+["ace_headless_headlessClientJoined", {
     params ["_headlessClient"];
 
-    acex_headless_headlessClients pushBackUnique _headlessClient;
+    ace_headless_headlessClients pushBackUnique _headlessClient;
 }] call CBA_fnc_addEventHandler;
 
 [QGVAR(notify), {_this call CBA_fnc_notify}] call CBA_fnc_addEventHandler;

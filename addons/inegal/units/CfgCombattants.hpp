@@ -6,6 +6,12 @@ class Inegal_F: Inegal_Soldier_Base {
     uniformClass = "U_BG_Guerilla2_3";
     model = "\A3\characters_F_gamma\Guerrilla\ig_guerrilla2_1.p3d";
     backpack = "Inegal_B_F";
+    uksf_equipment_randomUniforms[] = {
+        "U_BG_Guerilla2_3", 1,
+        "U_BG_Guerilla3_1", 1,
+        "U_BG_Guerilla2_2", 1,
+        "U_BG_Guerilla2_1", 1
+    };
     weapons[] = {
         "CUP_arifle_Mk16_STD_FG_black_Aimpoint",
         "Throw",
@@ -225,6 +231,7 @@ class Inegal_O: Inegal_F {
         "ItemRadioAcreFlagged",
         "ItemGPS"
     };
+    uksf_equipment_skipRandomization = 1;
 };
 class Inegal_MED: Inegal_F {
     displayName = "Medic";
@@ -745,6 +752,7 @@ class Inegal_Sniper: Inegal_F {
         "ItemRadioAcreFlagged",
         "ItemGPS"
     };
+    uksf_equipment_skipRandomization = 1;
 };
 class Inegal_FAC: Inegal_F {
     displayName = "FAC";

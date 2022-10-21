@@ -33,7 +33,7 @@ if (_car) then {
     _distance = _distance * 2;
 };
 
-_bomber setVariable ["acex_headless_blacklist", true, true];
+_bomber setVariable ["ace_headless_blacklist", true, true];
 _bomber setVariable [QGVAR(isBomber), true, true];
 _bomber setVariable [QGVAR(previousTarget), objNull, true];
 _bomber allowfleeing 0;

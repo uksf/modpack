@@ -14,8 +14,8 @@
         None
 */
 params ["_data", ["_forceLoad", false]];
-_data params ["_id", "_type", "_position", "_vectorDirAndUp", "_damage", "_fuel", "_turretWeapons", "_turretMagazines", "_pylonLoadout", "_logisticsCargo", "_attached", "_rackChannels", "_aceCargo", "_inventory", ["_acexFortifyData", [false]], ["_aceMedical", [0, false]], ["_aceRepair", [0, 0]]];
-_acexFortifyData params ["_isAcexFortification", "_acexFortifySide"];
+_data params ["_id", "_type", "_position", "_vectorDirAndUp", "_damage", "_fuel", "_turretWeapons", "_turretMagazines", "_pylonLoadout", "_logisticsCargo", "_attached", "_rackChannels", "_aceCargo", "_inventory", ["_aceFortifyData", [false]], ["_aceMedical", [0, false]], ["_aceRepair", [0, 0]], ["_customName", ""]];
+_aceFortifyData params ["_isAceFortification", "_aceFortifySide"];
 _aceMedical params ["_medicalClass", "_medicalVehicle", "_medicalFacility"];
 _aceRepair params ["_repairVehicle", "_repairFacility"];
 
@@ -29,7 +29,7 @@ TRACE_6("Loading object...",_id,_type,_position,_vectorDirAndUp,_damage,_fuel);
 // TRACE_2("...",_logisticsCargo,_attached);
 // TRACE_1("...",_aceCargo);
 // TRACE_1("...",_inventory);
-// TRACE_1("...",_acexFortifyData);
+// TRACE_1("...",_aceFortifyData);
 
 if !(_type isEqualType "") exitWith {
     WARNING_1("Tried to load empty data for id %1",_id);
@@ -98,10 +98,10 @@ if (!_forceLoad && {!([ASLToAGL _position, _object, (_vectorDirAndUp#0) call CBA
         _object setVariable ["ace_attach_attached", _attachList, true];
     };
     _object setVariable [QEGVAR(radios,rackChannels), _rackChannels, true];
-    [QGVAR(setObjectCargo), [_object, _aceCargo, _inventory]] call CBA_fnc_localEvent;
+    [QGVAR(setObjectCargo), [_object, _aceCargo, _inventory, _customName]] call CBA_fnc_localEvent;
 
-    if (_isAcexFortification) then {
-        ["acex_fortify_objectPlaced", [objNull, _acexFortifySide, _object]] call CBA_fnc_globalEvent;
+    if (_isAceFortification) then {
+        ["acex_fortify_objectPlaced", [objNull, _aceFortifySide, _object]] call CBA_fnc_globalEvent;
     };
 
     _object setVariable ["ace_medical_medicClass", _medicalClass, true];
