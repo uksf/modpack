@@ -172,11 +172,7 @@ class CfgVehicles {
     class UKSF_ACR_Rifleman_HAT_pack: CUP_B_ACRPara_m95
     {
         scope=1;
-        class TransportMagazines
-        {
-            class _xx_Titan_AP {count=2;magazine="Titan_AP";};
-            class _xx_Titan_AT {count=1;magazine="Titan_AT";};
-        };
+        class TransportMagazines {};
     };
 
     class CUP_B_ACRScout_m95;
