@@ -1,5 +1,5 @@
 //Units
-class UKSF_ACR_Rifleman: UKSF_ACR_Soldier_Baseb {
+class UKSF_ACR_Rifleman: UKSF_ACR_Soldier_Base {
     scope = 2;
     faction = "UKSF_ACR";
     side = 0;
