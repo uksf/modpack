@@ -94,7 +94,7 @@ class CfgVehicles {
         scope = 1;
         class TransportMagazines
         {
-            class _xx_1Rnd_HE_Grenade_shell {count = 11;magazine = "1Rnd_HE_Grenade_shell";};
+            MACRO_ADDMAGAZINE("1Rnd_HE_Grenade_shell",11);
         };
         class TransportItems{};
         class TransportWeapons{};
@@ -105,7 +105,7 @@ class CfgVehicles {
         scope = 1;
         class TransportMagazines
         {
-            class _xx_CUP_100Rnd_TE4_Green_Tracer_556x45_M249 {count = 5;magazine = "CUP_100Rnd_TE4_Green_Tracer_556x45_M249";};
+            MACRO_ADDMAGAZINE("CUP_100Rnd_TE4_Green_Tracer_556x45_M249",5);
         };
         class TransportItems{};
         class TransportWeapons{};
@@ -115,8 +115,8 @@ class CfgVehicles {
         scope = 1;
         class TransportMagazines
         {
-            class _xx_CUP_OG7_M {count = 1;magazine = "CUP_OG7_M";};
-            class _xx_CUP_PG7V_M {count = 2;magazine = "CUP_PG7V_M";};
+            MACRO_ADDMAGAZINE("CUP_OG7_M",1);
+            MACRO_ADDMAGAZINE("CUP_PG7V_M",2);
         };
         class TransportItems{};
         class TransportWeapons{};
@@ -136,10 +136,10 @@ class CfgVehicles {
         displayName = "Radio Backpack";
         class TransportMagazines
         {
-            class _xx_SmokeShellOrange {count = 2;magazine = "SmokeShellOrange";};
-            class _xx_SmokeShellPurple {count = 2;magazine = "SmokeShellPurple";};
-            class _xx_SmokeShell {count = 3;magazine = "SmokeShell";};
-            class _xx_CUP_HandGrenade_RGD5 {count = 2;magazine = "CUP_HandGrenade_RGD5";};
+            MACRO_ADDMAGAZINE("SmokeShellOrange",2);
+            MACRO_ADDMAGAZINE("SmokeShellPurple",2);
+            MACRO_ADDMAGAZINE("SmokeShell",3);
+            MACRO_ADDMAGAZINE("CUP_HandGrenade_RGD5",2);
         };
         class TransportItems{};
         class TransportWeapons{};
@@ -149,7 +149,7 @@ class CfgVehicles {
         scope = 1;
         class TransportMagazines
         {
-            class _xx_CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M {count = 4;magazine = "CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M";};
+            MACRO_ADDMAGAZINE("CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M",4);
         };
         class TransportItems{};
         class TransportWeapons{};
@@ -165,7 +165,7 @@ class CfgVehicles {
         scope = 1;
         class TransportMagazines
         {
-            class _xx_APERSMine_Range_Mag {count = 2;magazine = "APERSMine_Range_Mag";};
+            MACRO_ADDMAGAZINE("APERSMine_Range_Mag",2);
         };
     };
 };
