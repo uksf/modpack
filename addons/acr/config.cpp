@@ -59,16 +59,12 @@ class CfgPatches {
             "UKSF_ACR_CUP_arifle_ACRC_blk_556_CUP_acc_FlashlightACE_optic_MRCO_2D",
             "UKSF_ACR_CUP_arifle_ACRC_EGLM_blk_556_CUP_acc_FlashlightACE_optic_MRCO_2D",
             "UKSF_ACR_LMG_03_F_CUP_acc_FlashlightACE_optic_MRCO_2D",
-            // "UKSF_ACR_CUP_launch_RPG7V",
             "UKSF_ACR_CUP_srifle_SVD_wdl_CUP_optic_PSO_1_1_open",
             "UKSF_ACR_CUP_arifle_ACRC_blk_556",
             "UKSF_ACR_CUP_arifle_ACRC_blk_556_ACE_optic_MRCO_2D",
-            // "UKSF_ACR_CUP_hgun_CZ75",
             "UKSF_ACR_CUP_srifle_M2010_blk_ACE_optic_LRPS_2D",
             "UKSF_ACR_UKSF_ACR_ACR_CUP_arifle_ACRC_blk_556_CUP_acc_FlashlightACE_optic_MRCO_2D_CUP_acc_FlashlightACE_optic_MRCO_2D",
-            // "UKSF_ACR_CUP_launch_FIM92Stinger_Loaded",
             "UKSF_ACR_CUP_lmg_MG3_rail_ACE_optic_MRCO_2D"
-            // "UKSF_ACR_launch_I_Titan_short_F"
         };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {

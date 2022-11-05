@@ -81,13 +81,6 @@ class CfgWeapons {
             };
         };
     };
-    class CUP_launch_RPG7V;
-    // class uksf_ACR_CUP_launch_RPG7V: CUP_launch_RPG7V
-    // {
-    //     displayName = "RPG-7V2";
-    //     scope = 1;
-    //     class LinkedItems {};
-    // };
     class CUP_srifle_SVD_wdl;
     class uksf_ACR_CUP_srifle_SVD_wdl_CUP_optic_PSO_1_1_open: CUP_srifle_SVD_wdl
     {
@@ -102,12 +95,6 @@ class CfgWeapons {
             };
         };
     };
-    // class uksf_ACR_CUP_arifle_ACRC_blk_556: CUP_arifle_ACRC_blk_556
-    // {
-    //     displayName = "ACR-C (Black, 5.56x45)";
-    //     scope = 1;
-    //     class LinkedItems {};
-    // };
     class uksf_ACR_CUP_arifle_ACRC_blk_556_ACE_optic_MRCO_2D: CUP_arifle_ACRC_blk_556
     {
         displayName = "ACR-C (Black, 5.56x45)";
@@ -121,13 +108,6 @@ class CfgWeapons {
             };
         };
     };
-    // class CUP_hgun_CZ75;
-    // class uksf_ACR_CUP_hgun_CZ75: CUP_hgun_CZ75
-    // {
-    //     displayName = "CZ 75";
-    //     scope = 1;
-    //     class LinkedItems {};
-    // };
     class CUP_srifle_M2010_blk;
     class uksf_ACR_CUP_srifle_M2010_blk_ACE_optic_LRPS_2D: CUP_srifle_M2010_blk
     {
@@ -141,13 +121,6 @@ class CfgWeapons {
             };
         };
     };
-    // class CUP_launch_FIM92Stinger_Loaded;
-    // class uksf_ACR_CUP_launch_FIM92Stinger_Loaded: CUP_launch_FIM92Stinger_Loaded
-    // {
-    //     displayName = "FIM-92F Stinger";
-    //     scope = 1;
-    //     class LinkedItems {};
-    // };
     class CUP_lmg_MG3_rail;
     class uksf_ACR_CUP_lmg_MG3_rail_ACE_optic_MRCO_2D: CUP_lmg_MG3_rail
     {
@@ -162,13 +135,6 @@ class CfgWeapons {
             };
         };
     };
-    // class launch_I_Titan_short_F;
-    // class uksf_ACR_launch_I_Titan_short_F: launch_I_Titan_short_F
-    // {
-    //     displayName = "Titan MPRL Compact (Olive)";
-    //     scope = 1;
-    //     class LinkedItems {};
-    // };
     class CUP_arifle_HK416_Black;
     class UKSF_ACR_CUP_arifle_HK416_Black_ZO_Low_anpeq: CUP_arifle_HK416_Black
     {

@@ -144,14 +144,6 @@ class CfgVehicles {
         class TransportItems{};
         class TransportWeapons{};
     };
-    // class B_Parachute;
-    // class UKSF_ACR_Paratrooper_pack: B_Parachute
-    // {
-    //     scope = 1;
-    //     class TransportMagazines{};
-    //     class TransportItems{};
-    //     class TransportWeapons{};
-    // };
     class UKSF_ACR_Machine_Gunner_pack: CUP_B_ACRPara_m95
     {
         scope = 1;
