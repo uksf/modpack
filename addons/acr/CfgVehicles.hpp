@@ -89,83 +89,69 @@ class CfgVehicles {
     #include "units\CfgUnits.hpp"
 
     class CUP_B_Kombat_Radio_Olive;
-    class UKSF_ACR_Squad_Leader_pack: CUP_B_Kombat_Radio_Olive
-    {
+    class UKSF_ACR_Squad_Leader_pack: CUP_B_Kombat_Radio_Olive {
         scope = 1;
-        class TransportMagazines
-        {
-            MACRO_ADDMAGAZINE("1Rnd_HE_Grenade_shell",11);
+        class TransportMagazines {
+            MACRO_ADDMAGAZINE(1Rnd_HE_Grenade_shell,11);
         };
         class TransportItems{};
         class TransportWeapons{};
     };
     class CUP_B_ACRPara_m95;
-    class UKSF_ACR_Autorifleman_pack: CUP_B_ACRPara_m95
-    {
+    class UKSF_ACR_Autorifleman_pack: CUP_B_ACRPara_m95 {
         scope = 1;
-        class TransportMagazines
-        {
-            MACRO_ADDMAGAZINE("CUP_100Rnd_TE4_Green_Tracer_556x45_M249",5);
+        class TransportMagazines {
+            MACRO_ADDMAGAZINE(CUP_100Rnd_TE4_Green_Tracer_556x45_M249,5);
         };
         class TransportItems{};
         class TransportWeapons{};
     };
-    class UKSF_ACR_Rifleman_LAT_pack: CUP_B_ACRPara_m95
-    {
+    class UKSF_ACR_Rifleman_LAT_pack: CUP_B_ACRPara_m95 {
         scope = 1;
-        class TransportMagazines
-        {
-            MACRO_ADDMAGAZINE("CUP_OG7_M",1);
-            MACRO_ADDMAGAZINE("CUP_PG7V_M",2);
+        class TransportMagazines {
+            MACRO_ADDMAGAZINE(CUP_OG7_M,1);
+            MACRO_ADDMAGAZINE(CUP_PG7V_M,2);
         };
         class TransportItems{};
         class TransportWeapons{};
     };
     class CUP_B_GER_Medic_Flecktarn;
-    class UKSF_ACR_Sharpshooter_pack: CUP_B_GER_Medic_Flecktarn
-    {
+    class UKSF_ACR_Sharpshooter_pack: CUP_B_GER_Medic_Flecktarn {
         scope = 1;
         class TransportMagazines{};
         class TransportItems{};
         class TransportWeapons{};
     };
     class B_RadioBag_01_wdl_F;
-    class UKSF_ACR_Signaller_pack: B_RadioBag_01_wdl_F
-    {
+    class UKSF_ACR_Signaller_pack: B_RadioBag_01_wdl_F {
         scope = 1;
         displayName = "Radio Backpack";
-        class TransportMagazines
-        {
-            MACRO_ADDMAGAZINE("SmokeShellOrange",2);
-            MACRO_ADDMAGAZINE("SmokeShellPurple",2);
-            MACRO_ADDMAGAZINE("SmokeShell",3);
-            MACRO_ADDMAGAZINE("CUP_HandGrenade_RGD5",2);
+        class TransportMagazines {
+            MACRO_ADDMAGAZINE(SmokeShellOrange,2);
+            MACRO_ADDMAGAZINE(SmokeShellPurple,2);
+            MACRO_ADDMAGAZINE(SmokeShell,3);
+            MACRO_ADDMAGAZINE(CUP_HandGrenade_RGD5,2);
         };
         class TransportItems{};
         class TransportWeapons{};
     };
-    class UKSF_ACR_Machine_Gunner_pack: CUP_B_ACRPara_m95
-    {
+    class UKSF_ACR_Machine_Gunner_pack: CUP_B_ACRPara_m95 {
         scope = 1;
-        class TransportMagazines
-        {
-            MACRO_ADDMAGAZINE("CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M",4);
+        class TransportMagazines {
+            MACRO_ADDMAGAZINE(CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M,4);
         };
         class TransportItems{};
         class TransportWeapons{};
     };
-    class UKSF_ACR_Rifleman_HAT_pack: CUP_B_ACRPara_m95
-    {
+    class UKSF_ACR_Rifleman_HAT_pack: CUP_B_ACRPara_m95 {
         scope = 1;
         class TransportMagazines {};
     };
     class CUP_B_ACRScout_m95;
-    class UKSF_ACR_Operator_Pack: CUP_B_ACRScout_m95
-    {
+    class UKSF_ACR_Operator_Pack: CUP_B_ACRScout_m95 {
         scope = 1;
-        class TransportMagazines
-        {
-            MACRO_ADDMAGAZINE("APERSMine_Range_Mag",2);
+        class TransportMagazines {
+            MACRO_ADDMAGAZINE(APERSMine_Range_Mag,2);
         };
     };
 };
