@@ -1,6 +1,5 @@
 //Units
-class UKSF_ACR_Rifleman: UKSF_ACR_Soldier_Base
-{
+class UKSF_ACR_Rifleman: UKSF_ACR_Soldier_Baseb {
     scope = 2;
     faction = "UKSF_ACR";
     side = 0;
@@ -19,11 +18,8 @@ class UKSF_ACR_Rifleman: UKSF_ACR_Soldier_Base
     linkedItems[] = {"ItemMap","ItemCompass","CUP_NVG_PVS15_green_WP","CUP_H_CZ_Helmet03","CUP_V_CZ_vest04","G_Bandanna_oli","CUP_NVG_PVS15_green_WP"};
     respawnLinkedItems[] = {"ItemMap","ItemCompass","CUP_NVG_PVS15_green_WP","CUP_H_CZ_Helmet03","CUP_V_CZ_vest04","G_Bandanna_oli","CUP_NVG_PVS15_green_WP"};
     backpack = "";
-
 };
-
-class UKSF_ACR_Squad_Leader: UKSF_ACR_Rifleman
-{
+class UKSF_ACR_Squad_Leader: UKSF_ACR_Rifleman {
     faction = "UKSF_ACR";
     side = 0;
     displayName = "Squad Leader";
@@ -33,11 +29,8 @@ class UKSF_ACR_Squad_Leader: UKSF_ACR_Rifleman
     magazines[] = {"CUP_HandGrenade_RGO","CUP_HandGrenade_RGO","SmokeShell","SmokeShell","SmokeShell","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell"};
     respawnMagazines[] = {"CUP_HandGrenade_RGO","CUP_HandGrenade_RGO","SmokeShell","SmokeShell","SmokeShell","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell"};
     backpack = "UKSF_ACR_Squad_Leader_pack";
-
 };
-
-class UKSF_ACR_Autorifleman: UKSF_ACR_Rifleman
-{
+class UKSF_ACR_Autorifleman: UKSF_ACR_Rifleman {
     faction = "UKSF_ACR";
     side = 0;
     displayName = "Autorifleman";
@@ -47,11 +40,8 @@ class UKSF_ACR_Autorifleman: UKSF_ACR_Rifleman
     magazines[] = {"CUP_HandGrenade_RGO","CUP_HandGrenade_RGO","SmokeShell","SmokeShell","SmokeShell","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249"};
     respawnMagazines[] = {"CUP_HandGrenade_RGO","CUP_HandGrenade_RGO","SmokeShell","SmokeShell","SmokeShell","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249"};
     backpack = "UKSF_ACR_Machine_Gunner_pack";
-
 };
-
-class UKSF_ACR_Rifleman_LAT: UKSF_ACR_Rifleman
-{
+class UKSF_ACR_Rifleman_LAT: UKSF_ACR_Rifleman {
     faction = "UKSF_ACR";
     side = 0;
     displayName = "Rifleman LAT";
@@ -61,11 +51,8 @@ class UKSF_ACR_Rifleman_LAT: UKSF_ACR_Rifleman
     magazines[] = {"CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_HandGrenade_RGO","CUP_HandGrenade_RGO","SmokeShell","SmokeShell","SmokeShell","CUP_OG7_M","CUP_PG7V_M","CUP_PG7V_M"};
     respawnMagazines[] = {"CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_HandGrenade_RGO","CUP_HandGrenade_RGO","SmokeShell","SmokeShell","SmokeShell","CUP_OG7_M","CUP_PG7V_M","CUP_PG7V_M"};
     backpack = "UKSF_ACR_Rifleman_LAT_pack";
-
 };
-
-class UKSF_ACR_Sharpshooter: UKSF_ACR_Rifleman
-{
+class UKSF_ACR_Sharpshooter: UKSF_ACR_Rifleman {
     faction = "UKSF_ACR";
     side = 0;
     displayName = "Sharpshooter";
@@ -75,11 +62,8 @@ class UKSF_ACR_Sharpshooter: UKSF_ACR_Rifleman
     magazines[] = {"CUP_HandGrenade_RGO","CUP_HandGrenade_RGO","SmokeShell","SmokeShell","SmokeShell","CUP_10Rnd_762x54_SVD_M","CUP_10Rnd_762x54_SVD_M","CUP_10Rnd_762x54_SVD_M","CUP_10Rnd_762x54_SVD_M","CUP_10Rnd_762x54_SVD_M","CUP_10Rnd_762x54_SVD_M","CUP_10Rnd_762x54_SVD_M","CUP_10Rnd_762x54_SVD_M","CUP_10Rnd_762x54_SVD_M","CUP_10Rnd_762x54_SVD_M"};
     respawnMagazines[] = {"CUP_HandGrenade_RGO","CUP_HandGrenade_RGO","SmokeShell","SmokeShell","SmokeShell","CUP_10Rnd_762x54_SVD_M","CUP_10Rnd_762x54_SVD_M","CUP_10Rnd_762x54_SVD_M","CUP_10Rnd_762x54_SVD_M","CUP_10Rnd_762x54_SVD_M","CUP_10Rnd_762x54_SVD_M","CUP_10Rnd_762x54_SVD_M","CUP_10Rnd_762x54_SVD_M","CUP_10Rnd_762x54_SVD_M","CUP_10Rnd_762x54_SVD_M"};
     backpack = "UKSF_ACR_Sharpshooter_pack";
-
 };
-
-class UKSF_ACR_Armour_Crewman: UKSF_ACR_Rifleman
-{
+class UKSF_ACR_Armour_Crewman: UKSF_ACR_Rifleman {
     faction = "UKSF_ACR";
     side = 0;
     displayName = "Armour Crewman";
@@ -93,9 +77,7 @@ class UKSF_ACR_Armour_Crewman: UKSF_ACR_Rifleman
     backpack = "";
     uksf_equipment_skipRandomization = 1;
 };
-
-class UKSF_ACR_Officer: UKSF_ACR_Rifleman
-{
+class UKSF_ACR_Officer: UKSF_ACR_Rifleman {
     faction = "UKSF_ACR";
     side = 0;
     displayName = "Officer";
@@ -105,9 +87,7 @@ class UKSF_ACR_Officer: UKSF_ACR_Rifleman
     backpack = "";
     uksf_equipment_skipRandomization = 1;
 };
-
-class UKSF_ACR_Signaller: UKSF_ACR_Rifleman
-{
+class UKSF_ACR_Signaller: UKSF_ACR_Rifleman {
     faction = "UKSF_ACR";
     side = 0;
     displayName = "Signaller";
@@ -115,11 +95,8 @@ class UKSF_ACR_Signaller: UKSF_ACR_Rifleman
     linkedItems[] = {"ItemMap","ItemCompass","CUP_NVG_PVS15_green_WP","CUP_H_CZ_Helmet03","CUP_V_CZ_vest04","G_Bandanna_oli","CUP_NVG_PVS15_green_WP"};
     respawnLinkedItems[] = {"ItemMap","ItemCompass","CUP_NVG_PVS15_green_WP","CUP_H_CZ_Helmet03","CUP_V_CZ_vest04","G_Bandanna_oli","CUP_NVG_PVS15_green_WP"};
     backpack = "UKSF_ACR_Signaller_pack";
-
 };
-
-class UKSF_ACR_Heli_Pilot: UKSF_ACR_Rifleman
-{
+class UKSF_ACR_Heli_Pilot: UKSF_ACR_Rifleman {
     faction = "UKSF_ACR";
     side = 0;
     displayName = "Heli Pilot";
@@ -133,9 +110,7 @@ class UKSF_ACR_Heli_Pilot: UKSF_ACR_Rifleman
     backpack = "";
     uksf_equipment_skipRandomization = 1;
 };
-
-class UKSF_ACR_Sniper: UKSF_ACR_Rifleman
-{
+class UKSF_ACR_Sniper: UKSF_ACR_Rifleman {
     faction = "UKSF_ACR";
     side = 0;
     displayName = "Sniper";
@@ -149,9 +124,7 @@ class UKSF_ACR_Sniper: UKSF_ACR_Rifleman
     backpack = "";
     uksf_equipment_skipRandomization = 1;
 };
-
-class UKSF_ACR_Crewman: UKSF_ACR_Rifleman
-{
+class UKSF_ACR_Crewman: UKSF_ACR_Rifleman {
     faction = "UKSF_ACR";
     side = 0;
     displayName = "Crewman";
@@ -163,9 +136,7 @@ class UKSF_ACR_Crewman: UKSF_ACR_Rifleman
     backpack = "";
     uksf_equipment_skipRandomization = 1;
 };
-
-class UKSF_ACR_Jet_Pilot: UKSF_ACR_Rifleman
-{
+class UKSF_ACR_Jet_Pilot: UKSF_ACR_Rifleman {
     faction = "UKSF_ACR";
     side = 0;
     displayName = "Jet Pilot";
@@ -179,9 +150,7 @@ class UKSF_ACR_Jet_Pilot: UKSF_ACR_Rifleman
     backpack = "";
     uksf_equipment_skipRandomization = 1;
 };
-
-class UKSF_ACR_Rifleman_AA: UKSF_ACR_Rifleman
-{
+class UKSF_ACR_Rifleman_AA: UKSF_ACR_Rifleman {
     faction = "UKSF_ACR";
     side = 0;
     displayName = "Rifleman AA";
@@ -191,11 +160,8 @@ class UKSF_ACR_Rifleman_AA: UKSF_ACR_Rifleman
     magazines[] = {"CUP_30Rnd_556x45_Stanag","SmokeShell","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","SmokeShell","SmokeShell","CUP_HandGrenade_RGD5","CUP_HandGrenade_RGD5"};
     respawnMagazines[] = {"CUP_30Rnd_556x45_Stanag","SmokeShell","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","SmokeShell","SmokeShell","CUP_HandGrenade_RGD5","CUP_HandGrenade_RGD5"};
     backpack = "";
-
 };
-
-class UKSF_ACR_Paratrooper: UKSF_ACR_Rifleman
-{
+class UKSF_ACR_Paratrooper: UKSF_ACR_Rifleman {
     faction = "UKSF_ACR";
     side = 0;
     displayName = "Paratrooper";
@@ -203,9 +169,7 @@ class UKSF_ACR_Paratrooper: UKSF_ACR_Rifleman
     linkedItems[] = {"ItemMap","ItemCompass","CUP_NVG_PVS15_green_WP","CUP_H_CZ_Helmet03","CUP_V_CZ_vest04","G_Bandanna_oli","CUP_NVG_PVS15_green_WP"};
     respawnLinkedItems[] = {"ItemMap","ItemCompass","CUP_NVG_PVS15_green_WP","CUP_H_CZ_Helmet03","CUP_V_CZ_vest04","G_Bandanna_oli","CUP_NVG_PVS15_green_WP"};
     backpack = "B_Parachute";
-
 };
-
 class UKSF_ACR_Machine_Gunner: UKSF_ACR_Rifleman {
     faction = "UKSF_ACR";
     side = 0;
@@ -217,7 +181,6 @@ class UKSF_ACR_Machine_Gunner: UKSF_ACR_Rifleman {
     respawnMagazines[] = {"CUP_HandGrenade_RGO","CUP_HandGrenade_RGO","SmokeShell","SmokeShell","SmokeShell","CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M","CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M","CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M","CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M","CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M","CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M"};
     backpack = "UKSF_ACR_Machine_Gunner_pack";
 };
-
 class UKSF_ACR_Rifleman_HAT: UKSF_ACR_Rifleman {
     faction = "UKSF_ACR";
     side = 0;
@@ -229,7 +192,6 @@ class UKSF_ACR_Rifleman_HAT: UKSF_ACR_Rifleman {
     respawnMagazines[] = {"CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_HandGrenade_RGO","CUP_HandGrenade_RGO","SmokeShell","SmokeShell","SmokeShell","Titan_AP","Titan_AP","Titan_AT"};
     backpack = "UKSF_ACR_Rifleman_HAT_pack";
 };
-
 class UKSF_ACR_Operator: UKSF_ACR_Rifleman {
     faction = "UKSF_ACR";
     side = 0;
@@ -242,4 +204,4 @@ class UKSF_ACR_Operator: UKSF_ACR_Rifleman {
     linkedItems[] = {"ItemMap","ItemCompass","CUP_NVG_GPNVG_black","CUP_H_OpsCore_Black","CUP_V_CZ_NPP2006_ok_black","CUP_G_Scarf_Face_Blk"};
     backpack = "UKSF_ACR_Operator_Pack";
     uksf_equipment_skipRandomization = 1;
-}
+};
