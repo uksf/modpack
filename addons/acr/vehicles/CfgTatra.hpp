@@ -87,8 +87,6 @@ class UKSF_ACR_Tatra_Repair: CUP_B_T810_Repair_CZ_WDL {
     typicalCargo[] = {
         "UKSF_ACR_Rifleman"
     };
-    class TransportMagazines {};
-    class TransportItems {};
-    class TransportWeapons {};
-    class TransportBackpacks {};
+
+    INVENTORY_EMPTY;
 };

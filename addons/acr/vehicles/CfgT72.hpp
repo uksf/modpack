@@ -14,8 +14,5 @@ class UKSF_ACR_T72: CUP_O_T72_SLA {
         "cup\trackedvehicles\cup_trackedvehicles_t72\data\textures\gue_t72_3_co.paa"
     };
 
-    class TransportMagazines {};
-    class TransportItems {};
-    class TransportWeapons {};
-    class TransportBackpacks {};
+    INVENTORY_EMPTY;
 };

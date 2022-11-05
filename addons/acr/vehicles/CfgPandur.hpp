@@ -17,10 +17,7 @@ class UKSF_ACR_Pandur2: I_APC_Wheeled_03_cannon_F {
         "a3\armor_f\data\cage_sand_co.paa"
     };
 
-    class TransportMagazines {};
-    class TransportItems {};
-    class TransportWeapons {};
-    class TransportBackpacks {};
+    INVENTORY_EMPTY;
 };
 
 

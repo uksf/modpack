@@ -15,10 +15,8 @@ class UKSF_ACR_Dingo_Mg: CUP_B_Dingo_CZ_Wdl {
     typicalCargo[] = {
         "UKSF_ACR_Rifleman"
     };
-    class TransportMagazines {};
-    class TransportItems {};
-    class TransportWeapons {};
-    class TransportBackpacks {};
+
+    INVENTORY_EMPTY;
 };
 
 // GL
@@ -38,8 +36,6 @@ class UKSF_ACR_Dingo_GL: CUP_B_Dingo_GL_CZ_Wdl {
     typicalCargo[] = {
         "UKSF_ACR_Rifleman"
     };
-    class TransportMagazines {};
-    class TransportItems {};
-    class TransportWeapons {};
-    class TransportBackpacks {};
+
+    INVENTORY_EMPTY;
 };

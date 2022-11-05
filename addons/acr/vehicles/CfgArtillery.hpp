@@ -41,8 +41,5 @@ class UKSF_ACR_Sholef: B_MBT_01_arty_F {
         "a3\armor_f\data\camonet_nato_desert_co.paa"
     };
 
-    class TransportMagazines {};
-    class TransportItems {};
-    class TransportWeapons {};
-    class TransportBackpacks {};
+    INVENTORY_EMPTY;
 };

@@ -28,10 +28,8 @@ class UKSF_ACR_Buran_Medical: MM_Buran_Medical {
     typicalCargo[] = {
         "UKSF_ACR_Rifleman"
     };
-    class TransportMagazines {};
-    class TransportItems {};
-    class TransportWeapons {};
-    class TransportBackpacks {};
+
+    INVENTORY_EMPTY;
 };
 
 // Cargo
@@ -46,8 +44,6 @@ class UKSF_ACR_Buran_Cargo: MM_Buran_Cargo {
     typicalCargo[] = {
         "UKSF_ACR_Rifleman"
     };
-    class TransportMagazines {};
-    class TransportItems {};
-    class TransportWeapons {};
-    class TransportBackpacks {};
+
+    INVENTORY_EMPTY;
 };

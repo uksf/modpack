@@ -60,8 +60,5 @@ class UKSF_ACR_Mi17: CUP_B_Mi171Sh_Unarmed_ACR {
         "cup\airvehicles\cup_airvehicles_mi8\data\mi8_decals_ca.paa"
     };
 
-    class TransportMagazines {};
-    class TransportItems {};
-    class TransportWeapons {};
-    class TransportBackpacks {};
+    INVENTORY_EMPTY;
 };

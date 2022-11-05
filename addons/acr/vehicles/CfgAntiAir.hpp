@@ -16,10 +16,7 @@ class UKSF_ACR_Wiesel_AA: I_LT_01_AA_F {
         "UKSF_ACR_Armour_Crewman"
     };
 
-    class TransportMagazines {};
-    class TransportItems {};
-    class TransportWeapons {};
-    class TransportBackpacks {};
+    INVENTORY_EMPTY;
 };
 
 // Radar
@@ -40,8 +37,5 @@ class UKSF_ACR_Wiesel_Radar: I_LT_01_scout_F {
         "UKSF_ACR_Armour_Crewman"
     };
 
-    class TransportMagazines {};
-    class TransportItems {};
-    class TransportWeapons {};
-    class TransportBackpacks {};
+    INVENTORY_EMPTY;
 };

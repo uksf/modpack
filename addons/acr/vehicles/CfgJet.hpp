@@ -60,8 +60,5 @@ class UKSF_ACR_Li2: CUP_O_C47_SLA {
     // editorPreview = QPATHTOEF(common,data\previews\Inegal_Jet_A149.jpg);
     hiddenSelectionsTextures[] = {"cup\airvehicles\cup_airvehicles_dc3\data\textures\c47_body_01_sla_co.paa","cup\airvehicles\cup_airvehicles_dc3\data\textures\c47_body_02_sla_co.paa"};
 
-    class TransportMagazines {};
-    class TransportItems {};
-    class TransportWeapons {};
-    class TransportBackpacks {};
+    INVENTORY_EMPTY;
 };

@@ -14,10 +14,7 @@ class UKSF_ACR_BVP: CUP_B_BMP2_CZ {
         "cup\trackedvehicles\cup_trackedvehicles_bmp\bmp2\data\bmp2_02_acr_co.paa"
     };
 
-    class TransportMagazines {};
-    class TransportItems {};
-    class TransportWeapons {};
-    class TransportBackpacks {};
+    INVENTORY_EMPTY;
 };
 
 
