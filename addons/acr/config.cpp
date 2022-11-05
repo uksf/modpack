@@ -55,21 +55,20 @@ class CfgPatches {
             "UKSF_ACR_M2_Low",
             "UKSF_ACR_TOW"
         };
-        weapons[]={
+        weapons[] = {
             "UKSF_ACR_CUP_arifle_ACRC_blk_556_CUP_acc_FlashlightACE_optic_MRCO_2D",
             "UKSF_ACR_CUP_arifle_ACRC_EGLM_blk_556_CUP_acc_FlashlightACE_optic_MRCO_2D",
             "UKSF_ACR_LMG_03_F_CUP_acc_FlashlightACE_optic_MRCO_2D",
-            "UKSF_ACR_CUP_launch_RPG7V",
+            // "UKSF_ACR_CUP_launch_RPG7V",
             "UKSF_ACR_CUP_srifle_SVD_wdl_CUP_optic_PSO_1_1_open",
             "UKSF_ACR_CUP_arifle_ACRC_blk_556",
             "UKSF_ACR_CUP_arifle_ACRC_blk_556_ACE_optic_MRCO_2D",
-            "UKSF_ACR_CUP_hgun_CZ75",
+            // "UKSF_ACR_CUP_hgun_CZ75",
             "UKSF_ACR_CUP_srifle_M2010_blk_ACE_optic_LRPS_2D",
             "UKSF_ACR_UKSF_ACR_ACR_CUP_arifle_ACRC_blk_556_CUP_acc_FlashlightACE_optic_MRCO_2D_CUP_acc_FlashlightACE_optic_MRCO_2D",
-            "UKSF_ACR_CUP_launch_FIM92Stinger_Loaded",
-            "UKSF_ACR_CUP_lmg_MG3_rail_ACE_optic_MRCO_2D",
-            "UKSF_ACR_launch_I_Titan_short_F",
-            "UKSF_ACR_"
+            // "UKSF_ACR_CUP_launch_FIM92Stinger_Loaded",
+            "UKSF_ACR_CUP_lmg_MG3_rail_ACE_optic_MRCO_2D"
+            // "UKSF_ACR_launch_I_Titan_short_F"
         };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
@@ -83,15 +82,13 @@ class CfgPatches {
             "CUP_Creatures_Military_ACR",
             "A3_Characters_F",
             "CuratorOnly_Characters_F_OPFOR",
-            "A3_Weapons_F_Exp_Machineguns_LMG_03",
             "CUP_Weapons_RPG7",
             "CUP_Weapons_SVD",
             "A3_Characters_F_Tank_Headgear",
             "CUP_Weapons_CZ75",
             "CUP_Weapons_M2010",
             "CUP_Weapons_Stinger",
-            "CUP_Weapons_MG3",
-            "A3_Weapons_F_Launchers_Titan"
+            "CUP_Weapons_MG3"
         };
         author = QUOTE(UKSF);
         authors[] = { "Bridgford.A" };
@@ -103,10 +100,10 @@ class CfgPatches {
 class CBA_Extended_EventHandlers;
 
 #include "CfgEventHandlers.hpp"
+#include "CfgFactionClasses.hpp"
 #include "CfgGroups.hpp"
 #include "CfgVehicles.hpp"
 #include "CfgWeapons.hpp"
-#include "CfgFactionClasses.hpp"
 
 class CfgWorlds {
     class GenericNames {
