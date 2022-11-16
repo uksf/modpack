@@ -9,14 +9,14 @@ class UnderBarrelSlot;
 class CfgWeapons {
     class U_BasicBody;
     class UniformItem;
-    class UKSF_ACR_U_Base: U_BasicBody {
+    class GVAR(U_Base): U_BasicBody {
         author = "UKSF";
         scope = 1;
         displayName = "$STR_A3_Underwear1";
         picture = "\A3\characters_f\data\ui\icon_U_BasicBody_ca.paa";
         hiddenSelections[] = { "camo" };
         hiddenSelectionsTextures[] = { "\A3\Characters_F\Common\Data\basicbody_black_co.paa" };
-        class ItemInfo: UniformItem {
+        class ItemInfo): UniformItem {
             uniformModel = "-";
             uniformClass = "ACR_Soldier_Underwear";
             containerClass = "Supply0";
@@ -25,7 +25,7 @@ class CfgWeapons {
     };
 
     class CUP_arifle_ACRC_blk_556;
-    class uksf_ACR_CUP_arifle_ACRC_blk_556_CUP_acc_FlashlightACE_optic_MRCO_2D: CUP_arifle_ACRC_blk_556
+    class GVAR(CUP_arifle_ACRC_blk_556_CUP_acc_FlashlightACE_optic_MRCO_2D): CUP_arifle_ACRC_blk_556
     {
         displayName = "ACR-C (Black, 5.56x45)";
         scope = 1;
@@ -44,7 +44,7 @@ class CfgWeapons {
         };
     };
     class CUP_arifle_ACRC_EGLM_blk_556;
-    class uksf_ACR_CUP_arifle_ACRC_EGLM_blk_556_CUP_acc_FlashlightACE_optic_MRCO_2D: CUP_arifle_ACRC_EGLM_blk_556
+    class GVAR(CUP_arifle_ACRC_EGLM_blk_556_CUP_acc_FlashlightACE_optic_MRCO_2D): CUP_arifle_ACRC_EGLM_blk_556
     {
         displayName = "ACR-C EGLM (Black, 5.56x45)";
         scope = 1;
@@ -63,7 +63,7 @@ class CfgWeapons {
         };
     };
     class LMG_03_F;
-    class uksf_ACR_LMG_03_F_CUP_acc_FlashlightACE_optic_MRCO_2D: LMG_03_F
+    class GVAR(LMG_03_F_CUP_acc_FlashlightACE_optic_MRCO_2D): LMG_03_F
     {
         displayName = "FN Minimi SPW";
         scope = 1;
@@ -82,7 +82,7 @@ class CfgWeapons {
         };
     };
     class CUP_srifle_SVD_wdl;
-    class uksf_ACR_CUP_srifle_SVD_wdl_CUP_optic_PSO_1_1_open: CUP_srifle_SVD_wdl
+    class GVAR(CUP_srifle_SVD_wdl_CUP_optic_PSO_1_1_open): CUP_srifle_SVD_wdl
     {
         displayName = "SVD (woodland)";
         scope = 1;
@@ -95,7 +95,7 @@ class CfgWeapons {
             };
         };
     };
-    class uksf_ACR_CUP_arifle_ACRC_blk_556_ACE_optic_MRCO_2D: CUP_arifle_ACRC_blk_556
+    class GVAR(CUP_arifle_ACRC_blk_556_ACE_optic_MRCO_2D): CUP_arifle_ACRC_blk_556
     {
         displayName = "ACR-C (Black, 5.56x45)";
         scope = 1;
@@ -109,7 +109,7 @@ class CfgWeapons {
         };
     };
     class CUP_srifle_M2010_blk;
-    class uksf_ACR_CUP_srifle_M2010_blk_ACE_optic_LRPS_2D: CUP_srifle_M2010_blk
+    class GVAR(CUP_srifle_M2010_blk_ACE_optic_LRPS_2D): CUP_srifle_M2010_blk
     {
         displayName = "M2010 (Black)";
         scope = 1;
@@ -122,7 +122,7 @@ class CfgWeapons {
         };
     };
     class CUP_lmg_MG3_rail;
-    class uksf_ACR_CUP_lmg_MG3_rail_ACE_optic_MRCO_2D: CUP_lmg_MG3_rail
+    class GVAR(CUP_lmg_MG3_rail_ACE_optic_MRCO_2D): CUP_lmg_MG3_rail
     {
         displayName = "MG3 (RIS)";
         scope = 1;
@@ -136,7 +136,7 @@ class CfgWeapons {
         };
     };
     class CUP_arifle_HK416_Black;
-    class UKSF_ACR_CUP_arifle_HK416_Black_ZO_Low_anpeq: CUP_arifle_HK416_Black
+    class GVAR(CUP_arifle_HK416_Black_ZO_Low_anpeq): CUP_arifle_HK416_Black
     {
         displayName = "HK416";
         scope = 1;

@@ -1,12 +1,12 @@
 // MRLS
 class CUP_B_RM70_CZ;
-class UKSF_ACR_RM_70: CUP_B_RM70_CZ {
+class GVAR(RM_70): CUP_B_RM70_CZ {
     scope = 2;
-    faction = "UKSF_ACR";
+    faction = QUOTE(ADDON);
     side = 0;
     displayName = "RM70";
-    crew = "UKSF_ACR_Crewman";
-    typicalCargo[] = {"UKSF_ACR_Crewman"};
+    crew = QGVAR(Crewman);
+    typicalCargo[] = {QGVAR(Crewman)};
     // editorPreview = QPATHTOEF(common,data\previews\Inegal_Tank_Leclerc.jpg);
     // hiddenSelections[] = { "Camo1", "Camo2", "Camo3", "HideHull", "HideTurret", "pasoffsetl", "pasoffsetp" };
     hiddenSelectionsTextures[] = {
@@ -25,13 +25,13 @@ class UKSF_ACR_RM_70: CUP_B_RM70_CZ {
 
 // Sholef
 class B_MBT_01_arty_F;
-class UKSF_ACR_Sholef: B_MBT_01_arty_F {
+GVAR(Sholef): B_MBT_01_arty_F {
     scope = 2;
-    faction = "UKSF_ACR";
+    faction = QUOTE(ADDON);
     side = 0;
     displayName = "Sholef";
-    crew = "UKSF_ACR_Armour_Crewman";
-    typicalCargo[] = {"UKSF_ACR_Armour_Crewman"};
+    crew = QGVAR(Armour_Crewman);
+    typicalCargo[] = {QGVAR(Armour_Crewman)};
     // editorPreview = QPATHTOEF(common,data\previews\Inegal_Tank_Leclerc.jpg);
     // hiddenSelections[] = { "Camo1", "Camo2", "Camo3", "HideHull", "HideTurret", "pasoffsetl", "pasoffsetp" };
     hiddenSelectionsTextures[] = {

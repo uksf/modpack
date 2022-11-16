@@ -1,11 +1,11 @@
 class I_APC_Wheeled_03_cannon_F;
-class UKSF_ACR_Pandur2: I_APC_Wheeled_03_cannon_F {
+class GVAR(Pandur2): I_APC_Wheeled_03_cannon_F {
     scope = 2;
-    faction = "UKSF_ACR";
+    faction = QUOTE(ADDON);
     side = 0;
     displayName = "Pandur2";
-    crew = "UKSF_ACR_Crewman";
-    typicalCargo[] = {"UKSF_ACR_Crewman"};
+    crew = QGVAR(Crewman);
+    typicalCargo[] = {QGVAR(Crewman)};
     // editorPreview = QPATHTOEF(common,data\previews\Inegal_Tank_Leclerc.jpg);
     // hiddenSelections[] = { "Camo1", "Camo2", "Camo3", "HideHull", "HideTurret", "pasoffsetl", "pasoffsetp" };
     hiddenSelectionsTextures[] = {

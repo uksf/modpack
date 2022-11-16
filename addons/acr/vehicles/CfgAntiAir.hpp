@@ -1,8 +1,8 @@
 // AA
 class I_LT_01_AA_F;
-class UKSF_ACR_Wiesel_AA: I_LT_01_AA_F {
+class GVAR(Wiesel_AA): I_LT_01_AA_F {
     side = 0;
-    faction = "UKSF_ACR";
+    faction = QUOTE(ADDON);
     displayName = "Wiesel AA";
     // editorPreview = QPATHTOEF(common,data\previews\Inegal_LandRover_Unarmed.jpg);
     hiddenSelectionsTextures[] = {
@@ -11,9 +11,9 @@ class UKSF_ACR_Wiesel_AA: I_LT_01_AA_F {
         "a3\armor_f\data\camonet_aaf_digi_green_co.paa",
         "a3\armor_f\data\cage_olive_co.paa"
     };
-    crew = "UKSF_ACR_Armour_Crewman";
+    crew = QGVAR(Armour_Crewman);
     typicalCargo[] = {
-        "UKSF_ACR_Armour_Crewman"
+        QGVAR(Armour_Crewman);
     };
 
     INVENTORY_EMPTY;
@@ -21,9 +21,9 @@ class UKSF_ACR_Wiesel_AA: I_LT_01_AA_F {
 
 // Radar
 class I_LT_01_scout_F;
-class UKSF_ACR_Wiesel_Radar: I_LT_01_scout_F {
+class GVAR(Wiesel_Radar): I_LT_01_scout_F {
     side = 0;
-    faction = "UKSF_ACR";
+    faction = QUOTE(ADDON);
     displayName = "Wiesel Radar";
     // editorPreview = QPATHTOEF(common,data\previews\Inegal_LandRover_Unarmed.jpg);
     hiddenSelectionsTextures[] = {
@@ -32,9 +32,9 @@ class UKSF_ACR_Wiesel_Radar: I_LT_01_scout_F {
         "a3\armor_f\data\camonet_aaf_digi_green_co.paa",
         "a3\armor_f\data\cage_olive_co.paa"
     };
-    crew = "UKSF_ACR_Armour_Crewman";
+    crew = QGVAR(Armour_Crewman);
     typicalCargo[] = {
-        "UKSF_ACR_Armour_Crewman"
+        QGVAR(Armour_Crewman);
     };
 
     INVENTORY_EMPTY;

@@ -1,7 +1,7 @@
 class CfgVehicles {
     class O_Soldier_base_F;
     class O_Soldier_F;
-    class UKSF_ACR_Soldier_Underwear: O_Soldier_F {
+    class GVAR(Soldier_Underwear)): O_Soldier_F {
         author = "UKSF";
         scope = 1;
         scopeCurator = 0;
@@ -21,10 +21,10 @@ class CfgVehicles {
         hiddenSelections[] = { "camo" };
         hiddenSelectionsTextures[] = { "\A3\Characters_F\Common\Data\basicbody_black_co.paa" };
     };
-    class UKSF_ACR_Soldier_Base: O_Soldier_base_F {
+    class GVAR(Soldier_Base): O_Soldier_base_F {
         author = "UKSF";
         scope = 0;
-        faction = "UKSF_ACR";
+        faction = QUOTE(ADDON);
         displayName = "ACR Base";
         nakedUniform = "ACR_U_Base";
         uniformClass = "CUP_U_B_CZ_WDL_NoKneepads";
@@ -89,7 +89,7 @@ class CfgVehicles {
     #include "units\CfgUnits.hpp"
 
     class CUP_B_Kombat_Radio_Olive;
-    class UKSF_ACR_Squad_Leader_pack: CUP_B_Kombat_Radio_Olive {
+    class GVAR(Squad_Leader_pack): CUP_B_Kombat_Radio_Olive {
         scope = 1;
         class TransportMagazines {
             MACRO_ADDMAGAZINE(1Rnd_HE_Grenade_shell,11);
@@ -98,7 +98,7 @@ class CfgVehicles {
         class TransportWeapons{};
     };
     class CUP_B_ACRPara_m95;
-    class UKSF_ACR_Autorifleman_pack: CUP_B_ACRPara_m95 {
+    class GVAR(Autorifleman_pack): CUP_B_ACRPara_m95 {
         scope = 1;
         class TransportMagazines {
             MACRO_ADDMAGAZINE(CUP_100Rnd_TE4_Green_Tracer_556x45_M249,5);
@@ -106,7 +106,7 @@ class CfgVehicles {
         class TransportItems{};
         class TransportWeapons{};
     };
-    class UKSF_ACR_Rifleman_LAT_pack: CUP_B_ACRPara_m95 {
+    class GVAR(Rifleman_LAT_pack): CUP_B_ACRPara_m95 {
         scope = 1;
         class TransportMagazines {
             MACRO_ADDMAGAZINE(CUP_OG7_M,1);
@@ -116,14 +116,14 @@ class CfgVehicles {
         class TransportWeapons{};
     };
     class CUP_B_GER_Medic_Flecktarn;
-    class UKSF_ACR_Sharpshooter_pack: CUP_B_GER_Medic_Flecktarn {
+    class GVAR(Sharpshooter_pack): CUP_B_GER_Medic_Flecktarn {
         scope = 1;
         class TransportMagazines{};
         class TransportItems{};
         class TransportWeapons{};
     };
     class B_RadioBag_01_wdl_F;
-    class UKSF_ACR_Signaller_pack: B_RadioBag_01_wdl_F {
+    class GVAR(Signaller_pack): B_RadioBag_01_wdl_F {
         scope = 1;
         displayName = "Radio Backpack";
         class TransportMagazines {
@@ -135,7 +135,7 @@ class CfgVehicles {
         class TransportItems{};
         class TransportWeapons{};
     };
-    class UKSF_ACR_Machine_Gunner_pack: CUP_B_ACRPara_m95 {
+    class GVAR(Machine_Gunner_pack): CUP_B_ACRPara_m95 {
         scope = 1;
         class TransportMagazines {
             MACRO_ADDMAGAZINE(CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M,4);
@@ -143,12 +143,12 @@ class CfgVehicles {
         class TransportItems{};
         class TransportWeapons{};
     };
-    class UKSF_ACR_Rifleman_HAT_pack: CUP_B_ACRPara_m95 {
+    class GVAR(Rifleman_HAT_pack): CUP_B_ACRPara_m95 {
         scope = 1;
         class TransportMagazines {};
     };
     class CUP_B_ACRScout_m95;
-    class UKSF_ACR_Operator_Pack: CUP_B_ACRScout_m95 {
+    class GVAR(Operator_Pack): CUP_B_ACRScout_m95 {
         scope = 1;
         class TransportMagazines {
             MACRO_ADDMAGAZINE(APERSMine_Range_Mag,2);

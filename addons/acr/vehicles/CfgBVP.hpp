@@ -1,11 +1,11 @@
 class CUP_B_BMP2_CZ;
-class UKSF_ACR_BVP: CUP_B_BMP2_CZ {
+class GVAR(BVP): CUP_B_BMP2_CZ {
     scope = 2;
-    faction = "UKSF_ACR";
+    faction = QUOTE(ADDON);
     side = 0;
     displayName = "BVP";
-    crew = "UKSF_ACR_Armour_Crewman";
-    typicalCargo[] = {"UKSF_ACR_Armour_Crewman"};
+    crew = QGVAR(Armour_Crewman);
+    typicalCargo[] = {QGVAR(Armour_Crewman)};
     // editorPreview = QPATHTOEF(common,data\previews\Inegal_Tank_Leclerc.jpg);
     // hiddenSelections[] = { "Camo1", "Camo2", "Camo3", "HideHull", "HideTurret", "pasoffsetl", "pasoffsetp" };
 

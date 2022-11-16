@@ -1,14 +1,14 @@
 // Tansport
 class MM_Buran_Transporter;
-class UKSF_ACR_Buran_Transporter: MM_Buran_Transporter {
+class GVAR(Buran_Transporter): MM_Buran_Transporter {
     side = 0;
-    faction = "UKSF_ACR";
+    faction = QUOTE(ADDON);
     displayName = "Buran Transporter";
     // editorPreview = QPATHTOEF(common,data\previews\Inegal_LandRover_Unarmed.jpg);
     hiddenSelectionsTextures[] = {"mm_buran\data\mm_buran_ext_green_co.paa","mm_buran\data\mm_buran_int_green_co.paa"};
-    crew = "UKSF_ACR_Rifleman";
+    crew = QGVAR(Rifleman);
     typicalCargo[] = {
-        "UKSF_ACR_Rifleman"
+        QGVAR(Rifleman)
     };
     class TransportMagazines {};
     class TransportItems {};
@@ -18,15 +18,15 @@ class UKSF_ACR_Buran_Transporter: MM_Buran_Transporter {
 
 // Medical
 class MM_Buran_Medical;
-class UKSF_ACR_Buran_Medical: MM_Buran_Medical {
+class GVAR(Buran_Medical): MM_Buran_Medical {
     side = 0;
-    faction = "UKSF_ACR";
+    faction = QUOTE(ADDON);
     displayName = "Buran Medical";
     // editorPreview = QPATHTOEF(common,data\previews\Inegal_LandRover_Unarmed.jpg);
     hiddenSelectionsTextures[] = {"mm_buran\data\mm_buran_ext_green_co.paa","mm_buran\data\mm_buran_int_green_co.paa"};
-    crew = "UKSF_ACR_Rifleman";
+    crew = QGVAR(Rifleman);
     typicalCargo[] = {
-        "UKSF_ACR_Rifleman"
+        QGVAR(Rifleman)
     };
 
     INVENTORY_EMPTY;
@@ -34,15 +34,15 @@ class UKSF_ACR_Buran_Medical: MM_Buran_Medical {
 
 // Cargo
 class MM_Buran_Cargo;
-class UKSF_ACR_Buran_Cargo: MM_Buran_Cargo {
+class GVAR(Buran_Cargo): MM_Buran_Cargo {
     side = 0;
-    faction = "UKSF_ACR";
+    faction = QUOTE(ADDON);
     displayName = "Buran Cargo";
     // editorPreview = QPATHTOEF(common,data\previews\Inegal_LandRover_Unarmed.jpg);
     hiddenSelectionsTextures[] = {"mm_buran\data\mm_buran_ext_green_co.paa","mm_buran\data\mm_buran_int_green_co.paa"};
-    crew = "UKSF_ACR_Rifleman";
+    crew = QGVAR(Rifleman);
     typicalCargo[] = {
-        "UKSF_ACR_Rifleman"
+        QGVAR(Rifleman)
     };
 
     INVENTORY_EMPTY;

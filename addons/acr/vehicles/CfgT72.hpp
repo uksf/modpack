@@ -1,11 +1,11 @@
 class CUP_O_T72_SLA;
-class UKSF_ACR_T72: CUP_O_T72_SLA {
+class GVAR(T72): CUP_O_T72_SLA {
     scope = 2;
-    faction = "UKSF_ACR";
+    faction = QUOTE(ADDON);
     side = 0;
     displayName = "T72";
-    crew = "UKSF_ACR_Armour_Crewman";
-    typicalCargo[] = {"UKSF_ACR_Armour_Crewman"};
+    crew = QGVAR(Armour_Crewman);
+    typicalCargo[] = {QGVAR(Armour_Crewman)};
     // editorPreview = QPATHTOEF(common,data\previews\Inegal_Tank_Leclerc.jpg);
     // hiddenSelections[] = { "Camo1", "Camo2", "Camo3", "HideHull", "HideTurret", "pasoffsetl", "pasoffsetp" };
     hiddenSelectionsTextures[] = {

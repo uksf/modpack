@@ -1,8 +1,8 @@
 // MG
 class CUP_B_Dingo_CZ_Wdl;
-class UKSF_ACR_Dingo_Mg: CUP_B_Dingo_CZ_Wdl {
+class GVAR(Dingo_Mg): CUP_B_Dingo_CZ_Wdl {
     side = 0;
-    faction = "UKSF_ACR";
+    faction = QUOTE(ADDON);
     displayName = "Dingo MG";
     // editorPreview = QPATHTOEF(common,data\previews\Inegal_LandRover_Unarmed.jpg);
     hiddenSelectionsTextures[] = {
@@ -11,9 +11,9 @@ class UKSF_ACR_Dingo_Mg: CUP_B_Dingo_CZ_Wdl {
         "cup\wheeledvehicles\cup_wheeledvehicles_dingo\data\flw100_co.paa",
         "cup\wheeledvehicles\cup_wheeledvehicles_dingo\data\flw200_co.paa"
     };
-    crew = "UKSF_ACR_Rifleman";
+    crew = QGVAR(Rifleman);
     typicalCargo[] = {
-        "UKSF_ACR_Rifleman"
+        QGVAR(Rifleman)
     };
 
     INVENTORY_EMPTY;
@@ -21,9 +21,9 @@ class UKSF_ACR_Dingo_Mg: CUP_B_Dingo_CZ_Wdl {
 
 // GL
 class CUP_B_Dingo_GL_CZ_Wdl;
-class UKSF_ACR_Dingo_GL: CUP_B_Dingo_GL_CZ_Wdl {
+class GVAR(Dingo_GL): CUP_B_Dingo_GL_CZ_Wdl {
     side = 0;
-    faction = "UKSF_ACR";
+    faction = QUOTE(ADDON);
     displayName = "Dingo GL";
     // editorPreview = QPATHTOEF(common,data\previews\Inegal_LandRover_Unarmed.jpg);
     hiddenSelectionsTextures[] = {
@@ -32,9 +32,9 @@ class UKSF_ACR_Dingo_GL: CUP_B_Dingo_GL_CZ_Wdl {
         "cup\wheeledvehicles\cup_wheeledvehicles_dingo\data\flw100_co.paa",
         "cup\wheeledvehicles\cup_wheeledvehicles_dingo\data\flw200_co.paa"
     };
-    crew = "UKSF_ACR_Rifleman";
+    crew = QGVAR(Rifleman);
     typicalCargo[] = {
-        "UKSF_ACR_Rifleman"
+        QGVAR(Rifleman)
     };
 
     INVENTORY_EMPTY;

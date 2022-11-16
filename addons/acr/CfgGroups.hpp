@@ -7,241 +7,241 @@ class cfgGroups
       name = "ACR";
       class Infantry {
         name = "Infantry";
-        class UKSF_ACR_Sniper_Pair {
+        class GVAR(Sniper_Pair) {
           name = "Sniper Pair";
-          faction = "UKSF_ACR";
+          faction = QUOTE(ADDON);
           side = 0;
           class Unit0 {
             side = 0;
-            vehicle = "UKSF_ACR_Sniper";
+            vehicle = QGVAR(Sniper);
             rank = "PRIVATE";
             position[] = {0,-0,0};
           };
           class Unit1 {
             side = 0;
-            vehicle = "UKSF_ACR_Sniper";
+            vehicle = QGVAR(Sniper);
             rank = "PRIVATE";
             position[] = {0,-5,0};
           };
         };
-        class UKSF_ACR_HQ {
+        class GVAR(HQ) {
           name = "HQ";
-          faction = "UKSF_ACR";
+          faction = QUOTE(ADDON);
           side = 0;
           class Unit0 {
             side = 0;
-            vehicle = "UKSF_ACR_Officer";
+            vehicle = QGVAR(Officer);
             rank = "PRIVATE";
             position[] = {0,-0,0};
           };
           class Unit1 {
             side = 0;
-            vehicle = "UKSF_ACR_Rifleman";
+            vehicle = QGVAR(Rifleman);
             rank = "PRIVATE";
             position[] = {0,-5,0};
           };
           class Unit2 {
             side = 0;
-            vehicle = "UKSF_ACR_Signaller";
+            vehicle = QGVAR(Signaller);
             rank = "PRIVATE";
             position[] = {0,-10,0};
           };
           class Unit3 {
             side = 0;
-            vehicle = "UKSF_ACR_Signaller";
+            vehicle = QGVAR(Signaller);
             rank = "PRIVATE";
             position[] = {0,-15,0};
           };
         };
-        class UKSF_ACR_2_Man_Team {
+        class GVAR(2_Man_Team) {
           name = "2 Man Team";
-          faction = "UKSF_ACR";
+          faction = QUOTE(ADDON);
           side = 0;
           class Unit0 {
             side = 0;
-            vehicle = "UKSF_ACR_Rifleman";
+            vehicle = QGVAR(Rifleman);
             rank = "PRIVATE";
             position[] = {0,-0,0};
           };
           class Unit1 {
             side = 0;
-            vehicle = "UKSF_ACR_Squad_Leader";
+            vehicle = QGVAR(Squad_Leader);
             rank = "PRIVATE";
             position[] = {0,-5,0};
           };
         };
-        class UKSF_ACR_Fireteam {
+        class GVAR(Fireteam) {
           name = "Fireteam";
-          faction = "UKSF_ACR";
+          faction = QUOTE(ADDON);
           side = 0;
           class Unit0 {
             side = 0;
-            vehicle = "UKSF_ACR_Squad_Leader";
+            vehicle = QGVAR(Squad_Leader);
             rank = "PRIVATE";
             position[] = {0,-0,0};
           };
           class Unit1 {
             side = 0;
-            vehicle = "UKSF_ACR_Rifleman";
+            vehicle = QGVAR(Rifleman);
             rank = "PRIVATE";
             position[] = {0,-5,0};
           };
           class Unit2 {
             side = 0;
-            vehicle = "UKSF_ACR_Rifleman_LAT";
+            vehicle = QGVAR(Rifleman_LAT);
             rank = "PRIVATE";
             position[] = {0,-10,0};
           };
           class Unit3 {
             side = 0;
-            vehicle = "UKSF_ACR_Machine_Gunner";
+            vehicle = QGVAR(Machine_Gunner);
             rank = "PRIVATE";
             position[] = {0,-15,0};
           };
         };
-        class UKSF_ACR_Section {
+        class GVAR(Section) {
           name = "Section";
-          faction = "UKSF_ACR";
+          faction = QUOTE(ADDON);
           side = 0;
           class Unit0 {
             side = 0;
-            vehicle = "UKSF_ACR_Squad_Leader";
+            vehicle = QGVAR(Squad_Leader);
             rank = "PRIVATE";
             position[] = {0,-0,0};
           };
           class Unit1 {
             side = 0;
-            vehicle = "UKSF_ACR_Rifleman";
+            vehicle = QGVAR(Rifleman);
             rank = "PRIVATE";
             position[] = {0,-5,0};
           };
           class Unit2 {
             side = 0;
-            vehicle = "UKSF_ACR_Machine_Gunner";
+            vehicle = QGVAR(Machine_Gunner);
             rank = "PRIVATE";
             position[] = {0,-10,0};
           };
           class Unit3 {
             side = 0;
-            vehicle = "UKSF_ACR_Rifleman";
+            vehicle = QGVAR(Rifleman);
             rank = "PRIVATE";
             position[] = {0,-15,0};
           };
           class Unit4 {
             side = 0;
-            vehicle = "UKSF_ACR_Rifleman_LAT";
+            vehicle = QGVAR(Rifleman_LAT);
             rank = "PRIVATE";
             position[] = {0,-20,0};
           };
           class Unit5 {
             side = 0;
-            vehicle = "UKSF_ACR_Rifleman";
+            vehicle = QGVAR(Rifleman);
             rank = "PRIVATE";
             position[] = {0,-25,0};
           };
           class Unit6 {
             side = 0;
-            vehicle = "UKSF_ACR_Sharpshooter";
+            vehicle = QGVAR(Sharpshooter);
             rank = "PRIVATE";
             position[] = {0,-30,0};
           };
           class Unit7 {
             side = 0;
-            vehicle = "UKSF_ACR_Rifleman";
+            vehicle = QGVAR(Rifleman);
             rank = "PRIVATE";
             position[] = {0,-35,0};
           };
         };
-        class UKSF_ACR_AT_Section {
+        class GVAR(AT_Section) {
           name = "AT Section";
-          faction = "UKSF_ACR";
+          faction = QUOTE(ADDON);
           side = 0;
           class Unit0 {
             side = 0;
-            vehicle = "UKSF_ACR_Squad_Leader";
+            vehicle = QGVAR(Squad_Leader);
             rank = "PRIVATE";
             position[] = {0,-0,0};
           };
           class Unit1 {
             side = 0;
-            vehicle = "UKSF_ACR_Rifleman_HAT";
+            vehicle = QGVAR(Rifleman_HAT);
             rank = "PRIVATE";
             position[] = {0,-5,0};
           };
           class Unit2 {
             side = 0;
-            vehicle = "UKSF_ACR_Rifleman_HAT";
+            vehicle = QGVAR(Rifleman_HAT);
             rank = "PRIVATE";
             position[] = {0,-10,0};
           };
           class Unit3 {
             side = 0;
-            vehicle = "UKSF_ACR_Rifleman_LAT";
+            vehicle = QGVAR(Rifleman_LAT);
             rank = "PRIVATE";
             position[] = {0,-15,0};
           };
           class Unit4 {
             side = 0;
-            vehicle = "UKSF_ACR_Rifleman_LAT";
+            vehicle = QGVAR(Rifleman_LAT);
             rank = "PRIVATE";
             position[] = {0,-20,0};
           };
           class Unit5 {
             side = 0;
-            vehicle = "UKSF_ACR_Sharpshooter";
+            vehicle = QGVAR(Sharpshooter);
             rank = "PRIVATE";
             position[] = {0,-25,0};
           };
           class Unit6 {
             side = 0;
-            vehicle = "UKSF_ACR_Machine_Gunner";
+            vehicle = QGVAR(Machine_Gunner);
             rank = "PRIVATE";
             position[] = {0,-30,0};
           };
         };
-        class UKSF_ACR_MG_Section {
+        class GVAR(MG_Section) {
           name = "MG Section";
-          faction = "UKSF_ACR";
+          faction = QUOTE(ADDON);
           side = 0;
           class Unit0 {
             side = 0;
-            vehicle = "UKSF_ACR_Squad_Leader";
+            vehicle = QGVAR(Squad_Leader);
             rank = "PRIVATE";
             position[] = {0,-0,0};
           };
           class Unit1 {
             side = 0;
-            vehicle = "UKSF_ACR_Machine_Gunner";
+            vehicle = QGVAR(Machine_Gunner);
             rank = "PRIVATE";
             position[] = {0,-5,0};
           };
           class Unit2 {
             side = 0;
-            vehicle = "UKSF_ACR_Machine_Gunner";
+            vehicle = QGVAR(Machine_Gunner);
             rank = "PRIVATE";
             position[] = {0,-10,0};
           };
           class Unit3 {
             side = 0;
-            vehicle = "UKSF_ACR_Machine_Gunner";
+            vehicle = QGVAR(Machine_Gunner);
             rank = "PRIVATE";
             position[] = {0,-15,0};
           };
           class Unit4 {
             side = 0;
-            vehicle = "UKSF_ACR_Autorifleman";
+            vehicle = QGVAR(Autorifleman);
             rank = "PRIVATE";
             position[] = {0,-20,0};
           };
           class Unit5 {
             side = 0;
-            vehicle = "UKSF_ACR_Sharpshooter";
+            vehicle = QGVAR(Sharpshooter);
             rank = "PRIVATE";
             position[] = {0,-25,0};
           };
           class Unit6 {
             side = 0;
-            vehicle = "UKSF_ACR_Rifleman_LAT";
+            vehicle = QGVAR(Rifleman_LAT);
             rank = "PRIVATE";
             position[] = {0,-30,0};
           };
