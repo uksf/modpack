@@ -27,9 +27,19 @@ private _uniformClasses = [format [QUOTE(GVAR(randomUniforms)_%1), _type], {_con
 private _vestClasses = [format [QUOTE(GVAR(randomVests)_%1), _type], {_config >> QGVAR(randomVests)}, []] call EFUNC(common,readCacheValues);
 if (_uniformClasses isEqualTo [] && _vestClasses isEqualTo []) exitWith {};
 
+private _currentUniform = uniform _unit;
 private _uniform = selectRandomWeighted _uniformClasses;
+if !(isNil "_uniform") then {
+    _uniform = _currentUniform;
+};
+
+private _currentVest = vest _unit;
 private _vest = selectRandomWeighted _vestClasses;
-if (uniform _unit == _uniform && vest _unit == _vest) exitWith {};
+if !(isNil "_vest") then {
+    _vest = _currentVest;
+};
+
+if (_currentUniform == _uniform && _currentVest == _vest) exitWith {};
 
 private _loadout = [_unit] call CBA_fnc_getLoadout;
 _loadout#0#3 set [0, _uniform];
