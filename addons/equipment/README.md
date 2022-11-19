@@ -2,9 +2,10 @@
 
 Contains equipment definitions
 
-## Uniform Randomization
+## Equipment Randomization
 
-To add uniform randomization to a unit, add an array containing the uniform classes to choose from with a weighting value for each:
+Equipment randomization supports uniforms and vests.
+To add equipment randomization to a unit, add an array containing the classes to choose from with a weighting value for each:
 
 ```sqf
 class CfgVehicles {
@@ -14,6 +15,11 @@ class CfgVehicles {
             "VSM_Multicam_Crye_Camo", 0.5,
             "VSM_Multicam_Crye_SS_Camo", 0.3,
             "Black_Black_Camo", 0.2
+        };
+        uksf_equipment_randomVests[] = {
+            "V_Chestrig_rgr", 0.5,
+            "V_TacVest_camo", 0.3,
+            "V_TacChestrig_grn_F", 0.2
         };
     };
 };

@@ -4,4 +4,4 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
-["CAManBase", "initPost", FUNC(randomizeUniform)] call CBA_fnc_addClassEventHandler;
+["CAManBase", "initPost", FUNC(randomizeEquipment)] call CBA_fnc_addClassEventHandler;

@@ -231,7 +231,7 @@ class Inegal_O: Inegal_F {
         "ItemRadioAcreFlagged",
         "ItemGPS"
     };
-    uksf_equipment_skipRandomization = 1;
+    EGVAR(equipment,skipRandomization) = 1;
 };
 class Inegal_MED: Inegal_F {
     displayName = "Medic";
