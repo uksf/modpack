@@ -29,13 +29,13 @@ if (_uniformClasses isEqualTo [] && _vestClasses isEqualTo []) exitWith {};
 
 private _currentUniform = uniform _unit;
 private _uniform = selectRandomWeighted _uniformClasses;
-if !(isNil "_uniform") then {
+if (isNil "_uniform") then {
     _uniform = _currentUniform;
 };
 
 private _currentVest = vest _unit;
 private _vest = selectRandomWeighted _vestClasses;
-if !(isNil "_vest") then {
+if (isNil "_vest") then {
     _vest = _currentVest;
 };
 
