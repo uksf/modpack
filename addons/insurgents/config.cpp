@@ -458,7 +458,7 @@ class CfgGroups {
     class INDEP {
         name = "Independent";
         class Nziwasogo_Insurgents {
-            name = "Nziwasogo Insurgents";
+            name = "N'Ziwasogo Insurgents";
             class Infantry {
                 name = "Infantry";
                 class uksf_R_Weapon_Team {
