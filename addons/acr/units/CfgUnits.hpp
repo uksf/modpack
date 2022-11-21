@@ -133,7 +133,7 @@ class GVAR(Jet_Pilot): GVAR(Rifleman) {
 class GVAR(Rifleman_AA): GVAR(Rifleman) {
     displayName = "Rifleman AA";
     uniformClass = "CUP_U_B_CZ_WDL_NoKneepads";
-    weapons[] = {"uksf_ACR_CUP_arifle_ACRC_blk_556_CUP_acc_FlashlightACE_optic_MRCO_2D","CUP_launch_FIM92Stinger_Loaded","Put","Throw"};
+    weapons[] = {QGVAR(CUP_arifle_ACRC_blk_556_CUP_acc_FlashlightACE_optic_MRCO_2D),"CUP_launch_FIM92Stinger_Loaded","Put","Throw"};
     respawnWeapons[] = {QGVAR(CUP_arifle_ACRC_blk_556_CUP_acc_FlashlightACE_optic_MRCO_2D),"CUP_launch_FIM92Stinger_Loaded","Put","Throw"};
     magazines[] = {"CUP_30Rnd_556x45_Stanag","SmokeShell","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","SmokeShell","SmokeShell","CUP_HandGrenade_RGD5","CUP_HandGrenade_RGD5"};
     respawnMagazines[] = {"CUP_30Rnd_556x45_Stanag","SmokeShell","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","SmokeShell","SmokeShell","CUP_HandGrenade_RGD5","CUP_HandGrenade_RGD5"};
