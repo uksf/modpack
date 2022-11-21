@@ -70,8 +70,6 @@ class CfgPatches {
         requiredAddons[] = {
             "uksf_main",
             "uksf_common",
-
-            // not sure if these are needed??
             "ace_medical_treatment",
             "CUP_Weapons_LoadOrder",
             "CUP_Creatures_People_LoadOrder"
