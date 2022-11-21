@@ -99,7 +99,7 @@ class CfgVehicles {
     class GVAR(Autorifleman_pack): CUP_B_ACRPara_m95 {
         scope = 1;
         class TransportMagazines {
-            MACRO_ADDMAGAZINE(CUP_100Rnd_TE4_Green_Tracer_556x45_M249,5);
+            MACRO_ADDMAGAZINE(CUP_100Rnd_TE4_Green_Tracer_556x45_M249,8);
         };
     };
     class GVAR(Rifleman_LAT_pack): CUP_B_ACRPara_m95 {
@@ -127,7 +127,7 @@ class CfgVehicles {
     class GVAR(Machine_Gunner_pack): CUP_B_ACRPara_m95 {
         scope = 1;
         class TransportMagazines {
-            MACRO_ADDMAGAZINE(CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M,4);
+            MACRO_ADDMAGAZINE(CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M,6);
         };
     };
     class GVAR(Rifleman_HAT_pack): CUP_B_ACRPara_m95 {

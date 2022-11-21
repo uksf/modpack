@@ -34,7 +34,7 @@ class GVAR(Autorifleman): GVAR(Rifleman) {
     respawnWeapons[] = {QGVAR(LMG_03_F_CUP_acc_FlashlightACE_optic_MRCO_2D),"Put","Throw"};
     magazines[] = {"CUP_HandGrenade_RGO","CUP_HandGrenade_RGO","SmokeShell","SmokeShell","SmokeShell","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249"};
     respawnMagazines[] = {"CUP_HandGrenade_RGO","CUP_HandGrenade_RGO","SmokeShell","SmokeShell","SmokeShell","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249"};
-    backpack = QGVAR(Machine_Gunner_pack);
+    backpack = QGVAR(Autorifleman_pack);
     icon = "iconManMG";
 };
 class GVAR(Rifleman_LAT): GVAR(Rifleman) {
@@ -152,8 +152,8 @@ class GVAR(Machine_Gunner): GVAR(Rifleman) {
     uniformClass = "CUP_U_B_CZ_WDL_NoKneepads";
     weapons[] = {QGVAR(CUP_lmg_MG3_rail_ACE_optic_MRCO_2D),"Put","Throw"};
     respawnWeapons[] = {QGVAR(CUP_lmg_MG3_rail_ACE_optic_MRCO_2D),"Put","Throw"};
-    magazines[] = {"CUP_HandGrenade_RGO","CUP_HandGrenade_RGO","SmokeShell","SmokeShell","SmokeShell","CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M","CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M","CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M","CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M","CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M","CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M"};
-    respawnMagazines[] = {"CUP_HandGrenade_RGO","CUP_HandGrenade_RGO","SmokeShell","SmokeShell","SmokeShell","CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M","CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M","CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M","CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M","CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M","CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M"};
+    magazines[] = {"CUP_HandGrenade_RGO","CUP_HandGrenade_RGO","SmokeShell","SmokeShell","SmokeShell"};
+    respawnMagazines[] = {"CUP_HandGrenade_RGO","CUP_HandGrenade_RGO","SmokeShell","SmokeShell","SmokeShell","CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M"};
     backpack = QGVAR(Machine_Gunner_pack);
     icon = "iconManMG";
 };
