@@ -6,7 +6,7 @@ class CfgPatches {
         units[] = {
             QGVAR(Rifleman),
             QGVAR(Squad_Leader),
-            GVAR(Autorifleman),
+            QGVAR(Autorifleman),
             QGVAR(Rifleman_LAT),
             QGVAR(Sharpshooter),
             QGVAR(Armour_Crewman),
