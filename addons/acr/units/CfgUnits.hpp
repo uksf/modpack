@@ -32,8 +32,8 @@ class GVAR(Autorifleman): GVAR(Rifleman) {
     uniformClass = "CUP_U_B_CZ_WDL_NoKneepads";
     weapons[] = {QGVAR(LMG_03_F_CUP_acc_FlashlightACE_optic_MRCO_2D),"Put","Throw"};
     respawnWeapons[] = {QGVAR(LMG_03_F_CUP_acc_FlashlightACE_optic_MRCO_2D),"Put","Throw"};
-    magazines[] = {"CUP_HandGrenade_RGO","CUP_HandGrenade_RGO","SmokeShell","SmokeShell","SmokeShell","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249"};
-    respawnMagazines[] = {"CUP_HandGrenade_RGO","CUP_HandGrenade_RGO","SmokeShell","SmokeShell","SmokeShell","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249"};
+    magazines[] = {"CUP_HandGrenade_RGO","CUP_HandGrenade_RGO","SmokeShell","SmokeShell","SmokeShell"};
+    respawnMagazines[] = {"CUP_HandGrenade_RGO","CUP_HandGrenade_RGO","SmokeShell","SmokeShell","SmokeShell"};
     backpack = QGVAR(Autorifleman_pack);
     icon = "iconManMG";
 };
