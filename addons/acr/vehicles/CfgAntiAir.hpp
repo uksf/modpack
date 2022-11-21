@@ -1,6 +1,6 @@
 // AA
 class I_LT_01_AA_F;
-class GVAR(Wiesel_AA): I_LT_01_AA_F {
+class GVAR(Wiesel_AA) : I_LT_01_AA_F {
     side = 0;
     faction = QUOTE(ADDON);
     displayName = "Wiesel AA";
@@ -13,15 +13,14 @@ class GVAR(Wiesel_AA): I_LT_01_AA_F {
     };
     crew = QGVAR(Armour_Crewman);
     typicalCargo[] = {
-        QGVAR(Armour_Crewman);
+        QGVAR(Armour_Crewman)
     };
-
     INVENTORY_EMPTY;
 };
 
 // Radar
 class I_LT_01_scout_F;
-class GVAR(Wiesel_Radar): I_LT_01_scout_F {
+class GVAR(Wiesel_Radar) : I_LT_01_scout_F {
     side = 0;
     faction = QUOTE(ADDON);
     displayName = "Wiesel Radar";
@@ -34,8 +33,7 @@ class GVAR(Wiesel_Radar): I_LT_01_scout_F {
     };
     crew = QGVAR(Armour_Crewman);
     typicalCargo[] = {
-        QGVAR(Armour_Crewman);
+        QGVAR(Armour_Crewman)
     };
-
     INVENTORY_EMPTY;
 };

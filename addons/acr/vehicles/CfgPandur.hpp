@@ -16,7 +16,6 @@ class GVAR(Pandur2): I_APC_Wheeled_03_cannon_F {
         "a3\armor_f\data\camonet_aaf_fia_desert_co.paa",
         "a3\armor_f\data\cage_sand_co.paa"
     };
-
     INVENTORY_EMPTY;
 };
 

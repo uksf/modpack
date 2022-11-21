@@ -1,6 +1,6 @@
 // MG
 class CUP_B_Dingo_CZ_Wdl;
-class GVAR(Dingo_Mg): CUP_B_Dingo_CZ_Wdl {
+class GVAR(Dingo_Mg) : CUP_B_Dingo_CZ_Wdl {
     side = 0;
     faction = QUOTE(ADDON);
     displayName = "Dingo MG";
@@ -15,13 +15,12 @@ class GVAR(Dingo_Mg): CUP_B_Dingo_CZ_Wdl {
     typicalCargo[] = {
         QGVAR(Rifleman)
     };
-
     INVENTORY_EMPTY;
 };
 
 // GL
 class CUP_B_Dingo_GL_CZ_Wdl;
-class GVAR(Dingo_GL): CUP_B_Dingo_GL_CZ_Wdl {
+class GVAR(Dingo_GL) : CUP_B_Dingo_GL_CZ_Wdl {
     side = 0;
     faction = QUOTE(ADDON);
     displayName = "Dingo GL";
@@ -36,6 +35,5 @@ class GVAR(Dingo_GL): CUP_B_Dingo_GL_CZ_Wdl {
     typicalCargo[] = {
         QGVAR(Rifleman)
     };
-
     INVENTORY_EMPTY;
 };
