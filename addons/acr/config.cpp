@@ -73,18 +73,8 @@ class CfgPatches {
 
             // not sure if these are needed??
             "ace_medical_treatment",
-            "A3_Weapons_F",
-            "CUP_Weapons_ACR",
-            "CUP_Creatures_Military_ACR",
-            "A3_Characters_F",
-            "CuratorOnly_Characters_F_OPFOR",
-            "CUP_Weapons_RPG7",
-            "CUP_Weapons_SVD",
-            "A3_Characters_F_Tank_Headgear",
-            "CUP_Weapons_CZ75",
-            "CUP_Weapons_M2010",
-            "CUP_Weapons_Stinger",
-            "CUP_Weapons_MG3"
+            "CUP_Weapons_LoadOrder",
+            "CUP_Creatures_People_LoadOrder"
         };
         author = QUOTE(UKSF);
         authors[] = { "Bridgford.A" };
