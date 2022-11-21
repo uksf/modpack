@@ -25,7 +25,7 @@ class GVAR(RM_70): CUP_B_RM70_CZ {
 
 // Sholef
 class B_MBT_01_arty_F;
-GVAR(Sholef): B_MBT_01_arty_F {
+class GVAR(Sholef): B_MBT_01_arty_F {
     scope = 2;
     faction = QUOTE(ADDON);
     side = 0;

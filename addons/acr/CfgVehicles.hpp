@@ -1,13 +1,13 @@
 class CfgVehicles {
     class O_Soldier_base_F;
     class O_Soldier_F;
-    class GVAR(Soldier_Underwear)): O_Soldier_F {
+    class GVAR(Soldier_Underwear): O_Soldier_F {
         author = "UKSF";
         scope = 1;
         scopeCurator = 0;
         displayName = "ACR Underwear";
         model = "\A3\Characters_F\Common\basicbody";
-        uniformClass = "ACR_U_Base";
+        uniformClass = GVAR(U_Base);
         weapons[] = {
             "Throw",
             "Put"
@@ -26,7 +26,7 @@ class CfgVehicles {
         scope = 0;
         faction = QUOTE(ADDON);
         displayName = "ACR Base";
-        nakedUniform = "ACR_U_Base";
+        nakedUniform = GVAR(U_Base);
         uniformClass = "CUP_U_B_CZ_WDL_NoKneepads";
         model = "\A3\characters_F\OPFOR\o_soldier_01.p3d";
         identityTypes[] =  { "LanguagePOL_F", "Head_Euro" };
@@ -94,8 +94,6 @@ class CfgVehicles {
         class TransportMagazines {
             MACRO_ADDMAGAZINE(1Rnd_HE_Grenade_shell,11);
         };
-        class TransportItems{};
-        class TransportWeapons{};
     };
     class CUP_B_ACRPara_m95;
     class GVAR(Autorifleman_pack): CUP_B_ACRPara_m95 {
@@ -103,8 +101,6 @@ class CfgVehicles {
         class TransportMagazines {
             MACRO_ADDMAGAZINE(CUP_100Rnd_TE4_Green_Tracer_556x45_M249,5);
         };
-        class TransportItems{};
-        class TransportWeapons{};
     };
     class GVAR(Rifleman_LAT_pack): CUP_B_ACRPara_m95 {
         scope = 1;
@@ -112,15 +108,10 @@ class CfgVehicles {
             MACRO_ADDMAGAZINE(CUP_OG7_M,1);
             MACRO_ADDMAGAZINE(CUP_PG7V_M,2);
         };
-        class TransportItems{};
-        class TransportWeapons{};
     };
     class CUP_B_GER_Medic_Flecktarn;
     class GVAR(Sharpshooter_pack): CUP_B_GER_Medic_Flecktarn {
         scope = 1;
-        class TransportMagazines{};
-        class TransportItems{};
-        class TransportWeapons{};
     };
     class B_RadioBag_01_wdl_F;
     class GVAR(Signaller_pack): B_RadioBag_01_wdl_F {
@@ -132,16 +123,12 @@ class CfgVehicles {
             MACRO_ADDMAGAZINE(SmokeShell,3);
             MACRO_ADDMAGAZINE(CUP_HandGrenade_RGD5,2);
         };
-        class TransportItems{};
-        class TransportWeapons{};
     };
     class GVAR(Machine_Gunner_pack): CUP_B_ACRPara_m95 {
         scope = 1;
         class TransportMagazines {
             MACRO_ADDMAGAZINE(CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M,4);
         };
-        class TransportItems{};
-        class TransportWeapons{};
     };
     class GVAR(Rifleman_HAT_pack): CUP_B_ACRPara_m95 {
         scope = 1;

@@ -1,8 +1,6 @@
 //Units
 class GVAR(Rifleman): GVAR(Soldier_Base) {
     scope = 2;
-    faction = QUOTE(ADDON);
-    side = 0;
     displayName = "Rifleman";
     uniformClass = "CUP_U_B_CZ_WDL_NoKneepads";
     uksf_equipment_randomUniforms[] = {
@@ -20,8 +18,6 @@ class GVAR(Rifleman): GVAR(Soldier_Base) {
     backpack = "";
 };
 class GVAR(Squad_Leader): GVAR(Rifleman) {
-    faction = QUOTE(ADDON);
-    side = 0;
     displayName = "Squad Leader";
     uniformClass = "CUP_U_B_CZ_WDL_NoKneepads";
     weapons[] = {QGVAR(CUP_arifle_ACRC_EGLM_blk_556_CUP_acc_FlashlightACE_optic_MRCO_2D),"Put","Throw"};
@@ -29,10 +25,9 @@ class GVAR(Squad_Leader): GVAR(Rifleman) {
     magazines[] = {"CUP_HandGrenade_RGO","CUP_HandGrenade_RGO","SmokeShell","SmokeShell","SmokeShell","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell"};
     respawnMagazines[] = {"CUP_HandGrenade_RGO","CUP_HandGrenade_RGO","SmokeShell","SmokeShell","SmokeShell","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell","1Rnd_HE_Grenade_shell"};
     backpack = QGVAR(Squad_Leader_pack);
+    icon = "iconManLeader";
 };
 class GVAR(Autorifleman): GVAR(Rifleman) {
-    faction = QUOTE(ADDON);
-    side = 0;
     displayName = "Autorifleman";
     uniformClass = "CUP_U_B_CZ_WDL_NoKneepads";
     weapons[] = {QGVAR(LMG_03_F_CUP_acc_FlashlightACE_optic_MRCO_2D),"Put","Throw"};
@@ -40,21 +35,19 @@ class GVAR(Autorifleman): GVAR(Rifleman) {
     magazines[] = {"CUP_HandGrenade_RGO","CUP_HandGrenade_RGO","SmokeShell","SmokeShell","SmokeShell","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249"};
     respawnMagazines[] = {"CUP_HandGrenade_RGO","CUP_HandGrenade_RGO","SmokeShell","SmokeShell","SmokeShell","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249","CUP_100Rnd_TE4_Green_Tracer_556x45_M249"};
     backpack = QGVAR(Machine_Gunner_pack);
+    icon = "iconManMG";
 };
 class GVAR(Rifleman_LAT): GVAR(Rifleman) {
-    faction = QUOTE(ADDON);
-    side = 0;
     displayName = "Rifleman LAT";
     uniformClass = "CUP_U_B_CZ_WDL_NoKneepads";
     weapons[] = {QGVAR(CUP_arifle_ACRC_blk_556_CUP_acc_FlashlightACE_optic_MRCO_2D),"CUP_launch_RPG7V","Put","Throw"};
     respawnWeapons[] = {QGVAR(CUP_arifle_ACRC_blk_556_CUP_acc_FlashlightACE_optic_MRCO_2D),"CUP_launch_RPG7V","Put","Throw"};
-    magazines[] = {"CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_HandGrenade_RGO","CUP_HandGrenade_RGO","SmokeShell","SmokeShell","SmokeShell","CUP_OG7_M","CUP_PG7V_M","CUP_PG7V_M"};
-    respawnMagazines[] = {"CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_HandGrenade_RGO","CUP_HandGrenade_RGO","SmokeShell","SmokeShell","SmokeShell","CUP_OG7_M","CUP_PG7V_M","CUP_PG7V_M"};
+    magazines[] = {"CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_HandGrenade_RGO","CUP_HandGrenade_RGO","SmokeShell","SmokeShell","SmokeShell"};
+    respawnMagazines[] = {"CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_HandGrenade_RGO","CUP_HandGrenade_RGO","SmokeShell","SmokeShell","SmokeShell"};
     backpack = QGVAR(Rifleman_LAT_pack);
+    icon = "iconManAT";
 };
 class GVAR(Sharpshooter): GVAR(Rifleman) {
-    faction = QUOTE(ADDON);
-    side = 0;
     displayName = "Sharpshooter";
     uniformClass = "CUP_U_B_CZ_WDL_NoKneepads";
     weapons[] = {QGVAR(CUP_srifle_SVD_wdl_CUP_optic_PSO_1_1_open),"Put","Throw"};
@@ -64,8 +57,6 @@ class GVAR(Sharpshooter): GVAR(Rifleman) {
     backpack = QGVAR(Sharpshooter_pack);
 };
 class GVAR(Armour_Crewman): GVAR(Rifleman) {
-    faction = QUOTE(ADDON);
-    side = 0;
     displayName = "Armour Crewman";
     uniformClass = "CUP_U_B_CZ_WDL_TShirt";
     weapons[] = {"CUP_arifle_ACRC_blk_556","Put","Throw"};
@@ -78,18 +69,15 @@ class GVAR(Armour_Crewman): GVAR(Rifleman) {
     uksf_equipment_skipRandomization = 1;
 };
 class GVAR(Officer): GVAR(Rifleman) {
-    faction = QUOTE(ADDON);
-    side = 0;
     displayName = "Officer";
     uniformClass = "CUP_U_B_CZ_WDL_NoKneepads";
     linkedItems[] = {"ItemMap","ItemCompass","CUP_H_CZ_Patrol_Cap","CUP_V_CZ_NPP2006_co_vz95"};
     respawnLinkedItems[] = {"ItemMap","ItemCompass","CUP_H_CZ_Patrol_Cap","CUP_V_CZ_NPP2006_co_vz95"};
     backpack = "";
     uksf_equipment_skipRandomization = 1;
+    icon = "iconManOfficer";
 };
 class GVAR(Signaller): GVAR(Rifleman) {
-    faction = QUOTE(ADDON);
-    side = 0;
     displayName = "Signaller";
     uniformClass = "CUP_U_B_CZ_WDL_NoKneepads";
     linkedItems[] = {"ItemMap","ItemCompass","CUP_NVG_PVS15_green_WP","CUP_H_CZ_Helmet03","CUP_V_CZ_vest04","G_Bandanna_oli","CUP_NVG_PVS15_green_WP"};
@@ -97,8 +85,6 @@ class GVAR(Signaller): GVAR(Rifleman) {
     backpack = QGVAR(Signaller_pack);
 };
 class GVAR(Heli_Pilot): GVAR(Rifleman) {
-    faction = QUOTE(ADDON);
-    side = 0;
     displayName = "Heli Pilot";
     uniformClass = "CUP_U_B_CZ_Pilot_WDL";
     weapons[] = {"CUP_arifle_ACRC_blk_556","CUP_hgun_CZ75","Put","Throw"};
@@ -111,8 +97,6 @@ class GVAR(Heli_Pilot): GVAR(Rifleman) {
     uksf_equipment_skipRandomization = 1;
 };
 class GVAR(Sniper): GVAR(Rifleman) {
-    faction = QUOTE(ADDON);
-    side = 0;
     displayName = "Sniper";
     uniformClass = "U_I_FullGhillie_lsh";
     weapons[] = {QGVAR(CUP_srifle_M2010_blk_ACE_optic_LRPS_2D),"Put","Throw"};
@@ -125,8 +109,6 @@ class GVAR(Sniper): GVAR(Rifleman) {
     uksf_equipment_skipRandomization = 1;
 };
 class GVAR(Crewman): GVAR(Rifleman) {
-    faction = QUOTE(ADDON);
-    side = 0;
     displayName = "Crewman";
     uniformClass = "CUP_U_B_CZ_WDL_TShirt";
     weapons[] = {"CUP_arifle_ACRC_blk_556","Put","Throw"};
@@ -137,8 +119,6 @@ class GVAR(Crewman): GVAR(Rifleman) {
     uksf_equipment_skipRandomization = 1;
 };
 class GVAR(Jet_Pilot): GVAR(Rifleman) {
-    faction = QUOTE(ADDON);
-    side = 0;
     displayName = "Jet Pilot";
     uniformClass = "CUP_U_B_CZ_Pilot_WDL";
     weapons[] = {"CUP_arifle_ACRC_blk_556","CUP_hgun_CZ75","Put","Throw"};
@@ -151,19 +131,16 @@ class GVAR(Jet_Pilot): GVAR(Rifleman) {
     uksf_equipment_skipRandomization = 1;
 };
 class GVAR(Rifleman_AA): GVAR(Rifleman) {
-    faction = QUOTE(ADDON);
-    side = 0;
     displayName = "Rifleman AA";
     uniformClass = "CUP_U_B_CZ_WDL_NoKneepads";
     weapons[] = {"uksf_ACR_CUP_arifle_ACRC_blk_556_CUP_acc_FlashlightACE_optic_MRCO_2D","CUP_launch_FIM92Stinger_Loaded","Put","Throw"};
-    respawnWeapons[] = {"uksf_ACR_CUP_arifle_ACRC_blk_556_CUP_acc_FlashlightACE_optic_MRCO_2D","CUP_launch_FIM92Stinger_Loaded","Put","Throw"};
+    respawnWeapons[] = {QGVAR(CUP_arifle_ACRC_blk_556_CUP_acc_FlashlightACE_optic_MRCO_2D),"CUP_launch_FIM92Stinger_Loaded","Put","Throw"};
     magazines[] = {"CUP_30Rnd_556x45_Stanag","SmokeShell","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","SmokeShell","SmokeShell","CUP_HandGrenade_RGD5","CUP_HandGrenade_RGD5"};
     respawnMagazines[] = {"CUP_30Rnd_556x45_Stanag","SmokeShell","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","SmokeShell","SmokeShell","CUP_HandGrenade_RGD5","CUP_HandGrenade_RGD5"};
     backpack = "";
+    icon = "iconManAT";
 };
 class GVAR(Paratrooper): GVAR(Rifleman) {
-    faction = QUOTE(ADDON);
-    side = 0;
     displayName = "Paratrooper";
     uniformClass = "CUP_U_B_CZ_WDL_NoKneepads";
     linkedItems[] = {"ItemMap","ItemCompass","CUP_NVG_PVS15_green_WP","CUP_H_CZ_Helmet03","CUP_V_CZ_vest04","G_Bandanna_oli","CUP_NVG_PVS15_green_WP"};
@@ -171,8 +148,6 @@ class GVAR(Paratrooper): GVAR(Rifleman) {
     backpack = "B_Parachute";
 };
 class GVAR(Machine_Gunner): GVAR(Rifleman) {
-    faction = QUOTE(ADDON);
-    side = 0;
     displayName = "Machine Gunner";
     uniformClass = "CUP_U_B_CZ_WDL_NoKneepads";
     weapons[] = {QGVAR(CUP_lmg_MG3_rail_ACE_optic_MRCO_2D),"Put","Throw"};
@@ -180,21 +155,19 @@ class GVAR(Machine_Gunner): GVAR(Rifleman) {
     magazines[] = {"CUP_HandGrenade_RGO","CUP_HandGrenade_RGO","SmokeShell","SmokeShell","SmokeShell","CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M","CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M","CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M","CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M","CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M","CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M"};
     respawnMagazines[] = {"CUP_HandGrenade_RGO","CUP_HandGrenade_RGO","SmokeShell","SmokeShell","SmokeShell","CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M","CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M","CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M","CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M","CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M","CUP_120Rnd_TE4_LRT4_Green_Tracer_762x51_Belt_M"};
     backpack = QGVAR(Machine_Gunner_pack);
+    icon = "iconManMG";
 };
 class GVAR(Rifleman_HAT): GVAR(Rifleman) {
-    faction = QUOTE(ADDON);
-    side = 0;
     displayName = "Rifleman HAT";
     uniformClass = "CUP_U_B_CZ_WDL_NoKneepads";
     weapons[] = {QGVAR(CUP_arifle_ACRC_blk_556_CUP_acc_FlashlightACE_optic_MRCO_2D),"launch_I_Titan_short_F","Put","Throw"};
     respawnWeapons[] = {QGVAR(CUP_arifle_ACRC_blk_556_CUP_acc_FlashlightACE_optic_MRCO_2D),"launch_I_Titan_short_F","Put","Throw"};
-    magazines[] = {"CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_HandGrenade_RGO","CUP_HandGrenade_RGO","SmokeShell","SmokeShell","SmokeShell","Titan_AP","Titan_AP","Titan_AT"};
-    respawnMagazines[] = {"CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_HandGrenade_RGO","CUP_HandGrenade_RGO","SmokeShell","SmokeShell","SmokeShell","Titan_AP","Titan_AP","Titan_AT"};
+    magazines[] = {"CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_HandGrenade_RGO","CUP_HandGrenade_RGO","SmokeShell","SmokeShell","SmokeShell"};
+    respawnMagazines[] = {"CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_30Rnd_556x45_Stanag_Tracer_Green","CUP_HandGrenade_RGO","CUP_HandGrenade_RGO","SmokeShell","SmokeShell","SmokeShell"};
     backpack = QGVAR(Rifleman_HAT_pack);
+    icon = "iconManAT";
 };
 class GVAR(Operator): GVAR(Rifleman) {
-    faction = QUOTE(ADDON);
-    side = 0;
     displayName = "Operator";
     uniformClass = "CUP_U_B_CZ_WDL_Kneepads";
     weapons[] = {QGVAR(CUP_arifle_HK416_Black_ZO_Low_anpeq),"Put","Throw"};

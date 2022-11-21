@@ -16,7 +16,7 @@ class CfgWeapons {
         picture = "\A3\characters_f\data\ui\icon_U_BasicBody_ca.paa";
         hiddenSelections[] = { "camo" };
         hiddenSelectionsTextures[] = { "\A3\Characters_F\Common\Data\basicbody_black_co.paa" };
-        class ItemInfo): UniformItem {
+        class ItemInfo: UniformItem {
             uniformModel = "-";
             uniformClass = "ACR_Soldier_Underwear";
             containerClass = "Supply0";

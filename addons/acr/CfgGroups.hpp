@@ -247,27 +247,6 @@ class cfgGroups
           };
         };
       };
-      class Motorized {
-        name = "Motorized";
-      };
-      class Mechanized {
-        name = "Mechanized";
-      };
-      class Armored {
-        name = "Armored";
-      };
-      class SpecOps {
-        name = "Special Forces";
-      };
-      class Support {
-        name = "Support Infantry";
-      };
-      class Airborne {
-        name = "Airborne";
-      };
-      class Air {
-        name = "Air";
-      };
     };
   };
 };
