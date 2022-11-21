@@ -1,1 +1,1 @@
-PREP(randomizeUniform);
+PREP(randomizeEquipment);
