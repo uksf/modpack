@@ -18,7 +18,7 @@ class CfgWeapons {
         hiddenSelectionsTextures[] = { "\A3\Characters_F\Common\Data\basicbody_black_co.paa" };
         class ItemInfo: UniformItem {
             uniformModel = "-";
-            uniformClass = "ACR_Soldier_Underwear";
+            uniformClass = QGVAR(Soldier_Underwear);
             containerClass = "Supply0";
             mass = 5;
         };
