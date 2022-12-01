@@ -340,4 +340,14 @@ class CfgVehicles {
             };
         };
     };
+    class GVAR(moduleUseSearchlights) : Module_F {
+        is3DEN = 1;
+        functionPriority = 1;
+        category = EGVAR(common,eden);
+        scope = 2;
+        displayName = "Use Searchlights";
+        icon = "A3\ui_f\data\map\markers\military\circle_ca.paa";
+        portrait = "A3\ui_f\data\map\markers\military\circle_ca.paa";
+        function = QFUNC(useSearchlight);
+    };
 };

@@ -20,8 +20,6 @@ if (!isServer) exitWith {};
 
 private _searchLights = synchronizedObjects _module;
 
-diag_log format ["[SEARCHLIGHT] searchlights: %1", _searchLights];
-
 {
     private _operator = gunner _x;
     _operator action ["SearchlightOn", _x];
@@ -56,7 +54,6 @@ diag_log format ["[SEARCHLIGHT] searchlights: %1", _searchLights];
         _operator setVariable [QGVAR(watchingLeftPos), true, true];
 
 
-    }, random[20,30,40], [_operator, _dir, _posATL]] call cba_fnc_addPerFrameHandler;
+    }, 20 + random 40, [_operator, _dir, _posATL]] call cba_fnc_addPerFrameHandler;
 
 } forEach _searchLights;
-

@@ -28,3 +28,4 @@ PREP(selectGroup);
 PREP(setSupportRadio);
 PREP(spawnGroup);
 PREP(support);
+PREP(useSearchlight);
