@@ -348,6 +348,6 @@ class CfgVehicles {
         displayName = "Use Searchlights";
         icon = "A3\ui_f\data\map\markers\military\circle_ca.paa";
         portrait = "A3\ui_f\data\map\markers\military\circle_ca.paa";
-        function = QFUNC(useSearchlight);
+        function = QFUNC(moduleSearchlight);
     };
 };

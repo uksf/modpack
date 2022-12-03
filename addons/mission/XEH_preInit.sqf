@@ -38,4 +38,6 @@ GVAR(dynamicPatrolIncludeAreas) = [];
 GVAR(dynamicPatrolDebugMap) = createHashMap;
 GVAR(dynamicPatrolDebugPlayers) = [];
 
+[QGVAR(useSearchlightEvent), {call FUNC(useSearchlight)}] call CBA_fnc_addEventHandler;
+
 ADDON = true;

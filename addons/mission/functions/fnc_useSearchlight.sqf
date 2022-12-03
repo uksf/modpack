@@ -8,52 +8,46 @@
         It will randomly swing from 10 oclock to 2 oclock at random intervals.
 
     Parameters:
-        0: _module <OBJECT>
+        0: _operator <OBJECT>
 
     Return value:
         Nothing
 */
 
-(_this select 1) params ["_module"];
+params ["_operator"];
 
-if (!isServer) exitWith {};
+_operator action ["SearchlightOn", vehicle _operator];
 
-private _searchLights = synchronizedObjects _module;
+// set once to keep the same 10 and 2oclock
+private _dir = getDir _operator;
+private _posATL = getPosATL _operator;
 
-{
-    private _operator = gunner _x;
-    _operator action ["SearchlightOn", _x];
+[{
+    params ["_args", "_idPFH"];
+    _args params ["_operator", "_dir", "_posATL"];
 
-    // set once to keep the same 10 and 2oclock
-    private _dir = getDir _operator;
-    private _posATL = getPosATL _operator;
+    if (!alive _operator) exitWith {
+        [_idPFH] call cba_fnc_removePerFrameHandler;
+    };
 
-    [{
-        params ["_args", "_idPFH"];
-        _args params ["_operator", "_dir", "_posATL"];
-
-        if (!alive _operator) exitWith {
-            [_idPFH] call cba_fnc_removePerFrameHandler;
-        };
-
-        private _watchingLeftPos = _operator getVariable [QGVAR(watchingLeftPos), true];
+    private _watchingLeftPos = _operator getVariable [QGVAR(watchingLeftPos), true];
 
 
-        if (_watchingLeftPos) exitWith {
-            private _heightAdjustedPos = _posATL getPos [0.5, (_dir + random(45))];
-            _heightAdjustedPos set [2, _posATL#2 + 1.4];
-
-            _operator doWatch (_heightAdjustedPos);
-            _operator setVariable [QGVAR(watchingLeftPos), false, true];
-        };
-
-        private _heightAdjustedPos = _posATL getPos [0.5, (_dir - random(45))];
+    if (_watchingLeftPos) exitWith {
+        private _heightAdjustedPos = _posATL getPos [0.5, (_dir + random(45))];
         _heightAdjustedPos set [2, _posATL#2 + 1.4];
 
         _operator doWatch (_heightAdjustedPos);
-        _operator setVariable [QGVAR(watchingLeftPos), true, true];
+        _operator setVariable [QGVAR(watchingLeftPos), false, true];
+    };
+
+    private _heightAdjustedPos = _posATL getPos [0.5, (_dir - random(45))];
+    _heightAdjustedPos set [2, _posATL#2 + 1.4];
+
+    _operator doWatch (_heightAdjustedPos);
+    _operator setVariable [QGVAR(watchingLeftPos), true, true];
 
 
-    }, 20 + random 40, [_operator, _dir, _posATL]] call cba_fnc_addPerFrameHandler;
+}, 20 + random 40, [_operator, _dir, _posATL]] call cba_fnc_addPerFrameHandler;
 
-} forEach _searchLights;
+

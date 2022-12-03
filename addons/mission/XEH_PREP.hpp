@@ -21,6 +21,7 @@ PREP(inRadioRange);
 PREP(moduleDynamicPatrolArea);
 PREP(moduleDynamicPatrolExcludeArea);
 PREP(moduleDynamicPatrolIncludeArea);
+PREP(moduleSearchlight);
 PREP(moduleSpawn);
 PREP(reTask);
 PREP(selectArtillery);
