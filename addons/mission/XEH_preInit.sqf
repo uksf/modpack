@@ -39,7 +39,6 @@ GVAR(dynamicPatrolDebugMap) = createHashMap;
 GVAR(dynamicPatrolDebugPlayers) = [];
 
 [QGVAR(useSearchlightEvent), {
-	diag_log format ["[SEARCHLIGHT] - event fired: %1", random 1000];
 	call FUNC(useSearchlight);
 }] call CBA_fnc_addEventHandler;
 

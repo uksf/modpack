@@ -19,8 +19,6 @@ if (!isServer) exitWith {};
 
 private _searchLights = synchronizedObjects _module;
 
-diag_log format ["[SEARCHLIGHT] - searchlights: %1", _searchLights];
-
 {
     private _operator = gunner _x;
     [QGVAR(useSearchlightEvent), [_operator], _operator] call CBA_fnc_targetEvent;

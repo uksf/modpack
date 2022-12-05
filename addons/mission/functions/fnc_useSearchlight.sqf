@@ -30,15 +30,11 @@ private _posATL = getPosATL _operator;
     _args params ["_operator", "_dir", "_posATL"];
 
     if (!alive _operator || !local _operator) exitWith {
-        diag_log format ["[SEARCHLIGHT] - exiting state: %1", alive _operator];
         [_idPFH] call cba_fnc_removePerFrameHandler;
         [QGVAR(useSearchlightEvent), [_operator], _operator] call CBA_fnc_targetEvent;
     };
 
     private _watchingLeftPos = _operator getVariable [QGVAR(watchingLeftPos), true];
-
-    diag_log format ["[SEARCHLIGHT] - operator in loop: %1, watching left: %2", _operator, _watchingLeftPos];
-
 
     if (_watchingLeftPos) exitWith {
         private _heightAdjustedPos = _posATL getPos [0.5, (_dir + random(45))];
