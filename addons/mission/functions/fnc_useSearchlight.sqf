@@ -16,7 +16,10 @@
 
 params ["_operator"];
 
-_operator action ["SearchlightOn", vehicle _operator];
+
+if (!isLightOn (vehicle _operator)) then {
+    _operator action ["SearchlightOn", vehicle _operator];
+};
 
 // set once to keep the same 10 and 2oclock
 private _dir = getDir _operator;
@@ -26,9 +29,10 @@ private _posATL = getPosATL _operator;
     params ["_args", "_idPFH"];
     _args params ["_operator", "_dir", "_posATL"];
 
-    if (!alive _operator) exitWith {
+    if (!alive _operator || !local _operator) exitWith {
         diag_log format ["[SEARCHLIGHT] - exiting state: %1", alive _operator];
         [_idPFH] call cba_fnc_removePerFrameHandler;
+        [QGVAR(useSearchlightEvent), [_operator], _operator] call CBA_fnc_targetEvent;
     };
 
     private _watchingLeftPos = _operator getVariable [QGVAR(watchingLeftPos), true];
