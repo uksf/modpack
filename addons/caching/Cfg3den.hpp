@@ -8,7 +8,7 @@ class Cfg3DEN {
                         control = "Checkbox";
                         displayName = QUOTE(Caching exclude);
                         tooltip = QUOTE(Excludes group from caching);
-                        expression = QUOTE(if (isServer && _value) then {[ARR_2({_this call FUNC(disableCache)},_this)] call CBA_fnc_execNextFrame;};);
+                        expression = QUOTE(if (isServer && _value) then {_this setVariable [ARR_3(QQGVAR(excluded), true, true)]};);
                         typeName = "BOOL";
                         defaultValue = "(false)";
                     };

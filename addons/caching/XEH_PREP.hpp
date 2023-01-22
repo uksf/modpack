@@ -1,4 +1,6 @@
-PREP(checkGroupsServer);
-PREP(checkGroupsClient);
-PREP(disableCache);
-PREP(enableCache);
+PREP(addWaypoints);
+PREP(cacheGroups);
+PREP(getGroupWaypoints);
+PREP(getUnitDetails);
+PREP(recreateGroup);
+PREP(storeGroupDataAndDelete);

@@ -19,6 +19,7 @@ params [["_groups", []]];
     Cases
         0 (base):
             - Not player
+            - Not excluded from caching
             - Timeout > 15 seconds (avoids cache spam) (Within always uncached distance is implied by timeout)
             - Simulated OR object is not hidden
             - Not air vehicle

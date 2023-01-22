@@ -4,10 +4,10 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
-if (isServer) then {
-    [QGVAR(disableCache), {call FUNC(disableCache)}] call CBA_fnc_addEventHandler;
-    [QGVAR(enableCache), {call FUNC(enableCache)}] call CBA_fnc_addEventHandler;
+GVAR(cachedGroupsData) = createHashMap;
+GVAR(cachedGroupsPositions) = [];
 
+if (isServer) then {
     [QGVAR(cache), {
         params ["_group"];
 
@@ -15,7 +15,7 @@ if (isServer) then {
             _group = group _group;
         };
         [QGVAR(setCacheState), [_group, true]] call CBA_fnc_localEvent;
-        
+
     }] call CBA_fnc_addEventHandler;
 
     [QGVAR(uncache), {
@@ -25,30 +25,24 @@ if (isServer) then {
             _group = group _group;
         };
         [QGVAR(setCacheState), [_group, false]] call CBA_fnc_localEvent;
-        
+
     }] call CBA_fnc_addEventHandler;
+
+
 
     [QGVAR(setCacheState), {
-        params ["_group", "_state"]; // Cached = true, Uncached = false
+        params ["_group", "_state"]; // will cache = true, will uncache = false
 
-        {
-            _x enableSimulationGlobal !_state;
-            _x hideObjectGlobal _state;
-            _x setVariable [QGVAR(hiddenByCaching), _state, true];
-        } forEach (units _group);
-
-        private _leader = leader _group;
-        private _vehicle = objectParent _leader;
-        if (!(isNull _vehicle)) then {
-            {
-                _x enableSimulationGlobal !_state;
-                _x hideObjectGlobal _state;
-                _x setVariable [QGVAR(hiddenByCaching), _state, true];
-            } forEach (crew _vehicle);
+        if (_state) exitWith {
+            // delete group and store details
+            systemChat format ["Group %1 was cached.", _group];
+            [_group] call FUNC(storeGroupDataAndDelete);
         };
+
+        [_uid, _groupData] call FUNC(recreateGroup);
+
     }] call CBA_fnc_addEventHandler;
 };
-// [QGVAR(setDynamicSimulation), {(_this#0) enableDynamicSimulation (_this#1)}] call CBA_fnc_addEventHandler;
 
 #include "initSettings.sqf"
 
