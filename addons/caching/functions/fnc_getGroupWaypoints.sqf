@@ -5,6 +5,7 @@
 
     Description:
        Gets and returns a groups waypoints
+       To stop AI going backwards to a previous WP, doesnt include waypoints with an index less than the current waypoint
 
     Parameters:
         0: group <OBJECT>
@@ -17,18 +18,11 @@ params ["_group"];
 
 private _waypointDetailsArray = [];
 
-private _waypoints = waypoints _group; // [[EAST 1-1-A,0],[EAST 1-1-A,1],[EAST 1-1-A,2]]
+// returns waypoints yet to be completed
+private _waypoints = waypoints _group select {!(_x#1 < currentWaypoint _group)}; // [[EAST 1-1-A,2],[EAST 1-1-A,3],[EAST 1-1-A,4]]
 
 {
-    private _waypointBehaviour = waypointBehaviour _x;
-    private _waypointFormation = waypointFormation _x;
-    private _waypointPosition = waypointPosition _x;
-    private _waypointSpeed = waypointSpeed _x;
-    private _waypointType = waypointType _x;
-    private _waypointCombatMode = waypointCombatMode _x;
-
-    _waypointDetailsArray pushBack [_waypointBehaviour, _waypointFormation, _waypointPosition, _waypointSpeed, _waypointType, _waypointCombatMode];
-
+    _waypointDetailsArray pushBack [waypointBehaviour _x, waypointFormation _x, waypointPosition _x, waypointSpeed _x, waypointType _x, waypointCombatMode _x];
 } forEach _waypoints;
 
 _waypointDetailsArray // [[wpB, wpF, wpP, wpS, wpT, wpCM], [wpB, wpF, wpP, wpS, wpT, wpCM]]
