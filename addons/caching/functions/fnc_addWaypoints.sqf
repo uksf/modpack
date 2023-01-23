@@ -17,10 +17,8 @@
 
 params ["_group", "_waypointsArray"];
 
-_waypointsArray deleteAt 0; // work around for AI going backwards to their start point, may need to handle better
-
 {
-    [_group, _x#2, 0, _x#4, _x#0, _x#5, _x#3, _x#1] call cba_fnc_addWaypoint;
+    [_group, _x#3, 0, _x#5, _x#1, _x#6, _x#4, _x#2] call cba_fnc_addWaypoint;
 } forEach _waypointsArray;
 
 
