@@ -94,7 +94,7 @@ _waypoint setWaypointBehaviour "CARELESS";
         _states set [1, true];
         [_plane, 1] call EFUNC(air_c130,jumpLightControl);
         [_plane, 1] call EFUNC(air_c130,rampControl);
-        [QEGVAR(common,textTiles), [parseText format ["<t align = 'center' size = '1.2' color = '#FFFF00'>RED LIGHT - STANDBY FOR JUMP</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 2.5], _units] call CBA_fnc_targetEvent;
+        [QEGVAR(common,textTiles), [parseText format ["<t align = 'center' size = '1.2' color = '#FF0000'>RED LIGHT - STANDBY FOR JUMP</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 2.5], _units] call CBA_fnc_targetEvent;
     };
 
     if (_positionPreStartReached && !_flightStartPositionReached) then {
