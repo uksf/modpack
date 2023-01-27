@@ -42,7 +42,8 @@ private _group = createGroup _side;
         [_idPFH] call CBA_fnc_removePerFrameHandler;
     };
 
-    private _unitInfo = selectRandom _unitDetailsArray;
+    private _unitInfo = _unitDetailsArray deleteAt 0;
+    TRACE_1("6) unit info",_unitInfo);
     _unitInfo params ["_unitType", "_unitPos", "_unitDir", "_unitSkill", "_unitBehaviour", "_unitFeatures"];
     private _unit = _group createUnit [_unitType, [0,0,0], [], 5, "NONE"];
     _unit setSkill _unitSkill;
