@@ -14,36 +14,24 @@
 */
 params [["_groups", []]];
 
+
 {
     /*
     Cases
         0 (base):
             - Not player
-            - Not excluded from caching
-            - Timeout > 15 seconds (avoids cache spam) (Within always uncached distance is implied by timeout)
             - Simulated OR object is not hidden
             - Not air vehicle
+            - No players near leader
     */
     private _leader = leader _x;
     if (
         !(isPlayer _leader) &&
-        {((_leader getVariable [QGVAR(time), 0]) + 15) < CBA_missionTime &&
-        {(simulationEnabled _leader || {!(isObjectHidden _leader)}) &&
-        {!((objectParent _leader) isKindOf "Air")}}}
+        {(simulationEnabled _leader || {!(isObjectHidden _leader)})} &&
+        {!((objectParent _leader) isKindOf "Air")} &&
+        {!([_leader, GVAR(distance)] call EFUNC(common,anyNearPlayers))} &&
+        {[units _x, {vehicle _x != _x}] call EFUNC(common,arrayNone)} // remove this when ready to test vehicles
     ) then {
-        [QGVAR(cache), [_x]] call CBA_fnc_localEvent;
+        [_x] call FUNC(storeGroupDataAndDelete);
     };
 } forEach _groups;
-
-    // if (isObjectHidden _leader || {!(simulationEnabled _leader)}) then {
-    //     [QGVAR(hideObjectGlobal), [_x, false]] call CBA_fnc_localEvent;
-    // } else {
-    //     if (
-    //         !(isPlayer _leader) &&
-    //         {!(isObjectHidden _leader) &&
-    //         {!((vehicle _leader) isKindOf "Air") &&
-    //         {((_leader getVariable [QGVAR(time), 0]) + 15) < CBA_missionTime}}}
-    //     ) then {
-    //         [QGVAR(hideObjectGlobal), [_x, true]] call CBA_fnc_localEvent;
-    //     };
-    // };

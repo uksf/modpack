@@ -5,6 +5,7 @@
 
     Description:
        Gets unit details for each unit in the group and returns an array
+       Gets details of vehicles to
 
     Parameters:
         0: group <OBJECT>
@@ -12,9 +13,6 @@
     Return value:
         _unitDetails
 */
-
-#define AI_FEATURES ["AIMINGERROR", "ANIM", "AUTOCOMBAT", "AUTOTARGET", "CHECKVISIBLE", "COVER", "FSM", "LIGHTS", "MINEDETECTION", "MOVE", "NVG", "PATH", "RADIOPROTOCOL", "SUPPRESSION", "TARGET", "TEAMSWITCH", "WEAPONAIM"]
-
 params ["_group"];
 
 // get group composition
@@ -29,7 +27,6 @@ private _unitDetails = [];
     // get unit loadouts
     // private _unitLoadout = getUnitLoadout _x;
     // _unitDetails pushBack _unitLoadout;
-    // diag_log format ["### Caching Unit %1 ###: %2", _x ,_unitLoadout];
 
     _unitDetailsInner pushBack (getPosATL _unit);
 
@@ -40,6 +37,15 @@ private _unitDetails = [];
     _unitDetailsInner pushBack (behaviour _unit);
 
     _unitDetailsInner pushBack (AI_FEATURES select {!(_unit checkAIFeature _x)}); // e.g. ["PATH", "FSM"]
+
+    // stores vehicle details if present, has to be run per unit
+    if !(isNull assignedVehicle _x) then {
+        _unitDetailsInner pushBack (typeOf assignedVehicle _x);
+        _unitDetailsInner pushBack (assignedVehicleRole _x);
+        _unitDetailsInner pushBack (getPosATL vehicle _x);
+        _unitDetailsInner pushBack (isEngineOn vehicle _x);
+        _unitDetailsInner pushBack (getDir vehicle _x);
+    };
 
     _unitDetails pushBack _unitDetailsInner;
 

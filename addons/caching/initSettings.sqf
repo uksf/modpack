@@ -10,8 +10,8 @@
 [
     QGVAR(distance),
     "SLIDER",
-    ["Caching Distance", "Sets distance from players in metres within which AI will always uncache"],
+    ["Caching Distance", "Sets distance from players in metres within which AI will uncache"],
     ["UKSF", QUOTE(COMPONENT_BEAUTIFIED)],
-    [300, 2000, 750, 0],
+    [1000, 5000, 2000, 0],
     1
 ] call CBA_settings_fnc_init;

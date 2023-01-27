@@ -8,64 +8,39 @@ if (!GVAR(enabled)) exitWith {
 
 INFO("Caching is enabled.");
 
-// for initial caching
 if (isServer) then {
+    // for caching
     [{
-        private _includedGroups = allGroups select {!(_x getVariable [QGVAR(excluded), false])}; // not working currently, caches all
-        private _includedGroupsBeyondDistance = _includedGroups select {!([leader _x, GVAR(distance)] call EFUNC(common,anyNearPlayers))};
-        private _count = count _includedGroupsBeyondDistance;
+        private _groups = allGroups select {!(_x getVariable [QGVAR(excluded), false])};
+        private _count = count _groups;
         private _perFrame = ceil (_count / (diag_fpsMin * SERVER_DELAY));
         [{
             params ["_args", "_idPFH"];
-            _args params ["_includedGroupsBeyondDistance", "_count", "_perFrame", "_index"];
+            _args params ["_groups", "_count", "_perFrame", "_index"];
 
-            if (_index > _count || (count _includedGroupsBeyondDistance <= 0)) exitWith {
+            if (_index > _count || (count _groups <= 0)) exitWith {
                 [_idPFH] call CBA_fnc_removePerFrameHandler;
             };
 
-            [_includedGroupsBeyondDistance select [_index, _perFrame]] call FUNC(cacheGroups);
+            [_groups select [_index, _perFrame]] call FUNC(cacheGroups);
 
             _args set [3, _index + _perFrame];
-        }, 0, [_includedGroupsBeyondDistance, _count, _perFrame, 0]] call cba_fnc_addPerFrameHandler;
+        }, 0, [_groups, _count, _perFrame, 0]] call cba_fnc_addPerFrameHandler;
     }, SERVER_DELAY, []] call cba_fnc_addPerFrameHandler;
-};
 
-// for uncaching
-if (isServer) then {
+    // for uncaching
+    // TODO: think about performance for this
     [{
-        private _count = count GVAR(cachedGroupsPositions);;
-        private _perFrame = ceil (_count / (diag_fpsMin * SERVER_DELAY));
+        private _groupIndex = GVAR(cachedGroupsPositions) findIf {([_x#1, GVAR(distance)] call EFUNC(common,anyNearPlayers))};
+        if (_groupIndex == -1) exitWith {};
 
-        [{
-            params ["_args", "_idPFH"];
-            _args params ["_count", "_perFrame", "_index"];
+        // near groups uid
+        private _uid = GVAR(cachedGroupsPositions)#_groupIndex#0;
+        GVAR(cachedGroupsPositions) deleteAt _groupIndex;
 
-            if (_index > _count) exitWith {
-                [_idPFH] call CBA_fnc_removePerFrameHandler;
-            };
+        // hashmap lookup
+        private _groupData = GVAR(cachedGroupsData) get _uid; // returns the data
 
-            // TODO: Need to check a position against each player (ALL_PLAYERS)
-            private _groupIndex = GVAR(cachedGroupsPositions) findIf {
-                private _groupPos = _x#1;
-                {
-                    private _player = _x;
-                    (getPos _player distance2d _groupPos) < GVAR(distance);
-                } forEach ALL_PLAYERS;
-            };
-            if (_groupIndex == -1) exitWith {};
-
-            // near groups uid
-            private _uid = GVAR(cachedGroupsPositions)#_groupIndex#0;
-            GVAR(cachedGroupsPositions) deleteAt _groupIndex;
-            // systemChat format ["uid: %1", _uid];
-
-            // hashmap lookup
-            private _groupData = GVAR(cachedGroupsData) get _uid; // returns the data
-
-            [QGVAR(uncache), [_groups select [_index, _perFrame]]] call CBA_fnc_localEvent;
-
-            _args set [3, _index + _perFrame];
-        }, 0, [_count, _perFrame, 0]] call cba_fnc_addPerFrameHandler;
-    }, SERVER_DELAY, []] call cba_fnc_addPerFrameHandler;
+        [_uid, _groupData] call FUNC(recreateInfantryGroup);
+    }, 0.1, []] call cba_fnc_addPerFrameHandler;
 };
-

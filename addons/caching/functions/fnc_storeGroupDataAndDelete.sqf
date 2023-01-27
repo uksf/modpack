@@ -18,7 +18,6 @@ params ["_group"];
 
 // assign Id for finding / deleting
 private _uniqueGroupId = "uid_" + (str getPos leader _group);
-diag_log format ["### Caching ID ###: %1",_uniqueGroupId];
 
 // leader pos (for measuring distance)
 private _leaderPos = getPos (leader _group);
@@ -30,7 +29,14 @@ GVAR(cachedGroupsPositions) pushBack [_uniqueGroupId, _leaderPos];
 private _side = side _group;
 
 // get unit details
-private _unitDetailsArray = [_group] call FUNC(getUnitDetails);
+private _unitDetailsArray = [_group] call FUNC(getInfantryUnitDetails);
+// if ((vehicle leader _group) == leader _group) then {
+//     private _unitDetailsArray = [_group] call FUNC(getInfantryUnitDetails);
+//     _unitDetailsArray
+// } else {
+//     private _unitDetailsArray = [_group] call FUNC(getVehicleUnitDetails);
+//     _unitDetailsArray
+// };
 
 // get waypoints
 private _waypointsArray = [_group] call FUNC(getGroupWaypoints);
@@ -38,10 +44,9 @@ private _waypointsArray = [_group] call FUNC(getGroupWaypoints);
 // get combatmode
 private _combatMode = combatMode _group;
 
-// TO DO: Handle disabled ai features
-
 GVAR(cachedGroupsData) set [_uniqueGroupId, [_side, _unitDetailsArray, _waypointsArray, _combatMode]];
 
+deleteVehicle (vehicle leader _group);
 {
     deleteVehicle _x;
 } forEach units _group;
