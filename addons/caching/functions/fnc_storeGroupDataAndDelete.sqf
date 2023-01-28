@@ -27,7 +27,6 @@ TRACE_1("6) gathered info : leader pos :",_leaderPos);
 
 // add key pair to array [uid, pos]
 GVAR(cachedGroupsPositions) pushBack [_uniqueGroupId, _leaderPos];
-publicVariable QGVAR(cachedGroupsPositions);
 
 // side
 private _side = side _group;
@@ -52,7 +51,6 @@ private _combatMode = combatMode _group;
 TRACE_1("6) gathered info : combat mode :", _combatMode);
 
 GVAR(cachedGroupsData) set [_uniqueGroupId, [_side, _unitDetailsArray, _waypointsArray, _combatMode]];
-publicVariable QGVAR(cachedGroupsData);
 
 deleteVehicle (vehicle leader _group);
 {
