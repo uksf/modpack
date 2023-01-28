@@ -15,6 +15,7 @@
 params [["_groups", []]];
 
 {
+    if (isNull _x) exitWith {TRACE_0("6) caching group failed / not needed");}; // should probably be higher up?
     /*
     Cases
         0 (base):
@@ -31,7 +32,6 @@ params [["_groups", []]];
         {!([_leader, GVAR(distance)] call EFUNC(common,anyNearPlayers))} &&
         {[units _x, {vehicle _x != _x}] call EFUNC(common,arrayNone)} // remove this when ready to test vehicles
     ) then {
-        if (_x isNull) exitWith {TRACE_1("6) cahing group failed : leader :", _leader);}; // should probably be higher up
         [_x] call FUNC(storeGroupDataAndDelete);
     };
 } forEach _groups;
