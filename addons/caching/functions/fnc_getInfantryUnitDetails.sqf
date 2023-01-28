@@ -39,6 +39,7 @@ private _unitDetails = [];
     _unitDetailsInner pushBack (AI_FEATURES select {!(_unit checkAIFeature _x)}); // e.g. ["PATH", "FSM"]
 
     _unitDetails pushBack _unitDetailsInner;
+    TRACE_1("6) gathered info unit data : unit details inner :", _unitDetailsInner);
 
 } forEach units _group;
 

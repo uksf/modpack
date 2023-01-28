@@ -16,17 +16,22 @@
 
 params ["_group"];
 
+TRACE_1("6) gathered info : group :", _group);
 // assign Id for finding / deleting
 private _uniqueGroupId = "uid_" + (str getPos leader _group);
+TRACE_1("6) gathered info : uid :",_uniqueGroupId);
 
 // leader pos (for measuring distance)
 private _leaderPos = getPos (leader _group);
+TRACE_1("6) gathered info : leader pos :",_leaderPos);
 
 // add key pair to array [uid, pos]
 GVAR(cachedGroupsPositions) pushBack [_uniqueGroupId, _leaderPos];
+publicVariable QGVAR(cachedGroupsPositions);
 
 // side
 private _side = side _group;
+TRACE_1("6) gathered info : side :", _side);
 
 // get unit details
 private _unitDetailsArray = [_group] call FUNC(getInfantryUnitDetails);
@@ -40,11 +45,14 @@ private _unitDetailsArray = [_group] call FUNC(getInfantryUnitDetails);
 
 // get waypoints
 private _waypointsArray = [_group] call FUNC(getGroupWaypoints);
+TRACE_1("6) gathered info : waypoints :", _waypointsArray);
 
 // get combatmode
 private _combatMode = combatMode _group;
+TRACE_1("6) gathered info : combat mode :", _combatMode);
 
 GVAR(cachedGroupsData) set [_uniqueGroupId, [_side, _unitDetailsArray, _waypointsArray, _combatMode]];
+publicVariable QGVAR(cachedGroupsData);
 
 deleteVehicle (vehicle leader _group);
 {
