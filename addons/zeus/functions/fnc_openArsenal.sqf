@@ -20,7 +20,7 @@ params [["_unit", BIS_fnc_initCuratorAttributes_target]];
 
 GVAR(arsenalCloseEvent) = ["ace_arsenal_displayClosed", {
     ["ace_arsenal_displayClosed", GVAR(arsenalCloseEvent)] call CBA_fnc_removeEventHandler;
-    private _loadout = getUnitLoadout _unit;
+    private _loadout = [_unit] call CBA_fnc_getLoadout;
     private _units = [_unit] call zen_attributes_fnc_getAttributeEntities;
-    {_x setUnitLoadout _loadout} forEach _units;
+    {[_x, _loadout] call CBA_fnc_setLoadout} forEach _units;
 }] call CBA_fnc_addEventHandler;
