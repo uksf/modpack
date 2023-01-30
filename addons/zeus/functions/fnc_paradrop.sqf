@@ -61,8 +61,8 @@ private _waypoint = _group addWaypoint [_flightEndPosition, -1]; // ASL when rad
 _waypoint setWaypointCompletionRadius 0;
 _waypoint setWaypointBehaviour "CARELESS";
 
+_plane flyInHeight ((_altitude - 500) max 100);
 _plane flyInHeightASL [_altitude, _altitude, _altitude];
-_plane flyInHeight (_altitude - 100);
 
 [{
     params ["_args", "_idPFH"];
@@ -70,7 +70,7 @@ _plane flyInHeight (_altitude - 100);
     _states params ["_unitsIn", "_positionPreStartReached", "_flightStartPositionReached", "_flightEndPositionReached"];
 
     private _position = getPosASL _plane;
-    if (!(alive _plane) || {(_position distance2D _flightEndPosition) < 50}) exitWith {
+    if (!(alive _plane) || {(_position distance2D _flightEndPosition) < 100}) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
         private _remainingUnits = _units select {vehicle _x == _plane};
         {
@@ -80,8 +80,6 @@ _plane flyInHeight (_altitude - 100);
         {deleteVehicle _x} forEach (crew _plane);
         deleteVehicle _plane;
     };
-
-    // _plane flyInHeightASL [_altitude, _altitude, _altitude];
 
     if (!_unitsIn && {(_position distance2D _dropStartPosition) < 2500}) then {
         _states set [0, true];
