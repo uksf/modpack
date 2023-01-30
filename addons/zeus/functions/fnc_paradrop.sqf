@@ -46,7 +46,7 @@ _plane setPosASL _flightStartPosition;
 _plane setVectorDirAndUp [_vectorDirection, [0, 0, 1]];
 _plane setVelocity (_vectorDirection vectorMultiply _speed);
 _plane flyInHeightASL [_altitude, _altitude, _altitude];
-_plane flyInHeight (_altitude - 50);
+_plane flyInHeight (_altitude - 100);
 _plane forceSpeed _speed;
 _plane setVariable ["acex_headless_blacklist", true, true];
 
@@ -65,7 +65,7 @@ _waypoint setWaypointBehaviour "CARELESS";
 
 [{
     params ["_args", "_idPFH"];
-    _args params ["_plane", "_units", "_dropStartPosition", "_dropEndPosition", "_flightEndPosition", "_unitReturnPosition", ["_previousDistanceStart", 99999], ["_previousDistanceEnd", 99999], ["_states", [false, false, false, false]]];
+    _args params ["_plane", "_units", "_altitude", "_dropStartPosition", "_dropEndPosition", "_flightEndPosition", "_unitReturnPosition", ["_previousDistanceStart", 99999], ["_previousDistanceEnd", 99999], ["_states", [false, false, false, false]]];
     _states params ["_unitsIn", "_positionPreStartReached", "_flightStartPositionReached", "_flightEndPositionReached"];
 
     private _position = getPosASL _plane;
@@ -79,6 +79,8 @@ _waypoint setWaypointBehaviour "CARELESS";
         {deleteVehicle _x} forEach (crew _plane);
         deleteVehicle _plane;
     };
+
+    _plane flyInHeightASL [_altitude, _altitude, _altitude];
 
     if (!_unitsIn && {(_position distance2D _dropStartPosition) < 2500}) then {
         _states set [0, true];
@@ -105,7 +107,7 @@ _waypoint setWaypointBehaviour "CARELESS";
             [QEGVAR(common,textTiles), [parseText format ["<t align = 'center' size = '1.2' color = '#00CC00'>GREEN LIGHT - JUMP</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 2.5], _units] call CBA_fnc_targetEvent;
         };
 
-        _args set [6, _distance];
+        _args set [7, _distance];
     };
 
     if (_positionPreStartReached && _flightStartPositionReached && !_flightEndPositionReached) then {
@@ -120,8 +122,8 @@ _waypoint setWaypointBehaviour "CARELESS";
             } forEach _remainingUnits;
         };
 
-        _args set [7, _distance];
+        _args set [8, _distance];
     };
 
-    _args set [8, _states];
-}, 0, [_plane, _units, _dropStartPosition, _dropEndPosition, _flightEndPosition, _unitReturnPosition]] call CBA_fnc_addPerFrameHandler;
+    _args set [9, _states];
+}, 3, [_plane, _units, _altitude, _dropStartPosition, _dropEndPosition, _flightEndPosition, _unitReturnPosition]] call CBA_fnc_addPerFrameHandler;
