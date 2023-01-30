@@ -45,8 +45,6 @@ createVehicleCrew _plane;
 _plane setPosASL _flightStartPosition;
 _plane setVectorDirAndUp [_vectorDirection, [0, 0, 1]];
 _plane setVelocity (_vectorDirection vectorMultiply _speed);
-_plane flyInHeightASL [_altitude, _altitude, _altitude];
-_plane flyInHeight (_altitude - 100);
 _plane forceSpeed _speed;
 _plane setVariable ["acex_headless_blacklist", true, true];
 
@@ -62,6 +60,9 @@ _group setBehaviourStrong "CARELESS";
 private _waypoint = _group addWaypoint [_flightEndPosition, -1]; // ASL when radius negative
 _waypoint setWaypointCompletionRadius 0;
 _waypoint setWaypointBehaviour "CARELESS";
+
+_plane flyInHeightASL [_altitude, _altitude, _altitude];
+_plane flyInHeight (_altitude - 100);
 
 [{
     params ["_args", "_idPFH"];
@@ -80,7 +81,7 @@ _waypoint setWaypointBehaviour "CARELESS";
         deleteVehicle _plane;
     };
 
-    _plane flyInHeightASL [_altitude, _altitude, _altitude];
+    // _plane flyInHeightASL [_altitude, _altitude, _altitude];
 
     if (!_unitsIn && {(_position distance2D _dropStartPosition) < 2500}) then {
         _states set [0, true];
