@@ -30,7 +30,7 @@ private _group = createGroup _side;
 
     TRACE_1("6) Spawn unit iteration",_args);
 
-    if ((count _unitDetailsArray <= 0) || {time > (_time + TIMEOUT)}) exitWith {
+    if ((count _unitDetailsArray == 0) || {time > (_time + TIMEOUT)}) exitWith {
         TRACE_2("6) Spawn unit all spawned or timeout",_unitDetailsArray,time > (_time + TIMEOUT));
 
         // create waypoints
@@ -45,12 +45,13 @@ private _group = createGroup _side;
     private _unitInfo = _unitDetailsArray deleteAt 0;
     TRACE_1("6) unit info",_unitInfo);
     // if (_unitinfo) exitWith {TRACE_1("6) exited, unit info",_unitInfo);};
-    _unitInfo params ["_unitType", "_unitPos", "_unitDir", "_unitSkill", "_unitBehaviour", "_unitFeatures"];
+    _unitInfo params ["_unitType", "_unitPos", "_unitDir", "_unitSkill", "_unitBehaviour", "_unitFeatures", "_stance"];
     private _unit = _group createUnit [_unitType, [0,0,0], [], 5, "NONE"];
     _unit setSkill _unitSkill;
     _unit setBehaviour _unitBehaviour;
     _unit setPos _unitPos;
     _unit setDir _unitDir;
+    _unit setUnitPos _stance;
     {
         _unit disableai _x;
     } forEach _unitFeatures;
