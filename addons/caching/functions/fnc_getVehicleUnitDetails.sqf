@@ -4,8 +4,7 @@
         Bridg
 
     Description:
-       Gets unit details for each unit in the group and returns an array
-       Gets details of vehicles to
+       Gets vehicle details
 
     Parameters:
         0: group <OBJECT>

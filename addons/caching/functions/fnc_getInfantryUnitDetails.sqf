@@ -5,7 +5,6 @@
 
     Description:
        Gets unit details for each unit in the group and returns an array
-       Gets details of vehicles to
 
     Parameters:
         0: group <OBJECT>
@@ -38,7 +37,7 @@ private _unitDetails = [];
 
     _unitDetailsInner pushBack (AI_FEATURES select {!(_unit checkAIFeature _x)}); // e.g. ["PATH", "FSM"]
 
-    _unitDetailsInner pushBack (unitPos _unit);
+    _unitDetailsInner pushBack (unitPos _unit); // stance
 
     _unitDetails pushBack _unitDetailsInner;
     TRACE_1("6) gathered info unit data : unit details inner :", _unitDetailsInner);
