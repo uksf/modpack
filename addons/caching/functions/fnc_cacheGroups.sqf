@@ -29,8 +29,8 @@ params [["_groups", []]];
             !(isPlayer _leader) &&
             {(simulationEnabled _leader || {!(isObjectHidden _leader)})} &&
             {!((objectParent _leader) isKindOf "Air")} &&
-            {!([_leader, GVAR(distance)] call EFUNC(common,anyNearPlayers))} &&
-            {[units _x, {vehicle _x != _x}] call EFUNC(common,arrayNone)} // remove this when ready to test vehicles
+            {!([_leader, GVAR(distance)] call EFUNC(common,anyNearPlayers))} // &&
+            // {[units _x, {vehicle _x != _x}] call EFUNC(common,arrayNone)} // remove this when ready to test vehicles
         ) then {
             [_x] call FUNC(storeGroupDataAndDelete);
         };

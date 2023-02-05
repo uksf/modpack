@@ -32,16 +32,6 @@ GVAR(cachedGroupsPositions) pushBack [_uniqueGroupId, _leaderPos];
 private _side = side _group;
 TRACE_1("6) gathered info : side :", _side);
 
-// get unit details
-private _unitDetailsArray = [_group] call FUNC(getInfantryUnitDetails);
-// if ((vehicle leader _group) == leader _group) then {
-//     private _unitDetailsArray = [_group] call FUNC(getInfantryUnitDetails);
-//     _unitDetailsArray
-// } else {
-//     private _unitDetailsArray = [_group] call FUNC(getVehicleUnitDetails);
-//     _unitDetailsArray
-// };
-
 // get waypoints
 private _waypointsArray = [_group] call FUNC(getGroupWaypoints);
 TRACE_1("6) gathered info : waypoints :", _waypointsArray);
@@ -50,10 +40,22 @@ TRACE_1("6) gathered info : waypoints :", _waypointsArray);
 private _combatMode = combatMode _group;
 TRACE_1("6) gathered info : combat mode :", _combatMode);
 
-GVAR(cachedGroupsData) set [_uniqueGroupId, [_side, _unitDetailsArray, _waypointsArray, _combatMode]];
+// get inf / vehicle details
+if ((vehicle leader _group) isKindOf "LandVehicle") then { // need a better way to do this
+    private _unitDetailsArray = [_group] call FUNC(getVehicleUnitDetails);
+    // update hash map
+    GVAR(cachedGroupsData) set [_uniqueGroupId, [_side, _unitDetailsArray, _waypointsArray, _combatMode, SAVED_TYPE_VEHICLE]];
+} else {
+    private _unitDetailsArray = [_group] call FUNC(getInfantryUnitDetails);
+    // update hash map
+    GVAR(cachedGroupsData) set [_uniqueGroupId, [_side, _unitDetailsArray, _waypointsArray, _combatMode, SAVED_TYPE_INFANTRY]];
+};
 
+// delete
 deleteVehicle (vehicle leader _group);
 {
     deleteVehicle _x;
 } forEach units _group;
 deleteGroup _group;
+
+

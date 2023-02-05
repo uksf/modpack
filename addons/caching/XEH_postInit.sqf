@@ -41,6 +41,12 @@ if (isServer) then {
         // hashmap lookup
         private _groupData = GVAR(cachedGroupsData) get _uid; // returns the data
 
-        [_uid, _groupData] call FUNC(recreateInfantryGroup);
+        if (_groupData#4 == 0) exitWith { // SAVED_TYPE_INFANTRY
+            [_uid, _groupData] call FUNC(recreateInfantryGroup);
+        };
+
+        if (_groupData#4 == 1) exitWith { // SAVED_TYPE_VEHICLE
+            [_uid, _groupData] call FUNC(recreateVehicleGroup);
+        };
     }, 0.1, []] call cba_fnc_addPerFrameHandler;
 };

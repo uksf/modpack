@@ -16,9 +16,9 @@
 */
 
 params ["_group", "_waypointsArray"];
-
 {
-    [_group, _x#2, 0, _x#4, _x#0, _x#5, _x#3, _x#1] call cba_fnc_addWaypoint;
+    _x params ["_behaviour", "_formation", "_pos", "_speed", "_type", "_combatMode"];
+    [_group, _pos, 0, _type, _behaviour, _combatMode, _speed, _formation] call cba_fnc_addWaypoint;
 } forEach _waypointsArray;
 
 

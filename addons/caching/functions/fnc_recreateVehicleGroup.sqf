@@ -4,8 +4,8 @@
         Bridg
 
     Description:
-        Recreates a group
-        Modified version of common,spawnGroup
+        Recreates a vehicle group
+        Modified version of common,spawnGroupVehicle
 
     Parameters:
         0: uid <STRING>
@@ -20,21 +20,42 @@
 #define TIMEOUT 30
 
 params ["_uid", "_groupData"];
+_groupData params ["_side", "_unitDetailsArray", "_waypointsArray", "_combatMode"];
+_unitDetailsArray params ["_vehiclePos", "_vehicleDir", "_vehicleType", "_engineState", "_fuelLevel", "_fullCrew", "_commanderSkill"];
 
-private _side = _groupData#0;
-private _unitDetailsArray = _groupData#1; // [[unit type, [posATL], dir, skill, behaviour, [disabled AI Features], assignedVehicleType, assignedVehicleRole, vehiclePos, engineon, vehicledir], [..........]]
-private _waypointsArray = _groupData#2;
-private _combatMode = _groupData#3;
+private _crewUnitPool = [];
+{_crewUnitPool pushBack (_x#0)} forEach _fullCrew;
+
+TRACE_5("6) Spawn vehicle data",_position,_side,_unitPool,_vehiclePool,_countCode);
 
 private _group = createGroup _side;
+private _vehicle = createVehicle [_vehicleType, [0,0,0], [], 0, "NONE"];
+_vehicle setPos _vehiclePos;
+_vehicle setDir _vehicleDir;
+_vehicle setVectorUp (surfaceNormal (getPos _vehicle));
+_vehicle setFuel _fuelLevel;
+_vehicle engineOn _engineState;
+_group addVehicle _vehicle;
+
+TRACE_1("6) Spawn vehicle created vehicle",_vehicle);
+
+private _turrets = allTurrets _vehicle;
+// private _count = [_vehicle, _turrets] call _countCode;
+// if (_count == -1) then {
+//     _count = (_vehicle emptyPositions "driver") + count _turrets + round ((_vehicle emptyPositions "cargo") / 1.5);
+// };
+TRACE_2("6) Spawn vehicle position count",_turrets,_count);
 
 [{
     params ["_args", "_idPFH"];
-    _args params ["_group", "_unitPool", "_time", "_uid", "_unitDetailsArray", "_waypointsArray", "_vehicleCreated"];
-    TRACE_1("6) Spawn unit iteration",_args);
+    _args params ["_group", "_vehicle", "_crewUnitPool", "_turrets", "_time", "_waypointsArray", "_combatMode", "_uid"];
+    TRACE_1("6) Spawn vehicle iteration",_args);
 
-    if ((count _unitDetailsArray <= 0) || {time > (_time + TIMEOUT)}) exitWith {
-        TRACE_2("6) Spawn unit all spawned or timeout",_unitDetailsArray,time > (_time + TIMEOUT));
+    if ((count _crewUnitPool == 0) || {time > (_time + TIMEOUT)}) exitWith {
+        TRACE_2("6) Spawn unit all spawned or timeout",_crewUnitPool,time > (_time + TIMEOUT));
+
+        // set group combat mode
+        _group setCombatMode _combatMode;
 
         // create waypoints
         [_group, _waypointsArray] call FUNC(addWaypoints);
@@ -44,69 +65,36 @@ private _group = createGroup _side;
 
         [_idPFH] call CBA_fnc_removePerFrameHandler;
     };
+    private _crewUnit = _crewUnitPool deleteAt 0;
+    private _unit = _group createUnit [_crewUnit, [0, 0, 2000], [], 0, "NONE"];
+    INFO("6) Spawn vehicle created unit");
 
-
-// Unit details array
-// [
-//     [
-//         _savedType, unit type, pos, dir, skill, beh, ...
-//     ], // infantry
-//     [], // infatnry
-//     [
-//         _savedType, vehicle type, array of all units in the vehicle, veh dir, veh pos, beh, ...
-//     ], // vehicle
-//     [] // infantry
-// ]
-
-//     private _i = _unitDetailsArray#0;
-//     _i params ["_savedType"];
-
-//     if (_savedType == SAVED_TYPE_INFANTRY) then {
-//         // call FUNC(createInfGroup)
-//     };
-
-
-//     private _j = _unitDetailsArray#2;
-//     _j params ["_savedType"];
-//     if (_savedType == SAVED_TYPE_VEHICLE) then {
-//         // call FUNC(createVeh)
-//     };
-
-    private _unitInfo = selectRandom _unitDetailsArray; // [unit type, [posATL], dir, skill, behaviour, [disabled AI Features], assignedVehicleType, assignedVehicleRole, vehiclePos, engineon, vehicledir]
-
-    // creates vehicle if not yet created
-    if (_unitInfo#6 isNotEqualTo '') then {
-        if !(_vehicleCreated#0) then {
-            private _vehicle = createVehicle [_unitInfo#6, [0,0,0], [], 0, "NONE"];
-            _vehicle setDir _unitInfo#10;
-            _vehicle engineOn _unitInfo#9;
-            _vehicle setPos _unitInfo#8;
-            _args set [6, [true, _vehicle]]; // passes back vehicle object
-        };
-        systemChat format ["veh obj: %1", _vehicleCreated#1];
+    if ((_vehicle emptyPositions "commander") > 0) exitWith {
+        INFO("6) Spawn vehicle set unit as commander");
+        _unit assignAsCommander _vehicle;
+        _unit moveInCommander _vehicle;
+        _args set [2, _crewUnitPool];
     };
 
-    private _unit = _group createUnit [_unitInfo#0, [0,0,0], [], 5, "NONE"];
-
-    _unit setSkill _unitInfo#3;
-    _unit setBehaviour _unitInfo #4;
-
-    {
-        _unit disableai _x;
-    } forEach _unitInfo#5;
-
-    if (_vehicleCreated#0) then {
-        _unit moveInAny _vehicleCreated#1;
-    } else {
-        _unit setPos _unitInfo#1;
-        _unit setDir _unitInfo#2;
+    if ((_vehicle emptyPositions "driver") > 0) exitWith {
+        INFO("6) Spawn vehicle set unit as driver");
+        _unit assignAsDriver _vehicle;
+        _unit moveInDriver _vehicle;
+        _args set [2, _crewUnitPool];
     };
 
-    _unitDetailsArray deleteAt (_unitDetailsArray findIf {(_x#0) isKindOf _unitInfo#0});
+    if (isNull (_vehicle turretUnit (_turrets#0))) exitWith {
+        INFO("6) Spawn vehicle set unit as turret");
+        _unit assignAsTurret [_vehicle, (_turrets#0)];
+        _unit moveInTurret [_vehicle, (_turrets#0)];
+        _turrets deleteAt 0;
+        _args set [2, _crewUnitPool];
+    };
 
-    // systemChat format ["pos: %1, group: %2, uda count: %3", _unitInfo#1, _group, count _unitDetailsArray];
-
-    TRACE_1("6) Spawn unit created unit",_args);
-
-    _args set [4, _unitDetailsArray];
-}, SPAWN_DELAY, [_group, _unitPool, time, _uid, _unitDetailsArray, _waypointsArray, [false, objNull]]] call CBA_fnc_addPerFrameHandler;
+    if ((_vehicle emptyPositions "cargo") > 0) exitWith {
+        INFO("6) Spawn vehicle set unit as cargo");
+        _unit assignAsCargo _vehicle;
+        _unit moveInCargo _vehicle;
+        _args set [2, _crewUnitPool];
+    };
+}, SPAWN_DELAY, [_group, _vehicle, _crewUnitPool, _turrets, time, _waypointsArray, _combatMode, _uid]] call CBA_fnc_addPerFrameHandler;
