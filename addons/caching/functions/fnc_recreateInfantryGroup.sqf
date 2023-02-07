@@ -56,7 +56,7 @@ private _group = createGroup _side;
     {
         _unit disableai _x;
     } forEach _unitFeatures;
-    _unit setDir _unitDir;
+    (group _unit) setFormDir _unitDir; // temp - needs setting at group level
 
     TRACE_1("6) Spawn unit created unit",_args);
 
