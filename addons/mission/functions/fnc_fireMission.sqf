@@ -102,15 +102,18 @@ _delay = _delay + (_artillery getArtilleryETA [_targetPosition, currentMagazine 
     };
 
     [{
-        params ["_caller", "_artillery"];
+        params ["_callerGroup", "_artillery"];
 
-        if (count ([group _caller] call CBA_fnc_getAlive) > 0) then {
-            (group _caller) setVariable [QGVAR(artillerySupportRequested), false, true];
+        if (!isNull _callerGroup && {count ([_callerGroup] call CBA_fnc_getAlive) > 0}) then {
+            (_callerGroup) setVariable [QGVAR(artillerySupportRequested), false, true];
         };
-        _artillery setVariable [QGVAR(artillerySupportTasked), false, true];
+
+        if (!isNull _artillery) then {
+            _artillery setVariable [QGVAR(artillerySupportTasked), false, true];
+        };
 
 #ifdef DEBUG_MODE_FULL
         deleteMarker marker1; deleteMarker marker2; deleteMarker marker3; deleteMarker marker4; deleteMarker marker5; deleteMarker marker6; deleteMarker marker7;
 #endif
-    }, [_caller, _artillery], 60] call CBA_fnc_waitAndExecute;
+    }, [group _caller, _artillery], 60] call CBA_fnc_waitAndExecute;
 }, _this, _delay] call CBA_fnc_waitAndExecute;
