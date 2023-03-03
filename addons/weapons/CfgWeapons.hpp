@@ -641,14 +641,25 @@ class CfgWeapons {
             allowedSlots[] = { 901 };
         };
     };
-    class launch_Titan_short_base;
+    class launch_Titan_base;
+    class launch_Titan_short_base : launch_Titan_base {
+        class OpticsModes;
+    };
     class launch_B_Titan_short_F : launch_Titan_short_base {
         class WeaponSlotsInfo;
+        class OpticsModes: OpticsModes {
+            class StepScope;
+        };
     };
     class UK3CB_BAF_Javelin_Launcher : launch_B_Titan_short_F {
         modes[] = { "TopDown", "Single" };
         class WeaponSlotsInfo : WeaponSlotsInfo {
             mass = 231;
+        };
+        class OpticsModes: OpticsModes {
+            class StepScope: StepScope {
+                thermalMode[] = { 0, 1 };
+            };
         };
     };
     class UK3CB_BAF_Javelin_Slung_Tube : Launcher_Base_F {

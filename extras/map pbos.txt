@@ -13,3 +13,17 @@
     - TPW_NZIWASOGO
 - Ruha
     - ruha
+- Lingor/Dingor
+    - brg_africa
+    - dingor
+    - ibr_airports
+    - lingor3
+    - lingor_bank
+    - lingor_fuel
+    - lingor_objects
+    - lingor_objects2
+    - lingor_roads
+    - lingor_sounds
+    - lingor_trees
+    - mbg_buildings_2
+    - sah_bunker_obj

@@ -23,6 +23,7 @@ if (hasInterface && {isMultiplayer}) then {
 
     [QEGVAR(common,textTiles), [parseText format ["<t align = 'center' size = '1.2' color = '#FF0000'>FAILED TO JUMP</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 5]] call CBA_fnc_localEvent;
     _player setPosATL ([_failPosition, 15] call CBA_fnc_randPos);
+    _player setVelocity [0, 0, 0];
 }] call CBA_fnc_addEventHandler;
 
 if (hasInterface) then {

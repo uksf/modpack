@@ -30,8 +30,8 @@ if (GVAR(useMainOpGear)) then {
     };
     ace_arsenal_virtualItems = GVAR(cachedMainOpGear);
 
-    private _filteredLoadout = [getUnitLoadout ace_arsenal_center] call ace_arsenal_fnc_verifyLoadout;
-    ace_arsenal_center setUnitLoadout (_filteredLoadout#0);
+    private _filteredLoadout = [[ace_arsenal_center] call CBA_fnc_getLoadout] call ace_arsenal_fnc_verifyLoadout;
+    [ace_arsenal_center, _filteredLoadout#0] call CBA_fnc_setLoadout;
 } else {
     if (GVAR(cachedFullGear) isEqualTo []) then {
         [ace_arsenal_center, true, false] call ace_arsenal_fnc_addVirtualItems;
