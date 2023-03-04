@@ -126,6 +126,7 @@
 #define JACKAL_INVENTORY(AMMO) \
     class TransportMagazines { \
         MACRO_ADDMAGAZINE(AMMO,9); \
+        MACRO_ADDMAGAZINE(UK3CB_BAF_762_200Rnd_T,9); \
     }; \
     class TransportItems { \
         MACRO_ADDITEM(Toolkit,1); \
