@@ -1,0 +1,9 @@
+PREP(addAdminActions);
+PREP(addWaypoints);
+PREP(getGroupWaypoints);
+PREP(getInfantryUnitDetails);
+PREP(getVehicleUnitDetails);
+PREP(recreateInfantryGroup);
+PREP(recreateVehicleGroup);
+PREP(virtualizeGroup);
+PREP(virtualizeGroups);
