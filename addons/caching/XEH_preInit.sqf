@@ -14,8 +14,8 @@ if (isServer) then {
         if (_group isEqualType objNull) then {
             _group = group _group;
         };
+ 
         [QGVAR(setCacheState), [_group, true]] call CBA_fnc_localEvent;
-        
     }] call CBA_fnc_addEventHandler;
 
     [QGVAR(uncache), {
@@ -24,8 +24,8 @@ if (isServer) then {
         if (_group isEqualType objNull) exitWith {
             _group = group _group;
         };
+
         [QGVAR(setCacheState), [_group, false]] call CBA_fnc_localEvent;
-        
     }] call CBA_fnc_addEventHandler;
 
     [QGVAR(setCacheState), {
@@ -47,8 +47,11 @@ if (isServer) then {
             } forEach (crew _vehicle);
         };
     }] call CBA_fnc_addEventHandler;
+
+    {
+        [_x, "initPost", {(group (_this#0)) setVariable [QQGVAR(excluded), true, true]}, true] call CBA_fnc_addClassEventHandler;
+    } forEach ["B_UAV_AI", "O_UAV_AI", "I_UAV_AI"];
 };
-// [QGVAR(setDynamicSimulation), {(_this#0) enableDynamicSimulation (_this#1)}] call CBA_fnc_addEventHandler;
 
 #include "initSettings.sqf"
 

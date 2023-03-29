@@ -1,7 +1,7 @@
 [
     QGVAR(enabled),
     "CHECKBOX",
-    ["Caching", "Enables AI Caching"],
+    ["Virtualisation", "Enables AI Virtualisation"],
     ["UKSF", QUOTE(COMPONENT_BEAUTIFIED)],
     false,
     1
@@ -10,8 +10,8 @@
 [
     QGVAR(distance),
     "SLIDER",
-    ["Caching Distance", "Sets distance from players in metres within which AI will always uncache"],
+    ["Virtualisation Distance", "Sets distance from players in metres beyond which AI will be virtualised"],
     ["UKSF", QUOTE(COMPONENT_BEAUTIFIED)],
-    [300, 2000, 750, 0],
+    [1000, 5000, 3000, 0],
     1
 ] call CBA_fnc_addSetting;

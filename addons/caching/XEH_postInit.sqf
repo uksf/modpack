@@ -4,16 +4,9 @@
 
 if (!GVAR(enabled)) exitWith {
     INFO("Caching is disabled.");
-    // enableDynamicSimulationSystem false;
 };
 
 INFO("Caching is enabled.");
-// enableDynamicSimulationSystem true;
-// "Group" setDynamicSimulationDistance GVAR(distance);
-// "Vehicle" setDynamicSimulationDistance GVAR(distance);
-// "EmptyVehicle" setDynamicSimulationDistance 250;
-// "Prop" setDynamicSimulationDistance 50;
-// "IsMoving" setDynamicSimulationDistanceCoef 1.5;
 
 if (isServer) then {
     [{
