@@ -323,6 +323,14 @@ class CfgWeapons {
         displayname = "AN/PVS-15 WP (Winter)";
         COLOUR_PRESET_WP;
     };
+    class CUP_NVG_GPNVG_black : NVGoggles {
+        displayname = "GPNVG WP (Black)";
+        COLOUR_PRESET_WP;
+    };
+    class CUP_NVG_GPNVG_green : NVGoggles {
+        displayname = "GPNVG WP (Green)";
+        COLOUR_PRESET_WP;
+    };
     class Integrated_NVG_F : NVGoggles {
         ace_nightvision_generation = 4;
         ace_nightvision_bluRadius = 0.36;

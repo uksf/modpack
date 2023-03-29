@@ -420,7 +420,9 @@
     "CUP_NVG_PVS15_tan_WP", \
     "CUP_NVG_PVS15_winter_WP", \
     "UK3CB_BAF_HMNVS_WP", \
-    "uksf_air_equipment_marshallSticks"
+    "uksf_air_equipment_marshallSticks", \
+    "CUP_NVG_GPNVG_black", \
+    "CUP_NVG_GPNVG_green"
 
 #define MAIN_OP_ITEMS \
     "ACE_ATragMX", \
