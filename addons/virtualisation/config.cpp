@@ -10,7 +10,7 @@ class CfgPatches {
             "uksf_common"
         };
         author = QUOTE(UKSF);
-        authors[] = { "Beswick.T" };
+        authors[] = { "Bridgford.A", "Beswick.T" };
         url = URL;
         VERSION_CONFIG;
     };

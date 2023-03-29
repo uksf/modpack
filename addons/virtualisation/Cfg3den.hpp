@@ -6,8 +6,8 @@ class Cfg3DEN {
                     class GVAR(excluded) {
                         property = QGVAR(excluded);
                         control = "Checkbox";
-                        displayName = QUOTE(Caching exclude);
-                        tooltip = QUOTE(Excludes group from caching);
+                        displayName = QUOTE(Virtualisation exclude);
+                        tooltip = QUOTE(Excludes group from virtualisation);
                         expression = QUOTE(if (isServer && _value) then {_this setVariable [ARR_3(QQGVAR(excluded), true, true)]};);
                         typeName = "BOOL";
                         defaultValue = "(false)";

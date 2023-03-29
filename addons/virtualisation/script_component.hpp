@@ -1,5 +1,5 @@
-#define COMPONENT caching
-#define COMPONENT_BEAUTIFIED Caching
+#define COMPONENT virtualisation
+#define COMPONENT_BEAUTIFIED Virtualisation
 #include "\u\uksf\addons\main\script_mod.hpp"
 
 #define DEBUG_MODE_FULL

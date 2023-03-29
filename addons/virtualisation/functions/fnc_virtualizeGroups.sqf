@@ -4,7 +4,7 @@
         Tim Beswick
 
     Description:
-        Checks groups to cache for server
+        Checks groups to virtualize
 
     Parameter(s):
         0: Groups to check <ARRAY>
@@ -27,12 +27,12 @@ params [["_groups", []]];
         private _leader = leader _x;
         if (
             !(isPlayer _leader) &&
-            {(simulationEnabled _leader || {!(isObjectHidden _leader)})} &&
-            {!((objectParent _leader) isKindOf "Air")} &&
-            {!([_leader, GVAR(distance)] call EFUNC(common,anyNearPlayers))} // &&
-            // {[units _x, {vehicle _x != _x}] call EFUNC(common,arrayNone)} // remove this when ready to test vehicles
+            && {(simulationEnabled _leader || {!(isObjectHidden _leader)})}
+            && {!((objectParent _leader) isKindOf "Air")}
+            && {!([_leader, GVAR(distance)] call EFUNC(common,anyNearPlayers))}
+            // && {[units _x, {vehicle _x != _x}] call EFUNC(common,arrayNone)} // remove this when ready to test vehicles
         ) then {
-            [_x] call FUNC(storeGroupDataAndDelete);
+            [_x] call FUNC(virtualizeGroup);
         };
     };
 } forEach _groups;
