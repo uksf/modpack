@@ -27,9 +27,11 @@ GVAR(killswitched) = false;
     };
 }] call CBA_fnc_addEventHandler;
 
-{
-    [_x, "initPost", {(group (_this#0)) setVariable [QQGVAR(excluded), true, true]}, true] call CBA_fnc_addClassEventHandler;
-} forEach ["B_UAV_AI", "O_UAV_AI", "I_UAV_AI"];
+if (isServer) then {
+    {
+        [_x, "initPost", {(group (_this#0)) setVariable [QQGVAR(excluded), true, true]}, true] call CBA_fnc_addClassEventHandler;
+    } forEach ["B_UAV_AI", "O_UAV_AI", "I_UAV_AI"];
+};
 
 #include "initSettings.sqf"
 

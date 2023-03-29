@@ -5,6 +5,11 @@ if (!GVAR(enabled)) exitWith {
     INFO("Virtualisation is disabled.");
 };
 
+// TODO: Remove after extensive testing
+if (EGVAR(caching,enabled)) exitWith {
+    INFO("Caching is enabled, virtualisation has been disabled.");
+};
+
 INFO("Virtualisation is enabled.");
 
 if (hasInterface) then {

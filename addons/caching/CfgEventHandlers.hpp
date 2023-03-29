@@ -16,24 +16,6 @@ class Extended_PostInit_EventHandlers {
     };
 };
 
-class Extended_InitPost_EventHandlers {
-    class B_UAV_AI {
-        class ADDON {
-            init = QUOTE((group (_this select 0)) setVariable [ARR_3(QQGVAR(excluded),true,true)];);
-        };
-    };
-    class O_UAV_AI {
-        class ADDON {
-            init = QUOTE((group (_this select 0)) setVariable [ARR_3(QQGVAR(excluded),true,true)];);
-        };
-    };
-    class I_UAV_AI {
-        class ADDON {
-            init = QUOTE((group (_this select 0)) setVariable [ARR_3(QQGVAR(excluded),true,true)];);
-        };
-    };
-};
-
 class Extended_Killed_EventHandlers {
     class All {
         class ADDON {
