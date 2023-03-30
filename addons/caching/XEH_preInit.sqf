@@ -14,7 +14,7 @@ if (isServer) then {
         if (_group isEqualType objNull) then {
             _group = group _group;
         };
- 
+
         [QGVAR(setCacheState), [_group, true]] call CBA_fnc_localEvent;
     }] call CBA_fnc_addEventHandler;
 
@@ -49,7 +49,7 @@ if (isServer) then {
     }] call CBA_fnc_addEventHandler;
 
     {
-        [_x, "initPost", {(group (_this#0)) setVariable [QQGVAR(excluded), true, true]}, true] call CBA_fnc_addClassEventHandler;
+        [_x, "initPost", {(group (_this#0)) setVariable [QGVAR(excluded), true, true]}, true] call CBA_fnc_addClassEventHandler;
     } forEach ["B_UAV_AI", "O_UAV_AI", "I_UAV_AI"];
 };
 

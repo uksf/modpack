@@ -14,6 +14,9 @@ force uksf_cleanup_enabled = true;
 force uksf_cleanup_delay = 300;
 force uksf_curator_curatorsMax = 8;
 
+force uksf_virtualisation_enabled = false;
+force uksf_virtualisation_distance = 3000;
+
 // Change to true to use mission datetime with a persistence save
 force uksf_persistence_overrideSavedDateTime = false;
 

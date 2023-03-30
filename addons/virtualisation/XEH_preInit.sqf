@@ -6,10 +6,12 @@ ADDON = false;
 
 GVAR(killswitched) = false;
 
+[QGVAR(deleteGroup), {deleteGroup _this}] call CBA_fnc_addEventHandler;
 [QGVAR(recreateGroup), {
     params ["_groupData"];
     _groupData params ["_type"];
 
+    TRACE_1("recreating group",_groupData);
     switch (_type) do {
         case SAVED_TYPE_INFANTRY: {
             [_groupData] call FUNC(recreateInfantryGroup);
@@ -53,12 +55,10 @@ if (isServer) then {
             private _groupData = GVAR(virtualisedGroups) deleteAt _id;
             [QGVAR(recreateGroup), [_groupData]] call EFUNC(common,headlessEvent);
         }, 0.2, []] call CBA_fnc_addPerFrameHandler;
-    }]] call CBA_fnc_addEventHandler;
-
-    [QGVAR(deleteGroup), {deleteGroup _x}] call CBA_fnc_addEventHandler;
+    }] call CBA_fnc_addEventHandler;
 
     {
-        [_x, "initPost", {(group (_this#0)) setVariable [QQGVAR(excluded), true, true]}, true] call CBA_fnc_addClassEventHandler;
+        [_x, "initPost", {(group (_this#0)) setVariable [QGVAR(excluded), true, true]}, true] call CBA_fnc_addClassEventHandler;
     } forEach ["B_UAV_AI", "O_UAV_AI", "I_UAV_AI"];
 };
 

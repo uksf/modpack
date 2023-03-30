@@ -22,7 +22,7 @@
 #define TIMEOUT 30
 
 params ["_groupData"];
-_groupData ["", "_side", "_vehicleDetails", "_waypoints", "_combatMode"];
+_groupData params ["", "_side", "_vehicleDetails", "_waypoints", "_combatMode"];
 _vehicleDetails params ["_type", "_position", "_direction", "_engineState", "_fuel", "_crewTypes"];
 
 private _group = createGroup _side;
@@ -47,10 +47,14 @@ private _turrets = allTurrets _vehicle;
 [{
     params ["_args", "_idPFH"];
     _args params ["_time", "_group", "_vehicle", "_crewTypes", "_turrets", "_waypoints"];
-    TRACE_1("Spawn vehicle iteration",_args);
 
-    if ((count _crewTypes == 0) || {time > (_time + TIMEOUT)}) exitWith {
-        TRACE_2("Spawn unit all spawned or timeout",_crewTypes,time > (_time + TIMEOUT));
+    if (isNull _group) exitWith {
+        TRACE_1("Group deleted whilst recreated",_group);
+        [_idPFH] call CBA_fnc_removePerFrameHandler;
+    };
+
+    if (_crewTypes isEqualTo [] || {time > (_time + TIMEOUT)}) exitWith {
+        DEBUG("Spawn vehicle all spawned or timeout");
         [_idPFH] call CBA_fnc_removePerFrameHandler;
 
         [_group, _waypoints] call FUNC(addWaypoints);
@@ -62,26 +66,26 @@ private _turrets = allTurrets _vehicle;
     // TODO: This isn't accurate to how the crew of the vehicle actually were before virtualisation
     // Should be making proper use of fullCrew and its info to set these units accurately
     if ((_vehicle emptyPositions "commander") > 0) exitWith {
-        DEBUG("Spawn vehicle set unit as commander");
+        // DEBUG("Spawn vehicle set unit as commander");
         _unit assignAsCommander _vehicle;
         _unit moveInCommander _vehicle;
     };
 
     if ((_vehicle emptyPositions "driver") > 0) exitWith {
-        DEBUG("Spawn vehicle set unit as driver");
+        // DEBUG("Spawn vehicle set unit as driver");
         _unit assignAsDriver _vehicle;
         _unit moveInDriver _vehicle;
     };
 
     if (isNull (_vehicle turretUnit (_turrets#0))) exitWith {
-        DEBUG("Spawn vehicle set unit as turret");
+        // DEBUG("Spawn vehicle set unit as turret");
         _unit assignAsTurret [_vehicle, (_turrets#0)];
         _unit moveInTurret [_vehicle, (_turrets#0)];
         _turrets deleteAt 0;
     };
 
     if ((_vehicle emptyPositions "cargo") > 0) exitWith {
-        DEBUG("Spawn vehicle set unit as cargo");
+        // DEBUG("Spawn vehicle set unit as cargo");
         _unit assignAsCargo _vehicle;
         _unit moveInCargo _vehicle;
     };

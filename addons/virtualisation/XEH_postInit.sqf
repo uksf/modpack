@@ -20,14 +20,16 @@ if (isServer) then {
     // Virtualisation
     [{
         // Killswitch
-        if (GVAR(killswitched)) exitWith {};
+        if (GVAR(killswitched) || isGamePaused) exitWith {};
 
         private _groups = allGroups select {!(_x getVariable [QGVAR(excluded), false])};
         private _count = count _groups;
-        private _perFrame = ceil (_count / (diag_fpsMin * SERVER_DELAY));
+        private _perFrame = ceil (_count / (diag_fpsMin * DELAY));
         [{
             params ["_args", "_idPFH"];
             _args params ["_groups", "_count", "_perFrame", "_index"];
+
+            if (isGamePaused) exitWith {};
 
             if (_index > _count || (count _groups <= 0)) exitWith {
                 [_idPFH] call CBA_fnc_removePerFrameHandler;
@@ -43,18 +45,22 @@ if (isServer) then {
     // TODO: think about performance for this
     [{
         // Killswitch
-        if (GVAR(killswitched)) exitWith {};
+        if (GVAR(killswitched) || isGamePaused) exitWith {};
+
+        // To avoid flicker, we'll recreate groups 200m closer, but virtualise 200m further away (400m buffer zone)
+        private _bufferedDistance = GVAR(distance) - 200;
 
         private _groupIndex = GVAR(virtualisedGroupsPositionMap) findIf {
+            private _groupPosition = _x#1;
             [ALL_PLAYERS, {
-                _x distance _x#1 <= GVAR(distance)
+                _x distance _groupPosition <= _bufferedDistance
                 && {!((objectParent _x) isKindOf "Air")}
-            }] call FUNC(arrayAny)
+            }] call EFUNC(common,arrayAny)
         };
         if (_groupIndex == -1) exitWith {};
 
-        private _id = GVAR(virtualisedGroupsPositionMap)#_groupIndex#0;
-        GVAR(virtualisedGroupsPositionMap) deleteAt _groupIndex;
+        private _id = (GVAR(virtualisedGroupsPositionMap) deleteAt _groupIndex)#0;
+        TRACE_1("requesting recreate group",_id);
 
         private _groupData = GVAR(virtualisedGroups) deleteAt _id;
         [QGVAR(recreateGroup), [_groupData]] call EFUNC(common,headlessEvent);

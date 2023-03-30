@@ -22,17 +22,21 @@
 #define TIMEOUT 30
 
 params ["_groupData"];
-_groupData params ["", "_side", "_unitDetails", "_waypoints", "_combatMode", "_formationDirection"];
+_groupData params ["", "_side"];
 
 private _group = createGroup _side;
 [{
     params ["_args", "_idPFH"];
-    _args params ["_time", "_group", "_unitDetails", "_waypoints", "_combatMode", "_formationDirection"];
+    _args params ["_time", "_group", "_groupData"];
+    _groupData params ["", "", "_unitDetails", "_waypoints", "_combatMode", "_formationDirection"];
 
-    TRACE_1("Spawn unit iteration",_args);
+    if (isNull _group) exitWith {
+        TRACE_1("Group deleted whilst recreated",_group);
+        [_idPFH] call CBA_fnc_removePerFrameHandler;
+    };
 
     if (_unitDetails isEqualTo [] || {time > (_time + TIMEOUT)}) exitWith {
-        TRACE_2("Spawn unit all spawned or timeout",_unitDetails,time > (_time + TIMEOUT));
+        DEBUG("Spawn unit all spawned or timeout");
         [_idPFH] call CBA_fnc_removePerFrameHandler;
 
         _group setCombatMode _combatMode;
@@ -41,7 +45,6 @@ private _group = createGroup _side;
     };
 
     private _unitInfo = _unitDetails deleteAt 0;
-    TRACE_1("unit info",_unitInfo);
     _unitInfo params ["_type", "_position", "_direction", "_skill", "_behaviour", "_disabledFeatures", "_stance"];
 
     private _unit = _group createUnit [_type, [0,0,0], [], 5, "NONE"];
@@ -52,4 +55,4 @@ private _group = createGroup _side;
     _unit setBehaviour _behaviour;
     _unit setUnitPos _stance;
     {_unit disableAI _x} forEach _disabledFeatures;
-}, SPAWN_DELAY, [time, _group, _unitDetails, _waypoints, _combatMode]] call CBA_fnc_addPerFrameHandler;
+}, SPAWN_DELAY, [time, _group, _groupData]] call CBA_fnc_addPerFrameHandler;
