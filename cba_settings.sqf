@@ -817,6 +817,8 @@ force uksf_common_mainOp = false;
 force uksf_curator_curatorsLocked = false;
 force uksf_curator_curatorsMax = 8;
 force uksf_persistence_overrideSavedDateTime = false;
+force uksf_virtualisation_distance = 3000;
+force uksf_virtualisation_enabled = false;
 
 // UKSF - AI Ground Commander
 force uksf_aigroundcommander_groupLimit = 10;
