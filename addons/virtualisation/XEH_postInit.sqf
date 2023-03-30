@@ -33,7 +33,7 @@ if (isServer) then {
                 [_idPFH] call CBA_fnc_removePerFrameHandler;
             };
 
-            [_groups select [_index, _perFrame]] call FUNC(virtualizeGroups);
+            [_groups select [_index, _perFrame]] call FUNC(virtualiseGroups);
 
             _args set [3, _index + _perFrame];
         }, 0, [_groups, _count, _perFrame, 0]] call CBA_fnc_addPerFrameHandler;

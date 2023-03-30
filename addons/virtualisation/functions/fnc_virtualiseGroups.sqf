@@ -4,7 +4,7 @@
         Tim Beswick
 
     Description:
-        Checks groups to virtualize
+        Checks groups to virtualise
 
     Parameter(s):
         0: Groups to check <ARRAY>
@@ -32,7 +32,7 @@ params [["_groups", []]];
             && {!([_leader, GVAR(distance)] call EFUNC(common,anyNearPlayers))}
             // && {[units _x, {vehicle _x != _x}] call EFUNC(common,arrayNone)} // remove this when ready to test vehicles
         ) then {
-            [_x] call FUNC(virtualizeGroup);
+            [_x] call FUNC(virtualiseGroup);
         };
     };
 } forEach _groups;

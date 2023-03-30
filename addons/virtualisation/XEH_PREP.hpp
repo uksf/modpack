@@ -5,5 +5,5 @@ PREP(getInfantryUnitDetails);
 PREP(getVehicleUnitDetails);
 PREP(recreateInfantryGroup);
 PREP(recreateVehicleGroup);
-PREP(virtualizeGroup);
-PREP(virtualizeGroups);
+PREP(virtualiseGroup);
+PREP(virtualiseGroups);

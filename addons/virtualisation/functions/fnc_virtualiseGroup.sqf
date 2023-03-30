@@ -8,7 +8,7 @@
         Currently doing this to a variable, can change this later to a DB or name space etc.
 
     Parameters:
-        0: Group to virtualize <GROUP>
+        0: Group to virtualise <GROUP>
 
     Return value:
         Nothing
