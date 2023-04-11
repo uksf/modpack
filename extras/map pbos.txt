@@ -27,3 +27,5 @@
     - lingor_trees
     - mbg_buildings_2
     - sah_bunker_obj
+- Dariyah
+    - projeta3-07
