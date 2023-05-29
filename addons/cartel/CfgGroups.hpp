@@ -17,7 +17,7 @@ class cfgGroups {
                     };
                     class Unit1 {
                         side = 0;
-                        vehicle = QGVAR(militia_mac10);
+                        vehicle = QGVAR(militia_mac10_rshg);
                         rank = "PRIVATE";
                         position[] = { 0, -5, 0 };
                     };
@@ -40,7 +40,7 @@ class cfgGroups {
                         position[] = { 0, -20, 0 };
                     };
                 };
-                
+
                 class GVAR(Falcon_Team_2) {
                     name = "Falcon Team 2";
                     faction = QUOTE(ADDON);

@@ -58,7 +58,7 @@ class CfgWeapons {
         class LinkedItems {
             class LinkedItemsOptic {
                 slot = "CowsSlot";
-                item = "CUP_srifle_LeeEnfield_no32";
+                item = "cup_optic_no23mk2";
             };
         };
     };

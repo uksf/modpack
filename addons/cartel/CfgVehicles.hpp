@@ -91,14 +91,6 @@ class CfgVehicles {
         };
     };
 
-    class GVAR(HAT_pack) : CUP_B_RPGPack_Khaki {
-        scope = 1;
-        class TransportMagazines {
-            MACRO_ADDMAGAZINE(CUP_PTFHE_M,1);
-            MACRO_ADDMAGAZINE(CUP_PTFHC_M,2);
-        };
-    };
-
     class GVAR(GL_pack) : B_Messenger_Olive_F {
         scope = 1;
         class TransportMagazines {
@@ -107,16 +99,5 @@ class CfgVehicles {
     };
 
 #include "units\CfgUnits.hpp"
-#include "vehicles\CfgAntiAir.hpp"
-#include "vehicles\CfgArtillery.hpp"
-#include "vehicles\CfgBVP.hpp"
-#include "vehicles\CfgBuran.hpp"
-#include "vehicles\CfgDingo.hpp"
-#include "vehicles\CfgDrone.hpp"
-#include "vehicles\CfgHeli.hpp"
-#include "vehicles\CfgJet.hpp"
-#include "vehicles\CfgPandur.hpp"
-#include "vehicles\CfgStatic.hpp"
-#include "vehicles\CfgT72.hpp"
-#include "vehicles\CfgTatra.hpp"
+#include "vehicles\CfgMilitiaTransport.hpp"
 };
