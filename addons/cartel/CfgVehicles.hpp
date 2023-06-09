@@ -99,5 +99,6 @@ class CfgVehicles {
     };
 
 #include "units\CfgUnits.hpp"
-#include "vehicles\CfgMilitiaTransport.hpp"
+#include "vehicles\CfgMilitiaVehicles.hpp"
+#include "vehicles\CfgCommandoVehicles.hpp"
 };

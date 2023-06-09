@@ -45,7 +45,11 @@ class CfgPatches {
             QGVAR(hilux_red),
             QGVAR(datsun),
             QGVAR(kamaz),
-            QGVAR(van)
+            QGVAR(van),
+            QGVAR(commando_LR_MG),
+            QGVAR(commando_LR_GMG),
+            QGVAR(commando_LR),
+            QGVAR(commando_van)
         };
         weapons[] = {
             QGVAR(Mac10_suppressed),
