@@ -10,4 +10,16 @@ class Extended_InitPost_EventHandlers {
             init = (_this select 0) addSecondaryWeaponItem (selectRandom ["CUP_PTFHE_M","CUP_PTFHC_M"]);
         };
     };
+
+    class GVAR(commando_LR_GMG) {
+        class ADDON {
+            init = [(_this select 0), nil, ['selection_tool', 0, 'selection_jerry', 1, 'selection_antenna', 1, 'selection_antenna_rear', 0, 'selection_box', 0, 'selection_steps', 0, 'selection_wheelfront', 0, 'selection_wheels', 0, 'selection_bar', 0, 'selection_cut', 1, 'selection_doors', 1]] call BIS_fnc_initVehicle;
+        };
+    };
+
+    class GVAR(commando_LR_MG) {
+        class ADDON {
+            init = [(_this select 0), nil, ['selection_tool', 0, 'selection_jerry', 1, 'selection_antenna', 1, 'selection_antenna_rear', 0, 'selection_box', 0, 'selection_steps', 0, 'selection_wheelfront', 0, 'selection_wheels', 0, 'selection_bar', 0, 'selection_cut', 1, 'selection_doors', 1]] call BIS_fnc_initVehicle;
+        };
+    };
 };

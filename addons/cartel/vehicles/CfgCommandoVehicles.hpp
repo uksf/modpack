@@ -1,6 +1,5 @@
 // commando
 class CUP_I_LR_SF_HMG_AAF;
-class EventHandlers;
 class GVAR(commando_LR_MG): CUP_I_LR_SF_HMG_AAF {
     side = 0;
     faction = QUOTE(ADDON);
@@ -9,11 +8,6 @@ class GVAR(commando_LR_MG): CUP_I_LR_SF_HMG_AAF {
     crew = QGVAR(commando_hk416);
     typicalCargo[] = {
         QGVAR(commando_hk416);
-    };
-    class EventHandlers: EventHandlers {
-        side = 0;
-        scope = 0;
-        postInit = "if (local (_this select 0)) then { [(_this select 0), nil, ['selection_tool', 0, 'selection_jerry', 1, 'selection_antenna', 1, 'selection_antenna_rear', 0, 'selection_box', 0, 'selection_steps', 0, 'selection_wheelfront', 0, 'selection_wheels', 0, 'selection_bar', 0, 'selection_cut', 1, 'selection_doors', 1]] call BIS_fnc_initVehicle }";
     };
 };
 
@@ -27,11 +21,6 @@ class GVAR(commando_LR_GMG): CUP_B_LR_Special_CZ_W {
     typicalCargo[] = {
         QGVAR(commando_hk416);
     };
-    // class EventHandlers: EventHandlers {
-    //     side = 0;
-    //     scope = 0;
-    //     postInit = "if (local (_this select 0)) then { [(_this select 0), nil, ['selection_tool', 0, 'selection_jerry', 1, 'selection_antenna', 1, 'selection_antenna_rear', 0, 'selection_box', 0, 'selection_steps', 0, 'selection_wheelfront', 0, 'selection_wheels', 0, 'selection_bar', 0, 'selection_cut', 1, 'selection_doors', 1]] call BIS_fnc_initVehicle }";
-    // };
 };
 
 class UK3CB_Civ_LandRover_Soft_Green_A;
