@@ -7,7 +7,7 @@ class GVAR(commando_LR_MG): CUP_I_LR_SF_HMG_AAF {
     hiddenSelectionsTextures[] = { "cup\wheeledvehicles\cup_wheeledvehicles_lr\data\textures\civ_r_lr_base_co.paa","cup\wheeledvehicles\cup_wheeledvehicles_lr\data\textures\civ_r_lr_special_co.paa","cup\wheeledvehicles\cup_wheeledvehicles_lr\data\jackal_base_woodlnd_co.paa","cup\wheeledvehicles\cup_wheeledvehicles_lr\data\jackal_mount_woodlnd_co.paa" };
     crew = QGVAR(commando_hk416);
     typicalCargo[] = {
-        QGVAR(commando_hk416);
+        QGVAR(commando_hk416)
     };
     INVENTORY_EMPTY;
 };
@@ -20,7 +20,7 @@ class GVAR(commando_LR_GMG): CUP_B_LR_Special_CZ_W {
     hiddenSelectionsTextures[] = { "cup\wheeledvehicles\cup_wheeledvehicles_lr\data\textures\civ_r_lr_base_co.paa","cup\wheeledvehicles\cup_wheeledvehicles_lr\data\textures\civ_r_lr_special_co.paa","cup\wheeledvehicles\cup_wheeledvehicles_lr\data\jackal_base_woodlnd_co.paa","cup\wheeledvehicles\cup_wheeledvehicles_lr\data\jackal_mount_woodlnd_co.paa" };
     crew = QGVAR(commando_hk416);
     typicalCargo[] = {
-        QGVAR(commando_hk416);
+        QGVAR(commando_hk416)
     };
     INVENTORY_EMPTY;
 };
@@ -44,7 +44,7 @@ class GVAR(commando_van): C_Van_02_transport_F {
     displayName = "Commando Transport Van";
     crew = QGVAR(commando_hk416);
     typicalCargo[] = {
-        QGVAR(commando_hk416);
+        QGVAR(commando_hk416)
     };
     INVENTORY_EMPTY;
 };

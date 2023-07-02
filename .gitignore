@@ -680,7 +680,6 @@ release
 releases/*
 keys/*
 .hemtt/local
-hemtt.exe
 
 ## SQFC
 *.sqfc
