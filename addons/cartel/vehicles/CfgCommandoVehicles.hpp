@@ -9,6 +9,7 @@ class GVAR(commando_LR_MG): CUP_I_LR_SF_HMG_AAF {
     typicalCargo[] = {
         QGVAR(commando_hk416);
     };
+    INVENTORY_EMPTY;
 };
 
 class CUP_B_LR_Special_CZ_W;
@@ -21,6 +22,7 @@ class GVAR(commando_LR_GMG): CUP_B_LR_Special_CZ_W {
     typicalCargo[] = {
         QGVAR(commando_hk416);
     };
+    INVENTORY_EMPTY;
 };
 
 class UK3CB_Civ_LandRover_Soft_Green_A;
@@ -32,6 +34,7 @@ class GVAR(commando_LR): UK3CB_Civ_LandRover_Soft_Green_A {
     typicalCargo[] = {
         QGVAR(commando_hk416)
     };
+    INVENTORY_EMPTY;
 };
 
 class C_Van_02_transport_F;
@@ -43,6 +46,7 @@ class GVAR(commando_van): C_Van_02_transport_F {
     typicalCargo[] = {
         QGVAR(commando_hk416);
     };
+    INVENTORY_EMPTY;
 };
 
         // "selection_tool", 0,

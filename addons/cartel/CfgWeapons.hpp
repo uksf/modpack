@@ -1,11 +1,3 @@
-class Mode_SemiAuto;
-class Mode_Burst;
-class Mode_FullAuto;
-class SlotInfo;
-class CowsSlot;
-class MuzzleSlot;
-class PointerSlot;
-class UnderBarrelSlot;
 class CfgWeapons {
     class U_BasicBody;
     class UniformItem;
@@ -46,7 +38,7 @@ class CfgWeapons {
         class LinkedItems {
             class LinkedItemsMuzzle {
                 slot = "MuzzleSlot";
-                item = "muzzle_snds_M";
+                item = "muzzle_snds_acp";
             };
         };
     };

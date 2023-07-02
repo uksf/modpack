@@ -1,7 +1,7 @@
 class cfgGroups {
     class EAST {
         name = "OPFOR";
-        class Cartel {
+        class ADDON {
             name = "Cartel";
             class Infantry {
                 name = "Infantry";

@@ -98,7 +98,10 @@ class CfgVehicles {
         };
     };
 
-#include "units\CfgUnits.hpp"
+#include "units\CfgArmedCivs.hpp"
+#include "units\CfgCommandos.hpp"
+#include "units\CfgCouriers.hpp"
+#include "units\CfgMilitia.hpp"
 #include "vehicles\CfgMilitiaVehicles.hpp"
 #include "vehicles\CfgCommandoVehicles.hpp"
 };
