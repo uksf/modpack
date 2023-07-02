@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://github.com/uksf/modpack/blob/master/assets/logos/uksfSource.png" width="256">
+    <img src="https://github.com/uksf/modpack/blob/main/assets/logos/uksfSource.png" width="256">
 </p>
 <p align="center">
     <a href="https://github.com/uksf/modpack/issues">
