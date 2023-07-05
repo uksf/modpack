@@ -3,5 +3,6 @@ PREP(canSwapDriver);
 PREP(deployCover);
 PREP(deployCoverMedical);
 PREP(concealCover);
+PREP(reloadTurret);
 PREP(swapDriver);
 PREP(swapDriverLocal);
