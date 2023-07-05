@@ -15,6 +15,13 @@ class CfgFunctions {
             };
         };
     };
+    class UK3CB_BAF_Vehicles_Weapons {
+        class UK3CB_BAF_Vehicles_Weapons {
+            class resupply_ammo {
+                file = QPATHTOF(functions\fnc_3cbReloadTurretProxy.sqf);
+            };
+        };
+    };
     class UK3CB_BAF_Weapons_Static {
         class UK3CB_BAF_Weapons_Static {
             class static_weapon_init {
