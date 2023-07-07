@@ -50,3 +50,6 @@ icon = "iconCrateOrd"
 }; \
 model = "\A3\weapons_F\AmmoBoxes\WpnsBox_long_F"; \
 icon = "iconCrateLong"
+
+#define MORTAR_FUSE_MODE_IMPACT 0
+#define MORTAR_FUSE_MODE_PROXIMITY 1

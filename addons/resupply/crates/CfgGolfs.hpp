@@ -126,6 +126,7 @@ class GVAR(g10) : GVAR(gx) {
     PREVIEW(g10);
     hiddenSelectionsTextures[] = { QPATHTOF(data\golf\g10.paa), "A3\Weapons_F\Ammoboxes\data\AmmoBox_CO.paa"};
     BOX_EXPLOSIVE;
+    maximumLoad = 1400; // Increase space to fix 15 rounds being too many for box size
     class TransportMagazines {
         MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_81mm_Mo_Shells,15);
     };
@@ -136,6 +137,7 @@ class GVAR(g11) : GVAR(gx) {
     PREVIEW(g11);
     hiddenSelectionsTextures[] = { QPATHTOF(data\golf\g11.paa), "A3\Weapons_F\Ammoboxes\data\AmmoBox_CO.paa"};
     BOX_EXPLOSIVE;
+    maximumLoad = 1400; // Increase space to fix 15 rounds being too many for box size
     class TransportMagazines {
         MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_81mm_Mo_Smoke_White,15);
     };
