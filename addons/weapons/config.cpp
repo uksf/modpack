@@ -67,6 +67,7 @@ class CfgPatches {
             "3CB_L7A2",
             "3CB_L135A1",
             "fxp_GrenadeSmoke",
+            "sps_ai_axmc_ace_compat",
             QGVAR(prep)
         };
         author = QUOTE(UKSF);

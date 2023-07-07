@@ -1,5 +1,4 @@
 #include "script_component.hpp"
-#include "\u\uksf\addons\arsenal\script_mainOpGear.hpp"
 #include "\z\ace\addons\arsenal\defines.hpp"
 /*
     Author:
@@ -25,7 +24,7 @@ ace_arsenal_center setVariable ["ace_arsenal_virtualItems", [[[],[],[]],[[],[],[
 GVAR(useMainOpGear) = !GVAR(useMainOpGear);
 if (GVAR(useMainOpGear)) then {
     if (GVAR(cachedMainOpGear) isEqualTo []) then {
-        [ace_arsenal_center, uiNamespace getVariable [QGVAR(mainOpGear), MAIN_OP_GEAR], false] call ace_arsenal_fnc_addVirtualItems;
+        [ace_arsenal_center, call FUNC(getMainOpGear), false] call ace_arsenal_fnc_addVirtualItems;
         GVAR(cachedMainOpGear) = ace_arsenal_center getVariable "ace_arsenal_virtualItems";
     };
     ace_arsenal_virtualItems = GVAR(cachedMainOpGear);
