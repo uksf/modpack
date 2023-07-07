@@ -87,7 +87,7 @@ _action = [QGVAR(containerLoad), "Load into container", "", {
 
     {
         [_x, 0, ["ACE_MainActions"], _action, true] call ace_interact_menu_fnc_addActionToClass;
-    } forEach [QGVAR(g8), QGVAR(g9), QGVAR(g10), QGVAR(g11)];
+    } forEach [QGVAR(r5), QGVAR(r6), QGVAR(g8), QGVAR(g9), QGVAR(g10), QGVAR(g11)];
 } forEach [
     [QGVAR(setImpactFuse), MORTAR_FUSE_MODE_IMPACT, "impact", "UK3CB_BAF_1Rnd_.*Mo_AB_Shells"],
     [QGVAR(setProximityFuse), MORTAR_FUSE_MODE_PROXIMITY, "proximity", "UK3CB_BAF_1Rnd_.*Mo_Shells"]
