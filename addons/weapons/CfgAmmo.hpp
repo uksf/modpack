@@ -41,13 +41,20 @@ class CfgAmmo {
         hit = 80;                 // 70
         indirectHit = 3;          // 0
         indirectHitRange = 0.75;  // 0
-        explosive = 0.2;          // 0
-        explosionEffects = "ExploAmmoExplosion";
-        craterEffects = "ExploAmmoCrater";
+        explosive = 0.1;          // 0
+        explosionEffects = "CUP_AA12AmmoExplosion";
+        craterEffects = "CUP_AA12AmmoImpact";
         class HitEffects {
             hitWater = "ImpactEffectsWater";
         };
         SoundSetExplosion[] = { "JPEX_20mm_EXPLOSION_SoundSet", "JPEX_20mm_REFLECTOR_SoundSet" };
+    };
+    class B_127x99_Ball_Mk211: B_127x99_Ball {
+        explosive = 0.1;
+        indirectHit = 3;
+        indirectHitRange = 0.3;
+        explosionEffects = "CUP_AA12AmmoExplosion";
+        craterEffects = "CUP_AA12AmmoImpact";
     };
     class UK3CB_BAF_B_127x99_Ball;
     class UK3CB_BAF_B_127x99_T : UK3CB_BAF_B_127x99_Ball {
@@ -168,4 +175,8 @@ class CfgAmmo {
             };
         };
     };
+
+    class B_SPS_338_ball_API526;
+
+#include "ammoSets\SPS.hpp"
 };

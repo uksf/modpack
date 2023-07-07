@@ -655,7 +655,7 @@ class CfgWeapons {
     };
     class launch_B_Titan_short_F : launch_Titan_short_base {
         class WeaponSlotsInfo;
-        class OpticsModes: OpticsModes {
+        class OpticsModes : OpticsModes {
             class StepScope;
         };
     };
@@ -664,8 +664,8 @@ class CfgWeapons {
         class WeaponSlotsInfo : WeaponSlotsInfo {
             mass = 231;
         };
-        class OpticsModes: OpticsModes {
-            class StepScope: StepScope {
+        class OpticsModes : OpticsModes {
+            class StepScope : StepScope {
                 thermalMode[] = { 0, 1 };
             };
         };
@@ -796,6 +796,12 @@ class CfgWeapons {
             artilleryCharge = 1;
         };
     };
+
+    class Rifle_Long_Base_F;
+    class SPS_AI_AXMC_base_F;
+
+#include "weaponSets\CUP.hpp"
+#include "weaponSets\SPS.hpp"
 
 #include "CfgWeaponsPrivate.hpp"
 };

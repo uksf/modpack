@@ -1,5 +1,4 @@
 #include "script_component.hpp"
-#include "\u\uksf\addons\arsenal\script_mainOpGear.hpp"
 /*
     Author:
         Tim Beswick
@@ -16,7 +15,7 @@
 params ["_crate"];
 
 if (EGVAR(common,mainOp)) then {
-    [_crate, uiNamespace getVariable [QGVAR(mainOpGear), MAIN_OP_GEAR]] call FUNC(addArsenal);
+    [_crate, call FUNC(getMainOpGear)] call FUNC(addArsenal);
 } else {
     [_crate] call FUNC(addArsenal);
 };

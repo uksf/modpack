@@ -103,4 +103,8 @@ class CfgMagazines {
     class UK3CB_BAF_1Rnd_81mm_Mo_LG : 8Rnd_82mm_Mo_LG {
         initSpeed = 305;  // 200
     };
+
+    class SPS_AI_AXMC_338_API526_Mag;
+
+#include "magazineSets\SPS.hpp"
 };

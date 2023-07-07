@@ -127,7 +127,6 @@ class CfgPatches {
 };
 
 class CBA_Extended_EventHandlers;
-#include "CfgAmmo.hpp"
 #include "CfgEventHandlers.hpp"
 #include "CfgGroups.hpp"
 #include "CfgMagazines.hpp"
