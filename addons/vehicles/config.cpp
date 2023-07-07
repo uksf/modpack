@@ -31,6 +31,7 @@ class CfgPatches {
             "UK3CB_BAF_Vehicles_Panther",
             "UK3CB_BAF_Vehicles_RHIB",
             "UK3CB_BAF_Vehicles_Warrior_a3",
+            "UK3CB_BAF_Vehicles_Weapons",
             "rksla3_aircraft_tug",
             QGVAR(prep)
         };
@@ -43,4 +44,5 @@ class CfgPatches {
 
 class CBA_Extended_EventHandlers;
 #include "CfgEventHandlers.hpp"
+#include "CfgFunctions.hpp"
 #include "CfgVehicles.hpp"

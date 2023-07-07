@@ -126,6 +126,7 @@ class GVAR(g10) : GVAR(gx) {
     PREVIEW(g10);
     hiddenSelectionsTextures[] = { QPATHTOF(data\golf\g10.paa), "A3\Weapons_F\Ammoboxes\data\AmmoBox_CO.paa"};
     BOX_EXPLOSIVE;
+    maximumLoad = 1400; // Increase space to fix 15 rounds being too many for box size
     class TransportMagazines {
         MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_81mm_Mo_Shells,15);
     };
@@ -136,6 +137,7 @@ class GVAR(g11) : GVAR(gx) {
     PREVIEW(g11);
     hiddenSelectionsTextures[] = { QPATHTOF(data\golf\g11.paa), "A3\Weapons_F\Ammoboxes\data\AmmoBox_CO.paa"};
     BOX_EXPLOSIVE;
+    maximumLoad = 1400; // Increase space to fix 15 rounds being too many for box size
     class TransportMagazines {
         MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_81mm_Mo_Smoke_White,15);
     };
@@ -146,8 +148,8 @@ class GVAR(g12) : GVAR(gx) {
     PREVIEW(g12);
     hiddenSelectionsTextures[] = { QPATHTOF(data\golf\g12.paa), "A3\Weapons_F\Ammoboxes\data\AmmoBox_CO.paa"};
     class TransportMagazines {
-        MACRO_ADDMAGAZINE(UK3CB_BAF_338_5Rnd,10);
-        MACRO_ADDMAGAZINE(UK3CB_BAF_338_5Rnd_Tracer,10);
+        MACRO_ADDMAGAZINE(SPS_AI_AXMC_338_Mag,5);
+        MACRO_ADDMAGAZINE(SPS_AI_AXMC_338_300gr_Scenar_Tracer_Mag,5);
         MACRO_ADDMAGAZINE(UK3CB_BAF_762_L42A1_20Rnd,10);
     };
 };
@@ -157,10 +159,10 @@ class GVAR(g13) : GVAR(gx) {
     PREVIEW(g13);
     hiddenSelectionsTextures[] = { QPATHTOF(data\golf\g13.paa), "A3\Weapons_F\Ammoboxes\data\AmmoBox_CO.paa"};
     class TransportMagazines {
-        MACRO_ADDMAGAZINE(SSQN_5Rnd_127x99_HEIAP,5);
-        MACRO_ADDMAGAZINE(SSQN_5Rnd_127x99_HEIAP_Tracer,5);
-        MACRO_ADDMAGAZINE(UK3CB_BAF_127_10Rnd_AP,5);
-        MACRO_ADDMAGAZINE(UK3CB_BAF_127_10Rnd_T,5);
+        MACRO_ADDMAGAZINE(SPS_AI_AXMC_338_Mag,5);
+        MACRO_ADDMAGAZINE(SPS_AI_AXMC_338_300gr_Scenar_Tracer_Mag,5);
+        MACRO_ADDMAGAZINE(SPS_AI_AXMC_338_300gr_Scenar_IR_Mag,5);
+        MACRO_ADDMAGAZINE(SPS_AI_AXMC_338_HAPI_Mag,5);
         MACRO_ADDMAGAZINE(UK3CB_BAF_762_L42A1_20Rnd,10);
     };
 };

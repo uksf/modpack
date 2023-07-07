@@ -60,4 +60,37 @@ _action = [QGVAR(containerLoad), "Load into container", "", {
     [_x, 0, ["ACE_MainActions"], _action, true] call ace_interact_menu_fnc_addActionToClass;
 } forEach [QGVAR(rx), QGVAR(rf), QGVAR(gx), QGVAR(g14)];
 
+{
+    _x params ["_id", "_fuseMode", "_fuseModeName", "_regex"];
+
+    private _action = [_id, format ["Set %1 fuse", _fuseModeName], "", {
+        params ["_crate", "", "_actionParams"];
+        _actionParams params ["_fuseMode", "_fuseModeName", "_regex"];
+
+        private _mortarRoundCount = {_x regexMatch _regex} count (magazineCargo _crate);
+
+        systemChat str _mortarRoundCount;
+        [_mortarRoundCount, [_crate, _fuseMode], {
+            params ["_args"];
+            _args params ["_crate", "_fuseMode"];
+
+            [_crate, _fuseMode] call FUNC(setMortarFuse);
+        }, {
+            hint "Failed to set fuses";
+        }, format ["Setting %1 %2 fuses", _mortarRoundCount, _fuseModeName]] call ace_common_fnc_progressBar;
+    }, {
+        params ["_crate", "", "_actionParams"];
+        _actionParams params ["", "", "_regex"];
+
+        ({_x regexMatch _regex} count (magazineCargo _crate)) > 0
+    }, {}, [_fuseMode, _fuseModeName, _regex]] call ace_interact_menu_fnc_createAction;
+
+    {
+        [_x, 0, ["ACE_MainActions"], _action, true] call ace_interact_menu_fnc_addActionToClass;
+    } forEach [QGVAR(r5), QGVAR(r6), QGVAR(g8), QGVAR(g9), QGVAR(g10), QGVAR(g11)];
+} forEach [
+    [QGVAR(setImpactFuse), MORTAR_FUSE_MODE_IMPACT, "impact", "UK3CB_BAF_1Rnd_.*Mo_AB_Shells"],
+    [QGVAR(setProximityFuse), MORTAR_FUSE_MODE_PROXIMITY, "proximity", "UK3CB_BAF_1Rnd_.*Mo_Shells"]
+];
+
 ADDON = true;

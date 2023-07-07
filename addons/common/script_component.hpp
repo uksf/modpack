@@ -25,3 +25,11 @@
         init = QUOTE([_this select 0] call FUNC(removeNVG)); \
     }; \
 }
+
+#define COLOUR_NORMAL(VALUE) VALUE / 255
+#define COLOUR_ARRAY(R,G,B) {COLOUR_NORMAL(R), COLOUR_NORMAL(G), COLOUR_NORMAL(B), 1}
+#define MARKER_COLOUR(CLASS,NAME,COLOUR) class GVAR(CLASS): Default { \
+    scope = 2; \
+    name = NAME; \
+    color[] = COLOUR; \
+}

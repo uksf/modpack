@@ -152,10 +152,10 @@ class GVAR(r7) : GVAR(rx) {
     PREVIEW(r7);
     hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\r7.paa) };
     class TransportMagazines {
-        MACRO_ADDMAGAZINE(SSQN_5Rnd_127x99_HEIAP,30);
-        MACRO_ADDMAGAZINE(SSQN_5Rnd_127x99_HEIAP_Tracer,30);
-        MACRO_ADDMAGAZINE(UK3CB_BAF_127_10Rnd_AP,30);
-        MACRO_ADDMAGAZINE(UK3CB_BAF_127_10Rnd_T,30);
+        MACRO_ADDMAGAZINE(SPS_AI_AXMC_338_Mag,30);
+        MACRO_ADDMAGAZINE(SPS_AI_AXMC_338_300gr_Scenar_Tracer_Mag,30);
+        MACRO_ADDMAGAZINE(SPS_AI_AXMC_338_300gr_Scenar_IR_Mag,30);
+        MACRO_ADDMAGAZINE(SPS_AI_AXMC_338_HAPI_Mag,30);
         MACRO_ADDMAGAZINE(UK3CB_BAF_338_5Rnd,30);
         MACRO_ADDMAGAZINE(UK3CB_BAF_338_5Rnd_Tracer,30);
     };
