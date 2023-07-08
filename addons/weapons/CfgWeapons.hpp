@@ -198,9 +198,10 @@ class CfgWeapons {
                     opticsDisplayName = "WFOV";
                     useModelOptics = 1;
                     opticsPPEffects[] = { "OpticsCHAbera1", "OpticsBlur1" };
-                    opticsZoomMin = "25 call (uiNamespace getVariable 'cba_optics_fnc_setOpticMagnificationHelper')";
-                    opticsZoomMax = "5 call (uiNamespace getVariable 'cba_optics_fnc_setOpticMagnificationHelper')";
-                    opticsZoomInit = "5 call (uiNamespace getVariable 'cba_optics_fnc_setOpticMagnificationHelper')";
+                    opticsZoomMin = 0.01;
+                    opticsZoomMax = 0.025;
+                    opticsZoomInit = 0.05;
+                    discretefov[] = { 0.05, 0.025, 0.0167, 0.0125, 0.01 };
                     discreteDistance[] = { 100 };
                     distanceZoomMin = 300;
                     distanceZoomMax = 2500;
