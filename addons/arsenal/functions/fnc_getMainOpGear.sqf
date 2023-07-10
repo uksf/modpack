@@ -465,7 +465,8 @@ _mainOpGear append [
     "UK3CB_BAF_HMNVS_WP",
     "uksf_air_equipment_marshallSticks",
     "CUP_NVG_GPNVG_black",
-    "CUP_NVG_GPNVG_green"
+    "CUP_NVG_GPNVG_green",
+    "CUP_NVG_GPNVG_tan"
 ];
 
 // Items
@@ -558,7 +559,8 @@ _mainOpGear append [
     "uksf_diving_cylinderDoubleTx1265",
     "uksf_diving_cylinderDoubleTx1070",
     "uksf_diving_cylinderSingleTx107",
-    "uksf_halohaho_airSupply"
+    "uksf_halohaho_airSupply",
+    "ItemcTabHCam"
 ];
 
 // Uniforms
