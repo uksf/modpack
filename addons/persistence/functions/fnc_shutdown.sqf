@@ -56,11 +56,11 @@ LOG("Shutdown");
                 call FUNC(saveData);
             };
 
-            [{SERVER_COMMAND serverCommand "#shutdown"}, [], 4] call CBA_fnc_waitAndExecute;
+            [{serverCommand "#shutdown"}, [], 4] call CBA_fnc_waitAndExecute;
         }] call CBA_fnc_waitUntilAndExecute;
     };
 
-    SERVER_COMMAND serverCommand (format ["#kick %1", owner (_players#0)]);
+    serverCommand (format ["#kick %1", owner (_players#0)]);
 }, 2, []] call CBA_fnc_addPerFrameHandler;
 
 // For local MP debug
