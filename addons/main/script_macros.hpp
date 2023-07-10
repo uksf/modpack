@@ -57,6 +57,8 @@
     #define DEBUG_8(MESSAGE,ARG1,ARG2,ARG3,ARG4,ARG5,ARG6,ARG7,ARG8) /* disabled */
 #endif
 
+#define SERVER_COMMAND QUOTE(brexit)
+
 #define WHITELISTED (getPlayerUID player) in WHITELIST
 #define ADMIN_OR_HOST IS_ADMIN || {isServer && {hasInterface}}
 #define ADMIN_OR_WHITELISTED ADMIN_OR_HOST || {WHITELISTED}

@@ -202,6 +202,7 @@ class CfgWeapons {
                     opticsZoomMax = 0.025;
                     opticsZoomInit = 0.05;
                     discretefov[] = { 0.05, 0.025, 0.0167, 0.0125, 0.01 };
+                    discreteInitIndex = 0;
                     discreteDistance[] = { 100 };
                     distanceZoomMin = 300;
                     distanceZoomMax = 2500;
