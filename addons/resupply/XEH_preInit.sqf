@@ -69,7 +69,6 @@ _action = [QGVAR(containerLoad), "Load into container", "", {
 
         private _mortarRoundCount = {_x regexMatch _regex} count (magazineCargo _crate);
 
-        systemChat str _mortarRoundCount;
         [_mortarRoundCount, [_crate, _fuseMode], {
             params ["_args"];
             _args params ["_crate", "_fuseMode"];
