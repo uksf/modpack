@@ -1,19 +1,19 @@
-- Lythium
+- Lythium (1.35 GB)
     - anrop_jbad_legacy_compat_main
     - ffaa_casas_af
     - lythium
     - lythiumenv
     - map_lythium_scenes
     - TFL_Maps
-- N'ziwasogo
+- N'ziwasogo (480 MB)
     - pja305_sounds_new
     - ProjetA3005
     - roads_nziwasogo
     - Tanoa_305
     - TPW_NZIWASOGO
-- Ruha
+- Ruha (300 MB)
     - ruha
-- Lingor/Dingor
+- Lingor/Dingor (740 MB)
     - brg_africa
     - dingor
     - ibr_airports
@@ -27,9 +27,9 @@
     - lingor_trees
     - mbg_buildings_2
     - sah_bunker_obj
-- Dariyah
+- Dariyah (270 MB)
     - projeta3-07
-- Gulf Islands
+- Gulf Islands (2.4 GB)
     - aa3_barn
     - bank
     - bridges
