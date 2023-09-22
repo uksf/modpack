@@ -9,6 +9,7 @@ class CUP_Mastiff_Base : Wheeled_APC_F {
     };
     fuelCapacity = 25;    // 45
     ace_cargo_space = 8;  // 4
+    ace_repair_spareWheels = 4;
     class complexGearbox {
         GearboxRatios[] = { "R1", -10.094, "N", 0, "D1", 5.562, "D2", 3.456, "D3", 2.623, "D4", 1.678, "D5", 1.078, "D6", 1 };
         TransmissionRatios[] = { "High", 5.0 };

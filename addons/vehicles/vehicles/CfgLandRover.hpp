@@ -236,6 +236,7 @@ class UK3CB_BAF_LandRover_WMIK_Base : UK3CB_BAF_LandRover_Base {
         };
     };
     class TransportWeapons;
+    ace_repair_spareWheels = 4;
 };
 class UK3CB_BAF_LandRover_WMIK_HMG_Base : UK3CB_BAF_LandRover_WMIK_Base {
     class Turrets : Turrets {

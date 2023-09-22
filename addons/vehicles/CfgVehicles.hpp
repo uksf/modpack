@@ -45,6 +45,7 @@ class CfgVehicles {
                 armor = 2;  // Default: 1
             };
         };
+        ace_repair_spareWheels = 4;
     };
     class UK3CB_BAF_LandRover_Base : Car_F {
         fuelCapacity = 10;  // Reduced from 70. Gives ~30km range. 93L tank
