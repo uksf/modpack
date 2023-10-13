@@ -758,6 +758,7 @@ force grad_civs_loadout_goggles = "[]";
 force grad_civs_loadout_headgear = "[]";
 force grad_civs_main_enabled = false;
 force grad_civs_mimikry_enabled = true;
+force force grad_civs_mimikry_civilianNotificationEnabled = false;
 force grad_civs_patrol_initialGroupSize = 3;
 force grad_civs_patrol_maxCivsOnFoot = 30;
 force grad_civs_patrol_spawnDistancesOnFoot = "[1000, 4500]";

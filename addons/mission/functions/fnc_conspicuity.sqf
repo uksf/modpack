@@ -17,7 +17,13 @@
 params ["_player", ["_weapon", currentWeapon _player]];
 
 // Ignore pilots
-if (_player isKindOf "UKSF_B_Pilot") exitWith {};
+// if (_player isKindOf "UKSF_B_Pilot") exitWith {};
+
+// #define CONSPICUITY_SET(STATE) [_player, "setCaptive", QGVAR(conspicuous), !STATE] call ace_common_fnc_statusEffect_set
+// #define CONSPICUITY_CHECK_GEAR(CHECK) \
+// if (CHECK != "" && {({_x == CHECK} count GVAR(conspicuityGearWhitelist)) == 0}) exitWith { \
+//     CONSPICUITY_SET(true); \
+// }
 
 CONSPICUITY_CHECK_GEAR(_weapon);
 CONSPICUITY_CHECK_GEAR(primaryWeapon _player);
