@@ -31,7 +31,8 @@ class CfgPatches {
             "UK3CB_BAF_Soldier_MTP_Sig_LongSleeve_base",
             "UK3CB_BAF_Soldier_MTP_Sig_ShortSleeve_base",
             "UKSF_B_ATC_base",
-            "Supply1000"
+            "Supply1000",
+            QGVAR(trauma_bag)
         };
         weapons[] = {
             "UK3CB_BAF_U_CombatUniform_MTP_1Para",

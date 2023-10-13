@@ -376,4 +376,24 @@ class CfgVehicles {
         author = "Bohemia Interactive";
         maximumLoad = 1000;
     };
+
+    class B_Messenger_IDAP_Medical_F;
+    class GVAR(trauma_bag) : B_Messenger_IDAP_Medical_F {
+        scope = 2;
+        scopeArsenal = 0;
+        author = "UKSF";
+        displayName = "Trauma Bag";
+        maximumLoad = 315;
+        class TransportItems {
+            MACRO_ADDITEM(ACE_elasticBandage,60);
+            MACRO_ADDITEM(ACE_packingBandage,60);
+            MACRO_ADDITEM(ACE_adenosine,5);
+            MACRO_ADDITEM(ACE_morphine,5);
+            MACRO_ADDITEM(ACE_epinephrine,5);
+            MACRO_ADDITEM(ACE_bloodIV,10);
+            MACRO_ADDITEM(ACE_bloodIV_500,10);
+            MACRO_ADDITEM(ACE_bloodIV_250,10);
+            MACRO_ADDITEM(ACE_painkillers,5);
+        };
+    };
 };
