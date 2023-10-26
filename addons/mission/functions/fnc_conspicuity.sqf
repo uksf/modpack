@@ -19,12 +19,6 @@ params ["_player", ["_weapon", currentWeapon _player]];
 // Ignore pilots
 // if (_player isKindOf "UKSF_B_Pilot") exitWith {};
 
-// #define CONSPICUITY_SET(STATE) [_player, "setCaptive", QGVAR(conspicuous), !STATE] call ace_common_fnc_statusEffect_set
-// #define CONSPICUITY_CHECK_GEAR(CHECK) \
-// if (CHECK != "" && {({_x == CHECK} count GVAR(conspicuityGearWhitelist)) == 0}) exitWith { \
-//     CONSPICUITY_SET(true); \
-// }
-
 CONSPICUITY_CHECK_GEAR(_weapon);
 CONSPICUITY_CHECK_GEAR(primaryWeapon _player);
 CONSPICUITY_CHECK_GEAR(secondaryWeapon _player);
@@ -33,5 +27,13 @@ CONSPICUITY_CHECK_GEAR(uniform _player);
 // CONSPICUITY_CHECK_GEAR(vest _player);
 // CONSPICUITY_CHECK_GEAR(headgear _player);
 // CONSPICUITY_CHECK_GEAR(hmd _player);
+
+private _vehicle = vehicle _player;
+if (_vehicle != _player) exitWith {
+    private _weapons = (weapons _vehicle) - ["CUP_weapon_mastersafe", "UK3CB_BAF_CMFlareLauncher", "CarHorn", "BikeHorn", "TruckHorn", "TruckHorn2", "TruckHorn3", "SportCarHorn", "MiniCarHorn", "FakeHorn", "AmbulanceHorn", "PoliceHorn", "CUP_Shiphorn"];
+    private _hasWeapon = _weapons isNotEqualTo [];
+
+    CONSPICUITY_SET(_hasWeapon);
+};
 
 CONSPICUITY_SET(false);

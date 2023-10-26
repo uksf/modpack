@@ -27,8 +27,6 @@
     - lingor_trees
     - mbg_buildings_2
     - sah_bunker_obj
-- Dariyah (270 MB)
-    - projeta3-07
 - Gulf Islands (2.4 GB)
     - aa3_barn
     - bank
@@ -66,3 +64,13 @@
     - trailors
     - walls
     - warehouse
+- Mogadishu (1.5 GB)
+    - mbg_generic_african_buildings
+    - Junglesound2
+    - Mog
+    - Mogprops
+    - plp_beachobjects
+    - plp_containers
+    - plp_urban_barriers
+    - RSO
+    - tent
