@@ -1,4 +1,5 @@
 #include "RscCommon.hpp"
+#include "..\defines.hpp"
 #define pixelScale  0.25
 #define GRID_W (pixelW * pixelGridNoUIScale * pixelScale)
 #define GRID_H (pixelH * pixelGridNoUIScale * pixelScale)
@@ -31,7 +32,7 @@ class ace_arsenal_display {
                     y = QUOTE(8 * GRID_H + WIDTH_GAP);
                 };
                 class buttonMainOp: buttonClose {
-                    idc = 1006;
+                    idc = IDC_buttonMainOpGear;
                     x = QUOTE(1 * WIDTH_GAP + 0 * WIDTH_SINGLE);
                     y = QUOTE(0);
                     text = "Turn On Main Op Gear";

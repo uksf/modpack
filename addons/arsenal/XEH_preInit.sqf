@@ -1,4 +1,5 @@
 #include "script_component.hpp"
+#include "defines.hpp"
 
 ADDON = false;
 
@@ -14,8 +15,8 @@ private _defaultLoadouts = _loadoutConfigs apply {[getText (_x >> "name"), call 
 uiNamespace setVariable [QGVAR(defaultLoadouts), _defaultLoadouts];
 
 GVAR(useMainOpGear) = false;
-GVAR(cachedMainOpGear) = [];
-GVAR(cachedFullGear) = [];
+GVAR(cachedMainOpGear) = createHashMap;
+GVAR(cachedFullGear) = createHashMap;
 
 ["ace_arsenal_displayOpened", {
     params ["_display"];

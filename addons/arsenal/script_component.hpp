@@ -9,5 +9,3 @@
 #include "\u\uksf\addons\main\script_macros.hpp"
 
 #define DUMMYLOADOUT QUOTE(UKSFDUMMYLOADOUT)
-
-#define IDC_buttonMainOpGear 1006
