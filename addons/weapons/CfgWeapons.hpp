@@ -285,7 +285,7 @@ class CfgWeapons {
     };
     class ACE_NVG_Pilot_WP : ACE_NVG_Pilot {
         displayName = "Pilot NVG (WP)";
-        COLOUR_PRESET_WP;
+        NVG_WHITE_PRESET;
     };
     class NVGoggles;
     class UK3CB_BAF_HMNVS : NVGoggles {
@@ -296,35 +296,35 @@ class CfgWeapons {
     };
     class UK3CB_BAF_HMNVS_WP : UK3CB_BAF_HMNVS {
         displayName = "Head-Mounted NV System (WP) [BAF]";
-        COLOUR_PRESET_WP;
+        NVG_WHITE_PRESET;
     };
     class CUP_NVG_PVS15_black;
     class CUP_NVG_PVS15_black_WP : CUP_NVG_PVS15_black {
         displayname = "AN/PVS-15 WP (Black)";
-        COLOUR_PRESET_WP;
+        NVG_WHITE_PRESET;
     };
     class CUP_NVG_PVS15_green;
     class CUP_NVG_PVS15_green_WP : CUP_NVG_PVS15_green {
         displayname = "AN/PVS-15 WP (Green)";
-        COLOUR_PRESET_WP;
+        NVG_WHITE_PRESET;
     };
     class CUP_NVG_PVS15_tan;
     class CUP_NVG_PVS15_tan_WP : CUP_NVG_PVS15_tan {
         displayname = "AN/PVS-15 WP (Tan)";
-        COLOUR_PRESET_WP;
+        NVG_WHITE_PRESET;
     };
     class CUP_NVG_PVS15_winter;
     class CUP_NVG_PVS15_winter_WP : CUP_NVG_PVS15_winter {
         displayname = "AN/PVS-15 WP (Winter)";
-        COLOUR_PRESET_WP;
+        NVG_WHITE_PRESET;
     };
     class CUP_NVG_GPNVG_black : NVGoggles {
         displayname = "GPNVG WP (Black)";
-        COLOUR_PRESET_WP;
+        NVG_WHITE_PRESET;
     };
     class CUP_NVG_GPNVG_green : NVGoggles {
         displayname = "GPNVG WP (Green)";
-        COLOUR_PRESET_WP;
+        NVG_WHITE_PRESET;
     };
     class Integrated_NVG_F : NVGoggles {
         ace_nightvision_generation = 4;
