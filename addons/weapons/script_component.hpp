@@ -7,5 +7,4 @@
 // #define CBA_DEBUG_SYNCHRONOUS
 
 #include "\u\uksf\addons\main\script_macros.hpp"
-
-#define COLOUR_PRESET_WP colorPreset[] = {0, {0.0, 0.0, 0.0, 0.0}, {1.1, 0.8, 1.9, 0.9}, {1, 1, 6, 0.0}}
+#include "\z\ace\addons\nightvision\defines.hpp"
