@@ -4,7 +4,7 @@
         Tim Beswick
 
     Description:
-        Can use toggle caching context action
+        Can use virtualisation exclude context action
 
     Parameter(s):
         0: Action Parameters
@@ -14,7 +14,7 @@
 */
 params ["", "_selectedObjects", "_selectedGroups"];
 
-if (!EGVAR(caching,enabled)) exitWith {false};
+if (!EGVAR(virtualisation,enabled)) exitWith {false};
 
 if (_selectedGroups isNotEqualTo []) exitWith {
     ({({alive _x} count (units _x)) > 0} count _selectedGroups) > 0
