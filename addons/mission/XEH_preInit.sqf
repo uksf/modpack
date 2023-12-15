@@ -37,5 +37,6 @@ GVAR(dynamicPatrolIncludeAreas) = [];
 
 GVAR(dynamicPatrolDebugMap) = createHashMap;
 GVAR(dynamicPatrolDebugPlayers) = [];
+GVAR(dynamicPatrolDebugMarkers) = [];
 
 ADDON = true;

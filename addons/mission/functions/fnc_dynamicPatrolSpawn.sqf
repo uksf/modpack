@@ -77,9 +77,21 @@ if !([_values, _logic, _area, _players] call _condition) exitWith {
     _iterationDebugData set ["exitCode", 1];
 };
 
+#ifdef DEBUG_MODE_ANALYSIS
+{deleteMarker _x} forEach GVAR(dynamicPatrolDebugMarkers);
+#endif
+
 private _positionArray = [getPosATL _player, _spawnDistance / 15, _spawnDistance * 1.25, _spawnDistance * 0.75, 10] call EFUNC(common,getSafePositionGrid);
 TRACE_1("5) Dynamic spawn resolved positions",_positionArray);
 _positionArray = _positionArray select {([ASLtoAGL _x, _spawnDistance * 0.7] call FUNC(getNearPlayers)) isEqualTo []};
+
+#ifdef DEBUG_MODE_ANALYSIS
+{
+    _marker = createMarker [str random 999999, _x]; _marker setMarkerShape "ICON"; _marker setMarkerType "hd_dot"; _marker setMarkerColor "ColorGreen";
+    GVAR(dynamicPatrolDebugMarkers) pushBack _marker;
+} forEach _positionArray;
+#endif
+
 TRACE_1("5) Dynamic spawn resolved positions outside range of all players",_positionArray);
 if (_positionArray isEqualTo []) exitWith {
     // Retry
@@ -88,6 +100,12 @@ if (_positionArray isEqualTo []) exitWith {
 };
 
 private _position = selectRandom _positionArray;
+
+#ifdef DEBUG_MODE_ANALYSIS
+_marker = createMarker [str random 999999, _position]; _marker setMarkerShape "ICON"; _marker setMarkerType "hd_objective"; _marker setMarkerColor "ColorWhite";
+GVAR(dynamicPatrolDebugMarkers) pushBack _marker;
+#endif
+
 _players = [_player, 100] call FUNC(getNearPlayers);
 TRACE_2("5) Dynamic spawn position and players near player",_position,_players);
 
@@ -97,7 +115,7 @@ if (_playersNearToPosition isNotEqualTo []) exitWith {
     _iterationDebugData set ["exitCode", 1];
 };
 
-private _playersWithPositionVisibility = [call FUNC(getPlayers), {([objNull, "VIEW", objNull] checkVisibility [[_position#0, _position#1, (_position#2) + 1.5], eyePos _x]) > 0}] call EFUNC(common,arrayNone);
+private _playersWithPositionVisibility = [call FUNC(getPlayers), {([objNull, "VIEW", objNull] checkVisibility [[_position#0, _position#1, (_position#2) + 1.5], eyePos _x]) > 0}] call EFUNC(common,arrayAny);
 if (_playersWithPositionVisibility) exitWith {
     TRACE_1("5) Dynamic spawn failed visibility check",_playersWithPositionVisibility);
     _iterationDebugData set ["exitCode", 1];
@@ -108,7 +126,7 @@ _iterationDebugData set ["exitCode", 0];
 _iterationDebugData set ["positions", _positionArray];
 _iterationDebugData set ["position", _position];
 _iterationDebugData set ["players", _players apply {getPosASL _x}];
-_iterationDebugData set ["player", _player apply {getPosASL _x}];
+_iterationDebugData set ["player", _player];
 _iterationDebugData set ["playersNearToPosition", _playersNearToPosition apply {getPosASL _x}];
 
 _debugData set [_iteration, _iterationDebugData];
