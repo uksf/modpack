@@ -5,7 +5,7 @@
 
     Description:
         Spawns infantry group with given unit pool. Creates units over time to avoid performance degradation
-        Group is disabled from caching
+        Group is disabled from caching and virtualisation
 
     Parameters:
         0: Position where group will spawn <ARRAY>
@@ -27,6 +27,7 @@ TRACE_4("6) Spawn unit data",_position,_count,_side,_unitPool);
 
 private _group = createGroup _side;
 [QEGVAR(caching,disableCache), _group] call CBA_fnc_serverEvent;
+[QEGVAR(virtualisation,exclude), _group] call CBA_fnc_serverEvent;
 
 _position = +_position;
 _position resize 2;
