@@ -1,12 +1,13 @@
 PREP(addDebugActions);
+PREP(broadcastRatingAreas);
 PREP(changeRating);
 PREP(deserializeRatingAreas);
 PREP(getAreaRating);
 PREP(getGlobalRating);
 PREP(getRating);
+PREP(handleRatingChanged);
 PREP(initRatingArea);
 PREP(moduleRatingArea);
-PREP(ratingChanged);
 PREP(recalculateGlobalRatingEvents);
 PREP(serializeRatingAreas);
 PREP(toggleDebugInfo);

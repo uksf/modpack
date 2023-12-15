@@ -14,8 +14,6 @@
         [[Global start, Global current, Global min, Global max], [Percentage start, Percentage current]]
 */
 
-if !(isServer) exitWith {};
-
 if (GVAR(ratingAreas) isEqualTo []) exitWith {
     [[0, 0, 0, 0], [0, 0]]
 };

@@ -14,6 +14,4 @@
         [[ID, Values], ...]
 */
 
-if !(isServer) exitWith {};
-
 GVAR(ratingAreas) apply {[_x#0, _x#4]}
