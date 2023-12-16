@@ -26,6 +26,6 @@ if (_selectedGroups isNotEqualTo []) exitWith {
     private _anyIncluded = [_selectedGroups, {!(_x getVariable [QEGVAR(virtualisation,excluded), false])}] call EFUNC(common,arrayAny); // At least 1 included = true
     private _event = [QEGVAR(virtualisation,include), QEGVAR(virtualisation,exclude)] select _anyIncluded; // If any included, exclude
     {
-        [_event, [_x]] call CBA_fnc_serverEvent;
+        [_event, _x] call CBA_fnc_serverEvent;
     } forEach _selectedGroups;
 };

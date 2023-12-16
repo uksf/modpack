@@ -24,7 +24,7 @@ private _action = [QGVAR(ai), "AI", "", {}, {
     _action = [QGVAR(caching), "Exclude From Caching", QPATHTOF(ui\Icon_Module_Caching_Exclude_ca.paa), {call FUNC(contextCaching)}, {call FUNC(contextCanCaching)}, [], {}, {call FUNC(contextCachingModifier)}] call zen_context_menu_fnc_createAction;
     _actions pushBack [_action, [], 100];
 
-    _action = [QGVAR(virtualisation), "Exclude From Virtualisation", QPATHTOF(ui\Icon_Module_Caching_Exclude_ca.paa), {call FUNC(contextVirtualisationExclude)}, {call FUNC(contextCanVirtualisationExclude)}] call zen_context_menu_fnc_createAction;
+    _action = [QGVAR(virtualisation), "Exclude From Virtualisation", QPATHTOF(ui\Icon_Module_Caching_Exclude_ca.paa), {call FUNC(contextVirtualisationExclude)}, {call FUNC(contextCanVirtualisationExclude)}, [], {}, {call FUNC(contextVirtualisationExcludeModifier)}] call zen_context_menu_fnc_createAction;
     _actions pushBack [_action, [], 100];
 
     _actions
