@@ -20,10 +20,9 @@ if (_broadcastNow) exitWith {
     publicVariable QGVAR(ratingAreas);
 };
 
-if (GVAR(ratingBroadcastPFHID) != -1) exitWith {
-    GVAR(ratingBroadcastTime) = CBA_missionTime + 5;
-};
+if (GVAR(ratingBroadcastPFHID) != -1) exitWith {};
 
+GVAR(ratingBroadcastTime) = CBA_missionTime + 5;
 GVAR(ratingBroadcastPFHID) = [{
     if (GVAR(ratingBroadcastTime) < CBA_missionTime) exitWith {
         [GVAR(ratingBroadcastPFHID)] call CBA_fnc_removePerFrameHandler;

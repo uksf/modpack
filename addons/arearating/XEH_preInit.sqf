@@ -16,7 +16,7 @@ if (isServer) then {
     GVAR(hitUnitCache) = [];
     GVAR(previousGlobalPercentage) = 0;
     GVAR(ratingBroadcastPFHID) = -1;
-    GVAR(ratingBroadcastTimer) = -1;
+    GVAR(ratingBroadcastTime) = -1;
 
     [QGVAR(persistenceData), FUNC(serializeRatingAreas), FUNC(deserializeRatingAreas)] call EFUNC(persistence,registerSerializer);
 
