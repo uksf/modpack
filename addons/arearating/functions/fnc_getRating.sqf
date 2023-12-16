@@ -15,8 +15,6 @@
 */
 params [["_position", objNull, [objNull, []]]];
 
-if !(isServer) exitWith {};
-
 if (_position isEqualType objNull) then {
     _position = getPosASL _position;
 };

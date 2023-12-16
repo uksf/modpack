@@ -16,8 +16,11 @@
 */
 params [["_ratingAreas", [], [[]]], ["_ratingChange", 0, [0]]];
 
-if !(isServer) exitWith {};
 if (GVAR(ratingAreas) isEqualTo []) exitWith {};
+
+if !(isServer) exitWith {
+    [QGVAR(changeRating), _this] call CBA_fnc_serverEvent;
+};
 
 TRACE_2("",_ratingAreas,_ratingChange);
 private _validRatingAreas = [];
@@ -52,4 +55,5 @@ TRACE_2("",_validRatingAreas);
     _values set [QGVAR(ratingCurrent), _ratingCurrent];
 } forEach _validRatingAreas;
 
+call FUNC(broadcastRatingAreas);
 [_validRatingAreas] call FUNC(recalculateGlobalRatingEvents);

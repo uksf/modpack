@@ -5,7 +5,7 @@
 
     Description:
         Spawns vehicle group from given unit and vehicle pools. Creates units over time to avoid performance degradation
-        Group is disabled from caching
+        Group is disabled from caching and virtualisation
 
     Parameters:
         0: Position where group will spawn <ARRAY>
@@ -28,6 +28,7 @@ TRACE_5("6) Spawn vehicle data",_position,_side,_unitPool,_vehiclePool,_countCod
 
 private _group = createGroup _side;
 [QEGVAR(caching,disableCache), _group] call CBA_fnc_serverEvent;
+[QEGVAR(virtualisation,exclude), _group] call CBA_fnc_serverEvent;
 
 _position = +_position;
 _position resize 2;

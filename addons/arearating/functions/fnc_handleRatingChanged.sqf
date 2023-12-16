@@ -14,13 +14,13 @@
     Return value:
         Nothing
 */
-params ["_type", ["_data", objNull, [objNull, []]]];
+params ["_changeType", ["_data", objNull, [objNull, []]]];
 
 if !(isServer) exitWith {};
 if (GVAR(ratingAreas) isEqualTo []) exitWith {};
 
-TRACE_2("",_type,_data);
-if (_type == "") exitWith {};
+TRACE_2("",_changeType,_data);
+if (_changeType == "") exitWith {};
 if (_data isEqualType objNull && {isNull _data}) exitWith {};
 if (_data isEqualType [] && {_data isEqualTo []}) exitWith {};
 
@@ -29,7 +29,7 @@ if (_position isEqualType objNull) then {
     _position = getPosASL _data;
 };
 
-TRACE_3("",_type,_data,_position);
+TRACE_3("",_changeType,_data,_position);
 
 private _areas = GVAR(ratingAreas) select {[_position, _x#2, _x#3] call EFUNC(common,objectInArea)};
 TRACE_1("",_areas);
@@ -40,7 +40,7 @@ TRACE_1("",_areas);
     private _ratingCurrent = _values get QGVAR(ratingCurrent);
     private _ratingMin = _values get QGVAR(ratingMin);
     private _ratingMax = _values get QGVAR(ratingMax);
-    private _ratingChange = _values get _type;
+    private _ratingChange = _values get _changeType;
 
     _ratingCurrent = _ratingCurrent + _ratingChange;
     _ratingCurrent = (_ratingCurrent max _ratingMin) min _ratingMax;
@@ -48,4 +48,5 @@ TRACE_1("",_areas);
     _values set [QGVAR(ratingCurrent), _ratingCurrent];
 } forEach _areas;
 
+call FUNC(broadcastRatingAreas);
 [_areas] call FUNC(recalculateGlobalRatingEvents);

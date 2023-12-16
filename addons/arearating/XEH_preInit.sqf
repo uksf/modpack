@@ -4,25 +4,29 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
+GVAR(ratingAreasEnabled) = false;
+GVAR(ratingAreas) = [];
+
+GVAR(debugMode) = false;
+GVAR(debugMarkers) = [];
+GVAR(debugPFHID) = -1;
+
 if (isServer) then {
-    GVAR(ratingAreasEnabled) = false;
     GVAR(ratingAreaModules) = [];
-    GVAR(ratingAreas) = [];
     GVAR(hitUnitCache) = [];
     GVAR(previousGlobalPercentage) = 0;
-
-    GVAR(debugMode) = false;
-    GVAR(debugMarkers) = [];
-    GVAR(debugPFHID) = -1;
+    GVAR(ratingBroadcastPFHID) = -1;
+    GVAR(ratingBroadcastTimer) = -1;
 
     [QGVAR(persistenceData), FUNC(serializeRatingAreas), FUNC(deserializeRatingAreas)] call EFUNC(persistence,registerSerializer);
 
     GVAR(ratingAreaAttributeConfig) = EGVAR(common,configVehicles) >> QGVAR(moduleRatingArea) >> "Attributes";
 
-    [QEGVAR(ied,planterKilled), {[QGVAR(ied_planter), _this] call FUNC(ratingChanged)}] call CBA_fnc_addEventHandler;
-    [QEGVAR(ied,iedDestroyed), {[QGVAR(ied_destroyed), _this] call FUNC(ratingChanged)}] call CBA_fnc_addEventHandler;
-    [QEGVAR(caches,cacheDestroyed), {[QGVAR(caches_destroyed), _this] call FUNC(ratingChanged)}] call CBA_fnc_addEventHandler;
-    [QEGVAR(safehouses,destroyed), {[QGVAR(safehouse_destroyed), _this] call FUNC(ratingChanged)}] call CBA_fnc_addEventHandler;
+    [QGVAR(changeRating), {call FUNC(changeRating)}] call CBA_fnc_addEventHandler;
+    [QEGVAR(ied,planterKilled), {[QGVAR(ied_planter), _this] call FUNC(handleRatingChanged)}] call CBA_fnc_addEventHandler;
+    [QEGVAR(ied,iedDestroyed), {[QGVAR(ied_destroyed), _this] call FUNC(handleRatingChanged)}] call CBA_fnc_addEventHandler;
+    [QEGVAR(caches,cacheDestroyed), {[QGVAR(caches_destroyed), _this] call FUNC(handleRatingChanged)}] call CBA_fnc_addEventHandler;
+    [QEGVAR(safehouses,destroyed), {[QGVAR(safehouse_destroyed), _this] call FUNC(handleRatingChanged)}] call CBA_fnc_addEventHandler;
 
     ["CAManBase", "init", {
         params ["_unit"];
@@ -39,7 +43,7 @@ if (isServer) then {
             GVAR(hitUnitCache) pushBack _unit;
             [{GVAR(hitUnitCache) deleteAt (GVAR(hitUnitCache) find _this)}, _unit, 3] call CBA_fnc_waitAndExecute;
 
-            [QGVAR(civ_hit), _unit] call FUNC(ratingChanged);
+            [QGVAR(civ_hit), _unit] call FUNC(handleRatingChanged);
         }];
 
         _this#0 addMPEventHandler ["MPKilled", {
@@ -48,7 +52,7 @@ if (isServer) then {
             if !(isServer) exitWith {};
             if (side _killer != west && side _instigator != west) exitWith {};
 
-            [QGVAR(civ_killed), _unit] call FUNC(ratingChanged);
+            [QGVAR(civ_killed), _unit] call FUNC(handleRatingChanged);
         }];
     }] call CBA_fnc_addClassEventHandler;
 };

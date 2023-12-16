@@ -57,6 +57,9 @@ if (isServer) then {
         }, 0.2, []] call CBA_fnc_addPerFrameHandler;
     }] call CBA_fnc_addEventHandler;
 
+    [QGVAR(include), {_this setVariable [QGVAR(excluded), false, true]}] call CBA_fnc_addEventHandler;
+    [QGVAR(exclude), {_this setVariable [QGVAR(excluded), true, true]}] call CBA_fnc_addEventHandler;
+
     {
         [_x, "initPost", {(group (_this#0)) setVariable [QGVAR(excluded), true, true]}, true] call CBA_fnc_addClassEventHandler;
     } forEach ["B_UAV_AI", "O_UAV_AI", "I_UAV_AI"];

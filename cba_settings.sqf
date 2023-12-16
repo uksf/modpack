@@ -899,6 +899,27 @@ force force mts_markers_useVanillaColors = false;
 // NMAB Settings
 force force NMAB_setting_particlesEnabled = true;
 
+// OCAP - Main
+force OCAP_administratorList = "[]";
+force OCAP_enabled = true;
+force OCAP_isDebug = false;
+
+// OCAP - Recorder
+force OCAP_settings_autoStart = false;
+force OCAP_settings_excludeClassFromRecord = "['ACE_friesAnchorBar']";
+force OCAP_settings_excludeKindFromRecord = "['WeaponHolder']";
+force OCAP_settings_excludeMarkerFromRecord = "['SystemMarker_','ACE_BFT_']";
+force OCAP_settings_frameCaptureDelay = 1;
+force OCAP_settings_minMissionTime = 1;
+force OCAP_settings_minPlayerCount = 1;
+force OCAP_settings_preferACEUnconscious = true;
+force OCAP_settings_saveMissionEnded = true;
+force OCAP_settings_saveOnEmpty = true;
+force OCAP_settings_saveTag = "PVE";
+force OCAP_settings_trackTickets = false;
+force OCAP_settings_trackTimeInterval = 1;
+force OCAP_settings_trackTimes = false;
+
 // UKSF
 force uksf_caching_distance = 750;
 force uksf_caching_enabled = false;
