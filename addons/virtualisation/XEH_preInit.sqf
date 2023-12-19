@@ -7,27 +7,11 @@ ADDON = false;
 GVAR(killswitched) = false;
 
 [QGVAR(deleteGroup), {deleteGroup _this}] call CBA_fnc_addEventHandler;
-[QGVAR(recreateGroup), {
-    params ["_groupData"];
-    _groupData params ["_type"];
-
-    TRACE_1("recreating group",_groupData);
-    switch (_type) do {
-        case SAVED_TYPE_INFANTRY: {
-            [_groupData] call FUNC(recreateInfantryGroup);
-        };
-        case SAVED_TYPE_VEHICLE: {
-            [_groupData] call FUNC(recreateVehicleGroup);
-        };
-        default {
-            ERROR_1("'%1' is not a valid virtualised group type",_type);
-        };
-    };
-}] call CBA_fnc_addEventHandler;
+[QGVAR(recreateGroup), {call FUNC(recreateGroup)}] call CBA_fnc_addEventHandler;
 
 if (isServer) then {
-    GVAR(virtualisedGroups) = createHashMap;
-    GVAR(virtualisedGroupsPositionMap) = [];
+    GVAR(groups) = createHashMap;
+    GVAR(groupPositionMap) = [];
 
     [QGVAR(recreateAll), {
         // This is an admin function only to be used when killswitch is on
@@ -43,16 +27,16 @@ if (isServer) then {
                 [_idPFH] call CBA_fnc_removePerFrameHandler;
             };
 
-            if (count GVAR(virtualisedGroupsPositionMap) == 0) exitWith {
+            if (count GVAR(groupPositionMap) == 0) exitWith {
                 [_idPFH] call CBA_fnc_removePerFrameHandler;
-                GVAR(virtualisedGroups) = createHashMap;
-                GVAR(virtualisedGroupsPositionMap) = [];
+                GVAR(groups) = createHashMap;
+                GVAR(groupPositionMap) = [];
             };
 
-            private _id = GVAR(virtualisedGroupsPositionMap)#0#0;
-            GVAR(virtualisedGroupsPositionMap) deleteAt 0;
+            private _id = GVAR(groupPositionMap)#0#0;
+            GVAR(groupPositionMap) deleteAt 0;
 
-            private _groupData = GVAR(virtualisedGroups) deleteAt _id;
+            private _groupData = GVAR(groups) deleteAt _id;
             [QGVAR(recreateGroup), [_groupData]] call EFUNC(common,headlessEvent);
         }, 0.2, []] call CBA_fnc_addPerFrameHandler;
     }] call CBA_fnc_addEventHandler;
