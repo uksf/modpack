@@ -4,7 +4,7 @@
         Tim Beswick
 
     Description:
-        Deerializes a marker
+        Deserializes a marker
 
     Parameter(s):
         0: Serialized marker <ARRAY>
