@@ -17,7 +17,7 @@ params [["_groups", []]];
 // Pre-filter null groups and groups with no units
 _groups = _groups select {!isNull _x && count (units _x) > 0};
 
-// To avoid flicker, we'll virtualise groups 200m further away, but recreate 200m closer (400m buffer zone)
+// To avoid flicker, we'll virtualise groups 200m further away, but recreate when 200m closer (400m buffer zone)
 private _bufferedDistance = GVAR(distance) + 200;
 
 {
@@ -34,8 +34,7 @@ private _bufferedDistance = GVAR(distance) + 200;
         !(isPlayer _leader)
         && {simulationEnabled _leader || {!(isObjectHidden _leader)}}
         && {!((objectParent _leader) isKindOf "Air")}
-        && {!([_leader, GVAR(distance)] call EFUNC(common,anyNearPlayers))}
-        // && {[units _x, {vehicle _x != _x}] call EFUNC(common,arrayNone)} // remove this when ready to test vehicles
+        && {!([_leader, _bufferedDistance] call EFUNC(common,anyNearPlayers))}
     ) then {
         [_x] call FUNC(virtualiseGroup);
     };

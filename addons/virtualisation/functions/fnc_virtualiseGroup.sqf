@@ -4,8 +4,7 @@
         Bridg
 
     Description:
-        Gets group details and stores them.
-        Currently doing this to a variable, can change this later to a DB or name space etc.
+        Gets group details and stores them
 
     Parameters:
         0: Group to virtualise <GROUP>
@@ -15,27 +14,22 @@
 */
 params ["_group"];
 
-private _leader = leader _group;
-private _id = call CBA_fnc_createUUID;
-private _position = getPos _leader;
-GVAR(virtualisedGroupsPositionMap) pushBack [_id, _position];
-
 private _side = side _group;
+private _leader = leader _group;
+private _position = getPos _leader;
 private _combatMode = combatMode _group;
 private _formationDirection = formationDirection _leader;
-private _waypointsArray = [_group] call FUNC(getGroupWaypoints);
 
-private _type = SAVED_TYPE_INFANTRY;
-private _unitDetails = [];
-if ((vehicle _leader) isKindOf "LandVehicle") then { // need a better way to do this
-    _unitDetails = [_group] call FUNC(getVehicleUnitDetails);
-    _type = SAVED_TYPE_VEHICLE;
-} else {
-    _unitDetails = [_group] call FUNC(getInfantryUnitDetails);
-};
-GVAR(virtualisedGroups) set [_id, [_type, _side, _unitDetails, _waypointsArray, _combatMode, _formationDirection]];
-TRACE_3("virtualised group",_id,_type,_group);
+private _vehicles = [_group] call FUNC(getGroupVehicles);
+private _vehicleDetails = [_vehicles] call FUNC(getVehicleDetails);
+private _unitDetails = [_group, _vehicles] call FUNC(getInfantryDetails);
+private _waypoints = [_group] call FUNC(getGroupWaypoints);
 
-deleteVehicle (vehicle _leader);
-{deleteVehicle _x} forEach units _group;
+private _id = format ["%1_v%2_u%3_%4%5%6", _side, count _vehicleDetails, count _unitDetails, _position#0, _position#1, _position#2];
+GVAR(groupPositionMap) pushBack [_id, _position];
+GVAR(groups) set [_id, [_side, _vehicleDetails, _unitDetails, _waypoints, _combatMode, _formationDirection]];
+TRACE_2("virtualised group",_group,_id);
+
+{deleteVehicle _x} forEach (units _group);
+{deleteVehicle _x} forEach _vehicles;
 [QGVAR(deleteGroup), _group, _group] call CBA_fnc_targetEvent;

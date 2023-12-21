@@ -50,19 +50,21 @@ if (isServer) then {
         // To avoid flicker, we'll recreate groups 200m closer, but virtualise 200m further away (400m buffer zone)
         private _bufferedDistance = GVAR(distance) - 200;
 
-        private _groupIndex = GVAR(virtualisedGroupsPositionMap) findIf {
+        private _groupIndex = GVAR(groupPositionMap) findIf {
             private _groupPosition = _x#1;
+
             [ALL_PLAYERS, {
                 _x distance _groupPosition <= _bufferedDistance
                 && {!((objectParent _x) isKindOf "Air")}
             }] call EFUNC(common,arrayAny)
         };
+        
         if (_groupIndex == -1) exitWith {};
 
-        private _id = (GVAR(virtualisedGroupsPositionMap) deleteAt _groupIndex)#0;
+        private _id = (GVAR(groupPositionMap) deleteAt _groupIndex)#0;
         TRACE_1("requesting recreate group",_id);
 
-        private _groupData = GVAR(virtualisedGroups) deleteAt _id;
+        private _groupData = GVAR(groups) deleteAt _id;
         [QGVAR(recreateGroup), [_groupData]] call EFUNC(common,headlessEvent);
     }, DELAY, []] call CBA_fnc_addPerFrameHandler;
 };
