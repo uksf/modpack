@@ -6,6 +6,9 @@ class CowsSlot;
 class MuzzleSlot;
 class PointerSlot;
 class UnderBarrelSlot;
+class CUP_PicatinnyTopMountM4;
+class CUP_PicatinnySideMountM4;
+class CUP_PicatinnyTopMountAWM;
 class CfgWeapons {
     class U_BasicBody;
     class UniformItem;
@@ -23,33 +26,32 @@ class CfgWeapons {
             mass = 5;
         };
     };
-
     class CUP_arifle_M4A1_MOE_winter;
     class GVAR(CUP_arifle_M4A1_MOE_winter_CUP_acc_Flashlight_CUP_optic_HensoldtZO_RDS) : CUP_arifle_M4A1_MOE_winter {
-        displayName = "M16A4 (Grip)";
+        displayName = "M4A1 (Winter)";
         scope = 1;
         class LinkedItems {
             class LinkedItemsOptic {
-                slot = "CowsSlot";
+                slot = "CUP_PicatinnyTopMountM4";
                 item = "CUP_optic_HensoldtZO_RDS";
             };
             class LinkedItemsAcc {
-                slot = "PointerSlot";
+                slot = "CUP_PicatinnySideMountM4";
                 item = "CUP_acc_Flashlight";
             };
         };
     };
     class CUP_arifle_M4A1_BUIS_GL;
     class GVAR(CUP_arifle_M4A1_BUIS_GL_CUP_acc_Flashlight_CUP_optic_HensoldtZO_RDS) : CUP_arifle_M4A1_BUIS_GL {
-        displayName = "M16A4GL";
+        displayName = "M4A1GL";
         scope = 1;
         class LinkedItems {
             class LinkedItemsOptic {
-                slot = "CowsSlot";
+                slot = "CUP_PicatinnyTopMountM4";
                 item = "CUP_optic_HensoldtZO_RDS";
             };
             class LinkedItemsAcc {
-                slot = "PointerSlot";
+                slot = "CUP_PicatinnySideMountM4";
                 item = "CUP_acc_Flashlight";
             };
         };
@@ -82,7 +84,7 @@ class CfgWeapons {
         scope = 1;
         class LinkedItems {
             class LinkedItemsOptic {
-                slot = "CowsSlot";
+                slot = "CUP_PicatinnyTopMountAWM";
                 item = "ACE_optic_LRPS_2D";
             };
         };
