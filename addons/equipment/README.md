@@ -27,6 +27,6 @@ class CfgVehicles {
 
 To skip randomization for a unit, either:
 
-- Set a property in config: `uksf_equipment_skipRandomization = 1;`
+- Set a property in config: `uksf_equipment_skipRandomization = 1;` or `EGVAR(equipment,skipRandomization) = 1;`
 - Set the attribute in 3DEN: `UKSF > Skip Randomization`
 - Set via script: `_unit setVariable ["uksf_equipment_skipRandomization", true, true];`
