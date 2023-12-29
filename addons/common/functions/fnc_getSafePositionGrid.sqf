@@ -54,7 +54,7 @@ if (_minRadius > 0) then {
 _positions = _positions select {_x inArea [_centre, _maxRadius, _maxRadius, 0, false, -1]};
 
 #ifdef DEBUG_MODE_FULL
-// {
+{
     _marker = createMarker [str random 999999, _x]; _marker setMarkerShape "ICON"; _marker setMarkerType "hd_dot"; _marker setMarkerColor "ColorRed";
     GVAR(debugGridPositionMarkers) pushBack _marker;
 } forEach _positions;
