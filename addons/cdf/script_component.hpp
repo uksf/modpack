@@ -7,4 +7,3 @@
 // #define CBA_DEBUG_SYNCHRONOUS
 
 #include "\u\uksf\addons\main\script_macros.hpp"
-#include "\z\ace\addons\medical_engine\script_macros_config.hpp"

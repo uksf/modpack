@@ -1,4 +1,4 @@
-// F35
+// TU-16
 class pook_tu16_G_BLUFOR;
 class GVAR(TU16) : pook_tu16_G_BLUFOR {
     scope = 2;

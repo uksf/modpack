@@ -1,5 +1,5 @@
 class CfgFactionClasses {
-    class UKSF_CDF {
+    class ADDON {
         displayName = "Cherno Defence Force (Modern)";
         icon = QPATHTOF(data\CDF_Flag.png);
         priority = 1;
