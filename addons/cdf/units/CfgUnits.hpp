@@ -111,7 +111,7 @@ class GVAR(Jet_Pilot) : GVAR(Rifleman) {
     displayName = "Jet Pilot";
     uniformClass = "U_B_PilotCoveralls";
     weapons[] = { "CUP_hgun_CZ75", "Put", "Throw" };
-    respawnWeapons[] = { QGVAR(CUP_arifle_M4A1_MOE_winter_CUP_acc_Flashlight_CUP_optic_HensoldtZO_RDS), "CUP_hgun_CZ75", "Put", "Throw" };
+    respawnWeapons[] = { "CUP_hgun_CZ75", "Put", "Throw" };
     magazines[] = { "SmokeShell", "SmokeShell", "CUP_16Rnd_9x19_cz75", "CUP_16Rnd_9x19_cz75" };
     respawnMagazines[] = { "SmokeShell", "SmokeShell", "CUP_16Rnd_9x19_cz75", "CUP_16Rnd_9x19_cz75" };
     linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "H_PilotHelmetFighter_B" };
