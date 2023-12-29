@@ -66,7 +66,7 @@ class GVAR(Armour_Crewman) : GVAR(Rifleman) {
     linkedItems[] = { "ItemMap", "ItemCompass", "CUP_NVG_PVS15_green_WP", "H_Tank_black_F", "CUP_V_CZ_vest04", "CUP_NVG_PVS15_green_WP" };
     respawnLinkedItems[] = { "ItemMap", "ItemCompass", "CUP_NVG_PVS15_green_WP", "H_Tank_black_F", "CUP_V_CZ_vest04", "CUP_NVG_PVS15_green_WP" };
     backpack = "";
-    uksf_equipment_skipRandomization = 1;
+    EGVAR(equipment,skipRandomization) = 1;
 };
 class GVAR(Officer) : GVAR(Rifleman) {
     displayName = "Officer";
@@ -74,7 +74,7 @@ class GVAR(Officer) : GVAR(Rifleman) {
     linkedItems[] = { "ItemMap", "ItemCompass", "CUP_H_CZ_Patrol_Cap", "CUP_V_CZ_NPP2006_co_vz95" };
     respawnLinkedItems[] = { "ItemMap", "ItemCompass", "CUP_H_CZ_Patrol_Cap", "CUP_V_CZ_NPP2006_co_vz95" };
     backpack = "";
-    uksf_equipment_skipRandomization = 1;
+    EGVAR(equipment,skipRandomization) = 1;
     icon = "iconManOfficer";
 };
 class GVAR(Signaller) : GVAR(Rifleman) {
@@ -94,7 +94,7 @@ class GVAR(Heli_Pilot) : GVAR(Rifleman) {
     linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "H_PilotHelmetHeli_B", "CUP_V_CZ_NPP2006_nk_black" };
     respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "H_PilotHelmetHeli_B", "CUP_V_CZ_NPP2006_nk_black" };
     backpack = "";
-    uksf_equipment_skipRandomization = 1;
+    EGVAR(equipment,skipRandomization) = 1;
 };
 class GVAR(Sniper) : GVAR(Rifleman) {
     displayName = "Sniper";
@@ -106,7 +106,7 @@ class GVAR(Sniper) : GVAR(Rifleman) {
     linkedItems[] = { "ItemMap", "ItemCompass", "CUP_NVG_PVS15_green_WP", "CUP_H_CZ_Helmet03", "CUP_V_CZ_vest02", "G_Bandanna_oli", "CUP_NVG_PVS15_green_WP" };
     respawnLinkedItems[] = { "ItemMap", "ItemCompass", "CUP_NVG_PVS15_green_WP", "CUP_H_CZ_Helmet03", "CUP_V_CZ_vest02", "G_Bandanna_oli", "CUP_NVG_PVS15_green_WP" };
     backpack = "";
-    uksf_equipment_skipRandomization = 1;
+    EGVAR(equipment,skipRandomization) = 1;
 };
 class GVAR(Crewman) : GVAR(Rifleman) {
     displayName = "Crewman";
@@ -116,7 +116,7 @@ class GVAR(Crewman) : GVAR(Rifleman) {
     magazines[] = { "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag_Tracer_Green", "CUP_30Rnd_556x45_Stanag_Tracer_Green", "CUP_30Rnd_556x45_Stanag_Tracer_Green", "SmokeShell", "SmokeShell", "SmokeShell", "CUP_HandGrenade_RGD5", "CUP_HandGrenade_RGD5" };
     respawnMagazines[] = { "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag", "CUP_30Rnd_556x45_Stanag_Tracer_Green", "CUP_30Rnd_556x45_Stanag_Tracer_Green", "CUP_30Rnd_556x45_Stanag_Tracer_Green", "SmokeShell", "SmokeShell", "SmokeShell", "CUP_HandGrenade_RGD5", "CUP_HandGrenade_RGD5" };
     backpack = "";
-    uksf_equipment_skipRandomization = 1;
+    EGVAR(equipment,skipRandomization) = 1;
 };
 class GVAR(Jet_Pilot) : GVAR(Rifleman) {
     displayName = "Jet Pilot";
@@ -128,7 +128,7 @@ class GVAR(Jet_Pilot) : GVAR(Rifleman) {
     linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "H_PilotHelmetFighter_O", "CUP_V_CZ_NPP2006_nk_black" };
     respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "H_PilotHelmetFighter_O", "CUP_V_CZ_NPP2006_nk_black" };
     backpack = "";
-    uksf_equipment_skipRandomization = 1;
+    EGVAR(equipment,skipRandomization) = 1;
 };
 class GVAR(Rifleman_AA) : GVAR(Rifleman) {
     displayName = "Rifleman AA";
@@ -176,5 +176,5 @@ class GVAR(Operator) : GVAR(Rifleman) {
     respawnMagazines[] = { "CUP_30Rnd_556x45_PMAG_QP", "CUP_30Rnd_556x45_PMAG_QP", "CUP_30Rnd_556x45_PMAG_QP", "CUP_30Rnd_556x45_PMAG_QP", "CUP_30Rnd_556x45_PMAG_QP", "CUP_30Rnd_556x45_PMAG_QP", "CUP_30Rnd_556x45_PMAG_QP", "CUP_30Rnd_556x45_PMAG_QP", "CUP_HandGrenade_RGO", "CUP_HandGrenade_RGO", "SmokeShell", "SmokeShell", "SmokeShell" };
     linkedItems[] = { "ItemMap", "ItemCompass", "CUP_NVG_GPNVG_black", "CUP_H_OpsCore_Black", "CUP_V_CZ_NPP2006_ok_black", "CUP_G_Scarf_Face_Blk" };
     backpack = QGVAR(Operator_Pack);
-    uksf_equipment_skipRandomization = 1;
+    EGVAR(equipment,skipRandomization) = 1;
 };
