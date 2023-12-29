@@ -752,7 +752,7 @@ class Inegal_Sniper: Inegal_F {
         "ItemRadioAcreFlagged",
         "ItemGPS"
     };
-    uksf_equipment_skipRandomization = 1;
+    EGVAR(equipment,skipRandomization) = 1;
 };
 class Inegal_FAC: Inegal_F {
     displayName = "FAC";

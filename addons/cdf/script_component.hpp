@@ -1,5 +1,5 @@
-#define COMPONENT eug
-#define COMPONENT_BEAUTIFIED EUG
+#define COMPONENT cdf
+#define COMPONENT_BEAUTIFIED CDF
 #include "\u\uksf\addons\main\script_mod.hpp"
 
 // #define DEBUG_MODE_FULL
