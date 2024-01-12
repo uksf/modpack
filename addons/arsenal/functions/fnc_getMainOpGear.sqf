@@ -268,7 +268,17 @@ _mainOpGear append [
     "SPS_AI_AXMC338_27_B_F",
     "SPS_AI_AXMC338_27_G_F",
     "SPS_AI_AXMC338_27_DE_F",
-    "SPS_AI_AXMC338_27_ES_F"
+    "SPS_AI_AXMC338_27_ES_F",
+    "arifle_mas_ukl_SPAR_01_GL_w_F",
+    "arifle_mas_ukl_SPAR_02_blk_F",
+    "arifle_mas_ukl_SPAR_02_snd_F",
+    "arifle_mas_ukl_SPAR_01_GL_blk_F",
+    "arifle_mas_ukl_SPAR_01_GL_snd_F",
+    "arifle_mas_ukl_SPAR_01_GL_w_F",
+    "arifle_mas_ukl_SPAR_01_blk_F",
+    "arifle_mas_ukl_SPAR_01_snd_F",
+    "arifle_mas_ukl_SPAR_01_w_F",
+    "arifle_mas_ukl_SDAR_F"
 ];
 
 // Attachments
@@ -466,7 +476,8 @@ _mainOpGear append [
     "uksf_air_equipment_marshallSticks",
     "CUP_NVG_GPNVG_black",
     "CUP_NVG_GPNVG_green",
-    "CUP_NVG_GPNVG_tan"
+    "CUP_NVG_GPNVG_tan",
+    "NVGoggles_mas_ukl_hv18"
 ];
 
 // Items
@@ -612,7 +623,12 @@ _mainOpGear append [
     "black_Crye2_Camo",
     "U_B_Wetsuit",
     "U_B_survival_uniform",
-    "CUP_U_CRYE_G3C_MC_V3"
+    "CUP_U_CRYE_G3C_MC_V3",
+    "U_mas_ukl_B_suite_WINT",
+    "U_mas_ukl_B_CombatUniform_wint2",
+    "U_mas_ukl_B_CombatUniform_wint",
+    "U_mas_ukl_B_Wetsuit",
+    "U_mas_ukl_B_Wetunif"
 ];
 
 // Vests
@@ -848,7 +864,8 @@ _mainOpGear append [
     "tfw_ilbe_blade_w",
     "tfw_ilbe_blade_vsm",
     "B_MAV_B_BACKPACK",
-    "uksf_diving_bag"
+    "uksf_diving_bag",
+    "B_mas_ukl_Kitbag_LW"
 ];
 
 // Helmets
@@ -958,7 +975,12 @@ _mainOpGear append [
     "WHT_opscore_2",
     "ALP_opscore",
     "BLK2_opscore",
-    "WHT_opscore"
+    "WHT_opscore",
+    "H_mas_ukl_beanie_w",
+    "H_mas_ukl_hood_w",
+    "H_mas_ukl_opscore_w",
+    "H_mas_ukl_opscore_gog_w",
+    "H_mas_ukl_airframe_w"
 ];
 
 // Glasses
@@ -974,7 +996,12 @@ _mainOpGear append [
     "UK3CB_BAF_G_Tactical_Orange",
     "UK3CB_BAF_G_Tactical_Yellow",
     "G_B_Diving",
-    "G_mas_usl_jumpmask"
+    "G_mas_usl_jumpmask",
+    "G_mas_ukl_balaM_W",
+    "G_mas_ukl_bala_W",
+    "G_mas_ukl_Bandanna_W",
+    "G_mas_ukl_jumpmask",
+    "CUP_G_Scarf_Face_White"
 ];
 
 uiNamespace setVariable [QGVAR(mainOpGear), _mainOpGear];
