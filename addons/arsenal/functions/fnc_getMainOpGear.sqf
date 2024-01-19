@@ -170,7 +170,8 @@ _mainOpGear append [
     "SPS_AI_AXMC_338_250gr_Naturalis_Tracer_Mag",
     "SPS_AI_AXMC_338_250gr_Naturalis_IR_Mag",
     "SPS_AI_AXMC_338_API526_Mag",
-    "SPS_AI_AXMC_338_HAPI_Mag"
+    "SPS_AI_AXMC_338_HAPI_Mag",
+    "30Rnd_mas_ukl_556x45UW_Stanag"
 ];
 
 // Weapons
@@ -628,7 +629,8 @@ _mainOpGear append [
     "U_mas_ukl_B_CombatUniform_wint2",
     "U_mas_ukl_B_CombatUniform_wint",
     "U_mas_ukl_B_Wetsuit",
-    "U_mas_ukl_B_Wetunif"
+    "U_mas_ukl_B_Wetunif",
+    "U_mas_ukl_B_CombatUniform_m2"
 ];
 
 // Vests
@@ -751,7 +753,12 @@ _mainOpGear append [
     "CUP_V_B_Armatus_MCam",
     "CUP_V_B_Armatus_BB_MCam",
     "CUP_V_B_LBT_LBV_MCam",
-    "Aircrew_vest_2_NH"
+    "Aircrew_vest_2_NH",
+    "V_mas_ukl_belt_carrier_LR_wint",
+    "V_mas_ukl_PlateCarrierAR_wint",
+    "V_mas_ukl_PlateCarrier1_wint",
+    "V_mas_ukl_PlateCarrierLR_wint",
+    "V_mas_ukl_PlateCarrierRF_wint"
 ];
 
 // Backpacks
