@@ -11,14 +11,13 @@ GVAR(curatorViewMapID) = 999;
 GVAR(curatorViewPFHID) = -1;
 GVAR(showVirtualised) = false;
 
+[QGVAR(include), {_this setVariable [QGVAR(excluded), false, true]}] call CBA_fnc_addEventHandler;
+[QGVAR(exclude), {_this setVariable [QGVAR(excluded), true, true]}] call CBA_fnc_addEventHandler;
 [QGVAR(deleteGroup), {deleteGroup _this}] call CBA_fnc_addEventHandler;
 [QGVAR(recreateGroup), {call FUNC(recreateGroup)}] call CBA_fnc_addEventHandler;
 
 if (isServer) then {
     GVAR(dataStreamClientObjects) = [];
-
-    [QGVAR(include), {_this setVariable [QGVAR(excluded), false, true]}] call CBA_fnc_addEventHandler;
-    [QGVAR(exclude), {_this setVariable [QGVAR(excluded), true, true]}] call CBA_fnc_addEventHandler;
     [QGVAR(devirtualizeNearby), {call FUNC(devirtualizeNearby)}] call CBA_fnc_addEventHandler;
     [QGVAR(recreateAll), {call FUNC(recreateAll)}] call CBA_fnc_addEventHandler;
     [QGVAR(toggleDataStreamForClient), {call FUNC(toggleDataStreamForClient)}] call CBA_fnc_addEventHandler;
