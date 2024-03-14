@@ -10,6 +10,7 @@ PREP(recreateInfantry);
 PREP(recreateVehicles);
 PREP(virtualiseGroup);
 PREP(virtualiseGroups);
+PREP(sendDataToClients);
 PREP(toggleDataStreamForClient);
 
 // Actions

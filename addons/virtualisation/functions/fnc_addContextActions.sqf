@@ -18,7 +18,7 @@ private _action = [QGVAR(menu), "Virtualisation", QPATHTOEF(zeus,ui\Icon_Module_
     private _action = [QGVAR(exclude), "Exclude From Virtualisation", "", {call FUNC(contextExclude)}, {call FUNC(contextCanExclude)}, [], {}, {call FUNC(contextExcludeModifier)}] call zen_context_menu_fnc_createAction;
     _actions pushBack [_action, [], 100];
 
-    _action = [QGVAR(devirtualise), "Devirtualise Nearby", "", {call FUNC(contextDevirtualizeNearby)}, {true}, [100], {
+    _action = [QGVAR(devirtualise), "Devirtualise Nearby (10m)", "", {call FUNC(contextDevirtualizeNearby)}, {true}, [10], {
         private _actions = [];
 
         {
