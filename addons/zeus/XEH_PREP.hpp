@@ -29,6 +29,3 @@ PREP(contextCachingModifier);
 PREP(contextCanCleanup);
 PREP(contextCleanup);
 PREP(contextCleanupModifier);
-PREP(contextCanVirtualisationExclude);
-PREP(contextVirtualisationExclude);
-PREP(contextVirtualisationExcludeModifier);

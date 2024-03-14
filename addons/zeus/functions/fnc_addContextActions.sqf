@@ -12,7 +12,7 @@
     Return Value:
         None
 */
-private _action = [QGVAR(ai), "AI", "", {}, {
+private _action = [QGVAR(ai), "UKSF AI", "", {}, {
     params ["", "_selectedObjects"];
     _selectedObjects isNotEqualTo [] && {({isPlayer _x} count _selectedObjects) == 0}
 }, [], {
@@ -24,14 +24,11 @@ private _action = [QGVAR(ai), "AI", "", {}, {
     _action = [QGVAR(caching), "Exclude From Caching", QPATHTOF(ui\Icon_Module_Caching_Exclude_ca.paa), {call FUNC(contextCaching)}, {call FUNC(contextCanCaching)}, [], {}, {call FUNC(contextCachingModifier)}] call zen_context_menu_fnc_createAction;
     _actions pushBack [_action, [], 100];
 
-    _action = [QGVAR(virtualisation), "Exclude From Virtualisation", QPATHTOF(ui\Icon_Module_Caching_Exclude_ca.paa), {call FUNC(contextVirtualisationExclude)}, {call FUNC(contextCanVirtualisationExclude)}, [], {}, {call FUNC(contextVirtualisationExcludeModifier)}] call zen_context_menu_fnc_createAction;
-    _actions pushBack [_action, [], 100];
-
     _actions
 }] call zen_context_menu_fnc_createAction;
 [_action, [], 100] call zen_context_menu_fnc_addAction;
 
-_action = [QGVAR(object), "Object", "", {}, {true}, [], {
+_action = [QGVAR(tools), "Tools", "", {}, {true}, [], {
     private _actions = [];
 
     private _action = [QGVAR(cleanup), "Exclude From Cleanup", QPATHTOF(ui\Icon_Module_Cleanup_Exclude_ca.paa), {call FUNC(contextCleanup)}, {call FUNC(contextCanCleanup)}, [], {}, {call FUNC(contextCleanupModifier)}] call zen_context_menu_fnc_createAction;
@@ -50,7 +47,11 @@ _action = [QGVAR(object), "Object", "", {}, {true}, [], {
 }] call zen_context_menu_fnc_createAction;
 [_action, [], 85] call zen_context_menu_fnc_addAction;
 
-_action = [QGVAR(toggleFPS), "Toggle FPS", "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa", {GVAR(fpsEnabled) = !GVAR(fpsEnabled)}, {isMultiplayer}] call zen_context_menu_fnc_createAction;
+_action = [QGVAR(toggleFPS), "Show Player FPS", "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa", {GVAR(fpsEnabled) = !GVAR(fpsEnabled)}, {isMultiplayer}, [], {}, {
+    params ["_action"];
+
+    _action set [1, ["Show Player FPS", "Hide Player FPS"] select GVAR(fpsEnabled)];
+}] call zen_context_menu_fnc_createAction;
 [_action, [], -480] call zen_context_menu_fnc_addAction;
 
 _action = [QGVAR(toggleZeusVisibility), "Toggle Zeus Visibility", "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa", {[objNull] call FUNC(moduleToggleZeusVisibility)}, {true}] call zen_context_menu_fnc_createAction;

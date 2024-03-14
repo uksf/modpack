@@ -8,6 +8,7 @@ GVAR(loadout) = "";
 GVAR(fpsEnabled) = false;
 GVAR(EHIDArray) = [];
 GVAR(curatorUnconciousMapID) = 999;
+GVAR(curatorUnconciousID) = -1;
 
 if (hasInterface && {isMultiplayer}) then {
     GVAR(fpsEnabled) = MULTIPLAYER_ADMIN_OR_WHITELISTED;
