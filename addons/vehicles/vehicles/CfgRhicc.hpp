@@ -14,10 +14,10 @@ class RHICC_MAIN : Boat_Armed_01_base_F {
     };
     class TransportWeapons {};
     class TransportBackpacks {};
-    armor = 150;  // 100
+    armor = 200;  // 100
     class HitPoints {
         class HitBody {
-            armor = 0.2;
+            armor = 0.3;
             material = 50;
             name = "karoserie";
             visual = "zbytek";
@@ -79,7 +79,6 @@ class RHICC_MAIN : Boat_Armed_01_base_F {
     class Turrets : Turrets {
         class CommanderTurret : NewTurret {
             weapons[] = { "CUP_weapon_mastersafe", "Laserdesignator_vehicle", "RHICC_SmokeLauncher" };
-            stabilizedInAxes = 3;
             class ViewOptics {
                 initAngleX = 0;
                 minAngleX = -30;
