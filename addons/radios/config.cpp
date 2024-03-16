@@ -13,9 +13,7 @@ class CfgPatches {
         requiredAddons[] = {
             "uksf_common",
             "uksf_vehicles",
-            "uksf_persistence",
-            "acre_sys_radio",
-            "acre_sys_gsa"
+            "uksf_persistence"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };

@@ -35,19 +35,6 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "uksf_common",
-            "UK3CB_BAF_Equipment",
-            "UK3CB_BAF_Weapons",
-            "UK3CB_BAF_Weapons_Ammo",
-            "UK3CB_BAF_Weapons_L110",
-            "UK3CB_BAF_Weapons_L115",
-            "UK3CB_BAF_Weapons_L119",
-            "UK3CB_BAF_Weapons_L1A1",
-            "UK3CB_BAF_Weapons_Launchers",
-            "UK3CB_BAF_Weapons_SmallArms",
-            "UK3CB_BAF_Weapons_Static",
-            "UK3CB_BAF_Weapons_Accessories",
-            "UK3CB_BAF_Weapons_ACE",
             "uksf_radios"
         };
         author = QUOTE(UKSF);

@@ -7,9 +7,7 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "CUP_WheeledVehicles_Mastiff",
-            "CUP_WheeledVehicles_Ridgeback",
-            "CUP_WheeledVehicles_Wolfhound"
+            "uksf_common"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };

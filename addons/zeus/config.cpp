@@ -28,12 +28,7 @@ class CfgPatches {
             "uksf_caching",
             "uksf_cleanup",
             "uksf_mission",
-            "uksf_special",
-            "zen_modules",
-            "zen_context_menu",
-            "zen_custom_modules",
-            "zen_dialog",
-            "zen_compat_ace"
+            "uksf_special"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };

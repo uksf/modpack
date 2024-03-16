@@ -3,10 +3,7 @@ class Boat_Armed_01_base_F : Boat_F {
     class Turrets;
 };
 class RHICC_MAIN : Boat_Armed_01_base_F {
-    maximumLoad = 2000;           // 500
-    transportMaxBackpacks = 10;   // 5
-    transportMaxMagazines = 100;  // 100
-    transportMaxWeapons = 10;     // 10
+    maximumLoad = 2000; // 500
     class TransportMagazines {};
     class TransportItems {
         delete _xx_FirstAidKit;
@@ -14,7 +11,7 @@ class RHICC_MAIN : Boat_Armed_01_base_F {
     };
     class TransportWeapons {};
     class TransportBackpacks {};
-    armor = 200;  // 100
+    armor = 200; // 100
     class HitPoints {
         class HitBody {
             armor = 0.3;

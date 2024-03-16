@@ -116,7 +116,6 @@ class CfgPatches {
         };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "uksf_main",
             "uksf_common"
         };
         author = QUOTE(UKSF);

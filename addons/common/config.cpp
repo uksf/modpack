@@ -10,11 +10,7 @@ class CfgPatches {
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             "uksf_main",
-            "uksf_3rdperson",
-            "3denEnhanced",
-            "cba_ui",
-            "diwako_dui_main",
-            "lambs_danger"
+            "uksf_3rdperson"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };

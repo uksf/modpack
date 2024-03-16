@@ -85,11 +85,7 @@ class CfgPatches {
         };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "uksf_main",
-            "uksf_common",
-            "ace_medical_treatment",
-            "CUP_Weapons_LoadOrder",
-            "CUP_Creatures_People_LoadOrder"
+            "uksf_common"
         };
         author = QUOTE(UKSF);
         authors[] = { "Bridgford.A" };
