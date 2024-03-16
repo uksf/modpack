@@ -5,6 +5,8 @@ ADDON = false;
 #include "XEH_PREP.hpp"
 
 GVAR(debugGridPositionMarkers) = [];
+GVAR(debugSpheres) = [];
+GVAR(debugSingletonSphere) = objNull;
 
 [] spawn {
     GVAR(addons) = ('true' configClasses (configFile >> "CfgPatches")) apply {configName _x};

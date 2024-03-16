@@ -8,6 +8,8 @@ PREP(configExport);
 PREP(configExportExtension);
 PREP(convertToArray);
 PREP(createDiorama);
+PREP(debugClearSpheres);
+PREP(debugCreateSphere);
 PREP(deserializeAceMedical);
 PREP(edenCopyId);
 PREP(edenIdAttributeChanged);

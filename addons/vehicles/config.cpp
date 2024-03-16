@@ -9,7 +9,9 @@ class CfgPatches {
             "UK3CB_BAF_MAN_HX58_Rearm_Green",
             "UK3CB_BAF_MAN_HX58_Rearm_Sand",
             "UK3CB_BAF_MAN_HX60_Rearm_Green",
-            "UK3CB_BAF_MAN_HX60_Rearm_Sand"
+            "UK3CB_BAF_MAN_HX60_Rearm_Sand",
+            QGVAR(rhicc_green),
+            QGVAR(rhicc_grey)
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
@@ -33,6 +35,7 @@ class CfgPatches {
             "UK3CB_BAF_Vehicles_Warrior_a3",
             "UK3CB_BAF_Vehicles_Weapons",
             "rksla3_aircraft_tug",
+            "RHICC",
             QGVAR(prep)
         };
         author = QUOTE(UKSF);
