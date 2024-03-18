@@ -177,6 +177,8 @@ class CfgAmmo {
     };
 
     class B_SPS_338_ball_API526;
+    class ammo_Gun35mmAABase;
 
+#include "ammoSets\AA.hpp"
 #include "ammoSets\SPS.hpp"
 };
