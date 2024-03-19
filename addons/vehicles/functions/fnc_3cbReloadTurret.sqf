@@ -13,6 +13,7 @@
     Return Value:
         Resupply successful <BOOLEAN>
 */
+DEBUG("3cb reload");
 params ["_vehicle", "_unit"];
 
 if (!alive _unit || !alive _vehicle || _vehicle isKindOf "StaticWeapon" || !(_unit in _vehicle)) exitWith {
@@ -59,8 +60,8 @@ if (_compatibleCargoMagazines isEqualTo []) exitWith {
     false
 };
 
-private _isEmpty = _currentMagazine == "";
-if (_isEmpty) then {
+private _magazinePresent = _currentMagazine == "";
+if (_magazinePresent) then {
     TRACE_1("Current magazine is empty, nothing to refer to but there are compatible cargo mags, selecting first",_compatibleCargoMagazines);
     _currentMagazine = _compatibleCargoMagazines#0;
 };
@@ -71,25 +72,12 @@ if (_currentMagazine == "") exitWith {
     false
 };
 
-// TODO: Use addMagazineCargoGlobal 2.14 syntax with -1 to remove single magazine rather than nuke and rebuild the entire inventory
-clearMagazineCargoGlobal _vehicle;
-
-{
-    private _quantity = _cargoMagazineQuantities select _forEachIndex;
-    if (_x == _currentMagazine) then {
-        _quantity = _quantity - 1;
-        if (_quantity > 0) then {
-            _vehicle addMagazineCargoGlobal [_x, _quantity];
-        };
-    } else {
-        _vehicle addMagazineCargoGlobal [_x, _quantity];
-    };
-} forEach _cargoMagazines;
+_vehicle addMagazineCargoGlobal [_currentMagazine, -1];
 
 _vehicle removeMagazineTurret [_currentMagazine, _turret];
 _vehicle addMagazineTurret [_currentMagazine, _turret];
-if (!_isEmpty) then {
-    DEBUG("Magazine was not empty, adding it back with same ammo count");
+if (!_magazinePresent) then {
+    DEBUG("Magazine was present, adding it back with same ammo count");
     _vehicle addMagazineTurret [_currentMagazine, _turret, _currentAmmo];
 };
 
