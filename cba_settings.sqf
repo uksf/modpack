@@ -9,6 +9,10 @@ force force A3TI_HD_VISION_SHIP = false;
 force force A3TI_HD_VISION_UAV = false;
 force force A3TI_REMOVE_FILMGRAIN_RHS = true;
 
+// Aaren's Blast Effect
+force force tracer_illuminate_list = 3;
+force force tracer_illuminate_sim = true;
+
 // ACE Advanced Ballistics
 force force ace_advanced_ballistics_ammoTemperatureEnabled = true;
 force force ace_advanced_ballistics_barrelLengthInfluenceEnabled = true;
@@ -221,9 +225,13 @@ force ace_iron_dome_proximityFuseRange = 10;
 force ace_iron_dome_targetRecycleTime = 15;
 force ace_iron_dome_timeBetweenLaunches = 1;
 
+// ACE Kill Tracker
+force force ace_killtracker_trackAI = true;
+
 // ACE Logistics
 ace_cargo_carryAfterUnload = true;
 force force ace_cargo_enable = true;
+force force ace_cargo_enableDeploy = true;
 force force ace_cargo_enableRename = true;
 force force ace_cargo_loadTimeCoefficient = 5;
 ace_cargo_openAfterUnload = 0;
@@ -260,6 +268,9 @@ force force ace_markers_moveRestriction = 0;
 force force ace_markers_timestampEnabled = true;
 force force ace_markers_timestampFormat = "HH:MM";
 force force ace_markers_timestampHourFormat = 24;
+force force ace_markers_timestampTimezone = 0;
+force force ace_markers_TimestampUTCMinutesOffset = 0;
+force force ace_markers_timestampUTCOffset = 0;
 
 // ACE Map Gestures
 force force ace_map_gestures_allowCurator = true;
@@ -276,6 +287,7 @@ force force ace_map_gestures_onlyShowFriendlys = false;
 
 // ACE Map Tools
 ace_maptools_drawStraightLines = true;
+force force ace_maptools_plottingBoardAllowChannelDrawing = 1;
 ace_maptools_rotateModifierKey = 1;
 
 // ACE Medical
@@ -340,6 +352,7 @@ force force ace_medical_treatment_medicSurgicalKit = 1;
 force force ace_medical_treatment_timeCoefficientPAK = 1;
 force force ace_medical_treatment_treatmentTimeAutoinjector = 5;
 force force ace_medical_treatment_treatmentTimeBodyBag = 15;
+force force ace_medical_treatment_treatmentTimeCoeffZeus = 1;
 force force ace_medical_treatment_treatmentTimeCPR = 15;
 force force ace_medical_treatment_treatmentTimeGrave = 30;
 force force ace_medical_treatment_treatmentTimeIV = 12;
@@ -347,6 +360,7 @@ force force ace_medical_treatment_treatmentTimeSplint = 7;
 force force ace_medical_treatment_treatmentTimeTourniquet = 7;
 force force ace_medical_treatment_woundReopenChance = 1;
 force force ace_medical_treatment_woundStitchTime = 5;
+force force ace_medical_vitals_simulateSpO2 = true;
 
 // ACE Medical Interface
 force force ace_medical_feedback_bloodVolumeEffectType = 0;
@@ -382,6 +396,7 @@ ace_medical_gui_openAfterTreatment = true;
 ace_medical_gui_peekMedicalInfoReleaseDelay = 1;
 force force ace_medical_gui_peekMedicalOnHit = false;
 ace_medical_gui_peekMedicalOnHitDuration = 1;
+force force ace_medical_gui_showBleeding = 2;
 force force ace_medical_gui_showBloodlossEntry = true;
 force force ace_medical_gui_showDamageEntry = false;
 force force ace_medical_gui_tourniquetWarning = false;
@@ -691,9 +706,53 @@ force force acre_sys_zeus_zeusCanSpectate = true;
 acre_sys_zeus_zeusCommunicateViaCamera = true;
 acre_sys_zeus_zeusDefaultVoiceSource = true;
 
+// Advance Aero Effects
+force force burner_flare_fn = true;
+force force burner_fn = true;
+force force camshake_fn = true;
+force force camshake_sdr = 200;
+force force crashShake_fn = true;
+force force gBreathe_sound_fn = true;
+force force gear_fn = true;
+gear_snd_alarm_fn = false;
+force force gear_snd_rum_fn = true;
+force force gearP_sdr = 600;
+force force Gforces_fn = true;
+gforces_sdr = 1;
+force force Gforces_Vol_fn = true;
+gforces_Vol_sdr = 30;
+force force ground_fn = true;
+force force groundP_sdr = 50;
+force force landingVEF_fn = true;
+force force sonicboom_fn = true;
+force force sonicboom_tmp_fn = true;
+force force taxiing_fn = true;
+force force Taxiing_sound_fn = true;
+force force Taxing_sound_fn = true;
+force force TDSound_fn = true;
+force force turbulent_ang_sdr = 30;
+force force turbulent_sdr = 15;
+turbulent_snd_alarm_fn = false;
+force force turbulent_snd_rum_fn = true;
+force force turbulentH_fn = true;
+turbulentH_snd_alarm_fn = false;
+force force turbulentP_fn = true;
+force force turbulentS_fn = true;
+turbulentS_snd_alarm_fn = false;
+force force turbulentT_sdr = 50;
+force force vapor_fn = true;
+force force vapor_sdr = 3000;
+force force vapor_sim_fn = true;
+force force wingspan_fn = true;
+
 // Backpack On Chest
 force force bocr_main_disabled = false;
 force force bocr_main_walk = true;
+
+// Blastcore Murr Edition
+force force WarFXPE_BlastWave = 1;
+force force WarFXPE_HeatHaze = true;
+force force WarFXPE_WeatherEffects = true;
 
 // Community Base Addons
 cba_diagnostic_ConsoleIndentType = 0;
@@ -899,6 +958,10 @@ force force mts_markers_useVanillaColors = false;
 // NMAB Settings
 force force NMAB_setting_particlesEnabled = true;
 
+// SPS Black Hornet Settings
+SPS_BlackHornet_EnableACEInteraction = true;
+SPS_BlackHornet_EnableVanillaScrollWheel = true;
+
 // OCAP - Main
 force OCAP_administratorList = "[]";
 force OCAP_enabled = true;
@@ -1029,6 +1092,7 @@ force force zen_vision_enableWhiteHot = true;
 force force zen_vision_enableWhiteHotRedCold = false;
 
 // Zeus Enhanced - Faction Filter
+zen_faction_filter_0_CDF = true;
 zen_faction_filter_0_CUP_O_ChDKZ = true;
 zen_faction_filter_0_CUP_O_RU = true;
 zen_faction_filter_0_CUP_O_SLA = true;
@@ -1044,6 +1108,7 @@ zen_faction_filter_0_OPF_T_F = true;
 zen_faction_filter_0_UKSF_ACR = true;
 zen_faction_filter_0_UKSF_AUG = true;
 zen_faction_filter_0_UKSF_Cartel = true;
+zen_faction_filter_0_uksf_cdf = true;
 zen_faction_filter_0_UKSF_Inegal = true;
 zen_faction_filter_0_UKSF_Spetsnaz = true;
 zen_faction_filter_1_BLU_CTRG_F = true;
@@ -1063,6 +1128,16 @@ zen_faction_filter_1_CUP_B_USMC = true;
 zen_faction_filter_1_CUP_I_PMC_ION = true;
 zen_faction_filter_1_CUP_Static_Ships = true;
 zen_faction_filter_1_Default = true;
+zen_faction_filter_1_mas_ukl_amulti = true;
+zen_faction_filter_1_mas_ukl_caor1 = true;
+zen_faction_filter_1_mas_ukl_daor2 = true;
+zen_faction_filter_1_mas_ukl_ewint = true;
+zen_faction_filter_1_mas_ukl_gspec = true;
+zen_faction_filter_1_mas_ukl_idiver = true;
+zen_faction_filter_1_mas_ukl_jparas = true;
+zen_faction_filter_1_mas_ukl_kswat = true;
+zen_faction_filter_1_mas_ukl_lcvrt = true;
+zen_faction_filter_1_mas_ukl_sfsg = true;
 zen_faction_filter_2_CUP_B_CDF = true;
 zen_faction_filter_2_CUP_I_NAPA = true;
 zen_faction_filter_2_CUP_I_PMC_ION = true;

@@ -16,9 +16,7 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "uksf_common",
-            "CUP_Creatures_Military_TakiInsurgents",
-            "CUP_WheeledVehicles_Skoda"
+            "uksf_common"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };

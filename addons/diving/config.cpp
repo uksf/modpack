@@ -48,8 +48,7 @@ class CfgPatches {
         };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "uksf_common",
-            "ade_core"
+            "uksf_common"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };

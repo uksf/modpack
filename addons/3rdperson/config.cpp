@@ -6,7 +6,9 @@ class CfgPatches {
         units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {};
+        requiredAddons[] = {
+            "uksf_main"
+        };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
         url = URL;

@@ -18,7 +18,6 @@ private _deleted = false;
     _x params ["_projectile", "_fncName"];
 
     if !(alive _projectile) then {
-        diag_log _projectile;
         private _position = getPosATL _projectile;
         if (([objNull, "VIEW"] checkVisibility [eyePos player, ATLToASL _position]) > 0) then {
             private _dist = ((positionCameraToworld [0,0,0]) distance _position);

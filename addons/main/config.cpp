@@ -7,25 +7,7 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            // Vanilla
-            "A3_Data_F_Tank_Loadorder",
-
-            // CBA
-            "cba_main",
-            "cba_ui",
-            "cba_xeh",
-            "cba_jr",
-
-            // ACE
-            "ace_main",
-            "ace_common",
-            "ace_aircraft",
-            "ace_cargo",
-            "ace_dragging",
-            "ace_hellfire",
-            "ace_interaction",
-            "ace_rearm",
-            "ace_refuel"
+            "uksf_loadOrder"
         };
         author = QUOTE(UKSF);
         url = URL;

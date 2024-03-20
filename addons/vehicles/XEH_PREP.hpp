@@ -1,3 +1,4 @@
+PREP(3cbReloadTurret);
 PREP(addSwapDriverActions);
 PREP(canSwapDriver);
 PREP(deployCover);

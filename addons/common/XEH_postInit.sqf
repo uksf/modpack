@@ -14,13 +14,6 @@ if (isServer) then {
     [] call FUNC(updateHeadlessClientPosition);
 };
 
-// Set headless client array to player if singleplayer
-if (isMultiplayer && !is3DENMultiplayer) then {
-    ace_headless_headlessClients = entities "HeadlessClient_F";
-} else {
-    ace_headless_headlessClients = [player];
-};
-
 if (hasInterface) then {
     call FUNC(addSelfActions);
 

@@ -12,10 +12,6 @@ if (EGVAR(caching,enabled)) exitWith {
 
 INFO("Virtualisation is enabled.");
 
-if (hasInterface) then {
-    call FUNC(addAdminActions);
-};
-
 if (isServer) then {
     // Virtualisation
     [{
@@ -58,13 +54,17 @@ if (isServer) then {
                 && {!((objectParent _x) isKindOf "Air")}
             }] call EFUNC(common,arrayAny)
         };
-        
+
         if (_groupIndex == -1) exitWith {};
 
         private _id = (GVAR(groupPositionMap) deleteAt _groupIndex)#0;
         TRACE_1("requesting recreate group",_id);
 
-        private _groupData = GVAR(groups) deleteAt _id;
+        private _groupData = GVAR(groupDataMap) deleteAt _id;
         [QGVAR(recreateGroup), [_groupData]] call EFUNC(common,headlessEvent);
     }, DELAY, []] call CBA_fnc_addPerFrameHandler;
+};
+
+if (hasInterface) then {
+    call FUNC(addAdminActions);
 };

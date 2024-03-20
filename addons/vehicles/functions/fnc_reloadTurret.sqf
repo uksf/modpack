@@ -13,6 +13,7 @@
     Return Value:
         None
 */
+DEBUG("reload");
 private _player = missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", player];
 private _vehicle = vehicle _player;
 if (!alive _player || !alive _vehicle || !(_player in _vehicle)) exitWith {
@@ -26,10 +27,17 @@ if !(_weapon in (_vehicle weaponsTurret _turretPath)) exitWith { // FFV
 };
 
 if (_roundReloadPhase > 0 || {_magazineReloadPhase > 0}) exitWith {
-    DEBUG("currently reloading");
+    DEBUG("Currently reloading");
 };
 
-private _fullCount = getNumber (configFile >> "CfgMagazines" >> _currentMagazine >> "count");
+
+private _magazineConfig = configFile >> "CfgMagazines" >> _currentMagazine;
+
+if (getText (_magazineConfig >> "pylonWeapon") != "") exitWith {
+    DEBUG("Current magazine is a pylon");
+};
+
+private _fullCount = getNumber (_magazineConfig >> "count");
 if (_currentAmmo == _fullCount) exitWith {
     DEBUG("Current magazine full");
 };

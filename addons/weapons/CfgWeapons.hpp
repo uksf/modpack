@@ -796,6 +796,7 @@ class CfgWeapons {
     class SPS_AI_AXMC_base_F;
 
 #include "weaponSets\CUP.hpp"
+#include "weaponSets\RHICC.hpp"
 #include "weaponSets\SPS.hpp"
 
 #include "CfgWeaponsPrivate.hpp"

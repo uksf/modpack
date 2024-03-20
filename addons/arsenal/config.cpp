@@ -7,15 +7,6 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "ace_arsenal",
-            "SSQN_L119A1sPack",
-            "SSQN_MachinegunsPack",
-            "SSQN_DMR_Pack",
-            "RKSL_LDS",
-            "RKSL_PMII_525",
-            "RKSL_PMII",
-            "RKSL_EOT552",
-            "uksf_common",
             "uksf_gear",
             "uksf_resupply",
             "uksf_diving",

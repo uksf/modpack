@@ -5,6 +5,8 @@ ADDON = false;
 #include "XEH_PREP.hpp"
 
 GVAR(debugGridPositionMarkers) = [];
+GVAR(debugSpheres) = [];
+GVAR(debugSingletonSphere) = objNull;
 
 [] spawn {
     GVAR(addons) = ('true' configClasses (configFile >> "CfgPatches")) apply {configName _x};
@@ -54,13 +56,6 @@ if (isServer) then {
     GVAR(updateHeadlessClientPosition) = true;
     GVAR(updateHeadlessClientDelay) = 180;
 };
-
-ace_headless_headlessClients = [];
-["ace_headless_headlessClientJoined", {
-    params ["_headlessClient"];
-
-    ace_headless_headlessClients pushBackUnique _headlessClient;
-}] call CBA_fnc_addEventHandler;
 
 [QGVAR(notify), {_this call CBA_fnc_notify}] call CBA_fnc_addEventHandler;
 [QGVAR(log), {INFO(_this#0)}] call CBA_fnc_addEventHandler;

@@ -27,7 +27,8 @@ private _waypoints = [_group] call FUNC(getGroupWaypoints);
 
 private _id = format ["%1_v%2_u%3_%4%5%6", _side, count _vehicleDetails, count _unitDetails, _position#0, _position#1, _position#2];
 GVAR(groupPositionMap) pushBack [_id, _position];
-GVAR(groups) set [_id, [_side, _vehicleDetails, _unitDetails, _waypoints, _combatMode, _formationDirection]];
+GVAR(groupDataMap) set [_id, [_side, _vehicleDetails, _unitDetails, _waypoints, _combatMode, _formationDirection]];
+call FUNC(sendDataToClients);
 TRACE_2("virtualised group",_group,_id);
 
 {deleteVehicle _x} forEach (units _group);

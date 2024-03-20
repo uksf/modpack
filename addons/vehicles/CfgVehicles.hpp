@@ -114,6 +114,8 @@ class CfgVehicles {
         };
     };
 
+    class Boat_F;
+
 #include "vehicles\CfgBoats.hpp"
 #include "vehicles\CfgBulldog.hpp"
 #include "vehicles\CfgCoyote.hpp"
@@ -127,6 +129,7 @@ class CfgVehicles {
 #include "vehicles\CfgMastiff.hpp"
 #include "vehicles\CfgMTVR.hpp"
 #include "vehicles\CfgPanther.hpp"
+#include "vehicles\CfgRhicc.hpp"
 #include "vehicles\CfgRidgeback.hpp"
 #include "vehicles\CfgTug.hpp"
 #include "vehicles\CfgWarrior.hpp"
@@ -140,7 +143,6 @@ class CfgVehicles {
         radarType = 2;
     };
 
-    class Boat_F;
     class Rubber_duck_base_F : Boat_F {
         class VehicleTransport {
             class Cargo {

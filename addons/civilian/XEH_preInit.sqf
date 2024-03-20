@@ -33,29 +33,23 @@ ADDON = false;
     };
 }] call CBA_fnc_addEventHandler;
 
-["ace_captives_startEscorting", {
+["ace_captives_escortingCaptive", {
     if !(GVAR(enableEscort)) exitWith {};
 
-    params ["_unit", "_target"];
+    params ["_unit", "_state", "_target"];
 
-    if !(ace_common_isReloading) then {
-        private _holdAnim = [QGVAR(holdhvt), QGVAR(holdhvtpistol)] select (currentWeapon _unit == "" || (currentWeapon _unit) == (handgunWeapon _unit));
-        _unit playActionNow _holdAnim;
+    if (_state) then {
+        if !(ace_common_isReloading) then {
+            private _holdAnim = [QGVAR(holdhvt), QGVAR(holdhvtpistol)] select (currentWeapon _unit == "" || (currentWeapon _unit) == (handgunWeapon _unit));
+            _unit playActionNow _holdAnim;
+        };
+    } else {
+        if !(ace_common_isReloading) then {
+            _unit playActionNow QGVAR(clearAction);
+        };
     };
 
-    [QGVAR(doEscort), [_unit, _target, true], _target] call CBA_fnc_targetEvent;
-}] call CBA_fnc_addEventHandler;
-
-["ace_captives_stopEscorting", {
-    if !(GVAR(enableEscort)) exitWith {};
-
-    params ["_unit", "_target"];
-
-    if !(ace_common_isReloading) then {
-        _unit playActionNow QGVAR(clearAction);
-    };
-
-    [QGVAR(doEscort), [_unit, _target, false], _target] call CBA_fnc_targetEvent;
+    [QGVAR(doEscort), [_unit, _target, _state], _target] call CBA_fnc_targetEvent;
 }] call CBA_fnc_addEventHandler;
 
 [QGVAR(doEscort), {

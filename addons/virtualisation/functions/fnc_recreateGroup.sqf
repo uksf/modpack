@@ -8,14 +8,18 @@
 
     Parameters:
         0: Group data <ARRAY>
+        1: Exclude from virtualisation <BOOLEAN> (Optional)
 
     Return value:
         Nothing
 */
-params ["_groupData"];
+params ["_groupData", ["_exclude", false]];
 _groupData params ["_side", "_vehicleDetails", "_unitDetails", "_waypoints", "_combatMode", "_formationDirection"];
 
 private _group = createGroup _side;
+if (_exclude) then {
+    [QGVAR(exclude), _group] call CBA_fnc_localEvent;
+};
 
 private _setGroupArgs = [_group, _waypoints, _combatMode, _formationDirection];
 private _setGroupParams = {
@@ -38,3 +42,4 @@ if (_vehicleDetails isNotEqualTo []) then {
     _recreateInfantryArgs call _recreateInfantry;
 };
 
+call FUNC(sendDataToClients);

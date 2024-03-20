@@ -32,7 +32,8 @@ class CfgPatches {
             "UK3CB_BAF_Soldier_MTP_Sig_ShortSleeve_base",
             "UKSF_B_ATC_base",
             "Supply1000",
-            QGVAR(trauma_bag)
+            QGVAR(trauma_bag),
+            QGVAR(bag_sniper)
         };
         weapons[] = {
             "UK3CB_BAF_U_CombatUniform_MTP_1Para",
@@ -55,8 +56,7 @@ class CfgPatches {
         };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "uksf_common",
-            "tfw_radios_acre_ilbe"
+            "uksf_common"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };

@@ -36,5 +36,5 @@ private _fnc_children = {
     _actions
 };
 
-private _action = [QGVAR(actions), "Virtualisation", "", {}, {MULTIPLAYER_ADMIN_OR_WHITELISTED}, _fnc_children] call ace_interact_menu_fnc_createAction;
+private _action = [QGVAR(actions), "Virtualisation", "", {}, {GVAR(enabled) && ADMIN_OR_WHITELISTED}, _fnc_children] call ace_interact_menu_fnc_createAction;
 ["CAManBase", 1, ["ACE_SelfActions"], _action, true] call ace_interact_menu_fnc_addActionToClass;

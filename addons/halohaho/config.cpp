@@ -9,8 +9,7 @@ class CfgPatches {
         };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "uksf_diving",
-            "mas_usa_lite_common"
+            "uksf_diving"
         };
         author = QUOTE(UKSF);
         authors[] = { "Bridg" };

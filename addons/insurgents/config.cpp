@@ -34,12 +34,7 @@ class CfgPatches {
         };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "uksf_main",
-            "uksf_common",
-            "ace_medical_treatment",
-            "ace_hearing",
-            "CUP_Weapons_LoadOrder",
-            "CUP_Creatures_People_LoadOrder"
+            "uksf_common"
         };
         author = QUOTE(UKSF);
         authors[] = { "Downey.R", "Beswick.T" };

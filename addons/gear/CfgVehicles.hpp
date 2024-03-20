@@ -7,50 +7,17 @@ class CfgVehicles {
         author = "UKSF";
         displayName = "Bergen MTP Medic [BAF]";
         class TransportItems {
-            class _xx_ACE_packingBandage {
-                name = "ACE_packingBandage";
-                count = 50;
-            };
-            class _xx_ACE_elasticBandage {
-                name = "ACE_elasticBandage";
-                count = 50;
-            };
-            class _xx_ACE_tourniquet {
-                name = "ACE_tourniquet";
-                count = 5;
-            };
-            class _xx_ACE_ACE_atropine {
-                name = "ACE_atropine";
-                count = 6;
-            };
-            class _xx_ACE_ACE_adenosinee {
-                name = "ACE_adenosine";
-                count = 6;
-            };
-            class _xx_ACE_morphine {
-                name = "ACE_morphine";
-                count = 25;
-            };
-            class _xx_ACE_epinephrine {
-                name = "ACE_epinephrine";
-                count = 25;
-            };
-            class _xx_ACE_bloodIV_500 {
-                name = "ACE_bloodIV_500";
-                count = 5;
-            };
-            class _xx_ACE_bloodIV {
-                name = "ACE_bloodIV";
-                count = 5;
-            };
-            class _xx_ACE_personalAidKit {
-                name = "ACE_personalAidKit";
-                count = 1;
-            };
-            class _xx_ACE_surgicalKit {
-                name = "ACE_surgicalKit";
-                count = 1;
-            };
+            MACRO_ADDITEM(ACE_elasticBandage,50);
+            MACRO_ADDITEM(ACE_packingBandage,50);
+            MACRO_ADDITEM(ACE_tourniquet,5);
+            MACRO_ADDITEM(ACE_atropine,6);
+            MACRO_ADDITEM(ACE_adenosine,6);
+            MACRO_ADDITEM(ACE_morphine,25);
+            MACRO_ADDITEM(ACE_epinephrine,25);
+            MACRO_ADDITEM(ACE_bloodIV_500,5);
+            MACRO_ADDITEM(ACE_bloodIV,5);
+            MACRO_ADDITEM(ACE_personalAidKit,1);
+            MACRO_ADDITEM(ACE_surgicalKit,1);
         };
     };
     class UK3CB_BAF_B_Bergen_MTP_Rifleman_L_C;
@@ -60,38 +27,26 @@ class CfgVehicles {
         author = "UKSF";
         displayName = "Bergen MTP AR [BAF]";
         class TransportMagazines {
-            class _xx_UK3CB_BAF_556_200Rnd {
-                magazine = "UK3CB_BAF_556_200Rnd";
-                count = 2;
-            };
+            MACRO_ADDMAGAZINE(UK3CB_BAF_556_200Rnd,2);
         };
     };
     class UK3CB_BAF_B_Bergen_MTP_Rifleman_L_C_MG : UK3CB_BAF_B_Bergen_MTP_Rifleman_L_C_AR {
         displayName = "Bergen MTP MG [BAF]";
         class TransportMagazines {
-            class _xx_UK3CB_BAF_762_100Rnd_T {
-                magazine = "UK3CB_BAF_762_100Rnd_T";
-                count = 2;
-            };
+            MACRO_ADDMAGAZINE(UK3CB_BAF_762_100Rnd_T,2);
         };
     };
     class UK3CB_BAF_B_Bergen_MTP_Rifleman_L_C_AA : UK3CB_BAF_B_Bergen_MTP_Rifleman_L_C_AR {
         displayName = "Bergen MTP AA [BAF]";
         class TransportMagazines {
-            class _xx_CUP_Stinger_M {
-                magazine = "CUP_Stinger_M";
-                count = 1;
-            };
+            MACRO_ADDMAGAZINE(CUP_Stinger_M,1);
         };
     };
     class UK3CB_BAF_B_Bergen_MTP_Engineer_L_A;
     class UK3CB_BAF_B_Bergen_MTP_Engineer_L_A_Toolkit : UK3CB_BAF_B_Bergen_MTP_Engineer_L_A {
         displayName = "Bergen MTP Toolkit [BAF]";
         class TransportItems {
-            class _xx_ToolKit {
-                name = "ToolKit";
-                count = 1;
-            };
+            MACRO_ADDITEM(ToolKit,1);
         };
         class TransportMagazines {};
     };
@@ -102,87 +57,42 @@ class CfgVehicles {
         author = "UKSF";
         displayName = "Bergen DPM Wdl AR [BAF]";
         class TransportMagazines {
-            class _xx_UK3CB_BAF_556_200Rnd {
-                magazine = "UK3CB_BAF_556_200Rnd";
-                count = 2;
-            };
+            MACRO_ADDMAGAZINE(UK3CB_BAF_556_200Rnd,2);
         };
     };
     class UK3CB_BAF_B_Bergen_DPMW_Rifleman_A_MG : UK3CB_BAF_B_Bergen_DPMW_Rifleman_A_AR {
         displayName = "Bergen DPM Wdl MG [BAF]";
         class TransportMagazines {
-            class _xx_UK3CB_BAF_762_100Rnd_T {
-                magazine = "UK3CB_BAF_762_100Rnd_T";
-                count = 2;
-            };
+            MACRO_ADDMAGAZINE(UK3CB_BAF_762_100Rnd_T,2);
         };
     };
     class UK3CB_BAF_B_Bergen_DPMW_Rifleman_A_AA : UK3CB_BAF_B_Bergen_DPMW_Rifleman_A_AR {
         displayName = "Bergen DPM Wdl AA [BAF]";
         class TransportMagazines {
-            class _xx_CUP_Stinger_M {
-                magazine = "CUP_Stinger_M";
-                count = 1;
-            };
+            MACRO_ADDMAGAZINE(CUP_Stinger_M,1);
         };
     };
     class UKSF_B_Bergen_Medic_DPMW : UK3CB_BAF_B_Bergen_DPMW_Rifleman_A_AR {
         displayName = "Bergen DPM Wdl Medic [BAF]";
         class TransportItems {
-            class _xx_ACE_packingBandage {
-                name = "ACE_packingBandage";
-                count = 50;
-            };
-            class _xx_ACE_elasticBandage {
-                name = "ACE_elasticBandage";
-                count = 50;
-            };
-            class _xx_ACE_tourniquet {
-                name = "ACE_tourniquet";
-                count = 5;
-            };
-            class _xx_ACE_ACE_atropine {
-                name = "ACE_atropine";
-                count = 6;
-            };
-            class _xx_ACE_ACE_adenosinee {
-                name = "ACE_adenosine";
-                count = 6;
-            };
-            class _xx_ACE_morphine {
-                name = "ACE_morphine";
-                count = 25;
-            };
-            class _xx_ACE_epinephrine {
-                name = "ACE_epinephrine";
-                count = 25;
-            };
-            class _xx_ACE_bloodIV_500 {
-                name = "ACE_bloodIV_500";
-                count = 5;
-            };
-            class _xx_ACE_bloodIV {
-                name = "ACE_bloodIV";
-                count = 5;
-            };
-            class _xx_ACE_personalAidKit {
-                name = "ACE_personalAidKit";
-                count = 1;
-            };
-            class _xx_ACE_surgicalKit {
-                name = "ACE_surgicalKit";
-                count = 1;
-            };
+            MACRO_ADDITEM(ACE_elasticBandage,50);
+            MACRO_ADDITEM(ACE_packingBandage,50);
+            MACRO_ADDITEM(ACE_tourniquet,5);
+            MACRO_ADDITEM(ACE_atropine,6);
+            MACRO_ADDITEM(ACE_adenosine,6);
+            MACRO_ADDITEM(ACE_morphine,25);
+            MACRO_ADDITEM(ACE_epinephrine,25);
+            MACRO_ADDITEM(ACE_bloodIV_500,5);
+            MACRO_ADDITEM(ACE_bloodIV,5);
+            MACRO_ADDITEM(ACE_personalAidKit,1);
+            MACRO_ADDITEM(ACE_surgicalKit,1);
         };
         class TransportMagazines {};
     };
     class UK3CB_BAF_B_Bergen_DPMW_Rifleman_A_Toolkit : UK3CB_BAF_B_Bergen_DPMW_Rifleman_A_AR {
         displayName = "Bergen DPM Wdl Toolkit [BAF]";
         class TransportItems {
-            class _xx_ToolKit {
-                name = "ToolKit";
-                count = 1;
-            };
+            MACRO_ADDITEM(ToolKit,1);
         };
         class TransportMagazines {};
     };
@@ -193,87 +103,42 @@ class CfgVehicles {
         author = "UKSF";
         displayName = "Bergen DDPM AR [BAF]";
         class TransportMagazines {
-            class _xx_UK3CB_BAF_556_200Rnd {
-                magazine = "UK3CB_BAF_556_200Rnd";
-                count = 2;
-            };
+            MACRO_ADDMAGAZINE(UK3CB_BAF_556_200Rnd,2);
         };
     };
     class UK3CB_BAF_B_Bergen_DDPM_Rifleman_A_MG : UK3CB_BAF_B_Bergen_DDPM_Rifleman_A_AR {
         displayName = "Bergen DDPM MG [BAF]";
         class TransportMagazines {
-            class _xx_UK3CB_BAF_762_100Rnd_T {
-                magazine = "UK3CB_BAF_762_100Rnd_T";
-                count = 2;
-            };
+            MACRO_ADDMAGAZINE(UK3CB_BAF_762_100Rnd_T,2);
         };
     };
     class UK3CB_BAF_B_Bergen_DDPM_Rifleman_A_AA : UK3CB_BAF_B_Bergen_DDPM_Rifleman_A_AR {
         displayName = "Bergen DDPM AA [BAF]";
         class TransportMagazines {
-            class _xx_CUP_Stinger_M {
-                magazine = "CUP_Stinger_M";
-                count = 1;
-            };
+            MACRO_ADDMAGAZINE(CUP_Stinger_M,1);
         };
     };
     class UKSF_B_Bergen_Medic_DDPM : UK3CB_BAF_B_Bergen_DDPM_Rifleman_A {
         displayName = "Bergen DDPM Medic [BAF]";
         class TransportItems {
-            class _xx_ACE_packingBandage {
-                name = "ACE_packingBandage";
-                count = 50;
-            };
-            class _xx_ACE_elasticBandage {
-                name = "ACE_elasticBandage";
-                count = 50;
-            };
-            class _xx_ACE_tourniquet {
-                name = "ACE_tourniquet";
-                count = 5;
-            };
-            class _xx_ACE_ACE_atropine {
-                name = "ACE_atropine";
-                count = 6;
-            };
-            class _xx_ACE_ACE_adenosinee {
-                name = "ACE_adenosine";
-                count = 6;
-            };
-            class _xx_ACE_morphine {
-                name = "ACE_morphine";
-                count = 25;
-            };
-            class _xx_ACE_epinephrine {
-                name = "ACE_epinephrine";
-                count = 25;
-            };
-            class _xx_ACE_bloodIV_500 {
-                name = "ACE_bloodIV_500";
-                count = 5;
-            };
-            class _xx_ACE_bloodIV {
-                name = "ACE_bloodIV";
-                count = 5;
-            };
-            class _xx_ACE_personalAidKit {
-                name = "ACE_personalAidKit";
-                count = 1;
-            };
-            class _xx_ACE_surgicalKit {
-                name = "ACE_surgicalKit";
-                count = 1;
-            };
+            MACRO_ADDITEM(ACE_elasticBandage,50);
+            MACRO_ADDITEM(ACE_packingBandage,50);
+            MACRO_ADDITEM(ACE_tourniquet,5);
+            MACRO_ADDITEM(ACE_atropine,6);
+            MACRO_ADDITEM(ACE_adenosine,6);
+            MACRO_ADDITEM(ACE_morphine,25);
+            MACRO_ADDITEM(ACE_epinephrine,25);
+            MACRO_ADDITEM(ACE_bloodIV_500,5);
+            MACRO_ADDITEM(ACE_bloodIV,5);
+            MACRO_ADDITEM(ACE_personalAidKit,1);
+            MACRO_ADDITEM(ACE_surgicalKit,1);
         };
         class TransportMagazines {};
     };
     class UK3CB_BAF_B_Bergen_DDPM_Rifleman_A_Toolkit : UK3CB_BAF_B_Bergen_DDPM_Rifleman_A_AR {
         displayName = "Bergen DDPM Toolkit [BAF]";
         class TransportItems {
-            class _xx_ToolKit {
-                name = "ToolKit";
-                count = 1;
-            };
+            MACRO_ADDITEM(ToolKit,1);
         };
         class TransportMagazines {};
     };
@@ -281,7 +146,14 @@ class CfgVehicles {
     class UKSF_B_Carryall_Mortar_MTP : UK3CB_BAF_B_Carryall_MTP {
         displayName = "Carryall MTP (Mortar)";
         maximumLoad = 400;
-        mass = 80;
+        mass = 75;
+    };
+    class B_Carryall_mcamo;
+    class GVAR(bag_sniper) : B_Carryall_mcamo {
+        author = "UKSF";
+        displayName = "Sniper Bag (AXMC)";
+        maximumLoad = 500;
+        mass = 75;
     };
 
     class I_soldier_F;

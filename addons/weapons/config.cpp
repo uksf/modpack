@@ -29,45 +29,6 @@ class CfgPatches {
         };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "uksf_common",
-            "cba_jr",
-            "ace_chemlights",
-            "UK3CB_BAF_Equipment",
-            "UK3CB_BAF_Equipment_ACRE_compatibility",
-            "UK3CB_BAF_Weapons",
-            "UK3CB_BAF_Weapons_Ammo",
-            "UK3CB_BAF_Weapons_L110",
-            "UK3CB_BAF_Weapons_L115",
-            "UK3CB_BAF_Weapons_L119",
-            "UK3CB_BAF_Weapons_L1A1",
-            "UK3CB_BAF_Weapons_L131a1",
-            "UK3CB_BAF_Weapons_Launchers",
-            "UK3CB_BAF_Weapons_SmallArms",
-            "UK3CB_BAF_Weapons_Static",
-            "UK3CB_BAF_Weapons_Accessories",
-            "UK3CB_BAF_Weapons_ACE",
-            "CUP_Weapons_Stinger",
-            "CUP_Weapons_Curator",
-            "CUP_Weapons_Ammunition",
-            "CUP_Weapons_VehicleWeapons",
-            "CUP_Creatures_StaticWeapons",
-            "CUP_Weapons_DynamicLoadout",
-            "CUP_Weapons_AK",
-            "CUP_Weapons_M16",
-            "CUP_Weapons_M240",
-            "CUP_Weapons_SMAW",
-            "DynaSound_DS_w_MINIGUN762",
-            "DynaSound_DS_w_HMG",
-            "DynaSound_DS_w_GMG",
-            "DynaSound_DS_w_CoaxMG",
-            "DynaSound_DS_w_LRR",
-            "DynaSound_DS_w_Zafir",
-            "acre_sys_prc117f",
-            "JSRS_SOUNDMOD_Explosions",
-            "3CB_L7A2",
-            "3CB_L135A1",
-            "fxp_GrenadeSmoke",
-            "sps_ai_axmc_ace_compat",
             QGVAR(prep)
         };
         author = QUOTE(UKSF);
@@ -78,7 +39,6 @@ class CfgPatches {
 };
 
 #include "CfgAmmo.hpp"
-#include "CfgCloudlets.hpp"
 #include "CfgEventHandlers.hpp"
 #include "CfgFunctions.hpp"
 #include "CfgMagazineWells.hpp"
