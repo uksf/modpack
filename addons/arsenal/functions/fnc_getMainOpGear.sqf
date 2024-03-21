@@ -630,7 +630,11 @@ _mainOpGear append [
     "U_mas_ukl_B_CombatUniform_wint",
     "U_mas_ukl_B_Wetsuit",
     "U_mas_ukl_B_Wetunif",
-    "U_mas_ukl_B_CombatUniform_m2"
+    "U_mas_ukl_B_CombatUniform_m2",
+    "U_mas_ukl_B_CombatUniform_multi",
+    "U_mas_ukl_B_CombatUniform_mtp",
+    "U_mas_ukl_B_CombatUniform_S_mtp",
+    "U_mas_ukl_B_CombatUniform_S_multi"
 ];
 
 // Vests
@@ -758,7 +762,17 @@ _mainOpGear append [
     "V_mas_ukl_PlateCarrierAR_wint",
     "V_mas_ukl_PlateCarrier1_wint",
     "V_mas_ukl_PlateCarrierLR_wint",
-    "V_mas_ukl_PlateCarrierRF_wint"
+    "V_mas_ukl_PlateCarrierRF_wint",
+    "V_mas_ukl_PlateCarrier1_tan",
+    "V_mas_ukl_PlateCarrier1_rgr",
+    "V_mas_ukl_PlateCarrier1_civ",
+    "V_mas_ukl_PlateCarrierAR_tan",
+    "V_mas_ukl_PlateCarrierAR_civ",
+    "V_mas_ukl_PlateCarrierLR_civ",
+    "V_mas_ukl_PlateCarrierLR_tan",
+    "V_mas_ukl_PlateCarrierRF_civ",
+    "V_mas_ukl_PlateCarrierRF_rgr",
+    "V_mas_ukl_PlateCarrierRF_tan"
 ];
 
 // Backpacks
@@ -872,7 +886,9 @@ _mainOpGear append [
     "tfw_ilbe_blade_vsm",
     "B_MAV_B_BACKPACK",
     "uksf_diving_bag",
-    "B_mas_ukl_Kitbag_LW"
+    "B_mas_ukl_Kitbag_LW",
+    "uksf_gear_bag_sniper",
+    "B_mas_ukl_Kitbag_d"
 ];
 
 // Helmets
@@ -987,7 +1003,10 @@ _mainOpGear append [
     "H_mas_ukl_hood_w",
     "H_mas_ukl_opscore_w",
     "H_mas_ukl_opscore_gog_w",
-    "H_mas_ukl_airframe_w"
+    "H_mas_ukl_airframe_w",
+    "H_mas_ukl_opscorn",
+    "H_mas_ukl_opscore_t",
+    "H_mas_ukl_opscore_c"
 ];
 
 // Glasses
@@ -1008,7 +1027,14 @@ _mainOpGear append [
     "G_mas_ukl_bala_W",
     "G_mas_ukl_Bandanna_W",
     "G_mas_ukl_jumpmask",
-    "CUP_G_Scarf_Face_White"
+    "CUP_G_Scarf_Face_White",
+    "G_mas_ukl_shemag_low",
+    "G_mas_ukl_shemag_gog",
+    "G_mas_ukl_shemag_mask",
+    "G_mas_ukl_shemag",
+    "G_mas_ukl_shemag_gog_l",
+    "G_mas_ukl_wrap_gog_T",
+    "G_mas_ukl_wrap_T"
 ];
 
 uiNamespace setVariable [QGVAR(mainOpGear), _mainOpGear];
