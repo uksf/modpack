@@ -62,6 +62,8 @@ if (isServer) then {
 
         private _groupData = GVAR(groupDataMap) deleteAt _id;
         [QGVAR(recreateGroup), [_groupData]] call EFUNC(common,headlessEvent);
+
+        call FUNC(sendDataToClients);
     }, DELAY, []] call CBA_fnc_addPerFrameHandler;
 };
 

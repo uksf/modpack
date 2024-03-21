@@ -41,5 +41,3 @@ if (_vehicleDetails isNotEqualTo []) then {
 } else {
     _recreateInfantryArgs call _recreateInfantry;
 };
-
-call FUNC(sendDataToClients);
