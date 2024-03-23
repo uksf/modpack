@@ -265,7 +265,9 @@ class CfgVehicles {
             MACRO_ADDITEM(ACE_bloodIV,10);
             MACRO_ADDITEM(ACE_bloodIV_500,10);
             MACRO_ADDITEM(ACE_bloodIV_250,10);
-            MACRO_ADDITEM(ACE_painkillers,5);
+        };
+        class TransportMagazines {
+            MACRO_ADDMAGAZINE(ACE_painkillers,5);
         };
     };
 };

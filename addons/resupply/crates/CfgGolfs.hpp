@@ -187,6 +187,8 @@ class GVAR(g14) : ACE_medicalSupplyCrate {
         MACRO_ADDITEM(ACE_bloodIV_500,30);
         MACRO_ADDITEM(ACE_bloodIV_250,30);
         MACRO_ADDITEM(ACE_splint,30);
-        MACRO_ADDITEM(ACE_painkillers,30);
+    };
+    class TransportMagazines {
+        MACRO_ADDMAGAZINE(ACE_painkillers,30);
     };
 };
