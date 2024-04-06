@@ -23,13 +23,17 @@ GVAR(hashHasRedeployed) = [[], false] call CBA_fnc_hashCreate;
 GVAR(hashFirstRespawn) = [[], true] call CBA_fnc_hashCreate;
 GVAR(hashBodies) = [[], objNull] call CBA_fnc_hashCreate;
 GVAR(persistenceMarkers) = [];
-GVAR(mapMarkers) = GVAR(dataNamespace) getVariable [QGVAR(mapMarkers), []];
+GVAR(mapMarkers) = [];
 GVAR(saveObjectQueue) = [];
 GVAR(disconnectedPlayerPositions) = createHashMap;
 GVAR(saveObjectQueueProcessing) = false;
 GVAR(saveObjectMarkersProcessed) = false;
 GVAR(serializers) = [];
 GVAR(deserializers) = [];
+
+if (GVAR(loadMapMarkers)) then {
+    GVAR(mapMarkers) = GVAR(dataNamespace) getVariable [QGVAR(mapMarkers), []];
+};
 
 addMissionEventHandler ["EntityRespawned", {call FUNC(entityRespawned)}];
 addMissionEventHandler ["EntityKilled", {call FUNC(entityKilled)}];
