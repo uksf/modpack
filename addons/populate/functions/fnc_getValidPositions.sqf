@@ -12,29 +12,26 @@
     Return value:
         Nothing
 */
-
 params ["_module"];
 
 if !(isServer) exitWith {};
 
-private _radius = 0;
-
 // get the area
-private _area = _module getVariable ["objectarea", []];
+private _areaParams = _module getVariable ["objectarea", []];
+private _area = [getPos _module] + _areaParams;
 if (_area isEqualTo []) exitWith {};
 
+_area params ["", "_a", "_b"];
+
 // get which dimension is largest to use as radius
-private _a = _area#1;
-private _b = _area#2;
+private _radius = [_b, _a] select (_a > _b);
 
-if (_a > _b) then { _radius = _a};
-if (_b > _a) then { _radius = _b};
-
-diag_log format ["UKSF_POPULATE - a %1, b %2, r: %3", _a, _b, _radius];
+TRACE_4("",_area,_a,_b,_radius);
 
 // get all buildings in radius then in area
 private _allBuildingsInRadius = nearestTerrainObjects [_module, ["BUILDING", "HOUSE"], _radius, false, true];
-diag_log format ["UKSF_POPULATE - abir %1", _allBuildingsInRadius];
+TRACE_1("",_allBuildingsInRadius);
+
 private _allBuildingsInArea = _allBuildingsInRadius inAreaArray _area;
 
 // // get all ai buildings in radius then in area
