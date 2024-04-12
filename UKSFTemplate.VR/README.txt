@@ -37,6 +37,7 @@ uksf.paa
 
 cba_settings.sqf
     If this mission is considered a side op, change 'uksf_common_mainOp' to false.
+    'uksf_persistence_loadMapMarkers' can be used for missions that are a direct continuation of the previous mission, to ensure map markers are loaded.
     'uksf_persistence_overrideSavedDateTime' can be used for missions that will load a persistence save where you want the new mission to override the date and time saved on the server.
     'uksf_caching_enabled' can be set to true if ai caching is to be used. This disables the simulation on ai that are not within player proximity or field of view.
 

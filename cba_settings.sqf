@@ -10,7 +10,7 @@ force force A3TI_HD_VISION_UAV = false;
 force force A3TI_REMOVE_FILMGRAIN_RHS = true;
 
 // Aaren's Blast Effect
-force force tracer_illuminate_list = 3;
+force force tracer_illuminate_list = 1;
 force force tracer_illuminate_sim = true;
 
 // ACE Advanced Ballistics
@@ -991,6 +991,7 @@ force uksf_cleanup_enabled = true;
 force uksf_common_mainOp = false;
 force uksf_curator_curatorsLocked = false;
 force uksf_curator_curatorsMax = 8;
+force uksf_persistence_loadMapMarkers = false;
 force uksf_persistence_overrideSavedDateTime = false;
 force uksf_virtualisation_distance = 3000;
 force uksf_virtualisation_enabled = false;
