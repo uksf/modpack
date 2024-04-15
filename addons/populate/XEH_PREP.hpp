@@ -1,4 +1,5 @@
 PREP(modulePopulateArea);
 PREP(getValidPositions);
 PREP(selectSpawnPosition);
-PREP(spawnUnit);
+PREP(spawnBuildingUnit);
+PREP(createPatrols);

@@ -7,6 +7,5 @@ ADDON = false;
 // #include "initSettings.sqf"
 
 GVAR(groupSize) = 10;
-GVAR(aiBuildingPositions) = [];
 
 ADDON = true;

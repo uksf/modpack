@@ -13,7 +13,7 @@
         Nothing
 */
 
-(_this select 1) params ["_module"];
+(_this#1) params ["_module"];
 
 if (!isServer) exitWith {};
 
