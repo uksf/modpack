@@ -26,6 +26,7 @@ class CfgWeapons {
             mass = 5;
         };
     };
+    // alpine
     class CUP_arifle_M4A1_MOE_winter;
     class GVAR(CUP_arifle_M4A1_MOE_winter_CUP_acc_Flashlight_CUP_optic_HensoldtZO_RDS) : CUP_arifle_M4A1_MOE_winter {
         displayName = "M4A1 (Winter)";
@@ -101,6 +102,38 @@ class CfgWeapons {
             class LinkedItemsMuzzle {
                 slot = "MuzzleSlot";
                 item = "muzzle_snds_M";
+            };
+        };
+    };
+
+    // woodland
+    class CUP_arifle_M4A3_camo;
+    class GVAR(CUP_arifle_M4A3_woodland_CUP_acc_Flashlight_CUP_optic_HensoldtZO_RDS) : CUP_arifle_M4A3_camo {
+        displayName = "M4A3 (Woodland)";
+        scope = 1;
+        class LinkedItems {
+            class LinkedItemsOptic {
+                slot = "CUP_PicatinnyTopMountM4";
+                item = "CUP_optic_HensoldtZO_low_RDS_od";
+            };
+            class LinkedItemsAcc {
+                slot = "CUP_PicatinnySideMountM4";
+                item = "CUP_acc_Flashlight_wdl";
+            };
+        };
+    };
+    class CUP_arifle_M4A1_BUIS_camo_GL;
+    class GVAR(CUP_arifle_M4A1_BUIS_camo_GL_CUP_acc_Flashlight_CUP_optic_HensoldtZO_RDS) : CUP_arifle_M4A1_BUIS_camo_GL {
+        displayName = "M4A1GL";
+        scope = 1;
+        class LinkedItems {
+            class LinkedItemsOptic {
+                slot = "CUP_PicatinnyTopMountM4";
+                item = "CUP_optic_HensoldtZO_low_RDS_od";
+            };
+            class LinkedItemsAcc {
+                slot = "CUP_PicatinnySideMountM4";
+                item = "CUP_acc_Flashlight_wdl";
             };
         };
     };

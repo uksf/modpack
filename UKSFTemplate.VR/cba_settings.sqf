@@ -17,6 +17,8 @@ force uksf_curator_curatorsMax = 8;
 force uksf_virtualisation_enabled = false;
 force uksf_virtualisation_distance = 3000;
 
+// Change to true to laod map markers from saved data. Only enable this if this mission is a direct continuation of the previous mission
+force uksf_persistence_loadMapMarkers = false;
 // Change to true to use mission datetime with a persistence save
 force uksf_persistence_overrideSavedDateTime = false;
 

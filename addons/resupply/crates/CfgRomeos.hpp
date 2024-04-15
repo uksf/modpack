@@ -216,131 +216,129 @@ class GVAR(rf) : CargoNet_01_barrels_F {
     destrType = "DestructBuilding";
     explosionEffect = "FuelExplosion";
     class DestructionEffects {
-        class DestructionEffects {
-            class Light1 {
-                simulation = "light";
-                type = "ObjectDestructionLight";
-                position = "destructionEffect1";
-                intensity = 1;
-                interval = 1;
-                lifeTime = 20;
-                enabled = "distToWater";
-            };
-            class Sound {
-                simulation = "sound";
-                position = "destructionEffect1";
-                intensity = 1;
-                interval = 1;
-                lifeTime = 8;
-                type = "Fire";
-            };
-            class Fire1 {
-                simulation = "particles";
-                type = "ObjectDestructionFire1Small";
-                position = "destructionEffect1";
-                intensity = 0.15000001;
-                interval = 1;
-                lifeTime = 20;
-            };
-            class Refract1 {
-                simulation = "particles";
-                type = "ObjectDestructionRefractSmall";
-                position = "destructionEffect1";
-                intensity = 0.15000001;
-                interval = 1;
-                lifeTime = 20;
-            };
-            class Smoke1 {
-                simulation = "particles";
-                type = "ObjectDestructionSmokeSmall";
-                position = "destructionEffect1";
-                intensity = 0.15000001;
-                interval = 0;
-                lifeTime = 0;
-            };
-            class Sparks1 {
-                simulation = "particles";
-                type = "ObjectDestructionSparks";
-                position = "destructionEffect1";
-                intensity = 1;
-                interval = 1;
-                lifeTime = 0;
-            };
-            class FireSparks1 {
-                simulation = "particles";
-                type = "FireSparks";
-                position = "destructionEffect2";
-                intensity = 1;
-                interval = 1;
-                lifeTime = 22.4;
-            };
-            class Fire2 {
-                simulation = "particles";
-                type = "ObjectDestructionFire2Small";
-                position = "destructionEffect2";
-                intensity = 0.15000001;
-                interval = 1;
-                lifeTime = 0;
-            };
-            class Fire3 {
-                type = "fxp_ObjectDestructionFire2Small";
-                simulation = "particles";
-                position = "destructionEffect2";
-                intensity = 0.15000001;
-                interval = 1;
-                lifeTime = 20;
-            };
-            class Fire4 : Fire3 {
-                type = "fxp_TankExplFireMin1";
-            };
-            class Fire6 : Fire4 {
-                type = "fxp_TankExplFireMin3";
-            };
-            class Smoke1_2_T {
-                simulation = "particles";
-                type = "ObjectDestructionSmoke1_2Small_T";
-                position = "destructionEffect2";
-                qualityLevel = 2;
-                intensity = 0.15000001;
-                interval = 1;
-                lifeTime = 20;
-            };
-            class Smoke1_2 {
-                simulation = "particles";
-                type = "ObjectDestructionSmoke1_2Small";
-                position = "destructionEffect2";
-                qualityLevel = 2;
-                intensity = 0.15000001;
-                interval = 1;
-                lifeTime = 35;
-            };
-            class SmokeBig1_2Med {
-                simulation = "particles";
-                type = "ObjectDestructionSmoke1_2";
-                position = "destructionEffect2";
-                qualityLevel = 1;
-                intensity = 0.15000001;
-                interval = 1;
-                lifeTime = 35;
-            };
-            class SmokeBig1_2Low {
-                simulation = "particles";
-                type = "ObjectDestructionSmoke1_2";
-                position = "destructionEffect2";
-                qualityLevel = 0;
-                intensity = 0.15000001;
-                interval = 1;
-                lifeTime = 35;
-            };
-            class Smoke2 {
-                simulation = "particles";
-                type = "ObjectDestructionSmoke2";
-                position = "destructionEffect2";
-                qualityLevel = 2;
-                intensity = 1;
-                interval = 1;
-                lifeTime = 0;
-            };
+        class Light1 {
+            simulation = "light";
+            type = "ObjectDestructionLight";
+            position = "destructionEffect1";
+            intensity = 1;
+            interval = 1;
+            lifeTime = 20;
+            enabled = "distToWater";
+        };
+        class Sound {
+            simulation = "sound";
+            position = "destructionEffect1";
+            intensity = 1;
+            interval = 1;
+            lifeTime = 8;
+            type = "Fire";
+        };
+        class Fire1 {
+            simulation = "particles";
+            type = "ObjectDestructionFire1Small";
+            position = "destructionEffect1";
+            intensity = 0.15000001;
+            interval = 1;
+            lifeTime = 20;
+        };
+        class Refract1 {
+            simulation = "particles";
+            type = "ObjectDestructionRefractSmall";
+            position = "destructionEffect1";
+            intensity = 0.15000001;
+            interval = 1;
+            lifeTime = 20;
+        };
+        class Smoke1 {
+            simulation = "particles";
+            type = "ObjectDestructionSmokeSmall";
+            position = "destructionEffect1";
+            intensity = 0.15000001;
+            interval = 0;
+            lifeTime = 0;
+        };
+        class Sparks1 {
+            simulation = "particles";
+            type = "ObjectDestructionSparks";
+            position = "destructionEffect1";
+            intensity = 1;
+            interval = 1;
+            lifeTime = 0;
+        };
+        class FireSparks1 {
+            simulation = "particles";
+            type = "FireSparks";
+            position = "destructionEffect2";
+            intensity = 1;
+            interval = 1;
+            lifeTime = 22.4;
+        };
+        class Fire2 {
+            simulation = "particles";
+            type = "ObjectDestructionFire2Small";
+            position = "destructionEffect2";
+            intensity = 0.15000001;
+            interval = 1;
+            lifeTime = 0;
+        };
+        class Fire3 {
+            type = "fxp_ObjectDestructionFire2Small";
+            simulation = "particles";
+            position = "destructionEffect2";
+            intensity = 0.15000001;
+            interval = 1;
+            lifeTime = 20;
+        };
+        class Fire4 : Fire3 {
+            type = "fxp_TankExplFireMin1";
+        };
+        class Fire6 : Fire4 {
+            type = "fxp_TankExplFireMin3";
+        };
+        class Smoke1_2_T {
+            simulation = "particles";
+            type = "ObjectDestructionSmoke1_2Small_T";
+            position = "destructionEffect2";
+            qualityLevel = 2;
+            intensity = 0.15000001;
+            interval = 1;
+            lifeTime = 20;
+        };
+        class Smoke1_2 {
+            simulation = "particles";
+            type = "ObjectDestructionSmoke1_2Small";
+            position = "destructionEffect2";
+            qualityLevel = 2;
+            intensity = 0.15000001;
+            interval = 1;
+            lifeTime = 35;
+        };
+        class SmokeBig1_2Med {
+            simulation = "particles";
+            type = "ObjectDestructionSmoke1_2";
+            position = "destructionEffect2";
+            qualityLevel = 1;
+            intensity = 0.15000001;
+            interval = 1;
+            lifeTime = 35;
+        };
+        class SmokeBig1_2Low {
+            simulation = "particles";
+            type = "ObjectDestructionSmoke1_2";
+            position = "destructionEffect2";
+            qualityLevel = 0;
+            intensity = 0.15000001;
+            interval = 1;
+            lifeTime = 35;
+        };
+        class Smoke2 {
+            simulation = "particles";
+            type = "ObjectDestructionSmoke2";
+            position = "destructionEffect2";
+            qualityLevel = 2;
+            intensity = 1;
+            interval = 1;
+            lifeTime = 0;
         };
     };
 };
