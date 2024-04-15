@@ -155,7 +155,7 @@ class GVAR(Operator) : GVAR(Rifleman) {
 // woodland
 class GVAR(Rifleman_Woodland) : GVAR(Soldier_Base_Woodland) {
     scope = 2;
-    displayName = "Rifleman";
+    displayName = "Rifleman (Woodland)";
     uniformClass = "CUP_U_B_BDUv2_gloves_Tigerstripe";
     uksf_equipment_randomUniforms[] = {
         "CUP_U_B_BDUv2_gloves_dirty_Tigerstripe", 1,
@@ -172,36 +172,36 @@ class GVAR(Rifleman_Woodland) : GVAR(Soldier_Base_Woodland) {
     backpack = "";
 };
 class GVAR(Squad_Leader_Woodland) : GVAR(Rifleman_Woodland) {
-    displayName = "Squad Leader";
+    displayName = "Squad Leader (Woodland)";
     uniformClass = "CUP_U_B_BDUv2_gloves_Tigerstripe";
     weapons[] = { QGVAR(CUP_arifle_M4A1_BUIS_camo_GL_CUP_acc_Flashlight_CUP_optic_HensoldtZO_RDS),"Put","Throw" };
     respawnWeapons[] = { QGVAR(CUP_arifle_M4A1_BUIS_camo_GL_CUP_acc_Flashlight_CUP_optic_HensoldtZO_RDS),"Put","Throw" };
     magazines[] = { "CUP_HandGrenade_RGO", "CUP_HandGrenade_RGO", "SmokeShell", "SmokeShell", "SmokeShell", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag" };
     respawnMagazines[] = { "CUP_HandGrenade_RGO", "CUP_HandGrenade_RGO", "SmokeShell", "SmokeShell", "SmokeShell", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag" };
-    backpack = QGVAR(Squad_Leader_pack);
+    backpack = QGVAR(Squad_Leader_pack_Woodland);
     icon = "iconManLeader";
 };
 class GVAR(Machine_Gunner_Woodland) : GVAR(Rifleman_Woodland) {
-    displayName = "Machine Gunner";
+    displayName = "Machine Gunner (Woodland)";
     uniformClass = "CUP_U_B_BDUv2_gloves_Tigerstripe";
     weapons[] = { QGVAR(LMG_Zafir_F_CUP_optic_HensoldtZO_RDS),"Put","Throw" };
     respawnWeapons[] = { QGVAR(LMG_Zafir_F_CUP_optic_HensoldtZO_RDS),"Put","Throw" };
     magazines[] = { "CUP_HandGrenade_RGO", "CUP_HandGrenade_RGO", "SmokeShell", "SmokeShell", "SmokeShell" };
     respawnMagazines[] = { "CUP_HandGrenade_RGO", "CUP_HandGrenade_RGO", "SmokeShell", "SmokeShell", "SmokeShell" };
-    backpack = QGVAR(Machine_Gunner_pack);
+    backpack = QGVAR(Machine_Gunner_pack_Woodland);
     icon = "iconManMG";
 };
 class GVAR(Rifleman_LAT_Woodland) : GVAR(Rifleman_Woodland) {
-    displayName = "Rifleman LAT";
+    displayName = "Rifleman LAT (Woodland)";
     uniformClass = "CUP_U_B_BDUv2_gloves_Tigerstripe";
-    weapons[] = { QGVAR(CUP_arifle_M4A1_MOE_winter_CUP_acc_Flashlight_CUP_optic_HensoldtZO_RDS),"UK3CB_BAF_AT4_CS_AP_Launcher","Put","Throw" };
-    respawnWeapons[] = { QGVAR(CUP_arifle_M4A1_MOE_winter_CUP_acc_Flashlight_CUP_optic_HensoldtZO_RDS),"UK3CB_BAF_AT4_CS_AP_Launcher","Put","Throw" };
+    weapons[] = { QGVAR(CUP_arifle_M4A3_woodland_CUP_acc_Flashlight_CUP_optic_HensoldtZO_RDS),"UK3CB_BAF_AT4_CS_AP_Launcher","Put","Throw" };
+    respawnWeapons[] = { QGVAR(CUP_arifle_M4A3_woodland_CUP_acc_Flashlight_CUP_optic_HensoldtZO_RDS),"UK3CB_BAF_AT4_CS_AP_Launcher","Put","Throw" };
     magazines[] = { "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_HandGrenade_RGO", "CUP_HandGrenade_RGO", "SmokeShell", "SmokeShell", "SmokeShell" };
     respawnMagazines[] = { "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_HandGrenade_RGO", "CUP_HandGrenade_RGO", "SmokeShell", "SmokeShell", "SmokeShell" };
     icon = "iconManAT";
 };
 class GVAR(Sharpshooter_Woodland) : GVAR(Rifleman_Woodland) {
-    displayName = "Sharpshooter";
+    displayName = "Sharpshooter (Woodland)";
     uniformClass = "CUP_U_B_BDUv2_gloves_Tigerstripe";
     weapons[] = { QGVAR(CUP_srifle_M14_DMR_CUP_optic_HensoldtZO_RDS),"Put","Throw" };
     respawnWeapons[] = { QGVAR(CUP_srifle_M14_DMR_CUP_optic_HensoldtZO_RDS),"Put","Throw" };
@@ -210,10 +210,8 @@ class GVAR(Sharpshooter_Woodland) : GVAR(Rifleman_Woodland) {
     backpack = "";
 };
 class GVAR(Armour_Crewman_Woodland) : GVAR(Rifleman_Woodland) {
-    displayName = "Armour Crewman";
+    displayName = "Armour Crewman (Woodland)";
     uniformClass = "UK3CB_BAF_U_CrewmanCoveralls_RTR";
-    weapons[] = { QGVAR(CUP_arifle_M4A1_MOE_winter_CUP_acc_Flashlight_CUP_optic_HensoldtZO_RDS), "Put", "Throw" };
-    respawnWeapons[] = { QGVAR(CUP_arifle_M4A1_MOE_winter_CUP_acc_Flashlight_CUP_optic_HensoldtZO_RDS), "Put", "Throw" };
     magazines[] = { "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "SmokeShell", "SmokeShell", "SmokeShell", "CUP_HandGrenade_RGD5", "CUP_HandGrenade_RGD5" };
     respawnMagazines[] = { "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "SmokeShell", "SmokeShell", "SmokeShell", "CUP_HandGrenade_RGD5", "CUP_HandGrenade_RGD5" };
     linkedItems[] = { "ItemMap", "ItemCompass", "CUP_NVG_PVS15_black", "H_Tank_black_F", "CUP_V_B_BAF_DPM_Osprey_Mk3_Empty" };
@@ -222,7 +220,7 @@ class GVAR(Armour_Crewman_Woodland) : GVAR(Rifleman_Woodland) {
     EGVAR(equipment,skipRandomization) = 1;
 };
 class GVAR(Officer_Woodland) : GVAR(Rifleman_Woodland) {
-    displayName = "Officer";
+    displayName = "Officer (Woodland)";
     uniformClass = "CUP_U_B_BDUv2_gloves_Tigerstripe";
     linkedItems[] = { "ItemMap", "ItemCompass", "CUP_H_US_patrol_cap_tigerstripe", "CUP_Vest_RUS_6B45_Sh117_Green", "CUP_G_Scarf_Face_Grn" };
     respawnLinkedItems[] = { "ItemMap", "ItemCompass", "CUP_H_US_patrol_cap_tigerstripe", "CUP_Vest_RUS_6B45_Sh117_Green", "CUP_G_Scarf_Face_Grn" };
@@ -230,14 +228,14 @@ class GVAR(Officer_Woodland) : GVAR(Rifleman_Woodland) {
     icon = "iconManOfficer";
 };
 class GVAR(Signaller_Woodland) : GVAR(Rifleman_Woodland) {
-    displayName = "Signaller";
+    displayName = "Signaller (Woodland)";
     uniformClass = "CUP_U_B_BDUv2_gloves_Tigerstripe";
-    linkedItems[] = { "ItemMap", "ItemCompass", "CUP_NVG_PVS15_black", "CUP_H_PASGTv2_NVG_tigerstripe", "dr_ALPfacp_op", "CUP_G_Scarf_Face_Grn" };
-    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "CUP_NVG_PVS15_black", "CUP_H_PASGTv2_NVG_tigerstripe", "dr_ALPfacp_op", "CUP_G_Scarf_Face_Grn" };
-    backpack = QGVAR(Signaller_pack);
+    linkedItems[] = { "ItemMap", "ItemCompass", "CUP_NVG_PVS15_black", "CUP_H_PASGTv2_NVG_tigerstripe", "CUP_Vest_RUS_6B45_Sh117_Green", "CUP_G_Scarf_Face_Grn" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "CUP_NVG_PVS15_black", "CUP_H_PASGTv2_NVG_tigerstripe", "CUP_Vest_RUS_6B45_Sh117_Green", "CUP_G_Scarf_Face_Grn" };
+    backpack = QGVAR(Signaller_pack_Woodland);
 };
-class GVAR(Heli_Pilot_Woodland) : GVAR(Armour_Crewman) {
-    displayName = "Heli Pilot";
+class GVAR(Heli_Pilot_Woodland) : GVAR(Armour_Crewman_Woodland) {
+    displayName = "Heli Pilot (Woodland)";
     uniformClass = "UK3CB_BAF_U_CrewmanCoveralls_RTR";
     linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "H_CrewHelmetHeli_B", "CUP_V_B_BAF_DPM_Osprey_Mk3_Empty" };
     respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "H_CrewHelmetHeli_B", "CUP_V_B_BAF_DPM_Osprey_Mk3_Empty" };
@@ -245,7 +243,7 @@ class GVAR(Heli_Pilot_Woodland) : GVAR(Armour_Crewman) {
     EGVAR(equipment,skipRandomization) = 1;
 };
 class GVAR(Sniper_Woodland) : GVAR(Rifleman_Woodland) {
-    displayName = "Sniper";
+    displayName = "Sniper (Woodland)";
     uniformClass = "U_I_FullGhillie_lsh";
     weapons[] = { QGVAR(CUP_srifle_G22_blk_ACE_optic_LRPS_2D),"Put","Throw" };
     respawnWeapons[] = { QGVAR(CUP_srifle_G22_blk_ACE_optic_LRPS_2D),"Put","Throw" };
@@ -256,39 +254,38 @@ class GVAR(Sniper_Woodland) : GVAR(Rifleman_Woodland) {
     backpack = "";
     EGVAR(equipment,skipRandomization) = 1;
 };
-class GVAR(Crewman_Woodland) : GVAR(Rifleman) {
-    displayName = "Crewman";
-    uniformClass = "CUP_U_B_BDUv2_gloves_dirty_Tigerstripe";
+class GVAR(Crewman_Woodland) : GVAR(Rifleman_Woodland) {
+    displayName = "Crewman (Woodland)";
     EGVAR(equipment,skipRandomization) = 1;
 };
 class GVAR(Rifleman_AA_Woodland) : GVAR(Rifleman_Woodland) {
-    displayName = "Rifleman AA";
+    displayName = "Rifleman AA (Woodland)";
     uniformClass = "CUP_U_B_BDUv2_gloves_Tigerstripe";
-    weapons[] = { QGVAR(CUP_arifle_M4A1_MOE_winter_CUP_acc_Flashlight_CUP_optic_HensoldtZO_RDS),"CUP_launch_FIM92Stinger_Loaded","Put","Throw" };
-    respawnWeapons[] = { QGVAR(CUP_arifle_M4A1_MOE_winter_CUP_acc_Flashlight_CUP_optic_HensoldtZO_RDS),"CUP_launch_FIM92Stinger_Loaded","Put","Throw" };
+    weapons[] = { QGVAR(CUP_arifle_M4A3_woodland_CUP_acc_Flashlight_CUP_optic_HensoldtZO_RDS),"CUP_launch_FIM92Stinger_Loaded","Put","Throw" };
+    respawnWeapons[] = { QGVAR(CUP_arifle_M4A3_woodland_CUP_acc_Flashlight_CUP_optic_HensoldtZO_RDS),"CUP_launch_FIM92Stinger_Loaded","Put","Throw" };
     magazines[] = { "CUP_30Rnd_556x45_Emag", "SmokeShell", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "SmokeShell", "SmokeShell", "CUP_HandGrenade_RGD5", "CUP_HandGrenade_RGD5" };
     respawnMagazines[] = { "CUP_30Rnd_556x45_Emag", "SmokeShell", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "SmokeShell", "SmokeShell", "CUP_HandGrenade_RGD5", "CUP_HandGrenade_RGD5" };
     backpack = "";
     icon = "iconManAT";
 };
 class GVAR(Rifleman_HAT_Woodland) : GVAR(Rifleman_Woodland) {
-    displayName = "Rifleman HAT";
+    displayName = "Rifleman HAT (Woodland)";
     uniformClass = "CUP_U_B_BDUv2_gloves_Tigerstripe";
-    weapons[] = { QGVAR(CUP_arifle_M4A1_MOE_winter_CUP_acc_Flashlight_CUP_optic_HensoldtZO_RDS),"launch_NLAW_F","Put","Throw" };
-    respawnWeapons[] = { QGVAR(CUP_arifle_M4A1_MOE_winter_CUP_acc_Flashlight_CUP_optic_HensoldtZO_RDS),"launch_NLAW_F","Put","Throw" };
+    weapons[] = { QGVAR(CUP_arifle_M4A3_woodland_CUP_acc_Flashlight_CUP_optic_HensoldtZO_RDS),"launch_NLAW_F","Put","Throw" };
+    respawnWeapons[] = { QGVAR(CUP_arifle_M4A3_woodland_CUP_acc_Flashlight_CUP_optic_HensoldtZO_RDS),"launch_NLAW_F","Put","Throw" };
     magazines[] = { "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_HandGrenade_RGO", "CUP_HandGrenade_RGO", "SmokeShell", "SmokeShell", "SmokeShell" };
     respawnMagazines[] = { "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_HandGrenade_RGO", "CUP_HandGrenade_RGO", "SmokeShell", "SmokeShell", "SmokeShell" };
     icon = "iconManAT";
 };
 class GVAR(Operator_Woodland) : GVAR(Rifleman_Woodland) {
-    displayName = "Operator";
-    uniformClass = "Alpine_Crye_Camo";
+    displayName = "Operator (Woodland)";
+    uniformClass = "CUP_U_CRYE_G3C_RGR";
     weapons[] = { QGVAR(CUP_arifle_HK_M27_VFG_CUP_optic_HensoldtZO_RDS_muzzle_snds_M),"Put","Throw" };
     respawnWeapons[] = { QGVAR(CUP_arifle_HK_M27_VFG_CUP_optic_HensoldtZO_RDS_muzzle_snds_M),"Put","Throw" };
     magazines[] = { "CUP_30Rnd_556x45_PMAG_QP", "CUP_30Rnd_556x45_PMAG_QP", "CUP_30Rnd_556x45_PMAG_QP", "CUP_30Rnd_556x45_PMAG_QP", "CUP_30Rnd_556x45_PMAG_QP", "CUP_30Rnd_556x45_PMAG_QP", "CUP_30Rnd_556x45_PMAG_QP", "CUP_30Rnd_556x45_PMAG_QP", "CUP_HandGrenade_RGO", "CUP_HandGrenade_RGO", "SmokeShell", "SmokeShell", "SmokeShell" };
     respawnMagazines[] = { "CUP_30Rnd_556x45_PMAG_QP", "CUP_30Rnd_556x45_PMAG_QP", "CUP_30Rnd_556x45_PMAG_QP", "CUP_30Rnd_556x45_PMAG_QP", "CUP_30Rnd_556x45_PMAG_QP", "CUP_30Rnd_556x45_PMAG_QP", "CUP_30Rnd_556x45_PMAG_QP", "CUP_30Rnd_556x45_PMAG_QP", "CUP_HandGrenade_RGO", "CUP_HandGrenade_RGO", "SmokeShell", "SmokeShell", "SmokeShell" };
     linkedItems[] = { "ItemMap", "ItemCompass", "CUP_NVG_GPNVG_black", "CUP_H_OpsCore_Covered_Tigerstripe", "CUP_V_CPC_tlbelt_rngr", "G_Bandanna_Skull2" };
     respawnLinkedItems[] = { "ItemMap", "ItemCompass", "CUP_NVG_GPNVG_black", "CUP_H_OpsCore_Covered_Tigerstripe", "CUP_V_CPC_tlbelt_rngr", "G_Bandanna_Skull2" };
-    backpack = QGVAR(Operator_Pack);
+    backpack = QGVAR(Operator_Pack_Woodland);
     EGVAR(equipment,skipRandomization) = 1;
 };

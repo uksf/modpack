@@ -74,7 +74,7 @@ class CfgVehicles {
         };
     };
 
-    class GVAR(Soldier_Base_Woodland) : Soldier_Base {
+    class GVAR(Soldier_Base_Woodland) : GVAR(Soldier_Base) {
         uniformClass = "CUP_U_B_BDUv2_gloves_Tigerstripe";
     };
 
@@ -113,7 +113,7 @@ class CfgVehicles {
 
     // woodland
     class CUP_B_Kombat_Radio_Olive;
-    class GVAR(Squad_Leader_pack) : CUP_B_Kombat_Radio_Olive {
+    class GVAR(Squad_Leader_pack_Woodland) : CUP_B_Kombat_Radio_Olive {
         scope = 1;
         class TransportMagazines {
             MACRO_ADDMAGAZINE(1Rnd_HE_Grenade_shell,10);
@@ -122,14 +122,14 @@ class CfgVehicles {
         };
     };
     class CUP_O_RUS_Patrol_bag_Green;
-    class GVAR(Machine_Gunner_pack_W) : CUP_O_RUS_Patrol_bag_Green {
+    class GVAR(Machine_Gunner_pack_Woodland) : CUP_O_RUS_Patrol_bag_Green {
         scope = 1;
         class TransportMagazines {
             MACRO_ADDMAGAZINE(150Rnd_762x54_Box,3);
         };
     };
     class B_RadioBag_01_wdl_F;
-    class GVAR(Signaller_pack) : B_RadioBag_01_wdl_F {
+    class GVAR(Signaller_pack_Woodland) : B_RadioBag_01_wdl_F {
         scope = 1;
         displayName = "Radio Backpack";
         class TransportMagazines {
@@ -139,7 +139,7 @@ class CfgVehicles {
         };
     };
     class B_AssaultPack_rgr;
-    class GVAR(Operator_Pack) : B_AssaultPack_rgr {
+    class GVAR(Operator_Pack_Woodland) : B_AssaultPack_rgr {
         scope = 1;
         class TransportMagazines {
             MACRO_ADDMAGAZINE(APERSTripMine_Wire_Mag,2);

@@ -260,7 +260,7 @@ class cfgGroups {
                     };
                     class Unit1 {
                         side = 0;
-                        vehicle = QGVAR(Snipe_Woodland);
+                        vehicle = QGVAR(Sniper_Woodland);
                         rank = "PRIVATE";
                         position[] = { 0, -5, 0 };
                     };
@@ -277,7 +277,7 @@ class cfgGroups {
                     };
                     class Unit1 {
                         side = 0;
-                        vehicle = QGVAR(Riflema_Woodlandn);
+                        vehicle = QGVAR(Rifleman_Woodland);
                         rank = "PRIVATE";
                         position[] = { 0, -5, 0 };
                     };

@@ -18,7 +18,7 @@ class GVAR(Wiesel_AA) : I_LT_01_AA_F {
     INVENTORY_EMPTY;
 };
 
-class GVAR(Wiesel_AA_Woodland) : class GVAR(Wiesel_AA) {
+class GVAR(Wiesel_AA_Woodland) : GVAR(Wiesel_AA) {
     displayName = "Wiesel AA (Woodland)";
     crew = QGVAR(Armour_Crewman_Woodland);
     typicalCargo[] = {
@@ -46,7 +46,7 @@ class GVAR(Wiesel_Radar) : I_LT_01_scout_F {
     INVENTORY_EMPTY;
 };
 
-class GVAR(Wiesel_Radar_Woodland) : class GVAR(Wiesel_Radar) {
+class GVAR(Wiesel_Radar_Woodland) : GVAR(Wiesel_Radar) {
     displayName = "Wiesel Radar (Woodland)";
     crew = QGVAR(Armour_Crewman_Woodland);
     typicalCargo[] = {
@@ -106,7 +106,7 @@ class GVAR(Shilka) : CUP_O_ZSU23_SLA {
     INVENTORY_EMPTY;
 };
 
-class GVAR(Shilka_Woodland) : class GVAR(Shilka) {
+class GVAR(Shilka_Woodland) : GVAR(Shilka) {
     displayName = "Shilka (Woodland)";
     crew = QGVAR(Armour_Crewman_Woodland);
     typicalCargo[] = {

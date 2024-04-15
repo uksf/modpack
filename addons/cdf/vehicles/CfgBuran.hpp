@@ -61,7 +61,7 @@ class GVAR(Buran_Cargo) : MM_Buran_Cargo {
     INVENTORY_EMPTY;
 };
 
-class GVAR(Buran_Cargo_Woodland) : GVAR(MM_Buran_Cargo) {
+class GVAR(Buran_Cargo_Woodland) : GVAR(Buran_Cargo) {
     displayName = "Buran Cargo (Woodland)";
     hiddenSelectionsTextures[] = { "mm_buran\data\MM_Buran_ext_green_co.paa", "mm_buran\data\MM_Buran_ext_green_co.paa" };
     crew = QGVAR(Rifleman_Woodland);
