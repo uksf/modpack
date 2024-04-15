@@ -74,6 +74,12 @@ class CfgVehicles {
         };
     };
 
+    class GVAR(Soldier_Base_Woodland) : GVAR(Soldier_Base) {
+        editorSubcategory = QGVAR(men_woodland);
+        uniformClass = "CUP_U_B_BDUv2_gloves_Tigerstripe";
+    };
+
+    // alpine
     class Alpine_Backpack_Compact;
     class GVAR(Squad_Leader_pack) : Alpine_Backpack_Compact {
         scope = 1;
@@ -106,7 +112,43 @@ class CfgVehicles {
         };
     };
 
-#include "units\CfgUnits.hpp"
+    // woodland
+    class CUP_B_Kombat_Radio_Olive;
+    class GVAR(Squad_Leader_pack_Woodland) : CUP_B_Kombat_Radio_Olive {
+        scope = 1;
+        class TransportMagazines {
+            MACRO_ADDMAGAZINE(1Rnd_HE_Grenade_shell,10);
+            MACRO_ADDMAGAZINE(UGL_FlareYellow_F,5);
+            MACRO_ADDMAGAZINE(1Rnd_Smoke_Grenade_shell,5);
+        };
+    };
+    class CUP_O_RUS_Patrol_bag_Green;
+    class GVAR(Machine_Gunner_pack_Woodland) : CUP_O_RUS_Patrol_bag_Green {
+        scope = 1;
+        class TransportMagazines {
+            MACRO_ADDMAGAZINE(150Rnd_762x54_Box,3);
+        };
+    };
+    class B_RadioBag_01_wdl_F;
+    class GVAR(Signaller_pack_Woodland) : B_RadioBag_01_wdl_F {
+        scope = 1;
+        displayName = "Radio Backpack";
+        class TransportMagazines {
+            MACRO_ADDMAGAZINE(SmokeShellOrange,2);
+            MACRO_ADDMAGAZINE(SmokeShellPurple,2);
+            MACRO_ADDMAGAZINE(SmokeShell,3);
+        };
+    };
+    class B_AssaultPack_rgr;
+    class GVAR(Operator_Pack_Woodland) : B_AssaultPack_rgr {
+        scope = 1;
+        class TransportMagazines {
+            MACRO_ADDMAGAZINE(APERSTripMine_Wire_Mag,2);
+        };
+    };
+
+#include "units\CfgUnitsAlpine.hpp"
+#include "units\CfgUnitsWoodland.hpp"
 #include "vehicles\CfgAntiAir.hpp"
 #include "vehicles\CfgArtillery.hpp"
 #include "vehicles\CfgMTLB.hpp"

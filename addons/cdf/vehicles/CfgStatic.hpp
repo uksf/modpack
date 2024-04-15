@@ -11,6 +11,14 @@ class GVAR(MK6) : B_T_Mortar_01_F {
     };
 };
 
+class GVAR(MK6_Woodland) : GVAR(MK6) {
+    displayName = "MK6 (Woodland)";
+    crew = QGVAR(Rifleman_Woodland);
+    typicalCargo[] = {
+        QGVAR(Rifleman_Woodland)
+    };
+};
+
 // RBS70
 class CUP_B_RBS70_HIL;
 class GVAR(RBS70) : CUP_B_RBS70_HIL {
@@ -21,6 +29,14 @@ class GVAR(RBS70) : CUP_B_RBS70_HIL {
     crew = QGVAR(Rifleman);
     typicalCargo[] = {
         QGVAR(Rifleman)
+    };
+};
+
+class GVAR(RBS70_Woodland) : GVAR(RBS70) {
+    displayName = "RBS70 (Woodland)";
+    crew = QGVAR(Rifleman_Woodland);
+    typicalCargo[] = {
+        QGVAR(Rifleman_Woodland)
     };
 };
 
@@ -37,6 +53,14 @@ class GVAR(M134A) : CUP_B_M134_A_GB {
     };
 };
 
+class GVAR(M134A_Woodland) : GVAR(M134A) {
+    displayName = "M134A (Woodland)";
+    crew = QGVAR(Rifleman_Woodland);
+    typicalCargo[] = {
+        QGVAR(Rifleman_Woodland)
+    };
+};
+
 // SPG9
 class CUP_B_SPG9_CDF;
 class GVAR(SPG9) : CUP_B_SPG9_CDF {
@@ -47,6 +71,14 @@ class GVAR(SPG9) : CUP_B_SPG9_CDF {
     crew = QGVAR(Rifleman);
     typicalCargo[] = {
         QGVAR(Rifleman)
+    };
+};
+
+class GVAR(SPG9_Woodland) : GVAR(SPG9) {
+    displayName = "SPG-9 (Woodland)";
+    crew = QGVAR(Rifleman_Woodland);
+    typicalCargo[] = {
+        QGVAR(Rifleman_Woodland)
     };
 };
 
@@ -63,6 +95,14 @@ class GVAR(ZU23) : CUP_B_ZU23_CDF {
     };
 };
 
+class GVAR(ZU23_Woodland) : GVAR(ZU23) {
+    displayName = "ZU-23-2";
+    crew = QGVAR(Rifleman_Woodland);
+    typicalCargo[] = {
+        QGVAR(Rifleman_Woodland)
+    };
+};
+
 // Searchlight
 class CUP_B_SearchLight_static_BAF_MPT;
 class GVAR(Searchlight) : CUP_B_SearchLight_static_BAF_MPT {
@@ -73,5 +113,13 @@ class GVAR(Searchlight) : CUP_B_SearchLight_static_BAF_MPT {
     crew = QGVAR(Rifleman);
     typicalCargo[] = {
         QGVAR(Rifleman)
+    };
+};
+
+class GVAR(Searchlight_Woodland) : GVAR(Searchlight) {
+    displayName = "ZU-23-2 (Woodland)";
+    crew = QGVAR(Rifleman_Woodland);
+    typicalCargo[] = {
+        QGVAR(Rifleman_Woodland)
     };
 };

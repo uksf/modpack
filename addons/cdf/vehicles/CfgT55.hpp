@@ -8,3 +8,10 @@ class GVAR(T55) : CUP_O_T55_SLA {
     typicalCargo[] = { QGVAR(Armour_Crewman) };
     INVENTORY_EMPTY;
 };
+
+class GVAR(T55_Woodland) : GVAR(T55) {
+    displayName = "T55 (Woodland)";
+    crew = QGVAR(Armour_Crewman_Woodland);
+    typicalCargo[] = { QGVAR(Armour_Crewman_Woodland) };
+    INVENTORY_EMPTY;
+};

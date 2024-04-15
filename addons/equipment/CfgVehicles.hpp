@@ -3,6 +3,9 @@ class CfgVehicles {
     class B_Soldier_03_f;
     class SoldierWB;
     class Civilian_F;
+    class B_engineer_F;
+    class I_ghillie_base_F;
+    class B_Soldier_05_f;
 
     class Multicam_black_Casual_uniform : B_Soldier_03_f {
         modelSides[] = { 6 };
@@ -86,6 +89,15 @@ class CfgVehicles {
         modelSides[] = { 6 };
     };
     class CUP_Creatures_Military_HIL_SF_Base : SoldierWB {
+        modelSides[] = { 6 };
+    };
+    class UK3CB_BAF_Crew_RTR_Base : B_engineer_F {
+        modelSides[] = { 6 };
+    };
+    class I_ghillie_lsh_F : I_ghillie_base_F {
+        modelSides[] = { 6 };
+    };
+    class B_Pilot_F : B_Soldier_05_f {
         modelSides[] = { 6 };
     };
 };
