@@ -12,6 +12,7 @@
 
     Parameters:
         0: _spawnPositions <ARRAY>
+        1: _module <OBJECT>
 
     Return value:
         Nothing
@@ -36,41 +37,28 @@ private _fnc_getArrayFromModule = {
     _value
 };
 
+private _unitPool = _module getVariable [QGVAR(unitPoolString), []];
+private _unitPoolArray = parseSimpleArray _unitPool;
+private _patrolRadius = _module getVariable [QGVAR(patrolRadius), 0];
+private _spawnPercentage = _module getVariable [QGVAR(percentageOfPositionsToOccupy), 0];
+private _numberOfPositionsToOccupy = round((count _spawnPositions) * (_spawnPercentage / 100));
 private _numberOfUnitsToSpawn = [_module, QGVAR(numberOfUnits)] call _fnc_getArrayFromModule;
 private _side = _module getVariable [QGVAR(side), 0];
 private _currenGrouptUnitCount = 0;
-private _group = grpNull;
 
-[{
-	params ["_args", "_idPFH"];
-	_args params ["_spawnPositions", "_currenGrouptUnitCount", "_numberOfUnitsToSpawn", "_side", "_group"];
+TRACE_2("",_unitPoolArray, _unitPool);
 
-	if (_numberOfUnitsToSpawn <= 0 || (count _spawnPositions) <= 0) exitWith { // TODO: if _numberOfUnitsToSpawn has left over units, handle in some way, maybe a patrol??
-		[_idPFH] call cba_fnc_removePerFrameHandler;
-	};
 
-    private _spawnPos = selectRandom _spawnPositions;
+if (_side isEqualTo 0) then {
+    _side = east;
+};
 
-    // delete the position from the array to avoid doubling
-    _spawnPositions deleteAt (_spawnPositions findIf {_x == _spawnPos});
+if (_side isEqualTo 1) then {
+    _side = independent;
+};
 
-    // create a group if the _currenGrouptUnitCount is == 0
-    if (_currenGrouptUnitCount == 0) then {
-        _group = createGroup _side;
-    };
+if (_side isEqualTo 2) then {
+    _side = west;
+};
 
-    // call a create unit function
-    [_spawnPos, _module, _group] call FUNC(spawnUnit);
-    _currenGrouptUnitCount = _currenGrouptUnitCount + 1;
-    _numberOfUnitsToSpawn = _numberOfUnitsToSpawn - 1;
-    if (_currenGrouptUnitCount == 10) then {
-        _currenGrouptUnitCount = 0;
-    };
-
-    // update pfh vars
-    _args set [0, _spawnPositions];
-    _args set [1, _currenGrouptUnitCount];
-    _args set [2, _numberOfUnitsToSpawn];
-    _args set [4, _group];
-
-}, 1, [_spawnPositions, _currenGrouptUnitCount, _numberOfUnitsToSpawn, _side, _group]] call cba_fnc_addPerFrameHandler;
+[_spawnPositions, _numberOfUnitsToSpawn, _numberOfPositionsToOccupy, _side, _module, _unitPoolArray, _currenGrouptUnitCount] call FUNC(spawnBuildingUnit);

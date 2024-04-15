@@ -25,33 +25,45 @@ _area params ["", "_a", "_b"];
 
 // get which dimension is largest to use as radius
 private _radius = [_b, _a] select (_a > _b);
-
 TRACE_4("",_area,_a,_b,_radius);
 
+
 // get all buildings in radius then in area
+
+// private _allBuildingsInArea = _allBuildingsInRadius inAreaArray _area;
+
 private _allBuildingsInRadius = nearestTerrainObjects [_module, ["BUILDING", "HOUSE"], _radius, false, true];
-TRACE_1("",_allBuildingsInRadius);
+private _allBuildingsInArea = _allBuildingsInRadius select {_x inArea _area};
 
-private _allBuildingsInArea = _allBuildingsInRadius inAreaArray _area;
+// get the building positions for the buildings
+private _buildingPositions = [];
+{
+    private _building = _x;
+    private _buildingPositionsArray = _building buildingPos -1;
+    {
+        private _buildingPosition = _x;
+        _buildingPositions pushBack _buildingPosition;
+    } forEach _buildingPositionsArray;
+} forEach _allBuildingsInArea;
 
-// // get all ai buildings in radius then in area
-// private _allAiBuildingPositionsInRadius = GVAR(aiBuildingPositions) select {_x distance2D _module <= _radius};
+
+// private _allAiBuildingPositionsInRadius = [];
+// {
+//     _allAiBuildingPositionsInRadius pushBack _x;
+// } forEach (_module nearObjects ["CBA_BuildingPos", _radius]);
 // private _aiBuildingPositions = _allAiBuildingPositionsInRadius inAreaArray _area;
 
-// // get the building positions for the buildings
-// private _buildingPositions = [];
-// {
-//     private _building = _x;
-//     private _buildingPositionsArray = _building buildingPos -1;
-//     {
-//         private _buildingPosition = _x;
-//         _buildingPositions pushBack _buildingPosition;
-//     } forEach _buildingPositionsArray;
-// } forEach _allBuildingsInArea;
+// get all ai buildings in the area
+private _aiBuildingPositions = [];
+private _aiBuildingPositionsInArea = (_module nearObjects ["CBA_BuildingPos", _radius]) select {_x inArea _area};
+{
+    _aiBuildingPositions pushBack (getPos _x);
+} forEach _aiBuildingPositionsInArea;
 
-// // append building positions and ai building positions
-// private _spawnPositions = _buildingPositions + _aiBuildingPositions;
+// append building positions and ai building positions
+private _spawnPositions = _buildingPositions + _aiBuildingPositions;
+TRACE_1("",count _spawnPositions);
 
-// // call out to select position function
-// [_spawnPositions, _module] call FUNC(selectSpawnPosition);
+// call out to select position function
+[_spawnPositions, _module] call FUNC(selectSpawnPosition);
 

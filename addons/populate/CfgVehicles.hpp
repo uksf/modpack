@@ -30,6 +30,24 @@ class CfgVehicles {
                 defaultValue = 30;
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(numberOfUnits),_value,true)]);
             };
+            class GVAR(patrolRadius) {
+                property = QGVAR(patrolRadius);
+                displayName = "Patrol Radius";
+                tooltip = "The radius any left over units will patrol around the module location. Used for when positions to occupy isn't 100%";
+                control = "EditShort";
+                validate = "NUMBER";
+                defaultValue = 50;
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(numberOfUnits),_value,true)]);
+            };
+             class GVAR(patrolSize) {
+                property = QGVAR(patrolSize);
+                displayName = "Patrol Size";
+                tooltip = "The number of units in each patrol. Patrols occur once all building positions are filled.";
+                control = "EditShort";
+                validate = "NUMBER";
+                defaultValue = 6;
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(numberOfUnits),_value,true)]);
+            };
             class GVAR(unitPoolString) {
                 property = QGVAR(unitPoolString);
                 displayName = "Unit Pool";
@@ -70,7 +88,7 @@ class CfgVehicles {
                         value = 0;
                     };
                     class Guer {
-                        name = "Independent";
+                        name = "INDEPENDENT";
                         value = 1;
                     };
                     class West {
