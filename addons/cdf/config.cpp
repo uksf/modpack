@@ -135,6 +135,7 @@ class CfgPatches {
     };
 };
 
+#include "CfgEditorSubcategories.hpp"
 #include "CfgFactionClasses.hpp"
 #include "CfgGroups.hpp"
 #include "CfgVehicles.hpp"

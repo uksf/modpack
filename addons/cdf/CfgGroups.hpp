@@ -246,8 +246,6 @@ class cfgGroups {
                 };
 
                 // woodland
-
-
                 class GVAR(Sniper_Pair_Woodland) {
                     name = "Sniper Pair (Woodland)";
                     faction = QUOTE(ADDON);

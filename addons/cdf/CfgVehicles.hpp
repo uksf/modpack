@@ -75,6 +75,7 @@ class CfgVehicles {
     };
 
     class GVAR(Soldier_Base_Woodland) : GVAR(Soldier_Base) {
+        editorSubcategory = QGVAR(men_woodland);
         uniformClass = "CUP_U_B_BDUv2_gloves_Tigerstripe";
     };
 
@@ -146,7 +147,8 @@ class CfgVehicles {
         };
     };
 
-#include "units\CfgUnits.hpp"
+#include "units\CfgUnitsAlpine.hpp"
+#include "units\CfgUnitsWoodland.hpp"
 #include "vehicles\CfgAntiAir.hpp"
 #include "vehicles\CfgArtillery.hpp"
 #include "vehicles\CfgMTLB.hpp"
