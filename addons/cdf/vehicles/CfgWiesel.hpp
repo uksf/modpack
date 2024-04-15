@@ -17,6 +17,14 @@ class GVAR(Wiesel_AT) : I_LT_01_AT_F {
     INVENTORY_EMPTY;
 };
 
+class GVAR(Wiesel_AT_Woodland) : GVAR(Wiesel_AT) {
+    displayName = "Wiesel AT (Woodland)";
+    crew = QGVAR(Armour_Crewman);
+    typicalCargo[] = {
+        QGVAR(Armour_Crewman)
+    };
+};
+
 // MK20
 class I_LT_01_cannon_F;
 class GVAR(Wiesel_MK20) : I_LT_01_cannon_F {
@@ -34,4 +42,12 @@ class GVAR(Wiesel_MK20) : I_LT_01_cannon_F {
         QGVAR(Armour_Crewman)
     };
     INVENTORY_EMPTY;
+};
+
+class GVAR(Wiesel_MK20_Woodland) : GVAR(Wiesel_MK20) {
+    displayName = "Wiesel Mk20 (Woodland)";
+    crew = QGVAR(Armour_Crewman);
+    typicalCargo[] = {
+        QGVAR(Armour_Crewman)
+    };
 };
