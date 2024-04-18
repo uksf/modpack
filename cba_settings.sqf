@@ -22,21 +22,19 @@ force force ace_advanced_ballistics_muzzleVelocityVariationEnabled = true;
 force force ace_advanced_ballistics_simulationInterval = 0.05;
 
 // ACE Advanced Fatigue
-force force ace_advanced_fatigue_deployedSwayFactor = 1;
 force force ace_advanced_fatigue_enabled = true;
 force force ace_advanced_fatigue_enableStaminaBar = true;
 ace_advanced_fatigue_fadeStaminaBar = true;
 force force ace_advanced_fatigue_loadFactor = 0.5;
 force force ace_advanced_fatigue_performanceFactor = 2;
 force force ace_advanced_fatigue_recoveryFactor = 2;
-force force ace_advanced_fatigue_restedSwayFactor = 1;
-force force ace_advanced_fatigue_swayFactor = 1;
 force force ace_advanced_fatigue_terrainGradientFactor = 0.5;
 
 // ACE Advanced Throwing
 force force ace_advanced_throwing_enabled = true;
 force force ace_advanced_throwing_enablePickUp = true;
 force force ace_advanced_throwing_enablePickUpAttached = true;
+ace_advanced_throwing_enableTempWindInfo = true;
 ace_advanced_throwing_showMouseControls = true;
 ace_advanced_throwing_showThrowArc = true;
 
@@ -89,12 +87,16 @@ force force ace_common_allowFadeMusic = true;
 force force ace_common_checkPBOsAction = 0;
 force force ace_common_checkPBOsCheckAll = false;
 force force ace_common_checkPBOsWhitelist = "[]";
+force force ace_common_deployedSwayFactor = 1;
 ace_common_displayTextColor = [0,0,0,0.1];
 ace_common_displayTextFontColor = [1,1,1,1];
+force force ace_common_enableSway = true;
 ace_common_epilepsyFriendlyMode = false;
 force force ace_common_progressBarInfo = 0;
+force force ace_common_restedSwayFactor = 1;
 ace_common_settingFeedbackIcons = 1;
 ace_common_settingProgressBarLocation = 0;
+force force ace_common_swayFactor = 1;
 
 // ACE Cook off
 force force ace_cookoff_ammoCookoffDuration = 0.25;
@@ -179,7 +181,7 @@ force force acex_headless_log = false;
 force force acex_headless_transferLoadout = 1;
 
 // ACE Hearing
-force force ace_hearing_autoAddEarplugsToUnits = true;
+force force ace_hearing_autoAddEarplugsToUnits = 1;
 force force ace_hearing_disableEarRinging = false;
 force force ace_hearing_earplugsVolume = 0.5;
 force force ace_hearing_enableCombatDeafness = true;
@@ -1096,6 +1098,7 @@ force force zen_vision_enableWhiteHotRedCold = false;
 zen_faction_filter_0_CDF = true;
 zen_faction_filter_0_CUP_O_ChDKZ = true;
 zen_faction_filter_0_CUP_O_RU = true;
+zen_faction_filter_0_CUP_O_RUS_M = true;
 zen_faction_filter_0_CUP_O_SLA = true;
 zen_faction_filter_0_CUP_O_TK = true;
 zen_faction_filter_0_CUP_O_TK_MILITIA = true;
@@ -1118,6 +1121,7 @@ zen_faction_filter_1_BLU_G_F = true;
 zen_faction_filter_1_BLU_GEN_F = true;
 zen_faction_filter_1_BLU_T_F = true;
 zen_faction_filter_1_BLU_W_F = true;
+zen_faction_filter_1_CUP_B_AFU = true;
 zen_faction_filter_1_CUP_B_CDF = true;
 zen_faction_filter_1_CUP_B_CZ = true;
 zen_faction_filter_1_CUP_B_GB = true;
