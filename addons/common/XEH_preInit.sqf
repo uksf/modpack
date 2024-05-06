@@ -57,6 +57,21 @@ if (isServer) then {
     GVAR(updateHeadlessClientDelay) = 180;
 };
 
+if (!isServer) then {
+    ace_headless_headlessClients = [];
+    ["acex_headless_headlessClientJoined", {
+        params ["_headlessClient"];
+
+        ace_headless_headlessClients pushBackUnique _headlessClient;
+    }] call CBA_fnc_addEventHandler;
+    ["acex_headless_headlessClientLeft", {
+        params ["_headlessClient"];
+
+        ace_headless_headlessClients deleteAt (ace_headless_headlessClients find _headlessClient);
+        ace_headless_headlessClients = ace_headless_headlessClients - [objNull];
+    }] call CBA_fnc_addEventHandler;
+};
+
 [QGVAR(notify), {_this call CBA_fnc_notify}] call CBA_fnc_addEventHandler;
 [QGVAR(log), {INFO(_this#0)}] call CBA_fnc_addEventHandler;
 [QGVAR(deleteEmptyGroups), {{deleteGroup _x} forEach allGroups}] call CBA_fnc_addEventHandler;
