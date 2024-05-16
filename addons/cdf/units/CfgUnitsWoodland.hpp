@@ -44,6 +44,10 @@ class GVAR(Rifleman_LAT_Woodland) : GVAR(Rifleman_Woodland) {
     magazines[] = { "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_HandGrenade_RGO", "CUP_HandGrenade_RGO", "SmokeShell", "SmokeShell", "SmokeShell" };
     respawnMagazines[] = { "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_HandGrenade_RGO", "CUP_HandGrenade_RGO", "SmokeShell", "SmokeShell", "SmokeShell" };
     icon = "iconManAT";
+    uksf_equipment_randomSecondaryWeapons[] = {
+        "UK3CB_BAF_AT4_CS_AP_Launcher", 0.33,
+        "UK3CB_BAF_AT4_CS_AT_Launcher", 0.66
+    };
 };
 class GVAR(Sharpshooter_Woodland) : GVAR(Rifleman_Woodland) {
     displayName = "Sharpshooter";
