@@ -148,8 +148,8 @@ class CfgVehicles {
         maximumLoad = 400;
         mass = 75;
     };
-    class B_Carryall_mcamo;
-    class GVAR(bag_sniper) : B_Carryall_mcamo {
+    class VSM_Multicam_carryall;
+    class GVAR(bag_sniper) : VSM_Multicam_carryall {
         author = "UKSF";
         displayName = "Sniper Bag (AXMC)";
         maximumLoad = 500;
