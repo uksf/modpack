@@ -10,6 +10,12 @@ class GVAR(M777) : pook_M777 {
     INVENTORY_EMPTY;
 };
 
+class GVAR(M777_Woodland) : GVAR(M777) {
+    displayName = "M-777 (Woodland)";
+    crew = QGVAR(Crewman_Woodland);
+    typicalCargo[] = { QGVAR(Crewman_Woodland) };
+};
+
 // SMERCH
 class pook_9K58_BLUFOR;
 class GVAR(SMERCH) : pook_9K58_BLUFOR {
@@ -22,6 +28,12 @@ class GVAR(SMERCH) : pook_9K58_BLUFOR {
     INVENTORY_EMPTY;
 };
 
+class GVAR(SMERCH_Woodland) : GVAR(SMERCH) {
+    displayName = "Smerch (Woodland)";
+    crew = QGVAR(Crewman_Woodland);
+    typicalCargo[] = { QGVAR(Crewman_Woodland) };
+};
+
 // 2S7M
 class pook_2S7_CDF;
 class GVAR(2S7M) : pook_2S7_CDF {
@@ -32,4 +44,10 @@ class GVAR(2S7M) : pook_2S7_CDF {
     crew = QGVAR(Crewman);
     typicalCargo[] = { QGVAR(Crewman) };
     INVENTORY_EMPTY;
+};
+
+class GVAR(2S7M_Woodland) : GVAR(2S7M) {
+    displayName = "2S7M (Woodland)";
+    crew = QGVAR(Crewman_Woodland);
+    typicalCargo[] = { QGVAR(Crewman_Woodland) };
 };

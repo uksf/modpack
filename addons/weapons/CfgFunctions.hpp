@@ -30,4 +30,14 @@ class CfgFunctions {
             delete underbarrel;
         };
     };
+    class UK3CB_BAF_Weapons_Ammo {
+        class UK3CB_BAF_Weapons_Ammo {
+            class check_for_smoke_round {
+                file = QPATHTOF(functions\fnc_3cbCheckForSmokeRoundWrapper.sqf);
+            };
+            class create_smoke_round {
+                file = QPATHTOF(functions\fnc_3cbCreateSmokeRoundWrapper.sqf);
+            };
+        };
+    };
 };

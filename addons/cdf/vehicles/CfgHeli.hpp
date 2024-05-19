@@ -18,6 +18,14 @@ class GVAR(CH146_Tpt) : CUP_I_412_Mil_Transport_PMC {
     INVENTORY_EMPTY;
 };
 
+class GVAR(CH146_Tpt_Woodland) : GVAR(CH146_Tpt) {
+    displayName = "CH-146 Griffon (Transport - Woodland)";
+    crew = QGVAR(Heli_Pilot_Woodland);
+    typicalCargo[] = {
+        QGVAR(Heli_Pilot_Woodland)
+    };
+};
+
 // Griffon Armed
 class CUP_I_412_Military_Armed_PMC;
 class GVAR(CH146_Armed) : CUP_I_412_Military_Armed_PMC {
@@ -38,6 +46,14 @@ class GVAR(CH146_Armed) : CUP_I_412_Military_Armed_PMC {
     INVENTORY_EMPTY;
 };
 
+class GVAR(CH146_Armed_Woodland) : GVAR(CH146_Armed) {
+    displayName = "CH-146 Griffon (Armed - Woodland)";
+    crew = QGVAR(Heli_Pilot_Woodland);
+    typicalCargo[] = {
+        QGVAR(Heli_Pilot_Woodland)
+    };
+};
+
 // Griffon AT
 class CUP_I_412_Military_Armed_AT_PMC;
 class GVAR(CH146_AT) : CUP_I_412_Military_Armed_AT_PMC {
@@ -56,6 +72,14 @@ class GVAR(CH146_AT) : CUP_I_412_Military_Armed_AT_PMC {
         "cup\airvehicles\cup_airvehicles_412\data\stickers\heli_medium01_stickers_ca.paa"
     };
     INVENTORY_EMPTY;
+};
+
+class GVAR(CH146_AT_Woodland) : GVAR(CH146_AT) {
+    displayName = "CH-146 Griffon (AT - Woodland)";
+    crew = QGVAR(Heli_Pilot_Woodland);
+    typicalCargo[] = {
+        QGVAR(Heli_Pilot_Woodland)
+    };
 };
 
 

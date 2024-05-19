@@ -26,6 +26,7 @@ class GVAR(Gripen) : uksf_eug_Gripen {
     INVENTORY_EMPTY;
 };
 
+
 // Li 2
 class uksf_eug_Li_2;
 class GVAR(Li2) : uksf_eug_Li_2 {

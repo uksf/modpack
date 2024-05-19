@@ -1,4 +1,3 @@
-//Units
 class GVAR(Rifleman) : GVAR(Soldier_Base) {
     scope = 2;
     displayName = "Rifleman";
