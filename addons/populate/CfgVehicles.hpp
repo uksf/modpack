@@ -37,7 +37,7 @@ class CfgVehicles {
                 control = "EditShort";
                 validate = "NUMBER";
                 defaultValue = 50;
-                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(numberOfUnits),_value,true)]);
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(patrolRadius),_value,true)]);
             };
              class GVAR(patrolSize) {
                 property = QGVAR(patrolSize);
@@ -46,7 +46,7 @@ class CfgVehicles {
                 control = "EditShort";
                 validate = "NUMBER";
                 defaultValue = 6;
-                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(numberOfUnits),_value,true)]);
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(patrolSize),_value,true)]);
             };
             class GVAR(unitPoolString) {
                 property = QGVAR(unitPoolString);

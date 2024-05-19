@@ -16,6 +16,8 @@ params ["_module"];
 
 if !(isServer) exitWith {};
 
+private _statics = [];
+
 // get the area
 private _areaParams = _module getVariable ["objectarea", []];
 private _area = [getPos _module] + _areaParams;
@@ -25,14 +27,9 @@ _area params ["", "_a", "_b"];
 
 // get which dimension is largest to use as radius
 private _radius = [_b, _a] select (_a > _b);
-TRACE_4("",_area,_a,_b,_radius);
-
 
 // get all buildings in radius then in area
-
-// private _allBuildingsInArea = _allBuildingsInRadius inAreaArray _area;
-
-private _allBuildingsInRadius = nearestTerrainObjects [_module, ["BUILDING", "HOUSE"], _radius, false, true];
+private _allBuildingsInRadius = nearestTerrainObjects [_module, ["BUILDING", "HOUSE", "BUNKER"], _radius, false, true];
 private _allBuildingsInArea = _allBuildingsInRadius select {_x inArea _area};
 
 // get the building positions for the buildings
@@ -46,24 +43,23 @@ private _buildingPositions = [];
     } forEach _buildingPositionsArray;
 } forEach _allBuildingsInArea;
 
-
-// private _allAiBuildingPositionsInRadius = [];
-// {
-//     _allAiBuildingPositionsInRadius pushBack _x;
-// } forEach (_module nearObjects ["CBA_BuildingPos", _radius]);
-// private _aiBuildingPositions = _allAiBuildingPositionsInRadius inAreaArray _area;
-
 // get all ai buildings in the area
 private _aiBuildingPositions = [];
 private _aiBuildingPositionsInArea = (_module nearObjects ["CBA_BuildingPos", _radius]) select {_x inArea _area};
 {
-    _aiBuildingPositions pushBack (getPos _x);
+    // _aiBuildingPositions pushBack [getPos _x, getDir _x];
+    _aiBuildingPositions pushBack _x;
 } forEach _aiBuildingPositionsInArea;
+
+// get statics in the area
+private _occupyStatics = _module getVariable [QGVAR(occupyStaticGunsBool), false];
+if (_occupyStatics) then {
+    _statics = [_module] call FUNC(getValidStatics);
+};
 
 // append building positions and ai building positions
 private _spawnPositions = _buildingPositions + _aiBuildingPositions;
-TRACE_1("",count _spawnPositions);
 
 // call out to select position function
-[_spawnPositions, _module] call FUNC(selectSpawnPosition);
+[_spawnPositions, _statics, _module] call FUNC(selectSpawnPosition);
 

@@ -18,7 +18,7 @@
         Nothing
 */
 
-params ["_spawnPositions", "_module"];
+params ["_spawnPositions", "_statics", "_module"];
 
 if (!isServer) exitWith {};
 
@@ -39,12 +39,10 @@ private _fnc_getArrayFromModule = {
 
 private _unitPool = _module getVariable [QGVAR(unitPoolString), []];
 private _unitPoolArray = parseSimpleArray _unitPool;
-private _patrolRadius = _module getVariable [QGVAR(patrolRadius), 0];
 private _spawnPercentage = _module getVariable [QGVAR(percentageOfPositionsToOccupy), 0];
 private _numberOfPositionsToOccupy = round((count _spawnPositions) * (_spawnPercentage / 100));
 private _numberOfUnitsToSpawn = [_module, QGVAR(numberOfUnits)] call _fnc_getArrayFromModule;
 private _side = _module getVariable [QGVAR(side), 0];
-private _currenGrouptUnitCount = 0;
 
 TRACE_2("",_unitPoolArray, _unitPool);
 
@@ -61,4 +59,5 @@ if (_side isEqualTo 2) then {
     _side = west;
 };
 
-[_spawnPositions, _numberOfUnitsToSpawn, _numberOfPositionsToOccupy, _side, _module, _unitPoolArray, _currenGrouptUnitCount] call FUNC(spawnBuildingUnit);
+
+[_spawnPositions, _numberOfUnitsToSpawn, _numberOfPositionsToOccupy, _side, _module, _unitPoolArray, _statics] call FUNC(spawnBuildingUnit);
