@@ -35,8 +35,6 @@ private _patrolRadius = _module getVariable [QGVAR(patrolRadius), 0];
         _group = createGroup _side;
     };
 
-    TRACE_4("",_numberOfUnitsToSpawn, _unitPoolArray, _currenGrouptUnitCount, _group);
-
     private _unitType = selectRandom _unitPoolArray;
     private _unit = _group createUnit [_unitType, [0,0,0], [], 0, "NONE"];
     _unit setPos (getPos _module);
