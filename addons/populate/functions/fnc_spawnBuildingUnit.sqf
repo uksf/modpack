@@ -7,9 +7,13 @@
         Spawns a unit at the passed position
 
     Parameters:
-        0: _spawnPos <POSITION>
-        1: _module <OBJECT>
-        2: _group <GROUP>
+        0: _spawnPositions <ARRAY>
+        1: _numberOfUnitsToSpawn <NUMBER>
+        2: _numberOfPositionsToOccupy <NUMBER>
+        3: _side <SIDE>
+        4: _module <MODULE>
+        5: _unitPoolArray <ARRAY>
+        6: _statics <ARRAY>
 
     Return value:
         Nothing
@@ -27,7 +31,7 @@ private _currenGrouptUnitCount = 0;
     private _pos = [0,0,0];
     private _dir = -1;
 
-    if (_numberOfPositionsToOccupy <= 0) exitWith {
+    if (_numberOfPositionsToOccupy <= 1) exitWith {
         [_idPFH] call cba_fnc_removePerFrameHandler;
         if (_numberOfUnitsToSpawn > 0) then {
             [_numberOfUnitsToSpawn, _side, _module, _unitPoolArray] call FUNC(createPatrols);
@@ -42,13 +46,19 @@ private _currenGrouptUnitCount = 0;
     private _unitType = selectRandom _unitPoolArray;
     private _unit = _group createUnit [_unitType, [0,0,0], [], 0, "NONE"];
 
+    _currenGrouptUnitCount = _currenGrouptUnitCount + 1;
+    _numberOfUnitsToSpawn = _numberOfUnitsToSpawn - 1;
+
     // do statics first - use exit with to stop spawning of other units
     if (_statics isNotEqualTo []) exitWith {
         private _static = selectRandom _statics;
         _unit moveInAny _static;
         _statics deleteAt (_statics findIf {_x isEqualTo _static});
         _numberOfPositionsToOccupy = _numberOfPositionsToOccupy - 1;
+
         _args set [1, _numberOfUnitsToSpawn];
+        _args set [2, _numberOfPositionsToOccupy];
+        _args set [6, _currenGrouptUnitCount];
         _args set [7, _group];
         _args set [8, _statics];
     };
@@ -66,12 +76,10 @@ private _currenGrouptUnitCount = 0;
     _unit setPos _pos;
     _unit setDir _dir; // groups will follow the group leaders dir most of the time
     _spawnPositions deleteAt (_spawnPositions findIf {_x isEqualTo _spawnPos});
+     _numberOfPositionsToOccupy = _numberOfPositionsToOccupy - 1;
 
     _unit disableAI "PATH";
 
-    _currenGrouptUnitCount = _currenGrouptUnitCount + 1;
-    _numberOfUnitsToSpawn = _numberOfUnitsToSpawn - 1;
-    _numberOfPositionsToOccupy = _numberOfPositionsToOccupy - 1;
     if (_currenGrouptUnitCount == 10) then {
         _currenGrouptUnitCount = 0;
     };
