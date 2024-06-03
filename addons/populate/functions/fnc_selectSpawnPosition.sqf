@@ -12,7 +12,8 @@
 
     Parameters:
         0: _spawnPositions <ARRAY>
-        1: _module <OBJECT>
+        1: _statics <ARRAY>
+        2: _module <OBJECT>
 
     Return value:
         Nothing
