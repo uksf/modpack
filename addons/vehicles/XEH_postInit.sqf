@@ -4,6 +4,7 @@
 
 if (hasInterface) exitWith {
     call FUNC(addSwapDriverActions);
-    
+
+    // Reload bug in here maybe?
     addUserActionEventHandler ["ReloadMagazine", "Activate", FUNC(reloadTurret)];
 };
