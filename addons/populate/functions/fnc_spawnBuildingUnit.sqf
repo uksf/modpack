@@ -25,8 +25,8 @@ private _group = grpNull;
 private _currenGrouptUnitCount = 0;
 
 [{
-	params ["_args", "_idPFH"];
-	_args params ["_spawnPositions", "_numberOfUnitsToSpawn", "_numberOfPositionsToOccupy", "_side", "_module", "_unitPoolArray", "_currenGrouptUnitCount", "_group", "_statics"];
+    params ["_args", "_idPFH"];
+    _args params ["_spawnPositions", "_numberOfUnitsToSpawn", "_numberOfPositionsToOccupy", "_side", "_module", "_unitPoolArray", "_currenGrouptUnitCount", "_group", "_statics"];
 
     private _pos = [0,0,0];
     private _dir = -1;
