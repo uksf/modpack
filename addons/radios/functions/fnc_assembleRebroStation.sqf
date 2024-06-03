@@ -52,9 +52,9 @@ _mast setVariable [QGVAR(rebroEquipment), _equipment, true];
 _equipment setVariable [QGVAR(rebroMast), _mast, true];
 _equipment setVariable [QGVAR(rebroObjects), [_lid, _router], true];
 
-_equipment setVariable [QEGVAR(persistence,excluded), true];
-_router setVariable [QEGVAR(persistence,excluded), true];
-_lid setVariable [QEGVAR(persistence,excluded), true];
-_mast setVariable [QEGVAR(persistence,excluded), true];
+_equipment setVariable [QEGVAR(persistence,excluded), true, true];
+_router setVariable [QEGVAR(persistence,excluded), true, true];
+_lid setVariable [QEGVAR(persistence,excluded), true, true];
+_mast setVariable [QEGVAR(persistence,excluded), true, true];
 
 [QGVAR(initialiseRebroStation), [_mast]] call CBA_fnc_serverEvent;

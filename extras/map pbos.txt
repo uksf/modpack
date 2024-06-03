@@ -21,3 +21,8 @@
     - sah_bunker_obj
 - Leskovets (410 MB)
     - projeta3014
+- North Takistan (795 MB)
+    - map_north_takistan_data_layers
+    - map_north_takistan_structures_e
+    - map_north_takistan
+    - map_north_takistan_data

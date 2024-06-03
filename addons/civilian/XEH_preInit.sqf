@@ -36,7 +36,7 @@ ADDON = false;
 ["ace_captives_escortingCaptive", {
     if !(GVAR(enableEscort)) exitWith {};
 
-    params ["_unit", "_state", "_target"];
+    params ["_target", "_state", "_unit"];
 
     if (_state) then {
         if !(ace_common_isReloading) then {
