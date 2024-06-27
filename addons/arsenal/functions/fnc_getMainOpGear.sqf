@@ -531,6 +531,7 @@ _mainOpGear append [
     "ACE_packingBandage",
     "ACE_painkillers",
     "ACE_penTorch",
+    "ACE_oximeter",
     "ACE_personalAidKit",
     "ACE_plasmaIV",
     "ACE_plasmaIV_250",

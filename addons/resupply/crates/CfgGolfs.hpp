@@ -130,6 +130,7 @@ class GVAR(g10) : GVAR(gx) {
     class TransportMagazines {
         MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_81mm_Mo_Shells,15);
     };
+    ace_dragging_ignoreWeight = 1;
 };
 class GVAR(g11) : GVAR(gx) {
     displayName = "G11 (MMSMK)";
@@ -141,6 +142,7 @@ class GVAR(g11) : GVAR(gx) {
     class TransportMagazines {
         MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_81mm_Mo_Smoke_White,15);
     };
+    ace_dragging_ignoreWeight = 1;
 };
 class GVAR(g12) : GVAR(gx) {
     displayName = "G12 (SN)";
