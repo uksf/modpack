@@ -671,13 +671,13 @@ acre_sys_core_premixGlobalVolume = 1;
 force force acre_sys_core_rememberUsedRackRadios = true;
 force force acre_sys_core_revealToAI = 1;
 acre_sys_core_spectatorVolume = 1;
-force force acre_sys_core_terrainLoss = 0.25;
+force force acre_sys_core_terrainLoss = 0.1;
 force acre_sys_core_ts3ChannelName = "";
 force acre_sys_core_ts3ChannelPassword = "";
 acre_sys_core_ts3ChannelSwitch = true;
 acre_sys_core_unmuteClients = true;
 force acre_sys_radio_defaultRadio = "ACRE_PRC343";
-force force acre_sys_signal_signalModel = 2;
+force force acre_sys_signal_signalModel = 0;
 
 // ACRE2 Gestures
 force force acre_sys_gestures_enabled = true;
