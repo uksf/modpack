@@ -101,11 +101,13 @@ _delay = _delay + (_artillery getArtilleryETA [_targetPosition, currentMagazine 
         _this call FUNC(fireMission);
     };
 
+    if (isNull _caller) exitWith {};
+
     [{
         params ["_callerGroup", "_artillery"];
 
-        if (!isNull _callerGroup && {count ([_callerGroup] call CBA_fnc_getAlive) > 0}) then {
-            (_callerGroup) setVariable [QGVAR(artillerySupportRequested), false, true];
+        if (!isNull _callerGroup && {[units _callerGroup, {alive _x}] call EFUNC(common,arrayNone)}) then {
+            _callerGroup setVariable [QGVAR(artillerySupportRequested), false, true];
         };
 
         if (!isNull _artillery) then {

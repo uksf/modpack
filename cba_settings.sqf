@@ -362,7 +362,7 @@ force force ace_medical_treatment_treatmentTimeSplint = 7;
 force force ace_medical_treatment_treatmentTimeTourniquet = 7;
 force force ace_medical_treatment_woundReopenChance = 1;
 force force ace_medical_treatment_woundStitchTime = 5;
-force force ace_medical_vitals_simulateSpO2 = true;
+force ace_medical_vitals_simulateSpO2 = true;
 
 // ACE Medical Interface
 force force ace_medical_feedback_bloodVolumeEffectType = 0;
@@ -671,13 +671,13 @@ acre_sys_core_premixGlobalVolume = 1;
 force force acre_sys_core_rememberUsedRackRadios = true;
 force force acre_sys_core_revealToAI = 1;
 acre_sys_core_spectatorVolume = 1;
-force force acre_sys_core_terrainLoss = 0.25;
+force force acre_sys_core_terrainLoss = 0.1;
 force acre_sys_core_ts3ChannelName = "";
 force acre_sys_core_ts3ChannelPassword = "";
 acre_sys_core_ts3ChannelSwitch = true;
 acre_sys_core_unmuteClients = true;
 force acre_sys_radio_defaultRadio = "ACRE_PRC343";
-force force acre_sys_signal_signalModel = 2;
+force force acre_sys_signal_signalModel = 0;
 
 // ACRE2 Gestures
 force force acre_sys_gestures_enabled = true;

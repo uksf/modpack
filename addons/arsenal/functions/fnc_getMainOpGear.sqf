@@ -279,7 +279,8 @@ _mainOpGear append [
     "arifle_mas_ukl_SPAR_01_blk_F",
     "arifle_mas_ukl_SPAR_01_snd_F",
     "arifle_mas_ukl_SPAR_01_w_F",
-    "arifle_mas_ukl_SDAR_F"
+    "arifle_mas_ukl_SDAR_F",
+    "hgun_mas_ukl_P226_F"
 ];
 
 // Attachments
@@ -457,7 +458,16 @@ _mainOpGear append [
     "muzzle_snds_SPS_AI_B_H",
     "muzzle_snds_SPS_AI_ES_H",
     "muzzle_snds_SPS_AI_G_H",
-    "muzzle_snds_SPS_AI_DE_H"
+    "muzzle_snds_SPS_AI_DE_H",
+    "optic_DMS",
+    "CUP_optic_SB_11_4x20_PM_od",
+    "CUP_optic_SB_11_4x20_PM_tan",
+    "CUP_optic_SB_11_4x20_PM",
+    "CUP_acc_ANPEQ_15_Flashlight_Black_L",
+    "CUP_acc_ANPEQ_15_Flashlight_OD_L",
+    "CUP_acc_ANPEQ_15_Flashlight_Tan_L",
+    "CUP_muzzle_snds_M16_camo",
+    "CUP_muzzle_snds_M16_coyote"
 ];
 
 // NVGs
@@ -478,7 +488,8 @@ _mainOpGear append [
     "CUP_NVG_GPNVG_black",
     "CUP_NVG_GPNVG_green",
     "CUP_NVG_GPNVG_tan",
-    "NVGoggles_mas_ukl_hv18"
+    "NVGoggles_mas_ukl_hv18",
+    "NVGoggles_mas_ukl_hv"
 ];
 
 // Items
@@ -520,6 +531,7 @@ _mainOpGear append [
     "ACE_packingBandage",
     "ACE_painkillers",
     "ACE_penTorch",
+    "ACE_oximeter",
     "ACE_personalAidKit",
     "ACE_plasmaIV",
     "ACE_plasmaIV_250",
@@ -572,7 +584,11 @@ _mainOpGear append [
     "uksf_diving_cylinderDoubleTx1070",
     "uksf_diving_cylinderSingleTx107",
     "uksf_halohaho_airSupply",
-    "ItemcTabHCam"
+    "ItemcTabHCam",
+    "ItemcTab",
+    "sps_black_hornet_01_Static_F",
+    "ACE_IR_Strobe_Item",
+    "acex_intelitems_notepad"
 ];
 
 // Uniforms
@@ -634,7 +650,15 @@ _mainOpGear append [
     "U_mas_ukl_B_CombatUniform_multi",
     "U_mas_ukl_B_CombatUniform_mtp",
     "U_mas_ukl_B_CombatUniform_S_mtp",
-    "U_mas_ukl_B_CombatUniform_S_multi"
+    "U_mas_ukl_B_CombatUniform_S_multi",
+    "U_mas_ukl_B_CombatUniform_m1",
+    "U_mas_ukl_B_suite_VEG",
+    "CUP_U_CRYE_MCAM_NP2_Roll",
+    "CUP_U_CRYE_MCAM_NP2_Full",
+    "CUP_U_CRYE_MCAM_NP_Roll",
+    "CUP_U_CRYE_MCAM_NP_Full",
+    "CUP_U_CRYE_G3C_MC",
+    "CUP_U_CRYE_G3C_MC_V3"
 ];
 
 // Vests
@@ -772,7 +796,10 @@ _mainOpGear append [
     "V_mas_ukl_PlateCarrierLR_tan",
     "V_mas_ukl_PlateCarrierRF_civ",
     "V_mas_ukl_PlateCarrierRF_rgr",
-    "V_mas_ukl_PlateCarrierRF_tan"
+    "V_mas_ukl_PlateCarrierRF_tan",
+    "V_mas_ukl_belt_carrier_LR",
+    "V_mas_ukl_belt_carrier_LR_green",
+    "V_mas_ukl_belt_carrier_LR_swat"
 ];
 
 // Backpacks
@@ -888,7 +915,11 @@ _mainOpGear append [
     "uksf_diving_bag",
     "B_mas_ukl_Kitbag_LW",
     "uksf_gear_bag_sniper",
-    "B_mas_ukl_Kitbag_d"
+    "B_mas_ukl_Kitbag_d",
+    "B_mas_ukl_Kitbag_m",
+    "CUP_B_Motherlode_Radio_MTP",
+    "CUP_B_Motherlode_MTP",
+    "B_RadioBag_01_mtp_F"
 ];
 
 // Helmets
@@ -1006,7 +1037,10 @@ _mainOpGear append [
     "H_mas_ukl_airframe_w",
     "H_mas_ukl_opscorn",
     "H_mas_ukl_opscore_t",
-    "H_mas_ukl_opscore_c"
+    "H_mas_ukl_opscore_c",
+    "H_mas_ukl_opscore_g",
+    "H_mas_ukl_Booniehat_mtp",
+    "H_mas_ukl_beanie_b"
 ];
 
 // Glasses
@@ -1034,7 +1068,12 @@ _mainOpGear append [
     "G_mas_ukl_shemag",
     "G_mas_ukl_shemag_gog_l",
     "G_mas_ukl_wrap_gog_T",
-    "G_mas_ukl_wrap_T"
+    "G_mas_ukl_wrap_T",
+    "G_mas_ukl_mask",
+    "CUP_G_ESS_KHK_Dark",
+    "CUP_G_ESS_KHK",
+    "CUP_G_ESS_RGR_Dark",
+    "CUP_G_ESS_RGR"
 ];
 
 uiNamespace setVariable [QGVAR(mainOpGear), _mainOpGear];
