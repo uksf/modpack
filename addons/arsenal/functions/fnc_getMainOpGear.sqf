@@ -171,7 +171,8 @@ _mainOpGear append [
     "SPS_AI_AXMC_338_250gr_Naturalis_IR_Mag",
     "SPS_AI_AXMC_338_API526_Mag",
     "SPS_AI_AXMC_338_HAPI_Mag",
-    "30Rnd_mas_ukl_556x45UW_Stanag"
+    "30Rnd_mas_ukl_556x45UW_Stanag",
+    "16Rnd_9x21_Mag"
 ];
 
 // Weapons
