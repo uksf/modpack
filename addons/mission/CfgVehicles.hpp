@@ -353,15 +353,6 @@ class CfgVehicles {
         canSetAreaShape = 0;
         category = EGVAR(common,eden);
         class Attributes : AttributesBase {
-            // class GVAR(ambientArtilleryTargetArea) {
-            //     property = QGVAR(ambientArtilleryTargetArea);
-            //     displayName = "Target Area";
-            //     tooltip = "Defines the target area any sync'd units should aim at e.g. a named trigger";
-            //     control = "EditShort";
-            //     defaultValue = "";
-            //     validate = "OBJECT";
-            //     expression = QUOTE(_this setVariable [ARR_3(QQGVAR(ambientArtilleryTargetArea),_value,true)]);
-            // };
             class GVAR(ambientArtilleryInterval) {
                 property = QGVAR(ambientArtilleryInterval);
                 displayName = "Interval";
