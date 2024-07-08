@@ -340,4 +340,63 @@ class CfgVehicles {
             };
         };
     };
+    class GVAR(moduleAmbientArtillery) : Module_F {
+        scope = 2;
+        is3DEN = 1;
+        displayName = "Ambient Artillery";
+        // icon = QPATHTOF(data\ui\Icon_Module_PatrolArea_Include_ca.paa);
+        // portrait = QPATHTOF(data\ui\Icon_Module_PatrolArea_Include_ca.paa);
+        function = QFUNC(moduleAmbientArtillery);
+        functionPriority = 25;
+        canSetArea = 0;
+        canSetAreaHeight = 0;
+        canSetAreaShape = 0;
+        category = EGVAR(common,eden);
+        class Attributes : AttributesBase {
+            // class GVAR(ambientArtilleryTargetArea) {
+            //     property = QGVAR(ambientArtilleryTargetArea);
+            //     displayName = "Target Area";
+            //     tooltip = "Defines the target area any sync'd units should aim at e.g. a named trigger";
+            //     control = "EditShort";
+            //     defaultValue = "";
+            //     validate = "OBJECT";
+            //     expression = QUOTE(_this setVariable [ARR_3(QQGVAR(ambientArtilleryTargetArea),_value,true)]);
+            // };
+            class GVAR(ambientArtilleryInterval) {
+                property = QGVAR(ambientArtilleryInterval);
+                displayName = "Interval";
+                tooltip = "Defines the time between fire missions in seconds";
+                control = "EditShort";
+                validate = "NUMBER";
+                defaultValue = "600";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(ambientArtilleryInterval),_value,true)]);
+            };
+            class GVAR(ambientArtilleryMinimumNumberOfRounds) {
+                property = QGVAR(ambientArtilleryMinimumNumberOfRounds);
+                displayName = "Minimum Number of Rounds";
+                tooltip = "Defines the minimum number of rounds to fire";
+                control = "EditShort";
+                validate = "NUMBER";
+                defaultValue = "4";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(ambientArtilleryMinimumNumberOfRounds),_value,true)]);
+            };
+            class GVAR(ambientArtilleryRandomNumberOfRounds) {
+                property = QGVAR(ambientArtilleryRandomNumberOfRounds);
+                displayName = "Random Number of Rounds";
+                tooltip = "Defines a random number of rounds to fire on top of the minimum rounds. E.g. if set at 2, artillery will fire from 4 - 6 rounds";
+                control = "EditShort";
+                validate = "NUMBER";
+                defaultValue = "2";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(ambientArtilleryRandomNumberOfRounds),_value,true)]);
+            };
+            class GVAR(ambientArtilleryDeleteShell) {
+                property = QGVAR(ambientArtilleryDeleteShell);
+                displayName = "Delete Shell";
+                tooltip = "Deletes the shell on firing so theres no splash";
+                control = "Checkbox";
+                defaultValue = false;
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(ambientArtilleryDeleteShell),_value,true)]);
+            };
+        };
+    };
 };
