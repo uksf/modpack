@@ -1,24 +1,5 @@
-#include "..\script_component.hpp"
-/*
-    Author:
-        Tim Beswick
-
-    Description:
-        Get main op gear from cache, else create and store
-
-    Parameter(s):
-        None
-
-    Return Value:
-        Main op gear <ARRAY>
-*/
-private _mainOpGear = uiNamespace getVariable [QGVAR(mainOpGear), []];
-if (_mainOpGear isNotEqualTo []) exitWith {
-    _mainOpGear
-};
-
-// Magazines
-_mainOpGear append [
+uksf_arsenal_mainOpGearBase = [
+    // Magazines
     "1Rnd_HE_Grenade_shell",
     "1Rnd_SmokeBlue_Grenade_shell",
     "1Rnd_SmokeGreen_Grenade_shell",
@@ -172,11 +153,9 @@ _mainOpGear append [
     "SPS_AI_AXMC_338_API526_Mag",
     "SPS_AI_AXMC_338_HAPI_Mag",
     "30Rnd_mas_ukl_556x45UW_Stanag",
-    "16Rnd_9x21_Mag"
-];
+    "16Rnd_9x21_Mag",
 
-// Weapons
-_mainOpGear append [
+    // Weapons
     "ACE_MX2A",
     "ACE_SpottingScope",
     "ACE_TacticalLadder_Pack",
@@ -281,11 +260,9 @@ _mainOpGear append [
     "arifle_mas_ukl_SPAR_01_snd_F",
     "arifle_mas_ukl_SPAR_01_w_F",
     "arifle_mas_ukl_SDAR_F",
-    "hgun_mas_ukl_P226_F"
-];
+    "hgun_mas_ukl_P226_F",
 
-// Attachments
-_mainOpGear append [
+    // Attachments
     "RKSL_optic_LDS",
     "RKSL_optic_LDS_C",
     "RKSL_optic_PMII_312",
@@ -468,11 +445,9 @@ _mainOpGear append [
     "CUP_acc_ANPEQ_15_Flashlight_OD_L",
     "CUP_acc_ANPEQ_15_Flashlight_Tan_L",
     "CUP_muzzle_snds_M16_camo",
-    "CUP_muzzle_snds_M16_coyote"
-];
+    "CUP_muzzle_snds_M16_coyote",
 
-// NVGs
-_mainOpGear append [
+    // NVGs
     "ACE_NVG_Pilot",
     "CUP_NVG_PVS15_black",
     "CUP_NVG_PVS15_green",
@@ -490,11 +465,9 @@ _mainOpGear append [
     "CUP_NVG_GPNVG_green",
     "CUP_NVG_GPNVG_tan",
     "NVGoggles_mas_ukl_hv18",
-    "NVGoggles_mas_ukl_hv"
-];
+    "NVGoggles_mas_ukl_hv",
 
-// Items
-_mainOpGear append [
+    // Items
     "ACE_ATragMX",
     "ACE_Altimeter",
     "ACE_CableTie",
@@ -589,11 +562,9 @@ _mainOpGear append [
     "ItemcTab",
     "sps_black_hornet_01_Static_F",
     "ACE_IR_Strobe_Item",
-    "acex_intelitems_notepad"
-];
+    "acex_intelitems_notepad",
 
-// Uniforms
-_mainOpGear append [
+    // Uniforms
     "SP_0000_Standard_TacticalUniform_ATacsFG",
     "SP_0000_Standard_TacticalUniform_ATacsFG_SS",
     "UK3CB_BAF_U_CombatUniform_Arctic_Ghillie_RM",
@@ -659,11 +630,9 @@ _mainOpGear append [
     "CUP_U_CRYE_MCAM_NP_Roll",
     "CUP_U_CRYE_MCAM_NP_Full",
     "CUP_U_CRYE_G3C_MC",
-    "CUP_U_CRYE_G3C_MC_V3"
-];
+    "CUP_U_CRYE_G3C_MC_V3",
 
-// Vests
-_mainOpGear append [
+    // Vests
     "UK3CB_BAF_V_HiVis",
     "UK3CB_BAF_V_Osprey",
     "UK3CB_BAF_V_Osprey_Belt_A",
@@ -800,11 +769,9 @@ _mainOpGear append [
     "V_mas_ukl_PlateCarrierRF_tan",
     "V_mas_ukl_belt_carrier_LR",
     "V_mas_ukl_belt_carrier_LR_green",
-    "V_mas_ukl_belt_carrier_LR_swat"
-];
+    "V_mas_ukl_belt_carrier_LR_swat",
 
-// Backpacks
-_mainOpGear append [
+    // Backpacks
     "B_AssaultPack_rgr",
     "B_Kitbag_mcamo",
     "B_Kitbag_rgr",
@@ -920,11 +887,9 @@ _mainOpGear append [
     "B_mas_ukl_Kitbag_m",
     "CUP_B_Motherlode_Radio_MTP",
     "CUP_B_Motherlode_MTP",
-    "B_RadioBag_01_mtp_F"
-];
+    "B_RadioBag_01_mtp_F",
 
-// Helmets
-_mainOpGear append [
+    // Helmets
     "COVER_4b",
     "COVER_4d",
     "H_Bandanna_camo",
@@ -1041,11 +1006,9 @@ _mainOpGear append [
     "H_mas_ukl_opscore_c",
     "H_mas_ukl_opscore_g",
     "H_mas_ukl_Booniehat_mtp",
-    "H_mas_ukl_beanie_b"
-];
+    "H_mas_ukl_beanie_b",
 
-// Glasses
-_mainOpGear append [
+    // Glasses
     "CUP_FR_NeckScarf",
     "CUP_FR_NeckScarf2",
     "CUP_H_FR_BandannaGreen",
@@ -1076,7 +1039,3 @@ _mainOpGear append [
     "CUP_G_ESS_RGR_Dark",
     "CUP_G_ESS_RGR"
 ];
-
-uiNamespace setVariable [QGVAR(mainOpGear), _mainOpGear];
-
-_mainOpGear

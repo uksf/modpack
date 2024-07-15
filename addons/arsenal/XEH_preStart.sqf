@@ -3,6 +3,6 @@
 #include "XEH_PREP.hpp"
 
 // Cache main op gear
-call FUNC(getMainOpGear);
+call FUNC(loadMainOpGear);
 
 uiNamespace setVariable [QGVAR(configLoadouts), ("true" configClasses (configFile >> QGVAR(loadouts)))];

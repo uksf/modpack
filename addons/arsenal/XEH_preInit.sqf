@@ -5,6 +5,15 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
+GVAR(mainOpGear) = +(uiNamespace getVariable [QGVAR(mainOpGear), []]);
+call FUNC(loadMissionMainOpGear);
+GVAR(cachedMainOpGear) = createHashMap;
+GVAR(cachedFullGear) = createHashMap;
+
+["CBA_settingsInitialized", {
+    GVAR(useMainOpGear) = EGVAR(common,mainOp);
+}] call CBA_fnc_addEventHandler;
+
 private _loadoutConfigs = uiNamespace getVariable [QGVAR(configLoadouts), []];
 if (isClass (missionConfigFile >> QGVAR(loadouts))) then {
     private _missionLoadouts = ("true" configClasses (missionConfigFile >> QGVAR(loadouts)));
@@ -13,10 +22,6 @@ if (isClass (missionConfigFile >> QGVAR(loadouts))) then {
 };
 private _defaultLoadouts = _loadoutConfigs apply {[getText (_x >> "name"), call compile (getText (_x >> "loadout"))]};
 uiNamespace setVariable [QGVAR(defaultLoadouts), _defaultLoadouts];
-
-GVAR(useMainOpGear) = false;
-GVAR(cachedMainOpGear) = createHashMap;
-GVAR(cachedFullGear) = createHashMap;
 
 ["ace_arsenal_displayOpened", {
     params ["_display"];

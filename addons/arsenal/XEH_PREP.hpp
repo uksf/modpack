@@ -1,4 +1,5 @@
 PREP(addArsenal);
-PREP(getMainOpGear);
 PREP(initSupplyCrate);
+PREP(loadMainOpGear);
+PREP(loadMissionMainOpGear);
 PREP(switchMainOpGear);
