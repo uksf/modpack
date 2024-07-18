@@ -36,7 +36,6 @@ private _randomRounds = _logic getVariable [QGVAR(ambientArtilleryRandomNumberOf
     [{
         params ["_args","_idPFH"];
         _args params ["_artyPiece", "_targetAreas", "_minimumRounds", "_randomRounds"];
-        diag_log format ["---Ambient Arty--- tas: %1", _targetAreas];
 
         if (!alive _artyPiece) exitWith {
             [_idPFH] call cba_fnc_removePerFrameHandler;
