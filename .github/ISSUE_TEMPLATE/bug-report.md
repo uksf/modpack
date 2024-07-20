@@ -19,8 +19,5 @@ assignees: ''
 - Step 2
 - Step 3
 
-# Additional context
-<!-- Add any additional context. REMOVE IF UNUSED -->
-
 # Screenshots
 <!-- Add screenshots to help explain your problem as you feel necessary. REMOVE IF UNUSED  -->
