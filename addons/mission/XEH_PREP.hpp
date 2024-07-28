@@ -1,4 +1,5 @@
 PREP(addArtillerySupportUnit);
+PREP(ambientLogisticsAddWaypoints);
 PREP(artillerySupport);
 PREP(assignID);
 PREP(cleanupDynamicPatrolGroups);
