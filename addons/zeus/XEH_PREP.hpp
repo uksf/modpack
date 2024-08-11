@@ -20,6 +20,7 @@ PREP(moduleToggleZeusVisibility);
 
 // Context actions
 PREP(addContextActions);
+PREP(contextBifrost);
 PREP(contextCanSupportRadio);
 PREP(contextSupportRadio);
 PREP(contextSupportRadioModifier);

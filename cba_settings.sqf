@@ -177,7 +177,7 @@ force force ace_grenades_convertExplosives = true;
 force force acex_headless_delay = 15;
 force force acex_headless_enabled = true;
 force force acex_headless_endMission = 0;
-force force acex_headless_log = false;
+force force acex_headless_log = true;
 force force acex_headless_transferLoadout = 1;
 
 // ACE Hearing

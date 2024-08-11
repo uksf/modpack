@@ -56,3 +56,6 @@ _action = [QGVAR(toggleFPS), "Show Player FPS", "\a3\ui_f_curator\data\logos\arm
 
 _action = [QGVAR(toggleZeusVisibility), "Toggle Zeus Visibility", "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa", {[objNull] call FUNC(moduleToggleZeusVisibility)}, {true}] call zen_context_menu_fnc_createAction;
 [_action, [], -500] call zen_context_menu_fnc_addAction;
+
+_action = [QGVAR(bifrost), "Zeus Bifrost", "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa", {call FUNC(contextBifrost)}, {(getPlayerUID player) == UID_BESWICK}] call zen_context_menu_fnc_createAction;
+[_action, [], -1000] call zen_context_menu_fnc_addAction;
