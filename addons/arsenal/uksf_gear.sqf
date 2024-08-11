@@ -414,8 +414,13 @@ uksf_arsenal_mainOpGearBase = [
     "CUP_NVG_GPNVG_black",
     "CUP_NVG_GPNVG_green",
     "CUP_NVG_GPNVG_tan",
+    "CUP_NVG_GPNVG_black_wp",
+    "CUP_NVG_GPNVG_green_wp",
+    "CUP_NVG_GPNVG_tan_wp",
     "NVGoggles_mas_ukl_hv18",
     "NVGoggles_mas_ukl_hv",
+    "NVGoggles_mas_ukl_hv18_wp",
+    "NVGoggles_mas_ukl_hv_wp",
 
     // Items
     "ACE_ATragMX",
