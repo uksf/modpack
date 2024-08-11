@@ -51,7 +51,7 @@ if (!_forceLoad && {!([ASLToAGL _position, _object, (_vectorDirAndUp#0) call CBA
     deleteVehicle _object;
 
     if (_failedLastLoad) exitWith {
-        WARNING_2("Aborted loading object %1. Saved position %2 will clip with a mission placed object. Load failed last time, deleting this object from persistence data",_id,_position);
+        WARNING_2("Aborted loading object %1. Saved position %2 will clip with a mission placed object. This is the second failed load. Removing this object from persistence data",_id,_position);
         [QGVAR(removeAbortedObjectFromPersistence), [_id]] call CBA_fnc_localEvent;
     };
 
