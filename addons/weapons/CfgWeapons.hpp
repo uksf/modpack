@@ -339,6 +339,7 @@ class CfgWeapons {
         ace_nightvision_border = "\z\ace\addons\nightvision\data\nvg_mask_quad_4096.paa";
         ace_nightvision_bluRadius = 0.26;
     };
+    class NVGoggles_mas_ukl_hv;
     class NVGoggles_mas_ukl_hv_wp : NVGoggles_mas_ukl_hv {
         displayName = "UK-SOF NVG PVS-15 WP(Flip-Up)";
         NVG_WHITE_PRESET;
