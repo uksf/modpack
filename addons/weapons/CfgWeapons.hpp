@@ -461,6 +461,12 @@ class CfgWeapons {
             };
         };
     };
+    class UK3CB_BAF_L110A2 : UK3CB_BAF_L110_556_Base {
+        model = "\CUP\Weapons\CUP_Weapons_M249\mesh\m249\m249e2_pip2.p3d"; // 3CB model is broken
+    };
+    class UK3CB_BAF_L110A2RIS : UK3CB_BAF_L110_556_Base {
+        model = "\CUP\Weapons\CUP_Weapons_M249\mesh\m249\m249e2_pip2.p3d"; // 3CB model is broken
+    };
     class UK3CB_BAF_L110_762_Base : UK3CB_BAF_L110_Base {
         class FullAuto : Mode_FullAuto {
             class BaseSoundModeType;
