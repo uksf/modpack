@@ -52,7 +52,8 @@ private _data = [
     [_object getVariable [QGVAR(isAceFortification), false], _object getVariable [QGVAR(aceFortifySide), west]],
     [_object getVariable ["ace_medical_medicClass", 0], _object getVariable ["ace_medical_isMedicalVehicle", false], _object getVariable ["ace_medical_isMedicalFacility", false]],
     [_object getVariable ["ace_isRepairVehicle", 0], _object getVariable ["ace_isRepairFacility", 0]],
-    _object getVariable ["ace_cargo_customName", ""]
+    _object getVariable ["ace_cargo_customName", ""],
+    false
 ];
 TRACE_1("Got object data",_data);
 
