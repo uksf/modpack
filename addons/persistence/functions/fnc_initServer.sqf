@@ -64,7 +64,9 @@ addMissionEventHandler ["BuildingChanged", {
         WARNING_1("Forced loading of object with ID '%1' failed, could not find object data in saved objects",_id);
     } else {
         TRACE_1("Force loading object",_id);
-        [_allObjects#_index, true] call FUNC(loadObjectData);
+        private _object = _allObjects#_index;
+        _object set [18, false];
+        [_object, true] call FUNC(loadObjectData);
     };
 }] call CBA_fnc_addEventHandler;
 
