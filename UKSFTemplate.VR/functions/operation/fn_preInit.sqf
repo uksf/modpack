@@ -13,5 +13,3 @@
     Return value:
         Nothing
 */
-
-GVAR(dummyVariable) = false;

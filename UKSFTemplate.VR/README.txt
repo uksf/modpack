@@ -41,15 +41,20 @@ cba_settings.sqf
     'uksf_persistence_overrideSavedDateTime' can be used for missions that will load a persistence save where you want the new mission to override the date and time saved on the server.
     'uksf_caching_enabled' can be set to true if ai caching is to be used. This disables the simulation on ai that are not within player proximity or field of view.
 
+uksf_gear.sqf
+    To customise the main op gear set used for this mission, this file can be edited
+    'uksf_operation_replaceAllGear' can be used to replace the whole main op gear set with the specified gear. Leave this false to add to the main op gear set
+    'uksf_operation_mainOpGear' comma separated array of quoted gear class names. Can be empty
+
 CfgFunctions.hpp
     This is where you need to define the name of your functions so you can call them in the mission.
-    A pre-made operation folder is made with a preInit, postInit and dummy function already setup.
-    To add a function, copy "fn_dummy.sqf" in "functions/operation" and rename it to your function name. The "fn_" at the start must be kept in place.
-    To register the function, copy the "class dummy {};" line in CfgFunctions.hpp and rename the "dummy" to your function name, excluding the "fn_" and ".sqf"
+    A pre-made operation folder is made with preInit and postInit functions already setup.
+    To add a function, create a file (e.g. "fn_dummy.sqf") in "functions/operation" and name it as your function name. The "fn_" at the start must be kept in place.
+    To register the function, add a line in CfgFunctions.hpp (e.g. "class dummy {};") below the postInit line and name it as your function name, excluding the "fn_" and ".sqf"
     To call this function, the pattern is as follows: [<args>] call uksf_operation_fnc_dummy;
     For example:
-        Copy "fn_dummy.sqf", paste, rename to "fn_spawnVehicle.sqf"
-        Copy "class dummy {};", paste on line below, rename to "class spawnVehicle {};"
+        Create file "fn_spawnVehicle.sqf" in "functions/operation"
+        Add line "class spawnVehicle {};" to CfgFunctions.hpp below the postInit line
         To call: [] call uksf_operation_fnc_spawnVehicle;
 
     When creating a function file, it is vital the '#include "script_component.hpp"' is the first line, followed by the header.

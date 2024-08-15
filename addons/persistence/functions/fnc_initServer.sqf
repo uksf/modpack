@@ -17,7 +17,7 @@ TRACE_1("Server init",GVAR(dataSaved));
 GVAR(missionObjects) = [];
 GVAR(persistentObjectsHash) = [[], true] call CBA_fnc_hashCreate;
 GVAR(deletedPersistentObjects) = GVAR(dataNamespace) getVariable [QGVAR(deletedObjects), []];
-GVAR(dontDeleteObjectIds) = [];
+GVAR(abortedObjectIds) = [];
 GVAR(unmarkedObjectIds) = [];
 GVAR(hashHasRedeployed) = [[], false] call CBA_fnc_hashCreate;
 GVAR(hashFirstRespawn) = [[], true] call CBA_fnc_hashCreate;
@@ -55,8 +55,8 @@ addMissionEventHandler ["BuildingChanged", {
 [QGVAR(forceLoadAbortedObject), {
     params ["_id"];
 
-    GVAR(dontDeleteObjectIds) deleteAt (GVAR(dontDeleteObjectIds) find _id);
-    publicVariable QGVAR(dontDeleteObjectIds);
+    GVAR(abortedObjectIds) deleteAt (GVAR(abortedObjectIds) find _id);
+    publicVariable QGVAR(abortedObjectIds);
 
     private _allObjects = GVAR(dataNamespace) getVariable [QGVAR(objects), []];
     private _index = _allObjects findIf {_x#0 == _id};
@@ -71,8 +71,8 @@ addMissionEventHandler ["BuildingChanged", {
 [QGVAR(removeAbortedObjectFromPersistence), {
     params ["_id"];
 
-    GVAR(dontDeleteObjectIds) deleteAt (GVAR(dontDeleteObjectIds) find _id);
-    publicVariable QGVAR(dontDeleteObjectIds);
+    GVAR(abortedObjectIds) deleteAt (GVAR(abortedObjectIds) find _id);
+    publicVariable QGVAR(abortedObjectIds);
 
     private _allObjects = GVAR(dataNamespace) getVariable [QGVAR(objects), []];
     private _index = _allObjects findIf {_x#0 == _id};
@@ -115,7 +115,7 @@ addMissionEventHandler ["BuildingChanged", {
 [QGVAR(requestAbortedObjects), {
     params ["_player"];
 
-    private _objects = (GVAR(dataNamespace) getVariable [QGVAR(objects), []]) select {private _id = _x#0; _id != "" && {[GVAR(dontDeleteObjectIds), {_x == _id}] call EFUNC(common,arrayAny)}};
+    private _objects = (GVAR(dataNamespace) getVariable [QGVAR(objects), []]) select {private _id = _x#0; _id != "" && {[GVAR(abortedObjectIds), {_x == _id}] call EFUNC(common,arrayAny)}};
     [QGVAR(receiveAbortedObjects), [_objects], _player] call CBA_fnc_targetEvent;
 }] call CBA_fnc_addEventHandler;
 

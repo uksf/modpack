@@ -21,16 +21,7 @@ private _fnc_getArrayFromModule = {
     params ["_module", "_property"];
 
     private _value = _module getVariable [_property, []];
-
-    if (_value isEqualType "") then { // If the value is a string, special handling is needed
-        if (_value != "") then { // If the string is not empty, compile the contents into a usable array
-            _value = call compile _value;
-        } else {
-            _value = []; // String is empty, just return an empty array
-        };
-    };
-    // Value is not a string (likely default value []), no special handling needed
-    _value
+    [_value] call EFUNC(common,convertToArray)
 };
 
 private _units = [_module, QGVAR(unitPoolString)] call _fnc_getArrayFromModule;

@@ -318,12 +318,34 @@ class CfgWeapons {
         displayname = "AN/PVS-15 WP (Winter)";
         NVG_WHITE_PRESET;
     };
-    class CUP_NVG_GPNVG_black : NVGoggles {
+    class CUP_NVG_GPNVG_black;
+    class CUP_NVG_GPNVG_black_wp : CUP_NVG_GPNVG_black {
         displayname = "GPNVG WP (Black)";
         NVG_WHITE_PRESET;
     };
-    class CUP_NVG_GPNVG_green : NVGoggles {
+    class CUP_NVG_GPNVG_green;
+    class CUP_NVG_GPNVG_green_wp : CUP_NVG_GPNVG_green {
         displayname = "GPNVG WP (Green)";
+        NVG_WHITE_PRESET;
+    };
+    class CUP_NVG_GPNVG_tan;
+    class CUP_NVG_GPNVG_tan_wp : CUP_NVG_GPNVG_tan {
+        displayname = "GPNVG WP (Tan)";
+        NVG_WHITE_PRESET;
+    };
+    class NVGoggles_mas_ukl_h18;
+    class NVGoggles_mas_ukl_hv18 : NVGoggles_mas_ukl_h18 {
+        ace_nightvision_generation = 4;
+        ace_nightvision_border = "\z\ace\addons\nightvision\data\nvg_mask_quad_4096.paa";
+        ace_nightvision_bluRadius = 0.26;
+    };
+    class NVGoggles_mas_ukl_hv;
+    class NVGoggles_mas_ukl_hv_wp : NVGoggles_mas_ukl_hv {
+        displayName = "UK-SOF NVG PVS-15 WP(Flip-Up)";
+        NVG_WHITE_PRESET;
+    };
+    class NVGoggles_mas_ukl_hv18_wp : NVGoggles_mas_ukl_hv18 {
+        displayName = "UK-SOF GPNVG-18 WP(Flip-Up)";
         NVG_WHITE_PRESET;
     };
     class Integrated_NVG_F : NVGoggles {
@@ -461,6 +483,12 @@ class CfgWeapons {
             };
         };
     };
+    // class UK3CB_BAF_L110A2 : UK3CB_BAF_L110_556_Base {
+    //     model = "\CUP\Weapons\CUP_Weapons_M249\mesh\m249\m249e2_pip2.p3d"; // 3CB model is broken
+    // };
+    // class UK3CB_BAF_L110A2RIS : UK3CB_BAF_L110_556_Base {
+    //     model = "\CUP\Weapons\CUP_Weapons_M249\mesh\m249\m249e2_pip2.p3d"; // 3CB model is broken
+    // };
     class UK3CB_BAF_L110_762_Base : UK3CB_BAF_L110_Base {
         class FullAuto : Mode_FullAuto {
             class BaseSoundModeType;

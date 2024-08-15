@@ -8,4 +8,7 @@
 
 #include "\u\uksf\addons\main\script_macros.hpp"
 
+#define MAIN_OP_GEAR_FILE QPATHTOF(uksf_gear.sqf)
+#define MISSION_MAIN_OP_GEAR_FILE QUOTE(uksf_gear.sqf)
+
 #define DUMMYLOADOUT QUOTE(UKSFDUMMYLOADOUT)

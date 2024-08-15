@@ -24,7 +24,7 @@ ace_arsenal_center setVariable ["ace_arsenal_virtualItems", nil];
 GVAR(useMainOpGear) = !GVAR(useMainOpGear);
 if (GVAR(useMainOpGear)) then {
     if ((count GVAR(cachedMainOpGear)) == 0) then {
-        [ace_arsenal_center, call FUNC(getMainOpGear), false] call ace_arsenal_fnc_addVirtualItems;
+        [ace_arsenal_center, GVAR(mainOpGear), false] call ace_arsenal_fnc_addVirtualItems;
         GVAR(cachedMainOpGear) = ace_arsenal_center getVariable "ace_arsenal_virtualItems";
     };
     ace_arsenal_virtualItems = GVAR(cachedMainOpGear);
