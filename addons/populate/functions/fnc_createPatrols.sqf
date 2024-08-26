@@ -28,11 +28,13 @@ private _patrolRadius = _module getVariable [QGVAR(patrolRadius), 0];
 
     if (_numberOfUnitsToSpawn <= 0) exitWith {
         [_idPFH] call cba_fnc_removePerFrameHandler;
+        [QEGVAR(virtualisation,include), _group] call CBA_fnc_serverEvent;
     };
 
     // create a group if the _currenGrouptUnitCount is == 0, set previous group to patrol
     if (_currenGrouptUnitCount == 0) then {
         _group = createGroup _side;
+        [QEGVAR(virtualisation,exclude), _group] call CBA_fnc_serverEvent;
     };
 
     private _unitType = selectRandom _unitPoolArray;

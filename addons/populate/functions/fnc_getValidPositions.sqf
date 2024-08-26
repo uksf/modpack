@@ -44,12 +44,7 @@ private _buildingPositions = [];
 } forEach _allBuildingsInArea;
 
 // get all ai buildings in the area
-private _aiBuildingPositions = [];
 private _aiBuildingPositionsInArea = (_module nearObjects ["CBA_BuildingPos", _radius]) select {_x inArea _area};
-{
-    // _aiBuildingPositions pushBack [getPos _x, getDir _x];
-    _aiBuildingPositions pushBack _x;
-} forEach _aiBuildingPositionsInArea;
 
 // get statics in the area
 private _occupyStatics = _module getVariable [QGVAR(occupyStaticGunsBool), false];
@@ -58,7 +53,9 @@ if (_occupyStatics) then {
 };
 
 // append building positions and ai building positions
-private _spawnPositions = _buildingPositions + _aiBuildingPositions;
+private _spawnPositions = _buildingPositions + _aiBuildingPositionsInArea;
+
+if (_spawnPositions isEqualTo [] && _statics isEqualTo []) exitWith {};
 
 // call out to select position function
 [_spawnPositions, _statics, _module] call FUNC(selectSpawnPosition);

@@ -23,16 +23,15 @@ params ["_spawnPositions", "_numberOfUnitsToSpawn", "_numberOfPositionsToOccupy"
 
 private _group = grpNull;
 private _currenGrouptUnitCount = 0;
+systemchat format ["st 1: %1", _statics];
 
 [{
     params ["_args", "_idPFH"];
     _args params ["_spawnPositions", "_numberOfUnitsToSpawn", "_numberOfPositionsToOccupy", "_side", "_module", "_unitPoolArray", "_currenGrouptUnitCount", "_group", "_statics"];
 
-    private _pos = [0,0,0];
-    private _dir = -1;
-
     if (_numberOfPositionsToOccupy <= 1) exitWith {
         [_idPFH] call cba_fnc_removePerFrameHandler;
+        [QEGVAR(virtualisation,include), _group] call CBA_fnc_serverEvent;
         if (_numberOfUnitsToSpawn > 0) then {
             [_numberOfUnitsToSpawn, _side, _module, _unitPoolArray] call FUNC(createPatrols);
         ;}
@@ -41,28 +40,25 @@ private _currenGrouptUnitCount = 0;
     // create a group if the _currenGrouptUnitCount is == 0
     if (_currenGrouptUnitCount isEqualTo 0) then {
         _group = createGroup _side;
+        [QEGVAR(virtualisation,exclude), _group] call CBA_fnc_serverEvent;
     };
 
     private _unitType = selectRandom _unitPoolArray;
     private _unit = _group createUnit [_unitType, [0,0,0], [], 0, "NONE"];
 
     _currenGrouptUnitCount = _currenGrouptUnitCount + 1;
-    _numberOfUnitsToSpawn = _numberOfUnitsToSpawn - 1;
 
-    // do statics first - use exit with to stop spawning of other units
-    if (_statics isNotEqualTo []) exitWith {
+    // do statics
+    if (_statics isNotEqualTo []) then {
         private _static = selectRandom _statics;
         _unit moveInAny _static;
-        _statics deleteAt (_statics findIf {_x isEqualTo _static});
+        _statics deleteAt (_statics find _static);
         _numberOfPositionsToOccupy = _numberOfPositionsToOccupy - 1;
-
-        _args set [1, _numberOfUnitsToSpawn];
-        _args set [2, _numberOfPositionsToOccupy];
-        _args set [6, _currenGrouptUnitCount];
-        _args set [7, _group];
-        _args set [8, _statics];
+        _numberOfUnitsToSpawn = _numberOfUnitsToSpawn - 1;
     };
 
+    private _pos = [0,0,0];
+    private _dir = -1;
     private _spawnPos = selectRandom _spawnPositions;
     if (typeName _spawnPos == "OBJECT") then { // handle cba positions as theyre objects
         _pos = getPos _spawnPos;
@@ -75,8 +71,9 @@ private _currenGrouptUnitCount = 0;
 
     _unit setPos _pos;
     _unit setDir _dir; // groups will follow the group leaders dir most of the time
-    _spawnPositions deleteAt (_spawnPositions findIf {_x isEqualTo _spawnPos});
-     _numberOfPositionsToOccupy = _numberOfPositionsToOccupy - 1;
+    _spawnPositions deleteAt (_spawnPositions find _spawnPos);
+    _numberOfPositionsToOccupy = _numberOfPositionsToOccupy - 1;
+    _numberOfUnitsToSpawn = _numberOfUnitsToSpawn - 1;
 
     _unit disableAI "PATH";
 
@@ -84,12 +81,9 @@ private _currenGrouptUnitCount = 0;
         _currenGrouptUnitCount = 0;
     };
 
-    _args set [0, _spawnPositions];
     _args set [1, _numberOfUnitsToSpawn];
     _args set [2, _numberOfPositionsToOccupy];
     _args set [6, _currenGrouptUnitCount];
     _args set [7, _group];
 
 }, 1, [_spawnPositions, _numberOfUnitsToSpawn, _numberOfPositionsToOccupy, _side, _module, _unitPoolArray, _currenGrouptUnitCount, _group, _statics]] call cba_fnc_addPerFrameHandler;
-
-// TODO: exclude virtualization until the group is spawned, then set to true

@@ -9,7 +9,7 @@ class CfgVehicles {
     };
     class GVAR(populateAreaModule) : GVAR(module) {
         scope = 2;
-        displayName = "(AP) Auto Populate)";
+        displayName = "Auto Populate)";
         icon = "A3\ui_f\data\map\markers\nato\o_inf.paa";
         portrait = "A3\ui_f\data\map\markers\nato\o_inf.paa";
         function = QFUNC(modulePopulateArea);

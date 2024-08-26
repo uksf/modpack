@@ -1,6 +1,6 @@
-PREP(modulePopulateArea);
+PREP(createPatrols);
 PREP(getValidPositions);
+PREP(getValidStatics);
+PREP(modulePopulateArea);
 PREP(selectSpawnPosition);
 PREP(spawnBuildingUnit);
-PREP(createPatrols);
-PREP(getValidStatics);
