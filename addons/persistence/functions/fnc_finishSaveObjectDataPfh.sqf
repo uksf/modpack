@@ -27,7 +27,7 @@ private _remove = [];
 }] call CBA_fnc_hashEachPair;
 
 TRACE_1("Removing objects from persistent data, adding to deleted list",_remove);
-{GVAR(deletedPersistentObjects) pushBackUnique _x} forEach (_remove select {!(_x in GVAR(dontDeleteObjectIds))});
+{GVAR(deletedPersistentObjects) pushBackUnique _x} forEach (_remove select {!(_x in GVAR(abortedObjectIds))});
 {[GVAR(persistentObjectsHash), _x] call CBA_fnc_hashRem} forEach _remove;
 
 INFO_1("Number of objects saved: %1",count _objects);

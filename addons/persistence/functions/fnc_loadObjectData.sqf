@@ -14,7 +14,7 @@
         None
 */
 params ["_data", ["_forceLoad", false]];
-_data params ["_id", "_type", "_position", "_vectorDirAndUp", "_damage", "_fuel", "_turretWeapons", "_turretMagazines", "_pylonLoadout", "_logisticsCargo", "_attached", "_rackChannels", "_aceCargo", "_inventory", ["_aceFortifyData", [false]], ["_aceMedical", [0, false]], ["_aceRepair", [0, 0]], ["_customName", ""]];
+_data params ["_id", "_type", "_position", "_vectorDirAndUp", "_damage", "_fuel", "_turretWeapons", "_turretMagazines", "_pylonLoadout", "_logisticsCargo", "_attached", "_rackChannels", "_aceCargo", "_inventory", ["_aceFortifyData", [false]], ["_aceMedical", [0, false]], ["_aceRepair", [0, 0]], ["_customName", ""], ["_failedLastLoad", false]];
 _aceFortifyData params ["_isAceFortification", "_aceFortifySide"];
 _aceMedical params ["_medicalClass", "_medicalVehicle", "_medicalFacility"];
 _aceRepair params ["_repairVehicle", "_repairFacility"];
@@ -48,13 +48,19 @@ if (isNull _object) then {
 };
 
 if (!_forceLoad && {!([ASLToAGL _position, _object, (_vectorDirAndUp#0) call CBA_fnc_vectDir, GVAR(missionObjects)] call EFUNC(common,isPositionSafe))}) then {
-    WARNING_2("Aborted loading object %1. Saved position %2 will clip with a mission placed object. Deleting object but marking it to not be removed from persistence data.",_id,_position);
     deleteVehicle _object;
-    GVAR(dontDeleteObjectIds) pushBackUnique _id;
+
+    if (_failedLastLoad) exitWith {
+        WARNING_2("Aborted loading object %1. Saved position %2 will clip with a mission placed object. This is the second failed load. Removing this object from persistence data",_id,_position);
+        [QGVAR(removeAbortedObjectFromPersistence), [_id]] call CBA_fnc_localEvent;
+    };
+
+    WARNING_2("Aborted loading object %1. Saved position %2 will clip with a mission placed object. Deleting object but marking it to not be removed from persistence data for this load. Object will be removed on the next failed load",_id,_position);
+    GVAR(abortedObjectIds) pushBackUnique _id;
 } else {
     _object setVariable [QGVAR(persistenceID), _id];
     [GVAR(persistentObjectsHash), _id, _object] call CBA_fnc_hashSet;
-    GVAR(dontDeleteObjectIds) deleteAt (GVAR(dontDeleteObjectIds) find _id);
+    GVAR(abortedObjectIds) deleteAt (GVAR(abortedObjectIds) find _id);
 
     _object setPosASL _position;
     _object setVectorDirAndUp _vectorDirAndUp;

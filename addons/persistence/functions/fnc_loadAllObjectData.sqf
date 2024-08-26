@@ -18,6 +18,9 @@ params [["_objects", []], ["_retry", 0]];
 
 if (_retry >= MAX_ABORTED_RETRIES) exitWith {
     INFO_1("Max retries reached with %1 aborted objects left unloaded",count _objects);
+    {
+        _x set [18, true];
+    } forEach _objects;
     [QGVAR(loadingFinished), []] call CBA_fnc_localEvent;
 };
 
@@ -44,10 +47,10 @@ INFO_4("Objects sorted by ASL height, lowest: %1 at %2, highest: %3 at %4",(_obj
 
     if (_index >= _count) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
-        publicVariable QGVAR(dontDeleteObjectIds);
+        publicVariable QGVAR(abortedObjectIds);
 
-        if (GVAR(dontDeleteObjectIds) isNotEqualTo []) then {
-            private _abortedObjects = ((GVAR(dataNamespace) getVariable [QGVAR(objects), []]) select {_x#0 in GVAR(dontDeleteObjectIds)});
+        if (GVAR(abortedObjectIds) isNotEqualTo []) then {
+            private _abortedObjects = ((GVAR(dataNamespace) getVariable [QGVAR(objects), []]) select {_x#0 in GVAR(abortedObjectIds)});
             if (_abortedObjects isEqualTo []) exitWith {
                 [QGVAR(loadingFinished), []] call CBA_fnc_localEvent;
             };

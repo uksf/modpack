@@ -14,7 +14,7 @@
 */
 
 GVAR(persistentObjects) = [];
-GVAR(dontDeleteObjectIds) = [];
+GVAR(abortedObjectIds) = [];
 GVAR(unmarkedObjectIds) = [];
 GVAR(persistentObjectIconsPFHID) = -1;
 GVAR(abortedObjects) = [];

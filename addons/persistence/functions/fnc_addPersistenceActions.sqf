@@ -36,7 +36,7 @@ private _fnc_children = {
     }, {MULTIPLAYER_ADMIN_OR_WHITELISTED && {GVAR(persistentObjectIconsPFHID) != -1}}] call ace_interact_menu_fnc_createAction;
     _actions pushBack [_action, [], _player];
 
-    _action = [QGVAR(showAbortedObjects), "Show Aborted Objects", "", {[QGVAR(requestAbortedObjects), [player]] call CBA_fnc_serverEvent}, {MULTIPLAYER_ADMIN_OR_WHITELISTED && {count GVAR(dontDeleteObjectIds) > 0} && {GVAR(abortedObjects) isEqualTo []}}] call ace_interact_menu_fnc_createAction;
+    _action = [QGVAR(showAbortedObjects), "Show Aborted Objects", "", {[QGVAR(requestAbortedObjects), [player]] call CBA_fnc_serverEvent}, {MULTIPLAYER_ADMIN_OR_WHITELISTED && {count GVAR(abortedObjectIds) > 0} && {GVAR(abortedObjects) isEqualTo []}}] call ace_interact_menu_fnc_createAction;
     _actions pushBack [_action, [], _player];
 
     _action = [QGVAR(hideabortedObjects), "Hide Aborted Objects", "", {

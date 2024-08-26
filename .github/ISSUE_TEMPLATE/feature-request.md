@@ -10,8 +10,5 @@ assignees: ''
 # Description
 <!-- A clear and concise description of what the feature is -->
 
-# Context
-<!-- Why should we add this feature? -->
-
 # Dependencies
 <!-- Any known dependencies for the feature, e.g. a mod -->

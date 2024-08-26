@@ -16,10 +16,3 @@
     Return value:
         Nothing
 */
-
-[{
-    params ["_args", "_idPFH"];
-    _args params ["_text"];
-
-    [_idPFH] call CBA_fnc_removePerFrameHandler;
-}, 0, ["parameter1"]] call CBA_fnc_addPerFrameHandler;

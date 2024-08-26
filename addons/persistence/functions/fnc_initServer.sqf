@@ -17,7 +17,7 @@ TRACE_1("Server init",GVAR(dataSaved));
 GVAR(missionObjects) = [];
 GVAR(persistentObjectsHash) = [[], true] call CBA_fnc_hashCreate;
 GVAR(deletedPersistentObjects) = GVAR(dataNamespace) getVariable [QGVAR(deletedObjects), []];
-GVAR(dontDeleteObjectIds) = [];
+GVAR(abortedObjectIds) = [];
 GVAR(unmarkedObjectIds) = [];
 GVAR(hashHasRedeployed) = [[], false] call CBA_fnc_hashCreate;
 GVAR(hashFirstRespawn) = [[], true] call CBA_fnc_hashCreate;
@@ -55,8 +55,8 @@ addMissionEventHandler ["BuildingChanged", {
 [QGVAR(forceLoadAbortedObject), {
     params ["_id"];
 
-    GVAR(dontDeleteObjectIds) deleteAt (GVAR(dontDeleteObjectIds) find _id);
-    publicVariable QGVAR(dontDeleteObjectIds);
+    GVAR(abortedObjectIds) deleteAt (GVAR(abortedObjectIds) find _id);
+    publicVariable QGVAR(abortedObjectIds);
 
     private _allObjects = GVAR(dataNamespace) getVariable [QGVAR(objects), []];
     private _index = _allObjects findIf {_x#0 == _id};
@@ -64,15 +64,17 @@ addMissionEventHandler ["BuildingChanged", {
         WARNING_1("Forced loading of object with ID '%1' failed, could not find object data in saved objects",_id);
     } else {
         TRACE_1("Force loading object",_id);
-        [_allObjects#_index, true] call FUNC(loadObjectData);
+        private _object = _allObjects#_index;
+        _object set [18, false];
+        [_object, true] call FUNC(loadObjectData);
     };
 }] call CBA_fnc_addEventHandler;
 
 [QGVAR(removeAbortedObjectFromPersistence), {
     params ["_id"];
 
-    GVAR(dontDeleteObjectIds) deleteAt (GVAR(dontDeleteObjectIds) find _id);
-    publicVariable QGVAR(dontDeleteObjectIds);
+    GVAR(abortedObjectIds) deleteAt (GVAR(abortedObjectIds) find _id);
+    publicVariable QGVAR(abortedObjectIds);
 
     private _allObjects = GVAR(dataNamespace) getVariable [QGVAR(objects), []];
     private _index = _allObjects findIf {_x#0 == _id};
@@ -115,7 +117,7 @@ addMissionEventHandler ["BuildingChanged", {
 [QGVAR(requestAbortedObjects), {
     params ["_player"];
 
-    private _objects = (GVAR(dataNamespace) getVariable [QGVAR(objects), []]) select {private _id = _x#0; _id != "" && {[GVAR(dontDeleteObjectIds), {_x == _id}] call EFUNC(common,arrayAny)}};
+    private _objects = (GVAR(dataNamespace) getVariable [QGVAR(objects), []]) select {private _id = _x#0; _id != "" && {[GVAR(abortedObjectIds), {_x == _id}] call EFUNC(common,arrayAny)}};
     [QGVAR(receiveAbortedObjects), [_objects], _player] call CBA_fnc_targetEvent;
 }] call CBA_fnc_addEventHandler;
 

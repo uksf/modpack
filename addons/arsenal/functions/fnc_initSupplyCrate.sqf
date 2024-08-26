@@ -15,7 +15,7 @@
 params ["_crate"];
 
 if (EGVAR(common,mainOp)) then {
-    [_crate, call FUNC(getMainOpGear)] call FUNC(addArsenal);
+    [_crate, GVAR(mainOpGear)] call FUNC(addArsenal);
 } else {
     [_crate] call FUNC(addArsenal);
 };
