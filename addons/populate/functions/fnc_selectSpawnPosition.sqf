@@ -57,15 +57,13 @@ if (_side isEqualTo 2) then {
     _side = west;
 };
 
-// pre calculate what to spawn and how many
+// populate statics
+_numberOfUnitsToSpawn = [_statics, _side, _unitPoolArray, _numberOfUnitsToSpawn] call FUNC(populateStatics);
 
+// populate ai building positions and building positions
+_numberOfUnitsToSpawn = [_spawnPositions, _numberOfPositionsToOccupy, _side, _unitPoolArray, _numberOfUnitsToSpawn] call FUNC(populateBuildingPositions);
 
-// spawn statics
-
-// spawn ai building positions
-
-// spawn building positions
-
-// spawn patrols
-
-[_spawnPositions, _numberOfUnitsToSpawn, _numberOfPositionsToOccupy, _side, _module, _unitPoolArray, _statics] call FUNC(spawnBuildingUnit);
+// handle patrols
+// if (_numberOfUnitsToSpawn > 0) then {
+//     [_numberOfUnitsToSpawn, _side, _module, _unitPoolArray] call FUNC(createPatrols);
+// ;}
