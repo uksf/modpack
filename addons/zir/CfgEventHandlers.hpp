@@ -1,3 +1,16 @@
+class Extended_PreStart_EventHandlers {
+    class ADDON {
+        init = QUOTE(call COMPILE_SCRIPT(XEH_preStart));
+    };
+};
+
+class Extended_PreInit_EventHandlers {
+    class ADDON {
+        init = QUOTE(call COMPILE_SCRIPT(XEH_preInit));
+    };
+};
+
+
 class Extended_InitPost_EventHandlers {
     class GVAR(hilux_full) {
         class ADDON {
@@ -19,15 +32,7 @@ class Extended_InitPost_EventHandlers {
     // add surrender check on unit killed
     class GVAR(Soldier_Base) {
         class ADDON {
-            init = (_this select 0) addMPEventHandler ["MPKilled", {
-                params ["_unit", "_killer", "_instigator", "_useEffects"];
-
-                if (typeOf _unit == QGVAR(Soldier_Base_Puritan_Guard)) exitWith {};
-                if (!isPlayer _killer) exitWith {};
-
-                private _unitsLeft = units group _unit;
-                find
-            }];
+            init = QUOTE((_this select 0) call FUNC(surrenderCheck));
         };
     };
 };

@@ -1,5 +1,5 @@
 #define COMPONENT zir
-#define COMPONENT_BEAUTIFIED zir
+#define COMPONENT_BEAUTIFIED ZIR
 #include "\u\uksf\addons\main\script_mod.hpp"
 
 // #define DEBUG_MODE_FULL
