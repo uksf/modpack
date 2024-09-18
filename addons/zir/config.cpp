@@ -4,29 +4,33 @@ class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
         units[] = {
-            QGVAR(Militia_akn),
-            QGVAR(Militia_gp25),
-            QGVAR(Militia_MG),
-            QGVAR(Militia_LAT),
-            QGVAR(Militia_sks),
-            QGVAR(Militia_sks),
-            QGVAR(Militia_aa),
-            QGVAR(Militia_enfield),
+            QGVAR(militia_akn),
+            QGVAR(militia_gp25),
+            QGVAR(militia_MG),
+            QGVAR(militia_LAT),
+            QGVAR(militia_sks),
+            QGVAR(militia_aa),
+            QGVAR(militia_enfield),
+            QGVAR(militia_sniper),
 
-            // QGVAR(T55),
+            QGVAR(pg_soldier),
+            QGVAR(pg_commander),
 
-            // QGVAR(Patriot),
+            QGVAR(hilux),
+            QGVAR(hilux_full),
+            QGVAR(hilux_dhskm),
+            QGVAR(hilux_ags),
+            QGVAR(hilux_spg9),
+            QGVAR(hilux_ub32),
+            QGVAR(hilux_podnos),
+            QGVAR(hilux_zu23),
 
-            // QGVAR(Wiesel_MK20),
-
-            // QGVAR(Gripen),
-
-            // QGVAR(CH146_Tpt),
-
-            // QGVAR(ZU23)
+            QGVAR(praga_full),
+            QGVAR(praga_covered_full)
         };
         weapons[] = {
-            QGVAR(enfield_burris)
+            QGVAR(enfield_burris),
+            QGVAR(cz750_mr10)
         };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
@@ -39,6 +43,8 @@ class CfgPatches {
     };
 };
 
+class CBA_Extended_EventHandlers;
+#include "CfgEventHandlers.hpp"
 #include "CfgEditorSubcategories.hpp"
 #include "CfgFactionClasses.hpp"
 #include "CfgGroups.hpp"

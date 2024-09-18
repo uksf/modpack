@@ -35,4 +35,15 @@ class CfgWeapons {
             };
         };
     };
+    class CUP_srifle_CZ750;
+    class GVAR(cz750_mr10) : CUP_srifle_CZ750 {
+        displayName = "CZ 750 (MR-10)";
+        scope = 1;
+        class LinkedItems {
+            class LinkedItemsOptic {
+                slot = "CowsSlot";
+                item = "optic_AMS";
+            };
+        };
+    };
 };

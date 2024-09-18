@@ -29,7 +29,7 @@ class CfgVehicles {
         nakedUniform = GVAR(U_Base);
         uniformClass = "CUP_O_TKI_Khet_Partug_06";
         model = "\A3\characters_F\OPFOR\o_soldier_01.p3d";
-        identityTypes[] = { "LanguagePER_F", "PersianHead_A3" };
+        identityTypes[] = { "LanguagePER_F", "Head_TK" };
         genericNames = "ZirMen";
         weapons[] = {};
         respawnWeapons[] = {};
@@ -74,7 +74,10 @@ class CfgVehicles {
         };
     };
 
-    // militia
+    class GVAR(Soldier_Base_Puritan_Guard) : GVAR(Soldier_Base) {
+        editorSubcategory = QGVAR(puritan_guard);
+    };
+
     class CUP_B_AlicePack_Khaki;
     class GVAR(Machine_Gunner_pack) : CUP_B_AlicePack_Khaki {
         scope = 1;
@@ -93,16 +96,8 @@ class CfgVehicles {
     };
 
     #include "units\CfgUnitsMilitia.hpp"
-    // #include "vehicles\CfgAntiAir.hpp"
-    // #include "vehicles\CfgArtillery.hpp"
-    // #include "vehicles\CfgMTLB.hpp"
-    // #include "vehicles\CfgBTR.hpp"
-    // #include "vehicles\CfgBuran.hpp"
-    // #include "vehicles\CfgRG31.hpp"
-    // #include "vehicles\CfgHeli.hpp"
-    // #include "vehicles\CfgJet.hpp"
-    // #include "vehicles\CfgStatic.hpp"
-    // #include "vehicles\CfgT55.hpp"
-    // #include "vehicles\CfgHEMTT.hpp"
-    // #include "vehicles\CfgWiesel.hpp"
+    #include "units\CfgUnitsPuritanGuard.hpp"
+    #include "vehicles\CfgHiluxes.hpp"
+    #include "vehicles\CfgStatic.hpp"
+    #include "vehicles\CfgTrucks.hpp"
 };

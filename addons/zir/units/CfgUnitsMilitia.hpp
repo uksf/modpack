@@ -37,13 +37,13 @@ class GVAR(Militia_gp25) : GVAR(Militia_akn) {
     respawnLinkedItems[] = { "ItemMap", "ItemCompass", "CUP_H_TKI_Lungee_02", "CUP_V_OI_TKI_Jacket4_05" };
 };
 class GVAR(Militia_MG) : GVAR(Militia_akn) {
-    displayName = "Machine Gunner";
+    displayName = "Militia (MG)";
     weapons[] = { "CUP_lmg_PKM_B50_vfg","Put","Throw" };
     respawnWeapons[] = { "CUP_lmg_PKM_B50_vfg","Put","Throw" };
     magazines[] = { "CUP_HandGrenade_RGO", "CUP_HandGrenade_RGO", "SmokeShell", "SmokeShell", "SmokeShell" };
     respawnMagazines[] = { "CUP_HandGrenade_RGO", "CUP_HandGrenade_RGO", "SmokeShell", "SmokeShell", "SmokeShell" };
-    linkedItems[] = { "ItemMap", "ItemCompass", "", "CUP_H_TKI_Lungee_03", "CUP_V_OI_TKI_Jacket1_06" };
-    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "CUP_H_TKI_Lungee_03", "CUP_V_OI_TKI_Jacket1_06" };
+    linkedItems[] = { "ItemMap", "ItemCompass", "", "CUP_H_TKI_Lungee_03", "CUP_V_OI_TKI_Jacket3_03" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "CUP_H_TKI_Lungee_03", "CUP_V_OI_TKI_Jacket3_03" };
     backpack = QGVAR(Machine_Gunner_pack);
     icon = "iconManMG";
 };
@@ -69,12 +69,32 @@ class GVAR(Militia_aa) : GVAR(Militia_akn) {
     displayName = "Militia (AA)";
     weapons[] = { "CUP_arifle_AK47", "CUP_launch_Igla","Put","Throw" };
     respawnWeapons[] = { "CUP_arifle_AK47", "CUP_launch_Igla","Put","Throw" };
+    linkedItems[] = { "ItemMap", "ItemCompass", "", "CUP_H_TKI_Lungee_04", "CUP_V_OI_TKI_Jacket1_05" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "CUP_H_TKI_Lungee_04", "CUP_V_OI_TKI_Jacket1_05" };
     icon = "iconManAT";
 };
 class GVAR(Militia_enfield) : GVAR(Militia_akn) {
     displayName = "Militia (Enfield)";
     weapons[] = { QGVAR(enfield_burris),"Put","Throw" };
-    respawnWeapons[] = { QGVAR(CUP_arifle_M4A3_woodland_CUP_acc_Flashlight_CUP_optic_HensoldtZO_RDS),"launch_NLAW_F","Put","Throw" };
+    respawnWeapons[] = { QGVAR(enfield_burris),"Put","Throw" };
     magazines[] = { "CUP_10x_303_M", "CUP_10x_303_M", "CUP_10x_303_M", "CUP_10x_303_M", "CUP_10x_303_M", "CUP_HandGrenade_RGO", "CUP_HandGrenade_RGO" };
     respawnMagazines[] = { "CUP_10x_303_M", "CUP_10x_303_M", "CUP_10x_303_M", "CUP_10x_303_M", "CUP_10x_303_M", "CUP_HandGrenade_RGO", "CUP_HandGrenade_RGO" };
+    linkedItems[] = { "ItemMap", "ItemCompass", "", "CUP_H_TKI_Lungee_04", "CUP_V_OI_TKI_Jacket2_05" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "CUP_H_TKI_Lungee_04", "CUP_V_OI_TKI_Jacket2_05" };
+};
+class GVAR(Militia_sniper) : GVAR(Soldier_Base) {
+    scope = 2;
+    displayName = "Militia (Sniper)";
+    uniformClass = "CUP_I_B_PMC_Unit_43";
+    uksf_equipment_randomUniforms[] = {
+        "CUP_I_B_PMC_Unit_15", 1,
+        "CUP_I_B_PMC_Unit_32", 1,
+        "CUP_I_B_PMC_Unit_16", 1
+     };
+    weapons[] = { QGVAR(cz750_mr10),"Put","Throw" };
+    respawnWeapons[] = { QGVAR(cz750_mr10),"Put","Throw" };
+    magazines[] = { "CUP_10Rnd_762x51_CZ750", "CUP_10Rnd_762x51_CZ750", "CUP_10Rnd_762x51_CZ750", "CUP_10Rnd_762x51_CZ750", "CUP_10Rnd_762x51_CZ750" };
+    respawnMagazines[] = { "CUP_10Rnd_762x51_CZ750", "CUP_10Rnd_762x51_CZ750", "CUP_10Rnd_762x51_CZ750", "CUP_10Rnd_762x51_CZ750", "CUP_10Rnd_762x51_CZ750" };
+    linkedItems[] = { "ItemMap", "ItemCompass", "", "H_ShemagOpen_tan", "V_Chestrig_khk" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "H_ShemagOpen_tan", "V_Chestrig_khk" };
 };
