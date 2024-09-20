@@ -15,4 +15,4 @@
 params ["_contextPosition", "", "", "", "", "", "_args"];
 _args params ["_radius"];
 
-[QGVAR(devirtualizeNearby), [_contextPosition, _radius]] call CBA_fnc_serverEvent;
+[QGVAR(devirtualiseNearby), [_contextPosition, _radius]] call CBA_fnc_serverEvent;
