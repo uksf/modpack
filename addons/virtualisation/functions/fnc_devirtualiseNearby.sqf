@@ -15,7 +15,7 @@
 */
 
 if (!isServer) exitWith {
-    [QGVAR(devirtualizeNearby), _this] call CBA_fnc_serverEvent;
+    [QGVAR(devirtualiseNearby), _this] call CBA_fnc_serverEvent;
 };
 
 [{
