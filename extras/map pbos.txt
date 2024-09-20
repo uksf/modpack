@@ -26,3 +26,5 @@
     - map_north_takistan_structures_e
     - map_north_takistan
     - map_north_takistan_data
+- Kunduz River (220 MB)
+    - kunduz_river
