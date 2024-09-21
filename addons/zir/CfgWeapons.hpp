@@ -46,4 +46,62 @@ class CfgWeapons {
             };
         };
     };
+    class CBA_MiscItem_ItemInfo;
+    class CBA_MiscItem;
+    class GVAR(fakePassport) : CBA_MiscItem {
+        author = "UKSF";
+        scope = 2;
+        scopeArsenal = 2;
+        picture = QPATHTOF(data\FakePassport.paa);
+        displayName = "Fake Passport (ME)";
+        descriptionShort = "Fake Zardashan passport for use in middle eastern countries";
+        class ItemInfo : CBA_MiscItem_ItemInfo {
+            mass = 3;
+        };
+    };
+    class GVAR(iedPartWire) : CBA_MiscItem {
+        author = "UKSF";
+        scope = 2;
+        scopeArsenal = 2;
+        picture = QPATHTOF(data\DetWire.paa);
+        displayName = "Detonator Wire";
+        descriptionShort = "Wire component used in IEDs";
+        class ItemInfo : CBA_MiscItem_ItemInfo {
+            mass = 3;
+        };
+    };
+    class GVAR(iedPartPressurePlate) : CBA_MiscItem {
+        author = "UKSF";
+        scope = 2;
+        scopeArsenal = 2;
+        picture = QPATHTOF(data\PressurePlate.paa);
+        displayName = "Pressure Plate";
+        descriptionShort = "Pressure plate component used in IEDs";
+        class ItemInfo : CBA_MiscItem_ItemInfo {
+            mass = 3;
+        };
+    };
+    class GVAR(iedPartHMEContainer) : CBA_MiscItem {
+        author = "UKSF";
+        scope = 2;
+        scopeArsenal = 2;
+        picture = QPATHTOF(data\HMEContainer.paa);
+        displayName = "HME Container";
+        descriptionShort = "HME container used in IEDs";
+        class ItemInfo : CBA_MiscItem_ItemInfo {
+            mass = 20;
+        };
+    };
+    class GVAR(iedPartBatteryPack) : CBA_MiscItem {
+        author = "UKSF";
+        scope = 2;
+        scopeArsenal = 2;
+        picture = QPATHTOF(data\BatteryPack.paa);
+        displayName = "Battery Pack";
+        descriptionShort = "Power source used in IEDs";
+        class ItemInfo : CBA_MiscItem_ItemInfo {
+            mass = 3;
+        };
+    };
+
 };
