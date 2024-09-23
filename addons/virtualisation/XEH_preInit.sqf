@@ -18,7 +18,7 @@ GVAR(showVirtualised) = false;
 
 if (isServer) then {
     GVAR(dataStreamClientObjects) = [];
-    [QGVAR(devirtualizeNearby), {call FUNC(devirtualizeNearby)}] call CBA_fnc_addEventHandler;
+    [QGVAR(devirtualiseNearby), {call FUNC(devirtualiseNearby)}] call CBA_fnc_addEventHandler;
     [QGVAR(recreateAll), {call FUNC(recreateAll)}] call CBA_fnc_addEventHandler;
     [QGVAR(toggleDataStreamForClient), {call FUNC(toggleDataStreamForClient)}] call CBA_fnc_addEventHandler;
 
