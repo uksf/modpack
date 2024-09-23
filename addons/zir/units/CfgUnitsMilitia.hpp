@@ -69,6 +69,8 @@ class GVAR(Militia_aa) : GVAR(Militia_akn) {
     displayName = "Militia (AA)";
     weapons[] = { "CUP_arifle_AK47", "CUP_launch_Igla","Put","Throw" };
     respawnWeapons[] = { "CUP_arifle_AK47", "CUP_launch_Igla","Put","Throw" };
+    magazines[] = { "CUP_30Rnd_762x39_AK47_M", "CUP_30Rnd_762x39_AK47_M", "CUP_30Rnd_762x39_AK47_M", "CUP_30Rnd_762x39_AK47_M" };
+    respawnMagazines[] = { "CUP_30Rnd_762x39_AK47_M", "CUP_30Rnd_762x39_AK47_M", "CUP_30Rnd_762x39_AK47_M", "CUP_30Rnd_762x39_AK47_M" };
     linkedItems[] = { "ItemMap", "ItemCompass", "", "CUP_H_TKI_Lungee_04", "CUP_V_OI_TKI_Jacket1_05" };
     respawnLinkedItems[] = { "ItemMap", "ItemCompass", "CUP_H_TKI_Lungee_04", "CUP_V_OI_TKI_Jacket1_05" };
     icon = "iconManAT";
