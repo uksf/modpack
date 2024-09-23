@@ -51,7 +51,7 @@ _this spawn {
 
         private _priority = 400;
         private ["_effect"];
-        while {_effect = ppEffectCreate ["DynamicBlur", _priority];	_effect < 0} do {
+        while {_effect = ppEffectCreate ["DynamicBlur", _priority]; _effect < 0} do {
             _priority = _priority + 1;
         };
 
