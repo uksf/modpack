@@ -89,7 +89,7 @@ class CfgWeapons {
         displayName = "HME Container";
         descriptionShort = "HME container used in IEDs";
         class ItemInfo : CBA_MiscItem_ItemInfo {
-            mass = 20;
+            mass = 50;
         };
     };
     class GVAR(iedPartBatteryPack) : CBA_MiscItem {
