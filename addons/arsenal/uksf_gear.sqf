@@ -775,6 +775,7 @@ uksf_arsenal_mainOpGearBase = [
     "CUP_B_Motherlode_Radio_MTP",
     "CUP_B_Motherlode_MTP",
     "B_RadioBag_01_mtp_F",
+    "uksf_gear_trauma_bag",
 
     // Helmets
     "COVER_4d",
