@@ -17,6 +17,8 @@ params ["_unit"];
 _unit addMPEventHandler ["MPKilled", {
     params ["_unit", "_killer", "_instigator", "_useEffects"];
 
+    if (!local _unit) exitWith {};
+
     private _groupSurrendered = _group getVariable [QGVAR(groupSurrendered), false];
     if (_groupSurrendered) exitWith {};
 
@@ -40,7 +42,6 @@ _unit addMPEventHandler ["MPKilled", {
         {
             // roll the dice
             private _rng = random 10;
-            systemChat format ["rng: %1", _rng];
             if (_rng < 7) then {
                 [_x, true] call ACE_captives_fnc_setSurrendered;
             };
