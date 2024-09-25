@@ -16,16 +16,16 @@
     Return Value:
         Nothing
 */
-
 #define TIMEOUT 30
 
-params [["_vehicle", objNull], ["_units", []], ["_turrets", []], ["_side", 0]];
+params [["_vehicle", objNull], ["_units", []], ["_turrets", []], ["_side", -1]];
 
 if (isServer) then {
     [{
         params ["_vehicle", "_units", "_turrets", "_side"];
         if (!isNull (driver _vehicle)) then {
             _side = switch (_side) do {
+                case -1: { side (driver _vehicle) };
                 case 0: { east };
                 case 1: { west };
                 case 2: { resistance };
