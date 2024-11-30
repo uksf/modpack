@@ -41,7 +41,6 @@ ace_advanced_throwing_showThrowArc = true;
 // ACE Advanced Vehicle Damage
 force force ace_vehicle_damage_enableCarDamage = false;
 force force ace_vehicle_damage_enabled = true;
-force force ace_vehicle_damage_removeAmmoDuringCookoff = true;
 
 // ACE AI
 force ace_ai_assignNVG = false;
@@ -98,14 +97,15 @@ ace_common_settingFeedbackIcons = 1;
 ace_common_settingProgressBarLocation = 0;
 force force ace_common_swayFactor = 1;
 
-// ACE Cook off
+// ACE Cook-off
 force force ace_cookoff_ammoCookoffDuration = 0.25;
+force ace_cookoff_cookoffDuration = 1;
 force force ace_cookoff_destroyVehicleAfterCookoff = true;
-force force ace_cookoff_enable = 2;
 force force ace_cookoff_enableAmmobox = false;
 force force ace_cookoff_enableAmmoCookoff = true;
 force force ace_cookoff_enableFire = true;
 force force ace_cookoff_probabilityCoef = 1;
+force ace_cookoff_removeAmmoDuringCookoff = true;
 
 // ACE Crew Served Weapons
 force force ace_csw_ammoHandling = 1;
@@ -190,6 +190,7 @@ force force ace_hearing_unconsciousnessVolume = 0.05;
 
 // ACE Interaction
 force force ace_interaction_disableNegativeRating = true;
+force force ace_interaction_enableAnimActions = true;
 force force ace_interaction_enableGroupRenaming = false;
 ace_interaction_enableMagazinePassing = true;
 force force ace_interaction_enableTeamManagement = true;
@@ -228,6 +229,7 @@ force ace_iron_dome_targetRecycleTime = 15;
 force ace_iron_dome_timeBetweenLaunches = 1;
 
 // ACE Kill Tracker
+force force ace_killtracker_showCrewKills = true;
 force force ace_killtracker_trackAI = true;
 
 // ACE Logistics
@@ -243,6 +245,7 @@ force force ace_rearm_enabled = true;
 force force ace_rearm_level = 2;
 force force ace_rearm_supply = 0;
 force force ace_refuel_cargoRate = 10;
+force force ace_refuel_enabled = true;
 force force ace_refuel_hoseLength = 20;
 force force ace_refuel_progressDuration = 2;
 force force ace_refuel_rate = 1;
@@ -542,6 +545,8 @@ force ace_fastroping_autoAddFRIES = false;
 force force ace_fastroping_requireRopeItems = false;
 force force ace_gunbag_swapGunbagEnabled = true;
 force force ace_hitreactions_minDamageToTrigger = 0.1;
+force force ace_hitreactions_weaponDropChanceArmHitAI = 0;
+force force ace_hitreactions_weaponDropChanceArmHitPlayer = 0.1;
 ace_inventory_inventoryDisplaySize = 0;
 force force ace_laser_dispersionCount = 2;
 force force ace_laser_showLaserOnMap = 2;
@@ -550,7 +555,8 @@ force force ace_microdagr_mapDataAvailable = 2;
 force force ace_microdagr_waypointPrecision = 3;
 force force ace_noradio_enabled = true;
 force force ace_optionsmenu_showNewsOnMainMenu = false;
-force ace_overpressure_distanceCoefficient = 1;
+force ace_overpressure_backblastDistanceCoefficient = 1;
+force ace_overpressure_overpressureDistanceCoefficient = 1;
 force ace_parachute_failureChance = 0;
 force force ace_parachute_hideAltimeter = true;
 ace_tagging_quickTag = 1;
@@ -851,6 +857,7 @@ force grad_civs_loadout_headgear = "[]";
 force grad_civs_main_enabled = false;
 force force grad_civs_mimikry_civilianNotificationEnabled = false;
 force grad_civs_mimikry_enabled = true;
+force force grad_civs_interact_enabled = false;
 force grad_civs_patrol_initialGroupSize = 3;
 force grad_civs_patrol_maxCivsOnFoot = 30;
 force grad_civs_patrol_spawnDistancesOnFoot = "[1000, 4500]";
@@ -900,6 +907,11 @@ force force grad_trenches_functions_timeoutToDecay = 7200;
 force force grad_trenches_functions_vehicleEnvelopeDamageMultiplier = 1;
 force force grad_trenches_functions_vehicleEnvelopeDigTime = 120;
 force force grad_trenches_functions_vehicleEnvelopeRemovalTime = -1;
+
+// GreenMag
+force greenmag_main_CBAS_enable = false;
+greenmag_main_CBAS_maxMags = 0;
+force force greenmag_main_CBAS_simpleGM = false;
 
 // Helicopter Turbulence
 force force TURBULENCE_ENABLE_MASTER = true;
@@ -963,6 +975,15 @@ force force NMAB_setting_particlesEnabled = true;
 // SPS Black Hornet Settings
 SPS_BlackHornet_EnableACEInteraction = true;
 SPS_BlackHornet_EnableVanillaScrollWheel = true;
+
+// TBD Mortars Main
+force force TBD_MORTARS_main_assemble105Time = 5;
+force force TBD_MORTARS_main_chargeChangeTime = 5;
+force force TBD_MORTARS_main_disassemble105Time = 5;
+force force TBD_MORTARS_main_loadTime = 1;
+force force TBD_MORTARS_main_pack105Time = 5;
+force force TBD_MORTARS_main_unloadTime = 5;
+force force TBD_MORTARS_main_unpack105Time = 5;
 
 // OCAP - Main
 force OCAP_administratorList = "[]";
@@ -1115,6 +1136,7 @@ zen_faction_filter_0_UKSF_Cartel = true;
 zen_faction_filter_0_uksf_cdf = true;
 zen_faction_filter_0_UKSF_Inegal = true;
 zen_faction_filter_0_UKSF_Spetsnaz = true;
+zen_faction_filter_0_uksf_zir = true;
 zen_faction_filter_1_BLU_CTRG_F = true;
 zen_faction_filter_1_BLU_F = true;
 zen_faction_filter_1_BLU_G_F = true;
@@ -1159,6 +1181,7 @@ zen_faction_filter_2_IND_L_F = true;
 zen_faction_filter_2_UKSF_EUG = true;
 zen_faction_filter_2_uksf_eug_groups = true;
 zen_faction_filter_2_uksf_ni = true;
+zen_faction_filter_2_uksf_zgf = true;
 zen_faction_filter_3_CIV_F = true;
 zen_faction_filter_3_CIV_IDAP_F = true;
 zen_faction_filter_3_CIV_UA = true;
