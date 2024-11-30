@@ -28,3 +28,7 @@
     - map_north_takistan_data
 - Kunduz River (220 MB)
     - kunduz_river
+- Dagger Island (993 MB)
+    - dagger_island_summer
+    - dagger_island_summer_no_targets
+    - drc_custom_billboards
