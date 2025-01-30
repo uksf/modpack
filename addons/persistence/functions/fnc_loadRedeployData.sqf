@@ -18,7 +18,7 @@ GVAR(data) params ["_position", "_vehicleState", "_direction", "_animation", "_l
 //_positionData params ["_position", "_leaderID", "_leaderPosition", "_leaderDirection", "_relativePosition"];
 
 private _playerPosition = getPosASL player;
-if (GVAR(selectedRespawn) == "") then {
+if (GVAR(selectedRespawn) == "") then { // TODO: Doesn't handle objects
     WARNING("No respawn selected");
     private _respawnMarkers = allMapMarkers select {"respawn_west_" in _x};
     _respawnMarkers = _respawnMarkers apply {[_playerPosition distance (markerPos _x), _x]};
