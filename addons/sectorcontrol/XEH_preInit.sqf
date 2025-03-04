@@ -19,7 +19,7 @@ ADDON = false;
 [QGVAR(localHint), {
 	params ["_capturePercentage"];
 	[format [
-		"Sector Capture Progress: <t color='#FF0000'>%1%%</t>",
+		"Sector Capture Progress: <t color='#0000FF'>%1%%</t>",
 		round _capturePercentage
 	]] call EFUNC(common,hint);
 }] call CBA_fnc_addEventHandler;

@@ -27,15 +27,17 @@ private _currentOwner = _logic getVariable [QGVAR(currentOwner), 2]; // 2 is no-
 
 // create marker if condition is true
 private _condition = compile (_conditionString);
-private _result = call _condition;
-if (_result) then {
-    [_logic, _sizeXandY, _currentOwner, _name] call FUNC(createSectorMarker);
-};
+
+// leaving this out for now - Id rather we see all the points we have to capture
+// private _result = call _condition;
+// if (_result) then {
+//     [_logic, _sizeXandY, _currentOwner, _name] call FUNC(createSectorMarker);
+// };
+[_logic, _sizeXandY, _currentOwner, _name] call FUNC(createSectorMarker);
 private _markers = _logic getVariable [QGVAR(sectorMarkers), []];
 
 // set scores to 100 for owned sectors
 [_logic, 0, 0, _timeToCapture] call FUNC(setOwnedSectorScores);
-
 
 
 [{
@@ -60,8 +62,8 @@ private _markers = _logic getVariable [QGVAR(sectorMarkers), []];
     private _entities = _areaMarker nearEntities [["Man", "Car", "APC", "Tank"], false, true, true];
     if (_entities isEqualTo []) exitWith {
         if (_currentOwner == 2) then { // decay if the sector is neutral
-            _currentBluforScore = [_currentBluforScore - 1, 0] select (_currentBluforScore - 1 <= 0);
-            _currentOpforScore = [_currentOpforScore - 1, 0] select (_currentOpforScore - 1 <= 0);
+            _currentBluforScore = (_currentBluforScore - 1) max 0;
+            _currentOpforScore = (_currentOpforScore - 1) max 0;
             _logic setVariable [QGVAR(currentOpforScore), _currentOpforScore, true];
             _logic setVariable [QGVAR(currentBluforScore), _currentBluforScore, true];
         };
