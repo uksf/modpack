@@ -42,10 +42,12 @@ if !(_currentNumberBlufor >= _requiredNumberToDominateOpfor || _currentNumberOpf
 // allow capture if the dominant side is different from the current owner
 if ((_currentNumberBlufor >= _requiredNumberToDominateOpfor) && (_currentOwner != 1)) exitWith {
     _logic setVariable [QGVAR(dominantSide), 1, true];
+    [_logic, 1] call FUNC(showSectorAsContested);
 };
 
 if (_currentNumberOpfor >= _requiredNumberToDominateBlufor && (_currentOwner != 0)) exitWith {
     _logic setVariable [QGVAR(dominantSide), 0, true];
+    [_logic, 0] call FUNC(showSectorAsContested);
 };
 
 _logic setVariable [QGVAR(dominantSide), _currentOwner, true];

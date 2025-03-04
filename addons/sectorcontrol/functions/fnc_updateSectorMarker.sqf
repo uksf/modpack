@@ -22,7 +22,10 @@ params ["_logic", "_newOwner"];
 
 if !(isServer) exitWith {};
 
+private _name = _logic getVariable [QGVAR(displayName), ""];
 private _markers = _logic getVariable [QGVAR(sectorMarkers), []];
+private _nameMarker = _markers#1;
+_nameMarker setMarkerText _name;
 
 private _markerColour = switch (_newOwner) do {
     case 0: { OPFOR_COLOUR };
@@ -33,3 +36,6 @@ private _markerColour = switch (_newOwner) do {
 {
     _x setMarkerColor _markerColour;
 } forEach _markers;
+
+
+

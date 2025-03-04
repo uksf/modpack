@@ -33,6 +33,7 @@ ADDON = false;
 		[QGVAR(globalHint), [_newOwner, _name]] call CBA_fnc_globalEvent;
 		// update markers
 		[_logic, _newOwner] call FUNC(updateSectorMarker);
+		_logic setVariable [QGVAR(sectorContested), false, true];
 	};
 
 	if (_lockAfterCapture == 1) then {
