@@ -15,7 +15,7 @@
         Nothing
 */
 
-params ["_entities", "_dominantSideScore", "_timeToCapture"];
+params ["_entities", "_dominantSideScore", "_timeToCapture", "_currentDominantSide"];
 
 if !(isServer) exitWith {};
 
@@ -26,4 +26,4 @@ private _capturePercentage = (_dominantSideScore / _timeToCapture) * 100;
 private _players = _entities select {isPlayer _x};
 if (_players isEqualTo []) exitWith {};
 
-[QGVAR(localHint), [_capturePercentage], _players] call CBA_fnc_targetEvent;
+[QGVAR(localHint), [_capturePercentage, _currentDominantSide], _players] call CBA_fnc_targetEvent;

@@ -36,7 +36,7 @@ private _areaMarker = _markers#0;
 private _nameMarker = _markers#1;
 private _markerName = markerText _nameMarker;
 
-_nameMarker setMarkerTextLocal _markerName+" [Contested!]";
+_nameMarker setMarkerTextLocal _markerName+" [Capturing...]";
 _nameMarker setMarkerColor _markerColour;
 
 _logic setVariable [QGVAR(sectorContested), true, true];

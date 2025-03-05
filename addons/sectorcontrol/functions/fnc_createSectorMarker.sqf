@@ -19,9 +19,12 @@
 #define BLUFOR_COLOUR "ColorWEST"
 #define NONE_COLOUR "ColorGrey"
 
-params ["_logic", "_sizeXandY", "_currentOwner", "_name"];
+params ["_logic", "_currentOwner", "_name"];
 
 if !(isServer) exitWith {};
+
+private _area = _logic getVariable ["objectArea", [0,0]];
+_area params ["_a", "_b", "_angle", "_isRectangle"];
 
 private _markerColour = switch (_currentOwner) do {
     case 0: { OPFOR_COLOUR };
@@ -32,10 +35,11 @@ private _markerColour = switch (_currentOwner) do {
 // Area Marker
 private _markerName = format ["mkrSector_%1", random 1000];
 private _sectorMarker = createMarker [_markerName, _logic];
-_sectorMarker setMarkerShapeLocal "ELLIPSE";
+_sectorMarker setMarkerShapeLocal (["ELLIPSE", "RECTANGLE"] select _isRectangle);
 _sectorMarker setMarkerColorLocal _markerColour;
-_sectorMarker setMarkerSizeLocal _sizeXandY;
+_sectorMarker setMarkerSizeLocal [_a, _b];
 _sectorMarker setMarkerAlphaLocal 0.5;
+_sectorMarker setMarkerDirLocal (direction _logic);
 _sectorMarker setMarkerBrush "DiagGrid";
 
 // Label marker

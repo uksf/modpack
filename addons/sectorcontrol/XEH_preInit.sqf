@@ -8,18 +8,22 @@ ADDON = false;
 // global hint
 [QGVAR(globalHint), {
 	params ["_newOwner", "_name"];
-	private _side = "";
-	if (_newOwner == 1) then {_side = "Friendlies"};
-	if (_newOwner == 0) then {_side = "Enemies"};
-	[format["%1 have taken %2!",_side, _name]] call EFUNC(common,hint);
+	private _sideAndColour = [];
+	if (_newOwner == 1) then {_sideAndColour = ["Friendlies", '#0000FF']};
+	if (_newOwner == 0) then {_sideAndColour = ["Enemies", '#FF0000']};
+	[format["<t color='%1'>%2</t> have taken %3!",_sideAndColour#1, _sideAndColour#0, _name]] call EFUNC(common,hint);
 }] call CBA_fnc_addEventHandler;
 
 
 // local hint
 [QGVAR(localHint), {
-	params ["_capturePercentage"];
+	params ["_capturePercentage", "_currentDominantSide"];
+	private _colour = "";
+	if (_currentDominantSide == 1) then {_colour = '#0000FF'};
+	if (_currentDominantSide == 0) then {_colour = '#FF0000'};
 	[format [
-		"Sector Capture Progress: <t color='#0000FF'>%1%%</t>",
+		"Sector Capture Progress: <t color='%1'>%2</t>",
+		_colour,
 		round _capturePercentage
 	]] call EFUNC(common,hint);
 }] call CBA_fnc_addEventHandler;
