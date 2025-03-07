@@ -42,6 +42,11 @@ ADDON = false;
 
 	if (_lockAfterCapture == 1) then {
 		_logic setVariable [QGVAR(sectorLocked), true, true];
+		// add locked to the marker name
+		private _markers = _logic getVariable [QGVAR(sectorMarkers), []];
+		private _sectorMarkerName = _markers#1;
+		private _name = _logic getVariable [QGVAR(displayName), ""];
+		_sectorMarkerName setMarkerTextLocal _name+" [Locked]";
 	};
 }] call CBA_fnc_addEventHandler;
 

@@ -29,6 +29,11 @@ private _condition = compile (_conditionString);
 // if (_result) then {
 //     [_logic, _sizeXandY, _currentOwner, _name] call FUNC(createSectorMarker);
 // };
+
+
+// TODO: Handle markers being different when they're not able to be captured at mission start. Can't use grey as its used for not owned sectors.
+// Could add text??
+// Will need to reassess all sectors on a sector update because the condition box could be anything
 [_logic, _currentOwner, _name] call FUNC(createSectorMarker);
 private _markers = _logic getVariable [QGVAR(sectorMarkers), []];
 
@@ -88,7 +93,8 @@ private _markers = _logic getVariable [QGVAR(sectorMarkers), []];
     _logic setVariable [QGVAR(currentBluforScore), _currentbluforScore, true];
 
     // show a hint percentage
-    [_entities, _currentOpforScore, _timeToCapture, _currentDominantSide] call FUNC(getSectorCaptureProgress);
+    // TODO: Make this not reliant on a particular side, the below relies on players being blufor
+    [_entities, _currentbluforScore, _timeToCapture, _currentDominantSide] call FUNC(getSectorCaptureProgress);
 
     // fire ownerChanged event on score/time to capture met
     if (_currentOpforScore >= _timeToCapture && _currentOwner != 0) then {
