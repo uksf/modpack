@@ -4,7 +4,7 @@
         Bridg
 
     Description:
-        Sets up the PFH to monitor each places sector control module
+        Sets up the PFH to monitor each placed sector control module
 
     Parameters:
         0: The module logic <OBJECT>
