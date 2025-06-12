@@ -106,5 +106,6 @@ class CfgMagazines {
 
     class SPS_AI_AXMC_338_API526_Mag;
 
+#include "magazineSets\105mm.hpp"
 #include "magazineSets\SPS.hpp"
 };

@@ -25,7 +25,7 @@ private _golfClasses = QUOTE(
 ) configClasses EGVAR(common,configVehicles);
 _golfClasses = [QGVAR(gx)] + (_golfClasses apply {configName _x}) + [QGVAR(g14), QGVAR(g14ba), QGVAR(g14bl), QGVAR(g14d)];
 
-private _otherClasses = ["TBD_M119"];
+private _otherClasses = [QEGVAR(vehicles,L119)];
 
 GVAR(romeoClasses) = _romeoClasses apply {_x call _fnc_getDetails};
 GVAR(golfClasses) = _golfClasses apply {_x call _fnc_getDetails};
@@ -59,7 +59,7 @@ _action = [QGVAR(containerLoad), "Load into container", "", {
 }] call ace_interact_menu_fnc_createAction;
 {
     [_x, 0, ["ACE_MainActions"], _action, true] call ace_interact_menu_fnc_addActionToClass;
-} forEach [QGVAR(rx), QGVAR(rf), QGVAR(gx), QGVAR(g14), QGVAR(g14ba), QGVAR(g14bl), QGVAR(g14d), "TBD_M119"];
+} forEach [QGVAR(rx), QGVAR(rf), QGVAR(gx), QGVAR(g14), QGVAR(g14ba), QGVAR(g14bl), QGVAR(g14d), QEGVAR(vehicles,L119)];
 
 {
     _x params ["_id", "_fuseMode", "_fuseModeName", "_regex"];

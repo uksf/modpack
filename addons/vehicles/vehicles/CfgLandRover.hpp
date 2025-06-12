@@ -481,3 +481,34 @@ class UK3CB_BAF_LandRover_Panama_Sand_A : UK3CB_BAF_LandRover_Panama_Base {
     typicalCargo[] = { "CUP_B_BAF_Soldier_MTP" };
     COVER_ACTIONS
 };
+
+class GVAR(landrover_lightgun_green) : UK3CB_BAF_LandRover_Soft_FFR_Green_A {
+    displayname = "Land Rover Light Gun (Green)";
+    ace_cargo_space = 16;
+    class ACE_Cargo {
+        class Cargo {
+            MACRO_ADDACECARGO(tbd_mortars_105mm_box,25);
+            MACRO_ADDACECARGO(tbd_mortars_105mm_box_smoke,5);
+        };
+    };
+};
+class GVAR(landrover_lightgun_greenblack) : UK3CB_BAF_LandRover_Soft_FFR_Green_B {
+    displayname = "Land Rover Light Gun (Green/Black)";
+    ace_cargo_space = 16;
+    class ACE_Cargo {
+        class Cargo {
+            MACRO_ADDACECARGO(tbd_mortars_105mm_box,25);
+            MACRO_ADDACECARGO(tbd_mortars_105mm_box_smoke,5);
+        };
+    };
+};
+class GVAR(landrover_lightgun_sand) : UK3CB_BAF_LandRover_Soft_FFR_Sand_A {
+    displayname = "Land Rover Light Gun (Sand)";
+    ace_cargo_space = 16;
+    class ACE_Cargo {
+        class Cargo {
+            MACRO_ADDACECARGO(tbd_mortars_105mm_box,25);
+            MACRO_ADDACECARGO(tbd_mortars_105mm_box_smoke,5);
+        };
+    };
+};

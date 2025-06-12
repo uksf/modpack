@@ -35,17 +35,13 @@ class CfgPatches {
             QGVAR(g14),
             QGVAR(g14ba),
             QGVAR(g14bl),
-            QGVAR(g14d),
-            GVAR(landrover_lightgun_green),
-            GVAR(landrover_lightgun_greenblack),
-            GVAR(landrover_lightgun_sand)
+            QGVAR(g14d)
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             "uksf_radios",
             "uksf_vehicles",
-            "tbd_m119_m119",
             "tbd_mortars_105mm_box",
             "tbd_mortars_105mm_box_dpicm",
             "tbd_mortars_105mm_box_laser",
