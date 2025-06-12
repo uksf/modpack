@@ -14,6 +14,8 @@ class CfgPatches {
             QGVAR(r5),
             QGVAR(r6),
             QGVAR(r7),
+            QGVAR(r8),
+            QGVAR(r9),
             QGVAR(rt),
             QGVAR(rb),
             QGVAR(gx),
@@ -30,12 +32,24 @@ class CfgPatches {
             QGVAR(g11),
             QGVAR(g12),
             QGVAR(g13),
-            QGVAR(g14)
+            QGVAR(g14),
+            QGVAR(g14ba),
+            QGVAR(g14bl),
+            QGVAR(g14d),
+            GVAR(landrover_lightgun_green),
+            GVAR(landrover_lightgun_greenblack),
+            GVAR(landrover_lightgun_sand)
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "uksf_radios"
+            "uksf_radios",
+            "uksf_vehicles",
+            "tbd_m119_m119",
+            "tbd_mortars_105mm_box",
+            "tbd_mortars_105mm_box_dpicm",
+            "tbd_mortars_105mm_box_laser",
+            "tbd_mortars_105mm_box_smoke"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
