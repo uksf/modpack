@@ -108,7 +108,7 @@ class GVAR(r4) : GVAR(rx) {
     disableInventory = 1;
     class ACE_Cargo {
         class Cargo {
-            MACRO_ADDACECARGO(GVAR(g14),1);
+            MACRO_ADDACECARGO(GVAR(g14),3);
         };
     };
 };
@@ -163,6 +163,28 @@ class GVAR(r7) : GVAR(rx) {
         class Cargo {
             MACRO_ADDACECARGO(GVAR(g12),2);
             MACRO_ADDACECARGO(GVAR(g13),1);
+        };
+    };
+};
+class GVAR(r8) : GVAR(rx) {
+    displayName = "R8 (LGHE)";
+    description = "Crate - Light Gun High Explosive";
+    PREVIEW(r8);
+    hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\r8.paa) };
+    class ACE_Cargo {
+        class Cargo {
+            MACRO_ADDACECARGO(tbd_mortars_105mm_box,10);
+        };
+    };
+};
+class GVAR(r9) : GVAR(rx) {
+    displayName = "R9 (LGMisc)";
+    description = "Crate - Light Gun Misc";
+    PREVIEW(r9);
+    hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\r9.paa) };
+    class ACE_Cargo {
+        class Cargo {
+            MACRO_ADDACECARGO(tbd_mortars_105mm_box_smoke,7);
         };
     };
 };

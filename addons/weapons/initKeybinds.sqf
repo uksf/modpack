@@ -41,3 +41,41 @@
     player setVariable ["UK3CB_BAF_M6_reticle_timer", 6];
     true
 }, {false}, [DIK_GRAVE, [true, false, false]]] call CBA_fnc_addKeybind; // SHIFT + `
+
+["M119A3", "RotateRight", ["Rotate right", "Rotate the gun to the right"], {
+	private _arty = vehicle player;
+    if (_arty == player) exitWith {};
+	if !(_arty isKindOf "TBD_M119") exitWith {};
+
+    // Get the current animation source phase
+    private _currentPhase = _arty animationSourcePhase "howitzer_rotation_source";
+    // Edit it
+    _currentPhase = _currentPhase + 4;
+
+    if (_currentPhase > 1440) then {
+        _currentPhase = 1440;
+    };
+
+    // Set the new animation source phase
+    _arty animateSource ["howitzer_rotation_source", _currentPhase, 30];
+}, {},
+[0x20, [false, false, false]], true, 0.1] call CBA_fnc_addKeybind;
+
+["M119A3", "RotateLeft", ["Rotate left", "Rotate the gun to the left"], {
+	private _arty = vehicle player;
+    if (_arty == player) exitWith {};
+	if !(_arty isKindOf "TBD_M119") exitWith {};
+
+    // Get the current animation source phase
+    private _currentPhase = _arty animationSourcePhase "howitzer_rotation_source";
+    // Edit it
+    _currentPhase = _currentPhase - 4;
+
+    if (_currentPhase < -1440) then {
+        _currentPhase = 1440;
+    };
+
+    // Set the new animation source phase
+    _arty animateSource ["howitzer_rotation_source", _currentPhase, 30];
+}, {},
+[0x1E, [false, false, false]], true, 0.1] call CBA_fnc_addKeybind;

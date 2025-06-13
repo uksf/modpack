@@ -40,6 +40,9 @@ GVAR(updatePFHID) = [{
 
     private _speed = vectorMagnitude (velocity player);
     private _breathingVolumePerMinute = [[AIR_USAGE_IDLE, AIR_USAGE_NORMAL] select (_speed > SPEED_NORMAL), AIR_USAGE_FAST] select (_speed > SPEED_FAST);
+    if (objectParent player != objNull) then {
+        _breathingVolumePerMinute = AIR_USAGE_IDLE;
+    };
 
     GVAR(currentDepth) = (((getPosASL player) select 2) * -1);
     GVAR(currentAmbientPressure) = ((GVAR(currentDepth) / 10) + 1);

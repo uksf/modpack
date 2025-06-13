@@ -11,12 +11,17 @@ class CfgPatches {
             "UK3CB_BAF_MAN_HX60_Rearm_Green",
             "UK3CB_BAF_MAN_HX60_Rearm_Sand",
             QGVAR(rhicc_green),
-            QGVAR(rhicc_grey)
+            QGVAR(rhicc_grey),
+            QGVAR(L119),
+            QGVAR(landrover_lightgun_green),
+            QGVAR(landrover_lightgun_greenblack),
+            QGVAR(landrover_lightgun_sand)
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            QGVAR(prep)
+            QGVAR(prep),
+            "tbd_m119_m119"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };

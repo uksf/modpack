@@ -823,6 +823,10 @@ class CfgWeapons {
     class Rifle_Long_Base_F;
     class SPS_AI_AXMC_base_F;
 
+    class tbd_m119_weapon: mortar_82mm {
+        displayName = "L119 Light Gun";
+    };
+
 #include "weaponSets\CUP.hpp"
 #include "weaponSets\RHICC.hpp"
 #include "weaponSets\SPS.hpp"

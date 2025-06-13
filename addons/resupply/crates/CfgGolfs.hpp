@@ -178,6 +178,7 @@ class GVAR(g14) : ACE_medicalSupplyCrate {
     description = "Grab Box - Medical";
     editorCategory = "EdCat_Supplies";
     editorSubcategory = QEGVAR(common,golfs);
+    hiddenSelectionsTextures[] = { QPATHTOF(data\golf\g14.paa) };
     PREVIEW(g14);
     class TransportItems {
         MACRO_ADDITEM(ACE_elasticBandage,150);
@@ -193,4 +194,39 @@ class GVAR(g14) : ACE_medicalSupplyCrate {
     class TransportMagazines {
         MACRO_ADDMAGAZINE(ACE_painkillers,30);
     };
+};
+class GVAR(g14ba) : GVAR(g14) {
+    displayName = "G14 (MED-BA)";
+    description = "Grab Box - Medical (Bandages)";
+    hiddenSelectionsTextures[] = { QPATHTOF(data\golf\g14ba.paa) };
+    PREVIEW(g14);
+    class TransportItems {
+        MACRO_ADDITEM(ACE_elasticBandage,250);
+        MACRO_ADDITEM(ACE_packingBandage,250);
+        MACRO_ADDITEM(ACE_surgicalKit,10);
+    };
+    class TransportMagazines {};
+};
+class GVAR(g14bl) : GVAR(g14) {
+    displayName = "G14 (MED-BL)";
+    description = "Grab Box - Medical (Blood)";
+    hiddenSelectionsTextures[] = { QPATHTOF(data\golf\g14bl.paa) };
+    PREVIEW(g14);
+    class TransportItems {
+        MACRO_ADDITEM(ACE_bloodIV_500,50);
+        MACRO_ADDITEM(ACE_bloodIV_250,50);
+    };
+    class TransportMagazines {};
+};
+class GVAR(g14d) : GVAR(g14) {
+    displayName = "G14 (MED-D)";
+    description = "Grab Box - Medical (Drugs)";
+    hiddenSelectionsTextures[] = { QPATHTOF(data\golf\g14d.paa) };
+    PREVIEW(g14);
+    class TransportItems {
+        MACRO_ADDITEM(ACE_adenosine,100);
+        MACRO_ADDITEM(ACE_morphine,100);
+        MACRO_ADDITEM(ACE_epinephrine,100);
+    };
+    class TransportMagazines {};
 };

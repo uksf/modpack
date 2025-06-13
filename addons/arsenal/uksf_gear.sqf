@@ -517,6 +517,7 @@ uksf_arsenal_mainOpGearBase = [
     "sps_black_hornet_01_Static_F",
     "ACE_IR_Strobe_Item",
     "acex_intelitems_notepad",
+    "ACE_EHP",
 
     // Uniforms
     "SP_0000_Standard_TacticalUniform_ATacsFG",

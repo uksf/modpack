@@ -57,5 +57,19 @@ class CfgVehicles {
         editorSubcategory = QEGVAR(common,resupply);
     };
 
+    class NATO_Box_Base;
+    class tbd_mortars_105mm_box: NATO_Box_Base {
+        ace_cargo_space = 1;
+    };
+    class tbd_mortars_105mm_box_dpicm: NATO_Box_Base {
+        ace_cargo_space = 1;
+    };
+    class tbd_mortars_105mm_box_laser: NATO_Box_Base {
+        ace_cargo_space = 1;
+    };
+    class tbd_mortars_105mm_box_smoke: NATO_Box_Base {
+        ace_cargo_space = 1;
+    };
+
 #include "crates\CfgObsolete.hpp"
 };
