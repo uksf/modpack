@@ -825,6 +825,11 @@ class CfgWeapons {
 
     class tbd_m119_weapon: mortar_82mm {
         displayName = "L119 Light Gun";
+        ace_overpressure_priority = 1;
+        ace_overpressure_angle = 85;
+        ace_overpressure_range = 15;
+        ace_overpressure_damage = 0.85;
+        ace_overpressure_offset = 1.3;
     };
 
 #include "weaponSets\CUP.hpp"

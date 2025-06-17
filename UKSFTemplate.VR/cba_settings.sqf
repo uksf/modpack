@@ -4,8 +4,13 @@ force uksf_common_mainOp = true;
 // Change to false where specific pre-defined DPs for HAHO are mission-critical and cannot be defined during the mission based on measured wind
 force ace_weather_windSimulation = true;
 
-// For special missions only. Set value to 0 to disable weapon overpressure. Use this for tank battles etc
-force ace_overpressure_distanceCoefficient = 1;
+// For special missions only. Set value to 0 to disable vehicle weapon overpressure. Use this for tank battles etc
+force ace_overpressure_overpressureDistanceCoefficient = 1;
+
+// For training missions only. 0 = Always, 1 = Cardiac Arrest, 2 = Never
+force ace_medical_statemachine_fatalInjuriesAI = 0;
+// For training missions only. Set to True to allow AI to go unconscious, instead of always dying
+force ace_medical_statemachine_AIUnconsciousness = false;
 
 // Change these per mission if required
 force uksf_caching_enabled = false;
