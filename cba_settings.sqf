@@ -150,7 +150,7 @@ force acex_field_rations_timeWithoutWater = 2;
 force acex_field_rations_waterSourceActions = 2;
 
 // ACE Fire
-force force ace_fire_dropWeapon = 2;
+force force ace_fire_dropWeapon = 1;
 force force ace_fire_enabled = true;
 force force ace_fire_enableFlare = true;
 ace_fire_enableScreams = true;
