@@ -62,7 +62,7 @@ ace_arsenal_fontHeight = 4.5;
 force force ace_arsenal_loadoutsSaveFace = false;
 force force ace_arsenal_loadoutsSaveInsignia = true;
 force force ace_arsenal_loadoutsSaveVoice = false;
-force force ace_arsenal_showUnavailableItems = 0;
+ace_arsenal_showUnavailableItems = 0;
 
 // ACE Artillery
 force force ace_artillerytables_advancedCorrections = true;
@@ -817,6 +817,19 @@ force force CUP_Vehicles_PreventBarrelClip = false;
 // CUP Static Weapons
 force force CUP_staticWeapons_allowMovement = false;
 force force CUP_staticWeapons_allowRotation = false;
+
+// Death and Hit Reactions
+force force WBK_DeathAnimMod_Death_Chance = "100";
+force force WBK_DeathAnimMod_Deaths_AI = true;
+force force WBK_DeathAnimMod_Deaths_HUGEANIMS = true;
+force force WBK_DeathAnimMod_Deaths_NECKSHOTS = true;
+force force WBK_DeathAnimMod_Deaths_PLR = false;
+force force WBK_DeathAnimMod_Flinch_AI = true;
+force force WBK_DeathAnimMod_Flinch_PLR = false;
+force force WBK_DeathAnimMod_Hit_AI = true;
+force force WBK_DeathAnimMod_Hit_Chance = "100";
+force force WBK_DeathAnimMod_Hit_Chance_PLR = "100";
+force force WBK_DeathAnimMod_Hit_PLR = false;
 
 // DUI - Squad Radar - Main
 diwako_dui_ace_hide_interaction = false;
