@@ -154,4 +154,22 @@ class CfgVehicles {
             };
         };
     };
+
+    class Helicopter;
+    class Helicopter_Base_F : Helicopter {
+        class Turrets;
+    };
+    class GX_DRONE40_UAV_BASE : Helicopter_Base_F {
+        class Turrets: Turrets {
+			class MainTurret;
+        };
+    };
+    class GX_DRONE40_UAV_RECON : GX_DRONE40_UAV_BASE {
+        class Turrets: Turrets {
+			class MainTurret: MainTurret {
+                weapons[] = {};
+				magazines[] = {};
+            };
+        };
+    };
 };

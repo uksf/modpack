@@ -518,6 +518,8 @@ uksf_arsenal_mainOpGearBase = [
     "ACE_IR_Strobe_Item",
     "acex_intelitems_notepad",
     "ACE_EHP",
+    "GX_DEPLOYABLE_BLACK_HORNET_UAV",
+    "GX_1RND_DRONE40_RECON_M203",
 
     // Uniforms
     "SP_0000_Standard_TacticalUniform_ATacsFG",
