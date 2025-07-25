@@ -30,6 +30,11 @@ force force ace_advanced_fatigue_performanceFactor = 2;
 force force ace_advanced_fatigue_recoveryFactor = 2;
 force force ace_advanced_fatigue_terrainGradientFactor = 0.5;
 
+// ACE Advanced Missile Guidance
+force force ace_missileguidance_chaffEffectivenessCoef = 1;
+force force ace_missileguidance_flareAngleCoef = 1;
+force force ace_missileguidance_flareEffectivenessCoef = 1;
+
 // ACE Advanced Throwing
 force force ace_advanced_throwing_enabled = true;
 force force ace_advanced_throwing_enablePickUp = true;
@@ -304,6 +309,7 @@ ace_maptools_rotateModifierKey = 1;
 force force ace_medical_ai_enabledFor = 2;
 force force ace_medical_ai_requireItems = 0;
 force force ace_medical_AIDamageThreshold = 1;
+force force ace_medical_alternateArmorPenetration = true;
 force force ace_medical_bleedingCoefficient = 1;
 force force ace_medical_blood_bloodLifetime = 900;
 force force ace_medical_blood_enabledFor = 2;
@@ -311,7 +317,6 @@ force force ace_medical_blood_maxBloodObjects = 300;
 force force ace_medical_deathChance = 1;
 force force ace_medical_dropWeaponUnconsciousChance = 0;
 force force ace_medical_enableVehicleCrashes = true;
-force force ace_medical_engine_damagePassThroughEffect = 1;
 force force ace_medical_fatalDamageSource = 0;
 force force ace_medical_fractureChance = 0.1;
 force force ace_medical_fractures = 2;
@@ -1034,6 +1039,9 @@ force force NMAB_setting_particlesEnabled = true;
 SPS_BlackHornet_EnableACEInteraction = true;
 SPS_BlackHornet_EnableVanillaScrollWheel = true;
 
+// TBD M119
+force force tbd_m119_m119_EJECT = true;
+
 // TBD Mortars Main
 force force TBD_MORTARS_main_assemble105Time = 1;
 force force TBD_MORTARS_main_chargeChangeTime = 3;
@@ -1063,6 +1071,49 @@ force OCAP_settings_saveTag = "PVE";
 force OCAP_settings_trackTickets = false;
 force OCAP_settings_trackTimeInterval = 1;
 force OCAP_settings_trackTimes = false;
+
+// Turret Enhanced
+Fat_Lurch_Grid = true;
+Fat_Lurch_GridNum = 8;
+Fat_Lurch_MapSlew = true;
+Fat_Lurch_Markers = true;
+Fat_Lurch_Measure = true;
+Fat_Lurch_ShowAz = true;
+Fat_Lurch_ShowEl = true;
+Fat_Lurch_ShowNorth = true;
+Fat_Lurch_ShowTarget = true;
+Marbit_MarkerBHColor = "ColorBlack";
+Marbit_MarkerBHEnabler = true;
+Marbit_MarkerFourColor = "ColorGreen";
+Marbit_MarkerFourEnabler = true;
+Marbit_MarkerFourIcon = "hd_dot";
+Marbit_MarkerFourLabel = "";
+Marbit_MarkerFourLabelPost = " ";
+Marbit_MarkerFourLabelPostCustom = false;
+Marbit_MarkerOneColor = "ColorRed";
+Marbit_MarkerOneEnabler = true;
+Marbit_MarkerOneIcon = "hd_dot";
+Marbit_MarkerOneLabel = "HM";
+Marbit_MarkerOneLabelPost = " ";
+Marbit_MarkerOneLabelPostCustom = false;
+Marbit_MarkerThreeColor = "ColorBlack";
+Marbit_MarkerThreeEnabler = true;
+Marbit_MarkerThreeIcon = "hd_dot";
+Marbit_MarkerThreeLabel = "";
+Marbit_MarkerThreeLabelPost = " ";
+Marbit_MarkerThreeLabelPostCustom = false;
+Marbit_MarkerTwoColor = "ColorBlue";
+Marbit_MarkerTwoEnabler = true;
+Marbit_MarkerTwoIcon = "hd_dot";
+Marbit_MarkerTwoLabel = "FM";
+Marbit_MarkerTwoLabelPost = " ";
+Marbit_MarkerTwoLabelPostCustom = false;
+Marbit_MarkerZeroColor = "ColorOrange";
+Marbit_MarkerZeroEnabler = true;
+Marbit_MarkerZeroIcon = "hd_dot";
+Marbit_MarkerZeroLabel = "HM";
+Marbit_MarkerZeroLabelPost = "";
+Marbit_sideMarkerCounterPre = 0;
 
 // UKSF
 force uksf_caching_distance = 750;
