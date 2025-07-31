@@ -16,6 +16,7 @@ class CfgPatches {
             QGVAR(r7),
             QGVAR(r8),
             QGVAR(r9),
+            QGVAR(r10),
             QGVAR(rt),
             QGVAR(rb),
             QGVAR(gx),
@@ -45,7 +46,8 @@ class CfgPatches {
             "tbd_mortars_105mm_box",
             "tbd_mortars_105mm_box_dpicm",
             "tbd_mortars_105mm_box_laser",
-            "tbd_mortars_105mm_box_smoke"
+            "tbd_mortars_105mm_box_smoke",
+            "greenmag_main"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
