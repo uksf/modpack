@@ -188,6 +188,29 @@ class GVAR(r9) : GVAR(rx) {
         };
     };
 };
+class GVAR(r10) : GVAR(rx) {
+    displayName = "R10 (GM-B)";
+    description = "Crate - Bullets";
+    // PREVIEW(r9);
+    hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\r10.paa) };
+    class TransportItems {
+        MACRO_ADDITEM(greenmag_ammo_556x45_basic_30Rnd,60);
+        MACRO_ADDITEM(greenmag_ammo_556x45_tracer_30Rnd,60);
+        MACRO_ADDITEM(greenmag_beltlinked_556x45_basic_100,10);
+        MACRO_ADDITEM(greenmag_beltlinked_556x45_tracer_100,10);
+        MACRO_ADDITEM(greenmag_beltlinked_556x45_basic_200,10);
+        MACRO_ADDITEM(greenmag_beltlinked_556x45_tracer_200,10);
+        MACRO_ADDITEM(greenmag_ammo_762x51_basic_30Rnd,20);
+        MACRO_ADDITEM(greenmag_ammo_762x51_tracer_30Rnd,20);
+        MACRO_ADDITEM(greenmag_beltlinked_762x51_basic_100,10);
+        MACRO_ADDITEM(greenmag_beltlinked_762x51_tracer_100,10);
+        MACRO_ADDITEM(greenmag_beltlinked_762x51_basic_200,10);
+        MACRO_ADDITEM(greenmag_beltlinked_762x51_tracer_200,10);
+        MACRO_ADDITEM(greenmag_ammo_9x21_basic_30Rnd,10);
+        MACRO_ADDITEM(greenmag_ammo_338_basic_30Rnd,10);
+        MACRO_ADDITEM(greenmag_item_speedloader,30);
+    };
+};
 class GVAR(rt) : GVAR(rx) {
     displayName = "RT (Tyres)";
     description = "Crate - Tyres, Toolkits";
