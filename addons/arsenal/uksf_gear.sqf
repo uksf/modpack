@@ -408,6 +408,9 @@ uksf_arsenal_mainOpGearBase = [
     "optic_MRCO",
     "ACE_optic_MRCO_2D",
     "CUP_optic_MAAWS_Scope",
+    "CUP_muzzle_snds_SCAR_H",
+    "CUP_muzzle_snds_socom762rc",
+    "muzzle_snds_B",
 
     // NVGs
     "ACE_NVG_Pilot",
