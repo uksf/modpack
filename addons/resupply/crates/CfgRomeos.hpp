@@ -208,6 +208,9 @@ class GVAR(r10) : GVAR(rx) {
         MACRO_ADDITEM(greenmag_beltlinked_762x51_tracer_200,10);
         MACRO_ADDITEM(greenmag_ammo_9x21_basic_30Rnd,10);
         MACRO_ADDITEM(greenmag_ammo_338_basic_30Rnd,10);
+        MACRO_ADDITEM(greenmag_ammo_300_API526_30Rnd,10);
+        MACRO_ADDITEM(greenmag_ammo_300_300gr_30Rnd,10);
+        MACRO_ADDITEM(greenmag_ammo_408_basic_30Rnd,10);
         MACRO_ADDITEM(greenmag_item_speedloader,30);
     };
 };

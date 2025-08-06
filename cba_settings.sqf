@@ -1035,10 +1035,6 @@ force force mts_markers_useVanillaColors = false;
 // NMAB Settings
 force force NMAB_setting_particlesEnabled = true;
 
-// SPS Black Hornet Settings
-SPS_BlackHornet_EnableACEInteraction = true;
-SPS_BlackHornet_EnableVanillaScrollWheel = true;
-
 // TBD M119
 force force tbd_m119_m119_EJECT = true;
 

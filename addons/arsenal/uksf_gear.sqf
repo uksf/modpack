@@ -408,6 +408,9 @@ uksf_arsenal_mainOpGearBase = [
     "optic_MRCO",
     "ACE_optic_MRCO_2D",
     "CUP_optic_MAAWS_Scope",
+    "CUP_muzzle_snds_SCAR_H",
+    "CUP_muzzle_snds_socom762rc",
+    "muzzle_snds_B",
 
     // NVGs
     "ACE_NVG_Pilot",
@@ -544,7 +547,6 @@ uksf_arsenal_mainOpGearBase = [
     "uksf_halohaho_airSupply",
     "ItemcTabHCam",
     "ItemcTab",
-    "sps_black_hornet_01_Static_F",
     "ACE_IR_Strobe_Item",
     "acex_intelitems_notepad",
     "ACE_EHP",
