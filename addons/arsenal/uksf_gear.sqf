@@ -545,7 +545,6 @@ uksf_arsenal_mainOpGearBase = [
     "uksf_diving_cylinderDoubleTx1070",
     "uksf_diving_cylinderSingleTx107",
     "uksf_halohaho_airSupply",
-    "ItemcTabHCam",
     "ItemcTab",
     "ACE_IR_Strobe_Item",
     "acex_intelitems_notepad",
