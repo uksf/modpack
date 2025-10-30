@@ -16,18 +16,4 @@
     - dagger_island_summer
     - drc_custom_billboards
     - drc_flags
-- Korsac (635 MB)
-    - vtf_korsac
-    - vtf_korsac_config
-    - vtf_korsac_structures
-    - vtf_korsac_winter
-    - vtf_korsac_winter_config
-- Mehland (1.31 GB)
-    - mehland
-    - mehland_art
-    - mehland_layers
-    - mehland_signs
-    - rnc_apartments
-    - rnc_houses
-    - rnc_main
-    - rnc_misc
+
