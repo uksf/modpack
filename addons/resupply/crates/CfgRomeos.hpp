@@ -61,6 +61,11 @@ class GVAR(r2) : GVAR(rx) {
     class TransportMagazines {
         MACRO_ADDMAGAZINE(MRAWS_HEAT_F,20);
         MACRO_ADDMAGAZINE(MRAWS_HE_F,5);
+        MACRO_ADDMAGAZINE(za_enhancedmaawsCUP_mag_HE,10);
+        MACRO_ADDMAGAZINE(za_enhancedmaawsCUP_mag_HEAT551,10);
+        MACRO_ADDMAGAZINE(za_enhancedmaawsCUP_mag_ASM509,10);
+        MACRO_ADDMAGAZINE(za_enhancedmaawsCUP_mag_ILLUM,10);
+        MACRO_ADDMAGAZINE(za_enhancedmaawsCUP_mag_MT756,10);
         MACRO_ADDMAGAZINE(DemoCharge_Remote_Mag,10);
         MACRO_ADDMAGAZINE(SatchelCharge_Remote_Mag,5);
         MACRO_ADDMAGAZINE(BreachCharge_Remote_Mag,10);
@@ -158,6 +163,7 @@ class GVAR(r7) : GVAR(rx) {
         MACRO_ADDMAGAZINE(SPS_AI_AXMC_338_HAPI_Mag,30);
         MACRO_ADDMAGAZINE(UK3CB_BAF_338_5Rnd,30);
         MACRO_ADDMAGAZINE(UK3CB_BAF_338_5Rnd_Tracer,30);
+        MACRO_ADDMAGAZINE(CUP_5Rnd_127x99_as50_M,10);
     };
     class ACE_Cargo {
         class Cargo {
