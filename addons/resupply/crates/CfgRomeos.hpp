@@ -163,6 +163,7 @@ class GVAR(r7) : GVAR(rx) {
         MACRO_ADDMAGAZINE(SPS_AI_AXMC_338_HAPI_Mag,30);
         MACRO_ADDMAGAZINE(UK3CB_BAF_338_5Rnd,30);
         MACRO_ADDMAGAZINE(UK3CB_BAF_338_5Rnd_Tracer,30);
+        MACRO_ADDMAGAZINE(CUP_5Rnd_127x99_as50_M,10);
     };
     class ACE_Cargo {
         class Cargo {

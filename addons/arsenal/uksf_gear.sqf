@@ -172,6 +172,7 @@ uksf_arsenal_mainOpGearBase = [
     "za_enhancedmaawsCUP_mag_HEAT551",
     "za_enhancedmaawsCUP_mag_ILLUM",
     "za_enhancedmaawsCUP_mag_MT756",
+    "CUP_5Rnd_127x99_as50_M",
 
     // Weapons
     "ACE_MX2A",
