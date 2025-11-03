@@ -167,6 +167,11 @@ uksf_arsenal_mainOpGearBase = [
     "CUP_200Rnd_TE4_Red_Tracer_556x45_M249_Pouch",
     "CUP_100Rnd_TE4_Red_Tracer_556x45_M249",
     "CUP_200Rnd_TE1_Red_Tracer_556x45_M249_Pouch",
+    "za_enhancedmaawsCUP_mag_ASM509",
+    "za_enhancedmaawsCUP_mag_HE",
+    "za_enhancedmaawsCUP_mag_HEAT551",
+    "za_enhancedmaawsCUP_mag_ILLUM",
+    "za_enhancedmaawsCUP_mag_MT756",
 
     // Weapons
     "ACE_MX2A",

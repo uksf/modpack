@@ -62,8 +62,13 @@ Empty crate
 | NLAW Tube | 10 |
 | MAAWS HEAT 75 | 20 |
 | MAAWS HE 44 | 5 |
+| MAAWS HE 441 | 10 |
+| MAAWS ASM 509 | 10 |
+| MAAWS HEAT 551 | 10 |
+| MAAWS ILLUM 545 | 10 |
+| MAAWS MT 756 | 10 |
 | CLU | 3 |
-| M57 Clacker | 3 |
+| M57 Clacker | 3 1|
 | Dem-block | 10 |
 | Satchel Charge | 5 |
 | Breaching Charge | 10 |
