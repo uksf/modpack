@@ -114,6 +114,7 @@ class CfgPatches {
             "diwako_dui_main",
             "jsrs_soundmod_2025_Beta",
             "jsrs_soundmod_2025_Beta_3cb_BAF_weapons",
+            "jsrs_soundmod_2025_Beta_3cb_BAF_vehicles",
             "jsrs_soundmod_2025_Beta_cup_weapons",
             "jsrs_soundmod_2025_Beta_cup_vehicles",
             "lambs_danger",
