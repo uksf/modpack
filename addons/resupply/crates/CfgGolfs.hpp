@@ -53,6 +53,11 @@ class GVAR(g3) : GVAR(gx) {
     class TransportMagazines {
         MACRO_ADDMAGAZINE(MRAWS_HEAT_F,10);
         MACRO_ADDMAGAZINE(MRAWS_HE_F,5);
+        MACRO_ADDMAGAZINE(za_enhancedmaawsCUP_mag_HE,5);
+        MACRO_ADDMAGAZINE(za_enhancedmaawsCUP_mag_HEAT551,5);
+        MACRO_ADDMAGAZINE(za_enhancedmaawsCUP_mag_ASM509,5);
+        MACRO_ADDMAGAZINE(za_enhancedmaawsCUP_mag_ILLUM,5);
+        MACRO_ADDMAGAZINE(za_enhancedmaawsCUP_mag_MT756,5);
     };
     class TransportWeapons {
         MACRO_ADDWEAPON(UK3CB_BAF_AT4_CS_AT_Launcher,5);
@@ -166,6 +171,7 @@ class GVAR(g13) : GVAR(gx) {
         MACRO_ADDMAGAZINE(SPS_AI_AXMC_338_300gr_Scenar_IR_Mag,5);
         MACRO_ADDMAGAZINE(SPS_AI_AXMC_338_HAPI_Mag,5);
         MACRO_ADDMAGAZINE(UK3CB_BAF_762_L42A1_20Rnd,10);
+        MACRO_ADDMAGAZINE(CUP_5Rnd_127x99_as50_M,5);
     };
 };
 

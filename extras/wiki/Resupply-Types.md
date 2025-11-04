@@ -62,6 +62,11 @@ Empty crate
 | NLAW Tube | 10 |
 | MAAWS HEAT 75 | 20 |
 | MAAWS HE 44 | 5 |
+| MAAWS HE 441 | 10 |
+| MAAWS ASM 509 | 10 |
+| MAAWS HEAT 551 | 10 |
+| MAAWS ILLUM 545 | 10 |
+| MAAWS MT 756 | 10 |
 | CLU | 3 |
 | M57 Clacker | 3 |
 | Dem-block | 10 |
@@ -195,6 +200,7 @@ Empty crate
 | 10rnd .50 tracer rounds (L135A1) | 30 |
 | 5rnd .338 rounds (L115A3) | 30 |
 | 5rnd .338 tracer rounds (L115A3) | 30 |
+| 5rnd .50 AS50 rounds | 10 |
 
 <br/>
 </details>
