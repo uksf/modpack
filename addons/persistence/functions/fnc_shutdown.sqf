@@ -56,6 +56,8 @@ LOG("Shutdown");
                 call FUNC(saveData);
             };
 
+            ["ocap_exportData", [west]] call CBA_fnc_localEvent;
+
             [{SERVER_COMMAND serverCommand "#shutdown"}, [], 4] call CBA_fnc_waitAndExecute;
         }] call CBA_fnc_waitUntilAndExecute;
     };
