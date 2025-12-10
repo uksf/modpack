@@ -62,12 +62,10 @@ class CfgPatches {
             QGVAR(HEMTT_Fuel_Woodland),
             QGVAR(HEMTT_Repair),
             QGVAR(HEMTT_Repair_Woodland),
-            QGVAR(M777),
-            QGVAR(SMERCH),
-            QGVAR(2S7M),
-            QGVAR(M777_Woodland),
-            QGVAR(SMERCH_Woodland),
-            QGVAR(2S7M_Woodland),
+            QGVAR(M119),
+            QGVAR(bm21),
+            QGVAR(M119_Woodland),
+            QGVAR(bm21_Woodland),
 
             QGVAR(Patriot),
             QGVAR(Patriot_Radar),
@@ -85,8 +83,6 @@ class CfgPatches {
 
             QGVAR(Gripen),
             QGVAR(Gripen_Woodland),
-            QGVAR(TU16),
-            QGVAR(TU16_Woodland),
 
             QGVAR(CH146_Tpt),
             QGVAR(CH146_Tpt_Woodland),

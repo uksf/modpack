@@ -1,53 +1,35 @@
-// M-777
-class pook_M777;
-class GVAR(M777) : pook_M777 {
+// M119
+class CUP_I_M119_RACS;
+class GVAR(M119) : CUP_I_M119_RACS {
     scope = 2;
     faction = QUOTE(ADDON);
     side = 0;
-    displayName = "M-777";
+    displayName = "M-119";
     crew = QGVAR(Crewman);
     typicalCargo[] = { QGVAR(Crewman) };
     INVENTORY_EMPTY;
 };
 
-class GVAR(M777_Woodland) : GVAR(M777) {
-    displayName = "M-777 (Woodland)";
+class GVAR(M119_Woodland) : GVAR(M119) {
+    displayName = "M-119 (Woodland)";
     crew = QGVAR(Crewman_Woodland);
     typicalCargo[] = { QGVAR(Crewman_Woodland) };
 };
 
-// SMERCH
-class pook_9K58_BLUFOR;
-class GVAR(SMERCH) : pook_9K58_BLUFOR {
+// BM21
+class CUP_B_BM21_AFU;
+class GVAR(bm21) : CUP_B_BM21_AFU {
     scope = 2;
     faction = QUOTE(ADDON);
     side = 0;
-    displayName = "Smerch";
+    displayName = "BM 21";
     crew = QGVAR(Crewman);
     typicalCargo[] = { QGVAR(Crewman) };
     INVENTORY_EMPTY;
 };
 
-class GVAR(SMERCH_Woodland) : GVAR(SMERCH) {
-    displayName = "Smerch (Woodland)";
-    crew = QGVAR(Crewman_Woodland);
-    typicalCargo[] = { QGVAR(Crewman_Woodland) };
-};
-
-// 2S7M
-class pook_2S7_CDF;
-class GVAR(2S7M) : pook_2S7_CDF {
-    scope = 2;
-    faction = QUOTE(ADDON);
-    side = 0;
-    displayName = "2S7M";
-    crew = QGVAR(Crewman);
-    typicalCargo[] = { QGVAR(Crewman) };
-    INVENTORY_EMPTY;
-};
-
-class GVAR(2S7M_Woodland) : GVAR(2S7M) {
-    displayName = "2S7M (Woodland)";
+class GVAR(bm21_Woodland) : GVAR(bm21) {
+    displayName = "BM 21 (Woodland)";
     crew = QGVAR(Crewman_Woodland);
     typicalCargo[] = { QGVAR(Crewman_Woodland) };
 };
