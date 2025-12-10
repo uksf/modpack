@@ -1,17 +1,3 @@
-// TU-16
-class pook_tu16_G_BLUFOR;
-class GVAR(TU16) : pook_tu16_G_BLUFOR {
-    scope = 2;
-    side = 0;
-    faction = QUOTE(ADDON);
-    displayName = "Tu-16 Bomber";
-    crew = QGVAR(Jet_Pilot);
-    typicalCargo[] = {
-        QGVAR(Jet_Pilot)
-    };
-    INVENTORY_EMPTY;
-};
-
 // Gripen
 class uksf_eug_Gripen;
 class GVAR(Gripen) : uksf_eug_Gripen {

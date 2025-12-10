@@ -1,14 +1,3 @@
-class pook_Mi28_OPFOR;
-class GVAR(Mi_28N) : pook_Mi28_OPFOR {
-    side = 2;
-    faction = QUOTE(ADDON);
-    displayName = "Mi-28N";
-    hiddenSelectionsTextures[] = { "pook_mi28\data\skins\sand.paa", "pook_mi28\data\_num\number_b6_ca.paa", "pook_mi28\data\_num\number_b7_ca.paa" };
-    crew = QGVAR(Heli_Crew);
-    typicalCargo[] = { QGVAR(Heli_Crew) };
-    INVENTORY_EMPTY;
-};
-
 class CUP_O_Mi24_Mk4_CSAT_T;
 class GVAR(Mi_24_Superhind) : CUP_O_Mi24_Mk4_CSAT_T {
     side = 2;
