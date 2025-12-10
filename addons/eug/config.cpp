@@ -30,12 +30,9 @@ class CfgPatches {
             QGVAR(Heli_Crew),
             QGVAR(Jet_Pilot),
 
-            QGVAR(Pantsir),
             QGVAR(ZSU_23_4),
             QGVAR(UAZ_AA),
             QGVAR(Bardelas),
-            QGVAR(Ural_Radar),
-            QGVAR(SON_9A_Radar),
             QGVAR(Buran_APC),
             QGVAR(BTR_80A),
             QGVAR(BTR_90),
@@ -61,7 +58,6 @@ class CfgPatches {
             QGVAR(Igla_Pod),
             QGVAR(D_30),
 
-            QGVAR(Mi_28N),
             QGVAR(Mi_24_Superhind),
             QGVAR(Kasatka_Unarmed),
             QGVAR(Gripen),
