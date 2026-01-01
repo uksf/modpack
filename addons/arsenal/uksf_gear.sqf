@@ -281,7 +281,7 @@ uksf_arsenal_mainOpGearBase = [
     "MCC_KS4_FDE_CTR",
     "MCC_KS4_FDE_SLK",
     "LMG_mas_ukl_03_F_uksf",
-
+    "LMG_03_F",
 
 
     // Attachments

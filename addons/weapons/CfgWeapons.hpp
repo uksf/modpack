@@ -492,11 +492,6 @@ class CfgWeapons {
     //     };
     // };
 
-    class LMG_mas_ukl_03_F;
-    class LMG_mas_ukl_03_F_uksf : LMG_mas_ukl_03_F {
-        magazines[] = { "UK3CB_BAF_556_200Rnd", "UK3CB_BAF_556_200Rnd_Blank", "UK3CB_BAF_556_200Rnd_T", "UK3CB_BAF_556_100Rnd", "UK3CB_BAF_556_100Rnd_Blank", "UK3CB_BAF_556_100Rnd_T", "UK3CB_BAF_556_30Rnd", "UK3CB_BAF_556_30Rnd_T" };
-    };
-
     class LMG_Zafir_F;
     class UK3CB_BAF_L7A2 : LMG_Zafir_F {
         magazines[] = {
