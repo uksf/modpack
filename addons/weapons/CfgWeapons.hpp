@@ -492,29 +492,9 @@ class CfgWeapons {
     //     };
     // };
 
-    class LMG_mas_ukl_03_F : LMG_03_base_F {
+    class LMG_mas_ukl_03_F;
+    class LMG_mas_ukl_03_F_uksf : LMG_mas_ukl_03_F {
         magazines[] = { "UK3CB_BAF_556_200Rnd", "UK3CB_BAF_556_200Rnd_Blank", "UK3CB_BAF_556_200Rnd_T", "UK3CB_BAF_556_100Rnd", "UK3CB_BAF_556_100Rnd_Blank", "UK3CB_BAF_556_100Rnd_T", "UK3CB_BAF_556_30Rnd", "UK3CB_BAF_556_30Rnd_T" };
-        // magazineWell[] = {};
-        // modes[] = { "FullAuto", "close", "short", "medium", "far_optic1", "far_optic2" };
-        // class FullAuto : Mode_FullAuto {
-        //     sounds[] = { "StandardSound", "SilencedSound" };
-        //     class BaseSoundModeType;
-        //     class StandardSound : BaseSoundModeType {
-        //         soundSetShot[] = { "L110_Shot_SoundSet", "FRAME_CALIBER_5x56MM", "ALL_DIST_TAIL" };
-        //     };
-        //     class SilencedSound : BaseSoundModeType {
-        //         // SoundSetShot[] = { "DS_lim_Closure_SoundSet", "DS_lim_ShotSD_SoundSet", "DS_rifle1_SD_Tail_SoundSet" };
-        //     };
-        //     reloadTime = 0.08278;
-        //     dispersion = 0.0012;
-        //     minRange = 0;
-        //     minRangeProbab = 0.9;
-        //     midRange = 15;
-        //     midRangeProbab = 0.7;
-        //     maxRange = 30;
-        //     maxRangeProbab = 0.1;
-        //     aiRateOfFire = 1e-006;
-        // };
     };
 
     class LMG_Zafir_F;
