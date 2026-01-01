@@ -492,7 +492,6 @@ class CfgWeapons {
     //     };
     // };
 
-    class LMG_03_base_F;
     class LMG_mas_ukl_03_F : LMG_03_base_F {
         magazines[] = { "UK3CB_BAF_556_200Rnd", "UK3CB_BAF_556_200Rnd_Blank", "UK3CB_BAF_556_200Rnd_T", "UK3CB_BAF_556_100Rnd", "UK3CB_BAF_556_100Rnd_Blank", "UK3CB_BAF_556_100Rnd_T", "UK3CB_BAF_556_30Rnd", "UK3CB_BAF_556_30Rnd_T" };
         // magazineWell[] = {};
