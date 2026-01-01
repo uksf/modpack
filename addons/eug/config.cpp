@@ -66,7 +66,7 @@ class CfgPatches {
             QGVAR(Li_2)
         };
         weapons[] = {
-            QGVAR(CUP_arifle_M16A4_GL_SSQN_AR_ACOG),
+            QGVAR(CUP_arifle_M16A4_GL_Aimpoint_5000),
             QGVAR(CUP_arifle_M16A4_Base_CUP_optic_ACOG2),
             QGVAR(CUP_arifle_M16A4_Base_CUP_optic_ACOG_TA01B_Black),
             QGVAR(CUP_arifle_Colt727_M203_CUP_optic_ACOG_TA01B_RMR_Black),
