@@ -283,7 +283,6 @@ uksf_arsenal_mainOpGearBase = [
     "LMG_mas_ukl_03_F_uksf",
     "LMG_03_F",
 
-
     // Attachments
     "RKSL_optic_LDS",
     "RKSL_optic_LDS_C",
