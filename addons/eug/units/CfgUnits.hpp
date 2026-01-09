@@ -15,8 +15,8 @@ class GVAR(Rifleman) : GVAR(Soldier_Base) {
 };
 class GVAR(Squad_Leader) : GVAR(Rifleman) {
     displayName = "Squad Leader";
-    weapons[] = { QGVAR(CUP_arifle_M16A4_GL_SSQN_AR_ACOG),"CUP_hgun_M9","Put","Throw" };
-    respawnWeapons[] = { QGVAR(CUP_arifle_M16A4_GL_SSQN_AR_ACOG),"CUP_hgun_M9","Put","Throw" };
+    weapons[] = { QGVAR(CUP_arifle_M16A4_GL_Aimpoint_5000),"CUP_hgun_M9","Put","Throw" };
+    respawnWeapons[] = { QGVAR(CUP_arifle_M16A4_GL_Aimpoint_5000),"CUP_hgun_M9","Put","Throw" };
     magazines[] = { "1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "CUP_15Rnd_9x19_M9", "CUP_15Rnd_9x19_M9", "SmokeShell", "SmokeShell" };
     respawnMagazines[] = { "1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "CUP_15Rnd_9x19_M9", "CUP_15Rnd_9x19_M9", "SmokeShell", "SmokeShell" };
     linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "NVGoggles", "H_HelmetSpecB_sand", "CUP_V_CZ_NPP2006_co_des", "NVGoggles" };
