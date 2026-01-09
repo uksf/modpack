@@ -37,18 +37,18 @@ class CfgAmmo {
     class B_127x99_SLAP : B_127x99_Ball {
         hit = 75;  // 50
     };
-    class SSQN_127x99_HEIAP : B_127x99_Ball {
-        hit = 80;                 // 70
-        indirectHit = 3;          // 0
-        indirectHitRange = 0.75;  // 0
-        explosive = 0.1;          // 0
-        explosionEffects = "CUP_AA12AmmoExplosion";
-        craterEffects = "CUP_AA12AmmoImpact";
-        class HitEffects {
-            hitWater = "ImpactEffectsWater";
-        };
-        SoundSetExplosion[] = { "JPEX_20mm_EXPLOSION_SoundSet", "JPEX_20mm_REFLECTOR_SoundSet" };
-    };
+    // class SSQN_127x99_HEIAP : B_127x99_Ball {
+    //     hit = 80;                 // 70
+    //     indirectHit = 3;          // 0
+    //     indirectHitRange = 0.75;  // 0
+    //     explosive = 0.1;          // 0
+    //     explosionEffects = "CUP_AA12AmmoExplosion";
+    //     craterEffects = "CUP_AA12AmmoImpact";
+    //     class HitEffects {
+    //         hitWater = "ImpactEffectsWater";
+    //     };
+    //     SoundSetExplosion[] = { "JPEX_20mm_EXPLOSION_SoundSet", "JPEX_20mm_REFLECTOR_SoundSet" };
+    // };
     class B_127x99_Ball_Mk211: B_127x99_Ball {
         explosive = 0.1;
         indirectHit = 3;

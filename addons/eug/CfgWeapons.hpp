@@ -17,13 +17,13 @@ class CfgWeapons {
     };
 
     class CUP_arifle_M16A4_GL;
-    class GVAR(CUP_arifle_M16A4_GL_SSQN_AR_ACOG) : CUP_arifle_M16A4_GL {
+    class GVAR(CUP_arifle_M16A4_GL_Aimpoint_5000) : CUP_arifle_M16A4_GL {
         displayName = "M16A4 M203";
         scope = 1;
         class LinkedItems {
             class LinkedItemsOptic {
                 slot = "CUP_PicatinnyTopMountM16";
-                item = "ssqn_ar_acog";
+                item = "CUP_optic_Aimpoint_5000";
             };
         };
     };
