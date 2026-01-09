@@ -54,9 +54,27 @@ if (!isServer) exitWith {};
 nil
 
 
-//
-(vehicle player) removeWeapon "CUP_Vacannon_M230_veh_Enhanced";
+// (vehicle player)
+_this removeWeapon "CUP_Vacannon_M230_veh";
+_this removeWeapon "missiles_ASRAAM";
+_this removeWeapon "CUP_Vmlauncher_CRV7_veh";
 
-(vehicle player) removeMagazines "CUP_1200Rnd_TE1_Red_Tracer_30x113mm_M789_HEDP_M";
-(vehicle player) addWeapon "CUP_Vacannon_M230_veh";
-(vehicle player) addMagazine "CUP_1200Rnd_TE1_Red_Tracer_30x113mm_M789_HEDP_M";
+_this removeMagazines "CUP_1200Rnd_TE1_Red_Tracer_30x113mm_M789_HEDP_M";
+_this removeMagazines "4Rnd_AAA_missiles";
+_this removeMagazines "CUP_PylonPod_19Rnd_CRV7_HE_M";
+
+
+_this addWeapon "CUP_weapon_mastersafe";
+
+_this addWeapon "CUP_Vacannon_M230_veh";
+_this addMagazine "CUP_1200Rnd_TE1_Red_Tracer_30x113mm_M789_HEDP_M";
+
+_this addWeapon "missiles_ASRAAM";
+_this addMagazine "4Rnd_AAA_missiles";
+
+_this addWeapon "CUP_Vmlauncher_CRV7_veh";
+_this addMagazine "CUP_PylonPod_19Rnd_CRV7_HE_M";
+
+
+(vehicle player) addWeapon "M134_minigun";
+(vehicle player) addMagazine "5000Rnd_762x51_Belt";
