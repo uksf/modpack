@@ -15,7 +15,7 @@
     Return Value:
         None
 */
-#define BASE_SPEED 60
+#define BASE_SPEED 75
 #define CREW_LOADOUT [[],[],[],[],["UKSF_V_Pilot",[]],[],"UK3CB_BAF_H_PilotHelmetHeli_A","",[],["ItemMap","","","ItemCompass","ItemWatch",""]]
 
 params ["_units", "_dropStartPosition", "_dropEndPosition", ["_altitude", 6000]];
@@ -27,7 +27,7 @@ if (!isServer) exitWith {
 _altitude = _altitude / 3.28084; // Convert feet to metres
 
 ["Paradrop for %1 units", count _units] call ace_zeus_fnc_showMessage;
-[QEGVAR(common,textTiles), [parseText format ["<t align = 'center' size = '1.2' color = '#00CC00'>STANDBY FOR C-130 PICKUP</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 2.5], _units] call CBA_fnc_targetEvent;
+[QEGVAR(common,textTiles), [parseText format ["<t align = 'center' size = '1.2' color = '#00CC00'>STANDBY FOR A-400M PICKUP</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 2.5], _units] call CBA_fnc_targetEvent;
 
 private _speed = BASE_SPEED + (random 10);
 private _vectorDirection = _dropStartPosition vectorFromTo _dropEndPosition;
@@ -39,7 +39,7 @@ _flightStartPosition set [2, _altitude];
 _flightEndPosition set [2, _altitude];
 _unitReturnPosition set [2, 0.05];
 
-private _plane = createVehicle [QEGVAR(air_c130,raf), [0, 0, _altitude], [], 0, "FLY"];
+private _plane = createVehicle [QAIRGVAR(patches,a400m_raf), [0, 0, _altitude], [], 0, "FLY"];
 createVehicleCrew _plane;
 {_x setUnitLoadout CREW_LOADOUT} forEach crew _plane;
 _plane setPosASL _flightStartPosition;
@@ -93,8 +93,7 @@ _plane flyInHeightASL [_altitude, _altitude, _altitude];
     if (!_positionPreStartReached && {(_position distance2D _dropStartPosition) < 1000}) then {
         _positionPreStartReached = true;
         _states set [1, true];
-        [_plane, 1] call EFUNC(air_c130,jumpLightControl);
-        [_plane, 1] call EFUNC(air_c130,rampControl);
+        [_plane, 1] call EFUNC(air_patches,a400RampControl);
         [QEGVAR(common,textTiles), [parseText format ["<t align = 'center' size = '1.2' color = '#FF0000'>RED LIGHT - STANDBY FOR JUMP</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 2.5], _units] call CBA_fnc_targetEvent;
     };
 
@@ -102,7 +101,6 @@ _plane flyInHeightASL [_altitude, _altitude, _altitude];
         private _distance = _position distance2D _dropStartPosition;
         if (_distance > _previousDistanceStart) then {
             _states set [2, true];
-            [_plane, 2] call EFUNC(air_c130,jumpLightControl);
             [QEGVAR(common,textTiles), [parseText format ["<t align = 'center' size = '1.2' color = '#00CC00'>GREEN LIGHT - JUMP</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 2.5], _units] call CBA_fnc_targetEvent;
         };
 
@@ -113,8 +111,7 @@ _plane flyInHeightASL [_altitude, _altitude, _altitude];
         private _distance = _position distance2D _dropEndPosition;
         if (_distance > _previousDistanceEnd) then {
             _states set [3, true];
-            [_plane, 0] call EFUNC(air_c130,rampControl);
-            [_plane, 1] call EFUNC(air_c130,jumpLightControl);
+            [_plane, 0] call EFUNC(air_patches,a400RampControl);
             private _remainingUnits = assignedCargo _plane;
             {
                 [QEGVAR(common,textTiles), [parseText format ["<t align = 'center' size = '1.2' color = '#FF0000'>RED LIGHT - DON'T JUMP</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 5], _x] call CBA_fnc_targetEvent;
