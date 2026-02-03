@@ -7,6 +7,9 @@ force ace_weather_windSimulation = true;
 // For special missions only. Set value to 0 to disable vehicle weapon overpressure. Use this for tank battles etc
 force ace_overpressure_overpressureDistanceCoefficient = 1;
 
+// For special missions only. Set value to false to disable weapon overheating
+force ace_overheating_enabled = true;
+
 // For training missions only. 0 = Always, 1 = Cardiac Arrest, 2 = Never
 force ace_medical_statemachine_fatalInjuriesAI = 0;
 // For training missions only. Set to True to allow AI to go unconscious, instead of always dying
