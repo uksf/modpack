@@ -85,7 +85,7 @@ GVAR(curatorSelectionHandle) = _display displayAddEventHandler ["KeyDown", {
                     (_display displayCtrl 50) ctrlRemoveEventHandler ["Draw", GVAR(curatorMapDrawEH)];
                     showMap false;
                     ["Paradrop Altitude", [
-                        ["SLIDER", ["Altitude (ft)", "Sets the altitude for the paradrop in feet (1m = ~3.3ft)"], [300, 20000, 6000, 0]]
+                        ["SLIDER", ["Altitude (ft)", "Sets the altitude for the paradrop in feet (1m = ~3.3ft)"], [300, 30000, 6000, 0]]
                     ], {
                         params ["_dialogValues"];
                         _dialogValues params ["_altitude"];
