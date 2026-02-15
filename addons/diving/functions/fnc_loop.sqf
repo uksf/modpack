@@ -63,8 +63,8 @@ GVAR(updatePFHID) = [{
     GVAR(partialPressureHe) = GVAR(currentPercentHe) * GVAR(currentAmbientPressure);
     GVAR(maxDepth) = ((1.4 / GVAR(currentPercentO2)) - 1) * 10;
 
-    private _useHe = [0, 1] select (GVAR(currentPercentHe) > 0);
-    private _useN2 = [0, 1] select (GVAR(currentPercentN2) > 0);
+    private _useHe = parseNumber (GVAR(currentPercentHe) > 0);
+    private _useN2 = parseNumber (GVAR(currentPercentN2) > 0);
     switch (true) do {
         case (GVAR(currentPercentN2) < 0.1): {
             private _saturationA = ((0.0346 * GVAR(saturationHe)) + (1.382 * GVAR(saturationO2))) / ((_useHe * 0.0346) + (0.000000001 * 1.382));
