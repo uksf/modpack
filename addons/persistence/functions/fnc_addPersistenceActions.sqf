@@ -45,7 +45,7 @@ private _fnc_children = {
         {deleteVehicle (_x#1)} forEach GVAR(abortedObjectInteractionObjects);
         GVAR(abortedObjectInteractionObjects) = [];
         GVAR(abortedObjects) = [];
-    }, {MULTIPLAYER_ADMIN_OR_WHITELISTED && {!(GVAR(abortedObjects) isEqualTo [])}}] call ace_interact_menu_fnc_createAction;
+    }, {MULTIPLAYER_ADMIN_OR_WHITELISTED && {GVAR(abortedObjects) isNotEqualTo []}}] call ace_interact_menu_fnc_createAction;
     _actions pushBack [_action, [], _player];
 
     _actions

@@ -41,6 +41,6 @@ if (hasInterface) then {
     }] call CBA_fnc_addEventHandler;
 };
 
-#include "initSettings.sqf"
+#include "initSettings.inc.sqf"
 
 ADDON = true;

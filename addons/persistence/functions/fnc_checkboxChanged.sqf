@@ -22,7 +22,7 @@ if (isNil "_id") then {
     _id = "";
 };
 
-private _ctrlEditbox = ((allcontrols (ctrlParent _ctrlCheckbox) - [ctrlParentControlsGroup _ctrlCheckbox]) select {ctrlClassName _x == QGVAR(Edit)})#0;
+private _ctrlEditbox = ((allControls (ctrlParent _ctrlCheckbox) - [ctrlParentControlsGroup _ctrlCheckbox]) select {ctrlClassName _x == QGVAR(Edit)})#0;
 if (!isNil "_ctrlEditbox" && {!isNull _ctrlEditbox}) then {
     private _ctrlEditboxValue = _ctrlEditbox controlsGroupCtrl 100;
     _ctrlEditbox ctrlEnable _state;

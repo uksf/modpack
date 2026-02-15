@@ -84,7 +84,7 @@ if (!_forceLoad && {!([ASLToAGL _position, _object, (_vectorDirAndUp#0) call CBA
     } forEach _turretWeapons;
     {_object addMagazineTurret [_x#0, _x#1, _x#2]} forEach _turretMagazines;
     {
-        _object setPylonLoadOut [_forEachIndex + 1, _x#0, true, _pylonPaths select _forEachIndex];
+        _object setPylonLoadout [_forEachIndex + 1, _x#0, true, _pylonPaths select _forEachIndex];
         _object setAmmoOnPylon [_forEachIndex + 1, _x#1];
     } forEach _pylonLoadout;
     [_object] call EFUNC(air_weapons,correctPilotPylon);

@@ -35,7 +35,7 @@ GVAR(diveComputerUpdatePFHID) = [{
     (_display displayCtrl 1119) ctrlSetText format ["%1", (round (GVAR(deepStopDepth) * 10)) / 10];
     (_display displayCtrl 1120) ctrlSetText format ["%1", (round (GVAR(deepStopTime) * 10)) / 10];
     (_display displayCtrl 1121) ctrlSetText format ["%1", (round (GVAR(maxDepth) * 10)) / 10];
-    (_display displayCtrl 1122) ctrlSetText format ["%1", [daytime, "HH:MM:SS"] call BIS_fnc_timetostring];
+    (_display displayCtrl 1122) ctrlSetText format ["%1", [dayTime, "HH:MM:SS"] call BIS_fnc_timetostring];
     (_display displayCtrl 1123) ctrlSetText format ["%1", round (getDir player)];
     (_display displayCtrl 1124) ctrlSetText format ["%1", (round (GVAR(partialPressureO2) * 10)) / 10];
     (_display displayCtrl 1125) ctrlSetText format ["%1", (round (GVAR(partialPressureN2) * 10)) / 10];

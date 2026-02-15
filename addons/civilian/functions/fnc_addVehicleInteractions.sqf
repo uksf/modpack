@@ -41,6 +41,6 @@ _action = [QGVAR(vehicle_getIn), "You may get back in your vehicle", "", {
     private _vehicle = _target getVariable [QGVAR(vehicle_vehicle), objNull];
     [QGVAR(getInCommand), [_vehicle], _vehicle] call CBA_fnc_targetEvent;
 }, {
-    _target == (vehicle  _target) && {!(isNull (_target getVariable [QGVAR(vehicle_vehicle), objNull]))}
+    isNull objectParent _target && {!(isNull (_target getVariable [QGVAR(vehicle_vehicle), objNull]))}
 }, {}, [], [0,0,0], 7, [false, true, false, false, false]] call ace_interact_menu_fnc_createAction;
 [driver _vehicle, 0, ["ACE_MainActions"], _action] call ace_interact_menu_fnc_addActionToObject;

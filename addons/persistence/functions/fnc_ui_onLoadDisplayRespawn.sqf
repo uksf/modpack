@@ -24,7 +24,7 @@ disableSerialization;
     if (_parentDisplay != findDisplay 12) exitWith {};
 
     private _controlRespawnButton = _controlGroup controlsGroupCtrl IDC_RSCRESPAWNCONTROLS_HEADERRESPAWNBUTTON;
-    _controlRespawnButton ctrlAddEventhandler ["ButtonDown", {
+    _controlRespawnButton ctrlAddEventHandler ["ButtonDown", {
         private _respawnSelection = lbCurSel (uiNamespace getVariable "BIS_RscRespawnControlsMap_ctrlLocList");
         private _respawnData = ["get", _respawnSelection] call BIS_fnc_showRespawnMenuPositionMetadata;
         TRACE_2("Respawn button pressed",_respawnSelection,_respawnData);

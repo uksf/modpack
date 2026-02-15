@@ -15,7 +15,7 @@
 */
 params ["_spawnPosition", "_targetPosition"];
 
-[_spawnPosition, EAST, GVAR(unitPool), GVAR(airVehiclePool), {
+[_spawnPosition, east, GVAR(unitPool), GVAR(airVehiclePool), {
     params ["_vehicle", "_turrets"];
 
     (_vehicle emptyPositions "driver") + count _turrets + (_vehicle emptyPositions "cargo")
@@ -26,7 +26,7 @@ params ["_spawnPosition", "_targetPosition"];
     _vehicle setUnloadInCombat [true, true];
 
     // seperate passenger group from initial _pilotGroup
-    private _passengerGroup = createGroup EAST;
+    private _passengerGroup = createGroup east;
     (assignedCargo _vehicle) joinSilent _passengerGroup;
     [_passengerGroup, (_helipad getPos [30, random 360]), 0, "MOVE", "AWARE", "YELLOW", "NORMAL", "DIAMOND", "", [40, 50, 60]] call CBA_fnc_addWaypoint;
     [_passengerGroup, _targetPosition, 0, "SAD", "AWARE", "YELLOW", "NORMAL", "DIAMOND", QUOTE([this] call FUNC(handleDelete)), [40, 50, 60]] call CBA_fnc_addWaypoint;

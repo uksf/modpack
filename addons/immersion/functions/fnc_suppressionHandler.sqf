@@ -34,7 +34,7 @@ private _deleted = false;
                 private _divisor = 50 - (10 * _factor);
                 GVAR(suppression_lastShotAt) = time;
 
-                if ((vehicle GVAR(suppression_currentUnit)) == GVAR(suppression_currentUnit) || {isTurnedOut GVAR(suppression_currentUnit)}) then {
+                if (isNull objectParent GVAR(suppression_currentUnit) || {isTurnedOut GVAR(suppression_currentUnit)}) then {
                     [_hit, _factor] call FUNC(suppressionImpact);
 
                     if (_divisor != 0) then {

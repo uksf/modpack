@@ -26,7 +26,7 @@ private _canUnload = [ACE_player, _vehicle, []] call ace_common_fnc_canInteractW
     private _turretPath = ACE_player call CBA_fnc_turretPath;
     (ACE_player == (driver _vehicle)) || // pilot
     {(getNumber (([_vehicle, _turretPath] call CBA_fnc_getTurret) >> "isCopilot")) == 1} || // co-pilot
-    {_turretPath in (getArray (configFile >> "CfgVehicles" >> (typeOf _vehicle) >> "ace_cargo_loadmasterTurrets"))} // loadmaster turret from config
+    {_turretPath in (getArray (configOf _vehicle >> "ace_cargo_loadmasterTurrets"))} // loadmaster turret from config
 };
 if (!_canUnload) exitWith {};
 
@@ -53,8 +53,8 @@ for "_i" from 0 to _unloadCount do {
         ["ace_cargo_paradropItem", [_item, _vehicle, false]] call CBA_fnc_localEvent;
         [[
             "STR_ace_cargo_UnloadedItem",
-            getText (configFile >> "CfgVehicles" >> typeOf _item >> "displayName"),
-            getText (configFile >> "CfgVehicles" >> typeOf _vehicle >> "displayName")
+            getText (configOf _item >> "displayName"),
+            getText (configOf _vehicle >> "displayName")
         ], 3] call ace_common_fnc_displayTextStructured;
     }, [_vehicle, _item], _i + 1] call CBA_fnc_waitAndExecute;
 };

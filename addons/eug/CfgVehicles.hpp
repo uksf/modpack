@@ -7,7 +7,7 @@ class CfgVehicles {
         side = 2;
         displayName = "EUG Underwear";
         model = "\A3\Characters_F\Common\basicbody";
-        uniformClass = GVAR(U_Base);
+        uniformClass = QGVAR(U_Base);
         weapons[] = {
             "Throw",
             "Put"
@@ -28,7 +28,7 @@ class CfgVehicles {
         side = 2;
         faction = QUOTE(ADDON);
         displayName = "EUG Base";
-        nakedUniform = GVAR(U_Base);
+        nakedUniform = QGVAR(U_Base);
         uniformClass = "CUP_U_B_BDUv2_gloves_desert";
         model = "\CUP\Creatures\People\Military\CUP_Creatures_People_Military_USArmy\CUP_U_BDUv2_gloves.p3d";
         // identityTypes[] = { "LanguagePOL_F", "Head_Euro" };

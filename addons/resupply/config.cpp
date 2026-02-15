@@ -36,7 +36,8 @@ class CfgPatches {
             QGVAR(g14),
             QGVAR(g14ba),
             QGVAR(g14bl),
-            QGVAR(g14d)
+            QGVAR(g14d),
+            QGVAR(rf)
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;

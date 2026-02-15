@@ -67,12 +67,12 @@ if (_role == "cargo") then {
         }, {
             params ["", "_unit"];
 
-            LOG_1("Player moved in to driver after %1 frames",diag_frameno - GVAR(frame));
+            LOG_1("Player moved in to driver after %1 frames",diag_frameNo - GVAR(frame));
             _unit enableSimulation true;
         }, [_vehicle, _unit, _moveBackCode, _moveBackParams], SWAP_TIMEOUT, {
             params ["", "_unit", "_moveBackCode", "_moveBackParams"];
 
-            WARNING_1("Failed player move in to driver after %1 frames",diag_frameno - GVAR(frame));
+            WARNING_1("Failed player move in to driver after %1 frames",diag_frameNo - GVAR(frame));
             ["Failed to swap into driver seat"] call ace_common_fnc_displayTextStructured;
             [_unit, _moveBackParams] call _moveBackCode;
             _unit enableSimulation true;
@@ -80,7 +80,7 @@ if (_role == "cargo") then {
     }, _this, SWAP_TIMEOUT * 2, {
         params ["_vehicle", "_unit"];
 
-        LOG_1("Player swap to driver unavailable after %1 frames",diag_frameno - GVAR(frame));
+        LOG_1("Player swap to driver unavailable after %1 frames",diag_frameNo - GVAR(frame));
         _unit moveInAny _vehicle;
         _unit enableSimulation true;
     }] call CBA_fnc_waitUntilAndExecute;

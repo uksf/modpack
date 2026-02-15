@@ -29,7 +29,7 @@ if (_shotParents isEqualTo []) exitWith {};
 _shooter = _shotParents#1;
 _this set [0, _shooter];
 
-[_ammo] call FUNC(firedPlayerEffects);
+[_shooter, _ammo] call FUNC(firedPlayerEffects);
 [_ammo, _projectile] call FUNC(firedShockwave);
 
 if (GVAR(suppression_enabled)) then {

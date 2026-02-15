@@ -17,7 +17,7 @@
 params ["_rover", "_unit", "_coverType"];
 
 
-if (count (nearestObjects [(position _rover), ["CamoNet_BLUFOR_big_F", "Land_CamoNetB_NATO_EP1"], 20]) > 0) exitWith {
+if (nearestObjects [(position _rover), ["CamoNet_BLUFOR_big_F", "Land_CamoNetB_NATO_EP1"], 20] isNotEqualTo []) exitWith {
     hint "There's already a cover nearby! Use that one!"
 };
 

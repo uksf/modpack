@@ -4,8 +4,6 @@ class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
         units[] = {
-            "Land_CanisterFuel_F",
-            "CargoNet_01_barrels_F",
             "UK3CB_BAF_MAN_HX58_Rearm_Green",
             "UK3CB_BAF_MAN_HX58_Rearm_Sand",
             "UK3CB_BAF_MAN_HX60_Rearm_Green",

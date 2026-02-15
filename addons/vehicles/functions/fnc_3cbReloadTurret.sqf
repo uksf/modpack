@@ -40,7 +40,7 @@ if (_turret isEqualTo []) exitWith {
 };
 
 (weaponState [_vehicle, _turret]) params ["_weapon", "_muzzle", "", "_currentMagazine", "_currentAmmo", "_roundReloadPhase", "_magazineReloadPhase"];
-if !(_weapon in (_vehicle weaponsTurret _turretPath)) exitWith { // FFV
+if !(_weapon in (_vehicle weaponsTurret _turret)) exitWith { // FFV
     DEBUG("FFV");
     false
 };

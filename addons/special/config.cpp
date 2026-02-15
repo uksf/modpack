@@ -11,7 +11,8 @@ class CfgPatches {
             "UKSF_O_Skoda_CarBomb",
             "UKSF_O_Skoda_CarBomb_Deadman",
             "UKSF_O_Skoda_CarBomb_Empty",
-            "UKSF_Target_Nopopup"
+            "UKSF_Target_Nopopup",
+            "UKSF_Target_Moving"
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;

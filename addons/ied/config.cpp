@@ -7,7 +7,8 @@ class CfgPatches {
             QGVAR(iedPlacementModule),
             QGVAR(suicidePlacementModule),
             QGVAR(iedExclusionModule),
-            QGVAR(helper)
+            QGVAR(helper),
+            QGVAR(vbIedPlacementModule)
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;

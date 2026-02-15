@@ -39,7 +39,7 @@ private _initCargo = _object getVariable ["ace_cargo_loaded", []];
     _x params ["_type", "_xAceCargo", "_inventory", ["_customName", ""]];
 
     private _cargoObject = _type;
-    if (count _xAceCargo > 0 || {(count (_inventory select {count _x > 0})) > 0}) then {
+    if (_xAceCargo isNotEqualTo [] || {(_inventory select {count _x > 0}) isNotEqualTo []}) then {
         _cargoObject = createVehicle [_type, [0,0,0], [], 0, "NONE"];
         [QGVAR(setObjectCargo), [_cargoObject, _xAceCargo, _inventory, _customName]] call CBA_fnc_localEvent;
     };

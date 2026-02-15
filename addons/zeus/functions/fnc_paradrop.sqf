@@ -49,7 +49,7 @@ _plane forceSpeed _speed;
 _plane setVariable ["acex_headless_blacklist", true, true];
 
 private _pilot = driver _plane;
-_pilot disableAi "LIGHTS";
+_pilot disableAI "LIGHTS";
 _plane setCollisionLight true;
 
 private _group = group _pilot;

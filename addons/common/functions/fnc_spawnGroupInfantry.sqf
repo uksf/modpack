@@ -21,7 +21,7 @@
 #define SPAWN_DELAY 1
 #define TIMEOUT 30
 
-params [["_position", [], [[]]], ["_count", 1, [0]], ["_side", EAST, [sideUnknown]], ["_unitPool", []], ["_callback", {}, [{}]], ["_callbackArgs", [], [[]]]];
+params [["_position", [], [[]]], ["_count", 1, [0]], ["_side", east, [sideUnknown]], ["_unitPool", []], ["_callback", {}, [{}]], ["_callbackArgs", [], [[]]]];
 
 TRACE_4("6) Spawn unit data",_position,_count,_side,_unitPool);
 

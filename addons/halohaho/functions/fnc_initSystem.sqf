@@ -56,7 +56,7 @@ GVAR(systemPFHID) = [{
     private _hypoxic = GVAR(hypoxiaLevel) > 0;
     private _hasMask = goggles player == HALOHAHO_MASK;
     private _hasEquipmentConnected = GVAR(oxygenConnected) && _hasMask;
-    TRACE_7(""_altitudeASL,_aboveHypoxiaAltitude,GVAR(hypoxiaLevel),_hypoxic,_hasMask,GVAR(oxygenConnected),_hasEquipmentConnected);
+    TRACE_7("",_altitudeASL,_aboveHypoxiaAltitude,GVAR(hypoxiaLevel),_hypoxic,_hasMask,GVAR(oxygenConnected),_hasEquipmentConnected);
 
     if (_aboveHypoxiaAltitude && !_hypoxic && !_hasEquipmentConnected) then {
         DEBUG("Player is becoming hypoxic");

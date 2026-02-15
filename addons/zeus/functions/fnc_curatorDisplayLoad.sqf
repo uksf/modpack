@@ -34,6 +34,19 @@ GVAR(curatorUnconciousMapID) = (_display displayCtrl 50) ctrlAddEventHandler ["D
     } forEach ALL_PLAYERS;
 }];
 
+(_display displayCtrl 50) ctrlRemoveEventHandler ["Draw", GVAR(projectilesMapID)];
+GVAR(projectilesMapID) = (_display displayCtrl 50) ctrlAddEventHandler ["Draw", {
+    if (GVAR(projectilesEnabled)) then {
+        {
+            _x params ["_projectile", "_ammo", "_sideColor"];
+            if (!isNull _projectile) then {
+                private _name = GVAR(ammoNameCache) getOrDefault [_ammo, _ammo];
+                (_this#0) drawIcon ["#(argb,8,8,3)color(0,0,0,0)", _sideColor, _projectile, 24, 24, 0, _name, 0.1, 0.04, "PuristaMedium", "center"];
+            };
+        } forEach GVAR(trackedProjectiles);
+    };
+}];
+
 [GVAR(curatorUnconciousID)] call CBA_fnc_removePerFrameHandler;
 GVAR(curatorUnconciousID) = [{
     {
@@ -66,6 +79,19 @@ GVAR(curatorUnconciousID) = [{
             };
         };
     } forEach ALL_PLAYERS;
+}, 0] call CBA_fnc_addPerFrameHandler;
+
+[GVAR(projectilesPFH)] call CBA_fnc_removePerFrameHandler;
+GVAR(projectilesPFH) = [{
+    if (!GVAR(projectilesEnabled)) exitWith {};
+    GVAR(trackedProjectiles) = GVAR(trackedProjectiles) select {!isNull (_x#0)};
+    {
+        _x params ["_projectile", "_ammo", "_sideColor"];
+        private _pos = ASLToAGL getPosASLVisual _projectile;
+        private _name = GVAR(ammoNameCache) getOrDefault [_ammo, _ammo];
+        private _icon = GVAR(ammoIconCache) getOrDefault [_ammo, "\a3\ui_f\data\map\markers\military\dot_ca.paa"];
+        drawIcon3D [_icon, _sideColor, _pos, 0.75, 0.75, 0, _name, 1, 0.03, "PuristaMedium", "center", true];
+    } forEach GVAR(trackedProjectiles);
 }, 0] call CBA_fnc_addPerFrameHandler;
 
 [true, player] call ace_common_fnc_setVolume;

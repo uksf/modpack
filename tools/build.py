@@ -2,6 +2,7 @@
 
 import os
 import sys
+import shutil
 import subprocess
 
 ######## GLOBALS #########
@@ -10,10 +11,10 @@ PREFIX = "uksf_"
 ##########################
 
 def tryHemttBuild(projectpath):
-    hemttExe = os.path.join(projectpath, "hemtt.exe")
-    if os.path.isfile(hemttExe):
+    hemttExe = shutil.which("hemtt")
+    if hemttExe:
         os.chdir(projectpath)
-        ret = subprocess.call([hemttExe, "pack"], stderr=subprocess.STDOUT)
+        ret = subprocess.call([hemttExe, "dev"], stderr=subprocess.STDOUT)
         return True
     else:
         print("hemtt not installed");

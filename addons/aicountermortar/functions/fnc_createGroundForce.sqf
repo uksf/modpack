@@ -15,7 +15,7 @@
 */
 params ["_spawnPosition", "_targetPosition"];
 
-[_spawnPosition, EAST, GVAR(unitPool), GVAR(groundVehiclePool), {-1}, {
+[_spawnPosition, east, GVAR(unitPool), GVAR(groundVehiclePool), {-1}, {
     params ["_targetPosition", "_group", "_vehicle"];
 
     _vehicle setUnloadInCombat [true, true];

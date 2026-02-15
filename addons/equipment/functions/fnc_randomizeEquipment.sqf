@@ -15,7 +15,7 @@
 params ["_unit"];
 
 if (!local _unit) exitWith {};
-if (is3DEN || _unit getvariable ["saved3DENInventory", false]) exitwith {};
+if (is3DEN || _unit getVariable ["saved3DENInventory", false]) exitWith {};
 if (_unit getVariable [QGVAR(skipRandomization), false]) exitWith {};
 
 private _type = typeOf _unit;

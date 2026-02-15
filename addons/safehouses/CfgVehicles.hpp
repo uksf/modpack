@@ -14,7 +14,7 @@ class CfgVehicles {
         canSetArea = 1;
         canSetAreaHeight = 1;
         canSetAreaShape = 1;
-        category = EGVAR(common,eden);
+        category = QEGVAR(common,eden);
         class AttributeValues {
             size3[] = { 20, 20, 20 };
             isRectangle = 1;
@@ -29,7 +29,7 @@ class CfgVehicles {
         function = QFUNC(moduleLocation);
         functionPriority = 25;
         canSetArea = 0;
-        category = EGVAR(common,eden);
+        category = QEGVAR(common,eden);
         class Attributes : AttributesBase {
             class GVAR(prefabId) {
                 property = QGVAR(prefabId);

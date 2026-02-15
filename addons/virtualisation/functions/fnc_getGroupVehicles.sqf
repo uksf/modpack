@@ -18,7 +18,7 @@ params ["_group"];
 private _vehicles = [];
 
 // Get vehicles that group units are in
-private _unitsInVehicles = (units _group) select {alive _x && vehicle _x != _x};
+private _unitsInVehicles = (units _group) select {alive _x && !isNull objectParent _x};
 {
     _vehicles pushBackUnique (vehicle _x);
 } forEach _unitsInVehicles;

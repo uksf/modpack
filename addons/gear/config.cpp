@@ -20,8 +20,6 @@ class CfgPatches {
             "UKSF_B_Bergen_Medic_DDPM",
             "UK3CB_BAF_B_Bergen_DDPM_Rifleman_A_Toolkit",
             "UKSF_B_Carryall_Mortar_MTP",
-            "B_AssaultPack_VR_AT",
-            "B_AssaultPack_VR_AA",
             "UK3CB_BAF_Soldier_MTP_1para_LongSleeve_base",
             "UK3CB_BAF_Soldier_MTP_1para_ShortSleeve_base",
             "UK3CB_BAF_Soldier_MTP_CSMR_LongSleeve_base",
@@ -50,9 +48,9 @@ class CfgPatches {
             "UKSF_U_PilotUniform_656",
             "UKSF_U_PilotGSuit_617",
             "UKSF_U_RAF_Blues",
-            "UKSF_H_RAFBeret",
             "UKSF_H_AACBeret",
-            "UKSF_V_Pilot"
+            "UKSF_V_Pilot",
+            "UKSF_U_VR"
         };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {

@@ -70,6 +70,6 @@ if (hasInterface) then {
     ["zen_curatorDisplayUnloaded", {GVAR(zeusOpen) = false;}] call CBA_fnc_addEventHandler;
 };
 
-#include "initSettings.sqf"
+#include "initSettings.inc.sqf"
 
 ADDON = true;

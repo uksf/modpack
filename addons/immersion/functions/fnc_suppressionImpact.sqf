@@ -40,5 +40,5 @@ if ((time - GVAR(suppression_lastShotAt)) >= 60) then {
     private _power = _powerCoefficient * (6 + (random 0.5) - 0.25) + _randomness; // 3
     private _duration = (0.5 + (random 0.1) - 0.05); // 0.4
     private _frequency = _powerCoefficient * (80 + (random 10) - 5) + _randomness; // 80
-    addCamshake [_power, _duration, _frequency];
+    addCamShake [_power, _duration, _frequency];
 };

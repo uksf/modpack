@@ -46,7 +46,7 @@ if (_receivePx < _originalPx || _receiveSignal < _originalSignal || _receivePx =
 };
 
 // tx -> rebro, needs to be detectable by rebro
-private _rebroClass = [_rebroId] call EFUNC(sys_radio,getRadioBaseClassname);
+private _rebroClass = [_rebroId] call acre_sys_radio_fnc_getRadioBaseClassname;
 private _min = [_rebroClass, {configFile >> "CfgAcreComponents" >> _rebroClass >> "sensitivityMin"}, -118] call EFUNC(common,readCacheValues);
 if (_receiveSignal < _min) exitWith {
     REBRO_TRACE_2("Signal is not detectable by rebro",_receiveResult,_min);

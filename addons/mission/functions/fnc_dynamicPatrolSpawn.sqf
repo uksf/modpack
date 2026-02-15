@@ -83,7 +83,7 @@ if !([_values, _logic, _area, _players] call _condition) exitWith {
 
 private _positionArray = [getPosATL _player, _spawnDistance / 15, _spawnDistance * 1.25, _spawnDistance * 0.75, 10] call EFUNC(common,getSafePositionGrid);
 TRACE_1("5) Dynamic spawn resolved positions",_positionArray);
-_positionArray = _positionArray select {([ASLtoAGL _x, _spawnDistance * 0.7] call FUNC(getNearPlayers)) isEqualTo []};
+_positionArray = _positionArray select {([ASLToAGL _x, _spawnDistance * 0.7] call FUNC(getNearPlayers)) isEqualTo []};
 
 #ifdef DEBUG_MODE_ANALYSIS
 {
@@ -109,7 +109,7 @@ GVAR(dynamicPatrolDebugMarkers) pushBack _marker;
 _players = [_player, 100] call FUNC(getNearPlayers);
 TRACE_2("5) Dynamic spawn position and players near player",_position,_players);
 
-private _playersNearToPosition = [ASLtoAGL _position, 100] call FUNC(getNearPlayers);
+private _playersNearToPosition = [ASLToAGL _position, 100] call FUNC(getNearPlayers);
 if (_playersNearToPosition isNotEqualTo []) exitWith {
     TRACE_1("5) Dynamic spawn failed proximity check",_playersNearToPosition);
     _iterationDebugData set ["exitCode", 1];
@@ -133,7 +133,7 @@ _debugData set [_iteration, _iterationDebugData];
 GVAR(dynamicPatrolDebugMap) set [_id, _debugData];
 #else
 
-_position = ASLtoAGL _position;
+_position = ASLToAGL _position;
 
 if (_useVehicle) then {
     TRACE_1("5) Dynamic spawn use vehicle",_useVehicle);

@@ -1,0 +1,20 @@
+name = "UKSF"
+prefix = "uksf"
+author = "UKSF SR3 Team"
+mainprefix = "u"
+
+[files]
+include = [
+    "mod.cpp",
+    "mod.paa",
+    "modLarge.paa",
+    "README.md",
+    "AUTHORS.txt",
+    "LICENSE",
+]
+
+[version]
+git_hash = 8
+
+[signing]
+authority = "uksf_{version}"

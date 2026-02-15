@@ -111,7 +111,7 @@ GVAR(updatePFHID) = [{
         GVAR(needDeepStop) = true;
     };
 
-    if ((GVAR(needDecompress)) && !(_depthToDecompress > 1) && !(_depthToDecompress < -1)) then {
+    if ((GVAR(needDecompress)) && _depthToDecompress <= 1 && _depthToDecompress >= -1) then {
         GVAR(decompressTime) = GVAR(decompressTime) - 1;
     };
 
@@ -121,7 +121,7 @@ GVAR(updatePFHID) = [{
         GVAR(needDecompress) = false;
     };
 
-    if (GVAR(needDeepStop) && !(_depthToDeepStop > 1) && !(_depthToDeepStop < -1)) then {
+    if (GVAR(needDeepStop) && _depthToDeepStop <= 1 && _depthToDeepStop >= -1) then {
         GVAR(deepStopTime) = GVAR(deepStopTime) - 1;
     };
 

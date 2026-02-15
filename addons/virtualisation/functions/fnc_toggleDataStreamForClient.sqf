@@ -18,7 +18,7 @@ params ["_player", "_on"];
 if (_player == player) exitWith {}; // Guard against overwriting the same data in singleplayer/local MP
 
 if (_on) then {
-    GVAR(dataStreamClientObjects) pushback _player;
+    GVAR(dataStreamClientObjects) pushBack _player;
     [QGVAR(streamData), [GVAR(groupPositionMap), GVAR(groupDataMap)], _player] call CBA_fnc_targetEvent;
 } else {
     GVAR(dataStreamClientObjects) deleteAt (GVAR(dataStreamClientObjects) find _player);

@@ -60,10 +60,8 @@ class CfgPatches {
             QGVAR(CUP_arifle_ACRC_EGLM_blk_556_CUP_acc_FlashlightACE_optic_MRCO_2D),
             QGVAR(LMG_03_F_CUP_acc_FlashlightACE_optic_MRCO_2D),
             QGVAR(CUP_srifle_SVD_wdl_CUP_optic_PSO_1_1_open),
-            QGVAR(CUP_arifle_ACRC_blk_556),
             QGVAR(CUP_arifle_ACRC_blk_556_ACE_optic_MRCO_2D),
             QGVAR(CUP_srifle_M2010_blk_ACE_optic_LRPS_2D),
-            QGVAR(UKSF_ACR_ACR_CUP_arifle_ACRC_blk_556_CUP_acc_FlashlightACE_optic_MRCO_2D_CUP_acc_FlashlightACE_optic_MRCO_2D),
             QGVAR(CUP_lmg_MG3_rail_ACE_optic_MRCO_2D)
         };
         requiredVersion = REQUIRED_VERSION;

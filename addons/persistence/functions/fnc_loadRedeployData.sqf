@@ -94,7 +94,7 @@ if (_vehicleId != "") exitWith {
 }, {}, [_position, round _direction], 0.5] call CBA_fnc_waitUntilAndExecute;
 
 // Don't set animation if diving, does not work
-if (_divingState#0 && _position#2 < 0) exitWith {};
+if (_diveState#0 && _position#2 < 0) exitWith {};
 
 [{
     params ["_animation"];

@@ -19,10 +19,9 @@ _unit addMPEventHandler ["MPKilled", {
 
     if (!local _unit) exitWith {};
 
-    private _groupSurrendered = _group getVariable [QGVAR(groupSurrendered), false];
-    if (_groupSurrendered) exitWith {};
-
     private _group = group _unit;
+    if (_group getVariable [QGVAR(groupSurrendered), false]) exitWith {};
+
     private _unitsLeft = units _group;
     // exits if group still has no units in it
     if (count _unitsLeft < 1) exitWith {};

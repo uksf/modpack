@@ -27,7 +27,7 @@ if (_state) then {
             private _text = format ["IgCom: %1 | B: %2/%3 | A: %4/%5", _ignoreCommands, _boredom, STOP_BOREDOM_THRESHOLD, _annoyed, STOP_ANNOYED_THRESHOLD];
 
             drawIcon3D ["", [0,0,0,1], getPosVisual _sphere, 0.5, 0.5, 0, _text, 0, 0.025, "TahomaB", "center"];
-        } foreach GVAR(debugVehicleSpheres);
+        } forEach GVAR(debugVehicleSpheres);
 
         {
             _x params ["_civilian", "_sphere"];
@@ -38,7 +38,7 @@ if (_state) then {
             private _text = format ["IgCom: %1 | B: %2/%3 | A: %4/%5", _ignoreCommands, _boredom, STOP_BOREDOM_THRESHOLD, _annoyed, STOP_ANNOYED_THRESHOLD];
 
             drawIcon3D ["", [0,0,0,1], getPosVisual _sphere, 0.5, 0.5, 0, _text, 0, 0.025, "TahomaB", "center"];
-        } foreach GVAR(debugUnitSpheres);
+        } forEach GVAR(debugUnitSpheres);
     }] call CBA_fnc_addBISEventHandler;
 
     GVAR(debugPFHId) = [{
@@ -223,15 +223,15 @@ if (_state) then {
 } else {
     [QGVAR(debugStopBroadcast)] call CBA_fnc_globalEvent;
 
-    missionNamespace removeEventHandler ["Draw3D", GVAR(debugDrawId)];
+    removeMissionEventHandler ["Draw3D", GVAR(debugDrawId)];
     [GVAR(debugPFHId)] call CBA_fnc_removePerFrameHandler;
 
-    {deleteVehicle (_x#1)} foreach GVAR(debugVehicleSpheres);
-    {deleteVehicle (_x#1)} foreach GVAR(debugVehicleMoveCommandSpheres);
-    {deleteVehicle (_x#1)} foreach GVAR(debugVehicleFollowCommandSpheres);
-    {deleteVehicle (_x#1)} foreach GVAR(debugUnitSpheres);
-    {deleteVehicle (_x#1)} foreach GVAR(debugUnitMoveCommandSpheres);
-    {deleteVehicle (_x#1)} foreach GVAR(debugUnitFollowCommandSpheres);
+    {deleteVehicle (_x#1)} forEach GVAR(debugVehicleSpheres);
+    {deleteVehicle (_x#1)} forEach GVAR(debugVehicleMoveCommandSpheres);
+    {deleteVehicle (_x#1)} forEach GVAR(debugVehicleFollowCommandSpheres);
+    {deleteVehicle (_x#1)} forEach GVAR(debugUnitSpheres);
+    {deleteVehicle (_x#1)} forEach GVAR(debugUnitMoveCommandSpheres);
+    {deleteVehicle (_x#1)} forEach GVAR(debugUnitFollowCommandSpheres);
     GVAR(debugVehicles) = [];
     GVAR(debugUnits) = [];
     GVAR(debugVehicleSpheres) = [];

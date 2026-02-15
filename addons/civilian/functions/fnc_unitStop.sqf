@@ -32,7 +32,7 @@ private _index = _entities findIf {
 
     !(isNull _civilian) &&
     {!(isPlayer _civilian)} &&
-    {(vehicle _civilian) == _civilian} &&
+    {isNull objectParent _civilian} &&
     {side _civilian == civilian} &&
     {!(_civilian getVariable [QGVAR(unit_ignoreCommands), false])} &&
     {!(_civilian getVariable [QGVAR(unit_stopped), false])} &&
@@ -55,7 +55,7 @@ if (_index != -1) then {
         [{[QGVAR(stopCommand), _this, _this#0] call CBA_fnc_targetEvent}, [_civilian], random 0.2 + (linearConversion [1, 50, _unit distance _civilian, 0.2, 0.8, true])] call CBA_fnc_waitAndExecute;
     };
 
-    if (random 100 < STOP_IGNORE_CHANCE) exitWith {
+    if (random 100 < UNIT_STOP_IGNORE_CHANCE) exitWith {
         _civilian setVariable [QGVAR(unit_ignoringStop), true, true];
         [{_this setVariable [QGVAR(unit_ignoringStop), false, true]}, _civilian, 60] call CBA_fnc_waitAndExecute;
         TRACE_1("Stop ignored",_civilian);

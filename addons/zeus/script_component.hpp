@@ -8,8 +8,6 @@
 
 #include "\u\uksf\addons\main\script_macros.hpp"
 
-#define IDD_RSCDISPLAYCURATOR 312
-
 #define SIZEX ((safeZoneW / safeZoneH) min 1.2)
 #define SIZEY (SIZEX / 1.2)
 #define W_PART(num) (num * (SIZEX / 40))

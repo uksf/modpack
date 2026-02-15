@@ -36,7 +36,7 @@ if (GVAR(hypoxiaLevel) > 60 && (random 2) > 1) then {
     titleText ["", "BLACK OUT", _effectDuration];
     sleep _effectDuration;
     titleText ["", "BLACK IN", _effectDuration / 2];
-    sleep _effectDuration / 2;
+    sleep (_effectDuration / 2);
 };
 
 GVAR(ppColour) ppEffectAdjust [1, 1, 0, [0.05 * _hypoxiaCoef, 0, 0, 0.45 * _hypoxiaCoef], [1, 1, 1, 0.15 / _hypoxiaCoef], [0, 0, 0, 0]];

@@ -7,7 +7,7 @@ class CfgVehicles {
         scopeCurator = 0;
         displayName = "Cartel Underwear";
         model = "\A3\Characters_F\Common\basicbody";
-        uniformClass = GVAR(U_Base);
+        uniformClass = QGVAR(U_Base);
         weapons[] = {
             "Throw",
             "Put"
@@ -26,7 +26,7 @@ class CfgVehicles {
         scope = 0;
         faction = QUOTE(ADDON);
         displayName = "ACR Base";
-        nakedUniform = GVAR(U_Base);
+        nakedUniform = QGVAR(U_Base);
         uniformClass = "U_I_C_Soldier_Bandit_2_F";
         model = "\A3\characters_F\OPFOR\o_soldier_01.p3d";
         identityTypes[] = { "LanguageFRE_F", "Head_Euro" };

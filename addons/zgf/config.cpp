@@ -23,6 +23,11 @@ class CfgPatches {
             QGVAR(tatra_transport_full),
             QGVAR(tatra_ammo),
             QGVAR(tatra_fuel),
+
+            QGVAR(podnos),
+            QGVAR(sgp9),
+            QGVAR(dshkm_low),
+            QGVAR(dshkm_high)
         };
         weapons[] = {
             QGVAR(enfield_burris)

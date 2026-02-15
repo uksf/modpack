@@ -28,8 +28,6 @@ class CfgPatches {
             "UK3CB_BAF_L115A3_LRPS",
             "UK3CB_BAF_L115A3_DE_LRPS",
             "UK3CB_BAF_L135A1_LRPS",
-            "CUP_arifle_M4A1_Acog",
-            "CUP_lmg_M240_LDS",
             "UK3CB_BAF_Javelin_CLU"
         };
         requiredVersion = REQUIRED_VERSION;

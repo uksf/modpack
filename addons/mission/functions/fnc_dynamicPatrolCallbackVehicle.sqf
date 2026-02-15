@@ -27,7 +27,7 @@ if !(isNull _logic) then {
     _areaGroups pushBack _group;
     _logic setVariable [QGVAR(groups), _areaGroups, true];
 };
-TRACE_2("7) Dynamic spawn vehicle callback groups",GVAR(dynamicPatrolGroups),_logic getVariable [QGVAR(groups), []]);
+TRACE_3("7) Dynamic spawn vehicle callback groups",GVAR(dynamicPatrolGroups),_logic getVariable [QGVAR(groups),[]]);
 
 private _waypointPosition = _player getPos [_vehicleWaypointDistance, random 360];
 if (surfaceIsWater _waypointPosition) then {

@@ -94,7 +94,6 @@ class CfgPatches {
             "Inegal_B_R_R"
         };
         weapons[] = {
-            "CUP_arifle_Mk16_STD_FG_black",
             "CUP_arifle_Mk16_STD_EGLM_black_Aimpoint",
             "CUP_arifle_Mk16_CQC_EGLM_black_Aimpoint",
             "CUP_arifle_Mk16_STD_black_Aimpoint",

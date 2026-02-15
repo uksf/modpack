@@ -37,7 +37,7 @@
 ["CAManBase", "init", {
     params ["_unit"];
 
-    if (side _unit != EAST) exitWith {TRACE_1("exit side",side _unit)}; // TODO: This side check should be a setting, for cases where we're not fighting OPFOR
+    if (side _unit != east) exitWith {TRACE_1("exit side",side _unit)}; // TODO: This side check should be a setting, for cases where we're not fighting OPFOR
 
     _unit addMPEventHandler ["MPKilled", {
         params ["_unit", "_killer", "_instigator"];

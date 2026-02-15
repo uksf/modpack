@@ -4,7 +4,7 @@ class CfgVehicles {
         scope = 1;
         is3DEN = 1;
         functionPriority = 1;
-        category = ADDON;
+        category = QUOTE(ADDON);
         class AttributesBase;
     };
     class GVAR(counterBatteryUnitsModule) : GVAR(module) {

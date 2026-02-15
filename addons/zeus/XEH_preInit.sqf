@@ -9,6 +9,13 @@ GVAR(fpsEnabled) = false;
 GVAR(EHIDArray) = [];
 GVAR(curatorUnconciousMapID) = 999;
 GVAR(curatorUnconciousID) = -1;
+GVAR(projectilesEnabled) = false;
+GVAR(trackedProjectiles) = [];
+GVAR(ammoTypeCache) = createHashMap;
+GVAR(ammoNameCache) = createHashMap;
+GVAR(ammoIconCache) = createHashMap;
+GVAR(projectilesMapID) = 999;
+GVAR(projectilesPFH) = -1;
 
 if (hasInterface && {isMultiplayer}) then {
     GVAR(fpsEnabled) = MULTIPLAYER_ADMIN_OR_WHITELISTED;
@@ -16,6 +23,28 @@ if (hasInterface && {isMultiplayer}) then {
         player setVariable [QGVAR(fps), floor diag_fps, true];
     }, 1, []] call CBA_fnc_addPerFrameHandler;
 };
+
+["All", "FiredBIS", {
+    if (!GVAR(projectilesEnabled)) exitWith {};
+
+    params ["_unit", "", "", "", "_ammo", "", "_projectile"];
+
+    if !([_ammo] call FUNC(isHeavyProjectile)) exitWith {};
+
+    if (isNull _projectile) then {
+        _projectile = nearestObject [_unit, _ammo];
+    };
+
+    if (!isNull _projectile) then {
+        private _sideColor = switch (side _unit) do {
+            case west:        { [0, 0.3, 0.6, 0.9] };
+            case east:        { [0.5, 0, 0, 0.9] };
+            case independent: { [0, 0.5, 0, 0.9] };
+            default           { [0.4, 0, 0.5, 0.9] };
+        };
+        GVAR(trackedProjectiles) pushBack [_projectile, _ammo, _sideColor];
+    };
+}, true] call CBA_fnc_addClassEventHandler;
 
 [QGVAR(paradrop), {call FUNC(paradrop)}] call CBA_fnc_addEventHandler;
 [QGVAR(moveInCargo), {_this#0 moveInCargo _this#1}] call CBA_fnc_addEventHandler;
