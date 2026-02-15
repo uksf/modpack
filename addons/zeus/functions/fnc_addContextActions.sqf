@@ -56,6 +56,8 @@ _action = [QGVAR(toggleFPS), "Show Player FPS", "\a3\ui_f_curator\data\logos\arm
 
 _action = [QGVAR(toggleProjectiles), "Show Projectiles", "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa", {
     GVAR(projectilesEnabled) = !GVAR(projectilesEnabled);
+    private _count = count GVAR(trackedProjectiles);
+    TRACE_2("toggled projectile tracking",GVAR(projectilesEnabled),_count);
 }, {true}, [], {}, {
     params ["_action"];
     _action set [1, ["Show Projectiles", "Hide Projectiles"] select GVAR(projectilesEnabled)];

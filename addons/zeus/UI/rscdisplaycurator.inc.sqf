@@ -1,7 +1,7 @@
 #include "\u\uksf\addons\zeus\script_component.hpp"
 #include "\A3\ui_f\hpp\defineDIKCodes.inc"
 #include "\A3\ui_f_curator\ui\defineResinclDesign.inc"
-#include "\A3\ui_f\scripts\IGUI\RscMissionStatus.inc.sqf"
+#include "\A3\ui_f\scripts\IGUI\RscMissionStatus.sqf"
 // MERGE BIS
 /*
     Author:

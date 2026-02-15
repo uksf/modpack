@@ -1,1 +1,1 @@
-#include "rscdisplaycurator.inc.sqf"
+#include "\u\uksf\addons\zeus\ui\rscdisplaycurator.inc.sqf"

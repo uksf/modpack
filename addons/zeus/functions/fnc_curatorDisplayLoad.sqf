@@ -37,12 +37,13 @@ GVAR(curatorUnconciousMapID) = (_display displayCtrl 50) ctrlAddEventHandler ["D
 (_display displayCtrl 50) ctrlRemoveEventHandler ["Draw", GVAR(projectilesMapID)];
 GVAR(projectilesMapID) = (_display displayCtrl 50) ctrlAddEventHandler ["Draw", {
     if (GVAR(projectilesEnabled)) then {
+        GVAR(trackedProjectiles) = GVAR(trackedProjectiles) select {!isNull (_x#0)};
         {
             _x params ["_projectile", "_ammo", "_sideColor"];
-            if (!isNull _projectile) then {
-                private _name = GVAR(ammoNameCache) getOrDefault [_ammo, _ammo];
-                (_this#0) drawIcon ["#(argb,8,8,3)color(0,0,0,0)", _sideColor, _projectile, 24, 24, 0, _name, 0.1, 0.04, "PuristaMedium", "center"];
-            };
+            
+            private _name = GVAR(ammoNameCache) getOrDefault [_ammo, _ammo];
+            private _icon = GVAR(ammoIconCache) getOrDefault [_ammo, "\a3\ui_f\data\map\markers\military\dot_ca.paa"];
+            (_this#0) drawIcon [_icon, _sideColor, _projectile, 16, 16, 0, _name, 0.1, 0.04, "PuristaMedium", "right"];
         } forEach GVAR(trackedProjectiles);
     };
 }];
@@ -85,11 +86,15 @@ GVAR(curatorUnconciousID) = [{
 GVAR(projectilesPFH) = [{
     if (!GVAR(projectilesEnabled)) exitWith {};
     GVAR(trackedProjectiles) = GVAR(trackedProjectiles) select {!isNull (_x#0)};
+    if (GVAR(trackedProjectiles) isNotEqualTO []) then {
+        TRACE_1("drawing projectiles",GVAR(trackedProjectiles));
+    };
     {
         _x params ["_projectile", "_ammo", "_sideColor"];
         private _pos = ASLToAGL getPosASLVisual _projectile;
         private _name = GVAR(ammoNameCache) getOrDefault [_ammo, _ammo];
         private _icon = GVAR(ammoIconCache) getOrDefault [_ammo, "\a3\ui_f\data\map\markers\military\dot_ca.paa"];
+        TRACE_3("drawing projectile",_ammo,_name,_icon);
         drawIcon3D [_icon, _sideColor, _pos, 0.75, 0.75, 0, _name, 1, 0.03, "PuristaMedium", "center", true];
     } forEach GVAR(trackedProjectiles);
 }, 0] call CBA_fnc_addPerFrameHandler;
