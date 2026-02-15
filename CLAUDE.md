@@ -60,7 +60,7 @@ Most development work falls into two categories:
 
 ### Addon Structure
 
-Each addon lives in `addons/<component>/` and compiles to `addons/uksf_<component>.pbo`. The `loadOrder` addon declares all external mod dependencies and forces load ordering. The `main` addon provides shared macro definitions, versioning, and mod metadata. All other addons depend on `uksf_main` or `uksf_common`.
+Each addon lives in `addons/<component>/` and compiles to `addons/uksf_<component>.pbo`. The `loadorder` addon declares all external mod dependencies and forces load ordering. The `main` addon provides shared macro definitions, versioning, and mod metadata. All other addons depend on `uksf_main` or `uksf_common`.
 
 Standard addon layout:
 ```
@@ -82,7 +82,7 @@ Addons without scripted behavior (config-only, e.g. `gear`, `units`, `weapons`) 
 
 ### Dependency Chain
 
-`loadOrder` (external deps) → `main` (macros, version) → `common` (shared utilities) → feature addons
+`loadorder` (external deps) → `main` (macros, version) → `common` (shared utilities) → feature addons
 
 ### Configuration Modes
 

@@ -684,6 +684,7 @@ hemtt
 hemtt.exe
 .hemttout
 tools/temp
+.hemttprivatekey
 
 ## SQFC
 sqfvm.exe
