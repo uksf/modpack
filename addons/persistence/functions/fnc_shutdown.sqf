@@ -59,6 +59,9 @@ LOG("Shutdown");
             ["ocap_exportData", [west]] call CBA_fnc_localEvent;
 
             [{SERVER_COMMAND serverCommand "#shutdown"}, [], 4] call CBA_fnc_waitAndExecute;
+        }, [], 120, {
+            WARNING("Shutdown save timed out after 120 seconds, forcing shutdown");
+            [{SERVER_COMMAND serverCommand "#shutdown"}, [], 4] call CBA_fnc_waitAndExecute;
         }] call CBA_fnc_waitUntilAndExecute;
     };
 

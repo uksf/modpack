@@ -14,13 +14,20 @@
 */
 
 TRACE_1("First respawn",GVAR(data));
+
+if (isNil QGVAR(data) || {GVAR(data) isEqualTo []}) exitWith {
+    WARNING("No redeploy data");
+};
+
 GVAR(data) params ["_position", "_vehicleState", "_direction", "_animation", "_loadout", "_damage", "_aceStates", "_earplugs", "_attached", "_radios", ["_diveState", [false]]];
-//_positionData params ["_position", "_leaderID", "_leaderPosition", "_leaderDirection", "_relativePosition"];
 
 private _playerPosition = getPosASL player;
 if (GVAR(selectedRespawn) == "") then { // TODO: Doesn't handle objects
     WARNING("No respawn selected");
     private _respawnMarkers = allMapMarkers select {"respawn_west_" in _x};
+    if (_respawnMarkers isEqualTo []) exitWith {
+        WARNING("No respawn markers found");
+    };
     _respawnMarkers = _respawnMarkers apply {[_playerPosition distance (markerPos _x), _x]};
     _respawnMarkers sort true;
 
@@ -30,17 +37,10 @@ if (GVAR(selectedRespawn) == "") then { // TODO: Doesn't handle objects
 if !(isNil QGVAR(respawn)) then {
     [{deleteMarkerLocal GVAR(respawn)}, [], 1] call CBA_fnc_waitAndExecute;
 };
-/*if !(isNil QGVAR(groupRespawn)) then {
-    deleteMarkerLocal GVAR(groupRespawn);
-};*/
 
 TRACE_1("Respawned at",GVAR(selectedRespawn));
 if (GVAR(selectedRespawn) != RESPAWN_MARKER && (_position distance _playerPosition) > 2) exitWith {
     WARNING("Different respawn selected");
-};
-
-if (isNil QGVAR(data) || {GVAR(data) isEqualTo []}) exitWith {
-    WARNING("No redeploy data");
 };
 
 DEBUG("Respawn is redeploy");
@@ -98,8 +98,6 @@ if (_diveState#0 && _position#2 < 0) exitWith {};
 
 [{
     params ["_animation"];
-
-    private _currentAnimation = animationState player;
 
     if (animationState player == _animation) exitWith {
         true

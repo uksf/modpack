@@ -27,7 +27,7 @@
     if (hasInterface) then {
         call FUNC(addPersistenceActions);
 
-        TRACE_1("Requesting player redeploy data",_data);
+        LOG("Requesting player redeploy data");
         [QGVAR(requestRedeployData), [player]] call CBA_fnc_serverEvent;
     };
 }] call CBA_fnc_execNextFrame;
