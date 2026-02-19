@@ -32,13 +32,13 @@ LOG("Shutdown");
                 private _marker = createVehicle [QGVAR(markerAmmo), _x, [], 0, "CAN_COLLIDE"];
                 GVAR(persistenceMarkers) pushBack _marker;
             } forEach (values GVAR(disconnectedPlayerPositions));
-            [] call FUNC(saveObjectData);
+            call FUNC(shutdownSave);
         } else {
-            GVAR(saveObjectQueueProcessing) = false;
+            GVAR(shutdownSavingComplete) = true;
         };
 
         [{
-            !GVAR(saveObjectQueueProcessing)
+            GVAR(shutdownSavingComplete)
         }, {
             if (GVAR(dataSaved)) then {
                 private _dateTime = date;

@@ -15,7 +15,7 @@
 */
 params ["_rover", "_unit"];
 
-success = {
+private _success = {
     params ["_args"];
     _args params ["_rover", "_unit"];
     private _cover = _rover getVariable [QGVAR(coverObj), objNull];
@@ -27,7 +27,7 @@ success = {
     [_unit, "", 2] call ace_common_fnc_doAnimation;
 };
 
-fail = {
+private _fail = {
     params ["_args"];
     _args params ["", "_unit"];
     hint "Could not conceal cover";
@@ -35,4 +35,4 @@ fail = {
 };
 
 [_unit, "Acts_carFixingWheel", 1] call ace_common_fnc_doAnimation;
-[COVER_DEPLOY_TIME, [_rover, _unit], { call success }, { call fail }, "Concealing Cover"] call ace_common_fnc_progressBar;
+[COVER_DEPLOY_TIME, [_rover, _unit], _success, _fail, "Concealing Cover"] call ace_common_fnc_progressBar;

@@ -31,7 +31,7 @@ private _checkCount = 0;
     };
 
     _this set [2, _checkCount + 1];
-}, 1, [_vehicle, _bombPos]] call CBA_fnc_addPerFrameHandler;
+}, 1, [_vehicle, _bombPos, 0]] call CBA_fnc_addPerFrameHandler;
 
 // TODO: Would like this to actually drop a bomb from the plane and add possibility for more weapon usage.
 // Could use the ZEN cas functionality (might have to just copy the weapon firing routines as that's designed around a zeus module)

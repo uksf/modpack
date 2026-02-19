@@ -66,7 +66,7 @@ private _markers = _logic getVariable [QGVAR(sectorMarkers), []];
             _currentBluforScore = (_currentBluforScore - 1) max 0;
             _currentOpforScore = (_currentOpforScore - 1) max 0;
             _logic setVariable [QGVAR(currentOpforScore), _currentOpforScore, true];
-            _logic setVariable [QGVAR(currentBluforScore), _currentBluforScore, true];
+            _logic setVariable [QGVAR(currentbluforScore), _currentBluforScore, true];
         };
     };
 
@@ -90,7 +90,7 @@ private _markers = _logic getVariable [QGVAR(sectorMarkers), []];
     };
 
     _logic setVariable [QGVAR(currentOpforScore), _currentOpforScore, true];
-    _logic setVariable [QGVAR(currentBluforScore), _currentbluforScore, true];
+    _logic setVariable [QGVAR(currentbluforScore), _currentBluforScore, true];
 
     // show a hint percentage
     // TODO: Make this not reliant on a particular side, the below relies on players being blufor

@@ -16,7 +16,7 @@
 if (!GVAR(enabled)) exitWith {};
 
 if (!(isServer)) exitWith {
-    [QGVAR(enableCache), this] call CBA_fnc_serverEvent;
+    [QGVAR(enableCache), _this] call CBA_fnc_serverEvent;
 };
 
 params [["_group", grpNull, [grpNull, objNull]]];

@@ -22,7 +22,7 @@ private _marker = createMarkerLocal [format ["spawn_%1_%2_%3", _position select 
 private _area = _logic getVariable ["objectarea", []];
 _area params ["_a", "_b", "_angle", "_isRectangle"];
 _marker setMarkerAlphaLocal 0;
-_marker setMarkerShapeLocal (["RECTANGLE", "ELLIPSE"] select _isRectangle);
+_marker setMarkerShapeLocal (["ELLIPSE", "RECTANGLE"] select _isRectangle);
 _marker setMarkerSizeLocal [_a, _b];
 _marker setMarkerDirLocal (direction _logic);
 
