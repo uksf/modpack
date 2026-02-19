@@ -11,7 +11,9 @@
 #define CURATOR_ICON "\A3\Ui_F_Curator\Data\Logos\arma3_zeus_icon_ca.paa"
 
 #define UID_DOWNEY "76561198202076008"
+#undef UID_CARR
 #define UID_CARR "76561198136488003"
+#undef UID_DELTA
 #define UID_DELTA "76561198056452447"
 
 #define CURATOR_WHITELIST (WHITELIST + [UID_DOWNEY, UID_CARR, UID_DELTA])
@@ -20,8 +22,8 @@
 #define CURATOR_ADMIN_OR_WHITELISTED CURATOR_ADMIN_OR_HOST || {CURATOR_WHITELISTED}
 #define CURATOR_MULTIPLAYER_ADMIN_OR_WHITELISTED isMultiplayer && {CURATOR_ADMIN_OR_WHITELISTED}
 
-#define CONDITION_LOGIN ((CURATOR_ADMIN_OR_WHITELISTED) || {!GVAR(curatorsLocked)}) && {(GVAR(curatorPlayers) find (name player)) isEqualTo -1} && {(GVAR(curatorPlayers) find "") > -1}
-#define CONDITION_LOGOUT ((CURATOR_ADMIN_OR_WHITELISTED) || {!GVAR(curatorsLocked)}) && {(GVAR(curatorPlayers) find (name player)) != -1}
+#define CONDITION_LOGIN ((CURATOR_ADMIN_OR_WHITELISTED) || {!GVAR(curatorsLocked)}) && {!((name player) in GVAR(curatorPlayers))} && {("" in GVAR(curatorPlayers))}
+#define CONDITION_LOGOUT ((CURATOR_ADMIN_OR_WHITELISTED) || {!GVAR(curatorsLocked)}) && {(name player) in GVAR(curatorPlayers)}
 #define CONDITION_LOCK CURATOR_MULTIPLAYER_ADMIN_OR_WHITELISTED && {!GVAR(curatorsLocked)}
 #define CONDITION_UNLOCK CURATOR_MULTIPLAYER_ADMIN_OR_WHITELISTED && {GVAR(curatorsLocked)}
 #define CONDITION_KICKALL CURATOR_MULTIPLAYER_ADMIN_OR_WHITELISTED && {({_x != ""} count GVAR(curatorPlayers)) > 1}

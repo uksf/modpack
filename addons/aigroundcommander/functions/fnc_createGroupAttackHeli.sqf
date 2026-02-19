@@ -17,7 +17,7 @@
 */
 params ["_spawnPosition", "_stagingAreaPosition", "_playerPosition", "_count"];
 
-[_spawnPosition, EAST, EGVAR(gear,gearHeliPilot), EGVAR(gear,gearAttackHeli), {
+[_spawnPosition, east, EGVAR(gear,gearHeliPilot), EGVAR(gear,gearAttackHeli), {
     params ["_vehicle", "_turrets"];
 
     (_vehicle emptyPositions "driver") + count _turrets

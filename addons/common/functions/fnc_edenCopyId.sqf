@@ -15,7 +15,7 @@
 params ["_ctrlButton"];
 
 private _ctrlGroup = ctrlParentControlsGroup _ctrlButton;
-private _ctrlEdit = _ctrlGroup controlsgroupctrl 100;
+private _ctrlEdit = _ctrlGroup controlsGroupCtrl 100;
 private _id = ctrlText _ctrlEdit;
 copyToClipboard _id;
 

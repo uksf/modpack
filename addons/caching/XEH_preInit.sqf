@@ -53,6 +53,6 @@ if (isServer) then {
     } forEach ["B_UAV_AI", "O_UAV_AI", "I_UAV_AI"];
 };
 
-#include "initSettings.sqf"
+#include "initSettings.inc.sqf"
 
 ADDON = true;

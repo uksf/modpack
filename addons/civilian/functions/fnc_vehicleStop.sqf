@@ -53,7 +53,7 @@ if (_index != -1) then {
         [{[QGVAR(stopCommand), _this, _this#0] call CBA_fnc_targetEvent}, [_vehicle], random 0.2 + (linearConversion [1, 50, _unit distance _vehicle, 0.2, 0.8, true])] call CBA_fnc_waitAndExecute;
     };
 
-    if (random 100 < STOP_IGNORE_CHANCE) exitWith {
+    if (random 100 < VEHICLE_STOP_IGNORE_CHANCE) exitWith {
         [QGVAR(horn), [_vehicle, _driver, 2], _vehicle] call CBA_fnc_targetEvent;
         _driver setVariable [QGVAR(vehicle_ignoringStop), true, true];
         [{_this setVariable [QGVAR(vehicle_ignoringStop), false, true]}, _driver, 60] call CBA_fnc_waitAndExecute;

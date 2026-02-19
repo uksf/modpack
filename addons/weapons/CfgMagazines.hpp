@@ -60,7 +60,7 @@ class CfgMagazines {
         class Library {
             libTextDesc = "Breaching Charge. It can be set to detonate either by the built-in timer or a remote detonator.";
         };
-        type = "2 * 256";
+        type = 512;
         allowedSlots[] = { 901, 701 };
         displayName = "Breaching Charge";
         ace_explosives_SetupObject = "ACE_Explosives_Place_BreachCharge";

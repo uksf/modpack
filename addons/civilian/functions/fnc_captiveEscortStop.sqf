@@ -34,7 +34,7 @@ if !(isNull _escorter) then {
 
     _unit playActionNow QGVAR(clearAction);
 
-    if (!(isNull _escorter) && {(stance _escorter) == "CROUCH"} && {vehicle _unit == _unit}) then {
+    if (!(isNull _escorter) && {(stance _escorter) == "CROUCH"} && {isNull objectParent _unit}) then {
         ["ace_common_switchMove", [_unit, "acts_aidlpsitmstpssurwnondnon05"]] call CBA_fnc_globalEvent;
 
         _animChangedEHID = _unit addEventHandler ["AnimChanged", {
@@ -46,7 +46,7 @@ if !(isNull _escorter) then {
         }];
     } else {
         _animChangedEHID = _unit addEventHandler ["AnimChanged", {call ace_captives_fnc_handleAnimChangedHandcuffed}];
-        if (vehicle _unit == _unit) then {
+        if (isNull objectParent _unit) then {
             ["ace_common_switchMove", [_unit, "ace_amovpercmstpscapwnondnon"]] call CBA_fnc_globalEvent;
         };
     };

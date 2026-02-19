@@ -18,20 +18,46 @@ params ["_display"];
 GVAR(curatorUnconciousMapID) = (_display displayCtrl 50) ctrlAddEventHandler ["Draw", {
     {
         if ((driver (vehicle _x)) isEqualTo _x && {_x getVariable ["ACE_isUnconscious", false]}) then {
-            private _cardiacArrestTimeLeft = round (_x getVariable ["ace_medical_statemachine_cardiacArrestTimeLeft", -1]);
+            private _comaTimeLeft = round (_x getVariable ["ace_medical_statemachine_comaTimeLeft", -1]);
             private _text = "Unconscious";
-            if (_cardiacArrestTimeLeft > -1) then {
-                private _minutes = floor (_cardiacArrestTimeLeft / 60);
-                private _seconds = _cardiacArrestTimeLeft % 60;
+            if (_comaTimeLeft > -1) then {
+                private _minutes = floor (_comaTimeLeft / 60);
+                private _seconds = _comaTimeLeft % 60;
                 _text = if (_minutes > 0) then {
-                    format ["Unconscious (%1m%2s)", _minutes, _seconds]
+                    format ["Unconscious (Coma %1m%2s)", _minutes, _seconds]
                 } else {
-                    format ["Unconscious (%1s)", _seconds]
+                    format ["Unconscious (Coma %1s)", _seconds]
+                };
+            } else {
+                private _cardiacArrestTimeLeft = round (_x getVariable ["ace_medical_statemachine_cardiacArrestTimeLeft", -1]);
+                if (_cardiacArrestTimeLeft > -1) then {
+                    private _minutes = floor (_cardiacArrestTimeLeft / 60);
+                    private _seconds = _cardiacArrestTimeLeft % 60;
+                    _text = if (_minutes > 0) then {
+                        format ["Unconscious (CA %1m%2s)", _minutes, _seconds]
+                    } else {
+                        format ["Unconscious (CA %1s)", _seconds]
+                    };
                 };
             };
+            
             (_this#0) drawIcon ["#(argb,8,8,3)color(0,0,0,0)", [1,0,0,0.7], _x, 40, 1, 0, _text, 0.1, 0.04, "PuristaBold", "left"];
         };
     } forEach ALL_PLAYERS;
+}];
+
+(_display displayCtrl 50) ctrlRemoveEventHandler ["Draw", GVAR(projectilesMapID)];
+GVAR(projectilesMapID) = (_display displayCtrl 50) ctrlAddEventHandler ["Draw", {
+    if (GVAR(projectilesEnabled)) then {
+        GVAR(trackedProjectiles) = GVAR(trackedProjectiles) select {!isNull (_x#0)};
+        {
+            _x params ["_projectile", "_ammo", "_sideColor"];
+
+            private _name = GVAR(ammoNameCache) getOrDefault [_ammo, _ammo];
+            private _icon = GVAR(ammoIconCache) getOrDefault [_ammo, "\a3\ui_f\data\map\markers\military\dot_ca.paa"];
+            (_this#0) drawIcon [_icon, _sideColor, _projectile, 16, 16, 0, _name, 0.1, 0.04, "PuristaMedium", "right"];
+        } forEach GVAR(trackedProjectiles);
+    };
 }];
 
 [GVAR(curatorUnconciousID)] call CBA_fnc_removePerFrameHandler;
@@ -50,15 +76,26 @@ GVAR(curatorUnconciousID) = [{
                 drawIcon3D ["", _colour, ASLToAGL (getPosASLVisual (vehicle _x)), 1, 2, 0, format ["%1 FPS", _fps], 0.1, _size, "PuristaMedium", "center"];
             };
             if (_x getVariable ["ACE_isUnconscious", false]) then {
-                private _cardiacArrestTimeLeft = round (_x getVariable ["ace_medical_statemachine_cardiacArrestTimeLeft", -1]);
+                private _comaTimeLeft = round (_x getVariable ["ace_medical_statemachine_comaTimeLeft", -1]);
                 private _text = "Unconscious";
-                if (_cardiacArrestTimeLeft > -1) then {
-                    private _minutes = floor (_cardiacArrestTimeLeft / 60);
-                    private _seconds = _cardiacArrestTimeLeft % 60;
+                if (_comaTimeLeft > -1) then {
+                    private _minutes = floor (_comaTimeLeft / 60);
+                    private _seconds = _comaTimeLeft % 60;
                     _text = if (_minutes > 0) then {
-                        format ["Unconscious (%1m%2s)", _minutes, _seconds]
+                        format ["Unconscious (Coma %1m%2s)", _minutes, _seconds]
                     } else {
-                        format ["Unconscious (%1s)", _seconds]
+                        format ["Unconscious (Coma %1s)", _seconds]
+                    };
+                } else {
+                    private _cardiacArrestTimeLeft = round (_x getVariable ["ace_medical_statemachine_cardiacArrestTimeLeft", -1]);
+                    if (_cardiacArrestTimeLeft > -1) then {
+                        private _minutes = floor (_cardiacArrestTimeLeft / 60);
+                        private _seconds = _cardiacArrestTimeLeft % 60;
+                        _text = if (_minutes > 0) then {
+                            format ["Unconscious (CA %1m%2s)", _minutes, _seconds]
+                        } else {
+                            format ["Unconscious (CA %1s)", _seconds]
+                        };
                     };
                 };
 
@@ -66,6 +103,23 @@ GVAR(curatorUnconciousID) = [{
             };
         };
     } forEach ALL_PLAYERS;
+}, 0] call CBA_fnc_addPerFrameHandler;
+
+[GVAR(projectilesPFH)] call CBA_fnc_removePerFrameHandler;
+GVAR(projectilesPFH) = [{
+    if (!GVAR(projectilesEnabled)) exitWith {};
+    GVAR(trackedProjectiles) = GVAR(trackedProjectiles) select {!isNull (_x#0)};
+    if (GVAR(trackedProjectiles) isNotEqualTO []) then {
+        TRACE_1("drawing projectiles",GVAR(trackedProjectiles));
+    };
+    {
+        _x params ["_projectile", "_ammo", "_sideColor"];
+        private _pos = ASLToAGL getPosASLVisual _projectile;
+        private _name = GVAR(ammoNameCache) getOrDefault [_ammo, _ammo];
+        private _icon = GVAR(ammoIconCache) getOrDefault [_ammo, "\a3\ui_f\data\map\markers\military\dot_ca.paa"];
+        TRACE_3("drawing projectile",_ammo,_name,_icon);
+        drawIcon3D [_icon, _sideColor, _pos, 0.75, 0.75, 0, _name, 1, 0.03, "PuristaMedium", "center", true];
+    } forEach GVAR(trackedProjectiles);
 }, 0] call CBA_fnc_addPerFrameHandler;
 
 [true, player] call ace_common_fnc_setVolume;

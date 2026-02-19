@@ -52,7 +52,7 @@ onEachFrame {
                         params [["_serverName", ""], ["_serverData", ""]];
 
                         if (diag_tickTime > (GVAR(directConnectStartTime) + CONNECTTIMEOUT)) exitWith {
-                            ERROR_1("direct connect on port %1 timed out", GVAR(directConnectPort));
+                            ERROR_1("direct connect on port %1 timed out",GVAR(directConnectPort));
                             ctrlActivate (findDisplay IDD_MULTIPLAYER displayCtrl IDC_CANCEL);
                             onEachFrame {};
                             true
@@ -66,7 +66,7 @@ onEachFrame {
 
                                 onEachFrame {
                                     if (diag_tickTime > GVAR(directConnectStartTime) + CONNECTTIMEOUT) then {
-                                        ERROR_1("direct connect on port %1 timed out", GVAR(directConnectPort));
+                                        ERROR_1("direct connect on port %1 timed out",GVAR(directConnectPort));
                                         onEachFrame {};
                                     };
 
@@ -83,7 +83,7 @@ onEachFrame {
                                     };
 
                                     if (getClientStateNumber >= 3) then {
-                                        INFO_1("direct connect on port %1 successful", GVAR(directConnectPort));
+                                        INFO_1("direct connect on port %1 successful",GVAR(directConnectPort));
                                         onEachFrame {};
                                     };
                                 };

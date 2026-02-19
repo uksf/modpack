@@ -7,7 +7,7 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "uksf_loadOrder"
+            "uksf_loadorder"
         };
         author = QUOTE(UKSF);
         url = URL;

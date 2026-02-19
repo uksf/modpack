@@ -14,7 +14,7 @@ class CfgVehicles {
         canSetArea = 1;
         canSetAreaHeight = 0;
         canSetAreaShape = 1;
-        category = EGVAR(common,eden);
+        category = QEGVAR(common,eden);
         class AttributeValues {
             size3[] = { 500, 500, -1 };
             isRectangle = 0;
@@ -57,7 +57,7 @@ class CfgVehicles {
         canSetArea = 1;
         canSetAreaHeight = 0;
         canSetAreaShape = 1;
-        category = EGVAR(common,eden);
+        category = QEGVAR(common,eden);
         class AttributeValues {
             size3[] = { 500, 500, -1 };
             isRectangle = 0;
@@ -74,7 +74,7 @@ class CfgVehicles {
         canSetArea = 1;
         canSetAreaHeight = 0;
         canSetAreaShape = 1;
-        category = EGVAR(common,eden);
+        category = QEGVAR(common,eden);
         class AttributeValues {
             size3[] = { 500, 500, -1 };
             isRectangle = 0;
@@ -102,7 +102,7 @@ class CfgVehicles {
         canSetArea = 1;
         canSetAreaHeight = 0;
         canSetAreaShape = 1;
-        category = EGVAR(common,eden);
+        category = QEGVAR(common,eden);
         class AttributeValues {
             size3[] = { 2000, 2000, -1 };
             isRectangle = 1;

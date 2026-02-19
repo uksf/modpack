@@ -84,7 +84,7 @@ addMissionEventHandler ["MarkerDeleted", {
     };*/
 
     if (_position isEqualTo [0,0,0] || _position distance2D [0,0,0] < 50) exitWith {
-        ERROR_1("Invalid redeploy position: %1", _position);
+        ERROR_1("Invalid redeploy position: %1",_position);
     };
 
     GVAR(respawn) = createMarkerLocal [RESPAWN_MARKER, _position];

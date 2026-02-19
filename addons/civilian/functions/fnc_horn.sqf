@@ -25,7 +25,7 @@ if (isNull _unit) then {
 
 private _weapons = weapons _vehicle;
 private _index = _weapons findIf {"horn" in (toLower _x)};
-if (index == -1) exitWith {};
+if (_index == -1) exitWith {};
 
 private _horn = _weapons#_index;
 _vehicle selectWeapon _horn;

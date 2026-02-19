@@ -1,0 +1,45 @@
+[config.external_parent_case]
+enabled = false
+
+[config.file_type]
+options.allow_no_extension = true
+
+[sqf.banned_commands]
+options.ignore = [
+    "addPublicVariableEventHandler",
+]
+
+[sqf.reasign_reserved_variable]
+enabled = false
+
+[sqf.var_all_caps]
+options.ignore = [
+    "ACRE_ASSIGNED_PTT_RADIOS",
+]
+
+[sqf.event_unknown]
+# HEMTT bug: options.ignore compares against command names, not event names
+# All unknown events are from vanilla BIS rscdisplaycurator code using lowercase event names
+options.ignore = [
+    "ctrladdeventhandler",
+    "displayaddeventhandler",
+    "addmissioneventhandler",
+    "removemissioneventhandler",
+]
+
+[sqf.function_undefined]
+# Cross-project dependencies from uksf_air (separate repo at D:\Arma\uksf_air)
+# HEMTT prefix match (starts_with "uksf") catches uksf_air functions
+options.ignore = [
+    "uksf_air_patches_fnc_a400rampcontrol",
+    "uksf_air_weapons_fnc_correctpilotpylon",
+]
+
+[sqf.command_case]
+enabled = false
+
+[sqf.if_assign]
+enabled = false
+
+[config.unused_external]
+enabled = false

@@ -18,7 +18,7 @@ class CfgPatches {
 
             QGVAR(hilux),
             QGVAR(hilux_full),
-            QGVAR(hilux_dhskm),
+            QGVAR(hilux_dshkm),
             QGVAR(hilux_ags),
             QGVAR(hilux_spg9),
             QGVAR(hilux_ub32),
@@ -26,11 +26,21 @@ class CfgPatches {
             QGVAR(hilux_zu23),
 
             QGVAR(praga_full),
-            QGVAR(praga_covered_full)
+            QGVAR(praga_covered_full),
+
+            QGVAR(podnos),
+            QGVAR(sgp9),
+            QGVAR(dshkm_low),
+            QGVAR(dshkm_high)
         };
         weapons[] = {
             QGVAR(enfield_burris),
-            QGVAR(cz750_mr10)
+            QGVAR(cz750_mr10),
+            QGVAR(fakePassport),
+            QGVAR(iedPartWire),
+            QGVAR(iedPartPressurePlate),
+            QGVAR(iedPartHMEContainer),
+            QGVAR(iedPartBatteryPack)
         };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {

@@ -19,11 +19,11 @@
 params ["_rover", "_unit", "_coverType", "_offset", "_angle"];
 
 
-if (count (nearestObjects [(position _rover), ["CamoNet_BLUFOR_open_F", "Land_CamoNetVar_NATO_EP1"], 20]) > 0) exitWith {
+if (nearestObjects [(position _rover), ["CamoNet_BLUFOR_open_F", "Land_CamoNetVar_NATO_EP1"], 20] isNotEqualTo []) exitWith {
     hint "There's already a cover nearby! Use that one!"
 };
 
-success = {
+private _success = {
     params ["_args"];
     _args params ["_rover", "_unit", "_coverType", "_offset", "_angle"];
     private _cover = createVehicle [_coverType, position _rover, [], 0, "CAN_COLLIDE"];
@@ -37,7 +37,7 @@ success = {
     [_unit, "", 2] call ace_common_fnc_doAnimation;
 };
 
-fail = {
+private _fail = {
     params ["_args"];
     _args params ["", "_unit"];
     hint "Could not deploy cover";
@@ -45,4 +45,4 @@ fail = {
 };
 
 [_unit, "Acts_carFixingWheel", 1] call ace_common_fnc_doAnimation;
-[COVER_DEPLOY_TIME, [_rover, _unit, _coverType, _offset, _angle], { call success }, { call fail }, "Deploying Cover"] call ace_common_fnc_progressBar;
+[COVER_DEPLOY_TIME, [_rover, _unit, _coverType, _offset, _angle], _success, _fail, "Deploying Cover"] call ace_common_fnc_progressBar;

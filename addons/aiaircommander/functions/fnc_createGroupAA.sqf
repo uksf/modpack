@@ -20,7 +20,7 @@ _spawns sort true;
 if (_spawns isEqualTo []) exitWith {};
 
 private _spawn = _spawns#0#1;
-[getPos _spawn, EAST, EGVAR(gear,gearCrew), EGVAR(gear,gearVehAA), {
+[getPos _spawn, east, EGVAR(gear,gearCrew), EGVAR(gear,gearVehAA), {
     params ["_vehicle", "_turrets"];
 
     (_vehicle emptyPositions "driver") + count _turrets

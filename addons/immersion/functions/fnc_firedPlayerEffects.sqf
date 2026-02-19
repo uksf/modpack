@@ -7,12 +7,13 @@
         Effects for player firing
 
     Parameters:
-        0: Ammo name <STRING>
+        0: Shooter <OBJECT>
+        1: Ammo name <STRING>
 
     Return value:
         None
 */
-params ["_ammo"];
+params ["_shooter", "_ammo"];
 
 // Exit if:
 // Player is not shooter
@@ -57,6 +58,6 @@ GVAR(firing_lastShot) = diag_tickTime;
 private _power = _powerCoefficient * (8 + (random 0.2) - 0.1) + _randomness; // 1.3
 private _duration = (0.5 + (random 0.1) - 0.05); // 0.4
 private _frequency = _powerCoefficient * (40 + (random 2) - 1) + _randomness; // 15
-addCamshake [_power, _duration, _frequency];
+addCamShake [_power, _duration, _frequency];
 
 // systemChat format ["hit: %1, powcoef: %2, ccadjust: %3, bluradjust1: %4, bluradjust2: %5, shakepow: %6, shakedur: %7, shakefreq: %8", _hit, _powerCoefficient, _ccAdjust, _blurAdjust1, _blurAdjust2, _power, _duration, _frequency];

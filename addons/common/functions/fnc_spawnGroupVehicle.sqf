@@ -22,7 +22,7 @@
 #define SPAWN_DELAY 1
 #define TIMEOUT 30
 
-params [["_position", [], [[]]], ["_side", EAST, [sideUnknown]], ["_unitPool", []], ["_vehiclePool", []], ["_countCode", {-1}, [{}]], ["_callback", {}, [{}]], ["_callbackArgs", [], [[]]]];
+params [["_position", [], [[]]], ["_side", east, [sideUnknown]], ["_unitPool", []], ["_vehiclePool", []], ["_countCode", {-1}, [{}]], ["_callback", {}, [{}]], ["_callbackArgs", [], [[]]]];
 
 TRACE_5("6) Spawn vehicle data",_position,_side,_unitPool,_vehiclePool,_countCode);
 

@@ -32,7 +32,6 @@ private _fnc_children = {
     _action = [QGVAR(hidePersistentObjects), "Hide Persistent Object Markers", "", {
         [GVAR(persistentObjectIconsPFHID)] call CBA_fnc_removePerFrameHandler;
         GVAR(persistentObjectIconsPFHID) = -1;
-        [QGVAR(stopPersistentObjectsHash), [player]] call CBA_fnc_serverEvent;
     }, {MULTIPLAYER_ADMIN_OR_WHITELISTED && {GVAR(persistentObjectIconsPFHID) != -1}}] call ace_interact_menu_fnc_createAction;
     _actions pushBack [_action, [], _player];
 
@@ -45,7 +44,28 @@ private _fnc_children = {
         {deleteVehicle (_x#1)} forEach GVAR(abortedObjectInteractionObjects);
         GVAR(abortedObjectInteractionObjects) = [];
         GVAR(abortedObjects) = [];
-    }, {MULTIPLAYER_ADMIN_OR_WHITELISTED && {!(GVAR(abortedObjects) isEqualTo [])}}] call ace_interact_menu_fnc_createAction;
+    }, {MULTIPLAYER_ADMIN_OR_WHITELISTED && {GVAR(abortedObjects) isNotEqualTo []}}] call ace_interact_menu_fnc_createAction;
+    _actions pushBack [_action, [], _player];
+
+    _action = [QGVAR(showPersistenceMarkers), "Show Persistence Markers", "", {[] call FUNC(showPersistenceMarkers)}, {MULTIPLAYER_ADMIN_OR_WHITELISTED && {GVAR(persistenceMarkersPFHID) == -1}}] call ace_interact_menu_fnc_createAction;
+    _actions pushBack [_action, [], _player];
+
+    _action = [QGVAR(hidePersistenceMarkers), "Hide Persistence Markers", "", {
+        [GVAR(persistenceMarkersPFHID)] call CBA_fnc_removePerFrameHandler;
+        GVAR(persistenceMarkersPFHID) = -1;
+    }, {MULTIPLAYER_ADMIN_OR_WHITELISTED && {GVAR(persistenceMarkersPFHID) != -1}}] call ace_interact_menu_fnc_createAction;
+    _actions pushBack [_action, [], _player];
+
+    _action = [QGVAR(showDisconnectedPositions), "Show Disconnected Positions", "", {[] call FUNC(showDisconnectedPositions)}, {MULTIPLAYER_ADMIN_OR_WHITELISTED && {GVAR(disconnectedPositionsPFHID) == -1}}] call ace_interact_menu_fnc_createAction;
+    _actions pushBack [_action, [], _player];
+
+    _action = [QGVAR(hideDisconnectedPositions), "Hide Disconnected Positions", "", {
+        [GVAR(disconnectedPositionsPFHID)] call CBA_fnc_removePerFrameHandler;
+        GVAR(disconnectedPositionsPFHID) = -1;
+    }, {MULTIPLAYER_ADMIN_OR_WHITELISTED && {GVAR(disconnectedPositionsPFHID) != -1}}] call ace_interact_menu_fnc_createAction;
+    _actions pushBack [_action, [], _player];
+
+    _action = [QGVAR(inspectSavedData), "Inspect Saved Data", "", {[] call FUNC(inspectSavedData)}, {MULTIPLAYER_ADMIN_OR_WHITELISTED}] call ace_interact_menu_fnc_createAction;
     _actions pushBack [_action, [], _player];
 
     _actions

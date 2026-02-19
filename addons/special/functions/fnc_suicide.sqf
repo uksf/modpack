@@ -36,7 +36,7 @@ if (_car) then {
 _bomber setVariable ["acex_headless_blacklist", true, true];
 _bomber setVariable [QGVAR(isBomber), true, true];
 _bomber setVariable [QGVAR(previousTarget), objNull, true];
-_bomber allowfleeing 0;
+_bomber allowFleeing 0;
 _bomber disableAI "AUTOCOMBAT";
 _bomber disableAI "COVER";
 _bomber disableAI "SUPPRESSION";

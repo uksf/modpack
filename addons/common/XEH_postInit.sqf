@@ -1,5 +1,5 @@
 #include "script_component.hpp"
-#include "initKeybinds.sqf"
+#include "initKeybinds.inc.sqf"
 
 // Set server object
 if (isServer) then {
@@ -9,7 +9,7 @@ if (isServer) then {
     // Delete empty groups every 5 minutes
     [{
         [QGVAR(deleteEmptyGroups), []] call CBA_fnc_globalEvent;
-    }, 300, []] call cba_fnc_addPerFrameHandler;
+    }, 300, []] call CBA_fnc_addPerFrameHandler;
 
     [] call FUNC(updateHeadlessClientPosition);
 };

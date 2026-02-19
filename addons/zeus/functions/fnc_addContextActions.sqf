@@ -54,6 +54,16 @@ _action = [QGVAR(toggleFPS), "Show Player FPS", "\a3\ui_f_curator\data\logos\arm
 }] call zen_context_menu_fnc_createAction;
 [_action, [], -480] call zen_context_menu_fnc_addAction;
 
+_action = [QGVAR(toggleProjectiles), "Show Projectiles", "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa", {
+    GVAR(projectilesEnabled) = !GVAR(projectilesEnabled);
+    private _count = count GVAR(trackedProjectiles);
+    TRACE_2("toggled projectile tracking",GVAR(projectilesEnabled),_count);
+}, {true}, [], {}, {
+    params ["_action"];
+    _action set [1, ["Show Projectiles", "Hide Projectiles"] select GVAR(projectilesEnabled)];
+}] call zen_context_menu_fnc_createAction;
+[_action, [], -490] call zen_context_menu_fnc_addAction;
+
 _action = [QGVAR(toggleZeusVisibility), "Toggle Zeus Visibility", "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa", {[objNull] call FUNC(moduleToggleZeusVisibility)}, {true}] call zen_context_menu_fnc_createAction;
 [_action, [], -500] call zen_context_menu_fnc_addAction;
 

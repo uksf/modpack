@@ -4,7 +4,7 @@ class CfgVehicles {
         scope = 1;
         is3DEN = 1;
         functionPriority = 1;
-        category = EGVAR(common,eden);
+        category = QEGVAR(common,eden);
         class AttributesBase;
     };
     class GVAR(cacheAreaModule) : GVAR(module) {

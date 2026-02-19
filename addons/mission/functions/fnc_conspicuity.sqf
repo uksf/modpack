@@ -14,7 +14,7 @@
     Return value:
         Unique ID <SCALAR>
 */
-params ["_player", ["_weapon", currentWeapon _player]];
+params ["_player", ["_weapon", currentWeapon player]];
 
 // Ignore pilots
 // if (_player isKindOf "UKSF_B_Pilot") exitWith {};

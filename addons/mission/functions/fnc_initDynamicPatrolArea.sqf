@@ -86,7 +86,7 @@ TRACE_1("3) Area data init resolved vehicle pool",_values#DYNAMIC_PATROL_INDEX_V
 // Resolve values from DYNAMIC_PATROL_INDEX for combatMode, patrolSpeed, and side
 _values set [DYNAMIC_PATROL_INDEX_COMBAT_MODE, ['SAFE', 'AWARE', 'COMBAT']#(_values#DYNAMIC_PATROL_INDEX_COMBAT_MODE)];
 _values set [DYNAMIC_PATROL_INDEX_PATROL_SPEED, ['LIMITED', 'NORMAL', 'FULL']#(_values#DYNAMIC_PATROL_INDEX_PATROL_SPEED)];
-_values set [DYNAMIC_PATROL_INDEX_SIDE, [EAST, INDEPENDENT, WEST]#(_values#DYNAMIC_PATROL_INDEX_SIDE)];
+_values set [DYNAMIC_PATROL_INDEX_SIDE, [east, independent, west]#(_values#DYNAMIC_PATROL_INDEX_SIDE)];
 TRACE_3("3) Area data init resolved combat mode, patrol speed, side",_values#DYNAMIC_PATROL_INDEX_COMBAT_MODE,_values#DYNAMIC_PATROL_INDEX_PATROL_SPEED,_values#DYNAMIC_PATROL_INDEX_SIDE);
 
 // Test condition and store as code in values

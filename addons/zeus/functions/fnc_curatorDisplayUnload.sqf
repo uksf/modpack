@@ -15,7 +15,8 @@
 params ["_display"];
 
 (_display displayCtrl 50) ctrlRemoveEventHandler ["Draw", GVAR(curatorUnconciousMapID)];
+(_display displayCtrl 50) ctrlRemoveEventHandler ["Draw", GVAR(projectilesMapID)];
 [GVAR(curatorUnconciousID)] call CBA_fnc_removePerFrameHandler;
-
+[GVAR(projectilesPFH)] call CBA_fnc_removePerFrameHandler;
 private _unconscious = player getVariable ["ACE_isUnconscious", false];
 [!_unconscious, player] call ace_common_fnc_setVolume;

@@ -60,8 +60,8 @@ class GVAR(HMG_Gunner) : GVAR(Rifleman) {
 };
 class GVAR(Rifleman_Light_AT) : GVAR(Rifleman) {
     displayName = "Rifleman Light AT";
-    weapons[] = { GVAR(CUP_arifle_M16A4_Base_CUP_optic_ACOG_TA01B_Black), "launch_RPG32_F", "CUP_hgun_M9", "Put", "Throw" };
-    respawnWeapons[] = { GVAR(CUP_arifle_M16A4_Base_CUP_optic_ACOG_TA01B_Black), "launch_RPG32_F", "CUP_hgun_M9", "Put", "Throw" };
+    weapons[] = { QGVAR(CUP_arifle_M16A4_Base_CUP_optic_ACOG_TA01B_Black), "launch_RPG32_F", "CUP_hgun_M9", "Put", "Throw" };
+    respawnWeapons[] = { QGVAR(CUP_arifle_M16A4_Base_CUP_optic_ACOG_TA01B_Black), "launch_RPG32_F", "CUP_hgun_M9", "Put", "Throw" };
     magazines[] = { "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "CUP_15Rnd_9x19_M9", "CUP_15Rnd_9x19_M9", "CUP_15Rnd_9x19_M9", "RPG32_F", "RPG32_F", "RPG32_F", "RPG32_HE_F", "RPG32_HE_F" };
     respawnMagazines[] = { "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "CUP_15Rnd_9x19_M9", "CUP_15Rnd_9x19_M9", "CUP_15Rnd_9x19_M9", "RPG32_F", "RPG32_F", "RPG32_F", "RPG32_HE_F", "RPG32_HE_F" };
     linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "NVGoggles", "H_HelmetB_sand", "CUP_V_CZ_NPP2006_nk_des", "NVGoggles" };
@@ -71,8 +71,8 @@ class GVAR(Rifleman_Light_AT) : GVAR(Rifleman) {
 };
 class GVAR(Rifleman_Heavy_AT) : GVAR(Rifleman) {
     displayName = "Rifleman Heavy AT";
-    weapons[] = { GVAR(CUP_arifle_M16A4_Base_CUP_optic_ACOG_TA01B_Black), "launch_O_Vorona_brown_F", "CUP_hgun_M9", "Put", "Throw" };
-    respawnWeapons[] = { GVAR(CUP_arifle_M16A4_Base_CUP_optic_ACOG_TA01B_Black), "launch_O_Vorona_brown_F", "CUP_hgun_M9", "Put", "Throw" };
+    weapons[] = { QGVAR(CUP_arifle_M16A4_Base_CUP_optic_ACOG_TA01B_Black), "launch_O_Vorona_brown_F", "CUP_hgun_M9", "Put", "Throw" };
+    respawnWeapons[] = { QGVAR(CUP_arifle_M16A4_Base_CUP_optic_ACOG_TA01B_Black), "launch_O_Vorona_brown_F", "CUP_hgun_M9", "Put", "Throw" };
     magazines[] = { "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "CUP_15Rnd_9x19_M9", "CUP_15Rnd_9x19_M9", "CUP_15Rnd_9x19_M9", "Vorona_HEAT" };
     respawnMagazines[] = { "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "CUP_15Rnd_9x19_M9", "CUP_15Rnd_9x19_M9", "CUP_15Rnd_9x19_M9", "Vorona_HEAT" };
     linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "NVGoggles", "H_HelmetB_sand", "CUP_V_CZ_NPP2006_nk_des", "NVGoggles" };
@@ -82,8 +82,8 @@ class GVAR(Rifleman_Heavy_AT) : GVAR(Rifleman) {
 };
 class GVAR(Rifleman_AA) : GVAR(Rifleman) {
     displayName = "Rifleman AA";
-    weapons[] = { GVAR(CUP_arifle_M16A4_Base_CUP_optic_ACOG_TA01B_Black), "CUP_launch_Igla_Loaded", "CUP_hgun_M9", "Put", "Throw" };
-    respawnWeapons[] = { GVAR(CUP_arifle_M16A4_Base_CUP_optic_ACOG_TA01B_Black), "CUP_launch_Igla_Loaded", "CUP_hgun_M9", "Put", "Throw" };
+    weapons[] = { QGVAR(CUP_arifle_M16A4_Base_CUP_optic_ACOG_TA01B_Black), "CUP_launch_Igla_Loaded", "CUP_hgun_M9", "Put", "Throw" };
+    respawnWeapons[] = { QGVAR(CUP_arifle_M16A4_Base_CUP_optic_ACOG_TA01B_Black), "CUP_launch_Igla_Loaded", "CUP_hgun_M9", "Put", "Throw" };
     magazines[] = { "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "CUP_15Rnd_9x19_M9", "CUP_15Rnd_9x19_M9", "CUP_HandGrenade_M67", "CUP_HandGrenade_M67", "SmokeShell", "SmokeShell" };
     respawnMagazines[] = { "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "CUP_15Rnd_9x19_M9", "CUP_15Rnd_9x19_M9", "CUP_HandGrenade_M67", "CUP_HandGrenade_M67", "SmokeShell", "SmokeShell" };
     linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "NVGoggles", "H_HelmetSpecB_sand", "CUP_V_CZ_NPP2006_co_des", "NVGoggles" };
@@ -144,8 +144,8 @@ class GVAR(SF_Teamlead) : GVAR(SF_Rifleman) {
 };
 class GVAR(SF_Medic) : GVAR(SF_Rifleman) {
     displayName = "SF Medic";
-    weapons[] = { "Laserdesignator", GVAR(CUP_arifle_AKS74U_railed_CUP_muzzle_TGPACUP_optic_HensoldtZO_low_RDS), "Put", "Throw" };
-    respawnWeapons[] = { "Laserdesignator", GVAR(CUP_arifle_AKS74U_railed_CUP_muzzle_TGPACUP_optic_HensoldtZO_low_RDS), "Put", "Throw" };
+    weapons[] = { "Laserdesignator", QGVAR(CUP_arifle_AKS74U_railed_CUP_muzzle_TGPACUP_optic_HensoldtZO_low_RDS), "Put", "Throw" };
+    respawnWeapons[] = { "Laserdesignator", QGVAR(CUP_arifle_AKS74U_railed_CUP_muzzle_TGPACUP_optic_HensoldtZO_low_RDS), "Put", "Throw" };
     items[] = { "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_splint", "ACE_splint", "ACE_tourniquet", "ACE_tourniquet", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_splint", "ACE_splint", "ACE_splint", "ACE_splint", "ACE_splint", "ACE_tourniquet", "ACE_tourniquet", "ACE_tourniquet", "ACE_tourniquet", "ACE_tourniquet" };
     respawnItems[] = { "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_splint", "ACE_splint", "ACE_tourniquet", "ACE_tourniquet", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_splint", "ACE_splint", "ACE_splint", "ACE_splint", "ACE_splint", "ACE_tourniquet", "ACE_tourniquet", "ACE_tourniquet", "ACE_tourniquet", "ACE_tourniquet" };
     magazines[] = { "CUP_HandGrenade_M67", "CUP_HandGrenade_M67", "ACE_M84", "UK3CB_BAF_SmokeShell", "UK3CB_BAF_SmokeShell", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M" };
@@ -159,8 +159,8 @@ class GVAR(SF_Medic) : GVAR(SF_Rifleman) {
 };
 class GVAR(SF_AT) : GVAR(SF_Rifleman) {
     displayName = "SF AT";
-    weapons[] = { "Laserdesignator",GVAR(CUP_arifle_AKS74U_railed_CUP_muzzle_TGPACUP_optic_HensoldtZO_low_RDS),QGVAR(CUP_launch_MAAWS_CUP_optic_MAAWS_Scope),"Put","Throw" };
-    respawnWeapons[] = { "Laserdesignator",GVAR(CUP_arifle_AKS74U_railed_CUP_muzzle_TGPACUP_optic_HensoldtZO_low_RDS),QGVAR(CUP_launch_MAAWS_CUP_optic_MAAWS_Scope),"Put","Throw" };
+    weapons[] = { "Laserdesignator",QGVAR(CUP_arifle_AKS74U_railed_CUP_muzzle_TGPACUP_optic_HensoldtZO_low_RDS),QGVAR(CUP_launch_MAAWS_CUP_optic_MAAWS_Scope),"Put","Throw" };
+    respawnWeapons[] = { "Laserdesignator",QGVAR(CUP_arifle_AKS74U_railed_CUP_muzzle_TGPACUP_optic_HensoldtZO_low_RDS),QGVAR(CUP_launch_MAAWS_CUP_optic_MAAWS_Scope),"Put","Throw" };
     items[] = { "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_splint", "ACE_splint", "ACE_tourniquet", "ACE_tourniquet", "ACE_EarPlugs" };
     respawnItems[] = { "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_splint", "ACE_splint", "ACE_tourniquet", "ACE_tourniquet", "ACE_EarPlugs" };
     magazines[] = { "CUP_HandGrenade_M67", "CUP_HandGrenade_M67", "ACE_M84", "UK3CB_BAF_SmokeShell", "UK3CB_BAF_SmokeShell", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_MAAWS_HEDP_M", "CUP_MAAWS_HEDP_M" };
@@ -236,8 +236,8 @@ class GVAR(SF_Teamlead_Para) : GVAR(SF_Rifleman_Para) {
 };
 class GVAR(SF_AT_Para) : GVAR(SF_Rifleman_Para) {
     displayName = "SF AT (Para)";
-    weapons[] = { "Laserdesignator",GVAR(CUP_arifle_AKS74U_railed_CUP_muzzle_TGPACUP_optic_HensoldtZO_low_RDS),QGVAR(CUP_launch_MAAWS_CUP_optic_MAAWS_Scope),"Put","Throw" };
-    respawnWeapons[] = { "Laserdesignator",GVAR(CUP_arifle_AKS74U_railed_CUP_muzzle_TGPACUP_optic_HensoldtZO_low_RDS),QGVAR(CUP_launch_MAAWS_CUP_optic_MAAWS_Scope),"Put","Throw" };
+    weapons[] = { "Laserdesignator",QGVAR(CUP_arifle_AKS74U_railed_CUP_muzzle_TGPACUP_optic_HensoldtZO_low_RDS),QGVAR(CUP_launch_MAAWS_CUP_optic_MAAWS_Scope),"Put","Throw" };
+    respawnWeapons[] = { "Laserdesignator",QGVAR(CUP_arifle_AKS74U_railed_CUP_muzzle_TGPACUP_optic_HensoldtZO_low_RDS),QGVAR(CUP_launch_MAAWS_CUP_optic_MAAWS_Scope),"Put","Throw" };
     items[] = { "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_splint", "ACE_splint", "ACE_tourniquet", "ACE_tourniquet", "ACE_EarPlugs" };
     respawnItems[] = { "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_splint", "ACE_splint", "ACE_tourniquet", "ACE_tourniquet", "ACE_EarPlugs" };
     magazines[] = { "CUP_HandGrenade_M67", "CUP_HandGrenade_M67", "ACE_M84", "UK3CB_BAF_SmokeShell", "UK3CB_BAF_SmokeShell", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M" };

@@ -4,10 +4,10 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
-#include "initSettings.sqf"
+#include "initSettings.inc.sqf"
 
 if (isServer) then {
-    [QGVAR(addKilled), {GVAR(killed) pushback [_this, CBA_missionTime]}] call CBA_fnc_addEventHandler;
+    [QGVAR(addKilled), {GVAR(killed) pushBack [_this, CBA_missionTime]}] call CBA_fnc_addEventHandler;
     [QGVAR(setCleanupState), {call FUNC(setCleanupState)}] call CBA_fnc_addEventHandler;
 
     {

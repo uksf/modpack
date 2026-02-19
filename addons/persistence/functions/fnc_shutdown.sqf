@@ -32,13 +32,13 @@ LOG("Shutdown");
                 private _marker = createVehicle [QGVAR(markerAmmo), _x, [], 0, "CAN_COLLIDE"];
                 GVAR(persistenceMarkers) pushBack _marker;
             } forEach (values GVAR(disconnectedPlayerPositions));
-            [] call FUNC(saveObjectData);
+            call FUNC(shutdownSave);
         } else {
-            GVAR(saveObjectQueueProcessing) = false;
+            GVAR(shutdownSavingComplete) = true;
         };
 
         [{
-            !GVAR(saveObjectQueueProcessing)
+            GVAR(shutdownSavingComplete)
         }, {
             if (GVAR(dataSaved)) then {
                 private _dateTime = date;
@@ -58,6 +58,9 @@ LOG("Shutdown");
 
             ["ocap_exportData", [west]] call CBA_fnc_localEvent;
 
+            [{SERVER_COMMAND serverCommand "#shutdown"}, [], 4] call CBA_fnc_waitAndExecute;
+        }, [], 120, {
+            WARNING("Shutdown save timed out after 120 seconds, forcing shutdown");
             [{SERVER_COMMAND serverCommand "#shutdown"}, [], 4] call CBA_fnc_waitAndExecute;
         }] call CBA_fnc_waitUntilAndExecute;
     };

@@ -50,7 +50,7 @@ if (isServer) then {
         [{
             deleteVehicle _this;
             [QGVAR(deleteEmptyGroups), []] call CBA_fnc_globalEvent;
-        }, _this#0, _this#1] call CBA_fnc_waitAndExecute
+        }, _this#0, _this#1] call CBA_fnc_waitAndExecute;
     }] call CBA_fnc_addEventHandler;
 
     GVAR(updateHeadlessClientPosition) = true;
@@ -64,6 +64,6 @@ if (isServer) then {
 [QGVAR(spawnGroupInfantry), {call FUNC(spawnGroupInfantry)}] call CBA_fnc_addEventHandler;
 [QGVAR(spawnGroupVehicle), {call FUNC(spawnGroupVehicle)}] call CBA_fnc_addEventHandler;
 
-#include "initSettings.sqf"
+#include "initSettings.inc.sqf"
 
 ADDON = true;

@@ -14,7 +14,7 @@ class CfgVehicles {
         canSetArea = 1;
         canSetAreaHeight = 0;
         canSetAreaShape = 1;
-        category = EGVAR(common,eden);
+        category = QEGVAR(common,eden);
         class AttributeValues {
             size3[] = { 2000, 2000, -1 };
             isRectangle = 0;
@@ -118,7 +118,7 @@ class CfgVehicles {
                 validate = "NUMBER";
                 min = -100;
                 max = 100;
-                defaultValue = "-3";
+                defaultValue = -3;
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(civ_hit),_value,true)]);
             };
             class GVAR(civ_killed) {
@@ -129,7 +129,7 @@ class CfgVehicles {
                 validate = "NUMBER";
                 min = -100;
                 max = 100;
-                defaultValue = "-8";
+                defaultValue = -8;
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(civ_killed),_value,true)]);
             };
         };

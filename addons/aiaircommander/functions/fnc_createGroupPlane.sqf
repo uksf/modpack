@@ -21,7 +21,7 @@ if (isNull _spawn) exitWith {
     [{call FUNC(selectMission)}, [_callback, _callbackArgs, _retries + 1], 5 + random 5] call CBA_fnc_waitAndExecute;
 };
 
-[getPos _spawn, EAST, EGVAR(gear,gearJetPilot), EGVAR(gear,gearPlane), {
+[getPos _spawn, east, EGVAR(gear,gearJetPilot), EGVAR(gear,gearPlane), {
     params ["_vehicle", "_turrets"];
 
     (_vehicle emptyPositions "driver") + count _turrets

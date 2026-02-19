@@ -35,9 +35,9 @@ private _escapeString = {
         _target resize _start;
         for "_i" from _start to count _source - 1 do {
             private _charCode = _source select _i;
-            push(_target, _charCode);
+            push(_target,_charCode);
             if(_charCode isEqualTo 34) then {
-                push(_target, _charCode);
+                push(_target,_charCode);
             };
         };
         str toString _target;
@@ -56,8 +56,8 @@ private _collectInheritedProperties = {
             private _propertyName = _config select _i;
             private _propertyNameLC = toLower configName _propertyName;
             if!(_propertyNameLC in _propertyNameLCList) then {
-                push(_propertyNameList, _propertyName);
-                push(_propertyNameLCList, _propertyNameLC);
+                push(_propertyNameList,_propertyName);
+                push(_propertyNameLCList,_propertyNameLC);
             };
         };
         _className != "";
@@ -68,8 +68,8 @@ private _collectInheritedProperties = {
 };
 
 private _dumpConfigTree = {
-    private _includeInheritedProperties = argOr(1, false);
-    private _specifyParentClass = argOr(2, !_includeInheritedProperties);
+    private _includeInheritedProperties = argOr(1,false);
+    private _specifyParentClass = argOr(2,!_includeInheritedProperties);
 
     private _result = [];
     private _indents = [""];
@@ -85,16 +85,16 @@ private _dumpConfigTree = {
 
     private _traverse = {
         private _confName = configName _this;
-        if( isText _this ) exitwith {
+        if( isText _this ) exitWith {
             _confName + " = " + (getText _this call _escapeString) + ";" call _pushLine;
         };
-        if( isNumber _this ) exitwith {
+        if( isNumber _this ) exitWith {
             _confName + " = " + str getNumber _this + ";" call _pushLine;
         };
-        if( isArray _this ) exitwith {
+        if( isArray _this ) exitWith {
             _confName + "[] = " + (getArray _this call _traverseArray) + ";" call _pushLine;
         };
-        if( isClass _this ) exitwith {
+        if( isClass _this ) exitWith {
             "class " + _confName + (
                 configName inheritsFrom _this call {
                     if( _this isEqualTo "" || !_specifyParentClass ) then { "" } else { ": " + _this }
@@ -113,14 +113,14 @@ private _dumpConfigTree = {
     };
 
     private _traverseArray = {
-        if(_this isEqualType []) exitwith {
+        if(_this isEqualType []) exitWith {
             private _array = [];
             for "_i" from 0 to count _this - 1 do {
-                push(_array, _this select _i call _traverseArray);
+                push(_array,_this select _i call _traverseArray);
             };
             "{" + (_array joinString ", ") + "}";
         };
-        if(_this isEqualType "") exitwith {
+        if(_this isEqualType "") exitWith {
             _this call _escapeString;
         };
         str _this;

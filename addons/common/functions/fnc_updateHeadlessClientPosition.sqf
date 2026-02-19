@@ -53,7 +53,7 @@ if (_playerCount > 0) then {
     ((_hcs#1)#_forEachIndex) params ["_groupCount", "_position"];
     if (_groupCount > 0) then {
         private _groupAvgPos = _position vectorMultiply (1 / _groupCount);
-        if (!(_playerAvgPos isEqualTo [])) then {
+        if (_playerAvgPos isNotEqualTo []) then {
             _groupAvgPos = (_playerAvgPos vectorAdd _groupAvgPos) vectorMultiply 0.5;
         };
 

@@ -323,7 +323,7 @@
         0
     ],
     1,
-    {GVAR(dynamicPatrolSide) = ([EAST, INDEPENDENT, WEST]#_this);}
+    {GVAR(dynamicPatrolSide) = ([east, independent, west]#_this);}
 ] call CBA_Settings_fnc_init;
 
 [

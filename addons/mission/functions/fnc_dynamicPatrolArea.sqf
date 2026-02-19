@@ -31,10 +31,10 @@ if !(GVAR(dynamicPatrolAreasEnabled)) exitWith {
 
 TRACE_1("4) Area data",_this);
 
-TRACE_2("4) Area pre-cleanup groups",GVAR(dynamicPatrolGroups),_logic getVariable [QGVAR(groups), []]);
+TRACE_3("4) Area pre-cleanup groups",GVAR(dynamicPatrolGroups),_logic getVariable [QGVAR(groups),[]]);
 [_distance, _vehicleDistanceCoef, _logic] call FUNC(cleanupDynamicPatrolGroups);
 [GVAR(dynamicPatrolDistance), GVAR(dynamicPatrolVehicleDistanceCoef)] call FUNC(cleanupDynamicPatrolGroups);
-TRACE_2("4) Area post-cleanup groups",GVAR(dynamicPatrolGroups),_logic getVariable [QGVAR(groups), []]);
+TRACE_3("4) Area post-cleanup groups",GVAR(dynamicPatrolGroups),_logic getVariable [QGVAR(groups),[]]);
 
 private _areaGroupCount = count (_logic getVariable [QGVAR(groups), []]);
 private _globalGroupCount = count GVAR(dynamicPatrolGroups);

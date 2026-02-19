@@ -40,7 +40,7 @@ private _validRatingAreas = [];
     };
 } forEach _ratingAreas;
 
-TRACE_2("",_validRatingAreas);
+TRACE_1("",_validRatingAreas);
 
 {
     _x params ["", "", "", "", "_values"];

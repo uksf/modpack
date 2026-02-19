@@ -20,11 +20,11 @@ private _deleted = false;
     if !(alive _projectile) then {
         private _position = getPosATL _projectile;
         if (([objNull, "VIEW"] checkVisibility [eyePos player, ATLToASL _position]) > 0) then {
-            private _dist = ((positionCameraToworld [0,0,0]) distance _position);
+            private _dist = ((positionCameraToWorld [0,0,0]) distance _position);
             private _data = _dist call (missionNamespace getVariable [_fncName, {[0, 0, 0]}]);
 
             [{
-                if ((vehicle player) != player) exitWith {};
+                if (!isNull objectParent player) exitWith {};
                 if (((getPos player) select 2) > 1) exitWith {};
 
                 params ["_force", "_length", "_frequency"];

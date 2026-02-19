@@ -10,7 +10,6 @@ class CfgPatches {
             "ade_item_bag"
         };
         weapons[] = {
-            QGVAR(goggles),
             QGVAR(rebreather),
             QGVAR(diveComputer),
 
@@ -41,10 +40,7 @@ class CfgPatches {
             QGVAR(cylinderSingleTx1265),
             QGVAR(cylinderDoubleTx1265),
             QGVAR(cylinderDoubleTx1070),
-            QGVAR(cylinderSingleTx1070),
-
-            // Deprecated
-            "ade_item_goggles"
+            QGVAR(cylinderSingleTx1070)
         };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {

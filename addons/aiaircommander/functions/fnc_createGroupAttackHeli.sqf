@@ -24,7 +24,7 @@ if (isNull _spawn) exitWith {
 private _helipads = nearestObjects [_spawn, ["Land_HelipadSquare_F", "Land_HelipadCircle_F"], 50, true];
 private _spawnPosition = [getPos (selectRandom _helipads), _spawn getPos [20, random 360]] select (_helipads isEqualTo []);
 
-[_spawnPosition, EAST, EGVAR(gear,gearHeliPilot), EGVAR(gear,gearAttackHeli), {
+[_spawnPosition, east, EGVAR(gear,gearHeliPilot), EGVAR(gear,gearAttackHeli), {
     params ["_vehicle", "_turrets"];
 
     (_vehicle emptyPositions "driver") + count _turrets

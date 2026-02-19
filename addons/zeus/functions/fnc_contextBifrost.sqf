@@ -12,6 +12,7 @@
     Return Value:
         None
 */
+#pragma hemtt ignore_variables ["_position"]
 
 private _light = "#lightpoint" createVehicle _position;
 _light setPosATL [_position select 0, _position select 1, (_position select 2) + 10];
@@ -34,7 +35,7 @@ for "_heading" from 1 to 36 do {
     deleteVehicle _light;
     {deleteVehicle _x} forEach _lightnings;
 
-    if (vehicle player != player) then {
+    if (!isNull objectParent player) then {
         moveOut player;
     };
 

@@ -32,7 +32,7 @@ private _index = _entities findIf {
 
     !(isNull _civilian) &&
     {!(isPlayer _civilian)} &&
-    {(vehicle _civilian) == _civilian} &&
+    {isNull objectParent _civilian} &&
     {side _civilian == civilian} &&
     {!(_civilian getVariable [QGVAR(unit_ignoreCommands), false])} &&
     {_civilian getVariable [QGVAR(unit_commandedToStop), false]} &&
@@ -46,8 +46,8 @@ if (_index != -1) then {
     private _civilian = _entities#_index#1;
     TRACE_1("Selected civilian",_civilian);
 
-    private _origin = AGLtoASL positionCameraToWorld [0,0,0];
-    private _commandPosition = AGLtoASL positionCameraToWorld [0,0,30];
+    private _origin = AGLToASL positionCameraToWorld [0,0,0];
+    private _commandPosition = AGLToASL positionCameraToWorld [0,0,30];
     private _intersections = lineIntersectsSurfaces [_origin, _commandPosition, _unit, _civilian, true, 1];
     if (_intersections isNotEqualTo []) then {
         _commandPosition = ASLToAGL (_intersections#0#0);

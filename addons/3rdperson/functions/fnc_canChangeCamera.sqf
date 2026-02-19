@@ -25,7 +25,7 @@ _newCameraView isNotEqualTo "GUNNER" &&
 {ACE_player == _cameraOn || vehicle ACE_player == _cameraOn} &&
 {"" isEqualTo (call CBA_fnc_getActiveFeatureCamera)} &&
 {_cameraOn isNotEqualTo "UAV" && _cameraOn isNotEqualTo "UAV_01_base_F"} &&
-{!(vehicle ACE_player != ACE_player &&
+{!(!isNull objectParent ACE_player &&
     {
         ACE_player == driver (vehicle ACE_player) ||
         {(vehicle ACE_player) isKindOf "Air"}

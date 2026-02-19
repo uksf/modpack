@@ -13,6 +13,8 @@
     Return Value:
         None
 */
+#define IDD_RSCDISPLAYCURATOR 312
+
 params ["_logic"];
 
 deleteVehicle _logic;

@@ -15,7 +15,7 @@
 params [["_groups", []]];
 
 // Pre-filter null groups and groups with no units
-_groups = _groups select {!isNull _x && count (units _x) > 0};
+_groups = _groups select {!isNull _x && units _x isNotEqualTo []};
 
 // To avoid flicker, we'll virtualise groups 200m further away, but recreate when 200m closer (400m buffer zone)
 private _bufferedDistance = GVAR(distance) + 200;

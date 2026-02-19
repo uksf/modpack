@@ -4,7 +4,9 @@ class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
         units[] = {};
-        weapons[] = {};
+        weapons[] = {
+            QGVAR(icomScanner)
+        };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             "uksf_common"

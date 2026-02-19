@@ -29,7 +29,7 @@ GVAR(scanInProgress) = true;
     private _nearestAI = nearestObjects [_target, ["CAManBase"], 400];
     if (_nearestAI isEqualTo []) exitWith {hint "Scan Result: No communication detected."}; // exit if no units found
 
-    _nearestAI = _nearestAI select {side _x == EAST};
+    _nearestAI = _nearestAI select {side _x == east};
     if (_nearestAI isEqualTo []) exitWith {hint "Scan Result: No communication detected."}; // exit if EAST units not found.
 
     private _randomAI = selectRandom _nearestAI;

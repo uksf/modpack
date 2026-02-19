@@ -14,7 +14,7 @@ class CfgVehicles {
         canSetArea = 1;
         canSetAreaHeight = 0;
         canSetAreaShape = 1;
-        category = EGVAR(common,eden);
+        category = QEGVAR(common,eden);
         class AttributeValues {
             size3[] = { 50, 50, -1 };
             isRectangle = 0;

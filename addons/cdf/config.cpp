@@ -67,8 +67,6 @@ class CfgPatches {
             QGVAR(M119_Woodland),
             QGVAR(bm21_Woodland),
 
-            QGVAR(Patriot),
-            QGVAR(Patriot_Radar),
             QGVAR(Wiesel_AA),
             QGVAR(Wiesel_Radar),
             QGVAR(Shilka),
@@ -82,7 +80,6 @@ class CfgPatches {
             QGVAR(Wiesel_AT_Woodland),
 
             QGVAR(Gripen),
-            QGVAR(Gripen_Woodland),
 
             QGVAR(CH146_Tpt),
             QGVAR(CH146_Tpt_Woodland),
@@ -91,7 +88,6 @@ class CfgPatches {
             QGVAR(CH146_Armed),
             QGVAR(CH146_Armed_Woodland),
             QGVAR(Li2),
-            QGVAR(Li2_Woodland),
 
             QGVAR(MK6),
             QGVAR(MK6_Woodland),
@@ -105,7 +101,8 @@ class CfgPatches {
             QGVAR(ZU23_Woodland),
             QGVAR(Praetorian),
             QGVAR(Searchlight),
-            QGVAR(Searchlight_Woodland)
+            QGVAR(Searchlight_Woodland),
+            QGVAR(T55_Woodland)
         };
         weapons[] = {
             // alphine

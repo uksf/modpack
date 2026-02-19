@@ -19,7 +19,7 @@ if (!fileExists MAIN_OP_GEAR_FILE) exitWith {
 call (compileScript [MAIN_OP_GEAR_FILE]);
 
 if (isNil QGVAR(mainOpGearBase)) exitWith {
-    ERROR_1("Required variable nil",QGVAR(mainOpGearBase));
+    ERROR_1("Required variable nil: %1",QGVAR(mainOpGearBase));
 };
 
 uiNamespace setVariable [QGVAR(mainOpGear), GVAR(mainOpGearBase)];

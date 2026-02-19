@@ -6,7 +6,7 @@ class CfgVehicles {
         scope = 1;
         is3DEN = 1;
         functionPriority = 1;
-        category = EGVAR(common,eden);
+        category = QEGVAR(common,eden);
         class AttributesBase;
     };
 
@@ -46,7 +46,7 @@ class CfgVehicles {
                 displayName = "Use roads";
                 tooltip = "Enable to create IEDs only on or next to roads";
                 control = "Checkbox";
-                defaultValue = true;
+                defaultValue = "true";
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(useRoads),_value,true)]);
             };
             class GVAR(iedHideChance) {
@@ -78,7 +78,7 @@ class CfgVehicles {
                 displayName = "Use IED Planters";
                 tooltip = "Enable for units to place IEDs. Synchronized objects will become planters";
                 control = "Checkbox";
-                defaultValue = false;
+                defaultValue = "false";
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(useIEDPlanters),_value,true)]);
             };
             class GVAR(IEDPlanterBackpackClasses) {
@@ -127,7 +127,7 @@ class CfgVehicles {
                 displayName = "Use vehicle";
                 tooltip = "Enable for suicide bombers to use vehicles";
                 control = "Checkbox";
-                defaultValue = true;
+                defaultValue = "true";
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(suicideIEDInCarBoolean),_value,true)]);
             };
             class GVAR(suicideIEDVehicleClasses) {

@@ -32,7 +32,7 @@ private _index = _entities findIf {
 
     !(isNull _civilian) &&
     {!(isPlayer _civilian)} &&
-    {(vehicle _civilian) == _civilian} &&
+    {isNull objectParent _civilian} &&
     {side _civilian == civilian} &&
     {!(_civilian getVariable [QGVAR(unit_ignoreCommands), false])} &&
     {_civilian getVariable [QGVAR(unit_commandedToStop), false]} &&

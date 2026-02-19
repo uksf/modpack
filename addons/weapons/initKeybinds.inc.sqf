@@ -2,7 +2,7 @@
 
 ["UKSF", QGVAR(transmitSoflamData), ["Transmit SOFLAM data", "Transmit SOFLAM laser position data to MicroDAGR"], {false}, {
     // Conditions: canInteract
-    if !([ACE_player, objNull, ["isNotInside"]] call EFUNC(common,canInteractWith)) exitWith {false};
+    if !([ACE_player, objNull, ["isNotInside"]] call ace_common_fnc_canInteractWith) exitWith {false};
     // Conditions: specific
     if !(((currentWeapon ACE_player) isKindOf ["UK3CB_BAF_Soflam_Laserdesignator", EGVAR(common,configWeapons)]) && {cameraView == "GUNNER"} && {isLaserOn ACE_player}) exitWith {false};
 

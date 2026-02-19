@@ -4,7 +4,7 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
-#include "initSettings.sqf"
+#include "initSettings.inc.sqf"
 
 if (isServer) then {
     GVAR(prefabAreaModules) = [];

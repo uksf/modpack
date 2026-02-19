@@ -32,7 +32,7 @@ private _position = [_areaArray] call CBA_fnc_randPosArea;
 _position set [2, 0];
 
 // create opfor group - civs don't seem to work, need to be enemy
-private _group = createGroup EAST;
+private _group = createGroup east;
 private _suicideUnit = _group createUnit [selectRandom _manClassesParsed, _position, [], 0, "NONE"];
 _suicideUnit addBackpack (selectRandom _suicideItems);
 [_suicideUnit] joinSilent _group;

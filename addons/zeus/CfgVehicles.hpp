@@ -121,35 +121,35 @@ class CfgVehicles {
     };
     class GVAR(moduleMakeSuicideBomber): GVAR(moduleBase) {
         curatorCanAttach = 1;
-        category = GVAR(special);
+        category = QGVAR(special);
         displayName = QUOTE(Make Suicide Bomber);
         function = QFUNC(moduleMakeBomb);
         icon = QPATHTOF(ui\Icon_Module_Explosion_Large_ca.paa);
     };
     class GVAR(moduleMakeSuicideBomberDeadman): GVAR(moduleBase) {
         curatorCanAttach = 1;
-        category = GVAR(special);
+        category = QGVAR(special);
         displayName = QUOTE(Make Deadman Suicide Bomber);
         function = QFUNC(moduleMakeBomb);
         icon = QPATHTOF(ui\Icon_Module_Explosion_Large_ca.paa);
     };
     class GVAR(moduleMakeCarBomber): GVAR(moduleBase) {
         curatorCanAttach = 1;
-        category = GVAR(special);
+        category = QGVAR(special);
         displayName = QUOTE(Make Car Bomber);
         function = QFUNC(moduleMakeBomb);
         icon = QPATHTOF(ui\Icon_Module_Explosion_Large_ca.paa);
     };
     class GVAR(moduleMakeCarBomberDeadman): GVAR(moduleBase) {
         curatorCanAttach = 1;
-        category = GVAR(special);
+        category = QGVAR(special);
         displayName = QUOTE(Make Deadman Car Bomber);
         function = QFUNC(moduleMakeBomb);
         icon = QPATHTOF(ui\Icon_Module_Explosion_Large_ca.paa);
     };
     class GVAR(moduleMakeCarBomb): GVAR(moduleBase) {
         curatorCanAttach = 1;
-        category = GVAR(special);
+        category = QGVAR(special);
         displayName = QUOTE(Make Car Bomb);
         function = QFUNC(moduleMakeBomb);
         icon = QPATHTOF(ui\Icon_Module_Explosion_Large_ca.paa);
