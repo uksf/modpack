@@ -13,7 +13,7 @@
         None
 */
 #define INTERVAL 10
-#define MAX_DISTANCE 500
+#define MAX_DISTANCE 2000
 
 [QGVAR(requestPersistentObjectsHash), [player]] call CBA_fnc_serverEvent;
 
@@ -26,7 +26,6 @@ GVAR(persistentObjectIconsPFHID) = [{
         _args set [0, CBA_missionTime];
     };
 
-    private _count = 0;
     {
         _x params ["_id", "_object"];
 
@@ -52,9 +51,5 @@ GVAR(persistentObjectIconsPFHID) = [{
 
         private _label = format ["%1\n%2 (%3m)", _type, _id, round _dist];
         drawIcon3D ["", _colour, _pos, 0.5, 0.5, 0, _label, 0, 0.03, "TahomaB", "center"];
-
-        _count = _count + 1;
     } forEach GVAR(persistentObjects);
 }, 0, [0]] call CBA_fnc_addPerFrameHandler;
-
-hint format ["Showing persistent objects (%1 total, rendering within %2m)", count GVAR(persistentObjects), MAX_DISTANCE];

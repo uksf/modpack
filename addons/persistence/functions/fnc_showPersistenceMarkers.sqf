@@ -32,5 +32,3 @@ GVAR(persistenceMarkersPFHID) = [{
         };
     } forEach GVAR(persistenceMarkerPositions);
 }, 0] call CBA_fnc_addPerFrameHandler;
-
-hint format ["Showing %1 persistence markers (radius %2m)", count GVAR(persistenceMarkerPositions), CENTRE_RADIUS];
