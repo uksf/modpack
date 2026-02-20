@@ -11,6 +11,26 @@
 
     Return Value:
         Data <ARRAY>
+            Field layout (indices defined in script_component.hpp as IDX_OBJ_*):
+             0: ID              - persistenceID string
+             1: Type            - typeOf classname
+             2: Position        - getPosASL
+             3: VectorDirUp     - [vectorDir, vectorUp]
+             4: Damage          - damage scalar
+             5: Fuel            - fuel scalar
+             6: TurretWeapons   - [[turretPath, weapons], ...]
+             7: TurretMagazines - magazinesAllTurrets (minus pylons)
+             8: PylonLoadout    - [[magazine, ammo], ...]
+             9: Logistics       - [ammoCargo, fuelCargo, repairCargo]
+            10: Attached        - [[classname, offset], ...]
+            11: RackChannels    - ACRE rack radio channels
+            12: AceCargo        - nested cargo objects
+            13: Inventory       - [weapons, magazines, items, backpacks]
+            14: AceFortify      - [isAceFortification, side]
+            15: AceMedical      - [medicClass, medicalVehicle, medicalFacility]
+            16: AceRepair       - [repairVehicle, repairFacility]
+            17: CustomName      - ace_cargo_customName string
+            18: FailedLastLoad  - bool (set by loadAllObjectData retry system, not saved)
 */
 params ["_object"];
 TRACE_1("Getting object data for",_object);

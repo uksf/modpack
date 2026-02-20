@@ -12,16 +12,16 @@
     Return Value:
         None
 */
-GVAR(saveObjectQueueProcessing) = false;
+GVAR(shutdownSavingComplete) = true;
 
 private _objects = GVAR(dataNamespace) getVariable [QGVAR(objects), []];
-_objects = _objects select {!(isNil {_x#0}) && {_x#0 != ""}};
+_objects = _objects select {!(isNil {_x#IDX_OBJ_ID}) && {_x#IDX_OBJ_ID != ""}};
 
 private _remove = [];
 [GVAR(persistentObjectsHash), {
     if (isNull _value || {!(alive _value)}) then {
         _remove pushBack _key;
-        private _index = _objects findIf {_x#0 == _key};
+        private _index = _objects findIf {_x#IDX_OBJ_ID == _key};
         _objects deleteAt _index;
     };
 }] call CBA_fnc_hashEachPair;

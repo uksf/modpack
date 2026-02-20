@@ -20,6 +20,11 @@ GVAR(persistentObjectIconsPFHID) = -1;
 GVAR(abortedObjects) = [];
 GVAR(abortedObjectInteractionObjects) = [];
 GVAR(abortedObjectPFHID) = -1;
+GVAR(persistenceMarkersPFHID) = -1;
+GVAR(persistenceMarkerPositions) = [];
+GVAR(disconnectedPositionsPFHID) = -1;
+GVAR(disconnectedPositionData) = [];
+GVAR(saveProgressPFHID) = -1;
 GVAR(selectedRespawn) = "";
 
 ["ace_throwableThrown", {
@@ -67,21 +72,6 @@ addMissionEventHandler ["MarkerDeleted", {
     GVAR(data) = _this;
     TRACE_1("Receiving redeploy data",GVAR(data));
     GVAR(data) params ["_position"];
-    //_positionData params ["_position", "_leaderID", "_leaderPosition", "_leaderDirection", "_offset"];
-
-    /*if (_leaderID != -1) then {
-        private _leader = ALL_PLAYERS select {(getPlayerUID _x) == _leaderID};
-        if (_leader > 0) then { // leader online, calculate relative position from leader position and offset
-            _leader = _leader#0;
-            _leaderPosition = getPosASL _leader;
-            _leaderPosition = _leader modelToWorld _offset;
-        } else { // leader offline, calculate relative position from stored position, direction, and offset
-
-        };
-        GVAR(groupRespawn) = createMarkerLocal [RESPAWN_GROUP_MARKER, _position];
-        GVAR(groupRespawn) setMarkerTypeLocal "flag_UK";
-        GVAR(groupRespawn) setMarkerTextLocal RESPAWN_GROUP_NAME;
-    };*/
 
     if (_position isEqualTo [0,0,0] || _position distance2D [0,0,0] < 50) exitWith {
         ERROR_1("Invalid redeploy position: %1",_position);
@@ -111,3 +101,12 @@ addMissionEventHandler ["MarkerDeleted", {
         [GVAR(abortedObjectPFHID)] call CBA_fnc_removePerFrameHandler;
     };
 }] call CBA_fnc_addEventHandler;
+
+[QGVAR(receivePersistenceMarkers), {GVAR(persistenceMarkerPositions) = _this#0}] call CBA_fnc_addEventHandler;
+[QGVAR(receiveDisconnectedPositions), {GVAR(disconnectedPositionData) = _this#0}] call CBA_fnc_addEventHandler;
+
+[QGVAR(receiveInspectSavedData), {
+    params ["_lines"];
+    {systemChat _x} forEach _lines;
+}] call CBA_fnc_addEventHandler;
+

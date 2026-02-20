@@ -67,8 +67,8 @@ GVAR(saveObjectQueue) append _nearObjects;
 
 if (!GVAR(saveObjectQueueProcessing)) then {
     if (GVAR(saveObjectQueue) isNotEqualTo []) then {
-        call FUNC(saveData);
-    } else {
         call FUNC(startSaveObjectDataPfh);
+    } else { // TODO: Review this swap. Logic and timing is COMPLEX. The way it was previously may have been intentional to handle a timing edge case.
+        call FUNC(saveData);
     };
 };

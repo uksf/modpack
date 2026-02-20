@@ -55,4 +55,4 @@ GVAR(saveObjectQueueProcessing) = true;
     };
 
     GVAR(dataNamespace) setVariable [QGVAR(objects), _objects];
-}, 0] call CBA_fnc_addPerFrameHandler;
+}, 0, [0]] call CBA_fnc_addPerFrameHandler;
