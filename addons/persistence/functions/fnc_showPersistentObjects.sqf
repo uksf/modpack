@@ -4,7 +4,7 @@
         Tim Beswick
 
     Description:
-        Creates icons on persistent objects
+        Creates icons on persistent objects with type names, colour coding, and distance filtering
 
     Parameter(s):
         None
@@ -13,6 +13,9 @@
         None
 */
 #define INTERVAL 10
+#define MAX_DISTANCE 500
+
+[QGVAR(requestPersistentObjectsHash), [player]] call CBA_fnc_serverEvent;
 
 GVAR(persistentObjectIconsPFHID) = [{
     params ["_args"];
@@ -23,10 +26,35 @@ GVAR(persistentObjectIconsPFHID) = [{
         _args set [0, CBA_missionTime];
     };
 
-
+    private _count = 0;
     {
         _x params ["_id", "_object"];
 
-        drawIcon3D ["", [0,0,1,1], _object modelToWorld [0,0,0], 0.5, 0.5, 0, _id, 0, 0.03, "TahomaB", "center"];
+        if (isNull _object) then {continue};
+
+        private _pos = _object modelToWorld [0,0,0];
+        private _dist = player distance _pos;
+        if (_dist > MAX_DISTANCE) then {continue};
+
+        private _type = typeOf _object;
+        private _colour = [1,1,1,1];
+        if (_object isKindOf "AllVehicles") then {
+            _colour = [0.3,0.5,1,1];
+        } else {
+            if (_object isKindOf "Building") then {
+                _colour = [1,0.9,0.2,1];
+            } else {
+                if (_object isKindOf "Thing") then {
+                    _colour = [0.2,1,0.2,1];
+                };
+            };
+        };
+
+        private _label = format ["%1\n%2 (%3m)", _type, _id, round _dist];
+        drawIcon3D ["", _colour, _pos, 0.5, 0.5, 0, _label, 0, 0.03, "TahomaB", "center"];
+
+        _count = _count + 1;
     } forEach GVAR(persistentObjects);
 }, 0, [0]] call CBA_fnc_addPerFrameHandler;
+
+hint format ["Showing persistent objects (%1 total, rendering within %2m)", count GVAR(persistentObjects), MAX_DISTANCE];

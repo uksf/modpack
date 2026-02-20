@@ -19,7 +19,7 @@ params [["_objects", []], ["_retry", 0]];
 if (_retry >= MAX_ABORTED_RETRIES) exitWith {
     INFO_1("Max retries reached with %1 aborted objects left unloaded",count _objects);
     {
-        _x set [18, true];
+        _x set [IDX_OBJ_FAILEDLASTLOAD, true];
     } forEach _objects;
     [QGVAR(loadingFinished), []] call CBA_fnc_localEvent;
 };
@@ -27,7 +27,7 @@ if (_retry >= MAX_ABORTED_RETRIES) exitWith {
 if (_objects isEqualTo []) then {
     _objects = GVAR(dataNamespace) getVariable [QGVAR(objects), []];
     INFO_1("Number of objects loaded from namespace: %1",count _objects);
-    _objects = _objects select {!(isNil {_x#0}) && {_x#0 != ""}};
+    _objects = _objects select {!(isNil {_x#IDX_OBJ_ID}) && {_x#IDX_OBJ_ID != ""}};
     INFO_1("Number of objects to load: %1",count _objects);
 };
 
@@ -36,10 +36,10 @@ if (_objects isEqualTo []) exitWith {
 };
 
 private _count = count _objects;
-_objects = _objects apply {[(_x#2)#2, _x]};
+_objects = _objects apply {[(_x#IDX_OBJ_POSITION)#2, _x]};
 _objects sort true;
 _objects = _objects apply {_x#1};
-INFO_4("Objects sorted by ASL height, lowest: %1 at %2, highest: %3 at %4",(_objects#0)#0,(_objects#0)#2,(_objects#(_count - 1))#0,(_objects#(_count - 1))#2);
+INFO_4("Objects sorted by ASL height, lowest: %1 at %2, highest: %3 at %4",(_objects#0)#IDX_OBJ_ID,(_objects#0)#IDX_OBJ_POSITION,(_objects#(_count - 1))#IDX_OBJ_ID,(_objects#(_count - 1))#IDX_OBJ_POSITION);
 
 [{
     params ["_args", "_idPFH"];

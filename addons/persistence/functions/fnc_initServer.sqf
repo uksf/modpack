@@ -26,8 +26,7 @@ GVAR(persistenceMarkers) = [];
 GVAR(mapMarkers) = [];
 GVAR(saveObjectQueue) = [];
 GVAR(disconnectedPlayerPositions) = createHashMap;
-GVAR(saveObjectQueueProcessing) = false;
-GVAR(saveObjectMarkersProcessed) = false;
+GVAR(shutdownSavingComplete) = false;
 GVAR(serializers) = [];
 GVAR(deserializers) = [];
 
@@ -59,13 +58,13 @@ addMissionEventHandler ["BuildingChanged", {
     publicVariable QGVAR(abortedObjectIds);
 
     private _allObjects = GVAR(dataNamespace) getVariable [QGVAR(objects), []];
-    private _index = _allObjects findIf {_x#0 == _id};
+    private _index = _allObjects findIf {_x#IDX_OBJ_ID == _id};
     if (_index == -1) then {
         WARNING_1("Forced loading of object with ID '%1' failed, could not find object data in saved objects",_id);
     } else {
         TRACE_1("Force loading object",_id);
         private _object = _allObjects#_index;
-        _object set [18, false];
+        _object set [IDX_OBJ_FAILEDLASTLOAD, false];
         [_object, true] call FUNC(loadObjectData);
     };
 }] call CBA_fnc_addEventHandler;
@@ -77,7 +76,7 @@ addMissionEventHandler ["BuildingChanged", {
     publicVariable QGVAR(abortedObjectIds);
 
     private _allObjects = GVAR(dataNamespace) getVariable [QGVAR(objects), []];
-    private _index = _allObjects findIf {_x#0 == _id};
+    private _index = _allObjects findIf {_x#IDX_OBJ_ID == _id};
     if (_index == -1) then {
         WARNING_1("Failed to unmark object with ID '%1' as persistent, could not find object data in saved objects",_id);
     } else {
@@ -117,7 +116,7 @@ addMissionEventHandler ["BuildingChanged", {
 [QGVAR(requestAbortedObjects), {
     params ["_player"];
 
-    private _objects = (GVAR(dataNamespace) getVariable [QGVAR(objects), []]) select {private _id = _x#0; _id != "" && {[GVAR(abortedObjectIds), {_x == _id}] call EFUNC(common,arrayAny)}};
+    private _objects = (GVAR(dataNamespace) getVariable [QGVAR(objects), []]) select {private _id = _x#IDX_OBJ_ID; _id != "" && {[GVAR(abortedObjectIds), {_x == _id}] call EFUNC(common,arrayAny)}};
     [QGVAR(receiveAbortedObjects), [_objects], _player] call CBA_fnc_targetEvent;
 }] call CBA_fnc_addEventHandler;
 
@@ -142,6 +141,60 @@ addMissionEventHandler ["BuildingChanged", {
 }] call CBA_fnc_addEventHandler;
 
 [QGVAR(addLogisticsMarker), {GVAR(persistenceMarkers) pushBackUnique _this}] call CBA_fnc_addEventHandler;
+
+[QGVAR(requestPersistenceMarkers), {
+    params ["_player"];
+
+    private _positions = (GVAR(persistenceMarkers) - [objNull]) apply {[getPosATL _x]};
+    [QGVAR(receivePersistenceMarkers), [_positions], _player] call CBA_fnc_targetEvent;
+}] call CBA_fnc_addEventHandler;
+
+[QGVAR(requestDisconnectedPositions), {
+    params ["_player"];
+
+    private _data = [];
+    {_data pushBack [_x, _y]} forEach GVAR(disconnectedPlayerPositions);
+    [QGVAR(receiveDisconnectedPositions), [_data], _player] call CBA_fnc_targetEvent;
+}] call CBA_fnc_addEventHandler;
+
+[QGVAR(requestInspectSavedData), {
+    params ["_player"];
+
+    private _objects = GVAR(dataNamespace) getVariable [QGVAR(objects), []];
+    private _deletedObjects = GVAR(dataNamespace) getVariable [QGVAR(deletedObjects), []];
+
+    private _lines = [];
+    _lines pushBack format ["--- Persistence Data Summary ---"];
+    _lines pushBack format ["Saved objects: %1", count _objects];
+    _lines pushBack format ["Deleted object IDs: %1", count _deletedObjects];
+    _lines pushBack format ["Aborted object IDs: %1", count GVAR(abortedObjectIds)];
+    _lines pushBack format ["Persistence markers: %1", count (GVAR(persistenceMarkers) - [objNull])];
+    _lines pushBack format ["Disconnected players: %1", count GVAR(disconnectedPlayerPositions)];
+    _lines pushBack format ["Serializers: %1", count GVAR(serializers)];
+    _lines pushBack format ["Map markers: %1", count GVAR(mapMarkers)];
+
+    private _typeCounts = createHashMap;
+    {
+        private _type = _x#IDX_OBJ_TYPE;
+        if (!isNil "_type" && {_type isEqualType ""}) then {
+            _typeCounts set [_type, (_typeCounts getOrDefault [_type, 0]) + 1];
+        };
+    } forEach _objects;
+
+    if (count _typeCounts > 0) then {
+        _lines pushBack "--- Object Types ---";
+        private _sorted = [];
+        {_sorted pushBack [_y, _x]} forEach _typeCounts;
+        _sorted sort false;
+        {_lines pushBack format ["  %1: %2", _x#1, _x#0]} forEach (_sorted select [0, 15 min count _sorted]);
+        if (count _sorted > 15) then {
+            _lines pushBack format ["  ... and %1 more types", count _sorted - 15];
+        };
+    };
+
+    {INFO_1("InspectData: %1",_x)} forEach _lines;
+    [QGVAR(receiveInspectSavedData), [_lines], _player] call CBA_fnc_targetEvent;
+}] call CBA_fnc_addEventHandler;
 
 [QGVAR(setObjectCargo), {[{call FUNC(setObjectCargo)}, _this] call CBA_fnc_execNextFrame}] call CBA_fnc_addEventHandler;
 

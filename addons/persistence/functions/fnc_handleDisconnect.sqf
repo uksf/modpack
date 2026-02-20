@@ -64,27 +64,5 @@ TRACE_1("Player disconnect",_data);
 GVAR(dataNamespace) setVariable [_uid, _data];
 
 if (GVAR(dataSaved)) then {
-    // [_unit] call FUNC(saveObjectData);
     GVAR(disconnectedPlayerPositions) set [_uid, getPos _unit];
 };
-
-/*[_unit] call {
-    params ["_unit"];
-    private _position = getPosASL _unit;
-    private _group = group _unit;
-    private _leader = leader _group;
-    private _leaderID = -1;
-    private _leaderPosition = [];
-    private _leaderDirection = -1;
-    private _offset = [];
-    if (_unit == _leader) then {
-        _leader = ((units _group) - [_unit])#0;
-    };
-    if ((_unit distance2D _leader) < 500) then {
-        _leaderID = getPlayerUID _leader;
-        _leaderPosition = getPosASL _leader;
-        _leaderDirection = getDir _leader;
-        _offset = _leader worldToModel _position;
-    };
-    [_position, _leaderID, _leaderPosition, _leaderDirection, _offset]
-},*/
