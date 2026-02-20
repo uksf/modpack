@@ -20,17 +20,17 @@ _marker setMarkerShape _shape;
 
 if (_shape == "POLYLINE") then {
     _serializedMarker params ["", "", "", "_colour", "_alpha", "_polyline"];
-    _marker setMarkerColor _colour;
-    _marker setMarkerAlpha _alpha;
+    _marker setMarkerColorLocal _colour;
+    _marker setMarkerAlphaLocal _alpha;
     _marker setMarkerPolyline _polyline;
 } else {
     _serializedMarker params ["", "", "", "_type", "_brush", "_size", "_colour", "_alpha", "_dir", "_text"];
-    _marker setMarkerType _type;
-    _marker setMarkerBrush _brush;
-    _marker setMarkerSize _size;
-    _marker setMarkerColor _colour;
-    _marker setMarkerAlpha _alpha;
-    _marker setMarkerDir _dir;
+    _marker setMarkerTypeLocal _type;
+    _marker setMarkerBrushLocal _brush;
+    _marker setMarkerSizeLocal _size;
+    _marker setMarkerColorLocal _colour;
+    _marker setMarkerAlphaLocal _alpha;
+    _marker setMarkerDirLocal _dir;
     _marker setMarkerText _text;
 };
 
