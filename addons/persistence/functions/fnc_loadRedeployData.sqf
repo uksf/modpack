@@ -49,7 +49,7 @@ player setUnitLoadout _loadout;
 player setDamage _damage;
 
 player setVariable ["ACE_hasEarPlugsIn", _earplugs, true];
-[[true]] call ace_hearing_fnc_updateVolume;
+[true] call ace_hearing_fnc_updateVolume;
 [] call ace_hearing_fnc_updateHearingProtection;
 {[player, player, [_x], true] call ace_attach_fnc_attach} forEach _attached;
 
