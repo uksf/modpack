@@ -18,9 +18,11 @@
 
 params ["_markers"];
 
+private _processed = createHashMap;
+
 [{
     params ["_args", "_idPFH"];
-    _args params ["_markers", "_lastSave"];
+    _args params ["_markers", "_lastSave", "_processed"];
 
     // Exit: markers exhausted and queue drained
     if (_markers isEqualTo [] && GVAR(saveObjectQueue) isEqualTo []) exitWith {
@@ -42,7 +44,7 @@ params ["_markers"];
             private _terrainObjects = nearestTerrainObjects [_marker, [], CENTRE_RADIUS, false];
             private _nearObjects = (_marker nearObjects CENTRE_RADIUS) select {
                 private _object = _x;
-                !(_object in GVAR(saveObjectQueue)) &&
+                !(_object in GVAR(saveObjectQueue)) && !(_object in _processed) &&
                 !(_object getVariable [QGVAR(excluded), false]) &&
                 {[_terrainObjects, {_x == _object}] call EFUNC(common,arrayNone)} &&
                 {[["Building", "AllVehicles", "Thing"], {_object isKindOf _x}] call EFUNC(common,arrayAny)} &&
@@ -60,6 +62,7 @@ params ["_markers"];
 
         private _object = GVAR(saveObjectQueue) deleteAt 0;
         if !(isNull (attachedTo _object)) exitWith {};
+        _processed set [_object, true];
 
         private _id = _object getVariable [QGVAR(persistenceID), ""];
         if (_id == "") then {
@@ -80,4 +83,4 @@ params ["_markers"];
 
         GVAR(dataNamespace) setVariable [QGVAR(objects), _objects];
     };
-}, 0, [_markers, 0]] call CBA_fnc_addPerFrameHandler;
+}, 0, [_markers, 0, _processed]] call CBA_fnc_addPerFrameHandler;
