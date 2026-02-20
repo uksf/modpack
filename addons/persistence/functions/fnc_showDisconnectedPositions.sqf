@@ -22,5 +22,3 @@ GVAR(disconnectedPositionsPFHID) = [{
         drawIcon3D ["", [1,0.5,0,1], _pos, 0.5, 0.5, 0, format ["%1\n(%2m)", _uid, round (player distance _pos)], 0, 0.03, "TahomaB", "center"];
     } forEach GVAR(disconnectedPositionData);
 }, 0] call CBA_fnc_addPerFrameHandler;
-
-hint format ["Showing %1 disconnected player positions", count GVAR(disconnectedPositionData)];
