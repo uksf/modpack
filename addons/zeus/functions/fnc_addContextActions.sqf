@@ -47,25 +47,34 @@ _action = [QGVAR(tools), "Tools", "", {}, {true}, [], {
 }] call zen_context_menu_fnc_createAction;
 [_action, [], 85] call zen_context_menu_fnc_addAction;
 
-_action = [QGVAR(toggleFPS), "Show Player FPS", "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa", {GVAR(fpsEnabled) = !GVAR(fpsEnabled)}, {isMultiplayer}, [], {}, {
-    params ["_action"];
+_action = [QGVAR(visualise), "Visualise", "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa", {}, {true}, [], {
+    private _actions = [];
 
-    _action set [1, ["Show Player FPS", "Hide Player FPS"] select GVAR(fpsEnabled)];
+    private _action = [QGVAR(toggleFPS), "Show Player FPS", "", {GVAR(fpsEnabled) = !GVAR(fpsEnabled)}, {isMultiplayer}, [], {}, {
+        params ["_action"];
+        _action set [1, ["Show Player FPS", "Hide Player FPS"] select GVAR(fpsEnabled)];
+    }] call zen_context_menu_fnc_createAction;
+    _actions pushBack [_action, [], 0];
+
+    _action = [QGVAR(toggleProjectiles), "Show Projectiles", "", {
+        GVAR(projectilesEnabled) = !GVAR(projectilesEnabled);
+        private _count = count GVAR(trackedProjectiles);
+        TRACE_2("toggled projectile tracking",GVAR(projectilesEnabled),_count);
+    }, {true}, [], {}, {
+        params ["_action"];
+        _action set [1, ["Show Projectiles", "Hide Projectiles"] select GVAR(projectilesEnabled)];
+    }] call zen_context_menu_fnc_createAction;
+    _actions pushBack [_action, [], -10];
+
+    _actions
 }] call zen_context_menu_fnc_createAction;
-[_action, [], -480] call zen_context_menu_fnc_addAction;
+[_action, [], -700] call zen_context_menu_fnc_addAction;
 
-_action = [QGVAR(toggleProjectiles), "Show Projectiles", "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa", {
-    GVAR(projectilesEnabled) = !GVAR(projectilesEnabled);
-    private _count = count GVAR(trackedProjectiles);
-    TRACE_2("toggled projectile tracking",GVAR(projectilesEnabled),_count);
-}, {true}, [], {}, {
+_action = [QGVAR(toggleZeusVisibility), "Hide Zeus", "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa", {[objNull] call FUNC(moduleToggleZeusVisibility)}, {true}, [], {}, {
     params ["_action"];
-    _action set [1, ["Show Projectiles", "Hide Projectiles"] select GVAR(projectilesEnabled)];
+    _action set [1, ["Hide Zeus", "Show Zeus"] select (isObjectHidden player)];
 }] call zen_context_menu_fnc_createAction;
-[_action, [], -490] call zen_context_menu_fnc_addAction;
-
-_action = [QGVAR(toggleZeusVisibility), "Toggle Zeus Visibility", "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa", {[objNull] call FUNC(moduleToggleZeusVisibility)}, {true}] call zen_context_menu_fnc_createAction;
-[_action, [], -500] call zen_context_menu_fnc_addAction;
+[_action, [], -900] call zen_context_menu_fnc_addAction;
 
 _action = [QGVAR(bifrost), "Zeus Bifrost", "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa", {call FUNC(contextBifrost)}, {(getPlayerUID player) == UID_BESWICK}] call zen_context_menu_fnc_createAction;
 [_action, [], -1000] call zen_context_menu_fnc_addAction;
