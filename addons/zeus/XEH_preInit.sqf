@@ -16,6 +16,63 @@ GVAR(ammoNameCache) = createHashMap;
 GVAR(ammoIconCache) = createHashMap;
 GVAR(projectilesMapID) = 999;
 GVAR(projectilesPFH) = -1;
+GVAR(visualiseProviders) = createHashMap;
+GVAR(visualiseData) = createHashMap;
+GVAR(visualiseActiveToggles) = createHashMap;
+GVAR(visualiseStreamClients) = [];
+GVAR(visualiseStreamPFH) = -1;
+GVAR(visualiseMapDrawID) = 999;
+GVAR(visualisePFH) = -1;
+GVAR(visualiseRebroReports) = createHashMap;
+
+if (isServer) then {
+    [QGVAR(visualiseStreamToggle), {call FUNC(visualiseStreamToggle)}] call CBA_fnc_addEventHandler;
+    [QGVAR(visualiseRebroReport), {call FUNC(visualiseRebroReport)}] call CBA_fnc_addEventHandler;
+    [QGVAR(registerVisualiseProvider), {
+        params ["_key", "_getter"];
+        GVAR(visualiseProviders) set [_key, _getter];
+    }] call CBA_fnc_addEventHandler;
+
+    ["rebroconnections", {
+        private _rebroPositions = EGVAR(radios,rebroStations) select {alive _x} apply {getPosATL _x};
+
+        private _connections = [];
+        {
+            private _report = GVAR(visualiseRebroReports) get _x;
+            _report params ["_player", "_position", "_name", "_signalLog", "", ""];
+            {
+                private _rebroObject = objectFromNetId _x;
+                if (!isNull _rebroObject) then {
+                    private _signalEntry = _signalLog get _x;
+                    _connections pushBack [_position, _name, getPosATL _rebroObject, _signalEntry#0, _signalEntry#1];
+                };
+            } forEach keys _signalLog;
+        } forEach keys GVAR(visualiseRebroReports);
+
+        [_rebroPositions, _connections]
+    }] call FUNC(registerVisualiseProvider);
+
+    ["rebronetwork", {
+        private _rebroPositions = EGVAR(radios,rebroStations) select {alive _x} apply {getPosATL _x};
+
+        private _players = [];
+        private _links = [];
+        {
+            private _report = GVAR(visualiseRebroReports) get _x;
+            _report params ["_player", "_position", "_name", "", "_networkLog", ""];
+            _players pushBack [_position, _name];
+            private _playerIndex = count _players - 1;
+
+            {
+                private _linkEntry = _networkLog get _x;
+                _linkEntry params ["_signalPower", "_signalDecibels", "_isDirect", "_rebroPosition"];
+                _links pushBack [_playerIndex, _x, _signalPower, _isDirect, _rebroPosition];
+            } forEach keys _networkLog;
+        } forEach keys GVAR(visualiseRebroReports);
+
+        [_rebroPositions, _players, _links]
+    }] call FUNC(registerVisualiseProvider);
+};
 
 if (hasInterface && {isMultiplayer}) then {
     GVAR(fpsEnabled) = MULTIPLAYER_ADMIN_OR_WHITELISTED;
@@ -70,6 +127,13 @@ if (hasInterface) then {
 
     ["zen_curatorDisplayLoaded", {call FUNC(curatorDisplayLoad)}] call CBA_fnc_addEventHandler;
     ["zen_curatorDisplayUnloaded", {call FUNC(curatorDisplayUnload)}] call CBA_fnc_addEventHandler;
+
+    [QGVAR(visualiseStreamData), {
+        params ["_dataMap"];
+        {
+            GVAR(visualiseData) set [_x, _y];
+        } forEach _dataMap;
+    }] call CBA_fnc_addEventHandler;
 };
 
 ADDON = true;
