@@ -16,7 +16,12 @@
 */
 #define PLAYER_FIRED_TIMEOUT 1200
 
+if (is3DEN) exitWith {};
+
 (_this select 1) params ["_module"];
+
+GVAR(enabled) = true;
+publicVariable QGVAR(enabled);
 
 // TODO: Tick aggression down based on number of killer players at tick (more killers = less reduction)
 

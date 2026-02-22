@@ -11,3 +11,4 @@ PREP(moduleRatingArea);
 PREP(recalculateGlobalRatingEvents);
 PREP(serializeRatingAreas);
 PREP(toggleDebugInfo);
+PREP(getVisualisationData);

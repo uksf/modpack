@@ -14,115 +14,48 @@
 */
 params ["_display"];
 
-(_display displayCtrl 50) ctrlRemoveEventHandler ["Draw", GVAR(curatorUnconciousMapID)];
-GVAR(curatorUnconciousMapID) = (_display displayCtrl 50) ctrlAddEventHandler ["Draw", {
-    {
-        if ((driver (vehicle _x)) isEqualTo _x && {_x getVariable ["ACE_isUnconscious", false]}) then {
-            private _comaTimeLeft = round (_x getVariable ["ace_medical_statemachine_comaTimeLeft", -1]);
-            private _text = "Unconscious";
-            if (_comaTimeLeft > -1) then {
-                private _minutes = floor (_comaTimeLeft / 60);
-                private _seconds = _comaTimeLeft % 60;
-                _text = if (_minutes > 0) then {
-                    format ["Unconscious (Coma %1m%2s)", _minutes, _seconds]
-                } else {
-                    format ["Unconscious (Coma %1s)", _seconds]
-                };
-            } else {
-                private _cardiacArrestTimeLeft = round (_x getVariable ["ace_medical_statemachine_cardiacArrestTimeLeft", -1]);
-                if (_cardiacArrestTimeLeft > -1) then {
-                    private _minutes = floor (_cardiacArrestTimeLeft / 60);
-                    private _seconds = _cardiacArrestTimeLeft % 60;
-                    _text = if (_minutes > 0) then {
-                        format ["Unconscious (CA %1m%2s)", _minutes, _seconds]
-                    } else {
-                        format ["Unconscious (CA %1s)", _seconds]
-                    };
-                };
-            };
-            
-            (_this#0) drawIcon ["#(argb,8,8,3)color(0,0,0,0)", [1,0,0,0.7], _x, 40, 1, 0, _text, 0.1, 0.04, "PuristaBold", "left"];
-        };
-    } forEach ALL_PLAYERS;
-}];
-
-(_display displayCtrl 50) ctrlRemoveEventHandler ["Draw", GVAR(projectilesMapID)];
-GVAR(projectilesMapID) = (_display displayCtrl 50) ctrlAddEventHandler ["Draw", {
-    if (GVAR(projectilesEnabled)) then {
-        GVAR(trackedProjectiles) = GVAR(trackedProjectiles) select {!isNull (_x#0)};
-        {
-            _x params ["_projectile", "_ammo", "_sideColor"];
-
-            private _name = GVAR(ammoNameCache) getOrDefault [_ammo, _ammo];
-            private _icon = GVAR(ammoIconCache) getOrDefault [_ammo, "\a3\ui_f\data\map\markers\military\dot_ca.paa"];
-            (_this#0) drawIcon [_icon, _sideColor, _projectile, 16, 16, 0, _name, 0.1, 0.04, "PuristaMedium", "right"];
-        } forEach GVAR(trackedProjectiles);
-    };
-}];
-
-[GVAR(curatorUnconciousID)] call CBA_fnc_removePerFrameHandler;
-GVAR(curatorUnconciousID) = [{
-    {
-        private _distance = (positionCameraToWorld [0,0,0]) distance _x;
-        if (_distance < 500 && {(driver (vehicle _x)) isEqualTo _x}) then {
-            if (GVAR(fpsEnabled)) then {
-                private _fps = _x getVariable [QGVAR(fps), 0];
-                private _colour = [1,1,1,0.7];
-                private _size = 0.03;
-                if (_fps <= 15) then {
-                    _colour = [1,0,0,0.7];
-                    _size = 0.045;
-                };
-                drawIcon3D ["", _colour, ASLToAGL (getPosASLVisual (vehicle _x)), 1, 2, 0, format ["%1 FPS", _fps], 0.1, _size, "PuristaMedium", "center"];
-            };
-            if (_x getVariable ["ACE_isUnconscious", false]) then {
-                private _comaTimeLeft = round (_x getVariable ["ace_medical_statemachine_comaTimeLeft", -1]);
-                private _text = "Unconscious";
-                if (_comaTimeLeft > -1) then {
-                    private _minutes = floor (_comaTimeLeft / 60);
-                    private _seconds = _comaTimeLeft % 60;
-                    _text = if (_minutes > 0) then {
-                        format ["Unconscious (Coma %1m%2s)", _minutes, _seconds]
-                    } else {
-                        format ["Unconscious (Coma %1s)", _seconds]
-                    };
-                } else {
-                    private _cardiacArrestTimeLeft = round (_x getVariable ["ace_medical_statemachine_cardiacArrestTimeLeft", -1]);
-                    if (_cardiacArrestTimeLeft > -1) then {
-                        private _minutes = floor (_cardiacArrestTimeLeft / 60);
-                        private _seconds = _cardiacArrestTimeLeft % 60;
-                        _text = if (_minutes > 0) then {
-                            format ["Unconscious (CA %1m%2s)", _minutes, _seconds]
-                        } else {
-                            format ["Unconscious (CA %1s)", _seconds]
-                        };
-                    };
-                };
-
-                drawIcon3D ["", [1,0,0,0.7], ASLToAGL (getPosASLVisual (vehicle _x)), 1, -2.5, 0, _text, 0.1, 0.04, "PuristaBold", "center"];
-            };
-        };
-    } forEach ALL_PLAYERS;
-}, 0] call CBA_fnc_addPerFrameHandler;
-
-[GVAR(projectilesPFH)] call CBA_fnc_removePerFrameHandler;
-GVAR(projectilesPFH) = [{
-    if (!GVAR(projectilesEnabled)) exitWith {};
-    GVAR(trackedProjectiles) = GVAR(trackedProjectiles) select {!isNull (_x#0)};
-    if (GVAR(trackedProjectiles) isNotEqualTO []) then {
-        TRACE_1("drawing projectiles",GVAR(trackedProjectiles));
-    };
-    {
-        _x params ["_projectile", "_ammo", "_sideColor"];
-        private _pos = ASLToAGL getPosASLVisual _projectile;
-        private _name = GVAR(ammoNameCache) getOrDefault [_ammo, _ammo];
-        private _icon = GVAR(ammoIconCache) getOrDefault [_ammo, "\a3\ui_f\data\map\markers\military\dot_ca.paa"];
-        TRACE_3("drawing projectile",_ammo,_name,_icon);
-        drawIcon3D [_icon, _sideColor, _pos, 0.75, 0.75, 0, _name, 1, 0.03, "PuristaMedium", "center", true];
-    } forEach GVAR(trackedProjectiles);
-}, 0] call CBA_fnc_addPerFrameHandler;
-
 [true, player] call ace_common_fnc_setVolume;
+
+(_display displayCtrl 50) ctrlRemoveEventHandler ["Draw", GVAR(visualiseMapDrawID)];
+GVAR(visualiseMapDrawID) = (_display displayCtrl 50) ctrlAddEventHandler ["Draw", {
+    call FUNC(visualiseMapDraw);
+}];
+
+[GVAR(visualisePFH)] call CBA_fnc_removePerFrameHandler;
+GVAR(visualisePFH) = [{
+    call FUNC(visualise3dDraw);
+}, 0] call CBA_fnc_addPerFrameHandler;
+
+// Create HUD controls for screen-fixed text overlay
+{ctrlDelete _x} forEach GVAR(visualiseHudControls);
+GVAR(visualiseHudControls) = [];
+for "_i" from 0 to 4 do {
+    private _control = _display ctrlCreate ["RscStructuredText", 30000 + _i];
+    _control ctrlSetPosition [
+        safezoneX + 0.3 * safezoneW,
+        safezoneY + 0.09 * safezoneH + _i * 0.025 * safezoneH,
+        0.4 * safezoneW,
+        0.025 * safezoneH
+    ];
+    _control ctrlSetBackgroundColor [0, 0, 0, 0];
+    _control ctrlCommit 0;
+    _control ctrlShow false;
+    GVAR(visualiseHudControls) pushBack _control;
+};
+
+// Re-subscribe server data streams for any active visualisations
+{
+    private _providerKeys = switch (_x) do {
+        case "aicommander": { ["aicommander_ground", "aicommander_air"] };
+        case "rebronetwork": { ["rebroconnections", "rebronetwork"] };
+        default { [_x] };
+    };
+    if (GVAR(visualiseActiveToggles) get _x) then {
+        {
+            [QGVAR(visualiseStreamToggle), [player, _x, true]] call CBA_fnc_serverEvent;
+        } forEach _providerKeys;
+    };
+} forEach (keys GVAR(visualiseActiveToggles));
 
 // FPS_COLLECTDATA = true;
 // FPS_PFHID = [{

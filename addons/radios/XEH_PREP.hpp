@@ -12,3 +12,6 @@ PREP(isRackInitialisationComplete);
 PREP(sanitiseLoadout);
 PREP(serializeRadios);
 PREP(setChannelNames);
+PREP(visualiseReportSignalData);
+PREP(visualiseStartReporting);
+PREP(visualiseStopReporting);

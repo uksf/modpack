@@ -15,3 +15,4 @@ PREP(moduleHeliSpawn);
 PREP(modulePlaneSpawn);
 PREP(SEAD);
 PREP(selectMission);
+PREP(getVisualisationData);

@@ -23,6 +23,7 @@ params ["_spawnPosition", "_stagingAreaPosition", "_playerPosition", "_groupCoun
 TRACE_1("",_this);
 
 _group setVariable [QGVAR(spawnPosition), _spawnPosition, true]; // used in selectStayBehindForce
+_group setVariable [QGVAR(targetPosition), _playerPosition, true];
 
 // default move to staging area for all groups
 [_group, _stagingAreaPosition, 50, "MOVE", "AWARE", "YELLOW", "NORMAL", "WEDGE", QUOTE(GVAR(readyAtStagingArea) = GVAR(readyAtStagingArea) + 1), [0, 0, 0], 50] call CBA_fnc_addWaypoint;

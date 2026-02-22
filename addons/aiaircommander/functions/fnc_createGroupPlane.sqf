@@ -18,7 +18,7 @@ params [["_callback", {}, [{}]], ["_callbackArgs", [], [[]]], ["_retries", 0]];
 
 private _spawn = selectRandom GVAR(planeSpawns);
 if (isNull _spawn) exitWith {
-    [{call FUNC(selectMission)}, [_callback, _callbackArgs, _retries + 1], 5 + random 5] call CBA_fnc_waitAndExecute;
+    [{call FUNC(selectMission)}, [_retries + 1], 5 + random 5] call CBA_fnc_waitAndExecute;
 };
 
 [getPos _spawn, east, EGVAR(gear,gearJetPilot), EGVAR(gear,gearPlane), {

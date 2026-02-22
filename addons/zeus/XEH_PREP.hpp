@@ -31,3 +31,11 @@ PREP(contextCachingModifier);
 PREP(contextCanCleanup);
 PREP(contextCleanup);
 PREP(contextCleanupModifier);
+
+// Visualisation provider system
+PREP(visualiseStreamToggle);
+PREP(visualiseStreamTick);
+PREP(visualiseMapDraw);
+PREP(visualise3dDraw);
+PREP(visualiseToggle);
+PREP(visualiseRebroReport);

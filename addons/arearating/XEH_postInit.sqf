@@ -1,5 +1,9 @@
 #include "script_component.hpp"
 
+if (isServer) then {
+    [QEGVAR(zeus,registerVisualiseProvider), ["arearating", {call FUNC(getVisualisationData)}]] call CBA_fnc_localEvent;
+};
+
 if (GVAR(ratingAreaModules) isNotEqualTo []) then {
     GVAR(ratingAreasEnabled) = true;
 

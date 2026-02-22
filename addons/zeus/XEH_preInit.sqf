@@ -7,20 +7,18 @@ ADDON = false;
 GVAR(loadout) = "";
 GVAR(fpsEnabled) = false;
 GVAR(EHIDArray) = [];
-GVAR(curatorUnconciousMapID) = 999;
-GVAR(curatorUnconciousID) = -1;
 GVAR(projectilesEnabled) = false;
 GVAR(trackedProjectiles) = [];
 GVAR(ammoTypeCache) = createHashMap;
 GVAR(ammoNameCache) = createHashMap;
 GVAR(ammoIconCache) = createHashMap;
-GVAR(projectilesMapID) = 999;
-GVAR(projectilesPFH) = -1;
 GVAR(visualiseProviders) = createHashMap;
 GVAR(visualiseData) = createHashMap;
 GVAR(visualiseActiveToggles) = createHashMap;
+GVAR(visualiseDistanceLimited) = false;
 GVAR(visualiseStreamClients) = [];
 GVAR(visualiseStreamPFH) = -1;
+GVAR(visualiseHudControls) = [];
 GVAR(visualiseMapDrawID) = 999;
 GVAR(visualisePFH) = -1;
 GVAR(visualiseRebroReports) = createHashMap;
@@ -30,48 +28,58 @@ if (isServer) then {
     [QGVAR(visualiseRebroReport), {call FUNC(visualiseRebroReport)}] call CBA_fnc_addEventHandler;
     [QGVAR(registerVisualiseProvider), {
         params ["_key", "_getter"];
+        TRACE_1("registerVisualiseProvider",_key);
         GVAR(visualiseProviders) set [_key, _getter];
     }] call CBA_fnc_addEventHandler;
 
-    ["rebroconnections", {
-        private _rebroPositions = EGVAR(radios,rebroStations) select {alive _x} apply {getPosATL _x};
+    GVAR(visualiseProviders) set ["rebroconnections", {
+        private _rebroNetIds = EGVAR(radios,rebroStations) select {alive _x} apply {netId _x};
 
         private _connections = [];
         {
             private _report = GVAR(visualiseRebroReports) get _x;
-            _report params ["_player", "_position", "_name", "_signalLog", "", ""];
+            _report params ["_player", "", "", "_signalLog"];
             {
-                private _rebroObject = objectFromNetId _x;
-                if (!isNull _rebroObject) then {
-                    private _signalEntry = _signalLog get _x;
-                    _connections pushBack [_position, _name, getPosATL _rebroObject, _signalEntry#0, _signalEntry#1];
-                };
+                private _signalEntry = _signalLog get _x;
+                _connections pushBack [netId _player, _x, _signalEntry#0];
             } forEach keys _signalLog;
         } forEach keys GVAR(visualiseRebroReports);
 
-        [_rebroPositions, _connections]
-    }] call FUNC(registerVisualiseProvider);
+        [_rebroNetIds, _connections]
+    }];
 
-    ["rebronetwork", {
-        private _rebroPositions = EGVAR(radios,rebroStations) select {alive _x} apply {getPosATL _x};
+    GVAR(visualiseProviders) set ["rebronetwork", {
+        private _rebroNetIds = EGVAR(radios,rebroStations) select {alive _x} apply {netId _x};
 
+        // Build player list and UID-to-index lookup
         private _players = [];
+        private _uidToIndex = createHashMap;
+        {
+            private _report = GVAR(visualiseRebroReports) get _x;
+            _report params ["_player", "", "_name"];
+            _uidToIndex set [_x, count _players];
+            _players pushBack [netId _player, _name];
+        } forEach keys GVAR(visualiseRebroReports);
+
+        // Build links from each player's connectionLog
+        // connectionLog entry: [signalPower, isDirect, rebroNetId]
         private _links = [];
         {
             private _report = GVAR(visualiseRebroReports) get _x;
-            _report params ["_player", "_position", "_name", "", "_networkLog", ""];
-            _players pushBack [_position, _name];
-            private _playerIndex = count _players - 1;
+            private _connectionLog = _report#4;
+            private _fromIndex = _uidToIndex get _x;
 
             {
-                private _linkEntry = _networkLog get _x;
-                _linkEntry params ["_signalPower", "_signalDecibels", "_isDirect", "_rebroPosition"];
-                _links pushBack [_playerIndex, _x, _signalPower, _isDirect, _rebroPosition];
-            } forEach keys _networkLog;
+                private _toIndex = _uidToIndex getOrDefault [_x, -1];
+                if (_toIndex >= 0) then {
+                    private _entry = _connectionLog get _x;
+                    _links pushBack [_fromIndex, _toIndex, _entry#0, _entry#1, _entry#2];
+                };
+            } forEach keys _connectionLog;
         } forEach keys GVAR(visualiseRebroReports);
 
-        [_rebroPositions, _players, _links]
-    }] call FUNC(registerVisualiseProvider);
+        [_rebroNetIds, _players, _links]
+    }];
 };
 
 if (hasInterface && {isMultiplayer}) then {
@@ -81,7 +89,6 @@ if (hasInterface && {isMultiplayer}) then {
     }, 1, []] call CBA_fnc_addPerFrameHandler;
 };
 
-TRACE_1("registering Fired class EH",GVAR(projectilesEnabled));
 ["All", "Fired", {
     params ["_unit", "_weapon", "", "", "_ammo", "", "_projectile"];
     TRACE_3("Fired EH",_unit,_ammo,_projectile);
@@ -131,8 +138,8 @@ if (hasInterface) then {
     [QGVAR(visualiseStreamData), {
         params ["_dataMap"];
         {
-            GVAR(visualiseData) set [_x, _y];
-        } forEach _dataMap;
+            GVAR(visualiseData) set [_x, _dataMap get _x];
+        } forEach keys _dataMap;
     }] call CBA_fnc_addEventHandler;
 };
 

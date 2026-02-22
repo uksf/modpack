@@ -26,6 +26,14 @@ params [["_position", [], [[]]], ["_side", east, [sideUnknown]], ["_unitPool", [
 
 TRACE_5("6) Spawn vehicle data",_position,_side,_unitPool,_vehiclePool,_countCode);
 
+if (_vehiclePool isEqualTo []) exitWith {
+    ERROR("6) Spawn vehicle pool is empty");
+};
+
+if (_unitPool isEqualTo []) exitWith {
+    ERROR("6) Spawn unit pool is empty");
+};
+
 private _group = createGroup _side;
 [QEGVAR(caching,disableCache), _group] call CBA_fnc_serverEvent;
 [QEGVAR(virtualisation,exclude), _group] call CBA_fnc_serverEvent;

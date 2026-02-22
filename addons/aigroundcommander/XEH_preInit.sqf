@@ -6,6 +6,8 @@ ADDON = false;
 
 #include "initSettings.inc.sqf"
 
+GVAR(enabled) = false;
+
 if (isServer) then {
     GVAR(stagingAreas) = [];
     GVAR(infantrySpawns) = [];

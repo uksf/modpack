@@ -1,5 +1,9 @@
 #include "script_component.hpp"
 
+if (isServer) then {
+    [QEGVAR(zeus,registerVisualiseProvider), ["dynamicpatrols", {call FUNC(getVisualisationDataDynamicPatrols)}]] call CBA_fnc_localEvent;
+};
+
 if (!isServer) exitWith {
     INFO("2) Postinit failed server check");
 };
