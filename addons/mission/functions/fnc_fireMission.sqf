@@ -55,8 +55,8 @@ if (_stage == 0) exitWith {
         _artillery doArtilleryFire [_position, currentMagazine _artillery, (floor random 2) + 1];
 
 #ifdef DEBUG_MODE_FULL
-        marker1 = createMarker [str random 9999, _targetPosition]; marker1 setMarkerShape "ELLIPSE"; marker1 setMarkerBrush "Solid"; marker1 setMarkerColor "ColorGreen"; marker1 setMarkerAlpha 0.3; marker1 setMarkerSize [_spread * 2, _spread * 2];
-        marker5 = createMarker [str random 9999, _position]; marker5 setMarkerShape "ICON"; marker5 setMarkerType "hd_dot"; marker5 setMarkerColor "ColorGreen";
+        marker1 = createMarker [str random 9999, _targetPosition]; marker1 setMarkerShapeLocal "ELLIPSE"; marker1 setMarkerBrushLocal "Solid"; marker1 setMarkerColorLocal "ColorGreen"; marker1 setMarkerAlphaLocal 0.3; marker1 setMarkerSize [_spread * 2, _spread * 2];
+        marker5 = createMarker [str random 9999, _position]; marker5 setMarkerShapeLocal "ICON"; marker5 setMarkerTypeLocal "hd_dot"; marker5 setMarkerColor "ColorGreen";
 #endif
 
         _this set [3, 1];
@@ -87,11 +87,11 @@ _delay = _delay + (_artillery getArtilleryETA [_targetPosition, currentMagazine 
 
 #ifdef DEBUG_MODE_FULL
     if (_isStage2) then {
-        marker7 = createMarker [str random 9999, _position]; marker7 setMarkerShape "ICON"; marker7 setMarkerType "hd_dot"; marker7 setMarkerColor "ColorRed";
-        marker3 = createMarker [str random 9999, _targetPosition]; marker3 setMarkerShape "ELLIPSE"; marker3 setMarkerBrush "Solid"; marker3 setMarkerColor "ColorRed"; marker3 setMarkerAlpha 0.5; marker3 setMarkerSize [_spread * 0.25, _spread * 0.25];
+        marker7 = createMarker [str random 9999, _position]; marker7 setMarkerShapeLocal "ICON"; marker7 setMarkerTypeLocal "hd_dot"; marker7 setMarkerColor "ColorRed";
+        marker3 = createMarker [str random 9999, _targetPosition]; marker3 setMarkerShapeLocal "ELLIPSE"; marker3 setMarkerBrushLocal "Solid"; marker3 setMarkerColorLocal "ColorRed"; marker3 setMarkerAlphaLocal 0.5; marker3 setMarkerSize [_spread * 0.25, _spread * 0.25];
     } else {
-        marker6 = createMarker [str random 9999, _position]; marker6 setMarkerShape "ICON"; marker6 setMarkerType "hd_dot"; marker6 setMarkerColor "ColorYellow";
-        marker2 = createMarker [str random 9999, _targetPosition]; marker2 setMarkerShape "ELLIPSE"; marker2 setMarkerBrush "Solid"; marker2 setMarkerColor "ColorYellow"; marker2 setMarkerAlpha 0.4; marker2 setMarkerSize [_spread, _spread];
+        marker6 = createMarker [str random 9999, _position]; marker6 setMarkerShapeLocal "ICON"; marker6 setMarkerTypeLocal "hd_dot"; marker6 setMarkerColor "ColorYellow";
+        marker2 = createMarker [str random 9999, _targetPosition]; marker2 setMarkerShapeLocal "ELLIPSE"; marker2 setMarkerBrushLocal "Solid"; marker2 setMarkerColorLocal "ColorYellow"; marker2 setMarkerAlphaLocal 0.4; marker2 setMarkerSize [_spread, _spread];
     };
 #endif
 

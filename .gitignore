@@ -686,6 +686,9 @@ hemtt.exe
 tools/temp
 .hemttprivatekey
 
+# Plan docs
+docs/plans/
+
 ## SQFC
 sqfvm.exe
 ArmaScriptCompiler.exe

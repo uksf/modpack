@@ -48,5 +48,5 @@ TRACE_1("",_areas);
     _values set [QGVAR(ratingCurrent), _ratingCurrent];
 } forEach _areas;
 
-call FUNC(broadcastRatingAreas);
+[false] call FUNC(broadcastRatingAreas);
 [_areas] call FUNC(recalculateGlobalRatingEvents);

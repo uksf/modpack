@@ -20,3 +20,4 @@ PREP(response);
 PREP(selectResponse);
 PREP(selectStayBehindForce);
 PREP(unloadTransport);
+PREP(registerDebugProvider);

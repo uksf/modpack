@@ -1,11 +1,9 @@
 #include "script_component.hpp"
 
+call FUNC(registerDebugProvider);
+
 if (GVAR(ratingAreaModules) isNotEqualTo []) then {
     GVAR(ratingAreasEnabled) = true;
-
-    if (hasInterface) then {
-        call FUNC(addDebugActions);
-    };
 
     if (isServer) then {
         {

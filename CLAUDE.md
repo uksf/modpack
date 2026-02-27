@@ -128,6 +128,11 @@ All SQF and config files must `#include "script_component.hpp"` as their first l
 #include "\u\uksf\addons\main\script_macros.hpp"
 ```
 
+## Naming Conventions
+
+- **No abbreviated variable names** — use full, descriptive names (e.g. `_position` not `_pos`, `_vehicle` not `_veh`, `_distance` not `_dist`). Clarity over brevity.
+- **UK English spelling** — use `visualise`, `colour`, `behaviour`, `centre`, `defence`, etc. in all user-facing strings, comments, and identifiers.
+
 ## SQF Code Conventions
 
 ### Function File Pattern

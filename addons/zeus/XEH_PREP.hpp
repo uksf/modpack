@@ -31,3 +31,13 @@ PREP(contextCachingModifier);
 PREP(contextCanCleanup);
 PREP(contextCleanup);
 PREP(contextCleanupModifier);
+
+PREP(formatUnconsciousText);
+
+// Debug provider system
+PREP(debugStreamToggle);
+PREP(debugStreamTick);
+PREP(debugMapDraw);
+PREP(debug3dDraw);
+PREP(debugToggle);
+PREP(registerDebugProviders);

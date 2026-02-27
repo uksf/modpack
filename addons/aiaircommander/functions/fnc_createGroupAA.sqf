@@ -25,8 +25,9 @@ private _spawn = _spawns#0#1;
 
     (_vehicle emptyPositions "driver") + count _turrets
 }, {
-    params ["_emptyLocation", "_group"];
+    params ["_aaSite", "_group", "_vehicle"];
 
-    [_group, _emptyLocation, 50, "MOVE", "SAFE", "YELLOW", "NORMAL", "", "(vehicle this) setFuel 0; (group this) setBehaviour 'AWARE'"] call CBA_fnc_addWaypoint;
+    _aaSite setVariable [QGVAR(aaVehicle), _vehicle];
+    [_group, _aaSite, 50, "MOVE", "SAFE", "YELLOW", "NORMAL", "", "(vehicle this) setFuel 0; (group this) setBehaviour 'AWARE'"] call CBA_fnc_addWaypoint;
 }, [_emptyLocation]] call EFUNC(common,spawnGroupVehicle);
 

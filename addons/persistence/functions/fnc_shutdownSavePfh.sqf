@@ -18,7 +18,7 @@
 
 params ["_markers"];
 
-private _processed = createHashMap;
+private _processed = [];
 
 [{
     params ["_args", "_idPFH"];
@@ -62,7 +62,7 @@ private _processed = createHashMap;
 
         private _object = GVAR(saveObjectQueue) deleteAt 0;
         if !(isNull (attachedTo _object)) exitWith {};
-        _processed set [_object, true];
+        _processed pushBack _object;
 
         private _id = _object getVariable [QGVAR(persistenceID), ""];
         if (_id == "") then {

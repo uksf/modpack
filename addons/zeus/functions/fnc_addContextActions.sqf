@@ -47,25 +47,88 @@ _action = [QGVAR(tools), "Tools", "", {}, {true}, [], {
 }] call zen_context_menu_fnc_createAction;
 [_action, [], 85] call zen_context_menu_fnc_addAction;
 
-_action = [QGVAR(toggleFPS), "Show Player FPS", "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa", {GVAR(fpsEnabled) = !GVAR(fpsEnabled)}, {isMultiplayer}, [], {}, {
-    params ["_action"];
+_action = [QGVAR(debug), "Debug", "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa", {}, {true}, [], {
+    private _actions = [];
 
-    _action set [1, ["Show Player FPS", "Hide Player FPS"] select GVAR(fpsEnabled)];
+    // Show All / Hide All
+    private _action = [QGVAR(toggleAllDebug), "Show All", "", {
+        private _availableKeys = [];
+        {
+            private _provider = GVAR(debugProviders) get _x;
+            _provider params ["", "", "_fnc_menuCondition"];
+            if (call _fnc_menuCondition) then {
+                _availableKeys pushBack _x;
+            };
+        } forEach (keys GVAR(debugProviders));
+
+        private _anyActive = _availableKeys findIf {GVAR(debugActiveToggles) getOrDefault [_x, false]} != -1;
+        {
+            if ((GVAR(debugActiveToggles) getOrDefault [_x, false]) isEqualTo _anyActive) then {
+                [_x] call FUNC(debugToggle);
+            };
+        } forEach _availableKeys;
+    }, {true}, [], {}, {
+        params ["_action"];
+        private _anyActive = (keys GVAR(debugProviders)) findIf {
+            if !(GVAR(debugActiveToggles) getOrDefault [_x, false]) then {false} else {
+                private _provider = GVAR(debugProviders) get _x;
+                _provider params ["", "", "_fnc_condition"];
+                call _fnc_condition
+            }
+        } != -1;
+        _action set [1, ["Show All", "Hide All"] select _anyActive];
+    }] call zen_context_menu_fnc_createAction;
+    _actions pushBack [_action, [], 100];
+
+    // Limit Draw Distance
+    _action = [QGVAR(toggleDistanceLimit), "Limit Draw Distance", "", {GVAR(debugDistanceLimited) = !GVAR(debugDistanceLimited)}, {true}, [], {}, {
+        params ["_action"];
+        _action set [1, ["Limit Draw Distance", "Max Draw Distance"] select GVAR(debugDistanceLimited)];
+    }] call zen_context_menu_fnc_createAction;
+    _actions pushBack [_action, [], -1000];
+
+    // Dynamic provider toggles
+    {
+        private _providerKey = _x;
+        private _provider = GVAR(debugProviders) get _providerKey;
+        _provider params ["_menuName", "_menuPriority", "_fnc_menuCondition"];
+
+        if (call _fnc_menuCondition) then {
+            private _active = GVAR(debugActiveToggles) getOrDefault [_providerKey, false];
+            private _label = (["Show ", "Hide "] select _active) + _menuName;
+            _action = [
+                _providerKey, _label, "",
+                {
+                    params ["", "", "", "", "", "", "_args"];
+                    _args params ["_providerKey"];
+                    
+                    [_providerKey] call FUNC(debugToggle);
+                },
+                {true},
+                [_providerKey, _menuName],
+                {},
+                {
+                    params ["_action", "_actionParams"];
+                    _actionParams params ["", "", "", "", "", "", "_args"];
+                    _args params ["_providerKey", "_name"];
+
+                    private _active = GVAR(debugActiveToggles) getOrDefault [_providerKey, false];
+                    _action set [1, (["Show ", "Hide "] select _active) + _name];
+                }
+            ] call zen_context_menu_fnc_createAction;
+            _actions pushBack [_action, [], _menuPriority];
+        };
+    } forEach (keys GVAR(debugProviders));
+
+    _actions
 }] call zen_context_menu_fnc_createAction;
-[_action, [], -480] call zen_context_menu_fnc_addAction;
+[_action, [], -700] call zen_context_menu_fnc_addAction;
 
-_action = [QGVAR(toggleProjectiles), "Show Projectiles", "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa", {
-    GVAR(projectilesEnabled) = !GVAR(projectilesEnabled);
-    private _count = count GVAR(trackedProjectiles);
-    TRACE_2("toggled projectile tracking",GVAR(projectilesEnabled),_count);
-}, {true}, [], {}, {
+_action = [QGVAR(toggleZeusVisibility), "Hide Zeus", "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa", {[objNull] call FUNC(moduleToggleZeusVisibility)}, {true}, [], {}, {
     params ["_action"];
-    _action set [1, ["Show Projectiles", "Hide Projectiles"] select GVAR(projectilesEnabled)];
+    _action set [1, ["Hide Zeus", "Show Zeus"] select (isObjectHidden player)];
 }] call zen_context_menu_fnc_createAction;
-[_action, [], -490] call zen_context_menu_fnc_addAction;
-
-_action = [QGVAR(toggleZeusVisibility), "Toggle Zeus Visibility", "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa", {[objNull] call FUNC(moduleToggleZeusVisibility)}, {true}] call zen_context_menu_fnc_createAction;
-[_action, [], -500] call zen_context_menu_fnc_addAction;
+[_action, [], -900] call zen_context_menu_fnc_addAction;
 
 _action = [QGVAR(bifrost), "Zeus Bifrost", "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa", {call FUNC(contextBifrost)}, {(getPlayerUID player) == UID_BESWICK}] call zen_context_menu_fnc_createAction;
 [_action, [], -1000] call zen_context_menu_fnc_addAction;

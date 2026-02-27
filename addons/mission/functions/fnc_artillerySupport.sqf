@@ -60,7 +60,7 @@ TRACE_1("Starting artillery request",_unit);
 #ifdef DEBUG_MODE_FULL
                 [QEGVAR(common,log), [format ["Artillery support called in by a '%1' at '%2' from a '%3' with radio range of '%4'", typeOf _unit, _targetPosition, typeOf _artillery, _unit distance2D _artillery]]] call CBA_fnc_serverEvent;
                 deleteMarker marker1; deleteMarker marker2; deleteMarker marker3; deleteMarker marker4; deleteMarker marker5; deleteMarker marker6; deleteMarker marker7;
-                marker4 = createMarker [str random 9999, _targetPosition]; marker4 setMarkerShape "ICON"; marker4 setMarkerType "hd_dot"; marker4 setMarkerColor "ColorBlack";
+                marker4 = createMarker [str random 9999, _targetPosition]; marker4 setMarkerShapeLocal "ICON"; marker4 setMarkerTypeLocal "hd_dot"; marker4 setMarkerColor "ColorBlack";
 #endif
             };
             _unit setVariable [QGVAR(artillerySupportRequesting), false, true];

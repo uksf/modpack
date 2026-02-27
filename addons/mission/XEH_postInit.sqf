@@ -1,5 +1,7 @@
 #include "script_component.hpp"
 
+call FUNC(registerDebugProvider);
+
 if (!isServer) exitWith {
     INFO("2) Postinit failed server check");
 };

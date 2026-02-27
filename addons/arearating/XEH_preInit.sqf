@@ -7,10 +7,6 @@ ADDON = false;
 GVAR(ratingAreasEnabled) = false;
 GVAR(ratingAreas) = [];
 
-GVAR(debugMode) = false;
-GVAR(debugMarkers) = [];
-GVAR(debugPFHID) = -1;
-
 if (isServer) then {
     GVAR(ratingAreaModules) = [];
     GVAR(hitUnitCache) = [];

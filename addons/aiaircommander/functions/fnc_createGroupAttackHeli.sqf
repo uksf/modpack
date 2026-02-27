@@ -18,7 +18,7 @@ params [["_callback", {}, [{}]], ["_callbackArgs", [], [[]]], ["_retries", 0]];
 
 private _spawn = selectRandom GVAR(heliSpawns);
 if (isNull _spawn) exitWith {
-    [{call FUNC(selectMission)}, [_callback, _callbackArgs, _retries + 1], 5 + random 5] call CBA_fnc_waitAndExecute;
+    [{call FUNC(selectMission)}, [_retries + 1], 5 + random 5] call CBA_fnc_waitAndExecute;
 };
 
 private _helipads = nearestObjects [_spawn, ["Land_HelipadSquare_F", "Land_HelipadCircle_F"], 50, true];

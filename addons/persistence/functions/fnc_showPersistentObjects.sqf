@@ -4,7 +4,7 @@
         Tim Beswick
 
     Description:
-        Creates icons on persistent objects with type names, colour coding, and distance filtering
+        Creates icons on persistent objects with type names and colour coding
 
     Parameter(s):
         None
@@ -13,12 +13,16 @@
         None
 */
 #define INTERVAL 10
-#define MAX_DISTANCE 2000
 
 [QGVAR(requestPersistentObjectsHash), [player]] call CBA_fnc_serverEvent;
 
 GVAR(persistentObjectIconsPFHID) = [{
-    params ["_args"];
+    params ["_args", "_idPFH"];
+
+    if (EGVAR(zeus,debugKill)) exitWith {
+        [_idPFH] call CBA_fnc_removePerFrameHandler;
+    };
+
     _args params ["_time"];
 
     if (CBA_missionTime > (_time + INTERVAL)) then {
@@ -32,8 +36,6 @@ GVAR(persistentObjectIconsPFHID) = [{
         if (isNull _object) then {continue};
 
         private _pos = _object modelToWorld [0,0,0];
-        private _dist = player distance _pos;
-        if (_dist > MAX_DISTANCE) then {continue};
 
         private _type = typeOf _object;
         private _colour = [1,1,1,1];
@@ -49,7 +51,7 @@ GVAR(persistentObjectIconsPFHID) = [{
             };
         };
 
-        private _label = format ["%1\n%2 (%3m)", _type, _id, round _dist];
-        drawIcon3D ["", _colour, _pos, 0.5, 0.5, 0, _label, 0, 0.03, "TahomaB", "center"];
+        drawIcon3D ["", _colour, _pos, 0.5, 0.5, 0, _type, 1, 0.025, "TahomaB", "center"];
+        drawIcon3D ["", _colour, _pos, 0.5, -1.5, 0, _id, 1, 0.025, "TahomaB", "center"];
     } forEach GVAR(persistentObjects);
 }, 0, [0]] call CBA_fnc_addPerFrameHandler;

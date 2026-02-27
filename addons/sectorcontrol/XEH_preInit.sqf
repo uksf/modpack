@@ -4,6 +4,8 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
+GVAR(sectors) = [];
+GVAR(enabled) = false;
 
 // global hint
 [QGVAR(globalHint), {

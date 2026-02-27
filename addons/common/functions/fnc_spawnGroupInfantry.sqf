@@ -25,6 +25,10 @@ params [["_position", [], [[]]], ["_count", 1, [0]], ["_side", east, [sideUnknow
 
 TRACE_4("6) Spawn unit data",_position,_count,_side,_unitPool);
 
+if (_unitPool isEqualTo []) exitWith {
+    ERROR("6) Spawn unit pool is empty");
+};
+
 private _group = createGroup _side;
 [QEGVAR(caching,disableCache), _group] call CBA_fnc_serverEvent;
 [QEGVAR(virtualisation,exclude), _group] call CBA_fnc_serverEvent;

@@ -12,6 +12,8 @@
     Return value:
         Nothing
 */
+if (is3DEN) exitWith {};
+
 (_this#1) params ["_logic"];
 
 if !(isServer) exitWith {};
@@ -40,6 +42,12 @@ private _markers = _logic getVariable [QGVAR(sectorMarkers), []];
 // set scores to 100 for owned sectors
 [_logic, 0, 0, _timeToCapture] call FUNC(setOwnedSectorScores);
 
+GVAR(sectors) pushBackUnique _logic;
+
+if (!GVAR(enabled)) then {
+    GVAR(enabled) = true;
+    publicVariable QGVAR(enabled);
+};
 
 [{
     params ["_args", "_idPFH"];

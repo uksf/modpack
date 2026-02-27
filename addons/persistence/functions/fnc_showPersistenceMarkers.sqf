@@ -16,10 +16,16 @@
 [QGVAR(requestPersistenceMarkers), [player]] call CBA_fnc_serverEvent;
 
 GVAR(persistenceMarkersPFHID) = [{
+    params ["", "_idPFH"];
+
+    if (EGVAR(zeus,debugKill)) exitWith {
+        [_idPFH] call CBA_fnc_removePerFrameHandler;
+    };
+
     {
         _x params ["_pos"];
 
-        drawIcon3D ["", [1,0,1,1], _pos, 0.5, 0.5, 0, format ["Marker (%1m)", round (player distance _pos)], 0, 0.03, "TahomaB", "center"];
+        drawIcon3D ["", [1,0,1,1], _pos, 0.5, 0.5, 0, "Marker", 1, 0.025, "TahomaB", "center"];
 
         private _segments = 24;
         private _step = 360 / _segments;

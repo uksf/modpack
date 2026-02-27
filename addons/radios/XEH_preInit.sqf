@@ -7,6 +7,8 @@ ADDON = false;
 GVAR(useRebros) = true;
 GVAR(rebroStations) = [];
 GVAR(rebroDebugging) = false;
+GVAR(debugReportingEnabled) = false;
+GVAR(debugConnectionData) = createHashMap;
 
 [QGVAR(initialiseRebroStation), {call FUNC(initialiseRebroStation)}] call CBA_fnc_addEventHandler;
 [QGVAR(deinitialiseRebroStation), {call FUNC(deinitialiseRebroStation)}] call CBA_fnc_addEventHandler;

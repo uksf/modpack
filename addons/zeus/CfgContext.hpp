@@ -8,7 +8,7 @@ class zen_context_menu_actions {
         statement = QUOTE([_hoveredEntity] call FUNC(openArsenal));
     };
     class TeleportZeus {
-        priority = -490;
+        priority = -950;
     };
     class lambs_wp {
         priority = 95;

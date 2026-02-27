@@ -12,7 +12,7 @@
     Return value:
         Nothing
 */
-private _emptyAASites = GVAR(aaSites) select {(_x nearEntities ["LandVehicle", 200]) isEqualTo []}; // TODO: Find if alive instead of in area
+private _emptyAASites = GVAR(aaSites) select {!alive (_x getVariable [QGVAR(aaVehicle), objNull])};
 
 {
     [{call FUNC(createGroupAA)}, [_x], (5 * _forEachIndex) + 5] call CBA_fnc_waitAndExecute;

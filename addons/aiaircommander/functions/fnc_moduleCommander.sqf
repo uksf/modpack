@@ -15,6 +15,9 @@
 
 if (!isServer) exitWith {};
 
+GVAR(enabled) = true;
+publicVariable QGVAR(enabled);
+
 [{
     [{
         params ["_args", "_idPFH"];
@@ -23,7 +26,7 @@ if (!isServer) exitWith {};
             [_idPFH] call CBA_fnc_removePerFrameHandler;
         };
 
-        call FUNC(selectMission);
+        [0] call FUNC(selectMission);
         call FUNC(checkAA);
     }, 1200] call CBA_fnc_addPerFrameHandler;
 }, [], 60] call CBA_fnc_waitAndExecute;

@@ -2,6 +2,8 @@
 #define SERVER_DELAY 3
 #define CLIENT_DELAY 1
 
+call FUNC(registerDebugProvider);
+
 if (!GVAR(enabled)) exitWith {
     INFO("Caching is disabled.");
 };

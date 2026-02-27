@@ -18,6 +18,7 @@ if (!isMultiplayer) exitWith {deleteVehicle _logic;};
 
 deleteVehicle _logic;
 
-GVAR(fpsEnabled) = !GVAR(fpsEnabled);
-[["FPS Disabled", "FPS Active"] select GVAR(fpsEnabled)] call ace_common_fnc_displayTextStructured;
+[QGVAR(fps)] call FUNC(debugToggle);
+private _active = GVAR(debugActiveToggles) getOrDefault [QGVAR(fps), false];
+[["FPS Disabled", "FPS Active"] select _active] call ace_common_fnc_displayTextStructured;
 
