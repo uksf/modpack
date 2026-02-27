@@ -16,6 +16,12 @@
 [QGVAR(requestPersistenceMarkers), [player]] call CBA_fnc_serverEvent;
 
 GVAR(persistenceMarkersPFHID) = [{
+    params ["", "_idPFH"];
+
+    if (EGVAR(zeus,debugKill)) exitWith {
+        [_idPFH] call CBA_fnc_removePerFrameHandler;
+    };
+
     {
         _x params ["_pos"];
 

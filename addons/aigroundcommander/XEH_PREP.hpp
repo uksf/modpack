@@ -20,4 +20,4 @@ PREP(response);
 PREP(selectResponse);
 PREP(selectStayBehindForce);
 PREP(unloadTransport);
-PREP(getVisualisationData);
+PREP(registerDebugProvider);

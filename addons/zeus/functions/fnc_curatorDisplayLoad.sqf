@@ -16,19 +16,19 @@ params ["_display"];
 
 [true, player] call ace_common_fnc_setVolume;
 
-(_display displayCtrl 50) ctrlRemoveEventHandler ["Draw", GVAR(visualiseMapDrawID)];
-GVAR(visualiseMapDrawID) = (_display displayCtrl 50) ctrlAddEventHandler ["Draw", {
-    call FUNC(visualiseMapDraw);
+(_display displayCtrl 50) ctrlRemoveEventHandler ["Draw", GVAR(debugMapDrawID)];
+GVAR(debugMapDrawID) = (_display displayCtrl 50) ctrlAddEventHandler ["Draw", {
+    call FUNC(debugMapDraw);
 }];
 
-[GVAR(visualisePFH)] call CBA_fnc_removePerFrameHandler;
-GVAR(visualisePFH) = [{
-    call FUNC(visualise3dDraw);
+[GVAR(debugPFH)] call CBA_fnc_removePerFrameHandler;
+GVAR(debugPFH) = [{
+    call FUNC(debug3dDraw);
 }, 0] call CBA_fnc_addPerFrameHandler;
 
 // Create HUD controls for screen-fixed text overlay
-{ctrlDelete _x} forEach GVAR(visualiseHudControls);
-GVAR(visualiseHudControls) = [];
+{ctrlDelete _x} forEach GVAR(debugHudControls);
+GVAR(debugHudControls) = [];
 for "_i" from 0 to 4 do {
     private _control = _display ctrlCreate ["RscStructuredText", 30000 + _i];
     _control ctrlSetPosition [
@@ -40,22 +40,19 @@ for "_i" from 0 to 4 do {
     _control ctrlSetBackgroundColor [0, 0, 0, 0];
     _control ctrlCommit 0;
     _control ctrlShow false;
-    GVAR(visualiseHudControls) pushBack _control;
+    GVAR(debugHudControls) pushBack _control;
 };
 
-// Re-subscribe server data streams for any active visualisations
+// Re-subscribe server data streams for any active providers
 {
-    private _providerKeys = switch (_x) do {
-        case "aicommander": { ["aicommander_ground", "aicommander_air"] };
-        case "rebronetwork": { ["rebroconnections", "rebronetwork"] };
-        default { [_x] };
+    private _provider = GVAR(debugProviders) getOrDefault [_x, []];
+    if (_provider isNotEqualTo []) then {
+        _provider params ["", "", "", "_fnc_serverGetter"];
+        if (_fnc_serverGetter isNotEqualTo {}) then {
+            [QGVAR(debugStreamToggle), [player, _x, true]] call CBA_fnc_serverEvent;
+        };
     };
-    if (GVAR(visualiseActiveToggles) get _x) then {
-        {
-            [QGVAR(visualiseStreamToggle), [player, _x, true]] call CBA_fnc_serverEvent;
-        } forEach _providerKeys;
-    };
-} forEach (keys GVAR(visualiseActiveToggles));
+} forEach (keys GVAR(debugActiveToggles));
 
 // FPS_COLLECTDATA = true;
 // FPS_PFHID = [{

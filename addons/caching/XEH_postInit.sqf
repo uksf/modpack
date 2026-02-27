@@ -2,9 +2,7 @@
 #define SERVER_DELAY 3
 #define CLIENT_DELAY 1
 
-if (isServer) then {
-    [QEGVAR(zeus,registerVisualiseProvider), ["cachedgroups", {call FUNC(getVisualisationData)}]] call CBA_fnc_localEvent;
-};
+call FUNC(registerDebugProvider);
 
 if (!GVAR(enabled)) exitWith {
     INFO("Caching is disabled.");

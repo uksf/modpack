@@ -17,7 +17,12 @@
 [QGVAR(requestPersistentObjectsHash), [player]] call CBA_fnc_serverEvent;
 
 GVAR(persistentObjectIconsPFHID) = [{
-    params ["_args"];
+    params ["_args", "_idPFH"];
+
+    if (EGVAR(zeus,debugKill)) exitWith {
+        [_idPFH] call CBA_fnc_removePerFrameHandler;
+    };
+
     _args params ["_time"];
 
     if (CBA_missionTime > (_time + INTERVAL)) then {

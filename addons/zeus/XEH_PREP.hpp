@@ -32,10 +32,12 @@ PREP(contextCanCleanup);
 PREP(contextCleanup);
 PREP(contextCleanupModifier);
 
-// Visualisation provider system
-PREP(visualiseStreamToggle);
-PREP(visualiseStreamTick);
-PREP(visualiseMapDraw);
-PREP(visualise3dDraw);
-PREP(visualiseToggle);
-PREP(visualiseRebroReport);
+PREP(formatUnconsciousText);
+
+// Debug provider system
+PREP(debugStreamToggle);
+PREP(debugStreamTick);
+PREP(debugMapDraw);
+PREP(debug3dDraw);
+PREP(debugToggle);
+PREP(registerDebugProviders);

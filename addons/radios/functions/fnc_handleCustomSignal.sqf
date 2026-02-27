@@ -40,22 +40,30 @@ if (GVAR(useRebros)) then {
     } forEach GVAR(rebroStations);
 };
 
-if (GVAR(visualiseReportingEnabled)) then {
-    // Log which rebro station relayed this signal (if any)
-    if (!isNull _bestRebroStation) then {
-        GVAR(visualiseSignalLog) set [netId _bestRebroStation, [_bestResult#0, _bestResult#1]];
-    };
+if (GVAR(debugReportingEnabled)) then {
+    _bestResult params ["_bestPower", "_bestDbm"];
 
-    // Log connection to transmitter for full network graph
-    private _transmitterOwner = [_transmitterId] call acre_sys_radio_fnc_getRadioObject;
-    if (!isNull _transmitterOwner && {isPlayer _transmitterOwner}) then {
-        private _isDirect = isNull _bestRebroStation;
-        private _rebroNetId = if (_isDirect) then {""} else {netId _bestRebroStation};
-        GVAR(visualiseConnectionLog) set [getPlayerUID _transmitterOwner, [
-            _bestResult#0,
-            _isDirect,
-            _rebroNetId
-        ]];
+    private _radioClass = [_receiverId] call acre_sys_radio_fnc_getRadioBaseClassname;
+    private _squelch = [_radioClass, {configFile >> "CfgAcreComponents" >> _radioClass >> "sensitivityMin"}, -118] call EFUNC(common,readCacheValues);
+    private _extendedThreshold = _squelch * 1.1;
+
+    if (_bestDbm >= _extendedThreshold) then {
+        private _displayPower = if (_bestDbm >= _squelch) then {_bestPower} else {-1};
+
+        private _transmitterOwner = [_transmitterId] call acre_sys_radio_fnc_getRadioObject;
+        if (!isNull _transmitterOwner && {isPlayer _transmitterOwner}) then {
+            if (isNull _bestRebroStation) then {
+                GVAR(debugConnectionData) set [getPlayerUID _transmitterOwner, [_displayPower, ""]];
+            } else {
+                _bestResult params ["", "", "_rebroReceivePower", "_rebroTransmitPower"];
+                GVAR(debugConnectionData) set [getPlayerUID _transmitterOwner, [
+                    _displayPower,
+                    netId _bestRebroStation,
+                    _rebroReceivePower,
+                    _rebroTransmitPower
+                ]];
+            };
+        };
     };
 };
 

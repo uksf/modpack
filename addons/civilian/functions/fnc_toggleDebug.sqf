@@ -71,7 +71,7 @@ if (_state) then {
 
             private _colour = _x call {
                 params ["_vehicle", "_state"];
-                if (_vehicle getVariable [QGVAR(vehicle_ignoreCommands), false]) exitWith {"#(rgb,8,8,3)color(0.9,1,0.8,1)"}; // Red
+                if (_vehicle getVariable [QGVAR(vehicle_ignoreCommands), false]) exitWith {"#(rgb,8,8,3)color(0.9,1,0.8,1)"}; // Pale green
                 if (_state == QGVAR(vehicle_state_enter)) exitWith {"#(rgb,8,8,3)color(1,0,0,1)"}; // Red
                 if (_state == QGVAR(vehicle_state_stopping)) exitWith {"#(rgb,8,8,3)color(1,1,0,1)"}; // Yellow
                 if (_state == QGVAR(vehicle_state_stopped)) exitWith {"#(rgb,8,8,3)color(0,1,0,1)"}; // Green
@@ -155,7 +155,7 @@ if (_state) then {
 
             private _colour = _x call {
                 params ["_civilian", "_state"];
-                if (_civilian getVariable [QGVAR(unit_ignoreCommands), false]) exitWith {"#(rgb,8,8,3)color(0.9,1,0.8,1)"}; // Red
+                if (_civilian getVariable [QGVAR(unit_ignoreCommands), false]) exitWith {"#(rgb,8,8,3)color(0.9,1,0.8,1)"}; // Pale green
                 if (_state == QGVAR(unit_state_enter)) exitWith {"#(rgb,8,8,3)color(1,0,0,1)"}; // Red
                 if (_state == QGVAR(unit_state_stopped)) exitWith {"#(rgb,8,8,3)color(0,1,0,1)"}; // Green
                 if (_state == QGVAR(unit_state_move)) exitWith {"#(rgb,8,8,3)color(0.1,0.8,1,1)"}; // Cyan

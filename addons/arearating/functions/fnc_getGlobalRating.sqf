@@ -37,7 +37,8 @@ private _globalMax = 0;
     _globalMax = _globalMax + _ratingMax;
 } forEach GVAR(ratingAreas);
 
-private _percentageStart = _globalStart / (_globalMax - _globalMin) * 100;
-private _percentageCurrent = _globalCurrent / (_globalMax - _globalMin) * 100;
+private _range = _globalMax - _globalMin;
+private _percentageStart = if (_range > 0) then {round (((_globalStart - _globalMin) / _range) * 100)} else {0};
+private _percentageCurrent = if (_range > 0) then {round (((_globalCurrent - _globalMin) / _range) * 100)} else {0};
 
 [[_globalStart, _globalCurrent, _globalMin, _globalMax], [_percentageStart, _percentageCurrent]]

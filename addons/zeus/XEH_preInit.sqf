@@ -5,95 +5,54 @@ ADDON = false;
 #include "XEH_PREP.hpp"
 
 GVAR(loadout) = "";
-GVAR(fpsEnabled) = false;
 GVAR(EHIDArray) = [];
-GVAR(projectilesEnabled) = false;
 GVAR(trackedProjectiles) = [];
 GVAR(ammoTypeCache) = createHashMap;
 GVAR(ammoNameCache) = createHashMap;
 GVAR(ammoIconCache) = createHashMap;
-GVAR(visualiseProviders) = createHashMap;
-GVAR(visualiseData) = createHashMap;
-GVAR(visualiseActiveToggles) = createHashMap;
-GVAR(visualiseDistanceLimited) = false;
-GVAR(visualiseStreamClients) = [];
-GVAR(visualiseStreamPFH) = -1;
-GVAR(visualiseHudControls) = [];
-GVAR(visualiseMapDrawID) = 999;
-GVAR(visualisePFH) = -1;
-GVAR(visualiseRebroReports) = createHashMap;
+GVAR(debugProviders) = createHashMap;
+GVAR(debugData) = createHashMap;
+GVAR(debugActiveToggles) = createHashMap;
+GVAR(debugDistanceLimited) = false;
+GVAR(debugStreamClients) = [];
+GVAR(debugStreamPFH) = -1;
+GVAR(debugHudControls) = [];
+GVAR(debugMapDrawID) = 999;
+GVAR(debugPFH) = -1;
+GVAR(debugClientSources) = createHashMap;
+GVAR(debugClientData) = createHashMap;
+GVAR(debugClientSourcePFHs) = createHashMap;
+GVAR(debugActiveClientSources) = createHashMap;
+GVAR(debugKill) = false;
+
+[QGVAR(registerDebugProvider), {
+    params ["_key", "_menuName", ["_menuPriority", 0], ["_fnc_menuCondition", {true}], ["_fnc_serverGetter", {}],
+            ["_clientDataKey", ""], ["_fnc_draw3d", {}], ["_fnc_drawMap", {}], ["_fnc_drawHud", {}]];
+    TRACE_2("registerDebugProvider",_key,_menuName);
+    GVAR(debugProviders) set [_key, [_menuName, _menuPriority, _fnc_menuCondition, _fnc_serverGetter, _clientDataKey, _fnc_draw3d, _fnc_drawMap, _fnc_drawHud]];
+}] call CBA_fnc_addEventHandler;
+
+[QGVAR(registerDebugClientSource), {
+    params ["_sourceKey", "_fnc_clientGetter", "_interval", ["_fnc_onStart", {}], ["_fnc_onStop", {}]];
+    GVAR(debugClientSources) set [_sourceKey, [_fnc_clientGetter, _interval, _fnc_onStart, _fnc_onStop]];
+}] call CBA_fnc_addEventHandler;
 
 if (isServer) then {
-    [QGVAR(visualiseStreamToggle), {call FUNC(visualiseStreamToggle)}] call CBA_fnc_addEventHandler;
-    [QGVAR(visualiseRebroReport), {call FUNC(visualiseRebroReport)}] call CBA_fnc_addEventHandler;
-    [QGVAR(registerVisualiseProvider), {
-        params ["_key", "_getter"];
-        TRACE_1("registerVisualiseProvider",_key);
-        GVAR(visualiseProviders) set [_key, _getter];
+    [QGVAR(debugStreamToggle), {call FUNC(debugStreamToggle)}] call CBA_fnc_addEventHandler;
+
+    [QGVAR(debugClientReport), {
+        params ["_sourceKey", "_player", "_data"];
+        private _sourceData = GVAR(debugClientData) getOrDefault [_sourceKey, createHashMap];
+        _sourceData set [getPlayerUID _player, [_player, _data, CBA_missionTime]];
+        GVAR(debugClientData) set [_sourceKey, _sourceData];
     }] call CBA_fnc_addEventHandler;
-
-    GVAR(visualiseProviders) set ["rebroconnections", {
-        private _rebroNetIds = EGVAR(radios,rebroStations) select {alive _x} apply {netId _x};
-
-        private _connections = [];
-        {
-            private _report = GVAR(visualiseRebroReports) get _x;
-            _report params ["_player", "", "", "_signalLog"];
-            {
-                private _signalEntry = _signalLog get _x;
-                _connections pushBack [netId _player, _x, _signalEntry#0];
-            } forEach keys _signalLog;
-        } forEach keys GVAR(visualiseRebroReports);
-
-        [_rebroNetIds, _connections]
-    }];
-
-    GVAR(visualiseProviders) set ["rebronetwork", {
-        private _rebroNetIds = EGVAR(radios,rebroStations) select {alive _x} apply {netId _x};
-
-        // Build player list and UID-to-index lookup
-        private _players = [];
-        private _uidToIndex = createHashMap;
-        {
-            private _report = GVAR(visualiseRebroReports) get _x;
-            _report params ["_player", "", "_name"];
-            _uidToIndex set [_x, count _players];
-            _players pushBack [netId _player, _name];
-        } forEach keys GVAR(visualiseRebroReports);
-
-        // Build links from each player's connectionLog
-        // connectionLog entry: [signalPower, isDirect, rebroNetId]
-        private _links = [];
-        {
-            private _report = GVAR(visualiseRebroReports) get _x;
-            private _connectionLog = _report#4;
-            private _fromIndex = _uidToIndex get _x;
-
-            {
-                private _toIndex = _uidToIndex getOrDefault [_x, -1];
-                if (_toIndex >= 0) then {
-                    private _entry = _connectionLog get _x;
-                    _links pushBack [_fromIndex, _toIndex, _entry#0, _entry#1, _entry#2];
-                };
-            } forEach keys _connectionLog;
-        } forEach keys GVAR(visualiseRebroReports);
-
-        [_rebroNetIds, _players, _links]
-    }];
-};
-
-if (hasInterface && {isMultiplayer}) then {
-    GVAR(fpsEnabled) = MULTIPLAYER_ADMIN_OR_WHITELISTED;
-    [{
-        player setVariable [QGVAR(fps), floor diag_fps, true];
-    }, 1, []] call CBA_fnc_addPerFrameHandler;
 };
 
 ["All", "Fired", {
     params ["_unit", "_weapon", "", "", "_ammo", "", "_projectile"];
     TRACE_3("Fired EH",_unit,_ammo,_projectile);
 
-    if (!GVAR(projectilesEnabled)) exitWith {};
+    if !(GVAR(debugActiveToggles) getOrDefault [QGVAR(projectiles), false]) exitWith {};
 
     private _isHeavy = [_ammo, _weapon] call FUNC(isHeavyProjectile);
     TRACE_2("ammo classification",_isHeavy,_ammo);
@@ -129,17 +88,72 @@ if (hasInterface && {isMultiplayer}) then {
     _player setVelocity [0, 0, 0];
 }] call CBA_fnc_addEventHandler;
 
+call FUNC(registerDebugProviders);
+
 if (hasInterface) then {
     call FUNC(addContextActions);
 
     ["zen_curatorDisplayLoaded", {call FUNC(curatorDisplayLoad)}] call CBA_fnc_addEventHandler;
     ["zen_curatorDisplayUnloaded", {call FUNC(curatorDisplayUnload)}] call CBA_fnc_addEventHandler;
 
-    [QGVAR(visualiseStreamData), {
+    [QGVAR(debugStreamData), {
         params ["_dataMap"];
         {
-            GVAR(visualiseData) set [_x, _dataMap get _x];
+            GVAR(debugData) set [_x, _dataMap get _x];
         } forEach keys _dataMap;
+
+        // Check provider conditions and auto-disable any that are no longer valid
+        private _invalidKeys = [];
+        {
+            private _provider = GVAR(debugProviders) getOrDefault [_x, []];
+            if (_provider isEqualTo []) then { continue };
+            _provider params ["", "", "_fnc_menuCondition"];
+            if !(call _fnc_menuCondition) then {
+                _invalidKeys pushBack _x;
+            };
+        } forEach keys GVAR(debugActiveToggles);
+        {
+            [_x] call FUNC(debugToggle);
+        } forEach _invalidKeys;
+    }] call CBA_fnc_addEventHandler;
+
+    [QGVAR(debugStartClientSource), {
+        params ["_sourceKey"];
+        private _source = GVAR(debugClientSources) getOrDefault [_sourceKey, []];
+        if (_source isEqualTo []) exitWith {};
+        _source params ["_fnc_clientGetter", "_interval", "_fnc_onStart"];
+
+        call _fnc_onStart;
+
+        private _pfhId = [{
+            params ["_args", "_idPFH"];
+            _args params ["_sourceKey", "_fnc_clientGetter"];
+
+            if (GVAR(debugKill)) exitWith {
+                [_idPFH] call CBA_fnc_removePerFrameHandler;
+                GVAR(debugClientSourcePFHs) deleteAt _sourceKey;
+            };
+            private _data = call _fnc_clientGetter;
+            if (_data isEqualTo []) exitWith {};
+            [QGVAR(debugClientReport), [_sourceKey, player, _data]] call CBA_fnc_serverEvent;
+        }, _interval, [_sourceKey, _fnc_clientGetter]] call CBA_fnc_addPerFrameHandler;
+
+        GVAR(debugClientSourcePFHs) set [_sourceKey, _pfhId];
+    }] call CBA_fnc_addEventHandler;
+
+    [QGVAR(debugStopClientSource), {
+        params ["_sourceKey"];
+        private _pfhId = GVAR(debugClientSourcePFHs) getOrDefault [_sourceKey, -1];
+        if (_pfhId != -1) then {
+            [_pfhId] call CBA_fnc_removePerFrameHandler;
+            GVAR(debugClientSourcePFHs) deleteAt _sourceKey;
+        };
+
+        private _source = GVAR(debugClientSources) getOrDefault [_sourceKey, []];
+        if (_source isNotEqualTo []) then {
+            _source params ["", "", "", "_fnc_onStop"];
+            call _fnc_onStop;
+        };
     }] call CBA_fnc_addEventHandler;
 };
 

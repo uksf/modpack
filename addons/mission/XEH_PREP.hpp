@@ -28,4 +28,4 @@ PREP(selectGroup);
 PREP(setSupportRadio);
 PREP(spawnGroup);
 PREP(support);
-PREP(getVisualisationDataDynamicPatrols);
+PREP(registerDebugProvider);

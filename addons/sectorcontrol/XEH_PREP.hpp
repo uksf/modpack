@@ -5,4 +5,4 @@ PREP(moduleSectorPFH);
 PREP(setOwnedSectorScores);
 PREP(showSectorAsContested);
 PREP(updateSectorMarker);
-PREP(getVisualisationData);
+PREP(registerDebugProvider);

@@ -16,6 +16,12 @@
 [QGVAR(requestDisconnectedPositions), [player]] call CBA_fnc_serverEvent;
 
 GVAR(disconnectedPositionsPFHID) = [{
+    params ["", "_idPFH"];
+
+    if (EGVAR(zeus,debugKill)) exitWith {
+        [_idPFH] call CBA_fnc_removePerFrameHandler;
+    };
+
     {
         _x params ["_uid", "_pos"];
 

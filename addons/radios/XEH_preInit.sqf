@@ -7,10 +7,8 @@ ADDON = false;
 GVAR(useRebros) = true;
 GVAR(rebroStations) = [];
 GVAR(rebroDebugging) = false;
-GVAR(visualiseReportingEnabled) = false;
-GVAR(visualiseReportingPFH) = -1;
-GVAR(visualiseSignalLog) = createHashMap;
-GVAR(visualiseConnectionLog) = createHashMap;
+GVAR(debugReportingEnabled) = false;
+GVAR(debugConnectionData) = createHashMap;
 
 [QGVAR(initialiseRebroStation), {call FUNC(initialiseRebroStation)}] call CBA_fnc_addEventHandler;
 [QGVAR(deinitialiseRebroStation), {call FUNC(deinitialiseRebroStation)}] call CBA_fnc_addEventHandler;
@@ -66,9 +64,6 @@ if (isServer) then {
 };
 
 if (hasInterface) then {
-    [QGVAR(visualiseStartReporting), {call FUNC(visualiseStartReporting)}] call CBA_fnc_addEventHandler;
-    [QGVAR(visualiseStopReporting), {call FUNC(visualiseStopReporting)}] call CBA_fnc_addEventHandler;
-
     {[_x] call FUNC(addVehicleRebroActions)} forEach [
         QAIRGVAR(reaper,raf),
         QAIRGVAR(f35,base),
