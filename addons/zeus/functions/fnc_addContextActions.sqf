@@ -50,35 +50,35 @@ _action = [QGVAR(tools), "Tools", "", {}, {true}, [], {
 _action = [QGVAR(debug), "Debug", "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa", {}, {true}, [], {
     private _actions = [];
 
-    // Show All / Hide All
-    private _action = [QGVAR(toggleAllDebug), "Show All", "", {
-        private _availableKeys = [];
+    // Show All (visible when any available providers are not active)
+    private _action = [QGVAR(showAllDebug), "Show All", "", {
         {
             private _provider = GVAR(debugProviders) get _x;
             _provider params ["", "", "_fnc_menuCondition"];
-            if (call _fnc_menuCondition) then {
-                _availableKeys pushBack _x;
-            };
-        } forEach (keys GVAR(debugProviders));
-
-        private _anyActive = _availableKeys findIf {GVAR(debugActiveToggles) getOrDefault [_x, false]} != -1;
-        {
-            if ((GVAR(debugActiveToggles) getOrDefault [_x, false]) isEqualTo _anyActive) then {
+            if (call _fnc_menuCondition && {!(GVAR(debugActiveToggles) getOrDefault [_x, false])}) then {
                 [_x] call FUNC(debugToggle);
             };
-        } forEach _availableKeys;
-    }, {true}, [], {}, {
-        params ["_action"];
-        private _anyActive = (keys GVAR(debugProviders)) findIf {
-            if !(GVAR(debugActiveToggles) getOrDefault [_x, false]) then {false} else {
-                private _provider = GVAR(debugProviders) get _x;
-                _provider params ["", "", "_fnc_condition"];
-                call _fnc_condition
-            }
-        } != -1;
-        _action set [1, ["Show All", "Hide All"] select _anyActive];
+        } forEach (keys GVAR(debugProviders));
+    }, {
+        (keys GVAR(debugProviders)) findIf {
+            private _provider = GVAR(debugProviders) get _x;
+            _provider params ["", "", "_fnc_menuCondition"];
+            (call _fnc_menuCondition) && {!(GVAR(debugActiveToggles) getOrDefault [_x, false])}
+        } != -1
     }] call zen_context_menu_fnc_createAction;
     _actions pushBack [_action, [], 100];
+
+    // Hide All (visible when any providers are active)
+    _action = [QGVAR(hideAllDebug), "Hide All", "", {
+        {
+            if (GVAR(debugActiveToggles) getOrDefault [_x, false]) then {
+                [_x] call FUNC(debugToggle);
+            };
+        } forEach (keys GVAR(debugProviders));
+    }, {
+        (keys GVAR(debugActiveToggles)) isNotEqualTo []
+    }] call zen_context_menu_fnc_createAction;
+    _actions pushBack [_action, [], 99];
 
     // Limit Draw Distance
     _action = [QGVAR(toggleDistanceLimit), "Limit Draw Distance", "", {GVAR(debugDistanceLimited) = !GVAR(debugDistanceLimited)}, {true}, [], {}, {
