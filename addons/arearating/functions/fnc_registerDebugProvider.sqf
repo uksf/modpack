@@ -59,7 +59,7 @@ private _fnc_draw3d = {
             };
 
             drawIcon3D ["", _colour, ASLToAGL (ATLToASL _position), 0, 0, 0, format ["%1: %2%3 %4", _name, _percentageCurrent, "%", _trend], 1, 0.025, "TahomaB", "center"];
-            drawIcon3D ["", _colour, ASLToAGL (ATLToASL _position), 0, -2, 0, format ["Rating: %1 (%2/%3)", _ratingCurrent, _ratingMin, _ratingMax], 1, 0.02, "TahomaB", "center"];
+            drawIcon3D ["", _colour, ASLToAGL (ATLToASL _position), 0, 1, 0, format ["Rating: %1 (%2/%3)", _ratingCurrent, _ratingMin, _ratingMax], 1, 0.02, "TahomaB", "center"];
         };
     } forEach _areas;
 };
@@ -85,8 +85,8 @@ private _fnc_drawMap = {
 
         _map drawIcon ["\a3\ui_f\data\map\markers\military\dot_ca.paa", _colour, _position, 24, 24, 0, format ["%1: %2%3 %4", _name, _percentageCurrent, "%", _trend], 1, 0.04, "TahomaB", "right"];
 
-        private _offsetPosition = _position vectorAdd [0, -(_area#1) * 0.3, 0];
-        _map drawIcon ["#(argb,8,8,3)color(0,0,0,0)", _colour, _offsetPosition, 0, 0, 0, format ["Rating: %1 (%2/%3)", _ratingCurrent, _ratingMin, _ratingMax], 1, 0.03, "TahomaB", "right"];
+        private _ratingPosition = _position vectorAdd [0, -100, 0];
+        _map drawIcon ["#(argb,8,8,3)color(0,0,0,0)", _colour, _ratingPosition, 0, 0, 0, format ["Rating: %1 (%2->%3)", _ratingCurrent, _ratingMin, _ratingMax], 1, 0.03, "TahomaB", "right"];
 
         _area params ["_halfWidth", "_halfHeight", "_angle", "_isRectangle"];
         private _outlineColour = _colour select [0, 3];
@@ -117,7 +117,7 @@ private _fnc_drawHud = {
         if (_percentageCurrent < _percentageStart) then {"v"} else {"-"}
     };
 
-    _hudControl ctrlSetStructuredText parseText format ["<t align='center' color='%1' shadow='1' font='TahomaB'>Global: %2%3 %4 (%5/%6/%7)</t>", _colourHex, _percentageCurrent, "%", _trend, _globalCurrent, _globalMin, _globalMax];
+    _hudControl ctrlSetStructuredText parseText format ["<t align='center' shadow='1' font='TahomaB'><t color='#aaaaaa'>Area Rating</t> <t color='%1'>%2%3 %4 (%5/%6->%7)</t></t>", _colourHex, _percentageCurrent, "%", _trend, _globalCurrent, _globalMin, _globalMax];
 };
 
 [QEGVAR(zeus,registerDebugProvider), [

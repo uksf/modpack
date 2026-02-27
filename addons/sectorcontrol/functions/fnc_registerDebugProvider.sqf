@@ -55,12 +55,12 @@ private _fnc_draw3d = {
             private _bluforPercentage = if (_timeToCapture > 0) then {round ((_bluforScore / _timeToCapture) * 100)} else {0};
 
             drawIcon3D ["", _colour, ASLToAGL (ATLToASL _position), 0, 0, 0, _name, 1, 0.025, "TahomaB", "center"];
-            drawIcon3D ["", [0,0.3,1,1], ASLToAGL (ATLToASL _position), 0, -2, 0, format ["BLU: %1%2", _bluforPercentage, "%"], 1, 0.02, "TahomaB", "center"];
-            drawIcon3D ["", [1,0,0,1], ASLToAGL (ATLToASL _position), 0, -4, 0, format ["OPF: %1%2", _opforPercentage, "%"], 1, 0.02, "TahomaB", "center"];
-            private _statusOffset = -6;
+            drawIcon3D ["", [0,0.3,1,1], ASLToAGL (ATLToASL _position), 0, 1, 0, format ["BLU: %1%2", _bluforPercentage, "%"], 1, 0.02, "TahomaB", "center"];
+            drawIcon3D ["", [1,0,0,1], ASLToAGL (ATLToASL _position), 0, 2, 0, format ["OPF: %1%2", _opforPercentage, "%"], 1, 0.02, "TahomaB", "center"];
+            private _statusOffset = 3;
             if (_contested) then {
                 drawIcon3D ["", [1,1,0,1], ASLToAGL (ATLToASL _position), 0, _statusOffset, 0, "CONTESTED", 1, 0.02, "TahomaB", "center"];
-                _statusOffset = _statusOffset - 2;
+                _statusOffset = _statusOffset + 1;
             };
             if (_locked) then {
                 drawIcon3D ["", [0.5,0.5,0.5,1], ASLToAGL (ATLToASL _position), 0, _statusOffset, 0, "LOCKED", 1, 0.02, "TahomaB", "center"];
@@ -90,7 +90,7 @@ private _fnc_drawMap = {
         if (_contested) then { _status = _status + " [CONTESTED]" };
         if (_locked) then { _status = _status + " [LOCKED]" };
 
-        private _offsetPosition = _position vectorAdd [0, -_halfHeight * 0.5, 0];
+        private _offsetPosition = _position vectorAdd [0, -100, 0];
         _map drawIcon ["#(argb,8,8,3)color(0,0,0,0)", _colour, _offsetPosition, 0, 0, 0, _status, 1, 0.04, "TahomaB", "right"];
         private _outlineColour = _colour select [0, 3];
         _outlineColour pushBack 0.5;

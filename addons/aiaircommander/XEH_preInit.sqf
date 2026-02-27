@@ -14,4 +14,6 @@ GVAR(aaSpawns) = [];
 GVAR(heliSpawns) = [];
 GVAR(planeSpawns) = [];
 
+GVAR(enabled) = false;
+
 ADDON = true;

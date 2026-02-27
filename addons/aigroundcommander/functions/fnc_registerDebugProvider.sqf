@@ -82,7 +82,7 @@ private _fnc_draw3d = {
         if (!isNull _playerObject) then {
             private _position = getPosATL _playerObject;
             if (_cameraPosition distance2D _position < _maxDistance) then {
-                drawIcon3D ["", [1,0,0,1], ASLToAGL (ATLToASL _position), 0, 3, 0, format ["Aggro %1s", round _timeLeft], 1, 0.025, "TahomaB", "center"];
+                drawIcon3D ["", [1,0,0,1], ASLToAGL (ATLToASL _position), 0, 1.5, 0, format ["Aggro %1s", round _timeLeft], 1, 0.025, "TahomaB", "center"];
             };
         };
     } forEach _killerPlayers;
@@ -158,7 +158,7 @@ private _fnc_drawHud = {
         default { "#00ff00" };
     };
 
-    _hudControl ctrlSetStructuredText parseText format ["<t align='center' color='%1' shadow='1' font='TahomaB'>Aggression: %2%3</t>", _aggressionHex, _aggression, _tierText];
+    _hudControl ctrlSetStructuredText parseText format ["<t align='center' shadow='1' font='TahomaB'><t color='#aaaaaa'>Ground Cmd</t> <t color='%1'>Aggression: %2%3</t></t>", _aggressionHex, _aggression, _tierText];
 };
 
 [QEGVAR(zeus,registerDebugProvider), [

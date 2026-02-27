@@ -76,7 +76,7 @@ private _fnc_drawHud = {
     params ["_data", "_hudControl"];
     _data params ["", "", "_totalActive", "_totalCached"];
 
-    _hudControl ctrlSetStructuredText parseText format ["<t align='center' color='#ffffff' shadow='1' font='TahomaB'>Cached: %1 | Active: %2</t>", _totalCached, _totalActive];
+    _hudControl ctrlSetStructuredText parseText format ["<t align='center' shadow='1' font='TahomaB'><t color='#aaaaaa'>Caching</t> <t color='#ffffff'>Cached: %1 | Active: %2</t></t>", _totalCached, _totalActive];
 };
 
 [QEGVAR(zeus,registerDebugProvider), [

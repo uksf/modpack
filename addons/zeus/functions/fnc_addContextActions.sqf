@@ -92,6 +92,7 @@ _action = [QGVAR(debug), "Debug", "\a3\ui_f_curator\data\logos\arma3_curator_eye
         private _providerKey = _x;
         private _provider = GVAR(debugProviders) get _providerKey;
         _provider params ["_menuName", "_menuPriority", "_fnc_menuCondition"];
+
         if (call _fnc_menuCondition) then {
             private _active = GVAR(debugActiveToggles) getOrDefault [_providerKey, false];
             private _label = (["Show ", "Hide "] select _active) + _menuName;
@@ -100,14 +101,17 @@ _action = [QGVAR(debug), "Debug", "\a3\ui_f_curator\data\logos\arma3_curator_eye
                 {
                     params ["", "", "", "", "", "", "_args"];
                     _args params ["_providerKey"];
+                    
                     [_providerKey] call FUNC(debugToggle);
                 },
                 {true},
                 [_providerKey, _menuName],
                 {},
                 {
-                    params ["_action", "", "", "", "", "", "", "_args"];
+                    params ["_action", "_actionParams"];
+                    _actionParams params ["", "", "", "", "", "", "_args"];
                     _args params ["_providerKey", "_name"];
+
                     private _active = GVAR(debugActiveToggles) getOrDefault [_providerKey, false];
                     _action set [1, (["Show ", "Hide "] select _active) + _name];
                 }

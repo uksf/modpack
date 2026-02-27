@@ -29,7 +29,13 @@ private _fnc_serverGetter = {
         private _sideIndex = _logic getVariable [QGVAR(side), 0];
         private _side = [east, independent, west] param [_sideIndex, east];
 
-        [_position, _area, _groupCount, _groupLimit, _distance, _side]
+        private _groupData = _groups select {!isNull _x} apply {
+            private _unitCount = count (units _x);
+            private _leaderPosition = getPosATL (leader _x);
+            [groupId _x, _unitCount, _leaderPosition]
+        };
+
+        [_position, _area, _groupCount, _groupLimit, _distance, _side, _groupData]
     };
 
     private _excludeAreas = GVAR(dynamicPatrolExcludeAreas) apply {
@@ -51,7 +57,7 @@ private _fnc_draw3d = {
 
     // Patrol areas
     {
-        _x params ["_position", "_area", "_groupCount", "_groupLimit", "_distance", "_side"];
+        _x params ["_position", "_area", "_groupCount", "_groupLimit", "_distance", "_side", "_groupData"];
         if (_cameraPosition distance2D _position < _maxDistance) then {
             private _colour = switch (_side) do {
                 case west: { [0.3,0.5,1,1] };
@@ -60,6 +66,15 @@ private _fnc_draw3d = {
                 default { [0.8,0.3,1,1] };
             };
             drawIcon3D ["\a3\ui_f\data\map\markers\military\circle_ca.paa", _colour, ASLToAGL (ATLToASL _position), 0.5, 0.5, 0, format ["Patrol: %1/%2", _groupCount, _groupLimit], 1, 0.025, "TahomaB", "center"];
+
+            // Draw spawned groups
+            {
+                _x params ["_groupId", "_unitCount", "_leaderPosition"];
+                if (_cameraPosition distance2D _leaderPosition < _maxDistance) then {
+                    drawIcon3D ["\a3\ui_f\data\map\markers\military\dot_ca.paa", _colour, ASLToAGL (ATLToASL _leaderPosition), 0.3, 0.3, 0, format ["%1 (%2)", _groupId, _unitCount], 1, 0.02, "TahomaB", "center"];
+                    drawLine3D [ASLToAGL (ATLToASL _position), ASLToAGL (ATLToASL _leaderPosition), _colour];
+                };
+            } forEach _groupData;
         };
     } forEach _areas;
 
@@ -86,7 +101,7 @@ private _fnc_drawMap = {
 
     // Patrol areas
     {
-        _x params ["_position", "_area", "_groupCount", "_groupLimit", "_distance", "_side"];
+        _x params ["_position", "_area", "_groupCount", "_groupLimit", "_distance", "_side", "_groupData"];
         private _colour = switch (_side) do {
             case west: { [0.3,0.5,1,1] };
             case east: { [1,0,0,1] };
@@ -102,6 +117,13 @@ private _fnc_drawMap = {
         } else {
             _map drawEllipse [_position, _halfWidth, _halfHeight, _angle, _outlineColour, "#(argb,8,8,3)color(1,1,1,0.1)"];
         };
+
+        // Draw spawned groups
+        {
+            _x params ["_groupId", "_unitCount", "_leaderPosition"];
+            _map drawIcon ["\a3\ui_f\data\map\markers\military\dot_ca.paa", _colour, _leaderPosition, 16, 16, 0, format ["%1 (%2)", _groupId, _unitCount], 1, 0.03, "TahomaB", "right"];
+            _map drawLine [_position, _leaderPosition, _colour];
+        } forEach _groupData;
     } forEach _areas;
 
     // Exclusion zones

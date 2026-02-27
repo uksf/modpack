@@ -9,7 +9,6 @@ GVAR(EHIDArray) = [];
 GVAR(trackedProjectiles) = [];
 GVAR(ammoTypeCache) = createHashMap;
 GVAR(ammoNameCache) = createHashMap;
-GVAR(ammoIconCache) = createHashMap;
 GVAR(debugProviders) = createHashMap;
 GVAR(debugData) = createHashMap;
 GVAR(debugActiveToggles) = createHashMap;

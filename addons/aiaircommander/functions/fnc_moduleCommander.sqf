@@ -15,6 +15,9 @@
 
 if (!isServer) exitWith {};
 
+GVAR(enabled) = true;
+publicVariable QGVAR(enabled);
+
 [{
     [{
         params ["_args", "_idPFH"];
