@@ -2,7 +2,7 @@
 #define COMPONENT_BEAUTIFIED AI Ground Commander
 #include "\u\uksf\addons\main\script_mod.hpp"
 
-#define DEBUG_MODE_FULL
+// #define DEBUG_MODE_FULL
 // #define DISABLE_COMPILE_CACHE
 // #define CBA_DEBUG_SYNCHRONOUS
 
