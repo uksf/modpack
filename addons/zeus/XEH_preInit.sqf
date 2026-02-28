@@ -9,7 +9,9 @@ GVAR(EHIDArray) = [];
 GVAR(trackedProjectiles) = [];
 GVAR(ammoTypeCache) = createHashMap;
 GVAR(ammoNameCache) = createHashMap;
-GVAR(debugProviders) = createHashMap;
+GVAR(debugActions) = createHashMap;
+GVAR(debugServerGetters) = createHashMap;
+GVAR(debugDraws) = createHashMap;
 GVAR(debugData) = createHashMap;
 GVAR(debugActiveToggles) = createHashMap;
 GVAR(debugDistanceLimited) = false;
@@ -22,13 +24,27 @@ GVAR(debugClientSources) = createHashMap;
 GVAR(debugClientData) = createHashMap;
 GVAR(debugClientSourcePFHs) = createHashMap;
 GVAR(debugActiveClientSources) = createHashMap;
+GVAR(debugLastGetterRun) = createHashMap;
+GVAR(debugLastSentData) = createHashMap;
+GVAR(debugLastSentKeys) = createHashMap;
 GVAR(debugKill) = false;
 
-[QGVAR(registerDebugProvider), {
-    params ["_key", "_menuName", ["_menuPriority", 0], ["_fnc_menuCondition", {true}], ["_fnc_serverGetter", {}],
-            ["_clientDataKey", ""], ["_fnc_draw3d", {}], ["_fnc_drawMap", {}], ["_fnc_drawHud", {}]];
-    TRACE_2("registerDebugProvider",_key,_menuName);
-    GVAR(debugProviders) set [_key, [_menuName, _menuPriority, _fnc_menuCondition, _fnc_serverGetter, _clientDataKey, _fnc_draw3d, _fnc_drawMap, _fnc_drawHud]];
+[QGVAR(registerDebugAction), {
+    params ["_key", "_menuName", ["_menuPriority", 0], ["_fnc_menuCondition", {true}]];
+    TRACE_2("registerDebugAction",_key,_menuName);
+    GVAR(debugActions) set [_key, [_menuName, _menuPriority, _fnc_menuCondition]];
+}] call CBA_fnc_addEventHandler;
+
+[QGVAR(registerDebugServerGetter), {
+    params ["_key", "_fnc_serverGetter", ["_getterInterval", 5], ["_clientDataKey", ""]];
+    TRACE_2("registerDebugServerGetter",_key,_getterInterval);
+    GVAR(debugServerGetters) set [_key, [_fnc_serverGetter, _getterInterval, _clientDataKey]];
+}] call CBA_fnc_addEventHandler;
+
+[QGVAR(registerDebugDraw), {
+    params ["_key", ["_fnc_draw3d", {}], ["_fnc_drawMap", {}], ["_fnc_drawHud", {}]];
+    TRACE_1("registerDebugDraw",_key);
+    GVAR(debugDraws) set [_key, [_fnc_draw3d, _fnc_drawMap, _fnc_drawHud]];
 }] call CBA_fnc_addEventHandler;
 
 [QGVAR(registerDebugClientSource), {
@@ -105,9 +121,9 @@ if (hasInterface) then {
         // Check provider conditions and auto-disable any that are no longer valid
         private _invalidKeys = [];
         {
-            private _provider = GVAR(debugProviders) getOrDefault [_x, []];
-            if (_provider isEqualTo []) then { continue };
-            _provider params ["", "", "_fnc_menuCondition"];
+            private _action = GVAR(debugActions) getOrDefault [_x, []];
+            if (_action isEqualTo []) then { continue };
+            _action params ["", "", "_fnc_menuCondition"];
             if !(call _fnc_menuCondition) then {
                 _invalidKeys pushBack _x;
             };
