@@ -16,10 +16,7 @@
 
 params ["", "_idPFH"];
 
-if (GVAR(debugKill)) exitWith {
-    [_idPFH] call CBA_fnc_removePerFrameHandler;
-    GVAR(debugStreamPFH) = -1;
-};
+if (GVAR(debugKill)) exitWith {};
 
 // Clean disconnected clients
 GVAR(debugStreamClients) = GVAR(debugStreamClients) select {!isNull (_x#0)};
@@ -63,8 +60,12 @@ private _collectedData = createHashMap;
     private _clientData = createHashMap;
     {
         private _data = _collectedData getOrDefault [_x, []];
-        _clientData set [_x, _data];
+        if (_data isNotEqualTo []) then {
+            _clientData set [_x, _data];
+        };
     } forEach _keys;
 
-    [QGVAR(debugStreamData), [_clientData], _player] call CBA_fnc_targetEvent;
+    if (count _clientData > 0) then {
+        [QGVAR(debugStreamData), [_clientData], _player] call CBA_fnc_targetEvent;
+    };
 } forEach GVAR(debugStreamClients);

@@ -19,16 +19,7 @@ private _cameraPosition = positionCameraToWorld [0,0,0];
 private _maxDistance = if (GVAR(debugDistanceLimited)) then {5000} else {100000};
 private _hudIndex = 0;
 
-// Sort active toggles by provider priority for deterministic HUD ordering
-private _activeKeys = keys GVAR(debugActiveToggles);
-_activeKeys sort true;
-_activeKeys = _activeKeys apply {
-    private _provider = GVAR(debugProviders) getOrDefault [_x, []];
-    private _priority = if (_provider isEqualTo []) then {0} else {_provider#1};
-    [_priority, _x]
-};
-_activeKeys sort false;
-_activeKeys = _activeKeys apply {_x#1};
+private _activeKeys = call FUNC(debugGetSortedActiveKeys);
 
 {
     private _providerKey = _x;

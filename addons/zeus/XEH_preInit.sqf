@@ -16,7 +16,7 @@ GVAR(debugDistanceLimited) = false;
 GVAR(debugStreamClients) = [];
 GVAR(debugStreamPFH) = -1;
 GVAR(debugHudControls) = [];
-GVAR(debugMapDrawID) = 999;
+GVAR(debugMapDrawID) = -1;
 GVAR(debugPFH) = -1;
 GVAR(debugClientSources) = createHashMap;
 GVAR(debugClientData) = createHashMap;
@@ -40,6 +40,7 @@ if (isServer) then {
     [QGVAR(debugStreamToggle), {call FUNC(debugStreamToggle)}] call CBA_fnc_addEventHandler;
 
     [QGVAR(debugClientReport), {
+        if (GVAR(debugKill)) exitWith {};
         params ["_sourceKey", "_player", "_data"];
         private _sourceData = GVAR(debugClientData) getOrDefault [_sourceKey, createHashMap];
         _sourceData set [getPlayerUID _player, [_player, _data, CBA_missionTime]];

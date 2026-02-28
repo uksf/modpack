@@ -35,7 +35,6 @@ private _fnc_draw3d = {
 private _fnc_drawMap = {
     params ["_data", "_map"];
 
-    GVAR(trackedProjectiles) = GVAR(trackedProjectiles) select {!isNull (_x#0)};
     {
         _x params ["_projectile", "_ammo", "_sideColor"];
         private _name = GVAR(ammoNameCache) getOrDefault [_ammo, _ammo];
