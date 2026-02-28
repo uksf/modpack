@@ -25,6 +25,7 @@
 
 # Shared objects (inc. Windows DLLs)
 *.dll
+!uksf_x64.dll
 *.so
 *.so.*
 *.dylib
