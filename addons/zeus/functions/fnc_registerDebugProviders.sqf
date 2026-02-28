@@ -18,7 +18,6 @@ private _key = QGVAR(projectiles);
 private _menuName = "Projectiles";
 private _menuPriority = -10;
 private _fnc_menuCondition = {true};
-private _fnc_serverGetter = {};
 
 private _fnc_draw3d = {
     params ["_data", "_cameraPosition", "_maxDistance"];
@@ -42,9 +41,8 @@ private _fnc_drawMap = {
     } forEach GVAR(trackedProjectiles);
 };
 
-[QGVAR(registerDebugProvider), [
-    _key, _menuName, _menuPriority, _fnc_menuCondition, _fnc_serverGetter, "", _fnc_draw3d, _fnc_drawMap
-]] call CBA_fnc_localEvent;
+[QGVAR(registerDebugAction), [_key, _menuName, _menuPriority, _fnc_menuCondition]] call CBA_fnc_localEvent;
+[QGVAR(registerDebugDraw), [_key, _fnc_draw3d, _fnc_drawMap]] call CBA_fnc_localEvent;
 
 // FPS client data source — each player reports their FPS when active
 [QGVAR(registerDebugClientSource), [
@@ -60,7 +58,7 @@ _menuPriority = -5;
 _fnc_menuCondition = {isMultiplayer};
 private _clientDataKey = QGVAR(fpsData);
 
-_fnc_serverGetter = {
+private _fnc_serverGetter = {
     private _sourceData = GVAR(debugClientData) getOrDefault [QGVAR(fpsData), createHashMap];
     private _players = [];
     {
@@ -119,6 +117,6 @@ _fnc_drawMap = {
     } forEach _data;
 };
 
-[QGVAR(registerDebugProvider), [
-    _key, _menuName, _menuPriority, _fnc_menuCondition, _fnc_serverGetter, _clientDataKey, _fnc_draw3d, _fnc_drawMap
-]] call CBA_fnc_localEvent;
+[QGVAR(registerDebugAction), [_key, _menuName, _menuPriority, _fnc_menuCondition]] call CBA_fnc_localEvent;
+[QGVAR(registerDebugServerGetter), [_key, _fnc_serverGetter, 1, _clientDataKey]] call CBA_fnc_localEvent;
+[QGVAR(registerDebugDraw), [_key, _fnc_draw3d, _fnc_drawMap]] call CBA_fnc_localEvent;
