@@ -66,3 +66,19 @@ pub fn fire_callback(function: &str, data: &str) {
         callback(name.as_ptr(), func.as_ptr(), data.as_ptr());
     }
 }
+
+/// Called by Windows when DLL is loaded/unloaded
+#[unsafe(no_mangle)]
+pub unsafe extern "system" fn DllMain(
+    _module: *mut std::ffi::c_void,
+    reason: u32,
+    _reserved: *mut std::ffi::c_void,
+) -> i32 {
+    const DLL_PROCESS_DETACH: u32 = 0;
+
+    if reason == DLL_PROCESS_DETACH {
+        crate::bridge::handle_command("stop");
+    }
+
+    1 // TRUE
+}
