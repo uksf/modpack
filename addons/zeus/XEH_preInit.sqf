@@ -65,12 +65,12 @@ if (isServer) then {
 };
 
 ["All", "Fired", {
-    params ["_unit", "_weapon", "", "", "_ammo", "", "_projectile"];
+    params ["_unit", "_weapon", "", "_magazine", "_ammo", "", "_projectile"];
     TRACE_3("Fired EH",_unit,_ammo,_projectile);
 
     if !(GVAR(debugActiveToggles) getOrDefault [QGVAR(projectiles), false]) exitWith {};
 
-    private _isHeavy = [_ammo, _weapon] call FUNC(isHeavyProjectile);
+    private _isHeavy = [_ammo, _weapon, _magazine] call FUNC(isHeavyProjectile);
     TRACE_2("ammo classification",_isHeavy,_ammo);
     if !(_isHeavy) exitWith {};
 

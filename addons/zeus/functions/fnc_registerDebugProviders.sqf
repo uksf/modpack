@@ -86,8 +86,14 @@ _fnc_draw3d = {
         private _playerObject = objectFromNetId _playerNetId;
         if (isNull _playerObject) then { continue };
 
-        private _position = ASLToAGL (getPosASLVisual (vehicle _playerObject));
-        if (_cameraPosition distance _position > 500) then { continue };
+        private _vehicle = vehicle _playerObject;
+        private _position = ASLToAGL (getPosASLVisual _vehicle);
+        if (_cameraPosition distance _position > 1000) then { continue };
+
+        if (_vehicle isNotEqualTo _playerObject) then {
+            private _boundingBox = boundingBoxReal _vehicle;
+            _position = _position vectorAdd [0, 0, (_boundingBox#1#2) + 0.5];
+        };
 
         private _colour = [1,1,1,1];
         private _size = 0.025;
@@ -95,7 +101,7 @@ _fnc_draw3d = {
             _colour = [1,0,0,1];
             _size = 0.035;
         };
-        drawIcon3D ["", _colour, _position, 1, 2, 0, format ["%1 FPS", _fps], 1, _size, "TahomaB", "center"];
+        drawIcon3D ["", _colour, _position, 1, 2.25, 0, format ["%1 FPS", _fps], 1, _size, "TahomaB", "center"];
 
         if (_unconsciousText isNotEqualTo "") then {
             drawIcon3D ["", [1,0,0,1], _position, 1, -2.5, 0, _unconsciousText, 1, 0.025, "TahomaB", "center"];

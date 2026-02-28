@@ -10,11 +10,12 @@
     Parameter(s):
         0: Ammo classname <STRING>
         1: Weapon classname <STRING>
+        2: Magazine classname <STRING>
 
     Return Value:
         Is heavy projectile <BOOL>
 */
-params ["_ammo", "_weapon"];
+params ["_ammo", "_weapon", "_magazine"];
 
 private _cached = GVAR(ammoTypeCache) getOrDefault [_ammo, -1];
 if (_cached != -1) exitWith {
@@ -30,7 +31,7 @@ private _isHeavy = _ammo isKindOf ["MissileBase", EGVAR(common,configAmmo)]
 GVAR(ammoTypeCache) set [_ammo, parseNumber _isHeavy];
 
 if (_isHeavy) then {
-    private _name = [getText (EGVAR(common,configAmmo) >> _ammo >> "displayName"), getText (EGVAR(common,configWeapons) >> _weapon >> "displayName"), _ammo] select {_x isNotEqualTo ""} select 0;
+    private _name = [getText (EGVAR(common,configAmmo) >> _ammo >> "displayName"), getText (EGVAR(common,configMagazines) >> _magazine >> "displayName"), getText (EGVAR(common,configWeapons) >> _weapon >> "displayName"), _ammo] select {_x isNotEqualTo ""} select 0;
     GVAR(ammoNameCache) set [_ammo, _name];
     TRACE_2("heavy projectile classified",_ammo,_name);
 };
