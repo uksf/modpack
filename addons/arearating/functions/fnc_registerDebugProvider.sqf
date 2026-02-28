@@ -120,6 +120,6 @@ private _fnc_drawHud = {
     _hudControl ctrlSetStructuredText parseText format ["<t align='center' shadow='1' font='TahomaB'><t color='#aaaaaa'>Area Rating</t> <t color='%1'>%2%3 %4 (%5/%6->%7)</t></t>", _colourHex, _percentageCurrent, "%", _trend, _globalCurrent, _globalMin, _globalMax];
 };
 
-[QEGVAR(zeus,registerDebugProvider), [
-    _key, _menuName, _menuPriority, _fnc_menuCondition, _fnc_serverGetter, "", _fnc_draw3d, _fnc_drawMap, _fnc_drawHud
-]] call CBA_fnc_localEvent;
+[QEGVAR(zeus,registerDebugAction), [_key, _menuName, _menuPriority, _fnc_menuCondition]] call CBA_fnc_localEvent;
+[QEGVAR(zeus,registerDebugServerGetter), [_key, _fnc_serverGetter]] call CBA_fnc_localEvent;
+[QEGVAR(zeus,registerDebugDraw), [_key, _fnc_draw3d, _fnc_drawMap, _fnc_drawHud]] call CBA_fnc_localEvent;
