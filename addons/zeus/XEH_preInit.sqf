@@ -62,6 +62,13 @@ if (isServer) then {
         _sourceData set [getPlayerUID _player, [_player, _data, CBA_missionTime]];
         GVAR(debugClientData) set [_sourceKey, _sourceData];
     }] call CBA_fnc_addEventHandler;
+
+    [QGVAR(debugRequestActiveClientSources), {
+        params ["_player"];
+        private _activeSources = keys GVAR(debugActiveClientSources);
+        if (_activeSources isEqualTo []) exitWith {};
+        [QGVAR(debugActiveClientSourcesResponse), [_activeSources], _player] call CBA_fnc_targetEvent;
+    }] call CBA_fnc_addEventHandler;
 };
 
 ["All", "Fired", {
@@ -171,6 +178,18 @@ if (hasInterface) then {
             call _fnc_onStop;
         };
     }] call CBA_fnc_addEventHandler;
+
+    // Request active client sources from server on join
+    [QGVAR(debugActiveClientSourcesResponse), {
+        params ["_activeSources"];
+        {
+            if (GVAR(debugClientSourcePFHs) getOrDefault [_x, -1] == -1) then {
+                [QGVAR(debugStartClientSource), [_x]] call CBA_fnc_localEvent;
+            };
+        } forEach _activeSources;
+    }] call CBA_fnc_addEventHandler;
+
+    [QGVAR(debugRequestActiveClientSources), [player]] call CBA_fnc_serverEvent;
 };
 
 ADDON = true;
