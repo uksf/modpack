@@ -16,8 +16,8 @@
 private _activeKeys = keys GVAR(debugActiveToggles);
 _activeKeys sort true;
 _activeKeys = _activeKeys apply {
-    private _provider = GVAR(debugProviders) getOrDefault [_x, []];
-    private _priority = if (_provider isEqualTo []) then {0} else {_provider#1};
+    private _action = GVAR(debugActions) getOrDefault [_x, []];
+    private _priority = if (_action isEqualTo []) then {0} else {_action#1};
     [_priority, _x]
 };
 _activeKeys sort false;
