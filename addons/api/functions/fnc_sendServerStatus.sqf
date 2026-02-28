@@ -1,0 +1,28 @@
+#include "script_component.hpp"
+/*
+    Author:
+        Tim Beswick
+
+    Description:
+        Sends current server status to the API. Called periodically.
+
+    Parameters:
+        None
+
+    Return Value:
+        None
+*/
+
+private _playerCount = count ALL_PLAYERS;
+private _data = createHashMapFromArray [
+    ["map", worldName],
+    ["mission", missionName],
+    ["playerCount", _playerCount],
+    ["uptime", time]
+];
+
+if (isServer) then {
+    _data set ["fps", diag_fps];
+};
+
+["server_status", _data] call FUNC(sendEvent);
