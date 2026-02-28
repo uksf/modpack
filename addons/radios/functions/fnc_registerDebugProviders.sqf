@@ -20,8 +20,16 @@
 private _sourceKey = QGVAR(signalData);
 private _fnc_clientGetter = {
     if (GVAR(debugConnectionData) isEqualTo createHashMap) exitWith {[]};
-    private _result = +GVAR(debugConnectionData);
+    private _connectionData = GVAR(debugConnectionData);
     GVAR(debugConnectionData) = createHashMap;
+    // Convert hashmap to flat array for network serialization (hashmaps over network are unreliable)
+    private _result = [];
+    {
+        private _value = _connectionData get _x;
+        if (_value isEqualType []) then {
+            _result pushBack ([_x] + _value);
+        };
+    } forEach keys _connectionData;
     _result
 };
 private _interval = 4;
@@ -45,27 +53,34 @@ private _clientDataKey = QGVAR(signalData);
 private _fnc_serverGetter = {
     private _rebroNetIds = GVAR(rebroStations) select {alive _x} apply {netId _x};
 
-    // Build UID → player netId lookup
+    // Client data is stored as { receiverUID: [playerObj, connectionArray, timestamp] }
+    // connectionArray entries are [transmitterUID, displayPower, rebroNetId, rebroReceivePower, rebroTransmitPower]
     private _sourceData = EGVAR(zeus,debugClientData) getOrDefault [QGVAR(signalData), createHashMap];
+
+    // Build UID → player netId lookup
     private _uidToNetId = createHashMap;
     {
         private _entry = _sourceData get _x;
-        _entry params ["_player"];
+        if (!(_entry isEqualType []) || {count _entry < 1}) then { continue };
+        private _player = _entry select 0;
+        if (isNull _player) then { continue };
         _uidToNetId set [_x, netId _player];
     } forEach keys _sourceData;
 
     // Collect rebro-relayed connections
     private _connections = [];
     {
-        private _receiverUid = _x;
-        private _entry = _sourceData get _receiverUid;
-        _entry params ["_receiver", "_connectionData"];
+        private _entry = _sourceData get _x;
+        if (!(_entry isEqualType []) || {count _entry < 2}) then { continue };
+        private _receiver = _entry select 0;
+        private _connectionArray = _entry select 1;
+        if (isNull _receiver || {!(_connectionArray isEqualType [])}) then { continue };
 
         {
-            private _connection = _connectionData get _x;
-            _connection params ["_displayPower", "_rebroNetId", "_rebroReceivePower", "_rebroTransmitPower"];
+            if (!(_x isEqualType []) || {count _x < 3}) then { continue };
+            _x params ["_transmitterUid", "_displayPower", ["_rebroNetId", ""], ["_rebroReceivePower", 0], ["_rebroTransmitPower", 0]];
             if (_rebroNetId != "") then {
-                private _transmitterNetId = _uidToNetId getOrDefault [_x, ""];
+                private _transmitterNetId = _uidToNetId getOrDefault [_transmitterUid, ""];
                 if (_transmitterNetId != "") then {
                     _connections pushBack [
                         _transmitterNetId,
@@ -77,7 +92,7 @@ private _fnc_serverGetter = {
                     ];
                 };
             };
-        } forEach keys _connectionData;
+        } forEach _connectionArray;
     } forEach keys _sourceData;
 
     [_rebroNetIds, _connections]
@@ -179,7 +194,9 @@ _fnc_serverGetter = {
     private _sourceData = EGVAR(zeus,debugClientData) getOrDefault [QGVAR(signalData), createHashMap];
     {
         private _entry = _sourceData get _x;
-        _entry params ["_player"];
+        if (!(_entry isEqualType []) || {count _entry < 1}) then { continue };
+        private _player = _entry select 0;
+        if (isNull _player) then { continue };
         _uidToIndex set [_x, count _players];
         _players pushBack (netId _player);
     } forEach keys _sourceData;
@@ -187,19 +204,22 @@ _fnc_serverGetter = {
     private _links = [];
     {
         private _entry = _sourceData get _x;
-        _entry params ["", "_connectionData"];
-        private _fromIndex = _uidToIndex get _x;
+        if (!(_entry isEqualType []) || {count _entry < 2}) then { continue };
+        private _connectionArray = _entry select 1;
+        if (!(_connectionArray isEqualType [])) then { continue };
+        private _fromIndex = _uidToIndex getOrDefault [_x, -1];
+        if (_fromIndex < 0) then { continue };
 
         {
-            private _connection = _connectionData get _x;
-            _connection params ["_displayPower", "_rebroNetId"];
+            if (!(_x isEqualType []) || {count _x < 2}) then { continue };
+            _x params ["_transmitterUid", "_displayPower", ["_rebroNetId", ""]];
             if (_rebroNetId == "") then {
-                private _toIndex = _uidToIndex getOrDefault [_x, -1];
+                private _toIndex = _uidToIndex getOrDefault [_transmitterUid, -1];
                 if (_toIndex >= 0) then {
                     _links pushBack [_fromIndex, _toIndex, _displayPower];
                 };
             };
-        } forEach keys _connectionData;
+        } forEach _connectionArray;
     } forEach keys _sourceData;
 
     [_players, _links]
