@@ -16,13 +16,11 @@
 if (GVAR(eventBuffer) isEqualTo []) exitWith {};
 
 private _uid = getPlayerUID player;
-private _name = profileName;
 
-// Inject uid and name into each event
+// Inject uid into each event
 private _events = GVAR(eventBuffer) apply {
     private _event = +_x;
     _event set ["uid", _uid];
-    _event set ["name", _name];
     _event
 };
 
