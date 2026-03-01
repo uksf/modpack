@@ -13,6 +13,8 @@
     Return Value:
         None
 */
+if (GVAR(killswitch)) exitWith {};
+
 params [["_events", [], [[]]]];
 
 if (_events isEqualTo []) exitWith {};

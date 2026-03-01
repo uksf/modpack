@@ -10,3 +10,17 @@ if (hasInterface) then {
 if (GVAR(enabled)) then {
     call FUNC(startCollection);
 };
+
+// Listen for killswitch changes broadcast from server
+// Note: addPublicVariableEventHandler does not fire on the machine that called publicVariable,
+// so the server must also handle the killswitch via the EachFrame/variable check approach below
+if (hasInterface) then {
+    QGVAR(killswitch) addPublicVariableEventHandler {
+        params ["", "_value"];
+        if (_value) then {
+            call FUNC(stopCollection);
+            GVAR(eventBuffer) = [];
+            INFO("Statistics killswitch activated");
+        };
+    };
+};

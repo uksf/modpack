@@ -13,6 +13,8 @@
     Return Value:
         None
 */
+if (GVAR(killswitch)) exitWith {};
+
 params [["_event", createHashMap, [createHashMap]]];
 
 GVAR(eventBuffer) pushBack _event;

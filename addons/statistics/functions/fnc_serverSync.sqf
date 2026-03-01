@@ -14,6 +14,7 @@
     Return Value:
         None
 */
+if (GVAR(killswitch)) exitWith {};
 if (GVAR(serverBuffer) isEqualTo []) exitWith {};
 
 private _buffer = +GVAR(serverBuffer);

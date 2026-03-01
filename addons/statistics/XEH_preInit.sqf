@@ -16,6 +16,11 @@ if (isServer) then {
     GVAR(serverBuffer) = [];
     GVAR(serverSyncPFH) = -1;
 
+    // Global killswitch — set via debug console to disable all collection and pushing
+    // Usage: uksf_statistics_killswitch = true; publicVariable "uksf_statistics_killswitch";
+    GVAR(killswitch) = false;
+    publicVariable QGVAR(killswitch);
+
     // Handle incoming client reports
     [QGVAR(clientReport), {
         _this call FUNC(handleClientReport);
