@@ -20,6 +20,19 @@ if (isServer) then {
     [QGVAR(clientReport), {
         _this call FUNC(handleClientReport);
     }] call CBA_fnc_addEventHandler;
+
+    // Flush remaining data on mission end
+    addMissionEventHandler ["MPEnded", {
+        call FUNC(serverSync);
+        call FUNC(stopCollection);
+    }];
+};
+
+if (hasInterface) then {
+    addMissionEventHandler ["MPEnded", {
+        call FUNC(clientSync);
+        call FUNC(stopCollection);
+    }];
 };
 
 #include "initSettings.inc.sqf"
