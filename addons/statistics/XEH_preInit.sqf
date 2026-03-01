@@ -12,8 +12,8 @@ GVAR(eventBuffer) = [];
 GVAR(clientSyncPFH) = -1;
 
 if (isServer) then {
-    // Server-side event buffer: { uid: { name: "...", events: [...] } }
-    GVAR(serverBuffer) = createHashMap;
+    // Server-side event buffer: flat array of event hashmaps
+    GVAR(serverBuffer) = [];
     GVAR(serverSyncPFH) = -1;
 
     // Handle incoming client reports

@@ -4,7 +4,7 @@
         Tim Beswick
 
     Description:
-        Server sync tick. Sends all buffered player events to the API
+        Server sync tick. Sends all buffered events to the API
         via the extension, then clears the buffer.
         Runs as a PFH every 60 seconds.
 
@@ -14,10 +14,10 @@
     Return Value:
         None
 */
-if (GVAR(serverBuffer) isEqualTo createHashMap) exitWith {};
+if (GVAR(serverBuffer) isEqualTo []) exitWith {};
 
 private _buffer = +GVAR(serverBuffer);
-GVAR(serverBuffer) = createHashMap;
+GVAR(serverBuffer) = [];
 
 [
     "mission_stats",
