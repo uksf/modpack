@@ -21,19 +21,16 @@ if (isServer) then {
         _this call FUNC(handleClientReport);
     }] call CBA_fnc_addEventHandler;
 
-    // Flush remaining data on mission end
-    // Delay server flush to allow client final syncs to arrive first
-    addMissionEventHandler ["MPEnded", {
-        [{
-            call FUNC(serverSync);
-            call FUNC(stopCollection);
-        }, [], 5] call CBA_fnc_waitAndExecute;
-    }];
-};
+    // Register persistence serializer for graceful shutdown flush
+    [QGVAR(data), {
+        call FUNC(serverSync);
+        call FUNC(stopCollection);
+        [] // Return empty — we send to API, not profileNamespace
+    }] call EFUNC(persistence,registerSerializer);
 
-if (hasInterface) then {
+    // MPEnded fallback for non-persistence-shutdown scenarios (e.g. mission restart)
     addMissionEventHandler ["MPEnded", {
-        call FUNC(clientSync);
+        call FUNC(serverSync);
         call FUNC(stopCollection);
     }];
 };
