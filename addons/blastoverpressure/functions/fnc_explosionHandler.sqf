@@ -94,6 +94,10 @@ if (_shieldedTargets isEqualTo []) exitWith {
     diag_log text format ["[%1] Processing %2 shielded targets", ADDON, count _shieldedTargets];
 #endif
 
+#ifdef DEBUG_MODE_FULL
+    [_positionASL, _indirectHitRange, _effectiveRange, _ammo, count _shieldedTargets, _shieldedTargets] call FUNC(debugDrawBlastRadius);
+#endif
+
 // Queue targets for per-frame processing
 // _processState: [positionASL, ammo, indirectHit, indirectHitRange, effectiveRange, shieldedTargets, currentIndex, phase2Queue, source]
 private _processState = [_positionASL, _ammo, _indirectHit, _indirectHitRange, _effectiveRange, _shieldedTargets, 0, [], _source];
