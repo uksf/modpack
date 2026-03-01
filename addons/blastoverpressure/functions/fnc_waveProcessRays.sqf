@@ -99,7 +99,7 @@ for "_i" from 0 to (_processCount - 1) do {
 
         // Check for nearby units
         private _nearUnits = (ASLToAGL _newPositionASL) nearEntities [
-            ["CAManBase", "Car", "Motorcycle", "Tank", "StaticWeapon"],
+            ["CAManBase", "Car", "Motorcycle", "Tank", "StaticWeapon", "Air", "Ship"],
             HIT_PROXIMITY
         ];
 
@@ -147,9 +147,11 @@ _raysToRemove sort false;
 } forEach _raysToRemove;
 
 // Rotate processed rays to back of queue for round-robin processing
-if (count _rays > RAYS_PER_FRAME) then {
-    private _processed = _rays select [0, _processCount];
-    _rays deleteRange [0, _processCount];
+private _remainingCount = count _rays;
+if (_remainingCount > RAYS_PER_FRAME) then {
+    private _rotateCount = _processCount min _remainingCount;
+    private _processed = _rays select [0, _rotateCount];
+    _rays deleteRange [0, _rotateCount];
     _rays append _processed;
 };
 

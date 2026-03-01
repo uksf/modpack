@@ -88,7 +88,24 @@ if (_target isKindOf "CAManBase") then {
     {
         if (alive _x && {local _x}) then {
             private _crewDamage = _rawDamage * _crewDamageMultiplier;
-            [_x, _crewDamage, _source] call FUNC(applyDamage);
+            private _normalisedCrewDamage = (_crewDamage / 50) min 1;
+
+            if (_normalisedCrewDamage <= 0.01) then { continue };
+            if !(isDamageAllowed _x) then { continue };
+            if !(_x getVariable ["ace_medical_allowDamage", true]) then { continue };
+
+            if !(isNil "ace_medical_fnc_addDamageToUnit") then {
+                [_x, _normalisedCrewDamage, "body", "explosive_overpressure", _source] call ace_medical_fnc_addDamageToUnit;
+            } else {
+                _x setDamage ((damage _x) + _normalisedCrewDamage);
+            };
+
+            #ifdef DEBUG_MODE_FULL
+                diag_log text format [
+                    "[%1] Applied crew damage to %2: normalised=%3 raw=%4 vehicle=%5",
+                    ADDON, _x, _normalisedCrewDamage, _crewDamage, _target
+                ];
+            #endif
         };
     } forEach crew _target;
 };

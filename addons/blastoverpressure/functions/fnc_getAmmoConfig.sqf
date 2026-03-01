@@ -20,9 +20,9 @@ if (_cached isNotEqualTo []) exitWith { _cached };
 
 private _ammoConfig = configFile >> "CfgAmmo" >> _ammo;
 
-// Check per-ammo blacklist
-private _isEnabled = getNumber (_ammoConfig >> QGVAR(enabled));
-if (_isEnabled isEqualTo 0) exitWith {
+// Check per-ammo blacklist — only disable if property explicitly exists and is set to 0
+// getNumber returns 0 for missing properties, so we must check isNumber first
+if (isNumber (_ammoConfig >> QGVAR(enabled)) && {getNumber (_ammoConfig >> QGVAR(enabled)) isEqualTo 0}) exitWith {
     private _result = [0, 0, 0, 0, false];
     GVAR(ammoConfigCache) set [_ammo, _result];
     _result
