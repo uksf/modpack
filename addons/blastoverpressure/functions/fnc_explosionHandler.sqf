@@ -98,7 +98,11 @@ if (_shieldedTargets isEqualTo []) exitWith {
     [_positionASL, _indirectHitRange, _effectiveRange, _ammo, count _shieldedTargets, _shieldedTargets] call FUNC(debugDrawBlastRadius);
 #endif
 
-// Queue targets for per-frame processing
-// _processState: [positionASL, ammo, indirectHit, indirectHitRange, effectiveRange, shieldedTargets, currentIndex, phase2Queue, source]
-private _processState = [_positionASL, _ammo, _indirectHit, _indirectHitRange, _effectiveRange, _shieldedTargets, 0, [], _source];
-[FUNC(processTargets), 0, _processState] call CBA_fnc_addPerFrameHandler;
+if (GVAR(mode) isEqualTo "pressure_wave") then {
+    // Pressure wave PoC mode — ray-marched simulation
+    [_positionASL, _ammo, _indirectHit, _indirectHitRange, _effectiveRange, _source] call FUNC(waveSimulation);
+} else {
+    // Path trace mode (default) — per-frame target processing
+    private _processState = [_positionASL, _ammo, _indirectHit, _indirectHitRange, _effectiveRange, _shieldedTargets, 0, [], _source];
+    [FUNC(processTargets), 0, _processState] call CBA_fnc_addPerFrameHandler;
+};
