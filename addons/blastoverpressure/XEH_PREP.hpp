@@ -1,6 +1,8 @@
 PREP(explosionHandler);
 PREP(processTargets);
+PREP(processPhase2);
 PREP(traceOverhead);
+PREP(traceSurfaceBounce);
 PREP(calculateDamage);
 PREP(applyDamage);
 PREP(debugDraw);
