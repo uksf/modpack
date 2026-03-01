@@ -5,6 +5,7 @@ PREP(anyNearPlayers);
 PREP(arrayAny);
 PREP(arrayNone);
 PREP(configExport);
+PREP(configExportExtension);
 PREP(convertToArray);
 PREP(createDiorama);
 PREP(debugClearSpheres);
