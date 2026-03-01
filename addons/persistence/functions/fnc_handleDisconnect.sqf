@@ -62,6 +62,7 @@ private _data = [
 TRACE_1("Player disconnect",_data);
 
 GVAR(dataNamespace) setVariable [_uid, _data];
+GVAR(playerUids) pushBackUnique _uid;
 
 if (GVAR(dataSaved)) then {
     GVAR(disconnectedPlayerPositions) set [_uid, getPos _unit];
