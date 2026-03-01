@@ -23,11 +23,13 @@ pub unsafe extern "C" fn RVExtensionRegisterCallback(callback: CallbackFn) {
 /// Called by Arma to get the extension version
 #[unsafe(no_mangle)]
 pub unsafe extern "C" fn RVExtensionVersion(output: *mut c_char, output_size: c_int) {
-    let version = concat!(env!("CARGO_PKG_VERSION"), "\0");
+    let version = env!("CARGO_PKG_VERSION");
     let bytes = version.as_bytes();
-    let len = bytes.len().min(output_size as usize);
+    let max_len = (output_size as usize).saturating_sub(1);
+    let len = bytes.len().min(max_len);
     unsafe {
         std::ptr::copy_nonoverlapping(bytes.as_ptr(), output as *mut u8, len);
+        *output.add(len) = 0;
     }
 }
 
@@ -58,9 +60,9 @@ pub fn fire_callback(function: &str, data: &str) {
     let Ok(cb_guard) = CALLBACK.lock() else { return };
     let Some(callback) = *cb_guard else { return };
 
-    let name = std::ffi::CString::new("uksf").unwrap();
-    let func = std::ffi::CString::new(function).unwrap();
-    let data = std::ffi::CString::new(data).unwrap();
+    let Ok(name) = std::ffi::CString::new("uksf") else { return };
+    let Ok(func) = std::ffi::CString::new(function) else { return };
+    let Ok(data) = std::ffi::CString::new(data) else { return };
 
     unsafe {
         callback(name.as_ptr(), func.as_ptr(), data.as_ptr());
@@ -76,7 +78,9 @@ pub unsafe extern "system" fn DllMain(
 ) -> i32 {
     const DLL_PROCESS_DETACH: u32 = 0;
 
-    if reason == DLL_PROCESS_DETACH {
+    if reason == DLL_PROCESS_DETACH && _reserved.is_null() {
+        // FreeLibrary case only — safe to clean up
+        // On process termination (_reserved non-null), OS reclaims all resources
         crate::bridge::handle_command("stop");
     }
 

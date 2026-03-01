@@ -18,6 +18,7 @@ pub fn start() {
 
         for json in receiver {
             let result = ureq::post(&url)
+                .timeout(std::time::Duration::from_secs(5))
                 .set("Content-Type", "application/json")
                 .send_string(&json);
 

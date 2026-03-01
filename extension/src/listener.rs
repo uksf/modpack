@@ -1,9 +1,12 @@
+use std::io::Read;
 use std::sync::atomic::{AtomicBool, Ordering};
-use std::thread;
+use std::sync::Mutex;
+use std::thread::{self, JoinHandle};
 
 use crate::ffi;
 
 static SHOULD_STOP: AtomicBool = AtomicBool::new(false);
+static THREAD_HANDLE: Mutex<Option<JoinHandle<()>>> = Mutex::new(None);
 
 pub fn start(port: u16) -> Result<(), String> {
     let address = format!("127.0.0.1:{port}");
@@ -12,15 +15,14 @@ pub fn start(port: u16) -> Result<(), String> {
 
     SHOULD_STOP.store(false, Ordering::SeqCst);
 
-    thread::spawn(move || {
+    let handle = thread::spawn(move || {
         while !SHOULD_STOP.load(Ordering::SeqCst) {
             let mut request = match server.recv_timeout(std::time::Duration::from_secs(1)) {
                 Ok(Some(request)) => request,
-                Ok(None) => continue, // Timeout, check should_stop
-                Err(_) => break,      // Server shut down
+                Ok(None) => continue,
+                Err(_) => break,
             };
 
-            // Only accept POST /command
             if request.method() != &tiny_http::Method::Post
                 || request.url() != "/command"
             {
@@ -30,7 +32,6 @@ pub fn start(port: u16) -> Result<(), String> {
                 continue;
             }
 
-            // Reject non-localhost connections
             let peer = request.remote_addr().map(|address| address.ip());
             let is_localhost = matches!(
                 peer,
@@ -47,8 +48,16 @@ pub fn start(port: u16) -> Result<(), String> {
                 continue;
             }
 
+            // Reject oversized bodies (max 64KB)
+            if request.body_length().is_some_and(|len| len > 65536) {
+                let response = tiny_http::Response::from_string("payload too large")
+                    .with_status_code(413);
+                let _ = request.respond(response);
+                continue;
+            }
+
             let mut body = String::new();
-            if request.as_reader().read_to_string(&mut body).is_ok() {
+            if request.as_reader().take(65536).read_to_string(&mut body).is_ok() {
                 ffi::fire_callback("command", &body);
             }
 
@@ -57,11 +66,22 @@ pub fn start(port: u16) -> Result<(), String> {
         }
     });
 
+    if let Ok(mut th) = THREAD_HANDLE.lock() {
+        *th = Some(handle);
+    }
+
     Ok(())
 }
 
 pub fn stop() {
     SHOULD_STOP.store(true, Ordering::SeqCst);
+
+    // Wait for the listener thread to finish (up to 2 seconds)
+    if let Ok(mut th) = THREAD_HANDLE.lock() {
+        if let Some(handle) = th.take() {
+            let _ = handle.join();
+        }
+    }
 }
 
 #[cfg(test)]
