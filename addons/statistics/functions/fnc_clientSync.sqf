@@ -16,14 +16,10 @@
 if (GVAR(eventBuffer) isEqualTo []) exitWith {};
 
 private _uid = getPlayerUID player;
+private _events = GVAR(eventBuffer);
+GVAR(eventBuffer) = [];
 
 // Inject uid into each event
-private _events = GVAR(eventBuffer) apply {
-    private _event = +_x;
-    _event set ["uid", _uid];
-    _event
-};
-
-GVAR(eventBuffer) = [];
+{_x set ["uid", _uid]} forEach _events;
 
 [QGVAR(clientReport), [_events]] call CBA_fnc_serverEvent;

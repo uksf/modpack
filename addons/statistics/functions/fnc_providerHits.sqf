@@ -32,7 +32,8 @@
         if (_targetSide isEqualTo civilian) exitWith {};
 
         private _weapon = _projectile getVariable [QGVAR(weapon), ""];
-        private _distance = _projectileOwner distance _hitEntity;
+        private _shooter = _projectile getVariable [QGVAR(shooter), _projectileOwner];
+        private _distance = if (isNull _shooter) then {0} else {_shooter distance _hitEntity};
 
         private _bodyPart = "torso";
         private _componentsLower = _components apply {toLower _x};
@@ -58,4 +59,5 @@
 
     _projectile setVariable [QGVAR(shooterSide), _side];
     _projectile setVariable [QGVAR(weapon), _weapon];
+    _projectile setVariable [QGVAR(shooter), _unit];
 }] call CBA_fnc_addEventHandler;

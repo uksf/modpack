@@ -15,7 +15,7 @@
     Return Value:
         None
 */
-player addEventHandler ["FiredMan", {
+GVAR(firedManEHId) = player addEventHandler ["FiredMan", {
     params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile", "_vehicle"];
 
     [createHashMapFromArray [

@@ -22,9 +22,12 @@ if (isServer) then {
     }] call CBA_fnc_addEventHandler;
 
     // Flush remaining data on mission end
+    // Delay server flush to allow client final syncs to arrive first
     addMissionEventHandler ["MPEnded", {
-        call FUNC(serverSync);
-        call FUNC(stopCollection);
+        [{
+            call FUNC(serverSync);
+            call FUNC(stopCollection);
+        }, [], 5] call CBA_fnc_waitAndExecute;
     }];
 };
 

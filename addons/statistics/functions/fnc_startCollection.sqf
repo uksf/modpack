@@ -13,6 +13,11 @@
     Return Value:
         None
 */
+// Guard against double-start
+if (GVAR(clientSyncPFH) != -1 || {isServer && {GVAR(serverSyncPFH) != -1}}) exitWith {
+    WARNING("Statistics collection already started");
+};
+
 private _isServer = isServer;
 private _isClient = hasInterface;
 
