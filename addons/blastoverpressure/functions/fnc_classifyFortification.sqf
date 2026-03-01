@@ -44,40 +44,13 @@ if (_className isKindOf ["Wall_F", configFile >> "CfgVehicles"]
     };
 };
 
-// Check explicit class hashmap for objects with overly-broad parents
+// Check explicit class hashmaps for objects with overly-broad parents
+// Hashmaps initialised once in XEH_preInit.sqf
 if !(_result#0) then {
-    // Tier 1 explicit classes
-    private _explicitTier1 = createHashMapFromArray [
-        ["Land_Bunker_F", true],
-        ["Land_Bunker_01_big_F", true],
-        ["Land_Bunker_01_blocks_1_F", true],
-        ["Land_Bunker_01_blocks_3_F", true],
-        ["Land_Bunker_01_HQ_F", true],
-        ["Land_Bunker_01_small_F", true],
-        ["Land_Bunker_01_tall_F", true]
-    ];
-
-    // Tier 2 explicit classes
-    private _explicitTier2 = createHashMapFromArray [
-        ["Land_SandbagBarricade_01_F", true],
-        ["Land_SandbagBarricade_01_half_F", true],
-        ["Land_SandbagBarricade_01_hole_F", true],
-        ["Land_Barricade_01_4m_F", true],
-        ["Land_Barricade_01_10m_F", true],
-        ["Land_CzechHedgehog_01_F", true],
-        ["Land_CzechHedgehog_01_old_F", true],
-        ["Land_CzechHedgehog_01_new_F", true],
-        ["Land_ConcreteHedgehog_01_F", true],
-        ["Land_ConcreteHedgehog_01_half_F", true],
-        ["Land_ConcreteHedgehog_01_palette_F", true],
-        ["ACE_ConcertinaWireCoil", true],
-        ["Land_ConcretePipe_F", true]
-    ];
-
-    if (_className in _explicitTier1) then {
+    if (_className in GVAR(explicitFortificationTier1)) then {
         _result = [true, 1];
     } else {
-        if (_className in _explicitTier2) then {
+        if (_className in GVAR(explicitFortificationTier2)) then {
             _result = [true, 2];
         };
     };

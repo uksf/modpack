@@ -18,16 +18,19 @@
         3: Destruction tier (1 or 2) <NUMBER>
 
     Return Value:
-        None
+        Whether the object was destroyed <BOOLEAN>
 */
 params ["_object", "_damage", "_source", "_tier"];
 
 private _currentDamage = damage _object;
 private _newDamage = (_currentDamage + _damage) min 1;
 
+private _destroyed = false;
+
 if (_tier isEqualTo 1) then {
     // Tier 1: good destruction model — let Arma handle it
     _object setDamage [_newDamage, true, _source];
+    _destroyed = _newDamage >= 1;
 
     #ifdef DEBUG_MODE_FULL
         diag_log text format [
@@ -38,26 +41,13 @@ if (_tier isEqualTo 1) then {
 } else {
     // Tier 2: bad/no destruction model
     if (_newDamage >= 1) then {
-        // Would be destroyed — spawn dust effect and delete
+        // Would be destroyed — spawn dust effect on all clients, then delete
         private _position = getPosATL _object;
 
-        // Spawn dust particle effect at object position
-        private _dustEffect = "#particlesource" createVehicleLocal _position;
-        _dustEffect setParticleParams [
-            ["\A3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 12, 8, 0],
-            "", "Billboard", 1, 3, [0, 0, 0], [0, 0, 1], 1, 1.275, 1, 0,
-            [1, 3, 6], [[0.5, 0.4, 0.3, 0.6], [0.6, 0.5, 0.4, 0.3], [0.7, 0.6, 0.5, 0]],
-            [0, 1], 0.1, 0.05, "", "", _object, 0, false, -1, [[3, 3, 3, 0]]
-        ];
-        _dustEffect setParticleRandom [3, [2, 2, 1], [2, 2, 2], 1, 0.5, [0, 0, 0, 0.1], 0, 0, 360];
-        _dustEffect setDropInterval 0.01;
-
-        // Clean up particle source after brief emission
-        [{
-            deleteVehicle _this;
-        }, _dustEffect, 0.5] call CBA_fnc_waitAndExecute;
+        [QGVAR(fortificationDustEffect), [_position]] call CBA_fnc_globalEvent;
 
         deleteVehicle _object;
+        _destroyed = true;
 
         #ifdef DEBUG_MODE_FULL
             diag_log text format [
@@ -77,3 +67,5 @@ if (_tier isEqualTo 1) then {
         #endif
     };
 };
+
+_destroyed

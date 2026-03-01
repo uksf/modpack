@@ -23,9 +23,9 @@ if !(GVAR(fortificationDestructionEnabled)) exitWith {};
 
 params ["_positionASL", "_indirectHit", "_indirectHitRange", "_effectiveRange", "_source"];
 
-// Collect all objects in effective range
+// Collect static objects in effective range
 private _positionAGL = ASLToAGL _positionASL;
-private _nearbyObjects = _positionAGL nearObjects _effectiveRange;
+private _nearbyObjects = _positionAGL nearObjects ["Static", _effectiveRange];
 
 #ifdef DEBUG_MODE_FULL
     diag_log text format [
@@ -38,9 +38,6 @@ private _nearbyObjects = _positionAGL nearObjects _effectiveRange;
 #endif
 
 {
-    // Skip units and vehicles — handled by the overpressure system
-    if (_x isKindOf "CAManBase" || {_x isKindOf "LandVehicle"} || {_x isKindOf "Air"} || {_x isKindOf "Ship"}) then { continue };
-
     // Skip already destroyed objects
     if !(alive _x) then { continue };
     if (damage _x >= 1) then { continue };
@@ -53,15 +50,16 @@ private _nearbyObjects = _positionAGL nearObjects _effectiveRange;
         continue
     };
 
-    // Classify the object
+    // Classify the object — skip terrain objects with no classname
     private _className = typeOf _x;
+    if (_className isEqualTo "") then { continue };
     private _classification = [_className] call FUNC(classifyFortification);
     _classification params ["_isFortification", "_tier"];
 
     if !(_isFortification) then { continue };
 
     // Calculate distance-based damage
-    private _objectPositionASL = AGLToASL (getPosATL _x);
+    private _objectPositionASL = getPosASL _x;
     private _distance = _positionASL vectorDistance _objectPositionASL;
 
     if (_distance >= _effectiveRange) then { continue };
@@ -76,10 +74,10 @@ private _nearbyObjects = _positionAGL nearObjects _effectiveRange;
     if (_normalisedDamage <= 0.01) then { continue };
 
     // Apply destruction
-    [_x, _normalisedDamage, _source, _tier] call FUNC(destroyFortification);
+    private _destroyed = [_x, _normalisedDamage, _source, _tier] call FUNC(destroyFortification);
 
     #ifdef DEBUG_MODE_FULL
-        if (damage _x >= 1 || {!alive _x}) then {
+        if (_destroyed) then {
             _destroyedCount = _destroyedCount + 1;
         } else {
             _damagedCount = _damagedCount + 1;
