@@ -8,8 +8,7 @@ class CfgPatches {
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             "uksf_common",
-            "uksf_api",
-            "uksf_persistence"
+            "uksf_api"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };

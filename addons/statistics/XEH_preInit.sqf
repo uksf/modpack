@@ -21,14 +21,8 @@ if (isServer) then {
         _this call FUNC(handleClientReport);
     }] call CBA_fnc_addEventHandler;
 
-    // Register persistence serializer for graceful shutdown flush
-    [QGVAR(data), {
-        call FUNC(serverSync);
-        call FUNC(stopCollection);
-        [] // Return empty — we send to API, not profileNamespace
-    }] call EFUNC(persistence,registerSerializer);
-
     // MPEnded fallback for non-persistence-shutdown scenarios (e.g. mission restart)
+    // Graceful shutdown flush is handled via persistence shutdown cycle in fnc_shutdown.sqf
     addMissionEventHandler ["MPEnded", {
         call FUNC(serverSync);
         call FUNC(stopCollection);
