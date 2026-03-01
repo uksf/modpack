@@ -20,26 +20,20 @@ if !(GVAR(enabled)) exitWith {};
 
 private _ammo = typeOf _projectile;
 
-// Check per-ammo blacklist
-if (getNumber (configFile >> "CfgAmmo" >> _ammo >> QGVAR(enabled)) isEqualTo 0) exitWith {};
+private _ammoConfig = [_ammo] call FUNC(getAmmoConfig);
+_ammoConfig params ["_indirectHit", "_indirectHitRange", "_powerScore", "_ammoDamageMultiplier", "_isEnabled"];
 
-// Calculate explosion power score: indirectHit * sqrt(indirectHitRange)
-private _indirectHit = getNumber (configFile >> "CfgAmmo" >> _ammo >> "indirectHit");
-private _indirectHitRange = getNumber (configFile >> "CfgAmmo" >> _ammo >> "indirectHitRange");
-
-if (_indirectHit <= 0 || {_indirectHitRange <= 0}) exitWith {};
-
-private _powerScore = _indirectHit * sqrt _indirectHitRange;
-
+if !(_isEnabled) exitWith {};
 if (_powerScore < GVAR(threshold)) exitWith {};
 
 private _effectiveRange = _indirectHitRange * GVAR(rangeMultiplier);
+private _adjustedIndirectHit = _indirectHit * _ammoDamageMultiplier;
 
 #ifdef DEBUG_MODE_FULL
     private _positionATL = ASLToATL _positionASL;
     diag_log text format [
-        "[%1] Explosion: ammo=%2 indirectHit=%3 indirectHitRange=%4 powerScore=%5 effectiveRange=%6 pos=%7",
-        ADDON, _ammo, _indirectHit, _indirectHitRange, _powerScore, _effectiveRange, _positionATL
+        "[%1] Explosion: ammo=%2 indirectHit=%3 adjustedIndirectHit=%4 indirectHitRange=%5 powerScore=%6 effectiveRange=%7 pos=%8",
+        ADDON, _ammo, _indirectHit, _adjustedIndirectHit, _indirectHitRange, _powerScore, _effectiveRange, _positionATL
     ];
 #endif
 
@@ -100,9 +94,9 @@ if (_shieldedTargets isEqualTo []) exitWith {
 
 if (GVAR(mode) isEqualTo "pressure_wave") then {
     // Pressure wave PoC mode — ray-marched simulation
-    [_positionASL, _ammo, _indirectHit, _indirectHitRange, _effectiveRange, _source] call FUNC(waveSimulation);
+    [_positionASL, _ammo, _adjustedIndirectHit, _indirectHitRange, _effectiveRange, _source] call FUNC(waveSimulation);
 } else {
     // Path trace mode (default) — per-frame target processing
-    private _processState = [_positionASL, _ammo, _indirectHit, _indirectHitRange, _effectiveRange, _shieldedTargets, 0, [], _source];
+    private _processState = [_positionASL, _ammo, _adjustedIndirectHit, _indirectHitRange, _effectiveRange, _shieldedTargets, 0, [], _source];
     [FUNC(processTargets), 0, _processState] call CBA_fnc_addPerFrameHandler;
 };

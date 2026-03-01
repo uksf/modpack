@@ -1,4 +1,5 @@
 PREP(explosionHandler);
+PREP(getAmmoConfig);
 PREP(processTargets);
 PREP(processPhase2);
 PREP(traceOverhead);
