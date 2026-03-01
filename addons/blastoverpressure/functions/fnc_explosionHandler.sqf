@@ -29,6 +29,14 @@ if (_powerScore < GVAR(threshold)) exitWith {};
 private _effectiveRange = _indirectHitRange * GVAR(rangeMultiplier);
 private _adjustedIndirectHit = _indirectHit * _ammoDamageMultiplier;
 
+private _shotParents = getShotParents _projectile;
+private _source = _shotParents select !isNull (_shotParents#1);
+
+// Fortification destruction — fire server event if above fortification threshold
+if (GVAR(fortificationDestructionEnabled) && {_powerScore >= GVAR(fortificationThreshold)}) then {
+    [QGVAR(processFortifications), [_positionASL, _adjustedIndirectHit, _indirectHitRange, _effectiveRange, _source]] call CBA_fnc_serverEvent;
+};
+
 #ifdef DEBUG_MODE_FULL
     private _positionATL = ASLToATL _positionASL;
     diag_log text format [
@@ -45,8 +53,6 @@ private _candidates = (ASLToAGL _positionASL) nearEntities [
 
 // Filter to units that are alive and whose direct LOS to the detonation is blocked
 private _shieldedTargets = [];
-private _shotParents = getShotParents _projectile;
-private _source = _shotParents select !isNull (_shotParents#1);
 
 {
     if !(alive _x) then { continue };
