@@ -31,14 +31,31 @@ if (isMultiplayer) then {
         if (GVAR(key) != "") then {
             GVAR(key) = format [QUOTE(GVAR(key)_%1_%2), worldName, GVAR(key)];
             GVAR(dataSaved) = true;
-            private _hash = profileNamespace getVariable [GVAR(key), []];
-            TRACE_1("Loaded data",_hash);
-            GVAR(dataNamespace) = [_hash] call CBA_fnc_deserializeNamespace;
+
+            if (GVAR(useApiPersistence)) then {
+                INFO("Using API persistence for loading");
+                GVAR(apiLoadComplete) = false;
+                GVAR(dataNamespace) = call CBA_fnc_createNamespace;
+                private _result = "uksf" callExtension ("load:" + GVAR(key));
+                INFO_1("Extension load: %1",_result);
+            } else {
+                private _hash = profileNamespace getVariable [GVAR(key), []];
+                TRACE_1("Loaded data",_hash);
+                GVAR(dataNamespace) = [_hash] call CBA_fnc_deserializeNamespace;
+                GVAR(playerUids) = [];
+                {
+                    if (_x regexMatch "^[0-9]{17}$") then {
+                        GVAR(playerUids) pushBack _x;
+                    };
+                } forEach ([GVAR(dataNamespace)] call CBA_fnc_allVariables);
+            };
         } else {
             GVAR(dataNamespace) = call CBA_fnc_createNamespace;
         };
 
-        call FUNC(initServer);
+        if (!GVAR(useApiPersistence)) then {
+            call FUNC(initServer);
+        };
     };
 };
 
