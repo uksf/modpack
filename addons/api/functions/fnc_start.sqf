@@ -18,6 +18,10 @@ if (hasInterface) exitWith {};
 private _result = "uksf" callExtension "start";
 INFO_1("Extension start: %1",_result);
 
+if (_result == "") exitWith {
+    ERROR("Failed to start API extension - DLL may not be loaded");
+};
+
 addMissionEventHandler ["ExtensionCallback", {
     params ["_name", "_function", "_data"];
     if (_name != "uksf") exitWith {};
@@ -25,28 +29,32 @@ addMissionEventHandler ["ExtensionCallback", {
 }];
 
 addMissionEventHandler ["MPEnded", {
-    ["mission_ended", createHashMapFromArray [
-        ["map", worldName],
-        ["mission", missionName],
-        ["duration", time]
-    ]] call FUNC(sendEvent);
+    if (isServer) then {
+        ["mission_ended", createHashMapFromArray [
+            ["map", worldName],
+            ["mission", missionName],
+            ["duration", time]
+        ]] call FUNC(sendEvent);
+
+        [GVAR(statusPerFrameHandler)] call CBA_fnc_removePerFrameHandler;
+    };
     call FUNC(stop);
 }];
 
-// Send mission started event
-["mission_started", createHashMapFromArray [
-    ["map", worldName],
-    ["mission", missionName]
-]] call FUNC(sendEvent);
-
-// Periodic server status push (every 15 seconds)
-[{
-    call FUNC(sendServerStatus);
-    call FUNC(sendPerformance);
-}, 15, []] call CBA_fnc_addPerFrameHandler;
-
-// Player connect/disconnect events (server only)
 if (isServer) then {
+    // Send mission started event
+    ["mission_started", createHashMapFromArray [
+        ["map", worldName],
+        ["mission", missionName]
+    ]] call FUNC(sendEvent);
+
+    // Periodic server status push (every 15 seconds)
+    GVAR(statusPerFrameHandler) = [{
+        call FUNC(sendServerStatus);
+        call FUNC(sendPerformance);
+    }, 15, []] call CBA_fnc_addPerFrameHandler;
+
+    // Player connect/disconnect events
     addMissionEventHandler ["PlayerConnected", {
         params ["_id", "_uid", "_name", "_jip", "_owner", "_idstr"];
         ["player_connected", createHashMapFromArray [

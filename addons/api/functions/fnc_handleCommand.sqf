@@ -24,13 +24,10 @@ if (_function == "command") then {
         switch (_type) do {
             case "shutdown": {
                 INFO("Received shutdown command from API");
-                if (isServer) then {
-                    private _shutdownFunction = uiNamespace getVariable ["uksf_persistence_fnc_shutdown", {
-                        serverCommand (format ["#shutdown %1", SERVER_COMMAND]);
-                    }];
-                    call _shutdownFunction;
+                if (isServer && {!isNil {EFUNC(persistence,shutdown)}}) then {
+                    call EFUNC(persistence,shutdown);
                 } else {
-                    serverCommand (format ["#shutdown %1", SERVER_COMMAND]);
+                    SERVER_COMMAND serverCommand "#shutdown";
                 };
             };
             default {
