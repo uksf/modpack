@@ -44,6 +44,7 @@ python3 tools/setup.py
 - **Semicolons after closing braces** — `};` not `}` when ending code blocks in SQF
 - **Balanced brackets** — validators check `()`, `[]`, `{}` balance
 - **No BOM** — files must not have byte order marks
+- **No unneeded `!` (not)** — use `isNotEqualTo` instead of `!(... isEqualTo ...)`. HEMTT lints this as `L-S19 Unneeded Not`
 
 ## Architecture
 
