@@ -36,8 +36,6 @@ if (isMultiplayer) then {
                 INFO("Using API persistence for loading");
                 GVAR(apiLoadComplete) = false;
                 GVAR(dataNamespace) = call CBA_fnc_createNamespace;
-                private _result = "uksf" callExtension ("load:" + GVAR(key));
-                INFO_1("Extension load: %1",_result);
             } else {
                 private _hash = profileNamespace getVariable [GVAR(key), []];
                 TRACE_1("Loaded data",_hash);

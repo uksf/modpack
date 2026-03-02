@@ -3,6 +3,9 @@
 [{
     if (isServer) then {
         if (GVAR(useApiPersistence) && {GVAR(dataSaved)}) then {
+            private _result = "uksf" callExtension ("load:" + GVAR(key));
+            INFO_1("Extension load triggered: %1",_result);
+
             INFO("Waiting for API persistence data...");
             [{
                 GVAR(apiLoadComplete)

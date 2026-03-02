@@ -7,14 +7,14 @@ const CHUNK_SIZE: usize = 16000; // ~16KB, safely under Arma's 20KB callback lim
 
 pub fn load(key: &str) {
     let key = key.to_string();
-    let url = format!("{}/api/persistence/{}", config::API_BASE_URL, key);
+    let url = format!("{}/persistence/{}", config::API_BASE_URL, key);
 
     thread::spawn(move || {
         let body = match fetch_persistence_data(&url) {
             Ok(data) => data,
             Err(error) => {
                 log::error!("Failed to load persistence for key '{key}': {error}");
-                let envelope = build_envelope_json(&key, 0, 1, "");
+                let envelope = build_error_envelope_json(&key, &error);
                 ffi::fire_callback("persistence_load", &envelope);
                 return;
             }
@@ -46,20 +46,61 @@ fn chunk_data(data: &str, chunk_size: usize) -> Vec<&str> {
         return vec![""];
     }
 
+    assert!(chunk_size > 0, "chunk_size must be greater than 0");
+
     let mut chunks = Vec::new();
     let mut start = 0;
     while start < data.len() {
-        let end = (start + chunk_size).min(data.len());
+        let mut end = (start + chunk_size).min(data.len());
+        // Ensure we don't split in the middle of a multi-byte UTF-8 character.
+        // Walk back to the nearest char boundary.
+        while end > start && !data.is_char_boundary(end) {
+            end -= 1;
+        }
+        // If chunk_size is smaller than a multi-byte character, advance forward instead
+        if end == start {
+            end = start + 1;
+            while end < data.len() && !data.is_char_boundary(end) {
+                end += 1;
+            }
+        }
         chunks.push(&data[start..end]);
         start = end;
     }
     chunks
 }
 
-fn build_envelope_json(id: &str, index: usize, total: usize, data: &str) -> String {
-    let escaped = data.replace('\\', "\\\\").replace('"', "\\\"");
+fn escape_json_string(input: &str) -> String {
+    let mut escaped = String::with_capacity(input.len() + 16);
+    for character in input.chars() {
+        match character {
+            '\\' => escaped.push_str("\\\\"),
+            '"' => escaped.push_str("\\\""),
+            '\n' => escaped.push_str("\\n"),
+            '\r' => escaped.push_str("\\r"),
+            '\t' => escaped.push_str("\\t"),
+            c if c.is_control() => {
+                escaped.push_str(&format!("\\u{:04x}", c as u32));
+            }
+            c => escaped.push(c),
+        }
+    }
+    escaped
+}
+
+fn build_error_envelope_json(id: &str, error: &str) -> String {
+    let escaped_id = escape_json_string(id);
+    let escaped_error = escape_json_string(error);
     format!(
-        r#"{{"id":"{id}","index":{index},"total":{total},"data":"{escaped}"}}"#
+        r#"{{"id":"{escaped_id}","index":0,"total":0,"data":"","error":"{escaped_error}"}}"#
+    )
+}
+
+fn build_envelope_json(id: &str, index: usize, total: usize, data: &str) -> String {
+    let escaped_id = escape_json_string(id);
+    let escaped_data = escape_json_string(data);
+    format!(
+        r#"{{"id":"{escaped_id}","index":{index},"total":{total},"data":"{escaped_data}"}}"#
     )
 }
 
@@ -111,6 +152,31 @@ mod tests {
     }
 
     #[test]
+    fn test_chunk_data_multibyte_utf8() {
+        // Each emoji is 4 bytes. "🎮🎮🎮" = 12 bytes
+        let data = "🎮🎮🎮";
+        // Chunk at 5 bytes — would land mid-character without boundary check
+        let chunks = chunk_data(data, 5);
+        let reassembled: String = chunks.into_iter().collect();
+        assert_eq!(reassembled, data);
+    }
+
+    #[test]
+    fn test_chunk_data_tiny_chunk_size_with_multibyte() {
+        // 4-byte emoji with chunk_size=1 — must not infinite loop
+        let data = "🎮";
+        let chunks = chunk_data(data, 1);
+        let reassembled: String = chunks.into_iter().collect();
+        assert_eq!(reassembled, data);
+    }
+
+    #[test]
+    #[should_panic(expected = "chunk_size must be greater than 0")]
+    fn test_chunk_data_zero_chunk_size_panics() {
+        chunk_data("hello", 0);
+    }
+
+    #[test]
     fn test_build_envelope_json() {
         let json = build_envelope_json("save-123", 0, 3, "chunk_data");
         assert!(json.contains(r#""id":"save-123""#));
@@ -126,6 +192,21 @@ mod tests {
     }
 
     #[test]
+    fn test_build_envelope_json_escapes_newlines_and_tabs() {
+        let json = build_envelope_json("id", 0, 1, "line1\nline2\ttab");
+        assert!(json.contains(r#""data":"line1\nline2\ttab""#));
+        // Verify no raw newlines in the output
+        assert!(!json.contains('\n'));
+        assert!(!json.contains('\t'));
+    }
+
+    #[test]
+    fn test_build_envelope_json_escapes_id() {
+        let json = build_envelope_json("key\"with\"quotes", 0, 1, "data");
+        assert!(json.contains(r#""id":"key\"with\"quotes""#));
+    }
+
+    #[test]
     fn test_load_from_test_server_success() {
         let server = tiny_http::Server::http("127.0.0.1:0").unwrap();
         let port = server.server_addr().to_ip().unwrap().port();
@@ -135,12 +216,12 @@ mod tests {
                 .recv_timeout(std::time::Duration::from_secs(5))
                 .unwrap()
                 .unwrap();
-            assert!(request.url().contains("/api/persistence/"));
+            assert!(request.url().contains("/persistence/"));
             let response = tiny_http::Response::from_string(r#"{"objects":[]}"#);
             let _ = request.respond(response);
         });
 
-        let url = format!("http://127.0.0.1:{port}/api/persistence/test_key");
+        let url = format!("http://127.0.0.1:{port}/persistence/test_key");
         let result = fetch_persistence_data(&url);
         assert!(result.is_ok());
         assert_eq!(result.unwrap(), r#"{"objects":[]}"#);
@@ -163,7 +244,7 @@ mod tests {
             let _ = request.respond(response);
         });
 
-        let url = format!("http://127.0.0.1:{port}/api/persistence/missing_key");
+        let url = format!("http://127.0.0.1:{port}/persistence/missing_key");
         let result = fetch_persistence_data(&url);
         // ureq treats 4xx as errors
         assert!(result.is_err());

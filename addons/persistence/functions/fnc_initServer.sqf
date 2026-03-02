@@ -26,7 +26,9 @@ GVAR(persistenceMarkers) = [];
 GVAR(mapMarkers) = [];
 GVAR(saveObjectQueue) = [];
 GVAR(disconnectedPlayerPositions) = createHashMap;
-GVAR(playerUids) = [];
+if (isNil QGVAR(playerUids)) then {
+    GVAR(playerUids) = [];
+};
 GVAR(shutdownSavingComplete) = false;
 GVAR(serializers) = [];
 GVAR(deserializers) = [];

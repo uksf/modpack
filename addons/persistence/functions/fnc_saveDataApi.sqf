@@ -96,7 +96,10 @@ private _jsonLength = count _json;
 INFO_1("API persistence save: %1 characters",_jsonLength);
 
 // Chunk and send
-private _chunkSize = 8000;
+// callExtension input limit is ~10KB. The chunk gets JSON-escaped (quotes doubled)
+// then wrapped in an envelope by sendEvent, adding ~200 chars overhead.
+// Use 4000 to leave room for worst-case escaping expansion.
+private _chunkSize = 4000;
 private _totalChunks = ceil (_jsonLength / _chunkSize);
 if (_totalChunks < 1) then { _totalChunks = 1 };
 private _saveId = format ["%1_%2", GVAR(key), diag_tickTime];

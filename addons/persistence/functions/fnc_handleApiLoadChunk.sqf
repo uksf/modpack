@@ -20,14 +20,25 @@ params ["_chunkJson"];
 private _parsed = [_chunkJson, 2] call CBA_fnc_parseJSON;
 if (isNil "_parsed") exitWith {
     WARNING_1("Failed to parse API load chunk JSON: %1",_chunkJson);
+    GVAR(apiLoadChunks) = nil;
+    GVAR(dataNamespace) = call CBA_fnc_createNamespace;
     GVAR(apiLoadComplete) = true;
 };
 
 private _index = _parsed getOrDefault ["index", 0];
 private _total = _parsed getOrDefault ["total", 1];
 private _data = _parsed getOrDefault ["data", ""];
+private _error = _parsed getOrDefault ["error", ""];
 
 TRACE_2("Received API load chunk",_index,_total);
+
+// Error envelope from extension (total == 0)
+if (_total == 0) exitWith {
+    ERROR_1("API persistence load failed: %1",_error);
+    GVAR(apiLoadChunks) = nil;
+    GVAR(dataNamespace) = call CBA_fnc_createNamespace;
+    GVAR(apiLoadComplete) = true;
+};
 
 // Initialise buffer on first chunk
 if (isNil QGVAR(apiLoadChunks)) then {
@@ -68,11 +79,29 @@ if (isNil "_session") exitWith {
 GVAR(dataNamespace) = call CBA_fnc_createNamespace;
 GVAR(playerUids) = [];
 
+// JSON encoding stringifies side types ("WEST", "EAST", etc.)
+// Convert the string back to a side value on load
+private _parseSide = {
+    params ["_sideString"];
+    switch (toUpper _sideString) do {
+        case "WEST": {west};
+        case "EAST": {east};
+        case "INDEPENDENT": {independent};
+        case "CIVILIAN": {civilian};
+        default {west};
+    }
+};
+
 // Objects — convert from named fields back to indexed arrays
 // Field names match those written by fnc_saveDataApi.sqf
 // Array order matches IDX_OBJ_* constants from script_component.hpp (indices 0-17)
 private _objects = _session getOrDefault ["objects", []];
 private _objectArrays = _objects apply {
+    private _fortifyData = +(_x getOrDefault ["aceFortify", [false, west]]);
+    if (count _fortifyData > 1 && {_fortifyData#1 isEqualType ""}) then {
+        _fortifyData set [1, [_fortifyData#1] call _parseSide];
+    };
+
     [
         _x getOrDefault ["id", ""],
         _x getOrDefault ["type", ""],
@@ -88,7 +117,7 @@ private _objectArrays = _objects apply {
         _x getOrDefault ["rackChannels", []],
         _x getOrDefault ["aceCargo", []],
         _x getOrDefault ["inventory", [[], [], [], []]],
-        _x getOrDefault ["aceFortify", [false, west]],
+        _fortifyData,
         _x getOrDefault ["aceMedical", [0, false, false]],
         _x getOrDefault ["aceRepair", [0, 0]],
         _x getOrDefault ["customName", ""]
