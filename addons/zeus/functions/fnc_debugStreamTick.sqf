@@ -16,10 +16,7 @@
 
 params ["", "_idPFH"];
 
-if (GVAR(debugKill)) exitWith {
-    [_idPFH] call CBA_fnc_removePerFrameHandler;
-    GVAR(debugStreamPFH) = -1;
-};
+if (GVAR(debugKill)) exitWith {};
 
 // Clean disconnected clients
 GVAR(debugStreamClients) = GVAR(debugStreamClients) select {!isNull (_x#0)};
@@ -37,7 +34,7 @@ if (GVAR(debugStreamClients) isEqualTo []) exitWith {};
     } forEach keys _sourceData;
     { _sourceData deleteAt _x } forEach _staleKeys;
 } forEach keys GVAR(debugClientData);
-TRACE_2("debugStreamTick",count GVAR(debugStreamClients),count GVAR(debugProviders));
+TRACE_2("debugStreamTick",count GVAR(debugStreamClients),count GVAR(debugServerGetters));
 
 // Collect unique set of all requested keys
 private _allRequestedKeys = [];
@@ -47,24 +44,49 @@ private _allRequestedKeys = [];
     } forEach (_x#1);
 } forEach GVAR(debugStreamClients);
 
-// Call each provider once and cache result
-private _collectedData = createHashMap;
+// Call each provider's getter only if its interval has elapsed
+private _now = CBA_missionTime;
+private _changedKeys = createHashMap;
 {
-    private _providerData = GVAR(debugProviders) getOrDefault [_x, []];
-    if (_providerData isEqualTo []) then { continue };
-    _providerData params ["", "", "", "_fnc_serverGetter"];
-    _collectedData set [_x, call _fnc_serverGetter];
+    private _serverGetterData = GVAR(debugServerGetters) getOrDefault [_x, []];
+    if (_serverGetterData isEqualTo []) then { continue };
+    _serverGetterData params ["_fnc_serverGetter", "_getterInterval"];
+
+    private _lastRun = GVAR(debugLastGetterRun) getOrDefault [_x, -_getterInterval];
+    if (_now - _lastRun >= _getterInterval) then {
+        private _newData = call _fnc_serverGetter;
+        private _previousData = GVAR(debugLastSentData) getOrDefault [_x, []];
+        if (_newData isNotEqualTo _previousData) then {
+            GVAR(debugLastSentData) set [_x, _newData];
+            _changedKeys set [_x, true];
+        };
+        GVAR(debugLastGetterRun) set [_x, _now];
+    };
 } forEach _allRequestedKeys;
 
-// Send to each client only the keys they requested
+// Send to each client: changed keys, plus any key the client hasn't received yet
 {
     _x params ["_player", "_keys"];
 
+    private _playerUid = getPlayerUID _player;
+    private _sentKeys = GVAR(debugLastSentKeys) getOrDefault [_playerUid, createHashMap];
+
     private _clientData = createHashMap;
     {
-        private _data = _collectedData getOrDefault [_x, []];
-        _clientData set [_x, _data];
+        private _data = GVAR(debugLastSentData) getOrDefault [_x, []];
+        if (_data isEqualTo []) then { continue };
+
+        private _isNew = !(_sentKeys getOrDefault [_x, false]);
+        private _isChanged = _changedKeys getOrDefault [_x, false];
+        if (_isNew || _isChanged) then {
+            _clientData set [_x, _data];
+            _sentKeys set [_x, true];
+        };
     } forEach _keys;
 
-    [QGVAR(debugStreamData), [_clientData], _player] call CBA_fnc_targetEvent;
+    GVAR(debugLastSentKeys) set [_playerUid, _sentKeys];
+
+    if (count _clientData > 0) then {
+        [QGVAR(debugStreamData), [_clientData], _player] call CBA_fnc_targetEvent;
+    };
 } forEach GVAR(debugStreamClients);

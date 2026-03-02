@@ -19,12 +19,8 @@ params ["_display"];
 
 // Pause server data streams while Zeus is closed
 {
-    private _provider = GVAR(debugProviders) getOrDefault [_x, []];
-    if (_provider isNotEqualTo []) then {
-        _provider params ["", "", "", "_fnc_serverGetter"];
-        if (_fnc_serverGetter isNotEqualTo {}) then {
-            [QGVAR(debugStreamToggle), [player, _x, false]] call CBA_fnc_serverEvent;
-        };
+    if (_x in GVAR(debugServerGetters)) then {
+        [QGVAR(debugStreamToggle), [player, _x, false]] call CBA_fnc_serverEvent;
     };
 } forEach (keys GVAR(debugActiveToggles));
 

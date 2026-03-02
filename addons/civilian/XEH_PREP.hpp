@@ -14,6 +14,7 @@ PREP(startUnitStatemachine);
 PREP(startVehicleStatemachine);
 PREP(stopUnitStatemachine);
 PREP(toggleDebug);
+PREP(debugUpdateCommandSphere);
 PREP(unitFollow);
 PREP(unitGo);
 PREP(unitMove);

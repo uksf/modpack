@@ -18,7 +18,6 @@ private _key = QGVAR(projectiles);
 private _menuName = "Projectiles";
 private _menuPriority = -10;
 private _fnc_menuCondition = {true};
-private _fnc_serverGetter = {};
 
 private _fnc_draw3d = {
     params ["_data", "_cameraPosition", "_maxDistance"];
@@ -35,7 +34,6 @@ private _fnc_draw3d = {
 private _fnc_drawMap = {
     params ["_data", "_map"];
 
-    GVAR(trackedProjectiles) = GVAR(trackedProjectiles) select {!isNull (_x#0)};
     {
         _x params ["_projectile", "_ammo", "_sideColor"];
         private _name = GVAR(ammoNameCache) getOrDefault [_ammo, _ammo];
@@ -43,9 +41,8 @@ private _fnc_drawMap = {
     } forEach GVAR(trackedProjectiles);
 };
 
-[QGVAR(registerDebugProvider), [
-    _key, _menuName, _menuPriority, _fnc_menuCondition, _fnc_serverGetter, "", _fnc_draw3d, _fnc_drawMap
-]] call CBA_fnc_localEvent;
+[QGVAR(registerDebugAction), [_key, _menuName, _menuPriority, _fnc_menuCondition]] call CBA_fnc_localEvent;
+[QGVAR(registerDebugDraw), [_key, _fnc_draw3d, _fnc_drawMap]] call CBA_fnc_localEvent;
 
 // FPS client data source — each player reports their FPS when active
 [QGVAR(registerDebugClientSource), [
@@ -61,7 +58,7 @@ _menuPriority = -5;
 _fnc_menuCondition = {isMultiplayer};
 private _clientDataKey = QGVAR(fpsData);
 
-_fnc_serverGetter = {
+private _fnc_serverGetter = {
     private _sourceData = GVAR(debugClientData) getOrDefault [QGVAR(fpsData), createHashMap];
     private _players = [];
     {
@@ -89,8 +86,14 @@ _fnc_draw3d = {
         private _playerObject = objectFromNetId _playerNetId;
         if (isNull _playerObject) then { continue };
 
-        private _position = ASLToAGL (getPosASLVisual (vehicle _playerObject));
-        if (_cameraPosition distance _position > 500) then { continue };
+        private _vehicle = vehicle _playerObject;
+        private _position = ASLToAGL (getPosASLVisual _vehicle);
+        if (_cameraPosition distance _position > 1000) then { continue };
+
+        if (_vehicle isNotEqualTo _playerObject) then {
+            private _boundingBox = boundingBoxReal _vehicle;
+            _position = _position vectorAdd [0, 0, (_boundingBox#1#2) + 0.5];
+        };
 
         private _colour = [1,1,1,1];
         private _size = 0.025;
@@ -98,7 +101,7 @@ _fnc_draw3d = {
             _colour = [1,0,0,1];
             _size = 0.035;
         };
-        drawIcon3D ["", _colour, _position, 1, 2, 0, format ["%1 FPS", _fps], 1, _size, "TahomaB", "center"];
+        drawIcon3D ["", _colour, _position, 1, 2.25, 0, format ["%1 FPS", _fps], 1, _size, "TahomaB", "center"];
 
         if (_unconsciousText isNotEqualTo "") then {
             drawIcon3D ["", [1,0,0,1], _position, 1, -2.5, 0, _unconsciousText, 1, 0.025, "TahomaB", "center"];
@@ -120,6 +123,6 @@ _fnc_drawMap = {
     } forEach _data;
 };
 
-[QGVAR(registerDebugProvider), [
-    _key, _menuName, _menuPriority, _fnc_menuCondition, _fnc_serverGetter, _clientDataKey, _fnc_draw3d, _fnc_drawMap
-]] call CBA_fnc_localEvent;
+[QGVAR(registerDebugAction), [_key, _menuName, _menuPriority, _fnc_menuCondition]] call CBA_fnc_localEvent;
+[QGVAR(registerDebugServerGetter), [_key, _fnc_serverGetter, 1, _clientDataKey]] call CBA_fnc_localEvent;
+[QGVAR(registerDebugDraw), [_key, _fnc_draw3d, _fnc_drawMap]] call CBA_fnc_localEvent;

@@ -162,9 +162,9 @@ private _fnc_drawMap = {
     } forEach _connections;
 };
 
-[QEGVAR(zeus,registerDebugProvider), [
-    _key, _menuName, _menuPriority, _fnc_menuCondition, _fnc_serverGetter, _clientDataKey, _fnc_draw3d, _fnc_drawMap
-]] call CBA_fnc_localEvent;
+[QEGVAR(zeus,registerDebugAction), [_key, _menuName, _menuPriority, _fnc_menuCondition]] call CBA_fnc_localEvent;
+[QEGVAR(zeus,registerDebugServerGetter), [_key, _fnc_serverGetter, 2, _clientDataKey]] call CBA_fnc_localEvent;
+[QEGVAR(zeus,registerDebugDraw), [_key, _fnc_draw3d, _fnc_drawMap]] call CBA_fnc_localEvent;
 
 // Radio network provider — direct connections only (no rebro)
 _key = QGVAR(network);
@@ -245,6 +245,6 @@ _fnc_drawMap = {
     } forEach _links;
 };
 
-[QEGVAR(zeus,registerDebugProvider), [
-    _key, _menuName, _menuPriority, _fnc_menuCondition, _fnc_serverGetter, _clientDataKey, _fnc_draw3d, _fnc_drawMap
-]] call CBA_fnc_localEvent;
+[QEGVAR(zeus,registerDebugAction), [_key, _menuName, _menuPriority, _fnc_menuCondition]] call CBA_fnc_localEvent;
+[QEGVAR(zeus,registerDebugServerGetter), [_key, _fnc_serverGetter, 2, _clientDataKey]] call CBA_fnc_localEvent;
+[QEGVAR(zeus,registerDebugDraw), [_key, _fnc_draw3d, _fnc_drawMap]] call CBA_fnc_localEvent;
