@@ -58,6 +58,12 @@ LOG("Shutdown");
 
             ["ocap_exportData", [west]] call CBA_fnc_localEvent;
 
+            // Flush statistics data to API before shutdown
+            if (!isNil QEFUNC(statistics,serverSync)) then {
+                call EFUNC(statistics,serverSync);
+                call EFUNC(statistics,stopCollection);
+            };
+
             [{SERVER_COMMAND serverCommand "#shutdown"}, [], 4] call CBA_fnc_waitAndExecute;
         }, [], 120, {
             WARNING("Shutdown save timed out after 120 seconds, forcing shutdown");

@@ -1,0 +1,9 @@
+PREP(addEvent);
+PREP(clientSync);
+PREP(handleClientReport);
+PREP(providerHits);
+PREP(providerShots);
+PREP(registerProvider);
+PREP(serverSync);
+PREP(startCollection);
+PREP(stopCollection);
