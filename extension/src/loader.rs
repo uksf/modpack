@@ -1,0 +1,173 @@
+use std::thread;
+
+use crate::config;
+use crate::ffi;
+
+const CHUNK_SIZE: usize = 16000; // ~16KB, safely under Arma's 20KB callback limit
+
+pub fn load(key: &str) {
+    let key = key.to_string();
+    let url = format!("{}/api/persistence/{}", config::API_BASE_URL, key);
+
+    thread::spawn(move || {
+        let body = match fetch_persistence_data(&url) {
+            Ok(data) => data,
+            Err(error) => {
+                log::error!("Failed to load persistence for key '{key}': {error}");
+                let envelope = build_envelope_json(&key, 0, 1, "");
+                ffi::fire_callback("persistence_load", &envelope);
+                return;
+            }
+        };
+
+        let chunks = chunk_data(&body, CHUNK_SIZE);
+        let total = chunks.len();
+
+        for (index, chunk) in chunks.iter().enumerate() {
+            let envelope = build_envelope_json(&key, index, total, chunk);
+            ffi::fire_callback("persistence_load", &envelope);
+        }
+    });
+}
+
+fn fetch_persistence_data(url: &str) -> Result<String, String> {
+    let response = ureq::get(url)
+        .timeout(std::time::Duration::from_secs(30))
+        .call()
+        .map_err(|error| format!("{error}"))?;
+
+    response
+        .into_string()
+        .map_err(|error| format!("failed to read response: {error}"))
+}
+
+fn chunk_data(data: &str, chunk_size: usize) -> Vec<&str> {
+    if data.is_empty() {
+        return vec![""];
+    }
+
+    let mut chunks = Vec::new();
+    let mut start = 0;
+    while start < data.len() {
+        let end = (start + chunk_size).min(data.len());
+        chunks.push(&data[start..end]);
+        start = end;
+    }
+    chunks
+}
+
+fn build_envelope_json(id: &str, index: usize, total: usize, data: &str) -> String {
+    let escaped = data.replace('\\', "\\\\").replace('"', "\\\"");
+    format!(
+        r#"{{"id":"{id}","index":{index},"total":{total},"data":"{escaped}"}}"#
+    )
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_chunk_empty_data() {
+        let chunks = chunk_data("", 1000);
+        assert_eq!(chunks.len(), 1);
+        assert_eq!(chunks[0], "");
+    }
+
+    #[test]
+    fn test_chunk_data_fits_in_one() {
+        let data = "hello world";
+        let chunks = chunk_data(data, 1000);
+        assert_eq!(chunks.len(), 1);
+        assert_eq!(chunks[0], "hello world");
+    }
+
+    #[test]
+    fn test_chunk_data_splits_correctly() {
+        let data = "abcdefghij"; // 10 chars
+        let chunks = chunk_data(data, 3);
+        assert_eq!(chunks.len(), 4); // 3+3+3+1
+        assert_eq!(chunks[0], "abc");
+        assert_eq!(chunks[1], "def");
+        assert_eq!(chunks[2], "ghi");
+        assert_eq!(chunks[3], "j");
+    }
+
+    #[test]
+    fn test_chunk_data_exact_boundary() {
+        let data = "abcdef"; // 6 chars
+        let chunks = chunk_data(data, 3);
+        assert_eq!(chunks.len(), 2);
+        assert_eq!(chunks[0], "abc");
+        assert_eq!(chunks[1], "def");
+    }
+
+    #[test]
+    fn test_chunk_data_reassembles_to_original() {
+        let data = r#"{"objects":[{"id":"test_1","type":"B_MRAP_01_F"}],"players":{}}"#;
+        let chunks = chunk_data(data, 20);
+        let reassembled: String = chunks.into_iter().collect();
+        assert_eq!(reassembled, data);
+    }
+
+    #[test]
+    fn test_build_envelope_json() {
+        let json = build_envelope_json("save-123", 0, 3, "chunk_data");
+        assert!(json.contains(r#""id":"save-123""#));
+        assert!(json.contains(r#""index":0"#));
+        assert!(json.contains(r#""total":3"#));
+        assert!(json.contains(r#""data":"chunk_data""#));
+    }
+
+    #[test]
+    fn test_build_envelope_json_escapes_quotes() {
+        let json = build_envelope_json("id", 0, 1, r#"{"key":"value"}"#);
+        assert!(json.contains(r#""data":"{\"key\":\"value\"}""#));
+    }
+
+    #[test]
+    fn test_load_from_test_server_success() {
+        let server = tiny_http::Server::http("127.0.0.1:0").unwrap();
+        let port = server.server_addr().to_ip().unwrap().port();
+
+        let server_thread = std::thread::spawn(move || {
+            let request = server
+                .recv_timeout(std::time::Duration::from_secs(5))
+                .unwrap()
+                .unwrap();
+            assert!(request.url().contains("/api/persistence/"));
+            let response = tiny_http::Response::from_string(r#"{"objects":[]}"#);
+            let _ = request.respond(response);
+        });
+
+        let url = format!("http://127.0.0.1:{port}/api/persistence/test_key");
+        let result = fetch_persistence_data(&url);
+        assert!(result.is_ok());
+        assert_eq!(result.unwrap(), r#"{"objects":[]}"#);
+
+        server_thread.join().unwrap();
+    }
+
+    #[test]
+    fn test_load_from_test_server_not_found() {
+        let server = tiny_http::Server::http("127.0.0.1:0").unwrap();
+        let port = server.server_addr().to_ip().unwrap().port();
+
+        let server_thread = std::thread::spawn(move || {
+            let request = server
+                .recv_timeout(std::time::Duration::from_secs(5))
+                .unwrap()
+                .unwrap();
+            let response = tiny_http::Response::from_string("not found")
+                .with_status_code(404);
+            let _ = request.respond(response);
+        });
+
+        let url = format!("http://127.0.0.1:{port}/api/persistence/missing_key");
+        let result = fetch_persistence_data(&url);
+        // ureq treats 4xx as errors
+        assert!(result.is_err());
+
+        server_thread.join().unwrap();
+    }
+}

@@ -18,6 +18,14 @@ params ["_function", "_data"];
 
 TRACE_2("Received command",_function,_data);
 
+if (_function == "persistence_load") exitWith {
+    if (!isNil {EFUNC(persistence,handleApiLoadChunk)}) then {
+        [_data] call EFUNC(persistence,handleApiLoadChunk);
+    } else {
+        WARNING("Received persistence_load callback but persistence module not available");
+    };
+};
+
 if (_function != "command") exitWith {};
 
 private _parsed = [_data, 2] call CBA_fnc_parseJSON;

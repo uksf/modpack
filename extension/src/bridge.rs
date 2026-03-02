@@ -2,6 +2,7 @@ use std::sync::atomic::{AtomicBool, Ordering};
 
 use crate::config;
 use crate::listener;
+use crate::loader;
 use crate::sender;
 
 static RUNNING: AtomicBool = AtomicBool::new(false);
@@ -13,6 +14,9 @@ pub fn handle_command(command: &str) -> String {
     }
     if command == "stop" {
         return handle_stop();
+    }
+    if let Some(key) = command.strip_prefix("load:") {
+        return handle_load(key);
     }
     if let Some(json) = command.strip_prefix("event:") {
         return handle_event(json);
@@ -51,6 +55,15 @@ fn handle_stop() -> String {
     "stopped".to_string()
 }
 
+fn handle_load(key: &str) -> String {
+    if !RUNNING.load(Ordering::SeqCst) {
+        return "error: not running".to_string();
+    }
+
+    loader::load(key);
+    "loading".to_string()
+}
+
 fn handle_event(json: &str) -> String {
     if !RUNNING.load(Ordering::SeqCst) {
         return "error: not running".to_string();
@@ -74,6 +87,13 @@ mod tests {
     fn test_event_before_start() {
         RUNNING.store(false, Ordering::SeqCst);
         let result = handle_command("event:{\"type\":\"test\"}");
+        assert_eq!(result, "error: not running");
+    }
+
+    #[test]
+    fn test_load_before_start() {
+        RUNNING.store(false, Ordering::SeqCst);
+        let result = handle_command("load:test_key");
         assert_eq!(result, "error: not running");
     }
 
