@@ -13,6 +13,7 @@
     Return Value:
         None
 */
+if (GVAR(killswitch)) exitWith {};
 if (GVAR(eventBuffer) isEqualTo []) exitWith {};
 
 private _uid = getPlayerUID player;
