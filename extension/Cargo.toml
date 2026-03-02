@@ -1,0 +1,18 @@
+[package]
+name = "uksf"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "uksf_x64"
+crate-type = ["cdylib"]
+
+[dependencies]
+tiny_http = "0.12"
+ureq = "2"
+log = "0.4"
+env_logger = "0.11"
+
+[profile.release]
+opt-level = "z"
+lto = true

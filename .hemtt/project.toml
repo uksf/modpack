@@ -11,6 +11,7 @@ include = [
     "README.md",
     "AUTHORS.txt",
     "LICENSE",
+    "uksf_x64.dll",
 ]
 
 [version]

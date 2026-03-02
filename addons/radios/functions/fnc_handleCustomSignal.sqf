@@ -55,7 +55,7 @@ if (GVAR(debugReportingEnabled)) then {
             if (isNull _bestRebroStation) then {
                 GVAR(debugConnectionData) set [getPlayerUID _transmitterOwner, [_displayPower, ""]];
             } else {
-                _bestResult params ["", "", "_rebroReceivePower", "_rebroTransmitPower"];
+                _bestResult params ["", "", ["_rebroReceivePower", 0], ["_rebroTransmitPower", 0]];
                 GVAR(debugConnectionData) set [getPlayerUID _transmitterOwner, [
                     _displayPower,
                     netId _bestRebroStation,
