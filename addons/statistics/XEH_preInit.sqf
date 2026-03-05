@@ -17,6 +17,10 @@ GVAR(frameTimings) = createHashMap;
 GVAR(frameOverhead) = 0;
 GVAR(performancePFH) = -1;
 
+// Explosives deduplication: object reference -> classname
+// Entries removed on defuse; remaining entries emitted at sync
+GVAR(placedExplosives) = createHashMap;
+
 if (isServer) then {
     // Server-side event buffer: flat array of event hashmaps
     GVAR(serverBuffer) = [];

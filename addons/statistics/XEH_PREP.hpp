@@ -1,8 +1,10 @@
 PREP(addEvent);
 PREP(addProviderTiming);
 PREP(clientSync);
+PREP(explosivesSync);
 PREP(handleClientReport);
 PREP(performancePFH);
+PREP(providerExplosives);
 PREP(providerHits);
 PREP(providerKills);
 PREP(providerShots);

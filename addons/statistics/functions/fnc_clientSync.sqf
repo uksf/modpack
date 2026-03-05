@@ -17,6 +17,10 @@
         call uksf_statistics_fnc_clientSync
 */
 if (GVAR(killswitch)) exitWith {};
+
+// Flush confirmed explosive placements into the event buffer before sync
+call FUNC(explosivesSync);
+
 if (GVAR(eventBuffer) isEqualTo []) exitWith {};
 
 private _uid = getPlayerUID player;
