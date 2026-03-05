@@ -4,6 +4,7 @@ PREP(clientSync);
 PREP(handleClientReport);
 PREP(performancePFH);
 PREP(providerHits);
+PREP(providerKills);
 PREP(providerShots);
 PREP(registerProvider);
 PREP(serverSync);

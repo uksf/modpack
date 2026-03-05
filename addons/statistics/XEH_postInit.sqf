@@ -6,6 +6,10 @@ if (hasInterface) then {
     ["hits", FUNC(providerHits), "client"] call FUNC(registerProvider);
 };
 
+if (isServer) then {
+    ["kills", FUNC(providerKills), "server"] call FUNC(registerProvider);
+};
+
 // Start collection if enabled
 if (GVAR(enabled)) then {
     call FUNC(startCollection);
