@@ -21,6 +21,9 @@ if (GVAR(killswitch)) exitWith {};
 // Flush confirmed explosive placements into the event buffer before sync
 call FUNC(explosivesSync);
 
+// Flush accumulated distance and fuel into the event buffer before sync
+call FUNC(samplerSync);
+
 if (GVAR(eventBuffer) isEqualTo []) exitWith {};
 
 private _uid = getPlayerUID player;

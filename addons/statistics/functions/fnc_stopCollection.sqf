@@ -30,6 +30,11 @@ if (GVAR(performancePFH) != -1) then {
     GVAR(performancePFH) = -1;
 };
 
+if (GVAR(samplerPFH) != -1) then {
+    [GVAR(samplerPFH)] call CBA_fnc_removePerFrameHandler;
+    GVAR(samplerPFH) = -1;
+};
+
 if (isServer && {GVAR(serverSyncPFH) != -1}) then {
     [GVAR(serverSyncPFH)] call CBA_fnc_removePerFrameHandler;
     GVAR(serverSyncPFH) = -1;

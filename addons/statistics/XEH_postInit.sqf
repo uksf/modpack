@@ -7,6 +7,7 @@ if (hasInterface) then {
     ["damageReceived", FUNC(providerDamageReceived), "client"] call FUNC(registerProvider);
     ["explosives", FUNC(providerExplosives), "client"] call FUNC(registerProvider);
     ["unconscious", FUNC(providerUnconscious), "client"] call FUNC(registerProvider);
+    ["sampler", FUNC(providerSampler), "client"] call FUNC(registerProvider);
 };
 
 if (isServer) then {

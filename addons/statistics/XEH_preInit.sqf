@@ -21,6 +21,14 @@ GVAR(performancePFH) = -1;
 // Entries removed on defuse; remaining entries emitted at sync
 GVAR(placedExplosives) = createHashMap;
 
+// Sampler state for movement, fuel, and FPS tracking
+GVAR(samplerPFH) = -1;
+GVAR(lastPosition) = [0, 0, 0];
+GVAR(accumulatedDistance) = 0;
+GVAR(lastFuelLevel) = -1;
+GVAR(lastFuelVehicle) = objNull;
+GVAR(accumulatedFuel) = 0;
+
 if (isServer) then {
     // Server-side event buffer: flat array of event hashmaps
     GVAR(serverBuffer) = [];
