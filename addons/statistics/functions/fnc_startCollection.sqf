@@ -47,6 +47,13 @@ if (_isClient) then {
     }, 30, []] call CBA_fnc_addPerFrameHandler;
 };
 
+// Start performance monitoring PFH (every frame)
+if (_isClient) then {
+    GVAR(performancePFH) = [{
+        call FUNC(performancePFH);
+    }, 0, []] call CBA_fnc_addPerFrameHandler;
+};
+
 // Start server sync PFH (every 60 seconds)
 if (_isServer) then {
     GVAR(serverSyncPFH) = [{

@@ -28,6 +28,11 @@ if (!isNil QGVAR(firedManEHId) && {hasInterface}) then {
     GVAR(firedManEHId) = nil;
 };
 
+if (GVAR(performancePFH) != -1) then {
+    [GVAR(performancePFH)] call CBA_fnc_removePerFrameHandler;
+    GVAR(performancePFH) = -1;
+};
+
 if (isServer && {GVAR(serverSyncPFH) != -1}) then {
     [GVAR(serverSyncPFH)] call CBA_fnc_removePerFrameHandler;
     GVAR(serverSyncPFH) = -1;

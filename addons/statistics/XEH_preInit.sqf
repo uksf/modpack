@@ -11,6 +11,12 @@ GVAR(providers) = createHashMap;
 GVAR(eventBuffer) = [];
 GVAR(clientSyncPFH) = -1;
 
+// Performance monitoring: per-frame overhead tracking
+// Each provider adds its execution time here during the frame; the PFH sums and resets
+GVAR(frameTimings) = createHashMap;
+GVAR(frameOverhead) = 0;
+GVAR(performancePFH) = -1;
+
 if (isServer) then {
     // Server-side event buffer: flat array of event hashmaps
     GVAR(serverBuffer) = [];
