@@ -4,9 +4,11 @@
         Tim Beswick
 
     Description:
-        Shots provider setup. Installs a FiredMan event handler on the local player
-        to capture every shot fired. Each shot is tagged with a unique ID that is
-        stored on the projectile so the hits provider can correlate hits to shots.
+        Shots provider setup. Listens to ACE fired events to capture every round
+        fired by the local player, both on foot and in vehicles.
+        Records weapon, ammo classname, magazine, and fire mode.
+        Also fires a local event so other providers (e.g. hits) can attach
+        projectile-level event handlers.
 
     Parameters:
         None
@@ -19,8 +21,9 @@
 */
 GVAR(shotCounter) = 0;
 
-GVAR(firedManEHId) = player addEventHandler ["FiredMan", {
-    params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile", "_vehicle"];
+private _handleFired = {
+    params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile"];
+    private _startTime = diag_tickTime;
 
     GVAR(shotCounter) = GVAR(shotCounter) + 1;
     private _shotId = format ["%1_%2", getPlayerUID _unit, GVAR(shotCounter)];
@@ -33,7 +36,15 @@ GVAR(firedManEHId) = player addEventHandler ["FiredMan", {
         ["type", "shot"],
         ["shotId", _shotId],
         ["weapon", _weapon],
+        ["ammo", _ammo],
         ["magazine", _magazine],
         ["fireMode", _mode]
     ]] call FUNC(addEvent);
-}];
+
+    [QGVAR(shotFired), [_unit, _weapon, _projectile]] call CBA_fnc_localEvent;
+
+    ["shots", _startTime] call FUNC(addProviderTiming);
+};
+
+["ace_firedPlayer", _handleFired] call CBA_fnc_addEventHandler;
+["ace_firedPlayerVehicle", _handleFired] call CBA_fnc_addEventHandler;

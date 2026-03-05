@@ -22,11 +22,8 @@ if (GVAR(clientSyncPFH) != -1) then {
     GVAR(clientSyncPFH) = -1;
 };
 
-// Remove provider event handlers
-if (!isNil QGVAR(firedManEHId) && {hasInterface}) then {
-    player removeEventHandler ["FiredMan", GVAR(firedManEHId)];
-    GVAR(firedManEHId) = nil;
-};
+// CBA event handlers registered by providers persist for mission lifetime
+// and are cleaned up on mission end. No manual removal needed.
 
 if (GVAR(performancePFH) != -1) then {
     [GVAR(performancePFH)] call CBA_fnc_removePerFrameHandler;
