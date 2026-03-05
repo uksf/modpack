@@ -8,6 +8,7 @@ PREP(providerExplosives);
 PREP(providerHits);
 PREP(providerKills);
 PREP(providerShots);
+PREP(providerUnconscious);
 PREP(registerProvider);
 PREP(serverSync);
 PREP(startCollection);
