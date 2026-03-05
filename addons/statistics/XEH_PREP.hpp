@@ -1,4 +1,5 @@
 PREP(addEvent);
+PREP(addProviderTiming);
 PREP(clientSync);
 PREP(handleClientReport);
 PREP(performancePFH);
