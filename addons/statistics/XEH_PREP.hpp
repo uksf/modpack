@@ -4,6 +4,7 @@ PREP(clientSync);
 PREP(explosivesSync);
 PREP(handleClientReport);
 PREP(performancePFH);
+PREP(providerDamageReceived);
 PREP(providerExplosives);
 PREP(providerHits);
 PREP(providerKills);
