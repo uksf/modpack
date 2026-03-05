@@ -22,15 +22,7 @@ private _fnc_clientGetter = {
     if (GVAR(debugConnectionData) isEqualTo createHashMap) exitWith {[]};
     private _connectionData = GVAR(debugConnectionData);
     GVAR(debugConnectionData) = createHashMap;
-    // Convert hashmap to flat array for network serialization (hashmaps over network are unreliable)
-    private _result = [];
-    {
-        private _value = _connectionData get _x;
-        if (_value isEqualType []) then {
-            _result pushBack ([_x] + _value);
-        };
-    } forEach keys _connectionData;
-    _result
+    _connectionData
 };
 private _interval = 4;
 private _fnc_onStart = {
@@ -53,8 +45,8 @@ private _clientDataKey = QGVAR(signalData);
 private _fnc_serverGetter = {
     private _rebroNetIds = GVAR(rebroStations) select {alive _x} apply {netId _x};
 
-    // Client data is stored as { receiverUID: [playerObj, connectionArray, timestamp] }
-    // connectionArray entries are [transmitterUID, displayPower, rebroNetId, rebroReceivePower, rebroTransmitPower]
+    // Client data is stored as { receiverUID: [playerObj, connectionData, timestamp] }
+    // connectionData is a hashmap { transmitterUID: [displayPower, rebroNetId, rebroReceivePower, rebroTransmitPower] }
     private _sourceData = EGVAR(zeus,debugClientData) getOrDefault [QGVAR(signalData), createHashMap];
 
     // Build UID → player netId lookup
@@ -73,14 +65,15 @@ private _fnc_serverGetter = {
         private _entry = _sourceData get _x;
         if (!(_entry isEqualType []) || {count _entry < 2}) then { continue };
         private _receiver = _entry select 0;
-        private _connectionArray = _entry select 1;
-        if (isNull _receiver || {!(_connectionArray isEqualType [])}) then { continue };
+        private _connectionData = _entry select 1;
+        if (isNull _receiver) then { continue };
 
         {
-            if (!(_x isEqualType []) || {count _x < 3}) then { continue };
-            _x params ["_transmitterUid", "_displayPower", ["_rebroNetId", ""], ["_rebroReceivePower", 0], ["_rebroTransmitPower", 0]];
+            private _value = _connectionData get _x;
+            if (!(_value isEqualType []) || {count _value < 2}) then { continue };
+            _value params ["_displayPower", ["_rebroNetId", ""], ["_rebroReceivePower", 0], ["_rebroTransmitPower", 0]];
             if (_rebroNetId != "") then {
-                private _transmitterNetId = _uidToNetId getOrDefault [_transmitterUid, ""];
+                private _transmitterNetId = _uidToNetId getOrDefault [_x, ""];
                 if (_transmitterNetId != "") then {
                     _connections pushBack [
                         _transmitterNetId,
@@ -92,7 +85,7 @@ private _fnc_serverGetter = {
                     ];
                 };
             };
-        } forEach _connectionArray;
+        } forEach keys _connectionData;
     } forEach keys _sourceData;
 
     [_rebroNetIds, _connections]
@@ -205,21 +198,21 @@ _fnc_serverGetter = {
     {
         private _entry = _sourceData get _x;
         if (!(_entry isEqualType []) || {count _entry < 2}) then { continue };
-        private _connectionArray = _entry select 1;
-        if (!(_connectionArray isEqualType [])) then { continue };
+        private _connectionData = _entry select 1;
         private _fromIndex = _uidToIndex getOrDefault [_x, -1];
         if (_fromIndex < 0) then { continue };
 
         {
-            if (!(_x isEqualType []) || {count _x < 2}) then { continue };
-            _x params ["_transmitterUid", "_displayPower", ["_rebroNetId", ""]];
+            private _value = _connectionData get _x;
+            if (!(_value isEqualType []) || {count _value < 1}) then { continue };
+            _value params ["_displayPower", ["_rebroNetId", ""]];
             if (_rebroNetId == "") then {
-                private _toIndex = _uidToIndex getOrDefault [_transmitterUid, -1];
+                private _toIndex = _uidToIndex getOrDefault [_x, -1];
                 if (_toIndex >= 0) then {
                     _links pushBack [_fromIndex, _toIndex, _displayPower];
                 };
             };
-        } forEach _connectionArray;
+        } forEach keys _connectionData;
     } forEach keys _sourceData;
 
     [_players, _links]

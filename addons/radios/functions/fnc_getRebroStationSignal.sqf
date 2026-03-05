@@ -22,11 +22,13 @@ params ["_vehicle", "_data", "_originalResult"];
 _data params ["_frequency", "_power", "_receiverId", "_transmitterId"];
 _originalResult params ["_originalPx", "_originalSignal"];
 
+if (!alive _vehicle) exitWith {[0, -992]};
+
 private _rebroData = [_vehicle] call FUNC(getRebroStationRadio);
 _rebroData params ["", "_rebroId"];
 
 if (_rebroId == "") exitWith {
-    WARNING_1("Failed to initialise rebro station %1",_this);
+    REBRO_TRACE_1("Rebro station has no radio",_vehicle);
     [0, -992]
 };
 

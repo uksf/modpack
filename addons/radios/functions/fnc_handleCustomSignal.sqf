@@ -25,8 +25,14 @@ _bestResult params ["_bestPx", "_bestSignal"];
 
 private _bestRebroStation = objNull;
 
-if (GVAR(useRebros)) then {
-    GVAR(rebroStations) = GVAR(rebroStations) select {alive _x};
+if (GVAR(useRebros) && {_bestPx < 0.95}) then {
+    // Filter dead rebro stations periodically rather than every signal calculation.
+    // diag_frameNo check ensures we only rebuild the array once per frame regardless
+    // of how many TX-RX pairs are being processed.
+    if (GVAR(rebroStationsFilterFrame) != diag_frameNo) then {
+        GVAR(rebroStations) = GVAR(rebroStations) select {alive _x};
+        GVAR(rebroStationsFilterFrame) = diag_frameNo;
+    };
 
     {
         private _result = [_x, _this, _originalResult] call FUNC(getRebroStationSignal);
@@ -51,7 +57,7 @@ if (GVAR(debugReportingEnabled)) then {
         private _displayPower = if (_bestDbm >= _squelch) then {_bestPower} else {-1};
 
         private _transmitterOwner = [_transmitterId] call acre_sys_radio_fnc_getRadioObject;
-        if (!isNull _transmitterOwner && {isPlayer _transmitterOwner}) then {
+        if (!isNil "_transmitterOwner" && {!isNull _transmitterOwner} && {isPlayer _transmitterOwner}) then {
             if (isNull _bestRebroStation) then {
                 GVAR(debugConnectionData) set [getPlayerUID _transmitterOwner, [_displayPower, ""]];
             } else {

@@ -6,9 +6,13 @@ ADDON = false;
 
 GVAR(useRebros) = true;
 GVAR(rebroStations) = [];
+GVAR(rebroStationsFilterFrame) = -1;
 GVAR(rebroDebugging) = false;
 GVAR(debugReportingEnabled) = false;
 GVAR(debugConnectionData) = createHashMap;
+GVAR(testRebroPfhHandle) = -1;
+GVAR(testRebroMast) = objNull;
+GVAR(testVehicle) = objNull;
 
 [QGVAR(initialiseRebroStation), {call FUNC(initialiseRebroStation)}] call CBA_fnc_addEventHandler;
 [QGVAR(deinitialiseRebroStation), {call FUNC(deinitialiseRebroStation)}] call CBA_fnc_addEventHandler;
