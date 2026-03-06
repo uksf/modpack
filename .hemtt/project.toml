@@ -12,10 +12,9 @@ include = [
     "AUTHORS.txt",
     "LICENSE",
     "uksf_x64.dll",
+    "cba_settings.sqf",
+    "UKSFTemplate.VR/**",
 ]
 
 [version]
-git_hash = 8
-
-[signing]
-authority = "uksf_{version}"
+git_hash = 0
