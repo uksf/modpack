@@ -7,6 +7,16 @@ class zen_context_menu_actions {
     class Loadout {
         statement = QUOTE([_hoveredEntity] call FUNC(openArsenal));
     };
+    class EditableObjects {
+        class Add {
+            class All {
+                displayName = "All";
+                statement = QUOTE([ARR_3(allMissionObjects 'All',true,getAssignedCuratorLogic player)] call zen_common_fnc_updateEditableObjects);
+                icon = "\z\zen\addons\context_actions\ui\add_ca.paa";
+                priority = 100;
+            };
+        };
+    };
     class TeleportZeus {
         priority = -950;
     };

@@ -58,19 +58,12 @@ while {_currentIndex < count _shieldedTargets && {_processedThisFrame < TARGETS_
         ];
         _damageParams call FUNC(calculateDamage);
 
-        #ifdef DEBUG_MODE_FULL
-            diag_log text format [
-                "[%1] Phase 1 path found for %2: pathLength=%3 directDist=%4 via %5",
-                ADDON, _target, _totalPathLength, _directDistance, ASLToATL _samplePointASL
-            ];
-        #endif
+        TRACE_3("Phase 1 path found",_target,_totalPathLength,_directDistance);
     } else {
         // No overhead path — queue for Phase 2
         _phase2Queue pushBack _targetData;
 
-        #ifdef DEBUG_MODE_FULL
-            diag_log text format ["[%1] Phase 1 failed for %2, queued for Phase 2", ADDON, _target];
-        #endif
+        TRACE_1("Phase 1 failed, queued for Phase 2",_target);
     };
 
     _currentIndex = _currentIndex + 1;
@@ -84,14 +77,12 @@ if (_currentIndex >= count _shieldedTargets) then {
     if (_phase2Queue isEqualTo [] || {!GVAR(surfaceBounceEnabled)}) then {
         [_perFrameHandlerID] call CBA_fnc_removePerFrameHandler;
 
-        #ifdef DEBUG_MODE_FULL
-            diag_log text format ["[%1] Processing complete. Phase 2 queue: %2", ADDON, count _phase2Queue];
-        #endif
+        TRACE_1("Processing complete, Phase 2 queue",count _phase2Queue);
     } else {
         // Switch to Phase 2 processing
         [_perFrameHandlerID] call CBA_fnc_removePerFrameHandler;
 
         private _phase2State = [_positionASL, _ammo, _indirectHit, _indirectHitRange, _effectiveRange, _phase2Queue, 0, _source];
-        [FUNC(processPhase2), 0, _phase2State] call CBA_fnc_addPerFrameHandler;
+        [FUNC(processSurfaceBounces), 0, _phase2State] call CBA_fnc_addPerFrameHandler;
     };
 };

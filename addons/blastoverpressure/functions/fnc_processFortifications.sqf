@@ -27,11 +27,9 @@ params ["_positionASL", "_indirectHit", "_indirectHitRange", "_effectiveRange", 
 private _positionAGL = ASLToAGL _positionASL;
 private _nearbyObjects = _positionAGL nearObjects ["Static", _effectiveRange];
 
+TRACE_2("Fortification scan",count _nearbyObjects,_effectiveRange);
+
 #ifdef DEBUG_MODE_FULL
-    diag_log text format [
-        "[%1] Fortification scan: %2 objects in %3m range",
-        ADDON, count _nearbyObjects, _effectiveRange
-    ];
     private _destroyedCount = 0;
     private _damagedCount = 0;
     private _protectedCount = 0;
@@ -68,8 +66,8 @@ private _nearbyObjects = _positionAGL nearObjects ["Static", _effectiveRange];
     private _rawDamage = _indirectHit * (1 - (_distance / _effectiveRange));
 
     // Normalise to 0-1 damage scale
-    // indirectHit for large munitions is 60-200+, a value of ~80 should destroy most fortifications
-    private _normalisedDamage = (_rawDamage / 80) min 1;
+    // indirectHit for large munitions is 60-200+, a value of ~53 should destroy most fortifications
+    private _normalisedDamage = (_rawDamage / 53) min 1;
 
     if (_normalisedDamage <= 0.01) then { continue };
 
@@ -86,9 +84,6 @@ private _nearbyObjects = _positionAGL nearObjects ["Static", _effectiveRange];
 } forEach _nearbyObjects;
 
 #ifdef DEBUG_MODE_FULL
-    diag_log text format [
-        "[%1] Fortification results: destroyed=%2 damaged=%3 protected=%4",
-        ADDON, _destroyedCount, _damagedCount, _protectedCount
-    ];
+    TRACE_3("Fortification results",_destroyedCount,_damagedCount,_protectedCount);
     [_positionASL, _effectiveRange, _destroyedCount, _damagedCount, _protectedCount] call FUNC(debugDrawFortifications);
 #endif

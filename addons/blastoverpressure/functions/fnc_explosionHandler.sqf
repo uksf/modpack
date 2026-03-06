@@ -37,13 +37,7 @@ if (GVAR(fortificationDestructionEnabled) && {_powerScore >= GVAR(fortificationT
     [QGVAR(processFortifications), [_positionASL, _adjustedIndirectHit, _indirectHitRange, _effectiveRange, _source]] call CBA_fnc_serverEvent;
 };
 
-#ifdef DEBUG_MODE_FULL
-    private _positionATL = ASLToATL _positionASL;
-    diag_log text format [
-        "[%1] Explosion: ammo=%2 indirectHit=%3 adjustedIndirectHit=%4 indirectHitRange=%5 powerScore=%6 effectiveRange=%7 pos=%8",
-        ADDON, _ammo, _indirectHit, _adjustedIndirectHit, _indirectHitRange, _powerScore, _effectiveRange, _positionATL
-    ];
-#endif
+TRACE_7("Explosion",_ammo,_indirectHit,_adjustedIndirectHit,_indirectHitRange,_powerScore,_effectiveRange,_positionASL);
 
 // Collect all entities in effective range
 private _candidates = (ASLToAGL _positionASL) nearEntities [
@@ -53,6 +47,9 @@ private _candidates = (ASLToAGL _positionASL) nearEntities [
 
 // Filter to units that are alive and whose direct LOS to the detonation is blocked
 private _shieldedTargets = [];
+#ifdef DEBUG_MODE_FULL
+    private _unshieldedTargets = [];
+#endif
 
 {
     if !(alive _x) then { continue };
@@ -69,8 +66,9 @@ private _shieldedTargets = [];
         && {!(terrainIntersectASL [_positionASL, _targetPositionASL])};
 
     if (_hasDirectLOS) then {
+        TRACE_1("Skipping - direct LOS",_x);
         #ifdef DEBUG_MODE_FULL
-            diag_log text format ["[%1] Skipping %2 (direct LOS exists)", ADDON, _x];
+            _unshieldedTargets pushBack _x;
         #endif
         continue
     };
@@ -79,23 +77,17 @@ private _shieldedTargets = [];
 
     _shieldedTargets pushBack [_x, _targetPositionASL, _directDistance];
 
-    #ifdef DEBUG_MODE_FULL
-        diag_log text format ["[%1] Shielded target: %2 distance=%3", ADDON, _x, _directDistance];
-    #endif
+    TRACE_2("Shielded target",_x,_directDistance);
 } forEach _candidates;
 
 if (_shieldedTargets isEqualTo []) exitWith {
-    #ifdef DEBUG_MODE_FULL
-        diag_log text format ["[%1] No shielded targets found", ADDON];
-    #endif
+    TRACE_0("No shielded targets found");
 };
 
-#ifdef DEBUG_MODE_FULL
-    diag_log text format ["[%1] Processing %2 shielded targets", ADDON, count _shieldedTargets];
-#endif
+TRACE_1("Processing shielded targets",count _shieldedTargets);
 
 #ifdef DEBUG_MODE_FULL
-    [_positionASL, _indirectHitRange, _effectiveRange, _ammo, count _shieldedTargets, _shieldedTargets] call FUNC(debugDrawBlastRadius);
+    [_positionASL, _indirectHitRange, _effectiveRange, _ammo, count _shieldedTargets, _shieldedTargets, _unshieldedTargets] call FUNC(debugDrawBlastRadius);
 #endif
 
 if (GVAR(mode) isEqualTo "pressure_wave") then {

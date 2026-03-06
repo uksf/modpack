@@ -56,8 +56,8 @@ private _playerRadioId = _playerRadios#0;
 
 // Get radio frequency and power from current channel
 private _channelData = [_playerRadioId, "getCurrentChannelData"] call acre_sys_data_fnc_dataEvent;
-private _frequency = _channelData getOrDefault ["frequencyTX", 0];
-private _power = _channelData getOrDefault ["power", 0];
+private _frequency = _channelData getVariable ["frequencyTX", 0];
+private _power = _channelData getVariable ["power", 0];
 
 if (_frequency == 0) exitWith {
     hint "Could not get radio frequency data";

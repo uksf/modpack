@@ -54,6 +54,4 @@ private _waveState = [
 
 [FUNC(waveProcessRays), 0, _waveState] call CBA_fnc_addPerFrameHandler;
 
-#ifdef DEBUG_MODE_FULL
-    diag_log text format ["[%1] Wave simulation started: %2 rays, range=%3", ADDON, RAY_COUNT, _effectiveRange];
-#endif
+TRACE_1("Wave simulation started",_effectiveRange);

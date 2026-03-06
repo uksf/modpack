@@ -14,11 +14,12 @@
         3: Ammo class name <STRING>
         4: Total shielded targets <NUMBER>
         5: Shielded targets array <ARRAY>
+        6: Unshielded targets array <ARRAY>
 
     Return Value:
         None
 */
-params ["_positionASL", "_indirectHitRange", "_effectiveRange", "_ammo", "_totalShielded", "_shieldedTargets"];
+params ["_positionASL", "_indirectHitRange", "_effectiveRange", "_ammo", "_totalShielded", "_shieldedTargets", "_unshieldedTargets"];
 
 private _startTime = CBA_missionTime;
 private _duration = 5;
@@ -36,10 +37,13 @@ for "_i" from 0 to _segments do {
     _outerCircle pushBack _outerPoint;
 };
 
-// Collect shielded target positions for green lines
+// Collect target positions for dot markers
 private _shieldedPositions = _shieldedTargets apply {
     _x params ["_target"];
     ASLToATL (eyePos _target)
+};
+private _unshieldedPositions = _unshieldedTargets apply {
+    ASLToATL (eyePos _x)
 };
 
 [{
@@ -47,7 +51,7 @@ private _shieldedPositions = _shieldedTargets apply {
     _args params [
         "_startTime", "_duration", "_positionATL",
         "_innerCircle", "_outerCircle", "_segments",
-        "_ammo", "_totalShielded", "_shieldedPositions"
+        "_ammo", "_totalShielded", "_shieldedPositions", "_unshieldedPositions"
     ];
 
     if (CBA_missionTime > _startTime + _duration) exitWith {
@@ -67,13 +71,18 @@ private _shieldedPositions = _shieldedTargets apply {
     // Draw detonation marker
     drawIcon3D ["\a3\ui_f\data\IGUI\Cfg\Actions\clear_empty_ca.paa", [1, 0.2, 0, 1], _positionATL vectorAdd [0, 0, 0.5], 1, 1, 0, format ["%1 | %2 shielded", _ammo, _totalShielded], 2, 0.04, "RobotoCondensed"];
 
-    // Draw green lines to shielded targets (before damage processing determines colour)
+    // Draw green dots on shielded targets (processed by overpressure system)
     {
-        drawLine3D [_positionATL vectorAdd [0, 0, 0.1], _x, [0, 1, 0, 0.3]];
+        drawIcon3D ["\a3\ui_f\data\IGUI\Cfg\Actions\clear_empty_ca.paa", [0, 1, 0, 0.8], _x, 0.5, 0.5, 0, "", 0];
     } forEach _shieldedPositions;
+
+    // Draw grey dots on unshielded targets (handled by vanilla LOS)
+    {
+        drawIcon3D ["\a3\ui_f\data\IGUI\Cfg\Actions\clear_empty_ca.paa", [0.5, 0.5, 0.5, 0.6], _x, 0.5, 0.5, 0, "", 0];
+    } forEach _unshieldedPositions;
 
 }, 0, [
     _startTime, _duration, _positionATL,
     _innerCircle, _outerCircle, _segments,
-    _ammo, _totalShielded, _shieldedPositions
+    _ammo, _totalShielded, _shieldedPositions, _unshieldedPositions
 ]] call CBA_fnc_addPerFrameHandler;

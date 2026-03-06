@@ -25,7 +25,7 @@ private _startTime = CBA_missionTime;
 private _duration = 5; // 5 seconds game time
 
 // Colour based on damage: bright red for high damage, orange for low
-private _normalisedDamage = (_damage / 50) min 1;
+private _normalisedDamage = (_damage / 33) min 1;
 private _colour = [1, 0.3 * (1 - _normalisedDamage), 0, 1]; // red to orange
 
 // Path colour: orange for overhead, cyan for bounce

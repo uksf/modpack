@@ -32,12 +32,7 @@ if (_tier isEqualTo 1) then {
     _object setDamage [_newDamage, true, _source];
     _destroyed = _newDamage >= 1;
 
-    #ifdef DEBUG_MODE_FULL
-        diag_log text format [
-            "[%1] Fortification tier 1 damage: %2 (%3) currentDamage=%4 newDamage=%5",
-            ADDON, typeOf _object, _object, _currentDamage, _newDamage
-        ];
-    #endif
+    TRACE_4("Fortification tier 1 damage",_object,typeOf _object,_currentDamage,_newDamage);
 } else {
     // Tier 2: bad/no destruction model
     if (_newDamage >= 1) then {
@@ -49,22 +44,12 @@ if (_tier isEqualTo 1) then {
         deleteVehicle _object;
         _destroyed = true;
 
-        #ifdef DEBUG_MODE_FULL
-            diag_log text format [
-                "[%1] Fortification tier 2 destroyed: %2 (%3) at %4",
-                ADDON, typeOf _object, _object, _position
-            ];
-        #endif
+        TRACE_3("Fortification tier 2 destroyed",_object,typeOf _object,_position);
     } else {
         // Partial damage — apply fractional setDamage
         _object setDamage [_newDamage, true, _source];
 
-        #ifdef DEBUG_MODE_FULL
-            diag_log text format [
-                "[%1] Fortification tier 2 partial damage: %2 (%3) currentDamage=%4 newDamage=%5",
-                ADDON, typeOf _object, _object, _currentDamage, _newDamage
-            ];
-        #endif
+        TRACE_4("Fortification tier 2 partial damage",_object,typeOf _object,_currentDamage,_newDamage);
     };
 };
 

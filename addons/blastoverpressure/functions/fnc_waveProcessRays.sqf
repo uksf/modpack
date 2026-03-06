@@ -123,10 +123,8 @@ for "_i" from 0 to (_processCount - 1) do {
                 _hitUnits set [_unitKey, true];
                 [_x, _rawDamage, _source] call FUNC(applyDamage);
 
+                        TRACE_4("Wave hit",_x,_energy,_rawDamage,_bounceCount);
                 #ifdef DEBUG_MODE_FULL
-                    diag_log text format ["[%1] Wave hit %2: energy=%3 damage=%4 bounces=%5",
-                        ADDON, _x, _energy, _rawDamage, _bounceCount];
-                    // Draw hit line
                     [_x, _originASL, eyePos _x, _newPositionASL, _rawDamage, format ["wave-%1bounce", _bounceCount]] call FUNC(debugDraw);
                 #endif
             };
@@ -159,7 +157,5 @@ if (_remainingCount > RAYS_PER_FRAME) then {
 if (_rays isEqualTo []) then {
     [_perFrameHandlerID] call CBA_fnc_removePerFrameHandler;
 
-    #ifdef DEBUG_MODE_FULL
-        diag_log text format ["[%1] Wave simulation complete", ADDON];
-    #endif
+    TRACE_0("Wave simulation complete");
 };

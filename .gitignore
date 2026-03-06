@@ -663,10 +663,6 @@ extensions/x64
 extensions/packages
 extensions/src/uksf/modules/data/secret.hpp
 
-# Intercept
-!@intercept/**
-intercept/uksf*.dll
-
 # PBOs
 *.pbo
 texHeaders.bin

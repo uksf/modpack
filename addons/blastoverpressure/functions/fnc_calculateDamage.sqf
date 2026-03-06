@@ -50,12 +50,7 @@ private _rawDamage = _indirectHit * _distanceFalloff * _indirectnessPenalty * _b
 
 if (_rawDamage <= 0) exitWith { 0 };
 
-#ifdef DEBUG_MODE_FULL
-    diag_log text format [
-        "[%1] Damage calc for %2: raw=%3 distFalloff=%4 indirect=%5 bounce=%6 type=%7",
-        ADDON, _target, _rawDamage, _distanceFalloff, _indirectnessPenalty, _bounceAttenuation, _pathType
-    ];
-#endif
+TRACE_6("Damage calc",_target,_rawDamage,_distanceFalloff,_indirectnessPenalty,_bounceAttenuation,_pathType);
 
 // Apply damage
 [_target, _rawDamage, _source] call FUNC(applyDamage);

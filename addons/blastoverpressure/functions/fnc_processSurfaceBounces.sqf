@@ -63,16 +63,9 @@ while {_currentIndex < count _phase2Queue && {_processedThisFrame < PHASE2_TARGE
         ];
         _damageParams call FUNC(calculateDamage);
 
-        #ifdef DEBUG_MODE_FULL
-            diag_log text format [
-                "[%1] Phase 2 path found for %2: %3 pathLength=%4",
-                ADDON, _target, _pathType, _totalPathLength
-            ];
-        #endif
+        TRACE_3("Phase 2 path found",_target,_pathType,_totalPathLength);
     } else {
-        #ifdef DEBUG_MODE_FULL
-            diag_log text format ["[%1] Phase 2 failed for %2, fully shielded", ADDON, _target];
-        #endif
+        TRACE_1("Phase 2 failed, fully shielded",_target);
     };
 
     _currentIndex = _currentIndex + 1;
@@ -83,7 +76,5 @@ while {_currentIndex < count _phase2Queue && {_processedThisFrame < PHASE2_TARGE
 if (_currentIndex >= count _phase2Queue) then {
     [_perFrameHandlerID] call CBA_fnc_removePerFrameHandler;
 
-    #ifdef DEBUG_MODE_FULL
-        diag_log text format ["[%1] Phase 2 processing complete", ADDON];
-    #endif
+    TRACE_0("Phase 2 processing complete");
 };

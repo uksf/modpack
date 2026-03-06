@@ -46,8 +46,8 @@ if (_target isKindOf "CAManBase") then {
     // Normalise damage to 0-1 range roughly
     // indirectHit values can be 80-200+ for large explosions
     // After attenuation factors, _finalDamage is typically 5-60
-    // Scale so ~50 damage = lethal (1.0)
-    private _normalisedDamage = (_finalDamage / 50) min 1;
+    // Scale so ~33 damage = lethal (1.0)
+    private _normalisedDamage = (_finalDamage / 33) min 1;
 
     if (_normalisedDamage <= 0.01) exitWith {};
 
@@ -60,17 +60,12 @@ if (_target isKindOf "CAManBase") then {
 
     // Route through ACE medical if available
     if !(isNil "ace_medical_fnc_addDamageToUnit") then {
-        [_target, _normalisedDamage, "body", "explosive_overpressure", _source] call ace_medical_fnc_addDamageToUnit;
+        [_target, _normalisedDamage, "body", "MissileBase", _source] call ace_medical_fnc_addDamageToUnit;
     } else {
         _target setDamage ((damage _target) + _normalisedDamage);
     };
 
-    #ifdef DEBUG_MODE_FULL
-        diag_log text format [
-            "[%1] Applied damage to %2: normalised=%3 raw=%4 inVehicle=%5",
-            ADDON, _target, _normalisedDamage, _rawDamage, !(isNull objectParent _target)
-        ];
-    #endif
+    TRACE_3("Applied damage to infantry",_target,_normalisedDamage,_rawDamage);
 } else {
     // Vehicle target — damage crew members
     private _vehicleArmour = getNumber (configOf _target >> "armor");
@@ -88,24 +83,19 @@ if (_target isKindOf "CAManBase") then {
     {
         if (alive _x && {local _x}) then {
             private _crewDamage = _rawDamage * _crewDamageMultiplier;
-            private _normalisedCrewDamage = (_crewDamage / 50) min 1;
+            private _normalisedCrewDamage = (_crewDamage / 33) min 1;
 
             if (_normalisedCrewDamage <= 0.01) then { continue };
             if !(isDamageAllowed _x) then { continue };
             if !(_x getVariable ["ace_medical_allowDamage", true]) then { continue };
 
             if !(isNil "ace_medical_fnc_addDamageToUnit") then {
-                [_x, _normalisedCrewDamage, "body", "explosive_overpressure", _source] call ace_medical_fnc_addDamageToUnit;
+                [_x, _normalisedCrewDamage, "body", "MissileBase", _source] call ace_medical_fnc_addDamageToUnit;
             } else {
                 _x setDamage ((damage _x) + _normalisedCrewDamage);
             };
 
-            #ifdef DEBUG_MODE_FULL
-                diag_log text format [
-                    "[%1] Applied crew damage to %2: normalised=%3 raw=%4 vehicle=%5",
-                    ADDON, _x, _normalisedCrewDamage, _crewDamage, _target
-                ];
-            #endif
+            TRACE_4("Applied crew damage",_x,_normalisedCrewDamage,_crewDamage,_target);
         };
     } forEach crew _target;
 };
