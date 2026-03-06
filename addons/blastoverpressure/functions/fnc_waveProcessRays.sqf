@@ -157,5 +157,5 @@ if (_remainingCount > RAYS_PER_FRAME) then {
 if (_rays isEqualTo []) then {
     [_perFrameHandlerID] call CBA_fnc_removePerFrameHandler;
 
-    TRACE_0("Wave simulation complete");
+    TRACE_1("Wave simulation complete",count _rays);
 };

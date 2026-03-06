@@ -81,7 +81,7 @@ private _shieldedTargets = [];
 } forEach _candidates;
 
 if (_shieldedTargets isEqualTo []) exitWith {
-    TRACE_0("No shielded targets found");
+    TRACE_1("No shielded targets found",count _candidates);
 };
 
 TRACE_1("Processing shielded targets",count _shieldedTargets);

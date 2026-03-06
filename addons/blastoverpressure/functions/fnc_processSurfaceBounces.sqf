@@ -76,5 +76,5 @@ while {_currentIndex < count _phase2Queue && {_processedThisFrame < PHASE2_TARGE
 if (_currentIndex >= count _phase2Queue) then {
     [_perFrameHandlerID] call CBA_fnc_removePerFrameHandler;
 
-    TRACE_0("Phase 2 processing complete");
+    TRACE_1("Phase 2 processing complete",count _phase2Queue);
 };
