@@ -1,4 +1,16 @@
-class tbd_m119;
+class StaticWeapon;
+class StaticMortar : StaticWeapon {
+    class Turrets {
+        class MainTurret;
+    };
+};
+class tbd_m119 : StaticMortar {
+    class Turrets : Turrets {
+        class MainTurret : MainTurret {
+            class ViewOptics;
+        };
+    };
+};
 class GVAR(L119) : tbd_m119 {
     faction = "CUP_B_GB";
     displayName = "L119";
@@ -7,4 +19,12 @@ class GVAR(L119) : tbd_m119 {
     ace_artillerytables_showRangetable = 1;
     ace_artillerytables_showGunLaying = 1;
     ace_artillerytables_applyCorrections = 1;
+    class Turrets : Turrets {
+        class MainTurret : MainTurret {
+            class ViewOptics : ViewOptics {
+                minAngleY = -100;
+                maxAngleY = 100;
+            };
+        };
+    };
 };
