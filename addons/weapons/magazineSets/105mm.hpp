@@ -34,22 +34,22 @@ class tbd_mortars_105mm_round_he_charge_mag_7 : tbd_mortars_105mm_round_he_charg
 class tbd_mortars_105mm_round_smoke_charge_mag_1 : 8Rnd_82mm_Mo_shells {
     CHARGE_1;
 };
-class tbd_mortars_105mm_round_smoke_charge_mag_2 : tbd_mortars_105mm_round_he_charge_mag_1 {
+class tbd_mortars_105mm_round_smoke_charge_mag_2 : tbd_mortars_105mm_round_smoke_charge_mag_1 {
     CHARGE_2;
 };
-class tbd_mortars_105mm_round_smoke_charge_mag_3 : tbd_mortars_105mm_round_he_charge_mag_1 {
+class tbd_mortars_105mm_round_smoke_charge_mag_3 : tbd_mortars_105mm_round_smoke_charge_mag_1 {
     CHARGE_3;
 };
-class tbd_mortars_105mm_round_smoke_charge_mag_4 : tbd_mortars_105mm_round_he_charge_mag_1 {
+class tbd_mortars_105mm_round_smoke_charge_mag_4 : tbd_mortars_105mm_round_smoke_charge_mag_1 {
     CHARGE_4;
 };
-class tbd_mortars_105mm_round_smoke_charge_mag_5 : tbd_mortars_105mm_round_he_charge_mag_1 {
+class tbd_mortars_105mm_round_smoke_charge_mag_5 : tbd_mortars_105mm_round_smoke_charge_mag_1 {
     CHARGE_5;
 };
-class tbd_mortars_105mm_round_smoke_charge_mag_6 : tbd_mortars_105mm_round_he_charge_mag_1 {
+class tbd_mortars_105mm_round_smoke_charge_mag_6 : tbd_mortars_105mm_round_smoke_charge_mag_1 {
     CHARGE_6;
 };
-class tbd_mortars_105mm_round_smoke_charge_mag_7 : tbd_mortars_105mm_round_he_charge_mag_1 {
+class tbd_mortars_105mm_round_smoke_charge_mag_7 : tbd_mortars_105mm_round_smoke_charge_mag_1 {
     CHARGE_7;
 };
 
@@ -57,22 +57,22 @@ class tbd_mortars_105mm_round_smoke_charge_mag_7 : tbd_mortars_105mm_round_he_ch
 class tbd_mortars_105mm_round_dpicm_charge_mag_1 : 8Rnd_82mm_Mo_shells {
     CHARGE_1;
 };
-class tbd_mortars_105mm_round_dpicm_charge_mag_2 : tbd_mortars_105mm_round_he_charge_mag_1 {
+class tbd_mortars_105mm_round_dpicm_charge_mag_2 : tbd_mortars_105mm_round_dpicm_charge_mag_1 {
     CHARGE_2;
 };
-class tbd_mortars_105mm_round_dpicm_charge_mag_3 : tbd_mortars_105mm_round_he_charge_mag_1 {
+class tbd_mortars_105mm_round_dpicm_charge_mag_3 : tbd_mortars_105mm_round_dpicm_charge_mag_1 {
     CHARGE_3;
 };
-class tbd_mortars_105mm_round_dpicm_charge_mag_4 : tbd_mortars_105mm_round_he_charge_mag_1 {
+class tbd_mortars_105mm_round_dpicm_charge_mag_4 : tbd_mortars_105mm_round_dpicm_charge_mag_1 {
     CHARGE_4;
 };
-class tbd_mortars_105mm_round_dpicm_charge_mag_5 : tbd_mortars_105mm_round_he_charge_mag_1 {
+class tbd_mortars_105mm_round_dpicm_charge_mag_5 : tbd_mortars_105mm_round_dpicm_charge_mag_1 {
     CHARGE_5;
 };
-class tbd_mortars_105mm_round_dpicm_charge_mag_6 : tbd_mortars_105mm_round_he_charge_mag_1 {
+class tbd_mortars_105mm_round_dpicm_charge_mag_6 : tbd_mortars_105mm_round_dpicm_charge_mag_1 {
     CHARGE_6;
 };
-class tbd_mortars_105mm_round_dpicm_charge_mag_7 : tbd_mortars_105mm_round_he_charge_mag_1 {
+class tbd_mortars_105mm_round_dpicm_charge_mag_7 : tbd_mortars_105mm_round_dpicm_charge_mag_1 {
     CHARGE_7;
 };
 
@@ -80,21 +80,21 @@ class tbd_mortars_105mm_round_dpicm_charge_mag_7 : tbd_mortars_105mm_round_he_ch
 class tbd_mortars_105mm_round_laser_charge_mag_1 : 8Rnd_82mm_Mo_shells {
     CHARGE_1;
 };
-class tbd_mortars_105mm_round_laser_charge_mag_2 : tbd_mortars_105mm_round_he_charge_mag_1 {
+class tbd_mortars_105mm_round_laser_charge_mag_2 : tbd_mortars_105mm_round_laser_charge_mag_1 {
     CHARGE_2;
 };
-class tbd_mortars_105mm_round_laser_charge_mag_3 : tbd_mortars_105mm_round_he_charge_mag_1 {
+class tbd_mortars_105mm_round_laser_charge_mag_3 : tbd_mortars_105mm_round_laser_charge_mag_1 {
     CHARGE_3;
 };
-class tbd_mortars_105mm_round_laser_charge_mag_4 : tbd_mortars_105mm_round_he_charge_mag_1 {
+class tbd_mortars_105mm_round_laser_charge_mag_4 : tbd_mortars_105mm_round_laser_charge_mag_1 {
     CHARGE_4;
 };
-class tbd_mortars_105mm_round_laser_charge_mag_5 : tbd_mortars_105mm_round_he_charge_mag_1 {
+class tbd_mortars_105mm_round_laser_charge_mag_5 : tbd_mortars_105mm_round_laser_charge_mag_1 {
     CHARGE_5;
 };
-class tbd_mortars_105mm_round_laser_charge_mag_6 : tbd_mortars_105mm_round_he_charge_mag_1 {
+class tbd_mortars_105mm_round_laser_charge_mag_6 : tbd_mortars_105mm_round_laser_charge_mag_1 {
     CHARGE_6;
 };
-class tbd_mortars_105mm_round_laser_charge_mag_7 : tbd_mortars_105mm_round_he_charge_mag_1 {
+class tbd_mortars_105mm_round_laser_charge_mag_7 : tbd_mortars_105mm_round_laser_charge_mag_1 {
     CHARGE_7;
 };
