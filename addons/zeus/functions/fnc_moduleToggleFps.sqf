@@ -14,8 +14,6 @@
 */
 params ["_logic"];
 
-if (!isMultiplayer) exitWith {deleteVehicle _logic;};
-
 deleteVehicle _logic;
 
 [QGVAR(fps)] call FUNC(debugToggle);

@@ -122,7 +122,12 @@ if (hasInterface) then {
     [QGVAR(debugStreamData), {
         params ["_dataMap"];
         {
-            GVAR(debugData) set [_x, _dataMap get _x];
+            private _value = _dataMap get _x;
+            if (_value isEqualTo []) then {
+                GVAR(debugData) deleteAt _x;
+            } else {
+                GVAR(debugData) set [_x, _value];
+            };
         } forEach keys _dataMap;
 
         // Check provider conditions and auto-disable any that are no longer valid

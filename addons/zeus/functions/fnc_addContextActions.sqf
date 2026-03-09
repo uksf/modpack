@@ -76,7 +76,7 @@ _action = [QGVAR(debug), "Debug", "\a3\ui_f_curator\data\logos\arma3_curator_eye
             };
         } forEach (keys GVAR(debugActions));
     }, {
-        (keys GVAR(debugActiveToggles)) isNotEqualTo []
+        (keys GVAR(debugActions)) findIf {GVAR(debugActiveToggles) getOrDefault [_x, false]} != -1
     }] call zen_context_menu_fnc_createAction;
     _actions pushBack [_action, [], 99];
 

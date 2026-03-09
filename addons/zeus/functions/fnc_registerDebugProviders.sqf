@@ -55,7 +55,7 @@ private _fnc_drawMap = {
 _key = QGVAR(fps);
 _menuName = "Player FPS";
 _menuPriority = -5;
-_fnc_menuCondition = {isMultiplayer};
+_fnc_menuCondition = {true};
 private _clientDataKey = QGVAR(fpsData);
 
 private _fnc_serverGetter = {
@@ -83,14 +83,8 @@ _fnc_draw3d = {
         private _playerObject = objectFromNetId _playerNetId;
         if (isNull _playerObject) then { continue };
 
-        private _vehicle = vehicle _playerObject;
-        private _position = ASLToAGL (getPosASLVisual _vehicle);
-        if (_cameraPosition distance _position > 1000) then { continue };
-
-        if (_vehicle isNotEqualTo _playerObject) then {
-            private _boundingBox = boundingBoxReal _vehicle;
-            _position = _position vectorAdd [0, 0, (_boundingBox#1#2) + 0.5];
-        };
+        private _position = ASLToAGL (getPosASLVisual (vehicle _playerObject));
+        if (_cameraPosition distance _position > 500) then { continue };
 
         private _colour = [1,1,1,1];
         private _size = 0.025;
@@ -98,7 +92,7 @@ _fnc_draw3d = {
             _colour = [1,0,0,1];
             _size = 0.035;
         };
-        drawIcon3D ["", _colour, _position, 0, 0, 0, format ["%1 FPS", _fps], 1, _size, "TahomaB", "center", false, 0, 0.02];
+        drawIcon3D ["", _colour, _position, 0, 0, 0, format ["%1 FPS", _fps], 1, _size, "TahomaB", "center", false, 0, DEBUG_ICON_SPACING * 3];
     } forEach _data;
 };
 
@@ -131,16 +125,10 @@ private _fnc_unconsciousDraw3d = {
         private _playerObject = objectFromNetId _playerNetId;
         if (isNull _playerObject) then { continue };
 
-        private _vehicle = vehicle _playerObject;
-        private _position = ASLToAGL (getPosASLVisual _vehicle);
-        if (_cameraPosition distance _position > 1000) then { continue };
+        private _position = ASLToAGL (getPosASLVisual (vehicle _playerObject));
+        if (_cameraPosition distance _position > 500) then { continue };
 
-        if (_vehicle isNotEqualTo _playerObject) then {
-            private _boundingBox = boundingBoxReal _vehicle;
-            _position = _position vectorAdd [0, 0, (_boundingBox#1#2) + 0.5];
-        };
-
-        drawIcon3D ["", [1,0,0,1], _position, 0, 0, 0, _unconsciousText, 1, 0.025, "TahomaB", "center", false, 0, 0.05];
+        drawIcon3D ["", [1,0,0,1], _position, 0, 0, 0, _unconsciousText, 1, 0.025, "TahomaB", "center", false, 0, DEBUG_ICON_SPACING * 4];
     } forEach _data;
 };
 

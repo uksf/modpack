@@ -74,7 +74,6 @@ private _changedKeys = createHashMap;
     private _clientData = createHashMap;
     {
         private _data = GVAR(debugLastSentData) getOrDefault [_x, []];
-        if (_data isEqualTo []) then { continue };
 
         private _isNew = !(_sentKeys getOrDefault [_x, false]);
         private _isChanged = _changedKeys getOrDefault [_x, false];

@@ -22,8 +22,9 @@ class UK3CB_BAF_Sh_81mm_AMOS_AB;
 class UK3CB_BAF_Sh_81mm_AMOS_AB_helper : UK3CB_BAF_Sh_81mm_AMOS_AB {
     indirectHitRange = 18;  // 32
 };
-class UK3CB_BAF_Smoke_81mm_AMOS;
-class GVAR(105mm_smoke_shell) : UK3CB_BAF_Smoke_81mm_AMOS {
+class Smoke_82mm_AMOS_White;
+class GVAR(105mm_smoke_shell) : Smoke_82mm_AMOS_White {
+    ExplosionEffects = "UK3CB_WPExplosion";
     explosionTime = 1;
 };
 class tbd_mortars_105mm_shell_ammo_smoke : SubmunitionCore {
@@ -34,5 +35,6 @@ class tbd_mortars_105mm_shell_ammo_smoke : SubmunitionCore {
     submunitionConeAngleHorizontal = 360;
     submunitionParentSpeedCoef = 1;
     triggerSpeedCoef[] = { 0.95, 1.0 };
+    triggerOnImpact = 0;
     triggerDistance = 100;
 };

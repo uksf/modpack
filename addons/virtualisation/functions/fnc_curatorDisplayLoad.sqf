@@ -45,8 +45,8 @@ GVAR(curatorViewPFHID) = [{
             _groupData params ["_side", "_vehicleDetails", "_unitDetails"];
 
             drawIcon3D ["\a3\ui_f\data\gui\cfg\Hints\icon_text\group_1_ca.paa", [1,0.4,0,1], _position, 1, 1, 0, format ["%1", _side], 0.1, 0.03, "PuristaBold", "center"];
-            drawIcon3D ["", [1,0.4,0,1], _position, 0, 0, 0, format ["%1 Vehicles", count _vehicleDetails], 0.1, 0.03, "PuristaBold", "center", false, 0, 0.035];
-            drawIcon3D ["", [1,0.4,0,1], _position, 0, 0, 0, format ["%1 Units", count _unitDetails], 0.1, 0.03, "PuristaBold", "center", false, 0, 0.05];
+            drawIcon3D ["", [1,0.4,0,1], _position, 0, 0, 0, format ["%1 Vehicles", count _vehicleDetails], 0.1, 0.03, "PuristaBold", "center", false, 0, DEBUG_ICON_SPACING];
+            drawIcon3D ["", [1,0.4,0,1], _position, 0, 0, 0, format ["%1 Units", count _unitDetails], 0.1, 0.03, "PuristaBold", "center", false, 0, DEBUG_ICON_SPACING * 2];
         };
     } forEach GVAR(groupPositionMap);
 }, 0] call CBA_fnc_addPerFrameHandler;

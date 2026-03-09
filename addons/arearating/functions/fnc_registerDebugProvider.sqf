@@ -59,7 +59,7 @@ private _fnc_draw3d = {
             };
 
             drawIcon3D ["", _colour, ASLToAGL (ATLToASL _position), 0, 0, 0, format ["%1: %2%3 %4", _name, _percentageCurrent, "%", _trend], 1, 0.025, "TahomaB", "center"];
-            drawIcon3D ["", _colour, ASLToAGL (ATLToASL _position), 0, 0, 0, format ["Rating: %1 (%2/%3)", _ratingCurrent, _ratingMin, _ratingMax], 1, 0.02, "TahomaB", "center", false, 0, 0.03];
+            drawIcon3D ["", _colour, ASLToAGL (ATLToASL _position), 0, 0, 0, format ["Rating: %1 (%2/%3)", _ratingCurrent, _ratingMin, _ratingMax], 1, 0.02, "TahomaB", "center", false, 0, DEBUG_ICON_SPACING];
         };
     } forEach _areas;
 };
