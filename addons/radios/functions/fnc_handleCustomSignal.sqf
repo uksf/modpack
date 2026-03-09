@@ -46,7 +46,8 @@ if (GVAR(useRebros) && {_bestPx < 0.95}) then {
     } forEach GVAR(rebroStations);
 };
 
-if (GVAR(debugReportingEnabled)) then {
+if (GVAR(debugReportingEnabled) && {CBA_missionTime >= GVAR(debugReportingNextUpdate)}) then {
+    GVAR(debugReportingNextUpdate) = CBA_missionTime + 1;
     _bestResult params ["_bestPower", "_bestDbm"];
 
     private _radioClass = [_receiverId] call acre_sys_radio_fnc_getRadioBaseClassname;

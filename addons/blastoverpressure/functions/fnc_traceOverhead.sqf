@@ -4,9 +4,10 @@
         Beswick.T
 
     Description:
-        Phase 1 overhead path tracing. Tries to find a 2-segment blast path
-        from the detonation to the target via intermediate elevated/lateral
-        sample points. Handles units behind sandbags, low walls, in trenches.
+        Phase 1 overhead path tracing. Finds the obstruction between detonation
+        and target using lineIntersectsSurfaces, then generates tightly-spaced
+        sample points just above the obstruction. Designed for low cover only
+        (sandbags, trenches, low walls) — not for arcing over buildings.
 
     Parameter(s):
         0: Detonation position ASL <ARRAY>
@@ -18,12 +19,22 @@
 */
 params ["_detonationPositionASL", "_targetPositionASL", "_target"];
 
-private _midpointASL = _detonationPositionASL vectorAdd _targetPositionASL;
-_midpointASL = _midpointASL vectorMultiply 0.5;
+// Find the obstruction point on the direct path
+private _intersections = lineIntersectsSurfaces [_detonationPositionASL, _targetPositionASL, _target, objNull, true, 1, "GEOM", "NONE"];
+
+private _obstructionPositionASL = [];
+if (_intersections isNotEqualTo []) then {
+    _obstructionPositionASL = (_intersections#0)#0;
+} else {
+    // No surface hit — terrain is blocking. Use terrain height at midpoint + 1m
+    private _midpoint = (_detonationPositionASL vectorAdd _targetPositionASL) vectorMultiply 0.5;
+    private _terrainHeight = getTerrainHeightASL [_midpoint#0, _midpoint#1];
+    _obstructionPositionASL = [_midpoint#0, _midpoint#1, _terrainHeight + 1];
+};
 
 // Calculate lateral direction (perpendicular to detonation-target line in horizontal plane)
 private _direction = _detonationPositionASL vectorFromTo _targetPositionASL;
-private _lateralDirection = [- (_direction#1), _direction#0, 0];
+private _lateralDirection = [-(_direction#1), _direction#0, 0];
 private _lateralMagnitude = vectorMagnitude _lateralDirection;
 if (_lateralMagnitude > 0) then {
     _lateralDirection = _lateralDirection vectorMultiply (1 / _lateralMagnitude);
@@ -31,19 +42,18 @@ if (_lateralMagnitude > 0) then {
     _lateralDirection = [1, 0, 0];
 };
 
-// Generate 7 sample points
-private _samplePoints = [
-    // Above midpoint: +2m, +4m, +6m
-    _midpointASL vectorAdd [0, 0, 2],
-    _midpointASL vectorAdd [0, 0, 4],
-    _midpointASL vectorAdd [0, 0, 6],
-    // Above target: +3m, +5m
-    _targetPositionASL vectorAdd [0, 0, 3],
-    _targetPositionASL vectorAdd [0, 0, 5],
-    // Lateral offsets at midpoint: 3m left and right, +2m height
-    (_midpointASL vectorAdd [0, 0, 2]) vectorAdd (_lateralDirection vectorMultiply 3),
-    (_midpointASL vectorAdd [0, 0, 2]) vectorAdd (_lateralDirection vectorMultiply -3)
-];
+// Generate 6 sample points: 2 heights (0.5m, 1.0m above obstruction) x 3 lateral positions (centre, +-0.5m)
+private _samplePoints = [];
+{
+    private _heightOffset = _x;
+    private _basePoint = _obstructionPositionASL vectorAdd [0, 0, _heightOffset];
+
+    // Centre
+    _samplePoints pushBack _basePoint;
+    // Lateral offsets
+    _samplePoints pushBack (_basePoint vectorAdd (_lateralDirection vectorMultiply 0.5));
+    _samplePoints pushBack (_basePoint vectorAdd (_lateralDirection vectorMultiply -0.5));
+} forEach [0.5, 1.0];
 
 private _bestPath = [];
 private _bestPathLength = 1e10;

@@ -189,7 +189,6 @@ if (hasInterface) then {
         } forEach _activeSources;
     }] call CBA_fnc_addEventHandler;
 
-    [QGVAR(debugRequestActiveClientSources), [player]] call CBA_fnc_serverEvent;
 };
 
 ADDON = true;

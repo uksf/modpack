@@ -91,8 +91,10 @@ TRACE_1("Processing shielded targets",count _shieldedTargets);
 #endif
 
 if (GVAR(mode) isEqualTo "pressure_wave") then {
-    // Pressure wave PoC mode — ray-marched simulation
-    [_positionASL, _ammo, _adjustedIndirectHit, _indirectHitRange, _effectiveRange, _source] call FUNC(waveSimulation);
+    // Pressure wave mode — unit-targeted ray simulation
+    // Only target shielded units to avoid double-dipping with Arma's native damage
+    private _candidatePositions = _shieldedTargets apply { _x#1 };
+    [_positionASL, _ammo, _adjustedIndirectHit, _indirectHitRange, _effectiveRange, _source, _candidatePositions] call FUNC(waveSimulation);
 } else {
     // Path trace mode (default) — per-frame target processing
     private _processState = [_positionASL, _ammo, _adjustedIndirectHit, _indirectHitRange, _effectiveRange, _shieldedTargets, 0, [], _source];

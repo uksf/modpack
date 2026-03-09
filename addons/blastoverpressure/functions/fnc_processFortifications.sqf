@@ -66,8 +66,8 @@ TRACE_2("Fortification scan",count _nearbyObjects,_effectiveRange);
     private _rawDamage = _indirectHit * (1 - (_distance / _effectiveRange));
 
     // Normalise to 0-1 damage scale
-    // indirectHit for large munitions is 60-200+, a value of ~53 should destroy most fortifications
-    private _normalisedDamage = (_rawDamage / 53) min 1;
+    // indirectHit for large munitions is 60-200+, a value of ~40 should destroy most fortifications
+    private _normalisedDamage = (_rawDamage / 40) min 1;
 
     if (_normalisedDamage <= 0.01) then { continue };
 

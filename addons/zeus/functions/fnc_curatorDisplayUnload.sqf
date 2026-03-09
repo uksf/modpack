@@ -24,5 +24,9 @@ params ["_display"];
     };
 } forEach (keys GVAR(debugActiveToggles));
 
+// Remove unconscious from active toggles (auto-managed, not user-toggled)
+GVAR(debugActiveToggles) deleteAt QGVAR(unconscious);
+GVAR(debugData) deleteAt QGVAR(unconscious);
+
 private _unconscious = player getVariable ["ACE_isUnconscious", false];
 [!_unconscious, player] call ace_common_fnc_setVolume;

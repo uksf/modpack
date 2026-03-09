@@ -4,7 +4,7 @@
         Tim Beswick
 
     Description:
-        Registers zeus debug providers for projectile tracking and player FPS/unconscious status
+        Registers zeus debug providers for projectile tracking, player FPS, and unconscious status
 
     Parameter(s):
         None
@@ -51,7 +51,7 @@ private _fnc_drawMap = {
     1
 ]] call CBA_fnc_localEvent;
 
-// Player FPS and unconscious status provider
+// Player FPS provider
 _key = QGVAR(fps);
 _menuName = "Player FPS";
 _menuPriority = -5;
@@ -66,14 +66,11 @@ private _fnc_serverGetter = {
         _entry params ["_player", "_data", "_timestamp"];
         if (CBA_missionTime - _timestamp > 10) then { continue };
         if (isNull _player) then { continue };
+        if !(isPlayer _player) then { continue };
         if ((driver (vehicle _player)) isNotEqualTo _player) then { continue };
 
         _data params ["_fps"];
-        private _unconsciousText = if (_player getVariable ["ACE_isUnconscious", false]) then {
-            _player call FUNC(formatUnconsciousText)
-        } else {""};
-
-        _players pushBack [netId _player, _fps, _unconsciousText];
+        _players pushBack [netId _player, _fps];
     } forEach keys _sourceData;
     _players
 };
@@ -82,7 +79,7 @@ _fnc_draw3d = {
     params ["_data", "_cameraPosition", "_maxDistance"];
 
     {
-        _x params ["_playerNetId", "_fps", "_unconsciousText"];
+        _x params ["_playerNetId", "_fps"];
         private _playerObject = objectFromNetId _playerNetId;
         if (isNull _playerObject) then { continue };
 
@@ -101,21 +98,57 @@ _fnc_draw3d = {
             _colour = [1,0,0,1];
             _size = 0.035;
         };
-        drawIcon3D ["", _colour, _position, 1, 2.25, 0, format ["%1 FPS", _fps], 1, _size, "TahomaB", "center"];
-
-        if (_unconsciousText isNotEqualTo "") then {
-            drawIcon3D ["", [1,0,0,1], _position, 1, -2.5, 0, _unconsciousText, 1, 0.025, "TahomaB", "center"];
-        };
+        drawIcon3D ["", _colour, _position, 0, 0, 0, format ["%1 FPS", _fps], 1, _size, "TahomaB", "center", false, 0, 0.02];
     } forEach _data;
 };
 
-_fnc_drawMap = {
+_fnc_drawMap = {};
+
+[QGVAR(registerDebugAction), [_key, _menuName, _menuPriority, _fnc_menuCondition]] call CBA_fnc_localEvent;
+[QGVAR(registerDebugServerGetter), [_key, _fnc_serverGetter, 1, _clientDataKey]] call CBA_fnc_localEvent;
+[QGVAR(registerDebugDraw), [_key, _fnc_draw3d, _fnc_drawMap]] call CBA_fnc_localEvent;
+
+// Unconscious status provider — always active when Zeus is open
+_key = QGVAR(unconscious);
+
+private _fnc_unconsciousServerGetter = {
+    private _unconsciousPlayers = [];
+    {
+        if !(_x getVariable ["ACE_isUnconscious", false]) then { continue };
+        if ((driver (vehicle _x)) isNotEqualTo _x) then { continue };
+
+        private _unconsciousText = _x call FUNC(formatUnconsciousText);
+        _unconsciousPlayers pushBack [netId _x, _unconsciousText];
+    } forEach ALL_PLAYERS;
+    _unconsciousPlayers
+};
+
+private _fnc_unconsciousDraw3d = {
+    params ["_data", "_cameraPosition", "_maxDistance"];
+
+    {
+        _x params ["_playerNetId", "_unconsciousText"];
+        private _playerObject = objectFromNetId _playerNetId;
+        if (isNull _playerObject) then { continue };
+
+        private _vehicle = vehicle _playerObject;
+        private _position = ASLToAGL (getPosASLVisual _vehicle);
+        if (_cameraPosition distance _position > 1000) then { continue };
+
+        if (_vehicle isNotEqualTo _playerObject) then {
+            private _boundingBox = boundingBoxReal _vehicle;
+            _position = _position vectorAdd [0, 0, (_boundingBox#1#2) + 0.5];
+        };
+
+        drawIcon3D ["", [1,0,0,1], _position, 0, 0, 0, _unconsciousText, 1, 0.025, "TahomaB", "center", false, 0, 0.05];
+    } forEach _data;
+};
+
+private _fnc_unconsciousDrawMap = {
     params ["_data", "_map"];
 
     {
-        _x params ["_playerNetId", "", "_unconsciousText"];
-        if (_unconsciousText isEqualTo "") then { continue };
-
+        _x params ["_playerNetId", "_unconsciousText"];
         private _playerObject = objectFromNetId _playerNetId;
         if (isNull _playerObject) then { continue };
 
@@ -123,6 +156,5 @@ _fnc_drawMap = {
     } forEach _data;
 };
 
-[QGVAR(registerDebugAction), [_key, _menuName, _menuPriority, _fnc_menuCondition]] call CBA_fnc_localEvent;
-[QGVAR(registerDebugServerGetter), [_key, _fnc_serverGetter, 1, _clientDataKey]] call CBA_fnc_localEvent;
-[QGVAR(registerDebugDraw), [_key, _fnc_draw3d, _fnc_drawMap]] call CBA_fnc_localEvent;
+[QGVAR(registerDebugServerGetter), [_key, _fnc_unconsciousServerGetter, 1]] call CBA_fnc_localEvent;
+[QGVAR(registerDebugDraw), [_key, _fnc_unconsciousDraw3d, _fnc_unconsciousDrawMap]] call CBA_fnc_localEvent;

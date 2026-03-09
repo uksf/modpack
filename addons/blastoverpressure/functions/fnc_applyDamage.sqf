@@ -46,8 +46,8 @@ if (_target isKindOf "CAManBase") then {
     // Normalise damage to 0-1 range roughly
     // indirectHit values can be 80-200+ for large explosions
     // After attenuation factors, _finalDamage is typically 5-60
-    // Scale so ~33 damage = lethal (1.0)
-    private _normalisedDamage = (_finalDamage / 33) min 1;
+    // Scale so ~25 damage = lethal (1.0)
+    private _normalisedDamage = (_finalDamage / 25) min 1;
 
     if (_normalisedDamage <= 0.01) exitWith {};
 
@@ -83,7 +83,7 @@ if (_target isKindOf "CAManBase") then {
     {
         if (alive _x && {local _x}) then {
             private _crewDamage = _rawDamage * _crewDamageMultiplier;
-            private _normalisedCrewDamage = (_crewDamage / 33) min 1;
+            private _normalisedCrewDamage = (_crewDamage / 25) min 1;
 
             if (_normalisedCrewDamage <= 0.01) then { continue };
             if !(isDamageAllowed _x) then { continue };

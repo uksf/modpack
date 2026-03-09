@@ -9,6 +9,7 @@ GVAR(rebroStations) = [];
 GVAR(rebroStationsFilterFrame) = -1;
 GVAR(rebroDebugging) = false;
 GVAR(debugReportingEnabled) = false;
+GVAR(debugReportingNextUpdate) = 0;
 GVAR(debugConnectionData) = createHashMap;
 GVAR(testRebroPfhHandle) = -1;
 GVAR(testRebroMast) = objNull;

@@ -6,6 +6,7 @@
     Description:
         Per-frame handler that advances ray particles in the pressure wave simulation.
         Processes rays in batches, handles surface reflections and unit hits.
+        Accumulates path history per ray for debug visualisation.
 
     Parameter(s):
         0: Wave state array <ARRAY>
@@ -44,7 +45,7 @@ private _processCount = (count _rays) min RAYS_PER_FRAME;
 
 for "_i" from 0 to (_processCount - 1) do {
     private _ray = _rays select _i;
-    _ray params ["_rayPositionASL", "_rayDirection", "_energy", "_bounceCount", "_distanceTravelled"];
+    _ray params ["_rayPositionASL", "_rayDirection", "_energy", "_bounceCount", "_distanceTravelled", "_pathHistory"];
 
     // Skip dead rays
     if (_energy < MIN_ENERGY) then {
@@ -68,6 +69,9 @@ for "_i" from 0 to (_processCount - 1) do {
     if (_intersections isNotEqualTo []) then {
         (_intersections#0) params ["_hitPositionASL", "_surfaceNormal"];
 
+        // Record path up to bounce point
+        _pathHistory pushBack [_hitPositionASL, _bounceCount];
+
         if (_bounceCount >= MAX_BOUNCES) then {
             _raysToRemove pushBack _i;
             continue
@@ -86,16 +90,15 @@ for "_i" from 0 to (_processCount - 1) do {
         _ray set [3, _bounceCount + 1];
         _ray set [4, _distanceTravelled + (_rayPositionASL vectorDistance _hitPositionASL)];
 
-        #ifdef DEBUG_MODE_FULL
-            // Draw bounce point
-            private _bounceATL = ASLToATL _bouncePosition;
-            private _bounceColour = [1, _energy * BOUNCE_ENERGY_FACTOR, 0, 1];
-            drawLine3D [ASLToATL _rayPositionASL, _bounceATL, _bounceColour];
-        #endif
+        // Record post-bounce position as start of next segment
+        _pathHistory pushBack [_bouncePosition, _bounceCount + 1];
     } else {
         // No intersection — advance ray
         _ray set [0, _newPositionASL];
         _ray set [4, _newDistance];
+
+        // Record path point
+        _pathHistory pushBack [_newPositionASL, _bounceCount];
 
         // Check for nearby units
         private _nearUnits = (ASLToAGL _newPositionASL) nearEntities [
@@ -123,20 +126,39 @@ for "_i" from 0 to (_processCount - 1) do {
                 _hitUnits set [_unitKey, true];
                 [_x, _rawDamage, _source] call FUNC(applyDamage);
 
-                        TRACE_4("Wave hit",_x,_energy,_rawDamage,_bounceCount);
+                TRACE_4("Wave hit",_x,_energy,_rawDamage,_bounceCount);
                 #ifdef DEBUG_MODE_FULL
                     [_x, _originASL, eyePos _x, _newPositionASL, _rawDamage, format ["wave-%1bounce", _bounceCount]] call FUNC(debugDraw);
                 #endif
             };
         } forEach _nearUnits;
-
-        #ifdef DEBUG_MODE_FULL
-            // Draw ray particle
-            private _rayColour = [1, _energy * 0.8, 0, _energy];
-            drawLine3D [ASLToATL _rayPositionASL, ASLToATL _newPositionASL, _rayColour];
-        #endif
     };
 };
+
+#ifdef DEBUG_MODE_FULL
+    // Draw accumulated path trails for all active rays
+    {
+        _x params ["", "", "", "", "", "_history"];
+        if (count _history < 2) then { continue };
+
+        for "_j" from 1 to (count _history - 1) do {
+            private _previous = _history select (_j - 1);
+            private _current = _history select _j;
+            _previous params ["_previousPositionASL", "_previousBounceCount"];
+            _current params ["_currentPositionASL", ""];
+
+            // Colour by bounce count: yellow -> orange -> red -> magenta
+            private _colour = switch (_previousBounceCount) do {
+                case 0: { [1, 1, 0, 0.8] };
+                case 1: { [1, 0.5, 0, 0.8] };
+                case 2: { [1, 0, 0, 0.8] };
+                default { [1, 0, 1, 0.8] };
+            };
+
+            drawLine3D [ASLToATL _previousPositionASL, ASLToATL _currentPositionASL, _colour];
+        };
+    } forEach _rays;
+#endif
 
 // Remove dead rays (reverse order to preserve indices)
 _raysToRemove sort false;
