@@ -22,9 +22,9 @@ class UK3CB_BAF_Sh_81mm_AMOS_AB;
 class UK3CB_BAF_Sh_81mm_AMOS_AB_helper : UK3CB_BAF_Sh_81mm_AMOS_AB {
     indirectHitRange = 18;  // 32
 };
-class Smoke_82mm_AMOS_White;
-class GVAR(105mm_smoke_shell) : Smoke_82mm_AMOS_White {
-    ExplosionEffects = "UK3CB_WPExplosion";
+class SmokeShellArty;
+class GVAR(105mm_smoke_shell) : SmokeShellArty {
+    effectsSmoke = "UK3CB_WPExplosion";
     explosionTime = 1;
 };
 class tbd_mortars_105mm_shell_ammo_smoke : SubmunitionCore {
