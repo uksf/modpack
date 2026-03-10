@@ -40,12 +40,31 @@ class tbd_mortars_105mm_shell_ammo_smoke : SubmunitionCore {
     explosionForceCoef = 0.2;
     submunitionAmmo = QGVAR(105mm_smoke_shell);
     submunitionDirectionType = "SubmunitionModelDirection";
-    submunitionConeType[] = { "poissondisc", 4 };  // 20
+    submunitionConeType[] = { "poissondisc", 3 };  // 20
     submunitionConeAngle = 10;
     submunitionConeAngleHorizontal = 10;
-    submunitionInitialOffset[] = { 0, 0, 0 };
+    submunitionInitialOffset[] = { 0, 0, -0.2 };
     deleteParentWhenTriggered = 0;
     triggerSpeedCoef[] = { 0.9, 0.95 };
     triggerOnImpact = 0;
     triggerDistance = 100;
+    CraterEffects = "ExploAmmoCrater";
+    SoundSetExplosion[] = { "jsrs_2025_shell_blunt_hit_soundset", "jsrs_2025_debris_small_soundset" };
+    class HitEffects {
+        hitVirtual = "ImpactMetalSabotSmall";
+        HitMetal = "ImpactMetalSabotSmall";
+        HitMetalPlate = "ImpactMetalSabotSmall";
+        hitBuilding = "BCImpactConcrete_30mm";
+        hitConcrete = "BCImpactConcrete_30mm";
+        hitGroundSoft = "BCImpactDirt_120mm";
+        hitGroundHard = "BCImpactDirt_120mm";
+        default_mat = "BCImpactDirt_30mm";
+        Hit_Foliage_green = "BCImpactDirt_30mm";
+        Hit_Foliage_Dead = "BCImpactDirt_30mm";
+        Hit_Foliage_Green_big = "BCImpactDirt_30mm";
+        Hit_Foliage_Palm = "BCImpactDirt_30mm";
+        Hit_Foliage_Pine = "BCImpactDirt_30mm";
+        hitWood = "ImpactWood_Big";
+        hitWater = "ImpactEffectsWater";
+    };
 };
