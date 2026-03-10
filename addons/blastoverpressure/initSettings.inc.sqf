@@ -46,26 +46,8 @@
 [
     QGVAR(mode),
     "LIST",
-    ["Processing mode", "Path trace is production-ready. Pressure wave is experimental."],
+    ["Processing mode", "Pressure wave simulates blast propagation per-unit. Path trace is lighter on performance."],
     [COMPONENT_NAME, "General"],
-    [["path_trace", "pressure_wave"], ["Path Trace", "Pressure Wave"], 0],
-    1
-] call CBA_Settings_fnc_init;
-
-[
-    QGVAR(fortificationDestructionEnabled),
-    "CHECKBOX",
-    ["Fortification destruction", "Destroy fortification objects (sandbags, barriers, bunkers) within blast radius of large explosions"],
-    [COMPONENT_NAME, "Fortifications"],
-    true,
-    1
-] call CBA_Settings_fnc_init;
-
-[
-    QGVAR(fortificationThreshold),
-    "SLIDER",
-    ["Fortification threshold", "Minimum explosion power to destroy fortifications. Higher than overpressure threshold — 81mm mortar and above. Formula: indirectHit * sqrt(indirectHitRange). (100 - 500)"],
-    [COMPONENT_NAME, "Fortifications"],
-    [100, 500, 180, 0],
+    [["path_trace", "pressure_wave"], ["Path Trace", "Pressure Wave"], 1],
     1
 ] call CBA_Settings_fnc_init;

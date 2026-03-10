@@ -9,7 +9,3 @@ PREP(debugDraw);
 PREP(debugDrawBlastRadius);
 PREP(waveSimulation);
 PREP(waveProcessRays);
-PREP(classifyFortification);
-PREP(destroyFortification);
-PREP(processFortifications);
-PREP(debugDrawFortifications);

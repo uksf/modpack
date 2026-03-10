@@ -37,11 +37,6 @@ private _adjustedIndirectHit = _indirectHit * _ammoDamageMultiplier;
 private _shotParents = getShotParents _projectile;
 private _source = _shotParents select !isNull (_shotParents#1);
 
-// Fortification destruction — fire server event if above fortification threshold
-if (GVAR(fortificationDestructionEnabled) && {_powerScore >= GVAR(fortificationThreshold)}) then {
-    [QGVAR(processFortifications), [_positionASL, _adjustedIndirectHit, _indirectHitRange, _effectiveRange, _source]] call CBA_fnc_serverEvent;
-};
-
 TRACE_7("Explosion",_ammo,_indirectHit,_adjustedIndirectHit,_indirectHitRange,_powerScore,_effectiveRange,_positionASL);
 
 // Collect all entities in effective range
@@ -121,11 +116,9 @@ TRACE_1("Processing shielded targets",count _shieldedTargets);
 #endif
 
 if (GVAR(mode) isEqualTo "pressure_wave") then {
-    // Pressure wave mode — unit-targeted ray simulation
     private _candidatePositions = _shieldedTargets apply { _x#1 };
     [_positionASL, _ammo, _adjustedIndirectHit, _indirectHitRange, _effectiveRange, _source, _candidatePositions, _shieldedTargets] call FUNC(waveSimulation);
 } else {
-    // Path trace mode (default) — per-frame target processing with phase tracking
     private _processState = [_positionASL, _ammo, _adjustedIndirectHit, _indirectHitRange, _effectiveRange, _shieldedTargets, 0, [], _source, 1];
     [FUNC(processTargets), 0, _processState] call CBA_fnc_addPerFrameHandler;
 };
