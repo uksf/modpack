@@ -22,11 +22,14 @@ class UK3CB_BAF_Sh_81mm_AMOS_AB;
 class UK3CB_BAF_Sh_81mm_AMOS_AB_helper : UK3CB_BAF_Sh_81mm_AMOS_AB {
     indirectHitRange = 18;  // 32
 };
-class SmokeShellArty;
-class GVAR(105mm_smoke_shell) : SmokeShellArty {
-    explosionEffects = "UK3CB_WPExplosion";
-    effectsSmoke = "UK3CB_SmokeShellWhiteEffect";
-    explosionTime = 1;
+class SmokeShell;
+class GVAR(105mm_smoke_shell) : SmokeShell {
+    simulation = "shotSmokeX";
+    model = "\A3\weapons_f\ammo\shell_smoke";
+    explosionTime = 0;
+    deflecting = 10;
+    timeToLive = 90;
+    effectsSmoke = QGVAR(SmokeMortarEffect);
 };
 class tbd_mortars_105mm_shell_ammo_smoke : SubmunitionCore {
     hit = 100;
@@ -37,9 +40,10 @@ class tbd_mortars_105mm_shell_ammo_smoke : SubmunitionCore {
     submunitionConeType[] = { "poissondisc", 4 };  // 20
     submunitionConeAngle = 10;
     submunitionConeAngleHorizontal = 360;
-    submunitionInitialOffset[] = { 0, 0, -1 };
-    submunitionParentSpeedCoef = 1;
+    submunitionInitialOffset[] = { 0, 0, -50 };
+    submunitionInitSpeed = 12;
+    submunitionParentSpeedCoef = 0;
     deleteParentWhenTriggered = 0;
     triggerOnImpact = 0;
-    triggerDistance = 200;
+    triggerDistance = 50;
 };

@@ -1,0 +1,41 @@
+class CfgCloudlets {
+    class SmokeShellWhite;
+    class GVAR(SmokeMortarPillar) : SmokeShellWhite {
+        interval = 0.06;
+        particleShape = "\A3\data_f\ParticleEffects\Universal\Universal";
+        particleFSNtieth = 16;
+        particleFSIndex = 12;
+        particleFSFrameCount = 8;
+        particleFSLoop = 0;
+        colorCoef[] = { 1, 1, 1, 1 };
+        rubbing = 0.025;
+        moveVelocity[] = { 0, 1.5, 0 };
+        moveVelocityVar[] = { 1, 1, 1 };
+        size[] = { 2, 8, 10 };
+        sizeVar = 1;
+        color[] = { { 0.8, 0.8, 0.8, 0.5 }, { 0.8, 0.8, 0.8, 0.25 }, { 0.8, 0.8, 0.8, 0 } };
+        lifeTime = 90;
+        lifeTimeVar = 5;
+        weight = 1.2;
+        blockAIVisibility = 1;
+    };
+    class GVAR(SmokeMortarBase) : SmokeShellWhite {
+        interval = 0.06;
+        particleShape = "\A3\data_f\ParticleEffects\Universal\Universal";
+        particleFSNtieth = 16;
+        particleFSIndex = 12;
+        particleFSFrameCount = 8;
+        particleFSLoop = 0;
+        colorCoef[] = { 1, 1, 1, 1 };
+        rubbing = 0.025;
+        moveVelocity[] = { 0, 0.5, 0 };
+        moveVelocityVar[] = { 1, 0.4, 1 };
+        size[] = { 1.5, 6, 7 };
+        sizeVar = 1;
+        color[] = { { 0.8, 0.8, 0.8, 0.5 }, { 0.8, 0.8, 0.8, 0.25 }, { 0.8, 0.8, 0.8, 0 } };
+        lifeTime = 90;
+        lifeTimeVar = 5;
+        weight = 1.3;
+        blockAIVisibility = 1;
+    };
+};
