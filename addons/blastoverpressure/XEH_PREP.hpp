@@ -1,7 +1,6 @@
 PREP(explosionHandler);
 PREP(getAmmoConfig);
 PREP(processTargets);
-PREP(processSurfaceBounces);
 PREP(traceOverhead);
 PREP(traceSurfaceBounce);
 PREP(calculateDamage);

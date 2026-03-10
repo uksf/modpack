@@ -19,7 +19,8 @@
         [_waveState, _perFrameHandlerID] call uksf_blastoverpressure_fnc_waveProcessRays
 */
 
-#define RAYS_PER_FRAME 32
+// Ray budget scales with FPS: more rays when frames are cheap, fewer when struggling
+#define RAYS_AT_60FPS 32
 #define WAVE_SPEED 340
 #define BOUNCE_ENERGY_FACTOR 0.5
 #define MAX_BOUNCES 3
@@ -29,7 +30,7 @@
 params ["_waveState", "_perFrameHandlerID"];
 _waveState params [
     "_originASL", "_rays", "_indirectHit", "_effectiveRange",
-    "_source", "_hitUnits", "_lastFrameTime"
+    "_source", "_hitUnits", "_lastFrameTime", "_shieldedTargets"
 ];
 
 private _currentTime = CBA_missionTime;
@@ -42,17 +43,23 @@ _deltaTime = _deltaTime min 0.1;
 if (_deltaTime <= 0) exitWith {};
 
 private _stepDistance = WAVE_SPEED * _deltaTime;
-private _raysToRemove = [];
 
-private _processCount = (count _rays) min RAYS_PER_FRAME;
+if (_rays isEqualTo []) exitWith {
+    [_perFrameHandlerID] call CBA_fnc_removePerFrameHandler;
+};
+
+// Scale ray budget with current FPS: 32 at 60fps, 16 at 30fps, 8 at 15fps
+private _rayBudget = (RAYS_AT_60FPS * diag_fps / 60) max 4;
+private _processCount = (count _rays) min (ceil _rayBudget);
+private _proximityThreshold = HIT_PROXIMITY + _stepDistance;
 
 for "_i" from 0 to (_processCount - 1) do {
     private _ray = _rays select _i;
     _ray params ["_rayPositionASL", "_rayDirection", "_energy", "_bounceCount", "_distanceTravelled", "_pathHistory"];
 
     // Skip dead rays
-    if (_energy < MIN_ENERGY) then {
-        _raysToRemove pushBack _i;
+    if (count _rayPositionASL < 3 || {_energy < MIN_ENERGY}) then {
+        _ray set [2, 0];
         continue
     };
 
@@ -62,7 +69,7 @@ for "_i" from 0 to (_processCount - 1) do {
 
     // Check if ray exceeded effective range
     if (_newDistance > _effectiveRange) then {
-        _raysToRemove pushBack _i;
+        _ray set [2, 0];
         continue
     };
 
@@ -76,7 +83,7 @@ for "_i" from 0 to (_processCount - 1) do {
         _pathHistory pushBack [_hitPositionASL, _bounceCount];
 
         if (_bounceCount >= MAX_BOUNCES) then {
-            _raysToRemove pushBack _i;
+            _ray set [2, 0];
             continue
         };
 
@@ -103,20 +110,35 @@ for "_i" from 0 to (_processCount - 1) do {
         // Record path point
         _pathHistory pushBack [_newPositionASL, _bounceCount];
 
-        // Check for nearby units
-        private _nearUnits = (ASLToAGL _newPositionASL) nearEntities [
-            ["CAManBase", "Car", "Motorcycle", "Tank", "StaticWeapon", "Air", "Ship"],
-            HIT_PROXIMITY
-        ];
+        // Check pre-collected targets — compute segment vector once for all targets
+        private _segmentVector = _newPositionASL vectorDiff _rayPositionASL;
+        private _segmentLengthSq = _segmentVector vectorDotProduct _segmentVector;
 
         {
-            if !(alive _x) then { continue };
+            _x params ["_unit", "_targetPositionASL", ""];
 
-            private _unitKey = hashValue _x;
+            if !(alive _unit) then { continue };
+
+            private _unitKey = hashValue _unit;
             if (_unitKey in _hitUnits) then { continue };
 
+            // Quick reject: rough distance check avoids expensive segment projection
+            if (_newPositionASL vectorDistance _targetPositionASL > _proximityThreshold) then { continue };
+
+            // Precise: project target onto ray segment to find closest point
+            private _toTarget = _targetPositionASL vectorDiff _rayPositionASL;
+            private _t = if (_segmentLengthSq > 0) then {
+                ((_toTarget vectorDotProduct _segmentVector) / _segmentLengthSq) max 0 min 1
+            } else {
+                0
+            };
+            private _closestPointASL = _rayPositionASL vectorAdd (_segmentVector vectorMultiply _t);
+            private _proximityDistance = _closestPointASL vectorDistance _targetPositionASL;
+
+            if (_proximityDistance > HIT_PROXIMITY) then { continue };
+
             // Calculate damage based on ray energy and distance from detonation
-            private _distanceFromOrigin = _originASL vectorDistance _newPositionASL;
+            private _distanceFromOrigin = _originASL vectorDistance _closestPointASL;
             private _distanceFalloff = if (_distanceFromOrigin >= _effectiveRange) then {
                 0
             } else {
@@ -127,24 +149,35 @@ for "_i" from 0 to (_processCount - 1) do {
 
             if (_rawDamage > 0) then {
                 _hitUnits set [_unitKey, true];
-                [_x, _rawDamage, _source] call FUNC(applyDamage);
+                [_unit, _rawDamage, _source] call FUNC(applyDamage);
 
-                TRACE_4("Wave hit",_x,_energy,_rawDamage,_bounceCount);
+                TRACE_4("Wave hit",_unit,_energy,_rawDamage,_bounceCount);
                 #ifdef DEBUG_MODE_FULL
-                    [_x, _originASL, eyePos _x, _newPositionASL, _rawDamage, format ["wave-%1bounce", _bounceCount]] call FUNC(debugDraw);
+                    [_unit, _targetPositionASL, _closestPointASL, _rawDamage, format ["wave-%1bounce", _bounceCount], +_pathHistory] call FUNC(debugDraw);
                 #endif
             };
-        } forEach _nearUnits;
+        } forEach _shieldedTargets;
     };
 };
 
 #ifdef DEBUG_MODE_FULL
-    // Draw accumulated path trails for all active rays
+    // Draw last 5m of each ray's path trail
     {
         _x params ["", "", "", "", "", "_history"];
         if (count _history < 2) then { continue };
 
-        for "_j" from 1 to (count _history - 1) do {
+        // Walk backwards through history to find segments within 5m of the ray head
+        private _headPositionASL = (_history select (count _history - 1)) select 0;
+        private _startIndex = count _history - 2;
+        for "_j" from (count _history - 2) to 0 step -1 do {
+            private _segmentPositionASL = (_history select _j) select 0;
+            if (_headPositionASL vectorDistance _segmentPositionASL > 5) exitWith {
+                _startIndex = _j;
+            };
+            _startIndex = _j;
+        };
+
+        for "_j" from (_startIndex max 1) to (count _history - 1) do {
             private _previous = _history select (_j - 1);
             private _current = _history select _j;
             _previous params ["_previousPositionASL", "_previousBounceCount"];
@@ -163,24 +196,25 @@ for "_i" from 0 to (_processCount - 1) do {
     } forEach _rays;
 #endif
 
-// Remove dead rays (reverse order to preserve indices)
-_raysToRemove sort false;
-{
-    _rays deleteAt _x;
-} forEach _raysToRemove;
+// Remove dead rays and rotate processed to back in one pass
+private _processedAlive = [];
+private _unprocessed = [];
 
-// Rotate processed rays to back of queue for round-robin processing
-private _remainingCount = count _rays;
-if (_remainingCount > RAYS_PER_FRAME) then {
-    private _rotateCount = _processCount min _remainingCount;
-    private _processed = _rays select [0, _rotateCount];
-    _rays deleteRange [0, _rotateCount];
-    _rays append _processed;
-};
+{
+    if ((_x#2) < MIN_ENERGY) then { continue };
+    if (_forEachIndex < _processCount) then {
+        _processedAlive pushBack _x;
+    } else {
+        _unprocessed pushBack _x;
+    };
+} forEach _rays;
+
+_unprocessed append _processedAlive;
+_waveState set [1, _unprocessed];
 
 // Stop when all rays are dead
-if (_rays isEqualTo []) then {
+if (_unprocessed isEqualTo []) then {
     [_perFrameHandlerID] call CBA_fnc_removePerFrameHandler;
 
-    TRACE_1("Wave simulation complete",count _rays);
+    TRACE_1("Wave simulation complete",0);
 };

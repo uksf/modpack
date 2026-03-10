@@ -87,7 +87,7 @@ _fnc_draw3d = {
         if (isNull _playerObject) then { continue };
 
         private _position = ASLToAGL (getPosASLVisual (vehicle _playerObject));
-        if (_cameraPosition distance _position > 500) then { continue };
+        if (_cameraPosition distance _position > 750) then { continue };
 
         private _colour = [1,1,1,1];
         private _size = 0.025;
@@ -129,7 +129,7 @@ private _fnc_unconsciousDraw3d = {
         if (isNull _playerObject) then { continue };
 
         private _position = ASLToAGL (getPosASLVisual (vehicle _playerObject));
-        if (_cameraPosition distance _position > 500) then { continue };
+        if (_cameraPosition distance _position > 750) then { continue };
 
         drawIcon3D ["", [1,0,0,1], _position, 0, 0, 0, _unconsciousText, 1, 0.025, "TahomaB", "center", false, 0, DEBUG_ICON_SPACING * 4];
     } forEach _data;

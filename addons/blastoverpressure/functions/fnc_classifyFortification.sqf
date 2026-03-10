@@ -26,23 +26,20 @@ if (_cached isNotEqualTo []) exitWith { _cached };
 
 private _result = [false, 0];
 
-// Check isKindOf-friendly parent classes
 // Tier 1: objects with good destruction models
-if (_className isKindOf ["Wall_F", configFile >> "CfgVehicles"]
-    || {_className isKindOf ["Bunker_02_base_F", configFile >> "CfgVehicles"]}) then {
+private _tier1Parents = ["Wall_F", "Bunker_02_base_F"];
+
+if (_tier1Parents findIf { _className isKindOf [_x, configFile >> "CfgVehicles"] } isNotEqualTo -1) then {
     _result = [true, 1];
 } else {
     // Tier 2: objects with bad/no destruction models
-    if (_className isKindOf ["BagFence_base_F", configFile >> "CfgVehicles"]
-        || {_className isKindOf ["BagBunker_base_F", configFile >> "CfgVehicles"]}
-        || {_className isKindOf ["HBarrier_base_F", configFile >> "CfgVehicles"]}
-        || {_className isKindOf ["Land_Razorwire_F", configFile >> "CfgVehicles"]}
-        || {_className isKindOf ["Land_HBarrier_large", configFile >> "CfgVehicles"]}
-        || {_className isKindOf ["Fort_RazorWire", configFile >> "CfgVehicles"]}
-        || {_className isKindOf ["Fort_Barricade", configFile >> "CfgVehicles"]}
-        || {_className isKindOf ["Hedgehog", configFile >> "CfgVehicles"]}
-        || {_className isKindOf ["Fort_EnvelopeSmall", configFile >> "CfgVehicles"]}
-        || {_className isKindOf ["Fort_EnvelopeBig", configFile >> "CfgVehicles"]}) then {
+    private _tier2Parents = [
+        "BagFence_base_F", "BagBunker_base_F", "HBarrier_base_F",
+        "Land_Razorwire_F", "Land_HBarrier_large", "Fort_RazorWire",
+        "Fort_Barricade", "Hedgehog", "Fort_EnvelopeSmall", "Fort_EnvelopeBig"
+    ];
+
+    if (_tier2Parents findIf { _className isKindOf [_x, configFile >> "CfgVehicles"] } isNotEqualTo -1) then {
         _result = [true, 2];
     };
 };

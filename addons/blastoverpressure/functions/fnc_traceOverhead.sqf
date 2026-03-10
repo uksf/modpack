@@ -13,17 +13,18 @@
         0: Detonation position ASL <ARRAY>
         1: Target position ASL <ARRAY>
         2: Target object <OBJECT>
+        3: Parent vehicle to exclude from LOS checks <OBJECT> (default objNull)
 
     Return Value:
         [] if no path found, or [totalPathLength, samplePoint] for the best path
 
     Example:
-        [_detonationPositionASL, _targetPositionASL, _target] call uksf_blastoverpressure_fnc_traceOverhead
+        [_detonationPositionASL, _targetPositionASL, _target, _parentVehicle] call uksf_blastoverpressure_fnc_traceOverhead
 */
-params ["_detonationPositionASL", "_targetPositionASL", "_target"];
+params ["_detonationPositionASL", "_targetPositionASL", "_target", ["_parentVehicle", objNull]];
 
 // Find the obstruction point on the direct path
-private _intersections = lineIntersectsSurfaces [_detonationPositionASL, _targetPositionASL, _target, objNull, true, 1, "GEOM", "NONE"];
+private _intersections = lineIntersectsSurfaces [_detonationPositionASL, _targetPositionASL, _target, _parentVehicle, true, 1, "GEOM", "NONE"];
 
 private _obstructionPositionASL = [];
 if (_intersections isNotEqualTo []) then {
@@ -65,13 +66,13 @@ private _bestPathLength = 1e10;
     private _samplePointASL = _x;
 
     // Segment 1: detonation to sample point
-    private _segment1Blocked = lineIntersects [_detonationPositionASL, _samplePointASL, objNull, _target]
+    private _segment1Blocked = lineIntersects [_detonationPositionASL, _samplePointASL, _parentVehicle, _target]
         || {terrainIntersectASL [_detonationPositionASL, _samplePointASL]};
 
     if (_segment1Blocked) then { continue };
 
     // Segment 2: sample point to target
-    private _segment2Blocked = lineIntersects [_samplePointASL, _targetPositionASL, objNull, _target]
+    private _segment2Blocked = lineIntersects [_samplePointASL, _targetPositionASL, _parentVehicle, _target]
         || {terrainIntersectASL [_samplePointASL, _targetPositionASL]};
 
     if (_segment2Blocked) then { continue };

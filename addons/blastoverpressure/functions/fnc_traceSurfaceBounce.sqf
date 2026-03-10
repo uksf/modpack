@@ -7,23 +7,27 @@
         Phase 2 surface bounce tracing. Casts rays from detonation toward
         surfaces near the target, checks if hit points have LOS to the target.
         Models blast entering buildings through openings or bouncing around corners.
+        Supports up to 2 bounces per ray via iterative reflection.
 
     Parameter(s):
         0: Detonation position ASL <ARRAY>
         1: Target position ASL <ARRAY>
         2: Target object <OBJECT>
         3: Effective range <NUMBER>
+        4: Parent vehicle to exclude from LOS checks <OBJECT> (default objNull)
 
     Return Value:
         [] if no path found, or [totalPathLength, bouncePointASL, bounceCount] for best path
 
     Example:
-        [_detonationPositionASL, _targetPositionASL, _target, _effectiveRange] call uksf_blastoverpressure_fnc_traceSurfaceBounce
+        [_detonationPositionASL, _targetPositionASL, _target, _effectiveRange, _parentVehicle] call uksf_blastoverpressure_fnc_traceSurfaceBounce
 */
-params ["_detonationPositionASL", "_targetPositionASL", "_target", "_effectiveRange"];
+
+#define MAX_BOUNCES 2
+
+params ["_detonationPositionASL", "_targetPositionASL", "_target", "_effectiveRange", ["_parentVehicle", objNull]];
 
 private _direction = _detonationPositionASL vectorFromTo _targetPositionASL;
-private _directDistance = _detonationPositionASL vectorDistance _targetPositionASL;
 
 // Build orthonormal basis for generating offset rays
 private _up = [0, 0, 1];
@@ -73,58 +77,45 @@ private _rayDirections = [];
 private _bestPath = [];
 private _bestPathLength = 1e10;
 
-// 1-bounce: cast ray, find surface hit, check LOS from hit to target
+// For each ray, iteratively bounce up to MAX_BOUNCES times
 {
     private _rayDirection = _x;
-    private _rayEnd = _detonationPositionASL vectorAdd (_rayDirection vectorMultiply (_effectiveRange * 1.5));
+    private _currentOrigin = _detonationPositionASL;
+    private _currentDirection = _rayDirection;
+    private _accumulatedPathLength = 0;
+    private _rangeScale = 1.5;
 
-    private _intersections = lineIntersectsSurfaces [_detonationPositionASL, _rayEnd, _target, objNull, true, 1, "GEOM", "NONE"];
+    for "_bounce" from 1 to MAX_BOUNCES do {
+        private _rayEnd = _currentOrigin vectorAdd (_currentDirection vectorMultiply (_effectiveRange * _rangeScale));
 
-    if (_intersections isEqualTo []) then { continue };
+        private _intersections = lineIntersectsSurfaces [_currentOrigin, _rayEnd, _target, _parentVehicle, true, 1, "GEOM", "NONE"];
 
-    (_intersections#0) params ["_hitPositionASL", "_surfaceNormal"];
+        if (_intersections isEqualTo []) then { break };
 
-    // Check LOS from hit point to target
-    // Offset slightly along surface normal to avoid self-intersection
-    private _bouncePointASL = _hitPositionASL vectorAdd (_surfaceNormal vectorMultiply 0.1);
+        (_intersections#0) params ["_hitPositionASL", "_surfaceNormal"];
 
-    private _bounceToTargetBlocked = lineIntersects [_bouncePointASL, _targetPositionASL, objNull, _target]
-        || {terrainIntersectASL [_bouncePointASL, _targetPositionASL]};
+        // Offset from surface to avoid self-intersection
+        private _bouncePointASL = _hitPositionASL vectorAdd (_surfaceNormal vectorMultiply 0.1);
+        _accumulatedPathLength = _accumulatedPathLength + (_currentOrigin vectorDistance _bouncePointASL);
 
-    if !(_bounceToTargetBlocked) then {
-        private _pathLength = (_detonationPositionASL vectorDistance _bouncePointASL)
-            + (_bouncePointASL vectorDistance _targetPositionASL);
+        // Check LOS from bounce point to target
+        private _bounceToTargetBlocked = lineIntersects [_bouncePointASL, _targetPositionASL, _parentVehicle, _target]
+            || {terrainIntersectASL [_bouncePointASL, _targetPositionASL]};
 
-        if (_pathLength < _bestPathLength) then {
-            _bestPathLength = _pathLength;
-            _bestPath = [_pathLength, _bouncePointASL, 1];
-        };
-    } else {
-        // Try 2-bounce: reflect off surface, cast again, check LOS
-        private _reflectedDirection = _rayDirection vectorAdd ((_surfaceNormal vectorMultiply (-2 * (_rayDirection vectorDotProduct _surfaceNormal))));
-        private _reflectedEnd = _bouncePointASL vectorAdd (_reflectedDirection vectorMultiply (_effectiveRange * 0.75));
+        if !(_bounceToTargetBlocked) then {
+            private _totalPathLength = _accumulatedPathLength + (_bouncePointASL vectorDistance _targetPositionASL);
 
-        private _reflectedIntersections = lineIntersectsSurfaces [_bouncePointASL, _reflectedEnd, objNull, objNull, true, 1, "GEOM", "NONE"];
-
-        if (_reflectedIntersections isEqualTo []) then { continue };
-
-        (_reflectedIntersections#0) params ["_hitPosition2ASL", "_surfaceNormal2"];
-
-        private _bouncePoint2ASL = _hitPosition2ASL vectorAdd (_surfaceNormal2 vectorMultiply 0.1);
-
-        private _bounce2ToTargetBlocked = lineIntersects [_bouncePoint2ASL, _targetPositionASL, objNull, _target]
-            || {terrainIntersectASL [_bouncePoint2ASL, _targetPositionASL]};
-
-        if !(_bounce2ToTargetBlocked) then {
-            private _pathLength = (_detonationPositionASL vectorDistance _bouncePointASL)
-                + (_bouncePointASL vectorDistance _bouncePoint2ASL)
-                + (_bouncePoint2ASL vectorDistance _targetPositionASL);
-
-            if (_pathLength < _bestPathLength) then {
-                _bestPathLength = _pathLength;
-                _bestPath = [_pathLength, _bouncePoint2ASL, 2];
+            if (_totalPathLength < _bestPathLength) then {
+                _bestPathLength = _totalPathLength;
+                _bestPath = [_totalPathLength, _bouncePointASL, _bounce];
             };
+            break
         };
+
+        // Reflect direction for next bounce
+        _currentDirection = _currentDirection vectorAdd (_surfaceNormal vectorMultiply (-2 * (_currentDirection vectorDotProduct _surfaceNormal)));
+        _currentOrigin = _bouncePointASL;
+        _rangeScale = 0.75;
     };
 } forEach _rayDirections;
 

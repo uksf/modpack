@@ -12,7 +12,7 @@ class zen_context_menu_actions {
             class All {
                 displayName = "All";
                 statement = QUOTE([ARR_3(allMissionObjects 'All',true,getAssignedCuratorLogic player)] call zen_common_fnc_updateEditableObjects);
-                icon = "\z\zen\addons\context_actions\ui\add_ca.paa";
+                icon = "\x\zen\addons\context_actions\ui\add_ca.paa";
                 priority = 100;
             };
         };

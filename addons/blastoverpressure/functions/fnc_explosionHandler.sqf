@@ -6,6 +6,8 @@
     Description:
         Handles explosion events from ACE. Filters by ammo threshold and
         collects candidate targets for overpressure damage processing.
+        For vehicles, individually processes each crew member's line of sight,
+        excluding the parent vehicle hull from LOS checks.
 
     Parameter(s):
         0: Projectile that exploded <OBJECT>
@@ -48,7 +50,9 @@ private _candidates = (ASLToAGL _positionASL) nearEntities [
     _effectiveRange
 ];
 
-// Filter to units that are alive and whose direct LOS to the detonation is blocked
+// Filter to units whose direct LOS to the detonation is blocked
+// For vehicles, check each crew member individually and exclude the vehicle hull from LOS
+// Target data: [unit, positionASL, directDistance, parentVehicle]
 private _shieldedTargets = [];
 #ifdef DEBUG_MODE_FULL
     private _unshieldedTargets = [];
@@ -57,30 +61,53 @@ private _shieldedTargets = [];
 {
     if !(alive _x) then { continue };
 
-    // Get target check position: eye position for infantry, model centre for vehicles
-    private _targetPositionASL = if (_x isKindOf "CAManBase") then {
-        eyePos _x
+    if (_x isKindOf "CAManBase") then {
+        // Infantry on foot — check eye position for LOS
+        private _targetPositionASL = eyePos _x;
+
+        private _hasDirectLOS = !(lineIntersects [_positionASL, _targetPositionASL, _projectile, _x])
+            && {!(terrainIntersectASL [_positionASL, _targetPositionASL])};
+
+        if (_hasDirectLOS) then {
+            TRACE_1("Skipping infantry - direct LOS",_x);
+            #ifdef DEBUG_MODE_FULL
+                _unshieldedTargets pushBack _x;
+            #endif
+            continue
+        };
+
+        private _directDistance = _positionASL vectorDistance _targetPositionASL;
+        _shieldedTargets pushBack [_x, _targetPositionASL, _directDistance, objNull];
+
+        TRACE_2("Shielded infantry",_x,_directDistance);
     } else {
-        AGLToASL (_x modelToWorldVisual [0, 0, 0])
+        // Vehicle — check each crew member individually
+        // Exclude the vehicle hull from LOS so we test against external cover only
+        {
+            if !(alive _x) then { continue };
+
+            private _crewPositionASL = eyePos _x;
+            private _parentVehicle = objectParent _x;
+
+            // Exclude both the projectile and parent vehicle from LOS check
+            // Tests whether external obstacles (buildings, terrain) shield the crew
+            private _hasDirectLOS = !(lineIntersects [_positionASL, _crewPositionASL, _projectile, _parentVehicle])
+                && {!(terrainIntersectASL [_positionASL, _crewPositionASL])};
+
+            if (_hasDirectLOS) then {
+                TRACE_2("Skipping crew - direct LOS",_x,_parentVehicle);
+                #ifdef DEBUG_MODE_FULL
+                    _unshieldedTargets pushBack _x;
+                #endif
+                continue
+            };
+
+            private _directDistance = _positionASL vectorDistance _crewPositionASL;
+            _shieldedTargets pushBack [_x, _crewPositionASL, _directDistance, _parentVehicle];
+
+            TRACE_3("Shielded crew",_x,_directDistance,_parentVehicle);
+        } forEach crew _x;
     };
-
-    // Check direct LOS — if clear, Arma handles this unit natively, skip
-    private _hasDirectLOS = !(lineIntersects [_positionASL, _targetPositionASL, _projectile, _x])
-        && {!(terrainIntersectASL [_positionASL, _targetPositionASL])};
-
-    if (_hasDirectLOS) then {
-        TRACE_1("Skipping - direct LOS",_x);
-        #ifdef DEBUG_MODE_FULL
-            _unshieldedTargets pushBack _x;
-        #endif
-        continue
-    };
-
-    private _directDistance = _positionASL vectorDistance _targetPositionASL;
-
-    _shieldedTargets pushBack [_x, _targetPositionASL, _directDistance];
-
-    TRACE_2("Shielded target",_x,_directDistance);
 } forEach _candidates;
 
 if (_shieldedTargets isEqualTo []) exitWith {
@@ -95,11 +122,10 @@ TRACE_1("Processing shielded targets",count _shieldedTargets);
 
 if (GVAR(mode) isEqualTo "pressure_wave") then {
     // Pressure wave mode — unit-targeted ray simulation
-    // Only target shielded units to avoid double-dipping with Arma's native damage
     private _candidatePositions = _shieldedTargets apply { _x#1 };
-    [_positionASL, _ammo, _adjustedIndirectHit, _indirectHitRange, _effectiveRange, _source, _candidatePositions] call FUNC(waveSimulation);
+    [_positionASL, _ammo, _adjustedIndirectHit, _indirectHitRange, _effectiveRange, _source, _candidatePositions, _shieldedTargets] call FUNC(waveSimulation);
 } else {
-    // Path trace mode (default) — per-frame target processing
-    private _processState = [_positionASL, _ammo, _adjustedIndirectHit, _indirectHitRange, _effectiveRange, _shieldedTargets, 0, [], _source];
+    // Path trace mode (default) — per-frame target processing with phase tracking
+    private _processState = [_positionASL, _ammo, _adjustedIndirectHit, _indirectHitRange, _effectiveRange, _shieldedTargets, 0, [], _source, 1];
     [FUNC(processTargets), 0, _processState] call CBA_fnc_addPerFrameHandler;
 };
