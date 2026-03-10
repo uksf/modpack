@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_persistence_fnc_saveData
 */
 
 if (GVAR(dataSaved)) then {

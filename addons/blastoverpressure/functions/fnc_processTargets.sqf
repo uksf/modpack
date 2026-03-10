@@ -13,6 +13,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_processState, _perFrameHandlerID] call uksf_blastoverpressure_fnc_processTargets
 */
 
 #define TARGETS_PER_FRAME 3

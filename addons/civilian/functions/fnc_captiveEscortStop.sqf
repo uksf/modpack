@@ -12,6 +12,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_escorter, _unit] call uksf_civilian_fnc_captiveEscortStop
 */
 params ["_escorter", "_unit"];
 

@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_groups] call uksf_caching_fnc_checkGroupsServer
 */
 params [["_groups", []]];
 

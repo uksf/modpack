@@ -12,6 +12,9 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_radios_fnc_deserializeRadios
 */
 
 [{

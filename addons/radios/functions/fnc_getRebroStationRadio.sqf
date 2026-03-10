@@ -11,6 +11,9 @@
 
     Return Value:
         [Rack ID, Radio ID] <ARRAY>
+
+    Example:
+        [_vehicle] call uksf_radios_fnc_getRebroStationRadio
 */
 params ["_vehicle"];
 

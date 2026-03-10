@@ -13,6 +13,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_projectile, _positionASL] call uksf_blastoverpressure_fnc_explosionHandler
 */
 params ["_projectile", "_positionASL"];
 

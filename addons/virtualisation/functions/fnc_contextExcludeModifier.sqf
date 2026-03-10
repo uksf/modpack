@@ -12,6 +12,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_action, _actionParams] call uksf_virtualisation_fnc_contextExcludeModifier
 */
 params ["_action", "_actionParams"];
 _actionParams params ["", ["_selectedObjects", []], ["_selectedGroups", []]];

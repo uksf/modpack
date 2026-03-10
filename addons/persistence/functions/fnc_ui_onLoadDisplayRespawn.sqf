@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_persistence_fnc_ui_onLoadDisplayRespawn
 */
 #define IDC_RSCRESPAWNCONTROLS_HEADERRESPAWNBUTTON 88829
 

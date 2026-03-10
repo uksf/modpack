@@ -12,6 +12,9 @@
 
     Return value:
         Boolean
+
+    Example:
+        [_array, _condition] call uksf_common_fnc_arrayAny
 */
 params ["_array", "_condition"];
 

@@ -13,6 +13,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_function, _data] call uksf_api_fnc_handleCommand
 */
 params ["_function", "_data"];
 

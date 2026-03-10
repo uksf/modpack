@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_retries] call uksf_aiaircommander_fnc_selectMission
 */
 #define MAX_RETRIES 4
 

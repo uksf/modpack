@@ -15,6 +15,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_rover, _unit, _coverType, _offset, _angle] call uksf_vehicles_fnc_deployCoverMedical
 */
 params ["_rover", "_unit", "_coverType", "_offset", "_angle"];
 

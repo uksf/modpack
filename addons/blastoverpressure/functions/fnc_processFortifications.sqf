@@ -17,6 +17,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_positionASL, _indirectHit, _indirectHitRange, _effectiveRange, _source] call uksf_blastoverpressure_fnc_processFortifications
 */
 if !(isServer) exitWith {};
 if !(GVAR(fortificationDestructionEnabled)) exitWith {};

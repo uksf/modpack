@@ -12,6 +12,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_map] call uksf_zeus_fnc_debugMapDraw
 */
 params ["_map"];
 

@@ -22,6 +22,9 @@
 
     Return Value:
         Damage applied <NUMBER>
+
+    Example:
+        [_target, _detonationPositionASL, _targetPositionASL, _intermediatePointASL, _indirectHit, _effectiveRange, _directDistance, _totalPathLength, _bounceAttenuation, _source, _pathType] call uksf_blastoverpressure_fnc_calculateDamage
 */
 params [
     "_target", "_detonationPositionASL", "_targetPositionASL", "_intermediatePointASL",

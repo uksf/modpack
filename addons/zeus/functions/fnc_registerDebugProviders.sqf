@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_zeus_fnc_registerDebugProviders
 */
 
 // Projectiles provider

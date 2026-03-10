@@ -11,6 +11,9 @@
 
     Return value:
         Unique ID <SCALAR>
+
+    Example:
+        call uksf_mission_fnc_assignID
 */
 
 private _id = missionNamespace getVariable [QGVAR(nextID), 0];

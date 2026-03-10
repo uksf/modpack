@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_object] call uksf_cleanup_fnc_handleKilled
 */
 if (!GVAR(enabled)) exitWith {};
 

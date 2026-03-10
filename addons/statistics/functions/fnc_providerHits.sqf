@@ -13,6 +13,9 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_statistics_fnc_providerHits
 */
 [QGVAR(shotFired), {
     params ["_unit", "_weapon", "_projectile"];

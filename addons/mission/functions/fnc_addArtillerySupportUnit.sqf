@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_object] call uksf_mission_fnc_addArtillerySupportUnit
 */
 params ["_object"];
 

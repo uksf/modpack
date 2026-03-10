@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_position, _vehicleState, _direction, _animation, _loadout, _damage, _aceStates, _earplugs, _attached, _radios, _diveState] call uksf_persistence_fnc_loadRedeployData
 */
 
 TRACE_1("First respawn",GVAR(data));

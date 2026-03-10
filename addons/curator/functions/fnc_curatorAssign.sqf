@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_player] call uksf_curator_fnc_curatorAssign
 */
 params ["_player"];
 

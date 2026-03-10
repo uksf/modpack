@@ -13,6 +13,9 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_persistence_fnc_restoreSessionState
 */
 
 call FUNC(saveData);

@@ -12,6 +12,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_type, _data] call uksf_api_fnc_sendEvent
 */
 params [["_type", "", [""]], ["_data", createHashMap, [createHashMap]]];
 

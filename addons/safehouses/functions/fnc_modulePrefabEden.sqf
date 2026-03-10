@@ -12,6 +12,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_logic, _mode] call uksf_safehouses_fnc_modulePrefabEden
 */
 params ["_logic", "_mode"];
 TRACE_1("",_this);

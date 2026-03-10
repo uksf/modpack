@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_data] call uksf_safehouses_fnc_deserialize
 */
 params ["_data"];
 _data params ["_prefabs", "_destroyed", "_locations"];

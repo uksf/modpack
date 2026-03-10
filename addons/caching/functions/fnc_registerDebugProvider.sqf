@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_caching_fnc_registerDebugProvider
 */
 
 private _key = QGVAR(debug);

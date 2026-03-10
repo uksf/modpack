@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_display] call uksf_zeus_fnc_curatorDisplayLoad
 */
 params ["_display"];
 

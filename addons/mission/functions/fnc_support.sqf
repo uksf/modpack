@@ -25,6 +25,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_unit, _shooter, _reportDepth] call uksf_mission_fnc_support
 */
 params ["_unit", "_shooter", ["_reportDepth", 0]];
 

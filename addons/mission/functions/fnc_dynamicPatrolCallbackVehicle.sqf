@@ -16,6 +16,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_logic, _player, _position, _spawnDistance, _vehicleWaypointDistance, _group] call uksf_mission_fnc_dynamicPatrolCallbackVehicle
 */
 params ["_logic", "_player", "_position", "_spawnDistance", "_vehicleWaypointDistance", "_group"];
 TRACE_1("7) Dynamic spawn vehicle callback data",_this);

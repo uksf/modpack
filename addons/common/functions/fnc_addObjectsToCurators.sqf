@@ -13,6 +13,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_objects, _curators] call uksf_common_fnc_addObjectsToCurators
 */
 if (!isServer) exitWith {
     [QGVAR(addObjectsToCurators), _this] call CBA_fnc_serverEvent;

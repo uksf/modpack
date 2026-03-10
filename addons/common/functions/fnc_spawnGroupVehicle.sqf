@@ -18,6 +18,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_position, _side, _unitPool, _vehiclePool, _countCode, _callback, _callbackArgs] call uksf_common_fnc_spawnGroupVehicle
 */
 #define SPAWN_DELAY 1
 #define TIMEOUT 30

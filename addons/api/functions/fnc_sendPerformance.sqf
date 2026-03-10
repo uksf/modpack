@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_api_fnc_sendPerformance
 */
 
 private _data = createHashMapFromArray [

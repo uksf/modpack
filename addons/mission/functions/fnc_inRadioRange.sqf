@@ -12,6 +12,9 @@
 
     Return value:
         BOOLEAN
+
+    Example:
+        [_caller, _artillery] call uksf_mission_fnc_inRadioRange
 */
 params ["_caller", "_artillery"];
 

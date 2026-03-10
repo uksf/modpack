@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_virtualisation_fnc_addAdminActions
 */
 
 private _fnc_children = {

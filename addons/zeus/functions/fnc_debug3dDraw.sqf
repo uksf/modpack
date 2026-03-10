@@ -12,6 +12,9 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_zeus_fnc_debug3dDraw
 */
 if (GVAR(debugKill)) exitWith {};
 

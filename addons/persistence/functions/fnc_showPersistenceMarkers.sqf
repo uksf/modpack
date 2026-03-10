@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_persistence_fnc_showPersistenceMarkers
 */
 
 [QGVAR(requestPersistenceMarkers), [player]] call CBA_fnc_serverEvent;

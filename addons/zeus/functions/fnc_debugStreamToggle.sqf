@@ -14,6 +14,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_player, _key, _state] call uksf_zeus_fnc_debugStreamToggle
 */
 if (!isServer) exitWith {};
 

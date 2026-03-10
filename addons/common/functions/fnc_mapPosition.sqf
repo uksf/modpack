@@ -11,6 +11,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        [_state] call uksf_common_fnc_mapPosition
 */
 params ["_state"];
 

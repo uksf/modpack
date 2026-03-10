@@ -14,6 +14,9 @@
 
     Return Value:
         Is heavy projectile <BOOL>
+
+    Example:
+        [_ammo, _weapon, _magazine] call uksf_zeus_fnc_isHeavyProjectile
 */
 params ["_ammo", "_weapon", "_magazine"];
 

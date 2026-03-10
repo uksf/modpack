@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_unit] call uksf_civilian_fnc_vehicleStop
 */
 params ["_unit"];
 private _entities = _unit nearEntities [["Car", "Motorcycle", "Tank"], GESTURE_VEHICLE_SEARCH_DISTANCE];

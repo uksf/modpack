@@ -13,6 +13,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        [_bomber, _deadman, _car] call uksf_special_fnc_suicide
 */
 #define DISTANCE_MOVE 100
 

@@ -14,6 +14,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_key, _setupFunction, _locality] call uksf_statistics_fnc_registerProvider
 */
 params [["_key", "", [""]], ["_setupFunction", {}, [{}]], ["_locality", "client", [""]]];
 

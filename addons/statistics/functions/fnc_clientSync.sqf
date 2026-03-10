@@ -12,6 +12,9 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_statistics_fnc_clientSync
 */
 if (GVAR(killswitch)) exitWith {};
 if (GVAR(eventBuffer) isEqualTo []) exitWith {};

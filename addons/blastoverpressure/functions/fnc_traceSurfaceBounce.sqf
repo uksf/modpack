@@ -16,6 +16,9 @@
 
     Return Value:
         [] if no path found, or [totalPathLength, bouncePointASL, bounceCount] for best path
+
+    Example:
+        [_detonationPositionASL, _targetPositionASL, _target, _effectiveRange] call uksf_blastoverpressure_fnc_traceSurfaceBounce
 */
 params ["_detonationPositionASL", "_targetPositionASL", "_target", "_effectiveRange"];
 

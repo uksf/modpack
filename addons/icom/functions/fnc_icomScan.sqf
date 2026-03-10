@@ -12,6 +12,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_target] call uksf_icom_fnc_icomScan
 */
 
 params ["_target"];

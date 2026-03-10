@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_unit, _id, _uid, _name] call uksf_persistence_fnc_handleDisconnect
 */
 params ["_unit", "_id", "_uid", "_name"];
 

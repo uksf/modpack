@@ -13,6 +13,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_phase2State, _perFrameHandlerID] call uksf_blastoverpressure_fnc_processSurfaceBounces
 */
 
 #define PHASE2_TARGETS_PER_FRAME 2

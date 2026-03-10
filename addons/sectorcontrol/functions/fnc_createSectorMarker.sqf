@@ -14,6 +14,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_logic, _currentOwner, _name] call uksf_sectorcontrol_fnc_createSectorMarker
 */
 #define OPFOR_COLOUR "ColorEAST"
 #define BLUFOR_COLOUR "ColorWEST"

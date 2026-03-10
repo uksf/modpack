@@ -12,6 +12,9 @@
 
     Return value:
         ARRAY
+
+    Example:
+        [_object, _boundingBox] call uksf_common_fnc_getBoundingBox
 */
 params ["_object", "_boundingBox"];
 

@@ -15,6 +15,9 @@
 
     Return value:
         Boolean
+
+    Example:
+        [_position, _check, _objectDirection, _objects, _ignore] call uksf_common_fnc_isPositionSafe
 */
 params [["_position", [], [[]]], ["_check", 5, [0, objNull]], ["_objectDirection", -1, [0]], ["_objects", [], [[]]], ["_ignore", SAFE_POSITION_OBJECTS_IGNORE, [[]]]];
 

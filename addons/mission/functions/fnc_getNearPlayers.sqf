@@ -12,6 +12,9 @@
 
     Return value:
         Players within radius from center <ARRAY>
+
+    Example:
+        [_centre, _radius] call uksf_mission_fnc_getNearPlayers
 */
 params ["_centre", "_radius"];
 

@@ -12,6 +12,9 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_statistics_fnc_startCollection
 */
 // Guard against double-start
 if (GVAR(clientSyncPFH) != -1 || {isServer && {GVAR(serverSyncPFH) != -1}}) exitWith {

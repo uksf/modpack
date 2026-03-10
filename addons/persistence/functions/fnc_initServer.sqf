@@ -13,6 +13,9 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_persistence_fnc_initServer
 */
 TRACE_1("Server init",GVAR(dataSaved));
 

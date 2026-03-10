@@ -12,6 +12,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_vehicle, _unit] call uksf_vehicles_fnc_swapDriver
 */
 params ["_vehicle", "_unit"];
 

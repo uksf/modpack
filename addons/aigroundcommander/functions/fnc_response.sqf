@@ -15,6 +15,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_spawnLogics, _delay, _count, _creationFunction, _retry] call uksf_aigroundcommander_fnc_response
 */
 params [["_spawnLogics", [], [[]]], ["_delay", 5, [0]], ["_count", 0, [0]], ["_creationFunction", {}, [{}]], ["_retry", 0]];
 

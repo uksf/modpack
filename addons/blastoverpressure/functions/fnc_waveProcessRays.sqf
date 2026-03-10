@@ -14,6 +14,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_waveState, _perFrameHandlerID] call uksf_blastoverpressure_fnc_waveProcessRays
 */
 
 #define RAYS_PER_FRAME 32

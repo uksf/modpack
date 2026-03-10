@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_vehicles_fnc_addSwapDriverActions
 */
 
 private _action = [QGVAR(swapDriver), "Swap With Driver", "A3\ui_f\data\IGUI\RscIngameUI\RscUnitInfo\role_driver_ca.paa", {call FUNC(swapDriver)}, {call FUNC(canSwapDriver)}] call ace_interact_menu_fnc_createAction;

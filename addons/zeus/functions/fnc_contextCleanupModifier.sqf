@@ -12,6 +12,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_action, _actionParams] call uksf_zeus_fnc_contextCleanupModifier
 */
 params ["_action", "_actionParams"];
 _actionParams params ["", "_selectedObjects", "_selectedGroups"];

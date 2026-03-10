@@ -12,6 +12,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_crate, _fuseMode] call uksf_resupply_fnc_setMortarFuse
 */
 params ["_crate", ["_fuseMode", 0, [0]]];
 

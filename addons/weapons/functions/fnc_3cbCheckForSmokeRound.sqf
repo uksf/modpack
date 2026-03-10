@@ -13,6 +13,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        [_projectile, _ammo] call uksf_weapons_fnc_3cbCheckForSmokeRound
 */
 params ["_projectile", "_ammo"];
 

@@ -23,6 +23,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_unit, _shooter] call uksf_mission_fnc_hit
 */
 params [["_unit", objNull], "", "", "_shooter"];
 

@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_module] call uksf_aigroundcommander_fnc_moduleAPCSpawn
 */
 
 (_this select 1) params ["_module"];

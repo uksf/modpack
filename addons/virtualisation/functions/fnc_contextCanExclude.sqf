@@ -11,6 +11,9 @@
 
     Return Value:
         Boolean
+
+    Example:
+        [_selectedObjects, _selectedGroups] call uksf_virtualisation_fnc_contextCanExclude
 */
 params ["", "_selectedObjects", "_selectedGroups"];
 

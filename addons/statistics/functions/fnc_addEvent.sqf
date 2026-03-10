@@ -12,6 +12,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_event] call uksf_statistics_fnc_addEvent
 */
 if (GVAR(killswitch)) exitWith {};
 

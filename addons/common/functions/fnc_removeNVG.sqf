@@ -11,6 +11,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        [_unit] call uksf_common_fnc_removeNVG
 */
 params [["_unit", objNull]];
 

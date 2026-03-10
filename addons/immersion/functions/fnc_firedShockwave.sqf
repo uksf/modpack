@@ -12,6 +12,9 @@
 
     Return value:
         None
+
+    Example:
+        [_ammo, _projectile] call uksf_immersion_fnc_firedShockwave
 */
 params ["_ammo", "_projectile"];
 

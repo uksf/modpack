@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        call uksf_aiaircommander_fnc_checkAA
 */
 private _emptyAASites = GVAR(aaSites) select {!alive (_x getVariable [QGVAR(aaVehicle), objNull])};
 

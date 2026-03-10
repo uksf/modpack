@@ -11,6 +11,9 @@
 
     Return Value:
         Sorted keys <ARRAY>
+
+    Example:
+        call uksf_zeus_fnc_debugGetSortedActiveKeys
 */
 
 private _activeKeys = keys GVAR(debugActiveToggles);

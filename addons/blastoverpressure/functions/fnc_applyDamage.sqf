@@ -15,6 +15,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_target, _rawDamage, _source] call uksf_blastoverpressure_fnc_applyDamage
 */
 params ["_target", "_rawDamage", "_source"];
 

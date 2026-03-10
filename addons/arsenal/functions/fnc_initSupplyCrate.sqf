@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_crate] call uksf_arsenal_fnc_initSupplyCrate
 */
 params ["_crate"];
 

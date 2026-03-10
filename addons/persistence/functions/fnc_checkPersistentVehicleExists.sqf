@@ -12,6 +12,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_vehicleState, _client] call uksf_persistence_fnc_checkPersistentVehicleExists
 */
 params ["_vehicleState", "_client"];
 _vehicleState params ["_vehicleId", "_role", "_index"];

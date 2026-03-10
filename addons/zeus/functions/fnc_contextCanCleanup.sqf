@@ -11,6 +11,9 @@
 
     Return Value:
         Boolean
+
+    Example:
+        [_selectedObjects, _selectedGroups] call uksf_zeus_fnc_contextCanCleanup
 */
 params ["", "_selectedObjects", "_selectedGroups"];
 

@@ -14,6 +14,9 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_statistics_fnc_providerShots
 */
 GVAR(firedManEHId) = player addEventHandler ["FiredMan", {
     params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile", "_vehicle"];

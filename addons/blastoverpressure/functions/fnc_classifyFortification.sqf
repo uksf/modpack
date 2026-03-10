@@ -15,6 +15,9 @@
 
     Return Value:
         [isFortification, tier] <ARRAY>
+
+    Example:
+        [_className] call uksf_blastoverpressure_fnc_classifyFortification
 */
 params ["_className"];
 

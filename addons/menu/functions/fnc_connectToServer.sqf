@@ -12,6 +12,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        call uksf_menu_fnc_connectToServer
 */
 
 #define ADDRESS QUOTE(uk-sf.co.uk)

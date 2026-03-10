@@ -13,6 +13,9 @@
     Return value:
         Array of players
         [Players]
+
+    Example:
+        call uksf_mission_fnc_getPlayers
 */
 
 #ifdef DEBUG_MODE_ANALYSIS

@@ -12,6 +12,9 @@
 
     Return value:
         True if any players are near <BOOLEAN>
+
+    Example:
+        [_centre, _radius] call uksf_common_fnc_anyNearPlayers
 */
 params ["_centre", "_radius"];
 

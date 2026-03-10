@@ -15,6 +15,9 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_radios_fnc_testRebroSignal
 */
 
 // Toggle off if already running

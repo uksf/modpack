@@ -11,6 +11,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        [_mode] call uksf_common_fnc_paradropCargo
 */
 params [["_mode", 0]];
 

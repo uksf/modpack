@@ -11,6 +11,9 @@
 
     Return value:
         Array <ARRAY>
+
+    Example:
+        call uksf_weapons_fnc_getSoflamDistance
 */
 
 #define MIN_DISTANCE 10

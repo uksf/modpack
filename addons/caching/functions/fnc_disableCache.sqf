@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_group] call uksf_caching_fnc_disableCache
 */
 if (!GVAR(enabled)) exitWith {};
 

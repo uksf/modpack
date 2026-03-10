@@ -12,6 +12,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_logic, _entities, _requiredDominance] call uksf_sectorcontrol_fnc_calculateDominantSide
 */
 
 params ["_logic", "_entities", "_requiredDominance"];

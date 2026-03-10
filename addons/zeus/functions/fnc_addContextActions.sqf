@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_zeus_fnc_addContextActions
 */
 private _action = [QGVAR(ai), "UKSF AI", "", {}, {
     params ["", "_selectedObjects"];

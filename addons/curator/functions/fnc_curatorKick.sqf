@@ -12,6 +12,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_kickAll, _player] call uksf_curator_fnc_curatorKick
 */
 params ["_kickAll", ["_player", ""]];
 

@@ -13,6 +13,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_entities, _dominantSideScore, _timeToCapture, _currentDominantSide] call uksf_sectorcontrol_fnc_getSectorCaptureProgress
 */
 
 params ["_entities", "_dominantSideScore", "_timeToCapture", "_currentDominantSide"];

@@ -11,6 +11,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        call uksf_arsenal_fnc_loadMainOpGear
 */
 if (!fileExists MAIN_OP_GEAR_FILE) exitWith {
     DEBUG("Main op gear file not found");

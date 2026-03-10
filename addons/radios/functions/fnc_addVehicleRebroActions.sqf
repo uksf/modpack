@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_vehicleType] call uksf_radios_fnc_addVehicleRebroActions
 */
 params ["_vehicleType"];
 

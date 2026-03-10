@@ -14,6 +14,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        call uksf_weapons_fnc_3cbCreateSmokeRound
 */
 _this spawn {
     params ["_projectile", "_position", "_ammo"];

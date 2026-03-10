@@ -12,6 +12,9 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_persistence_fnc_loadServerData
 */
 
 GVAR(missionObjects) = +EGVAR(common,missionObjectsMinusUnits);

@@ -18,6 +18,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_target, _detonationPositionASL, _targetPositionASL, _intermediatePointASL, _damage, _pathType] call uksf_blastoverpressure_fnc_debugDraw
 */
 params ["_target", "_detonationPositionASL", "_targetPositionASL", "_intermediatePointASL", "_damage", "_pathType"];
 

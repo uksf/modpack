@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_state] call uksf_civilian_fnc_toggleDebug
 */
 params [["_state", true, [true]]];
 

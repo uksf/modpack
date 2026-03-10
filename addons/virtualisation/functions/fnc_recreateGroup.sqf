@@ -12,6 +12,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_groupData, _exclude] call uksf_virtualisation_fnc_recreateGroup
 */
 params ["_groupData", ["_exclude", false]];
 _groupData params ["_side", "_vehicleDetails", "_unitDetails", "_waypoints", "_combatMode", "_formationDirection"];

@@ -31,6 +31,9 @@
             16: AceRepair       - [repairVehicle, repairFacility]
             17: CustomName      - ace_cargo_customName string
             18: FailedLastLoad  - bool (set by loadAllObjectData retry system, not saved)
+
+    Example:
+        [_object] call uksf_persistence_fnc_getObjectData
 */
 params ["_object"];
 TRACE_1("Getting object data for",_object);

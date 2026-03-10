@@ -12,6 +12,9 @@
 
     Return Value:
         [indirectHit, indirectHitRange, powerScore, damageMultiplier, isEnabled] or []
+
+    Example:
+        [_ammo] call uksf_blastoverpressure_fnc_getAmmoConfig
 */
 params ["_ammo"];
 

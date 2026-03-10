@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_logic, _deadman, _car, _empty] call uksf_zeus_fnc_moduleMakeBomb
 */
 params ["_logic", ["_deadman", false], ["_car", false], ["_empty", false]];
 

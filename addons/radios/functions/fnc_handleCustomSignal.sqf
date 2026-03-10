@@ -14,6 +14,9 @@
 
     Return Value:
         [Power, dBm]
+
+    Example:
+        [_frequency, _power, _receiverId, _transmitterId] call uksf_radios_fnc_handleCustomSignal
 */
 params ["_frequency", "_power", "_receiverId", "_transmitterId"];
 

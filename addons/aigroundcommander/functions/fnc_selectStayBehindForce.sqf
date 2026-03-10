@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_group] call uksf_aigroundcommander_fnc_selectStayBehindForce
 */
 params ["_group"];
 

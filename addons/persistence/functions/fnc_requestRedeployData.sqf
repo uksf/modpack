@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_player] call uksf_persistence_fnc_requestRedeployData
 */
 params ["_player"];
 

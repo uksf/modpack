@@ -14,6 +14,9 @@
 
     Return value:
         Array of prefab data and optional terrain object center
+
+    Example:
+        [_position, _prefabId] call uksf_safehouses_fnc_selectPrefabForLocation
 */
 params ["_position", "_prefabId"];
 

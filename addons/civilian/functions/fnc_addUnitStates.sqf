@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        call uksf_civilian_fnc_addUnitStates
 */
 // Add state: OnState, OnEnter, OnLeave, Name
 

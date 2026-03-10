@@ -12,6 +12,9 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_radios_fnc_registerDebugProviders
 */
 
 #define SIGNAL_COLOUR(POWER) (if (POWER < 0) then {[0, 0, 0, 1]} else {[linearConversion [0.5, 1, POWER, 1, 0, true], linearConversion [0, 0.5, POWER, 0, 1, true], 0, 1]})

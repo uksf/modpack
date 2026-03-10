@@ -17,6 +17,9 @@
 
     Return Value:
         [Power, dBm, rebroReceivePower, rebroTransmitPower]
+
+    Example:
+        [_vehicle, _data, _originalResult] call uksf_radios_fnc_getRebroStationSignal
 */
 params ["_vehicle", "_data", "_originalResult"];
 _data params ["_frequency", "_power", "_receiverId", "_transmitterId"];

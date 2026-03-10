@@ -11,6 +11,9 @@
 
     Return value:
         None
+
+    Example:
+        call uksf_immersion_fnc_suppressionPinnedDown
 */
 
 if (GVAR(suppression_threshold) >= SUPPRESSION_BORDER) then {

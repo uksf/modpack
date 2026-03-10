@@ -13,6 +13,9 @@
     Return Value:
         Array of radio data <ARRAY>
         Formatted as: [type, channel, volume, ear, pttIndex]
+
+    Example:
+        [_unit] call uksf_radios_fnc_serializeRadios
 */
 params ["_unit"];
 

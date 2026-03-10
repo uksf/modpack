@@ -12,6 +12,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_crate, _classes] call uksf_arsenal_fnc_addArsenal
 */
 params ["_crate", ["_classes", true, [[], true]]];
 

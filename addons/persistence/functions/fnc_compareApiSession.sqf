@@ -13,6 +13,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_session] call uksf_persistence_fnc_compareApiSession
 */
 params ["_session"];
 

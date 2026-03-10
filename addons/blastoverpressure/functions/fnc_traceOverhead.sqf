@@ -16,6 +16,9 @@
 
     Return Value:
         [] if no path found, or [totalPathLength, samplePoint] for the best path
+
+    Example:
+        [_detonationPositionASL, _targetPositionASL, _target] call uksf_blastoverpressure_fnc_traceOverhead
 */
 params ["_detonationPositionASL", "_targetPositionASL", "_target"];
 

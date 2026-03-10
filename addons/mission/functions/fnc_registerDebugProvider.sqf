@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_mission_fnc_registerDebugProvider
 */
 
 private _key = QGVAR(dynamicPatrols);

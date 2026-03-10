@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_contextPosition, _args] call uksf_virtualisation_fnc_contextDevirtualiseNearby
 */
 params ["_contextPosition", "", "", "", "", "", "_args"];
 _args params ["_radius"];

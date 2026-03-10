@@ -30,6 +30,9 @@
         Marker: ["markerName", 10, 15, "CUP_O_RU"] call uksf_mission_fnc_initPatrol; (NOTE: The marker name must be given)
         Trigger: [thisTrigger, 4, 100, "CUP_I_UN"] call uksf_mission_fnc_initPatrol; (NOTE: The trigger object)
         Location: [location, 10, 15, "CUP_B_GB"] call uksf_mission_fnc_initPatrol; (NOTE: Custom locations will not work)
+
+    Example:
+        [_position, _maxGroupsActive, _groupPoolSize, _factionName] call uksf_mission_fnc_initPatrol
 */
 params [["_position", objNull, [objNull, "", locationNull]], ["_maxGroupsActive", 5], ["_groupPoolSize", 10], ["_factionName", "OPF_F"]];
 

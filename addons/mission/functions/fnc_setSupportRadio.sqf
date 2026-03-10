@@ -12,6 +12,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_unit, _state] call uksf_mission_fnc_setSupportRadio
 */
 params [["_unit", objNull, [objNull, [], grpNull]], "_state"];
 

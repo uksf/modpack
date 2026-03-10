@@ -20,6 +20,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_positionASL, _ammo, _indirectHit, _indirectHitRange, _effectiveRange, _source, _candidatePositions] call uksf_blastoverpressure_fnc_waveSimulation
 */
 params ["_positionASL", "_ammo", "_indirectHit", "_indirectHitRange", "_effectiveRange", "_source", "_candidatePositions"];
 

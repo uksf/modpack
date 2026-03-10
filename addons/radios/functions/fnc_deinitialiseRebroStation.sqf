@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_vehicle] call uksf_radios_fnc_deinitialiseRebroStation
 */
 if (!isServer) exitWith {
     [QGVAR(deinitialiseRebroStation), _this] call CBA_fnc_serverEvent;

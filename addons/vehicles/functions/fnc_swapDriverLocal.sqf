@@ -16,6 +16,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_unit] call uksf_vehicles_fnc_swapDriverLocal
 */
 params ["", "_unit"];
 TRACE_1("swap driver local",_this);

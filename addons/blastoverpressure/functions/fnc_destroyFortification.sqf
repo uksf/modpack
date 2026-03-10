@@ -19,6 +19,9 @@
 
     Return Value:
         Whether the object was destroyed <BOOLEAN>
+
+    Example:
+        [_object, _damage, _source, _tier] call uksf_blastoverpressure_fnc_destroyFortification
 */
 params ["_object", "_damage", "_source", "_tier"];
 

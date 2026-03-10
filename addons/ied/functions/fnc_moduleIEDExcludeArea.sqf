@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_logic] call uksf_ied_fnc_moduleIEDExcludeArea
 */
 
 (_this select 1) params ["_logic"];

@@ -12,6 +12,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_idPFH] call uksf_zeus_fnc_debugStreamTick
 */
 
 params ["", "_idPFH"];

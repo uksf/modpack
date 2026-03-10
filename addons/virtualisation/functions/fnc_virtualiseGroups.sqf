@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_groups] call uksf_virtualisation_fnc_virtualiseGroups
 */
 params [["_groups", []]];
 

@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_key] call uksf_zeus_fnc_debugToggle
 */
 params ["_key"];
 TRACE_1("debugToggle",_key);

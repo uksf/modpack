@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_unit] call uksf_ranks_fnc_setRankIcon
 */
 params ["_unit"];
 

@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        call uksf_radios_fnc_setChannelNames
 */
 
 [{

@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        call uksf_aigroundcommander_fnc_selectResponse
 */
 // TODO: Should be settings
 #define AGGRESSION_LEVEL_MIN 22

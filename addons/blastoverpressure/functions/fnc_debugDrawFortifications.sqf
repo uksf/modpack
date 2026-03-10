@@ -16,6 +16,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_positionASL, _effectiveRange, _destroyedCount, _damagedCount, _protectedCount] call uksf_blastoverpressure_fnc_debugDrawFortifications
 */
 params ["_positionASL", "_effectiveRange", "_destroyedCount", "_damagedCount", "_protectedCount"];
 

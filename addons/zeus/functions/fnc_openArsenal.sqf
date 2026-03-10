@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_unit] call uksf_zeus_fnc_openArsenal
 */
 params [["_unit", BIS_fnc_initCuratorAttributes_target]];
 

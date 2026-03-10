@@ -11,6 +11,9 @@
 
     Return value:
         Initialized <BOOLEAN>
+
+    Example:
+        [_vehicle] call uksf_radios_fnc_isRackInitialisationComplete
 */
 params ["_vehicle"];
 

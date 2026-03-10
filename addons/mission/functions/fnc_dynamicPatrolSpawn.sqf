@@ -13,6 +13,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_values, _logic, _area, _retries] call uksf_mission_fnc_dynamicPatrolSpawn
 */
 #define MAX_RETRIES 4
 

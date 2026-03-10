@@ -11,6 +11,9 @@
 
     Return Value:
         Array of actions <ARRAY>
+
+    Example:
+        call uksf_curator_fnc_getCuratorActions
 */
 
 private _actions = [];

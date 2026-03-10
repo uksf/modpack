@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_logic] call uksf_zeus_fnc_moduleRemoveAceArsenal
 */
 params ["_logic"];
 

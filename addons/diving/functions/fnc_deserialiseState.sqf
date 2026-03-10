@@ -11,6 +11,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        [_data] call uksf_diving_fnc_deserialiseState
 */
 params ["_data"];
 

@@ -15,6 +15,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_chunkJson] call uksf_persistence_fnc_handleApiLoadChunk
 */
 params ["_chunkJson"];
 

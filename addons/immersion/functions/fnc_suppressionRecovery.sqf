@@ -11,6 +11,9 @@
 
     Return value:
         None
+
+    Example:
+        call uksf_immersion_fnc_suppressionRecovery
 */
 
 if (GVAR(suppression_threshold) > 0) then {

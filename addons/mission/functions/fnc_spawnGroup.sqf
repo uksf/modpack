@@ -13,6 +13,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_id, _position, _factionName] call uksf_mission_fnc_spawnGroup
 */
 #define PLAYERSAFEDISTANCE 300
 

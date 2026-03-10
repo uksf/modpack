@@ -18,6 +18,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_positionASL, _indirectHitRange, _effectiveRange, _ammo, _totalShielded, _shieldedTargets, _unshieldedTargets] call uksf_blastoverpressure_fnc_debugDrawBlastRadius
 */
 params ["_positionASL", "_indirectHitRange", "_effectiveRange", "_ammo", "_totalShielded", "_shieldedTargets", "_unshieldedTargets"];
 

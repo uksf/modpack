@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_statistics_fnc_stopCollection
 */
 if (GVAR(clientSyncPFH) != -1) then {
     [GVAR(clientSyncPFH)] call CBA_fnc_removePerFrameHandler;

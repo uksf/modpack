@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_state] call uksf_diving_fnc_loop
 */
 params ["_state"];
 

@@ -16,6 +16,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_entity, _isActive, _sphereArray, _position, _inactiveColour] call uksf_civilian_fnc_debugUpdateCommandSphere
 */
 params ["_entity", "_isActive", "_sphereArray", "_position", ["_inactiveColour", ""]];
 

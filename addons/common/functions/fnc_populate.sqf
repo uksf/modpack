@@ -15,6 +15,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        [_vehicle, _units, _turrets, _side] call uksf_common_fnc_populate
 */
 #define TIMEOUT 30
 

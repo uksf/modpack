@@ -11,6 +11,9 @@
 
     Return value:
         None
+
+    Example:
+        call uksf_immersion_fnc_suppressionHandler
 */
 
 private _deleted = false;

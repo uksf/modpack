@@ -151,6 +151,9 @@ Every function file follows this structure:
 
     Return Value:
         Description
+
+    Example:
+        [_param1, _param2] call uksf_<component>_fnc_<name>
 */
 params [["_param1", defaultValue], ["_param2", defaultValue, [typeCheck]]];
 

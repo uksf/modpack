@@ -12,6 +12,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_config, _name] call uksf_diving_fnc_useCylinder
 */
 params ["_config", "_name"];
 

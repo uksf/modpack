@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_curator] call uksf_curator_fnc_curatorInit
 */
 params ["_curator"];
 

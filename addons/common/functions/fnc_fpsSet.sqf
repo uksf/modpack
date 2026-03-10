@@ -12,6 +12,9 @@
 
     Return value:
         None
+
+    Example:
+        [_client, _fps] call uksf_common_fnc_fpsSet
 */
 params ["_client", "_fps"];
 

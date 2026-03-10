@@ -13,6 +13,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_logic, _currentOpforScore, _currentBluforScore, _timeToCapture] call uksf_sectorcontrol_fnc_setOwnedSectorScores
 */
 params ["_logic", "_currentOpforScore", "_currentBluforScore", "_timeToCapture"];
 

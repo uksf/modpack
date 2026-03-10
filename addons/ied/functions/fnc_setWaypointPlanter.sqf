@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_planter, _retries] call uksf_ied_fnc_setWaypointPlanter
 */
 #define MAX_RETRIES 5
 

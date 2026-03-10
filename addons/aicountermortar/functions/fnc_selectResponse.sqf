@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_target] call uksf_aicountermortar_fnc_selectResponse
 */
 params ["_target"];
 
