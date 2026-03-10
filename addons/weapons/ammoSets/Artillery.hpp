@@ -35,9 +35,6 @@ class tbd_mortars_105mm_shell_ammo_smoke : SubmunitionCore {
     hit = 100;
     indirectHit = 0;
     indirectHitRange = 4;
-    explosionEffects = "GrenadeExplosion";
-    explosionEffectsRadius = 0.5;
-    explosionForceCoef = 0.2;
     submunitionAmmo = QGVAR(105mm_smoke_shell);
     submunitionDirectionType = "SubmunitionModelDirection";
     submunitionConeType[] = { "poissondisc", 3 };  // 20
@@ -48,6 +45,9 @@ class tbd_mortars_105mm_shell_ammo_smoke : SubmunitionCore {
     triggerSpeedCoef[] = { 0.9, 0.95 };
     triggerOnImpact = 0;
     triggerDistance = 100;
+    explosionEffectsRadius = 0.5;
+    explosionForceCoef = 0.2;
+    explosionEffects = "GrenadeExplosion";
     CraterEffects = "ExploAmmoCrater";
     SoundSetExplosion[] = { "jsrs_2025_shell_blunt_hit_soundset", "jsrs_2025_debris_small_soundset" };
     class HitEffects {
