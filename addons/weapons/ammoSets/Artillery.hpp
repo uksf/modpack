@@ -35,14 +35,17 @@ class tbd_mortars_105mm_shell_ammo_smoke : SubmunitionCore {
     hit = 100;
     indirectHit = 0;
     indirectHitRange = 4;
+    explosionEffects = "GrenadeExplosion";
+    explosionEffectsRadius = 0.5;
+    explosionForceCoef = 0.2;
     submunitionAmmo = QGVAR(105mm_smoke_shell);
     submunitionDirectionType = "SubmunitionModelDirection";
     submunitionConeType[] = { "poissondisc", 4 };  // 20
     submunitionConeAngle = 10;
-    submunitionConeAngleHorizontal = 360;
+    submunitionConeAngleHorizontal = 10;
     submunitionInitialOffset[] = { 0, 0, 0 };
-    submunitionParentSpeedCoef = 1;
     deleteParentWhenTriggered = 0;
+    triggerSpeedCoef[] = { 0.9, 0.95 };
     triggerOnImpact = 0;
-    triggerDistance = 50;
+    triggerDistance = 100;
 };
