@@ -11,8 +11,6 @@ class CfgPatches {
             QGVAR(rhicc_green),
             QGVAR(rhicc_grey),
             QGVAR(L119),
-            QGVAR(L119_test_sholef),
-            QGVAR(L119_test_l16),
             QGVAR(landrover_lightgun_green),
             QGVAR(landrover_lightgun_greenblack),
             QGVAR(landrover_lightgun_sand)
