@@ -34,9 +34,11 @@ class GVAR(105mm_smoke_shell) : SmokeShell {
 class tbd_mortars_105mm_shell_ammo_smoke : SubmunitionCore {
     submunitionAmmo = QGVAR(105mm_smoke_shell);
     submunitionDirectionType = "SubmunitionModelDirection";
-    submunitionConeType[] = { "poissondisc", 3 };  // 20
-    submunitionConeAngle = 180;
-    submunitionConeAngleHorizontal = 360;
+    // submunitionConeType[] = { "poissondisc", 3 };  // 20
+    // submunitionConeAngle = 180;
+    // submunitionConeAngleHorizontal = 360;
+    submunitionConeAngle = 15;
+    submunitionConeType[] = { "random", 3 };
     submunitionInitialOffset[] = { 0, 0, 0 };
     deleteParentWhenTriggered = 0;
     submunitionParentSpeedCoef = 0.95;
