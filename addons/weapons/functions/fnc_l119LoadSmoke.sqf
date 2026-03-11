@@ -23,7 +23,7 @@ params ["_l119", "_shell", "_turret"];
 
 private _rounds = nearestObjects [player, [_shell], 3];
 {
-    if ((typeOf _x) isEqualTo _shell) exitWith {
+    if ((typeOf _x) == _shell) exitWith {
         private _fuseTime = _x getVariable ["tbd_mortars_105mm_DPICM_FUSE_TIMER", -1];
         if (_fuseTime >= 0) then {
             _l119 setVariable [QGVAR(smokeFuseTime), _fuseTime, true];
