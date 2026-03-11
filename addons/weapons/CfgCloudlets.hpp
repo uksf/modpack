@@ -5,7 +5,6 @@ class GVAR(SmokeMortarEffect) {
         position[] = { 0, 0, 0 };
         intensity = 1;
         interval = 1;
-        lifeTime = 1;
     };
     class SmokeBase {
         simulation = "particles";
@@ -13,6 +12,5 @@ class GVAR(SmokeMortarEffect) {
         position[] = { 0, 0, 0 };
         intensity = 1;
         interval = 1;
-        lifeTime = 1;
     };
 };

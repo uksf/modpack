@@ -58,4 +58,6 @@ ADDON = false;
     };
 }] call CBA_fnc_addEventHandler;
 
+["TBD_M119", "Fired", {_this call FUNC(l119SmokeFiredEH)}] call CBA_fnc_addClassEventHandler;
+
 ADDON = true;
