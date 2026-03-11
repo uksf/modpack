@@ -25,7 +25,7 @@ class UK3CB_BAF_Sh_81mm_AMOS_AB_helper : UK3CB_BAF_Sh_81mm_AMOS_AB {
 class SmokeShell;
 class GVAR(105mm_smoke_shell) : SmokeShell {
     simulation = "shotSmokeX";
-    model = "\A3\Weapons_F\explosives\mine_AP_bouncing";
+    model = "\A3\Weapons_F\explosives\mine_ap";
     explosionTime = 0;
     deflecting = 15;
     timeToLive = 90;
