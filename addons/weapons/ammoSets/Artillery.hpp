@@ -25,16 +25,13 @@ class UK3CB_BAF_Sh_81mm_AMOS_AB_helper : UK3CB_BAF_Sh_81mm_AMOS_AB {
 class SmokeShell;
 class GVAR(105mm_smoke_shell) : SmokeShell {
     simulation = "shotSmokeX";
-    model = "\A3\Weapons_F_Orange\Explosives\APERSmineDispenser_AP";
+    model = "\A3\Weapons_F\explosives\mine_ap";
     explosionTime = 0;
     deflecting = 10;
     timeToLive = 90;
     effectsSmoke = QGVAR(SmokeMortarEffect);
 };
 class tbd_mortars_105mm_shell_ammo_smoke : SubmunitionCore {
-    hit = 100;
-    indirectHit = 0.1;
-    indirectHitRange = 1;
     submunitionAmmo = QGVAR(105mm_smoke_shell);
     submunitionDirectionType = "SubmunitionModelDirection";
     submunitionConeType[] = { "poissondisc", 3 };  // 20
@@ -44,6 +41,13 @@ class tbd_mortars_105mm_shell_ammo_smoke : SubmunitionCore {
     deleteParentWhenTriggered = 0;
     triggerSpeedCoef[] = { 0.9, 0.95 };
     triggerOnImpact = 1;
+    explosionEffects = "";
+};
+class GVAR(105mm_shell_smoke_empty) : tbd_mortars_105mm_shell_ammo_smoke {
+    hit = 100;
+    indirectHit = 0.1;
+    indirectHitRange = 1;
+    submunitionAmmo = "";
     explosionEffectsRadius = 0.5;
     explosionForceCoef = 0.2;
     explosionEffects = "GrenadeExplosion";

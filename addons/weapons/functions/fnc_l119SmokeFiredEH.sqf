@@ -27,7 +27,7 @@ params ["_vehicle", "", "", "", "_ammo", "", "_projectile", ""];
 
 if (!local _vehicle) exitWith {};
 
-if (_ammo isNotEqualTo "tbd_mortars_105mm_shell_ammo_smoke") exitWith {};
+if (_ammo != "tbd_mortars_105mm_shell_ammo_smoke") exitWith {};
 
 private _fuseTime = _vehicle getVariable [QGVAR(smokeFuseTime), -1];
 if (_fuseTime < 0) exitWith {};
@@ -36,5 +36,17 @@ _vehicle setVariable [QGVAR(smokeFuseTime), -1, true];
 
 [{
     params ["_projectile"];
+
+    if (isNull _projectile) exitWith {};
+
+    private _position = getPosASL _projectile;
+    private _velocity = velocity _projectile;
+
+    // Trigger the submunition (smoke shells) from the original projectile
     triggerAmmo _projectile;
+
+    // Spawn an empty shell to continue the ballistic path and impact on the ground
+    private _emptyShell = createVehicle [QGVAR(105mm_shell_smoke_empty), ASLToATL _position, [], 0, "CAN_COLLIDE"];
+    _emptyShell setPosASL _position;
+    _emptyShell setVelocity _velocity;
 }, [_projectile], _fuseTime] call CBA_fnc_waitAndExecute;
