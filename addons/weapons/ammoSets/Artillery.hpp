@@ -37,12 +37,12 @@ class tbd_mortars_105mm_shell_ammo_smoke : SubmunitionCore {
     // submunitionConeType[] = { "poissondisc", 3 };  // 20
     // submunitionConeAngle = 180;
     // submunitionConeAngleHorizontal = 360;
-    submunitionConeAngle = 15;
+    submunitionConeAngle = 90;
     submunitionConeType[] = { "random", 3 };
     submunitionInitialOffset[] = { 0, 0, 0 };
     deleteParentWhenTriggered = 0;
     submunitionParentSpeedCoef = 0.95;
-    submunitionInitSpeed = 10;
+    submunitionInitSpeed = 150;
     triggerOnImpact = 1;
     explosionEffects = "";
 };
