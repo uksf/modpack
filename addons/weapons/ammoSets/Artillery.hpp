@@ -26,10 +26,10 @@ class SmokeShell;
 class GVAR(105mm_smoke_shell) : SmokeShell {
     simulation = "shotSmokeX";
     model = "\A3\Weapons_F\explosives\mine_AP_bouncing";
-    airFriction = -0.5;
+    airFriction = -2;
     explosionTime = 0;
-    deflecting = 65;
-    deflectionSlowDown = 10;
+    deflecting = 45;
+    deflectionSlowDown = 0.1;
     deflectionDirDistribution = 0.1;
     timeToLive = 90;
     effectsSmoke = QGVAR(SmokeMortarEffect);
@@ -45,7 +45,7 @@ class tbd_mortars_105mm_shell_ammo_smoke : SubmunitionCore {
     submunitionConeType[] = { "poissondisc", 3 };
     submunitionInitialOffset[] = { 0, 0, 0 };
     deleteParentWhenTriggered = 0;
-    submunitionParentSpeedCoef = 0.8;
+    submunitionParentSpeedCoef = 0.5;
     submunitionInitSpeed = 0;
     triggerOnImpact = 1;
     explosionEffects = "";
