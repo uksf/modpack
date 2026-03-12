@@ -28,8 +28,9 @@ class GVAR(105mm_smoke_shell) : SmokeShell {
     model = "\A3\Weapons_F\explosives\mine_AP_bouncing";
     airFriction = -0.25;
     explosionTime = 0;
-    deflecting = 30;
-    deflectionSlowDown = 0.5;
+    deflecting = 65;
+    deflectionSlowDown = 0.2;
+    deflectionDirDistribution = 0.1;
     timeToLive = 90;
     effectsSmoke = QGVAR(SmokeMortarEffect);
 };
@@ -59,6 +60,7 @@ class GVAR(105mm_shell_smoke_empty) : tbd_mortars_105mm_shell_ammo_smoke {
     explosionForceCoef = 0.2;
     explosionEffects = "GrenadeExplosion";
     CraterEffects = "ExploAmmoCrater";
+    CraterWaterEffects = "ImpactEffectsWaterHE";
     SoundSetExplosion[] = { "jsrs_2025_shell_blunt_hit_soundset", "jsrs_2025_debris_small_soundset" };
     class HitEffects {
         hitVirtual = "ImpactMetalSabotSmall";
