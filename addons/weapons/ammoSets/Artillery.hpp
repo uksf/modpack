@@ -26,10 +26,10 @@ class SmokeShell;
 class GVAR(105mm_smoke_shell) : SmokeShell {
     simulation = "shotSmokeX";
     model = "\A3\Weapons_F\explosives\mine_AP_bouncing";
-    airFriction = -0.25;
+    airFriction = -0.5;
     explosionTime = 0;
     deflecting = 65;
-    deflectionSlowDown = 0.2;
+    deflectionSlowDown = 10;
     deflectionDirDistribution = 0.1;
     timeToLive = 90;
     effectsSmoke = QGVAR(SmokeMortarEffect);
