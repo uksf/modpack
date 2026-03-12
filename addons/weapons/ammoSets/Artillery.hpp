@@ -26,7 +26,7 @@ class SmokeShell;
 class GVAR(105mm_smoke_shell) : SmokeShell {
     simulation = "shotSmokeX";
     model = "\A3\weapons_f\ammo\shell_smoke";
-    airFriction = -0.05;
+    airFriction = -0.25;
     explosionTime = 0;
     deflecting = 15;
     timeToLive = 90;
