@@ -15,11 +15,13 @@ pub fn start() {
 
     thread::spawn(move || {
         let url = format!("{}/api/gameservers/events", config::API_BASE_URL);
+        let api_port = config::get_api_port();
 
         for json in receiver {
             let result = ureq::post(&url)
                 .timeout(std::time::Duration::from_secs(5))
                 .set("Content-Type", "application/json")
+                .set("X-Api-Port", &api_port.to_string())
                 .send_string(&json);
 
             if let Err(error) = result {
@@ -61,6 +63,8 @@ mod tests {
 
     #[test]
     fn test_event_reaches_http_server() {
+        config::store_api_port(2303);
+
         // Start a local test server
         let server = tiny_http::Server::http("127.0.0.1:0").unwrap();
         let port = server.server_addr().to_ip().unwrap().port();
@@ -68,11 +72,13 @@ mod tests {
         // Send directly to test server (bypassing config URL)
         let (sender, receiver) = mpsc::channel::<String>();
         let url = format!("http://127.0.0.1:{port}/api/gameservers/events");
+        let api_port = config::get_api_port();
 
         thread::spawn(move || {
             for json in receiver {
                 let _ = ureq::post(&url)
                     .set("Content-Type", "application/json")
+                    .set("X-Api-Port", &api_port.to_string())
                     .send_string(&json);
             }
         });
@@ -84,6 +90,13 @@ mod tests {
             .unwrap()
             .unwrap();
         assert_eq!(request.method(), &tiny_http::Method::Post);
+
+        let header = request
+            .headers()
+            .iter()
+            .find(|h| h.field.as_str() == "X-Api-Port")
+            .expect("X-Api-Port header missing");
+        assert_eq!(header.value.as_str(), "2303");
 
         let mut body = String::new();
         request.as_reader().read_to_string(&mut body).unwrap();

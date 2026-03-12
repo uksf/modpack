@@ -33,6 +33,8 @@ fn handle_start() -> String {
         return "error: -apiport not found in launch arguments".to_string();
     };
 
+    config::store_api_port(port);
+
     if let Err(error) = listener::start(port) {
         return format!("error: failed to start listener: {error}");
     }
