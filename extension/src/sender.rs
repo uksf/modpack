@@ -4,10 +4,15 @@ use std::thread;
 
 use crate::config;
 
-static CHANNEL: Mutex<Option<Sender<String>>> = Mutex::new(None);
+enum Message {
+    Event(String),
+    Flush(Sender<()>),
+}
+
+static CHANNEL: Mutex<Option<Sender<Message>>> = Mutex::new(None);
 
 pub fn start() {
-    let (sender, receiver) = mpsc::channel::<String>();
+    let (sender, receiver) = mpsc::channel::<Message>();
 
     if let Ok(mut channel) = CHANNEL.lock() {
         *channel = Some(sender);
@@ -17,15 +22,22 @@ pub fn start() {
         let url = format!("{}/api/gameservers/events", config::API_BASE_URL);
         let api_port = config::get_api_port();
 
-        for json in receiver {
-            let result = ureq::post(&url)
-                .timeout(std::time::Duration::from_secs(5))
-                .set("Content-Type", "application/json")
-                .set("X-Api-Port", &api_port.to_string())
-                .send_string(&json);
+        for message in receiver {
+            match message {
+                Message::Event(json) => {
+                    let result = ureq::post(&url)
+                        .timeout(std::time::Duration::from_secs(5))
+                        .set("Content-Type", "application/json")
+                        .set("X-Api-Port", &api_port.to_string())
+                        .send_string(&json);
 
-            if let Err(error) = result {
-                log::error!("Failed to send event: {error}");
+                    if let Err(error) = result {
+                        log::error!("Failed to send event: {error}");
+                    }
+                }
+                Message::Flush(ack) => {
+                    let _ = ack.send(());
+                }
             }
         }
     });
@@ -40,9 +52,25 @@ pub fn stop() {
 pub fn queue_event(json: &str) {
     if let Ok(channel) = CHANNEL.lock() {
         if let Some(sender) = channel.as_ref() {
-            let _ = sender.send(json.to_string());
+            let _ = sender.send(Message::Event(json.to_string()));
         }
     }
+}
+
+pub fn flush() -> bool {
+    let (ack_tx, ack_rx) = mpsc::channel();
+
+    if let Ok(channel) = CHANNEL.lock() {
+        if let Some(sender) = channel.as_ref() {
+            let _ = sender.send(Message::Flush(ack_tx));
+        } else {
+            return false;
+        }
+    }
+
+    ack_rx
+        .recv_timeout(std::time::Duration::from_secs(10))
+        .is_ok()
 }
 
 #[cfg(test)]
@@ -70,20 +98,29 @@ mod tests {
         let port = server.server_addr().to_ip().unwrap().port();
 
         // Send directly to test server (bypassing config URL)
-        let (sender, receiver) = mpsc::channel::<String>();
+        let (sender, receiver) = mpsc::channel::<Message>();
         let url = format!("http://127.0.0.1:{port}/api/gameservers/events");
         let api_port = config::get_api_port();
 
         thread::spawn(move || {
-            for json in receiver {
-                let _ = ureq::post(&url)
-                    .set("Content-Type", "application/json")
-                    .set("X-Api-Port", &api_port.to_string())
-                    .send_string(&json);
+            for message in receiver {
+                match message {
+                    Message::Event(json) => {
+                        let _ = ureq::post(&url)
+                            .set("Content-Type", "application/json")
+                            .set("X-Api-Port", &api_port.to_string())
+                            .send_string(&json);
+                    }
+                    Message::Flush(ack) => {
+                        let _ = ack.send(());
+                    }
+                }
             }
         });
 
-        sender.send("{\"type\":\"test\"}".to_string()).unwrap();
+        sender
+            .send(Message::Event("{\"type\":\"test\"}".to_string()))
+            .unwrap();
 
         let mut request = server
             .recv_timeout(std::time::Duration::from_secs(5))
@@ -101,5 +138,14 @@ mod tests {
         let mut body = String::new();
         request.as_reader().read_to_string(&mut body).unwrap();
         assert_eq!(body, "{\"type\":\"test\"}");
+    }
+
+    #[test]
+    fn test_flush_when_not_started() {
+        // Ensure channel is None
+        if let Ok(mut channel) = CHANNEL.lock() {
+            *channel = None;
+        }
+        assert!(!flush());
     }
 }

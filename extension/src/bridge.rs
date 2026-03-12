@@ -15,6 +15,9 @@ pub fn handle_command(command: &str) -> String {
     if command == "stop" {
         return handle_stop();
     }
+    if command == "flush" {
+        return handle_flush();
+    }
     if let Some(key) = command.strip_prefix("load:") {
         return handle_load(key);
     }
@@ -66,6 +69,18 @@ fn handle_load(key: &str) -> String {
     "loading".to_string()
 }
 
+fn handle_flush() -> String {
+    if !RUNNING.load(Ordering::SeqCst) {
+        return "not running".to_string();
+    }
+
+    if sender::flush() {
+        "flushed".to_string()
+    } else {
+        "flush timeout".to_string()
+    }
+}
+
 fn handle_event(json: &str) -> String {
     if !RUNNING.load(Ordering::SeqCst) {
         return "error: not running".to_string();
@@ -103,6 +118,13 @@ mod tests {
     fn test_stop_before_start() {
         RUNNING.store(false, Ordering::SeqCst);
         let result = handle_command("stop");
+        assert_eq!(result, "not running");
+    }
+
+    #[test]
+    fn test_flush_before_start() {
+        RUNNING.store(false, Ordering::SeqCst);
+        let result = handle_command("flush");
         assert_eq!(result, "not running");
     }
 }
