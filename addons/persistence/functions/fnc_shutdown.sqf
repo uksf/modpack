@@ -67,9 +67,14 @@ if (!isNil QEFUNC(statistics,serverSync)) then {
 
             ["ocap_exportData", [west]] call CBA_fnc_localEvent;
 
+            ["shutdown_complete"] call EFUNC(api,sendEvent);
+            "uksf" callExtension "flush";
+
             [{SERVER_COMMAND serverCommand "#shutdown"}, [], 4] call CBA_fnc_waitAndExecute;
         }, [], 120, {
             WARNING("Shutdown save timed out after 120 seconds, forcing shutdown");
+            ["shutdown_complete"] call EFUNC(api,sendEvent);
+            "uksf" callExtension "flush";
             [{SERVER_COMMAND serverCommand "#shutdown"}, [], 4] call CBA_fnc_waitAndExecute;
         }] call CBA_fnc_waitUntilAndExecute;
     };
