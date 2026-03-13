@@ -25,11 +25,11 @@ pub fn start() {
         for message in receiver {
             match message {
                 Message::Event(json) => {
+                    let body = inject_api_port(&json, api_port);
                     let result = ureq::post(&url)
                         .timeout(std::time::Duration::from_secs(5))
                         .set("Content-Type", "application/json")
-                        .set("X-Api-Port", &api_port.to_string())
-                        .send_string(&json);
+                        .send_string(&body);
 
                     if let Err(error) = result {
                         log::error!("Failed to send event: {error}");
@@ -55,6 +55,11 @@ pub fn queue_event(json: &str) {
             let _ = sender.send(Message::Event(json.to_string()));
         }
     }
+}
+
+fn inject_api_port(json: &str, api_port: u16) -> String {
+    // Insert "apiPort":N after the opening brace
+    format!("{{\"apiPort\":{api_port},{}", &json[1..])
 }
 
 pub fn flush() -> bool {
@@ -106,10 +111,10 @@ mod tests {
             for message in receiver {
                 match message {
                     Message::Event(json) => {
+                        let body = inject_api_port(&json, api_port);
                         let _ = ureq::post(&url)
                             .set("Content-Type", "application/json")
-                            .set("X-Api-Port", &api_port.to_string())
-                            .send_string(&json);
+                            .send_string(&body);
                     }
                     Message::Flush(ack) => {
                         let _ = ack.send(());
@@ -128,16 +133,16 @@ mod tests {
             .unwrap();
         assert_eq!(request.method(), &tiny_http::Method::Post);
 
-        let header = request
-            .headers()
-            .iter()
-            .find(|h| h.field.as_str() == "X-Api-Port")
-            .expect("X-Api-Port header missing");
-        assert_eq!(header.value.as_str(), "2303");
-
         let mut body = String::new();
         request.as_reader().read_to_string(&mut body).unwrap();
-        assert_eq!(body, "{\"type\":\"test\"}");
+        assert_eq!(body, "{\"apiPort\":2303,\"type\":\"test\"}");
+    }
+
+    #[test]
+    fn test_inject_api_port() {
+        let json = "{\"type\":\"shutdown_complete\",\"data\":{}}";
+        let result = inject_api_port(json, 2303);
+        assert_eq!(result, "{\"apiPort\":2303,\"type\":\"shutdown_complete\",\"data\":{}}");
     }
 
     #[test]
