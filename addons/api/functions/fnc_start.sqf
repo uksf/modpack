@@ -30,7 +30,7 @@ if (toLower (_result select [0, 5]) == "error") exitWith {
 };
 
 // Result is JSON: {"port":1234,"processId":5678}
-private _startData = [_result] call CBA_fnc_parseJSON;
+private _startData = [_result, 2] call CBA_fnc_parseJSON;
 GVAR(processId) = _startData getOrDefault ["processId", -1];
 
 addMissionEventHandler ["ExtensionCallback", {

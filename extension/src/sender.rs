@@ -19,7 +19,7 @@ pub fn start() {
     }
 
     thread::spawn(move || {
-        let url = format!("{}/api/gameservers/events", config::API_BASE_URL);
+        let url = format!("{}/gameservers/events", config::API_BASE_URL);
         let api_port = config::get_api_port();
         log::info!("Sender thread started, posting to {url} with apiPort={api_port}");
 
@@ -105,7 +105,7 @@ mod tests {
 
         // Send directly to test server (bypassing config URL)
         let (sender, receiver) = mpsc::channel::<Message>();
-        let url = format!("http://127.0.0.1:{port}/api/gameservers/events");
+        let url = format!("http://127.0.0.1:{port}/gameservers/events");
         let api_port = config::get_api_port();
 
         thread::spawn(move || {
