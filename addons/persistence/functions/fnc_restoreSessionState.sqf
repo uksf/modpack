@@ -5,8 +5,7 @@
 
     Description:
         Restores saved world state from the persistence session.
-        Performs an initial save to establish the baseline, restores date/time,
-        and deserialises map markers.
+        Restores date/time and deserialises map markers.
 
     Parameter(s):
         None
@@ -17,8 +16,6 @@
     Example:
         call uksf_persistence_fnc_restoreSessionState
 */
-
-call FUNC(saveData);
 
 if (!GVAR(overrideSavedDateTime)) then {
     private _dateTime = GVAR(dataNamespace) getVariable [QGVAR(dateTime), date];
