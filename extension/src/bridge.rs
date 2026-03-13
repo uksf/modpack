@@ -80,7 +80,7 @@ pub fn handle_start(context: Context) -> String {
 
     let pid = std::process::id();
     log::info!("Extension fully started on port {port}, pid {pid}");
-    format!("started on port {port} pid {pid}")
+    format!("{{\"port\":{port},\"processId\":{pid}}}")
 }
 
 pub fn handle_stop() -> String {

@@ -29,13 +29,9 @@ if (toLower (_result select [0, 5]) == "error") exitWith {
     ERROR_1("Extension start returned error: %1",_result);
 };
 
-// Extract process ID from result: "started on port NNNN pid NNNN"
-private _pidIndex = _result find "pid ";
-GVAR(processId) = if (_pidIndex >= 0) then {
-    parseNumber (_result select [_pidIndex + 4])
-} else {
-    -1
-};
+// Result is JSON: {"port":1234,"processId":5678}
+private _startData = [_result] call CBA_fnc_parseJSON;
+GVAR(processId) = _startData getOrDefault ["processId", -1];
 
 addMissionEventHandler ["ExtensionCallback", {
     params ["_name", "_function", "_data"];
