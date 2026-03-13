@@ -51,11 +51,9 @@ pub fn stop() {
 }
 
 pub fn queue_event(json: &str) {
-    // Cache status/performance events for the GET /server endpoint
+    // Cache server_status events for the GET /server endpoint
     if let Some(data_json) = extract_event_data(json, "server_status") {
         crate::status::cache_status(&data_json);
-    } else if let Some(data_json) = extract_event_data(json, "performance") {
-        crate::status::cache_performance(&data_json);
     }
 
     if let Ok(channel) = CHANNEL.lock()
@@ -190,9 +188,9 @@ mod tests {
 
     #[test]
     fn test_extract_event_data_status() {
-        let json = r#"{"type":"server_status","data":{"map":"Altis","playerCount":5}}"#;
+        let json = r#"{"type":"server_status","data":{"map":"Altis","players":5}}"#;
         let result = extract_event_data(json, "server_status");
-        assert_eq!(result, Some(r#"{"map":"Altis","playerCount":5}"#.to_string()));
+        assert_eq!(result, Some(r#"{"map":"Altis","players":5}"#.to_string()));
     }
 
     #[test]

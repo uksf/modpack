@@ -66,15 +66,16 @@ if (_frequency == 0) exitWith {
     hint "Could not get radio frequency data";
 };
 
-// Spawn vehicle 500m ahead of player
+// Spawn vehicle 500m ahead of player on server, add ACRE rack with radio
 private _playerDirection = getDir player;
 private _vehiclePosition = player getPos [500, _playerDirection];
-private _vehicle = createVehicle ["B_MRAP_01_F", _vehiclePosition, [], 0, "NONE"];
-_vehicle setDir (_playerDirection + 180);
-GVAR(testVehicle) = _vehicle;
-
-// Add ACRE rack with radio to the test vehicle
-[_vehicle, ["ACRE_VRC103", "Test", "Test", false, ["external"], [], "ACRE_PRC117F", [], []], true] call acre_api_fnc_addRackToVehicle;
+[{
+    params ["_position", "_direction"];
+    private _vehicle = createVehicle ["B_MRAP_01_F", _position, [], 0, "NONE"];
+    _vehicle setDir _direction;
+    missionNamespace setVariable [QGVAR(testVehicle), _vehicle, true];
+    [_vehicle, ["ACRE_VRC103", "Test", "Test", false, ["external"], [], "ACRE_PRC117F", [], []], true, {true}] call acre_api_fnc_addRackToVehicle;
+}, [_vehiclePosition, _playerDirection + 180]] remoteExec ["BIS_fnc_call", 2];
 
 // Create rebro station box at 250m (halfway), then assemble it
 private _rebroPosition = player getPos [250, _playerDirection];
@@ -86,7 +87,11 @@ hint "Setting up test environment...";
 
 // Wait for vehicle rack and rebro station to initialise
 [{
-    params ["_vehicle", "_rebroPosition"];
+    params ["_rebroPosition"];
+
+    // Wait for server to broadcast the vehicle reference
+    private _vehicle = GVAR(testVehicle);
+    if (isNull _vehicle) exitWith {false};
 
     // Check vehicle has initialised racks with a mounted radio
     private _vehicleReady = _vehicle getVariable ["acre_sys_rack_initialized", false]
@@ -105,7 +110,9 @@ hint "Setting up test environment...";
 
     _vehicleReady && _rebroReady
 }, {
-    params ["_vehicle", "_rebroPosition", "_frequency", "_power", "_playerRadioId"];
+    params ["_rebroPosition", "_frequency", "_power", "_playerRadioId"];
+
+    private _vehicle = GVAR(testVehicle);
 
     // Get vehicle radio ID
     private _vehicleRacks = [_vehicle] call acre_api_fnc_getVehicleRacks;
@@ -160,12 +167,11 @@ hint "Setting up test environment...";
         _frequency / 1e6
     ];
 
-}, [_vehicle, _rebroPosition, _frequency, _power, _playerRadioId], 30, {
+}, [_rebroPosition, _frequency, _power, _playerRadioId], 30, {
     hint "Test setup timed out - cleaning up";
 
-    params ["_vehicle"];
-    if (!isNull _vehicle) then {
-        deleteVehicle _vehicle;
+    if (!isNull GVAR(testVehicle)) then {
+        deleteVehicle GVAR(testVehicle);
     };
     GVAR(testVehicle) = objNull;
 

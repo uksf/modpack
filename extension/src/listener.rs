@@ -161,7 +161,7 @@ mod tests {
             temp.local_addr().unwrap().port()
         };
 
-        crate::status::cache_status(r#"{"map":"Altis","playerCount":3}"#);
+        crate::status::cache_status(r#"{"map":"Altis","players":3}"#);
 
         start(port).unwrap();
         std::thread::sleep(std::time::Duration::from_millis(100));

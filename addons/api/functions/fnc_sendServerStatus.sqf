@@ -4,7 +4,7 @@
         Tim Beswick
 
     Description:
-        Sends current server status to the API. Called periodically.
+        Sends current server status and performance metrics to the API. Called periodically.
 
     Parameters:
         None
@@ -16,17 +16,19 @@
         call uksf_api_fnc_sendServerStatus
 */
 
-private _playerCount = count ALL_PLAYERS;
 private _data = createHashMapFromArray [
     ["map", worldName],
     ["mission", missionName],
-    ["playerCount", _playerCount],
+    ["players", ALL_PLAYERS apply {getPlayerUID _x}],
     ["uptime", time],
-    ["processId", GVAR(processId)]
+    ["processId", GVAR(processId)],
+    ["fps", diag_fps],
+    ["entityCount", count allUnits + count vehicles],
+    ["aiCount", {!isPlayer _x} count allUnits]
 ];
 
 if (isServer) then {
-    _data set ["fps", diag_fps];
+    _data set ["headlessClientCount", count entities "HeadlessClient_F"];
 };
 
 ["server_status", _data] call FUNC(sendEvent);
