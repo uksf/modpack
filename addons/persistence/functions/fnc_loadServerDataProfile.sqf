@@ -19,10 +19,6 @@
 
 call FUNC(loadServerData);
 
-if (isNil {EFUNC(api,sendEvent)}) exitWith {
-    INFO("API extension not available — proofing comparison skipped");
-};
-
 INFO("Profile load complete — triggering API load for proofing comparison");
 private _result = ("uksf" callExtension ["load", [GVAR(key)]]) select 0;
 INFO_1("Proofing extension load triggered: %1",_result);

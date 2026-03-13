@@ -19,9 +19,6 @@
 */
 
 if (!GVAR(dataSaved)) exitWith {};
-if (isNil QEFUNC(api,sendEvent)) exitWith {
-    WARNING("API extension not available, skipping API persistence save");
-};
 
 private _allObjects = GVAR(dataNamespace) getVariable [QGVAR(objects), []];
 private _deletedObjects = GVAR(dataNamespace) getVariable [QGVAR(deletedObjects), []];
@@ -57,6 +54,15 @@ private _players = createHashMap;
 {
     private _playerData = GVAR(dataNamespace) getVariable [_x, []];
     if (count _playerData > 0) then {
+        // Parse ACE medical JSON string to hashmap so it stores as a nested document
+        private _aceMedicalRaw = _playerData#6;
+        private _aceMedical = if (_aceMedicalRaw isEqualType "" && {_aceMedicalRaw != ""}) then {
+            private _parsed = [_aceMedicalRaw, 2] call CBA_fnc_parseJSON;
+            if (isNil "_parsed") then { createHashMap } else { _parsed }
+        } else {
+            createHashMap
+        };
+
         _players set [_x, createHashMapFromArray [
             ["position", _playerData#0],
             ["vehicleState", _playerData#1],
@@ -64,7 +70,7 @@ private _players = createHashMap;
             ["animation", _playerData#3],
             ["loadout", _playerData#4],
             ["damage", _playerData#5],
-            ["aceMedical", _playerData#6],
+            ["aceMedical", _aceMedical],
             ["earplugs", _playerData#7],
             ["attachedItems", _playerData#8],
             ["radios", _playerData#9],

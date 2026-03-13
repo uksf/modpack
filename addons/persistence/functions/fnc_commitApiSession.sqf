@@ -82,6 +82,14 @@ private _players = _session getOrDefault ["players", createHashMap];
 {
     private _uid = _x;
     private _playerData = _y;
+    // Convert aceMedical hashmap back to JSON string for profile format
+    private _aceMedicalData = _playerData getOrDefault ["aceMedical", createHashMap];
+    private _aceMedicalString = if (_aceMedicalData isEqualType createHashMap && {count _aceMedicalData > 0}) then {
+        [_aceMedicalData] call CBA_fnc_encodeJSON
+    } else {
+        if (_aceMedicalData isEqualType "") then { _aceMedicalData } else { "" }
+    };
+
     private _playerArray = [
         _playerData getOrDefault ["position", [0, 0, 0]],
         _playerData getOrDefault ["vehicleState", ["", "", -1]],
@@ -89,7 +97,7 @@ private _players = _session getOrDefault ["players", createHashMap];
         _playerData getOrDefault ["animation", ""],
         _playerData getOrDefault ["loadout", []],
         _playerData getOrDefault ["damage", 0],
-        _playerData getOrDefault ["aceMedical", []],
+        _aceMedicalString,
         _playerData getOrDefault ["earplugs", false],
         _playerData getOrDefault ["attachedItems", []],
         _playerData getOrDefault ["radios", []],

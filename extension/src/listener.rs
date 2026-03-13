@@ -24,15 +24,6 @@ pub fn start(port: u16) -> Result<(), String> {
                 Err(_) => break,
             };
 
-            if request.method() != &tiny_http::Method::Post
-                || request.url() != "/command"
-            {
-                let response = tiny_http::Response::from_string("not found")
-                    .with_status_code(404);
-                let _ = request.respond(response);
-                continue;
-            }
-
             let is_localhost = request
                 .remote_addr()
                 .is_some_and(|address| address.ip().is_loopback());
@@ -41,6 +32,33 @@ pub fn start(port: u16) -> Result<(), String> {
                 log::warn!("Rejected non-localhost request from {:?}", request.remote_addr());
                 let response = tiny_http::Response::from_string("forbidden")
                     .with_status_code(403);
+                let _ = request.respond(response);
+                continue;
+            }
+
+            // Route: GET /server — return cached server status
+            if request.method() == &tiny_http::Method::Get && request.url() == "/server" {
+                let (status_code, body) = match crate::status::get_status_json() {
+                    Some(json) => (200, json),
+                    None => (503, r#"{"error":"no status available"}"#.to_string()),
+                };
+                let response = tiny_http::Response::from_string(&body)
+                    .with_status_code(status_code)
+                    .with_header(
+                        "Content-Type: application/json"
+                            .parse::<tiny_http::Header>()
+                            .unwrap(),
+                    );
+                let _ = request.respond(response);
+                continue;
+            }
+
+            // Route: POST /command — handle inbound commands from API
+            if request.method() != &tiny_http::Method::Post
+                || request.url() != "/command"
+            {
+                let response = tiny_http::Response::from_string("not found")
+                    .with_status_code(404);
                 let _ = request.respond(response);
                 continue;
             }
@@ -127,11 +145,49 @@ mod tests {
         };
 
         start(port).unwrap();
+        std::thread::sleep(std::time::Duration::from_millis(100));
 
+        let response = ureq::get(&format!("http://127.0.0.1:{port}/unknown")).call();
+        // Should get 404
+        assert!(response.is_err());
+
+        stop();
+    }
+
+    #[test]
+    fn test_listener_get_server_status() {
+        let port = {
+            let temp = std::net::TcpListener::bind("127.0.0.1:0").unwrap();
+            temp.local_addr().unwrap().port()
+        };
+
+        crate::status::cache_status(r#"{"map":"Altis","playerCount":3}"#);
+
+        start(port).unwrap();
         std::thread::sleep(std::time::Duration::from_millis(100));
 
         let response = ureq::get(&format!("http://127.0.0.1:{port}/server")).call();
-        // Should get 404
+        assert!(response.is_ok());
+        let body = response.unwrap().into_string().unwrap();
+        assert!(body.contains("Altis"));
+
+        stop();
+        crate::status::clear();
+    }
+
+    #[test]
+    fn test_listener_get_server_status_no_data() {
+        let port = {
+            let temp = std::net::TcpListener::bind("127.0.0.1:0").unwrap();
+            temp.local_addr().unwrap().port()
+        };
+
+        crate::status::clear();
+        start(port).unwrap();
+        std::thread::sleep(std::time::Duration::from_millis(100));
+
+        let response = ureq::get(&format!("http://127.0.0.1:{port}/server")).call();
+        // 503 is treated as error by ureq
         assert!(response.is_err());
 
         stop();

@@ -51,11 +51,53 @@ pub fn stop() {
 }
 
 pub fn queue_event(json: &str) {
+    // Cache status/performance events for the GET /server endpoint
+    if let Some(data_json) = extract_event_data(json, "server_status") {
+        crate::status::cache_status(&data_json);
+    } else if let Some(data_json) = extract_event_data(json, "performance") {
+        crate::status::cache_performance(&data_json);
+    }
+
     if let Ok(channel) = CHANNEL.lock()
         && let Some(sender) = channel.as_ref()
     {
         let _ = sender.send(Message::Event(json.to_string()));
     }
+}
+
+/// Extract the "data" value from a JSON event envelope if the type matches.
+/// Uses simple string searching to avoid adding a JSON parsing dependency.
+///
+/// NOTE: This does not handle braces inside JSON string values.
+/// Safe for server_status and performance events which contain
+/// only numbers, simple strings, and flat/shallow objects.
+fn extract_event_data(json: &str, event_type: &str) -> Option<String> {
+    let type_needle = format!(r#""type":"{event_type}""#);
+    if !json.contains(&type_needle) {
+        return None;
+    }
+
+    let data_start = json.find(r#""data":"#)?;
+    let value_start = data_start + r#""data":"#.len();
+    let bytes = json.as_bytes();
+    if bytes.get(value_start)? != &b'{' {
+        return None;
+    }
+
+    let mut depth = 0;
+    for (i, &byte) in bytes[value_start..].iter().enumerate() {
+        match byte {
+            b'{' => depth += 1,
+            b'}' => {
+                depth -= 1;
+                if depth == 0 {
+                    return Some(json[value_start..value_start + i + 1].to_string());
+                }
+            }
+            _ => {}
+        }
+    }
+    None
 }
 
 fn inject_api_port(json: &str, api_port: u16) -> String {
@@ -144,6 +186,27 @@ mod tests {
         let json = "{\"type\":\"shutdown_complete\",\"data\":{}}";
         let result = inject_api_port(json, 2303);
         assert_eq!(result, "{\"apiPort\":2303,\"type\":\"shutdown_complete\",\"data\":{}}");
+    }
+
+    #[test]
+    fn test_extract_event_data_status() {
+        let json = r#"{"type":"server_status","data":{"map":"Altis","playerCount":5}}"#;
+        let result = extract_event_data(json, "server_status");
+        assert_eq!(result, Some(r#"{"map":"Altis","playerCount":5}"#.to_string()));
+    }
+
+    #[test]
+    fn test_extract_event_data_wrong_type() {
+        let json = r#"{"type":"persistence_save","data":{"key":"test"}}"#;
+        let result = extract_event_data(json, "server_status");
+        assert!(result.is_none());
+    }
+
+    #[test]
+    fn test_extract_event_data_nested_braces() {
+        let json = r#"{"type":"server_status","data":{"map":"Altis","nested":{"a":1}}}"#;
+        let result = extract_event_data(json, "server_status");
+        assert_eq!(result, Some(r#"{"map":"Altis","nested":{"a":1}}"#.to_string()));
     }
 
     #[test]

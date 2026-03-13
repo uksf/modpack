@@ -95,6 +95,7 @@ pub fn handle_stop() -> String {
     listener::stop();
     log::info!("Stopping sender");
     sender::stop();
+    crate::status::clear();
     stop_callback_bridge();
     RUNNING.store(false, Ordering::SeqCst);
 
