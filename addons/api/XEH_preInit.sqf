@@ -5,3 +5,5 @@ ADDON = false;
 #include "XEH_PREP.hpp"
 
 ADDON = true;
+
+call FUNC(start);
