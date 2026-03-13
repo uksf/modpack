@@ -21,7 +21,8 @@ private _data = createHashMapFromArray [
     ["map", worldName],
     ["mission", missionName],
     ["playerCount", _playerCount],
-    ["uptime", time]
+    ["uptime", time],
+    ["processId", GVAR(processId)]
 ];
 
 if (isServer) then {

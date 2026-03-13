@@ -29,6 +29,14 @@ if (toLower (_result select [0, 5]) == "error") exitWith {
     ERROR_1("Extension start returned error: %1",_result);
 };
 
+// Extract process ID from result: "started on port NNNN pid NNNN"
+private _pidIndex = _result find "pid ";
+GVAR(processId) = if (_pidIndex >= 0) then {
+    parseNumber (_result select [_pidIndex + 4])
+} else {
+    -1
+};
+
 addMissionEventHandler ["ExtensionCallback", {
     params ["_name", "_function", "_data"];
     if (_name != "uksf") exitWith {};
@@ -52,7 +60,8 @@ if (isServer) then {
     // Send mission started event
     ["mission_started", createHashMapFromArray [
         ["map", worldName],
-        ["mission", missionName]
+        ["mission", missionName],
+        ["processId", GVAR(processId)]
     ]] call FUNC(sendEvent);
 
     // Periodic server status push (every 15 seconds)

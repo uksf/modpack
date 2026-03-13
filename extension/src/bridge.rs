@@ -78,8 +78,9 @@ pub fn handle_start(context: Context) -> String {
     sender::start();
     RUNNING.store(true, Ordering::SeqCst);
 
-    log::info!("Extension fully started on port {port}");
-    format!("started on port {port}")
+    let pid = std::process::id();
+    log::info!("Extension fully started on port {port}, pid {pid}");
+    format!("started on port {port} pid {pid}")
 }
 
 pub fn handle_stop() -> String {
