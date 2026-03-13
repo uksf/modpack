@@ -5,6 +5,8 @@
 
     Description:
         Stops statistics collection. Removes sync PFHs and provider event handlers.
+        Note: CBA class event handlers (used by hits provider) cannot be removed,
+        but the addEvent function checks the killswitch so events are silently dropped.
 
     Parameters:
         None

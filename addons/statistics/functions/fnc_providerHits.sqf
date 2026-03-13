@@ -4,9 +4,11 @@
         Tim Beswick
 
     Description:
-        Hits provider setup. Listens for the shotFired event from the shots provider,
-        then attaches a HitPart event handler to each projectile to detect hits
-        on enemy infantry.
+        Hits provider setup. Uses a class event handler on all infantry to detect
+        hits dealt by the local player. HitPart (Entity) fires on the shooter's PC,
+        so we filter to only record when the shooter is the local player.
+        Each hit is correlated to a shot via the shotId stored on the projectile
+        by the shots provider.
 
     Parameters:
         None
@@ -17,36 +19,32 @@
     Example:
         call uksf_statistics_fnc_providerHits
 */
-[QGVAR(shotFired), {
-    params ["_unit", "_weapon", "_projectile"];
+["CAManBase", "HitPart", {
+    {
+        _x params ["_target", "_shooter", "_projectile", "_position", "_velocity", "_selection", "_ammo", "_vector", "_radius", "_surfaceType", "_isDirect"];
 
-    if (isNull _projectile) exitWith {};
+        if (_shooter != player) exitWith {};
+        if (_target isEqualTo _shooter) exitWith {};
+        if (side group _target isEqualTo side group _shooter) exitWith {};
+        if (side group _target isEqualTo civilian) exitWith {};
 
-    private _side = side group _unit;
-
-    _projectile addEventHandler ["HitPart", {
-        params ["_projectile", "_hitEntity", "_projectileOwner", "_position", "_velocity", "_normal", "_components", "_radius", "_surfaceType"];
-
-        if (!(_hitEntity isKindOf "CAManBase")) exitWith {};
-
-        private _targetSide = side group _hitEntity;
-        private _shooterSide = _projectile getVariable [QGVAR(shooterSide), sideUnknown];
-        if (_targetSide isEqualTo _shooterSide) exitWith {};
-        if (_targetSide isEqualTo civilian) exitWith {};
-
-        private _weapon = _projectile getVariable [QGVAR(weapon), ""];
-        private _shooter = _projectile getVariable [QGVAR(shooter), _projectileOwner];
-        private _distance = if (isNull _shooter) then {0} else {_shooter distance _hitEntity};
+        private _weapon = currentWeapon _shooter;
+        private _distance = _shooter distance _target;
+        private _shotId = if (!isNull _projectile) then {
+            _projectile getVariable [QGVAR(shotId), ""]
+        } else {
+            ""
+        };
 
         private _bodyPart = "torso";
-        private _componentsLower = _components apply {toLower _x};
-        if (_componentsLower findIf {_x find "head" != -1 || {_x find "face" != -1} || {_x find "neck" != -1}} != -1) then {
+        private _selectionsLower = _selection apply {toLower _x};
+        if (_selectionsLower findIf {_x find "head" != -1 || {_x find "face" != -1} || {_x find "neck" != -1}} != -1) then {
             _bodyPart = "head";
         } else {
-            if (_componentsLower findIf {_x find "leg" != -1 || {_x find "foot" != -1}} != -1) then {
+            if (_selectionsLower findIf {_x find "leg" != -1 || {_x find "foot" != -1}} != -1) then {
                 _bodyPart = "legs";
             } else {
-                if (_componentsLower findIf {_x find "hand" != -1 || {_x find "arm" != -1}} != -1) then {
+                if (_selectionsLower findIf {_x find "hand" != -1 || {_x find "arm" != -1}} != -1) then {
                     _bodyPart = "arms";
                 };
             };
@@ -54,13 +52,11 @@
 
         [createHashMapFromArray [
             ["type", "hit"],
+            ["shotId", _shotId],
             ["weapon", _weapon],
             ["bodyPart", _bodyPart],
-            ["distance", round _distance]
+            ["distance", round _distance],
+            ["direct", _isDirect]
         ]] call FUNC(addEvent);
-    }];
-
-    _projectile setVariable [QGVAR(shooterSide), _side];
-    _projectile setVariable [QGVAR(weapon), _weapon];
-    _projectile setVariable [QGVAR(shooter), _unit];
-}] call CBA_fnc_addEventHandler;
+    } forEach _this;
+}] call CBA_fnc_addClassEventHandler;
