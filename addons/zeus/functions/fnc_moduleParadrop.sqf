@@ -12,6 +12,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_logic] call uksf_zeus_fnc_moduleParadrop
 */
 #define IDD_RSCDISPLAYCURATOR 312
 

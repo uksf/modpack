@@ -11,6 +11,9 @@
 
     Return value:
         None
+
+    Example:
+        [_areas] call uksf_arearating_fnc_recalculateGlobalRatingEvents
 */
 params [["_areas", []]];
 

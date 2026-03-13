@@ -12,6 +12,9 @@
 
     Return value:
         Road <OBJECT>
+
+    Example:
+        [_position] call uksf_common_fnc_findNearRoad
 */
 params ["_position"];
 

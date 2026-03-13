@@ -11,6 +11,9 @@
 
     Return Value:
         Array of marker information
+
+    Example:
+        [_marker] call uksf_persistence_fnc_serializeMarker
 */
 params ["_marker"];
 

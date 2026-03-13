@@ -12,6 +12,9 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_virtualisation_fnc_devirtualiseNearby
 */
 
 if (!isServer) exitWith {

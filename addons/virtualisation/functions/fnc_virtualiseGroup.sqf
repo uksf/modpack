@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_group] call uksf_virtualisation_fnc_virtualiseGroup
 */
 params ["_group"];
 

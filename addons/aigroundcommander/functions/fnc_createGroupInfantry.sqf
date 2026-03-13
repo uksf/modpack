@@ -14,6 +14,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_spawnPosition, _stagingAreaPosition, _playerPosition, _count] call uksf_aigroundcommander_fnc_createGroupInfantry
 */
 params ["_spawnPosition", "_stagingAreaPosition", "_playerPosition", "_count"];
 TRACE_1("",_this);

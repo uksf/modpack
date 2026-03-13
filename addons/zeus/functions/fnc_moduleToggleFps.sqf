@@ -11,10 +11,11 @@
 
     Return Value:
         None
+
+    Example:
+        [_logic] call uksf_zeus_fnc_moduleToggleFps
 */
 params ["_logic"];
-
-if (!isMultiplayer) exitWith {deleteVehicle _logic;};
 
 deleteVehicle _logic;
 

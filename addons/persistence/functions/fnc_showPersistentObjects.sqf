@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_persistence_fnc_showPersistentObjects
 */
 #define INTERVAL 10
 
@@ -51,7 +54,7 @@ GVAR(persistentObjectIconsPFHID) = [{
             };
         };
 
-        drawIcon3D ["", _colour, _pos, 0.5, 0.5, 0, _type, 1, 0.025, "TahomaB", "center"];
-        drawIcon3D ["", _colour, _pos, 0.5, -1.5, 0, _id, 1, 0.025, "TahomaB", "center"];
+        drawIcon3D ["", _colour, _pos, 0, 0, 0, _type, 1, 0.025, "TahomaB", "center"];
+        drawIcon3D ["", _colour, _pos, 0, 0, 0, _id, 1, 0.025, "TahomaB", "center", false, 0, DEBUG_ICON_SPACING];
     } forEach GVAR(persistentObjects);
 }, 0, [0]] call CBA_fnc_addPerFrameHandler;

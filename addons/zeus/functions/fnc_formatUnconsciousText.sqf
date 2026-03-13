@@ -11,6 +11,9 @@
 
     Return Value:
         Formatted status text <STRING>
+
+    Example:
+        [_player] call uksf_zeus_fnc_formatUnconsciousText
 */
 params ["_player"];
 

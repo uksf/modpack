@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_unit] call uksf_ied_fnc_setWaypoint
 */
 params ["_unit"];
 

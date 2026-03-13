@@ -14,6 +14,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_object, _aceCargo, _inventory, _customName] call uksf_persistence_fnc_setObjectCargo
 */
 params ["_object", "_aceCargo", "_inventory", ["_customName", ""]];
 TRACE_3("Setting object cargo",_object,_aceCargo,_inventory);

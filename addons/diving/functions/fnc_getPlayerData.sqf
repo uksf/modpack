@@ -11,6 +11,9 @@
 
     Return Value:
         Data <ARRAY>
+
+    Example:
+        [_uid] call uksf_diving_fnc_getPlayerData
 */
 params ["_uid"];
 

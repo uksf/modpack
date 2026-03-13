@@ -14,6 +14,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_logic, _side] call uksf_sectorcontrol_fnc_showSectorAsContested
 */
 #define OPFOR_COLOUR "ColorEAST"
 #define BLUFOR_COLOUR "ColorWEST"

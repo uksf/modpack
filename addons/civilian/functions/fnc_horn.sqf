@@ -12,6 +12,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_vehicle, _unit, _count] call uksf_civilian_fnc_horn
 */
 params ["_vehicle", ["_unit", objNull], ["_count", 2]];
 

@@ -15,6 +15,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_id, _logic, _prefab, _anchorObject] call uksf_safehouses_fnc_createFromPrefab
 */
 params ["_id", "_logic", "_prefab", ["_anchorObject", objNull]];
 _prefab params ["_prefabId", "_centre", "_area", "_anchorObjectData", "_objectData"];

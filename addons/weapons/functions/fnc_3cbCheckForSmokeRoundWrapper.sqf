@@ -12,5 +12,8 @@
 
     Return Value:
         Nothing
+
+    Example:
+        call uksf_weapons_fnc_3cbCheckForSmokeRoundWrapper
 */
 call FUNC(3cbCheckForSmokeRound);

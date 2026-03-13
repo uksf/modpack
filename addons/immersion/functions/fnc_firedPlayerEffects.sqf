@@ -12,6 +12,9 @@
 
     Return value:
         None
+
+    Example:
+        [_shooter, _ammo] call uksf_immersion_fnc_firedPlayerEffects
 */
 params ["_shooter", "_ammo"];
 

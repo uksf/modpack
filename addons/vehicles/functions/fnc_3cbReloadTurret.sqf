@@ -12,6 +12,9 @@
 
     Return Value:
         Resupply successful <BOOLEAN>
+
+    Example:
+        [_vehicle, _unit] call uksf_vehicles_fnc_3cbReloadTurret
 */
 DEBUG("3cb reload");
 params ["_vehicle", "_unit"];

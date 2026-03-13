@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_playerCount, _playerPosSum] call uksf_common_fnc_updateHeadlessClientPosition
 */
 
 if (!isServer || !GVAR(updateHeadlessClientPosition)) exitWith {};

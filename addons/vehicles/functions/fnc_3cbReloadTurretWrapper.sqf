@@ -12,6 +12,9 @@
 
     Return Value:
         Resupply successful <BOOLEAN>
+
+    Example:
+        call uksf_vehicles_fnc_3cbReloadTurretWrapper
 */
 private _return = call FUNC(3cbReloadTurret);
 

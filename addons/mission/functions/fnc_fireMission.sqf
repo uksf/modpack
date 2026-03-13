@@ -21,6 +21,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_caller, _artillery, _targetPosition, _stage, _previousPosition, _spread] call uksf_mission_fnc_fireMission
 */
 params [["_caller", objNull, [objNull]], ["_artillery", objNull, [objNull]], ["_targetPosition", [], [[]]], ["_stage", 0, [0]], ["_previousPosition", [0,0,0], [[]]], ["_spread", 50, [0]]];
 

@@ -13,6 +13,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_ratingAreas, _ratingChange] call uksf_arearating_fnc_changeRating
 */
 params [["_ratingAreas", [], [[]]], ["_ratingChange", 0, [0]]];
 

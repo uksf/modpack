@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_virtualisation_fnc_addContextActions
 */
 private _action = [QGVAR(menu), "Virtualisation", QPATHTOEF(zeus,ui\Icon_Module_Caching_ca.paa), {}, {GVAR(enabled)}, [], {
     private _actions = [];

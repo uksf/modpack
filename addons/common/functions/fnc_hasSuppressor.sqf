@@ -11,6 +11,9 @@
 
     Return value:
         Has suppressor <BOOL>
+
+    Example:
+        [_unit] call uksf_common_fnc_hasSuppressor
 */
 params ["_unit"];
 

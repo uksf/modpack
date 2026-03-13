@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_leader] call uksf_mission_fnc_reTask
 */
 params ["_leader"];
 

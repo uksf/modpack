@@ -11,6 +11,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        [_ctrlEditbox] call uksf_common_fnc_edenIdAttributeChanged
 */
 params ["_ctrlEditbox"];
 

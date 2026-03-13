@@ -12,6 +12,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_equipment, _player] call uksf_radios_fnc_disassembleRebroStation
 */
 params ["_equipment", "_player"];
 

@@ -12,6 +12,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        [_display] call uksf_menu_fnc_initDisplayMultiplayerSetup
 */
 params ["_display"];
 

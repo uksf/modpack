@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        call uksf_aigroundcommander_fnc_cleanup
 */
 
 if (!isServer) exitWith {};

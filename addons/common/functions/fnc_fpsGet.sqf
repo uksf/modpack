@@ -11,6 +11,9 @@
 
     Return value:
         None
+
+    Example:
+        [_player] call uksf_common_fnc_fpsGet
 */
 params ["_player"];
 

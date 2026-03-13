@@ -12,6 +12,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_display] call uksf_arsenal_fnc_switchMainOpGear
 */
 params ["_display"];
 

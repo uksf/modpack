@@ -12,6 +12,9 @@
 
     Return Value:
         True if camera can be changed <BOOLEAN>
+
+    Example:
+        [_newCameraView, _cameraOn] call uksf_3rdperson_fnc_canChangeCamera
 */
 #define VEHICLE_WHITELIST ["UAV", "UAV_01_base_F", "Air"]
 

@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_planter] call uksf_ied_fnc_layIED
 */
 params ["_planter"];
 

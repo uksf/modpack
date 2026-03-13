@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        call uksf_cleanup_fnc_cleanupCheck
 */
 if (!GVAR(enabled)) exitWith {};
 

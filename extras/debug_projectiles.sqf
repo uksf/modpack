@@ -80,7 +80,7 @@ uksf_zeus_projectilesDebugPFH = [{
         private _pos = ASLToAGL getPosASLVisual _projectile;
         private _name = uksf_zeus_ammoNameCache getOrDefault [_ammo, _ammo];
         private _icon = uksf_zeus_ammoIconCache getOrDefault [_ammo, "\a3\ui_f\data\map\markers\military\dot_ca.paa"];
-        drawIcon3D [_icon, _sideColor, _pos, 0.75, 0.75, 0, _name, 1, 0.03, "PuristaMedium", "center", true];
+        drawIcon3D [_icon, _sideColor, _pos, 0.5, 0.5, 0, _name, 1, 0.03, "PuristaMedium", "center", true];
     } forEach uksf_zeus_trackedProjectiles;
 }, 0] call CBA_fnc_addPerFrameHandler;
 

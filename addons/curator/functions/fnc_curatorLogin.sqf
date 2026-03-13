@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_curator_fnc_curatorLogin
 */
 
 if !((name player) in GVAR(curatorPlayers)) then {

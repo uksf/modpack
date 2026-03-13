@@ -12,6 +12,9 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_weapons_fnc_staticWeaponInit
 */
 
 /*if ((alive player)) then {

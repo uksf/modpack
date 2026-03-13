@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_curator_fnc_curatorLogout
 */
 
 [QGVAR(curatorUnassign), [getAssignedCuratorLogic player]] call CBA_fnc_serverEvent;

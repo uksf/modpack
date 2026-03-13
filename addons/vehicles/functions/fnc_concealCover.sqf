@@ -12,6 +12,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_rover, _unit] call uksf_vehicles_fnc_concealCover
 */
 params ["_rover", "_unit"];
 

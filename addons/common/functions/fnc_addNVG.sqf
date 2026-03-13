@@ -12,6 +12,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        [_unit, _nvg] call uksf_common_fnc_addNVG
 */
 params [["_unit", objNull], ["_nvg", ""]];
 

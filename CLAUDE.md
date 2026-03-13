@@ -8,7 +8,7 @@ UKSF Modpack — a collection of Arma 3 addons (mods) for the UKSF community, bu
 
 - **Prefix**: `uksf`
 - **Main prefix (P-drive path segment)**: `u` → full path: `\u\uksf\addons\<component>\`
-- **Build tools are mixed**: HEMTT for dev addon builds (`hemtt.toml`), Python scripts for validation, MSBuild for C++ extensions
+- **Build tools are mixed**: HEMTT for dev addon builds (`hemtt.toml`), Python scripts for validation
 
 ## Build and Validation Commands
 
@@ -20,9 +20,6 @@ Build tooling is mixed — use what fits the task:
 
 # Build PBOs via Python fallback (uses makepbo)
 python3 tools/build.py
-
-# Compile C++ Intercept extension (requires MSBuild/Visual Studio, x64 Release)
-python3 tools/build.py compile
 
 # Validate SQF syntax (brackets, semicolons, tabs)
 python3 tools/sqf_validator.py
@@ -47,6 +44,7 @@ python3 tools/setup.py
 - **Semicolons after closing braces** — `};` not `}` when ending code blocks in SQF
 - **Balanced brackets** — validators check `()`, `[]`, `{}` balance
 - **No BOM** — files must not have byte order marks
+- **No unneeded `!` (not)** — use `isNotEqualTo` instead of `!(... isEqualTo ...)`. HEMTT lints this as `L-S19 Unneeded Not`
 
 ## Architecture
 
@@ -88,9 +86,9 @@ Addons without scripted behavior (config-only, e.g. `gear`, `units`, `weapons`) 
 
 `addons/main/script_configuration.hpp` defines `CONFIGURATION` as one of `'development'`, `'rc'`, or `'release'`. The `optionals/rc/` addon is built for release candidate testing. Macros `CONFIGURATION_IS_DEVELOPMENT`, `CONFIGURATION_IS_RC`, `CONFIGURATION_IS_RELEASE` are available for conditional logic.
 
-### C++ Extension (extensions/)
+### Rust Extension (extension/)
 
-An Intercept-based C++ DLL providing access to things SQF cannot do — filesystem, networking, HTTP server. Built as a Visual Studio solution (`uksf.sln`, x64 Release, MSBuild). Uses Poco for HTTP, easylogging++ for logging. **Do not modify unless explicitly requested** — this is not where day-to-day development happens.
+A Rust-based Arma extension DLL (`uksf_x64.dll`) providing HTTP communication between the game and the UKSF API. Built with `cargo build --release`. Handles outbound event sending and inbound command listening via localhost HTTP. Packaged automatically by HEMTT.
 
 ## CBA Macro System
 
@@ -153,6 +151,9 @@ Every function file follows this structure:
 
     Return Value:
         Description
+
+    Example:
+        [_param1, _param2] call uksf_<component>_fnc_<name>
 */
 params [["_param1", defaultValue], ["_param2", defaultValue, [typeCheck]]];
 

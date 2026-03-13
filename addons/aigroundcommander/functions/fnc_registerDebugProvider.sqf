@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_aigroundcommander_fnc_registerDebugProvider
 */
 
 private _key = QGVAR(debug);
@@ -82,7 +85,7 @@ private _fnc_draw3d = {
         if (!isNull _playerObject) then {
             private _position = getPosATL _playerObject;
             if (_cameraPosition distance2D _position < _maxDistance) then {
-                drawIcon3D ["", [1,0,0,1], ASLToAGL (ATLToASL _position), 0, 1.5, 0, format ["Aggro %1s", round _timeLeft], 1, 0.025, "TahomaB", "center"];
+                drawIcon3D ["", [1,0,0,1], ASLToAGL (ATLToASL _position), 0, 0, 0, format ["Aggro %1s", round _timeLeft], 1, 0.025, "TahomaB", "center", false, 0, DEBUG_ICON_SPACING];
             };
         };
     } forEach _killerPlayers;
@@ -161,6 +164,6 @@ private _fnc_drawHud = {
     _hudControl ctrlSetStructuredText parseText format ["<t align='center' shadow='1' font='TahomaB'><t color='#aaaaaa'>Ground Cmd</t> <t color='%1'>Aggression: %2%3</t></t>", _aggressionHex, _aggression, _tierText];
 };
 
-[QEGVAR(zeus,registerDebugProvider), [
-    _key, _menuName, _menuPriority, _fnc_menuCondition, _fnc_serverGetter, "", _fnc_draw3d, _fnc_drawMap, _fnc_drawHud
-]] call CBA_fnc_localEvent;
+[QEGVAR(zeus,registerDebugAction), [_key, _menuName, _menuPriority, _fnc_menuCondition]] call CBA_fnc_localEvent;
+[QEGVAR(zeus,registerDebugServerGetter), [_key, _fnc_serverGetter]] call CBA_fnc_localEvent;
+[QEGVAR(zeus,registerDebugDraw), [_key, _fnc_draw3d, _fnc_drawMap, _fnc_drawHud]] call CBA_fnc_localEvent;

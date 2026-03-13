@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        call uksf_mission_fnc_dynamicPatrol
 */
 
 if !(GVAR(dynamicPatrolEnabled)) exitWith {};

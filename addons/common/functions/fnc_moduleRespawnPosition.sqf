@@ -11,6 +11,9 @@
 
     Return value:
         None
+
+    Example:
+        [_logic, _activated] call uksf_common_fnc_moduleRespawnPosition
 */
 params ["_logic", "", "_activated"];
 

@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_module] call uksf_aicountermortar_fnc_moduleUnitPools
 */
 
 (_this select 1) params ["_module"];

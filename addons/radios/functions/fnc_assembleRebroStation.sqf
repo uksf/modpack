@@ -12,6 +12,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_box, _data] call uksf_radios_fnc_assembleRebroStation
 */
 params [["_box", objNull], ["_data", [[], 0, []]]];
 _data params ["_position", "_dir"];

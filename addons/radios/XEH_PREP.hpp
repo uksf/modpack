@@ -12,4 +12,5 @@ PREP(isRackInitialisationComplete);
 PREP(sanitiseLoadout);
 PREP(serializeRadios);
 PREP(setChannelNames);
+PREP(testRebroSignal);
 PREP(registerDebugProviders);

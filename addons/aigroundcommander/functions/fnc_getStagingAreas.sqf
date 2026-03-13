@@ -11,6 +11,9 @@
 
     Return value:
         Staging area positions <ARRAY>
+
+    Example:
+        [_spawnPosition] call uksf_aigroundcommander_fnc_getStagingAreas
 */
 params ["_spawnPosition"];
 

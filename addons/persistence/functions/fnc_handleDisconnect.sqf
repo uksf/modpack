@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_unit, _id, _uid, _name] call uksf_persistence_fnc_handleDisconnect
 */
 params ["_unit", "_id", "_uid", "_name"];
 
@@ -62,6 +65,7 @@ private _data = [
 TRACE_1("Player disconnect",_data);
 
 GVAR(dataNamespace) setVariable [_uid, _data];
+GVAR(playerUids) pushBackUnique _uid;
 
 if (GVAR(dataSaved)) then {
     GVAR(disconnectedPlayerPositions) set [_uid, getPos _unit];

@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_logic] call uksf_caches_fnc_moduleInitCaches
 */
 (_this#1) params ["_logic"];
 

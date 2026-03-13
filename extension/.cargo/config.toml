@@ -1,0 +1,3 @@
+[env]
+# Extension uses global statics (arma-rs requirement) — tests must run single-threaded
+RUST_TEST_THREADS = "1"

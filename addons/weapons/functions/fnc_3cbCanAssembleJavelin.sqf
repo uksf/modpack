@@ -11,6 +11,9 @@
 
     Return value:
         Boolean
+
+    Example:
+        call uksf_weapons_fnc_3cbCanAssembleJavelin
 */
 
 alive ACE_player &&

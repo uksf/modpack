@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        call uksf_civilian_fnc_addVehicleEventTransitions
 */
 #define RANDOM_ANNOYED_STOPPING_TO_MOVE random 5
 #define RANDOM_ANNOYED_STOPPED_TO_MOVE random 10

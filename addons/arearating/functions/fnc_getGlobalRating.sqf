@@ -12,6 +12,9 @@
     Return value:
         Array of ratings and percentages <ARRAY>
         [[Global start, Global current, Global min, Global max], [Percentage start, Percentage current]]
+
+    Example:
+        call uksf_arearating_fnc_getGlobalRating
 */
 
 if (GVAR(ratingAreas) isEqualTo []) exitWith {

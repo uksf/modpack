@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_logic] call uksf_arearating_fnc_moduleRatingArea
 */
 (_this#1) params ["_logic"];
 

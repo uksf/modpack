@@ -12,6 +12,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        [_control, _index] call uksf_menu_fnc_onServerListChange
 */
 params ["_control", "_index"];
 

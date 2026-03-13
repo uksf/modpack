@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_objects] call uksf_persistence_fnc_showAbortedObjects
 */
 params ["_objects"];
 

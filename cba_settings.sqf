@@ -1174,6 +1174,9 @@ force uksf_mission_support = true;
 force uksf_mission_supportChance = 25;
 force uksf_mission_supportDistance = 500;
 
+// UKSF - Statistics
+force force uksf_statistics_enabled = true;
+
 // VET_Unflipping
 force force vet_unflipping_require_serviceVehicle = false;
 force force vet_unflipping_require_toolkit = false;

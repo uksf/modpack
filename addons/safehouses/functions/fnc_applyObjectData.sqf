@@ -12,6 +12,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_object, _objectData] call uksf_safehouses_fnc_applyObjectData
 */
 params ["_object", "_objectData"];
 

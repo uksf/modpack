@@ -12,6 +12,9 @@
     Return value:
         Array of vehicle details <ARRAY>
         [[_type, _position, _direction, _engineState, _fuel, _crewTypes], [...]]
+
+    Example:
+        [_group] call uksf_virtualisation_fnc_getGroupVehicles
 */
 params ["_group"];
 

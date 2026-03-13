@@ -15,6 +15,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_spawnPosition, _stagingAreaPosition, _playerPosition, _groupCount, _group] call uksf_aigroundcommander_fnc_addWaypoints
 */
 #define TIMEOUT 420
 

@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        call uksf_safehouses_fnc_initLocations
 */
 if !(isServer) exitWith {};
 if (GVAR(locationModules) isEqualTo []) exitWith {

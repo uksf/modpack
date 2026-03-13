@@ -13,6 +13,9 @@
 
     Return Value:
         ID <STRING>
+
+    Example:
+        [_object, _id] call uksf_persistence_fnc_markObjectAsPersistent
 */
 if (!isMultiplayer || is3DEN) exitWith {};
 

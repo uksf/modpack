@@ -14,6 +14,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_group, _vehicleDetails, _callback, _callbackArgs] call uksf_virtualisation_fnc_recreateVehicles
 */
 #define SPAWN_DELAY 1
 #define TIMEOUT 60

@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_logic] call uksf_sectorcontrol_fnc_moduleSectorPFH
 */
 if (is3DEN) exitWith {};
 

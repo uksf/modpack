@@ -12,6 +12,9 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_radios_fnc_registerDebugProviders
 */
 
 #define SIGNAL_COLOUR(POWER) (if (POWER < 0) then {[0, 0, 0, 1]} else {[linearConversion [0.5, 1, POWER, 1, 0, true], linearConversion [0, 0.5, POWER, 0, 1, true], 0, 1]})
@@ -20,9 +23,9 @@
 private _sourceKey = QGVAR(signalData);
 private _fnc_clientGetter = {
     if (GVAR(debugConnectionData) isEqualTo createHashMap) exitWith {[]};
-    private _result = +GVAR(debugConnectionData);
+    private _connectionData = GVAR(debugConnectionData);
     GVAR(debugConnectionData) = createHashMap;
-    _result
+    _connectionData
 };
 private _interval = 4;
 private _fnc_onStart = {
@@ -45,25 +48,33 @@ private _clientDataKey = QGVAR(signalData);
 private _fnc_serverGetter = {
     private _rebroNetIds = GVAR(rebroStations) select {alive _x} apply {netId _x};
 
-    // Build UID → player netId lookup
+    // Client data is stored as { receiverUID: [playerObj, connectionData, timestamp] }
+    // connectionData is a hashmap { transmitterUID: [displayPower, rebroNetId, rebroReceivePower, rebroTransmitPower] }
     private _sourceData = EGVAR(zeus,debugClientData) getOrDefault [QGVAR(signalData), createHashMap];
+
+    // Build UID → player netId lookup
     private _uidToNetId = createHashMap;
     {
         private _entry = _sourceData get _x;
-        _entry params ["_player"];
+        if (!(_entry isEqualType []) || {count _entry < 1}) then { continue };
+        private _player = _entry select 0;
+        if (isNull _player) then { continue };
         _uidToNetId set [_x, netId _player];
     } forEach keys _sourceData;
 
     // Collect rebro-relayed connections
     private _connections = [];
     {
-        private _receiverUid = _x;
-        private _entry = _sourceData get _receiverUid;
-        _entry params ["_receiver", "_connectionData"];
+        private _entry = _sourceData get _x;
+        if (!(_entry isEqualType []) || {count _entry < 2}) then { continue };
+        private _receiver = _entry select 0;
+        private _connectionData = _entry select 1;
+        if (isNull _receiver) then { continue };
 
         {
-            private _connection = _connectionData get _x;
-            _connection params ["_displayPower", "_rebroNetId", "_rebroReceivePower", "_rebroTransmitPower"];
+            private _value = _connectionData get _x;
+            if (!(_value isEqualType []) || {count _value < 2}) then { continue };
+            _value params ["_displayPower", ["_rebroNetId", ""], ["_rebroReceivePower", 0], ["_rebroTransmitPower", 0]];
             if (_rebroNetId != "") then {
                 private _transmitterNetId = _uidToNetId getOrDefault [_x, ""];
                 if (_transmitterNetId != "") then {
@@ -162,9 +173,9 @@ private _fnc_drawMap = {
     } forEach _connections;
 };
 
-[QEGVAR(zeus,registerDebugProvider), [
-    _key, _menuName, _menuPriority, _fnc_menuCondition, _fnc_serverGetter, _clientDataKey, _fnc_draw3d, _fnc_drawMap
-]] call CBA_fnc_localEvent;
+[QEGVAR(zeus,registerDebugAction), [_key, _menuName, _menuPriority, _fnc_menuCondition]] call CBA_fnc_localEvent;
+[QEGVAR(zeus,registerDebugServerGetter), [_key, _fnc_serverGetter, 2, _clientDataKey]] call CBA_fnc_localEvent;
+[QEGVAR(zeus,registerDebugDraw), [_key, _fnc_draw3d, _fnc_drawMap]] call CBA_fnc_localEvent;
 
 // Radio network provider — direct connections only (no rebro)
 _key = QGVAR(network);
@@ -179,7 +190,9 @@ _fnc_serverGetter = {
     private _sourceData = EGVAR(zeus,debugClientData) getOrDefault [QGVAR(signalData), createHashMap];
     {
         private _entry = _sourceData get _x;
-        _entry params ["_player"];
+        if (!(_entry isEqualType []) || {count _entry < 1}) then { continue };
+        private _player = _entry select 0;
+        if (isNull _player) then { continue };
         _uidToIndex set [_x, count _players];
         _players pushBack (netId _player);
     } forEach keys _sourceData;
@@ -187,12 +200,15 @@ _fnc_serverGetter = {
     private _links = [];
     {
         private _entry = _sourceData get _x;
-        _entry params ["", "_connectionData"];
-        private _fromIndex = _uidToIndex get _x;
+        if (!(_entry isEqualType []) || {count _entry < 2}) then { continue };
+        private _connectionData = _entry select 1;
+        private _fromIndex = _uidToIndex getOrDefault [_x, -1];
+        if (_fromIndex < 0) then { continue };
 
         {
-            private _connection = _connectionData get _x;
-            _connection params ["_displayPower", "_rebroNetId"];
+            private _value = _connectionData get _x;
+            if (!(_value isEqualType []) || {count _value < 1}) then { continue };
+            _value params ["_displayPower", ["_rebroNetId", ""]];
             if (_rebroNetId == "") then {
                 private _toIndex = _uidToIndex getOrDefault [_x, -1];
                 if (_toIndex >= 0) then {
@@ -245,6 +261,6 @@ _fnc_drawMap = {
     } forEach _links;
 };
 
-[QEGVAR(zeus,registerDebugProvider), [
-    _key, _menuName, _menuPriority, _fnc_menuCondition, _fnc_serverGetter, _clientDataKey, _fnc_draw3d, _fnc_drawMap
-]] call CBA_fnc_localEvent;
+[QEGVAR(zeus,registerDebugAction), [_key, _menuName, _menuPriority, _fnc_menuCondition]] call CBA_fnc_localEvent;
+[QEGVAR(zeus,registerDebugServerGetter), [_key, _fnc_serverGetter, 2, _clientDataKey]] call CBA_fnc_localEvent;
+[QEGVAR(zeus,registerDebugDraw), [_key, _fnc_draw3d, _fnc_drawMap]] call CBA_fnc_localEvent;

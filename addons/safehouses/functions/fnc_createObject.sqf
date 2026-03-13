@@ -12,6 +12,9 @@
 
     Return value:
         Created object <OBJECT>
+
+    Example:
+        [_anchorObject, _objectData] call uksf_safehouses_fnc_createObject
 */
 params ["_anchorObject", "_objectData"];
 

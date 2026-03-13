@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_leader] call uksf_aigroundcommander_fnc_unloadTransport
 */
 #define TIME_PER_UNIT 2
 

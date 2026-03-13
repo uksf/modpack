@@ -13,6 +13,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_group, _targetPosition] call uksf_aicountermortar_fnc_assignWaypoints
 */
 params ["_group", "_targetPosition"];
 

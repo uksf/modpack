@@ -13,6 +13,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        [_unit, _state] call uksf_common_fnc_deserializeAceMedical
 */
 params ["_unit", "_state"];
 

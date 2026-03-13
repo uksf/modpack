@@ -12,6 +12,9 @@
 
     Return value:
         Array of waypoint info
+
+    Example:
+        [_group] call uksf_virtualisation_fnc_getGroupWaypoints
 */
 
 params ["_group"];

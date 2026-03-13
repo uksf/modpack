@@ -12,6 +12,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_data, _forceLoad] call uksf_persistence_fnc_loadObjectData
 */
 params ["_data", ["_forceLoad", false]];
 _data params ["_id", "_type", "_position", "_vectorDirAndUp", "_damage", "_fuel", "_turretWeapons", "_turretMagazines", "_pylonLoadout", "_logisticsCargo", "_attached", "_rackChannels", "_aceCargo", "_inventory", ["_aceFortifyData", [false, west]], ["_aceMedical", [0, false]], ["_aceRepair", [0, 0]], ["_customName", ""], ["_failedLastLoad", false]];

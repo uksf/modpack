@@ -12,6 +12,9 @@
 
     Return value:
         Data array
+
+    Example:
+        [_logic, _area] call uksf_mission_fnc_initDynamicPatrolArea
 */
 
 params ["_logic", "_area"];

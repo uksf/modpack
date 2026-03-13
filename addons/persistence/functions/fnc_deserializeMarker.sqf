@@ -11,6 +11,9 @@
 
     Return Value:
         Marker
+
+    Example:
+        [_serializedMarker] call uksf_persistence_fnc_deserializeMarker
 */
 params ["_serializedMarker"];
 _serializedMarker params ["", "_pos", "_shape"];

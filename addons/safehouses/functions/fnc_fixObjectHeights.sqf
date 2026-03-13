@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_object] call uksf_safehouses_fnc_fixObjectHeights
 */
 #define OFFSET_END [0, 0, -20]
 #define OFFSET_ABOVE [0, 0, 0.1]

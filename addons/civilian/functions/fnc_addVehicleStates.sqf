@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        call uksf_civilian_fnc_addVehicleStates
 */
 // Add state: OnState, OnEnter, OnLeave, Name
 

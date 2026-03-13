@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_module] call uksf_aiaircommander_fnc_moduleHeliSpawn
 */
 (_this select 1) params ["_module"];
 

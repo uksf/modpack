@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_state] call uksf_diving_fnc_toggleDiveComputer
 */
 params ["_state"];
 

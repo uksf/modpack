@@ -13,6 +13,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_anchorObject, _killer, _instigator] call uksf_safehouses_fnc_destroy
 */
 params ["_anchorObject", "_killer", "_instigator"];
 

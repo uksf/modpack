@@ -11,6 +11,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        call uksf_diving_fnc_publishDataState
 */
 
 private _data = call FUNC(serialiseState);

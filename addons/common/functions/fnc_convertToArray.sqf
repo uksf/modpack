@@ -11,6 +11,9 @@
 
     Return value:
         Array of data <ARRAY>
+
+    Example:
+        [_value] call uksf_common_fnc_convertToArray
 */
 params [["_value", [], [[], ""]]];
 

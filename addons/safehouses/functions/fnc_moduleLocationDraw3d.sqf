@@ -10,6 +10,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_cornerTop1, _cornerTop2, _cornerTop3, _cornerTop4, _cornerBottom1, _cornerBottom2, _cornerBottom3, _cornerBottom4] call uksf_safehouses_fnc_moduleLocationDraw3d
 */
 
 if !(is3DEN) exitWith {};

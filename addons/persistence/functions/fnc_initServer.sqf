@@ -4,16 +4,22 @@
         Tim Beswick
 
     Description:
-        Initialises persistence on server
+        Initialises persistence on server.
+        Creates state hashes, registers mission and CBA event handlers,
+        then restores the saved session state.
 
     Parameter(s):
         None
 
     Return Value:
         None
+
+    Example:
+        call uksf_persistence_fnc_initServer
 */
 TRACE_1("Server init",GVAR(dataSaved));
 
+// State initialisation
 GVAR(missionObjects) = [];
 GVAR(persistentObjectsHash) = [[], true] call CBA_fnc_hashCreate;
 GVAR(deletedPersistentObjects) = GVAR(dataNamespace) getVariable [QGVAR(deletedObjects), []];
@@ -26,6 +32,9 @@ GVAR(persistenceMarkers) = [];
 GVAR(mapMarkers) = [];
 GVAR(saveObjectQueue) = [];
 GVAR(disconnectedPlayerPositions) = createHashMap;
+if (isNil QGVAR(playerUids)) then {
+    GVAR(playerUids) = [];
+};
 GVAR(shutdownSavingComplete) = false;
 GVAR(serializers) = [];
 GVAR(deserializers) = [];
@@ -34,110 +43,45 @@ if (GVAR(loadMapMarkers)) then {
     GVAR(mapMarkers) = GVAR(dataNamespace) getVariable [QGVAR(mapMarkers), []];
 };
 
+// Mission event handlers
 addMissionEventHandler ["EntityRespawned", {call FUNC(entityRespawned)}];
 addMissionEventHandler ["EntityKilled", {call FUNC(entityKilled)}];
 addMissionEventHandler ["HandleDisconnect", {call FUNC(handleDisconnect)}];
 addMissionEventHandler ["BuildingChanged", {
     params ["", "_newObject", "_isRuin"];
 
-    // TODO: Persistent ruins?
     if (_isRuin) then {
         _newObject setVariable [QGVAR(excluded), true];
     };
 }];
 
+// Core persistence events
 [QGVAR(shutdown), {call FUNC(shutdown)}] call CBA_fnc_addEventHandler;
-
 [QGVAR(registerSerializer), {call FUNC(registerSerializer)}] call CBA_fnc_addEventHandler;
 [QGVAR(markObjectAsPersistent), {call FUNC(markObjectAsPersistent)}] call CBA_fnc_addEventHandler;
+[QGVAR(forceLoadAbortedObject), {call FUNC(forceLoadAbortedObject)}] call CBA_fnc_addEventHandler;
+[QGVAR(removeAbortedObjectFromPersistence), {call FUNC(removeAbortedObject)}] call CBA_fnc_addEventHandler;
+[QGVAR(requestRedeployData), {call FUNC(requestRedeployData)}] call CBA_fnc_addEventHandler;
+[QGVAR(checkPersistentVehicleExists), {call FUNC(checkPersistentVehicleExists)}] call CBA_fnc_addEventHandler;
+[QGVAR(setObjectCargo), {[{call FUNC(setObjectCargo)}, _this] call CBA_fnc_execNextFrame}] call CBA_fnc_addEventHandler;
 
-[QGVAR(forceLoadAbortedObject), {
-    params ["_id"];
-
-    GVAR(abortedObjectIds) deleteAt (GVAR(abortedObjectIds) find _id);
-    publicVariable QGVAR(abortedObjectIds);
-
-    private _allObjects = GVAR(dataNamespace) getVariable [QGVAR(objects), []];
-    private _index = _allObjects findIf {_x#IDX_OBJ_ID == _id};
-    if (_index == -1) then {
-        WARNING_1("Forced loading of object with ID '%1' failed, could not find object data in saved objects",_id);
-    } else {
-        TRACE_1("Force loading object",_id);
-        private _object = _allObjects#_index;
-        _object set [IDX_OBJ_FAILEDLASTLOAD, false];
-        [_object, true] call FUNC(loadObjectData);
-    };
-}] call CBA_fnc_addEventHandler;
-
-[QGVAR(removeAbortedObjectFromPersistence), {
-    params ["_id"];
-
-    GVAR(abortedObjectIds) deleteAt (GVAR(abortedObjectIds) find _id);
-    publicVariable QGVAR(abortedObjectIds);
-
-    private _allObjects = GVAR(dataNamespace) getVariable [QGVAR(objects), []];
-    private _index = _allObjects findIf {_x#IDX_OBJ_ID == _id};
-    if (_index == -1) then {
-        WARNING_1("Failed to unmark object with ID '%1' as persistent, could not find object data in saved objects",_id);
-    } else {
-        TRACE_1("Unmarking object as persistent",_id);
-        GVAR(unmarkedObjectIds) pushBack _id;
-        publicVariable QGVAR(unmarkedObjectIds);
-
-        _allObjects deleteAt _index;
-        GVAR(dataNamespace) setVariable [QGVAR(objects), _allObjects];
-        call FUNC(saveData);
-    };
-}] call CBA_fnc_addEventHandler;
-
-[QGVAR(requestRedeployData), {
-    params ["_player"];
-
-    private _uid = getPlayerUID _player;
-    private _hasRedeployed = [GVAR(hashHasRedeployed), _uid] call CBA_fnc_hashGet;
-    if !(_hasRedeployed) then {
-        [GVAR(hashHasRedeployed), _uid, true] call CBA_fnc_hashSet;
-        private _data = GVAR(dataNamespace) getVariable [_uid, []];
-        TRACE_1("Sending player redeploy data",_data);
-        if (count _data > 0) then {
-            [QGVAR(receiveRedeployData), _data, _player] call CBA_fnc_targetEvent;
-        };
-    };
-}] call CBA_fnc_addEventHandler;
-
+// Data request events
 [QGVAR(requestPersistentObjectsHash), {
     params ["_player"];
 
     private _objects = [];
-    [GVAR(persistentObjectsHash), {_objects pushBack [_key, _value];}] call CBA_fnc_hashEachPair;
+    [GVAR(persistentObjectsHash), {_objects pushBack [_key, _value]}] call CBA_fnc_hashEachPair;
     [QGVAR(receivePersistentObjectsHash), [_objects], _player] call CBA_fnc_targetEvent;
 }] call CBA_fnc_addEventHandler;
 
 [QGVAR(requestAbortedObjects), {
     params ["_player"];
 
-    private _objects = (GVAR(dataNamespace) getVariable [QGVAR(objects), []]) select {private _id = _x#IDX_OBJ_ID; _id != "" && {[GVAR(abortedObjectIds), {_x == _id}] call EFUNC(common,arrayAny)}};
+    private _objects = (GVAR(dataNamespace) getVariable [QGVAR(objects), []]) select {
+        private _id = _x#IDX_OBJ_ID;
+        _id != "" && {_id in GVAR(abortedObjectIds)}
+    };
     [QGVAR(receiveAbortedObjects), [_objects], _player] call CBA_fnc_targetEvent;
-}] call CBA_fnc_addEventHandler;
-
-[QGVAR(checkPersistentVehicleExists), {
-    [{
-        params ["_vehicleState"];
-        _vehicleState params ["_vehicleId"];
-
-        [GVAR(persistentObjectsHash), _vehicleId] call CBA_fnc_hashHasKey
-    }, {
-        params ["_vehicleState", "_client"];
-        _vehicleState params ["_vehicleId", "_role", "_index"];
-
-        private _vehicle = [GVAR(persistentObjectsHash), _vehicleId] call CBA_fnc_hashGet;
-        [QGVAR(onPersistentVehicleExists), [_vehicle, _vehicleId, _role, _index], _client] call CBA_fnc_targetEvent;
-    }, _this, 10, {
-        params ["_vehicleState", "_client"];
-        _vehicleState params ["_vehicleId", "_role", "_index"];
-
-        [QGVAR(onPersistentVehicleExists), [objNull, _vehicleId, _role, _index], _client] call CBA_fnc_targetEvent;
-    }] call CBA_fnc_waitUntilAndExecute;
 }] call CBA_fnc_addEventHandler;
 
 [QGVAR(addLogisticsMarker), {GVAR(persistenceMarkers) pushBackUnique _this}] call CBA_fnc_addEventHandler;
@@ -196,8 +140,7 @@ addMissionEventHandler ["BuildingChanged", {
     [QGVAR(receiveInspectSavedData), [_lines], _player] call CBA_fnc_targetEvent;
 }] call CBA_fnc_addEventHandler;
 
-[QGVAR(setObjectCargo), {[{call FUNC(setObjectCargo)}, _this] call CBA_fnc_execNextFrame}] call CBA_fnc_addEventHandler;
-
+// Map marker events
 [QGVAR(markerCreated), {
     params ["_serializedMarker"];
 
@@ -211,6 +154,7 @@ addMissionEventHandler ["BuildingChanged", {
     GVAR(mapMarkers) deleteAt (GVAR(mapMarkers) findIf {_x#0 == _marker});
 }] call CBA_fnc_addEventHandler;
 
+// ACE fortify integration
 ["acex_fortify_objectPlaced", {
     params ["", "_side", "_object"];
 
@@ -226,23 +170,8 @@ addMissionEventHandler ["BuildingChanged", {
     if (_id == "") exitWith {
         WARNING("Object has no id so cannot remove from persistence hash. Object saving should filter out null objects.");
     };
-
     [GVAR(persistentObjectsHash), _id] call CBA_fnc_hashRem;
 }] call CBA_fnc_addEventHandler;
 
-call FUNC(saveData);
-
-if (!GVAR(overrideSavedDateTime)) then {
-    private _dateTime = GVAR(dataNamespace) getVariable [QGVAR(dateTime), date];
-    TRACE_1("Setting datetime",_dateTime);
-    setDate _dateTime;
-} else {
-    WARNING("Saved datetime overridden by mission");
-};
-
-private _markers = +GVAR(mapMarkers);
-GVAR(mapMarkers) = [];
-{
-    private _marker = [_x] call FUNC(deserializeMarker);
-    GVAR(mapMarkers) pushBack ([_marker] call FUNC(serializeMarker));
-} forEach _markers;
+// Restore saved world state
+call FUNC(restoreSessionState);

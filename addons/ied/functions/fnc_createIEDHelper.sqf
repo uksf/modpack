@@ -11,6 +11,9 @@
 
     Return value:
         None
+
+    Example:
+        [_explosive] call uksf_ied_fnc_createIEDHelper
 */
 params ["_explosive"];
 

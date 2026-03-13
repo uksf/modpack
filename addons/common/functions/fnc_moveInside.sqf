@@ -11,6 +11,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        [_vehicle] call uksf_common_fnc_moveInside
 */
 
 #define TIMEOUT 5

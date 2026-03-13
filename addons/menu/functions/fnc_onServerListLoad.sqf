@@ -11,6 +11,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        [_control] call uksf_menu_fnc_onServerListLoad
 */
 params ["_control"];
 

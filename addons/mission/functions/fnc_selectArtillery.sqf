@@ -18,6 +18,9 @@
         
     Return value:
         OBJECT
+
+    Example:
+        [_unit, _target] call uksf_mission_fnc_selectArtillery
 */
 params ["_unit", "_target"];
 

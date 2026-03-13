@@ -17,6 +17,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_position, _count, _side, _unitPool, _callback, _callbackArgs] call uksf_common_fnc_spawnGroupInfantry
 */
 #define SPAWN_DELAY 1
 #define TIMEOUT 30

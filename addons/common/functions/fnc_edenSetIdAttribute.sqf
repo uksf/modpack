@@ -11,6 +11,9 @@
 
     Return Value:
         Id <STRING>
+
+    Example:
+        [_logic] call uksf_common_fnc_edenSetIdAttribute
 */
 if !(is3DEN) exitWith {};
 

@@ -11,6 +11,9 @@
 
     Return value:
         None
+
+    Example:
+        [_vehicle] call uksf_radios_fnc_initialiseVehicleRacks
 */
 params ["_vehicle"];
 

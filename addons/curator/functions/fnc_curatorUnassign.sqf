@@ -13,6 +13,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_curator, _unit] call uksf_curator_fnc_curatorUnassign
 */
 params ["_curator", ["_unit", objNull]];
 

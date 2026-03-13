@@ -14,6 +14,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_player, _key, _state] call uksf_zeus_fnc_debugStreamToggle
 */
 if (!isServer) exitWith {};
 
@@ -37,8 +40,13 @@ if (_state) then {
         private _clientEntry = GVAR(debugStreamClients) select _index;
         _clientEntry params ["", "_keys"];
         _keys deleteAt (_keys find _key);
+        private _playerUid = getPlayerUID _player;
         if (_keys isEqualTo []) then {
             GVAR(debugStreamClients) deleteAt _index;
+            GVAR(debugLastSentKeys) deleteAt _playerUid;
+        } else {
+            private _sentKeys = GVAR(debugLastSentKeys) getOrDefault [_playerUid, createHashMap];
+            _sentKeys deleteAt _key;
         };
     };
 };
@@ -50,7 +58,7 @@ GVAR(debugStreamClients) = GVAR(debugStreamClients) select {!isNull (_x#0)};
 if (GVAR(debugStreamClients) isNotEqualTo [] && {GVAR(debugStreamPFH) == -1}) then {
     GVAR(debugStreamPFH) = [{
         call FUNC(debugStreamTick);
-    }, 3, []] call CBA_fnc_addPerFrameHandler;
+    }, 1, []] call CBA_fnc_addPerFrameHandler;
 } else {
     if (GVAR(debugStreamClients) isEqualTo [] && {GVAR(debugStreamPFH) != -1}) then {
         [GVAR(debugStreamPFH)] call CBA_fnc_removePerFrameHandler;
@@ -62,9 +70,9 @@ if (GVAR(debugStreamClients) isNotEqualTo [] && {GVAR(debugStreamPFH) == -1}) th
 private _neededSources = createHashMap;
 {
     {
-        private _provider = GVAR(debugProviders) getOrDefault [_x, []];
-        if (_provider isNotEqualTo []) then {
-            _provider params ["", "", "", "", "_clientDataKey"];
+        private _serverGetter = GVAR(debugServerGetters) getOrDefault [_x, []];
+        if (_serverGetter isNotEqualTo []) then {
+            _serverGetter params ["", "", "_clientDataKey"];
             if (_clientDataKey != "") then {
                 _neededSources set [_clientDataKey, true];
             };

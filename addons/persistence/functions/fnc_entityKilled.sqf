@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_unit, _killer, _instigator, _useEffects] call uksf_persistence_fnc_entityKilled
 */
 params ["_unit", "_killer", "_instigator", "_useEffects"];
 

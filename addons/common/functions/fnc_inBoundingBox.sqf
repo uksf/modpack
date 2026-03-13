@@ -13,6 +13,9 @@
 
     Return value:
         Boolean
+
+    Example:
+        [_object1, _object2, _object1Direction] call uksf_common_fnc_inBoundingBox
 */
 params [["_object1", objNull, [objNull, []]], ["_object2", objNull, [objNull]], ["_object1Direction", -1, [0]]];
 

@@ -11,6 +11,9 @@
 
     Return value:
         Player position <ARRAY>
+
+    Example:
+        [_stagingArea] call uksf_aigroundcommander_fnc_getPlayers
 */
 params ["_stagingArea"];
 

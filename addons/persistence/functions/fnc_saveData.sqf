@@ -11,10 +11,14 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_persistence_fnc_saveData
 */
 
 if (GVAR(dataSaved)) then {
     profileNamespace setVariable [GVAR(key), [GVAR(dataNamespace)] call CBA_fnc_serializeNamespace];
     saveProfileNamespace;
     LOG("Saved data");
+    call FUNC(saveDataApi);
 };

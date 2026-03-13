@@ -11,6 +11,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        [_bomber] call uksf_special_fnc_init
 */
 params ["_bomber"];
 

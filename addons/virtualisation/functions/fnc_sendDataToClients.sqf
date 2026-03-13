@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        call uksf_virtualisation_fnc_sendDataToClients
 */
 
 {

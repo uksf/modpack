@@ -14,6 +14,9 @@
     Return value:
         Objects and anchor <ARRAY>
         [Anchor object, Objects in area]
+
+    Example:
+        [_objects, _logic, _area] call uksf_safehouses_fnc_getPrefabAnchor
 */
 params ["_objects", "_logic", "_area"];
 _area params ["_a", "_b", "_angle", "_isRectangle", "_c"];

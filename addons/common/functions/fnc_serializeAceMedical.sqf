@@ -12,6 +12,9 @@
 
     Return Value:
         ACE medical state json string
+
+    Example:
+        [_unit] call uksf_common_fnc_serializeAceMedical
 */
 params ["_unit"];
 

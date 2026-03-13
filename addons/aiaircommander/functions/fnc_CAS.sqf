@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_group] call uksf_aiaircommander_fnc_CAS
 */
 params ["_group"];
 

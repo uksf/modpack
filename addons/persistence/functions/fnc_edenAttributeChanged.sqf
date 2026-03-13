@@ -13,6 +13,9 @@
 
     Return Value:
         ID <STRING>
+
+    Example:
+        [_object, _persistent, _delete] call uksf_persistence_fnc_edenAttributeChanged
 */
 if !(is3DEN) exitWith {};
 

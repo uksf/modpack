@@ -12,6 +12,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_message, _admin] call uksf_common_fnc_hint
 */
 params ["_message", ["_admin", false]];
 

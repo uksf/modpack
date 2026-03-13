@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_broadcastNow] call uksf_arearating_fnc_broadcastRatingAreas
 */
 params [["_broadcastNow", false]];
 

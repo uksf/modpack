@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        call uksf_civilian_fnc_addUnitEventTransitions
 */
 #define RANDOM_ANNOYED_STOPPED_TO_MOVE random 10
 #define RANDOM_ANNOYED_MOVE_TO_STOPPED random 20

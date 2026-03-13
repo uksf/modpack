@@ -12,6 +12,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_group, _waypointsArray] call uksf_virtualisation_fnc_addWaypoints
 */
 params ["_group", "_waypointsArray"];
 

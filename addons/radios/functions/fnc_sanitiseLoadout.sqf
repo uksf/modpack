@@ -11,6 +11,9 @@
 
     Return Value:
         Sanitised inventory <ARRAY>
+
+    Example:
+        [_inventory] call uksf_radios_fnc_sanitiseLoadout
 */
 params ["_inventory"];
 
