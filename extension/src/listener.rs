@@ -32,14 +32,9 @@ pub fn start(port: u16) -> Result<(), String> {
                 continue;
             }
 
-            let peer = request.remote_addr().map(|address| address.ip());
-            let is_localhost = matches!(
-                peer,
-                Some(std::net::IpAddr::V4(ip)) if ip.is_loopback()
-            ) || matches!(
-                peer,
-                Some(std::net::IpAddr::V6(ip)) if ip.is_loopback()
-            );
+            let is_localhost = request
+                .remote_addr()
+                .is_some_and(|address| address.ip().is_loopback());
 
             if !is_localhost {
                 let response = tiny_http::Response::from_string("forbidden")
@@ -77,10 +72,10 @@ pub fn stop() {
     SHOULD_STOP.store(true, Ordering::SeqCst);
 
     // Wait for the listener thread to finish (up to 2 seconds)
-    if let Ok(mut th) = THREAD_HANDLE.lock() {
-        if let Some(handle) = th.take() {
-            let _ = handle.join();
-        }
+    if let Ok(mut th) = THREAD_HANDLE.lock()
+        && let Some(handle) = th.take()
+    {
+        let _ = handle.join();
     }
 }
 

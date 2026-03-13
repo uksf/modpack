@@ -50,10 +50,10 @@ pub fn stop() {
 }
 
 pub fn queue_event(json: &str) {
-    if let Ok(channel) = CHANNEL.lock() {
-        if let Some(sender) = channel.as_ref() {
-            let _ = sender.send(Message::Event(json.to_string()));
-        }
+    if let Ok(channel) = CHANNEL.lock()
+        && let Some(sender) = channel.as_ref()
+    {
+        let _ = sender.send(Message::Event(json.to_string()));
     }
 }
 
