@@ -18,8 +18,16 @@
         call uksf_persistence_fnc_loadServerDataApi
 */
 
-private _result = "uksf" callExtension ("load:" + GVAR(key));
+private _result = ("uksf" callExtension ["load", [GVAR(key)]]) select 0;
 INFO_1("Extension load triggered: %1",_result);
+
+if (_result == "" || {toLower (_result select [0, 5]) == "error"}) exitWith {
+    ERROR_1("Failed to trigger API load: %1",_result);
+    GVAR(dataNamespace) = call CBA_fnc_createNamespace;
+    GVAR(playerUids) = [];
+    call FUNC(initServer);
+    [QGVAR(loadingFinished), []] call CBA_fnc_localEvent;
+};
 
 INFO("Waiting for API persistence data...");
 [{

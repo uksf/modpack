@@ -3,7 +3,7 @@ use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::Mutex;
 use std::thread::{self, JoinHandle};
 
-use crate::ffi;
+use crate::bridge;
 
 static SHOULD_STOP: AtomicBool = AtomicBool::new(false);
 static THREAD_HANDLE: Mutex<Option<JoinHandle<()>>> = Mutex::new(None);
@@ -16,6 +16,7 @@ pub fn start(port: u16) -> Result<(), String> {
     SHOULD_STOP.store(false, Ordering::SeqCst);
 
     let handle = thread::spawn(move || {
+        log::info!("Listener thread started on {address}");
         while !SHOULD_STOP.load(Ordering::SeqCst) {
             let mut request = match server.recv_timeout(std::time::Duration::from_secs(1)) {
                 Ok(Some(request)) => request,
@@ -37,6 +38,7 @@ pub fn start(port: u16) -> Result<(), String> {
                 .is_some_and(|address| address.ip().is_loopback());
 
             if !is_localhost {
+                log::warn!("Rejected non-localhost request from {:?}", request.remote_addr());
                 let response = tiny_http::Response::from_string("forbidden")
                     .with_status_code(403);
                 let _ = request.respond(response);
@@ -53,7 +55,7 @@ pub fn start(port: u16) -> Result<(), String> {
 
             let mut body = String::new();
             if request.as_reader().take(65536).read_to_string(&mut body).is_ok() {
-                ffi::fire_callback("command", &body);
+                bridge::fire_callback("command", &body);
             }
 
             let response = tiny_http::Response::from_string("ok");

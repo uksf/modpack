@@ -24,8 +24,12 @@ if (isNil {EFUNC(api,sendEvent)}) exitWith {
 };
 
 INFO("Profile load complete — triggering API load for proofing comparison");
-private _result = "uksf" callExtension ("load:" + GVAR(key));
+private _result = ("uksf" callExtension ["load", [GVAR(key)]]) select 0;
 INFO_1("Proofing extension load triggered: %1",_result);
+
+if (_result == "" || {toLower (_result select [0, 5]) == "error"}) exitWith {
+    ERROR_1("Failed to trigger proofing load: %1",_result);
+};
 
 [{
     GVAR(apiLoadComplete)

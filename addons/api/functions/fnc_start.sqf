@@ -19,10 +19,14 @@
 if (hasInterface) exitWith {};
 
 private _result = "uksf" callExtension "start";
-INFO_1("Extension start: %1",_result);
+INFO_1("Extension start result: %1",_result);
 
 if (_result == "") exitWith {
     ERROR("Failed to start API extension - DLL may not be loaded");
+};
+
+if (toLower (_result select [0, 5]) == "error") exitWith {
+    ERROR_1("Extension start returned error: %1",_result);
 };
 
 addMissionEventHandler ["ExtensionCallback", {

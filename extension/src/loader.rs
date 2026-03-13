@@ -1,7 +1,7 @@
 use std::thread;
 
 use crate::config;
-use crate::ffi;
+use crate::bridge;
 
 const CHUNK_SIZE: usize = 16000; // ~16KB, safely under Arma's 20KB callback limit
 
@@ -10,23 +10,29 @@ pub fn load(key: &str) {
     let url = format!("{}/persistence/{}", config::API_BASE_URL, key);
 
     thread::spawn(move || {
+        log::info!("Fetching persistence data from {url}");
         let body = match fetch_persistence_data(&url) {
-            Ok(data) => data,
+            Ok(data) => {
+                log::info!("Loaded persistence for '{key}': {} bytes", data.len());
+                data
+            }
             Err(error) => {
                 log::error!("Failed to load persistence for key '{key}': {error}");
                 let envelope = build_error_envelope_json(&key, &error);
-                ffi::fire_callback("persistence_load", &envelope);
+                bridge::fire_callback("persistence_load", &envelope);
                 return;
             }
         };
 
         let chunks = chunk_data(&body, CHUNK_SIZE);
         let total = chunks.len();
+        log::info!("Sending persistence '{key}' in {total} chunk(s)");
 
         for (index, chunk) in chunks.iter().enumerate() {
             let envelope = build_envelope_json(&key, index, total, chunk);
-            ffi::fire_callback("persistence_load", &envelope);
+            bridge::fire_callback("persistence_load", &envelope);
         }
+        log::info!("Finished sending persistence '{key}'");
     });
 }
 

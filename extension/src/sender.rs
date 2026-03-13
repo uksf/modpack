@@ -21,6 +21,7 @@ pub fn start() {
     thread::spawn(move || {
         let url = format!("{}/api/gameservers/events", config::API_BASE_URL);
         let api_port = config::get_api_port();
+        log::info!("Sender thread started, posting to {url} with apiPort={api_port}");
 
         for message in receiver {
             match message {

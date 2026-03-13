@@ -684,7 +684,7 @@ tools/temp
 .hemttprivatekey
 
 # Plan docs
-docs/plans/
+docs/
 
 ## SQFC
 sqfvm.exe

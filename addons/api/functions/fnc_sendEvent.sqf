@@ -20,4 +20,4 @@ params [["_type", "", [""]], ["_data", createHashMap, [createHashMap]]];
 
 private _event = createHashMapFromArray [["type", _type], ["data", _data]];
 private _json = [_event] call CBA_fnc_encodeJSON;
-"uksf" callExtension ("event:" + _json);
+"uksf" callExtension ["event", [_json]];
