@@ -52,22 +52,6 @@ if (!isNil QEFUNC(statistics,serverSync)) then {
         [{
             GVAR(shutdownSavingComplete)
         }, {
-            if (GVAR(dataSaved)) then {
-                private _dateTime = date;
-                TRACE_1("Saving date time",_dateTime);
-                GVAR(dataNamespace) setVariable [QGVAR(dateTime), _dateTime];
-                GVAR(dataNamespace) setVariable [QGVAR(mapMarkers), GVAR(mapMarkers)];
-
-                {
-                    _x params ["_id", "_function"];
-
-                    private _data = [] call _function;
-                    GVAR(dataNamespace) setVariable [_id, _data];
-                } forEach GVAR(serializers);
-
-                call FUNC(saveData);
-            };
-
             ["shutdown_complete"] call EFUNC(api,sendEvent);
             "uksf" callExtension "flush";
 
