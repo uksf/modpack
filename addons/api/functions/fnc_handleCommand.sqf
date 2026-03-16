@@ -25,7 +25,7 @@ if (_function != "command") exitWith {
 };
 
 private _parsed = [_data, 2] call CBA_fnc_parseJSON;
-if (isNil "_parsed") exitWith {
+if (isNil "_parsed" || {!(_parsed isEqualType createHashMap)}) exitWith {
     WARNING_1("Failed to parse command JSON: %1",_data);
 };
 

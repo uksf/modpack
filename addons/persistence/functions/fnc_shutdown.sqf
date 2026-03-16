@@ -20,6 +20,11 @@ if (!isServer) exitWith {
     [QGVAR(shutdown)] call CBA_fnc_serverEvent;
 };
 
+if (GVAR(shutdownInProgress)) exitWith {
+    WARNING("Shutdown already in progress, ignoring duplicate call");
+};
+GVAR(shutdownInProgress) = true;
+
 LOG("Shutdown");
 
 [QEGVAR(common,textTiles), [parseText format ["<t align = 'center' color = '#00FF00'>Persistence Shutdown Cycle Started: You will be kicked off the server shortly. Please stand still.</t>"], [0.25, 0.5, 0.5, 0.085], [1, 1], 2.5], [] call CBA_fnc_players] call CBA_fnc_targetEvent;
@@ -60,32 +65,3 @@ LOG("Shutdown");
 
     SERVER_COMMAND serverCommand (format ["#kick %1", owner (_players#0)]);
 }, 2, []] call CBA_fnc_addPerFrameHandler;
-
-// For local MP debug
-/*
-[player, "", getPlayerUID player, name player] call uksf_persistence_fnc_handleDisconnect;
-{
-    private _marker = createVehicle ["uksf_persistence_markerAmmo", _x, [], 0, "CAN_COLLIDE"];
-    uksf_persistence_persistenceMarkers pushBack _marker;
-} forEach (values uksf_persistence_disconnectedPlayerPositions);
-[] call uksf_persistence_fnc_saveObjectData;
-
-[{
-    !uksf_persistence_saveObjectQueueProcessing
-}, {
-    if (uksf_persistence_dataSaved) then {
-        private _dateTime = date;
-        uksf_persistence_dataNamespace setVariable ["uksf_persistence_dateTime", _dateTime];
-        uksf_persistence_dataNamespace setVariable ["uksf_persistence_mapMarkers", uksf_persistence_mapMarkers];
-        {
-            _x params ["_id", "_function"];
-
-            private _data = [] call _function;
-            uksf_persistence_dataNamespace setVariable [_id, _data];
-        } forEach uksf_persistence_serializers;
-        call uksf_persistence_fnc_saveData;
-    };
-
-    systemChat "done";
-}] call CBA_fnc_waitUntilAndExecute;
-*/

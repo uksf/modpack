@@ -19,6 +19,7 @@ if (is3DEN) then {
 };
 
 GVAR(dataSaved) = false;
+GVAR(shutdownInProgress) = false;
 
 if (isMultiplayer) then {
     if (hasInterface) then {

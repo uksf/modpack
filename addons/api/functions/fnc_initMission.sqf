@@ -32,7 +32,9 @@ addMissionEventHandler ["MPEnded", {
     //     ["duration", time]
     // ]] call FUNC(sendEvent);
 
-    [GVAR(statusPerFrameHandler)] call CBA_fnc_removePerFrameHandler;
+    if (GVAR(statusPerFrameHandler) >= 0) then {
+        [GVAR(statusPerFrameHandler)] call CBA_fnc_removePerFrameHandler;
+    };
     call FUNC(stop);
 }];
 
@@ -43,10 +45,12 @@ addMissionEventHandler ["MPEnded", {
 //     ["processId", GVAR(processId)]
 // ]] call FUNC(sendEvent);
 
-// Periodic server status push (every 15 seconds)
-GVAR(statusPerFrameHandler) = [{
-    call FUNC(sendServerStatus);
-}, 15, []] call CBA_fnc_addPerFrameHandler;
+// Periodic server status push (every 15 seconds), only if extension started
+if (GVAR(processId) > 0) then {
+    GVAR(statusPerFrameHandler) = [{
+        call FUNC(sendServerStatus);
+    }, 15, []] call CBA_fnc_addPerFrameHandler;
+};
 
 // TODO: re-enable when statistics branch lands — API needs to store and track session durations
 // GVAR(lastPlayerEvent) = createHashMap;
