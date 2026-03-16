@@ -4,20 +4,23 @@
         Tim Beswick
 
     Description:
-        Compares a parsed API session against the currently loaded dataNamespace
-        (from profile). Logs detailed per-category match/mismatch results.
+        Compares a parsed API session against a profile snapshot.
+        Logs detailed per-category match/mismatch results.
+        Uses type-aware comparison: == for numbers and strings,
+        isEqualTo for booleans/sides, recursive for arrays and hashmaps.
         Does not modify any state.
 
     Parameter(s):
         0: Session hashmap <HASHMAP> — the parsed API session
+        1: Profile snapshot <HASHMAP> — snapshot taken at load time
 
     Return Value:
         None
 
     Example:
-        [_session] call uksf_persistence_fnc_compareApiSession
+        [_session, _snapshot] call uksf_persistence_fnc_compareApiSession
 */
-params ["_session"];
+params ["_session", "_snapshot"];
 
 INFO("=== API vs Profile Comparison Start ===");
 
@@ -32,13 +35,45 @@ private _parseSide = {
     }
 };
 
+// Type-aware comparison that handles float precision differences from
+// JSON round-trip. isEqualTo is binary-exact on floats, so two values
+// that display as 3.1957 can fail if their binary representations
+// differ after encoding/decoding. == handles this for numbers and strings.
+// Arrays and hashmaps are compared recursively.
+private _isEqual = {
+    params ["_a", "_b"];
+    if (isNil "_a" && isNil "_b") exitWith { true };
+    if (isNil "_a" || isNil "_b") exitWith { false };
+    if !(_a isEqualType _b) exitWith { false };
+    if (_a isEqualType 0) exitWith { _a == _b };
+    if (_a isEqualType "") exitWith { _a == _b };
+    if (_a isEqualType []) exitWith {
+        if (count _a != count _b) exitWith { false };
+        private _match = true;
+        for "_i" from 0 to (count _a - 1) do {
+            if !([_a#_i, _b#_i] call _isEqual) exitWith { _match = false };
+        };
+        _match
+    };
+    if (_a isEqualType createHashMap) exitWith {
+        if (count _a != count _b) exitWith { false };
+        private _match = true;
+        {
+            private _valB = _b getOrDefault [_x, nil];
+            if (isNil "_valB" || {!([_y, _valB] call _isEqual)}) exitWith { _match = false };
+        } forEach _a;
+        _match
+    };
+    _a isEqualTo _b
+};
+
 private _failures = 0;
 private _successes = 0;
 
 // --- DateTime ---
-private _profileDateTime = GVAR(dataNamespace) getVariable [QGVAR(dateTime), []];
+private _profileDateTime = _snapshot getOrDefault ["dateTime", []];
 private _apiDateTime = _session getOrDefault ["dateTime", []];
-if (_profileDateTime isEqualTo _apiDateTime) then {
+if ([_profileDateTime, _apiDateTime] call _isEqual) then {
     _successes = _successes + 1;
     INFO("DateTime: MATCH");
 } else {
@@ -47,9 +82,9 @@ if (_profileDateTime isEqualTo _apiDateTime) then {
 };
 
 // --- Deleted Objects ---
-private _profileDeleted = GVAR(dataNamespace) getVariable [QGVAR(deletedObjects), []];
+private _profileDeleted = _snapshot getOrDefault ["deletedObjects", []];
 private _apiDeleted = _session getOrDefault ["deletedObjects", []];
-if (_profileDeleted isEqualTo _apiDeleted) then {
+if ([_profileDeleted, _apiDeleted] call _isEqual) then {
     _successes = _successes + 1;
     INFO_1("Deleted objects: MATCH (count=%1)",count _profileDeleted);
 } else {
@@ -60,9 +95,9 @@ if (_profileDeleted isEqualTo _apiDeleted) then {
 };
 
 // --- Map Markers ---
-private _profileMarkers = GVAR(dataNamespace) getVariable [QGVAR(mapMarkers), []];
+private _profileMarkers = _snapshot getOrDefault ["mapMarkers", []];
 private _apiMarkers = _session getOrDefault ["markers", []];
-if (_profileMarkers isEqualTo _apiMarkers) then {
+if ([_profileMarkers, _apiMarkers] call _isEqual) then {
     _successes = _successes + 1;
     INFO_1("Map markers: MATCH (count=%1)",count _profileMarkers);
 } else {
@@ -71,7 +106,7 @@ if (_profileMarkers isEqualTo _apiMarkers) then {
 };
 
 // --- Objects ---
-private _profileObjects = GVAR(dataNamespace) getVariable [QGVAR(objects), []];
+private _profileObjects = _snapshot getOrDefault ["objects", []];
 private _apiObjectsRaw = _session getOrDefault ["objects", []];
 
 // Convert API objects to indexed arrays for comparison (same logic as commitApiSession)
@@ -139,7 +174,7 @@ INFO_2("Objects: profile count=%1, api count=%2",count _profileObjects,count _ap
             _objectMissing = _objectMissing + 1;
             WARNING_1("Object %1: in profile only, missing from API",_objectId);
         } else {
-            if (_profileObject isEqualTo _apiObject) then {
+            if ([_profileObject, _apiObject] call _isEqual) then {
                 _objectMatches = _objectMatches + 1;
             } else {
                 _objectMismatches = _objectMismatches + 1;
@@ -147,7 +182,7 @@ INFO_2("Objects: profile count=%1, api count=%2",count _profileObjects,count _ap
                 for "_i" from 0 to (count _objectFieldNames - 1) do {
                     private _profileField = if (_i < count _profileObject) then {_profileObject#_i} else {nil};
                     private _apiField = if (_i < count _apiObject) then {_apiObject#_i} else {nil};
-                    if (_profileField isNotEqualTo _apiField) then {
+                    if !([_profileField, _apiField] call _isEqual) then {
                         WARNING_4("Object %1 field '%2': profile=%3, api=%4",_objectId,_objectFieldNames#_i,_profileField,_apiField);
                     };
                 };
@@ -166,7 +201,9 @@ if (_objectMismatches == 0 && _objectMissing == 0) then {
 
 // --- Players ---
 private _apiPlayersRaw = _session getOrDefault ["players", createHashMap];
-private _allPlayerUids = +GVAR(playerUids);
+private _profilePlayers = _snapshot getOrDefault ["players", createHashMap];
+private _profilePlayerUids = _snapshot getOrDefault ["playerUids", []];
+private _allPlayerUids = +_profilePlayerUids;
 {_allPlayerUids pushBackUnique _x} forEach (keys _apiPlayersRaw);
 
 private _playerFieldNames = [
@@ -178,11 +215,11 @@ private _playerMatches = 0;
 private _playerMismatches = 0;
 private _playerMissing = 0;
 
-INFO_2("Players: profile count=%1, api count=%2",count GVAR(playerUids),count _apiPlayersRaw);
+INFO_2("Players: profile count=%1, api count=%2",count _profilePlayerUids,count _apiPlayersRaw);
 
 {
     private _uid = _x;
-    private _profilePlayer = GVAR(dataNamespace) getVariable [_uid, []];
+    private _profilePlayer = _profilePlayers getOrDefault [_uid, []];
 
     private _apiPlayerRaw = _apiPlayersRaw getOrDefault [_uid, createHashMap];
     private _apiPlayer = if (count _apiPlayerRaw == 0) then {
@@ -195,7 +232,7 @@ INFO_2("Players: profile count=%1, api count=%2",count GVAR(playerUids),count _a
             _apiPlayerRaw getOrDefault ["animation", ""],
             _apiPlayerRaw getOrDefault ["loadout", []],
             _apiPlayerRaw getOrDefault ["damage", 0],
-            _apiPlayerRaw getOrDefault ["aceMedical", []],
+            _apiPlayerRaw getOrDefault ["aceMedical", createHashMap],
             _apiPlayerRaw getOrDefault ["earplugs", false],
             _apiPlayerRaw getOrDefault ["attachedItems", []],
             _apiPlayerRaw getOrDefault ["radios", []],
@@ -214,17 +251,35 @@ INFO_2("Players: profile count=%1, api count=%2",count GVAR(playerUids),count _a
                 _playerMissing = _playerMissing + 1;
                 WARNING_1("Player %1: in profile only, missing from API",_uid);
             } else {
-                if (_profilePlayer isEqualTo _apiPlayer) then {
-                    _playerMatches = _playerMatches + 1;
-                } else {
-                    _playerMismatches = _playerMismatches + 1;
-                    for "_i" from 0 to (count _playerFieldNames - 1) do {
-                        private _profileField = if (_i < count _profilePlayer) then {_profilePlayer#_i} else {nil};
-                        private _apiField = if (_i < count _apiPlayer) then {_apiPlayer#_i} else {nil};
-                        if (_profileField isNotEqualTo _apiField) then {
-                            WARNING_4("Player %1 field '%2': profile=%3, api=%4",_uid,_playerFieldNames#_i,_profileField,_apiField);
+                private _fieldMismatch = false;
+                for "_i" from 0 to (count _playerFieldNames - 1) do {
+                    private _profileField = if (_i < count _profilePlayer) then {_profilePlayer#_i} else {nil};
+                    private _apiField = if (_i < count _apiPlayer) then {_apiPlayer#_i} else {nil};
+
+                    // aceMedical: profile stores as JSON string, API returns as hashmap
+                    // Parse profile string to hashmap so both sides compare as hashmaps
+                    if (_playerFieldNames#_i == "aceMedical") then {
+                        if (_profileField isEqualType "" && {_profileField != ""}) then {
+                            _profileField = [_profileField, 2] call CBA_fnc_parseJSON;
+                            if (isNil "_profileField") then { _profileField = createHashMap };
+                        } else {
+                            _profileField = createHashMap;
+                        };
+                        if !(_apiField isEqualType createHashMap) then {
+                            _apiField = createHashMap;
                         };
                     };
+
+                    if !([_profileField, _apiField] call _isEqual) then {
+                        _fieldMismatch = true;
+                        WARNING_4("Player %1 field '%2': profile=%3, api=%4",_uid,_playerFieldNames#_i,_profileField,_apiField);
+                    };
+                };
+
+                if (_fieldMismatch) then {
+                    _playerMismatches = _playerMismatches + 1;
+                } else {
+                    _playerMatches = _playerMatches + 1;
                 };
             };
         };
@@ -242,7 +297,6 @@ if (_playerMismatches == 0 && _playerMissing == 0) then {
 // --- Custom Data ---
 private _apiCustomData = _session getOrDefault ["customData", createHashMap];
 private _customDataKeys = keys _apiCustomData;
-// Also check keys from serializers registered in profile path
 {
     _x params ["_id"];
     _customDataKeys pushBackUnique _id;
@@ -253,9 +307,9 @@ private _customMismatches = 0;
 
 {
     private _key = _x;
-    private _profileValue = GVAR(dataNamespace) getVariable [_key, []];
+    private _profileValue = _snapshot getOrDefault [_key, []];
     private _apiValue = _apiCustomData getOrDefault [_key, []];
-    if (_profileValue isEqualTo _apiValue) then {
+    if ([_profileValue, _apiValue] call _isEqual) then {
         _customMatches = _customMatches + 1;
     } else {
         _customMismatches = _customMismatches + 1;

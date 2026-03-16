@@ -27,10 +27,7 @@ if (isMultiplayer) then {
 
     if (isServer) then {
         call FUNC(loadSession);
-
-        if (!GVAR(useApiPersistence)) then {
-            call FUNC(initServer);
-        };
+        call FUNC(initServer);
     };
 };
 
