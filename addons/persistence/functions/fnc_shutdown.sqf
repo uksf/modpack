@@ -30,6 +30,9 @@ if (!isNil QEFUNC(statistics,serverSync)) then {
     call EFUNC(statistics,stopCollection);
 };
 
+// Export OCAP data early so it has time to write before server shuts down
+["ocap_exportData", [west]] call CBA_fnc_localEvent;
+
 [{
     params ["", "_idPFH"];
 
@@ -64,8 +67,6 @@ if (!isNil QEFUNC(statistics,serverSync)) then {
 
                 call FUNC(saveData);
             };
-
-            ["ocap_exportData", [west]] call CBA_fnc_localEvent;
 
             ["shutdown_complete"] call EFUNC(api,sendEvent);
             "uksf" callExtension "flush";
