@@ -4,8 +4,8 @@
         Tim Beswick
 
     Description:
-        Handles an inbound command from the API via extensionCallback.
-        JSON is parsed using CBA_fnc_parseJSON into a native hashmap.
+        Handles an inbound callback from the API via extensionCallback.
+        Raises CBA events so consuming components can handle what they care about.
 
     Parameters:
         0: Function name <STRING>
@@ -21,24 +21,17 @@ params ["_function", "_data"];
 
 TRACE_2("Received command",_function,_data);
 
-if (_function == "persistence_load") exitWith {
-    [_data] call EFUNC(persistence,handleApiLoadChunk);
+// Raw extension callback — consumers handle specific function names
+if (_function != "command") exitWith {
+    [QGVAR(extensionCallback), [_function, _data]] call CBA_fnc_localEvent;
 };
 
-if (_function != "command") exitWith {};
-
+// Parsed command — consumers handle specific command types
 private _parsed = [_data, 2] call CBA_fnc_parseJSON;
 if (isNil "_parsed") exitWith {
     WARNING_1("Failed to parse command JSON: %1",_data);
 };
 
 private _type = _parsed getOrDefault ["type", ""];
-switch (_type) do {
-    case "shutdown": {
-        INFO("Received shutdown command from API");
-        call EFUNC(persistence,shutdown);
-    };
-    default {
-        WARNING_1("Unknown command type: %1",_type);
-    };
-};
+INFO_1("Received command: %1",_type);
+[QGVAR(command), [_type, _parsed]] call CBA_fnc_localEvent;

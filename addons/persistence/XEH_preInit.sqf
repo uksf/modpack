@@ -26,6 +26,22 @@ if (isMultiplayer) then {
     };
 
     if (isServer) then {
+        // Handle API extension callbacks for persistence load chunks
+        [QEGVAR(api,extensionCallback), {
+            params ["_function", "_data"];
+            if (_function == "persistence_load") then {
+                [_data] call FUNC(handleApiLoadChunk);
+            };
+        }] call CBA_fnc_addEventHandler;
+
+        // Handle API commands for shutdown
+        [QEGVAR(api,command), {
+            params ["_type"];
+            if (_type == "shutdown") then {
+                call FUNC(shutdown);
+            };
+        }] call CBA_fnc_addEventHandler;
+
         call FUNC(loadSession);
         call FUNC(initServer);
     };

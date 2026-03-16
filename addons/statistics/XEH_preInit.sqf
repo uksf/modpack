@@ -26,8 +26,13 @@ if (isServer) then {
         _this call FUNC(handleClientReport);
     }] call CBA_fnc_addEventHandler;
 
+    // Flush and stop when persistence shutdown starts
+    [QEGVAR(persistence,shutdownStarted), {
+        call FUNC(serverSync);
+        call FUNC(stopCollection);
+    }] call CBA_fnc_addEventHandler;
+
     // MPEnded fallback for non-persistence-shutdown scenarios (e.g. mission restart)
-    // Graceful shutdown flush is handled via persistence shutdown cycle in fnc_shutdown.sqf
     addMissionEventHandler ["MPEnded", {
         call FUNC(serverSync);
         call FUNC(stopCollection);
