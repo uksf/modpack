@@ -32,7 +32,7 @@ addMissionEventHandler ["MPEnded", {
     //     ["duration", time]
     // ]] call FUNC(sendEvent);
 
-    if (GVAR(statusPerFrameHandler) >= 0) then {
+    if (GVAR(statusPerFrameHandler) != -1) then {
         [GVAR(statusPerFrameHandler)] call CBA_fnc_removePerFrameHandler;
     };
     call FUNC(stop);
@@ -46,7 +46,7 @@ addMissionEventHandler ["MPEnded", {
 // ]] call FUNC(sendEvent);
 
 // Periodic server status push (every 15 seconds), only if extension started
-if (GVAR(processId) > 0) then {
+if (GVAR(processId) != -1) then {
     GVAR(statusPerFrameHandler) = [{
         call FUNC(sendServerStatus);
     }, 15, []] call CBA_fnc_addPerFrameHandler;
