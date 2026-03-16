@@ -4,8 +4,9 @@
         Tim Beswick
 
     Description:
-        Handles an inbound callback from the API via extensionCallback.
-        Raises CBA events so consuming components can handle what they care about.
+        Handles an inbound command from the API via extensionCallback.
+        Parses the JSON and raises a CBA event so consuming components
+        can handle what they care about based on the command type.
 
     Parameters:
         0: Function name <STRING>
@@ -19,19 +20,15 @@
 */
 params ["_function", "_data"];
 
-TRACE_2("Received command",_function,_data);
-
-// Raw extension callback — consumers handle specific function names
 if (_function != "command") exitWith {
-    [QGVAR(extensionCallback), [_function, _data]] call CBA_fnc_localEvent;
+    WARNING_2("Unhandled extension callback type: %1, data: %2",_function,_data);
 };
 
-// Parsed command — consumers handle specific command types
 private _parsed = [_data, 2] call CBA_fnc_parseJSON;
 if (isNil "_parsed") exitWith {
     WARNING_1("Failed to parse command JSON: %1",_data);
 };
 
 private _type = _parsed getOrDefault ["type", ""];
-INFO_1("Received command: %1",_type);
+TRACE_1("Received command",_type);
 [QGVAR(command), [_type, _parsed]] call CBA_fnc_localEvent;

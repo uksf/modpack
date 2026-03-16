@@ -58,6 +58,11 @@ if (isServer) then {
 
     GVAR(updateHeadlessClientPosition) = true;
     GVAR(updateHeadlessClientDelay) = 180;
+
+    // Export OCAP data when persistence shutdown starts
+    [QEGVAR(persistence,shutdownStarted), {
+        ["ocap_exportData", [west]] call CBA_fnc_localEvent;
+    }] call CBA_fnc_addEventHandler;
 };
 
 [QGVAR(notify), {_this call CBA_fnc_notify}] call CBA_fnc_addEventHandler;

@@ -4,35 +4,27 @@
         Tim Beswick
 
     Description:
-        Handles a persistence load chunk received from the extension callback.
+        Handles a persistence load chunk received via the API command event.
         Stores chunks in a buffer array. When all chunks have arrived,
         reassembles the JSON and parses it into GVAR(apiLoadedSession).
         Does NOT commit data to dataNamespace — the caller decides what to do.
         Sets GVAR(apiLoadComplete) to true when finished.
 
     Parameter(s):
-        0: Chunk JSON string <STRING>
+        0: Parsed chunk hashmap <HASHMAP>
 
     Return Value:
         None
 
     Example:
-        [_chunkJson] call uksf_persistence_fnc_handleApiLoadChunk
+        [_chunkData] call uksf_persistence_fnc_handleApiLoadChunk
 */
-params ["_chunkJson"];
+params ["_chunkData"];
 
-private _parsed = [_chunkJson, 2] call CBA_fnc_parseJSON;
-if (isNil "_parsed") exitWith {
-    WARNING_1("Failed to parse API load chunk JSON: %1",_chunkJson);
-    GVAR(apiLoadChunks) = nil;
-    GVAR(apiLoadedSession) = nil;
-    GVAR(apiLoadComplete) = true;
-};
-
-private _index = _parsed getOrDefault ["index", 0];
-private _total = _parsed getOrDefault ["total", 1];
-private _data = _parsed getOrDefault ["data", ""];
-private _error = _parsed getOrDefault ["error", ""];
+private _index = _chunkData getOrDefault ["index", 0];
+private _total = _chunkData getOrDefault ["total", 1];
+private _data = _chunkData getOrDefault ["data", ""];
+private _error = _chunkData getOrDefault ["error", ""];
 
 TRACE_2("Received API load chunk",_index,_total);
 
