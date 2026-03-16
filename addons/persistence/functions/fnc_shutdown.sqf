@@ -25,10 +25,8 @@ LOG("Shutdown");
 [QEGVAR(common,textTiles), [parseText format ["<t align = 'center' color = '#00FF00'>Persistence Shutdown Cycle Started: You will be kicked off the server shortly. Please stand still.</t>"], [0.25, 0.5, 0.5, 0.085], [1, 1], 2.5], [] call CBA_fnc_players] call CBA_fnc_targetEvent;
 
 // Flush statistics data to API before shutdown starts
-if (!isNil QEFUNC(statistics,serverSync)) then {
-    call EFUNC(statistics,serverSync);
-    call EFUNC(statistics,stopCollection);
-};
+call EFUNC(statistics,serverSync);
+call EFUNC(statistics,stopCollection);
 
 // Export OCAP data early so it has time to write before server shuts down
 ["ocap_exportData", [west]] call CBA_fnc_localEvent;

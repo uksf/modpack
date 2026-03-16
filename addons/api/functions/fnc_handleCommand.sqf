@@ -22,11 +22,7 @@ params ["_function", "_data"];
 TRACE_2("Received command",_function,_data);
 
 if (_function == "persistence_load") exitWith {
-    if (!isNil {EFUNC(persistence,handleApiLoadChunk)}) then {
-        [_data] call EFUNC(persistence,handleApiLoadChunk);
-    } else {
-        WARNING("Received persistence_load callback but persistence module not available");
-    };
+    [_data] call EFUNC(persistence,handleApiLoadChunk);
 };
 
 if (_function != "command") exitWith {};
@@ -40,11 +36,7 @@ private _type = _parsed getOrDefault ["type", ""];
 switch (_type) do {
     case "shutdown": {
         INFO("Received shutdown command from API");
-        if (isServer && {!isNil {EFUNC(persistence,shutdown)}}) then {
-            call EFUNC(persistence,shutdown);
-        } else {
-            SERVER_COMMAND serverCommand "#shutdown";
-        };
+        call EFUNC(persistence,shutdown);
     };
     default {
         WARNING_1("Unknown command type: %1",_type);
