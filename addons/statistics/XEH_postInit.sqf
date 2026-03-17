@@ -22,16 +22,7 @@ if (GVAR(enabled)) then {
     call FUNC(startCollection);
 };
 
-// Listen for killswitch changes broadcast from server
-// Note: addPublicVariableEventHandler does not fire on the machine that called publicVariable,
-// so the server handles the killswitch directly in the shutdown handler above
-if (!isServer) then {
-    QGVAR(killswitch) addPublicVariableEventHandler {
-        params ["", "_value"];
-        if (_value) then {
-            call FUNC(stopCollection);
-            GVAR(eventBuffer) = [];
-            INFO("Statistics killswitch activated");
-        };
-    };
-};
+// Killswitch is checked inline by addEvent and sync functions.
+// publicVariable broadcasts the value change to all machines automatically.
+// No addPublicVariableEventHandler needed — nothing to tear down or clear.
+// Turning killswitch off resumes collection without restart.
