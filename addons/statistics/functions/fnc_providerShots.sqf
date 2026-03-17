@@ -25,6 +25,9 @@ private _handleFired = {
     params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile"];
     private _startTime = diag_tickTime;
 
+    // Store launch position locally for distance tracking by combat damage provider
+    _unit setVariable [QGVAR(lastFiredPosition), getPosASL _unit];
+
     GVAR(shotCounter) = GVAR(shotCounter) + 1;
     private _shotId = format ["%1_%2", getPlayerUID _unit, GVAR(shotCounter)];
 
