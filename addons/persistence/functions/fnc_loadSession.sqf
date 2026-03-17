@@ -32,6 +32,11 @@ GVAR(apiLoadedSession) = nil;
 
 private _hash = profileNamespace getVariable [GVAR(key), []];
 TRACE_1("Loaded data",_hash);
+// TODO: When switching to API-only data source, move player data out of the root namespace.
+// Currently players are stored as individual UID-keyed variables at the namespace root
+// (e.g. "76561197993062869" → [playerData]). They should be stored under a single
+// "players" key as a hashmap of UID → data, matching the API session format.
+// This will remove the need for GVAR(playerUids) and the regex-based UID detection below.
 GVAR(dataNamespace) = [_hash] call CBA_fnc_deserializeNamespace;
 GVAR(playerUids) = [];
 {

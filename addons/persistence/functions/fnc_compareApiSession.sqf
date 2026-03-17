@@ -109,11 +109,105 @@ if ([_profileMarkers, _apiMarkers] call _isEqual) then {
 private _profileObjects = _snapshot getOrDefault ["objects", []];
 private _apiObjectsRaw = _session getOrDefault ["objects", []];
 
-// Convert API objects to indexed arrays for comparison (same logic as commitApiSession)
+// Convert API objects to indexed arrays for comparison (same logic as loadObjectData)
+private _convertCargoBack = {
+    params ["_cargo"];
+    if (_cargo isEqualType createHashMap) then {
+        [_cargo getOrDefault ["classNames", []], _cargo getOrDefault ["counts", []]]
+    } else { _cargo }
+};
+
+private _convertCargoEntryBack = {
+    params ["_entry"];
+    if !(_entry isEqualType createHashMap) exitWith { _entry };
+    private _nestedCargo = (_entry getOrDefault ["cargo", []]) apply { [_x] call _convertCargoEntryBack };
+    private _cargoInv = _entry getOrDefault ["inventory", createHashMap];
+    private _cargoInventory = if (_cargoInv isEqualType createHashMap && count _cargoInv > 0) then {
+        private _cc = {
+            params ["_c"];
+            if (_c isEqualType createHashMap) then { [_c getOrDefault ["classNames", []], _c getOrDefault ["counts", []]] } else { _c }
+        };
+        [[_cargoInv getOrDefault ["weapons", createHashMap]] call _cc, [_cargoInv getOrDefault ["magazines", createHashMap]] call _cc, [_cargoInv getOrDefault ["items", createHashMap]] call _cc, [_cargoInv getOrDefault ["backpacks", createHashMap]] call _cc]
+    } else { [] };
+    [_entry getOrDefault ["className", ""], _nestedCargo, _cargoInventory, _entry getOrDefault ["customName", ""]]
+};
+
 private _apiObjects = _apiObjectsRaw apply {
-    private _fortifyData = +(_x getOrDefault ["aceFortify", [false, west]]);
-    if (count _fortifyData > 1 && {_fortifyData#1 isEqualType ""}) then {
-        _fortifyData set [1, [_fortifyData#1] call _parseSide];
+    // turretWeapons: [{"turretPath": [...], "weapons": [...]}] → [[turretPath, weapons]]
+    private _turretWeapons = (_x getOrDefault ["turretWeapons", []]) apply {
+        if (_x isEqualType createHashMap) then {
+            [_x getOrDefault ["turretPath", []], _x getOrDefault ["weapons", []]]
+        } else { _x }
+    };
+
+    // turretMagazines: [{"className": ..., "turretPath": [...], ...}] → [[className, turretPath, ammoCount, id, ammo]]
+    private _turretMagazines = (_x getOrDefault ["turretMagazines", []]) apply {
+        if (_x isEqualType createHashMap) then {
+            [_x getOrDefault ["className", ""], _x getOrDefault ["turretPath", []], _x getOrDefault ["ammoCount", 0], _x getOrDefault ["id", 0], _x getOrDefault ["ammo", 0]]
+        } else { _x }
+    };
+
+    // pylonLoadout: [{"magazine": ..., "ammo": ...}] → [[magazine, ammo]]
+    private _pylonLoadout = (_x getOrDefault ["pylonLoadout", []]) apply {
+        if (_x isEqualType createHashMap) then {
+            [_x getOrDefault ["magazine", ""], _x getOrDefault ["ammo", 0]]
+        } else { _x }
+    };
+
+    // attached: [{"className": ..., "offset": [...]}] → [[className, offset]]
+    private _attached = (_x getOrDefault ["attached", []]) apply {
+        if (_x isEqualType createHashMap) then {
+            [_x getOrDefault ["className", ""], _x getOrDefault ["offset", [0,0,0]]]
+        } else { _x }
+    };
+
+    // inventory: {"weapons": {"classNames": [...], "counts": [...]}, ...} → [[classNames, counts], ...]
+    private _inventoryHm = _x getOrDefault ["inventory", createHashMap];
+    private _inventory = if (_inventoryHm isEqualType createHashMap && count _inventoryHm > 0) then {
+        [
+            [_inventoryHm getOrDefault ["weapons", createHashMap]] call _convertCargoBack,
+            [_inventoryHm getOrDefault ["magazines", createHashMap]] call _convertCargoBack,
+            [_inventoryHm getOrDefault ["items", createHashMap]] call _convertCargoBack,
+            [_inventoryHm getOrDefault ["backpacks", createHashMap]] call _convertCargoBack
+        ]
+    } else {
+        [[], [], [], []]
+    };
+
+    // aceCargo: recursive [{"className": ..., "cargo": [...], "inventory": {...}, "customName": ...}]
+    private _aceCargo = (_x getOrDefault ["aceCargo", []]) apply { [_x] call _convertCargoEntryBack };
+
+    // aceFortify: {"isAceFortification": ..., "side": ...} → [isAceFortification, side]
+    //             or old positional array [bool, side] — leave untouched
+    private _aceFortifyRaw = _x getOrDefault ["aceFortify", createHashMap];
+    private _aceFortify = if (_aceFortifyRaw isEqualType createHashMap && count _aceFortifyRaw > 0) then {
+        private _sideStr = _aceFortifyRaw getOrDefault ["side", "WEST"];
+        private _side = if (_sideStr isEqualType "") then { [_sideStr] call _parseSide } else { _sideStr };
+        [_aceFortifyRaw getOrDefault ["isAceFortification", false], _side]
+    } else {
+        if (_aceFortifyRaw isEqualType [] && count _aceFortifyRaw > 1 && {_aceFortifyRaw#1 isEqualType ""}) then {
+            private _fortifyData = +_aceFortifyRaw;
+            _fortifyData set [1, [_fortifyData#1] call _parseSide];
+            _fortifyData
+        } else {
+            if (_aceFortifyRaw isEqualType []) then { _aceFortifyRaw } else { [false, west] }
+        }
+    };
+
+    // aceMedical: {"medicClass": ..., "medicalVehicle": ..., "medicalFacility": ...} → [medicClass, medicalVehicle, medicalFacility]
+    private _aceMedHm = _x getOrDefault ["aceMedical", createHashMap];
+    private _aceMedical = if (_aceMedHm isEqualType createHashMap && count _aceMedHm > 0) then {
+        [_aceMedHm getOrDefault ["medicClass", 0], _aceMedHm getOrDefault ["medicalVehicle", false], _aceMedHm getOrDefault ["medicalFacility", false]]
+    } else {
+        if (_aceMedHm isEqualType []) then { _aceMedHm } else { [0, false, false] }
+    };
+
+    // aceRepair: {"repairVehicle": ..., "repairFacility": ...} → [repairVehicle, repairFacility]
+    private _aceRepHm = _x getOrDefault ["aceRepair", createHashMap];
+    private _aceRepair = if (_aceRepHm isEqualType createHashMap && count _aceRepHm > 0) then {
+        [_aceRepHm getOrDefault ["repairVehicle", 0], _aceRepHm getOrDefault ["repairFacility", 0]]
+    } else {
+        if (_aceRepHm isEqualType []) then { _aceRepHm } else { [0, 0] }
     };
 
     [
@@ -123,17 +217,17 @@ private _apiObjects = _apiObjectsRaw apply {
         _x getOrDefault ["vectorDirUp", [[0, 1, 0], [0, 0, 1]]],
         _x getOrDefault ["damage", 0],
         _x getOrDefault ["fuel", 0],
-        _x getOrDefault ["turretWeapons", []],
-        _x getOrDefault ["turretMagazines", []],
-        _x getOrDefault ["pylonLoadout", []],
+        _turretWeapons,
+        _turretMagazines,
+        _pylonLoadout,
         _x getOrDefault ["logistics", [0, 0, 0]],
-        _x getOrDefault ["attached", []],
+        _attached,
         _x getOrDefault ["rackChannels", []],
-        _x getOrDefault ["aceCargo", []],
-        _x getOrDefault ["inventory", [[], [], [], []]],
-        _fortifyData,
-        _x getOrDefault ["aceMedical", [0, false, false]],
-        _x getOrDefault ["aceRepair", [0, 0]],
+        _aceCargo,
+        _inventory,
+        _aceFortify,
+        _aceMedical,
+        _aceRepair,
         _x getOrDefault ["customName", ""]
     ]
 };
@@ -225,18 +319,108 @@ INFO_2("Players: profile count=%1, api count=%2",count _profilePlayerUids,count 
     private _apiPlayer = if (count _apiPlayerRaw == 0) then {
         []
     } else {
+        // vehicleState: {"vehicleId": ..., "role": ..., "index": ...} → [vehicleId, role, index]
+        private _vsHm = _apiPlayerRaw getOrDefault ["vehicleState", createHashMap];
+        private _vehicleState = if (_vsHm isEqualType createHashMap && count _vsHm > 0) then {
+            [_vsHm getOrDefault ["vehicleId", ""], _vsHm getOrDefault ["role", ""], _vsHm getOrDefault ["index", -1]]
+        } else {
+            if (_vsHm isEqualType []) then { _vsHm } else { ["", "", -1] }
+        };
+
+        // loadout — convert hashmap back to setUnitLoadout positional array (same as loadRedeployData)
+        private _convertWeaponSlotBack = {
+            params ["_slot"];
+            if (count _slot == 0) exitWith { [] };
+            if !(_slot isEqualType createHashMap) exitWith { _slot };
+            private _pm = _slot getOrDefault ["primaryMagazine", createHashMap];
+            private _sm = _slot getOrDefault ["secondaryMagazine", createHashMap];
+            [
+                _slot getOrDefault ["weapon", ""],
+                _slot getOrDefault ["muzzle", ""],
+                _slot getOrDefault ["pointer", ""],
+                _slot getOrDefault ["optic", ""],
+                if (_pm isEqualType createHashMap && count _pm > 0) then { [_pm getOrDefault ["className", ""], _pm getOrDefault ["ammo", 0]] } else { [] },
+                if (_sm isEqualType createHashMap && count _sm > 0) then { [_sm getOrDefault ["className", ""], _sm getOrDefault ["ammo", 0]] } else { [] },
+                _slot getOrDefault ["bipod", ""]
+            ]
+        };
+
+        private _convertContainerSlotBack = {
+            params ["_slot"];
+            if (count _slot == 0) exitWith { [] };
+            if !(_slot isEqualType createHashMap) exitWith { _slot };
+            [
+                _slot getOrDefault ["className", ""],
+                (_slot getOrDefault ["items", []]) apply {
+                    if (_x isEqualType createHashMap) then {
+                        private _base = [_x getOrDefault ["className", ""], _x getOrDefault ["count", 0]];
+                        private _ammo = _x getOrDefault ["ammo", nil];
+                        if (!isNil "_ammo") then { _base pushBack _ammo };
+                        _base
+                    } else { _x }
+                }
+            ]
+        };
+
+        private _convertLinkedItemsBack = {
+            params ["_items"];
+            if (count _items == 0) exitWith { ["","","","","",""] };
+            if !(_items isEqualType createHashMap) exitWith { _items };
+            [
+                _items getOrDefault ["map", ""],
+                _items getOrDefault ["gps", ""],
+                _items getOrDefault ["radio", ""],
+                _items getOrDefault ["compass", ""],
+                _items getOrDefault ["watch", ""],
+                _items getOrDefault ["nvg", ""]
+            ]
+        };
+
+        private _loadoutHm = _apiPlayerRaw getOrDefault ["loadout", createHashMap];
+        private _loadout = if (_loadoutHm isEqualType createHashMap && count _loadoutHm > 0) then {
+            [
+                [_loadoutHm getOrDefault ["primaryWeapon", createHashMap]] call _convertWeaponSlotBack,
+                [_loadoutHm getOrDefault ["secondaryWeapon", createHashMap]] call _convertWeaponSlotBack,
+                [_loadoutHm getOrDefault ["handgun", createHashMap]] call _convertWeaponSlotBack,
+                [_loadoutHm getOrDefault ["uniform", createHashMap]] call _convertContainerSlotBack,
+                [_loadoutHm getOrDefault ["vest", createHashMap]] call _convertContainerSlotBack,
+                [_loadoutHm getOrDefault ["backpack", createHashMap]] call _convertContainerSlotBack,
+                _loadoutHm getOrDefault ["headgear", ""],
+                _loadoutHm getOrDefault ["facewear", ""],
+                [_loadoutHm getOrDefault ["binoculars", createHashMap]] call _convertWeaponSlotBack,
+                [_loadoutHm getOrDefault ["linkedItems", createHashMap]] call _convertLinkedItemsBack
+            ]
+        } else {
+            if (_loadoutHm isEqualType []) then { _loadoutHm } else { [] }
+        };
+
+        // radios: [{"type": ..., "channel": ..., "volume": ..., "spatial": ..., "pttIndex": ...}] → [[type, channel, volume, spatial, pttIndex]]
+        private _radios = (_apiPlayerRaw getOrDefault ["radios", []]) apply {
+            if (_x isEqualType createHashMap) then {
+                [_x getOrDefault ["type", ""], _x getOrDefault ["channel", 0], _x getOrDefault ["volume", 1], _x getOrDefault ["spatial", "CENTER"], _x getOrDefault ["pttIndex", 0]]
+            } else { _x }
+        };
+
+        // diveState: {"isDiving": ...} → [isDiving]
+        private _dsHm = _apiPlayerRaw getOrDefault ["diveState", createHashMap];
+        private _diveState = if (_dsHm isEqualType createHashMap && count _dsHm > 0) then {
+            [_dsHm getOrDefault ["isDiving", false]]
+        } else {
+            if (_dsHm isEqualType []) then { _dsHm } else { [false] }
+        };
+
         [
             _apiPlayerRaw getOrDefault ["position", [0, 0, 0]],
-            _apiPlayerRaw getOrDefault ["vehicleState", ["", "", -1]],
+            _vehicleState,
             _apiPlayerRaw getOrDefault ["direction", 0],
             _apiPlayerRaw getOrDefault ["animation", ""],
-            _apiPlayerRaw getOrDefault ["loadout", []],
+            _loadout,
             _apiPlayerRaw getOrDefault ["damage", 0],
             _apiPlayerRaw getOrDefault ["aceMedical", createHashMap],
             _apiPlayerRaw getOrDefault ["earplugs", false],
             _apiPlayerRaw getOrDefault ["attachedItems", []],
-            _apiPlayerRaw getOrDefault ["radios", []],
-            _apiPlayerRaw getOrDefault ["diveState", [false]]
+            _radios,
+            _diveState
         ]
     };
 
