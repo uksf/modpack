@@ -22,7 +22,3 @@ if (GVAR(enabled)) then {
     call FUNC(startCollection);
 };
 
-// Killswitch is checked inline by addEvent and sync functions.
-// publicVariable broadcasts the value change to all machines automatically.
-// No addPublicVariableEventHandler needed — nothing to tear down or clear.
-// Turning killswitch off resumes collection without restart.

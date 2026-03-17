@@ -29,7 +29,7 @@ if (GVAR(eventBuffer) isNotEqualTo []) then {
 
 if (GVAR(serverBuffer) isEqualTo []) exitWith {};
 
-private _buffer = +GVAR(serverBuffer);
+private _buffer = GVAR(serverBuffer);
 GVAR(serverBuffer) = [];
 
 [

@@ -27,7 +27,7 @@
     (_this#0) params ["_target", "_shooter", "_projectile"];
     private _startTime = diag_tickTime;
 
-    if (_shooter != player) exitWith {};
+    if (_shooter isNotEqualTo player) exitWith {};
     if (_target isEqualTo _shooter) exitWith {};
     if (side group _target isEqualTo side group _shooter) exitWith {};
     if (side group _target isEqualTo civilian) exitWith {};
