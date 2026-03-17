@@ -21,7 +21,7 @@ if (GVAR(accumulatedDistance) > 0) then {
     GVAR(accumulatedDistance) = 0;
 };
 
-if (GVAR(accumulatedFuel) > 0) then {
+if (GVAR(accumulatedFuel) > 0 && {!isNull GVAR(lastFuelVehicle)}) then {
     [createHashMapFromArray [
         ["type", "fuelConsumed"],
         ["amount", GVAR(accumulatedFuel)],

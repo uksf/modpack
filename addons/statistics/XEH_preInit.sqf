@@ -7,7 +7,7 @@ ADDON = false;
 // Provider registry: key -> [setupFunction, locality]
 GVAR(providers) = createHashMap;
 
-// Client-side event buffer (array of event hashmaps)
+// Event buffer (used on all machines — clients, HCs, and server)
 GVAR(eventBuffer) = [];
 GVAR(clientSyncPFH) = -1;
 
@@ -29,8 +29,8 @@ GVAR(lastFuelLevel) = -1;
 GVAR(lastFuelVehicle) = objNull;
 GVAR(accumulatedFuel) = 0;
 
-// Global killswitch — initialised on all machines so client checks don't error
-// Server broadcasts changes via publicVariable; clients listen in XEH_postInit
+// Global killswitch — initialised on all machines so inline checks don't error
+// Server broadcasts changes via publicVariable
 GVAR(killswitch) = false;
 
 // Guard against double-start (works on all machines including HC)

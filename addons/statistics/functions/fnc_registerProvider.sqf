@@ -10,7 +10,7 @@
     Parameters:
         0: Provider key <STRING>
         1: Setup function <CODE> — called when collection starts, installs event handlers
-        2: Locality <STRING> — "client" or "server"
+        2: Locality <STRING> — "client", "server", or "all"
 
     Return Value:
         None
