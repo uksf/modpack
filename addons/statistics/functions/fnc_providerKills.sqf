@@ -6,10 +6,10 @@
     Description:
         Kills provider setup. Installs an EntityKilled mission event handler on the server
         to capture every entity death. Reads the damage ledger to identify all players
-        who contributed damage (assists) and emits a single kill event with full attribution.
+        who contributed damage (assists) and emits a single kill event with attribution.
 
-        Registered after ACE medical's handleKilledMission so killer/instigator info
-        is corrected by ACE before we read it.
+        Weapon and distance data is NOT included here — the API correlates kills with
+        hit events from the client's projectile tracking for accurate weapon/distance.
 
     Parameters:
         None
@@ -27,16 +27,16 @@ addMissionEventHandler ["EntityKilled", {
     // Use instigator if available (e.g. gunner in vehicle), fall back to killer
     private _attacker = if (!isNull _instigator) then {_instigator} else {_killer};
 
-    // Determine victim type
-    private _victimType = "unknown";
+    // Determine target type
+    private _targetType = "unknown";
     if (_victim isKindOf "CAManBase") then {
-        _victimType = "infantry";
+        _targetType = "infantry";
     } else {
         if (_victim isKindOf "LandVehicle" || {_victim isKindOf "Air"} || {_victim isKindOf "Ship"}) then {
-            _victimType = "vehicle";
+            _targetType = "vehicle";
         } else {
             if (_victim isKindOf "StaticWeapon") then {
-                _victimType = "static";
+                _targetType = "static";
             };
         };
     };
@@ -45,20 +45,14 @@ addMissionEventHandler ["EntityKilled", {
     private _targetNetId = netId _victim;
     private _damageHistory = GVAR(damageLedger) getOrDefault [_targetNetId, []];
 
-    // Build assists and find killer's weapon from ledger
+    // Build assists: aggregate damage per player UID, excluding the killer
     private _killerUid = if (isPlayer _attacker) then {getPlayerUID _attacker} else {""};
-    private _killerWeapon = "";
     private _assistMap = createHashMap;
     {
         private _uid = _x get "uid";
-        if (_uid isEqualTo _killerUid) then {
-            // Track the most recent weapon used by the killer
-            _killerWeapon = _x getOrDefault ["weapon", ""];
-        } else {
-            if (_uid isNotEqualTo "") then {
-                private _existing = _assistMap getOrDefault [_uid, 0];
-                _assistMap set [_uid, _existing + (_x get "damage")];
-            };
+        if (_uid isNotEqualTo _killerUid && {_uid isNotEqualTo ""}) then {
+            private _existing = _assistMap getOrDefault [_uid, 0];
+            _assistMap set [_uid, _existing + (_x get "damage")];
         };
     } forEach _damageHistory;
 
@@ -84,16 +78,12 @@ addMissionEventHandler ["EntityKilled", {
         ["kills", _startTime] call FUNC(addProviderTiming);
     };
 
-    private _distance = if (isNull _attacker) then {0} else {_attacker distance _victim};
-
     private _event = createHashMapFromArray [
         ["type", "kill"],
         ["killerUid", _killerUid],
-        ["weapon", _killerWeapon],
         ["targetClassname", typeOf _victim],
         ["targetSide", str (side group _victim)],
-        ["targetType", _victimType],
-        ["distance", round _distance],
+        ["targetType", _targetType],
         ["assists", _assists]
     ];
 

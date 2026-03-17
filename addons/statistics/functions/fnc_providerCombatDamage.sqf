@@ -10,17 +10,12 @@
         Infantry: listens to ace_medical_woundReceived (fires on unit-local machine)
         Vehicles: listens to ace_vehicle_damage_damageApplied (fires on vehicle-local machine)
 
-        Only records damage caused by players (isPlayer check on instigator).
-        Uses ammo classname (infantry) or source vehicle type (vehicles) for weapon
-        attribution instead of currentWeapon, which is unreliable across machines.
+        Only records data available on the local machine — instigator UID and damage
+        amount for the damage ledger. Weapon and distance data comes from the client's
+        hit events (projectile HitPart), not from here.
 
-        Distance is NOT computed here — the instigator's fired position may not be
-        available on this machine. Instead, the server computes distance using the
-        fired position map (updated from shot events) when processing the damage
-        into the ledger.
-
-        Events are buffered locally and flushed to the server on the sync tick,
-        same as all other providers. No per-event network traffic.
+        Also emits damageReceived events when the local player is wounded (body parts
+        hit), consolidating both concerns into a single woundReceived handler.
 
     Parameters:
         None
@@ -33,8 +28,6 @@
 */
 
 // Infantry damage — fires on the machine where the wounded unit is local
-// Also emits damageReceived events when the local player is wounded, consolidating
-// both providers into a single woundReceived handler
 ["ace_medical_woundReceived", {
     if (GVAR(killswitch)) exitWith {};
     params ["_unit", "_allDamages", "_instigator", "_ammoType"];
@@ -58,7 +51,7 @@
         };
     };
 
-    // Emit combatDamage for player-inflicted damage (for damage ledger)
+    // Emit combatDamage for player-inflicted damage (for damage ledger / assists)
     if (isNull _instigator || {!isPlayer _instigator}) exitWith {};
     if (_unit isEqualTo _instigator) exitWith {};
 
@@ -72,11 +65,8 @@
         ["targetNetId", netId _unit],
         ["targetClassname", typeOf _unit],
         ["targetType", "infantry"],
-        ["targetPosition", getPosASL _unit],
         ["uid", getPlayerUID _instigator],
-        ["damage", _totalDamage],
-        ["weapon", _ammoType],
-        ["hitPoint", "body"]
+        ["damage", _totalDamage]
     ]] call FUNC(addEvent);
 }] call CBA_fnc_addEventHandler;
 
@@ -91,18 +81,12 @@
     private _damageDelta = _damage - _currentDamage;
     if (_damageDelta <= 0) exitWith {};
 
-    // Use source vehicle/weapon type for attribution — more reliable than currentWeapon across machines
-    private _weapon = if (!isNull _source) then {typeOf _source} else {""};
-
     [createHashMapFromArray [
         ["type", "combatDamage"],
         ["targetNetId", netId _vehicle],
         ["targetClassname", typeOf _vehicle],
         ["targetType", "vehicle"],
-        ["targetPosition", getPosASL _vehicle],
         ["uid", getPlayerUID _instigator],
-        ["damage", _damageDelta],
-        ["weapon", _weapon],
-        ["hitPoint", _hitPoint]
+        ["damage", _damageDelta]
     ]] call FUNC(addEvent);
 }] call CBA_fnc_addEventHandler;
