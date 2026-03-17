@@ -27,7 +27,7 @@
 GVAR(shotCounter) = 0;
 
 // Determines target type from an entity object
-private _getTargetType = {
+GVAR(getTargetType) = {
     params ["_entity"];
     if (_entity isKindOf "CAManBase") exitWith {"infantry"};
     if (_entity isKindOf "LandVehicle" || {_entity isKindOf "Air"} || {_entity isKindOf "Ship"}) exitWith {"vehicle"};
@@ -36,7 +36,7 @@ private _getTargetType = {
 };
 
 // Determines body part from hit components (for infantry targets)
-private _getBodyPart = {
+GVAR(getBodyPart) = {
     params ["_components"];
     private _componentsLower = _components apply {toLower _x};
     if (_componentsLower findIf {_x find "head" != -1 || {_x find "face" != -1} || {_x find "neck" != -1}} != -1) exitWith {"head"};
@@ -46,6 +46,7 @@ private _getBodyPart = {
 };
 
 private _handleFired = {
+    if (GVAR(killswitch)) exitWith {};
     params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile"];
     private _startTime = diag_tickTime;
 
@@ -60,6 +61,7 @@ private _handleFired = {
 
         // HitPart (Projectile) — fires on this client for direct hits on any surface
         _projectile addEventHandler ["HitPart", {
+            if (GVAR(killswitch)) exitWith {};
             params ["_projectile", "_hitEntity", "_projectileOwner", "_position", "_velocity", "_normal", "_components", "_radius", "_surfaceType"];
 
             if (isNull _hitEntity) exitWith {};
@@ -102,6 +104,7 @@ private _handleFired = {
 
         // HitExplosion — fires on this client for splash damage
         _projectile addEventHandler ["HitExplosion", {
+            if (GVAR(killswitch)) exitWith {};
             params ["_projectile", "_hitEntity", "_projectileOwner", "_hitSelections"];
 
             if (isNull _hitEntity) exitWith {};

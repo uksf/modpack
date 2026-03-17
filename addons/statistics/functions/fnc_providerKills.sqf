@@ -82,7 +82,7 @@ addMissionEventHandler ["EntityKilled", {
         ["type", "kill"],
         ["killerUid", _killerUid],
         ["targetClassname", typeOf _victim],
-        ["targetSide", str (side group _victim)],
+        ["targetSide", str ([west, east, resistance, civilian] select (getNumber (configOf _victim >> "side")))],
         ["targetType", _targetType],
         ["assists", _assists]
     ];

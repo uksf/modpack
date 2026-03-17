@@ -17,7 +17,7 @@ GVAR(frameTimings) = createHashMap;
 GVAR(frameOverhead) = 0;
 GVAR(performancePFH) = -1;
 
-// Explosives deduplication: object reference -> classname
+// Explosives deduplication: netId -> classname
 // Entries removed on defuse; remaining entries emitted at sync
 GVAR(placedExplosives) = createHashMap;
 
