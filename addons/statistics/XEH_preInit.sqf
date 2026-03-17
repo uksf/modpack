@@ -44,6 +44,10 @@ if (isServer) then {
     // Usage: uksf_statistics_killswitch = true; publicVariable "uksf_statistics_killswitch";
     publicVariable QGVAR(killswitch);
 
+    // Last known launch position per player UID — updated from shot events
+    // Used by damage ledger handler for distance calculation
+    GVAR(launchPositions) = createHashMap;
+
     // Damage attribution ledger: netId -> array of damage entries
     // Each entry: {uid, damage, weapon, hitPoint, distance2D, distance3D, time}
     GVAR(damageLedger) = createHashMap;

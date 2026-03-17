@@ -6,9 +6,9 @@
     Description:
         Shots provider setup. Listens to ACE fired events to capture every round
         fired by the local player, both on foot and in vehicles.
-        Records weapon, ammo classname, magazine, and fire mode.
-        Tags each projectile with a unique shotId so the hits provider can
-        correlate hits to shots and deduplicate.
+        Records weapon, ammo classname, magazine, fire mode, and launch position.
+        Tags each projectile with a unique shotId and weapon so the hits provider
+        can correlate hits to shots.
 
     Parameters:
         None
@@ -25,9 +25,6 @@ private _handleFired = {
     params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile"];
     private _startTime = diag_tickTime;
 
-    // Store launch position locally for distance tracking by combat damage provider
-    _unit setVariable [QGVAR(lastFiredPosition), getPosASL _unit];
-
     GVAR(shotCounter) = GVAR(shotCounter) + 1;
     private _shotId = format ["%1_%2", getPlayerUID _unit, GVAR(shotCounter)];
 
@@ -42,7 +39,8 @@ private _handleFired = {
         ["weapon", _weapon],
         ["ammo", _ammo],
         ["magazine", _magazine],
-        ["fireMode", _mode]
+        ["fireMode", _mode],
+        ["launchPosition", getPosASL _unit]
     ]] call FUNC(addEvent);
 
     ["shots", _startTime] call FUNC(addProviderTiming);

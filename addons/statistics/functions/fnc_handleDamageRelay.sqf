@@ -9,9 +9,11 @@
         Records damage attribution keyed by target netId for later correlation
         with EntityKilled events.
 
+        Computes 2D and 3D distances on the server using the launch position map
+        (updated from shot events) and the target position from the damage event.
+
     Parameters:
-        0: Event hashmap <HASHMAP> — must contain targetNetId, targetClassname,
-           targetType, uid, damage, weapon, hitPoint, distance2D, distance3D
+        0: Event hashmap <HASHMAP>
 
     Return Value:
         None
@@ -29,13 +31,23 @@ if (isNil "_targetNetId" || {_targetNetId isEqualTo "" || {_targetNetId isEqualT
 if (isNil "_instigatorUid" || {_instigatorUid isEqualTo ""}) exitWith {};
 if (isNil "_damageDelta" || {_damageDelta <= 0}) exitWith {};
 
+// Compute distances using server-side launch position map
+private _targetPosition = _event getOrDefault ["targetPosition", []];
+private _launchPosition = GVAR(launchPositions) getOrDefault [_instigatorUid, []];
+private _distance2D = 0;
+private _distance3D = 0;
+if (_launchPosition isNotEqualTo [] && {_targetPosition isNotEqualTo []}) then {
+    _distance2D = round (_launchPosition distance2D _targetPosition);
+    _distance3D = round (_launchPosition vectorDistance _targetPosition);
+};
+
 private _entry = createHashMapFromArray [
     ["uid", _instigatorUid],
     ["damage", _damageDelta],
     ["weapon", _event getOrDefault ["weapon", ""]],
     ["hitPoint", _event getOrDefault ["hitPoint", ""]],
-    ["distance2D", _event getOrDefault ["distance2D", 0]],
-    ["distance3D", _event getOrDefault ["distance3D", 0]],
+    ["distance2D", _distance2D],
+    ["distance3D", _distance3D],
     ["time", CBA_missionTime]
 ];
 
