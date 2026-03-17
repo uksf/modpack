@@ -7,8 +7,8 @@
         Shots provider setup. Listens to ACE fired events to capture every round
         fired by the local player, both on foot and in vehicles.
         Records weapon, ammo classname, magazine, and fire mode.
-        Also fires a local event so other providers (e.g. hits) can attach
-        projectile-level event handlers.
+        Tags each projectile with a unique shotId so the hits provider can
+        correlate hits to shots and deduplicate.
 
     Parameters:
         None
@@ -40,8 +40,6 @@ private _handleFired = {
         ["magazine", _magazine],
         ["fireMode", _mode]
     ]] call FUNC(addEvent);
-
-    [QGVAR(shotFired), [_unit, _weapon, _projectile]] call CBA_fnc_localEvent;
 
     ["shots", _startTime] call FUNC(addProviderTiming);
 };

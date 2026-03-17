@@ -29,6 +29,7 @@ if (GVAR(eventBuffer) isEqualTo []) exitWith {};
 private _uid = getPlayerUID player;
 private _events = GVAR(eventBuffer);
 GVAR(eventBuffer) = [];
+GVAR(processedShotIds) = createHashMap;
 
 // Inject uid into each event
 {_x set ["uid", _uid]} forEach _events;
