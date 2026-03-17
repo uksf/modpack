@@ -330,7 +330,7 @@ INFO_1("API persistence save: %1 characters",_jsonLength);
 private _chunkSize = 4000;
 private _totalChunks = ceil (_jsonLength / _chunkSize);
 if (_totalChunks < 1) then { _totalChunks = 1 };
-private _saveId = format ["%1_%2", GVAR(key), diag_tickTime];
+private _saveId = format ["%1_%2", GVAR(key), call CBA_fnc_createUUID];
 
 for "_i" from 0 to (_totalChunks - 1) do {
     private _start = _i * _chunkSize;

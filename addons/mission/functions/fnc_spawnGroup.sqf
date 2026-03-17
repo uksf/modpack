@@ -22,7 +22,7 @@
 params ["_id", "_position", "_factionName"];
 
 private _randomSpawn = [_position] call CBA_fnc_randPosArea;
-if (({_x distance2D _randomSpawn < PLAYERSAFEDISTANCE} count (call CBA_fnc_players)) > 0) exitWith {};
+if (({_x distance2D _randomSpawn < PLAYERSAFEDISTANCE} count (ALL_PLAYERS)) > 0) exitWith {};
 
 missionNamespace setVariable [format [QGVAR(isSpawning_%1), _id], true, true];
 
