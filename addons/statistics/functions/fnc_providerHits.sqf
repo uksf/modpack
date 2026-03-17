@@ -29,16 +29,20 @@
 
     if (_shooter isNotEqualTo player) exitWith {};
     if (_target isEqualTo _shooter) exitWith {};
-    if (side group _target isEqualTo side group _shooter) exitWith {};
-    if (side group _target isEqualTo civilian) exitWith {};
 
-    private _shotId = if (!isNull _projectile) then {
-        _projectile getVariable [QGVAR(shotId), ""]
-    } else {
-        ""
-    };
+    // Use config side to handle ACE unconscious group-switching correctly
+    private _targetSide = getNumber (configOf _target >> "side");
+    private _shooterSide = getNumber (configOf _shooter >> "side");
+    if (_targetSide isEqualTo _shooterSide) exitWith {};
+    if (_targetSide isEqualTo 3) exitWith {}; // civilian
 
+    // Read shot data from projectile (set by shots provider at time of firing)
+    private _shotId = "";
     private _weapon = currentWeapon _shooter;
+    if (!isNull _projectile) then {
+        _shotId = _projectile getVariable [QGVAR(shotId), ""];
+        _weapon = _projectile getVariable [QGVAR(weapon), _weapon];
+    };
     private _distance = _shooter distance _target;
 
     // Scan all hit selections across sub-arrays to determine the best body part

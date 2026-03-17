@@ -45,14 +45,20 @@ addMissionEventHandler ["EntityKilled", {
     private _targetNetId = netId _victim;
     private _damageHistory = GVAR(damageLedger) getOrDefault [_targetNetId, []];
 
-    // Build assists: aggregate damage per player UID, excluding the killer
+    // Build assists and find killer's weapon from ledger
     private _killerUid = if (isPlayer _attacker) then {getPlayerUID _attacker} else {""};
+    private _killerWeapon = "";
     private _assistMap = createHashMap;
     {
         private _uid = _x get "uid";
-        if (_uid != _killerUid && {_uid != ""}) then {
-            private _existing = _assistMap getOrDefault [_uid, 0];
-            _assistMap set [_uid, _existing + (_x get "damage")];
+        if (_uid isEqualTo _killerUid) then {
+            // Track the most recent weapon used by the killer
+            _killerWeapon = _x getOrDefault ["weapon", ""];
+        } else {
+            if (_uid isNotEqualTo "") then {
+                private _existing = _assistMap getOrDefault [_uid, 0];
+                _assistMap set [_uid, _existing + (_x get "damage")];
+            };
         };
     } forEach _damageHistory;
 
@@ -74,17 +80,16 @@ addMissionEventHandler ["EntityKilled", {
     GVAR(damageLedgerMeta) deleteAt _targetNetId;
 
     // Only emit event if a player was involved (as killer or assist)
-    if (_killerUid == "" && {count _assists == 0}) exitWith {
+    if (_killerUid isEqualTo "" && {_assists isEqualTo []}) exitWith {
         ["kills", _startTime] call FUNC(addProviderTiming);
     };
 
     private _distance = if (isNull _attacker) then {0} else {_attacker distance _victim};
-    private _weapon = if (isPlayer _attacker) then {currentWeapon _attacker} else {""};
 
     private _event = createHashMapFromArray [
         ["type", "kill"],
         ["killerUid", _killerUid],
-        ["weapon", _weapon],
+        ["weapon", _killerWeapon],
         ["targetClassname", typeOf _victim],
         ["targetSide", str (side group _victim)],
         ["targetType", _victimType],

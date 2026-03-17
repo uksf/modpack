@@ -33,6 +33,7 @@ private _handleFired = {
 
     if (!isNull _projectile) then {
         _projectile setVariable [QGVAR(shotId), _shotId];
+        _projectile setVariable [QGVAR(weapon), _weapon];
     };
 
     [createHashMapFromArray [

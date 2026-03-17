@@ -25,8 +25,8 @@ private _targetNetId = _event get "targetNetId";
 private _instigatorUid = _event get "uid";
 private _damageDelta = _event get "damage";
 
-if (isNil "_targetNetId" || {_targetNetId == "" || {_targetNetId == "0:0"}}) exitWith {};
-if (isNil "_instigatorUid" || {_instigatorUid == ""}) exitWith {};
+if (isNil "_targetNetId" || {_targetNetId isEqualTo "" || {_targetNetId isEqualTo "0:0"}}) exitWith {};
+if (isNil "_instigatorUid" || {_instigatorUid isEqualTo ""}) exitWith {};
 if (isNil "_damageDelta" || {_damageDelta <= 0}) exitWith {};
 
 private _entry = createHashMapFromArray [

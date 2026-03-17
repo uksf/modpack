@@ -20,7 +20,7 @@
 */
 params [["_key", "", [""]], ["_setupFunction", {}, [{}]], ["_locality", "client", [""]]];
 
-if (_key == "") exitWith {
+if (_key isEqualTo "") exitWith {
     ERROR("registerProvider called with empty key");
 };
 
