@@ -24,8 +24,8 @@ if (GVAR(enabled)) then {
 
 // Listen for killswitch changes broadcast from server
 // Note: addPublicVariableEventHandler does not fire on the machine that called publicVariable,
-// so the server must also handle the killswitch via the EachFrame/variable check approach below
-if (hasInterface) then {
+// so the server handles the killswitch directly in the shutdown handler above
+if (!isServer) then {
     QGVAR(killswitch) addPublicVariableEventHandler {
         params ["", "_value"];
         if (_value) then {

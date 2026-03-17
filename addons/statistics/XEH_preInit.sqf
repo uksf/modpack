@@ -61,14 +61,15 @@ if (isServer) then {
             };
         } forEach (keys GVAR(damageLedger));
         {
-            private _damageHistory = GVAR(damageLedger) get _x;
-            private _meta = GVAR(damageLedgerMeta) getOrDefault [_x, createHashMap];
+            private _netId = _x;
+            private _damageHistory = GVAR(damageLedger) get _netId;
+            private _meta = GVAR(damageLedgerMeta) getOrDefault [_netId, createHashMap];
             // Emit each contributor's total damage as a standalone event
             private _contributorMap = createHashMap;
             {
-                private _uid = _x get "uid";
-                private _existing = _contributorMap getOrDefault [_uid, 0];
-                _contributorMap set [_uid, _existing + (_x get "damage")];
+                private _contributorUid = _x get "uid";
+                private _existing = _contributorMap getOrDefault [_contributorUid, 0];
+                _contributorMap set [_contributorUid, _existing + (_x get "damage")];
             } forEach _damageHistory;
             {
                 GVAR(serverBuffer) pushBack createHashMapFromArray [
@@ -79,8 +80,8 @@ if (isServer) then {
                     ["targetType", _meta getOrDefault ["targetType", ""]]
                 ];
             } forEach _contributorMap;
-            GVAR(damageLedger) deleteAt _x;
-            GVAR(damageLedgerMeta) deleteAt _x;
+            GVAR(damageLedger) deleteAt _netId;
+            GVAR(damageLedgerMeta) deleteAt _netId;
         } forEach _keysToRemove;
     }, 120, []] call CBA_fnc_addPerFrameHandler;
 
