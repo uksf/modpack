@@ -1,5 +1,8 @@
 #include "script_component.hpp"
 
+// Combat damage runs on all machines — damage events fire on the entity-local machine
+["combatDamage", FUNC(providerCombatDamage), "all"] call FUNC(registerProvider);
+
 // Register providers
 if (hasInterface) then {
     ["shots", FUNC(providerShots), "client"] call FUNC(registerProvider);

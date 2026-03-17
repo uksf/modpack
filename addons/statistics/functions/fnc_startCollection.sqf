@@ -16,8 +16,8 @@
     Example:
         call uksf_statistics_fnc_startCollection
 */
-// Guard against double-start
-if (GVAR(clientSyncPFH) != -1 || {isServer && {GVAR(serverSyncPFH) != -1}}) exitWith {
+// Guard against double-start (works on all machines including HC)
+if (GVAR(collectionStarted)) exitWith {
     WARNING("Statistics collection already started");
 };
 
@@ -37,6 +37,9 @@ private _isClient = hasInterface;
                 call _setupFunction;
             };
         };
+        case "all": {
+            call _setupFunction;
+        };
     };
 } forEach GVAR(providers);
 
@@ -54,6 +57,13 @@ if (_isClient) then {
     }, 0, []] call CBA_fnc_addPerFrameHandler;
 };
 
+// Start HC sync PFH (every 30 seconds) — same as client sync but for headless clients
+if (!_isServer && !_isClient) then {
+    GVAR(clientSyncPFH) = [{
+        call FUNC(clientSync);
+    }, 30, []] call CBA_fnc_addPerFrameHandler;
+};
+
 // Start server sync PFH (every 60 seconds)
 if (_isServer) then {
     GVAR(serverSyncPFH) = [{
@@ -61,4 +71,5 @@ if (_isServer) then {
     }, 60, []] call CBA_fnc_addPerFrameHandler;
 };
 
+GVAR(collectionStarted) = true;
 INFO("Statistics collection started");

@@ -22,4 +22,11 @@ params [["_events", [], [[]]]];
 
 if (_events isEqualTo []) exitWith {};
 
-GVAR(serverBuffer) append _events;
+// Route combat damage events to the damage ledger, everything else to the server buffer
+{
+    if (_x getOrDefault ["type", ""] == "combatDamage") then {
+        [_x] call FUNC(handleDamageRelay);
+    } else {
+        GVAR(serverBuffer) pushBack _x;
+    };
+} forEach _events;

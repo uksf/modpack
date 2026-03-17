@@ -18,19 +18,26 @@
 */
 if (GVAR(killswitch)) exitWith {};
 
-// Flush confirmed explosive placements into the event buffer before sync
-call FUNC(explosivesSync);
-
-// Flush accumulated distance and fuel into the event buffer before sync
-call FUNC(samplerSync);
+// Flush client-only providers before sync (not applicable on HC)
+if (hasInterface) then {
+    call FUNC(explosivesSync);
+    call FUNC(samplerSync);
+};
 
 if (GVAR(eventBuffer) isEqualTo []) exitWith {};
 
-private _uid = getPlayerUID player;
 private _events = GVAR(eventBuffer);
 GVAR(eventBuffer) = [];
 
-// Inject uid into each event
-{_x set ["uid", _uid]} forEach _events;
+// Inject uid into events that don't already have one (client providers)
+// HC-buffered events (combat damage) already have uid set by the provider
+if (hasInterface) then {
+    private _uid = getPlayerUID player;
+    {
+        if !("uid" in _x) then {
+            _x set ["uid", _uid];
+        };
+    } forEach _events;
+};
 
 [QGVAR(clientReport), [_events]] call CBA_fnc_serverEvent;

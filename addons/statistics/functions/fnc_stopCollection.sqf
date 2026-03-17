@@ -40,4 +40,5 @@ if (isServer && {GVAR(serverSyncPFH) != -1}) then {
     GVAR(serverSyncPFH) = -1;
 };
 
+GVAR(collectionStarted) = false;
 INFO("Statistics collection stopped");
