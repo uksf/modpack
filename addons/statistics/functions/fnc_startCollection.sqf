@@ -5,7 +5,7 @@
 
     Description:
         Starts statistics collection. Calls all registered provider setup functions
-        based on locality, and starts the client sync PFH.
+        based on locality, and starts sync PFHs for the local machine type.
 
     Parameters:
         None

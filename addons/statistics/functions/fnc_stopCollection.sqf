@@ -4,9 +4,9 @@
         Tim Beswick
 
     Description:
-        Stops statistics collection. Removes sync PFHs and provider event handlers.
-        Note: CBA class event handlers (used by hits provider) cannot be removed,
-        but the addEvent function checks the killswitch so events are silently dropped.
+        Stops statistics collection. Removes sync PFHs.
+        CBA event handlers persist for mission lifetime and are cleaned up on mission end.
+        Projectile event handlers are cleaned up when projectiles are deleted.
 
     Parameters:
         None

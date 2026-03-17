@@ -4,8 +4,8 @@
         Tim Beswick
 
     Description:
-        Client sync tick. Sends buffered events to the server if the buffer is non-empty.
-        Runs as a PFH every 30 seconds.
+        Sync tick for clients and headless clients. Sends buffered events to the server
+        if the buffer is non-empty. Runs as a PFH every 30 seconds.
 
     Parameters:
         None
