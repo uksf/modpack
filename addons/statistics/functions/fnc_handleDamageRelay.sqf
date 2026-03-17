@@ -9,7 +9,7 @@
         Records damage attribution keyed by target netId for later correlation
         with EntityKilled events.
 
-        Computes 2D and 3D distances on the server using the launch position map
+        Computes 2D and 3D distances on the server using the fired position map
         (updated from shot events) and the target position from the damage event.
 
     Parameters:
@@ -31,14 +31,14 @@ if (isNil "_targetNetId" || {_targetNetId isEqualTo "" || {_targetNetId isEqualT
 if (isNil "_instigatorUid" || {_instigatorUid isEqualTo ""}) exitWith {};
 if (isNil "_damageDelta" || {_damageDelta <= 0}) exitWith {};
 
-// Compute distances using server-side launch position map
+// Compute distances using server-side fired position map
 private _targetPosition = _event getOrDefault ["targetPosition", []];
-private _launchPosition = GVAR(launchPositions) getOrDefault [_instigatorUid, []];
+private _firedPosition = GVAR(firedPositions) getOrDefault [_instigatorUid, []];
 private _distance2D = 0;
 private _distance3D = 0;
-if (_launchPosition isNotEqualTo [] && {_targetPosition isNotEqualTo []}) then {
-    _distance2D = round (_launchPosition distance2D _targetPosition);
-    _distance3D = round (_launchPosition vectorDistance _targetPosition);
+if (_firedPosition isNotEqualTo [] && {_targetPosition isNotEqualTo []}) then {
+    _distance2D = round (_firedPosition distance2D _targetPosition);
+    _distance3D = round (_firedPosition vectorDistance _targetPosition);
 };
 
 private _entry = createHashMapFromArray [

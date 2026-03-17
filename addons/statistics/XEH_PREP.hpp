@@ -6,7 +6,6 @@ PREP(handleClientReport);
 PREP(handleDamageRelay);
 PREP(performancePFH);
 PREP(providerCombatDamage);
-PREP(providerDamageReceived);
 PREP(providerExplosives);
 PREP(providerHits);
 PREP(providerKills);

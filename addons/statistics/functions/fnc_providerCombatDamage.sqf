@@ -14,9 +14,9 @@
         Uses ammo classname (infantry) or source vehicle type (vehicles) for weapon
         attribution instead of currentWeapon, which is unreliable across machines.
 
-        Distance is NOT computed here — the instigator's launch position may not be
+        Distance is NOT computed here — the instigator's fired position may not be
         available on this machine. Instead, the server computes distance using the
-        launch position map (updated from shot events) when processing the damage
+        fired position map (updated from shot events) when processing the damage
         into the ledger.
 
         Events are buffered locally and flushed to the server on the sync tick,

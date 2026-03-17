@@ -6,7 +6,7 @@
     Description:
         Shots provider setup. Listens to ACE fired events to capture every round
         fired by the local player, both on foot and in vehicles.
-        Records weapon, ammo classname, magazine, fire mode, and launch position.
+        Records weapon, ammo classname, magazine, fire mode, and fired position.
         Tags each projectile with a unique shotId and weapon so the hits provider
         can correlate hits to shots.
 
@@ -40,7 +40,7 @@ private _handleFired = {
         ["ammo", _ammo],
         ["magazine", _magazine],
         ["fireMode", _mode],
-        ["launchPosition", getPosASL _unit]
+        ["firedPosition", getPosASL _unit]
     ]] call FUNC(addEvent);
 
     ["shots", _startTime] call FUNC(addProviderTiming);
