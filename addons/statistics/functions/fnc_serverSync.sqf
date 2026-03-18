@@ -18,14 +18,24 @@
         call uksf_statistics_fnc_serverSync
 */
 if (GVAR(killswitch)) exitWith {};
+
+// Drain server-local eventBuffer (from "all" locality providers like combatDamage)
+// Server has no clientSyncPFH, so this is the only place these events get processed
+if (GVAR(eventBuffer) isNotEqualTo []) then {
+    private _localEvents = GVAR(eventBuffer);
+    GVAR(eventBuffer) = [];
+    [_localEvents] call FUNC(handleClientReport);
+};
+
 if (GVAR(serverBuffer) isEqualTo []) exitWith {};
 
-private _buffer = +GVAR(serverBuffer);
+private _buffer = GVAR(serverBuffer);
 GVAR(serverBuffer) = [];
 
 [
     "mission_stats",
     createHashMapFromArray [
+        ["sessionId", EGVAR(api,sessionId)],
         ["mission", missionName],
         ["map", worldName],
         ["events", _buffer]

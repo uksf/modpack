@@ -339,6 +339,7 @@ for "_i" from 0 to (_totalChunks - 1) do {
     ["persistence_save", createHashMapFromArray [
         ["id",    _saveId],
         ["key",   GVAR(key)],
+        ["sessionId", EGVAR(api,sessionId)],
         ["index", _i],
         ["total", _totalChunks],
         ["data",  _chunk]
