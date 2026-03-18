@@ -35,6 +35,7 @@ GVAR(serverBuffer) = [];
 [
     "mission_stats",
     createHashMapFromArray [
+        ["sessionId", EGVAR(api,sessionId)],
         ["mission", missionName],
         ["map", worldName],
         ["events", _buffer]

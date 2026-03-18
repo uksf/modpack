@@ -24,8 +24,13 @@ addMissionEventHandler ["ExtensionCallback", {
     [_function, _data] call FUNC(handleCommand);
 }];
 
+// Generate session ID for this mission run — used by statistics, persistence, and presence
+GVAR(sessionId) = call CBA_fnc_createUUID;
+INFO_1("Mission session: %1",GVAR(sessionId));
+
 addMissionEventHandler ["MPEnded", {
     ["mission_ended", createHashMapFromArray [
+        ["sessionId", GVAR(sessionId)],
         ["map", worldName],
         ["mission", missionName],
         ["duration", time]
@@ -38,9 +43,9 @@ addMissionEventHandler ["MPEnded", {
 }];
 
 ["mission_started", createHashMapFromArray [
+    ["sessionId", GVAR(sessionId)],
     ["map", worldName],
-    ["mission", missionName],
-    ["processId", GVAR(processId)]
+    ["mission", missionName]
 ]] call FUNC(sendEvent);
 
 // Periodic server status push (every 15 seconds), only if extension started
@@ -61,8 +66,7 @@ addMissionEventHandler ["PlayerConnected", {
     GVAR(lastPlayerEvent) set [_key, diag_tickTime];
 
     ["player_connected", createHashMapFromArray [
-        ["mission", missionName],
-        ["map", worldName],
+        ["sessionId", GVAR(sessionId)],
         ["name", _name],
         ["uid", _uid]
     ]] call FUNC(sendEvent);
@@ -76,8 +80,7 @@ addMissionEventHandler ["PlayerDisconnected", {
     GVAR(lastPlayerEvent) set [_key, diag_tickTime];
 
     ["player_disconnected", createHashMapFromArray [
-        ["mission", missionName],
-        ["map", worldName],
+        ["sessionId", GVAR(sessionId)],
         ["name", _name],
         ["uid", _uid]
     ]] call FUNC(sendEvent);
