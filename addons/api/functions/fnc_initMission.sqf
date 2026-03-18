@@ -61,6 +61,8 @@ addMissionEventHandler ["PlayerConnected", {
     GVAR(lastPlayerEvent) set [_key, diag_tickTime];
 
     ["player_connected", createHashMapFromArray [
+        ["mission", missionName],
+        ["map", worldName],
         ["name", _name],
         ["uid", _uid]
     ]] call FUNC(sendEvent);
@@ -74,6 +76,8 @@ addMissionEventHandler ["PlayerDisconnected", {
     GVAR(lastPlayerEvent) set [_key, diag_tickTime];
 
     ["player_disconnected", createHashMapFromArray [
+        ["mission", missionName],
+        ["map", worldName],
         ["name", _name],
         ["uid", _uid]
     ]] call FUNC(sendEvent);
