@@ -28,7 +28,11 @@ addMissionEventHandler ["ExtensionCallback", {
 GVAR(sessionId) = call CBA_fnc_createUUID;
 INFO_1("Mission session: %1",GVAR(sessionId));
 
+// Fallback for non-persistence-shutdown mission ends (e.g. mission restart)
+// During controlled shutdown, shuttingDown handler sends mission_ended instead
 addMissionEventHandler ["MPEnded", {
+    if (EGVAR(persistence,shutdownInProgress)) exitWith {};
+
     ["mission_ended", createHashMapFromArray [
         ["sessionId", GVAR(sessionId)],
         ["map", worldName],
@@ -38,6 +42,7 @@ addMissionEventHandler ["MPEnded", {
 
     if (GVAR(statusPerFrameHandler) != -1) then {
         [GVAR(statusPerFrameHandler)] call CBA_fnc_removePerFrameHandler;
+        GVAR(statusPerFrameHandler) = -1;
     };
     call FUNC(stop);
 }];
