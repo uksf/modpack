@@ -9,12 +9,7 @@ GVAR(debugSpheres) = [];
 GVAR(debugSingletonSphere) = objNull;
 
 GVAR(addons) = ('true' configClasses (configFile >> "CfgPatches")) apply {configName _x};
-
-// activateAddons must run in scheduled context (spawn) in multiplayer,
-// otherwise it overrides the mission's required addons instead of adding to them
-[] spawn {
-    activateAddons GVAR(addons);
-};
+activateAddons GVAR(addons);
 
 GVAR(configAmmo) = configFile >> "CfgAmmo";
 GVAR(configMagazines) = configFile >> "CfgMagazines";
