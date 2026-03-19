@@ -8,22 +8,21 @@ class CfgPatches {
             QGVAR(Soldier_Base),
             QGVAR(Rifleman),
             QGVAR(Squad_Leader),
-            QGVAR(Autorifleman),
+            QGVAR(sf_autorifleman),
             QGVAR(Rifleman_LAT),
             QGVAR(Sharpshooter),
             QGVAR(Machine_Gunner),
             QGVAR(Rifleman_HAT),
-            QGVAR(Armour_Crewman),
             QGVAR(Officer),
-            QGVAR(Signaller),
+            QGVAR(sf_sfc),
             QGVAR(Heli_Pilot),
-            QGVAR(Jet_Pilot),
             QGVAR(Sniper),
             QGVAR(Crewman),
             QGVAR(Rifleman_AA),
-            QGVAR(Paratrooper),
-            QGVAR(Operator),
-            QGVAR(Grenadier),
+            QGVAR(sf_perator),
+            QGVAR(sf_grenadier),
+            QGVAR(Officer_HQ),
+
             // Vehicles
             QGVAR(MTVR),
             QGVAR(MTVR_Ammo),
@@ -39,7 +38,7 @@ class CfgPatches {
             QGVAR(Dragon),
             QGVAR(HMG_02),
             QGVAR(RBS70),
-            QGVAR(HMG_01),
+            QGVAR(auto_hmg),
             QGVAR(Leopard2A6),
             QGVAR(T55),
             QGVAR(Boxer_HMG),
@@ -55,23 +54,22 @@ class CfgPatches {
             QGVAR(CH_54_Transport),
             QGVAR(CH47F),
             QGVAR(JAS39),
-            QGVAR(C130J)
+            QGVAR(C130J),
+            QGVAR(LSV_01_unarmed_SF),
+            QGVAR(LSV_01_armed_SF),
+            QGVAR(Mini_Radar_Dish)
         };
         weapons[] = {
-            QGVAR(CUP_arifle_G36C_VFG_ACE_optic_MRCO_2D_acc_flashlight),
-            QGVAR(CUP_arifle_G36K_RIS_AG36_ACE_optic_MRCO_2D_acc_flashlight),
-            QGVAR(CUP_lmg_MG3),
             QGVAR(arifle_SPAR_03_blk_F_optic_AMS),
-            QGVAR(srifle_DMR_02_camo_F_optic_KHS_old),
-            QGVAR(CUP_arifle_G36C),
-            QGVAR(CUP_arifle_G36C_VFG_CUP_optic_HensoldtZO_low_RDS_CUP_acc_ANPEQ_15_Black),
-            QGVAR(CUP_glaunch_M32),
-            QGVAR(CUP_arifle_MG36_CUP_optic_HensoldtZO_low_RDS_CUP_acc_ANPEQ_15_Black),
+            QGVAR(CUP_arifle_G36C_VFG_ACE_optic_MRCO_2D_acc_flashlight),
             QGVAR(CUP_arifle_G36C_VFG_ACE_optic_MRCO_2D_acc_flashlight_suppressed),
-            QGVAR(CUP_arifle_MG36_CUP_optic_HensoldtZO_low_RDS_CUP_acc_ANPEQ_15_Black_suppressed)
+            QGVAR(CUP_arifle_G36C_VFG_CUP_optic_HensoldtZO_low_RDS_CUP_acc_ANPEQ_15_Black_suppressed),
+            QGVAR(CUP_arifle_G36K_RIS_AG36_ACE_optic_MRCO_2D_acc_flashlight),
+            QGVAR(CUP_arifle_MG36_CUP_optic_HensoldtZO_low_RDS_CUP_acc_ANPEQ_15_Black_suppressed),
+            QGVAR(srifle_DMR_02_camo_F_optic_KHS_old)
         };
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {"uksf_common"};
+        requiredAddons[] = {"uksf_common", "uksf_eug"};
         author = QUOTE(UKSF);
         authors[] = {"Bridgford.A"};
         url = URL;
@@ -130,8 +128,9 @@ class CfgWorlds {
     };
 };
 
+#include "CfgEditorSubcategories.hpp"
 #include "CfgFactionClasses.hpp"
 #include "CfgGroups.hpp"
 #include "CfgVehicles.hpp"
 #include "CfgWeapons.hpp"
-#include "CfgEditorSubcategories.hpp"
+

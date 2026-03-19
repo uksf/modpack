@@ -28,8 +28,8 @@ class CfgVehicles {
         maxSkill = 0.6;
         nakedUniform = "U_BasicBody";
         uniformClass = "CUP_U_B_USMC_MCCUU_M81_gloves";
-        weapons[] = {QGVAR(CUP_arifle_G36C_VFG_ACE_optic_MRCO_2D_acc_flashlight)};
-        respawnWeapons[] = {QGVAR(CUP_arifle_G36C_VFG_ACE_optic_MRCO_2D_acc_flashlight)};
+        weapons[] = {QGVAR(CUP_arifle_G36C_VFG_ACE_optic_MRCO_2D_acc_flashlight), "Put", "Throw"};
+        respawnWeapons[] = {QGVAR(CUP_arifle_G36C_VFG_ACE_optic_MRCO_2D_acc_flashlight), "Put", "Throw"};
         magazines[] = {
             "CUP_30Rnd_556x45_XM8", "CUP_30Rnd_556x45_XM8", "CUP_30Rnd_556x45_XM8", "CUP_30Rnd_556x45_XM8", "CUP_30Rnd_556x45_XM8",
             "CUP_30Rnd_TE1_Yellow_Tracer_556x45_XM8", "CUP_30Rnd_TE1_Yellow_Tracer_556x45_XM8", "CUP_30Rnd_TE1_Yellow_Tracer_556x45_XM8",

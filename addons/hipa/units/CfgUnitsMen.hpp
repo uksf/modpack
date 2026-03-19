@@ -8,15 +8,15 @@ class GVAR(Rifleman) : GVAR(Soldier_Base) {
 
 class GVAR(Squad_Leader) : GVAR(Rifleman) {
     displayName = "Squad Leader";
-    weapons[] = {QGVAR(CUP_arifle_G36K_RIS_AG36_ACE_optic_MRCO_2D_acc_flashlight)};
-    respawnWeapons[] = {QGVAR(CUP_arifle_G36K_RIS_AG36_ACE_optic_MRCO_2D_acc_flashlight)};
+    weapons[] = {QGVAR(CUP_arifle_G36K_RIS_AG36_ACE_optic_MRCO_2D_acc_flashlight), "Put", "Throw"};
+    respawnWeapons[] = {QGVAR(CUP_arifle_G36K_RIS_AG36_ACE_optic_MRCO_2D_acc_flashlight), "Put", "Throw"};
     backpack = QGVAR(sl_backpack);
 };
 
 class GVAR(Machine_Gunner) : GVAR(Rifleman) {
     displayName = "Machine Gunner";
-    weapons[] = {CUP_lmg_MG3};
-    respawnWeapons[] = {CUP_lmg_MG3};
+    weapons[] = {"CUP_lmg_MG3", "Put", "Throw"};
+    respawnWeapons[] = {"CUP_lmg_MG3", "Put", "Throw"};
     magazines[] = {"CUP_120Rnd_TE4_LRT4_Yellow_Tracer_762x51_Belt_M", "CUP_120Rnd_TE4_LRT4_Yellow_Tracer_762x51_Belt_M", "SmokeShell", "SmokeShell"};
     respawnMagazines[] = {"CUP_120Rnd_TE4_LRT4_Yellow_Tracer_762x51_Belt_M", "CUP_120Rnd_TE4_LRT4_Yellow_Tracer_762x51_Belt_M", "SmokeShell", "SmokeShell"};
     backpack = QGVAR(mg_backpack);
@@ -58,8 +58,8 @@ class GVAR(Rifleman_HAT) : GVAR(Rifleman) {
 
 class GVAR(Sharpshooter) : GVAR(Rifleman) {
     displayName = "Sharpshooter";
-    weapons[] = {QGVAR(arifle_SPAR_03_blk_F_optic_AMS)};
-    respawnWeapons[] = {QGVAR(arifle_SPAR_03_blk_F_optic_AMS)};
+    weapons[] = {QGVAR(arifle_SPAR_03_blk_F_optic_AMS), "Put", "Throw"};
+    respawnWeapons[] = {QGVAR(arifle_SPAR_03_blk_F_optic_AMS), "Put", "Throw"};
     magazines[] = {
         "CUP_20Rnd_762x51_HK417", "CUP_20Rnd_762x51_HK417",
         "CUP_20Rnd_762x51_HK417", "CUP_20Rnd_762x51_HK417",

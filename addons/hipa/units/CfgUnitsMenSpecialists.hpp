@@ -4,8 +4,8 @@ class GVAR(Officer_HQ) : GVAR(Soldier_Base) {
     editorSubcategory = QGVAR(specialists);
     displayName = "HQ Officer";
     backpack = "";
-    weapons[] = {"CUP_hgun_Browning_HP"};
-    respawnWeapons[] = {"CUP_hgun_Browning_HP"};
+    weapons[] = {"CUP_hgun_Browning_HP", "Put", "Throw"};
+    respawnWeapons[] = {"CUP_hgun_Browning_HP", "Put", "Throw"};
     magazines[] = {
         "CUP_13Rnd_9x19_Browning_HP", "CUP_13Rnd_9x19_Browning_HP",
         "CUP_13Rnd_9x19_Browning_HP", "CUP_13Rnd_9x19_Browning_HP"
@@ -38,8 +38,8 @@ class GVAR(Sniper) : GVAR(Soldier_Base) {
     editorSubcategory = QGVAR(specialists);
     uniformClass = "U_I_FullGhillie_lsh";
     backpack = "";
-    weapons[] = {QGVAR(srifle_DMR_02_camo_F_optic_KHS_old)};
-    respawnWeapons[] = {QGVAR(srifle_DMR_02_camo_F_optic_KHS_old)};
+    weapons[] = {QGVAR(srifle_DMR_02_camo_F_optic_KHS_old), "Put", "Throw"};
+    respawnWeapons[] = {QGVAR(srifle_DMR_02_camo_F_optic_KHS_old), "Put", "Throw"};
     magazines[] = {
         "10Rnd_338_Mag", "10Rnd_338_Mag", "10Rnd_338_Mag", "10Rnd_338_Mag",
         "10Rnd_338_Mag", "10Rnd_338_Mag", "10Rnd_338_Mag", "10Rnd_338_Mag"
@@ -65,8 +65,8 @@ class GVAR(Crewman) : GVAR(Soldier_Base) {
     editorSubcategory = QGVAR(specialists);
     displayName = "Crewman";
     backpack = "";
-    weapons[] = {CUP_arifle_G36C};
-    respawnWeapons[] = {CUP_arifle_G36C};
+    weapons[] = {"CUP_arifle_G36C", "Put", "Throw"};
+    respawnWeapons[] = {"CUP_arifle_G36C", "Put", "Throw"};
     magazines[] = {
         "CUP_30Rnd_556x45_XM8", "CUP_30Rnd_556x45_XM8",
         "CUP_30Rnd_556x45_XM8", "CUP_30Rnd_556x45_XM8"

@@ -19,8 +19,8 @@ class GVAR(sf_grenadier) : GVAR(sf_operator) {
     displayName = "Grenadier";
     minSkill = 0.7;
     maxSkill = 0.8;
-    weapons[] = {CUP_glaunch_M32};
-    respawnWeapons[] = {CUP_glaunch_M32};
+    weapons[] = {"CUP_glaunch_M32", "Put", "Throw"};
+    respawnWeapons[] = {"CUP_glaunch_M32", "Put", "Throw"};
     magazines[] = {"CUP_6Rnd_HE_M203", "CUP_6Rnd_HE_M203"};
     respawnMagazines[] = {"CUP_6Rnd_HE_M203", "CUP_6Rnd_HE_M203"};
 };
@@ -29,8 +29,8 @@ class GVAR(sf_autorifleman) : GVAR(sf_operator) {
     displayName = "Autorifleman";
     minSkill = 0.7;
     maxSkill = 0.8;
-    weapons[] = {QGVAR(CUP_arifle_MG36_CUP_optic_HensoldtZO_low_RDS_CUP_acc_ANPEQ_15_Black_suppressed)};
-    respawnWeapons[] = {QGVAR(CUP_arifle_MG36_CUP_optic_HensoldtZO_low_RDS_CUP_acc_ANPEQ_15_Black_suppressed)};
+    weapons[] = {QGVAR(CUP_arifle_MG36_CUP_optic_HensoldtZO_low_RDS_CUP_acc_ANPEQ_15_Black_suppressed), "Put", "Throw"};
+    respawnWeapons[] = {QGVAR(CUP_arifle_MG36_CUP_optic_HensoldtZO_low_RDS_CUP_acc_ANPEQ_15_Black_suppressed), "Put", "Throw"};
     magazines[] = {"CUP_100Rnd_556x45_BetaCMag"};
     respawnMagazines[] = {"CUP_100Rnd_556x45_BetaCMag"};
     backpack = QGVAR(sf_mg_pack);

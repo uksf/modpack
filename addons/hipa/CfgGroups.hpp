@@ -40,11 +40,6 @@ class CfgGroups {
                     class Unit4 { vehicle = QGVAR(sf_LAT); rank = "PRIVATE"; position[] = {20, 0, 0}; };
                 };
             };
-            class Armor {
-                name = "Armor";
-                // Add armor groups
-            };
-            // Add other categories
         };
     };
 };
