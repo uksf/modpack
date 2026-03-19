@@ -31,6 +31,7 @@ if (GVAR(serverBuffer) isEqualTo []) exitWith {};
 
 private _buffer = GVAR(serverBuffer);
 GVAR(serverBuffer) = [];
+TRACE_1("Server sync",count _buffer);
 
 [
     "mission_stats",

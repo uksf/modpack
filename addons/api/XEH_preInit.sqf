@@ -8,4 +8,21 @@ ADDON = true;
 
 if (isServer) then {
     call FUNC(initMission);
+
+    // Send mission_ended and stop status push during controlled shutdown
+    // MPEnded does not fire reliably during #shutdown — the process is killed
+    [QEGVAR(persistence,shuttingDown), {
+        TRACE_1("Controlled shutdown: sending mission_ended",GVAR(sessionId));
+        ["mission_ended", createHashMapFromArray [
+            ["sessionId", GVAR(sessionId)],
+            ["map", worldName],
+            ["mission", missionName],
+            ["duration", time]
+        ]] call FUNC(sendEvent);
+
+        if (GVAR(statusPerFrameHandler) != -1) then {
+            [GVAR(statusPerFrameHandler)] call CBA_fnc_removePerFrameHandler;
+            GVAR(statusPerFrameHandler) = -1;
+        };
+    }] call CBA_fnc_addEventHandler;
 };

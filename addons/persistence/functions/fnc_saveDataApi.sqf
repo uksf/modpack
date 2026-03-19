@@ -118,6 +118,15 @@ private _convertInventory = {
 // Input: [className, nestedCargo, inventory, customName]
 private _convertCargoEntry = {
     params ["_entry"];
+    // Handle raw string classnames from ace_cargo_loaded (not processed by getObjectCargo)
+    if (_entry isEqualType "") exitWith {
+        createHashMapFromArray [
+            ["className",  _entry],
+            ["cargo",      []],
+            ["inventory",  createHashMap],
+            ["customName", ""]
+        ]
+    };
     private _nestedCargo = (_entry#1) apply { _x call _convertCargoEntry };
     private _inventory = [_entry#2] call _convertInventory;
     createHashMapFromArray [
@@ -145,14 +154,13 @@ private _objects = _allObjects apply {
         ]
     };
 
-    // turretMagazines: [[className, turretPath, ammoCount, id, ammo], ...] -> [{"className": ..., ...}, ...]
+    // turretMagazines: [[className, turretPath, ammoCount, id, creator], ...]
+    // id and creator are engine internals not needed for persistence
     private _turretMagazines = (_x#IDX_OBJ_TURRETMAGS) apply {
         createHashMapFromArray [
             ["className",  _x#0],
             ["turretPath", _x#1],
-            ["ammoCount",  _x#2],
-            ["id",         _x#3],
-            ["ammo",       _x#4]
+            ["ammoCount",  _x#2]
         ]
     };
 

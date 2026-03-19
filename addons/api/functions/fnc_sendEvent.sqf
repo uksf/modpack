@@ -18,6 +18,10 @@
 */
 params [["_type", "", [""]], ["_data", createHashMap, [createHashMap]]];
 
+if (_type isNotEqualTo "server_status") then {
+    TRACE_1("Sending event",_type);
+};
+
 private _event = createHashMapFromArray [["type", _type], ["data", _data]];
 private _json = [_event] call CBA_fnc_encodeJSON;
 "uksf" callExtension ["event", [_json]];
