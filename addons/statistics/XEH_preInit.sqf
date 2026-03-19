@@ -21,7 +21,6 @@ GVAR(performancePFH) = -1;
 // Entries removed on defuse; remaining entries emitted at sync
 GVAR(placedExplosives) = createHashMap;
 
-// Sampler state for movement, fuel, and FPS tracking
 GVAR(samplerPFH) = -1;
 GVAR(lastPosition) = [0, 0, 0];
 GVAR(accumulatedDistanceOnFoot) = 0;
@@ -30,47 +29,36 @@ GVAR(lastFuelLevel) = -1;
 GVAR(lastFuelVehicle) = objNull;
 GVAR(accumulatedFuel) = 0;
 
-// Global killswitch — initialised on all machines so inline checks don't error
-// Server broadcasts changes via publicVariable
 GVAR(killswitch) = false;
-
-// Guard against double-start (works on all machines including HC)
 GVAR(collectionStarted) = false;
 
 if (isServer) then {
-    // Server-side event buffer: flat array of event hashmaps
     GVAR(serverBuffer) = [];
     GVAR(serverSyncPFH) = -1;
 
-    // Usage: uksf_statistics_killswitch = true; publicVariable "uksf_statistics_killswitch";
-    publicVariable QGVAR(killswitch);
-
-    // Handle incoming client reports
     [QGVAR(clientReport), {
         _this call FUNC(handleClientReport);
     }] call CBA_fnc_addEventHandler;
 
-    // Stop collection PFHs when shutdown starts (final sync happens on shuttingDown)
     [QEGVAR(persistence,shutdownStarted), {
         call FUNC(stopCollection);
     }] call CBA_fnc_addEventHandler;
 
-    // Final server sync after all clients have reported ready
     [QEGVAR(persistence,shuttingDown), {
         call FUNC(serverSync);
     }] call CBA_fnc_addEventHandler;
 
     // MPEnded fallback for non-persistence-shutdown scenarios (e.g. mission restart)
     addMissionEventHandler ["MPEnded", {
-        call FUNC(serverSync);
         call FUNC(stopCollection);
+        call FUNC(serverSync);
     }];
 };
 
 if (!isServer) then {
     [QEGVAR(persistence,shuttingDown), {
-        call FUNC(clientSync);
         call FUNC(stopCollection);
+        call FUNC(clientSync);
     }] call CBA_fnc_addEventHandler;
 };
 

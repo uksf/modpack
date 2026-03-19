@@ -60,6 +60,7 @@ addMissionEventHandler ["BuildingChanged", {
 
 [QGVAR(readyForShutdown), {
     params [["_player", objNull, [objNull]]];
+
     if (isNull _player || {!isPlayer _player}) exitWith {};
 
     GVAR(readyForShutdownCount) = GVAR(readyForShutdownCount) + 1;
@@ -67,9 +68,8 @@ addMissionEventHandler ["BuildingChanged", {
 
     [{
         params ["_player"];
-        if (!isNull _player) then {
-            SERVER_COMMAND serverCommand (format ["#kick %1", owner _player]);
-        };
+
+        SERVER_COMMAND serverCommand (format ["#kick %1", owner _player]);
     }, [_player], 1] call CBA_fnc_waitAndExecute;
 }] call CBA_fnc_addEventHandler;
 [QGVAR(registerSerializer), {call FUNC(registerSerializer)}] call CBA_fnc_addEventHandler;
@@ -79,6 +79,40 @@ addMissionEventHandler ["BuildingChanged", {
 [QGVAR(requestRedeployData), {call FUNC(requestRedeployData)}] call CBA_fnc_addEventHandler;
 [QGVAR(checkPersistentVehicleExists), {call FUNC(checkPersistentVehicleExists)}] call CBA_fnc_addEventHandler;
 [QGVAR(setObjectCargo), {[{call FUNC(setObjectCargo)}, _this] call CBA_fnc_execNextFrame}] call CBA_fnc_addEventHandler;
+[QGVAR(addLogisticsMarker), {GVAR(persistenceMarkers) pushBackUnique _this}] call CBA_fnc_addEventHandler;
+
+// Map marker events
+[QGVAR(markerCreated), {
+    params ["_serializedMarker"];
+
+    GVAR(mapMarkers) deleteAt (GVAR(mapMarkers) findIf {_x#0 == _serializedMarker#0});
+    GVAR(mapMarkers) pushBack _serializedMarker;
+}] call CBA_fnc_addEventHandler;
+
+[QGVAR(markerDeleted), {
+    params ["_marker"];
+
+    GVAR(mapMarkers) deleteAt (GVAR(mapMarkers) findIf {_x#0 == _marker});
+}] call CBA_fnc_addEventHandler;
+
+// ACE fortify integration
+["acex_fortify_objectPlaced", {
+    params ["", "_side", "_object"];
+
+    _object setVariable [QGVAR(isAceFortification), true];
+    _object setVariable [QGVAR(aceFortifySide), _side];
+    [_object] call FUNC(markObjectAsPersistent);
+}] call CBA_fnc_addEventHandler;
+
+["acex_fortify_objectDeleted", {
+    params ["", "", "_object"];
+
+    private _id = _object getVariable [QGVAR(persistenceID), ""];
+    if (_id == "") exitWith {
+        WARNING("Object has no id so cannot remove from persistence hash. Object saving should filter out null objects.");
+    };
+    [GVAR(persistentObjectsHash), _id] call CBA_fnc_hashRem;
+}] call CBA_fnc_addEventHandler;
 
 // Data request events
 [QGVAR(requestPersistentObjectsHash), {
@@ -98,8 +132,6 @@ addMissionEventHandler ["BuildingChanged", {
     };
     [QGVAR(receiveAbortedObjects), [_objects], _player] call CBA_fnc_targetEvent;
 }] call CBA_fnc_addEventHandler;
-
-[QGVAR(addLogisticsMarker), {GVAR(persistenceMarkers) pushBackUnique _this}] call CBA_fnc_addEventHandler;
 
 [QGVAR(requestPersistenceMarkers), {
     params ["_player"];
@@ -155,38 +187,4 @@ addMissionEventHandler ["BuildingChanged", {
     [QGVAR(receiveInspectSavedData), [_lines], _player] call CBA_fnc_targetEvent;
 }] call CBA_fnc_addEventHandler;
 
-// Map marker events
-[QGVAR(markerCreated), {
-    params ["_serializedMarker"];
-
-    GVAR(mapMarkers) deleteAt (GVAR(mapMarkers) findIf {_x#0 == _serializedMarker#0});
-    GVAR(mapMarkers) pushBack _serializedMarker;
-}] call CBA_fnc_addEventHandler;
-
-[QGVAR(markerDeleted), {
-    params ["_marker"];
-
-    GVAR(mapMarkers) deleteAt (GVAR(mapMarkers) findIf {_x#0 == _marker});
-}] call CBA_fnc_addEventHandler;
-
-// ACE fortify integration
-["acex_fortify_objectPlaced", {
-    params ["", "_side", "_object"];
-
-    _object setVariable [QGVAR(isAceFortification), true];
-    _object setVariable [QGVAR(aceFortifySide), _side];
-    [_object] call FUNC(markObjectAsPersistent);
-}] call CBA_fnc_addEventHandler;
-
-["acex_fortify_objectDeleted", {
-    params ["", "", "_object"];
-
-    private _id = _object getVariable [QGVAR(persistenceID), ""];
-    if (_id == "") exitWith {
-        WARNING("Object has no id so cannot remove from persistence hash. Object saving should filter out null objects.");
-    };
-    [GVAR(persistentObjectsHash), _id] call CBA_fnc_hashRem;
-}] call CBA_fnc_addEventHandler;
-
-// Restore saved world state
 call FUNC(restoreSessionState);
