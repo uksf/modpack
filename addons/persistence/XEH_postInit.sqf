@@ -43,6 +43,9 @@ if (!isServer) then {
         if (hasInterface) then {
             [QEGVAR(common,textTiles), [parseText "<t align = 'center' color = '#1a7a1a'>Server shutting down</t>", [0.25, 0.5, 0.5, 0.085], [1, 1], 2.5]] call CBA_fnc_localEvent;
         };
-        [QGVAR(readyForShutdown), [player]] call CBA_fnc_serverEvent;
+        // Short delay to allow clientSync's serverEvent to be transmitted before the ack
+        [{
+            [QEGVAR(persistence,readyForShutdown), [player]] call CBA_fnc_serverEvent;
+        }, [], 0.5] call CBA_fnc_waitAndExecute;
     }] call CBA_fnc_addEventHandler;
 };
