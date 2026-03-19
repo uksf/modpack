@@ -21,5 +21,5 @@
 #ifdef DEBUG_MODE_ANALYSIS
 GVAR(dynamicPatrolDebugPlayers)
 #else
-call CBA_fnc_players
+ALL_PLAYERS
 #endif

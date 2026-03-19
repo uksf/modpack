@@ -43,7 +43,7 @@ if (_id != "") then {
 if (_setId) then {
     private _ids = keys GVAR(edenLogicIdMap);
     while {_id == "" || _id in _ids} do {
-        _id = format ['%1_%2_%3', typeOf _logic, diag_frameNo, round random 99999];
+        _id = format ["%1_%2", typeOf _logic, call CBA_fnc_createUUID];
     };
 
     GVAR(edenLogicIdMap) set [_id, _logic];

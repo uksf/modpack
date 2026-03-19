@@ -16,11 +16,3 @@
     1
 ] call CBA_settings_fnc_init;
 
-[
-    QGVAR(useApiPersistence),
-    "CHECKBOX",
-    ["Use API Persistence", "Load persistence data from the API instead of profileNamespace. Both systems always save regardless of this setting."],
-    ["UKSF", QUOTE(COMPONENT_BEAUTIFIED)],
-    false,
-    1
-] call CBA_settings_fnc_init;

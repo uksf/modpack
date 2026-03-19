@@ -16,6 +16,8 @@
         call uksf_api_fnc_sendServerStatus
 */
 
+if (!isServer) exitWith {};
+
 private _data = createHashMapFromArray [
     ["map", worldName],
     ["mission", missionName],
@@ -27,8 +29,6 @@ private _data = createHashMapFromArray [
     ["aiCount", {!isPlayer _x} count allUnits]
 ];
 
-if (isServer) then {
-    _data set ["headlessClientCount", count entities "HeadlessClient_F"];
-};
+_data set ["headlessClientCount", count entities "HeadlessClient_F"];
 
 ["server_status", _data] call FUNC(sendEvent);

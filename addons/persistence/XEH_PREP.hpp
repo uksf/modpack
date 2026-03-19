@@ -23,8 +23,6 @@ PREP(loadAllObjectData);
 PREP(loadObjectData);
 PREP(loadRedeployData);
 PREP(loadServerData);
-PREP(loadServerDataApi);
-PREP(loadServerDataProfile);
 PREP(loadSession);
 PREP(markObjectAsPersistent);
 PREP(registerSerializer);

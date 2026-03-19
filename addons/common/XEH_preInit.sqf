@@ -8,8 +8,11 @@ GVAR(debugGridPositionMarkers) = [];
 GVAR(debugSpheres) = [];
 GVAR(debugSingletonSphere) = objNull;
 
+GVAR(addons) = ('true' configClasses (configFile >> "CfgPatches")) apply {configName _x};
+
+// activateAddons must run in scheduled context (spawn) in multiplayer,
+// otherwise it overrides the mission's required addons instead of adding to them
 [] spawn {
-    GVAR(addons) = ('true' configClasses (configFile >> "CfgPatches")) apply {configName _x};
     activateAddons GVAR(addons);
 };
 
@@ -55,6 +58,11 @@ if (isServer) then {
 
     GVAR(updateHeadlessClientPosition) = true;
     GVAR(updateHeadlessClientDelay) = 180;
+
+    // Export OCAP data when persistence shutdown starts
+    [QEGVAR(persistence,shutdownStarted), {
+        ["ocap_exportData", [west]] call CBA_fnc_localEvent;
+    }] call CBA_fnc_addEventHandler;
 };
 
 [QGVAR(notify), {_this call CBA_fnc_notify}] call CBA_fnc_addEventHandler;
