@@ -27,10 +27,10 @@ if (_data isEqualType createHashMap) then {
         } else { _x }
     };
 
-    // turretMagazines: [{"className": ..., "turretPath": [...], ...}] → [[className, turretPath, ammoCount, id, ammo]]
+    // turretMagazines: [{"className": ..., "turretPath": [...], "ammoCount": ...}] → [[className, turretPath, ammoCount]]
     private _turretMagazines = (_data getOrDefault ["turretMagazines", []]) apply {
         if (_x isEqualType createHashMap) then {
-            [_x getOrDefault ["className", ""], _x getOrDefault ["turretPath", []], _x getOrDefault ["ammoCount", 0], _x getOrDefault ["id", 0], _x getOrDefault ["ammo", 0]]
+            [_x getOrDefault ["className", ""], _x getOrDefault ["turretPath", []], _x getOrDefault ["ammoCount", 0]]
         } else { _x }
     };
 
