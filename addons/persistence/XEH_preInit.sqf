@@ -50,7 +50,7 @@ if (isMultiplayer) then {
             if (isNull _player || {!isPlayer _player}) exitWith {};
 
             GVAR(readyForShutdownCount) = GVAR(readyForShutdownCount) + 1;
-            INFO_2("Player ready for shutdown (%1 of %2)",GVAR(readyForShutdownCount),GVAR(readyForShutdownExpected));
+            INFO_3("Player ready for shutdown: %1 (%2 of %3)",name _player,GVAR(readyForShutdownCount),GVAR(readyForShutdownExpected));
 
             // Kick the player after a short delay to ensure their data has been processed
             [{
