@@ -50,10 +50,14 @@ if (isServer) then {
         _this call FUNC(handleClientReport);
     }] call CBA_fnc_addEventHandler;
 
-    // Flush and stop when persistence shutdown starts
+    // Stop collection PFHs when shutdown starts (final sync happens on shuttingDown)
     [QEGVAR(persistence,shutdownStarted), {
-        call FUNC(serverSync);
         call FUNC(stopCollection);
+    }] call CBA_fnc_addEventHandler;
+
+    // Final server sync after all clients have reported ready
+    [QEGVAR(persistence,shuttingDown), {
+        call FUNC(serverSync);
     }] call CBA_fnc_addEventHandler;
 
     // MPEnded fallback for non-persistence-shutdown scenarios (e.g. mission restart)
@@ -61,6 +65,15 @@ if (isServer) then {
         call FUNC(serverSync);
         call FUNC(stopCollection);
     }];
+};
+
+// Flush client/HC event buffers when shutdown starts
+// Runs before persistence's readyForShutdown ack (registered in postInit, fires after this)
+if (!isServer) then {
+    [QEGVAR(persistence,shutdownStarted), {
+        call FUNC(clientSync);
+        call FUNC(stopCollection);
+    }] call CBA_fnc_addEventHandler;
 };
 
 #include "initSettings.inc.sqf"
