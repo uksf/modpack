@@ -57,6 +57,21 @@ addMissionEventHandler ["BuildingChanged", {
 
 // Core persistence events
 [QGVAR(startShutdown), {call FUNC(startShutdown)}] call CBA_fnc_addEventHandler;
+
+[QGVAR(readyForShutdown), {
+    params [["_player", objNull, [objNull]]];
+    if (isNull _player || {!isPlayer _player}) exitWith {};
+
+    GVAR(readyForShutdownCount) = GVAR(readyForShutdownCount) + 1;
+    INFO_3("Player ready for shutdown: %1 (%2 of %3)",name _player,GVAR(readyForShutdownCount),GVAR(readyForShutdownExpected));
+
+    [{
+        params ["_player"];
+        if (!isNull _player) then {
+            SERVER_COMMAND serverCommand (format ["#kick %1", owner _player]);
+        };
+    }, [_player], 1] call CBA_fnc_waitAndExecute;
+}] call CBA_fnc_addEventHandler;
 [QGVAR(registerSerializer), {call FUNC(registerSerializer)}] call CBA_fnc_addEventHandler;
 [QGVAR(markObjectAsPersistent), {call FUNC(markObjectAsPersistent)}] call CBA_fnc_addEventHandler;
 [QGVAR(forceLoadAbortedObject), {call FUNC(forceLoadAbortedObject)}] call CBA_fnc_addEventHandler;

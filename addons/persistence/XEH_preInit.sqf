@@ -42,27 +42,18 @@ if (isMultiplayer) then {
             };
         }] call CBA_fnc_addEventHandler;
 
-        // Handle player acks during shutdown — kick each player as they report ready
-        [QGVAR(readyForShutdown), {
-            params [["_player", objNull, [objNull]]];
-
-            // Only count player acks — HCs flush but are not tracked
-            if (isNull _player || {!isPlayer _player}) exitWith {};
-
-            GVAR(readyForShutdownCount) = GVAR(readyForShutdownCount) + 1;
-            INFO_3("Player ready for shutdown: %1 (%2 of %3)",name _player,GVAR(readyForShutdownCount),GVAR(readyForShutdownExpected));
-
-            // Kick the player after a short delay to ensure their data has been processed
-            [{
-                params ["_player"];
-                if (!isNull _player) then {
-                    SERVER_COMMAND serverCommand (format ["#kick %1", owner _player]);
-                };
-            }, [_player], 1] call CBA_fnc_waitAndExecute;
-        }] call CBA_fnc_addEventHandler;
-
         call FUNC(loadSession);
         call FUNC(initServer);
+    };
+
+    // HC shutdown handler — no initHC exists, so registered here
+    if (!isServer && !hasInterface) then {
+        [QGVAR(shutdownStarted), {
+            [QGVAR(shuttingDown)] call CBA_fnc_localEvent;
+            [{
+                [QGVAR(readyForShutdown), [player]] call CBA_fnc_serverEvent;
+            }, [], 0.5] call CBA_fnc_waitAndExecute;
+        }] call CBA_fnc_addEventHandler;
     };
 };
 
