@@ -39,7 +39,7 @@ PREP(showAbortedObjects);
 PREP(showDisconnectedPositions);
 PREP(showPersistenceMarkers);
 PREP(showPersistentObjects);
-PREP(shutdown);
+PREP(startShutdown);
 PREP(shutdownSave);
 PREP(shutdownSavePfh);
 PREP(startSaveObjectDataPfh);

@@ -4,7 +4,7 @@
         Tim Beswick
 
     Description:
-        Forces server shutdown after saving data
+        Starts the server shutdown cycle
 
     Parameter(s):
         None
@@ -13,11 +13,11 @@
         None
 
     Example:
-        call uksf_persistence_fnc_shutdown
+        call uksf_persistence_fnc_startShutdown
 */
 
 if (!isServer) exitWith {
-    [QGVAR(shutdown)] call CBA_fnc_serverEvent;
+    [QGVAR(startShutdown)] call CBA_fnc_serverEvent;
 };
 
 if (GVAR(shutdownInProgress)) exitWith {
@@ -27,7 +27,7 @@ GVAR(shutdownInProgress) = true;
 
 LOG("Shutdown");
 
-[QEGVAR(common,textTiles), [parseText format ["<t align = 'center' color = '#00FF00'>Persistence Shutdown Cycle Started: You will be kicked off the server shortly. Please stand still.</t>"], [0.25, 0.5, 0.5, 0.085], [1, 1], 2.5], [] call CBA_fnc_players] call CBA_fnc_targetEvent;
+[QEGVAR(common,textTiles), [parseText "<t align = 'center' color = '#1a7a1a'>Server shutting down</t>", [0.25, 0.5, 0.5, 0.085], [1, 1], 2.5], [] call CBA_fnc_players] call CBA_fnc_targetEvent;
 
 // Notify other components that shutdown is starting
 [QGVAR(shutdownStarted)] call CBA_fnc_localEvent;

@@ -35,7 +35,7 @@ if (isMultiplayer) then {
                     [_data] call FUNC(handleApiLoadChunk);
                 };
                 case "shutdown": {
-                    call FUNC(shutdown);
+                    call FUNC(startShutdown);
                 };
             };
         }] call CBA_fnc_addEventHandler;
