@@ -51,7 +51,7 @@
         };
     };
 
-    // Emit combatDamage for player-inflicted damage (for damage ledger / assists)
+    // Emit combatDamage for player-inflicted damage (API correlates with kills via targetNetId)
     if (isNull _instigator || {!isPlayer _instigator}) exitWith {};
     if (_unit isEqualTo _instigator) exitWith {};
 
