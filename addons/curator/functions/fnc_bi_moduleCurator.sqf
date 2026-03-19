@@ -140,9 +140,9 @@ if (_activated) then {
             // Wait until the mission starts
             waitUntil {time > 0};
 
-            // Refresh addons after mission start to broadcast to clients
-            removeAllCuratorAddons _logic;
-            _logic addCuratorAddons EGVAR(common,addons);
+            // // Refresh addons after mission start to broadcast to clients
+            // removeAllCuratorAddons _logic;
+            // _logic addCuratorAddons EGVAR(common,addons);
 
             while {true} do {
                 // Wait for player to become Zeus
