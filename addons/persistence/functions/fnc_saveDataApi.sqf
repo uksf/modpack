@@ -154,14 +154,13 @@ private _objects = _allObjects apply {
         ]
     };
 
-    // turretMagazines: [[className, turretPath, ammoCount, id, ammo], ...] -> [{"className": ..., ...}, ...]
+    // turretMagazines: [[className, turretPath, ammoCount, id, creator], ...]
+    // id and creator are engine internals not needed for persistence
     private _turretMagazines = (_x#IDX_OBJ_TURRETMAGS) apply {
         createHashMapFromArray [
             ["className",  _x#0],
             ["turretPath", _x#1],
-            ["ammoCount",  _x#2],
-            ["id",         _x#3],
-            ["ammo",       _x#4]
+            ["ammoCount",  _x#2]
         ]
     };
 
