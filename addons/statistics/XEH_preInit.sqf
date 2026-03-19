@@ -45,47 +45,6 @@ if (isServer) then {
     // Usage: uksf_statistics_killswitch = true; publicVariable "uksf_statistics_killswitch";
     publicVariable QGVAR(killswitch);
 
-    // Damage attribution ledger: netId -> array of damage entries
-    // Each entry: {uid, damage, time}
-    GVAR(damageLedger) = createHashMap;
-    GVAR(damageLedgerMeta) = createHashMap;
-
-    // Periodic ledger cleanup: remove entries for targets that no longer exist
-    // Runs every 120 seconds to catch entities removed by garbage collection
-    // Emits surviving damage entries as standalone events so no attribution data is lost
-    [{
-        private _keysToRemove = [];
-        {
-            private _object = objectFromNetId _x;
-            if (isNull _object) then {
-                _keysToRemove pushBack _x;
-            };
-        } forEach (keys GVAR(damageLedger));
-        {
-            private _netId = _x;
-            private _damageHistory = GVAR(damageLedger) get _netId;
-            private _meta = GVAR(damageLedgerMeta) getOrDefault [_netId, createHashMap];
-            // Emit each contributor's total damage as a standalone event
-            private _contributorMap = createHashMap;
-            {
-                private _contributorUid = _x get "uid";
-                private _existing = _contributorMap getOrDefault [_contributorUid, 0];
-                _contributorMap set [_contributorUid, _existing + (_x get "damage")];
-            } forEach _damageHistory;
-            {
-                GVAR(serverBuffer) pushBack createHashMapFromArray [
-                    ["type", "damage"],
-                    ["uid", _x],
-                    ["totalDamage", _y],
-                    ["targetClassname", _meta getOrDefault ["classname", ""]],
-                    ["targetType", _meta getOrDefault ["targetType", ""]]
-                ];
-            } forEach _contributorMap;
-            GVAR(damageLedger) deleteAt _netId;
-            GVAR(damageLedgerMeta) deleteAt _netId;
-        } forEach _keysToRemove;
-    }, 120, []] call CBA_fnc_addPerFrameHandler;
-
     // Handle incoming client reports
     [QGVAR(clientReport), {
         _this call FUNC(handleClientReport);
