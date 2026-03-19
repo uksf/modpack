@@ -9,7 +9,7 @@ GVAR(debugSpheres) = [];
 GVAR(debugSingletonSphere) = objNull;
 
 GVAR(addons) = ('true' configClasses (configFile >> "CfgPatches")) apply {configName _x};
-activateAddons GVAR(addons);
+[] spawn {activateAddons GVAR(addons)};
 
 GVAR(configAmmo) = configFile >> "CfgAmmo";
 GVAR(configMagazines) = configFile >> "CfgMagazines";
