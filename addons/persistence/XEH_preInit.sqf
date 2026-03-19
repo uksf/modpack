@@ -19,6 +19,9 @@ if (is3DEN) then {
 };
 
 GVAR(dataSaved) = false;
+GVAR(shutdownInProgress) = false;
+GVAR(readyForShutdownCount) = 0;
+GVAR(readyForShutdownExpected) = 0;
 
 if (isMultiplayer) then {
     if (hasInterface) then {
@@ -26,11 +29,28 @@ if (isMultiplayer) then {
     };
 
     if (isServer) then {
-        call FUNC(loadSession);
+        // Handle API commands
+        [QEGVAR(api,command), {
+            params ["_type", "_data"];
+            switch (_type) do {
+                case "persistence_load": {
+                    [_data] call FUNC(handleApiLoadChunk);
+                };
+                case "shutdown": {
+                    call FUNC(startShutdown);
+                };
+            };
+        }] call CBA_fnc_addEventHandler;
 
-        if (!GVAR(useApiPersistence)) then {
-            call FUNC(initServer);
-        };
+        call FUNC(loadSession);
+        call FUNC(initServer);
+    };
+
+    // HC shutdown handler
+    if (!isServer && !hasInterface) then {
+        [QGVAR(shutdownStarted), {
+            [QGVAR(shuttingDown)] call CBA_fnc_localEvent;
+        }] call CBA_fnc_addEventHandler;
     };
 };
 

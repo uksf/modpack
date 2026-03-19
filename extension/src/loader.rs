@@ -19,7 +19,7 @@ pub fn load(key: &str) {
             Err(error) => {
                 log::error!("Failed to load persistence for key '{key}': {error}");
                 let envelope = build_error_envelope_json(&key, &error);
-                bridge::fire_callback("persistence_load", &envelope);
+                bridge::fire_callback("command", &envelope);
                 return;
             }
         };
@@ -30,7 +30,7 @@ pub fn load(key: &str) {
 
         for (index, chunk) in chunks.iter().enumerate() {
             let envelope = build_envelope_json(&key, index, total, chunk);
-            bridge::fire_callback("persistence_load", &envelope);
+            bridge::fire_callback("command", &envelope);
         }
         log::info!("Finished sending persistence '{key}'");
     });
@@ -98,7 +98,7 @@ fn build_error_envelope_json(id: &str, error: &str) -> String {
     let escaped_id = escape_json_string(id);
     let escaped_error = escape_json_string(error);
     format!(
-        r#"{{"id":"{escaped_id}","index":0,"total":0,"data":"","error":"{escaped_error}"}}"#
+        r#"{{"type":"persistence_load","id":"{escaped_id}","index":0,"total":0,"data":"","error":"{escaped_error}"}}"#
     )
 }
 
@@ -106,7 +106,7 @@ fn build_envelope_json(id: &str, index: usize, total: usize, data: &str) -> Stri
     let escaped_id = escape_json_string(id);
     let escaped_data = escape_json_string(data);
     format!(
-        r#"{{"id":"{escaped_id}","index":{index},"total":{total},"data":"{escaped_data}"}}"#
+        r#"{{"type":"persistence_load","id":"{escaped_id}","index":{index},"total":{total},"data":"{escaped_data}"}}"#
     )
 }
 
@@ -185,6 +185,7 @@ mod tests {
     #[test]
     fn test_build_envelope_json() {
         let json = build_envelope_json("save-123", 0, 3, "chunk_data");
+        assert!(json.contains(r#""type":"persistence_load""#));
         assert!(json.contains(r#""id":"save-123""#));
         assert!(json.contains(r#""index":0"#));
         assert!(json.contains(r#""total":3"#));

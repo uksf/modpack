@@ -4,7 +4,8 @@
         Tim Beswick
 
     Description:
-        Stops object saving PFH and saves data to namespace
+        Finishes object saving, collects all remaining persistence data
+        (dateTime, mapMarkers, serializers), and saves everything to namespace
 
     Parameter(s):
         None
@@ -36,4 +37,18 @@ TRACE_1("Removing objects from persistent data, adding to deleted list",_remove)
 INFO_1("Number of objects saved: %1",count _objects);
 GVAR(dataNamespace) setVariable [QGVAR(deletedObjects), GVAR(deletedPersistentObjects)];
 GVAR(dataNamespace) setVariable [QGVAR(objects), _objects];
+
+// Save dateTime, mapMarkers, and serializer data last
+private _dateTime = date;
+TRACE_1("Saving date time",_dateTime);
+GVAR(dataNamespace) setVariable [QGVAR(dateTime), _dateTime];
+GVAR(dataNamespace) setVariable [QGVAR(mapMarkers), GVAR(mapMarkers)];
+
+{
+    _x params ["_id", "_function"];
+
+    private _data = [] call _function;
+    GVAR(dataNamespace) setVariable [_id, _data];
+} forEach GVAR(serializers);
+
 call FUNC(saveData);

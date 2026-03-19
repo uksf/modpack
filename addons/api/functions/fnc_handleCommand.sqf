@@ -5,7 +5,8 @@
 
     Description:
         Handles an inbound command from the API via extensionCallback.
-        JSON is parsed using CBA_fnc_parseJSON into a native hashmap.
+        Parses the JSON and raises a CBA event so consuming components
+        can handle what they care about based on the command type.
 
     Parameters:
         0: Function name <STRING>
@@ -19,34 +20,15 @@
 */
 params ["_function", "_data"];
 
-TRACE_2("Received command",_function,_data);
-
-if (_function == "persistence_load") exitWith {
-    if (!isNil {EFUNC(persistence,handleApiLoadChunk)}) then {
-        [_data] call EFUNC(persistence,handleApiLoadChunk);
-    } else {
-        WARNING("Received persistence_load callback but persistence module not available");
-    };
+if (_function != "command") exitWith {
+    WARNING_2("Unhandled extension callback type: %1, data: %2",_function,_data);
 };
 
-if (_function != "command") exitWith {};
-
 private _parsed = [_data, 2] call CBA_fnc_parseJSON;
-if (isNil "_parsed") exitWith {
+if (isNil "_parsed" || {!(_parsed isEqualType createHashMap)}) exitWith {
     WARNING_1("Failed to parse command JSON: %1",_data);
 };
 
 private _type = _parsed getOrDefault ["type", ""];
-switch (_type) do {
-    case "shutdown": {
-        INFO("Received shutdown command from API");
-        if (isServer && {!isNil {EFUNC(persistence,shutdown)}}) then {
-            call EFUNC(persistence,shutdown);
-        } else {
-            SERVER_COMMAND serverCommand "#shutdown";
-        };
-    };
-    default {
-        WARNING_1("Unknown command type: %1",_type);
-    };
-};
+TRACE_1("Received command",_type);
+[QGVAR(command), [_type, _parsed]] call CBA_fnc_localEvent;

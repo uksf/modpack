@@ -4,11 +4,11 @@
         Tim Beswick
 
     Description:
-        Handles a client event report on the server. Appends received events
-        into the server buffer for later API delivery.
+        Handles a client/HC event report on the server. Appends all events
+        to the server buffer for API delivery.
 
     Parameters:
-        0: Events <ARRAY> — array of event hashmaps (each containing uid and name)
+        0: Events <ARRAY> — array of event hashmaps
 
     Return Value:
         None

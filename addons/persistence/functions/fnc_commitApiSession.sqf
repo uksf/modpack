@@ -8,6 +8,11 @@
         Creates a fresh namespace and populates it with objects, players,
         deleted objects, markers, datetime, and custom data.
 
+        WARNING: This function is not currently called from any production code path.
+        It does NOT convert nested hashmap fields (turretWeapons, inventory, etc.)
+        back to positional arrays. If wired up, it will need the same conversion
+        logic as fnc_loadObjectData and fnc_loadRedeployData.
+
     Parameter(s):
         0: Session hashmap <HASHMAP>
 

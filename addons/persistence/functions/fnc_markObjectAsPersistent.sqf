@@ -30,7 +30,7 @@ if (_object getVariable [QGVAR(persistenceID), ""] != "") exitWith {};
 
 // Generate ID if empty
 if (_id == "") then {
-    _id = format ["%1_%2_%3", typeOf _object, diag_frameNo, round random 99999];
+    _id = format ["%1_%2", typeOf _object, call CBA_fnc_createUUID];
     TRACE_1("Object marked as persistent has no ID, generating one",_id);
 };
 

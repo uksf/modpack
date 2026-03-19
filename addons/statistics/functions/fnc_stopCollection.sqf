@@ -4,9 +4,9 @@
         Tim Beswick
 
     Description:
-        Stops statistics collection. Removes sync PFHs and provider event handlers.
-        Note: CBA class event handlers (used by hits provider) cannot be removed,
-        but the addEvent function checks the killswitch so events are silently dropped.
+        Stops statistics collection. Removes sync PFHs.
+        CBA event handlers persist for mission lifetime and are cleaned up on mission end.
+        Projectile event handlers are cleaned up when projectiles are deleted.
 
     Parameters:
         None
@@ -22,10 +22,17 @@ if (GVAR(clientSyncPFH) != -1) then {
     GVAR(clientSyncPFH) = -1;
 };
 
-// Remove provider event handlers
-if (!isNil QGVAR(firedManEHId) && {hasInterface}) then {
-    player removeEventHandler ["FiredMan", GVAR(firedManEHId)];
-    GVAR(firedManEHId) = nil;
+// CBA event handlers registered by providers persist for mission lifetime
+// and are cleaned up on mission end. No manual removal needed.
+
+if (GVAR(performancePFH) != -1) then {
+    [GVAR(performancePFH)] call CBA_fnc_removePerFrameHandler;
+    GVAR(performancePFH) = -1;
+};
+
+if (GVAR(samplerPFH) != -1) then {
+    [GVAR(samplerPFH)] call CBA_fnc_removePerFrameHandler;
+    GVAR(samplerPFH) = -1;
 };
 
 if (isServer && {GVAR(serverSyncPFH) != -1}) then {
@@ -33,4 +40,5 @@ if (isServer && {GVAR(serverSyncPFH) != -1}) then {
     GVAR(serverSyncPFH) = -1;
 };
 
+GVAR(collectionStarted) = false;
 INFO("Statistics collection stopped");

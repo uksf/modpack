@@ -6,4 +6,6 @@ ADDON = false;
 
 ADDON = true;
 
-call FUNC(start);
+if (isServer) then {
+    call FUNC(initMission);
+};
