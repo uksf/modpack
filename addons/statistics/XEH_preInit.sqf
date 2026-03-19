@@ -67,10 +67,8 @@ if (isServer) then {
     }];
 };
 
-// Flush client/HC event buffers when shutdown starts
-// Runs before persistence's readyForShutdown ack (registered in postInit, fires after this)
 if (!isServer) then {
-    [QEGVAR(persistence,shutdownStarted), {
+    [QEGVAR(persistence,shuttingDown), {
         call FUNC(clientSync);
         call FUNC(stopCollection);
     }] call CBA_fnc_addEventHandler;

@@ -42,11 +42,11 @@ if (isMultiplayer) then {
             };
         }] call CBA_fnc_addEventHandler;
 
-        // Handle player acks during shutdown — kick each player as they report ready
+        // Handle player ready during shutdown — kick each player as they report ready
         [QGVAR(readyForShutdown), {
             params [["_player", objNull, [objNull]]];
 
-            // Only count player acks — HCs flush but are not tracked
+            // Only count players — HCs flush but are not tracked
             if (isNull _player || {!isPlayer _player}) exitWith {};
 
             GVAR(readyForShutdownCount) = GVAR(readyForShutdownCount) + 1;
@@ -63,6 +63,20 @@ if (isMultiplayer) then {
 
         call FUNC(loadSession);
         call FUNC(initServer);
+    };
+
+    if (!isServer) then {
+        [QGVAR(shutdownStarted), {
+            if (hasInterface) then {
+                [QEGVAR(common,textTiles), [parseText "<t align = 'center' color = '#1a7a1a'>Server shutting down</t>", [0.25, 0.5, 0.5, 0.085], [1, 1], 2.5]] call CBA_fnc_localEvent;
+            };
+
+            [QGVAR(shuttingDown), []] call CBA_fnc_localEvent;
+
+            [{
+                [QGVAR(readyForShutdown), [player]] call CBA_fnc_serverEvent;
+            }, [], 0.5] call CBA_fnc_waitAndExecute;
+        }] call CBA_fnc_addEventHandler;
     };
 };
 

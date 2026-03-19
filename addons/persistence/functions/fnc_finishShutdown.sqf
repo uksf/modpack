@@ -19,10 +19,8 @@
         call uksf_persistence_fnc_finishShutdown
 */
 
-// Notify server-side components to do final syncs (e.g. statistics serverSync)
-[QGVAR(shuttingDown)] call CBA_fnc_localEvent;
+[QGVAR(shuttingDown), []] call CBA_fnc_localEvent;
 
-// Persistence save and shutdown
 if (GVAR(dataSaved)) then {
     {
         private _marker = createVehicle [QGVAR(markerAmmo), _x, [], 0, "CAN_COLLIDE"];
@@ -39,10 +37,10 @@ if (GVAR(dataSaved)) then {
     ["shutdown_complete"] call EFUNC(api,sendEvent);
     "uksf" callExtension "flush";
 
-    [{SERVER_COMMAND serverCommand "#shutdown"}, [], 4] call CBA_fnc_waitAndExecute;
+    [{SERVER_COMMAND serverCommand "#shutdown"}, [], 5] call CBA_fnc_waitAndExecute;
 }, [], 120, {
     WARNING("Shutdown save timed out after 120 seconds, forcing shutdown");
     ["shutdown_complete"] call EFUNC(api,sendEvent);
     "uksf" callExtension "flush";
-    [{SERVER_COMMAND serverCommand "#shutdown"}, [], 4] call CBA_fnc_waitAndExecute;
+    [{SERVER_COMMAND serverCommand "#shutdown"}, [], 5] call CBA_fnc_waitAndExecute;
 }] call CBA_fnc_waitUntilAndExecute;
