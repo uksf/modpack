@@ -118,6 +118,15 @@ private _convertInventory = {
 // Input: [className, nestedCargo, inventory, customName]
 private _convertCargoEntry = {
     params ["_entry"];
+    // Handle raw string classnames from ace_cargo_loaded (not processed by getObjectCargo)
+    if (_entry isEqualType "") exitWith {
+        createHashMapFromArray [
+            ["className",  _entry],
+            ["cargo",      []],
+            ["inventory",  createHashMap],
+            ["customName", ""]
+        ]
+    };
     private _nestedCargo = (_entry#1) apply { _x call _convertCargoEntry };
     private _inventory = [_entry#2] call _convertInventory;
     createHashMapFromArray [
