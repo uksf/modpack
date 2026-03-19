@@ -45,7 +45,7 @@ if (!isServer) then {
         };
         // Short delay to allow clientSync's serverEvent to be transmitted before the ack
         [{
-            [QEGVAR(persistence,readyForShutdown), [player]] call CBA_fnc_serverEvent;
+            [QGVAR(readyForShutdown), [player]] call CBA_fnc_serverEvent;
         }, [], 0.5] call CBA_fnc_waitAndExecute;
     }] call CBA_fnc_addEventHandler;
 };
