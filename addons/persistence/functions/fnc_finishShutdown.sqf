@@ -19,8 +19,10 @@
         call uksf_persistence_fnc_finishShutdown
 */
 
-[QGVAR(shuttingDown), []] call CBA_fnc_localEvent;
+TRACE_1("Finishing shutdown: firing shuttingDown",diag_tickTime);
+[QGVAR(shuttingDown)] call CBA_fnc_localEvent;
 
+TRACE_1("Proceeding with persistence save",GVAR(dataSaved));
 if (GVAR(dataSaved)) then {
     {
         private _marker = createVehicle [QGVAR(markerAmmo), _x, [], 0, "CAN_COLLIDE"];
@@ -34,8 +36,10 @@ if (GVAR(dataSaved)) then {
 [{
     GVAR(shutdownSavingComplete)
 }, {
+    TRACE_1("Sending shutdown_complete and flushing extension",diag_tickTime);
     ["shutdown_complete"] call EFUNC(api,sendEvent);
-    "uksf" callExtension "flush";
+    private _flushResult = "uksf" callExtension "flush";
+    TRACE_1("Extension flush result",_flushResult);
 
     [{SERVER_COMMAND serverCommand "#shutdown"}, [], 5] call CBA_fnc_waitAndExecute;
 }, [], 120, {

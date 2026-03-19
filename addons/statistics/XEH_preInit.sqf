@@ -45,20 +45,22 @@ if (isServer) then {
     }] call CBA_fnc_addEventHandler;
 
     [QEGVAR(persistence,shuttingDown), {
+        TRACE_1("Shutdown: final server sync",count GVAR(serverBuffer));
         call FUNC(serverSync);
     }] call CBA_fnc_addEventHandler;
 
-    // MPEnded fallback for non-persistence-shutdown scenarios (e.g. mission restart)
     addMissionEventHandler ["MPEnded", {
-        call FUNC(stopCollection);
+        TRACE_1("MPEnded: flushing and stopping",count GVAR(serverBuffer));
         call FUNC(serverSync);
+        call FUNC(stopCollection);
     }];
 };
 
 if (!isServer) then {
     [QEGVAR(persistence,shuttingDown), {
-        call FUNC(stopCollection);
+        TRACE_1("Shutdown: flushing client buffers",count GVAR(eventBuffer));
         call FUNC(clientSync);
+        call FUNC(stopCollection);
     }] call CBA_fnc_addEventHandler;
 };
 

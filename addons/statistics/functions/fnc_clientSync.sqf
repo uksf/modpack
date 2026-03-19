@@ -28,6 +28,7 @@ if (GVAR(eventBuffer) isEqualTo []) exitWith {};
 
 private _events = GVAR(eventBuffer);
 GVAR(eventBuffer) = [];
+TRACE_1("Client sync",count _events);
 
 // Inject uid into events that don't already have one (client providers)
 // HC-buffered events (combat damage) already have uid set by the provider

@@ -31,7 +31,9 @@ INFO_1("Mission session: %1",GVAR(sessionId));
 // Fallback for non-persistence-shutdown mission ends (e.g. mission restart)
 // During controlled shutdown, shuttingDown handler sends mission_ended instead
 addMissionEventHandler ["MPEnded", {
-    if (EGVAR(persistence,shutdownInProgress)) exitWith {};
+    if (EGVAR(persistence,shutdownInProgress)) exitWith {
+        TRACE_1("MPEnded skipped — shutdown in progress",EGVAR(persistence,shutdownInProgress));
+    };
 
     ["mission_ended", createHashMapFromArray [
         ["sessionId", GVAR(sessionId)],
