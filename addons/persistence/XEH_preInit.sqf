@@ -20,6 +20,8 @@ if (is3DEN) then {
 
 GVAR(dataSaved) = false;
 GVAR(shutdownInProgress) = false;
+GVAR(readyForShutdownCount) = 0;
+GVAR(readyForShutdownExpected) = 0;
 
 if (isMultiplayer) then {
     if (hasInterface) then {
@@ -35,9 +37,28 @@ if (isMultiplayer) then {
                     [_data] call FUNC(handleApiLoadChunk);
                 };
                 case "shutdown": {
-                    call FUNC(shutdown);
+                    call FUNC(startShutdown);
                 };
             };
+        }] call CBA_fnc_addEventHandler;
+
+        // Handle player acks during shutdown — kick each player as they report ready
+        [QGVAR(readyForShutdown), {
+            params [["_player", objNull, [objNull]]];
+
+            // Only count player acks — HCs flush but are not tracked
+            if (isNull _player || {!isPlayer _player}) exitWith {};
+
+            GVAR(readyForShutdownCount) = GVAR(readyForShutdownCount) + 1;
+            INFO_2("Player ready for shutdown (%1 of %2)",GVAR(readyForShutdownCount),GVAR(readyForShutdownExpected));
+
+            // Kick the player after a short delay to ensure their data has been processed
+            [{
+                params ["_player"];
+                if (!isNull _player) then {
+                    SERVER_COMMAND serverCommand (format ["#kick %1", owner _player]);
+                };
+            }, [_player], 1] call CBA_fnc_waitAndExecute;
         }] call CBA_fnc_addEventHandler;
 
         call FUNC(loadSession);

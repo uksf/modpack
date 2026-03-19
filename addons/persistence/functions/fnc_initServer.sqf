@@ -56,7 +56,7 @@ addMissionEventHandler ["BuildingChanged", {
 }];
 
 // Core persistence events
-[QGVAR(shutdown), {call FUNC(shutdown)}] call CBA_fnc_addEventHandler;
+[QGVAR(startShutdown), {call FUNC(startShutdown)}] call CBA_fnc_addEventHandler;
 [QGVAR(registerSerializer), {call FUNC(registerSerializer)}] call CBA_fnc_addEventHandler;
 [QGVAR(markObjectAsPersistent), {call FUNC(markObjectAsPersistent)}] call CBA_fnc_addEventHandler;
 [QGVAR(forceLoadAbortedObject), {call FUNC(forceLoadAbortedObject)}] call CBA_fnc_addEventHandler;

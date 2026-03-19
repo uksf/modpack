@@ -3,7 +3,6 @@ PREP(addProviderTiming);
 PREP(clientSync);
 PREP(explosivesSync);
 PREP(handleClientReport);
-PREP(handleDamageRelay);
 PREP(performancePFH);
 PREP(providerCombatDamage);
 PREP(providerExplosives);
