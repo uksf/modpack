@@ -113,3 +113,13 @@ addMissionEventHandler ["MarkerDeleted", {
     {systemChat _x} forEach _lines;
 }] call CBA_fnc_addEventHandler;
 
+[QGVAR(shutdownStarted), {
+    [QEGVAR(common,textTiles), [parseText "<t align = 'center' color = '#1a7a1a'>Server shutting down</t>", [0.25, 0.5, 0.5, 0.085], [1, 1], 2.5]] call CBA_fnc_localEvent;
+    [QGVAR(shuttingDown)] call CBA_fnc_localEvent;
+
+    // Delay to allow flushed data to transmit before reporting ready
+    [{
+        [QGVAR(readyForShutdown), [player]] call CBA_fnc_serverEvent;
+    }, [], 0.5] call CBA_fnc_waitAndExecute;
+}] call CBA_fnc_addEventHandler;
+
