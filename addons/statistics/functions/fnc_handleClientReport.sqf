@@ -4,7 +4,7 @@
         Tim Beswick
 
     Description:
-        Handles a client/HC event report on the server. Pushes all events
+        Handles a client/HC event report on the server. Appends all events
         to the server buffer for API delivery.
 
     Parameters:
@@ -22,6 +22,4 @@ params [["_events", [], [[]]]];
 
 if (_events isEqualTo []) exitWith {};
 
-{
-    GVAR(serverBuffer) pushBack _x;
-} forEach _events;
+GVAR(serverBuffer) append _events;
