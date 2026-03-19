@@ -46,13 +46,10 @@ if (isMultiplayer) then {
         call FUNC(initServer);
     };
 
-    // HC shutdown handler — no initHC exists, so registered here
+    // HC shutdown handler
     if (!isServer && !hasInterface) then {
         [QGVAR(shutdownStarted), {
             [QGVAR(shuttingDown)] call CBA_fnc_localEvent;
-            [{
-                [QGVAR(readyForShutdown), [player]] call CBA_fnc_serverEvent;
-            }, [], 0.5] call CBA_fnc_waitAndExecute;
         }] call CBA_fnc_addEventHandler;
     };
 };
