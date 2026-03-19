@@ -34,3 +34,15 @@
         [QGVAR(requestRedeployData), [player]] call CBA_fnc_serverEvent;
     };
 }] call CBA_fnc_execNextFrame;
+
+// Client/HC shutdown handler — show notification and report ready
+// Registered in postInit to fire after statistics' preInit shutdownStarted handler
+// which flushes client buffers before this ack is sent
+if (!isServer) then {
+    [QGVAR(shutdownStarted), {
+        if (hasInterface) then {
+            [QEGVAR(common,textTiles), [parseText "<t align = 'center' color = '#1a7a1a'>Server shutting down</t>", [0.25, 0.5, 0.5, 0.085], [1, 1], 2.5]] call CBA_fnc_localEvent;
+        };
+        [QGVAR(readyForShutdown), [player]] call CBA_fnc_serverEvent;
+    }] call CBA_fnc_addEventHandler;
+};
