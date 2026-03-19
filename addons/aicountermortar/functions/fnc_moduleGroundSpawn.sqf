@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_module] call uksf_aicountermortar_fnc_moduleGroundSpawn
 */
 
 (_this select 1) params ["_module"];

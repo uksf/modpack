@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_logic] call uksf_mission_fnc_moduleDynamicPatrolArea
 */
 (_this select 1) params ["_logic"];
 

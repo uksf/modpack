@@ -12,6 +12,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_objects, _state] call uksf_cleanup_fnc_setCleanupState
 */
 if (!GVAR(enabled)) exitWith {};
 

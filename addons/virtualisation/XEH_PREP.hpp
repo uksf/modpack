@@ -24,7 +24,4 @@ PREP(addContextActions);
 PREP(contextCanExclude);
 PREP(contextExclude);
 PREP(contextExcludeModifier);
-PREP(contextCanExclude);
-PREP(contextExclude);
-PREP(contextExcludeModifier);
 PREP(contextDevirtualiseNearby);

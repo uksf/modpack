@@ -19,6 +19,9 @@ if (is3DEN) then {
 };
 
 GVAR(dataSaved) = false;
+GVAR(shutdownInProgress) = false;
+GVAR(readyForShutdownCount) = 0;
+GVAR(readyForShutdownExpected) = 0;
 
 if (isMultiplayer) then {
     if (hasInterface) then {
@@ -26,19 +29,28 @@ if (isMultiplayer) then {
     };
 
     if (isServer) then {
-        GVAR(key) = getMissionConfigValue ["persistenceKey", ""];
-        INFO_1("Mission Key: %1",GVAR(key));
-        if (GVAR(key) != "") then {
-            GVAR(key) = format [QUOTE(GVAR(key)_%1_%2), worldName, GVAR(key)];
-            GVAR(dataSaved) = true;
-            private _hash = profileNamespace getVariable [GVAR(key), []];
-            TRACE_1("Loaded data",_hash);
-            GVAR(dataNamespace) = [_hash] call CBA_fnc_deserializeNamespace;
-        } else {
-            GVAR(dataNamespace) = call CBA_fnc_createNamespace;
-        };
+        // Handle API commands
+        [QEGVAR(api,command), {
+            params ["_type", "_data"];
+            switch (_type) do {
+                case "persistence_load": {
+                    [_data] call FUNC(handleApiLoadChunk);
+                };
+                case "shutdown": {
+                    call FUNC(startShutdown);
+                };
+            };
+        }] call CBA_fnc_addEventHandler;
 
+        call FUNC(loadSession);
         call FUNC(initServer);
+    };
+
+    // HC shutdown handler
+    if (!isServer && !hasInterface) then {
+        [QGVAR(shutdownStarted), {
+            [QGVAR(shuttingDown)] call CBA_fnc_localEvent;
+        }] call CBA_fnc_addEventHandler;
     };
 };
 

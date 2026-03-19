@@ -16,6 +16,9 @@
 
     Return value:
         Boolean
+
+    Example:
+        [_target, _source, _zoomCheck, _groupCheck] call uksf_common_fnc_lineOfSight
 */
 params [["_target", objNull, [objNull]], ["_source", objNull, [objNull]], ["_zoomCheck", false], ["_groupCheck", false]];
 

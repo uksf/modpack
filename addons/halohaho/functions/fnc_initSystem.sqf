@@ -30,6 +30,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        call uksf_halohaho_fnc_initSystem
 */
 
 if (GVAR(systemPFHID) != -1) exitWith {};

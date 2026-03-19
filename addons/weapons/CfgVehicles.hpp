@@ -2,7 +2,7 @@ class CBA_Extended_EventHandlers_base;
 
 class CfgVehicles {
     class CUP_USBasicAmmunitionBox;
-    class CUP_USLaunchersBox: CUP_USBasicAmmunitionBox {
+    class CUP_USLaunchersBox : CUP_USBasicAmmunitionBox {
         class TransportMagazines {
             class _xx_M136_M {
                 magazine = "CUP_M136_M";
@@ -46,7 +46,7 @@ class CfgVehicles {
     };
 
     class CUP_ReammoBox_EP1;
-    class CUP_USLaunchers_EP1: CUP_ReammoBox_EP1 {
+    class CUP_USLaunchers_EP1 : CUP_ReammoBox_EP1 {
         class TransportMagazines {
             class _xx_M136_M {
                 magazine = "CUP_M136_M";
@@ -165,131 +165,138 @@ class CfgVehicles {
         };
     };
 
-    class StaticWeapon;
-    class StaticMGWeapon: StaticWeapon {
+    class LandVehicle;
+    class StaticWeapon : LandVehicle {
+        class ACE_Actions;
+    };
+    class StaticMGWeapon : StaticWeapon {
         class Turrets;
     };
-    class UK3CB_BAF_Static_MG_Base: StaticMGWeapon {
+    class UK3CB_BAF_Static_MG_Base : StaticMGWeapon {
         faction = "CUP_B_GB";
         crew = "CUP_B_BAF_Soldier_MTP";
         typicalCargo[] = { "CUP_B_BAF_Soldier_MTP" };
-        class Turrets: Turrets {
+        class Turrets : Turrets {
             class MainTurret;
         };
     };
-    class UK3CB_BAF_Static_L7A2_Base: UK3CB_BAF_Static_MG_Base {
-        class Turrets: Turrets {
-            class MainTurret: MainTurret {
+    class UK3CB_BAF_Static_L7A2_Base : UK3CB_BAF_Static_MG_Base {
+        class Turrets : Turrets {
+            class MainTurret : MainTurret {
                 weapons[] = { "CUP_Vlmg_M240_veh" };
             };
         };
     };
     class UK3CB_BAF_Static_L7A2_Low;
-    class UK3CB_BAF_Static_L7A2_Deployed_Low: UK3CB_BAF_Static_L7A2_Low {
+    class UK3CB_BAF_Static_L7A2_Deployed_Low : UK3CB_BAF_Static_L7A2_Low {
         faction = "CUP_B_GB";
         crew = "CUP_B_BAF_Soldier_MTP";
     };
     class UK3CB_BAF_Static_L7A2_Mid;
-    class UK3CB_BAF_Static_L7A2_Deployed_Mid: UK3CB_BAF_Static_L7A2_Mid {
+    class UK3CB_BAF_Static_L7A2_Deployed_Mid : UK3CB_BAF_Static_L7A2_Mid {
         faction = "CUP_B_GB";
         crew = "CUP_B_BAF_Soldier_MTP";
     };
     class UK3CB_BAF_Static_L7A2_High;
-    class UK3CB_BAF_Static_L7A2_Deployed_High: UK3CB_BAF_Static_L7A2_High {
+    class UK3CB_BAF_Static_L7A2_Deployed_High : UK3CB_BAF_Static_L7A2_High {
         faction = "CUP_B_GB";
         crew = "CUP_B_BAF_Soldier_MTP";
     };
-    class UK3CB_BAF_Static_L111A1_Base: UK3CB_BAF_Static_MG_Base {
-        class Turrets: Turrets {
-            class MainTurret: MainTurret {
+    class UK3CB_BAF_Static_L111A1_Base : UK3CB_BAF_Static_MG_Base {
+        class Turrets : Turrets {
+            class MainTurret : MainTurret {
                 weapons[] = { "CUP_Vhmg_M2_veh" };
             };
         };
     };
     class UK3CB_BAF_Static_L111A1_Low;
-    class UK3CB_BAF_Static_L111A1_Deployed_Low: UK3CB_BAF_Static_L111A1_Low {
+    class UK3CB_BAF_Static_L111A1_Deployed_Low : UK3CB_BAF_Static_L111A1_Low {
         faction = "CUP_B_GB";
         crew = "CUP_B_BAF_Soldier_MTP";
     };
     class UK3CB_BAF_Static_L111A1_Mid;
-    class UK3CB_BAF_Static_L111A1_Deployed_Mid: UK3CB_BAF_Static_L111A1_Mid {
+    class UK3CB_BAF_Static_L111A1_Deployed_Mid : UK3CB_BAF_Static_L111A1_Mid {
         faction = "CUP_B_GB";
         crew = "CUP_B_BAF_Soldier_MTP";
     };
     class UK3CB_BAF_Static_L111A1_High;
-    class UK3CB_BAF_Static_L111A1_Deployed_High: UK3CB_BAF_Static_L111A1_High {
+    class UK3CB_BAF_Static_L111A1_Deployed_High : UK3CB_BAF_Static_L111A1_High {
         faction = "CUP_B_GB";
         crew = "CUP_B_BAF_Soldier_MTP";
     };
-    class UK3CB_BAF_Static_L134A1_Base: UK3CB_BAF_Static_MG_Base {
-        class Turrets: Turrets {
-            class MainTurret: MainTurret {
+    class UK3CB_BAF_Static_L134A1_Base : UK3CB_BAF_Static_MG_Base {
+        class Turrets : Turrets {
+            class MainTurret : MainTurret {
                 weapons[] = { "CUP_Vgmg_MK19_veh" };
             };
         };
     };
     class UK3CB_BAF_Static_L134A1_Low;
-    class UK3CB_BAF_Static_L134A1_Deployed_Low: UK3CB_BAF_Static_L134A1_Low {
+    class UK3CB_BAF_Static_L134A1_Deployed_Low : UK3CB_BAF_Static_L134A1_Low {
         faction = "CUP_B_GB";
         crew = "CUP_B_BAF_Soldier_MTP";
     };
     class UK3CB_BAF_Static_L134A1_Mid;
-    class UK3CB_BAF_Static_L134A1_Deployed_Mid: UK3CB_BAF_Static_L134A1_Mid {
+    class UK3CB_BAF_Static_L134A1_Deployed_Mid : UK3CB_BAF_Static_L134A1_Mid {
         faction = "CUP_B_GB";
         crew = "CUP_B_BAF_Soldier_MTP";
     };
     class UK3CB_BAF_Static_L134A1_High;
-    class UK3CB_BAF_Static_L134A1_Deployed_High: UK3CB_BAF_Static_L134A1_High {
+    class UK3CB_BAF_Static_L134A1_Deployed_High : UK3CB_BAF_Static_L134A1_High {
         faction = "CUP_B_GB";
         crew = "CUP_B_BAF_Soldier_MTP";
     };
-    class StaticMortar;
-    class Mortar_01_base_F: StaticMortar {
+    class StaticMortar : StaticWeapon {
+        class ACE_Actions : ACE_Actions {
+            class TBD_Load;
+        };
+    };
+    class Mortar_01_base_F : StaticMortar {
         class Turrets;
     };
-    class UK3CB_BAF_Static_Mortar_Base: Mortar_01_base_F {
+    class UK3CB_BAF_Static_Mortar_Base : Mortar_01_base_F {
         faction = "CUP_B_GB";
         crew = "CUP_B_BAF_Soldier_MTP";
         typicalCargo[] = { "CUP_B_BAF_Soldier_MTP" };
-        class Turrets: Turrets {
+        class Turrets : Turrets {
             class MainTurret;
         };
     };
-    class UK3CB_BAF_Static_L16: UK3CB_BAF_Static_Mortar_Base {
-        class Turrets: Turrets {
-            class MainTurret: MainTurret {
+    class UK3CB_BAF_Static_L16 : UK3CB_BAF_Static_Mortar_Base {
+        class Turrets : Turrets {
+            class MainTurret : MainTurret {
                 gunnerAction = "UK3CB_BAF_L16_Gunner";
             };
         };
     };
-    class UK3CB_BAF_Static_L16_Deployed: UK3CB_BAF_Static_L16 {
+    class UK3CB_BAF_Static_L16_Deployed : UK3CB_BAF_Static_L16 {
         faction = "CUP_B_GB";
         crew = "CUP_B_BAF_Soldier_MTP";
     };
     class UK3CB_BAF_Static_M6;
-    class UK3CB_BAF_Static_M6_Deployed: UK3CB_BAF_Static_M6 {
+    class UK3CB_BAF_Static_M6_Deployed : UK3CB_BAF_Static_M6 {
         faction = "CUP_B_GB";
         crew = "CUP_B_BAF_Soldier_MTP";
     };
 
     class ACE_Explosives_Place_DemoCharge;
-    class ACE_Explosives_Place_BreachCharge: ACE_Explosives_Place_DemoCharge {
+    class ACE_Explosives_Place_BreachCharge : ACE_Explosives_Place_DemoCharge {
         author = "UKSF";
         displayName = "Breach Charge";
     };
     class DemoCharge_F;
-    class BreachCharge_F: DemoCharge_F {
+    class BreachCharge_F : DemoCharge_F {
         author = "UKSF";
         displayName = "Breach Charge";
         ammo = "BreachCharge_Remote_Ammo";
     };
 
     class Thing;
-    class ACE_Chemlight_IR_Marker: Thing {
+    class ACE_Chemlight_IR_Marker : Thing {
         brightness = 10;
         class NVGMarker {
-            diffuse[] = {0.1, 0.1, 0.1};
-            ambient[] = {0.1, 0.1, 0.1};
+            diffuse[] = { 0.1, 0.1, 0.1 };
+            ambient[] = { 0.1, 0.1, 0.1 };
             brightness = 0.4;
             name = "pozicni blik";
             drawLight = 0;
@@ -303,21 +310,21 @@ class CfgVehicles {
         };
     };
 
-    class UK3CB_BAF_1Rnd_60mm_Mo_Shells_spent: Thing {
+    class UK3CB_BAF_1Rnd_60mm_Mo_Shells_spent : Thing {
         SLX_XEH_DISABLED = 0;
         class EventHandlers {
-            class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers_base {};
+            class CBA_Extended_EventHandlers : CBA_Extended_EventHandlers_base {};
         };
     };
-    class UK3CB_BAF_1Rnd_81mm_Mo_Shells_spent: Thing {
+    class UK3CB_BAF_1Rnd_81mm_Mo_Shells_spent : Thing {
         SLX_XEH_DISABLED = 0;
         class EventHandlers {
-            class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers_base {};
+            class CBA_Extended_EventHandlers : CBA_Extended_EventHandlers_base {};
         };
     };
 
     class AA_01_base_F;
-    class GVAR(rappelling_helper): AA_01_base_F {
+    class GVAR(rappelling_helper) : AA_01_base_F {
         editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\B_static_AA_F.jpg";
         scope = 2;
         side = 1;
@@ -329,5 +336,86 @@ class CfgVehicles {
         };
     };
 
-    #include "CfgVehiclesPrivate.hpp"
+    class ThingX;
+    class ReammoBox_F : ThingX {
+        class ACE_Actions;
+    };
+    class NATO_Box_Base : ReammoBox_F {
+        class ACE_Actions : ACE_Actions {
+            class ACE_MainActions;
+        };
+    };
+    class TBD_MORTARS_105mm_ROUND_SMOKE_CHARGE_1 : NATO_Box_Base {
+        class ACE_Actions : ACE_Actions {
+            class ACE_MainActions : ACE_MainActions {
+                class GVAR(setFuseTime) {
+                    displayName = "Set Fuse Time";
+                    condition = "true";
+                    statement = QUOTE([_target] call FUNC(l119SetSmokeFuseTime));
+                    distance = 2;
+                };
+            };
+        };
+    };
+
+    class TBD_M119 : StaticMortar {
+        class ACE_Actions : ACE_Actions {
+            class TBD_Load : TBD_Load {
+                class TBD_LoadSMOKECh6 {
+                    displayName = "$STR_TBD_MORTARS_105mm_SMOKE";
+                    class TBD_LoadSMOKECh1 {
+                        displayName = "$STR_TBD_MORTARS_105mm_SMOKE_CHARGE_1";
+                        condition = QUOTE([ARR_2(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_1)))] call tbd_m119_m119_fnc_canLoad);
+                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_1)),0)] call FUNC(l119LoadSmoke));
+                        showDisabled = 0;
+                        exceptions[] = {};
+                    };
+                    class TBD_LoadSMOKECh2 {
+                        displayName = "$STR_TBD_MORTARS_105mm_SMOKE_CHARGE_2";
+                        condition = QUOTE([ARR_2(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_2)))] call tbd_m119_m119_fnc_canLoad);
+                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_2)),0)] call FUNC(l119LoadSmoke));
+                        showDisabled = 0;
+                        exceptions[] = {};
+                    };
+                    class TBD_LoadSMOKECh3 {
+                        displayName = "$STR_TBD_MORTARS_105mm_SMOKE_CHARGE_3";
+                        condition = QUOTE([ARR_2(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_3)))] call tbd_m119_m119_fnc_canLoad);
+                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_3)),0)] call FUNC(l119LoadSmoke));
+                        showDisabled = 0;
+                        exceptions[] = {};
+                    };
+                    class TBD_LoadSMOKECh4 {
+                        displayName = "$STR_TBD_MORTARS_105mm_SMOKE_CHARGE_4";
+                        condition = QUOTE([ARR_2(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_4)))] call tbd_m119_m119_fnc_canLoad);
+                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_4)),0)] call FUNC(l119LoadSmoke));
+                        showDisabled = 0;
+                        exceptions[] = {};
+                    };
+                    class TBD_LoadSMOKECh5 {
+                        displayName = "$STR_TBD_MORTARS_105mm_SMOKE_CHARGE_5";
+                        condition = QUOTE([ARR_2(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_5)))] call tbd_m119_m119_fnc_canLoad);
+                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_5)),0)] call FUNC(l119LoadSmoke));
+                        showDisabled = 0;
+                        exceptions[] = {};
+                    };
+                    class TBD_LoadSMOKECh6 {
+                        displayName = "$STR_TBD_MORTARS_105mm_SMOKE_CHARGE_6";
+                        condition = QUOTE([ARR_2(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_6)))] call tbd_m119_m119_fnc_canLoad);
+                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_6)),0)] call FUNC(l119LoadSmoke));
+                        showDisabled = 0;
+                        exceptions[] = {};
+                    };
+                    class TBD_LoadSMOKECh7 {
+                        displayName = "$STR_TBD_MORTARS_105mm_SMOKE_CHARGE_7";
+                        condition = QUOTE([ARR_2(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_7)))] call tbd_m119_m119_fnc_canLoad);
+                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_7)),0)] call FUNC(l119LoadSmoke));
+                        showDisabled = 0;
+                        exceptions[] = {};
+                    };
+                };
+            };
+        };
+    };
+
+#include "CfgVehiclesPrivate.hpp"
 };

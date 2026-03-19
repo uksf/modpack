@@ -13,6 +13,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_distance, _vehicleDistanceCoef, _logic] call uksf_mission_fnc_cleanupDynamicPatrolGroups
 */
 params ["_distance", "_vehicleDistanceCoef", ["_logic", objNull]];
 

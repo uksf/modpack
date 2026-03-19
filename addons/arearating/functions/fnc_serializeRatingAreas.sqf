@@ -12,6 +12,9 @@
     Return Value:
         Serialized data <ARRAY>
         [[ID, Values], ...]
+
+    Example:
+        call uksf_arearating_fnc_serializeRatingAreas
 */
 
 GVAR(ratingAreas) apply {[_x#0, _x#4]}

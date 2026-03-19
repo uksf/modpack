@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        call uksf_aiaircommander_fnc_moduleCommander
 */
 
 if (!isServer) exitWith {};

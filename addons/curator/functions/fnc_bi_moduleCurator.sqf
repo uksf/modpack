@@ -20,7 +20,10 @@
  * [LOGIC, [], true] call zen_modules_fnc_bi_moduleCurator
  *
  * Public: No
- */
+
+    Example:
+        [_logic, _units, _activated] call uksf_curator_fnc_bi_moduleCurator
+*/
 
 params ["_logic", "_units", "_activated"];
 

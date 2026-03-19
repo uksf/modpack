@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_selectedObjects, _selectedGroups] call uksf_zeus_fnc_contextCaching
 */
 params ["", "_selectedObjects", "_selectedGroups"];
 

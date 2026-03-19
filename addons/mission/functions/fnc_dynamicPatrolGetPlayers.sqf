@@ -12,6 +12,9 @@
     Return value:
         Array of players and whether they are all valid
         [Players, All players are valid]
+
+    Example:
+        call uksf_mission_fnc_dynamicPatrolGetPlayers
 */
 
 // Player can't be in an air vehicle

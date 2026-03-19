@@ -11,6 +11,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        [_ctrlButton] call uksf_common_fnc_edenCopyId
 */
 params ["_ctrlButton"];
 

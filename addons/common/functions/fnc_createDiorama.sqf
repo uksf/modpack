@@ -22,6 +22,9 @@
 
     Return value:
         Array of diorama objects <ARRAY>
+
+    Example:
+        [_originCentre, _dioramaCentre, _scanRadius, _scale] call uksf_common_fnc_createDiorama
 */
 params ["_originCentre", "_dioramaCentre", "_scanRadius", "_scale"];
 

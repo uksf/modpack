@@ -15,6 +15,9 @@
 
     Return value:
         Array of safe positions
+
+    Example:
+        [_centre, _gridSpacing, _maxRadius, _minRadius, _distObj] call uksf_common_fnc_getSafePositionGrid
 */
 params [["_centre", [], [[]]], ["_gridSpacing", 16, [0]], ["_maxRadius", 256, [0]], ["_minRadius", 0, [0]], ["_distObj", 0, [0]]];
 

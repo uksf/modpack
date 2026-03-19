@@ -43,6 +43,7 @@ class CfgPatches {
 };
 
 #include "CfgAmmo.hpp"
+#include "CfgCloudlets.hpp"
 #include "CfgEventHandlers.hpp"
 #include "CfgFunctions.hpp"
 #include "CfgMagazineWells.hpp"

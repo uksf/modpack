@@ -13,6 +13,9 @@
 
     Return Value:
         ID <STRING>
+
+    Example:
+        [_object, _persistent, _delete] call uksf_persistence_fnc_edenAttributeChanged
 */
 if !(is3DEN) exitWith {};
 
@@ -51,7 +54,7 @@ if (_persistent) then {
             // ID in hash has a different object associated with it
             if (_object != ([GVAR(edenPersistenceIdHash), _id] call CBA_fnc_hashGet)) then {
                 // Generate new ID for this object and set attribute and add to hash
-                _id = format ["%1_%2_%3", typeOf _object, diag_frameNo, round random 99999];
+                _id = format ["%1_%2", typeOf _object, call CBA_fnc_createUUID];
                 _object set3DENAttribute [QGVAR(persistenceID), _id];
                 [GVAR(edenPersistenceIdHash), _id, _object] call CBA_fnc_hashSet;
             };
@@ -68,7 +71,7 @@ if (_persistent) then {
         };
     } else {
         // ID has not been set, generate and set attribute and add to hash
-        _id = format ["%1_%2_%3", typeOf _object, diag_frameNo, round random 99999];
+        _id = format ["%1_%2", typeOf _object, call CBA_fnc_createUUID];
         _object set3DENAttribute [QGVAR(persistenceID), _id];
         [GVAR(edenPersistenceIdHash), _id, _object] call CBA_fnc_hashSet;
     };

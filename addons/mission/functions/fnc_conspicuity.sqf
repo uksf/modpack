@@ -13,6 +13,9 @@
 
     Return value:
         Unique ID <SCALAR>
+
+    Example:
+        [_player, _weapon] call uksf_mission_fnc_conspicuity
 */
 params ["_player", ["_weapon", currentWeapon player]];
 

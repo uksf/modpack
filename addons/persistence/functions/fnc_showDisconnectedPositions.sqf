@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_persistence_fnc_showDisconnectedPositions
 */
 
 [QGVAR(requestDisconnectedPositions), [player]] call CBA_fnc_serverEvent;

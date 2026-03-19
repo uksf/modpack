@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_entity, _corpse] call uksf_persistence_fnc_entityRespawned
 */
 params ["_entity", "_corpse"];
 

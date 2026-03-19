@@ -13,6 +13,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_id, _position, _prefabId] call uksf_safehouses_fnc_loadDestroyed
 */
 params ["_id", "_position", "_prefabId"];
 

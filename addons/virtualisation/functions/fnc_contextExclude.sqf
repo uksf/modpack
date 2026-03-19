@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_selectedObjects, _selectedGroups] call uksf_virtualisation_fnc_contextExclude
 */
 params ["", ["_selectedObjects", []], ["_selectedGroups", []]];
 

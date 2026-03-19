@@ -11,6 +11,9 @@
 
     Return value:
         [Side, Group config] <ARRAY>
+
+    Example:
+        [_factionName] call uksf_mission_fnc_selectGroup
 */
 params ["_factionName"];
 

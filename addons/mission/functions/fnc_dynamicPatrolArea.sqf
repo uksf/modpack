@@ -14,6 +14,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_values, _logic, _area] call uksf_mission_fnc_dynamicPatrolArea
 */
 params ["_values", "_logic", "_area"];
 _values params ["_cooldown", "_distance", "_groupLimit", "", "", "_minGroups", "_maxGroups", "", "_vehicleDistanceCoef"];

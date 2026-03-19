@@ -11,6 +11,9 @@
 
     Return Value:
         Array of actions <ARRAY>
+
+    Example:
+        [_target] call uksf_resupply_fnc_getOtherActions
 */
 params ["_target"];
 

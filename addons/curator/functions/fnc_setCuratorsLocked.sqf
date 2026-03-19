@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_locked] call uksf_curator_fnc_setCuratorsLocked
 */
 params ["_locked"];
 

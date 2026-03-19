@@ -12,6 +12,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        call uksf_virtualisation_fnc_recreateAll
 */
 if (!GVAR(killswitched)) exitWith {};
 

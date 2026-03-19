@@ -14,6 +14,9 @@
     Return value:
         Array of players and whether they are all valid
         [Players, All players are valid]
+
+    Example:
+        [_logic, _area] call uksf_mission_fnc_dynamicPatrolAreaGetPlayers
 */
 params ["", "_logic", "_area"];
 

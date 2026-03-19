@@ -19,6 +19,9 @@
                     0: Staging area <ARRAY>
                     1: Players <ARRAY>
                         0: Player position <ARRAY>
+
+    Example:
+        [_spawns] call uksf_aigroundcommander_fnc_getValidResponseParameters
 */
 params ["_spawns"];
 

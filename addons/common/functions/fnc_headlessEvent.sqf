@@ -13,6 +13,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_eventName, _params] call uksf_common_fnc_headlessEvent
 */
 params [["_eventName", "", [""]], ["_params", []]];
 

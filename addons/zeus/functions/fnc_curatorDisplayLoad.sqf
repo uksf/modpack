@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_display] call uksf_zeus_fnc_curatorDisplayLoad
 */
 params ["_display"];
 
@@ -43,33 +46,12 @@ for "_i" from 0 to 4 do {
     GVAR(debugHudControls) pushBack _control;
 };
 
+// Always enable unconscious display while Zeus is open
+GVAR(debugActiveToggles) set [QGVAR(unconscious), true];
+
 // Re-subscribe server data streams for any active providers
 {
-    private _provider = GVAR(debugProviders) getOrDefault [_x, []];
-    if (_provider isNotEqualTo []) then {
-        _provider params ["", "", "", "_fnc_serverGetter"];
-        if (_fnc_serverGetter isNotEqualTo {}) then {
-            [QGVAR(debugStreamToggle), [player, _x, true]] call CBA_fnc_serverEvent;
-        };
+    if (_x in GVAR(debugServerGetters)) then {
+        [QGVAR(debugStreamToggle), [player, _x, true]] call CBA_fnc_serverEvent;
     };
 } forEach (keys GVAR(debugActiveToggles));
-
-// FPS_COLLECTDATA = true;
-// FPS_PFHID = [{
-
-//     if !(FPS_COLLECTDATA) exitWith {};
-
-//     private _frameData = [];
-//     {
-//         private _fps = _x getVariable ["uksf_zeus_fps", 0];
-//         private _name = name _x;
-
-//         _frameData pushBack [_name, _fps];
-//     } forEach (allPlayers - entities "HeadlessClient_F");
-
-//     private _allUnits = allUnits select {!(isPlayer _x)};
-//     private _simulatedUnits = {simulationEnabled _x} count _allUnits;
-//     private _allGroups = allGroups select {!(isPlayer (leader _x))};
-//     private _simulatedGroups = {simulationEnabled (leader _x)} count _allGroups;
-//     diag_log ["FPS DATA FRAME", CBA_missionTime, count _allUnits, _simulatedUnits, count _allGroups, _simulatedGroups, _frameData];
-// }, 1, []] call CBA_fnc_addPerFrameHandler;

@@ -798,6 +798,13 @@ class CfgWeapons {
         ace_overpressure_range = 15;
         ace_overpressure_damage = 0.85;
         ace_overpressure_offset = 1.3;
+        class GunParticles {
+            class FirstEffect {
+                effectName = "CannonFired";
+                positionName = "usti_hlavne";
+                directionName = "konec_hlavne";
+            };
+        };
     };
 
 #include "weaponSets\CUP.hpp"

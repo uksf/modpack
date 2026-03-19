@@ -13,6 +13,9 @@
 
     Return value:
         Boolean
+
+    Example:
+        [_object, _center, _area] call uksf_common_fnc_objectInArea
 */
 params ["_object", ["_center", [0,0,0], [objNull, [0,0,0]]], "_area"];
 

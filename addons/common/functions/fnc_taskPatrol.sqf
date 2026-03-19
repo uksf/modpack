@@ -9,6 +9,9 @@
 
     Parameters:
         https://github.com/CBATeam/CBA_A3/blob/master/addons/ai/fnc_taskPatrol.sqf#L7
+
+    Example:
+        [_group, _position, _radius, _count] call uksf_common_fnc_taskPatrol
 */
 params [
     ["_group", grpNull, [grpNull, objNull]],

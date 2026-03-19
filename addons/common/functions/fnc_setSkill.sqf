@@ -12,6 +12,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_unit, _setting] call uksf_common_fnc_setSkill
 */
 params ["_unit", ["_setting", 0]];
 

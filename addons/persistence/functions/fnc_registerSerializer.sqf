@@ -13,6 +13,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_id, _serialize, _deserialize] call uksf_persistence_fnc_registerSerializer
 */
 if (!isServer) exitWith {
     [QGVAR(registerSerializer), _this] call CBA_fnc_serverEvent;

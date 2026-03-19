@@ -11,6 +11,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        [_ctrlCheckbox] call uksf_persistence_fnc_checkboxChanged
 */
 params ["_ctrlCheckbox"];
 

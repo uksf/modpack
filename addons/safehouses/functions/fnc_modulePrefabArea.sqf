@@ -12,6 +12,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_mode, _data] call uksf_safehouses_fnc_modulePrefabArea
 */
 params ["_mode", "_data"];
 _data params ["_logic"];

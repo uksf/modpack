@@ -12,6 +12,9 @@
     Return value:
         Array of area ratings <ARRAY>
         [[ID, Display name, Logic, Area, [Rating start, Rating current, Rating min, Rating max], [Percentage start, Percentage current]], ...]
+
+    Example:
+        [_position] call uksf_arearating_fnc_getRating
 */
 params [["_position", objNull, [objNull, []]]];
 

@@ -13,6 +13,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_module] call uksf_aigroundcommander_fnc_moduleCommander
 */
 #define PLAYER_FIRED_TIMEOUT 1200
 

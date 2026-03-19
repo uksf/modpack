@@ -11,20 +11,28 @@
 
     Return Value:
         [Rack ID, Radio ID] <ARRAY>
+
+    Example:
+        [_vehicle] call uksf_radios_fnc_getRebroStationRadio
 */
 params ["_vehicle"];
 
-private _racks = ([_vehicle] call acre_api_fnc_getVehicleRacks) select {
-    private _rackName = [_x, "getState", "shortName", (acre_sys_data_radioData getVariable _x)] call acre_sys_rack_fnc_getState;
+private _vehicleRacks = [_vehicle] call acre_api_fnc_getVehicleRacks;
+if (isNil "_vehicleRacks" || {_vehicleRacks isEqualTo []}) exitWith {["", ""]};
 
-    _rackName == RACK_NAME_REBRO
+private _racks = _vehicleRacks select {
+    private _radioData = acre_sys_data_radioData getVariable [_x, nil];
+    if (isNil "_radioData") then {false} else {
+        // No public API for rack short name — internal hash lookup required
+        private _rackName = [_x, "getState", "shortName", _radioData] call acre_sys_rack_fnc_getState;
+        _rackName == RACK_NAME_REBRO
+    };
 };
 
-if (_racks isEqualTo []) exitWith {
-    ["", ""]
-};
+if (_racks isEqualTo []) exitWith {["", ""]};
 
 private _rackId = _racks#0;
 private _radioId = [_rackId] call acre_api_fnc_getMountedRackRadio;
+if (isNil "_radioId") exitWith {[_rackId, ""]};
 
 [_rackId, _radioId]

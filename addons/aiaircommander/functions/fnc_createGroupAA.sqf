@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_emptyLocation] call uksf_aiaircommander_fnc_createGroupAA
 */
 params ["_emptyLocation"];
 

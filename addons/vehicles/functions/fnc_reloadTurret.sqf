@@ -12,6 +12,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_weapon] call uksf_vehicles_fnc_reloadTurret
 */
 
 private _player = missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", player];

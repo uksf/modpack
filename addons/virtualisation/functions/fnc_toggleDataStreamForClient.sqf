@@ -12,6 +12,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_player, _on] call uksf_virtualisation_fnc_toggleDataStreamForClient
 */
 params ["_player", "_on"];
 

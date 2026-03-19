@@ -12,6 +12,9 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_persistence_fnc_inspectSavedData
 */
 
 [QGVAR(requestInspectSavedData), [player]] call CBA_fnc_serverEvent;

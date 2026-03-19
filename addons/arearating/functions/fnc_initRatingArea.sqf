@@ -14,6 +14,9 @@
 
     Return value:
         Data array
+
+    Example:
+        [_id, _displayName, _logic, _area] call uksf_arearating_fnc_initRatingArea
 */
 params ["_id", "_displayName", "_logic", "_area"];
 

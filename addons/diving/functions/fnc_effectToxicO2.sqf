@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_diving_fnc_effectToxicO2
 */
 
 [] spawn {

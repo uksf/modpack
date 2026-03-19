@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        call uksf_civilian_fnc_addUnitTransitions
 */
 // Add transition: FromState, ToState, Condition, OnTransition, Name
 

@@ -13,6 +13,9 @@
 
     Return value:
         position
+
+    Example:
+        [_road, _offset] call uksf_ied_fnc_getRoadSide
 */
 params [["_road", objNull, [objNull]], ["_offset", 0, [0]]];
 

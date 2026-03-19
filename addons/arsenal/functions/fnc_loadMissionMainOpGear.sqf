@@ -20,6 +20,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        call uksf_arsenal_fnc_loadMissionMainOpGear
 */
 if (!fileExists MISSION_MAIN_OP_GEAR_FILE) exitWith {
     DEBUG("Mission gear file not found");

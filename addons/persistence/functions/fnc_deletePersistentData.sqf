@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_key] call uksf_persistence_fnc_deletePersistentData
 */
 
 if (!isServer) exitWith {};

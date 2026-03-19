@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_objects, _retry] call uksf_persistence_fnc_loadAllObjectData
 */
 #define MAX_ABORTED_RETRIES 3
 

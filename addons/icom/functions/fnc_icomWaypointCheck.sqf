@@ -14,6 +14,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_group, _source] call uksf_icom_fnc_icomWaypointCheck
 */
 
 params ["_group", "_source"];

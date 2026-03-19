@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_vehicle] call uksf_aiaircommander_fnc_doCAS
 */
 params ["_vehicle"];
 

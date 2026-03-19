@@ -12,6 +12,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_leader] call uksf_aicountermortar_fnc_handleDelete
 */
 params ["_leader"];
 

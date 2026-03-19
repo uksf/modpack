@@ -12,6 +12,9 @@
 
     Return value:
         None
+
+    Example:
+        [_hit, _factor] call uksf_immersion_fnc_suppressionImpact
 */
 params ["_hit", "_factor"];
 

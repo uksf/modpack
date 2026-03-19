@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_leader] call uksf_aiaircommander_fnc_handleDelete
 */
 params ["_leader"];
 

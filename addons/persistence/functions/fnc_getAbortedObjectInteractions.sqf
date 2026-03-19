@@ -14,6 +14,9 @@
 
     Return Value:
         ARRAY
+
+    Example:
+        [_target, _params] call uksf_persistence_fnc_getAbortedObjectInteractions
 */
 params ["_target", "", "_params"];
 _params params ["_id"];

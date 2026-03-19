@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_display] call uksf_zeus_fnc_curatorDisplayUnload
 */
 params ["_display"];
 
@@ -19,14 +22,14 @@ params ["_display"];
 
 // Pause server data streams while Zeus is closed
 {
-    private _provider = GVAR(debugProviders) getOrDefault [_x, []];
-    if (_provider isNotEqualTo []) then {
-        _provider params ["", "", "", "_fnc_serverGetter"];
-        if (_fnc_serverGetter isNotEqualTo {}) then {
-            [QGVAR(debugStreamToggle), [player, _x, false]] call CBA_fnc_serverEvent;
-        };
+    if (_x in GVAR(debugServerGetters)) then {
+        [QGVAR(debugStreamToggle), [player, _x, false]] call CBA_fnc_serverEvent;
     };
 } forEach (keys GVAR(debugActiveToggles));
+
+// Remove unconscious from active toggles (auto-managed, not user-toggled)
+GVAR(debugActiveToggles) deleteAt QGVAR(unconscious);
+GVAR(debugData) deleteAt QGVAR(unconscious);
 
 private _unconscious = player getVariable ["ACE_isUnconscious", false];
 [!_unconscious, player] call ace_common_fnc_setVolume;

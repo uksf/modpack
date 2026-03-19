@@ -11,6 +11,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        [_state] call uksf_screenshot_fnc_toggle
 */
 params [["_state", false]];
 

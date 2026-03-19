@@ -13,10 +13,13 @@
     Return value:
         Array of players
         [Players]
+
+    Example:
+        call uksf_mission_fnc_getPlayers
 */
 
 #ifdef DEBUG_MODE_ANALYSIS
 GVAR(dynamicPatrolDebugPlayers)
 #else
-call CBA_fnc_players
+ALL_PLAYERS
 #endif

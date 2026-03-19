@@ -12,6 +12,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_unit, _gesture] call uksf_civilian_fnc_handleGesture
 */
 params ["_unit", "_gesture"];
 

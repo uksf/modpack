@@ -12,6 +12,9 @@
 
     Return value:
         Array of buildings <ARRAY>
+
+    Example:
+        [_placedObjects, _position] call uksf_safehouses_fnc_getLocationBuildings
 */
 params ["_placedObjects", "_position"];
 

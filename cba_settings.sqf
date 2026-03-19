@@ -317,7 +317,7 @@ force force ace_medical_blood_maxBloodObjects = 300;
 force force ace_medical_deathChance = 1;
 force force ace_medical_dropWeaponUnconsciousChance = 0;
 force force ace_medical_enableVehicleCrashes = true;
-force force ace_medical_fatalDamageSource = 0;
+force force ace_medical_fatalDamageSource = 2;
 force force ace_medical_fractureChance = 0.1;
 force force ace_medical_fractures = 2;
 force force ace_medical_ivFlowRate = 1;
@@ -1173,6 +1173,9 @@ force uksf_mission_dynamicPatrolWaypointDistance = 100;
 force uksf_mission_support = true;
 force uksf_mission_supportChance = 25;
 force uksf_mission_supportDistance = 500;
+
+// UKSF - Statistics
+force force uksf_statistics_enabled = true;
 
 // VET_Unflipping
 force force vet_unflipping_require_serviceVehicle = false;

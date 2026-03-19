@@ -13,6 +13,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_id, _logic, _area] call uksf_safehouses_fnc_initPrefab
 */
 params ["_id", "_logic", "_area"];
 

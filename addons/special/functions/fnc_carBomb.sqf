@@ -11,6 +11,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        [_car] call uksf_special_fnc_carBomb
 */
 params ["_car"];
 

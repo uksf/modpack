@@ -1,0 +1,11 @@
+PREP(explosionHandler);
+PREP(getAmmoConfig);
+PREP(processTargets);
+PREP(traceOverhead);
+PREP(traceSurfaceBounce);
+PREP(calculateDamage);
+PREP(applyDamage);
+PREP(debugDraw);
+PREP(debugDrawBlastRadius);
+PREP(waveSimulation);
+PREP(waveProcessRays);

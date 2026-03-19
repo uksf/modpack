@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_arearating_fnc_registerDebugProvider
 */
 
 private _key = QGVAR(debug);
@@ -59,7 +62,7 @@ private _fnc_draw3d = {
             };
 
             drawIcon3D ["", _colour, ASLToAGL (ATLToASL _position), 0, 0, 0, format ["%1: %2%3 %4", _name, _percentageCurrent, "%", _trend], 1, 0.025, "TahomaB", "center"];
-            drawIcon3D ["", _colour, ASLToAGL (ATLToASL _position), 0, 1, 0, format ["Rating: %1 (%2/%3)", _ratingCurrent, _ratingMin, _ratingMax], 1, 0.02, "TahomaB", "center"];
+            drawIcon3D ["", _colour, ASLToAGL (ATLToASL _position), 0, 0, 0, format ["Rating: %1 (%2/%3)", _ratingCurrent, _ratingMin, _ratingMax], 1, 0.02, "TahomaB", "center", false, 0, DEBUG_ICON_SPACING];
         };
     } forEach _areas;
 };
@@ -120,6 +123,6 @@ private _fnc_drawHud = {
     _hudControl ctrlSetStructuredText parseText format ["<t align='center' shadow='1' font='TahomaB'><t color='#aaaaaa'>Area Rating</t> <t color='%1'>%2%3 %4 (%5/%6->%7)</t></t>", _colourHex, _percentageCurrent, "%", _trend, _globalCurrent, _globalMin, _globalMax];
 };
 
-[QEGVAR(zeus,registerDebugProvider), [
-    _key, _menuName, _menuPriority, _fnc_menuCondition, _fnc_serverGetter, "", _fnc_draw3d, _fnc_drawMap, _fnc_drawHud
-]] call CBA_fnc_localEvent;
+[QEGVAR(zeus,registerDebugAction), [_key, _menuName, _menuPriority, _fnc_menuCondition]] call CBA_fnc_localEvent;
+[QEGVAR(zeus,registerDebugServerGetter), [_key, _fnc_serverGetter]] call CBA_fnc_localEvent;
+[QEGVAR(zeus,registerDebugDraw), [_key, _fnc_draw3d, _fnc_drawMap, _fnc_drawHud]] call CBA_fnc_localEvent;

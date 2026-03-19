@@ -15,6 +15,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_module, _area, _planterBackpacks] call uksf_ied_fnc_IEDPlanters
 */
 
 params ["_module", "_area", "_planterBackpacks"];

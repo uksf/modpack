@@ -13,6 +13,9 @@
     Return value:
         Array of unit details <ARRAY>
         [[_type, _position, _direction, _skill, _behaviour, _disabledFeatures, _stance], [...]]
+
+    Example:
+        [_group, _vehicles] call uksf_virtualisation_fnc_getInfantryDetails
 */
 params ["_group", ["_vehicles", []]];
 

@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_unit] call uksf_equipment_fnc_randomizeEquipment
 */
 params ["_unit"];
 

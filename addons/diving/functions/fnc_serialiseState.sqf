@@ -11,6 +11,9 @@
 
     Return Value:
         Array of data <ARRAY>
+
+    Example:
+        call uksf_diving_fnc_serialiseState
 */
 
 private _diving = GVAR(updatePFHID) != -1;

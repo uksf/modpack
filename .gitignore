@@ -25,6 +25,7 @@
 
 # Shared objects (inc. Windows DLLs)
 *.dll
+!uksf_x64.dll
 *.so
 *.so.*
 *.dylib
@@ -662,10 +663,6 @@ extensions/x64
 extensions/packages
 extensions/src/uksf/modules/data/secret.hpp
 
-# Intercept
-!@intercept/**
-intercept/uksf*.dll
-
 # PBOs
 *.pbo
 texHeaders.bin
@@ -687,7 +684,7 @@ tools/temp
 .hemttprivatekey
 
 # Plan docs
-docs/plans/
+docs/
 
 ## SQFC
 sqfvm.exe

@@ -13,6 +13,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_changeType, _data] call uksf_arearating_fnc_handleRatingChanged
 */
 params ["_changeType", ["_data", objNull, [objNull, []]]];
 

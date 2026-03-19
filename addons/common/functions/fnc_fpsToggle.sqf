@@ -11,6 +11,9 @@
 
     Return value:
         None
+
+    Example:
+        call uksf_common_fnc_fpsToggle
 */
 
 GVAR(fpsState) = !GVAR(fpsState);

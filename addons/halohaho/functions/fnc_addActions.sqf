@@ -11,6 +11,9 @@
 
     Return Value:
         Nothing
+
+    Example:
+        call uksf_halohaho_fnc_addActions
 */
 
 private _fnc_children = {

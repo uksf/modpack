@@ -13,6 +13,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_callback, _callbackArgs, _retries] call uksf_aiaircommander_fnc_createGroupPlane
 */
 params [["_callback", {}, [{}]], ["_callbackArgs", [], [[]]], ["_retries", 0]];
 

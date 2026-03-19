@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_data] call uksf_arearating_fnc_deserializeRatingAreas
 */
 params [["_data", []]];
 

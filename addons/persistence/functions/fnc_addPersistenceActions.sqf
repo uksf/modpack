@@ -11,15 +11,18 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_persistence_fnc_addPersistenceActions
 */
 
 private _fnc_children = {
     private _actions = [];
 
-    private _action = [QGVAR(shutdown), "Save and Shutdown", "", {}, {MULTIPLAYER_ADMIN_OR_WHITELISTED}, {
+    private _action = [QGVAR(startShutdown), "Save and Shutdown", "", {}, {MULTIPLAYER_ADMIN_OR_WHITELISTED}, {
         private _actions = [];
 
-        private _action = [QGVAR(shutdownConfirm), "Confirm", "", {[] call FUNC(shutdown)}, {MULTIPLAYER_ADMIN_OR_WHITELISTED}] call ace_interact_menu_fnc_createAction;
+        private _action = [QGVAR(startShutdownConfirm), "Confirm", "", {[] call FUNC(startShutdown)}, {MULTIPLAYER_ADMIN_OR_WHITELISTED}] call ace_interact_menu_fnc_createAction;
         _actions pushBack [_action, [], _player];
 
         _actions

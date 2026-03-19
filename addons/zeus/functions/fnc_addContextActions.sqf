@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_zeus_fnc_addContextActions
 */
 private _action = [QGVAR(ai), "UKSF AI", "", {}, {
     params ["", "_selectedObjects"];
@@ -53,15 +56,15 @@ _action = [QGVAR(debug), "Debug", "\a3\ui_f_curator\data\logos\arma3_curator_eye
     // Show All (visible when any available providers are not active)
     private _action = [QGVAR(showAllDebug), "Show All", "", {
         {
-            private _provider = GVAR(debugProviders) get _x;
+            private _provider = GVAR(debugActions) get _x;
             _provider params ["", "", "_fnc_menuCondition"];
             if (call _fnc_menuCondition && {!(GVAR(debugActiveToggles) getOrDefault [_x, false])}) then {
                 [_x] call FUNC(debugToggle);
             };
-        } forEach (keys GVAR(debugProviders));
+        } forEach (keys GVAR(debugActions));
     }, {
-        (keys GVAR(debugProviders)) findIf {
-            private _provider = GVAR(debugProviders) get _x;
+        (keys GVAR(debugActions)) findIf {
+            private _provider = GVAR(debugActions) get _x;
             _provider params ["", "", "_fnc_menuCondition"];
             (call _fnc_menuCondition) && {!(GVAR(debugActiveToggles) getOrDefault [_x, false])}
         } != -1
@@ -74,9 +77,9 @@ _action = [QGVAR(debug), "Debug", "\a3\ui_f_curator\data\logos\arma3_curator_eye
             if (GVAR(debugActiveToggles) getOrDefault [_x, false]) then {
                 [_x] call FUNC(debugToggle);
             };
-        } forEach (keys GVAR(debugProviders));
+        } forEach (keys GVAR(debugActions));
     }, {
-        (keys GVAR(debugActiveToggles)) isNotEqualTo []
+        (keys GVAR(debugActions)) findIf {GVAR(debugActiveToggles) getOrDefault [_x, false]} != -1
     }] call zen_context_menu_fnc_createAction;
     _actions pushBack [_action, [], 99];
 
@@ -90,7 +93,7 @@ _action = [QGVAR(debug), "Debug", "\a3\ui_f_curator\data\logos\arma3_curator_eye
     // Dynamic provider toggles
     {
         private _providerKey = _x;
-        private _provider = GVAR(debugProviders) get _providerKey;
+        private _provider = GVAR(debugActions) get _providerKey;
         _provider params ["_menuName", "_menuPriority", "_fnc_menuCondition"];
 
         if (call _fnc_menuCondition) then {
@@ -118,7 +121,7 @@ _action = [QGVAR(debug), "Debug", "\a3\ui_f_curator\data\logos\arma3_curator_eye
             ] call zen_context_menu_fnc_createAction;
             _actions pushBack [_action, [], _menuPriority];
         };
-    } forEach (keys GVAR(debugProviders));
+    } forEach (keys GVAR(debugActions));
 
     _actions
 }] call zen_context_menu_fnc_createAction;

@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_key] call uksf_zeus_fnc_debugToggle
 */
 params ["_key"];
 TRACE_1("debugToggle",_key);
@@ -23,10 +26,6 @@ if (_newState) then {
     GVAR(debugData) deleteAt _key;
 };
 
-private _provider = GVAR(debugProviders) getOrDefault [_key, []];
-if (_provider isNotEqualTo []) then {
-    _provider params ["", "", "", "_fnc_serverGetter"];
-    if (_fnc_serverGetter isNotEqualTo {}) then {
-        [QGVAR(debugStreamToggle), [player, _key, _newState]] call CBA_fnc_serverEvent;
-    };
+if (_key in GVAR(debugServerGetters)) then {
+    [QGVAR(debugStreamToggle), [player, _key, _newState]] call CBA_fnc_serverEvent;
 };

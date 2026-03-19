@@ -11,6 +11,9 @@
         0: Unit <OBJECT>
     Return Value:
         Nothing
+
+    Example:
+        [_unit] call uksf_zir_fnc_surrenderCheck
 */
 params ["_unit"];
 

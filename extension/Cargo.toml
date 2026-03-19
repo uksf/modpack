@@ -1,0 +1,21 @@
+[package]
+name = "uksf"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+name = "uksf_x64"
+crate-type = ["cdylib"]
+
+[dependencies]
+arma-rs = { version = "1.12.1", default-features = false, features = ["extension"] }
+crossbeam-channel = "0.5"
+tiny_http = "0.12"
+ureq = "2"
+chrono = { version = "0.4", default-features = false, features = ["clock"] }
+log = "0.4"
+simplelog = "0.12"
+
+[profile.release]
+opt-level = "z"
+lto = true

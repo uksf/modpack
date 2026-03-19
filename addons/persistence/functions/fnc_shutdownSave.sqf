@@ -12,6 +12,9 @@
 
     Return Value:
         None
+
+    Example:
+        call uksf_persistence_fnc_shutdownSave
 */
 
 // Add already persistent marked objects to saving queue

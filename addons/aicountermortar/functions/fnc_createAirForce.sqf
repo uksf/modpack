@@ -12,6 +12,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_spawnPosition, _targetPosition] call uksf_aicountermortar_fnc_createAirForce
 */
 params ["_spawnPosition", "_targetPosition"];
 

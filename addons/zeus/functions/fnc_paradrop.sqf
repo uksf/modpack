@@ -14,6 +14,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_units, _dropStartPosition, _dropEndPosition, _altitude] call uksf_zeus_fnc_paradrop
 */
 #define BASE_SPEED 75
 #define CREW_LOADOUT [[],[],[],[],["UKSF_V_Pilot",[]],[],"UK3CB_BAF_H_PilotHelmetHeli_A","",[],["ItemMap","","","ItemCompass","ItemWatch",""]]

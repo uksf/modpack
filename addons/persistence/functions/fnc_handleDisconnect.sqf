@@ -11,6 +11,9 @@
 
     Return Value:
         None
+
+    Example:
+        [_unit, _id, _uid, _name] call uksf_persistence_fnc_handleDisconnect
 */
 params ["_unit", "_id", "_uid", "_name"];
 
@@ -53,7 +56,7 @@ private _data = [
     animationState _unit,
     _loadout,
     damage _unit,
-    [_unit] call EFUNC(common,serializeAceMedical),
+    [_unit] call ace_medical_fnc_serializeState,
     _unit getVariable ["ACE_hasEarPlugsIn", false],
     (_unit getVariable ["ace_attach_attached", []]) apply {_x#1},
     [_unit] call EFUNC(radios,serializeRadios),
@@ -62,6 +65,7 @@ private _data = [
 TRACE_1("Player disconnect",_data);
 
 GVAR(dataNamespace) setVariable [_uid, _data];
+GVAR(playerUids) pushBackUnique _uid;
 
 if (GVAR(dataSaved)) then {
     GVAR(disconnectedPlayerPositions) set [_uid, getPos _unit];

@@ -11,6 +11,9 @@
 
     Return Value:
         Cargo <ARRAY>
+
+    Example:
+        [_object] call uksf_persistence_fnc_getObjectCargo
 */
 params ["_object"];
 

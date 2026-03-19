@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_unit] call uksf_weapons_fnc_3cbInitEH
 */
 params ["_unit"];
 

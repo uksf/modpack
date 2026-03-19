@@ -40,4 +40,5 @@ PREP(debugStreamTick);
 PREP(debugMapDraw);
 PREP(debug3dDraw);
 PREP(debugToggle);
+PREP(debugGetSortedActiveKeys);
 PREP(registerDebugProviders);

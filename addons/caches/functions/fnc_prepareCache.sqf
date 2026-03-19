@@ -11,6 +11,9 @@
 
     Return value:
         Nothing.
+
+    Example:
+        [_cache, _contentTypes] call uksf_caches_fnc_prepareCache
 */
 params ["_cache", "_contentTypes"];
 

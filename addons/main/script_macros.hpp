@@ -148,3 +148,5 @@ HIDE_CLASS(CLASS,BASE)
 #define PREVIEW(NAME) editorPreview = QPATHTOF(data\previews\GVAR(NAME).jpg)
 
 #define ANY_OF(ARRAY,CONDITION) (ARRAY findIf {CONDITION} != -1)
+
+#define DEBUG_ICON_SPACING 0.0125

@@ -11,6 +11,9 @@
 
     Return value:
         Nothing
+
+    Example:
+        [_vehicle] call uksf_civilian_fnc_addVehicleInteractions
 */
 params ["_vehicle"];
 
