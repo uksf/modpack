@@ -9,6 +9,7 @@ PREP(edenAttributeChanged);
 PREP(entityKilled);
 PREP(entityRespawned);
 PREP(finishSaveObjectDataPfh);
+PREP(finishShutdown);
 PREP(forceLoadAbortedObject);
 PREP(getAbortedObjectInteractions);
 PREP(getObjectCargo);

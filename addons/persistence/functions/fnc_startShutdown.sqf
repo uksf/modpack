@@ -4,7 +4,14 @@
         Tim Beswick
 
     Description:
-        Starts the server shutdown cycle
+        Starts the server shutdown cycle.
+
+        Broadcasts shutdownStarted globally so all machines can flush data
+        and prepare for shutdown. Waits for all players to acknowledge via
+        readyForShutdown, then calls finishShutdown.
+
+        Players are kicked individually as they report ready.
+        HCs flush and report but are not tracked or kicked.
 
     Parameter(s):
         None
@@ -27,41 +34,21 @@ GVAR(shutdownInProgress) = true;
 
 LOG("Shutdown");
 
-[QEGVAR(common,textTiles), [parseText "<t align = 'center' color = '#1a7a1a'>Server shutting down</t>", [0.25, 0.5, 0.5, 0.085], [1, 1], 2.5], [] call CBA_fnc_players] call CBA_fnc_targetEvent;
+// Track player acks — HCs flush and report but are not tracked or kicked
+GVAR(readyForShutdownCount) = 0;
+GVAR(readyForShutdownExpected) = count (call CBA_fnc_players);
+INFO_1("Waiting for %1 players to report ready for shutdown",GVAR(readyForShutdownExpected));
 
-// Notify other components that shutdown is starting
-[QGVAR(shutdownStarted)] call CBA_fnc_localEvent;
+// Broadcast to all machines — clients show notification, flush data, then ack
+[QGVAR(shutdownStarted)] call CBA_fnc_globalEvent;
 
+// Wait for all players to ack (or timeout after 10 seconds), then proceed
 [{
-    params ["", "_idPFH"];
-
-    private _players = call CBA_fnc_players;
-    if (_players isEqualTo []) exitWith {
-        [_idPFH] call CBA_fnc_removePerFrameHandler;
-        if (GVAR(dataSaved)) then {
-            {
-                private _marker = createVehicle [QGVAR(markerAmmo), _x, [], 0, "CAN_COLLIDE"];
-                GVAR(persistenceMarkers) pushBack _marker;
-            } forEach (values GVAR(disconnectedPlayerPositions));
-            call FUNC(shutdownSave);
-        } else {
-            GVAR(shutdownSavingComplete) = true;
-        };
-
-        [{
-            GVAR(shutdownSavingComplete)
-        }, {
-            ["shutdown_complete"] call EFUNC(api,sendEvent);
-            "uksf" callExtension "flush";
-
-            [{SERVER_COMMAND serverCommand "#shutdown"}, [], 4] call CBA_fnc_waitAndExecute;
-        }, [], 120, {
-            WARNING("Shutdown save timed out after 120 seconds, forcing shutdown");
-            ["shutdown_complete"] call EFUNC(api,sendEvent);
-            "uksf" callExtension "flush";
-            [{SERVER_COMMAND serverCommand "#shutdown"}, [], 4] call CBA_fnc_waitAndExecute;
-        }] call CBA_fnc_waitUntilAndExecute;
-    };
-
-    SERVER_COMMAND serverCommand (format ["#kick %1", owner (_players#0)]);
-}, 2, []] call CBA_fnc_addPerFrameHandler;
+    GVAR(readyForShutdownCount) >= GVAR(readyForShutdownExpected)
+}, {
+    INFO_1("All players ready (%1 acks received), proceeding with shutdown",GVAR(readyForShutdownCount));
+    call FUNC(finishShutdown);
+}, [], 10, {
+    WARNING_2("Shutdown ack timeout — received %1 of %2, proceeding anyway",GVAR(readyForShutdownCount),GVAR(readyForShutdownExpected));
+    call FUNC(finishShutdown);
+}] call CBA_fnc_waitUntilAndExecute;
