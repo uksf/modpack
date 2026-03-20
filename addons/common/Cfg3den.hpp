@@ -25,7 +25,6 @@ class Cfg3DEN {
                         expression = QUOTE(_this setVariable [ARR_3(QQGVAR(id),_value,true)]);
                         defaultValue = "''";
                         typeName = "STRING";
-                        validate = "variable";
                         unique = 1;
                     };
                 };

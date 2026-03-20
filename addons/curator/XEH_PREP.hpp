@@ -7,4 +7,6 @@ PREP(curatorLogout);
 PREP(curatorUnassign);
 PREP(getCuratorActions);
 PREP(bi_moduleCurator);
+PREP(buildMissingVehiclesCache);
+PREP(injectMissingVehicles);
 PREP(setCuratorsLocked);
