@@ -42,6 +42,13 @@ if (hasInterface) then {
     GVAR(curatorUnassignedEHID) = -1;
     call FUNC(addCuratorActions);
 
+    call FUNC(buildMissingVehiclesCache);
+
+    ["zen_editor_treesLoaded", {
+        params ["_display"];
+        [_display] call FUNC(injectMissingVehicles);
+    }] call CBA_fnc_addEventHandler;
+
     ["CAManBase", "respawn", {
         params ["_unit"];
 
