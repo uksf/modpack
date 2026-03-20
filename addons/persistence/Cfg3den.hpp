@@ -21,7 +21,6 @@ class Cfg3DEN {
                         expression = QUOTE(if (!is3DEN && {isServer}) then {[ARR_2(_this,_value)] call FUNC(markObjectAsPersistent) };);
                         typeName = "STRING";
                         defaultValue = "''";
-                        validate = "variable";
                         unique = 1;
                         condition = "(1 - objectBrain)";
                     };
