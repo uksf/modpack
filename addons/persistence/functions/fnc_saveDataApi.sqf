@@ -41,16 +41,42 @@ private _convertWeaponSlot = {
 };
 
 // Converts a container slot array to a hashmap
-// Input: [] or [className, [[itemClass, count, ammo?], ...]]
+// Input: [] or [containerClassName, items[]]
+// Items can be:
+//   Item:      [className, count]
+//   Magazine:  [className, count, ammoCount]
+//   Weapon:    [[weaponClass, muzzle, pointer, optic, [mag1], [mag2], bipod], count]
+//   Container: [className, isBackpack]
 private _convertContainerSlot = {
     params ["_slot"];
     if (count _slot == 0) exitWith { createHashMap };
     private _items = (_slot#1) apply {
-        private _item = createHashMapFromArray [
-            ["className", _x#0],
-            ["count",     _x#1]
-        ];
-        if (count _x > 2) then { _item set ["ammo", _x#2] };
+        private _item = createHashMap;
+        if (_x#0 isEqualType []) then {
+            // Weapon in container: _x#0 is the weapon array
+            _item set ["type", "weapon"];
+            _item set ["weapon", [_x#0] call _convertWeaponSlot];
+            _item set ["count", _x#1];
+        } else {
+            if (count _x == 2 && {_x#1 isEqualType true}) then {
+                // Container in container: [className, isBackpack]
+                _item set ["type", "container"];
+                _item set ["className", _x#0];
+                _item set ["isBackpack", _x#1];
+            } else {
+                // Item or magazine
+                if (count _x > 2) then {
+                    _item set ["type", "magazine"];
+                    _item set ["className", _x#0];
+                    _item set ["count", _x#1];
+                    _item set ["ammo", _x#2];
+                } else {
+                    _item set ["type", "item"];
+                    _item set ["className", _x#0];
+                    _item set ["count", _x#1];
+                };
+            };
+        };
         _item
     };
     createHashMapFromArray [
