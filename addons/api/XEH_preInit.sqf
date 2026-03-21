@@ -11,7 +11,7 @@ if (isServer) then {
 
     // Send mission_ended and stop status push during controlled shutdown
     // MPEnded does not fire reliably during #shutdown — the process is killed
-    [QEGVAR(persistence,shuttingDown), {
+    [QEGVAR(persistence,shutdownFinishing), {
         TRACE_1("Controlled shutdown: sending mission_ended",GVAR(sessionId));
         ["mission_ended", createHashMapFromArray [
             ["sessionId", GVAR(sessionId)],

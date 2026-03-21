@@ -35,18 +35,17 @@ GVAR(shutdownInProgress) = true;
 
 LOG("Shutdown");
 
-GVAR(readyForShutdownCount) = 0;
-GVAR(readyForShutdownExpected) = count (call CBA_fnc_players);
-INFO_1("Waiting for %1 players to report ready for shutdown",GVAR(readyForShutdownExpected));
+GVAR(shutdownExpectedDisconnectCount) = count (call CBA_fnc_players);
+INFO_1("Waiting for %1 players to disconnect before shutdown",GVAR(shutdownExpectedDisconnectCount));
 
 [QGVAR(shutdownStarted)] call CBA_fnc_globalEvent;
 
 [{
-    GVAR(readyForShutdownCount) >= GVAR(readyForShutdownExpected)
+    GVAR(shutdownDisconnectedCount) >= GVAR(shutdownExpectedDisconnectCount)
 }, {
-    INFO_1("All players ready (%1 received), proceeding with shutdown",GVAR(readyForShutdownCount));
+    INFO_2("All players disconnected and saved (%1 of %2), proceeding with shutdown",GVAR(shutdownDisconnectedCount),GVAR(shutdownExpectedDisconnectCount));
     call FUNC(finishShutdown);
-}, [], 10, {
-    WARNING_2("Shutdown ready timeout — received %1 of %2, proceeding anyway",GVAR(readyForShutdownCount),GVAR(readyForShutdownExpected));
+}, [], 30, {
+    WARNING_2("Shutdown timeout — saved %1 of %2 player disconnects, proceeding anyway",GVAR(shutdownDisconnectedCount),GVAR(shutdownExpectedDisconnectCount));
     call FUNC(finishShutdown);
 }] call CBA_fnc_waitUntilAndExecute;
