@@ -60,10 +60,26 @@ if (GVAR(data) isEqualType createHashMap) then {
             _slot getOrDefault ["className", ""],
             (_slot getOrDefault ["items", []]) apply {
                 if (_x isEqualType createHashMap) then {
-                    private _base = [_x getOrDefault ["className", ""], _x getOrDefault ["count", 0]];
-                    private _ammo = _x getOrDefault ["ammo", nil];
-                    if (!isNil "_ammo") then { _base pushBack _ammo };
-                    _base
+                    private _type = _x getOrDefault ["type", ""];
+                    switch (_type) do {
+                        case "weapon": {
+                            private _weaponArray = [_x getOrDefault ["weapon", createHashMap]] call _convertWeaponSlotBack;
+                            [_weaponArray, _x getOrDefault ["count", 1]]
+                        };
+                        case "container": {
+                            [_x getOrDefault ["className", ""], _x getOrDefault ["isBackpack", false]]
+                        };
+                        case "magazine": {
+                            [_x getOrDefault ["className", ""], _x getOrDefault ["count", 0], _x getOrDefault ["ammo", 0]]
+                        };
+                        default {
+                            // "item" or legacy data without type field
+                            private _base = [_x getOrDefault ["className", ""], _x getOrDefault ["count", 0]];
+                            private _ammo = _x getOrDefault ["ammo", nil];
+                            if (!isNil "_ammo") then { _base pushBack _ammo };
+                            _base
+                        };
+                    }
                 } else { _x }
             }
         ]
