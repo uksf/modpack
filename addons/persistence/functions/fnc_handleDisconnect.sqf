@@ -73,5 +73,5 @@ if (GVAR(dataSaved)) then {
 
 if (GVAR(shutdownInProgress)) then {
     GVAR(shutdownDisconnectedCount) = GVAR(shutdownDisconnectedCount) + 1;
-    TRACE_2("Shutdown disconnect saved: %1 (%2 of expected)",_name,GVAR(shutdownDisconnectedCount));
+    DEBUG_2("Shutdown disconnect saved: %1 (%2 of expected)",_name,GVAR(shutdownDisconnectedCount));
 };

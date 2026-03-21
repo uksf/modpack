@@ -114,7 +114,7 @@ addMissionEventHandler ["MarkerDeleted", {
 }] call CBA_fnc_addEventHandler;
 
 [QGVAR(shutdownStarted), {
-    [QEGVAR(common,textTiles), [parseText format ["<t align = 'center' color = '#00FF00'>Server Shutdown Started</t>"], [0.25, 0.5, 0.5, 0.085], [1, 0.5], 5]] call CBA_fnc_localEvent;
+    [QEGVAR(common,textTiles), [parseText format ["<t align = 'center' size = '1.6' color = '#00FF00'>Server Shutdown Started</t>"], [0.25, 0.5, 0.5, 0.07], [1, 1], 5]] call CBA_fnc_localEvent;
     [QGVAR(shutdownFinishing)] call CBA_fnc_localEvent;
 
     [{
