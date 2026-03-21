@@ -44,7 +44,7 @@ if (isServer) then {
         call FUNC(stopCollection);
     }] call CBA_fnc_addEventHandler;
 
-    [QEGVAR(persistence,shuttingDown), {
+    [QEGVAR(persistence,shutdownFinishing), {
         TRACE_1("Shutdown: final server sync",count GVAR(serverBuffer));
         call FUNC(serverSync);
     }] call CBA_fnc_addEventHandler;
@@ -57,7 +57,7 @@ if (isServer) then {
 };
 
 if (!isServer) then {
-    [QEGVAR(persistence,shuttingDown), {
+    [QEGVAR(persistence,shutdownFinishing), {
         TRACE_1("Shutdown: flushing client buffers",count GVAR(eventBuffer));
         call FUNC(clientSync);
         call FUNC(stopCollection);
