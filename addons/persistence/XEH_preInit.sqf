@@ -20,8 +20,8 @@ if (is3DEN) then {
 
 GVAR(dataSaved) = false;
 GVAR(shutdownInProgress) = false;
-GVAR(readyForShutdownCount) = 0;
-GVAR(readyForShutdownExpected) = 0;
+GVAR(shutdownExpectedDisconnectCount) = 0;
+GVAR(shutdownDisconnectedCount) = 0;
 
 if (isMultiplayer) then {
     if (hasInterface) then {
@@ -49,7 +49,7 @@ if (isMultiplayer) then {
     // HC shutdown handler
     if (!isServer && !hasInterface) then {
         [QGVAR(shutdownStarted), {
-            [QGVAR(shuttingDown)] call CBA_fnc_localEvent;
+            [QGVAR(shutdownFinishing)] call CBA_fnc_localEvent;
         }] call CBA_fnc_addEventHandler;
     };
 };
