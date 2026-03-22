@@ -47,7 +47,7 @@ GVAR(getBodyPart) = {
 
 private _handleFired = {
     if (GVAR(killswitch)) exitWith {};
-    params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile"];
+    params ["_unit", "_weapon", "_muzzle", "_fireMode", "_ammo", "_magazine", "_projectile"];
     private _startTime = diag_tickTime;
 
     GVAR(shotCounter) = GVAR(shotCounter) + 1;
@@ -153,7 +153,7 @@ private _handleFired = {
         ["weapon", _weapon],
         ["ammo", _ammo],
         ["magazine", _magazine],
-        ["fireMode", _mode],
+        ["fireMode", _fireMode],
         ["firedPosition", _firedPosition]
     ]] call FUNC(addEvent);
 
