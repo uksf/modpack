@@ -16,12 +16,15 @@
         call uksf_zeus_fnc_debugGetSortedActiveKeys
 */
 
-private _activeKeys = keys GVAR(debugActiveToggles);
-_activeKeys sort true;
-_activeKeys = _activeKeys apply {
-    private _action = GVAR(debugActions) getOrDefault [_x, []];
-    private _priority = if (_action isEqualTo []) then {0} else {_action#1};
-    [_priority, _x]
+if (GVAR(debugSortedActiveKeysDirty)) then {
+    private _activeKeys = keys GVAR(debugActiveToggles);
+    _activeKeys = _activeKeys apply {
+        private _provider = GVAR(debugProviders) getOrDefault [_x, createHashMap];
+        private _priority = _provider getOrDefault ["menuPriority", 0];
+        [_priority, _x]
+    };
+    _activeKeys sort false;
+    GVAR(debugSortedActiveKeys) = _activeKeys apply {_x#1};
+    GVAR(debugSortedActiveKeysDirty) = false;
 };
-_activeKeys sort false;
-_activeKeys apply {_x#1}
+GVAR(debugSortedActiveKeys)

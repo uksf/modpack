@@ -34,6 +34,7 @@ PREP(contextCleanupModifier);
 PREP(formatUnconsciousText);
 
 // Debug provider system
+PREP(debugManageClientSources);
 PREP(debugStreamToggle);
 PREP(debugStreamTick);
 PREP(debugMapDraw);

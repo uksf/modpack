@@ -44,8 +44,13 @@ private _fnc_drawMap = {
     } forEach GVAR(trackedProjectiles);
 };
 
-[QGVAR(registerDebugAction), [_key, _menuName, _menuPriority, _fnc_menuCondition]] call CBA_fnc_localEvent;
-[QGVAR(registerDebugDraw), [_key, _fnc_draw3d, _fnc_drawMap]] call CBA_fnc_localEvent;
+[QGVAR(registerDebugProvider), [_key, createHashMapFromArray [
+    ["draw3d", _fnc_draw3d],
+    ["drawMap", _fnc_drawMap],
+    ["menuName", _menuName],
+    ["menuPriority", _menuPriority],
+    ["menuCondition", _fnc_menuCondition]
+]]] call CBA_fnc_localEvent;
 
 // FPS client data source — each player reports their FPS when active
 [QGVAR(registerDebugClientSource), [
@@ -96,10 +101,14 @@ _fnc_draw3d = {
     } forEach _data;
 };
 
-_fnc_drawMap = {};
-
-[QGVAR(registerDebugServerGetter), [_key, _fnc_serverGetter, 1, _clientDataKey]] call CBA_fnc_localEvent;
-[QGVAR(registerDebugDraw), [_key, _fnc_draw3d, _fnc_drawMap]] call CBA_fnc_localEvent;
+[QGVAR(registerDebugProvider), [_key, createHashMapFromArray [
+    ["draw3d", _fnc_draw3d],
+    ["serverGetter", _fnc_serverGetter],
+    ["getterInterval", 1],
+    ["clientDataKey", _clientDataKey],
+    ["alwaysActive", true],
+    ["menuPriority", -5]
+]]] call CBA_fnc_localEvent;
 
 // Unconscious status provider — always active when Zeus is open
 _key = QGVAR(unconscious);
@@ -143,5 +152,11 @@ private _fnc_unconsciousDrawMap = {
     } forEach _data;
 };
 
-[QGVAR(registerDebugServerGetter), [_key, _fnc_unconsciousServerGetter, 1]] call CBA_fnc_localEvent;
-[QGVAR(registerDebugDraw), [_key, _fnc_unconsciousDraw3d, _fnc_unconsciousDrawMap]] call CBA_fnc_localEvent;
+[QGVAR(registerDebugProvider), [_key, createHashMapFromArray [
+    ["draw3d", _fnc_unconsciousDraw3d],
+    ["drawMap", _fnc_unconsciousDrawMap],
+    ["serverGetter", _fnc_unconsciousServerGetter],
+    ["getterInterval", 1],
+    ["alwaysActive", true],
+    ["menuPriority", -3]
+]]] call CBA_fnc_localEvent;
