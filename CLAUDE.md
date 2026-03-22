@@ -8,35 +8,24 @@ UKSF Modpack — a collection of Arma 3 addons (mods) for the UKSF community, bu
 
 - **Prefix**: `uksf`
 - **Main prefix (P-drive path segment)**: `u` → full path: `\u\uksf\addons\<component>\`
-- **Build tools are mixed**: HEMTT for dev addon builds (`hemtt.toml`), Python scripts for validation
+- **Build tool**: HEMTT for all addon builds and validation (`hemtt.toml`)
 
 ## Build and Validation Commands
 
-Build tooling is mixed — use what fits the task:
+Build and validate using HEMTT:
 
 ```bash
 # Build dev PBOs (HEMTT, from project root)
-./hemtt.exe pack
+hemtt dev
 
-# Build PBOs via Python fallback (uses makepbo)
-python3 tools/build.py
+# Full build (release)
+hemtt build
 
-# Validate SQF syntax (brackets, semicolons, tabs)
-python3 tools/sqf_validator.py
-python3 tools/sqf_validator.py -m <addon_name>   # single addon
-
-# Validate config file syntax (.cpp/.hpp)
-python3 tools/config_style_checker.py
-python3 tools/config_style_checker.py -m <addon_name>
-
-# Lint SQF (uses sqflint, may have false positives)
-python3 tools/sqf_linter.py -d addons/
-
-# Dev environment setup (creates P-drive and Arma directory symlinks)
-python3 tools/setup.py
+# Validate SQF and config syntax (HEMTT check)
+hemtt check
 ```
 
-**CI (GitHub Actions on PRs)**: runs `sqf_validator.py`, `config_style_checker.py`, BOM check, and sqflint.
+**CI (GitHub Actions on push/PR)**: runs `hemtt check` for linting, `hemtt build` for compilation, and BOM check.
 
 ## Key Validation Rules
 
