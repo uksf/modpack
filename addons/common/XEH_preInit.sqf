@@ -16,8 +16,6 @@ GVAR(configMagazines) = configFile >> "CfgMagazines";
 GVAR(configWeapons) = configFile >> "CfgWeapons";
 GVAR(configVehicles) = configFile >> "CfgVehicles";
 
-GVAR(fpsState) = false;
-
 GVAR(respawnPositions) = [];
 
 GVAR(valueCache) = createHashMap;
@@ -25,7 +23,11 @@ GVAR(valueCache) = createHashMap;
 GVAR(edenLogicIdMap) = createHashMap;
 
 if (hasInterface) then {
-    GVAR(fpsArray) = [];
+    GVAR(fpsHudMode) = 0;
+    GVAR(fpsHudControl) = controlNull;
+    GVAR(fpsHudPFH) = -1;
+
+    [QGVAR(fpsHudData), {_this call FUNC(fpsHudUpdate)}] call CBA_fnc_addEventHandler;
 
     [QGVAR(hint), {call FUNC(hint)}] call CBA_fnc_addEventHandler;
     [QGVAR(textTiles), {_this spawn BIS_fnc_textTiles}] call CBA_fnc_addEventHandler;
@@ -33,14 +35,12 @@ if (hasInterface) then {
     GVAR(paradropInProgress) = false;
 };
 
-if (!isServer && !hasInterface) then {
-    GVAR(fpsEventID) = [QGVAR(fpsGet), {call FUNC(fpsGet)}] call CBA_fnc_addEventHandler;
-};
-
 if (isServer) then {
     GVAR(markerID) = 100000;
 
-    GVAR(fpsEventID) = [QGVAR(fpsGet), {call FUNC(fpsGet)}] call CBA_fnc_addEventHandler;
+    GVAR(fpsStore) = createHashMap;
+    GVAR(fpsStoreTimestamps) = createHashMap;
+    [QGVAR(fpsReport), {_this call FUNC(fpsReport)}] call CBA_fnc_addEventHandler;
 
     [QGVAR(addObjectsToCurators), {call FUNC(addObjectsToCurators)}] call CBA_fnc_addEventHandler;
     [QGVAR(setSideRelation), {(_this#0) setFriend [(_this#1), (_this#2)]}] call CBA_fnc_addEventHandler;
