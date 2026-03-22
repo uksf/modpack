@@ -46,6 +46,10 @@ addMissionEventHandler ["MPEnded", {
         [GVAR(statusPerFrameHandler)] call CBA_fnc_removePerFrameHandler;
         GVAR(statusPerFrameHandler) = -1;
     };
+    if (GVAR(performancePerFrameHandler) != -1) then {
+        [GVAR(performancePerFrameHandler)] call CBA_fnc_removePerFrameHandler;
+        GVAR(performancePerFrameHandler) = -1;
+    };
     call FUNC(stop);
 }];
 
@@ -55,11 +59,17 @@ addMissionEventHandler ["MPEnded", {
     ["mission", missionName]
 ]] call FUNC(sendEvent);
 
+GVAR(performancePerFrameHandler) = -1;
+
 // Periodic server status push (every 15 seconds), only if extension started
 if (GVAR(processId) != -1) then {
     GVAR(statusPerFrameHandler) = [{
         call FUNC(sendServerStatus);
     }, 15, []] call CBA_fnc_addPerFrameHandler;
+
+    GVAR(performancePerFrameHandler) = [{
+        call FUNC(sendPerformance);
+    }, 5, []] call CBA_fnc_addPerFrameHandler;
 };
 
 // Player presence tracking — debounced to prevent spam from rapid reconnects
