@@ -24,7 +24,17 @@ private _fnc_children = {
     private _action = [QGVAR(toggleDiveComputer), "Toggle Dive Computer", QPATHTOF(data\ui\iconDiveComputer.paa), {[GVAR(diveComputerUpdatePFHID) == -1] call FUNC(toggleDiveComputer);}, {QGVAR(diveComputer) in (assignedItems _player)}] call ace_interact_menu_fnc_createAction;
     _actions pushBack [_action, [], _player];
 
-     _action = [QGVAR(resetElapsedDiveTime), "Reset Dive Time", QPATHTOF(data\ui\iconDiveComputer.paa), {GVAR(elapsedDiveTime) = 0;}, {QGVAR(diveComputer) in (assignedItems _player) && GVAR(elapsedDiveTime) != 0}] call ace_interact_menu_fnc_createAction;
+     _action = [QGVAR(resetElapsedDiveTime), "Reset Dive Time", QPATHTOF(data\ui\iconDiveComputer.paa), {GVAR(elapsedDiveTime) = 0;}, {QGVAR(diveComputer) in (assignedItems _player) && GVAR(elapsedDiveTime) != 0 && GVAR(updatePFHID) == -1}] call ace_interact_menu_fnc_createAction;
+    _actions pushBack [_action, [], _player];
+
+    _action = [QGVAR(maskOn), "Put diving mask on", "", {GVAR(wearMaskOnLand) = true;}, {
+        ((goggles _player) isEqualTo QGVAR(divingMask) || (goggles _player) isEqualTo "G_B_Diving") && !GVAR(wearMaskOnLand)
+    }] call ace_interact_menu_fnc_createAction;
+    _actions pushBack [_action, [], _player];
+
+    _action = [QGVAR(maskOff), "Take diving mask off", "", {GVAR(wearMaskOnLand) = false;}, {
+        ((goggles _player) isEqualTo QGVAR(divingMask) || (goggles _player) isEqualTo "G_B_Diving") && GVAR(wearMaskOnLand)
+    }] call ace_interact_menu_fnc_createAction;
     _actions pushBack [_action, [], _player];
 
     {
@@ -42,7 +52,7 @@ private _fnc_children = {
             params ["", "_player", "_actionParams"];
             _actionParams params ["_className"];
 
-            [_player, _className] call ace_common_fnc_hasItem
+            ([_player, _className] call ace_common_fnc_hasItem) && (((position _player select 2) >= 0) || !GVAR(connectedGas))
         }, {}, [_className, _config, _name]] call ace_interact_menu_fnc_createAction;
 
         _actions pushBack [_action, [], _player];
@@ -63,6 +73,8 @@ private _fnc_children = {
         QGVAR(cylinderDoubleHeliox12),
         QGVAR(cylinderSingleHeliox21),
         QGVAR(cylinderDoubleHeliox21),
+        QGVAR(cylinderSinglePureOxygen),
+        QGVAR(cylinderDoublePureOxygen),
         QGVAR(cylinderSingleTx2135),
         QGVAR(cylinderDoubleTx2135),
         QGVAR(cylinderSingleTx1845),

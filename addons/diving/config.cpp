@@ -31,6 +31,8 @@ class CfgPatches {
             QGVAR(cylinderDoubleHeliox12),
             QGVAR(cylinderSingleHeliox21),
             QGVAR(cylinderDoubleHeliox21),
+            QGVAR(cylinderSinglePureOxygen),
+            QGVAR(cylinderDoublePureOxygen),
             QGVAR(cylinderSingleTx2135),
             QGVAR(cylinderDoubleTx2135),
             QGVAR(cylinderSingleTx1845),
@@ -58,3 +60,4 @@ class CfgPatches {
 #include "CfgSounds.hpp"
 #include "CfgVehicles.hpp"
 #include "CfgWeapons.hpp"
+#include "CfgGlasses.hpp"

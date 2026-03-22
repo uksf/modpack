@@ -1,4 +1,5 @@
 PREP(addDiverActions);
+PREP(applyToxicEffect);
 PREP(deserialiseState);
 PREP(effectToxicDecompression);
 PREP(effectToxicN2);
@@ -10,4 +11,5 @@ PREP(publishDataState);
 PREP(reset);
 PREP(serialiseState);
 PREP(toggleDiveComputer);
+PREP(surfaceCheck);
 PREP(useCylinder);

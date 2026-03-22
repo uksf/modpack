@@ -5,7 +5,6 @@ ADDON = false;
 #include "XEH_PREP.hpp"
 
 if (hasInterface) then {
-    GVAR(previousTime) = -1;
     GVAR(dataPublishTime) = 0;
     GVAR(updatePFHID) = -1;
     GVAR(diveComputerUpdatePFHID) = -1;
@@ -28,6 +27,23 @@ if (hasInterface) then {
     GVAR(partialPressureHe) = 0;
 
     GVAR(saturationCoefficient) = (ln 2) / 4;
+
+    GVAR(currentAmbientPressure) = 1;
+    GVAR(remainingDiveTime) = 0;
+    GVAR(maxDepth) = 0;
+    GVAR(previousDepth) = 0;
+    GVAR(previousAmbientPressure) = 0;
+    GVAR(ascendRate) = 0;
+    GVAR(decompressDepthB) = 0;
+    GVAR(decompressDepth) = 0;
+    GVAR(decompressTime) = 0;
+    GVAR(deepStopDepth) = 0;
+    GVAR(deepStopTime) = 0;
+    GVAR(needDecompress) = false;
+    GVAR(needDeepStop) = false;
+    GVAR(connectedGas) = false;
+    GVAR(wearMaskOnLand) = true;
+    GVAR(surfaceCheckPFHID) = -1;
 
     call FUNC(reset);
 };
