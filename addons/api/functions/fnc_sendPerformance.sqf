@@ -37,9 +37,15 @@ private _players = [];
     private _identifier = _x;
     if (_identifier isEqualTo "server") then { continue };
 
-    // Skip stale entries
+    // Prune and skip stale entries
     private _lastUpdate = _timestamps getOrDefault [_identifier, 0];
-    if (_now - _lastUpdate > _staleThreshold) then { continue };
+    if (_now - _lastUpdate > _staleThreshold) then {
+        if (_now - _lastUpdate > 60) then {
+            _fpsStore deleteAt _identifier;
+            _timestamps deleteAt _identifier;
+        };
+        continue;
+    };
 
     private _entry = _fpsStore get _identifier;
     private _samples = +(_entry#1);

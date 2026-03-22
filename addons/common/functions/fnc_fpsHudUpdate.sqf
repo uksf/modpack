@@ -32,14 +32,14 @@ private _playerEntries = _data select {_x#2 isEqualTo "player"};
 
 // Server
 {
-    _x params ["_identifier", "_fps", "_type"];
+    _x params ["", "_fps"];
     private _colour = if (_fps <= 15) then { "#ff0000" } else { "#ffffff" };
     _lines pushBack format ["<t color='%1' size='0.9'>Server: %2 FPS</t>", _colour, _fps];
 } forEach _serverEntries;
 
 // HCs
 {
-    _x params ["_identifier", "_fps", "_type"];
+    _x params ["_identifier", "_fps"];
     private _colour = if (_fps <= 15) then { "#ff0000" } else { "#ffffff" };
     _lines pushBack format ["<t color='%1' size='0.9'>%2: %3 FPS</t>", _colour, _identifier, _fps];
 } forEach _headlessClientEntries;
@@ -47,13 +47,16 @@ private _playerEntries = _data select {_x#2 isEqualTo "player"};
 // Players — mode 2 shows low FPS only, mode 3 shows all
 if (GVAR(fpsHudMode) >= 2) then {
     {
-        _x params ["_identifier", "_fps", "_type"];
+        _x params ["_identifier", "_fps"];
         if (GVAR(fpsHudMode) isEqualTo 2 && {_fps > 25}) then { continue };
 
-        private _name = "Unknown";
+        private _name = _identifier;
         {
             if (getPlayerUID _x isEqualTo _identifier) exitWith {
-                _name = name _x;
+                private _playerName = name _x;
+                if (_playerName isNotEqualTo "") then {
+                    _name = _playerName;
+                };
             };
         } forEach ALL_PLAYERS;
 

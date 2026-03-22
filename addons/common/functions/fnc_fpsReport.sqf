@@ -21,8 +21,10 @@ params [["_identifier", "", [""]], ["_fps", 0, [0]]];
 
 if (_identifier isEqualTo "") exitWith {};
 
-private _entry = GVAR(fpsStore) getOrDefault [_identifier, [0, []]];
+if !(_identifier in GVAR(fpsStore)) then {
+    GVAR(fpsStore) set [_identifier, [0, []]];
+};
+private _entry = GVAR(fpsStore) get _identifier;
 _entry set [0, _fps];
 (_entry#1) pushBack _fps;
-GVAR(fpsStore) set [_identifier, _entry];
 GVAR(fpsStoreTimestamps) set [_identifier, CBA_missionTime];

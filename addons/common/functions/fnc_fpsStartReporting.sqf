@@ -27,6 +27,10 @@ private _identifier = if (isServer) then {
     };
 };
 
+if (!isNil QGVAR(fpsReportingPFH)) then {
+    [GVAR(fpsReportingPFH)] call CBA_fnc_removePerFrameHandler;
+};
+
 GVAR(fpsReportingPFH) = [{
     params ["_identifier"];
 
