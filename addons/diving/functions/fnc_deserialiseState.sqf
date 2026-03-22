@@ -26,7 +26,7 @@ GVAR(currentVolume) = _data#2;
 GVAR(currentPressure) = _data#3;
 GVAR(currentPercentO2) = _data#4;
 GVAR(currentPercentN2) = _data#5;
-GVAR(currentPercentHe) = _data#9;
+GVAR(currentPercentHe) = _data#6;
 GVAR(previousAmbientPressure) = _data#7;
 GVAR(previousDepth) = _data#8;
 GVAR(saturationO2) = _data#9;
@@ -56,6 +56,6 @@ GVAR(toxicDeepStopTimeout) = _data#30;
 GVAR(toxicAscendTimeout) = _data#31;
 GVAR(noAirTimeout) = _data#32;
 
-if (_diving && GVAR(updatePFHID) == -1) then {
+if (GVAR(updatePFHID) == -1) then {
     [true] call FUNC(loop);
 };

@@ -28,12 +28,6 @@ if (isNil "_id" || isNil "_type") exitWith {
 };
 
 TRACE_6("Loading object...",_id,_type,_position,_vectorDirAndUp,_damage,_fuel);
-// TRACE_1("...",_rackChannels);
-// TRACE_3("...",_turretWeapons,_turretMagazines,_pylonLoadout);
-// TRACE_2("...",_logisticsCargo,_attached);
-// TRACE_1("...",_aceCargo);
-// TRACE_1("...",_inventory);
-// TRACE_1("...",_aceFortifyData);
 
 if !(_type isEqualType "") exitWith {
     WARNING_1("Tried to load empty data for id %1",_id);

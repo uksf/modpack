@@ -53,7 +53,6 @@ private _isEqual = {
 private _failures = 0;
 private _successes = 0;
 
-// --- DateTime ---
 private _profileDateTime = _snapshot getOrDefault ["dateTime", []];
 private _apiDateTime = _session getVariable [QGVAR(dateTime), []];
 if ([_profileDateTime, _apiDateTime] call _isEqual) then {
@@ -64,7 +63,6 @@ if ([_profileDateTime, _apiDateTime] call _isEqual) then {
     WARNING_2("DateTime: MISMATCH — profile=%1, api=%2",_profileDateTime,_apiDateTime);
 };
 
-// --- Deleted Objects ---
 private _profileDeleted = _snapshot getOrDefault ["deletedObjects", []];
 private _apiDeleted = _session getVariable [QGVAR(deletedObjects), []];
 if ([_profileDeleted, _apiDeleted] call _isEqual) then {
@@ -77,7 +75,6 @@ if ([_profileDeleted, _apiDeleted] call _isEqual) then {
     WARNING_4("Deleted objects: MISMATCH — profile count=%1, api count=%2, in profile only=%3, in api only=%4",count _profileDeleted,count _apiDeleted,_profileOnly,_apiOnly);
 };
 
-// --- Map Markers ---
 private _profileMarkers = _snapshot getOrDefault ["mapMarkers", []];
 private _apiMarkers = _session getVariable [QGVAR(mapMarkers), []];
 if ([_profileMarkers, _apiMarkers] call _isEqual) then {
@@ -88,8 +85,6 @@ if ([_profileMarkers, _apiMarkers] call _isEqual) then {
     WARNING_2("Map markers: MISMATCH — profile count=%1, api count=%2",count _profileMarkers,count _apiMarkers);
 };
 
-// --- Objects ---
-// API data is already in positional array format, same as profile snapshot
 private _profileObjects = _snapshot getOrDefault ["objects", []];
 private _apiObjects = _session getVariable [QGVAR(objects), []];
 
@@ -100,7 +95,6 @@ private _objectFieldNames = [
     "aceFortify", "aceMedical", "aceRepair", "customName"
 ];
 
-// Build lookup by ID for both sets
 private _profileObjectMap = createHashMap;
 {_profileObjectMap set [_x#IDX_OBJ_ID, _x]} forEach _profileObjects;
 
@@ -153,9 +147,6 @@ if (_objectMismatches == 0 && _objectMissing == 0) then {
     WARNING_3("Objects: MISMATCH — matches=%1, mismatches=%2, missing=%3",_objectMatches,_objectMismatches,_objectMissing);
 };
 
-// --- Players ---
-// API namespace stores players as individual UID-keyed variables (17-digit strings)
-// Profile snapshot stores them in a "players" hashmap
 private _profilePlayers = _snapshot getOrDefault ["players", createHashMap];
 private _profilePlayerUids = _snapshot getOrDefault ["playerUids", []];
 
@@ -181,7 +172,6 @@ INFO_2("Players: profile count=%1, api count=%2",count _profilePlayerUids,count 
     private _apiPlayer = _session getVariable [_uid, []];
 
     if (_profilePlayer isEqualTo [] && _apiPlayer isEqualTo []) then {
-        // Both empty, skip
     } else {
         if (_profilePlayer isEqualTo []) then {
             _playerMissing = _playerMissing + 1;
@@ -219,8 +209,6 @@ if (_playerMismatches == 0 && _playerMissing == 0) then {
     WARNING_3("Players: MISMATCH — matches=%1, mismatches=%2, missing=%3",_playerMatches,_playerMismatches,_playerMissing);
 };
 
-// --- Custom Data ---
-// Custom data keys are anything on the API namespace that isn't a known key or a player UID
 private _knownKeys = [QGVAR(objects), QGVAR(deletedObjects), QGVAR(dateTime), QGVAR(mapMarkers)];
 private _customDataKeys = (([_session] call CBA_fnc_allVariables) select {!(_x in _knownKeys) && !(_x regexMatch "^[0-9]{17}$")});
 {
@@ -251,7 +239,6 @@ if (_customMismatches == 0) then {
     WARNING_2("Custom data: MISMATCH — matches=%1, mismatches=%2",_customMatches,_customMismatches);
 };
 
-// --- Summary ---
 INFO_2("=== API vs Profile Comparison Complete: %1 categories passed, %2 categories failed ===",_successes,_failures);
 if (_failures == 0) then {
     INFO("API persistence proofing: ALL CATEGORIES MATCH");
