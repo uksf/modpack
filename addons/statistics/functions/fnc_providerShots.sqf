@@ -31,7 +31,6 @@ GVAR(getTargetType) = {
     params ["_entity"];
     if (_entity isKindOf "CAManBase") exitWith {"infantry"};
     if (_entity isKindOf "LandVehicle" || {_entity isKindOf "Air"} || {_entity isKindOf "Ship"}) exitWith {"vehicle"};
-    if (_entity isKindOf "StaticWeapon") exitWith {"static"};
     if (_entity isKindOf "Building") exitWith {"structure"};
     "unknown"
 };

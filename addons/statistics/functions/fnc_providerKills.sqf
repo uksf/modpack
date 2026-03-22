@@ -68,14 +68,10 @@ addMissionEventHandler ["EntityKilled", {
         if (_victim isKindOf "LandVehicle" || {_victim isKindOf "Air"} || {_victim isKindOf "Ship"}) then {
             "vehicle"
         } else {
-            if (_victim isKindOf "StaticWeapon") then {
-                "static"
+            if (_victim isKindOf "Building") then {
+                "structure"
             } else {
-                if (_victim isKindOf "Building") then {
-                    "structure"
-                } else {
-                    ""
-                };
+                ""
             };
         };
     };
