@@ -50,6 +50,15 @@ addMissionEventHandler ["MPEnded", {
         [GVAR(performancePerFrameHandler)] call CBA_fnc_removePerFrameHandler;
         GVAR(performancePerFrameHandler) = -1;
     };
+
+    // Send a final performance flush before stopping the extension
+    call FUNC(sendPerformance);
+    "uksf" callExtension "flush";
+
+    // Clean up FPS store and reporting for mission restart scenarios
+    EGVAR(common,fpsStore) = createHashMap;
+    EGVAR(common,fpsStoreTimestamps) = createHashMap;
+
     call FUNC(stop);
 }];
 
