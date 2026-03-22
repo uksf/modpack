@@ -61,18 +61,27 @@ addMissionEventHandler ["EntityKilled", {
         ["kills", _startTime] call FUNC(addProviderTiming);
     };
 
-    // Determine target type
-    private _targetType = "unknown";
-    if (_victim isKindOf "CAManBase") then {
-        _targetType = "infantry";
+    // Determine target type — skip unclassifiable entities
+    private _targetType = if (_victim isKindOf "CAManBase") then {
+        "infantry"
     } else {
         if (_victim isKindOf "LandVehicle" || {_victim isKindOf "Air"} || {_victim isKindOf "Ship"}) then {
-            _targetType = "vehicle";
+            "vehicle"
         } else {
             if (_victim isKindOf "StaticWeapon") then {
-                _targetType = "static";
+                "static"
+            } else {
+                if (_victim isKindOf "Building") then {
+                    "structure"
+                } else {
+                    ""
+                };
             };
         };
+    };
+
+    if (_targetType isEqualTo "") exitWith {
+        ["kills", _startTime] call FUNC(addProviderTiming);
     };
 
     // Determine target side with bounds safety
