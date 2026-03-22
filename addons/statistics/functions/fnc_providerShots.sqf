@@ -8,7 +8,7 @@
         round fired by the local player, both on foot and in vehicles.
 
         Each shot is recorded with weapon, ammo, magazine, fire mode, and fired position.
-        Each projectile is tagged with shotId, weapon, and fired position, then has
+        Each projectile is tagged with shotId, weapon, ammo, and fired position, then has
         HitPart (Projectile) and HitExplosion event handlers attached.
 
         When the projectile hits something, the hit event is generated on the same
@@ -32,6 +32,7 @@ GVAR(getTargetType) = {
     if (_entity isKindOf "CAManBase") exitWith {"infantry"};
     if (_entity isKindOf "LandVehicle" || {_entity isKindOf "Air"} || {_entity isKindOf "Ship"}) exitWith {"vehicle"};
     if (_entity isKindOf "StaticWeapon") exitWith {"static"};
+    if (_entity isKindOf "Building") exitWith {"structure"};
     "unknown"
 };
 
@@ -58,6 +59,7 @@ private _handleFired = {
         _projectile setVariable [QGVAR(shotId), _shotId];
         _projectile setVariable [QGVAR(weapon), _weapon];
         _projectile setVariable [QGVAR(firedPosition), _firedPosition];
+        _projectile setVariable [QGVAR(ammo), _ammo];
 
         // HitPart (Projectile) — fires on this client for direct hits on any surface
         _projectile addEventHandler ["HitPart", {
@@ -74,6 +76,7 @@ private _handleFired = {
 
             private _projectileShotId = _projectile getVariable [QGVAR(shotId), ""];
             private _projectileWeapon = _projectile getVariable [QGVAR(weapon), ""];
+            private _projectileAmmo = _projectile getVariable [QGVAR(ammo), ""];
             private _projectileFiredPosition = _projectile getVariable [QGVAR(firedPosition), []];
 
             private _bodyPart = "";
@@ -92,6 +95,7 @@ private _handleFired = {
                 ["type", "hit"],
                 ["shotId", _projectileShotId],
                 ["weapon", _projectileWeapon],
+                ["ammo", _projectileAmmo],
                 ["targetClassname", typeOf _hitEntity],
                 ["targetType", _targetType],
                 ["bodyPart", _bodyPart],
@@ -117,6 +121,7 @@ private _handleFired = {
 
             private _projectileShotId = _projectile getVariable [QGVAR(shotId), ""];
             private _projectileWeapon = _projectile getVariable [QGVAR(weapon), ""];
+            private _projectileAmmo = _projectile getVariable [QGVAR(ammo), ""];
             private _projectileFiredPosition = _projectile getVariable [QGVAR(firedPosition), []];
 
             private _impactPosition = if (count _hitSelections > 0) then {_hitSelections#0#0} else {getPosASL _projectile};
@@ -131,6 +136,7 @@ private _handleFired = {
                 ["type", "hit"],
                 ["shotId", _projectileShotId],
                 ["weapon", _projectileWeapon],
+                ["ammo", _projectileAmmo],
                 ["targetClassname", typeOf _hitEntity],
                 ["targetType", _targetType],
                 ["bodyPart", ""],
