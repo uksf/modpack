@@ -27,7 +27,9 @@ params ["_display"];
     };
 } forEach (keys GVAR(debugActiveToggles));
 
-// Remove unconscious from active toggles (auto-managed, not user-toggled)
+// Remove auto-managed providers (not user-toggled)
+GVAR(debugActiveToggles) deleteAt QGVAR(fps);
+GVAR(debugData) deleteAt QGVAR(fps);
 GVAR(debugActiveToggles) deleteAt QGVAR(unconscious);
 GVAR(debugData) deleteAt QGVAR(unconscious);
 

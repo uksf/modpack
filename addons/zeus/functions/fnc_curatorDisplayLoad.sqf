@@ -46,7 +46,8 @@ for "_i" from 0 to 4 do {
     GVAR(debugHudControls) pushBack _control;
 };
 
-// Always enable unconscious display while Zeus is open
+// Always enable FPS and unconscious display while Zeus is open
+GVAR(debugActiveToggles) set [QGVAR(fps), true];
 GVAR(debugActiveToggles) set [QGVAR(unconscious), true];
 
 // Re-subscribe server data streams for any active providers

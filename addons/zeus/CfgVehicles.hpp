@@ -86,12 +86,6 @@ class CfgVehicles {
         function = QFUNC(moduleExplosionSmall);
         icon = QPATHTOF(ui\Icon_Module_Explosion_Small_ca.paa);
     };
-    class GVAR(moduleToggleFps): GVAR(moduleBase) {
-        category = "Curator";
-        displayName = "Toggle FPS";
-        function = QFUNC(moduleToggleFps);
-        icon = "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa";
-    };
     class GVAR(moduleToggleHasRadio): GVAR(moduleBase) {
         curatorCanAttach = 1;
         category = "zen_modules_AI";

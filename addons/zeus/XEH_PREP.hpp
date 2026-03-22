@@ -15,7 +15,6 @@ PREP(moduleParadrop);
 PREP(moduleRemoveAceArsenal);
 PREP(moduleToggleCaching);
 PREP(moduleToggleCleanup);
-PREP(moduleToggleFps);
 PREP(moduleToggleHasRadio);
 PREP(moduleToggleZeusVisibility);
 

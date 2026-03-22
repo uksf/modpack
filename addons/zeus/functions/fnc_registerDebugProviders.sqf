@@ -54,11 +54,8 @@ private _fnc_drawMap = {
     1
 ]] call CBA_fnc_localEvent;
 
-// Player FPS provider
+// Player FPS provider — always active when Zeus is open
 _key = QGVAR(fps);
-_menuName = "Player FPS";
-_menuPriority = -5;
-_fnc_menuCondition = {true};
 private _clientDataKey = QGVAR(fpsData);
 
 private _fnc_serverGetter = {
@@ -101,7 +98,6 @@ _fnc_draw3d = {
 
 _fnc_drawMap = {};
 
-[QGVAR(registerDebugAction), [_key, _menuName, _menuPriority, _fnc_menuCondition]] call CBA_fnc_localEvent;
 [QGVAR(registerDebugServerGetter), [_key, _fnc_serverGetter, 1, _clientDataKey]] call CBA_fnc_localEvent;
 [QGVAR(registerDebugDraw), [_key, _fnc_draw3d, _fnc_drawMap]] call CBA_fnc_localEvent;
 
