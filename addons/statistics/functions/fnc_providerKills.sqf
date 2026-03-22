@@ -27,6 +27,14 @@ addMissionEventHandler ["EntityKilled", {
     params ["_victim", "_killer", "_instigator"];
     private _startTime = diag_tickTime;
 
+    // Skip self-kills with no instigator — these are never real combat deaths.
+    // They occur when Arma kills a player's spawn body during join, redeploy,
+    // or relog as part of the respawn cycle.
+    if (_killer isEqualTo _victim && {isNull _instigator}) exitWith {
+        INFO_3("Ignored self-kill (join/redeploy): _victim=%1, _killer=%2, _instigator=%3",_victim,_killer,_instigator);
+        ["kills", _startTime] call FUNC(addProviderTiming);
+    };
+
     // Use instigator if available (e.g. gunner in vehicle), fall back to killer
     private _attacker = if (!isNull _instigator) then {_instigator} else {_killer};
 
