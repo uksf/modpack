@@ -52,7 +52,7 @@ private _fnc_children = {
             params ["", "_player", "_actionParams"];
             _actionParams params ["_className"];
 
-            ([_player, _className] call ace_common_fnc_hasItem) && (((position _player select 2) >= 0) || !GVAR(connectedGas))
+            ([_player, _className] call ace_common_fnc_hasItem) && (((position _player select 2) >= 0) || !GVAR(connectedGas) || (GVAR(currentPressure) <= 0) || (GVAR(needDecompress) && (abs (GVAR(currentDepth) - GVAR(decompressDepth))) <= 1))
         }, {}, [_className, _config, _name]] call ace_interact_menu_fnc_createAction;
 
         _actions pushBack [_action, [], _player];
