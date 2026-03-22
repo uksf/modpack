@@ -1,0 +1,10 @@
+PREP(assessCommander);
+PREP(evalObjective);
+PREP(getGridCoord);
+PREP(getSideColour);
+PREP(getSideFromIndex);
+PREP(getSideLabel);
+PREP(logAssessment);
+PREP(moduleCommander);
+PREP(moduleObjective);
+PREP(registerDebugProvider);
