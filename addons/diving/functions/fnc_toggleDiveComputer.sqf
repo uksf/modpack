@@ -24,9 +24,9 @@ if (!_state) exitWith {
 };
 
 titleRsc [QGVAR(diveComputerDialog), "PLAIN"];
-private _display = uiNamespace getVariable QGVAR(diveComputerDialog);
 GVAR(diveComputerUpdatePFHID) = [{
-    (_this select 0) params ["_display"];
+    private _display = uiNamespace getVariable [QGVAR(diveComputerDialog), displayNull];
+    if (isNull _display) exitWith {};
 
     (_display displayCtrl 1111) ctrlSetText format ["%1", round GVAR(currentPressure)];
     (_display displayCtrl 1112) ctrlSetText format ["%1", (round (GVAR(currentAmbientPressure) * 10)) / 10];
@@ -44,4 +44,4 @@ GVAR(diveComputerUpdatePFHID) = [{
     (_display displayCtrl 1124) ctrlSetText format ["%1", (round (GVAR(partialPressureO2) * 10)) / 10];
     (_display displayCtrl 1125) ctrlSetText format ["%1", (round (GVAR(partialPressureN2) * 10)) / 10];
     (_display displayCtrl 1126) ctrlSetText str GVAR(warningText);
-}, 0.1, [_display]] call CBA_fnc_addPerFrameHandler;
+}, 0.1, []] call CBA_fnc_addPerFrameHandler;

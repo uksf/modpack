@@ -59,8 +59,9 @@ if (((GVAR(decompressTime) > 0) && (GVAR(ascendRate) > 1)) || ((GVAR(currentDept
     GVAR(toxicAscendTimeout) = GVAR(toxicAscendTimeout) - 1;
     if (GVAR(toxicAscendTimeout) <= 0) then {
         private _pain = player getVariable ["ace_medical_pain", 0];
-        [player, _pain + 0.1] call ace_medical_fnc_adjustPainLevel;
-        GVAR(toxicAscendTimeout) = 5;
+        private _scaledPain = 0.05 * (GVAR(ascendRate) - 1);
+        [player, _pain + _scaledPain] call ace_medical_fnc_adjustPainLevel;
+        GVAR(toxicAscendTimeout) = (round (5 / GVAR(ascendRate))) max 1;
     };
 } else {
     GVAR(warningTextAscendRate) = "";
