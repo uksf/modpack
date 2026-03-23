@@ -24,6 +24,25 @@ class CfgWeapons {
         };
     };
 
+    class GVAR(CUP_arifle_G36C_VFG_ACE_optic_MRCO_2D_acc_flashlight_suppressed) : CUP_arifle_G36C_VFG {
+        displayName = "G36C VFG (Suppressed)";
+        scope = 1;
+        class LinkedItems {
+            class LinkedItemsOptic {
+                slot = "CowsSlot";
+                item = "ACE_optic_MRCO_2D";
+            };
+            class LinkedItemsAcc {
+                slot = "PointerSlot";
+                item = "acc_flashlight";
+            };
+            class LinkedItemsMuzzle {
+                slot = "MuzzleSlot";
+                item = "CUP_muzzle_snds_G36_black";
+            };
+        };
+    };
+
     class GVAR(CUP_arifle_G36K_RIS_AG36_ACE_optic_MRCO_2D_acc_flashlight) : CUP_arifle_G36K_RIS_AG36 {
         displayName = "G36K AG36 (5.56x45)";
         scope = 1;

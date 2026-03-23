@@ -2,7 +2,7 @@
 
 class CfgPatches {
     class ADDON {
-        name = COMPONENT;
+        name = COMPONENT_NAME;
         units[] = {
             QGVAR(Soldier_Underwear),
             QGVAR(Soldier_Base),
