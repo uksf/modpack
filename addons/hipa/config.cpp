@@ -19,9 +19,11 @@ class CfgPatches {
             QGVAR(Sniper),
             QGVAR(Crewman),
             QGVAR(Rifleman_AA),
-            QGVAR(sf_perator),
+            QGVAR(sf_operator),
             QGVAR(sf_grenadier),
+            QGVAR(sf_LAT),
             QGVAR(Officer_HQ),
+            QGVAR(Signaller),
 
             // Vehicles
             QGVAR(MTVR),
@@ -119,8 +121,8 @@ class CfgWorlds {
                 lastName14 = "Roux";
                 lastName15 = "Fournier";
                 lastName16 = "Morel";
-                lastName17 = "Girard";
-                lastName18 = "André";
+                lastName17 = "Dupont";
+                lastName18 = "Lambert";
                 lastName19 = "Bonnet";
                 lastName20 = "François";
             };

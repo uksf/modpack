@@ -61,17 +61,16 @@ class GVAR(Sharpshooter) : GVAR(Rifleman) {
     weapons[] = {QGVAR(arifle_SPAR_03_blk_F_optic_AMS), "Put", "Throw"};
     respawnWeapons[] = {QGVAR(arifle_SPAR_03_blk_F_optic_AMS), "Put", "Throw"};
     magazines[] = {
-        "CUP_20Rnd_762x51_HK417", "CUP_20Rnd_762x51_HK417",
-        "CUP_20Rnd_762x51_HK417", "CUP_20Rnd_762x51_HK417",
-        "CUP_20Rnd_762x51_HK417", "CUP_20Rnd_762x51_HK417",
-        "CUP_20Rnd_762x51_HK417", "CUP_20Rnd_762x51_HK417"
+        "20Rnd_762x51_Mag", "20Rnd_762x51_Mag",
+        "20Rnd_762x51_Mag", "20Rnd_762x51_Mag",
+        "20Rnd_762x51_Mag", "20Rnd_762x51_Mag",
+        "20Rnd_762x51_Mag", "20Rnd_762x51_Mag"
     };
     respawnMagazines[] = {
-        "CUP_20Rnd_762x51_HK417", "CUP_20Rnd_762x51_HK417",
-        "CUP_20Rnd_762x51_HK417", "CUP_20Rnd_762x51_HK417",
-        "CUP_20Rnd_762x51_HK417", "CUP_20Rnd_762x51_HK417",
-        "CUP_20Rnd_762x51_HK417", "CUP_20Rnd_762x51_HK417",
-        "CUP_20Rnd_762x51_HK417", "CUP_20Rnd_762x51_HK417"
+        "20Rnd_762x51_Mag", "20Rnd_762x51_Mag",
+        "20Rnd_762x51_Mag", "20Rnd_762x51_Mag",
+        "20Rnd_762x51_Mag", "20Rnd_762x51_Mag",
+        "20Rnd_762x51_Mag", "20Rnd_762x51_Mag"
     };
 };
 

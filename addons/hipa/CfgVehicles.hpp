@@ -55,7 +55,7 @@ class CfgVehicles {
     class GVAR(Soldier_SF_Base) : O_Soldier_base_F {
         scope = 0;
         author = QUOTE(UKSF);
-        displayName = "Soldier Base";
+        displayName = "Soldier SF Base";
         genericNames = "FrenchMen";
         identityTypes[] = {"LanguageFRE_F", "Head_Euro", "G_Euro"};
         faction = QUOTE(ADDON);

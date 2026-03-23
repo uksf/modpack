@@ -1,5 +1,5 @@
 class CfgFactionClasses {
-    class UKSF_HIPA {
+    class ADDON {
         displayName = "HIPA";
         icon = QPATHTOF(data\HIPA_Flag.paa);
         priority = 1;
