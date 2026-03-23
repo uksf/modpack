@@ -46,8 +46,6 @@ GVAR(warningTextLowPressure) = "";
 GVAR(warningTextDecompression) = "";
 GVAR(warningText) = "";
 
-GVAR(elapsedDiveTime) = 0;
-
 GVAR(currentPressure) = GVAR(currentGasLiters) / GVAR(currentVolume);
 if (GVAR(currentPercentO2) > 0) then {
     private _breathingVolumePerMinute = AIR_USAGE_IDLE / GVAR(currentPercentO2);

@@ -34,9 +34,9 @@ GVAR(currentDepth) = _state getOrDefault ["currentDepth", 0];
 GVAR(currentAmbientPressure) = _state getOrDefault ["currentAmbientPressure", 1];
 GVAR(previousAmbientPressure) = _state getOrDefault ["previousAmbientPressure", 0];
 GVAR(previousDepth) = _state getOrDefault ["previousDepth", 0];
-GVAR(saturationO2) = _state getOrDefault ["saturationO2", 0];
-GVAR(saturationHe) = _state getOrDefault ["saturationHe", 0];
-GVAR(saturationN2) = _state getOrDefault ["saturationN2", 0];
+GVAR(saturationO2) = _state getOrDefault ["saturationO2", [0, 0, 0]];
+GVAR(saturationHe) = _state getOrDefault ["saturationHe", [0, 0, 0]];
+GVAR(saturationN2) = _state getOrDefault ["saturationN2", [0, 0, 0]];
 GVAR(partialPressureO2) = _state getOrDefault ["partialPressureO2", 0.21];
 GVAR(partialPressureN2) = _state getOrDefault ["partialPressureN2", 0.78];
 GVAR(partialPressureHe) = _state getOrDefault ["partialPressureHe", 0];
@@ -64,6 +64,12 @@ GVAR(warningTextN2) = _state getOrDefault ["warningTextN2", ""];
 GVAR(warningTextAscendRate) = _state getOrDefault ["warningTextAscendRate", ""];
 GVAR(warningTextLowPressure) = _state getOrDefault ["warningTextLowPressure", ""];
 GVAR(warningTextDecompression) = _state getOrDefault ["warningTextDecompression", ""];
+
+if (_state getOrDefault ["surfaceOffgasActive", false]) then {
+    if (GVAR(surfaceOffgasPFHID) == -1) then {
+        GVAR(surfaceOffgasPFHID) = [{call FUNC(surfaceOffgas)}, 1] call CBA_fnc_addPerFrameHandler;
+    };
+};
 
 if (GVAR(updatePFHID) == -1) then {
     [true] call FUNC(loop);

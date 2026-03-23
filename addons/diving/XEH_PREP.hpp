@@ -1,5 +1,6 @@
 PREP(addDiverActions);
 PREP(applyToxicEffect);
+PREP(calculateSaturation);
 PREP(deserialiseState);
 PREP(effectToxicDecompression);
 PREP(effectToxicN2);
@@ -12,4 +13,5 @@ PREP(reset);
 PREP(serialiseState);
 PREP(toggleDiveComputer);
 PREP(surfaceCheck);
+PREP(surfaceOffgas);
 PREP(useCylinder);

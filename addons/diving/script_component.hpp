@@ -42,7 +42,8 @@ class CYLINDER(GVAR(cylinderDouble),varNAME) : GVAR(cylinderDoubleBase) { \
 #define AIR_USAGE_NORMAL 20
 #define AIR_USAGE_FAST 40
 
-#define TISSUE_SATURATION_MULTIPLIER 2.5
+#define COMPARTMENT_COUNT 3
+#define SATURATION_OFFGAS_THRESHOLD 0.01
 #define DECO_DIMINISH 5
 #define MOD_PPO2 1.6
 #define NO_AIR_TIMEOUT 60

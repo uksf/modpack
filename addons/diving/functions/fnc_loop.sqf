@@ -22,6 +22,10 @@ if (!_state) exitWith {
     GVAR(updatePFHID) = -1;
     call FUNC(reset);
     call FUNC(publishDataState);
+
+    if (GVAR(surfaceOffgasPFHID) == -1) then {
+        GVAR(surfaceOffgasPFHID) = [{call FUNC(surfaceOffgas)}, 1] call CBA_fnc_addPerFrameHandler;
+    };
 };
 
 GVAR(updatePFHID) = [{
@@ -41,7 +45,16 @@ GVAR(updatePFHID) = [{
             call FUNC(reset);
             player allowSprint true;
             call FUNC(publishDataState);
+
+            if (GVAR(surfaceOffgasPFHID) == -1) then {
+                GVAR(surfaceOffgasPFHID) = [{call FUNC(surfaceOffgas)}, 1] call CBA_fnc_addPerFrameHandler;
+            };
         };
+    };
+
+    if (GVAR(surfaceOffgasPFHID) != -1) then {
+        [GVAR(surfaceOffgasPFHID)] call CBA_fnc_removePerFrameHandler;
+        GVAR(surfaceOffgasPFHID) = -1;
     };
 
     if (GVAR(currentGasLiters) > 0.1) then {
@@ -71,8 +84,14 @@ GVAR(updatePFHID) = [{
     };
     private _depthToDeepStop = GVAR(currentDepth) - GVAR(deepStopDepth);
 
-    private _saturationAll = GVAR(saturationO2) + GVAR(saturationHe) + GVAR(saturationN2);
-    private _toxicSaturation = GVAR(saturationN2) + GVAR(saturationHe);
+    private _saturationAll = 0;
+    private _toxicSaturation = 0;
+    for "_i" from 0 to (COMPARTMENT_COUNT - 1) do {
+        private _compartmentTotal = (GVAR(saturationO2) select _i) + (GVAR(saturationHe) select _i) + (GVAR(saturationN2) select _i);
+        private _compartmentToxic = (GVAR(saturationN2) select _i) + (GVAR(saturationHe) select _i);
+        _saturationAll = _saturationAll max _compartmentTotal;
+        _toxicSaturation = _toxicSaturation max _compartmentToxic;
+    };
     GVAR(partialPressureO2) = GVAR(currentPercentO2) * GVAR(currentAmbientPressure);
     GVAR(partialPressureN2) = GVAR(currentPercentN2) * GVAR(currentAmbientPressure);
     GVAR(partialPressureHe) = GVAR(currentPercentHe) * GVAR(currentAmbientPressure);
@@ -83,25 +102,47 @@ GVAR(updatePFHID) = [{
     private _useHe = if (GVAR(currentPercentHe) > 0.1) then { 1 } else { 0.000000001 };
     private _useN2 = if (GVAR(currentPercentN2) > 0.1) then { 1 } else { 0.000000001 };
     private _useO2 = 0.000000001;
-    switch (true) do {
-        case (GVAR(currentPercentN2) < 0.1): {
-            private _saturationA = ((1.37 * GVAR(saturationHe)) + (1.382 * GVAR(saturationO2))) / ((_useHe * 1.37) + (_useO2 * 1.382));
-            private _saturationB = ((0.03870 * GVAR(saturationHe)) + (0.03186 * GVAR(saturationO2))) / ((_useHe * 0.03870) + (0.03186 * _useO2));
-            private _decompressionDepthA = (((GVAR(saturationHe) + GVAR(saturationO2)) - _saturationA) * _saturationB) * 3.28;
-            GVAR(decompressDepthB) = (_decompressionDepthA + _toxicSaturation) * 2.6;
+
+    GVAR(decompressDepthB) = 0;
+    for "_i" from 0 to (COMPARTMENT_COUNT - 1) do {
+        private _satN2 = GVAR(saturationN2) select _i;
+        private _satHe = GVAR(saturationHe) select _i;
+        private _satO2 = GVAR(saturationO2) select _i;
+        private _compartmentToxic = _satN2 + _satHe;
+        private _decompressDepthB = 0;
+
+        switch (true) do {
+            case (GVAR(currentPercentN2) < 0.1): {
+                private _aN2 = GVAR(buhlmannA_N2) select _i;
+                private _bN2 = GVAR(buhlmannB_N2) select _i;
+                private _aHe = GVAR(buhlmannA_He) select _i;
+                private _bHe = GVAR(buhlmannB_He) select _i;
+                private _saturationA = ((_aHe * _satHe) + (_aN2 * _satO2)) / ((_useHe * _aHe) + (_useO2 * _aN2));
+                private _saturationB = ((_bHe * _satHe) + (_bN2 * _satO2)) / ((_useHe * _bHe) + (_bN2 * _useO2));
+                private _decompressionDepthA = (((_satHe + _satO2) - _saturationA) * _saturationB) * 3.28;
+                _decompressDepthB = (_decompressionDepthA + _compartmentToxic) * 2.6;
+            };
+            case (GVAR(currentPercentHe) < 0.1): {
+                private _aN2 = GVAR(buhlmannA_N2) select _i;
+                private _bN2 = GVAR(buhlmannB_N2) select _i;
+                private _saturationA = ((_aN2 * _satN2) + (1.382 * _satO2)) / ((_useN2 * _aN2) + (_useO2 * 1.382));
+                private _saturationB = ((_bN2 * _satN2) + (0.03186 * _satO2)) / ((_useN2 * _bN2) + (0.03186 * _useO2));
+                private _decompressionDepthA = (((_satN2 + _satO2) - _saturationA) * _saturationB) * 3.28;
+                _decompressDepthB = (_decompressionDepthA + _compartmentToxic) * 2.6;
+            };
+            case ((GVAR(currentPercentO2) > 0.09) && (GVAR(currentPercentHe) >= 0.1) && (GVAR(currentPercentN2) >= 0.1)): {
+                private _aN2 = GVAR(buhlmannA_N2) select _i;
+                private _bN2 = GVAR(buhlmannB_N2) select _i;
+                private _aHe = GVAR(buhlmannA_He) select _i;
+                private _bHe = GVAR(buhlmannB_He) select _i;
+                private _saturationA = ((_aN2 * _satN2) + (_aHe * _satHe)) / ((_useN2 * _aN2) + (_useHe * _aHe));
+                private _saturationB = ((_bN2 * _satN2) + (_bHe * _satHe)) / ((_useN2 * _bN2) + (_useHe * _bHe));
+                private _decompressionDepthA = (((_satN2 + _satHe) - _saturationA) * _saturationB) * 3.28;
+                _decompressDepthB = _decompressionDepthA + 0.00001;
+            };
         };
-        case (GVAR(currentPercentHe) < 0.1): {
-            private _saturationA = ((1.37 * GVAR(saturationN2)) + (1.382 * GVAR(saturationO2))) / ((_useN2 * 1.37) + (_useO2 * 1.382));
-            private _saturationB = ((0.03870 * GVAR(saturationN2)) + (0.03186 * GVAR(saturationO2))) / ((_useN2 * 0.03870) + (0.03186 * _useO2));
-            private _decompressionDepthA = (((GVAR(saturationN2) + GVAR(saturationO2)) - _saturationA) * _saturationB) * 3.28;
-            GVAR(decompressDepthB) = (_decompressionDepthA + _toxicSaturation) * 2.6;
-        };
-        case ((GVAR(currentPercentO2) > 0.09) && (GVAR(currentPercentHe) >= 0.1) && (GVAR(currentPercentN2) >= 0.1)): {
-            private _saturationA = ((1.37 * GVAR(saturationN2)) + (0.0346 * GVAR(saturationHe)))/ ((_useN2 * 1.37) + (_useHe * 0.0346));
-            private _saturationB = ((0.03870 * GVAR(saturationN2)) + (0.02380 * GVAR(saturationHe)))/ ((_useN2 * 0.03870) + (_useHe * 0.02380));
-            private _decompressionDepthA = (((GVAR(saturationN2) + GVAR(saturationHe)) - _saturationA) * _saturationB) * 3.28;
-            GVAR(decompressDepthB) = _decompressionDepthA + 0.00001;
-        };
+
+        GVAR(decompressDepthB) = GVAR(decompressDepthB) max _decompressDepthB;
     };
 
     private _ambientPressureDelta = (GVAR(previousAmbientPressure) - GVAR(currentAmbientPressure)) / 60;
@@ -109,9 +150,11 @@ GVAR(updatePFHID) = [{
     GVAR(previousDepth) = GVAR(currentDepth);
     GVAR(previousAmbientPressure) = ((GVAR(previousDepth) / 10) + 1);
 
-    GVAR(saturationN2) = TISSUE_SATURATION_MULTIPLIER * ((GVAR(currentPercentN2) * (GVAR(currentAmbientPressure) - 0.0567)) + ((_ambientPressureDelta / 60) * GVAR(currentPercentN2)) * ((GVAR(elapsedDiveTime) / 60) - (1 / GVAR(saturationCoefficient))) - ((GVAR(currentPercentN2) * (GVAR(currentAmbientPressure) - 0.0567)) - (GVAR(currentPercentN2) * 0.736) - (((_ambientPressureDelta / 60) * GVAR(currentPercentN2)) / GVAR(saturationCoefficient))) * exp ((-GVAR(saturationCoefficient) * (GVAR(elapsedDiveTime) / 60))));
-    GVAR(saturationHe) = TISSUE_SATURATION_MULTIPLIER * ((GVAR(currentPercentHe) * (GVAR(currentAmbientPressure) - 0.0567)) + ((_ambientPressureDelta / 60) * GVAR(currentPercentHe)) * ((GVAR(elapsedDiveTime) / 60) - (1 / GVAR(saturationCoefficient))) - ((GVAR(currentPercentHe) * (GVAR(currentAmbientPressure) - 0.0567)) - (GVAR(currentPercentHe) * 0.736) - (((_ambientPressureDelta / 60) * GVAR(currentPercentHe)) / GVAR(saturationCoefficient))) * exp ((-GVAR(saturationCoefficient) * (GVAR(elapsedDiveTime) / 60))));
-    GVAR(saturationO2) = TISSUE_SATURATION_MULTIPLIER * ((GVAR(currentPercentO2) * (GVAR(currentAmbientPressure) - 0.0567)) + ((_ambientPressureDelta / 60) * GVAR(currentPercentO2)) * ((GVAR(elapsedDiveTime) / 60) - (1 / GVAR(saturationCoefficient))) - ((GVAR(currentPercentO2) * (GVAR(currentAmbientPressure) - 0.0567)) - (GVAR(currentPercentO2) * 0.736) - (((_ambientPressureDelta / 60) * GVAR(currentPercentO2)) / GVAR(saturationCoefficient))) * exp ((-GVAR(saturationCoefficient) * (GVAR(elapsedDiveTime) / 60))));
+    for "_i" from 0 to (COMPARTMENT_COUNT - 1) do {
+        GVAR(saturationN2) set [_i, [GVAR(currentPercentN2), _i, GVAR(currentAmbientPressure), _ambientPressureDelta, GVAR(elapsedDiveTime), GVAR(saturationN2) select _i] call FUNC(calculateSaturation)];
+        GVAR(saturationHe) set [_i, [GVAR(currentPercentHe), _i, GVAR(currentAmbientPressure), _ambientPressureDelta, GVAR(elapsedDiveTime), GVAR(saturationHe) select _i] call FUNC(calculateSaturation)];
+        GVAR(saturationO2) set [_i, [GVAR(currentPercentO2), _i, GVAR(currentAmbientPressure), _ambientPressureDelta, GVAR(elapsedDiveTime), GVAR(saturationO2) select _i] call FUNC(calculateSaturation)];
+    };
 
     if ((GVAR(decompressDepth) < GVAR(decompressDepthB)) && !GVAR(needDecompress)) then {
         if (GVAR(currentDepth) >= 11) then {
@@ -134,9 +177,9 @@ GVAR(updatePFHID) = [{
         GVAR(decompressTime) = GVAR(decompressTime) - 1;
         if (GVAR(decompressTime) < 1) then {
             GVAR(elapsedDiveTime) = 0;
-            GVAR(saturationN2) = 0;
-            GVAR(saturationHe) = 0;
-            GVAR(saturationO2) = 0;
+            GVAR(saturationN2) = [0, 0, 0];
+            GVAR(saturationHe) = [0, 0, 0];
+            GVAR(saturationO2) = [0, 0, 0];
         };
     } else {
         if (GVAR(decompressTime) <= 60) then {
