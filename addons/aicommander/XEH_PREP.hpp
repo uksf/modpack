@@ -5,6 +5,7 @@ PREP(getSideColour);
 PREP(getSideFromIndex);
 PREP(getSideLabel);
 PREP(logAssessment);
+PREP(logDecision);
 PREP(moduleCommander);
 PREP(moduleObjective);
 PREP(registerDebugProvider);
