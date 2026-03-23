@@ -19,9 +19,9 @@
 params [["_data", [], [[]]]];
 
 if (GVAR(fpsHudMode) isEqualTo 0) exitWith {};
-if (isNull GVAR(fpsHudControl)) exitWith {};
 
-disableSerialization;
+private _control = uiNamespace getVariable [Q_control, controlNull];
+if (isNull _control) exitWith {};
 
 private _lines = [];
 
@@ -66,12 +66,12 @@ if (GVAR(fpsHudMode) >= 2) then {
 };
 
 private _text = _lines joinString "<br/>";
-GVAR(fpsHudControl) ctrlSetStructuredText parseText _text;
+_control ctrlSetStructuredText parseText _text;
 
 // Resize control height to fit content
 private _lineCount = count _lines max 1;
 private _height = _lineCount * 0.018 + 0.01;
-private _position = ctrlPosition GVAR(fpsHudControl);
+private _position = ctrlPosition _control;
 _position set [3, _height];
-GVAR(fpsHudControl) ctrlSetPosition _position;
-GVAR(fpsHudControl) ctrlCommit 0;
+_control ctrlSetPosition _position;
+_control ctrlCommit 0;

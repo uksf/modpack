@@ -24,7 +24,7 @@ GVAR(edenLogicIdMap) = createHashMap;
 
 if (hasInterface) then {
     GVAR(fpsHudMode) = 0;
-    GVAR(fpsHudControl) = controlNull;
+    uiNamespace setVariable [QGVAR(fpsHudControl), controlNull];
     GVAR(fpsHudPFH) = -1;
 
     [QGVAR(fpsHudData), {_this call FUNC(fpsHudUpdate)}] call CBA_fnc_addEventHandler;
