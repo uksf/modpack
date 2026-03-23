@@ -36,4 +36,6 @@ if (GVAR(accumulatedFuel) > 0 && {!isNull GVAR(lastFuelVehicle)}) then {
         ["vehicleClassname", typeOf GVAR(lastFuelVehicle)]
     ]] call FUNC(addEvent);
     GVAR(accumulatedFuel) = 0;
+    GVAR(lastFuelLevel) = -1;
+    GVAR(lastFuelVehicle) = objNull;
 };

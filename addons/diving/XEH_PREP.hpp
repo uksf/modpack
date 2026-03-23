@@ -1,4 +1,6 @@
 PREP(addDiverActions);
+PREP(applyToxicEffect);
+PREP(calculateSaturation);
 PREP(deserialiseState);
 PREP(effectToxicDecompression);
 PREP(effectToxicN2);

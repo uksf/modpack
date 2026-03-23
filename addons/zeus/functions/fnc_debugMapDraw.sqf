@@ -24,14 +24,13 @@ private _activeKeys = call FUNC(debugGetSortedActiveKeys);
 
 {
     private _providerKey = _x;
-    private _drawData = GVAR(debugDraws) getOrDefault [_providerKey, []];
-    if (_drawData isEqualTo []) then { continue };
+    private _provider = GVAR(debugProviders) get _providerKey;
+    if (isNil "_provider") then { continue };
+    private _fnc_drawMap = _provider get "drawMap";
+    if (isNil "_fnc_drawMap") then { continue };
 
     private _data = GVAR(debugData) getOrDefault [_providerKey, []];
-    private _hasServerGetter = _providerKey in GVAR(debugServerGetters);
-    if (_hasServerGetter && {_data isEqualTo []}) then { continue };
-
-    _drawData params ["", "_fnc_drawMap"];
+    if ("serverGetter" in _provider && {_data isEqualTo []}) then { continue };
 
     [_data, _map] call _fnc_drawMap;
 } forEach _activeKeys;

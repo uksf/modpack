@@ -15,7 +15,6 @@ PREP(moduleParadrop);
 PREP(moduleRemoveAceArsenal);
 PREP(moduleToggleCaching);
 PREP(moduleToggleCleanup);
-PREP(moduleToggleFps);
 PREP(moduleToggleHasRadio);
 PREP(moduleToggleZeusVisibility);
 
@@ -35,6 +34,7 @@ PREP(contextCleanupModifier);
 PREP(formatUnconsciousText);
 
 // Debug provider system
+PREP(debugManageClientSources);
 PREP(debugStreamToggle);
 PREP(debugStreamTick);
 PREP(debugMapDraw);

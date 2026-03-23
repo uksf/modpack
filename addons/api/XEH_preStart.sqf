@@ -5,6 +5,6 @@
 GVAR(statusPerFrameHandler) = -1;
 GVAR(processId) = -1;
 
-if (!isServer) exitWith {};
+if (!isDedicated) exitWith {};
 
 call FUNC(start);

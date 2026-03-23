@@ -70,3 +70,8 @@ GVAR(playerUids) pushBackUnique _uid;
 if (GVAR(dataSaved)) then {
     GVAR(disconnectedPlayerPositions) set [_uid, getPos _unit];
 };
+
+if (GVAR(shutdownInProgress)) then {
+    GVAR(shutdownDisconnectedCount) = GVAR(shutdownDisconnectedCount) + 1;
+    DEBUG_2("Shutdown disconnect saved: %1 (%2 of expected)",_name,GVAR(shutdownDisconnectedCount));
+};

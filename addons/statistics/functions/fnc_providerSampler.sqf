@@ -7,10 +7,9 @@
         Sampler provider setup. Starts a PFH that runs every 10 seconds to sample:
         - Player position for distance tracking (on foot vs in vehicle, accumulated metres)
         - Vehicle fuel level for fuel consumption tracking
-        - diag_fps for FPS tracking
 
         Distance and fuel are accumulated between syncs and emitted as events
-        during client sync. FPS is emitted as an event each sample.
+        during client sync.
 
     Parameters:
         None
@@ -54,12 +53,6 @@ GVAR(samplerPFH) = [{
         GVAR(lastFuelLevel) = -1;
         GVAR(lastFuelVehicle) = objNull;
     };
-
-    // FPS sample
-    [createHashMapFromArray [
-        ["type", "fps"],
-        ["value", round diag_fps]
-    ]] call FUNC(addEvent);
 
     ["sampler", _startTime] call FUNC(addProviderTiming);
 }, 10, []] call CBA_fnc_addPerFrameHandler;

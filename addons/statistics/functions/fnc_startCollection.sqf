@@ -50,8 +50,9 @@ if (_isClient) then {
     }, 30, []] call CBA_fnc_addPerFrameHandler;
 };
 
-// Start performance monitoring PFH (every frame)
-if (_isClient) then {
+// Start performance monitoring PFH (every frame) — runs on clients and HCs
+// because "all" locality providers (e.g. combatDamage) accumulate frameTimings on all machines
+if (!_isServer) then {
     GVAR(performancePFH) = [{
         call FUNC(performancePFH);
     }, 0, []] call CBA_fnc_addPerFrameHandler;

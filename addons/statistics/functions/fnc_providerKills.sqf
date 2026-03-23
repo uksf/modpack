@@ -5,15 +5,14 @@
 
     Description:
         Kills provider setup. Installs an EntityKilled mission event handler on the server
-        to capture every entity death. Reads the damage ledger to identify all players
-        who contributed damage (assists) and emits a single kill event with attribution.
+        to capture every entity death.
 
-        When no player is directly attributed as killer (e.g. chain reaction explosions,
-        cookoff), searches the damage ledger for nearby entities that were recently
-        damaged by a player and attributes the kill indirectly.
+        Uses ACE medical's damage source tracking (ace_medical_lastDamageSource /
+        ace_medical_lastInstigator) for chain reaction attribution when the engine's
+        killer/instigator params are null or non-player.
 
-        Weapon and distance data is NOT included here — the API correlates kills with
-        hit events from the client's projectile tracking for accurate weapon/distance.
+        Assist correlation is handled API-side by joining combatDamage events
+        to kill events on targetNetId.
 
     Parameters:
         None
@@ -28,103 +27,79 @@ addMissionEventHandler ["EntityKilled", {
     params ["_victim", "_killer", "_instigator"];
     private _startTime = diag_tickTime;
 
-    // Use instigator if available (e.g. gunner in vehicle), fall back to killer
-    private _attacker = if (!isNull _instigator) then {_instigator} else {_killer};
-
-    // Determine target type
-    private _targetType = "unknown";
-    if (_victim isKindOf "CAManBase") then {
-        _targetType = "infantry";
-    } else {
-        if (_victim isKindOf "LandVehicle" || {_victim isKindOf "Air"} || {_victim isKindOf "Ship"}) then {
-            _targetType = "vehicle";
-        } else {
-            if (_victim isKindOf "StaticWeapon") then {
-                _targetType = "static";
-            };
-        };
+    // Skip self-kills with no instigator — these are never real combat deaths.
+    // They occur when Arma kills a player's spawn body during join, redeploy,
+    // or relog as part of the respawn cycle.
+    if (_killer isEqualTo _victim && {isNull _instigator}) exitWith {
+        INFO_3("Ignored self-kill (join/redeploy): _victim=%1, _killer=%2, _instigator=%3",_victim,_killer,_instigator);
+        ["kills", _startTime] call FUNC(addProviderTiming);
     };
 
-    // Look up damage ledger for this target
-    private _targetNetId = netId _victim;
-    private _damageHistory = GVAR(damageLedger) getOrDefault [_targetNetId, []];
+    // Use instigator if available (e.g. gunner in vehicle), fall back to killer
+    private _attacker = if (!isNull _instigator) then {_instigator} else {_killer};
 
     private _killerUid = if (isPlayer _attacker) then {getPlayerUID _attacker} else {""};
     private _indirect = false;
 
-    // Chain reaction attribution: if no player instigator, search for a nearby
-    // entity in the ledger that was recently damaged by a player (within 15m and 60s).
-    // Handles cookoff, ammo detonation, and explosion chain kills.
+    // Chain reaction attribution via ACE medical tracking
+    // ACE stores the last damage source/instigator on the victim — survives through
+    // explosion chains, fire, cookoff, and vehicle damage propagation
+    // Note: uses string literals, not QEGVAR — ACE's prefix is "ace", not "uksf"
     if (_killerUid isEqualTo "") then {
-        private _victimPosition = getPosATL _victim;
-        private _currentTime = CBA_missionTime;
-        private _bestUid = "";
-        private _bestTime = 0;
-
-        {
-            private _nearbyNetId = _x;
-            private _nearbyObject = objectFromNetId _nearbyNetId;
-            if (!isNull _nearbyObject && {_nearbyObject distance _victimPosition <= 15}) then {
-                private _nearbyHistory = _y;
-                {
-                    private _entryTime = _x get "time";
-                    if (_currentTime - _entryTime <= 60 && {_entryTime > _bestTime}) then {
-                        _bestUid = _x get "uid";
-                        _bestTime = _entryTime;
-                    };
-                } forEach _nearbyHistory;
-            };
-        } forEach GVAR(damageLedger);
-
-        if (_bestUid isNotEqualTo "") then {
-            _killerUid = _bestUid;
+        private _aceInstigator = _victim getVariable ["ace_medical_lastInstigator", objNull];
+        if (isNull _aceInstigator) then {
+            _aceInstigator = _victim getVariable ["ace_medical_lastDamageSource", objNull];
+        };
+        if (!isNull _aceInstigator && {isPlayer _aceInstigator}) then {
+            _killerUid = getPlayerUID _aceInstigator;
             _indirect = true;
         };
     };
 
-    // Build assists: aggregate damage per player UID, excluding the killer
-    private _assistMap = createHashMap;
-    {
-        private _uid = _x get "uid";
-        if (_uid isNotEqualTo _killerUid && {_uid isNotEqualTo ""}) then {
-            private _existing = _assistMap getOrDefault [_uid, 0];
-            _assistMap set [_uid, _existing + (_x get "damage")];
-        };
-    } forEach _damageHistory;
-
-    // Convert assist map to array sorted by highest damage first
-    private _assists = [];
-    {
-        _assists pushBack [_y, _x];
-    } forEach _assistMap;
-    _assists sort false;
-    _assists = _assists apply {
-        createHashMapFromArray [
-            ["uid", _x#1],
-            ["totalDamage", _x#0]
-        ]
+    // Only emit event if a player was involved as the killer
+    if (_killerUid isEqualTo "") exitWith {
+        ["kills", _startTime] call FUNC(addProviderTiming);
     };
 
-    // Clean up ledger
-    GVAR(damageLedger) deleteAt _targetNetId;
-    GVAR(damageLedgerMeta) deleteAt _targetNetId;
+    // Determine target type — skip unclassifiable entities
+    private _targetType = if (_victim isKindOf "CAManBase") then {
+        "infantry"
+    } else {
+        if (_victim isKindOf "LandVehicle" || {_victim isKindOf "Air"} || {_victim isKindOf "Ship"}) then {
+            "vehicle"
+        } else {
+            if (_victim isKindOf "Building") then {
+                "structure"
+            } else {
+                ""
+            };
+        };
+    };
 
-    // Only emit event if a player was involved (as killer or assist)
-    if (_killerUid isEqualTo "" && {_assists isEqualTo []}) exitWith {
+    if (_targetType isEqualTo "") exitWith {
         ["kills", _startTime] call FUNC(addProviderTiming);
+    };
+
+    // Determine target side with bounds safety
+    private _sideIndex = getNumber (configOf _victim >> "side");
+    private _sides = [west, east, resistance, civilian];
+    private _targetSide = if (_sideIndex >= 0 && {_sideIndex < count _sides}) then {
+        str (_sides select _sideIndex)
+    } else {
+        "unknown"
     };
 
     private _event = createHashMapFromArray [
         ["type", "kill"],
         ["killerUid", _killerUid],
         ["indirect", _indirect],
+        ["targetNetId", netId _victim],
         ["targetClassname", typeOf _victim],
-        ["targetSide", str ([west, east, resistance, civilian] select (getNumber (configOf _victim >> "side")))],
-        ["targetType", _targetType],
-        ["assists", _assists]
+        ["targetSide", _targetSide],
+        ["targetType", _targetType]
     ];
 
-    GVAR(serverBuffer) pushBack _event;
+    [_event] call FUNC(addEvent);
 
     ["kills", _startTime] call FUNC(addProviderTiming);
 }];

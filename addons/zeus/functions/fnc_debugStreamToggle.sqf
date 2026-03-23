@@ -40,19 +40,25 @@ if (_state) then {
         private _clientEntry = GVAR(debugStreamClients) select _index;
         _clientEntry params ["", "_keys"];
         _keys deleteAt (_keys find _key);
-        private _playerUid = getPlayerUID _player;
         if (_keys isEqualTo []) then {
             GVAR(debugStreamClients) deleteAt _index;
-            GVAR(debugLastSentKeys) deleteAt _playerUid;
-        } else {
-            private _sentKeys = GVAR(debugLastSentKeys) getOrDefault [_playerUid, createHashMap];
-            _sentKeys deleteAt _key;
         };
     };
 };
 
-// Clean disconnected players
-GVAR(debugStreamClients) = GVAR(debugStreamClients) select {!isNull (_x#0)};
+// Seed initial data immediately so the client doesn't wait for the next tick
+if (_state) then {
+    private _provider = GVAR(debugProviders) getOrDefault [_key, createHashMap];
+    private _fnc_serverGetter = _provider getOrDefault ["serverGetter", {}];
+    if (_fnc_serverGetter isNotEqualTo {}) then {
+        private _initialData = call _fnc_serverGetter;
+        if (_initialData isNotEqualTo []) then {
+            GVAR(debugLastSentData) set [_key, _initialData];
+            GVAR(debugLastGetterRun) set [_key, CBA_missionTime];
+            [QGVAR(debugStreamData), [createHashMapFromArray [[_key, _initialData]]], _player] call CBA_fnc_targetEvent;
+        };
+    };
+};
 
 // Start or stop the server PFH based on whether any clients need data
 if (GVAR(debugStreamClients) isNotEqualTo [] && {GVAR(debugStreamPFH) == -1}) then {
@@ -66,30 +72,4 @@ if (GVAR(debugStreamClients) isNotEqualTo [] && {GVAR(debugStreamPFH) == -1}) th
     };
 };
 
-// Manage client data sources based on active provider dependencies
-private _neededSources = createHashMap;
-{
-    {
-        private _serverGetter = GVAR(debugServerGetters) getOrDefault [_x, []];
-        if (_serverGetter isNotEqualTo []) then {
-            _serverGetter params ["", "", "_clientDataKey"];
-            if (_clientDataKey != "") then {
-                _neededSources set [_clientDataKey, true];
-            };
-        };
-    } forEach (_x#1);
-} forEach GVAR(debugStreamClients);
-
-{
-    private _wasActive = GVAR(debugActiveClientSources) getOrDefault [_x, false];
-    private _isNeeded = _neededSources getOrDefault [_x, false];
-    if (_isNeeded && {!_wasActive}) then {
-        GVAR(debugActiveClientSources) set [_x, true];
-        [QGVAR(debugStartClientSource), [_x]] call CBA_fnc_globalEvent;
-    };
-    if (!_isNeeded && {_wasActive}) then {
-        GVAR(debugActiveClientSources) deleteAt _x;
-        [QGVAR(debugStopClientSource), [_x]] call CBA_fnc_globalEvent;
-        GVAR(debugClientData) deleteAt _x;
-    };
-} forEach (keys GVAR(debugClientSources));
+call FUNC(debugManageClientSources);

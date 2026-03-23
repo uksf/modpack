@@ -20,6 +20,8 @@ if (is3DEN) then {
 
 GVAR(dataSaved) = false;
 GVAR(shutdownInProgress) = false;
+GVAR(shutdownExpectedDisconnectCount) = 0;
+GVAR(shutdownDisconnectedCount) = 0;
 
 if (isMultiplayer) then {
     if (hasInterface) then {
@@ -35,13 +37,20 @@ if (isMultiplayer) then {
                     [_data] call FUNC(handleApiLoadChunk);
                 };
                 case "shutdown": {
-                    call FUNC(shutdown);
+                    call FUNC(startShutdown);
                 };
             };
         }] call CBA_fnc_addEventHandler;
 
         call FUNC(loadSession);
         call FUNC(initServer);
+    };
+
+    // HC shutdown handler
+    if (!isServer && !hasInterface) then {
+        [QGVAR(shutdownStarted), {
+            [QGVAR(shutdownFinishing)] call CBA_fnc_localEvent;
+        }] call CBA_fnc_addEventHandler;
     };
 };
 

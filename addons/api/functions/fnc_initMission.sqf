@@ -28,7 +28,13 @@ addMissionEventHandler ["ExtensionCallback", {
 GVAR(sessionId) = call CBA_fnc_createUUID;
 INFO_1("Mission session: %1",GVAR(sessionId));
 
+// Fallback for non-persistence-shutdown mission ends (e.g. mission restart)
+// During controlled shutdown, shuttingDown handler sends mission_ended instead
 addMissionEventHandler ["MPEnded", {
+    if (EGVAR(persistence,shutdownInProgress)) exitWith {
+        TRACE_1("MPEnded skipped — shutdown in progress",EGVAR(persistence,shutdownInProgress));
+    };
+
     ["mission_ended", createHashMapFromArray [
         ["sessionId", GVAR(sessionId)],
         ["map", worldName],
@@ -38,7 +44,21 @@ addMissionEventHandler ["MPEnded", {
 
     if (GVAR(statusPerFrameHandler) != -1) then {
         [GVAR(statusPerFrameHandler)] call CBA_fnc_removePerFrameHandler;
+        GVAR(statusPerFrameHandler) = -1;
     };
+    if (GVAR(performancePerFrameHandler) != -1) then {
+        [GVAR(performancePerFrameHandler)] call CBA_fnc_removePerFrameHandler;
+        GVAR(performancePerFrameHandler) = -1;
+    };
+
+    // Send a final performance flush before stopping the extension
+    call FUNC(sendPerformance);
+    "uksf" callExtension "flush";
+
+    // Clean up FPS store and reporting for mission restart scenarios
+    EGVAR(common,fpsStore) = createHashMap;
+    EGVAR(common,fpsStoreTimestamps) = createHashMap;
+
     call FUNC(stop);
 }];
 
@@ -48,11 +68,17 @@ addMissionEventHandler ["MPEnded", {
     ["mission", missionName]
 ]] call FUNC(sendEvent);
 
+GVAR(performancePerFrameHandler) = -1;
+
 // Periodic server status push (every 15 seconds), only if extension started
 if (GVAR(processId) != -1) then {
     GVAR(statusPerFrameHandler) = [{
         call FUNC(sendServerStatus);
     }, 15, []] call CBA_fnc_addPerFrameHandler;
+
+    GVAR(performancePerFrameHandler) = [{
+        call FUNC(sendPerformance);
+    }, 5, []] call CBA_fnc_addPerFrameHandler;
 };
 
 // Player presence tracking — debounced to prevent spam from rapid reconnects

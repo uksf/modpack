@@ -19,8 +19,8 @@
 */
 if (GVAR(killswitch)) exitWith {};
 
-// Drain server-local eventBuffer (from "all" locality providers like combatDamage)
-// Server has no clientSyncPFH, so this is the only place these events get processed
+// Drain server-local eventBuffer (from "all" locality providers running on this machine)
+// Server has no clientSyncPFH, so this is the only drain point for server-local events
 if (GVAR(eventBuffer) isNotEqualTo []) then {
     private _localEvents = GVAR(eventBuffer);
     GVAR(eventBuffer) = [];
@@ -31,6 +31,7 @@ if (GVAR(serverBuffer) isEqualTo []) exitWith {};
 
 private _buffer = GVAR(serverBuffer);
 GVAR(serverBuffer) = [];
+TRACE_1("Server sync",count _buffer);
 
 [
     "mission_stats",

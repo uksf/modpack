@@ -18,7 +18,7 @@
 
 // Track placement — fires globally, only record when local player placed it
 ["ace_explosives_place", {
-    params ["_explosive", "_dir", "_pitch", "_unit"];
+    params ["_explosive", "_direction", "_pitch", "_unit"];
     private _startTime = diag_tickTime;
 
     if (_unit isEqualTo player) then {

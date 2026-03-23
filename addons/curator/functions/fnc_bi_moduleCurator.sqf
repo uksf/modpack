@@ -140,11 +140,9 @@ if (_activated) then {
             // Wait until the mission starts
             waitUntil {time > 0};
 
-            // Nope. Armazeuscache overwrites this garbage
-            // // Refresh addons list so it's broadcasted to clients
-            // private _addons = curatorAddons _logic;
+            // // Refresh addons after mission start to broadcast to clients
             // removeAllCuratorAddons _logic;
-            // _logic addCuratorAddons _addons;
+            // _logic addCuratorAddons EGVAR(common,addons);
 
             while {true} do {
                 // Wait for player to become Zeus

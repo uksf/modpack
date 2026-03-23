@@ -113,3 +113,12 @@ addMissionEventHandler ["MarkerDeleted", {
     {systemChat _x} forEach _lines;
 }] call CBA_fnc_addEventHandler;
 
+[QGVAR(shutdownStarted), {
+    [QEGVAR(common,textTiles), [parseText format ["<t align = 'center' size = '1.6' color = '#00FF00'>Server Shutdown Started</t>"], [0.25, 0.5, 0.5, 0.07], [1, 1], 5]] call CBA_fnc_localEvent;
+    [QGVAR(shutdownFinishing)] call CBA_fnc_localEvent;
+
+    [{
+        [QGVAR(readyForShutdown), [player]] call CBA_fnc_serverEvent;
+    }, [], 0.5] call CBA_fnc_waitAndExecute;
+}] call CBA_fnc_addEventHandler;
+
