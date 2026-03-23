@@ -65,12 +65,6 @@ GVAR(warningTextAscendRate) = _state getOrDefault ["warningTextAscendRate", ""];
 GVAR(warningTextLowPressure) = _state getOrDefault ["warningTextLowPressure", ""];
 GVAR(warningTextDecompression) = _state getOrDefault ["warningTextDecompression", ""];
 
-if (_state getOrDefault ["surfaceOffgasActive", false]) then {
-    if (GVAR(surfaceOffgasPFHID) == -1) then {
-        GVAR(surfaceOffgasPFHID) = [{call FUNC(surfaceOffgas)}, 1] call CBA_fnc_addPerFrameHandler;
-    };
-};
-
 if (GVAR(updatePFHID) == -1) then {
     [true] call FUNC(loop);
 };

@@ -5,6 +5,8 @@
 
     Description:
         Starts/stops loop to simulate diving environment and effects.
+        Runs both underwater (full simulation) and on surface (off-gassing).
+        Self-terminates when all tissue compartments clear and player is not underwater.
 
     Parameter(s):
         0: State <BOOLEAN>
@@ -17,24 +19,52 @@
 */
 params ["_state"];
 
-if (!_state) exitWith {
-    [GVAR(updatePFHID)] call CBA_fnc_removePerFrameHandler;
-    GVAR(updatePFHID) = -1;
-    call FUNC(reset);
-    call FUNC(publishDataState);
+if (!_state) exitWith {};
 
-    if (GVAR(surfaceOffgasPFHID) == -1) then {
-        GVAR(surfaceOffgasPFHID) = [{call FUNC(surfaceOffgas)}, 1] call CBA_fnc_addPerFrameHandler;
-    };
-};
+if (GVAR(updatePFHID) != -1) exitWith {};
 
 GVAR(updatePFHID) = [{
     if !(alive player) exitWith {
-        [false] call FUNC(loop);
+        [GVAR(updatePFHID)] call CBA_fnc_removePerFrameHandler;
+        GVAR(updatePFHID) = -1;
+        call FUNC(reset);
+        GVAR(saturationN2) = [0, 0, 0];
+        GVAR(saturationHe) = [0, 0, 0];
+        GVAR(saturationO2) = [0, 0, 0];
+        GVAR(elapsedDiveTime) = 0;
     };
 
     private _inWater = ((eyePos player)#2) < 0;
-    if (!_inWater) exitWith {
+    private _hasRebreather = (vest player) in [QGVAR(rebreather), "UKSF_LARV_1", "UKSF_LARV_2"];
+
+    if (_inWater) then {
+        if (GVAR(currentGasLiters) > 0.1) then {
+            GVAR(connectedGas) = true;
+        };
+
+        GVAR(currentDepth) = (((getPosASL player) select 2) * -1);
+        GVAR(currentAmbientPressure) = ((GVAR(currentDepth) / 10) + 1);
+
+        if (_hasRebreather) then {
+            private _speed = vectorMagnitude (velocity player);
+            private _breathingVolumePerMinute = [[AIR_USAGE_IDLE, AIR_USAGE_NORMAL] select (_speed > SPEED_NORMAL), AIR_USAGE_FAST] select (_speed > SPEED_FAST);
+            if (objectParent player != objNull) then {
+                _breathingVolumePerMinute = AIR_USAGE_IDLE;
+            };
+            if (GVAR(currentPercentO2) > 0) then {
+                _breathingVolumePerMinute = _breathingVolumePerMinute / GVAR(currentPercentO2);
+            };
+
+            private _currentAirUsage = GVAR(currentAmbientPressure) * (_breathingVolumePerMinute / 60);
+            GVAR(currentGasLiters) = GVAR(currentGasLiters) - _currentAirUsage;
+            GVAR(currentPressure) = GVAR(currentGasLiters) / GVAR(currentVolume);
+            if (_currentAirUsage > 0) then {
+                GVAR(remainingDiveTime) = GVAR(currentGasLiters) / _currentAirUsage;
+            } else {
+                GVAR(remainingDiveTime) = 0;
+            };
+        };
+    } else {
         if (GVAR(currentDepth) > 0.5) then {
             if (GVAR(needDecompress)) then {
                 private _pain = player getVariable ["ace_medical_pain", 0];
@@ -42,46 +72,16 @@ GVAR(updatePFHID) = [{
                 [player, 0.8, "body", "unknown"] call ace_medical_fnc_addDamageToUnit;
                 [player, 0.5, "head", "unknown"] call ace_medical_fnc_addDamageToUnit;
             };
-            call FUNC(reset);
             player allowSprint true;
-            call FUNC(publishDataState);
-
-            if (GVAR(surfaceOffgasPFHID) == -1) then {
-                GVAR(surfaceOffgasPFHID) = [{call FUNC(surfaceOffgas)}, 1] call CBA_fnc_addPerFrameHandler;
-            };
         };
+
+        GVAR(currentDepth) = 0;
+        GVAR(currentAmbientPressure) = 1;
+        GVAR(connectedGas) = false;
     };
 
-    if (GVAR(surfaceOffgasPFHID) != -1) then {
-        [GVAR(surfaceOffgasPFHID)] call CBA_fnc_removePerFrameHandler;
-        GVAR(surfaceOffgasPFHID) = -1;
-    };
-
-    if (GVAR(currentGasLiters) > 0.1) then {
-        GVAR(connectedGas) = true;
-    };
-
-    private _speed = vectorMagnitude (velocity player);
-    private _breathingVolumePerMinute = [[AIR_USAGE_IDLE, AIR_USAGE_NORMAL] select (_speed > SPEED_NORMAL), AIR_USAGE_FAST] select (_speed > SPEED_FAST);
-    if (objectParent player != objNull) then {
-        _breathingVolumePerMinute = AIR_USAGE_IDLE;
-    };
-    if (GVAR(currentPercentO2) > 0) then {
-        _breathingVolumePerMinute = _breathingVolumePerMinute / GVAR(currentPercentO2);
-    };
-
-    GVAR(currentDepth) = (((getPosASL player) select 2) * -1);
-    GVAR(currentAmbientPressure) = ((GVAR(currentDepth) / 10) + 1);
-    private _currentAirUsage = GVAR(currentAmbientPressure) * (_breathingVolumePerMinute / 60);
-    GVAR(currentGasLiters) = (GVAR(currentGasLiters) - _currentAirUsage);
     GVAR(elapsedDiveTime) = GVAR(elapsedDiveTime) + 1;
     private _depthToDecompress = GVAR(currentDepth) - GVAR(decompressDepth);
-    GVAR(currentPressure) = GVAR(currentGasLiters) / GVAR(currentVolume);
-    if (_currentAirUsage > 0) then {
-        GVAR(remainingDiveTime) = GVAR(currentGasLiters) / _currentAirUsage;
-    } else {
-        GVAR(remainingDiveTime) = 0;
-    };
     private _depthToDeepStop = GVAR(currentDepth) - GVAR(deepStopDepth);
 
     private _saturationAll = 0;
@@ -92,6 +92,7 @@ GVAR(updatePFHID) = [{
         _saturationAll = _saturationAll max _compartmentTotal;
         _toxicSaturation = _toxicSaturation max _compartmentToxic;
     };
+
     GVAR(partialPressureO2) = GVAR(currentPercentO2) * GVAR(currentAmbientPressure);
     GVAR(partialPressureN2) = GVAR(currentPercentN2) * GVAR(currentAmbientPressure);
     GVAR(partialPressureHe) = GVAR(currentPercentHe) * GVAR(currentAmbientPressure);
@@ -206,6 +207,17 @@ GVAR(updatePFHID) = [{
     };
 
     call FUNC(handleEffects);
+
+    if (!_inWater && _saturationAll < SATURATION_OFFGAS_THRESHOLD) then {
+        [GVAR(updatePFHID)] call CBA_fnc_removePerFrameHandler;
+        GVAR(updatePFHID) = -1;
+        call FUNC(reset);
+        GVAR(saturationN2) = [0, 0, 0];
+        GVAR(saturationHe) = [0, 0, 0];
+        GVAR(saturationO2) = [0, 0, 0];
+        GVAR(elapsedDiveTime) = 0;
+        call FUNC(publishDataState);
+    };
 
     if (CBA_missionTime > (GVAR(dataPublishTime) + 60)) then {
         GVAR(dataPublishTime) = CBA_missionTime;

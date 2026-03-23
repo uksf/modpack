@@ -62,6 +62,5 @@ _state set ["warningTextN2", GVAR(warningTextN2)];
 _state set ["warningTextAscendRate", GVAR(warningTextAscendRate)];
 _state set ["warningTextLowPressure", GVAR(warningTextLowPressure)];
 _state set ["warningTextDecompression", GVAR(warningTextDecompression)];
-_state set ["surfaceOffgasActive", GVAR(surfaceOffgasPFHID) != -1];
 
 [true, _state]

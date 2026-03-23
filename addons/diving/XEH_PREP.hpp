@@ -13,5 +13,4 @@ PREP(reset);
 PREP(serialiseState);
 PREP(toggleDiveComputer);
 PREP(surfaceCheck);
-PREP(surfaceOffgas);
 PREP(useCylinder);

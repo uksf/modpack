@@ -32,7 +32,6 @@ if (hasInterface) then {
     GVAR(saturationHe) = [0, 0, 0];
     GVAR(partialPressureHe) = 0;
 
-    GVAR(surfaceOffgasPFHID) = -1;
 
     GVAR(currentAmbientPressure) = 1;
     GVAR(remainingDiveTime) = 0;
