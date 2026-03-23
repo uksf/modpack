@@ -826,7 +826,6 @@ uksf_arsenal_mainOpGearBase = [
     "UK3CB_BAF_G_Tactical_Orange",
     "UK3CB_BAF_G_Tactical_Yellow",
     "G_B_Diving",
-    "uksf_diving_divingMask",
     "G_mas_usl_jumpmask",
     "G_mas_ukl_balaM_W",
     "G_mas_ukl_bala_W",

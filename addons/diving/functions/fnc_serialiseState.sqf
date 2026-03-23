@@ -50,7 +50,6 @@ _state set ["deepStopTime", GVAR(deepStopTime)];
 _state set ["needDecompress", GVAR(needDecompress)];
 _state set ["needDeepStop", GVAR(needDeepStop)];
 _state set ["connectedGas", GVAR(connectedGas)];
-_state set ["wearMaskOnLand", GVAR(wearMaskOnLand)];
 _state set ["toxicO2Timeout", GVAR(toxicO2Timeout)];
 _state set ["toxicN2Timeout", GVAR(toxicN2Timeout)];
 _state set ["toxicDecompressionTimeout", GVAR(toxicDecompressionTimeout)];

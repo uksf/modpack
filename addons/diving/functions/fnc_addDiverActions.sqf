@@ -27,16 +27,6 @@ private _fnc_children = {
      _action = [QGVAR(resetElapsedDiveTime), "Reset Dive Time", QPATHTOF(data\ui\iconDiveComputer.paa), {GVAR(elapsedDiveTime) = 0;}, {QGVAR(diveComputer) in (assignedItems _player) && GVAR(elapsedDiveTime) != 0 && GVAR(updatePFHID) == -1 }] call ace_interact_menu_fnc_createAction;
     _actions pushBack [_action, [], _player];
 
-    _action = [QGVAR(maskOn), "Put diving mask on", "", {GVAR(wearMaskOnLand) = true;}, {
-        ((goggles _player) isEqualTo QGVAR(divingMask) || (goggles _player) isEqualTo "G_B_Diving") && !GVAR(wearMaskOnLand)
-    }] call ace_interact_menu_fnc_createAction;
-    _actions pushBack [_action, [], _player];
-
-    _action = [QGVAR(maskOff), "Take diving mask off", "", {GVAR(wearMaskOnLand) = false;}, {
-        ((goggles _player) isEqualTo QGVAR(divingMask) || (goggles _player) isEqualTo "G_B_Diving") && GVAR(wearMaskOnLand)
-    }] call ace_interact_menu_fnc_createAction;
-    _actions pushBack [_action, [], _player];
-
     {
         private _className = _x;
         private _config = EGVAR(common,configWeapons) >> _className;

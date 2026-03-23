@@ -52,7 +52,6 @@ GVAR(deepStopTime) = _state getOrDefault ["deepStopTime", 0];
 GVAR(needDecompress) = _state getOrDefault ["needDecompress", false];
 GVAR(needDeepStop) = _state getOrDefault ["needDeepStop", false];
 GVAR(connectedGas) = _state getOrDefault ["connectedGas", false];
-GVAR(wearMaskOnLand) = _state getOrDefault ["wearMaskOnLand", true];
 GVAR(toxicO2Timeout) = _state getOrDefault ["toxicO2Timeout", 10];
 GVAR(toxicN2Timeout) = _state getOrDefault ["toxicN2Timeout", 10];
 GVAR(toxicDecompressionTimeout) = _state getOrDefault ["toxicDecompressionTimeout", 10];

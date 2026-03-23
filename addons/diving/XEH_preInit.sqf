@@ -47,8 +47,6 @@ if (hasInterface) then {
     GVAR(needDecompress) = false;
     GVAR(needDeepStop) = false;
     GVAR(connectedGas) = false;
-    GVAR(wearMaskOnLand) = true;
-    GVAR(surfaceCheckPFHID) = -1;
 
 #include "initSettings.inc.sqf"
 

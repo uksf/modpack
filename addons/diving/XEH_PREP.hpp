@@ -12,5 +12,4 @@ PREP(publishDataState);
 PREP(reset);
 PREP(serialiseState);
 PREP(toggleDiveComputer);
-PREP(surfaceCheck);
 PREP(useCylinder);

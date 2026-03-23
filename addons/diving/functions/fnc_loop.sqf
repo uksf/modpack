@@ -85,12 +85,9 @@ GVAR(updatePFHID) = [{
     private _depthToDeepStop = GVAR(currentDepth) - GVAR(deepStopDepth);
 
     private _saturationAll = 0;
-    private _toxicSaturation = 0;
     for "_i" from 0 to (COMPARTMENT_COUNT - 1) do {
         private _compartmentTotal = (GVAR(saturationO2) select _i) + (GVAR(saturationHe) select _i) + (GVAR(saturationN2) select _i);
-        private _compartmentToxic = (GVAR(saturationN2) select _i) + (GVAR(saturationHe) select _i);
         _saturationAll = _saturationAll max _compartmentTotal;
-        _toxicSaturation = _toxicSaturation max _compartmentToxic;
     };
 
     GVAR(partialPressureO2) = GVAR(currentPercentO2) * GVAR(currentAmbientPressure);
@@ -152,9 +149,9 @@ GVAR(updatePFHID) = [{
     GVAR(previousAmbientPressure) = ((GVAR(previousDepth) / 10) + 1);
 
     for "_i" from 0 to (COMPARTMENT_COUNT - 1) do {
-        GVAR(saturationN2) set [_i, [GVAR(currentPercentN2), _i, GVAR(currentAmbientPressure), _ambientPressureDelta, GVAR(elapsedDiveTime), GVAR(saturationN2) select _i] call FUNC(calculateSaturation)];
-        GVAR(saturationHe) set [_i, [GVAR(currentPercentHe), _i, GVAR(currentAmbientPressure), _ambientPressureDelta, GVAR(elapsedDiveTime), GVAR(saturationHe) select _i] call FUNC(calculateSaturation)];
-        GVAR(saturationO2) set [_i, [GVAR(currentPercentO2), _i, GVAR(currentAmbientPressure), _ambientPressureDelta, GVAR(elapsedDiveTime), GVAR(saturationO2) select _i] call FUNC(calculateSaturation)];
+        GVAR(saturationN2) set [_i, [GVAR(currentPercentN2), _i, GVAR(currentAmbientPressure), _ambientPressureDelta, GVAR(saturationN2) select _i] call FUNC(calculateSaturation)];
+        GVAR(saturationHe) set [_i, [GVAR(currentPercentHe), _i, GVAR(currentAmbientPressure), _ambientPressureDelta, GVAR(saturationHe) select _i] call FUNC(calculateSaturation)];
+        GVAR(saturationO2) set [_i, [GVAR(currentPercentO2), _i, GVAR(currentAmbientPressure), _ambientPressureDelta, GVAR(saturationO2) select _i] call FUNC(calculateSaturation)];
     };
 
     if ((GVAR(decompressDepth) < GVAR(decompressDepthB)) && !GVAR(needDecompress)) then {
@@ -208,7 +205,7 @@ GVAR(updatePFHID) = [{
 
     call FUNC(handleEffects);
 
-    if (!_inWater && _saturationAll < SATURATION_OFFGAS_THRESHOLD) then {
+    if (!_inWater && !_hasRebreather && _saturationAll < SATURATION_OFFGAS_THRESHOLD) then {
         [GVAR(updatePFHID)] call CBA_fnc_removePerFrameHandler;
         GVAR(updatePFHID) = -1;
         call FUNC(reset);
