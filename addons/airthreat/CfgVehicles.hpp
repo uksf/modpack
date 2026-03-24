@@ -145,6 +145,61 @@ class CfgVehicles {
                 compileString = 1;
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(exclusionMarkers),_value,true)]);
             };
+            class GVAR(capTimeout) {
+                property = QGVAR(capTimeout);
+                displayName = "CAP Timeout";
+                tooltip = "Time in seconds before a CAP mission RTBs (60 - 3600, default: 900)";
+                control = "EditShort";
+                validate = "NUMBER";
+                min = 60;
+                max = 3600;
+                defaultValue = "900";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(capTimeout),_value,true)]);
+            };
+            class GVAR(reconTimeout) {
+                property = QGVAR(reconTimeout);
+                displayName = "Recon Timeout";
+                tooltip = "Time in seconds before a recon mission RTBs (60 - 3600, default: 600)";
+                control = "EditShort";
+                validate = "NUMBER";
+                min = 60;
+                max = 3600;
+                defaultValue = "600";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(reconTimeout),_value,true)]);
+            };
+            class GVAR(casTimeout) {
+                property = QGVAR(casTimeout);
+                displayName = "CAS Timeout";
+                tooltip = "Time in seconds before a CAS mission RTBs (60 - 3600, default: 600)";
+                control = "EditShort";
+                validate = "NUMBER";
+                min = 60;
+                max = 3600;
+                defaultValue = "600";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(casTimeout),_value,true)]);
+            };
+            class GVAR(strikeTimeout) {
+                property = QGVAR(strikeTimeout);
+                displayName = "Strike Timeout";
+                tooltip = "Time in seconds before a strike mission cleans up (60 - 3600, default: 600)";
+                control = "EditShort";
+                validate = "NUMBER";
+                min = 60;
+                max = 3600;
+                defaultValue = "600";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(strikeTimeout),_value,true)]);
+            };
+            class GVAR(interceptTimeout) {
+                property = QGVAR(interceptTimeout);
+                displayName = "Intercept Timeout";
+                tooltip = "Time in seconds before an intercept mission RTBs (60 - 3600, default: 600)";
+                control = "EditShort";
+                validate = "NUMBER";
+                min = 60;
+                max = 3600;
+                defaultValue = "600";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(interceptTimeout),_value,true)]);
+            };
         };
     };
     class GVAR(spawnPointModule) : GVAR(module) {

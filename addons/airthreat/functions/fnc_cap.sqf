@@ -45,25 +45,24 @@ _patrolWaypoint setWaypointType "LOITER";
 _patrolWaypoint setWaypointLoiterRadius 1500;
 _patrolWaypoint setWaypointSpeed "NORMAL";
 
-// Mission timeout — RTB after 15-25 minutes
-private _timeout = 900 + random 600;
-private _expiryTime = time + _timeout;
+private _expiryTime = time + GVAR(capTimeout);
 
 // Monitoring PFH — scans for nearby player aircraft
 [{
-    params ["_group", "_vehicle", "_expiryTime"];
+    params ["_args", "_idPFH"];
+    _args params ["_group", "_vehicle", "_expiryTime"];
 
     if (isNull _group || {!alive _vehicle} || {isNull (driver _vehicle)}) exitWith {
         [QGVAR(missionComplete), [_group, _vehicle]] call CBA_fnc_serverEvent;
         [_group, _vehicle] call FUNC(cleanupAircraft);
-        [_thisHandle] call CBA_fnc_removePerFrameHandler;
+        [_idPFH] call CBA_fnc_removePerFrameHandler;
     };
 
     if !(local (leader _group)) exitWith {};
 
     if (time > _expiryTime) exitWith {
         [_group, _vehicle] call FUNC(addRtbWaypoint);
-        [_thisHandle] call CBA_fnc_removePerFrameHandler;
+        [_idPFH] call CBA_fnc_removePerFrameHandler;
     };
 
     // Scan for nearby player aircraft to engage

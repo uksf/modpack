@@ -20,22 +20,23 @@
 */
 params [["_group", grpNull, [grpNull]], ["_vehicle", objNull, [objNull]], ["_target", objNull, [objNull]]];
 
-private _expiryTime = time + 600 + random 300;
+private _expiryTime = time + GVAR(interceptTimeout);
 
 [{
-    _thisArgs params ["_group", "_vehicle", "_target", "_expiryTime"];
+    params ["_args", "_idPFH"];
+    _args params ["_group", "_vehicle", "_target", "_expiryTime"];
 
     if (isNull _group || {!alive _vehicle} || {isNull (driver _vehicle)}) exitWith {
         [QGVAR(missionComplete), [_group, _vehicle]] call CBA_fnc_serverEvent;
         [_group, _vehicle] call FUNC(cleanupAircraft);
-        [_thisHandle] call CBA_fnc_removePerFrameHandler;
+        [_idPFH] call CBA_fnc_removePerFrameHandler;
     };
 
     if !(local (leader _group)) exitWith {};
 
     if (time > _expiryTime) exitWith {
         [_group, _vehicle] call FUNC(addRtbWaypoint);
-        [_thisHandle] call CBA_fnc_removePerFrameHandler;
+        [_idPFH] call CBA_fnc_removePerFrameHandler;
     };
 
     // Force target acquisition and weapon fire
@@ -47,6 +48,6 @@ private _expiryTime = time + 600 + random 300;
     } else {
         // Target lost — RTB
         [_group, _vehicle] call FUNC(addRtbWaypoint);
-        [_thisHandle] call CBA_fnc_removePerFrameHandler;
+        [_idPFH] call CBA_fnc_removePerFrameHandler;
     };
 }, 5, [_group, _vehicle, _target, _expiryTime]] call CBA_fnc_addPerFrameHandler;

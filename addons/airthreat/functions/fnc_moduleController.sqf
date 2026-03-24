@@ -41,6 +41,11 @@ GVAR(strikeClassnames) = _logic getVariable [QGVAR(strikeClassnames), []];
 GVAR(reconClassnames) = _logic getVariable [QGVAR(reconClassnames), []];
 GVAR(excludedClasses) = _logic getVariable [QGVAR(excludedClasses), []];
 GVAR(exclusionMarkers) = _logic getVariable [QGVAR(exclusionMarkers), []];
+GVAR(capTimeout) = parseNumber (_logic getVariable [QGVAR(capTimeout), "900"]);
+GVAR(reconTimeout) = parseNumber (_logic getVariable [QGVAR(reconTimeout), "600"]);
+GVAR(casTimeout) = parseNumber (_logic getVariable [QGVAR(casTimeout), "600"]);
+GVAR(strikeTimeout) = parseNumber (_logic getVariable [QGVAR(strikeTimeout), "600"]);
+GVAR(interceptTimeout) = parseNumber (_logic getVariable [QGVAR(interceptTimeout), "600"]);
 
 GVAR(controllerInitialised) = true;
 

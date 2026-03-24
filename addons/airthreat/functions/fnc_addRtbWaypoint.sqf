@@ -39,5 +39,5 @@ _waypoint setWaypointBehaviour "CARELESS";
 _waypoint setWaypointCombatMode "BLUE";
 _waypoint setWaypointStatements [
     "true",
-    format ["['%1', [group this, vehicle this]] call CBA_fnc_serverEvent;", QGVAR(missionComplete)]
+    format ["['%1', [group this, vehicle this]] call CBA_fnc_serverEvent; [group this, vehicle this] call %2;", QGVAR(missionComplete), QFUNC(cleanupAircraft)]
 ];

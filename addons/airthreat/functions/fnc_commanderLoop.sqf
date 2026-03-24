@@ -21,8 +21,10 @@
         Called as a PFH, not directly
 */
 
+params ["", "_idPFH"];
+
 if !(isServer) exitWith {
-    [_thisHandle] call CBA_fnc_removePerFrameHandler;
+    [_idPFH] call CBA_fnc_removePerFrameHandler;
 };
 
 if !(GVAR(controllerInitialised)) exitWith {};
@@ -58,7 +60,7 @@ if (GVAR(capReconEnabled)) then {
 };
 
 // --- Intercept zone monitoring ---
-if (GVAR(interceptEnabled) && {time >= GVAR(nextInterceptTime)} && {!(_airPlayers isEqualTo [])}) then {
+if (GVAR(interceptEnabled) && {time >= GVAR(nextInterceptTime)} && {_airPlayers isNotEqualTo []}) then {
     private _validTargets = [];
 
     {
@@ -77,7 +79,7 @@ if (GVAR(interceptEnabled) && {time >= GVAR(nextInterceptTime)} && {!(_airPlayer
         } forEach _airPlayers;
     } forEach GVAR(interceptZones);
 
-    if (!(_validTargets isEqualTo []) && {call FUNC(canSpawnMission)}) then {
+    if (_validTargets isNotEqualTo [] && {call FUNC(canSpawnMission)}) then {
         private _target = selectRandom _validTargets;
         [QGVAR(spawnIntercept), [_target]] call EFUNC(common,headlessEvent);
         GVAR(nextInterceptTime) = time + GVAR(interceptCooldown) + random GVAR(interceptCooldownOffset);
@@ -94,7 +96,7 @@ if (GVAR(casStrikeEnabled)) then {
         private _groundPlayersInZone = _players select {
             alive _x
             && {(getPosATL _x) inArea _marker}
-            && {vehicle _x == _x || {!(vehicle _x isKindOf "Air")}}
+            && {isNull objectParent _x || {!(vehicle _x isKindOf "Air")}}
         };
 
         if (_groundPlayersInZone isEqualTo []) then { continue };
@@ -107,14 +109,17 @@ if (GVAR(casStrikeEnabled)) then {
 };
 
 // --- Stale mission cleanup (safety net) ---
+// Threshold: longest configured timeout + 10 minute buffer
+private _staleThreshold = (GVAR(capTimeout) max GVAR(reconTimeout) max GVAR(casTimeout) max GVAR(strikeTimeout) max GVAR(interceptTimeout)) + 600;
 private _staleMissions = GVAR(activeMissions) select {
     private _vehicle = _x select 1;
     !isNull _vehicle
-    && {(_vehicle getVariable [QGVAR(spawnTime), time]) + 1800 < time}
+    && {(_vehicle getVariable [QGVAR(spawnTime), time]) + _staleThreshold < time}
 };
 
 {
     _x params ["_group", "_vehicle"];
     WARNING_1("Cleaning up stale mission: %1",_vehicle getVariable [ARR_2(QGVAR(missionType),"unknown")]);
     [QGVAR(missionComplete), [_group, _vehicle]] call CBA_fnc_serverEvent;
+    [_group, _vehicle] call FUNC(cleanupAircraft);
 } forEach _staleMissions;

@@ -24,6 +24,11 @@ GVAR(strikeClassnames) = [];
 GVAR(reconClassnames) = [];
 GVAR(excludedClasses) = [];
 GVAR(exclusionMarkers) = [];
+GVAR(capTimeout) = 900;
+GVAR(reconTimeout) = 600;
+GVAR(casTimeout) = 600;
+GVAR(strikeTimeout) = 600;
+GVAR(interceptTimeout) = 600;
 
 // State — server only
 GVAR(activeMissions) = [];
@@ -55,5 +60,6 @@ GVAR(nextInterceptTime) = 0;
 [QGVAR(spawnStrike), { _this call FUNC(strike) }] call CBA_fnc_addEventHandler;
 [QGVAR(spawnIntercept), { _this call FUNC(intercept) }] call CBA_fnc_addEventHandler;
 [QGVAR(spawnCasOrStrike), { _this call FUNC(selectCasOrStrike) }] call CBA_fnc_addEventHandler;
+[QGVAR(reconFollowUp), { _this call FUNC(reconFollowUp) }] call CBA_fnc_addEventHandler;
 
 ADDON = true;

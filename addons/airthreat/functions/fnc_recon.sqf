@@ -29,7 +29,7 @@ if (isNull _target) exitWith {
 
 private _targetPosition = getPosASL _target;
 private _spawnPosition = selectRandom GVAR(spawnPoints);
-private _classnames = if (random 1 < 0.8 && {!(GVAR(reconClassnames) isEqualTo [])}) then {
+private _classnames = if (random 1 < 0.8 && {GVAR(reconClassnames) isNotEqualTo []}) then {
     GVAR(reconClassnames)
 } else {
     GVAR(fighterClassnames)
@@ -67,18 +67,26 @@ _vehicle setVariable [QGVAR(reconState), "approach"];
 _vehicle setVariable [QGVAR(reconSpotTime), -1];
 _vehicle setVariable [QGVAR(reconObservedPosition), _targetPosition];
 
+private _expiryTime = time + GVAR(reconTimeout);
+
 // Monitoring PFH (runs on HC)
 [{
-    _thisArgs params ["_group", "_vehicle", "_targetPosition"];
+    params ["_args", "_idPFH"];
+    _args params ["_group", "_vehicle", "_targetPosition", "_expiryTime"];
 
     if (isNull _group || {!alive _vehicle} || {isNull (driver _vehicle)}) exitWith {
         // Recon destroyed — if strike was called, it uses stored position
         [QGVAR(missionComplete), [_group, _vehicle]] call CBA_fnc_serverEvent;
         [_group, _vehicle] call FUNC(cleanupAircraft);
-        [_thisHandle] call CBA_fnc_removePerFrameHandler;
+        [_idPFH] call CBA_fnc_removePerFrameHandler;
     };
 
     if !(local (leader _group)) exitWith {};
+
+    if (time > _expiryTime) exitWith {
+        [_group, _vehicle] call FUNC(addRtbWaypoint);
+        [_idPFH] call CBA_fnc_removePerFrameHandler;
+    };
 
     private _state = _vehicle getVariable [QGVAR(reconState), "approach"];
     private _vehiclePosition = getPosASL _vehicle;
@@ -111,7 +119,7 @@ _vehicle setVariable [QGVAR(reconObservedPosition), _targetPosition];
                     // No strike called — RTB
                     _vehicle setVariable [QGVAR(reconState), "complete"];
                     [_group, _vehicle] call FUNC(addRtbWaypoint);
-                    [_thisHandle] call CBA_fnc_removePerFrameHandler;
+                    [_idPFH] call CBA_fnc_removePerFrameHandler;
                 };
             };
         };
@@ -124,9 +132,9 @@ _vehicle setVariable [QGVAR(reconObservedPosition), _targetPosition];
         };
         case "complete": {
             [_group, _vehicle] call FUNC(addRtbWaypoint);
-            [_thisHandle] call CBA_fnc_removePerFrameHandler;
+            [_idPFH] call CBA_fnc_removePerFrameHandler;
         };
     };
-}, 5, [_group, _vehicle, _targetPosition]] call CBA_fnc_addPerFrameHandler;
+}, 5, [_group, _vehicle, _targetPosition, _expiryTime]] call CBA_fnc_addPerFrameHandler;
 
 INFO("Recon mission spawned");

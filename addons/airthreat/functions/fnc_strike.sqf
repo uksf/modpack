@@ -77,16 +77,16 @@ _waypoint3 setWaypointStatements [
 // RTB after second pass
 [_group, _vehicle] call FUNC(addRtbWaypoint);
 
-// Safety timeout PFH — also notifies recon aircraft on completion
-private _expiryTime = time + 600;
+private _expiryTime = time + GVAR(strikeTimeout);
 
 [{
-    _thisArgs params ["_group", "_vehicle", "_expiryTime", "_reconVehicle"];
+    params ["_args", "_idPFH"];
+    _args params ["_group", "_vehicle", "_expiryTime", "_reconVehicle"];
 
     private _strikeComplete = {
         [QGVAR(missionComplete), [_group, _vehicle]] call CBA_fnc_serverEvent;
         [_group, _vehicle] call FUNC(cleanupAircraft);
-        [_thisHandle] call CBA_fnc_removePerFrameHandler;
+        [_idPFH] call CBA_fnc_removePerFrameHandler;
         // Notify recon aircraft that strike is done
         if (!isNull _reconVehicle && {alive _reconVehicle}) then {
             _reconVehicle setVariable [QGVAR(reconState), "complete", true];

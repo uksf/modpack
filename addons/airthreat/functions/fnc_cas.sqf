@@ -50,23 +50,23 @@ _waypoint setWaypointBehaviour "COMBAT";
 _waypoint setWaypointCombatMode "RED";
 _waypoint setWaypointSpeed "FULL";
 
-// Timeout — RTB after 10-15 minutes
-private _expiryTime = time + 600 + random 300;
+private _expiryTime = time + GVAR(casTimeout);
 
 [{
-    params ["_group", "_vehicle", "_expiryTime"];
+    params ["_args", "_idPFH"];
+    _args params ["_group", "_vehicle", "_expiryTime"];
 
     if (isNull _group || {!alive _vehicle} || {isNull (driver _vehicle)}) exitWith {
         [QGVAR(missionComplete), [_group, _vehicle]] call CBA_fnc_serverEvent;
         [_group, _vehicle] call FUNC(cleanupAircraft);
-        [_thisHandle] call CBA_fnc_removePerFrameHandler;
+        [_idPFH] call CBA_fnc_removePerFrameHandler;
     };
 
     if !(local (leader _group)) exitWith {};
 
     if (time > _expiryTime) exitWith {
         [_group, _vehicle] call FUNC(addRtbWaypoint);
-        [_thisHandle] call CBA_fnc_removePerFrameHandler;
+        [_idPFH] call CBA_fnc_removePerFrameHandler;
     };
 
     // Force target acquisition on nearby players
