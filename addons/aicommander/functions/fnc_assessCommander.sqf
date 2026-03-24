@@ -110,6 +110,11 @@ private _urgentObjectives = [];
 
 _commander setVariable [QGVAR(debugAssessments), _debugAssessments];
 
+[_commander] call FUNC(refreshManagedGroups);
+private _managedGroups = _commander getVariable [QGVAR(managedGroups), []];
+private _managedGroupsCurrent = count _managedGroups;
+private _managedGroupsCap = _commander getVariable [QGVAR(managedGroupsCap), 9];
+private _spawnQueueDepth = count (_commander getVariable [QGVAR(spawnQueue), []]);
 
 // Decision logic: rank objectives by state and priority, then pick top N to act on.
 
@@ -140,7 +145,7 @@ private _rankedActions = [];
             _score = 80 + (_priority * 8);
             _reason = "contested_pressure";
         };
-        case "owned_secure": {
+        case "not_owned": {
             _action = "defend";
             _score = 50 + (_priority * 5);
             _reason = "maintain_control";
@@ -150,7 +155,7 @@ private _rankedActions = [];
             _score = 60 + (_priority * 6);
             _reason = "recover_objective";
         };
-        case "not_owned": {
+        case "owned_secure": {
             _action = "recon";
             _score = 30 + (_priority * 4);
             _reason = "build_intel";
@@ -190,6 +195,9 @@ private _assessment = createHashMapFromArray [
     ["gridCellSize", _gridCellSize],
     ["gridFrameBL", _frameBottomLeft],
     ["gridFrameTR", _frameTopRight],
+    ["managedGroupsCurrent", _managedGroupsCurrent],
+    ["managedGroupsCap", _managedGroupsCap],
+    ["spawnQueueDepth", _spawnQueueDepth],
     ["tickId", _tickId]
 ];
 
@@ -206,3 +214,4 @@ private _decision = createHashMapFromArray [
 
 ["ASSESS", _commander, _assessment] call FUNC(logAssessment);
 ["TICK", _commander, _decision] call FUNC(logDecision);
+[_commander, _assessment, _decision] call FUNC(executeCommander);

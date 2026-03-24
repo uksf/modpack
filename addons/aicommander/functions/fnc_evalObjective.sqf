@@ -26,18 +26,37 @@ _area params [
     ["_halfWidth", 300, [0]],
     ["_halfHeight", 300, [0]],
     ["_angle", 0, [0]],
-    ["_isRectangle", false, [true]]
+    ["_isRectangle", false]
 ];
 
-private _areaDef = [_position#0, _position#1, _halfWidth, _halfHeight, _angle, _isRectangle];
+private _isRectangleBool = if (_isRectangle isEqualType true) then {
+    _isRectangle
+} else {
+    _isRectangle > 0
+};
+
+private _areaDef = [_position2D, _halfWidth max 1, _halfHeight max 1, _angle, _isRectangleBool];
 
 private _westCount = 0;
 private _eastCount = 0;
 private _indCount = 0;
 
 private _searchRadius = sqrt ((_halfWidth * _halfWidth) + (_halfHeight * _halfHeight));
-private _unitsInArea = (_objective nearEntities ["CAManBase", _searchRadius]) select {
-    alive _x && {((getPosATL (vehicle _x)) inArea _areaDef)}
+private _candidates = _objective nearEntities ["CAManBase", _searchRadius];
+if !(_candidates isEqualType []) then {_candidates = [];};
+
+private _unitsInArea = _candidates select {
+    private _unit = _x;
+    if (!alive _unit) exitWith {false};
+
+    private _vehPos = getPosATL (vehicle _unit);
+    if !(_vehPos isEqualType []) exitWith {false};
+    if ((count _vehPos) < 2) exitWith {false};
+
+    private _vehPos2D = [_vehPos#0, _vehPos#1];
+    private _inside = _vehPos2D inArea _areaDef;
+    if !(_inside isEqualType true) exitWith {false};
+    _inside
 };
 
 {
@@ -101,7 +120,7 @@ private _snapshot = createHashMapFromArray [
     ["objectiveName", _objectiveName],
     ["priority", _priority],
     ["position2D", _position2D],
-    ["area", [_halfWidth, _halfHeight, _angle, _isRectangle]],
+    ["area", [_halfWidth, _halfHeight, _angle, _isRectangleBool]],
     ["ownerSide", _ownerSide],
     ["state", _state],
     ["forcePoolGroups", _forcePool],

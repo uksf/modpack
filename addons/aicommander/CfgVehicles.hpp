@@ -76,6 +76,18 @@ class CfgVehicles {
                 };
             };
 
+            class GVAR(managedGroupCap) {
+                property = QGVAR(managedGroupCap);
+                displayName = "Managed Group Cap";
+                tooltip = "Maximum alive groups this commander may manage at once";
+                control = "EditShort";
+                validate = "NUMBER";
+                min = 1;
+                max = 60;
+                defaultValue = "9";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(managedGroupCap),_value,true)]);
+            };
+
             class GVAR(gridCellSize) {
                 property = QGVAR(gridCellSize);
                 displayName = "Grid Cell Size (m)";

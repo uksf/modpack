@@ -59,6 +59,8 @@ if ((GVAR(objectives) find _module) == -1) then {
 };
 
 [_module] call FUNC(evalObjective);
+[_module] call FUNC(refreshObjectiveSafeSpawns);
+_module setVariable [QGVAR(safeSpawnRefreshInterval), 180];
 
 private _pfhId = [{
     params ["_args", "_idPFH"];
@@ -72,4 +74,17 @@ private _pfhId = [{
 }, _module getVariable [QGVAR(evalInterval), 10], [_module]] call CBA_fnc_addPerFrameHandler;
 
 _module setVariable [QGVAR(evalPFH), _pfhId];
+
+private _safeSpawnPFH = [{
+    params ["_args", "_idPFH"];
+    _args params ["_objective"];
+
+    if (isNull _objective) exitWith {
+        [_idPFH] call CBA_fnc_removePerFrameHandler;
+    };
+
+    [_objective] call FUNC(refreshObjectiveSafeSpawns);
+}, _module getVariable [QGVAR(safeSpawnRefreshInterval), 180], [_module]] call CBA_fnc_addPerFrameHandler;
+
+_module setVariable [QGVAR(safeSpawnPFH), _safeSpawnPFH];
 GVAR(enabled) = true;

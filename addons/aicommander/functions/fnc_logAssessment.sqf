@@ -37,6 +37,9 @@ private _urgentObjectives = _assessment getOrDefault ["urgentObjectives", []];
 private _gridCellSize = _assessment getOrDefault ["gridCellSize", 500];
 private _gridFrameBL = _assessment getOrDefault ["gridFrameBL", [0, 0]];
 private _gridFrameTR = _assessment getOrDefault ["gridFrameTR", [0, 0]];
+private _managedGroupsCurrent = _assessment getOrDefault ["managedGroupsCurrent", 0];
+private _managedGroupsCap = _assessment getOrDefault ["managedGroupsCap", 0];
+private _spawnQueueDepth = _assessment getOrDefault ["spawnQueueDepth", 0];
 private _tickId = _assessment getOrDefault ["tickId", round _missionTime];
 
 private _objectiveSummary = "none";
@@ -75,7 +78,7 @@ if (_objectiveRows isNotEqualTo []) then {
 private _urgentSummary = if (_urgentObjectives isEqualTo []) then {"none"} else {_urgentObjectives joinString ","};
 
 diag_log format [
-    "[AIC][ASSESS][%1] cmd=%2 side=%3 tickId=%4 grid_frame{cell:%5|bl:%6,%7|tr:%8,%9} aware=%10 urgent=%11 objs=%12 t=%13",
+    "[AIC][ASSESS][%1] cmd=%2 side=%3 tickId=%4 grid_frame{cell:%5|bl:%6,%7|tr:%8,%9} managed{cur:%10|cap:%11|queue:%12} aware=%13 urgent=%14 objs=%15 t=%16",
     _eventType,
     _commanderName,
     _commanderSideLabel,
@@ -85,6 +88,9 @@ diag_log format [
     _gridFrameBL#1,
     _gridFrameTR#0,
     _gridFrameTR#1,
+    _managedGroupsCurrent,
+    _managedGroupsCap,
+    _spawnQueueDepth,
     count _objectiveRows,
     _urgentSummary,
     _objectiveSummary,
