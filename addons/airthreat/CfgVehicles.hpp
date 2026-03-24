@@ -147,4 +147,25 @@ class CfgVehicles {
             };
         };
     };
+    class GVAR(spawnPointModule) : GVAR(module) {
+        scope = 2;
+        displayName = "(AT) Spawn Point";
+        icon = "A3\ui_f\data\map\markers\nato\o_plane.paa";
+        portrait = "A3\ui_f\data\map\markers\nato\o_plane.paa";
+        function = QFUNC(moduleSpawnPoint);
+    };
+    class GVAR(airspaceModule) : GVAR(module) {
+        scope = 2;
+        displayName = "(AT) Airspace";
+        icon = "A3\modules_f\data\iconmodule_ca.paa";
+        portrait = "A3\modules_f\data\iconmodule_ca.paa";
+        function = QFUNC(moduleAirspace);
+        canSetArea = 1;
+        canSetAreaHeight = 0;
+        canSetAreaShape = 1;
+        class AttributeValues {
+            size3[] = { 2000, 2000, -1 };
+            isRectangle = 0;
+        };
+    };
 };
