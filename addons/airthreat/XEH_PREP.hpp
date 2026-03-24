@@ -8,6 +8,8 @@ PREP(moduleAirspace);
 PREP(moduleInterceptZone);
 PREP(moduleSpawnPoint);
 PREP(registerMission);
+PREP(recon);
+PREP(reconFollowUp);
 PREP(selectTarget);
 PREP(spawnAircraft);
 PREP(unregisterMission);
