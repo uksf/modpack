@@ -73,7 +73,7 @@ private _expiryTime = time + _timeout;
 
     {
         private _playerVehicle = vehicle _x;
-        if (_playerVehicle isKindOf "Air" && {_playerVehicle != _x} && {alive _x}) then {
+        if (_playerVehicle isKindOf "Air" && {!isNull objectParent _x} && {alive _x}) then {
             private _distance = _vehiclePosition distance (getPosASL _playerVehicle);
             if (_distance < _nearestDistance) then {
                 _nearestDistance = _distance;

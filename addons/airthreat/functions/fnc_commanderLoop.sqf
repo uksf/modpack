@@ -30,7 +30,7 @@ if !(GVAR(controllerInitialised)) exitWith {};
 // Cache player lists once per tick
 private _players = ALL_PLAYERS;
 private _airPlayers = _players select {
-    vehicle _x isKindOf "Air" && {vehicle _x != _x} && {alive _x}
+    vehicle _x isKindOf "Air" && {!isNull objectParent _x} && {alive _x}
 };
 
 // --- CAP/Recon scheduling ---
@@ -115,6 +115,6 @@ private _staleMissions = GVAR(activeMissions) select {
 
 {
     _x params ["_group", "_vehicle"];
-    WARNING_1("Cleaning up stale mission: %1",_vehicle getVariable [QGVAR(missionType), "unknown"]);
+    WARNING_1("Cleaning up stale mission: %1",_vehicle getVariable [ARR_2(QGVAR(missionType),"unknown")]);
     [QGVAR(missionComplete), [_group, _vehicle]] call CBA_fnc_serverEvent;
 } forEach _staleMissions;

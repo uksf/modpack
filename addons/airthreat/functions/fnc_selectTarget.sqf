@@ -24,7 +24,7 @@ private _validTargets = ALL_PLAYERS select {
     alive _player
     && {!(typeOf _player in GVAR(excludedClasses))}
     && {GVAR(exclusionMarkers) findIf {_player inArea _x} isEqualTo -1}
-    && {!_requireAirborne || {vehicle _player isKindOf "Air" && {vehicle _player != _player}}}
+    && {!_requireAirborne || {vehicle _player isKindOf "Air" && {!isNull objectParent _player}}}
 };
 
 if (_validTargets isEqualTo []) exitWith { objNull };
