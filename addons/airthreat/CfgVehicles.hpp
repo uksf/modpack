@@ -168,4 +168,58 @@ class CfgVehicles {
             isRectangle = 0;
         };
     };
+    class GVAR(casStrikeZoneModule) : GVAR(module) {
+        scope = 2;
+        displayName = "(AT) CAS/Strike Zone";
+        icon = "A3\ui_f\data\map\markers\nato\o_support.paa";
+        portrait = "A3\ui_f\data\map\markers\nato\o_support.paa";
+        function = QFUNC(moduleCasStrikeZone);
+        canSetArea = 1;
+        canSetAreaHeight = 0;
+        canSetAreaShape = 1;
+        class AttributeValues {
+            size3[] = { 500, 500, -1 };
+            isRectangle = 0;
+        };
+        class Attributes : AttributesBase {
+            class GVAR(casProbability) {
+                property = QGVAR(casProbability);
+                displayName = "CAS Probability";
+                tooltip = "Percentage chance that a CAS helicopter spawns instead of a strike jet (0 - 100, default: 50)";
+                control = "EditShort";
+                validate = "NUMBER";
+                min = 0;
+                max = 100;
+                defaultValue = "50";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(casProbability),_value,true)]);
+            };
+        };
+    };
+    class GVAR(interceptZoneModule) : GVAR(module) {
+        scope = 2;
+        displayName = "(AT) Intercept Zone";
+        icon = "A3\ui_f\data\map\markers\nato\o_air.paa";
+        portrait = "A3\ui_f\data\map\markers\nato\o_air.paa";
+        function = QFUNC(moduleInterceptZone);
+        canSetArea = 1;
+        canSetAreaHeight = 0;
+        canSetAreaShape = 1;
+        class AttributeValues {
+            size3[] = { 10000, 10000, -1 };
+            isRectangle = 1;
+        };
+        class Attributes : AttributesBase {
+            class GVAR(maxConcurrentIntercepts) {
+                property = QGVAR(maxConcurrentIntercepts);
+                displayName = "Max Concurrent Intercepts";
+                tooltip = "Maximum intercept groups active from this zone at once (1 - 4, default: 2)";
+                control = "EditShort";
+                validate = "NUMBER";
+                min = 1;
+                max = 4;
+                defaultValue = "2";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(maxConcurrentIntercepts),_value,true)]);
+            };
+        };
+    };
 };
