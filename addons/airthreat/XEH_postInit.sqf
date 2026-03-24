@@ -1,5 +1,7 @@
 #include "script_component.hpp"
 
+call FUNC(registerDebugProvider);
+
 if !(isServer) exitWith {};
 
 // Single commander loop — handles all scheduling and zone monitoring

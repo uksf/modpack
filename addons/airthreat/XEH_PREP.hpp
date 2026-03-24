@@ -14,6 +14,7 @@ PREP(moduleInterceptZone);
 PREP(moduleSpawnPoint);
 PREP(recon);
 PREP(reconFollowUp);
+PREP(registerDebugProvider);
 PREP(registerMission);
 PREP(selectCasOrStrike);
 PREP(selectTarget);
