@@ -4,6 +4,8 @@ PREP(cap);
 PREP(cas);
 PREP(cleanupAircraft);
 PREP(executeStrikeRun);
+PREP(intercept);
+PREP(interceptPursue);
 PREP(moduleCasStrikeZone);
 PREP(moduleController);
 PREP(moduleAirspace);
