@@ -1,5 +1,6 @@
 PREP(addRtbWaypoint);
 PREP(canSpawnMission);
+PREP(cap);
 PREP(cleanupAircraft);
 PREP(moduleCasStrikeZone);
 PREP(moduleController);
