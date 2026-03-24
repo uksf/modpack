@@ -8,6 +8,11 @@
         Shows active missions, zone boundaries, spawn points,
         target lines, and cooldown timers.
 
+        Static lookup data (colour maps, timeout map, format helper)
+        is stored as GVAR in XEH_preInit because SQF uses dynamic
+        scoping — private variables from this scope are not captured
+        by the closures registered with the zeus framework.
+
     Parameter(s):
         None
 
@@ -23,43 +28,6 @@ private _menuName = "Air Threat";
 private _menuPriority = -20;
 private _fnc_menuCondition = {GVAR(controllerInitialised)};
 
-// --- Colour lookup ---
-private _colourMap = createHashMapFromArray [
-    ["cap", [0.4, 0.7, 1, 0.9]],
-    ["recon", [1, 1, 0.3, 0.9]],
-    ["cas", [1, 0.5, 0, 0.9]],
-    ["strike", [1, 0.2, 0.2, 0.9]],
-    ["intercept", [1, 0.3, 1, 0.9]]
-];
-private _hexColourMap = createHashMapFromArray [
-    ["cap", "#66b3ff"],
-    ["recon", "#ffff4d"],
-    ["cas", "#ff8000"],
-    ["strike", "#ff3333"],
-    ["intercept", "#ff4dff"]
-];
-
-// --- Timeout lookup (for computing time remaining) ---
-private _timeoutMap = createHashMapFromArray [
-    ["cap", QGVAR(capTimeout)],
-    ["recon", QGVAR(reconTimeout)],
-    ["cas", QGVAR(casTimeout)],
-    ["strike", QGVAR(strikeTimeout)],
-    ["intercept", QGVAR(interceptTimeout)]
-];
-
-// --- Helper: format seconds as M:SS ---
-private _fnc_formatTime = {
-    params ["_seconds"];
-    private _minutes = floor (_seconds / 60);
-    private _secs = floor (_seconds mod 60);
-    if (_secs < 10) then {
-        format ["%1:0%2", _minutes, _secs]
-    } else {
-        format ["%1:%2", _minutes, _secs]
-    };
-};
-
 // ============================================================
 // SERVER GETTER
 // ============================================================
@@ -71,7 +39,7 @@ private _fnc_serverGetter = {
 
         private _vehicleNetId = netId _vehicle;
         private _spawnTime = _vehicle getVariable [QGVAR(spawnTime), time];
-        private _timeoutVarName = _timeoutMap getOrDefault [_missionType, QGVAR(capTimeout)];
+        private _timeoutVarName = GVAR(debugTimeoutMap) getOrDefault [_missionType, QGVAR(capTimeout)];
         private _timeout = missionNamespace getVariable [_timeoutVarName, 600];
         private _timeRemaining = (_spawnTime + _timeout - time) max 0;
 
@@ -159,8 +127,8 @@ private _fnc_draw3d = {
         private _vehiclePosition = ASLToAGL getPosASLVisual _vehicle;
         if (_cameraPosition distance _vehiclePosition > _maxDistance) then { continue };
 
-        private _colour = _colourMap getOrDefault [_missionType, [1, 1, 1, 0.9]];
-        private _timeText = [_timeRemaining] call _fnc_formatTime;
+        private _colour = GVAR(debugColourMap) getOrDefault [_missionType, [1, 1, 1, 0.9]];
+        private _timeText = [_timeRemaining] call GVAR(debugFormatTime);
 
         // Build label: "TYPE TIME" or "Recon [state] TIME"
         private _typeLabel = toUpper (_missionType select [0, 1]) + (_missionType select [1]);
@@ -210,7 +178,7 @@ private _fnc_drawMap = {
             _map drawEllipse [_position, _sizeA, _sizeB, _angle, _colour, ""];
         };
         private _label = if (_cooldownRemaining > 0) then {
-            format ["CAS/Strike (%1)", [_cooldownRemaining] call _fnc_formatTime]
+            format ["CAS/Strike (%1)", [_cooldownRemaining] call GVAR(debugFormatTime)]
         } else {
             "CAS/Strike"
         };
@@ -241,7 +209,7 @@ private _fnc_drawMap = {
         private _vehicle = objectFromNetId _vehicleNetId;
         if (isNull _vehicle) then { continue };
 
-        private _colour = _colourMap getOrDefault [_missionType, [1, 1, 1, 0.9]];
+        private _colour = GVAR(debugColourMap) getOrDefault [_missionType, [1, 1, 1, 0.9]];
         _map drawLine [getPosASLVisual _vehicle, _targetPosition, _colour];
     } forEach _missions;
 };
@@ -263,7 +231,7 @@ private _fnc_drawHud = {
         if (_capReconCooldown isEqualTo 0) then {
             "<t color='#ffffff'>ready</t>"
         } else {
-            format ["<t color='#888888'>in %1</t>", [_capReconCooldown] call _fnc_formatTime]
+            format ["<t color='#888888'>in %1</t>", [_capReconCooldown] call GVAR(debugFormatTime)]
         };
     };
 
@@ -271,7 +239,7 @@ private _fnc_drawHud = {
     private _interceptText = if (_interceptCooldown isEqualTo 0) then {
         "<t color='#ffffff'>ready</t>"
     } else {
-        format ["<t color='#888888'>in %1</t>", [_interceptCooldown] call _fnc_formatTime]
+        format ["<t color='#888888'>in %1</t>", [_interceptCooldown] call GVAR(debugFormatTime)]
     };
 
     // Line 1: status
@@ -283,9 +251,9 @@ private _fnc_drawHud = {
     } else {
         private _parts = _missions apply {
             _x params ["", "_missionType", "_timeRemaining", "", "_reconState"];
-            private _hexColour = _hexColourMap getOrDefault [_missionType, "#ffffff"];
+            private _hexColour = GVAR(debugHexColourMap) getOrDefault [_missionType, "#ffffff"];
             private _typeLabel = toUpper (_missionType select [0, 1]) + (_missionType select [1]);
-            private _timeText = [_timeRemaining] call _fnc_formatTime;
+            private _timeText = [_timeRemaining] call GVAR(debugFormatTime);
 
             if (_missionType isEqualTo "recon" && {_reconState isNotEqualTo "approach"}) then {
                 format ["<t color='%1'>%2 [%3] %4</t>", _hexColour, _typeLabel, _reconState, _timeText]

@@ -41,6 +41,39 @@ GVAR(controllerInitialised) = false;
 // Intercept state
 GVAR(nextInterceptTime) = 0;
 
+// Debug provider static data (used by draw closures — must be GVAR, not private, due to SQF dynamic scoping)
+GVAR(debugColourMap) = createHashMapFromArray [
+    ["cap", [0.4, 0.7, 1, 0.9]],
+    ["recon", [1, 1, 0.3, 0.9]],
+    ["cas", [1, 0.5, 0, 0.9]],
+    ["strike", [1, 0.2, 0.2, 0.9]],
+    ["intercept", [1, 0.3, 1, 0.9]]
+];
+GVAR(debugHexColourMap) = createHashMapFromArray [
+    ["cap", "#66b3ff"],
+    ["recon", "#ffff4d"],
+    ["cas", "#ff8000"],
+    ["strike", "#ff3333"],
+    ["intercept", "#ff4dff"]
+];
+GVAR(debugTimeoutMap) = createHashMapFromArray [
+    ["cap", QGVAR(capTimeout)],
+    ["recon", QGVAR(reconTimeout)],
+    ["cas", QGVAR(casTimeout)],
+    ["strike", QGVAR(strikeTimeout)],
+    ["intercept", QGVAR(interceptTimeout)]
+];
+GVAR(debugFormatTime) = {
+    params ["_seconds"];
+    private _minutes = floor (_seconds / 60);
+    private _secs = floor (_seconds mod 60);
+    if (_secs < 10) then {
+        format ["%1:0%2", _minutes, _secs]
+    } else {
+        format ["%1:%2", _minutes, _secs]
+    };
+};
+
 // Server events — mission tracking
 [QGVAR(missionComplete), {
     params ["_group", "_vehicle"];
