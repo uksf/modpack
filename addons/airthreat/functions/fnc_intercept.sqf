@@ -39,6 +39,7 @@ _resultA params ["_groupA", "_vehicleA"];
 if (isNull _groupA) exitWith {};
 
 [_groupA, _vehicleA, "intercept"] call FUNC(registerMission);
+_vehicleA setVariable [QGVAR(interceptTarget), _target, true];
 
 {
     _x setSkill 1;
@@ -62,6 +63,7 @@ _resultB params ["_groupB", "_vehicleB"];
 
 if (!isNull _groupB) then {
     [_groupB, _vehicleB, "intercept"] call FUNC(registerMission);
+    _vehicleB setVariable [QGVAR(interceptTarget), _target, true];
 
     {
         _x setSkill 1;

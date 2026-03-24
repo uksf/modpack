@@ -95,7 +95,7 @@ private _expiryTime = time + GVAR(reconTimeout);
         case "approach": {
             // Check if we've reached the target area
             if ((_vehiclePosition distance _targetPosition) < 1500) then {
-                _vehicle setVariable [QGVAR(reconState), "loiter"];
+                _vehicle setVariable [QGVAR(reconState), "loiter", true];
                 _vehicle setVariable [QGVAR(reconSpotTime), time + 30 + random 60];
                 INFO("Recon entering loiter over target area");
             };
@@ -109,7 +109,7 @@ private _expiryTime = time + GVAR(reconTimeout);
                 if (!isNull _target) then {
                     _vehicle setVariable [QGVAR(reconObservedPosition), getPosASL _target, true];
                 };
-                _vehicle setVariable [QGVAR(reconState), "spotted"];
+                _vehicle setVariable [QGVAR(reconState), "spotted", true];
 
                 // 60% chance to trigger follow-up strike
                 if (random 1 < 0.6) then {
