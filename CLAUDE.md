@@ -229,6 +229,22 @@ PFH callbacks receive `[_args, _idPFH]` as `_this`. Always destructure with `par
 [{/* code */}, [args], delay] call CBA_fnc_waitAndExecute;
 ```
 
+### SQF Scoping: No Lexical Closures
+
+SQF uses **dynamic scoping**. Code blocks (`{...}`) are NOT closures — they do not capture the defining scope's private variables. When a code block is stored and called later (e.g. registered as a callback, stored in a hashmap, passed to a PFH), any `private` variables from the original scope will be `nil`.
+
+```sqf
+// BROKEN — _myData is nil when the callback executes later
+private _myData = [1, 2, 3];
+private _fnc_callback = { count _myData };  // _myData looked up in CALLING scope, not here
+
+// CORRECT — use GVAR for data that callbacks need
+GVAR(myData) = [1, 2, 3];
+private _fnc_callback = { count GVAR(myData) };  // GVAR is globally accessible
+```
+
+This applies to: CBA event handlers, PFH callbacks, debug provider draw functions, `CBA_fnc_waitAndExecute` callbacks, and any code block stored for later execution.
+
 ## SQF Lint Rules (HEMTT)
 
 These are enforced by `hemtt check`. Write code that passes without warnings:
