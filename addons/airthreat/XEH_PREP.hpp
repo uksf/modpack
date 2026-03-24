@@ -1,7 +1,9 @@
 PREP(addRtbWaypoint);
 PREP(canSpawnMission);
 PREP(cap);
+PREP(cas);
 PREP(cleanupAircraft);
+PREP(executeStrikeRun);
 PREP(moduleCasStrikeZone);
 PREP(moduleController);
 PREP(moduleAirspace);
@@ -10,6 +12,8 @@ PREP(moduleSpawnPoint);
 PREP(registerMission);
 PREP(recon);
 PREP(reconFollowUp);
+PREP(selectCasOrStrike);
 PREP(selectTarget);
 PREP(spawnAircraft);
+PREP(strike);
 PREP(unregisterMission);
