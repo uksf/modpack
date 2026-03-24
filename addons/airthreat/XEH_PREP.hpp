@@ -3,6 +3,7 @@ PREP(canSpawnMission);
 PREP(cap);
 PREP(cas);
 PREP(cleanupAircraft);
+PREP(commanderLoop);
 PREP(executeStrikeRun);
 PREP(intercept);
 PREP(interceptPursue);
