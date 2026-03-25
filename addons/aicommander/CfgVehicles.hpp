@@ -65,9 +65,9 @@ class CfgVehicles {
                 tooltip = "Delay before validating and emitting first contact report";
                 control = "EditShort";
                 validate = "NUMBER";
-                min = 5;
+                min = 2;
                 max = 180;
-                defaultValue = "20";
+                defaultValue = "2";
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(contactConfirmDelaySec),_value,true)]);
             };
 

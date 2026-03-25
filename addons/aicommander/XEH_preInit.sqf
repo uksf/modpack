@@ -28,6 +28,9 @@ if (isServer) then {
     }] call CBA_fnc_addClassEventHandler;
 };
 
+// Also consume mission-level hit events so contact reporting works regardless of unit locality (server/HC/client).
+[QEGVAR(mission,hitRaw), {call FUNC(handleMissionHitRaw)}] call CBA_fnc_addEventHandler;
+
 ADDON = true;
 
 

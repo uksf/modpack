@@ -121,6 +121,22 @@ private _enemyEntries = [];
     _enemyEntries pushBack (_enemyByGroup getOrDefault [_x, createHashMap]);
 } forEach keys _enemyByGroup;
 
+if (_enemyEntries isEqualTo []) exitWith {
+    _session set ["shooters", createHashMap];
+    _sessions set [_groupKey, _session];
+    _commander setVariable [QGVAR(contactSessions), _sessions];
+};
+
+private _primaryEnemy = _enemyEntries findIf {_x getOrDefault ["fromShooter", false]};
+if (_primaryEnemy < 0) then {
+    _primaryEnemy = _enemyEntries findIf {_x getOrDefault ["fromKnownTargets", false]};
+};
+if (_primaryEnemy < 0) then {_primaryEnemy = 0;};
+private _primaryEnemyEntry = _enemyEntries#_primaryEnemy;
+private _enemyGroupKeyPrimary = _primaryEnemyEntry getOrDefault ["groupKey", "unknown"];
+private _enemyPosPrimary = _primaryEnemyEntry getOrDefault ["position2D", [0, 0]];
+private _enemyGridPrimary = _primaryEnemyEntry getOrDefault ["grid", [0, 0]];
+
 private _unitsTotal = 0;
 {
     _unitsTotal = _unitsTotal + (_x getOrDefault ["unitCount", 0]);
@@ -165,12 +181,19 @@ private _friendlyGrid = [_friendlyPos2D, _gridCellSize] call FUNC(getGridCoord);
     ["actionId", _entry getOrDefault ["actionId", "none"]],
     ["reason", "engaged"],
     ["message", format [
-        "group=%1 task=%2 target=%3 friendly_grid=%4,%5 enemy_groups=%6 enemy_units=%7 confidence{shooter:%8 known:%9} buckets{man:%10 car:%11 apc:%12 tank:%13 air:%14 other:%15}",
+        "group=%1 task=%2 target=%3 friendly_pos=%4,%5 friendly_grid=%6,%7 enemy_group=%8 enemy_pos=%9,%10 enemy_grid=%11,%12 enemy_groups=%13 enemy_units=%14 confidence{shooter:%15 known:%16} buckets{man:%17 car:%18 apc:%19 tank:%20 air:%21 other:%22}",
         _groupKey,
         _entry getOrDefault ["actionType", "none"],
         _entry getOrDefault ["targetObjectiveName", "none"],
+        round (_friendlyPos2D#0),
+        round (_friendlyPos2D#1),
         _friendlyGrid#0,
         _friendlyGrid#1,
+        _enemyGroupKeyPrimary,
+        round (_enemyPosPrimary#0),
+        round (_enemyPosPrimary#1),
+        _enemyGridPrimary#0,
+        _enemyGridPrimary#1,
         _groupsTotal,
         _unitsTotal,
         _groupsFromShooter,

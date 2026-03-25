@@ -34,7 +34,7 @@ private _managedGroupCap = [_module getVariable [QGVAR(managedGroupCap), 9], 9] 
 private _maxConcurrentActions = 3;
 private _maxWaveSize = [_module getVariable [QGVAR(maxWave), 3], 3] call _fnc_toNumber;
 private _loopInterval = [_module getVariable [QGVAR(loopInterval), 60], 60] call _fnc_toNumber;
-private _contactConfirmDelay = [_module getVariable [QGVAR(contactConfirmDelaySec), 20], 20] call _fnc_toNumber;
+private _contactConfirmDelay = [_module getVariable [QGVAR(contactConfirmDelaySec), 2], 2] call _fnc_toNumber;
 private _followupContactCooldown = [_module getVariable [QGVAR(followupContactCooldownSec), 30], 30] call _fnc_toNumber;
 private _sitrepInterval = [_module getVariable [QGVAR(sitrepIntervalSec), 180], 180] call _fnc_toNumber;
 private _intelStaleTtl = [_module getVariable [QGVAR(intelStaleTtlSec), 600], 600] call _fnc_toNumber;
@@ -52,7 +52,7 @@ _module setVariable [QGVAR(spawnQueue), []];
 _module setVariable [QGVAR(actionRequests), []];
 _module setVariable [QGVAR(groupCatalog), []];
 _module setVariable [QGVAR(nextSpawnAt), 0];
-_module setVariable [QGVAR(contactConfirmDelaySec), (_contactConfirmDelay max 5)];
+_module setVariable [QGVAR(contactConfirmDelaySec), (_contactConfirmDelay max 2)];
 _module setVariable [QGVAR(followupContactCooldownSec), (_followupContactCooldown max 5)];
 _module setVariable [QGVAR(sitrepIntervalSec), (_sitrepInterval max 30)];
 _module setVariable [QGVAR(intelStaleTtlSec), (_intelStaleTtl max 60)];

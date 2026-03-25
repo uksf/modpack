@@ -84,7 +84,7 @@ if (!isNull _shooter && {alive _shooter} && {side _shooter isNotEqualTo _command
 };
 _session set ["shooters", _shooters];
 
-private _confirmDelay = (_matchedCommander getVariable [QGVAR(contactConfirmDelaySec), 20]) max 5;
+private _confirmDelay = (_matchedCommander getVariable [QGVAR(contactConfirmDelaySec), 2]) max 2;
 private _nextReportEligibleAt = _session getOrDefault ["nextReportEligibleAt", 0];
 private _confirmPending = _session getOrDefault ["confirmPending", false];
 
@@ -92,8 +92,7 @@ if (_now >= _nextReportEligibleAt && {!_confirmPending}) then {
     _session set ["confirmPending", true];
 
     [{
-        params ["_args"];
-        _args params ["_commander", "_groupKey"];
+        params ["_commander", "_groupKey"];
         [_commander, _groupKey] call FUNC(processContactSession);
     }, [_matchedCommander, _groupKey], _confirmDelay] call CBA_fnc_waitAndExecute;
 };
