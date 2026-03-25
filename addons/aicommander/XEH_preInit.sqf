@@ -14,6 +14,20 @@ GVAR(overlayEH) = -1;
 GVAR(safeSpawnOverlayEnabled) = false;
 GVAR(safeSpawnOverlayEH) = -1;
 
+if (isServer) then {
+    [QGVAR(hitRawForward), {call FUNC(handleMissionHitRaw)}] call CBA_fnc_addEventHandler;
+
+    ["CAManBase", "init", {
+        params ["_unit"];
+
+        if (isNull _unit) exitWith {};
+        _unit addMPEventHandler ["MPHit", {
+            params ["_unit", "", "", "_shooter"];
+            [_unit, _shooter] call FUNC(handleMissionHitRaw);
+        }];
+    }] call CBA_fnc_addClassEventHandler;
+};
+
 ADDON = true;
 
 

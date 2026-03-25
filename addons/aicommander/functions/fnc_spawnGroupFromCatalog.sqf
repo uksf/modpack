@@ -34,7 +34,13 @@ private _stagingObjective = [_commander, _targetObjectiveName] call FUNC(findSta
 if (isNull _stagingObjective) exitWith {[false, "no_staging_objective", grpNull, objNull]};
 
 private _poolCurrent = _stagingObjective getVariable [QGVAR(forcePoolGroups), 0];
-if (_poolCurrent < 1) exitWith {[false, "staging_pool_empty", grpNull, _stagingObjective]};
+if (_poolCurrent < 1) then {
+    // Re-resolve once in case another dispatch consumed the selected staging pool first.
+    _stagingObjective = [_commander, _targetObjectiveName] call FUNC(findStagingObjective);
+    if (isNull _stagingObjective) exitWith {[false, "staging_pool_empty", grpNull, objNull]};
+    _poolCurrent = _stagingObjective getVariable [QGVAR(forcePoolGroups), 0];
+    if (_poolCurrent < 1) exitWith {[false, "staging_pool_empty", grpNull, _stagingObjective]};
+};
 
 private _spawnPos = [_stagingObjective] call FUNC(pickSafeSpawnPos);
 private _side = _commander getVariable [QGVAR(side), sideUnknown];
@@ -63,6 +69,7 @@ if (isNull _group || {isNull leader _group}) exitWith {[false, "spawn_failed", g
 _stagingObjective setVariable [QGVAR(forcePoolGroups), (_poolCurrent - 1) max 0, true];
 
 private _managedGroups = _commander getVariable [QGVAR(managedGroups), []];
+private _startedStrength = ({alive _x} count units _group) max 1;
 _managedGroups pushBack (createHashMapFromArray [
     ["group", _group],
     ["actionId", _actionId],
@@ -70,13 +77,17 @@ _managedGroups pushBack (createHashMapFromArray [
     ["groupType", _groupType],
     ["targetObjectiveName", _targetObjectiveName],
     ["spawnedAt", if (!isNil "CBA_missionTime") then {CBA_missionTime} else {time}],
-    ["stagingObjective", _stagingObjective]
+    ["stagingObjective", _stagingObjective],
+    ["startedStrength", _startedStrength],
+    ["lastSitrepAt", -1],
+    ["rtbRecommended", false]
 ]);
 _commander setVariable [QGVAR(managedGroups), _managedGroups];
 
 _group setVariable [QGVAR(commander), _commander];
 _group setVariable [QGVAR(actionId), _actionId];
 _group setVariable [QGVAR(targetObjectiveName), _targetObjectiveName];
+_group setVariable [QGVAR(sitrepPFH), -1];
 
 private _targetObjective = objNull;
 {
@@ -89,5 +100,7 @@ if (!isNull _targetObjective) then {
     private _wp = _group addWaypoint [getPosATL _targetObjective, 0];
     _wp setWaypointType "MOVE";
 };
+
+[ _commander, _group ] call FUNC(startGroupSitrepLoop);
 
 [true, "spawned", _group, _stagingObjective]

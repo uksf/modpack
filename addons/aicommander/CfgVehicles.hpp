@@ -59,6 +59,66 @@ class CfgVehicles {
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(loopInterval),_value,true)]);
             };
 
+            class GVAR(contactConfirmDelaySec) {
+                property = QGVAR(contactConfirmDelaySec);
+                displayName = "Contact Confirm Delay (s)";
+                tooltip = "Delay before validating and emitting first contact report";
+                control = "EditShort";
+                validate = "NUMBER";
+                min = 5;
+                max = 180;
+                defaultValue = "20";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(contactConfirmDelaySec),_value,true)]);
+            };
+
+            class GVAR(followupContactCooldownSec) {
+                property = QGVAR(followupContactCooldownSec);
+                displayName = "Follow-up Contact Cooldown (s)";
+                tooltip = "Minimum time between follow-up contact reports per group";
+                control = "EditShort";
+                validate = "NUMBER";
+                min = 5;
+                max = 600;
+                defaultValue = "30";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(followupContactCooldownSec),_value,true)]);
+            };
+
+            class GVAR(sitrepIntervalSec) {
+                property = QGVAR(sitrepIntervalSec);
+                displayName = "SITREP Interval (s)";
+                tooltip = "How often each managed group sends a SITREP";
+                control = "EditShort";
+                validate = "NUMBER";
+                min = 30;
+                max = 3600;
+                defaultValue = "180";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(sitrepIntervalSec),_value,true)]);
+            };
+
+            class GVAR(intelStaleTtlSec) {
+                property = QGVAR(intelStaleTtlSec);
+                displayName = "Intel Stale TTL (s)";
+                tooltip = "How long enemy grid intel remains valid before decaying to unknown";
+                control = "EditShort";
+                validate = "NUMBER";
+                min = 60;
+                max = 7200;
+                defaultValue = "600";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(intelStaleTtlSec),_value,true)]);
+            };
+
+            class GVAR(ineffectiveCasualtyThreshold) {
+                property = QGVAR(ineffectiveCasualtyThreshold);
+                displayName = "Ineffective Casualty Threshold";
+                tooltip = "Casualty ratio at/above which groups are flagged RTB recommended";
+                control = "EditShort";
+                validate = "NUMBER";
+                min = 0.1;
+                max = 1;
+                defaultValue = "0.5";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(ineffectiveCasualtyThreshold),_value,true)]);
+            };
+
             class GVAR(maxWave) {
                 property = QGVAR(maxWave);
                 displayName = "Max Wave Size";

@@ -39,11 +39,11 @@ private _targetPos = getPosATL _targetObjective;
 private _stagingCandidates = _syncedObjectives select {
     private _ownerSide = _x getVariable [QGVAR(ownerSide), sideUnknown];
     private _state = _x getVariable [QGVAR(currentState), "not_owned"];
-    (_ownerSide isEqualTo _commanderSide) && {_state isEqualTo "owned_secure"}
+    private _poolCurrent = _x getVariable [QGVAR(forcePoolGroups), 0];
+    (_ownerSide isEqualTo _commanderSide) && {_state isEqualTo "owned_secure"} && {_poolCurrent > 0}
 };
 
 if (_stagingCandidates isEqualTo []) exitWith {objNull};
 
 private _sorted = [_stagingCandidates, [], {_targetPos distance2D (getPosATL _x)}, "ASCEND"] call BIS_fnc_sortBy;
 _sorted#0
-

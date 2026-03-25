@@ -170,6 +170,42 @@ A balancing term then penalizes excessive vehicle ratio relative to infantry for
 
 ---
 
+## Reporting and Grid Intel
+
+Runtime reporting now tracks contact and awareness outside objective circles.
+
+- Contact trigger source is `uksf_mission_hitRaw` (subscribed by `aicommander` on server).
+- First hit for a managed group starts a delayed confirmation window (`contactConfirmDelaySec`, default `20s`).
+- If group is wiped before confirmation, no contact report is emitted (ambush suppression).
+- Follow-up contact reports are throttled per group by `followupContactCooldownSec` (default `30s`).
+
+Contact report enemy picture is built from two sources:
+
+- Shooter set collected during hit session (ground truth from incoming fire).
+- Group known/spotted contacts (`nearTargets`) to reduce single-shooter under-reporting.
+
+Each report logs:
+
+- Enemy buckets (`man`, `car`, `apc`, `tank`, `air`, `other`)
+- Estimated enemy unit and group counts
+- Confidence summary (`shooter` vs `knownTargets` contributors)
+- Friendly and enemy grid references (when positions are available)
+
+Commander keeps a grid intel map (`intelGrid`) with stale decay:
+
+- Enemy-present cells age out to `unknown` after `intelStaleTtlSec` (default `600s`).
+- Decay operations emit `INTEL_DECAY` logs.
+
+SITREPs are group-owned loops (not commander-wide polling):
+
+- Each spawned managed group starts its own SITREP loop.
+- Interval is configured on commander via `sitrepIntervalSec` (default `180s`).
+- SITREP logs include alive count, casualty ratio, grid, task, and target objective.
+- If casualty ratio crosses `ineffectiveCasualtyThreshold` (default `0.5`), system logs `RTB_RECOMMENDED` (recommendation only, no auto-retask yet).
+- If group dies, loop ends and a `GROUP_STATUS` KIA event is logged.
+
+---
+
 ## Logging and Debug Surfaces
 
 ### RPT logs
