@@ -2,8 +2,12 @@
 
 call FUNC(registerDebugProvider);
 
+if (hasInterface) then {
+    call FUNC(addECMActions);
+};
+
 if (!isServer) exitWith {
-    INFO("2) Postinit failed server check");
+    INFO("2) Postinit failed server check (non-server)");
 };
 
 ["CBA_settingsInitialized", {
@@ -31,5 +35,11 @@ if (!isServer) exitWith {
         private _delay = [GVAR(dynamicPatrolStartDelay), GVAR(dynamicPatrolCooldown)] select (GVAR(dynamicPatrolStartDelay) == 0);
         [{call FUNC(dynamicPatrol)}, [], _delay * 60] call CBA_fnc_waitAndExecute;
     };
-}] call CBA_fnc_addEventHandler;
 
+    if (GVAR(ecmEnabled)) then {
+        if (GVAR(ecmScanPFHID) != -1) then {
+            [GVAR(ecmScanPFHID)] call CBA_fnc_removePerFrameHandler;
+        };
+        GVAR(ecmScanPFHID) = [{call FUNC(serverECMLoop)}, GVAR(ecmScanInterval)] call CBA_fnc_addPerFrameHandler;
+    };
+}] call CBA_fnc_addEventHandler;

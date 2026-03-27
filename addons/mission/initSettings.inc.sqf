@@ -334,3 +334,103 @@
     [0, 120, 0, 0],
     1
 ] call CBA_settings_fnc_init;
+
+// ECM
+[
+    QGVAR(ecmEnabled),
+    "CHECKBOX",
+    ["ECM Enabled", "Enable or disable mission ECM anti-drone functionality"],
+    [COMPONENT_NAME, "ECM"],
+    true,
+    1,
+    {
+        if (!isServer) exitWith {};
+
+        if (_this) then {
+            if (GVAR(ecmScanPFHID) != -1) then {
+                [GVAR(ecmScanPFHID)] call CBA_fnc_removePerFrameHandler;
+            };
+            GVAR(ecmScanPFHID) = [{call FUNC(serverECMLoop)}, GVAR(ecmScanInterval)] call CBA_fnc_addPerFrameHandler;
+        } else {
+            if (GVAR(ecmScanPFHID) != -1) then {
+                [GVAR(ecmScanPFHID)] call CBA_fnc_removePerFrameHandler;
+                GVAR(ecmScanPFHID) = -1;
+            };
+        };
+    }
+] call CBA_settings_fnc_init;
+
+[
+    QGVAR(ecmBackpackClassesString),
+    "EDITBOX",
+    ["ECM Backpacks", "Array of backpack class names that can run backpack ECM"],
+    [COMPONENT_NAME, "ECM"],
+    "[]",
+    1,
+    {GVAR(ecmBackpackClasses) = call compile _this;}
+] call CBA_settings_fnc_init;
+
+[
+    QGVAR(ecmVehicleClassesString),
+    "EDITBOX",
+    ["ECM Vehicles", "Array of vehicle class names that provide vehicle ECM"],
+    [COMPONENT_NAME, "ECM"],
+    "[]",
+    1,
+    {GVAR(ecmVehicleClasses) = call compile _this;}
+] call CBA_settings_fnc_init;
+
+[
+    QGVAR(ecmDroneClassesString),
+    "EDITBOX",
+    ["ECM Drone Types", "Array of drone vehicle class names affected by ECM"],
+    [COMPONENT_NAME, "ECM"],
+    "[]",
+    1,
+    {GVAR(ecmDroneClasses) = call compile _this;}
+] call CBA_settings_fnc_init;
+
+[
+    QGVAR(ecmBackpackRange),
+    "SLIDER",
+    ["ECM Backpack Range", "Range in meters for backpack ECM"],
+    [COMPONENT_NAME, "ECM"],
+    [5, 3000, 50, 0],
+    1
+] call CBA_settings_fnc_init;
+
+[
+    QGVAR(ecmVehicleRange),
+    "SLIDER",
+    ["ECM Vehicle Range", "Range in meters for vehicle ECM"],
+    [COMPONENT_NAME, "ECM"],
+    [5, 5000, 150, 0],
+    1
+] call CBA_settings_fnc_init;
+
+[
+    QGVAR(ecmBatteryTime),
+    "SLIDER",
+    ["ECM Battery Time", "Backpack ECM battery lifetime in seconds"],
+    [COMPONENT_NAME, "ECM"],
+    [10, 7200, 900, 0],
+    1
+] call CBA_settings_fnc_init;
+
+[
+    QGVAR(ecmExplosionDelay),
+    "SLIDER",
+    ["ECM Explosion Delay", "Delay in seconds before jammed drones explode"],
+    [COMPONENT_NAME, "ECM"],
+    [1, 60, 5, 0],
+    1
+] call CBA_settings_fnc_init;
+
+[
+    QGVAR(ecmScanInterval),
+    "SLIDER",
+    ["ECM Scan Interval", "Interval in seconds between server ECM scans"],
+    [COMPONENT_NAME, "ECM"],
+    [0.1, 10, 1, 1],
+    1
+] call CBA_settings_fnc_init;

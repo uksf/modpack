@@ -97,3 +97,22 @@ force uksf_mission_dynamicPatrolVehiclePoolString = "['O_MBT_02_cannon_F']";
 force uksf_mission_dynamicPatrolUnitSide = 0;
 // Time in minutes to delay running the dynamic patrol system from the start of the mission [0, 120, 0, 0]
 force uksf_mission_dynamicPatrolStartDelay = 0;
+
+// ECM anti-drone testing
+force uksf_mission_ecmEnabled = true;
+// Backpack class names that can run ECM (array string)
+force uksf_mission_ecmBackpackClassesString = "['B_AssaultPack_blk']";
+// Vehicle class names that provide vehicle ECM (array string)
+force uksf_mission_ecmVehicleClassesString = "['LandVehicle']";
+// Drone vehicle class names affected by ECM (array string)
+force uksf_mission_ecmDroneClassesString = "[]";
+// Backpack ECM range in meters
+force uksf_mission_ecmBackpackRange = 50;
+// Vehicle ECM range in meters
+force uksf_mission_ecmVehicleRange = 150;
+// Backpack battery lifetime in seconds
+force uksf_mission_ecmBatteryTime = 3600;
+// Delay before jammed drones explode
+force uksf_mission_ecmExplosionDelay = 2;
+// Server scan interval in seconds
+force uksf_mission_ecmScanInterval = 1;

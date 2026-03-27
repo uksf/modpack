@@ -28,6 +28,8 @@ GVAR(dynamicPatrolIncludeAreas) = [];
 [QGVAR(dynamicPatrol), {call FUNC(dynamicPatrol)}] call CBA_fnc_addEventHandler;
 [QGVAR(dynamicPatrolArea), {call FUNC(dynamicPatrolArea)}] call CBA_fnc_addEventHandler;
 [QGVAR(dynamicPatrolSpawn), {call FUNC(dynamicPatrolSpawn)}] call CBA_fnc_addEventHandler;
+[QGVAR(ecmRequestActivate), {(_this#0) call FUNC(ecmActivate)}] call CBA_fnc_addEventHandler;
+[QGVAR(ecmRequestDeactivate), {(_this#0) call FUNC(ecmDeactivate)}] call CBA_fnc_addEventHandler;
 
 ["CAManBase", "init", {_this#0 addMPEventHandler ["MPHit", {call FUNC(hit)}]}] call CBA_fnc_addClassEventHandler;
 ["StaticMortar", "init", {call FUNC(addArtillerySupportUnit)}] call CBA_fnc_addClassEventHandler;
@@ -38,5 +40,19 @@ GVAR(dynamicPatrolIncludeAreas) = [];
 GVAR(dynamicPatrolDebugMap) = createHashMap;
 GVAR(dynamicPatrolDebugPlayers) = [];
 GVAR(dynamicPatrolDebugMarkers) = [];
+
+GVAR(ecmEnabled) = false;
+GVAR(ecmBackpackClasses) = [];
+GVAR(ecmVehicleClasses) = [];
+GVAR(ecmDroneClasses) = [];
+GVAR(ecmBackpackRange) = 50;
+GVAR(ecmVehicleRange) = 150;
+GVAR(ecmBatteryTime) = 900;
+GVAR(ecmExplosionDelay) = 5;
+GVAR(ecmScanInterval) = 1;
+
+GVAR(ecmScanPFHID) = -1;
+
+[QGVAR(applyDroneJamLocal), {(_this#0) call FUNC(applyDroneJamLocal)}] call CBA_fnc_addEventHandler;
 
 ADDON = true;

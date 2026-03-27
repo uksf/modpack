@@ -9,7 +9,9 @@ class CfgPatches {
             QGVAR(moduleDynamicPatrolIncludeArea),
             QGVAR(moduleDynamicPatrolArea)
         };
-        weapons[] = {};
+        weapons[] = {
+            QGVAR(ecmBattery)
+        };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             "uksf_common"
@@ -24,3 +26,4 @@ class CfgPatches {
 #include "CfgEventHandlers.hpp"
 #include "Cfg3den.hpp"
 #include "CfgVehicles.hpp"
+#include "CfgWeapons.hpp"
