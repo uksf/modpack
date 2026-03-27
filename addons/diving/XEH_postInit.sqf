@@ -4,6 +4,8 @@
 ["ade_item_bag", QGVAR(bag)] call ace_common_fnc_registerItemReplacement;
 ["ade_item_rebreather", QGVAR(rebreather)] call ace_common_fnc_registerItemReplacement;
 ["ade_item_DiveComputer", QGVAR(diveComputer)] call ace_common_fnc_registerItemReplacement;
+["ade_item_cylinder_single_6ltr_300bar_pureOxygen", QGVAR(cylinderSinglePureOxygen)] call ace_common_fnc_registerItemReplacement;
+["ade_item_cylinder_twin_6ltr_300bar_pureOxygen", QGVAR(cylinderDoublePureOxygen)] call ace_common_fnc_registerItemReplacement;
 
 if (isServer) then {
     [QGVAR(playerDataPublish), {GVAR(playerDataHash) set _this}] call CBA_fnc_addEventHandler;
@@ -21,14 +23,8 @@ if (hasInterface) then {
         };
 
         private _hasRebreather = (vest player) in [QGVAR(rebreather), "UKSF_LARV_1", "UKSF_LARV_2"];
-        if (!_hasRebreather) then {
-            if (GVAR(updatePFHID) != -1) then {
-                [false] call FUNC(loop);
-            };
-        } else {
-            if (GVAR(updatePFHID) == -1) then {
-                [true] call FUNC(loop);
-            };
+        if (_hasRebreather && GVAR(updatePFHID) == -1) then {
+            [true] call FUNC(loop);
         };
     }] call CBA_fnc_addPlayerEventHandler;
 };

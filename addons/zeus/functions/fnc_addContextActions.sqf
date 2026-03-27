@@ -53,19 +53,25 @@ _action = [QGVAR(tools), "Tools", "", {}, {true}, [], {
 _action = [QGVAR(debug), "Debug", "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa", {}, {true}, [], {
     private _actions = [];
 
+    // Toggleable providers — those with a menuName
+    private _toggleableKeys = (keys GVAR(debugProviders)) select {
+        "menuName" in (GVAR(debugProviders) get _x)
+    };
+
     // Show All (visible when any available providers are not active)
     private _action = [QGVAR(showAllDebug), "Show All", "", {
         {
-            private _provider = GVAR(debugActions) get _x;
-            _provider params ["", "", "_fnc_menuCondition"];
+            private _provider = GVAR(debugProviders) get _x;
+            private _fnc_menuCondition = _provider getOrDefault ["menuCondition", {true}];
             if (call _fnc_menuCondition && {!(GVAR(debugActiveToggles) getOrDefault [_x, false])}) then {
                 [_x] call FUNC(debugToggle);
             };
-        } forEach (keys GVAR(debugActions));
+        } forEach ((keys GVAR(debugProviders)) select {"menuName" in (GVAR(debugProviders) get _x)});
     }, {
-        (keys GVAR(debugActions)) findIf {
-            private _provider = GVAR(debugActions) get _x;
-            _provider params ["", "", "_fnc_menuCondition"];
+        private _toggleable = (keys GVAR(debugProviders)) select {"menuName" in (GVAR(debugProviders) get _x)};
+        _toggleable findIf {
+            private _provider = GVAR(debugProviders) get _x;
+            private _fnc_menuCondition = _provider getOrDefault ["menuCondition", {true}];
             (call _fnc_menuCondition) && {!(GVAR(debugActiveToggles) getOrDefault [_x, false])}
         } != -1
     }] call zen_context_menu_fnc_createAction;
@@ -77,9 +83,10 @@ _action = [QGVAR(debug), "Debug", "\a3\ui_f_curator\data\logos\arma3_curator_eye
             if (GVAR(debugActiveToggles) getOrDefault [_x, false]) then {
                 [_x] call FUNC(debugToggle);
             };
-        } forEach (keys GVAR(debugActions));
+        } forEach ((keys GVAR(debugProviders)) select {"menuName" in (GVAR(debugProviders) get _x)});
     }, {
-        (keys GVAR(debugActions)) findIf {GVAR(debugActiveToggles) getOrDefault [_x, false]} != -1
+        private _toggleable = (keys GVAR(debugProviders)) select {"menuName" in (GVAR(debugProviders) get _x)};
+        _toggleable findIf {GVAR(debugActiveToggles) getOrDefault [_x, false]} != -1
     }] call zen_context_menu_fnc_createAction;
     _actions pushBack [_action, [], 99];
 
@@ -93,8 +100,10 @@ _action = [QGVAR(debug), "Debug", "\a3\ui_f_curator\data\logos\arma3_curator_eye
     // Dynamic provider toggles
     {
         private _providerKey = _x;
-        private _provider = GVAR(debugActions) get _providerKey;
-        _provider params ["_menuName", "_menuPriority", "_fnc_menuCondition"];
+        private _provider = GVAR(debugProviders) get _providerKey;
+        private _menuName = _provider get "menuName";
+        private _menuPriority = _provider getOrDefault ["menuPriority", 0];
+        private _fnc_menuCondition = _provider getOrDefault ["menuCondition", {true}];
 
         if (call _fnc_menuCondition) then {
             private _active = GVAR(debugActiveToggles) getOrDefault [_providerKey, false];
@@ -104,7 +113,7 @@ _action = [QGVAR(debug), "Debug", "\a3\ui_f_curator\data\logos\arma3_curator_eye
                 {
                     params ["", "", "", "", "", "", "_args"];
                     _args params ["_providerKey"];
-                    
+
                     [_providerKey] call FUNC(debugToggle);
                 },
                 {true},
@@ -121,7 +130,7 @@ _action = [QGVAR(debug), "Debug", "\a3\ui_f_curator\data\logos\arma3_curator_eye
             ] call zen_context_menu_fnc_createAction;
             _actions pushBack [_action, [], _menuPriority];
         };
-    } forEach (keys GVAR(debugActions));
+    } forEach _toggleableKeys;
 
     _actions
 }] call zen_context_menu_fnc_createAction;

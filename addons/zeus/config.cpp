@@ -11,7 +11,6 @@ class CfgPatches {
             QGVAR(moduleExplosionSmall),
             QGVAR(moduleToggleCaching),
             QGVAR(moduleToggleCleanup),
-            QGVAR(moduleToggleFps),
             QGVAR(moduleToggleHasRadio),
             QGVAR(moduleToggleZeusVisibility),
             QGVAR(moduleParadrop),

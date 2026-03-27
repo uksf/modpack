@@ -18,7 +18,7 @@
 */
 params [["_type", "", [""]], ["_data", createHashMap, [createHashMap]]];
 
-if (_type isNotEqualTo "server_status") then {
+if (_type isNotEqualTo "server_status" && {_type isNotEqualTo "performance"}) then {
     TRACE_1("Sending event",_type);
 };
 

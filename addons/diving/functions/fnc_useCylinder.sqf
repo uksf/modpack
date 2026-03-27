@@ -25,7 +25,8 @@ GVAR(currentPercentO2) = getNumber (_config >> QGVAR(cylinderPercentO2));
 GVAR(currentPercentN2) = getNumber (_config >> QGVAR(cylinderPercentN2));
 GVAR(currentPercentHe) = getNumber (_config >> QGVAR(cylinderPercentHe));
 
-GVAR(noAirTimeout) = 120;
+GVAR(noAirTimeout) = NO_AIR_TIMEOUT;
+GVAR(connectedGas) = true;
 
 private _className = configName _config;
 player removeItem _className;
