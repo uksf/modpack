@@ -59,6 +59,13 @@ _module setVariable [QGVAR(intelStaleTtlSec), (_intelStaleTtl max 60)];
 _module setVariable [QGVAR(ineffectiveCasualtyThreshold), (_ineffectiveThreshold max 0.1) min 1];
 _module setVariable [QGVAR(contactSessions), createHashMap];
 _module setVariable [QGVAR(intelGrid), createHashMap];
+_module setVariable [QGVAR(patrolMaxGroups), 3];
+_module setVariable [QGVAR(patrolPerObjectiveCap), 1];
+_module setVariable [QGVAR(patrolLoopIntervalSec), 90];
+_module setVariable [QGVAR(patrolTaskRequests), []];
+_module setVariable [QGVAR(globalAirStrikeCooldownSec), 30];
+_module setVariable [QGVAR(nextAirStrikeAt), 0];
+_module setVariable [QGVAR(autoAirStrikeChanceOnContact), 0.2];
 
 private _commanderIndex = count GVAR(commanders);
 private _phaseOffset = (_commanderIndex * 0.37) mod 2;
@@ -122,6 +129,19 @@ if ((GVAR(commanders) find _module) == -1) then {
         }, 30, [_commander]] call CBA_fnc_addPerFrameHandler;
 
         _commander setVariable [QGVAR(intelPFH), _intelPFH];
+
+        private _patrolPFH = [{
+            params ["_args", "_idPFH"];
+            _args params ["_commanderPFH"];
+
+            if (isNull _commanderPFH) exitWith {
+                [_idPFH] call CBA_fnc_removePerFrameHandler;
+            };
+
+            [_commanderPFH] call FUNC(patrolLoop);
+        }, (_commander getVariable [QGVAR(patrolLoopIntervalSec), 90]) max 10, [_commander]] call CBA_fnc_addPerFrameHandler;
+
+        _commander setVariable [QGVAR(patrolPFH), _patrolPFH];
     },
     [_module],
     10

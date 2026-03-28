@@ -5,7 +5,8 @@ class CfgPatches {
         name = COMPONENT_NAME;
         units[] = {
             QGVAR(commanderModule),
-            QGVAR(objectiveModule)
+            QGVAR(objectiveModule),
+            QGVAR(airStrikeSpawnModule)
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;

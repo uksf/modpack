@@ -13,9 +13,12 @@ GVAR(overlayEnabled) = false;
 GVAR(overlayEH) = -1;
 GVAR(safeSpawnOverlayEnabled) = false;
 GVAR(safeSpawnOverlayEH) = -1;
+GVAR(airStrikeSpawns) = [];
 
 if (isServer) then {
     [QGVAR(hitRawForward), {call FUNC(handleMissionHitRaw)}] call CBA_fnc_addEventHandler;
+    [QGVAR(forceAirStrikeOnPlayer), {call FUNC(debugForceAirStrikeOnPlayer)}] call CBA_fnc_addEventHandler;
+    [QGVAR(staffRequest), {call FUNC(submitStaffRequest)}] call CBA_fnc_addEventHandler;
 
     ["CAManBase", "init", {
         params ["_unit"];
@@ -32,5 +35,4 @@ if (isServer) then {
 [QEGVAR(mission,hitRaw), {call FUNC(handleMissionHitRaw)}] call CBA_fnc_addEventHandler;
 
 ADDON = true;
-
 

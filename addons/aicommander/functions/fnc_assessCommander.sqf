@@ -147,7 +147,7 @@ private _rankedActions = [];
         };
         case "not_owned": {
             _action = "defend";
-            _score = 50 + (_priority * 5);
+            _score = 70 + (_priority * 5);
             _reason = "maintain_control";
         };
         case "enemy_owned": {

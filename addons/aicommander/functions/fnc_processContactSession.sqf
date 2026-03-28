@@ -177,6 +177,24 @@ private _friendlyPos = if (!isNull _friendlyLeader) then {getPosATL _friendlyLea
 private _friendlyPos2D = [_friendlyPos#0, _friendlyPos#1];
 private _friendlyGrid = [_friendlyPos2D, _gridCellSize] call FUNC(getGridCoord);
 
+private _autoAirStrikeChance = (_commander getVariable [QGVAR(autoAirStrikeChanceOnContact), 0.2]) max 0 min 1;
+if (_autoAirStrikeChance > 0 && {(random 1) <= _autoAirStrikeChance}) then {
+    private _airStrikeRequest = createHashMapFromArray [
+        ["type", "air_strike"],
+        ["targetPosition", [_enemyPosPrimary#0, _enemyPosPrimary#1, 0]],
+        ["source", "contact_auto"]
+    ];
+
+    private _airStrikeResult = [_commander, _airStrikeRequest, false] call FUNC(requestAirStrike);
+    _airStrikeResult params ["_airAccepted", "", "_airReason"];
+
+    ["AIR_SUPPORT_CONTACT", _commander, createHashMapFromArray [
+        ["actionId", _entry getOrDefault ["actionId", "none"]],
+        ["reason", _airReason],
+        ["message", format ["autoChance=%1 accepted=%2 enemy_grid=%3,%4", _autoAirStrikeChance, _airAccepted, _enemyGridPrimary#0, _enemyGridPrimary#1]]
+    ]] call FUNC(logExecution);
+};
+
 ["CONTACT_REPORT", _commander, createHashMapFromArray [
     ["actionId", _entry getOrDefault ["actionId", "none"]],
     ["reason", "engaged"],

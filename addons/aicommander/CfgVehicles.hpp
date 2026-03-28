@@ -252,4 +252,75 @@ class CfgVehicles {
             };
         };
     };
+
+    class GVAR(airStrikeSpawnModule) : GVAR(module) {
+        scope = 2;
+        displayName = "(AIC) Air Strike Spawn";
+        icon = "A3\ui_f\data\map\markers\nato\o_plane.paa";
+        portrait = "A3\ui_f\data\map\markers\nato\o_plane.paa";
+        function = QFUNC(moduleAirStrikeSpawn);
+
+        class Attributes : AttributesBase {
+            class GVAR(sideNumber) {
+                property = QGVAR(sideNumber);
+                displayName = "Spawn Side";
+                tooltip = "Side this air strike spawn serves. NONE means any commander side.";
+                control = "Combo";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(sideNumber),_value,true)]);
+                typeName = "NUMBER";
+                defaultValue = -1;
+                class values {
+                    class NONE { name = "NONE (ANY)"; value = -1; };
+                    class BLUFOR { name = "BLUFOR"; value = 0; };
+                    class OPFOR { name = "OPFOR"; value = 1; };
+                    class INDEP { name = "INDEPENDENT"; value = 2; };
+                };
+            };
+
+            class GVAR(aircraftTypes) {
+                property = QGVAR(aircraftTypes);
+                displayName = "Aircraft Types";
+                tooltip = "Class names of aircraft to use for strikes. Comma-separated list in SQF array format";
+                control = "Edit";
+                defaultValue = "[]";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(aircraftTypes),_value,true)]);
+            };
+
+            class GVAR(cooldownSec) {
+                property = QGVAR(cooldownSec);
+                displayName = "Cooldown (s)";
+                tooltip = "Module cooldown between strikes";
+                control = "EditShort";
+                validate = "NUMBER";
+                min = 0;
+                max = 7200;
+                defaultValue = "300";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(cooldownSec),_value,true)]);
+            };
+
+            class GVAR(bombChance) {
+                property = QGVAR(bombChance);
+                displayName = "Big Bomb Chance";
+                tooltip = "Probability [0..1] to use Bomb_04_F. Remaining chance uses Bo_Mk82";
+                control = "EditShort";
+                validate = "NUMBER";
+                min = 0;
+                max = 1;
+                defaultValue = "0.25";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(bombChance),_value,true)]);
+            };
+
+            class GVAR(spawnAltitudeM) {
+                property = QGVAR(spawnAltitudeM);
+                displayName = "Spawn Altitude (m)";
+                tooltip = "Altitude above terrain for FLY spawns";
+                control = "EditShort";
+                validate = "NUMBER";
+                min = 50;
+                max = 5000;
+                defaultValue = "600";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(spawnAltitudeM),_value,true)]);
+            };
+        };
+    };
 };

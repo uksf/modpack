@@ -78,6 +78,14 @@ private _fnc_weight = {
                 default {0};
             };
         };
+        case "patrol": {
+            switch (_type) do {
+                case "man": {4};
+                case "car": {3};
+                case "apc": {1};
+                default {0};
+            };
+        };
         default {
             if (_type isEqualTo "man") then {3} else {1}
         };
