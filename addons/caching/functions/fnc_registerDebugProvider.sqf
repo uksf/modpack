@@ -76,6 +76,12 @@ private _fnc_drawHud = {
     _hudControl ctrlSetStructuredText parseText format ["<t align='center' shadow='1' font='TahomaB'><t color='#aaaaaa'>Caching</t> <t color='#ffffff'>Cached: %1 | Active: %2</t></t>", _totalCached, _totalActive];
 };
 
-[QEGVAR(zeus,registerDebugAction), [_key, _menuName, _menuPriority, _fnc_menuCondition]] call CBA_fnc_localEvent;
-[QEGVAR(zeus,registerDebugServerGetter), [_key, _fnc_serverGetter]] call CBA_fnc_localEvent;
-[QEGVAR(zeus,registerDebugDraw), [_key, _fnc_draw3d, _fnc_drawMap, _fnc_drawHud]] call CBA_fnc_localEvent;
+[QEGVAR(zeus,registerDebugProvider), [_key, createHashMapFromArray [
+    ["draw3d", _fnc_draw3d],
+    ["drawMap", _fnc_drawMap],
+    ["drawHud", _fnc_drawHud],
+    ["serverGetter", _fnc_serverGetter],
+    ["menuName", _menuName],
+    ["menuPriority", _menuPriority],
+    ["menuCondition", _fnc_menuCondition]
+]]] call CBA_fnc_localEvent;

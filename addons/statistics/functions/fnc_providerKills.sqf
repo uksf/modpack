@@ -27,6 +27,14 @@ addMissionEventHandler ["EntityKilled", {
     params ["_victim", "_killer", "_instigator"];
     private _startTime = diag_tickTime;
 
+    // Skip self-kills with no instigator — these are never real combat deaths.
+    // They occur when Arma kills a player's spawn body during join, redeploy,
+    // or relog as part of the respawn cycle.
+    if (_killer isEqualTo _victim && {isNull _instigator}) exitWith {
+        INFO_3("Ignored self-kill (join/redeploy): _victim=%1, _killer=%2, _instigator=%3",_victim,_killer,_instigator);
+        ["kills", _startTime] call FUNC(addProviderTiming);
+    };
+
     // Use instigator if available (e.g. gunner in vehicle), fall back to killer
     private _attacker = if (!isNull _instigator) then {_instigator} else {_killer};
 
@@ -53,18 +61,23 @@ addMissionEventHandler ["EntityKilled", {
         ["kills", _startTime] call FUNC(addProviderTiming);
     };
 
-    // Determine target type
-    private _targetType = "unknown";
-    if (_victim isKindOf "CAManBase") then {
-        _targetType = "infantry";
+    // Determine target type — skip unclassifiable entities
+    private _targetType = if (_victim isKindOf "CAManBase") then {
+        "infantry"
     } else {
         if (_victim isKindOf "LandVehicle" || {_victim isKindOf "Air"} || {_victim isKindOf "Ship"}) then {
-            _targetType = "vehicle";
+            "vehicle"
         } else {
-            if (_victim isKindOf "StaticWeapon") then {
-                _targetType = "static";
+            if (_victim isKindOf "Building") then {
+                "structure"
+            } else {
+                ""
             };
         };
+    };
+
+    if (_targetType isEqualTo "") exitWith {
+        ["kills", _startTime] call FUNC(addProviderTiming);
     };
 
     // Determine target side with bounds safety

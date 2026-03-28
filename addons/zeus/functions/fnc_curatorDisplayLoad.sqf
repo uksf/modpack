@@ -46,12 +46,16 @@ for "_i" from 0 to 4 do {
     GVAR(debugHudControls) pushBack _control;
 };
 
-// Always enable unconscious display while Zeus is open
-GVAR(debugActiveToggles) set [QGVAR(unconscious), true];
+// Enable always-active providers while Zeus is open
+{
+    GVAR(debugActiveToggles) set [_x, true];
+} forEach GVAR(debugAlwaysActiveProviders);
+GVAR(debugSortedActiveKeysDirty) = true;
 
 // Re-subscribe server data streams for any active providers
 {
-    if (_x in GVAR(debugServerGetters)) then {
+    private _provider = GVAR(debugProviders) getOrDefault [_x, createHashMap];
+    if ("serverGetter" in _provider) then {
         [QGVAR(debugStreamToggle), [player, _x, true]] call CBA_fnc_serverEvent;
     };
 } forEach (keys GVAR(debugActiveToggles));

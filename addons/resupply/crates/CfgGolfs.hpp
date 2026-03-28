@@ -10,6 +10,7 @@ class GVAR(gx) : Box_NATO_Ammo_F {
     description = "Grab Box - Empty";
     PREVIEW(gx);
     hiddenSelectionsTextures[] = { QPATHTOF(data\golf\gx.paa), "A3\Weapons_F\Ammoboxes\data\AmmoBox_CO.paa"};
+    ace_cargo_size = 1;
     class TransportMagazines {};
     class TransportWeapons {};
     class TransportItems {};
@@ -185,6 +186,7 @@ class GVAR(g14) : ACE_medicalSupplyCrate {
     editorCategory = "EdCat_Supplies";
     editorSubcategory = QEGVAR(common,golfs);
     hiddenSelectionsTextures[] = { QPATHTOF(data\golf\g14.paa) };
+    ace_cargo_size = 1;
     PREVIEW(g14);
     class TransportItems {
         MACRO_ADDITEM(ACE_elasticBandage,150);

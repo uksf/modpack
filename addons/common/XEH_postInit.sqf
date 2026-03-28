@@ -12,6 +12,8 @@ if (isServer) then {
     }, 300, []] call CBA_fnc_addPerFrameHandler;
 
     [] call FUNC(updateHeadlessClientPosition);
+
+    call FUNC(fpsStartReporting);
 };
 
 if (hasInterface) then {
@@ -44,4 +46,8 @@ if (isServer) then {
         ["ace_medical_vitals_simulateSpO2", true, 0, "server", false] call CBA_settings_fnc_set;
         ["uksf_curator_curatorsLocked", false, 0, "server", false] call CBA_settings_fnc_set;
     };
+};
+
+if (!isServer) then {
+    call FUNC(fpsStartReporting);
 };

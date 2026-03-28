@@ -58,6 +58,7 @@ class CfgWeapons {
     CYLINDERS(Heliox85,Heliox 8.5,Heliox 8.5,0.085,0,0.915);
     CYLINDERS(Heliox12,Heliox 12,Heliox 12,0.12,0,0.88);
     CYLINDERS(Heliox21,Heliox 21,Heliox 21,0.21,0,0.79);
+    CYLINDERS(PureOxygen,Pure oxygen,pure oxygen,1.0,0,0);
     CYLINDERS(Tx2135,Tx21/35,Tx21/35,0.21,0.44,0.35);
     CYLINDERS(Tx1845,Tx18/45,Tx18/45,0.18,0.37,0.45);
     CYLINDERS(Tx1555,Tx15/55,Tx15/55,0.15,0.30,0.55);
