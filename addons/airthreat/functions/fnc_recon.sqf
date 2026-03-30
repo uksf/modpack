@@ -8,7 +8,7 @@
         flies to observe a random ground player. When it reaches the target
         area, it loiters and then spots a player. Has a 60% chance to trigger
         a follow-up strike mission. Falls back to a CAP mission if no valid
-        ground target is found. Runs on HC via headlessEvent.
+        ground target is found. Server only.
 
     Parameters:
         None
@@ -76,7 +76,7 @@ private _expiryTime = time + GVAR(reconTimeout);
 
     if (isNull _group || {!alive _vehicle} || {isNull (driver _vehicle)}) exitWith {
         // Recon destroyed — if strike was called, it uses stored position
-        [QGVAR(missionComplete), [_group, _vehicle]] call CBA_fnc_serverEvent;
+        [QGVAR(missionComplete), [_group, _vehicle]] call CBA_fnc_localEvent;
         [_group, _vehicle] call FUNC(cleanupAircraft);
         [_idPFH] call CBA_fnc_removePerFrameHandler;
     };
@@ -117,7 +117,7 @@ private _expiryTime = time + GVAR(reconTimeout);
                 // 60% chance to trigger follow-up strike
                 if (random 1 < 0.6) then {
                     private _observedPosition = _vehicle getVariable [QGVAR(reconObservedPosition), _targetPosition];
-                    [QGVAR(reconFollowUp), [_observedPosition, _group, _vehicle]] call CBA_fnc_serverEvent;
+                    [QGVAR(reconFollowUp), [_observedPosition, _group, _vehicle]] call CBA_fnc_localEvent;
                 } else {
                     // No strike called — RTB
                     _vehicle setVariable [QGVAR(reconState), "complete"];

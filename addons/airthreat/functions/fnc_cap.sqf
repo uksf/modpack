@@ -8,7 +8,7 @@
         A fighter aircraft spawns and patrols a random airspace zone.
         A PFH monitors for nearby player aircraft — if detected, the CAP
         will attempt to engage. Times out and RTBs after the mission
-        duration expires. Runs on HC via headlessEvent.
+        duration expires. Server only.
 
     Parameters:
         None
@@ -53,7 +53,7 @@ private _expiryTime = time + GVAR(capTimeout);
     _args params ["_group", "_vehicle", "_expiryTime"];
 
     if (isNull _group || {!alive _vehicle} || {isNull (driver _vehicle)}) exitWith {
-        [QGVAR(missionComplete), [_group, _vehicle]] call CBA_fnc_serverEvent;
+        [QGVAR(missionComplete), [_group, _vehicle]] call CBA_fnc_localEvent;
         [_group, _vehicle] call FUNC(cleanupAircraft);
         [_idPFH] call CBA_fnc_removePerFrameHandler;
     };

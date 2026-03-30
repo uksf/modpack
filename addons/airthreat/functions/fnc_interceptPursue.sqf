@@ -5,7 +5,7 @@
 
     Description:
         Sets up a pursuit PFH for an intercept group. Forces target
-        acquisition and weapon fire on the target aircraft. Runs on HC.
+        acquisition and weapon fire on the target aircraft. Server only.
 
     Parameters:
         0: Group <GROUP>
@@ -27,7 +27,7 @@ private _expiryTime = time + GVAR(interceptTimeout);
     _args params ["_group", "_vehicle", "_target", "_expiryTime"];
 
     if (isNull _group || {!alive _vehicle} || {isNull (driver _vehicle)}) exitWith {
-        [QGVAR(missionComplete), [_group, _vehicle]] call CBA_fnc_serverEvent;
+        [QGVAR(missionComplete), [_group, _vehicle]] call CBA_fnc_localEvent;
         [_group, _vehicle] call FUNC(cleanupAircraft);
         [_idPFH] call CBA_fnc_removePerFrameHandler;
     };

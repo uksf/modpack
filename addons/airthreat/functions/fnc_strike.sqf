@@ -9,7 +9,7 @@
         After the first pass, it circles back for a second pass before RTB.
         Can be called with an explicit target position (from recon follow-up)
         or will select a ground player target.
-        Runs on HC via headlessEvent.
+        Server only.
 
     Parameters:
         0: Target position <ARRAY> - Explicit target position, or empty to use selectTarget (default: [])
@@ -87,7 +87,7 @@ private _expiryTime = time + GVAR(strikeTimeout);
     _args params ["_group", "_vehicle", "_expiryTime", "_reconVehicle"];
 
     private _strikeComplete = {
-        [QGVAR(missionComplete), [_group, _vehicle]] call CBA_fnc_serverEvent;
+        [QGVAR(missionComplete), [_group, _vehicle]] call CBA_fnc_localEvent;
         [_group, _vehicle] call FUNC(cleanupAircraft);
         [_idPFH] call CBA_fnc_removePerFrameHandler;
         // Notify recon aircraft that strike is done

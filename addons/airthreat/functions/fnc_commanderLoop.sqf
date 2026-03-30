@@ -7,7 +7,7 @@
         Single server PFH that coordinates all air threat scheduling.
         Caches player lists once per tick, then checks three subsystems:
         CAP/recon timer, intercept zone monitoring, CAS/strike zone monitoring.
-        Dispatches missions to HC via headlessEvent.
+        Dispatches missions via local event (server only).
         Also performs stale mission cleanup as a safety net.
         Server only — started in XEH_postInit.
 
@@ -46,9 +46,9 @@ if (GVAR(capReconEnabled)) then {
     if (time >= GVAR(nextCapReconTime)) then {
         if (call FUNC(canSpawnMission)) then {
             if (random 1 < 0.5) then {
-                [QGVAR(spawnCap), []] call EFUNC(common,headlessEvent);
+                [QGVAR(spawnCap), []] call CBA_fnc_localEvent;
             } else {
-                [QGVAR(spawnRecon), []] call EFUNC(common,headlessEvent);
+                [QGVAR(spawnRecon), []] call CBA_fnc_localEvent;
             };
             // Full interval before next mission
             GVAR(nextCapReconTime) = time + GVAR(capReconBaseTime) + random GVAR(capReconOffsetTime);
@@ -64,26 +64,26 @@ if (GVAR(interceptEnabled) && {time >= GVAR(nextInterceptTime)} && {_airPlayers 
     private _validTargets = [];
 
     {
-        private _zone = _x;
-        _zone params ["_zoneArea", "_maxIntercepts"];
+        _x params ["_zoneArea", "_maxIntercepts"];
+        private _zoneIndex = _forEachIndex;
 
         private _activeIntercepts = {
-            (_x select 2) isEqualTo "intercept" && {(_x select 3) isEqualTo _zone}
+            (_x select 2) isEqualTo "intercept" && {(_x select 3) isEqualTo _zoneIndex}
         } count GVAR(activeMissions);
 
         if (_activeIntercepts >= _maxIntercepts) then { continue };
 
         {
             if ((getPosATL _x) inArea _zoneArea) then {
-                _validTargets pushBackUnique [_x, _zone];
+                _validTargets pushBackUnique [_x, _zoneIndex];
             };
         } forEach _airPlayers;
     } forEach GVAR(interceptZones);
 
     if (_validTargets isNotEqualTo [] && {call FUNC(canSpawnMission)}) then {
         private _selected = selectRandom _validTargets;
-        _selected params ["_target", "_zone"];
-        [QGVAR(spawnIntercept), [_target, _zone]] call EFUNC(common,headlessEvent);
+        _selected params ["_target", "_zoneIndex"];
+        [QGVAR(spawnIntercept), [_target, _zoneIndex]] call CBA_fnc_localEvent;
         GVAR(nextInterceptTime) = time + GVAR(interceptCooldown) + random GVAR(interceptCooldownOffset);
     };
 };
@@ -103,7 +103,7 @@ if (GVAR(casStrikeEnabled) && {call FUNC(canSpawnMission)}) then {
 
         if (_groundPlayersInZone isEqualTo []) then { continue };
 
-        [QGVAR(spawnCasOrStrike), [_casProbability]] call EFUNC(common,headlessEvent);
+        [QGVAR(spawnCasOrStrike), [_casProbability]] call CBA_fnc_localEvent;
         _x set [2, time];
     } forEach GVAR(casStrikeZones);
 };
@@ -120,6 +120,6 @@ private _staleMissions = GVAR(activeMissions) select {
 {
     _x params ["_group", "_vehicle"];
     WARNING_1("Cleaning up stale mission: %1",_vehicle getVariable [ARR_2(QGVAR(missionType),"unknown")]);
-    [QGVAR(missionComplete), [_group, _vehicle]] call CBA_fnc_serverEvent;
+    [QGVAR(missionComplete), [_group, _vehicle]] call CBA_fnc_localEvent;
     [_group, _vehicle] call FUNC(cleanupAircraft);
 } forEach _staleMissions;

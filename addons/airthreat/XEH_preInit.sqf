@@ -80,13 +80,7 @@ GVAR(debugFormatTime) = {
     [_group, _vehicle] call FUNC(unregisterMission);
 }] call CBA_fnc_addEventHandler;
 
-[QGVAR(registerMission), {
-    params ["_group", "_vehicle", "_missionType", ["_zoneData", [], [[]]]];
-    GVAR(activeMissions) pushBack [_group, _vehicle, _missionType, _zoneData];
-    INFO_2("Mission registered: %1 (active: %2)",_missionType,count GVAR(activeMissions));
-}] call CBA_fnc_addEventHandler;
-
-// HC events — mission spawn handlers (headlessEvent routes here, or to server if no HC)
+// Server events — mission spawn handlers
 [QGVAR(spawnCap), { _this call FUNC(cap) }] call CBA_fnc_addEventHandler;
 [QGVAR(spawnRecon), { _this call FUNC(recon) }] call CBA_fnc_addEventHandler;
 [QGVAR(spawnCas), { _this call FUNC(cas) }] call CBA_fnc_addEventHandler;

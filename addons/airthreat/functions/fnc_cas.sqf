@@ -8,7 +8,7 @@
         flies to the target position and performs search-and-destroy.
         Can be called with an explicit target position (from recon follow-up)
         or will select a ground player target.
-        Runs on HC via headlessEvent.
+        Server only.
 
     Parameters:
         0: Target position <ARRAY> - Explicit target position, or empty to use selectTarget (default: [])
@@ -57,7 +57,7 @@ private _expiryTime = time + GVAR(casTimeout);
     _args params ["_group", "_vehicle", "_expiryTime"];
 
     if (isNull _group || {!alive _vehicle} || {isNull (driver _vehicle)}) exitWith {
-        [QGVAR(missionComplete), [_group, _vehicle]] call CBA_fnc_serverEvent;
+        [QGVAR(missionComplete), [_group, _vehicle]] call CBA_fnc_localEvent;
         [_group, _vehicle] call FUNC(cleanupAircraft);
         [_idPFH] call CBA_fnc_removePerFrameHandler;
     };

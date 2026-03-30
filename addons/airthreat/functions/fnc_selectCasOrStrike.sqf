@@ -5,7 +5,7 @@
 
     Description:
         Selects and spawns either a CAS or strike mission based on the
-        zone's configured CAS probability. Called on HC via headlessEvent.
+        zone's configured CAS probability. Server only.
 
     Parameters:
         0: CAS probability <NUMBER> - Percentage chance of CAS (0-100)

@@ -7,7 +7,7 @@
         Spawns an aircraft at a spawn point position, creates crew, and orients
         toward a target position. The aircraft is spawned in flight at the
         specified altitude. Does not add waypoints — callers configure behaviour.
-        Runs on whatever machine calls it (HC via headlessEvent, or server as fallback).
+        Server only.
 
     Parameters:
         0: Spawn position <ARRAY> - ASL position of the spawn point
@@ -53,7 +53,7 @@ _group setBehaviour "COMBAT";
 _group setCombatMode "RED";
 _group setSpeedMode "FULL";
 
-// Blacklist from ACEX HC transfer — we spawn directly on HC, don't want it moved
+// Blacklist from ACEX HC transfer
 _group setVariable ["acex_headless_blacklist", true, true];
 
 // Tag for identification and track spawn time for stale mission cleanup

@@ -82,16 +82,17 @@ private _fnc_serverGetter = {
         [_position, _sizeA, _sizeB, _angle, _isRectangle, _cooldownRemaining]
     };
 
-    // Intercept zones (area arrays)
-    private _interceptZoneData = GVAR(interceptZones) apply {
-        private _zone = _x;
-        _zone params ["_zoneArea", "_maxIntercepts"];
+    // Intercept zones (area arrays, matched by index)
+    private _interceptZoneData = [];
+    {
+        _x params ["_zoneArea", "_maxIntercepts"];
         _zoneArea params ["_position", "_sizeA", "_sizeB", "_angle", "_isRectangle"];
+        private _zoneIndex = _forEachIndex;
         private _activeIntercepts = {
-            (_x select 2) isEqualTo "intercept" && {(_x select 3) isEqualTo _zone}
+            (_x select 2) isEqualTo "intercept" && {(_x select 3) isEqualTo _zoneIndex}
         } count GVAR(activeMissions);
-        [_position, _sizeA, _sizeB, _angle, _isRectangle, _maxIntercepts, _activeIntercepts]
-    };
+        _interceptZoneData pushBack [_position, _sizeA, _sizeB, _angle, _isRectangle, _maxIntercepts, _activeIntercepts];
+    } forEach GVAR(interceptZones);
 
     // --- Spawn points ---
     private _spawnPointData = +GVAR(spawnPoints);

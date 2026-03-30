@@ -8,19 +8,19 @@
         Two fighter groups are spawned: one direct intercept and one
         flanking from an offset angle at a different altitude.
         Both groups actively pursue the target with forced target acquisition.
-        Runs on HC via headlessEvent.
+        Server only.
 
     Parameters:
         0: Target player <OBJECT> - The player in an aircraft to intercept
-        1: Zone <ARRAY> - The intercept zone that triggered this mission (default: [])
+        1: Zone index <NUMBER> - Index into interceptZones that triggered this mission (default: -1)
 
     Return Value:
         Nothing
 
     Example:
-        [_target, _zone] call uksf_airthreat_fnc_intercept
+        [_target, _zoneIndex] call uksf_airthreat_fnc_intercept
 */
-params [["_target", objNull, [objNull]], ["_zone", [], [[]]]];
+params [["_target", objNull, [objNull]], ["_zoneIndex", -1, [0]]];
 
 if (isNull _target) exitWith {};
 if (GVAR(fighterClassnames) isEqualTo []) exitWith {
@@ -50,7 +50,7 @@ _resultA params ["_groupA", "_vehicleA"];
 
 if (isNull _groupA) exitWith {};
 
-[_groupA, _vehicleA, "intercept", _zone] call FUNC(registerMission);
+[_groupA, _vehicleA, "intercept", _zoneIndex] call FUNC(registerMission);
 _vehicleA setVariable [QGVAR(interceptTarget), _target, true];
 
 {
@@ -74,7 +74,7 @@ private _resultB = [_spawnB, GVAR(fighterClassnames), _targetPosition, _altitude
 _resultB params ["_groupB", "_vehicleB"];
 
 if (!isNull _groupB) then {
-    [_groupB, _vehicleB, "intercept", _zone] call FUNC(registerMission);
+    [_groupB, _vehicleB, "intercept", _zoneIndex] call FUNC(registerMission);
     _vehicleB setVariable [QGVAR(interceptTarget), _target, true];
 
     {
