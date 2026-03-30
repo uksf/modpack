@@ -5,7 +5,7 @@
 
     Description:
         Registers an intercept trigger zone.
-        Creates an invisible marker for area checking and stores zone data.
+        Stores zone area data for player aircraft proximity checks.
         When player aircraft fly within this zone, interceptors may scramble.
         Server only.
 
@@ -30,12 +30,8 @@ private _area = _logic getVariable ["objectarea", [10000, 10000, 0, true]];
 _area params ["_sizeA", "_sizeB", "_angle", "_isRectangle"];
 private _maxConcurrentIntercepts = parseNumber (_logic getVariable [QGVAR(maxConcurrentIntercepts), "2"]);
 
-private _marker = createMarkerLocal [format [QGVAR(intercept_%1_%2), _position select 0, _position select 1], _position];
-_marker setMarkerShapeLocal (["ELLIPSE", "RECTANGLE"] select _isRectangle);
-_marker setMarkerSizeLocal [_sizeA, _sizeB];
-_marker setMarkerDirLocal _angle;
-_marker setMarkerAlphaLocal 0;
+private _area = [_position, _sizeA, _sizeB, _angle, _isRectangle];
 
-GVAR(interceptZones) pushBack [_marker, _maxConcurrentIntercepts, 0];
+GVAR(interceptZones) pushBack [_area, _maxConcurrentIntercepts];
 
 INFO_1("Registered intercept zone at %1",_position);

@@ -35,12 +35,24 @@ GVAR(initialDelayOffset) = parseNumber (_logic getVariable [QGVAR(initialDelayOf
 GVAR(interceptCooldown) = parseNumber (_logic getVariable [QGVAR(interceptCooldown), "600"]);
 GVAR(interceptCooldownOffset) = parseNumber (_logic getVariable [QGVAR(interceptCooldownOffset), "600"]);
 GVAR(maxConcurrentMissions) = parseNumber (_logic getVariable [QGVAR(maxConcurrentMissions), "3"]);
-GVAR(fighterClassnames) = _logic getVariable [QGVAR(fighterClassnames), []];
-GVAR(casClassnames) = _logic getVariable [QGVAR(casClassnames), []];
-GVAR(strikeClassnames) = _logic getVariable [QGVAR(strikeClassnames), []];
-GVAR(reconClassnames) = _logic getVariable [QGVAR(reconClassnames), []];
-GVAR(excludedClasses) = _logic getVariable [QGVAR(excludedClasses), []];
-GVAR(exclusionMarkers) = _logic getVariable [QGVAR(exclusionMarkers), []];
+// Classname arrays — validate type since these come from Eden string fields
+{
+    _x params ["_varName", "_gvar"];
+    private _value = _logic getVariable [_varName, []];
+    if (_value isEqualType []) then {
+        missionNamespace setVariable [_gvar, _value];
+    } else {
+        WARNING_1("Invalid classname array for %1 — expected array, using empty",_varName);
+        missionNamespace setVariable [_gvar, []];
+    };
+} forEach [
+    [QGVAR(fighterClassnames), QGVAR(fighterClassnames)],
+    [QGVAR(casClassnames), QGVAR(casClassnames)],
+    [QGVAR(strikeClassnames), QGVAR(strikeClassnames)],
+    [QGVAR(reconClassnames), QGVAR(reconClassnames)],
+    [QGVAR(excludedClasses), QGVAR(excludedClasses)],
+    [QGVAR(exclusionMarkers), QGVAR(exclusionMarkers)]
+];
 GVAR(capTimeout) = parseNumber (_logic getVariable [QGVAR(capTimeout), "900"]);
 GVAR(reconTimeout) = parseNumber (_logic getVariable [QGVAR(reconTimeout), "600"]);
 GVAR(casTimeout) = parseNumber (_logic getVariable [QGVAR(casTimeout), "600"]);

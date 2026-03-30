@@ -74,28 +74,23 @@ private _fnc_serverGetter = {
     // Airspace zones (stored as raw arrays, no markers)
     private _airspaceZones = +GVAR(airspaces);
 
-    // CAS/strike zones (marker-based)
+    // CAS/strike zones (area arrays)
     private _casStrikeZoneData = GVAR(casStrikeZones) apply {
-        _x params ["_marker", "_casProbability", "_lastTriggered"];
-        private _position = markerPos _marker;
-        private _size = markerSize _marker;
-        private _direction = markerDir _marker;
-        private _shape = markerShape _marker;
-        private _isRectangle = _shape isEqualTo "RECTANGLE";
+        _x params ["_zoneArea", "_casProbability", "_lastTriggered"];
+        _zoneArea params ["_position", "_sizeA", "_sizeB", "_angle", "_isRectangle"];
         private _cooldownRemaining = (300 - (time - _lastTriggered)) max 0;
-        [_position, _size select 0, _size select 1, _direction, _isRectangle, _cooldownRemaining]
+        [_position, _sizeA, _sizeB, _angle, _isRectangle, _cooldownRemaining]
     };
 
-    // Intercept zones (marker-based)
-    private _activeIntercepts = {(_x select 2) isEqualTo "intercept"} count GVAR(activeMissions);
+    // Intercept zones (area arrays)
     private _interceptZoneData = GVAR(interceptZones) apply {
-        _x params ["_marker", "_maxIntercepts"];
-        private _position = markerPos _marker;
-        private _size = markerSize _marker;
-        private _direction = markerDir _marker;
-        private _shape = markerShape _marker;
-        private _isRectangle = _shape isEqualTo "RECTANGLE";
-        [_position, _size select 0, _size select 1, _direction, _isRectangle, _maxIntercepts, _activeIntercepts]
+        private _zone = _x;
+        _zone params ["_zoneArea", "_maxIntercepts"];
+        _zoneArea params ["_position", "_sizeA", "_sizeB", "_angle", "_isRectangle"];
+        private _activeIntercepts = {
+            (_x select 2) isEqualTo "intercept" && {(_x select 3) isEqualTo _zone}
+        } count GVAR(activeMissions);
+        [_position, _sizeA, _sizeB, _angle, _isRectangle, _maxIntercepts, _activeIntercepts]
     };
 
     // --- Spawn points ---

@@ -12,14 +12,15 @@
 
     Parameters:
         0: Target player <OBJECT> - The player in an aircraft to intercept
+        1: Zone <ARRAY> - The intercept zone that triggered this mission (default: [])
 
     Return Value:
         Nothing
 
     Example:
-        [_target] call uksf_airthreat_fnc_intercept
+        [_target, _zone] call uksf_airthreat_fnc_intercept
 */
-params [["_target", objNull, [objNull]]];
+params [["_target", objNull, [objNull]], ["_zone", [], [[]]]];
 
 if (isNull _target) exitWith {};
 if (GVAR(fighterClassnames) isEqualTo []) exitWith {
@@ -29,8 +30,19 @@ if (GVAR(fighterClassnames) isEqualTo []) exitWith {
 private _targetVehicle = vehicle _target;
 private _targetPosition = getPosASL _targetVehicle;
 
+// Select nearest spawn point to target for faster intercept response
+private _nearestSpawn = GVAR(spawnPoints) select 0;
+private _nearestDistance = _targetPosition distance _nearestSpawn;
+{
+    private _distance = _targetPosition distance _x;
+    if (_distance < _nearestDistance) then {
+        _nearestDistance = _distance;
+        _nearestSpawn = _x;
+    };
+} forEach GVAR(spawnPoints);
+
 // Group A — direct intercept
-private _spawnA = selectRandom GVAR(spawnPoints);
+private _spawnA = _nearestSpawn;
 private _altitudeA = 1000 + random 300;
 
 private _resultA = [_spawnA, GVAR(fighterClassnames), _targetPosition, _altitudeA] call FUNC(spawnAircraft);
@@ -38,7 +50,7 @@ _resultA params ["_groupA", "_vehicleA"];
 
 if (isNull _groupA) exitWith {};
 
-[_groupA, _vehicleA, "intercept"] call FUNC(registerMission);
+[_groupA, _vehicleA, "intercept", _zone] call FUNC(registerMission);
 _vehicleA setVariable [QGVAR(interceptTarget), _target, true];
 
 {
@@ -55,14 +67,14 @@ _waypointA setWaypointSpeed "FULL";
 [_groupA, _vehicleA, _target] call FUNC(interceptPursue);
 
 // Group B — flanking approach at higher altitude
-private _spawnB = selectRandom GVAR(spawnPoints);
+private _spawnB = _nearestSpawn;
 private _altitudeB = 1500 + random 500;
 
 private _resultB = [_spawnB, GVAR(fighterClassnames), _targetPosition, _altitudeB] call FUNC(spawnAircraft);
 _resultB params ["_groupB", "_vehicleB"];
 
 if (!isNull _groupB) then {
-    [_groupB, _vehicleB, "intercept"] call FUNC(registerMission);
+    [_groupB, _vehicleB, "intercept", _zone] call FUNC(registerMission);
     _vehicleB setVariable [QGVAR(interceptTarget), _target, true];
 
     {

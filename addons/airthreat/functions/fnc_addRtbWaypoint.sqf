@@ -21,6 +21,11 @@ params [["_group", grpNull, [grpNull]], ["_vehicle", objNull, [objNull]]];
 
 if (isNull _group || {isNull _vehicle}) exitWith {};
 
+// Clear existing waypoints so RTB is immediate
+while {waypoints _group isNotEqualTo []} do {
+    deleteWaypoint [_group, 0];
+};
+
 private _vehiclePosition = getPosASL _vehicle;
 private _nearestSpawn = [0, 0, 0];
 private _nearestDistance = 1e10;

@@ -81,8 +81,8 @@ GVAR(debugFormatTime) = {
 }] call CBA_fnc_addEventHandler;
 
 [QGVAR(registerMission), {
-    params ["_group", "_vehicle", "_missionType"];
-    GVAR(activeMissions) pushBack [_group, _vehicle, _missionType];
+    params ["_group", "_vehicle", "_missionType", ["_zoneData", [], [[]]]];
+    GVAR(activeMissions) pushBack [_group, _vehicle, _missionType, _zoneData];
     INFO_2("Mission registered: %1 (active: %2)",_missionType,count GVAR(activeMissions));
 }] call CBA_fnc_addEventHandler;
 

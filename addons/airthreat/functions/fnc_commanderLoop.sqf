@@ -32,7 +32,7 @@ if !(GVAR(controllerInitialised)) exitWith {};
 // Cache player lists once per tick
 private _players = ALL_PLAYERS;
 private _airPlayers = _players select {
-    vehicle _x isKindOf "Air" && {!isNull objectParent _x} && {alive _x}
+    alive _x && {!isNull objectParent _x} && {vehicle _x isKindOf "Air"}
 };
 
 // --- CAP/Recon scheduling ---
@@ -64,47 +64,47 @@ if (GVAR(interceptEnabled) && {time >= GVAR(nextInterceptTime)} && {_airPlayers 
     private _validTargets = [];
 
     {
-        _x params ["_marker", "_maxIntercepts"];
+        private _zone = _x;
+        _zone params ["_zoneArea", "_maxIntercepts"];
 
         private _activeIntercepts = {
-            (_x select 2) isEqualTo "intercept"
+            (_x select 2) isEqualTo "intercept" && {(_x select 3) isEqualTo _zone}
         } count GVAR(activeMissions);
 
         if (_activeIntercepts >= _maxIntercepts) then { continue };
 
         {
-            if ((getPosATL _x) inArea _marker) then {
-                _validTargets pushBackUnique _x;
+            if ((getPosATL _x) inArea _zoneArea) then {
+                _validTargets pushBackUnique [_x, _zone];
             };
         } forEach _airPlayers;
     } forEach GVAR(interceptZones);
 
     if (_validTargets isNotEqualTo [] && {call FUNC(canSpawnMission)}) then {
-        private _target = selectRandom _validTargets;
-        [QGVAR(spawnIntercept), [_target]] call EFUNC(common,headlessEvent);
+        private _selected = selectRandom _validTargets;
+        _selected params ["_target", "_zone"];
+        [QGVAR(spawnIntercept), [_target, _zone]] call EFUNC(common,headlessEvent);
         GVAR(nextInterceptTime) = time + GVAR(interceptCooldown) + random GVAR(interceptCooldownOffset);
     };
 };
 
 // --- CAS/Strike zone monitoring ---
-if (GVAR(casStrikeEnabled)) then {
+if (GVAR(casStrikeEnabled) && {call FUNC(canSpawnMission)}) then {
     {
-        _x params ["_marker", "_casProbability", "_lastTriggered"];
+        _x params ["_zoneArea", "_casProbability", "_lastTriggered"];
 
         if (time - _lastTriggered < 300) then { continue };
 
         private _groundPlayersInZone = _players select {
             alive _x
-            && {(getPosATL _x) inArea _marker}
+            && {(getPosATL _x) inArea _zoneArea}
             && {isNull objectParent _x || {!(vehicle _x isKindOf "Air")}}
         };
 
         if (_groundPlayersInZone isEqualTo []) then { continue };
 
-        if (call FUNC(canSpawnMission)) then {
-            [QGVAR(spawnCasOrStrike), [_casProbability]] call EFUNC(common,headlessEvent);
-            _x set [2, time];
-        };
+        [QGVAR(spawnCasOrStrike), [_casProbability]] call EFUNC(common,headlessEvent);
+        _x set [2, time];
     } forEach GVAR(casStrikeZones);
 };
 

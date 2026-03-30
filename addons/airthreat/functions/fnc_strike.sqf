@@ -58,8 +58,11 @@ _waypoint1 setWaypointStatements [
     format ["[vehicle this, (vehicle this) getVariable ['%1', [0,0,0]]] call %2;", QGVAR(strikeTarget), QFUNC(executeStrikeRun)]
 ];
 
-// Second pass — circle back and strike again
-private _secondPassPosition = _targetPosition vectorAdd [500 - random 1000, 500 - random 1000, 0];
+// Second pass — turnaround point perpendicular to approach vector
+private _approachDirection = _spawnPosition getDir _targetPosition;
+private _perpendicularDirection = _approachDirection + 90 + random 180;
+private _turnDistance = 800 + random 400;
+private _secondPassPosition = _targetPosition getPos [_turnDistance, _perpendicularDirection];
 private _waypoint2 = _group addWaypoint [_secondPassPosition, 200];
 _waypoint2 setWaypointType "MOVE";
 _waypoint2 setWaypointBehaviour "CARELESS";

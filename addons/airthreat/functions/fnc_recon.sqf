@@ -83,12 +83,15 @@ private _expiryTime = time + GVAR(reconTimeout);
 
     if !(local (leader _group)) exitWith {};
 
-    if (time > _expiryTime) exitWith {
+    private _state = _vehicle getVariable [QGVAR(reconState), "approach"];
+
+    // Only enforce timeout during approach and loiter — spotted/strikeActive
+    // states have their own exit paths via the strike lifecycle
+    if (time > _expiryTime && {_state in ["approach", "loiter"]}) exitWith {
         [_group, _vehicle] call FUNC(addRtbWaypoint);
         [_idPFH] call CBA_fnc_removePerFrameHandler;
     };
 
-    private _state = _vehicle getVariable [QGVAR(reconState), "approach"];
     private _vehiclePosition = getPosASL _vehicle;
 
     switch (_state) do {
