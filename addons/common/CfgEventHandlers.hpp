@@ -16,6 +16,12 @@ class Extended_PostInit_EventHandlers {
     };
 };
 
+class Extended_DisplayLoad_EventHandlers {
+    class Display3DENPlace {
+        ADDON = QUOTE(_this call FUNC(edenFixCrewCheckbox));
+    };
+};
+
 class Extended_InitPost_EventHandlers {
     // CUP_NVG_PVS7, CUP_NVG_HMNVS, CUP_NVG_PVS14
     NONVG(CUP_Creatures_Military_ACR_Soldier_Base); // ACR
