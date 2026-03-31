@@ -28,7 +28,7 @@ if !(isServer) exitWith {};
 private _position = getPosASL _logic;
 private _area = _logic getVariable ["objectarea", [10000, 10000, 0, true]];
 _area params ["_sizeA", "_sizeB", "_angle", "_isRectangle"];
-private _maxConcurrentIntercepts = parseNumber (_logic getVariable [QGVAR(maxConcurrentIntercepts), "2"]);
+private _maxConcurrentIntercepts = _logic getVariable [QGVAR(maxConcurrentIntercepts), 2];
 
 private _area = [_position, _sizeA, _sizeB, _angle, _isRectangle];
 

@@ -28,13 +28,13 @@ if (GVAR(controllerInitialised)) exitWith {
     WARNING("Multiple air threat controller modules placed - only the first is used");
 };
 
-GVAR(capReconBaseTime) = parseNumber (_logic getVariable [QGVAR(capReconBaseTime), "1200"]);
-GVAR(capReconOffsetTime) = parseNumber (_logic getVariable [QGVAR(capReconOffsetTime), "600"]);
-GVAR(initialDelay) = parseNumber (_logic getVariable [QGVAR(initialDelay), "1800"]);
-GVAR(initialDelayOffset) = parseNumber (_logic getVariable [QGVAR(initialDelayOffset), "900"]);
-GVAR(interceptCooldown) = parseNumber (_logic getVariable [QGVAR(interceptCooldown), "600"]);
-GVAR(interceptCooldownOffset) = parseNumber (_logic getVariable [QGVAR(interceptCooldownOffset), "600"]);
-GVAR(maxConcurrentMissions) = parseNumber (_logic getVariable [QGVAR(maxConcurrentMissions), "3"]);
+GVAR(capReconBaseTime) = _logic getVariable [QGVAR(capReconBaseTime), 1200];
+GVAR(capReconOffsetTime) = _logic getVariable [QGVAR(capReconOffsetTime), 600];
+GVAR(initialDelay) = _logic getVariable [QGVAR(initialDelay), 1800];
+GVAR(initialDelayOffset) = _logic getVariable [QGVAR(initialDelayOffset), 900];
+GVAR(interceptCooldown) = _logic getVariable [QGVAR(interceptCooldown), 600];
+GVAR(interceptCooldownOffset) = _logic getVariable [QGVAR(interceptCooldownOffset), 600];
+GVAR(maxConcurrentMissions) = _logic getVariable [QGVAR(maxConcurrentMissions), 3];
 // Classname arrays — validate type since these come from Eden string fields
 {
     _x params ["_varName", "_gvar"];
@@ -53,11 +53,11 @@ GVAR(maxConcurrentMissions) = parseNumber (_logic getVariable [QGVAR(maxConcurre
     [QGVAR(excludedClasses), QGVAR(excludedClasses)],
     [QGVAR(exclusionMarkers), QGVAR(exclusionMarkers)]
 ];
-GVAR(capTimeout) = parseNumber (_logic getVariable [QGVAR(capTimeout), "900"]);
-GVAR(reconTimeout) = parseNumber (_logic getVariable [QGVAR(reconTimeout), "600"]);
-GVAR(casTimeout) = parseNumber (_logic getVariable [QGVAR(casTimeout), "600"]);
-GVAR(strikeTimeout) = parseNumber (_logic getVariable [QGVAR(strikeTimeout), "600"]);
-GVAR(interceptTimeout) = parseNumber (_logic getVariable [QGVAR(interceptTimeout), "600"]);
+GVAR(capTimeout) = _logic getVariable [QGVAR(capTimeout), 900];
+GVAR(reconTimeout) = _logic getVariable [QGVAR(reconTimeout), 600];
+GVAR(casTimeout) = _logic getVariable [QGVAR(casTimeout), 600];
+GVAR(strikeTimeout) = _logic getVariable [QGVAR(strikeTimeout), 600];
+GVAR(interceptTimeout) = _logic getVariable [QGVAR(interceptTimeout), 600];
 
 GVAR(controllerInitialised) = true;
 

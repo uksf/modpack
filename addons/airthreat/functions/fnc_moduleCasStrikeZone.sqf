@@ -28,7 +28,7 @@ if !(isServer) exitWith {};
 private _position = getPosASL _logic;
 private _area = _logic getVariable ["objectarea", [500, 500, 0, false]];
 _area params ["_sizeA", "_sizeB", "_angle", "_isRectangle"];
-private _casProbability = parseNumber (_logic getVariable [QGVAR(casProbability), "50"]);
+private _casProbability = _logic getVariable [QGVAR(casProbability), 50];
 
 private _area = [_position, _sizeA, _sizeB, _angle, _isRectangle];
 

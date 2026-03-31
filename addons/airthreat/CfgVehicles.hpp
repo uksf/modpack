@@ -13,6 +13,9 @@ class CfgVehicles {
         icon = "A3\ui_f\data\map\markers\nato\o_hq.paa";
         portrait = "A3\ui_f\data\map\markers\nato\o_hq.paa";
         function = QFUNC(moduleController);
+        class ModuleDescription {
+            description = "Central controller for the air threat system. Place exactly one per mission. Configures mission timing, aircraft classnames, target exclusions, and concurrency limits. All other AT modules require this to function.";
+        };
         class Attributes : AttributesBase {
             class GVAR(capReconBaseTime) {
                 property = QGVAR(capReconBaseTime);
@@ -208,6 +211,9 @@ class CfgVehicles {
         icon = "A3\ui_f\data\map\markers\nato\o_plane.paa";
         portrait = "A3\ui_f\data\map\markers\nato\o_plane.paa";
         function = QFUNC(moduleSpawnPoint);
+        class ModuleDescription {
+            description = "Spawn/despawn point for enemy aircraft. Place at the edge of the map where aircraft should appear from and return to. Multiple spawn points can be placed — missions will use the nearest one to their target.";
+        };
     };
     class GVAR(airspaceModule) : GVAR(module) {
         scope = 2;
@@ -215,6 +221,9 @@ class CfgVehicles {
         icon = "A3\modules_f\data\iconmodule_ca.paa";
         portrait = "A3\modules_f\data\iconmodule_ca.paa";
         function = QFUNC(moduleAirspace);
+        class ModuleDescription {
+            description = "Defines an airspace zone where CAP and recon missions patrol. Enemy aircraft will fly waypoints within this area. Resize the area to cover the region you want patrolled.";
+        };
         canSetArea = 1;
         canSetAreaHeight = 0;
         canSetAreaShape = 1;
@@ -229,6 +238,9 @@ class CfgVehicles {
         icon = "A3\ui_f\data\map\markers\nato\o_support.paa";
         portrait = "A3\ui_f\data\map\markers\nato\o_support.paa";
         function = QFUNC(moduleCasStrikeZone);
+        class ModuleDescription {
+            description = "Defines an area where CAS helicopters or strike jets can be called against players. When a player is inside this zone, the system may spawn a CAS or strike mission targeting them. The CAS Probability attribute controls the chance of a helicopter vs a jet.";
+        };
         canSetArea = 1;
         canSetAreaHeight = 0;
         canSetAreaShape = 1;
@@ -256,6 +268,9 @@ class CfgVehicles {
         icon = "A3\ui_f\data\map\markers\nato\o_air.paa";
         portrait = "A3\ui_f\data\map\markers\nato\o_air.paa";
         function = QFUNC(moduleInterceptZone);
+        class ModuleDescription {
+            description = "Defines an area where player aircraft will be intercepted by enemy fighters. When a player flies within this zone, interceptors scramble from the nearest spawn point to engage. Max Concurrent Intercepts limits how many intercept groups can be active from this zone at once.";
+        };
         canSetArea = 1;
         canSetAreaHeight = 0;
         canSetAreaShape = 1;
