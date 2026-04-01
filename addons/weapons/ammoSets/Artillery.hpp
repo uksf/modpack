@@ -50,16 +50,16 @@ class tbd_mortars_105mm_shell_ammo_smoke : SubmunitionCore {
     triggerOnImpact = 1;
     explosionEffects = "";
 };
-class GVAR(105mm_illum_flare) : UK3CB_BAF_Flare_81mm_AMOS_White {
+class Flare_82mm_AMOS_White_Illumination;
+class GVAR(105mm_illum_flare) : Flare_82mm_AMOS_White_Illumination {
     triggerTime = 0;
-    brightness = 15000000;
+    brightness = 14000000;
     intensity = 10000000;
     flareSize = 30;
     timeToLive = 120;
-    affectedByWind = 1;
-    flareAirFriction = -0.8;
 };
 class GVAR(105mm_shell_ammo_illum) : tbd_mortars_105mm_shell_ammo_smoke {
+    model = "\x\TBD_MORTARS\addons\105mm\tbd_mortars_105mm_shell_dpicm\tbd_mortars_105mm_shell_dpicm";
     submunitionAmmo = QGVAR(105mm_illum_flare);
     submunitionConeAngle = 0;
     submunitionConeType[] = { "poissondisc", 1 };
