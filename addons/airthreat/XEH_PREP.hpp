@@ -10,6 +10,7 @@ PREP(interceptPursue);
 PREP(moduleAirspace);
 PREP(moduleCasStrikeZone);
 PREP(moduleController);
+PREP(moduleExclusionZone);
 PREP(moduleInterceptZone);
 PREP(moduleSpawnPoint);
 PREP(recon);

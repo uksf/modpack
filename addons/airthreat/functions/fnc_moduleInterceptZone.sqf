@@ -34,4 +34,4 @@ private _area = [_position, _sizeA, _sizeB, _angle, _isRectangle];
 
 GVAR(interceptZones) pushBack [_area, _maxConcurrentIntercepts];
 
-INFO_1("Registered intercept zone at %1",_position);
+TRACE_1("Registered intercept zone at %1",_position);

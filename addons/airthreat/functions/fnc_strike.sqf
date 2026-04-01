@@ -23,8 +23,8 @@
 */
 params [["_targetPosition", [], [[]]], ["_reconVehicle", objNull, [objNull]]];
 
-if (GVAR(strikeClassnames) isEqualTo []) exitWith {
-    WARNING("No strike classnames configured");
+if (GVAR(jetClassnames) isEqualTo []) exitWith {
+    WARNING("No jet classnames configured for strike");
 };
 
 if (_targetPosition isEqualTo []) then {
@@ -37,7 +37,7 @@ if (_targetPosition isEqualTo []) exitWith {};
 
 private _spawnPosition = selectRandom GVAR(spawnPoints);
 
-private _result = [_spawnPosition, GVAR(strikeClassnames), _targetPosition, 500] call FUNC(spawnAircraft);
+private _result = [_spawnPosition, GVAR(jetClassnames), _targetPosition, 500] call FUNC(spawnAircraft);
 _result params ["_group", "_vehicle"];
 
 if (isNull _group) exitWith {};
@@ -107,4 +107,4 @@ private _expiryTime = time + GVAR(strikeTimeout);
     };
 }, 30, [_group, _vehicle, _expiryTime, _reconVehicle]] call CBA_fnc_addPerFrameHandler;
 
-INFO("Strike mission spawned");
+DEBUG("Strike mission spawned");

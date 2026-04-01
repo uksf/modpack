@@ -4,8 +4,8 @@
         Tim Beswick
 
     Description:
-        Registers an airspace patrol zone for CAP missions.
-        Stores position and area dimensions for patrol waypoint generation.
+        Registers an exclusion zone where players will not be targeted
+        by air threat missions. Stores zone area data for target filtering.
         Server only.
 
     Parameters:
@@ -16,7 +16,7 @@
         Nothing
 
     Example:
-        [_this, _logic] call uksf_airthreat_fnc_moduleAirspace
+        [_this, _logic] call uksf_airthreat_fnc_moduleExclusionZone
 */
 
 (_this select 1) params ["_logic"];
@@ -25,9 +25,9 @@ if !(local _logic) exitWith {};
 if !(isServer) exitWith {};
 
 private _position = getPosASL _logic;
-private _area = _logic getVariable ["objectarea", [2000, 2000, 0, false]];
+private _area = _logic getVariable ["objectarea", [500, 500, 0, false]];
 _area params ["_sizeA", "_sizeB", "_angle", "_isRectangle"];
 
-GVAR(airspaces) pushBack [_position, _sizeA, _sizeB, _angle, _isRectangle];
+GVAR(exclusionZones) pushBack [_position, _sizeA, _sizeB, _angle, _isRectangle];
 
-TRACE_1("Registered airspace zone at %1",_position);
+TRACE_1("Registered exclusion zone at %1",_position);

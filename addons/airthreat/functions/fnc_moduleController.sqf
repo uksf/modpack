@@ -25,7 +25,10 @@ if !(local _logic) exitWith {};
 if !(isServer) exitWith {};
 
 if (GVAR(controllerInitialised)) exitWith {
-    WARNING("Multiple air threat controller modules placed - only the first is used");
+    WARNING("Multiple air threat controller modules placed — only the first is used");
+    if (is3DEN) then {
+        ["Multiple (AT) Controller modules placed — only the first is used"] call BIS_fnc_3DENNotification;
+    };
 };
 
 GVAR(capReconBaseTime) = _logic getVariable [QGVAR(capReconBaseTime), 1200];
@@ -35,24 +38,29 @@ GVAR(initialDelayOffset) = _logic getVariable [QGVAR(initialDelayOffset), 900];
 GVAR(interceptCooldown) = _logic getVariable [QGVAR(interceptCooldown), 600];
 GVAR(interceptCooldownOffset) = _logic getVariable [QGVAR(interceptCooldownOffset), 600];
 GVAR(maxConcurrentMissions) = _logic getVariable [QGVAR(maxConcurrentMissions), 3];
-// Classname arrays — validate type since these come from Eden string fields
+
+// Classname arrays — stored as strings in Eden, parse here
 {
-    _x params ["_varName", "_gvar"];
-    private _value = _logic getVariable [_varName, []];
-    if (_value isEqualType []) then {
-        missionNamespace setVariable [_gvar, _value];
+    private _raw = _logic getVariable [_x, "[]"];
+    private _parsed = if (_raw isEqualType "") then {
+        call compile _raw
     } else {
-        WARNING_1("Invalid classname array for %1 — expected array, using empty",_varName);
-        missionNamespace setVariable [_gvar, []];
+        _raw
     };
+    if (!(_parsed isEqualType [])) then {
+        WARNING_1("Invalid classname array for %1 — expected array, using empty",_x);
+        _parsed = [];
+    };
+    missionNamespace setVariable [_x, _parsed];
+    TRACE_2("Parsed classname array",_x,_parsed);
 } forEach [
-    [QGVAR(fighterClassnames), QGVAR(fighterClassnames)],
-    [QGVAR(casClassnames), QGVAR(casClassnames)],
-    [QGVAR(strikeClassnames), QGVAR(strikeClassnames)],
-    [QGVAR(reconClassnames), QGVAR(reconClassnames)],
-    [QGVAR(excludedClasses), QGVAR(excludedClasses)],
-    [QGVAR(exclusionMarkers), QGVAR(exclusionMarkers)]
+    QGVAR(fighterClassnames),
+    QGVAR(helicopterClassnames),
+    QGVAR(jetClassnames),
+    QGVAR(reconClassnames),
+    QGVAR(excludedClasses)
 ];
+
 GVAR(capTimeout) = _logic getVariable [QGVAR(capTimeout), 900];
 GVAR(reconTimeout) = _logic getVariable [QGVAR(reconTimeout), 600];
 GVAR(casTimeout) = _logic getVariable [QGVAR(casTimeout), 600];
@@ -61,4 +69,4 @@ GVAR(interceptTimeout) = _logic getVariable [QGVAR(interceptTimeout), 600];
 
 GVAR(controllerInitialised) = true;
 
-INFO("Air threat controller initialised");
+DEBUG("Air threat controller initialised");

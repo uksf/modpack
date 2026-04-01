@@ -26,4 +26,4 @@ if !(isServer) exitWith {};
 
 GVAR(spawnPoints) pushBack (getPosASL _logic);
 
-INFO_1("Registered air threat spawn point at %1",getPosASL _logic);
+TRACE_1("Registered air threat spawn point at %1",getPosASL _logic);

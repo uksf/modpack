@@ -8,7 +8,8 @@ class CfgPatches {
             QGVAR(spawnPointModule),
             QGVAR(airspaceModule),
             QGVAR(casStrikeZoneModule),
-            QGVAR(interceptZoneModule)
+            QGVAR(interceptZoneModule),
+            QGVAR(exclusionZoneModule)
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;

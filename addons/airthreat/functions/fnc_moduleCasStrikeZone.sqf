@@ -34,4 +34,4 @@ private _area = [_position, _sizeA, _sizeB, _angle, _isRectangle];
 
 GVAR(casStrikeZones) pushBack [_area, _casProbability, time];
 
-INFO_1("Registered CAS/strike zone at %1",_position);
+TRACE_1("Registered CAS/strike zone at %1",_position);

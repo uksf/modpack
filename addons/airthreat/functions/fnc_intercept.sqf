@@ -90,4 +90,4 @@ if (!isNull _groupB) then {
     [_groupB, _vehicleB, _target] call FUNC(interceptPursue);
 };
 
-INFO("Intercept mission spawned");
+DEBUG("Intercept mission spawned");

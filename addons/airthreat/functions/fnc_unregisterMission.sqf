@@ -27,4 +27,4 @@ if (_index isEqualTo -1) exitWith {};
 private _missionType = (GVAR(activeMissions) select _index) select 2;
 GVAR(activeMissions) deleteAt _index;
 
-INFO_2("Mission unregistered: %1 (active: %2)",_missionType,count GVAR(activeMissions));
+TRACE_2("Mission unregistered",_missionType,count GVAR(activeMissions));

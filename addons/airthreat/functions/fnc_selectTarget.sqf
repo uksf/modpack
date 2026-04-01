@@ -6,7 +6,7 @@
     Description:
         Selects a random valid player target for air threat missions.
         Filters out players matching excluded classnames and players
-        inside exclusion markers.
+        inside exclusion zones.
 
     Parameters:
         0: Require airborne <BOOL> - If true, only select players in air vehicles (default: false)
@@ -21,9 +21,10 @@ params [["_requireAirborne", false, [false]]];
 
 private _validTargets = ALL_PLAYERS select {
     private _player = _x;
+    private _playerPosition = getPosATL _player;
     alive _player
     && {!(typeOf _player in GVAR(excludedClasses))}
-    && {GVAR(exclusionMarkers) findIf {_player inArea _x} isEqualTo -1}
+    && {GVAR(exclusionZones) findIf {_playerPosition inArea _x} isEqualTo -1}
     && {!_requireAirborne || {vehicle _player isKindOf "Air" && {!isNull objectParent _player}}}
 };
 

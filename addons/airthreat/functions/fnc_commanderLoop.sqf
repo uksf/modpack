@@ -40,7 +40,7 @@ if (GVAR(capReconEnabled)) then {
     // Initialise on first run
     if (isNil QGVAR(nextCapReconTime)) then {
         GVAR(nextCapReconTime) = time + GVAR(initialDelay) + random GVAR(initialDelayOffset);
-        INFO_1("CAP/recon loop started — first mission at %1",GVAR(nextCapReconTime));
+        TRACE_1("CAP/recon loop started — first mission at %1",GVAR(nextCapReconTime));
     };
 
     if (time >= GVAR(nextCapReconTime)) then {

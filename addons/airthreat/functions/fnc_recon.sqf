@@ -23,7 +23,7 @@
 private _target = [false] call FUNC(selectTarget);
 
 if (isNull _target) exitWith {
-    INFO("No valid recon target, falling back to CAP");
+    DEBUG("No valid recon target, falling back to CAP");
     call FUNC(cap);
 };
 
@@ -100,7 +100,7 @@ private _expiryTime = time + GVAR(reconTimeout);
             if ((_vehiclePosition distance _targetPosition) < 1500) then {
                 _vehicle setVariable [QGVAR(reconState), "loiter", true];
                 _vehicle setVariable [QGVAR(reconSpotTime), time + 30 + random 60];
-                INFO("Recon entering loiter over target area");
+                DEBUG("Recon entering loiter over target area");
             };
         };
         case "loiter": {
@@ -140,4 +140,4 @@ private _expiryTime = time + GVAR(reconTimeout);
     };
 }, 5, [_group, _vehicle, _targetPosition, _expiryTime]] call CBA_fnc_addPerFrameHandler;
 
-INFO("Recon mission spawned");
+DEBUG("Recon mission spawned");

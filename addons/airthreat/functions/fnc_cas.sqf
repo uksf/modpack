@@ -21,8 +21,8 @@
 */
 params [["_targetPosition", [], [[]]]];
 
-if (GVAR(casClassnames) isEqualTo []) exitWith {
-    WARNING("No CAS classnames configured");
+if (GVAR(helicopterClassnames) isEqualTo []) exitWith {
+    WARNING("No helicopter classnames configured for CAS");
 };
 
 // If no explicit target, select a ground player
@@ -36,7 +36,7 @@ if (_targetPosition isEqualTo []) exitWith {};
 
 private _spawnPosition = selectRandom GVAR(spawnPoints);
 
-private _result = [_spawnPosition, GVAR(casClassnames), _targetPosition, 300 + random 200] call FUNC(spawnAircraft);
+private _result = [_spawnPosition, GVAR(helicopterClassnames), _targetPosition, 300 + random 200] call FUNC(spawnAircraft);
 _result params ["_group", "_vehicle"];
 
 if (isNull _group) exitWith {};
@@ -78,4 +78,4 @@ private _expiryTime = time + GVAR(casTimeout);
     } forEach ALL_PLAYERS;
 }, 15, [_group, _vehicle, _expiryTime]] call CBA_fnc_addPerFrameHandler;
 
-INFO("CAS mission spawned");
+DEBUG("CAS mission spawned");

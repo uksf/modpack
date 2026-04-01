@@ -1,11 +1,17 @@
 class CfgVehicles {
-    class Module_F;
+    class Logic;
+    class Module_F : Logic {
+        class AttributesBase;
+    };
     class GVAR(module) : Module_F {
         scope = 1;
         is3DEN = 1;
         functionPriority = 1;
         category = QUOTE(ADDON);
-        class AttributesBase;
+        class AttributesBase : AttributesBase {
+            class ModuleDescription;
+        };
+        class ModuleDescription;
     };
     class GVAR(controllerModule) : GVAR(module) {
         scope = 2;
@@ -13,10 +19,11 @@ class CfgVehicles {
         icon = "A3\ui_f\data\map\markers\nato\o_hq.paa";
         portrait = "A3\ui_f\data\map\markers\nato\o_hq.paa";
         function = QFUNC(moduleController);
-        class ModuleDescription {
+        class ModuleDescription : ModuleDescription {
             description = "Central controller for the air threat system. Place exactly one per mission. Configures mission timing, aircraft classnames, target exclusions, and concurrency limits. All other AT modules require this to function.";
         };
         class Attributes : AttributesBase {
+            class ModuleDescription : ModuleDescription {};
             class GVAR(capReconBaseTime) {
                 property = QGVAR(capReconBaseTime);
                 displayName = "CAP/Recon Base Interval";
@@ -100,26 +107,23 @@ class CfgVehicles {
                 tooltip = "Array of aircraft classnames for CAP and intercept missions. Format: ['Class1','Class2']";
                 control = "Edit";
                 defaultValue = "[]";
-                compileString = 1;
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(fighterClassnames),_value,true)]);
             };
-            class GVAR(casClassnames) {
-                property = QGVAR(casClassnames);
-                displayName = "CAS Classnames";
+            class GVAR(helicopterClassnames) {
+                property = QGVAR(helicopterClassnames);
+                displayName = "Helicopter Classnames (CAS)";
                 tooltip = "Array of helicopter classnames for CAS missions. Format: ['Class1','Class2']";
                 control = "Edit";
                 defaultValue = "[]";
-                compileString = 1;
-                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(casClassnames),_value,true)]);
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(helicopterClassnames),_value,true)]);
             };
-            class GVAR(strikeClassnames) {
-                property = QGVAR(strikeClassnames);
-                displayName = "Strike Classnames";
+            class GVAR(jetClassnames) {
+                property = QGVAR(jetClassnames);
+                displayName = "Jet Classnames (Strike)";
                 tooltip = "Array of jet classnames for strike/bombing missions. Format: ['Class1','Class2']";
                 control = "Edit";
                 defaultValue = "[]";
-                compileString = 1;
-                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(strikeClassnames),_value,true)]);
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(jetClassnames),_value,true)]);
             };
             class GVAR(reconClassnames) {
                 property = QGVAR(reconClassnames);
@@ -127,7 +131,6 @@ class CfgVehicles {
                 tooltip = "Array of drone/aircraft classnames for recon missions. Format: ['Class1','Class2']";
                 control = "Edit";
                 defaultValue = "[]";
-                compileString = 1;
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(reconClassnames),_value,true)]);
             };
             class GVAR(excludedClasses) {
@@ -136,17 +139,7 @@ class CfgVehicles {
                 tooltip = "Array of unit classnames excluded from targeting. Players with these classes won't be selected as mission targets. Format: ['Class1','Class2']";
                 control = "Edit";
                 defaultValue = "[]";
-                compileString = 1;
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(excludedClasses),_value,true)]);
-            };
-            class GVAR(exclusionMarkers) {
-                property = QGVAR(exclusionMarkers);
-                displayName = "Exclusion Markers";
-                tooltip = "Array of marker names. Players inside these markers won't be selected as mission targets. Format: ['marker1','marker2']";
-                control = "Edit";
-                defaultValue = "[]";
-                compileString = 1;
-                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(exclusionMarkers),_value,true)]);
             };
             class GVAR(capTimeout) {
                 property = QGVAR(capTimeout);
@@ -211,8 +204,13 @@ class CfgVehicles {
         icon = "A3\ui_f\data\map\markers\nato\o_plane.paa";
         portrait = "A3\ui_f\data\map\markers\nato\o_plane.paa";
         function = QFUNC(moduleSpawnPoint);
-        class ModuleDescription {
+        class Attributes : AttributesBase {
+            class ModuleDescription : ModuleDescription {};
+        };
+        class ModuleDescription : ModuleDescription {
             description = "Spawn/despawn point for enemy aircraft. Place at the edge of the map where aircraft should appear from and return to. Multiple spawn points can be placed — missions will use the nearest one to their target.";
+            position = 1;
+            duplicate = 1;
         };
     };
     class GVAR(airspaceModule) : GVAR(module) {
@@ -221,8 +219,13 @@ class CfgVehicles {
         icon = "A3\modules_f\data\iconmodule_ca.paa";
         portrait = "A3\modules_f\data\iconmodule_ca.paa";
         function = QFUNC(moduleAirspace);
-        class ModuleDescription {
+        class Attributes : AttributesBase {
+            class ModuleDescription : ModuleDescription {};
+        };
+        class ModuleDescription : ModuleDescription {
             description = "Defines an airspace zone where CAP and recon missions patrol. Enemy aircraft will fly waypoints within this area. Resize the area to cover the region you want patrolled.";
+            position = 1;
+            duplicate = 1;
         };
         canSetArea = 1;
         canSetAreaHeight = 0;
@@ -238,8 +241,10 @@ class CfgVehicles {
         icon = "A3\ui_f\data\map\markers\nato\o_support.paa";
         portrait = "A3\ui_f\data\map\markers\nato\o_support.paa";
         function = QFUNC(moduleCasStrikeZone);
-        class ModuleDescription {
+        class ModuleDescription : ModuleDescription {
             description = "Defines an area where CAS helicopters or strike jets can be called against players. When a player is inside this zone, the system may spawn a CAS or strike mission targeting them. The CAS Probability attribute controls the chance of a helicopter vs a jet.";
+            position = 1;
+            duplicate = 1;
         };
         canSetArea = 1;
         canSetAreaHeight = 0;
@@ -249,6 +254,7 @@ class CfgVehicles {
             isRectangle = 0;
         };
         class Attributes : AttributesBase {
+            class ModuleDescription : ModuleDescription {};
             class GVAR(casProbability) {
                 property = QGVAR(casProbability);
                 displayName = "CAS Probability";
@@ -268,8 +274,10 @@ class CfgVehicles {
         icon = "A3\ui_f\data\map\markers\nato\o_air.paa";
         portrait = "A3\ui_f\data\map\markers\nato\o_air.paa";
         function = QFUNC(moduleInterceptZone);
-        class ModuleDescription {
+        class ModuleDescription : ModuleDescription {
             description = "Defines an area where player aircraft will be intercepted by enemy fighters. When a player flies within this zone, interceptors scramble from the nearest spawn point to engage. Max Concurrent Intercepts limits how many intercept groups can be active from this zone at once.";
+            position = 1;
+            duplicate = 1;
         };
         canSetArea = 1;
         canSetAreaHeight = 0;
@@ -279,6 +287,7 @@ class CfgVehicles {
             isRectangle = 1;
         };
         class Attributes : AttributesBase {
+            class ModuleDescription : ModuleDescription {};
             class GVAR(maxConcurrentIntercepts) {
                 property = QGVAR(maxConcurrentIntercepts);
                 displayName = "Max Concurrent Intercepts";
@@ -290,6 +299,28 @@ class CfgVehicles {
                 defaultValue = "2";
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(maxConcurrentIntercepts),_value,true)]);
             };
+        };
+    };
+    class GVAR(exclusionZoneModule) : GVAR(module) {
+        scope = 2;
+        displayName = "(AT) Exclusion Zone";
+        icon = "A3\modules_f\data\iconmodule_ca.paa";
+        portrait = "A3\modules_f\data\iconmodule_ca.paa";
+        function = QFUNC(moduleExclusionZone);
+        class Attributes : AttributesBase {
+            class ModuleDescription : ModuleDescription {};
+        };
+        class ModuleDescription : ModuleDescription {
+            description = "Defines a safe area where players will not be targeted by air threat missions. Place over bases, staging areas, or any location where air attacks should not occur.";
+            position = 1;
+            duplicate = 1;
+        };
+        canSetArea = 1;
+        canSetAreaHeight = 0;
+        canSetAreaShape = 1;
+        class AttributeValues {
+            size3[] = { 500, 500, -1 };
+            isRectangle = 0;
         };
     };
 };

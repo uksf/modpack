@@ -87,4 +87,4 @@ private _expiryTime = time + GVAR(capTimeout);
     };
 }, 5, [_group, _vehicle, _expiryTime]] call CBA_fnc_addPerFrameHandler;
 
-INFO("CAP mission spawned");
+DEBUG("CAP mission spawned");

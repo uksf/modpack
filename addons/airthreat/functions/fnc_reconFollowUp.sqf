@@ -55,5 +55,5 @@ private _delay = 120 + random 180;
     // Spawn strike on server — pass recon vehicle reference for coordination
     [QGVAR(spawnStrike), [_observedPosition, _reconVehicle]] call CBA_fnc_localEvent;
 
-    INFO("Recon follow-up strike dispatched");
+    DEBUG("Recon follow-up strike dispatched");
 }, [_observedPosition, _reconGroup, _reconVehicle], _delay] call CBA_fnc_waitAndExecute;
