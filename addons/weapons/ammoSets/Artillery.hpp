@@ -53,9 +53,8 @@ class tbd_mortars_105mm_shell_ammo_smoke : SubmunitionCore {
 class Flare_82mm_AMOS_White_Illumination;
 class GVAR(105mm_illum_flare) : Flare_82mm_AMOS_White_Illumination {
     triggerTime = 0;
-    brightness = 14000000;
-    intensity = 10000000;
-    flareSize = 30;
+    intensity = 120000;
+    flareSize = 16;
     timeToLive = 120;
 };
 class GVAR(105mm_shell_ammo_illum) : tbd_mortars_105mm_shell_ammo_smoke {
@@ -65,7 +64,7 @@ class GVAR(105mm_shell_ammo_illum) : tbd_mortars_105mm_shell_ammo_smoke {
     submunitionConeType[] = { "poissondisc", 1 };
     submunitionInitialOffset[] = { 0, 0, 0 };
     submunitionParentSpeedCoef = 0;
-    submunitionInitSpeed = 0;
+    submunitionInitSpeed = 1;
 };
 class GVAR(105mm_shell_empty) : tbd_mortars_105mm_shell_ammo_smoke {
     hit = 100;
