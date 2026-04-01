@@ -192,6 +192,7 @@ class GVAR(r9) : GVAR(rx) {
     class ACE_Cargo {
         class Cargo {
             MACRO_ADDACECARGO(tbd_mortars_105mm_box_smoke,7);
+            MACRO_ADDACECARGO(tbd_mortars_105mm_box_dpicm,3);
         };
     };
 };
