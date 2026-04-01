@@ -50,7 +50,24 @@ class tbd_mortars_105mm_shell_ammo_smoke : SubmunitionCore {
     triggerOnImpact = 1;
     explosionEffects = "";
 };
-class GVAR(105mm_shell_smoke_empty) : tbd_mortars_105mm_shell_ammo_smoke {
+class GVAR(105mm_illum_flare) : UK3CB_BAF_Flare_81mm_AMOS_White {
+    triggerTime = 0;
+    brightness = 15000000;
+    intensity = 10000000;
+    flareSize = 30;
+    timeToLive = 120;
+    affectedByWind = 1;
+    flareAirFriction = -0.8;
+};
+class GVAR(105mm_shell_ammo_illum) : tbd_mortars_105mm_shell_ammo_smoke {
+    submunitionAmmo = QGVAR(105mm_illum_flare);
+    submunitionConeAngle = 0;
+    submunitionConeType[] = { "poissondisc", 1 };
+    submunitionInitialOffset[] = { 0, 0, 0 };
+    submunitionParentSpeedCoef = 0;
+    submunitionInitSpeed = 0;
+};
+class GVAR(105mm_shell_empty) : tbd_mortars_105mm_shell_ammo_smoke {
     hit = 100;
     indirectHit = 1;
     indirectHitRange = 1;
@@ -79,12 +96,4 @@ class GVAR(105mm_shell_smoke_empty) : tbd_mortars_105mm_shell_ammo_smoke {
         hitWood = "ImpactWood_Big";
         hitWater = "ImpactEffectsWater";
     };
-};
-class GVAR(105mm_shell_ammo_illum) : UK3CB_BAF_Flare_81mm_AMOS_White {
-    model = "\x\TBD_MORTARS\addons\105mm\tbd_mortars_105mm_shell_dpicm\tbd_mortars_105mm_shell_dpicm";
-    brightness = 15000000;
-    intensity = 10000000;
-    flareSize = 30;
-    timeToLive = 120;
-    ace_rearm_caliber = 105;
 };
