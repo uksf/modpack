@@ -80,3 +80,11 @@ class GVAR(105mm_shell_smoke_empty) : tbd_mortars_105mm_shell_ammo_smoke {
         hitWater = "ImpactEffectsWater";
     };
 };
+class GVAR(105mm_shell_ammo_illum) : UK3CB_BAF_Flare_81mm_AMOS_White {
+    model = "\x\TBD_MORTARS\addons\105mm\tbd_mortars_105mm_shell_dpicm\tbd_mortars_105mm_shell_dpicm";
+    brightness = 15000000;
+    intensity = 10000000;
+    flareSize = 30;
+    timeToLive = 120;
+    ace_rearm_caliber = 105;
+};
