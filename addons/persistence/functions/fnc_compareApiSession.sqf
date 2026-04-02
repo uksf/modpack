@@ -34,6 +34,9 @@ private _isEqual = {
     params ["_a", "_b"];
     if (isNil "_a" && isNil "_b") exitWith { true };
     if (isNil "_a" || isNil "_b") exitWith { false };
+    // Side type (e.g. WEST) becomes string "WEST" after JSON round-trip — coerce for comparison
+    if (_a isEqualType west && _b isEqualType "") exitWith { str _a == _b };
+    if (_a isEqualType "" && _b isEqualType west) exitWith { _a == str _b };
     if !(_a isEqualType _b) exitWith { false };
     if (_a isEqualType 0) exitWith { _a == _b };
     if (_a isEqualType "") exitWith { _a == _b };
@@ -132,11 +135,23 @@ INFO_2("Objects: profile count=%1, api count=%2",count _profileObjects,count _ap
             _objectMissing = _objectMissing + 1;
             WARNING_1("Object %1: in profile only, missing from API",_objectId);
         } else {
+            // Normalise profile turretMagazines: magazinesAllTurrets returns 5 elements
+            // per entry but only the first 3 (className, turretPath, ammoCount) are meaningful
+            private _profileTurretMags = if (IDX_OBJ_TURRETMAGS < count _profileObject) then {
+                (_profileObject#IDX_OBJ_TURRETMAGS) apply {_x select [0, 3]}
+            } else {
+                []
+            };
+
             // Compare per-field: convert profile positional to keyed lookup
             private _fieldMismatch = false;
             {
                 private _key = _x;
-                private _profileField = if (_forEachIndex < count _profileObject) then {_profileObject#_forEachIndex} else {nil};
+                private _profileField = if (_key == "turretMagazines") then {
+                    _profileTurretMags
+                } else {
+                    if (_forEachIndex < count _profileObject) then {_profileObject#_forEachIndex} else {nil}
+                };
                 private _apiField = _apiObject getOrDefault [_key, nil];
                 if !([_profileField, _apiField] call _isEqual) then {
                     _fieldMismatch = true;
