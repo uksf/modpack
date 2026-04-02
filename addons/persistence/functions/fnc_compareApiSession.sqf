@@ -26,9 +26,9 @@ params ["_session", "_snapshot"];
 INFO("=== API vs Profile Comparison Start ===");
 
 // Type-aware comparison that handles float precision differences from
-// JSON round-trip. isEqualTo is binary-exact on floats, so two values
-// that display as 3.1957 can fail if their binary representations
-// differ after encoding/decoding. == handles this for numbers and strings.
+// JSON round-trip. CBA_fnc_encodeJSON uses str which rounds to ~6 sig
+// digits, so the API value can differ by up to ~0.04 for large numbers.
+// Use str comparison for numbers: if they display the same, they're close enough.
 // Arrays and hashmaps are compared recursively.
 private _isEqual = {
     params ["_a", "_b"];
@@ -38,7 +38,10 @@ private _isEqual = {
     if (_a isEqualType west && _b isEqualType "") exitWith { str _a == _b };
     if (_a isEqualType "" && _b isEqualType west) exitWith { _a == str _b };
     if !(_a isEqualType _b) exitWith { false };
-    if (_a isEqualType 0) exitWith { _a == _b };
+    // str comparison for numbers: CBA_fnc_encodeJSON uses str, so the API
+    // round-trip is only precise to str's output. If str matches, the values
+    // are as close as the JSON encoding can represent.
+    if (_a isEqualType 0) exitWith { str _a == str _b };
     if (_a isEqualType "") exitWith { _a == _b };
     if (_a isEqualType []) exitWith {
         if (count _a != count _b) exitWith { false };
@@ -59,6 +62,72 @@ private _isEqual = {
         _match
     };
     _a isEqualTo _b
+};
+
+// Diagnostic detail: when str() shows identical values, dig deeper to explain the mismatch
+private _mismatchDetail = {
+    params ["_a", "_b"];
+    if (isNil "_a" && !isNil "_b") exitWith { "profile=nil" };
+    if (!isNil "_a" && isNil "_b") exitWith { "api=nil" };
+    if (isNil "_a" && isNil "_b") exitWith { "both nil (shouldn't mismatch)" };
+    if !(_a isEqualType _b) exitWith {
+        format ["type mismatch: profile=%1, api=%2", typeName _a, typeName _b]
+    };
+    if (_a isEqualType []) exitWith {
+        if (count _a != count _b) exitWith {
+            format ["array length: profile=%1, api=%2", count _a, count _b]
+        };
+        private _detail = "";
+        for "_i" from 0 to (count _a - 1) do {
+            if !([_a#_i, _b#_i] call _isEqual) exitWith {
+                _detail = format ["element[%1] differs: %2", _i, [_a#_i, _b#_i] call _mismatchDetail];
+            };
+        };
+        _detail
+    };
+    if (_a isEqualType createHashMap) exitWith {
+        private _keysA = keys _a;
+        private _keysB = keys _b;
+        if (count _keysA != count _keysB) exitWith {
+            format ["hashmap key count: profile=%1, api=%2", count _keysA, count _keysB]
+        };
+        private _detail = "";
+        {
+            private _key = _x;
+            if !(_key in _keysB) exitWith { _detail = format ["key '%1' missing from api", _key] };
+            if !([_a get _key, _b get _key] call _isEqual) exitWith {
+                _detail = format ["key '%1' differs: %2", _key, [_a get _key, _b get _key] call _mismatchDetail];
+            };
+        } forEach _keysA;
+        if (_detail == "") then {
+            {
+                if !(_x in _keysA) exitWith { _detail = format ["key '%1' missing from profile", _x] };
+            } forEach _keysB;
+        };
+        _detail
+    };
+    if (_a isEqualType 0) exitWith {
+        if (_a == _b) then {
+            format ["numbers: == true but isEqualTo false (binary diff), profile=%1, api=%2", _a, _b]
+        } else {
+            format ["numbers: profile=%1, api=%2, diff=%3", _a, _b, _a - _b]
+        };
+    };
+    if (_a isEqualType "") exitWith {
+        if (count _a != count _b) exitWith {
+            format ["string length: profile=%1, api=%2", count _a, count _b]
+        };
+        private _detail = "";
+        private _profileChars = toArray _a;
+        private _apiChars = toArray _b;
+        for "_i" from 0 to (count _profileChars - 1) do {
+            if (_profileChars#_i != _apiChars#_i) exitWith {
+                _detail = format ["char[%1]: profile=%2 (%3), api=%4 (%5)", _i, toString [_profileChars#_i], _profileChars#_i, toString [_apiChars#_i], _apiChars#_i];
+            };
+        };
+        _detail
+    };
+    format ["isEqualTo false: profile=%1, api=%2", _a, _b]
 };
 
 private _failures = 0;
@@ -155,7 +224,8 @@ INFO_2("Objects: profile count=%1, api count=%2",count _profileObjects,count _ap
                 private _apiField = _apiObject getOrDefault [_key, nil];
                 if !([_profileField, _apiField] call _isEqual) then {
                     _fieldMismatch = true;
-                    WARNING_4("Object %1 field '%2': profile=%3, api=%4",_objectId,_key,_profileField,_apiField);
+                    private _detail = [_profileField, _apiField] call _mismatchDetail;
+                    WARNING_3("Object %1 field '%2': %3",_objectId,_key,_detail);
                 };
             } forEach _objectKeys;
 
@@ -216,7 +286,8 @@ INFO_2("Players: profile count=%1, api count=%2",count _profilePlayerUids,count 
                     private _apiField = _apiPlayer getOrDefault [_key, nil];
                     if !([_profileField, _apiField] call _isEqual) then {
                         _fieldMismatch = true;
-                        WARNING_4("Player %1 field '%2': profile=%3, api=%4",_uid,_key,_profileField,_apiField);
+                        private _detail = [_profileField, _apiField] call _mismatchDetail;
+                        WARNING_3("Player %1 field '%2': %3",_uid,_key,_detail);
                     };
                 } forEach _playerKeys;
 
@@ -256,8 +327,14 @@ private _customMismatches = 0;
     if ([_profileValue, _apiValue] call _isEqual) then {
         _customMatches = _customMatches + 1;
     } else {
-        _customMismatches = _customMismatches + 1;
-        WARNING_3("Custom data '%1': MISMATCH — profile count=%2, api count=%3",_key,count _profileValue,count _apiValue);
+        // Profile doesn't save default/empty data, so skip if profile is empty
+        if (_profileValue isEqualTo []) then {
+            _customMatches = _customMatches + 1;
+            INFO_2("Custom data '%1': profile empty (default data), api count=%2 — skipping",_key,count _apiValue);
+        } else {
+            _customMismatches = _customMismatches + 1;
+            WARNING_3("Custom data '%1': MISMATCH — profile count=%2, api count=%3",_key,count _profileValue,count _apiValue);
+        };
     };
 } forEach _customDataKeys;
 
