@@ -37,6 +37,17 @@ private _isEqual = {
     // Side type (e.g. WEST) becomes string "WEST" after JSON round-trip — coerce for comparison
     if (_a isEqualType west && _b isEqualType "") exitWith { str _a == _b };
     if (_a isEqualType "" && _b isEqualType west) exitWith { _a == str _b };
+    // aceMedical: profile stores JSON string from older ACE, API returns hashmap
+    if (_a isEqualType "" && _b isEqualType createHashMap) exitWith {
+        private _parsed = [_a, 2] call CBA_fnc_parseJSON;
+        if (!isNil "_parsed") exitWith { [_parsed, _b] call _isEqual };
+        false
+    };
+    if (_a isEqualType createHashMap && _b isEqualType "") exitWith {
+        private _parsed = [_b, 2] call CBA_fnc_parseJSON;
+        if (!isNil "_parsed") exitWith { [_a, _parsed] call _isEqual };
+        false
+    };
     if !(_a isEqualType _b) exitWith { false };
     // str comparison for numbers: CBA_fnc_encodeJSON uses str, so the API
     // round-trip is only precise to str's output. If str matches, the values
