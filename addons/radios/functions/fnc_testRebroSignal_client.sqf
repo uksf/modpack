@@ -70,7 +70,7 @@ uksf_radios_testRebroPfhHandle = [{
         uksf_radios_rebroDebugging = false;
         hint "Test stopped - vehicle destroyed";
     };
-    [_frequency, _power, _vehicleRadioId, _playerRadioId] call uksf_radios_fnc_handleCustomSignal;
+    [_frequency, _power, _playerRadioId, _vehicleRadioId] call uksf_radios_fnc_handleCustomSignal;
 }, 0, [_frequency, _power, _vehicleRadioId, _playerRadioId, _vehicle]] call CBA_fnc_addPerFrameHandler;
 
 hint parseText format [

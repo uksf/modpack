@@ -113,6 +113,14 @@ private _fnc_draw3d = {
     params ["_data", "_cameraPosition", "_maxDistance"];
     _data params ["_rebroNetIds", "_connections"];
 
+    private _fnc_screenDirection = {
+        params ["_from", "_to"];
+        private _screenFrom = worldToScreen _from;
+        private _screenTo = worldToScreen _to;
+        if (_screenFrom isEqualTo [] || {_screenTo isEqualTo []}) exitWith {0};
+        ((_screenTo#0) - (_screenFrom#0)) atan2 -((_screenTo#1) - (_screenFrom#1))
+    };
+
     private _rebroIcon = "\a3\ui_f\data\map\markers\military\triangle_ca.paa";
     private _rebroColour = [0, 1, 1, 1];
 
@@ -151,8 +159,8 @@ private _fnc_draw3d = {
             drawLine3D [_rebroPosition, _receiverPosition, _deadColour];
             private _mid1 = _transmitterPosition vectorAdd _rebroPosition vectorMultiply 0.5;
             private _mid2 = _rebroPosition vectorAdd _receiverPosition vectorMultiply 0.5;
-            private _dir1 = (_transmitterPosition getDir _rebroPosition) + 180;
-            private _dir2 = (_rebroPosition getDir _receiverPosition) + 180;
+            private _dir1 = [_transmitterPosition, _rebroPosition] call _fnc_screenDirection;
+            private _dir2 = [_rebroPosition, _receiverPosition] call _fnc_screenDirection;
             drawIcon3D [_arrowIcon, _deadColour, _mid1, 0.6, 0.6, _dir1, "", 0, 0.025];
             drawIcon3D [_arrowIcon, _deadColour, _mid2, 0.6, 0.6, _dir2, "", 0, 0.025];
         } else {
@@ -162,8 +170,8 @@ private _fnc_draw3d = {
             drawLine3D [_rebroPosition, _receiverPosition, _colour2];
             private _mid1 = _transmitterPosition vectorAdd _rebroPosition vectorMultiply 0.5;
             private _mid2 = _rebroPosition vectorAdd _receiverPosition vectorMultiply 0.5;
-            private _dir1 = (_transmitterPosition getDir _rebroPosition) + 180;
-            private _dir2 = (_rebroPosition getDir _receiverPosition) + 180;
+            private _dir1 = [_transmitterPosition, _rebroPosition] call _fnc_screenDirection;
+            private _dir2 = [_rebroPosition, _receiverPosition] call _fnc_screenDirection;
             drawIcon3D [_arrowIcon, _colour1, _mid1, 0.6, 0.6, _dir1, "", 0, 0.025];
             drawIcon3D [_arrowIcon, _colour2, _mid2, 0.6, 0.6, _dir2, "", 0, 0.025];
         };
@@ -298,6 +306,14 @@ _fnc_draw3d = {
     params ["_data", "_cameraPosition", "_maxDistance"];
     _data params ["_netIds", "_links"];
 
+    private _fnc_screenDirection = {
+        params ["_from", "_to"];
+        private _screenFrom = worldToScreen _from;
+        private _screenTo = worldToScreen _to;
+        if (_screenFrom isEqualTo [] || {_screenTo isEqualTo []}) exitWith {0};
+        ((_screenTo#0) - (_screenFrom#0)) atan2 -((_screenTo#1) - (_screenFrom#1))
+    };
+
     private _arrowIcon = "\a3\ui_f\data\map\markers\military\triangle_ca.paa";
 
     {
@@ -315,7 +331,7 @@ _fnc_draw3d = {
         drawLine3D [_fromPosition, _toPosition, _lineColour];
 
         private _midPosition = _fromPosition vectorAdd _toPosition vectorMultiply 0.5;
-        private _direction = (_fromPosition getDir _toPosition) + 180;
+        private _direction = [_fromPosition, _toPosition] call _fnc_screenDirection;
         drawIcon3D [_arrowIcon, _lineColour, _midPosition, 0.6, 0.6, _direction, "", 0, 0.025];
     } forEach _links;
 };

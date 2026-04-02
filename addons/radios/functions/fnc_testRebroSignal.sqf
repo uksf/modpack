@@ -164,7 +164,7 @@ hint "Setting up test environment...";
             hint "Test stopped - vehicle destroyed";
         };
 
-        [_frequency, _power, _vehicleRadioId, _playerRadioId] call FUNC(handleCustomSignal);
+        [_frequency, _power, _playerRadioId, _vehicleRadioId] call FUNC(handleCustomSignal);
 
     }, 0, [_frequency, _power, _vehicleRadioId, _playerRadioId, _vehicle]] call CBA_fnc_addPerFrameHandler;
 
