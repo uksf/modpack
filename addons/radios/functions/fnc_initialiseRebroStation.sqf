@@ -40,7 +40,7 @@ _vehicle addEventHandler ["Killed", {[QGVAR(deinitialiseRebroStation), _this] ca
         private _rebroData = [_vehicle] call FUNC(getRebroStationRadio);
         _rebroData params ["_rackId", "_rebroId"];
 
-        _rebroId != "" && {!isNil {acre_sys_data_radioData getVariable _rebroId}}
+        _rebroId != ""
     }
 }, {
     params ["_vehicle"];
