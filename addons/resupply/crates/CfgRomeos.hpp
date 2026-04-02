@@ -10,6 +10,7 @@ class GVAR(rx) : B_supplyCrate_F {
     description = "Crate - Empty";
     PREVIEW(rx);
     hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\rx.paa) };
+    ace_cargo_size = 4;
     maximumLoad = 100000;
     transportMaxWeapons = 200;
     transportMaxMagazines = 1000;
@@ -191,6 +192,7 @@ class GVAR(r9) : GVAR(rx) {
     class ACE_Cargo {
         class Cargo {
             MACRO_ADDACECARGO(tbd_mortars_105mm_box_smoke,7);
+            MACRO_ADDACECARGO(tbd_mortars_105mm_box_dpicm,3);
         };
     };
 };

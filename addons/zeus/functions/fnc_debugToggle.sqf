@@ -26,6 +26,9 @@ if (_newState) then {
     GVAR(debugData) deleteAt _key;
 };
 
-if (_key in GVAR(debugServerGetters)) then {
+GVAR(debugSortedActiveKeysDirty) = true;
+
+private _provider = GVAR(debugProviders) getOrDefault [_key, createHashMap];
+if ("serverGetter" in _provider) then {
     [QGVAR(debugStreamToggle), [player, _key, _newState]] call CBA_fnc_serverEvent;
 };

@@ -15,9 +15,11 @@ PREP(moduleParadrop);
 PREP(moduleRemoveAceArsenal);
 PREP(moduleToggleCaching);
 PREP(moduleToggleCleanup);
-PREP(moduleToggleFps);
 PREP(moduleToggleHasRadio);
 PREP(moduleToggleZeusVisibility);
+
+// Teleport override (fixes ZEN map position bug)
+PREP(teleportPlayers);
 
 // Context actions
 PREP(addContextActions);
@@ -35,6 +37,7 @@ PREP(contextCleanupModifier);
 PREP(formatUnconsciousText);
 
 // Debug provider system
+PREP(debugManageClientSources);
 PREP(debugStreamToggle);
 PREP(debugStreamTick);
 PREP(debugMapDraw);

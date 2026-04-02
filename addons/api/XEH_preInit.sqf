@@ -24,5 +24,9 @@ if (isServer) then {
             [GVAR(statusPerFrameHandler)] call CBA_fnc_removePerFrameHandler;
             GVAR(statusPerFrameHandler) = -1;
         };
+        if (GVAR(performancePerFrameHandler) != -1) then {
+            [GVAR(performancePerFrameHandler)] call CBA_fnc_removePerFrameHandler;
+            GVAR(performancePerFrameHandler) = -1;
+        };
     }] call CBA_fnc_addEventHandler;
 };

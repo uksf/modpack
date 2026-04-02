@@ -17,6 +17,9 @@ class zen_context_menu_actions {
             };
         };
     };
+    class TeleportPlayers {
+        statement = QUOTE(_objects call FUNC(teleportPlayers));
+    };
     class TeleportZeus {
         priority = -950;
     };

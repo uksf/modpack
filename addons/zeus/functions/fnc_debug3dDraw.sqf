@@ -26,14 +26,15 @@ private _activeKeys = call FUNC(debugGetSortedActiveKeys);
 
 {
     private _providerKey = _x;
-    private _drawData = GVAR(debugDraws) getOrDefault [_providerKey, []];
-    if (_drawData isEqualTo []) then { continue };
+    private _provider = GVAR(debugProviders) get _providerKey;
+    if (isNil "_provider") then { continue };
+    private _fnc_draw3d = _provider get "draw3d";
+    if (isNil "_fnc_draw3d") then { continue };
 
     private _data = GVAR(debugData) getOrDefault [_providerKey, []];
-    private _hasServerGetter = _providerKey in GVAR(debugServerGetters);
-    if (_hasServerGetter && {_data isEqualTo []}) then { continue };
+    if ("serverGetter" in _provider && {_data isEqualTo []}) then { continue };
 
-    _drawData params ["_fnc_draw3d", "", "_fnc_drawHud"];
+    private _fnc_drawHud = _provider getOrDefault ["drawHud", {}];
 
     [_data, _cameraPosition, _maxDistance] call _fnc_draw3d;
 

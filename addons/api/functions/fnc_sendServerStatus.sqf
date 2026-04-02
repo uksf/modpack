@@ -24,7 +24,6 @@ private _data = createHashMapFromArray [
     ["players", ALL_PLAYERS apply {getPlayerUID _x}],
     ["uptime", time],
     ["processId", GVAR(processId)],
-    ["fps", diag_fps],
     ["entityCount", count allUnits + count vehicles],
     ["aiCount", {!isPlayer _x} count allUnits]
 ];

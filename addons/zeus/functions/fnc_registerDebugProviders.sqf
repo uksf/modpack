@@ -44,37 +44,41 @@ private _fnc_drawMap = {
     } forEach GVAR(trackedProjectiles);
 };
 
-[QGVAR(registerDebugAction), [_key, _menuName, _menuPriority, _fnc_menuCondition]] call CBA_fnc_localEvent;
-[QGVAR(registerDebugDraw), [_key, _fnc_draw3d, _fnc_drawMap]] call CBA_fnc_localEvent;
+[QGVAR(registerDebugProvider), [_key, createHashMapFromArray [
+    ["draw3d", _fnc_draw3d],
+    ["drawMap", _fnc_drawMap],
+    ["menuName", _menuName],
+    ["menuPriority", _menuPriority],
+    ["menuCondition", _fnc_menuCondition]
+]]] call CBA_fnc_localEvent;
 
-// FPS client data source — each player reports their FPS when active
-[QGVAR(registerDebugClientSource), [
-    QGVAR(fpsData),
-    {[floor diag_fps]},
-    1
-]] call CBA_fnc_localEvent;
-
-// Player FPS provider
+// Player FPS provider — always active when Zeus is open
 _key = QGVAR(fps);
-_menuName = "Player FPS";
-_menuPriority = -5;
-_fnc_menuCondition = {true};
-private _clientDataKey = QGVAR(fpsData);
 
 private _fnc_serverGetter = {
-    private _sourceData = GVAR(debugClientData) getOrDefault [QGVAR(fpsData), createHashMap];
+    private _fpsStore = EGVAR(common,fpsStore);
+    private _timestamps = EGVAR(common,fpsStoreTimestamps);
+    private _now = CBA_missionTime;
     private _players = [];
     {
-        private _entry = _sourceData get _x;
-        _entry params ["_player", "_data", "_timestamp"];
-        if (CBA_missionTime - _timestamp > 10) then { continue };
-        if (isNull _player) then { continue };
-        if !(isPlayer _player) then { continue };
-        if ((driver (vehicle _player)) isNotEqualTo _player) then { continue };
+        private _key = _x;
+        if (_key isEqualTo "server") then { continue };
+        private _lastUpdate = _timestamps getOrDefault [_key, 0];
+        if (_now - _lastUpdate > 10) then { continue };
 
-        _data params ["_fps"];
-        _players pushBack [netId _player, _fps];
-    } forEach keys _sourceData;
+        // Only show players, not HCs
+        private _playerObject = objNull;
+        {
+            if (getPlayerUID _x isEqualTo _key) exitWith {
+                _playerObject = _x;
+            };
+        } forEach ALL_PLAYERS;
+        if (isNull _playerObject) then { continue };
+        if ((driver (vehicle _playerObject)) isNotEqualTo _playerObject) then { continue };
+
+        private _entry = _fpsStore get _key;
+        _players pushBack [netId _playerObject, _entry#0];
+    } forEach keys _fpsStore;
     _players
 };
 
@@ -99,11 +103,13 @@ _fnc_draw3d = {
     } forEach _data;
 };
 
-_fnc_drawMap = {};
-
-[QGVAR(registerDebugAction), [_key, _menuName, _menuPriority, _fnc_menuCondition]] call CBA_fnc_localEvent;
-[QGVAR(registerDebugServerGetter), [_key, _fnc_serverGetter, 1, _clientDataKey]] call CBA_fnc_localEvent;
-[QGVAR(registerDebugDraw), [_key, _fnc_draw3d, _fnc_drawMap]] call CBA_fnc_localEvent;
+[QGVAR(registerDebugProvider), [_key, createHashMapFromArray [
+    ["draw3d", _fnc_draw3d],
+    ["serverGetter", _fnc_serverGetter],
+    ["getterInterval", 1],
+    ["alwaysActive", true],
+    ["menuPriority", -5]
+]]] call CBA_fnc_localEvent;
 
 // Unconscious status provider — always active when Zeus is open
 _key = QGVAR(unconscious);
@@ -147,5 +153,11 @@ private _fnc_unconsciousDrawMap = {
     } forEach _data;
 };
 
-[QGVAR(registerDebugServerGetter), [_key, _fnc_unconsciousServerGetter, 1]] call CBA_fnc_localEvent;
-[QGVAR(registerDebugDraw), [_key, _fnc_unconsciousDraw3d, _fnc_unconsciousDrawMap]] call CBA_fnc_localEvent;
+[QGVAR(registerDebugProvider), [_key, createHashMapFromArray [
+    ["draw3d", _fnc_unconsciousDraw3d],
+    ["drawMap", _fnc_unconsciousDrawMap],
+    ["serverGetter", _fnc_unconsciousServerGetter],
+    ["getterInterval", 1],
+    ["alwaysActive", true],
+    ["menuPriority", -3]
+]]] call CBA_fnc_localEvent;

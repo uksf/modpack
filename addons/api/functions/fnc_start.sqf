@@ -38,7 +38,6 @@ GVAR(processId) = _startData getOrDefault ["processId", -1];
 // Send initial handshake so the API knows the server is alive during mission load
 private _data = createHashMapFromArray [
     ["processId", GVAR(processId)],
-    ["fps", diag_fps],
     ["players", []],
     ["uptime", 0],
     ["entityCount", 0],

@@ -22,15 +22,15 @@ if (GVAR(noAirTimeout) <= 0) exitWith {
 
 GVAR(warningTextLowPressure) = ["", "!LOW AIR!"] select (GVAR(currentPressure) < 50);
 
-if (GVAR(needDeepStop) && (GVAR(deepStopTime) > 1) && ((GVAR(currentDepth) - 2) > GVAR(deepStopDepth))) then {
-    player allowSprint true;
+if (GVAR(needDeepStop) && (GVAR(deepStopTime) > 1) && ((GVAR(currentDepth) + 2) <= GVAR(deepStopDepth))) then {
+    player allowSprint false;
     GVAR(toxicDeepStopTimeout) = GVAR(toxicDeepStopTimeout) - 1;
     GVAR(deepStopDepth) = 0;
     GVAR(deepStopTime) = 0;
 };
 
 if (GVAR(toxicDeepStopTimeout) <= 0) then {
-    player allowSprint false;
+    player allowSprint true;
 };
 
 if (GVAR(deepStopTime) <= 0) then {
@@ -44,7 +44,7 @@ if (GVAR(currentDepth) > GVAR(maxDepth)) then {
     GVAR(warningTextO2) = "!ppO2!";
     playSound QGVAR(beep);
     GVAR(toxicO2Timeout) = GVAR(toxicO2Timeout) - 1;
-    if (GVAR(toxicO2Timeout) == 0) then {
+    if (GVAR(toxicO2Timeout) <= 0) then {
         call FUNC(effectToxicO2);
         GVAR(toxicO2Timeout) = 2;
     };
@@ -53,13 +53,14 @@ if (GVAR(currentDepth) > GVAR(maxDepth)) then {
     GVAR(toxicO2Timeout) = 10;
 };
 
-if ((GVAR(decompressTime) > 0) && (GVAR(ascendRate) > 1)) then {
+if (((GVAR(decompressTime) > 0) && (GVAR(ascendRate) > 1)) || ((GVAR(currentDepth) > 10) && (GVAR(ascendRate) > 1))) then {
     GVAR(warningTextAscendRate) = "!ASC RATE!";
     playSound QGVAR(beep);
     GVAR(toxicAscendTimeout) = GVAR(toxicAscendTimeout) - 1;
-    if (GVAR(toxicAscendTimeout) == 0) then {
-        GVAR(pain) = player getVariable ["ace_medical_pain", 0];
-        [player, GVAR(pain) + 0.1] call ace_medical_fnc_adjustPainLevel;
+    if (GVAR(toxicAscendTimeout) <= 0) then {
+        private _pain = player getVariable ["ace_medical_pain", 0];
+        private _scaledPain = 0.1 * (GVAR(ascendRate) - 1);
+        [player, _pain + _scaledPain] call ace_medical_fnc_adjustPainLevel;
         GVAR(toxicAscendTimeout) = 5;
     };
 } else {
@@ -71,7 +72,7 @@ if ((GVAR(decompressTime) > 0) && (GVAR(currentDepth) < (GVAR(decompressDepth) -
     GVAR(toxicDecompressionTimeout) = GVAR(toxicDecompressionTimeout) - 1;
     GVAR(warningTextDecompression) = "!DECO!";
     playSound QGVAR(beep);
-    if (GVAR(toxicDecompressionTimeout) == 0) then {
+    if (GVAR(toxicDecompressionTimeout) <= 0) then {
         call FUNC(effectToxicDecompression);
         GVAR(toxicDecompressionTimeout) = 2;
     };
@@ -83,7 +84,7 @@ if ((GVAR(decompressTime) > 0) && (GVAR(currentDepth) < (GVAR(decompressDepth) -
 if (GVAR(partialPressureN2) > 3.5 ) then {
     GVAR(warningTextN2) = "!ppN2!";
     GVAR(toxicN2Timeout) = GVAR(toxicN2Timeout) - 1;
-    if (GVAR(toxicN2Timeout) == 0) then {
+    if (GVAR(toxicN2Timeout) <= 0) then {
         call FUNC(effectToxicN2);
         GVAR(toxicN2Timeout) = 2;
     };
@@ -94,4 +95,7 @@ if (GVAR(partialPressureN2) > 3.5 ) then {
 
 if (GVAR(currentPressure) <= 0) then {
     GVAR(noAirTimeout) = GVAR(noAirTimeout) - 1;
+    GVAR(warningTextLowPressure) = "!NO AIR!";
 };
+
+GVAR(warningText) = format ["%1%2%3%4%5", GVAR(warningTextO2), GVAR(warningTextN2), GVAR(warningTextAscendRate), GVAR(warningTextLowPressure), GVAR(warningTextDecompression)];

@@ -62,6 +62,7 @@ class CfgVehicles {
         ace_cargo_space = 1;
     };
     class tbd_mortars_105mm_box_dpicm: NATO_Box_Base {
+        displayName = "105mm Illumination Box";
         ace_cargo_space = 1;
     };
     class tbd_mortars_105mm_box_laser: NATO_Box_Base {

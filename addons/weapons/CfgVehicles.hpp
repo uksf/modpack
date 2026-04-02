@@ -366,49 +366,101 @@ class CfgVehicles {
                     class TBD_LoadSMOKECh1 {
                         displayName = "$STR_TBD_MORTARS_105mm_SMOKE_CHARGE_1";
                         condition = QUOTE([ARR_2(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_1)))] call tbd_m119_m119_fnc_canLoad);
-                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_1)),0)] call FUNC(l119LoadSmoke));
+                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_1)),0)] call FUNC(l119LoadRound));
                         showDisabled = 0;
                         exceptions[] = {};
                     };
                     class TBD_LoadSMOKECh2 {
                         displayName = "$STR_TBD_MORTARS_105mm_SMOKE_CHARGE_2";
                         condition = QUOTE([ARR_2(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_2)))] call tbd_m119_m119_fnc_canLoad);
-                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_2)),0)] call FUNC(l119LoadSmoke));
+                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_2)),0)] call FUNC(l119LoadRound));
                         showDisabled = 0;
                         exceptions[] = {};
                     };
                     class TBD_LoadSMOKECh3 {
                         displayName = "$STR_TBD_MORTARS_105mm_SMOKE_CHARGE_3";
                         condition = QUOTE([ARR_2(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_3)))] call tbd_m119_m119_fnc_canLoad);
-                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_3)),0)] call FUNC(l119LoadSmoke));
+                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_3)),0)] call FUNC(l119LoadRound));
                         showDisabled = 0;
                         exceptions[] = {};
                     };
                     class TBD_LoadSMOKECh4 {
                         displayName = "$STR_TBD_MORTARS_105mm_SMOKE_CHARGE_4";
                         condition = QUOTE([ARR_2(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_4)))] call tbd_m119_m119_fnc_canLoad);
-                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_4)),0)] call FUNC(l119LoadSmoke));
+                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_4)),0)] call FUNC(l119LoadRound));
                         showDisabled = 0;
                         exceptions[] = {};
                     };
                     class TBD_LoadSMOKECh5 {
                         displayName = "$STR_TBD_MORTARS_105mm_SMOKE_CHARGE_5";
                         condition = QUOTE([ARR_2(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_5)))] call tbd_m119_m119_fnc_canLoad);
-                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_5)),0)] call FUNC(l119LoadSmoke));
+                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_5)),0)] call FUNC(l119LoadRound));
                         showDisabled = 0;
                         exceptions[] = {};
                     };
                     class TBD_LoadSMOKECh6 {
                         displayName = "$STR_TBD_MORTARS_105mm_SMOKE_CHARGE_6";
                         condition = QUOTE([ARR_2(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_6)))] call tbd_m119_m119_fnc_canLoad);
-                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_6)),0)] call FUNC(l119LoadSmoke));
+                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_6)),0)] call FUNC(l119LoadRound));
                         showDisabled = 0;
                         exceptions[] = {};
                     };
                     class TBD_LoadSMOKECh7 {
                         displayName = "$STR_TBD_MORTARS_105mm_SMOKE_CHARGE_7";
                         condition = QUOTE([ARR_2(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_7)))] call tbd_m119_m119_fnc_canLoad);
-                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_7)),0)] call FUNC(l119LoadSmoke));
+                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_7)),0)] call FUNC(l119LoadRound));
+                        showDisabled = 0;
+                        exceptions[] = {};
+                    };
+                };
+                class TBD_LoadDPICMCh6 {
+                    displayName = "Illumination";
+                    class TBD_LoadDPICMCh1 {
+                        displayName = "Illum Charge 1";
+                        condition = QUOTE([ARR_2(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_dpicm_charge_1)))] call tbd_m119_m119_fnc_canLoad);
+                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_dpicm_charge_1)),0)] call FUNC(l119LoadRound));
+                        showDisabled = 0;
+                        exceptions[] = {};
+                    };
+                    class TBD_LoadDPICMCh2 {
+                        displayName = "Illum Charge 2";
+                        condition = QUOTE([ARR_2(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_dpicm_charge_2)))] call tbd_m119_m119_fnc_canLoad);
+                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_dpicm_charge_2)),0)] call FUNC(l119LoadRound));
+                        showDisabled = 0;
+                        exceptions[] = {};
+                    };
+                    class TBD_LoadDPICMCh3 {
+                        displayName = "Illum Charge 3";
+                        condition = QUOTE([ARR_2(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_dpicm_charge_3)))] call tbd_m119_m119_fnc_canLoad);
+                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_dpicm_charge_3)),0)] call FUNC(l119LoadRound));
+                        showDisabled = 0;
+                        exceptions[] = {};
+                    };
+                    class TBD_LoadDPICMCh4 {
+                        displayName = "Illum Charge 4";
+                        condition = QUOTE([ARR_2(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_dpicm_charge_4)))] call tbd_m119_m119_fnc_canLoad);
+                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_dpicm_charge_4)),0)] call FUNC(l119LoadRound));
+                        showDisabled = 0;
+                        exceptions[] = {};
+                    };
+                    class TBD_LoadDPICMCh5 {
+                        displayName = "Illum Charge 5";
+                        condition = QUOTE([ARR_2(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_dpicm_charge_5)))] call tbd_m119_m119_fnc_canLoad);
+                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_dpicm_charge_5)),0)] call FUNC(l119LoadRound));
+                        showDisabled = 0;
+                        exceptions[] = {};
+                    };
+                    class TBD_LoadDPICMCh6 {
+                        displayName = "Illum Charge 6";
+                        condition = QUOTE([ARR_2(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_dpicm_charge_6)))] call tbd_m119_m119_fnc_canLoad);
+                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_dpicm_charge_6)),0)] call FUNC(l119LoadRound));
+                        showDisabled = 0;
+                        exceptions[] = {};
+                    };
+                    class TBD_LoadDPICMCh7 {
+                        displayName = "Illum Charge 7";
+                        condition = QUOTE([ARR_2(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_dpicm_charge_7)))] call tbd_m119_m119_fnc_canLoad);
+                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_dpicm_charge_7)),0)] call FUNC(l119LoadRound));
                         showDisabled = 0;
                         exceptions[] = {};
                     };

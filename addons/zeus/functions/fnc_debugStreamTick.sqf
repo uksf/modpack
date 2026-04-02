@@ -37,7 +37,7 @@ if (GVAR(debugStreamClients) isEqualTo []) exitWith {};
     } forEach keys _sourceData;
     { _sourceData deleteAt _x } forEach _staleKeys;
 } forEach keys GVAR(debugClientData);
-TRACE_2("debugStreamTick",count GVAR(debugStreamClients),count GVAR(debugServerGetters));
+TRACE_2("debugStreamTick",count GVAR(debugStreamClients),count GVAR(debugProviders));
 
 // Collect unique set of all requested keys
 private _allRequestedKeys = [];
@@ -51,9 +51,10 @@ private _allRequestedKeys = [];
 private _now = CBA_missionTime;
 private _changedKeys = createHashMap;
 {
-    private _serverGetterData = GVAR(debugServerGetters) getOrDefault [_x, []];
-    if (_serverGetterData isEqualTo []) then { continue };
-    _serverGetterData params ["_fnc_serverGetter", "_getterInterval"];
+    private _provider = GVAR(debugProviders) getOrDefault [_x, createHashMap];
+    private _fnc_serverGetter = _provider getOrDefault ["serverGetter", {}];
+    if (_fnc_serverGetter isEqualTo {}) then { continue };
+    private _getterInterval = _provider getOrDefault ["getterInterval", 5];
 
     private _lastRun = GVAR(debugLastGetterRun) getOrDefault [_x, -_getterInterval];
     if (_now - _lastRun >= _getterInterval) then {
@@ -67,26 +68,16 @@ private _changedKeys = createHashMap;
     };
 } forEach _allRequestedKeys;
 
-// Send to each client: changed keys, plus any key the client hasn't received yet
+// Send changed data to each subscribed client
 {
     _x params ["_player", "_keys"];
 
-    private _playerUid = getPlayerUID _player;
-    private _sentKeys = GVAR(debugLastSentKeys) getOrDefault [_playerUid, createHashMap];
-
     private _clientData = createHashMap;
     {
-        private _data = GVAR(debugLastSentData) getOrDefault [_x, []];
-
-        private _isNew = !(_sentKeys getOrDefault [_x, false]);
-        private _isChanged = _changedKeys getOrDefault [_x, false];
-        if (_isNew || _isChanged) then {
-            _clientData set [_x, _data];
-            _sentKeys set [_x, true];
+        if (_changedKeys getOrDefault [_x, false]) then {
+            _clientData set [_x, GVAR(debugLastSentData) getOrDefault [_x, []]];
         };
     } forEach _keys;
-
-    GVAR(debugLastSentKeys) set [_playerUid, _sentKeys];
 
     if (count _clientData > 0) then {
         [QGVAR(debugStreamData), [_clientData], _player] call CBA_fnc_targetEvent;

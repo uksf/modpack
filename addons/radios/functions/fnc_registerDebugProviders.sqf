@@ -52,14 +52,29 @@ private _fnc_serverGetter = {
     // connectionData is a hashmap { transmitterUID: [displayPower, rebroNetId, rebroReceivePower, rebroTransmitPower] }
     private _sourceData = EGVAR(zeus,debugClientData) getOrDefault [QGVAR(signalData), createHashMap];
 
-    // Build UID → player netId lookup
-    private _uidToNetId = createHashMap;
+    // Build transmitter key → netId lookup (keys may be player UIDs or object netIds)
+    private _keyToNetId = createHashMap;
     {
         private _entry = _sourceData get _x;
         if (!(_entry isEqualType []) || {count _entry < 1}) then { continue };
         private _player = _entry select 0;
         if (isNull _player) then { continue };
-        _uidToNetId set [_x, netId _player];
+        _keyToNetId set [_x, netId _player];
+    } forEach keys _sourceData;
+
+    // For transmitter keys that are netIds (vehicles), resolve them directly
+    {
+        private _entry = _sourceData get _x;
+        if (!(_entry isEqualType []) || {count _entry < 2}) then { continue };
+        private _connectionData = _entry select 1;
+        {
+            if !(_x in _keyToNetId) then {
+                private _object = objectFromNetId _x;
+                if (!isNull _object) then {
+                    _keyToNetId set [_x, _x];
+                };
+            };
+        } forEach keys _connectionData;
     } forEach keys _sourceData;
 
     // Collect rebro-relayed connections
@@ -76,7 +91,7 @@ private _fnc_serverGetter = {
             if (!(_value isEqualType []) || {count _value < 2}) then { continue };
             _value params ["_displayPower", ["_rebroNetId", ""], ["_rebroReceivePower", 0], ["_rebroTransmitPower", 0]];
             if (_rebroNetId != "") then {
-                private _transmitterNetId = _uidToNetId getOrDefault [_x, ""];
+                private _transmitterNetId = _keyToNetId getOrDefault [_x, ""];
                 if (_transmitterNetId != "") then {
                     _connections pushBack [
                         _transmitterNetId,
@@ -130,8 +145,9 @@ private _fnc_draw3d = {
             && {_cameraPosition distance _receiverPosition > _maxDistance}) then { continue };
 
         if (_displayPower < 0) then {
-            drawLine3D [_transmitterPosition, _rebroPosition, [0, 0, 0, 1]];
-            drawLine3D [_rebroPosition, _receiverPosition, [0, 0, 0, 1]];
+            private _deadColour = [0, 0, 0, 1];
+            drawLine3D [_transmitterPosition, _rebroPosition, _deadColour];
+            drawLine3D [_rebroPosition, _receiverPosition, _deadColour];
         } else {
             drawLine3D [_transmitterPosition, _rebroPosition, SIGNAL_COLOUR(_rebroReceivePower)];
             drawLine3D [_rebroPosition, _receiverPosition, SIGNAL_COLOUR(_rebroTransmitPower)];
@@ -154,6 +170,8 @@ private _fnc_drawMap = {
         _map drawIcon [_rebroIcon, _rebroColour, _rebroStation, 24, 24, 0, "ReBro", 1, 0.04, "TahomaB", "right"];
     } forEach _rebroNetIds;
 
+    private _arrowIcon = "\a3\ui_f\data\map\markers\military\triangle_ca.paa";
+
     // Draw transmitter → rebro → receiver paths
     {
         _x params ["_transmitterNetId", "_rebroNetId", "_receiverNetId", "_displayPower", "_rebroReceivePower", "_rebroTransmitPower"];
@@ -163,19 +181,41 @@ private _fnc_drawMap = {
         private _receiver = objectFromNetId _receiverNetId;
         if (isNull _transmitter || {isNull _rebroStation} || {isNull _receiver}) then { continue };
 
+        private _transmitterPosition = getPos _transmitter;
+        private _rebroPosition = getPos _rebroStation;
+        private _receiverPosition = getPos _receiver;
+        private _mid1 = [(_transmitterPosition#0 + _rebroPosition#0) / 2, (_transmitterPosition#1 + _rebroPosition#1) / 2];
+        private _mid2 = [(_rebroPosition#0 + _receiverPosition#0) / 2, (_rebroPosition#1 + _receiverPosition#1) / 2];
+        private _dir1 = _transmitterPosition getDir _rebroPosition;
+        private _dir2 = _rebroPosition getDir _receiverPosition;
+
         if (_displayPower < 0) then {
-            _map drawLine [_transmitter, _rebroStation, [0, 0, 0, 1]];
-            _map drawLine [_rebroStation, _receiver, [0, 0, 0, 1]];
+            private _deadColour = [0, 0, 0, 1];
+            _map drawLine [_transmitter, _rebroStation, _deadColour];
+            _map drawLine [_rebroStation, _receiver, _deadColour];
+            _map drawIcon [_arrowIcon, _deadColour, _mid1, 16, 16, _dir1, "", 0];
+            _map drawIcon [_arrowIcon, _deadColour, _mid2, 16, 16, _dir2, "", 0];
         } else {
-            _map drawLine [_transmitter, _rebroStation, SIGNAL_COLOUR(_rebroReceivePower)];
-            _map drawLine [_rebroStation, _receiver, SIGNAL_COLOUR(_rebroTransmitPower)];
+            private _colour1 = SIGNAL_COLOUR(_rebroReceivePower);
+            private _colour2 = SIGNAL_COLOUR(_rebroTransmitPower);
+            _map drawLine [_transmitter, _rebroStation, _colour1];
+            _map drawLine [_rebroStation, _receiver, _colour2];
+            _map drawIcon [_arrowIcon, _colour1, _mid1, 16, 16, _dir1, "", 0];
+            _map drawIcon [_arrowIcon, _colour2, _mid2, 16, 16, _dir2, "", 0];
         };
     } forEach _connections;
 };
 
-[QEGVAR(zeus,registerDebugAction), [_key, _menuName, _menuPriority, _fnc_menuCondition]] call CBA_fnc_localEvent;
-[QEGVAR(zeus,registerDebugServerGetter), [_key, _fnc_serverGetter, 2, _clientDataKey]] call CBA_fnc_localEvent;
-[QEGVAR(zeus,registerDebugDraw), [_key, _fnc_draw3d, _fnc_drawMap]] call CBA_fnc_localEvent;
+[QEGVAR(zeus,registerDebugProvider), [_key, createHashMapFromArray [
+    ["draw3d", _fnc_draw3d],
+    ["drawMap", _fnc_drawMap],
+    ["serverGetter", _fnc_serverGetter],
+    ["getterInterval", 2],
+    ["clientDataKey", _clientDataKey],
+    ["menuName", _menuName],
+    ["menuPriority", _menuPriority],
+    ["menuCondition", _fnc_menuCondition]
+]]] call CBA_fnc_localEvent;
 
 // Radio network provider — direct connections only (no rebro)
 _key = QGVAR(network);
@@ -185,16 +225,34 @@ _fnc_menuCondition = {true};
 _clientDataKey = QGVAR(signalData);
 
 _fnc_serverGetter = {
-    private _players = [];
-    private _uidToIndex = createHashMap;
+    private _netIds = [];
+    private _keyToIndex = createHashMap;
     private _sourceData = EGVAR(zeus,debugClientData) getOrDefault [QGVAR(signalData), createHashMap];
+
+    // Index receiver clients (keyed by their UID in sourceData)
     {
         private _entry = _sourceData get _x;
         if (!(_entry isEqualType []) || {count _entry < 1}) then { continue };
         private _player = _entry select 0;
         if (isNull _player) then { continue };
-        _uidToIndex set [_x, count _players];
-        _players pushBack (netId _player);
+        _keyToIndex set [_x, count _netIds];
+        _netIds pushBack (netId _player);
+    } forEach keys _sourceData;
+
+    // Index transmitter keys that are netIds (vehicles) not already indexed
+    {
+        private _entry = _sourceData get _x;
+        if (!(_entry isEqualType []) || {count _entry < 2}) then { continue };
+        private _connectionData = _entry select 1;
+        {
+            if !(_x in _keyToIndex) then {
+                private _object = objectFromNetId _x;
+                if (!isNull _object) then {
+                    _keyToIndex set [_x, count _netIds];
+                    _netIds pushBack _x;
+                };
+            };
+        } forEach keys _connectionData;
     } forEach keys _sourceData;
 
     private _links = [];
@@ -202,65 +260,75 @@ _fnc_serverGetter = {
         private _entry = _sourceData get _x;
         if (!(_entry isEqualType []) || {count _entry < 2}) then { continue };
         private _connectionData = _entry select 1;
-        private _fromIndex = _uidToIndex getOrDefault [_x, -1];
-        if (_fromIndex < 0) then { continue };
+        private _receiverIndex = _keyToIndex getOrDefault [_x, -1];
+        if (_receiverIndex < 0) then { continue };
 
         {
             private _value = _connectionData get _x;
             if (!(_value isEqualType []) || {count _value < 1}) then { continue };
             _value params ["_displayPower", ["_rebroNetId", ""]];
             if (_rebroNetId == "") then {
-                private _toIndex = _uidToIndex getOrDefault [_x, -1];
-                if (_toIndex >= 0) then {
-                    _links pushBack [_fromIndex, _toIndex, _displayPower];
+                private _transmitterIndex = _keyToIndex getOrDefault [_x, -1];
+                if (_transmitterIndex >= 0) then {
+                    _links pushBack [_transmitterIndex, _receiverIndex, _displayPower];
                 };
             };
         } forEach keys _connectionData;
     } forEach keys _sourceData;
 
-    [_players, _links]
+    [_netIds, _links]
 };
 
 _fnc_draw3d = {
     params ["_data", "_cameraPosition", "_maxDistance"];
-    _data params ["_players", "_links"];
+    _data params ["_netIds", "_links"];
 
-    // Draw direct player-to-player links
     {
         _x params ["_fromIndex", "_toIndex", "_power"];
 
-        private _fromPlayer = objectFromNetId (_players select _fromIndex);
-        private _toPlayer = objectFromNetId (_players select _toIndex);
-        if (isNull _fromPlayer || {isNull _toPlayer}) then { continue };
+        private _from = objectFromNetId (_netIds select _fromIndex);
+        private _to = objectFromNetId (_netIds select _toIndex);
+        if (isNull _from || {isNull _to}) then { continue };
 
-        private _fromPosition = ASLToAGL getPosASLVisual _fromPlayer;
-        private _toPosition = ASLToAGL getPosASLVisual _toPlayer;
+        private _fromPosition = ASLToAGL getPosASLVisual _from;
+        private _toPosition = ASLToAGL getPosASLVisual _to;
         if (_cameraPosition distance _fromPosition > _maxDistance && {_cameraPosition distance _toPosition > _maxDistance}) then { continue };
 
-        private _lineColour = SIGNAL_COLOUR(_power);
-
-        drawLine3D [_fromPosition, _toPosition, _lineColour];
+        drawLine3D [_fromPosition, _toPosition, SIGNAL_COLOUR(_power)];
     } forEach _links;
 };
 
 _fnc_drawMap = {
     params ["_data", "_map"];
-    _data params ["_players", "_links"];
+    _data params ["_netIds", "_links"];
 
-    // Draw direct player-to-player links
+    private _arrowIcon = "\a3\ui_f\data\map\markers\military\triangle_ca.paa";
+
     {
         _x params ["_fromIndex", "_toIndex", "_power"];
 
-        private _fromPlayer = objectFromNetId (_players select _fromIndex);
-        private _toPlayer = objectFromNetId (_players select _toIndex);
-        if (isNull _fromPlayer || {isNull _toPlayer}) then { continue };
+        private _from = objectFromNetId (_netIds select _fromIndex);
+        private _to = objectFromNetId (_netIds select _toIndex);
+        if (isNull _from || {isNull _to}) then { continue };
 
         private _lineColour = SIGNAL_COLOUR(_power);
+        _map drawLine [_from, _to, _lineColour];
 
-        _map drawLine [_fromPlayer, _toPlayer, _lineColour];
+        private _fromPosition = getPos _from;
+        private _toPosition = getPos _to;
+        private _midPosition = [(_fromPosition#0 + _toPosition#0) / 2, (_fromPosition#1 + _toPosition#1) / 2];
+        private _direction = _fromPosition getDir _toPosition;
+        _map drawIcon [_arrowIcon, _lineColour, _midPosition, 16, 16, _direction, "", 0];
     } forEach _links;
 };
 
-[QEGVAR(zeus,registerDebugAction), [_key, _menuName, _menuPriority, _fnc_menuCondition]] call CBA_fnc_localEvent;
-[QEGVAR(zeus,registerDebugServerGetter), [_key, _fnc_serverGetter, 2, _clientDataKey]] call CBA_fnc_localEvent;
-[QEGVAR(zeus,registerDebugDraw), [_key, _fnc_draw3d, _fnc_drawMap]] call CBA_fnc_localEvent;
+[QEGVAR(zeus,registerDebugProvider), [_key, createHashMapFromArray [
+    ["draw3d", _fnc_draw3d],
+    ["drawMap", _fnc_drawMap],
+    ["serverGetter", _fnc_serverGetter],
+    ["getterInterval", 2],
+    ["clientDataKey", _clientDataKey],
+    ["menuName", _menuName],
+    ["menuPriority", _menuPriority],
+    ["menuCondition", _fnc_menuCondition]
+]]] call CBA_fnc_localEvent;
