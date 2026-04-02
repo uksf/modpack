@@ -93,13 +93,15 @@ hint "Setting up test environment...";
     private _vehicle = GVAR(testVehicle);
     if (isNull _vehicle) exitWith {false};
 
-    // Check vehicle has initialised racks with a mounted radio
+    // Check vehicle has initialised racks with a mounted VRC103 radio
     private _vehicleReady = _vehicle getVariable ["acre_sys_rack_initialized", false]
         && {
             private _vehicleRacks = [_vehicle] call acre_api_fnc_getVehicleRacks;
-            _vehicleRacks isEqualType [] && {count _vehicleRacks > 0} && {
-                private _radioId = [_vehicleRacks#0] call acre_api_fnc_getMountedRackRadio;
-                !isNil "_radioId" && {_radioId isEqualType "" && {_radioId != ""}}
+            _vehicleRacks isEqualType [] && {
+                _vehicleRacks findIf {
+                    private _radioId = [_x] call acre_api_fnc_getMountedRackRadio;
+                    !isNil "_radioId" && {_radioId isEqualType "" && {_radioId != "" && {_radioId select [0, 15] == "acre_prc117f_id"}}}
+                } != -1
             }
         };
 
@@ -114,11 +116,17 @@ hint "Setting up test environment...";
 
     private _vehicle = GVAR(testVehicle);
 
-    // Get vehicle radio ID
+    // Find the VRC103 rack with a mounted PRC117F radio
     private _vehicleRacks = [_vehicle] call acre_api_fnc_getVehicleRacks;
-    private _vehicleRadioId = [_vehicleRacks#0] call acre_api_fnc_getMountedRackRadio;
+    private _vehicleRadioId = "";
+    {
+        private _radioId = [_x] call acre_api_fnc_getMountedRackRadio;
+        if (!isNil "_radioId" && {_radioId isEqualType "" && {_radioId select [0, 15] == "acre_prc117f_id"}}) exitWith {
+            _vehicleRadioId = _radioId;
+        };
+    } forEach _vehicleRacks;
 
-    if (isNil "_vehicleRadioId" || {!(_vehicleRadioId isEqualType "")} || {_vehicleRadioId == ""}) exitWith {
+    if (_vehicleRadioId == "") exitWith {
         hint "Failed to get vehicle radio ID";
         deleteVehicle _vehicle;
         GVAR(testVehicle) = objNull;
@@ -145,11 +153,15 @@ hint "Setting up test environment...";
 
     // Start PFH — continuously pumps signal data through the pipeline
     GVAR(testRebroPfhHandle) = [{
-        params ["_args"];
+        params ["_args", "_idPFH"];
         _args params ["_frequency", "_power", "_vehicleRadioId", "_playerRadioId", "_vehicle"];
 
         if (!alive _vehicle) exitWith {
-            [] call FUNC(testRebroSignal);
+            [_idPFH] call CBA_fnc_removePerFrameHandler;
+            GVAR(testRebroPfhHandle) = -1;
+            GVAR(rebroDebugging) = false;
+            GVAR(debugReportingEnabled) = false;
+            hint "Test stopped - vehicle destroyed";
         };
 
         [_frequency, _power, _vehicleRadioId, _playerRadioId] call FUNC(handleCustomSignal);
