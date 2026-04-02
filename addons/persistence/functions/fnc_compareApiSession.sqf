@@ -4,17 +4,15 @@
         Tim Beswick
 
     Description:
-        Compares a parsed API session against a profile snapshot.
+        Compares a parsed API session (hashmap format) against a profile snapshot.
+        Converts profile positional arrays to hashmaps for comparison.
         Logs detailed per-category match/mismatch results.
         Uses type-aware comparison: == for numbers and strings,
-        isEqualTo for booleans/sides, recursive for arrays.
+        isEqualTo for booleans/sides, recursive for arrays and hashmaps.
         Does not modify any state.
 
-        The API session is a native HashMap from CBA_fnc_parseJSON (mode 2).
-        Values are already in raw positional array format matching the profile.
-
     Parameter(s):
-        0: Session hashmap <HASHMAP> — the parsed API session
+        0: Session hashmap <HASHMAP> — the parsed API session (hashmap format)
         1: Profile snapshot <HASHMAP> — snapshot taken at load time
 
     Return Value:
@@ -31,7 +29,7 @@ INFO("=== API vs Profile Comparison Start ===");
 // JSON round-trip. isEqualTo is binary-exact on floats, so two values
 // that display as 3.1957 can fail if their binary representations
 // differ after encoding/decoding. == handles this for numbers and strings.
-// Arrays are compared recursively.
+// Arrays and hashmaps are compared recursively.
 private _isEqual = {
     params ["_a", "_b"];
     if (isNil "_a" && isNil "_b") exitWith { true };
@@ -47,14 +45,25 @@ private _isEqual = {
         };
         _match
     };
+    if (_a isEqualType createHashMap) exitWith {
+        private _keysA = keys _a;
+        private _keysB = keys _b;
+        if (count _keysA != count _keysB) exitWith { false };
+        private _match = true;
+        {
+            if !([_a get _x, _b getOrDefault [_x, nil]] call _isEqual) exitWith { _match = false };
+        } forEach _keysA;
+        _match
+    };
     _a isEqualTo _b
 };
 
 private _failures = 0;
 private _successes = 0;
 
+// --- DateTime ---
 private _profileDateTime = _snapshot getOrDefault ["dateTime", []];
-private _apiDateTime = _session getOrDefault [QGVAR(dateTime), []];
+private _apiDateTime = _session getOrDefault ["dateTime", []];
 if ([_profileDateTime, _apiDateTime] call _isEqual) then {
     _successes = _successes + 1;
     INFO("DateTime: MATCH");
@@ -63,20 +72,20 @@ if ([_profileDateTime, _apiDateTime] call _isEqual) then {
     WARNING_2("DateTime: MISMATCH — profile=%1, api=%2",_profileDateTime,_apiDateTime);
 };
 
+// --- Deleted Objects ---
 private _profileDeleted = _snapshot getOrDefault ["deletedObjects", []];
-private _apiDeleted = _session getOrDefault [QGVAR(deletedObjects), []];
+private _apiDeleted = _session getOrDefault ["deletedObjects", []];
 if ([_profileDeleted, _apiDeleted] call _isEqual) then {
     _successes = _successes + 1;
     INFO_1("Deleted objects: MATCH (count=%1)",count _profileDeleted);
 } else {
     _failures = _failures + 1;
-    private _profileOnly = _profileDeleted - _apiDeleted;
-    private _apiOnly = _apiDeleted - _profileDeleted;
-    WARNING_4("Deleted objects: MISMATCH — profile count=%1, api count=%2, in profile only=%3, in api only=%4",count _profileDeleted,count _apiDeleted,_profileOnly,_apiOnly);
+    WARNING_2("Deleted objects: MISMATCH — profile count=%1, api count=%2",count _profileDeleted,count _apiDeleted);
 };
 
+// --- Map Markers ---
 private _profileMarkers = _snapshot getOrDefault ["mapMarkers", []];
-private _apiMarkers = _session getOrDefault [QGVAR(mapMarkers), []];
+private _apiMarkers = _session getOrDefault ["mapMarkers", []];
 if ([_profileMarkers, _apiMarkers] call _isEqual) then {
     _successes = _successes + 1;
     INFO_1("Map markers: MATCH (count=%1)",count _profileMarkers);
@@ -85,21 +94,21 @@ if ([_profileMarkers, _apiMarkers] call _isEqual) then {
     WARNING_2("Map markers: MISMATCH — profile count=%1, api count=%2",count _profileMarkers,count _apiMarkers);
 };
 
+// --- Objects ---
+// Convert profile positional arrays to hashmaps for comparison
+private _objectKeys = ["id", "type", "position", "vectorDirUp", "damage", "fuel", "turretWeapons", "turretMagazines", "pylonLoadout", "logistics", "attached", "rackChannels", "aceCargo", "inventory", "aceFortify", "aceMedical", "aceRepair", "customName"];
 private _profileObjects = _snapshot getOrDefault ["objects", []];
-private _apiObjects = _session getOrDefault [QGVAR(objects), []];
-
-private _objectFieldNames = [
-    "id", "type", "position", "vectorDirUp", "damage", "fuel",
-    "turretWeapons", "turretMagazines", "pylonLoadout", "logistics",
-    "attached", "rackChannels", "aceCargo", "inventory",
-    "aceFortify", "aceMedical", "aceRepair", "customName"
-];
+private _apiObjects = _session getOrDefault ["objects", []];
 
 private _profileObjectMap = createHashMap;
-{_profileObjectMap set [_x#IDX_OBJ_ID, _x]} forEach _profileObjects;
+{
+    _profileObjectMap set [_x#IDX_OBJ_ID, _x];
+} forEach _profileObjects;
 
 private _apiObjectMap = createHashMap;
-{_apiObjectMap set [_x#IDX_OBJ_ID, _x]} forEach _apiObjects;
+{
+    _apiObjectMap set [_x getOrDefault ["id", ""], _x];
+} forEach _apiObjects;
 
 private _allObjectIds = keys _profileObjectMap + keys _apiObjectMap;
 _allObjectIds = _allObjectIds arrayIntersect _allObjectIds;
@@ -113,27 +122,32 @@ INFO_2("Objects: profile count=%1, api count=%2",count _profileObjects,count _ap
 {
     private _objectId = _x;
     private _profileObject = _profileObjectMap getOrDefault [_objectId, []];
-    private _apiObject = _apiObjectMap getOrDefault [_objectId, []];
+    private _apiObject = _apiObjectMap getOrDefault [_objectId, createHashMap];
 
     if (_profileObject isEqualTo []) then {
         _objectMissing = _objectMissing + 1;
         WARNING_1("Object %1: in API only, missing from profile",_objectId);
     } else {
-        if (_apiObject isEqualTo []) then {
+        if (_apiObject isEqualTo createHashMap) then {
             _objectMissing = _objectMissing + 1;
             WARNING_1("Object %1: in profile only, missing from API",_objectId);
         } else {
-            if ([_profileObject, _apiObject] call _isEqual) then {
-                _objectMatches = _objectMatches + 1;
-            } else {
-                _objectMismatches = _objectMismatches + 1;
-                for "_i" from 0 to (count _objectFieldNames - 1) do {
-                    private _profileField = if (_i < count _profileObject) then {_profileObject#_i} else {nil};
-                    private _apiField = if (_i < count _apiObject) then {_apiObject#_i} else {nil};
-                    if !([_profileField, _apiField] call _isEqual) then {
-                        WARNING_4("Object %1 field '%2': profile=%3, api=%4",_objectId,_objectFieldNames#_i,_profileField,_apiField);
-                    };
+            // Compare per-field: convert profile positional to keyed lookup
+            private _fieldMismatch = false;
+            {
+                private _key = _x;
+                private _profileField = if (_forEachIndex < count _profileObject) then {_profileObject#_forEachIndex} else {nil};
+                private _apiField = _apiObject getOrDefault [_key, nil];
+                if !([_profileField, _apiField] call _isEqual) then {
+                    _fieldMismatch = true;
+                    WARNING_4("Object %1 field '%2': profile=%3, api=%4",_objectId,_key,_profileField,_apiField);
                 };
+            } forEach _objectKeys;
+
+            if (_fieldMismatch) then {
+                _objectMismatches = _objectMismatches + 1;
+            } else {
+                _objectMatches = _objectMatches + 1;
             };
         };
     };
@@ -147,18 +161,16 @@ if (_objectMismatches == 0 && _objectMissing == 0) then {
     WARNING_3("Objects: MISMATCH — matches=%1, mismatches=%2, missing=%3",_objectMatches,_objectMismatches,_objectMissing);
 };
 
+// --- Players ---
+private _playerKeys = ["position", "vehicleState", "direction", "animation", "loadout", "damage", "aceMedical", "earplugs", "attachedItems", "radios", "diveState"];
 private _profilePlayers = _snapshot getOrDefault ["players", createHashMap];
 private _profilePlayerUids = _snapshot getOrDefault ["playerUids", []];
 
-private _apiPlayerUids = (keys _session) select {_x regexMatch "^[0-9]{17}$"};
+private _apiPlayersHashmap = _session getOrDefault ["players", createHashMap];
+private _apiPlayerUids = keys _apiPlayersHashmap;
 
 private _allPlayerUids = +_profilePlayerUids;
 {_allPlayerUids pushBackUnique _x} forEach _apiPlayerUids;
-
-private _playerFieldNames = [
-    "position", "vehicleState", "direction", "animation", "loadout",
-    "damage", "aceMedical", "earplugs", "attachedItems", "radios", "diveState"
-];
 
 private _playerMatches = 0;
 private _playerMismatches = 0;
@@ -169,27 +181,29 @@ INFO_2("Players: profile count=%1, api count=%2",count _profilePlayerUids,count 
 {
     private _uid = _x;
     private _profilePlayer = _profilePlayers getOrDefault [_uid, []];
-    private _apiPlayer = _session getOrDefault [_uid, []];
+    private _apiPlayer = _apiPlayersHashmap getOrDefault [_uid, createHashMap];
 
-    if (_profilePlayer isEqualTo [] && _apiPlayer isEqualTo []) then {
+    if (_profilePlayer isEqualTo [] && _apiPlayer isEqualTo createHashMap) then {
+        // Both empty, skip
     } else {
         if (_profilePlayer isEqualTo []) then {
             _playerMissing = _playerMissing + 1;
             WARNING_1("Player %1: in API only, missing from profile",_uid);
         } else {
-            if (_apiPlayer isEqualTo []) then {
+            if (_apiPlayer isEqualTo createHashMap) then {
                 _playerMissing = _playerMissing + 1;
                 WARNING_1("Player %1: in profile only, missing from API",_uid);
             } else {
                 private _fieldMismatch = false;
-                for "_i" from 0 to (count _playerFieldNames - 1) do {
-                    private _profileField = if (_i < count _profilePlayer) then {_profilePlayer#_i} else {nil};
-                    private _apiField = if (_i < count _apiPlayer) then {_apiPlayer#_i} else {nil};
+                {
+                    private _key = _x;
+                    private _profileField = if (_forEachIndex < count _profilePlayer) then {_profilePlayer#_forEachIndex} else {nil};
+                    private _apiField = _apiPlayer getOrDefault [_key, nil];
                     if !([_profileField, _apiField] call _isEqual) then {
                         _fieldMismatch = true;
-                        WARNING_4("Player %1 field '%2': profile=%3, api=%4",_uid,_playerFieldNames#_i,_profileField,_apiField);
+                        WARNING_4("Player %1 field '%2': profile=%3, api=%4",_uid,_key,_profileField,_apiField);
                     };
-                };
+                } forEach _playerKeys;
 
                 if (_fieldMismatch) then {
                     _playerMismatches = _playerMismatches + 1;
@@ -209,8 +223,9 @@ if (_playerMismatches == 0 && _playerMissing == 0) then {
     WARNING_3("Players: MISMATCH — matches=%1, mismatches=%2, missing=%3",_playerMatches,_playerMismatches,_playerMissing);
 };
 
-private _knownKeys = [QGVAR(objects), QGVAR(deletedObjects), QGVAR(dateTime), QGVAR(mapMarkers)];
-private _customDataKeys = ((keys _session) select {!(_x in _knownKeys) && !(_x regexMatch "^[0-9]{17}$")});
+// --- Custom Data ---
+private _knownKeys = ["objects", "deletedObjects", "dateTime", "mapMarkers", "players"];
+private _customDataKeys = (keys _session) select {!(_x in _knownKeys)};
 {
     _x params ["_id"];
     _customDataKeys pushBackUnique _id;
