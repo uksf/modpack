@@ -10,11 +10,11 @@
         isEqualTo for booleans/sides, recursive for arrays.
         Does not modify any state.
 
-        The API session is a CBA namespace (Location) from CBA_fnc_parseJSON.
+        The API session is a native HashMap from CBA_fnc_parseJSON (mode 2).
         Values are already in raw positional array format matching the profile.
 
     Parameter(s):
-        0: Session namespace <LOCATION> — the parsed API session
+        0: Session hashmap <HASHMAP> — the parsed API session
         1: Profile snapshot <HASHMAP> — snapshot taken at load time
 
     Return Value:
@@ -54,7 +54,7 @@ private _failures = 0;
 private _successes = 0;
 
 private _profileDateTime = _snapshot getOrDefault ["dateTime", []];
-private _apiDateTime = _session getVariable [QGVAR(dateTime), []];
+private _apiDateTime = _session getOrDefault [QGVAR(dateTime), []];
 if ([_profileDateTime, _apiDateTime] call _isEqual) then {
     _successes = _successes + 1;
     INFO("DateTime: MATCH");
@@ -64,7 +64,7 @@ if ([_profileDateTime, _apiDateTime] call _isEqual) then {
 };
 
 private _profileDeleted = _snapshot getOrDefault ["deletedObjects", []];
-private _apiDeleted = _session getVariable [QGVAR(deletedObjects), []];
+private _apiDeleted = _session getOrDefault [QGVAR(deletedObjects), []];
 if ([_profileDeleted, _apiDeleted] call _isEqual) then {
     _successes = _successes + 1;
     INFO_1("Deleted objects: MATCH (count=%1)",count _profileDeleted);
@@ -76,7 +76,7 @@ if ([_profileDeleted, _apiDeleted] call _isEqual) then {
 };
 
 private _profileMarkers = _snapshot getOrDefault ["mapMarkers", []];
-private _apiMarkers = _session getVariable [QGVAR(mapMarkers), []];
+private _apiMarkers = _session getOrDefault [QGVAR(mapMarkers), []];
 if ([_profileMarkers, _apiMarkers] call _isEqual) then {
     _successes = _successes + 1;
     INFO_1("Map markers: MATCH (count=%1)",count _profileMarkers);
@@ -150,7 +150,7 @@ if (_objectMismatches == 0 && _objectMissing == 0) then {
 private _profilePlayers = _snapshot getOrDefault ["players", createHashMap];
 private _profilePlayerUids = _snapshot getOrDefault ["playerUids", []];
 
-private _apiPlayerUids = ([_session] call CBA_fnc_allVariables) select {_x regexMatch "^[0-9]{17}$"};
+private _apiPlayerUids = (keys _session) select {_x regexMatch "^[0-9]{17}$"};
 
 private _allPlayerUids = +_profilePlayerUids;
 {_allPlayerUids pushBackUnique _x} forEach _apiPlayerUids;
@@ -169,7 +169,7 @@ INFO_2("Players: profile count=%1, api count=%2",count _profilePlayerUids,count 
 {
     private _uid = _x;
     private _profilePlayer = _profilePlayers getOrDefault [_uid, []];
-    private _apiPlayer = _session getVariable [_uid, []];
+    private _apiPlayer = _session getOrDefault [_uid, []];
 
     if (_profilePlayer isEqualTo [] && _apiPlayer isEqualTo []) then {
     } else {
@@ -210,7 +210,7 @@ if (_playerMismatches == 0 && _playerMissing == 0) then {
 };
 
 private _knownKeys = [QGVAR(objects), QGVAR(deletedObjects), QGVAR(dateTime), QGVAR(mapMarkers)];
-private _customDataKeys = (([_session] call CBA_fnc_allVariables) select {!(_x in _knownKeys) && !(_x regexMatch "^[0-9]{17}$")});
+private _customDataKeys = ((keys _session) select {!(_x in _knownKeys) && !(_x regexMatch "^[0-9]{17}$")});
 {
     _x params ["_id"];
     _customDataKeys pushBackUnique _id;
@@ -222,7 +222,7 @@ private _customMismatches = 0;
 {
     private _key = _x;
     private _profileValue = _snapshot getOrDefault [_key, []];
-    private _apiValue = _session getVariable [_key, []];
+    private _apiValue = _session getOrDefault [_key, []];
     if ([_profileValue, _apiValue] call _isEqual) then {
         _customMatches = _customMatches + 1;
     } else {
