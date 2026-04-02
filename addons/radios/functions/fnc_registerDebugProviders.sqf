@@ -283,17 +283,17 @@ _fnc_serverGetter = {
         private _entry = _sourceData get _x;
         if (!(_entry isEqualType []) || {count _entry < 2}) then { continue };
         private _connectionData = _entry select 1;
-        private _fromIndex = _keyToIndex getOrDefault [_x, -1];
-        if (_fromIndex < 0) then { continue };
+        private _receiverIndex = _keyToIndex getOrDefault [_x, -1];
+        if (_receiverIndex < 0) then { continue };
 
         {
             private _value = _connectionData get _x;
             if (!(_value isEqualType []) || {count _value < 1}) then { continue };
             _value params ["_displayPower", ["_rebroNetId", ""]];
             if (_rebroNetId == "") then {
-                private _toIndex = _keyToIndex getOrDefault [_x, -1];
-                if (_toIndex >= 0) then {
-                    _links pushBack [_fromIndex, _toIndex, _displayPower];
+                private _transmitterIndex = _keyToIndex getOrDefault [_x, -1];
+                if (_transmitterIndex >= 0) then {
+                    _links pushBack [_transmitterIndex, _receiverIndex, _displayPower];
                 };
             };
         } forEach keys _connectionData;
