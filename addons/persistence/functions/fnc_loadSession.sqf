@@ -43,7 +43,7 @@ GVAR(playerUids) = [];
     if (_x regexMatch "^[0-9]{17}$") then {
         GVAR(playerUids) pushBack _x;
     };
-} forEach ([GVAR(dataNamespace)] call CBA_fnc_allVariables);
+} forEach (allVariables GVAR(dataNamespace));
 
 // Snapshot profile data for API comparison (before loadServerData modifies the namespace)
 private _profilePlayers = createHashMap;
