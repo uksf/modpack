@@ -86,7 +86,7 @@ if ([_profileMarkers, _apiMarkers] call _isEqual) then {
 };
 
 private _profileObjects = _snapshot getOrDefault ["objects", []];
-private _apiObjects = _session getVariable [QGVAR(objects), []];
+private _apiObjects = _session getOrDefault [QGVAR(objects), []];
 
 private _objectFieldNames = [
     "id", "type", "position", "vectorDirUp", "damage", "fuel",
