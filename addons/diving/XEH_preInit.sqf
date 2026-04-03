@@ -37,7 +37,7 @@ if (hasInterface) then {
     GVAR(remainingDiveTime) = 0;
     GVAR(maxDepth) = 0;
     GVAR(previousDepth) = 0;
-    GVAR(previousAmbientPressure) = 0;
+    GVAR(previousAmbientPressure) = 1;
     GVAR(ascendRate) = 0;
     GVAR(decompressDepthB) = 0;
     GVAR(decompressDepth) = 0;
