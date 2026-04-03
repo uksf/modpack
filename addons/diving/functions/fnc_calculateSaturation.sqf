@@ -29,6 +29,4 @@ private _inspiredPressure = _gasPercent * (_ambientPressure - 0.0567);
 private _pressureRate = _ambientPressureDelta * _gasPercent;
 private _decayFactor = exp (-_coefficient / 60);
 
-GVAR(tissueSaturationMultiplier) * (
-    _inspiredPressure + (_pressureRate / _coefficient) - (_inspiredPressure - _previousSaturation + (_pressureRate / _coefficient)) * _decayFactor
-)
+_inspiredPressure + (_pressureRate / _coefficient) - (_inspiredPressure - _previousSaturation + (_pressureRate / _coefficient)) * _decayFactor
