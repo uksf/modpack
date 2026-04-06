@@ -33,6 +33,6 @@ if (_racks isEqualTo []) exitWith {["", ""]};
 
 private _rackId = _racks#0;
 private _radioId = [_rackId] call acre_api_fnc_getMountedRackRadio;
-if (isNil "_radioId") exitWith {[_rackId, ""]};
+if (isNil "_radioId" || {_radioId == ""} || {!([_radioId] call acre_sys_data_fnc_isRadioInitialized)}) exitWith {[_rackId, ""]};
 
 [_rackId, _radioId]

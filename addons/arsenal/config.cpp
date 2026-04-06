@@ -10,7 +10,7 @@ class CfgPatches {
             "uksf_gear",
             "uksf_resupply",
             "uksf_diving",
-            "uksf_air_atc"
+            "uksf_air_tracking"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };

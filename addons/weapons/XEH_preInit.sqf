@@ -58,6 +58,11 @@ ADDON = false;
     };
 }] call CBA_fnc_addEventHandler;
 
-["TBD_M119", "Fired", {_this call FUNC(l119SmokeFiredEH)}] call CBA_fnc_addClassEventHandler;
+GVAR(l119SubmunitionAmmos) = [
+    "tbd_mortars_105mm_shell_ammo_smoke",
+    QGVAR(105mm_shell_ammo_illum)
+];
+
+["TBD_M119", "Fired", {_this call FUNC(l119FiredEH)}] call CBA_fnc_addClassEventHandler;
 
 ADDON = true;

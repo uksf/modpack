@@ -11,6 +11,7 @@ PREP(createDiorama);
 PREP(debugClearSpheres);
 PREP(debugCreateSphere);
 PREP(edenCopyId);
+PREP(edenFixCrewCheckbox);
 PREP(edenIdAttributeChanged);
 PREP(edenSetIdAttribute);
 PREP(findNearRoad);

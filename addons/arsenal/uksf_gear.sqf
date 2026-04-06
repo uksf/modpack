@@ -455,7 +455,7 @@ uksf_arsenal_mainOpGearBase = [
     "ItemMap",
     "ToolKit",
     "UK3CB_BAF_Javelin_CLU",
-    "uksf_air_atc_terminal",
+    "uksf_air_tracking_terminal",
     "ItemAndroid",
     "uksf_diving_diveComputer",
     "uksf_diving_cylinderSingleCompressedAir",

@@ -30,7 +30,7 @@ class GVAR(r1) : GVAR(rx) {
     class TransportMagazines {
         MACRO_ADDMAGAZINE(UK3CB_BAF_556_30Rnd,80);
         MACRO_ADDMAGAZINE(UK3CB_BAF_556_30Rnd_T,40);
-        MACRO_ADDMAGAZINE(UK3CB_BAF_556_200Rnd,20);
+        MACRO_ADDMAGAZINE(CUP_200Rnd_TE4_Red_Tracer_556x45_M249_Pouch,20);
         MACRO_ADDMAGAZINE(UK3CB_BAF_762_100Rnd,10);
         MACRO_ADDMAGAZINE(UK3CB_BAF_762_L42A1_20Rnd,20);
         MACRO_ADDMAGAZINE(1Rnd_HE_Grenade_shell,30);
@@ -192,6 +192,7 @@ class GVAR(r9) : GVAR(rx) {
     class ACE_Cargo {
         class Cargo {
             MACRO_ADDACECARGO(tbd_mortars_105mm_box_smoke,7);
+            MACRO_ADDACECARGO(tbd_mortars_105mm_box_dpicm,3);
         };
     };
 };

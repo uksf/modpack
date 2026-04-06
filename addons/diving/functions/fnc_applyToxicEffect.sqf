@@ -28,10 +28,10 @@ params ["_colourTint", "_radialBlur", "_chromaAmount", "_commitTime", "_painAmou
     private _blur = ppEffectCreate ["radialBlur", 1002];
     private _dynamicBlur = ppEffectCreate ["DynamicBlur", 1003];
     private _chroma = ppEffectCreate ["chromAberration", 1004];
-    titleText ["", "BLACK OUT", 1];
+    cutText ["", "BLACK OUT", 1];
     sleep 1;
 
-    titleText ["", "BLACK IN", 1];
+    cutText ["", "BLACK IN", 1];
     _colour ppEffectEnable true;
     _colour ppEffectAdjust [1, 1, 0, _colourTint, [0, 1, 0, 0.5], [0, 0, 0, 0]];
     _colour ppEffectCommit _commitTime;
@@ -44,10 +44,10 @@ params ["_colourTint", "_radialBlur", "_chromaAmount", "_commitTime", "_painAmou
     _chroma ppEffectCommit _commitTime;
     _blur ppEffectCommit _commitTime;
     _dynamicBlur ppEffectCommit _commitTime;
-    titleText ["", "BLACK OUT", 1];
+    cutText ["", "BLACK OUT", 1];
     sleep 1;
 
-    titleText ["", "BLACK IN", 1];
+    cutText ["", "BLACK IN", 1];
     ppEffectDestroy _blur;
     ppEffectDestroy _dynamicBlur;
     ppEffectDestroy _chroma;

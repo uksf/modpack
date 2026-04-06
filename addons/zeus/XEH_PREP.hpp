@@ -18,6 +18,9 @@ PREP(moduleToggleCleanup);
 PREP(moduleToggleHasRadio);
 PREP(moduleToggleZeusVisibility);
 
+// Teleport override (fixes ZEN map position bug)
+PREP(teleportPlayers);
+
 // Context actions
 PREP(addContextActions);
 PREP(contextBifrost);
