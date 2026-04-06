@@ -23,7 +23,7 @@ class GVAR(g1) : GVAR(gx) {
     hiddenSelectionsTextures[] = { QPATHTOF(data\golf\g1.paa), "A3\Weapons_F\Ammoboxes\data\AmmoBox_CO.paa"};
     class TransportMagazines {
         MACRO_ADDMAGAZINE(UK3CB_BAF_556_30Rnd,40);
-        MACRO_ADDMAGAZINE(UK3CB_BAF_556_200Rnd,5);
+        MACRO_ADDMAGAZINE(CUP_200Rnd_TE4_Red_Tracer_556x45_M249_Pouch,5);
         MACRO_ADDMAGAZINE(UK3CB_BAF_762_L42A1_20Rnd,10);
         MACRO_ADDMAGAZINE(1Rnd_HE_Grenade_shell,10);
         MACRO_ADDMAGAZINE(HandGrenade,10);

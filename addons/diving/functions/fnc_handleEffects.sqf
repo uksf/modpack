@@ -16,28 +16,31 @@
         call uksf_diving_fnc_handleEffects
 */
 
-if (GVAR(noAirTimeout) <= 0) exitWith {
+private _inWater = ((eyePos player)#2) < 0;
+
+if (_inWater && GVAR(noAirTimeout) <= 0) exitWith {
     player setDamage 1;
 };
 
-GVAR(warningTextLowPressure) = ["", "!LOW AIR!"] select (GVAR(currentPressure) < 50);
+GVAR(warningTextLowPressure) = ["", "!LOW AIR!"] select (_inWater && GVAR(currentPressure) < 50);
 
-if (GVAR(needDeepStop) && (GVAR(deepStopTime) > 1) && ((GVAR(currentDepth) + 2) <= GVAR(deepStopDepth))) then {
+if (_inWater && GVAR(needDeepStop) && (GVAR(deepStopTime) > 1) && ((GVAR(currentDepth) + 2) <= GVAR(deepStopDepth))) then {
     player allowSprint false;
-    GVAR(toxicDeepStopTimeout) = GVAR(toxicDeepStopTimeout) - 1;
     GVAR(deepStopDepth) = 0;
     GVAR(deepStopTime) = 0;
+    GVAR(needDeepStop) = false;
 };
 
-if (GVAR(toxicDeepStopTimeout) <= 0) then {
+if (GVAR(toxicDeepStopTimeout) > 0) then {
+    GVAR(toxicDeepStopTimeout) = GVAR(toxicDeepStopTimeout) - 1;
+} else {
     player allowSprint true;
 };
 
-if (GVAR(deepStopTime) <= 0) then {
+if (GVAR(needDeepStop) && GVAR(deepStopTime) <= 0) then {
     GVAR(deepStopTime) = 0;
     GVAR(deepStopDepth) = 0;
     GVAR(needDeepStop) = false;
-    GVAR(toxicDeepStopTimeout) = 180;
 };
 
 if (GVAR(currentDepth) > GVAR(maxDepth)) then {
@@ -53,7 +56,7 @@ if (GVAR(currentDepth) > GVAR(maxDepth)) then {
     GVAR(toxicO2Timeout) = 10;
 };
 
-if (((GVAR(decompressTime) > 0) && (GVAR(ascendRate) > 1)) || ((GVAR(currentDepth) > 10) && (GVAR(ascendRate) > 1))) then {
+if (_inWater && (((GVAR(decompressTime) > 0) && (GVAR(ascendRate) > 1)) || ((GVAR(currentDepth) > 10) && (GVAR(ascendRate) > 1)))) then {
     GVAR(warningTextAscendRate) = "!ASC RATE!";
     playSound QGVAR(beep);
     GVAR(toxicAscendTimeout) = GVAR(toxicAscendTimeout) - 1;
@@ -68,7 +71,7 @@ if (((GVAR(decompressTime) > 0) && (GVAR(ascendRate) > 1)) || ((GVAR(currentDept
     GVAR(toxicAscendTimeout) = 10;
 };
 
-if ((GVAR(decompressTime) > 0) && (GVAR(currentDepth) < (GVAR(decompressDepth) - 2.5))) then {
+if (_inWater && (GVAR(decompressTime) > 0) && (GVAR(currentDepth) < (GVAR(decompressDepth) - 2.5))) then {
     GVAR(toxicDecompressionTimeout) = GVAR(toxicDecompressionTimeout) - 1;
     GVAR(warningTextDecompression) = "!DECO!";
     playSound QGVAR(beep);
@@ -93,7 +96,7 @@ if (GVAR(partialPressureN2) > 3.5 ) then {
     GVAR(toxicN2Timeout) = 10;
 };
 
-if (GVAR(currentPressure) <= 0) then {
+if (_inWater && GVAR(currentPressure) <= 0) then {
     GVAR(noAirTimeout) = GVAR(noAirTimeout) - 1;
     GVAR(warningTextLowPressure) = "!NO AIR!";
 };

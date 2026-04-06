@@ -62,6 +62,6 @@ _vehicle addEventHandler ["Killed", {[QGVAR(deinitialiseRebroStation), _this] ca
     GVAR(rebroStations) pushBack _vehicle;
     publicVariable QGVAR(rebroStations);
     REBRO_TRACE_3("Rebro initialised",_vehicle,_rackId,_rebroId);
-}, [_vehicle], 15, {
+}, [_vehicle], 600, {
     WARNING_1("Failed to initialise rebro station after timeout %1",_this);
 }] call CBA_fnc_waitUntilAndExecute;

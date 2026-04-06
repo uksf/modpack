@@ -108,6 +108,7 @@ _fnc_draw3d = {
     ["serverGetter", _fnc_serverGetter],
     ["getterInterval", 1],
     ["alwaysActive", true],
+    ["menuName", "Player FPS"],
     ["menuPriority", -5]
 ]]] call CBA_fnc_localEvent;
 
@@ -129,6 +130,7 @@ private _fnc_unconsciousServerGetter = {
 private _fnc_unconsciousDraw3d = {
     params ["_data", "_cameraPosition", "_maxDistance"];
 
+    private _offset = DEBUG_ICON_SPACING * ([3, 4] select (GVAR(debugActiveToggles) getOrDefault [QGVAR(fps), false]));
     {
         _x params ["_playerNetId", "_unconsciousText"];
         private _playerObject = objectFromNetId _playerNetId;
@@ -137,7 +139,7 @@ private _fnc_unconsciousDraw3d = {
         private _position = ASLToAGL (getPosASLVisual (vehicle _playerObject));
         if (_cameraPosition distance _position > 750) then { continue };
 
-        drawIcon3D ["", [1,0,0,1], _position, 0, 0, 0, _unconsciousText, 1, 0.025, "TahomaB", "center", false, 0, DEBUG_ICON_SPACING * 4];
+        drawIcon3D ["", [1,0,0,1], _position, 0, 0, 0, _unconsciousText, 1, 0.025, "TahomaB", "center", false, 0, _offset];
     } forEach _data;
 };
 

@@ -4,16 +4,16 @@
         Tim Beswick
 
     Description:
-        Commits a parsed API session namespace into GVAR(dataNamespace).
+        Commits a parsed API session hashmap into GVAR(dataNamespace).
         Creates a fresh namespace and populates it with objects, players,
         deleted objects, markers, datetime, and custom data.
 
-        The API session is a CBA namespace (Location) from CBA_fnc_parseJSON.
+        The API session is a native HashMap from CBA_fnc_parseJSON (mode 2).
         Values are already in raw positional array format matching the profile
         namespace format, so no conversion is needed.
 
     Parameter(s):
-        0: Session namespace <LOCATION>
+        0: Session hashmap <HASHMAP>
 
     Return Value:
         None
@@ -28,13 +28,12 @@ GVAR(playerUids) = [];
 
 {
     private _key = _x;
-    private _value = _session getVariable [_key, nil];
-    if (isNil "_value") then { continue };
+    private _value = _y;
 
     GVAR(dataNamespace) setVariable [_key, _value];
     if (_key regexMatch "^[0-9]{17}$") then {
         GVAR(playerUids) pushBack _key;
     };
-} forEach ([_session] call CBA_fnc_allVariables);
+} forEach _session;
 
 INFO("API session committed to namespace");

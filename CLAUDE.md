@@ -200,15 +200,63 @@ ADDON = true;
 
 The `ADDON = false; ... ADDON = true;` pattern is mandatory — CBA uses this to track initialization state.
 
-### Scheduler Patterns
+### Per-Frame Handler (PFH) Pattern
+
+PFH callbacks receive `[_args, _idPFH]` as `_this`. Always destructure with `params`:
 
 ```sqf
-// Per-frame handler (runs every frame or at interval)
-[{/* code */}, interval, [args]] call CBA_fnc_addPerFrameHandler;
+[{
+    params ["_args", "_idPFH"];
+    _args params ["_group", "_vehicle", "_expiryTime"];
 
+    if (isNull _group || {!alive _vehicle}) exitWith {
+        [_idPFH] call CBA_fnc_removePerFrameHandler;
+    };
+
+    // ... per-tick logic ...
+}, 5, [_group, _vehicle, _expiryTime]] call CBA_fnc_addPerFrameHandler;
+```
+
+**Rules:**
+- Use `params ["_args", "_idPFH"]` — do NOT use `_thisArgs`, `_thisHandle`, or bare `params` on PFH args
+- Use `_idPFH` to remove the handler, never `_thisHandle`
+- For function-reference PFHs (e.g. `[FUNC(myLoop), 10] call CBA_fnc_addPerFrameHandler`), the function receives the same `[_args, _idPFH]` structure
+
+### Other Scheduler Patterns
+
+```sqf
 // Delayed execution
 [{/* code */}, [args], delay] call CBA_fnc_waitAndExecute;
 ```
+
+### SQF Scoping: No Lexical Closures
+
+SQF uses **dynamic scoping**. Code blocks (`{...}`) are NOT closures — they do not capture the defining scope's private variables. When a code block is stored and called later (e.g. registered as a callback, stored in a hashmap, passed to a PFH), any `private` variables from the original scope will be `nil`.
+
+```sqf
+// BROKEN — _myData is nil when the callback executes later
+private _myData = [1, 2, 3];
+private _fnc_callback = { count _myData };  // _myData looked up in CALLING scope, not here
+
+// CORRECT — use GVAR for data that callbacks need
+GVAR(myData) = [1, 2, 3];
+private _fnc_callback = { count GVAR(myData) };  // GVAR is globally accessible
+```
+
+This applies to: CBA event handlers, PFH callbacks, debug provider draw functions, `CBA_fnc_waitAndExecute` callbacks, and any code block stored for later execution.
+
+## SQF Lint Rules (HEMTT)
+
+These are enforced by `hemtt check`. Write code that passes without warnings:
+
+| Rule | Wrong | Right |
+|------|-------|-------|
+| L-S19: Unneeded Not | `!(_x isEqualTo [])` | `_x isNotEqualTo []` |
+| L-S18: Vehicle check | `vehicle _x == _x` | `isNull objectParent _x` |
+| L-S18: In vehicle | `vehicle _x != _x` | `!isNull objectParent _x` |
+| L-S19: Unneeded Not | `!(condition)` | Restructure to avoid double negation |
+
+General principle: use `isNotEqualTo` instead of `!(... isEqualTo ...)`, and `objectParent` instead of comparing `vehicle _x` to `_x`.
 
 ### Custom Macros (defined in script_macros.hpp)
 

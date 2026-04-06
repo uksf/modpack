@@ -4,7 +4,7 @@
         UKSF
 
     Description:
-        Wrapper for L119 smoke round loading.
+        Wrapper for L119 submunition round loading (smoke, illumination).
         Reads fuse timer from the nearest round object before calling TBD's load,
         which deletes the round.
 
@@ -17,16 +17,16 @@
         Nothing
 
     Example:
-        [_l119, "TBD_MORTARS_105mm_ROUND_SMOKE_CHARGE_1", 0] call uksf_weapons_fnc_l119LoadSmoke
+        [_l119, "tbd_mortars_105mm_round_smoke_charge_1", 0] call uksf_weapons_fnc_l119LoadRound
 */
 params ["_l119", "_shell", "_turret"];
 
-private _rounds = nearestObjects [player, [_shell], 3];
+private _rounds = nearestObjects [ACE_player, [_shell], 3];
 {
-    if ((typeOf _x) == _shell) exitWith {
+    if ((typeOf _x) isEqualTo _shell) exitWith {
         private _fuseTime = _x getVariable ["tbd_mortars_105mm_DPICM_FUSE_TIMER", -1];
         if (_fuseTime >= 0) then {
-            _l119 setVariable [QGVAR(smokeFuseTime), _fuseTime, true];
+            _l119 setVariable [QGVAR(fuseTime), _fuseTime, true];
         };
     };
 } forEach _rounds;

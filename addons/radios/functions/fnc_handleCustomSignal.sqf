@@ -61,12 +61,17 @@ if (GVAR(debugReportingEnabled) && {CBA_missionTime >= GVAR(debugReportingNextUp
         private _displayPower = if (_bestDbm >= _squelch) then {_bestPower} else {-1};
 
         private _transmitterOwner = [_transmitterId] call acre_sys_radio_fnc_getRadioObject;
-        if (!isNil "_transmitterOwner" && {!isNull _transmitterOwner} && {isPlayer _transmitterOwner}) then {
+        if (!isNil "_transmitterOwner" && {!isNull _transmitterOwner}) then {
+            private _transmitterKey = if (isPlayer _transmitterOwner) then {
+                getPlayerUID _transmitterOwner
+            } else {
+                netId _transmitterOwner
+            };
             if (isNull _bestRebroStation) then {
-                GVAR(debugConnectionData) set [getPlayerUID _transmitterOwner, [_displayPower, ""]];
+                GVAR(debugConnectionData) set [_transmitterKey, [_displayPower, ""]];
             } else {
                 _bestResult params ["", "", ["_rebroReceivePower", 0], ["_rebroTransmitPower", 0]];
-                GVAR(debugConnectionData) set [getPlayerUID _transmitterOwner, [
+                GVAR(debugConnectionData) set [_transmitterKey, [
                     _displayPower,
                     netId _bestRebroStation,
                     _rebroReceivePower,

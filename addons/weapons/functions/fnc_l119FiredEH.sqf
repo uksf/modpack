@@ -4,7 +4,7 @@
         UKSF
 
     Description:
-        Fired EH for L119 smoke rounds.
+        Fired EH for L119 submunition rounds (smoke, illumination).
         Reads fuse time from vehicle, clears it, then triggers submunition after delay.
 
     Parameter(s):
@@ -27,12 +27,12 @@ params ["_vehicle", "", "", "", "_ammo", "", "_projectile", ""];
 
 if (!local _vehicle) exitWith {};
 
-if (_ammo != "tbd_mortars_105mm_shell_ammo_smoke") exitWith {};
+if !(_ammo in GVAR(l119SubmunitionAmmos)) exitWith {};
 
-private _fuseTime = _vehicle getVariable [QGVAR(smokeFuseTime), -1];
+private _fuseTime = _vehicle getVariable [QGVAR(fuseTime), -1];
 if (_fuseTime < 0) exitWith {};
 
-_vehicle setVariable [QGVAR(smokeFuseTime), -1, true];
+_vehicle setVariable [QGVAR(fuseTime), -1, true];
 
 [{
     params ["_projectile"];
@@ -42,11 +42,9 @@ _vehicle setVariable [QGVAR(smokeFuseTime), -1, true];
     private _position = getPosASL _projectile;
     private _velocity = velocity _projectile;
 
-    // Trigger the submunition (smoke shells) from the original projectile
     triggerAmmo _projectile;
 
-    // Spawn an empty shell to continue the ballistic path and impact on the ground
-    private _emptyShell = createVehicle [QGVAR(105mm_shell_smoke_empty), ASLToATL _position, [], 0, "CAN_COLLIDE"];
+    private _emptyShell = createVehicle [QGVAR(105mm_shell_empty), ASLToATL _position, [], 0, "CAN_COLLIDE"];
     _emptyShell setPosASL _position;
     _emptyShell setVelocity _velocity;
 }, [_projectile], _fuseTime] call CBA_fnc_waitAndExecute;
