@@ -4,8 +4,9 @@
         Tim Beswick
 
     Description:
-        Called during client sync to emit accumulated distance and fuel events,
-        then reset the accumulators.
+        Called during client sync to flush the sampler series arrays as a single
+        samplerBatch event, then reset them. Skips emission entirely if all
+        three series are empty (e.g. fresh mission with no ticks yet).
 
     Parameters:
         None
@@ -13,29 +14,19 @@
     Return Value:
         None
 */
-if (GVAR(accumulatedDistanceOnFoot) > 0) then {
-    [createHashMapFromArray [
-        ["type", "distanceOnFoot"],
-        ["metres", round GVAR(accumulatedDistanceOnFoot)]
-    ]] call FUNC(addEvent);
-    GVAR(accumulatedDistanceOnFoot) = 0;
-};
+private _onFoot = GVAR(samplerDistanceOnFoot);
+private _inVehicle = GVAR(samplerDistanceInVehicle);
+private _fuel = GVAR(samplerFuelLitres);
 
-if (GVAR(accumulatedDistanceInVehicle) > 0) then {
-    [createHashMapFromArray [
-        ["type", "distanceInVehicle"],
-        ["metres", round GVAR(accumulatedDistanceInVehicle)]
-    ]] call FUNC(addEvent);
-    GVAR(accumulatedDistanceInVehicle) = 0;
-};
+if (_onFoot isEqualTo [] && {_inVehicle isEqualTo []} && {_fuel isEqualTo []}) exitWith {};
 
-if (GVAR(accumulatedFuel) > 0 && {!isNull GVAR(lastFuelVehicle)}) then {
-    [createHashMapFromArray [
-        ["type", "fuelConsumed"],
-        ["amount", GVAR(accumulatedFuel)],
-        ["vehicleClassname", typeOf GVAR(lastFuelVehicle)]
-    ]] call FUNC(addEvent);
-    GVAR(accumulatedFuel) = 0;
-    GVAR(lastFuelLevel) = -1;
-    GVAR(lastFuelVehicle) = objNull;
-};
+[createHashMapFromArray [
+    ["type", "samplerBatch"],
+    ["distanceOnFoot", +_onFoot],
+    ["distanceInVehicle", +_inVehicle],
+    ["fuelLitres", +_fuel]
+]] call FUNC(addEvent);
+
+GVAR(samplerDistanceOnFoot) = [];
+GVAR(samplerDistanceInVehicle) = [];
+GVAR(samplerFuelLitres) = [];

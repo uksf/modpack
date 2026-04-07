@@ -37,6 +37,7 @@ PREP(paradropCargo);
 PREP(readCacheValues);
 PREP(populate);
 PREP(removeNVG);
+PREP(sampledSeriesAppend);
 PREP(setSkill);
 PREP(spawnGroupInfantry);
 PREP(spawnGroupVehicle);

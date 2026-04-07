@@ -23,11 +23,11 @@ GVAR(placedExplosives) = createHashMap;
 
 GVAR(samplerPFH) = -1;
 GVAR(lastPosition) = [0, 0, 0];
-GVAR(accumulatedDistanceOnFoot) = 0;
-GVAR(accumulatedDistanceInVehicle) = 0;
+GVAR(samplerDistanceOnFoot) = [];
+GVAR(samplerDistanceInVehicle) = [];
+GVAR(samplerFuelLitres) = [];
 GVAR(lastFuelLevel) = -1;
 GVAR(lastFuelVehicle) = objNull;
-GVAR(accumulatedFuel) = 0;
 
 GVAR(killswitch) = false;
 GVAR(collectionStarted) = false;
