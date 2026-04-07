@@ -18,27 +18,33 @@
         None
 */
 GVAR(lastPosition) = getPosATL player;
+GVAR(samplerInitialized) = false;
 
 GVAR(samplerPFH) = [{
     private _startTime = diag_tickTime;
-
-    // Distance tracking — split by on foot vs in vehicle
     private _currentPosition = getPosATL player;
-    private _distanceMoved = GVAR(lastPosition) distance _currentPosition;
+    private _currentVehicle = vehicle player;
 
-    // Filter out teleports (e.g. respawn, parachute insertion) — threshold 500m in 10s
-    if (_distanceMoved < 500) then {
-        private _currentVehicle = vehicle player;
-        if (_currentVehicle isEqualTo player) then {
-            GVAR(accumulatedDistanceOnFoot) = GVAR(accumulatedDistanceOnFoot) + _distanceMoved;
-        } else {
-            GVAR(accumulatedDistanceInVehicle) = GVAR(accumulatedDistanceInVehicle) + _distanceMoved;
-        };
+    // Anchor first tick without accumulating — player may not be at mission slot yet
+    if (!GVAR(samplerInitialized)) exitWith {
+        GVAR(lastPosition) = _currentPosition;
+        GVAR(samplerInitialized) = true;
+        ["sampler", _startTime] call FUNC(addProviderTiming);
     };
+
+    private _distanceMoved = GVAR(lastPosition) distance _currentPosition;
     GVAR(lastPosition) = _currentPosition;
 
+    // On foot capped at 100m/tick to filter teleports; in-vehicle trusted for fast jets
+    if (_currentVehicle isEqualTo player) then {
+        if (_distanceMoved <= 100) then {
+            GVAR(accumulatedDistanceOnFoot) = GVAR(accumulatedDistanceOnFoot) + _distanceMoved;
+        };
+    } else {
+        GVAR(accumulatedDistanceInVehicle) = GVAR(accumulatedDistanceInVehicle) + _distanceMoved;
+    };
+
     // Fuel tracking
-    private _currentVehicle = vehicle player;
     if (_currentVehicle isNotEqualTo player) then {
         private _currentFuel = fuel _currentVehicle;
         if (_currentVehicle isEqualTo GVAR(lastFuelVehicle) && {GVAR(lastFuelLevel) >= 0}) then {

@@ -34,6 +34,8 @@ if (isNil "_startData" || {!(_startData isEqualType createHashMap)}) exitWith {
     ERROR_1("Invalid JSON response from extension start: %1",_result);
 };
 GVAR(processId) = _startData getOrDefault ["processId", -1];
+private _parsedPort = _startData getOrDefault ["port", -1];
+INFO_2("Extension start parsed: port=%1 processId=%2",_parsedPort,GVAR(processId));
 
 // Send initial handshake so the API knows the server is alive during mission load
 private _data = createHashMapFromArray [
