@@ -24,14 +24,10 @@ private _timestamps = EGVAR(common,fpsStoreTimestamps);
 private _now = CBA_missionTime;
 private _staleThreshold = 10;
 
-INFO_2("sendPerformance tick: storeKeys=%1 timestampKeys=%2",count keys _fpsStore,count keys _timestamps);
-
-// Build server FPS samples
-private _serverEntry = _fpsStore getOrDefault ["server", [0, []]];
+private _serverEntry = _fpsStore getOrDefault ["server", [0, [], "server"]];
 private _serverSamples = +(_serverEntry#1);
 (_serverEntry#1) resize 0;
 
-// Build HC and player entries
 private _headlessClients = [];
 private _players = [];
 
@@ -39,7 +35,6 @@ private _players = [];
     private _identifier = _x;
     if (_identifier isEqualTo "server") then { continue };
 
-    // Prune and skip stale entries
     private _lastUpdate = _timestamps getOrDefault [_identifier, 0];
     if (_now - _lastUpdate > _staleThreshold) then {
         if (_now - _lastUpdate > 60) then {
@@ -55,34 +50,25 @@ private _players = [];
 
     if (_samples isEqualTo []) then { continue };
 
-    // Determine if this is an HC or player
-    // HCs are not in ALL_PLAYERS and have no player UID matching the identifier
-    private _isPlayer = false;
-    {
-        if (getPlayerUID _x isEqualTo _identifier) exitWith {
-            _isPlayer = true;
-        };
-    } forEach ALL_PLAYERS;
+    private _type = _entry param [2, ""];
 
-    if (_isPlayer) then {
-        _players pushBack createHashMapFromArray [
-            ["uid", _identifier],
-            ["fps", _samples]
-        ];
-    } else {
-        _headlessClients pushBack createHashMapFromArray [
-            ["name", _identifier],
-            ["fps", _samples]
-        ];
+    switch (_type) do {
+        case "player": {
+            _players pushBack createHashMapFromArray [
+                ["uid", _identifier],
+                ["fps", _samples]
+            ];
+        };
+        case "hc": {
+            _headlessClients pushBack createHashMapFromArray [
+                ["name", _identifier],
+                ["fps", _samples]
+            ];
+        };
     };
 } forEach keys _fpsStore;
 
-INFO_3("sendPerformance counts: server=%1 hcs=%2 players=%3",count _serverSamples,count _headlessClients,count _players);
-
-// Skip if no data to send
-if (_serverSamples isEqualTo [] && {_headlessClients isEqualTo []} && {_players isEqualTo []}) exitWith {
-    INFO("sendPerformance: empty data, skipping send");
-};
+if (_serverSamples isEqualTo [] && {_headlessClients isEqualTo []} && {_players isEqualTo []}) exitWith {};
 
 systemTimeUTC params ["_year", "_month", "_day", "_hour", "_minute", "_second"];
 
@@ -101,5 +87,4 @@ private _data = createHashMapFromArray [
     ["players", _players]
 ];
 
-INFO_1("sendPerformance: dispatching event sessionId=%1",GVAR(sessionId));
 ["performance", _data] call FUNC(sendEvent);

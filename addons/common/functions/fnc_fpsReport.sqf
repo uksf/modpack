@@ -9,21 +9,21 @@
 
     Parameter(s):
         0: Machine identifier <STRING> - "server", HC profile name, or player UID
-        1: FPS value <NUMBER> - floor diag_fps from the reporting machine
+        1: Machine type <STRING> - "server", "hc", or "player"
+        2: FPS value <NUMBER> - floor diag_fps from the reporting machine
 
     Return Value:
         None
 
     Example:
-        ["76561198012345678", 42] call uksf_common_fnc_fpsReport
+        ["76561198012345678", "player", 42] call uksf_common_fnc_fpsReport
 */
-params [["_identifier", "", [""]], ["_fps", 0, [0]]];
+params [["_identifier", "", [""]], ["_type", "", [""]], ["_fps", 0, [0]]];
 
-if (_identifier isEqualTo "") exitWith {};
+if (_identifier isEqualTo "" || {_type isEqualTo ""}) exitWith {};
 
 if !(_identifier in GVAR(fpsStore)) then {
-    GVAR(fpsStore) set [_identifier, [0, []]];
-    INFO_1("fpsReport: first sample for identifier=%1",_identifier);
+    GVAR(fpsStore) set [_identifier, [0, [], _type]];
 };
 private _entry = GVAR(fpsStore) get _identifier;
 _entry set [0, _fps];
