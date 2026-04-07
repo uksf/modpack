@@ -23,6 +23,7 @@ if (_identifier isEqualTo "") exitWith {};
 
 if !(_identifier in GVAR(fpsStore)) then {
     GVAR(fpsStore) set [_identifier, [0, []]];
+    INFO_1("fpsReport: first sample for identifier=%1",_identifier);
 };
 private _entry = GVAR(fpsStore) get _identifier;
 _entry set [0, _fps];

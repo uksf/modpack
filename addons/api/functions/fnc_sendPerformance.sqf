@@ -24,6 +24,8 @@ private _timestamps = EGVAR(common,fpsStoreTimestamps);
 private _now = CBA_missionTime;
 private _staleThreshold = 10;
 
+INFO_2("sendPerformance tick: storeKeys=%1 timestampKeys=%2",count keys _fpsStore,count keys _timestamps);
+
 // Build server FPS samples
 private _serverEntry = _fpsStore getOrDefault ["server", [0, []]];
 private _serverSamples = +(_serverEntry#1);
@@ -75,8 +77,12 @@ private _players = [];
     };
 } forEach keys _fpsStore;
 
+INFO_3("sendPerformance counts: server=%1 hcs=%2 players=%3",count _serverSamples,count _headlessClients,count _players);
+
 // Skip if no data to send
-if (_serverSamples isEqualTo [] && {_headlessClients isEqualTo []} && {_players isEqualTo []}) exitWith {};
+if (_serverSamples isEqualTo [] && {_headlessClients isEqualTo []} && {_players isEqualTo []}) exitWith {
+    INFO("sendPerformance: empty data, skipping send");
+};
 
 systemTimeUTC params ["_year", "_month", "_day", "_hour", "_minute", "_second"];
 
@@ -95,4 +101,5 @@ private _data = createHashMapFromArray [
     ["players", _players]
 ];
 
+INFO_1("sendPerformance: dispatching event sessionId=%1",GVAR(sessionId));
 ["performance", _data] call FUNC(sendEvent);
