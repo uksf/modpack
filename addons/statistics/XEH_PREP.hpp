@@ -2,6 +2,7 @@ PREP(addEvent);
 PREP(addProviderTiming);
 PREP(clientSync);
 PREP(explosivesSync);
+PREP(getAmmoCategory);
 PREP(handleClientReport);
 PREP(performancePFH);
 PREP(providerCombatDamage);

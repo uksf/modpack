@@ -66,7 +66,8 @@
         ["targetClassname", typeOf _unit],
         ["targetType", "infantry"],
         ["uid", getPlayerUID _instigator],
-        ["damage", _totalDamage]
+        ["damage", _totalDamage],
+        ["damageType", _ammoType]
     ]] call FUNC(addEvent);
 }] call CBA_fnc_addEventHandler;
 
