@@ -22,9 +22,11 @@ GVAR(lastPosition) = getPosATL player;
 GVAR(samplerInitialized) = false;
 
 GVAR(samplerPFH) = [{
+    params ["_args", "_idPFH"];
     private _startTime = diag_tickTime;
     private _currentPosition = getPosATL player;
-    private _currentVehicle = vehicle player;
+    private _playerVehicle = objectParent player;
+    private _isOnFoot = isNull _playerVehicle;
 
     if (!GVAR(samplerInitialized)) exitWith {
         GVAR(lastPosition) = _currentPosition;
@@ -37,7 +39,7 @@ GVAR(samplerPFH) = [{
 
     private _onFootTick = 0;
     private _inVehicleTick = 0;
-    if (_currentVehicle isEqualTo player) then {
+    if (_isOnFoot) then {
         if (_distanceMoved <= 100) then { _onFootTick = round _distanceMoved };
     } else {
         _inVehicleTick = round _distanceMoved;
@@ -47,8 +49,8 @@ GVAR(samplerPFH) = [{
     [GVAR(samplerDistanceInVehicle), _inVehicleTick] call EFUNC(common,sampledSeriesAppend);
 
     private _fuelTick = 0;
-    if (_currentVehicle isNotEqualTo player) then {
-        private _typeOf = typeOf _currentVehicle;
+    if (!_isOnFoot) then {
+        private _typeOf = typeOf _playerVehicle;
         private _capacity = [
             format ["fuelTank_%1", _typeOf],
             {
@@ -59,15 +61,15 @@ GVAR(samplerPFH) = [{
             0
         ] call EFUNC(common,readCacheValues);
         if (_capacity > 0) then {
-            private _currentFuel = fuel _currentVehicle;
-            if (_currentVehicle isEqualTo GVAR(lastFuelVehicle) && {GVAR(lastFuelLevel) >= 0}) then {
+            private _currentFuel = fuel _playerVehicle;
+            if (_playerVehicle isEqualTo GVAR(lastFuelVehicle) && {GVAR(lastFuelLevel) >= 0}) then {
                 private _fractionConsumed = GVAR(lastFuelLevel) - _currentFuel;
                 if (_fractionConsumed > 0) then {
                     _fuelTick = round (_fractionConsumed * _capacity);
                 };
             };
             GVAR(lastFuelLevel) = _currentFuel;
-            GVAR(lastFuelVehicle) = _currentVehicle;
+            GVAR(lastFuelVehicle) = _playerVehicle;
         } else {
             GVAR(lastFuelLevel) = -1;
             GVAR(lastFuelVehicle) = objNull;
