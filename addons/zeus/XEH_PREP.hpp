@@ -1,6 +1,7 @@
 PREP(curatorDisplayLoad);
 PREP(curatorDisplayUnload);
 PREP(isHeavyProjectile);
+PREP(trackProjectile);
 PREP(openArsenal);
 PREP(paradrop);
 
