@@ -33,6 +33,7 @@ if (_unitPool isEqualTo []) exitWith {
 };
 
 private _group = createGroup _side;
+_group deleteGroupWhenEmpty true;
 [QEGVAR(caching,disableCache), _group] call CBA_fnc_serverEvent;
 [QEGVAR(virtualisation,exclude), _group] call CBA_fnc_serverEvent;
 

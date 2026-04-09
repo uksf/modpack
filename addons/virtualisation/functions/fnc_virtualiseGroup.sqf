@@ -36,4 +36,8 @@ TRACE_2("virtualised group",_group,_id);
 
 {deleteVehicle _x} forEach (units _group);
 {deleteVehicle _x} forEach _vehicles;
-[QGVAR(deleteGroup), _group, _group] call CBA_fnc_targetEvent;
+if (local _group) then {
+    deleteGroup _group;
+} else {
+    [QGVAR(deleteGroup), _group, _group] call CBA_fnc_targetEvent;
+};
