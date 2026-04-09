@@ -25,7 +25,6 @@ if (_area isEqualTo []) exitWith {};
 private _settings = [_logic] call FUNC(initAutoplace);
 _settings params [
     "_unitList",
-    "_helperClassnames",
     "_side",
     "_coveragePercent",
     "_enablePatrols",
@@ -39,29 +38,22 @@ if (_unitList isEqualTo []) exitWith {
     WARNING_1("Building occupation module has no unit list: %1",_logic);
 };
 
-if (_helperClassnames isEqualTo []) exitWith {
-    WARNING_1("Building occupation module has no helper classnames: %1",_logic);
-};
-
 private _centre = getPosATL _logic;
 _area params ["_a", "_b"];
 private _searchRadius = (_a max _b) + 25;
 
-private _helperObjects = [];
-{
-    _helperObjects append (nearestObjects [_centre, [_x], _searchRadius, true]);
-} forEach _helperClassnames;
-_helperObjects = _helperObjects arrayIntersect _helperObjects;
+private _helperObjects = nearestObjects [_centre, ["CBA_BuildingPos"], _searchRadius, true];
 _helperObjects = _helperObjects select {[_x, _centre, _area] call EFUNC(common,objectInArea)};
 
 private _positionMap = createHashMap;
 private _availablePositions = [];
 {
     private _position = getPosATL _x;
+    private _direction = getDir _x;
     private _key = format ["%1_%2_%3", round ((_position#0) * 10), round ((_position#1) * 10), round ((_position#2) * 10)];
     if !(_positionMap getOrDefault [_key, false]) then {
         _positionMap set [_key, true];
-        _availablePositions pushBack _position;
+        _availablePositions pushBack [_position, _direction];
     };
 } forEach _helperObjects;
 
@@ -70,7 +62,6 @@ _logic setVariable [QGVAR(finalised), false, false];
 _logic setVariable [QGVAR(finaliseArea), _area, false];
 _logic setVariable [QGVAR(finaliseSide), _side, false];
 _logic setVariable [QGVAR(finaliseUnitList), _unitList, false];
-_logic setVariable [QGVAR(finaliseOccupyEmptyStatics), _occupyEmptyStatics, false];
 _logic setVariable [QGVAR(finaliseEnablePatrols), _enablePatrols, false];
 _logic setVariable [QGVAR(finaliseNumberOfPatrols), _numberOfPatrols, false];
 _logic setVariable [QGVAR(finalisePatrolRadius), _patrolRadius, false];
@@ -78,6 +69,11 @@ _logic setVariable [QGVAR(finalisePatrolSoldierCount), _patrolSoldierCount, fals
 
 private _targetCount = floor ((count _availablePositions) * (_coveragePercent / 100));
 _targetCount = _targetCount min (count _availablePositions);
+
+if (_occupyEmptyStatics) then {
+    [_logic, _area, _side, _unitList] call FUNC(occupyEmptyStatics);
+};
+
 if (_targetCount > 0) then {
     [_logic, _targetCount, _side, _unitList] call FUNC(spawnGarrisonGroups);
 } else {

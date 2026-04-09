@@ -48,11 +48,23 @@ _group deleteGroupWhenEmpty true;
 
 private _assignedCount = 0;
 for "_index" from 0 to (_groupSize - 1) do {
-    private _position = _availablePositions deleteAt 0;
+    private _positionData = _availablePositions deleteAt 0;
+    private _position = [0, 0, 0];
+    private _direction = 0;
+    if (_positionData isEqualType []) then {
+        if (count _positionData >= 2 && {(_positionData#0) isEqualType []}) then {
+            _position = _positionData#0;
+            _direction = _positionData#1;
+        } else {
+            _position = _positionData;
+        };
+    };
+
     private _unit = _group createUnit [selectRandom _unitList, _position, [], 0, "NONE"];
 
     if (!isNull _unit) then {
         _unit setPosATL _position;
+        _unit setDir _direction;
         _unit disableAI "PATH";
         _assignedCount = _assignedCount + 1;
     };

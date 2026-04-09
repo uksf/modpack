@@ -35,7 +35,12 @@ for "_index" from 1 to _numberOfPatrols do {
     private _spawnPosition = getPosATL _logic;
 
     if (_availablePositions isNotEqualTo []) then {
-        _spawnPosition = _availablePositions deleteAt 0;
+        private _positionData = _availablePositions deleteAt 0;
+        if (_positionData isEqualType [] && {count _positionData >= 2 && {(_positionData#0) isEqualType []}}) then {
+            _spawnPosition = _positionData#0;
+        } else {
+            _spawnPosition = _positionData;
+        };
         _logic setVariable [QGVAR(availablePositions), _availablePositions, false];
     };
 

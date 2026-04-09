@@ -56,7 +56,7 @@ class CfgVehicles {
             class GVAR(coveragePercent) {
                 property = QGVAR(coveragePercent);
                 displayName = "% of Coverage";
-                tooltip = "Percentage of found helper positions to populate (0-100).";
+                tooltip = "Percentage of found CBA_BuildingPos positions to populate (0-100).";
                 control = "EditShort";
                 validate = "NUMBER";
                 min = 0;
@@ -103,15 +103,6 @@ class CfgVehicles {
                 max = 10;
                 defaultValue = "4";
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(patrolSoldierCount),_value,true)]);
-            };
-            class GVAR(helperClassnamesString) {
-                property = QGVAR(helperClassnamesString);
-                displayName = "CBA Helper Classnames";
-                tooltip = "Class names of helper objects used as position sources. Comma-separated list in single quotes, no spaces.";
-                control = "Edit";
-                defaultValue = "[]";
-                compileString = 1;
-                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(helperClassnamesString),_value,true)]);
             };
             class GVAR(occupyEmptyStatics) {
                 property = QGVAR(occupyEmptyStatics);

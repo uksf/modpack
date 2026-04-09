@@ -21,10 +21,6 @@ private _unitListRaw = _logic getVariable [QGVAR(unitListString), []];
 private _unitList = [_unitListRaw] call EFUNC(common,convertToArray);
 _unitList = _unitList select {_x isEqualType "" && {_x != ""}};
 
-private _helperClassnamesRaw = _logic getVariable [QGVAR(helperClassnamesString), []];
-private _helperClassnames = [_helperClassnamesRaw] call EFUNC(common,convertToArray);
-_helperClassnames = _helperClassnames select {_x isEqualType "" && {_x != ""}};
-
 private _sideIndex = (_logic getVariable [QGVAR(side), 0]) max 0 min 2;
 private _side = [east, independent, west]#_sideIndex;
 
@@ -37,7 +33,6 @@ private _occupyEmptyStatics = _logic getVariable [QGVAR(occupyEmptyStatics), fal
 
 [
     _unitList,
-    _helperClassnames,
     _side,
     _coveragePercent,
     _enablePatrols,
