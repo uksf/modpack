@@ -126,6 +126,7 @@ class CfgPatches {
             "RKSL_PMII_525",
             "sps_ai_axmc_ace_compat",
             "tbd_m119_m119",
+            "Tracer_C_F",
             "tfw_radios_acre_ilbe",
             "zen_compat_ace",
             "zen_context_menu",
