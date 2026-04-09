@@ -26,14 +26,14 @@ GVAR(debugStreamClients) = GVAR(debugStreamClients) select {!isNull (_x#0)};
 
 if (GVAR(debugStreamClients) isEqualTo []) exitWith {};
 
-// Clean stale client data (older than 10s)
+// Clean stale client data
 {
     private _sourceData = GVAR(debugClientData) getOrDefault [_x, createHashMap];
     private _staleKeys = [];
     {
         private _entry = _sourceData get _x;
         _entry params ["", "", "_timestamp"];
-        if (CBA_missionTime - _timestamp > 10) then { _staleKeys pushBack _x };
+        if (CBA_missionTime - _timestamp > 3) then { _staleKeys pushBack _x };
     } forEach keys _sourceData;
     { _sourceData deleteAt _x } forEach _staleKeys;
 } forEach keys GVAR(debugClientData);
