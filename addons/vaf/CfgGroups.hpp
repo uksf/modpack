@@ -1,7 +1,7 @@
 class CfgGroups {
     class EAST {
         class ADDON {
-            name = "HIPA";
+            name = "Valterra Armed Forces";
             class Infantry {
                 name = "Infantry";
                 class GVAR(Fireteam) {

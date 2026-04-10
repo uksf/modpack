@@ -1,7 +1,7 @@
 class CfgFactionClasses {
     class ADDON {
-        displayName = "HIPA";
-        icon = QPATHTOF(data\HIPA_Flag.paa);
+        displayName = "Valterra Armed Forces";
+        icon = QPATHTOF(data\VAF_Flag.paa);
         priority = 1;
         side = 0;
     };

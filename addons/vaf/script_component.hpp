@@ -1,5 +1,5 @@
-#define COMPONENT hipa
-#define COMPONENT_BEAUTIFIED HIPA
+#define COMPONENT vaf
+#define COMPONENT_BEAUTIFIED VAF
 #include "\u\uksf\addons\main\script_mod.hpp"
 
 // #define DEBUG_MODE_FULL
