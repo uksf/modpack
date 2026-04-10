@@ -66,7 +66,8 @@
         ["targetClassname", typeOf _unit],
         ["targetType", "infantry"],
         ["uid", getPlayerUID _instigator],
-        ["damage", _totalDamage]
+        ["damage", _totalDamage],
+        ["damageType", _ammoType]
     ]] call FUNC(addEvent);
 }] call CBA_fnc_addEventHandler;
 
@@ -81,12 +82,15 @@
     private _damageDelta = _damage - _currentDamage;
     if (_damageDelta <= 0) exitWith {};
 
+    // ace_vehicle_damage_damageApplied does not provide an ammo type.
+    // Emit empty sentinel so the field is always present on combatDamage events (infantry path sets this from _ammoType).
     [createHashMapFromArray [
         ["type", "combatDamage"],
         ["targetNetId", netId _vehicle],
         ["targetClassname", typeOf _vehicle],
         ["targetType", "vehicle"],
         ["uid", getPlayerUID _instigator],
-        ["damage", _damageDelta]
+        ["damage", _damageDelta],
+        ["damageType", ""]
     ]] call FUNC(addEvent);
 }] call CBA_fnc_addEventHandler;

@@ -27,6 +27,10 @@ addMissionEventHandler ["EntityKilled", {
     params ["_victim", "_killer", "_instigator"];
     private _startTime = diag_tickTime;
 
+    if (isNull _victim) exitWith {
+        ["kills", _startTime] call FUNC(addProviderTiming);
+    };
+
     // Skip self-kills with no instigator — these are never real combat deaths.
     // They occur when Arma kills a player's spawn body during join, redeploy,
     // or relog as part of the respawn cycle.
@@ -89,6 +93,21 @@ addMissionEventHandler ["EntityKilled", {
         "unknown"
     };
 
+    // Weapon attribution: read the victim's lastHit var (set by fnc_providerShots HitPart/HitExplosion
+    // handlers) and match by shooter UID. Matching by identity avoids misattribution in multi-player
+    // engagements (last write wins by shot order, and we only trust the record if it names the killer).
+    // If no match: weapon/ammo empty — no false attribution for cookoff/chain/unknown kills.
+    private _weapon = "";
+    private _ammo = "";
+    private _lastHit = _victim getVariable [QGVAR(lastHit), []];
+    if (_lastHit isNotEqualTo []) then {
+        _lastHit params ["_hitWeapon", "_hitAmmo", "_hitShooterUid"];
+        if (_hitShooterUid isEqualTo _killerUid) then {
+            _weapon = _hitWeapon;
+            _ammo = _hitAmmo;
+        };
+    };
+
     private _event = createHashMapFromArray [
         ["type", "kill"],
         ["killerUid", _killerUid],
@@ -96,7 +115,9 @@ addMissionEventHandler ["EntityKilled", {
         ["targetNetId", netId _victim],
         ["targetClassname", typeOf _victim],
         ["targetSide", _targetSide],
-        ["targetType", _targetType]
+        ["targetType", _targetType],
+        ["weapon", _weapon],
+        ["ammo", _ammo]
     ];
 
     [_event] call FUNC(addEvent);
