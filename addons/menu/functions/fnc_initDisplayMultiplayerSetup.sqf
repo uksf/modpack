@@ -53,21 +53,26 @@ private _fnc_update = {
             private _assignRoleControl = _display displayCtrl IDC_MPSETUP_ASSIGNROLE;
             TRACE_3("AssignRole ctrl",_assignRoleControl,ctrlType _assignRoleControl,ctrlEnabled _assignRoleControl);
 
-            uiNamespace setVariable [QGVAR(assignRoleDisplay), _display];
-            uiNamespace setVariable [QGVAR(assignRoleControl), _assignRoleControl];
-            onEachFrame {
-                private _assignRoleControl = uiNamespace getVariable QGVAR(assignRoleControl);
-                private _display = uiNamespace getVariable QGVAR(assignRoleDisplay);
-                TRACE_1("attempting ctrlActivate true",_assignRoleControl);
-                _assignRoleControl ctrlActivate true;
+            // Try multiple approaches to assign the slot
+            // Approach 1: ctrlActivate on AssignRole button (main syntax, engine action)
+            TRACE_1("approach 1: ctrlActivate main syntax",_assignRoleControl);
+            ctrlActivate _assignRoleControl;
 
-                onEachFrame {
-                    private _display = uiNamespace getVariable QGVAR(assignRoleDisplay);
-                    private _roles = _display displayCtrl IDC_MPSETUP_ROLES;
-                    private _currentSelection = lbCurSel _roles;
-                    TRACE_1("post-activate lbCurSel",_currentSelection);
-                    onEachFrame {};
-                };
+            // Approach 2: ctrlActivate with full=true (alt syntax, fires UI EHs)
+            TRACE_1("approach 2: ctrlActivate true",_assignRoleControl);
+            _assignRoleControl ctrlActivate true;
+
+            // Approach 3: simulate LBDblClick on roles listbox
+            TRACE_2("approach 3: LBDblClick on roles listbox",_roles,_i);
+            _roles ctrlSetEventHandler ["LBDblClick", ""];
+            uiNamespace setVariable [QGVAR(assignRoleDisplay), _display];
+            uiNamespace setVariable [QGVAR(assignRoleIndex), _i];
+            onEachFrame {
+                private _display = uiNamespace getVariable QGVAR(assignRoleDisplay);
+                private _index = uiNamespace getVariable QGVAR(assignRoleIndex);
+                private _roles = _display displayCtrl IDC_MPSETUP_ROLES;
+                TRACE_1("post-attempts lbCurSel",lbCurSel _roles);
+                onEachFrame {};
             };
 
             removeMissionEventHandler ["EachFrame", GVAR(updateEHID)];
