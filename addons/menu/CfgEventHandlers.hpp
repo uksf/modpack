@@ -12,6 +12,6 @@ class Extended_PreInit_EventHandlers {
 
 class Extended_DisplayLoad_EventHandlers {
     class RscDisplayMultiplayerSetup {
-        ADDON = QUOTE(_this call(uiNamespace getVariable 'FUNC(initDisplayMultiplayerSetup)'));
+        ADDON = QUOTE(_this call(uiNamespace getVariable 'FUNC(initDisplayMultiplayerSetupWrapper)'));
     };
 };
