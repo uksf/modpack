@@ -50,29 +50,27 @@ private _fnc_update = {
             _roles lbSetCurSel _scrollFixIndex;
             _roles lbSetCurSel _i;
 
-            private _assignRoleControl = _display displayCtrl IDC_MPSETUP_ASSIGNROLE;
-            TRACE_3("AssignRole ctrl",_assignRoleControl,ctrlType _assignRoleControl,ctrlEnabled _assignRoleControl);
+            // Move mouse to selected row and click via extension SendInput
+            private _listboxPosition = ctrlPosition _roles;
+            _listboxPosition params ["_listboxX", "_listboxY", "_listboxW", "_listboxH"];
+            private _clickX = _listboxX + (_listboxW * 0.5);
+            private _clickY = _listboxY + (_listboxH * 0.5);
+            TRACE_4("clicking at listbox centre",_clickX,_clickY,_listboxPosition,_i);
 
-            // Try multiple approaches to assign the slot
-            // Approach 1: ctrlActivate on AssignRole button (main syntax, engine action)
-            TRACE_1("approach 1: ctrlActivate main syntax",_assignRoleControl);
-            ctrlActivate _assignRoleControl;
+            setMousePosition [_clickX, _clickY];
 
-            // Approach 2: ctrlActivate with full=true (alt syntax, fires UI EHs)
-            TRACE_1("approach 2: ctrlActivate true",_assignRoleControl);
-            _assignRoleControl ctrlActivate true;
-
-            // Approach 3: simulate LBDblClick on roles listbox
-            TRACE_2("approach 3: LBDblClick on roles listbox",_roles,_i);
-            _roles ctrlSetEventHandler ["LBDblClick", ""];
             uiNamespace setVariable [QGVAR(assignRoleDisplay), _display];
-            uiNamespace setVariable [QGVAR(assignRoleIndex), _i];
             onEachFrame {
                 private _display = uiNamespace getVariable QGVAR(assignRoleDisplay);
-                private _index = uiNamespace getVariable QGVAR(assignRoleIndex);
-                private _roles = _display displayCtrl IDC_MPSETUP_ROLES;
-                TRACE_1("post-attempts lbCurSel",lbCurSel _roles);
-                onEachFrame {};
+                private _result = "uksf" callExtension "click";
+                TRACE_1("click result",_result);
+
+                onEachFrame {
+                    private _display = uiNamespace getVariable QGVAR(assignRoleDisplay);
+                    private _roles = _display displayCtrl 109;
+                    TRACE_1("post-click lbCurSel",lbCurSel _roles);
+                    onEachFrame {};
+                };
             };
 
             removeMissionEventHandler ["EachFrame", GVAR(updateEHID)];
