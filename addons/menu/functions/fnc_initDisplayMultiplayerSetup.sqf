@@ -53,19 +53,22 @@ private _fnc_update = {
             private _assignRoleControl = _display displayCtrl IDC_MPSETUP_ASSIGNROLE;
             TRACE_3("AssignRole ctrl",_assignRoleControl,ctrlType _assignRoleControl,ctrlEnabled _assignRoleControl);
 
-            [{
-                params ["_display", "_assignRoleControl"];
-
+            uiNamespace setVariable [QGVAR(assignRoleDisplay), _display];
+            uiNamespace setVariable [QGVAR(assignRoleControl), _assignRoleControl];
+            onEachFrame {
+                private _assignRoleControl = uiNamespace getVariable QGVAR(assignRoleControl);
+                private _display = uiNamespace getVariable QGVAR(assignRoleDisplay);
                 TRACE_1("attempting ctrlActivate true",_assignRoleControl);
                 _assignRoleControl ctrlActivate true;
 
-                [{
-                    params ["_display"];
+                onEachFrame {
+                    private _display = uiNamespace getVariable QGVAR(assignRoleDisplay);
                     private _roles = _display displayCtrl IDC_MPSETUP_ROLES;
                     private _currentSelection = lbCurSel _roles;
                     TRACE_1("post-activate lbCurSel",_currentSelection);
-                }, [_display], 0] call CBA_fnc_waitAndExecute;
-            }, [_display, _assignRoleControl], 0] call CBA_fnc_waitAndExecute;
+                    onEachFrame {};
+                };
+            };
 
             removeMissionEventHandler ["EachFrame", GVAR(updateEHID)];
         };
