@@ -24,5 +24,5 @@ pub fn load(key: String) -> String {
 }
 
 pub fn click() -> String {
-    input::click()
+    input::press_enter()
 }

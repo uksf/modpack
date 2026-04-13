@@ -50,25 +50,20 @@ private _fnc_update = {
             _roles lbSetCurSel _scrollFixIndex;
             _roles lbSetCurSel _i;
 
-            // Move mouse to selected row and click via extension SendInput
-            private _listboxPosition = ctrlPosition _roles;
-            _listboxPosition params ["_listboxX", "_listboxY", "_listboxW", "_listboxH"];
-            private _clickX = _listboxX + (_listboxW * 0.5);
-            private _clickY = _listboxY + (_listboxH * 0.5);
-            TRACE_4("clicking at listbox centre",_clickX,_clickY,_listboxPosition,_i);
-
-            setMousePosition [_clickX, _clickY];
+            // Focus listbox and press Enter via extension SendInput
+            ctrlSetFocus _roles;
+            TRACE_1("focused roles listbox, sending Enter",_roles);
 
             uiNamespace setVariable [QGVAR(assignRoleDisplay), _display];
             onEachFrame {
                 private _display = uiNamespace getVariable QGVAR(assignRoleDisplay);
                 private _result = "uksf" callExtension "click";
-                TRACE_1("click result",_result);
+                TRACE_1("enter result",_result);
 
                 onEachFrame {
                     private _display = uiNamespace getVariable QGVAR(assignRoleDisplay);
                     private _roles = _display displayCtrl 109;
-                    TRACE_1("post-click lbCurSel",lbCurSel _roles);
+                    TRACE_1("post-enter lbCurSel",lbCurSel _roles);
                     onEachFrame {};
                 };
             };

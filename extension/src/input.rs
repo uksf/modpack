@@ -1,22 +1,23 @@
 use windows::Win32::UI::Input::KeyboardAndMouse::{
-    SendInput, INPUT, INPUT_0, INPUT_MOUSE, MOUSEEVENTF_LEFTDOWN, MOUSEEVENTF_LEFTUP, MOUSEINPUT,
+    SendInput, INPUT, INPUT_0, INPUT_KEYBOARD, KEYBDINPUT, KEYEVENTF_KEYUP, VK_RETURN,
 };
 
-pub fn click() -> String {
+pub fn press_enter() -> String {
     let down = INPUT {
-        r#type: INPUT_MOUSE,
+        r#type: INPUT_KEYBOARD,
         Anonymous: INPUT_0 {
-            mi: MOUSEINPUT {
-                dwFlags: MOUSEEVENTF_LEFTDOWN,
+            ki: KEYBDINPUT {
+                wVk: VK_RETURN,
                 ..Default::default()
             },
         },
     };
     let up = INPUT {
-        r#type: INPUT_MOUSE,
+        r#type: INPUT_KEYBOARD,
         Anonymous: INPUT_0 {
-            mi: MOUSEINPUT {
-                dwFlags: MOUSEEVENTF_LEFTUP,
+            ki: KEYBDINPUT {
+                wVk: VK_RETURN,
+                dwFlags: KEYEVENTF_KEYUP,
                 ..Default::default()
             },
         },
@@ -26,10 +27,10 @@ pub fn click() -> String {
     let sent = unsafe { SendInput(&inputs, std::mem::size_of::<INPUT>() as i32) };
 
     if sent == 2 {
-        log::info!("click: sent 2 input events");
+        log::info!("press_enter: sent 2 input events");
         "ok".to_string()
     } else {
-        let msg = format!("click: only sent {sent}/2 events");
+        let msg = format!("press_enter: only sent {sent}/2 events");
         log::error!("{msg}");
         msg
     }
