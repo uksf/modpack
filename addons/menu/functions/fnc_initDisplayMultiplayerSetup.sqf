@@ -50,22 +50,23 @@ private _fnc_update = {
             _roles lbSetCurSel _scrollFixIndex;
             _roles lbSetCurSel _i;
 
-            private _assignRoleControl = _display displayCtrl IDC_MPSETUP_ASSIGNROLE;
-            TRACE_3("AssignRole ctrl",_assignRoleControl,ctrlType _assignRoleControl,ctrlEnabled _assignRoleControl);
+            // Focus listbox and press Enter via extension SendInput
+            ctrlSetFocus _roles;
+            TRACE_1("focused roles listbox, sending Enter",_roles);
 
-            [{
-                params ["_display", "_assignRoleControl"];
+            uiNamespace setVariable [QGVAR(assignRoleDisplay), _display];
+            onEachFrame {
+                private _display = uiNamespace getVariable QGVAR(assignRoleDisplay);
+                private _result = "uksf" callExtension "pressEnter";
+                TRACE_1("pressEnter result",_result);
 
-                TRACE_1("attempting ctrlActivate true",_assignRoleControl);
-                _assignRoleControl ctrlActivate true;
-
-                [{
-                    params ["_display"];
-                    private _roles = _display displayCtrl IDC_MPSETUP_ROLES;
-                    private _currentSelection = lbCurSel _roles;
-                    TRACE_1("post-activate lbCurSel",_currentSelection);
-                }, [_display], 0] call CBA_fnc_waitAndExecute;
-            }, [_display, _assignRoleControl], 0] call CBA_fnc_waitAndExecute;
+                onEachFrame {
+                    private _display = uiNamespace getVariable QGVAR(assignRoleDisplay);
+                    private _roles = _display displayCtrl 109;
+                    TRACE_1("post-enter lbCurSel",lbCurSel _roles);
+                    onEachFrame {};
+                };
+            };
 
             removeMissionEventHandler ["EachFrame", GVAR(updateEHID)];
         };
