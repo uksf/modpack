@@ -23,6 +23,6 @@ pub fn load(key: String) -> String {
     bridge::handle_load(&key)
 }
 
-pub fn click() -> String {
+pub fn press_enter() -> String {
     input::press_enter()
 }

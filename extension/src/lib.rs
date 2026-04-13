@@ -62,6 +62,6 @@ fn init() -> Extension {
         .command("flush", commands::flush)
         .command("event", commands::event)
         .command("load", commands::load)
-        .command("click", commands::click)
+        .command("pressEnter", commands::press_enter)
         .finish()
 }

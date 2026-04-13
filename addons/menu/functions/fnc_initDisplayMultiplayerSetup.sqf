@@ -57,8 +57,8 @@ private _fnc_update = {
             uiNamespace setVariable [QGVAR(assignRoleDisplay), _display];
             onEachFrame {
                 private _display = uiNamespace getVariable QGVAR(assignRoleDisplay);
-                private _result = "uksf" callExtension "click";
-                TRACE_1("enter result",_result);
+                private _result = "uksf" callExtension "pressEnter";
+                TRACE_1("pressEnter result",_result);
 
                 onEachFrame {
                     private _display = uiNamespace getVariable QGVAR(assignRoleDisplay);
