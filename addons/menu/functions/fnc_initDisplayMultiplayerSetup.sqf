@@ -50,20 +50,20 @@ private _fnc_update = {
             _roles lbSetCurSel _scrollFixIndex;
             _roles lbSetCurSel _i;
 
-            // Focus listbox and press Enter via extension PostMessage
+            // Focus listbox and press Space via extension PostMessage
             ctrlSetFocus _roles;
-            TRACE_1("focused roles listbox, sending Enter",_roles);
+            TRACE_1("focused roles listbox, sending Space",_roles);
 
             uiNamespace setVariable [QGVAR(assignRoleDisplay), _display];
             onEachFrame {
                 private _display = uiNamespace getVariable QGVAR(assignRoleDisplay);
-                private _result = "uksf" callExtension "pressEnter";
-                TRACE_1("pressEnter result",_result);
+                private _result = "uksf" callExtension "pressSpace";
+                TRACE_1("pressSpace result",_result);
 
                 onEachFrame {
                     private _display = uiNamespace getVariable QGVAR(assignRoleDisplay);
                     private _roles = _display displayCtrl IDC_MPSETUP_ROLES;
-                    TRACE_1("post-enter lbCurSel",lbCurSel _roles);
+                    TRACE_1("post-space lbCurSel",lbCurSel _roles);
                     onEachFrame {};
                 };
             };
