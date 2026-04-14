@@ -28,8 +28,8 @@ if (_area isEqualTo []) exitWith {0};
 if (_unitList isEqualTo []) exitWith {0};
 
 private _centre = getPosATL _logic;
-_area params ["_a", "_b"];
-private _searchRadius = (_a max _b) + 25;
+_area params ["_areaRadiusA", "_areaRadiusB"];
+private _searchRadius = (_areaRadiusA max _areaRadiusB) + 25;
 
 private _statics = nearestObjects [_centre, ["StaticWeapon"], _searchRadius, true];
 _statics = _statics select {[_x, _centre, _area] call EFUNC(common,objectInArea)};
@@ -37,23 +37,25 @@ _statics = _statics select {[_x, _centre, _area] call EFUNC(common,objectInArea)
 private _occupiedCount = 0;
 private _currentGroup = grpNull;
 {
-    if (alive _x && {isNull (gunner _x)}) then {
+    params ["_staticWeapon"];
+
+    if (alive _staticWeapon && {isNull (gunner _staticWeapon)}) then {
         if (isNull _currentGroup || {(count units _currentGroup) >= MAX_GROUP_SIZE}) then {
             _currentGroup = createGroup _side;
             _currentGroup deleteGroupWhenEmpty true;
         };
 
         if (!isNull _currentGroup) then {
-            private _unit = _currentGroup createUnit [selectRandom _unitList, getPosATL _x, [], 0, "NONE"];
+            private _gunnerUnit = _currentGroup createUnit [selectRandom _unitList, getPosATL _staticWeapon, [], 0, "NONE"];
 
-            if (!isNull _unit) then {
-                _unit assignAsGunner _x;
-                _unit moveInGunner _x;
+            if (!isNull _gunnerUnit) then {
+                _gunnerUnit assignAsGunner _staticWeapon;
+                _gunnerUnit moveInGunner _staticWeapon;
             };
 
-            if ((gunner _x) isNotEqualTo _unit) then {
-                if (!isNull _unit) then {
-                    deleteVehicle _unit;
+            if ((gunner _staticWeapon) isNotEqualTo _gunnerUnit) then {
+                if (!isNull _gunnerUnit) then {
+                    deleteVehicle _gunnerUnit;
                 };
 
                 if ((units _currentGroup) isEqualTo []) then {

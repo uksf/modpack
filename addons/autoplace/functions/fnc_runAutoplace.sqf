@@ -39,8 +39,8 @@ if (_unitList isEqualTo []) exitWith {
 };
 
 private _centre = getPosATL _logic;
-_area params ["_a", "_b"];
-private _searchRadius = (_a max _b) + 25;
+_area params ["_areaRadiusA", "_areaRadiusB"];
+private _searchRadius = (_areaRadiusA max _areaRadiusB) + 25;
 
 private _helperObjects = nearestObjects [_centre, ["CBA_BuildingPos"], _searchRadius, true];
 _helperObjects = _helperObjects select {[_x, _centre, _area] call EFUNC(common,objectInArea)};
@@ -48,8 +48,9 @@ _helperObjects = _helperObjects select {[_x, _centre, _area] call EFUNC(common,o
 private _positionMap = createHashMap;
 private _availablePositions = [];
 {
-    private _position = getPosATL _x;
-    private _direction = getDir _x;
+    params ["_helperObject"];
+    private _position = getPosATL _helperObject;
+    private _direction = getDir _helperObject;
     private _key = format ["%1_%2_%3", round ((_position#0) * 10), round ((_position#1) * 10), round ((_position#2) * 10)];
     if !(_positionMap getOrDefault [_key, false]) then {
         _positionMap set [_key, true];

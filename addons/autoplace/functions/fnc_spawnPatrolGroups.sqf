@@ -30,7 +30,7 @@ if (isNull _logic) exitWith {};
 
 private _groupSize = (_patrolUnitCount max 1) min MAX_GROUP_SIZE;
 
-for "_index" from 1 to _numberOfPatrols do {
+for "_patrolIndex" from 1 to _numberOfPatrols do {
     private _availablePositions = _logic getVariable [QGVAR(availablePositions), []];
     private _spawnPosition = getPosATL _logic;
 

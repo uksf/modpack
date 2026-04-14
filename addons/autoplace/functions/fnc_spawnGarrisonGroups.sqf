@@ -45,7 +45,7 @@ private _group = createGroup _side;
 _group deleteGroupWhenEmpty true;
 
 private _assignedCount = 0;
-for "_index" from 0 to (_groupSize - 1) do {
+for "_positionIndex" from 0 to (_groupSize - 1) do {
     private _positionData = _availablePositions deleteAt 0;
     private _position = [0, 0, 0];
     private _direction = 0;
@@ -58,12 +58,12 @@ for "_index" from 0 to (_groupSize - 1) do {
         };
     };
 
-    private _unit = _group createUnit [selectRandom _unitList, _position, [], 0, "NONE"];
+    private _garrisonUnit = _group createUnit [selectRandom _unitList, _position, [], 0, "NONE"];
 
-    if (!isNull _unit) then {
-        _unit setPosATL _position;
-        _unit setDir _direction;
-        _unit disableAI "PATH";
+    if (!isNull _garrisonUnit) then {
+        _garrisonUnit setPosATL _position;
+        _garrisonUnit setDir _direction;
+        _garrisonUnit disableAI "PATH";
         _assignedCount = _assignedCount + 1;
     };
 };
