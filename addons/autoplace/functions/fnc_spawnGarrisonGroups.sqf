@@ -43,8 +43,6 @@ if (_groupSize <= 0) exitWith {
 
 private _group = createGroup _side;
 _group deleteGroupWhenEmpty true;
-[QEGVAR(caching,disableCache), _group] call CBA_fnc_serverEvent;
-[QEGVAR(virtualisation,exclude), _group] call CBA_fnc_serverEvent;
 
 private _assignedCount = 0;
 for "_index" from 0 to (_groupSize - 1) do {
@@ -71,7 +69,6 @@ for "_index" from 0 to (_groupSize - 1) do {
 };
 
 _logic setVariable [QGVAR(availablePositions), _availablePositions, false];
-[_group] call FUNC(storeAndDeleteGroup);
 
 private _remainingAfterSpawn = _remainingCount - _assignedCount;
 if (_remainingAfterSpawn > 0) then {

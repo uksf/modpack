@@ -10,8 +10,7 @@ class CfgPatches {
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             "uksf_common",
-            "uksf_mission",
-            "uksf_virtualisation"
+            "uksf_mission"
         };
         author = QUOTE(UKSF);
         authors[] = { "Bridgford.A" };

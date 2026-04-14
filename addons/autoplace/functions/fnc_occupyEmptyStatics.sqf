@@ -37,8 +37,6 @@ private _occupiedCount = 0;
     if (alive _x && {isNull (gunner _x)}) then {
         private _group = createGroup _side;
         _group deleteGroupWhenEmpty true;
-        [QEGVAR(caching,disableCache), _group] call CBA_fnc_serverEvent;
-        [QEGVAR(virtualisation,exclude), _group] call CBA_fnc_serverEvent;
 
         private _unit = _group createUnit [selectRandom _unitList, getPosATL _x, [], 0, "NONE"];
         _unit assignAsGunner _x;
@@ -48,8 +46,6 @@ private _occupiedCount = 0;
             deleteVehicle _unit;
             deleteGroup _group;
         } else {
-            [QEGVAR(caching,enableCache), _group] call CBA_fnc_serverEvent;
-            [QEGVAR(virtualisation,include), _group] call CBA_fnc_serverEvent;
             _occupiedCount = _occupiedCount + 1;
         };
     };

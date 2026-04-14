@@ -6,4 +6,3 @@ PREP(runAutoplace);
 PREP(spawnGarrisonGroups);
 PREP(spawnPatrolGroupCallback);
 PREP(spawnPatrolGroups);
-PREP(storeAndDeleteGroup);

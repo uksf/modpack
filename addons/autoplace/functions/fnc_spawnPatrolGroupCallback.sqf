@@ -4,7 +4,7 @@
         Bridg
 
     Description:
-        Re-enables virtualisation and assigns patrol task for spawned patrol group.
+        Assigns patrol task for spawned patrol group.
 
     Parameters:
         0: Patrol spawn position <ARRAY>
@@ -22,4 +22,3 @@ params ["_spawnPosition", "_patrolRadius", "_group"];
 if (isNull _group) exitWith {};
 
 [_group, _spawnPosition, _patrolRadius, 4, "MOVE", "SAFE", "YELLOW", "NORMAL", "COLUMN"] call EFUNC(common,taskPatrol);
-[_group] call FUNC(storeAndDeleteGroup);
