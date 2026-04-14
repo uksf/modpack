@@ -38,7 +38,7 @@ private _fnc_update = {
     TRACE_3("searching roles",_playerName,_roles,lbSize _roles);
 
     private _count = lbSize _roles;
-    for "_i" from 0 to _count do {
+    for "_i" from 0 to (_count - 1) do {
         private _text = toLower (_roles lbText _i);
         private _value = _roles lbValue _i;
         private _data = _roles lbData _i;
@@ -50,7 +50,7 @@ private _fnc_update = {
             _roles lbSetCurSel _scrollFixIndex;
             _roles lbSetCurSel _i;
 
-            // Focus listbox and press Enter via extension SendInput
+            // Focus listbox and press Enter via extension PostMessage
             ctrlSetFocus _roles;
             TRACE_1("focused roles listbox, sending Enter",_roles);
 
@@ -62,7 +62,7 @@ private _fnc_update = {
 
                 onEachFrame {
                     private _display = uiNamespace getVariable QGVAR(assignRoleDisplay);
-                    private _roles = _display displayCtrl 109;
+                    private _roles = _display displayCtrl IDC_MPSETUP_ROLES;
                     TRACE_1("post-enter lbCurSel",lbCurSel _roles);
                     onEachFrame {};
                 };
