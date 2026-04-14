@@ -57,6 +57,8 @@ private _availablePositions = [];
     };
 } forEach _helperObjects;
 
+[_availablePositions, true] call CBA_fnc_shuffle;
+
 _logic setVariable [QGVAR(availablePositions), _availablePositions, false];
 _logic setVariable [QGVAR(finalised), false, false];
 _logic setVariable [QGVAR(finaliseArea), _area, false];
