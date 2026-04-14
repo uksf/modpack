@@ -5,13 +5,10 @@
         Tim Beswick
 
     Description:
-        Attempts to find and select player's slot. Each frame:
-        - If display is gone, stop.
-        - Otherwise find player's role, re-select it, and ask the extension
-          to press Space. Extension skips if Arma is not the foreground
-          window, so retries succeed once the user tabs back. Stops after
-          the first successful send (pressing Space twice would toggle
-          assign/unassign).
+        Finds the player's slot in the lobby and assigns it automatically.
+        Each frame until the slot is assigned, sends a Space keypress via
+        the Rust extension (gated on Arma being the foreground window to
+        avoid leaking input to other apps if the user has alt-tabbed).
 
     Parameter(s):
         0: Display <DISPLAY>
