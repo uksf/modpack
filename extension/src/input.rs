@@ -1,12 +1,15 @@
 use std::cell::Cell;
-use windows::Win32::Foundation::{BOOL, HWND, LPARAM, WPARAM};
+use windows::Win32::Foundation::{BOOL, HWND, LPARAM};
 use windows::Win32::System::Threading::GetCurrentProcessId;
-use windows::Win32::UI::Input::KeyboardAndMouse::VK_SPACE;
+use windows::Win32::UI::Input::KeyboardAndMouse::{
+    SendInput, INPUT, INPUT_0, INPUT_KEYBOARD, KEYBDINPUT, KEYEVENTF_KEYUP, KEYEVENTF_SCANCODE,
+    VK_SPACE,
+};
 use windows::Win32::UI::WindowsAndMessaging::{
-    EnumWindows, GetWindowThreadProcessId, IsWindowVisible, PostMessageW, WM_KEYDOWN, WM_KEYUP,
+    EnumWindows, GetForegroundWindow, GetWindowThreadProcessId, IsWindowVisible,
 };
 
-const VK_SPACE_SCAN_CODE: isize = 0x39;
+const VK_SPACE_SCAN_CODE: u16 = 0x39;
 
 thread_local! {
     static FOUND_HWND: Cell<Option<HWND>> = Cell::new(None);
@@ -19,10 +22,10 @@ extern "system" fn enum_windows_proc(hwnd: HWND, lparam: LPARAM) -> BOOL {
 
     if window_pid == target_pid && unsafe { IsWindowVisible(hwnd) }.as_bool() {
         FOUND_HWND.with(|h| h.set(Some(hwnd)));
-        return BOOL(0); // stop enumeration
+        return BOOL(0);
     }
 
-    BOOL(1) // continue
+    BOOL(1)
 }
 
 fn find_arma_window() -> Option<HWND> {
@@ -32,34 +35,53 @@ fn find_arma_window() -> Option<HWND> {
     FOUND_HWND.with(|h| h.get())
 }
 
+fn is_arma_foreground() -> bool {
+    let Some(arma_hwnd) = find_arma_window() else {
+        return false;
+    };
+    let foreground = unsafe { GetForegroundWindow() };
+    foreground == arma_hwnd
+}
+
 pub fn press_space() -> String {
-    let hwnd = match find_arma_window() {
-        Some(h) => h,
-        None => {
-            let msg = "press_space: no visible window found for current process";
-            log::error!("{msg}");
-            return msg.to_string();
-        }
+    if !is_arma_foreground() {
+        let msg = "press_space: Arma not foreground, skipping";
+        log::info!("{msg}");
+        return "skipped".to_string();
+    }
+
+    let down = INPUT {
+        r#type: INPUT_KEYBOARD,
+        Anonymous: INPUT_0 {
+            ki: KEYBDINPUT {
+                wVk: VK_SPACE,
+                wScan: VK_SPACE_SCAN_CODE,
+                dwFlags: KEYEVENTF_SCANCODE,
+                ..Default::default()
+            },
+        },
+    };
+    let up = INPUT {
+        r#type: INPUT_KEYBOARD,
+        Anonymous: INPUT_0 {
+            ki: KEYBDINPUT {
+                wVk: VK_SPACE,
+                wScan: VK_SPACE_SCAN_CODE,
+                dwFlags: KEYEVENTF_SCANCODE | KEYEVENTF_KEYUP,
+                ..Default::default()
+            },
+        },
     };
 
-    let vk = VK_SPACE.0 as usize;
-    let lparam_down: isize = 1 | (VK_SPACE_SCAN_CODE << 16);
-    let lparam_up: isize = 1 | (VK_SPACE_SCAN_CODE << 16) | (1 << 30) | (1 << 31);
+    let inputs = [down, up];
+    let sent = unsafe { SendInput(&inputs, std::mem::size_of::<INPUT>() as i32) };
 
-    let down_result = unsafe { PostMessageW(hwnd, WM_KEYDOWN, WPARAM(vk), LPARAM(lparam_down)) };
-    let up_result = unsafe { PostMessageW(hwnd, WM_KEYUP, WPARAM(vk), LPARAM(lparam_up)) };
-
-    if let Err(e) = down_result {
-        let msg = format!("press_space: WM_KEYDOWN failed: {e}");
+    if sent == 2 {
+        log::info!("press_space: sent Space via SendInput");
+        "ok".to_string()
+    } else {
+        let msg = format!("press_space: only sent {sent}/2 events");
         log::error!("{msg}");
-        return msg;
+        msg
     }
-    if let Err(e) = up_result {
-        let msg = format!("press_space: WM_KEYUP failed: {e}");
-        log::error!("{msg}");
-        return msg;
-    }
-
-    log::info!("press_space: posted to hwnd {:?}", hwnd.0);
-    "ok".to_string()
 }
