@@ -9,7 +9,7 @@ GVAR(rebroStations) = [];
 GVAR(rebroStationsFilterFrame) = -1;
 GVAR(rebroDebugging) = false;
 GVAR(debugReportingEnabled) = false;
-GVAR(debugReportingNextUpdate) = 0;
+GVAR(debugReportingNextUpdate) = createHashMap;
 GVAR(debugConnectionData) = createHashMap;
 GVAR(testRebroPfhHandle) = -1;
 GVAR(testRebroMast) = objNull;
@@ -17,6 +17,39 @@ GVAR(testVehicle) = objNull;
 
 [QGVAR(initialiseRebroStation), {call FUNC(initialiseRebroStation)}] call CBA_fnc_addEventHandler;
 [QGVAR(deinitialiseRebroStation), {call FUNC(deinitialiseRebroStation)}] call CBA_fnc_addEventHandler;
+
+["acre_signal_endTransmission", {
+    if (!GVAR(debugReportingEnabled)) exitWith {};
+
+    params ["", "_transmitterRadioId"];
+
+    GVAR(debugReportingNextUpdate) deleteAt _transmitterRadioId;
+
+    private _transmitterOwner = [_transmitterRadioId] call acre_sys_radio_fnc_getRadioObject;
+    if (isNil "_transmitterOwner" || {isNull _transmitterOwner}) exitWith {};
+
+    private _transmitterKey = if (isPlayer _transmitterOwner) then {
+        getPlayerUID _transmitterOwner
+    } else {
+        netId _transmitterOwner
+    };
+
+    GVAR(debugConnectionData) deleteAt _transmitterKey;
+    [QGVAR(debugPurgeTransmitter), [getPlayerUID player, _transmitterKey]] call CBA_fnc_serverEvent;
+}] call CBA_fnc_addEventHandler;
+
+if (isServer) then {
+    [QGVAR(debugPurgeTransmitter), {
+        params ["_receiverUid", "_transmitterKey"];
+
+        private _sourceData = EGVAR(zeus,debugClientData) getOrDefault [QGVAR(signalData), createHashMap];
+        private _entry = _sourceData getOrDefault [_receiverUid, []];
+        if (_entry isEqualTo []) exitWith {};
+
+        private _connectionData = _entry param [1, createHashMap];
+        _connectionData deleteAt _transmitterKey;
+    }] call CBA_fnc_addEventHandler;
+};
 
 private _action = [QGVAR(assembleRebroStation), "Assemble ReBro Station", "", {
     [_player, "Acts_carFixingWheel", 1] call ace_common_fnc_doAnimation;

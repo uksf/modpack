@@ -84,9 +84,7 @@ if (isServer) then {
             case independent: { [0, 0.5, 0, 0.9] };
             default           { [0.4, 0, 0.5, 0.9] };
         };
-        GVAR(trackedProjectiles) pushBack [_projectile, _ammo, _sideColor];
-        private _count = count GVAR(trackedProjectiles);
-        TRACE_3("tracked projectile",_projectile,_ammo,_count);
+        [_projectile, _ammo, _sideColor] call FUNC(trackProjectile);
     } else {
         TRACE_2("projectile still null after nearestObject",_unit,_ammo);
     };

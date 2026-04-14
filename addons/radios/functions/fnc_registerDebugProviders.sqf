@@ -22,19 +22,31 @@
 // Client data source for signal reporting
 private _sourceKey = QGVAR(signalData);
 private _fnc_clientGetter = {
-    if (GVAR(debugConnectionData) isEqualTo createHashMap) exitWith {[]};
-    private _connectionData = GVAR(debugConnectionData);
-    GVAR(debugConnectionData) = createHashMap;
-    _connectionData
+    if (count GVAR(debugConnectionData) == 0) exitWith {[]};
+
+    private _now = CBA_missionTime;
+    private _staleKeys = [];
+    {
+        private _entry = GVAR(debugConnectionData) get _x;
+        private _entryTime = _entry param [4, 0];
+        if (_now - _entryTime > 1.5) then { _staleKeys pushBack _x };
+    } forEach keys GVAR(debugConnectionData);
+    { GVAR(debugConnectionData) deleteAt _x } forEach _staleKeys;
+
+    if (count GVAR(debugConnectionData) == 0) exitWith {[]};
+
+    +GVAR(debugConnectionData)
 };
-private _interval = 4;
+private _interval = 1;
 private _fnc_onStart = {
     GVAR(debugReportingEnabled) = true;
     GVAR(debugConnectionData) = createHashMap;
+    GVAR(debugReportingNextUpdate) = createHashMap;
 };
 private _fnc_onStop = {
     GVAR(debugReportingEnabled) = false;
     GVAR(debugConnectionData) = createHashMap;
+    GVAR(debugReportingNextUpdate) = createHashMap;
 };
 [QEGVAR(zeus,registerDebugClientSource), [_sourceKey, _fnc_clientGetter, _interval, _fnc_onStart, _fnc_onStop]] call CBA_fnc_localEvent;
 
@@ -210,7 +222,7 @@ private _fnc_drawMap = {
     ["draw3d", _fnc_draw3d],
     ["drawMap", _fnc_drawMap],
     ["serverGetter", _fnc_serverGetter],
-    ["getterInterval", 2],
+    ["getterInterval", 1],
     ["clientDataKey", _clientDataKey],
     ["menuName", _menuName],
     ["menuPriority", _menuPriority],
@@ -326,7 +338,7 @@ _fnc_drawMap = {
     ["draw3d", _fnc_draw3d],
     ["drawMap", _fnc_drawMap],
     ["serverGetter", _fnc_serverGetter],
-    ["getterInterval", 2],
+    ["getterInterval", 1],
     ["clientDataKey", _clientDataKey],
     ["menuName", _menuName],
     ["menuPriority", _menuPriority],

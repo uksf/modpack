@@ -17,20 +17,25 @@
         [_display] call uksf_menu_fnc_initDisplayMultiplayerSetup
 */
 params ["_display"];
+TRACE_1("initDisplayMultiplayerSetup called",_display);
 
 private _fnc_update = {
     params [["_display", findDisplay IDD_MP_SETUP, [displayNull]]];
+    TRACE_1("_fnc_update tick",_display);
 
     if (isNil QGVAR(updateEHID)) then {
         GVAR(updateEHID) = addMissionEventHandler ["EachFrame", _display getVariable QFUNC(update)];
+        TRACE_1("registered EachFrame EH",GVAR(updateEHID));
     };
 
     if (isNull _display) exitWith {
+        TRACE_1("display null, removing EH",GVAR(updateEHID));
         removeMissionEventHandler ["EachFrame", GVAR(updateEHID)];
     };
 
     private _roles = _display displayCtrl IDC_MPSETUP_ROLES;
     private _playerName = toLower profileName;
+    TRACE_3("searching roles",_playerName,_roles,lbSize _roles);
 
     private _count = lbSize _roles;
     for "_i" from 0 to _count do {
@@ -39,9 +44,29 @@ private _fnc_update = {
         private _data = _roles lbData _i;
 
         if (_playerName in _text) exitWith {
+            TRACE_3("found player",_playerName,_i,_count);
+
             private _scrollFixIndex = (_i + 6) min (_count - 1);
             _roles lbSetCurSel _scrollFixIndex;
             _roles lbSetCurSel _i;
+
+            // Focus listbox and press Enter via extension SendInput
+            ctrlSetFocus _roles;
+            TRACE_1("focused roles listbox, sending Enter",_roles);
+
+            uiNamespace setVariable [QGVAR(assignRoleDisplay), _display];
+            onEachFrame {
+                private _display = uiNamespace getVariable QGVAR(assignRoleDisplay);
+                private _result = "uksf" callExtension "pressEnter";
+                TRACE_1("pressEnter result",_result);
+
+                onEachFrame {
+                    private _display = uiNamespace getVariable QGVAR(assignRoleDisplay);
+                    private _roles = _display displayCtrl 109;
+                    TRACE_1("post-enter lbCurSel",lbCurSel _roles);
+                    onEachFrame {};
+                };
+            };
 
             removeMissionEventHandler ["EachFrame", GVAR(updateEHID)];
         };
@@ -50,4 +75,3 @@ private _fnc_update = {
 
 _display setVariable [QFUNC(update), _fnc_update];
 _display call _fnc_update;
-

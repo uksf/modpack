@@ -29,7 +29,9 @@ if (_cached != -1) exitWith {
 private _isHeavy = _ammo isKindOf ["MissileBase", EGVAR(common,configAmmo)]
     || {_ammo isKindOf ["ShellBase", EGVAR(common,configAmmo)]}
     || {_ammo isKindOf ["RocketBase", EGVAR(common,configAmmo)]}
-    || {_ammo isKindOf ["BombCore", EGVAR(common,configAmmo)]};
+    || {_ammo isKindOf ["BombCore", EGVAR(common,configAmmo)]}
+    || {_ammo isKindOf ["SubmunitionBase", EGVAR(common,configAmmo)]}
+    || {_ammo isKindOf ["FlareBase", EGVAR(common,configAmmo)]};
 
 GVAR(ammoTypeCache) set [_ammo, parseNumber _isHeavy];
 

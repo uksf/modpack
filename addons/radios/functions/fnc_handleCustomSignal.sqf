@@ -49,8 +49,9 @@ if (GVAR(useRebros) && {_bestPx < 0.95}) then {
     } forEach GVAR(rebroStations);
 };
 
-if (GVAR(debugReportingEnabled) && {CBA_missionTime >= GVAR(debugReportingNextUpdate)}) then {
-    GVAR(debugReportingNextUpdate) = CBA_missionTime + 1;
+if (GVAR(debugReportingEnabled) && {CBA_missionTime >= (GVAR(debugReportingNextUpdate) getOrDefault [_transmitterId, 0])}) then {
+    GVAR(debugReportingNextUpdate) set [_transmitterId, CBA_missionTime + 0.5];
+
     _bestResult params ["_bestPower", "_bestDbm"];
 
     private _radioClass = [_receiverId] call acre_sys_radio_fnc_getRadioBaseClassname;
@@ -67,15 +68,17 @@ if (GVAR(debugReportingEnabled) && {CBA_missionTime >= GVAR(debugReportingNextUp
             } else {
                 netId _transmitterOwner
             };
+
             if (isNull _bestRebroStation) then {
-                GVAR(debugConnectionData) set [_transmitterKey, [_displayPower, ""]];
+                GVAR(debugConnectionData) set [_transmitterKey, [_displayPower, "", 0, 0, CBA_missionTime]];
             } else {
                 _bestResult params ["", "", ["_rebroReceivePower", 0], ["_rebroTransmitPower", 0]];
                 GVAR(debugConnectionData) set [_transmitterKey, [
                     _displayPower,
                     netId _bestRebroStation,
                     _rebroReceivePower,
-                    _rebroTransmitPower
+                    _rebroTransmitPower,
+                    CBA_missionTime
                 ]];
             };
         };
