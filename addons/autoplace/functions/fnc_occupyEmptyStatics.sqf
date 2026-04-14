@@ -18,6 +18,8 @@
     Example:
         [_logic, _area, _side, _unitList] call uksf_autoplace_fnc_occupyEmptyStatics
 */
+#define MAX_GROUP_SIZE 10
+
 params ["_logic", "_area", "_side", "_unitList"];
 
 if (!isServer) exitWith {0};
@@ -33,20 +35,34 @@ private _statics = nearestObjects [_centre, ["StaticWeapon"], _searchRadius, tru
 _statics = _statics select {[_x, _centre, _area] call EFUNC(common,objectInArea)};
 
 private _occupiedCount = 0;
+private _currentGroup = grpNull;
 {
     if (alive _x && {isNull (gunner _x)}) then {
-        private _group = createGroup _side;
-        _group deleteGroupWhenEmpty true;
+        if (isNull _currentGroup || {(count units _currentGroup) >= MAX_GROUP_SIZE}) then {
+            _currentGroup = createGroup _side;
+            _currentGroup deleteGroupWhenEmpty true;
+        };
 
-        private _unit = _group createUnit [selectRandom _unitList, getPosATL _x, [], 0, "NONE"];
-        _unit assignAsGunner _x;
-        _unit moveInGunner _x;
+        if (!isNull _currentGroup) then {
+            private _unit = _currentGroup createUnit [selectRandom _unitList, getPosATL _x, [], 0, "NONE"];
 
-        if ((gunner _x) isNotEqualTo _unit) then {
-            deleteVehicle _unit;
-            deleteGroup _group;
-        } else {
-            _occupiedCount = _occupiedCount + 1;
+            if (!isNull _unit) then {
+                _unit assignAsGunner _x;
+                _unit moveInGunner _x;
+            };
+
+            if ((gunner _x) isNotEqualTo _unit) then {
+                if (!isNull _unit) then {
+                    deleteVehicle _unit;
+                };
+
+                if ((units _currentGroup) isEqualTo []) then {
+                    deleteGroup _currentGroup;
+                    _currentGroup = grpNull;
+                };
+            } else {
+                _occupiedCount = _occupiedCount + 1;
+            };
         };
     };
 } forEach _statics;
