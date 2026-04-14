@@ -6,10 +6,12 @@
 
     Description:
         Attempts to find and select player's slot. Each frame:
-        - If the continue button is enabled, assignment is done — stop.
-        - Otherwise find the player's role, re-select it, and ask the
-          extension to press Space. Extension skips if Arma is not the
-          foreground window, so retries succeed once the user tabs back.
+        - If display is gone, stop.
+        - Otherwise find player's role, re-select it, and ask the extension
+          to press Space. Extension skips if Arma is not the foreground
+          window, so retries succeed once the user tabs back. Stops after
+          the first successful send (pressing Space twice would toggle
+          assign/unassign).
 
     Parameter(s):
         0: Display <DISPLAY>
@@ -37,13 +39,6 @@ private _fnc_update = {
         GVAR(updateEHID) = nil;
     };
 
-    private _continueButton = _display displayCtrl IDC_OK;
-    if (ctrlEnabled _continueButton) exitWith {
-        TRACE_1("slot assigned (continue enabled), removing EH",GVAR(updateEHID));
-        removeMissionEventHandler ["EachFrame", GVAR(updateEHID)];
-        GVAR(updateEHID) = nil;
-    };
-
     private _roles = _display displayCtrl IDC_MPSETUP_ROLES;
     private _playerName = toLower profileName;
     private _count = lbSize _roles;
@@ -67,6 +62,12 @@ private _fnc_update = {
 
     private _result = "uksf" callExtension "pressSpace";
     TRACE_2("pressSpace attempt",_foundIndex,_result);
+
+    if (_result isEqualTo "ok") then {
+        TRACE_1("Space sent successfully, removing EH",GVAR(updateEHID));
+        removeMissionEventHandler ["EachFrame", GVAR(updateEHID)];
+        GVAR(updateEHID) = nil;
+    };
 };
 
 _display setVariable [QFUNC(update), _fnc_update];
