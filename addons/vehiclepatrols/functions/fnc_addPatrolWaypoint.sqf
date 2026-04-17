@@ -39,16 +39,15 @@ if (isNull _crewGroup) exitWith {
 };
 
 private _destinationWaypoint = [_crewGroup, ASLToAGL _destinationPosition, 0, "MOVE", _waypointBehaviour, "YELLOW", _waypointSpeed, "COLUMN", "", [0, 0, 0], 50] call CBA_fnc_addWaypoint;
-
 if (_turnAround isEqualTo false) exitWith {
     _destinationWaypoint setWaypointStatements [
         "true",
-        format ["[vehicle this, group this, grpNull] call %1;", QFUNC(deletePatrol)]
+        format ["[vehicle this, group this, %1, %2, true, '%3', '%4'] call %5;", _spawnPosition, _destinationPosition, _waypointBehaviour, _waypointSpeed, QFUNC(handleWaypointCompletion)]
     ];
 };
 
 private _spawnWaypoint = [_crewGroup, ASLToAGL _spawnPosition, 0, "MOVE", _waypointBehaviour, "YELLOW", _waypointSpeed, "COLUMN", "", [0, 0, 0], 50] call CBA_fnc_addWaypoint;
 _spawnWaypoint setWaypointStatements [
     "true",
-    format ["[vehicle this, group this, grpNull] call %1;", QFUNC(deletePatrol)]
+    format ["[vehicle this, group this, %1, %1, false, '%2', '%3'] call %4;", _spawnPosition, _waypointBehaviour, _waypointSpeed, QFUNC(handleWaypointCompletion)]
 ];
