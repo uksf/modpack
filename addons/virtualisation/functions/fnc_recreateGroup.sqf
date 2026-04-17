@@ -20,6 +20,7 @@ params ["_groupData", ["_exclude", false]];
 _groupData params ["_side", "_vehicleDetails", "_unitDetails", "_waypoints", "_combatMode", "_formationDirection"];
 
 private _group = createGroup _side;
+_group deleteGroupWhenEmpty true;
 if (_exclude) then {
     [QGVAR(exclude), _group] call CBA_fnc_localEvent;
 };
