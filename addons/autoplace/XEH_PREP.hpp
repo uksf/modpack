@@ -1,8 +1,7 @@
-PREP(finaliseAutoplace);
-PREP(initAutoplace);
+PREP(gatherPositions);
 PREP(moduleAutoplace);
-PREP(occupyEmptyStatics);
+PREP(occupyStatics);
 PREP(runAutoplace);
-PREP(spawnGarrisonGroups);
-PREP(spawnPatrolGroupCallback);
-PREP(spawnPatrolGroups);
+PREP(spawnGarrisons);
+PREP(spawnPatrols);
+PREP(takeChunk);

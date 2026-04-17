@@ -56,7 +56,7 @@ class CfgVehicles {
             class GVAR(coveragePercent) {
                 property = QGVAR(coveragePercent);
                 displayName = "% of Coverage";
-                tooltip = "Percentage of found CBA_BuildingPos positions to populate (0-100).";
+                tooltip = "Percentage of found CBA_BuildingPos positions to populate (0-100). Very sparse layouts can briefly create many small groups until virtualisation sweeps.";
                 control = "EditShort";
                 validate = "NUMBER";
                 min = 0;

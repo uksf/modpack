@@ -13,7 +13,7 @@
         Nothing
 
     Example:
-        [_this] call uksf_autoplace_fnc_moduleBuildingOccupation
+        [_this] call uksf_autoplace_fnc_moduleAutoplace
 */
 (_this#1) params ["_logic"];
 

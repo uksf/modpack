@@ -4,7 +4,7 @@
         Bridg
 
     Description:
-        Executes one-shot building occupation and optional patrol/static occupancy.
+        Executes one-shot autoplace orchestration for statics, garrisons, then patrols.
 
     Parameters:
         0: Module logic <OBJECT>
@@ -14,7 +14,7 @@
         Nothing
 
     Example:
-        [_logic, _area] call uksf_autoplace_fnc_runBuildingOccupation
+        [_logic, _area] call uksf_autoplace_fnc_runAutoplace
 */
 params ["_logic", "_area"];
 
@@ -22,63 +22,78 @@ if (!isServer) exitWith {};
 if (isNull _logic) exitWith {};
 if (_area isEqualTo []) exitWith {};
 
-private _settings = [_logic] call FUNC(initAutoplace);
-_settings params [
-    "_unitList",
-    "_side",
-    "_coveragePercent",
-    "_enablePatrols",
-    "_numberOfPatrols",
-    "_patrolRadius",
-    "_patrolSoldierCount",
-    "_occupyEmptyStatics"
-];
+private _unitListRaw = _logic getVariable [QGVAR(unitListString), []];
+private _unitList = [_unitListRaw] call EFUNC(common,convertToArray);
+_unitList = _unitList select {_x isEqualType "" && {_x != ""}};
+
+private _sideIndex = (_logic getVariable [QGVAR(side), 0]) max 0 min 2;
+private _side = [east, independent, west]#_sideIndex;
+
+private _coveragePercent = (_logic getVariable [QGVAR(coveragePercent), 100]) max 0 min 100;
+private _enablePatrols = _logic getVariable [QGVAR(enablePatrols), false];
+private _numberOfPatrols = (_logic getVariable [QGVAR(numberOfPatrols), 0]) max 0;
+private _patrolRadius = (_logic getVariable [QGVAR(patrolRadius), 150]) max 1;
+private _patrolSoldierCount = ((_logic getVariable [QGVAR(patrolSoldierCount), 4]) max 1) min 10;
+private _occupyEmptyStatics = _logic getVariable [QGVAR(occupyEmptyStatics), false];
 
 if (_unitList isEqualTo []) exitWith {
-    WARNING_1("Building occupation module has no unit list: %1",_logic);
+    WARNING_1("Autoplace module has no unit list: %1",_logic);
 };
 
-private _centre = getPosATL _logic;
-_area params ["_areaRadiusA", "_areaRadiusB"];
-private _searchRadius = (_areaRadiusA max _areaRadiusB) + 25;
+private _garrisonPositions = [_logic, _area] call FUNC(gatherPositions);
+private _targetCount = floor ((count _garrisonPositions) * (_coveragePercent / 100));
+_targetCount = _targetCount min (count _garrisonPositions);
 
-private _helperObjects = nearestObjects [_centre, ["CBA_BuildingPos"], _searchRadius, true];
-_helperObjects = _helperObjects select {[_x, _centre, _area] call EFUNC(common,objectInArea)};
+if (_coveragePercent < 100) then {
+    [_garrisonPositions, true] call CBA_fnc_shuffle;
+    _garrisonPositions resize _targetCount;
+};
 
-private _positionMap = createHashMap;
-private _availablePositions = [];
-{
-    params ["_helperObject"];
-    private _position = getPosATL _helperObject;
-    private _direction = getDir _helperObject;
-    private _key = format ["%1_%2_%3", round ((_position#0) * 10), round ((_position#1) * 10), round ((_position#2) * 10)];
-    if !(_positionMap getOrDefault [_key, false]) then {
-        _positionMap set [_key, true];
-        _availablePositions pushBack [_position, _direction];
+private _onGarrisonsDone = {
+    params [
+        "_logic",
+        "_area",
+        "_enablePatrols",
+        "_numberOfPatrols",
+        "_side",
+        "_unitList",
+        "_patrolRadius",
+        "_patrolSoldierCount",
+        "_unusedRemainingPositions"
+    ];
+
+    if (_enablePatrols && {_numberOfPatrols > 0}) then {
+        [_logic, _area, _numberOfPatrols, _side, _unitList, _patrolRadius, _patrolSoldierCount] call FUNC(spawnPatrols);
     };
-} forEach _helperObjects;
+};
 
-[_availablePositions, true] call CBA_fnc_shuffle;
+private _onGarrisonsDoneArgs = [
+    _logic,
+    _area,
+    _enablePatrols,
+    _numberOfPatrols,
+    _side,
+    _unitList,
+    _patrolRadius,
+    _patrolSoldierCount
+];
 
-_logic setVariable [QGVAR(availablePositions), _availablePositions, false];
-_logic setVariable [QGVAR(finalised), false, false];
-_logic setVariable [QGVAR(finaliseArea), _area, false];
-_logic setVariable [QGVAR(finaliseSide), _side, false];
-_logic setVariable [QGVAR(finaliseUnitList), _unitList, false];
-_logic setVariable [QGVAR(finaliseEnablePatrols), _enablePatrols, false];
-_logic setVariable [QGVAR(finaliseNumberOfPatrols), _numberOfPatrols, false];
-_logic setVariable [QGVAR(finalisePatrolRadius), _patrolRadius, false];
-_logic setVariable [QGVAR(finalisePatrolSoldierCount), _patrolSoldierCount, false];
+private _startGarrisons = {
+    params ["_logic", "_garrisonPositions", "_side", "_unitList", "_onGarrisonsDone", "_onGarrisonsDoneArgs"];
 
-private _targetCount = floor ((count _availablePositions) * (_coveragePercent / 100));
-_targetCount = _targetCount min (count _availablePositions);
+    if (_garrisonPositions isEqualTo []) then {
+        private _doneArgs = +_onGarrisonsDoneArgs;
+        _doneArgs pushBack [];
+        _doneArgs call _onGarrisonsDone;
+    } else {
+        [_logic, _garrisonPositions, _side, _unitList, _onGarrisonsDone, _onGarrisonsDoneArgs] call FUNC(spawnGarrisons);
+    };
+};
+
+private _startGarrisonsArgs = [_logic, _garrisonPositions, _side, _unitList, _onGarrisonsDone, _onGarrisonsDoneArgs];
 
 if (_occupyEmptyStatics) then {
-    [_logic, _area, _side, _unitList] call FUNC(occupyEmptyStatics);
-};
-
-if (_targetCount > 0) then {
-    [_logic, _targetCount, _side, _unitList] call FUNC(spawnGarrisonGroups);
+    [_logic, _area, _side, _unitList, _startGarrisons, _startGarrisonsArgs] call FUNC(occupyStatics);
 } else {
-    [_logic] call FUNC(finaliseAutoplace);
+    _startGarrisonsArgs call _startGarrisons;
 };
