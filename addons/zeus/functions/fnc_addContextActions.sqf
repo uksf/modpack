@@ -136,6 +136,9 @@ _action = [QGVAR(debug), "Debug", "\a3\ui_f_curator\data\logos\arma3_curator_eye
 }] call zen_context_menu_fnc_createAction;
 [_action, [], -700] call zen_context_menu_fnc_addAction;
 
+_action = [QGVAR(loadIntoCargo), "Load Into Cargo", "\a3\ui_f\data\IGUI\Cfg\Actions\loadVehicle_ca.paa", {call FUNC(contextLoadIntoCargo)}, {call FUNC(contextCanLoadIntoCargo)}] call zen_context_menu_fnc_createAction;
+[_action, [], 80] call zen_context_menu_fnc_addAction;
+
 _action = [QGVAR(toggleZeusVisibility), "Hide Zeus", "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa", {[objNull] call FUNC(moduleToggleZeusVisibility)}, {true}, [], {}, {
     params ["_action"];
     _action set [1, ["Hide Zeus", "Show Zeus"] select (isObjectHidden player)];
