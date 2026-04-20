@@ -22,3 +22,6 @@ GVAR(debugSpheres) = [];
 
 deleteVehicle GVAR(debugSingletonSphere);
 GVAR(debugSingletonSphere) = objNull;
+
+deleteVehicle GVAR(debugAttachedSphere);
+GVAR(debugAttachedSphere) = objNull;

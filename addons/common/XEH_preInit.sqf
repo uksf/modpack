@@ -7,6 +7,7 @@ ADDON = false;
 GVAR(debugGridPositionMarkers) = [];
 GVAR(debugSpheres) = [];
 GVAR(debugSingletonSphere) = objNull;
+GVAR(debugAttachedSphere) = objNull;
 
 GVAR(addons) = ('true' configClasses (configFile >> "CfgPatches")) apply {configName _x};
 [] spawn {activateAddons GVAR(addons)};

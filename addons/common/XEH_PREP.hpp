@@ -8,6 +8,7 @@ PREP(configExport);
 PREP(configExportExtension);
 PREP(convertToArray);
 PREP(createDiorama);
+PREP(debugAttachSphere);
 PREP(debugClearSpheres);
 PREP(debugCreateSphere);
 PREP(edenCopyId);
