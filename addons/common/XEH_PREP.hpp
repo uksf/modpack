@@ -15,7 +15,7 @@ PREP(edenFixCrewCheckbox);
 PREP(edenIdAttributeChanged);
 PREP(edenSetIdAttribute);
 PREP(findNearRoad);
-PREP(fpsHudToggle);
+PREP(fpsHudSetMode);
 PREP(fpsHudUpdate);
 PREP(fpsReport);
 PREP(fpsStartReporting);
