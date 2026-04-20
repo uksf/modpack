@@ -5,10 +5,11 @@
         Tim Beswick
 
     Description:
-        Finds the player's slot in the lobby and assigns it automatically.
-        Each frame until the slot is assigned, sends a Space keypress via
-        the Rust extension (gated on Arma being the foreground window to
-        avoid leaking input to other apps if the user has alt-tabbed).
+        Selects the BLUFOR side (assumed default), then finds the player's
+        slot in the lobby and assigns it automatically. Each frame until
+        the slot is assigned, sends a Space keypress via the Rust extension
+        (gated on Arma being the foreground window to avoid leaking input
+        to other apps if the user has alt-tabbed).
 
     Parameter(s):
         0: Display <DISPLAY>
@@ -34,6 +35,16 @@ private _fnc_update = {
         TRACE_1("display null, removing EH",GVAR(updateEHID));
         removeMissionEventHandler ["EachFrame", GVAR(updateEHID)];
         GVAR(updateEHID) = nil;
+        GVAR(sideSelected) = nil;
+    };
+
+    if (isNil QGVAR(sideSelected)) then {
+        private _westButton = _display displayCtrl IDC_MPSETUP_WEST;
+        if (!isNull _westButton && {ctrlEnabled _westButton}) then {
+            ctrlActivate _westButton;
+            GVAR(sideSelected) = true;
+            TRACE_1("activated BLUFOR side button",_westButton);
+        };
     };
 
     private _roles = _display displayCtrl IDC_MPSETUP_ROLES;
