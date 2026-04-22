@@ -68,8 +68,7 @@ class CfgPatches {
             QGVAR(HMG_02_high),
             QGVAR(RBS70),
             QGVAR(auto_hmg),
-            QGVAR(Radar_System),
-
+            QGVAR(Radar_System)
         };
         weapons[] = {
             QGVAR(arifle_SPAR_03_blk_F_optic_AMS),

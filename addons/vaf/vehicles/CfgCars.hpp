@@ -67,4 +67,3 @@ class GVAR(M1036_TOW) : CUP_B_nM1036_TOW_DF_NATO_T {
     typicalCargo[] = { QGVAR(Rifleman) };
     INVENTORY_EMPTY;
 };
-
