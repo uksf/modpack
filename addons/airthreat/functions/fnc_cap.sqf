@@ -72,7 +72,7 @@ private _expiryTime = time + GVAR(capTimeout);
 
     {
         private _playerVehicle = vehicle _x;
-        if (_playerVehicle isKindOf "Air" && {!isNull objectParent _x} && {alive _x}) then {
+        if (alive _x && {_playerVehicle isKindOf "Air"}) then {
             private _distance = _vehiclePosition distance (getPosASL _playerVehicle);
             if (_distance < _nearestDistance) then {
                 _nearestDistance = _distance;

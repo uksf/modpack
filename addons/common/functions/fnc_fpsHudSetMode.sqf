@@ -4,24 +4,25 @@
         Tim Beswick
 
     Description:
-        Toggles the FPS debug HUD through display modes:
-        0 = off, 1 = server + HCs, 2 = server + HCs + low FPS players, 3 = server + HCs + all players
+        Sets the FPS debug HUD display mode:
+        0 = off, 1 = server + HCs, 2 = + low FPS players, 3 = + all players
 
     Parameter(s):
-        None
+        0: Mode <NUMBER>
 
     Return Value:
         None
 
     Example:
-        call uksf_common_fnc_fpsHudToggle
+        [1] call uksf_common_fnc_fpsHudSetMode
 */
+params [["_mode", 0, [0]]];
 
-GVAR(fpsHudMode) = (GVAR(fpsHudMode) + 1) mod 4;
+GVAR(fpsHudMode) = _mode;
 
 private _control = uiNamespace getVariable [QGVAR(fpsHudControl), controlNull];
 
-if (GVAR(fpsHudMode) isEqualTo 0) exitWith {
+if (_mode == 0) exitWith {
     if (!isNull _control) then {
         ctrlDelete _control;
         uiNamespace setVariable [QGVAR(fpsHudControl), controlNull];
@@ -32,9 +33,10 @@ if (GVAR(fpsHudMode) isEqualTo 0) exitWith {
     };
 };
 
-// Create HUD control if not already created
 if (isNull _control) then {
     private _display = findDisplay 46;
+    if (isNull _display) exitWith {};
+
     _control = _display ctrlCreate ["RscStructuredText", -1];
     _control ctrlSetPosition [safeZoneX + 0.01, safeZoneY + safeZoneH - 0.3, 0.25, 0.28];
     _control ctrlSetBackgroundColor [0, 0, 0, 0.5];
@@ -42,8 +44,7 @@ if (isNull _control) then {
     uiNamespace setVariable [QGVAR(fpsHudControl), _control];
 };
 
-// Start update PFH if not already running
-if (GVAR(fpsHudPFH) isEqualTo -1) then {
+if (GVAR(fpsHudPFH) == -1) then {
     GVAR(fpsHudPFH) = [{
         [QGVAR(fpsHudRequest), [player]] call CBA_fnc_serverEvent;
     }, 1, []] call CBA_fnc_addPerFrameHandler;

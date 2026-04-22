@@ -18,9 +18,9 @@
 */
 params [["_data", [], [[]]]];
 
-if (GVAR(fpsHudMode) isEqualTo 0) exitWith {};
+if (GVAR(fpsHudMode) == 0) exitWith {};
 
-private _control = uiNamespace getVariable [Q_control, controlNull];
+private _control = uiNamespace getVariable [QGVAR(fpsHudControl), controlNull];
 if (isNull _control) exitWith {};
 
 private _lines = [];
@@ -48,7 +48,7 @@ private _playerEntries = _data select {_x#2 isEqualTo "player"};
 if (GVAR(fpsHudMode) >= 2) then {
     {
         _x params ["_identifier", "_fps"];
-        if (GVAR(fpsHudMode) isEqualTo 2 && {_fps > 25}) then { continue };
+        if (GVAR(fpsHudMode) == 2 && {_fps > 15}) then { continue };
 
         private _name = _identifier;
         {
@@ -60,7 +60,7 @@ if (GVAR(fpsHudMode) >= 2) then {
             };
         } forEach ALL_PLAYERS;
 
-        private _colour = if (_fps <= 15) then { "#ff0000" } else { if (_fps <= 25) then { "#ffaa00" } else { "#ffffff" } };
+        private _colour = if (_fps <= 15) then { "#ff0000" } else { "#ffffff" };
         _lines pushBack format ["<t color='%1' size='0.9'>%2: %3 FPS</t>", _colour, _name, _fps];
     } forEach _playerEntries;
 };
