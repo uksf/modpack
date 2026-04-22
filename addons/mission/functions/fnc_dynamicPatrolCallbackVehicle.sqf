@@ -42,7 +42,7 @@ TRACE_1("7) Dynamic spawn vehicle waypoint position",_waypointPosition);
 private _waypoint = [_group, _waypointPosition, 0, "MOVE", "SAFE", "YELLOW", "NORMAL", "STAG COLUMN", "", [0,0,0], 100] call CBA_fnc_addWaypoint;
 _waypoint setWaypointStatements [
     "(behaviour this) isNotEqualTo ""COMBAT""",
-    format ["[this, this, %1, 5, ""MOVE"", ""SAFE"", ""YELLOW"", ""NORMAL"", ""STAG COLUMN"", """", [5, 10, 15]] call CBA_fnc_taskPatrol;", _spawnDistance]
+    format ["if !(isServer) exitWith {}; [this, this, %1, 5, ""MOVE"", ""SAFE"", ""YELLOW"", ""NORMAL"", ""STAG COLUMN"", """", [5, 10, 15]] call CBA_fnc_taskPatrol;", _spawnDistance]
 ];
 
 INFO_1("Spawned vehicle patrol at %1",_position);
