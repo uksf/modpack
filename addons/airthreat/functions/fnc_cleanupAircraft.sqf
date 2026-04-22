@@ -21,9 +21,7 @@
 params [["_group", grpNull, [grpNull]], ["_vehicle", objNull, [objNull]]];
 
 if (!isNull _vehicle && {alive _vehicle}) then {
-    {
-        deleteVehicle _x;
-    } forEach (crew _vehicle);
+    deleteVehicleCrew _vehicle;
     deleteVehicle _vehicle;
 };
 
