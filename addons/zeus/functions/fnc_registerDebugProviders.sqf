@@ -59,31 +59,44 @@ private _fnc_serverGetter = {
     private _fpsStore = EGVAR(common,fpsStore);
     private _timestamps = EGVAR(common,fpsStoreTimestamps);
     private _now = CBA_missionTime;
-    private _players = [];
+
+    private _serverFps = -1;
+    private _hcList = [];
+    private _playerList = [];
+
     {
         private _key = _x;
-        if (_key isEqualTo "server") then { continue };
         private _lastUpdate = _timestamps getOrDefault [_key, 0];
         if (_now - _lastUpdate > 10) then { continue };
 
-        // Only show players, not HCs
-        private _playerObject = objNull;
-        {
-            if (getPlayerUID _x isEqualTo _key) exitWith {
-                _playerObject = _x;
-            };
-        } forEach ALL_PLAYERS;
-        if (isNull _playerObject) then { continue };
-        if ((driver (vehicle _playerObject)) isNotEqualTo _playerObject) then { continue };
-
         private _entry = _fpsStore get _key;
-        _players pushBack [netId _playerObject, _entry#0];
+        _entry params ["_fps", "", "_type"];
+
+        switch (_type) do {
+            case "server": {
+                _serverFps = _fps;
+            };
+            case "hc": {
+                _hcList pushBack [_key, _fps];
+            };
+            case "player": {
+                private _playerObject = objNull;
+                {
+                    if (getPlayerUID _x isEqualTo _key) exitWith { _playerObject = _x };
+                } forEach ALL_PLAYERS;
+                if (isNull _playerObject) then { continue };
+                if ((driver (vehicle _playerObject)) isNotEqualTo _playerObject) then { continue };
+                _playerList pushBack [netId _playerObject, _fps];
+            };
+        };
     } forEach keys _fpsStore;
-    _players
+
+    [_serverFps, _hcList, _playerList]
 };
 
 _fnc_draw3d = {
     params ["_data", "_cameraPosition", "_maxDistance"];
+    _data params ["", "", "_playerList"];
 
     {
         _x params ["_playerNetId", "_fps"];
@@ -100,15 +113,37 @@ _fnc_draw3d = {
             _size = 0.035;
         };
         drawIcon3D ["", _colour, _position, 0, 0, 0, format ["%1 FPS", _fps], 1, _size, "TahomaB", "center", false, 0, DEBUG_ICON_SPACING * 3];
-    } forEach _data;
+    } forEach _playerList;
+};
+
+private _fnc_drawHud = {
+    params ["_data", "_hudControl"];
+    _data params ["_serverFps", "_hcList", ""];
+
+    private _parts = [];
+    if (_serverFps >= 0) then {
+        private _colour = if (_serverFps <= 15) then { "#ff4444" } else { "#ffffff" };
+        _parts pushBack format ["<t color='#aaaaaa'>Server FPS:</t> <t color='%1'>%2</t>", _colour, _serverFps];
+    };
+    {
+        _x params ["_hcName", "_hcFps"];
+        private _colour = if (_hcFps <= 15) then { "#ff4444" } else { "#ffffff" };
+        _parts pushBack format ["<t color='#aaaaaa'>%1 FPS:</t> <t color='%2'>%3</t>", _hcName, _colour, _hcFps];
+    } forEach _hcList;
+
+    if (_parts isEqualTo []) exitWith {
+        _hudControl ctrlSetStructuredText parseText "";
+    };
+    _hudControl ctrlSetStructuredText parseText format ["<t align='center' shadow='1' font='TahomaB'>%1</t>", _parts joinString " <t color='#666666'>|</t> "];
 };
 
 [QGVAR(registerDebugProvider), [_key, createHashMapFromArray [
     ["draw3d", _fnc_draw3d],
+    ["drawHud", _fnc_drawHud],
     ["serverGetter", _fnc_serverGetter],
     ["getterInterval", 1],
     ["alwaysActive", true],
-    ["menuName", "Player FPS"],
+    ["menuName", "FPS"],
     ["menuPriority", -5]
 ]]] call CBA_fnc_localEvent;
 

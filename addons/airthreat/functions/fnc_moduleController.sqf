@@ -68,5 +68,6 @@ GVAR(strikeTimeout) = _logic getVariable [QGVAR(strikeTimeout), 600];
 GVAR(interceptTimeout) = _logic getVariable [QGVAR(interceptTimeout), 600];
 
 GVAR(controllerInitialised) = true;
+publicVariable QGVAR(controllerInitialised);
 
 DEBUG("Air threat controller initialised");
