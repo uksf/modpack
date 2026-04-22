@@ -14,6 +14,8 @@
         3: Unit classname pool <ARRAY>
         4: Callback once spawning complete (Args passed: [callback args, _group, (_vehicle)]) <CODE> (Optional)
         5: Callback arguments <ARRAY> (Optional)
+        6: Disable caching for the spawned group <BOOL> (Optional, default true)
+        7: Exclude the spawned group from virtualisation <BOOL> (Optional, default true)
 
     Return value:
         Nothing
@@ -24,7 +26,7 @@
 #define SPAWN_DELAY 1
 #define TIMEOUT 30
 
-params [["_position", [], [[]]], ["_count", 1, [0]], ["_side", east, [sideUnknown]], ["_unitPool", []], ["_callback", {}, [{}]], ["_callbackArgs", [], [[]]]];
+params [["_position", [], [[]]], ["_count", 1, [0]], ["_side", east, [sideUnknown]], ["_unitPool", []], ["_callback", {}, [{}]], ["_callbackArgs", [], [[]]], ["_cachingDisable", true, [false]], ["_virtualisationExclude", true, [false]]];
 
 TRACE_4("6) Spawn unit data",_position,_count,_side,_unitPool);
 
@@ -34,8 +36,12 @@ if (_unitPool isEqualTo []) exitWith {
 
 private _group = createGroup _side;
 _group deleteGroupWhenEmpty true;
-[QEGVAR(caching,disableCache), _group] call CBA_fnc_serverEvent;
-[QEGVAR(virtualisation,exclude), _group] call CBA_fnc_serverEvent;
+if (_cachingDisable) then {
+    [QEGVAR(caching,disableCache), _group] call CBA_fnc_serverEvent;
+};
+if (_virtualisationExclude) then {
+    [QEGVAR(virtualisation,exclude), _group] call CBA_fnc_serverEvent;
+};
 
 _position = +_position;
 _position resize 2;

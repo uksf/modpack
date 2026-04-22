@@ -24,6 +24,6 @@ if (_logic getVariable [QGVAR(processed), false]) exitWith {};
 private _area = _logic getVariable ["objectarea", []];
 if (_area isEqualTo []) exitWith {};
 
-_logic setVariable [QGVAR(processed), true, true];
+_logic setVariable [QGVAR(processed), true];
 
 [_logic, _area] call FUNC(runAutoplace);

@@ -4,7 +4,7 @@
         Bridg
 
     Description:
-        Occupies empty statics in spatially coherent groups.
+        Occupies empty statics in spatially coherent groups using rolling PFH pacing (one chunk per tick).
 
     Parameters:
         0: Module logic <OBJECT>
@@ -40,28 +40,44 @@ _statics = _statics select {alive _x && {isNull (gunner _x)} && {[_x, _centre, _
 
 private _positions = _statics apply {[getPosATL _x, getDir _x, _x]};
 
-while {_positions isNotEqualTo []} do {
-    private _chunk = [_positions] call FUNC(takeChunk);
-    if (_chunk isNotEqualTo []) then {
-        private _group = createGroup _side;
-        _group deleteGroupWhenEmpty true;
-
-        {
-            _x params ["_position", "", "_staticWeapon"];
-            if (alive _staticWeapon && {isNull (gunner _staticWeapon)}) then {
-                private _unit = _group createUnit [selectRandom _unitList, _position, [], 0, "CAN_COLLIDE"];
-                if (!isNull _unit) then {
-                    _unit setPosATL _position;
-                    _unit assignAsGunner _staticWeapon;
-                    _unit moveInGunner _staticWeapon;
-
-                    if ((gunner _staticWeapon) isNotEqualTo _unit) then {
-                        deleteVehicle _unit;
-                    };
-                };
-            };
-        } forEach _chunk;
-    };
+if (_positions isEqualTo []) exitWith {
+    _callbackArgs call _callback;
 };
 
-_callbackArgs call _callback;
+[{
+    params ["_args", "_idPFH"];
+    _args params ["_logic", "_positions", "_side", "_unitList", "_lastSpawn", "_callback", "_callbackArgs"];
+
+    if (isNull _logic) exitWith {
+        [_idPFH] call CBA_fnc_removePerFrameHandler;
+    };
+
+    if (_positions isEqualTo []) exitWith {
+        [_idPFH] call CBA_fnc_removePerFrameHandler;
+        _callbackArgs call _callback;
+    };
+
+    if (diag_fps < 20 && {_lastSpawn > CBA_missionTime}) exitWith {};
+
+    private _chunk = [_positions] call FUNC(takeChunk);
+    if (_chunk isEqualTo []) exitWith {};
+
+    private _group = createGroup _side;
+    _group deleteGroupWhenEmpty true;
+
+    {
+        _x params ["_position", "", "_staticWeapon"];
+        private _unit = _group createUnit [selectRandom _unitList, _position, [], 0, "CAN_COLLIDE"];
+        if (!isNull _unit) then {
+            _unit setPosATL _position;
+            _unit assignAsGunner _staticWeapon;
+            _unit moveInGunner _staticWeapon;
+
+            if ((gunner _staticWeapon) isNotEqualTo _unit) then {
+                deleteVehicle _unit;
+            };
+        };
+    } forEach _chunk;
+
+    _args set [4, CBA_missionTime + 0.5];
+}, 0, [_logic, _positions, _side, _unitList, 0, _callback, _callbackArgs]] call CBA_fnc_addPerFrameHandler;

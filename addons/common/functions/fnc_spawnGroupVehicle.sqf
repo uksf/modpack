@@ -15,6 +15,8 @@
         4: Code to resolve vehicle crew count (Args passed: [_vehicle, _turrets]) <CODE> (Optional)
         5: Callback once spawning complete (Args passed: [callback args, _group, (_vehicle)]) <CODE> (Optional)
         6: Callback arguments <ARRAY> (Optional)
+        7: Disable caching for the spawned group <BOOL> (Optional, default true)
+        8: Exclude the spawned group from virtualisation <BOOL> (Optional, default true)
 
     Return value:
         Nothing
@@ -25,7 +27,7 @@
 #define SPAWN_DELAY 1
 #define TIMEOUT 30
 
-params [["_position", [], [[]]], ["_side", east, [sideUnknown]], ["_unitPool", []], ["_vehiclePool", []], ["_countCode", {-1}, [{}]], ["_callback", {}, [{}]], ["_callbackArgs", [], [[]]]];
+params [["_position", [], [[]]], ["_side", east, [sideUnknown]], ["_unitPool", []], ["_vehiclePool", []], ["_countCode", {-1}, [{}]], ["_callback", {}, [{}]], ["_callbackArgs", [], [[]]], ["_cachingDisable", true, [false]], ["_virtualisationExclude", true, [false]]];
 
 TRACE_5("6) Spawn vehicle data",_position,_side,_unitPool,_vehiclePool,_countCode);
 
@@ -39,8 +41,12 @@ if (_unitPool isEqualTo []) exitWith {
 
 private _group = createGroup _side;
 _group deleteGroupWhenEmpty true;
-[QEGVAR(caching,disableCache), _group] call CBA_fnc_serverEvent;
-[QEGVAR(virtualisation,exclude), _group] call CBA_fnc_serverEvent;
+if (_cachingDisable) then {
+    [QEGVAR(caching,disableCache), _group] call CBA_fnc_serverEvent;
+};
+if (_virtualisationExclude) then {
+    [QEGVAR(virtualisation,exclude), _group] call CBA_fnc_serverEvent;
+};
 
 _position = +_position;
 _position resize 2;

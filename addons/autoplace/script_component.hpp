@@ -7,3 +7,5 @@
 // #define CBA_DEBUG_SYNCHRONOUS
 
 #include "\u\uksf\addons\main\script_macros.hpp"
+
+#define MAX_GROUP_SIZE 10

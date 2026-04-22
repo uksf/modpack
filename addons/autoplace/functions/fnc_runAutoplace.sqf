@@ -22,9 +22,13 @@ if (!isServer) exitWith {};
 if (isNull _logic) exitWith {};
 if (_area isEqualTo []) exitWith {};
 
+if (!EGVAR(virtualisation,enabled)) exitWith {
+    WARNING_1("Autoplace requires virtualisation to be enabled: %1",_logic);
+};
+
 private _unitListRaw = _logic getVariable [QGVAR(unitListString), []];
 private _unitList = [_unitListRaw] call EFUNC(common,convertToArray);
-_unitList = _unitList select {_x isEqualType "" && {_x != ""}};
+_unitList = _unitList select {_x isEqualType "" && {_x isNotEqualTo ""}};
 
 private _sideIndex = (_logic getVariable [QGVAR(side), 0]) max 0 min 2;
 private _side = [east, independent, west]#_sideIndex;
@@ -41,11 +45,10 @@ if (_unitList isEqualTo []) exitWith {
 };
 
 private _garrisonPositions = [_logic, _area] call FUNC(gatherPositions);
-private _targetCount = floor ((count _garrisonPositions) * (_coveragePercent / 100));
-_targetCount = _targetCount min (count _garrisonPositions);
+[_garrisonPositions, true] call CBA_fnc_shuffle;
 
 if (_coveragePercent < 100) then {
-    [_garrisonPositions, true] call CBA_fnc_shuffle;
+    private _targetCount = floor ((count _garrisonPositions) * (_coveragePercent / 100));
     _garrisonPositions resize _targetCount;
 };
 
@@ -58,8 +61,7 @@ private _onGarrisonsDone = {
         "_side",
         "_unitList",
         "_patrolRadius",
-        "_patrolSoldierCount",
-        "_unusedRemainingPositions"
+        "_patrolSoldierCount"
     ];
 
     if (_enablePatrols && {_numberOfPatrols > 0}) then {
@@ -82,9 +84,7 @@ private _startGarrisons = {
     params ["_logic", "_garrisonPositions", "_side", "_unitList", "_onGarrisonsDone", "_onGarrisonsDoneArgs"];
 
     if (_garrisonPositions isEqualTo []) then {
-        private _doneArgs = +_onGarrisonsDoneArgs;
-        _doneArgs pushBack [];
-        _doneArgs call _onGarrisonsDone;
+        _onGarrisonsDoneArgs call _onGarrisonsDone;
     } else {
         [_logic, _garrisonPositions, _side, _unitList, _onGarrisonsDone, _onGarrisonsDoneArgs] call FUNC(spawnGarrisons);
     };

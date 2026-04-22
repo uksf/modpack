@@ -15,7 +15,6 @@
     Example:
         [_positions] call uksf_autoplace_fnc_takeChunk
 */
-#define MAX_GROUP_SIZE 10
 #define MAX_CHUNK_RADIUS 150
 
 params ["_positions"];

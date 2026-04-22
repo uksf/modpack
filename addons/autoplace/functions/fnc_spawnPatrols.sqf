@@ -4,7 +4,8 @@
         Bridg
 
     Description:
-        Spawns patrol groups and assigns taskPatrol.
+        Spawns patrol groups and assigns taskPatrol. Uses getSafePositionGrid for candidate positions so
+        patrols do not spawn on water or inside objects, then filters to the module area shape.
 
     Parameters:
         0: Module logic <OBJECT>
@@ -21,7 +22,8 @@
     Example:
         [_logic, _area, _numberOfPatrols, _side, _unitList, _patrolRadius, _patrolUnitCount] call uksf_autoplace_fnc_spawnPatrols
 */
-#define MAX_GROUP_SIZE 10
+#define GRID_SPACING 16
+#define MIN_OBJECT_DISTANCE 3
 
 params ["_logic", "_area", "_numberOfPatrols", "_side", "_unitList", "_patrolRadius", "_patrolUnitCount"];
 
@@ -32,37 +34,19 @@ if (_unitList isEqualTo []) exitWith {};
 
 private _groupSize = (_patrolUnitCount max 1) min MAX_GROUP_SIZE;
 private _centre = getPosATL _logic;
-_area params ["_a", "_b", "_angle", "_isRectangle"];
+
+private _safePositions = [_centre, GRID_SPACING, 0, 0, MIN_OBJECT_DISTANCE, _area] call EFUNC(common,getSafePositionGrid);
+
+if (_safePositions isEqualTo []) exitWith {
+    WARNING_1("Autoplace found no safe patrol spawn positions: %1",_logic);
+};
 
 for "_patrolIndex" from 1 to _numberOfPatrols do {
-    private _spawnPosition = _centre;
-
-    for "_attempt" from 1 to 20 do {
-        private _offsetX = 0;
-        private _offsetY = 0;
-
-        if (_isRectangle) then {
-            _offsetX = random (_a * 2) - _a;
-            _offsetY = random (_b * 2) - _b;
-        } else {
-            private _theta = random 360;
-            private _radiusScale = sqrt (random 1);
-            _offsetX = (cos _theta) * _a * _radiusScale;
-            _offsetY = (sin _theta) * _b * _radiusScale;
-        };
-
-        private _rotatedX = (_offsetX * cos _angle) - (_offsetY * sin _angle);
-        private _rotatedY = (_offsetX * sin _angle) + (_offsetY * cos _angle);
-        private _candidate = [(_centre#0) + _rotatedX, (_centre#1) + _rotatedY, (_centre#2)];
-
-        if (_candidate inArea [_centre, _a, _b, _angle, _isRectangle]) exitWith {
-            _spawnPosition = _candidate;
-        };
-    };
+    private _spawnPosition = selectRandom _safePositions;
 
     [_spawnPosition, _groupSize, _side, _unitList, {
         params ["_spawnPosition", "_patrolRadius", "_group"];
         if (isNull _group) exitWith {};
         [_group, _spawnPosition, _patrolRadius, floor(3 + random 3), "MOVE", "SAFE", "YELLOW", "NORMAL", "COLUMN"] call EFUNC(common,taskPatrol);
-    }, [_spawnPosition, _patrolRadius]] call EFUNC(common,spawnGroupInfantry);
+    }, [_spawnPosition, _patrolRadius], false, false] call EFUNC(common,spawnGroupInfantry);
 };

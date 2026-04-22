@@ -22,11 +22,13 @@
 */
 params ["_logic", "_positions", "_side", "_unitList", ["_callback", {}], ["_callbackArgs", []]];
 
+if (!isServer) exitWith {};
 if (isNull _logic) exitWith {};
+if (_positions isEqualTo []) exitWith {
+    _callbackArgs call _callback;
+};
 if (_unitList isEqualTo []) exitWith {
-    private _doneArgs = +_callbackArgs;
-    _doneArgs pushBack _positions;
-    _doneArgs call _callback;
+    _callbackArgs call _callback;
 };
 
 [{
@@ -39,24 +41,18 @@ if (_unitList isEqualTo []) exitWith {
 
     if (_positions isEqualTo [] && {_currentGroup isEqualTo []}) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
-        private _doneArgs = +_callbackArgs;
-        _doneArgs pushBack _positions;
-        _doneArgs call _callback;
+        _callbackArgs call _callback;
     };
 
     if (diag_fps < 20 && {_lastSpawn > CBA_missionTime}) exitWith {};
 
     if (_currentGroup isEqualTo []) then {
         private _chunk = [_positions] call FUNC(takeChunk);
-        if (_chunk isNotEqualTo []) then {
-            private _group = createGroup _side;
-            _group deleteGroupWhenEmpty true;
-            _currentGroup = [_group, _chunk];
-            _args set [4, _currentGroup];
-        };
+        private _group = createGroup _side;
+        _group deleteGroupWhenEmpty true;
+        _currentGroup = [_group, _chunk];
+        _args set [4, _currentGroup];
     };
-
-    if (_currentGroup isEqualTo []) exitWith {};
 
     _currentGroup params ["_group", "_chunk"];
     private _positionData = _chunk deleteAt 0;

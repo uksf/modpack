@@ -1,7 +1,10 @@
 class CfgVehicles {
     class Logic;
     class Module_F : Logic {
-        class AttributesBase;
+        class AttributesBase {
+            class ModuleDescription;
+        };
+        class ModuleDescription;
     };
 
     class GVAR(moduleAutoplace) : Module_F {
@@ -20,7 +23,11 @@ class CfgVehicles {
             size3[] = { 500, 500, -1 };
             isRectangle = 0;
         };
+        class ModuleDescription : ModuleDescription {
+            description = "Populates the module area with AI using CBA_BuildingPos helpers, optional static gunners and optional patrols. Requires virtualisation to be enabled; will not run under caching-only missions.";
+        };
         class Attributes : AttributesBase {
+            class ModuleDescription : ModuleDescription {};
             class GVAR(unitListString) {
                 property = QGVAR(unitListString);
                 displayName = "Unit List";
