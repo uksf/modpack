@@ -34,6 +34,8 @@ PREP(contextCachingModifier);
 PREP(contextCanCleanup);
 PREP(contextCleanup);
 PREP(contextCleanupModifier);
+PREP(contextCanLoadIntoCargo);
+PREP(contextLoadIntoCargo);
 
 PREP(formatUnconsciousText);
 

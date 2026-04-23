@@ -32,7 +32,7 @@ if !(GVAR(controllerInitialised)) exitWith {};
 // Cache player lists once per tick
 private _players = ALL_PLAYERS;
 private _airPlayers = _players select {
-    alive _x && {!isNull objectParent _x} && {vehicle _x isKindOf "Air"}
+    alive _x && {vehicle _x isKindOf "Air"}
 };
 
 // --- CAP/Recon scheduling ---
@@ -98,7 +98,7 @@ if (GVAR(casStrikeEnabled) && {call FUNC(canSpawnMission)}) then {
         private _groundPlayersInZone = _players select {
             alive _x
             && {(getPosATL _x) inArea _zoneArea}
-            && {isNull objectParent _x || {!(vehicle _x isKindOf "Air")}}
+            && {!(vehicle _x isKindOf "Air")}
         };
 
         if (_groundPlayersInZone isEqualTo []) then { continue };
