@@ -24,43 +24,11 @@ params [
     ["_passengerGroup", grpNull, [grpNull]]
 ];
 
-private _unitsToDelete = [];
+deleteVehicleCrew _vehicle;
+deleteVehicle _vehicle;
 
-if !(isNull _crewGroup) then {
-    {
-        _unitsToDelete pushBackUnique _x;
-    } forEach (units _crewGroup);
-};
-
-if !(isNull _passengerGroup) then {
-    {
-        _unitsToDelete pushBackUnique _x;
-    } forEach (units _passengerGroup);
-};
-
-if !(isNull _vehicle) then {
-    {
-        _unitsToDelete pushBackUnique _x;
-    } forEach (crew _vehicle);
-};
-
-{
-    if !(isNull _x) then {
-        deleteVehicle _x;
-    };
-} forEach _unitsToDelete;
-
-if !(isNull _vehicle) then {
-    deleteVehicle _vehicle;
-};
-
-if !(isNull _crewGroup) then {
-    deleteGroup _crewGroup;
-};
-
-if !(isNull _passengerGroup) then {
-    deleteGroup _passengerGroup;
-};
+if !(isNull _crewGroup) then { deleteGroup _crewGroup; };
+if !(isNull _passengerGroup) then { deleteGroup _passengerGroup; };
 
 GVAR(activePatrols) = GVAR(activePatrols) select {
     (_x#0) isNotEqualTo _vehicle
