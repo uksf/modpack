@@ -90,7 +90,6 @@ GVAR(debugFormatTime) = {
 [QGVAR(spawnCas), { _this call FUNC(cas) }] call CBA_fnc_addEventHandler;
 [QGVAR(spawnStrike), { _this call FUNC(strike) }] call CBA_fnc_addEventHandler;
 [QGVAR(spawnIntercept), { _this call FUNC(intercept) }] call CBA_fnc_addEventHandler;
-[QGVAR(spawnCasOrStrike), { _this call FUNC(selectCasOrStrike) }] call CBA_fnc_addEventHandler;
 [QGVAR(reconFollowUp), { _this call FUNC(reconFollowUp) }] call CBA_fnc_addEventHandler;
 
 ADDON = true;
