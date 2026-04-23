@@ -64,22 +64,23 @@ if (GVAR(capReconEnabled)) then {
 // Phase 1: commit pending intercept if scramble elapsed
 // Killswitch flip aborts pending — admin disabling intercepts should stop everything.
 if (GVAR(pendingIntercept) isNotEqualTo []) then {
-    if !(GVAR(interceptEnabled)) exitWith {
+    if !(GVAR(interceptEnabled)) then {
         TRACE_1("Intercept pending dropped — killswitch off",GVAR(pendingIntercept));
         GVAR(pendingIntercept) = [];
-    };
-    GVAR(pendingIntercept) params ["_pendingTarget", "_pendingZoneIndex", "_commitTime"];
-    if (time >= _commitTime) then {
-        private _valid = alive _pendingTarget
-            && {vehicle _pendingTarget isKindOf "Air"}
-            && {call FUNC(canSpawnMission)};
-        if (_valid) then {
-            [QGVAR(spawnIntercept), [_pendingTarget, _pendingZoneIndex]] call CBA_fnc_localEvent;
-            TRACE_2("Intercept committed after scramble",_pendingTarget,_pendingZoneIndex);
-        } else {
-            TRACE_1("Intercept pending dropped at commit (target lost or max missions)",_pendingTarget);
+    } else {
+        GVAR(pendingIntercept) params ["_pendingTarget", "_pendingZoneIndex", "_commitTime"];
+        if (time >= _commitTime) then {
+            private _valid = alive _pendingTarget
+                && {vehicle _pendingTarget isKindOf "Air"}
+                && {call FUNC(canSpawnMission)};
+            if (_valid) then {
+                [QGVAR(spawnIntercept), [_pendingTarget, _pendingZoneIndex]] call CBA_fnc_localEvent;
+                TRACE_2("Intercept committed after scramble",_pendingTarget,_pendingZoneIndex);
+            } else {
+                TRACE_1("Intercept pending dropped at commit (target lost or max missions)",_pendingTarget);
+            };
+            GVAR(pendingIntercept) = [];
         };
-        GVAR(pendingIntercept) = [];
     };
 };
 
