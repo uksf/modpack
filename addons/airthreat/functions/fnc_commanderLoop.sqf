@@ -62,7 +62,12 @@ if (GVAR(capReconEnabled)) then {
 // --- Intercept zone monitoring (two-phase) ---
 
 // Phase 1: commit pending intercept if scramble elapsed
+// Killswitch flip aborts pending — admin disabling intercepts should stop everything.
 if (GVAR(pendingIntercept) isNotEqualTo []) then {
+    if !(GVAR(interceptEnabled)) exitWith {
+        TRACE_1("Intercept pending dropped — killswitch off",GVAR(pendingIntercept));
+        GVAR(pendingIntercept) = [];
+    };
     GVAR(pendingIntercept) params ["_pendingTarget", "_pendingZoneIndex", "_commitTime"];
     if (time >= _commitTime) then {
         private _valid = alive _pendingTarget
