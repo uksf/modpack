@@ -23,24 +23,8 @@ if ((local _logic) isEqualTo false) exitWith {};
 if (isServer isEqualTo false) exitWith {};
 if (_logic getVariable [QGVAR(initialised), false]) exitWith {};
 
-private _parseArray = {
-    params ["_value"];
-
-    if (_value isEqualType []) exitWith {_value};
-    if (_value isEqualType "") exitWith {
-        private _result = call compile _value;
-        if (_result isEqualType []) then {
-            _result
-        } else {
-            []
-        };
-    };
-
-    []
-};
-
-private _unitClasses = [_logic getVariable [QGVAR(patrolUnitClasses), "[]"]] call _parseArray;
-private _vehicleClasses = [_logic getVariable [QGVAR(patrolVehicleClasses), "[]"]] call _parseArray;
+private _unitClasses = [_logic getVariable [QGVAR(patrolUnitClasses), "[]"]] call EFUNC(common,convertToArray);
+private _vehicleClasses = [_logic getVariable [QGVAR(patrolVehicleClasses), "[]"]] call EFUNC(common,convertToArray);
 private _spawnRate = (_logic getVariable [QGVAR(spawnRate), 120]) max 1;
 private _spawnOffset = (_logic getVariable [QGVAR(spawnOffset), 30]) max 0;
 private _conditionString = _logic getVariable [QGVAR(condition), "true"];
