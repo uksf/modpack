@@ -48,7 +48,7 @@ _vehicle setDir ((_spawnPosition getDir _destinationPosition));
 
 createVehicleCrew _vehicle;
 private _crewGroup = createGroup _side;
-if (isNull _crewGroup) exitWith {
+if (isNull _crewGroup || isNull(effectiveCommander _vehicle)) exitWith {
     deleteVehicle _vehicle;
 };
 
