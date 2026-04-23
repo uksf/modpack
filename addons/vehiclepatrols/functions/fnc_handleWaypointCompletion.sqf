@@ -55,6 +55,10 @@ if (_rtbWaypointAdded) exitWith {};
 
 _vehicle setVariable [QGVAR(rtbWaypointAdded), true, false];
 
+while {waypoints _crewGroup isNotEqualTo []} do {
+    deleteWaypoint [_crewGroup, 0];
+};
+
 private _spawnWaypoint = [_crewGroup, ASLToAGL _spawnPosition, 0, "MOVE", _waypointBehaviour, "YELLOW", _waypointSpeed, "COLUMN", "", [0, 0, 0], 50] call CBA_fnc_addWaypoint;
 _spawnWaypoint setWaypointStatements [
     "true",
