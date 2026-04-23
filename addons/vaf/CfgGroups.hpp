@@ -24,7 +24,7 @@ class CfgGroups {
                     class Unit4 { side = 0; vehicle = QGVAR(Sharpshooter); rank = "PRIVATE"; position[] = {0, -20, 0}; };
                     class Unit5 { side = 0; vehicle = QGVAR(Rifleman_AA); rank = "PRIVATE"; position[] = {0, -25, 0}; };
                     class Unit6 { side = 0; vehicle = QGVAR(Signaller); rank = "PRIVATE"; position[] = {0, -30, 0}; };
-                    class Unit7 { side = 0; vehicle = QGVAR(Officer); rank = "PRIVATE"; position[] = {0, -35, 0}; };
+                    class Unit7 { side = 0; vehicle = QGVAR(Rifleman); rank = "PRIVATE"; position[] = {0, -35, 0}; };
                 };
                 class GVAR(Combat_HQ) {
                     name = "Combat HQ";

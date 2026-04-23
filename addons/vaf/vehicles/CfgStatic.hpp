@@ -106,6 +106,18 @@ class GVAR(HMG_02) : B_G_HMG_02_F {
     INVENTORY_EMPTY;
 };
 
+class B_G_HMG_02_high_F;
+class GVAR(HMG_02_high) : B_G_HMG_02_high_F {
+    scope = 2;
+    scopeCurator = 2;
+    faction = QUOTE(ADDON);
+    side = 0;
+    displayName = "50 cal HMG (High)";
+    crew = QGVAR(Rifleman);
+    typicalCargo[] = { QGVAR(Rifleman) };
+    INVENTORY_EMPTY;
+};
+
 class CUP_B_RBS70_HIL;
 class GVAR(RBS70) : CUP_B_RBS70_HIL {
     scope = 2;
@@ -137,7 +149,7 @@ class GVAR(Mini_Radar_Dish) : O_Radar_System_02_F {
     editorPreview = "\A3\EditorPreviews_F_Enoch\Data\CfgVehicles\SatelliteAntenna_01_Black_F.jpg";
     faction = QUOTE(ADDON);
     side = 0;
-    displayName = "Mini Radar Dish";
+    displayName = "Mini Radar Dish (2km)";
     crew = "O_UAV_AI";
     class Components {
         class SensorsManagerComponent {
@@ -158,6 +170,90 @@ class GVAR(Mini_Radar_Dish) : O_Radar_System_02_F {
                     {
                         minRange = 0;
                         maxRange = 2000;
+                        objectDistanceLimitCoef = 1;
+                        viewDistanceLimitCoef = 1;
+                    };
+
+                    angleRangeHorizontal = 360;
+                    angleRangeVertical = 90;
+                    maxTrackableSpeed = 400;
+                };
+            };
+        };
+    };
+    INVENTORY_EMPTY;
+};
+
+class GVAR(rugged_radar_small) : O_Radar_System_02_F {
+    scope = 2;
+    scopeCurator = 2;
+    model = "\a3\Props_F_Decade\Objectives\RuggedTerminal_01_communications_F.p3d";
+    editorPreview = "\A3\EditorPreviews_F_Decade\Data\CfgVehicles\RuggedTerminal_01_communications_F.jpg";
+    faction = QUOTE(ADDON);
+    side = 0;
+    displayName = "Rugged Radar (4km)";
+    crew = "O_UAV_AI";
+    class Components {
+        class SensorsManagerComponent {
+            class Components {
+                class SensorTemplateActiveRadar;
+                class MiniRadarSensorComponent: SensorTemplateActiveRadar{
+                    componentType = "ActiveRadarSensorComponent";
+
+                    class AirTarget
+                    {
+                        minRange = 0;
+                        maxRange = 4000;
+                        objectDistanceLimitCoef = 1;
+                        viewDistanceLimitCoef = 1;
+                    };
+
+                    class GroundTarget
+                    {
+                        minRange = 0;
+                        maxRange = 4000;
+                        objectDistanceLimitCoef = 1;
+                        viewDistanceLimitCoef = 1;
+                    };
+
+                    angleRangeHorizontal = 360;
+                    angleRangeVertical = 90;
+                    maxTrackableSpeed = 400;
+                };
+            };
+        };
+    };
+    INVENTORY_EMPTY;
+};
+
+class GVAR(rugged_radar_large) : O_Radar_System_02_F {
+    scope = 2;
+    scopeCurator = 2;
+    model = "\a3\Props_F_Decade\Objectives\RuggedTerminal_01_communications_hub_F.p3d";
+    editorPreview = "\A3\EditorPreviews_F_Decade\Data\CfgVehicles\RuggedTerminal_01_communications_hub_F.jpg";
+    faction = QUOTE(ADDON);
+    side = 0;
+    displayName = "Rugged Radar (6km)";
+    crew = "O_UAV_AI";
+    class Components {
+        class SensorsManagerComponent {
+            class Components {
+                class SensorTemplateActiveRadar;
+                class MiniRadarSensorComponent: SensorTemplateActiveRadar{
+                    componentType = "ActiveRadarSensorComponent";
+
+                    class AirTarget
+                    {
+                        minRange = 0;
+                        maxRange = 6000;
+                        objectDistanceLimitCoef = 1;
+                        viewDistanceLimitCoef = 1;
+                    };
+
+                    class GroundTarget
+                    {
+                        minRange = 0;
+                        maxRange = 6000;
                         objectDistanceLimitCoef = 1;
                         viewDistanceLimitCoef = 1;
                     };
