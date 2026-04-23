@@ -34,6 +34,7 @@ params [
     ["_waypointSpeed", "NORMAL", [""]]
 ];
 
+if !(isServer) exitWith {};
 if (isNull _vehicle) exitWith {};
 if (isNull _crewGroup) exitWith {
     [_vehicle, _crewGroup, grpNull] call FUNC(deletePatrol);
