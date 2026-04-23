@@ -11,12 +11,12 @@ GVAR(interceptEnabled) = true;
 GVAR(casStrikeEnabled) = true;
 
 // Configuration — populated by controller module
-GVAR(capReconBaseTime) = 1200;
-GVAR(capReconOffsetTime) = 600;
-GVAR(initialDelay) = 1800;
-GVAR(initialDelayOffset) = 900;
-GVAR(interceptCooldown) = 600;
-GVAR(interceptCooldownOffset) = 600;
+GVAR(capReconMinTime) = 1200;
+GVAR(capReconMaxTime) = 1800;
+GVAR(initialDelayMin) = 1800;
+GVAR(initialDelayMax) = 2700;
+GVAR(interceptCooldownMin) = 600;
+GVAR(interceptCooldownMax) = 1200;
 GVAR(maxConcurrentMissions) = 3;
 GVAR(fighterClassnames) = [];
 GVAR(helicopterClassnames) = [];

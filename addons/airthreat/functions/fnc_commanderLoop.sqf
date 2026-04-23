@@ -39,7 +39,7 @@ private _airPlayers = _players select {
 if (GVAR(capReconEnabled)) then {
     // Initialise on first run
     if (isNil QGVAR(nextCapReconTime)) then {
-        GVAR(nextCapReconTime) = time + GVAR(initialDelay) + random GVAR(initialDelayOffset);
+        GVAR(nextCapReconTime) = time + GVAR(initialDelayMin) + random (GVAR(initialDelayMax) - GVAR(initialDelayMin));
         TRACE_1("CAP/recon loop started — first mission at %1",GVAR(nextCapReconTime));
     };
 
@@ -51,7 +51,7 @@ if (GVAR(capReconEnabled)) then {
                 [QGVAR(spawnRecon), []] call CBA_fnc_localEvent;
             };
             // Full interval before next mission
-            GVAR(nextCapReconTime) = time + GVAR(capReconBaseTime) + random GVAR(capReconOffsetTime);
+            GVAR(nextCapReconTime) = time + GVAR(capReconMinTime) + random (GVAR(capReconMaxTime) - GVAR(capReconMinTime));
         } else {
             // Can't spawn (at max missions) — retry after 60s, not every tick
             GVAR(nextCapReconTime) = time + 60;
@@ -84,7 +84,7 @@ if (GVAR(interceptEnabled) && {time >= GVAR(nextInterceptTime)} && {_airPlayers 
         private _selected = selectRandom _validTargets;
         _selected params ["_target", "_zoneIndex"];
         [QGVAR(spawnIntercept), [_target, _zoneIndex]] call CBA_fnc_localEvent;
-        GVAR(nextInterceptTime) = time + GVAR(interceptCooldown) + random GVAR(interceptCooldownOffset);
+        GVAR(nextInterceptTime) = time + GVAR(interceptCooldownMin) + random (GVAR(interceptCooldownMax) - GVAR(interceptCooldownMin));
     };
 };
 
