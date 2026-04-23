@@ -76,9 +76,9 @@ private _fnc_serverGetter = {
 
     // CAS/strike zones (area arrays)
     private _casStrikeZoneData = GVAR(casStrikeZones) apply {
-        _x params ["_zoneArea", "_casProbability", "_lastTriggered"];
+        _x params ["_zoneArea", "_casProbability", "_nextTriggerTime"];
         _zoneArea params ["_position", "_sizeA", "_sizeB", "_angle", "_isRectangle"];
-        private _cooldownRemaining = (300 - (time - _lastTriggered)) max 0;
+        private _cooldownRemaining = (_nextTriggerTime - time) max 0;
         [_position, _sizeA, _sizeB, _angle, _isRectangle, _cooldownRemaining]
     };
 
