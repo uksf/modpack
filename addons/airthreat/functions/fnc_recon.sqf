@@ -20,10 +20,10 @@
         call uksf_airthreat_fnc_recon
 */
 
-private _target = [false] call FUNC(selectTarget);
+private _target = [false, true] call FUNC(selectTarget);
 
 if (isNull _target) exitWith {
-    DEBUG("No valid recon target, falling back to CAP");
+    DEBUG("No valid recon target in airspace, falling back to CAP");
     call FUNC(cap);
 };
 
