@@ -19,8 +19,8 @@
 
 (_this select 1) params ["_logic"];
 
-if ((local _logic) isEqualTo false) exitWith {};
-if (isServer isEqualTo false) exitWith {};
+if !(local _logic) exitWith {};
+if !(isServer) exitWith {};
 if (_logic getVariable [QGVAR(initialised), false]) exitWith {};
 
 private _unitClasses = [_logic getVariable [QGVAR(patrolUnitClasses), "[]"]] call EFUNC(common,convertToArray);
@@ -43,7 +43,7 @@ if (_vehicleClasses isEqualTo []) exitWith {
 
 private _condition = compile _conditionString;
 private _conditionResult = [_logic] call _condition;
-if ((_conditionResult isEqualType true) isEqualTo false) then {
+if !(_conditionResult isEqualType true) then {
     WARNING("Vehicle patrol spawn module condition is invalid. Defaulting to true");
     _condition = {true};
 };
@@ -54,7 +54,7 @@ _logic setVariable [QGVAR(initialised), true, true];
     params ["_args", "_idPFH"];
     _args params ["_logic", "_unitClasses", "_vehicleClasses", "_spawnRate", "_spawnOffset", "_condition", "_turnAround", "_fillPercentage", "_waypointBehaviour", "_waypointSpeed", "_vehiclesPerWave", "_waveSpawnDelay", "_side", "_nextSpawnTime"];
 
-    if (alive _logic isEqualTo false) exitWith {
+    if !(alive _logic) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
     };
 
@@ -62,7 +62,7 @@ _logic setVariable [QGVAR(initialised), true, true];
 
     _args set [13, CBA_missionTime + _spawnRate + random _spawnOffset];
 
-    if (([_logic] call _condition) isEqualTo false) exitWith {};
+    if !(([_logic] call _condition)) exitWith {};
 
     private _destinationModules = synchronizedObjects _logic select {_x isKindOf QGVAR(modulePatrolDestination)};
     if (_destinationModules isEqualTo []) exitWith {

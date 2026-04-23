@@ -47,7 +47,7 @@ if ((_vehicle distance2D _targetPosition) <= _deleteDistance) exitWith {
     [_vehicle, _crewGroup, grpNull] call FUNC(deletePatrol);
 };
 
-if (_addRTBWhenMissed isEqualTo false) exitWith {};
+if !(_addRTBWhenMissed) exitWith {};
 if (_spawnPosition isEqualTo []) exitWith {};
 
 private _rtbWaypointAdded = _vehicle getVariable [QGVAR(rtbWaypointAdded), false];
