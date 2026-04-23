@@ -91,9 +91,9 @@ if (GVAR(interceptEnabled) && {time >= GVAR(nextInterceptTime)} && {_airPlayers 
 // --- CAS/Strike zone monitoring ---
 if (GVAR(casStrikeEnabled) && {call FUNC(canSpawnMission)}) then {
     {
-        _x params ["_zoneArea", "_casProbability", "_lastTriggered"];
+        _x params ["_zoneArea", "_casProbability", "_nextTriggerTime"];
 
-        if (time - _lastTriggered < 300) then { continue };
+        if (time < _nextTriggerTime) then { continue };
 
         private _groundPlayersInZone = _players select {
             alive _x
@@ -104,7 +104,7 @@ if (GVAR(casStrikeEnabled) && {call FUNC(canSpawnMission)}) then {
         if (_groundPlayersInZone isEqualTo []) then { continue };
 
         [QGVAR(spawnCasOrStrike), [_casProbability]] call CBA_fnc_localEvent;
-        _x set [2, time];
+        _x set [2, time + GVAR(casStrikeCooldownMin) + random (GVAR(casStrikeCooldownMax) - GVAR(casStrikeCooldownMin))];
     } forEach GVAR(casStrikeZones);
 };
 

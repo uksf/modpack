@@ -90,6 +90,28 @@ class CfgVehicles {
                 defaultValue = "1200";
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(interceptCooldownMax),_value,true)]);
             };
+            class GVAR(casStrikeCooldownMin) {
+                property = QGVAR(casStrikeCooldownMin);
+                displayName = "CAS/Strike Cooldown Min";
+                tooltip = "Minimum seconds between CAS/strike spawns from the same zone (60 - 3600, default: 300)";
+                control = "EditShort";
+                validate = "NUMBER";
+                min = 60;
+                max = 3600;
+                defaultValue = "300";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(casStrikeCooldownMin),_value,true)]);
+            };
+            class GVAR(casStrikeCooldownMax) {
+                property = QGVAR(casStrikeCooldownMax);
+                displayName = "CAS/Strike Cooldown Max";
+                tooltip = "Maximum seconds between CAS/strike spawns from the same zone — actual is random between min and max (60 - 5400, default: 600)";
+                control = "EditShort";
+                validate = "NUMBER";
+                min = 60;
+                max = 5400;
+                defaultValue = "600";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(casStrikeCooldownMax),_value,true)]);
+            };
             class GVAR(maxConcurrentMissions) {
                 property = QGVAR(maxConcurrentMissions);
                 displayName = "Max Concurrent Missions";

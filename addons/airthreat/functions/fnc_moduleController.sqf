@@ -37,6 +37,8 @@ GVAR(initialDelayMin) = _logic getVariable [QGVAR(initialDelayMin), 1800];
 GVAR(initialDelayMax) = _logic getVariable [QGVAR(initialDelayMax), 2700];
 GVAR(interceptCooldownMin) = _logic getVariable [QGVAR(interceptCooldownMin), 600];
 GVAR(interceptCooldownMax) = _logic getVariable [QGVAR(interceptCooldownMax), 1200];
+GVAR(casStrikeCooldownMin) = _logic getVariable [QGVAR(casStrikeCooldownMin), 300];
+GVAR(casStrikeCooldownMax) = _logic getVariable [QGVAR(casStrikeCooldownMax), 600];
 GVAR(maxConcurrentMissions) = _logic getVariable [QGVAR(maxConcurrentMissions), 3];
 
 // Clamp max < min to min (mission maker error)
@@ -51,7 +53,8 @@ GVAR(maxConcurrentMissions) = _logic getVariable [QGVAR(maxConcurrentMissions), 
 } forEach [
     [QGVAR(capReconMinTime), QGVAR(capReconMaxTime)],
     [QGVAR(initialDelayMin), QGVAR(initialDelayMax)],
-    [QGVAR(interceptCooldownMin), QGVAR(interceptCooldownMax)]
+    [QGVAR(interceptCooldownMin), QGVAR(interceptCooldownMax)],
+    [QGVAR(casStrikeCooldownMin), QGVAR(casStrikeCooldownMax)]
 ];
 
 // Classname arrays — stored as strings in Eden, parse here
