@@ -17,7 +17,7 @@ class Extended_PostInit_EventHandlers {
 };
 
 class Extended_DisplayLoad_EventHandlers {
-    class Display3DENPlace {
+    class Display3DEN {
         ADDON = QUOTE(_this call FUNC(edenFixCrewCheckbox));
     };
 };

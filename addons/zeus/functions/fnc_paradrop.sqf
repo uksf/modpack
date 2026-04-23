@@ -80,7 +80,7 @@ _plane flyInHeightASL [_altitude, _altitude, _altitude];
             moveOut _x;
             [QGVAR(paradropFail), [_x, _unitReturnPosition], _x] call CBA_fnc_targetEvent;
         } forEach _remainingUnits;
-        {deleteVehicle _x} forEach (crew _plane);
+        deleteVehicleCrew _plane;
         deleteVehicle _plane;
     };
 

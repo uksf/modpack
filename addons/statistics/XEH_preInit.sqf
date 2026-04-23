@@ -21,13 +21,17 @@ GVAR(performancePFH) = -1;
 // Entries removed on defuse; remaining entries emitted at sync
 GVAR(placedExplosives) = createHashMap;
 
+// Ammo classname -> category ("ballistic" | "explosive" | "other")
+// Populated lazily on first lookup via fnc_getAmmoCategory
+GVAR(ammoCategoryCache) = createHashMap;
+
 GVAR(samplerPFH) = -1;
 GVAR(lastPosition) = [0, 0, 0];
-GVAR(accumulatedDistanceOnFoot) = 0;
-GVAR(accumulatedDistanceInVehicle) = 0;
+GVAR(samplerDistanceOnFoot) = [];
+GVAR(samplerDistanceInVehicle) = [];
+GVAR(samplerFuelLitres) = [];
 GVAR(lastFuelLevel) = -1;
 GVAR(lastFuelVehicle) = objNull;
-GVAR(accumulatedFuel) = 0;
 
 GVAR(killswitch) = false;
 GVAR(collectionStarted) = false;

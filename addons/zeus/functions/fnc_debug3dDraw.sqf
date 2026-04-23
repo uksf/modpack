@@ -18,6 +18,12 @@
 */
 if (GVAR(debugKill)) exitWith {};
 
+// Zeus backspace toggles showHUD — mirror that for our HUD controls
+private _hudVisible = (shownHUD)#0;
+if (!_hudVisible) exitWith {
+    {_x ctrlShow false} forEach GVAR(debugHudControls);
+};
+
 private _cameraPosition = positionCameraToWorld [0,0,0];
 private _maxDistance = if (GVAR(debugDistanceLimited)) then {5000} else {100000};
 private _hudIndex = 0;

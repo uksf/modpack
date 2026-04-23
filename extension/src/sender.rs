@@ -70,17 +70,34 @@ pub fn queue_event(json: &str) {
 /// Safe for server_status and performance events which contain
 /// only numbers, simple strings, and flat/shallow objects.
 fn extract_event_data(json: &str, event_type: &str) -> Option<String> {
-    let type_needle = format!(r#""type":"{event_type}""#);
-    if !json.contains(&type_needle) {
+    // CBA_fnc_encodeJSON produces "key": value (with space after colon),
+    // so check both formats
+    let has_type = json.contains(&format!(r#""type":"{event_type}""#))
+        || json.contains(&format!(r#""type": "{event_type}""#));
+    if !has_type {
         return None;
     }
 
-    let data_start = json.find(r#""data":"#)?;
-    let value_start = data_start + r#""data":"#.len();
-    let bytes = json.as_bytes();
-    if bytes.get(value_start)? != &b'{' {
+    // Bound the "data" key search to after the "type" key position to avoid
+    // matching the literal substring "data": inside a value preceding it
+    // (e.g. a map or mission name containing that text).
+    let type_pos = json.find(r#""type""#).unwrap_or(0);
+    let data_start = json[type_pos..]
+        .find(r#""data":"#)
+        .or_else(|| json[type_pos..].find(r#""data": "#))
+        .map(|offset| type_pos + offset)?;
+    let after_key = &json[data_start..];
+    let colon_offset = after_key.find(':')?;
+    let after_colon = &after_key[colon_offset + 1..];
+    let brace_offset = after_colon.find('{')?;
+
+    // Verify only whitespace between colon and brace
+    if !after_colon[..brace_offset].chars().all(|c| c.is_ascii_whitespace()) {
         return None;
     }
+
+    let value_start = data_start + colon_offset + 1 + brace_offset;
+    let bytes = json.as_bytes();
 
     let mut depth = 0;
     for (i, &byte) in bytes[value_start..].iter().enumerate() {
@@ -194,8 +211,26 @@ mod tests {
     }
 
     #[test]
+    fn test_extract_event_data_status_spaced() {
+        // CBA_fnc_encodeJSON produces spaces after colons
+        let json = r#"{"type": "server_status", "data": {"map": "Altis", "players": ["uid1", "uid2"]}}"#;
+        let result = extract_event_data(json, "server_status");
+        assert_eq!(
+            result,
+            Some(r#"{"map": "Altis", "players": ["uid1", "uid2"]}"#.to_string())
+        );
+    }
+
+    #[test]
     fn test_extract_event_data_wrong_type() {
         let json = r#"{"type":"persistence_save","data":{"key":"test"}}"#;
+        let result = extract_event_data(json, "server_status");
+        assert!(result.is_none());
+    }
+
+    #[test]
+    fn test_extract_event_data_wrong_type_spaced() {
+        let json = r#"{"type": "persistence_save", "data": {"key": "test"}}"#;
         let result = extract_event_data(json, "server_status");
         assert!(result.is_none());
     }

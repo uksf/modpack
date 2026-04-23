@@ -1,6 +1,7 @@
 PREP(curatorDisplayLoad);
 PREP(curatorDisplayUnload);
 PREP(isHeavyProjectile);
+PREP(trackProjectile);
 PREP(openArsenal);
 PREP(paradrop);
 
@@ -33,6 +34,8 @@ PREP(contextCachingModifier);
 PREP(contextCanCleanup);
 PREP(contextCleanup);
 PREP(contextCleanupModifier);
+PREP(contextCanLoadIntoCargo);
+PREP(contextLoadIntoCargo);
 
 PREP(formatUnconsciousText);
 

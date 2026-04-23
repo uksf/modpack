@@ -5,8 +5,8 @@
 
     Description:
         Cleans up a spawned air threat aircraft and its crew.
-        Deletes the vehicle and all crew members.
-        Called on HC where the aircraft is local.
+        Only deletes if alive (RTB despawn or abandoned) — destroyed
+        aircraft are left to uksf_cleanup so wreckage persists.
 
     Parameters:
         0: Group <GROUP>
@@ -20,16 +20,16 @@
 */
 params [["_group", grpNull, [grpNull]], ["_vehicle", objNull, [objNull]]];
 
-if (!isNull _vehicle) then {
-    {
-        deleteVehicle _x;
-    } forEach (crew _vehicle);
+if (!isNull _vehicle && {alive _vehicle}) then {
+    deleteVehicleCrew _vehicle;
     deleteVehicle _vehicle;
 };
 
 if (!isNull _group) then {
     {
-        deleteVehicle _x;
+        if (alive _x) then {
+            deleteVehicle _x;
+        };
     } forEach (units _group);
     deleteGroup _group;
 };

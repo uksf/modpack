@@ -1,6 +1,7 @@
 use arma_rs::Context;
 
 use crate::bridge;
+use crate::input;
 
 pub fn start(context: Context) -> String {
     bridge::handle_start(context)
@@ -20,4 +21,8 @@ pub fn event(json: String) -> String {
 
 pub fn load(key: String) -> String {
     bridge::handle_load(&key)
+}
+
+pub fn press_space() -> String {
+    input::press_space()
 }

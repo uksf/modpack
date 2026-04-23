@@ -6,6 +6,7 @@ use std::path::PathBuf;
 mod bridge;
 mod commands;
 mod config;
+mod input;
 mod listener;
 mod loader;
 mod sender;
@@ -61,5 +62,6 @@ fn init() -> Extension {
         .command("flush", commands::flush)
         .command("event", commands::event)
         .command("load", commands::load)
+        .command("pressSpace", commands::press_space)
         .finish()
 }

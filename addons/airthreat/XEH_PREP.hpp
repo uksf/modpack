@@ -17,7 +17,6 @@ PREP(recon);
 PREP(reconFollowUp);
 PREP(registerDebugProvider);
 PREP(registerMission);
-PREP(selectCasOrStrike);
 PREP(selectTarget);
 PREP(spawnAircraft);
 PREP(strike);

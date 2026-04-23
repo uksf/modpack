@@ -27,18 +27,25 @@ private _identifier = if (isServer) then {
     };
 };
 
+private _type = if (isServer) then {
+    "server"
+} else {
+    if (hasInterface) then { "player" } else { "hc" };
+};
+
 if (!isNil QGVAR(fpsReportingPFH)) then {
     [GVAR(fpsReportingPFH)] call CBA_fnc_removePerFrameHandler;
 };
 
 GVAR(fpsReportingPFH) = [{
-    params ["_identifier"];
+    params ["_args"];
+    _args params ["_identifier", "_type"];
 
     private _fps = floor diag_fps;
 
     if (isServer) then {
-        [_identifier, _fps] call FUNC(fpsReport);
+        [_identifier, _type, _fps] call FUNC(fpsReport);
     } else {
-        [QGVAR(fpsReport), [_identifier, _fps]] call CBA_fnc_serverEvent;
+        [QGVAR(fpsReport), [_identifier, _type, _fps]] call CBA_fnc_serverEvent;
     };
-}, 1, _identifier] call CBA_fnc_addPerFrameHandler;
+}, 1, [_identifier, _type]] call CBA_fnc_addPerFrameHandler;
