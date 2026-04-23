@@ -31,13 +31,31 @@ if (GVAR(controllerInitialised)) exitWith {
     };
 };
 
-GVAR(capReconBaseTime) = _logic getVariable [QGVAR(capReconBaseTime), 1200];
-GVAR(capReconOffsetTime) = _logic getVariable [QGVAR(capReconOffsetTime), 600];
-GVAR(initialDelay) = _logic getVariable [QGVAR(initialDelay), 1800];
-GVAR(initialDelayOffset) = _logic getVariable [QGVAR(initialDelayOffset), 900];
-GVAR(interceptCooldown) = _logic getVariable [QGVAR(interceptCooldown), 600];
-GVAR(interceptCooldownOffset) = _logic getVariable [QGVAR(interceptCooldownOffset), 600];
+GVAR(capReconMinTime) = _logic getVariable [QGVAR(capReconMinTime), 1200];
+GVAR(capReconMaxTime) = _logic getVariable [QGVAR(capReconMaxTime), 1800];
+GVAR(initialDelayMin) = _logic getVariable [QGVAR(initialDelayMin), 1800];
+GVAR(initialDelayMax) = _logic getVariable [QGVAR(initialDelayMax), 2700];
+GVAR(interceptCooldownMin) = _logic getVariable [QGVAR(interceptCooldownMin), 600];
+GVAR(interceptCooldownMax) = _logic getVariable [QGVAR(interceptCooldownMax), 1200];
+GVAR(casStrikeCooldownMin) = _logic getVariable [QGVAR(casStrikeCooldownMin), 300];
+GVAR(casStrikeCooldownMax) = _logic getVariable [QGVAR(casStrikeCooldownMax), 600];
 GVAR(maxConcurrentMissions) = _logic getVariable [QGVAR(maxConcurrentMissions), 3];
+
+// Clamp max < min to min (mission maker error)
+{
+    _x params ["_minVar", "_maxVar"];
+    private _minValue = missionNamespace getVariable _minVar;
+    private _maxValue = missionNamespace getVariable _maxVar;
+    if (_maxValue < _minValue) then {
+        WARNING_3("%1 (%2) < %3 — clamping max to min",_maxVar,_maxValue,_minVar);
+        missionNamespace setVariable [_maxVar, _minValue];
+    };
+} forEach [
+    [QGVAR(capReconMinTime), QGVAR(capReconMaxTime)],
+    [QGVAR(initialDelayMin), QGVAR(initialDelayMax)],
+    [QGVAR(interceptCooldownMin), QGVAR(interceptCooldownMax)],
+    [QGVAR(casStrikeCooldownMin), QGVAR(casStrikeCooldownMax)]
+];
 
 // Classname arrays — stored as strings in Eden, parse here
 {
