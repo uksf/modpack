@@ -45,11 +45,17 @@ private _vehicle = createVehicle [_vehicleClass, ASLToAGL _spawnPosition, [], 0,
 if (isNull _vehicle) exitWith {};
 
 _vehicle setDir ((_spawnPosition getDir _destinationPosition));
-createVehicleCrew _vehicle;
 
-private _crewGroup = group (effectiveCommander _vehicle);
-if (isNull _crewGroup) then {
-    _crewGroup = createGroup _side;
+createVehicleCrew _vehicle;
+private _crewGroup = createGroup _side;
+if (isNull _crewGroup) exitWith {
+    deleteVehicle _vehicle;
+};
+
+(crew _vehicle) joinSilent _crewGroup;
+if ((units _crewGroup) isEqualTo []) exitWith {
+    deleteGroup _crewGroup;
+    deleteVehicle _vehicle;
 };
 
 private _passengerGroup = createGroup _side;
