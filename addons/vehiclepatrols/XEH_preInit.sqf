@@ -4,7 +4,6 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
-GVAR(destinationModules) = [];
 GVAR(activePatrols) = [];
 
 [QGVAR(spawnPatrol), {

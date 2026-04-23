@@ -201,7 +201,6 @@ class CfgVehicles {
         displayName = "Vehicle Patrol Destination";
         icon = "A3\ui_f\data\map\markers\military\join_ca.paa";
         portrait = "A3\ui_f\data\map\markers\military\join_ca.paa";
-        function = QFUNC(modulePatrolDestination);
         functionPriority = 25;
         canSetArea = 0;
         category = QEGVAR(common,eden);
