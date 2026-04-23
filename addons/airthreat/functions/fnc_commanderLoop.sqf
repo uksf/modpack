@@ -59,8 +59,32 @@ if (GVAR(capReconEnabled)) then {
     };
 };
 
-// --- Intercept zone monitoring ---
-if (GVAR(interceptEnabled) && {time >= GVAR(nextInterceptTime)} && {_airPlayers isNotEqualTo []}) then {
+// --- Intercept zone monitoring (two-phase) ---
+
+// Phase 1: commit pending intercept if scramble elapsed
+if (GVAR(pendingIntercept) isNotEqualTo []) then {
+    GVAR(pendingIntercept) params ["_pendingTarget", "_pendingZoneIndex", "_commitTime"];
+    if (time >= _commitTime) then {
+        private _valid = alive _pendingTarget
+            && {vehicle _pendingTarget isKindOf "Air"}
+            && {call FUNC(canSpawnMission)};
+        if (_valid) then {
+            [QGVAR(spawnIntercept), [_pendingTarget, _pendingZoneIndex]] call CBA_fnc_localEvent;
+            TRACE_2("Intercept committed after scramble",_pendingTarget,_pendingZoneIndex);
+        } else {
+            TRACE_1("Intercept pending dropped at commit (target lost or max missions)",_pendingTarget);
+        };
+        GVAR(pendingIntercept) = [];
+    };
+};
+
+// Phase 2: detect new trigger (only if no pending and cooldown expired)
+if (
+    GVAR(interceptEnabled)
+    && {GVAR(pendingIntercept) isEqualTo []}
+    && {time >= GVAR(nextInterceptTime)}
+    && {_airPlayers isNotEqualTo []}
+) then {
     private _validTargets = [];
 
     {
@@ -83,8 +107,10 @@ if (GVAR(interceptEnabled) && {time >= GVAR(nextInterceptTime)} && {_airPlayers 
     if (_validTargets isNotEqualTo [] && {call FUNC(canSpawnMission)}) then {
         private _selected = selectRandom _validTargets;
         _selected params ["_target", "_zoneIndex"];
-        [QGVAR(spawnIntercept), [_target, _zoneIndex]] call CBA_fnc_localEvent;
+        private _scrambleDelay = INTERCEPT_SCRAMBLE_DELAY * (0.75 + random 0.5);
+        GVAR(pendingIntercept) = [_target, _zoneIndex, time + _scrambleDelay];
         GVAR(nextInterceptTime) = time + GVAR(interceptCooldownMin) + random (GVAR(interceptCooldownMax) - GVAR(interceptCooldownMin));
+        TRACE_3("Intercept scramble triggered",_target,_zoneIndex,_scrambleDelay);
     };
 };
 

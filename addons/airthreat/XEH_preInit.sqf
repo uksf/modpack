@@ -42,6 +42,8 @@ GVAR(controllerInitialised) = false;
 
 // Intercept state
 GVAR(nextInterceptTime) = 0;
+// Pending intercept — [_target, _zoneIndex, _commitTime] or [] if none
+GVAR(pendingIntercept) = [];
 
 // Debug provider static data (used by draw closures — must be GVAR, not private, due to SQF dynamic scoping)
 GVAR(debugColourMap) = createHashMapFromArray [
