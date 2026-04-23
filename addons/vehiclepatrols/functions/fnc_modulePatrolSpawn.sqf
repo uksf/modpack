@@ -49,20 +49,18 @@ if ((_conditionResult isEqualType true) isEqualTo false) then {
 };
 
 _logic setVariable [QGVAR(initialised), true, true];
-_logic setVariable [QGVAR(nextSpawnTime), CBA_missionTime + _startDelay];
 
 [{
     params ["_args", "_idPFH"];
-    _args params ["_logic", "_unitClasses", "_vehicleClasses", "_spawnRate", "_spawnOffset", "_condition", "_turnAround", "_fillPercentage", "_waypointBehaviour", "_waypointSpeed", "_vehiclesPerWave", "_waveSpawnDelay", "_side"];
+    _args params ["_logic", "_unitClasses", "_vehicleClasses", "_spawnRate", "_spawnOffset", "_condition", "_turnAround", "_fillPercentage", "_waypointBehaviour", "_waypointSpeed", "_vehiclesPerWave", "_waveSpawnDelay", "_side", "_nextSpawnTime"];
 
     if (alive _logic isEqualTo false) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
     };
 
-    private _nextSpawnTime = _logic getVariable [QGVAR(nextSpawnTime), -1];
     if (_nextSpawnTime < 0 || {CBA_missionTime < _nextSpawnTime}) exitWith {};
 
-    _logic setVariable [QGVAR(nextSpawnTime), CBA_missionTime + _spawnRate + random _spawnOffset];
+    _args set [13, CBA_missionTime + _spawnRate + random _spawnOffset];
 
     if (([_logic] call _condition) isEqualTo false) exitWith {};
 
@@ -85,4 +83,4 @@ _logic setVariable [QGVAR(nextSpawnTime), CBA_missionTime + _startDelay];
             [QGVAR(spawnPatrol), [_spawnPosition, _destinationPosition, _unitClasses, _vehicleClasses, _side, _fillPercentage, _waypointBehaviour, _waypointSpeed, _turnAround]] call EFUNC(common,headlessEvent);
         }, [_spawnPosition, _destinationModules, _unitClasses, _vehicleClasses, _side, _fillPercentage, _waypointBehaviour, _waypointSpeed, _turnAround], _waveIndex * _waveSpawnDelay] call CBA_fnc_waitAndExecute;
     };
-}, 1, [_logic, _unitClasses, _vehicleClasses, _spawnRate, _spawnOffset, _condition, _turnAround, _fillPercentage, _waypointBehaviour, _waypointSpeed, _vehiclesPerWave, _waveSpawnDelay, _side]] call CBA_fnc_addPerFrameHandler;
+}, 1, [_logic, _unitClasses, _vehicleClasses, _spawnRate, _spawnOffset, _condition, _turnAround, _fillPercentage, _waypointBehaviour, _waypointSpeed, _vehiclesPerWave, _waveSpawnDelay, _side, CBA_missionTime + _startDelay]] call CBA_fnc_addPerFrameHandler;
