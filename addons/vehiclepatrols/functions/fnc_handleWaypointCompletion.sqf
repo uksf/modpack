@@ -34,17 +34,15 @@ params [
     ["_waypointSpeed", "NORMAL", [""]]
 ];
 
-if !(isServer) exitWith {};
 if (isNull _vehicle) exitWith {};
 if (isNull _crewGroup) exitWith {
-    [_vehicle, _crewGroup, grpNull] call FUNC(deletePatrol);
+    [_vehicle] call FUNC(deletePatrol);
 };
+if !(local _crewGroup) exitWith {};
 if (_targetPosition isEqualTo []) exitWith {};
 
-private _deleteDistance = 50;
-
-if ((_vehicle distance2D _targetPosition) <= _deleteDistance) exitWith {
-    [_vehicle, _crewGroup, grpNull] call FUNC(deletePatrol);
+if ((_vehicle distance2D _targetPosition) <= DELETE_DISTANCE) exitWith {
+    [_vehicle] call FUNC(deletePatrol);
 };
 
 if !(_addRTBWhenMissed) exitWith {};
@@ -59,8 +57,8 @@ while {waypoints _crewGroup isNotEqualTo []} do {
     deleteWaypoint [_crewGroup, 0];
 };
 
-private _spawnWaypoint = [_crewGroup, ASLToAGL _spawnPosition, 0, "MOVE", _waypointBehaviour, "YELLOW", _waypointSpeed, "COLUMN", "", [0, 0, 0], 50] call CBA_fnc_addWaypoint;
+private _spawnWaypoint = [_crewGroup, ASLToAGL _spawnPosition, 0, "MOVE", _waypointBehaviour, "YELLOW", _waypointSpeed, "COLUMN", "", [0, 0, 0], DELETE_DISTANCE] call CBA_fnc_addWaypoint;
 _spawnWaypoint setWaypointStatements [
     "true",
-    format ["[vehicle this, group this, %1, %1, false, '%2', '%3'] call %4;", _spawnPosition, _waypointBehaviour, _waypointSpeed, QFUNC(handleWaypointCompletion)]
+    format ["if !(local group this) exitWith {}; [vehicle this, group this, %1, %1, false, '%2', '%3'] call %4;", _spawnPosition, _waypointBehaviour, _waypointSpeed, QFUNC(handleWaypointCompletion)]
 ];

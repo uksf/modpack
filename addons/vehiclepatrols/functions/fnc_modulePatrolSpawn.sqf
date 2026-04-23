@@ -41,6 +41,11 @@ if (_vehicleClasses isEqualTo []) exitWith {
     WARNING("Vehicle patrol spawn module has no vehicle classes configured");
 };
 
+private _destinationModules = synchronizedObjects _logic select {_x isKindOf QGVAR(modulePatrolDestination)};
+if (_destinationModules isEqualTo []) exitWith {
+    WARNING("Vehicle patrol spawn module has no synced destination modules");
+};
+
 private _condition = compile _conditionString;
 private _conditionResult = [_logic] call _condition;
 if !(_conditionResult isEqualType true) then {
@@ -52,22 +57,20 @@ _logic setVariable [QGVAR(initialised), true, true];
 
 [{
     params ["_args", "_idPFH"];
-    _args params ["_logic", "_unitClasses", "_vehicleClasses", "_spawnRate", "_spawnOffset", "_condition", "_turnAround", "_fillPercentage", "_waypointBehaviour", "_waypointSpeed", "_vehiclesPerWave", "_waveSpawnDelay", "_side", "_nextSpawnTime"];
+    _args params ["_logic", "_unitClasses", "_vehicleClasses", "_spawnRate", "_spawnOffset", "_condition", "_turnAround", "_fillPercentage", "_waypointBehaviour", "_waypointSpeed", "_vehiclesPerWave", "_waveSpawnDelay", "_side", "_nextSpawnTime", "_destinationModules"];
 
     if !(alive _logic) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
     };
 
-    if (_nextSpawnTime < 0 || {CBA_missionTime < _nextSpawnTime}) exitWith {};
+    if (CBA_missionTime < _nextSpawnTime) exitWith {};
 
     _args set [13, CBA_missionTime + _spawnRate + random _spawnOffset];
 
-    if !(([_logic] call _condition)) exitWith {};
+    if !([_logic] call _condition) exitWith {};
 
-    private _destinationModules = synchronizedObjects _logic select {_x isKindOf QGVAR(modulePatrolDestination)};
-    if (_destinationModules isEqualTo []) exitWith {
-        WARNING("Vehicle patrol spawn module has no synced destination modules");
-    };
+    _destinationModules = _destinationModules select {!isNull _x};
+    if (_destinationModules isEqualTo []) exitWith {};
 
     private _spawnPosition = getPosASL _logic;
 
@@ -75,6 +78,7 @@ _logic setVariable [QGVAR(initialised), true, true];
         [{
             params ["_spawnPosition", "_destinationModules", "_unitClasses", "_vehicleClasses", "_side", "_fillPercentage", "_waypointBehaviour", "_waypointSpeed", "_turnAround"];
 
+            _destinationModules = _destinationModules select {!isNull _x};
             if (_destinationModules isEqualTo []) exitWith {};
 
             private _destinationModule = selectRandom _destinationModules;
@@ -83,4 +87,4 @@ _logic setVariable [QGVAR(initialised), true, true];
             [QGVAR(spawnPatrol), [_spawnPosition, _destinationPosition, _unitClasses, _vehicleClasses, _side, _fillPercentage, _waypointBehaviour, _waypointSpeed, _turnAround]] call EFUNC(common,headlessEvent);
         }, [_spawnPosition, _destinationModules, _unitClasses, _vehicleClasses, _side, _fillPercentage, _waypointBehaviour, _waypointSpeed, _turnAround], _waveIndex * _waveSpawnDelay] call CBA_fnc_waitAndExecute;
     };
-}, 1, [_logic, _unitClasses, _vehicleClasses, _spawnRate, _spawnOffset, _condition, _turnAround, _fillPercentage, _waypointBehaviour, _waypointSpeed, _vehiclesPerWave, _waveSpawnDelay, _side, CBA_missionTime + _startDelay]] call CBA_fnc_addPerFrameHandler;
+}, 1, [_logic, _unitClasses, _vehicleClasses, _spawnRate, _spawnOffset, _condition, _turnAround, _fillPercentage, _waypointBehaviour, _waypointSpeed, _vehiclesPerWave, _waveSpawnDelay, _side, CBA_missionTime + _startDelay, _destinationModules]] call CBA_fnc_addPerFrameHandler;

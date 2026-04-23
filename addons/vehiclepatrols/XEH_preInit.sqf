@@ -4,8 +4,6 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
-GVAR(activePatrols) = [];
-
 [QGVAR(spawnPatrol), {
     call FUNC(spawnPatrol);
 }] call CBA_fnc_addEventHandler;
