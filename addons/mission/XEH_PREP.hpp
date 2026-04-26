@@ -19,6 +19,7 @@ PREP(initDynamicPatrolArea);
 PREP(initPatrol);
 PREP(inRadioRange);
 PREP(moduleDynamicPatrolArea);
+PREP(moduleAmbientArtillery);
 PREP(moduleDynamicPatrolExcludeArea);
 PREP(moduleDynamicPatrolIncludeArea);
 PREP(moduleSpawn);
