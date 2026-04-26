@@ -55,7 +55,7 @@ _waypoint1 setWaypointCombatMode "BLUE";
 _waypoint1 setWaypointSpeed "FULL";
 _waypoint1 setWaypointStatements [
     "true",
-    format ["[vehicle this, (vehicle this) getVariable ['%1', [0,0,0]]] call %2;", QGVAR(strikeTarget), QFUNC(executeStrikeRun)]
+    format ["if !(isServer) exitWith {}; [vehicle this, (vehicle this) getVariable ['%1', [0,0,0]]] call %2;", QGVAR(strikeTarget), QFUNC(executeStrikeRun)]
 ];
 
 // Second pass — turnaround point perpendicular to approach vector
@@ -74,7 +74,7 @@ _waypoint3 setWaypointBehaviour "CARELESS";
 _waypoint3 setWaypointSpeed "FULL";
 _waypoint3 setWaypointStatements [
     "true",
-    format ["[vehicle this, (vehicle this) getVariable ['%1', [0,0,0]]] call %2;", QGVAR(strikeTarget), QFUNC(executeStrikeRun)]
+    format ["if !(isServer) exitWith {}; [vehicle this, (vehicle this) getVariable ['%1', [0,0,0]]] call %2;", QGVAR(strikeTarget), QFUNC(executeStrikeRun)]
 ];
 
 // RTB after second pass

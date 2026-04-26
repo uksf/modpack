@@ -60,7 +60,7 @@ private _fnc_serverGetter = {
 };
 
 private _fnc_draw3d = {
-    params ["_data", "_cameraPosition", "_maxDistance"];
+    params ["_data", "_cameraPosition", "_maxDistance", "_iconSpacing"];
     _data params ["_spawnPoints", "_stagingAreas", "_aggression", "_tierStatus", "_killerPlayers", "_responseGroups"];
 
     // Spawn points
@@ -85,7 +85,7 @@ private _fnc_draw3d = {
         if (!isNull _playerObject) then {
             private _position = getPosATL _playerObject;
             if (_cameraPosition distance2D _position < _maxDistance) then {
-                drawIcon3D ["", [1,0,0,1], ASLToAGL (ATLToASL _position), 0, 0, 0, format ["Aggro %1s", round _timeLeft], 1, 0.025, "TahomaB", "center", false, 0, DEBUG_ICON_SPACING];
+                drawIcon3D ["", [1,0,0,1], ASLToAGL (ATLToASL _position), 0, 0, 0, format ["Aggro %1s", round _timeLeft], 1, 0.025, "TahomaB", "center", false, 0, _iconSpacing];
             };
         };
     } forEach _killerPlayers;

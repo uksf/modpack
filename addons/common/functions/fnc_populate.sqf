@@ -48,7 +48,7 @@ if (isServer) then {
                             params ["_vehicle", "_turrets"];
                             {
                                 [_vehicle turretUnit [_x]] join grpNull;
-                                deleteVehicle (_vehicle turretUnit [_x]);
+                                _vehicle deleteVehicleCrew (_vehicle turretUnit [_x]);
                             } forEach _turrets;
                         }, [_vehicle, _turrets], 2] call cba_fnc_waitAndExecute;
                     };

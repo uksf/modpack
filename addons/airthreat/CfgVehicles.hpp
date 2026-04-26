@@ -24,71 +24,93 @@ class CfgVehicles {
         };
         class Attributes : AttributesBase {
             class ModuleDescription : ModuleDescription {};
-            class GVAR(capReconBaseTime) {
-                property = QGVAR(capReconBaseTime);
-                displayName = "CAP/Recon Base Interval";
-                tooltip = "Minimum time in seconds between CAP/recon mission spawns (300 - 3600, default: 1200)";
+            class GVAR(capReconMinTime) {
+                property = QGVAR(capReconMinTime);
+                displayName = "CAP/Recon Interval Min";
+                tooltip = "Minimum seconds between CAP/recon mission spawns (300 - 3600, default: 1200)";
                 control = "EditShort";
                 validate = "NUMBER";
                 min = 300;
                 max = 3600;
                 defaultValue = "1200";
-                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(capReconBaseTime),_value,true)]);
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(capReconMinTime),_value,true)]);
             };
-            class GVAR(capReconOffsetTime) {
-                property = QGVAR(capReconOffsetTime);
-                displayName = "CAP/Recon Offset Interval";
-                tooltip = "Random additional time in seconds added to CAP/recon interval (0 - 1800, default: 600)";
+            class GVAR(capReconMaxTime) {
+                property = QGVAR(capReconMaxTime);
+                displayName = "CAP/Recon Interval Max";
+                tooltip = "Maximum seconds between CAP/recon mission spawns — actual is random between min and max (300 - 5400, default: 1800)";
                 control = "EditShort";
                 validate = "NUMBER";
-                min = 0;
-                max = 1800;
-                defaultValue = "600";
-                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(capReconOffsetTime),_value,true)]);
+                min = 300;
+                max = 5400;
+                defaultValue = "1800";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(capReconMaxTime),_value,true)]);
             };
-            class GVAR(initialDelay) {
-                property = QGVAR(initialDelay);
-                displayName = "Initial Delay";
-                tooltip = "Time in seconds before the first CAP/recon mission spawns (0 - 7200, default: 1800)";
+            class GVAR(initialDelayMin) {
+                property = QGVAR(initialDelayMin);
+                displayName = "Initial Delay Min";
+                tooltip = "Minimum seconds before first CAP/recon mission (0 - 7200, default: 1800)";
                 control = "EditShort";
                 validate = "NUMBER";
                 min = 0;
                 max = 7200;
                 defaultValue = "1800";
-                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(initialDelay),_value,true)]);
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(initialDelayMin),_value,true)]);
             };
-            class GVAR(initialDelayOffset) {
-                property = QGVAR(initialDelayOffset);
-                displayName = "Initial Delay Offset";
-                tooltip = "Random additional time in seconds added to initial delay (0 - 3600, default: 900)";
+            class GVAR(initialDelayMax) {
+                property = QGVAR(initialDelayMax);
+                displayName = "Initial Delay Max";
+                tooltip = "Maximum seconds before first CAP/recon mission — actual is random between min and max (0 - 10800, default: 2700)";
                 control = "EditShort";
                 validate = "NUMBER";
                 min = 0;
-                max = 3600;
-                defaultValue = "900";
-                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(initialDelayOffset),_value,true)]);
+                max = 10800;
+                defaultValue = "2700";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(initialDelayMax),_value,true)]);
             };
-            class GVAR(interceptCooldown) {
-                property = QGVAR(interceptCooldown);
-                displayName = "Intercept Cooldown";
-                tooltip = "Minimum time in seconds between intercept spawns (60 - 3600, default: 600)";
+            class GVAR(interceptCooldownMin) {
+                property = QGVAR(interceptCooldownMin);
+                displayName = "Intercept Cooldown Min";
+                tooltip = "Minimum seconds between intercept spawns (60 - 3600, default: 600)";
                 control = "EditShort";
                 validate = "NUMBER";
                 min = 60;
                 max = 3600;
                 defaultValue = "600";
-                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(interceptCooldown),_value,true)]);
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(interceptCooldownMin),_value,true)]);
             };
-            class GVAR(interceptCooldownOffset) {
-                property = QGVAR(interceptCooldownOffset);
-                displayName = "Intercept Cooldown Offset";
-                tooltip = "Random additional time in seconds added to intercept cooldown (0 - 1800, default: 600)";
+            class GVAR(interceptCooldownMax) {
+                property = QGVAR(interceptCooldownMax);
+                displayName = "Intercept Cooldown Max";
+                tooltip = "Maximum seconds between intercept spawns — actual is random between min and max (60 - 5400, default: 1200)";
                 control = "EditShort";
                 validate = "NUMBER";
-                min = 0;
-                max = 1800;
+                min = 60;
+                max = 5400;
+                defaultValue = "1200";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(interceptCooldownMax),_value,true)]);
+            };
+            class GVAR(casStrikeCooldownMin) {
+                property = QGVAR(casStrikeCooldownMin);
+                displayName = "CAS/Strike Cooldown Min";
+                tooltip = "Minimum seconds between CAS/strike spawns from the same zone (60 - 3600, default: 300)";
+                control = "EditShort";
+                validate = "NUMBER";
+                min = 60;
+                max = 3600;
+                defaultValue = "300";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(casStrikeCooldownMin),_value,true)]);
+            };
+            class GVAR(casStrikeCooldownMax) {
+                property = QGVAR(casStrikeCooldownMax);
+                displayName = "CAS/Strike Cooldown Max";
+                tooltip = "Maximum seconds between CAS/strike spawns from the same zone — actual is random between min and max (60 - 5400, default: 600)";
+                control = "EditShort";
+                validate = "NUMBER";
+                min = 60;
+                max = 5400;
                 defaultValue = "600";
-                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(interceptCooldownOffset),_value,true)]);
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(casStrikeCooldownMax),_value,true)]);
             };
             class GVAR(maxConcurrentMissions) {
                 property = QGVAR(maxConcurrentMissions);

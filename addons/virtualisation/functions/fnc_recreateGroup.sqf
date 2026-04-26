@@ -4,7 +4,9 @@
         Tim Beswick
 
     Description:
-        Recreates a group
+        Recreates a virtualised group. Applies a rebase delta to all stored
+        entity positions so the recreated group spawns at the sim-advanced
+        position rather than the original snapshot position.
 
     Parameters:
         0: Group data <ARRAY>
@@ -17,9 +19,10 @@
         [_groupData, _exclude] call uksf_virtualisation_fnc_recreateGroup
 */
 params ["_groupData", ["_exclude", false]];
-_groupData params ["_side", "_vehicleDetails", "_unitDetails", "_waypoints", "_combatMode", "_formationDirection"];
+_groupData params ["_side", "_vehicleDetails", "_unitDetails", "_waypoints", "_combatMode", "_formationDirection", ["_rebaseDelta", [0,0,0]]];
 
 private _group = createGroup _side;
+_group deleteGroupWhenEmpty true;
 if (_exclude) then {
     [QGVAR(exclude), _group] call CBA_fnc_localEvent;
 };
@@ -33,14 +36,13 @@ private _setGroupParams = {
     [_group, _waypoints] call FUNC(addWaypoints);
 };
 
-private _recreateInfantryArgs = [_group, _unitDetails, _setGroupParams, _setGroupArgs];
+private _recreateInfantryArgs = [_group, _unitDetails, _rebaseDelta, _setGroupParams, _setGroupArgs];
 private _recreateInfantry = {
     call FUNC(recreateInfantry);
 };
 
-// Start recreating asynchronously. If no vehicles, go straight to units
 if (_vehicleDetails isNotEqualTo []) then {
-    [_group, _vehicleDetails, _recreateInfantry, _recreateInfantryArgs] call FUNC(recreateVehicles);
+    [_group, _vehicleDetails, _rebaseDelta, _recreateInfantry, _recreateInfantryArgs] call FUNC(recreateVehicles);
 } else {
     _recreateInfantryArgs call _recreateInfantry;
 };

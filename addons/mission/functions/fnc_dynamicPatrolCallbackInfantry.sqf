@@ -44,7 +44,7 @@ TRACE_1("7) Dynamic spawn unit waypoint position",_waypointPosition);
 private _waypoint = [_group, _waypointPosition, 0, "MOVE", _combatMode, "YELLOW", _patrolSpeed, "STAG COLUMN", "", [0,0,0], 50] call CBA_fnc_addWaypoint;
 _waypoint setWaypointStatements [
     "(behaviour this) isNotEqualTo ""COMBAT""",
-    format ["[this, this, %1, 5, ""MOVE"", ""%2"", ""YELLOW"", ""%3"", ""STAG COLUMN"", """", [0, 0, 0]] call CBA_fnc_taskPatrol;", _spawnDistance, _combatMode, _patrolSpeed]
+    format ["if !(isServer) exitWith {}; [this, this, %1, 5, ""MOVE"", ""%2"", ""YELLOW"", ""%3"", ""STAG COLUMN"", """", [0, 0, 0]] call CBA_fnc_taskPatrol;", _spawnDistance, _combatMode, _patrolSpeed]
 ];
 
 INFO_1("Spawned infantry patrol at %1",_position);

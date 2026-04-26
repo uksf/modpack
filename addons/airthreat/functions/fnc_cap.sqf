@@ -28,7 +28,7 @@ if (GVAR(fighterClassnames) isEqualTo []) exitWith {
 };
 
 private _airspace = selectRandom GVAR(airspaces);
-_airspace params ["_airspacePosition"];
+_airspace params ["_airspacePosition", "_sizeA", "_sizeB", "_angle", "_isRectangle"];
 private _spawnPosition = selectRandom GVAR(spawnPoints);
 private _altitude = 800 + random 1200;
 
@@ -39,11 +39,43 @@ if (isNull _group) exitWith {};
 
 [_group, _vehicle, "cap"] call FUNC(registerMission);
 
-// Patrol waypoint at airspace
-private _patrolWaypoint = _group addWaypoint [_airspacePosition, 500];
-_patrolWaypoint setWaypointType "LOITER";
-_patrolWaypoint setWaypointLoiterRadius 1500;
-_patrolWaypoint setWaypointSpeed "NORMAL";
+// Patrol shape follows the airspace zone geometry
+if (_isRectangle) then {
+    // Four corners inset 10%, CYCLE back to first — traces the rectangle
+    private _insetA = _sizeA * 0.9;
+    private _insetB = _sizeB * 0.9;
+    private _corners = [
+        [_insetA, _insetB],
+        [_insetA, -_insetB],
+        [-_insetA, -_insetB],
+        [-_insetA, _insetB]
+    ] apply {
+        _x params ["_offsetX", "_offsetY"];
+        private _distance = sqrt (_offsetX ^ 2 + _offsetY ^ 2);
+        private _bearing = (_angle + (_offsetX atan2 _offsetY)) mod 360;
+        _airspacePosition getPos [_distance, _bearing]
+    };
+
+    {
+        private _waypoint = _group addWaypoint [_x, 200];
+        _waypoint setWaypointType "MOVE";
+        _waypoint setWaypointSpeed "NORMAL";
+    } forEach _corners;
+
+    private _cycleWaypoint = _group addWaypoint [_corners select 0, 200];
+    _cycleWaypoint setWaypointType "CYCLE";
+} else {
+    // Circle: 90% of radius. Ellipse: mean of the two axes × 0.9.
+    private _radius = if (_sizeA == _sizeB) then {
+        _sizeA * 0.9
+    } else {
+        ((_sizeA + _sizeB) / 2) * 0.9
+    };
+    private _patrolWaypoint = _group addWaypoint [_airspacePosition, 500];
+    _patrolWaypoint setWaypointType "LOITER";
+    _patrolWaypoint setWaypointLoiterRadius _radius;
+    _patrolWaypoint setWaypointSpeed "NORMAL";
+};
 
 private _expiryTime = time + GVAR(capTimeout);
 
@@ -72,7 +104,7 @@ private _expiryTime = time + GVAR(capTimeout);
 
     {
         private _playerVehicle = vehicle _x;
-        if (_playerVehicle isKindOf "Air" && {!isNull objectParent _x} && {alive _x}) then {
+        if (alive _x && {_playerVehicle isKindOf "Air"}) then {
             private _distance = _vehiclePosition distance (getPosASL _playerVehicle);
             if (_distance < _nearestDistance) then {
                 _nearestDistance = _distance;

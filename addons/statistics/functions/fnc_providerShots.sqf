@@ -51,14 +51,18 @@ private _handleFired = {
     private _startTime = diag_tickTime;
 
     GVAR(shotCounter) = GVAR(shotCounter) + 1;
-    private _shotId = format ["%1_%2", getPlayerUID _unit, GVAR(shotCounter)];
+    private _shooterUid = getPlayerUID _unit;
+    private _shotId = format ["%1_%2", _shooterUid, GVAR(shotCounter)];
     private _firedPosition = getPosASL _unit;
+    private _category = [_ammo] call FUNC(getAmmoCategory);
 
     if (!isNull _projectile) then {
         _projectile setVariable [QGVAR(shotId), _shotId];
         _projectile setVariable [QGVAR(weapon), _weapon];
         _projectile setVariable [QGVAR(firedPosition), _firedPosition];
         _projectile setVariable [QGVAR(ammo), _ammo];
+        _projectile setVariable [QGVAR(category), _category];
+        _projectile setVariable [QGVAR(shooterUid), _shooterUid];
 
         // HitPart (Projectile) — fires on this client for direct hits on any surface
         _projectile addEventHandler ["HitPart", {
@@ -76,6 +80,8 @@ private _handleFired = {
             private _projectileShotId = _projectile getVariable [QGVAR(shotId), ""];
             private _projectileWeapon = _projectile getVariable [QGVAR(weapon), ""];
             private _projectileAmmo = _projectile getVariable [QGVAR(ammo), ""];
+            private _projectileCategory = _projectile getVariable [QGVAR(category), "other"];
+            private _projectileShooterUid = _projectile getVariable [QGVAR(shooterUid), ""];
             private _projectileFiredPosition = _projectile getVariable [QGVAR(firedPosition), []];
 
             private _bodyPart = "";
@@ -90,11 +96,17 @@ private _handleFired = {
                 _distance3D = round (_projectileFiredPosition vectorDistance _position);
             };
 
+            // Stash weapon+ammo+shooter on the hit entity so fnc_providerKills can match
+            // the killing hit to the killer via shooter UID (no recency filter needed —
+            // match is by identity). Public setVariable broadcasts to the server.
+            _hitEntity setVariable [QGVAR(lastHit), [_projectileWeapon, _projectileAmmo, _projectileShooterUid], true];
+
             [createHashMapFromArray [
                 ["type", "hit"],
                 ["shotId", _projectileShotId],
                 ["weapon", _projectileWeapon],
                 ["ammo", _projectileAmmo],
+                ["category", _projectileCategory],
                 ["targetClassname", typeOf _hitEntity],
                 ["targetType", _targetType],
                 ["bodyPart", _bodyPart],
@@ -121,6 +133,8 @@ private _handleFired = {
             private _projectileShotId = _projectile getVariable [QGVAR(shotId), ""];
             private _projectileWeapon = _projectile getVariable [QGVAR(weapon), ""];
             private _projectileAmmo = _projectile getVariable [QGVAR(ammo), ""];
+            private _projectileCategory = _projectile getVariable [QGVAR(category), "other"];
+            private _projectileShooterUid = _projectile getVariable [QGVAR(shooterUid), ""];
             private _projectileFiredPosition = _projectile getVariable [QGVAR(firedPosition), []];
 
             private _impactPosition = if (count _hitSelections > 0) then {_hitSelections#0#0} else {getPosASL _projectile};
@@ -131,11 +145,14 @@ private _handleFired = {
                 _distance3D = round (_projectileFiredPosition vectorDistance _impactPosition);
             };
 
+            _hitEntity setVariable [QGVAR(lastHit), [_projectileWeapon, _projectileAmmo, _projectileShooterUid], true];
+
             [createHashMapFromArray [
                 ["type", "hit"],
                 ["shotId", _projectileShotId],
                 ["weapon", _projectileWeapon],
                 ["ammo", _projectileAmmo],
+                ["category", _projectileCategory],
                 ["targetClassname", typeOf _hitEntity],
                 ["targetType", _targetType],
                 ["bodyPart", ""],
@@ -152,6 +169,7 @@ private _handleFired = {
         ["shotId", _shotId],
         ["weapon", _weapon],
         ["ammo", _ammo],
+        ["category", _category],
         ["magazine", _magazine],
         ["fireMode", _fireMode],
         ["firedPosition", _firedPosition]

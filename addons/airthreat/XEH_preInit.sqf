@@ -11,12 +11,14 @@ GVAR(interceptEnabled) = true;
 GVAR(casStrikeEnabled) = true;
 
 // Configuration — populated by controller module
-GVAR(capReconBaseTime) = 1200;
-GVAR(capReconOffsetTime) = 600;
-GVAR(initialDelay) = 1800;
-GVAR(initialDelayOffset) = 900;
-GVAR(interceptCooldown) = 600;
-GVAR(interceptCooldownOffset) = 600;
+GVAR(capReconMinTime) = 1200;
+GVAR(capReconMaxTime) = 1800;
+GVAR(initialDelayMin) = 1800;
+GVAR(initialDelayMax) = 2700;
+GVAR(interceptCooldownMin) = 600;
+GVAR(interceptCooldownMax) = 1200;
+GVAR(casStrikeCooldownMin) = 300;
+GVAR(casStrikeCooldownMax) = 600;
 GVAR(maxConcurrentMissions) = 3;
 GVAR(fighterClassnames) = [];
 GVAR(helicopterClassnames) = [];
@@ -40,6 +42,8 @@ GVAR(controllerInitialised) = false;
 
 // Intercept state
 GVAR(nextInterceptTime) = 0;
+// Pending intercept — [_target, _zoneIndex, _commitTime] or [] if none
+GVAR(pendingIntercept) = [];
 
 // Debug provider static data (used by draw closures — must be GVAR, not private, due to SQF dynamic scoping)
 GVAR(debugColourMap) = createHashMapFromArray [
@@ -86,7 +90,6 @@ GVAR(debugFormatTime) = {
 [QGVAR(spawnCas), { _this call FUNC(cas) }] call CBA_fnc_addEventHandler;
 [QGVAR(spawnStrike), { _this call FUNC(strike) }] call CBA_fnc_addEventHandler;
 [QGVAR(spawnIntercept), { _this call FUNC(intercept) }] call CBA_fnc_addEventHandler;
-[QGVAR(spawnCasOrStrike), { _this call FUNC(selectCasOrStrike) }] call CBA_fnc_addEventHandler;
 [QGVAR(reconFollowUp), { _this call FUNC(reconFollowUp) }] call CBA_fnc_addEventHandler;
 
 ADDON = true;

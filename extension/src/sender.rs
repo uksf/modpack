@@ -78,8 +78,14 @@ fn extract_event_data(json: &str, event_type: &str) -> Option<String> {
         return None;
     }
 
-    // Find "data": or "data" : and skip to the opening brace
-    let data_start = json.find(r#""data":"#).or_else(|| json.find(r#""data": "#))?;
+    // Bound the "data" key search to after the "type" key position to avoid
+    // matching the literal substring "data": inside a value preceding it
+    // (e.g. a map or mission name containing that text).
+    let type_pos = json.find(r#""type""#).unwrap_or(0);
+    let data_start = json[type_pos..]
+        .find(r#""data":"#)
+        .or_else(|| json[type_pos..].find(r#""data": "#))
+        .map(|offset| type_pos + offset)?;
     let after_key = &json[data_start..];
     let colon_offset = after_key.find(':')?;
     let after_colon = &after_key[colon_offset + 1..];

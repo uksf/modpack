@@ -32,14 +32,14 @@ if !(GVAR(controllerInitialised)) exitWith {};
 // Cache player lists once per tick
 private _players = ALL_PLAYERS;
 private _airPlayers = _players select {
-    alive _x && {!isNull objectParent _x} && {vehicle _x isKindOf "Air"}
+    alive _x && {vehicle _x isKindOf "Air"}
 };
 
 // --- CAP/Recon scheduling ---
 if (GVAR(capReconEnabled)) then {
     // Initialise on first run
     if (isNil QGVAR(nextCapReconTime)) then {
-        GVAR(nextCapReconTime) = time + GVAR(initialDelay) + random GVAR(initialDelayOffset);
+        GVAR(nextCapReconTime) = time + GVAR(initialDelayMin) + random (GVAR(initialDelayMax) - GVAR(initialDelayMin));
         TRACE_1("CAP/recon loop started — first mission at %1",GVAR(nextCapReconTime));
     };
 
@@ -51,7 +51,7 @@ if (GVAR(capReconEnabled)) then {
                 [QGVAR(spawnRecon), []] call CBA_fnc_localEvent;
             };
             // Full interval before next mission
-            GVAR(nextCapReconTime) = time + GVAR(capReconBaseTime) + random GVAR(capReconOffsetTime);
+            GVAR(nextCapReconTime) = time + GVAR(capReconMinTime) + random (GVAR(capReconMaxTime) - GVAR(capReconMinTime));
         } else {
             // Can't spawn (at max missions) — retry after 60s, not every tick
             GVAR(nextCapReconTime) = time + 60;
@@ -59,8 +59,38 @@ if (GVAR(capReconEnabled)) then {
     };
 };
 
-// --- Intercept zone monitoring ---
-if (GVAR(interceptEnabled) && {time >= GVAR(nextInterceptTime)} && {_airPlayers isNotEqualTo []}) then {
+// --- Intercept zone monitoring (two-phase) ---
+
+// Phase 1: commit pending intercept if scramble elapsed
+// Killswitch flip aborts pending — admin disabling intercepts should stop everything.
+if (GVAR(pendingIntercept) isNotEqualTo []) then {
+    if !(GVAR(interceptEnabled)) then {
+        TRACE_1("Intercept pending dropped — killswitch off",GVAR(pendingIntercept));
+        GVAR(pendingIntercept) = [];
+    } else {
+        GVAR(pendingIntercept) params ["_pendingTarget", "_pendingZoneIndex", "_commitTime"];
+        if (time >= _commitTime) then {
+            private _valid = alive _pendingTarget
+                && {vehicle _pendingTarget isKindOf "Air"}
+                && {call FUNC(canSpawnMission)};
+            if (_valid) then {
+                [QGVAR(spawnIntercept), [_pendingTarget, _pendingZoneIndex]] call CBA_fnc_localEvent;
+                TRACE_2("Intercept committed after scramble",_pendingTarget,_pendingZoneIndex);
+            } else {
+                TRACE_1("Intercept pending dropped at commit (target lost or max missions)",_pendingTarget);
+            };
+            GVAR(pendingIntercept) = [];
+        };
+    };
+};
+
+// Phase 2: detect new trigger (only if no pending and cooldown expired)
+if (
+    GVAR(interceptEnabled)
+    && {GVAR(pendingIntercept) isEqualTo []}
+    && {time >= GVAR(nextInterceptTime)}
+    && {_airPlayers isNotEqualTo []}
+) then {
     private _validTargets = [];
 
     {
@@ -83,30 +113,69 @@ if (GVAR(interceptEnabled) && {time >= GVAR(nextInterceptTime)} && {_airPlayers 
     if (_validTargets isNotEqualTo [] && {call FUNC(canSpawnMission)}) then {
         private _selected = selectRandom _validTargets;
         _selected params ["_target", "_zoneIndex"];
-        [QGVAR(spawnIntercept), [_target, _zoneIndex]] call CBA_fnc_localEvent;
-        GVAR(nextInterceptTime) = time + GVAR(interceptCooldown) + random GVAR(interceptCooldownOffset);
+        private _scrambleDelay = INTERCEPT_SCRAMBLE_DELAY * (0.75 + random 0.5);
+        GVAR(pendingIntercept) = [_target, _zoneIndex, time + _scrambleDelay];
+        GVAR(nextInterceptTime) = time + GVAR(interceptCooldownMin) + random (GVAR(interceptCooldownMax) - GVAR(interceptCooldownMin));
+        TRACE_3("Intercept scramble triggered",_target,_zoneIndex,_scrambleDelay);
     };
 };
 
-// --- CAS/Strike zone monitoring ---
-if (GVAR(casStrikeEnabled) && {call FUNC(canSpawnMission)}) then {
-    {
-        _x params ["_zoneArea", "_casProbability", "_lastTriggered"];
+// --- CAS/Strike zone monitoring (two-phase per zone) ---
+{
+    _x params ["_zoneArea", "_casProbability", "_nextTriggerTime", "_pendingType", "_pendingCommitTime"];
 
-        if (time - _lastTriggered < 300) then { continue };
+    // Killswitch flip aborts pending — admin disabling CAS/strike should stop everything.
+    if (!GVAR(casStrikeEnabled) && {_pendingType isNotEqualTo ""}) then {
+        TRACE_2("CAS/strike pending dropped — killswitch off",_pendingType,_forEachIndex);
+        _x set [3, ""];
+        _x set [4, 0];
+        continue;
+    };
 
-        private _groundPlayersInZone = _players select {
-            alive _x
-            && {(getPosATL _x) inArea _zoneArea}
-            && {isNull objectParent _x || {!(vehicle _x isKindOf "Air")}}
+    // Phase 1: commit pending spawn if scramble elapsed
+    if (_pendingType isNotEqualTo "") then {
+        if (time >= _pendingCommitTime) then {
+            if (call FUNC(canSpawnMission)) then {
+                private _eventName = if (_pendingType isEqualTo "cas") then {
+                    QGVAR(spawnCas)
+                } else {
+                    QGVAR(spawnStrike)
+                };
+                [_eventName, []] call CBA_fnc_localEvent;
+                TRACE_2("CAS/strike committed after scramble",_pendingType,_forEachIndex);
+            } else {
+                TRACE_1("CAS/strike pending dropped at commit (max missions)",_pendingType);
+            };
+            _x set [3, ""];
+            _x set [4, 0];
         };
+        continue;
+    };
 
-        if (_groundPlayersInZone isEqualTo []) then { continue };
+    // Phase 2: detect new trigger (only if no pending, enabled, cooldown expired, can spawn)
+    if (!GVAR(casStrikeEnabled)) then { continue };
+    if (time < _nextTriggerTime) then { continue };
+    if !(call FUNC(canSpawnMission)) then { continue };
 
-        [QGVAR(spawnCasOrStrike), [_casProbability]] call CBA_fnc_localEvent;
-        _x set [2, time];
-    } forEach GVAR(casStrikeZones);
-};
+    private _groundPlayersInZone = _players select {
+        alive _x
+        && {(getPosATL _x) inArea _zoneArea}
+        && {!(vehicle _x isKindOf "Air")}
+    };
+
+    if (_groundPlayersInZone isEqualTo []) then { continue };
+
+    // Decide type + scramble delay at trigger
+    private _isCas = random 100 < _casProbability;
+    private _type = if (_isCas) then { "cas" } else { "strike" };
+    private _scrambleBase = if (_isCas) then { CAS_SCRAMBLE_DELAY } else { STRIKE_SCRAMBLE_DELAY };
+    private _scrambleDelay = _scrambleBase * (0.75 + random 0.5);
+
+    _x set [3, _type];
+    _x set [4, time + _scrambleDelay];
+    _x set [2, time + GVAR(casStrikeCooldownMin) + random (GVAR(casStrikeCooldownMax) - GVAR(casStrikeCooldownMin))];
+    TRACE_3("CAS/strike scramble triggered",_type,_forEachIndex,_scrambleDelay);
+} forEach GVAR(casStrikeZones);
 
 // --- Stale mission cleanup (safety net) ---
 // Threshold: longest configured timeout + 10 minute buffer

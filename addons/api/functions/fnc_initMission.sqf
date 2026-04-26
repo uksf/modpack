@@ -68,24 +68,21 @@ addMissionEventHandler ["MPEnded", {
     ["mission", missionName]
 ]] call FUNC(sendEvent);
 
-GVAR(performancePerFrameHandler) = -1;
+GVAR(statusPerFrameHandler) = [{
+    call FUNC(sendServerStatus);
+}, 15, []] call CBA_fnc_addPerFrameHandler;
 
-// Periodic server status push (every 15 seconds), only if extension started
-if (GVAR(processId) != -1) then {
-    GVAR(statusPerFrameHandler) = [{
-        call FUNC(sendServerStatus);
-    }, 15, []] call CBA_fnc_addPerFrameHandler;
-
-    GVAR(performancePerFrameHandler) = [{
-        call FUNC(sendPerformance);
-    }, 5, []] call CBA_fnc_addPerFrameHandler;
-};
+GVAR(performancePerFrameHandler) = [{
+    call FUNC(sendPerformance);
+}, 5, []] call CBA_fnc_addPerFrameHandler;
 
 // Player presence tracking — debounced to prevent spam from rapid reconnects
 GVAR(lastPlayerEvent) = createHashMap;
 
 addMissionEventHandler ["PlayerConnected", {
     params ["_id", "_uid", "_name", "_jip", "_owner", "_idstr"];
+    if (_name isEqualTo "__SERVER__" || {_uid isEqualTo ""} || {(_uid select [0, 2]) isEqualTo "HC"}) exitWith {};
+
     private _key = format ["connected_%1", _uid];
     private _lastTime = GVAR(lastPlayerEvent) getOrDefault [_key, -10];
     if (diag_tickTime - _lastTime < 5) exitWith {};
@@ -100,6 +97,8 @@ addMissionEventHandler ["PlayerConnected", {
 
 addMissionEventHandler ["PlayerDisconnected", {
     params ["_id", "_uid", "_name", "_jip", "_owner", "_idstr"];
+    if (_name isEqualTo "__SERVER__" || {_uid isEqualTo ""} || {(_uid select [0, 2]) isEqualTo "HC"}) exitWith {};
+
     private _key = format ["disconnected_%1", _uid];
     private _lastTime = GVAR(lastPlayerEvent) getOrDefault [_key, -10];
     if (diag_tickTime - _lastTime < 5) exitWith {};

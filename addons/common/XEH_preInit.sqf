@@ -7,6 +7,7 @@ ADDON = false;
 GVAR(debugGridPositionMarkers) = [];
 GVAR(debugSpheres) = [];
 GVAR(debugSingletonSphere) = objNull;
+GVAR(debugAttachedSphere) = objNull;
 
 GVAR(addons) = ('true' configClasses (configFile >> "CfgPatches")) apply {configName _x};
 [] spawn {activateAddons GVAR(addons)};
@@ -23,11 +24,10 @@ GVAR(valueCache) = createHashMap;
 GVAR(edenLogicIdMap) = createHashMap;
 
 if (hasInterface) then {
-    GVAR(fpsHudMode) = 0;
-    uiNamespace setVariable [QGVAR(fpsHudControl), controlNull];
-    GVAR(fpsHudPFH) = -1;
+    GVAR(fpsHintActive) = false;
+    GVAR(fpsHintPFH) = -1;
 
-    [QGVAR(fpsHudData), {_this call FUNC(fpsHudUpdate)}] call CBA_fnc_addEventHandler;
+    [QGVAR(fpsHintData), {_this call FUNC(fpsHint)}] call CBA_fnc_addEventHandler;
 
     [QGVAR(hint), {call FUNC(hint)}] call CBA_fnc_addEventHandler;
     [QGVAR(textTiles), {_this spawn BIS_fnc_textTiles}] call CBA_fnc_addEventHandler;
@@ -42,7 +42,7 @@ if (isServer) then {
     GVAR(fpsStoreTimestamps) = createHashMap;
     [QGVAR(fpsReport), {_this call FUNC(fpsReport)}] call CBA_fnc_addEventHandler;
 
-    [QGVAR(fpsHudRequest), {
+    [QGVAR(fpsHintRequest), {
         params ["_player"];
         private _data = [];
         {
@@ -51,18 +51,12 @@ if (isServer) then {
             if (CBA_missionTime - _lastUpdate > 10) then { continue };
 
             private _entry = GVAR(fpsStore) get _identifier;
-            private _type = if (_identifier isEqualTo "server") then {
-                "server"
-            } else {
-                private _isPlayer = false;
-                {
-                    if (getPlayerUID _x isEqualTo _identifier) exitWith { _isPlayer = true };
-                } forEach ALL_PLAYERS;
-                if (_isPlayer) then { "player" } else { "hc" };
-            };
-            _data pushBack [_identifier, _entry#0, _type];
+            _entry params ["_fps", "", "_type"];
+            if (_type isNotEqualTo "server" && {_type isNotEqualTo "hc"}) then { continue };
+
+            _data pushBack [_identifier, _fps, _type];
         } forEach keys GVAR(fpsStore);
-        [QGVAR(fpsHudData), _data, _player] call CBA_fnc_targetEvent;
+        [QGVAR(fpsHintData), [_data], _player] call CBA_fnc_targetEvent;
     }] call CBA_fnc_addEventHandler;
 
     [QGVAR(addObjectsToCurators), {call FUNC(addObjectsToCurators)}] call CBA_fnc_addEventHandler;

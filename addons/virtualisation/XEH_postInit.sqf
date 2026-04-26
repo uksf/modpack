@@ -12,6 +12,8 @@ if (EGVAR(caching,enabled)) exitWith {
 
 INFO("Virtualisation is enabled.");
 
+call FUNC(registerDebugProviders);
+
 if (isServer) then {
     // Virtualisation
     [{
@@ -38,10 +40,11 @@ if (isServer) then {
     }, DELAY, []] call CBA_fnc_addPerFrameHandler;
 
     // Recreation
-    // TODO: think about performance for this
     [{
         // Killswitch
         if (GVAR(killswitched) || isGamePaused) exitWith {};
+
+        call FUNC(simulateGroups);
 
         // To avoid flicker, we'll recreate groups 200m closer, but virtualise 200m further away (400m buffer zone)
         private _bufferedDistance = GVAR(distance) - 200;
@@ -60,10 +63,18 @@ if (isServer) then {
         private _id = (GVAR(groupPositionMap) deleteAt _groupIndex)#0;
         TRACE_1("requesting recreate group",_id);
 
-        private _groupData = GVAR(groupDataMap) deleteAt _id;
-        [QGVAR(recreateGroup), [_groupData]] call EFUNC(common,headlessEvent);
+        private _simulatedIndex = GVAR(simulatedGroupIds) findIf {_x == _id};
+        if (_simulatedIndex >= 0) then { GVAR(simulatedGroupIds) deleteAt _simulatedIndex };
 
-        call FUNC(sendDataToClients);
+        private _entry = GVAR(groupDataMap) deleteAt _id;
+        _entry params ["_side", "_vehicles", "_infantry", "_waypoints", "_combatMode", "_formationDirection",
+                       "_simState", "", "", "", "_originalLeaderPos"];
+
+        private _simPosition = _simState#1;
+        private _rebaseDelta = [_simPosition#0 - _originalLeaderPos#0, _simPosition#1 - _originalLeaderPos#1, 0];
+
+        private _payload = [_side, _vehicles, _infantry, _waypoints, _combatMode, _formationDirection, _rebaseDelta];
+        [QGVAR(recreateGroup), [_payload]] call EFUNC(common,headlessEvent);
     }, DELAY, []] call CBA_fnc_addPerFrameHandler;
 };
 

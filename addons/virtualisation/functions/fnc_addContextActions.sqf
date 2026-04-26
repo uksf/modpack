@@ -4,7 +4,8 @@
         Tim Beswick
 
     Description:
-        Adds ZEN context actions
+        Adds ZEN context actions for virtualisation: exclude group from virt,
+        and devirtualise nearby groups in a chosen radius.
 
     Parameter(s):
         None
@@ -34,17 +35,6 @@ private _action = [QGVAR(menu), "Virtualisation", QPATHTOEF(zeus,ui\Icon_Module_
         _actions
     }] call zen_context_menu_fnc_createAction;
     _actions pushBack [_action, [], 90];
-
-    _action = [QGVAR(toggleShow), "Show Virtualised", "", {
-        GVAR(showVirtualised) = !GVAR(showVirtualised);
-
-        [QGVAR(toggleDataStreamForClient), [player, GVAR(showVirtualised)]] call CBA_fnc_serverEvent;
-    }, {true}, [], {}, {
-        params ["_action"];
-
-        _action set [1, ["Show Virtualised", "Hide Virtualised"] select GVAR(showVirtualised)];
-    }] call zen_context_menu_fnc_createAction;
-    _actions pushBack [_action, [], 80];
 
     _actions
 }] call zen_context_menu_fnc_createAction;
