@@ -67,5 +67,6 @@ fn init() -> Extension {
         .command("configExportOpen", commands::config_export_open)
         .command("configExportWrite", commands::config_export_write)
         .command("configExportClose", commands::config_export_close)
+        .command("configExportFinish", commands::config_export_finish)
         .finish()
 }

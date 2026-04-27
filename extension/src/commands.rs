@@ -39,3 +39,7 @@ pub fn config_export_write(line: String) -> String {
 pub fn config_export_close() -> String {
     config_export::close()
 }
+
+pub fn config_export_finish() -> String {
+    config_export::finish()
+}
