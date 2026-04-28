@@ -53,11 +53,7 @@ GVAR(samplerPFH) = [{
         private _typeOf = typeOf _playerVehicle;
         private _capacity = [
             format ["fuelTank_%1", _typeOf],
-            {
-                private _aceConfig = configFile >> "CfgVehicles" >> _typeOf >> "ace_refuel_fuelCapacity";
-                if (getNumber _aceConfig > 0) exitWith {_aceConfig};
-                configFile >> "CfgVehicles" >> _typeOf >> "fuelCapacity"
-            },
+            {configFile >> "CfgVehicles" >> _typeOf >> "ace_refuel_fuelCapacity"},
             0
         ] call EFUNC(common,readCacheValues);
         if (_capacity > 0) then {
@@ -65,7 +61,7 @@ GVAR(samplerPFH) = [{
             if (_playerVehicle isEqualTo GVAR(lastFuelVehicle) && {GVAR(lastFuelLevel) >= 0}) then {
                 private _fractionConsumed = GVAR(lastFuelLevel) - _currentFuel;
                 if (_fractionConsumed > 0) then {
-                    _fuelTick = round (_fractionConsumed * _capacity);
+                    _fuelTick = _fractionConsumed * _capacity;
                 };
             };
             GVAR(lastFuelLevel) = _currentFuel;

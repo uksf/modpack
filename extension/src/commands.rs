@@ -2,6 +2,7 @@ use arma_rs::Context;
 
 use crate::bridge;
 use crate::config_export;
+use crate::dev_run;
 use crate::input;
 
 pub fn start(context: Context) -> String {
@@ -42,4 +43,20 @@ pub fn config_export_close() -> String {
 
 pub fn config_export_finish() -> String {
     config_export::finish()
+}
+
+pub fn dev_run_open(run_id: String) -> String {
+    dev_run::open(run_id)
+}
+
+pub fn dev_run_chunk(run_id: String, chunk: String) -> String {
+    dev_run::chunk(run_id, chunk)
+}
+
+pub fn dev_run_log(run_id: String, line: String) -> String {
+    dev_run::log(run_id, line)
+}
+
+pub fn dev_run_finish(run_id: String) -> String {
+    dev_run::finish(run_id)
 }

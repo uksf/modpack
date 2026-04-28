@@ -45,7 +45,7 @@ private _ccAdjust = (0.9 - (_powerCoefficient * 0.25 * GVAR(firing_multiplier)))
 GVAR(firing_CC) ppEffectAdjust [1, 1, 0, [1, 1, 1, -0.04], [1, 1, 1, _ccAdjust], [0, 0, 0, 0]];
 GVAR(firing_CC) ppEffectCommit 0;
 
-private _blurAdjust1 = _powerCoefficient * (0.05 + (0.5 * GVAR(firing_multiplier))) + _randomness;
+private _blurAdjust1 = _powerCoefficient * (0.05 + (0.25 * GVAR(firing_multiplier))) + _randomness;
 private _blurAdjust2 = _powerCoefficient * (0.2 + (0.05 * GVAR(firing_multiplier))) + _randomness;
 GVAR(firing_RBlur) ppEffectAdjust [_blurAdjust1, _blurAdjust2, 0.1, 0.1];
 GVAR(firing_RBlur) ppEffectCommit 0;
