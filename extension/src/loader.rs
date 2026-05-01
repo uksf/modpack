@@ -11,7 +11,7 @@ const CHUNK_SIZE: usize = 65536;
 
 pub fn load(key: &str) {
     let key = key.to_string();
-    let url = format!("{}/persistence/{}", config::API_BASE_URL, key);
+    let url = format!("{}/persistence/{}", config::api_base_url(), key);
 
     thread::spawn(move || {
         log::info!("Fetching persistence data from {url}");

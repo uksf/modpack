@@ -8,6 +8,7 @@ class CUP_Mastiff_Base : Wheeled_APC_F {
         };
     };
     fuelCapacity = 25;    // 45
+    ace_refuel_fuelCapacity = 340; // Cougar 6x6 / Mastiff: ~340 L diesel
     ace_cargo_space = 8;  // 4
     ace_repair_spareWheels = 4;
     class complexGearbox {

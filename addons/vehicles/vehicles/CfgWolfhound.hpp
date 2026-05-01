@@ -8,6 +8,7 @@ class CUP_Wolfhound_Base : Wheeled_APC_F {
         };
     };
     fuelCapacity = 25;    // 45
+    ace_refuel_fuelCapacity = 400; // MAN HX 6x6 / Wolfhound: ~400 L diesel
     ace_cargo_space = 8;  // 4
     ace_repair_spareWheels = 4;
     class complexGearbox {

@@ -19,7 +19,7 @@ pub fn start() {
     }
 
     thread::spawn(move || {
-        let url = format!("{}/gameservers/events", config::API_BASE_URL);
+        let url = format!("{}/gameservers/events", config::api_base_url());
         let api_port = config::get_api_port();
         log::info!("Sender thread started, posting to {url} with apiPort={api_port}");
 

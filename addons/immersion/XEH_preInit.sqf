@@ -10,6 +10,8 @@ GVAR(suppression_currentUnit) = objNull;
 GVAR(suppression_suppressed) = false;
 GVAR(suppression_threshold) = 0; // Changing value
 GVAR(suppression_lastShotAt) = 0; // The time the player got shot at last time
+GVAR(shockwave_lastShakeAt) = -1;
+GVAR(suppression_lastImpactAt) = -1;
 
 if (hasInterface) then {
     ["AllVehicles", "Fired", {call FUNC(fired)}] call CBA_fnc_addClassEventHandler;

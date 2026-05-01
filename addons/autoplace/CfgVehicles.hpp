@@ -34,7 +34,6 @@ class CfgVehicles {
                 tooltip = "Class names of units that can spawn. Comma-separated list of class names in single quotes, no spaces.";
                 control = "Edit";
                 defaultValue = "[]";
-                compileString = 1;
                 expression = QUOTE(_this setVariable [ARR_3(QQGVAR(unitListString),_value,true)]);
             };
             class GVAR(side) {

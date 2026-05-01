@@ -11,6 +11,7 @@ class CUP_Ridgback_Base : Wheeled_APC_F {
         };
     };
     fuelCapacity = 25;    // 45
+    ace_refuel_fuelCapacity = 340; // Cougar 4x4 / Ridgback: ~340 L diesel
     ace_cargo_space = 6;  // 4
     ace_repair_spareWheels = 4;
     class complexGearbox {

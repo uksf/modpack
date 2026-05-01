@@ -21,7 +21,10 @@
         [configFile >> "CfgVehicles" >> "UK3CB_BAF_Box_WpsSpecial"] call uksf_common_fnc_configExport;
         [configFile, true] call uksf_common_fnc_configExport;
 */
-#define FLUSH_THRESHOLD 16384
+// 1 MB amortises callExtension overhead while keeping each SQF buffer concat O(buffer)
+// rather than O(180 MB). At 16 KB the per-flush extension crossings dominated; at 1 MB
+// they're ~64x fewer and the buffer copy stays cheap.
+#define FLUSH_THRESHOLD 1048576
 
 params [["_root", configNull, [configNull]], ["_includeInherited", false, [false]]];
 
@@ -33,7 +36,8 @@ if (isNull _root) exitWith {
 };
 
 private _gameVersion = productVersion#2;
-private _modpackVersion = getText (configFile >> "CfgPatches" >> "uksf_main" >> "version");
+// "version" is a number (5.23) from VERSION_CONFIG macro — getText returns ""; use "versionStr" for the full "5.23.8" string
+private _modpackVersion = getText (configFile >> "CfgPatches" >> "uksf_main" >> "versionStr");
 private _modpackVersionSafe = [_modpackVersion, ".", "-"] call CBA_fnc_replace;
 private _filename = format ["config_%1_uksf-%2.cpp", _gameVersion, _modpackVersionSafe];
 
@@ -46,37 +50,48 @@ if (_openResult find "error:" == 0) exitWith {
 };
 
 private _outputPath = _openResult;
-private _buffer = "";
+// Array buffer + joinString on flush keeps total work O(N). String concat in a tight loop
+// (_buffer = _buffer + _line) is O(buffer-size) per append; at MB-scale buffers that
+// dominates and tanks throughput. pushBack is amortised O(1), joinString is O(N) once.
+private _bufferLines = [];
+private _bufferSize = 0;
 private _lineCount = 0;
 
 private _flush = {
-    if (_buffer isEqualTo "") exitWith {};
-    private _result = ("uksf" callExtension ["configExportWrite", [_buffer]]) select 0;
+    if (_bufferLines isEqualTo []) exitWith {};
+    private _payload = _bufferLines joinString "";
+    private _result = ("uksf" callExtension ["configExportWrite", [_payload]]) select 0;
     if (_result find "error:" == 0) then {
         diag_log text format ["configExport: write failed - %1", _result];
     };
-    _buffer = "";
+    _bufferLines = [];
+    _bufferSize = 0;
 };
 
-private _indent = toString [9];
+// Cached indent strings keyed by depth — built lazily, indexed in O(1) per line.
+// _currentIndent is updated whenever _depth changes so the per-line hot path doesn't even
+// need an `_indents select _depth` lookup.
 private _newLine = toString [10];
+private _indents = [""];
+private _currentIndent = "";
 private _appendLine = {
-    params ["_depth", "_text"];
-    private _prefix = "";
-    for "_i" from 1 to _depth do { _prefix = _prefix + _indent };
-    _buffer = _buffer + _prefix + _text + _newLine;
+    // Inlined in the hot leaf-write path inside _traverse; this fallback handles class
+    // headers/footers and the cold inherited-properties branch.
+    _bufferLines pushBack (_currentIndent + _text + _newLine);
+    _bufferSize = _bufferSize + count _text;
     _lineCount = _lineCount + 1;
-    if (count _buffer >= FLUSH_THRESHOLD) then { call _flush };
+    if (_bufferSize >= FLUSH_THRESHOLD) then { call _flush };
 };
 
 private _escapeString = {
-    private _source = toArray _this;
-    if !(34 in _source) exitWith { str _this };
+    // Fast path: most config text values contain no embedded quotes, so a single string
+    // scan beats unconditionally calling toArray. Saves an allocation per text leaf.
+    if (_this find """" == -1) exitWith { str _this };
     private _result = [];
     {
         _result pushBack _x;
         if (_x == 34) then { _result pushBack 34 };
-    } forEach _source;
+    } forEach toArray _this;
     str toString _result
 };
 
@@ -111,44 +126,91 @@ private _formatArray = {
 };
 
 private _depth = 0;
+private _text = "";
+private _tab = toString [9];
+// _traverse handles ONLY class nodes. Leaf properties (text/number/array) are dispatched
+// inline in the iteration loop — eliminates a recursive function call per leaf (and the
+// 4-way isXxx dispatch chain on every entry). _appendLine is also inlined in the hot loop.
+// Profiling showed 99.6% of runtime was SQF interpreter overhead; the ~3.7M function calls
+// from the per-leaf `call _traverse` + `call _appendLine` dominated.
 private _traverse = {
     private _name = configName _this;
-
-    if (isText _this) exitWith {
-        [_depth, format ["%1 = %2;", _name, getText _this call _escapeString]] call _appendLine;
-    };
-    if (isNumber _this) exitWith {
-        [_depth, format ["%1 = %2;", _name, getNumber _this]] call _appendLine;
-    };
-    if (isArray _this) exitWith {
-        [_depth, format ["%1[] = %2;", _name, getArray _this call _formatArray]] call _appendLine;
-    };
-    if (isClass _this) exitWith {
-        private _isRoot = _name == "";
-        if (!_isRoot) then {
-            private _parent = configName inheritsFrom _this;
-            private _header = if (_includeInherited || _parent == "") then {
-                "class " + _name + " {"
-            } else {
-                "class " + _name + ": " + _parent + " {"
-            };
-            [_depth, _header] call _appendLine;
-            _depth = _depth + 1;
-        };
-
-        private _children = if (_includeInherited) then {
-            _this call _collectInheritedProperties
+    private _isRoot = _name == "";
+    if (!_isRoot) then {
+        private _parent = configName inheritsFrom _this;
+        _text = if (_includeInherited || _parent == "") then {
+            "class " + _name + " {"
         } else {
-            private _list = [];
-            for "_i" from 0 to count _this - 1 do { _list pushBack (_this select _i) };
-            _list
+            "class " + _name + ": " + _parent + " {"
         };
-        { _x call _traverse } forEach _children;
+        call _appendLine;
+        _depth = _depth + 1;
+        if (_depth >= count _indents) then {
+            _indents set [_depth, _currentIndent + _tab];
+        };
+        _currentIndent = _indents select _depth;
+    };
 
-        if (!_isRoot) then {
-            _depth = _depth - 1;
-            [_depth, "};"] call _appendLine;
+    if (_includeInherited) then {
+        // Cold path — kept readable, uses _appendLine function call.
+        {
+            private _entry = _x;
+            if (isClass _entry) then {
+                _entry call _traverse;
+            } else {
+                private _entryName = configName _entry;
+                if (isText _entry) then {
+                    _text = _entryName + " = " + (getText _entry call _escapeString) + ";";
+                    call _appendLine;
+                };
+                if (isNumber _entry) then {
+                    _text = _entryName + " = " + str (getNumber _entry) + ";";
+                    call _appendLine;
+                };
+                if (isArray _entry) then {
+                    _text = _entryName + "[] = " + (getArray _entry call _formatArray) + ";";
+                    call _appendLine;
+                };
+            };
+        } forEach (_this call _collectInheritedProperties);
+    } else {
+        // HOT PATH: leaf-write inlined to avoid both `call _traverse` and `call _appendLine`
+        // per property. ~3.7M iterations dominate total runtime.
+        for "_i" from 0 to count _this - 1 do {
+            private _entry = _this select _i;
+            if (isClass _entry) then {
+                _entry call _traverse;
+            } else {
+                private _entryName = configName _entry;
+                private _line = "";
+                // Order matters — most config properties are numbers (caliber, weight,
+                // damage, hit values etc), then strings (model paths, display names),
+                // then arrays. Front-loading the most common type cuts ~2 isXxx checks
+                // per leaf at scale.
+                if (isNumber _entry) then {
+                    _line = _entryName + " = " + str (getNumber _entry) + ";";
+                } else {
+                    if (isText _entry) then {
+                        _line = _entryName + " = " + (getText _entry call _escapeString) + ";";
+                    } else {
+                        if (isArray _entry) then {
+                            _line = _entryName + "[] = " + (getArray _entry call _formatArray) + ";";
+                        };
+                    };
+                };
+                _bufferLines pushBack (_currentIndent + _line + _newLine);
+                _bufferSize = _bufferSize + count _line;
+                _lineCount = _lineCount + 1;
+                if (_bufferSize >= FLUSH_THRESHOLD) then { call _flush };
+            };
         };
+    };
+
+    if (!_isRoot) then {
+        _depth = _depth - 1;
+        _currentIndent = _indents select _depth;
+        _text = "};";
+        call _appendLine;
     };
 };
 

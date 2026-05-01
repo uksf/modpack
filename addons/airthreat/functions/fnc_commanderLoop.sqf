@@ -192,3 +192,23 @@ private _staleMissions = GVAR(activeMissions) select {
     [QGVAR(missionComplete), [_group, _vehicle]] call CBA_fnc_localEvent;
     [_group, _vehicle] call FUNC(cleanupAircraft);
 } forEach _staleMissions;
+
+// --- Orphan aircraft cleanup ---
+// Aircraft whose mission ended via handleMissionEnd while the airframe was
+// still alive (pilot dead/ejected). Delete after the orphan timeout, or
+// immediately if the wreck has appeared / vehicle is gone.
+private _expiredOrphans = GVAR(orphanedAircraft) select {
+    _x params ["", "_vehicle"];
+    isNull _vehicle
+    || {!alive _vehicle}
+    || {(_vehicle getVariable [QGVAR(orphanedAt), time]) + GVAR(orphanTimeout) < time}
+};
+{
+    _x params ["_group", "_vehicle"];
+    if (!isNull _vehicle && {alive _vehicle}) then {
+        deleteVehicleCrew _vehicle;
+        deleteVehicle _vehicle;
+    };
+    if (!isNull _group) then { deleteGroup _group };
+} forEach _expiredOrphans;
+GVAR(orphanedAircraft) = GVAR(orphanedAircraft) - _expiredOrphans;

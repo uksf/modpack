@@ -87,6 +87,12 @@ pub fn close() -> String {
     "ok".to_string()
 }
 
+pub fn finish() -> String {
+    let _ = close();
+    std::thread::sleep(std::time::Duration::from_millis(250));
+    std::process::exit(0);
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
