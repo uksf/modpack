@@ -24,4 +24,8 @@ if (_type isNotEqualTo "server_status" && {_type isNotEqualTo "performance"}) th
 
 private _event = createHashMapFromArray [["type", _type], ["data", _data]];
 private _json = [_event] call CBA_fnc_encodeJSON;
-"uksf" callExtension ["event", [_json]];
+private _result = "uksf" callExtension ["event", [_json]];
+private _response = _result#0;
+if (_response != "queued") then {
+    WARNING_2("Extension did not queue event '%1': %2",_type,_response);
+};
