@@ -4,7 +4,7 @@
         Bridg
 
     Description:
-        Makes units fire at given position when condition is true
+        Gathers settings from module and calls fireAmbientArtillery event in preInit
 
     Parameters:
         0: logic <OBJECT>
@@ -16,7 +16,6 @@
 (_this select 1) params ["_logic"];
 
 if !(local _logic) exitWith {};
-if (_logic getVariable [QGVAR(initialised), false]) exitWith {};
 
 private _timeBetweenShots = parseNumber str (_logic getVariable [QGVAR(timeBetweenShots), 600]);
 private _timeBetweenShotsOffset = parseNumber str (_logic getVariable [QGVAR(timeBetweenShotsOffset), 30]);
@@ -52,24 +51,5 @@ if (_artilleryPieces isEqualTo []) exitWith {
 		}];
 	};
 
-	[{
-		params ["_args", "_idPFH"];
-		_args params ["_artilleryPiece", "_targetArea", "_numberOfShots", "_numberOfShotsOffset", "_condition"];
-
-		if (!local _artilleryPiece) exitWith {};
-		if (!alive _artilleryPiece) exitWith {
-			[_idPFH] call CBA_fnc_removePerFrameHandler;
-		};
-
-		if ((call _condition) isNotEqualTo true) exitWith {};
-
-		private _position = [_targetArea] call CBA_fnc_randPosArea;
-		if (_position isEqualTo []) exitWith {};
-
-		private _rounds = floor (_numberOfShots + random _numberOfShotsOffset) max 1;
-		private _magazine = currentMagazine _artilleryPiece;
-
-		_artilleryPiece doArtilleryFire [_position, _magazine, _rounds];
-		_artilleryPiece setVehicleAmmo 1;
-	}, _timeBetweenShots + random _timeBetweenShotsOffset, [_artilleryPiece, _targetArea, _numberOfShots, _numberOfShotsOffset, _condition]] call CBA_fnc_addPerFrameHandler;
+	[QGVAR(fireAmbientArtillery), [_artilleryPiece, _targetArea, _numberOfShots, _numberOfShotsOffset, _condition, _timeBetweenShots, _timeBetweenShotsOffset], _artilleryPiece] call CBA_fnc_targetEvent;
 } forEach _artilleryPieces;

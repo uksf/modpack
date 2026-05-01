@@ -10,6 +10,7 @@ PREP(dynamicPatrolCallbackInfantry);
 PREP(dynamicPatrolCallbackVehicle);
 PREP(dynamicPatrolGetPlayers);
 PREP(dynamicPatrolSpawn);
+PREP(fireAmbientArtillery);
 PREP(fireMission);
 PREP(getConfigGroups);
 PREP(getNearPlayers);
