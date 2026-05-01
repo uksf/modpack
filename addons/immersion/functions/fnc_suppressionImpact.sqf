@@ -20,9 +20,13 @@ params ["_hit", "_factor"];
 
 if !(alive GVAR(suppression_currentUnit)) exitWith {};
 
-private _powerCoefficient = linearConversion [1, 120, _hit, 0.5, 1.25, true];
+// Rate-limit rapid flyby impacts so MG bursts don't peg the screen black.
+if ((diag_tickTime - GVAR(suppression_lastImpactAt)) < 0.15) exitWith {};
+GVAR(suppression_lastImpactAt) = diag_tickTime;
+
+private _powerCoefficient = linearConversion [1, 120, _hit, 0.4, 1.0, true];
 private _randomness = (random (_powerCoefficient / 10)) - (_powerCoefficient / 10);
-_factor = _factor * GVAR(suppression_flybyIntensity);
+_factor = (_factor * GVAR(suppression_flybyIntensity)) min 1.5;
 
 private _blurAdjust = _powerCoefficient * (0.5 * _factor) + _randomness;
 GVAR(suppression_impactBlur) ppEffectAdjust [_blurAdjust, _blurAdjust, _blurAdjust, _blurAdjust];

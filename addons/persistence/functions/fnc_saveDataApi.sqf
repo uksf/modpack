@@ -6,7 +6,7 @@
     Description:
         Saves persistence data to the API via the extension.
         Builds a hashmap-based session with keyed objects and players,
-        encodes as JSON, and sends in chunks.
+        encodes as JSON, and sends as a single event.
         The C# API handles transformation to structured models for MongoDB.
 
     Parameter(s):
@@ -84,28 +84,11 @@ private _session = createHashMapFromArray [
     _session set [_id, _data];
 } forEach GVAR(serializers);
 
-// Encode and chunk
 private _json = [_session] call CBA_fnc_encodeJSON;
-private _jsonLength = count _json;
-INFO_1("API persistence save: %1 characters",_jsonLength);
+INFO_1("API persistence save: %1 characters",count _json);
 
-private _chunkSize = 4000;
-private _totalChunks = ceil (_jsonLength / _chunkSize);
-if (_totalChunks < 1) then { _totalChunks = 1 };
-private _saveId = format ["%1_%2", GVAR(key), call CBA_fnc_createUUID];
-
-for "_i" from 0 to (_totalChunks - 1) do {
-    private _start = _i * _chunkSize;
-    private _chunk = _json select [_start, _chunkSize];
-
-    ["persistence_save", createHashMapFromArray [
-        ["id",    _saveId],
-        ["key",   GVAR(key)],
-        ["sessionId", EGVAR(api,sessionId)],
-        ["index", _i],
-        ["total", _totalChunks],
-        ["data",  _chunk]
-    ]] call EFUNC(api,sendEvent);
-};
-
-LOG_1("API persistence save: sent %1 chunks",_totalChunks);
+["persistence_save", createHashMapFromArray [
+    ["key",       GVAR(key)],
+    ["sessionId", EGVAR(api,sessionId)],
+    ["data",      _json]
+]] call EFUNC(api,sendEvent);

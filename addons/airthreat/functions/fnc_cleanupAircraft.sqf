@@ -4,9 +4,12 @@
         Tim Beswick
 
     Description:
-        Cleans up a spawned air threat aircraft and its crew.
-        Only deletes if alive (RTB despawn or abandoned) — destroyed
-        aircraft are left to uksf_cleanup so wreckage persists.
+        Deletes a spawned air threat aircraft and its group, but only when
+        the aircraft is alive — destroyed airframes are left to uksf_cleanup
+        so wreckage persists naturally. Used by RTB waypoint completion and
+        the stale-mission safety net. Non-RTB exits go through
+        handleMissionEnd which routes alive-but-pilotless aircraft to the
+        orphan sweep instead.
 
     Parameters:
         0: Group <GROUP>
@@ -25,11 +28,4 @@ if (!isNull _vehicle && {alive _vehicle}) then {
     deleteVehicle _vehicle;
 };
 
-if (!isNull _group) then {
-    {
-        if (alive _x) then {
-            deleteVehicle _x;
-        };
-    } forEach (units _group);
-    deleteGroup _group;
-};
+if (!isNull _group) then { deleteGroup _group };

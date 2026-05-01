@@ -22,10 +22,6 @@ if (!isServer) exitWith {};
 if (isNull _logic) exitWith {};
 if (_area isEqualTo []) exitWith {};
 
-if (!EGVAR(virtualisation,enabled)) exitWith {
-    WARNING_1("Autoplace requires virtualisation to be enabled: %1",_logic);
-};
-
 private _unitListRaw = _logic getVariable [QGVAR(unitListString), []];
 private _unitList = [_unitListRaw] call EFUNC(common,convertToArray);
 _unitList = _unitList select {_x isEqualType "" && {_x isNotEqualTo ""}};

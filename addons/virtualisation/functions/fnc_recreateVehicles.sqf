@@ -4,28 +4,31 @@
         Bridg, Tim Beswick
 
     Description:
-        Recreates vehicles for a group
+        Recreates vehicles for a group. Applies a rebase delta to each stored
+        vehicle position so vehicles spawn at the sim-advanced location, with
+        ground-relative Z preserved.
 
     Parameters:
         0: Group <SCALAR>
         1: Vehicle details <ARRAY>
-        2: Completed callback <CODE>
-        3: Callback args <ANY>
+        2: Rebase delta <ARRAY> (PositionASL vector)
+        3: Completed callback <CODE>
+        4: Callback args <ANY>
 
     Return value:
         Nothing
 
     Example:
-        [_group, _vehicleDetails, _callback, _callbackArgs] call uksf_virtualisation_fnc_recreateVehicles
+        [_group, _vehicleDetails, _rebaseDelta, _callback, _callbackArgs] call uksf_virtualisation_fnc_recreateVehicles
 */
 #define SPAWN_DELAY 1
 #define TIMEOUT 60
 
-params ["_group", "_vehicleDetails", "_callback", "_callbackArgs"];
+params ["_group", "_vehicleDetails", "_rebaseDelta", "_callback", "_callbackArgs"];
 
 [{
     params ["_args", "_idPFH"];
-    _args params ["_time", "_group", "_vehicleDetails", ["_currentVehicleData", []], "_callback", "_callbackArgs"];
+    _args params ["_time", "_group", "_vehicleDetails", "_rebaseDelta", ["_currentVehicleData", []], "_callback", "_callbackArgs"];
 
     if (isNull _group) exitWith {
         TRACE_1("Group deleted whilst recreating vehicles",_group);
@@ -43,9 +46,14 @@ params ["_group", "_vehicleDetails", "_callback", "_callbackArgs"];
         _currentVehicleData = _vehicleDetails deleteAt 0;
         _currentVehicleData params ["_type", "_position", "_direction", "_engineState", "_fuel"];
 
+        private _shifted = _position vectorAdd _rebaseDelta;
+        private _groundZ = getTerrainHeightASL [_shifted#0, _shifted#1];
+        private _originalGroundZ = getTerrainHeightASL [_position#0, _position#1];
+        private _spawnPosition = [_shifted#0, _shifted#1, _groundZ + (_position#2 - _originalGroundZ)];
+
         private _vehicle = createVehicle [_type, [0,0,0], [], 0, "NONE"];
         _vehicle setDir _direction;
-        _vehicle setPosASL _position;
+        _vehicle setPosASL _spawnPosition;
         _vehicle setVectorUp (surfaceNormal (getPos _vehicle));
         _vehicle setFuel _fuel;
         _vehicle engineOn _engineState;
@@ -53,14 +61,14 @@ params ["_group", "_vehicleDetails", "_callback", "_callbackArgs"];
         TRACE_2("Recreate vehicle created vehicle",_group,_vehicle);
 
         _currentVehicleData set [0, _vehicle];
-        _args set [3, _currentVehicleData];
+        _args set [4, _currentVehicleData];
     };
 
     _currentVehicleData params ["_vehicle", "", "", "", "", "_crew"];
     if (_crew isEqualTo []) exitWith {
         TRACE_2("All units for vehicle recreated",_group,_vehicle);
 
-        _args set [3, []];
+        _args set [4, []];
     };
 
     TRACE_1("Current vehicle crew data",_crew);
@@ -96,10 +104,9 @@ params ["_group", "_vehicleDetails", "_callback", "_callbackArgs"];
         };
     };
 
-    // Fallback for units that haven't been moved inside the vehicle for whatever reason
     if (vehicle _unit != _vehicle) then {
         _unit setPos (getPos _vehicle);
     };
     TRACE_4("Recreate vehicle created crew",_group,_vehicle,_crewType,_role);
 
-}, SPAWN_DELAY, [time, _group, _vehicleDetails, [], _callback, _callbackArgs]] call CBA_fnc_addPerFrameHandler;
+}, SPAWN_DELAY, [time, _group, _vehicleDetails, _rebaseDelta, [], _callback, _callbackArgs]] call CBA_fnc_addPerFrameHandler;

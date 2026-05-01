@@ -95,7 +95,7 @@ private _fnc_serverGetter = {
 };
 
 _fnc_draw3d = {
-    params ["_data", "_cameraPosition", "_maxDistance"];
+    params ["_data", "_cameraPosition", "_maxDistance", "_iconSpacing"];
     _data params ["", "", "_playerList"];
 
     {
@@ -112,7 +112,7 @@ _fnc_draw3d = {
             _colour = [1,0,0,1];
             _size = 0.035;
         };
-        drawIcon3D ["", _colour, _position, 0, 0, 0, format ["%1 FPS", _fps], 1, _size, "TahomaB", "center", false, 0, DEBUG_ICON_SPACING * 3];
+        drawIcon3D ["", _colour, _position, 0, 0, 0, format ["%1 FPS", _fps], 1, _size, "TahomaB", "center", false, 0, _iconSpacing * 3];
     } forEach _playerList;
 };
 
@@ -163,9 +163,9 @@ private _fnc_unconsciousServerGetter = {
 };
 
 private _fnc_unconsciousDraw3d = {
-    params ["_data", "_cameraPosition", "_maxDistance"];
+    params ["_data", "_cameraPosition", "_maxDistance", "_iconSpacing"];
 
-    private _offset = DEBUG_ICON_SPACING * ([3, 4] select (GVAR(debugActiveToggles) getOrDefault [QGVAR(fps), false]));
+    private _offset = _iconSpacing * ([3, 4] select (GVAR(debugActiveToggles) getOrDefault [QGVAR(fps), false]));
     {
         _x params ["_playerNetId", "_unconsciousText"];
         private _playerObject = objectFromNetId _playerNetId;

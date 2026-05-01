@@ -5,6 +5,7 @@ PREP(cas);
 PREP(cleanupAircraft);
 PREP(commanderLoop);
 PREP(executeStrikeRun);
+PREP(handleMissionEnd);
 PREP(intercept);
 PREP(interceptPursue);
 PREP(moduleAirspace);

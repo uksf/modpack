@@ -26,6 +26,7 @@ if (!_hudVisible) exitWith {
 
 private _cameraPosition = positionCameraToWorld [0,0,0];
 private _maxDistance = if (GVAR(debugDistanceLimited)) then {5000} else {100000};
+private _iconSpacing = 0.0125;
 private _hudIndex = 0;
 
 private _activeKeys = call FUNC(debugGetSortedActiveKeys);
@@ -42,7 +43,7 @@ private _activeKeys = call FUNC(debugGetSortedActiveKeys);
 
     private _fnc_drawHud = _provider getOrDefault ["drawHud", {}];
 
-    [_data, _cameraPosition, _maxDistance] call _fnc_draw3d;
+    [_data, _cameraPosition, _maxDistance, _iconSpacing] call _fnc_draw3d;
 
     if (_fnc_drawHud isNotEqualTo {}) then {
         if (_hudIndex < count GVAR(debugHudControls)) then {

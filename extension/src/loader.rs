@@ -3,11 +3,15 @@ use std::thread;
 use crate::config;
 use crate::bridge;
 
-const CHUNK_SIZE: usize = 16000; // ~16KB, safely under Arma's 20KB callback limit
+// Per-callback byte cap is not documented by Bohemia; the only documented
+// callback constraint is 100 slots/frame, which arma-rs auto-retries on
+// (see arma-rs/src/lib.rs ~L229). Listener forwards 64 KB POST bodies via the
+// same callback path without issue, so 64 KB is empirically safe.
+const CHUNK_SIZE: usize = 65536;
 
 pub fn load(key: &str) {
     let key = key.to_string();
-    let url = format!("{}/persistence/{}", config::API_BASE_URL, key);
+    let url = format!("{}/persistence/{}", config::api_base_url(), key);
 
     thread::spawn(move || {
         log::info!("Fetching persistence data from {url}");
