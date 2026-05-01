@@ -42,6 +42,7 @@ force force ace_advanced_throwing_enablePickUpAttached = true;
 ace_advanced_throwing_enableTempWindInfo = true;
 ace_advanced_throwing_showMouseControls = true;
 ace_advanced_throwing_showThrowArc = true;
+ace_advanced_throwing_throwStepSetting = 8;
 
 // ACE Advanced Vehicle Damage
 force force ace_vehicle_damage_enableCarDamage = false;
@@ -250,6 +251,7 @@ force force ace_cargo_enableRename = true;
 force force ace_cargo_loadTimeCoefficient = 5;
 ace_cargo_openAfterUnload = 0;
 force force ace_cargo_paradropTimeCoefficent = 0.01;
+force force ace_cargo_unloadOnKilled = 0.5;
 force force ace_rearm_distance = 20;
 force force ace_rearm_enabled = true;
 force force ace_rearm_level = 2;
@@ -280,6 +282,7 @@ force force ace_map_mapLimitZoom = false;
 force force ace_map_mapShake = true;
 force force ace_map_mapShowCursorCoordinates = false;
 force force ace_markers_moveRestriction = 0;
+ace_markers_quickNumberMarks = 2;
 force force ace_markers_timestampEnabled = true;
 force force ace_markers_timestampFormat = "HH:MM";
 force force ace_markers_timestampHourFormat = 24;
@@ -336,6 +339,7 @@ force ace_medical_statemachine_fatalInjuriesAI = 0;
 force force ace_medical_statemachine_fatalInjuriesPlayer = 2;
 force force ace_medical_useLimbDamage = 0;
 force ace_medical_vitals_simulateSpO2 = true;
+ace_medical_windowOnWakeUp = 1;
 
 // ACE Medical Interface
 force force ace_medical_feedback_bloodVolumeEffectType = 0;
@@ -664,13 +668,14 @@ acex_volume_reduction = 5;
 acex_volume_remindIfLowered = false;
 acex_volume_showNotification = true;
 
+// ACE Wardrobe
+ace_wardrobe_enableAction = true;
+
 // ACE Weapons
 force force ace_common_persistentLaserEnabled = true;
 force force ace_reload_displayText = true;
 force force ace_reload_showCheckAmmoSelf = false;
 ace_reloadlaunchers_displayStatusText = true;
-force force ace_weapononback_enabled = false;
-force force ace_weapononback_renderLimit = -1;
 force force ace_weaponselect_displayText = true;
 
 // ACE Weather
@@ -715,7 +720,7 @@ force force acre_sys_core_ignoreAntennaDirection = false;
 force force acre_sys_core_interference = true;
 acre_sys_core_postmixGlobalVolume = 1;
 acre_sys_core_premixGlobalVolume = 1;
-force force acre_sys_core_rememberUsedRackRadios = true;
+force force acre_sys_core_radioNoise = true;
 force force acre_sys_core_revealToAI = 1;
 acre_sys_core_spectatorVolume = 1;
 force force acre_sys_core_terrainLoss = 0.1;
@@ -728,6 +733,7 @@ force force acre_sys_signal_signalModel = 0;
 
 // ACRE2 Gestures
 force force acre_sys_gestures_enabled = true;
+force force acre_sys_gestures_showConnectorRopes = true;
 force force acre_sys_gestures_stopADS = true;
 
 // ACRE2 UI
@@ -744,6 +750,7 @@ acre_sys_list_DefaultPTTColor = [1,0.8,0,1];
 acre_sys_list_HintBackgroundColor = [0,0,0,0.8];
 acre_sys_list_HintTextFont = "RobotoCondensed";
 acre_sys_list_LanguageColor = [1,0.29,0.16,1];
+acre_sys_list_LanguageHintPersist = true;
 acre_sys_list_PTT1Color = [1,0.8,0,1];
 acre_sys_list_PTT2Color = [1,0.8,0,1];
 acre_sys_list_PTT3Color = [1,0.8,0,1];
@@ -815,6 +822,22 @@ cba_quicktime_qteShorten = false;
 cba_ui_notifyLifetime = 4;
 cba_ui_StorePasswords = 1;
 
+// cTab
+ctab_compass_enable = true;
+ctab_core_bft_mode = 1;
+ctab_core_defMapStyle = "SAT";
+ctab_core_gridPrecision = 0;
+ctab_core_helmetcam_mode = 1;
+force ctab_core_sync_time = 30;
+ctab_core_uav_mode = 1;
+ctab_core_useAceMicroDagr = true;
+ctab_core_useArmaMarker = true;
+ctab_core_useMils = false;
+ctab_irl_connect_enabled = true;
+ctab_irl_connect_key = "594326";
+ctab_irl_connect_syncMap = true;
+ctab_irl_connect_uri = "https://ctab.plan-ops.fr/hub";
+
 // CUP
 force force CUP_CheckCfgPatches = false;
 force force CUP_Vehicles_PreventBarrelClip = false;
@@ -825,6 +848,7 @@ force force CUP_staticWeapons_allowRotation = false;
 
 // Death and Hit Reactions
 force force WBK_DeathAnimMod_Death_Chance = "100";
+force force WBK_DeathAnimMod_Death_NearWall = true;
 force force WBK_DeathAnimMod_Deaths_AI = true;
 force force WBK_DeathAnimMod_Deaths_HUGEANIMS = true;
 force force WBK_DeathAnimMod_Deaths_NECKSHOTS = true;
@@ -836,17 +860,77 @@ force force WBK_DeathAnimMod_Hit_Chance = "100";
 force force WBK_DeathAnimMod_Hit_Chance_PLR = "100";
 force force WBK_DeathAnimMod_Hit_PLR = false;
 
+// DUI - Squad Radar - Indicators
+force diwako_dui_indicators_crew_range_enabled = false;
+diwako_dui_indicators_fov_scale = false;
+force force diwako_dui_indicators_icon_buddy = false;
+force force diwako_dui_indicators_icon_leader = false;
+force force diwako_dui_indicators_icon_medic = false;
+diwako_dui_indicators_range = 20;
+diwako_dui_indicators_range_crew = 300;
+diwako_dui_indicators_range_scale = false;
+force diwako_dui_indicators_rangeLimit = 100;
+force force diwako_dui_indicators_show = false;
+diwako_dui_indicators_size = 1;
+diwako_dui_indicators_style = "standard";
+diwako_dui_indicators_useACENametagsRange = true;
+
+// DUI - Squad Radar - Line Compass
+diwako_dui_linecompass_ACEFingeringColor = [1,0.66,0,1];
+force diwako_dui_linecompass_AllowNumericDrawBearing = true;
+diwako_dui_linecompass_CompassAvailableShown = true;
+diwako_dui_linecompass_compassRange = 35;
+force diwako_dui_linecompass_compassRangeLimit = 50;
+diwako_dui_linecompass_CustomWaypointColor = [0,0,0.87,1];
+diwako_dui_linecompass_DefaultIconColor = [0.5,0.87,0.5,1];
+diwako_dui_linecompass_DrawBearing = 2;
+diwako_dui_linecompass_Enabled = true;
+diwako_dui_linecompass_enableOcclusion = false;
+diwako_dui_linecompass_IconOutline = 0;
+diwako_dui_linecompass_occlusionFadeSpeed = 3.5;
+diwako_dui_linecompass_showSpeaking = true;
+diwako_dui_linecompass_SwapOrder = false;
+diwako_dui_linecompass_WaypointColor = [0,0,0.87,1];
+
 // DUI - Squad Radar - Main
 diwako_dui_ace_hide_interaction = false;
 diwako_dui_colors = "standard";
 diwako_dui_font = "RobotoCondensed";
 diwako_dui_icon_style = "standard";
+diwako_dui_main_hide_dialog = true;
 force force diwako_dui_main_hide_ui_by_default = true;
 diwako_dui_main_squadBlue = [0,0,1,1];
 diwako_dui_main_squadGreen = [0,1,0,1];
 diwako_dui_main_squadMain = [1,1,1,1];
 diwako_dui_main_squadRed = [1,0,0,1];
 diwako_dui_main_squadYellow = [1,1,0,1];
+diwako_dui_main_trackingColor = [0.93,0.26,0.93,1];
+diwako_dui_reset_ui_pos = false;
+
+// DUI - Squad Radar - Nametags
+diwako_dui_nametags_customRankStyle = "[[""PRIVATE"",""CORPORAL"",""SERGEANT"",""LIEUTENANT"",""CAPTAIN"",""MAJOR"",""COLONEL""],[""Pvt."",""Cpl."",""Sgt."",""Lt."",""Capt."",""Maj."",""Col.""]]";
+diwako_dui_nametags_deadColor = [0.2,0.2,0.2,1];
+diwako_dui_nametags_deadRenderDistance = 3.5;
+diwako_dui_nametags_drawRank = true;
+diwako_dui_nametags_enabled = true;
+diwako_dui_nametags_enableFOVBoost = true;
+diwako_dui_nametags_enableOcclusion = true;
+diwako_dui_nametags_fadeInTime = 0.05;
+diwako_dui_nametags_fadeOutTime = 0.5;
+diwako_dui_nametags_fontGroup = "RobotoCondensedLight";
+diwako_dui_nametags_fontGroupNameSize = 8;
+diwako_dui_nametags_fontName = "RobotoCondensedBold";
+diwako_dui_nametags_fontNameSize = 10;
+diwako_dui_nametags_groupColor = [1,1,1,1];
+diwako_dui_nametags_groupFontShadow = 1;
+diwako_dui_nametags_groupNameOtherGroupColor = [0.6,0.85,0.6,1];
+diwako_dui_nametags_nameFontShadow = 1;
+diwako_dui_nametags_nameOtherGroupColor = [0.2,1,0,1];
+diwako_dui_nametags_rankNameStyle = "default";
+diwako_dui_nametags_renderDistance = 40;
+diwako_dui_nametags_showUnconAsDead = true;
+diwako_dui_nametags_useLIS = true;
+diwako_dui_nametags_useSideIsFriendly = true;
 
 // DUI - Squad Radar - Radar
 force force diwako_dui_compass_hide_alone_group = true;
@@ -871,17 +955,33 @@ diwako_dui_namelist_size = 1.5396;
 diwako_dui_namelist_text_shadow = 2;
 diwako_dui_namelist_width = 215;
 force force diwako_dui_radar_ace_finger = false;
+force diwako_dui_radar_ace_medic = true;
+diwako_dui_radar_always_show_unit_numbers = false;
+diwako_dui_radar_compassRangeCrew = 500;
+force diwako_dui_radar_compassRangeLimit = 50;
+diwako_dui_radar_dir_padding = 25;
+diwako_dui_radar_dir_shadow = 2;
+diwako_dui_radar_enable_seat_icons = 2;
 force force diwako_dui_radar_group_by_vehicle = true;
+diwako_dui_radar_icon_opacity = 1;
+diwako_dui_radar_icon_opacity_no_player = true;
+force diwako_dui_radar_icon_priority_setting = 1;
+diwako_dui_radar_icon_scale_crew = 6;
 diwako_dui_radar_leadingZeroes = false;
 diwako_dui_radar_namelist_hideWhenLeader = false;
 diwako_dui_radar_namelist_vertical_spacing = 0.75;
+diwako_dui_radar_occlusion_fade_in_time = 1;
 force force diwako_dui_radar_occlusion_fade_time = 30;
 diwako_dui_radar_pointer_color = [1,0.5,0,1];
 diwako_dui_radar_pointer_style = "standard";
+diwako_dui_radar_show_cardinal_points = true;
+diwako_dui_radar_showSpeaking = true;
+diwako_dui_radar_showSpeaking_radioOnly = false;
+diwako_dui_radar_showSpeaking_replaceIcon = true;
 force force diwako_dui_radar_sortType = "fireteam";
 force force diwako_dui_radar_sqlFirst = true;
-diwako_dui_radar_trackingColor = [0.93,0.26,0.93,1];
-diwako_dui_reset_ui_pos = false;
+force diwako_dui_radar_syncGroup = false;
+force diwako_dui_radar_vehicleCompassEnabled = false;
 diwako_dui_use_layout_editor = false;
 
 // GRAD Civilians
@@ -976,6 +1076,11 @@ force greenmag_main_CBAS_enable = false;
 greenmag_main_CBAS_maxMags = 0;
 force greenmag_main_CBAS_simpleGM = false;
 
+// GX
+GX_DRONES_AUTOCONNECT = true;
+force force GX_DRONES_COMMAND_INTERACTIONS = false;
+force force GX_DRONES_DEBUG = false;
+
 // Helicopter Turbulence
 force force TURBULENCE_ENABLE_MASTER = true;
 force force TURBULENCE_ENABLE_WEATHEREFFECT = true;
@@ -1032,8 +1137,10 @@ mts_markers_saveLastSelection = false;
 mts_markers_showPresetsUI = false;
 force force mts_markers_useVanillaColors = false;
 
-// NMAB Settings
-force force NMAB_setting_particlesEnabled = true;
+// No More Aircraft Bouncing
+force NMAB_setting_classExclusionsStr = "";
+force force NMAB_setting_pfxHelicopters = true;
+force force NMAB_setting_pfxPlanes = true;
 
 // TBD M119
 force force tbd_m119_m119_EJECT = true;
@@ -1119,13 +1226,23 @@ force uksf_cleanup_enabled = true;
 force uksf_common_mainOp = false;
 force uksf_curator_curatorsLocked = false;
 force uksf_curator_curatorsMax = 8;
+force uksf_diving_tissueSaturationMultiplier = 1.5;
 force uksf_persistence_loadMapMarkers = false;
 force uksf_persistence_overrideSavedDateTime = false;
+force force uksf_statistics_enabled = true;
 force uksf_virtualisation_distance = 3000;
 force uksf_virtualisation_enabled = false;
 
 // UKSF - AI Ground Commander
 force uksf_aigroundcommander_groupLimit = 10;
+
+// UKSF - Blast Overpressure
+force force uksf_blastoverpressure_damageMultiplier = 1;
+force force uksf_blastoverpressure_enabled = true;
+force force uksf_blastoverpressure_mode = "pressure_wave";
+force force uksf_blastoverpressure_rangeMultiplier = 2;
+force force uksf_blastoverpressure_surfaceBounceEnabled = true;
+force force uksf_blastoverpressure_threshold = 50;
 
 // UKSF - Civilian
 force uksf_civilian_allowDebug = false;
@@ -1133,6 +1250,7 @@ force uksf_civilian_enableEscort = true;
 force uksf_civilian_enableGestures = true;
 
 // UKSF - Immersion
+force uksf_immersion_closeMiss_enabled = false;
 force force uksf_immersion_suppression_buildup = 1.1;
 force force uksf_immersion_suppression_enabled = true;
 force force uksf_immersion_suppression_flyByIntensity = 1.1;
@@ -1174,9 +1292,6 @@ force uksf_mission_support = true;
 force uksf_mission_supportChance = 25;
 force uksf_mission_supportDistance = 500;
 
-// UKSF - Statistics
-force force uksf_statistics_enabled = true;
-
 // VET_Unflipping
 force force vet_unflipping_require_serviceVehicle = false;
 force force vet_unflipping_require_toolkit = false;
@@ -1186,6 +1301,8 @@ force force vet_unflipping_unit_mass_limit = 3000;
 force force vet_unflipping_vehicle_mass_limit = 20000;
 
 // Zeus Enhanced
+force force zen_area_markers_editableMarkers = 1;
+force force zen_building_markers_enabled = true;
 zen_camera_adaptiveSpeed = true;
 zen_camera_defaultSpeedCoef = 1;
 zen_camera_fastSpeedCoef = 1;
@@ -1223,6 +1340,56 @@ force force zen_vision_enableRedHotCold = false;
 force force zen_vision_enableWhiteHot = true;
 force force zen_vision_enableWhiteHotRedCold = false;
 
+// Zeus Enhanced - Attributes
+zen_attributes_enableAbilities = true;
+zen_attributes_enableAmmo = true;
+zen_attributes_enableAmmoCargo = true;
+zen_attributes_enableArsenal = true;
+zen_attributes_enableBuildingMarker = true;
+zen_attributes_enableDamage = true;
+zen_attributes_enableEngine = true;
+zen_attributes_enableExecute = true;
+zen_attributes_enableFuel = true;
+zen_attributes_enableFuelCargo = true;
+zen_attributes_enableGarage = true;
+zen_attributes_enableGroupBehaviour = true;
+zen_attributes_enableGroupCombatMode = true;
+zen_attributes_enableGroupExecute = true;
+zen_attributes_enableGroupFormation = true;
+zen_attributes_enableGroupID = true;
+zen_attributes_enableGroupSide = true;
+zen_attributes_enableGroupSkill = true;
+zen_attributes_enableGroupSpeed = true;
+zen_attributes_enableGroupStance = true;
+zen_attributes_enableHealth = true;
+zen_attributes_enableInventory = true;
+zen_attributes_enableLights = true;
+zen_attributes_enableMarkerAlpha = true;
+zen_attributes_enableMarkerColor = true;
+zen_attributes_enableMarkerText = true;
+zen_attributes_enableName = true;
+zen_attributes_enablePlateNumber = true;
+zen_attributes_enableRank = true;
+zen_attributes_enableRepairCargo = true;
+zen_attributes_enableRespawnPosition = true;
+zen_attributes_enableRespawnVehicle = true;
+zen_attributes_enableSensors = true;
+zen_attributes_enableSkill = true;
+zen_attributes_enableSkills = true;
+zen_attributes_enableStance = true;
+zen_attributes_enableStates = true;
+zen_attributes_enableTraits = true;
+zen_attributes_enableVehicleLock = true;
+zen_attributes_enableWaypointBehaviour = true;
+zen_attributes_enableWaypointCombatMode = true;
+zen_attributes_enableWaypointFormation = true;
+zen_attributes_enableWaypointLoiterAltitude = true;
+zen_attributes_enableWaypointLoiterDirection = true;
+zen_attributes_enableWaypointLoiterRadius = true;
+zen_attributes_enableWaypointSpeed = true;
+zen_attributes_enableWaypointTimeout = true;
+zen_attributes_enableWaypointType = true;
+
 // Zeus Enhanced - Faction Filter
 zen_faction_filter_0_CDF = true;
 zen_faction_filter_0_CUP_O_ChDKZ = true;
@@ -1232,7 +1399,6 @@ zen_faction_filter_0_CUP_O_SLA = true;
 zen_faction_filter_0_CUP_O_TK = true;
 zen_faction_filter_0_CUP_O_TK_MILITIA = true;
 zen_faction_filter_0_CUP_Static_Ships = true;
-zen_faction_filter_0_IND_F = true;
 zen_faction_filter_0_OPF_F = true;
 zen_faction_filter_0_OPF_G_F = true;
 zen_faction_filter_0_OPF_GEN_F = true;
@@ -1244,6 +1410,7 @@ zen_faction_filter_0_UKSF_Cartel = true;
 zen_faction_filter_0_uksf_cdf = true;
 zen_faction_filter_0_UKSF_Inegal = true;
 zen_faction_filter_0_UKSF_Spetsnaz = true;
+zen_faction_filter_0_uksf_vaf = true;
 zen_faction_filter_0_uksf_zir = true;
 zen_faction_filter_1_BLU_CTRG_F = true;
 zen_faction_filter_1_BLU_F = true;
@@ -1260,7 +1427,6 @@ zen_faction_filter_1_CUP_B_HIL = true;
 zen_faction_filter_1_CUP_B_RNZN = true;
 zen_faction_filter_1_CUP_B_US_Army = true;
 zen_faction_filter_1_CUP_B_USMC = true;
-zen_faction_filter_1_CUP_I_PMC_ION = true;
 zen_faction_filter_1_CUP_Static_Ships = true;
 zen_faction_filter_1_Default = true;
 zen_faction_filter_1_mas_ukl_amulti = true;
@@ -1273,7 +1439,7 @@ zen_faction_filter_1_mas_ukl_jparas = true;
 zen_faction_filter_1_mas_ukl_kswat = true;
 zen_faction_filter_1_mas_ukl_lcvrt = true;
 zen_faction_filter_1_mas_ukl_sfsg = true;
-zen_faction_filter_2_CUP_B_CDF = true;
+zen_faction_filter_1_UK_ARMED_FORCES = true;
 zen_faction_filter_2_CUP_I_NAPA = true;
 zen_faction_filter_2_CUP_I_PMC_ION = true;
 zen_faction_filter_2_CUP_I_RACS = true;
@@ -1292,7 +1458,6 @@ zen_faction_filter_2_uksf_ni = true;
 zen_faction_filter_2_uksf_zgf = true;
 zen_faction_filter_3_CIV_F = true;
 zen_faction_filter_3_CIV_IDAP_F = true;
-zen_faction_filter_3_CIV_UA = true;
 zen_faction_filter_3_CUP_C_CHERNARUS = true;
 zen_faction_filter_3_CUP_C_RU = true;
 zen_faction_filter_3_CUP_C_SAHRANI = true;
