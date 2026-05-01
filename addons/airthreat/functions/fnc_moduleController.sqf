@@ -24,12 +24,23 @@
 if !(local _logic) exitWith {};
 if !(isServer) exitWith {};
 
-if (GVAR(controllerInitialised)) exitWith {
+// Count actual module entities — using a GVAR flag for dedup gives false
+// positives in 3DEN, where the function re-runs on every attribute edit.
+private _moduleCount = count (
+    if (is3DEN) then {
+        (all3DENEntities # 3) select {typeOf _x == typeOf _logic}
+    } else {
+        allMissionObjects typeOf _logic
+    }
+);
+if (_moduleCount > 1) then {
     WARNING("Multiple air threat controller modules placed — only the first is used");
     if (is3DEN) then {
         ["Multiple (AT) Controller modules placed — only the first is used"] call BIS_fnc_3DENNotification;
     };
 };
+
+if (!is3DEN && {GVAR(controllerInitialised)}) exitWith {};
 
 GVAR(capReconMinTime) = _logic getVariable [QGVAR(capReconMinTime), 1200];
 GVAR(capReconMaxTime) = _logic getVariable [QGVAR(capReconMaxTime), 1800];
