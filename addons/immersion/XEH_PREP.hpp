@@ -8,12 +8,8 @@ PREP(suppressionImpact);
 PREP(suppressionPinnedDown);
 PREP(suppressionRecovery);
 
-PREP(debugCloseMiss);
-PREP(debugCloseMiss_addForce);
-PREP(debugCloseMiss_setDir);
-PREP(debugCloseMiss_fatigue);
-PREP(debugCloseMiss_combined);
-PREP(debugCloseMiss_camshake);
+PREP(closeMissDetect);
+PREP(closeMissReaction);
 
 SHOCKWAVEPREP(120mm);
 SHOCKWAVEPREP(Arty);

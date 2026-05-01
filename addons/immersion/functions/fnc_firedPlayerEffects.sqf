@@ -26,6 +26,8 @@ if (
     {(vehicle GVAR(suppression_currentUnit)) isKindOf "Air"}
 ) exitWith {};
 
+GVAR(closeMiss_lastFiredAt) = diag_tickTime;
+
 // Use ammo hit value to scale effects (higher hit = heavier effects)
 private _hit = [[QGVAR(hit_), _ammo] joinString "", {EGVAR(common,configAmmo) >> _ammo >> "hit"}] call EFUNC(common,readCacheValues);
 if (_hit == 0) exitWith {};

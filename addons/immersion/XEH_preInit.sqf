@@ -12,6 +12,12 @@ GVAR(suppression_threshold) = 0; // Changing value
 GVAR(suppression_lastShotAt) = 0; // The time the player got shot at last time
 GVAR(shockwave_lastShakeAt) = -1;
 GVAR(suppression_lastImpactAt) = -1;
+GVAR(closeMiss_engagementAge) = 0;
+GVAR(closeMiss_lastTriggerAt) = -1e9;
+GVAR(closeMiss_lastFiredAt) = -1e9;
+#ifdef DEBUG_MODE_FULL
+GVAR(closeMiss_debugTraces) = [];
+#endif
 
 if (hasInterface) then {
     ["AllVehicles", "Fired", {call FUNC(fired)}] call CBA_fnc_addClassEventHandler;
@@ -39,6 +45,10 @@ if (hasInterface) then {
 
         GVAR(suppression_impactCC) ppEffectAdjust [1, 1, 0, [0,0,0,0], [1,1,1,1],[1,1,1,0]];
         GVAR(suppression_impactCC) ppEffectCommit 0;
+
+        GVAR(closeMiss_engagementAge) = 0;
+        GVAR(closeMiss_lastTriggerAt) = -1e9;
+        GVAR(closeMiss_lastFiredAt) = -1e9;
 
         resetCamShake;
     }] call CBA_fnc_addPlayerEventHandler;
