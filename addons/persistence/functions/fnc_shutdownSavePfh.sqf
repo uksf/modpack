@@ -17,7 +17,7 @@
     Example:
         [_markers] call uksf_persistence_fnc_shutdownSavePfh
 */
-#define TYPE_EXCLUDE_LIST ["UK3CB_BAF_1Rnd_60mm_Mo_Shells_spent","UK3CB_BAF_1Rnd_60mm_Mo_Shells_spent","Helper_Base_F"]
+#define TYPE_EXCLUDE_LIST ["UK3CB_BAF_1Rnd_60mm_Mo_Shells_spent","UK3CB_BAF_1Rnd_81mm_Mo_Shells_spent","tbd_mortars_105mm_casing_spent","Helper_Base_F"]
 
 params ["_markers"];
 
