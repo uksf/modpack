@@ -25,6 +25,7 @@ GVAR(persistentObjectsHash) = [[], true] call CBA_fnc_hashCreate;
 GVAR(deletedPersistentObjects) = GVAR(dataNamespace) getVariable [QGVAR(deletedObjects), []];
 GVAR(abortedObjectIds) = [];
 GVAR(unmarkedObjectIds) = [];
+GVAR(pendingAbortedRemovals) = [];
 GVAR(hashHasRedeployed) = [[], false] call CBA_fnc_hashCreate;
 GVAR(hashFirstRespawn) = [[], true] call CBA_fnc_hashCreate;
 GVAR(hashBodies) = [[], objNull] call CBA_fnc_hashCreate;

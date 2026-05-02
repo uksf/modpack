@@ -5,9 +5,11 @@
 
     Description:
         Saves persistence data to the API via the extension.
-        Builds a hashmap-based session with keyed objects and players,
-        encodes as JSON, and sends as a single event.
-        The C# API handles transformation to structured models for MongoDB.
+        Builds a hashmap-based session and ships it to the API as engine-native
+        SQF str() output. The API parses SQF-array notation and constructs the
+        persistence model directly. Bypasses CBA_fnc_encodeJSON entirely on the
+        large session payload — at ~500 objects + 40 players, encodeJSON took
+        ~43 s; this path takes ~20 ms.
 
     Parameter(s):
         None
@@ -84,11 +86,28 @@ private _session = createHashMapFromArray [
     _session set [_id, _data];
 } forEach GVAR(serializers);
 
-private _json = [_session] call CBA_fnc_encodeJSON;
-INFO_1("API persistence save: %1 characters",count _json);
+private _sqfStr = str _session;
+INFO_1("API persistence save: %1 characters",count _sqfStr);
 
-["persistence_save", createHashMapFromArray [
-    ["key",       GVAR(key)],
-    ["sessionId", EGVAR(api,sessionId)],
-    ["data",      _json]
-]] call EFUNC(api,sendEvent);
+// JSON-escape the SQF string so it can ride inside the existing event envelope's
+// "data" field as a JSON string. Backslash and double-quote are the only chars
+// SQF str() emits that need escaping for our use; LF/CR/TAB get escaped too in
+// case any user-provided field (custom names, etc.) ever contains them.
+private _escaped = _sqfStr;
+_escaped = _escaped splitString "\" joinString "\\";
+_escaped = _escaped splitString """" joinString "\""";
+_escaped = _escaped splitString (toString [10]) joinString "\n";
+_escaped = _escaped splitString (toString [13]) joinString "\r";
+_escaped = _escaped splitString (toString [9]) joinString "\t";
+
+private _envelope = format [
+    '{"type":"persistence_save","data":{"key":"%1","sessionId":"%2","data":"%3"}}',
+    GVAR(key),
+    EGVAR(api,sessionId),
+    _escaped
+];
+
+private _result = "uksf" callExtension ["event", [_envelope]];
+if ((_result#0) != "queued") then {
+    WARNING_1("Persistence save not queued: %1",_result#0);
+};
