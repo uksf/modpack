@@ -27,6 +27,11 @@ if (!GVAR(dataSaved)) exitWith {};
 private _objects = GVAR(dataNamespace) getVariable [QGVAR(objects), []];
 private _objectHashmaps = _objects apply {
     private _object = _x;
+    private _aceFortify = _object#IDX_OBJ_ACEFORTIFY;
+    private _aceFortifySide = _aceFortify param [1, west];
+    if (_aceFortifySide isEqualType west) then {
+        _aceFortify = [_aceFortify param [0, false], toLower str _aceFortifySide];
+    };
     createHashMapFromArray [
         ["id",              _object#IDX_OBJ_ID],
         ["type",            _object#IDX_OBJ_TYPE],
@@ -42,7 +47,7 @@ private _objectHashmaps = _objects apply {
         ["rackChannels",    _object#IDX_OBJ_RACKCHANNELS],
         ["aceCargo",        _object#IDX_OBJ_ACECARGO],
         ["inventory",       _object#IDX_OBJ_INVENTORY],
-        ["aceFortify",      _object#IDX_OBJ_ACEFORTIFY],
+        ["aceFortify",      _aceFortify],
         ["aceMedical",      _object#IDX_OBJ_ACEMEDICAL],
         ["aceRepair",       _object#IDX_OBJ_ACEREPAIR],
         ["customName",      _object#IDX_OBJ_CUSTOMNAME]
