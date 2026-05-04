@@ -35,6 +35,8 @@ GVAR(dynamicPatrolIncludeAreas) = [];
 ["CUP_BM21_Base", "init", {call FUNC(addArtillerySupportUnit)}] call CBA_fnc_addClassEventHandler;
 ["CUP_M270_HE_Base", "init", {call FUNC(addArtillerySupportUnit)}] call CBA_fnc_addClassEventHandler;
 
+[QGVAR(fireAmbientArtillery), {call FUNC(fireAmbientArtillery)}] call CBA_fnc_addEventHandler;
+
 GVAR(dynamicPatrolDebugMap) = createHashMap;
 GVAR(dynamicPatrolDebugPlayers) = [];
 GVAR(dynamicPatrolDebugMarkers) = [];
