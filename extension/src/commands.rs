@@ -1,7 +1,7 @@
 use arma_rs::Context;
 
 use crate::bridge;
-use crate::config_export;
+use crate::file_export;
 use crate::dev_run;
 use crate::input;
 
@@ -29,20 +29,20 @@ pub fn press_space() -> String {
     input::press_space()
 }
 
-pub fn config_export_open(filename: String) -> String {
-    config_export::open(filename)
+pub fn file_export_open(filename: String) -> String {
+    file_export::open(filename)
 }
 
-pub fn config_export_write(line: String) -> String {
-    config_export::write(line)
+pub fn file_export_write(line: String) -> String {
+    file_export::write(line)
 }
 
-pub fn config_export_close() -> String {
-    config_export::close()
+pub fn file_export_close() -> String {
+    file_export::close()
 }
 
-pub fn config_export_finish() -> String {
-    config_export::finish()
+pub fn file_export_finish() -> String {
+    file_export::finish()
 }
 
 pub fn dev_run_open(run_id: String) -> String {
