@@ -19,9 +19,9 @@ const mods = [
     'B:/Steam/steamapps/common/Arma 3/uksf-dev/@CUP_Weapons',
     'B:/Steam/steamapps/common/Arma 3/uksf-dev/@JBad',
     'B:/Steam/steamapps/common/Arma 3/uksf-dev/@uksf_dependencies',
-    'B:/Steam/steamapps/common/Arma 3/u/uksf_air',
-    'B:/Steam/steamapps/common/Arma 3/u/uksf',
-    'B:/Steam/steamapps/common/Arma 3/z/ace',
+    'D:/Arma/uksf_air/.hemttout/dev',
+    'D:/Arma/modpack/.hemttout/dev',
+    'D:/Arma/ace/.hemttout/dev',
     'B:/Steam/steamapps/common/Arma 3/uksf-dev/@uksf_acre2'
 ];
 
