@@ -80,7 +80,9 @@ pub fn handle_start(context: Context) -> String {
 
     let pid = std::process::id();
     log::info!("Extension fully started on port {port}, pid {pid}");
-    format!("{{\"port\":{port},\"processId\":{pid}}}")
+    // SQF array: [port, processId] — matches the unified text-based wire
+    // (game side reads with parseSimpleArray, no JSON parser needed).
+    format!("[{port},{pid}]")
 }
 
 pub fn handle_stop() -> String {
@@ -129,13 +131,13 @@ pub fn handle_flush() -> String {
     }
 }
 
-pub fn handle_event(json: &str) -> String {
+pub fn handle_event(body: &str) -> String {
     if !RUNNING.load(Ordering::SeqCst) {
         return "error: not running".to_string();
     }
 
-    log::debug!("Queuing event: {json}");
-    sender::queue_event(json);
+    log::debug!("Queuing event: {body}");
+    sender::queue_event(body);
     "queued".to_string()
 }
 
@@ -157,7 +159,7 @@ mod tests {
     #[test]
     fn test_event_before_start() {
         RUNNING.store(false, Ordering::SeqCst);
-        let result = handle_event("{\"type\":\"test\"}");
+        let result = handle_event("[\"test\",[]]");
         assert_eq!(result, "error: not running");
     }
 

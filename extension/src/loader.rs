@@ -22,7 +22,7 @@ pub fn load(key: &str) {
             }
             Err(error) => {
                 log::error!("Failed to load persistence for key '{key}': {error}");
-                let envelope = build_error_envelope_json(&key, &error);
+                let envelope = build_envelope_sqf(&key, 0, 0, "", &error);
                 bridge::fire_callback("command", &envelope);
                 return;
             }
@@ -33,7 +33,7 @@ pub fn load(key: &str) {
         log::info!("Sending persistence '{key}' in {total} chunk(s)");
 
         for (index, chunk) in chunks.iter().enumerate() {
-            let envelope = build_envelope_json(&key, index, total, chunk);
+            let envelope = build_envelope_sqf(&key, index, total, chunk, "");
             bridge::fire_callback("command", &envelope);
         }
         log::info!("Finished sending persistence '{key}'");
@@ -107,14 +107,6 @@ fn build_envelope_sqf(id: &str, index: usize, total: usize, data: &str, error: &
         escape_sqf_string(data),
         escape_sqf_string(error)
     )
-}
-
-fn build_error_envelope_json(id: &str, error: &str) -> String {
-    build_envelope_sqf(id, 0, 0, "", error)
-}
-
-fn build_envelope_json(id: &str, index: usize, total: usize, data: &str) -> String {
-    build_envelope_sqf(id, index, total, data, "")
 }
 
 #[cfg(test)]
@@ -216,8 +208,10 @@ mod tests {
     }
 
     #[test]
-    fn test_build_error_envelope_uses_sqf_format() {
-        let sqf = build_error_envelope_json("missing", "not found");
+    fn test_build_envelope_sqf_error_form() {
+        // Error envelope is the same shape as a data envelope but with total=0
+        // and the error string in the last slot.
+        let sqf = build_envelope_sqf("missing", 0, 0, "", "not found");
         assert_eq!(sqf, "[\"persistence_load\",\"missing\",0,0,\"\",\"not found\"]");
     }
 

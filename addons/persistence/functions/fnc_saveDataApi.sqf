@@ -4,12 +4,13 @@
         Tim Beswick
 
     Description:
-        Saves persistence data to the API via the extension.
-        Builds a hashmap-based session and ships it to the API as engine-native
-        SQF str() output. The API parses SQF-array notation and constructs the
-        persistence model directly. Bypasses CBA_fnc_encodeJSON entirely on the
-        large session payload — at ~500 objects + 40 players, encodeJSON took
-        ~43 s; this path takes ~20 ms.
+        Saves persistence data to the API via the unified SQF event wire.
+        Builds a hashmap-based session and ships it as the `data` payload of a
+        persistence_save event — extension forwards the SQF bytes verbatim, API
+        parses with SqfNotationParser and converts to DomainPersistenceSession.
+
+        Bypasses CBA_fnc_encodeJSON entirely on the large session payload — at
+        ~500 objects + 40 players, encodeJSON took ~43s; this path takes ~20ms.
 
     Parameter(s):
         None
@@ -91,35 +92,13 @@ private _session = createHashMapFromArray [
     _session set [_id, _data];
 } forEach GVAR(serializers);
 
-private _sqfStr = str _session;
-INFO_1("API persistence save: %1 characters",count _sqfStr);
-
-// JSON-escape the SQF string so it can ride inside the existing event envelope's
-// "data" field as a JSON string. Backslash and double-quote are the only chars
-// SQF str() emits that need escaping for our use; LF/CR/TAB get escaped too in
-// case any user-provided field (custom names, etc.) ever contains them.
-//
-// IMPORTANT: cannot use `splitString`/`joinString` here — `splitString` discards
-// empty parts (BIS-documented), which silently collapses consecutive delimiters.
-// SQF str() of a hashmap is full of `""` (empty-string literals are 2 adjacent
-// quotes), so that pipeline ate every empty string in the payload — corrupting
-// loadout muzzle/pointer/optic/bipod fields on the API side.
-// Use regexReplace instead (Arma 3 v2.10+), which is preserve-faithful.
-private _escaped = _sqfStr;
-_escaped = [_escaped, "\", "\\"] call CBA_fnc_replace;
-_escaped = [_escaped, """", "\"""] call CBA_fnc_replace;
-_escaped = [_escaped, toString [10], "\n"] call CBA_fnc_replace;
-_escaped = [_escaped, toString [13], "\r"] call CBA_fnc_replace;
-_escaped = [_escaped, toString [9], "\t"] call CBA_fnc_replace;
-
-private _envelope = format [
-    '{"type":"persistence_save","data":{"key":"%1","sessionId":"%2","data":"%3"}}',
-    GVAR(key),
-    EGVAR(api,sessionId),
-    _escaped
+// Wrap session as the `data` field of a persistence_save event so the API can
+// route it via the same handler dispatch as every other event type.
+private _eventData = createHashMapFromArray [
+    ["key",       GVAR(key)],
+    ["sessionId", EGVAR(api,sessionId)],
+    ["data",      _session]
 ];
 
-private _result = "uksf" callExtension ["event", [_envelope]];
-if ((_result#0) != "queued") then {
-    WARNING_1("Persistence save not queued: %1",_result#0);
-};
+INFO_1("API persistence save: %1 root keys",count _eventData);
+["persistence_save", _eventData] call EFUNC(api,sendEvent);

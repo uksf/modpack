@@ -6,25 +6,23 @@
     Description:
         Handles a persistence load chunk received via the API command event.
         Stores chunks in a buffer array. When all chunks have arrived,
-        reassembles the JSON and parses it into GVAR(apiLoadedSession).
+        reassembles the SQF and parses it into GVAR(apiLoadedSession).
         Does NOT commit data to dataNamespace — the caller decides what to do.
         Sets GVAR(apiLoadComplete) to true when finished.
 
+        Args (positional, from handleCommand): [id, index, total, data, error]
+
     Parameter(s):
-        0: Parsed chunk hashmap <HASHMAP>
+        0: Args <ARRAY>
 
     Return Value:
         None
 
     Example:
-        [_chunkData] call uksf_persistence_fnc_handleApiLoadChunk
+        [_args] call uksf_persistence_fnc_handleApiLoadChunk
 */
-params ["_chunkData"];
-
-private _index = _chunkData getOrDefault ["index", 0];
-private _total = _chunkData getOrDefault ["total", 1];
-private _data = _chunkData getOrDefault ["data", ""];
-private _error = _chunkData getOrDefault ["error", ""];
+params ["_args"];
+_args params [["_id", ""], ["_index", 0], ["_total", 1], ["_data", ""], ["_error", ""]];
 
 TRACE_2("Received API load chunk",_index,_total);
 
@@ -63,8 +61,8 @@ if (_fullSqf == "") exitWith {
     GVAR(apiLoadComplete) = true;
 };
 
-// API now emits canonical SQF str format ([[k,v],...] for hashmaps). Parse via
-// engine-native parseSimpleArray and recursively rebuild hashmaps from pair-lists.
+// API emits canonical SQF str format ([[k,v],...] for hashmaps).
+// parseSimpleArray accepts the structure; pair-lists become hashmaps below.
 private _parsed = parseSimpleArray _fullSqf;
 if (isNil "_parsed") exitWith {
     ERROR("Failed to parseSimpleArray reassembled API persistence payload");

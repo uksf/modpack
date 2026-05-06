@@ -15,7 +15,7 @@ enum Message {
 }
 
 struct PendingEvent {
-    json: String,
+    body: String,
     enqueue_at: String,
     next_attempt: Instant,
     backoff: Duration,
@@ -62,13 +62,13 @@ impl RetryQueue {
                 };
 
                 match receiver.recv_timeout(timeout) {
-                    Ok(Message::Enqueue(json, enqueue_at)) => {
+                    Ok(Message::Enqueue(body, enqueue_at)) => {
                         if buffer.len() >= capacity {
                             log::warn!("Retry queue full ({capacity}), dropping oldest event");
                             buffer.pop_front();
                         }
                         buffer.push_back(PendingEvent {
-                            json,
+                            body,
                             enqueue_at,
                             next_attempt: Instant::now(),
                             backoff: base_backoff,
@@ -94,7 +94,7 @@ impl RetryQueue {
 
                     let new_backoff = next_backoff(pending.backoff);
                     let requeued = PendingEvent {
-                        json: pending.json,
+                        body: pending.body,
                         enqueue_at: pending.enqueue_at,
                         next_attempt: Instant::now() + new_backoff,
                         backoff: new_backoff,
@@ -113,11 +113,11 @@ impl RetryQueue {
         });
     }
 
-    pub fn enqueue(&self, json: String, enqueue_at: String) {
+    pub fn enqueue(&self, body: String, enqueue_at: String) {
         if let Ok(guard) = self.inbound.lock()
             && let Some(sender) = guard.as_ref()
         {
-            let _ = sender.send(Message::Enqueue(json, enqueue_at));
+            let _ = sender.send(Message::Enqueue(body, enqueue_at));
         }
     }
 
@@ -165,11 +165,12 @@ fn next_backoff(current: Duration) -> Duration {
 
 fn try_send(url: &str, pending: &PendingEvent) -> bool {
     let api_port = config::get_api_port();
-    let body = inject_enqueue_at(&inject_api_port(&pending.json, api_port), &pending.enqueue_at);
     match ureq::post(url)
         .timeout(Duration::from_secs(5))
-        .set("Content-Type", "application/json")
-        .send_string(&body)
+        .set("Content-Type", "text/plain; charset=utf-8")
+        .set("X-Api-Port", &api_port.to_string())
+        .set("X-Enqueued-At", &pending.enqueue_at)
+        .send_string(&pending.body)
     {
         Ok(_) => true,
         Err(error) => {
@@ -179,80 +180,20 @@ fn try_send(url: &str, pending: &PendingEvent) -> bool {
     }
 }
 
-fn inject_enqueue_at(json: &str, timestamp: &str) -> String {
-    // Insert "enqueueAt":"..." into the inner "data" object so the API can
-    // distinguish original send time from re-receive time.
-    let (data_pos, prefix_len) = if let Some(p) = json.find(r#""data":{"#) {
-        (p, r#""data":{"#.len())
-    } else if let Some(p) = json.find(r#""data": {"#) {
-        (p, r#""data": {"#.len())
-    } else {
-        return json.to_string();
-    };
-
-    let insert_at = data_pos + prefix_len;
-    if json.as_bytes().get(insert_at) == Some(&b'}') {
-        format!(
-            r#"{}"enqueueAt":"{}"{}"#,
-            &json[..insert_at],
-            timestamp,
-            &json[insert_at..]
-        )
-    } else {
-        format!(
-            r#"{}"enqueueAt":"{}",{}"#,
-            &json[..insert_at],
-            timestamp,
-            &json[insert_at..]
-        )
-    }
-}
-
-fn extract_event_data(json: &str, event_type: &str) -> Option<String> {
-    let has_type = json.contains(&format!(r#""type":"{event_type}""#))
-        || json.contains(&format!(r#""type": "{event_type}""#));
-    if !has_type {
+/// Top-level SQF event body is `[<type>,<data>]` per `str []`.
+/// Detect a server_status event by matching the leading `["server_status",`
+/// prefix and return the data substring (including trailing `]`).
+fn extract_server_status_data(body: &str) -> Option<&str> {
+    const PREFIX: &str = "[\"server_status\",";
+    let trimmed = body.trim_start();
+    if !trimmed.starts_with(PREFIX) {
         return None;
     }
-
-    let type_pos = json.find(r#""type""#).unwrap_or(0);
-    let data_start = json[type_pos..]
-        .find(r#""data":"#)
-        .or_else(|| json[type_pos..].find(r#""data": "#))
-        .map(|offset| type_pos + offset)?;
-    let after_key = &json[data_start..];
-    let colon_offset = after_key.find(':')?;
-    let after_colon = &after_key[colon_offset + 1..];
-    let brace_offset = after_colon.find('{')?;
-
-    if !after_colon[..brace_offset].chars().all(|c| c.is_ascii_whitespace()) {
-        return None;
-    }
-
-    let value_start = data_start + colon_offset + 1 + brace_offset;
-    let bytes = json.as_bytes();
-
-    let mut depth = 0;
-    for (i, &byte) in bytes[value_start..].iter().enumerate() {
-        match byte {
-            b'{' => depth += 1,
-            b'}' => {
-                depth -= 1;
-                if depth == 0 {
-                    return Some(json[value_start..value_start + i + 1].to_string());
-                }
-            }
-            _ => {}
-        }
-    }
-    None
-}
-
-fn inject_api_port(json: &str, api_port: u16) -> String {
-    if json.is_empty() {
-        return String::new();
-    }
-    format!("{{\"apiPort\":{api_port},{}", &json[1..])
+    let after_prefix = &trimmed[PREFIX.len()..];
+    // Strip the trailing `]` of the outer array.
+    let end = after_prefix.rfind(']')?;
+    let inner = after_prefix[..end].trim();
+    Some(inner)
 }
 
 static QUEUE: Mutex<Option<Arc<RetryQueue>>> = Mutex::new(None);
@@ -275,9 +216,9 @@ pub fn stop() {
     }
 }
 
-pub fn queue_event(json: &str) {
-    if let Some(data_json) = extract_event_data(json, "server_status") {
-        crate::status::cache_status(&data_json);
+pub fn queue_event(body: &str) {
+    if let Some(data_sqf) = extract_server_status_data(body) {
+        crate::status::cache_status(data_sqf);
     }
 
     let enqueue_at = chrono::Utc::now().format("%Y-%m-%dT%H:%M:%S%.3fZ").to_string();
@@ -285,7 +226,7 @@ pub fn queue_event(json: &str) {
     if let Ok(guard) = QUEUE.lock()
         && let Some(queue) = guard.as_ref()
     {
-        queue.enqueue(json.to_string(), enqueue_at);
+        queue.enqueue(body.to_string(), enqueue_at);
     }
 }
 
@@ -304,105 +245,30 @@ mod tests {
     use std::sync::atomic::{AtomicU32, Ordering as AtomicOrdering};
 
     #[test]
-    fn test_inject_enqueue_at_into_data_object() {
-        let json = r#"{"type":"server_status","data":{"map":"Altis","players":5}}"#;
-        let result = inject_enqueue_at(json, "2026-04-28T12:34:56.789Z");
-        assert_eq!(
-            result,
-            r#"{"type":"server_status","data":{"enqueueAt":"2026-04-28T12:34:56.789Z","map":"Altis","players":5}}"#
-        );
+    fn test_extract_server_status_data() {
+        let body = r#"["server_status",[["map","Altis"],["players",5]]]"#;
+        let result = extract_server_status_data(body);
+        assert_eq!(result, Some(r#"[["map","Altis"],["players",5]]"#));
     }
 
     #[test]
-    fn test_inject_enqueue_at_into_empty_data() {
-        let json = r#"{"type":"shutdown_complete","data":{}}"#;
-        let result = inject_enqueue_at(json, "2026-04-28T12:34:56.789Z");
-        assert_eq!(
-            result,
-            r#"{"type":"shutdown_complete","data":{"enqueueAt":"2026-04-28T12:34:56.789Z"}}"#
-        );
+    fn test_extract_server_status_data_with_whitespace() {
+        let body = r#"  ["server_status", [["map","Altis"]]]  "#;
+        let result = extract_server_status_data(body);
+        assert_eq!(result, Some(r#"[["map","Altis"]]"#));
     }
 
     #[test]
-    fn test_inject_enqueue_at_handles_spaced_data_object() {
-        let json = r#"{"type":"mission_stats","data": {"sessionId":"abc","events":[]}}"#;
-        let stamped = inject_enqueue_at(json, "2026-04-29T12:00:00.000Z");
-        assert!(stamped.contains(r#""enqueueAt":"2026-04-29T12:00:00.000Z""#));
+    fn test_extract_server_status_data_wrong_type() {
+        let body = r#"["mission_started",[["map","Altis"]]]"#;
+        assert!(extract_server_status_data(body).is_none());
     }
 
     #[test]
-    fn test_inject_enqueue_at_handles_spaced_empty_data() {
-        let json = r#"{"type":"mission_stats","data": {}}"#;
-        let stamped = inject_enqueue_at(json, "2026-04-29T12:00:00.000Z");
-        assert!(stamped.contains(r#""enqueueAt":"2026-04-29T12:00:00.000Z""#));
-    }
-
-    #[test]
-    fn test_inject_api_port_empty_string_does_not_panic() {
-        let result = inject_api_port("", 2303);
-        assert_eq!(result, "");
-    }
-
-    #[test]
-    fn test_inject_enqueue_at_no_data_field_returns_unchanged() {
-        let json = r#"{"type":"server_status"}"#;
-        let result = inject_enqueue_at(json, "2026-04-28T12:34:56.789Z");
-        assert_eq!(result, json);
-    }
-
-    #[test]
-    fn test_inject_api_port() {
-        let json = "{\"type\":\"shutdown_complete\",\"data\":{}}";
-        let result = inject_api_port(json, 2303);
-        assert_eq!(result, "{\"apiPort\":2303,\"type\":\"shutdown_complete\",\"data\":{}}");
-    }
-
-    #[test]
-    fn test_inject_api_port_with_real_event() {
-        let json = r#"{"type":"server_status","data":{"map":"Altis"}}"#;
-        let result = inject_api_port(json, 2303);
-        assert_eq!(
-            result,
-            r#"{"apiPort":2303,"type":"server_status","data":{"map":"Altis"}}"#
-        );
-    }
-
-    #[test]
-    fn test_extract_event_data_status() {
-        let json = r#"{"type":"server_status","data":{"map":"Altis","players":5}}"#;
-        let result = extract_event_data(json, "server_status");
-        assert_eq!(result, Some(r#"{"map":"Altis","players":5}"#.to_string()));
-    }
-
-    #[test]
-    fn test_extract_event_data_status_spaced() {
-        let json = r#"{"type": "server_status", "data": {"map": "Altis", "players": ["uid1", "uid2"]}}"#;
-        let result = extract_event_data(json, "server_status");
-        assert_eq!(
-            result,
-            Some(r#"{"map": "Altis", "players": ["uid1", "uid2"]}"#.to_string())
-        );
-    }
-
-    #[test]
-    fn test_extract_event_data_wrong_type() {
-        let json = r#"{"type":"persistence_save","data":{"key":"test"}}"#;
-        let result = extract_event_data(json, "server_status");
-        assert!(result.is_none());
-    }
-
-    #[test]
-    fn test_extract_event_data_wrong_type_spaced() {
-        let json = r#"{"type": "persistence_save", "data": {"key": "test"}}"#;
-        let result = extract_event_data(json, "server_status");
-        assert!(result.is_none());
-    }
-
-    #[test]
-    fn test_extract_event_data_nested_braces() {
-        let json = r#"{"type":"server_status","data":{"map":"Altis","nested":{"a":1}}}"#;
-        let result = extract_event_data(json, "server_status");
-        assert_eq!(result, Some(r#"{"map":"Altis","nested":{"a":1}}"#.to_string()));
+    fn test_extract_server_status_data_malformed() {
+        // No outer closing bracket — return None rather than panic.
+        let body = r#"["server_status","incomplete"#;
+        assert!(extract_server_status_data(body).is_none());
     }
 
     #[test]
@@ -448,7 +314,7 @@ mod tests {
         let queue = RetryQueue::new(url, 1000, Duration::from_millis(50));
         queue.start();
         queue.enqueue(
-            r#"{"type":"test","data":{"k":1}}"#.to_string(),
+            r#"["test",[["k",1]]]"#.to_string(),
             "2026-04-28T00:00:00.000Z".to_string(),
         );
 
@@ -481,10 +347,10 @@ mod tests {
         let queue = RetryQueue::new(url, 3, Duration::from_secs(3600));
         queue.start();
 
-        queue.enqueue(r#"{"type":"a","data":{}}"#.to_string(), "ts".to_string());
-        queue.enqueue(r#"{"type":"b","data":{}}"#.to_string(), "ts".to_string());
-        queue.enqueue(r#"{"type":"c","data":{}}"#.to_string(), "ts".to_string());
-        queue.enqueue(r#"{"type":"d","data":{}}"#.to_string(), "ts".to_string());
+        queue.enqueue(r#"["a",[]]"#.to_string(), "ts".to_string());
+        queue.enqueue(r#"["b",[]]"#.to_string(), "ts".to_string());
+        queue.enqueue(r#"["c",[]]"#.to_string(), "ts".to_string());
+        queue.enqueue(r#"["d",[]]"#.to_string(), "ts".to_string());
 
         let deadline = Instant::now() + Duration::from_secs(5);
         while Instant::now() < deadline && queue.buffer_len() != 3 {
@@ -516,7 +382,7 @@ mod tests {
 
         for i in 0..3 {
             queue.enqueue(
-                format!(r#"{{"type":"mission_stats","data":{{"i":{i}}}}}"#),
+                format!(r#"["mission_stats",[["i",{i}]]]"#),
                 "2026-04-29T12:00:00.000Z".to_string(),
             );
         }
@@ -532,56 +398,62 @@ mod tests {
     }
 
     #[test]
-    fn test_retry_queue_preserves_fifo_on_eventual_success() {
-        config::store_api_port(2303);
+    fn test_retry_queue_sets_headers_and_text_plain_body() {
+        config::store_api_port(7777);
 
         let server = tiny_http::Server::http("127.0.0.1:0").unwrap();
         let port = server.server_addr().to_ip().unwrap().port();
         let url = format!("http://127.0.0.1:{port}/gameservers/events");
 
-        let bodies = Arc::new(Mutex::new(Vec::<String>::new()));
-        let bodies_clone = Arc::clone(&bodies);
+        let captured = Arc::new(Mutex::new(Vec::<(String, String, String, String)>::new()));
+        let captured_clone = Arc::clone(&captured);
 
         let server_thread = thread::spawn(move || {
-            let mut count = 0;
-            while count < 4 {
-                let Ok(Some(mut request)) = server.recv_timeout(Duration::from_secs(5)) else {
-                    return;
-                };
-                let mut body = String::new();
-                let _ = request.as_reader().read_to_string(&mut body);
-                if let Ok(mut guard) = bodies_clone.lock() {
-                    guard.push(body);
-                }
-                let status = if count == 0 { 500 } else { 200 };
-                let _ = request.respond(tiny_http::Response::empty(status));
-                count += 1;
+            let Ok(Some(mut request)) = server.recv_timeout(Duration::from_secs(5)) else {
+                return;
+            };
+            let content_type = request
+                .headers()
+                .iter()
+                .find(|h| h.field.as_str().as_str().eq_ignore_ascii_case("content-type"))
+                .map(|h| h.value.as_str().to_string())
+                .unwrap_or_default();
+            let api_port = request
+                .headers()
+                .iter()
+                .find(|h| h.field.as_str().as_str().eq_ignore_ascii_case("x-api-port"))
+                .map(|h| h.value.as_str().to_string())
+                .unwrap_or_default();
+            let enqueued_at = request
+                .headers()
+                .iter()
+                .find(|h| h.field.as_str().as_str().eq_ignore_ascii_case("x-enqueued-at"))
+                .map(|h| h.value.as_str().to_string())
+                .unwrap_or_default();
+            let mut body = String::new();
+            let _ = request.as_reader().read_to_string(&mut body);
+            if let Ok(mut guard) = captured_clone.lock() {
+                guard.push((content_type, api_port, enqueued_at, body));
             }
+            let _ = request.respond(tiny_http::Response::empty(200));
         });
 
-        let queue = RetryQueue::new(url, 1000, Duration::from_millis(50));
+        let queue = RetryQueue::new(url, 10, Duration::from_millis(50));
         queue.start();
         queue.enqueue(
-            r#"{"type":"e1","data":{"n":1}}"#.to_string(),
-            "ts1".to_string(),
-        );
-        queue.enqueue(
-            r#"{"type":"e2","data":{"n":2}}"#.to_string(),
-            "ts2".to_string(),
-        );
-        queue.enqueue(
-            r#"{"type":"e3","data":{"n":3}}"#.to_string(),
-            "ts3".to_string(),
+            r#"["mission_started",[["sessionId","abc"]]]"#.to_string(),
+            "2026-05-06T12:00:00.000Z".to_string(),
         );
 
         let _ = server_thread.join();
         queue.stop();
 
-        let captured = bodies.lock().unwrap().clone();
-        assert_eq!(captured.len(), 4);
-        assert!(captured[0].contains(r#""type":"e1""#));
-        assert!(captured[1].contains(r#""type":"e1""#));
-        assert!(captured[2].contains(r#""type":"e2""#));
-        assert!(captured[3].contains(r#""type":"e3""#));
+        let captured = captured.lock().unwrap().clone();
+        assert_eq!(captured.len(), 1);
+        let (content_type, api_port, enqueued_at, body) = &captured[0];
+        assert!(content_type.starts_with("text/plain"), "content-type was {content_type}");
+        assert_eq!(api_port, "7777");
+        assert_eq!(enqueued_at, "2026-05-06T12:00:00.000Z");
+        assert_eq!(body, r#"["mission_started",[["sessionId","abc"]]]"#);
     }
 }

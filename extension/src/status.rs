@@ -2,15 +2,15 @@ use std::sync::Mutex;
 
 static STATUS: Mutex<Option<String>> = Mutex::new(None);
 
-/// Cache the latest server_status event JSON.
+/// Cache the latest server_status event data field as SQF-notation.
 /// Called by sender before forwarding to API.
-pub fn cache_status(json: &str) {
+pub fn cache_status(sqf_data: &str) {
     if let Ok(mut guard) = STATUS.lock() {
-        *guard = Some(json.to_string());
+        *guard = Some(sqf_data.to_string());
     }
 }
 
-/// Return the cached status JSON for the GET /server endpoint.
+/// Return the cached status SQF-notation body for GET /server.
 /// Returns `None` if no status has been received yet.
 pub fn get_status_json() -> Option<String> {
     STATUS.lock().ok()?.clone()
@@ -29,12 +29,12 @@ mod tests {
 
     #[test]
     fn test_cache_and_get_status() {
-        cache_status(r#"{"map":"Altis","players":5,"fps":48.5}"#);
+        cache_status(r#"[["map","Altis"],["players",5],["uptime",48.5]]"#);
         let result = get_status_json();
         assert!(result.is_some());
-        let json = result.unwrap();
-        assert!(json.contains("Altis"));
-        assert!(json.contains("fps"));
+        let sqf = result.unwrap();
+        assert!(sqf.contains("Altis"));
+        assert!(sqf.contains("uptime"));
     }
 
     #[test]

@@ -17,8 +17,8 @@ pub fn flush() -> String {
     bridge::handle_flush()
 }
 
-pub fn event(json: String) -> String {
-    bridge::handle_event(&json)
+pub fn event(body: String) -> String {
+    bridge::handle_event(&body)
 }
 
 pub fn load(key: String) -> String {
