@@ -51,26 +51,44 @@ if (_receivedCount < _total) exitWith {
 };
 
 // All chunks received — reassemble
-private _fullJson = GVAR(apiLoadChunks) joinString "";
+private _fullSqf = GVAR(apiLoadChunks) joinString "";
 GVAR(apiLoadChunks) = nil;
 
-INFO_1("API persistence load: received %1 characters",count _fullJson);
+INFO_1("API persistence load: received %1 characters",count _fullSqf);
 
 // Handle empty data (no save exists)
-if (_fullJson == "") exitWith {
+if (_fullSqf == "") exitWith {
     INFO("No API persistence data found");
     GVAR(apiLoadedSession) = nil;
     GVAR(apiLoadComplete) = true;
 };
 
-// Parse the full session JSON
-private _session = [_fullJson, 2] call CBA_fnc_parseJSON;
-if (isNil "_session") exitWith {
-    ERROR("Failed to parse reassembled API persistence JSON");
+// API now emits canonical SQF str format ([[k,v],...] for hashmaps). Parse via
+// engine-native parseSimpleArray and recursively rebuild hashmaps from pair-lists.
+private _parsed = parseSimpleArray _fullSqf;
+if (isNil "_parsed") exitWith {
+    ERROR("Failed to parseSimpleArray reassembled API persistence payload");
     GVAR(apiLoadedSession) = nil;
     GVAR(apiLoadComplete) = true;
 };
 
-INFO("API persistence JSON parsed successfully");
-GVAR(apiLoadedSession) = _session;
+private _fnc_rebuild = {
+    private _value = _this;
+    if !(_value isEqualType []) exitWith { _value };
+    if (count _value == 0) exitWith { _value };
+    // Pair-list shape: every element is [string, value] → hashmap.
+    private _isPairList = true;
+    {
+        if (!(_x isEqualType []) || {count _x != 2} || {!((_x#0) isEqualType "")}) exitWith { _isPairList = false };
+    } forEach _value;
+    if (_isPairList) exitWith {
+        private _map = createHashMap;
+        { _map set [_x#0, (_x#1) call _fnc_rebuild] } forEach _value;
+        _map
+    };
+    _value apply { _x call _fnc_rebuild }
+};
+
+GVAR(apiLoadedSession) = _parsed call _fnc_rebuild;
+INFO("API persistence SQF parsed successfully");
 GVAR(apiLoadComplete) = true;

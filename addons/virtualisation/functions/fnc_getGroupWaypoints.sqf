@@ -19,7 +19,9 @@
 
 params ["_group"];
 
-// Returns waypoints yet to be completed
-private _waypoints = (waypoints _group) select {_x#1 >= currentWaypoint _group}; // [[EAST 1-1-A,2],[EAST 1-1-A,3],[EAST 1-1-A,4]]
+// Returns waypoints yet to be completed, excluding origin stubs
+private _waypoints = (waypoints _group) select {
+    _x#1 >= currentWaypoint _group && {(waypointPosition _x) isNotEqualTo [0,0,0]}
+};
 
 _waypoints apply {[waypointPosition _x, waypointType _x, waypointBehaviour _x, waypointCombatMode _x, waypointSpeed _x, waypointFormation _x]}

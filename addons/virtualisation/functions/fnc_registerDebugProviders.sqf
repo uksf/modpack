@@ -65,7 +65,7 @@ private _fnc_draw3d = {
                 private _isActive = _forEachIndex == _nextIndex;
                 private _colour = if (_isActive) then { [1,1,0,1] } else { [1,0.4,0,0.9] };
                 private _size = if (_isActive) then { 1.0 } else { 0.6 };
-                drawIcon3D ["\a3\ui_f\data\map\markers\military\triangle_ca.paa", _colour, _x, _size, _size, 0, "", 0.1, 0.025, "PuristaBold", "center"];
+                drawIcon3D ["\a3\ui_f\data\map\markers\waypoints\move_ca.paa", _colour, _x, _size, _size, 0, "", 0.1, 0.025, "PuristaBold", "center"];
             } forEach _waypointPositions;
         };
     } forEach _virtEntries;
@@ -86,7 +86,7 @@ private _fnc_drawMap = {
                 private _isActive = _forEachIndex == _nextIndex;
                 private _colour = if (_isActive) then { [1,1,0,1] } else { [1,0.4,0,0.9] };
                 private _size = if (_isActive) then { 24 } else { 16 };
-                _map drawIcon ["\a3\ui_f\data\map\markers\military\triangle_ca.paa", _colour, _x, _size, _size, 0, "", 0.1, 0.04, "PuristaBold", "center"];
+                _map drawIcon ["\a3\ui_f\data\map\markers\waypoints\move_ca.paa", _colour, _x, _size, _size, 0, "", 0.1, 0.04, "PuristaBold", "center"];
             } forEach _waypointPositions;
         };
 

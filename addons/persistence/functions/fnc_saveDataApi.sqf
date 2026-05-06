@@ -98,12 +98,19 @@ INFO_1("API persistence save: %1 characters",count _sqfStr);
 // "data" field as a JSON string. Backslash and double-quote are the only chars
 // SQF str() emits that need escaping for our use; LF/CR/TAB get escaped too in
 // case any user-provided field (custom names, etc.) ever contains them.
+//
+// IMPORTANT: cannot use `splitString`/`joinString` here — `splitString` discards
+// empty parts (BIS-documented), which silently collapses consecutive delimiters.
+// SQF str() of a hashmap is full of `""` (empty-string literals are 2 adjacent
+// quotes), so that pipeline ate every empty string in the payload — corrupting
+// loadout muzzle/pointer/optic/bipod fields on the API side.
+// Use regexReplace instead (Arma 3 v2.10+), which is preserve-faithful.
 private _escaped = _sqfStr;
-_escaped = _escaped splitString "\" joinString "\\";
-_escaped = _escaped splitString """" joinString "\""";
-_escaped = _escaped splitString (toString [10]) joinString "\n";
-_escaped = _escaped splitString (toString [13]) joinString "\r";
-_escaped = _escaped splitString (toString [9]) joinString "\t";
+_escaped = [_escaped, "\", "\\"] call CBA_fnc_replace;
+_escaped = [_escaped, """", "\"""] call CBA_fnc_replace;
+_escaped = [_escaped, toString [10], "\n"] call CBA_fnc_replace;
+_escaped = [_escaped, toString [13], "\r"] call CBA_fnc_replace;
+_escaped = [_escaped, toString [9], "\t"] call CBA_fnc_replace;
 
 private _envelope = format [
     '{"type":"persistence_save","data":{"key":"%1","sessionId":"%2","data":"%3"}}',

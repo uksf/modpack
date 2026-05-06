@@ -38,7 +38,15 @@ private _movementSpeed = [_side, _vehicleDetails, _unitDetails] call FUNC(getSim
 
 private _id = format ["%1_v%2_u%3_%4%5%6", _side, count _vehicleDetails, count _unitDetails, _position#0, _position#1, _position#2];
 
-private _simState = [currentWaypoint _group, _position, _leaderBehaviour, "NORMAL", 0];
+private _currentRaw = currentWaypoint _group;
+private _validRawIndices = [];
+{
+    if ((waypointPosition _x) isNotEqualTo [0,0,0]) then { _validRawIndices pushBack _forEachIndex };
+} forEach (waypoints _group);
+private _nextIndex = _validRawIndices findIf { _x >= _currentRaw };
+if (_nextIndex < 0) then { _nextIndex = 0 };
+
+private _simState = [_nextIndex, _position, _leaderBehaviour, "NORMAL", 0];
 
 GVAR(groupPositionMap) pushBack [_id, _position];
 GVAR(groupDataMap) set [_id, [

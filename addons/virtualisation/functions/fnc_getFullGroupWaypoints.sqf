@@ -19,6 +19,8 @@
 */
 params ["_group"];
 
-(waypoints _group) apply {
+private _validWaypoints = (waypoints _group) select { (waypointPosition _x) isNotEqualTo [0,0,0] };
+
+_validWaypoints apply {
     [waypointPosition _x, waypointType _x, waypointBehaviour _x, waypointCombatMode _x, waypointSpeed _x, waypointFormation _x]
 }
