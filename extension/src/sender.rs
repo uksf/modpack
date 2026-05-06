@@ -182,18 +182,14 @@ fn try_send(url: &str, pending: &PendingEvent) -> bool {
 
 /// Top-level SQF event body is `[<type>,<data>]` per `str []`.
 /// Detect a server_status event by matching the leading `["server_status",`
-/// prefix and return the data substring (including trailing `]`).
+/// prefix and return the data substring (the second element of the outer array).
 fn extract_server_status_data(body: &str) -> Option<&str> {
     const PREFIX: &str = "[\"server_status\",";
-    let trimmed = body.trim_start();
-    if !trimmed.starts_with(PREFIX) {
-        return None;
-    }
-    let after_prefix = &trimmed[PREFIX.len()..];
-    // Strip the trailing `]` of the outer array.
-    let end = after_prefix.rfind(']')?;
-    let inner = after_prefix[..end].trim();
-    Some(inner)
+    // trim() both ends so the leading-prefix and trailing-`]` checks are symmetric;
+    // otherwise stray trailing characters could fool rfind into matching the wrong `]`.
+    let trimmed = body.trim();
+    let inner = trimmed.strip_prefix(PREFIX)?.strip_suffix(']')?;
+    Some(inner.trim())
 }
 
 static QUEUE: Mutex<Option<Arc<RetryQueue>>> = Mutex::new(None);

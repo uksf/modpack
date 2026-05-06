@@ -100,5 +100,5 @@ private _eventData = createHashMapFromArray [
     ["data",      _session]
 ];
 
-INFO_1("API persistence save: %1 root keys",count _eventData);
+INFO_2("API persistence save: %1 objects, %2 players",count _objectHashmaps,count _playersHashmap);
 ["persistence_save", _eventData] call EFUNC(api,sendEvent);

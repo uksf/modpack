@@ -62,7 +62,7 @@ if (_fullSqf == "") exitWith {
 };
 
 // API emits canonical SQF str format ([[k,v],...] for hashmaps).
-// parseSimpleArray accepts the structure; pair-lists become hashmaps below.
+// parseSimpleArray accepts the structure; pair-lists become hashmaps via fnc_rebuildHashmaps.
 private _parsed = parseSimpleArray _fullSqf;
 if (isNil "_parsed") exitWith {
     ERROR("Failed to parseSimpleArray reassembled API persistence payload");
@@ -70,23 +70,6 @@ if (isNil "_parsed") exitWith {
     GVAR(apiLoadComplete) = true;
 };
 
-private _fnc_rebuild = {
-    private _value = _this;
-    if !(_value isEqualType []) exitWith { _value };
-    if (count _value == 0) exitWith { _value };
-    // Pair-list shape: every element is [string, value] → hashmap.
-    private _isPairList = true;
-    {
-        if (!(_x isEqualType []) || {count _x != 2} || {!((_x#0) isEqualType "")}) exitWith { _isPairList = false };
-    } forEach _value;
-    if (_isPairList) exitWith {
-        private _map = createHashMap;
-        { _map set [_x#0, (_x#1) call _fnc_rebuild] } forEach _value;
-        _map
-    };
-    _value apply { _x call _fnc_rebuild }
-};
-
-GVAR(apiLoadedSession) = _parsed call _fnc_rebuild;
+GVAR(apiLoadedSession) = _parsed call FUNC(rebuildHashmaps);
 INFO("API persistence SQF parsed successfully");
 GVAR(apiLoadComplete) = true;

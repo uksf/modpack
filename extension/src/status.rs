@@ -12,7 +12,7 @@ pub fn cache_status(sqf_data: &str) {
 
 /// Return the cached status SQF-notation body for GET /server.
 /// Returns `None` if no status has been received yet.
-pub fn get_status_json() -> Option<String> {
+pub fn get_status_sqf() -> Option<String> {
     STATUS.lock().ok()?.clone()
 }
 
@@ -30,7 +30,7 @@ mod tests {
     #[test]
     fn test_cache_and_get_status() {
         cache_status(r#"[["map","Altis"],["players",5],["uptime",48.5]]"#);
-        let result = get_status_json();
+        let result = get_status_sqf();
         assert!(result.is_some());
         let sqf = result.unwrap();
         assert!(sqf.contains("Altis"));
@@ -40,6 +40,6 @@ mod tests {
     #[test]
     fn test_no_status_returns_none() {
         clear();
-        assert!(get_status_json().is_none());
+        assert!(get_status_sqf().is_none());
     }
 }

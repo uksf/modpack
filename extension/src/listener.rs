@@ -40,7 +40,7 @@ pub fn start(port: u16) -> Result<(), String> {
             // Body is SQF-notation (engine-native str() of the server_status data hashmap).
             // Consumer (GameServerProcessManager) parses it via SqfNotationParser.
             if request.method() == &tiny_http::Method::Get && request.url() == "/server" {
-                let (status_code, body) = match crate::status::get_status_json() {
+                let (status_code, body) = match crate::status::get_status_sqf() {
                     Some(sqf) => (200, sqf),
                     None => (503, "no status available".to_string()),
                 };

@@ -22,7 +22,7 @@
     Example:
         [_function, _data] call uksf_api_fnc_handleCommand
 */
-params ["_function", "_data"];
+params [["_function", "", [""]], ["_data", "", [""]]];
 
 if (_function != "command") exitWith {
     WARNING_2("Unhandled extension callback type: %1, data: %2",_function,_data);
