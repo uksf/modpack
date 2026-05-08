@@ -32,6 +32,7 @@ INFO("Recreating all virtualised groups");
         GVAR(groupDataMap) = createHashMap;
         GVAR(groupPositionMap) = [];
         GVAR(simulatedGroupIds) = [];
+        GVAR(simPhases) = createHashMap;
     };
 
     private _id = GVAR(groupPositionMap)#0#0;
@@ -39,6 +40,7 @@ INFO("Recreating all virtualised groups");
 
     private _simulatedIndex = GVAR(simulatedGroupIds) findIf {_x == _id};
     if (_simulatedIndex >= 0) then { GVAR(simulatedGroupIds) deleteAt _simulatedIndex };
+    GVAR(simPhases) deleteAt _id;
 
     private _entry = GVAR(groupDataMap) deleteAt _id;
     _entry params ["_side", "_vehicles", "_infantry", "_waypoints", "_combatMode", "_formationDirection",

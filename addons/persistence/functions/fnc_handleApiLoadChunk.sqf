@@ -6,25 +6,23 @@
     Description:
         Handles a persistence load chunk received via the API command event.
         Stores chunks in a buffer array. When all chunks have arrived,
-        reassembles the JSON and parses it into GVAR(apiLoadedSession).
+        reassembles the SQF and parses it into GVAR(apiLoadedSession).
         Does NOT commit data to dataNamespace — the caller decides what to do.
         Sets GVAR(apiLoadComplete) to true when finished.
 
+        Args (positional, from handleCommand): [id, index, total, data, error]
+
     Parameter(s):
-        0: Parsed chunk hashmap <HASHMAP>
+        0: Args <ARRAY>
 
     Return Value:
         None
 
     Example:
-        [_chunkData] call uksf_persistence_fnc_handleApiLoadChunk
+        [_args] call uksf_persistence_fnc_handleApiLoadChunk
 */
-params ["_chunkData"];
-
-private _index = _chunkData getOrDefault ["index", 0];
-private _total = _chunkData getOrDefault ["total", 1];
-private _data = _chunkData getOrDefault ["data", ""];
-private _error = _chunkData getOrDefault ["error", ""];
+params ["_args"];
+_args params [["_id", ""], ["_index", 0], ["_total", 1], ["_data", ""], ["_error", ""]];
 
 TRACE_2("Received API load chunk",_index,_total);
 
@@ -51,26 +49,27 @@ if (_receivedCount < _total) exitWith {
 };
 
 // All chunks received — reassemble
-private _fullJson = GVAR(apiLoadChunks) joinString "";
+private _fullSqf = GVAR(apiLoadChunks) joinString "";
 GVAR(apiLoadChunks) = nil;
 
-INFO_1("API persistence load: received %1 characters",count _fullJson);
+INFO_1("API persistence load: received %1 characters",count _fullSqf);
 
 // Handle empty data (no save exists)
-if (_fullJson == "") exitWith {
+if (_fullSqf == "") exitWith {
     INFO("No API persistence data found");
     GVAR(apiLoadedSession) = nil;
     GVAR(apiLoadComplete) = true;
 };
 
-// Parse the full session JSON
-private _session = [_fullJson, 2] call CBA_fnc_parseJSON;
-if (isNil "_session") exitWith {
-    ERROR("Failed to parse reassembled API persistence JSON");
+// API emits canonical SQF str format ([[k,v],...] for hashmaps).
+// parseSimpleArray accepts the structure; pair-lists become hashmaps via fnc_rebuildHashmaps.
+private _parsed = parseSimpleArray _fullSqf;
+if (isNil "_parsed") exitWith {
+    ERROR("Failed to parseSimpleArray reassembled API persistence payload");
     GVAR(apiLoadedSession) = nil;
     GVAR(apiLoadComplete) = true;
 };
 
-INFO("API persistence JSON parsed successfully");
-GVAR(apiLoadedSession) = _session;
+GVAR(apiLoadedSession) = _parsed call FUNC(rebuildHashmaps);
+INFO("API persistence SQF parsed successfully");
 GVAR(apiLoadComplete) = true;

@@ -28,10 +28,14 @@
 #define MISSILE_CONE      0.5
 // Seconds between forced shots from same airframe (prevents spam).
 #define FIRE_COOLDOWN     25
+// Search/acquisition time after spawn before our code will force a shot.
+// AI may still engage on its own once it acquires the target.
+#define SEARCH_TIME       20
 
 params [["_group", grpNull, [grpNull]], ["_vehicle", objNull, [objNull]], ["_target", objNull, [objNull]]];
 
 private _expiryTime = time + GVAR(interceptTimeout);
+private _searchUntil = time + SEARCH_TIME;
 
 // Cache missile/rocket weapons once — loadout is static per airframe and the
 // BIS_fnc_itemType filter is wasted work each tick.
@@ -41,7 +45,7 @@ private _missileWeapons = (weapons _vehicle) select {
 
 [{
     params ["_args", "_idPFH"];
-    _args params ["_group", "_vehicle", "_target", "_expiryTime", "_missileWeapons"];
+    _args params ["_group", "_vehicle", "_target", "_expiryTime", "_missileWeapons", "_searchUntil"];
 
     private _driverUnit = driver _vehicle;
     if (isNull _group || {!alive _vehicle} || {!alive _driverUnit}) exitWith {
@@ -70,6 +74,10 @@ private _missileWeapons = (weapons _vehicle) select {
     (leader _group) reveal [_targetVehicle, 4];
     _driverUnit doTarget _targetVehicle;
 
+    // Search/acquisition gate — block our forced shot until aircraft has had
+    // time to search after spawn. AI engagement still allowed organically.
+    if (time < _searchUntil) exitWith {};
+
     // Engagement envelope gate — only force a shot when target is in front
     // cone and within plausible missile range. AI handles its own engagement
     // when geometry doesn't qualify.
@@ -88,4 +96,4 @@ private _missileWeapons = (weapons _vehicle) select {
     _driverUnit fireAtTarget [_targetVehicle, selectRandom _missileWeapons];
     _vehicle setVariable [QGVAR(lastInterceptShot), time];
     TRACE_3("Intercept fire",_range,_bearing,_vehicle);
-}, 5, [_group, _vehicle, _target, _expiryTime, _missileWeapons]] call CBA_fnc_addPerFrameHandler;
+}, 5, [_group, _vehicle, _target, _expiryTime, _missileWeapons, _searchUntil]] call CBA_fnc_addPerFrameHandler;

@@ -33,6 +33,7 @@ if (_v2 < 1) exitWith {};
 
 private _player = GVAR(suppression_currentUnit);
 if (isNull _player || {!alive _player}) exitWith {};
+if (!isNull objectParent _player) exitWith {};
 
 private _projPos = getPosASL _projectile;
 private _playerPos = eyePos _player;

@@ -28,12 +28,12 @@ if (toLower (_result select [0, 5]) == "error") exitWith {
     ERROR_1("Extension start returned error: %1",_result);
 };
 
-// Result is JSON: {"port":1234,"processId":5678}
-private _startData = [_result, 2] call CBA_fnc_parseJSON;
-if (isNil "_startData" || {!(_startData isEqualType createHashMap)}) exitWith {
-    ERROR_1("Invalid JSON response from extension start: %1",_result);
+// Result is SQF: [port, processId] — matches the unified extension wire.
+private _startData = parseSimpleArray _result;
+if (isNil "_startData" || {!(_startData isEqualType []) || {count _startData < 2}}) exitWith {
+    ERROR_1("Invalid response from extension start: %1",_result);
 };
-GVAR(processId) = _startData getOrDefault ["processId", -1];
+GVAR(processId) = _startData#1;
 
 // Send initial handshake so the API knows the server is alive during mission load
 private _data = createHashMapFromArray [

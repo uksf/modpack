@@ -12,7 +12,7 @@ fn export_dir() -> &'static PathBuf {
             .ok()
             .and_then(|p| p.parent().map(|d| d.to_path_buf()))
             .unwrap_or_default()
-            .join("uksf_config_export")
+            .join("uksf_exports")
     })
 }
 
@@ -28,13 +28,13 @@ fn safe_filename(name: &str) -> Option<&str> {
 
 pub fn open(filename: String) -> String {
     let Some(name) = safe_filename(&filename) else {
-        log::warn!("configExport open rejected unsafe filename: {filename}");
+        log::warn!("fileExport open rejected unsafe filename: {filename}");
         return "error: invalid filename".to_string();
     };
 
     let dir = export_dir();
     if let Err(error) = fs::create_dir_all(dir) {
-        log::error!("configExport failed to create dir {}: {error}", dir.display());
+        log::error!("fileExport failed to create dir {}: {error}", dir.display());
         return format!("error: create dir failed: {error}");
     }
 
@@ -42,7 +42,7 @@ pub fn open(filename: String) -> String {
     let file = match File::create(&path) {
         Ok(file) => file,
         Err(error) => {
-            log::error!("configExport open failed for {}: {error}", path.display());
+            log::error!("fileExport open failed for {}: {error}", path.display());
             return format!("error: open failed: {error}");
         }
     };
@@ -52,7 +52,7 @@ pub fn open(filename: String) -> String {
         Err(poisoned) => poisoned.into_inner(),
     };
     *guard = Some(BufWriter::new(file));
-    log::info!("configExport opened {}", path.display());
+    log::info!("fileExport opened {}", path.display());
     path.display().to_string()
 }
 
@@ -65,7 +65,7 @@ pub fn write(chunk: String) -> String {
         return "error: not open".to_string();
     };
     if let Err(error) = writer.write_all(chunk.as_bytes()) {
-        log::error!("configExport write failed: {error}");
+        log::error!("fileExport write failed: {error}");
         return format!("error: write failed: {error}");
     }
     "ok".to_string()
@@ -80,10 +80,10 @@ pub fn close() -> String {
         return "error: not open".to_string();
     };
     if let Err(error) = writer.flush() {
-        log::error!("configExport flush failed: {error}");
+        log::error!("fileExport flush failed: {error}");
         return format!("error: flush failed: {error}");
     }
-    log::info!("configExport closed");
+    log::info!("fileExport closed");
     "ok".to_string()
 }
 

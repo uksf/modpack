@@ -1,9 +1,12 @@
 // Submit SQF blob to dev-run. Strips comments (compileFinal hates them), POSTs, prints runId.
-// Usage: node submit.js <sqf_path>   (defaults to D:/Arma/_temp_probe_sqf.txt)
+// Usage: node submit.js [<sqf_path>] [<worldName>]
+//   sqf_path  defaults to D:/Arma/_temp_probe_sqf.txt
+//   worldName defaults to VR; use "Altis", "Stratis", "Tanoa", "Malden" etc. for road-having maps
 const fs = require('fs');
 const http = require('http');
 
 const sqfPath = process.argv[2] || 'D:/Arma/_temp_probe_sqf.txt';
+const worldName = process.argv[3] || null;
 let sqf = fs.readFileSync(sqfPath, 'utf8');
 sqf = sqf.replace(/\/\/[^\n]*/g, '').replace(/\/\*[\s\S]*?\*\//g, '');
 
@@ -19,13 +22,15 @@ const mods = [
     'B:/Steam/steamapps/common/Arma 3/uksf-dev/@CUP_Weapons',
     'B:/Steam/steamapps/common/Arma 3/uksf-dev/@JBad',
     'B:/Steam/steamapps/common/Arma 3/uksf-dev/@uksf_dependencies',
-    'B:/Steam/steamapps/common/Arma 3/u/uksf_air',
-    'B:/Steam/steamapps/common/Arma 3/u/uksf',
-    'B:/Steam/steamapps/common/Arma 3/z/ace',
+    'D:/Arma/uksf_air/.hemttout/dev',
+    'D:/Arma/modpack/.hemttout/dev',
+    'D:/Arma/ace/.hemttout/dev',
     'B:/Steam/steamapps/common/Arma 3/uksf-dev/@uksf_acre2'
 ];
 
-const body = JSON.stringify({ sqf, mods, timeoutSeconds: 600 });
+const payload = { sqf, mods, timeoutSeconds: 600 };
+if (worldName) payload.worldName = worldName;
+const body = JSON.stringify(payload);
 
 const req = http.request({
     hostname: 'localhost', port: 5500, path: '/dev-run', method: 'POST',

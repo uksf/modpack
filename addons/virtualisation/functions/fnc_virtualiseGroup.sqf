@@ -38,12 +38,21 @@ private _movementSpeed = [_side, _vehicleDetails, _unitDetails] call FUNC(getSim
 
 private _id = format ["%1_v%2_u%3_%4%5%6", _side, count _vehicleDetails, count _unitDetails, _position#0, _position#1, _position#2];
 
-private _simState = [currentWaypoint _group, _position, _leaderBehaviour, "NORMAL", 0];
+// Filtered waypoints drop the engine auto-stub at 0, so subtract one.
+private _nextIndex = ((currentWaypoint _group) - 1) max 0;
+
+// _pathLinear[i] = path points to reach user WP i. _pathCycleReturn = path
+// for last-MOVE → first-MOVE; swapped into _pathLinear[firstMove] on CYCLE.
+private _pathLinear = _fullWaypoints apply { [] };
+private _pathCycleReturn = [];
+
+private _simState = [_nextIndex, _position, _leaderBehaviour, "NORMAL", 0, 0];
 
 GVAR(groupPositionMap) pushBack [_id, _position];
 GVAR(groupDataMap) set [_id, [
     _side, _vehicleDetails, _unitDetails, _waypoints, _combatMode, _formationDirection,
-    _simState, diag_tickTime, _fullWaypoints, _movementSpeed, _originalLeaderPos
+    _simState, CBA_missionTime, _fullWaypoints, _movementSpeed, _originalLeaderPos,
+    _pathLinear, _pathCycleReturn
 ]];
 
 private _hasMovement = _fullWaypoints findIf {
@@ -51,10 +60,78 @@ private _hasMovement = _fullWaypoints findIf {
     _type == "MOVE" || _type == "CYCLE"
 };
 if (_hasMovement != -1) then {
+    private _phase = GVAR(simPhaseCounter) mod SIM_INTERVAL;
+    if (_phase == GVAR(simCursor)) then {
+        GVAR(simPhaseCounter) = GVAR(simPhaseCounter) + 1;
+        _phase = GVAR(simPhaseCounter) mod SIM_INTERVAL;
+    };
+    GVAR(simPhaseCounter) = GVAR(simPhaseCounter) + 1;
+    GVAR(simPhases) set [_id, _phase];
     GVAR(simulatedGroupIds) pushBack _id;
 };
 
 TRACE_3("virtualised group",_group,_id,_hasMovement);
+
+if (_hasMovement != -1 && {_vehicleDetails isNotEqualTo []}) then {
+    private _moveIndices = [];
+    {
+        if ((toUpper (_x#1)) == "MOVE") then { _moveIndices pushBack _forEachIndex };
+    } forEach _fullWaypoints;
+
+    private _vehicleType = (_vehicleDetails#0)#0;
+    private _resolveBehaviour = {
+        params ["_wpBehaviour"];
+        if (_wpBehaviour == "UNCHANGED" || {_wpBehaviour == ""}) exitWith { _leaderBehaviour };
+        _wpBehaviour
+    };
+
+    private _segments = [];
+
+    if (_moveIndices isNotEqualTo []) then {
+        private _firstMoveIdx = _moveIndices#0;
+        private _firstMoveWp = _fullWaypoints#_firstMoveIdx;
+        _segments pushBack [
+            _position,
+            +(_firstMoveWp#0),
+            _vehicleType,
+            [_firstMoveWp#2] call _resolveBehaviour,
+            ["linear", _firstMoveIdx]
+        ];
+    };
+
+    for "_i" from 0 to (count _moveIndices - 2) do {
+        private _fromIdx = _moveIndices#_i;
+        private _toIdx = _moveIndices#(_i + 1);
+        private _toWp = _fullWaypoints#_toIdx;
+        _segments pushBack [
+            +(_fullWaypoints#_fromIdx#0),
+            +(_toWp#0),
+            _vehicleType,
+            [_toWp#2] call _resolveBehaviour,
+            ["linear", _toIdx]
+        ];
+    };
+
+    private _cycleIndex = _fullWaypoints findIf { (toUpper (_x#1)) == "CYCLE" };
+    if (_cycleIndex >= 0 && {count _moveIndices >= 2}) then {
+        private _lastMoveIdx = _moveIndices#((count _moveIndices) - 1);
+        private _firstMoveIdx = _moveIndices#0;
+        if (_lastMoveIdx < _cycleIndex) then {
+            private _firstMoveWp = _fullWaypoints#_firstMoveIdx;
+            _segments pushBack [
+                +(_fullWaypoints#_lastMoveIdx#0),
+                +(_firstMoveWp#0),
+                _vehicleType,
+                [_firstMoveWp#2] call _resolveBehaviour,
+                ["cycleReturn"]
+            ];
+        };
+    };
+
+    if (_segments isNotEqualTo []) then {
+        [_id, _segments] call FUNC(expandVehiclePath);
+    };
+};
 
 {deleteVehicle _x} forEach (units _group);
 {deleteVehicle _x} forEach _vehicles;

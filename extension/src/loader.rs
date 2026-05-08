@@ -22,7 +22,7 @@ pub fn load(key: &str) {
             }
             Err(error) => {
                 log::error!("Failed to load persistence for key '{key}': {error}");
-                let envelope = build_error_envelope_json(&key, &error);
+                let envelope = build_envelope_sqf(&key, 0, 0, "", &error);
                 bridge::fire_callback("command", &envelope);
                 return;
             }
@@ -33,7 +33,7 @@ pub fn load(key: &str) {
         log::info!("Sending persistence '{key}' in {total} chunk(s)");
 
         for (index, chunk) in chunks.iter().enumerate() {
-            let envelope = build_envelope_json(&key, index, total, chunk);
+            let envelope = build_envelope_sqf(&key, index, total, chunk, "");
             bridge::fire_callback("command", &envelope);
         }
         log::info!("Finished sending persistence '{key}'");
@@ -80,37 +80,32 @@ fn chunk_data(data: &str, chunk_size: usize) -> Vec<&str> {
     chunks
 }
 
-fn escape_json_string(input: &str) -> String {
+/// SQF string literals double internal quotes; backslashes are literal.
+fn escape_sqf_string(input: &str) -> String {
     let mut escaped = String::with_capacity(input.len() + 16);
     for character in input.chars() {
-        match character {
-            '\\' => escaped.push_str("\\\\"),
-            '"' => escaped.push_str("\\\""),
-            '\n' => escaped.push_str("\\n"),
-            '\r' => escaped.push_str("\\r"),
-            '\t' => escaped.push_str("\\t"),
-            c if c.is_control() => {
-                escaped.push_str(&format!("\\u{:04x}", c as u32));
-            }
-            c => escaped.push(c),
+        if character == '"' {
+            escaped.push_str("\"\"");
+        } else {
+            escaped.push(character);
         }
     }
     escaped
 }
 
-fn build_error_envelope_json(id: &str, error: &str) -> String {
-    let escaped_id = escape_json_string(id);
-    let escaped_error = escape_json_string(error);
+/// Persistence chunk envelope as an SQF array literal:
+///   ["persistence_load", "<id>", <index>, <total>, "<data>", "<error>"]
+/// The game side runs parseSimpleArray on this, dropping CBA_fnc_parseJSON
+/// from the per-chunk hot path. parseSimpleArray accepts any-depth arrays
+/// and respects the SQF doubled-quote string convention.
+fn build_envelope_sqf(id: &str, index: usize, total: usize, data: &str, error: &str) -> String {
     format!(
-        r#"{{"type":"persistence_load","id":"{escaped_id}","index":0,"total":0,"data":"","error":"{escaped_error}"}}"#
-    )
-}
-
-fn build_envelope_json(id: &str, index: usize, total: usize, data: &str) -> String {
-    let escaped_id = escape_json_string(id);
-    let escaped_data = escape_json_string(data);
-    format!(
-        r#"{{"type":"persistence_load","id":"{escaped_id}","index":{index},"total":{total},"data":"{escaped_data}"}}"#
+        "[\"persistence_load\",\"{}\",{},{},\"{}\",\"{}\"]",
+        escape_sqf_string(id),
+        index,
+        total,
+        escape_sqf_string(data),
+        escape_sqf_string(error)
     )
 }
 
@@ -187,34 +182,37 @@ mod tests {
     }
 
     #[test]
-    fn test_build_envelope_json() {
-        let json = build_envelope_json("save-123", 0, 3, "chunk_data");
-        assert!(json.contains(r#""type":"persistence_load""#));
-        assert!(json.contains(r#""id":"save-123""#));
-        assert!(json.contains(r#""index":0"#));
-        assert!(json.contains(r#""total":3"#));
-        assert!(json.contains(r#""data":"chunk_data""#));
+    fn test_build_envelope_sqf_basic() {
+        let sqf = build_envelope_sqf("save-123", 0, 3, "chunk_data", "");
+        assert_eq!(sqf, "[\"persistence_load\",\"save-123\",0,3,\"chunk_data\",\"\"]");
     }
 
     #[test]
-    fn test_build_envelope_json_escapes_quotes() {
-        let json = build_envelope_json("id", 0, 1, r#"{"key":"value"}"#);
-        assert!(json.contains(r#""data":"{\"key\":\"value\"}""#));
+    fn test_build_envelope_sqf_doubles_quotes_in_data() {
+        // SQF string escape: " → "" (doubled). Backslashes stay literal.
+        let sqf = build_envelope_sqf("id", 0, 1, r#"[["k","v"]]"#, "");
+        assert_eq!(sqf, "[\"persistence_load\",\"id\",0,1,\"[[\"\"k\"\",\"\"v\"\"]]\",\"\"]");
     }
 
     #[test]
-    fn test_build_envelope_json_escapes_newlines_and_tabs() {
-        let json = build_envelope_json("id", 0, 1, "line1\nline2\ttab");
-        assert!(json.contains(r#""data":"line1\nline2\ttab""#));
-        // Verify no raw newlines in the output
-        assert!(!json.contains('\n'));
-        assert!(!json.contains('\t'));
+    fn test_build_envelope_sqf_passes_newlines_through() {
+        // Multi-byte / control chars survive verbatim — parseSimpleArray accepts them.
+        let sqf = build_envelope_sqf("id", 0, 1, "line1\nline2", "");
+        assert!(sqf.contains("line1\nline2"));
     }
 
     #[test]
-    fn test_build_envelope_json_escapes_id() {
-        let json = build_envelope_json("key\"with\"quotes", 0, 1, "data");
-        assert!(json.contains(r#""id":"key\"with\"quotes""#));
+    fn test_build_envelope_sqf_escapes_id_quotes() {
+        let sqf = build_envelope_sqf(r#"key"with"quotes"#, 0, 1, "data", "");
+        assert!(sqf.contains(r#""key""with""quotes""#));
+    }
+
+    #[test]
+    fn test_build_envelope_sqf_error_form() {
+        // Error envelope is the same shape as a data envelope but with total=0
+        // and the error string in the last slot.
+        let sqf = build_envelope_sqf("missing", 0, 0, "", "not found");
+        assert_eq!(sqf, "[\"persistence_load\",\"missing\",0,0,\"\",\"not found\"]");
     }
 
     #[test]

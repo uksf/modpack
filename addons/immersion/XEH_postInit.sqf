@@ -43,12 +43,6 @@ GVAR(suppression_impactBlur) ppEffectEnable true;
 [{call FUNC(suppressionRecovery)}, 1] call CBA_fnc_addPerFrameHandler;
 [{call FUNC(suppressionPinnedDown)}, 0.5] call CBA_fnc_addPerFrameHandler;
 
-// Close-miss reaction test keybind — unbound by default; assign in CBA
-// keybindings menu under "UKSF". Triggers the reaction at severity 1
-// (bypasses the adrenaline pool) with a random pass side, for tuning.
-["UKSF", "uksf_immersion_closeMissTest", ["Close-miss test", "Trigger close-miss reaction at full severity, random side"],
-    { [selectRandom [-1, 1], 1] call FUNC(closeMissReaction); false }, "", [0, [false, false, false]], false] call CBA_fnc_addKeybind;
-
 #ifdef DEBUG_MODE_FULL
 addMissionEventHandler ["Draw3D", {
     if (isNull ACE_player || {!alive ACE_player}) exitWith {};

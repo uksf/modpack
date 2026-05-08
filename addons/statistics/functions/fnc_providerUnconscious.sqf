@@ -15,13 +15,10 @@
 */
 ["ace_unconscious", {
     params ["_unit", "_active"];
-    private _startTime = diag_tickTime;
 
     if (_unit isEqualTo player && {_active}) then {
         [createHashMapFromArray [
             ["type", "unconscious"]
         ]] call FUNC(addEvent);
     };
-
-    ["unconscious", _startTime] call FUNC(addProviderTiming);
 }] call CBA_fnc_addEventHandler;
