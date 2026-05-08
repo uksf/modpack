@@ -64,7 +64,7 @@ private _items = cba_settings_allSettings apply {
     // priority returns "client" when the user can override; anything else means a higher
     // namespace (mission/server/userconfig/missionConfig) has forced the current value.
     private _priority = [_name] call cba_settings_fnc_priority;
-    private _isForced = !(_priority isEqualTo "client");
+    private _isForced = _priority isNotEqualTo "client";
 
     private _valueInfo = [_settingType, _settingData] call _valueInfoForType;
 
