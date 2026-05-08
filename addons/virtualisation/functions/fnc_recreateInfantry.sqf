@@ -45,14 +45,14 @@ params ["_group", "_unitDetails", "_rebaseDelta", "_callback", "_callbackArgs"];
     private _unitData = _unitDetails deleteAt 0;
     _unitData params ["_type", "_position", "_direction", "_stance", "_skill", "_behaviour", "_disabledFeatures"];
 
-    private _shifted = _position vectorAdd _rebaseDelta;
-    private _groundZ = getTerrainHeightASL [_shifted#0, _shifted#1];
-    private _originalGroundZ = getTerrainHeightASL [_position#0, _position#1];
-    private _spawnPosition = [_shifted#0, _shifted#1, _groundZ + (_position#2 - _originalGroundZ)];
-
     private _unit = _group createUnit [_type, [0,0,0], [], 5, "NONE"];
     _unit setDir _direction;
-    _unit setPosASL _spawnPosition;
+    if (_rebaseDelta isEqualTo [0,0,0]) then {
+        _unit setPosASL _position;
+    } else {
+        private _shifted = _position vectorAdd _rebaseDelta;
+        _unit setPosATL [_shifted#0, _shifted#1, 0];
+    };
     _unit setUnitPos _stance;
 
     _unit setSkill _skill;

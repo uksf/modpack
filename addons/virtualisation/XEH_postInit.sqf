@@ -1,5 +1,6 @@
 #include "script_component.hpp"
 #define DELAY 3
+#define SIM_DELAY 1
 
 if (!GVAR(enabled)) exitWith {
     INFO("Virtualisation is disabled.");
@@ -39,12 +40,16 @@ if (isServer) then {
         }, 0, [_groups, _count, _perFrame, 0]] call CBA_fnc_addPerFrameHandler;
     }, DELAY, []] call CBA_fnc_addPerFrameHandler;
 
+    // Sim — chunked across SIM_INTERVAL window so debug ticks see incremental progress.
+    [{
+        if (GVAR(killswitched) || isGamePaused) exitWith {};
+        call FUNC(simulateGroups);
+    }, SIM_DELAY, []] call CBA_fnc_addPerFrameHandler;
+
     // Recreation
     [{
         // Killswitch
         if (GVAR(killswitched) || isGamePaused) exitWith {};
-
-        call FUNC(simulateGroups);
 
         // To avoid flicker, we'll recreate groups 200m closer, but virtualise 200m further away (400m buffer zone)
         private _bufferedDistance = GVAR(distance) - 200;

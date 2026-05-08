@@ -38,13 +38,9 @@ private _movementSpeed = [_side, _vehicleDetails, _unitDetails] call FUNC(getSim
 
 private _id = format ["%1_v%2_u%3_%4%5%6", _side, count _vehicleDetails, count _unitDetails, _position#0, _position#1, _position#2];
 
-private _currentRaw = currentWaypoint _group;
-private _validRawIndices = [];
-{
-    if ((waypointPosition _x) isNotEqualTo [0,0,0]) then { _validRawIndices pushBack _forEachIndex };
-} forEach (waypoints _group);
-private _nextIndex = _validRawIndices findIf { _x >= _currentRaw };
-if (_nextIndex < 0) then { _nextIndex = 0 };
+// Filtered waypoints drop the engine auto-stub at index 0, so the filtered
+// index is one less than the raw currentWaypoint.
+private _nextIndex = ((currentWaypoint _group) - 1) max 0;
 
 private _simState = [_nextIndex, _position, _leaderBehaviour, "NORMAL", 0];
 
@@ -63,6 +59,40 @@ if (_hasMovement != -1) then {
 };
 
 TRACE_3("virtualised group",_group,_id,_hasMovement);
+
+// For groups that include vehicles, schedule async road-following path
+// expansion for each MOVE→MOVE pair and the optional CYCLE return path.
+// PathCalculated handlers splice intermediate points into _fullWaypoints.
+if (_hasMovement != -1 && {_vehicleDetails isNotEqualTo []}) then {
+    private _moveIndices = [];
+    {
+        if ((toUpper (_x#1)) == "MOVE") then { _moveIndices pushBack _forEachIndex };
+    } forEach _fullWaypoints;
+
+    private _segments = [];
+    for "_i" from 0 to (count _moveIndices - 2) do {
+        private _fromIdx = _moveIndices#_i;
+        private _toIdx = _moveIndices#(_i + 1);
+        _segments pushBack [+(_fullWaypoints#_fromIdx#0), +(_fullWaypoints#_toIdx#0), "MOVE"];
+    };
+
+    private _cycleIndex = _fullWaypoints findIf { (toUpper (_x#1)) == "CYCLE" };
+    if (_cycleIndex >= 0 && {count _moveIndices >= 2}) then {
+        private _lastMoveIdx = _moveIndices#((count _moveIndices) - 1);
+        private _firstMoveIdx = _moveIndices#0;
+        if (_lastMoveIdx < _cycleIndex) then {
+            private _firstMovePos = +(_fullWaypoints#_firstMoveIdx#0);
+            _segments pushBack [+(_fullWaypoints#_lastMoveIdx#0), _firstMovePos, "CYCLE"];
+            // Repurpose CYCLE entry's position to first MOVE position so the
+            // sim transitions smoothly when the wrap fires (no teleport).
+            (_fullWaypoints#_cycleIndex) set [0, _firstMovePos];
+        };
+    };
+
+    if (_segments isNotEqualTo []) then {
+        [_id, _segments] call FUNC(expandVehiclePath);
+    };
+};
 
 {deleteVehicle _x} forEach (units _group);
 {deleteVehicle _x} forEach _vehicles;

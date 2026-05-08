@@ -19,7 +19,9 @@
 */
 params ["_group"];
 
-private _validWaypoints = (waypoints _group) select { (waypointPosition _x) isNotEqualTo [0,0,0] };
+// Index 0 is always the engine auto-stub at the group's start position.
+// Real waypoints begin at index 1. Wiki: currentWaypoint
+private _validWaypoints = (waypoints _group) select { (_x#1) > 0 };
 
 _validWaypoints apply {
     [waypointPosition _x, waypointType _x, waypointBehaviour _x, waypointCombatMode _x, waypointSpeed _x, waypointFormation _x]

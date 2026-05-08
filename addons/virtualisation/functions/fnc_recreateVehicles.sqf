@@ -46,14 +46,14 @@ params ["_group", "_vehicleDetails", "_rebaseDelta", "_callback", "_callbackArgs
         _currentVehicleData = _vehicleDetails deleteAt 0;
         _currentVehicleData params ["_type", "_position", "_direction", "_engineState", "_fuel"];
 
-        private _shifted = _position vectorAdd _rebaseDelta;
-        private _groundZ = getTerrainHeightASL [_shifted#0, _shifted#1];
-        private _originalGroundZ = getTerrainHeightASL [_position#0, _position#1];
-        private _spawnPosition = [_shifted#0, _shifted#1, _groundZ + (_position#2 - _originalGroundZ)];
-
         private _vehicle = createVehicle [_type, [0,0,0], [], 0, "NONE"];
         _vehicle setDir _direction;
-        _vehicle setPosASL _spawnPosition;
+        if (_rebaseDelta isEqualTo [0,0,0]) then {
+            _vehicle setPosASL _position;
+        } else {
+            private _shifted = _position vectorAdd _rebaseDelta;
+            _vehicle setPosATL [_shifted#0, _shifted#1, 0];
+        };
         _vehicle setVectorUp (surfaceNormal (getPos _vehicle));
         _vehicle setFuel _fuel;
         _vehicle engineOn _engineState;

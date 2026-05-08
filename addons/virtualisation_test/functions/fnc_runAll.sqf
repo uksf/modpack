@@ -18,7 +18,14 @@
         [] call uksf_virtualisation_test_fnc_runAll
 */
 
-private _scenarios = ["basic_move", "move_then_cycle", "static_no_move", "with_origin_stub", "cycle_origin"];
+private _scenarios = [
+    "basic_move",
+    "move_then_cycle",
+    "static_no_move",
+    "no_real_waypoints",
+    "vehicle_road_path_basic",
+    "vehicle_road_path_cycle"
+];
 
 private _results = _scenarios apply {
     [_x] call FUNC(runScenario)
