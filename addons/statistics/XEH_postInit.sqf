@@ -11,7 +11,7 @@ if (hasInterface) then {
     ["sampler", FUNC(providerSampler), "client"] call FUNC(registerProvider);
 };
 
-if (isServer) then {
+if (isDedicated) then {
     ["kills", FUNC(providerKills), "server"] call FUNC(registerProvider);
 };
 

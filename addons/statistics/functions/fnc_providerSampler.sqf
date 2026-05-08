@@ -23,7 +23,6 @@ GVAR(samplerInitialized) = false;
 
 GVAR(samplerPFH) = [{
     params ["_args", "_idPFH"];
-    private _startTime = diag_tickTime;
     private _currentPosition = getPosATL player;
     private _playerVehicle = objectParent player;
     private _isOnFoot = isNull _playerVehicle;
@@ -31,7 +30,6 @@ GVAR(samplerPFH) = [{
     if (!GVAR(samplerInitialized)) exitWith {
         GVAR(lastPosition) = _currentPosition;
         GVAR(samplerInitialized) = true;
-        ["sampler", _startTime] call FUNC(addProviderTiming);
     };
 
     private _distanceMoved = GVAR(lastPosition) distance _currentPosition;
@@ -76,6 +74,4 @@ GVAR(samplerPFH) = [{
     };
 
     [GVAR(samplerFuelLitres), _fuelTick] call EFUNC(common,sampledSeriesAppend);
-
-    ["sampler", _startTime] call FUNC(addProviderTiming);
 }, 10, []] call CBA_fnc_addPerFrameHandler;
