@@ -7,9 +7,9 @@ ADDON = false;
 GVAR(pathEventsByGroup) = createHashMap;
 
 [QEGVAR(virtualisation,pathExpansionCompleted), {
-    params ["_id", "_segmentType", "_status", "_intermediateCount"];
+    params ["_id", "_slot", "_status", "_intermediateCount"];
     private _events = GVAR(pathEventsByGroup) getOrDefault [_id, []];
-    _events pushBack [_segmentType, _status, _intermediateCount];
+    _events pushBack [_slot, _status, _intermediateCount];
     GVAR(pathEventsByGroup) set [_id, _events];
 }] call CBA_fnc_addEventHandler;
 

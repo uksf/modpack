@@ -24,5 +24,5 @@ params ["_group"];
 private _validWaypoints = (waypoints _group) select { (_x#1) > 0 };
 
 _validWaypoints apply {
-    [waypointPosition _x, waypointType _x, waypointBehaviour _x, waypointCombatMode _x, waypointSpeed _x, waypointFormation _x]
+    [waypointPosition _x, waypointType _x, waypointBehaviour _x, waypointCombatMode _x, waypointSpeed _x, waypointFormation _x, (waypointStatements _x)#1]
 }

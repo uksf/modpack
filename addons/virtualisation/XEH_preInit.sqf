@@ -8,7 +8,9 @@ GVAR(killswitched) = false;
 GVAR(groupDataMap) = createHashMap;
 GVAR(groupPositionMap) = [];
 GVAR(simulatedGroupIds) = [];
-GVAR(simChunkCursor) = -1;
+GVAR(simPhases) = createHashMap;
+GVAR(simCursor) = -1;
+GVAR(simPhaseCounter) = 0;
 
 [QGVAR(include), {_this setVariable [QGVAR(excluded), false, true]}] call CBA_fnc_addEventHandler;
 [QGVAR(exclude), {_this setVariable [QGVAR(excluded), true, true]}] call CBA_fnc_addEventHandler;

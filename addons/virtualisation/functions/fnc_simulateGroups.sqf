@@ -4,10 +4,12 @@
         Tim Beswick
 
     Description:
-        Sim tick orchestrator. Advances the chunk cursor each tick and processes
-        a slice of simulatedGroupIds (~10% per tick → full pass every ~30s).
-        Dispatches per-group sim advance via fnc_simulateGroup and writes
-        updated positions back into groupPositionMap.
+        Sim tick orchestrator. Cursor advances each tick (mod SIM_INTERVAL).
+        Processes only groups whose simPhase matches the cursor — phases are
+        assigned at virtualisation time and never change, so each group ticks
+        exactly once per SIM_INTERVAL ticks regardless of insertions or
+        removals between ticks. New groups are assigned a phase != current
+        cursor so they tick within at most SIM_INTERVAL ticks.
 
     Parameter(s):
         None
@@ -20,13 +22,13 @@
 */
 if (count GVAR(simulatedGroupIds) == 0) exitWith {};
 
-GVAR(simChunkCursor) = (GVAR(simChunkCursor) + 1) mod SIM_CHUNK_COUNT;
-
-private _sliceSize = ceil ((count GVAR(simulatedGroupIds)) / SIM_CHUNK_COUNT);
-private _start = GVAR(simChunkCursor) * _sliceSize;
+GVAR(simCursor) = (GVAR(simCursor) + 1) mod SIM_INTERVAL;
+private _cursor = GVAR(simCursor);
 
 {
     private _id = _x;
+    if ((GVAR(simPhases) getOrDefault [_id, -1]) != _cursor) then { continue };
+
     private _entry = GVAR(groupDataMap) get _id;
     if (isNil "_entry") then { continue };
 
@@ -37,4 +39,4 @@ private _start = GVAR(simChunkCursor) * _sliceSize;
             (GVAR(groupPositionMap) select _positionIndex) set [1, _newPosition];
         };
     };
-} forEach (GVAR(simulatedGroupIds) select [_start, _sliceSize]);
+} forEach GVAR(simulatedGroupIds);

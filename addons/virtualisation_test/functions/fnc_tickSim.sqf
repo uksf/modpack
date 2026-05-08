@@ -28,7 +28,7 @@ for "_i" from 1 to _count do {
     private _entry = EGVAR(virtualisation,groupDataMap) get _id;
     if (isNil "_entry") exitWith {};
 
-    _entry set [7, diag_tickTime - _fakedDelta];
+    _entry set [7, CBA_missionTime - _fakedDelta];
 
     private _newPosition = [_id, _entry] call EFUNC(virtualisation,simulateGroup);
     if (!isNil "_newPosition") then {

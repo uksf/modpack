@@ -8,7 +8,7 @@
         registration matches expectation, tick sim, assert position progress
         and no [0,0,0] artefacts. For vehicle road-path scenarios, waits up
         to PATH_TIMEOUT seconds for async path expansion events and verifies
-        expected expansion count + CYCLE position repurposing.
+        the expected slot count is reached.
 
         Must run in scheduled context (uses waitUntil for vehicle scenarios).
 
@@ -26,13 +26,15 @@
 params ["_name"];
 
 // [expectSimulated, expectInitialFullWaypointsCount, isVehicleScenario, expectedExpansionEvents]
+// Vehicle scenarios produce one event per segment: initial leg (start→first
+// MOVE), each MOVE→MOVE pair, plus the optional CYCLE return.
 private _spec = createHashMapFromArray [
     ["basic_move",                [true,  3, false, 0]],
     ["move_then_cycle",           [true,  3, false, 0]],
     ["static_no_move",            [false, 1, false, 0]],
     ["no_real_waypoints",         [false, 0, false, 0]],
-    ["vehicle_road_path_basic",   [true,  2, true,  1]],
-    ["vehicle_road_path_cycle",   [true,  3, true,  2]]
+    ["vehicle_road_path_basic",   [true,  2, true,  2]],
+    ["vehicle_road_path_cycle",   [true,  3, true,  3]]
 ];
 
 private _fail = { params ["_n", "_reason"]; [_n, false, _reason] };
@@ -67,19 +69,6 @@ private _originReason = [_id] call FUNC(assertNoOriginWaypoints);
 if (_originReason isNotEqualTo "") exitWith { [_name, _originReason] call _fail };
 
 if (_isVehicleScenario) then {
-    private _firstWpPos = +(_fullWaypoints#0#0);
-
-    if (_name == "vehicle_road_path_cycle") then {
-        private _cycleIndex = _fullWaypoints findIf { (toUpper (_x#1)) == "CYCLE" };
-        if (_cycleIndex < 0) then {
-            [_name, "no CYCLE entry found"] call _fail
-        };
-        private _cyclePos = _fullWaypoints#_cycleIndex#0;
-        if (_cyclePos isNotEqualTo _firstWpPos) then {
-            [_name, format ["CYCLE position %1 not repurposed to first WP %2", _cyclePos, _firstWpPos]] call _fail
-        };
-    };
-
     private _deadline = CBA_missionTime + PATH_TIMEOUT;
     waitUntil {
         private _events = GVAR(pathEventsByGroup) getOrDefault [_id, []];

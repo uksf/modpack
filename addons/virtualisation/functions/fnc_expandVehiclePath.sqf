@@ -4,74 +4,91 @@
         Tim Beswick
 
     Description:
-        Spawns async calculatePath agents for each segment. Each segment is
-        [_fromPos, _toPos, _segmentType] — "MOVE" splices intermediate path
-        points before the matching MOVE waypoint at _toPos, "CYCLE" splices
-        before the first CYCLE waypoint.
-
-        calculatePath fires its PathCalculated event handler twice per call
-        (engine quirk): first fire delivers the real path, second delivers a
-        2-element stub. Defensive pathProcessed flag suppresses the second.
+        Per-segment vehicle path planning. Spawns the actual segment vehicle
+        (hidden, sim disabled, damage off), drops a man agent in as driver,
+        attaches PathCalculated EH on the agent, then setDestination triggers
+        planning. First EH fire stores the path and cleans up agent + vehicle;
+        AGENT_TIMEOUT is a fallback if the EH never fires.
+        _slot is ["linear", _waypointIndex] or ["cycleReturn"].
 
     Parameter(s):
         0: Group id <STRING>
-        1: Segments <ARRAY> — each [_fromPos, _toPos, _segmentType]
+        1: Segments <ARRAY> — each [_fromPos, _toPos, _vehicleType, _behaviour, _slot]
 
     Return Value:
         None
 
     Example:
-        [_id, [[posA, posB, "MOVE"], [posB, posA, "CYCLE"]]] call uksf_virtualisation_fnc_expandVehiclePath
+        [_id, [[posA, posB, "B_MRAP_01_F", "SAFE", ["linear", 1]]]] call uksf_virtualisation_fnc_expandVehiclePath
 */
+#define AGENT_TIMEOUT 30
+
 params ["_id", "_segments"];
 
 {
-    _x params ["_fromPos", "_toPos", "_segmentType"];
+    _x params ["_fromPos", "_toPos", "_vehicleType", "_behaviour", "_slot"];
 
-    private _agent = calculatePath ["wheeled_APC", "careless", _fromPos, _toPos];
-    if (isNull _agent) then {
-        [QGVAR(pathExpansionCompleted), [_id, _segmentType, "no_agent", 0]] call CBA_fnc_localEvent;
+    private _vehicle = createVehicle [_vehicleType, _fromPos, [], 0, "NONE"];
+    if (isNull _vehicle) then {
+        [QGVAR(pathExpansionCompleted), [_id, _slot, "no_vehicle", 0]] call CBA_fnc_localEvent;
         continue;
     };
+    _vehicle hideObjectGlobal true;
+    _vehicle enableSimulationGlobal false;
+    _vehicle allowDamage false;
+
+    private _agent = createAgent ["C_man_1", _fromPos, [], 0, "NONE"];
+    if (isNull _agent) then {
+        deleteVehicle _vehicle;
+        [QGVAR(pathExpansionCompleted), [_id, _slot, "no_agent", 0]] call CBA_fnc_localEvent;
+        continue;
+    };
+    _agent hideObjectGlobal true;
+    _agent allowDamage false;
+    _agent moveInDriver _vehicle;
+    _agent setBehaviour _behaviour;
 
     _agent setVariable [QGVAR(pathTargetId), _id];
     _agent setVariable [QGVAR(pathFromPos), _fromPos];
     _agent setVariable [QGVAR(pathToPos), _toPos];
-    _agent setVariable [QGVAR(pathSegmentType), _segmentType];
+    _agent setVariable [QGVAR(pathSlot), _slot];
+    _agent setVariable [QGVAR(pathVehicle), _vehicle];
+
+    private _fnc_finish = {
+        params ["_agent", "_reason", "_storedCount"];
+        if (_agent getVariable [QGVAR(pathComplete), false]) exitWith {};
+        _agent setVariable [QGVAR(pathComplete), true];
+
+        private _vehicle = _agent getVariable [QGVAR(pathVehicle), objNull];
+        private _id = _agent getVariable [QGVAR(pathTargetId), ""];
+        private _slot = _agent getVariable [QGVAR(pathSlot), []];
+
+        deleteVehicle _agent;
+        if (!isNull _vehicle) then { deleteVehicle _vehicle };
+
+        TRACE_3("path expansion completed",_id,_slot,_reason);
+        [QGVAR(pathExpansionCompleted), [_id, _slot, _reason, _storedCount]] call CBA_fnc_localEvent;
+    };
+
+    _agent setVariable [QGVAR(pathFinish), _fnc_finish];
 
     _agent addEventHandler ["PathCalculated", {
         params ["_agent", "_path"];
 
-        if (_agent getVariable [QGVAR(pathProcessed), false]) exitWith {};
-        _agent setVariable [QGVAR(pathProcessed), true];
+        if (_agent getVariable [QGVAR(pathComplete), false]) exitWith {};
 
         private _id = _agent getVariable [QGVAR(pathTargetId), ""];
         private _fromPos = _agent getVariable [QGVAR(pathFromPos), [0,0,0]];
         private _toPos = _agent getVariable [QGVAR(pathToPos), [0,0,0]];
-        private _segmentType = _agent getVariable [QGVAR(pathSegmentType), "MOVE"];
+        private _slot = _agent getVariable [QGVAR(pathSlot), []];
 
-        deleteVehicle _agent;
-
-        if (_id == "") exitWith {};
+        if (_id == "") exitWith {
+            [_agent, "no_id", 0] call (_agent getVariable [QGVAR(pathFinish), {}]);
+        };
 
         private _entry = GVAR(groupDataMap) get _id;
         if (isNil "_entry") exitWith {
-            TRACE_1("path EH skipped, group recreated",_id);
-            [QGVAR(pathExpansionCompleted), [_id, _segmentType, "skipped_recreated", 0]] call CBA_fnc_localEvent;
-        };
-
-        private _fullWaypoints = _entry#8;
-
-        private _toIndex = if (_segmentType == "CYCLE") then {
-            _fullWaypoints findIf { (toUpper (_x#1)) == "CYCLE" }
-        } else {
-            _fullWaypoints findIf {
-                ((toUpper (_x#1)) == "MOVE") && {((_x#0) distance _toPos) < 0.5}
-            }
-        };
-        if (_toIndex < 0) exitWith {
-            TRACE_2("path EH skipped, target not in waypoints",_id,_toPos);
-            [QGVAR(pathExpansionCompleted), [_id, _segmentType, "skipped_no_target", 0]] call CBA_fnc_localEvent;
+            [_agent, "skipped_recreated", 0] call (_agent getVariable [QGVAR(pathFinish), {}]);
         };
 
         private _intermediate = +_path;
@@ -82,18 +99,27 @@ params ["_id", "_segments"];
             _intermediate deleteAt (count _intermediate - 1);
         };
 
-        if (_intermediate isEqualTo []) exitWith {
-            TRACE_1("path no intermediate points",_id);
-            [QGVAR(pathExpansionCompleted), [_id, _segmentType, "no_intermediate", 0]] call CBA_fnc_localEvent;
+        switch (_slot#0) do {
+            case "linear": {
+                private _waypointIndex = _slot#1;
+                private _pathLinear = _entry#11;
+                if (_waypointIndex >= 0 && {_waypointIndex < count _pathLinear}) then {
+                    _pathLinear set [_waypointIndex, _intermediate];
+                };
+            };
+            case "cycleReturn": {
+                _entry set [12, _intermediate];
+            };
         };
 
-        private _newWaypoints = _intermediate apply {
-            [_x, "MOVE", "UNCHANGED", "NO CHANGE", "UNCHANGED", "NO CHANGE"]
-        };
-
-        _fullWaypoints insert [_toIndex, _newWaypoints];
-
-        TRACE_4("path expanded",_id,_segmentType,_toPos,count _newWaypoints);
-        [QGVAR(pathExpansionCompleted), [_id, _segmentType, "spliced", count _newWaypoints]] call CBA_fnc_localEvent;
+        [_agent, "stored", count _intermediate] call (_agent getVariable [QGVAR(pathFinish), {}]);
     }];
+
+    [{
+        params ["_agent"];
+        if (_agent getVariable [QGVAR(pathComplete), false]) exitWith {};
+        [_agent, "timeout", 0] call (_agent getVariable [QGVAR(pathFinish), {}]);
+    }, [_agent], AGENT_TIMEOUT] call CBA_fnc_waitAndExecute;
+
+    _agent setDestination [_toPos, "LEADER PLANNED", true];
 } forEach _segments;

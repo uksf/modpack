@@ -30,8 +30,6 @@ private _speedFactor = switch (_waypointSpeed) do {
 };
 
 private _behaviourFactor = switch (_waypointBehaviour) do {
-    case "CARELESS": { 1.0 };
-    case "SAFE": { 1.1 };
     case "COMBAT": { 0.6 };
     case "STEALTH": { 0.4 };
     default { 1.0 };

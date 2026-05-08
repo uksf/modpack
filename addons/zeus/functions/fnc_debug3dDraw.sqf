@@ -28,6 +28,10 @@ private _cameraPosition = positionCameraToWorld [0,0,0];
 private _maxDistance = if (GVAR(debugDistanceLimited)) then {5000} else {100000};
 private _iconSpacing = 0.0125;
 private _hudIndex = 0;
+private _hudLineHeight = 0.025 * safezoneH;
+private _hudY = safezoneY + 0.09 * safezoneH;
+private _hudX = safezoneX + 0.3 * safezoneW;
+private _hudW = 0.4 * safezoneW;
 
 private _activeKeys = call FUNC(debugGetSortedActiveKeys);
 
@@ -47,9 +51,13 @@ private _activeKeys = call FUNC(debugGetSortedActiveKeys);
 
     if (_fnc_drawHud isNotEqualTo {}) then {
         if (_hudIndex < count GVAR(debugHudControls)) then {
+            private _hudLines = _provider getOrDefault ["hudLines", 1];
             private _control = GVAR(debugHudControls) select _hudIndex;
+            _control ctrlSetPosition [_hudX, _hudY, _hudW, _hudLineHeight * _hudLines];
+            _control ctrlCommit 0;
             [_data, _control] call _fnc_drawHud;
             _control ctrlShow true;
+            _hudY = _hudY + _hudLineHeight * _hudLines;
             _hudIndex = _hudIndex + 1;
         };
     };
