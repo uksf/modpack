@@ -32,9 +32,9 @@ private _fnc_serverGetter = {
 
     private _killerPlayers = [];
     {
-        private _timeLeft = (_x#1) - CBA_missionTime;
-        if (_timeLeft > 0) then {
-            _killerPlayers pushBack [netId (_x#0), _timeLeft];
+        private _expiryTime = _x#1;
+        if (_expiryTime > CBA_missionTime) then {
+            _killerPlayers pushBack [netId (_x#0), _expiryTime];
         };
     } forEach GVAR(killerPlayers);
 
@@ -80,11 +80,12 @@ private _fnc_draw3d = {
 
     // Killer players
     {
-        _x params ["_playerNetId", "_timeLeft"];
+        _x params ["_playerNetId", "_expiryTime"];
         private _playerObject = objectFromNetId _playerNetId;
         if (!isNull _playerObject) then {
             private _position = getPosATL _playerObject;
             if (_cameraPosition distance2D _position < _maxDistance) then {
+                private _timeLeft = (_expiryTime - CBA_missionTime) max 0;
                 drawIcon3D ["", [1,0,0,1], ASLToAGL (ATLToASL _position), 0, 0, 0, format ["Aggro %1s", round _timeLeft], 1, 0.025, "TahomaB", "center", false, 0, _iconSpacing];
             };
         };
@@ -123,9 +124,10 @@ private _fnc_drawMap = {
 
     // Killer players
     {
-        _x params ["_playerNetId", "_timeLeft"];
+        _x params ["_playerNetId", "_expiryTime"];
         private _playerObject = objectFromNetId _playerNetId;
         if (!isNull _playerObject) then {
+            private _timeLeft = (_expiryTime - CBA_missionTime) max 0;
             _map drawIcon ["\a3\ui_f\data\map\markers\military\warning_ca.paa", [1,0,0,1], getPosATL _playerObject, 20, 20, 0, format ["Aggro %1s", round _timeLeft], 1, 0.04, "TahomaB", "right"];
         };
     } forEach _killerPlayers;

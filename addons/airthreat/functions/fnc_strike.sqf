@@ -80,7 +80,7 @@ _waypoint3 setWaypointStatements [
 // RTB after second pass
 [_group, _vehicle] call FUNC(addRtbWaypoint);
 
-private _expiryTime = time + GVAR(strikeTimeout);
+private _expiryTime = CBA_missionTime + GVAR(strikeTimeout);
 
 [{
     params ["_args", "_idPFH"];
@@ -100,7 +100,7 @@ private _expiryTime = time + GVAR(strikeTimeout);
 
     if !(local (leader _group)) exitWith {};
 
-    if (time > _expiryTime) exitWith {
+    if (CBA_missionTime > _expiryTime) exitWith {
         [_group, _vehicle] call FUNC(addRtbWaypoint);
         [_idPFH] call CBA_fnc_removePerFrameHandler;
         call _notifyRecon;

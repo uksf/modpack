@@ -77,7 +77,7 @@ if (_isRectangle) then {
     _patrolWaypoint setWaypointSpeed "NORMAL";
 };
 
-private _expiryTime = time + GVAR(capTimeout);
+private _expiryTime = CBA_missionTime + GVAR(capTimeout);
 
 // Monitoring PFH — scans for nearby player aircraft
 [{
@@ -91,7 +91,7 @@ private _expiryTime = time + GVAR(capTimeout);
 
     if !(local (leader _group)) exitWith {};
 
-    if (time > _expiryTime) exitWith {
+    if (CBA_missionTime > _expiryTime) exitWith {
         [_group, _vehicle] call FUNC(addRtbWaypoint);
         [_idPFH] call CBA_fnc_removePerFrameHandler;
     };
