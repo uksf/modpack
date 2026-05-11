@@ -4,10 +4,13 @@
         Tim Beswick
 
     Description:
-        Saves persistence data to the API via the extension.
-        Builds a hashmap-based session with keyed objects and players,
-        encodes as JSON, and sends as a single event.
-        The C# API handles transformation to structured models for MongoDB.
+        Saves persistence data to the API via the unified SQF event wire.
+        Builds a hashmap-based session and ships it as the `data` payload of a
+        persistence_save event — extension forwards the SQF bytes verbatim, API
+        parses with SqfNotationParser and converts to DomainPersistenceSession.
+
+        Bypasses CBA_fnc_encodeJSON entirely on the large session payload — at
+        ~500 objects + 40 players, encodeJSON took ~43s; this path takes ~20ms.
 
     Parameter(s):
         None
@@ -25,6 +28,11 @@ if (!GVAR(dataSaved)) exitWith {};
 private _objects = GVAR(dataNamespace) getVariable [QGVAR(objects), []];
 private _objectHashmaps = _objects apply {
     private _object = _x;
+    private _aceFortify = _object#IDX_OBJ_ACEFORTIFY;
+    private _aceFortifySide = _aceFortify param [1, west];
+    if (_aceFortifySide isEqualType west) then {
+        _aceFortify = [_aceFortify param [0, false], toLower str _aceFortifySide];
+    };
     createHashMapFromArray [
         ["id",              _object#IDX_OBJ_ID],
         ["type",            _object#IDX_OBJ_TYPE],
@@ -40,7 +48,7 @@ private _objectHashmaps = _objects apply {
         ["rackChannels",    _object#IDX_OBJ_RACKCHANNELS],
         ["aceCargo",        _object#IDX_OBJ_ACECARGO],
         ["inventory",       _object#IDX_OBJ_INVENTORY],
-        ["aceFortify",      _object#IDX_OBJ_ACEFORTIFY],
+        ["aceFortify",      _aceFortify],
         ["aceMedical",      _object#IDX_OBJ_ACEMEDICAL],
         ["aceRepair",       _object#IDX_OBJ_ACEREPAIR],
         ["customName",      _object#IDX_OBJ_CUSTOMNAME]
@@ -84,11 +92,13 @@ private _session = createHashMapFromArray [
     _session set [_id, _data];
 } forEach GVAR(serializers);
 
-private _json = [_session] call CBA_fnc_encodeJSON;
-INFO_1("API persistence save: %1 characters",count _json);
-
-["persistence_save", createHashMapFromArray [
+// Wrap session as the `data` field of a persistence_save event so the API can
+// route it via the same handler dispatch as every other event type.
+private _eventData = createHashMapFromArray [
     ["key",       GVAR(key)],
     ["sessionId", EGVAR(api,sessionId)],
-    ["data",      _json]
-]] call EFUNC(api,sendEvent);
+    ["data",      _session]
+];
+
+INFO_2("API persistence save: %1 objects, %2 players",count _objectHashmaps,count _playersHashmap);
+["persistence_save", _eventData] call EFUNC(api,sendEvent);

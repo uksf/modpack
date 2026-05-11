@@ -35,8 +35,14 @@ _this set [0, _shooter];
 [_shooter, _ammo] call FUNC(firedPlayerEffects);
 [_ammo, _projectile] call FUNC(firedShockwave);
 
+private _sameSide = (side effectiveCommander (vehicle _shooter)) == (side GVAR(suppression_currentUnit));
+
+if (GVAR(closeMiss_enabled) && {!_sameSide} && {_shooter != GVAR(suppression_currentUnit)}) then {
+    [_ammo, _projectile] call FUNC(closeMissDetect);
+};
+
 if (GVAR(suppression_enabled)) then {
-    if ((side effectiveCommander (vehicle _shooter)) == (side GVAR(suppression_currentUnit))) exitWith {};
+    if (_sameSide) exitWith {};
 
     private _distance = GVAR(suppression_currentUnit) distance _shooter;
     // If shooter is close and not in line of sight of unit, run suppression effects

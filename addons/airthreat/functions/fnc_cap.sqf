@@ -84,9 +84,8 @@ private _expiryTime = time + GVAR(capTimeout);
     params ["_args", "_idPFH"];
     _args params ["_group", "_vehicle", "_expiryTime"];
 
-    if (isNull _group || {!alive _vehicle} || {isNull (driver _vehicle)}) exitWith {
-        [QGVAR(missionComplete), [_group, _vehicle]] call CBA_fnc_localEvent;
-        [_group, _vehicle] call FUNC(cleanupAircraft);
+    if (isNull _group || {!alive _vehicle} || {!alive (driver _vehicle)}) exitWith {
+        [_group, _vehicle] call FUNC(handleMissionEnd);
         [_idPFH] call CBA_fnc_removePerFrameHandler;
     };
 

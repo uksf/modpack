@@ -6,7 +6,8 @@ use std::path::PathBuf;
 mod bridge;
 mod commands;
 mod config;
-mod config_export;
+mod file_export;
+mod dev_run;
 mod input;
 mod listener;
 mod loader;
@@ -64,8 +65,13 @@ fn init() -> Extension {
         .command("event", commands::event)
         .command("load", commands::load)
         .command("pressSpace", commands::press_space)
-        .command("configExportOpen", commands::config_export_open)
-        .command("configExportWrite", commands::config_export_write)
-        .command("configExportClose", commands::config_export_close)
+        .command("fileExportOpen", commands::file_export_open)
+        .command("fileExportWrite", commands::file_export_write)
+        .command("fileExportClose", commands::file_export_close)
+        .command("fileExportFinish", commands::file_export_finish)
+        .command("devRunOpen", commands::dev_run_open)
+        .command("devRunChunk", commands::dev_run_chunk)
+        .command("devRunLog", commands::dev_run_log)
+        .command("devRunFinish", commands::dev_run_finish)
         .finish()
 }

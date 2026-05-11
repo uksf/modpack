@@ -8,6 +8,9 @@ PREP(suppressionImpact);
 PREP(suppressionPinnedDown);
 PREP(suppressionRecovery);
 
+PREP(closeMissDetect);
+PREP(closeMissReaction);
+
 SHOCKWAVEPREP(120mm);
 SHOCKWAVEPREP(Arty);
 SHOCKWAVEPREP(BigBomb);

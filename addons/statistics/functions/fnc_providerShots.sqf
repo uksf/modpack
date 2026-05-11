@@ -48,7 +48,6 @@ GVAR(getBodyPart) = {
 private _handleFired = {
     if (GVAR(killswitch)) exitWith {};
     params ["_unit", "_weapon", "_muzzle", "_fireMode", "_ammo", "_magazine", "_projectile"];
-    private _startTime = diag_tickTime;
 
     GVAR(shotCounter) = GVAR(shotCounter) + 1;
     private _shooterUid = getPlayerUID _unit;
@@ -71,8 +70,6 @@ private _handleFired = {
 
             if (isNull _hitEntity) exitWith {};
             if (_hitEntity isEqualTo _projectileOwner) exitWith {};
-
-            private _hitStartTime = diag_tickTime;
 
             private _targetType = [_hitEntity] call GVAR(getTargetType);
             if (_targetType isEqualTo "unknown") exitWith {};
@@ -113,8 +110,6 @@ private _handleFired = {
                 ["distance2D", _distance2D],
                 ["distance3D", _distance3D]
             ]] call FUNC(addEvent);
-
-            ["hits", _hitStartTime] call FUNC(addProviderTiming);
         }];
 
         // HitExplosion — fires on this client for splash damage
@@ -124,8 +119,6 @@ private _handleFired = {
 
             if (isNull _hitEntity) exitWith {};
             if (_hitEntity isEqualTo _projectileOwner) exitWith {};
-
-            private _hitStartTime = diag_tickTime;
 
             private _targetType = [_hitEntity] call GVAR(getTargetType);
             if (_targetType isEqualTo "unknown") exitWith {};
@@ -159,8 +152,6 @@ private _handleFired = {
                 ["distance2D", _distance2D],
                 ["distance3D", _distance3D]
             ]] call FUNC(addEvent);
-
-            ["hits", _hitStartTime] call FUNC(addProviderTiming);
         }];
     };
 
@@ -174,8 +165,6 @@ private _handleFired = {
         ["fireMode", _fireMode],
         ["firedPosition", _firedPosition]
     ]] call FUNC(addEvent);
-
-    ["shots", _startTime] call FUNC(addProviderTiming);
 };
 
 ["ace_firedPlayer", _handleFired] call CBA_fnc_addEventHandler;

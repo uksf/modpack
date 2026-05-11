@@ -1,7 +1,30 @@
+use std::sync::OnceLock;
 use std::sync::atomic::{AtomicU16, Ordering};
 
-/// Hardcoded API base URL
-pub const API_BASE_URL: &str = "http://localhost:5000";
+/// API base URL the extension POSTs game events + dev-run callbacks to.
+/// Resolved at extension startup from the `-apiUrl=` launch arg the API passes when
+/// spawning arma3server. Falls back to the production default if absent so existing
+/// callers without the new flag (older API deployments, manual launches) keep working.
+const DEFAULT_API_BASE_URL: &str = "http://localhost:5000";
+static API_BASE_URL: OnceLock<String> = OnceLock::new();
+
+pub fn api_base_url() -> &'static str {
+    API_BASE_URL.get_or_init(|| find_api_base_url().unwrap_or_else(|| DEFAULT_API_BASE_URL.to_string())).as_str()
+}
+
+fn find_api_base_url() -> Option<String> {
+    std::env::args().find_map(|arg| {
+        let stripped = arg
+            .strip_prefix("-apiUrl=")
+            .or_else(|| arg.strip_prefix("-apiUrl=\""))
+            .map(|s| s.trim_matches('"').to_string())?;
+        if stripped.is_empty() {
+            None
+        } else {
+            Some(stripped)
+        }
+    })
+}
 
 static API_PORT: AtomicU16 = AtomicU16::new(0);
 
@@ -31,9 +54,8 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_api_base_url_is_set() {
-        assert!(!API_BASE_URL.is_empty());
-        assert!(API_BASE_URL.starts_with("http"));
+    fn test_default_api_base_url_starts_with_http() {
+        assert!(DEFAULT_API_BASE_URL.starts_with("http"));
     }
 
     #[test]

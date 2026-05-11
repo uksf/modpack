@@ -35,6 +35,12 @@ private _deleted = false;
                 if (_force < 0) then { _force = 0; };
                 if (_length < 0) then { _length = 0; };
                 if (_frequency < 0) then { _frequency = 0; };
+
+                // Rate-limit overlapping shakes from barrages: skip if a recent shake
+                // is still going and not meaningfully stronger.
+                if ((diag_tickTime - GVAR(shockwave_lastShakeAt)) < 0.25) exitWith {};
+                GVAR(shockwave_lastShakeAt) = diag_tickTime;
+
                 addCamShake [_force, _length, _frequency];
             }, _data , (_dist / 343)] call CBA_fnc_waitAndExecute;
         };

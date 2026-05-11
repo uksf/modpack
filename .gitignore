@@ -691,3 +691,6 @@ sqfvm.exe
 ArmaScriptCompiler.exe
 *.sqfc
 target/
+
+## Worktrees
+.worktrees/

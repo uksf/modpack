@@ -35,7 +35,7 @@ private _fnc_serverGetter = {
     // --- Active missions ---
     private _missions = GVAR(activeMissions) apply {
         _x params ["_group", "_vehicle", "_missionType"];
-        if (isNull _vehicle) then { continue };
+        if (isNull _vehicle || {!alive _vehicle}) then { continue };
 
         private _vehicleNetId = netId _vehicle;
         private _spawnTime = _vehicle getVariable [QGVAR(spawnTime), time];
@@ -127,7 +127,7 @@ private _fnc_draw3d = {
         private _timeText = [_timeRemaining] call GVAR(debugFormatTime);
 
         // Build label: "TYPE TIME" or "Recon [state] TIME"
-        private _typeLabel = toUpper (_missionType select [0, 1]) + (_missionType select [1]);
+        private _typeLabel = GVAR(debugLabelMap) getOrDefault [_missionType, "?"];
         private _label = if (_missionType isEqualTo "recon" && {_reconState isNotEqualTo "approach"}) then {
             format ["%1 [%2] %3", _typeLabel, _reconState, _timeText]
         } else {
@@ -248,7 +248,7 @@ private _fnc_drawHud = {
         private _parts = _missions apply {
             _x params ["", "_missionType", "_timeRemaining", "", "_reconState"];
             private _hexColour = GVAR(debugHexColourMap) getOrDefault [_missionType, "#ffffff"];
-            private _typeLabel = toUpper (_missionType select [0, 1]) + (_missionType select [1]);
+            private _typeLabel = GVAR(debugLabelMap) getOrDefault [_missionType, "?"];
             private _timeText = [_timeRemaining] call GVAR(debugFormatTime);
 
             if (_missionType isEqualTo "recon" && {_reconState isNotEqualTo "approach"}) then {

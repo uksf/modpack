@@ -67,17 +67,18 @@ _vehicle setVariable [QGVAR(reconState), "approach"];
 _vehicle setVariable [QGVAR(reconSpotTime), -1];
 _vehicle setVariable [QGVAR(reconObservedPosition), _targetPosition];
 
-private _expiryTime = time + GVAR(reconTimeout);
+// On-station timeout starts when entering loiter. Hard backstop at 2× the
+// configured timeout from spawn caps total flight time even if the drone
+// never reaches the target.
+private _hardExpiryTime = time + (GVAR(reconTimeout) * 2);
 
-// Monitoring PFH (runs on HC)
+// Monitoring PFH
 [{
     params ["_args", "_idPFH"];
-    _args params ["_group", "_vehicle", "_targetPosition", "_expiryTime"];
+    _args params ["_group", "_vehicle", "_targetPosition", "_hardExpiryTime"];
 
-    if (isNull _group || {!alive _vehicle} || {isNull (driver _vehicle)}) exitWith {
-        // Recon destroyed — if strike was called, it uses stored position
-        [QGVAR(missionComplete), [_group, _vehicle]] call CBA_fnc_localEvent;
-        [_group, _vehicle] call FUNC(cleanupAircraft);
+    if (isNull _group || {!alive _vehicle} || {!alive (driver _vehicle)}) exitWith {
+        [_group, _vehicle] call FUNC(handleMissionEnd);
         [_idPFH] call CBA_fnc_removePerFrameHandler;
     };
 
@@ -85,11 +86,15 @@ private _expiryTime = time + GVAR(reconTimeout);
 
     private _state = _vehicle getVariable [QGVAR(reconState), "approach"];
 
-    // Only enforce timeout during approach and loiter — spotted/strikeActive
-    // states have their own exit paths via the strike lifecycle
-    if (time > _expiryTime && {_state in ["approach", "loiter"]}) exitWith {
-        [_group, _vehicle] call FUNC(addRtbWaypoint);
-        [_idPFH] call CBA_fnc_removePerFrameHandler;
+    // Timeouts only fire during approach/loiter — spotted/strikeActive
+    // exit via the strike lifecycle. Hard expiry is the absolute ceiling;
+    // station expiry is the on-station budget set on entry to loiter.
+    if (_state in ["approach", "loiter"]) then {
+        private _stationExpiry = _vehicle getVariable [QGVAR(reconStationExpiry), -1];
+        if (time > _hardExpiryTime || {_stationExpiry > 0 && {time > _stationExpiry}}) exitWith {
+            [_group, _vehicle] call FUNC(addRtbWaypoint);
+            [_idPFH] call CBA_fnc_removePerFrameHandler;
+        };
     };
 
     private _vehiclePosition = getPosASL _vehicle;
@@ -100,6 +105,7 @@ private _expiryTime = time + GVAR(reconTimeout);
             if ((_vehiclePosition distance _targetPosition) < 1500) then {
                 _vehicle setVariable [QGVAR(reconState), "loiter", true];
                 _vehicle setVariable [QGVAR(reconSpotTime), time + 30 + random 60];
+                _vehicle setVariable [QGVAR(reconStationExpiry), time + GVAR(reconTimeout)];
                 DEBUG("Recon entering loiter over target area");
             };
         };
@@ -138,6 +144,6 @@ private _expiryTime = time + GVAR(reconTimeout);
             [_idPFH] call CBA_fnc_removePerFrameHandler;
         };
     };
-}, 5, [_group, _vehicle, _targetPosition, _expiryTime]] call CBA_fnc_addPerFrameHandler;
+}, 5, [_group, _vehicle, _targetPosition, _hardExpiryTime]] call CBA_fnc_addPerFrameHandler;
 
 DEBUG("Recon mission spawned");
