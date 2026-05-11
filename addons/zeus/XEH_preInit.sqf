@@ -29,6 +29,31 @@ GVAR(debugLastGetterRun) = createHashMap;
 GVAR(debugLastSentData) = createHashMap;
 GVAR(debugKill) = false;
 
+GVAR(watchPFH) = -1;
+GVAR(watchTarget) = objNull;
+GVAR(watchHasExpected) = false;
+GVAR(watchExpectedPos) = [0, 0, 0];
+GVAR(watchExpectedDir) = [0, 1, 0];
+GVAR(watchSmoothDir) = [0, 1, 0];
+GVAR(watchSmoothInit) = false;
+GVAR(watchSmoothPos) = [0, 0, 0];
+GVAR(watchSmoothPosInit) = false;
+GVAR(watchSmoothFocusSpeed) = 0;
+GVAR(watchZoom) = 0;
+GVAR(watchScrolledFrame) = false;
+GVAR(watchScrollEHId) = -1;
+GVAR(watchOrbitYaw) = 0;
+GVAR(watchOrbitPitch) = 0;
+GVAR(watchOrbitYawSmooth) = 0;
+GVAR(watchOrbitPitchSmooth) = 0;
+GVAR(watchOrbitActive) = false;
+GVAR(watchLastFrameOrbitActive) = false;
+GVAR(watchPrevFrameMouseX) = 0;
+GVAR(watchPrevFrameMouseY) = 0;
+GVAR(watchPrevFrameMouseInit) = false;
+GVAR(watchKeyDownEHId) = -1;
+GVAR(watchKeyUpEHId) = -1;
+
 [QGVAR(registerDebugProvider), {
     params ["_key", "_config"];
     TRACE_1("registerDebugProvider",_key);
