@@ -1,0 +1,12 @@
+PREP(handleUnconsciousState);
+PREP(openDialog);
+PREP(openDialogOnLoad);
+PREP(closeDialog);
+PREP(switchTab);
+PREP(vitalsUpdate);
+PREP(vitalsToggleMode);
+PREP(spectatorUpdate);
+PREP(spectatorCleanup);
+PREP(settingsTabBuild);
+PREP(playStateSound);
+PREP(formatVital);
