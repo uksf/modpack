@@ -30,5 +30,5 @@ if (isNull _vehicle || {!alive _vehicle}) exitWith {
     if (!isNull _group) then { deleteGroup _group };
 };
 
-_vehicle setVariable [QGVAR(orphanedAt), time];
+_vehicle setVariable [QGVAR(orphanedAt), CBA_missionTime];
 GVAR(orphanedAircraft) pushBack [_group, _vehicle];

@@ -58,7 +58,7 @@ _group setVariable ["acex_headless_blacklist", true, true];
 
 // Tag for identification and track spawn time for stale mission cleanup
 _vehicle setVariable [QGVAR(isThreat), true, true];
-_vehicle setVariable [QGVAR(spawnTime), time, true];
+_vehicle setVariable [QGVAR(spawnTime), CBA_missionTime, true];
 _group setVariable [QGVAR(missionType), "", true];
 
 // Move to final position

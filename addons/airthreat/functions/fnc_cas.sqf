@@ -50,7 +50,7 @@ _waypoint setWaypointBehaviour "COMBAT";
 _waypoint setWaypointCombatMode "RED";
 _waypoint setWaypointSpeed "FULL";
 
-private _expiryTime = time + GVAR(casTimeout);
+private _expiryTime = CBA_missionTime + GVAR(casTimeout);
 
 [{
     params ["_args", "_idPFH"];
@@ -64,7 +64,7 @@ private _expiryTime = time + GVAR(casTimeout);
 
     if !(local (leader _group)) exitWith {};
 
-    if (time > _expiryTime) exitWith {
+    if (CBA_missionTime > _expiryTime) exitWith {
         [_group, _vehicle] call FUNC(addRtbWaypoint);
         [_idPFH] call CBA_fnc_removePerFrameHandler;
     };
