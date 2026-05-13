@@ -89,24 +89,6 @@
 ] call CBA_fnc_addSetting;
 
 [
-    QGVAR(soundOnStateChange),
-    "CHECKBOX",
-    ["Sound On State Change", "Play a cue when transitioning between uncon / cardiac / coma."],
-    ["UKSF", QUOTE(COMPONENT_BEAUTIFIED)],
-    true,
-    0
-] call CBA_fnc_addSetting;
-
-[
-    QGVAR(defaultTab),
-    "LIST",
-    ["Default Tab", "Tab shown when the dialog opens."],
-    ["UKSF", QUOTE(COMPONENT_BEAUTIFIED)],
-    [["spectator", "health"], ["Spectator", "Health"], 0],
-    0
-] call CBA_fnc_addSetting;
-
-[
     QGVAR(viewModeDefault),
     "LIST",
     ["Health View Default", "Default display mode for the health tab."],

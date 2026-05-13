@@ -35,8 +35,5 @@ if (!isNull findDisplay 312 || {!isNull findDisplay 49}) exitWith {
 };
 
 GVAR(viewMode) = GVAR(viewModeDefault);
-GVAR(currentTab) = GVAR(defaultTab);
-GVAR(prevCardiacState) = (ACE_player getVariable ["ace_medical_statemachine_cardiacArrestEndTime", -1]) > -1;
-GVAR(prevComaState) = (ACE_player getVariable ["ace_medical_statemachine_comaEndTime", -1]) > -1;
 
 createDialog "uksf_medical_uncon";

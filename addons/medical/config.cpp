@@ -19,7 +19,6 @@ class CfgPatches {
 };
 
 #include "CfgEventHandlers.hpp"
-#include "CfgSounds.hpp"
 #include "CfgRenderTargets.hpp"
 #include "ui\defines.hpp"
 #include "ui\dialog.hpp"

@@ -3,33 +3,44 @@
 
 #define IDD_UNCON                 859102
 
-#define IDC_TAB_BAR               86000
-#define IDC_TAB_SPECTATOR_BTN     86001
-#define IDC_TAB_HEALTH_BTN        86002
-#define IDC_TAB_SETTINGS_BTN      86003
+// Tab buttons (top)
+#define IDC_TAB_HEALTH            547
+#define IDC_TAB_SPECTATOR         548
+#define IDC_TAB_VIEWMODE          559
 
-#define IDC_CONTAINER_SPECTATOR   86010
-#define IDC_CONTAINER_HEALTH      86011
-#define IDC_CONTAINER_SETTINGS    86012
+// Spectator tab controls
+#define IDC_SPEC_TOO_FAR          550
+#define IDC_SPEC_INFO             551
+#define IDC_SPEC_PIP              552
+#define IDC_SPEC_NO_SIGNAL        553
+#define IDC_SPEC_NVG_0            556
+#define IDC_SPEC_NVG_1            557
+#define IDC_SPEC_NVG_2            558
 
-#define IDC_SPEC_TEXT             86020
-#define IDC_SPEC_CAM_PICTURE      86021
+// Health tab controls
+#define IDC_HEALTH_HR             573
+#define IDC_HEALTH_BP             574
+#define IDC_HEALTH_RESP           575
+#define IDC_HEALTH_SPO2           576
+#define IDC_HEALTH_STATE_TIMER    577
+#define IDC_HEALTH_TABFOCUS       578
 
-#define IDC_HEALTH_HR             86030
-#define IDC_HEALTH_BP             86031
-#define IDC_HEALTH_RESP           86032
-#define IDC_HEALTH_SPO2           86033
-#define IDC_HEALTH_PAIN           86034
-#define IDC_HEALTH_STATE_TIMER    86035
-#define IDC_HEALTH_MODE_BTN       86036
+// Control types
+#define CT_STATIC                 0
+#define CT_BUTTON                 1
+#define ST_LEFT                   0
+#define ST_CENTER                 2
+#define ST_PICTURE                0x30
 
-#define IDC_SETTINGS_LIST         86040
+// Fonts
+#define GUI_FONT_NORMAL           PuristaMedium
 
-#define COLOR_BG_DIALOG           {0, 0, 0, 0.75}
-#define COLOR_BG_TAB              {0.15, 0.15, 0.15, 0.85}
-#define COLOR_BG_TAB_ACTIVE       {0.3, 0.3, 0.3, 0.9}
-#define COLOR_TEXT_NORMAL         {1, 1, 1, 1}
-#define COLOR_TEXT_WARN           {1, 0.6, 0.1, 1}
-#define COLOR_TEXT_CRITICAL       {1, 0.2, 0.2, 1}
+// Grid (Arma 3 stock centre grid)
+#define GUI_GRID_CENTER_WAbs      ((safezoneW / safezoneH) min 1.2)
+#define GUI_GRID_CENTER_HAbs      (GUI_GRID_CENTER_WAbs / 1.2)
+#define GUI_GRID_CENTER_W         (GUI_GRID_CENTER_WAbs / 40)
+#define GUI_GRID_CENTER_H         (GUI_GRID_CENTER_HAbs / 25)
+#define GUI_GRID_CENTER_X         (safezoneX + (safezoneW - GUI_GRID_CENTER_WAbs)/2)
+#define GUI_GRID_CENTER_Y         (safezoneY + (safezoneH - GUI_GRID_CENTER_HAbs)/2)
 
 #endif

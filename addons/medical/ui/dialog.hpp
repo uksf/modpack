@@ -1,161 +1,256 @@
-class RscText;
-class RscButton;
-class RscControlsGroupNoScrollbars;
-class RscPicture;
-class RscListNBox;
-
 class uksf_medical_uncon {
     idd = IDD_UNCON;
     movingEnable = 0;
     enableSimulation = 1;
     onLoad = QUOTE(call FUNC(openDialogOnLoad));
 
-    class controls {
-        class Background: RscText {
-            idc = -1;
-            x = QUOTE(X_PART(8));
-            y = QUOTE(Y_PART(3));
-            w = QUOTE(W_PART(24));
-            h = QUOTE(H_PART(19));
-            colorBackground[] = COLOR_BG_DIALOG;
+    class Controls {
+        class tabMedical {
+            access = 0;
+            idc = IDC_TAB_HEALTH;
+            type = CT_BUTTON;
+            style = ST_LEFT;
+            default = 1;
+            blinkingPeriod = 0;
+            x = QUOTE(-0 * GUI_GRID_CENTER_W + GUI_GRID_CENTER_X);
+            y = QUOTE(-1 * GUI_GRID_CENTER_H + GUI_GRID_CENTER_Y);
+            w = QUOTE(14 * GUI_GRID_CENTER_W);
+            h = QUOTE(1 * GUI_GRID_CENTER_H);
+            colorBackground[] = {0.2,0.2,0.2,1};
+            colorBackgroundDisabled[] = {0,0,0,0.5};
+            colorBackgroundActive[] = {0,0,0,1};
+            colorFocused[] = {1,0.5,0,1};
+            text = "Health Status";
+            sizeEx = QUOTE(GUI_GRID_CENTER_H);
+            font = QUOTE(GUI_FONT_NORMAL);
+            shadow = 2;
+            colorText[] = {1,1,1,1};
+            colorDisabled[] = {1,1,1,0.5};
+            tooltip = "";
+            tooltipColorShade[] = {0,0,0,1};
+            tooltipColorText[] = {1,1,1,1};
+            tooltipColorBox[] = {1,1,1,1};
+            borderSize = 0.001;
+            colorBorder[] = {1,1,1,1};
+            colorShadow[] = {0,0,0,0};
+            offsetX = 0.0075;
+            offsetY = 0.01;
+            offsetPressedX = 0.0075;
+            offsetPressedY = 0.01;
+            period = 1;
+            periodFocus = 2;
+            periodOver = 0.5;
+            soundClick[] = {"\A3\ui_f\data\sound\RscButton\soundClick",0.09,1};
+            soundEnter[] = {"\A3\ui_f\data\sound\RscButton\soundEnter",0.09,1};
+            soundPush[] = {"\A3\ui_f\data\sound\RscButton\soundPush",0.09,1};
+            soundEscape[] = {"\A3\ui_f\data\sound\RscButton\soundEscape",0.09,1};
+            onButtonDown = QUOTE(call FUNC(openHealthTab));
+        };
+        class tabSpectate: tabMedical {
+            idc = IDC_TAB_SPECTATOR;
+            default = 0;
+            x = QUOTE(14 * GUI_GRID_CENTER_W + GUI_GRID_CENTER_X);
+            w = QUOTE(13 * GUI_GRID_CENTER_W);
+            text = "Spectator";
+            onButtonDown = QUOTE(call FUNC(openSpectatorTab));
+        };
+        class tabViewMode: tabMedical {
+            idc = IDC_TAB_VIEWMODE;
+            default = 0;
+            x = QUOTE(27 * GUI_GRID_CENTER_W + GUI_GRID_CENTER_X);
+            w = QUOTE(13 * GUI_GRID_CENTER_W);
+            text = "Toggle Full/Minimal";
+            onButtonDown = QUOTE(call FUNC(vitalsToggleMode));
+        };
+
+        class spc_SpectatingInfo_TooFar {
+            type = CT_STATIC;
+            idc = IDC_SPEC_TOO_FAR;
+            style = ST_LEFT;
+            x = QUOTE(0 * GUI_GRID_CENTER_W + GUI_GRID_CENTER_X);
+            y = QUOTE(25 * GUI_GRID_CENTER_H + GUI_GRID_CENTER_Y);
+            w = QUOTE(40 * GUI_GRID_CENTER_W);
+            h = QUOTE(1 * GUI_GRID_CENTER_H);
             text = "";
+            sizeEx = QUOTE(GUI_GRID_CENTER_H);
+            font = QUOTE(GUI_FONT_NORMAL);
+            lineSpacing = 1;
+            colorText[] = {1,1,1,1};
+            colorBackground[] = {0.2,0.2,0.2,0.5};
+        };
+        class spc_SpectatingInfo {
+            type = CT_STATIC;
+            idc = IDC_SPEC_INFO;
+            style = ST_LEFT;
+            x = QUOTE(0 * GUI_GRID_CENTER_W + GUI_GRID_CENTER_X);
+            y = QUOTE(25 * GUI_GRID_CENTER_H + GUI_GRID_CENTER_Y);
+            w = QUOTE(40 * GUI_GRID_CENTER_W);
+            h = QUOTE(1 * GUI_GRID_CENTER_H);
+            text = "";
+            sizeEx = QUOTE(GUI_GRID_CENTER_H);
+            font = QUOTE(GUI_FONT_NORMAL);
+            lineSpacing = 1;
+            colorText[] = {1,1,1,1};
+            colorBackground[] = {0.2,0.2,0.2,0.5};
+        };
+        class PiPZone {
+            idc = IDC_SPEC_PIP;
+            type = CT_STATIC;
+            style = ST_PICTURE;
+            colorText[] = {1,1,1,1};
+            colorBackground[] = {1,1,1,1};
+            font = QUOTE(GUI_FONT_NORMAL);
+            sizeEx = 0.023;
+            x = QUOTE(0 * GUI_GRID_CENTER_W + GUI_GRID_CENTER_X);
+            y = QUOTE(0 * GUI_GRID_CENTER_H + GUI_GRID_CENTER_Y);
+            w = QUOTE(40 * GUI_GRID_CENTER_W);
+            h = QUOTE(25 * GUI_GRID_CENTER_H);
+            text = "#(argb,512,512,1)r2t(uksf_medical_rtt,1.333)";
+            moving = 0;
+        };
+        class spc_NoSignal {
+            access = 0;
+            idc = IDC_SPEC_NO_SIGNAL;
+            type = CT_STATIC;
+            style = ST_LEFT;
+            default = 0;
+            blinkingPeriod = 0;
+            x = QUOTE(0 * GUI_GRID_CENTER_W + GUI_GRID_CENTER_X);
+            y = QUOTE(0 * GUI_GRID_CENTER_H + GUI_GRID_CENTER_Y);
+            w = QUOTE(40 * GUI_GRID_CENTER_W);
+            h = QUOTE(25 * GUI_GRID_CENTER_H);
+            colorBackground[] = {0.2,0.2,0.2,0.2};
+            colorBackgroundDisabled[] = {0,0,0,0.5};
+            colorBackgroundActive[] = {0,0,0,0.2};
+            colorFocused[] = {1,0.5,0,1};
+            text = "Nearest Ally Is Too Far Away!";
+            sizeEx = QUOTE(GUI_GRID_CENTER_H);
+            font = QUOTE(GUI_FONT_NORMAL);
+            shadow = 2;
+            colorText[] = {1,1,1,1};
+            colorDisabled[] = {1,1,1,0.5};
         };
 
-        class TabBar: RscControlsGroupNoScrollbars {
-            idc = IDC_TAB_BAR;
-            x = QUOTE(X_PART(8));
-            y = QUOTE(Y_PART(3));
-            w = QUOTE(W_PART(24));
-            h = QUOTE(H_PART(1.5));
-
-            class controls {
-                class TabSpectator: RscButton {
-                    idc = IDC_TAB_SPECTATOR_BTN;
-                    x = 0;
-                    y = 0;
-                    w = QUOTE(W_PART(8));
-                    h = QUOTE(H_PART(1.5));
-                    text = "Spectator";
-                    colorBackground[] = COLOR_BG_TAB;
-                    action = QUOTE(['spectator'] call FUNC(switchTab));
-                };
-                class TabHealth: TabSpectator {
-                    idc = IDC_TAB_HEALTH_BTN;
-                    x = QUOTE(W_PART(8));
-                    text = "Health";
-                    action = QUOTE(['health'] call FUNC(switchTab));
-                };
-                class TabSettings: TabSpectator {
-                    idc = IDC_TAB_SETTINGS_BTN;
-                    x = QUOTE(W_PART(16));
-                    text = "Settings";
-                    action = QUOTE(['settings'] call FUNC(switchTab));
-                };
-            };
+        class spc_nvg_0 {
+            access = 0;
+            idc = IDC_SPEC_NVG_0;
+            type = CT_BUTTON;
+            style = ST_LEFT;
+            default = 1;
+            blinkingPeriod = 0;
+            x = QUOTE(-0 * GUI_GRID_CENTER_W + GUI_GRID_CENTER_X);
+            y = QUOTE(26 * GUI_GRID_CENTER_H + GUI_GRID_CENTER_Y);
+            w = QUOTE(14 * GUI_GRID_CENTER_W);
+            h = QUOTE(1 * GUI_GRID_CENTER_H);
+            colorBackground[] = {0.15,0.15,0.15,1};
+            colorBackgroundDisabled[] = {0.02,0.02,0.02,0.5};
+            colorBackgroundActive[] = {0,0,0,1};
+            colorFocused[] = {1,0.5,0,1};
+            text = "Normal";
+            sizeEx = QUOTE(GUI_GRID_CENTER_H);
+            font = QUOTE(GUI_FONT_NORMAL);
+            shadow = 2;
+            colorText[] = {1,1,1,1};
+            colorDisabled[] = {1,1,1,0.5};
+            tooltip = "";
+            borderSize = 0.001;
+            colorBorder[] = {1,1,1,1};
+            colorShadow[] = {0,0,0,0};
+            offsetX = 0.0075;
+            offsetY = 0.01;
+            offsetPressedX = 0.0075;
+            offsetPressedY = 0.01;
+            period = 1;
+            periodFocus = 2;
+            periodOver = 0.5;
+            soundClick[] = {"\A3\ui_f\data\sound\RscButton\soundClick",0.09,1};
+            soundEnter[] = {"\A3\ui_f\data\sound\RscButton\soundEnter",0.09,1};
+            soundPush[] = {"\A3\ui_f\data\sound\RscButton\soundPush",0.09,1};
+            soundEscape[] = {"\A3\ui_f\data\sound\RscButton\soundEscape",0.09,1};
+            onButtonDown = QUOTE('uksf_medical_rtt' setPiPEffect [0]);
+        };
+        class spc_nvg_1: spc_nvg_0 {
+            idc = IDC_SPEC_NVG_1;
+            x = QUOTE(14 * GUI_GRID_CENTER_W + GUI_GRID_CENTER_X);
+            w = QUOTE(13 * GUI_GRID_CENTER_W);
+            colorBackground[] = {0.15,0.25,0.15,1};
+            text = "Night Vision";
+            onButtonDown = QUOTE('uksf_medical_rtt' setPiPEffect [1]);
+        };
+        class spc_nvg_2: spc_nvg_0 {
+            idc = IDC_SPEC_NVG_2;
+            x = QUOTE(27 * GUI_GRID_CENTER_W + GUI_GRID_CENTER_X);
+            w = QUOTE(13 * GUI_GRID_CENTER_W);
+            colorBackground[] = {0.25,0.15,0.15,1};
+            text = "Thermal";
+            onButtonDown = QUOTE('uksf_medical_rtt' setPiPEffect [2]);
         };
 
-        class ContainerSpectator: RscControlsGroupNoScrollbars {
-            idc = IDC_CONTAINER_SPECTATOR;
-            x = QUOTE(X_PART(8));
-            y = QUOTE(Y_PART(4.5));
-            w = QUOTE(W_PART(24));
-            h = QUOTE(H_PART(17.5));
-            show = 1;
-
-            class controls {
-                class SpecCamPicture: RscPicture {
-                    idc = IDC_SPEC_CAM_PICTURE;
-                    x = 0;
-                    y = 0;
-                    w = QUOTE(W_PART(24));
-                    h = QUOTE(H_PART(15));
-                    text = "#(argb,512,512,1)r2t(uksf_medical_rtt,1)";
-                    colorText[] = COLOR_TEXT_NORMAL;
-                };
-                class SpecText: RscText {
-                    idc = IDC_SPEC_TEXT;
-                    x = 0;
-                    y = QUOTE(H_PART(15));
-                    w = QUOTE(W_PART(24));
-                    h = QUOTE(H_PART(2.5));
-                    text = "";
-                    colorText[] = COLOR_TEXT_NORMAL;
-                    style = 2; // ST_CENTER
-                };
-            };
+        class spc_HeartRate {
+            type = CT_STATIC;
+            idc = IDC_HEALTH_HR;
+            style = ST_LEFT;
+            x = QUOTE(0 * GUI_GRID_CENTER_W + GUI_GRID_CENTER_X);
+            y = QUOTE(0 * GUI_GRID_CENTER_H + GUI_GRID_CENTER_Y);
+            w = QUOTE(40 * GUI_GRID_CENTER_W);
+            h = QUOTE(6.25 * GUI_GRID_CENTER_H);
+            text = "";
+            sizeEx = QUOTE(GUI_GRID_CENTER_H * 4);
+            font = QUOTE(GUI_FONT_NORMAL);
+            lineSpacing = 0;
+            colorText[] = {1,0.2,0.2,1};
+            colorBackground[] = {0.2,0.2,0.2,0.5};
+            shadow = 2;
+            fixedWidth = 0;
         };
-
-        class ContainerHealth: RscControlsGroupNoScrollbars {
-            idc = IDC_CONTAINER_HEALTH;
-            x = QUOTE(X_PART(8));
-            y = QUOTE(Y_PART(4.5));
-            w = QUOTE(W_PART(24));
-            h = QUOTE(H_PART(17.5));
-            show = 0;
-
-            class controls {
-                class HealthHR: RscText {
-                    idc = IDC_HEALTH_HR;
-                    x = 0;
-                    y = QUOTE(H_PART(0));
-                    w = QUOTE(W_PART(24));
-                    h = QUOTE(H_PART(1.5));
-                    text = "";
-                    colorText[] = COLOR_TEXT_NORMAL;
-                };
-                class HealthBP: HealthHR {
-                    idc = IDC_HEALTH_BP;
-                    y = QUOTE(H_PART(1.5));
-                };
-                class HealthResp: HealthHR {
-                    idc = IDC_HEALTH_RESP;
-                    y = QUOTE(H_PART(3));
-                };
-                class HealthSpO2: HealthHR {
-                    idc = IDC_HEALTH_SPO2;
-                    y = QUOTE(H_PART(4.5));
-                };
-                class HealthPain: HealthHR {
-                    idc = IDC_HEALTH_PAIN;
-                    y = QUOTE(H_PART(6));
-                };
-                class HealthStateTimer: HealthHR {
-                    idc = IDC_HEALTH_STATE_TIMER;
-                    y = QUOTE(H_PART(8));
-                    h = QUOTE(H_PART(2));
-                    show = 0;
-                };
-                class HealthModeBtn: RscButton {
-                    idc = IDC_HEALTH_MODE_BTN;
-                    x = QUOTE(W_PART(18));
-                    y = QUOTE(H_PART(15.5));
-                    w = QUOTE(W_PART(6));
-                    h = QUOTE(H_PART(1.5));
-                    text = "Toggle Full/Minimal";
-                    colorBackground[] = COLOR_BG_TAB;
-                    action = QUOTE(call FUNC(vitalsToggleMode));
-                };
-            };
+        class spc_BloodPressure: spc_HeartRate {
+            idc = IDC_HEALTH_BP;
+            y = QUOTE(6.25 * GUI_GRID_CENTER_H + GUI_GRID_CENTER_Y);
+            colorText[] = {0.9,0.9,0.2,1};
         };
-
-        class ContainerSettings: RscControlsGroupNoScrollbars {
-            idc = IDC_CONTAINER_SETTINGS;
-            x = QUOTE(X_PART(8));
-            y = QUOTE(Y_PART(4.5));
-            w = QUOTE(W_PART(24));
-            h = QUOTE(H_PART(17.5));
-            show = 0;
-
-            class controls {
-                class SettingsList: RscListNBox {
-                    idc = IDC_SETTINGS_LIST;
-                    x = 0;
-                    y = 0;
-                    w = QUOTE(W_PART(24));
-                    h = QUOTE(H_PART(17.5));
-                    columns[] = {0, 0.7};
-                };
-            };
+        class spc_Respiration: spc_HeartRate {
+            idc = IDC_HEALTH_RESP;
+            y = QUOTE(12.5 * GUI_GRID_CENTER_H + GUI_GRID_CENTER_Y);
+            colorText[] = {0.9,0.2,0.9,1};
+        };
+        class spc_SpO2: spc_HeartRate {
+            idc = IDC_HEALTH_SPO2;
+            y = QUOTE(18.75 * GUI_GRID_CENTER_H + GUI_GRID_CENTER_Y);
+            colorText[] = {0.2,0.2,0.9,1};
+        };
+        class spc_cr_timer {
+            type = CT_STATIC;
+            idc = IDC_HEALTH_STATE_TIMER;
+            style = ST_LEFT;
+            x = QUOTE(0 * GUI_GRID_CENTER_W + GUI_GRID_CENTER_X);
+            y = QUOTE(25 * GUI_GRID_CENTER_H + GUI_GRID_CENTER_Y);
+            w = QUOTE(40 * GUI_GRID_CENTER_W);
+            h = QUOTE(2 * GUI_GRID_CENTER_H);
+            text = "";
+            sizeEx = QUOTE(GUI_GRID_CENTER_H * 2);
+            font = QUOTE(GUI_FONT_NORMAL);
+            lineSpacing = 0;
+            colorText[] = {0.6,0,0,1};
+            colorBackground[] = {0.2,0.2,0.2,0.5};
+            shadow = 2;
+            fixedWidth = 0;
+        };
+        class spc_medtabfocus {
+            type = CT_STATIC;
+            idc = IDC_HEALTH_TABFOCUS;
+            style = ST_LEFT;
+            x = QUOTE(0 * GUI_GRID_CENTER_W + GUI_GRID_CENTER_X);
+            y = QUOTE(50 * GUI_GRID_CENTER_H + GUI_GRID_CENTER_Y);
+            w = QUOTE(0 * GUI_GRID_CENTER_W);
+            h = QUOTE(0 * GUI_GRID_CENTER_H);
+            text = " ";
+            sizeEx = QUOTE(GUI_GRID_CENTER_H * 2);
+            font = QUOTE(GUI_FONT_NORMAL);
+            lineSpacing = 0;
+            colorText[] = {0,0,0,0};
+            colorBackground[] = {0.2,0.2,0.2,0};
+            shadow = 2;
+            fixedWidth = 0;
         };
     };
 };

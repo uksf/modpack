@@ -7,10 +7,8 @@ GVAR(activeSpectatorPFH) = -1;
 GVAR(spectatorCam) = objNull;
 GVAR(spectatorTarget) = objNull;
 GVAR(spectatorSelectedAlly) = objNull;
-GVAR(currentTab) = "spectator";
+GVAR(currentTab) = "health";
 GVAR(viewMode) = "full";
-GVAR(prevCardiacState) = false;
-GVAR(prevComaState) = false;
 
 ["ace_unconscious", {
     params ["_unit", "_isUncon"];
