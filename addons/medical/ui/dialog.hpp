@@ -179,12 +179,12 @@ class uksf_medical_uncon {
             type = 13;
             idc = IDC_HEALTH_HR;
             style = ST_LEFT;
-            x = QUOTE(13 * GUI_GRID_CENTER_W + GUI_GRID_CENTER_X);
+            x = QUOTE(10 * GUI_GRID_CENTER_W + GUI_GRID_CENTER_X);
             y = QUOTE(4 * GUI_GRID_CENTER_H + GUI_GRID_CENTER_Y);
-            w = QUOTE(14 * GUI_GRID_CENTER_W);
-            h = QUOTE(2.4 * GUI_GRID_CENTER_H);
+            w = QUOTE(20 * GUI_GRID_CENTER_W);
+            h = QUOTE(2.8 * GUI_GRID_CENTER_H);
             text = "";
-            size = QUOTE(GUI_GRID_CENTER_H * 1.6);
+            size = QUOTE(GUI_GRID_CENTER_H * 1.4);
             font = QUOTE(GUI_FONT_NORMAL);
             colorText[] = {1,1,1,1};
             colorBackground[] = {0.06,0.06,0.06,0.65};
@@ -198,23 +198,23 @@ class uksf_medical_uncon {
         };
         class spc_BloodPressure: spc_HeartRate {
             idc = IDC_HEALTH_BP;
-            y = QUOTE(6.7 * GUI_GRID_CENTER_H + GUI_GRID_CENTER_Y);
+            y = QUOTE(7 * GUI_GRID_CENTER_H + GUI_GRID_CENTER_Y);
         };
         class spc_Respiration: spc_HeartRate {
             idc = IDC_HEALTH_RESP;
-            y = QUOTE(9.4 * GUI_GRID_CENTER_H + GUI_GRID_CENTER_Y);
+            y = QUOTE(10 * GUI_GRID_CENTER_H + GUI_GRID_CENTER_Y);
         };
         class spc_SpO2: spc_HeartRate {
             idc = IDC_HEALTH_SPO2;
-            y = QUOTE(12.1 * GUI_GRID_CENTER_H + GUI_GRID_CENTER_Y);
+            y = QUOTE(13 * GUI_GRID_CENTER_H + GUI_GRID_CENTER_Y);
         };
         class spc_cr_timer: spc_HeartRate {
             idc = IDC_HEALTH_STATE_TIMER;
-            x = QUOTE(8 * GUI_GRID_CENTER_W + GUI_GRID_CENTER_X);
-            y = QUOTE(20 * GUI_GRID_CENTER_H + GUI_GRID_CENTER_Y);
-            w = QUOTE(24 * GUI_GRID_CENTER_W);
-            h = QUOTE(2.2 * GUI_GRID_CENTER_H);
-            size = QUOTE(GUI_GRID_CENTER_H * 1.5);
+            x = QUOTE(10 * GUI_GRID_CENTER_W + GUI_GRID_CENTER_X);
+            y = QUOTE(19.5 * GUI_GRID_CENTER_H + GUI_GRID_CENTER_Y);
+            w = QUOTE(20 * GUI_GRID_CENTER_W);
+            h = QUOTE(2.4 * GUI_GRID_CENTER_H);
+            size = QUOTE(GUI_GRID_CENTER_H * 1.4);
             colorBackground[] = {0.06,0.06,0.06,0.75};
         };
         class spc_medtabfocus {

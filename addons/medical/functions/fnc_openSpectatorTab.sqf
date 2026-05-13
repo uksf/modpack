@@ -4,7 +4,8 @@
         Tim Beswick
 
     Description:
-        Switches to the Spectator tab. Shows spec info, hides medical controls. NVG buttons shown based on setting.
+        Switches to the Spectator tab. Shows spec info, hides medical controls.
+        Starts the spectator PFH (and creates the camera) on demand.
 
     Parameter(s):
         None
@@ -23,8 +24,9 @@ call FUNC(hidePreviousTabs);
 
 GVAR(currentTab) = "spectator";
 
-// PiPZone and tab buttons are always visible (declared in dialog with no show toggle here).
-// Spectator info text controls toggled by spectatorUpdate based on state (too-far / no-signal / signal).
+if (GVAR(activeSpectatorPFH) == -1) then {
+    GVAR(activeSpectatorPFH) = [FUNC(spectatorUpdate), 0.5, []] call CBA_fnc_addPerFrameHandler;
+};
 
 private _nvgMode = GVAR(spectatorNVGMode);
 

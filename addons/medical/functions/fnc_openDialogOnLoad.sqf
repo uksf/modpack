@@ -4,7 +4,8 @@
         Tim Beswick
 
     Description:
-        Dialog onLoad handler. Hides all controls, opens Health tab by default, starts PFHs.
+        Dialog onLoad handler. Opens Health tab by default, starts vitals PFH.
+        Spectator PFH (and the camera) is started on demand from openSpectatorTab.
 
     Parameter(s):
         None
@@ -16,8 +17,6 @@
         Called automatically via dialog onLoad
 */
 
-call FUNC(hidePreviousTabs);
 call FUNC(openHealthTab);
 
 GVAR(activeVitalsPFH) = [FUNC(vitalsUpdate), 1, []] call CBA_fnc_addPerFrameHandler;
-GVAR(activeSpectatorPFH) = [FUNC(spectatorUpdate), 0.5, []] call CBA_fnc_addPerFrameHandler;

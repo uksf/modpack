@@ -4,7 +4,8 @@
         Tim Beswick
 
     Description:
-        Switches to the Health tab. Shows enabled vital rows, hides spectator controls.
+        Switches to the Health tab. Shows enabled vital rows, hides spectator controls,
+        tears down the spectator PFH + camera so they aren't running behind the health view.
 
     Parameter(s):
         None
@@ -20,6 +21,12 @@ private _display = findDisplay IDD_UNCON;
 if (isNull _display) exitWith {};
 
 call FUNC(hidePreviousTabs);
+
+if (GVAR(activeSpectatorPFH) != -1) then {
+    [GVAR(activeSpectatorPFH)] call CBA_fnc_removePerFrameHandler;
+    GVAR(activeSpectatorPFH) = -1;
+};
+call FUNC(spectatorCleanup);
 
 GVAR(currentTab) = "health";
 
@@ -42,6 +49,5 @@ if (GVAR(showSpO2) && _showExtras) then {
     (_display displayCtrl IDC_HEALTH_SPO2) ctrlShow true;
 };
 
-// Invisible focus marker — tells vitalsUpdate the health tab is open (controls state-timer visibility)
 (_display displayCtrl IDC_HEALTH_TABFOCUS) ctrlEnable true;
 (_display displayCtrl IDC_HEALTH_TABFOCUS) ctrlShow true;
