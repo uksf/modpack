@@ -6,7 +6,6 @@
 // Tab buttons (top)
 #define IDC_TAB_HEALTH            547
 #define IDC_TAB_SPECTATOR         548
-#define IDC_TAB_VIEWMODE          559
 
 // Spectator tab controls
 #define IDC_SPEC_TOO_FAR          550

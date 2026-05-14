@@ -27,7 +27,7 @@ class uksf_medical_uncon {
             style = ST_CENTER;
             default = 1;
             blinkingPeriod = 0;
-            x = QUOTE(10 * GUI_GRID_CENTER_W + GUI_GRID_CENTER_X);
+            x = QUOTE(12 * GUI_GRID_CENTER_W + GUI_GRID_CENTER_X);
             y = QUOTE(1.5 * GUI_GRID_CENTER_H + GUI_GRID_CENTER_Y);
             w = QUOTE(8 * GUI_GRID_CENTER_W);
             h = QUOTE(1.1 * GUI_GRID_CENTER_H);
@@ -64,24 +64,13 @@ class uksf_medical_uncon {
         class tabSpectate: tabMedical {
             idc = IDC_TAB_SPECTATOR;
             default = 0;
-            x = QUOTE(18 * GUI_GRID_CENTER_W + GUI_GRID_CENTER_X);
+            x = QUOTE(20 * GUI_GRID_CENTER_W + GUI_GRID_CENTER_X);
             w = QUOTE(8 * GUI_GRID_CENTER_W);
             text = "Spectator";
             onButtonDown = QUOTE(call FUNC(openSpectatorTab));
         };
-        class tabViewMode: tabMedical {
-            idc = IDC_TAB_VIEWMODE;
-            default = 0;
-            x = QUOTE(26 * GUI_GRID_CENTER_W + GUI_GRID_CENTER_X);
-            w = QUOTE(4 * GUI_GRID_CENTER_H);
-            text = "Toggle View";
-            sizeEx = QUOTE(GUI_GRID_CENTER_H * 0.75);
-            colorBackground[] = {0.08,0.08,0.08,0.7};
-            colorText[] = {0.7,0.7,0.7,1};
-            onButtonDown = QUOTE(call FUNC(vitalsToggleMode));
-        };
-
         class spc_SpectatingInfo_TooFar {
+            show = 0;
             type = CT_STATIC;
             idc = IDC_SPEC_TOO_FAR;
             style = ST_CENTER;
@@ -100,6 +89,7 @@ class uksf_medical_uncon {
             idc = IDC_SPEC_INFO;
         };
         class PiPZone {
+            show = 0;
             idc = IDC_SPEC_PIP;
             type = CT_STATIC;
             style = ST_PICTURE;
@@ -115,6 +105,7 @@ class uksf_medical_uncon {
             moving = 0;
         };
         class spc_NoSignal: spc_SpectatingInfo_TooFar {
+            show = 0;
             idc = IDC_SPEC_NO_SIGNAL;
             y = QUOTE(11 * GUI_GRID_CENTER_H + GUI_GRID_CENTER_Y);
             h = QUOTE(2 * GUI_GRID_CENTER_H);
@@ -125,6 +116,7 @@ class uksf_medical_uncon {
         };
 
         class spc_nvg_0 {
+            show = 0;
             access = 0;
             idc = IDC_SPEC_NVG_0;
             type = CT_BUTTON;
@@ -176,6 +168,7 @@ class uksf_medical_uncon {
         };
 
         class spc_HeartRate {
+            show = 0;
             type = 13;
             idc = IDC_HEALTH_HR;
             style = ST_LEFT;

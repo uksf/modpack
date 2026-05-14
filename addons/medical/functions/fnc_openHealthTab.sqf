@@ -4,8 +4,9 @@
         Tim Beswick
 
     Description:
-        Switches to the Health tab. Shows enabled vital rows, hides spectator controls,
+        Switches to the Health tab. Shows vital rows, hides spectator controls,
         tears down the spectator PFH + camera so they aren't running behind the health view.
+        Triggers an immediate vitalsUpdate so the state timer (if active) appears without delay.
 
     Parameter(s):
         None
@@ -30,24 +31,9 @@ call FUNC(spectatorCleanup);
 
 GVAR(currentTab) = "health";
 
-private _showExtras = GVAR(viewMode) == "full";
+{
+    (_display displayCtrl _x) ctrlEnable true;
+    (_display displayCtrl _x) ctrlShow true;
+} forEach [IDC_HEALTH_HR, IDC_HEALTH_BP, IDC_HEALTH_RESP, IDC_HEALTH_SPO2, IDC_HEALTH_TABFOCUS];
 
-if (GVAR(showHR)) then {
-    (_display displayCtrl IDC_HEALTH_HR) ctrlEnable true;
-    (_display displayCtrl IDC_HEALTH_HR) ctrlShow true;
-};
-if (GVAR(showBP) && _showExtras) then {
-    (_display displayCtrl IDC_HEALTH_BP) ctrlEnable true;
-    (_display displayCtrl IDC_HEALTH_BP) ctrlShow true;
-};
-if (GVAR(showResp) && _showExtras) then {
-    (_display displayCtrl IDC_HEALTH_RESP) ctrlEnable true;
-    (_display displayCtrl IDC_HEALTH_RESP) ctrlShow true;
-};
-if (GVAR(showSpO2) && _showExtras) then {
-    (_display displayCtrl IDC_HEALTH_SPO2) ctrlEnable true;
-    (_display displayCtrl IDC_HEALTH_SPO2) ctrlShow true;
-};
-
-(_display displayCtrl IDC_HEALTH_TABFOCUS) ctrlEnable true;
-(_display displayCtrl IDC_HEALTH_TABFOCUS) ctrlShow true;
+[[], -1] call FUNC(vitalsUpdate);

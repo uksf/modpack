@@ -106,7 +106,7 @@ if (_cardiacEnd > -1) exitWith {
         "<t align='center' color='#ff5555'>Cardiac Arrest  </t><t align='center' color='#ffffff'>%1</t>",
         _timeStr
     ];
-    if (GVAR(showStateTimer) && _healthTabOpen) then {
+    if (_healthTabOpen) then {
         _stateCtrl ctrlEnable true;
         _stateCtrl ctrlShow true;
     };
@@ -119,7 +119,7 @@ if (_comaEnd > -1) exitWith {
         "<t align='center' color='#ffb366'>Coma  </t><t align='center' color='#ffffff'>%1</t>",
         _timeStr
     ];
-    if (GVAR(showStateTimer) && _healthTabOpen) then {
+    if (_healthTabOpen) then {
         _stateCtrl ctrlEnable true;
         _stateCtrl ctrlShow true;
     };

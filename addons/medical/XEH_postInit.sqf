@@ -8,7 +8,6 @@ GVAR(spectatorCam) = objNull;
 GVAR(spectatorTarget) = objNull;
 GVAR(spectatorSelectedAlly) = objNull;
 GVAR(currentTab) = "health";
-GVAR(viewMode) = "full";
 
 ["ace_unconscious", {
     params ["_unit", "_isUncon"];

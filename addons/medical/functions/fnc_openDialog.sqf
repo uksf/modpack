@@ -34,6 +34,6 @@ if (!isNull findDisplay 312 || {!isNull findDisplay 49}) exitWith {
     }, 1, []] call CBA_fnc_addPerFrameHandler;
 };
 
-GVAR(viewMode) = GVAR(viewModeDefault);
+GVAR(currentTab) = "health";
 
 createDialog "uksf_medical_uncon";

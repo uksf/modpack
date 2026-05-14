@@ -6,6 +6,5 @@ PREP(hidePreviousTabs);
 PREP(openHealthTab);
 PREP(openSpectatorTab);
 PREP(vitalsUpdate);
-PREP(vitalsToggleMode);
 PREP(spectatorUpdate);
 PREP(spectatorCleanup);
