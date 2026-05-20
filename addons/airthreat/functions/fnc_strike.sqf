@@ -37,7 +37,7 @@ if (_targetPosition isEqualTo []) exitWith {};
 
 private _spawnPosition = selectRandom GVAR(spawnPoints);
 
-private _result = [_spawnPosition, GVAR(jetClassnames), _targetPosition, 500] call FUNC(spawnAircraft);
+private _result = [_spawnPosition, GVAR(jetClassnames), _targetPosition, 700 + random 200] call FUNC(spawnAircraft);
 _result params ["_group", "_vehicle"];
 
 if (isNull _group) exitWith {};

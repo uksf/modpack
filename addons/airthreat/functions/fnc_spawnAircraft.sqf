@@ -13,7 +13,7 @@
         0: Spawn position <ARRAY> - ASL position of the spawn point
         1: Aircraft classnames <ARRAY> - Pool of classnames to select from
         2: Target position <ARRAY> - Position to orient toward (default: [0,0,0])
-        3: Altitude <NUMBER> - Spawn altitude in metres ASL (default: 2000)
+        3: Altitude <NUMBER> - Spawn altitude in metres AGL above spawn point terrain (default: 1500)
 
     Return Value:
         [group, vehicle] <ARRAY> - The created group and vehicle, or [grpNull, objNull] on failure
@@ -25,7 +25,7 @@ params [
     ["_spawnPosition", [], [[]]],
     ["_classnames", [], [[]]],
     ["_targetPosition", [0, 0, 0], [[]]],
-    ["_altitude", 2000, [0]]
+    ["_altitude", 1500, [0]]
 ];
 
 if (_classnames isEqualTo []) exitWith {
@@ -40,7 +40,8 @@ if (_spawnPosition isEqualTo []) exitWith {
 
 private _classname = selectRandom _classnames;
 private _finalPosition = +_spawnPosition;
-_finalPosition set [2, _altitude + random 100];
+private _terrainZ = getTerrainHeightASL [_finalPosition#0, _finalPosition#1];
+_finalPosition set [2, _terrainZ + _altitude + random 100];
 
 // Create high to prevent terrain collision during setup
 private _vehicle = createVehicle [_classname, [0, 0, 1000 + random 500], [], 0, "FLY"];

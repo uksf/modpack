@@ -39,7 +39,7 @@ if (_classnames isEqualTo []) exitWith {
     WARNING("No recon or fighter classnames configured");
 };
 
-private _result = [_spawnPosition, _classnames, _targetPosition, 600] call FUNC(spawnAircraft);
+private _result = [_spawnPosition, _classnames, _targetPosition, 500 + random 200] call FUNC(spawnAircraft);
 _result params ["_group", "_vehicle"];
 
 if (isNull _group) exitWith {};

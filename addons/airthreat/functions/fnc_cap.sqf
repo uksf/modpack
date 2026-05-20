@@ -30,7 +30,7 @@ if (GVAR(fighterClassnames) isEqualTo []) exitWith {
 private _airspace = selectRandom GVAR(airspaces);
 _airspace params ["_airspacePosition", "_sizeA", "_sizeB", "_angle", "_isRectangle"];
 private _spawnPosition = selectRandom GVAR(spawnPoints);
-private _altitude = 800 + random 1200;
+private _altitude = 2200 + random 600;
 
 private _result = [_spawnPosition, GVAR(fighterClassnames), _airspacePosition, _altitude] call FUNC(spawnAircraft);
 _result params ["_group", "_vehicle"];
