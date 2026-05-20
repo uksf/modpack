@@ -4,6 +4,8 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
+#include "initSettings.inc.sqf"
+
 GVAR(loadout) = "";
 GVAR(EHIDArray) = [];
 GVAR(trackedProjectiles) = [];

@@ -140,7 +140,7 @@ _action = [QGVAR(loadIntoCargo), "Load Into Cargo", "\a3\ui_f\data\IGUI\Cfg\Acti
 [_action, [], 80] call zen_context_menu_fnc_addAction;
 
 _action = [QGVAR(watch), "Watch", "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa", {call FUNC(contextWatch)}, {call FUNC(contextCanWatch)}] call zen_context_menu_fnc_createAction;
-[_action, [], 90] call zen_context_menu_fnc_addAction;
+[_action, [], -650] call zen_context_menu_fnc_addAction;
 
 _action = [QGVAR(toggleZeusVisibility), "Hide Zeus", "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa", {[objNull] call FUNC(moduleToggleZeusVisibility)}, {true}, [], {}, {
     params ["_action"];

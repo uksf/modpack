@@ -1,6 +1,7 @@
 if (!isNil "uksf_zeus_watchPFH" && {uksf_zeus_watchPFH isEqualType 0} && {uksf_zeus_watchPFH > -1}) then {
     [uksf_zeus_watchPFH] call CBA_fnc_removePerFrameHandler;
 };
+if (isNil "uksf_zeus_watchInvertY") then { uksf_zeus_watchInvertY = false };
 uksf_zeus_watchPFH = -1;
 uksf_zeus_watchTarget = objNull;
 uksf_zeus_watchHasExpected = false;
@@ -166,7 +167,6 @@ private _action = ["uksf_zeus_watch", "Watch", "\a3\ui_f_curator\data\logos\arma
         _bbox params ["_bbMin", "_bbMax"];
         private _length = (_bbMax # 1) - (_bbMin # 1);
         private _centerZ = ((_bbMax # 2) + (_bbMin # 2)) * 0.5;
-        private _aimZ = _centerZ + 0.4;
 
         private _baseBack = if (_onTurret) then {5} else {5 max (_length * 1.6)};
         private _baseSide = 0.6;
@@ -183,7 +183,6 @@ private _action = ["uksf_zeus_watch", "Watch", "\a3\ui_f_curator\data\logos\arma
         private _behindAmt = _distance * (cos _effectiveYaw) * _cosP;
         private _rightAmt = _distance * (sin _effectiveYaw) * _cosP;
         private _upAmt = _distance * (sin _effectivePitch);
-        private _camOffset = [_rightAmt, -_behindAmt, _upAmt];
 
         private _idealCamPos = [];
         private _aimPoint = [];
@@ -232,18 +231,7 @@ private _action = ["uksf_zeus_watch", "Watch", "\a3\ui_f_curator\data\logos\arma
                 };
             };
         };
-        private _flyingEyeBlend = 0;
         if (!_useTurretFrame) then {
-            private _flyingEyeMin = 12;
-            private _flyingEyeMax = 18;
-            _flyingEyeBlend = (((_distance - _flyingEyeMin) / (_flyingEyeMax - _flyingEyeMin)) max 0) min 1;
-
-            private _camPosA = _focus modelToWorldVisualWorld [_camOffset # 0, _camOffset # 1, _aimZ + (_camOffset # 2)];
-            private _aimPointA = _focus modelToWorldVisualWorld [0, 0, _aimZ];
-            private _worldLift = 0.7;
-            _camPosA set [2, (_camPosA # 2) + _worldLift];
-            _aimPointA set [2, (_aimPointA # 2) + _worldLift];
-
             private _bodyDir = vectorDir _focus;
             private _yawDirNT = [_bodyDir # 0, _bodyDir # 1, 0];
             private _yawNTMag = vectorMagnitude _yawDirNT;
@@ -254,32 +242,21 @@ private _action = ["uksf_zeus_watch", "Watch", "\a3\ui_f_curator\data\logos\arma
             };
             private _rightNT = _yawDirNT vectorCrossProduct [0, 0, 1];
             private _focusPosASL = getPosASLVisual _focus;
-            private _aimPointB = _focusPosASL vectorAdd [0, 0, _centerZ + 0.4];
-            private _camPosB = _aimPointB
+            _aimPoint = _focusPosASL vectorAdd [0, 0, _centerZ + 0.4];
+            _idealCamPos = _aimPoint
                 vectorAdd (_yawDirNT vectorMultiply (-_behindAmt))
                 vectorAdd (_rightNT vectorMultiply _rightAmt)
                 vectorAdd [0, 0, _upAmt];
-
-            _idealCamPos = [
-                ((_camPosA # 0) * (1 - _flyingEyeBlend)) + ((_camPosB # 0) * _flyingEyeBlend),
-                ((_camPosA # 1) * (1 - _flyingEyeBlend)) + ((_camPosB # 1) * _flyingEyeBlend),
-                ((_camPosA # 2) * (1 - _flyingEyeBlend)) + ((_camPosB # 2) * _flyingEyeBlend)
-            ];
-            _aimPoint = [
-                ((_aimPointA # 0) * (1 - _flyingEyeBlend)) + ((_aimPointB # 0) * _flyingEyeBlend),
-                ((_aimPointA # 1) * (1 - _flyingEyeBlend)) + ((_aimPointB # 1) * _flyingEyeBlend),
-                ((_aimPointA # 2) * (1 - _flyingEyeBlend)) + ((_aimPointB # 2) * _flyingEyeBlend)
-            ];
         };
 
         if (_onFoot && {_target isKindOf "CAManBase"}) then {
             private _eyeDir = eyeDirection _target;
-            _aimPoint set [2, (_aimPoint # 2) + ((_eyeDir # 2) * 2.5 * (1 - _flyingEyeBlend))];
+            _aimPoint set [2, (_aimPoint # 2) + ((_eyeDir # 2) * 2.5)];
         };
 
         private _instantSpeed = vectorMagnitude (velocity _focus);
         uksf_zeus_watchSmoothFocusSpeed = if (uksf_zeus_watchSmoothPosInit) then {
-            uksf_zeus_watchSmoothFocusSpeed + (_instantSpeed - uksf_zeus_watchSmoothFocusSpeed) * 0.2
+            uksf_zeus_watchSmoothFocusSpeed + (_instantSpeed - uksf_zeus_watchSmoothFocusSpeed) * 0.22
         } else {
             _instantSpeed
         };
@@ -292,22 +269,24 @@ private _action = ["uksf_zeus_watch", "Watch", "\a3\ui_f_curator\data\logos\arma
         if (uksf_zeus_watchOrbitActive && uksf_zeus_watchPrevFrameMouseInit && !visibleMap) then {
             private _dx = _mouseX - uksf_zeus_watchPrevFrameMouseX;
             private _dy = _mouseY - uksf_zeus_watchPrevFrameMouseY;
+            if (uksf_zeus_watchInvertY) then { _dy = -_dy };
             uksf_zeus_watchOrbitYaw = uksf_zeus_watchOrbitYaw + (_dx * 360);
-            uksf_zeus_watchOrbitPitch = ((uksf_zeus_watchOrbitPitch - (_dy * 360)) max -80) min 80;
+            uksf_zeus_watchOrbitPitch = ((uksf_zeus_watchOrbitPitch + (_dy * 360)) max -80) min 80;
         };
         uksf_zeus_watchPrevFrameMouseX = _mouseX;
         uksf_zeus_watchPrevFrameMouseY = _mouseY;
         uksf_zeus_watchPrevFrameMouseInit = true;
 
-        private _orbitSmoothFactor = 0.25;
+        private _orbitSmoothFactor = 0.275;
         uksf_zeus_watchOrbitYawSmooth = uksf_zeus_watchOrbitYawSmooth + (uksf_zeus_watchOrbitYaw - uksf_zeus_watchOrbitYawSmooth) * _orbitSmoothFactor;
         uksf_zeus_watchOrbitPitchSmooth = uksf_zeus_watchOrbitPitchSmooth + (uksf_zeus_watchOrbitPitch - uksf_zeus_watchOrbitPitchSmooth) * _orbitSmoothFactor;
-        private _posFactor = 0.2;
-        private _posDeadband = 0.2;
-        private _maxPosStep = if (_orbitNow) then {1e6} else {(uksf_zeus_watchSmoothFocusSpeed * diag_deltaTime * 1.5) max 0.3};
-        private _camPos = if (uksf_zeus_watchSmoothPosInit) then {
+        private _camPos = if (uksf_zeus_watchSmoothPosInit && !_orbitNow) then {
             private _posDelta = _idealCamPos vectorDiff uksf_zeus_watchSmoothPos;
             private _posMag = vectorMagnitude _posDelta;
+            private _posFactor = 0.22;
+            private _posDeadband = 0.2;
+            private _baseCap = (uksf_zeus_watchSmoothFocusSpeed * diag_deltaTime * 1.5) max 0.3;
+            private _maxPosStep = if (_posMag > 5) then {1e6} else {_baseCap};
             private _posRamp = if (_posMag >= _posDeadband) then {1} else {((_posMag / _posDeadband) ^ 2)};
             private _posStep = _posDelta vectorMultiply (_posFactor * _posRamp);
             private _posStepMag = vectorMagnitude _posStep;
@@ -335,12 +314,13 @@ private _action = ["uksf_zeus_watch", "Watch", "\a3\ui_f_curator\data\logos\arma
         if (_idealLen <= 0) exitWith {};
         _idealDir = _idealDir vectorMultiply (1 / _idealLen);
 
-        private _dirFactor = 0.2;
-        private _dirDeadband = 0.02;
-        private _maxDirStep = if (_orbitNow) then {1e6} else {0.04};
-        private _smoothDir = if (uksf_zeus_watchSmoothInit) then {
+        private _smoothDir = if (uksf_zeus_watchSmoothInit && !_orbitNow) then {
             private _dirDelta = _idealDir vectorDiff uksf_zeus_watchSmoothDir;
             private _dirMag = vectorMagnitude _dirDelta;
+            private _dirFactor = 0.22;
+            private _dirDeadband = 0.02;
+            private _baseDirCap = 0.04;
+            private _maxDirStep = if (_dirMag > 0.35) then {1e6} else {_baseDirCap};
             private _dirRamp = if (_dirMag >= _dirDeadband) then {1} else {((_dirMag / _dirDeadband) ^ 2)};
             private _dirStep = _dirDelta vectorMultiply (_dirFactor * _dirRamp);
             private _dirStepMag = vectorMagnitude _dirStep;
@@ -380,6 +360,6 @@ private _action = ["uksf_zeus_watch", "Watch", "\a3\ui_f_curator\data\logos\arma
     params ["", "_selectedObjects"];
     _selectedObjects isNotEqualTo [] && {alive (_selectedObjects # 0)}
 }] call zen_context_menu_fnc_createAction;
-[_action, [], 90] call zen_context_menu_fnc_addAction;
+[_action, [], -650] call zen_context_menu_fnc_addAction;
 
 systemChat "Watch context action registered.";
