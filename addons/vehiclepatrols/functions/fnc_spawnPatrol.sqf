@@ -41,7 +41,7 @@ if (_destinationPosition isEqualTo []) exitWith {};
 if (_vehicleClasses isEqualTo []) exitWith {};
 
 private _vehicleClass = selectRandom _vehicleClasses;
-private _vehicle = createVehicle [_vehicleClass, ASLToAGL _spawnPosition, [], 0, "NONE"];
+private _vehicle = createVehicle [_vehicleClass, ASLToAGL _spawnPosition, [], 25, "NONE"];
 if (isNull _vehicle) exitWith {};
 
 _vehicle setDir ((_spawnPosition getDir _destinationPosition));
