@@ -65,5 +65,9 @@ if (!hasInterface) exitWith {};
         };
         uiNamespace setVariable [QGVAR(mapEHs), []];
         uiNamespace setVariable [QGVAR(headerDropdown), controlNull];
+
+        GVAR(state) = "idle";
+        { deleteMarkerLocal _x } forEach GVAR(previewMarkers);
+        GVAR(previewMarkers) = [];
     };
 }] call CBA_fnc_addPlayerEventHandler;

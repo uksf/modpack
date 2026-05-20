@@ -25,7 +25,6 @@ private _mouseWorld = _control ctrlMapScreenToWorld [_screenPosX, _screenPosY];
 
 if (_button == 1 && {_dir == 1} && {GVAR(state) isNotEqualTo "idle"}) exitWith {
     GVAR(state) = "idle";
-    GVAR(drawKeyHeld) = false;
     call FUNC(updatePreview);
     true
 };
@@ -82,7 +81,6 @@ if (_dir == 1) then {
             [_polylines] call FUNC(emitShape);
         };
         GVAR(state) = "idle";
-        GVAR(drawKeyHeld) = false;
         call FUNC(updatePreview);
         true
     };
@@ -91,6 +89,9 @@ if (_dir == 1) then {
         GVAR(stage1Start) = _mouseWorld;
         GVAR(stage1End) = _mouseWorld;
         GVAR(state) = "stage1";
+        private _colour = missionNamespace getVariable ["ace_markers_currentMarkerColorConfigName", "ColorBlack"];
+        if (_colour isEqualTo "") then { _colour = "ColorBlack" };
+        GVAR(activeColour) = _colour;
         call FUNC(updatePreview);
         true
     };
@@ -99,19 +100,22 @@ if (_dir == 1) then {
 } else {
     if (GVAR(state) == "stage1") exitWith {
         GVAR(stage1End) = _mouseWorld;
+        private _length = GVAR(stage1Start) distance2D GVAR(stage1End);
+        if (_length < 5) exitWith {
+            GVAR(state) = "idle";
+            call FUNC(updatePreview);
+            true
+        };
         if (GVAR(currentMode) == "circle") then {
-            private _radius = GVAR(stage1Start) distance2D GVAR(stage1End);
-            private _polylines = [GVAR(stage1Start), _radius] call FUNC(buildCircle);
+            private _polylines = [GVAR(stage1Start), _length] call FUNC(buildCircle);
             [_polylines] call FUNC(emitShape);
             GVAR(state) = "idle";
-            GVAR(drawKeyHeld) = false;
             call FUNC(updatePreview);
         } else {
             GVAR(stage2Pos) = GVAR(stage1End);
-            private _axisLen = GVAR(stage1Start) distance2D GVAR(stage1End);
             GVAR(stage2DefaultSecondary) = switch (GVAR(currentMode)) do {
-                case "ellipse": { _axisLen / 4 };
-                case "racetrack": { _axisLen / 4 };
+                case "ellipse": { _length / 4 };
+                case "racetrack": { _length / 4 };
                 case "cone": { 7.5 };
                 default { 0 };
             };
