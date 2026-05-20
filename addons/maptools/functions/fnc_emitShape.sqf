@@ -21,9 +21,9 @@ params [["_polylines", [], [[]]]];
 
 private _channelID = currentChannel;
 if (_channelID < 0) then { _channelID = 1 };
-private _ownerID = clientOwner;
+private _ownerID = getPlayerID ACE_player;
 
-private _colour = missionNamespace getVariable [QEGVAR(markers,currentMarkerColorConfigName), "ColorBlack"];
+private _colour = missionNamespace getVariable ["ace_markers_currentMarkerColorConfigName", "ColorBlack"];
 if (_colour isEqualTo "") then { _colour = "ColorBlack" };
 
 private _created = [];

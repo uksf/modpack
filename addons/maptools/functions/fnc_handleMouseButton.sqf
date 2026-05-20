@@ -25,6 +25,7 @@ private _mouseWorld = _control ctrlMapScreenToWorld [_screenPosX, _screenPosY];
 
 if (_button == 1 && {_dir == 1} && {GVAR(state) isNotEqualTo "idle"}) exitWith {
     GVAR(state) = "idle";
+    GVAR(drawKeyHeld) = false;
     call FUNC(updatePreview);
     true
 };
@@ -38,7 +39,6 @@ if (_dir == 1) then {
             private _axisX = (GVAR(stage1End)#0) - (GVAR(stage1Start)#0);
             private _axisY = (GVAR(stage1End)#1) - (GVAR(stage1Start)#1);
             private _axisLen = sqrt (_axisX * _axisX + _axisY * _axisY);
-            if (_axisLen < 1) exitWith { [] };
             private _rotationDeg = _axisY atan2 _axisX;
 
             private _toS2X = (GVAR(stage2Pos)#0) - (GVAR(stage1Start)#0);
@@ -48,34 +48,31 @@ if (_dir == 1) then {
             private _uy = _axisY / _axisLen;
             private _parallel = _toS2X * _ux + _toS2Y * _uy;
             private _perpSigned = _toS2X * (-_uy) + _toS2Y * _ux;
-            private _perpDist = abs _perpSigned;
 
             switch (GVAR(currentMode)) do {
                 case "ellipse": {
-                    if (_perpDist < 1) exitWith { [] };
+                    private _semiMinor = GVAR(stage2DefaultSecondary) + _perpSigned;
                     private _centre = [
                         ((GVAR(stage1Start)#0) + (GVAR(stage1End)#0)) / 2,
                         ((GVAR(stage1Start)#1) + (GVAR(stage1End)#1)) / 2,
                         0
                     ];
-                    [_centre, _axisLen / 2, _perpDist, _rotationDeg] call FUNC(buildEllipse)
+                    [_centre, _axisLen / 2, _semiMinor, _rotationDeg] call FUNC(buildEllipse)
                 };
                 case "racetrack": {
-                    if (_perpDist < 1) exitWith { [] };
-                    private _halfLength = _axisLen / 2;
-                    private _halfWidth = _perpDist / 2;
+                    private _fullWidth = GVAR(stage2DefaultSecondary) + _perpSigned;
+                    private _halfWidth = (abs _fullWidth) / 2;
                     private _midX = (GVAR(stage1Start)#0 + GVAR(stage1End)#0) / 2;
                     private _midY = (GVAR(stage1Start)#1 + GVAR(stage1End)#1) / 2;
                     private _centre = [
-                        _midX + (-_uy) * (_perpSigned / 2),
-                        _midY + _ux * (_perpSigned / 2),
+                        _midX + (-_uy) * (_fullWidth / 2),
+                        _midY + _ux * (_fullWidth / 2),
                         0
                     ];
-                    [_centre, _halfLength, _halfWidth, _rotationDeg] call FUNC(buildRaceTrack)
+                    [_centre, _axisLen / 2, _halfWidth, _rotationDeg] call FUNC(buildRaceTrack)
                 };
                 case "cone": {
-                    if (_axisLen < 1 || {abs _parallel + _perpDist < 1}) exitWith { [] };
-                    private _halfAngle = _perpDist atan2 _parallel;
+                    private _halfAngle = GVAR(stage2DefaultSecondary) + (_perpSigned atan2 _parallel);
                     [GVAR(stage1Start), _axisLen, _halfAngle, _rotationDeg] call FUNC(buildCone)
                 };
                 default { [] };
@@ -85,6 +82,7 @@ if (_dir == 1) then {
             [_polylines] call FUNC(emitShape);
         };
         GVAR(state) = "idle";
+        GVAR(drawKeyHeld) = false;
         call FUNC(updatePreview);
         true
     };
@@ -103,21 +101,22 @@ if (_dir == 1) then {
         GVAR(stage1End) = _mouseWorld;
         if (GVAR(currentMode) == "circle") then {
             private _radius = GVAR(stage1Start) distance2D GVAR(stage1End);
-            if (_radius >= 1) then {
-                private _polylines = [GVAR(stage1Start), _radius] call FUNC(buildCircle);
-                [_polylines] call FUNC(emitShape);
-            };
+            private _polylines = [GVAR(stage1Start), _radius] call FUNC(buildCircle);
+            [_polylines] call FUNC(emitShape);
             GVAR(state) = "idle";
+            GVAR(drawKeyHeld) = false;
             call FUNC(updatePreview);
         } else {
-            if ((GVAR(stage1Start) distance2D GVAR(stage1End)) < 1) then {
-                GVAR(state) = "idle";
-                call FUNC(updatePreview);
-            } else {
-                GVAR(stage2Pos) = GVAR(stage1End);
-                GVAR(state) = "stage2";
-                call FUNC(updatePreview);
+            GVAR(stage2Pos) = GVAR(stage1End);
+            private _axisLen = GVAR(stage1Start) distance2D GVAR(stage1End);
+            GVAR(stage2DefaultSecondary) = switch (GVAR(currentMode)) do {
+                case "ellipse": { _axisLen / 4 };
+                case "racetrack": { _axisLen / 4 };
+                case "cone": { 7.5 };
+                default { 0 };
             };
+            GVAR(state) = "stage2";
+            call FUNC(updatePreview);
         };
         true
     };

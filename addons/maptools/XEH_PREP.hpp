@@ -11,3 +11,5 @@ PREP(canDrawShape);
 PREP(handleMouseButton);
 PREP(handleMouseMove);
 PREP(updatePreview);
+PREP(renderHint);
+PREP(initHeaderDropdown);

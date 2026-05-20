@@ -27,8 +27,8 @@ params [
     ["_rotationDeg", 0, [0]]
 ];
 
-private _a = _semiMajor max 0.0001;
-private _b = _semiMinor max 0.0001;
+private _a = (abs _semiMajor) max 0.0001;
+private _b = (abs _semiMinor) max 0.0001;
 private _h = ((_a - _b) ^ 2) / ((_a + _b) ^ 2);
 private _perimeter = pi * (_a + _b) * (1 + (3 * _h) / (10 + sqrt (4 - 3 * _h)));
 private _arcLength = _perimeter / 4;

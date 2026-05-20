@@ -27,7 +27,7 @@ params [
     ["_rotationDeg", 0, [0]]
 ];
 
-private _arcLength = _axisLen * (_halfAngleDeg * 2 * pi / 180);
+private _arcLength = abs (_axisLen * (_halfAngleDeg * 2 * pi / 180));
 private _pointsOnArc = [_arcLength] call FUNC(segmentCount);
 
 private _cosR = cos _rotationDeg;

@@ -2,40 +2,28 @@
 
 if (!hasInterface) exitWith {};
 
-[{
-    params ["_args", "_idPFH"];
-    if (visibleMap) exitWith {
-        [_idPFH] call CBA_fnc_removePerFrameHandler;
-        private _mapControl = (findDisplay 12) displayCtrl 51;
-        _mapControl ctrlAddEventHandler ["MouseButtonDown", {[1, _this] call FUNC(handleMouseButton)}];
-        _mapControl ctrlAddEventHandler ["MouseButtonUp",   {[0, _this] call FUNC(handleMouseButton)}];
-        _mapControl ctrlAddEventHandler ["MouseMoving", {
-            params ["_ctrl", "_xPos", "_yPos"];
-            [_ctrl, _xPos, _yPos] call FUNC(handleMouseMove);
-        }];
-    };
-}, 1, []] call CBA_fnc_addPerFrameHandler;
-
 [
     "UKSF",
     "drawShape",
     [
-        "Draw shape (hold)",
-        "Hold to enter shape-draw on next LMB drag. Requires ACE Map Tools."
+        "Draw shape (hold to start)",
+        "Hold to start a shape on next LMB drag. Releasing does not cancel an in-progress shape. Requires ACE Map Tools."
     ],
     {
+        if (!visibleMap) exitWith { false };
         GVAR(drawKeyHeld) = true;
+        private _mapControl = (findDisplay 12) displayCtrl 51;
+        if (!isNull _mapControl) then { _mapControl ctrlMapCursor ["Track", "Move"] };
+        call FUNC(renderHint);
         false
     },
     {
         GVAR(drawKeyHeld) = false;
-        if (GVAR(state) isNotEqualTo "idle") then {
-            GVAR(state) = "idle";
-            call FUNC(updatePreview);
-        };
+        private _mapControl = (findDisplay 12) displayCtrl 51;
+        if (!isNull _mapControl) then { _mapControl ctrlMapCursor ["Track", "Track"] };
         false
     },
-    [0x38, [false, false, false]]
+    [0x2B, [false, false, false]]
 ] call CBA_fnc_addKeybind;
 
 [
@@ -46,9 +34,36 @@ if (!hasInterface) exitWith {};
         "Advance to the next shape mode (Circle / Ellipse / Race-track / Cone)."
     ],
     {
+        if (!visibleMap) exitWith { false };
         call FUNC(cycleMode);
+        systemChat format ["Shape: %1", GVAR(currentModeLabel)];
         false
     },
     {false},
-    [0x38, [true, false, false]]
+    [0x2B, [false, true, false]]
 ] call CBA_fnc_addKeybind;
+
+["visibleMap", {
+    params ["", "_mapOn"];
+    private _display = findDisplay 12;
+    private _mapControl = if (isNull _display) then { controlNull } else { _display displayCtrl 51 };
+
+    if (_mapOn) then {
+        if (isNull _mapControl) exitWith {};
+        private _downId = _mapControl ctrlAddEventHandler ["MouseButtonDown", {[1, _this] call FUNC(handleMouseButton)}];
+        private _upId   = _mapControl ctrlAddEventHandler ["MouseButtonUp",   {[0, _this] call FUNC(handleMouseButton)}];
+        private _moveId = _mapControl ctrlAddEventHandler ["MouseMoving",     {call FUNC(handleMouseMove)}];
+        uiNamespace setVariable [QGVAR(mapEHs), [_downId, _upId, _moveId]];
+
+        call FUNC(initHeaderDropdown);
+    } else {
+        private _ehs = uiNamespace getVariable [QGVAR(mapEHs), []];
+        if (!isNull _mapControl && {count _ehs == 3}) then {
+            _mapControl ctrlRemoveEventHandler ["MouseButtonDown", _ehs#0];
+            _mapControl ctrlRemoveEventHandler ["MouseButtonUp",   _ehs#1];
+            _mapControl ctrlRemoveEventHandler ["MouseMoving",     _ehs#2];
+        };
+        uiNamespace setVariable [QGVAR(mapEHs), []];
+        uiNamespace setVariable [QGVAR(headerDropdown), controlNull];
+    };
+}] call CBA_fnc_addPlayerEventHandler;
