@@ -34,8 +34,8 @@
 
 params [["_group", grpNull, [grpNull]], ["_vehicle", objNull, [objNull]], ["_target", objNull, [objNull]]];
 
-private _expiryTime = time + GVAR(interceptTimeout);
-private _searchUntil = time + SEARCH_TIME;
+private _expiryTime = CBA_missionTime + GVAR(interceptTimeout);
+private _searchUntil = CBA_missionTime + SEARCH_TIME;
 
 // Cache missile/rocket weapons once — loadout is static per airframe and the
 // BIS_fnc_itemType filter is wasted work each tick.
@@ -55,7 +55,7 @@ private _missileWeapons = (weapons _vehicle) select {
 
     if !(local (leader _group)) exitWith {};
 
-    if (time > _expiryTime) exitWith {
+    if (CBA_missionTime > _expiryTime) exitWith {
         [_group, _vehicle] call FUNC(addRtbWaypoint);
         [_idPFH] call CBA_fnc_removePerFrameHandler;
     };
@@ -76,7 +76,7 @@ private _missileWeapons = (weapons _vehicle) select {
 
     // Search/acquisition gate — block our forced shot until aircraft has had
     // time to search after spawn. AI engagement still allowed organically.
-    if (time < _searchUntil) exitWith {};
+    if (CBA_missionTime < _searchUntil) exitWith {};
 
     // Engagement envelope gate — only force a shot when target is in front
     // cone and within plausible missile range. AI handles its own engagement
@@ -90,10 +90,10 @@ private _missileWeapons = (weapons _vehicle) select {
 
     // Per-airframe cooldown — don't spam fireAtTarget every tick
     private _lastShot = _vehicle getVariable [QGVAR(lastInterceptShot), -1e6];
-    if (time - _lastShot < FIRE_COOLDOWN) exitWith {};
+    if (CBA_missionTime - _lastShot < FIRE_COOLDOWN) exitWith {};
 
     if (_missileWeapons isEqualTo []) exitWith {};
     _driverUnit fireAtTarget [_targetVehicle, selectRandom _missileWeapons];
-    _vehicle setVariable [QGVAR(lastInterceptShot), time];
+    _vehicle setVariable [QGVAR(lastInterceptShot), CBA_missionTime];
     TRACE_3("Intercept fire",_range,_bearing,_vehicle);
 }, 5, [_group, _vehicle, _target, _expiryTime, _missileWeapons, _searchUntil]] call CBA_fnc_addPerFrameHandler;

@@ -147,10 +147,9 @@ private _fnc_drawMap = {
         private _sideColour = GVAR(debugSideColour) getOrDefault [_side, [0.7, 0.7, 0.7, 1]];
         private _hasWaypoints = _isSimulated && {_nextIndex >= 0 && _nextIndex < count _waypointInfo};
 
-        private _label = if (_hasWaypoints) then {
-            format ["%1V/%2U  WP %3/%4  %5/%6", _vehicleCount, _unitCount, _nextIndex + 1, count _waypointInfo, _behaviour, _speed]
-        } else {
-            format ["%1V/%2U", _vehicleCount, _unitCount]
+        private _label = format ["%1V/%2U", _vehicleCount, _unitCount];
+        if (_hasWaypoints) then {
+            _label = format ["%1V/%2U  WP %3/%4  %5/%6", _vehicleCount, _unitCount, _nextIndex + 1, count _waypointInfo, _behaviour, _speed];
         };
 
         if (_hasWaypoints) then {

@@ -36,6 +36,10 @@ PREP(contextCleanup);
 PREP(contextCleanupModifier);
 PREP(contextCanLoadIntoCargo);
 PREP(contextLoadIntoCargo);
+PREP(contextCanWatch);
+PREP(contextWatch);
+PREP(contextWatchTick);
+PREP(contextWatchScroll);
 
 PREP(formatUnconsciousText);
 

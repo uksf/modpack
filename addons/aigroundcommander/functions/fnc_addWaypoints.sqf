@@ -42,8 +42,8 @@ if ((vehicle (leader _group)) isKindOf "helicopter") exitWith {
     params ["_args", "_idPFH"];
     _args params ["_group", "_playerPosition", "_groupCount", "_75Percent", "_timeout"];
 
-    if (GVAR(readyAtStagingArea) >= _75Percent || time > _timeout) exitWith {
+    if (GVAR(readyAtStagingArea) >= _75Percent || CBA_missionTime > _timeout) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
         [_group, _playerPosition, 200, "SAD", "AWARE", "YELLOW", "NORMAL", "FILE", QUOTE([group this] call FUNC(selectStayBehindForce))] call CBA_fnc_addWaypoint;
     };
-}, 10, [_group, _playerPosition, _groupCount, floor (_groupCount * 0.75), time + TIMEOUT]] call CBA_fnc_addPerFrameHandler;
+}, 10, [_group, _playerPosition, _groupCount, floor (_groupCount * 0.75), CBA_missionTime + TIMEOUT]] call CBA_fnc_addPerFrameHandler;

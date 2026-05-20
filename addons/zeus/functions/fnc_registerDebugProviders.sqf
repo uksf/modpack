@@ -64,6 +64,14 @@ private _fnc_serverGetter = {
     private _hcList = [];
     private _playerList = [];
 
+    private _vehiclePlayerCounts = createHashMap;
+    {
+        private _vehicle = vehicle _x;
+        if (_vehicle isEqualTo _x) then { continue };
+        private _vehicleId = netId _vehicle;
+        _vehiclePlayerCounts set [_vehicleId, (_vehiclePlayerCounts getOrDefault [_vehicleId, 0]) + 1];
+    } forEach ALL_PLAYERS;
+
     {
         private _key = _x;
         private _lastUpdate = _timestamps getOrDefault [_key, 0];
@@ -85,7 +93,11 @@ private _fnc_serverGetter = {
                     if (getPlayerUID _x isEqualTo _key) exitWith { _playerObject = _x };
                 } forEach ALL_PLAYERS;
                 if (isNull _playerObject) then { continue };
-                if ((driver (vehicle _playerObject)) isNotEqualTo _playerObject) then { continue };
+                private _vehicle = vehicle _playerObject;
+                if (_vehicle isNotEqualTo _playerObject
+                    && {(driver _vehicle) isNotEqualTo _playerObject}
+                    && {(_vehiclePlayerCounts getOrDefault [netId _vehicle, 0]) > 1}
+                ) then { continue };
                 _playerList pushBack [netId _playerObject, _fps];
             };
         };
@@ -151,13 +163,26 @@ private _fnc_drawHud = {
 _key = QGVAR(unconscious);
 
 private _fnc_unconsciousServerGetter = {
+    private _vehiclePlayerCounts = createHashMap;
+    {
+        private _vehicle = vehicle _x;
+        if (_vehicle isEqualTo _x) then { continue };
+        private _vehicleId = netId _vehicle;
+        _vehiclePlayerCounts set [_vehicleId, (_vehiclePlayerCounts getOrDefault [_vehicleId, 0]) + 1];
+    } forEach ALL_PLAYERS;
+
     private _unconsciousPlayers = [];
     {
         if !(_x getVariable ["ACE_isUnconscious", false]) then { continue };
-        if ((driver (vehicle _x)) isNotEqualTo _x) then { continue };
+        private _vehicle = vehicle _x;
+        if (_vehicle isNotEqualTo _x
+            && {(driver _vehicle) isNotEqualTo _x}
+            && {(_vehiclePlayerCounts getOrDefault [netId _vehicle, 0]) > 1}
+        ) then { continue };
 
-        private _unconsciousText = _x call FUNC(formatUnconsciousText);
-        _unconsciousPlayers pushBack [netId _x, _unconsciousText];
+        private _comaEnd = _x getVariable ["ace_medical_statemachine_comaEndTime", -1];
+        private _cardiacEnd = _x getVariable ["ace_medical_statemachine_cardiacArrestEndTime", -1];
+        _unconsciousPlayers pushBack [netId _x, _comaEnd, _cardiacEnd];
     } forEach ALL_PLAYERS;
     _unconsciousPlayers
 };
@@ -167,13 +192,14 @@ private _fnc_unconsciousDraw3d = {
 
     private _offset = _iconSpacing * ([3, 4] select (GVAR(debugActiveToggles) getOrDefault [QGVAR(fps), false]));
     {
-        _x params ["_playerNetId", "_unconsciousText"];
+        _x params ["_playerNetId", "_comaEnd", "_cardiacEnd"];
         private _playerObject = objectFromNetId _playerNetId;
         if (isNull _playerObject) then { continue };
 
         private _position = ASLToAGL (getPosASLVisual (vehicle _playerObject));
         if (_cameraPosition distance _position > 750) then { continue };
 
+        private _unconsciousText = [_comaEnd, _cardiacEnd] call FUNC(formatUnconsciousText);
         drawIcon3D ["", [1,0,0,1], _position, 0, 0, 0, _unconsciousText, 1, 0.025, "TahomaB", "center", false, 0, _offset];
     } forEach _data;
 };
@@ -182,10 +208,11 @@ private _fnc_unconsciousDrawMap = {
     params ["_data", "_map"];
 
     {
-        _x params ["_playerNetId", "_unconsciousText"];
+        _x params ["_playerNetId", "_comaEnd", "_cardiacEnd"];
         private _playerObject = objectFromNetId _playerNetId;
         if (isNull _playerObject) then { continue };
 
+        private _unconsciousText = [_comaEnd, _cardiacEnd] call FUNC(formatUnconsciousText);
         _map drawIcon ["#(argb,8,8,3)color(0,0,0,0)", [1,0,0,1], _playerObject, 40, 1, 0, _unconsciousText, 1, 0.04, "TahomaB", "left"];
     } forEach _data;
 };

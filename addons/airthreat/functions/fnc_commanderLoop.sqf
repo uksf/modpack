@@ -39,11 +39,11 @@ private _airPlayers = _players select {
 if (GVAR(capReconEnabled)) then {
     // Initialise on first run
     if (isNil QGVAR(nextCapReconTime)) then {
-        GVAR(nextCapReconTime) = time + GVAR(initialDelayMin) + random (GVAR(initialDelayMax) - GVAR(initialDelayMin));
+        GVAR(nextCapReconTime) = CBA_missionTime + GVAR(initialDelayMin) + random (GVAR(initialDelayMax) - GVAR(initialDelayMin));
         TRACE_1("CAP/recon loop started — first mission at %1",GVAR(nextCapReconTime));
     };
 
-    if (time >= GVAR(nextCapReconTime)) then {
+    if (CBA_missionTime >= GVAR(nextCapReconTime)) then {
         if (call FUNC(canSpawnMission)) then {
             if (random 1 < 0.5) then {
                 [QGVAR(spawnCap), []] call CBA_fnc_localEvent;
@@ -51,10 +51,10 @@ if (GVAR(capReconEnabled)) then {
                 [QGVAR(spawnRecon), []] call CBA_fnc_localEvent;
             };
             // Full interval before next mission
-            GVAR(nextCapReconTime) = time + GVAR(capReconMinTime) + random (GVAR(capReconMaxTime) - GVAR(capReconMinTime));
+            GVAR(nextCapReconTime) = CBA_missionTime + GVAR(capReconMinTime) + random (GVAR(capReconMaxTime) - GVAR(capReconMinTime));
         } else {
             // Can't spawn (at max missions) — retry after 60s, not every tick
-            GVAR(nextCapReconTime) = time + 60;
+            GVAR(nextCapReconTime) = CBA_missionTime + 60;
         };
     };
 };
@@ -69,7 +69,7 @@ if (GVAR(pendingIntercept) isNotEqualTo []) then {
         GVAR(pendingIntercept) = [];
     } else {
         GVAR(pendingIntercept) params ["_pendingTarget", "_pendingZoneIndex", "_commitTime"];
-        if (time >= _commitTime) then {
+        if (CBA_missionTime >= _commitTime) then {
             private _valid = alive _pendingTarget
                 && {vehicle _pendingTarget isKindOf "Air"}
                 && {call FUNC(canSpawnMission)};
@@ -88,7 +88,7 @@ if (GVAR(pendingIntercept) isNotEqualTo []) then {
 if (
     GVAR(interceptEnabled)
     && {GVAR(pendingIntercept) isEqualTo []}
-    && {time >= GVAR(nextInterceptTime)}
+    && {CBA_missionTime >= GVAR(nextInterceptTime)}
     && {_airPlayers isNotEqualTo []}
 ) then {
     private _validTargets = [];
@@ -114,8 +114,8 @@ if (
         private _selected = selectRandom _validTargets;
         _selected params ["_target", "_zoneIndex"];
         private _scrambleDelay = INTERCEPT_SCRAMBLE_DELAY * (0.75 + random 0.5);
-        GVAR(pendingIntercept) = [_target, _zoneIndex, time + _scrambleDelay];
-        GVAR(nextInterceptTime) = time + GVAR(interceptCooldownMin) + random (GVAR(interceptCooldownMax) - GVAR(interceptCooldownMin));
+        GVAR(pendingIntercept) = [_target, _zoneIndex, CBA_missionTime + _scrambleDelay];
+        GVAR(nextInterceptTime) = CBA_missionTime + GVAR(interceptCooldownMin) + random (GVAR(interceptCooldownMax) - GVAR(interceptCooldownMin));
         TRACE_3("Intercept scramble triggered",_target,_zoneIndex,_scrambleDelay);
     };
 };
@@ -134,7 +134,7 @@ if (
 
     // Phase 1: commit pending spawn if scramble elapsed
     if (_pendingType isNotEqualTo "") then {
-        if (time >= _pendingCommitTime) then {
+        if (CBA_missionTime >= _pendingCommitTime) then {
             if (call FUNC(canSpawnMission)) then {
                 private _eventName = if (_pendingType isEqualTo "cas") then {
                     QGVAR(spawnCas)
@@ -154,7 +154,7 @@ if (
 
     // Phase 2: detect new trigger (only if no pending, enabled, cooldown expired, can spawn)
     if (!GVAR(casStrikeEnabled)) then { continue };
-    if (time < _nextTriggerTime) then { continue };
+    if (CBA_missionTime < _nextTriggerTime) then { continue };
     if !(call FUNC(canSpawnMission)) then { continue };
 
     private _groundPlayersInZone = _players select {
@@ -172,8 +172,8 @@ if (
     private _scrambleDelay = _scrambleBase * (0.75 + random 0.5);
 
     _x set [3, _type];
-    _x set [4, time + _scrambleDelay];
-    _x set [2, time + GVAR(casStrikeCooldownMin) + random (GVAR(casStrikeCooldownMax) - GVAR(casStrikeCooldownMin))];
+    _x set [4, CBA_missionTime + _scrambleDelay];
+    _x set [2, CBA_missionTime + GVAR(casStrikeCooldownMin) + random (GVAR(casStrikeCooldownMax) - GVAR(casStrikeCooldownMin))];
     TRACE_3("CAS/strike scramble triggered",_type,_forEachIndex,_scrambleDelay);
 } forEach GVAR(casStrikeZones);
 
@@ -183,7 +183,7 @@ private _staleThreshold = (GVAR(capTimeout) max GVAR(reconTimeout) max GVAR(casT
 private _staleMissions = GVAR(activeMissions) select {
     private _vehicle = _x select 1;
     !isNull _vehicle
-    && {(_vehicle getVariable [QGVAR(spawnTime), time]) + _staleThreshold < time}
+    && {(_vehicle getVariable [QGVAR(spawnTime), CBA_missionTime]) + _staleThreshold < CBA_missionTime}
 };
 
 {
@@ -201,7 +201,7 @@ private _expiredOrphans = GVAR(orphanedAircraft) select {
     _x params ["", "_vehicle"];
     isNull _vehicle
     || {!alive _vehicle}
-    || {(_vehicle getVariable [QGVAR(orphanedAt), time]) + GVAR(orphanTimeout) < time}
+    || {(_vehicle getVariable [QGVAR(orphanedAt), CBA_missionTime]) + GVAR(orphanTimeout) < CBA_missionTime}
 };
 {
     _x params ["_group", "_vehicle"];

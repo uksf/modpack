@@ -39,7 +39,7 @@ if (_classnames isEqualTo []) exitWith {
     WARNING("No recon or fighter classnames configured");
 };
 
-private _result = [_spawnPosition, _classnames, _targetPosition, 600] call FUNC(spawnAircraft);
+private _result = [_spawnPosition, _classnames, _targetPosition, 500 + random 200] call FUNC(spawnAircraft);
 _result params ["_group", "_vehicle"];
 
 if (isNull _group) exitWith {};
@@ -70,7 +70,7 @@ _vehicle setVariable [QGVAR(reconObservedPosition), _targetPosition];
 // On-station timeout starts when entering loiter. Hard backstop at 2× the
 // configured timeout from spawn caps total flight time even if the drone
 // never reaches the target.
-private _hardExpiryTime = time + (GVAR(reconTimeout) * 2);
+private _hardExpiryTime = CBA_missionTime + (GVAR(reconTimeout) * 2);
 
 // Monitoring PFH
 [{
@@ -91,7 +91,7 @@ private _hardExpiryTime = time + (GVAR(reconTimeout) * 2);
     // station expiry is the on-station budget set on entry to loiter.
     if (_state in ["approach", "loiter"]) then {
         private _stationExpiry = _vehicle getVariable [QGVAR(reconStationExpiry), -1];
-        if (time > _hardExpiryTime || {_stationExpiry > 0 && {time > _stationExpiry}}) exitWith {
+        if (CBA_missionTime > _hardExpiryTime || {_stationExpiry > 0 && {CBA_missionTime > _stationExpiry}}) exitWith {
             [_group, _vehicle] call FUNC(addRtbWaypoint);
             [_idPFH] call CBA_fnc_removePerFrameHandler;
         };
@@ -104,15 +104,15 @@ private _hardExpiryTime = time + (GVAR(reconTimeout) * 2);
             // Check if we've reached the target area
             if ((_vehiclePosition distance _targetPosition) < 1500) then {
                 _vehicle setVariable [QGVAR(reconState), "loiter", true];
-                _vehicle setVariable [QGVAR(reconSpotTime), time + 30 + random 60];
-                _vehicle setVariable [QGVAR(reconStationExpiry), time + GVAR(reconTimeout)];
+                _vehicle setVariable [QGVAR(reconSpotTime), CBA_missionTime + 30 + random 60];
+                _vehicle setVariable [QGVAR(reconStationExpiry), CBA_missionTime + GVAR(reconTimeout)];
                 DEBUG("Recon entering loiter over target area");
             };
         };
         case "loiter": {
             // Loiter until spot time reached
             private _spotTime = _vehicle getVariable [QGVAR(reconSpotTime), 0];
-            if (time >= _spotTime) then {
+            if (CBA_missionTime >= _spotTime) then {
                 // "Spot" a player — store their current position
                 private _target = [false] call FUNC(selectTarget);
                 if (!isNull _target) then {
