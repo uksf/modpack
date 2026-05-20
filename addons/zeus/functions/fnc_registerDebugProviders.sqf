@@ -64,6 +64,14 @@ private _fnc_serverGetter = {
     private _hcList = [];
     private _playerList = [];
 
+    private _vehiclePlayerCounts = createHashMap;
+    {
+        private _vehicle = vehicle _x;
+        if (_vehicle isEqualTo _x) then { continue };
+        private _vehicleId = netId _vehicle;
+        _vehiclePlayerCounts set [_vehicleId, (_vehiclePlayerCounts getOrDefault [_vehicleId, 0]) + 1];
+    } forEach ALL_PLAYERS;
+
     {
         private _key = _x;
         private _lastUpdate = _timestamps getOrDefault [_key, 0];
@@ -85,7 +93,11 @@ private _fnc_serverGetter = {
                     if (getPlayerUID _x isEqualTo _key) exitWith { _playerObject = _x };
                 } forEach ALL_PLAYERS;
                 if (isNull _playerObject) then { continue };
-                if ((driver (vehicle _playerObject)) isNotEqualTo _playerObject) then { continue };
+                private _vehicle = vehicle _playerObject;
+                if (_vehicle isNotEqualTo _playerObject
+                    && {(driver _vehicle) isNotEqualTo _playerObject}
+                    && {(_vehiclePlayerCounts getOrDefault [netId _vehicle, 0]) > 1}
+                ) then { continue };
                 _playerList pushBack [netId _playerObject, _fps];
             };
         };
@@ -151,10 +163,22 @@ private _fnc_drawHud = {
 _key = QGVAR(unconscious);
 
 private _fnc_unconsciousServerGetter = {
+    private _vehiclePlayerCounts = createHashMap;
+    {
+        private _vehicle = vehicle _x;
+        if (_vehicle isEqualTo _x) then { continue };
+        private _vehicleId = netId _vehicle;
+        _vehiclePlayerCounts set [_vehicleId, (_vehiclePlayerCounts getOrDefault [_vehicleId, 0]) + 1];
+    } forEach ALL_PLAYERS;
+
     private _unconsciousPlayers = [];
     {
         if !(_x getVariable ["ACE_isUnconscious", false]) then { continue };
-        if ((driver (vehicle _x)) isNotEqualTo _x) then { continue };
+        private _vehicle = vehicle _x;
+        if (_vehicle isNotEqualTo _x
+            && {(driver _vehicle) isNotEqualTo _x}
+            && {(_vehiclePlayerCounts getOrDefault [netId _vehicle, 0]) > 1}
+        ) then { continue };
 
         private _comaEnd = _x getVariable ["ace_medical_statemachine_comaEndTime", -1];
         private _cardiacEnd = _x getVariable ["ace_medical_statemachine_cardiacArrestEndTime", -1];
