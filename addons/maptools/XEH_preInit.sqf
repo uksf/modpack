@@ -18,6 +18,7 @@ GVAR(playerShapes) = [];
 GVAR(previewMarkers) = [];
 GVAR(markerID) = 100000;
 GVAR(stage2DefaultSecondary) = 0;
+GVAR(activeColour) = "ColorBlack";
 GVAR(hintVisible) = false;
 GVAR(hintPFH) = -1;
 

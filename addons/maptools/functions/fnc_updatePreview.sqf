@@ -93,8 +93,7 @@ if (_axisLen > 0) then {
 
 if (count _polylines == 0) exitWith {};
 
-private _colour = missionNamespace getVariable ["ace_markers_currentMarkerColorConfigName", "ColorBlack"];
-if (_colour isEqualTo "") then { _colour = "ColorBlack" };
+private _colour = GVAR(activeColour);
 
 {
     private _name = format ["uksf_maptools_preview_%1", _forEachIndex];

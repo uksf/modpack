@@ -15,4 +15,4 @@
     Example:
         call uksf_maptools_fnc_canDrawShape
 */
-visibleMap && {[ACE_player, "ACE_MapTools"] call ace_common_fnc_hasItem}
+visibleMap

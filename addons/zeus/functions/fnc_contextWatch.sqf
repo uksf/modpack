@@ -22,9 +22,7 @@
 params ["", "_selectedObjects"];
 
 private _target = (_selectedObjects select {!isNull _x && {alive _x}}) param [0, objNull];
-if (isNull _target) exitWith {
-    systemChat "Watch: no target";
-};
+if (isNull _target) exitWith {};
 
 if (GVAR(watchPFH) > -1) then {
     [GVAR(watchPFH)] call CBA_fnc_removePerFrameHandler;
@@ -49,5 +47,3 @@ GVAR(watchOrbitActive) = false;
 GVAR(watchLastFrameOrbitActive) = false;
 
 GVAR(watchPFH) = [FUNC(contextWatchTick), 0] call CBA_fnc_addPerFrameHandler;
-
-systemChat format ["Watch: %1", _target];

@@ -8,7 +8,6 @@ class CfgPatches {
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             "uksf_common",
-            "ace_maptools",
             "ace_markers",
             "ace_interact_menu",
             "cba_main",

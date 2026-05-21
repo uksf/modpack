@@ -148,7 +148,7 @@ GVAR(hintPFH) = [{
                     case "cone": {
                         private _halfAngle = GVAR(stage2DefaultSecondary) + (_perpSigned atan2 _parallel);
                         _line1 = format ["Length: %1m", round _axisLength];
-                        _line2 = format ["Half-angle: %1 deg", round _halfAngle];
+                        _line2 = format ["Angle: %1 deg", round (abs _halfAngle * 2)];
                     };
                 };
             };
