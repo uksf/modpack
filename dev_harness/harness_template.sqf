@@ -1,6 +1,8 @@
 // Reusable air-to-air missile test harness skeleton.
 // Replace <<SCENARIOS>>, <<LAUNCHER_TYPE>>, <<WEAPON>>, <<MAGAZINES>>, <<ITERATIONS>>, <<WAIT_S>> per run.
-// All idioms baked in: lock injection, fired-EH global, AI gating, multi-mag fire fallback, sub-tick PFH, race-safe wrapper.
+// All idioms baked in: lock injection, fired-EH global, AI gating, fireAtTarget (pylon-safe) + mag fallback, sub-tick PFH, race-safe wrapper.
+// Note: if the launcher type doesn't carry <<WEAPON>> by default, mount it first with
+//   _launcher setPylonLoadout [<pylonIndex>, '<magazine>', true];  (pick a pylon whose hardpoints[] accept the magazine)
 
 uksf_dev_resultPosted = true;
 [] spawn {
@@ -74,22 +76,26 @@ uksf_dev_resultPosted = true;
         } forEach (crew _launcher);
         sleep 0.5;
 
-        // Multi-magazine fire fallback
+        // Fire — fireAtTarget is the reliable path for vehicle pylons: it auto-selects
+        // the weapon+magazine. Bare `fire` fails silently when currentWeapon is a safety
+        // weapon (e.g. F-35 spawns with CUP_weapon_mastersafe selected). Mag fallback covers
+        // weapons fireAtTarget won't dispatch.
         private _fired = false;
-        private _mags = <<MAGAZINES>>; // e.g. ['rksla3_wpn_meteor_2x', 'rksla3_wpn_meteor']
-        {
-            if (!_fired) then {
-                _launcher fire ['<<WEAPON>>', '<<WEAPON>>', _x];
-                sleep 0.3;
-                if (!isNull uksf_dev_probe_lastProj) then { _fired = true };
-            };
-        } forEach _mags;
+        private _method = '';
+        _launcher fireAtTarget [_target, '<<WEAPON>>'];
+        sleep 0.5;
+        if (!isNull uksf_dev_probe_lastProj) then { _fired = true; _method = 'fireAtTarget' };
         if (!_fired) then {
-            _pilot fire ['<<WEAPON>>', '<<WEAPON>>', _mags select 0];
-            sleep 0.3;
-            if (!isNull uksf_dev_probe_lastProj) then { _fired = true };
+            private _mags = <<MAGAZINES>>; // e.g. ['rksla3_mag_spear3_directx1']
+            {
+                if (!_fired) then {
+                    _launcher fire ['<<WEAPON>>', '<<WEAPON>>', _x];
+                    sleep 0.3;
+                    if (!isNull uksf_dev_probe_lastProj) then { _fired = true; _method = 'fire' };
+                };
+            } forEach _mags;
         };
-        if (!_fired) then { ['  FIRE FAILED'] call _fnLog };
+        if (!_fired) then { ['  FIRE FAILED'] call _fnLog } else { [format ['  fired via %1', _method]] call _fnLog };
 
         private _initDmg = damage _target;
         private _t0 = diag_tickTime;
