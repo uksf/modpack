@@ -14,6 +14,7 @@ mod listener;
 mod loader;
 mod sender;
 mod status;
+mod stt;
 
 fn logs_dir() -> PathBuf {
     std::env::current_exe()
@@ -80,5 +81,7 @@ fn init() -> Extension {
         .command("audioPos", commands::audio_pos)
         .command("audioListener", commands::audio_listener)
         .command("audioStop", commands::audio_stop)
+        .command("sttStart", commands::stt_start)
+        .command("sttStop", commands::stt_stop)
         .finish()
 }

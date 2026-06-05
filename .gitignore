@@ -695,3 +695,6 @@ target/
 
 ## Worktrees
 .worktrees/
+
+# Whisper STT model (provisioned at build time by tools/fetch_whisper_model.ps1)
+ggml-base.en.bin
