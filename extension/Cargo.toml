@@ -16,6 +16,10 @@ chrono = { version = "0.4", default-features = false, features = ["clock"] }
 log = "0.4"
 simplelog = "0.12"
 windows = { version = "0.58", features = ["Win32_UI_Input_KeyboardAndMouse", "Win32_UI_WindowsAndMessaging", "Win32_System_Threading"] }
+alto = "3.0.4"
+rust-embed = "8.5.0"
+hound = "3.5"
+base64 = "0.22"
 
 [profile.release]
 opt-level = "z"

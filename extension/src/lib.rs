@@ -3,6 +3,7 @@ use simplelog::{LevelFilter, WriteLogger};
 use std::fs::{self, File};
 use std::path::PathBuf;
 
+mod audio;
 mod bridge;
 mod commands;
 mod config;
@@ -73,5 +74,11 @@ fn init() -> Extension {
         .command("devRunChunk", commands::dev_run_chunk)
         .command("devRunLog", commands::dev_run_log)
         .command("devRunFinish", commands::dev_run_finish)
+        .command("audioOpen", commands::audio_open)
+        .command("audioChunk", commands::audio_chunk)
+        .command("audioPlay", commands::audio_play)
+        .command("audioPos", commands::audio_pos)
+        .command("audioListener", commands::audio_listener)
+        .command("audioStop", commands::audio_stop)
         .finish()
 }
