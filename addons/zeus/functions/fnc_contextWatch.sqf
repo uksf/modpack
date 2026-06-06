@@ -36,7 +36,6 @@ GVAR(watchSmoothDir) = [0, 1, 0];
 GVAR(watchSmoothInit) = false;
 GVAR(watchSmoothPos) = [0, 0, 0];
 GVAR(watchSmoothPosInit) = false;
-GVAR(watchSmoothFocusSpeed) = 0;
 GVAR(watchZoom) = 0;
 GVAR(watchScrolledFrame) = false;
 GVAR(watchOrbitYaw) = 0;

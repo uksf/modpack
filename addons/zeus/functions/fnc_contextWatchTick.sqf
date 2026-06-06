@@ -76,6 +76,7 @@ private _upAmt = _distance * (sin _effectivePitch);
 
 private _idealCamPos = [];
 private _aimPoint = [];
+private _orbitAnchor = [];
 private _useTurretFrame = false;
 if (_onTurret) then {
     private _lookDir = [0, 0, 0];
@@ -116,6 +117,7 @@ if (_onTurret) then {
                     vectorAdd (_right vectorMultiply _rightAmt)
                     vectorAdd [0, 0, _upAmt];
                 _aimPoint = _eyePos vectorAdd (_lookDir vectorMultiply 5);
+                _orbitAnchor = _eyePos;
                 _useTurretFrame = true;
             };
         };
@@ -134,34 +136,32 @@ if (!_useTurretFrame) then {
     };
     private _rightNT = _yawDirNT vectorCrossProduct [0, 0, 1];
     _aimPoint = _focusPosASL vectorAdd [0, 0, _centerZ + 0.4];
+    _orbitAnchor = _aimPoint;
     _idealCamPos = _aimPoint
         vectorAdd (_yawDirNT vectorMultiply (-_behindAmt))
         vectorAdd (_rightNT vectorMultiply _rightAmt)
         vectorAdd [0, 0, _upAmt];
 };
 
-private _instantSpeed = vectorMagnitude (velocity _focus);
-GVAR(watchSmoothFocusSpeed) = if (GVAR(watchSmoothPosInit)) then {
-    GVAR(watchSmoothFocusSpeed) + (_instantSpeed - GVAR(watchSmoothFocusSpeed)) * 0.22
-} else {
-    _instantSpeed
-};
-
 private _orbitNow = GVAR(watchOrbitActive) || GVAR(watchLastFrameOrbitActive);
 
-private _mousePos = getMousePosition;
-private _mouseX = _mousePos # 0;
-private _mouseY = _mousePos # 1;
-if (GVAR(watchOrbitActive) && GVAR(watchPrevFrameMouseInit) && !visibleMap) then {
-    private _dx = _mouseX - GVAR(watchPrevFrameMouseX);
-    private _dy = _mouseY - GVAR(watchPrevFrameMouseY);
-    if (GVAR(watchInvertY)) then { _dy = -_dy };
-    GVAR(watchOrbitYaw) = GVAR(watchOrbitYaw) + (_dx * 360);
-    GVAR(watchOrbitPitch) = ((GVAR(watchOrbitPitch) + (_dy * 360)) max -80) min 80;
+// Orbit input: measure cursor offset from screen centre, then recentre the
+// cursor every frame. Reading absolute cursor position directly would stall
+// at the screen edge once the free curator cursor clips against it.
+if (GVAR(watchOrbitActive) && !visibleMap) then {
+    private _mousePos = getMousePosition;
+    if (GVAR(watchPrevFrameMouseInit)) then {
+        private _dx = (_mousePos # 0) - 0.5;
+        private _dy = (_mousePos # 1) - 0.5;
+        if (GVAR(watchInvertY)) then { _dy = -_dy };
+        GVAR(watchOrbitYaw) = GVAR(watchOrbitYaw) + (_dx * 360);
+        GVAR(watchOrbitPitch) = ((GVAR(watchOrbitPitch) + (_dy * 360)) max -80) min 80;
+    };
+    setMousePosition [0.5, 0.5];
+    GVAR(watchPrevFrameMouseInit) = true;
+} else {
+    GVAR(watchPrevFrameMouseInit) = false;
 };
-GVAR(watchPrevFrameMouseX) = _mouseX;
-GVAR(watchPrevFrameMouseY) = _mouseY;
-GVAR(watchPrevFrameMouseInit) = true;
 
 private _orbitSmoothFactor = 0.275;
 GVAR(watchOrbitYawSmooth) = GVAR(watchOrbitYawSmooth) + (GVAR(watchOrbitYaw) - GVAR(watchOrbitYawSmooth)) * _orbitSmoothFactor;
@@ -169,17 +169,30 @@ GVAR(watchOrbitPitchSmooth) = GVAR(watchOrbitPitchSmooth) + (GVAR(watchOrbitPitc
 private _camPos = if (GVAR(watchSmoothPosInit)) then {
     private _posDelta = _idealCamPos vectorDiff GVAR(watchSmoothPos);
     private _posMag = vectorMagnitude _posDelta;
-    private _posFactor = 1 - GVAR(watchSmoothing);
-    private _posDeadband = 0.2;
-    private _baseCap = (GVAR(watchSmoothFocusSpeed) * diag_deltaTime * 1.5) max 0.3;
-    private _maxPosStep = if (_posMag > 5 || _orbitNow) then {1e6} else {_baseCap};
-    private _posRamp = if (_posMag >= _posDeadband) then {1} else {((_posMag / _posDeadband) ^ 2)};
-    private _posStep = _posDelta vectorMultiply (_posFactor * _posRamp);
-    private _posStepMag = vectorMagnitude _posStep;
-    if (_posStepMag > _maxPosStep) then {
-        _posStep = _posStep vectorMultiply (_maxPosStep / _posStepMag);
+    private _baseFactor = 1 - GVAR(watchSmoothing);
+
+    // Angular boost: ramp catch-up speed up as the cam's seat around the subject
+    // lags the desired bearing (e.g. subject turns rapidly).
+    private _angFactor = _baseFactor;
+    private _desiredOrbit = _idealCamPos vectorDiff _orbitAnchor;
+    private _currentOrbit = GVAR(watchSmoothPos) vectorDiff _orbitAnchor;
+    private _desiredMag = vectorMagnitude _desiredOrbit;
+    private _currentMag = vectorMagnitude _currentOrbit;
+    if (_desiredMag > 0 && {_currentMag > 0}) then {
+        private _cosAngle = ((_desiredOrbit vectorDotProduct _currentOrbit) / (_desiredMag * _currentMag)) max -1 min 1;
+        private _angleRamp = (((acos _cosAngle) - 45) / 90) max 0 min 1;
+        _angFactor = _baseFactor + (_angleRamp * ((0.6 max _baseFactor) - _baseFactor));
     };
-    GVAR(watchSmoothPos) vectorAdd _posStep
+
+    // Translational boost: ramp catch-up speed up over large positional gaps
+    // (teleport, target swap) so it converges in a few frames without snapping.
+    private _distRamp = ((_posMag - 10) / 90) max 0 min 1;
+    private _distFactor = _baseFactor + (_distRamp * ((0.9 max _baseFactor) - _baseFactor));
+
+    private _factor = _angFactor max _distFactor;
+    private _posDeadband = 0.2;
+    private _posRamp = if (_posMag >= _posDeadband) then {1} else {((_posMag / _posDeadband) ^ 2)};
+    GVAR(watchSmoothPos) vectorAdd (_posDelta vectorMultiply (_factor * _posRamp))
 } else {
     +_idealCamPos
 };
