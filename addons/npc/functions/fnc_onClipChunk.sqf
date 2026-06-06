@@ -23,32 +23,49 @@
 params ["_kind", "_payload"];
 _payload params ["_header", "_index", "_total", "_chunk"];
 
-// Build a unique reassembly key from the kind + every header field.
 private _key = format ["%1|%2", _kind, _header joinString "|"];
-private _buf = GVAR(clipRxBuffers) getOrDefault [_key, []];
-if (_buf isEqualTo []) then { _buf resize _total; };
-_buf set [_index, _chunk];
-GVAR(clipRxBuffers) set [_key, _buf];
+// Buffer entry is [receivedCount, chunks] so completion is O(1) per chunk.
+private _entry = GVAR(clipRxBuffers) get _key;
+if (isNil "_entry") then {
+    private _chunks = [];
+    _chunks resize _total;
+    _entry = [0, _chunks];
+    GVAR(clipRxBuffers) set [_key, _entry];
+};
+_entry params ["_count", "_chunks"];
+if (isNil {_chunks select _index}) then {
+    _chunks set [_index, _chunk];
+    _count = _count + 1;
+    _entry set [0, _count];
+};
 GVAR(clipRxBufferTimes) set [_key, diag_tickTime];
 
-// Wait until all chunks have arrived.
-if (({!isNil "_x"} count _buf) < _total) exitWith {};
+if (_count < _total) exitWith {};
 GVAR(clipRxBuffers) deleteAt _key;
 GVAR(clipRxBufferTimes) deleteAt _key;
-private _wav = _buf joinString "";
+private _wav = _chunks joinString "";
 
 if (_kind isEqualTo "audio") exitWith {
     _header params ["", "_npcId", "_turnId", "_durationMs"];
     private _npc = objectFromNetId _npcId;
     if (isNull _npc) exitWith {};
-    [format ["%1_%2", _npcId, _turnId], _npc, _wav] call FUNC(playClip);
-    // Talking mouth: setRandomLip is Effect-Local, so each playing client sets it
-    // (mirrors ACRE's remoteStartSpeaking). Stop it when the clip ends.
+    private _clipId = [format ["%1_%2", _npcId, _turnId], _npc, _wav] call FUNC(playClip);
+    if (_clipId isEqualTo "") exitWith {};
+
+    // setRandomLip is Effect-Local; each playing client drives the mouth. A later
+    // clip extends talkingUntil, so a stale timer leaves the lips alone.
+    private _duration = (_durationMs / 1000) max 0.5;
+    private _endTime = diag_tickTime + _duration;
+    GVAR(talkingUntil) set [_npcId, _endTime];
     _npc setRandomLip true;
-    [{ (_this#0) setRandomLip false }, [_npc], (_durationMs / 1000) max 0.5] call CBA_fnc_waitAndExecute;
+    [{
+        params ["_npc", "_npcId", "_endTime"];
+        if ((GVAR(talkingUntil) getOrDefault [_npcId, 0]) > _endTime) exitWith {};
+        if (!isNull _npc) then { _npc setRandomLip false };
+    }, [_npc, _npcId, _endTime], _duration] call CBA_fnc_waitAndExecute;
 };
 
-// filler — cache per voiceId; skip if this fillerId is already stored.
+// Filler: cache per voiceId, skip duplicate ids.
 _header params ["", "_npcId", "_voiceId", "_fillerId", "_durationMs"];
 private _list = GVAR(fillers) getOrDefault [_voiceId, []];
 if (_list findIf { _x#0 isEqualTo _fillerId } == -1) then {

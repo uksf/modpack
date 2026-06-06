@@ -9,7 +9,7 @@
         clip/turn. Drops any buffer key untouched for longer than the TTL.
 
     Parameter(s):
-        0: Buffer HashMap (key -> chunk array) <HASHMAP>
+        0: Buffer HashMap (key -> partial buffer) <HASHMAP>
         1: Time HashMap (key -> last-touch diag_tickTime) <HASHMAP>
         2: TTL seconds <NUMBER>
         3: Label for logging <STRING>

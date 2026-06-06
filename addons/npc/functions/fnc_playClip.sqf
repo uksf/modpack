@@ -24,12 +24,11 @@
 params [["_clipId", "", [""]], ["_npc", objNull, [objNull]], ["_wavB64", "", [""]], ["_gain", 1, [0]]];
 
 if (_clipId isEqualTo "" || {isNull _npc} || {_wavB64 isEqualTo ""}) exitWith {
-    diag_log text format ["[uksf_npc] playClip: bad args (%1)", _this];
+    ERROR_1("playClip: bad args (%1)",_this);
     ""
 };
 
-// Chunk the base64 into the extension. 8 KB stays well under callExtension arg
-// limits and keeps each crossing cheap.
+// 8 KB stays well under the callExtension arg limit.
 private _chunkSize = 8192;
 "uksf" callExtension ["audioOpen", [_clipId]];
 private _total = count _wavB64;
@@ -40,7 +39,6 @@ while {_offset < _total} do {
     _offset = _offset + _length;
 };
 
-// Initial position + play, then register for the per-frame tick.
 private _delta = (getPosASL _npc) vectorDiff (eyePos (call CBA_fnc_currentUnit));
 "uksf" callExtension ["audioPlay", [_clipId, _delta#0, _delta#1, _delta#2, _gain]];
 

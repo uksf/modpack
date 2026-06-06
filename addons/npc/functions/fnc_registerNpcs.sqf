@@ -48,8 +48,8 @@ if (isNil "_sessionId") exitWith { TRACE_1("no session id, skipping npc register
     if (_mode isEqualTo "scripted") then {
         private _lines = [];
         for "_i" from 1 to 6 do {
-            private _topic = _npc getVariable [format ["uksf_npc_scriptedTopic%1", _i], ""];
-            private _line = _npc getVariable [format ["uksf_npc_scriptedLine%1", _i], ""];
+            private _topic = _npc getVariable [format ["%1%2", QGVAR(scriptedTopic), _i], ""];
+            private _line = _npc getVariable [format ["%1%2", QGVAR(scriptedLine), _i], ""];
             if (_line isNotEqualTo "") then {
                 _lines pushBack createHashMapFromArray [
                     ["id", format ["s%1", _i]],

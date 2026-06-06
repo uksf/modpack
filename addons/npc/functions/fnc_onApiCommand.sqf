@@ -41,8 +41,7 @@ switch (_type) do {
         // Distribute to nearby clients to play, anchored to the NPC.
         private _targets = allPlayers select { _x distance _npc <= GVAR(audioRange) };
         [QGVAR(audioChunkSink), _targets, ["audio", _npcId, _turnId, _durationMs], _wav] call FUNC(pushClipChunks);
-        // Head-turn runs on the NPC owner (server or HC). doWatch is Argument-Local,
-        // so target the NPC object — CBA_fnc_targetEvent routes to the owning machine.
+        // Head-turn on the NPC owner; targetEvent routes to the owning machine.
         [QGVAR(headTurn), [_npc, GVAR(lastSpeaker) getOrDefault [_npcId, objNull], _durationMs], _npc] call CBA_fnc_targetEvent;
     };
 };

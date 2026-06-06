@@ -23,24 +23,26 @@
 */
 params ["_key", "_index", "_total", "_chunk"];
 
-// Initialise buffer on first chunk for this key
-if !(_key in GVAR(rxBuffers)) then {
-    private _buffer = [];
-    _buffer resize _total;
-    GVAR(rxBuffers) set [_key, _buffer];
+// Buffer entry is [receivedCount, chunks] so completion is O(1) per chunk.
+private _entry = GVAR(rxBuffers) get _key;
+if (isNil "_entry") then {
+    private _chunks = [];
+    _chunks resize _total;
+    _entry = [0, _chunks];
+    GVAR(rxBuffers) set [_key, _entry];
 };
-
-private _buffer = GVAR(rxBuffers) get _key;
-_buffer set [_index, _chunk];
+_entry params ["_count", "_chunks"];
+if (isNil {_chunks select _index}) then {
+    _chunks set [_index, _chunk];
+    _count = _count + 1;
+    _entry set [0, _count];
+};
 GVAR(rxBufferTimes) set [_key, diag_tickTime];
 
-// Check if all chunks have arrived
-private _receivedCount = {!isNil "_x"} count _buffer;
-TRACE_3("reassemble chunk",_key,_receivedCount,_total);
-if (_receivedCount < _total) exitWith { nil };
+TRACE_3("reassemble chunk",_key,_count,_total);
+if (_count < _total) exitWith { nil };
 
-// All chunks received — reassemble and clear buffer
-private _wav = _buffer joinString "";
+private _wav = _chunks joinString "";
 GVAR(rxBuffers) deleteAt _key;
 GVAR(rxBufferTimes) deleteAt _key;
 TRACE_1("reassemble complete",_key);

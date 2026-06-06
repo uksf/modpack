@@ -18,4 +18,4 @@
         call uksf_npc_fnc_sttStart
 */
 
-"uksf_x64" callExtension ["sttStart", []];
+"uksf" callExtension ["sttStart", []];

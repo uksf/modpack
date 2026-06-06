@@ -19,7 +19,7 @@ private _best = objNull;
 if (alive _player) then {
     private _nearest = 1e9;
     {
-        if (_x getVariable [QGVAR(talkable), false] && {alive _x} && {[_player, _x] call FUNC(isInGate)}) then {
+        if (_x getVariable [QGVAR(talkable), false] && {[_player, _x] call FUNC(isInGate)}) then {
             private _distance = _player distance _x;
             if (_distance < _nearest) then { _nearest = _distance; _best = _x; };
         };
@@ -28,7 +28,6 @@ if (alive _player) then {
 
 if (_best isEqualTo GVAR(targetNpc)) exitWith {};
 
-// Edge: target changed
 GVAR(targetNpc) = _best;
 private _hasTarget = !isNull _best;
 if (_hasTarget isEqualTo GVAR(micGateOpen)) exitWith {};

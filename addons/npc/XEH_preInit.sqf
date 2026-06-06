@@ -17,17 +17,15 @@ GVAR(micGateOpen) = false;
 // is transcribed. Forwards to the server if the player is addressing a talkable NPC.
 [QGVAR(transcript), { _this call FUNC(onTranscriptGated); }] call CBA_fnc_addEventHandler;
 
-// Head-turn handler — registered unconditionally so it runs on the server AND any
-// headless client that owns NPCs. CBA_fnc_targetEvent routes the headTurn event to
-// the machine where the NPC is local; doWatch is Argument-Local so it must execute there.
+// Head-turn runs on the NPC owner (server or HC); routed there via CBA_fnc_targetEvent.
 [QGVAR(headTurn), { _this call FUNC(headTurn); }] call CBA_fnc_addEventHandler;
 
-// Client chunk-receive buffers and filler cache — registered everywhere;
-// the CBA events only fire on the machines targeted by the server.
+// Clip receive buffers, filler cache, and per-NPC talking deadlines.
 GVAR(clipRxBuffers) = createHashMap;
 GVAR(clipRxBufferTimes) = createHashMap;
 GVAR(fillers) = createHashMap;
 GVAR(fillerCounter) = 0;
+GVAR(talkingUntil) = createHashMap;
 [QGVAR(audioChunkSink),  { ["audio",  _this] call FUNC(onClipChunk); }] call CBA_fnc_addEventHandler;
 [QGVAR(fillerChunkSink), { ["filler", _this] call FUNC(onClipChunk); }] call CBA_fnc_addEventHandler;
 

@@ -17,4 +17,4 @@
         call uksf_npc_fnc_sttStop
 */
 
-"uksf_x64" callExtension ["sttStop", []];
+"uksf" callExtension ["sttStop", []];

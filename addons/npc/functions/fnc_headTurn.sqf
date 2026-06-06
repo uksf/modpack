@@ -4,11 +4,9 @@
         UKSF
 
     Description:
-        Runs on the NPC owner (server or headless client). Turns the NPC to watch
-        the addresser for the clip duration, then releases. doWatch is Argument-Local
-        so this function must execute where the NPC is local — it is only ever invoked
-        via CBA_fnc_targetEvent targeting the NPC object, which routes accordingly.
-        Effect is Global so all clients see the head-turn without further broadcasting.
+        Runs on the NPC owner. Turns the NPC to watch the addresser for the clip
+        duration, then releases. doWatch is Argument-Local, so this is invoked via
+        CBA_fnc_targetEvent targeting the NPC; the global effect needs no rebroadcast.
 
     Parameter(s):
         0: npc <OBJECT>
@@ -24,10 +22,14 @@
 params ["_npc", "_speaker", "_durationMs"];
 if (isNull _npc || {!alive _npc}) exitWith {};
 
+private _npcId = netId _npc;
 if (!isNull _speaker) then { _npc doWatch _speaker; };
 
+private _duration = (_durationMs / 1000) max 0.5;
+private _endTime = diag_tickTime + _duration;
+GVAR(talkingUntil) set [_npcId, _endTime];
 [{
-    params ["_npc"];
-    if (isNull _npc) exitWith {};
-    _npc doWatch objNull;
-}, [_npc], (_durationMs / 1000) max 0.5] call CBA_fnc_waitAndExecute;
+    params ["_npc", "_npcId", "_endTime"];
+    if ((GVAR(talkingUntil) getOrDefault [_npcId, 0]) > _endTime) exitWith {};
+    if (!isNull _npc) then { _npc doWatch objNull };
+}, [_npc, _npcId, _endTime], _duration] call CBA_fnc_waitAndExecute;
