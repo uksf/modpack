@@ -54,16 +54,13 @@ class Cfg3DEN {
                     };
                     class GVAR(voiceId) {
                         property = QGVAR(voiceId);
-                        control = "Combo";
+                        control = "Edit";
                         displayName = "Voice";
-                        tooltip = "TTS voice preset.";
+                        tooltip = "Voice slug from the UKSF website NPC voice manager. Blank or unknown = default voice.";
                         expression = QUOTE(_this setVariable [ARR_3(QQGVAR(voiceId),_value,true)]);
                         typeName = "STRING";
-                        defaultValue = "'635503a3-a49d-4610-9e08-27cd390a4b28'";
+                        defaultValue = "'oracle'";
                         condition = "this isKindOf 'CAManBase'";
-                        class Values {
-                            class George { name = "George (default)"; value = "635503a3-a49d-4610-9e08-27cd390a4b28"; };
-                        };
                     };
                     class GVAR(gateRange) {
                         property = QGVAR(gateRange);
