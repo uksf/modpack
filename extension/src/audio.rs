@@ -95,28 +95,54 @@ use std::sync::Mutex;
 use std::thread;
 use std::time::{Duration, Instant};
 
-use alto::{Alto, Context, Mono, Source, SourceState, StaticSource};
+use alto::{Alto, Context, Mono, Source, SourceState, StreamingSource};
+
+use crate::audio_dsp::LowPass4;
 
 enum AudioMsg {
     Open { id: String },
     Chunk { id: String, b64: String },
-    Play { id: String, pos: [f32; 3], gain: f32 },
-    Pos { id: String, pos: [f32; 3] },
+    Play { id: String, pos: [f32; 3], vol: f32 },
+    Pos { id: String, pos: [f32; 3], vol: f32 },
     Listener { forward: [f32; 3], up: [f32; 3] },
     Stop { id: String },
 }
 
 static CHANNEL: Mutex<Option<Sender<AudioMsg>>> = Mutex::new(None);
 
-/// Source plus the wall-clock of its last touch, for the watchdog.
+/// A streaming clip: decoded PCM fed in chunks, low-passed per chunk at a
+/// cutoff that tracks `vol`. Gain is `vol` on the source. `smoothed_cutoff`
+/// lerps toward the target to avoid zipper noise (ACRE smooths over 4800 samples).
 struct Playing {
-    source: StaticSource,
+    source: StreamingSource,
+    samples: Vec<i16>,
+    cursor: usize,
+    freq: i32,
+    filter: LowPass4,
+    smoothed_cutoff: f32,
+    target_cutoff: f32,
     last_touch: Instant,
 }
+
+const CHUNK_SAMPLES_PER_SEC_DIV: usize = 50; // ~20 ms chunks
+const TARGET_QUEUED: i32 = 6;                // ~120 ms buffered
+const CUTOFF_SMOOTH: f32 = 0.25;             // per-chunk lerp toward target
 
 /// Drop a source if no position update arrives within this window (NPC deleted
 /// / mission ended without an explicit stop).
 const WATCHDOG: Duration = Duration::from_secs(30);
+
+/// Filter one PCM chunk through the low-pass, normalising to f32 and back,
+/// clamped to i16 range (mirrors FilterOcclusion.cpp's float round-trip).
+fn filter_chunk(samples: &[i16], filter: &mut LowPass4) -> Vec<i16> {
+    samples
+        .iter()
+        .map(|&s| {
+            let y = filter.process(s as f32 / 32768.0).clamp(-1.0, 1.0);
+            (y * 32767.0) as i16
+        })
+        .collect()
+}
 
 /// Open the OpenAL device + context and pin the listener at the origin. Initial
 /// orientation faces +Z; it is overwritten each frame by `Listener` messages.
@@ -157,7 +183,7 @@ fn run_audio_thread(rx: mpsc::Receiver<AudioMsg>) {
     let mut playing: HashMap<String, Playing> = HashMap::new();
 
     loop {
-        match rx.recv_timeout(Duration::from_millis(250)) {
+        match rx.recv_timeout(Duration::from_millis(20)) {
             Ok(AudioMsg::Open { id }) => {
                 pending.insert(id, ClipAccumulator::new());
             }
@@ -166,19 +192,21 @@ fn run_audio_thread(rx: mpsc::Receiver<AudioMsg>) {
                     acc.push(&b64);
                 }
             }
-            Ok(AudioMsg::Play { id, pos, gain }) => {
+            Ok(AudioMsg::Play { id, pos, vol }) => {
                 if let Some(acc) = pending.remove(&id) {
-                    match start_source(&context, &acc, pos, gain) {
-                        Ok(src) => {
-                            playing.insert(id, Playing { source: src, last_touch: Instant::now() });
+                    match start_streaming(&context, &acc, pos, vol) {
+                        Ok(p) => {
+                            playing.insert(id, p);
                         }
                         Err(e) => log::error!("audio: play {id}: {e}"),
                     }
                 }
             }
-            Ok(AudioMsg::Pos { id, pos }) => {
+            Ok(AudioMsg::Pos { id, pos, vol }) => {
                 if let Some(p) = playing.get_mut(&id) {
                     let _ = p.source.set_position(pos);
+                    let _ = p.source.set_gain(vol.max(0.0));
+                    p.target_cutoff = crate::audio_dsp::cutoff_from_vol(vol, p.freq as u32);
                     p.last_touch = Instant::now();
                 }
             }
@@ -194,41 +222,81 @@ fn run_audio_thread(rx: mpsc::Receiver<AudioMsg>) {
             Err(mpsc::RecvTimeoutError::Timeout) => {}
             Err(mpsc::RecvTimeoutError::Disconnected) => break,
         }
+        for p in playing.values_mut() {
+            pump(&context, p);
+        }
         sweep(&mut playing);
     }
 }
 
-/// Build a static source from accumulated bytes and start it once.
-fn start_source(
+/// Build a streaming source from accumulated bytes. Decodes the full clip into a
+/// PCM buffer, primes the per-source low-pass at the cutoff for `vol`, and sets
+/// initial gain + position. Buffers are queued lazily by `pump`, not here.
+fn start_streaming(
     context: &Context,
     acc: &ClipAccumulator,
     pos: [f32; 3],
-    gain: f32,
-) -> Result<StaticSource, String> {
+    vol: f32,
+) -> Result<Playing, String> {
     let bytes = acc.decode()?;
     let clip = decode_wav(&bytes)?;
-    let frames: Vec<Mono<i16>> = clip.samples.iter().map(|&s| Mono { center: s }).collect();
-    let buffer = context
-        .new_buffer::<Mono<i16>, _>(frames, clip.freq as i32)
-        .map_err(|e| format!("new_buffer: {e}"))?;
+    let freq = clip.freq as i32;
 
-    let mut source = context.new_static_source().map_err(|e| format!("new_static_source: {e}"))?;
-    source.set_buffer(std::sync::Arc::new(buffer)).map_err(|e| format!("set_buffer: {e}"))?;
+    let mut source = context
+        .new_streaming_source()
+        .map_err(|e| format!("new_streaming_source: {e}"))?;
     let _ = source.set_soft_spatialization(alto::SoftSourceSpatialization::Enabled);
-    let _ = source.set_gain(gain);
+    let _ = source.set_gain(vol.max(0.0));
     let _ = source.set_position(pos);
-    source.set_looping(false);
-    source.play();
-    Ok(source)
+
+    let cutoff = crate::audio_dsp::cutoff_from_vol(vol, clip.freq);
+    let filter = LowPass4::new(freq as f32);
+
+    Ok(Playing {
+        source,
+        samples: clip.samples,
+        cursor: 0,
+        freq,
+        filter,
+        smoothed_cutoff: cutoff,
+        target_cutoff: cutoff,
+        last_touch: Instant::now(),
+    })
 }
 
-/// Remove sources that finished naturally or went silent past the watchdog.
+/// Recycle processed buffers and top up the queue with freshly filtered chunks,
+/// lerping the cutoff toward its target so occlusion changes smoothly. Starts the
+/// source once buffers are queued.
+fn pump(context: &Context, p: &mut Playing) {
+    while p.source.buffers_processed() > 0 {
+        let _ = p.source.unqueue_buffer();
+    }
+    let chunk = (p.freq as usize / CHUNK_SAMPLES_PER_SEC_DIV).max(1);
+    while p.source.buffers_queued() < TARGET_QUEUED && p.cursor < p.samples.len() {
+        p.smoothed_cutoff += (p.target_cutoff - p.smoothed_cutoff) * CUTOFF_SMOOTH;
+        p.filter.set_cutoff(p.smoothed_cutoff);
+        let end = (p.cursor + chunk).min(p.samples.len());
+        let filtered = filter_chunk(&p.samples[p.cursor..end], &mut p.filter);
+        let frames: Vec<Mono<i16>> = filtered.into_iter().map(|s| Mono { center: s }).collect();
+        if let Ok(buf) = context.new_buffer::<Mono<i16>, _>(frames, p.freq) {
+            let _ = p.source.queue_buffer(buf);
+        }
+        p.cursor = end;
+    }
+    if p.source.state() != SourceState::Playing && p.source.buffers_queued() > 0 {
+        let _ = p.source.play();
+    }
+}
+
+/// Remove sources that finished naturally, drained their stream, or went silent
+/// past the watchdog.
 fn sweep(playing: &mut HashMap<String, Playing>) {
     let now = Instant::now();
     playing.retain(|_id, p| {
-        let finished = p.source.state() == SourceState::Stopped;
+        let stopped = p.source.state() == SourceState::Stopped;
+        let drained = p.cursor >= p.samples.len() && p.source.buffers_queued() == 0;
         let expired = now.duration_since(p.last_touch) > WATCHDOG;
-        if finished || expired {
+        if stopped || drained || expired {
             p.source.stop();
             false
         } else {
@@ -265,13 +333,13 @@ pub fn chunk(id: String, b64: String) -> String {
     "ok".to_string()
 }
 
-pub fn play(id: String, x: f32, y: f32, z: f32, gain: f32) -> String {
-    send(AudioMsg::Play { id, pos: [x, y, z], gain });
+pub fn play(id: String, x: f32, y: f32, z: f32, vol: f32) -> String {
+    send(AudioMsg::Play { id, pos: [x, y, z], vol });
     "ok".to_string()
 }
 
-pub fn pos(id: String, x: f32, y: f32, z: f32) -> String {
-    send(AudioMsg::Pos { id, pos: [x, y, z] });
+pub fn pos(id: String, x: f32, y: f32, z: f32, vol: f32) -> String {
+    send(AudioMsg::Pos { id, pos: [x, y, z], vol });
     "ok".to_string()
 }
 
@@ -340,5 +408,18 @@ mod tests {
         let mut acc = ClipAccumulator::new();
         acc.push("!!!not base64!!!");
         assert!(acc.decode().is_err());
+    }
+
+    #[test]
+    fn filter_chunk_stays_in_range_and_quiets_when_muffled() {
+        use crate::audio_dsp::{LowPass4, cutoff_from_vol};
+        let pcm: Vec<i16> = (0..4800).map(|i| if i % 2 == 0 { 16000 } else { -16000 }).collect();
+        let mut f = LowPass4::new(24000.0);
+        f.set_cutoff(cutoff_from_vol(0.2, 24000)); // muffled
+        let out = filter_chunk(&pcm, &mut f);
+        assert_eq!(out.len(), pcm.len());
+        assert!(out.iter().all(|&s| s.abs() <= i16::MAX));
+        let tail_peak = out[2400..].iter().map(|&s| s.unsigned_abs()).max().unwrap();
+        assert!(tail_peak < 4000, "muffled Nyquist should be quiet, got {tail_peak}");
     }
 }

@@ -71,12 +71,12 @@ pub fn audio_chunk(id: String, b64: String) -> String {
     audio::chunk(id, b64)
 }
 
-pub fn audio_play(id: String, x: f32, y: f32, z: f32, gain: f32) -> String {
-    audio::play(id, x, y, z, gain)
+pub fn audio_play(id: String, x: f32, y: f32, z: f32, vol: f32) -> String {
+    audio::play(id, x, y, z, vol)
 }
 
-pub fn audio_pos(id: String, x: f32, y: f32, z: f32) -> String {
-    audio::pos(id, x, y, z)
+pub fn audio_pos(id: String, x: f32, y: f32, z: f32, vol: f32) -> String {
+    audio::pos(id, x, y, z, vol)
 }
 
 pub fn audio_listener(dx: f32, dy: f32, dz: f32, ux: f32, uy: f32, uz: f32) -> String {
