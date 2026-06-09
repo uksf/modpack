@@ -67,3 +67,6 @@ if (isNil "_sessionId") exitWith { TRACE_1("no session id, skipping npc register
     ["npc_register", _data] call EFUNC(api,sendEvent);
     TRACE_2("registered npc",netId _npc,_mode);
 } forEach allUnits;
+
+private _talkerIds = (allUnits select { _x getVariable [QGVAR(talkable), false] }) apply { netId _x };
+missionNamespace setVariable [QGVAR(talkerNetIds), _talkerIds, true];

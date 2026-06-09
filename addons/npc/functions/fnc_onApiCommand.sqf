@@ -40,7 +40,9 @@ switch (_type) do {
         TRACE_3("npc_audio complete, distributing to nearby clients",_npcId,_turnId,_durationMs);
         // Distribute to nearby clients to play, anchored to the NPC.
         private _targets = allPlayers select { _x distance _npc <= GVAR(audioRange) };
-        [QGVAR(audioChunkSink), _targets, ["audio", _npcId, _turnId, _durationMs], _wav] call FUNC(pushClipChunks);
+        // header now ["audio", npcId, turnId, durationMs, offsetMs]; live broadcast = 0 offset.
+        [QGVAR(audioChunkSink), _targets, ["audio", _npcId, _turnId, _durationMs, 0], _wav] call FUNC(pushClipChunks);
+        GVAR(activeClips) set [_npcId, [_turnId, _wav, diag_tickTime, _durationMs]];
         // Head-turn on the NPC owner; targetEvent routes to the owning machine.
         [QGVAR(headTurn), [_npc, GVAR(lastSpeaker) getOrDefault [_npcId, objNull], _durationMs], _npc] call CBA_fnc_targetEvent;
     };

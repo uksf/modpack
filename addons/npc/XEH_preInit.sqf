@@ -39,6 +39,9 @@ if (isServer) then {
     GVAR(rxBuffers) = createHashMap;
     GVAR(rxBufferTimes) = createHashMap;
     [QEGVAR(api,command), { _this call FUNC(onApiCommand); }] call CBA_fnc_addEventHandler;
+    // Active audio clips for mid-clip resync: npcId -> [turnId, wav, dispatchTime, durationMs].
+    GVAR(activeClips) = createHashMap;
+    [QGVAR(requestClip), { _this call FUNC(onRequestClip); }] call CBA_fnc_addEventHandler;
 };
 
 #include "initSettings.inc.sqf"

@@ -19,3 +19,4 @@ PREP(onClipChunk);
 PREP(playFiller);
 PREP(sweepBuffers);
 PREP(acreVol);
+PREP(onRequestClip);
