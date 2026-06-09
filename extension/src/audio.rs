@@ -102,7 +102,7 @@ use crate::audio_dsp::LowPass4;
 enum AudioMsg {
     Open { id: String },
     Chunk { id: String, b64: String },
-    Play { id: String, pos: [f32; 3], vol: f32 },
+    Play { id: String, pos: [f32; 3], vol: f32, offset_ms: f32 },
     Pos { id: String, pos: [f32; 3], vol: f32 },
     Listener { forward: [f32; 3], up: [f32; 3] },
     Stop { id: String },
@@ -131,6 +131,11 @@ const CUTOFF_SMOOTH: f32 = 0.25;             // per-chunk lerp toward target
 /// Drop a source if no position update arrives within this window (NPC deleted
 /// / mission ended without an explicit stop).
 const WATCHDOG: Duration = Duration::from_secs(30);
+
+/// Sample index for a playback offset in milliseconds, clamped to the clip length.
+fn offset_to_cursor(offset_ms: f32, freq: u32, len: usize) -> usize {
+    ((offset_ms.max(0.0) / 1000.0 * freq as f32) as usize).min(len)
+}
 
 /// Filter one PCM chunk through the low-pass, normalising to f32 and back,
 /// clamped to i16 range (mirrors FilterOcclusion.cpp's float round-trip).
@@ -192,10 +197,10 @@ fn run_audio_thread(rx: mpsc::Receiver<AudioMsg>) {
                     acc.push(&b64);
                 }
             }
-            Ok(AudioMsg::Play { id, pos, vol }) => {
+            Ok(AudioMsg::Play { id, pos, vol, offset_ms }) => {
                 let vol = if vol.is_finite() { vol.max(0.0) } else { 1.0 };
                 if let Some(acc) = pending.remove(&id) {
-                    match start_streaming(&context, &acc, pos, vol) {
+                    match start_streaming(&context, &acc, pos, vol, offset_ms) {
                         Ok(p) => {
                             playing.insert(id, p);
                         }
@@ -242,10 +247,12 @@ fn start_streaming(
     acc: &ClipAccumulator,
     pos: [f32; 3],
     vol: f32,
+    offset_ms: f32,
 ) -> Result<Playing, String> {
     let bytes = acc.decode()?;
     let clip = decode_wav(&bytes)?;
     let freq = clip.freq as i32;
+    let cursor = offset_to_cursor(offset_ms, clip.freq, clip.samples.len());
 
     let mut source = context
         .new_streaming_source()
@@ -260,7 +267,7 @@ fn start_streaming(
     Ok(Playing {
         source,
         samples: clip.samples,
-        cursor: 0,
+        cursor,
         freq,
         filter,
         smoothed_cutoff: cutoff,
@@ -345,8 +352,8 @@ pub fn chunk(id: String, b64: String) -> String {
     "ok".to_string()
 }
 
-pub fn play(id: String, x: f32, y: f32, z: f32, vol: f32) -> String {
-    send(AudioMsg::Play { id, pos: [x, y, z], vol });
+pub fn play(id: String, x: f32, y: f32, z: f32, vol: f32, offset_ms: f32) -> String {
+    send(AudioMsg::Play { id, pos: [x, y, z], vol, offset_ms });
     "ok".to_string()
 }
 
@@ -420,6 +427,14 @@ mod tests {
         let mut acc = ClipAccumulator::new();
         acc.push("!!!not base64!!!");
         assert!(acc.decode().is_err());
+    }
+
+    #[test]
+    fn offset_to_cursor_clamps_and_scales() {
+        assert_eq!(offset_to_cursor(0.0, 24000, 48000), 0);
+        assert_eq!(offset_to_cursor(1000.0, 24000, 48000), 24000); // 1s @24k
+        assert_eq!(offset_to_cursor(5000.0, 24000, 48000), 48000); // clamps to len
+        assert_eq!(offset_to_cursor(-50.0, 24000, 48000), 0);      // negative floored
     }
 
     #[test]
