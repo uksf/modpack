@@ -40,9 +40,10 @@ while {_offset < _total} do {
 };
 
 private _delta = (getPosASL _npc) vectorDiff (eyePos (call CBA_fnc_currentUnit));
-"uksf" callExtension ["audioPlay", [_clipId, _delta#0, _delta#1, _delta#2, _gain]];
+private _vol = [_npc, _gain] call FUNC(acreVol);
+"uksf" callExtension ["audioPlay", [_clipId, _delta#0, _delta#1, _delta#2, _vol]];
 
-GVAR(active) pushBack [_clipId, _npc];
+GVAR(active) pushBack [_clipId, _npc, _gain];
 if (!GVAR(tickRunning)) then {
     GVAR(tickRunning) = true;
     [FUNC(tick), 0, []] call CBA_fnc_addPerFrameHandler;

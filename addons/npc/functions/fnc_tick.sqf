@@ -30,12 +30,13 @@ private _up = vectorUp _player;
 "uksf" callExtension ["audioListener", [_forward#0, _forward#1, _forward#2, _up#0, _up#1, _up#2]];
 
 {
-    _x params ["_clipId", "_npc"];
+    _x params ["_clipId", "_npc", ["_baseGain", 1]];
     if (isNull _npc || {!alive _npc}) then {
         "uksf" callExtension ["audioStop", [_clipId]];
         GVAR(active) = GVAR(active) - [_x];
     } else {
         private _delta = (getPosASL _npc) vectorDiff _eyePosition;
-        "uksf" callExtension ["audioPos", [_clipId, _delta#0, _delta#1, _delta#2]];
+        private _vol = [_npc, _baseGain] call FUNC(acreVol);
+        "uksf" callExtension ["audioPos", [_clipId, _delta#0, _delta#1, _delta#2, _vol]];
     };
 } forEach GVAR(active);
