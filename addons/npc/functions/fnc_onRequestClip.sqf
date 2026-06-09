@@ -27,5 +27,7 @@ private _elapsedMs = (diag_tickTime - _dispatchTime) * 1000;
 if (_elapsedMs >= _durationMs) exitWith {
     GVAR(activeClips) deleteAt _npcId; // finished; reclaim
 };
+// Too little left to be worth a chunked resend that would arrive after the clip ends.
+if (_durationMs - _elapsedMs < 500) exitWith {};
 
 [QGVAR(audioChunkSink), [_requester], ["audio", _npcId, _turnId, _durationMs, _elapsedMs], _wav] call FUNC(pushClipChunks);

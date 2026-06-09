@@ -22,6 +22,15 @@ if (isServer) then {
 
     // Sweep stale partial API-command reassembly buffers (a lost chunk would otherwise wedge one forever).
     [{ [GVAR(rxBuffers), GVAR(rxBufferTimes), 30, "rx"] call FUNC(sweepBuffers); }, 10, []] call CBA_fnc_addPerFrameHandler;
+
+    // Prune finished mid-clip-join clips so a dead/finished NPC's WAV doesn't linger in memory.
+    [{
+        private _now = diag_tickTime;
+        {
+            _y params ["", "", "_dispatchTime", "_durationMs"];
+            if (_now - _dispatchTime > _durationMs / 1000) then { GVAR(activeClips) deleteAt _x };
+        } forEach GVAR(activeClips);
+    }, 10, []] call CBA_fnc_addPerFrameHandler;
 };
 
 // Client-only: the audio extension and player frame data only exist on a

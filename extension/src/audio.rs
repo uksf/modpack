@@ -138,7 +138,8 @@ fn offset_to_cursor(offset_ms: f32, freq: u32, len: usize) -> usize {
 }
 
 /// Filter one PCM chunk through the low-pass, normalising to f32 and back,
-/// clamped to i16 range (mirrors FilterOcclusion.cpp's float round-trip).
+/// clamped to i16 range. Equivalent to ACRE's FilterOcclusion round-trip; the
+/// `as i16` cast truncates rather than floors (sub-LSB difference, inaudible).
 fn filter_chunk(samples: &[i16], filter: &mut LowPass4) -> Vec<i16> {
     samples
         .iter()

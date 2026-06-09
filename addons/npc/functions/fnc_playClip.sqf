@@ -28,6 +28,10 @@ if (_clipId isEqualTo "" || {isNull _npc} || {_wavB64 isEqualTo ""}) exitWith {
     ""
 };
 
+// Supersede: a new turn/filler for this NPC stops its prior clip so it never talks over itself.
+{ if ((_x#1) isEqualTo _npc) then { "uksf" callExtension ["audioStop", [_x#0]]; }; } forEach GVAR(active);
+GVAR(active) = GVAR(active) select { (_x#1) isNotEqualTo _npc };
+
 // 8 KB stays well under the callExtension arg limit.
 private _chunkSize = 8192;
 "uksf" callExtension ["audioOpen", [_clipId]];
@@ -39,7 +43,7 @@ while {_offset < _total} do {
     _offset = _offset + _length;
 };
 
-private _delta = (getPosASL _npc) vectorDiff (eyePos (call CBA_fnc_currentUnit));
+private _delta = (getPosASL _npc) vectorDiff ((call FUNC(listenerPose)) # 0);
 private _vol = [_npc, _gain] call FUNC(acreVol);
 "uksf" callExtension ["audioPlay", [_clipId, _delta#0, _delta#1, _delta#2, _vol, _offsetMs]];
 

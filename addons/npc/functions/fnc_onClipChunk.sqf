@@ -49,12 +49,13 @@ if (_kind isEqualTo "audio") exitWith {
     _header params ["", "_npcId", "_turnId", "_durationMs", ["_offsetMs", 0]];
     private _turnKey = format ["%1|%2", _npcId, _turnId];
     if (_turnKey in GVAR(heardTurns)) exitWith {}; // already played (broadcast or earlier resync)
-    GVAR(heardTurns) set [_turnKey, diag_tickTime];
 
     private _npc = objectFromNetId _npcId;
     if (isNull _npc) exitWith {};
     private _clipId = [format ["%1_%2", _npcId, _turnId], _npc, _wav, 1, _offsetMs] call FUNC(playClip);
     if (_clipId isEqualTo "") exitWith {};
+    // Mark heard only once playback commits, so a not-yet-streamed NPC isn't lost to dedup.
+    GVAR(heardTurns) set [_turnKey, diag_tickTime];
 
     // setRandomLip is Effect-Local; each playing client drives the mouth. A later
     // clip extends talkingUntil, so a stale timer leaves the lips alone.

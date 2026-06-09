@@ -21,3 +21,4 @@ PREP(sweepBuffers);
 PREP(acreVol);
 PREP(onRequestClip);
 PREP(proximityPull);
+PREP(listenerPose);

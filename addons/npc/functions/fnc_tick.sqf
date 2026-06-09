@@ -23,10 +23,7 @@ if (GVAR(active) isEqualTo []) exitWith {
     [_idPFH] call CBA_fnc_removePerFrameHandler;
 };
 
-private _player = call CBA_fnc_currentUnit;
-private _eyePosition = eyePos _player;
-private _forward = eyeDirection _player;
-private _up = vectorUp _player;
+(call FUNC(listenerPose)) params ["_eyePosition", "_forward", "_up"];
 "uksf" callExtension ["audioListener", [_forward#0, _forward#1, _forward#2, _up#0, _up#1, _up#2]];
 
 {
