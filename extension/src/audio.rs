@@ -193,6 +193,7 @@ fn run_audio_thread(rx: mpsc::Receiver<AudioMsg>) {
                 }
             }
             Ok(AudioMsg::Play { id, pos, vol }) => {
+                let vol = if vol.is_finite() { vol.max(0.0) } else { 1.0 };
                 if let Some(acc) = pending.remove(&id) {
                     match start_streaming(&context, &acc, pos, vol) {
                         Ok(p) => {
@@ -203,9 +204,10 @@ fn run_audio_thread(rx: mpsc::Receiver<AudioMsg>) {
                 }
             }
             Ok(AudioMsg::Pos { id, pos, vol }) => {
+                let vol = if vol.is_finite() { vol.max(0.0) } else { 1.0 };
                 if let Some(p) = playing.get_mut(&id) {
                     let _ = p.source.set_position(pos);
-                    let _ = p.source.set_gain(vol.max(0.0));
+                    let _ = p.source.set_gain(vol);
                     p.target_cutoff = crate::audio_dsp::cutoff_from_vol(vol, p.freq as u32);
                     p.last_touch = Instant::now();
                 }
@@ -222,6 +224,9 @@ fn run_audio_thread(rx: mpsc::Receiver<AudioMsg>) {
             Err(mpsc::RecvTimeoutError::Timeout) => {}
             Err(mpsc::RecvTimeoutError::Disconnected) => break,
         }
+        // Ordering is load-bearing: pump before sweep so an underrun-recovered
+        // source is back in Playing before sweep inspects state, else sweep would
+        // reclaim it mid-clip.
         for p in playing.values_mut() {
             pump(&context, p);
         }
@@ -278,10 +283,17 @@ fn pump(context: &Context, p: &mut Playing) {
         let end = (p.cursor + chunk).min(p.samples.len());
         let filtered = filter_chunk(&p.samples[p.cursor..end], &mut p.filter);
         let frames: Vec<Mono<i16>> = filtered.into_iter().map(|s| Mono { center: s }).collect();
-        if let Ok(buf) = context.new_buffer::<Mono<i16>, _>(frames, p.freq) {
-            let _ = p.source.queue_buffer(buf);
+        match context.new_buffer::<Mono<i16>, _>(frames, p.freq) {
+            Ok(buf) => {
+                if p.source.queue_buffer(buf).is_ok() {
+                    p.cursor = end;
+                    p.last_touch = Instant::now(); // streaming progress = liveness
+                } else {
+                    break; // queue rejected; retry this chunk next pump, do NOT advance
+                }
+            }
+            Err(_) => break,
         }
-        p.cursor = end;
     }
     if p.source.state() != SourceState::Playing && p.source.buffers_queued() > 0 {
         let _ = p.source.play();
