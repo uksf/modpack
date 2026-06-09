@@ -46,5 +46,8 @@ call FUNC(sttStart);
 // and drives the ACRE mic capture gate on the rising/falling edge.
 [FUNC(gateTick), 0.2, []] call CBA_fnc_addPerFrameHandler;
 
+// Mid-clip resync: pull the in-flight clip when entering a talkable NPC's range.
+[FUNC(proximityPull), 0.5, []] call CBA_fnc_addPerFrameHandler;
+
 // Sweep stale partial clip-receive buffers (a lost chunk would otherwise wedge one forever).
 [{ [GVAR(clipRxBuffers), GVAR(clipRxBufferTimes), 30, "clip"] call FUNC(sweepBuffers); }, 10, []] call CBA_fnc_addPerFrameHandler;

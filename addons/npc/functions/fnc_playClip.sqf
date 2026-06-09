@@ -21,7 +21,7 @@
     Example:
         ["npc1", _npc, _wavB64] call uksf_npc_fnc_playClip
 */
-params [["_clipId", "", [""]], ["_npc", objNull, [objNull]], ["_wavB64", "", [""]], ["_gain", 1, [0]]];
+params [["_clipId", "", [""]], ["_npc", objNull, [objNull]], ["_wavB64", "", [""]], ["_gain", 1, [0]], ["_offsetMs", 0, [0]]];
 
 if (_clipId isEqualTo "" || {isNull _npc} || {_wavB64 isEqualTo ""}) exitWith {
     ERROR_1("playClip: bad args (%1)",_this);
@@ -41,7 +41,7 @@ while {_offset < _total} do {
 
 private _delta = (getPosASL _npc) vectorDiff (eyePos (call CBA_fnc_currentUnit));
 private _vol = [_npc, _gain] call FUNC(acreVol);
-"uksf" callExtension ["audioPlay", [_clipId, _delta#0, _delta#1, _delta#2, _vol]];
+"uksf" callExtension ["audioPlay", [_clipId, _delta#0, _delta#1, _delta#2, _vol, _offsetMs]];
 
 GVAR(active) pushBack [_clipId, _npc, _gain];
 if (!GVAR(tickRunning)) then {

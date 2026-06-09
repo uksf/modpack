@@ -20,3 +20,4 @@ PREP(playFiller);
 PREP(sweepBuffers);
 PREP(acreVol);
 PREP(onRequestClip);
+PREP(proximityPull);

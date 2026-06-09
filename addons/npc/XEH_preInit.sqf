@@ -26,6 +26,12 @@ GVAR(clipRxBufferTimes) = createHashMap;
 GVAR(fillers) = createHashMap;
 GVAR(fillerCounter) = 0;
 GVAR(talkingUntil) = createHashMap;
+
+// Mid-clip resync: netIds currently in audio range (rising-edge request), per-NPC
+// request debounce, and turns already heard (dedup so a resync never double-plays).
+GVAR(nearTalkers) = [];
+GVAR(lastRequest) = createHashMap;
+GVAR(heardTurns) = createHashMap;
 [QGVAR(audioChunkSink),  { ["audio",  _this] call FUNC(onClipChunk); }] call CBA_fnc_addEventHandler;
 [QGVAR(fillerChunkSink), { ["filler", _this] call FUNC(onClipChunk); }] call CBA_fnc_addEventHandler;
 
