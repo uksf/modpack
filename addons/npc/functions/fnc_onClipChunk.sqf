@@ -58,7 +58,7 @@ if (_kind isEqualTo "audio") exitWith {
 
     // setRandomLip is Effect-Local; each playing client drives the mouth. A later
     // clip extends talkingUntil, so a stale timer leaves the lips alone.
-    private _duration = (_durationMs / 1000) max 0.5;
+    private _duration = ((_durationMs - _offsetMs) / 1000) max 0.5;
     private _endTime = diag_tickTime + _duration;
     GVAR(talkingUntil) set [_npcId, _endTime];
     _npc setRandomLip true;

@@ -17,7 +17,7 @@
         none
 
     Example:
-        [QGVAR(audioChunkSink), _targets, ["audio",_npcId,_turnId,_durationMs], _wav] call uksf_npc_fnc_pushClipChunks
+        [QGVAR(audioChunkSink), _targets, ["audio",_npcId,_turnId,_durationMs,_offsetMs], _wav] call uksf_npc_fnc_pushClipChunks
 */
 params ["_event", "_targets", "_header", "_wav"];
 if (_targets isEqualTo []) exitWith {};

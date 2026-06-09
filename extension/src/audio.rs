@@ -312,10 +312,13 @@ fn pump(context: &Context, p: &mut Playing) {
 fn sweep(playing: &mut HashMap<String, Playing>) {
     let now = Instant::now();
     playing.retain(|_id, p| {
-        let stopped = p.source.state() == SourceState::Stopped;
-        let drained = p.cursor >= p.samples.len() && p.source.buffers_queued() == 0;
+        // Reclaim only when the clip is genuinely finished (PCM exhausted AND queue
+        // empty) or stuck past the watchdog. A bare Stopped check would kill a clip
+        // on a transient underrun (new_buffer failure) before its cursor is done —
+        // pump re-queues such a source; the watchdog catches one that never recovers.
+        let finished = p.cursor >= p.samples.len() && p.source.buffers_queued() == 0;
         let expired = now.duration_since(p.last_touch) > WATCHDOG;
-        if stopped || drained || expired {
+        if finished || expired {
             p.source.stop();
             false
         } else {
