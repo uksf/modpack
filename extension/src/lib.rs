@@ -4,6 +4,7 @@ use std::fs::{self, File};
 use std::path::PathBuf;
 
 mod audio;
+mod audio_dsp;
 mod bridge;
 mod commands;
 mod config;
