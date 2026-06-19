@@ -8,7 +8,18 @@ UKSF Modpack — a collection of Arma 3 addons (mods) for the UKSF community, bu
 
 - **Prefix**: `uksf`
 - **Main prefix (P-drive path segment)**: `u` → full path: `\u\uksf\addons\<component>\`
-- **Build tool**: HEMTT for all addon builds and validation (`hemtt.toml`)
+- **Build tool**: HEMTT for all addon builds and validation (`hemtt.toml`). `hemtt` is on PATH — invoke directly.
+- **Version source of truth**: `addons/main/script_version.hpp` (`MAJOR.MINOR.PATCHLVL`).
+
+## Brain & skills
+
+Deep, current, cross-repo knowledge lives in the Brain vault (`E:/Workspace/workshop/Brain`, via `mcp__brain__*`) — read before non-trivial work:
+- `entities/arma3-modpack-stack.md` — toolchain, CBA macros, lint rules (superset of this file)
+- `entities/uksf-workspace-layout.md` — cross-repo symlinks, PBO/config-cache paths, HEMTT env quirks (broken `sqf.event_unknown` lint, prefix collisions, `VERSION_CONFIG` 2-part rule)
+- `work/arma-modpack/index.md` + `backlog.md` — current work hub & open tasks
+- `concepts/arma-config-patch-merge-semantics.md` — silent config-merge failure (onion-walk all 3rd-party class overrides; `hemtt check` misses runtime merge bugs)
+
+Skills: `arma-config-syntax` (before editing any `.cpp`/`.hpp`), `arma-config-cache` (static class/inheritance lookups via `@cache/config_*.cpp` — prefer over launching the game), `sqf-deep-review` + `sqf-command-lookup` (SQF), `arma-dev-test-server` (verify SQF ingame headless), `uksf-server` (dedi build/RPT/signing), `modpack-changelog` (release notes).
 
 ## Build and Validation Commands
 
