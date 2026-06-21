@@ -1,4 +1,5 @@
 PREP(addArtillerySupportUnit);
+PREP(ambientLogisticsAddWaypoints);
 PREP(artillerySupport);
 PREP(assignID);
 PREP(cleanupDynamicPatrolGroups);
@@ -18,6 +19,8 @@ PREP(hit);
 PREP(initDynamicPatrolArea);
 PREP(initPatrol);
 PREP(inRadioRange);
+PREP(moduleAmbientArtillery);
+PREP(moduleAmbientLogistics);
 PREP(moduleDynamicPatrolArea);
 PREP(moduleDynamicPatrolExcludeArea);
 PREP(moduleDynamicPatrolIncludeArea);

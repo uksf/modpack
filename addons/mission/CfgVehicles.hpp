@@ -340,4 +340,157 @@ class CfgVehicles {
             };
         };
     };
+    class GVAR(moduleAmbientArtillery) : Module_F {
+        scope = 2;
+        is3DEN = 1;
+        displayName = "Ambient Artillery";
+        // icon = QPATHTOF(data\ui\Icon_Module_PatrolArea_Include_ca.paa);
+        // portrait = QPATHTOF(data\ui\Icon_Module_PatrolArea_Include_ca.paa);
+        function = QFUNC(moduleAmbientArtillery);
+        functionPriority = 25;
+        canSetArea = 0;
+        canSetAreaHeight = 0;
+        canSetAreaShape = 0;
+        category = EGVAR(common,eden);
+        class Attributes : AttributesBase {
+            class GVAR(ambientArtilleryInterval) {
+                property = QGVAR(ambientArtilleryInterval);
+                displayName = "Interval";
+                tooltip = "Defines the time between fire missions in seconds";
+                control = "EditShort";
+                validate = "NUMBER";
+                defaultValue = "600";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(ambientArtilleryInterval),_value,true)]);
+            };
+            class GVAR(ambientArtilleryMinimumNumberOfRounds) {
+                property = QGVAR(ambientArtilleryMinimumNumberOfRounds);
+                displayName = "Minimum Number of Rounds";
+                tooltip = "Defines the minimum number of rounds to fire";
+                control = "EditShort";
+                validate = "NUMBER";
+                defaultValue = "4";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(ambientArtilleryMinimumNumberOfRounds),_value,true)]);
+            };
+            class GVAR(ambientArtilleryRandomNumberOfRounds) {
+                property = QGVAR(ambientArtilleryRandomNumberOfRounds);
+                displayName = "Random Number of Rounds";
+                tooltip = "Defines a random number of rounds to fire on top of the minimum rounds. E.g. if set at 2, artillery will fire from 4 - 6 rounds";
+                control = "EditShort";
+                validate = "NUMBER";
+                defaultValue = "2";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(ambientArtilleryRandomNumberOfRounds),_value,true)]);
+            };
+            class GVAR(ambientArtilleryDeleteShell) {
+                property = QGVAR(ambientArtilleryDeleteShell);
+                displayName = "Delete Shell";
+                tooltip = "Deletes the shell on firing so theres no splash";
+                control = "Checkbox";
+                defaultValue = false;
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(ambientArtilleryDeleteShell),_value,true)]);
+            };
+        };
+    };
+    class GVAR(moduleAmbientArtilleryTargetArea) : Module_F {
+        scope = 2;
+        is3DEN = 1;
+        displayName = "Ambient Artillery Target Area";
+        // icon = QPATHTOF(data\ui\Icon_Module_PatrolArea_Exclude_ca.paa);
+        // portrait = QPATHTOF(data\ui\Icon_Module_PatrolArea_Exclude_ca.paa);
+        canSetArea = 1;
+        canSetAreaHeight = 0;
+        canSetAreaShape = 1;
+        category = EGVAR(common,eden);
+        class AttributeValues {
+            size3[] = { 500, 500, -1 };
+            isRectangle = 1;
+        };
+    };
+    class GVAR(moduleAmbientLogisticsSpawn) : Module_F {
+        scope = 2;
+        is3DEN = 1;
+        displayName = "Ambient Logistics (Spawn Location)";
+        // icon = QPATHTOF(data\ui\Icon_Module_PatrolArea_Include_ca.paa);
+        // portrait = QPATHTOF(data\ui\Icon_Module_PatrolArea_Include_ca.paa);
+        function = QFUNC(moduleAmbientLogistics);
+        functionPriority = 25;
+        canSetArea = 0;
+        canSetAreaHeight = 0;
+        canSetAreaShape = 0;
+        category = EGVAR(common,eden);
+        class Attributes : AttributesBase {
+            class GVAR(ambientLogisticsInterval) {
+                property = QGVAR(ambientLogisticsInterval);
+                displayName = "Interval";
+                tooltip = "Defines the time between logistic runs";
+                control = "EditShort";
+                validate = "NUMBER";
+                defaultValue = "600";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(ambientLogisticsInterval),_value,true)]);
+            };
+            class GVAR(ambientLogisticsUnitPoolString) {
+                property = QGVAR(ambientLogisticsUnitPoolString);
+                displayName = "Units Pool";
+                tooltip = "Class names of units that can spawn as crew for logistic vehicles. Comma-separated list of class names in single quotes, no spaces";
+                control = "Edit";
+                defaultValue = "[]";
+                compileString = 1;
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(ambientLogisticsUnitPoolString),_value,true)]);
+            };
+            class GVAR(ambientLogisticsVehiclePoolString) {
+                property = QGVAR(ambientLogisticsVehiclePoolString);
+                displayName = "Vehicles Pool";
+                tooltip = "Class names of vehicles to use. Comma-separated list of class names in single quotes, no spaces";
+                control = "Edit";
+                defaultValue = "[]";
+                compileString = 1;
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(ambientLogisticsVehiclePoolString),_value,true)]);
+            };
+            class GVAR(ambientLogisticsSide) {
+                property = QGVAR(ambientLogisticsSide);
+                displayName = "Side";
+                tooltip = "Side of logistic units, must match the side of the unit pool";
+                control = "Combo";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(ambientLogisticsSide),_value,true)]);
+                typeName = "NUMBER";
+                defaultValue = 0;
+                class values {
+                    class East {
+                        name = "OPFOR";
+                        value = 0;
+                    };
+                    class Guer {
+                        name = "Independent";
+                        value = 1;
+                    };
+                    class West {
+                        name = "BLUFOR";
+                        value = 2;
+                    };
+                };
+            };
+            class GVAR(ambientLogisticsNumberOfRuns) {
+                property = QGVAR(ambientLogisticsNumberOfRuns);
+                displayName = "Number of Runs";
+                tooltip = "Max number of runs this module will spawn";
+                control = "EditShort";
+                validate = "NUMBER";
+                defaultValue = "10";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(ambientLogisticsNumberOfRuns),_value,true)]);
+            };
+        };
+    };
+
+    class GVAR(moduleAmbientLogisticsDestination) : Module_F {
+        scope = 2;
+        is3DEN = 1;
+        displayName = "Ambient Logistics (Destination)";
+        // icon = QPATHTOF(data\ui\Icon_Module_PatrolArea_Exclude_ca.paa);
+        // portrait = QPATHTOF(data\ui\Icon_Module_PatrolArea_Exclude_ca.paa);
+        // function = QFUNC(moduleDynamicPatrolExcludeArea);
+        functionPriority = 25;
+        canSetArea = 0;
+        canSetAreaHeight = 0;
+        canSetAreaShape = 0;
+        category = EGVAR(common,eden);
+    };
 };
