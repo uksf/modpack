@@ -26,7 +26,7 @@ params ["_npc", ["_baseGain", 1]];
 
 // Underwater / deaf listener: no listening. Cheapest checks first — short-circuit
 // before any ACRE attenuation or the findOcclusion raycast.
-if (!isNil "ACRE_LISTENER_DIVE" && {ACRE_LISTENER_DIVE == 1}) exitWith { 0 };
+if (underwater (call CBA_fnc_currentUnit)) exitWith { 0 };
 if (missionNamespace getVariable ["acre_sys_core_isDeaf", false]) exitWith { 0 };
 
 // NPC underwater: no talking. (ACRE emitter = head position, ASL.)
