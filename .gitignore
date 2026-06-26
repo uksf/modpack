@@ -698,3 +698,6 @@ target/
 
 # Whisper STT model (provisioned at build time by tools/fetch_whisper_model.ps1)
 ggml-base.en.bin
+
+# Local-only dev harness JWT minter (keeps admin-token recipe out of the public repo)
+dev_harness/mint_jwt.js
