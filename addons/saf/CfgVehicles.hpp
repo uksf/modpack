@@ -52,44 +52,43 @@ class CfgVehicles {
         respawnLinkedItems[] = {"V_CarrierRigKBT_01_light_Olive_F", "CUP_H_PASGTv2_ERDL_highland", "CUP_TK_NeckScarf", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio"};
     };
 
-    // class GVAR(Soldier_SF_Base) : B_Soldier_base_F {
-    //     scope = 0;
-    //     author = QUOTE(UKSF);
-    //     displayName = "Soldier SF Base";
-    //     genericNames = "FrenchMen";
-    //     identityTypes[] = {"LanguageFRE_F", "Head_Euro", "G_Euro"};
-    //     faction = QUOTE(ADDON);
-    //     editorSubcategory = QGVAR(sf);
-    //     side = 0;
-    //     minSkill = 0.4;
-    //     maxSkill = 0.6;
-    //     nakedUniform = "U_BasicBody";
-    //     uniformClass = "CUP_U_CRYE_G3C_M81";
-    //     weapons[] = {QGVAR(CUP_arifle_G36C_VFG_CUP_optic_HensoldtZO_low_RDS_CUP_acc_ANPEQ_15_Black_suppressed), "Put","Throw"};
-    //     respawnWeapons[] = {QGVAR(CUP_arifle_G36C_VFG_CUP_optic_HensoldtZO_low_RDS_CUP_acc_ANPEQ_15_Black_suppressed), "Put","Throw"};
-    //     magazines[] = {
-    //         "CUP_30Rnd_556x45_XM8", "CUP_30Rnd_556x45_XM8", "CUP_30Rnd_556x45_XM8", "CUP_30Rnd_556x45_XM8", "CUP_30Rnd_556x45_XM8","CUP_30Rnd_556x45_XM8", "CUP_30Rnd_556x45_XM8", "CUP_30Rnd_556x45_XM8",
-    //         "SmokeShell", "HandGrenade", "HandGrenade"
-    //     };
-    //     respawnMagazines[] = {
-    //         "CUP_30Rnd_556x45_XM8", "CUP_30Rnd_556x45_XM8", "CUP_30Rnd_556x45_XM8", "CUP_30Rnd_556x45_XM8", "CUP_30Rnd_556x45_XM8","CUP_30Rnd_556x45_XM8", "CUP_30Rnd_556x45_XM8", "CUP_30Rnd_556x45_XM8",
-    //         "SmokeShell", "HandGrenade", "HandGrenade"
-    //     };
-    //     items[] = {
-    //         "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage",
-    //         "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage"
-    //     };
-    //     respawnItems[] = {
-    //         "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage",
-    //         "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage"
-    //     };
-    //     linkedItems[] = {"CUP_V_B_PASGT", "CUP_H_PASGTv2_NVG_WDL", "CUP_G_RUS_Ratnik_Balaclava_Green_1", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "NVGoggles_OPFOR"};
-    //     respawnLinkedItems[] = {"CUP_V_B_PASGT", "CUP_H_PASGTv2_NVG_WDL", "CUP_G_RUS_Ratnik_Balaclava_Green_1", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "NVGoggles_OPFOR"};
-    // };
+    class GVAR(Soldier_SF_Base) : B_Soldier_base_F {
+        scope = 0;
+        author = QUOTE(UKSF);
+        displayName = "Soldier SF Base";
+        genericNames = "PolishMen";
+        identityTypes[] = {"LanguagePOL_F", "Head_Euro", "G_Euro"};
+        faction = QUOTE(ADDON);
+        editorSubcategory = QGVAR(sf);
+        side = 1;
+        minSkill = 0.4;
+        maxSkill = 0.6;
+        nakedUniform = "U_BasicBody";
+        uniformClass = "CUP_U_CRYE_G3C_MC_V3";
+        weapons[] = {QGVAR(hk416), "Put","Throw"};
+        respawnWeapons[] = {QGVAR(hk416), "Put","Throw"};
+        magazines[] = {
+            "CUP_30Rnd_556x45_PMAG_OD_PULL", "CUP_30Rnd_556x45_PMAG_OD_PULL", "CUP_30Rnd_556x45_PMAG_OD_PULL", "CUP_30Rnd_556x45_PMAG_OD_PULL", "CUP_30Rnd_556x45_PMAG_OD_PULL","CUP_30Rnd_556x45_PMAG_OD_PULL", "CUP_30Rnd_556x45_PMAG_OD_PULL", "CUP_30Rnd_556x45_PMAG_OD_PULL",
+            "SmokeShell", "HandGrenade", "HandGrenade"
+        };
+        respawnMagazines[] = {
+            "CUP_30Rnd_556x45_PMAG_OD_PULL", "CUP_30Rnd_556x45_PMAG_OD_PULL", "CUP_30Rnd_556x45_PMAG_OD_PULL", "CUP_30Rnd_556x45_PMAG_OD_PULL", "CUP_30Rnd_556x45_PMAG_OD_PULL","CUP_30Rnd_556x45_PMAG_OD_PULL", "CUP_30Rnd_556x45_PMAG_OD_PULL", "CUP_30Rnd_556x45_PMAG_OD_PULL",
+            "SmokeShell", "HandGrenade", "HandGrenade"
+        };
+        items[] = {
+            "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage",
+            "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage"
+        };
+        respawnItems[] = {
+            "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage",
+            "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage"
+        };
+        linkedItems[] = {"CUP_V_CPC_Fastbelt_mc", "CUP_H_OpsCore_Covered_MCAM", "CUP_G_ESS_RGR_Facewrap_Ranger", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "CUP_NVG_GPNVG_Hide"};
+        respawnLinkedItems[] = {"CUP_V_CPC_Fastbelt_mc", "CUP_H_OpsCore_Covered_MCAM", "CUP_G_ESS_RGR_Facewrap_Ranger", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "CUP_NVG_GPNVG_Hide"};
+    };
 
     // backpacks
     class UK3CB_BAF_B_Kitbag_OLI;
-
     class GVAR(mg_backpack) : UK3CB_BAF_B_Kitbag_OLI {
         scope = 1;
         class TransportMagazines {
@@ -122,8 +121,33 @@ class CfgVehicles {
         };
     };
 
+    class VSM_Multicam_Backpack_Compact;
+    class GVAR(sf_lmg_backpack) : VSM_Multicam_Backpack_Compact {
+        scope = 1;
+        class TransportMagazines {
+            MACRO_ADDMAGAZINE(200Rnd_556x45_Box_Red_F,3);
+            MACRO_ADDMAGAZINE(SmokeShell,2);
+        };
+    };
+
+    class GVAR(sf_hat_backpack) : VSM_Multicam_Backpack_Compact {
+        scope = 1;
+        class TransportMagazines {
+            MACRO_ADDMAGAZINE(CUP_MAAWS_HEDP_M,2);
+        };
+    };
+
+    class GVAR(sf_grenadier_backpack) : VSM_Multicam_Backpack_Compact {
+        scope = 1;
+        class TransportMagazines {
+            MACRO_ADDMAGAZINE(1Rnd_HE_Grenade_shell,8);
+            MACRO_ADDMAGAZINE(1Rnd_HE_CUP_1Rnd_Smoke_M203_Grenade_shell,4);
+            MACRO_ADDMAGAZINE(CUP_1Rnd_StarFlare_White_M203,4);
+        };
+    };
+
     #include "units\CfgUnitsMen.hpp"
-    // #include "units\CfgUnitsMenSF.hpp"
+    #include "units\CfgUnitsMenSF.hpp"
     #include "units\CfgUnitsMenSpecialists.hpp"
 
     #include "vehicles\CfgAntiAir.hpp"

@@ -85,19 +85,19 @@ class CfgGroups {
                     class Unit7 { side = 1; vehicle = QGVAR(Grenadier); rank = "PRIVATE"; position[] = {0, -35, 0}; };
                 };
             };
-            // class Special_Forces {
-            //     name = "Special Forces";
-            //     class GVAR(SF_Team) {
-            //         name = "SF Team";
-            //         faction = QUOTE(ADDON);
-            //         side = 1;
-            //         class Unit0 { side = 1; vehicle = QGVAR(sf_sfc); rank = "SERGEANT"; position[] = {0, 0, 0}; };
-            //         class Unit1 { side = 1; vehicle = QGVAR(sf_operator); rank = "CORPORAL"; position[] = {5, 0, 0}; };
-            //         class Unit2 { side = 1; vehicle = QGVAR(sf_autorifleman); rank = "PRIVATE"; position[] = {10, 0, 0}; };
-            //         class Unit3 { side = 1; vehicle = QGVAR(sf_grenadier); rank = "PRIVATE"; position[] = {15, 0, 0}; };
-            //         class Unit4 { side = 1; vehicle = QGVAR(sf_LAT); rank = "PRIVATE"; position[] = {20, 0, 0}; };
-            //     };
-            // };
+            class Special_Forces {
+                name = "Special Forces";
+                class GVAR(SF_Team) {
+                    name = "SF Assault Team";
+                    faction = QUOTE(ADDON);
+                    side = 1;
+                    class Unit0 { side = 1; vehicle = QGVAR(sf_operator); rank = "SERGEANT"; position[] = {5, 0, 0}; };
+                    class Unit1 { side = 1; vehicle = QGVAR(sf_autorifleman); rank = "PRIVATE"; position[] = {10, 0, 0}; };
+                    class Unit2 { side = 1; vehicle = QGVAR(sf_grenadier); rank = "PRIVATE"; position[] = {15, 0, 0}; };
+                    class Unit3 { side = 1; vehicle = QGVAR(sf_HAT); rank = "PRIVATE"; position[] = {20, 0, 0}; };
+                    class Unit4 { side = 1; vehicle = QGVAR(sf_operator); rank = "CORPORAL"; position[] = {25, 0, 0}; };
+                };
+            };
             class Armoured {
                 name = "Armoured Assets";
                 class GVAR(Tank_Platoon_Mixed) {

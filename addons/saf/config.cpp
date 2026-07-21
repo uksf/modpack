@@ -22,6 +22,12 @@ class CfgPatches {
             QGVAR(Officer_HQ),
             QGVAR(Signaller),
 
+            // SF
+            QGVAR(sf_operator),
+            QGVAR(sf_grenadier),
+            QGVAR(sf_autorifleman),
+            QGVAR(sf_HAT),
+
             // Trucks
             QGVAR(Kamaz_Covered),
             QGVAR(Kamaz_Ammo),
@@ -76,7 +82,10 @@ class CfgPatches {
             QGVAR(grot),
             QGVAR(grot_gl),
             QGVAR(grot_mr),
-            QGVAR(m2010)
+            QGVAR(m2010),
+            QGVAR(hk416),
+            QGVAR(hk416_gl),
+            QGVAR(minimi)
         };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {"uksf_common"};

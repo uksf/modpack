@@ -3,6 +3,9 @@ class CfgWeapons {
     class arifle_MSBS65_GL_F;
     class arifle_MSBS65_Mark_F;
     class CUP_srifle_M2010_wdl;
+    class CUP_arifle_HK416_CQB_Wood;
+    class CUP_arifle_HK416_CQB_M203_Wood;
+    class LMG_03_F;
 
     // INFANTRY
     class GVAR(grot) : arifle_MSBS65_F {
@@ -51,43 +54,46 @@ class CfgWeapons {
     };
 
 
-    // // SF
-    // class GVAR(CUP_arifle_MG36_CUP_optic_HensoldtZO_low_RDS_CUP_acc_ANPEQ_15_Black_suppressed) : CUP_arifle_MG36 {
-    //     displayName = "MG36 (5.56x45)";
-    //     scope = 1;
-    //     class LinkedItems {
-    //         class LinkedItemsOptic {
-    //             slot = "CowsSlot";
-    //             item = "CUP_optic_HensoldtZO_low_RDS";
-    //         };
-    //         class LinkedItemsAcc {
-    //             slot = "PointerSlot";
-    //             item = "CUP_acc_ANPEQ_15_Black";
-    //         };
-    //         class LinkedItemsMuzzle {
-    //             slot = "MuzzleSlot";
-    //             item = "CUP_muzzle_snds_G36_black";
-    //         };
-    //     };
-    // };
+    // SF
+    class GVAR(hk416) : CUP_arifle_HK416_CQB_Wood {
+        displayName = "HK416 Woodland";
+        scope = 1;
+        class LinkedItems {
+            class LinkedItemsOptic {
+                slot = "CowsSlot";
+                item = "CUP_optic_ACOG_TA31_KF_Wood";
+            };
+            class LinkedItemsAcc {
+                slot = "PointerSlot";
+                item = "CUP_acc_ANPEQ_15_OD";
+            };
+        };
+    };
 
 
-    // class GVAR(CUP_arifle_G36C_VFG_CUP_optic_HensoldtZO_low_RDS_CUP_acc_ANPEQ_15_Black_suppressed) : CUP_arifle_G36C_VFG {
-    //     displayName = "G36C VFG (Suppressed)";
-    //     scope = 1;
-    //     class LinkedItems {
-    //         class LinkedItemsOptic {
-    //             slot = "CowsSlot";
-    //             item = "CUP_optic_HensoldtZO_low_RDS";
-    //         };
-    //         class LinkedItemsAcc {
-    //             slot = "PointerSlot";
-    //             item = "CUP_acc_ANPEQ_15_Black";
-    //         };
-    //         class LinkedItemsMuzzle {
-    //             slot = "MuzzleSlot";
-    //             item = "CUP_muzzle_snds_G36_black";
-    //         };
-    //     };
-    // };
+    class GVAR(hk416_gl) : CUP_arifle_HK416_CQB_M203_Wood {
+        displayName = "HK416 GL Woodland";
+        scope = 1;
+        class LinkedItems {
+            class LinkedItemsOptic {
+                slot = "CowsSlot";
+                item = "CUP_optic_ACOG_TA31_KF_Wood";
+            };
+            class LinkedItemsAcc {
+                slot = "PointerSlot";
+                item = "CUP_acc_ANPEQ_15_OD";
+            };
+        };
+    };
+
+    class GVAR(minimi) : LMG_03_F {
+        displayName = "Minimi";
+        scope = 1;
+        class LinkedItems {
+            class LinkedItemsOptic {
+                slot = "CowsSlot";
+                item = "CUP_optic_ACOG2";
+            };
+        };
+    };
 };
