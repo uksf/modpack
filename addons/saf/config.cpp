@@ -88,7 +88,7 @@ class CfgPatches {
             QGVAR(minimi)
         };
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {"uksf_common"};
+        requiredAddons[] = {"uksf_common", "uksf_cdf", "uksf_vaf"};
         author = QUOTE(UKSF);
         authors[] = {"Bridgford.A"};
         url = URL;
