@@ -32,14 +32,14 @@ class GVAR(Rifleman_LAT) : GVAR(Rifleman) {
     weapons[] = {QGVAR(grot), "CUP_launch_RPG7V", "Put", "Throw"};
     respawnWeapons[] = {QGVAR(grot), "CUP_launch_RPG7V", "Put", "Throw"};
     magazines[] = {
-        "30Rnd_65x39_caseless_msbs_mag", "30Rnd_65x39_caseless_msbs_mag", "30Rnd_65x39_caseless_msbs_mag", "30Rnd_65x39_caseless_msbs_mag", "30Rnd_65x39_caseless_msbs_mag",
+        "30Rnd_65x39_caseless_msbs_mag", "30Rnd_65x39_caseless_msbs_mag", "30Rnd_65x39_caseless_msbs_mag",
         "30Rnd_65x39_caseless_msbs_mag_Tracer", "30Rnd_65x39_caseless_msbs_mag_Tracer", "30Rnd_65x39_caseless_msbs_mag_Tracer",
-        "SmokeShell", "HandGrenade", "HandGrenade", "CUP_PG7V_M"
+        "SmokeShell", "HandGrenade", "HandGrenade"
     };
     respawnMagazines[] = {
-        "30Rnd_65x39_caseless_msbs_mag", "30Rnd_65x39_caseless_msbs_mag", "30Rnd_65x39_caseless_msbs_mag", "30Rnd_65x39_caseless_msbs_mag", "30Rnd_65x39_caseless_msbs_mag",
+        "30Rnd_65x39_caseless_msbs_mag", "30Rnd_65x39_caseless_msbs_mag", "30Rnd_65x39_caseless_msbs_mag",
         "30Rnd_65x39_caseless_msbs_mag_Tracer", "30Rnd_65x39_caseless_msbs_mag_Tracer", "30Rnd_65x39_caseless_msbs_mag_Tracer",
-        "SmokeShell", "HandGrenade", "HandGrenade", "CUP_PG7V_M"
+        "SmokeShell", "HandGrenade", "HandGrenade"
     };
     backpack = QGVAR(lat_backpack);
 };
@@ -49,14 +49,14 @@ class GVAR(Rifleman_HAT) : GVAR(Rifleman) {
     weapons[] = {QGVAR(grot), "CUP_launch_MAAWS", "Put", "Throw"};
     respawnWeapons[] = {QGVAR(grot), "CUP_launch_MAAWS", "Put", "Throw"};
     magazines[] = {
-        "30Rnd_65x39_caseless_msbs_mag", "30Rnd_65x39_caseless_msbs_mag", "30Rnd_65x39_caseless_msbs_mag", "30Rnd_65x39_caseless_msbs_mag", "30Rnd_65x39_caseless_msbs_mag",
+        "30Rnd_65x39_caseless_msbs_mag", "30Rnd_65x39_caseless_msbs_mag", "30Rnd_65x39_caseless_msbs_mag",
         "30Rnd_65x39_caseless_msbs_mag_Tracer", "30Rnd_65x39_caseless_msbs_mag_Tracer", "30Rnd_65x39_caseless_msbs_mag_Tracer",
-        "SmokeShell", "HandGrenade", "HandGrenade", "CUP_MAAWS_HEDP_M"
+        "SmokeShell", "HandGrenade", "HandGrenade"
     };
     respawnMagazines[] = {
-        "30Rnd_65x39_caseless_msbs_mag", "30Rnd_65x39_caseless_msbs_mag", "30Rnd_65x39_caseless_msbs_mag", "30Rnd_65x39_caseless_msbs_mag", "30Rnd_65x39_caseless_msbs_mag",
+        "30Rnd_65x39_caseless_msbs_mag", "30Rnd_65x39_caseless_msbs_mag", "30Rnd_65x39_caseless_msbs_mag",
         "30Rnd_65x39_caseless_msbs_mag_Tracer", "30Rnd_65x39_caseless_msbs_mag_Tracer", "30Rnd_65x39_caseless_msbs_mag_Tracer",
-        "SmokeShell", "HandGrenade", "HandGrenade", "CUP_MAAWS_HEDP_M"
+        "SmokeShell", "HandGrenade", "HandGrenade"
     };
     backpack = QGVAR(hat_backpack);
 };

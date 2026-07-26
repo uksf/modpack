@@ -91,6 +91,22 @@ class GVAR(Heli_Pilot) : GVAR(Rifleman) {
     editorSubcategory = QGVAR(specialists);
     displayName = "Helicopter Pilot";
     vest = "V_CarrierRigKBT_01_Olive_F";
+     magazines[] = {
+        "30Rnd_65x39_caseless_msbs_mag", "30Rnd_65x39_caseless_msbs_mag",
+        "30Rnd_65x39_caseless_msbs_mag", "30Rnd_65x39_caseless_msbs_mag"
+    };
+    respawnMagazines[] = {
+        "30Rnd_65x39_caseless_msbs_mag", "30Rnd_65x39_caseless_msbs_mag",
+        "30Rnd_65x39_caseless_msbs_mag", "30Rnd_65x39_caseless_msbs_mag"
+    };
+    items[] = {
+        "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage",
+        "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage"
+    };
+    respawnItems[] = {
+        "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage",
+        "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage"
+    };
     linkedItems[] = {"V_CarrierRigKBT_01_Olive_F", "H_PilotHelmetHeli_I_E", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio"};
     respawnLinkedItems[] = {"V_CarrierRigKBT_01_Olive_F", "H_PilotHelmetHeli_I_E", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio"};
 };
@@ -99,6 +115,22 @@ class GVAR(Jet_Pilot) : GVAR(Rifleman) {
     editorSubcategory = QGVAR(specialists);
     displayName = "Jet Pilot";
     vest = "V_CarrierRigKBT_01_Olive_F";
+     magazines[] = {
+        "30Rnd_65x39_caseless_msbs_mag", "30Rnd_65x39_caseless_msbs_mag",
+        "30Rnd_65x39_caseless_msbs_mag", "30Rnd_65x39_caseless_msbs_mag"
+    };
+    respawnMagazines[] = {
+        "30Rnd_65x39_caseless_msbs_mag", "30Rnd_65x39_caseless_msbs_mag",
+        "30Rnd_65x39_caseless_msbs_mag", "30Rnd_65x39_caseless_msbs_mag"
+    };
+    items[] = {
+        "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage",
+        "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage"
+    };
+    respawnItems[] = {
+        "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage",
+        "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage"
+    };
     linkedItems[] = {"V_CarrierRigKBT_01_Olive_F", "H_PilotHelmetFighter_I_E", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio"};
     respawnLinkedItems[] = {"V_CarrierRigKBT_01_Olive_F", "H_PilotHelmetFighter_I_E", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio"};
     backpack = "ACE_NonSteerableParachute";
