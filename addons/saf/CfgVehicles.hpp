@@ -21,7 +21,7 @@ class CfgVehicles {
         author = QUOTE(UKSF);
         displayName = "Soldier Base";
         genericNames = "PolishMen";
-        identityTypes[] = {"LanguagePOL", "Head_Euro", "G_Euro"};
+        identityTypes[] = {"LanguagePOL_F", "Head_Euro", "G_Euro"};
         faction = QUOTE(ADDON);
         side = 1;
         minSkill = 0.4;
@@ -141,7 +141,7 @@ class CfgVehicles {
         scope = 1;
         class TransportMagazines {
             MACRO_ADDMAGAZINE(1Rnd_HE_Grenade_shell,8);
-            MACRO_ADDMAGAZINE(1Rnd_HE_CUP_1Rnd_Smoke_M203_Grenade_shell,4);
+            MACRO_ADDMAGAZINE(CUP_1Rnd_Smoke_M203,4);
             MACRO_ADDMAGAZINE(CUP_1Rnd_StarFlare_White_M203,4);
         };
     };
