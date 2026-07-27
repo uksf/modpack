@@ -131,7 +131,7 @@ class CfgGroups {
                     name = "Tank Platoon (AA)";
                     faction = QUOTE(ADDON);
                     side = 1;
-                    class Unit0 { side = 1; vehicle = QGVAR(Leopard2A6); rank = "LIEUTENANT"; position[] = {0, 0, 0}; };
+                    class Unit0 { side = 1; vehicle = QGVAR(leopard2A6); rank = "LIEUTENANT"; position[] = {0, 0, 0}; };
                     class Unit1 { side = 1; vehicle = QGVAR(zsu23); rank = "SERGEANT"; position[] = {10, 0, 0}; };
                     class Unit2 { side = 1; vehicle = QGVAR(m1a1); rank = "CORPORAL"; position[] = {20, 0, 0}; };
                     class Unit3 { side = 1; vehicle = QGVAR(zsu23); rank = "CORPORAL"; position[] = {30, 0, 0}; };
