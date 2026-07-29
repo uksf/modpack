@@ -42,7 +42,11 @@ private _nearestDistance = _targetPosition distance _nearestSpawn;
 } forEach GVAR(spawnPoints);
 
 // Group A — direct intercept, spawns immediately
-private _altitudeA = 1000 + random 300;
+// Match target AGL with a type-aware floor so jets don't follow helis or low-passers into the dirt
+private _terrainZ = getTerrainHeightASL [_targetPosition#0, _targetPosition#1];
+private _targetAGL = ((_targetPosition#2) - _terrainZ) max 0;
+private _floorA = if (_targetVehicle isKindOf "Helicopter") then { 400 } else { 1000 };
+private _altitudeA = (_targetAGL max _floorA) + random 150;
 private _resultA = [_nearestSpawn, GVAR(fighterClassnames), _targetPosition, _altitudeA] call FUNC(spawnAircraft);
 _resultA params ["_groupA", "_vehicleA"];
 
@@ -77,8 +81,12 @@ private _staggerDelay = INTERCEPT_STAGGER_DELAY * (0.75 + random 0.5);
         TRACE_1("Intercept group B aborted — max missions at stagger commit",_target);
     };
 
-    private _altitudeB = 1500 + random 500;
-    private _targetPositionB = getPosASL (vehicle _target);
+    private _targetVehicleB = vehicle _target;
+    private _targetPositionB = getPosASL _targetVehicleB;
+    private _terrainZB = getTerrainHeightASL [_targetPositionB#0, _targetPositionB#1];
+    private _targetAGLB = ((_targetPositionB#2) - _terrainZB) max 0;
+    private _floorB = if (_targetVehicleB isKindOf "Helicopter") then { 700 } else { 1500 };
+    private _altitudeB = (_targetAGLB max _floorB) + 400 + random 300;
     private _resultB = [_nearestSpawn, GVAR(fighterClassnames), _targetPositionB, _altitudeB] call FUNC(spawnAircraft);
     _resultB params ["_groupB", "_vehicleB"];
 

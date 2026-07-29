@@ -25,6 +25,48 @@ params ["_session", "_snapshot"];
 
 INFO("=== API vs Profile Comparison Start ===");
 
+// "Empty" predicate that recurses through arrays / hashmaps. Treats nil, "",
+// [], {}, and any structure containing only empty values as empty. Used so
+// that profile-side `[]` and API-side `[[],[],[],[]]` (or vice versa) compare
+// equal — both represent "no contents", just preserved at different depths.
+private _isEmptyValue = {
+    private _v = _this;
+    if (isNil "_v") exitWith { true };
+    if (_v isEqualType "") exitWith { _v == "" };
+    // CBA_fnc_parseJSON converts JSON null into objNull — treat as empty.
+    if (_v isEqualType objNull) exitWith { isNull _v };
+    if (_v isEqualType grpNull) exitWith { isNull _v };
+    if (_v isEqualType createHashMap) exitWith {
+        if (count _v == 0) exitWith { true };
+        private _all = true;
+        { if (!((_v get _x) call _isEmptyValue)) exitWith { _all = false } } forEach (keys _v);
+        _all
+    };
+    if (_v isEqualType []) exitWith {
+        if (count _v == 0) exitWith { true };
+        private _all = true;
+        { if (!(_x call _isEmptyValue)) exitWith { _all = false } } forEach _v;
+        _all
+    };
+    false
+};
+
+// Coerce a pair-list ([[string, value], ...]) into a hashmap. Returns nil if
+// the value is not pair-shaped. Empty arrays coerce to an empty hashmap.
+private _pairListToHashmap = {
+    params ["_v"];
+    if !(_v isEqualType []) exitWith { nil };
+    if (count _v == 0) exitWith { createHashMap };
+    private _ok = true;
+    {
+        if (!(_x isEqualType []) || {count _x != 2} || {!((_x#0) isEqualType "")}) exitWith { _ok = false };
+    } forEach _v;
+    if (!_ok) exitWith { nil };
+    private _hm = createHashMap;
+    { _hm set [_x#0, _x#1] } forEach _v;
+    _hm
+};
+
 // Type-aware comparison that handles float precision differences from
 // JSON round-trip. CBA_fnc_encodeJSON uses str which rounds to ~6 sig
 // digits, so the API value can differ by up to ~0.04 for large numbers.
@@ -33,7 +75,12 @@ INFO("=== API vs Profile Comparison Start ===");
 private _isEqual = {
     params ["_a", "_b"];
     if (isNil "_a" && isNil "_b") exitWith { true };
-    if (isNil "_a" || isNil "_b") exitWith { false };
+    // nil on one side ↔ "empty" on the other (e.g. profile stores `any` for
+    // ivBags, API emits `[]`) — both mean "no value".
+    if (isNil "_a") exitWith { _b call _isEmptyValue };
+    if (isNil "_b") exitWith { _a call _isEmptyValue };
+    // Both fully empty (recursively) → match regardless of nesting depth.
+    if ((_a call _isEmptyValue) && {_b call _isEmptyValue}) exitWith { true };
     // Side type (e.g. WEST) becomes string "WEST" after JSON round-trip — coerce for comparison
     if (_a isEqualType west && _b isEqualType "") exitWith { str _a == _b };
     if (_a isEqualType "" && _b isEqualType west) exitWith { _a == str _b };
@@ -48,11 +95,26 @@ private _isEqual = {
         if (!isNil "_parsed") exitWith { [_a, _parsed] call _isEqual };
         false
     };
+    // Profile may emit a pair-list ([[k,v],...]) where API now emits a hashmap
+    // (e.g. ace_medical_logs after the SQF-string transport rebuild). Coerce so
+    // the comparison sees the same shape on both sides.
+    if (_a isEqualType [] && _b isEqualType createHashMap) exitWith {
+        private _coerced = [_a] call _pairListToHashmap;
+        if (isNil "_coerced") exitWith { false };
+        [_coerced, _b] call _isEqual
+    };
+    if (_a isEqualType createHashMap && _b isEqualType []) exitWith {
+        private _coerced = [_b] call _pairListToHashmap;
+        if (isNil "_coerced") exitWith { false };
+        [_a, _coerced] call _isEqual
+    };
     if !(_a isEqualType _b) exitWith { false };
-    // str comparison for numbers: CBA_fnc_encodeJSON uses str, so the API
-    // round-trip is only precise to str's output. If str matches, the values
-    // are as close as the JSON encoding can represent.
-    if (_a isEqualType 0) exitWith { str _a == str _b };
+    // BIS str() of a float truncates to ~6 sig figs; parseSimpleArray then recovers
+    // the truncated value, so the API round-trip loses sub-significant precision
+    // relative to the profile's CBA-serialised raw values. Match if either:
+    //   - arithmetic == (handles -0 vs 0 binary-distinct-but-equal),
+    //   - str() outputs match (handles small precision drift from str rounding).
+    if (_a isEqualType 0) exitWith { _a == _b || {str _a == str _b} };
     if (_a isEqualType "") exitWith { _a == _b };
     if (_a isEqualType []) exitWith {
         if (count _a != count _b) exitWith { false };
@@ -81,6 +143,27 @@ private _mismatchDetail = {
     if (isNil "_a" && !isNil "_b") exitWith { "profile=nil" };
     if (!isNil "_a" && isNil "_b") exitWith { "api=nil" };
     if (isNil "_a" && isNil "_b") exitWith { "both nil (shouldn't mismatch)" };
+    // Mirror the pair-list ↔ hashmap coercion from _isEqual so reports walk the actual divergence
+    // rather than blaming the SQF→hashmap reconstruction shape difference.
+    if (_a isEqualType [] && _b isEqualType createHashMap) then {
+        private _coerced = [_a] call _pairListToHashmap;
+        if (!isNil "_coerced") then { _a = _coerced };
+    };
+    if (_a isEqualType createHashMap && _b isEqualType []) then {
+        private _coerced = [_b] call _pairListToHashmap;
+        if (!isNil "_coerced") then { _b = _coerced };
+    };
+    // Mirror the legacy aceMedical-as-JSON-string coercion too — _isEqual parses
+    // the JSON and recurses; _mismatchDetail must do the same so its breakdown
+    // walks actual content divergence rather than reporting the trivial type mismatch.
+    if (_a isEqualType "" && _b isEqualType createHashMap) then {
+        private _parsed = [_a, 2] call CBA_fnc_parseJSON;
+        if (!isNil "_parsed") then { _a = _parsed };
+    };
+    if (_a isEqualType createHashMap && _b isEqualType "") then {
+        private _parsed = [_b, 2] call CBA_fnc_parseJSON;
+        if (!isNil "_parsed") then { _b = _parsed };
+    };
     if !(_a isEqualType _b) exitWith {
         format ["type mismatch: profile=%1, api=%2", typeName _a, typeName _b]
     };
@@ -363,3 +446,16 @@ if (_failures == 0) then {
 } else {
     ERROR_1("API persistence proofing: %1 CATEGORIES FAILED — see warnings above for details",_failures);
 };
+
+GVAR(lastCompareResult) = createHashMapFromArray [
+    ["successes",        _successes],
+    ["failures",         _failures],
+    ["objectMatches",    _objectMatches],
+    ["objectMismatches", _objectMismatches],
+    ["objectMissing",    _objectMissing],
+    ["playerMatches",    _playerMatches],
+    ["playerMismatches", _playerMismatches],
+    ["playerMissing",    _playerMissing],
+    ["customMatches",    _customMatches],
+    ["customMismatches", _customMismatches]
+];

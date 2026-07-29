@@ -7,9 +7,10 @@ ADDON = false;
 GVAR(killswitched) = false;
 GVAR(groupDataMap) = createHashMap;
 GVAR(groupPositionMap) = [];
-GVAR(curatorViewMapID) = 999;
-GVAR(curatorViewPFHID) = -1;
-GVAR(showVirtualised) = false;
+GVAR(simulatedGroupIds) = [];
+GVAR(simPhases) = createHashMap;
+GVAR(simCursor) = -1;
+GVAR(simPhaseCounter) = 0;
 
 [QGVAR(include), {_this setVariable [QGVAR(excluded), false, true]}] call CBA_fnc_addEventHandler;
 [QGVAR(exclude), {_this setVariable [QGVAR(excluded), true, true]}] call CBA_fnc_addEventHandler;
@@ -17,10 +18,8 @@ GVAR(showVirtualised) = false;
 [QGVAR(recreateGroup), {call FUNC(recreateGroup)}] call CBA_fnc_addEventHandler;
 
 if (isServer) then {
-    GVAR(dataStreamClientObjects) = [];
     [QGVAR(devirtualiseNearby), {call FUNC(devirtualiseNearby)}] call CBA_fnc_addEventHandler;
     [QGVAR(recreateAll), {call FUNC(recreateAll)}] call CBA_fnc_addEventHandler;
-    [QGVAR(toggleDataStreamForClient), {call FUNC(toggleDataStreamForClient)}] call CBA_fnc_addEventHandler;
 
     {
         [_x, "initPost", {(group (_this#0)) setVariable [QGVAR(excluded), true, true]}, true] call CBA_fnc_addClassEventHandler;
@@ -29,16 +28,6 @@ if (isServer) then {
 
 if (hasInterface) then {
     call FUNC(addContextActions);
-
-    ["zen_curatorDisplayLoaded", {call FUNC(curatorDisplayLoad)}] call CBA_fnc_addEventHandler;
-    ["zen_curatorDisplayUnloaded", {call FUNC(curatorDisplayUnload)}] call CBA_fnc_addEventHandler;
-
-    [QGVAR(streamData), {
-        params ["_groupPositionMap", "_groupDataMap"];
-
-        GVAR(groupPositionMap) = _groupPositionMap;
-        GVAR(groupDataMap) = _groupDataMap;
-    }] call CBA_fnc_addEventHandler;
 };
 
 #include "initSettings.inc.sqf"

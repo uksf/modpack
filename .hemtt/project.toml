@@ -12,6 +12,7 @@ include = [
     "AUTHORS.txt",
     "LICENSE",
     "uksf_x64.dll",
+    "ggml-base.en.bin",
     "cba_settings.sqf",
     "UKSFTemplate.VR/**",
 ]

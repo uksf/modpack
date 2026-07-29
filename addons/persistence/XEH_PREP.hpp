@@ -15,6 +15,7 @@ PREP(getAbortedObjectInteractions);
 PREP(getObjectCargo);
 PREP(getObjectData);
 PREP(handleApiLoadChunk);
+PREP(rebuildHashmaps);
 PREP(handleDisconnect);
 PREP(initClient);
 PREP(initServer);

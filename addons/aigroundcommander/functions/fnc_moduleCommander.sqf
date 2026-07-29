@@ -58,9 +58,9 @@ publicVariable QGVAR(enabled);
         TRACE_1("",GVAR(enemyAggressionLevel));
         private _index = GVAR(killerPlayers) findIf {_instigator == (_x#0)};
         if (_index != -1) then {
-            GVAR(killerPlayers) set [_index, [_instigator, time + PLAYER_FIRED_TIMEOUT]];
+            GVAR(killerPlayers) set [_index, [_instigator, CBA_missionTime + PLAYER_FIRED_TIMEOUT]];
         } else {
-            GVAR(killerPlayers) pushBack [_instigator, time + PLAYER_FIRED_TIMEOUT];
+            GVAR(killerPlayers) pushBack [_instigator, CBA_missionTime + PLAYER_FIRED_TIMEOUT];
         };
     }];
 }, true, [], true] call CBA_fnc_addClassEventHandler;

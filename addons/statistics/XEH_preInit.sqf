@@ -11,12 +11,6 @@ GVAR(providers) = createHashMap;
 GVAR(eventBuffer) = [];
 GVAR(clientSyncPFH) = -1;
 
-// Performance monitoring: per-frame overhead tracking
-// Each provider adds its execution time here during the frame; the PFH sums and resets
-GVAR(frameTimings) = createHashMap;
-GVAR(frameOverhead) = 0;
-GVAR(performancePFH) = -1;
-
 // Explosives deduplication: netId -> classname
 // Entries removed on defuse; remaining entries emitted at sync
 GVAR(placedExplosives) = createHashMap;
@@ -36,7 +30,10 @@ GVAR(lastFuelVehicle) = objNull;
 GVAR(killswitch) = false;
 GVAR(collectionStarted) = false;
 
-if (isServer) then {
+// Stats pipeline pushes batches to the API extension, which is dedicated-only
+// (see addons/api/XEH_preStart.sqf). Gate on isDedicated so SP / listen-server
+// hosts don't accumulate buffers that would never be flushed.
+if (isDedicated) then {
     GVAR(serverBuffer) = [];
     GVAR(serverSyncPFH) = -1;
 

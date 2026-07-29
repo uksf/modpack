@@ -37,15 +37,17 @@ pub fn start(port: u16) -> Result<(), String> {
             }
 
             // Route: GET /server — return cached server status
+            // Body is SQF-notation (engine-native str() of the server_status data hashmap).
+            // Consumer (GameServerProcessManager) parses it via SqfNotationParser.
             if request.method() == &tiny_http::Method::Get && request.url() == "/server" {
-                let (status_code, body) = match crate::status::get_status_json() {
-                    Some(json) => (200, json),
-                    None => (503, r#"{"error":"no status available"}"#.to_string()),
+                let (status_code, body) = match crate::status::get_status_sqf() {
+                    Some(sqf) => (200, sqf),
+                    None => (503, "no status available".to_string()),
                 };
                 let response = tiny_http::Response::from_string(&body)
                     .with_status_code(status_code)
                     .with_header(
-                        "Content-Type: application/json"
+                        "Content-Type: text/plain; charset=utf-8"
                             .parse::<tiny_http::Header>()
                             .unwrap(),
                     );
@@ -161,7 +163,7 @@ mod tests {
             temp.local_addr().unwrap().port()
         };
 
-        crate::status::cache_status(r#"{"map":"Altis","players":3}"#);
+        crate::status::cache_status(r#"[["map","Altis"],["players",["uid1","uid2","uid3"]]]"#);
 
         start(port).unwrap();
         std::thread::sleep(std::time::Duration::from_millis(100));

@@ -3,14 +3,19 @@ use simplelog::{LevelFilter, WriteLogger};
 use std::fs::{self, File};
 use std::path::PathBuf;
 
+mod audio;
+mod audio_dsp;
 mod bridge;
 mod commands;
 mod config;
+mod file_export;
+mod dev_run;
 mod input;
 mod listener;
 mod loader;
 mod sender;
 mod status;
+mod stt;
 
 fn logs_dir() -> PathBuf {
     std::env::current_exe()
@@ -63,5 +68,21 @@ fn init() -> Extension {
         .command("event", commands::event)
         .command("load", commands::load)
         .command("pressSpace", commands::press_space)
+        .command("fileExportOpen", commands::file_export_open)
+        .command("fileExportWrite", commands::file_export_write)
+        .command("fileExportClose", commands::file_export_close)
+        .command("fileExportFinish", commands::file_export_finish)
+        .command("devRunOpen", commands::dev_run_open)
+        .command("devRunChunk", commands::dev_run_chunk)
+        .command("devRunLog", commands::dev_run_log)
+        .command("devRunFinish", commands::dev_run_finish)
+        .command("audioOpen", commands::audio_open)
+        .command("audioChunk", commands::audio_chunk)
+        .command("audioPlay", commands::audio_play)
+        .command("audioPos", commands::audio_pos)
+        .command("audioListener", commands::audio_listener)
+        .command("audioStop", commands::audio_stop)
+        .command("sttStart", commands::stt_start)
+        .command("sttStop", commands::stt_stop)
         .finish()
 }

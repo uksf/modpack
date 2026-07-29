@@ -33,6 +33,7 @@ GVAR(persistentObjectIconsPFHID) = [{
         _args set [0, CBA_missionTime];
     };
 
+    private _iconSpacing = 0.0125;
     {
         _x params ["_id", "_object"];
 
@@ -55,6 +56,6 @@ GVAR(persistentObjectIconsPFHID) = [{
         };
 
         drawIcon3D ["", _colour, _pos, 0, 0, 0, _type, 1, 0.025, "TahomaB", "center"];
-        drawIcon3D ["", _colour, _pos, 0, 0, 0, _id, 1, 0.025, "TahomaB", "center", false, 0, DEBUG_ICON_SPACING];
+        drawIcon3D ["", _colour, _pos, 0, 0, 0, _id, 1, 0.025, "TahomaB", "center", false, 0, _iconSpacing];
     } forEach GVAR(persistentObjects);
 }, 0, [0]] call CBA_fnc_addPerFrameHandler;

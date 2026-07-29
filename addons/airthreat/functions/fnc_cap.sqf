@@ -30,7 +30,7 @@ if (GVAR(fighterClassnames) isEqualTo []) exitWith {
 private _airspace = selectRandom GVAR(airspaces);
 _airspace params ["_airspacePosition", "_sizeA", "_sizeB", "_angle", "_isRectangle"];
 private _spawnPosition = selectRandom GVAR(spawnPoints);
-private _altitude = 800 + random 1200;
+private _altitude = 2200 + random 600;
 
 private _result = [_spawnPosition, GVAR(fighterClassnames), _airspacePosition, _altitude] call FUNC(spawnAircraft);
 _result params ["_group", "_vehicle"];
@@ -77,22 +77,21 @@ if (_isRectangle) then {
     _patrolWaypoint setWaypointSpeed "NORMAL";
 };
 
-private _expiryTime = time + GVAR(capTimeout);
+private _expiryTime = CBA_missionTime + GVAR(capTimeout);
 
 // Monitoring PFH — scans for nearby player aircraft
 [{
     params ["_args", "_idPFH"];
     _args params ["_group", "_vehicle", "_expiryTime"];
 
-    if (isNull _group || {!alive _vehicle} || {isNull (driver _vehicle)}) exitWith {
-        [QGVAR(missionComplete), [_group, _vehicle]] call CBA_fnc_localEvent;
-        [_group, _vehicle] call FUNC(cleanupAircraft);
+    if (isNull _group || {!alive _vehicle} || {!alive (driver _vehicle)}) exitWith {
+        [_group, _vehicle] call FUNC(handleMissionEnd);
         [_idPFH] call CBA_fnc_removePerFrameHandler;
     };
 
     if !(local (leader _group)) exitWith {};
 
-    if (time > _expiryTime) exitWith {
+    if (CBA_missionTime > _expiryTime) exitWith {
         [_group, _vehicle] call FUNC(addRtbWaypoint);
         [_idPFH] call CBA_fnc_removePerFrameHandler;
     };

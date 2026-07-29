@@ -1,3 +1,7 @@
 [env]
 # Extension uses global statics (arma-rs requirement) — tests must run single-threaded
 RUST_TEST_THREADS = "1"
+# whisper-rs-sys runs bindgen at build time, which needs LLVM/libclang on PATH
+# (the crate's pre-bundled bindings are Linux-generated and fail under MSVC, so the
+# WHISPER_DONT_GENERATE_BINDINGS escape hatch is NOT usable on Windows). All UKSF
+# build machines are Windows + have LLVM installed; bindgen generates correct MSVC bindings.

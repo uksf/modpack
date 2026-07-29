@@ -1,5 +1,6 @@
 #include "script_component.hpp"
 #define DELAY 3
+#define SIM_DELAY 1
 
 if (!GVAR(enabled)) exitWith {
     INFO("Virtualisation is disabled.");
@@ -11,6 +12,8 @@ if (EGVAR(caching,enabled)) exitWith {
 };
 
 INFO("Virtualisation is enabled.");
+
+call FUNC(registerDebugProviders);
 
 if (isServer) then {
     // Virtualisation
@@ -37,8 +40,13 @@ if (isServer) then {
         }, 0, [_groups, _count, _perFrame, 0]] call CBA_fnc_addPerFrameHandler;
     }, DELAY, []] call CBA_fnc_addPerFrameHandler;
 
+    // Sim — chunked across SIM_INTERVAL window so debug ticks see incremental progress.
+    [{
+        if (GVAR(killswitched) || isGamePaused) exitWith {};
+        call FUNC(simulateGroups);
+    }, SIM_DELAY, []] call CBA_fnc_addPerFrameHandler;
+
     // Recreation
-    // TODO: think about performance for this
     [{
         // Killswitch
         if (GVAR(killswitched) || isGamePaused) exitWith {};
@@ -60,10 +68,19 @@ if (isServer) then {
         private _id = (GVAR(groupPositionMap) deleteAt _groupIndex)#0;
         TRACE_1("requesting recreate group",_id);
 
-        private _groupData = GVAR(groupDataMap) deleteAt _id;
-        [QGVAR(recreateGroup), [_groupData]] call EFUNC(common,headlessEvent);
+        private _simulatedIndex = GVAR(simulatedGroupIds) findIf {_x == _id};
+        if (_simulatedIndex >= 0) then { GVAR(simulatedGroupIds) deleteAt _simulatedIndex };
+        GVAR(simPhases) deleteAt _id;
 
-        call FUNC(sendDataToClients);
+        private _entry = GVAR(groupDataMap) deleteAt _id;
+        _entry params ["_side", "_vehicles", "_infantry", "_waypoints", "_combatMode", "_formationDirection",
+                       "_simState", "", "", "", "_originalLeaderPos"];
+
+        private _simPosition = _simState#1;
+        private _rebaseDelta = [_simPosition#0 - _originalLeaderPos#0, _simPosition#1 - _originalLeaderPos#1, 0];
+
+        private _payload = [_side, _vehicles, _infantry, _waypoints, _combatMode, _formationDirection, _rebaseDelta];
+        [QGVAR(recreateGroup), [_payload]] call EFUNC(common,headlessEvent);
     }, DELAY, []] call CBA_fnc_addPerFrameHandler;
 };
 

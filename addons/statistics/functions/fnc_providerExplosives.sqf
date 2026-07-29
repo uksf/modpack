@@ -19,7 +19,6 @@
 // Track placement — fires globally, only record when local player placed it
 ["ace_explosives_place", {
     params ["_explosive", "_direction", "_pitch", "_unit"];
-    private _startTime = diag_tickTime;
 
     if (_unit isEqualTo player) then {
         private _explosiveNetId = netId _explosive;
@@ -27,16 +26,11 @@
             GVAR(placedExplosives) set [_explosiveNetId, typeOf _explosive];
         };
     };
-
-    ["explosives", _startTime] call FUNC(addProviderTiming);
 }] call CBA_fnc_addEventHandler;
 
 // Track defusal — fires globally, remove regardless of who defused it
 ["ace_explosives_defuse", {
     params ["_explosive", "_unit"];
-    private _startTime = diag_tickTime;
 
     GVAR(placedExplosives) deleteAt (netId _explosive);
-
-    ["explosives", _startTime] call FUNC(addProviderTiming);
 }] call CBA_fnc_addEventHandler;

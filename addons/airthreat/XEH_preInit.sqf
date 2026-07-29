@@ -31,9 +31,11 @@ GVAR(reconTimeout) = 600;
 GVAR(casTimeout) = 600;
 GVAR(strikeTimeout) = 600;
 GVAR(interceptTimeout) = 600;
+GVAR(orphanTimeout) = 300;
 
 // State — server only
 GVAR(activeMissions) = [];
+GVAR(orphanedAircraft) = [];
 GVAR(spawnPoints) = [];
 GVAR(airspaces) = [];
 GVAR(casStrikeZones) = [];
@@ -66,6 +68,13 @@ GVAR(debugTimeoutMap) = createHashMapFromArray [
     ["cas", QGVAR(casTimeout)],
     ["strike", QGVAR(strikeTimeout)],
     ["intercept", QGVAR(interceptTimeout)]
+];
+GVAR(debugLabelMap) = createHashMapFromArray [
+    ["cap", "CAP"],
+    ["recon", "Recon"],
+    ["cas", "CAS"],
+    ["strike", "Strike"],
+    ["intercept", "Intercept"]
 ];
 GVAR(debugFormatTime) = {
     params ["_seconds"];

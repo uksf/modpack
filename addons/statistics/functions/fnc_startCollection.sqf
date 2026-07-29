@@ -21,7 +21,10 @@ if (GVAR(collectionStarted)) exitWith {
     WARNING("Statistics collection already started");
 };
 
-private _isServer = isServer;
+// "server" locality runs only on dedicated — that's where the API push lives.
+// SP / listen-server hosts have isServer=true but no extension, so the
+// server-side sync would just nil-deref serverBuffer or spam sendEvent warnings.
+private _isDedicated = isDedicated;
 private _isClient = hasInterface;
 
 {
@@ -33,7 +36,7 @@ private _isClient = hasInterface;
             };
         };
         case "server": {
-            if (_isServer) then {
+            if (_isDedicated) then {
                 call _setupFunction;
             };
         };
@@ -50,23 +53,15 @@ if (_isClient) then {
     }, 30, []] call CBA_fnc_addPerFrameHandler;
 };
 
-// Start performance monitoring PFH (every frame) — runs on clients and HCs
-// because "all" locality providers (e.g. combatDamage) accumulate frameTimings on all machines
-if (!_isServer) then {
-    GVAR(performancePFH) = [{
-        call FUNC(performancePFH);
-    }, 0, []] call CBA_fnc_addPerFrameHandler;
-};
-
 // Start HC sync PFH (every 30 seconds) — same as client sync but for headless clients
-if (!_isServer && !_isClient) then {
+if (!isServer && !_isClient) then {
     GVAR(clientSyncPFH) = [{
         call FUNC(clientSync);
     }, 30, []] call CBA_fnc_addPerFrameHandler;
 };
 
-// Start server sync PFH (every 60 seconds)
-if (_isServer) then {
+// Start server sync PFH (every 60 seconds) — dedicated only (API push target)
+if (_isDedicated) then {
     GVAR(serverSyncPFH) = [{
         call FUNC(serverSync);
     }, 60, []] call CBA_fnc_addPerFrameHandler;

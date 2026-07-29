@@ -6,7 +6,10 @@ ADDON = false;
 
 ADDON = true;
 
-if (isServer) then {
+// API extension only attaches on dedicated servers (see XEH_preStart guard).
+// SP and listen-server hosts have isServer=true but no extension — skip
+// otherwise sendEvent spams "error: not running" every PFH tick.
+if (isDedicated) then {
     call FUNC(initMission);
 
     // Send mission_ended and stop status push during controlled shutdown

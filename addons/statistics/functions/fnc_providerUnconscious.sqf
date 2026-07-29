@@ -4,8 +4,10 @@
         Tim Beswick
 
     Description:
-        Unconscious provider setup. Listens to the ACE unconscious CBA global event
-        and records when the local player goes unconscious.
+        Medical state provider. Listens to the ACE unconscious, cardiac
+        arrest, and coma CBA global events and records the local player's
+        transitions through each state. Each state emits a paired event:
+        value = 1 on enter, value = 0 on leave.
 
     Parameters:
         None
@@ -15,13 +17,33 @@
 */
 ["ace_unconscious", {
     params ["_unit", "_active"];
-    private _startTime = diag_tickTime;
 
-    if (_unit isEqualTo player && {_active}) then {
+    if (_unit isEqualTo player) then {
         [createHashMapFromArray [
-            ["type", "unconscious"]
+            ["type", "unconscious"],
+            ["value", [0, 1] select _active]
         ]] call FUNC(addEvent);
     };
+}] call CBA_fnc_addEventHandler;
 
-    ["unconscious", _startTime] call FUNC(addProviderTiming);
+["ace_cardiacArrest", {
+    params ["_unit", "_active"];
+
+    if (_unit isEqualTo player) then {
+        [createHashMapFromArray [
+            ["type", "cardiacArrest"],
+            ["value", [0, 1] select _active]
+        ]] call FUNC(addEvent);
+    };
+}] call CBA_fnc_addEventHandler;
+
+["ace_coma", {
+    params ["_unit", "_active"];
+
+    if (_unit isEqualTo player) then {
+        [createHashMapFromArray [
+            ["type", "coma"],
+            ["value", [0, 1] select _active]
+        ]] call FUNC(addEvent);
+    };
 }] call CBA_fnc_addEventHandler;

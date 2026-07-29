@@ -4,21 +4,23 @@
         Tim Beswick
 
     Description:
-        Formats unconscious status text for a player, including coma or cardiac arrest countdown.
+        Formats unconscious status text for a player, including coma or
+        cardiac arrest countdown computed from endpoint timestamps.
 
     Parameter(s):
-        0: Player <OBJECT>
+        0: Coma end time, or -1 if not in coma <NUMBER>
+        1: Cardiac arrest end time, or -1 if not in cardiac arrest <NUMBER>
 
     Return Value:
         Formatted status text <STRING>
 
     Example:
-        [_player] call uksf_zeus_fnc_formatUnconsciousText
+        [_comaEnd, _cardiacEnd] call uksf_zeus_fnc_formatUnconsciousText
 */
-params ["_player"];
+params ["_comaEndTime", "_cardiacArrestEndTime"];
 
-private _comaTimeLeft = round (_player getVariable ["ace_medical_statemachine_comaTimeLeft", -1]);
-if (_comaTimeLeft > -1) exitWith {
+if (_comaEndTime > -1) exitWith {
+    private _comaTimeLeft = round ((_comaEndTime - CBA_missionTime) max 0);
     private _minutes = floor (_comaTimeLeft / 60);
     private _seconds = _comaTimeLeft % 60;
     if (_minutes > 0) then {
@@ -29,8 +31,8 @@ if (_comaTimeLeft > -1) exitWith {
     }
 };
 
-private _cardiacArrestTimeLeft = round (_player getVariable ["ace_medical_statemachine_cardiacArrestTimeLeft", -1]);
-if (_cardiacArrestTimeLeft > -1) exitWith {
+if (_cardiacArrestEndTime > -1) exitWith {
+    private _cardiacArrestTimeLeft = round ((_cardiacArrestEndTime - CBA_missionTime) max 0);
     private _minutes = floor (_cardiacArrestTimeLeft / 60);
     private _seconds = _cardiacArrestTimeLeft % 60;
     if (_minutes > 0) then {

@@ -17,20 +17,17 @@
         call uksf_common_fnc_fpsStartReporting
 */
 
-private _identifier = if (isServer) then {
-    "server"
-} else {
-    if (hasInterface) then {
-        getPlayerUID player
-    } else {
-        profileName
-    };
+// In SP / listen-server (isServer && hasInterface), report under BOTH "server" and
+// the player's UID so the HUD shows server FPS and the 3D icon shows player FPS.
+private _reports = [];
+if (isServer) then {
+    _reports pushBack ["server", "server"];
 };
-
-private _type = if (isServer) then {
-    "server"
-} else {
-    if (hasInterface) then { "player" } else { "hc" };
+if (hasInterface) then {
+    _reports pushBack [getPlayerUID player, "player"];
+};
+if (!isServer && !hasInterface) then {
+    _reports pushBack [profileName, "hc"];
 };
 
 if (!isNil QGVAR(fpsReportingPFH)) then {
@@ -39,13 +36,16 @@ if (!isNil QGVAR(fpsReportingPFH)) then {
 
 GVAR(fpsReportingPFH) = [{
     params ["_args"];
-    _args params ["_identifier", "_type"];
+    _args params ["_reports"];
 
     private _fps = floor diag_fps;
 
-    if (isServer) then {
-        [_identifier, _type, _fps] call FUNC(fpsReport);
-    } else {
-        [QGVAR(fpsReport), [_identifier, _type, _fps]] call CBA_fnc_serverEvent;
-    };
-}, 1, [_identifier, _type]] call CBA_fnc_addPerFrameHandler;
+    {
+        _x params ["_identifier", "_type"];
+        if (isServer) then {
+            [_identifier, _type, _fps] call FUNC(fpsReport);
+        } else {
+            [QGVAR(fpsReport), [_identifier, _type, _fps]] call CBA_fnc_serverEvent;
+        };
+    } forEach _reports;
+}, 1, [_reports]] call CBA_fnc_addPerFrameHandler;

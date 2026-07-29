@@ -32,8 +32,8 @@ _group setVariable [QGVAR(playerPosition), _playerPosition, true];
     params ["_args", "_idPFH"];
     _args params ["_group", "_playerPosition", "", "_75Percent", "_timeout"];
 
-    if (GVAR(readyAtStagingArea) >= _75Percent || time > _timeout) exitWith {
+    if (GVAR(readyAtStagingArea) >= _75Percent || CBA_missionTime > _timeout) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
         [_group, _playerPosition, 300, "GETOUT", "AWARE", "YELLOW", "NORMAL", "FILE", QUOTE([this] call FUNC(unloadTransport))] call CBA_fnc_addWaypoint;
     };
-}, 10, [_group, _playerPosition, _groupCount, floor (_groupCount * 0.75), time + TIMEOUT]] call CBA_fnc_addPerFrameHandler;
+}, 10, [_group, _playerPosition, _groupCount, floor (_groupCount * 0.75), CBA_missionTime + TIMEOUT]] call CBA_fnc_addPerFrameHandler;

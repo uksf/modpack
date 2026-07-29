@@ -56,7 +56,7 @@ private _data = [
     animationState _unit,
     _loadout,
     damage _unit,
-    [_unit] call ace_medical_fnc_serializeState,
+    [_unit, false] call ace_medical_fnc_serializeState,
     _unit getVariable ["ACE_hasEarPlugsIn", false],
     (_unit getVariable ["ace_attach_attached", []]) apply {_x#1},
     [_unit] call EFUNC(radios,serializeRadios),

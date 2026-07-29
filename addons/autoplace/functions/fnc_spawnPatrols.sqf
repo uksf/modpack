@@ -42,7 +42,9 @@ if (_safePositions isEqualTo []) exitWith {
 };
 
 for "_patrolIndex" from 1 to _numberOfPatrols do {
-    private _spawnPosition = selectRandom _safePositions;
+    // getSafePositionGrid returns PositionASL; taskPatrol's CYCLE WP path
+    // expects AGL — without conversion CYCLE floats at terrain ASL height.
+    private _spawnPosition = ASLToAGL (selectRandom _safePositions);
 
     [_spawnPosition, _groupSize, _side, _unitList, {
         params ["_spawnPosition", "_patrolRadius", "_group"];

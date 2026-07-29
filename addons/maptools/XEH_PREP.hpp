@@ -1,0 +1,15 @@
+PREP(segmentCount);
+PREP(buildCircle);
+PREP(buildEllipse);
+PREP(buildRaceTrack);
+PREP(buildCone);
+PREP(emitShape);
+PREP(wipeShapes);
+PREP(setMode);
+PREP(cycleMode);
+PREP(canDrawShape);
+PREP(handleMouseButton);
+PREP(handleMouseMove);
+PREP(updatePreview);
+PREP(renderHint);
+PREP(initHeaderDropdown);

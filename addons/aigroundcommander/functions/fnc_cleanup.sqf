@@ -18,7 +18,7 @@
 
 if (!isServer) exitWith {};
 
-GVAR(killerPlayers) = GVAR(killerPlayers) select {time < (_x#1)};
+GVAR(killerPlayers) = GVAR(killerPlayers) select {CBA_missionTime < (_x#1)};
 
 private _groupsToDelete = GVAR(responseGroups) select {
     isNull _x

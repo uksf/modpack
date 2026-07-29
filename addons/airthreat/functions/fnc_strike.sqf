@@ -37,7 +37,7 @@ if (_targetPosition isEqualTo []) exitWith {};
 
 private _spawnPosition = selectRandom GVAR(spawnPoints);
 
-private _result = [_spawnPosition, GVAR(jetClassnames), _targetPosition, 500] call FUNC(spawnAircraft);
+private _result = [_spawnPosition, GVAR(jetClassnames), _targetPosition, 700 + random 200] call FUNC(spawnAircraft);
 _result params ["_group", "_vehicle"];
 
 if (isNull _group) exitWith {};
@@ -80,30 +80,30 @@ _waypoint3 setWaypointStatements [
 // RTB after second pass
 [_group, _vehicle] call FUNC(addRtbWaypoint);
 
-private _expiryTime = time + GVAR(strikeTimeout);
+private _expiryTime = CBA_missionTime + GVAR(strikeTimeout);
 
 [{
     params ["_args", "_idPFH"];
     _args params ["_group", "_vehicle", "_expiryTime", "_reconVehicle"];
 
-    private _strikeComplete = {
-        [QGVAR(missionComplete), [_group, _vehicle]] call CBA_fnc_localEvent;
-        [_group, _vehicle] call FUNC(cleanupAircraft);
-        [_idPFH] call CBA_fnc_removePerFrameHandler;
-        // Notify recon aircraft that strike is done
+    private _notifyRecon = {
         if (!isNull _reconVehicle && {alive _reconVehicle}) then {
             _reconVehicle setVariable [QGVAR(reconState), "complete", true];
         };
     };
 
-    if (isNull _group || {!alive _vehicle} || {isNull (driver _vehicle)}) exitWith {
-        call _strikeComplete;
+    if (isNull _group || {!alive _vehicle} || {!alive (driver _vehicle)}) exitWith {
+        [_group, _vehicle] call FUNC(handleMissionEnd);
+        [_idPFH] call CBA_fnc_removePerFrameHandler;
+        call _notifyRecon;
     };
 
     if !(local (leader _group)) exitWith {};
 
-    if (time > _expiryTime) exitWith {
-        call _strikeComplete;
+    if (CBA_missionTime > _expiryTime) exitWith {
+        [_group, _vehicle] call FUNC(addRtbWaypoint);
+        [_idPFH] call CBA_fnc_removePerFrameHandler;
+        call _notifyRecon;
     };
 }, 30, [_group, _vehicle, _expiryTime, _reconVehicle]] call CBA_fnc_addPerFrameHandler;
 

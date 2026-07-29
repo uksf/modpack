@@ -52,6 +52,27 @@ INFO_4("Objects sorted by ASL height, lowest: %1 at %2, highest: %3 at %4",(_obj
         [_idPFH] call CBA_fnc_removePerFrameHandler;
         publicVariable QGVAR(abortedObjectIds);
 
+        // Flush any second-failed objects deferred during this pass. One save covers all of them
+        // — see fnc_loadObjectData abort branch for context.
+        if (GVAR(pendingAbortedRemovals) isNotEqualTo []) then {
+            private _allObjects = GVAR(dataNamespace) getVariable [QGVAR(objects), []];
+            {
+                private _id = _x;
+                private _foundIndex = _allObjects findIf {_x#IDX_OBJ_ID == _id};
+                if (_foundIndex == -1) then {
+                    WARNING_1("Failed to flush deferred removal for ID '%1', not found in saved objects",_id);
+                } else {
+                    TRACE_1("Unmarking object as persistent (deferred)",_id);
+                    GVAR(unmarkedObjectIds) pushBack _id;
+                    _allObjects deleteAt _foundIndex;
+                };
+            } forEach GVAR(pendingAbortedRemovals);
+            GVAR(pendingAbortedRemovals) = [];
+            publicVariable QGVAR(unmarkedObjectIds);
+            GVAR(dataNamespace) setVariable [QGVAR(objects), _allObjects];
+            call FUNC(saveData);
+        };
+
         if (GVAR(abortedObjectIds) isNotEqualTo []) then {
             private _abortedObjects = ((GVAR(dataNamespace) getVariable [QGVAR(objects), []]) select {_x#0 in GVAR(abortedObjectIds)});
             if (_abortedObjects isEqualTo []) exitWith {

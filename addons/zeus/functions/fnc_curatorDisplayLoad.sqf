@@ -19,6 +19,23 @@ params ["_display"];
 
 [true, player] call ace_common_fnc_setVolume;
 
+GVAR(watchScrollEHId) = _display displayAddEventHandler ["MouseZChanged", {call FUNC(contextWatchScroll)}];
+GVAR(watchKeyDownEHId) = _display displayAddEventHandler ["KeyDown", {
+    params ["", "_key"];
+    if (_key in [42, 54]) then {
+        GVAR(watchOrbitActive) = true;
+        GVAR(watchPrevFrameMouseInit) = false;
+    };
+    false
+}];
+GVAR(watchKeyUpEHId) = _display displayAddEventHandler ["KeyUp", {
+    params ["", "_key"];
+    if (_key in [42, 54]) then {
+        GVAR(watchOrbitActive) = false;
+    };
+    false
+}];
+
 (_display displayCtrl 50) ctrlRemoveEventHandler ["Draw", GVAR(debugMapDrawID)];
 GVAR(debugMapDrawID) = (_display displayCtrl 50) ctrlAddEventHandler ["Draw", {
     call FUNC(debugMapDraw);

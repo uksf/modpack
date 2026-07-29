@@ -58,7 +58,10 @@ player setVariable ["ACE_hasEarPlugsIn", _earplugs, true];
 
 [{call EFUNC(radios,deserializeRadios)}, [_radios], 2] call CBA_fnc_waitAndExecute;
 [_diveState] call EFUNC(diving,deserialiseState);
-[player, _aceStates] call ace_medical_fnc_deserializeState;
+// _aceStates is a native HashMap when loaded from the API or post-disconnect
+// dataNamespace, but legacy profileNamespace entries arrive as the old JSON
+// string. deserializeState picks the right path from the type itself.
+[player, _aceStates, _aceStates isEqualType ""] call ace_medical_fnc_deserializeState;
 
 _vehicleState params ["_vehicleId"];
 if (_vehicleId != "") exitWith {
