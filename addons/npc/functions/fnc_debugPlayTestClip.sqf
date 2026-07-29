@@ -25,8 +25,9 @@ if (isNull _npc) exitWith {
 };
 
 // loadFile, not a macro or preprocessFile: base64 contains "/" pairs and the preprocessor eats
-// everything from a "//" to the end of the line
-private _clipB64 = loadFile QPATHTOF(data\test_clip.b64.txt);
+// everything from a "//" to the end of the line. trim because a trailing newline in the file is
+// an invalid base64 symbol and rejects the whole clip.
+private _clipB64 = trim (loadFile QPATHTOF(data\test_clip.b64.txt));
 if (_clipB64 isEqualTo "") exitWith {
     systemChat "[uksf_npc] Test clip missing from the build.";
     ""

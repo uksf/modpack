@@ -88,7 +88,15 @@ Addons without scripted behavior (config-only, e.g. `gear`, `units`, `weapons`) 
 
 ### Rust Extension (extension/)
 
-A Rust-based Arma extension DLL (`uksf_x64.dll`) providing HTTP communication between the game and the UKSF API. Built with `cargo build --release`. Handles outbound event sending and inbound command listening via localhost HTTP. Packaged automatically by HEMTT.
+A Rust-based Arma extension DLL (`uksf_x64.dll`) at the project root: UKSF API HTTP transport, NPC positional audio, whisper STT. HEMTT copies the committed binary but never compiles it, so `hemtt dev` and `hemtt build` ship whatever DLL is on disk. **Any change under `extension/` must be built and the binary copied to the project root, or the change is invisible in game:**
+
+```bash
+cmd //c "tools\build_extension.bat --release"          # vcvars64 + LLVM env for whisper-rs bindgen
+cp extension/target/release/uksf_x64.dll uksf_x64.dll   # HEMTT packages the root copy
+hemtt dev
+```
+
+Plain `cargo build` fails or silently produces broken bindings: whisper-rs-sys runs bindgen, which needs MSVC/Windows SDK headers on `INCLUDE` and clang's builtin headers. Commit the rebuilt DLL with the source change. A missing command shows up in game as `callExtension` returning `["", 1, 0]` — arma-rs return code 1 is command-not-found, not a runtime error.
 
 ## CBA Macro System
 
