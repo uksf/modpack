@@ -24,5 +24,13 @@ if (isNull _npc) exitWith {
     ""
 };
 
+// loadFile, not a macro or preprocessFile: base64 contains "/" pairs and the preprocessor eats
+// everything from a "//" to the end of the line
+private _clipB64 = loadFile QPATHTOF(data\test_clip.b64.txt);
+if (_clipB64 isEqualTo "") exitWith {
+    systemChat "[uksf_npc] Test clip missing from the build.";
+    ""
+};
+
 private _clipId = format ["debug_%1", diag_tickTime];
-[_clipId, _npc, UKSF_NPC_TEST_CLIP_B64] call FUNC(playClip);
+[_clipId, _npc, _clipB64] call FUNC(playClip);
