@@ -68,7 +68,8 @@ private _basePitchDeg = atan (_basePitch / _baseHorizDist);
 
 private _effectiveYaw = _baseYawDeg + GVAR(watchOrbitYawSmooth);
 private _effectivePitch = ((_basePitchDeg + GVAR(watchOrbitPitchSmooth)) max -85) min 85;
-private _distance = (_baseDistance + GVAR(watchZoom)) max 1.0;
+GVAR(watchZoom) = GVAR(watchZoom) max (1.0 - _baseDistance);
+private _distance = _baseDistance + GVAR(watchZoom);
 private _cosP = cos _effectivePitch;
 private _behindAmt = _distance * (cos _effectiveYaw) * _cosP;
 private _rightAmt = _distance * (sin _effectiveYaw) * _cosP;
