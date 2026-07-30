@@ -22,11 +22,13 @@
 // clip until this much is buffered, so the mouth must not start before it.
 #define SPEECH_PREBUFFER 0.2
 
-// Fillers mask brain latency, but one before every reply is a tell in itself. Most turns
-// wait past the usual answer time, so the filler only covers a turn that runs slow and the
-// first audio frame cancels it. The rest fire early on purpose: a guard who sometimes
-// grunts before he speaks and sometimes does not is the point, and the variance is what
-// stops the same handful of noises reading as a mechanism.
+// Fillers mask brain latency, but one before every reply is a tell in itself. A normal
+// conversational gap is about a fifth of a second (Stivers et al. 2009) and silence starts
+// to read as trouble at about one second (Jefferson's standard maximum silence), so a turn
+// answering in the usual two seconds is already past both and needs no help. The wait is
+// set past the typical answer instead, and only a turn slower than that gets covered.
+// The rest fire early on purpose: a guard who sometimes grunts before he speaks and
+// sometimes does not is what stops the noises reading as a mechanism.
 #define FILLER_DELAY 2.2
 #define FILLER_EARLY_CHANCE 0.35
 #define FILLER_EARLY_MIN 0.8
@@ -35,6 +37,11 @@
 // A cold model or a slow route can leave a player waiting many seconds, and one grunt at
 // the front of that does not cover it. Keep filling at uneven intervals, but stop well
 // short of a guard who mutters forever at someone the brain has plainly failed to answer.
-#define FILLER_GAP_MIN 1.2
-#define FILLER_GAP_SPREAD 1.6
+//
+// Gap length is taken from how long a real filler promises the listener to wait: about a
+// second after "uh" and about four after "um" (Clark & Fox Tree 2002). Refilling every
+// second or two sounds like a man perpetually about to speak, so the gap sits at the
+// longer end and varies.
+#define FILLER_GAP_MIN 2.6
+#define FILLER_GAP_SPREAD 3.0
 #define FILLER_MAX_PER_TURN 4
