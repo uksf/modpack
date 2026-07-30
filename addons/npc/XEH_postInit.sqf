@@ -16,6 +16,7 @@ if (isServer) then {
             if (isNil {EGVAR(api,sessionId)}) exitWith {
                 WARNING("NPC register: API sessionId not set within 60s; NPCs were not registered");
             };
+            TRACE_1("sessionId present, calling registerNpcs",EGVAR(api,sessionId));
             call FUNC(registerNpcs);
         }
     ] call CBA_fnc_waitUntilAndExecute;
