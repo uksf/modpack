@@ -5,6 +5,8 @@ use std::path::PathBuf;
 
 mod audio;
 mod audio_dsp;
+#[cfg(test)]
+mod audio_stream_tests;
 mod bridge;
 mod commands;
 mod config;

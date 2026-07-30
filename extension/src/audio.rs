@@ -143,10 +143,10 @@ const CHUNK_SAMPLES_PER_SEC_DIV: usize = 50; // ~20 ms chunks
 const TARGET_QUEUED: i32 = 6;                // ~120 ms buffered
 const CUTOFF_SMOOTH: f32 = 0.25;             // per-chunk lerp toward target
 /// Pocket-tts sample rate. Streamed frames are raw i16 LE at this rate.
-const STREAM_FREQ: i32 = 24000;
+pub(crate) const STREAM_FREQ: i32 = 24000;
 /// Headroom before first playback on a streamed clip, absorbing network jitter
 /// between frames. The pump pauses rather than stopping if it catches up.
-const STREAM_PREBUFFER_MS: usize = 500;
+pub(crate) const STREAM_PREBUFFER_MS: usize = 500;
 
 /// Drop a source if no position update arrives within this window (NPC deleted
 /// / mission ended without an explicit stop).
