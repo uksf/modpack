@@ -31,3 +31,10 @@
 #define FILLER_EARLY_CHANCE 0.35
 #define FILLER_EARLY_MIN 0.8
 #define FILLER_EARLY_SPREAD 0.5
+
+// A cold model or a slow route can leave a player waiting many seconds, and one grunt at
+// the front of that does not cover it. Keep filling at uneven intervals, but stop well
+// short of a guard who mutters forever at someone the brain has plainly failed to answer.
+#define FILLER_GAP_MIN 1.2
+#define FILLER_GAP_SPREAD 1.6
+#define FILLER_MAX_PER_TURN 4

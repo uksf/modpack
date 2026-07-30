@@ -26,6 +26,14 @@ if (isNull _npc) exitWith {};
 if (_seq < 0) exitWith {
     // End frame: mark the stream closed; the extension plays out its buffer.
     private _clipId = format ["%1_%2", _npcId, _turnId];
+
+    // A short reply can finish arriving before the filler it queued behind has finished
+    // sounding. Closing it now would end a clip that has not been opened, so wait for the
+    // release and come back.
+    if (_clipId in GVAR(streamHeld)) exitWith {
+        [{ _this call FUNC(onStreamFrameClient); }, [_npcId, _turnId, -1, ""], 0.1] call CBA_fnc_waitAndExecute;
+    };
+
     TRACE_2("stream end",_npcId,_turnId);
     "uksf" callExtension ["audioEnd", [_clipId]];
     GVAR(streamingClips) deleteAt _clipId;
@@ -58,29 +66,24 @@ GVAR(heardSeq) set [_seqKey, _seq];
 
 private _clipId = format ["%1_%2", _npcId, _turnId];
 
-// First frame: supersede any prior clip for this NPC and place the source.
+// First frame: stop the filler being armed, then either open the clip now or hold it
+// until a filler that is already sounding has finished.
 if !(_clipId in GVAR(streamingClips)) then {
-    { if ((_x#1) isEqualTo _npc) then { "uksf" callExtension ["audioStop", [_x#0]]; }; } forEach GVAR(active);
-    GVAR(active) = GVAR(active) select { (_x#1) isNotEqualTo _npc };
     GVAR(streamingClips) set [_clipId, true];
-    private _delta = (getPosASL _npc) vectorDiff ((call FUNC(listenerPose)) # 0);
-    private _vol = [_npc, 1] call FUNC(acreVol);
-    "uksf" callExtension ["audioPlay", [_clipId, _delta#0, _delta#1, _delta#2, _vol, 0]];
-    GVAR(active) pushBack [_clipId, _npc, 1];
-    if (!GVAR(tickRunning)) then {
-        GVAR(tickRunning) = true;
-        [FUNC(tick), 0, []] call CBA_fnc_addPerFrameHandler;
-    };
+    GVAR(pendingFiller) set [_npcId, 0]; // the reply is here; arm no more fillers
+
+    // Cutting a filler off part-way sounds worse than the pause it was covering, so the
+    // reply queues behind it. Frames keep arriving meanwhile and are held, not dropped.
+    private _wait = ((GVAR(fillerBusyUntil) getOrDefault [_npcId, 0]) - diag_tickTime) max 0;
     GVAR(streamSamples) set [_clipId, 0];
-    GVAR(streamStart) set [_clipId, diag_tickTime + SPEECH_PREBUFFER];
-    GVAR(pendingFiller) set [_npcId, 0]; // speech beat the filler; cancel it
-    // The extension holds the clip until its prebuffer fills, so starting the mouth
-    // now would run it ahead of the voice. Start it when the sound does.
-    [{ params ["_npc"]; if (!isNull _npc) then { _npc setRandomLip true }; }, [_npc], SPEECH_PREBUFFER] call CBA_fnc_waitAndExecute;
+    GVAR(streamHeld) set [_clipId, []];
+    [_clipId, _npc, _wait] call FUNC(startStream);
 };
 
 // base64 carries 3 bytes per 4 characters; the payload is 16-bit mono, so 2 bytes a sample.
 GVAR(streamSamples) set [_clipId, (GVAR(streamSamples) getOrDefault [_clipId, 0]) + (count _pcm) * 3 / 8];
 
 TRACE_3("stream frame",_npcId,_turnId,_seq);
+private _held = GVAR(streamHeld) get _clipId;
+if (!isNil "_held") exitWith { _held pushBack _pcm; }; // still waiting out a filler
 "uksf" callExtension ["audioFeed", [_clipId, _pcm]];

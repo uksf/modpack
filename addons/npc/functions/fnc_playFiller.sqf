@@ -17,12 +17,29 @@
         [_npc] call uksf_npc_fnc_playFiller
 */
 params ["_npc"];
-if (isNull _npc) exitWith {};
+if (isNull _npc) exitWith { 0 };
 
 private _voiceId = _npc getVariable [QGVAR(voiceId), ""];
 private _list = GVAR(fillers) getOrDefault [_voiceId, []];
-if (_list isEqualTo []) exitWith {};
+if (_list isEqualTo []) exitWith { 0 };
 
-(selectRandom _list) params ["_fillerId", "_wav"];
+(selectRandom _list) params ["_fillerId", "_wav", ["_durationMs", 0]];
 GVAR(fillerCounter) = GVAR(fillerCounter) + 1;
 [format ["%1_filler_%2", netId _npc, GVAR(fillerCounter)], _npc, _wav] call FUNC(playClip);
+
+// The reply waits for the filler to finish rather than cutting it off, so the whole
+// pipeline needs to know when the mouth is free again.
+private _duration = (_durationMs / 1000) max 0.1;
+private _endTime = diag_tickTime + _duration;
+GVAR(fillerBusyUntil) set [netId _npc, _endTime];
+
+// A filler is speech, so it moves the mouth like speech does.
+GVAR(talkingUntil) set [netId _npc, _endTime];
+_npc setRandomLip true;
+[{
+    params ["_npc", "_npcId", "_endTime"];
+    if ((GVAR(talkingUntil) getOrDefault [_npcId, 0]) > _endTime) exitWith {}; // the reply took the mouth over
+    if (!isNull _npc) then { _npc setRandomLip false };
+}, [_npc, netId _npc, _endTime], _duration] call CBA_fnc_waitAndExecute;
+
+_duration

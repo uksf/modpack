@@ -52,22 +52,16 @@ if (_kind isEqualTo "audio") exitWith {
 
     private _npc = objectFromNetId _npcId;
     if (isNull _npc) exitWith {};
-    private _clipId = [format ["%1_%2", _npcId, _turnId], _npc, _wav, 1, _offsetMs] call FUNC(playClip);
-    if (_clipId isEqualTo "") exitWith {};
-    // Mark heard only once playback commits, so a not-yet-streamed NPC isn't lost to dedup.
-    GVAR(heardTurns) set [_turnKey, diag_tickTime];
 
-    // setRandomLip is Effect-Local; each playing client drives the mouth. A later
-    // clip extends talkingUntil, so a stale timer leaves the lips alone.
-    private _duration = ((_durationMs - _offsetMs) / 1000) max 0.5;
-    private _endTime = diag_tickTime + _duration;
-    GVAR(talkingUntil) set [_npcId, _endTime];
-    _npc setRandomLip true;
-    [{
-        params ["_npc", "_npcId", "_endTime"];
-        if ((GVAR(talkingUntil) getOrDefault [_npcId, 0]) > _endTime) exitWith {};
-        if (!isNull _npc) then { _npc setRandomLip false };
-    }, [_npc, _npcId, _endTime], _duration] call CBA_fnc_waitAndExecute;
+    // Queue behind a sounding filler rather than cutting it off part-way.
+    GVAR(pendingFiller) set [_npcId, 0]; // the reply is here; arm no more fillers
+    private _wait = ((GVAR(fillerBusyUntil) getOrDefault [_npcId, 0]) - diag_tickTime) max 0;
+    private _args = [_npc, _npcId, _turnId, _wav, _durationMs, _offsetMs];
+    if (_wait > 0) exitWith {
+        [{ _this call FUNC(playTurnClip); }, _args, _wait] call CBA_fnc_waitAndExecute;
+    };
+
+    _args call FUNC(playTurnClip);
 };
 
 // Filler: cache per voiceId, skip duplicate ids.

@@ -35,12 +35,7 @@ if (random 1 < FILLER_EARLY_CHANCE) then { _delay = FILLER_EARLY_MIN + random FI
 
 private _token = diag_tickTime;
 GVAR(pendingFiller) set [netId _npc, _token];
-[{
-    params ["_npc", "_token"];
-    if (isNull _npc) exitWith {};
-    if ((GVAR(pendingFiller) getOrDefault [netId _npc, 0]) isNotEqualTo _token) exitWith {}; // speech already started
-    [_npc] call FUNC(playFiller);
-}, [_npc, _token], _delay] call CBA_fnc_waitAndExecute;
+[_npc, _token, _delay, 0] call FUNC(scheduleFiller);
 
 // Forward to the server: [npcId, speakerId(UID), text, t]
 private _speakerId = getPlayerUID _unit;
