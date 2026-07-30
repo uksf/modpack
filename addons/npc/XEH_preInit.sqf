@@ -11,6 +11,9 @@ GVAR(tickRunning) = false;
 // Client gate state: the NPC the local player is currently addressing (or objNull),
 // and whether the ACRE mic capture gate is currently open.
 GVAR(targetNpc) = objNull;
+// Frames the nearest rival has been clearly closer to the crosshair; the target only
+// switches once it has held that lead, so a glance does not steal a turn mid-sentence.
+GVAR(targetCandidate) = 0;
 GVAR(micGateOpen) = false;
 
 // Raised locally with [unit, text, uttId, time] when the local player's speech

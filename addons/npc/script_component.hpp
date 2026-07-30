@@ -15,6 +15,12 @@
 #define GATE_RANGE 10
 #define GATE_FOV 100
 
+// Deconfliction between adjacent NPCs. The gate picks the NPC nearest the crosshair, and
+// holds it until a rival is clearly closer and stays so for a run of frames. Without the
+// hold, two NPCs a step apart would flip the target as the player's aim wanders.
+#define GATE_SWITCH_MARGIN 0.004
+#define GATE_SWITCH_FRAMES 8
+
 // Streamed PCM is 24 kHz mono; used to turn fed samples into a playback duration.
 #define STREAM_RATE 24000
 
