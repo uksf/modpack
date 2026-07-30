@@ -144,9 +144,9 @@ const TARGET_QUEUED: i32 = 6;                // ~120 ms buffered
 const CUTOFF_SMOOTH: f32 = 0.25;             // per-chunk lerp toward target
 /// Pocket-tts sample rate. Streamed frames are raw i16 LE at this rate.
 pub(crate) const STREAM_FREQ: i32 = 24000;
-/// Headroom before first playback on a streamed clip, absorbing network jitter
-/// between frames. The pump pauses rather than stopping if it catches up.
-pub(crate) const STREAM_PREBUFFER_MS: usize = 500;
+/// Headroom before first playback: covers a network hiccup, not a slow engine.
+/// Dead time the player waits through; SPEECH_PREBUFFER_MS mirrors it for the mouth.
+pub(crate) const STREAM_PREBUFFER_MS: usize = 200;
 
 /// Drop a source if no position update arrives within this window (NPC deleted
 /// / mission ended without an explicit stop).
@@ -390,11 +390,10 @@ fn pump(context: &Context, p: &mut Playing) {
         }
     }
     let buffered = p.source.buffers_queued() as usize * chunk;
-    let ready = if p.open {
-        buffered >= p.prebuffer || (!p.samples.is_empty() && p.cursor >= p.samples.len())
-    } else {
-        p.source.buffers_queued() > 0
-    };
+    // Readiness is measured against PCM received, not queue depth: the queue holds at
+    // most TARGET_QUEUED buffers (~120 ms), so any prebuffer above that could never be
+    // reached and the clip would stay silent until the stream closed.
+    let ready = if p.open { p.samples.len() >= p.prebuffer } else { p.source.buffers_queued() > 0 };
     match p.source.state() {
         SourceState::Playing if buffered == 0 && p.open => {
             // Underrun on an open stream: pause and wait for the next frame

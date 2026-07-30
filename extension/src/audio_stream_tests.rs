@@ -23,17 +23,31 @@ fn feed_decode_round_trips_pcm() {
 
 #[test]
 fn prebuffer_waits_then_starts_when_met() {
-    // The pump's ready gate: hold back below the prebuffer, start once buffered
-    // meets it, play immediately once the stream closed with a queue to drain.
+    // The pump's ready gate, measured against PCM received: hold back below the
+    // prebuffer, start once that much has arrived, and play whatever is left the
+    // moment the stream closes.
     let prebuffer = STREAM_FREQ as usize * STREAM_PREBUFFER_MS / 1000;
-    let ready = |open: bool, buffered: usize, cursor: usize, len: usize| {
-        if open { buffered >= prebuffer || (len > 0 && cursor >= len) } else { buffered > 0 }
-    };
-    assert!(!ready(true, prebuffer - 1, 0, prebuffer * 2)); // below headroom
-    assert!(ready(true, prebuffer, 0, prebuffer * 2)); // headroom met
-    assert!(ready(true, 1, 5, 5)); // drained while open
-    assert!(ready(false, 1, 0, 1)); // closed with any queue
-    assert!(!ready(false, 0, 0, 0)); // closed and empty
+    let ready = |open: bool, fed: usize, queued: usize| if open { fed >= prebuffer } else { queued > 0 };
+    assert!(!ready(true, prebuffer - 1, 0)); // below headroom
+    assert!(ready(true, prebuffer, 0)); // headroom met
+    assert!(ready(false, 0, 1)); // closed with any queue
+    assert!(!ready(false, 0, 0)); // closed and empty
+}
+
+#[test]
+fn prebuffer_is_reachable_given_the_queue_ceiling() {
+    // Regression: readiness was measured from queued buffers, which cap at
+    // TARGET_QUEUED (6) chunks of 20 ms — 120 ms. Any larger prebuffer was
+    // unreachable, so a streamed clip stayed silent until the stream closed and
+    // the whole line played after the mouth animation had already run.
+    let queue_ceiling_ms = 6 * 1000 / 50;
+    assert!(
+        STREAM_PREBUFFER_MS > queue_ceiling_ms,
+        "prebuffer must exceed the {queue_ceiling_ms} ms queue ceiling for this regression to bite"
+    );
+    let prebuffer = STREAM_FREQ as usize * STREAM_PREBUFFER_MS / 1000;
+    let fed_after_one_frame = STREAM_FREQ as usize * 750 / 1000;
+    assert!(fed_after_one_frame >= prebuffer, "one 750 ms frame must satisfy the prebuffer");
 }
 
 #[test]

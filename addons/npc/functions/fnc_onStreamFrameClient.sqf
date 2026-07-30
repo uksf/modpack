@@ -59,7 +59,9 @@ if !(_clipId in GVAR(streamingClips)) then {
         GVAR(tickRunning) = true;
         [FUNC(tick), 0, []] call CBA_fnc_addPerFrameHandler;
     };
-    _npc setRandomLip true;
+    // The extension holds the clip until its prebuffer fills, so starting the mouth
+    // now would run it ahead of the voice. Start it when the sound does.
+    [{ params ["_npc"]; if (!isNull _npc) then { _npc setRandomLip true }; }, [_npc], SPEECH_PREBUFFER] call CBA_fnc_waitAndExecute;
 };
 
 TRACE_3("stream frame",_npcId,_turnId,_seq);

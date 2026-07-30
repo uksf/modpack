@@ -27,8 +27,9 @@ params ["_unit", "_text", "_uttId", "_time"];
 private _npc = GVAR(targetNpc);
 if (isNull _npc) exitWith { TRACE_1("transcript with no target npc, dropping",_text); };
 
-// Latency mask: play a random pre-cached filler in this NPC's voice now.
-[_npc] call FUNC(playFiller);
+// Latency mask: a random pre-cached filler in this NPC's voice, after a beat so it
+// lands as a considered pause rather than talking over the player's last word.
+[{ params ["_npc"]; [_npc] call FUNC(playFiller); }, [_npc], FILLER_DELAY] call CBA_fnc_waitAndExecute;
 
 // Forward to the server: [npcId, speakerId(UID), text, t]
 private _speakerId = getPlayerUID _unit;
