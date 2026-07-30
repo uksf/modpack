@@ -27,8 +27,8 @@ private _now = diag_tickTime;
 // Collect stale keys first — do not mutate the map while iterating it.
 private _stale = [];
 {
-    if ((_now - _x) > _ttl) then { _stale pushBack _y };
-} forEach _times; // HashMap forEach: _x = value (last-touch time), _y = key
+    if ((_now - _y) > _ttl) then { _stale pushBack _x };
+} forEach _times; // HashMap forEach: _x = key, _y = value (last-touch time)
 
 {
     _buffers deleteAt _x;
