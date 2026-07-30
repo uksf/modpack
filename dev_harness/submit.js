@@ -1,15 +1,27 @@
-// Submit SQF blob to dev-run. Strips comments (compileFinal hates them), POSTs, prints runId.
-// Usage: node submit.js [<sqf_path>] [<worldName>]
-//   sqf_path  defaults to D:/Arma/_temp_probe_sqf.txt
-//   worldName defaults to VR; use "Altis", "Stratis", "Tanoa", "Malden" etc. for road-having maps
+// POST SQF to /dev-run. Strips // and /* */ comments.
+// Usage: node submit.js [sqf_path] [ace=dev|build|base|<absPath>] [timeoutSeconds] [worldName]
+//   sqf_path default D:/Arma/_temp_probe_sqf.txt
+//   ace=dev   → D:/Arma/ace/.hemttout/dev   (default)
+//   ace=build → D:/Arma/ace/.hemttout/build
+//   ace=base  → D:/Arma/_temp_ace_baseline
+//   ace=<path> → that absolute path
 const fs = require('fs');
 const http = require('http');
 
 const sqfPath = process.argv[2] || 'D:/Arma/_temp_probe_sqf.txt';
-const worldName = process.argv[3] || null;
+const aceSel = process.argv[3] || 'dev';
+const timeoutSeconds = parseInt(process.argv[4] || '600', 10);
+const worldName = process.argv[5] || null;
+
+const aceMap = {
+    dev: 'D:/Arma/ace/.hemttout/dev',
+    build: 'D:/Arma/ace/.hemttout/build',
+    base: 'D:/Arma/_temp_ace_baseline'
+};
+const acePath = aceMap[aceSel] || aceSel;
+
 let sqf = fs.readFileSync(sqfPath, 'utf8');
 sqf = sqf.replace(/\/\/[^\n]*/g, '').replace(/\/\*[\s\S]*?\*\//g, '');
-
 const jwt = fs.readFileSync('D:/Arma/_temp_jwt.txt', 'utf8').trim();
 
 const mods = [
@@ -24,13 +36,14 @@ const mods = [
     'B:/Steam/steamapps/common/Arma 3/uksf-dev/@uksf_dependencies',
     'D:/Arma/uksf_air/.hemttout/dev',
     'D:/Arma/modpack/.hemttout/dev',
-    'D:/Arma/ace/.hemttout/dev',
+    acePath,
     'B:/Steam/steamapps/common/Arma 3/uksf-dev/@uksf_acre2'
 ];
 
-const payload = { sqf, mods, timeoutSeconds: 600 };
+const payload = { sqf, mods, timeoutSeconds };
 if (worldName) payload.worldName = worldName;
 const body = JSON.stringify(payload);
+console.log('acePath:', acePath, 'timeout:', timeoutSeconds);
 
 const req = http.request({
     hostname: 'localhost', port: 5500, path: '/dev-run', method: 'POST',
