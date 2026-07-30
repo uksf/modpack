@@ -80,6 +80,7 @@ fn init() -> Extension {
         .command("audioChunk", commands::audio_chunk)
         .command("audioPlay", commands::audio_play)
         .command("audioFeed", commands::audio_feed)
+        .command("audioEnd", commands::audio_end)
         .command("audioPos", commands::audio_pos)
         .command("audioListener", commands::audio_listener)
         .command("audioStop", commands::audio_stop)

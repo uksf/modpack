@@ -109,6 +109,9 @@ enum AudioMsg {
     Play { id: String, pos: [f32; 3], vol: f32, offset_ms: f32 },
     Pos { id: String, pos: [f32; 3], vol: f32 },
     Listener { forward: [f32; 3], up: [f32; 3] },
+    /// Mark a stream closed: no more Feed frames. The clip finishes naturally
+    /// once its queued PCM drains. Distinct from Stop, which halts now.
+    End { id: String },
     Stop { id: String },
 }
 
@@ -250,6 +253,13 @@ fn run_audio_thread(rx: mpsc::Receiver<AudioMsg>) {
             }
             Ok(AudioMsg::Listener { forward, up }) => {
                 let _ = context.set_orientation((forward, up));
+            }
+            Ok(AudioMsg::End { id }) => {
+                // Close the stream; the clip plays out what it has buffered.
+                if let Some(p) = playing.get_mut(&id) {
+                    p.open = false;
+                    p.last_touch = Instant::now();
+                }
             }
             Ok(AudioMsg::Stop { id }) => {
                 if let Some(mut p) = playing.remove(&id) {
@@ -456,9 +466,15 @@ pub fn play(id: String, x: f32, y: f32, z: f32, vol: f32, offset_ms: f32) -> Str
 }
 
 /// Feed one PCM frame into an open stream. The stream is created on the first
-/// frame at 24 kHz mono; Stop closes it.
+/// frame at 24 kHz mono; End closes it, Stop halts it.
 pub fn feed(id: String, b64: String) -> String {
     send(AudioMsg::Feed { id, b64 });
+    "ok".to_string()
+}
+
+/// Mark a stream closed; the clip plays out its buffered PCM.
+pub fn end(id: String) -> String {
+    send(AudioMsg::End { id });
     "ok".to_string()
 }
 

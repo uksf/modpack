@@ -20,5 +20,7 @@ PREP(playFiller);
 PREP(sweepBuffers);
 PREP(acreVol);
 PREP(onRequestClip);
+PREP(onStreamFrame);
+PREP(onStreamFrameClient);
 PREP(proximityPull);
 PREP(listenerPose);

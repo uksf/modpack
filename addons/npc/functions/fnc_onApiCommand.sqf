@@ -46,4 +46,8 @@ switch (_type) do {
         // Head-turn on the NPC owner; targetEvent routes to the owning machine.
         [QGVAR(headTurn), [_npc, GVAR(lastSpeaker) getOrDefault [_npcId, objNull], _durationMs], _npc] call CBA_fnc_targetEvent;
     };
+    case "npc_audio_frame";
+    case "npc_audio_end": {
+        [_type, _args] call FUNC(onStreamFrame);
+    };
 };

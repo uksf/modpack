@@ -35,6 +35,11 @@ GVAR(heardTurns) = createHashMap;
 [QGVAR(audioChunkSink),  { ["audio",  _this] call FUNC(onClipChunk); }] call CBA_fnc_addEventHandler;
 [QGVAR(fillerChunkSink), { ["filler", _this] call FUNC(onClipChunk); }] call CBA_fnc_addEventHandler;
 
+// Streamed dynamic turns: frames feed the extension's open clip, end closes it.
+GVAR(streamingClips) = createHashMap;
+[QGVAR(streamFrameSink), { _this call FUNC(onStreamFrameClient); }] call CBA_fnc_addEventHandler;
+[QGVAR(streamEndSink),   { [_this#0, _this#1, -1, ""] call FUNC(onStreamFrameClient); }] call CBA_fnc_addEventHandler;
+
 // Server: utterance room state, debounce timers, last-speaker objects,
 // and API-command receive buffers.
 if (isServer) then {
@@ -48,6 +53,8 @@ if (isServer) then {
     // Active audio clips for mid-clip resync: npcId -> [turnId, wav, dispatchTime, durationMs].
     GVAR(activeClips) = createHashMap;
     [QGVAR(requestClip), { _this call FUNC(onRequestClip); }] call CBA_fnc_addEventHandler;
+    // Open streamed turns for mid-clip joiners: npcId -> [nextSeq, [pcm frames so far]].
+    GVAR(activeStreams) = createHashMap;
 };
 
 #include "initSettings.inc.sqf"
