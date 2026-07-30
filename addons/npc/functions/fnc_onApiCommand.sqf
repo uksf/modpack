@@ -27,6 +27,13 @@ switch (_type) do {
         private _wav = [_key, _index, _total, _chunk] call FUNC(reassemble);
         if (isNil "_wav") exitWith {};
         TRACE_3("npc_filler complete, distributing to all clients",_npcId,_fillerId,_durationMs);
+        // Held so a player who connects after registration still gets the fillers; without
+        // this the mask only ever reached whoever was already in the mission.
+        private _cached = GVAR(fillerCache) getOrDefault [_voiceId, []];
+        if (_cached findIf { _x#0 isEqualTo _fillerId } == -1) then {
+            _cached pushBack [_fillerId, _npcId, _wav, _durationMs];
+            GVAR(fillerCache) set [_voiceId, _cached];
+        };
         // Distribute to ALL clients to cache (played instantly on utterance-finalise).
         [QGVAR(fillerChunkSink), ALL_PLAYERS, ["filler", _npcId, _voiceId, _fillerId, _durationMs], _wav] call FUNC(pushClipChunks);
     };

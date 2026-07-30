@@ -21,6 +21,24 @@ if (isServer) then {
         }
     ] call CBA_fnc_waitUntilAndExecute;
 
+    // Send the cached fillers to a joining client. Registration pushes them once, so a
+    // player who connects later would otherwise never hear the latency mask.
+    addMissionEventHandler ["PlayerConnected", {
+        params ["", "", "_name", "_jip"];
+        [{
+            private _client = (allPlayers select { name _x isEqualTo (_this#0) }) param [0, objNull];
+            if (isNull _client) exitWith {};
+            {
+                private _voiceId = _x;
+                {
+                    _x params ["_fillerId", "_npcId", "_wav", "_durationMs"];
+                    [QGVAR(fillerChunkSink), [_client], ["filler", _npcId, _voiceId, _fillerId, _durationMs], _wav] call FUNC(pushClipChunks);
+                } forEach (GVAR(fillerCache) get _voiceId);
+            } forEach (keys GVAR(fillerCache));
+            TRACE_1("pushed cached fillers to joining client",_this#0);
+        }, [_name], 5] call CBA_fnc_waitAndExecute;
+    }];
+
     // Sweep stale partial API-command reassembly buffers (a lost chunk would otherwise wedge one forever).
     [{ [GVAR(rxBuffers), GVAR(rxBufferTimes), 30, "rx"] call FUNC(sweepBuffers); }, 10, []] call CBA_fnc_addPerFrameHandler;
 

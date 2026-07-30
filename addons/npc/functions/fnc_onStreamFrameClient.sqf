@@ -31,7 +31,19 @@ if (_seq < 0) exitWith {
     GVAR(streamingClips) deleteAt _clipId;
     private _turnKey = format ["%1|%2", _npcId, _turnId];
     GVAR(heardTurns) set [_turnKey, diag_tickTime];
-    if (!isNull _npc) then { _npc setRandomLip false };
+
+    // Frames arrive several times faster than they play, so the mouth has to run to the
+    // end of the audio, not to the end of the delivery.
+    private _playSeconds = (GVAR(streamSamples) getOrDefault [_clipId, 0]) / STREAM_RATE;
+    private _endTime = (GVAR(streamStart) getOrDefault [_clipId, diag_tickTime]) + _playSeconds;
+    GVAR(streamSamples) deleteAt _clipId;
+    GVAR(streamStart) deleteAt _clipId;
+    GVAR(talkingUntil) set [_npcId, _endTime];
+    [{
+        params ["_npc", "_npcId", "_endTime"];
+        if ((GVAR(talkingUntil) getOrDefault [_npcId, 0]) > _endTime) exitWith {}; // a newer line took over
+        if (!isNull _npc) then { _npc setRandomLip false };
+    }, [_npc, _npcId, _endTime], (_endTime - diag_tickTime) max 0] call CBA_fnc_waitAndExecute;
 };
 
 private _turnKey = format ["%1|%2", _npcId, _turnId];
@@ -59,10 +71,15 @@ if !(_clipId in GVAR(streamingClips)) then {
         GVAR(tickRunning) = true;
         [FUNC(tick), 0, []] call CBA_fnc_addPerFrameHandler;
     };
+    GVAR(streamSamples) set [_clipId, 0];
+    GVAR(streamStart) set [_clipId, diag_tickTime + SPEECH_PREBUFFER];
     // The extension holds the clip until its prebuffer fills, so starting the mouth
     // now would run it ahead of the voice. Start it when the sound does.
     [{ params ["_npc"]; if (!isNull _npc) then { _npc setRandomLip true }; }, [_npc], SPEECH_PREBUFFER] call CBA_fnc_waitAndExecute;
 };
+
+// base64 carries 3 bytes per 4 characters; the payload is 16-bit mono, so 2 bytes a sample.
+GVAR(streamSamples) set [_clipId, (GVAR(streamSamples) getOrDefault [_clipId, 0]) + (count _pcm) * 3 / 8];
 
 TRACE_3("stream frame",_npcId,_turnId,_seq);
 "uksf" callExtension ["audioFeed", [_clipId, _pcm]];

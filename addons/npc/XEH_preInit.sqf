@@ -39,6 +39,11 @@ GVAR(heardTurns) = createHashMap;
 // heardSeq dedupes frames by seq (a join replay and the live relay can overlap).
 GVAR(streamingClips) = createHashMap;
 GVAR(heardSeq) = createHashMap;
+// Samples fed per open stream, so the mouth can run for the whole spoken line rather
+// than stopping when the last frame lands (frames arrive faster than they play out).
+GVAR(streamSamples) = createHashMap;
+GVAR(streamStart) = createHashMap;
+GVAR(fillerCache) = createHashMap;
 [QGVAR(streamFrameSink), { _this call FUNC(onStreamFrameClient); }] call CBA_fnc_addEventHandler;
 [QGVAR(streamEndSink),   { [_this#0, _this#1, -1, ""] call FUNC(onStreamFrameClient); }] call CBA_fnc_addEventHandler;
 

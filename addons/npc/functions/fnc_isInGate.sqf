@@ -19,10 +19,10 @@
 */
 params ["_player", "_npc"];
 
-private _range = _npc getVariable [QGVAR(gateRange), 4];
+private _range = _npc getVariable [QGVAR(gateRange), GATE_RANGE];
 if ((_player distance _npc) > _range) exitWith { false };
 
-private _fov = _npc getVariable [QGVAR(gateFov), 90];
+private _fov = _npc getVariable [QGVAR(gateFov), GATE_FOV];
 private _toNpc = (eyePos _npc) vectorDiff (eyePos _player);
 if (_toNpc isEqualTo [0,0,0]) exitWith { true };
 private _forward = eyeDirection _player;
