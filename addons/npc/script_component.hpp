@@ -22,6 +22,7 @@
 // clip until this much is buffered, so the mouth must not start before it.
 #define SPEECH_PREBUFFER 0.2
 
-// Fillers mask brain latency, but firing one the instant speech ends steps on the
-// player's own words. A short beat first reads as the NPC taking a moment.
-#define FILLER_DELAY 1
+// Fillers mask brain latency. A normal turn now answers in about two seconds, so the
+// filler waits past that: it covers a slow turn and stays silent on a fast one, instead
+// of prefacing every single reply with the same handful of noises.
+#define FILLER_DELAY 2.2

@@ -73,6 +73,7 @@ if !(_clipId in GVAR(streamingClips)) then {
     };
     GVAR(streamSamples) set [_clipId, 0];
     GVAR(streamStart) set [_clipId, diag_tickTime + SPEECH_PREBUFFER];
+    GVAR(pendingFiller) set [_npcId, 0]; // speech beat the filler; cancel it
     // The extension holds the clip until its prebuffer fills, so starting the mouth
     // now would run it ahead of the voice. Start it when the sound does.
     [{ params ["_npc"]; if (!isNull _npc) then { _npc setRandomLip true }; }, [_npc], SPEECH_PREBUFFER] call CBA_fnc_waitAndExecute;

@@ -27,9 +27,17 @@ params ["_unit", "_text", "_uttId", "_time"];
 private _npc = GVAR(targetNpc);
 if (isNull _npc) exitWith { TRACE_1("transcript with no target npc, dropping",_text); };
 
-// Latency mask: a random pre-cached filler in this NPC's voice, after a beat so it
-// lands as a considered pause rather than talking over the player's last word.
-[{ params ["_npc"]; [_npc] call FUNC(playFiller); }, [_npc], FILLER_DELAY] call CBA_fnc_waitAndExecute;
+// Latency mask, but only if the reply is actually late. A filler on every turn is a tell
+// in itself and wears out fast, and a fast turn now beats the delay outright — the first
+// audio frame cancels the pending filler by bumping the token.
+private _token = diag_tickTime;
+GVAR(pendingFiller) set [netId _npc, _token];
+[{
+    params ["_npc", "_token"];
+    if (isNull _npc) exitWith {};
+    if ((GVAR(pendingFiller) getOrDefault [netId _npc, 0]) isNotEqualTo _token) exitWith {}; // speech already started
+    [_npc] call FUNC(playFiller);
+}, [_npc, _token], FILLER_DELAY] call CBA_fnc_waitAndExecute;
 
 // Forward to the server: [npcId, speakerId(UID), text, t]
 private _speakerId = getPlayerUID _unit;
