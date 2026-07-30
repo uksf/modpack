@@ -12,6 +12,8 @@ class Extended_PreInit_EventHandlers {
 
 class Extended_PostInit_EventHandlers {
     class ADDON {
-        clientInit = QUOTE(call COMPILE_SCRIPT(XEH_postInit));
+        // init, not clientInit: the registration block runs server-side on a
+        // dedicated server, and clientInit never fires there.
+        init = QUOTE(call COMPILE_SCRIPT(XEH_postInit));
     };
 };
