@@ -20,6 +20,7 @@
         ["2:4", "76561198000000001", "Hello there", 1234.5] call uksf_npc_fnc_onUtterance
 */
 params ["_npcId", "_speakerId", "_text", "_t"];
+TRACE_3("utterance received",_npcId,_speakerId,_text);
 
 private _room = GVAR(rooms) getOrDefault [_npcId, []];
 _room pushBack [_speakerId, _text, _t];

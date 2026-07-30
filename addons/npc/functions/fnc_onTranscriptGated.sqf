@@ -34,4 +34,5 @@ if (isNull _npc) exitWith { TRACE_1("transcript with no target npc, dropping",_t
 private _speakerId = getPlayerUID _unit;
 if (_speakerId isEqualTo "") exitWith { TRACE_1("no UID for speaker, dropping",_unit); };
 
+TRACE_3("utterance -> server",netId _npc,_speakerId,_text);
 [QGVAR(utterance), [netId _npc, _speakerId, _text, _time]] call CBA_fnc_serverEvent;

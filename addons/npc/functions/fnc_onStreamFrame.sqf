@@ -25,6 +25,7 @@ if (_targets isEqualTo []) exitWith {};
 
 if (_type isEqualTo "npc_audio_frame") exitWith {
     _args params ["", "", "_seq", "_pcm"];
+    TRACE_4("relay frame",_npcId,_turnId,_seq,count _targets);
     [QGVAR(streamFrameSink), [_npcId, _turnId, _seq, _pcm], _targets] call CBA_fnc_targetEvent;
     // Track the open stream so a mid-clip joiner can be replayed the frames so far.
     // Entry is [turnId, frames]; the frames array is indexed by seq.
@@ -34,5 +35,6 @@ if (_type isEqualTo "npc_audio_frame") exitWith {
 };
 
 // npc_audio_end: tell clients the clip is complete, then reclaim the buffer.
+TRACE_2("relay end",_npcId,_turnId);
 [QGVAR(streamEndSink), [_npcId, _turnId], _targets] call CBA_fnc_targetEvent;
 GVAR(activeStreams) deleteAt _npcId;

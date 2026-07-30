@@ -26,6 +26,7 @@ if (isNull _npc) exitWith {};
 if (_seq < 0) exitWith {
     // End frame: mark the stream closed; the extension plays out its buffer.
     private _clipId = format ["%1_%2", _npcId, _turnId];
+    TRACE_2("stream end",_npcId,_turnId);
     "uksf" callExtension ["audioEnd", [_clipId]];
     GVAR(streamingClips) deleteAt _clipId;
     private _turnKey = format ["%1|%2", _npcId, _turnId];
@@ -61,4 +62,5 @@ if !(_clipId in GVAR(streamingClips)) then {
     _npc setRandomLip true;
 };
 
+TRACE_3("stream frame",_npcId,_turnId,_seq);
 "uksf" callExtension ["audioFeed", [_clipId, _pcm]];
