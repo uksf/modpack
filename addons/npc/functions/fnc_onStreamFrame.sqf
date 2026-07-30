@@ -26,10 +26,10 @@ if (_targets isEqualTo []) exitWith {};
 if (_type isEqualTo "npc_audio_frame") exitWith {
     _args params ["", "", "_seq", "_pcm"];
     [QGVAR(streamFrameSink), [_npcId, _turnId, _seq, _pcm], _targets] call CBA_fnc_targetEvent;
-    // Track the open stream so a mid-clip joiner can be offered the frames so far.
-    private _stream = GVAR(activeStreams) getOrDefault [_npcId, [0, []]];
-    _stream set [0, _seq + 1];
-    (_stream select 1) pushBack _pcm;
+    // Track the open stream so a mid-clip joiner can be replayed the frames so far.
+    // Entry is [turnId, frames]; the frames array is indexed by seq.
+    private _stream = GVAR(activeStreams) getOrDefault [_npcId, [_turnId, []]];
+    (_stream select 1) set [_seq, _pcm];
     GVAR(activeStreams) set [_npcId, _stream];
 };
 

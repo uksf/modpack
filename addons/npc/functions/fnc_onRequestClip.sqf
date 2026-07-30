@@ -19,6 +19,18 @@
 params ["_npcId", "_requester"];
 if (isNull _requester) exitWith {};
 
+// An open stream wins over a one-shot clip: replay the frames so far and the
+// client continues on live frames (deduped by seq).
+private _stream = GVAR(activeStreams) getOrDefault [_npcId, []];
+if (_stream isNotEqualTo []) exitWith {
+    _stream params ["_turnId", "_frames"];
+    {
+        if (!isNil "_x") then {
+            [QGVAR(streamFrameSink), [_npcId, _turnId, _forEachIndex, _x], [_requester]] call CBA_fnc_targetEvent;
+        };
+    } forEach _frames;
+};
+
 private _clip = GVAR(activeClips) getOrDefault [_npcId, []];
 if (_clip isEqualTo []) exitWith {};
 _clip params ["_turnId", "_wav", "_dispatchTime", "_durationMs"];

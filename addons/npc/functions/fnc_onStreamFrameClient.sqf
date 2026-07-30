@@ -36,6 +36,13 @@ if (_seq < 0) exitWith {
 private _turnKey = format ["%1|%2", _npcId, _turnId];
 if (_turnKey in GVAR(heardTurns)) exitWith {}; // already finished this turn
 
+// Dedupe by seq: a mid-clip join replay and the live relay can deliver the same
+// frame twice.
+private _seqKey = format ["%1|%2|seq", _npcId, _turnId];
+private _lastSeq = GVAR(heardSeq) getOrDefault [_seqKey, -1];
+if (_seq <= _lastSeq) exitWith {};
+GVAR(heardSeq) set [_seqKey, _seq];
+
 private _clipId = format ["%1_%2", _npcId, _turnId];
 
 // First frame: supersede any prior clip for this NPC and place the source.

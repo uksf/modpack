@@ -36,7 +36,9 @@ GVAR(heardTurns) = createHashMap;
 [QGVAR(fillerChunkSink), { ["filler", _this] call FUNC(onClipChunk); }] call CBA_fnc_addEventHandler;
 
 // Streamed dynamic turns: frames feed the extension's open clip, end closes it.
+// heardSeq dedupes frames by seq (a join replay and the live relay can overlap).
 GVAR(streamingClips) = createHashMap;
+GVAR(heardSeq) = createHashMap;
 [QGVAR(streamFrameSink), { _this call FUNC(onStreamFrameClient); }] call CBA_fnc_addEventHandler;
 [QGVAR(streamEndSink),   { [_this#0, _this#1, -1, ""] call FUNC(onStreamFrameClient); }] call CBA_fnc_addEventHandler;
 
