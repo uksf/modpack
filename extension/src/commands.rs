@@ -75,6 +75,10 @@ pub fn audio_play(id: String, x: f32, y: f32, z: f32, vol: f32, offset_ms: f32) 
     audio::play(id, x, y, z, vol, offset_ms)
 }
 
+pub fn audio_feed(id: String, b64: String) -> String {
+    audio::feed(id, b64)
+}
+
 pub fn audio_pos(id: String, x: f32, y: f32, z: f32, vol: f32) -> String {
     audio::pos(id, x, y, z, vol)
 }

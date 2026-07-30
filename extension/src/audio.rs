@@ -102,6 +102,10 @@ use crate::audio_dsp::LowPass4;
 enum AudioMsg {
     Open { id: String },
     Chunk { id: String, b64: String },
+    /// Streaming variant of Chunk: base64 raw i16 little-endian PCM at STREAM_FREQ,
+    /// appended to a Playing that may already be sounding. Frames arrive over the
+    /// network; the Playing is created on the first Feed, not on Play.
+    Feed { id: String, b64: String },
     Play { id: String, pos: [f32; 3], vol: f32, offset_ms: f32 },
     Pos { id: String, pos: [f32; 3], vol: f32 },
     Listener { forward: [f32; 3], up: [f32; 3] },
@@ -122,11 +126,24 @@ struct Playing {
     smoothed_cutoff: f32,
     target_cutoff: f32,
     last_touch: Instant,
+    /// True while Feed frames may still arrive. The pump pauses rather than
+    /// stopping on an empty queue while open, so a network stall never drops
+    /// the clip.
+    open: bool,
+    /// Samples the pump holds back before first playback (network jitter
+    /// budget). Zero for one-shot clips fed whole via Play; the first Feed
+    /// sets it.
+    prebuffer: usize,
 }
 
 const CHUNK_SAMPLES_PER_SEC_DIV: usize = 50; // ~20 ms chunks
 const TARGET_QUEUED: i32 = 6;                // ~120 ms buffered
 const CUTOFF_SMOOTH: f32 = 0.25;             // per-chunk lerp toward target
+/// Pocket-tts sample rate. Streamed frames are raw i16 LE at this rate.
+const STREAM_FREQ: i32 = 24000;
+/// Headroom before first playback on a streamed clip, absorbing network jitter
+/// between frames. The pump pauses rather than stopping if it catches up.
+const STREAM_PREBUFFER_MS: usize = 500;
 
 /// Drop a source if no position update arrives within this window (NPC deleted
 /// / mission ended without an explicit stop).
@@ -198,6 +215,9 @@ fn run_audio_thread(rx: mpsc::Receiver<AudioMsg>) {
                     acc.push(&b64);
                 }
             }
+            Ok(AudioMsg::Feed { id, b64 }) => {
+                handle_feed(&context, &mut playing, id, b64);
+            }
             Ok(AudioMsg::Play { id, pos, vol, offset_ms }) => {
                 let vol = if vol.is_finite() { vol.max(0.0) } else { 1.0 };
                 if let Some(acc) = pending.remove(&id) {
@@ -207,6 +227,16 @@ fn run_audio_thread(rx: mpsc::Receiver<AudioMsg>) {
                         }
                         Err(e) => log::error!("audio: play {id}: {e}"),
                     }
+                } else if let Some(p) = playing.get_mut(&id) {
+                    // Streamed clip: Play sets where it sits and how loud. The
+                    // offset still applies if playback has not started yet.
+                    let _ = p.source.set_position(pos);
+                    let _ = p.source.set_gain(vol);
+                    p.target_cutoff = crate::audio_dsp::cutoff_from_vol(vol, p.freq as u32);
+                    if p.cursor == 0 {
+                        p.cursor = offset_to_cursor(offset_ms, p.freq as u32, p.samples.len());
+                    }
+                    p.last_touch = Instant::now();
                 }
             }
             Ok(AudioMsg::Pos { id, pos, vol }) => {
@@ -240,9 +270,70 @@ fn run_audio_thread(rx: mpsc::Receiver<AudioMsg>) {
     }
 }
 
+/// Create an empty streaming source at `pos`/`vol`, primed with its low-pass.
+/// Used for both one-shot clips (samples loaded by `start_streaming`) and
+/// streams (samples appended by `handle_feed`).
+fn new_streaming(context: &Context, pos: [f32; 3], vol: f32, freq: i32) -> Result<Playing, String> {
+    let mut source = context
+        .new_streaming_source()
+        .map_err(|e| format!("new_streaming_source: {e}"))?;
+    let _ = source.set_soft_spatialization(alto::SoftSourceSpatialization::Enabled);
+    let _ = source.set_gain(vol.max(0.0));
+    let _ = source.set_position(pos);
+
+    let cutoff = crate::audio_dsp::cutoff_from_vol(vol, freq as u32);
+    let filter = LowPass4::new(freq as f32);
+
+    Ok(Playing {
+        source,
+        samples: Vec::new(),
+        cursor: 0,
+        freq,
+        filter,
+        smoothed_cutoff: cutoff,
+        target_cutoff: cutoff,
+        last_touch: Instant::now(),
+        open: false,
+        prebuffer: 0,
+    })
+}
+
+/// Decode one Feed frame (base64 raw i16 LE at STREAM_FREQ) and append it to the
+/// clip, creating the Playing on the first frame. The stream starts open and is
+/// closed by Stop; the first frame sets the prebuffer headroom.
+fn handle_feed(context: &Context, playing: &mut HashMap<String, Playing>, id: String, b64: String) {
+    let bytes = match STANDARD.decode(b64.as_bytes()) {
+        Ok(b) => b,
+        Err(e) => {
+            log::error!("audio: feed {id} base64: {e}");
+            return;
+        }
+    };
+    if !playing.contains_key(&id) {
+        match new_streaming(context, [0.0; 3], 1.0, STREAM_FREQ) {
+            Ok(mut p) => {
+                p.open = true;
+                p.prebuffer = STREAM_FREQ as usize * STREAM_PREBUFFER_MS / 1000;
+                playing.insert(id.clone(), p);
+            }
+            Err(e) => {
+                log::error!("audio: feed {id}: {e}");
+                return;
+            }
+        }
+    }
+    if let Some(p) = playing.get_mut(&id) {
+        let mut pcm = Vec::with_capacity(bytes.len() / 2);
+        for pair in bytes.chunks_exact(2) {
+            pcm.push(i16::from_le_bytes([pair[0], pair[1]]));
+        }
+        p.samples.extend_from_slice(&pcm);
+        p.last_touch = Instant::now();
+    }
+}
+
 /// Build a streaming source from accumulated bytes. Decodes the full clip into a
-/// PCM buffer, primes the per-source low-pass at the cutoff for `vol`, and sets
-/// initial gain + position. Buffers are queued lazily by `pump`, not here.
+/// PCM buffer and loads it into the Playing. Buffers are queued lazily by `pump`.
 fn start_streaming(
     context: &Context,
     acc: &ClipAccumulator,
@@ -255,31 +346,16 @@ fn start_streaming(
     let freq = clip.freq as i32;
     let cursor = offset_to_cursor(offset_ms, clip.freq, clip.samples.len());
 
-    let mut source = context
-        .new_streaming_source()
-        .map_err(|e| format!("new_streaming_source: {e}"))?;
-    let _ = source.set_soft_spatialization(alto::SoftSourceSpatialization::Enabled);
-    let _ = source.set_gain(vol.max(0.0));
-    let _ = source.set_position(pos);
-
-    let cutoff = crate::audio_dsp::cutoff_from_vol(vol, clip.freq);
-    let filter = LowPass4::new(freq as f32);
-
-    Ok(Playing {
-        source,
-        samples: clip.samples,
-        cursor,
-        freq,
-        filter,
-        smoothed_cutoff: cutoff,
-        target_cutoff: cutoff,
-        last_touch: Instant::now(),
-    })
+    let mut p = new_streaming(context, pos, vol, freq)?;
+    p.samples = clip.samples;
+    p.cursor = cursor;
+    Ok(p)
 }
 
 /// Recycle processed buffers and top up the queue with freshly filtered chunks,
 /// lerping the cutoff toward its target so occlusion changes smoothly. Starts the
-/// source once buffers are queued.
+/// source once enough is buffered. An open stream pauses on underrun and resumes
+/// when the next frame arrives; it is never stopped by an empty queue.
 fn pump(context: &Context, p: &mut Playing) {
     while p.source.buffers_processed() > 0 {
         let _ = p.source.unqueue_buffer();
@@ -303,8 +379,25 @@ fn pump(context: &Context, p: &mut Playing) {
             Err(_) => break,
         }
     }
-    if p.source.state() != SourceState::Playing && p.source.buffers_queued() > 0 {
-        let _ = p.source.play();
+    let buffered = p.source.buffers_queued() as usize * chunk;
+    let ready = if p.open {
+        buffered >= p.prebuffer || (!p.samples.is_empty() && p.cursor >= p.samples.len())
+    } else {
+        p.source.buffers_queued() > 0
+    };
+    match p.source.state() {
+        SourceState::Playing if buffered == 0 && p.open => {
+            // Underrun on an open stream: pause and wait for the next frame
+            // rather than stopping the source.
+            let _ = p.source.pause();
+        }
+        SourceState::Paused if ready => {
+            let _ = p.source.play();
+        }
+        SourceState::Initial if ready => {
+            let _ = p.source.play();
+        }
+        _ => {}
     }
 }
 
@@ -314,10 +407,11 @@ fn sweep(playing: &mut HashMap<String, Playing>) {
     let now = Instant::now();
     playing.retain(|_id, p| {
         // Reclaim only when the clip is genuinely finished (PCM exhausted AND queue
-        // empty) or stuck past the watchdog. A bare Stopped check would kill a clip
-        // on a transient underrun (new_buffer failure) before its cursor is done —
-        // pump re-queues such a source; the watchdog catches one that never recovers.
-        let finished = p.cursor >= p.samples.len() && p.source.buffers_queued() == 0;
+        // empty) or stuck past the watchdog. An open stream is never finished: its
+        // samples can still grow. A bare Stopped check would kill a clip on a
+        // transient underrun (new_buffer failure) before its cursor is done — pump
+        // re-queues such a source; the watchdog catches one that never recovers.
+        let finished = !p.open && p.cursor >= p.samples.len() && p.source.buffers_queued() == 0;
         let expired = now.duration_since(p.last_touch) > WATCHDOG;
         if finished || expired {
             p.source.stop();
@@ -358,6 +452,13 @@ pub fn chunk(id: String, b64: String) -> String {
 
 pub fn play(id: String, x: f32, y: f32, z: f32, vol: f32, offset_ms: f32) -> String {
     send(AudioMsg::Play { id, pos: [x, y, z], vol, offset_ms });
+    "ok".to_string()
+}
+
+/// Feed one PCM frame into an open stream. The stream is created on the first
+/// frame at 24 kHz mono; Stop closes it.
+pub fn feed(id: String, b64: String) -> String {
+    send(AudioMsg::Feed { id, b64 });
     "ok".to_string()
 }
 
