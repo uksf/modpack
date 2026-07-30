@@ -22,7 +22,12 @@
 // clip until this much is buffered, so the mouth must not start before it.
 #define SPEECH_PREBUFFER 0.2
 
-// Fillers mask brain latency. A normal turn now answers in about two seconds, so the
-// filler waits past that: it covers a slow turn and stays silent on a fast one, instead
-// of prefacing every single reply with the same handful of noises.
+// Fillers mask brain latency, but one before every reply is a tell in itself. Most turns
+// wait past the usual answer time, so the filler only covers a turn that runs slow and the
+// first audio frame cancels it. The rest fire early on purpose: a guard who sometimes
+// grunts before he speaks and sometimes does not is the point, and the variance is what
+// stops the same handful of noises reading as a mechanism.
 #define FILLER_DELAY 2.2
+#define FILLER_EARLY_CHANCE 0.35
+#define FILLER_EARLY_MIN 0.8
+#define FILLER_EARLY_SPREAD 0.5
