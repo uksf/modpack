@@ -32,6 +32,9 @@ if (isNull _npc) exitWith { TRACE_1("transcript with no target npc, dropping",_t
 // sometimes grunts before he answers and sometimes just answers.
 private _delay = FILLER_DELAY;
 if (random 1 < FILLER_EARLY_CHANCE) then { _delay = FILLER_EARLY_MIN + random FILLER_EARLY_SPREAD; };
+// An early filler is betting the reply is nearly here, so it gets a short noise; anything
+// firing at or after the usual answer time is covering a genuine wait.
+GVAR(fillerEarlyUntil) set [netId _npc, diag_tickTime + FILLER_DELAY];
 
 private _token = diag_tickTime;
 GVAR(pendingFiller) set [netId _npc, _token];

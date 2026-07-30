@@ -16,14 +16,19 @@
     Example:
         [_npc] call uksf_npc_fnc_playFiller
 */
-params ["_npc"];
+params ["_npc", ["_class", "s"]];
 if (isNull _npc) exitWith { 0 };
 
 private _voiceId = _npc getVariable [QGVAR(voiceId), ""];
 private _list = GVAR(fillers) getOrDefault [_voiceId, []];
 if (_list isEqualTo []) exitWith { 0 };
 
-(selectRandom _list) params ["_fillerId", "_wav", ["_durationMs", 0]];
+// s-set for a short wait, l-set for a long one. Fall back to the whole set rather than
+// staying silent if only one class made it through the prerender.
+private _pool = _list select { (_x#0) select [0, 1] isEqualTo _class };
+if (_pool isEqualTo []) then { _pool = _list };
+
+(selectRandom _pool) params ["_fillerId", "_wav", ["_durationMs", 0]];
 GVAR(fillerCounter) = GVAR(fillerCounter) + 1;
 [format ["%1_filler_%2", netId _npc, GVAR(fillerCounter)], _npc, _wav] call FUNC(playClip);
 

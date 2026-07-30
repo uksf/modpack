@@ -30,7 +30,10 @@ params ["_npc", "_token", "_delay", ["_played", 0]];
     private _npcId = netId _npc;
     if ((GVAR(pendingFiller) getOrDefault [_npcId, 0]) isNotEqualTo _token) exitWith {}; // reply arrived
 
-    private _duration = [_npc] call FUNC(playFiller);
+    // An early filler is a guess that the reply is close, so it promises a short wait. By
+    // the time one fires late, or fires again, the wait is real and earns the longer noise.
+    private _class = ["l", "s"] select (_played isEqualTo 0 && {diag_tickTime < GVAR(fillerEarlyUntil) getOrDefault [_npcId, 0]});
+    private _duration = [_npc, _class] call FUNC(playFiller);
     if (_duration <= 0) exitWith {}; // nothing cached for this voice
     _played = _played + 1;
     if (_played >= FILLER_MAX_PER_TURN) exitWith {};
