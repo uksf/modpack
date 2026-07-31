@@ -21,10 +21,6 @@
 #define GATE_SWITCH_MARGIN 0.004
 #define GATE_SWITCH_FRAMES 8
 
-// Mic capture opens when any talkable NPC is this close, well before the addressing gate
-// engages, so the stream is established before the player's first word. Transcription
-// only ever runs on PTT release, so a wider capture costs nothing when nobody talks.
-#define GATE_CAPTURE_RADIUS 15
 
 // How long an NPC keeps watching the last player who spoke to them, refreshed per
 // utterance. Long enough to hold eye contact through a slow turn, short enough that

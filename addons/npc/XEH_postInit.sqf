@@ -70,8 +70,15 @@ addMissionEventHandler ["ExtensionCallback", {
 // Stand up the pipe server / callback pump.
 call FUNC(sttStart);
 
-// Per-frame proximity/facing gate: picks the talkable NPC the player is addressing
-// and drives the ACRE mic capture gate on the rising/falling edge.
+// Open mic capture now and never close it. ACRE swallows the first transmission after
+// its mic stream (re)opens — the same quirk as a first radio check — so opening here,
+// before the player is near any NPC, keeps that first swallow off NPC dialogue wherever
+// an earlier transmission can absorb it. Toggling the gate per approach re-armed the
+// swallow and reliably ate the player's first words to an NPC.
+GVAR(micGateOpen) = true;
+[true] call acre_sys_core_fnc_setMicCaptureGate;
+
+// Per-frame proximity/facing gate: picks the talkable NPC the player is addressing.
 [FUNC(gateTick), 0.2, []] call CBA_fnc_addPerFrameHandler;
 
 // Mid-clip resync: pull the in-flight clip when entering a talkable NPC's range.
