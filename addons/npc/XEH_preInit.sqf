@@ -64,7 +64,6 @@ if (isServer) then {
     GVAR(roomTimers) = createHashMap;
     GVAR(lastSpeaker) = createHashMap;
 GVAR(watchUntil) = createHashMap;
-GVAR(speakerNames) = createHashMap;
     [QGVAR(utterance), { _this call FUNC(onUtterance); }] call CBA_fnc_addEventHandler;
     GVAR(rxBuffers) = createHashMap;
     GVAR(rxBufferTimes) = createHashMap;

@@ -36,7 +36,9 @@ private _token = diag_tickTime;
 GVAR(pendingFiller) set [netId _npc, _token];
 [_npc, _token, FILLER_DELAY, 0] call FUNC(scheduleFiller);
 
-// Forward to the server: [npcId, speakerId(UID), text, t]
+// Forward to the server: UID only. An NPC has no way to know a stranger's name, so the
+// API labels speakers ("Soldier 1", ...) and upgrades the label only when the player
+// actually introduces themselves.
 private _speakerId = getPlayerUID _unit;
 if (_speakerId isEqualTo "") exitWith { TRACE_1("no UID for speaker, dropping",_unit); };
 
