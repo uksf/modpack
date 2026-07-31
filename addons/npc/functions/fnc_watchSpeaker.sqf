@@ -24,22 +24,10 @@ params ["_npc", "_speaker"];
 if (isNull _npc || {isNull _speaker} || {!alive _npc}) exitWith {};
 
 private _npcId = netId _npc;
-private _relDir = _npc getRelDir _speaker;
 
-// Beyond the head's comfortable arc the body comes round first, in a few steps so it
-// reads as a turn rather than a snap. disableAI MOVE stops walking, not setDir.
-if (_relDir > 60 && {_relDir < 300}) then {
-    private _targetDir = _npc getDir _speaker;
-    private _startDir = getDir _npc;
-    private _delta = ((_targetDir - _startDir + 540) % 360) - 180; // shortest way round
-    for "_step" from 1 to 4 do {
-        [{
-            params ["_npc", "_dir"];
-            if (!isNull _npc) then { _npc setDir _dir };
-        }, [_npc, _startDir + _delta * _step / 4], _step * 0.15] call CBA_fnc_waitAndExecute;
-    };
-};
-
+// No scripted body rotation: doWatch drives head AND body through the AI's own movement
+// layer, which only works when nothing has been disableAI'd away. Manually stepping setDir
+// fought that layer and read as jitter.
 _npc doWatch _speaker;
 
 // Rolling hold: each utterance pushes the deadline out; the watch only releases once

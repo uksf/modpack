@@ -46,12 +46,15 @@
 // The rest fire early on purpose: a guard who sometimes grunts before he speaks and
 // sometimes does not is what stops the noises reading as a mechanism.
 // The model is: player talks -> a few seconds of silence (maybe one filler) -> NPC talks.
-// A normal turn answers in about two seconds, so padding only starts well past that, and
-// the in-gap filler is an occasional colour, not a fixture.
+// A normal turn answers in about two seconds, so nothing fires below FILLER_DELAY. Past
+// it, each wait-point rolls a small chance, re-rolled as the wait grows: most turns get
+// no noise at all, a long wait accumulates chances instead of guaranteeing one.
 #define FILLER_DELAY 3.5
-#define FILLER_EARLY_CHANCE 0.18
-#define FILLER_EARLY_MIN 1.0
-#define FILLER_EARLY_SPREAD 1.0
+#define FILLER_CHANCE 0.3
+
+// Inside this window a fired filler uses the short noise class (the reply may still be
+// close); past it the wait is real and earns the long class.
+#define FILLER_SHORT_WINDOW 5
 
 // A cold model or a slow route can leave a player waiting many seconds, and one grunt at
 // the front of that does not cover it. Keep filling at uneven intervals, but stop well

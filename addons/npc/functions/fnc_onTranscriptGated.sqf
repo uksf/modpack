@@ -27,18 +27,14 @@ params ["_unit", "_text", "_uttId", "_time"];
 private _npc = GVAR(targetNpc);
 if (isNull _npc) exitWith { TRACE_1("transcript with no target npc, dropping",_text); };
 
-// Latency mask. Most turns only get one if the reply runs late, and the first audio frame
-// cancels it; the rest fire early, at a slightly different beat each time, so the NPC
-// sometimes grunts before he answers and sometimes just answers.
-private _delay = FILLER_DELAY;
-if (random 1 < FILLER_EARLY_CHANCE) then { _delay = FILLER_EARLY_MIN + random FILLER_EARLY_SPREAD; };
-// An early filler is betting the reply is nearly here, so it gets a short noise; anything
-// firing at or after the usual answer time is covering a genuine wait.
-GVAR(fillerEarlyUntil) set [netId _npc, diag_tickTime + FILLER_DELAY];
+// Latency mask. A normal turn answers in about two seconds, so below FILLER_DELAY there
+// is silence; past it, each wait-point rolls a small chance of one filler, re-rolled as
+// the wait grows, and the first audio frame cancels the whole chain.
+GVAR(fillerEarlyUntil) set [netId _npc, diag_tickTime + FILLER_SHORT_WINDOW];
 
 private _token = diag_tickTime;
 GVAR(pendingFiller) set [netId _npc, _token];
-[_npc, _token, _delay, 0] call FUNC(scheduleFiller);
+[_npc, _token, FILLER_DELAY, 0] call FUNC(scheduleFiller);
 
 // Forward to the server: [npcId, speakerId(UID), text, t]
 private _speakerId = getPlayerUID _unit;

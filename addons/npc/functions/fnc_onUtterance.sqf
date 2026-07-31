@@ -26,10 +26,12 @@ private _room = GVAR(rooms) getOrDefault [_npcId, []];
 _room pushBack [_speakerId, _text, _t];
 GVAR(rooms) set [_npcId, _room];
 
-// Point the NPC at whoever just spoke: the acknowledgement starts when the player
-// talks, not when the reply lands.
+// The UID means nothing to the brain and nothing to the player-facing watch: resolve the
+// speaker once — remember the spoken name for the turn payload, and point the NPC at them
+// so the acknowledgement starts when the player talks, not when the reply lands.
 {
     if (getPlayerUID _x isEqualTo _speakerId) exitWith {
+        GVAR(speakerNames) set [_speakerId, name _x];
         GVAR(lastSpeaker) set [_npcId, _x];
         private _npc = objectFromNetId _npcId;
         if (!isNull _npc) then { [_npc, _x] call FUNC(watchSpeaker); };

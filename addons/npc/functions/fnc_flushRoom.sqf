@@ -24,7 +24,7 @@ GVAR(rooms) set [_npcId, []];
 
 private _newTurns = _room apply {
     _x params ["_speakerId", "_text", "_t"];
-    createHashMapFromArray [["speakerId", _speakerId], ["text", _text], ["t", _t]]
+    createHashMapFromArray [["speakerId", _speakerId], ["speakerName", GVAR(speakerNames) getOrDefault [_speakerId, ""]], ["text", _text], ["t", _t]]
 };
 
 private _turnId = format ["%1_%2", _npcId, round (diag_tickTime * 1000)];
