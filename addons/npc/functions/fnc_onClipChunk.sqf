@@ -70,4 +70,5 @@ private _list = GVAR(fillers) getOrDefault [_voiceId, []];
 if (_list findIf { _x#0 isEqualTo _fillerId } == -1) then {
     _list pushBack [_fillerId, _wav, _durationMs];
     GVAR(fillers) set [_voiceId, _list];
+    TRACE_3("filler cached",_voiceId,_fillerId,count _list);
 };
