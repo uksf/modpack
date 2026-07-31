@@ -21,6 +21,16 @@
 #define GATE_SWITCH_MARGIN 0.004
 #define GATE_SWITCH_FRAMES 8
 
+// Mic capture opens when any talkable NPC is this close, well before the addressing gate
+// engages, so the stream is established before the player's first word. Transcription
+// only ever runs on PTT release, so a wider capture costs nothing when nobody talks.
+#define GATE_CAPTURE_RADIUS 15
+
+// How long an NPC keeps watching the last player who spoke to them, refreshed per
+// utterance. Long enough to hold eye contact through a slow turn, short enough that
+// they go back to idle once the conversation is plainly over.
+#define WATCH_HOLD 10
+
 // Streamed PCM is 24 kHz mono; used to turn fed samples into a playback duration.
 #define STREAM_RATE 24000
 
@@ -35,10 +45,13 @@
 // set past the typical answer instead, and only a turn slower than that gets covered.
 // The rest fire early on purpose: a guard who sometimes grunts before he speaks and
 // sometimes does not is what stops the noises reading as a mechanism.
-#define FILLER_DELAY 2.2
-#define FILLER_EARLY_CHANCE 0.35
-#define FILLER_EARLY_MIN 0.8
-#define FILLER_EARLY_SPREAD 0.5
+// The model is: player talks -> a few seconds of silence (maybe one filler) -> NPC talks.
+// A normal turn answers in about two seconds, so padding only starts well past that, and
+// the in-gap filler is an occasional colour, not a fixture.
+#define FILLER_DELAY 3.5
+#define FILLER_EARLY_CHANCE 0.18
+#define FILLER_EARLY_MIN 1.0
+#define FILLER_EARLY_SPREAD 1.0
 
 // A cold model or a slow route can leave a player waiting many seconds, and one grunt at
 // the front of that does not cover it. Keep filling at uneven intervals, but stop well

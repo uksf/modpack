@@ -26,10 +26,13 @@ private _room = GVAR(rooms) getOrDefault [_npcId, []];
 _room pushBack [_speakerId, _text, _t];
 GVAR(rooms) set [_npcId, _room];
 
-// Remember the last speaker object for the head-turn (match by UID).
+// Point the NPC at whoever just spoke: the acknowledgement starts when the player
+// talks, not when the reply lands.
 {
     if (getPlayerUID _x isEqualTo _speakerId) exitWith {
         GVAR(lastSpeaker) set [_npcId, _x];
+        private _npc = objectFromNetId _npcId;
+        if (!isNull _npc) then { [_npc, _x] call FUNC(watchSpeaker); };
     };
 } forEach allPlayers;
 

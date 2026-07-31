@@ -50,11 +50,16 @@ switch (_type) do {
         // header now ["audio", npcId, turnId, durationMs, offsetMs]; live broadcast = 0 offset.
         [QGVAR(audioChunkSink), _targets, ["audio", _npcId, _turnId, _durationMs, 0], _wav] call FUNC(pushClipChunks);
         GVAR(activeClips) set [_npcId, [_turnId, _wav, diag_tickTime, _durationMs]];
-        // Head-turn on the NPC owner; targetEvent routes to the owning machine.
-        [QGVAR(headTurn), [_npc, GVAR(lastSpeaker) getOrDefault [_npcId, objNull], _durationMs], _npc] call CBA_fnc_targetEvent;
     };
     case "npc_audio_frame";
     case "npc_audio_end": {
         [_type, _args] call FUNC(onStreamFrame);
+    };
+    case "npc_turn_cancel": {
+        // The API dropped this turn (addressed to someone else, or the brain declined):
+        // stop the filler loop instead of padding a silence that will never fill.
+        _args params ["_npcId"];
+        GVAR(pendingFiller) set [_npcId, 0];
+        TRACE_1("turn cancelled, fillers stopped",_npcId);
     };
 };

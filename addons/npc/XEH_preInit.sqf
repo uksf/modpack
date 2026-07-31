@@ -21,7 +21,6 @@ GVAR(micGateOpen) = false;
 [QGVAR(transcript), { _this call FUNC(onTranscriptGated); }] call CBA_fnc_addEventHandler;
 
 // Head-turn runs on the NPC owner (server or HC); routed there via CBA_fnc_targetEvent.
-[QGVAR(headTurn), { _this call FUNC(headTurn); }] call CBA_fnc_addEventHandler;
 
 // Clip receive buffers, filler cache, and per-NPC talking deadlines.
 GVAR(clipRxBuffers) = createHashMap;
@@ -64,6 +63,7 @@ if (isServer) then {
     GVAR(rooms) = createHashMap;
     GVAR(roomTimers) = createHashMap;
     GVAR(lastSpeaker) = createHashMap;
+GVAR(watchUntil) = createHashMap;
     [QGVAR(utterance), { _this call FUNC(onUtterance); }] call CBA_fnc_addEventHandler;
     GVAR(rxBuffers) = createHashMap;
     GVAR(rxBufferTimes) = createHashMap;

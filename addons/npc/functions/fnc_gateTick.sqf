@@ -61,8 +61,14 @@ if (!isNull _current && {_best isNotEqualTo _current}) then {
 if (_best isEqualTo GVAR(targetNpc)) exitWith {};
 
 GVAR(targetNpc) = _best;
-private _hasTarget = !isNull _best;
-if (_hasTarget isEqualTo GVAR(micGateOpen)) exitWith {};
-GVAR(micGateOpen) = _hasTarget;
-[_hasTarget] call acre_sys_core_fnc_setMicCaptureGate;
-TRACE_2("mic gate",_hasTarget,_best);
+
+// Capture opens on proximity, not on address: the pipe and the stream establish when the
+// gate first opens, and a player who starts talking in that moment loses the utterance.
+// Warm the channel as soon as any talkable NPC is near, so the first word survives.
+private _anyNear = (GVAR(targetNpc) isNotEqualTo objNull) || {
+    alive _player && {(_player nearEntities [["CAManBase"], GATE_CAPTURE_RADIUS]) findIf { _x getVariable [QGVAR(talkable), false] } != -1}
+};
+if (_anyNear isEqualTo GVAR(micGateOpen)) exitWith {};
+GVAR(micGateOpen) = _anyNear;
+[_anyNear] call acre_sys_core_fnc_setMicCaptureGate;
+TRACE_2("mic gate",_anyNear,_best);

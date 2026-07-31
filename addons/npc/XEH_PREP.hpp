@@ -14,7 +14,7 @@ PREP(flushRoom);
 PREP(onApiCommand);
 PREP(reassemble);
 PREP(pushClipChunks);
-PREP(headTurn);
+PREP(watchSpeaker);
 PREP(onClipChunk);
 PREP(playFiller);
 PREP(scheduleFiller);
