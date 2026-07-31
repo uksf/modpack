@@ -25,6 +25,12 @@ if (_targets isEqualTo []) exitWith {};
 
 if (_type isEqualTo "npc_audio_frame") exitWith {
     _args params ["", "", "_seq", "_pcm"];
+    // The NPC who answers is the one who turns. Every talkable in earshot hears the
+    // player, so turning on hearing had the wrong one pivot while another spoke.
+    if (_seq isEqualTo 0) then {
+        private _speaker = GVAR(lastSpeaker) getOrDefault [_npcId, objNull];
+        if (!isNull _speaker) then { [_npc, _speaker] call FUNC(watchSpeaker); };
+    };
     TRACE_4("relay frame",_npcId,_turnId,_seq,count _targets);
     [QGVAR(streamFrameSink), [_npcId, _turnId, _seq, _pcm], _targets] call CBA_fnc_targetEvent;
     // Track the open stream so a mid-clip joiner can be replayed the frames so far.

@@ -2,7 +2,12 @@
 #define COMPONENT_BEAUTIFIED NPC
 #include "\u\uksf\addons\main\script_mod.hpp"
 
-#define DEBUG_MODE_FULL
+// Live NPC speech is unfinished and must not run for players. Nothing in this component
+// starts unless this is defined: no registration, no mic capture, no STT server, no
+// per-frame handlers. Define it to work on the feature; leave it out to ship.
+// #define NPC_ENABLED
+
+// #define DEBUG_MODE_FULL
 // #define DISABLE_COMPILE_CACHE
 
 #include "\u\uksf\addons\main\script_macros.hpp"

@@ -26,17 +26,12 @@ private _room = GVAR(rooms) getOrDefault [_npcId, []];
 _room pushBack [_speakerId, _text, _t, _gazeAddressed];
 GVAR(rooms) set [_npcId, _room];
 
-// Point the NPC at whoever just spoke, but only the one being looked at — every talkable
-// in earshot receives the utterance, and having them all turn in unison reads as scripted.
-if (_gazeAddressed) then {
-    {
-        if (getPlayerUID _x isEqualTo _speakerId) exitWith {
-            GVAR(lastSpeaker) set [_npcId, _x];
-            private _npc = objectFromNetId _npcId;
-            if (!isNull _npc) then { [_npc, _x] call FUNC(watchSpeaker); };
-        };
-    } forEach allPlayers;
-};
+// Remember who spoke. The turn to face them happens when this NPC actually answers, not
+// when they hear: every talkable in earshot receives the utterance, so turning on hearing
+// had a whole room pivot, and the wrong one pivot while another did the talking.
+{
+    if (getPlayerUID _x isEqualTo _speakerId) exitWith { GVAR(lastSpeaker) set [_npcId, _x]; };
+} forEach allPlayers;
 
 // Debounce: record a token and schedule a flush; only the latest token flushes.
 private _token = diag_tickTime;

@@ -38,15 +38,14 @@ if (alive _player) then {
 // Stickiness: keep the current target unless the rival is clearly closer to the crosshair
 // centre and stays that way for a moment. Kills twitch when two NPCs stand close.
 private _current = GVAR(targetNpc);
-if (!isNull _current && {_best isNotEqualTo _current}) then {
+private _currentHeld = !isNull _current && {alive _current} && {[_player, _current] call FUNC(isInGate)};
+if (_currentHeld && {_best isNotEqualTo _current}) then {
+    // Both are in the gate: only switch once the rival has been clearly closer to the
+    // crosshair for a run of frames, so a glance does not steal the turn.
     private _forward = eyeDirection _player;
     private _eye = eyePos _player;
-    private _curScore = if (alive _current && {[_player, _current] call FUNC(isInGate)}) then {
-        1 - (_forward vectorDotProduct (vectorNormalized ((eyePos _current) vectorDiff _eye)))
-    } else { 1e9 }; // current left the gate entirely
-
-    private _clearlyBetter = _bestScore < (_curScore - GATE_SWITCH_MARGIN);
-    if (_clearlyBetter) then {
+    private _curScore = 1 - (_forward vectorDotProduct (vectorNormalized ((eyePos _current) vectorDiff _eye)));
+    if (_bestScore < (_curScore - GATE_SWITCH_MARGIN)) then {
         GVAR(targetCandidate) = GVAR(targetCandidate) + 1;
     } else {
         GVAR(targetCandidate) = 0; // rival not clearly better: stay
@@ -55,6 +54,8 @@ if (!isNull _current && {_best isNotEqualTo _current}) then {
         _best = _current; // not sustained yet — hold the current target
     };
 } else {
+    // Look away and the target releases at once. Holding it meant a player facing nobody
+    // still had a target, and an unnamed question was answered by whoever they last faced.
     GVAR(targetCandidate) = 0;
 };
 
