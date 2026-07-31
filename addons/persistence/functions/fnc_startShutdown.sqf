@@ -32,6 +32,7 @@ if (GVAR(shutdownInProgress)) exitWith {
 };
 
 GVAR(shutdownInProgress) = true;
+["shutdown_ending"] call EFUNC(api,sendEvent);
 
 LOG("Shutdown");
 
@@ -45,7 +46,7 @@ INFO_1("Waiting for %1 players to disconnect before shutdown",GVAR(shutdownExpec
 }, {
     INFO_2("All players disconnected and saved (%1 of %2), proceeding with shutdown",GVAR(shutdownDisconnectedCount),GVAR(shutdownExpectedDisconnectCount));
     call FUNC(finishShutdown);
-}, [], 30, {
+}, [], 10, {
     WARNING_2("Shutdown timeout — saved %1 of %2 player disconnects, proceeding anyway",GVAR(shutdownDisconnectedCount),GVAR(shutdownExpectedDisconnectCount));
     call FUNC(finishShutdown);
 }] call CBA_fnc_waitUntilAndExecute;

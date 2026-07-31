@@ -1,9 +1,11 @@
 use arma_rs::Context;
 
+use crate::audio;
 use crate::bridge;
 use crate::file_export;
 use crate::dev_run;
 use crate::input;
+use crate::stt;
 
 pub fn start(context: Context) -> String {
     bridge::handle_start(context)
@@ -59,4 +61,44 @@ pub fn dev_run_log(run_id: String, line: String) -> String {
 
 pub fn dev_run_finish(run_id: String) -> String {
     dev_run::finish(run_id)
+}
+
+pub fn audio_open(id: String) -> String {
+    audio::open(id)
+}
+
+pub fn audio_chunk(id: String, b64: String) -> String {
+    audio::chunk(id, b64)
+}
+
+pub fn audio_play(id: String, x: f32, y: f32, z: f32, vol: f32, offset_ms: f32) -> String {
+    audio::play(id, x, y, z, vol, offset_ms)
+}
+
+pub fn audio_feed(id: String, b64: String) -> String {
+    audio::feed(id, b64)
+}
+
+pub fn audio_end(id: String) -> String {
+    audio::end(id)
+}
+
+pub fn audio_pos(id: String, x: f32, y: f32, z: f32, vol: f32) -> String {
+    audio::pos(id, x, y, z, vol)
+}
+
+pub fn audio_listener(dx: f32, dy: f32, dz: f32, ux: f32, uy: f32, uz: f32) -> String {
+    audio::listener(dx, dy, dz, ux, uy, uz)
+}
+
+pub fn audio_stop(id: String) -> String {
+    audio::stop(id)
+}
+
+pub fn stt_start(context: Context) -> String {
+    stt::start(context)
+}
+
+pub fn stt_stop() -> String {
+    stt::stop()
 }

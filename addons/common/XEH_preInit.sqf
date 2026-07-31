@@ -23,6 +23,11 @@ GVAR(valueCache) = createHashMap;
 
 GVAR(edenLogicIdMap) = createHashMap;
 
+if (!isDedicated) then {
+    // Remove after cTAB fixes XEH_postInitClient.sqf:329.
+    cTab_helmetClass_has_HCam = [];
+};
+
 if (hasInterface) then {
     GVAR(fpsHintActive) = false;
     GVAR(fpsHintPFH) = -1;

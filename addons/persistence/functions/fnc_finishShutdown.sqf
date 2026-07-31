@@ -24,6 +24,7 @@ TRACE_1("Finishing shutdown: firing shuttingDown",diag_tickTime);
 
 TRACE_1("Proceeding with persistence save",GVAR(dataSaved));
 if (GVAR(dataSaved)) then {
+    ["shutdown_saving"] call EFUNC(api,sendEvent);
     {
         private _marker = createVehicle [QGVAR(markerAmmo), _x, [], 0, "CAN_COLLIDE"];
         GVAR(persistenceMarkers) pushBack _marker;
@@ -36,9 +37,9 @@ if (GVAR(dataSaved)) then {
 [{
     GVAR(shutdownSavingComplete)
 }, {
-    TRACE_1("Sending shutdown_complete and flushing extension",diag_tickTime);
+    TRACE_1("Sending shutdown_stopping and flushing extension",diag_tickTime);
 
-    ["shutdown_complete"] call EFUNC(api,sendEvent);
+    ["shutdown_stopping"] call EFUNC(api,sendEvent);
     private _flushResult = "uksf" callExtension "flush";
     TRACE_1("Extension flush result",_flushResult);
 
@@ -46,7 +47,7 @@ if (GVAR(dataSaved)) then {
 }, [], 120, {
     WARNING("Shutdown save timed out after 120 seconds, forcing shutdown");
 
-    ["shutdown_complete"] call EFUNC(api,sendEvent);
+    ["shutdown_stopping"] call EFUNC(api,sendEvent);
     private _flushResult = "uksf" callExtension "flush";
     TRACE_1("Extension flush result",_flushResult);
 
