@@ -19,22 +19,24 @@
     Example:
         ["2:4", "76561198000000001", "Hello there", 1234.5] call uksf_npc_fnc_onUtterance
 */
-params ["_npcId", "_speakerId", "_text", "_t"];
-TRACE_3("utterance received",_npcId,_speakerId,_text);
+params ["_npcId", "_speakerId", "_text", "_t", ["_gazeAddressed", false, [false]]];
+TRACE_3("utterance received",_npcId,_speakerId,_gazeAddressed);
 
 private _room = GVAR(rooms) getOrDefault [_npcId, []];
-_room pushBack [_speakerId, _text, _t];
+_room pushBack [_speakerId, _text, _t, _gazeAddressed];
 GVAR(rooms) set [_npcId, _room];
 
-// Point the NPC at whoever just spoke: the acknowledgement starts when the player
-// talks, not when the reply lands.
-{
-    if (getPlayerUID _x isEqualTo _speakerId) exitWith {
-        GVAR(lastSpeaker) set [_npcId, _x];
-        private _npc = objectFromNetId _npcId;
-        if (!isNull _npc) then { [_npc, _x] call FUNC(watchSpeaker); };
-    };
-} forEach allPlayers;
+// Point the NPC at whoever just spoke, but only the one being looked at — every talkable
+// in earshot receives the utterance, and having them all turn in unison reads as scripted.
+if (_gazeAddressed) then {
+    {
+        if (getPlayerUID _x isEqualTo _speakerId) exitWith {
+            GVAR(lastSpeaker) set [_npcId, _x];
+            private _npc = objectFromNetId _npcId;
+            if (!isNull _npc) then { [_npc, _x] call FUNC(watchSpeaker); };
+        };
+    } forEach allPlayers;
+};
 
 // Debounce: record a token and schedule a flush; only the latest token flushes.
 private _token = diag_tickTime;

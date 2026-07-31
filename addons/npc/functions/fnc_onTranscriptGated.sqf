@@ -25,16 +25,23 @@
 params ["_unit", "_text", "_uttId", "_time"];
 
 private _npc = GVAR(targetNpc);
-if (isNull _npc) exitWith { TRACE_1("transcript with no target npc, dropping",_text); };
 
-// Latency mask. A normal turn answers in about two seconds, so below FILLER_DELAY there
-// is silence; past it, each wait-point rolls a small chance of one filler, re-rolled as
-// the wait grows, and the first audio frame cancels the whole chain.
-GVAR(fillerEarlyUntil) set [netId _npc, diag_tickTime + FILLER_SHORT_WINDOW];
+// Everyone close enough hears the words — speech is not directional. Every talkable NPC
+// in earshot gets the utterance and the API decides who answers: the one named, or the
+// one being looked at when no name is used. Sending only to the gaze target meant naming
+// an NPC you were not facing reached nobody at all.
+private _heard = (call CBA_fnc_currentUnit) nearEntities [["CAManBase"], HEARING_RADIUS];
+_heard = _heard select { _x getVariable [QGVAR(talkable), false] };
+if (_heard isEqualTo []) exitWith { TRACE_1("transcript with no npc in earshot, dropping",_text); };
 
-private _token = diag_tickTime;
-GVAR(pendingFiller) set [netId _npc, _token];
-[_npc, _token, FILLER_DELAY, 0] call FUNC(scheduleFiller);
+// Latency mask, for the NPC actually being addressed by gaze. A turn the API drops sends
+// npc_turn_cancel back, which stops this loop.
+if (!isNull _npc) then {
+    GVAR(fillerEarlyUntil) set [netId _npc, diag_tickTime + FILLER_SHORT_WINDOW];
+    private _token = diag_tickTime;
+    GVAR(pendingFiller) set [netId _npc, _token];
+    [_npc, _token, FILLER_DELAY, 0] call FUNC(scheduleFiller);
+};
 
 // Forward to the server: UID only. An NPC has no way to know a stranger's name, so the
 // API labels speakers ("Soldier 1", ...) and upgrades the label only when the player
@@ -42,5 +49,8 @@ GVAR(pendingFiller) set [netId _npc, _token];
 private _speakerId = getPlayerUID _unit;
 if (_speakerId isEqualTo "") exitWith { TRACE_1("no UID for speaker, dropping",_unit); };
 
-TRACE_3("utterance -> server",netId _npc,_speakerId,_text);
-[QGVAR(utterance), [netId _npc, _speakerId, _text, _time]] call CBA_fnc_serverEvent;
+{
+    private _isGazeTarget = _x isEqualTo _npc;
+    TRACE_3("utterance -> server",netId _x,_speakerId,_isGazeTarget);
+    [QGVAR(utterance), [netId _x, _speakerId, _text, _time, _isGazeTarget]] call CBA_fnc_serverEvent;
+} forEach _heard;

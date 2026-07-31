@@ -10,6 +10,10 @@
 // Upper bound for the per-frame nearEntities scan; the real gate is each NPC's gateRange.
 #define GATE_SCAN_RADIUS 25
 
+// How far a spoken utterance carries. Everyone talkable inside this hears it regardless
+// of facing, and the API decides who answers — the one named, or the one looked at.
+#define HEARING_RADIUS 15
+
 // Default addressing gate, overridable per NPC. Conversation distance is further than
 // arm's reach: a player standing off and looking at an NPC is plainly talking to them.
 #define GATE_RANGE 10

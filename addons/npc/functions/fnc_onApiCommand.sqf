@@ -56,10 +56,11 @@ switch (_type) do {
         [_type, _args] call FUNC(onStreamFrame);
     };
     case "npc_turn_cancel": {
-        // The API dropped this turn (addressed to someone else, or the brain declined):
-        // stop the filler loop instead of padding a silence that will never fill.
+        // The API dropped this turn (addressed to someone else, or the brain declined).
+        // The filler loop runs on the CLIENT, so the cancel has to travel there — clearing
+        // the server's own copy left the player listening to a loop nothing would stop.
         _args params ["_npcId"];
-        GVAR(pendingFiller) set [_npcId, 0];
-        TRACE_1("turn cancelled, fillers stopped",_npcId);
+        TRACE_1("turn cancelled, telling clients",_npcId);
+        [QGVAR(turnCancelSink), [_npcId], ALL_PLAYERS] call CBA_fnc_targetEvent;
     };
 };

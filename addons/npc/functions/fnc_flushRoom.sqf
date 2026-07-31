@@ -27,12 +27,16 @@ private _newTurns = _room apply {
     createHashMapFromArray [["speakerId", _speakerId], ["text", _text], ["t", _t]]
 };
 
+// Was this NPC the one being looked at? With no name in the words, only they answer.
+private _gazeAddressed = (_room findIf { _x param [3, false] }) != -1;
+
 private _turnId = format ["%1_%2", _npcId, round (diag_tickTime * 1000)];
 
 ["npc_turn", createHashMapFromArray [
     ["npcId", _npcId],
     ["sessionId", EGVAR(api,sessionId)],
     ["turnId", _turnId],
+    ["gazeAddressed", _gazeAddressed],
     ["newTurns", _newTurns]
 ]] call EFUNC(api,sendEvent);
 TRACE_2("flushed room -> npc_turn",_npcId,count _newTurns);

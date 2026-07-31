@@ -48,6 +48,7 @@ GVAR(streamStart) = createHashMap;
 GVAR(fillerCache) = createHashMap;
 // Pending filler token per NPC; the first audio frame stops any further filler being armed.
 GVAR(pendingFiller) = createHashMap;
+[QGVAR(turnCancelSink), { GVAR(pendingFiller) set [_this#0, 0]; }] call CBA_fnc_addEventHandler;
 // When each NPC's filler stops sounding, and the frames held until it does.
 GVAR(fillerBusyUntil) = createHashMap;
 GVAR(streamHeld) = createHashMap;
