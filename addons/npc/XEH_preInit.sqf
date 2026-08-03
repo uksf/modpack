@@ -4,13 +4,6 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
-// Unfinished feature: nothing runs unless NPC_ENABLED is defined. Functions still compile
-// so the component stays buildable, but no state, event handler or gate is created.
-#ifndef NPC_ENABLED
-ADDON = true;
-#endif
-#ifdef NPC_ENABLED
-
 // [[clipId, npc], ...] currently-playing clips tracked by the tick handler.
 GVAR(active) = [];
 GVAR(tickRunning) = false;
@@ -86,4 +79,3 @@ GVAR(watchUntil) = createHashMap;
 #include "initSettings.inc.sqf"
 
 ADDON = true;
-#endif

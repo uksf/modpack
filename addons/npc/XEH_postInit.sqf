@@ -1,11 +1,5 @@
 #include "script_component.hpp"
 
-// Unfinished feature: no registration, no mic capture, no STT server, no per-frame
-// handlers unless NPC_ENABLED is defined. See script_component.hpp.
-#ifndef NPC_ENABLED
-if (true) exitWith {};
-#endif
-
 // Server: register all talkable NPCs once the API session is ready. The API event
 // channel (and EGVAR(api,sessionId)) only exists on a dedicated server, so NPC speech
 // is dedicated-only — skip loudly elsewhere instead of waiting forever.
