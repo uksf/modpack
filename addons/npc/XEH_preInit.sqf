@@ -58,6 +58,29 @@ GVAR(fillerEarlyUntil) = createHashMap;
 [QGVAR(streamFrameSink), { _this call FUNC(onStreamFrameClient); }] call CBA_fnc_addEventHandler;
 [QGVAR(streamEndSink),   { [_this#0, _this#1, -1, ""] call FUNC(onStreamFrameClient); }] call CBA_fnc_addEventHandler;
 
+// Guarded-source feedback, drawn above the NPC: the emote is the production signal, the
+// state hint is test-only and stays off unless a fixture asks for it. Neither carries fact
+// text, and neither is ever spoken. Both are keyed by netId with the object resolved once,
+// so the per-frame draw does no lookup and holds no local scope.
+GVAR(emotes) = createHashMap;
+GVAR(stateHints) = createHashMap;
+[QGVAR(guardedStateSink), {
+    params ["_npcId", "_cooperation", "_pendingWarning", "_burned", "_disclosedFactIds", "_eligibleFactId", "_mood", "_emote", "_reason", "_evidence", "_classifierMs", "_replyMs"];
+    private _npc = objectFromNetId _npcId;
+    if (isNull _npc) exitWith {};
+    if (_emote isNotEqualTo "") then {
+        GVAR(emotes) set [_npcId, [_npc, _emote, diag_tickTime + EMOTE_HOLD]];
+    };
+    if !(missionNamespace getVariable [QGVAR(showStateHint), false]) exitWith {};
+    private _threat = [["clear", "warned"] select _pendingWarning, "burned"] select _burned;
+    GVAR(stateHints) set [_npcId, [
+        _npc,
+        format ["%1 | %2 | %3 | disclosed %4 | eligible %5 | %6+%7ms", _cooperation, _threat, _mood, ["-", _disclosedFactIds] select (_disclosedFactIds isNotEqualTo ""), ["-", _eligibleFactId] select (_eligibleFactId isNotEqualTo ""), _classifierMs, _replyMs],
+        ([_reason, _evidence] select { _x isNotEqualTo "" }) joinString " | ",
+        diag_tickTime + HINT_HOLD
+    ]];
+}] call CBA_fnc_addEventHandler;
+
 // Server: utterance room state, debounce timers, last-speaker objects,
 // and API-command receive buffers.
 if (isServer) then {
@@ -72,6 +95,29 @@ GVAR(watchUntil) = createHashMap;
     // Active audio clips for mid-clip resync: npcId -> [turnId, wav, dispatchTime, durationMs].
     GVAR(activeClips) = createHashMap;
     [QGVAR(requestClip), { _this call FUNC(onRequestClip); }] call CBA_fnc_addEventHandler;
+    // Test reset: the fixture asks for one guarded source to be re-registered from scratch.
+    // Registration is server work, so the request has to travel here rather than run client-side.
+    //
+    // Any client can raise this event with any netId, and a reset wipes cooperation, the
+    // ledger and the NPC's history. So it does nothing at all unless the mission itself has
+    // opted in on the server, and then only for a live guarded source: a forged reset aimed
+    // at a conversation NPC or at a production mission's guarded source is dropped.
+    [QGVAR(guardedReset), {
+        params ["_npcId"];
+        if !(missionNamespace getVariable [QGVAR(allowGuardedReset), false]) exitWith {
+            WARNING_1("guarded reset refused: this mission does not enable it (%1)",_npcId);
+        };
+        private _npc = objectFromNetId _npcId;
+        if (isNull _npc) exitWith { WARNING_1("guarded reset for unknown netId: %1",_npcId); };
+        if !(_npc getVariable [QGVAR(talkable), false]) exitWith {
+            WARNING_1("guarded reset refused: npc is not talkable (%1)",_npcId);
+        };
+        if ((_npc getVariable [QGVAR(interactionProfile), "conversation"]) isNotEqualTo "guarded") exitWith {
+            WARNING_1("guarded reset refused: npc is not a guarded source (%1)",_npcId);
+        };
+        TRACE_1("guarded reset requested",_npcId);
+        [_npc, true] call FUNC(registerNpc);
+    }] call CBA_fnc_addEventHandler;
     // Open streamed turns for mid-clip joiners: npcId -> [nextSeq, [pcm frames so far]].
     GVAR(activeStreams) = createHashMap;
 };

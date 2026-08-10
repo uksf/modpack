@@ -26,7 +26,7 @@ if (alive _player) then {
     private _forward = eyeDirection _player;
     private _eye = eyePos _player;
     {
-        if (_x getVariable [QGVAR(talkable), false] && {[_player, _x] call FUNC(isInGate)}) then {
+        if (_x getVariable [QGVAR(talkable), false] && {alive _x} && {[_player, _x] call FUNC(isInGate)}) then {
             // Angular distance from the crosshair: lower is more directly looked at.
             private _toNpc = (eyePos _x) vectorDiff _eye;
             private _score = 1 - (_forward vectorDotProduct (vectorNormalized _toNpc));
@@ -38,7 +38,12 @@ if (alive _player) then {
 // Stickiness: keep the current target unless the rival is clearly closer to the crosshair
 // centre and stays that way for a moment. Kills twitch when two NPCs stand close.
 private _current = GVAR(targetNpc);
-private _currentHeld = !isNull _current && {alive _current} && {[_player, _current] call FUNC(isInGate)};
+// A source that dies or is switched off mid-conversation loses the hold at once, so the
+// target releases instead of sticking to a body the player can no longer talk to.
+private _currentHeld = !isNull _current
+    && {alive _current}
+    && {_current getVariable [QGVAR(talkable), false]}
+    && {[_player, _current] call FUNC(isInGate)};
 if (_currentHeld && {_best isNotEqualTo _current}) then {
     // Both are in the gate: only switch once the rival has been clearly closer to the
     // crosshair for a run of frames, so a glance does not steal the turn.

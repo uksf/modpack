@@ -22,6 +22,13 @@
 params ["_npcId", "_speakerId", "_text", "_t", ["_gazeAddressed", false, [false]]];
 TRACE_3("utterance received",_npcId,_speakerId,_gazeAddressed);
 
+// The client gate filters before it forwards, but an utterance already in flight can land
+// after the NPC has died or been switched off. Only a live, talkable NPC gets a turn.
+private _npc = objectFromNetId _npcId;
+if (isNull _npc || {!alive _npc} || {!(_npc getVariable [QGVAR(talkable), false])}) exitWith {
+    TRACE_1("utterance for unknown or terminal npc, dropping",_npcId);
+};
+
 private _room = GVAR(rooms) getOrDefault [_npcId, []];
 _room pushBack [_speakerId, _text, _t, _gazeAddressed];
 GVAR(rooms) set [_npcId, _room];

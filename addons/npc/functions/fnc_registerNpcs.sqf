@@ -25,51 +25,17 @@ if (isNil "_sessionId") exitWith { TRACE_1("no session id, skipping npc register
 private _talkableCount = { _x getVariable [QGVAR(talkable), false] } count allUnits;
 TRACE_3("registerNpcs start",_sessionId,count allUnits,_talkableCount);
 
+private _registered = [];
 {
     private _npc = _x;
     if !(_npc getVariable [QGVAR(talkable), false]) then { continue };
-
-    private _mode = _npc getVariable [QGVAR(mode), "dynamic"];
-
-    private _persona = createHashMapFromArray [
-        ["name", _npc getVariable [QGVAR(personaName), ""]],
-        ["role", _npc getVariable [QGVAR(personaRole), ""]],
-        ["language", _npc getVariable [QGVAR(personaLanguage), ""]],
-        ["mood", _npc getVariable [QGVAR(personaMood), ""]],
-        ["attitudeToPlayers", _npc getVariable [QGVAR(personaAttitude), ""]]
-    ];
-
-    private _data = createHashMapFromArray [
-        ["npcId", netId _npc],
-        ["sessionId", _sessionId],
-        ["persona", _persona],
-        ["knowledge", _npc getVariable [QGVAR(knowledge), ""]],
-        ["mode", _mode],
-        ["voiceId", _npc getVariable [QGVAR(voiceId), ""]]
-    ];
-
-    if (_mode isEqualTo "scripted") then {
-        private _lines = [];
-        for "_i" from 1 to 6 do {
-            private _topic = _npc getVariable [format ["%1%2", QGVAR(scriptedTopic), _i], ""];
-            private _line = _npc getVariable [format ["%1%2", QGVAR(scriptedLine), _i], ""];
-            if (_line isNotEqualTo "") then {
-                _lines pushBack createHashMapFromArray [
-                    ["id", format ["s%1", _i]],
-                    ["topic", _topic],
-                    ["line", _line]
-                ];
-            };
-        };
-        _data set ["scripted", createHashMapFromArray [
-            ["lines", _lines],
-            ["deflection", _npc getVariable [QGVAR(deflection), ""]]
-        ]];
+    // Registration refused: drop the talkable flag too, or the client gate keeps offering a
+    // conversation the API has no session for.
+    if !([_npc] call FUNC(registerNpc)) then {
+        _npc setVariable [QGVAR(talkable), false, true];
+        continue
     };
-
-    ["npc_register", _data] call EFUNC(api,sendEvent);
-    TRACE_2("registered npc",netId _npc,_mode);
+    _registered pushBack netId _npc;
 } forEach allUnits;
 
-private _talkerIds = (allUnits select { _x getVariable [QGVAR(talkable), false] }) apply { netId _x };
-missionNamespace setVariable [QGVAR(talkerNetIds), _talkerIds, true];
+missionNamespace setVariable [QGVAR(talkerNetIds), _registered, true];

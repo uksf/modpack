@@ -39,6 +39,18 @@ if (isServer) then {
         }, [_name], 5] call CBA_fnc_waitAndExecute;
     }];
 
+    // A guarded source who is killed or goes down stops being a source for the rest of the
+    // session. Both handlers are server-side because the talkable flag is replicated from here,
+    // and both are idempotent, so a unit that dies while unconscious only terminates once.
+    addMissionEventHandler ["EntityKilled", {
+        params ["_unit"];
+        [_unit] call FUNC(terminalGuardedSource);
+    }];
+    ["ace_unconscious", {
+        params ["_unit", "_active"];
+        if (_active) then { [_unit] call FUNC(terminalGuardedSource); };
+    }] call CBA_fnc_addEventHandler;
+
     // Sweep stale partial API-command reassembly buffers (a lost chunk would otherwise wedge one forever).
     [{ [GVAR(rxBuffers), GVAR(rxBufferTimes), 30, "rx"] call FUNC(sweepBuffers); }, 10, []] call CBA_fnc_addPerFrameHandler;
 
@@ -86,3 +98,7 @@ GVAR(micGateOpen) = true;
 
 // Sweep stale partial clip-receive buffers (a lost chunk would otherwise wedge one forever).
 [{ [GVAR(clipRxBuffers), GVAR(clipRxBufferTimes), 30, "clip"] call FUNC(sweepBuffers); }, 10, []] call CBA_fnc_addPerFrameHandler;
+
+// Guarded emote/state text. One handler for the whole component; it returns immediately
+// while nothing is pending, which is the normal case outside a guarded conversation.
+addMissionEventHandler ["Draw3D", { call FUNC(drawEmotes); }];

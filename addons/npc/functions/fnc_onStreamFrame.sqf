@@ -24,6 +24,11 @@ private _targets = allPlayers select { _x distance _npc <= GVAR(audioRange) };
 if (_targets isEqualTo []) exitWith {};
 
 if (_type isEqualTo "npc_audio_frame") exitWith {
+    // A source that went down mid-turn is finished for the session. The API composed this
+    // reply before that and keeps streaming it, so the frames stop here rather than letting a
+    // body speak. The end frame below still relays, so a clip already open on a client closes.
+    if !(_npc getVariable [QGVAR(talkable), false]) exitWith { TRACE_1("stream frame for terminal npc, dropping",_npcId); };
+
     _args params ["", "", "_seq", "_pcm"];
     // The NPC who answers is the one who turns. Every talkable in earshot hears the
     // player, so turning on hearing had the wrong one pivot while another spoke.

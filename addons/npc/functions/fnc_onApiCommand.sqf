@@ -55,6 +55,9 @@ switch (_type) do {
     case "npc_audio_end": {
         [_type, _args] call FUNC(onStreamFrame);
     };
+    case "npc_guarded_state": {
+        [_args] call FUNC(onGuardedState);
+    };
     case "npc_turn_cancel": {
         // The API dropped this turn (addressed to someone else, or the brain declined).
         // The filler loop runs on the CLIENT, so the cancel has to travel there — clearing

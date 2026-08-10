@@ -31,12 +31,12 @@ private _npc = GVAR(targetNpc);
 // one being looked at when no name is used. Sending only to the gaze target meant naming
 // an NPC you were not facing reached nobody at all.
 private _heard = (call CBA_fnc_currentUnit) nearEntities [["CAManBase"], HEARING_RADIUS];
-_heard = _heard select { _x getVariable [QGVAR(talkable), false] };
+_heard = _heard select { alive _x && {_x getVariable [QGVAR(talkable), false]} };
 if (_heard isEqualTo []) exitWith { TRACE_1("transcript with no npc in earshot, dropping",_text); };
 
 // Latency mask, for the NPC actually being addressed by gaze. A turn the API drops sends
 // npc_turn_cancel back, which stops this loop.
-if (!isNull _npc) then {
+if (!isNull _npc && {_npc in _heard}) then {
     GVAR(fillerEarlyUntil) set [netId _npc, diag_tickTime + FILLER_SHORT_WINDOW];
     private _token = diag_tickTime;
     GVAR(pendingFiller) set [netId _npc, _token];

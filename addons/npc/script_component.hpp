@@ -26,6 +26,34 @@
 #define GATE_SWITCH_FRAMES 8
 
 
+// A guarded source carries exactly three ordered facts. The slot number is the disclosure
+// order and the prerequisite chain; there is no other gate for a mission maker to set.
+#define GUARDED_FACT_COUNT 3
+
+// The whole vocabulary the guarded-state command may use. The API owns these values, so a
+// payload carrying anything else is not a guarded state this build can render and is
+// dropped rather than drawn. Fact fields carry ids only, never text.
+#define GUARDED_FACT_IDS ["g1", "g2", "g3"]
+#define GUARDED_BANDS ["closed", "guarded", "engaged", "cooperative"]
+#define GUARDED_MOODS ["neutral", "angry", "afraid", "sad", "happy"]
+
+// Fields the guarded-state command must carry before any of it is read.
+#define GUARDED_STATE_FIELDS 12
+
+// Guarded feedback is diegetic: a short floating emote above the NPC, and in a test mission
+// a compact state hint under it. Both are clamped server-side before fan-out, so a long
+// model string cannot push the command near the extension's 64 KB limit or wallpaper the screen.
+#define EMOTE_MAX 48
+#define HINT_TEXT_MAX 120
+
+// How long each stays up. The emote is a beat of body language, so it clears about as fast
+// as the gesture would; the hint is read, so it lingers.
+#define EMOTE_HOLD 6
+#define HINT_HOLD 15
+
+// Metres above the NPC's own position, so the text floats over the head rather than the chest.
+#define EMOTE_HEIGHT 2.1
+
 // How long an NPC keeps watching the last player who spoke to them, refreshed per
 // utterance. Long enough to hold eye contact through a slow turn, short enough that
 // they go back to idle once the conversation is plainly over.
