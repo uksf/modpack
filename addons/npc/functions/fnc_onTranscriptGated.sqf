@@ -51,6 +51,9 @@ if (_speakerId isEqualTo "") exitWith { TRACE_1("no UID for speaker, dropping",_
 
 {
     private _isGazeTarget = _x isEqualTo _npc;
+    private _state = [netId _x] call FUNC(consoleGetState);
+    _state set ["lastStt", _text select [0, DEBUG_TEXT_MAX]];
+    _state set ["addressed", _isGazeTarget];
     TRACE_3("utterance -> server",netId _x,_speakerId,_isGazeTarget);
     [QGVAR(utterance), [netId _x, _speakerId, _text, _time, _isGazeTarget]] call CBA_fnc_serverEvent;
 } forEach _heard;

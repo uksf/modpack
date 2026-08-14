@@ -18,6 +18,10 @@
 params ["_type", "_args"];
 _args params ["_npcId", "_turnId"];
 
+if (GVAR(cancelledNpcIds) getOrDefault [_npcId, false]) exitWith {
+    if (_type isEqualTo "npc_audio_end") then {GVAR(cancelledNpcIds) deleteAt _npcId};
+};
+
 private _npc = objectFromNetId _npcId;
 if (isNull _npc) exitWith { TRACE_1("stream frame for unknown netId",_npcId); };
 private _targets = allPlayers select { _x distance _npc <= GVAR(audioRange) };

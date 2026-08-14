@@ -31,6 +31,7 @@ if !(_npc getVariable [QGVAR(talkable), false]) exitWith {};
 if ((_npc getVariable [QGVAR(interactionProfile), "conversation"]) isNotEqualTo "guarded") exitWith {};
 
 private _npcId = netId _npc;
+GVAR(cancelledNpcIds) set [_npcId, true];
 _npc setVariable [QGVAR(talkable), false, true];
 
 GVAR(rooms) deleteAt _npcId;

@@ -142,6 +142,17 @@ _action = [QGVAR(loadIntoCargo), "Load Into Cargo", "\a3\ui_f\data\IGUI\Cfg\Acti
 _action = [QGVAR(watch), "Watch", "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa", {call FUNC(contextWatch)}, {call FUNC(contextCanWatch)}] call zen_context_menu_fnc_createAction;
 [_action, [], -650] call zen_context_menu_fnc_addAction;
 
+_action = [QGVAR(npcConsole), "Inspect NPC", "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa", {
+    params ["", "_selectedObjects"];
+    [_selectedObjects#0] call EFUNC(npc,consoleOpenInspector);
+}, {
+    params ["", "_selectedObjects"];
+    count _selectedObjects isEqualTo 1
+    && {netId (_selectedObjects#0) in (missionNamespace getVariable [QEGVAR(npc,registeredNetIds), []])}
+    && {ADMIN_OR_WHITELISTED}
+}] call zen_context_menu_fnc_createAction;
+[_action, [], -660] call zen_context_menu_fnc_addAction;
+
 _action = [QGVAR(toggleZeusVisibility), "Hide Zeus", "\a3\ui_f_curator\data\logos\arma3_curator_eye_64_ca.paa", {[objNull] call FUNC(moduleToggleZeusVisibility)}, {true}, [], {}, {
     params ["_action"];
     _action set [1, ["Hide Zeus", "Show Zeus"] select (isObjectHidden player)];

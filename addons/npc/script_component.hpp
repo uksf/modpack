@@ -39,12 +39,25 @@
 
 // Fields the guarded-state command must carry before any of it is read.
 #define GUARDED_STATE_FIELDS 12
+#define DEBUG_STATE_FIELDS 13
+
+#define CONSOLE_CARD_COUNT 3
+#define IDD_CONSOLE_INSPECTOR 81300
+#define IDC_CONSOLE_CARDS 81301
+#define IDC_CONSOLE_TITLE 81302
+#define IDC_CONSOLE_PICKER 81303
+#define IDC_CONSOLE_DETAILS 81304
+#define IDC_CONSOLE_RESET 81305
+#define IDC_CONSOLE_CANCEL 81306
+#define IDC_CONSOLE_MUTE 81307
+#define IDC_CONSOLE_UNMUTE 81308
 
 // Guarded feedback is diegetic: a short floating emote above the NPC, and in a test mission
 // a compact state hint under it. Both are clamped server-side before fan-out, so a long
 // model string cannot push the command near the extension's 64 KB limit or wallpaper the screen.
 #define EMOTE_MAX 48
 #define HINT_TEXT_MAX 120
+#define DEBUG_TEXT_MAX 240
 
 // How long each stays up. The emote is a beat of body language, so it clears about as fast
 // as the gesture would; the hint is read, so it lingers.

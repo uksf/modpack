@@ -38,4 +38,5 @@ private _registered = [];
     _registered pushBack netId _npc;
 } forEach allUnits;
 
+missionNamespace setVariable [QGVAR(registeredNetIds), _registered, true];
 missionNamespace setVariable [QGVAR(talkerNetIds), _registered, true];

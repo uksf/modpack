@@ -29,6 +29,9 @@ if (isNull _npc || {!alive _npc} || {!(_npc getVariable [QGVAR(talkable), false]
     TRACE_1("utterance for unknown or terminal npc, dropping",_npcId);
 };
 
+GVAR(cancelledNpcIds) deleteAt _npcId;
+private _debugTargets = ALL_PLAYERS select {(getPlayerUID _x) in WHITELIST || {admin (owner _x) > 0}};
+[QGVAR(consoleSttSink), [_npcId, _text select [0, DEBUG_TEXT_MAX], _gazeAddressed], _debugTargets] call CBA_fnc_targetEvent;
 private _room = GVAR(rooms) getOrDefault [_npcId, []];
 _room pushBack [_speakerId, _text, _t, _gazeAddressed];
 GVAR(rooms) set [_npcId, _room];

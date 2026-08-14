@@ -17,5 +17,13 @@ class CfgPatches {
     };
 };
 
+class RscText;
+class RscStructuredText;
+class RscCombo;
+class RscButton;
+class RscControlsGroup;
+
 #include "CfgEventHandlers.hpp"
 #include "Cfg3den.hpp"
+#include "CfgRscTitles.hpp"
+#include "CfgNpcConsole.hpp"

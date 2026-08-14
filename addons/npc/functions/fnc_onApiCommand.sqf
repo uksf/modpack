@@ -39,6 +39,7 @@ switch (_type) do {
     };
     case "npc_audio": {
         _args params ["_npcId", "_turnId", "_index", "_total", "_chunk", "_durationMs"];
+        if (GVAR(cancelledNpcIds) getOrDefault [_npcId, false]) exitWith {};
         private _key = format ["audio|%1|%2", _npcId, _turnId];
         private _wav = [_key, _index, _total, _chunk] call FUNC(reassemble);
         if (isNil "_wav") exitWith {};
@@ -56,7 +57,12 @@ switch (_type) do {
         [_type, _args] call FUNC(onStreamFrame);
     };
     case "npc_guarded_state": {
+        if (GVAR(cancelledNpcIds) getOrDefault [_args param [0, ""], false]) exitWith {};
         [_args] call FUNC(onGuardedState);
+    };
+    case "npc_debug_state": {
+        if (GVAR(cancelledNpcIds) getOrDefault [_args param [0, ""], false]) exitWith {};
+        [_args] call FUNC(consoleOnDebugState);
     };
     case "npc_turn_cancel": {
         // The API dropped this turn (addressed to someone else, or the brain declined).

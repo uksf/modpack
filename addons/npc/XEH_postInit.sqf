@@ -70,6 +70,9 @@ if (isServer) then {
 
 if (!hasInterface) exitWith {};
 
+call FUNC(consoleAddActions);
+call FUNC(consoleRegisterDebugProvider);
+
 // Route extension STT transcripts to the handler. The extension fires
 // callback_data("uksf", "sttTranscript", "[uttId,""text""]").
 addMissionEventHandler ["ExtensionCallback", {

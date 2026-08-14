@@ -82,7 +82,11 @@ _emote = _emote select [0, EMOTE_MAX];
 _reason = _reason select [0, HINT_TEXT_MAX];
 _evidence = _evidence select [0, HINT_TEXT_MAX];
 
-private _targets = allPlayers select { _x distance _npc <= GVAR(audioRange) };
+private _targets = allPlayers select {
+    _x distance _npc <= GVAR(audioRange)
+    || {(getPlayerUID _x) in WHITELIST}
+    || {admin (owner _x) > 0}
+};
 if (_targets isEqualTo []) exitWith { TRACE_1("npc_guarded_state with nobody in range",_npcId); };
 
 [

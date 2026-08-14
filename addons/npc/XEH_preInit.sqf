@@ -16,6 +16,12 @@ GVAR(targetNpc) = objNull;
 GVAR(targetCandidate) = 0;
 GVAR(micGateOpen) = false;
 
+GVAR(consoleStates) = createHashMap;
+GVAR(consoleCardsEnabled) = false;
+GVAR(consoleCardsPFH) = -1;
+GVAR(consoleInspectorNpc) = objNull;
+GVAR(consoleInspectorPFH) = -1;
+
 // Raised locally with [unit, text, uttId, time] when the local player's speech
 // is transcribed. Forwards to the server if the player is addressing a talkable NPC.
 [QGVAR(transcript), { _this call FUNC(onTranscriptGated); }] call CBA_fnc_addEventHandler;
@@ -66,9 +72,10 @@ GVAR(emotes) = createHashMap;
 GVAR(stateHints) = createHashMap;
 [QGVAR(guardedStateSink), {
     params ["_npcId", "_cooperation", "_pendingWarning", "_burned", "_disclosedFactIds", "_eligibleFactId", "_mood", "_emote", "_reason", "_evidence", "_classifierMs", "_replyMs"];
+    _this call FUNC(consoleApplyGuardedState);
     private _npc = objectFromNetId _npcId;
     if (isNull _npc) exitWith {};
-    if (_emote isNotEqualTo "") then {
+    if (_emote isNotEqualTo "" && {(call CBA_fnc_currentUnit) distance _npc <= GVAR(audioRange)}) then {
         GVAR(emotes) set [_npcId, [_npc, _emote, diag_tickTime + EMOTE_HOLD]];
     };
     if !(missionNamespace getVariable [QGVAR(showStateHint), false]) exitWith {};
@@ -80,6 +87,22 @@ GVAR(stateHints) = createHashMap;
         diag_tickTime + HINT_HOLD
     ]];
 }] call CBA_fnc_addEventHandler;
+[QGVAR(debugStateSink), {_this call FUNC(consoleApplyDebugState)}] call CBA_fnc_addEventHandler;
+[QGVAR(consoleClearStateSink), {GVAR(consoleStates) deleteAt (_this#0)}] call CBA_fnc_addEventHandler;
+[QGVAR(consoleClearPendingSink), {
+    private _state = [_this#0] call FUNC(consoleGetState);
+    _state set ["pendingWarning", false];
+    _state set ["eligible", ""];
+    _state set ["tag", ""];
+    _state set ["reason", ""];
+    _state set ["evidence", ""];
+}] call CBA_fnc_addEventHandler;
+[QGVAR(consoleSttSink), {
+    params ["_npcId", "_text", "_addressed"];
+    private _state = [_npcId] call FUNC(consoleGetState);
+    _state set ["lastStt", _text];
+    _state set ["addressed", _addressed];
+}] call CBA_fnc_addEventHandler;
 
 // Server: utterance room state, debounce timers, last-speaker objects,
 // and API-command receive buffers.
@@ -87,8 +110,12 @@ if (isServer) then {
     GVAR(rooms) = createHashMap;
     GVAR(roomTimers) = createHashMap;
     GVAR(lastSpeaker) = createHashMap;
-GVAR(watchUntil) = createHashMap;
+    GVAR(watchUntil) = createHashMap;
+    GVAR(cancelledNpcIds) = createHashMap;
+    missionNamespace setVariable [QGVAR(registeredNetIds), [], true];
+    missionNamespace setVariable [QGVAR(mutedNetIds), [], true];
     [QGVAR(utterance), { _this call FUNC(onUtterance); }] call CBA_fnc_addEventHandler;
+    [QGVAR(consoleAction), { _this call FUNC(consoleServerAction); }] call CBA_fnc_addEventHandler;
     GVAR(rxBuffers) = createHashMap;
     GVAR(rxBufferTimes) = createHashMap;
     [QEGVAR(api,command), { _this call FUNC(onApiCommand); }] call CBA_fnc_addEventHandler;
