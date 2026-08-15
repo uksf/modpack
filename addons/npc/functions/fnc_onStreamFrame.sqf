@@ -24,7 +24,7 @@ if (GVAR(cancelledNpcIds) getOrDefault [_npcId, false]) exitWith {
 
 private _npc = objectFromNetId _npcId;
 if (isNull _npc) exitWith { TRACE_1("stream frame for unknown netId",_npcId); };
-private _targets = allPlayers select { _x distance _npc <= GVAR(audioRange) };
+private _targets = ALL_PLAYERS select { _x distance _npc <= GVAR(audioRange) };
 if (_targets isEqualTo []) exitWith {};
 
 if (_type isEqualTo "npc_audio_frame") exitWith {

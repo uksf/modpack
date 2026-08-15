@@ -47,7 +47,7 @@ switch (_type) do {
         if (isNull _npc) exitWith { TRACE_1("npc_audio for unknown netId",_npcId); };
         TRACE_3("npc_audio complete, distributing to nearby clients",_npcId,_turnId,_durationMs);
         // Distribute to nearby clients to play, anchored to the NPC.
-        private _targets = allPlayers select { _x distance _npc <= GVAR(audioRange) };
+        private _targets = ALL_PLAYERS select { _x distance _npc <= GVAR(audioRange) };
         // header now ["audio", npcId, turnId, durationMs, offsetMs]; live broadcast = 0 offset.
         [QGVAR(audioChunkSink), _targets, ["audio", _npcId, _turnId, _durationMs, 0], _wav] call FUNC(pushClipChunks);
         GVAR(activeClips) set [_npcId, [_turnId, _wav, diag_tickTime, _durationMs]];
