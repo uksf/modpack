@@ -83,5 +83,9 @@ if (_profile isEqualTo "guarded") then {
 };
 
 ["npc_register", _data] call EFUNC(api,sendEvent);
+private _registered = missionNamespace getVariable [QGVAR(registeredNetIds), []];
+_registered pushBackUnique netId _npc;
+missionNamespace setVariable [QGVAR(registeredNetIds), _registered, true];
+call FUNC(sttPublishNames);
 TRACE_3("registered npc",netId _npc,_mode,_profile);
 true

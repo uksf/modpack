@@ -4,9 +4,7 @@
         UKSF
 
     Description:
-        Push current NPC persona names into the STT decoder as a Whisper hint.
-        Rebuilds from live units so a new or renamed NPC is picked up without
-        a shipped word list.
+        Client. Forwards the replicated NPC name list to the STT decoder.
 
     Parameter(s):
         None
@@ -19,14 +17,8 @@
 */
 if (!hasInterface) exitWith {};
 
-private _names = [];
-{
-    private _name = _x getVariable [QGVAR(personaName), ""];
-    if (_name isNotEqualTo "") then { _names pushBackUnique _name };
-} forEach allUnits;
-_names sort true;
-private _joined = _names joinString " ";
-if (_joined isEqualTo GVAR(sttHint)) exitWith {};
+private _names = missionNamespace getVariable [QGVAR(sttNames), ""];
+if (_names isEqualTo GVAR(sttHint)) exitWith {};
 
-GVAR(sttHint) = _joined;
-"uksf" callExtension ["sttHint", [_joined]];
+GVAR(sttHint) = _names;
+"uksf" callExtension ["sttHint", [_names]];
