@@ -4,9 +4,9 @@
         UKSF
 
     Description:
-        Server-side. Builds and sends one NPC's npc_register payload. Split out from
-        fnc_registerNpcs so a guarded source can be re-registered on its own, which is how
-        the test reset clears guarded state without restarting the mission.
+        Server-side. Builds and sends one NPC's npc_register payload. Ordinary
+        registration skips the API when the id is already registered. Reset is
+        the only path that may wipe guarded state.
 
     Parameter(s):
         0: NPC <OBJECT>
@@ -25,16 +25,20 @@ params ["_npc", ["_reset", false, [false]]];
 private _sessionId = EGVAR(api,sessionId);
 if (isNil "_sessionId") exitWith { TRACE_1("no session id, skipping npc register",_npc); false };
 
+private _npcId = netId _npc;
+private _registered = missionNamespace getVariable [QGVAR(registeredNetIds), []];
+if (_npcId in _registered && {!_reset}) exitWith {
+    [_npcId, true] call FUNC(setTalkerList);
+    true
+};
+
 private _mode = _npc getVariable [QGVAR(mode), "dynamic"];
-// Older missions set no profile at all, so the default has to be the behaviour they had.
 private _profile = _npc getVariable [QGVAR(interactionProfile), "conversation"];
 
-// Validated before anything is sent: an unregistered NPC is a clearer failure than one the
-// API has already warmed and prerendered against authoring it cannot gate.
 private _guarded = [];
 if (_profile isEqualTo "guarded") then { _guarded = [_npc] call FUNC(guardedConfig); };
 if (_profile isEqualTo "guarded" && {_guarded isEqualTo []}) exitWith {
-    WARNING_1("npc %1 not registered: invalid guarded source authoring",netId _npc);
+    WARNING_1("npc %1 not registered: invalid guarded source authoring",_npcId);
     false
 };
 
@@ -47,7 +51,7 @@ private _persona = createHashMapFromArray [
 ];
 
 private _data = createHashMapFromArray [
-    ["npcId", netId _npc],
+    ["npcId", _npcId],
     ["sessionId", _sessionId],
     ["persona", _persona],
     ["knowledge", _npc getVariable [QGVAR(knowledge), ""]],
@@ -77,15 +81,13 @@ if (_mode isEqualTo "scripted") then {
 
 if (_profile isEqualTo "guarded") then {
     _data set ["guarded", _guarded];
-    // Only an explicit reset may wipe cooperation, warning, burned state and the ledger.
-    // A duplicate registration on its own must leave the interaction where the player left it.
     _data set ["resetGuarded", _reset];
 };
 
 ["npc_register", _data] call EFUNC(api,sendEvent);
-private _registered = missionNamespace getVariable [QGVAR(registeredNetIds), []];
-_registered pushBackUnique netId _npc;
+_registered pushBackUnique _npcId;
 missionNamespace setVariable [QGVAR(registeredNetIds), _registered, true];
+[_npcId, true] call FUNC(setTalkerList);
 call FUNC(sttPublishNames);
-TRACE_3("registered npc",netId _npc,_mode,_profile);
+TRACE_3("registered npc",_npcId,_mode,_profile);
 true

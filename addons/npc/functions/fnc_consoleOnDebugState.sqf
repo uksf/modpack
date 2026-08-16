@@ -42,6 +42,4 @@ if (_knowledge isNotEqualTo "") then {
 };
 _reason = _reason select [0, DEBUG_TEXT_MAX];
 _evidence = _evidence select [0, DEBUG_TEXT_MAX];
-private _targets = ALL_PLAYERS select {(getPlayerUID _x) in WHITELIST || {admin (owner _x) > 0}};
-if (_targets isEqualTo []) exitWith {};
-[QGVAR(debugStateSink), [_npcId, _provider, _addressDecision, _tag, _topicSlot, _addressesConcern, _ambiguous, _reason, _evidence, _classifyMs, _replyMs, _eligible, _disclosed], _targets] call CBA_fnc_targetEvent;
+[GVAR(consoleClients), QGVAR(debugStateSink), [_npcId, _provider, _addressDecision, _tag, _topicSlot, _addressesConcern, _ambiguous, _reason, _evidence, _classifyMs, _replyMs, _eligible, _disclosed]] call EFUNC(common,streamClientsFanout);

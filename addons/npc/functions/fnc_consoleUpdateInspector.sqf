@@ -11,7 +11,7 @@ private _npc = GVAR(consoleInspectorNpc);
 if (isNull _display || {isNull _npc}) exitWith {};
 
 private _npcId = netId _npc;
-private _state = [_npcId] call FUNC(consoleGetState);
+private _state = [_npcId, true] call FUNC(consoleGetState);
 private _profile = _npc getVariable [QGVAR(interactionProfile), "conversation"];
 private _disclosed = _state getOrDefault ["disclosed", ""];
 private _eligible = _state getOrDefault ["eligible", ""];

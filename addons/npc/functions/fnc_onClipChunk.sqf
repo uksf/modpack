@@ -22,9 +22,9 @@
 */
 params ["_kind", "_payload"];
 _payload params ["_header", "_index", "_total", "_chunk"];
+if (_total < 1 || {_total > CLIP_CHUNKS_MAX} || {_index < 0} || {_index >= _total}) exitWith {};
 
 private _key = format ["%1|%2", _kind, _header joinString "|"];
-// Buffer entry is [receivedCount, chunks] so completion is O(1) per chunk.
 private _entry = GVAR(clipRxBuffers) get _key;
 if (isNil "_entry") then {
     private _chunks = [];
@@ -47,11 +47,12 @@ private _wav = _chunks joinString "";
 
 if (_kind isEqualTo "audio") exitWith {
     _header params ["", "_npcId", "_turnId", "_durationMs", ["_offsetMs", 0]];
-    private _turnKey = format ["%1|%2", _npcId, _turnId];
-    if (_turnKey in GVAR(heardTurns)) exitWith {}; // already played (broadcast or earlier resync)
+    if ([_npcId, _turnId] call FUNC(isTurnCancelled)) exitWith {};
+    private _turnKey = [_npcId, _turnId] call FUNC(turnKey);
+    if (_turnKey in GVAR(heardTurns)) exitWith {};
 
     private _npc = objectFromNetId _npcId;
-    if (isNull _npc) exitWith {};
+    if (isNull _npc || {!alive _npc} || {!(_npc getVariable [QGVAR(talkable), false])}) exitWith {};
 
     // Queue behind a sounding filler rather than cutting it off part-way.
     GVAR(pendingFiller) set [_npcId, 0]; // the reply is here; arm no more fillers

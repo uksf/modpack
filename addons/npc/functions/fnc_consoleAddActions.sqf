@@ -51,6 +51,7 @@ private _unmute = [QGVAR(consoleUnmuteNpc), "Unmute NPC", "", {
     netId _target in (missionNamespace getVariable [QGVAR(registeredNetIds), []])
     && {!(_target getVariable [QGVAR(talkable), false])}
     && {alive _target}
+    && {!(_target getVariable [QGVAR(playerDropped), false])}
     && {ADMIN_OR_WHITELISTED}
 }] call ace_interact_menu_fnc_createAction;
 ["CAManBase", 0, ["ACE_MainActions"], _unmute, true] call ace_interact_menu_fnc_addActionToClass;

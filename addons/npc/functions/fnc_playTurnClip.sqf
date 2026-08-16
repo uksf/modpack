@@ -23,7 +23,8 @@
         [_npc, "2:16", "t7", _wav, 2400, 0] call uksf_npc_fnc_playTurnClip
 */
 params ["_npc", "_npcId", "_turnId", "_wav", "_durationMs", ["_offsetMs", 0]];
-if (isNull _npc) exitWith {};
+if ([_npcId, _turnId] call FUNC(isTurnCancelled)) exitWith {};
+if (isNull _npc || {!alive _npc} || {!(_npc getVariable [QGVAR(talkable), false])}) exitWith {};
 
 private _clipId = [format ["%1_%2", _npcId, _turnId], _npc, _wav, 1, _offsetMs] call FUNC(playClip);
 if (_clipId isEqualTo "") exitWith {};

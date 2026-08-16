@@ -6,7 +6,7 @@
     Description:
         Builds the passive card text for up to three nearby talkable NPCs.
 */
-params ["_position", ["_maximumDistance", HEARING_RADIUS, [0]]];
+params ["_position", ["_maximumDistance", GVAR(hearingRadius), [0]]];
 
 private _npcs = (missionNamespace getVariable [QGVAR(talkerNetIds), []]) apply {objectFromNetId _x};
 _npcs = _npcs select {!isNull _x && {alive _x} && {_x getVariable [QGVAR(talkable), false]} && {_position distance _x <= _maximumDistance}};
@@ -16,7 +16,7 @@ _npcs resize ((count _npcs) min CONSOLE_CARD_COUNT);
 private _cards = _npcs apply {
     private _npc = _x;
     private _npcId = netId _npc;
-    private _state = [_npcId] call FUNC(consoleGetState);
+    private _state = [_npcId, true] call FUNC(consoleGetState);
     private _name = _npc getVariable [QGVAR(personaName), name _npc];
     private _profile = _npc getVariable [QGVAR(interactionProfile), "conversation"];
     private _cooperation = _state getOrDefault ["cooperation", ""];

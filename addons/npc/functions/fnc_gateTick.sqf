@@ -4,18 +4,8 @@
         UKSF
 
     Description:
-        Per-frame client gate. Decides which single NPC the local player is addressing, if
-        any, and drives the ACRE mic capture gate on the rising/falling edge.
-
-        Selection is by aim, not distance: among every talkable NPC inside its gate cone,
-        the one nearest the crosshair centre wins, so two NPCs standing together never both
-        capture — the one the player is actually looking at does. The current target is then
-        held with stickiness: a brief glance at another NPC does not flip the target
-        mid-sentence, only a clearly sustained change of aim does.
-
-    Parameter(s):
-        0: PFH args <ARRAY>
-        1: PFH id <NUMBER>
+        Per-frame client gate. Decides which single NPC the local player is addressing.
+        Candidates come from the replicated talkable list.
 */
 params ["", "_idPFH"];
 
@@ -25,42 +15,36 @@ private _bestScore = 1e9;
 if (alive _player) then {
     private _forward = eyeDirection _player;
     private _eye = eyePos _player;
+    private _scan = GVAR(gateScanRadius);
     {
-        if (_x getVariable [QGVAR(talkable), false] && {alive _x} && {[_player, _x] call FUNC(isInGate)}) then {
-            // Angular distance from the crosshair: lower is more directly looked at.
-            private _toNpc = (eyePos _x) vectorDiff _eye;
-            private _score = 1 - (_forward vectorDotProduct (vectorNormalized _toNpc));
-            if (_score < _bestScore) then { _bestScore = _score; _best = _x; };
-        };
-    } forEach (_player nearEntities [["CAManBase"], GATE_SCAN_RADIUS]);
+        private _npc = objectFromNetId _x;
+        if (isNull _npc || {!alive _npc} || {!(_npc getVariable [QGVAR(talkable), false])}) then { continue };
+        if ((_player distance _npc) > _scan) then { continue };
+        if !([_player, _npc] call FUNC(isInGate)) then { continue };
+        private _toNpc = (eyePos _npc) vectorDiff _eye;
+        private _score = 1 - (_forward vectorDotProduct (vectorNormalized _toNpc));
+        if (_score < _bestScore) then { _bestScore = _score; _best = _npc; };
+    } forEach (missionNamespace getVariable [QGVAR(talkerNetIds), []]);
 };
 
-// Stickiness: keep the current target unless the rival is clearly closer to the crosshair
-// centre and stays that way for a moment. Kills twitch when two NPCs stand close.
 private _current = GVAR(targetNpc);
-// A source that dies or is switched off mid-conversation loses the hold at once, so the
-// target releases instead of sticking to a body the player can no longer talk to.
 private _currentHeld = !isNull _current
     && {alive _current}
     && {_current getVariable [QGVAR(talkable), false]}
     && {[_player, _current] call FUNC(isInGate)};
 if (_currentHeld && {_best isNotEqualTo _current}) then {
-    // Both are in the gate: only switch once the rival has been clearly closer to the
-    // crosshair for a run of frames, so a glance does not steal the turn.
     private _forward = eyeDirection _player;
     private _eye = eyePos _player;
     private _curScore = 1 - (_forward vectorDotProduct (vectorNormalized ((eyePos _current) vectorDiff _eye)));
-    if (_bestScore < (_curScore - GATE_SWITCH_MARGIN)) then {
+    if (_bestScore < (_curScore - GVAR(gateSwitchMargin))) then {
         GVAR(targetCandidate) = GVAR(targetCandidate) + 1;
     } else {
-        GVAR(targetCandidate) = 0; // rival not clearly better: stay
+        GVAR(targetCandidate) = 0;
     };
-    if (GVAR(targetCandidate) < GATE_SWITCH_FRAMES) then {
-        _best = _current; // not sustained yet — hold the current target
+    if (GVAR(targetCandidate) < GVAR(gateSwitchFrames)) then {
+        _best = _current;
     };
 } else {
-    // Look away and the target releases at once. Holding it meant a player facing nobody
-    // still had a target, and an unnamed question was answered by whoever they last faced.
     GVAR(targetCandidate) = 0;
 };
 

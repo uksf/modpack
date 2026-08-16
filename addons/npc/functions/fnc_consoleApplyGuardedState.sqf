@@ -8,7 +8,8 @@
 */
 params ["_npcId", "_cooperation", "_pendingWarning", "_burned", "_disclosed", "_eligible", "_mood", "_emote", "_reason", "_evidence", "_classifyMs", "_replyMs"];
 
-private _state = [_npcId] call FUNC(consoleGetState);
+private _state = [_npcId, true] call FUNC(consoleGetState);
+if !(_npcId in GVAR(consoleStates)) exitWith {};
 _state set ["cooperation", _cooperation];
 _state set ["pendingWarning", _pendingWarning];
 _state set ["burned", _burned];

@@ -21,6 +21,7 @@ if (isNull _parent) then {_parent = findDisplay 46};
 if (isNull _parent) exitWith {};
 
 GVAR(consoleInspectorNpc) = _npc;
+["inspector", true] call FUNC(consoleSubscribe);
 private _display = _parent createDisplay QGVAR(consoleInspector);
 if (isNull _display) exitWith {};
 private _picker = _display displayCtrl IDC_CONSOLE_PICKER;
@@ -31,7 +32,7 @@ _npcIds = _npcIds arrayIntersect _npcIds;
 private _npcs = _npcIds apply {objectFromNetId _x};
 _npcs = _npcs select {!isNull _x};
 if (isNull curatorCamera) then {
-    _npcs = _npcs select {_position distance _x <= HEARING_RADIUS || {_x isEqualTo _npc}};
+    _npcs = _npcs select {_position distance _x <= GVAR(hearingRadius) || {_x isEqualTo _npc}};
 };
 _npcs = [_npcs, [], {_position distance _x}, "ASCEND"] call BIS_fnc_sortBy;
 {
@@ -52,6 +53,7 @@ _display displayAddEventHandler ["Unload", {
     if (GVAR(consoleInspectorPFH) >= 0) then {[GVAR(consoleInspectorPFH)] call CBA_fnc_removePerFrameHandler};
     GVAR(consoleInspectorPFH) = -1;
     GVAR(consoleInspectorNpc) = objNull;
+    ["inspector", false] call FUNC(consoleSubscribe);
 }];
 
 GVAR(consoleInspectorPFH) = [{call FUNC(consoleUpdateInspector)}, 0.2] call CBA_fnc_addPerFrameHandler;

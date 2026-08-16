@@ -17,6 +17,7 @@ params ["", "_idPFH"];
 
 // Prune heard-turns older than 60s so the dedup map stays bounded (runs even while dead).
 { if (diag_tickTime - _y > 60) then { GVAR(heardTurns) deleteAt _x; }; } forEach GVAR(heardTurns);
+{ if (diag_tickTime - _y > 60) then { GVAR(cancelledTurns) deleteAt _x; }; } forEach GVAR(cancelledTurns);
 
 private _player = call CBA_fnc_currentUnit;
 if (!alive _player) exitWith { GVAR(nearTalkers) = []; };

@@ -5,8 +5,8 @@
 
     Description:
         Server. Relays one streamed PCM frame from the API to nearby clients, and
-        closes the stream on npc_audio_end. Frames are raw 24 kHz mono i16 base64,
-        not WAV — clients append them to an open extension clip.
+        closes the stream on npc_audio_end. Frames are stored even with nobody in
+        range so a later walk-up can replay them.
 
     Parameter(s):
         0: Type "npc_audio_frame" or "npc_audio_end" <STRING>
@@ -17,39 +17,35 @@
 */
 params ["_type", "_args"];
 _args params ["_npcId", "_turnId"];
-
-if (GVAR(cancelledNpcIds) getOrDefault [_npcId, false]) exitWith {
-    if (_type isEqualTo "npc_audio_end") then {GVAR(cancelledNpcIds) deleteAt _npcId};
-};
+if ([_npcId, _turnId] call FUNC(isTurnCancelled)) exitWith {};
 
 private _npc = objectFromNetId _npcId;
-if (isNull _npc) exitWith { TRACE_1("stream frame for unknown netId",_npcId); };
-private _targets = ALL_PLAYERS select { _x distance _npc <= GVAR(audioRange) };
-if (_targets isEqualTo []) exitWith {};
+private _stream = GVAR(activeStreams) getOrDefault [_npcId, []];
+if (_stream isNotEqualTo [] && {(_stream select 0) isNotEqualTo _turnId}) then {
+    GVAR(activeStreams) deleteAt _npcId;
+    _stream = [];
+};
 
 if (_type isEqualTo "npc_audio_frame") exitWith {
-    // A source that went down mid-turn is finished for the session. The API composed this
-    // reply before that and keeps streaming it, so the frames stop here rather than letting a
-    // body speak. The end frame below still relays, so a clip already open on a client closes.
-    if !(_npc getVariable [QGVAR(talkable), false]) exitWith { TRACE_1("stream frame for terminal npc, dropping",_npcId); };
-
+    if (isNull _npc || {!(_npc getVariable [QGVAR(talkable), false])}) exitWith {
+        TRACE_1("stream frame for terminal npc, dropping",_npcId);
+    };
     _args params ["", "", "_seq", "_pcm"];
-    // The NPC who answers is the one who turns. Every talkable in earshot hears the
-    // player, so turning on hearing had the wrong one pivot while another spoke.
     if (_seq isEqualTo 0) then {
         private _speaker = GVAR(lastSpeaker) getOrDefault [_npcId, objNull];
         if (!isNull _speaker) then { [_npc, _speaker] call FUNC(watchSpeaker); };
     };
+    if (_stream isEqualTo []) then { _stream = [_turnId, [], diag_tickTime]; };
+    (_stream select 1) set [_seq, _pcm];
+    _stream set [2, diag_tickTime];
+    GVAR(activeStreams) set [_npcId, _stream];
+    private _targets = ALL_PLAYERS select { _x distance _npc <= GVAR(audioRange) };
+    if (_targets isEqualTo []) exitWith {};
     TRACE_4("relay frame",_npcId,_turnId,_seq,count _targets);
     [QGVAR(streamFrameSink), [_npcId, _turnId, _seq, _pcm], _targets] call CBA_fnc_targetEvent;
-    // Track the open stream so a mid-clip joiner can be replayed the frames so far.
-    // Entry is [turnId, frames]; the frames array is indexed by seq.
-    private _stream = GVAR(activeStreams) getOrDefault [_npcId, [_turnId, []]];
-    (_stream select 1) set [_seq, _pcm];
-    GVAR(activeStreams) set [_npcId, _stream];
 };
 
-// npc_audio_end: tell clients the clip is complete, then reclaim the buffer.
+if (_stream isEqualTo []) then { _stream = [_turnId, [], diag_tickTime]; };
 TRACE_2("relay end",_npcId,_turnId);
-[QGVAR(streamEndSink), [_npcId, _turnId], _targets] call CBA_fnc_targetEvent;
+[QGVAR(streamEndSink), [_npcId, _turnId], ALL_PLAYERS] call CBA_fnc_targetEvent;
 GVAR(activeStreams) deleteAt _npcId;

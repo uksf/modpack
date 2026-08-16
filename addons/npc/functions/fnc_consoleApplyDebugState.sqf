@@ -8,7 +8,8 @@
 */
 params ["_npcId", "_provider", "_addressDecision", "_tag", "_topicSlot", "_addressesConcern", "_ambiguous", "_reason", "_evidence", "_classifyMs", "_replyMs", "_eligible", "_disclosed"];
 
-private _state = [_npcId] call FUNC(consoleGetState);
+private _state = [_npcId, true] call FUNC(consoleGetState);
+if !(_npcId in GVAR(consoleStates)) exitWith {};
 _state set ["provider", _provider];
 _state set ["addressDecision", _addressDecision];
 _state set ["tag", _tag];

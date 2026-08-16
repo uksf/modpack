@@ -23,28 +23,7 @@ if (!isServer) exitWith {};
 params ["_player", "_key", "_state"];
 TRACE_3("debugStreamToggle",_player,_key,_state);
 
-private _index = GVAR(debugStreamClients) findIf {(_x#0) isEqualTo _player};
-
-if (_state) then {
-    if (_index == -1) then {
-        GVAR(debugStreamClients) pushBack [_player, [_key]];
-    } else {
-        private _clientEntry = GVAR(debugStreamClients) select _index;
-        _clientEntry params ["", "_keys"];
-        if !(_key in _keys) then {
-            _keys pushBack _key;
-        };
-    };
-} else {
-    if (_index != -1) then {
-        private _clientEntry = GVAR(debugStreamClients) select _index;
-        _clientEntry params ["", "_keys"];
-        _keys deleteAt (_keys find _key);
-        if (_keys isEqualTo []) then {
-            GVAR(debugStreamClients) deleteAt _index;
-        };
-    };
-};
+[GVAR(debugStreamClients), _player, _key, _state] call EFUNC(common,streamClientsSet);
 
 // Seed initial data immediately so the client doesn't wait for the next tick
 if (_state) then {

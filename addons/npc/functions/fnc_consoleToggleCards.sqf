@@ -10,6 +10,7 @@ params [["_state", !GVAR(consoleCardsEnabled), [false]]];
 
 if !(ADMIN_OR_WHITELISTED) exitWith {};
 GVAR(consoleCardsEnabled) = _state;
+["cards", _state] call FUNC(consoleSubscribe);
 
 if (!_state) exitWith {
     if (GVAR(consoleCardsPFH) >= 0) then {[GVAR(consoleCardsPFH)] call CBA_fnc_removePerFrameHandler};
