@@ -84,6 +84,8 @@ addMissionEventHandler ["ExtensionCallback", {
 
 // Stand up the pipe server / callback pump.
 call FUNC(sttStart);
+call FUNC(sttPushNames);
+[{ call FUNC(sttPushNames); }, 5, []] call CBA_fnc_addPerFrameHandler;
 
 // Open mic capture now and never close it. ACRE swallows the first transmission after
 // its mic stream (re)opens — the same quirk as a first radio check — so opening here,

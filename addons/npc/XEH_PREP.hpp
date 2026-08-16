@@ -4,6 +4,7 @@ PREP(tick);
 PREP(debugPlayTestClip);
 PREP(sttStart);
 PREP(sttStop);
+PREP(sttPushNames);
 PREP(onTranscript);
 PREP(registerNpcs);
 PREP(registerNpc);

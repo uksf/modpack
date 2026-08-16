@@ -12,6 +12,27 @@ use arma_rs::Context;
 
 static STARTED: AtomicBool = AtomicBool::new(false);
 static CALLBACK_TX: Mutex<Option<Sender<(u32, String)>>> = Mutex::new(None);
+static HINT: Mutex<String> = Mutex::new(String::new());
+
+const HINT_MAX: usize = 400;
+
+/// Live name list for Whisper. Empty is fine: decode then has no extra bias.
+pub fn set_hint(raw: String) -> String {
+    let cleaned: String = raw
+        .chars()
+        .filter(|c| *c != '\0' && (*c == ' ' || *c == '-' || *c == '\'' || c.is_alphabetic()))
+        .take(HINT_MAX)
+        .collect();
+    let cleaned = cleaned.split_whitespace().collect::<Vec<_>>().join(" ");
+    if let Ok(mut guard) = HINT.lock() {
+        *guard = cleaned.clone();
+    }
+    cleaned
+}
+
+pub fn hint() -> String {
+    HINT.lock().map(|g| g.clone()).unwrap_or_default()
+}
 
 /// Escape a transcript for embedding in an SQF-notation string literal: double
 /// any internal quotes so `parseSimpleArray` reads it back intact.
@@ -76,5 +97,12 @@ mod tests {
     fn sqf_escape_doubles_quotes() {
         assert_eq!(sqf_escape(r#"he said "hi""#), r#"he said ""hi"""#);
         assert_eq!(sqf_escape("plain"), "plain");
+    }
+
+    #[test]
+    fn hint_keeps_names_and_drops_junk() {
+        assert_eq!(set_hint("Tomas  Pavel\0,?".into()), "Tomas Pavel");
+        assert_eq!(hint(), "Tomas Pavel");
+        assert_eq!(set_hint("".into()), "");
     }
 }

@@ -15,6 +15,7 @@ GVAR(targetNpc) = objNull;
 // switches once it has held that lead, so a glance does not steal a turn mid-sentence.
 GVAR(targetCandidate) = 0;
 GVAR(micGateOpen) = false;
+GVAR(sttHint) = "";
 
 GVAR(consoleStates) = createHashMap;
 GVAR(consoleCardsEnabled) = false;
