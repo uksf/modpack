@@ -42,7 +42,6 @@ if (_seq < 0) exitWith {
 if (isNull _npc) exitWith {};
 private _turnKey = [_npcId, _turnId] call FUNC(turnKey);
 if (_turnKey in GVAR(heardTurns)) exitWith {};
-if (GVAR(active) findIf { (_x select 0) isEqualTo _clipId } >= 0) exitWith {};
 
 private _seqKey = format ["%1|seq", _turnKey];
 private _lastSeq = GVAR(heardSeq) getOrDefault [_seqKey, -1];

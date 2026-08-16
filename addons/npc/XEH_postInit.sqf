@@ -78,6 +78,13 @@ call FUNC(requestFillers);
 
 GVAR(micGateOpen) = true;
 [true] call acre_sys_core_fnc_setMicCaptureGate;
+["acre_sys_io_connected", {
+    if (GVAR(micGateOpen)) then { [true] call acre_sys_core_fnc_setMicCaptureGate; };
+}] call CBA_fnc_addEventHandler;
+[
+    { [] call acre_api_fnc_isVOIPConnected },
+    { if (GVAR(micGateOpen)) then { [true] call acre_sys_core_fnc_setMicCaptureGate; }; }
+] call CBA_fnc_waitUntilAndExecute;
 
 [FUNC(gateTick), 0.2, []] call CBA_fnc_addPerFrameHandler;
 [FUNC(proximityPull), 0.5, []] call CBA_fnc_addPerFrameHandler;

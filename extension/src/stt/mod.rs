@@ -4,7 +4,7 @@ pub mod pipe;
 pub mod transcribe;
 
 use std::sync::atomic::{AtomicBool, Ordering};
-use std::sync::mpsc::{self, Sender};
+use std::sync::mpsc::{self, Receiver, Sender};
 use std::sync::Mutex;
 use std::thread;
 
@@ -49,19 +49,7 @@ pub fn fire_transcript(utt_id: u32, text: &str) {
     }
 }
 
-/// Start STT: stand up the callback pump (owns `context`, mirrors bridge.rs)
-/// and the pipe-server thread. Idempotent — a second call is a no-op.
-pub fn start(context: Context) -> String {
-    if STARTED.swap(true, Ordering::SeqCst) {
-        return "already running".to_string();
-    }
-
-    let (tx, rx) = mpsc::channel::<(u32, String)>();
-    if let Ok(mut guard) = CALLBACK_TX.lock() {
-        *guard = Some(tx);
-    }
-
-    // Callback pump: the one thread that owns `context`.
+fn spawn_callback_pump(context: Context, rx: Receiver<(u32, String)>) {
     thread::spawn(move || {
         log::info!("stt: callback pump started");
         for (utt_id, text) in rx {
@@ -70,17 +58,31 @@ pub fn start(context: Context) -> String {
         }
         log::info!("stt: callback pump exiting");
     });
+}
 
-    // Pipe server: long-lived; serves the local mic for the whole process.
+/// Start STT: stand up the callback pump (owns `context`, mirrors bridge.rs)
+/// and the pipe-server thread. A later start rearms the callback for a new
+/// mission without restarting the process-lived pipe server.
+pub fn start(context: Context) -> String {
+    let (tx, rx) = mpsc::channel::<(u32, String)>();
+    if let Ok(mut guard) = CALLBACK_TX.lock() {
+        *guard = Some(tx);
+    }
+    spawn_callback_pump(context, rx);
+
+    if STARTED.swap(true, Ordering::SeqCst) {
+        log::info!("stt: callback rearmed");
+        return "rearmed".to_string();
+    }
+
     thread::spawn(|| pipe::run_pipe_server());
-
     log::info!("stt: started");
     "ok".to_string()
 }
 
 /// Best-effort stop. The pipe server is process-lived (like the audio thread);
 /// we only drop the callback sender so the pump can wind down. A subsequent
-/// `start` is still gated by STARTED, so this does not re-arm.
+/// `start` rearms the callback without starting a second pipe server.
 pub fn stop() -> String {
     if let Ok(mut guard) = CALLBACK_TX.lock() {
         *guard = None;

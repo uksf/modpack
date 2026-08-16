@@ -24,11 +24,15 @@ private _room = GVAR(rooms) getOrDefault [_npcId, []];
 _room pushBack [_speakerId, _text, _t, _gazeAddressed];
 GVAR(rooms) set [_npcId, _room];
 
+private _speakerName = "Player";
 {
-    if (getPlayerUID _x isEqualTo _speakerId) exitWith { GVAR(lastSpeaker) set [_npcId, _x]; };
+    if (getPlayerUID _x isEqualTo _speakerId) exitWith {
+        GVAR(lastSpeaker) set [_npcId, _x];
+        _speakerName = name _x;
+    };
 } forEach ALL_PLAYERS;
 
-[GVAR(consoleClients), QGVAR(consoleSttSink), [_npcId, _text select [0, DEBUG_TEXT_MAX], _gazeAddressed]] call EFUNC(common,streamClientsFanout);
+[GVAR(consoleClients), QGVAR(consoleSttSink), [_npcId, _text select [0, DEBUG_TEXT_MAX], _gazeAddressed, _speakerName]] call EFUNC(common,streamClientsFanout);
 
 private _token = diag_tickTime;
 GVAR(roomTimers) set [_npcId, _token];

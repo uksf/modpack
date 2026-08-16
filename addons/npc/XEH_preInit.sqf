@@ -21,7 +21,7 @@ GVAR(consoleClients) = [];
 [QGVAR(transcript), { _this call FUNC(onTranscriptGated); }] call CBA_fnc_addEventHandler;
 [QGVAR(doWatch), {
     params ["_npc", "_target"];
-    if (!isNull _npc && {local _npc}) then { _npc doWatch _target };
+    if (!isNull _npc && {local _npc}) then { _npc lookAt _target };
 }] call CBA_fnc_addEventHandler;
 
 GVAR(clipRxBuffers) = createHashMap;
@@ -81,11 +81,12 @@ GVAR(stateHints) = createHashMap;
     _state set ["evidence", ""];
 }] call CBA_fnc_addEventHandler;
 [QGVAR(consoleSttSink), {
-    params ["_npcId", "_text", "_addressed"];
+    params ["_npcId", "_text", "_addressed", ["_speakerName", "", [""]]];
     if !(_npcId in GVAR(consoleStates)) exitWith {};
     private _state = [_npcId] call FUNC(consoleGetState);
     _state set ["lastStt", _text];
     _state set ["addressed", _addressed];
+    _state set ["lastSpeakerName", _speakerName];
 }] call CBA_fnc_addEventHandler;
 
 if (isServer) then {
@@ -93,6 +94,7 @@ if (isServer) then {
     GVAR(roomTimers) = createHashMap;
     GVAR(lastSpeaker) = createHashMap;
     GVAR(watchUntil) = createHashMap;
+    GVAR(watchTarget) = createHashMap;
     GVAR(activeTurnIds) = createHashMap;
     GVAR(pendingRegister) = [];
     missionNamespace setVariable [QGVAR(registeredNetIds), [], true];

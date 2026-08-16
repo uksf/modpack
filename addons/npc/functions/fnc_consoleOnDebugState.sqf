@@ -12,10 +12,10 @@ if (!(_args isEqualType []) || {count _args < DEBUG_STATE_FIELDS}) exitWith {};
 
 _args params [
     "_npcId", "_provider", "_addressDecision", "_tag", "_topicSlot", "_addressesConcern", "_ambiguous",
-    "_reason", "_evidence", "_classifyMs", "_replyMs", "_eligible", "_disclosed"
+    "_reason", "_evidence", "_classifyMs", "_replyMs", "_eligible", "_disclosed", ["_spoken", "", [""]]
 ];
 if (_topicSlot isEqualType 0) then {_topicSlot = str _topicSlot};
-private _strings = [_npcId, _provider, _addressDecision, _tag, _topicSlot, _reason, _evidence, _eligible, _disclosed];
+private _strings = [_npcId, _provider, _addressDecision, _tag, _topicSlot, _reason, _evidence, _eligible, _disclosed, _spoken];
 if ((_strings findIf {!(_x isEqualType "")}) >= 0) exitWith {};
 if (!(_addressesConcern isEqualType false) || {!(_ambiguous isEqualType false)}) exitWith {};
 if (!(_classifyMs isEqualType 0) || {_classifyMs < 0} || {!(_replyMs isEqualType 0)} || {_replyMs < 0}) exitWith {};
@@ -42,4 +42,5 @@ if (_knowledge isNotEqualTo "") then {
 };
 _reason = _reason select [0, DEBUG_TEXT_MAX];
 _evidence = _evidence select [0, DEBUG_TEXT_MAX];
-[GVAR(consoleClients), QGVAR(debugStateSink), [_npcId, _provider, _addressDecision, _tag, _topicSlot, _addressesConcern, _ambiguous, _reason, _evidence, _classifyMs, _replyMs, _eligible, _disclosed]] call EFUNC(common,streamClientsFanout);
+_spoken = _spoken select [0, DEBUG_TEXT_MAX];
+[GVAR(consoleClients), QGVAR(debugStateSink), [_npcId, _provider, _addressDecision, _tag, _topicSlot, _addressesConcern, _ambiguous, _reason, _evidence, _classifyMs, _replyMs, _eligible, _disclosed, _spoken]] call EFUNC(common,streamClientsFanout);
