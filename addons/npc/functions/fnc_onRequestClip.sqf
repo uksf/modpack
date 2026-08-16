@@ -25,13 +25,16 @@ if (isNull _npc || {(_requester distance _npc) > GVAR(audioRange)}) exitWith {};
 // client continues on live frames (deduped by seq).
 private _stream = GVAR(activeStreams) getOrDefault [_npcId, []];
 if (_stream isNotEqualTo []) exitWith {
-    _stream params ["_turnId", "_frames"];
+    _stream params ["_turnId", "_frames", "", ["_ended", false]];
     if ([_npcId, _turnId] call FUNC(isTurnCancelled)) exitWith { GVAR(activeStreams) deleteAt _npcId; };
     {
         if (!isNil "_x") then {
             [QGVAR(streamFrameSink), [_npcId, _turnId, _forEachIndex, _x], [_requester]] call CBA_fnc_targetEvent;
         };
     } forEach _frames;
+    if (_ended) then {
+        [QGVAR(streamEndSink), [_npcId, _turnId], [_requester]] call CBA_fnc_targetEvent;
+    };
 };
 
 private _clip = GVAR(activeClips) getOrDefault [_npcId, []];

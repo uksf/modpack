@@ -36,9 +36,9 @@ params ["_clipId", "_npc", ["_wait", 0], ["_npcId", "", [""]], ["_turnId", "", [
     { "uksf" callExtension ["audioFeed", [_clipId, _x]]; } forEach (GVAR(streamHeld) getOrDefault [_clipId, []]);
     GVAR(streamHeld) deleteAt _clipId;
 
-    GVAR(streamStart) set [_clipId, diag_tickTime + SPEECH_PREBUFFER];
+    GVAR(streamStart) set [_clipId, diag_tickTime + GVAR(speechPrebuffer)];
     [{
         params ["_npc"];
         if (!isNull _npc) then { _npc setRandomLip true };
-    }, [_npc], SPEECH_PREBUFFER] call CBA_fnc_waitAndExecute;
+    }, [_npc], GVAR(speechPrebuffer)] call CBA_fnc_waitAndExecute;
 }, [_clipId, _npc, _npcId, _turnId], _wait] call CBA_fnc_waitAndExecute;

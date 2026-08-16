@@ -18,7 +18,7 @@
 #define GUARDED_BANDS ["closed", "guarded", "engaged", "cooperative"]
 #define GUARDED_MOODS ["neutral", "angry", "afraid", "sad", "happy"]
 
-#define GUARDED_STATE_FIELDS 12
+#define GUARDED_STATE_FIELDS 13
 #define DEBUG_STATE_FIELDS 13
 
 #define CONSOLE_CARD_COUNT 3
@@ -38,7 +38,5 @@
 #define EMOTE_HEIGHT 2.1
 
 #define STREAM_RATE 24000
-#define SPEECH_PREBUFFER 0.2
 
 #define CLIP_CHUNKS_MAX 256
-#define STREAM_STALE 30

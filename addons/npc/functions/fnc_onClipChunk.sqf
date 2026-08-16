@@ -50,6 +50,8 @@ if (_kind isEqualTo "audio") exitWith {
     if ([_npcId, _turnId] call FUNC(isTurnCancelled)) exitWith {};
     private _turnKey = [_npcId, _turnId] call FUNC(turnKey);
     if (_turnKey in GVAR(heardTurns)) exitWith {};
+    private _streamId = format ["%1_%2", _npcId, _turnId];
+    if (_streamId in GVAR(streamingClips) || {_streamId in GVAR(streamHeld)}) exitWith {};
 
     private _npc = objectFromNetId _npcId;
     if (isNull _npc || {!alive _npc} || {!(_npc getVariable [QGVAR(talkable), false])}) exitWith {};

@@ -49,6 +49,6 @@ private _rows = [
 private _body = _rows apply {format ["<t color='#94a3b8'>%1:</t> <t color='#ffffff'>%2</t>", _x#0, _x#1]};
 (_display displayCtrl IDC_CONSOLE_TITLE) ctrlSetText format ["NPC Console — %1", _npc getVariable [QGVAR(personaName), name _npc]];
 (_display displayCtrl IDC_CONSOLE_DETAILS) ctrlSetStructuredText parseText (_body joinString "<br/><br/>");
-(_display displayCtrl IDC_CONSOLE_RESET) ctrlEnable (_profile isEqualTo "guarded" && {alive _npc});
+(_display displayCtrl IDC_CONSOLE_RESET) ctrlEnable (alive _npc);
 (_display displayCtrl IDC_CONSOLE_MUTE) ctrlEnable (_npc getVariable [QGVAR(talkable), false]);
-(_display displayCtrl IDC_CONSOLE_UNMUTE) ctrlEnable (!(_npc getVariable [QGVAR(talkable), false]) && {alive _npc});
+(_display displayCtrl IDC_CONSOLE_UNMUTE) ctrlEnable (!(_npc getVariable [QGVAR(talkable), false]) && {alive _npc} && {!(_npc getVariable [QGVAR(playerDropped), false])});

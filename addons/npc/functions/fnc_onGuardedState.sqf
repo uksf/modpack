@@ -16,11 +16,12 @@ if (!(_args isEqualType []) || {count _args < GUARDED_STATE_FIELDS}) exitWith {
 };
 
 _args params [
-    "_npcId", "_cooperation", "_pendingWarning", "_burned", "_disclosedFactIds", "_eligibleFactId",
+    "_npcId", "_turnId", "_cooperation", "_pendingWarning", "_burned", "_disclosedFactIds", "_eligibleFactId",
     "_mood", "_emote", "_reason", "_evidence", "_classifierMs", "_replyMs"
 ];
+if (_turnId isEqualTo "") exitWith { WARNING_1("npc_guarded_state with no turnId: %1",_args); };
 
-private _strings = [_npcId, _cooperation, _disclosedFactIds, _eligibleFactId, _mood, _emote, _reason, _evidence];
+private _strings = [_npcId, _turnId, _cooperation, _disclosedFactIds, _eligibleFactId, _mood, _emote, _reason, _evidence];
 if ((_strings findIf { !(_x isEqualType "") }) != -1) exitWith {
     WARNING_1("npc_guarded_state with a non-string field: %1",_args);
 };

@@ -18,7 +18,7 @@
 */
 params ["_unit"];
 if (!isServer) exitWith {};
-if (isNull _unit || {!(_unit isKindOf "CAManBase")}) exitWith {};
+if (isNull _unit || {!(_unit isKindOf "CAManBase")} || {!alive _unit}) exitWith {};
 if !(_unit getVariable [QGVAR(talkable), false]) exitWith {};
 
 private _queue = missionNamespace getVariable [QGVAR(pendingRegister), []];

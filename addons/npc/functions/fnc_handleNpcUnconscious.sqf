@@ -32,7 +32,7 @@ private _terminal = _npc getVariable [QGVAR(playerDropped), false]
     || {_profile isEqualTo "guarded"}
     || {_active && {_playerCaused}};
 
-if (_active && {_playerCaused}) then {
+if (_active && {_terminal}) then {
     _npc setVariable [QGVAR(playerDropped), true, true];
 };
 

@@ -25,7 +25,7 @@ TRACE_2("registerNpcs start",_sessionId,count _queue);
 
 {
     private _npc = _x;
-    if (isNull _npc) then { continue };
+    if (isNull _npc || {!alive _npc}) then { continue };
     if !(_npc getVariable [QGVAR(talkable), false]) then { continue };
     if !([_npc] call FUNC(registerNpc)) then {
         _npc setVariable [QGVAR(talkable), false, true];

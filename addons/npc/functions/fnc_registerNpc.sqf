@@ -21,12 +21,20 @@
 if (!isServer) exitWith { false };
 
 params ["_npc", ["_reset", false, [false]]];
+if (isNull _npc || {!alive _npc}) exitWith { false };
 
 private _sessionId = EGVAR(api,sessionId);
 if (isNil "_sessionId") exitWith { TRACE_1("no session id, skipping npc register",_npc); false };
 
 private _npcId = netId _npc;
 private _registered = missionNamespace getVariable [QGVAR(registeredNetIds), []];
+if (_reset) then {
+    _npc setVariable [QGVAR(playerDropped), false, true];
+    _npc setVariable [QGVAR(talkable), true, true];
+    private _muted = (missionNamespace getVariable [QGVAR(mutedNetIds), []]) - [_npcId];
+    missionNamespace setVariable [QGVAR(mutedNetIds), _muted, true];
+};
+
 if (_npcId in _registered && {!_reset}) exitWith {
     [_npcId, true] call FUNC(setTalkerList);
     true

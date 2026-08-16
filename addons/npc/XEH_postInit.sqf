@@ -33,7 +33,7 @@ if (isServer) then {
         } forEach GVAR(activeClips);
         {
             _y params ["", "", ["_touched", 0]];
-            if (_now - _touched > STREAM_STALE) then {
+            if (_now - _touched > GVAR(streamStale)) then {
                 GVAR(activeStreams) deleteAt _x;
             };
         } forEach GVAR(activeStreams);

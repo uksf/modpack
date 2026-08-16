@@ -5,7 +5,7 @@
 
     Description:
         Client. Feed one streamed PCM frame into the extension's open clip, or close
-        the stream on end. End is processed even when the NPC object is already null.
+        the stream on end. End only marks the turn heard when this client admitted audio.
 */
 params ["_npcId", "_turnId", ["_seq", -1, [0]], ["_pcm", "", [""]]];
 if ([_npcId, _turnId] call FUNC(isTurnCancelled)) exitWith {};
@@ -18,10 +18,10 @@ if (_seq < 0) exitWith {
         [{ _this call FUNC(onStreamFrameClient); }, [_npcId, _turnId, -1, ""], 0.1] call CBA_fnc_waitAndExecute;
     };
 
+    if !(_clipId in GVAR(streamingClips)) exitWith {};
+
     TRACE_2("stream end",_npcId,_turnId);
-    if (_clipId in GVAR(streamingClips)) then {
-        "uksf" callExtension ["audioEnd", [_clipId]];
-    };
+    "uksf" callExtension ["audioEnd", [_clipId]];
     GVAR(streamingClips) deleteAt _clipId;
     private _turnKey = [_npcId, _turnId] call FUNC(turnKey);
     GVAR(heardTurns) set [_turnKey, diag_tickTime];
@@ -42,6 +42,7 @@ if (_seq < 0) exitWith {
 if (isNull _npc) exitWith {};
 private _turnKey = [_npcId, _turnId] call FUNC(turnKey);
 if (_turnKey in GVAR(heardTurns)) exitWith {};
+if (GVAR(active) findIf { (_x select 0) isEqualTo _clipId } >= 0) exitWith {};
 
 private _seqKey = format ["%1|seq", _turnKey];
 private _lastSeq = GVAR(heardSeq) getOrDefault [_seqKey, -1];

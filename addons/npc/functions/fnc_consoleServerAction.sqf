@@ -24,11 +24,14 @@ if !(_npcId in _registered) exitWith {};
 
 switch (_action) do {
     case "reset": {
-        if ((_npc getVariable [QGVAR(interactionProfile), "conversation"]) isEqualTo "guarded" && {alive _npc}) then {
-            [_npcId] call FUNC(consoleCancelNpc);
-            [_npc, true] call FUNC(registerNpc);
-            [GVAR(consoleClients), QGVAR(consoleClearStateSink), [_npcId]] call EFUNC(common,streamClientsFanout);
-        };
+        if (!alive _npc) exitWith {};
+        [_npcId] call FUNC(consoleCancelNpc);
+        private _muted = missionNamespace getVariable [QGVAR(mutedNetIds), []];
+        missionNamespace setVariable [QGVAR(mutedNetIds), _muted - [_npcId], true];
+        _npc setVariable [QGVAR(playerDropped), false, true];
+        _npc setVariable [QGVAR(talkable), true, true];
+        [_npc, true] call FUNC(registerNpc);
+        [GVAR(consoleClients), QGVAR(consoleClearStateSink), [_npcId]] call EFUNC(common,streamClientsFanout);
     };
     case "cancel": {[_npcId] call FUNC(consoleCancelNpc)};
     case "mute": {

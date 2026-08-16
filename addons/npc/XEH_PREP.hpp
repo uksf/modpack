@@ -37,6 +37,8 @@ PREP(turnKey);
 PREP(isTurnCancelled);
 PREP(cancelTurn);
 PREP(cancelNpc);
+PREP(onTurnCancelClient);
+PREP(wipeNpc);
 PREP(setTalkerList);
 PREP(onUnitInit);
 PREP(setTalkable);

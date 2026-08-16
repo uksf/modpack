@@ -151,3 +151,21 @@
     [1, 8, 4, 0],
     1
 ] call CBA_fnc_addSetting;
+
+[
+    QGVAR(streamStale),
+    "SLIDER",
+    ["NPC stream retain (s)", "How long a completed stream is kept for walk-up replay."],
+    ["UKSF", QUOTE(COMPONENT_BEAUTIFIED)],
+    [5, 120, 30, 0],
+    1
+] call CBA_fnc_addSetting;
+
+[
+    QGVAR(speechPrebuffer),
+    "SLIDER",
+    ["NPC speech prebuffer (s)", "Delay before the mouth starts on a streamed reply."],
+    ["UKSF", QUOTE(COMPONENT_BEAUTIFIED)],
+    [0, 1, 0.2, 2],
+    1
+] call CBA_fnc_addSetting;

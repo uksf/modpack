@@ -32,6 +32,7 @@ if (!_talkable) exitWith {
     [_npcId, false] call FUNC(setTalkerList);
 };
 
+if (!alive _unit) exitWith {};
 if (_unit getVariable [QGVAR(playerDropped), false]) exitWith {};
 _unit setVariable [QGVAR(talkable), true, true];
 [_unit] call FUNC(onUnitInit);

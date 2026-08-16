@@ -35,6 +35,10 @@ switch (_type) do {
         if (isNull _npc || {!alive _npc} || {!(_npc getVariable [QGVAR(talkable), false])}) exitWith {
             TRACE_1("npc_audio for unknown or terminal npc",_npcId);
         };
+        private _stream = GVAR(activeStreams) getOrDefault [_npcId, []];
+        if (_stream isNotEqualTo [] && {(_stream select 0) isEqualTo _turnId}) exitWith {
+            TRACE_2("npc_audio dropped, stream already admitted",_npcId,_turnId);
+        };
         TRACE_3("npc_audio complete, distributing to nearby clients",_npcId,_turnId,_durationMs);
         private _targets = ALL_PLAYERS select { _x distance _npc <= GVAR(audioRange) };
         [QGVAR(audioChunkSink), _targets, ["audio", _npcId, _turnId, _durationMs, 0], _wav] call FUNC(pushClipChunks);
@@ -48,7 +52,7 @@ switch (_type) do {
     };
     case "npc_guarded_state": {
         private _npcId = _args param [0, ""];
-        private _turnId = GVAR(activeTurnIds) getOrDefault [_npcId, ""];
+        private _turnId = _args param [1, ""];
         if (_turnId isEqualTo "" || {[_npcId, _turnId] call FUNC(isTurnCancelled)}) exitWith {};
         [_args] call FUNC(onGuardedState);
     };
@@ -57,12 +61,10 @@ switch (_type) do {
     };
     case "npc_turn_cancel": {
         _args params ["_npcId", ["_turnId", "", [""]]];
-        if (_turnId isEqualTo "") then {
-            _turnId = GVAR(activeTurnIds) getOrDefault [_npcId, ""];
+        if (_turnId isEqualTo "") exitWith {
+            TRACE_1("npc_turn_cancel with no turnId, dropped",_npcId);
         };
         TRACE_2("turn cancelled, telling clients",_npcId,_turnId);
-        if (_turnId isNotEqualTo "") then {
-            [_npcId, _turnId] call FUNC(cancelTurn);
-        };
+        [_npcId, _turnId] call FUNC(cancelTurn);
     };
 };

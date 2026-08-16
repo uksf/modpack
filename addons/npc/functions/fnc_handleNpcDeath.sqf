@@ -15,7 +15,5 @@ private _npcId = netId _npc;
 private _registered = missionNamespace getVariable [QGVAR(registeredNetIds), []];
 if (!(_npc getVariable [QGVAR(talkable), false]) && {!(_npcId in _registered)}) exitWith {};
 
-_npc setVariable [QGVAR(talkable), false, true];
-[_npcId] call FUNC(cancelNpc);
-[_npcId, false] call FUNC(setTalkerList);
-TRACE_1("npc death, no longer talkable",_npcId);
+[_npc] call FUNC(wipeNpc);
+TRACE_1("npc death, wiped",_npcId);

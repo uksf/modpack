@@ -21,9 +21,11 @@ if (isNull _parent) then {_parent = findDisplay 46};
 if (isNull _parent) exitWith {};
 
 GVAR(consoleInspectorNpc) = _npc;
-["inspector", true] call FUNC(consoleSubscribe);
 private _display = _parent createDisplay QGVAR(consoleInspector);
-if (isNull _display) exitWith {};
+if (isNull _display) exitWith {
+    GVAR(consoleInspectorNpc) = objNull;
+};
+["inspector", true] call FUNC(consoleSubscribe);
 private _picker = _display displayCtrl IDC_CONSOLE_PICKER;
 
 private _position = if (!isNull curatorCamera) then {positionCameraToWorld [0, 0, 0]} else {getPosATL (call CBA_fnc_currentUnit)};

@@ -30,7 +30,6 @@ if ((GVAR(activeTurnIds) getOrDefault [_npcId, ""]) isEqualTo _turnId) then {
 
 private _stream = GVAR(activeStreams) getOrDefault [_npcId, []];
 if (_stream isNotEqualTo [] && {(_stream select 0) isEqualTo _turnId}) then {
-    [QGVAR(streamEndSink), [_npcId, _turnId], ALL_PLAYERS] call CBA_fnc_targetEvent;
     GVAR(activeStreams) deleteAt _npcId;
 };
 

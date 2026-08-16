@@ -41,14 +41,9 @@ GVAR(streamSamples) = createHashMap;
 GVAR(streamStart) = createHashMap;
 GVAR(fillerCache) = createHashMap;
 GVAR(pendingFiller) = createHashMap;
+GVAR(fillerClipIds) = createHashMap;
 GVAR(cancelledTurns) = createHashMap;
-[QGVAR(turnCancelSink), {
-    params ["_npcId", ["_turnId", "", [""]]];
-    if (_turnId isNotEqualTo "") then {
-        GVAR(cancelledTurns) set [[_npcId, _turnId] call FUNC(turnKey), diag_tickTime];
-    };
-    GVAR(pendingFiller) set [_npcId, 0];
-}] call CBA_fnc_addEventHandler;
+[QGVAR(turnCancelSink), { _this call FUNC(onTurnCancelClient); }] call CBA_fnc_addEventHandler;
 GVAR(fillerBusyUntil) = createHashMap;
 GVAR(streamHeld) = createHashMap;
 GVAR(fillerEarlyUntil) = createHashMap;
