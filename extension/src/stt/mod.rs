@@ -61,8 +61,8 @@ fn spawn_callback_pump(context: Context, rx: Receiver<(u32, String)>) {
 }
 
 /// Start STT: stand up the callback pump (owns `context`, mirrors bridge.rs)
-/// and the pipe-server thread. A later start rearms the callback for a new
-/// mission without restarting the process-lived pipe server.
+/// and the pipe-client thread. A later start rearms the callback for a new
+/// mission without starting a second client.
 pub fn start(context: Context) -> String {
     let (tx, rx) = mpsc::channel::<(u32, String)>();
     if let Ok(mut guard) = CALLBACK_TX.lock() {
@@ -75,14 +75,14 @@ pub fn start(context: Context) -> String {
         return "rearmed".to_string();
     }
 
-    thread::spawn(|| pipe::run_pipe_server());
+    thread::spawn(|| pipe::run_pipe_client());
     log::info!("stt: started");
     "ok".to_string()
 }
 
-/// Best-effort stop. The pipe server is process-lived (like the audio thread);
+/// Best-effort stop. The pipe client is process-lived (like the audio thread);
 /// we only drop the callback sender so the pump can wind down. A subsequent
-/// `start` rearms the callback without starting a second pipe server.
+/// `start` rearms the callback without starting a second client.
 pub fn stop() -> String {
     if let Ok(mut guard) = CALLBACK_TX.lock() {
         *guard = None;

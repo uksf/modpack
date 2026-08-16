@@ -8,7 +8,6 @@ GVAR(active) = [];
 GVAR(tickRunning) = false;
 GVAR(targetNpc) = objNull;
 GVAR(targetCandidate) = 0;
-GVAR(micGateOpen) = false;
 GVAR(sttHint) = "";
 
 GVAR(consoleStates) = createHashMap;
