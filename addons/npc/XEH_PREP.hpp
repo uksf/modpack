@@ -55,6 +55,7 @@ PREP(consoleNearestNpc);
 PREP(consoleOpenInspector);
 PREP(consoleCloseInspector);
 PREP(consoleUpdateInspector);
+PREP(consoleRenderInspector);
 PREP(consoleAction);
 PREP(consoleCancelNpc);
 PREP(consoleServerAction);

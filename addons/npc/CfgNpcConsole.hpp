@@ -26,10 +26,12 @@ class GVAR(consoleInspector) {
         class Profile : RscText {
             idc = IDC_CONSOLE_PROFILE;
             x = "safeZoneX + 0.44 * safeZoneW";
-            y = "safeZoneY + 0.09 * safeZoneH";
-            w = "0.19 * safeZoneW";
-            h = "0.035 * safeZoneH";
-            sizeEx = "0.018 * safeZoneH";
+            y = "safeZoneY + 0.094 * safeZoneH";
+            w = "0.09 * safeZoneW";
+            h = "0.026 * safeZoneH";
+            sizeEx = "0.016 * safeZoneH";
+            style = 2;
+            colorBackground[] = {0.08, 0.1, 0.12, 1};
             text = "";
         };
         class Picker : RscCombo {
@@ -46,14 +48,22 @@ class GVAR(consoleInspector) {
             w = "0.264 * safeZoneW";
             h = "0.68 * safeZoneH";
             class controls {
-                class Details : RscStructuredText {
-                    idc = IDC_CONSOLE_DETAILS;
+                class StateHeader : RscText {
+                    idc = -1;
                     x = 0;
                     y = 0;
                     w = "0.254 * safeZoneW";
-                    h = "1.2 * safeZoneH";
-                    colorBackground[] = {0, 0, 0, 0.25};
-                    text = "";
+                    h = "0.022 * safeZoneH";
+                    sizeEx = "0.014 * safeZoneH";
+                    text = "STATE";
+                    colorText[] = {0.5, 0.57, 0.62, 1};
+                };
+                class StateBody : RscControlsGroup {
+                    idc = IDC_CONSOLE_STATE_BODY;
+                    x = 0;
+                    y = "0.024 * safeZoneH";
+                    w = "0.254 * safeZoneW";
+                    h = "0.65 * safeZoneH";
                 };
             };
         };
@@ -64,14 +74,22 @@ class GVAR(consoleInspector) {
             w = "0.282 * safeZoneW";
             h = "0.68 * safeZoneH";
             class controls {
-                class Pipeline : RscStructuredText {
-                    idc = IDC_CONSOLE_PIPELINE;
+                class ExchangeHeader : RscText {
+                    idc = -1;
                     x = 0;
                     y = 0;
                     w = "0.272 * safeZoneW";
-                    h = "1.2 * safeZoneH";
-                    colorBackground[] = {0, 0, 0, 0.25};
-                    text = "";
+                    h = "0.022 * safeZoneH";
+                    sizeEx = "0.014 * safeZoneH";
+                    text = "LAST EXCHANGE";
+                    colorText[] = {0.5, 0.57, 0.62, 1};
+                };
+                class ExchangeBody : RscControlsGroup {
+                    idc = IDC_CONSOLE_EXCHANGE_BODY;
+                    x = 0;
+                    y = "0.024 * safeZoneH";
+                    w = "0.272 * safeZoneW";
+                    h = "0.65 * safeZoneH";
                 };
             };
         };
@@ -82,14 +100,22 @@ class GVAR(consoleInspector) {
             w = "0.334 * safeZoneW";
             h = "0.68 * safeZoneH";
             class controls {
-                class Transcript : RscStructuredText {
-                    idc = IDC_CONSOLE_TRANSCRIPT;
+                class TranscriptHeader : RscText {
+                    idc = -1;
                     x = 0;
                     y = 0;
                     w = "0.324 * safeZoneW";
-                    h = "1.6 * safeZoneH";
-                    colorBackground[] = {0, 0, 0, 0.25};
-                    text = "";
+                    h = "0.022 * safeZoneH";
+                    sizeEx = "0.014 * safeZoneH";
+                    text = "TRANSCRIPT";
+                    colorText[] = {0.5, 0.57, 0.62, 1};
+                };
+                class TranscriptBody : RscControlsGroup {
+                    idc = IDC_CONSOLE_TRANSCRIPT_BODY;
+                    x = 0;
+                    y = "0.024 * safeZoneH";
+                    w = "0.324 * safeZoneW";
+                    h = "0.65 * safeZoneH";
                 };
             };
         };

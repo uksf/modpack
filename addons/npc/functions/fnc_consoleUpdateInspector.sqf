@@ -28,22 +28,6 @@ if ((keys GVAR(streamingClips)) findIf {_x find _npcId isEqualTo 0} >= 0) then {
 
 private _fnc_escape = {[_this] call FUNC(consoleEscape)};
 private _fnc_yesNo = {["No", "Yes"] select _this};
-private _fnc_heading = {format ["<t color='#cbd5e1'>%1</t><br/>", _this]};
-private _fnc_row = {
-    params ["_label", "_value"];
-    format ["<t color='#94a3b8'>%1</t> <t color='#ffffff' size='0.95'>%2</t><br/>", _label, _value]
-};
-
-private _fnc_speech = {
-    switch (_this) do {
-        case "filler": {"Filler"};
-        case "speaking": {"Speaking"};
-        case "waiting": {"Waiting"};
-        case "streaming": {"Streaming"};
-        default {"Idle"};
-    }
-};
-
 private _fnc_address = {
     switch (_this) do {
         case "answer": {"This NPC"};
@@ -56,85 +40,88 @@ private _fnc_address = {
 private _talkable = _npc getVariable [QGVAR(talkable), false];
 private _warning = if (_state getOrDefault ["pendingWarning", false]) then {"Threat warning active"} else {"None"};
 private _conversation = if (_state getOrDefault ["burned", false]) then {"Ended"} else {"Open"};
-private _factsRevealed = if (_disclosed isEqualTo "") then {"None"} else {_disclosed};
+private _factsRevealed = if (_disclosed isEqualTo "") then {["None"]} else {_disclosedIds};
 private _factAllowed = if (_eligible isEqualTo "") then {"None"} else {_eligible};
-private _factsHeldBack = if (_blocked isEqualTo []) then {"None"} else {_blocked joinString ","};
+private _factsHeldBack = if (_blocked isEqualTo []) then {["None"]} else {_blocked};
+private _speechItems = ["idle", "waiting", "filler", "speaking", "streaming"];
+private _bandItems = ["closed", "guarded", "engaged", "cooperative"];
+private _cooperation = (_state getOrDefault ["cooperation", ""]) call _fnc_escape;
 
-private _fnc_state = {
-    private _lines = [
-        "Current status" call _fnc_heading,
-        ["Alive", (alive _npc) call _fnc_yesNo] call _fnc_row,
-        ["Can talk", _talkable call _fnc_yesNo] call _fnc_row,
-        ["Looking at this NPC", (_npc isEqualTo GVAR(targetNpc)) call _fnc_yesNo] call _fnc_row,
-        ["Speech", _audio call _fnc_speech] call _fnc_row,
-        ["Last mood", (_state getOrDefault ["mood", _npc getVariable [QGVAR(personaMood), ""]]) call _fnc_escape] call _fnc_row,
-        ["Last gesture", (_state getOrDefault ["emote", ""]) call _fnc_escape] call _fnc_row,
-        "<br/>",
-        "Conversation progress" call _fnc_heading,
-        ["Cooperation", (_state getOrDefault ["cooperation", ""]) call _fnc_escape] call _fnc_row,
-        ["Warning", _warning] call _fnc_row,
-        ["Conversation", _conversation] call _fnc_row,
-        ["Facts revealed", _factsRevealed call _fnc_escape] call _fnc_row
-    ];
-    _lines joinString ""
+private _fnc_stateSpec = {
+    [
+        ["heading", "Current status"],
+        ["leds", [["Alive", alive _npc], ["Can talk", _talkable], ["Looking at this NPC", _npc isEqualTo GVAR(targetNpc)]]],
+        ["row", ["Speech", _audio]],
+        ["strip", [_speechItems, _audio]],
+        ["row", ["Last mood", (_state getOrDefault ["mood", _npc getVariable [QGVAR(personaMood), ""]]) call _fnc_escape]],
+        ["row", ["Last gesture", (_state getOrDefault ["emote", ""]) call _fnc_escape]],
+        ["divider", ""],
+        ["heading", "Conversation progress"],
+        ["row", ["Cooperation", _cooperation]],
+        ["strip", [_bandItems, _cooperation]],
+        ["row", ["Warning", _warning]],
+        ["row", ["Conversation", _conversation]],
+        ["row", ["Facts revealed", ""]],
+        ["chip", _factsRevealed]
+    ]
 };
 
-private _fnc_exchange = {
-    private _reason = (_state getOrDefault ["reason", ""]) call _fnc_escape;
-    private _evidence = (_state getOrDefault ["evidence", ""]) call _fnc_escape;
-    private _lines = [
-        "Address check" call _fnc_heading,
-        ["Spoken to", (_state getOrDefault ["addressDecision", ""]) call _fnc_address] call _fnc_row,
-        "<br/>",
-        "Player intent" call _fnc_heading,
-        ["Heard as", (_state getOrDefault ["tag", ""]) call _fnc_escape] call _fnc_row,
-        ["Topic", (_state getOrDefault ["topicSlot", ""]) call _fnc_escape] call _fnc_row,
-        ["Concern addressed", (_state getOrDefault ["addressesConcern", false]) call _fnc_yesNo] call _fnc_row,
-        ["Clear", (!(_state getOrDefault ["ambiguous", false])) call _fnc_yesNo] call _fnc_row,
-        ["Why", _reason] call _fnc_row,
-        "<br/>",
-        "Information" call _fnc_heading,
-        ["Fact allowed", _factAllowed call _fnc_escape] call _fnc_row,
-        ["Facts held back", _factsHeldBack call _fnc_escape] call _fnc_row,
-        "<br/>",
-        "Decision evidence" call _fnc_heading,
-        format ["<t color='#ffffff' size='0.95'>%1</t><br/><br/>", _evidence],
-        "Response" call _fnc_heading,
-        ["AI used", (_state getOrDefault ["provider", ""]) call _fnc_escape] call _fnc_row,
-        ["Understanding", format ["%1 ms", _state getOrDefault ["classifyMs", 0]]] call _fnc_row,
-        ["Reply", format ["%1 ms", _state getOrDefault ["replyMs", 0]]] call _fnc_row
-    ];
-    _lines joinString ""
+private _fnc_exchangeSpec = {
+    [
+        ["heading", "Address check"],
+        ["row", ["Spoken to", (_state getOrDefault ["addressDecision", ""]) call _fnc_address]],
+        ["divider", ""],
+        ["heading", "Player intent"],
+        ["row", ["Heard as", (_state getOrDefault ["tag", ""]) call _fnc_escape]],
+        ["row", ["Topic", (_state getOrDefault ["topicSlot", ""]) call _fnc_escape]],
+        ["row", ["Concern addressed", (_state getOrDefault ["addressesConcern", false]) call _fnc_yesNo]],
+        ["row", ["Clear", (!(_state getOrDefault ["ambiguous", false])) call _fnc_yesNo]],
+        ["row", ["Why", (_state getOrDefault ["reason", ""]) call _fnc_escape]],
+        ["divider", ""],
+        ["heading", "Information"],
+        ["row", ["Fact allowed", _factAllowed call _fnc_escape]],
+        ["row", ["Facts held back", ""]],
+        ["chip", _factsHeldBack],
+        ["divider", ""],
+        ["heading", "Decision evidence"],
+        ["row", ["", (_state getOrDefault ["evidence", ""]) call _fnc_escape]],
+        ["divider", ""],
+        ["heading", "Response"],
+        ["row", ["AI used", (_state getOrDefault ["provider", ""]) call _fnc_escape]],
+        ["row", ["Understanding", (format ["%1 ms", _state getOrDefault ["classifyMs", 0]]) call _fnc_escape]],
+        ["row", ["Reply", (format ["%1 ms", _state getOrDefault ["replyMs", 0]]) call _fnc_escape]]
+    ]
 };
 
 private _entries = +(_state getOrDefault ["transcript", []]);
 reverse _entries;
-private _lines = _entries apply {
+private _transcriptSpec = [];
+{
     _x params ["_time", "_who", "_text"];
-    format [
-        "<t color='#64748b'>%1</t> <t color='#93c5fd'>%2</t><br/><t color='#e2e8f0'>%3</t><br/><br/>",
+    _transcriptSpec pushBack ["transcript", [
         [_time, "HH:MM:SS"] call BIS_fnc_secondsToString,
         [_who] call FUNC(consoleEscape),
-        [_text] call FUNC(consoleEscape)
-    ]
-};
-if (_lines isEqualTo []) then {
-    _lines = ["<t color='#64748b'>No consumed speech yet.</t>"];
-};
-
-private _fnc_setStructured = {
-    params ["_idc", "_markup"];
-    private _control = _display displayCtrl _idc;
-    if ((_control getVariable [QGVAR(lastMarkup), ""]) isEqualTo _markup) exitWith {};
-    _control setVariable [QGVAR(lastMarkup), _markup];
-    _control ctrlSetStructuredText parseText _markup;
+        [_text] call FUNC(consoleEscape),
+        (_forEachIndex % 2) isEqualTo 0
+    ]];
+} forEach _entries;
+if (_transcriptSpec isEqualTo []) then {
+    _transcriptSpec = [["row", ["", "No consumed speech yet."]]];
 };
 
 (_display displayCtrl IDC_CONSOLE_TITLE) ctrlSetText (_npc getVariable [QGVAR(personaName), name _npc]);
-(_display displayCtrl IDC_CONSOLE_PROFILE) ctrlSetText _profile;
-[IDC_CONSOLE_DETAILS, call _fnc_state] call _fnc_setStructured;
-[IDC_CONSOLE_PIPELINE, call _fnc_exchange] call _fnc_setStructured;
-[IDC_CONSOLE_TRANSCRIPT, _lines joinString ""] call _fnc_setStructured;
+private _profileCtrl = _display displayCtrl IDC_CONSOLE_PROFILE;
+_profileCtrl ctrlSetText _profile;
+_profileCtrl ctrlSetBackgroundColor [0.08, 0.1, 0.12, 1];
+if (_profile isEqualTo "guarded") then {
+    _profileCtrl ctrlSetTextColor [1, 0.83, 0.42, 1];
+} else {
+    _profileCtrl ctrlSetTextColor [0.58, 0.77, 0.99, 1];
+};
+
+[_display, _display displayCtrl IDC_CONSOLE_STATE_BODY, call _fnc_stateSpec] call FUNC(consoleRenderInspector);
+[_display, _display displayCtrl IDC_CONSOLE_EXCHANGE_BODY, call _fnc_exchangeSpec] call FUNC(consoleRenderInspector);
+[_display, _display displayCtrl IDC_CONSOLE_TRANSCRIPT_BODY, _transcriptSpec] call FUNC(consoleRenderInspector);
 (_display displayCtrl IDC_CONSOLE_RESET) ctrlEnable (alive _npc);
 (_display displayCtrl IDC_CONSOLE_MUTE) ctrlEnable _talkable;
 (_display displayCtrl IDC_CONSOLE_UNMUTE) ctrlEnable (!_talkable && {alive _npc} && {!(_npc getVariable [QGVAR(playerDropped), false])});
