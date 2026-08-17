@@ -18,10 +18,19 @@ class GVAR(consoleInspector) {
             idc = IDC_CONSOLE_TITLE;
             x = "safeZoneX + 0.05 * safeZoneW";
             y = "safeZoneY + 0.09 * safeZoneH";
-            w = "0.58 * safeZoneW";
+            w = "0.38 * safeZoneW";
             h = "0.035 * safeZoneH";
             sizeEx = "0.024 * safeZoneH";
-            text = "NPC Console";
+            text = "";
+        };
+        class Profile : RscText {
+            idc = IDC_CONSOLE_PROFILE;
+            x = "safeZoneX + 0.44 * safeZoneW";
+            y = "safeZoneY + 0.09 * safeZoneH";
+            w = "0.19 * safeZoneW";
+            h = "0.035 * safeZoneH";
+            sizeEx = "0.018 * safeZoneH";
+            text = "";
         };
         class Picker : RscCombo {
             idc = IDC_CONSOLE_PICKER;
@@ -30,36 +39,36 @@ class GVAR(consoleInspector) {
             w = "0.3 * safeZoneW";
             h = "0.035 * safeZoneH";
         };
-        class IdentityGroup : RscControlsGroup {
+        class StateGroup : RscControlsGroup {
             idc = -1;
             x = "safeZoneX + 0.05 * safeZoneW";
             y = "safeZoneY + 0.14 * safeZoneH";
-            w = "0.22 * safeZoneW";
+            w = "0.264 * safeZoneW";
             h = "0.68 * safeZoneH";
             class controls {
                 class Details : RscStructuredText {
                     idc = IDC_CONSOLE_DETAILS;
                     x = 0;
                     y = 0;
-                    w = "0.21 * safeZoneW";
+                    w = "0.254 * safeZoneW";
                     h = "1.2 * safeZoneH";
                     colorBackground[] = {0, 0, 0, 0.25};
                     text = "";
                 };
             };
         };
-        class PipelineGroup : RscControlsGroup {
+        class ExchangeGroup : RscControlsGroup {
             idc = -1;
-            x = "safeZoneX + 0.28 * safeZoneW";
+            x = "safeZoneX + 0.324 * safeZoneW";
             y = "safeZoneY + 0.14 * safeZoneH";
-            w = "0.28 * safeZoneW";
+            w = "0.282 * safeZoneW";
             h = "0.68 * safeZoneH";
             class controls {
                 class Pipeline : RscStructuredText {
                     idc = IDC_CONSOLE_PIPELINE;
                     x = 0;
                     y = 0;
-                    w = "0.27 * safeZoneW";
+                    w = "0.272 * safeZoneW";
                     h = "1.2 * safeZoneH";
                     colorBackground[] = {0, 0, 0, 0.25};
                     text = "";
@@ -68,16 +77,16 @@ class GVAR(consoleInspector) {
         };
         class TranscriptGroup : RscControlsGroup {
             idc = -1;
-            x = "safeZoneX + 0.57 * safeZoneW";
+            x = "safeZoneX + 0.616 * safeZoneW";
             y = "safeZoneY + 0.14 * safeZoneH";
-            w = "0.37 * safeZoneW";
+            w = "0.334 * safeZoneW";
             h = "0.68 * safeZoneH";
             class controls {
                 class Transcript : RscStructuredText {
                     idc = IDC_CONSOLE_TRANSCRIPT;
                     x = 0;
                     y = 0;
-                    w = "0.36 * safeZoneW";
+                    w = "0.324 * safeZoneW";
                     h = "1.6 * safeZoneH";
                     colorBackground[] = {0, 0, 0, 0.25};
                     text = "";
