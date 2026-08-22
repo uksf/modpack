@@ -72,7 +72,12 @@ private _delay = ARTILLERY_FIRE_MISSION_BASE_DELAY + linearConversion [500, 2000
 if (_stage == 0) exitWith {
     _artillery setVariable [QGVAR(artillerySupportTasked), true, true];
     [{
-        params ["", "_artillery", "_targetPosition", "", "", "_spread", "_requestId", "", "_roundsOrdered", "_magazine"];
+        params ["", "_artillery", "_targetPosition", "", "", "_spread", "_requestId", "", "_roundsOrdered", "_magazine", "", "_context"];
+
+        if (_requestId != "" && {!alive _artillery || {isNull (gunner _artillery) || {!alive (gunner _artillery)}}}) exitWith {
+            _artillery setVariable [QGVAR(artillerySupportTasked), false, true];
+            [QGVAR(fireMissionCompleted), [_requestId, _artillery, false, _roundsOrdered, "Artillery became unavailable", _context]] call CBA_fnc_serverEvent;
+        };
 
         private _activeMagazine = [currentMagazine _artillery, _magazine] select (_magazine != "");
         private _ammo = getText (EGVAR(common,configMagazines) >> _activeMagazine >> "ammo");
