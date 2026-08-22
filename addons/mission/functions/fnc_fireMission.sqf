@@ -47,13 +47,13 @@ params [
 ];
 
 private _gunner = gunner _artillery;
-if !(local _gunner) exitWith {
-    [QGVAR(fireMission), _this, _gunner] call CBA_fnc_targetEvent;
-};
-
 if (_requestId != "" && {!alive _artillery || {isNull _gunner || {!alive _gunner}}}) exitWith {
     _artillery setVariable [QGVAR(artillerySupportTasked), false, true];
     [QGVAR(fireMissionCompleted), [_requestId, _artillery, false, _roundsOrdered, "Artillery became unavailable", _context]] call CBA_fnc_serverEvent;
+};
+
+if !(local _gunner) exitWith {
+    [QGVAR(fireMission), _this, _gunner] call CBA_fnc_targetEvent;
 };
 
 if (_stage == 0 && {_artillery getVariable [QGVAR(artillerySupportTasked), false]}) exitWith {
