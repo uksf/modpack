@@ -1,5 +1,7 @@
 #include "script_component.hpp"
 
+if (true) exitWith {};
+
 if (isServer) then {
     if (!isDedicated) exitWith {
         WARNING("NPC speech is dedicated-server only (no API session off-dedi); skipping NPC registration");

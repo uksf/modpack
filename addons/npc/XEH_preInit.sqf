@@ -2,6 +2,8 @@
 
 ADDON = false;
 
+if (true) exitWith {};
+
 #include "XEH_PREP.hpp"
 
 GVAR(active) = [];
