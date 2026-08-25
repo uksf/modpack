@@ -971,7 +971,7 @@ force force diwako_dui_radar_sqlFirst = true;
 force diwako_dui_radar_syncGroup = false;
 force diwako_dui_radar_vehicleCompassEnabled = false;
 diwako_dui_use_layout_editor = false;
-
+force FLO_Enabled = false; // Frontline Operations
 // GRAD Civilians
 force grad_civs_activities_panicCooldown = "[15, 120, 240]";
 force grad_civs_cars_animalTransportChance = 0.4;
