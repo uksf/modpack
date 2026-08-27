@@ -333,6 +333,7 @@ force ace_medical_vitals_simulateSpO2 = true;
 ace_medical_windowOnWakeUp = 1;
 
 // ACE Medical Interface
+force force ace_medical_blockInputOnUiEvent = 1;
 force force ace_medical_feedback_bloodVolumeEffectType = 0;
 force force ace_medical_feedback_enableHUDIndicators = true;
 force force ace_medical_feedback_painEffectType = 0;
@@ -362,7 +363,7 @@ force force ace_medical_gui_enableMedicalMenu = 1;
 ace_medical_gui_enableSelfActions = true;
 force force ace_medical_gui_interactionMenuShowTriage = 1;
 force ace_medical_gui_maxDistance = 3;
-force force ace_medical_gui_medicalHintEnabled = false;
+force force ace_medical_gui_medicalHintEnabled = 0;
 force force ace_medical_gui_medicalHintMedicIcon = "";
 force force ace_medical_gui_medicalHintMessage = "%1 is treating you";
 ace_medical_gui_openAfterTreatment = true;
@@ -651,6 +652,7 @@ force force ace_magazinerepack_repackLoadedMagazines = true;
 force force ace_magazinerepack_timePerAmmo = 1.5;
 force force ace_magazinerepack_timePerBeltLink = 8;
 force force ace_magazinerepack_timePerMagazine = 2;
+ace_milr_showRangeHint = 1;
 force force ace_overheating_cookoffCoef = 2.5;
 force force ace_overheating_coolingCoef = 1;
 ace_overheating_displayTextOnJam = true;
@@ -971,6 +973,9 @@ force force diwako_dui_radar_sqlFirst = true;
 force diwako_dui_radar_syncGroup = false;
 force diwako_dui_radar_vehicleCompassEnabled = false;
 diwako_dui_use_layout_editor = false;
+
+// FLO
+force FLO_Enabled = false;
 
 // GRAD Civilians
 force grad_civs_activities_panicCooldown = "[15, 120, 240]";

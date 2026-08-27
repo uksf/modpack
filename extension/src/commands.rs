@@ -102,3 +102,7 @@ pub fn stt_start(context: Context) -> String {
 pub fn stt_stop() -> String {
     stt::stop()
 }
+
+pub fn stt_hint(names: String) -> String {
+    stt::set_hint(names)
+}

@@ -1,77 +1,60 @@
-//! Windows named-pipe SERVER for `\\.\pipe\uksf_stt`. ACRE (sub-plan #3) is the
-//! client. One connection carries many utterances; we parse frames, assemble
+//! Windows named-pipe CLIENT for `\\.\pipe\uksf_stt`. ACRE (TS plugin) is the
+//! server. One connection carries many utterances; we parse frames, assemble
 //! each utterance, transcribe at END, and hand the text to the callback pump.
 
-use windows::Win32::Foundation::{CloseHandle, ERROR_PIPE_CONNECTED, HANDLE, WIN32_ERROR};
+use windows::Win32::Foundation::{CloseHandle, GENERIC_READ, HANDLE};
 use windows::Win32::Storage::FileSystem::{
-    ReadFile, PIPE_ACCESS_INBOUND,
-};
-use windows::Win32::System::Pipes::{
-    ConnectNamedPipe, CreateNamedPipeW, DisconnectNamedPipe, PIPE_READMODE_BYTE, PIPE_TYPE_BYTE,
-    PIPE_WAIT,
+    CreateFileW, ReadFile, FILE_ATTRIBUTE_NORMAL, FILE_SHARE_NONE, OPEN_EXISTING,
 };
 
 use super::frame::{Frame, FrameReader, StartInfo};
 use super::{fire_transcript, transcribe};
 
 const PIPE_NAME: &str = r"\\.\pipe\uksf_stt";
-const IN_BUFFER: u32 = 1 << 16; // 64 KiB
 const READ_CHUNK: usize = 1 << 14; // 16 KiB
+const RETRY_MS: u64 = 500;
 
 fn wide(s: &str) -> Vec<u16> {
     s.encode_utf16().chain(std::iter::once(0)).collect()
 }
 
-/// Long-lived loop: create an instance, wait for a client, serve it, repeat.
-pub fn run_pipe_server() {
-    log::info!("stt: pipe server listening on {PIPE_NAME}");
+/// Long-lived loop: connect to ACRE, serve until drop, retry. Never blocks the game.
+pub fn run_pipe_client() {
+    log::info!("stt: pipe client targeting {PIPE_NAME}");
     loop {
-        let name = wide(PIPE_NAME);
-        // CreateNamedPipeW returns HANDLE directly in windows 0.58 (not
-        // Result<HANDLE>). Validity must be checked with is_invalid().
-        let handle = unsafe {
-            CreateNamedPipeW(
-                windows::core::PCWSTR(name.as_ptr()),
-                PIPE_ACCESS_INBOUND,
-                PIPE_TYPE_BYTE | PIPE_READMODE_BYTE | PIPE_WAIT,
-                1, // single instance — one local mic
-                0,
-                IN_BUFFER,
-                0,
-                None,
-            )
-        };
-        if handle.is_invalid() {
-            log::error!("stt: CreateNamedPipeW returned invalid handle");
-            std::thread::sleep(std::time::Duration::from_millis(500));
-            continue;
-        }
-
-        // Block until ACRE connects. ERROR_PIPE_CONNECTED = client beat us here.
-        let connected = unsafe { ConnectNamedPipe(handle, None) };
-        let ok = connected.is_ok() || connected.as_ref().is_err_and(|e| {
-            WIN32_ERROR::from_error(e)
-                .map(|w| w == ERROR_PIPE_CONNECTED)
-                .unwrap_or(false)
-        });
-        if !ok {
-            log::warn!("stt: ConnectNamedPipe failed: {connected:?}");
-            unsafe {
-                let _ = CloseHandle(handle);
+        match connect() {
+            Some(handle) => {
+                log::info!("stt: connected to {PIPE_NAME}");
+                serve_connection(handle);
+                log::info!("stt: disconnected; retrying");
+                unsafe {
+                    let _ = CloseHandle(handle);
+                }
             }
-            continue;
-        }
-
-        serve_connection(handle);
-
-        unsafe {
-            let _ = DisconnectNamedPipe(handle);
-            let _ = CloseHandle(handle);
+            None => {
+                std::thread::sleep(std::time::Duration::from_millis(RETRY_MS));
+            }
         }
     }
 }
 
-/// Read+parse until the client disconnects (ReadFile yields 0 / errors).
+fn connect() -> Option<HANDLE> {
+    let name = wide(PIPE_NAME);
+    unsafe {
+        CreateFileW(
+            windows::core::PCWSTR(name.as_ptr()),
+            GENERIC_READ.0,
+            FILE_SHARE_NONE,
+            None,
+            OPEN_EXISTING,
+            FILE_ATTRIBUTE_NORMAL,
+            None,
+        )
+        .ok()
+    }
+}
+
+/// Read+parse until the server disconnects (ReadFile yields 0 / errors).
 fn serve_connection(handle: HANDLE) {
     let mut reader = FrameReader::new();
     let mut current: Option<(StartInfo, Vec<i16>)> = None;
@@ -81,7 +64,7 @@ fn serve_connection(handle: HANDLE) {
         let mut read: u32 = 0;
         let ok = unsafe { ReadFile(handle, Some(chunk.as_mut_slice()), Some(&mut read), None) };
         if ok.is_err() || read == 0 {
-            break; // client disconnected
+            break;
         }
         reader.push(&chunk[..read as usize]);
 
@@ -105,7 +88,6 @@ fn serve_connection(handle: HANDLE) {
                     }
                 }
                 Some(Err(e)) => {
-                    // Malformed stream — resync by dropping this connection.
                     log::warn!("stt: frame error ({e}); dropping connection to resync");
                     return;
                 }

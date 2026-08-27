@@ -90,6 +90,10 @@ impl Transcriber {
         params.set_print_progress(false);
         params.set_print_realtime(false);
         params.set_print_timestamps(false);
+        let hint = super::hint();
+        if !hint.is_empty() {
+            params.set_initial_prompt(&hint);
+        }
 
         if let Err(e) = state.full(params, audio_f32_16k_mono) {
             log::error!("stt: whisper full() failed: {e}");

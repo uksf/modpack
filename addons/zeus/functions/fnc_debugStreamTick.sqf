@@ -21,10 +21,14 @@ params ["", "_idPFH"];
 
 if (GVAR(debugKill)) exitWith {};
 
-// Clean disconnected clients
-GVAR(debugStreamClients) = GVAR(debugStreamClients) select {!isNull (_x#0)};
+[GVAR(debugStreamClients)] call EFUNC(common,streamClientsPrune);
 
-if (GVAR(debugStreamClients) isEqualTo []) exitWith {};
+if (GVAR(debugStreamClients) isEqualTo []) exitWith {
+    if (GVAR(debugStreamPFH) != -1) then {
+        [GVAR(debugStreamPFH)] call CBA_fnc_removePerFrameHandler;
+        GVAR(debugStreamPFH) = -1;
+    };
+};
 
 // Clean stale client data
 {

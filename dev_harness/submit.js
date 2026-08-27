@@ -37,7 +37,7 @@ const mods = [
     'D:/Arma/uksf_air/.hemttout/dev',
     'D:/Arma/modpack/.hemttout/dev',
     acePath,
-    'B:/Steam/steamapps/common/Arma 3/uksf-dev/@uksf_acre2'
+    'D:/Arma/acre2/.hemttout/dev'
 ];
 
 const payload = { sqf, mods, timeoutSeconds };

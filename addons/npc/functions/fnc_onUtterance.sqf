@@ -6,34 +6,34 @@
     Description:
         Server. A client forwarded a finalised utterance addressed to an NPC.
         Append it to the NPC's room and (re)arm the debounce flush.
-
-    Parameter(s):
-        0: npcId <STRING>
-        1: speakerId <STRING>
-        2: text <STRING>
-        3: t <NUMBER>
-
-    Return Value:
-        None
-
-    Example:
-        ["2:4", "76561198000000001", "Hello there", 1234.5] call uksf_npc_fnc_onUtterance
 */
 params ["_npcId", "_speakerId", "_text", "_t", ["_gazeAddressed", false, [false]]];
 TRACE_3("utterance received",_npcId,_speakerId,_gazeAddressed);
+
+private _registered = missionNamespace getVariable [QGVAR(registeredNetIds), []];
+if !(_npcId in _registered) exitWith {
+    TRACE_1("utterance for unregistered npc, dropping",_npcId);
+};
+
+private _npc = objectFromNetId _npcId;
+if (isNull _npc || {!alive _npc} || {!(_npc getVariable [QGVAR(talkable), false])}) exitWith {
+    TRACE_1("utterance for unknown or terminal npc, dropping",_npcId);
+};
 
 private _room = GVAR(rooms) getOrDefault [_npcId, []];
 _room pushBack [_speakerId, _text, _t, _gazeAddressed];
 GVAR(rooms) set [_npcId, _room];
 
-// Remember who spoke. The turn to face them happens when this NPC actually answers, not
-// when they hear: every talkable in earshot receives the utterance, so turning on hearing
-// had a whole room pivot, and the wrong one pivot while another did the talking.
+private _speakerName = "Player";
 {
-    if (getPlayerUID _x isEqualTo _speakerId) exitWith { GVAR(lastSpeaker) set [_npcId, _x]; };
-} forEach allPlayers;
+    if (getPlayerUID _x isEqualTo _speakerId) exitWith {
+        GVAR(lastSpeaker) set [_npcId, _x];
+        _speakerName = name _x;
+    };
+} forEach ALL_PLAYERS;
 
-// Debounce: record a token and schedule a flush; only the latest token flushes.
+[GVAR(consoleClients), QGVAR(consoleSttSink), [_npcId, _text select [0, DEBUG_TEXT_MAX], _gazeAddressed, _speakerName]] call EFUNC(common,streamClientsFanout);
+
 private _token = diag_tickTime;
 GVAR(roomTimers) set [_npcId, _token];
 [{

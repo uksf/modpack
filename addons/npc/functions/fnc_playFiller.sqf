@@ -30,7 +30,9 @@ if (_pool isEqualTo []) then { _pool = _list };
 
 (selectRandom _pool) params ["_fillerId", "_wav", ["_durationMs", 0]];
 GVAR(fillerCounter) = GVAR(fillerCounter) + 1;
-[format ["%1_filler_%2", netId _npc, GVAR(fillerCounter)], _npc, _wav] call FUNC(playClip);
+private _clipId = format ["%1_filler_%2", netId _npc, GVAR(fillerCounter)];
+GVAR(fillerClipIds) set [netId _npc, _clipId];
+[_clipId, _npc, _wav] call FUNC(playClip);
 
 // The reply waits for the filler to finish rather than cutting it off, so the whole
 // pipeline needs to know when the mouth is free again.

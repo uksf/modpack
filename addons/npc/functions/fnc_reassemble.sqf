@@ -4,26 +4,11 @@
         UKSF
 
     Description:
-        Server. Buffer-by-index chunk reassembly, mirroring fnc_handleApiLoadChunk.
-        On first chunk for a key, initialises the buffer to size total.
-        Sets chunk at index. When all chunks have arrived, joins and clears the buffer.
-
-    Parameter(s):
-        0: Key <STRING>   (e.g. "filler|<npcId>|<fillerId>")
-        1: Index <NUMBER> (0-based)
-        2: Total <NUMBER>
-        3: Chunk <STRING> (base64 fragment)
-
-    Return Value:
-        Reassembled base64 WAV <STRING>, or nil if not yet complete.
-
-    Example:
-        private _wav = ["filler|0:1|abc123", 0, 3, _chunk] call uksf_npc_fnc_reassemble;
-        if (isNil "_wav") exitWith {};
+        Server. Buffer-by-index chunk reassembly. Rejects oversized or out-of-range totals.
 */
 params ["_key", "_index", "_total", "_chunk"];
+if (_total < 1 || {_total > CLIP_CHUNKS_MAX} || {_index < 0} || {_index >= _total}) exitWith { nil };
 
-// Buffer entry is [receivedCount, chunks] so completion is O(1) per chunk.
 private _entry = GVAR(rxBuffers) get _key;
 if (isNil "_entry") then {
     private _chunks = [];
@@ -32,6 +17,7 @@ if (isNil "_entry") then {
     GVAR(rxBuffers) set [_key, _entry];
 };
 _entry params ["_count", "_chunks"];
+if (count _chunks != _total) exitWith { nil };
 if (isNil {_chunks select _index}) then {
     _chunks set [_index, _chunk];
     _count = _count + 1;

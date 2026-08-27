@@ -88,5 +88,6 @@ fn init() -> Extension {
         .command("audioStop", commands::audio_stop)
         .command("sttStart", commands::stt_start)
         .command("sttStop", commands::stt_stop)
+        .command("sttHint", commands::stt_hint)
         .finish()
 }

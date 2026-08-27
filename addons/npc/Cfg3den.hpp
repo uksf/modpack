@@ -21,6 +21,30 @@
         condition = "this isKindOf 'CAManBase'"; \
     }
 
+// One guarded slot = a topic edit + the speakable fact multiline edit. Repeated 3 times,
+// in disclosure order. The slot number is the prerequisite order; there is nothing else to tune.
+#define GUARDED_SLOT(n) \
+    class GVAR(guardedTopic##n) { \
+        property = QGVAR(guardedTopic##n); \
+        control = "Edit"; \
+        displayName = QUOTE(Guarded topic n); \
+        tooltip = "What fact n is about, in a few words. Cues the model without naming the fact."; \
+        expression = QUOTE(_this setVariable [ARR_3(QQGVAR(guardedTopic##n),_value,true)]); \
+        typeName = "STRING"; \
+        defaultValue = "''"; \
+        condition = "this isKindOf 'CAManBase'"; \
+    }; \
+    class GVAR(guardedFact##n) { \
+        property = QGVAR(guardedFact##n); \
+        control = "EditMulti5"; \
+        displayName = QUOTE(Guarded fact n); \
+        tooltip = "The sentence the NPC speaks when fact n unlocks. Never repeat it in Knowledge or a topic."; \
+        expression = QUOTE(_this setVariable [ARR_3(QQGVAR(guardedFact##n),_value,true)]); \
+        typeName = "STRING"; \
+        defaultValue = "''"; \
+        condition = "this isKindOf 'CAManBase'"; \
+    }
+
 class Cfg3DEN {
     class Object {
         class AttributeCategories {
@@ -50,6 +74,20 @@ class Cfg3DEN {
                         class Values {
                             class Dynamic { name = "Dynamic"; value = "dynamic"; };
                             class Scripted { name = "Scripted"; value = "scripted"; };
+                        };
+                    };
+                    class GVAR(interactionProfile) {
+                        property = QGVAR(interactionProfile);
+                        control = "Combo";
+                        displayName = "Interaction profile";
+                        tooltip = "conversation = the NPC answers freely from Knowledge; guarded source = the API withholds the three facts below until the player earns them.";
+                        expression = QUOTE(_this setVariable [ARR_3(QQGVAR(interactionProfile),_value,true)]);
+                        typeName = "STRING";
+                        defaultValue = "'conversation'";
+                        condition = "this isKindOf 'CAManBase'";
+                        class Values {
+                            class Conversation { name = "Conversation"; value = "conversation"; };
+                            class Guarded { name = "Guarded source"; value = "guarded"; };
                         };
                     };
                     class GVAR(voiceId) {
@@ -128,6 +166,19 @@ class Cfg3DEN {
                         defaultValue = "''";
                         condition = "this isKindOf 'CAManBase'";
                     };
+                    class GVAR(guardedConcern) {
+                        property = QGVAR(guardedConcern);
+                        control = "EditMulti5";
+                        displayName = "Guarded concern";
+                        tooltip = "What the source is afraid of if they talk. The last fact stays locked until the player addresses it.";
+                        expression = QUOTE(_this setVariable [ARR_3(QQGVAR(guardedConcern),_value,true)]);
+                        typeName = "STRING";
+                        defaultValue = "''";
+                        condition = "this isKindOf 'CAManBase'";
+                    };
+                    GUARDED_SLOT(1);
+                    GUARDED_SLOT(2);
+                    GUARDED_SLOT(3);
                     SCRIPTED_SLOT(1);
                     SCRIPTED_SLOT(2);
                     SCRIPTED_SLOT(3);

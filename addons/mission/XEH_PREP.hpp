@@ -23,6 +23,7 @@ PREP(moduleDynamicPatrolExcludeArea);
 PREP(moduleDynamicPatrolIncludeArea);
 PREP(moduleSpawn);
 PREP(reTask);
+PREP(requestFireMission);
 PREP(selectArtillery);
 PREP(selectGroup);
 PREP(setSupportRadio);
