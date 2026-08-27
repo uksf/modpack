@@ -4,9 +4,8 @@
         Beswick.T
 
     Description:
-        Start the client STT pipeline in the extension. Stands up the named-pipe
-        server that consumes ACRE-captured direct speech and the callback pump
-        that returns transcripts. Client-only; idempotent in the extension.
+        Start the client STT pipeline in the extension and tell ACRE to serve
+        captured direct speech. Client-only; both operations are idempotent.
 
     Parameter(s):
         None
@@ -19,3 +18,4 @@
 */
 
 "uksf" callExtension ["sttStart", []];
+[true] call acre_sys_core_fnc_setMicCaptureGate;
