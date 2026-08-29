@@ -4,6 +4,7 @@ class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
         units[] = {
+            QGVAR(moduleAmbientArtillery),
             QGVAR(moduleSpawnArea),
             QGVAR(moduleDynamicPatrolExcludeArea),
             QGVAR(moduleDynamicPatrolIncludeArea),
