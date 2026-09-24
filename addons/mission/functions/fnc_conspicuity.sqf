@@ -33,10 +33,10 @@ CONSPICUITY_CHECK_GEAR(uniform _player);
 
 private _vehicle = vehicle _player;
 if (_vehicle != _player) exitWith {
-    // Horns and smoke/flare countermeasure launchers do not make a vehicle conspicuous
+    // Weapon-safe placeholders, horns and smoke/flare countermeasure launchers do not make a vehicle conspicuous
     private _cfgWeapons = configFile >> "CfgWeapons";
     private _hasWeapon = ((weapons _vehicle) findIf {
-        _x != "CUP_weapon_mastersafe"
+        !(_x in ["CUP_weapon_mastersafe", "UK3CB_BAF_Safe"])
         && {!(_x isKindOf ["CarHorn", _cfgWeapons])}
         && {!(_x isKindOf ["SmokeLauncher", _cfgWeapons])}
     }) != -1;
