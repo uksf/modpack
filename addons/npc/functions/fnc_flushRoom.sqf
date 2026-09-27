@@ -24,8 +24,8 @@ if (_room isEqualTo []) exitWith {};
 GVAR(rooms) set [_npcId, []];
 
 private _newTurns = _room apply {
-    _x params ["_speakerId", "_text", "_t"];
-    createHashMapFromArray [["speakerId", _speakerId], ["text", _text], ["t", _t]]
+    _x params ["_speakerId", "_text", "_t", "", ["_utt", ""]];
+    createHashMapFromArray [["speakerId", _speakerId], ["text", _text], ["t", _t], ["utt", _utt]]
 };
 
 private _gazeAddressed = (_room findIf { _x param [3, false] }) != -1;

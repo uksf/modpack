@@ -4,8 +4,8 @@
         UKSF
 
     Description:
-        Server. Dispatches npc_filler / npc_audio commands received from the API via
-        the extension command channel.
+        Server. Dispatches NPC commands received from the API via the extension
+        command channel, and acknowledges turn commands to the API trace.
 */
 params ["_type", "_args"];
 
@@ -34,6 +34,7 @@ switch (_type) do {
         private _npc = objectFromNetId _npcId;
         if (isNull _npc || {!alive _npc} || {!(_npc getVariable [QGVAR(talkable), false])}) exitWith {
             TRACE_1("npc_audio for unknown or terminal npc",_npcId);
+            [_npcId, _turnId, "clip", "terminal"] call FUNC(sendAck);
         };
         private _stream = GVAR(activeStreams) getOrDefault [_npcId, []];
         if (_stream isNotEqualTo [] && {(_stream select 0) isEqualTo _turnId}) exitWith {
@@ -43,6 +44,7 @@ switch (_type) do {
         private _targets = ALL_PLAYERS select { _x distance _npc <= GVAR(audioRange) };
         [QGVAR(audioChunkSink), _targets, ["audio", _npcId, _turnId, _durationMs, 0], _wav] call FUNC(pushClipChunks);
         GVAR(activeClips) set [_npcId, [_turnId, _wav, diag_tickTime, _durationMs]];
+        [_npcId, _turnId, "clip", "", count _targets] call FUNC(sendAck);
         private _speaker = GVAR(lastSpeaker) getOrDefault [_npcId, objNull];
         if (!isNull _speaker) then { [_npc, _speaker] call FUNC(watchSpeaker); };
     };
@@ -56,6 +58,20 @@ switch (_type) do {
         if (_turnId isEqualTo "" || {[_npcId, _turnId] call FUNC(isTurnCancelled)}) exitWith {};
         [_args] call FUNC(onGuardedState);
     };
+    case "npc_emote": {
+        _args params [["_npcId", "", [""]], ["_turnId", "", [""]], ["_emote", "", [""]]];
+        if (_turnId isEqualTo "" || {_emote isEqualTo ""}) exitWith {};
+        if ([_npcId, _turnId] call FUNC(isTurnCancelled)) exitWith { [_npcId, _turnId, "emote", "cancelled"] call FUNC(sendAck) };
+        private _npc = objectFromNetId _npcId;
+        if (isNull _npc || {!alive _npc} || {!(_npc getVariable [QGVAR(talkable), false])}) exitWith {
+            [_npcId, _turnId, "emote", "terminal"] call FUNC(sendAck);
+        };
+        private _targets = ALL_PLAYERS select { _x distance _npc <= GVAR(audioRange) };
+        if (_targets isNotEqualTo []) then {
+            [QGVAR(emoteSink), [_npcId, _emote select [0, EMOTE_MAX]], _targets] call CBA_fnc_targetEvent;
+        };
+        [_npcId, _turnId, "emote", "", count _targets] call FUNC(sendAck);
+    };
     case "npc_debug_state": {
         [_args] call FUNC(consoleOnDebugState);
     };
@@ -66,5 +82,6 @@ switch (_type) do {
         };
         TRACE_2("turn cancelled, telling clients",_npcId,_turnId);
         [_npcId, _turnId] call FUNC(cancelTurn);
+        [_npcId, _turnId, "cancel"] call FUNC(sendAck);
     };
 };

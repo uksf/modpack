@@ -5,7 +5,8 @@
 
     Description:
         Local. Handles a finalised transcript: every talkable NPC in earshot gets
-        the utterance. Fillers arm only for the gaze target.
+        the utterance. Fillers arm only for the gaze target. The server gets one
+        event per utterance, even when no NPC heard it, so ignored speech is traced.
 */
 params ["_unit", "_text", "_uttId", "_time"];
 
@@ -17,7 +18,6 @@ private _heard = [];
     if (isNull _candidate || {!alive _candidate} || {!(_candidate getVariable [QGVAR(talkable), false])}) then { continue };
     if ((_player distance _candidate) <= GVAR(hearingRadius)) then { _heard pushBack _candidate };
 } forEach (missionNamespace getVariable [QGVAR(talkerNetIds), []]);
-if (_heard isEqualTo []) exitWith { TRACE_1("transcript with no npc in earshot, dropping",_text); };
 
 if (!isNull _npc && {_npc in _heard}) then {
     GVAR(fillerEarlyUntil) set [netId _npc, diag_tickTime + GVAR(fillerShortWindow)];
@@ -26,11 +26,6 @@ if (!isNull _npc && {_npc in _heard}) then {
     [_npc, _token, GVAR(fillerDelay), 0] call FUNC(scheduleFiller);
 };
 
-private _speakerId = getPlayerUID _unit;
-if (_speakerId isEqualTo "") exitWith { TRACE_1("no UID for speaker, dropping",_unit); };
-
-{
-    private _isGazeTarget = _x isEqualTo _npc;
-    TRACE_3("utterance -> server",netId _x,_speakerId,_isGazeTarget);
-    [QGVAR(utterance), [netId _x, _speakerId, _text, _time, _isGazeTarget]] call CBA_fnc_serverEvent;
-} forEach _heard;
+private _gazeId = ["", netId _npc] select (!isNull _npc && {_npc in _heard});
+TRACE_3("utterance -> server",count _heard,getPlayerUID _unit,_gazeId);
+[QGVAR(utterance), [getPlayerUID _unit, _text, _time, _uttId, _heard apply { netId _x }, _gazeId]] call CBA_fnc_serverEvent;
