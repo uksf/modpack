@@ -29,6 +29,19 @@ if !(isServer) exitWith {
 
 if !(GVAR(controllerInitialised)) exitWith {};
 
+// Reap missions whose airframe is gone. Per-mission PFHs do this while they
+// still run, but RTB removes the PFH and deleteVehicle never unregisters —
+// stale cleanup below also skips isNull vehicles. Reverse-index so a lost
+// group+vehicle identity cannot miss the slot.
+for "_i" from ((count GVAR(activeMissions)) - 1) to 0 step -1 do {
+    (GVAR(activeMissions) select _i) params ["_group", "_vehicle", "_missionType"];
+    if (isNull _vehicle || {!alive _vehicle}) then {
+        GVAR(activeMissions) deleteAt _i;
+        if (!isNull _group) then { deleteGroup _group };
+        TRACE_2("Dead mission reaped",_missionType,count GVAR(activeMissions));
+    };
+};
+
 // Cache player lists once per tick
 private _players = ALL_PLAYERS;
 private _airPlayers = _players select {
@@ -98,7 +111,10 @@ if (
         private _zoneIndex = _forEachIndex;
 
         private _activeIntercepts = {
-            (_x select 2) isEqualTo "intercept" && {(_x select 3) isEqualTo _zoneIndex}
+            (_x select 2) isEqualTo "intercept"
+            && {(_x select 3) isEqualTo _zoneIndex}
+            && {!isNull (_x select 1)}
+            && {alive (_x select 1)}
         } count GVAR(activeMissions);
 
         if (_activeIntercepts >= _maxIntercepts) then { continue };

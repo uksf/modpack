@@ -20,6 +20,9 @@
 
 if !(GVAR(controllerInitialised)) exitWith { false };
 if (GVAR(spawnPoints) isEqualTo []) exitWith { false };
-if (count GVAR(activeMissions) >= GVAR(maxConcurrentMissions)) exitWith { false };
+private _activeCount = {
+    !isNull (_x select 1) && {alive (_x select 1)}
+} count GVAR(activeMissions);
+if (_activeCount >= GVAR(maxConcurrentMissions)) exitWith { false };
 
 true

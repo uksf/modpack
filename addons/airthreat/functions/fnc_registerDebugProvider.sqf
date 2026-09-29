@@ -33,9 +33,11 @@ private _fnc_menuCondition = {GVAR(controllerInitialised)};
 // ============================================================
 private _fnc_serverGetter = {
     // --- Active missions ---
-    private _missions = GVAR(activeMissions) apply {
+    // apply+continue inserts nil rather than omitting, so filter first.
+    private _missions = (GVAR(activeMissions) select {
+        !isNull (_x select 1) && {alive (_x select 1)}
+    }) apply {
         _x params ["_group", "_vehicle", "_missionType"];
-        if (isNull _vehicle || {!alive _vehicle}) then { continue };
 
         private _vehicleNetId = netId _vehicle;
         private _spawnTime = _vehicle getVariable [QGVAR(spawnTime), CBA_missionTime];
@@ -84,7 +86,10 @@ private _fnc_serverGetter = {
         _zoneArea params ["_position", "_sizeA", "_sizeB", "_angle", "_isRectangle"];
         private _zoneIndex = _forEachIndex;
         private _activeIntercepts = {
-            (_x # 2) isEqualTo "intercept" && {(_x # 3) == _zoneIndex}
+            (_x # 2) isEqualTo "intercept"
+            && {(_x # 3) == _zoneIndex}
+            && {!isNull (_x # 1)}
+            && {alive (_x # 1)}
         } count GVAR(activeMissions);
         _interceptZoneData pushBack [_position, _sizeA, _sizeB, _angle, _isRectangle, _maxIntercepts, _activeIntercepts];
     } forEach GVAR(interceptZones);

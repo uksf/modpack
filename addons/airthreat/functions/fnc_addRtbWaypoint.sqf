@@ -19,7 +19,9 @@
 */
 params [["_group", grpNull, [grpNull]], ["_vehicle", objNull, [objNull]]];
 
-if (isNull _group || {isNull _vehicle}) exitWith {};
+if (isNull _group || {isNull _vehicle}) exitWith {
+    [_group, _vehicle] call FUNC(handleMissionEnd);
+};
 
 // Clear existing waypoints so RTB is immediate
 while {waypoints _group isNotEqualTo []} do {
