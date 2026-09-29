@@ -42,5 +42,4 @@ if (_knowledge isNotEqualTo "") then {
 };
 _reason = _reason select [0, DEBUG_TEXT_MAX];
 _evidence = _evidence select [0, DEBUG_TEXT_MAX];
-_spoken = _spoken select [0, DEBUG_TEXT_MAX];
 [GVAR(consoleClients), QGVAR(debugStateSink), [_npcId, _provider, _addressDecision, _tag, _topicSlot, _addressesConcern, _ambiguous, _reason, _evidence, _classifyMs, _replyMs, _eligible, _disclosed, _spoken]] call EFUNC(common,streamClientsFanout);

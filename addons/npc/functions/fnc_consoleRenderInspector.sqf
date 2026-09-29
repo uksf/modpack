@@ -138,8 +138,9 @@ private _fnc_make = {
                 "<t color='#64748b' size='0.75'>%1</t> <t color='%2' size='0.75'>%3</t>",
                 _time, _whoColour, _who
             ];
-            private _body = ["RscStructuredText", _pad, _y + _rowH, _bodyW, _rowH] call _fnc_make;
+            private _body = ["RscStructuredText", _pad, _y + _rowH, _bodyW, 10] call _fnc_make;
             _body ctrlSetStructuredText parseText format ["<t color='#e2e8f0' size='0.8'>%1</t>", _text];
+            _body ctrlCommit 0;
             private _bodyH = (ctrlTextHeight _body) max _rowH;
             _body ctrlSetPosition [_pad, _y + _rowH, _bodyW, _bodyH];
             _body ctrlCommit 0;

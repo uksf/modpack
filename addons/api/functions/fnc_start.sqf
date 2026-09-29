@@ -24,6 +24,10 @@ if (_result == "") exitWith {
     ERROR("Failed to start API extension - DLL may not be loaded");
 };
 
+if (_result == "already running") exitWith {
+    INFO("API extension already running");
+};
+
 if (toLower (_result select [0, 5]) == "error") exitWith {
     ERROR_1("Extension start returned error: %1",_result);
 };

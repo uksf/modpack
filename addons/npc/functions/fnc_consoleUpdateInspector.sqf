@@ -15,8 +15,14 @@ private _state = [_npcId, true] call FUNC(consoleGetState);
 private _profile = _npc getVariable [QGVAR(interactionProfile), "conversation"];
 private _disclosed = _state getOrDefault ["disclosed", ""];
 private _eligible = _state getOrDefault ["eligible", ""];
+private _fnc_normId = {
+    private _s = toLower (str _this);
+    if ((_s select [0, 1]) in ["g", "f"] && {count _s > 1}) then {_s select [1]} else {_s}
+};
 private _disclosedIds = if (_disclosed isEqualTo "") then {[]} else {_disclosed splitString ","};
-private _blocked = if (_profile isEqualTo "guarded") then {GUARDED_FACT_IDS - _disclosedIds - [_eligible]} else {[]};
+private _disclosedNorm = _disclosedIds apply {_x call _fnc_normId} select {_x in ["1", "2", "3"]};
+private _eligibleNorm = _eligible call _fnc_normId;
+private _blocked = if (_profile isEqualTo "guarded") then {["1", "2", "3"] - _disclosedNorm - [_eligibleNorm]} else {[]};
 private _audio = "idle";
 if ((GVAR(fillerBusyUntil) getOrDefault [_npcId, 0]) > diag_tickTime) then {
     _audio = "filler";
@@ -40,8 +46,8 @@ private _fnc_address = {
 private _talkable = _npc getVariable [QGVAR(talkable), false];
 private _warning = if (_state getOrDefault ["pendingWarning", false]) then {"Threat warning active"} else {"None"};
 private _conversation = if (_state getOrDefault ["burned", false]) then {"Ended"} else {"Open"};
-private _factsRevealed = if (_disclosed isEqualTo "") then {["None"]} else {_disclosedIds};
-private _factAllowed = if (_eligible isEqualTo "") then {"None"} else {_eligible};
+private _factsRevealed = if (_disclosedNorm isEqualTo []) then {["None"]} else {_disclosedNorm};
+private _factAllowed = if (_eligibleNorm isEqualTo "") then {"None"} else {_eligibleNorm};
 private _factsHeldBack = if (_blocked isEqualTo []) then {["None"]} else {_blocked};
 private _speechItems = ["idle", "waiting", "filler", "speaking", "streaming"];
 private _bandItems = ["closed", "guarded", "engaged", "cooperative"];
@@ -63,7 +69,20 @@ private _fnc_stateSpec = {
         ["row", ["Conversation", _conversation]],
         ["row", ["Facts revealed", ""]],
         ["chip", _factsRevealed]
-    ]
+    ] + (if (_profile isNotEqualTo "guarded") then {[]} else {
+        private _intel = [
+            ["divider", ""],
+            ["heading", "Authored intel"],
+            ["row", ["Concern", (_npc getVariable [QGVAR(guardedConcern), ""]) call _fnc_escape]]
+        ];
+        for "_i" from 1 to GUARDED_FACT_COUNT do {
+            private _topic = _npc getVariable [format ["%1%2", QGVAR(guardedTopic), _i], ""];
+            private _fact = _npc getVariable [format ["%1%2", QGVAR(guardedFact), _i], ""];
+            private _status = ["held", "revealed"] select ((str _i) in _disclosedNorm);
+            _intel pushBack ["row", [format ["%1 %2", _i, _status], (format ["%1 — %2", _topic, _fact]) call _fnc_escape]];
+        };
+        _intel
+    })
 };
 
 private _fnc_exchangeSpec = {

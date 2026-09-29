@@ -59,6 +59,9 @@ if (!isNull _npc) then {
 };
 TRACE_2("relay end",_npcId,_turnId);
 [_npcId, _turnId, "streamEnd", "", count _targets] call FUNC(sendAck);
+if ((GVAR(activeTurnIds) getOrDefault [_npcId, ""]) isEqualTo _turnId) then {
+    GVAR(activeTurnIds) deleteAt _npcId;
+};
 if (_targets isNotEqualTo []) then {
     [QGVAR(streamEndSink), [_npcId, _turnId], _targets] call CBA_fnc_targetEvent;
 };

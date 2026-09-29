@@ -34,7 +34,7 @@ private _outcomes = _heard apply {
         GVAR(rooms) set [_npcId, _room];
         if (!isNull _speaker) then { GVAR(lastSpeaker) set [_npcId, _speaker] };
 
-        [GVAR(consoleClients), QGVAR(consoleSttSink), [_npcId, _text select [0, DEBUG_TEXT_MAX], _gazeAddressed, _speakerName]] call EFUNC(common,streamClientsFanout);
+        [GVAR(consoleClients), QGVAR(consoleSttSink), [_npcId, _text, _gazeAddressed, _speakerName]] call EFUNC(common,streamClientsFanout);
 
         private _token = diag_tickTime;
         GVAR(roomTimers) set [_npcId, _token];

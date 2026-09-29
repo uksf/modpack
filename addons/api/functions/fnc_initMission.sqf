@@ -5,8 +5,9 @@
 
     Description:
         Registers mission-scoped event handlers and starts the periodic
-        server status push. Called from preInit after the extension has
-        already been started in preStart.
+        server status push. First load is started from preStart. After an
+        in-process mission restart, MPEnded has stopped the bridge — start
+        it again here only in that case.
 
     Parameters:
         None
@@ -27,6 +28,11 @@ addMissionEventHandler ["ExtensionCallback", {
 // Generate session ID for this mission run — used by statistics, persistence, and presence
 GVAR(sessionId) = call CBA_fnc_createUUID;
 INFO_1("Mission session: %1",GVAR(sessionId));
+
+if (uiNamespace getVariable [QGVAR(needsStart), false]) then {
+    uiNamespace setVariable [QGVAR(needsStart), false];
+    call FUNC(start);
+};
 
 // Fallback for non-persistence-shutdown mission ends (e.g. mission restart)
 // During controlled shutdown, shuttingDown handler sends mission_ended instead

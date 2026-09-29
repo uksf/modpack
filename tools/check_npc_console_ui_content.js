@@ -4,7 +4,8 @@ function checkContent({ update, allSqf, fail, pass }) {
     const requiredLabels = [
         "Current status", "Alive", "Can talk", "Looking at this NPC", "Speech",
         "Last mood", "Last gesture", "Conversation progress", "Cooperation",
-        "Warning", "Conversation", "Facts revealed", "Address check", "Spoken to",
+        "Warning", "Conversation", "Facts revealed", "Authored intel", "Concern",
+        "Address check", "Spoken to",
         "Player intent", "Heard as", "Topic", "Concern addressed", "Clear", "Why",
         "Information", "Fact allowed", "Facts held back", "Decision evidence",
         "Response", "AI used", "Understanding", "Reply",

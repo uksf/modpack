@@ -28,5 +28,9 @@ if (_parsed isEqualTo []) exitWith {
 
 _parsed params [["_uttId", -1, [0]], ["_text", "", [""]]];
 if (_text isEqualTo "") exitWith {};
+private _folded = toLower ((_text splitString " []()") joinString "");
+if (_folded in ["blankaudio", "blank", "silence", "music"]) exitWith {
+    TRACE_1("stt non-speech dropped",_text);
+};
 
 [QGVAR(transcript), [player, _text, _uttId, serverTime]] call CBA_fnc_localEvent;

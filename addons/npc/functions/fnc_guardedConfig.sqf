@@ -72,7 +72,7 @@ for "_i" from 1 to GUARDED_FACT_COUNT do {
 
     _seen pushBack _lowerFact;
     _facts pushBack createHashMapFromArray [
-        ["id", format ["g%1", _i]],
+        ["id", str _i],
         ["topic", _topic],
         ["text", _fact]
     ];

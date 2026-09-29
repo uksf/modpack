@@ -47,6 +47,12 @@ switch (_type) do {
         [_npcId, _turnId, "clip", "", count _targets] call FUNC(sendAck);
         private _speaker = GVAR(lastSpeaker) getOrDefault [_npcId, objNull];
         if (!isNull _speaker) then { [_npc, _speaker] call FUNC(watchSpeaker); };
+        [{
+            params ["_npcId", "_turnId"];
+            if ((GVAR(activeTurnIds) getOrDefault [_npcId, ""]) isEqualTo _turnId) then {
+                GVAR(activeTurnIds) deleteAt _npcId;
+            };
+        }, [_npcId, _turnId], (_durationMs / 1000) max GVAR(debounceSeconds)] call CBA_fnc_waitAndExecute;
     };
     case "npc_audio_frame";
     case "npc_audio_end": {

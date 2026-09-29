@@ -18,3 +18,5 @@
 
 private _result = "uksf" callExtension "stop";
 INFO_1("Extension stop: %1",_result);
+// Survives missionNamespace wipe so the next preInit can start again.
+uiNamespace setVariable [QGVAR(needsStart), true];

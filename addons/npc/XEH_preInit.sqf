@@ -22,7 +22,7 @@ GVAR(consoleClients) = [];
 [QGVAR(transcript), { _this call FUNC(onTranscriptGated); }] call CBA_fnc_addEventHandler;
 [QGVAR(doWatch), {
     params ["_npc", "_target"];
-    if (!isNull _npc && {local _npc}) then { _npc lookAt _target };
+    if (!isNull _npc && {local _npc} && {!isNull _target}) then { _npc lookAt _target };
 }] call CBA_fnc_addEventHandler;
 
 GVAR(clipRxBuffers) = createHashMap;

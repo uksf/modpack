@@ -37,6 +37,9 @@ params ["_clipId", "_npc", ["_wait", 0], ["_npcId", "", [""]], ["_turnId", "", [
     GVAR(streamHeld) deleteAt _clipId;
 
     GVAR(streamStart) set [_clipId, diag_tickTime + GVAR(speechPrebuffer)];
+    // Card "speaking" uses talkingUntil. Stream end used to be the only writer,
+    // so a Conversation reply stayed idle for the whole clip.
+    GVAR(talkingUntil) set [_npcId, diag_tickTime + 30];
     [{
         params ["_npc"];
         if (!isNull _npc) then { _npc setRandomLip true };
