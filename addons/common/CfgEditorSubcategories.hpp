@@ -50,4 +50,9 @@ class CfgEditorSubcategories {
     class GVAR(recrues) {
         displayName = "Recrues";
     };
+
+    // EW Drone Jammer's ground unit uses this subcategory but never defines it
+    class EdSubcat_Equipment {
+        displayName = "Equipment";
+    };
 };
