@@ -340,4 +340,79 @@ class CfgVehicles {
             };
         };
     };
+
+    class GVAR(moduleAmbientArtillery) : Module_F {
+        scope = 2;
+        is3DEN = 1;
+        displayName = "Ambient Artillery";
+        function = QFUNC(moduleAmbientArtillery);
+        functionPriority = 25;
+        canSetArea = 0;
+        canSetAreaHeight = 0;
+        canSetAreaShape = 0;
+        category = QEGVAR(common,eden);
+        class Attributes : AttributesBase {
+            class GVAR(timeBetweenShots) {
+                property = QGVAR(timeBetweenShots);
+                displayName = "Time Between Shots";
+                tooltip = "Defines the time interval between artillery shots.";
+                control = "EditShort";
+                validate = "NUMBER";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(timeBetweenShots),_value,true)]);
+                defaultValue = "120";
+            };
+            class GVAR(timeBetweenShotsOffset) {
+                property = QGVAR(timeBetweenShotsOffset);
+                displayName = "Time Between Shots Offset";
+                tooltip = "Defines the offset for the time interval between artillery shots.";
+                control = "EditShort";
+                validate = "NUMBER";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(timeBetweenShotsOffset),_value,true)]);
+                defaultValue = "30";
+            };
+            class GVAR(numberOfShots) {
+                property = QGVAR(numberOfShots);
+                displayName = "Number of Shots";
+                tooltip = "Defines the total number of shots that will be fired.";
+                control = "EditShort";
+                validate = "NUMBER";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(numberOfShots),_value,true)]);
+                defaultValue = "2";
+            };
+            class GVAR(numberOfShotsOffset) {
+                property = QGVAR(numberOfShotsOffset);
+                displayName = "Number of Shots Offset";
+                tooltip = "Defines the offset for the total number of shots that will be fired.";
+                control = "EditShort";
+                validate = "NUMBER";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(numberOfShotsOffset),_value,true)]);
+                defaultValue = "2";
+            };
+            class GVAR(targetArea) {
+                property = QGVAR(targetArea);
+                displayName = "Target Area";
+                tooltip = "Defines the area where the artillery will be fired. Must be a marker with a defined area.";
+                control = "Edit";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(targetArea),_value,true)]);
+                defaultValue = "''";
+            };
+            class GVAR(deleteRoundOnShot) {
+                property = QGVAR(deleteRoundOnShot);
+                displayName = "Delete Round on Shot";
+                tooltip = "Defines whether the round should be deleted after firing.";
+                control = "Checkbox";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(deleteRoundOnShot),_value,true)]);
+                defaultValue = "false";
+            };
+            class GVAR(condition) {
+                property = QGVAR(condition);
+                defaultValue = "'true'";
+                value = "'true'";
+                control = "EditCodeMulti3";
+                displayName = "Spawn condition";
+                tooltip = "Code required to evaluate to true for the artillery strikes to occur. Must return a boolean. Condition is evaluate every iteration. This is optional, leave as 'true' if not needed.";
+                expression = QUOTE(_this setVariable [ARR_3(QQGVAR(condition),_value,true)]);
+            };
+        };
+    };
 };
