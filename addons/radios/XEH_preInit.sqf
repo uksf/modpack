@@ -105,6 +105,7 @@ if (hasInterface) then {
     {[_x] call FUNC(addVehicleRebroActions)} forEach [
         QAIRGVAR(reaper,raf),
         QAIRGVAR(f35,base),
+        QAIRGVAR(typhoon,base),
         QAIRGVAR(patches,dauphin)
     ];
 };
