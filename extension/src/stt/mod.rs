@@ -7,12 +7,24 @@ use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::mpsc::{self, Receiver, Sender};
 use std::sync::Mutex;
 use std::thread;
+use std::time::Instant;
 
 use arma_rs::Context;
 
+use self::frame::StartInfo;
+
 static STARTED: AtomicBool = AtomicBool::new(false);
-static CALLBACK_TX: Mutex<Option<Sender<(u32, String)>>> = Mutex::new(None);
+static CALLBACK_TX: Mutex<Option<Sender<(u32, String, Instant)>>> = Mutex::new(None);
+static TRANSCRIBE_TX: Mutex<Option<Sender<(StartInfo, Vec<i16>, u32, Instant)>>> = Mutex::new(None);
 static HINT: Mutex<String> = Mutex::new(String::new());
+
+pub fn tlog(msg: &str) {
+    log::info!("stt: {msg}");
+}
+
+fn utt_log(utt_id: u32, since: Instant, msg: &str) {
+    log::info!("stt: utt={utt_id} +{}ms {msg}", since.elapsed().as_millis());
+}
 
 const HINT_MAX: usize = 400;
 
@@ -40,23 +52,46 @@ fn sqf_escape(text: &str) -> String {
     text.replace('"', "\"\"")
 }
 
-/// Queue a transcript for delivery to SQF. Called from the pipe thread.
-pub fn fire_transcript(utt_id: u32, text: &str) {
-    if let Ok(guard) = CALLBACK_TX.lock()
+/// Hand assembled PCM to the whisper worker. Never call whisper here.
+pub fn enqueue_utterance_at(info: StartInfo, samples: Vec<i16>, utt_id: u32, queued: Instant) {
+    if let Ok(guard) = TRANSCRIBE_TX.lock()
         && let Some(tx) = guard.as_ref()
     {
-        let _ = tx.send((utt_id, text.to_string()));
+        if tx.send((info, samples, utt_id, queued)).is_err() {
+            tlog("transcribe worker dropped an utterance");
+        }
+    } else {
+        tlog("transcribe worker not armed; dropping utterance");
     }
 }
 
-fn spawn_callback_pump(context: Context, rx: Receiver<(u32, String)>) {
+fn spawn_callback_pump(context: Context, rx: Receiver<(u32, String, Instant)>) {
     thread::spawn(move || {
-        log::info!("stt: callback pump started");
-        for (utt_id, text) in rx {
+        for (utt_id, text, since) in rx {
             let data = format!("[{},\"{}\"]", utt_id, sqf_escape(&text));
             let _ = context.callback_data("uksf", "sttTranscript", data);
+            utt_log(utt_id, since, "callback");
         }
-        log::info!("stt: callback pump exiting");
+    });
+}
+
+fn spawn_transcribe_worker(rx: Receiver<(StartInfo, Vec<i16>, u32, Instant)>) {
+    thread::spawn(move || {
+        for (info, samples, utt_id, queued) in rx {
+            utt_log(utt_id, queued, "whisper begin");
+            let whisper_start = Instant::now();
+            match transcribe::transcribe_utterance(&info, &samples) {
+                Some(text) => {
+                    utt_log(utt_id, whisper_start, &format!("\"{text}\""));
+                    if let Ok(guard) = CALLBACK_TX.lock()
+                        && let Some(tx) = guard.as_ref()
+                    {
+                        let _ = tx.send((utt_id, text, Instant::now()));
+                    }
+                }
+                None => utt_log(utt_id, whisper_start, "whisper skip"),
+            }
+        }
     });
 }
 
@@ -64,19 +99,24 @@ fn spawn_callback_pump(context: Context, rx: Receiver<(u32, String)>) {
 /// and the pipe-client thread. A later start rearms the callback for a new
 /// mission without starting a second client.
 pub fn start(context: Context) -> String {
-    let (tx, rx) = mpsc::channel::<(u32, String)>();
+    let (tx, rx) = mpsc::channel::<(u32, String, Instant)>();
     if let Ok(mut guard) = CALLBACK_TX.lock() {
         *guard = Some(tx);
     }
     spawn_callback_pump(context, rx);
 
     if STARTED.swap(true, Ordering::SeqCst) {
-        log::info!("stt: callback rearmed");
+        tlog("rearmed");
         return "rearmed".to_string();
     }
 
+    let (ttx, trx) = mpsc::channel::<(StartInfo, Vec<i16>, u32, Instant)>();
+    if let Ok(mut guard) = TRANSCRIBE_TX.lock() {
+        *guard = Some(ttx);
+    }
+    spawn_transcribe_worker(trx);
     thread::spawn(|| pipe::run_pipe_client());
-    log::info!("stt: started");
+    tlog("started");
     "ok".to_string()
 }
 
@@ -87,7 +127,7 @@ pub fn stop() -> String {
     if let Ok(mut guard) = CALLBACK_TX.lock() {
         *guard = None;
     }
-    log::info!("stt: stop requested (callback pump released)");
+    tlog("stopped");
     "stopped".to_string()
 }
 

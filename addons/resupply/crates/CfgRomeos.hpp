@@ -204,16 +204,8 @@ class GVAR(r10) : GVAR(rx) {
     class TransportItems {
         MACRO_ADDITEM(greenmag_ammo_556x45_basic_30Rnd,60);
         MACRO_ADDITEM(greenmag_ammo_556x45_tracer_30Rnd,60);
-        MACRO_ADDITEM(greenmag_beltlinked_556x45_basic_100,10);
-        MACRO_ADDITEM(greenmag_beltlinked_556x45_tracer_100,10);
-        MACRO_ADDITEM(greenmag_beltlinked_556x45_basic_200,10);
-        MACRO_ADDITEM(greenmag_beltlinked_556x45_tracer_200,10);
         MACRO_ADDITEM(greenmag_ammo_762x51_basic_30Rnd,20);
         MACRO_ADDITEM(greenmag_ammo_762x51_tracer_30Rnd,20);
-        MACRO_ADDITEM(greenmag_beltlinked_762x51_basic_100,10);
-        MACRO_ADDITEM(greenmag_beltlinked_762x51_tracer_100,10);
-        MACRO_ADDITEM(greenmag_beltlinked_762x51_basic_200,10);
-        MACRO_ADDITEM(greenmag_beltlinked_762x51_tracer_200,10);
         MACRO_ADDITEM(greenmag_ammo_9x21_basic_30Rnd,10);
         MACRO_ADDITEM(greenmag_ammo_338_basic_30Rnd,10);
         MACRO_ADDITEM(greenmag_ammo_300_API526_30Rnd,10);

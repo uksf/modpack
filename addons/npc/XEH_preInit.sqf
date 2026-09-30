@@ -22,7 +22,7 @@ GVAR(consoleClients) = [];
 [QGVAR(transcript), { _this call FUNC(onTranscriptGated); }] call CBA_fnc_addEventHandler;
 [QGVAR(doWatch), {
     params ["_npc", "_target"];
-    if (!isNull _npc && {local _npc}) then { _npc lookAt _target };
+    if (!isNull _npc && {local _npc} && {!isNull _target}) then { _npc lookAt _target };
 }] call CBA_fnc_addEventHandler;
 
 GVAR(clipRxBuffers) = createHashMap;
@@ -53,6 +53,12 @@ GVAR(fillerEarlyUntil) = createHashMap;
 
 GVAR(emotes) = createHashMap;
 GVAR(stateHints) = createHashMap;
+[QGVAR(emoteSink), {
+    params ["_npcId", "_emote"];
+    private _npc = objectFromNetId _npcId;
+    if (isNull _npc) exitWith {};
+    GVAR(emotes) set [_npcId, [_npc, _emote, diag_tickTime + GVAR(emoteHold)]];
+}] call CBA_fnc_addEventHandler;
 [QGVAR(guardedStateSink), {
     params ["_npcId", "_cooperation", "_pendingWarning", "_burned", "_disclosedFactIds", "_eligibleFactId", "_mood", "_emote", "_reason", "_evidence", "_classifierMs", "_replyMs"];
     _this call FUNC(consoleApplyGuardedState);

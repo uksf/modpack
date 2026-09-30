@@ -4,8 +4,8 @@
         Beswick.T
 
     Description:
-        Release the client STT callback pump in the extension. Best-effort; the
-        pipe server is process-lived.
+        Stop the client STT callback pump and tell ACRE to stop serving captured
+        direct speech.
 
     Parameter(s):
         None
@@ -17,4 +17,5 @@
         call uksf_npc_fnc_sttStop
 */
 
+[false] call acre_sys_core_fnc_setMicCaptureGate;
 "uksf" callExtension ["sttStop", []];

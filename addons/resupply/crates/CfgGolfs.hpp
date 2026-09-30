@@ -35,6 +35,27 @@ class GVAR(g1) : GVAR(gx) {
         MACRO_ADDMAGAZINE(ACE_M84,5);
     };
 };
+class GVAR(g1gm) : GVAR(gx) {
+    displayName = "G1 (GM-SA)";
+    description = "Grab Box - Small Arms Ammo (GreenMag boxes)";
+    PREVIEW(g1);
+    hiddenSelectionsTextures[] = { QPATHTOF(data\golf\g1.paa), "A3\Weapons_F\Ammoboxes\data\AmmoBox_CO.paa"};
+    class TransportMagazines {
+        MACRO_ADDMAGAZINE(CUP_200Rnd_TE4_Red_Tracer_556x45_M249_Pouch,5);
+        MACRO_ADDMAGAZINE(1Rnd_HE_Grenade_shell,10);
+        MACRO_ADDMAGAZINE(HandGrenade,10);
+        MACRO_ADDMAGAZINE(SmokeShell,10);
+        MACRO_ADDMAGAZINE(SmokeShellRed,5);
+        MACRO_ADDMAGAZINE(SmokeShellBlue,5);
+        MACRO_ADDMAGAZINE(SmokeShellGreen,5);
+        MACRO_ADDMAGAZINE(SmokeShellPurple,5);
+        MACRO_ADDMAGAZINE(ACE_M84,5);
+    };
+    class TransportItems {
+        MACRO_ADDITEM(greenmag_ammo_556x45_basic_30Rnd,40);
+        MACRO_ADDITEM(greenmag_ammo_762x51_basic_20Rnd,10);
+    };
+};
 class GVAR(g2) : GVAR(gx) {
     displayName = "G2 (GPMG)";
     description = "Grab Box - GPMG Ammo";

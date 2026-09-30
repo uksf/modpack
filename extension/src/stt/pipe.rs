@@ -1,38 +1,54 @@
 //! Windows named-pipe CLIENT for `\\.\pipe\uksf_stt`. ACRE (TS plugin) is the
 //! server. One connection carries many utterances; we parse frames, assemble
-//! each utterance, transcribe at END, and hand the text to the callback pump.
+//! each utterance, and hand PCM to the transcribe worker. This thread never
+//! loads whisper — that work raced OpenAL filler playback and AVed the game.
 
-use windows::Win32::Foundation::{CloseHandle, GENERIC_READ, HANDLE};
+use std::time::{Duration, Instant};
+
+use windows::Win32::Foundation::{CloseHandle, GetLastError, GENERIC_READ, HANDLE};
 use windows::Win32::Storage::FileSystem::{
-    CreateFileW, ReadFile, FILE_ATTRIBUTE_NORMAL, FILE_SHARE_NONE, OPEN_EXISTING,
+    CreateFileW, ReadFile, FILE_ATTRIBUTE_NORMAL, FILE_SHARE_READ, FILE_SHARE_WRITE, OPEN_EXISTING,
 };
+use windows::Win32::System::Pipes::WaitNamedPipeW;
 
-use super::frame::{Frame, FrameReader, StartInfo};
-use super::{fire_transcript, transcribe};
+use super::frame::{Frame, FrameReader};
+use super::{enqueue_utterance_at, tlog};
 
 const PIPE_NAME: &str = r"\\.\pipe\uksf_stt";
-const READ_CHUNK: usize = 1 << 14; // 16 KiB
+const READ_CHUNK: usize = 1 << 14;
 const RETRY_MS: u64 = 500;
+const WAIT_PIPE_MS: u32 = 1000;
+/// Raw interleaved i16 cap (~10 s of 48 kHz stereo). Prevents a stuck PTT
+/// from growing without bound on this thread.
+const MAX_SAMPLES: usize = 48000 * 2 * 10;
+const FAIL_LOG_EVERY: u32 = 10;
 
 fn wide(s: &str) -> Vec<u16> {
     s.encode_utf16().chain(std::iter::once(0)).collect()
 }
 
-/// Long-lived loop: connect to ACRE, serve until drop, retry. Never blocks the game.
+/// Long-lived loop: connect to ACRE, read until drop, retry.
 pub fn run_pipe_client() {
-    log::info!("stt: pipe client targeting {PIPE_NAME}");
+    tlog("pipe client started");
+    let mut fails: u32 = 0;
     loop {
         match connect() {
             Some(handle) => {
-                log::info!("stt: connected to {PIPE_NAME}");
+                tlog("connected");
+                fails = 0;
                 serve_connection(handle);
-                log::info!("stt: disconnected; retrying");
+                tlog("disconnected");
                 unsafe {
                     let _ = CloseHandle(handle);
                 }
             }
             None => {
-                std::thread::sleep(std::time::Duration::from_millis(RETRY_MS));
+                fails = fails.saturating_add(1);
+                if fails == 1 || fails.is_multiple_of(FAIL_LOG_EVERY) {
+                    let err = unsafe { GetLastError().0 };
+                    tlog(&format!("connect miss x{fails} err={err}"));
+                }
+                std::thread::sleep(Duration::from_millis(RETRY_MS));
             }
         }
     }
@@ -41,10 +57,11 @@ pub fn run_pipe_client() {
 fn connect() -> Option<HANDLE> {
     let name = wide(PIPE_NAME);
     unsafe {
+        let _ = WaitNamedPipeW(windows::core::PCWSTR(name.as_ptr()), WAIT_PIPE_MS);
         CreateFileW(
             windows::core::PCWSTR(name.as_ptr()),
             GENERIC_READ.0,
-            FILE_SHARE_NONE,
+            FILE_SHARE_READ | FILE_SHARE_WRITE,
             None,
             OPEN_EXISTING,
             FILE_ATTRIBUTE_NORMAL,
@@ -54,10 +71,9 @@ fn connect() -> Option<HANDLE> {
     }
 }
 
-/// Read+parse until the server disconnects (ReadFile yields 0 / errors).
 fn serve_connection(handle: HANDLE) {
     let mut reader = FrameReader::new();
-    let mut current: Option<(StartInfo, Vec<i16>)> = None;
+    let mut current: Option<(super::frame::StartInfo, Vec<i16>, Instant)> = None;
     let mut chunk = vec![0u8; READ_CHUNK];
 
     loop {
@@ -72,23 +88,36 @@ fn serve_connection(handle: HANDLE) {
             match reader.next_frame() {
                 None => break,
                 Some(Ok(Frame::Start(info))) => {
-                    current = Some((info, Vec::new()));
+                    log::info!(
+                        "stt: utt={} start rate={} ch={}",
+                        info.utt_id,
+                        info.sample_rate,
+                        info.channels
+                    );
+                    current = Some((info, Vec::new(), Instant::now()));
                 }
                 Some(Ok(Frame::Data(samples))) => {
-                    if let Some((_, acc)) = current.as_mut() {
-                        acc.extend_from_slice(&samples);
-                    }
-                }
-                Some(Ok(Frame::End { utt_id })) => {
-                    if let Some((info, acc)) = current.take() {
-                        if let Some(text) = transcribe::transcribe_utterance(&info, &acc) {
-                            log::info!("stt: utt {utt_id}: \"{text}\"");
-                            fire_transcript(utt_id, &text);
+                    if let Some((_, acc, _)) = current.as_mut() {
+                        if acc.len() + samples.len() > MAX_SAMPLES {
+                            tlog("data overflow; dropping utterance");
+                            current = None;
+                        } else {
+                            acc.extend_from_slice(&samples);
                         }
                     }
                 }
+                Some(Ok(Frame::End { utt_id })) => {
+                    if let Some((info, acc, started)) = current.take() {
+                        log::info!(
+                            "stt: utt={utt_id} +{}ms end samples={}",
+                            started.elapsed().as_millis(),
+                            acc.len()
+                        );
+                        enqueue_utterance_at(info, acc, utt_id, Instant::now());
+                    }
+                }
                 Some(Err(e)) => {
-                    log::warn!("stt: frame error ({e}); dropping connection to resync");
+                    tlog(&format!("frame error ({e}); dropping connection"));
                     return;
                 }
             }

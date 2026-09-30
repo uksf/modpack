@@ -73,10 +73,16 @@ addMissionEventHandler ["ExtensionCallback", {
     };
 }];
 
-call FUNC(sttStart);
-call FUNC(sttPushNames);
 QGVAR(sttNames) addPublicVariableEventHandler { call FUNC(sttPushNames) };
 call FUNC(requestFillers);
+
+// Attach after filler OpenAL has settled. The 2026-08-19 AV was 7 s after
+// sttStart raced requestFillers on the same extension DLL.
+[{
+    INFO("NPC STT: delayed start");
+    call FUNC(sttStart);
+    call FUNC(sttPushNames);
+}, [], 20] call CBA_fnc_waitAndExecute;
 
 [FUNC(gateTick), 0.2, []] call CBA_fnc_addPerFrameHandler;
 [FUNC(proximityPull), 0.5, []] call CBA_fnc_addPerFrameHandler;

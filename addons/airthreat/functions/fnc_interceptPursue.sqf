@@ -47,8 +47,13 @@ private _missileWeapons = (weapons _vehicle) select {
     params ["_args", "_idPFH"];
     _args params ["_group", "_vehicle", "_target", "_expiryTime", "_missileWeapons", "_searchUntil"];
 
+    if (isNull _group || {isNull _vehicle} || {!alive _vehicle}) exitWith {
+        [_group, _vehicle] call FUNC(handleMissionEnd);
+        [_idPFH] call CBA_fnc_removePerFrameHandler;
+    };
+
     private _driverUnit = driver _vehicle;
-    if (isNull _group || {!alive _vehicle} || {!alive _driverUnit}) exitWith {
+    if (!alive _driverUnit) exitWith {
         [_group, _vehicle] call FUNC(handleMissionEnd);
         [_idPFH] call CBA_fnc_removePerFrameHandler;
     };

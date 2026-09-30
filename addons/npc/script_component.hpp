@@ -11,10 +11,8 @@
 // order and the prerequisite chain; there is no other gate for a mission maker to set.
 #define GUARDED_FACT_COUNT 3
 
-// The whole vocabulary the guarded-state command may use. The API owns these values, so a
-// payload carrying anything else is not a guarded state this build can render and is
-// dropped rather than drawn. Fact fields carry ids only, never text.
-#define GUARDED_FACT_IDS ["g1", "g2", "g3"]
+// Slot numbers are the fact ids. g1/g2/g3 are aliases from older registrations.
+#define GUARDED_FACT_IDS ["1", "2", "3", "g1", "g2", "g3"]
 #define GUARDED_BANDS ["closed", "guarded", "engaged", "cooperative"]
 #define GUARDED_MOODS ["neutral", "angry", "afraid", "sad", "happy"]
 
@@ -38,6 +36,10 @@
 #define EMOTE_MAX 48
 #define HINT_TEXT_MAX 120
 #define DEBUG_TEXT_MAX 240
+
+// A room flush waits for the NPC turn in flight, but never longer than this.
+#define TURN_HOLD_MAX_MS 60000
+
 #define EMOTE_HEIGHT 2.1
 
 #define STREAM_RATE 24000

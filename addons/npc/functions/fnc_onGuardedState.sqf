@@ -24,28 +24,39 @@ if (_turnId isEqualTo "") exitWith { WARNING_1("npc_guarded_state with no turnId
 private _strings = [_npcId, _turnId, _cooperation, _disclosedFactIds, _eligibleFactId, _mood, _emote, _reason, _evidence];
 if ((_strings findIf { !(_x isEqualType "") }) != -1) exitWith {
     WARNING_1("npc_guarded_state with a non-string field: %1",_args);
+    [_npcId, _turnId, "state", "invalid"] call FUNC(sendAck);
 };
 if ((([_pendingWarning, _burned] findIf { !(_x isEqualType false) }) != -1)) exitWith {
     WARNING_2("npc_guarded_state threat state is not boolean: %1 %2",_pendingWarning,_burned);
+    [_npcId, _turnId, "state", "invalid"] call FUNC(sendAck);
 };
 if ((([_classifierMs, _replyMs] findIf { !(_x isEqualType 0) || {_x < 0} }) != -1)) exitWith {
     WARNING_2("npc_guarded_state timings are not non-negative numbers: %1 %2",_classifierMs,_replyMs);
+    [_npcId, _turnId, "state", "invalid"] call FUNC(sendAck);
 };
 
 if (_npcId isEqualTo "") exitWith { WARNING_1("npc_guarded_state with no npcId: %1",_args); };
-if !(_cooperation in GUARDED_BANDS) exitWith { WARNING_2("npc_guarded_state %1 with unknown cooperation band: %2",_npcId,_cooperation); };
-if !(_mood in GUARDED_MOODS) exitWith { WARNING_2("npc_guarded_state %1 with unknown mood: %2",_npcId,_mood); };
+if !(_cooperation in GUARDED_BANDS) exitWith {
+    WARNING_2("npc_guarded_state %1 with unknown cooperation band: %2",_npcId,_cooperation);
+    [_npcId, _turnId, "state", "invalid"] call FUNC(sendAck);
+};
+if !(_mood in GUARDED_MOODS) exitWith {
+    WARNING_2("npc_guarded_state %1 with unknown mood: %2",_npcId,_mood);
+    [_npcId, _turnId, "state", "invalid"] call FUNC(sendAck);
+};
 
 private _factIds = [];
 if (_disclosedFactIds isNotEqualTo "") then { _factIds = _disclosedFactIds splitString ","; };
 if (_eligibleFactId isNotEqualTo "") then { _factIds pushBack _eligibleFactId; };
 if ((_factIds findIf { !(_x in GUARDED_FACT_IDS) }) != -1) exitWith {
     WARNING_2("npc_guarded_state %1 with an unknown fact id: %2",_npcId,_factIds);
+    [_npcId, _turnId, "state", "invalid"] call FUNC(sendAck);
 };
 
 private _npc = objectFromNetId _npcId;
 if (isNull _npc || {!alive _npc} || {!(_npc getVariable [QGVAR(talkable), false])}) exitWith {
     TRACE_1("npc_guarded_state for unknown or terminal npc",_npcId);
+    [_npcId, _turnId, "state", "terminal"] call FUNC(sendAck);
 };
 
 _emote = _emote select [0, EMOTE_MAX];
@@ -58,4 +69,5 @@ private _targets = ALL_PLAYERS select { _x distance _npc <= GVAR(audioRange) };
 if (_targets isNotEqualTo []) then {
     [QGVAR(guardedStateSink), _payload, _targets] call CBA_fnc_targetEvent;
 };
+[_npcId, _turnId, "state", "", count _targets] call FUNC(sendAck);
 TRACE_2("guarded state fanned out",_npcId,count _targets);

@@ -24,6 +24,8 @@ const TYPE_START: u32 = 1;
 const TYPE_DATA: u32 = 2;
 const TYPE_END: u32 = 3;
 const HEADER_LEN: usize = 8;
+/// ACRE sends ~20 ms frames (~4 KiB). Anything above this is corrupt.
+const MAX_PAYLOAD: usize = 256 * 1024;
 
 impl FrameReader {
     pub fn new() -> Self {
@@ -42,6 +44,10 @@ impl FrameReader {
         }
         let ftype = u32::from_le_bytes(self.buf[0..4].try_into().unwrap());
         let len = u32::from_le_bytes(self.buf[4..8].try_into().unwrap()) as usize;
+        if len > MAX_PAYLOAD {
+            self.buf.clear();
+            return Some(Err(format!("payload len {len} > {MAX_PAYLOAD}")));
+        }
         if self.buf.len() < HEADER_LEN + len {
             return None;
         }
@@ -155,6 +161,16 @@ mod tests {
     fn odd_data_payload_is_error() {
         let mut r = FrameReader::new();
         r.push(&frame_bytes(2, &[0x00, 0x00, 0x00])); // 3 bytes
+        assert!(r.next_frame().unwrap().is_err());
+    }
+
+    #[test]
+    fn oversized_payload_is_error() {
+        let mut hdr = Vec::new();
+        hdr.extend_from_slice(&1u32.to_le_bytes());
+        hdr.extend_from_slice(&((256 * 1024 + 1) as u32).to_le_bytes());
+        let mut r = FrameReader::new();
+        r.push(&hdr);
         assert!(r.next_frame().unwrap().is_err());
     }
 }

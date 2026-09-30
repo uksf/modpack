@@ -23,7 +23,4 @@ GVAR(watchUntil) set [_npcId, _until];
     params ["_npc", "_npcId", "_until"];
     if ((GVAR(watchUntil) getOrDefault [_npcId, 0]) > _until) exitWith {};
     GVAR(watchTarget) deleteAt _npcId;
-    if (!isNull _npc) then {
-        [QGVAR(doWatch), [_npc, objNull], _npc] call CBA_fnc_targetEvent;
-    };
 }, [_npc, _npcId, _until], GVAR(watchHold)] call CBA_fnc_waitAndExecute;

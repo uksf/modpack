@@ -21,7 +21,10 @@ params [["_group", grpNull, [grpNull]], ["_vehicle", objNull, [objNull]]];
 
 if !(isServer) exitWith {};
 
-private _index = GVAR(activeMissions) findIf {(_x select 0) isEqualTo _group};
+private _index = GVAR(activeMissions) findIf {
+    (!isNull _group && {(_x select 0) isEqualTo _group})
+    || {!isNull _vehicle && {(_x select 1) isEqualTo _vehicle}}
+};
 if (_index isEqualTo -1) exitWith {};
 
 private _missionType = (GVAR(activeMissions) select _index) select 2;

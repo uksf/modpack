@@ -18,6 +18,7 @@ PREP(onTranscriptGated);
 PREP(onUtterance);
 PREP(flushRoom);
 PREP(onApiCommand);
+PREP(sendAck);
 PREP(reassemble);
 PREP(pushClipChunks);
 PREP(watchSpeaker);

@@ -25,10 +25,11 @@ if (_stream isNotEqualTo [] && {(_stream select 0) isNotEqualTo _turnId}) then {
 };
 
 if (_type isEqualTo "npc_audio_frame") exitWith {
+    _args params ["", "", "_seq", "_pcm"];
     if (isNull _npc || {!(_npc getVariable [QGVAR(talkable), false])}) exitWith {
         TRACE_1("stream frame for terminal npc, dropping",_npcId);
+        if (_seq isEqualTo 0) then { [_npcId, _turnId, "stream", "terminal"] call FUNC(sendAck) };
     };
-    _args params ["", "", "_seq", "_pcm"];
     if (_seq isEqualTo 0) then {
         private _speaker = GVAR(lastSpeaker) getOrDefault [_npcId, objNull];
         if (!isNull _speaker) then { [_npc, _speaker] call FUNC(watchSpeaker); };
@@ -39,6 +40,7 @@ if (_type isEqualTo "npc_audio_frame") exitWith {
     _stream set [2, diag_tickTime];
     GVAR(activeStreams) set [_npcId, _stream];
     private _targets = ALL_PLAYERS select { _x distance _npc <= GVAR(audioRange) };
+    if (_seq isEqualTo 0) then { [_npcId, _turnId, "stream", "", count _targets] call FUNC(sendAck) };
     if (_targets isEqualTo []) exitWith {};
     private _listeners = _stream param [4, []];
     { _listeners pushBackUnique _x } forEach _targets;
@@ -56,6 +58,10 @@ if (!isNull _npc) then {
     { _targets pushBackUnique _x } forEach (ALL_PLAYERS select { _x distance _npc <= GVAR(audioRange) });
 };
 TRACE_2("relay end",_npcId,_turnId);
+[_npcId, _turnId, "streamEnd", "", count _targets] call FUNC(sendAck);
+if ((GVAR(activeTurnIds) getOrDefault [_npcId, ""]) isEqualTo _turnId) then {
+    GVAR(activeTurnIds) deleteAt _npcId;
+};
 if (_targets isNotEqualTo []) then {
     [QGVAR(streamEndSink), [_npcId, _turnId], _targets] call CBA_fnc_targetEvent;
 };

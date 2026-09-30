@@ -93,23 +93,18 @@ class RHICC_MAIN : Boat_Armed_01_base_F {
         };
         class TopTurret : NewTurret {
             weapons[] = { "CUP_weapon_mastersafe", "HMG_M2_Mounted" };
-            stabilizedInAxes = 0;
         };
         class CodRiverTurret : NewTurret {
             weapons[] = { "CUP_weapon_mastersafe", "RHICC_M240_Turret" };
-            stabilizedInAxes = 0;
         };
         class CodRiver1Turret : NewTurret {
             weapons[] = { "CUP_weapon_mastersafe", "RHICC_M240_Turret_2nd" };
-            stabilizedInAxes = 0;
         };
         class MinigunLeft : NewTurret {
             weapons[] = { "CUP_weapon_mastersafe", "vtx_wpn_m134" };
-            stabilizedInAxes = 0;
         };
         class MinigunRight : NewTurret {
             weapons[] = { "CUP_weapon_mastersafe", "vtx_wpn_m134_2nd" };
-            stabilizedInAxes = 0;
         };
     };
 };
