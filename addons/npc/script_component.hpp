@@ -11,6 +11,9 @@
 // order and the prerequisite chain; there is no other gate for a mission maker to set.
 #define GUARDED_FACT_COUNT 3
 
+// The API speaks with this voice when an NPC has none or an unknown one.
+#define DEFAULT_VOICE "oracle"
+
 // Slot numbers are the fact ids. g1/g2/g3 are aliases from older registrations.
 #define GUARDED_FACT_IDS ["1", "2", "3", "g1", "g2", "g3"]
 #define GUARDED_BANDS ["closed", "guarded", "engaged", "cooperative"]

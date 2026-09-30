@@ -12,6 +12,12 @@ pub fn api_base_url() -> &'static str {
     API_BASE_URL.get_or_init(|| find_api_base_url().unwrap_or_else(|| DEFAULT_API_BASE_URL.to_string())).as_str()
 }
 
+/// Where a game client, such as the Eden editor, reads public data. A client gets no
+/// `-apiUrl=` from the API, so this defaults to the live API rather than localhost.
+pub fn public_api_base_url() -> String {
+    find_api_base_url().unwrap_or_else(|| "https://api.uk-sf.co.uk".to_string())
+}
+
 fn find_api_base_url() -> Option<String> {
     std::env::args().find_map(|arg| {
         let stripped = arg

@@ -46,6 +46,22 @@
     }
 
 class Cfg3DEN {
+    class Attributes {
+        class Default;
+        class Title: Default {
+            class Controls;
+        };
+        class Combo: Title {
+            class Controls: Controls {
+                class Title;
+                class Value;
+            };
+        };
+        class GVAR(voicePicker): Combo {
+            attributeLoad = QUOTE(_this call FUNC(edenVoiceLoad));
+            attributeSave = QUOTE(private _combo = _this controlsGroupCtrl 100; _combo lbData lbCurSel _combo);
+        };
+    };
     class Object {
         class AttributeCategories {
             class GVAR(category) {
@@ -92,9 +108,9 @@ class Cfg3DEN {
                     };
                     class GVAR(voiceId) {
                         property = QGVAR(voiceId);
-                        control = "Edit";
+                        control = QGVAR(voicePicker);
                         displayName = "Voice";
-                        tooltip = "Voice slug from the UKSF website NPC voice manager. Blank or unknown = default voice.";
+                        tooltip = "Voice from the UKSF website NPC voice manager. An unknown voice uses the default voice.";
                         expression = QUOTE(_this setVariable [ARR_3(QQGVAR(voiceId),_value,true)]);
                         typeName = "STRING";
                         defaultValue = "'oracle'";

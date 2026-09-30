@@ -1281,6 +1281,7 @@ dependencies = [
  "hound",
  "log",
  "rust-embed",
+ "serde_json",
  "simplelog",
  "tiny_http",
  "ureq",

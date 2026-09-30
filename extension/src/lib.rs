@@ -17,6 +17,7 @@ mod input;
 mod lanes;
 mod listener;
 mod loader;
+mod npc_voices;
 mod sender;
 mod status;
 mod stt;
@@ -73,6 +74,7 @@ fn init() -> Extension {
         .command("event", commands::event)
         .command("delivered", commands::delivered)
         .command("load", commands::load)
+        .command("npcVoices", commands::npc_voices)
         .command("pressSpace", commands::press_space)
         .command("fileExportOpen", commands::file_export_open)
         .command("fileExportWrite", commands::file_export_write)

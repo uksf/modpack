@@ -48,6 +48,8 @@ PREP(handleNpcUnconscious);
 PREP(requestFillers);
 PREP(pushFillersToClient);
 PREP(consoleSubscribe);
+PREP(edenVoiceFill);
+PREP(edenVoiceLoad);
 PREP(consoleGetState);
 PREP(consoleEscape);
 PREP(consoleCardText);
