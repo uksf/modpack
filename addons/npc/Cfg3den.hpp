@@ -58,7 +58,7 @@ class Cfg3DEN {
             };
         };
         class GVAR(voicePicker): Combo {
-            attributeLoad = QUOTE(_this call FUNC(edenVoiceLoad));
+            attributeLoad = QUOTE([ARR_2(_this,_value)] call FUNC(edenVoiceLoad));
             attributeSave = QUOTE(private _combo = _this controlsGroupCtrl 100; _combo lbData lbCurSel _combo);
         };
     };
