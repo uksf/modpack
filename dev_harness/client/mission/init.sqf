@@ -11,7 +11,12 @@ vc_fnc_cam = {
     };
     private _to = if (_target isEqualType objNull) then { AGLToASL (_target modelToWorldVisual (boundingCenter _target)) } else { _target };
     vc_cam setPosASL _eye;
-    vc_cam setVectorDirAndUp [vectorNormalized (_to vectorDiff _eye), [0, 0, 1]];
+    [_eye] call vc_fnc_park;
+    // up is world up made perpendicular to the view; looking straight down or up, north is up
+    private _dir = vectorNormalized (_to vectorDiff _eye);
+    private _side = _dir vectorCrossProduct [0, 0, 1];
+    if (vectorMagnitude _side < 0.05) then { _side = _dir vectorCrossProduct [0, 1, 0] };
+    vc_cam setVectorDirAndUp [_dir, vectorNormalized (_side vectorCrossProduct _dir)];
     vc_cam camSetFov _fov;
     vc_cam camCommit 0;
     uiSleep _settle;
@@ -38,8 +43,23 @@ vc_fnc_shot = {
 
 vc_fnc_done = { "done" call vc_fnc_log };
 
+// Keeps the hidden player on dry land under the camera. A player in water drowns, and the engine
+// blurs the view more and more even though damage is off.
+vc_fnc_park = {
+    params ["_pos"];
+    if (vehicle player != player) exitWith {};
+    _pos = [_pos select 0, _pos select 1, 0];
+    if (surfaceIsWater _pos) then {
+        private _land = [_pos, 0, 3000, 1, 0, 0.5, 0, [], [[], []]] call BIS_fnc_findSafePos;
+        if (count _land == 2) then { _pos = _land + [0] } else { _pos = [] };
+    };
+    if (_pos isNotEqualTo []) then { player setPosATL _pos };
+};
+
 [] spawn {
     waitUntil { time > 0 && !isNull player };
+    [getArray (configFile >> "CfgWorlds" >> worldName >> "centerPosition")] call vc_fnc_park;
+    [] spawn { while { true } do { player setOxygenRemaining 1; uiSleep 1 } };
     showHUD [false, false, false, false, false, false, false, false];
     if (!isNil "uksf_screenshot_fnc_toggle") then { [false] call uksf_screenshot_fnc_toggle };
     clearRadio; enableRadio false; enableSentences false;

@@ -76,6 +76,12 @@ const findRpt = (since, tag) => fs.readdirSync(RPTS).filter(f => /^arma3_x64_.*\
   // Several runs (other sessions) share the profile: every file carries its run id, and only this
   // run's files are touched. Leftovers of crashed runs are removed after a day.
   fs.mkdirSync(SHOTS, { recursive: true });
+  // Arma refuses screenshots once the folder holds 250 MB (about 16 full-size PNGs); raise the cap.
+  const prof = path.join(path.dirname(SHOTS), `${PROFILE}.Arma3Profile`);
+  let ptxt = fs.existsSync(prof) ? fs.readFileSync(prof, 'latin1') : '';
+  if (/maxScreenShotFolderSizeMB\s*=/.test(ptxt)) ptxt = ptxt.replace(/maxScreenShotFolderSizeMB\s*=\s*\d+;/, 'maxScreenShotFolderSizeMB=4000;');
+  else ptxt = `maxScreenShotFolderSizeMB=4000;\r\n` + ptxt;
+  fs.writeFileSync(prof, ptxt, 'latin1');
   for (const f of fs.readdirSync(SHOTS)) {
     const p = path.join(SHOTS, f);
     try { if (/^vc[0-9a-f]{8}_/.test(f) && Date.now() - fs.statSync(p).mtimeMs > 864e5) fs.rmSync(p); } catch {}
@@ -91,9 +97,21 @@ const findRpt = (since, tag) => fs.readdirSync(RPTS).filter(f => /^arma3_x64_.*\
   while (Date.now() - t0 < 60000 && !(rpt = findRpt(t0, path.basename(tmp)))) await sleep(1000);
   if (!rpt) { kill(); console.error('run.js: no RPT for this run; Arma did not start'); process.exit(3); }
   const read = () => fs.readFileSync(rpt, 'latin1');
+  fs.mkdirSync(out, { recursive: true });
+  const shots = [], seen = {};
+  // Moves this run's finished screenshots (size unchanged since the last poll) to --out.
+  const collect = (all) => {
+    for (const f of fs.readdirSync(SHOTS).filter(f => f.startsWith(runId + '_'))) {
+      const p = path.join(SHOTS, f), size = fs.statSync(p).size;
+      if (!all && seen[f] !== size) { seen[f] = size; continue; }
+      const to = path.join(out, f.slice(runId.length + 1));
+      try { fs.renameSync(p, to); shots.push(to); } catch {}
+    }
+  };
   let state = 'loading', hungSince = 0, lastCheck = 0;
   while (Date.now() - t0 < timeout) {
     await sleep(1000);
+    collect(false);
     const r = read();
     if (/\[vclient\] done/.test(r)) { state = 'done'; break; }
     if (!isRunning()) { state = 'exited'; break; }
@@ -107,13 +125,10 @@ const findRpt = (since, tag) => fs.readdirSync(RPTS).filter(f => /^arma3_x64_.*\
   kill(); await sleep(2000);
 
   const r = read();
-  const lines = r.split(/\r?\n/).filter(l => /\[vclient\]|Error in expression|Error position|Error \w+:|Cannot load|Warning Message/.test(l));
-  fs.mkdirSync(out, { recursive: true });
-  const shots = [];
-  for (const f of fs.readdirSync(SHOTS).filter(f => f.startsWith(runId + '_'))) {
-    const to = path.join(out, f.slice(runId.length + 1));
-    fs.renameSync(path.join(SHOTS, f), to); shots.push(to);
-  }
+  const lines = r.split(/\r?\n/).filter(l => /\[vclient\]|Error in expression|Error position|Error \w+:|Cannot load|Cannot save file|Warning Message/.test(l));
+  collect(true);
+  const failed = lines.filter(l => /\[vclient\] shot \S+ false/.test(l));
+  if (failed.length) console.error(`run.js: ${failed.length} screenshot(s) failed; see "Cannot save file" in the RPT`);
   if (!args.includes('--keep')) fs.rmSync(tmp, { recursive: true, force: true });
   if (args.includes('--sheet') && shots.length) {
     try { execFileSync('python', [path.join(__dirname, 'sheet.py'), path.join(out, 'sheet.jpg'), ...shots.sort()], { stdio: 'ignore' }); shots.push(path.join(out, 'sheet.jpg')); }
@@ -126,5 +141,5 @@ const findRpt = (since, tag) => fs.readdirSync(RPTS).filter(f => /^arma3_x64_.*\
   if (state === 'exited' && !/Shutdown normally|Exception code/.test(r))
     console.error('run.js: Arma vanished without a shutdown line; another process killed it (a script that kills arma3_x64 by name?)');
   else if (!/Mission directory:/.test(r)) console.error('run.js: the mission never loaded (wrong playMission path makes Arma quit silently)');
-  process.exit(state === 'done' ? 0 : 1);
+  process.exit(state === 'done' && !failed.length ? 0 : 1);
 })();
