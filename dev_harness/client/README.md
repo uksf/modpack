@@ -15,7 +15,8 @@ node dev_harness/client/run.js test.sqf --mods dev-air --sheet --timeout 420
 - `--keep`: keep the temporary mod with the packed mission.
 
 Exit code 0 when the test reached `call vc_fnc_done`. The last line is JSON:
-`{state: done|exited|timeout, seconds, rpt, shots}`.
+`{state: done|exited|hung|timeout, seconds, rpt, shots}`. `hung` means Windows reported the window
+"Not Responding" for 45 s. Shots taken before a failure are still returned.
 
 ## Writing a test
 

@@ -49,6 +49,8 @@ function packPbo(files, prefix) {
 let pid = 0;
 const isRunning = () => { try { return execFileSync('tasklist', ['/FI', `PID eq ${pid}`, '/NH'], { encoding: 'utf8' }).includes(String(pid)); } catch { return false; } };
 const kill = () => { try { execFileSync('taskkill', ['/F', '/PID', String(pid)], { stdio: 'ignore' }); } catch {} };
+// Windows marks a window "Not Responding" when its message loop stalls (a freeze, or an engine hang).
+const responding = () => { try { return !/Not Responding/i.test(execFileSync('tasklist', ['/V', '/FI', `PID eq ${pid}`, '/FO', 'CSV', '/NH'], { encoding: 'utf8' })); } catch { return true; } };
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 // This run's RPT: written after the launch, and its command line names our profile.
 // This run's RPT: written after the launch, and its command line names this run's temporary mod.
@@ -89,12 +91,17 @@ const findRpt = (since, tag) => fs.readdirSync(RPTS).filter(f => /^arma3_x64_.*\
   while (Date.now() - t0 < 60000 && !(rpt = findRpt(t0, path.basename(tmp)))) await sleep(1000);
   if (!rpt) { kill(); console.error('run.js: no RPT for this run; Arma did not start'); process.exit(3); }
   const read = () => fs.readFileSync(rpt, 'latin1');
-  let state = 'loading';
+  let state = 'loading', hungSince = 0, lastCheck = 0;
   while (Date.now() - t0 < timeout) {
     await sleep(1000);
     const r = read();
     if (/\[vclient\] done/.test(r)) { state = 'done'; break; }
     if (!isRunning()) { state = 'exited'; break; }
+    if (Date.now() - lastCheck > 5000) {
+      lastCheck = Date.now();
+      if (responding()) hungSince = 0; else if (!hungSince) hungSince = Date.now();
+      if (hungSince && Date.now() - hungSince > 45000) { state = 'hung'; break; }
+    }
   }
   if (state === 'loading') state = 'timeout';
   kill(); await sleep(2000);
@@ -114,6 +121,8 @@ const findRpt = (since, tag) => fs.readdirSync(RPTS).filter(f => /^arma3_x64_.*\
   }
   console.log(lines.join('\n'));
   console.log(JSON.stringify({ state, seconds: Math.round((Date.now() - t0) / 1000), rpt, shots }, null, 1));
+  if (state === 'hung') console.error('run.js: Arma stopped responding for 45 s and was killed; the last [vclient] line shows where');
+  else if (state === 'timeout') console.error('run.js: timed out while Arma still responded; the test never reached vc_fnc_done (a stalled or long script?)');
   if (state === 'exited' && !/Shutdown normally|Exception code/.test(r))
     console.error('run.js: Arma vanished without a shutdown line; another process killed it (a script that kills arma3_x64 by name?)');
   else if (!/Mission directory:/.test(r)) console.error('run.js: the mission never loaded (wrong playMission path makes Arma quit silently)');
