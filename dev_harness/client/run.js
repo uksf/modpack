@@ -25,6 +25,7 @@ const world = opt('--world', 'VR');
 const timeout = +opt('--timeout', 240) * 1000;
 const out = path.resolve(opt('--out', path.join(path.dirname(path.resolve(test)), 'shots')));
 const mods = loadMods(opt('--mods', 'vanilla'));
+const runId = 'vc' + crypto.randomBytes(4).toString('hex');
 
 function loadMods(m) {
   if (m === 'vanilla') return [];
@@ -50,9 +51,10 @@ const isRunning = () => { try { return execFileSync('tasklist', ['/FI', `PID eq 
 const kill = () => { try { execFileSync('taskkill', ['/F', '/PID', String(pid)], { stdio: 'ignore' }); } catch {} };
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 // This run's RPT: written after the launch, and its command line names our profile.
-const findRpt = since => fs.readdirSync(RPTS).filter(f => /^arma3_x64_.*\.rpt$/i.test(f)).map(f => path.join(RPTS, f))
+// This run's RPT: written after the launch, and its command line names this run's temporary mod.
+const findRpt = (since, tag) => fs.readdirSync(RPTS).filter(f => /^arma3_x64_.*\.rpt$/i.test(f)).map(f => path.join(RPTS, f))
   .filter(f => fs.statSync(f).mtimeMs >= since - 2000)
-  .find(f => fs.readFileSync(f, 'latin1').slice(0, 4000).includes(`-name=${PROFILE}`));
+  .find(f => fs.readFileSync(f, 'latin1').slice(0, 8000).includes(tag));
 
 (async () => {
   const mission = `vclient.${world}`;
@@ -61,16 +63,21 @@ const findRpt = since => fs.readdirSync(RPTS).filter(f => /^arma3_x64_.*\.rpt$/i
   const files = [
     [`${mission}\\mission.sqm`, Buffer.from(sqm)],
     [`${mission}\\description.ext`, fs.readFileSync(path.join(dir, 'description.ext'))],
-    [`${mission}\\init.sqf`, fs.readFileSync(path.join(dir, 'init.sqf'))],
+    [`${mission}\\init.sqf`, Buffer.concat([Buffer.from(`vc_runId = "${runId}";\r\n`), fs.readFileSync(path.join(dir, 'init.sqf'))])],
     [`${mission}\\test.sqf`, fs.readFileSync(test)],
   ];
-  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'vclient-'));
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), `vclient-${runId}-`));
   const mod = path.join(tmp, '@' + PREFIX);
   fs.mkdirSync(path.join(mod, 'addons'), { recursive: true });
   fs.writeFileSync(path.join(mod, 'addons', PREFIX + '.pbo'), packPbo(files, PREFIX));
 
+  // Several runs (other sessions) share the profile: every file carries its run id, and only this
+  // run's files are touched. Leftovers of crashed runs are removed after a day.
   fs.mkdirSync(SHOTS, { recursive: true });
-  for (const f of fs.readdirSync(SHOTS)) fs.rmSync(path.join(SHOTS, f), { force: true });
+  for (const f of fs.readdirSync(SHOTS)) {
+    const p = path.join(SHOTS, f);
+    try { if (/^vc[0-9a-f]{8}_/.test(f) && Date.now() - fs.statSync(p).mtimeMs > 864e5) fs.rmSync(p); } catch {}
+  }
   const modArg = [...mods, mod].map(p => path.resolve(p)).join(';');
   const argv = ['-window', '-noPause', '-noPauseAudio', '-noSplash', '-skipIntro', '-world=empty', `-name=${PROFILE}`,
     `-mod=${modArg}`, `-init=playMission['','\\${PREFIX}\\${mission}']`];
@@ -79,7 +86,7 @@ const findRpt = since => fs.readdirSync(RPTS).filter(f => /^arma3_x64_.*\.rpt$/i
   pid = child.pid; child.unref();
 
   let rpt;
-  while (Date.now() - t0 < 60000 && !(rpt = findRpt(t0))) await sleep(1000);
+  while (Date.now() - t0 < 60000 && !(rpt = findRpt(t0, path.basename(tmp)))) await sleep(1000);
   if (!rpt) { kill(); console.error('run.js: no RPT for this run; Arma did not start'); process.exit(3); }
   const read = () => fs.readFileSync(rpt, 'latin1');
   let state = 'loading';
@@ -96,7 +103,10 @@ const findRpt = since => fs.readdirSync(RPTS).filter(f => /^arma3_x64_.*\.rpt$/i
   const lines = r.split(/\r?\n/).filter(l => /\[vclient\]|Error in expression|Error position|Error \w+:|Cannot load|Warning Message/.test(l));
   fs.mkdirSync(out, { recursive: true });
   const shots = [];
-  for (const f of fs.readdirSync(SHOTS)) { fs.renameSync(path.join(SHOTS, f), path.join(out, f)); shots.push(path.join(out, f)); }
+  for (const f of fs.readdirSync(SHOTS).filter(f => f.startsWith(runId + '_'))) {
+    const to = path.join(out, f.slice(runId.length + 1));
+    fs.renameSync(path.join(SHOTS, f), to); shots.push(to);
+  }
   if (!args.includes('--keep')) fs.rmSync(tmp, { recursive: true, force: true });
   if (args.includes('--sheet') && shots.length) {
     try { execFileSync('python', [path.join(__dirname, 'sheet.py'), path.join(out, 'sheet.jpg'), ...shots.sort()], { stdio: 'ignore' }); shots.push(path.join(out, 'sheet.jpg')); }

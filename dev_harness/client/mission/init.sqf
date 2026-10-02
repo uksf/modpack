@@ -31,7 +31,7 @@ vc_fnc_orbit = {
 
 // "name" call vc_fnc_shot. Writes <name>.png; waits so the file is complete before the next move.
 vc_fnc_shot = {
-    private _ok = screenshot (_this + ".png");
+    private _ok = screenshot (vc_runId + "_" + _this + ".png");
     uiSleep 0.5;
     format ["shot %1 %2", _this, _ok] call vc_fnc_log;
 };

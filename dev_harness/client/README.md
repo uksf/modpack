@@ -37,8 +37,9 @@ call vc_fnc_done;
    in a temporary folder. Nothing is written to the Arma folder.
 2. `arma3_x64.exe` (not the BattlEye launcher) starts with `-window -noPause -noPauseAudio
    -name=uksfdevclient -init=playMission['','\uksf_vclient\vclient.VR']`.
-3. `screenshot` writes PNGs to `Documents\Arma 3 - Other Profiles\uksfdevclient\Screenshots`; the
-   runner moves them to `--out`. They are full window resolution, the frame the client rendered.
+3. `screenshot` writes PNGs to `Documents\Arma 3 - Other Profiles\uksfdevclient\Screenshots`, named
+   with this run's id, so parallel runs from other sessions never collide. The runner moves only its
+   own files to `--out`. They are full window resolution, the frame the client rendered.
 4. The runner reads this run's RPT, then kills only its own PID.
 
 ## Gotchas
