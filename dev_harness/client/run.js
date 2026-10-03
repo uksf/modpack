@@ -78,10 +78,12 @@ const findRpt = (since, tag) => fs.readdirSync(RPTS).filter(f => /^arma3_x64_.*\
   fs.mkdirSync(SHOTS, { recursive: true });
   // Arma refuses screenshots once the folder holds 250 MB (about 16 full-size PNGs); raise the cap.
   const prof = path.join(path.dirname(SHOTS), `${PROFILE}.Arma3Profile`);
-  let ptxt = fs.existsSync(prof) ? fs.readFileSync(prof, 'latin1') : '';
-  if (/maxScreenShotFolderSizeMB\s*=/.test(ptxt)) ptxt = ptxt.replace(/maxScreenShotFolderSizeMB\s*=\s*\d+;/, 'maxScreenShotFolderSizeMB=4000;');
-  else ptxt = `maxScreenShotFolderSizeMB=4000;\r\n` + ptxt;
-  fs.writeFileSync(prof, ptxt, 'latin1');
+  // The profile is shared with parallel runs, which lock it: write only when the cap is missing.
+  try {
+    const ptxt = fs.existsSync(prof) ? fs.readFileSync(prof, 'latin1') : '';
+    if (!/maxScreenShotFolderSizeMB\s*=\s*4000;/.test(ptxt))
+      fs.writeFileSync(prof, `maxScreenShotFolderSizeMB=4000;\r\n` + ptxt.replace(/maxScreenShotFolderSizeMB\s*=\s*\d+;\r?\n?/, ''), 'latin1');
+  } catch (e) { console.error(`run.js: could not set the screenshot cap (${e.code}); a parallel run may hold the profile`); }
   for (const f of fs.readdirSync(SHOTS)) {
     const p = path.join(SHOTS, f);
     try { if (/^vc[0-9a-f]{8}_/.test(f) && Date.now() - fs.statSync(p).mtimeMs > 864e5) fs.rmSync(p); } catch {}
