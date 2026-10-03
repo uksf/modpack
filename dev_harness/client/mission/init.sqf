@@ -4,11 +4,10 @@ vc_fnc_log = { diag_log text format ["[vclient] %1", _this] };
 // [eyeASL, targetASL or object, fov(0.75)] call vc_fnc_cam. Waits for streaming and LODs to settle.
 vc_fnc_cam = {
     params ["_eye", "_target", ["_fov", 0.75], ["_settle", 1.5]];
-    if (isNil "vc_cam") then {
-        vc_cam = "camera" camCreate ASLToAGL _eye;
-        vc_cam cameraEffect ["internal", "back"];
-        showCinemaBorder false;
-    };
+    if (isNil "vc_cam" || {isNull vc_cam}) then { vc_cam = "camera" camCreate ASLToAGL _eye };
+    // re-attach every call: a respawn or vehicle switch drops the camera effect
+    vc_cam cameraEffect ["internal", "back"];
+    showCinemaBorder false;
     private _to = if (_target isEqualType objNull) then { AGLToASL (_target modelToWorldVisual (boundingCenter _target)) } else { _target };
     vc_cam setPosASL _eye;
     [_eye] call vc_fnc_park;
@@ -53,7 +52,11 @@ vc_fnc_park = {
         private _land = [_pos, 0, 3000, 1, 0, 0.5, 0, [], [[], []]] call BIS_fnc_findSafePos;
         if (count _land == 2) then { _pos = _land + [0] } else { _pos = [] };
     };
-    if (_pos isNotEqualTo []) then { player setPosATL _pos };
+    if (_pos isEqualTo []) exitWith {};
+    // never inside the vehicle under test: a parked player pushed into it dies and respawns
+    private _clear = _pos findEmptyPosition [0, 30, typeOf player];
+    if (_clear isNotEqualTo []) then { _pos = _clear };
+    player setPosATL _pos;
 };
 
 [] spawn {
