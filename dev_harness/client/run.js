@@ -89,7 +89,7 @@ const findRpt = (since, tag) => fs.readdirSync(RPTS).filter(f => /^arma3_x64_.*\
     try { if (/^vc[0-9a-f]{8}_/.test(f) && Date.now() - fs.statSync(p).mtimeMs > 864e5) fs.rmSync(p); } catch {}
   }
   const modArg = [...mods, mod].map(p => path.resolve(p)).join(';');
-  const argv = ['-window', '-noPause', '-noPauseAudio', '-noSplash', '-skipIntro', '-world=empty', `-name=${PROFILE}`,
+  const argv = ['-window', '-noPause', '-noSound', '-noSplash', '-skipIntro', '-world=empty', `-name=${PROFILE}`,
     `-mod=${modArg}`, `-init=playMission['','\\${PREFIX}\\${mission}']`];
   const t0 = Date.now();
   const child = spawn(path.join(ARMA, 'arma3_x64.exe'), argv, { cwd: ARMA, detached: true, stdio: 'ignore' });

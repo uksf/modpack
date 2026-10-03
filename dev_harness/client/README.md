@@ -36,7 +36,7 @@ call vc_fnc_done;
 
 1. The mission in `mission/` plus the test file are packed into `@uksf_vclient/addons/uksf_vclient.pbo`
    in a temporary folder. Nothing is written to the Arma folder.
-2. `arma3_x64.exe` (not the BattlEye launcher) starts with `-window -noPause -noPauseAudio
+2. `arma3_x64.exe` (not the BattlEye launcher) starts with `-window -noPause -noSound
    -name=uksfdevclient -init=playMission['','\uksf_vclient\vclient.VR']`.
 3. `screenshot` writes PNGs to `Documents\Arma 3 - Other Profiles\uksfdevclient\Screenshots`, named
    with this run's id, so parallel runs from other sessions never collide. The runner moves only its
@@ -49,7 +49,8 @@ call vc_fnc_done;
   "Shutdown normally".
 - Other sessions run their own Arma clients. Never kill `arma3_x64` by name. If a run reports
   "vanished without a shutdown line", some other script killed it.
-- `-noPause -noPauseAudio` keeps rendering when the window has no focus. The window may be behind
+- `-noPause` keeps rendering when the window has no focus, and `-noSound` keeps the test silent; a
+  visual test has no use for audio. The window may be behind
   other windows; `screenshot` reads the game's own frame, not the desktop.
 - Wait about 4 s after `createVehicle` and 1.5 s after each camera move (the helpers do the second).
 - Model space for `modelToWorld` is x right, y forward, z up, about the model's centre, not the ground.
