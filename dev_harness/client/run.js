@@ -115,7 +115,9 @@ const findRpt = (since, tag) => fs.readdirSync(RPTS).filter(f => /^arma3_x64_.*\
     const r = read();
     if (/\[vclient\] done/.test(r)) { state = 'done'; break; }
     if (!isRunning()) { state = 'exited'; break; }
-    if (Date.now() - lastCheck > 5000) {
+    // Loading blocks the window legitimately (ACRE scans every PBO, much slower on a cold disk
+    // cache), so the hang check starts only once the test is running.
+    if (/\[vclient\] start/.test(r) && Date.now() - lastCheck > 5000) {
       lastCheck = Date.now();
       if (responding()) hungSince = 0; else if (!hungSince) hungSince = Date.now();
       if (hungSince && Date.now() - hungSince > 45000) { state = 'hung'; break; }
