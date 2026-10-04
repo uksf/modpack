@@ -272,7 +272,6 @@ class Display3DEN {
         class Items {
             items[] = { "ConnectParent", "SeparatorSelected", "MoveCamera", "PlayFromHere", "PlayAsEntity", "Separator", "Select", "Edit", "Transform", "Grid", "Log", "ChangeSeatParent", "SeparatorEntity", "CustomComposition", "FindCreate", "FindConfig", "SeparatorSelected", "SeparatorNotSelected", "CreateComment", "aceArsenal", "ArsenalReset", "Garage", "GarageReset", "SeparatorArsenal", "Attributes" };
             delete Arsenal;
-            delete virtualArsenal;
             class aceArsenal {
                 text = "Edit Loadout";
                 data = "Arsenal";

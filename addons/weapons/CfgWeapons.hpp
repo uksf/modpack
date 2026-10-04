@@ -607,7 +607,8 @@ class CfgWeapons {
     class CUP_arifle_mk18_black : CUP_arifle_M4A1_BUIS_Base {
         magazines[] = { "UK3CB_BAF_556_30Rnd", "UK3CB_BAF_556_30Rnd_T", "30Rnd_556x45_Stanag_red", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag_Tracer_Red" };
         magazineWell[] = {};
-        class WeaponSlotsInfo : WeaponSlotsInfo {
+        // CUP declares this without a parent; adding one pulls the M4 rails and MuzzleSlot back in.
+        class WeaponSlotsInfo {
             delete MuzzleSlot;
             class asdg_MuzzleSlot_UK3CB_BAF_L119 : asdg_MuzzleSlot_556_3CB_L119 {};
         };
@@ -789,7 +790,10 @@ class CfgWeapons {
     };
 
     class Rifle_Long_Base_F;
-    class SPS_AI_AXMC_base_F;
+    class LRR_base_F;
+    class SPS_AI_AXMC_base_F : LRR_base_F {
+        class Single;
+    };
 
     class tbd_m119_weapon: mortar_82mm {
         displayName = "L119 Light Gun";

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Keys that third-party configs reference but do not ship. -->
+<Project name="UKSF">
+    <Package name="common_compat">
+        <Key ID="STR_FFAA_CASA_BASE">
+            <English>House</English>
+        </Key>
+        <Key ID="STR_Globe_CfgVehicles_Land_Tank_rust_G_fuel0">
+            <English>Fuel Tank (Rusty)</English>
+        </Key>
+        <Key ID="STR_Globe_CfgVehicles_Land_TrailerCistern_wreck_G_fuel0">
+            <English>Fuel Cistern Trailer (Wreck)</English>
+        </Key>
+        <Key ID="STR_Globe_CfgVehicles_Van_02_medevac_base_G_IT0">
+            <English>Van (Medevac)</English>
+        </Key>
+        <Key ID="STR_LSR_common_LSR">
+            <English>LSR</English>
+        </Key>
+    </Package>
+</Project>

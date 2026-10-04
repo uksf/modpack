@@ -219,7 +219,7 @@ class CfgWeapons {
         class ItemInfo : UniformItem {
             modelSides[] = { 0, 3 };
             uniformModel = "-";
-            uniformClass = "UKSF_O_Rifleman";
+            uniformClass = "O_Soldier_VR_F";
             containerClass = "Supply1000";
             mass = 0;
         };

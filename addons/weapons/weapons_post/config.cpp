@@ -119,7 +119,8 @@ class CfgAmmo {
     class CUP_B_25mm_APFSDS_White_Tracer : BulletBase {
         AMMO_USAGE_INFVEHAIR;
     };
-    class CUP_R_57mm_HE : BulletBase {
+    class RocketBase;
+    class CUP_R_57mm_HE : RocketBase {
         AMMO_USAGE_INFVEHAIR;
     };
     class ammo_Gun20mmAABase : BulletBase {
@@ -131,7 +132,8 @@ class CfgAmmo {
     class ammo_Gun35mmAABase : BulletBase {
         AMMO_USAGE_INFVEHAIR;
     };
-    class CUP_Sh_PG9_AT : BulletBase {
+    class ShellBase;
+    class CUP_Sh_PG9_AT : ShellBase {
         AMMO_USAGE_INFVEHAIRARM;
     };
 
@@ -144,7 +146,6 @@ class CfgAmmo {
         AMMO_USAGE_INFVEHARM;
     };
 
-    class RocketBase;
     class R_PG32V_F : RocketBase {
         AMMO_USAGE_INFVEHAIRARM;
         AMMO_USAGE_BUFF;
@@ -224,8 +225,7 @@ class CfgAmmo {
         airLock = 0;
     };
 
-    class ShellBase;
-    class CUP_Sh_PG15V : ShellBase {
+    class CUP_Sh_PG15V : CUP_Sh_PG9_AT {
         AMMO_USAGE_INFVEHARM;
     };
 };

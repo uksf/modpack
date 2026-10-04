@@ -1,3 +1,4 @@
+class CBA_Extended_EventHandlers_base;
 class CfgVehicles {
     class LandVehicle;
     class Car : LandVehicle {
@@ -9,10 +10,10 @@ class CfgVehicles {
         class ACE_Actions : ACE_Actions {
             class ACE_MainActions;
         };
-        class Turrets : Turrets {
+        class Turrets {
             class MainTurret;
         };
-        class HitPoints : HitPoints {
+        class HitPoints {
             class HitBody;
             class HitEngine;
             class HitFuel;

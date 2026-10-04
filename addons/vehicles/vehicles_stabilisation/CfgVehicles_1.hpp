@@ -54,7 +54,7 @@ class Boat_Armed_01_base_F : Boat_F {
     };
 };
 class Car_F : Car {
-    class Turrets : Turrets {
+    class Turrets {
         class MainTurret;
     };
 };
@@ -226,7 +226,7 @@ class Offroad_02_base_F : Car_F {
     };
 };
 class RHICC_MAIN : Boat_Armed_01_base_F {
-    class Turrets : Turrets {
+    class Turrets {
         class CommanderTurret : NewTurret {
             stabilizedInAxes = 4;
         };

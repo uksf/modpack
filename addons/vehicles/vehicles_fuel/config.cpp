@@ -73,7 +73,7 @@ class CfgVehicles {
     };
 
     // HAFM Navy (Hellenic Armed Forces Mod) — naval bases
-    class HAFM_RHIB : Ship_F {
+    class HAFM_RHIB : Boat_F {
         ace_refuel_fuelCapacity = 200; // RHIB / fast small boat: ~200 L
     };
 

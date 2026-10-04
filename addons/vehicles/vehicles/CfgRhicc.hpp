@@ -4,6 +4,10 @@ class Boat_Armed_01_base_F : Boat_F {
 };
 class RHICC_MAIN : Boat_Armed_01_base_F {
     maximumLoad = 2000; // 500
+    // RHICC declares a non-inheriting EventHandlers (fired only), which drops CBA XEH.
+    class EventHandlers {
+        class CBA_Extended_EventHandlers : CBA_Extended_EventHandlers_base {};
+    };
     class TransportMagazines {};
     class TransportItems {
         delete _xx_FirstAidKit;
@@ -73,7 +77,7 @@ class RHICC_MAIN : Boat_Armed_01_base_F {
             shortName = "R2";
         };
     };
-    class Turrets : Turrets {
+    class Turrets {
         class CommanderTurret : NewTurret {
             weapons[] = { "CUP_weapon_mastersafe", "Laserdesignator_vehicle", "RHICC_SmokeLauncher" };
             class ViewOptics {

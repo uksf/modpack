@@ -3,9 +3,6 @@
 
 ["ade_item_bag", QGVAR(bag)] call ace_common_fnc_registerItemReplacement;
 ["ade_item_rebreather", QGVAR(rebreather)] call ace_common_fnc_registerItemReplacement;
-["ade_item_DiveComputer", QGVAR(diveComputer)] call ace_common_fnc_registerItemReplacement;
-["ade_item_cylinder_single_6ltr_300bar_pureOxygen", QGVAR(cylinderSinglePureOxygen)] call ace_common_fnc_registerItemReplacement;
-["ade_item_cylinder_twin_6ltr_300bar_pureOxygen", QGVAR(cylinderDoublePureOxygen)] call ace_common_fnc_registerItemReplacement;
 
 if (isServer) then {
     [QGVAR(playerDataPublish), {GVAR(playerDataHash) set _this}] call CBA_fnc_addEventHandler;

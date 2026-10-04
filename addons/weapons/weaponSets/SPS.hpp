@@ -14,7 +14,7 @@ class SPS_AI_AXMC338_27_PB_F : SPS_AI_AXMC_base_F {
         "SPS_AI_AXMC_338_API526_Mag",
         "SPS_AI_AXMC_338_HAPI_Mag"
     };
-    class Single : Mode_SemiAuto {
+    class Single : Single {
         sounds[] = { "StandardSound", "SilencedSound" };
         class BaseSoundModeType {};
         class StandardSound : BaseSoundModeType {
