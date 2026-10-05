@@ -63,8 +63,8 @@ class GVAR(Armour_Crewman_Woodland) : GVAR(Rifleman_Woodland) {
     uniformClass = "UK3CB_BAF_U_CrewmanCoveralls_RTR";
     magazines[] = { "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "SmokeShell", "SmokeShell", "SmokeShell", "CUP_HandGrenade_RGD5", "CUP_HandGrenade_RGD5" };
     respawnMagazines[] = { "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "CUP_30Rnd_556x45_Emag", "SmokeShell", "SmokeShell", "SmokeShell", "CUP_HandGrenade_RGD5", "CUP_HandGrenade_RGD5" };
-    linkedItems[] = { "ItemMap", "ItemCompass", "CUP_NVG_PVS15_black", "H_Tank_black_F", "CUP_V_B_BAF_DPM_Osprey_Mk3_Empty" };
-    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "CUP_NVG_PVS15_black", "H_Tank_black_F", "CUP_V_B_BAF_DPM_Osprey_Mk3_Empty" };
+    linkedItems[] = { "ItemMap", "ItemCompass", "CUP_NVG_PVS15_black", "H_Tank_black_F", "CUP_V_B_BAF_DPM_Osprey_Mk3_Crewman" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "CUP_NVG_PVS15_black", "H_Tank_black_F", "CUP_V_B_BAF_DPM_Osprey_Mk3_Crewman" };
     backpack = "";
     EGVAR(equipment,skipRandomization) = 1;
 };
@@ -86,8 +86,8 @@ class GVAR(Signaller_Woodland) : GVAR(Rifleman_Woodland) {
 class GVAR(Heli_Pilot_Woodland) : GVAR(Armour_Crewman_Woodland) {
     displayName = "Heli Pilot";
     uniformClass = "UK3CB_BAF_U_CrewmanCoveralls_RTR";
-    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "H_CrewHelmetHeli_B", "CUP_V_B_BAF_DPM_Osprey_Mk3_Empty" };
-    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "H_CrewHelmetHeli_B", "CUP_V_B_BAF_DPM_Osprey_Mk3_Empty" };
+    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "H_CrewHelmetHeli_B", "CUP_V_B_BAF_DPM_Osprey_Mk3_Pilot" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "H_CrewHelmetHeli_B", "CUP_V_B_BAF_DPM_Osprey_Mk3_Pilot" };
     backpack = "";
     EGVAR(equipment,skipRandomization) = 1;
 };
