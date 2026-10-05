@@ -15,6 +15,10 @@ class CfgPatches {
             "EAWS_EF2000",
             "mbg_killhouses_a3",
             "HAFM_Navy_Core",
+            "ffaa_casas_af",
+            "HAFM_Navy_Config",
+            "A3_Data_F_ParticleEffects",
+            "Blastcore_VEP",
             "CUP_WheeledVehicles_LR",
             "rksla3_cvwp",
             "gx_drones_compat_rksl_cvwp",
@@ -1423,11 +1427,13 @@ class CfgVehicles {
         ace_refuel_fuelCargo = -1; // Internal vanilla class, not a fuel source
     };
 #include "CfgVehiclesNoModel.hpp"
-#include "CfgVehiclesSounds.hpp"
+#include "CfgVehiclesFixes.hpp"
 };
 
 #include "CfgWeapons.hpp"
 #include "CfgMagazines.hpp"
+#include "CfgEventHandlers.hpp"
+#include "CfgCloudlets.hpp"
 #include "CfgMoves.hpp"
 #include "CfgSurfaces.hpp"
 #include "CfgVoiceTypes.hpp"
