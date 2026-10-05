@@ -13,7 +13,7 @@
         Boolean
 
     Example:
-        call uksf_weapons_fnc_3cbAssembleJavelin
+        call UK3CB_BAF_Weapons_Launchers_fnc_assemble_javelin
 */
 
 if (!(alive ACE_player)) exitWith {false};

@@ -13,7 +13,7 @@
         Nothing
 
     Example:
-        [_unit] call uksf_weapons_fnc_3cbInitEH
+        [_unit] call UK3CB_BAF_Weapons_Launchers_fnc_init_EH
 */
 params ["_unit"];
 

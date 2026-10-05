@@ -14,7 +14,7 @@
         None
 
     Example:
-        call uksf_weapons_fnc_3cb_staticWeaponInit
+        call UK3CB_BAF_Weapons_Static_fnc_static_weapon_init
 */
 
 /*if ((alive player)) then {

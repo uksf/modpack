@@ -14,7 +14,7 @@
         Resupply successful <BOOLEAN>
 
     Example:
-        call uksf_vehicles_fnc_3cbReloadTurretWrapper
+        call UK3CB_BAF_Vehicles_Weapons_fnc_resupply_ammo
 */
 private _return = call FUNC(3cb_reloadTurret);
 

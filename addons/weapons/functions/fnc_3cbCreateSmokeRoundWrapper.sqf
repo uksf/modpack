@@ -14,6 +14,6 @@
         Nothing
 
     Example:
-        call uksf_weapons_fnc_3cbCreateSmokeRoundWrapper
+        call UK3CB_BAF_Weapons_Ammo_fnc_create_smoke_round
 */
 call FUNC(3cbCreateSmokeRound);

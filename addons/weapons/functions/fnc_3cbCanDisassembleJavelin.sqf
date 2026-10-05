@@ -13,7 +13,7 @@
         Boolean
 
     Example:
-        call uksf_weapons_fnc_3cbCanDisassembleJavelin
+        call UK3CB_BAF_Weapons_Launchers_fnc_can_disassemble_javelin
 */
 
 alive ACE_player && {"UK3CB_BAF_Javelin_Launcher" isEqualTo (secondaryWeapon ACE_player)}

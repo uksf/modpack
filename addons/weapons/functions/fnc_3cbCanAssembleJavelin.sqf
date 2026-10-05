@@ -13,7 +13,7 @@
         Boolean
 
     Example:
-        call uksf_weapons_fnc_3cbCanAssembleJavelin
+        call UK3CB_BAF_Weapons_Launchers_fnc_can_assemble_javelin
 */
 
 alive ACE_player &&
