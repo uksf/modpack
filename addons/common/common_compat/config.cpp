@@ -20,6 +20,7 @@ class CfgPatches {
             "A3_Data_F_ParticleEffects",
             "Blastcore_VEP",
             "CUP_WheeledVehicles_M151",
+            "UK3CB_BAF_Equipment_Uniforms",
             "A3_Static_F_HMG_02_ScopeShieldDeMount_a3_expEden",
             "CUP_WheeledVehicles_LR",
             "rksla3_cvwp",

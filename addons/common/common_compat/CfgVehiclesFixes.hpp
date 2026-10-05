@@ -25,3 +25,8 @@ class Car_F;
 class CUP_M151_base : Car_F {
     aggregateReflectors[] = { { "LightCarHeadL01", "LightCarHeadR01" } };
 };
+// 3CB's CW DPM smock unit names its uniform with a trailing space, so the two never resolve to each other.
+class UK3CB_BAF_Soldier_Smock_Base;
+class UK3CB_BAF_Soldier_Smock_CW_DPM_Base : UK3CB_BAF_Soldier_Smock_Base {
+    uniformClass = "UK3CB_BAF_U_Smock_CW_DPM";
+};
