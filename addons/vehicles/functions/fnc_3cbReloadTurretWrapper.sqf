@@ -16,6 +16,6 @@
     Example:
         call uksf_vehicles_fnc_3cbReloadTurretWrapper
 */
-private _return = call FUNC(3cbReloadTurret);
+private _return = call FUNC(3cb_reloadTurret);
 
 _return
