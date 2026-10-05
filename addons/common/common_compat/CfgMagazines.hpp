@@ -31,4 +31,12 @@ class CfgMagazines {
     delete FIR_gbu38_1rnd_M;
     delete GX_RKSL_BRIMSTONE_DM_X2;
     delete rksla3_mag_brimstone_dm_x3;
+    // HAFM's legacy launcher magazines name ammo (RIM162_A) that HAFM no longer defines; use its current missiles.
+    class VehicleMagazine;
+    class RIM162_M32 : VehicleMagazine {
+        ammo = "HAFM_RIM162_ESSM";
+    };
+    class Igla_8 : RIM162_M32 {
+        ammo = "HAFM_IGLA1M";
+    };
 };

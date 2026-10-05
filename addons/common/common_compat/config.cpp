@@ -14,6 +14,7 @@ class CfgPatches {
             "greenmag_main",
             "EAWS_EF2000",
             "mbg_killhouses_a3",
+            "HAFM_Navy_Core",
             "CUP_WheeledVehicles_LR",
             "rksla3_cvwp",
             "gx_drones_compat_rksl_cvwp",
