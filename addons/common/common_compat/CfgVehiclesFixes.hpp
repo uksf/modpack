@@ -20,3 +20,8 @@ class StaticMGWeapon : StaticWeapon {
         delete ViewOptics;
     };
 };
+// aggregateReflectors is a list of groups; CUP gives the M151 headlights as one flat list.
+class Car_F;
+class CUP_M151_base : Car_F {
+    aggregateReflectors[] = { { "LightCarHeadL01", "LightCarHeadR01" } };
+};
