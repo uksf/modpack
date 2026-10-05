@@ -12,6 +12,11 @@ class CfgPatches {
             "Black_Vests_Config",
             "G_Headbands",
             "greenmag_main",
+            "EAWS_EF2000",
+            "mbg_killhouses_a3",
+            "CUP_WheeledVehicles_LR",
+            "rksla3_cvwp",
+            "gx_drones_compat_rksl_cvwp",
             "CUP_AirVehciles_MH47E",
             "CUP_CAMisc_ACR_Dog",
             "A3_Props_F_Globe_Military_Ammo",
@@ -1417,9 +1422,11 @@ class CfgVehicles {
         ace_refuel_fuelCargo = -1; // Internal vanilla class, not a fuel source
     };
 #include "CfgVehiclesNoModel.hpp"
+#include "CfgVehiclesSounds.hpp"
 };
 
 #include "CfgWeapons.hpp"
+#include "CfgMagazines.hpp"
 #include "CfgMoves.hpp"
 #include "CfgSurfaces.hpp"
 #include "CfgVoiceTypes.hpp"

@@ -28,8 +28,17 @@ class CfgWeapons {
             };
         };
     };
+    // EAWS and the RKSL Brimstone list magazines whose classes are gone (see CfgMagazines.hpp) or never existed.
+    class missiles_Zephyr;
+    class EAWS_AIM120 : missiles_Zephyr {
+        magazines[] = { "EAWS_AIM120_x2" };
+    };
+    class MissileLauncher;
+    class rksla3_wpn_brimstone_dm : MissileLauncher {
+        magazines[] = { "rksla3_mag_brimstone_dm_sglrail_x1", "rksla3_mag_brimstone_dm_sglrailuav_x1", "rksla3_mag_brimstone_dm_agml_x3", "rksla3_mag_brimstone_dm_agmlrear_x3" };
+    };
     // The Alpine and Black MBSS vests inherit VSM vests that our VSM subset does not ship, so they have no
-    // model or stats. Hidden until a VSM source is added.
+    // model or stats. Hidden until a VSM source is added. delete does not work on these CfgWeapons classes.
     class VSM_MBSS_PACA;
     class VSM_MBSS_Green;
     class dr_MBSS_PACA : VSM_MBSS_PACA {
