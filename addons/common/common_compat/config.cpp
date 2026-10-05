@@ -21,6 +21,7 @@ class CfgPatches {
             "Blastcore_VEP",
             "CUP_WheeledVehicles_M151",
             "UK3CB_BAF_Equipment_Uniforms",
+            "CUP_WheeledVehicles_GAZTigr",
             "A3_Static_F_HMG_02_ScopeShieldDeMount_a3_expEden",
             "CUP_WheeledVehicles_LR",
             "rksla3_cvwp",
@@ -119,7 +120,11 @@ class CfgVehicles {
     class Furniture_Residental_base_F;
     class GalleryDioramaUnit_01_base_F;
     class GasTank_01_base_F;
-    class Helicopter_Base_F;
+    class Air;
+    class Helicopter : Air {
+        class AnimationSources;
+    };
+    class Helicopter_Base_F : Helicopter {};
     class HelicopterWreck;
     class I_Soldier_base_F;
     class I_soldier_F;
@@ -1429,8 +1434,8 @@ class CfgVehicles {
     class Bomb : Strategic {
         ace_refuel_fuelCargo = -1; // Internal vanilla class, not a fuel source
     };
-#include "CfgVehiclesNoModel.hpp"
 #include "CfgVehiclesFixes.hpp"
+#include "CfgVehiclesNoModel.hpp"
 };
 
 #include "CfgWeapons.hpp"

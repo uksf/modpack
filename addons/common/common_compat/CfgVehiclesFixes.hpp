@@ -21,7 +21,10 @@ class StaticMGWeapon : StaticWeapon {
     };
 };
 // aggregateReflectors is a list of groups; CUP gives the M151 headlights as one flat list.
-class Car_F;
+class Car;
+class Car_F : Car {
+    class AnimationSources;
+};
 class CUP_M151_base : Car_F {
     aggregateReflectors[] = { { "LightCarHeadL01", "LightCarHeadR01" } };
 };
@@ -29,4 +32,41 @@ class CUP_M151_base : Car_F {
 class UK3CB_BAF_Soldier_Smock_Base;
 class UK3CB_BAF_Soldier_Smock_CW_DPM_Base : UK3CB_BAF_Soldier_Smock_Base {
     uniformClass = "UK3CB_BAF_U_Smock_CW_DPM";
+};
+// Vanilla's HitEngine2 damage source names hitpoint Engine2; every helicopter's hitpoint is HitEngine2.
+class Helicopter_Base_H : Helicopter_Base_F {
+    class AnimationSources : AnimationSources {
+        class HitEngine2 {
+            hitpoint = "HitEngine2";
+        };
+    };
+};
+// CUP's Tigr HitGlass10 damage source names hitpoint HitGlas104.
+class CUP_Tigr_Base : Car_F {
+    class AnimationSources : AnimationSources {
+        class HitGlass10 {
+            hitpoint = "HitGlass10";
+        };
+    };
+};
+class CUP_Tigr_SPM_Base : CUP_Tigr_Base {
+    class AnimationSources : AnimationSources {
+        class HitGlass10 {
+            hitpoint = "HitGlass10";
+        };
+    };
+};
+class CUP_Tigr_STS_Base : CUP_Tigr_Base {
+    class AnimationSources : AnimationSources {
+        class HitGlass10 {
+            hitpoint = "HitGlass10";
+        };
+    };
+};
+class CUP_Tigr_M_Base : CUP_Tigr_Base {
+    class AnimationSources : AnimationSources {
+        class HitGlass10 {
+            hitpoint = "HitGlass10";
+        };
+    };
 };
