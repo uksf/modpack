@@ -8,6 +8,9 @@ class CfgPatches {
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             "uksf_common",
+            "CUP_AirVehciles_MH47E",
+            "CUP_CAMisc_ACR_Dog",
+            "A3_Props_F_Globe_Military_Ammo",
             "A3_Dubbing_Radio_F",
             "A3_Dubbing_Radio_F_EXP",
             "A3_Dubbing_Radio_F_Enoch",
@@ -1409,6 +1412,7 @@ class CfgVehicles {
     class Bomb : Strategic {
         ace_refuel_fuelCargo = -1; // Internal vanilla class, not a fuel source
     };
+#include "CfgVehiclesNoModel.hpp"
 };
 
 #include "CfgWeapons.hpp"
