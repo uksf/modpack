@@ -42,7 +42,10 @@ function runJob(job, worker) {
             const loaded = [...txt.matchAll(/LA\|L\|\w+\|(\d+)\|([^|\s]+)/g)];
             const done = /LA\|END\|/.test(txt);
             log(`${id} done=${done} classes=${loaded.length}`);
-            if (!done) {
+            if (!done && !loaded.length && !job.retried) {
+                log(`RETRY ${id}: the client never logged a class`);
+                queue.unshift({ ...job, retried: true });
+            } else if (!done) {
                 const last = loaded[loaded.length - 1];
                 const at = last ? +last[1] : job.start;
                 log(`CRASH ${job.phase} index=${at} class=${last ? last[2] : '?'} state=${(txt.match(/"state":\s*"(\w+)"/) || [])[1]}`);

@@ -11,3 +11,6 @@ class Pastor_ACR : Pastor {
 class DismantledWeapon_HeliHeavyMinigun_01_G_left : Items_base_F {
     scope = 0;
 };
+class DismantledWeapon_HeliHeavyMinigun_01_G_right : Items_base_F {
+    scope = 0;
+};
