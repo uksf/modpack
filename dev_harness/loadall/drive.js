@@ -36,7 +36,7 @@ function runJob(job, worker) {
         fs.writeFileSync(sqf, `LA_PHASE = "${job.phase}"; LA_START = ${job.start}; LA_END = ${job.end}; LA_SKIP = ${JSON.stringify(skip())};\n` + loader);
         const fd = fs.openSync(out, 'w');
         spawn('node', [RUN, sqf, '--mods', MODS, '--out', path.join(OUT, 'jobs', id), '--timeout', '5400'],
-            { stdio: ['ignore', fd, fd], env: { ...process.env, VC_PROFILE: `uksfloadall${worker}` } }).on('exit', () => {
+            { stdio: ['ignore', fd, fd], env: { ...process.env, VC_PROFILE: `uksfloadall${worker}`, VC_LOCK_HELD: '1' } }).on('exit', () => {
             copyRpts();
             const txt = fs.readFileSync(out, 'utf8');
             const loaded = [...txt.matchAll(/LA\|L\|\w+\|(\d+)\|([^|\s]+)/g)];
@@ -57,6 +57,7 @@ function runJob(job, worker) {
     });
 }
 (async () => {
+    await require('../client/gpulock').acquire(process.env.VC_LOCK_OWNER || 'dev_harness load-all');
     await Promise.all(Array.from({ length: N }, async (_, w) => {
         await new Promise(r => setTimeout(r, w * 20000)); // clients launched in the same second cannot find their RPT
         while (queue.length) await runJob(queue.shift(), w);

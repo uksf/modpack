@@ -60,6 +60,7 @@ const findRpt = (since, tag) => fs.readdirSync(RPTS).filter(f => /^arma3_x64_.*\
   .find(f => fs.readFileSync(f, 'latin1').slice(0, 8000).includes(tag));
 
 (async () => {
+  await require('./gpulock').acquire(process.env.VC_LOCK_OWNER || `dev_harness ${PROFILE}`);
   const mission = `vclient.${world}`;
   const dir = path.join(__dirname, 'mission');
   const sqm = fs.readFileSync(path.join(dir, 'mission.sqm'), 'utf8');
