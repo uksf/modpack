@@ -19,7 +19,7 @@ class CfgFunctions {
         class UK3CB_BAF_Weapons_Static {
             class static_weapon_init {
                 postInit = 1;
-                file = QPATHTOF(functions\fnc_staticWeaponInit.sqf);
+                file = QPATHTOF(functions\fnc_3cb_staticWeaponInit.sqf);
             };
         };
     };
