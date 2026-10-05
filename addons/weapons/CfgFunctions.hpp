@@ -2,16 +2,16 @@ class CfgFunctions {
     class UK3CB_BAF_Weapons_Launchers {
         class UK3CB_BAF_Weapons_Launchers {
             class init_EH {
-                file = QPATHTOF(functions\fnc_3cbInitEH.sqf);
+                file = QPATHTOF(functions\fnc_3cb_initEH.sqf);
             };
             class can_assemble_javelin {
-                file = QPATHTOF(functions\fnc_3cbCanAssembleJavelin.sqf);
+                file = QPATHTOF(functions\fnc_3cb_canAssembleJavelin.sqf);
             };
             class can_disassemble_javelin {
-                file = QPATHTOF(functions\fnc_3cbCanDisassembleJavelin.sqf);
+                file = QPATHTOF(functions\fnc_3cb_canDisassembleJavelin.sqf);
             };
             class assemble_javelin {
-                file = QPATHTOF(functions\fnc_3cbAssembleJavelin.sqf);
+                file = QPATHTOF(functions\fnc_3cb_assembleJavelin.sqf);
             };
         };
     };

@@ -16,4 +16,4 @@
     Example:
         call UK3CB_BAF_Weapons_Ammo_fnc_check_for_smoke_round
 */
-call FUNC(3cbCheckForSmokeRound);
+call FUNC(3cb_checkForSmokeRound);
