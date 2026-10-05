@@ -8,6 +8,10 @@ class CfgPatches {
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             "uksf_common",
+            "Alpine_Vests_Config",
+            "Black_Vests_Config",
+            "G_Headbands",
+            "greenmag_main",
             "CUP_AirVehciles_MH47E",
             "CUP_CAMisc_ACR_Dog",
             "A3_Props_F_Globe_Military_Ammo",

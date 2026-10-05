@@ -360,7 +360,7 @@ class CfgVehicles {
         class ACE_Actions : ACE_Actions {
             class TBD_Load {
                 class TBD_LoadSMOKECh6 {
-                    displayName = "$STR_TBD_MORTARS_105mm_SMOKE";
+                    displayName = "Smoke"; // TBD has no STR_TBD_MORTARS_105mm_SMOKE
                     class TBD_LoadSMOKECh1 {
                         displayName = "$STR_TBD_MORTARS_105mm_SMOKE_CHARGE_1";
                         condition = QUOTE([ARR_2(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_1)))] call tbd_m119_m119_fnc_canLoad);

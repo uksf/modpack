@@ -28,4 +28,24 @@ class CfgWeapons {
             };
         };
     };
+    // The Alpine and Black MBSS vests inherit VSM vests that our VSM subset does not ship, so they have no
+    // model or stats. Hidden until a VSM source is added.
+    class VSM_MBSS_PACA;
+    class VSM_MBSS_Green;
+    class dr_MBSS_PACA : VSM_MBSS_PACA {
+        scope = 1;
+        scopeArsenal = 0;
+    };
+    class dr_MBSS_Green : VSM_MBSS_Green {
+        scope = 1;
+        scopeArsenal = 0;
+    };
+    class BLK_MBSS_PACA : VSM_MBSS_PACA {
+        scope = 1;
+        scopeArsenal = 0;
+    };
+    class BLK_MBSS_Green : VSM_MBSS_Green {
+        scope = 1;
+        scopeArsenal = 0;
+    };
 };
