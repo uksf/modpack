@@ -247,9 +247,7 @@ class CfgVehicles {
         crew = "CUP_B_BAF_Soldier_MTP";
     };
     class StaticMortar : StaticWeapon {
-        class ACE_Actions : ACE_Actions {
-            class TBD_Load;
-        };
+        class ACE_Actions : ACE_Actions {};
     };
     class Mortar_01_base_F : StaticMortar {
         class Turrets;
@@ -360,7 +358,7 @@ class CfgVehicles {
 
     class TBD_M119 : StaticMortar {
         class ACE_Actions : ACE_Actions {
-            class TBD_Load : TBD_Load {
+            class TBD_Load {
                 class TBD_LoadSMOKECh6 {
                     displayName = "$STR_TBD_MORTARS_105mm_SMOKE";
                     class TBD_LoadSMOKECh1 {
