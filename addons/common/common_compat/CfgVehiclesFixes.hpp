@@ -9,3 +9,14 @@ class land_ffaa_casa_urbana_8 : ffaa_casa_af_base {
 class land_ffaa_casa_hangar_2 : ffaa_casa_af_base {
     ladders[] = {};
 };
+// Expeden's ScopeShieldDeMount declares ViewOptics directly in StaticMGWeapon's Turrets, so every static MG
+// that inherits that list (Fort_Nest_M240) gets an empty second turret.
+class LandVehicle;
+class StaticWeapon : LandVehicle {
+    class Turrets;
+};
+class StaticMGWeapon : StaticWeapon {
+    class Turrets : Turrets {
+        delete ViewOptics;
+    };
+};

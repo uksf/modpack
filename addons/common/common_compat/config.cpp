@@ -19,6 +19,7 @@ class CfgPatches {
             "HAFM_Navy_Config",
             "A3_Data_F_ParticleEffects",
             "Blastcore_VEP",
+            "A3_Static_F_HMG_02_ScopeShieldDeMount_a3_expEden",
             "CUP_WheeledVehicles_LR",
             "rksla3_cvwp",
             "gx_drones_compat_rksl_cvwp",
