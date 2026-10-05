@@ -8,6 +8,16 @@ class CfgPatches {
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             "uksf_common",
+            "A3_Dubbing_Radio_F",
+            "A3_Dubbing_Radio_F_EXP",
+            "A3_Dubbing_Radio_F_Enoch",
+            "CUP_Dubbing_Radio_CZ_ACR_c",
+            "CUP_Dubbing_Radio_CZ_c",
+            "CUP_Dubbing_Radio_EN_c",
+            "CUP_Dubbing_Radio_EN_BAF_c",
+            "CUP_Dubbing_Radio_EN_PMC_c",
+            "CUP_Dubbing_Radio_RU_c",
+            "CUP_Dubbing_Radio_TK_c",
             "A3_Animals_F_Snakes",
             "A3_Boat_F_Beta_Boat_Transport_01",
             "A3_Boat_F_Boat_Transport_01",
@@ -1404,3 +1414,4 @@ class CfgVehicles {
 #include "CfgWeapons.hpp"
 #include "CfgMoves.hpp"
 #include "CfgSurfaces.hpp"
+#include "CfgVoiceTypes.hpp"
