@@ -12,7 +12,8 @@ const fs = require('fs'), path = require('path'), os = require('os'), crypto = r
 const { execFileSync, spawn } = require('child_process');
 
 const ARMA = process.env.ARMA || 'B:/Steam/steamapps/common/Arma 3';
-const PROFILE = 'uksfdevclient';
+// VC_PROFILE lets parallel clients run: two clients cannot share one profile.
+const PROFILE = process.env.VC_PROFILE || 'uksfdevclient';
 const PREFIX = 'uksf_vclient';
 const SHOTS = path.join(os.homedir(), 'Documents', 'Arma 3 - Other Profiles', PROFILE, 'Screenshots');
 const RPTS = path.join(process.env.LOCALAPPDATA, 'Arma 3');
