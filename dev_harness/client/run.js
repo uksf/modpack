@@ -53,6 +53,10 @@ const kill = () => { try { execFileSync('taskkill', ['/F', '/PID', String(pid)],
 // Windows marks a window "Not Responding" when its message loop stalls (a freeze, or an engine hang).
 const responding = () => { try { return !/Not Responding/i.test(execFileSync('tasklist', ['/V', '/FI', `PID eq ${pid}`, '/FO', 'CSV', '/NH'], { encoding: 'utf8' })); } catch { return true; } };
 const sleep = ms => new Promise(r => setTimeout(r, ms));
+const { LOCK } = require('./gpulock');
+// Arma is detached, so an aborted run would leave it on the GPU after the lock is released.
+process.on('exit', () => { if (pid && isRunning()) kill(); });
+for (const s of ['SIGINT', 'SIGTERM', 'SIGHUP']) process.on(s, () => process.exit(130));
 // This run's RPT: written after the launch, and its command line names our profile.
 // This run's RPT: written after the launch, and its command line names this run's temporary mod.
 const findRpt = (since, tag) => fs.readdirSync(RPTS).filter(f => /^arma3_x64_.*\.rpt$/i.test(f)).map(f => path.join(RPTS, f))
@@ -96,6 +100,15 @@ const findRpt = (since, tag) => fs.readdirSync(RPTS).filter(f => /^arma3_x64_.*\
   const t0 = Date.now();
   const child = spawn(path.join(ARMA, 'arma3_x64.exe'), argv, { cwd: ARMA, detached: true, stdio: 'ignore' });
   pid = child.pid; child.unref();
+  // A hard-killed run.js runs no exit handler; a watchdog ends Arma once run.js is gone. Node kills its own
+  // children with it (job object) and a detached PowerShell has no console, so the attached PowerShell starts
+  // the watchdog as its own child, which leaves the job.
+  const watch = `Wait-Process -Id ${process.pid} -ErrorAction SilentlyContinue; ` +
+    `Get-Process -Id ${pid} -ErrorAction SilentlyContinue | Where-Object ProcessName -eq 'arma3_x64' | Stop-Process -Force; ` +
+    `$l = '${LOCK}'; if ((Test-Path $l) -and ((Get-Content $l -Raw) -match ' pid ${process.pid} ')) { Remove-Item $l }`;
+  spawn('powershell', ['-NoProfile', '-Command',
+    `Start-Process powershell -WindowStyle Hidden -ArgumentList '-NoProfile','-Command','${watch.replace(/'/g, "''")}'`],
+    { stdio: 'ignore', windowsHide: true }).unref();
 
   let rpt;
   while (Date.now() - t0 < 60000 && !(rpt = findRpt(t0, path.basename(tmp)))) await sleep(1000);
