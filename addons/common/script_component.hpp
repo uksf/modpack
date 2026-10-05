@@ -14,9 +14,9 @@
 
 #define SAFE_POSITION_OBJECTS_IGNORE ["HeliH","Logic"]
 
-#define NVG(UNIT,NVG) class UNIT { \
+#define NVG(UNIT,NVG_CLASS) class UNIT { \
     class GVAR(nvg) { \
-        init = QUOTE([ARR_2(_this select 0,QUOTE(QUOTE(NVG)))] call FUNC(addNVG)); \
+        init = QUOTE([ARR_2(_this select 0,QUOTE(QUOTE(NVG_CLASS)))] call FUNC(addNVG)); \
     }; \
 }
 
