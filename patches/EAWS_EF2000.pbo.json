@@ -1,0 +1,18 @@
+{
+  "format": 1,
+  "pbo": "EAWS_EF2000.pbo",
+  "pristineSha256": "1c5ac47af1c290b607eb47d8f554f99616232a87c74e8f6f8a925038e2d1a136",
+  "description": "Eurofighter Typhoon (Workshop 1337653467). The fuselage model's tail hook is driven by the 'hook' animation source instead of 'gear', so it no longer drops with the landing gear (uksf_air declares the 'hook' user source), and the fuselage and parts models carry the UKSF pylon changes. The edit scripts for the pylon changes no longer exist, so both models are whole-file replacements, exported from the patched dev copy.",
+  "assets": [
+    {
+      "path": "EAWS_EF2000.p3d",
+      "sha256": "93c0a61bd359e9fe3fa831c28321a37f3db87dbe56ce7f29afa08305dab74d39",
+      "ops": [ { "op": "replace-file", "source": "EAWS_EF2000/EAWS_EF2000.p3d" } ]
+    },
+    {
+      "path": "EAWS_EF2000parts.p3d",
+      "sha256": "aa5e9d90d32c120e6cf771068eae0a278fc1c24e4db95db76f94d237330afac7",
+      "ops": [ { "op": "replace-file", "source": "EAWS_EF2000/EAWS_EF2000parts.p3d" } ]
+    }
+  ]
+}
