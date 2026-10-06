@@ -1508,6 +1508,18 @@ class CUP_T810_Unarmed_Base : CUP_T810_Base {
         };
     };
 };
+class CUP_T90M_Base : Tank_F {
+    class AnimationSources : AnimationSources {
+        class coax_muzzlehide {
+            source = "reload";
+            weapon = "CUP_Vhmg_PKT_T90M";
+        };
+        class muzzleflash_cannon_rot {
+            source = "ammorandom";
+            weapon = "CUP_Vcannon_2A46_Txx";
+        };
+    };
+};
 class CUP_Tigr_Base : Car_F {
     class AnimationSources : AnimationSources {
         class hide_gear_1 {
@@ -1714,6 +1726,14 @@ class LT_01_base_F : Tank_F {
             source = "user";
             animPeriod = 1e-07;
             initPhase = 0;
+        };
+    };
+};
+class LT_01_cannon_base_F : LT_01_base_F {
+    class AnimationSources : AnimationSources {
+        class muzzle_hide_cannon {
+            source = "reload";
+            weapon = "ACE_cannon_20mm_Rh202";
         };
     };
 };
@@ -2343,6 +2363,22 @@ class CUP_Datsun_AA_Base : CUP_Datsun_Base {
         };
     };
 };
+class CUP_Hilux_BMP1_base : CUP_Hilux_Base {
+    class AnimationSources {
+        class muzzle_rot_mg {
+            source = "ammorandom";
+            weapon = "CUP_Vhmg_PKT_veh_noeject";
+        };
+    };
+};
+class CUP_Hilux_armored_BMP1_Base : CUP_Hilux_BMP1_base {
+    class AnimationSources : AnimationSources {
+        class muzzle_rot_mg {
+            source = "ammorandom";
+            weapon = "CUP_Vhmg_PKT_veh_noeject";
+        };
+    };
+};
 class CUP_Hilux_armored_igla_Base : CUP_Hilux_igla_Base {
     class AnimationSources : AnimationSources {
         class reloadmagazine {
@@ -2365,6 +2401,14 @@ class CUP_Hilux_armored_podnos_Base : CUP_Hilux_podnos_Base {
 };
 class CUP_I_LR_SF_GMG_AAF : CUP_LR_Special_Base {
     class AnimationSources : AnimationSources {
+        class muzzle_hide_gmg {
+            source = "reload";
+            weapon = "CUP_Vgmg_MK19_veh";
+        };
+        class muzzle_rot_gmg {
+            source = "ammorandom";
+            weapon = "CUP_Vgmg_MK19_veh";
+        };
         class selection_rear {
             source = "user";
             animPeriod = 0;
@@ -2384,6 +2428,10 @@ class CUP_I_LR_SF_GMG_AAF : CUP_LR_Special_Base {
 };
 class CUP_I_LR_SF_HMG_AAF : CUP_LR_Special_Base {
     class AnimationSources : AnimationSources {
+        class muzzle_rot_m2 {
+            source = "ammorandom";
+            weapon = "CUP_Vhmg_M2_static";
+        };
         class selection_rear {
             source = "user";
             animPeriod = 0;
@@ -2592,6 +2640,18 @@ class CUP_T810_Repair_Base : CUP_T810_Unarmed_Base {
         };
     };
 };
+class CUP_T90MS_Base : CUP_T90M_Base {
+    class AnimationSources : AnimationSources {
+        class coax_muzzlehide {
+            source = "reload";
+            weapon = "CUP_Vhmg_PKT_T90M";
+        };
+        class muzzleflash_cannon_rot {
+            source = "ammorandom";
+            weapon = "CUP_Vcannon_2A46_Txx";
+        };
+    };
+};
 class CUP_UH60_Unarmed_Base : CUP_Uh60_Base {
     class AnimationSources : AnimationSources {
         class miniguns_hide {
@@ -2730,64 +2790,3 @@ class B_Truck_01_mover_F : B_Truck_01_transport_F {
     };
 };
 class CUP_MH60S_Unarmed_FFV_Base : CUP_Uh60_Unarmed_FFV_Base {};
-class CUP_MH60S_Unarmed_FFV_USN : CUP_MH60S_Unarmed_FFV_Base {
-    class AnimationSources : AnimationSources {
-        class miniguns_hide {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 1;
-        };
-    };
-};
-class CUP_MH60S_Unarmed_USN : CUP_UH60_Unarmed_Base {
-    class AnimationSources : AnimationSources {
-        class miniguns_hide {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 1;
-        };
-        class seats_hide {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 1;
-        };
-    };
-};
-class House : HouseBase {};
-class Land_Ind_Mlyn_03 : House {
-    class AnimationSources : AnimationSources {
-        class door_1_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_2_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_3_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class B_Truck_01_Repair_F : B_Truck_01_mover_F {
-    class AnimationSources : AnimationSources {
-        class mirror_l_hide {
-            source = "user";
-            animPeriod = 0.01;
-            initPhase = 0;
-        };
-    };
-};
-class B_Truck_01_ammo_F : B_Truck_01_mover_F {
-    class AnimationSources : AnimationSources {
-        class mirror_l_hide {
-            source = "user";
-            animPeriod = 0.01;
-            initPhase = 0;
-        };
-    };
-};

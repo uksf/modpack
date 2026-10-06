@@ -346,7 +346,12 @@ class APC_Tracked_01_base_F : Tank_F {
     class AnimationSources;
 };
 class APC_Tracked_02_base_F : Tank_F {
-    class AnimationSources;
+    class AnimationSources : AnimationSources {
+        class muzzle_hide_cannon {
+            source = "reload";
+            weapon = "autocannon_30mm_CTWS";
+        };
+    };
 };
 class APC_Wheeled_02_base_F : Wheeled_APC_F {
     class AnimationSources : AnimationSources {

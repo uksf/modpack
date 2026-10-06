@@ -1,0 +1,10 @@
+{
+ "CUP_I_LR_SF_GMG_AAF": {"muzzle_hide_gmg": "CUP_Vgmg_MK19_veh", "muzzle_rot_gmg": "CUP_Vgmg_MK19_veh"},
+ "CUP_I_LR_SF_HMG_AAF": {"muzzle_rot_m2": "CUP_Vhmg_M2_static"},
+ "CUP_T90M_Base": {"coax_muzzlehide": "CUP_Vhmg_PKT_T90M", "muzzleflash_cannon_rot": "CUP_Vcannon_2A46_Txx"},
+ "CUP_T90MS_Base": {"coax_muzzlehide": "CUP_Vhmg_PKT_T90M", "muzzleflash_cannon_rot": "CUP_Vcannon_2A46_Txx"},
+ "APC_Tracked_02_base_F": {"muzzle_hide_cannon": "autocannon_30mm_CTWS"},
+ "LT_01_cannon_base_F": {"muzzle_hide_cannon": "ACE_cannon_20mm_Rh202"},
+ "CUP_Hilux_BMP1_base": {"muzzle_rot_mg": "CUP_Vhmg_PKT_veh_noeject"},
+ "CUP_Hilux_armored_BMP1_Base": {"muzzle_rot_mg": "CUP_Vhmg_PKT_veh_noeject"}
+}

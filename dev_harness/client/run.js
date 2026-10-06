@@ -134,6 +134,8 @@ const findRpt = (since, tag) => fs.readdirSync(RPTS).filter(f => /^arma3_x64_.*\
     if (!isRunning()) { state = 'exited'; break; }
     // A missing required addon opens a modal dialog during loading that nothing dismisses.
     if (state === 'loading' && !/\[vclient\] start/.test(r) && /Warning Message: Addon '[^']+' requires addon/.test(r)) { state = 'missing-addon'; break; }
+    // An error in the test file stops that script, so vc_fnc_done never runs.
+    if (/File uksf_vclient\\vclient\.VR\\test\.sqf/.test(r)) { state = 'script-error'; break; }
     // Loading blocks the window legitimately (ACRE scans every PBO, much slower on a cold disk
     // cache), so the hang check starts only once the test is running.
     if (/\[vclient\] start/.test(r) && Date.now() - lastCheck > 5000) {
@@ -157,7 +159,8 @@ const findRpt = (since, tag) => fs.readdirSync(RPTS).filter(f => /^arma3_x64_.*\
   }
   console.log(lines.join('\n'));
   console.log(JSON.stringify({ state, seconds: Math.round((Date.now() - t0) / 1000), rpt, shots }, null, 1));
-  if (state === 'missing-addon') console.error("run.js: a loaded addon requires one that is not loaded; see the 'requires addon' line");
+  if (state === 'script-error') console.error('run.js: the test script hit an SQF error; see the Error lines above');
+  else if (state === 'missing-addon') console.error("run.js: a loaded addon requires one that is not loaded; see the 'requires addon' line");
   else if (state === 'hung') console.error('run.js: Arma stopped responding for 45 s and was killed; the last [vclient] line shows where');
   else if (state === 'timeout') console.error('run.js: timed out while Arma still responded; the test never reached vc_fnc_done (a stalled or long script?)');
   if (state === 'exited' && !/Shutdown normally|Exception code/.test(r))

@@ -34,6 +34,8 @@ for l in open('rootdata.txt', encoding='latin1'):
 learned = json.load(open('learned.json'))
 import os
 EXCLUDE = set(open('exclude.txt').read().split()) if os.path.exists('exclude.txt') else set()
+# root -> {source: weapon}, for sources whose name says which of several weapons drives them
+WMAP = {r: {s.lower(): w for s, w in m.items()} for r, m in json.load(open('weapon_map.json')).items()}
 rp, existing = {}, collections.defaultdict(set)
 for l in open('rootdata2.txt', encoding='latin1'):
     p = l.rstrip('\n').split('|')
@@ -92,7 +94,10 @@ for root, kids in groups.items():
             want_rocket = bool(re.search(r'rocket', s))
             cand = sorted(w for w in common if bool(ROCKET.search(w)) == want_rocket)
             lw = d.get('weapon')
-            if lw in common:
+            forced = WMAP.get(root, {}).get(s.lower())
+            if forced in common:
+                pick = forced
+            elif lw in common:
                 pick = lw
             elif len(cand) == 1:
                 pick = cand[0]
