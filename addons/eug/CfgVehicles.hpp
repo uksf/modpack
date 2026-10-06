@@ -170,15 +170,15 @@ class CfgVehicles {
                 name = "ACE_surgicalKit";
             };
             class _xx_ACE_salineIV_500 {
-                count = 4;
+                count = 8;
                 name = "ACE_salineIV_500";
             };
             class _xx_ACE_salineIV_250 {
-                count = 4;
+                count = 8;
                 name = "ACE_salineIV_250";
             };
             class _xx_ACE_salineIV {
-                count = 2;
+                count = 4;
                 name = "ACE_salineIV";
             };
         };
@@ -191,7 +191,7 @@ class CfgVehicles {
         class TransportMagazines {};
         class TransportItems {
             class _xx_ACE_elasticBandage {
-                count = 20;
+                count = 30;
                 name = "ACE_elasticBandage";
             };
             class _xx_ACE_packingBandage {
@@ -207,11 +207,11 @@ class CfgVehicles {
                 name = "ACE_morphine";
             };
             class _xx_ACE_splint {
-                count = 5;
+                count = 10;
                 name = "ACE_splint";
             };
             class _xx_ACE_tourniquet {
-                count = 5;
+                count = 10;
                 name = "ACE_tourniquet";
             };
         };

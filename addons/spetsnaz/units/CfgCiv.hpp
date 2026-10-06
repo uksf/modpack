@@ -10,7 +10,7 @@ class GVAR(civ_undercover_1) : GVAR(base) {
     magazines[] = { "10Rnd_9x21_Mag", "10Rnd_9x21_Mag", "10Rnd_9x21_Mag", "10Rnd_9x21_Mag" };
     respawnMagazines[] = { "10Rnd_9x21_Mag", "10Rnd_9x21_Mag", "10Rnd_9x21_Mag", "10Rnd_9x21_Mag" };
     linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch" };
-    resapwnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch" };
 };
 class GVAR(civ_undercover_2) : GVAR(civ_undercover_1) {
     displayName = "Undercover Civ 2";
@@ -37,5 +37,5 @@ class GVAR(civ_sniper) : GVAR(civ_undercover_1) {
     items[] = { "ACE_EarPlugs" };
     respawnItems[] = { "ACE_EarPlugs" };
     linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "H_Booniehat_oli", "V_Rangemaster_belt" };
-    resapwnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "H_Booniehat_oli", "V_Rangemaster_belt" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "H_Booniehat_oli", "V_Rangemaster_belt" };
 };

@@ -10,7 +10,7 @@ class GVAR(rifleman) : GVAR(base) {
     items[] = { "ACE_fieldDressing", "ACE_fieldDressing", "ACE_morphine" };
     respawnItems[] = { "ACE_fieldDressing", "ACE_fieldDressing", "ACE_morphine" };
     linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "H_HelmetIA", "V_PlateCarrierIA1_dgtl" };
-    resapwnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "H_HelmetIA", "V_PlateCarrierIA1_dgtl" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "H_HelmetIA", "V_PlateCarrierIA1_dgtl" };
 };
 class GVAR(grenadier) : GVAR(rifleman) {
     displayName = "Grenadier";
@@ -21,7 +21,7 @@ class GVAR(grenadier) : GVAR(rifleman) {
     magazines[] = { "Chemlight_blue", "HandGrenade", "HandGrenade", "MiniGrenade", "MiniGrenade", "1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "SmokeShell", "SmokeShellGreen", "Chemlight_blue", "1Rnd_Smoke_Grenade_shell", "1Rnd_Smoke_Grenade_shell", "1Rnd_SmokeGreen_Grenade_shell", "1Rnd_SmokeRed_Grenade_shell", "1Rnd_SmokeBlue_Grenade_shell", "30Rnd_762x39_Mag_F", "30Rnd_762x39_Mag_F", "30Rnd_762x39_Mag_F" };
     respawnMagazines[] = { "Chemlight_blue", "HandGrenade", "HandGrenade", "MiniGrenade", "MiniGrenade", "1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "SmokeShell", "SmokeShellGreen", "Chemlight_blue", "1Rnd_Smoke_Grenade_shell", "1Rnd_Smoke_Grenade_shell", "1Rnd_SmokeGreen_Grenade_shell", "1Rnd_SmokeRed_Grenade_shell", "1Rnd_SmokeBlue_Grenade_shell", "30Rnd_762x39_Mag_F", "30Rnd_762x39_Mag_F", "30Rnd_762x39_Mag_F" };
     linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "H_HelmetIA", "V_PlateCarrierIA1_dgtl", "G_Squares" };
-    resapwnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "H_HelmetIA", "V_PlateCarrierIA1_dgtl", "G_Squares" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "H_HelmetIA", "V_PlateCarrierIA1_dgtl", "G_Squares" };
 };
 class GVAR(sl) : GVAR(rifleman) {
     displayName = "Squad Leader";
@@ -34,7 +34,7 @@ class GVAR(sl) : GVAR(rifleman) {
     magazines[] = { "SmokeShell", "SmokeShellRed", "SmokeShellBlue", "30Rnd_762x39_Mag_F", "30Rnd_762x39_Mag_F", "30Rnd_762x39_Mag_F", "30Rnd_762x39_Mag_F", "30Rnd_762x39_Mag_F", "CUP_HandGrenade_RGD5", "CUP_HandGrenade_RGD5", "SmokeShell", "SmokeShell", "30Rnd_762x39_Mag_F", "30Rnd_762x39_Mag_F", "30Rnd_762x39_Mag_F" };
     respawnMagazines[] = { "SmokeShell", "SmokeShellRed", "SmokeShellBlue", "30Rnd_762x39_Mag_F", "30Rnd_762x39_Mag_F", "30Rnd_762x39_Mag_F", "30Rnd_762x39_Mag_F", "30Rnd_762x39_Mag_F", "CUP_HandGrenade_RGD5", "CUP_HandGrenade_RGD5", "SmokeShell", "SmokeShell", "30Rnd_762x39_Mag_F", "30Rnd_762x39_Mag_F", "30Rnd_762x39_Mag_F" };
     linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "Binocular", "H_Watchcap_blk", "V_Chestrig_rgr" };
-    resapwnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "Binocular", "H_Watchcap_blk", "V_Chestrig_rgr" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "Binocular", "H_Watchcap_blk", "V_Chestrig_rgr" };
 };
 class GVAR(tl) : GVAR(sl) {
     displayName = "Team Leader";
@@ -45,7 +45,7 @@ class GVAR(tl) : GVAR(sl) {
     magazines[] = { "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag_Tracer_Yellow", "30Rnd_556x45_Stanag_Tracer_Yellow", "9Rnd_45ACP_Mag", "HandGrenade", "MiniGrenade", "1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "SmokeShell", "SmokeShellGreen", "Chemlight_blue", "Chemlight_blue", "1Rnd_Smoke_Grenade_shell", "1Rnd_Smoke_Grenade_shell", "1Rnd_SmokeGreen_Grenade_shell", "1Rnd_SmokeRed_Grenade_shell", "1Rnd_SmokeBlue_Grenade_shell" };
     respawnMagazines[] = { "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag_Tracer_Yellow", "30Rnd_556x45_Stanag_Tracer_Yellow", "9Rnd_45ACP_Mag", "HandGrenade", "MiniGrenade", "1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "SmokeShell", "SmokeShellGreen", "Chemlight_blue", "Chemlight_blue", "1Rnd_Smoke_Grenade_shell", "1Rnd_Smoke_Grenade_shell", "1Rnd_SmokeGreen_Grenade_shell", "1Rnd_SmokeRed_Grenade_shell", "1Rnd_SmokeBlue_Grenade_shell" };
     linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "H_Booniehat_khk", "V_PlateCarrierIA2_dgtl" };
-    resapwnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "H_Booniehat_khk", "V_PlateCarrierIA2_dgtl" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "H_Booniehat_khk", "V_PlateCarrierIA2_dgtl" };
 };
 class GVAR(officer) : GVAR(sl) {
     displayName = "Officer";
@@ -58,24 +58,25 @@ class GVAR(officer) : GVAR(sl) {
     magazines[] = { "Chemlight_blue", "SmokeShell", "SmokeShellGreen", "SmokeShellRed", "SmokeShellBlue", "Chemlight_blue", "9Rnd_45ACP_Mag", "30Rnd_762x39_Mag_F", "30Rnd_762x39_Mag_F", "30Rnd_762x39_Mag_F", "30Rnd_762x39_Mag_F", "30Rnd_762x39_Mag_F" };
     respawnMagazines[] = { "Chemlight_blue", "SmokeShell", "SmokeShellGreen", "SmokeShellRed", "SmokeShellBlue", "Chemlight_blue", "9Rnd_45ACP_Mag", "30Rnd_762x39_Mag_F", "30Rnd_762x39_Mag_F", "30Rnd_762x39_Mag_F", "30Rnd_762x39_Mag_F", "30Rnd_762x39_Mag_F" };
     linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "ItemGPS", "H_Beret_blk", "V_PlateCarrierIA1_dgtl" };
-    resapwnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "ItemGPS", "H_Beret_blk", "V_PlateCarrierIA1_dgtl" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "ItemGPS", "H_Beret_blk", "V_PlateCarrierIA1_dgtl" };
 };
 class GVAR(mg) : GVAR(rifleman) {
     displayName = "Machinegunner";
     editorPreview = QPATHTOEF(common,data\previews\GVAR(mg).jpg);
     icon = "iconManMG";
     uniformClass = "U_OG_Guerilla2_1";
-    backpack = "B_TacticalPack_oli";
+    backpack = QGVAR(mg_pack);
     weapons[] = { "CUP_lmg_PKM" };
     respawnWeapons[] = { "CUP_lmg_PKM" };
-    magazines[] = { "MiniGrenade", "MiniGrenade", "SmokeShell", "SmokeShellGreen", "Chemlight_blue", "Chemlight_blue", "SmokeShell", "SmokeShell", "CUP_HandGrenade_RGO", "CUP_100Rnd_TE4_LRT4_762x54_PK_Tracer_Yellow_M", "CUP_100Rnd_TE4_LRT4_762x54_PK_Tracer_Yellow_M", "CUP_100Rnd_TE4_LRT4_762x54_PK_Tracer_Yellow_M", "CUP_100Rnd_TE4_LRT4_762x54_PK_Tracer_Yellow_M" };
-    respawnMagazines[] = { "MiniGrenade", "MiniGrenade", "SmokeShell", "SmokeShellGreen", "Chemlight_blue", "Chemlight_blue", "SmokeShell", "SmokeShell", "CUP_HandGrenade_RGO", "CUP_100Rnd_TE4_LRT4_762x54_PK_Tracer_Yellow_M", "CUP_100Rnd_TE4_LRT4_762x54_PK_Tracer_Yellow_M", "CUP_100Rnd_TE4_LRT4_762x54_PK_Tracer_Yellow_M", "CUP_100Rnd_TE4_LRT4_762x54_PK_Tracer_Yellow_M" };
+    magazines[] = { "MiniGrenade", "MiniGrenade", "SmokeShell", "SmokeShellGreen", "Chemlight_blue", "Chemlight_blue", "SmokeShell", "SmokeShell", "CUP_HandGrenade_RGO", "CUP_100Rnd_TE4_LRT4_762x54_PK_Tracer_Yellow_M", "CUP_100Rnd_TE4_LRT4_762x54_PK_Tracer_Yellow_M" };
+    respawnMagazines[] = { "MiniGrenade", "MiniGrenade", "SmokeShell", "SmokeShellGreen", "Chemlight_blue", "Chemlight_blue", "SmokeShell", "SmokeShell", "CUP_HandGrenade_RGO", "CUP_100Rnd_TE4_LRT4_762x54_PK_Tracer_Yellow_M", "CUP_100Rnd_TE4_LRT4_762x54_PK_Tracer_Yellow_M" };
     items[] = { "ACE_EarPlugs", "ACE_fieldDressing", "ACE_fieldDressing", "ACE_morphine" };
     respawnItems[] = { "ACE_EarPlugs", "ACE_fieldDressing", "ACE_fieldDressing", "ACE_morphine" };
     linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "H_HelmetIA", "V_PlateCarrierIA1_dgtl" };
-    resapwnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "H_HelmetIA", "V_PlateCarrierIA1_dgtl" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "H_HelmetIA", "V_PlateCarrierIA1_dgtl" };
 };
 class GVAR(medic) : GVAR(rifleman) {
+    backpack = QGVAR(medic_pack);
     displayName = "Medic";
     editorPreview = QPATHTOEF(common,data\previews\GVAR(medic).jpg);
     icon = "iconManMedic";
@@ -84,12 +85,12 @@ class GVAR(medic) : GVAR(rifleman) {
     uniformClass = "U_OG_Guerilla2_3";
     weapons[] = { "arifle_AKS_F" };
     respawnWeapons[] = { "arifle_AKS_F" };
-    items[] = { "ACE_fieldDressing", "ACE_fieldDressing", "ACE_morphine", "ACE_EarPlugs", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_tourniquet", "ACE_tourniquet", "ACE_personalAidKit", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_surgicalKit", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_quikclot", "ACE_quikclot", "ACE_quikclot", "ACE_quikclot", "ACE_quikclot", "ACE_bloodIV_250", "ACE_bloodIV_250", "ACE_bloodIV_250", "ACE_bloodIV_250", "ACE_bloodIV_500", "ACE_bloodIV_500", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine" };
-    respawnItems[] = { "ACE_fieldDressing", "ACE_fieldDressing", "ACE_morphine", "ACE_EarPlugs", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_tourniquet", "ACE_tourniquet", "ACE_personalAidKit", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_surgicalKit", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_quikclot", "ACE_quikclot", "ACE_quikclot", "ACE_quikclot", "ACE_quikclot", "ACE_bloodIV_250", "ACE_bloodIV_250", "ACE_bloodIV_250", "ACE_bloodIV_250", "ACE_bloodIV_500", "ACE_bloodIV_500", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine" };
+    items[] = { "ACE_fieldDressing", "ACE_fieldDressing", "ACE_morphine", "ACE_EarPlugs", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_tourniquet", "ACE_tourniquet", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_quikclot", "ACE_quikclot", "ACE_quikclot", "ACE_quikclot", "ACE_quikclot", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine" };
+    respawnItems[] = { "ACE_fieldDressing", "ACE_fieldDressing", "ACE_morphine", "ACE_EarPlugs", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_tourniquet", "ACE_tourniquet", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_quikclot", "ACE_quikclot", "ACE_quikclot", "ACE_quikclot", "ACE_quikclot", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine" };
     magazines[] = { "Chemlight_blue", "MiniGrenade", "SmokeShell", "SmokeShell", "SmokeShellPurple", "30Rnd_545x39_Mag_F", "30Rnd_545x39_Mag_F", "30Rnd_545x39_Mag_F", "30Rnd_545x39_Mag_F", "30Rnd_545x39_Mag_F", "30Rnd_545x39_Mag_F", "30Rnd_545x39_Mag_F" };
     respawnMagazines[] = { "Chemlight_blue", "MiniGrenade", "SmokeShell", "SmokeShell", "SmokeShellPurple", "30Rnd_545x39_Mag_F", "30Rnd_545x39_Mag_F", "30Rnd_545x39_Mag_F", "30Rnd_545x39_Mag_F", "30Rnd_545x39_Mag_F", "30Rnd_545x39_Mag_F", "30Rnd_545x39_Mag_F" };
     linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "H_HelmetIA", "V_PlateCarrierIA1_dgtl" };
-    resapwnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "H_HelmetIA", "V_PlateCarrierIA1_dgtl" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "H_HelmetIA", "V_PlateCarrierIA1_dgtl" };
 };
 class GVAR(marksman) : GVAR(rifleman) {
     displayName = "Marksman";
@@ -103,7 +104,7 @@ class GVAR(marksman) : GVAR(rifleman) {
     items[] = { "ACE_EarPlugs", "ACE_fieldDressing", "ACE_fieldDressing", "ACE_morphine" };
     respawnItems[] = { "ACE_EarPlugs", "ACE_fieldDressing", "ACE_fieldDressing", "ACE_morphine" };
     linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "Binocular", "H_Shemag_olive", "V_BandollierB_khk", "G_Sport_Greenblack" };
-    resapwnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "Binocular", "H_Shemag_olive", "V_BandollierB_khk", "G_Sport_Greenblack" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "Binocular", "H_Shemag_olive", "V_BandollierB_khk", "G_Sport_Greenblack" };
 };
 class GVAR(sniper) : GVAR(rifleman) {
     displayName = "Sniper";
@@ -116,30 +117,31 @@ class GVAR(sniper) : GVAR(rifleman) {
     items[] = { "ACE_EarPlugs" };
     respawnItems[] = { "ACE_EarPlugs" };
     linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadioAcreFlagged", "H_Shemag_olive", "V_PlateCarrierIA1_dgtl" };
-    resapwnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadioAcreFlagged", "H_Shemag_olive", "V_PlateCarrierIA1_dgtl" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadioAcreFlagged", "H_Shemag_olive", "V_PlateCarrierIA1_dgtl" };
 };
 class GVAR(at) : GVAR(rifleman) {
     displayName = "AT Rifleman";
     editorPreview = QPATHTOEF(common,data\previews\GVAR(at).jpg);
     icon = "iconManAT";
     uniformClass = "U_OG_Guerrilla_6_1";
-    backpack = "G_FieldPack_LAT";
+    backpack = QGVAR(at_pack);
     weapons[] = { "arifle_AK12_F", "launch_MRAWS_green_F" };
     respawnWeapons[] = { "arifle_AK12_F", "launch_MRAWS_green_F" };
-    magazines[] = { "Chemlight_blue", "SmokeShell", "SmokeShell", "Chemlight_blue", "30Rnd_762x39_Mag_F", "30Rnd_762x39_Mag_F", "30Rnd_762x39_Mag_F", "30Rnd_762x39_Mag_F", "MRAWS_HEAT_F", "MRAWS_HEAT_F", "MRAWS_HE_F" };
-    respawnMagazines[] = { "Chemlight_blue", "SmokeShell", "SmokeShell", "Chemlight_blue", "30Rnd_762x39_Mag_F", "30Rnd_762x39_Mag_F", "30Rnd_762x39_Mag_F", "30Rnd_762x39_Mag_F", "MRAWS_HEAT_F", "MRAWS_HEAT_F", "MRAWS_HE_F" };
+    magazines[] = { "Chemlight_blue", "SmokeShell", "SmokeShell", "Chemlight_blue", "30Rnd_762x39_Mag_F", "30Rnd_762x39_Mag_F", "30Rnd_762x39_Mag_F", "30Rnd_762x39_Mag_F", "MRAWS_HEAT_F" };
+    respawnMagazines[] = { "Chemlight_blue", "SmokeShell", "SmokeShell", "Chemlight_blue", "30Rnd_762x39_Mag_F", "30Rnd_762x39_Mag_F", "30Rnd_762x39_Mag_F", "30Rnd_762x39_Mag_F", "MRAWS_HEAT_F" };
     items[] = { "ACE_EarPlugs", "ACE_fieldDressing", "ACE_fieldDressing", "ACE_morphine", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage" };
     respawnItems[] = { "ACE_EarPlugs", "ACE_fieldDressing", "ACE_fieldDressing", "ACE_morphine", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage" };
     linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "H_Bandanna_khk", "V_PlateCarrierIA1_dgtl" };
-    resapwnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "H_Bandanna_khk", "V_PlateCarrierIA1_dgtl" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "H_Bandanna_khk", "V_PlateCarrierIA1_dgtl" };
 };
 class GVAR(aa) : GVAR(at) {
+    backpack = QGVAR(aa_pack);
     displayName = "AA Specialist";
     editorPreview = QPATHTOEF(common,data\previews\GVAR(aa).jpg);
     weapons[] = { "arifle_AKS_F", "launch_B_Titan_tna_F" };
     respawnWeapons[] = { "arifle_AKS_F", "launch_B_Titan_tna_F" };
-    magazines[] = { "Chemlight_blue", "SmokeShell", "SmokeShell", "Chemlight_blue", "30Rnd_545x39_Mag_F", "30Rnd_545x39_Mag_F", "30Rnd_545x39_Mag_F", "30Rnd_545x39_Mag_F", "30Rnd_545x39_Mag_F", "Titan_AA", "Titan_AA" };
-    respawnMagazines[] = { "Chemlight_blue", "SmokeShell", "SmokeShell", "Chemlight_blue", "30Rnd_545x39_Mag_F", "30Rnd_545x39_Mag_F", "30Rnd_545x39_Mag_F", "30Rnd_545x39_Mag_F", "30Rnd_545x39_Mag_F", "Titan_AA", "Titan_AA" };
+    magazines[] = { "Chemlight_blue", "SmokeShell", "SmokeShell", "Chemlight_blue", "30Rnd_545x39_Mag_F", "30Rnd_545x39_Mag_F", "30Rnd_545x39_Mag_F", "30Rnd_545x39_Mag_F", "30Rnd_545x39_Mag_F", "Titan_AA" };
+    respawnMagazines[] = { "Chemlight_blue", "SmokeShell", "SmokeShell", "Chemlight_blue", "30Rnd_545x39_Mag_F", "30Rnd_545x39_Mag_F", "30Rnd_545x39_Mag_F", "30Rnd_545x39_Mag_F", "30Rnd_545x39_Mag_F", "Titan_AA" };
     linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "H_Shemag_olive_hs", "V_PlateCarrierIA1_dgtl" };
-    resapwnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "H_Shemag_olive_hs", "V_PlateCarrierIA1_dgtl" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "H_Shemag_olive_hs", "V_PlateCarrierIA1_dgtl" };
 };
