@@ -5,10 +5,10 @@ class GVAR(tl) : GVAR(base) {
     icon = "iconManLeader";
     backpack = "";
     weapons[] = {
-        "Binocular", "CUP_arifle_AK74M_GL_camo", "CUP_hgun_PB6P9_snds"
+        "Binocular", QGVAR(CUP_arifle_AK74M_GL_camo_acc_flashlight), "CUP_hgun_PB6P9_snds"
     };
     respawnWeapons[] = {
-        "Binocular", "CUP_arifle_AK74M_GL_camo", "CUP_hgun_PB6P9_snds"
+        "Binocular", QGVAR(CUP_arifle_AK74M_GL_camo_acc_flashlight), "CUP_hgun_PB6P9_snds"
     };
     magazines[] = {
         "SmokeShell", "SmokeShellBlue", "CUP_8Rnd_9x18_MakarovSD_M", "CUP_8Rnd_9x18_MakarovSD_M", "CUP_8Rnd_9x18_MakarovSD_M", "CUP_30Rnd_TE1_Green_Tracer_545x39_AK74M_M", "CUP_30Rnd_TE1_Green_Tracer_545x39_AK74M_M", "CUP_30Rnd_TE1_Green_Tracer_545x39_AK74M_M", "CUP_30Rnd_TE1_Green_Tracer_545x39_AK74M_M", "CUP_30Rnd_TE1_Green_Tracer_545x39_AK74M_M", "CUP_30Rnd_TE1_Green_Tracer_545x39_AK74M_M", "CUP_30Rnd_TE1_Green_Tracer_545x39_AK74M_M", "SmokeShell", "SmokeShell", "CUP_HandGrenade_RGO", "CUP_HandGrenade_RGO", "CUP_1Rnd_HE_GP25_M", "CUP_1Rnd_HE_GP25_M", "CUP_1Rnd_HE_GP25_M", "CUP_1Rnd_HE_GP25_M"

@@ -3,7 +3,18 @@ class CfgWeapons {
     class CUP_arifle_AK74M_camo_acc_flashlight : CUP_arifle_AK74M_camo {
         class LinkedItems {
             class LinkedItemsAcc {
-                slot = "PointerSlot";
+                slot = "CUP_PicatinnySideMountAK";
+                item = "acc_flashlight";
+            };
+        };
+    };
+    class CUP_arifle_AK74M_GL_camo;
+    class GVAR(CUP_arifle_AK74M_GL_camo_acc_flashlight) : CUP_arifle_AK74M_GL_camo {
+        displayName = "AK-74M GP-25 (Woodland)";
+        scope = 1;
+        class LinkedItems {
+            class LinkedItemsAcc {
+                slot = "CUP_PicatinnySideMountAK";
                 item = "acc_flashlight";
             };
         };
