@@ -15,9 +15,15 @@ and keep its `CD|`/`RT|`/`RI|`/`RP|`/`RS|`/`CH|` RPT lines. Build the modpack WI
    AnimationSources facts (`RI`).
 4. `roots2.sqf` (roots) -> `rootdata2.txt`: AnimationSources parent paths (`RP`) and existing sources (`RS`).
 5. `python learn.py` -> `learned.json`: how the full config dump (`cfg.py`) defines each source name.
-6. `python gen_anims.py gen.cpp` once, then `chain.sqf` (each parent the output declares with
+6. Window glass: for buildings whose model animates `glass_N_source` but whose config has no `HitPoints`, run
+   `glassparents.sqf` -> `gp.txt` and `glass.sqf` -> `gl.txt` (the roots), then
+   `python gen_glass.py ../../../addons/common/common_compat_glass`. It writes vanilla-style window hitpoints
+   where the hit, `_effects` memory and fire-geometry selections all exist, and `extra_hitpoints.json`, which
+   the next step reads so the glass sources are wired. `weapon_map.json` picks the weapon for sources whose
+   name says which of several weapons drives them.
+7. `python gen_anims.py gen.cpp` once, then `chain.sqf` (each parent the output declares with
    `class AnimationSources;`) -> `chaindata.txt`, then `python gen_anims.py gen.cpp` again.
-7. Build, load the game, and check that the only `Updating base class` lines from
+8. Build, load the game, and check that the only `Updating base class` lines from
    `uksf_common_compat_anims` are `'AnimationSources'->'AnimationSources'` where a new intermediate block now
    carries the same parent. Put any other root in `exclude.txt` and regenerate.
 

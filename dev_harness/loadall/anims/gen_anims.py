@@ -1,6 +1,6 @@
 # Wires model.cfg animation sources that configs never declared, at the topmost class sharing the model.
 # Inputs: animsrc.txt (class|anim|source), classdata.txt (CD|...), rootdata.txt (RT|, RI|), learned.json.
-import json, re, collections, sys
+import json, os, re, collections, sys
 
 def arr(s):
     return json.loads(s) if s else []
@@ -12,12 +12,16 @@ for l in open('animsrc.txt', encoding='latin1'):
         unknown[p[0]].add(p[2].strip().lower())
 
 info = collections.defaultdict(lambda: {'sim': '', 'hp': {}, 'tur': [], 'wpn': []})
+cur = None
 for l in open('classdata2.txt', encoding='latin1'):
     p = l.rstrip('\n').split('|')
     if p[0] == 'CD':
+        cur = p[1]
         info[p[1]]['sim'] = p[3]; info[p[1]]['wpn'] = arr(p[4])
     elif p[0] == 'CDH':
-        info[p[1]]['hp'][p[2].lower()] = p[2]
+        # dumps before the dump.sqf fix logged the hitpoint's config path, not the class: it belongs to the last CD
+        owner = cur if '/' in p[1] else p[1]
+        info[owner]['hp'][p[2].lower()] = p[2]
     elif p[0] == 'CDT':
         info[p[1]]['tur'].append([p[2], p[3], p[4], arr(p[5])])
 info = dict(info)
@@ -32,6 +36,11 @@ for l in open('rootdata.txt', encoding='latin1'):
                        'parentLocal': p[6] == 'true', 'addons': arr(p[7])}
 
 learned = json.load(open('learned.json'))
+# hitpoints that another generated addon adds on a root (gen_glass.py), inherited by every class under it
+if os.path.exists('extra_hitpoints.json'):
+    for c, r in root_of.items():
+        for h in json.load(open('extra_hitpoints.json')).get(r, []):
+            info.setdefault(c, {'sim': '', 'hp': {}, 'tur': [], 'wpn': []})['hp'][h.lower()] = h
 import os
 EXCLUDE = set(open('exclude.txt').read().split()) if os.path.exists('exclude.txt') else set()
 # root -> {source: weapon}, for sources whose name says which of several weapons drives them

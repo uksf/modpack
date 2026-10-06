@@ -3,7 +3,6 @@ class CUP_LAV25_Base;
 class CUP_M1245_Base;
 class CUP_UAZ_Base;
 class Car;
-class Plane_Base_F;
 class StaticMGWeapon;
 class rnc_house_base;
 class All {
@@ -16,21 +15,6 @@ class CUP_BMP2_base : CUP_BMP1_base {
 };
 class CUP_B_LAV25_USMC : CUP_LAV25_Base {
     class AnimationSources;
-};
-class CUP_B_MV22_USMC : Plane_Base_F {
-    class AnimationSources;
-};
-class CUP_B_MV22_USMC_RAMPGUN : CUP_B_MV22_USMC {
-    class AnimationSources : AnimationSources {
-        class gatling_2 {
-            source = "revolving";
-            weapon = "CUP_Vlmg_M240_veh";
-        };
-        class gatling_2_muzzle_rot {
-            source = "ammorandom";
-            weapon = "CUP_Vlmg_M240_veh";
-        };
-    };
 };
 class CUP_M1245_CROWS_Base : CUP_M1245_Base {
     class AnimationSources;
@@ -99,6 +83,48 @@ class CUP_UAZ_SPG9_Base : CUP_UAZ_Armed_Base {
     };
 };
 class CUP_nHMMWV_Base;
+class CUP_nM1025_SOV_Base : CUP_nHMMWV_Base {
+    class AnimationSources {
+        class hitglass5 {
+            source = "Hit";
+            hitpoint = "HitGlass5";
+            raw = 1;
+        };
+        class hitglass6 {
+            source = "Hit";
+            hitpoint = "HitGlass6";
+            raw = 1;
+        };
+    };
+};
+class CUP_nM1025_SOV_Mk19_Base : CUP_nM1025_SOV_Base {
+    class AnimationSources : AnimationSources {
+        class hitglass5 {
+            source = "Hit";
+            hitpoint = "HitGlass5";
+            raw = 1;
+        };
+        class hitglass6 {
+            source = "Hit";
+            hitpoint = "HitGlass6";
+            raw = 1;
+        };
+    };
+};
+class CUP_nM1036_TOW_Base : CUP_nHMMWV_Base {
+    class AnimationSources {
+        class hitglass5 {
+            source = "Hit";
+            hitpoint = "HitGlass5";
+            raw = 1;
+        };
+        class hitglass6 {
+            source = "Hit";
+            hitpoint = "HitGlass6";
+            raw = 1;
+        };
+    };
+};
 class CUP_nM1037sc_Base : CUP_nHMMWV_Base {
     class AnimationSources {
         class hide_door_rear_left {
@@ -121,6 +147,16 @@ class CUP_nM1037sc_Base : CUP_nHMMWV_Base {
             animPeriod = 1e-07;
             initPhase = 0;
         };
+        class hitglass5 {
+            source = "Hit";
+            hitpoint = "HitGlass5";
+            raw = 1;
+        };
+        class hitglass6 {
+            source = "Hit";
+            hitpoint = "HitGlass6";
+            raw = 1;
+        };
     };
 };
 class CUP_nM1038_4s_Base : CUP_nHMMWV_Base {
@@ -134,6 +170,16 @@ class CUP_nM1038_4s_Base : CUP_nHMMWV_Base {
             source = "user";
             animPeriod = 1e-07;
             initPhase = 0;
+        };
+        class hitglass5 {
+            source = "Hit";
+            hitpoint = "HitGlass5";
+            raw = 1;
+        };
+        class hitglass6 {
+            source = "Hit";
+            hitpoint = "HitGlass6";
+            raw = 1;
         };
         class unhide_deployment_1 {
             source = "user";
@@ -169,6 +215,30 @@ class CUP_nM1038_Base : CUP_nHMMWV_Base {
             animPeriod = 1e-07;
             initPhase = 0;
         };
+        class hitglass5 {
+            source = "Hit";
+            hitpoint = "HitGlass5";
+            raw = 1;
+        };
+        class hitglass6 {
+            source = "Hit";
+            hitpoint = "HitGlass6";
+            raw = 1;
+        };
+    };
+};
+class CUP_nM1097_Avenger_Base : CUP_nHMMWV_Base {
+    class AnimationSources {
+        class hitglass5 {
+            source = "Hit";
+            hitpoint = "HitGlass5";
+            raw = 1;
+        };
+        class hitglass6 {
+            source = "Hit";
+            hitpoint = "HitGlass6";
+            raw = 1;
+        };
     };
 };
 class CUP_nM997_amb_Base : CUP_nHMMWV_Base {
@@ -198,6 +268,16 @@ class CUP_nM997_amb_Base : CUP_nHMMWV_Base {
             animPeriod = 1e-06;
             initPhase = 1;
         };
+        class hitglass5 {
+            source = "Hit";
+            hitpoint = "HitGlass5";
+            raw = 1;
+        };
+        class hitglass6 {
+            source = "Hit";
+            hitpoint = "HitGlass6";
+            raw = 1;
+        };
     };
 };
 class Car_F : Car {
@@ -208,6 +288,7 @@ class Helicopter_Base_H : Helicopter_Base_F {
     class AnimationSources;
 };
 class House_EP1;
+class House_F;
 class LSV_01_base_F : Car_F {
     class AnimationSources : AnimationSources {
         class maingun {
@@ -246,12 +327,56 @@ class Land_BuoyBig_F : Buoy_base_F {
         };
     };
 };
+class Land_Jbad_Ind_Garage01 : House_F {
+    class AnimationSources {
+        class hitzone_1_source {
+            source = "Hit";
+            hitpoint = "HitZone_1_hitpoint";
+            raw = 1;
+        };
+    };
+};
 class Land_Mil_Guardhouse_EP1 : House_EP1 {
     class AnimationSources {
         class door_1_nosound_source {
             source = "user";
             animPeriod = 1;
             initPhase = 0;
+        };
+    };
+};
+class Land_Mil_House_no_interior_CUP;
+class Land_Mil_House_no_interior_dam_CUP : Land_Mil_House_no_interior_CUP {
+    class AnimationSources {
+        class hit1 {
+            source = "Hit";
+            hitpoint = "Hit1";
+            raw = 1;
+        };
+        class hit2 {
+            source = "Hit";
+            hitpoint = "Hit2";
+            raw = 1;
+        };
+        class hit3 {
+            source = "Hit";
+            hitpoint = "Hit3";
+            raw = 1;
+        };
+        class hit4 {
+            source = "Hit";
+            hitpoint = "Hit4";
+            raw = 1;
+        };
+        class hit5 {
+            source = "Hit";
+            hitpoint = "Hit5";
+            raw = 1;
+        };
+        class hit6 {
+            source = "Hit";
+            hitpoint = "Hit6";
+            raw = 1;
         };
     };
 };
@@ -355,9 +480,64 @@ class APC_Tracked_02_base_F : Tank_F {
 };
 class APC_Wheeled_02_base_F : Wheeled_APC_F {
     class AnimationSources : AnimationSources {
+        class hitengine_src {
+            source = "Hit";
+            hitpoint = "HitEngine";
+            raw = 1;
+        };
+        class hitfuel_src {
+            source = "Hit";
+            hitpoint = "HitFuel";
+            raw = 1;
+        };
+        class hithull_src {
+            source = "Hit";
+            hitpoint = "HitHull";
+            raw = 1;
+        };
         class hitmaingun_src {
             source = "Hit";
             hitpoint = "HitGun";
+            raw = 1;
+        };
+        class hitslat_back_src {
+            source = "Hit";
+            hitpoint = "HitSLAT_back";
+            raw = 1;
+        };
+        class hitslat_front_src {
+            source = "Hit";
+            hitpoint = "HitSLAT_front";
+            raw = 1;
+        };
+        class hitslat_left_1_src {
+            source = "Hit";
+            hitpoint = "HitSLAT_Left_1";
+            raw = 1;
+        };
+        class hitslat_left_2_src {
+            source = "Hit";
+            hitpoint = "HitSLAT_Left_2";
+            raw = 1;
+        };
+        class hitslat_left_3_src {
+            source = "Hit";
+            hitpoint = "HitSLAT_Left_3";
+            raw = 1;
+        };
+        class hitslat_right_1_src {
+            source = "Hit";
+            hitpoint = "HitSLAT_Right_1";
+            raw = 1;
+        };
+        class hitslat_right_2_src {
+            source = "Hit";
+            hitpoint = "HitSLAT_Right_2";
+            raw = 1;
+        };
+        class hitslat_right_3_src {
+            source = "Hit";
+            hitpoint = "HitSLAT_Right_3";
             raw = 1;
         };
         class hitturret_src {
@@ -575,6 +755,31 @@ class CUP_A1_Cihlovej_dum_mini : CUP_A1_Buildings {
             animPeriod = 1;
             initPhase = 0;
         };
+        class glass_1_source {
+            source = "Hit";
+            hitpoint = "Glass_1_hitpoint";
+            raw = 1;
+        };
+        class glass_2_source {
+            source = "Hit";
+            hitpoint = "Glass_2_hitpoint";
+            raw = 1;
+        };
+        class glass_3_source {
+            source = "Hit";
+            hitpoint = "Glass_3_hitpoint";
+            raw = 1;
+        };
+        class glass_4_source {
+            source = "Hit";
+            hitpoint = "Glass_4_hitpoint";
+            raw = 1;
+        };
+        class glass_5_source {
+            source = "Hit";
+            hitpoint = "Glass_5_hitpoint";
+            raw = 1;
+        };
     };
 };
 class CUP_A1_Dum_mesto2 : CUP_A1_Buildings {
@@ -693,6 +898,46 @@ class CUP_A1_SS_hangar : CUP_A1_Buildings {
             animPeriod = 1;
             initPhase = 0;
         };
+        class glass_1_source {
+            source = "Hit";
+            hitpoint = "Glass_1_hitpoint";
+            raw = 1;
+        };
+        class glass_2_source {
+            source = "Hit";
+            hitpoint = "Glass_2_hitpoint";
+            raw = 1;
+        };
+        class glass_3_source {
+            source = "Hit";
+            hitpoint = "Glass_3_hitpoint";
+            raw = 1;
+        };
+        class glass_4_source {
+            source = "Hit";
+            hitpoint = "Glass_4_hitpoint";
+            raw = 1;
+        };
+        class glass_5_source {
+            source = "Hit";
+            hitpoint = "Glass_5_hitpoint";
+            raw = 1;
+        };
+        class glass_6_source {
+            source = "Hit";
+            hitpoint = "Glass_6_hitpoint";
+            raw = 1;
+        };
+        class glass_7_source {
+            source = "Hit";
+            hitpoint = "Glass_7_hitpoint";
+            raw = 1;
+        };
+        class glass_8_source {
+            source = "Hit";
+            hitpoint = "Glass_8_hitpoint";
+            raw = 1;
+        };
     };
 };
 class CUP_A1_SS_hangarD : CUP_A1_Buildings {
@@ -722,6 +967,46 @@ class CUP_A1_SS_hangarD : CUP_A1_Buildings {
             animPeriod = 1;
             initPhase = 0;
         };
+        class glass_1_source {
+            source = "Hit";
+            hitpoint = "Glass_1_hitpoint";
+            raw = 1;
+        };
+        class glass_2_source {
+            source = "Hit";
+            hitpoint = "Glass_2_hitpoint";
+            raw = 1;
+        };
+        class glass_3_source {
+            source = "Hit";
+            hitpoint = "Glass_3_hitpoint";
+            raw = 1;
+        };
+        class glass_4_source {
+            source = "Hit";
+            hitpoint = "Glass_4_hitpoint";
+            raw = 1;
+        };
+        class glass_5_source {
+            source = "Hit";
+            hitpoint = "Glass_5_hitpoint";
+            raw = 1;
+        };
+        class glass_6_source {
+            source = "Hit";
+            hitpoint = "Glass_6_hitpoint";
+            raw = 1;
+        };
+        class glass_7_source {
+            source = "Hit";
+            hitpoint = "Glass_7_hitpoint";
+            raw = 1;
+        };
+        class glass_8_source {
+            source = "Hit";
+            hitpoint = "Glass_8_hitpoint";
+            raw = 1;
+        };
     };
 };
 class CUP_A1_Sara_domek_sedy : CUP_A1_Buildings {
@@ -748,6 +1033,56 @@ class CUP_A1_Sara_zluty_statek_in : CUP_A1_Buildings {
             source = "user";
             animPeriod = 1;
             initPhase = 0;
+        };
+        class glass_10_source {
+            source = "Hit";
+            hitpoint = "Glass_10_hitpoint";
+            raw = 1;
+        };
+        class glass_1_source {
+            source = "Hit";
+            hitpoint = "Glass_1_hitpoint";
+            raw = 1;
+        };
+        class glass_2_source {
+            source = "Hit";
+            hitpoint = "Glass_2_hitpoint";
+            raw = 1;
+        };
+        class glass_3_source {
+            source = "Hit";
+            hitpoint = "Glass_3_hitpoint";
+            raw = 1;
+        };
+        class glass_4_source {
+            source = "Hit";
+            hitpoint = "Glass_4_hitpoint";
+            raw = 1;
+        };
+        class glass_5_source {
+            source = "Hit";
+            hitpoint = "Glass_5_hitpoint";
+            raw = 1;
+        };
+        class glass_6_source {
+            source = "Hit";
+            hitpoint = "Glass_6_hitpoint";
+            raw = 1;
+        };
+        class glass_7_source {
+            source = "Hit";
+            hitpoint = "Glass_7_hitpoint";
+            raw = 1;
+        };
+        class glass_8_source {
+            source = "Hit";
+            hitpoint = "Glass_8_hitpoint";
+            raw = 1;
+        };
+        class glass_9_source {
+            source = "Hit";
+            hitpoint = "Glass_9_hitpoint";
+            raw = 1;
         };
     };
 };
@@ -824,6 +1159,11 @@ class CUP_A1_army_hut2_int : CUP_A1_Buildings {
             source = "user";
             animPeriod = 1;
             initPhase = 0;
+        };
+        class glass_1_source {
+            source = "Hit";
+            hitpoint = "Glass_1_hitpoint";
+            raw = 1;
         };
     };
 };
@@ -959,6 +1299,86 @@ class CUP_A1_budova3 : CUP_A1_Buildings {
             animPeriod = 1;
             initPhase = 0;
         };
+        class glass_10_source {
+            source = "Hit";
+            hitpoint = "Glass_10_hitpoint";
+            raw = 1;
+        };
+        class glass_11_source {
+            source = "Hit";
+            hitpoint = "Glass_11_hitpoint";
+            raw = 1;
+        };
+        class glass_12_source {
+            source = "Hit";
+            hitpoint = "Glass_12_hitpoint";
+            raw = 1;
+        };
+        class glass_13_source {
+            source = "Hit";
+            hitpoint = "Glass_13_hitpoint";
+            raw = 1;
+        };
+        class glass_14_source {
+            source = "Hit";
+            hitpoint = "Glass_14_hitpoint";
+            raw = 1;
+        };
+        class glass_15_source {
+            source = "Hit";
+            hitpoint = "Glass_15_hitpoint";
+            raw = 1;
+        };
+        class glass_16_source {
+            source = "Hit";
+            hitpoint = "Glass_16_hitpoint";
+            raw = 1;
+        };
+        class glass_1_source {
+            source = "Hit";
+            hitpoint = "Glass_1_hitpoint";
+            raw = 1;
+        };
+        class glass_2_source {
+            source = "Hit";
+            hitpoint = "Glass_2_hitpoint";
+            raw = 1;
+        };
+        class glass_3_source {
+            source = "Hit";
+            hitpoint = "Glass_3_hitpoint";
+            raw = 1;
+        };
+        class glass_4_source {
+            source = "Hit";
+            hitpoint = "Glass_4_hitpoint";
+            raw = 1;
+        };
+        class glass_5_source {
+            source = "Hit";
+            hitpoint = "Glass_5_hitpoint";
+            raw = 1;
+        };
+        class glass_6_source {
+            source = "Hit";
+            hitpoint = "Glass_6_hitpoint";
+            raw = 1;
+        };
+        class glass_7_source {
+            source = "Hit";
+            hitpoint = "Glass_7_hitpoint";
+            raw = 1;
+        };
+        class glass_8_source {
+            source = "Hit";
+            hitpoint = "Glass_8_hitpoint";
+            raw = 1;
+        };
+        class glass_9_source {
+            source = "Hit";
+            hitpoint = "Glass_9_hitpoint";
+            raw = 1;
+        };
     };
 };
 class CUP_A1_budova4_in : CUP_A1_Buildings {
@@ -987,6 +1407,81 @@ class CUP_A1_budova4_in : CUP_A1_Buildings {
             source = "user";
             animPeriod = 1;
             initPhase = 0;
+        };
+        class glass_10_source {
+            source = "Hit";
+            hitpoint = "Glass_10_hitpoint";
+            raw = 1;
+        };
+        class glass_11_source {
+            source = "Hit";
+            hitpoint = "Glass_11_hitpoint";
+            raw = 1;
+        };
+        class glass_12_source {
+            source = "Hit";
+            hitpoint = "Glass_12_hitpoint";
+            raw = 1;
+        };
+        class glass_13_source {
+            source = "Hit";
+            hitpoint = "Glass_13_hitpoint";
+            raw = 1;
+        };
+        class glass_14_source {
+            source = "Hit";
+            hitpoint = "Glass_14_hitpoint";
+            raw = 1;
+        };
+        class glass_15_source {
+            source = "Hit";
+            hitpoint = "Glass_15_hitpoint";
+            raw = 1;
+        };
+        class glass_1_source {
+            source = "Hit";
+            hitpoint = "Glass_1_hitpoint";
+            raw = 1;
+        };
+        class glass_2_source {
+            source = "Hit";
+            hitpoint = "Glass_2_hitpoint";
+            raw = 1;
+        };
+        class glass_3_source {
+            source = "Hit";
+            hitpoint = "Glass_3_hitpoint";
+            raw = 1;
+        };
+        class glass_4_source {
+            source = "Hit";
+            hitpoint = "Glass_4_hitpoint";
+            raw = 1;
+        };
+        class glass_5_source {
+            source = "Hit";
+            hitpoint = "Glass_5_hitpoint";
+            raw = 1;
+        };
+        class glass_6_source {
+            source = "Hit";
+            hitpoint = "Glass_6_hitpoint";
+            raw = 1;
+        };
+        class glass_7_source {
+            source = "Hit";
+            hitpoint = "Glass_7_hitpoint";
+            raw = 1;
+        };
+        class glass_8_source {
+            source = "Hit";
+            hitpoint = "Glass_8_hitpoint";
+            raw = 1;
+        };
+        class glass_9_source {
+            source = "Hit";
+            hitpoint = "Glass_9_hitpoint";
+            raw = 1;
         };
     };
 };
@@ -1098,6 +1593,36 @@ class CUP_A1_hangar_2 : CUP_A1_Buildings {
             animPeriod = 1;
             initPhase = 0;
         };
+        class glass_1_source {
+            source = "Hit";
+            hitpoint = "Glass_1_hitpoint";
+            raw = 1;
+        };
+        class glass_2_source {
+            source = "Hit";
+            hitpoint = "Glass_2_hitpoint";
+            raw = 1;
+        };
+        class glass_3_source {
+            source = "Hit";
+            hitpoint = "Glass_3_hitpoint";
+            raw = 1;
+        };
+        class glass_4_source {
+            source = "Hit";
+            hitpoint = "Glass_4_hitpoint";
+            raw = 1;
+        };
+        class glass_5_source {
+            source = "Hit";
+            hitpoint = "Glass_5_hitpoint";
+            raw = 1;
+        };
+        class glass_6_source {
+            source = "Hit";
+            hitpoint = "Glass_6_hitpoint";
+            raw = 1;
+        };
     };
 };
 class CUP_A1_hospoda_mesto : CUP_A1_Buildings {
@@ -1165,6 +1690,36 @@ class CUP_A1_house_y : CUP_A1_Buildings {
             source = "user";
             animPeriod = 1;
             initPhase = 0;
+        };
+        class glass_1_source {
+            source = "Hit";
+            hitpoint = "Glass_1_hitpoint";
+            raw = 1;
+        };
+        class glass_2_source {
+            source = "Hit";
+            hitpoint = "Glass_2_hitpoint";
+            raw = 1;
+        };
+        class glass_3_source {
+            source = "Hit";
+            hitpoint = "Glass_3_hitpoint";
+            raw = 1;
+        };
+        class glass_4_source {
+            source = "Hit";
+            hitpoint = "Glass_4_hitpoint";
+            raw = 1;
+        };
+        class glass_5_source {
+            source = "Hit";
+            hitpoint = "Glass_5_hitpoint";
+            raw = 1;
+        };
+        class glass_6_source {
+            source = "Hit";
+            hitpoint = "Glass_6_hitpoint";
+            raw = 1;
         };
     };
 };
@@ -1600,6 +2155,81 @@ class CUP_A2_barracks : CUP_A2_Military {
             animPeriod = 1;
             initPhase = 0;
         };
+        class glass_10_source {
+            source = "Hit";
+            hitpoint = "Glass_10_hitpoint";
+            raw = 1;
+        };
+        class glass_11_source {
+            source = "Hit";
+            hitpoint = "Glass_11_hitpoint";
+            raw = 1;
+        };
+        class glass_12_source {
+            source = "Hit";
+            hitpoint = "Glass_12_hitpoint";
+            raw = 1;
+        };
+        class glass_13_source {
+            source = "Hit";
+            hitpoint = "Glass_13_hitpoint";
+            raw = 1;
+        };
+        class glass_14_source {
+            source = "Hit";
+            hitpoint = "Glass_14_hitpoint";
+            raw = 1;
+        };
+        class glass_15_source {
+            source = "Hit";
+            hitpoint = "Glass_15_hitpoint";
+            raw = 1;
+        };
+        class glass_1_source {
+            source = "Hit";
+            hitpoint = "Glass_1_hitpoint";
+            raw = 1;
+        };
+        class glass_2_source {
+            source = "Hit";
+            hitpoint = "Glass_2_hitpoint";
+            raw = 1;
+        };
+        class glass_3_source {
+            source = "Hit";
+            hitpoint = "Glass_3_hitpoint";
+            raw = 1;
+        };
+        class glass_4_source {
+            source = "Hit";
+            hitpoint = "Glass_4_hitpoint";
+            raw = 1;
+        };
+        class glass_5_source {
+            source = "Hit";
+            hitpoint = "Glass_5_hitpoint";
+            raw = 1;
+        };
+        class glass_6_source {
+            source = "Hit";
+            hitpoint = "Glass_6_hitpoint";
+            raw = 1;
+        };
+        class glass_7_source {
+            source = "Hit";
+            hitpoint = "Glass_7_hitpoint";
+            raw = 1;
+        };
+        class glass_8_source {
+            source = "Hit";
+            hitpoint = "Glass_8_hitpoint";
+            raw = 1;
+        };
+        class glass_9_source {
+            source = "Hit";
+            hitpoint = "Glass_9_hitpoint";
+            raw = 1;
+        };
     };
 };
 class CUP_A2_barracks_ep1 : CUP_A2_Military {
@@ -1618,6 +2248,81 @@ class CUP_A2_barracks_ep1 : CUP_A2_Military {
             source = "user";
             animPeriod = 1;
             initPhase = 0;
+        };
+        class glass_10_source {
+            source = "Hit";
+            hitpoint = "Glass_10_hitpoint";
+            raw = 1;
+        };
+        class glass_11_source {
+            source = "Hit";
+            hitpoint = "Glass_11_hitpoint";
+            raw = 1;
+        };
+        class glass_12_source {
+            source = "Hit";
+            hitpoint = "Glass_12_hitpoint";
+            raw = 1;
+        };
+        class glass_13_source {
+            source = "Hit";
+            hitpoint = "Glass_13_hitpoint";
+            raw = 1;
+        };
+        class glass_14_source {
+            source = "Hit";
+            hitpoint = "Glass_14_hitpoint";
+            raw = 1;
+        };
+        class glass_15_source {
+            source = "Hit";
+            hitpoint = "Glass_15_hitpoint";
+            raw = 1;
+        };
+        class glass_1_source {
+            source = "Hit";
+            hitpoint = "Glass_1_hitpoint";
+            raw = 1;
+        };
+        class glass_2_source {
+            source = "Hit";
+            hitpoint = "Glass_2_hitpoint";
+            raw = 1;
+        };
+        class glass_3_source {
+            source = "Hit";
+            hitpoint = "Glass_3_hitpoint";
+            raw = 1;
+        };
+        class glass_4_source {
+            source = "Hit";
+            hitpoint = "Glass_4_hitpoint";
+            raw = 1;
+        };
+        class glass_5_source {
+            source = "Hit";
+            hitpoint = "Glass_5_hitpoint";
+            raw = 1;
+        };
+        class glass_6_source {
+            source = "Hit";
+            hitpoint = "Glass_6_hitpoint";
+            raw = 1;
+        };
+        class glass_7_source {
+            source = "Hit";
+            hitpoint = "Glass_7_hitpoint";
+            raw = 1;
+        };
+        class glass_8_source {
+            source = "Hit";
+            hitpoint = "Glass_8_hitpoint";
+            raw = 1;
+        };
+        class glass_9_source {
+            source = "Hit";
+            hitpoint = "Glass_9_hitpoint";
+            raw = 1;
         };
     };
 };
@@ -1652,6 +2357,106 @@ class CUP_A2_barracks_i : CUP_A2_Military {
             source = "user";
             animPeriod = 1;
             initPhase = 0;
+        };
+        class glass_10_source {
+            source = "Hit";
+            hitpoint = "Glass_10_hitpoint";
+            raw = 1;
+        };
+        class glass_11_source {
+            source = "Hit";
+            hitpoint = "Glass_11_hitpoint";
+            raw = 1;
+        };
+        class glass_12_source {
+            source = "Hit";
+            hitpoint = "Glass_12_hitpoint";
+            raw = 1;
+        };
+        class glass_13_source {
+            source = "Hit";
+            hitpoint = "Glass_13_hitpoint";
+            raw = 1;
+        };
+        class glass_14_source {
+            source = "Hit";
+            hitpoint = "Glass_14_hitpoint";
+            raw = 1;
+        };
+        class glass_15_source {
+            source = "Hit";
+            hitpoint = "Glass_15_hitpoint";
+            raw = 1;
+        };
+        class glass_16_source {
+            source = "Hit";
+            hitpoint = "Glass_16_hitpoint";
+            raw = 1;
+        };
+        class glass_17_source {
+            source = "Hit";
+            hitpoint = "Glass_17_hitpoint";
+            raw = 1;
+        };
+        class glass_18_source {
+            source = "Hit";
+            hitpoint = "Glass_18_hitpoint";
+            raw = 1;
+        };
+        class glass_19_source {
+            source = "Hit";
+            hitpoint = "Glass_19_hitpoint";
+            raw = 1;
+        };
+        class glass_1_source {
+            source = "Hit";
+            hitpoint = "Glass_1_hitpoint";
+            raw = 1;
+        };
+        class glass_20_source {
+            source = "Hit";
+            hitpoint = "Glass_20_hitpoint";
+            raw = 1;
+        };
+        class glass_2_source {
+            source = "Hit";
+            hitpoint = "Glass_2_hitpoint";
+            raw = 1;
+        };
+        class glass_3_source {
+            source = "Hit";
+            hitpoint = "Glass_3_hitpoint";
+            raw = 1;
+        };
+        class glass_4_source {
+            source = "Hit";
+            hitpoint = "Glass_4_hitpoint";
+            raw = 1;
+        };
+        class glass_5_source {
+            source = "Hit";
+            hitpoint = "Glass_5_hitpoint";
+            raw = 1;
+        };
+        class glass_6_source {
+            source = "Hit";
+            hitpoint = "Glass_6_hitpoint";
+            raw = 1;
+        };
+        class glass_7_source {
+            source = "Hit";
+            hitpoint = "Glass_7_hitpoint";
+            raw = 1;
+        };
+        class glass_8_source {
+            source = "Hit";
+            hitpoint = "Glass_8_hitpoint";
+            raw = 1;
+        };
+        class glass_9_source {
+            source = "Hit";
+            hitpoint = "Glass_9_hitpoint";
+            raw = 1;
         };
     };
 };
@@ -1710,6 +2515,81 @@ class CUP_A2_budova4_in : CUP_A2_Industry {
             source = "user";
             animPeriod = 1;
             initPhase = 0;
+        };
+        class glass_10_source {
+            source = "Hit";
+            hitpoint = "Glass_10_hitpoint";
+            raw = 1;
+        };
+        class glass_11_source {
+            source = "Hit";
+            hitpoint = "Glass_11_hitpoint";
+            raw = 1;
+        };
+        class glass_12_source {
+            source = "Hit";
+            hitpoint = "Glass_12_hitpoint";
+            raw = 1;
+        };
+        class glass_13_source {
+            source = "Hit";
+            hitpoint = "Glass_13_hitpoint";
+            raw = 1;
+        };
+        class glass_14_source {
+            source = "Hit";
+            hitpoint = "Glass_14_hitpoint";
+            raw = 1;
+        };
+        class glass_15_source {
+            source = "Hit";
+            hitpoint = "Glass_15_hitpoint";
+            raw = 1;
+        };
+        class glass_1_source {
+            source = "Hit";
+            hitpoint = "Glass_1_hitpoint";
+            raw = 1;
+        };
+        class glass_2_source {
+            source = "Hit";
+            hitpoint = "Glass_2_hitpoint";
+            raw = 1;
+        };
+        class glass_3_source {
+            source = "Hit";
+            hitpoint = "Glass_3_hitpoint";
+            raw = 1;
+        };
+        class glass_4_source {
+            source = "Hit";
+            hitpoint = "Glass_4_hitpoint";
+            raw = 1;
+        };
+        class glass_5_source {
+            source = "Hit";
+            hitpoint = "Glass_5_hitpoint";
+            raw = 1;
+        };
+        class glass_6_source {
+            source = "Hit";
+            hitpoint = "Glass_6_hitpoint";
+            raw = 1;
+        };
+        class glass_7_source {
+            source = "Hit";
+            hitpoint = "Glass_7_hitpoint";
+            raw = 1;
+        };
+        class glass_8_source {
+            source = "Hit";
+            hitpoint = "Glass_8_hitpoint";
+            raw = 1;
+        };
+        class glass_9_source {
+            source = "Hit";
+            hitpoint = "Glass_9_hitpoint";
+            raw = 1;
         };
     };
 };
@@ -1811,893 +2691,6 @@ class CUP_A2_coltan_main_ep1 : CUP_A2_Industry {
             initPhase = 0;
         };
         class door_2_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class CUP_A2_controltower : CUP_A2_Military {
-    class AnimationSources : AnimationSources {
-        class door_1_nosound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_1_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_2_nosound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_2_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_3_nosound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_3_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_4_nosound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_4_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_5_nosound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_5_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class CUP_A2_controltower_dam : CUP_A2_Military {
-    class AnimationSources : AnimationSources {
-        class door_1_nosound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_1_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_2_nosound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_2_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_3_nosound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_3_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_4_nosound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_4_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_5_nosound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_5_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class CUP_A2_controltower_dam_ep1 : CUP_A2_Military {
-    class AnimationSources : AnimationSources {
-        class door_1_nosound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_1_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_2_nosound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_2_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_3_nosound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_3_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_4_nosound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_4_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_5_nosound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_5_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class CUP_A2_controltower_ep1 : CUP_A2_Military {
-    class AnimationSources : AnimationSources {
-        class door_1_nosound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_1_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_2_nosound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_2_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_3_nosound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_3_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_4_nosound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_4_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_5_nosound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_5_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class CUP_A2_dum_mesto2 : CUP_A2_Civilian {
-    class AnimationSources : AnimationSources {
-        class door_1_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_2_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_3_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_4_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_5_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_6_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_7_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_8_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class CUP_A2_farm_cowshed_a : CUP_A2_Civilian {
-    class AnimationSources : AnimationSources {
-        class door_1_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_2_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_3_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_4_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_5_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class CUP_A2_farm_cowshed_a_dam : CUP_A2_Civilian {
-    class AnimationSources : AnimationSources {
-        class door_1_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_2_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_3_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_4_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_5_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class CUP_A2_farm_cowshed_c : CUP_A2_Civilian {
-    class AnimationSources : AnimationSources {
-        class door_1_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_2_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class CUP_A2_farm_cowshed_c_dam : CUP_A2_Civilian {
-    class AnimationSources : AnimationSources {
-        class door_1_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_2_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class CUP_A2_fuelstation_build : CUP_A2_Industry {
-    class AnimationSources : AnimationSources {
-        class door_1_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_2_nosound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_2_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class CUP_A2_fuelstation_build_ep1 : CUP_A2_Industry {
-    class AnimationSources : AnimationSources {
-        class door_1_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_2_nosound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_2_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class CUP_A2_fuelstation_build_pmc : CUP_A2_Industry {
-    class AnimationSources : AnimationSources {
-        class door_1_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_2_nosound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_2_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class CUP_A2_garage01 : CUP_A2_Industry {
-    class AnimationSources : AnimationSources {
-        class door_1_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_2_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class CUP_A2_garage01_ep1 : CUP_A2_Industry {
-    class AnimationSources : AnimationSources {
-        class door_1_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_2_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class CUP_A2_garaz : CUP_A2_Industry {
-    class AnimationSources : AnimationSources {
-        class door_1_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_2_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_3_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class CUP_A2_garaz_mala : CUP_A2_Industry {
-    class AnimationSources : AnimationSources {
-        class door_1_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class CUP_A2_gate_ind1_l : CUP_A2_Walls {
-    class AnimationSources : AnimationSources {
-        class door_1_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class CUP_A2_gate_ind1_r : CUP_A2_Walls {
-    class AnimationSources : AnimationSources {
-        class door_1_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class CUP_A2_gate_ind2a_l : CUP_A2_Walls {
-    class AnimationSources : AnimationSources {
-        class door_1_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class CUP_A2_gate_ind2a_r : CUP_A2_Walls {
-    class AnimationSources : AnimationSources {
-        class door_1_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class CUP_A2_gate_ind2b_l : CUP_A2_Walls {
-    class AnimationSources : AnimationSources {
-        class door_1_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class CUP_A2_gate_ind2b_r : CUP_A2_Walls {
-    class AnimationSources : AnimationSources {
-        class door_1_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class CUP_A2_gate_ind2rail_l : CUP_A2_Walls {
-    class AnimationSources : AnimationSources {
-        class door_1_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class CUP_A2_gate_ind2rail_r : CUP_A2_Walls {
-    class AnimationSources : AnimationSources {
-        class door_1_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class CUP_A2_gate_indvar2_5 : CUP_A2_Walls {
-    class AnimationSources : AnimationSources {
-        class door_1_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_2_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class CUP_A2_gate_village : CUP_A2_Fences {
-    class AnimationSources : AnimationSources {
-        class door_1_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class CUP_A2_gate_wood1 : CUP_A2_Fences {
-    class AnimationSources : AnimationSources {
-        class door_1_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class CUP_A2_gate_wood1_5 : CUP_A2_Fences {
-    class AnimationSources : AnimationSources {
-        class door_1_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class CUP_A2_gate_wood2_5 : CUP_A2_Fences {
-    class AnimationSources : AnimationSources {
-        class door_1_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class CUP_A2_generalstore_01 : CUP_A2_Industry {
-    class AnimationSources : AnimationSources {
-        class door_10_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_1_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_2_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_3_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_4_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_5_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_6_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_7_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_8_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_9_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class CUP_A2_generalstore_01_dam : CUP_A2_Industry {
-    class AnimationSources : AnimationSources {
-        class door_10_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_1_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_2_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_3_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_4_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_5_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_6_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_7_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_8_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_9_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class CUP_A2_generalstore_01a : CUP_A2_Industry {
-    class AnimationSources : AnimationSources {
-        class door_10_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_1_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_2_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_3_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_4_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_5_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_6_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_7_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_8_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_9_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class CUP_A2_generalstore_01a_dam : CUP_A2_Industry {
-    class AnimationSources : AnimationSources {
-        class door_10_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_1_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_2_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_3_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_4_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_5_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_6_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_7_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_8_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_9_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class CUP_A2_guardhouse : CUP_A2_Military {
-    class AnimationSources : AnimationSources {
-        class door_1_nosound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_1_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_2_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class CUP_A2_guardhouse_ep1 : CUP_A2_Military {
-    class AnimationSources : AnimationSources {
-        class door_1_nosound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_1_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_2_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class CUP_A2_hangar_2 : CUP_A2_Military {
-    class AnimationSources : AnimationSources {
-        class door_1_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_2_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_3_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_4_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_5_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-        class door_6_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class CUP_A2_hlidac_budka : CUP_A2_Civilian {
-    class AnimationSources : AnimationSources {
-        class door_1_sound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class CUP_A2_hlidac_budka_ep1 : CUP_A2_Civilian {
-    class AnimationSources : AnimationSources {
-        class door_1_sound_source {
             source = "user";
             animPeriod = 1;
             initPhase = 0;
