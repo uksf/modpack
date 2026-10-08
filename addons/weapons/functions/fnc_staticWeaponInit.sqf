@@ -28,11 +28,9 @@
 // UK3CB_BAF_Weapons_Static_fnc_rapid_deploy_weapon = compile preprocessFileLineNumbers "\UK3CB_BAF_Equipment\static_weapons\functions\fn_rapid_deploy_weapon.sqf";
 
 UK3CB_BAF_Weapons_Static_fnc_addMagazine = {
-   private ["_weaponPlatform", "_magName", "_gunner"];
-
-    _weaponPlatform = _this select 0;
-    _magName = _this select 1;
-    _gunner = gunner _weaponPlatform;
+    private _weaponPlatform = _this select 0;
+    private _magName = _this select 1;
+    private _gunner = gunner _weaponPlatform;
 
     if (isNull _gunner) then {
         // Call the command on the PC controlling the weapon platform
@@ -78,11 +76,9 @@ UK3CB_BAF_Weapons_Static_fnc_addMagazine = {
 };
 
 UK3CB_BAF_Weapons_Static_fnc_setRoundsInMagazine = {
-   private ["_weaponPlatform","_magName","_rounds"];
-
-    _weaponPlatform = _this select 0;
-    _magName = _this select 1;
-    _rounds = _this select 2;
+    private _weaponPlatform = _this select 0;
+    private _magName = _this select 1;
+    private _rounds = _this select 2;
 
     if (local _weaponPlatform) then {
         _weaponPlatform setMagazineTurretAmmo [_magName, _rounds, [0]];
@@ -102,10 +98,8 @@ UK3CB_BAF_Weapons_Static_fnc_setRoundsInMagazine = {
 };
 
 UK3CB_BAF_Weapons_Static_fnc_removeMagazine = {
-   private ["_weaponPlatform","_magName"];
-
-    _weaponPlatform = _this select 0;
-    _magName = _this select 1;
+    private _weaponPlatform = _this select 0;
+    private _magName = _this select 1;
 
     if (local _weaponPlatform) then {
         _weaponPlatform removeMagazineTurret [_magName, [0]];
@@ -125,10 +119,8 @@ UK3CB_BAF_Weapons_Static_fnc_removeMagazine = {
 };
 
 UK3CB_BAF_Weapons_Static_fnc_lock = {
-   private ["_weaponPlatform","_condition"];
-
-    _weaponPlatform = _this select 0;
-    _condition = _this select 1;
+    private _weaponPlatform = _this select 0;
+    private _condition = _this select 1;
 
     if (local _weaponPlatform) then {
         _weaponPlatform lockTurret [[0], _condition];
@@ -148,8 +140,7 @@ UK3CB_BAF_Weapons_Static_fnc_lock = {
 };
 
 UK3CB_BAF_Weapons_Static_fnc_setOwnerToServer = {
-    private ["_weaponPlatform"];
-    _weaponPlatform = _this select 0;
+    private _weaponPlatform = _this select 0;
 
     if (isServer) then {
         _weaponPlatform setOwner 1;

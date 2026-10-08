@@ -1,4 +1,4 @@
-class cfgGroups {
+class CfgGroups {
     class Indep {
         name = "Independent";
         class ZGF {

@@ -43,3 +43,15 @@ enabled = false
 
 [config.unused_external]
 enabled = false
+
+[stringtables.usage]
+# common_compat supplies keys that other mods' configs reference but those mods never ship
+options.ignore = [
+    "str_a3_sp_noheador",
+    "str_ffaa_casa_base",
+    "str_globe_cfgvehicles_land_tank_rust_g_fuel0",
+    "str_globe_cfgvehicles_land_trailercistern_wreck_g_fuel0",
+    "str_globe_cfgvehicles_van_02_medevac_base_g_it0",
+    "str_gm_speedloader_d",
+    "str_lsr_common_lsr",
+]

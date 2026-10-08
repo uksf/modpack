@@ -16,7 +16,7 @@ _args params [
 ];
 if (_topicSlot isEqualType 0) then {_topicSlot = str _topicSlot};
 private _strings = [_npcId, _provider, _addressDecision, _tag, _topicSlot, _reason, _evidence, _eligible, _disclosed, _spoken];
-if ((_strings findIf {!(_x isEqualType "")}) >= 0) exitWith {};
+if !(_strings isEqualTypeAll "") exitWith {};
 if (!(_addressesConcern isEqualType false) || {!(_ambiguous isEqualType false)}) exitWith {};
 if (!(_classifyMs isEqualType 0) || {_classifyMs < 0} || {!(_replyMs isEqualType 0)} || {_replyMs < 0}) exitWith {};
 if !(_addressDecision in ["", "answer", "stay_silent", "ask_the_brain", "none"]) exitWith {};
