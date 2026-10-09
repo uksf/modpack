@@ -30,7 +30,7 @@ pub fn set_outcome(seq: u64, outcome: Outcome) {
     if let Ok(mut guard) = OUTCOMES.lock() {
         let outcomes = guard.get_or_insert_with(HashMap::new);
         outcomes.insert(seq, outcome);
-        forget_old_outcomes(outcomes, seq, OUTCOME_RETENTION);
+        forget_old_outcomes(outcomes, NEXT_SEQ.load(Ordering::Relaxed).saturating_sub(1).max(seq), OUTCOME_RETENTION);
     }
 }
 

@@ -1,7 +1,7 @@
 use super::tests::{test_server, wait_for};
 use super::*;
 use crate::delivery::{forget_old_outcomes, next_seq, outcome};
-use std::sync::atomic::Ordering as AtomicOrdering;
+use std::sync::atomic::{AtomicBool, Ordering as AtomicOrdering};
 
 fn body_server(status_for_body: impl Fn(&str) -> u16 + Send + 'static) -> (String, Arc<Mutex<Vec<String>>>, Arc<AtomicBool>) {
     let server = tiny_http::Server::http("127.0.0.1:0").unwrap();
@@ -97,6 +97,22 @@ fn test_ordinary_events_still_deliver_after_stop_without_a_blocking_flush() {
 
     queue.stop();
     assert!(wait_for(|| count.load(AtomicOrdering::SeqCst) == 2, Duration::from_secs(5)));
+    stop.store(true, AtomicOrdering::SeqCst);
+}
+
+#[test]
+fn test_ordinary_drain_after_stop_ends_at_its_deadline_even_with_a_backlog() {
+    let (url, count, stop) = test_server(|_| (200, 300));
+    let queue = RetryQueue::draining_for(url, 100, Duration::from_millis(50), Duration::from_secs(1));
+    queue.start();
+    for i in 0..20 {
+        queue.enqueue(next_seq(), format!(r#"["mission_stats",[["i",{i}]]]"#), "ts".to_string());
+    }
+    queue.stop();
+
+    thread::sleep(Duration::from_secs(3));
+    let posted = count.load(AtomicOrdering::SeqCst);
+    assert!((1..=5).contains(&posted), "posted {posted} events after a 1 s drain at 300 ms each");
     stop.store(true, AtomicOrdering::SeqCst);
 }
 

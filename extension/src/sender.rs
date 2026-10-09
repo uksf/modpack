@@ -1,7 +1,7 @@
 use std::collections::VecDeque;
-use std::sync::atomic::{AtomicBool, AtomicUsize, Ordering};
+use std::sync::atomic::{AtomicUsize, Ordering};
 use std::sync::mpsc::{self, Receiver, RecvTimeoutError, Sender};
-use std::sync::{Arc, Mutex};
+use std::sync::{Arc, Mutex, OnceLock};
 use std::thread;
 use std::time::{Duration, Instant};
 
@@ -30,9 +30,11 @@ struct PendingEvent {
     backoff: Duration,
 }
 
+type StoppedAt = Arc<OnceLock<Instant>>;
+
 struct Worker {
     inbound: Sender<Message>,
-    stopped: Arc<AtomicBool>,
+    stopped_at: StoppedAt,
 }
 
 pub struct RetryQueue {
@@ -40,6 +42,7 @@ pub struct RetryQueue {
     capacity: usize,
     base_backoff: Duration,
     give_up_after: Option<Duration>,
+    drain_after_stop: Duration,
     worker: Mutex<Option<Worker>>,
     len: AtomicUsize,
 }
@@ -54,7 +57,22 @@ impl RetryQueue {
     }
 
     fn build(url: String, capacity: usize, base_backoff: Duration, give_up_after: Option<Duration>) -> Arc<Self> {
-        Arc::new(Self { url, capacity, base_backoff, give_up_after, worker: Mutex::new(None), len: AtomicUsize::new(0) })
+        Arc::new(Self {
+            url,
+            capacity,
+            base_backoff,
+            give_up_after,
+            drain_after_stop: ORDINARY_DRAIN_AFTER_STOP,
+            worker: Mutex::new(None),
+            len: AtomicUsize::new(0),
+        })
+    }
+
+    #[cfg(test)]
+    pub fn draining_for(url: String, capacity: usize, base_backoff: Duration, drain_after_stop: Duration) -> Arc<Self> {
+        let mut queue = Self::build(url, capacity, base_backoff, None);
+        Arc::get_mut(&mut queue).expect("fresh queue").drain_after_stop = drain_after_stop;
+        queue
     }
 
     fn tracked(&self) -> bool {
@@ -81,20 +99,20 @@ impl RetryQueue {
 
     pub fn start(self: &Arc<Self>) {
         let (inbound, receiver) = mpsc::channel::<Message>();
-        let stopped = Arc::new(AtomicBool::new(false));
+        let stopped_at: StoppedAt = Arc::new(OnceLock::new());
         if let Ok(mut guard) = self.worker.lock() {
-            *guard = Some(Worker { inbound, stopped: Arc::clone(&stopped) });
+            *guard = Some(Worker { inbound, stopped_at: Arc::clone(&stopped_at) });
         }
         let this = Arc::clone(self);
-        thread::spawn(move || this.run(receiver, &stopped));
+        thread::spawn(move || this.run(receiver, &stopped_at));
     }
 
-    fn run(&self, receiver: Receiver<Message>, stopped: &AtomicBool) {
+    fn run(&self, receiver: Receiver<Message>, stopped_at: &OnceLock<Instant>) {
         let mut buffer: VecDeque<PendingEvent> = VecDeque::with_capacity(self.capacity);
         let mut pending_flush_acks: Vec<Sender<()>> = Vec::new();
 
         loop {
-            let timeout = next_wake(&buffer).map_or(Duration::from_secs(1), |at| at.saturating_duration_since(Instant::now()).max(Duration::from_millis(1)));
+            let timeout = self.next_wake(&buffer).map_or(Duration::from_secs(1), |at| at.saturating_duration_since(Instant::now()).max(Duration::from_millis(1)));
             match receiver.recv_timeout(timeout) {
                 Ok(Message::Enqueue(pending)) => {
                     if buffer.len() >= self.capacity {
@@ -111,7 +129,7 @@ impl RetryQueue {
                 Err(RecvTimeoutError::Disconnected) => break,
             }
 
-            self.send_due(&mut buffer, stopped);
+            self.send_due(&mut buffer, stopped_at);
 
             if !pending_flush_acks.is_empty() && buffer.is_empty() {
                 for ack in pending_flush_acks.drain(..) {
@@ -121,7 +139,7 @@ impl RetryQueue {
         }
 
         if !self.tracked() {
-            self.drain_after_stop(&mut buffer, stopped);
+            self.drain_after_stop(&mut buffer, stopped_at);
         }
         for pending in buffer.drain(..) {
             self.finish(&pending, Outcome::Lost);
@@ -129,25 +147,29 @@ impl RetryQueue {
         self.len.store(0, Ordering::Relaxed);
     }
 
-    fn drain_after_stop(&self, buffer: &mut VecDeque<PendingEvent>, stopped: &AtomicBool) {
-        let deadline = Instant::now() + ORDINARY_DRAIN_AFTER_STOP;
-        while let Some(wake) = next_wake(buffer)
+    fn drain_after_stop(&self, buffer: &mut VecDeque<PendingEvent>, stopped_at: &OnceLock<Instant>) {
+        let deadline = *stopped_at.get_or_init(Instant::now) + self.drain_after_stop;
+        while let Some(wake) = self.next_wake(buffer)
             && Instant::now() < deadline
         {
             thread::sleep(wake.min(deadline).saturating_duration_since(Instant::now()));
-            self.send_due(buffer, stopped);
+            self.send_due(buffer, stopped_at);
         }
         if !buffer.is_empty() {
-            log::warn!("Dropping {} undelivered events {} s after stop", buffer.len(), ORDINARY_DRAIN_AFTER_STOP.as_secs());
+            log::warn!("Dropping {} undelivered events {} s after stop", buffer.len(), self.drain_after_stop.as_secs());
         }
     }
 
-    fn send_due(&self, buffer: &mut VecDeque<PendingEvent>, stopped: &AtomicBool) {
+    fn send_due(&self, buffer: &mut VecDeque<PendingEvent>, stopped_at: &OnceLock<Instant>) {
+        let drain_deadline = stopped_at.get().map(|stopped| *stopped + self.drain_after_stop);
         for _ in 0..buffer.len() {
+            let now = Instant::now();
+            if !self.tracked() && drain_deadline.is_some_and(|deadline| now >= deadline) {
+                break;
+            }
             let Some(pending) = buffer.pop_front() else { break };
             let deadline = self.give_up_after.map(|limit| pending.queued_at + limit);
-            let now = Instant::now();
-            if self.tracked() && (stopped.load(Ordering::SeqCst) || deadline.is_some_and(|deadline| now >= deadline)) {
+            if self.tracked() && (stopped_at.get().is_some() || deadline.is_some_and(|deadline| now >= deadline)) {
                 self.finish(&pending, Outcome::Lost);
                 continue;
             }
@@ -161,7 +183,11 @@ impl RetryQueue {
             }
             self.len.store(buffer.len(), Ordering::Relaxed);
 
-            let timeout = deadline.map_or(ORDINARY_REQUEST_TIMEOUT, |deadline| deadline.saturating_duration_since(now).min(ACKNOWLEDGED_REQUEST_TIMEOUT));
+            let timeout = match (deadline, drain_deadline) {
+                (Some(deadline), _) => deadline.saturating_duration_since(now).min(ACKNOWLEDGED_REQUEST_TIMEOUT),
+                (None, Some(drain)) => drain.saturating_duration_since(now).min(ORDINARY_REQUEST_TIMEOUT),
+                (None, None) => ORDINARY_REQUEST_TIMEOUT,
+            };
             match try_send(&self.url, &pending.body, &pending.enqueue_at, timeout) {
                 SendResult::Delivered => {
                     self.finish(&pending, Outcome::Delivered);
@@ -215,8 +241,15 @@ impl RetryQueue {
         if let Ok(mut guard) = self.worker.lock()
             && let Some(worker) = guard.take()
         {
-            worker.stopped.store(true, Ordering::SeqCst);
+            let _ = worker.stopped_at.set(Instant::now());
         }
+    }
+
+    fn next_wake(&self, buffer: &VecDeque<PendingEvent>) -> Option<Instant> {
+        if self.tracked() {
+            return buffer.iter().map(|pending| pending.next_attempt).min();
+        }
+        buffer.front().map(|pending| pending.next_attempt)
     }
 
     #[cfg(test)]
@@ -225,9 +258,6 @@ impl RetryQueue {
     }
 }
 
-fn next_wake(buffer: &VecDeque<PendingEvent>) -> Option<Instant> {
-    buffer.iter().map(|pending| pending.next_attempt).min()
-}
 
 fn next_backoff(current: Duration) -> Duration {
     [2, 5, 10, 30, 60]
