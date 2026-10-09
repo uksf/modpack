@@ -87,7 +87,8 @@ class CfgPatches {
             "Structures_Globe_Signs_City_Road",
             "Structures_Globe_Training_SkeetMachine",
             "UK3CB_BAF_Weapons_Accessories",
-            "CUP_Weapons_SCAR"
+            "CUP_Weapons_SCAR",
+            "CUP_Creatures_Military_Ukraine"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
