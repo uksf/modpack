@@ -4,10 +4,10 @@
         Tim Beswick
 
     Description:
-        Finishes the shutdown sequence after all players have disconnected
-        and their data has been saved. Fires the shuttingDown event for
-        server-side components to do final syncs, then saves persistence
-        data and shuts down the server.
+        Finishes the shutdown sequence after the player drain. Fires
+        shutdownFinishing so components do their final syncs, runs the
+        save barrier, sends mission_ended, reports the save outcome with
+        shutdown_stopping, then shuts down the server.
 
     Parameter(s):
         None
@@ -18,38 +18,26 @@
     Example:
         call uksf_persistence_fnc_finishShutdown
 */
+#define STOPPING_DELIVERY_TIMEOUT 5
 
-TRACE_1("Finishing shutdown: firing shuttingDown",diag_tickTime);
 [QGVAR(shutdownFinishing)] call CBA_fnc_localEvent;
 
-TRACE_1("Proceeding with persistence save",GVAR(dataSaved));
 if (GVAR(dataSaved)) then {
     ["shutdown_saving"] call EFUNC(api,sendEvent);
-    {
-        private _marker = createVehicle [QGVAR(markerAmmo), _x, [], 0, "CAN_COLLIDE"];
-        GVAR(persistenceMarkers) pushBack _marker;
-    } forEach (values GVAR(disconnectedPlayerPositions));
-    call FUNC(shutdownSave);
-} else {
-    GVAR(shutdownSavingComplete) = true;
 };
 
 [{
-    GVAR(shutdownSavingComplete)
-}, {
-    TRACE_1("Sending shutdown_stopping and flushing extension",diag_tickTime);
+    params ["_outcome"];
 
-    ["shutdown_stopping"] call EFUNC(api,sendEvent);
-    private _flushResult = "uksf" callExtension "flush";
-    TRACE_1("Extension flush result",_flushResult);
+    INFO_1("Shutdown save outcome: %1",_outcome);
+    if (_outcome in ["rejected", "lost", "timeout", "unsent"]) then {
+        ERROR_1("Shutdown save was not stored by the API: %1",_outcome);
+    };
 
-    [{SERVER_COMMAND serverCommand "#shutdown"}, [], 5] call CBA_fnc_waitAndExecute;
-}, [], 120, {
-    WARNING("Shutdown save timed out after 120 seconds, forcing shutdown");
+    [] call EFUNC(api,sendMissionEnded);
 
-    ["shutdown_stopping"] call EFUNC(api,sendEvent);
-    private _flushResult = "uksf" callExtension "flush";
-    TRACE_1("Extension flush result",_flushResult);
-
-    [{SERVER_COMMAND serverCommand "#shutdown"}, [], 5] call CBA_fnc_waitAndExecute;
-}] call CBA_fnc_waitUntilAndExecute;
+    private _seq = ["shutdown_stopping", createHashMapFromArray [["saveOutcome", _outcome]]] call EFUNC(api,sendEvent);
+    [_seq, STOPPING_DELIVERY_TIMEOUT, {
+        SERVER_COMMAND serverCommand "#shutdown";
+    }] call FUNC(waitForDelivery);
+}] call FUNC(saveBarrier);

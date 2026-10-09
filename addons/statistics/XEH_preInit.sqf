@@ -4,19 +4,13 @@ ADDON = false;
 
 #include "XEH_PREP.hpp"
 
-// Provider registry: key -> [setupFunction, locality]
 GVAR(providers) = createHashMap;
 
-// Event buffer (used on all machines — clients, HCs, and server)
 GVAR(eventBuffer) = [];
 GVAR(clientSyncPFH) = -1;
 
-// Explosives deduplication: netId -> classname
-// Entries removed on defuse; remaining entries emitted at sync
 GVAR(placedExplosives) = createHashMap;
 
-// Ammo classname -> category ("ballistic" | "explosive" | "other")
-// Populated lazily on first lookup via fnc_getAmmoCategory
 GVAR(ammoCategoryCache) = createHashMap;
 
 GVAR(samplerPFH) = -1;
@@ -30,9 +24,6 @@ GVAR(lastFuelVehicle) = objNull;
 GVAR(killswitch) = false;
 GVAR(collectionStarted) = false;
 
-// Stats pipeline pushes batches to the API extension, which is dedicated-only
-// (see addons/api/XEH_preStart.sqf). Gate on isDedicated so SP / listen-server
-// hosts don't accumulate buffers that would never be flushed.
 if (isDedicated) then {
     GVAR(serverBuffer) = [];
     GVAR(serverSyncPFH) = -1;
@@ -50,11 +41,11 @@ if (isDedicated) then {
         call FUNC(serverSync);
     }] call CBA_fnc_addEventHandler;
 
-    addMissionEventHandler ["MPEnded", {
-        TRACE_1("MPEnded: flushing and stopping",count GVAR(serverBuffer));
+    [QEGVAR(api,missionEnding), {
+        TRACE_1("Mission ending: flushing and stopping",count GVAR(serverBuffer));
         call FUNC(serverSync);
         call FUNC(stopCollection);
-    }];
+    }] call CBA_fnc_addEventHandler;
 };
 
 if (!isServer) then {

@@ -10,6 +10,8 @@
         and prepare for shutdown. Waits for all players to acknowledge via
         readyForShutdown, then calls finishShutdown.
 
+        Every player's state is captured first, so a player who has not
+        disconnected when the drain times out is still saved.
         Players are kicked individually as they report ready.
         HCs flush and report but are not tracked or kicked.
 
@@ -27,12 +29,15 @@ if (!isServer) exitWith {
     [QGVAR(startShutdown)] call CBA_fnc_serverEvent;
 };
 
-if (GVAR(shutdownInProgress)) exitWith {
-    WARNING("Shutdown already in progress, ignoring duplicate call");
+if (GVAR(shutdownInProgress) || GVAR(saveBarrierInProgress)) exitWith {
+    WARNING("Shutdown or save already in progress, ignoring shutdown");
 };
 
 GVAR(shutdownInProgress) = true;
 ["shutdown_ending"] call EFUNC(api,sendEvent);
+if (GVAR(dataSaved)) then {
+    call FUNC(snapshotPlayers);
+};
 
 LOG("Shutdown");
 

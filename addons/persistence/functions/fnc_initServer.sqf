@@ -19,7 +19,6 @@
 */
 TRACE_1("Server init",GVAR(dataSaved));
 
-// State initialisation
 GVAR(missionObjects) = [];
 GVAR(persistentObjectsHash) = [[], true] call CBA_fnc_hashCreate;
 GVAR(deletedPersistentObjects) = GVAR(dataNamespace) getVariable [QGVAR(deletedObjects), []];
@@ -36,7 +35,6 @@ GVAR(disconnectedPlayerPositions) = createHashMap;
 if (isNil QGVAR(playerUids)) then {
     GVAR(playerUids) = [];
 };
-GVAR(shutdownSavingComplete) = false;
 GVAR(serializers) = [];
 GVAR(deserializers) = [];
 
@@ -44,7 +42,6 @@ if (GVAR(loadMapMarkers)) then {
     GVAR(mapMarkers) = GVAR(dataNamespace) getVariable [QGVAR(mapMarkers), []];
 };
 
-// Mission event handlers
 addMissionEventHandler ["EntityRespawned", {call FUNC(entityRespawned)}];
 addMissionEventHandler ["EntityKilled", {call FUNC(entityKilled)}];
 addMissionEventHandler ["HandleDisconnect", {call FUNC(handleDisconnect)}];
@@ -56,7 +53,6 @@ addMissionEventHandler ["BuildingChanged", {
     };
 }];
 
-// Core events
 [QGVAR(registerSerializer), {call FUNC(registerSerializer)}] call CBA_fnc_addEventHandler;
 [QGVAR(markObjectAsPersistent), {call FUNC(markObjectAsPersistent)}] call CBA_fnc_addEventHandler;
 [QGVAR(forceLoadAbortedObject), {call FUNC(forceLoadAbortedObject)}] call CBA_fnc_addEventHandler;
@@ -66,7 +62,6 @@ addMissionEventHandler ["BuildingChanged", {
 [QGVAR(setObjectCargo), {[{call FUNC(setObjectCargo)}, _this] call CBA_fnc_execNextFrame}] call CBA_fnc_addEventHandler;
 [QGVAR(addLogisticsMarker), {GVAR(persistenceMarkers) pushBackUnique _this}] call CBA_fnc_addEventHandler;
 
-// Map marker events
 [QGVAR(markerCreated), {
     params ["_serializedMarker"];
 
@@ -80,7 +75,6 @@ addMissionEventHandler ["BuildingChanged", {
     GVAR(mapMarkers) deleteAt (GVAR(mapMarkers) findIf {_x#0 == _marker});
 }] call CBA_fnc_addEventHandler;
 
-// ACE fortify integration
 ["acex_fortify_objectPlaced", {
     params ["", "_side", "_object"];
 
@@ -99,7 +93,6 @@ addMissionEventHandler ["BuildingChanged", {
     [GVAR(persistentObjectsHash), _id] call CBA_fnc_hashRem;
 }] call CBA_fnc_addEventHandler;
 
-// Data request events
 [QGVAR(requestPersistentObjectsHash), {
     params ["_player"];
 
@@ -172,8 +165,8 @@ addMissionEventHandler ["BuildingChanged", {
     [QGVAR(receiveInspectSavedData), [_lines], _player] call CBA_fnc_targetEvent;
 }] call CBA_fnc_addEventHandler;
 
-// Shutdown events
 [QGVAR(startShutdown), {call FUNC(startShutdown)}] call CBA_fnc_addEventHandler;
+[QGVAR(saveAndEndMission), {_this call FUNC(saveAndEndMission)}] call CBA_fnc_addEventHandler;
 [QGVAR(readyForShutdown), {
     params [["_player", objNull, [objNull]]];
 

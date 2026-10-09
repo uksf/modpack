@@ -8,15 +8,15 @@
         (dateTime, mapMarkers, serializers), and saves everything to namespace
 
     Parameter(s):
-        None
+        0: Partial save <BOOL> (default: false)
 
     Return Value:
-        None
+        Delivery sequence number of the API save <NUMBER>
 
     Example:
-        call uksf_persistence_fnc_finishSaveObjectDataPfh
+        [false] call uksf_persistence_fnc_finishSaveObjectDataPfh
 */
-GVAR(shutdownSavingComplete) = true;
+params [["_partial", false, [false]]];
 
 private _objects = GVAR(dataNamespace) getVariable [QGVAR(objects), []];
 _objects = _objects select {!(isNil {_x#IDX_OBJ_ID}) && {_x#IDX_OBJ_ID != ""}};
@@ -38,7 +38,6 @@ INFO_1("Number of objects saved: %1",count _objects);
 GVAR(dataNamespace) setVariable [QGVAR(deletedObjects), GVAR(deletedPersistentObjects)];
 GVAR(dataNamespace) setVariable [QGVAR(objects), _objects];
 
-// Save dateTime, mapMarkers, and serializer data last
 private _dateTime = date;
 TRACE_1("Saving date time",_dateTime);
 GVAR(dataNamespace) setVariable [QGVAR(dateTime), _dateTime];
@@ -51,4 +50,4 @@ GVAR(dataNamespace) setVariable [QGVAR(mapMarkers), GVAR(mapMarkers)];
     GVAR(dataNamespace) setVariable [_id, _data];
 } forEach GVAR(serializers);
 
-call FUNC(saveData);
+[_partial] call FUNC(saveData)
