@@ -1,3 +1,258 @@
+class CUP_A2_pub_01 : CUP_A2_Industry {
+    class AnimationSources : AnimationSources {
+        class glass_10_source {
+            source = "Hit";
+            hitpoint = "Glass_10_hitpoint";
+            raw = 1;
+        };
+        class glass_11_source {
+            source = "Hit";
+            hitpoint = "Glass_11_hitpoint";
+            raw = 1;
+        };
+        class glass_12_source {
+            source = "Hit";
+            hitpoint = "Glass_12_hitpoint";
+            raw = 1;
+        };
+        class glass_13_source {
+            source = "Hit";
+            hitpoint = "Glass_13_hitpoint";
+            raw = 1;
+        };
+        class glass_14_source {
+            source = "Hit";
+            hitpoint = "Glass_14_hitpoint";
+            raw = 1;
+        };
+        class glass_15_source {
+            source = "Hit";
+            hitpoint = "Glass_15_hitpoint";
+            raw = 1;
+        };
+        class glass_16_source {
+            source = "Hit";
+            hitpoint = "Glass_16_hitpoint";
+            raw = 1;
+        };
+        class glass_17_source {
+            source = "Hit";
+            hitpoint = "Glass_17_hitpoint";
+            raw = 1;
+        };
+        class glass_18_source {
+            source = "Hit";
+            hitpoint = "Glass_18_hitpoint";
+            raw = 1;
+        };
+        class glass_19_source {
+            source = "Hit";
+            hitpoint = "Glass_19_hitpoint";
+            raw = 1;
+        };
+        class glass_1_source {
+            source = "Hit";
+            hitpoint = "Glass_1_hitpoint";
+            raw = 1;
+        };
+        class glass_20_source {
+            source = "Hit";
+            hitpoint = "Glass_20_hitpoint";
+            raw = 1;
+        };
+        class glass_21_source {
+            source = "Hit";
+            hitpoint = "Glass_21_hitpoint";
+            raw = 1;
+        };
+        class glass_22_source {
+            source = "Hit";
+            hitpoint = "Glass_22_hitpoint";
+            raw = 1;
+        };
+        class glass_23_source {
+            source = "Hit";
+            hitpoint = "Glass_23_hitpoint";
+            raw = 1;
+        };
+        class glass_24_source {
+            source = "Hit";
+            hitpoint = "Glass_24_hitpoint";
+            raw = 1;
+        };
+        class glass_25_source {
+            source = "Hit";
+            hitpoint = "Glass_25_hitpoint";
+            raw = 1;
+        };
+        class glass_26_source {
+            source = "Hit";
+            hitpoint = "Glass_26_hitpoint";
+            raw = 1;
+        };
+        class glass_27_source {
+            source = "Hit";
+            hitpoint = "Glass_27_hitpoint";
+            raw = 1;
+        };
+        class glass_28_source {
+            source = "Hit";
+            hitpoint = "Glass_28_hitpoint";
+            raw = 1;
+        };
+        class glass_29_source {
+            source = "Hit";
+            hitpoint = "Glass_29_hitpoint";
+            raw = 1;
+        };
+        class glass_2_source {
+            source = "Hit";
+            hitpoint = "Glass_2_hitpoint";
+            raw = 1;
+        };
+        class glass_30_source {
+            source = "Hit";
+            hitpoint = "Glass_30_hitpoint";
+            raw = 1;
+        };
+        class glass_3_source {
+            source = "Hit";
+            hitpoint = "Glass_3_hitpoint";
+            raw = 1;
+        };
+        class glass_4_source {
+            source = "Hit";
+            hitpoint = "Glass_4_hitpoint";
+            raw = 1;
+        };
+        class glass_5_source {
+            source = "Hit";
+            hitpoint = "Glass_5_hitpoint";
+            raw = 1;
+        };
+        class glass_6_source {
+            source = "Hit";
+            hitpoint = "Glass_6_hitpoint";
+            raw = 1;
+        };
+        class glass_7_source {
+            source = "Hit";
+            hitpoint = "Glass_7_hitpoint";
+            raw = 1;
+        };
+        class glass_8_source {
+            source = "Hit";
+            hitpoint = "Glass_8_hitpoint";
+            raw = 1;
+        };
+        class glass_9_source {
+            source = "Hit";
+            hitpoint = "Glass_9_hitpoint";
+            raw = 1;
+        };
+    };
+};
+class CUP_A2_pumpa : CUP_A2_Various {
+    class AnimationSources : AnimationSources {
+        class handle_source {
+            source = "user";
+            animPeriod = 1;
+            initPhase = 0;
+        };
+    };
+};
+class CUP_A2_rail_station_big : CUP_A2_Rails {
+    class AnimationSources : AnimationSources {
+        class door_1_sound_source {
+            source = "user";
+            animPeriod = 1;
+            initPhase = 0;
+        };
+        class door_2_sound_source {
+            source = "user";
+            animPeriod = 1;
+            initPhase = 0;
+        };
+        class door_3_sound_source {
+            source = "user";
+            animPeriod = 1;
+            initPhase = 0;
+        };
+        class door_4_sound_source {
+            source = "user";
+            animPeriod = 1;
+            initPhase = 0;
+        };
+    };
+};
+class CUP_A2_ruin_cowshed_a_pmc : CUP_A2_Ruins {
+    class AnimationSources : AnimationSources {
+        class door_1_sound_source {
+            source = "user";
+            animPeriod = 1;
+            initPhase = 0;
+        };
+        class door_2_sound_source {
+            source = "user";
+            animPeriod = 1;
+            initPhase = 0;
+        };
+        class door_3_sound_source {
+            source = "user";
+            animPeriod = 1;
+            initPhase = 0;
+        };
+        class door_4_sound_source {
+            source = "user";
+            animPeriod = 1;
+            initPhase = 0;
+        };
+        class door_5_sound_source {
+            source = "user";
+            animPeriod = 1;
+            initPhase = 0;
+        };
+    };
+};
+class CUP_A2_ruin_cowshed_c_pmc : CUP_A2_Ruins {
+    class AnimationSources : AnimationSources {
+        class door_1_sound_source {
+            source = "user";
+            animPeriod = 1;
+            initPhase = 0;
+        };
+        class door_2_sound_source {
+            source = "user";
+            animPeriod = 1;
+            initPhase = 0;
+        };
+    };
+};
+class CUP_A2_runway_edgelight : CUP_A2_Runway {
+    class AnimationSources : AnimationSources {
+        class light_1_source {
+            source = "MarkerLight";
+        };
+    };
+};
+class CUP_A2_sara_domek_sedy : CUP_A2_Civilian {
+    class AnimationSources : AnimationSources {
+        class door_1_sound_source {
+            source = "user";
+            animPeriod = 1;
+            initPhase = 0;
+        };
+    };
+};
+class CUP_A2_sara_domek_zluty : CUP_A2_Civilian {
+    class AnimationSources : AnimationSources {
+        class door_1_sound_source {
+            source = "user";
+            animPeriod = 1;
+            initPhase = 0;
+        };
+    };
+};
 class CUP_A2_shed_ind02 : CUP_A2_Industry {
     class AnimationSources : AnimationSources {
         class door_1_sound_source {
@@ -1524,15 +1779,6 @@ class CUP_A2_zavora_2 : CUP_A2_Walls {
         };
     };
 };
-class CUP_AAV_Base : Tank_F {
-    class AnimationSources : AnimationSources {
-        class hatchcommander {
-            source = "user";
-            animPeriod = 2;
-            initPhase = 0;
-        };
-    };
-};
 class CUP_AH6_BASE : Helicopter_Base_H {
     class AnimationSources : AnimationSources {
         class hidegaul {
@@ -1586,6 +1832,14 @@ class CUP_BMP2_HQ_Base : CUP_BMP2_base {
             source = "user";
             animPeriod = 2;
             initPhase = 0;
+        };
+        class hatchd {
+            source = "door";
+            animPeriod = 0.8;
+        };
+        class hatchg {
+            source = "door";
+            animPeriod = 0.8;
         };
     };
 };
@@ -2448,16 +2702,6 @@ class CUP_UH1H_base : Helicopter_Base_H {
 };
 class CUP_Uh60_Base : Helicopter_Base_H {
     class AnimationSources : AnimationSources {
-        class maingun {
-            source = "user";
-            animPeriod = 1e-07;
-            initPhase = 0;
-        };
-        class mainturret {
-            source = "user";
-            animPeriod = 1e-07;
-            initPhase = 0;
-        };
         class miniguns_hide {
             source = "user";
             animPeriod = 1;
@@ -2476,23 +2720,6 @@ class CUP_Uh60_Base : Helicopter_Base_H {
     };
 };
 class CUP_UpHMMWV_Base : Car_F {};
-class GX_DRONE40_UAV_BASE : Helicopter_Base_F {
-    class AnimationSources {
-        class maingun {
-            source = "user";
-            animPeriod = 1e-07;
-            initPhase = 0;
-        };
-        class mainturret {
-            source = "user";
-            animPeriod = 1e-07;
-            initPhase = 0;
-        };
-    };
-};
-class Heli_Attack_01_base_F : Helicopter_Base_F {
-    class AnimationSources;
-};
 class Heli_Light_01_base_F : Helicopter_Base_H {
     class AnimationSources : AnimationSources {
         class hideweapons {
@@ -2504,286 +2731,4 @@ class Heli_Light_01_base_F : Helicopter_Base_H {
 };
 class Heli_Light_01_wreck : Wrecks_Globe_base {};
 class Heli_Light_02_wreck : Heli_Light_01_wreck {};
-class Heli_Transport_01_base_F : Helicopter_Base_H {
-    class AnimationSources : AnimationSources {
-        class maingun {
-            source = "user";
-            animPeriod = 1e-07;
-            initPhase = 0;
-        };
-        class mainturret {
-            source = "user";
-            animPeriod = 1e-07;
-            initPhase = 0;
-        };
-    };
-};
 class Items_base_F : ThingX {};
-class Jbad_cat_dumper : Truck_F {
-    class AnimationSources {
-        class hitglass1 {
-            source = "Hit";
-            hitpoint = "HitGlass1";
-            raw = 1;
-        };
-        class hitglass2 {
-            source = "Hit";
-            hitpoint = "HitGlass2";
-            raw = 1;
-        };
-        class hitglass3 {
-            source = "Hit";
-            hitpoint = "HitGlass3";
-            raw = 1;
-        };
-        class hitglass4 {
-            source = "Hit";
-            hitpoint = "HitGlass4";
-            raw = 1;
-        };
-        class hitglass5 {
-            source = "Hit";
-            hitpoint = "HitGlass5";
-            raw = 1;
-        };
-        class hitglass6 {
-            source = "Hit";
-            hitpoint = "HitGlass6";
-            raw = 1;
-        };
-        class hitlbwheel {
-            source = "Hit";
-            hitpoint = "HitLF2Wheel";
-            raw = 1;
-        };
-        class hitlf2wheel {
-            source = "Hit";
-            hitpoint = "HitLBWheel";
-            raw = 1;
-        };
-        class hitlfwheel {
-            source = "Hit";
-            hitpoint = "HitLFWheel";
-            raw = 1;
-        };
-        class hitlmwheel {
-            source = "Hit";
-            hitpoint = "HitLMWheel";
-            raw = 1;
-        };
-        class hitrbwheel {
-            source = "Hit";
-            hitpoint = "HitRF2Wheel";
-            raw = 1;
-        };
-        class hitrf2wheel {
-            source = "Hit";
-            hitpoint = "HitRBWheel";
-            raw = 1;
-        };
-        class hitrfwheel {
-            source = "Hit";
-            hitpoint = "HitRFWheel";
-            raw = 1;
-        };
-        class hitrmwheel {
-            source = "Hit";
-            hitpoint = "HitRMWheel";
-            raw = 1;
-        };
-    };
-};
-class Jbad_forklift : Truck_F {
-    class AnimationSources {
-        class hitglass1 {
-            source = "Hit";
-            hitpoint = "HitGlass1";
-            raw = 1;
-        };
-        class hitglass2 {
-            source = "Hit";
-            hitpoint = "HitGlass2";
-            raw = 1;
-        };
-        class hitglass3 {
-            source = "Hit";
-            hitpoint = "HitGlass3";
-            raw = 1;
-        };
-        class hitglass4 {
-            source = "Hit";
-            hitpoint = "HitGlass4";
-            raw = 1;
-        };
-        class hitglass5 {
-            source = "Hit";
-            hitpoint = "HitGlass5";
-            raw = 1;
-        };
-        class hitglass6 {
-            source = "Hit";
-            hitpoint = "HitGlass6";
-            raw = 1;
-        };
-        class hitlbwheel {
-            source = "Hit";
-            hitpoint = "HitLF2Wheel";
-            raw = 1;
-        };
-        class hitlf2wheel {
-            source = "Hit";
-            hitpoint = "HitLBWheel";
-            raw = 1;
-        };
-        class hitlfwheel {
-            source = "Hit";
-            hitpoint = "HitLFWheel";
-            raw = 1;
-        };
-        class hitlmwheel {
-            source = "Hit";
-            hitpoint = "HitLMWheel";
-            raw = 1;
-        };
-        class hitrbwheel {
-            source = "Hit";
-            hitpoint = "HitRF2Wheel";
-            raw = 1;
-        };
-        class hitrf2wheel {
-            source = "Hit";
-            hitpoint = "HitRBWheel";
-            raw = 1;
-        };
-        class hitrfwheel {
-            source = "Hit";
-            hitpoint = "HitRFWheel";
-            raw = 1;
-        };
-        class hitrmwheel {
-            source = "Hit";
-            hitpoint = "HitRMWheel";
-            raw = 1;
-        };
-    };
-};
-class LT_01_base_F : Tank_F {
-    class AnimationSources : AnimationSources {
-        class maingun {
-            source = "user";
-            animPeriod = 1e-07;
-            initPhase = 0;
-        };
-        class mainturret {
-            source = "user";
-            animPeriod = 1e-07;
-            initPhase = 0;
-        };
-    };
-};
-class LT_01_cannon_base_F : LT_01_base_F {
-    class AnimationSources : AnimationSources {
-        class muzzle_hide_cannon {
-            source = "reload";
-            weapon = "ACE_cannon_20mm_Rh202";
-        };
-    };
-};
-class Land_NetFence_02_m_gate_v1_closed_F : Wall_F {
-    class AnimationSources {
-        class door_1_locked_source {
-            source = "user";
-            animPeriod = 0.8;
-            initPhase = 0;
-        };
-    };
-};
-class Land_NetFence_02_m_gate_v2_closed_F : Wall_F {
-    class AnimationSources {
-        class door_1_locked_source {
-            source = "user";
-            animPeriod = 0.8;
-            initPhase = 0;
-        };
-        class door_2_locked_source {
-            source = "user";
-            animPeriod = 0.8;
-            initPhase = 0;
-        };
-    };
-};
-class Land_PipeFence_01_m_gate_v1_closed_F : Wall_F {
-    class AnimationSources {
-        class door_1_locked_source {
-            source = "user";
-            animPeriod = 0.8;
-            initPhase = 0;
-        };
-    };
-};
-class Land_PipeFence_01_m_gate_v2_closed_F : Wall_F {
-    class AnimationSources {
-        class door_1_locked_source {
-            source = "user";
-            animPeriod = 0.8;
-            initPhase = 0;
-        };
-        class door_2_locked_source {
-            source = "user";
-            animPeriod = 0.8;
-            initPhase = 0;
-        };
-    };
-};
-class Land_PipeFence_03_m_gate_l_F : Wall_F {
-    class AnimationSources;
-};
-class Land_PipeFence_03_m_gate_r_F : Land_PipeFence_03_m_gate_l_F {
-    class AnimationSources : AnimationSources {
-        class door_1_nosound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class Land_PipeFence_04_m_gate_l_F : Wall_F {
-    class AnimationSources;
-};
-class Land_PipeFence_04_m_gate_r_F : Land_PipeFence_04_m_gate_l_F {
-    class AnimationSources : AnimationSources {
-        class door_1_nosound_source {
-            source = "user";
-            animPeriod = 1;
-            initPhase = 0;
-        };
-    };
-};
-class Land_SAM_System_03_G : Items_base_F {
-    class AnimationSources : AnimationSources {
-        class maingun {
-            source = "user";
-            animPeriod = 1e-07;
-            initPhase = 0;
-        };
-        class mainturret {
-            source = "user";
-            animPeriod = 1e-07;
-            initPhase = 0;
-        };
-    };
-};
-class Land_TinWall_01_m_gate_v1_closed_F : Wall_F {
-    class AnimationSources {
-        class door_1_locked_source {
-            source = "user";
-            animPeriod = 0.8;
-            initPhase = 0;
-        };
-        class door_2_locked_source {
-            source = "user";
-            animPeriod = 0.8;
-            initPhase = 0;
-        };
-    };
-};

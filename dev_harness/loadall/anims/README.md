@@ -14,7 +14,9 @@ and keep its `CD|`/`RT|`/`RI|`/`RP|`/`RS|`/`CH|` RPT lines. Build the modpack WI
 3. `roots.sqf` (same classes) -> `rootdata.txt`: topmost class sharing the model (`RT`), its parent and
    AnimationSources facts (`RI`).
 4. `roots2.sqf` (roots) -> `rootdata2.txt`: AnimationSources parent paths (`RP`) and existing sources (`RS`).
-5. `python learn.py` -> `learned.json`: how the full config dump (`cfg.py`) defines each source name.
+5. `python learn.py` -> `learned.json`: how the full config dump (`cfg.py`) defines each source name, and
+   `learned_inherited.json`, the same with properties resolved through parent sources, used only for names
+   that `learned.json` gives no `source`.
 6. Window glass: for buildings whose model animates `glass_N_source` but whose config has no `HitPoints`, run
    `glassparents.sqf` -> `gp.txt` and `glass.sqf` -> `gl.txt` (the roots), then
    `python gen_glass.py ../../../addons/common/common_compat_glass`. It writes vanilla-style window hitpoints
@@ -28,6 +30,8 @@ and keep its `CD|`/`RT|`/`RI|`/`RP|`/`RS|`/`CH|` RPT lines. Build the modpack WI
    carries the same parent. Put any other root in `exclude.txt` and regenerate.
 
 Rules: a `Hit` source is wired only when every class under the root has that hitpoint; a weapon source only
-when one weapon clearly matches; user sources copy the commonest definition. `AnimationSources` is declared only
+when one weapon clearly matches; user sources copy the commonest definition. A source is never
+wired on a root when a spawnable class under it does not report it unknown and has a turret whose
+`animationSourceBody`/`Gun`/`Hatch` names it: a `user` source there would freeze that turret's animation. `AnimationSources` is declared only
 on the class that owns it, with empty re-opens down to the root, so no class gains an entry it did not have.
 `anims_report.json` lists what was not wired and why.
