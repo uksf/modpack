@@ -1,3 +1,260 @@
+class Jbad_cat_dumper : Truck_F {
+    class AnimationSources {
+        class hitglass1 {
+            source = "Hit";
+            hitpoint = "HitGlass1";
+            raw = 1;
+        };
+        class hitglass2 {
+            source = "Hit";
+            hitpoint = "HitGlass2";
+            raw = 1;
+        };
+        class hitglass3 {
+            source = "Hit";
+            hitpoint = "HitGlass3";
+            raw = 1;
+        };
+        class hitglass4 {
+            source = "Hit";
+            hitpoint = "HitGlass4";
+            raw = 1;
+        };
+        class hitglass5 {
+            source = "Hit";
+            hitpoint = "HitGlass5";
+            raw = 1;
+        };
+        class hitglass6 {
+            source = "Hit";
+            hitpoint = "HitGlass6";
+            raw = 1;
+        };
+        class hitlbwheel {
+            source = "Hit";
+            hitpoint = "HitLF2Wheel";
+            raw = 1;
+        };
+        class hitlf2wheel {
+            source = "Hit";
+            hitpoint = "HitLBWheel";
+            raw = 1;
+        };
+        class hitlfwheel {
+            source = "Hit";
+            hitpoint = "HitLFWheel";
+            raw = 1;
+        };
+        class hitlmwheel {
+            source = "Hit";
+            hitpoint = "HitLMWheel";
+            raw = 1;
+        };
+        class hitrbwheel {
+            source = "Hit";
+            hitpoint = "HitRF2Wheel";
+            raw = 1;
+        };
+        class hitrf2wheel {
+            source = "Hit";
+            hitpoint = "HitRBWheel";
+            raw = 1;
+        };
+        class hitrfwheel {
+            source = "Hit";
+            hitpoint = "HitRFWheel";
+            raw = 1;
+        };
+        class hitrmwheel {
+            source = "Hit";
+            hitpoint = "HitRMWheel";
+            raw = 1;
+        };
+    };
+};
+class Jbad_forklift : Truck_F {
+    class AnimationSources {
+        class hitglass1 {
+            source = "Hit";
+            hitpoint = "HitGlass1";
+            raw = 1;
+        };
+        class hitglass2 {
+            source = "Hit";
+            hitpoint = "HitGlass2";
+            raw = 1;
+        };
+        class hitglass3 {
+            source = "Hit";
+            hitpoint = "HitGlass3";
+            raw = 1;
+        };
+        class hitglass4 {
+            source = "Hit";
+            hitpoint = "HitGlass4";
+            raw = 1;
+        };
+        class hitglass5 {
+            source = "Hit";
+            hitpoint = "HitGlass5";
+            raw = 1;
+        };
+        class hitglass6 {
+            source = "Hit";
+            hitpoint = "HitGlass6";
+            raw = 1;
+        };
+        class hitlbwheel {
+            source = "Hit";
+            hitpoint = "HitLF2Wheel";
+            raw = 1;
+        };
+        class hitlf2wheel {
+            source = "Hit";
+            hitpoint = "HitLBWheel";
+            raw = 1;
+        };
+        class hitlfwheel {
+            source = "Hit";
+            hitpoint = "HitLFWheel";
+            raw = 1;
+        };
+        class hitlmwheel {
+            source = "Hit";
+            hitpoint = "HitLMWheel";
+            raw = 1;
+        };
+        class hitrbwheel {
+            source = "Hit";
+            hitpoint = "HitRF2Wheel";
+            raw = 1;
+        };
+        class hitrf2wheel {
+            source = "Hit";
+            hitpoint = "HitRBWheel";
+            raw = 1;
+        };
+        class hitrfwheel {
+            source = "Hit";
+            hitpoint = "HitRFWheel";
+            raw = 1;
+        };
+        class hitrmwheel {
+            source = "Hit";
+            hitpoint = "HitRMWheel";
+            raw = 1;
+        };
+    };
+};
+class LT_01_base_F : Tank_F {
+    class AnimationSources;
+};
+class LT_01_cannon_base_F : LT_01_base_F {
+    class AnimationSources : AnimationSources {
+        class muzzle_hide_cannon {
+            source = "reload";
+            weapon = "ACE_cannon_20mm_Rh202";
+        };
+    };
+};
+class Land_NetFence_02_m_gate_v1_closed_F : Wall_F {
+    class AnimationSources {
+        class door_1_locked_source {
+            source = "user";
+            animPeriod = 0.8;
+            initPhase = 0;
+        };
+    };
+};
+class Land_NetFence_02_m_gate_v2_closed_F : Wall_F {
+    class AnimationSources {
+        class door_1_locked_source {
+            source = "user";
+            animPeriod = 0.8;
+            initPhase = 0;
+        };
+        class door_2_locked_source {
+            source = "user";
+            animPeriod = 0.8;
+            initPhase = 0;
+        };
+    };
+};
+class Land_PipeFence_01_m_gate_v1_closed_F : Wall_F {
+    class AnimationSources {
+        class door_1_locked_source {
+            source = "user";
+            animPeriod = 0.8;
+            initPhase = 0;
+        };
+    };
+};
+class Land_PipeFence_01_m_gate_v2_closed_F : Wall_F {
+    class AnimationSources {
+        class door_1_locked_source {
+            source = "user";
+            animPeriod = 0.8;
+            initPhase = 0;
+        };
+        class door_2_locked_source {
+            source = "user";
+            animPeriod = 0.8;
+            initPhase = 0;
+        };
+    };
+};
+class Land_PipeFence_03_m_gate_l_F : Wall_F {
+    class AnimationSources;
+};
+class Land_PipeFence_03_m_gate_r_F : Land_PipeFence_03_m_gate_l_F {
+    class AnimationSources : AnimationSources {
+        class door_1_nosound_source {
+            source = "user";
+            animPeriod = 1;
+            initPhase = 0;
+        };
+    };
+};
+class Land_PipeFence_04_m_gate_l_F : Wall_F {
+    class AnimationSources;
+};
+class Land_PipeFence_04_m_gate_r_F : Land_PipeFence_04_m_gate_l_F {
+    class AnimationSources : AnimationSources {
+        class door_1_nosound_source {
+            source = "user";
+            animPeriod = 1;
+            initPhase = 0;
+        };
+    };
+};
+class Land_SAM_System_03_G : Items_base_F {
+    class AnimationSources : AnimationSources {
+        class maingun {
+            source = "user";
+            animPeriod = 1e-07;
+            initPhase = 0;
+        };
+        class mainturret {
+            source = "user";
+            animPeriod = 1e-07;
+            initPhase = 0;
+        };
+    };
+};
+class Land_TinWall_01_m_gate_v1_closed_F : Wall_F {
+    class AnimationSources {
+        class door_1_locked_source {
+            source = "user";
+            animPeriod = 0.8;
+            initPhase = 0;
+        };
+        class door_2_locked_source {
+            source = "user";
+            animPeriod = 0.8;
+            initPhase = 0;
+        };
+    };
+};
 class Land_TinWall_01_m_gate_v2_closed_F : Wall_F {
     class AnimationSources {
         class door_1_locked_source {
@@ -184,30 +441,6 @@ class UAV_02_base_F : UAV {
             animPeriod = 1e-06;
             initPhase = 1;
         };
-        class maingun {
-            source = "user";
-            animPeriod = 1e-07;
-            initPhase = 0;
-        };
-        class mainturret {
-            source = "user";
-            animPeriod = 1e-07;
-            initPhase = 0;
-        };
-    };
-};
-class UK3CB_BAF_Apache_base : Heli_Attack_01_base_F {
-    class AnimationSources : AnimationSources {
-        class maingun {
-            source = "user";
-            animPeriod = 1e-07;
-            initPhase = 0;
-        };
-        class mainturret {
-            source = "user";
-            animPeriod = 1e-07;
-            initPhase = 0;
-        };
     };
 };
 class uksf_vaf_Mini_Radar_Dish : O_Radar_System_02_F {
@@ -216,6 +449,11 @@ class uksf_vaf_Mini_Radar_Dish : O_Radar_System_02_F {
             source = "user";
             animPeriod = 0.1;
             initPhase = 0;
+        };
+        class wall_mount_hide_source {
+            source = "user";
+            animPeriod = 0.1;
+            initPhase = 1;
         };
     };
 };

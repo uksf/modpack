@@ -1,6 +1,6 @@
 # Wires model.cfg animation sources that configs never declared, at the topmost class sharing the model.
 # Inputs: animsrc.txt (class|anim|source), classdata.txt (CD|...), rootdata.txt (RT|, RI|), learned.json.
-import json, os, re, collections, sys
+import json, os, re, collections, sys, pickle
 
 def arr(s):
     return json.loads(s) if s else []
@@ -36,6 +36,7 @@ for l in open('rootdata.txt', encoding='latin1'):
                        'parentLocal': p[6] == 'true', 'addons': arr(p[7])}
 
 learned = json.load(open('learned.json'))
+inherited = json.load(open('learned_inherited.json')) if os.path.exists('learned_inherited.json') else {}
 # hitpoints that another generated addon adds on a root (gen_glass.py), inherited by every class under it
 if os.path.exists('extra_hitpoints.json'):
     for c, r in root_of.items():
@@ -71,11 +72,48 @@ def weapons_of(c):
         w += t[3]
     return [x for x in w if not SKIPW.search(x)]
 
+def lineage_turret_sources():
+    spans, parents, _ = pickle.load(open('cfg.idx', 'rb'))
+    lines = open('B:/Steam/steamapps/common/Arma 3/@cache/config_5.23.13.cpp', encoding='latin1').read().split(chr(10))
+    pat = re.compile(r'animationSource(?:Body|Gun|Hatch)\s*=\s*"([^"]+)"', re.I)
+    scope_pat = re.compile(r'^\t\t\tscope\s*=\s*(\d+)', re.I)
+    own, own_scope = collections.defaultdict(set), {}
+    for key, (s, e) in spans.items():
+        p = key.split('/')
+        if len(p) == 2 and p[0] == 'cfgvehicles':
+            own[p[1]] = {m.lower() for l in lines[s:e] for m in pat.findall(l)}
+            for l in lines[s:e]:
+                m = scope_pat.match(l)
+                if m:
+                    own_scope[p[1]] = int(m.group(1))
+                    break
+    up = {c: parents.get('cfgvehicles/' + c, '').lower() for c in own}
+    def chain(c):
+        seen = set()
+        while c and c not in seen:
+            seen.add(c); yield c; c = up.get(c, '')
+    lineage = {c: set().union(*(own.get(a, set()) for a in chain(c))) for c in own}
+    scope = {c: next((own_scope[a] for a in chain(c) if a in own_scope), 0) for c in own}
+    below = collections.defaultdict(set)
+    for c in own:
+        if scope[c] > 0:
+            for a in chain(c):
+                below[a].add(c)
+    return lineage, below
+
+LINEAGE_TURRET_SOURCES, DESCENDANTS = lineage_turret_sources()
+UNKNOWN_LOWER = {k.lower(): {x.lower() for x in v} for k, v in unknown.items()}
+
+def turret_driven_below(root, src):
+    src = src.lower()
+    return any(src in LINEAGE_TURRET_SOURCES[c] and src not in UNKNOWN_LOWER.get(c, ()) for c in DESCENDANTS[root.lower()])
+
 def best(name):
-    for sig, n in learned.get(name, []):
-        d = json.loads(sig)
-        if d.get('source'):
-            return d
+    for table in (learned, inherited):
+        for sig, n in table.get(name, []):
+            d = json.loads(sig)
+            if d.get('source'):
+                return d
     return None
 
 decided, report = collections.defaultdict(dict), collections.defaultdict(list)
@@ -86,6 +124,8 @@ for c, r in root_of.items():
 for root, kids in groups.items():
     srcs = set().union(*(unknown[k] for k in kids))
     for s in sorted(srcs - existing.get(root, set())):
+        if turret_driven_below(root, s):
+            report['turret-driven in lineage'].append((root, s)); continue
         d = best(s)
         if d is None:
             report['never defined anywhere'].append((root, s)); continue

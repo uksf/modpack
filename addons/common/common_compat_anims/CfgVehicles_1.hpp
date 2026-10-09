@@ -3,6 +3,7 @@ class CUP_LAV25_Base;
 class CUP_M1245_Base;
 class CUP_UAZ_Base;
 class Car;
+class Helicopter_Base_F;
 class StaticMGWeapon;
 class rnc_house_base;
 class All {
@@ -85,6 +86,11 @@ class CUP_UAZ_SPG9_Base : CUP_UAZ_Armed_Base {
 class CUP_nHMMWV_Base;
 class CUP_nM1025_SOV_Base : CUP_nHMMWV_Base {
     class AnimationSources {
+        class hide_ammo_cans {
+            source = "user";
+            animPeriod = 1e-07;
+            initPhase = 1;
+        };
         class hitglass5 {
             source = "Hit";
             hitpoint = "HitGlass5";
@@ -99,6 +105,11 @@ class CUP_nM1025_SOV_Base : CUP_nHMMWV_Base {
 };
 class CUP_nM1025_SOV_Mk19_Base : CUP_nM1025_SOV_Base {
     class AnimationSources : AnimationSources {
+        class hide_ammo_cans {
+            source = "user";
+            animPeriod = 1e-07;
+            initPhase = 1;
+        };
         class hitglass5 {
             source = "Hit";
             hitpoint = "HitGlass5";
@@ -113,6 +124,11 @@ class CUP_nM1025_SOV_Mk19_Base : CUP_nM1025_SOV_Base {
 };
 class CUP_nM1036_TOW_Base : CUP_nHMMWV_Base {
     class AnimationSources {
+        class hide_ammo_cans {
+            source = "user";
+            animPeriod = 1e-07;
+            initPhase = 1;
+        };
         class hitglass5 {
             source = "Hit";
             hitpoint = "HitGlass5";
@@ -161,6 +177,11 @@ class CUP_nM1037sc_Base : CUP_nHMMWV_Base {
 };
 class CUP_nM1038_4s_Base : CUP_nHMMWV_Base {
     class AnimationSources {
+        class hide_ammo_cans {
+            source = "user";
+            animPeriod = 1e-07;
+            initPhase = 1;
+        };
         class hide_front_left_antenna {
             source = "user";
             animPeriod = 1e-07;
@@ -195,6 +216,11 @@ class CUP_nM1038_4s_Base : CUP_nHMMWV_Base {
 };
 class CUP_nM1038_Base : CUP_nHMMWV_Base {
     class AnimationSources {
+        class hide_ammo_cans {
+            source = "user";
+            animPeriod = 1e-07;
+            initPhase = 1;
+        };
         class hide_door_rear_left {
             source = "user";
             animPeriod = 1e-07;
@@ -229,6 +255,11 @@ class CUP_nM1038_Base : CUP_nHMMWV_Base {
 };
 class CUP_nM1097_Avenger_Base : CUP_nHMMWV_Base {
     class AnimationSources {
+        class hide_ammo_cans {
+            source = "user";
+            animPeriod = 1e-07;
+            initPhase = 1;
+        };
         class hitglass5 {
             source = "Hit";
             hitpoint = "HitGlass5";
@@ -243,6 +274,11 @@ class CUP_nM1097_Avenger_Base : CUP_nHMMWV_Base {
 };
 class CUP_nM997_amb_Base : CUP_nHMMWV_Base {
     class AnimationSources {
+        class hide_ammo_cans {
+            source = "user";
+            animPeriod = 1e-07;
+            initPhase = 1;
+        };
         class hide_blue_force_tracker {
             source = "user";
             animPeriod = 1e-07;
@@ -268,6 +304,11 @@ class CUP_nM997_amb_Base : CUP_nHMMWV_Base {
             animPeriod = 1e-06;
             initPhase = 1;
         };
+        class hide_spare_wheel_mount {
+            source = "user";
+            animPeriod = 1e-07;
+            initPhase = 1;
+        };
         class hitglass5 {
             source = "Hit";
             hitpoint = "HitGlass5";
@@ -283,40 +324,11 @@ class CUP_nM997_amb_Base : CUP_nHMMWV_Base {
 class Car_F : Car {
     class AnimationSources;
 };
-class Helicopter_Base_F;
 class Helicopter_Base_H : Helicopter_Base_F {
     class AnimationSources;
 };
 class House_EP1;
 class House_F;
-class LSV_01_base_F : Car_F {
-    class AnimationSources : AnimationSources {
-        class maingun {
-            source = "user";
-            animPeriod = 1e-07;
-            initPhase = 0;
-        };
-        class mainturret {
-            source = "user";
-            animPeriod = 1e-07;
-            initPhase = 0;
-        };
-    };
-};
-class LSV_02_base_F : Car_F {
-    class AnimationSources : AnimationSources {
-        class maingun {
-            source = "user";
-            animPeriod = 1e-07;
-            initPhase = 0;
-        };
-        class mainturret {
-            source = "user";
-            animPeriod = 1e-07;
-            initPhase = 0;
-        };
-    };
-};
 class Land : AllVehicles {};
 class LandVehicle : Land {};
 class Land_BagFence_End_F;
@@ -1113,6 +1125,11 @@ class CUP_A1_ammostore2 : CUP_A1_Buildings {
             initPhase = 0;
         };
         class lid_1_source {
+            source = "user";
+            animPeriod = 1;
+            initPhase = 0;
+        };
+        class lid_2_source {
             source = "user";
             animPeriod = 1;
             initPhase = 0;
