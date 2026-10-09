@@ -40,4 +40,4 @@ if (GVAR(dataSaved)) then {
     [_seq, STOPPING_DELIVERY_TIMEOUT, {
         SERVER_COMMAND serverCommand "#shutdown";
     }] call FUNC(waitForDelivery);
-}] call FUNC(saveBarrier);
+}, [], true] call FUNC(saveBarrier);
