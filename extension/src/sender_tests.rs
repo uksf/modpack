@@ -224,3 +224,31 @@ fn test_retry_queue_sets_headers_and_text_plain_body() {
     assert_eq!(header("x-uksf-protocol"), "2");
     assert_eq!(body, r#"["mission_started",[["sessionId","abc"]]]"#);
 }
+
+#[test]
+fn test_acknowledged_event_waits_past_the_ordinary_timeout_and_is_sent_once() {
+    let (url, count, stop) = test_server(|_| (200, 6000));
+    let queue = RetryQueue::acknowledged(url, 10, Duration::from_millis(50), Duration::from_secs(120));
+    queue.start();
+    let seq = next_seq();
+    queue.enqueue(seq, r#"["persistence_save",[["key","k"]]]"#.to_string(), "ts".to_string());
+
+    assert!(wait_for(|| outcome(seq) == Some(Outcome::Delivered), Duration::from_secs(10)));
+    assert_eq!(count.load(AtomicOrdering::SeqCst), 1);
+    queue.stop();
+    stop.store(true, AtomicOrdering::SeqCst);
+}
+
+#[test]
+fn test_acknowledged_lane_retries_within_five_seconds_after_a_long_outage() {
+    let (url, count, stop) = test_server(|n| (if n < 6 { 503 } else { 200 }, 0));
+    let queue = RetryQueue::acknowledged(url, 10, Duration::from_secs(1), Duration::from_secs(120));
+    queue.start();
+    let seq = next_seq();
+    queue.enqueue(seq, r#"["persistence_save",[["key","k"]]]"#.to_string(), "ts".to_string());
+
+    assert!(wait_for(|| outcome(seq) == Some(Outcome::Delivered), Duration::from_secs(40)));
+    assert_eq!(count.load(AtomicOrdering::SeqCst), 7);
+    queue.stop();
+    stop.store(true, AtomicOrdering::SeqCst);
+}

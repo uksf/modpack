@@ -6,22 +6,17 @@ use std::thread;
 use std::time::{Duration, Instant};
 
 use crate::config;
+use crate::transport::{try_send, SendResult, ACKNOWLEDGED_REQUEST_TIMEOUT, ORDINARY_REQUEST_TIMEOUT};
 use crate::delivery::{event_type, is_acknowledged_type, next_seq, set_outcome, Outcome};
 
 const MAX_QUEUE_SIZE: usize = 1000;
 pub const ACKNOWLEDGED_GIVE_UP_AFTER: Duration = Duration::from_secs(120);
 const FLUSH_TIMEOUT: Duration = Duration::from_secs(10);
-const PROTOCOL_VERSION: &str = "2";
+const ACKNOWLEDGED_MAX_BACKOFF: Duration = Duration::from_secs(5);
 
 enum Message {
     Enqueue(u64, String, String),
     Flush(Sender<()>),
-}
-
-enum SendResult {
-    Delivered,
-    Rejected,
-    Failed,
 }
 
 struct PendingEvent {
@@ -148,7 +143,10 @@ impl RetryQueue {
                 continue;
             }
 
-            match try_send(&self.url, &pending) {
+            let timeout = deadline.map_or(ORDINARY_REQUEST_TIMEOUT, |deadline| {
+                deadline.saturating_duration_since(Instant::now()).clamp(Duration::from_secs(1), ACKNOWLEDGED_REQUEST_TIMEOUT)
+            });
+            match try_send(&self.url, &pending.body, &pending.enqueue_at, timeout) {
                 SendResult::Delivered => {
                     self.finish(&pending, Outcome::Delivered);
                     continue;
@@ -160,7 +158,7 @@ impl RetryQueue {
                 SendResult::Failed => {}
             }
 
-            let backoff = next_backoff(pending.backoff);
+            let backoff = if self.tracked() { next_backoff(pending.backoff).min(ACKNOWLEDGED_MAX_BACKOFF) } else { next_backoff(pending.backoff) };
             let retry_at = Instant::now() + backoff;
             let next_attempt = deadline.map_or(retry_at, |deadline| retry_at.min(deadline));
             buffer.push_front(PendingEvent { next_attempt, backoff, ..pending });
@@ -209,25 +207,6 @@ fn next_backoff(current: Duration) -> Duration {
         .map(Duration::from_secs)
         .find(|step| current < *step)
         .unwrap_or(Duration::from_secs(60))
-}
-
-fn try_send(url: &str, pending: &PendingEvent) -> SendResult {
-    let api_port = config::get_api_port();
-    match ureq::post(url)
-        .timeout(Duration::from_secs(5))
-        .set("Content-Type", "text/plain; charset=utf-8")
-        .set("X-Api-Port", &api_port.to_string())
-        .set("X-Enqueued-At", &pending.enqueue_at)
-        .set("X-Uksf-Protocol", PROTOCOL_VERSION)
-        .send_string(&pending.body)
-    {
-        Ok(_) => SendResult::Delivered,
-        Err(ureq::Error::Status(422, _)) => SendResult::Rejected,
-        Err(error) => {
-            log::error!("Failed to send {} (will retry): {error}", event_type(&pending.body));
-            SendResult::Failed
-        }
-    }
 }
 
 fn extract_server_status_data(body: &str) -> Option<&str> {

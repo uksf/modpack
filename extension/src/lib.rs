@@ -19,6 +19,7 @@ mod loader;
 mod sender;
 mod status;
 mod stt;
+mod transport;
 
 fn logs_dir() -> PathBuf {
     std::env::current_exe()
