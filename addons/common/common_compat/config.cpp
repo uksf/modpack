@@ -86,7 +86,8 @@ class CfgPatches {
             "Structures_Globe_Items_Sport",
             "Structures_Globe_Signs_City_Road",
             "Structures_Globe_Training_SkeetMachine",
-            "UK3CB_BAF_Weapons_Accessories"
+            "UK3CB_BAF_Weapons_Accessories",
+            "CUP_Weapons_SCAR"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
@@ -95,7 +96,6 @@ class CfgPatches {
     };
 };
 
-// Third-party classes that declare EventHandlers without inheritance drop CBA XEH (and the ACE inits it carries).
 class CBA_Extended_EventHandlers_base;
 class CfgVehicles {
     class Animal_Base_F;
@@ -1252,12 +1252,10 @@ class CfgVehicles {
         };
     };
 
-    // Uniform units that redefine HitPoints without the ACE limb hitpoints.
     class Protagonist_VR_01 : C_man_1 {
         class HitPoints {
             class HitHands;
             class HitLegs;
-            // ACE ADD_ACE_HITPOINTS
             class HitLeftArm : HitHands {
                 material = -1;
                 name = "hand_l";
@@ -1284,7 +1282,6 @@ class CfgVehicles {
         class HitPoints {
             class HitHands;
             class HitLegs;
-            // ACE ADD_ACE_HITPOINTS
             class HitLeftArm : HitHands {
                 material = -1;
                 name = "hand_l";
@@ -1311,7 +1308,6 @@ class CfgVehicles {
         class HitPoints {
             class HitHands;
             class HitLegs;
-            // ACE ADD_ACE_HITPOINTS
             class HitLeftArm : HitHands {
                 material = -1;
                 name = "hand_l";
@@ -1338,7 +1334,6 @@ class CfgVehicles {
         class HitPoints {
             class HitHands;
             class HitLegs;
-            // ACE ADD_ACE_HITPOINTS
             class HitLeftArm : HitHands {
                 material = -1;
                 name = "hand_l";
@@ -1365,7 +1360,6 @@ class CfgVehicles {
         class HitPoints {
             class HitHands;
             class HitLegs;
-            // ACE ADD_ACE_HITPOINTS
             class HitLeftArm : HitHands {
                 material = -1;
                 name = "hand_l";
@@ -1392,7 +1386,6 @@ class CfgVehicles {
         class HitPoints {
             class HitHands;
             class HitLegs;
-            // ACE ADD_ACE_HITPOINTS
             class HitLeftArm : HitHands {
                 material = -1;
                 name = "hand_l";
@@ -1416,7 +1409,6 @@ class CfgVehicles {
         };
     };
 
-    // Static fuel props: CBA disables XEH on Static, ACE refuel needs it to init placed objects.
     class House_Small_F;
     class Strategic;
     class Land_TrailerCistern_wreck_G_fuel : House_Small_F {
@@ -1432,7 +1424,7 @@ class CfgVehicles {
         SLX_XEH_DISABLED = 0;
     };
     class Bomb : Strategic {
-        ace_refuel_fuelCargo = -1; // Internal vanilla class, not a fuel source
+        ace_refuel_fuelCargo = -1;
     };
 #include "CfgVehiclesFixes.hpp"
 #include "CfgVehiclesNoModel.hpp"
