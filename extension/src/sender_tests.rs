@@ -1,8 +1,10 @@
 use super::*;
-use crate::delivery::{next_seq, outcome};
+use crate::lanes::extract_server_status_data;
+use crate::config;
+use crate::delivery::{is_acknowledged_type, next_seq, outcome};
 use std::sync::atomic::{AtomicBool, AtomicU32, Ordering as AtomicOrdering};
 
-fn test_server(status_for_request: impl Fn(u32) -> (u16, u64) + Send + 'static) -> (String, Arc<AtomicU32>, Arc<AtomicBool>) {
+pub(super) fn test_server(status_for_request: impl Fn(u32) -> (u16, u64) + Send + 'static) -> (String, Arc<AtomicU32>, Arc<AtomicBool>) {
     let server = tiny_http::Server::http("127.0.0.1:0").unwrap();
     let port = server.server_addr().to_ip().unwrap().port();
     let count = Arc::new(AtomicU32::new(0));
@@ -20,7 +22,7 @@ fn test_server(status_for_request: impl Fn(u32) -> (u16, u64) + Send + 'static) 
     (format!("http://127.0.0.1:{port}/gameservers/events"), count, stop)
 }
 
-fn wait_for(condition: impl Fn() -> bool, limit: Duration) -> bool {
+pub(super) fn wait_for(condition: impl Fn() -> bool, limit: Duration) -> bool {
     let deadline = Instant::now() + limit;
     while Instant::now() < deadline {
         if condition() {
@@ -59,9 +61,7 @@ fn test_save_and_shutdown_events_take_the_acknowledged_lane() {
 
 #[test]
 fn test_flush_when_not_started() {
-    if let Ok(mut guard) = LANES.lock() {
-        *guard = None;
-    }
+    stop();
     assert!(!flush());
 }
 

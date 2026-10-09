@@ -43,7 +43,6 @@ addMissionEventHandler ["MPEnded", {
     [] call FUNC(sendMissionEnded);
 
     call FUNC(sendPerformance);
-    "uksf" callExtension "flush";
 
     EGVAR(common,fpsStore) = createHashMap;
     EGVAR(common,fpsStoreTimestamps) = createHashMap;

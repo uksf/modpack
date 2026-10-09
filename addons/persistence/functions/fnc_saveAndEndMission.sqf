@@ -38,7 +38,10 @@ INFO_1("Saving before mission %1",_transition);
 
     INFO_2("Save before mission %1: %2",_transition,_outcome);
     if (_transition == "restart") then {
-        SERVER_COMMAND serverCommand "#restart";
+        if !(SERVER_COMMAND serverCommand "#restart") then {
+            ERROR("Server refused #restart, mission continues");
+            GVAR(saveBarrierInProgress) = false;
+        };
     } else {
         [] call BIS_fnc_endMissionServer;
     };

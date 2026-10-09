@@ -24,9 +24,20 @@ impl Outcome {
 static NEXT_SEQ: AtomicU64 = AtomicU64::new(1);
 static OUTCOMES: Mutex<Option<HashMap<u64, Outcome>>> = Mutex::new(None);
 
+const OUTCOME_RETENTION: u64 = 4096;
+
 pub fn set_outcome(seq: u64, outcome: Outcome) {
     if let Ok(mut guard) = OUTCOMES.lock() {
-        guard.get_or_insert_with(HashMap::new).insert(seq, outcome);
+        let outcomes = guard.get_or_insert_with(HashMap::new);
+        outcomes.insert(seq, outcome);
+        forget_old_outcomes(outcomes, seq, OUTCOME_RETENTION);
+    }
+}
+
+pub fn forget_old_outcomes(outcomes: &mut HashMap<u64, Outcome>, latest: u64, retention: u64) {
+    if outcomes.len() as u64 > retention {
+        let oldest_kept = latest.saturating_sub(retention);
+        outcomes.retain(|seq, outcome| *outcome == Outcome::Pending || *seq > oldest_kept);
     }
 }
 
