@@ -10,6 +10,7 @@ mod audio_stream_tests;
 mod bridge;
 mod commands;
 mod config;
+mod delivery;
 mod file_export;
 mod dev_run;
 mod input;
@@ -68,6 +69,7 @@ fn init() -> Extension {
         .command("stop", commands::stop)
         .command("flush", commands::flush)
         .command("event", commands::event)
+        .command("delivered", commands::delivered)
         .command("load", commands::load)
         .command("pressSpace", commands::press_space)
         .command("fileExportOpen", commands::file_export_open)

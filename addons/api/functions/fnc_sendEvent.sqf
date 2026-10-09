@@ -16,7 +16,7 @@
         1: Event data <HASHMAP>
 
     Return Value:
-        Extension queue acknowledgement <STRING> ("queued" on success)
+        Delivery sequence number <NUMBER> (0 when the extension did not queue the event)
 
     Example:
         [_type, _data] call uksf_api_fnc_sendEvent
@@ -27,13 +27,11 @@ if (_type isNotEqualTo "server_status" && {_type isNotEqualTo "performance"}) th
     TRACE_1("Sending event",_type);
 };
 
-// Game-side wire is SQF: extension forwards verbatim, API parses with SqfNotationParser.
-// Internal `"` characters are doubled by str() per SQF string-literal escape rules,
-// so the body is already round-trip safe for `parseSimpleArray`/SqfNotationParser.
 private _body = str [_type, _data];
 private _result = "uksf" callExtension ["event", [_body]];
 private _response = _result#0;
-if (_response != "queued") then {
+private _seq = parseNumber _response;
+if (_seq <= 0) then {
     WARNING_2("Extension did not queue event '%1': %2",_type,_response);
 };
-_response
+_seq
