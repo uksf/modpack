@@ -92,7 +92,10 @@ class CfgPatches {
             "CUP_Weapons_LoadOrder",
             "UK3CB_BAF_Weapons_L110",
             "UK3CB_BAF_Weapons_L115",
-            "UK3CB_BAF_Weapons_L7"
+            "UK3CB_BAF_Weapons_L7",
+            "cba_jr",
+            "CUP_Weapons_East_Attachments",
+            "Weapons_Globe_ACC"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
@@ -1442,3 +1445,4 @@ class CfgVehicles {
 #include "CfgMoves.hpp"
 #include "CfgSurfaces.hpp"
 #include "CfgVoiceTypes.hpp"
+#include "CfgSlots.hpp"
