@@ -11,6 +11,7 @@
 private _phase = LA_PHASE;
 private _tab = parseNumber (_phase select [3]);
 private _seen = createHashMap;
+private _cargoSwept = false;
 
 player hideObject false;
 if (!isNil "vc_cam") then { vc_cam cameraEffect ["terminate", "back"]; camDestroy vc_cam; vc_cam = nil };
@@ -68,7 +69,7 @@ for "_i" from LA_START to (_end - 1) do {
     [_left, _i] call _clickRow;
     uiSleep 0.15;
     if (_tab in WEAPON_TABS) then { [_i, WEAPON_RIGHT_TABS, IDC_RIGHT_LIST] call _clickUnseenRightRows };
-    if (_tab in CONTAINER_TABS && {_i == LA_START}) then { [_i, CARGO_RIGHT_TABS, IDC_RIGHT_LISTNBOX] call _clickUnseenRightRows };
+    if (_tab in CONTAINER_TABS && {!_cargoSwept}) then { _cargoSwept = true; [_i, CARGO_RIGHT_TABS, IDC_RIGHT_LISTNBOX] call _clickUnseenRightRows };
 };
 _display closeDisplay 1;
 format ["LA|END|%1|%2", _phase, _end] call vc_fnc_log;
