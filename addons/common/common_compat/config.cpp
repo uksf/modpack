@@ -95,7 +95,8 @@ class CfgPatches {
             "UK3CB_BAF_Weapons_L7",
             "cba_jr",
             "CUP_Weapons_East_Attachments",
-            "Weapons_Globe_ACC"
+            "Weapons_Globe_ACC",
+            "EWDJ_modular"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
