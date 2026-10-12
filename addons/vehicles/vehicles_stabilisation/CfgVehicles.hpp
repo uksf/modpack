@@ -1,5 +1,0 @@
-#include "CfgVehicles_1.hpp"
-#include "CfgVehicles_2.hpp"
-#include "CfgVehicles_3.hpp"
-#include "CfgVehicles_4.hpp"
-#include "CfgVehicles_5.hpp"
