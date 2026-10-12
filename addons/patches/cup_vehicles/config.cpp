@@ -103,7 +103,6 @@ class CfgPatches {
             "CUP_WheeledVehicles_Vodnik",
             "CUP_WheeledVehicles_Wolfhound",
             "uksf_air_patches",
-            "uksf_air_patches_fuel",
             "uksf_air_weapons",
             "uksf_radios",
             "uksf_vehicles"

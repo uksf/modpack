@@ -130,7 +130,6 @@ class CfgPatches {
             "cba_jam",
             "cba_xeh",
             "uksf_air_patches",
-            "uksf_air_patches_fuel",
             "uksf_immersion",
             "uksf_vehicles"
         };
