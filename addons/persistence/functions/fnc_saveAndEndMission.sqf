@@ -32,6 +32,7 @@ if (GVAR(shutdownInProgress) || GVAR(saveBarrierInProgress)) exitWith {
 
 GVAR(saveBarrierInProgress) = true;
 INFO_1("Saving before mission %1",_transition);
+[QGVAR(missionTransitionStarted), [_transition]] call CBA_fnc_globalEvent;
 
 [{
     params ["_outcome", "_transition"];

@@ -54,6 +54,11 @@ if (!isServer) then {
         call FUNC(clientSync);
         call FUNC(stopCollection);
     }] call CBA_fnc_addEventHandler;
+
+    [QEGVAR(persistence,missionTransitionStarted), {
+        TRACE_1("Mission transition: flushing client buffers",count GVAR(eventBuffer));
+        call FUNC(clientSync);
+    }] call CBA_fnc_addEventHandler;
 };
 
 #include "initSettings.inc.sqf"

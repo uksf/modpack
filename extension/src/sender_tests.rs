@@ -54,6 +54,7 @@ fn test_save_and_shutdown_events_take_the_acknowledged_lane() {
     assert!(lane(r#"["persistence_save",[["key","k"]]]"#));
     assert!(lane(r#"["shutdown_ending",[]]"#));
     assert!(lane(r#"["shutdown_stopping",[["outcome","lost"]]]"#));
+    assert!(lane(r#"["mission_ended",[["saved",true]]]"#));
     assert!(!lane(r#"["mission_stats",[]]"#));
     assert!(!lane(r#"["server_status",[]]"#));
     assert!(!lane("garbage"));

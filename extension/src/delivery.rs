@@ -54,5 +54,5 @@ pub fn event_type(body: &str) -> &str {
 }
 
 pub fn is_acknowledged_type(event_type: &str) -> bool {
-    event_type == "persistence_save" || event_type.starts_with("shutdown_")
+    event_type == "persistence_save" || event_type == "mission_ended" || event_type.starts_with("shutdown_")
 }

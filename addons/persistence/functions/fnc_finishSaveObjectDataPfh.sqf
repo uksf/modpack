@@ -26,7 +26,9 @@ private _remove = [];
     if (isNull _value || {!(alive _value)}) then {
         _remove pushBack _key;
         private _index = _objects findIf {_x#IDX_OBJ_ID == _key};
-        _objects deleteAt _index;
+        if (_index > -1) then {
+            _objects deleteAt _index;
+        };
     };
 }] call CBA_fnc_hashEachPair;
 

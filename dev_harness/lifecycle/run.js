@@ -6,7 +6,7 @@ const { Api, build, settingsPath } = require('./lib/api');
 const { Run } = require('./lib/session');
 const { SCENARIOS } = require('./scenarios');
 
-const USAGE = `usage: node run.js <scenario...|all|list> --api <api checkout> [--uksf <@uksf build>] [--out <dir>] [--no-build] [--keep-data]
+const USAGE = `usage: node run.js <scenario...|all|list> --api <api checkout> [--uksf <@uksf build>] [--mod-root <repo with every @mod>] [--out <dir>] [--no-build] [--keep-data]
 
 Runs lifecycle scenarios against a local API (port 5510, devLocal) that launches a cloned
 "LifecycleTest" server record. Needs non-elevated Steam for the player client.`;
@@ -17,6 +17,7 @@ function parseArgs(argv) {
     const a = argv[i];
     if (a === '--api') opts.apiDir = argv[++i];
     else if (a === '--uksf') opts.uksfPath = argv[++i];
+    else if (a === '--mod-root') opts.modRoot = argv[++i];
     else if (a === '--out') opts.out = argv[++i];
     else if (a === '--no-build') opts.build = false;
     else if (a === '--keep-data') opts.keepData = true;
@@ -46,7 +47,8 @@ function parseArgs(argv) {
   const vars = db('vars', { keys: ['SERVER_PATH_PROFILES', 'SERVER_PATH_DEV', 'MISSIONS_PATH', 'SERVER_HEADLESS_NAMES', 'SERVER_COMMAND_PASSWORD'] });
   const ctx = {
     out, log, db, vars, serverName: 'LifecycleTest', hcNames: String(vars.SERVER_HEADLESS_NAMES).split(',').map(s => s.trim()), gamePort: 2412, serverApiPort: 7100,
-    uksfPath: path.resolve(opts.uksfPath || path.join(__dirname, '..', '..', '.hemttout', 'dev')),
+    modRoot: opts.modRoot ? path.resolve(opts.modRoot) : null,
+    uksfPath: path.resolve(opts.uksfPath || (opts.modRoot ? path.join(opts.modRoot, '@uksf') : path.join(__dirname, '..', '..', '.hemttout', 'dev'))),
   };
   if (!fs.existsSync(path.join(ctx.uksfPath, 'addons'))) { console.error(`no @uksf build at ${ctx.uksfPath}`); process.exit(2); }
 
@@ -58,7 +60,7 @@ function parseArgs(argv) {
   try {
     if (opts.build) build(opts.apiDir, log);
     db('setvar', { key: 'SERVER_COMMAND_PASSWORD', value: 'brexit' });
-    ctx.serverRecord = db('upsert-server', { uksf: ctx.uksfPath, port: ctx.gamePort, apiPort: ctx.serverApiPort, headlessClients: 1 });
+    ctx.serverRecord = db('upsert-server', { uksf: ctx.uksfPath, modRoot: ctx.modRoot, port: ctx.gamePort, apiPort: ctx.serverApiPort, headlessClients: 1 });
     ctx.api = new Api({ apiDir: opts.apiDir, port: 5510, out, verifyMode: false, log });
     await ctx.api.start();
     for (const name of names) {
