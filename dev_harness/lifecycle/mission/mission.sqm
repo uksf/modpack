@@ -8,7 +8,7 @@ addons[]=
 randomSeed=1;
 class ItemIDProvider
 {
-	nextID=8;
+	nextID=10;
 };
 class ScenarioData
 {
@@ -36,7 +36,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=4;
+		items=6;
 		class Item0
 		{
 			dataType="Group";
@@ -134,6 +134,56 @@ class Mission
 			isPlayable=1;
 			id=3;
 			type="HeadlessClient_F";
+		};
+		class Item4
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={2996,5,2995};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=8;
+			type="Box_NATO_Support_F";
+		};
+		class Item5
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={2998,5,2995};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=9;
+			type="Box_NATO_Grenades_F";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="uksf_persistence_persistenceID";
+					expression="if (!is3DEN && { isServer }) then {[_this, _value] call uksf_persistence_fnc_markObjectAsPersistent};";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]={"STRING"};
+							};
+							value="lc_marked_grenades";
+						};
+					};
+				};
+				nAttributes=1;
+			};
 		};
 	};
 };

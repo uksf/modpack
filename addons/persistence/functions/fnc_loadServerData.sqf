@@ -6,6 +6,8 @@
     Description:
         Orchestrates server-side data loading after initialisation.
         Sets mission objects, removes deleted objects, then loads all persistent data.
+        Mission objects without an Eden persistence ID are excluded from saving,
+        so a later save never gives them an ID and a reload never duplicates them.
 
     Parameter(s):
         None
@@ -19,6 +21,11 @@
 
 GVAR(missionObjects) = +EGVAR(common,missionObjectsMinusUnits);
 TRACE_1("Mission objects",GVAR(missionObjects));
+{
+    if (_x getVariable [QGVAR(persistenceID), ""] == "") then {
+        _x setVariable [QGVAR(excluded), true];
+    };
+} forEach GVAR(missionObjects);
 
 [{
     call FUNC(removeDeletedMissionObjects);

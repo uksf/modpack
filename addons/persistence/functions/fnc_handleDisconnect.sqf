@@ -4,7 +4,8 @@
         Tim Beswick
 
     Description:
-        Handles client disconnect on server
+        Handles client disconnect on server. Headless clients are not players
+        and store nothing.
 
     Parameter(s):
         0: Unit <OBJECT>
@@ -21,6 +22,8 @@
 params ["_unit", "_id", "_uid", "_name"];
 
 TRACE_4("HandleDisconnect",_unit,_id,_uid,_name);
+
+if (_unit isKindOf "HeadlessClient_F") exitWith {};
 
 [GVAR(hashHasRedeployed), _uid, false] call CBA_fnc_hashSet;
 [GVAR(hashFirstRespawn), _uid, true] call CBA_fnc_hashSet;

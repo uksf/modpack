@@ -11,6 +11,7 @@ lc_fnc_createObjects = {
         private _box = createVehicle ["Box_NATO_Ammo_F", _position, [], 0, "CAN_COLLIDE"];
         [_box] call uksf_persistence_fnc_markObjectAsPersistent;
     };
+    createVehicle ["Box_NATO_Wps_F", [2998, 2991, 0], [], 0, "CAN_COLLIDE"];
     ["ready", count ([uksf_persistence_persistentObjectsHash] call CBA_fnc_hashKeys)] call lc_fnc_log;
 };
 

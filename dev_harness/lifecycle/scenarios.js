@@ -53,7 +53,11 @@ const SCENARIOS = {
     scenario: { objects: 50 },
     async run(run, ctx) {
       await run.stop();
-      await afterShutdown(run, ctx, { boxes: 50 });
+      const doc = await afterShutdown(run, ctx, { boxes: 50 });
+      const types = (doc && doc.typeCounts) || {};
+      run.check('editor object without an ID is not saved', !types.Box_NATO_Support_F, JSON.stringify(types));
+      run.check('editor object with an Eden ID is saved', types.Box_NATO_Grenades_F === 1, JSON.stringify(types));
+      run.check('object spawned in game near the player is saved by the marker scan', types.Box_NATO_Wps_F === 1, JSON.stringify(types));
       const o = order(run, [/\[LC\] playerDisconnected/, /Shutdown save capture started/, /Sending mission_ended/]);
       run.check('player disconnects before capture, capture before mission_ended', o.ok, o.at.join(','));
     },
@@ -122,7 +126,7 @@ const SCENARIOS = {
       run.note('player relaunched', `pid ${run.player.pid}`);
       const loads = await run.logs.server.waitForCount(/\[LC\] loaded server /, 2, 300e3);
       const reloaded = loads && loads[1].match(/loaded server [\d.]+ (\w+) (\d+)/);
-      run.check('restarted mission reloads the 25 saved boxes from the load event', reloaded && reloaded[1] === 'event' && +reloaded[2] === 25, loads ? loads.join(' | ') : 'no second load');
+      run.check('restarted mission reloads the 25 saved boxes plus the Eden-ID and in-game boxes from the load event', reloaded && reloaded[1] === 'event' && +reloaded[2] === 27, loads ? loads.join(' | ') : 'no second load');
       const o = order(run, [/Save before mission restart: delivered/, /Sending mission_ended for \S+, saved: true/, /\[LC\] MPEnded/]);
       run.check('save delivered, then mission_ended saved=true, then MPEnded', o.ok, o.at.join(','));
       if (!await run.logs.server.waitForCount(/\[LC\] remoteReady server \S+ client/, 2, 300e3)) {
@@ -130,7 +134,11 @@ const SCENARIOS = {
         return;
       }
       await run.stop();
-      await afterShutdown(run, ctx, { boxes: 50 });
+      const doc = await afterShutdown(run, ctx, { boxes: 50 });
+      const types = (doc && doc.typeCounts) || {};
+      run.check('restart does not duplicate mission objects', !types.Box_NATO_Support_F && types.Box_NATO_Grenades_F === 1, JSON.stringify(types));
+      const uids = Object.keys((doc && doc.players) || {});
+      run.check('only the player is stored, not the HC', uids.length === 1 && uids[0] === run.playerUid, uids.join(','));
     },
   },
   'kill-guards': {
