@@ -8,7 +8,7 @@
         Each frame processes markers and objects until the frame budget is used.
         Finishes when both markers and queue are empty, or sends a partial save when
         the capture cap is reached. Calls the callback with
-        [delivery sequence number, callback arguments].
+        [delivery sequence number, callback arguments, partial save].
 
     Parameter(s):
         0: Markers <ARRAY>
@@ -19,7 +19,7 @@
         None
 
     Example:
-        [_markers, {params ["_seq", "_args"]}, []] call uksf_persistence_fnc_shutdownSavePfh
+        [_markers, {params ["_seq", "_args", "_partial"]}, []] call uksf_persistence_fnc_shutdownSavePfh
 */
 #define TYPE_EXCLUDE_LIST ["UK3CB_BAF_1Rnd_60mm_Mo_Shells_spent","UK3CB_BAF_1Rnd_81mm_Mo_Shells_spent","tbd_mortars_105mm_casing_spent","Helper_Base_F"]
 #define FRAME_BUDGET 0.003
@@ -86,5 +86,5 @@ INFO_2("Shutdown save capture started: %1 markers, %2 objects",count _markers,co
     INFO_2("Shutdown save capture finished in %1 s: %2 objects captured",diag_tickTime - _startedAt,count _processed);
 
     private _seq = [_capReached] call FUNC(finishSaveObjectDataPfh);
-    [_seq, _callbackArgs] call _callback;
+    [_seq, _callbackArgs, _capReached] call _callback;
 }, 0, [_markers, [], diag_tickTime, _callback, _callbackArgs]] call CBA_fnc_addPerFrameHandler;

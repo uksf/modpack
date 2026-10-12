@@ -30,7 +30,7 @@ if (GVAR(dataSaved)) then {
     params ["_outcome"];
 
     INFO_1("Shutdown save outcome: %1",_outcome);
-    if (_outcome in ["rejected", "lost", "timeout", "unsent"]) then {
+    if (_outcome in ["partial", "rejected", "lost", "timeout", "unsent"]) then {
         ERROR_1("Shutdown save was not stored by the API: %1",_outcome);
     };
 
