@@ -8,7 +8,7 @@ addons[]=
 randomSeed=1;
 class ItemIDProvider
 {
-	nextID=10;
+	nextID=11;
 };
 class ScenarioData
 {
@@ -36,7 +36,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=6;
+		items=7;
 		class Item0
 		{
 			dataType="Group";
@@ -184,6 +184,21 @@ class Mission
 				};
 				nAttributes=1;
 			};
+		};
+		class Item6
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={3004,5,2995};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=10;
+			type="Land_HelipadEmpty_F";
 		};
 	};
 };

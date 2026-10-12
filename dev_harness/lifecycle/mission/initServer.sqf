@@ -12,6 +12,11 @@ lc_fnc_createObjects = {
         [_box] call uksf_persistence_fnc_markObjectAsPersistent;
     };
     createVehicle ["Box_NATO_Wps_F", [2998, 2991, 0], [], 0, "CAN_COLLIDE"];
+    private _helipads = nearestObjects [[3004, 2995, 0], ["Land_HelipadEmpty_F"], 2];
+    ["helipads", count _helipads] call lc_fnc_log;
+    if (lc_legacyCopy > 0 && {_loaded < lc_objects}) then {
+        [_helipads#0] call uksf_persistence_fnc_markObjectAsPersistent;
+    };
     ["ready", count ([uksf_persistence_persistentObjectsHash] call CBA_fnc_hashKeys)] call lc_fnc_log;
 };
 

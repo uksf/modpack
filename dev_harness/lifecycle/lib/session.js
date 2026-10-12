@@ -8,7 +8,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 class Run {
   constructor(ctx, scenario) {
     this.ctx = ctx;
-    this.scenario = { objects: 0, offset: 0, freeze: 0, serverFreeze: 0, player: true, headlessClients: 1, ...scenario };
+    this.scenario = { objects: 0, offset: 0, freeze: 0, serverFreeze: 0, legacyCopy: 0, player: true, headlessClients: 1, ...scenario };
     if (this.scenario.headlessClients !== 1) throw new Error('the test server record has exactly one headless client');
     this.timeline = [];
     this.checks = [];
@@ -37,7 +37,7 @@ class Run {
     this.mods = record.mods;
     const missionName = buildMission(ctx.vars.MISSIONS_PATH, {
       persistenceKey: scenario.persistenceKey, objects: scenario.objects, offset: scenario.offset,
-      freeze: scenario.freeze, serverFreeze: scenario.serverFreeze,
+      freeze: scenario.freeze, serverFreeze: scenario.serverFreeze, legacyCopy: scenario.legacyCopy,
     });
     this.since = Date.now();
     this.logs = serverLogs({

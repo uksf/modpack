@@ -40,6 +40,11 @@ if ([GVAR(persistentObjectsHash), _id] call CBA_fnc_hashHasKey) then {
     GVAR(missionObjects) deleteAt (GVAR(missionObjects) find _object);
 };
 
+if (isNull _object && {(nearestObjects [ASLToAGL _position, [_type], 0.5]) findIf {typeOf _x == _type && {_x in GVAR(missionObjects)}} > -1}) exitWith {
+    WARNING_2("Skipped loading object %1. The mission already places a %2 at its saved position. Removing this object from persistence data",_id,_type);
+    GVAR(pendingAbortedRemovals) pushBackUnique _id;
+};
+
 if (isNull _object) then {
     _object = _type createVehicle [0,0,0];
     _object setVectorDirAndUp _vectorDirAndUp;
@@ -50,9 +55,6 @@ if (!_forceLoad && {!([ASLToAGL _position, _object, (_vectorDirAndUp#0) call CBA
 
     if (_failedLastLoad) exitWith {
         WARNING_2("Aborted loading object %1. Saved position %2 will clip with a mission placed object. This is the second failed load. Removing this object from persistence data",_id,_position);
-        // Defer the namespace edit + saveData until end of load — see fnc_loadAllObjectData
-        // for the flush. Saving per-abort during load blocks the server for seconds at a time.
-        // Clear the id from abortedObjectIds synchronously so the retry batch skips it.
         GVAR(abortedObjectIds) deleteAt (GVAR(abortedObjectIds) find _id);
         GVAR(pendingAbortedRemovals) pushBackUnique _id;
     };

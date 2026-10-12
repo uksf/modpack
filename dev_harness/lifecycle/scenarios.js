@@ -116,7 +116,7 @@ const SCENARIOS = {
   },
   restart: {
     description: '#restart: save before restart, the restarted mission reloads it, a later stop stores both sets',
-    scenario: { objects: 25 },
+    scenario: { objects: 25, legacyCopy: 1 },
     async run(run, ctx) {
       await run.command('restart');
       run.check('mission ended for restart', await run.logs.server.waitFor(/\[LC\] MPEnded/, 200e3));
@@ -127,6 +127,8 @@ const SCENARIOS = {
       const loads = await run.logs.server.waitForCount(/\[LC\] loaded server /, 2, 300e3);
       const reloaded = loads && loads[1].match(/loaded server [\d.]+ (\w+) (\d+)/);
       run.check('restarted mission reloads the 25 saved boxes plus the Eden-ID and in-game boxes from the load event', reloaded && reloaded[1] === 'event' && +reloaded[2] === 27, loads ? loads.join(' | ') : 'no second load');
+      const helipads = await run.logs.server.waitForCount(/\[LC\] helipads /, 2, 60e3);
+      run.check('a legacy saved copy of a mission object does not load beside the original', helipads && /helipads server [\d.]+ 1$/.test(helipads[1]), helipads ? helipads.join(' | ') : 'no second count');
       const o = order(run, [/Save before mission restart: delivered/, /Sending mission_ended for \S+, saved: true/, /\[LC\] MPEnded/]);
       run.check('save delivered, then mission_ended saved=true, then MPEnded', o.ok, o.at.join(','));
       if (!await run.logs.server.waitForCount(/\[LC\] remoteReady server \S+ client/, 2, 300e3)) {
@@ -136,7 +138,7 @@ const SCENARIOS = {
       await run.stop();
       const doc = await afterShutdown(run, ctx, { boxes: 50 });
       const types = (doc && doc.typeCounts) || {};
-      run.check('restart does not duplicate mission objects', !types.Box_NATO_Support_F && types.Box_NATO_Grenades_F === 1, JSON.stringify(types));
+      run.check('restart does not duplicate mission objects', !types.Box_NATO_Support_F && !types.Land_HelipadEmpty_F && types.Box_NATO_Grenades_F === 1, JSON.stringify(types));
       const uids = Object.keys((doc && doc.players) || {});
       run.check('only the player is stored, not the HC', uids.length === 1 && uids[0] === run.playerUid, uids.join(','));
     },
