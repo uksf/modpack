@@ -58,6 +58,8 @@ const SCENARIOS = {
       run.check('editor object without an ID is not saved', !types.Box_NATO_Support_F, JSON.stringify(types));
       run.check('editor object with an Eden ID is saved', types.Box_NATO_Grenades_F === 1, JSON.stringify(types));
       run.check('object spawned in game near the player is saved by the marker scan', types.Box_NATO_Wps_F === 1, JSON.stringify(types));
+      const wps = ((doc && doc.positions) || {}).Box_NATO_Wps_F || [];
+      run.check('saved position keeps sub-centimetre precision', Math.abs(wps[0] - 2998.1234) < 0.001 && Math.abs(wps[1] - 2991.5678) < 0.001, JSON.stringify(wps));
       const o = order(run, [/\[LC\] playerDisconnected/, /Shutdown save capture started/, /Sending mission_ended/]);
       run.check('player disconnects before capture, capture before mission_ended', o.ok, o.at.join(','));
     },
@@ -120,15 +122,17 @@ const SCENARIOS = {
     async run(run, ctx) {
       await run.command('restart');
       run.check('mission ended for restart', await run.logs.server.waitFor(/\[LC\] MPEnded/, 200e3));
-      run.player.kill();
-      await sleep(5e3);
-      await run.player.launch();
+      await run.player.relaunch();
       run.note('player relaunched', `pid ${run.player.pid}`);
       const loads = await run.logs.server.waitForCount(/\[LC\] loaded server /, 2, 300e3);
       const reloaded = loads && loads[1].match(/loaded server [\d.]+ (\w+) (\d+)/);
       run.check('restarted mission reloads the 25 saved boxes plus the Eden-ID and in-game boxes from the load event', reloaded && reloaded[1] === 'event' && +reloaded[2] === 27, loads ? loads.join(' | ') : 'no second load');
       const helipads = await run.logs.server.waitForCount(/\[LC\] helipads /, 2, 60e3);
       run.check('a legacy saved copy of a mission object does not load beside the original', helipads && /helipads server [\d.]+ 1$/.test(helipads[1]), helipads ? helipads.join(' | ') : 'no second count');
+      const restartSave = ctx.db('persistence', { key: fullKey(run.scenario.persistenceKey) });
+      run.check('API stores the marker with named fields', ((restartSave && restartSave.markerTexts) || []).includes('LC Marker'), JSON.stringify(restartSave && restartSave.markerTexts));
+      const markers = await run.logs.server.waitForCount(/\[LC\] markers /, 2, 60e3);
+      run.check('restarted mission receives the saved marker from the API in SQF order', markers && /"_USER_DEFINED #0\/990\/1",\[3010\.25,2990\.75,0\],"ICON","hd_dot","Solid",\[1,1\],"ColorRed",1,42\.5,"LC Marker"/.test(markers[1]), markers ? markers.join(' | ') : 'no second marker log');
       const o = order(run, [/Save before mission restart: delivered/, /Sending mission_ended for \S+, saved: true/, /\[LC\] MPEnded/]);
       run.check('save delivered, then mission_ended saved=true, then MPEnded', o.ok, o.at.join(','));
       if (!await run.logs.server.waitForCount(/\[LC\] remoteReady server \S+ client/, 2, 300e3)) {

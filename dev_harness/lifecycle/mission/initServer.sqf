@@ -11,11 +11,21 @@ lc_fnc_createObjects = {
         private _box = createVehicle ["Box_NATO_Ammo_F", _position, [], 0, "CAN_COLLIDE"];
         [_box] call uksf_persistence_fnc_markObjectAsPersistent;
     };
-    createVehicle ["Box_NATO_Wps_F", [2998, 2991, 0], [], 0, "CAN_COLLIDE"];
+    (createVehicle ["Box_NATO_Wps_F", [2998, 2991, 0], [], 0, "CAN_COLLIDE"]) setPosASL [2998.1234, 2991.5678, 5];
     private _helipads = nearestObjects [[3004, 2995, 0], ["Land_HelipadEmpty_F"], 2];
     ["helipads", count _helipads] call lc_fnc_log;
     if (lc_legacyCopy > 0 && {_loaded < lc_objects}) then {
         [_helipads#0] call uksf_persistence_fnc_markObjectAsPersistent;
+    };
+    private _savedMarkers = (uksf_persistence_dataNamespace getVariable ["uksf_persistence_mapMarkers", []]) select {_x param [9, ""] == "LC Marker"};
+    ["markers", str _savedMarkers] call lc_fnc_log;
+    if (_savedMarkers isEqualTo []) then {
+        private _marker = createMarker ["_USER_DEFINED #0/990/1", [3010.25, 2990.75]];
+        _marker setMarkerType "hd_dot";
+        _marker setMarkerColor "ColorRed";
+        _marker setMarkerDir 42.5;
+        _marker setMarkerText "LC Marker";
+        ["uksf_persistence_markerCreated", [[_marker] call uksf_persistence_fnc_serializeMarker]] call CBA_fnc_serverEvent;
     };
     ["ready", count ([uksf_persistence_persistentObjectsHash] call CBA_fnc_hashKeys)] call lc_fnc_log;
 };

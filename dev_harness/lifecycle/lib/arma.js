@@ -79,6 +79,7 @@ class Player {
     const argv = ['-window', '-noPause', '-noSound', '-noSplash', '-skipIntro', '-world=empty', `-name=${PLAYER_PROFILE}`,
       '-connect=127.0.0.1', `-port=${this.port}`, `-password=${this.password}`, `-mod=${this.mods.join(';')}`];
     this.startedAt = Date.now();
+    this.rpt = null;
     const child = spawn(path.join(ARMA, 'arma3_x64.exe'), argv, { cwd: ARMA, detached: true, stdio: 'ignore' });
     this.pid = child.pid;
     child.unref();
@@ -96,6 +97,18 @@ class Player {
   }
 
   alive() { return this.pid && isRunning(this.pid); }
+
+  async relaunch() {
+    this.kill();
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      await new Promise(r => setTimeout(r, 10e3));
+      await this.launch();
+      await new Promise(r => setTimeout(r, 30e3));
+      if (this.alive()) return;
+      this.log(`player client exited during startup (attempt ${attempt})`);
+    }
+    throw new Error('player client exited during startup three times');
+  }
 
   screenshot(file) {
     const script = `Add-Type -AssemblyName System.Drawing; Add-Type -TypeDefinition 'using System;using System.Runtime.InteropServices;public static class W{[DllImport("user32.dll")]public static extern bool PrintWindow(IntPtr h,IntPtr dc,uint f);[DllImport("user32.dll")]public static extern bool GetWindowRect(IntPtr h,out R r);public struct R{public int L,T,Rt,B;}}'; $h=(Get-Process -Id ${this.pid}).MainWindowHandle; $r=New-Object W+R; [W]::GetWindowRect($h,[ref]$r)|Out-Null; $i=New-Object System.Drawing.Bitmap ($r.Rt-$r.L),($r.B-$r.T); $g=[System.Drawing.Graphics]::FromImage($i); $dc=$g.GetHdc(); [W]::PrintWindow($h,$dc,2)|Out-Null; $g.ReleaseHdc($dc); $i.Save('${file.replace(/'/g, "''")}',[System.Drawing.Imaging.ImageFormat]::Jpeg)`;
