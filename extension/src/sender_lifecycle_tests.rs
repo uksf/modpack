@@ -58,19 +58,34 @@ fn test_lifetime_counts_from_enqueue_not_from_when_the_worker_picks_the_event_up
 }
 
 #[test]
-fn test_stop_during_a_request_posts_nothing_more_on_the_acknowledged_lane() {
-    let (url, count, stop) = test_server(|_| (200, 1000));
+fn test_an_acknowledged_event_queued_at_stop_is_still_delivered_within_the_drain() {
+    let (url, count, stop) = test_server(|_| (200, 300));
     let queue = RetryQueue::acknowledged(url, 10, Duration::from_millis(50), Duration::from_secs(120));
     queue.start();
-    queue.enqueue(next_seq(), r#"["shutdown_ending",[]]"#.to_string(), "ts".to_string());
-    thread::sleep(Duration::from_millis(200));
-    let queued_behind = next_seq();
-    queue.enqueue(queued_behind, r#"["shutdown_saving",[]]"#.to_string(), "ts".to_string());
+    queue.enqueue(next_seq(), r#"["mission_stats",[]]"#.to_string(), "ts".to_string());
+    let mission_ended = next_seq();
+    queue.enqueue(mission_ended, r#"["mission_ended",[]]"#.to_string(), "ts".to_string());
 
     queue.stop();
-    assert!(wait_for(|| outcome(queued_behind) == Some(Outcome::Lost), Duration::from_secs(3)));
-    thread::sleep(Duration::from_millis(300));
-    assert_eq!(count.load(AtomicOrdering::SeqCst), 1);
+    assert!(wait_for(|| outcome(mission_ended) == Some(Outcome::Delivered), Duration::from_secs(3)));
+    assert_eq!(count.load(AtomicOrdering::SeqCst), 2);
+    stop.store(true, AtomicOrdering::SeqCst);
+}
+
+#[test]
+fn test_acknowledged_drain_after_stop_ends_at_its_deadline_and_loses_the_rest() {
+    let (url, count, stop) = test_server(|_| (503, 0));
+    let queue = RetryQueue::draining_for(url, 10, Duration::from_millis(50), Some(Duration::from_secs(120)), Duration::from_secs(3));
+    queue.start();
+    let seq = next_seq();
+    queue.enqueue(seq, r#"["mission_ended",[]]"#.to_string(), "ts".to_string());
+
+    queue.stop();
+    assert!(wait_for(|| outcome(seq) == Some(Outcome::Lost), Duration::from_secs(5)));
+    let posted = count.load(AtomicOrdering::SeqCst);
+    thread::sleep(Duration::from_millis(500));
+    assert_eq!(posted, 2, "a 3 s drain with a 2 s backoff allows two attempts");
+    assert_eq!(count.load(AtomicOrdering::SeqCst), posted);
     stop.store(true, AtomicOrdering::SeqCst);
 }
 
@@ -103,7 +118,7 @@ fn test_ordinary_events_still_deliver_after_stop_without_a_blocking_flush() {
 #[test]
 fn test_ordinary_drain_after_stop_ends_at_its_deadline_even_with_a_backlog() {
     let (url, count, stop) = test_server(|_| (200, 300));
-    let queue = RetryQueue::draining_for(url, 100, Duration::from_millis(50), Duration::from_secs(1));
+    let queue = RetryQueue::draining_for(url, 100, Duration::from_millis(50), None, Duration::from_secs(1));
     queue.start();
     for i in 0..20 {
         queue.enqueue(next_seq(), format!(r#"["mission_stats",[["i",{i}]]]"#), "ts".to_string());

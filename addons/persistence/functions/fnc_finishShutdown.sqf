@@ -18,6 +18,7 @@
     Example:
         call uksf_persistence_fnc_finishShutdown
 */
+#define MISSION_ENDED_DELIVERY_TIMEOUT 10
 #define STOPPING_DELIVERY_TIMEOUT 5
 
 [QGVAR(shutdownFinishing)] call CBA_fnc_localEvent;
@@ -34,10 +35,13 @@ if (GVAR(dataSaved)) then {
         ERROR_1("Shutdown save was not stored by the API: %1",_outcome);
     };
 
-    [] call EFUNC(api,sendMissionEnded);
+    private _missionEndedSeq = [] call EFUNC(api,sendMissionEnded);
+    [_missionEndedSeq, MISSION_ENDED_DELIVERY_TIMEOUT, {
+        params ["", "_saveOutcome"];
 
-    private _seq = ["shutdown_stopping", createHashMapFromArray [["saveOutcome", _outcome]]] call EFUNC(api,sendEvent);
-    [_seq, STOPPING_DELIVERY_TIMEOUT, {
-        SERVER_COMMAND serverCommand "#shutdown";
-    }] call FUNC(waitForDelivery);
+        private _seq = ["shutdown_stopping", createHashMapFromArray [["saveOutcome", _saveOutcome]]] call EFUNC(api,sendEvent);
+        [_seq, STOPPING_DELIVERY_TIMEOUT, {
+            SERVER_COMMAND serverCommand "#shutdown";
+        }] call FUNC(waitForDelivery);
+    }, _outcome] call FUNC(waitForDelivery);
 }, [], true] call FUNC(saveBarrier);

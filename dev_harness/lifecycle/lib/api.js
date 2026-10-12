@@ -3,7 +3,7 @@ const { execFileSync, spawn } = require('child_process');
 
 const CLAIM = {
   email: 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress',
-  sid: 'http://schemas.microsoft.com/ws/2008/06/identity/claims/primarysid',
+  sid: 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/sid',
   role: 'http://schemas.microsoft.com/ws/2008/06/identity/claims/role',
 };
 const ROLES = ['MEMBER', 'CONFIRMED', 'ADMIN', 'COMMAND', 'NCO', 'SERVERS'];

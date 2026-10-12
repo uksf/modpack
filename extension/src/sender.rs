@@ -69,8 +69,8 @@ impl RetryQueue {
     }
 
     #[cfg(test)]
-    pub fn draining_for(url: String, capacity: usize, base_backoff: Duration, drain_after_stop: Duration) -> Arc<Self> {
-        let mut queue = Self::build(url, capacity, base_backoff, None);
+    pub fn draining_for(url: String, capacity: usize, base_backoff: Duration, give_up_after: Option<Duration>, drain_after_stop: Duration) -> Arc<Self> {
+        let mut queue = Self::build(url, capacity, base_backoff, give_up_after);
         Arc::get_mut(&mut queue).expect("fresh queue").drain_after_stop = drain_after_stop;
         queue
     }
@@ -138,9 +138,7 @@ impl RetryQueue {
             }
         }
 
-        if !self.tracked() {
-            self.drain_after_stop(&mut buffer, stopped_at);
-        }
+        self.drain_after_stop(&mut buffer, stopped_at);
         for pending in buffer.drain(..) {
             self.finish(&pending, Outcome::Lost);
         }
@@ -169,7 +167,7 @@ impl RetryQueue {
             }
             let Some(pending) = buffer.pop_front() else { break };
             let deadline = self.give_up_after.map(|limit| pending.queued_at + limit);
-            if self.tracked() && (stopped_at.get().is_some() || deadline.is_some_and(|deadline| now >= deadline)) {
+            if self.tracked() && [deadline, drain_deadline].into_iter().flatten().any(|deadline| now >= deadline) {
                 self.finish(&pending, Outcome::Lost);
                 continue;
             }
@@ -184,7 +182,7 @@ impl RetryQueue {
             self.len.store(buffer.len(), Ordering::Relaxed);
 
             let timeout = match (deadline, drain_deadline) {
-                (Some(deadline), _) => deadline.saturating_duration_since(now).min(ACKNOWLEDGED_REQUEST_TIMEOUT),
+                (Some(deadline), drain) => deadline.min(drain.unwrap_or(deadline)).saturating_duration_since(now).min(ACKNOWLEDGED_REQUEST_TIMEOUT),
                 (None, Some(drain)) => drain.saturating_duration_since(now).min(ORDINARY_REQUEST_TIMEOUT),
                 (None, None) => ORDINARY_REQUEST_TIMEOUT,
             };

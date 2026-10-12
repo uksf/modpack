@@ -12,18 +12,18 @@
         None
 
     Return Value:
-        None
+        Delivery sequence number of mission_ended, or -1 when it was already sent <NUMBER>
 
     Example:
         [] call uksf_api_fnc_sendMissionEnded
 */
 
-if (GVAR(missionEndedSent)) exitWith {};
+if (GVAR(missionEndedSent)) exitWith {-1};
 GVAR(missionEndedSent) = true;
 
 private _saved = missionNamespace getVariable [QEGVAR(persistence,missionSaved), false];
 INFO_2("Sending mission_ended for %1, saved: %2",GVAR(sessionId),_saved);
-["mission_ended", createHashMapFromArray [
+private _seq = ["mission_ended", createHashMapFromArray [
     ["sessionId", GVAR(sessionId)],
     ["map", worldName],
     ["mission", missionName],
@@ -39,3 +39,5 @@ if (GVAR(performancePerFrameHandler) != -1) then {
     [GVAR(performancePerFrameHandler)] call CBA_fnc_removePerFrameHandler;
     GVAR(performancePerFrameHandler) = -1;
 };
+
+_seq
