@@ -56,4 +56,8 @@ class CfgWeapons {
     class CUP_arifle_SCAR_Base : Rifle_Base_F {
         modes[] = { "SCAR_L_Single", "SCAR_L_FullAuto" };
     };
+    class CBA_MiscItem;
+    class EWDJ_GeneratorKit : CBA_MiscItem {
+        model = "\z\ewdj\addons\ew_modular\data\ewdj_generator_kit.p3d";
+    };
 };

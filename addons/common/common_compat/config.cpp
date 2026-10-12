@@ -88,7 +88,15 @@ class CfgPatches {
             "Structures_Globe_Training_SkeetMachine",
             "UK3CB_BAF_Weapons_Accessories",
             "CUP_Weapons_SCAR",
-            "CUP_Creatures_Military_Ukraine"
+            "CUP_Creatures_Military_Ukraine",
+            "CUP_Weapons_LoadOrder",
+            "UK3CB_BAF_Weapons_L110",
+            "UK3CB_BAF_Weapons_L115",
+            "UK3CB_BAF_Weapons_L7",
+            "cba_jr",
+            "CUP_Weapons_East_Attachments",
+            "Weapons_Globe_ACC",
+            "EWDJ_modular"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
@@ -1438,3 +1446,4 @@ class CfgVehicles {
 #include "CfgMoves.hpp"
 #include "CfgSurfaces.hpp"
 #include "CfgVoiceTypes.hpp"
+#include "CfgSlots.hpp"

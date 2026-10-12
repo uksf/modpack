@@ -25,7 +25,6 @@ class UK3CB_MuzzleSlot_900;
 class UK3CB_MuzzleSlot_900_L131 : UK3CB_MuzzleSlot_900 {
     class compatibleItems {
         muzzle_snds_L = 1;
-        // rhsusf_acc_omega9k = 1; // Fix 3CB's mistakes
     };
 };
 class CfgWeapons {
@@ -359,11 +358,11 @@ class CfgWeapons {
         class FullAuto;
     };
     class UK3CB_BAF_L85A2 : arifle_Mk20_plain_F {
-        ace_barrelLength = 518;  // c:441.96, a:518
+        ace_barrelLength = 518;
     };
 
     class UK3CB_BAF_L119_Base : arifle_Mk20_plain_F {
-        ace_barrelLength = 398;  // c:410, a:398
+        ace_barrelLength = 398;
         class WeaponSlotsInfo {
             allowedslots[] = { 901 };
             mass = 84;
@@ -386,7 +385,7 @@ class CfgWeapons {
         };
     };
     class UK3CB_BAF_L119A1_CQB : UK3CB_BAF_L119_Base {
-        ace_barrelLength = 254;  // c:250, a:250
+        ace_barrelLength = 254;
         class WeaponSlotsInfo {
             allowedslots[] = { 901 };
             mass = 84;
@@ -414,27 +413,6 @@ class CfgWeapons {
         class Single;
         class FullAuto;
     };
-    // class SSQN_L119A1_Base : Tavor_base_F {
-    //     magazines[] = { "UK3CB_BAF_556_30Rnd", "UK3CB_BAF_556_30Rnd_T", "30Rnd_556x45_Stanag_red", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag_Tracer_Red" };
-    //     class Single : Single {
-    //         class BaseSoundModeType;
-    //         class StandardSound : BaseSoundModeType {
-    //             soundSetShot[] = { "L119_Shot_SoundSet", "FRAME_CALIBER_5x56MM", "ALL_DIST_TAIL" };
-    //         };
-    //         class SilencedSound : BaseSoundModeType {
-    //             soundSetShot[] = { "3CB_BAF_M4_Closure_SoundSet", "3CB_BAF_M4_ShotSD_SoundSet", "3CB_BAF_Rifle1_SD_Tail_SoundSet" };
-    //         };
-    //     };
-    //     class FullAuto : FullAuto {
-    //         class BaseSoundModeType;
-    //         class StandardSound : BaseSoundModeType {
-    //             soundSetShot[] = { "L119_Shot_SoundSet", "FRAME_CALIBER_5x56MM", "ALL_DIST_TAIL" };
-    //         };
-    //         class SilencedSound : BaseSoundModeType {
-    //             soundSetShot[] = { "3CB_BAF_M4_Closure_SoundSet", "3CB_BAF_M4_ShotSD_SoundSet", "3CB_BAF_Rifle1_SD_Tail_SoundSet" };
-    //         };
-    //     };
-    // };
 
     class arifle_SPAR_01_blk_F;
     class arifle_L119A2_F : arifle_SPAR_01_blk_F {
@@ -476,21 +454,7 @@ class CfgWeapons {
     class UK3CB_BAF_L110_Base;
     class UK3CB_BAF_L110_556_Base : UK3CB_BAF_L110_Base {
         magazines[] = { "UK3CB_BAF_556_200Rnd", "UK3CB_BAF_556_200Rnd_Blank", "UK3CB_BAF_556_200Rnd_T", "UK3CB_BAF_556_100Rnd", "UK3CB_BAF_556_100Rnd_Blank", "UK3CB_BAF_556_100Rnd_T", "UK3CB_BAF_556_30Rnd", "UK3CB_BAF_556_30Rnd_T" };
-        // class FullAuto : Mode_FullAuto {
-        //     class BaseSoundModeType;
-        //     class SilencedSound : BaseSoundModeType {
-        //         SoundSetShot[] = { "DS_lim_Closure_SoundSet", "DS_lim_ShotSD_SoundSet", "DS_rifle1_SD_Tail_SoundSet" };
-        //     };
-        // };
     };
-    // class UK3CB_BAF_L110_762_Base : UK3CB_BAF_L110_Base {
-    //     class FullAuto : Mode_FullAuto {
-    //         class BaseSoundModeType;
-    //         class SilencedSound : BaseSoundModeType {
-    //             SoundSetShot[] = { "DS_lim_Closure_SoundSet", "DS_lim_ShotSD_SoundSet", "DS_rifle1_SD_Tail_SoundSet" };
-    //         };
-    //     };
-    // };
 
     class LMG_Zafir_F;
     class UK3CB_BAF_L7A2 : LMG_Zafir_F {
@@ -498,12 +462,6 @@ class CfgWeapons {
             "UK3CB_BAF_762_200Rnd_T", "UK3CB_BAF_762_200Rnd", "UK3CB_BAF_762_200Rnd_Blank", "UK3CB_BAF_762_100Rnd_T", "UK3CB_BAF_762_100Rnd", "UK3CB_BAF_762_100Rnd_Blank", "UK3CB_BAF_762_100Rnd_EL", "UK3CB_BAF_762_100Rnd_T_EL", "UK3CB_BAF_762_200Rnd_EL", "UK3CB_BAF_762_200Rnd_T_EL"
         };
         class WeaponSlotsInfo;
-        // class FullAuto : Mode_FullAuto {
-        //     class BaseSoundModeType;
-        //     class StandardSound : BaseSoundModeType {
-        //         soundSetShot[] = { "DS_zafir_Closure_SoundSet", "DS_zafir_Shot_SoundSet", "DS_lmg1_Tail_SoundSet" };
-        //     };
-        // };
     };
     class UK3CB_BAF_L7A2_FIST : UK3CB_BAF_L7A2 {
         class WeaponSlotsInfo : WeaponSlotsInfo {
@@ -607,7 +565,6 @@ class CfgWeapons {
     class CUP_arifle_mk18_black : CUP_arifle_M4A1_BUIS_Base {
         magazines[] = { "UK3CB_BAF_556_30Rnd", "UK3CB_BAF_556_30Rnd_T", "30Rnd_556x45_Stanag_red", "30Rnd_556x45_Stanag", "30Rnd_556x45_Stanag_Tracer_Red" };
         magazineWell[] = {};
-        // CUP declares this without a parent; adding one pulls the M4 rails and MuzzleSlot back in.
         class WeaponSlotsInfo {
             delete MuzzleSlot;
             class asdg_MuzzleSlot_UK3CB_BAF_L119 : asdg_MuzzleSlot_556_3CB_L119 {};
@@ -641,15 +598,14 @@ class CfgWeapons {
             allowedSlots[] = { 901 };
         };
     };
-    class launch_Titan_base;
-    class launch_Titan_short_base : launch_Titan_base {
-        class OpticsModes;
-    };
-    class launch_B_Titan_short_F : launch_Titan_short_base {
-        class WeaponSlotsInfo;
-        class OpticsModes : OpticsModes {
+    class launch_Titan_base : Launcher_Base_F {
+        class OpticsModes {
             class StepScope;
         };
+    };
+    class launch_Titan_short_base : launch_Titan_base {};
+    class launch_B_Titan_short_F : launch_Titan_short_base {
+        class WeaponSlotsInfo;
     };
     class UK3CB_BAF_Javelin_Launcher : launch_B_Titan_short_F {
         modes[] = { "TopDown", "Single" };
@@ -692,52 +648,20 @@ class CfgWeapons {
     class CUP_Vlmg_M240_veh : MGun {
         displayName = "L7A2";
         magazines[] = { "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "CUP_200Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M", "CUP_100Rnd_TE4_LRT4_White_Tracer_762x51_Belt_M", "CUP_200Rnd_TE4_LRT4_White_Tracer_762x51_Belt_M", "CUP_1200Rnd_TE4_White_Tracer_762x51_M240_M", "CUP_100Rnd_TE4_White_Tracer_762x51_M240_M", "CUP_1200Rnd_TE4_Red_Tracer_762x51_M240_M", "UK3CB_BAF_762_200Rnd_T", "UK3CB_BAF_762_200Rnd", "UK3CB_BAF_762_200Rnd_Blank", "UK3CB_BAF_762_100Rnd_T", "UK3CB_BAF_762_100Rnd", "UK3CB_BAF_762_100Rnd_Blank", "UK3CB_BAF_762_100Rnd_EL", "UK3CB_BAF_762_100Rnd_T_EL", "UK3CB_BAF_762_200Rnd_EL", "UK3CB_BAF_762_200Rnd_T_EL" };
-        // class manual : MGun {
-        //     sounds[] = { "StandardSound" };
-        //     class StandardSound {
-        //         soundSetShot[] = { "DS_CoaxMG_Closure_SoundSet", "DS_CoaxMG_Shot_SoundSet", "DS_lmg1_Tail_SoundSet" };
-        //     };
-        // };
     };
     class HMG_M2;
     class CUP_Vhmg_M2_veh : HMG_M2 {
         displayName = "L111A1";
         magazines[] = { "CUP_100Rnd_127x99_M", "CUP_100Rnd_TE4_Red_Tracer_127x99_M", "CUP_100Rnd_TE4_Green_Tracer_127x99_M", "CUP_100Rnd_TE4_Yellow_Tracer_127x99_M", "CUP_100Rnd_TE4_White_Tracer_127x99_M", "CUP_100Rnd_TE1_Red_Tracer_127x99_M", "CUP_100Rnd_TE1_Green_Tracer_127x99_M", "CUP_100Rnd_TE1_Yellow_Tracer_127x99_M", "CUP_100Rnd_TE1_White_Tracer_127x99_M", "CUP_200Rnd_TE1_Red_Tracer_127x99_M", "UK3CB_BAF_127_100Rnd" };
-        // class manual : MGun {
-        //     class StandardSound {
-        //         soundSetShot[] = { "DS_HMG_Shot_SoundSet", "DS_sniper1_Tail_SoundSet" };
-        //     };
-        // };
     };
     class GMG_20mm;
     class GMG_F;
     class CUP_Vhmg_AGS30_veh : GMG_20mm {
-        // class manual : GMG_F {
-        //     sounds[] = { "StandardSound" };
-        //     class StandardSound {
-        //         soundSetShot[] = { "DS_GMG_Shot_SoundSet", "DS_mmg1_Tail_SoundSet" };
-        //     };
-        // };
     };
     class CUP_Vgmg_MK19_veh : CUP_Vhmg_AGS30_veh {
         displayName = "L134A1";
         magazines[] = { "CUP_48Rnd_40mm_MK19_M", "CUP_32Rnd_40mm_MK19_M", "CUP_96Rnd_40mm_MK19_M", "UK3CB_BAF_32Rnd_40mm_G_Box" };
     };
-    // class MGunCore;
-    // class CUP_Vlmg_M134_veh : MGunCore {
-    //     class LowROF : Mode_FullAuto {
-    //         sounds[] = { "StandardSound" };
-    //         class StandardSound {
-    //             soundSetShot[] = { "DS_Minigun762_Shot_SoundSet", "DS_mmg1_Tail_SoundSet" };
-    //         };
-    //     };
-    //     class HighROF : LowROF {
-    //         sounds[] = { "StandardSound" };
-    //         class StandardSound {
-    //             soundSetShot[] = { "DS_Minigun762_Shot_SoundSet", "DS_mmg1_Tail_SoundSet" };
-    //         };
-    //     };
-    // };
 
     class Binocular;
     class UK3CB_BAF_Soflam_Laserdesignator : Binocular {
@@ -753,37 +677,30 @@ class CfgWeapons {
     class UK3CB_BAF_L16_veh : mortar_82mm {
         modes[] = { "Single1", "Single2", "Single3", "Single4", "Single5", "Single6", "Single7", "Burst1", "Burst2", "Burst3" };
         class Single1 : Single1 {
-            // Charge 0 -> 14/61
             displayName = "Charge 0";
             artilleryCharge = 0.2295;
         };
         class Single2 : Single2 {
-            // Charge 1 -> 28/61
             displayName = "Charge 1";
             artilleryCharge = 0.459;
         };
         class Single3 : Single3 {
-            // Charge 2 -> 40/61
             displayName = "Charge 2";
             artilleryCharge = 0.6557;
         };
         class Single4 : Single3 {
-            // Charge 3 -> 46/61
             displayName = "Charge 3";
             artilleryCharge = 0.7541;
         };
         class Single5 : Single3 {
-            // Charge 4 -> 51/61
             displayName = "Charge 4";
             artilleryCharge = 0.836;
         };
         class Single6 : Single3 {
-            // Charge 5 -> 56/61
             displayName = "Charge 5";
             artilleryCharge = 0.918;
         };
         class Single7 : Single3 {
-            // Charge 6 -> 1
             displayName = "Charge 6";
             artilleryCharge = 1;
         };
