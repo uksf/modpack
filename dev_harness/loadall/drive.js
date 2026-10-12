@@ -13,7 +13,7 @@ const queue = [
     ...slices('ars2008', 2400, 800), ...slices('ars2010', 2400, 800), ...slices('ars2012', 2400, 800),
     ...slices('ars2014', 1600, 800), ...slices('ars2016', 800, 800), ...slices('ars2018', 400, 400),
     ...slices('ars2020', 400, 400), ...['ars2022', 'ars2024', 'ars2026', 'ars2029', 'ars2031', 'ars2033', 'ars2035', 'ars2037'].flatMap(p => slices(p, 800, 800)),
-].filter(j => !process.argv[4] || process.argv[4].split(',').some(p => j.phase.startsWith(p)));
+].filter(j => !process.argv[4] || process.argv[4].split(',').some(p => p.includes('@') ? p === `${j.phase}@${j.start}` : j.phase.startsWith(p)));
 const crashFile = path.join(OUT, 'crashes.txt');
 const skip = () => fs.existsSync(crashFile) ? fs.readFileSync(crashFile, 'utf8').split(/\r?\n/).filter(Boolean).map(l => l.split('\t')[2]) : [];
 const script = (phase) => fs.readFileSync(path.join(__dirname, phase.startsWith('ars') ? 'arsenal.sqf' : 'loader.sqf'), 'utf8');
