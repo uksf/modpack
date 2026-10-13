@@ -28,5 +28,9 @@ class CfgPatches {
 };
 
 class CfgVehicles {
-    #include "CfgVehicles.hpp"
+    #include "CfgVehicles_base.hpp"
+    #include "CfgVehicles_tanks.hpp"
+    #include "CfgVehicles_apcs.hpp"
+    #include "CfgVehicles_cars.hpp"
+    #include "CfgVehicles_statics.hpp"
 };

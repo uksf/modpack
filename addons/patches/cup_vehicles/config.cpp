@@ -12,26 +12,6 @@ class CfgPatches {
             "ace_compat_cup_vehicles_refuel",
             "ace_compat_cup_vehicles_repair",
             "ace_compat_cup_vehicles_trenches",
-            "CUP_AirVehciles_Cessna",
-            "CUP_AirVehciles_KA60",
-            "CUP_AirVehciles_MH47E",
-            "CUP_AirVehciles_UH1Y",
-            "CUP_AirVehicles_412",
-            "CUP_AirVehicles_A10",
-            "CUP_AirVehicles_AH6",
-            "CUP_AirVehicles_AmbientPlanes",
-            "CUP_AirVehicles_AN2",
-            "CUP_AirVehicles_C130J",
-            "CUP_AirVehicles_DC3",
-            "CUP_AirVehicles_HC3",
-            "CUP_AirVehicles_Ka52",
-            "CUP_AirVehicles_L39",
-            "CUP_AirVehicles_MH60S",
-            "CUP_AirVehicles_MI6",
-            "CUP_AirVehicles_Mi8",
-            "CUP_AirVehicles_MV22",
-            "CUP_AirVehicles_UH1H",
-            "CUP_AirVehicles_UH60",
             "CUP_TrackedVehicles_2S6M",
             "CUP_TrackedVehicles_AAV",
             "CUP_TrackedVehicles_BMP",
@@ -102,8 +82,6 @@ class CfgPatches {
             "CUP_WheeledVehicles_Ural",
             "CUP_WheeledVehicles_Vodnik",
             "CUP_WheeledVehicles_Wolfhound",
-            "uksf_air_patches",
-            "uksf_air_weapons",
             "uksf_radios",
             "uksf_vehicles"
         };
@@ -116,9 +94,11 @@ class CfgPatches {
 
 class CfgVehicles {
     #include "CfgVehicles_base.hpp"
-    #include "CfgVehicles_land.hpp"
-    #include "CfgVehicles_other_1.hpp"
-    #include "CfgVehicles_other_2.hpp"
-    #include "CfgVehicles_other_3.hpp"
-    #include "CfgVehicles_other_4.hpp"
+    #include "CfgVehicles_tanks.hpp"
+    #include "CfgVehicles_apcs.hpp"
+    #include "CfgVehicles_mraps.hpp"
+    #include "CfgVehicles_hmmwvs.hpp"
+    #include "CfgVehicles_cars.hpp"
+    #include "CfgVehicles_trucks.hpp"
+    #include "CfgVehicles_boats.hpp"
 };

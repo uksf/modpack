@@ -71,23 +71,8 @@ class LSV_02_base_F : Car_F {
         class MainTurret;
     };
 };
-class Air : AllVehicles {
-    class AnimationSources;
-};
-class Plane : Air {};
-class UAV : Plane {};
-class UAV_02_base_F : UAV {
-    class AnimationSources : AnimationSources {
-        class hideweapons;
-    };
-};
 class Land_AirHorn_01_F;
 class AirHorn_01_klaxon : Land_AirHorn_01_F {
-    class EventHandlers {
-        class CBA_Extended_EventHandlers : CBA_Extended_EventHandlers_base {};
-    };
-};
-class B_UAV_02_LM_G : UAV_02_base_F {
     class EventHandlers {
         class CBA_Extended_EventHandlers : CBA_Extended_EventHandlers_base {};
     };

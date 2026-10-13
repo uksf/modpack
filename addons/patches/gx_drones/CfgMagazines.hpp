@@ -1,2 +1,0 @@
-delete GX_RKSL_BRIMSTONE_DM_X2;
-delete rksla3_mag_brimstone_dm_x3;

@@ -7,24 +7,6 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "A3_Air_F",
-            "A3_Air_F_Beta",
-            "A3_Air_F_Beta_Heli_Transport_01",
-            "A3_Air_F_EPC_Plane_CAS_01",
-            "A3_Air_F_EPC_Plane_CAS_02",
-            "A3_Air_F_Exp",
-            "A3_Air_F_Exp_Plane_Civil_01",
-            "A3_Air_F_Exp_VTOL_01",
-            "A3_Air_F_Gamma_Plane_Fighter_03",
-            "A3_Air_F_Heli",
-            "A3_Air_F_Heli_Heli_Transport_03",
-            "A3_Air_F_Heli_Heli_Transport_04",
-            "A3_Air_F_Heli_Light_01",
-            "A3_Air_F_Heli_Light_02",
-            "A3_Air_F_Jets_Plane_Fighter_01",
-            "A3_Air_F_Jets_Plane_Fighter_02",
-            "A3_Air_F_Jets_Plane_Fighter_04",
-            "A3_Air_F_Jets_UAV_05",
             "A3_Animals_F_Snakes",
             "A3_Armor_F_Beta",
             "A3_Armor_F_Beta_APC_Tracked_01",
@@ -129,7 +111,6 @@ class CfgPatches {
             "acre_sys_rack",
             "cba_jam",
             "cba_xeh",
-            "uksf_air_patches",
             "uksf_immersion",
             "uksf_vehicles"
         };
@@ -144,7 +125,16 @@ class CBA_Extended_EventHandlers_base;
 class Mode_SemiAuto;
 
 class CfgVehicles {
-    #include "CfgVehicles.hpp"
+    #include "CfgVehicles_base.hpp"
+    #include "CfgVehicles_men.hpp"
+    #include "CfgVehicles_objects.hpp"
+    #include "CfgVehicles_structures.hpp"
+    #include "CfgVehicles_cars.hpp"
+    #include "CfgVehicles_trucks.hpp"
+    #include "CfgVehicles_apcs.hpp"
+    #include "CfgVehicles_tanks.hpp"
+    #include "CfgVehicles_boats.hpp"
+    #include "CfgVehicles_statics.hpp"
 };
 
 class CfgCloudlets {
