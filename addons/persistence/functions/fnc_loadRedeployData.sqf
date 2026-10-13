@@ -25,7 +25,7 @@ if (isNil QGVAR(data) || {GVAR(data) isEqualTo []}) exitWith {
 GVAR(data) params ["_position", "_vehicleState", "_direction", "_animation", "_loadout", "_damage", "_aceStates", "_earplugs", "_attached", "_radios", ["_diveState", [false]]];
 
 private _playerPosition = getPosASL player;
-if (GVAR(selectedRespawn) == "") then { // TODO: Doesn't handle objects
+if (GVAR(selectedRespawn) == "") then {
     WARNING("No respawn selected");
     private _respawnMarkers = allMapMarkers select {"respawn_west_" in _x};
     if (_respawnMarkers isEqualTo []) exitWith {
@@ -58,10 +58,8 @@ player setVariable ["ACE_hasEarPlugsIn", _earplugs, true];
 
 [{call EFUNC(radios,deserializeRadios)}, [_radios], 2] call CBA_fnc_waitAndExecute;
 [_diveState] call EFUNC(diving,deserialiseState);
-// _aceStates is a native HashMap when loaded from the API or post-disconnect
-// dataNamespace, but legacy profileNamespace entries arrive as the old JSON
-// string. deserializeState picks the right path from the type itself.
-[player, _aceStates, _aceStates isEqualType ""] call ace_medical_fnc_deserializeState;
+private _isLegacyJsonAceStates = _aceStates isEqualType "";
+[player, _aceStates, _isLegacyJsonAceStates] call ace_medical_fnc_deserializeState;
 
 _vehicleState params ["_vehicleId"];
 if (_vehicleId != "") exitWith {
@@ -79,9 +77,9 @@ if (_vehicleId != "") exitWith {
             default {player moveInCargo [_vehicle, _index]};
         };
 
-        if (objectParent player != _vehicle) then {
-            player moveInCargo _vehicle;
-        };
+        [{objectParent player == _this}, {}, _vehicle, 3, {
+            player moveInCargo _this;
+        }] call CBA_fnc_waitUntilAndExecute;
     }] call CBA_fnc_addEventHandlerArgs;
     [QGVAR(checkPersistentVehicleExists), [_vehicleState, player]] call CBA_fnc_serverEvent;
 };
@@ -99,8 +97,8 @@ if (_vehicleId != "") exitWith {
     false
 }, {}, [_position, round _direction], 0.5] call CBA_fnc_waitUntilAndExecute;
 
-// Don't set animation if diving, does not work
-if (_diveState#0 && _position#2 < 0) exitWith {};
+private _isDivingUnderwater = _diveState#0 && _position#2 < 0;
+if (_isDivingUnderwater) exitWith {};
 
 [{
     params ["_animation"];

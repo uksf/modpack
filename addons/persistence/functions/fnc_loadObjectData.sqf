@@ -47,6 +47,8 @@ if (isNull _object && {(nearestObjects [ASLToAGL _position, [_type], 0.5]) findI
 
 if (isNull _object) then {
     _object = _type createVehicle [0,0,0];
+    _object setVariable ["ace_repair_editorLoadedWheels", 0];
+    _object setVariable ["ace_repair_editorLoadedTracks", 0];
     _object setVectorDirAndUp _vectorDirAndUp;
 };
 
