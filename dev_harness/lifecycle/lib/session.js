@@ -168,6 +168,13 @@ class Run {
       await sleep(3000);
       for (const p of this.ownProcesses()) require('./arma').killPid(p.pid);
     }
+    for (let i = 0; i < 60; i++) {
+      try {
+        const s = (await this.ctx.api.server(this.ctx.serverName)).status;
+        if (!s.running && !s.launching) break;
+      } catch {}
+      await sleep(1000);
+    }
     this.archive('.');
     const dir = path.join(this.ctx.out, this.scenario.name);
     fs.writeFileSync(path.join(dir, 'timeline.json'), JSON.stringify({ scenario: this.scenario, timeline: this.timeline, checks: this.checks }, null, 1));

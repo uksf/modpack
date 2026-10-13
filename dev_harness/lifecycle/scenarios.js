@@ -62,8 +62,9 @@ const SCENARIOS = {
       run.note('API down');
       const exited = await run.logs.server.waitFor(/Shutdown save outcome: (\w+)/, 200e3);
       run.note('outcome', exited && exited[1]);
-      await sleep(10e3);
-      run.check('server exits while the API is down', run.ownProcesses().every(p => !/-config=/.test(p.commandLine)), run.ownProcesses().map(p => p.pid).join(','));
+      const serverGone = () => run.ownProcesses().every(p => !/-config=/.test(p.commandLine));
+      for (let i = 0; i < 60 && !serverGone(); i++) await sleep(1000);
+      run.check('server exits while the API is down', serverGone(), run.ownProcesses().map(p => p.pid).join(','));
       await ctx.api.start();
       run.note('API up');
       await afterShutdown(run, ctx, { boxes: 20, saved: false });
