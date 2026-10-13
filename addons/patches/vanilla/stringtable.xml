@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project name="UKSF">
+    <Package name="patches">
+        <Key ID="STR_A3_SP_noheador">
+            <English>No Armor</English>
+        </Key>
+        <Key ID="STR_GM_speedloader_D">
+            <English>Speedloader</English>
+        </Key>
+        <Key ID="STR_LSR_common_LSR">
+            <English>LSR</English>
+        </Key>
+    </Package>
+</Project>

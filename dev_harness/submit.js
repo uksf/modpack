@@ -1,10 +1,3 @@
-// POST SQF to /dev-run. Strips // and /* */ comments.
-// Usage: node submit.js [sqf_path] [ace=dev|build|base|<absPath>] [timeoutSeconds] [worldName]
-//   sqf_path default D:/Arma/_temp_probe_sqf.txt
-//   ace=dev   → D:/Arma/ace/.hemttout/dev   (default)
-//   ace=build → D:/Arma/ace/.hemttout/build
-//   ace=base  → D:/Arma/_temp_ace_baseline
-//   ace=<path> → that absolute path
 const fs = require('fs');
 const http = require('http');
 
@@ -34,8 +27,8 @@ const mods = [
     'B:/Steam/steamapps/common/Arma 3/uksf-dev/@CUP_Weapons',
     'B:/Steam/steamapps/common/Arma 3/uksf-dev/@JBad',
     'B:/Steam/steamapps/common/Arma 3/uksf-dev/@uksf_dependencies',
-    'D:/Arma/uksf_air/.hemttout/dev',
-    'D:/Arma/modpack/.hemttout/dev',
+    process.env.UKSF_AIR_DEV || 'D:/Arma/uksf_air/.hemttout/dev',
+    process.env.UKSF_MODPACK_DEV || 'D:/Arma/modpack/.hemttout/dev',
     acePath,
     'D:/Arma/acre2/.hemttout/dev'
 ];

@@ -129,7 +129,10 @@ const findRpt = (since, tag) => fs.readdirSync(RPTS).filter(f => /^arma3_x64_.*\
   collect(true);
   const failed = lines.filter(l => /\[vclient\] shot \S+ false/.test(l));
   if (failed.length) console.error(`run.js: ${failed.length} screenshot(s) failed; see "Cannot save file" in the RPT`);
-  if (!args.includes('--keep')) fs.rmSync(tmp, { recursive: true, force: true });
+  if (!args.includes('--keep')) {
+    try { fs.rmSync(tmp, { recursive: true, force: true, maxRetries: 15, retryDelay: 2000 }); }
+    catch (e) { console.error(`run.js: could not delete ${tmp}: ${e.code}`); }
+  }
   if (args.includes('--sheet') && shots.length) {
     try { execFileSync('python', [path.join(__dirname, 'sheet.py'), path.join(out, 'sheet.jpg'), ...shots.sort()], { stdio: 'ignore' }); shots.push(path.join(out, 'sheet.jpg')); }
     catch { console.error('run.js: sheet.py failed (needs Python with Pillow)'); }

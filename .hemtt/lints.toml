@@ -45,7 +45,7 @@ enabled = false
 enabled = false
 
 [stringtables.usage]
-# common_compat supplies keys that other mods' configs reference but those mods never ship
+# patches supplies keys that other mods' configs reference but those mods never ship
 options.ignore = [
     "str_a3_sp_noheador",
     "str_ffaa_casa_base",
