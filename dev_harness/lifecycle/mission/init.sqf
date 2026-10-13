@@ -30,7 +30,14 @@ if (isServer) then {
             lc_hcPingReport = diag_tickTime + 20;
             ["hcPing", format ["%1 %2 %3 %4 %5", _name, _time, _state, _owner, _ui]] call lc_fnc_log;
         };
-        if (_time > 5 && {!_ui}) then {["lc_ready", ["hc", "", _name]] call CBA_fnc_localEvent};
+        if (_time > 5 && {!_ui}) then {
+            lc_hcOwner = _owner;
+            ["lc_ready", ["hc", "", _name]] call CBA_fnc_localEvent;
+        };
+    }] call CBA_fnc_addEventHandler;
+    ["lc_note", {
+        params ["_event", ["_data", ""]];
+        [_event, _data] call lc_fnc_log;
     }] call CBA_fnc_addEventHandler;
     ["lc_ready", {
         params ["_role", "_uid", "_name"];
@@ -80,3 +87,6 @@ if (hasInterface) then {
         }, [], 5] call CBA_fnc_waitAndExecute;
     }] call CBA_fnc_waitUntilAndExecute;
 };
+
+if (hasInterface && {lc_roundTrip}) then {call compile preprocessFileLineNumbers "roundtrip.sqf"};
+if (!isServer && {lc_stats}) then {call compile preprocessFileLineNumbers "stats.sqf"};

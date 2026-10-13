@@ -122,6 +122,32 @@ def mission_session(db, session_id):
     return plain(db.missionSessions.find_one({"sessionId": session_id}))
 
 
+PLAYER_STAT_FIELDS = ["totalShots", "totalHits", "ballisticShots", "ballisticHits", "explosiveShots", "explosiveHits", "kills",
+                      "killsByTargetType", "hitsByTargetType", "totalDamageDealt", "timesWounded", "woundsByBodyPart",
+                      "distanceOnFoot", "distanceInVehicle", "totalFuelLitres", "explosivesPlaced", "fpsMin",
+                      "timesUnconscious", "timesInCardiacArrest", "timesInComa"]
+
+
+def event_summary(events):
+    return {
+        "types": dict(Counter(str(event.get("type")) for event in events)),
+        "samples": {str(event.get("type")): plain(event) for event in events},
+    }
+
+
+def statistics(db, session_id):
+    combat = [event for bucket in db.missionStatsEventsCombat.find({"missionSessionId": session_id}) for event in bucket.get("events") or []]
+    lifecycle = [event for bucket in db.missionStatsEventsLifecycle.find({"missionSessionId": session_id}) for event in bucket.get("events") or []]
+    sampler = list(db.missionStatsEventsSampler.find({"missionSessionId": session_id}))
+    return {
+        "combat": event_summary(combat),
+        "lifecycle": event_summary(lifecycle),
+        "sampler": {doc.get("playerUid"): {key: len(doc.get(key) or []) for key in ("distanceOnFoot", "distanceInVehicle", "fuelLitres")} for doc in sampler},
+        "players": {doc.get("playerUid"): plain({key: doc.get(key) for key in PLAYER_STAT_FIELDS})
+                    for doc in db.playerMissionStats.find({"missionSessionId": session_id})},
+    }
+
+
 OPERATIONS = {
     "vars": lambda db, args: get_variables(db, args["keys"]),
     "setvar": lambda db, args: set_variable(db, args["key"], args["value"]),
@@ -131,6 +157,7 @@ OPERATIONS = {
     "persistence": lambda db, args: persistence(db, args["key"]),
     "delete-persistence": lambda db, args: delete_persistence(db, args["prefix"]),
     "mission-session": lambda db, args: mission_session(db, args["sessionId"]),
+    "statistics": lambda db, args: statistics(db, args["sessionId"]),
 }
 
 if __name__ == "__main__":

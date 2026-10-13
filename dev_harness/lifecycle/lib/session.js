@@ -8,7 +8,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 class Run {
   constructor(ctx, scenario) {
     this.ctx = ctx;
-    this.scenario = { objects: 0, offset: 0, freeze: 0, serverFreeze: 0, legacyCopy: 0, player: true, headlessClients: 1, ...scenario };
+    this.scenario = { objects: 0, offset: 0, freeze: 0, serverFreeze: 0, legacyCopy: 0, createOnce: false, roundTrip: false, stats: false, captureFreeze: 0, player: true, headlessClients: 1, ...scenario };
     if (this.scenario.headlessClients !== 1) throw new Error('the test server record has exactly one headless client');
     this.timeline = [];
     this.checks = [];
@@ -38,6 +38,7 @@ class Run {
     const missionName = buildMission(ctx.vars.MISSIONS_PATH, {
       persistenceKey: scenario.persistenceKey, objects: scenario.objects, offset: scenario.offset,
       freeze: scenario.freeze, serverFreeze: scenario.serverFreeze, legacyCopy: scenario.legacyCopy,
+      createOnce: scenario.createOnce, roundTrip: scenario.roundTrip, stats: scenario.stats, captureFreeze: scenario.captureFreeze,
     });
     this.since = Date.now();
     this.logs = serverLogs({
@@ -75,6 +76,26 @@ class Run {
       throw new Error('headless client never reported ready');
     }
     this.watch();
+  }
+
+  async relaunch(label) {
+    clearInterval(this.watcher);
+    if (this.player) this.player.kill();
+    this.archive(label);
+    await this.launch();
+  }
+
+  archive(label) {
+    const dir = path.join(this.ctx.out, this.scenario.name, label);
+    fs.mkdirSync(dir, { recursive: true });
+    for (const log of [this.logs?.server, this.logs?.extension, ...(this.logs?.hcs ?? [])].filter(Boolean)) {
+      if (log.file) fs.copyFileSync(log.file, path.join(dir, `${log.name}${path.extname(log.file)}`));
+    }
+    if (this.player?.rpt) fs.copyFileSync(this.player.rpt, path.join(dir, 'client.rpt'));
+  }
+
+  headlessClientPids() {
+    return this.ownProcesses().filter(p => /\s-client(\s|$)/.test(p.commandLine)).map(p => p.pid);
   }
 
   watch() {
@@ -147,12 +168,8 @@ class Run {
       await sleep(3000);
       for (const p of this.ownProcesses()) require('./arma').killPid(p.pid);
     }
+    this.archive('.');
     const dir = path.join(this.ctx.out, this.scenario.name);
-    fs.mkdirSync(dir, { recursive: true });
-    for (const log of [this.logs?.server, this.logs?.extension, ...(this.logs?.hcs ?? [])].filter(Boolean)) {
-      if (log.file) fs.copyFileSync(log.file, path.join(dir, `${log.name}${path.extname(log.file)}`));
-    }
-    if (this.player?.rpt) fs.copyFileSync(this.player.rpt, path.join(dir, 'client.rpt'));
     fs.writeFileSync(path.join(dir, 'timeline.json'), JSON.stringify({ scenario: this.scenario, timeline: this.timeline, checks: this.checks }, null, 1));
   }
 }

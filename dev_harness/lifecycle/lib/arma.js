@@ -36,13 +36,20 @@ function buildMission(missionsPath, scenario) {
       .replace(/persistenceKey\s*=\s*"[^"]*";/, `persistenceKey = "${scenario.persistenceKey}";`)
       .replace(/onLoadName\s*=\s*"[^"]*";/, 'onLoadName = "UKSF: Lifecycle Test";')
       .replace(/minPlayers\s*=\s*\d+;/, 'minPlayers = 1;')
-      .replace(/respawnOnStart\s*=\s*-?\d+;/, 'respawnOnStart = -1;') + '\r\nskipLobby = 1;\r\njoinUnassigned = 0;\r\n';
+      .replace(/respawnOnStart\s*=\s*-?\d+;/, 'respawnOnStart = -1;') + '\r\nskipLobby = 1;\r\njoinUnassigned = 0;\r\n'
+      + 'class Extended_PreInit_EventHandlers {\r\n    class lc_harness {\r\n        serverInit = "call compile preprocessFileLineNumbers \'lcPreInit.sqf\'";\r\n    };\r\n};\r\n';
     files.set('description.ext', Buffer.from(description, 'latin1'));
     const settings = Object.entries(scenario).map(([k, v]) => `lc_${k} = ${sqfValue(v)};`).join('\r\n');
     files.set('settings.sqf', Buffer.concat([Buffer.from(settings + '\r\n', 'latin1'), fs.readFileSync(path.join(MISSION_DIR, 'common.sqf'))]));
-    for (const file of ['init.sqf', 'initServer.sqf', 'mission.sqm']) files.set(file, fs.readFileSync(path.join(MISSION_DIR, file)));
+    for (const file of ['init.sqf', 'initServer.sqf', 'mission.sqm', 'lcPreInit.sqf', 'roundtrip.sqf', 'stats.sqf']) files.set(file, fs.readFileSync(path.join(MISSION_DIR, file)));
     const target = path.join(missionsPath, `${MISSION}.pbo`);
-    fs.writeFileSync(target, packPbo([...files].map(([name, data]) => [name, data])));
+    const pbo = packPbo([...files].map(([name, data]) => [name, data]));
+    for (let attempt = 0; ; attempt++) {
+      try { fs.writeFileSync(target, pbo); break; } catch (error) {
+        if (error.code !== 'EBUSY' || attempt >= 30) throw error;
+        execFileSync('powershell', ['-NoProfile', '-Command', 'Start-Sleep -Seconds 1']);
+      }
+    }
     return `${MISSION}.pbo`;
   } finally {
     fs.rmSync(unpacked, { recursive: true, force: true });
