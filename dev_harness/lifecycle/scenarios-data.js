@@ -135,7 +135,10 @@ const SCENARIOS = {
       run.check('player mission stats aggregated', player, Object.keys(stats.players).join(','));
       if (!player) return;
       run.check(`total shots equal the ${shots} the client fired`, player.totalShots === shots, player.totalShots);
-      run.check('hits recorded on infantry and the tank', player.totalHits >= 3, JSON.stringify(player.hitsByTargetType));
+      const owners = (events(run, 'aiOwners')[0] || '').match(/^(\d+) (\d+) hc=\[(\d+)\]$/);
+      run.check('second AI was owned by the HC when fired on', owners && owners[2] === owners[3] && owners[1] !== owners[3], events(run, 'aiOwners')[0]);
+      run.check('both AI died', events(run, 'fired')[0] === '[false,false]', events(run, 'fired')[0]);
+      run.check('hits recorded on infantry and the tank', (player.hitsByTargetType.infantry ?? 0) >= 2 && (player.hitsByTargetType.vehicle ?? 0) >= 1, JSON.stringify(player.hitsByTargetType));
       run.check('both AI kills credited, including the HC-owned AI', (player.kills.direct + player.kills.indirect) === 2, JSON.stringify(player.kills));
       run.check('explosive placements counted', player.explosivesPlaced >= 1, player.explosivesPlaced);
       run.check('wounds counted', player.timesWounded >= 1, JSON.stringify(player.woundsByBodyPart));

@@ -1,15 +1,13 @@
 if (isServer) exitWith {
-    ["lc_killTargets", {
-        params ["_killer"];
-        {
-            if (alive _x) then {[_x, [1, true, _killer, _killer]] remoteExec ["setDamage", _x]};
-        } forEach (lc_statsTargets select [0, 2]);
-        [{["killed", str ((lc_statsTargets select [0, 2]) apply {alive _x})] call lc_fnc_log}, [], 2] call CBA_fnc_waitAndExecute;
-    }] call CBA_fnc_addEventHandler;
+    addMissionEventHandler ["EntityKilled", {
+        params ["_victim", "_killer", "_instigator"];
+        ["entityKilled", format ["%1 owner=%2 killer=%3 instigator=%4 lastInstigator=%5", typeOf _victim, owner _victim, _killer, _instigator, _victim getVariable ["ace_medical_lastInstigator", objNull]]] call lc_fnc_log;
+    }];
 
     [{!isNil "lc_hcOwner" && {(allPlayers select {!(_x isKindOf "HeadlessClient_F")}) isNotEqualTo []}}, {
         private _player = (allPlayers select {!(_x isKindOf "HeadlessClient_F")})#0;
         private _base = getPosATL _player;
+        {deleteVehicle _x} forEach (units group _player select {!isPlayer _x});
         private _fnc_ai = {
             params ["_type", "_offset"];
             private _group = createGroup [east, true];
@@ -21,18 +19,24 @@ if (isServer) exitWith {
         };
         private _ai1 = ["O_Soldier_F", [0, 15, 0]] call _fnc_ai;
         private _ai2 = ["O_Soldier_AR_F", [6, 15, 0]] call _fnc_ai;
-        (group _ai2) setGroupOwner lc_hcOwner;
+        private _hcOwner = ((allUsers apply {getUserInfo _x}) select {_x#7}) apply {_x#1};
+        [{
+            params ["_ai2", "_hcOwner"];
+            private _transferred = _hcOwner isNotEqualTo [] && {(group _ai2) setGroupOwner (_hcOwner#0)};
+            ["hcTransfer", format ["hc=%1 accepted=%2", _hcOwner, _transferred]] call lc_fnc_log;
+        }, [_ai2, _hcOwner], 2] call CBA_fnc_waitAndExecute;
         private _tank = createVehicle ["B_MBT_01_cannon_F", _base vectorAdd [-25, 40, 0], [], 0, "CAN_COLLIDE"];
         _tank setVariable ["ace_cookoff_enable", false, true];
         private _car = createVehicle ["B_MRAP_01_F", _base vectorAdd [-10, 0, 0], [], 0, "NONE"];
         lc_statsTargets = [_ai1, _ai2, _tank, _car];
         publicVariable "lc_statsTargets";
-        [{
-            params ["_ai1", "_ai2"];
-            ["aiOwners", format ["%1 %2 hc=%3", owner _ai1, owner _ai2, lc_hcOwner]] call lc_fnc_log;
+        private _fnc_go = {
+            params ["_ai1", "_ai2", "_hcOwner"];
+            ["aiOwners", format ["%1 %2 hc=%3", owner _ai1, owner _ai2, _hcOwner]] call lc_fnc_log;
             lc_statsGo = true;
             publicVariable "lc_statsGo";
-        }, [_ai1, _ai2], 5] call CBA_fnc_waitAndExecute;
+        };
+        [{params ["", "_ai2", "_hcOwner"]; _hcOwner isNotEqualTo [] && {owner _ai2 == _hcOwner#0}}, _fnc_go, [_ai1, _ai2, _hcOwner], 20, _fnc_go] call CBA_fnc_waitUntilAndExecute;
     }] call CBA_fnc_waitUntilAndExecute;
 };
 
@@ -68,17 +72,17 @@ if (!hasInterface) exitWith {};
             lc_statsAim = objNull;
         };
         private _rifle = primaryWeapon player;
-        player addWeapon "launch_RPG32_F";
-        player addSecondaryWeaponItem "RPG32_F";
-        player selectWeapon _rifle;
         sleep 3;
-        [_ai1, _rifle] call _fnc_fire;
-        [_ai2, _rifle] call _fnc_fire;
-        [_tank, "launch_RPG32_F"] call _fnc_fire;
-        player selectWeapon _rifle;
+        {
+            private _target = _x;
+            for "_i" from 1 to 6 do {
+                if (alive _target) then {[_target, _rifle] call _fnc_fire};
+            };
+        } forEach [_ai1, _ai2];
+        [_tank, _rifle] call _fnc_fire;
+        [_tank, _rifle] call _fnc_fire;
         sleep 4;
         ["lc_note", ["fired", str ((lc_statsTargets select [0, 2]) apply {alive _x})]] call CBA_fnc_serverEvent;
-        ["lc_killTargets", [player]] call CBA_fnc_serverEvent;
         sleep 3;
 
         private _position = (getPosATL player) vectorAdd [3, 0, 0];

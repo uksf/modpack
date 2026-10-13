@@ -23,7 +23,7 @@ async function afterShutdown(run, ctx, { boxes, saved = true, player = true }) {
   run.check(`mission_ended reports saved=${saved}`, new RegExp(`saved: ${saved}`).test(ended), ended);
   const doc = ctx.db('persistence', { key: fullKey(run.scenario.persistenceKey) });
   if (saved) {
-    run.check(`API stored ${boxes} boxes`, doc && doc.typeCounts.Box_NATO_Ammo_F === boxes, JSON.stringify(doc && doc.typeCounts));
+    run.check(`API stored ${boxes} boxes`, doc && (doc.typeCounts.Box_NATO_Ammo_F ?? 0) === boxes, JSON.stringify(doc && doc.typeCounts));
     if (player) run.check('API stored the player', doc && doc.players[run.playerUid], JSON.stringify(doc && doc.players));
   } else {
     run.check('API stored nothing', !doc, JSON.stringify(doc));
