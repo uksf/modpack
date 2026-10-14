@@ -49,7 +49,7 @@ if (lc_vehicles) then {
         private _player = (allPlayers select {!(_x isKindOf "HeadlessClient_F") && {alive _x}}) select 0;
         private _base = nearestObject [[3015, 2990, 0], "C_Quadbike_01_F"];
         private _driven = nearestObject [[3100, 3060, 0], "B_Quadbike_01_F"];
-        _player moveInDriver _base;
+        [_player, _base] remoteExecCall ["moveInDriver", _player];
         _driven setPos [3012, 3004, 0];
         [{
             params ["_player", "_base", "_driven"];
