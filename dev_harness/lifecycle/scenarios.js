@@ -137,12 +137,12 @@ const SCENARIOS = {
     scenario: { objects: 5, vehicles: true },
     async run(run, ctx) {
       const placed = await run.logs.server.waitFor(/\[LC\] vehicles server \S+ (\S+) (\w+) (\d+)/, 120e3);
-      run.check('player sits in the base quad and the other quad moved (precondition)', placed && placed[1] === 'C_Quadbike_01_F' && +placed[3] > 5, placed && placed[0]);
+      run.check('player sits in the base quad and the other quad moved (precondition)', placed && placed[1] === 'C_Offroad_01_F' && +placed[3] > 5, placed && placed[0]);
       await run.stop();
       const doc = await afterShutdown(run, ctx, { boxes: 5 });
       const types = (doc && doc.typeCounts) || {};
-      run.check('the moved mission vehicle is saved', types.B_Quadbike_01_F === 1, JSON.stringify(types));
-      run.check('the unmoved mission vehicle the player sat in is not saved', !types.C_Quadbike_01_F, JSON.stringify(types));
+      run.check('the moved mission vehicle is saved', types.B_MRAP_01_F === 1, JSON.stringify(types));
+      run.check('the unmoved mission vehicle the player sat in is not saved', !types.C_Offroad_01_F, JSON.stringify(types));
       const seat = doc && doc.players[run.playerUid] && doc.players[run.playerUid].vehicleState;
       run.check('the player record has no seat in the unsaved vehicle', seat && seat.vehicleId === '' && seat.index === -1, JSON.stringify(seat));
     },

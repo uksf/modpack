@@ -47,14 +47,14 @@ if (lc_captureFreeze > 0) then {
 if (lc_vehicles) then {
     [{!isNil "lc_clientReady" && {!isNil "lc_objectsCreated"}}, {
         private _player = (allPlayers select {!(_x isKindOf "HeadlessClient_F") && {alive _x}}) select 0;
-        private _base = nearestObject [[3015, 2990, 0], "C_Quadbike_01_F"];
-        private _driven = nearestObject [[3100, 3060, 0], "B_Quadbike_01_F"];
-        [_player, _base] remoteExecCall ["moveInDriver", _player];
+        private _base = nearestObject [[3015, 2990, 0], "C_Offroad_01_F"];
+        private _driven = nearestObject [[3100, 3060, 0], "B_MRAP_01_F"];
+        [_player, _base] remoteExecCall ["moveInCargo", _player];
         _driven setPos [3012, 3004, 0];
         [{
             params ["_player", "_base", "_driven"];
             ["vehicles", format ["%1 %2 %3", typeOf vehicle _player, _base getVariable ["uksf_persistence_persistenceID", ""] == "", round (_driven distance2D [3100, 3060])]] call lc_fnc_log;
-        }, [_player, _base, _driven], 5] call CBA_fnc_waitAndExecute;
+        }, [_player, _base, _driven], 10] call CBA_fnc_waitAndExecute;
     }] call CBA_fnc_waitUntilAndExecute;
 };
 

@@ -213,7 +213,7 @@ class Mission
 			{
 			};
 			id=11;
-			type="C_Quadbike_01_F";
+			type="C_Offroad_01_F";
 		};
 		class Item8
 		{
@@ -228,7 +228,7 @@ class Mission
 			{
 			};
 			id=12;
-			type="B_Quadbike_01_F";
+			type="B_MRAP_01_F";
 		};
 	};
 };
