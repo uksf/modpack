@@ -55,6 +55,7 @@ function parseArgs(argv) {
   if (!fs.existsSync(path.join(ctx.uksfPath, 'addons'))) { console.error(`no @uksf build at ${ctx.uksfPath}`); process.exit(2); }
 
   const release = await acquire('lifecycle harness');
+  fs.rmSync(path.join(vars.SERVER_PATH_PROFILES, ctx.serverName, 'Users', ctx.serverName, `${ctx.serverName}.vars.Arma3Profile`), { force: true });
   const dismisser = spawn('powershell', ['-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', path.join(__dirname, 'lib', 'dismiss-acre.ps1'),
     '-Seconds', '86400', '-Log', path.join(out, 'acre-dialogs.log')], { stdio: 'ignore', windowsHide: true });
   const focusGuard = opts.keepFocus && spawn('powershell', ['-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', path.join(__dirname, 'lib', 'keep-focus.ps1'),
