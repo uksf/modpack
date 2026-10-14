@@ -115,6 +115,23 @@ const SCENARIOS = {
       run.check('only the player is stored, not the HC', uids.length === 1 && uids[0] === run.playerUid, uids.join(','));
     },
   },
+  'stop-during-restart': {
+    description: 'A website stop arrives during the #restart save: the restart hands over to one full shutdown, a repeated shutdown is a no-op',
+    scenario: { objects: 40 },
+    async run(run, ctx) {
+      await run.command('restart');
+      run.check('restart save started', await run.logs.server.waitFor(/Saving before mission restart/, 60e3));
+      await run.stop();
+      await run.command('shutdown');
+      await afterShutdown(run, ctx, { boxes: 40 });
+      run.check('restart hands over to the pending shutdown', run.logs.server.has(/Mission restart handing over to the pending shutdown/), run.logs.server.lines(/handing over|Shutdown requested during/).join(' | '));
+      run.check('the mission is not restarted', run.logs.server.lines(/\[LC\] loaded server /).length === 1 && !run.logs.server.has(/Server refused #restart/));
+      run.check('one shutdown save runs', run.logs.server.lines(/Shutdown save outcome/).length === 1, run.logs.server.lines(/Shutdown save outcome/).join(' | '));
+      run.check('the shutdown takes a fresh capture after the restart capture', run.logs.server.lines(/Shutdown save capture started/).length === 2);
+      const o = order(run, [/Save before mission restart: \w+/, /Mission restart handing over/, /Shutdown save outcome/, /Sending mission_ended/]);
+      run.check('restart save, handover, shutdown save, mission_ended in order', o.ok, o.at.join(','));
+    },
+  },
   'kill-guards': {
     description: 'Server held in Ending: kill and kill-all refuse without data-loss confirmation, confirmed kill works',
     scenario: { objects: 10, serverFreeze: 90 },
