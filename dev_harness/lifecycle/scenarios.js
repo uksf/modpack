@@ -132,6 +132,21 @@ const SCENARIOS = {
       run.check('restart save, handover, shutdown save, mission_ended in order', o.ok, o.at.join(','));
     },
   },
+  'vehicle-eligibility': {
+    description: 'Mission vehicles without an Eden ID: one moved over 5 m near the player is saved, one at base with the player in it is not',
+    scenario: { objects: 5, vehicles: true },
+    async run(run, ctx) {
+      const placed = await run.logs.server.waitFor(/\[LC\] vehicles (\S+) (\w+) (\d+)/, 120e3);
+      run.check('player sits in the base quad and the other quad moved (precondition)', placed && placed[1] === 'C_Quadbike_01_F' && +placed[3] > 5, placed && placed[0]);
+      await run.stop();
+      const doc = await afterShutdown(run, ctx, { boxes: 5 });
+      const types = (doc && doc.typeCounts) || {};
+      run.check('the moved mission vehicle is saved', types.B_Quadbike_01_F === 1, JSON.stringify(types));
+      run.check('the unmoved mission vehicle the player sat in is not saved', !types.C_Quadbike_01_F, JSON.stringify(types));
+      const seat = doc && doc.players[run.playerUid] && doc.players[run.playerUid].vehicleState;
+      run.check('the player record has no seat in the unsaved vehicle', seat && seat.vehicleId === '' && seat.index === -1, JSON.stringify(seat));
+    },
+  },
   'kill-guards': {
     description: 'Server held in Ending: kill and kill-all refuse without data-loss confirmation, confirmed kill works',
     scenario: { objects: 10, serverFreeze: 90 },

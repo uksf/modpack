@@ -8,7 +8,7 @@ addons[]=
 randomSeed=1;
 class ItemIDProvider
 {
-	nextID=11;
+	nextID=13;
 };
 class ScenarioData
 {
@@ -36,7 +36,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=7;
+		items=9;
 		class Item0
 		{
 			dataType="Group";
@@ -199,6 +199,36 @@ class Mission
 			};
 			id=10;
 			type="Land_HelipadEmpty_F";
+		};
+		class Item7
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={3015,5,2990};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=11;
+			type="C_Quadbike_01_F";
+		};
+		class Item8
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={3100,5,3060};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=12;
+			type="B_Quadbike_01_F";
 		};
 	};
 };

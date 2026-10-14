@@ -44,5 +44,19 @@ if (lc_captureFreeze > 0) then {
     }] call CBA_fnc_waitUntilAndExecute;
 };
 
+if (lc_vehicles) then {
+    [{(allPlayers select {!(_x isKindOf "HeadlessClient_F") && {alive _x}}) isNotEqualTo [] && {!isNil "lc_objectsCreated"}}, {
+        private _player = (allPlayers select {!(_x isKindOf "HeadlessClient_F") && {alive _x}}) select 0;
+        private _base = nearestObject [[3015, 2990, 0], "C_Quadbike_01_F"];
+        private _driven = nearestObject [[3100, 3060, 0], "B_Quadbike_01_F"];
+        _player moveInDriver _base;
+        _driven setPos [3012, 3004, 0];
+        [{
+            params ["_player", "_base", "_driven"];
+            ["vehicles", format ["%1 %2 %3", typeOf vehicle _player, _base getVariable ["uksf_persistence_persistenceID", ""] == "", round (_driven distance2D [3100, 3060])]] call lc_fnc_log;
+        }, [_player, _base, _driven], 5] call CBA_fnc_waitAndExecute;
+    }] call CBA_fnc_waitUntilAndExecute;
+};
+
 ["uksf_persistence_loadingFinished", {["event"] call lc_fnc_createObjects}] call CBA_fnc_addEventHandler;
 [{["timeout"] call lc_fnc_createObjects}, [], 45] call CBA_fnc_waitAndExecute;
