@@ -162,20 +162,6 @@ fn test_acknowledged_event_is_lost_at_the_give_up_deadline_not_the_next_backoff(
 }
 
 #[test]
-fn test_stop_marks_undelivered_acknowledged_events_lost() {
-    let (url, _count, stop) = test_server(|_| (500, 0));
-    let queue = RetryQueue::draining_for(url, 10, Duration::from_secs(3600), Some(Duration::from_secs(120)), Duration::from_secs(1));
-    queue.start();
-    let seq = next_seq();
-    queue.enqueue(seq, r#"["shutdown_stopping",[]]"#.to_string(), "ts".to_string());
-    assert!(wait_for(|| queue.buffer_len() == 1, Duration::from_secs(5)));
-
-    queue.stop();
-    assert!(wait_for(|| outcome(seq) == Some(Outcome::Lost), Duration::from_secs(3)));
-    stop.store(true, AtomicOrdering::SeqCst);
-}
-
-#[test]
 fn test_ordinary_events_are_not_tracked() {
     let (url, _count, stop) = test_server(|_| (200, 0));
     let queue = RetryQueue::new(url, 10, Duration::from_millis(50));

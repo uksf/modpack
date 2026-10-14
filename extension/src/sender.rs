@@ -146,11 +146,11 @@ impl RetryQueue {
     }
 
     fn drain_after_stop(&self, buffer: &mut VecDeque<PendingEvent>, stopped_at: &OnceLock<Instant>) {
-        let deadline = *stopped_at.get_or_init(Instant::now) + self.drain_after_stop;
+        let deadline = self.drain_deadline(stopped_at);
         while let Some(wake) = self.next_wake(buffer)
-            && Instant::now() < deadline
+            && deadline.is_none_or(|deadline| Instant::now() < deadline)
         {
-            thread::sleep(wake.min(deadline).saturating_duration_since(Instant::now()));
+            thread::sleep(deadline.map_or(wake, |deadline| wake.min(deadline)).saturating_duration_since(Instant::now()));
             self.send_due(buffer, stopped_at);
         }
         if !buffer.is_empty() {
@@ -158,8 +158,15 @@ impl RetryQueue {
         }
     }
 
+    fn drain_deadline(&self, stopped_at: &OnceLock<Instant>) -> Option<Instant> {
+        if self.tracked() {
+            return None;
+        }
+        stopped_at.get().map(|stopped| *stopped + self.drain_after_stop)
+    }
+
     fn send_due(&self, buffer: &mut VecDeque<PendingEvent>, stopped_at: &OnceLock<Instant>) {
-        let drain_deadline = stopped_at.get().map(|stopped| *stopped + self.drain_after_stop);
+        let drain_deadline = self.drain_deadline(stopped_at);
         for _ in 0..buffer.len() {
             let now = Instant::now();
             if !self.tracked() && drain_deadline.is_some_and(|deadline| now >= deadline) {
@@ -167,7 +174,7 @@ impl RetryQueue {
             }
             let Some(pending) = buffer.pop_front() else { break };
             let deadline = self.give_up_after.map(|limit| pending.queued_at + limit);
-            if self.tracked() && [deadline, drain_deadline].into_iter().flatten().any(|deadline| now >= deadline) {
+            if deadline.is_some_and(|deadline| now >= deadline) {
                 self.finish(&pending, Outcome::Lost);
                 continue;
             }
@@ -182,7 +189,7 @@ impl RetryQueue {
             self.len.store(buffer.len(), Ordering::Relaxed);
 
             let timeout = match (deadline, drain_deadline) {
-                (Some(deadline), drain) => deadline.min(drain.unwrap_or(deadline)).saturating_duration_since(now).min(ACKNOWLEDGED_REQUEST_TIMEOUT),
+                (Some(deadline), _) => deadline.saturating_duration_since(now).min(ACKNOWLEDGED_REQUEST_TIMEOUT),
                 (None, Some(drain)) => drain.saturating_duration_since(now).min(ORDINARY_REQUEST_TIMEOUT),
                 (None, None) => ORDINARY_REQUEST_TIMEOUT,
             };
