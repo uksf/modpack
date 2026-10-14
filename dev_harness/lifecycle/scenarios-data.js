@@ -3,6 +3,20 @@ const { probes } = require('./lib/logs');
 const { parseSqf, diff } = require('./lib/sqf');
 
 const PLAYER_FIELDS = { vehicle: 1, loadout: 4, earplugs: 7, attached: 8, radios: 9 };
+const WOUND_FIELDS = ['openwounds', 'bandagedwounds', 'stitchedwounds', 'bodypartdamage', 'fractures', 'tourniquets', 'bloodvolume', 'medications'];
+
+function woundProblems(saved, restored) {
+  const byName = pairs => Object.fromEntries((pairs || []).map(([key, value]) => [key, value]));
+  const before = byName(saved);
+  const after = byName(restored);
+  if (!(before.ace_medical_openwounds || []).length) return ['the saved player had no open wound to restore'];
+  return WOUND_FIELDS.flatMap(field => {
+    const key = `ace_medical_${field}`;
+    if (!(key in after)) return [`${field} missing after restore`];
+    return diff(before[key], after[key], 1e-3).map(problem => `${field}: ${problem}`);
+  });
+}
+
 
 function events(run, name) {
   const out = [];
@@ -83,7 +97,8 @@ const SCENARIOS = {
           run.check(`player ${field} restored`, problems.length === 0, problems.slice(0, 4).join(' | '));
         }
         run.check('player position restored within 3 m', diff(saved[0], restored[0], 0).length === 0 || Math.hypot(...saved[0].map((v, n) => v - restored[0][n])) < 3, `${JSON.stringify(saved[0])} vs ${JSON.stringify(restored[0])}`);
-        run.check('player wound state restored', JSON.stringify(restored[6]).includes('leftleg') || diff(saved[6], restored[6], 0.05).length === 0, JSON.stringify(restored[6]).slice(0, 300));
+        const wounds = woundProblems(saved[6], restored[6]);
+        run.check('player wounds, damage, and treatment restored', wounds.length === 0, wounds.slice(0, 4).join(' | '));
       } else {
         run.check('player state captured after redeploy', false, restoredLine || 'no playerRestored line');
       }
