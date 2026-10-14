@@ -6,13 +6,14 @@ const { Api, build, settingsPath } = require('./lib/api');
 const { Run } = require('./lib/session');
 const { SCENARIOS } = require('./scenarios');
 
-const USAGE = `usage: node run.js <scenario...|all|list> --api <api checkout> [--uksf <@uksf build>] [--mod-root <repo with every @mod>] [--out <dir>] [--no-build] [--keep-data]
+const USAGE = `usage: node run.js <scenario...|all|list> --api <api checkout> [--uksf <@uksf build>] [--mod-root <repo with every @mod>] [--out <dir>] [--no-build] [--keep-data] [--allow-focus]
 
 Runs lifecycle scenarios against a local API (port 5510, devLocal) that launches a cloned
-"LifecycleTest" server record. Needs non-elevated Steam for the player client.`;
+"LifecycleTest" server record. Needs non-elevated Steam for the player client. Harness Arma windows are minimised when they take
+focus unless --allow-focus is given.`;
 
 function parseArgs(argv) {
-  const opts = { names: [], build: true, keepData: false };
+  const opts = { names: [], build: true, keepData: false, keepFocus: true };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     if (a === '--api') opts.apiDir = argv[++i];
@@ -21,6 +22,7 @@ function parseArgs(argv) {
     else if (a === '--out') opts.out = argv[++i];
     else if (a === '--no-build') opts.build = false;
     else if (a === '--keep-data') opts.keepData = true;
+    else if (a === '--allow-focus') opts.keepFocus = false;
     else if (a === '--help' || a === '-h') { console.log(USAGE); process.exit(0); }
     else opts.names.push(a);
   }
@@ -55,6 +57,8 @@ function parseArgs(argv) {
   const release = await acquire('lifecycle harness');
   const dismisser = spawn('powershell', ['-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', path.join(__dirname, 'lib', 'dismiss-acre.ps1'),
     '-Seconds', '86400', '-Log', path.join(out, 'acre-dialogs.log')], { stdio: 'ignore', windowsHide: true });
+  const focusGuard = opts.keepFocus && spawn('powershell', ['-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', path.join(__dirname, 'lib', 'keep-focus.ps1'),
+    '-Seconds', '86400', '-Log', path.join(out, 'focus.log')], { stdio: 'ignore', windowsHide: true });
   const originalPassword = vars.SERVER_COMMAND_PASSWORD;
   const results = [];
   try {
@@ -87,6 +91,7 @@ function parseArgs(argv) {
     db('delete-server');
     fs.rmSync(path.join(vars.MISSIONS_PATH, 'LifecycleTest.VR.pbo'), { force: true });
     dismisser.kill();
+    if (focusGuard) focusGuard.kill();
     release();
   }
   log(`=== results (${out})`);
