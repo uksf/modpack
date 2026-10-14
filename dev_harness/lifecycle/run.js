@@ -9,7 +9,7 @@ const { SCENARIOS } = require('./scenarios');
 const USAGE = `usage: node run.js <scenario...|all|list> --api <api checkout> [--uksf <@uksf build>] [--mod-root <repo with every @mod>] [--out <dir>] [--no-build] [--keep-data] [--allow-focus]
 
 Runs lifecycle scenarios against a local API (port 5510, devLocal) that launches a cloned
-"LifecycleTest" server record. Needs non-elevated Steam for the player client. Harness Arma windows are minimised when they take
+"LifecycleTest" server record. Needs non-elevated Steam for the player client. Harness Arma windows are pushed back when they take
 focus unless --allow-focus is given.`;
 
 function parseArgs(argv) {
