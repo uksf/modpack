@@ -19,7 +19,9 @@ params [["_partial", false, [false]]];
 
 if (!GVAR(dataSaved)) exitWith {0};
 
+private _startedAt = diag_tickTime;
 profileNamespace setVariable [GVAR(key), [GVAR(dataNamespace)] call CBA_fnc_serializeNamespace];
+private _serialisedAt = diag_tickTime;
 saveProfileNamespace;
-LOG("Saved data");
+INFO_2("Profile save: serialise %1 ms, write %2 ms",round ((_serialisedAt - _startedAt) * 1000),round ((diag_tickTime - _serialisedAt) * 1000));
 [_partial] call FUNC(saveDataApi)

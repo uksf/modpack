@@ -97,4 +97,7 @@ private _eventData = createHashMapFromArray [
 ];
 
 INFO_2("API persistence save: %1 objects, %2 players",count _objectHashmaps,count _playersHashmap);
-["persistence_save", _eventData, 6] call EFUNC(api,sendEvent)
+private _sendStart = diag_tickTime;
+private _seq = ["persistence_save", _eventData, 6] call EFUNC(api,sendEvent);
+INFO_1("API persistence save sent in %1 ms",round ((diag_tickTime - _sendStart) * 1000));
+_seq
