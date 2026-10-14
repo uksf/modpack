@@ -45,13 +45,13 @@ if (lc_captureFreeze > 0) then {
 };
 
 if (lc_vehicles) then {
-
     [{!isNil "lc_clientReady" && {time > lc_clientReady + 20} && {!isNil "lc_objectsCreated"}}, {
         private _player = (allPlayers select {!(_x isKindOf "HeadlessClient_F") && {alive _x}}) select 0;
         private _base = nearestObject [[3040, 2970, 0], "B_MRAP_01_F"];
         private _driven = nearestObject [[3100, 3060, 0], "B_LSV_01_unarmed_F"];
         ["lc_seat", [_base], _player] call CBA_fnc_targetEvent;
         _driven setPos [3050, 2950, 0];
+        ["uksf_persistence_addLogisticsMarker", createVehicle ["Land_HelipadEmpty_F", [3050, 2945, 0], [], 0, "CAN_COLLIDE"]] call CBA_fnc_localEvent;
         [{
             params ["_player", "_base", "_driven"];
             ["vehicles", format ["%1 %2 %3", typeOf vehicle _player, _base getVariable ["uksf_persistence_persistenceID", ""] == "", round (_driven distance2D [3100, 3060])]] call lc_fnc_log;

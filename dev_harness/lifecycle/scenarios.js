@@ -133,7 +133,7 @@ const SCENARIOS = {
     },
   },
   'vehicle-eligibility': {
-    description: 'Mission vehicles without an Eden ID: one moved over 5 m near the player is saved, one at base with the player in it is not',
+    description: 'Mission vehicles without an Eden ID near a persistence marker: one moved over 5 m is saved, one at base with the player in it is not',
     scenario: { objects: 5, vehicles: true },
     async run(run, ctx) {
       const placed = await run.logs.server.waitFor(/\[LC\] vehicles server \S+ (\S+) (\w+) (\d+)/, 120e3);
