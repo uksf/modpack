@@ -49,6 +49,8 @@ if (lc_vehicles) then {
         private _player = (allPlayers select {!(_x isKindOf "HeadlessClient_F") && {alive _x}}) select 0;
         private _base = nearestObject [[3015, 2990, 0], "C_Offroad_01_F"];
         private _driven = nearestObject [[3100, 3060, 0], "B_MRAP_01_F"];
+        ["vehicleSimulation", str [simulationEnabled _base, simulationEnabled _driven]] call lc_fnc_log;
+        {_x enableSimulationGlobal true} forEach [_base, _driven];
         [_player, _base] remoteExecCall ["moveInCargo", _player];
         _driven setPos [3012, 3004, 0];
         [{
