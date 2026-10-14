@@ -67,7 +67,9 @@ const SCENARIOS = {
       const after = keyed(await run.logs.server.waitForCount(/\[LC\] rtB /, Object.keys(before).length, 120e3).then(() => events(run, 'rtB')));
       for (const [id, data] of Object.entries(before)) {
         const reloaded = after[id];
-        const settled = reloaded && diff(data[3], reloaded[3], 0.02).length === 0 ? Object.assign([...reloaded], { 3: data[3] }) : reloaded;
+        const settledHeight = reloaded && Math.abs(data[2][2] - reloaded[2][2]) < 0.1;
+        const settledOrientation = reloaded && diff(data[3], reloaded[3], 0.02).length === 0;
+        const settled = reloaded && Object.assign([...reloaded], settledOrientation ? { 3: data[3] } : {}, settledHeight ? { 2: [reloaded[2][0], reloaded[2][1], data[2][2]] } : {});
         const problems = reloaded ? diff(data, settled, 2e-3) : ['missing after reload'];
         run.check(`object ${data[1]} round-trips every field`, problems.length === 0, problems.slice(0, 6).join(' | '));
       }

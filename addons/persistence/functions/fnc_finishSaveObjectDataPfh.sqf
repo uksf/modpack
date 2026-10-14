@@ -48,8 +48,10 @@ GVAR(dataNamespace) setVariable [QGVAR(mapMarkers), GVAR(mapMarkers)];
 {
     _x params ["_id", "_function"];
 
+    private _serializerStart = diag_tickTime;
     private _data = [] call _function;
     GVAR(dataNamespace) setVariable [_id, _data];
+    INFO_2("Serializer %1 took %2 ms",_id,round ((diag_tickTime - _serializerStart) * 1000));
 } forEach GVAR(serializers);
 
 [_partial] call FUNC(saveData)

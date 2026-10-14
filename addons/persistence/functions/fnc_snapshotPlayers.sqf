@@ -17,8 +17,9 @@
         call uksf_persistence_fnc_snapshotPlayers
 */
 
+private _startedAt = diag_tickTime;
 private _players = call CBA_fnc_players;
 {
     [_x, getPlayerUID _x] call FUNC(storePlayerData);
 } forEach _players;
-INFO_1("Snapshot of %1 players",count _players);
+INFO_2("Snapshot of %1 players took %2 ms",count _players,round ((diag_tickTime - _startedAt) * 1000));
