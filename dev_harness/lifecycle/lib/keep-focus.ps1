@@ -26,6 +26,7 @@ public static class FocusGuard {
     [DllImport("user32.dll")] static extern void keybd_event(byte vk, byte scan, uint flags, UIntPtr extra);
     [DllImport("user32.dll")] static extern bool SetWindowPos(IntPtr h, IntPtr after, int x, int y, int cx, int cy, uint flags);
     [DllImport("user32.dll")] static extern bool IsWindow(IntPtr h);
+    [DllImport("user32.dll")] static extern bool ShowWindow(IntPtr h, int cmd);
     [DllImport("user32.dll")] static extern bool GetCursorPos(out POINT p);
     [DllImport("user32.dll")] static extern bool SetCursorPos(int x, int y);
     [DllImport("user32.dll")] static extern bool ClipCursor(IntPtr rect);
@@ -35,6 +36,8 @@ public static class FocusGuard {
     static readonly IntPtr HWND_BOTTOM = new IntPtr(1);
     const int FALL_THROUGH_MS = 2000;
     const int CURSOR_LAG_MS = 150;
+    const int SW_SHOWMINNOACTIVE = 7;
+    const int RESTORE_ATTEMPTS = 4;
 
     static WinEventProc proc = OnForeground;
     static Regex match;
@@ -102,6 +105,21 @@ public static class FocusGuard {
         if (found) SetCursorPos(best.X, best.Y);
     }
 
+    static string Name(IntPtr h) {
+        try { return Process.GetProcessById((int)Owner(h)).ProcessName; } catch { return "none"; }
+    }
+
+    static bool Restore(IntPtr stolen) {
+        for (int attempt = 0; attempt < RESTORE_ATTEMPTS; attempt++) {
+            GiveBack(userWindow);
+            if (GetForegroundWindow() == userWindow) return true;
+            System.Threading.Thread.Sleep(30);
+        }
+        ShowWindow(stolen, SW_SHOWMINNOACTIVE);
+        GiveBack(userWindow);
+        return GetForegroundWindow() == userWindow;
+    }
+
     static void GiveBack(IntPtr target) {
         if (target == IntPtr.Zero || !IsWindow(target)) return;
         uint me = GetCurrentThreadId();
@@ -124,17 +142,17 @@ public static class FocusGuard {
         if (isHarness) {
             lastSteal = now;
             SetWindowPos(hwnd, HWND_BOTTOM, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_NOACTIVATE);
-            GiveBack(userWindow);
+            bool restored = Restore(hwnd);
             RestoreCursor(now);
             POINT at; GetCursorPos(out at);
-            Log("pushed back pid " + pid + ", restored " + (GetForegroundWindow() == userWindow ? "focus" : "FAILED") + ", cursor " + at.X + "," + at.Y);
+            Log("pushed back pid " + pid + ", restored " + (restored ? "focus to " + Name(userWindow) : "FAILED, foreground " + Name(GetForegroundWindow()) + ", wanted " + Name(userWindow) + (IsWindow(userWindow) ? "" : " (closed)")) + ", cursor " + at.X + "," + at.Y);
             return;
         }
         if (hwnd == userWindow) return;
         if (now - lastSteal < FALL_THROUGH_MS && IsShell(pid)) {
-            GiveBack(userWindow);
+            bool restored = Restore(IntPtr.Zero);
             RestoreCursor(lastSteal);
-            Log("focus fell to the shell after a steal, restored " + (GetForegroundWindow() == userWindow ? "focus" : "FAILED"));
+            Log("focus fell to the shell after a steal, restored " + (restored ? "focus" : "FAILED"));
             return;
         }
         userWindow = hwnd;
