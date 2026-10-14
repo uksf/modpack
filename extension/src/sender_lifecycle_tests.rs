@@ -73,18 +73,33 @@ fn test_an_acknowledged_event_queued_at_stop_is_still_delivered_within_the_drain
 }
 
 #[test]
-fn test_acknowledged_drain_after_stop_ends_at_its_deadline_and_loses_the_rest() {
-    let (url, count, stop) = test_server(|_| (503, 0));
-    let queue = RetryQueue::draining_for(url, 10, Duration::from_millis(50), Some(Duration::from_secs(120)), Duration::from_secs(3));
+fn test_an_acknowledged_event_outlives_the_stop_drain_and_is_delivered_when_the_api_returns() {
+    let started = Instant::now();
+    let (url, _count, stop) = test_server(move |_| (if started.elapsed() < Duration::from_secs(4) { 503 } else { 200 }, 0));
+    let queue = RetryQueue::draining_for(url, 10, Duration::from_millis(50), Some(Duration::from_secs(120)), Duration::from_secs(1));
     queue.start();
     let seq = next_seq();
     queue.enqueue(seq, r#"["mission_ended",[]]"#.to_string(), "ts".to_string());
 
     queue.stop();
-    assert!(wait_for(|| outcome(seq) == Some(Outcome::Lost), Duration::from_secs(5)));
+    assert!(wait_for(|| outcome(seq) == Some(Outcome::Delivered), Duration::from_secs(10)));
+    stop.store(true, AtomicOrdering::SeqCst);
+}
+
+#[test]
+fn test_an_acknowledged_event_after_stop_is_lost_at_its_own_deadline_and_posting_then_ends() {
+    let (url, count, stop) = test_server(|_| (503, 0));
+    let queue = RetryQueue::draining_for(url, 10, Duration::from_millis(50), Some(Duration::from_secs(3)), Duration::from_secs(1));
+    queue.start();
+    let seq = next_seq();
+    queue.enqueue(seq, r#"["mission_ended",[]]"#.to_string(), "ts".to_string());
+
+    queue.stop();
+    thread::sleep(Duration::from_millis(1500));
+    assert_eq!(outcome(seq), Some(Outcome::Pending), "the 1 s ordinary drain must not end an acknowledged event");
+    assert!(wait_for(|| outcome(seq) == Some(Outcome::Lost), Duration::from_secs(4)));
     let posted = count.load(AtomicOrdering::SeqCst);
     thread::sleep(Duration::from_millis(500));
-    assert_eq!(posted, 2, "a 3 s drain with a 2 s backoff allows two attempts");
     assert_eq!(count.load(AtomicOrdering::SeqCst), posted);
     stop.store(true, AtomicOrdering::SeqCst);
 }
