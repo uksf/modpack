@@ -45,7 +45,7 @@ if (lc_captureFreeze > 0) then {
 };
 
 if (lc_vehicles) then {
-    [{(allPlayers select {!(_x isKindOf "HeadlessClient_F") && {alive _x}}) isNotEqualTo [] && {!isNil "lc_objectsCreated"}}, {
+    [{!isNil "lc_clientReady" && {!isNil "lc_objectsCreated"}}, {
         private _player = (allPlayers select {!(_x isKindOf "HeadlessClient_F") && {alive _x}}) select 0;
         private _base = nearestObject [[3015, 2990, 0], "C_Quadbike_01_F"];
         private _driven = nearestObject [[3100, 3060, 0], "B_Quadbike_01_F"];

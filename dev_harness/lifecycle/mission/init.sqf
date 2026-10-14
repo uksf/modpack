@@ -42,7 +42,7 @@ if (isServer) then {
     ["lc_ready", {
         params ["_role", "_uid", "_name"];
         if (_role == "hc" && {!isNil "lc_hcReady"}) exitWith {};
-        if (_role == "hc") then {lc_hcReady = true};
+        if (_role == "hc") then {lc_hcReady = true} else {lc_clientReady = true};
         ["remoteReady", format ["%1 %2 %3", _role, _uid, _name]] call lc_fnc_log;
     }] call CBA_fnc_addEventHandler;
     addMissionEventHandler ["PlayerConnected", {

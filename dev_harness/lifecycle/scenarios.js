@@ -136,7 +136,7 @@ const SCENARIOS = {
     description: 'Mission vehicles without an Eden ID: one moved over 5 m near the player is saved, one at base with the player in it is not',
     scenario: { objects: 5, vehicles: true },
     async run(run, ctx) {
-      const placed = await run.logs.server.waitFor(/\[LC\] vehicles (\S+) (\w+) (\d+)/, 120e3);
+      const placed = await run.logs.server.waitFor(/\[LC\] vehicles server \S+ (\S+) (\w+) (\d+)/, 120e3);
       run.check('player sits in the base quad and the other quad moved (precondition)', placed && placed[1] === 'C_Quadbike_01_F' && +placed[3] > 5, placed && placed[0]);
       await run.stop();
       const doc = await afterShutdown(run, ctx, { boxes: 5 });
