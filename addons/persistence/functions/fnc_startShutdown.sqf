@@ -15,6 +15,10 @@
         Players are kicked individually as they report ready.
         HCs flush and report but are not tracked or kicked.
 
+        A repeated shutdown request is a no-op. A shutdown requested during
+        a mission end or restart save is held, and that transition hands over
+        to a full shutdown save at its next safe point.
+
     Parameter(s):
         None
 
@@ -29,12 +33,22 @@ if (!isServer) exitWith {
     [QGVAR(startShutdown)] call CBA_fnc_serverEvent;
 };
 
-if (GVAR(shutdownInProgress) || GVAR(saveBarrierInProgress)) exitWith {
-    WARNING("Shutdown or save already in progress, ignoring shutdown");
+["shutdown_ending"] call EFUNC(api,sendEvent);
+
+if (GVAR(transition) == "shutdown") exitWith {
+    INFO("Shutdown already in progress");
 };
 
+if (GVAR(transition) != "") exitWith {
+    if (!GVAR(shutdownPending)) then {
+        INFO_1("Shutdown requested during mission %1 save, shutting down after that save",GVAR(transition));
+    };
+    GVAR(shutdownPending) = true;
+};
+
+GVAR(transition) = "shutdown";
+GVAR(shutdownPending) = false;
 GVAR(shutdownInProgress) = true;
-["shutdown_ending"] call EFUNC(api,sendEvent);
 if (GVAR(dataSaved)) then {
     call FUNC(snapshotPlayers);
 };

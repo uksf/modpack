@@ -20,7 +20,8 @@ if (is3DEN) then {
 
 GVAR(dataSaved) = false;
 GVAR(shutdownInProgress) = false;
-GVAR(saveBarrierInProgress) = false;
+GVAR(transition) = "";
+GVAR(shutdownPending) = false;
 GVAR(missionSaved) = false;
 GVAR(shutdownExpectedDisconnectCount) = 0;
 GVAR(shutdownDisconnectedCount) = 0;
