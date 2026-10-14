@@ -42,7 +42,7 @@ if (isServer) then {
     ["lc_ready", {
         params ["_role", "_uid", "_name"];
         if (_role == "hc" && {!isNil "lc_hcReady"}) exitWith {};
-        if (_role == "hc") then {lc_hcReady = true} else {lc_clientReady = true};
+        if (_role == "hc") then {lc_hcReady = true} else {lc_clientReady = time};
         ["remoteReady", format ["%1 %2 %3", _role, _uid, _name]] call lc_fnc_log;
     }] call CBA_fnc_addEventHandler;
     addMissionEventHandler ["PlayerConnected", {
@@ -86,6 +86,14 @@ if (hasInterface) then {
             ["lc_ready", ["client", getPlayerUID player, profileName]] call CBA_fnc_serverEvent;
         }, [], 5] call CBA_fnc_waitAndExecute;
     }] call CBA_fnc_waitUntilAndExecute;
+};
+
+if (hasInterface) then {
+    ["lc_seat", {
+        params ["_vehicle"];
+        player assignAsCargo _vehicle;
+        player moveInCargo _vehicle;
+    }] call CBA_fnc_addEventHandler;
 };
 
 if (hasInterface && {lc_roundTrip}) then {call compile preprocessFileLineNumbers "roundtrip.sqf"};

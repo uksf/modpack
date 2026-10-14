@@ -205,7 +205,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={3015,5,2990};
+				position[]={3040,6,2970};
 			};
 			side="Empty";
 			flags=4;
@@ -213,14 +213,14 @@ class Mission
 			{
 			};
 			id=11;
-			type="C_Offroad_01_F";
+			type="B_MRAP_01_F";
 		};
 		class Item8
 		{
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={3100,5,3060};
+				position[]={3100,6,3060};
 			};
 			side="Empty";
 			flags=4;
@@ -228,7 +228,7 @@ class Mission
 			{
 			};
 			id=12;
-			type="B_MRAP_01_F";
+			type="B_LSV_01_unarmed_F";
 		};
 	};
 };
