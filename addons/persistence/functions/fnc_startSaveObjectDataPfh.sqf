@@ -40,10 +40,8 @@ GVAR(saveObjectQueueProcessing) = true;
     private _object = GVAR(saveObjectQueue) deleteAt 0;
     if !(isNull (attachedTo _object)) exitWith {};
 
-    private _id = _object getVariable [QGVAR(persistenceID), ""];
-    if (_id == "") then {
-        _id = [_object] call FUNC(markObjectAsPersistent);
-    };
+    private _id = [_object] call FUNC(persistableId);
+    if (_id == "") exitWith {};
     TRACE_1("Object ID",_id);
 
     private _objects = GVAR(dataNamespace) getVariable [QGVAR(objects), []];

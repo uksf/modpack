@@ -34,10 +34,9 @@ private _data = [
         private _index = -1;
         private _vehicle = vehicle _unit;
         if (_vehicle != _unit) then {
-            _id = _vehicle getVariable [QGVAR(persistenceID), ""];
-            if (_id == "") then {
-                _id = [_vehicle] call FUNC(markObjectAsPersistent);
-            };
+            _id = [_vehicle] call FUNC(persistableId);
+        };
+        if (_id != "") then {
             _role = toLower (_unit call CBA_fnc_vehicleRole);
             _index = _vehicle getCargoIndex _unit;
             if (_role == "turret") then {

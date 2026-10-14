@@ -141,6 +141,7 @@ const SCENARIOS = {
       await run.stop();
       const doc = await afterShutdown(run, ctx, { boxes: 5 });
       const types = (doc && doc.typeCounts) || {};
+      run.check('the Eden-marked editor box is still saved', types.Box_NATO_Grenades_F === 1, JSON.stringify(types));
       run.check('the moved mission vehicle is saved', types.B_LSV_01_unarmed_F === 1, JSON.stringify(types));
       run.check('the unmoved mission vehicle the player sat in is not saved', !types.B_MRAP_01_F, JSON.stringify(types));
       const seat = doc && doc.players[run.playerUid] && doc.players[run.playerUid].vehicleState;

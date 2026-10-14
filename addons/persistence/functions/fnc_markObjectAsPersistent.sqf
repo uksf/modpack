@@ -25,10 +25,15 @@ if (!isServer) exitWith {
 
 params ["_object", ["_id", "", [""]]];
 
-// ID already set
-if (_object getVariable [QGVAR(persistenceID), ""] != "") exitWith {};
+private _existingId = _object getVariable [QGVAR(persistenceID), ""];
+if (_existingId != "") exitWith {_existingId};
 
-// Generate ID if empty
+private _holder = [GVAR(persistentObjectsHash), _id] call CBA_fnc_hashGet;
+if (_id != "" && {!isNil "_holder"} && {_holder isEqualType objNull} && {!isNull _holder} && {_holder != _object}) exitWith {
+    WARNING_3("Persistence ID %1 already belongs to %2, not assigning it to %3",_id,_holder,_object);
+    ""
+};
+
 if (_id == "") then {
     _id = format ["%1_%2", typeOf _object, call CBA_fnc_createUUID];
     TRACE_1("Object marked as persistent has no ID, generating one",_id);

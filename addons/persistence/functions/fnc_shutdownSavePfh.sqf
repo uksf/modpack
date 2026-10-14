@@ -43,7 +43,7 @@ INFO_2("Shutdown save capture started: %1 markers, %2 objects",count _markers,co
                 private _nearObjects = (_marker nearObjects CENTRE_RADIUS) select {
                     private _object = _x;
                     !(_object in GVAR(saveObjectQueue)) && !(_object in _processed) &&
-                    !(_object getVariable [QGVAR(excluded), false]) &&
+                    {[_object] call FUNC(isPersistable)} &&
                     {[_terrainObjects, {_x == _object}] call EFUNC(common,arrayNone)} &&
                     {[["Building", "AllVehicles", "Thing"], {_object isKindOf _x}] call EFUNC(common,arrayAny)} &&
                     {[["Man", "ThingEffect"], {_object isKindOf _x}] call EFUNC(common,arrayNone)} &&
@@ -56,13 +56,9 @@ INFO_2("Shutdown save capture started: %1 markers, %2 objects",count _markers,co
 
         if (GVAR(saveObjectQueue) isNotEqualTo []) then {
             private _object = GVAR(saveObjectQueue) deleteAt 0;
-            if (isNull (attachedTo _object)) then {
+            private _id = [_object] call FUNC(persistableId);
+            if (isNull (attachedTo _object) && {_id != ""}) then {
                 _processed pushBack _object;
-
-                private _id = _object getVariable [QGVAR(persistenceID), ""];
-                if (_id == "") then {
-                    _id = [_object] call FUNC(markObjectAsPersistent);
-                };
 
                 private _objects = GVAR(dataNamespace) getVariable [QGVAR(objects), []];
                 private _index = _objects findIf {_x#IDX_OBJ_ID == _id};

@@ -26,6 +26,8 @@ PREP(loadObjectData);
 PREP(loadRedeployData);
 PREP(loadServerData);
 PREP(loadSession);
+PREP(isPersistable);
+PREP(persistableId);
 PREP(markObjectAsPersistent);
 PREP(registerSerializer);
 PREP(removeAbortedObject);

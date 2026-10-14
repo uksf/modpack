@@ -19,11 +19,9 @@
 
 params [["_centre", objNull]];
 
-// Reset this to true. Will be set to false if markers need processing, before it can be read by the saving queue pfh exit
 GVAR(saveObjectMarkersProcessed) = true;
 
 if (isNull _centre) exitWith {
-    // Add already persistent marked objects to saving queue
     [GVAR(persistentObjectsHash), {GVAR(saveObjectQueue) pushBack _value}] call CBA_fnc_hashEachPair;
 
     if (!GVAR(saveObjectQueueProcessing)) then {
@@ -36,7 +34,7 @@ if (isNull _centre) exitWith {
         TRACE_1("Found persistence markers",count _markers);
         GVAR(saveObjectMarkersProcessed) = false;
         private _marker = _markers deleteAt 0;
-        [_marker] call FUNC(saveObjectData); // Ensure queue is running to avoid race condition during shutdown
+        [_marker] call FUNC(saveObjectData);
 
         [{
             params ["_args", "_idPFH"];
@@ -58,7 +56,7 @@ private _terrainObjects = nearestTerrainObjects [_centre, [], CENTRE_RADIUS, fal
 private _nearObjects = (_centre nearObjects CENTRE_RADIUS) select {
     private _object = _x;
     !(_object in GVAR(saveObjectQueue)) &&
-    !(_object getVariable [QGVAR(excluded), false]) &&
+    {[_object] call FUNC(isPersistable)} &&
     {[_terrainObjects, {_x == _object}] call EFUNC(common,arrayNone)} &&
     {[["Building", "AllVehicles", "Thing"], {_object isKindOf _x}] call EFUNC(common,arrayAny)} &&
     {[["Man", "ThingEffect"], {_object isKindOf _x}] call EFUNC(common,arrayNone)} &&
@@ -71,7 +69,7 @@ GVAR(saveObjectQueue) append _nearObjects;
 if (!GVAR(saveObjectQueueProcessing)) then {
     if (GVAR(saveObjectQueue) isNotEqualTo []) then {
         call FUNC(startSaveObjectDataPfh);
-    } else { // TODO: Review this swap. Logic and timing is COMPLEX. The way it was previously may have been intentional to handle a timing edge case.
+    } else {
         call FUNC(saveData);
     };
 };

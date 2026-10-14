@@ -24,6 +24,7 @@ TRACE_1("Mission objects",GVAR(missionObjects));
 {
     if (_x getVariable [QGVAR(persistenceID), ""] == "") then {
         _x setVariable [QGVAR(excluded), true];
+        _x setVariable [QGVAR(startPosition), getPosASL _x];
     };
 } forEach GVAR(missionObjects);
 
