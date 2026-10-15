@@ -47,6 +47,7 @@ public static class FocusGuard {
     static string pidFile;
     static string log;
     static HashSet<uint> harness = new HashSet<uint>();
+    static readonly Dictionary<uint, string> pinned = new Dictionary<uint, string>();
     static IntPtr userWindow = IntPtr.Zero;
     static long lastSteal = -FALL_THROUGH_MS;
     static readonly Stopwatch clock = Stopwatch.StartNew();
@@ -71,19 +72,25 @@ public static class FocusGuard {
     }
 
     static void RefreshProcesses(object state) {
-        var found = new HashSet<uint>();
+        var listed = new HashSet<uint>();
         if (pidFile != null) {
             try {
-                foreach (var line in File.ReadAllLines(pidFile)) { uint pid; if (uint.TryParse(line.Trim(), out pid)) found.Add(pid); }
+                foreach (var line in File.ReadAllLines(pidFile)) { uint pid; if (uint.TryParse(line.Trim(), out pid)) listed.Add(pid); }
             } catch { }
         }
-        if (match != null) {
-            try {
-                using (var search = new ManagementObjectSearcher("SELECT ProcessId, CommandLine FROM Win32_Process WHERE Name LIKE 'arma3%'"))
-                    foreach (ManagementObject p in search.Get())
-                        if (match.IsMatch((p["CommandLine"] as string) ?? "")) found.Add((uint)p["ProcessId"]);
-            } catch { return; }
-        }
+        var found = new HashSet<uint>();
+        try {
+            using (var search = new ManagementObjectSearcher("SELECT ProcessId, CommandLine, CreationDate FROM Win32_Process WHERE Name LIKE 'arma3%'"))
+                foreach (ManagementObject p in search.Get()) {
+                    uint pid = (uint)p["ProcessId"];
+                    string created = (p["CreationDate"] as string) ?? "";
+                    if (match != null && match.IsMatch((p["CommandLine"] as string) ?? "")) found.Add(pid);
+                    if (!listed.Contains(pid)) continue;
+                    string first;
+                    if (!pinned.TryGetValue(pid, out first)) { pinned[pid] = created; first = created; }
+                    if (first == created) found.Add(pid);
+                }
+        } catch { return; }
         lock (harness) {
             foreach (var pid in found) if (!harness.Contains(pid)) Log("tracking pid " + pid);
             harness = found;
@@ -171,8 +178,7 @@ public static class FocusGuard {
     }
 
     static void Watch(object state) {
-        int parent = (int)state;
-        try { if (Process.GetProcessById(parent).HasExited) Stop(); } catch { Stop(); }
+        try { if (((Process)state).HasExited) Stop(); } catch { Stop(); }
     }
 
     static uint loopThread;
@@ -192,7 +198,11 @@ public static class FocusGuard {
             new System.Threading.Timer(SampleCursor, null, 0, 50),
             new System.Threading.Timer(s => Stop(), null, seconds * 1000L, System.Threading.Timeout.Infinite),
         };
-        if (parentPid > 0) timers.Add(new System.Threading.Timer(Watch, parentPid, 1000, 1000));
+        if (parentPid > 0) {
+            Process parent;
+            try { parent = Process.GetProcessById(parentPid); } catch { Log("parent " + parentPid + " already gone"); return; }
+            timers.Add(new System.Threading.Timer(Watch, parent, 1000, 1000));
+        }
         Log("guard started, token " + (match == null ? "-" : pattern) + ", pid file " + (pidFile ?? "-") + (parentPid > 0 ? ", parent " + parentPid : ""));
         MSG msg;
         while (GetMessage(out msg, IntPtr.Zero, 0, 0) > 0) { }
