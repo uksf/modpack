@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 const fs = require('fs'), path = require('path'), os = require('os'), crypto = require('crypto');
 const { execFileSync, spawn } = require('child_process');
+const { startFocusGuard } = require('../lib/focus-guard');
 
 const ARMA = process.env.ARMA || 'B:/Steam/steamapps/common/Arma 3';
 const PROFILE = process.env.VC_PROFILE || 'uksfdevclient';
@@ -11,7 +12,7 @@ const RPTS = path.join(process.env.LOCALAPPDATA, 'Arma 3');
 const args = process.argv.slice(2);
 const opt = (k, d) => { const i = args.indexOf(k); return i >= 0 ? args[i + 1] : d; };
 const test = args[0];
-if (!test || test.startsWith('--')) { console.error('usage: run.js <test.sqf> [--mods <file|preset>] [--world VR] [--timeout 240] [--out <dir>] [--sheet] [--keep]'); process.exit(2); }
+if (!test || test.startsWith('--')) { console.error('usage: run.js <test.sqf> [--mods <file|preset>] [--world VR] [--timeout 240] [--out <dir>] [--sheet] [--keep] [--allow-focus]'); process.exit(2); }
 const world = opt('--world', 'VR');
 const timeout = +opt('--timeout', 240) * 1000;
 const out = path.resolve(opt('--out', path.join(path.dirname(path.resolve(test)), 'shots')));
@@ -78,9 +79,12 @@ const findRpt = (since, tag) => fs.readdirSync(RPTS).filter(f => /^arma3_x64_.*\
   const modArg = [...mods, mod].map(p => path.resolve(p)).join(';');
   const argv = ['-window', '-noPause', '-noSound', '-noSplash', '-skipIntro', '-world=empty', `-name=${PROFILE}`,
     `-mod=${modArg}`, `-init=playMission['','\\${PREFIX}\\${mission}']`];
+  const focusGuard = !args.includes('--allow-focus') && startFocusGuard({ token: `vclient-${runId}-`, log: path.join(tmp, 'focus.log') });
+  if (focusGuard) process.on('exit', focusGuard.stop);
   const t0 = Date.now();
   const child = spawn(path.join(ARMA, 'arma3_x64.exe'), argv, { cwd: ARMA, detached: true, stdio: 'ignore' });
   pid = child.pid; child.unref();
+  if (focusGuard) focusGuard.track([pid]);
   const watch = `Wait-Process -Id ${process.pid} -ErrorAction SilentlyContinue; ` +
     `Get-Process -Id ${pid} -ErrorAction SilentlyContinue | Where-Object ProcessName -eq 'arma3_x64' | Stop-Process -Force; ` +
     `$l = '${LOCK}'; if ((Test-Path $l) -and ((Get-Content $l -Raw) -match ' pid ${process.pid} ')) { Remove-Item $l }`;

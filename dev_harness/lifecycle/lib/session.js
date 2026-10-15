@@ -8,6 +8,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 class Run {
   constructor(ctx, scenario) {
     this.ctx = ctx;
+    this.extraPids = [];
     this.scenario = { objects: 0, offset: 0, freeze: 0, serverFreeze: 0, legacyCopy: 0, vehicles: false, createOnce: false, roundTrip: false, stats: false, captureFreeze: 0, player: true, headlessClients: 1, ...scenario };
     if (this.scenario.headlessClients !== 1) throw new Error('the test server record has exactly one headless client');
     this.timeline = [];
@@ -51,7 +52,7 @@ class Run {
     if (!await this.logs.server.waitFor(/Connected to Steam servers|sessionID:/, 240e3)) throw new Error('server RPT never showed a session');
     this.note('server host created');
     if (scenario.player) {
-      this.player = new Player({ port: ctx.gamePort, password: this.password, mods: this.mods, log: ctx.log });
+      this.player = new Player({ port: ctx.gamePort, password: this.password, mods: this.mods, log: ctx.log, runToken: ctx.runToken });
       await this.player.launch();
       this.note('player started', `pid ${this.player.pid}`);
     }
@@ -110,6 +111,7 @@ class Run {
         const state = `${PHASES[s.stopPhase] ?? s.stopPhase} running=${s.running} launching=${s.launching} pid=${server.processId ?? '-'}`;
         if (state !== last) { this.note('state', state); last = state; }
         this.lastServer = server;
+        this.ctx.focusGuard.track([server.processId, ...(server.headlessClients ?? []).map(h => h.processId), this.player?.pid, ...this.extraPids]);
       } catch (error) {
         if (last !== 'api-unreachable') { this.note('state', `api-unreachable ${error.message}`); last = 'api-unreachable'; }
       } finally { busy = false; }
@@ -177,6 +179,7 @@ class Run {
       if (!offline) await sleep(1000);
     }
     this.check('API record went offline after cleanup', offline);
+    this.ctx.focusGuard.track([]);
     this.archive('.');
     const dir = path.join(this.ctx.out, this.scenario.name);
     fs.writeFileSync(path.join(dir, 'timeline.json'), JSON.stringify({ scenario: this.scenario, timeline: this.timeline, checks: this.checks }, null, 1));

@@ -76,15 +76,15 @@ function findClientRpt(since, tag) {
 }
 
 class Player {
-  constructor({ port, password, mods, log }) {
-    Object.assign(this, { port, password, mods, log });
+  constructor({ port, password, mods, log, runToken }) {
+    Object.assign(this, { port, password, mods, log, runToken });
     this.pid = 0;
     this.rpt = null;
   }
 
   async launch() {
     const argv = ['-window', '-noPause', '-noSound', '-noSplash', '-skipIntro', '-world=empty', `-name=${PLAYER_PROFILE}`,
-      '-connect=127.0.0.1', `-port=${this.port}`, `-password=${this.password}`, `-mod=${this.mods.join(';')}`];
+      '-connect=127.0.0.1', `-port=${this.port}`, `-password=${this.password}`, `-mod=${this.mods.join(';')}`, `-lcRun=${this.runToken}`];
     this.startedAt = Date.now();
     this.rpt = null;
     const child = spawn(path.join(ARMA, 'arma3_x64.exe'), argv, { cwd: ARMA, detached: true, stdio: 'ignore' });

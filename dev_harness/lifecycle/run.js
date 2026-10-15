@@ -5,6 +5,7 @@ const { acquire } = require('../client/gpulock');
 const { Api, build, settingsPath } = require('./lib/api');
 const { Run } = require('./lib/session');
 const { SCENARIOS } = require('./scenarios');
+const { startFocusGuard } = require('../lib/focus-guard');
 
 const USAGE = `usage: node run.js <scenario...|all|list> --api <api checkout> [--uksf <@uksf build>] [--mod-root <repo with every @mod>] [--out <dir>] [--no-build] [--keep-data] [--allow-focus]
 
@@ -58,8 +59,8 @@ function parseArgs(argv) {
   fs.rmSync(path.join(vars.SERVER_PATH_PROFILES, ctx.serverName, 'Users', ctx.serverName, `${ctx.serverName}.vars.Arma3Profile`), { force: true });
   const dismisser = spawn('powershell', ['-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', path.join(__dirname, 'lib', 'dismiss-acre.ps1'),
     '-Seconds', '86400', '-Log', path.join(out, 'acre-dialogs.log')], { stdio: 'ignore', windowsHide: true });
-  const focusGuard = opts.keepFocus && spawn('powershell', ['-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', path.join(__dirname, 'lib', 'keep-focus.ps1'),
-    '-Seconds', '86400', '-Log', path.join(out, 'focus.log')], { stdio: 'ignore', windowsHide: true });
+  ctx.runToken = `lcrun-${process.pid}-${Date.now().toString(36)}`;
+  ctx.focusGuard = opts.keepFocus ? startFocusGuard({ token: ctx.runToken, log: path.join(out, 'focus.log') }) : { track() {}, stop() {} };
   const originalPassword = vars.SERVER_COMMAND_PASSWORD;
   const results = [];
   try {
@@ -92,7 +93,7 @@ function parseArgs(argv) {
     db('delete-server');
     fs.rmSync(path.join(vars.MISSIONS_PATH, 'LifecycleTest.VR.pbo'), { force: true });
     dismisser.kill();
-    if (focusGuard) focusGuard.kill();
+    ctx.focusGuard.stop();
     release();
   }
   log(`=== results (${out})`);

@@ -173,6 +173,8 @@ const SCENARIOS = {
       const owned = spawnBareServer(ctx, 'lc_orphan_owned', ctx.api.url, ctx.gamePort + 30);
       const foreign = spawnBareServer(ctx, 'lc_orphan_foreign', 'http://127.0.0.1:5599', ctx.gamePort + 40);
       run.note('orphans spawned', `owned ${owned}, foreign ${foreign}`);
+      run.extraPids.push(owned, foreign);
+      ctx.focusGuard.track(run.extraPids);
       try {
         await sleep(150e3);
         run.check('owned orphan alive inside the 5 min grace', isRunning(owned));

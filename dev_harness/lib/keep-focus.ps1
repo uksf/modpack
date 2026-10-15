@@ -1,4 +1,5 @@
-param([int]$Seconds = 3600, [string]$Log, [string]$Match = 'LifecycleTest|uksflifecycle')
+param([string]$Match = "", [string]$PidFile = "", [int]$Seconds = 3600, [int]$ParentPid = 0, [string]$Log)
+if (-not $Match -and -not $PidFile) { throw "pass -Match <per-run token> or -PidFile <file of PIDs this run started>" }
 Add-Type -ReferencedAssemblies System.Management @"
 using System;
 using System.Collections.Generic;
@@ -6,11 +7,11 @@ using System.Diagnostics;
 using System.IO;
 using System.Management;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Text.RegularExpressions;
 
 public static class FocusGuard {
     delegate void WinEventProc(IntPtr hook, uint evt, IntPtr hwnd, int obj, int child, uint thread, uint time);
+    delegate bool EnumProc(IntPtr h, IntPtr param);
     [StructLayout(LayoutKind.Sequential)] struct POINT { public int X, Y; }
     [StructLayout(LayoutKind.Sequential)] struct MSG { public IntPtr h; public uint m; public IntPtr w, l; public uint t; public POINT p; }
 
@@ -24,25 +25,28 @@ public static class FocusGuard {
     [DllImport("user32.dll")] static extern bool BringWindowToTop(IntPtr h);
     [DllImport("user32.dll")] static extern bool AttachThreadInput(uint a, uint b, bool attach);
     [DllImport("user32.dll")] static extern void keybd_event(byte vk, byte scan, uint flags, UIntPtr extra);
-    [DllImport("user32.dll")] static extern bool SetWindowPos(IntPtr h, IntPtr after, int x, int y, int cx, int cy, uint flags);
     [DllImport("user32.dll")] static extern bool IsWindow(IntPtr h);
+    [DllImport("user32.dll")] static extern bool IsWindowVisible(IntPtr h);
+    [DllImport("user32.dll")] static extern bool IsIconic(IntPtr h);
+    [DllImport("user32.dll")] static extern bool EnumWindows(EnumProc proc, IntPtr param);
     [DllImport("user32.dll")] static extern bool ShowWindow(IntPtr h, int cmd);
     [DllImport("user32.dll")] static extern bool GetCursorPos(out POINT p);
     [DllImport("user32.dll")] static extern bool SetCursorPos(int x, int y);
     [DllImport("user32.dll")] static extern bool ClipCursor(IntPtr rect);
 
     const uint EVENT_SYSTEM_FOREGROUND = 3;
-    const uint SWP_NOSIZE = 1, SWP_NOMOVE = 2, SWP_NOACTIVATE = 0x10;
-    static readonly IntPtr HWND_BOTTOM = new IntPtr(1);
+    const int SW_MINIMIZE = 6;
+    const int SW_SHOWMINNOACTIVE = 7;
     const int FALL_THROUGH_MS = 2000;
     const int CURSOR_LAG_MS = 150;
-    const int SW_SHOWMINNOACTIVE = 7;
     const int RESTORE_ATTEMPTS = 4;
 
     static WinEventProc proc = OnForeground;
+    static EnumProc sweeper = SweepWindow;
     static Regex match;
+    static string pidFile;
     static string log;
-    static readonly Dictionary<uint, bool> harness = new Dictionary<uint, bool>();
+    static HashSet<uint> harness = new HashSet<uint>();
     static IntPtr userWindow = IntPtr.Zero;
     static long lastSteal = -FALL_THROUGH_MS;
     static readonly Stopwatch clock = Stopwatch.StartNew();
@@ -56,45 +60,57 @@ public static class FocusGuard {
 
     static uint Owner(IntPtr h) { uint pid; GetWindowThreadProcessId(h, out pid); return pid; }
 
-    static bool IsHarness(uint pid) {
-        bool known;
-        if (harness.TryGetValue(pid, out known)) return known;
-        string line = "";
-        try {
-            using (var search = new ManagementObjectSearcher("SELECT CommandLine FROM Win32_Process WHERE ProcessId = " + pid))
-                foreach (ManagementObject p in search.Get()) line = (p["CommandLine"] as string) ?? "";
-        } catch { }
-        known = match.IsMatch(line);
-        harness[pid] = known;
-        return known;
+    static bool IsHarness(uint pid) { lock (harness) { return harness.Contains(pid); } }
+
+    static string Name(IntPtr h) {
+        try { return Process.GetProcessById((int)Owner(h)).ProcessName; } catch { return "none"; }
     }
 
     static bool IsShell(uint pid) {
         try { return Process.GetProcessById((int)pid).ProcessName.Equals("explorer", StringComparison.OrdinalIgnoreCase); } catch { return false; }
     }
 
-    static void Warm(object state) {
-        try {
-            using (var search = new ManagementObjectSearcher("SELECT ProcessId, CommandLine FROM Win32_Process WHERE Name LIKE 'arma3%'"))
-                foreach (ManagementObject p in search.Get()) {
-                    uint pid = (uint)p["ProcessId"];
-                    bool isHarness = match.IsMatch((p["CommandLine"] as string) ?? "");
-                    lock (harness) { harness[pid] = isHarness; }
-                }
-        } catch { }
+    static void RefreshProcesses(object state) {
+        var found = new HashSet<uint>();
+        if (pidFile != null) {
+            try {
+                foreach (var line in File.ReadAllLines(pidFile)) { uint pid; if (uint.TryParse(line.Trim(), out pid)) found.Add(pid); }
+            } catch { }
+        }
+        if (match != null) {
+            try {
+                using (var search = new ManagementObjectSearcher("SELECT ProcessId, CommandLine FROM Win32_Process WHERE Name LIKE 'arma3%'"))
+                    foreach (ManagementObject p in search.Get())
+                        if (match.IsMatch((p["CommandLine"] as string) ?? "")) found.Add((uint)p["ProcessId"]);
+            } catch { return; }
+        }
+        lock (harness) {
+            foreach (var pid in found) if (!harness.Contains(pid)) Log("tracking pid " + pid);
+            harness = found;
+        }
     }
+
+    static bool SweepWindow(IntPtr h, IntPtr param) {
+        uint pid = Owner(h);
+        if (IsWindowVisible(h) && !IsIconic(h) && IsHarness(pid)) {
+            if (h == GetForegroundWindow()) { OnForeground(IntPtr.Zero, 0, h, 0, 0, 0, 0); return true; }
+            ShowWindow(h, SW_SHOWMINNOACTIVE);
+            Log("minimised pid " + pid + " window in the background");
+        }
+        return true;
+    }
+
+    static void Sweep(object state) { EnumWindows(sweeper, IntPtr.Zero); }
 
     static void SampleCursor(object state) {
         IntPtr fg = GetForegroundWindow();
-        if (fg == IntPtr.Zero || IsHarnessCached(Owner(fg))) return;
+        if (fg == IntPtr.Zero || IsHarness(Owner(fg))) return;
         POINT p; if (!GetCursorPos(out p)) return;
         lock (cursorLock) {
             cursor.Enqueue(new KeyValuePair<long, POINT>(clock.ElapsedMilliseconds, p));
             while (cursor.Count > 40) cursor.Dequeue();
         }
     }
-
-    static bool IsHarnessCached(uint pid) { bool known; lock (harness) { return harness.TryGetValue(pid, out known) && known; } }
 
     static void RestoreCursor(long stolenAt) {
         POINT best = new POINT(); bool found = false;
@@ -105,19 +121,17 @@ public static class FocusGuard {
         if (found) SetCursorPos(best.X, best.Y);
     }
 
-    static string Name(IntPtr h) {
-        try { return Process.GetProcessById((int)Owner(h)).ProcessName; } catch { return "none"; }
+    static bool FocusIsBack() {
+        IntPtr fg = GetForegroundWindow();
+        return fg != IntPtr.Zero && !IsHarness(Owner(fg)) && !IsShell(Owner(fg));
     }
 
-    static bool Restore(IntPtr stolen) {
-        for (int attempt = 0; attempt < RESTORE_ATTEMPTS; attempt++) {
+    static bool Restore() {
+        for (int attempt = 0; attempt < RESTORE_ATTEMPTS && !FocusIsBack(); attempt++) {
             GiveBack(userWindow);
-            if (GetForegroundWindow() == userWindow) return true;
             System.Threading.Thread.Sleep(30);
         }
-        ShowWindow(stolen, SW_SHOWMINNOACTIVE);
-        GiveBack(userWindow);
-        return GetForegroundWindow() == userWindow;
+        return FocusIsBack();
     }
 
     static void GiveBack(IntPtr target) {
@@ -136,42 +150,55 @@ public static class FocusGuard {
     static void OnForeground(IntPtr hook, uint evt, IntPtr hwnd, int obj, int child, uint thread, uint time) {
         if (hwnd == IntPtr.Zero) return;
         uint pid = Owner(hwnd);
-        bool isHarness;
-        lock (harness) { isHarness = IsHarness(pid); }
         long now = clock.ElapsedMilliseconds;
-        if (isHarness) {
+        if (IsHarness(pid)) {
             lastSteal = now;
-            SetWindowPos(hwnd, HWND_BOTTOM, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_NOACTIVATE);
-            bool restored = Restore(hwnd);
+            ShowWindow(hwnd, SW_MINIMIZE);
+            bool restored = Restore();
             RestoreCursor(now);
             POINT at; GetCursorPos(out at);
-            Log("pushed back pid " + pid + ", restored " + (restored ? "focus to " + Name(userWindow) : "FAILED, foreground " + Name(GetForegroundWindow()) + ", wanted " + Name(userWindow) + (IsWindow(userWindow) ? "" : " (closed)")) + ", cursor " + at.X + "," + at.Y);
+            Log("pushed back pid " + pid + ", focus " + (restored ? "now " : "FAILED, now ") + Name(GetForegroundWindow()) + ", cursor " + at.X + "," + at.Y);
             return;
         }
         if (hwnd == userWindow) return;
         if (now - lastSteal < FALL_THROUGH_MS && IsShell(pid)) {
-            bool restored = Restore(IntPtr.Zero);
+            bool restored = Restore();
             RestoreCursor(lastSteal);
-            Log("focus fell to the shell after a steal, restored " + (restored ? "focus" : "FAILED"));
+            Log("focus fell to the shell after a steal, restored " + (restored ? "focus to " + Name(GetForegroundWindow()) : "FAILED"));
             return;
         }
         userWindow = hwnd;
     }
 
-    public static void Run(int seconds, string logPath, string pattern) {
+    static void Watch(object state) {
+        int parent = (int)state;
+        try { if (Process.GetProcessById(parent).HasExited) Stop(); } catch { Stop(); }
+    }
+
+    static uint loopThread;
+    static void Stop() { PostThreadMessage(loopThread, 0x12, IntPtr.Zero, IntPtr.Zero); }
+
+    public static void Run(string pattern, string pids, int seconds, int parentPid, string logPath) {
         log = string.IsNullOrEmpty(logPath) ? null : logPath;
-        match = new Regex(pattern, RegexOptions.IgnoreCase);
+        match = string.IsNullOrEmpty(pattern) ? null : new Regex(pattern, RegexOptions.IgnoreCase);
+        pidFile = string.IsNullOrEmpty(pids) ? null : pids;
+        loopThread = GetCurrentThreadId();
         userWindow = GetForegroundWindow();
+        RefreshProcesses(null);
         SetWinEventHook(EVENT_SYSTEM_FOREGROUND, EVENT_SYSTEM_FOREGROUND, IntPtr.Zero, proc, 0, 0, 0);
-        var sampler = new System.Threading.Timer(SampleCursor, null, 0, 50);
-        var warmer = new System.Threading.Timer(Warm, null, 0, 1000);
-        uint tid = GetCurrentThreadId();
-        var stopper = new System.Threading.Timer(s => PostThreadMessage(tid, 0x12, IntPtr.Zero, IntPtr.Zero), null, seconds * 1000L, System.Threading.Timeout.Infinite);
-        Log("guard started, matching " + pattern);
+        var timers = new List<System.Threading.Timer> {
+            new System.Threading.Timer(RefreshProcesses, null, 1000, 1000),
+            new System.Threading.Timer(Sweep, null, 0, 50),
+            new System.Threading.Timer(SampleCursor, null, 0, 50),
+            new System.Threading.Timer(s => Stop(), null, seconds * 1000L, System.Threading.Timeout.Infinite),
+        };
+        if (parentPid > 0) timers.Add(new System.Threading.Timer(Watch, parentPid, 1000, 1000));
+        Log("guard started, token " + (match == null ? "-" : pattern) + ", pid file " + (pidFile ?? "-") + (parentPid > 0 ? ", parent " + parentPid : ""));
         MSG msg;
         while (GetMessage(out msg, IntPtr.Zero, 0, 0) > 0) { }
-        sampler.Dispose(); warmer.Dispose(); stopper.Dispose();
+        timers.ForEach(t => t.Dispose());
+        Log("guard stopped");
     }
 }
 "@
-[FocusGuard]::Run($Seconds, $Log, $Match)
+[FocusGuard]::Run($Match, $PidFile, $Seconds, $ParentPid, $Log)
