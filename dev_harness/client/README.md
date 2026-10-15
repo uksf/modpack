@@ -13,6 +13,7 @@ node dev_harness/client/run.js test.sqf --mods dev-air --sheet --timeout 420
 - `--world`: mission world, default `VR`. The player stands at [100,100]; place test objects yourself.
 - `--out`: screenshot folder, default `shots/` next to the test file. `--sheet` adds `sheet.jpg`.
 - `--keep`: keep the temporary mod with the packed mission.
+- `--allow-focus`: do not run the focus guard.
 
 Exit code 0 when the test reached `call vc_fnc_done`. The last line is JSON:
 `{state: done|exited|hung|timeout, seconds, rpt, shots}`. `hung` means Windows reported the window
@@ -50,7 +51,10 @@ call vc_fnc_done;
 - Other sessions run their own Arma clients. Never kill `arma3_x64` by name. If a run reports
   "vanished without a shutdown line", some other script killed it.
 - `-noPause` keeps rendering when the window has no focus, and `-noSound` keeps the test silent; a
-  visual test has no use for audio. The window may be behind
-  other windows; `screenshot` reads the game's own frame, not the desktop.
+  visual test has no use for audio.
+- The shared focus guard (`../lib/focus-guard.js`) keeps every window of this run minimised and gives
+  focus back when Arma takes it. It matches only this run's PID and its `vclient-<runId>` mod folder.
+  `screenshot` still writes the full rendered frame from a minimised window. `--allow-focus` turns
+  the guard off; ask Tim first.
 - Wait about 4 s after `createVehicle` and 1.5 s after each camera move (the helpers do the second).
 - Model space for `modelToWorld` is x right, y forward, z up, about the model's centre, not the ground.
