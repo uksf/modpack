@@ -2,7 +2,7 @@
   "format": 1,
   "pbo": "EAWS_EF2000.pbo",
   "pristineSha256": "845731a52b93cd63ce3bff58543daa8fb9673f0b2eb4ca343bbc4059344b0dab",
-  "description": "Eurofighter Typhoon (Workshop 1337653467). The tail hook follows the \"hook\" source instead of the gear; the engine fans and the turbine discs turn on the rotor source, and the afterburner flame discs stay unbound so the flame does not spin, with the discs and the reheat cone moved 1.44 m forward into the nozzle beside the turbine disc; the 13 legacy bomb proxies become dynamic-loadout pylons, with memory-LOD proxies and the supply, ejection, wheel-contact and PhysX wheel points uksf_air uses; the camo is split across two sheets with a separate pilot-view selection; the stencil, sides and formation-light textures point at uksf_air copies; and the fuselage gets a PhysX LOD with an 11000 kg mass. The parts model points its old top.paa at plain airframe grey.",
+  "description": "Eurofighter Typhoon (Workshop 1337653467). The tail hook follows the \"hook\" source instead of the gear; the engine fans and the turbine discs turn on the rotor source, and the afterburner flame discs stay unbound so the flame does not spin, with the discs moved 1.44 m forward beside the turbine disc and the reheat cone moved 0.1 m forward to start at the nozzle's inner edge; the 13 legacy bomb proxies become dynamic-loadout pylons, with memory-LOD proxies and the supply, ejection, wheel-contact and PhysX wheel points uksf_air uses; the camo is split across two sheets with a separate pilot-view selection; the stencil, sides and formation-light textures point at uksf_air copies; and the fuselage gets a PhysX LOD with an 11000 kg mass. The parts model points its old top.paa at plain airframe grey.",
   "assets": [
     {
       "path": "EAWS_EF2000.p3d",
@@ -81,7 +81,7 @@
           "op": "translate-selection",
           "lod": "0",
           "selection": "#46",
-          "offset": [0, 0, -1.44]
+          "offset": [0, 0, -0.1]
         },
         {
           "op": "remap-proxies",
