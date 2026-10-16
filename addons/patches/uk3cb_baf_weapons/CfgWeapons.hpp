@@ -1,9 +1,5 @@
 class InventoryFlashLightItem_Base_F;
 class ItemCore;
-class Rifle_Long_Base_F;
-class UK3CB_BAF_L110_Base : Rifle_Long_Base_F {
-    magazineReloadSwitchPhase = 0.5;
-};
 class UK3CB_BAF_L105A1_LLM_VL_R : ItemCore {
     ACE_laserpointer = 0;
     class ItemInfo : InventoryFlashLightItem_Base_F {
