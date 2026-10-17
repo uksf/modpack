@@ -1,0 +1,33 @@
+{
+  "format": 1,
+  "pbo": "Ballistic_missiles.pbo",
+  "pristineSha256": "5281a2902ad11a0fadf788678c863c346134f7819c72d7d1b4be96fabc745704",
+  "description": "Remove zero-area faces from the unbinarised missile models. Arma logs 'very small normal 0,0,0' for them when it binarises the models at load.",
+  "assets": [
+    {
+      "path": "ballistic_missiles\\objects\\v2_launchpad1.p3d",
+      "sha256": "f7a38b79e68522aee772922783ae9cf39fd0c8915b6b306572a7db05ba49e067",
+      "ops": [ { "op": "remove-degenerate-faces", "expectedRemoved": 143 } ]
+    },
+    {
+      "path": "ballistic_missiles\\objects\\v2.p3d",
+      "sha256": "f8f3ec8bdf76cf94ee8b0387ce5c5c84e80ef90f9473c80921e7b2fd6ff3e51d",
+      "ops": [ { "op": "remove-degenerate-faces", "expectedRemoved": 16 } ]
+    },
+    {
+      "path": "ballistic_missiles\\objects\\shahab3.p3d",
+      "sha256": "abf0922b520c02091f1e0411aeb2ff7beb99fe09fb47d9b120d0fa7886c55fae",
+      "ops": [ { "op": "remove-degenerate-faces", "expectedRemoved": 91 } ]
+    },
+    {
+      "path": "ballistic_missiles\\objects\\iskander_9K720.p3d",
+      "sha256": "29c4563b3a7ef41730a8833374e05534a1b6cc8440f6cf8d10b3d1ce382c51ad",
+      "ops": [ { "op": "remove-degenerate-faces", "expectedRemoved": 237 } ]
+    },
+    {
+      "path": "ballistic_missiles\\objects\\iskander_launchpad1.p3d",
+      "sha256": "3aeb0d195c2eaf2cf5d32a3a16e56a124e778e0cd1acb23598c7ce3745b2b68c",
+      "ops": [ { "op": "remove-degenerate-faces", "expectedRemoved": 9 } ]
+    }
+  ]
+}

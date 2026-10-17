@@ -1,0 +1,4 @@
+briefing = 0;
+debriefing = 0;
+onLoadMission = "uksf visual client test";
+enableDebugConsole = 2;

@@ -14,7 +14,7 @@ class GVAR(crew_heli) : GVAR(crewman) {
     magazines[] = { "30Rnd_9x21_Yellow_Mag", "30Rnd_9x21_Yellow_Mag", "SmokeShellGreen", "Chemlight_green", "30Rnd_9x21_Yellow_Mag", "SmokeShellOrange", "SmokeShellPurple", "Chemlight_green" };
     respawnMagazines[] = { "30Rnd_9x21_Yellow_Mag", "30Rnd_9x21_Yellow_Mag", "SmokeShellGreen", "Chemlight_green", "30Rnd_9x21_Yellow_Mag", "SmokeShellOrange", "SmokeShellPurple", "Chemlight_green" };
     linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "NVGoggles_INDEP", "H_PilotHelmetHeli_I", "V_TacVest_oli", "NVGoggles_INDEP" };
-    resapwnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "NVGoggles_INDEP", "H_PilotHelmetHeli_I", "V_TacVest_oli", "NVGoggles_INDEP" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "NVGoggles_INDEP", "H_PilotHelmetHeli_I", "V_TacVest_oli", "NVGoggles_INDEP" };
 };
 class GVAR(crew_jet) : GVAR(crew_heli) {
     displayName = "Jet Pilot";

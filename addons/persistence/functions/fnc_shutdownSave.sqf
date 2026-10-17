@@ -5,23 +5,24 @@
 
     Description:
         Populates save queue with persistent objects, collects markers, and starts the shutdown saving PFH.
-        Single entry point for shutdown object saving - replaces the dual-PFH approach in saveObjectData.
+        Calls the callback with [delivery sequence number, callback arguments, partial save] once the save is sent.
 
     Parameter(s):
-        None
+        0: Callback <CODE>
+        1: Callback arguments <ANY>
 
     Return Value:
         None
 
     Example:
-        call uksf_persistence_fnc_shutdownSave
+        [{params ["_seq", "_args", "_partial"]}, []] call uksf_persistence_fnc_shutdownSave
 */
+params ["_callback", ["_callbackArgs", []]];
 
-// Add already persistent marked objects to saving queue
 [GVAR(persistentObjectsHash), {GVAR(saveObjectQueue) pushBack _value}] call CBA_fnc_hashEachPair;
 
 GVAR(persistenceMarkers) = GVAR(persistenceMarkers) - [objNull];
 private _markers = +GVAR(persistenceMarkers);
 TRACE_1("Starting shutdown save",count _markers);
 
-[_markers] call FUNC(shutdownSavePfh);
+[_markers, _callback, _callbackArgs] call FUNC(shutdownSavePfh);

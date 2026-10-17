@@ -1,5 +1,6 @@
 class SoldierWB;
-class CUP_Creatures_Civil_Chernarus_Base: SoldierWB {
+class Civilian_F;
+class CUP_Creatures_Civil_Chernarus_Base: Civilian_F {
     identityTypes[] = { "LanguagePER_F", "Head_Euro", "G_CIVIL_male" };
 };
 class CUP_C_C_Pilot_01;

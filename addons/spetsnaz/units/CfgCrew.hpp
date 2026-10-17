@@ -12,7 +12,7 @@ class GVAR(crew_jet) : GVAR(base) {
     items[] = { "ACE_fieldDressing", "ACE_fieldDressing", "ACE_morphine" };
     respawnItems[] = { "ACE_fieldDressing", "ACE_fieldDressing", "ACE_morphine" };
     linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "H_PilotHelmetFighter_O" };
-    resapwnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "H_PilotHelmetFighter_O" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "H_PilotHelmetFighter_O" };
 };
 class GVAR(crew_heli) : GVAR(crew_jet) {
     displayName = "Heli Pilot";
@@ -24,5 +24,5 @@ class GVAR(crew_heli) : GVAR(crew_jet) {
     magazines[] = { "CUP_30Rnd_545x39_AK74_plum_M", "CUP_30Rnd_545x39_AK74_plum_M", "CUP_30Rnd_545x39_AK74_plum_M", "CUP_20Rnd_545x39_AKSU_M", "CUP_20Rnd_545x39_AKSU_M", "CUP_20Rnd_545x39_AKSU_M", "CUP_20Rnd_545x39_AKSU_M" };
     respawnMagazines[] = { "CUP_30Rnd_545x39_AK74_plum_M", "CUP_30Rnd_545x39_AK74_plum_M", "CUP_30Rnd_545x39_AK74_plum_M", "CUP_20Rnd_545x39_AKSU_M", "CUP_20Rnd_545x39_AKSU_M", "CUP_20Rnd_545x39_AKSU_M", "CUP_20Rnd_545x39_AKSU_M" };
     linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "ItemGPS", "CUP_H_RUS_ZSH_Shield_Up", "CUP_V_CZ_vest20" };
-    resapwnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "ItemGPS", "CUP_H_RUS_ZSH_Shield_Up", "CUP_V_CZ_vest20" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "ItemGPS", "CUP_H_RUS_ZSH_Shield_Up", "CUP_V_CZ_vest20" };
 };

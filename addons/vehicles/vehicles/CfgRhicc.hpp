@@ -4,6 +4,10 @@ class Boat_Armed_01_base_F : Boat_F {
 };
 class RHICC_MAIN : Boat_Armed_01_base_F {
     maximumLoad = 2000; // 500
+    // RHICC declares a non-inheriting EventHandlers (fired only), which drops CBA XEH.
+    class EventHandlers {
+        class CBA_Extended_EventHandlers : CBA_Extended_EventHandlers_base {};
+    };
     class TransportMagazines {};
     class TransportItems {
         delete _xx_FirstAidKit;
@@ -44,6 +48,25 @@ class RHICC_MAIN : Boat_Armed_01_base_F {
             radius = 0.28;
         };
     };
+    // The speedboat's gunner screens look through PIP3 points that RHICC's model does not have.
+    class RenderTargets {
+        class driver_display_1 {
+            renderTarget = "rendertarget0";
+            class CameraView1 {
+                pointPosition = "PIP0_pos";
+                pointDirection = "PIP0_dir";
+                renderVisionMode = 1;
+                renderQuality = 0;
+                fov = 0.4;
+            };
+            BBoxes[] = { "PIP_0_TL", "PIP_0_TR", "PIP_0_BL", "PIP_0_BR" };
+        };
+    };
+    class VehicleTransport {
+        class Carrier {
+            cargoAlignment[] = { "center", "front" };
+        };
+    };
     class AcreIntercoms {
         class Intercom_1 {
             displayName = "Crew intercom";
@@ -73,7 +96,9 @@ class RHICC_MAIN : Boat_Armed_01_base_F {
             shortName = "R2";
         };
     };
-    class Turrets : Turrets {
+    // RHICC's model has no turret hitpoint selections, so the turrets' HitTurret and HitGun do nothing except
+    // log duplicate names.
+    class Turrets {
         class CommanderTurret : NewTurret {
             weapons[] = { "CUP_weapon_mastersafe", "Laserdesignator_vehicle", "RHICC_SmokeLauncher" };
             class ViewOptics {
@@ -90,21 +115,45 @@ class RHICC_MAIN : Boat_Armed_01_base_F {
                 thermalMode[] = { 2, 3 };
                 directionStabilized = 1;
             };
+            class HitPoints {
+                delete HitTurret;
+                delete HitGun;
+            };
         };
         class TopTurret : NewTurret {
             weapons[] = { "CUP_weapon_mastersafe", "HMG_M2_Mounted" };
+            class HitPoints {
+                delete HitTurret;
+                delete HitGun;
+            };
         };
         class CodRiverTurret : NewTurret {
             weapons[] = { "CUP_weapon_mastersafe", "RHICC_M240_Turret" };
+            class HitPoints {
+                delete HitTurret;
+                delete HitGun;
+            };
         };
         class CodRiver1Turret : NewTurret {
             weapons[] = { "CUP_weapon_mastersafe", "RHICC_M240_Turret_2nd" };
+            class HitPoints {
+                delete HitTurret;
+                delete HitGun;
+            };
         };
         class MinigunLeft : NewTurret {
             weapons[] = { "CUP_weapon_mastersafe", "vtx_wpn_m134" };
+            class HitPoints {
+                delete HitTurret;
+                delete HitGun;
+            };
         };
         class MinigunRight : NewTurret {
             weapons[] = { "CUP_weapon_mastersafe", "vtx_wpn_m134_2nd" };
+            class HitPoints {
+                delete HitTurret;
+                delete HitGun;
+            };
         };
     };
 };

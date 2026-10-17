@@ -29,6 +29,19 @@ private _fnc_children = {
     }] call ace_interact_menu_fnc_createAction;
     _actions pushBack [_action, [], _player];
 
+    {
+        _x params ["_transition", "_name"];
+        _action = [format [QGVAR(saveAnd%1), _transition], _name, "", {}, {MULTIPLAYER_ADMIN_OR_WHITELISTED}, {
+            params ["", "", "_transition"];
+            private _action = [format [QGVAR(saveAnd%1Confirm), _transition], "Confirm", "", {
+                params ["", "", "_transition"];
+                [_transition] call FUNC(saveAndEndMission);
+            }, {MULTIPLAYER_ADMIN_OR_WHITELISTED}, {}, _transition] call ace_interact_menu_fnc_createAction;
+            [[_action, [], _player]]
+        }, _transition] call ace_interact_menu_fnc_createAction;
+        _actions pushBack [_action, [], _player];
+    } forEach [["end", "Save and End Mission"], ["restart", "Save and Restart Mission"]];
+
     _action = [QGVAR(showPersistentObjects), "Show Persistent Objects", "", {[] call FUNC(showPersistentObjects)}, {MULTIPLAYER_ADMIN_OR_WHITELISTED && {GVAR(persistentObjectIconsPFHID) == -1}}] call ace_interact_menu_fnc_createAction;
     _actions pushBack [_action, [], _player];
 

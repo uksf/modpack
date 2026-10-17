@@ -8,15 +8,15 @@
         (dateTime, mapMarkers, serializers), and saves everything to namespace
 
     Parameter(s):
-        None
+        0: Partial save <BOOL> (default: false)
 
     Return Value:
-        None
+        Delivery sequence number of the API save <NUMBER>
 
     Example:
-        call uksf_persistence_fnc_finishSaveObjectDataPfh
+        [false] call uksf_persistence_fnc_finishSaveObjectDataPfh
 */
-GVAR(shutdownSavingComplete) = true;
+params [["_partial", false, [false]]];
 
 private _objects = GVAR(dataNamespace) getVariable [QGVAR(objects), []];
 _objects = _objects select {!(isNil {_x#IDX_OBJ_ID}) && {_x#IDX_OBJ_ID != ""}};
@@ -26,7 +26,9 @@ private _remove = [];
     if (isNull _value || {!(alive _value)}) then {
         _remove pushBack _key;
         private _index = _objects findIf {_x#IDX_OBJ_ID == _key};
-        _objects deleteAt _index;
+        if (_index > -1) then {
+            _objects deleteAt _index;
+        };
     };
 }] call CBA_fnc_hashEachPair;
 
@@ -38,7 +40,6 @@ INFO_1("Number of objects saved: %1",count _objects);
 GVAR(dataNamespace) setVariable [QGVAR(deletedObjects), GVAR(deletedPersistentObjects)];
 GVAR(dataNamespace) setVariable [QGVAR(objects), _objects];
 
-// Save dateTime, mapMarkers, and serializer data last
 private _dateTime = date;
 TRACE_1("Saving date time",_dateTime);
 GVAR(dataNamespace) setVariable [QGVAR(dateTime), _dateTime];
@@ -47,8 +48,10 @@ GVAR(dataNamespace) setVariable [QGVAR(mapMarkers), GVAR(mapMarkers)];
 {
     _x params ["_id", "_function"];
 
+    private _serializerStart = diag_tickTime;
     private _data = [] call _function;
     GVAR(dataNamespace) setVariable [_id, _data];
+    INFO_2("Serializer %1 took %2 ms",_id,round ((diag_tickTime - _serializerStart) * 1000));
 } forEach GVAR(serializers);
 
-call FUNC(saveData);
+[_partial] call FUNC(saveData)

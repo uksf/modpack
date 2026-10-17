@@ -30,7 +30,7 @@ private _sanitisedInventory = [];
         };
         _sanitisedPart = _part;
     } else {
-        if (_part isEqualType 0 || {_part isEqualType false}) then {
+        if (_part isEqualTypeAny [0, false]) then {
             _sanitisedPart = _part;
         } else {
             if (_part isEqualType []) then {

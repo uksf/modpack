@@ -1,0 +1,33 @@
+version=54;
+binarizationWanted=0;
+addons[]={"A3_Characters_F"};
+class AddonsMetaData{};
+randomSeed=1;
+class ScenarioData{author="uksf dev";};
+class Mission
+{
+	class Intel
+	{
+		timeOfChanges=1800;startWeather=0;startWind=0;startWaves=0;forecastWeather=0;forecastWind=0;forecastWaves=0;forecastLightnings=0;
+		year=2035;month=6;day=24;hour=12;minute=0;startFogDecay=0;forecastFogDecay=0;
+	};
+	class Entities
+	{
+		items=1;
+		class Item0
+		{
+			dataType="Group";side="West";id=0;
+			class Entities
+			{
+				items=1;
+				class Item0
+				{
+					dataType="Object";side="West";flags=7;id=1;type="B_Soldier_F";
+					class PositionInfo{position[]={100,5,100};};
+					class Attributes{isPlayer=1;};
+				};
+			};
+			class Attributes{};
+		};
+	};
+};

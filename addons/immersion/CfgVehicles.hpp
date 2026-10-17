@@ -20,10 +20,10 @@ class CfgVehicles {
     class TracerR_10: TracerR_50 {
         class Reflectors: Reflectors {
             class Light_1: Light_1 {
-                intensity = 200; // 300
+                intensity = 200;
                 class Attenuation: Attenuation {
-                    hardLimitStart = 2;  // 100 * 0.7
-                    hardLimitEnd = 20;   // 100
+                    hardLimitStart = 2;
+                    hardLimitEnd = 20;
                 };
             };
         };
@@ -39,10 +39,10 @@ class CfgVehicles {
     class TracerG_10: TracerG {
         class Reflectors: Reflectors {
             class Light_1: Light_1 {
-                intensity = 200; // 300
+                intensity = 200;
                 class Attenuation: Attenuation {
-                    hardLimitStart = 2;  // 100 * 0.7
-                    hardLimitEnd = 20;   // 100
+                    hardLimitStart = 2;
+                    hardLimitEnd = 20;
                 };
             };
         };
@@ -63,10 +63,10 @@ class CfgVehicles {
     class TracerY_10: TracerY_50 {
         class Reflectors: Reflectors {
             class Light_1: Light_1 {
-                intensity = 200; // 300
+                intensity = 200;
                 class Attenuation: Attenuation {
-                    hardLimitStart = 2;  // 100 * 0.7
-                    hardLimitEnd = 20;   // 100
+                    hardLimitStart = 2;
+                    hardLimitEnd = 20;
                 };
             };
         };
@@ -87,10 +87,10 @@ class CfgVehicles {
     class TracerW_10: TracerW_50 {
         class Reflectors: Reflectors {
             class Light_1: Light_1 {
-                intensity = 200; // 300
+                intensity = 200;
                 class Attenuation: Attenuation {
-                    hardLimitStart = 2;  // 100 * 0.7
-                    hardLimitEnd = 20;   // 100
+                    hardLimitStart = 2;
+                    hardLimitEnd = 20;
                 };
             };
         };
@@ -112,8 +112,8 @@ class CfgVehicles {
         class Reflectors: Reflectors {
             class Light_1: Light_1 {
                 class Attenuation: Attenuation {
-                    hardLimitStart = 1;  // 100 * 0.7
-                    hardLimitEnd = 10;   // 100
+                    hardLimitStart = 1;
+                    hardLimitEnd = 10;
                 };
             };
         };
@@ -135,8 +135,8 @@ class CfgVehicles {
         class Reflectors: Reflectors {
             class Light_1: Light_1 {
                 class Attenuation: Attenuation {
-                    hardLimitStart = 1;  // 100 * 0.7
-                    hardLimitEnd = 10;   // 100
+                    hardLimitStart = 1;
+                    hardLimitEnd = 10;
                 };
             };
         };
@@ -158,8 +158,8 @@ class CfgVehicles {
         class Reflectors: Reflectors {
             class Light_1: Light_1 {
                 class Attenuation: Attenuation {
-                    hardLimitStart = 1;  // 100 * 0.7
-                    hardLimitEnd = 10;   // 100
+                    hardLimitStart = 1;
+                    hardLimitEnd = 10;
                 };
             };
         };
@@ -181,9 +181,17 @@ class CfgVehicles {
         class Reflectors: Reflectors {
             class Light_1: Light_1 {
                 class Attenuation: Attenuation {
-                    hardLimitStart = 1;  // 100 * 0.7
-                    hardLimitEnd = 10;   // 100
+                    hardLimitStart = 1;
+                    hardLimitEnd = 10;
                 };
+            };
+        };
+    };
+
+    class TracerR_IR: TracerTR {
+        class Reflectors: Reflectors {
+            class Light_1: Light_1 {
+                position = "Light_1_pos";
             };
         };
     };

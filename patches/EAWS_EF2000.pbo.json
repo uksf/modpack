@@ -1,0 +1,341 @@
+{
+  "format": 1,
+  "pbo": "EAWS_EF2000.pbo",
+  "pristineSha256": "845731a52b93cd63ce3bff58543daa8fb9673f0b2eb4ca343bbc4059344b0dab",
+  "description": "Eurofighter Typhoon (Workshop 1337653467). The tail hook follows the \"hook\" source instead of the gear; the engine fans and the turbine discs turn on the rotor source, and the afterburner flame discs stay unbound so the flame does not spin, with the discs moved 1.44 m forward beside the turbine disc and the reheat cone moved 0.1 m forward to start at the nozzle's inner edge; the 13 legacy bomb proxies become dynamic-loadout pylons, with memory-LOD proxies and the supply, ejection, wheel-contact and PhysX wheel points uksf_air uses; the camo is split across two sheets with a separate pilot-view selection; the stencil, sides and formation-light textures point at uksf_air copies; and the fuselage gets a PhysX LOD with an 11000 kg mass. The parts model points its old top.paa at plain airframe grey.",
+  "assets": [
+    {
+      "path": "EAWS_EF2000.p3d",
+      "sha256": "d6797158efa2f3c1bfa6df7f36aa6f69ab19720eb136034ce808dc421000efca",
+      "ops": [
+        {
+          "op": "set-animation-source",
+          "animation": "towhook",
+          "to": "hook"
+        },
+        {
+          "op": "set-animation-source",
+          "animation": "rotor_L",
+          "to": "rotor",
+          "address": "loop"
+        },
+        {
+          "op": "set-animation-source",
+          "animation": "rotor_R",
+          "to": "rotor",
+          "address": "loop"
+        },
+        {
+          "op": "set-animation-source",
+          "animation": "vrtule_0",
+          "to": "rotor",
+          "address": "loop"
+        },
+        {
+          "op": "set-animation-source",
+          "animation": "vrtule_1",
+          "to": "rotor",
+          "address": "loop"
+        },
+        {
+          "op": "bind-selection",
+          "lod": "0",
+          "selection": "#8",
+          "bone": "vrtule 0",
+          "box": [
+            0,
+            1.2,
+            -1,
+            1,
+            4,
+            4.4
+          ]
+        },
+        {
+          "op": "bind-selection",
+          "lod": "0",
+          "selection": "#8",
+          "bone": "vrtule 1",
+          "box": [
+            -1.2,
+            0,
+            -1,
+            1,
+            4,
+            4.4
+          ]
+        },
+        {
+          "op": "translate-selection",
+          "lod": "0",
+          "selection": "burner_fire_1_left",
+          "offset": [0, 0, -1.44]
+        },
+        {
+          "op": "translate-selection",
+          "lod": "0",
+          "selection": "burner_fire_1_right",
+          "offset": [0, 0, -1.44]
+        },
+        {
+          "op": "translate-selection",
+          "lod": "0",
+          "selection": "#46",
+          "offset": [0, 0, -0.1]
+        },
+        {
+          "op": "remap-proxies",
+          "rules": [
+            {
+              "model": "\\a3\\weapons_f\\ammo\\bomb_01_f",
+              "id": 1,
+              "toModel": "\\a3\\weapons_f\\dynamicloadout\\pylonpod_3x_missile_agm_02_f",
+              "toId": 1
+            },
+            {
+              "model": "\\a3\\weapons_f\\ammo\\bomb_01_f",
+              "id": 3,
+              "toModel": "\\a3\\weapons_f\\dynamicloadout\\pylonpod_3x_missile_agm_02_f",
+              "toId": 2
+            },
+            {
+              "model": "\\a3\\weapons_f\\ammo\\bomb_01_f",
+              "id": 5,
+              "toModel": "\\a3\\weapons_f\\dynamicloadout\\pylonpod_3x_missile_agm_02_f",
+              "toId": 3
+            },
+            {
+              "model": "\\a3\\weapons_f\\ammo\\bomb_01_f",
+              "id": 7,
+              "toModel": "\\a3\\weapons_f\\dynamicloadout\\pylonpod_3x_missile_agm_02_f",
+              "toId": 4
+            },
+            {
+              "model": "\\a3\\weapons_f\\ammo\\bomb_01_f",
+              "id": 35,
+              "toModel": "\\a3\\weapons_f\\dynamicloadout\\pylonpod_3x_missile_agm_02_f",
+              "toId": 5
+            },
+            {
+              "model": "\\a3\\weapons_f\\ammo\\bomb_01_f",
+              "id": 33,
+              "toModel": "\\a3\\weapons_f\\dynamicloadout\\pylonpod_3x_missile_agm_02_f",
+              "toId": 6
+            },
+            {
+              "model": "\\a3\\weapons_f\\ammo\\bomb_01_f",
+              "id": 37,
+              "toModel": "\\a3\\weapons_f\\dynamicloadout\\pylonpod_3x_missile_agm_02_f",
+              "toId": 7
+            },
+            {
+              "model": "\\a3\\weapons_f\\ammo\\bomb_01_f",
+              "id": 34,
+              "toModel": "\\a3\\weapons_f\\dynamicloadout\\pylonpod_3x_missile_agm_02_f",
+              "toId": 8
+            },
+            {
+              "model": "\\a3\\weapons_f\\ammo\\bomb_01_f",
+              "id": 36,
+              "toModel": "\\a3\\weapons_f\\dynamicloadout\\pylonpod_3x_missile_agm_02_f",
+              "toId": 9
+            },
+            {
+              "model": "\\a3\\weapons_f\\ammo\\bomb_01_f",
+              "id": 8,
+              "toModel": "\\a3\\weapons_f\\dynamicloadout\\pylonpod_3x_missile_agm_02_f",
+              "toId": 10
+            },
+            {
+              "model": "\\a3\\weapons_f\\ammo\\bomb_01_f",
+              "id": 6,
+              "toModel": "\\a3\\weapons_f\\dynamicloadout\\pylonpod_3x_missile_agm_02_f",
+              "toId": 11
+            },
+            {
+              "model": "\\a3\\weapons_f\\ammo\\bomb_01_f",
+              "id": 4,
+              "toModel": "\\a3\\weapons_f\\dynamicloadout\\pylonpod_3x_missile_agm_02_f",
+              "toId": 12
+            },
+            {
+              "model": "\\a3\\weapons_f\\ammo\\bomb_01_f",
+              "id": 2,
+              "toModel": "\\a3\\weapons_f\\dynamicloadout\\pylonpod_3x_missile_agm_02_f",
+              "toId": 13
+            }
+          ]
+        },
+        {
+          "op": "add-memory-proxies",
+          "filter": "pylonpod"
+        },
+        {
+          "op": "add-memory-point",
+          "name": "doplnovani",
+          "position": [
+            0,
+            0.7,
+            -4.2
+          ]
+        },
+        {
+          "op": "add-memory-point",
+          "name": "pos_eject",
+          "position": [
+            0,
+            0.2,
+            -4.1
+          ]
+        },
+        {
+          "op": "add-memory-point",
+          "name": "wheel_1_contact",
+          "position": [
+            -0.008,
+            -0.707,
+            -0.891
+          ]
+        },
+        {
+          "op": "add-memory-point",
+          "name": "wheel_2_contact",
+          "position": [
+            0.331,
+            -0.581,
+            1.057
+          ]
+        },
+        {
+          "op": "add-memory-point",
+          "name": "wheel_3_contact",
+          "position": [
+            -0.322,
+            -0.58,
+            1.057
+          ]
+        },
+        {
+          "op": "cut-seams",
+          "lod": "0",
+          "source": "EAWS_EF2000/typhoon-cuts.json"
+        },
+        {
+          "op": "uv-split",
+          "lod": "0",
+          "source": "EAWS_EF2000/typhoon-camo.json",
+          "selection": "camo1",
+          "newSelection": "camo_lower",
+          "texture": "u\\uksf_air\\addons\\typhoon\\data\\camo_lower_co.paa"
+        },
+        {
+          "op": "move-sections",
+          "lod": "viewPilot",
+          "texture": "eaws_ef2000\\data\\top.paa",
+          "newSelection": "camo_pilot",
+          "from": [
+            "camo1",
+            "pylons"
+          ]
+        },
+        {
+          "op": "retexture",
+          "from": "eaws_ef2000\\data\\decals_clear.paa",
+          "to": "u\\uksf_air\\addons\\typhoon\\data\\decals_clear_ca.paa"
+        },
+        {
+          "op": "retexture",
+          "from": "eaws_ef2000\\data\\decals_solid.paa",
+          "to": "u\\uksf_air\\addons\\typhoon\\data\\decals_solid_ca.paa"
+        },
+        {
+          "op": "retexture",
+          "from": "eaws_ef2000\\data\\sides.paa",
+          "to": "u\\uksf_air\\addons\\typhoon\\data\\sides_co.paa"
+        },
+        {
+          "op": "retexture",
+          "from": "eaws_ef2000\\data\\night_markers.paa",
+          "to": "u\\uksf_air\\addons\\typhoon\\data\\formation_off_co.paa"
+        },
+        {
+          "op": "uv-split",
+          "lod": "0",
+          "source": "EAWS_EF2000/typhoon-formation.json",
+          "selection": "zbytek",
+          "newSelection": "formation_on",
+          "texture": "u\\uksf_air\\addons\\typhoon\\data\\formation_on_co.paa"
+        },
+        {
+          "op": "add-physx",
+          "mass": 11000
+        },
+        {
+          "op": "add-memory-point",
+          "name": "Wheel_1_center",
+          "position": [
+            -0.005,
+            -1.649,
+            -2.486
+          ]
+        },
+        {
+          "op": "add-memory-point",
+          "name": "Wheel_1_rim",
+          "position": [
+            -0.005,
+            -1.885,
+            -2.486
+          ]
+        },
+        {
+          "op": "add-memory-point",
+          "name": "Wheel_2_center",
+          "position": [
+            1.929,
+            -1.371,
+            1.119
+          ]
+        },
+        {
+          "op": "add-memory-point",
+          "name": "Wheel_2_rim",
+          "position": [
+            1.929,
+            -1.734,
+            1.119
+          ]
+        },
+        {
+          "op": "add-memory-point",
+          "name": "Wheel_3_center",
+          "position": [
+            -1.928,
+            -1.372,
+            1.119
+          ]
+        },
+        {
+          "op": "add-memory-point",
+          "name": "Wheel_3_rim",
+          "position": [
+            -1.928,
+            -1.735,
+            1.119
+          ]
+        }
+      ]
+    },
+    {
+      "path": "EAWS_EF2000parts.p3d",
+      "sha256": "aa5e9d90d32c120e6cf771068eae0a278fc1c24e4db95db76f94d237330afac7",
+      "ops": [
+        {
+          "op": "retexture",
+          "from": "eaws_ef2000\\data\\top.paa",
+          "to": "u\\uksf_air\\addons\\typhoon\\data\\parts_co.paa"
+        }
+      ]
+    }
+  ]
+}

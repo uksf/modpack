@@ -4,11 +4,13 @@ class CfgWeapons {
         scopeArsenal = 2;
     };
     class UK3CB_BAF_L85A2_RIS_AFG;
-    class UK3CB_BAF_L85A2_RIS_AFG_Green : UK3CB_BAF_L85A2_RIS_AFG {
+    class UK3CB_BAF_L85A2_RIS_G_AFG;
+    class UK3CB_BAF_L85A2_RIS_AFG_Green : UK3CB_BAF_L85A2_RIS_G_AFG {
         scopeArsenal = 2;
         baseWeapon = "UK3CB_BAF_L85A2_RIS_AFG_Green";
     };
-    class UK3CB_BAF_L85A2_RIS_AFG_Tan : UK3CB_BAF_L85A2_RIS_AFG {
+    class UK3CB_BAF_L85A2_RIS_D_AFG;
+    class UK3CB_BAF_L85A2_RIS_AFG_Tan : UK3CB_BAF_L85A2_RIS_D_AFG {
         scopeArsenal = 2;
         baseWeapon = "UK3CB_BAF_L85A2_RIS_AFG_Tan";
     };

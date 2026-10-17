@@ -23,6 +23,10 @@ pub fn event(body: String) -> String {
     bridge::handle_event(&body)
 }
 
+pub fn delivered(seq: String) -> String {
+    bridge::handle_delivered(&seq)
+}
+
 pub fn load(key: String) -> String {
     bridge::handle_load(&key)
 }

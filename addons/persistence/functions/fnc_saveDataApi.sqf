@@ -13,18 +13,18 @@
         ~500 objects + 40 players, encodeJSON took ~43s; this path takes ~20ms.
 
     Parameter(s):
-        None
+        0: Partial save <BOOL> (default: false)
 
     Return Value:
-        None
+        Delivery sequence number <NUMBER>
 
     Example:
-        call uksf_persistence_fnc_saveDataApi
+        [false] call uksf_persistence_fnc_saveDataApi
 */
+params [["_partial", false, [false]]];
 
-if (!GVAR(dataSaved)) exitWith {};
+if (!GVAR(dataSaved)) exitWith {0};
 
-// Build object hashmaps from positional arrays in the namespace
 private _objects = GVAR(dataNamespace) getVariable [QGVAR(objects), []];
 private _objectHashmaps = _objects apply {
     private _object = _x;
@@ -55,7 +55,6 @@ private _objectHashmaps = _objects apply {
     ]
 };
 
-// Build player hashmaps from positional arrays in the namespace
 private _playersHashmap = createHashMap;
 {
     private _playerData = GVAR(dataNamespace) getVariable [_x, []];
@@ -76,7 +75,6 @@ private _playersHashmap = createHashMap;
     };
 } forEach GVAR(playerUids);
 
-// Build the session hashmap
 private _session = createHashMapFromArray [
     ["dateTime",       GVAR(dataNamespace) getVariable [QGVAR(dateTime), []]],
     ["deletedObjects", GVAR(dataNamespace) getVariable [QGVAR(deletedObjects), []]],
@@ -85,20 +83,21 @@ private _session = createHashMapFromArray [
     ["players",        _playersHashmap]
 ];
 
-// Add custom serializer data at root level
 {
     _x params ["_id"];
     private _data = GVAR(dataNamespace) getVariable [_id, []];
     _session set [_id, _data];
 } forEach GVAR(serializers);
 
-// Wrap session as the `data` field of a persistence_save event so the API can
-// route it via the same handler dispatch as every other event type.
 private _eventData = createHashMapFromArray [
     ["key",       GVAR(key)],
     ["sessionId", EGVAR(api,sessionId)],
-    ["data",      _session]
+    ["data",      _session],
+    ["partial",   _partial]
 ];
 
 INFO_2("API persistence save: %1 objects, %2 players",count _objectHashmaps,count _playersHashmap);
-["persistence_save", _eventData] call EFUNC(api,sendEvent);
+private _sendStart = diag_tickTime;
+private _seq = ["persistence_save", _eventData, 6] call EFUNC(api,sendEvent);
+INFO_1("API persistence save sent in %1 ms",round ((diag_tickTime - _sendStart) * 1000));
+_seq

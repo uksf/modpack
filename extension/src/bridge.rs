@@ -18,8 +18,6 @@ struct CallbackRequest {
     data: String,
 }
 
-/// Send a callback to Arma via the bridge thread.
-/// Called by loader and listener from background threads.
 pub fn fire_callback(function: &str, data: &str) {
     if let Ok(guard) = CALLBACK_TX.lock()
         && let Some(sender) = guard.as_ref()
@@ -48,7 +46,6 @@ pub fn handle_start(context: Context) -> String {
 
     config::store_api_port(port);
 
-    // Set up callback bridge before starting listener/loader
     let (tx, rx) = crossbeam_channel::unbounded();
     if let Ok(mut guard) = CALLBACK_TX.lock() {
         *guard = Some(tx);
@@ -80,8 +77,6 @@ pub fn handle_start(context: Context) -> String {
 
     let pid = std::process::id();
     log::info!("Extension fully started on port {port}, pid {pid}");
-    // SQF array: [port, processId] — matches the unified text-based wire
-    // (game side reads with parseSimpleArray, no JSON parser needed).
     format!("[{port},{pid}]")
 }
 
@@ -137,8 +132,14 @@ pub fn handle_event(body: &str) -> String {
     }
 
     log::debug!("Queuing event: {body}");
-    sender::queue_event(body);
-    "queued".to_string()
+    sender::queue_event(body).to_string()
+}
+
+pub fn handle_delivered(seq: &str) -> String {
+    let Ok(seq) = seq.trim().parse::<u64>() else {
+        return format!("error: invalid sequence '{seq}'");
+    };
+    crate::delivery::outcome(seq).map_or("unknown", |outcome| outcome.as_str()).to_string()
 }
 
 fn stop_callback_bridge() {
@@ -175,6 +176,15 @@ mod tests {
         RUNNING.store(false, Ordering::SeqCst);
         let result = handle_stop();
         assert_eq!(result, "not running");
+    }
+
+    #[test]
+    fn test_delivered_reports_tracked_outcome_and_rejects_garbage() {
+        let seq = crate::delivery::next_seq();
+        assert_eq!(handle_delivered(&seq.to_string()), "unknown");
+        crate::delivery::set_outcome(seq, crate::delivery::Outcome::Lost);
+        assert_eq!(handle_delivered(&seq.to_string()), "lost");
+        assert_eq!(handle_delivered("abc"), "error: invalid sequence 'abc'");
     }
 
     #[test]

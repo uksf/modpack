@@ -1,4 +1,4 @@
-class cfgGroups {
+class CfgGroups {
     class EAST {
         name = "OPFOR";
         class UKSF_AUG {

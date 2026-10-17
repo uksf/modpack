@@ -1,0 +1,15 @@
+# Same set as the dev-run server default. Swap a line for a local build (D:/Arma/<repo>/.hemttout/dev)
+# when that repo has the change under test.
+B:/Steam/steamapps/common/Arma 3/uksf-dev/@CBA_A3
+B:/Steam/steamapps/common/Arma 3/uksf-dev/@CUP_Terrains_Core
+B:/Steam/steamapps/common/Arma 3/uksf-dev/@CUP_Terrains_Maps
+B:/Steam/steamapps/common/Arma 3/uksf-dev/@CUP_Terrains_Maps_2
+B:/Steam/steamapps/common/Arma 3/uksf-dev/@CUP_Units
+B:/Steam/steamapps/common/Arma 3/uksf-dev/@CUP_Vehicles
+B:/Steam/steamapps/common/Arma 3/uksf-dev/@CUP_Weapons
+B:/Steam/steamapps/common/Arma 3/uksf-dev/@JBad
+B:/Steam/steamapps/common/Arma 3/uksf-dev/@uksf_dependencies
+D:/Arma/modpack/.hemttout/dev
+B:/Steam/steamapps/common/Arma 3/uksf-dev/@uksf_ace
+B:/Steam/steamapps/common/Arma 3/uksf-dev/@uksf_acre2
+B:/Steam/steamapps/common/Arma 3/uksf-dev/@uksf_air

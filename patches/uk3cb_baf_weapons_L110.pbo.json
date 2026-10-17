@@ -1,0 +1,63 @@
+{
+  "format": 1,
+  "pbo": "uk3cb_baf_weapons_L110.pbo",
+  "pristineSha256": "04458bc2a75203f11f7b66c46a660bbd8491cfb098d15754c9d7352d34fb0e86",
+  "description": "3CB's L110 models and CUP's M249 models both embed a skeleton named M249skel with different bone counts. Arma keeps whichever loads first, so the other family cannot reload. Renaming the 3CB skeleton gives each family its own.",
+  "assets": [
+    {
+      "path": "UK3CB_BAF_Weapons\\addons\\UK3CB_BAF_Weapons_L110\\UK3CB_L110_Maximi.p3d",
+      "sha256": "9227ede5e86efbcf7a81919aa6b6389e6f111c57ac32a20a344bc4543270ab00",
+      "ops": [
+        {
+          "op": "set-skeleton-name",
+          "from": "M249skel",
+          "to": "L110skel"
+        }
+      ]
+    },
+    {
+      "path": "UK3CB_BAF_Weapons\\addons\\UK3CB_BAF_Weapons_L110\\UK3CB_L110a1.p3d",
+      "sha256": "079b17c07b7a377152d81ac6cd9e65a49af1ca8b9797967b3bec3052a8712fbb",
+      "ops": [
+        {
+          "op": "set-skeleton-name",
+          "from": "M249skel",
+          "to": "L110skel"
+        }
+      ]
+    },
+    {
+      "path": "UK3CB_BAF_Weapons\\addons\\UK3CB_BAF_Weapons_L110\\UK3CB_L110a2.p3d",
+      "sha256": "533abe1b496e2f713a94c4f5eeb10ce8b1e641200cf92c5c08b2775cbbf2a60b",
+      "ops": [
+        {
+          "op": "set-skeleton-name",
+          "from": "M249skel",
+          "to": "L110skel"
+        }
+      ]
+    },
+    {
+      "path": "UK3CB_BAF_Weapons\\addons\\UK3CB_BAF_Weapons_L110\\UK3CB_L110a2RIS.p3d",
+      "sha256": "69dc3e1c252036c5ca85c4a0c1ed2307b677afa1dd57e334cf3f8a82153dfa78",
+      "ops": [
+        {
+          "op": "set-skeleton-name",
+          "from": "M249skel",
+          "to": "L110skel"
+        }
+      ]
+    },
+    {
+      "path": "UK3CB_BAF_Weapons\\addons\\UK3CB_BAF_Weapons_L110\\UK3CB_L110a3.p3d",
+      "sha256": "496bebf36a4c8256c481a5c22d861994090a1d06fb6526fca18e870b056285fe",
+      "ops": [
+        {
+          "op": "set-skeleton-name",
+          "from": "M249skel",
+          "to": "L110skel"
+        }
+      ]
+    }
+  ]
+}

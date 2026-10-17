@@ -18,8 +18,7 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            QGVAR(prep),
-            QGVAR(fuel)
+            QGVAR(prep)
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };

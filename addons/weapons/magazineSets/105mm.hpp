@@ -93,7 +93,7 @@ class tbd_mortars_105mm_round_dpicm_charge_mag_7 : tbd_mortars_105mm_round_dpicm
 };
 
 // Laser
-class tbd_mortars_105mm_round_laser_charge_mag_1 : 8Rnd_82mm_Mo_shells {
+class tbd_mortars_105mm_round_laser_charge_mag_1 : tbd_mortars_105mm_round_he_charge_mag_1 {
     CHARGE_1;
 };
 class tbd_mortars_105mm_round_laser_charge_mag_2 : tbd_mortars_105mm_round_laser_charge_mag_1 {

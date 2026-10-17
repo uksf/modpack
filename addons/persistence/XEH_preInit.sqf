@@ -20,6 +20,9 @@ if (is3DEN) then {
 
 GVAR(dataSaved) = false;
 GVAR(shutdownInProgress) = false;
+GVAR(transition) = "";
+GVAR(shutdownPending) = false;
+GVAR(missionSaved) = false;
 GVAR(shutdownExpectedDisconnectCount) = 0;
 GVAR(shutdownDisconnectedCount) = 0;
 
@@ -29,7 +32,6 @@ if (isMultiplayer) then {
     };
 
     if (isServer) then {
-        // Handle API commands
         [QEGVAR(api,command), {
             params ["_type", "_data"];
             switch (_type) do {
@@ -39,6 +41,12 @@ if (isMultiplayer) then {
                 case "shutdown": {
                     call FUNC(startShutdown);
                 };
+                case "endMission": {
+                    ["end"] call FUNC(saveAndEndMission);
+                };
+                case "restart": {
+                    ["restart"] call FUNC(saveAndEndMission);
+                };
             };
         }] call CBA_fnc_addEventHandler;
 
@@ -46,7 +54,6 @@ if (isMultiplayer) then {
         call FUNC(initServer);
     };
 
-    // HC shutdown handler
     if (!isServer && !hasInterface) then {
         [QGVAR(shutdownStarted), {
             [QGVAR(shutdownFinishing)] call CBA_fnc_localEvent;

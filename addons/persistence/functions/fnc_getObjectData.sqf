@@ -43,7 +43,7 @@ private _objectAttachedObjects = _object getVariable ["ace_attach_attached", []]
 if (count _objectAttachedObjects > 0) then {
     {
         _x params ["_attachedObject", "_itemClassname"];
-        _attachedObjects pushBack [_itemClassname, _object worldToModelVisual (ASLToAGL getPosASL _attachedObject)];
+        _attachedObjects pushBack [_itemClassname, _object worldToModelVisual (ASLToAGL getPosWorldVisual _attachedObject)];
     } forEach _objectAttachedObjects;
 };
 

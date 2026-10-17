@@ -152,7 +152,7 @@ class CfgAmmo {
         shockwaveFunction = QFUNC(Mortar);
     };
     class Missile_AGM_02_F;
-    class M_Mo_120mm_AT: Missile_AGM_02_F {
+    class M_Mo_120mm_AT: M_Mo_82mm_AT {
         shockwaveFunction = QFUNC(120mm);
     };
     class M_Mo_120mm_AT_LG: M_Mo_120mm_AT {

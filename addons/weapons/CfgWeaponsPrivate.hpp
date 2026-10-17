@@ -12,7 +12,7 @@ class CUP_srifle_AWM_Base;
 class CUP_srifle_AWM_des: CUP_srifle_AWM_Base {
     scope = 1;
 };
-class CUP_srifle_AWM_wdl: CUP_srifle_AWM_Base {
+class CUP_srifle_AWM_wdl: CUP_srifle_AWM_des {
     scope = 1;
 };
 class CUP_srifle_AWM_des_SBPMII: CUP_srifle_AWM_des {
@@ -21,7 +21,9 @@ class CUP_srifle_AWM_des_SBPMII: CUP_srifle_AWM_des {
 class CUP_srifle_AWM_wdl_SBPMII: CUP_srifle_AWM_wdl {
     scope = 1;
 };
-class CUP_lmg_L110A1: Rifle_Long_Base_F {
+class CUP_lmg_minimi_railed;
+class CUP_lmg_m249_pip4: CUP_lmg_minimi_railed {};
+class CUP_lmg_L110A1: CUP_lmg_m249_pip4 {
     scope = 1;
 };
 class CUP_lmg_L110A1_Aim_Laser: CUP_lmg_L110A1 {
