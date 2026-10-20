@@ -1,6 +1,3 @@
-//! Voice list for the Eden NPC Voice picker. The editor must not wait on the network,
-//! so the fetch runs on a thread and each call returns whatever is cached.
-
 use std::sync::Mutex;
 use std::thread;
 use std::time::{Duration, Instant};
@@ -18,8 +15,6 @@ struct Cache {
 
 static CACHE: Mutex<Cache> = Mutex::new(Cache { voices: None, error: String::new(), fetched_at: None, fetching: false });
 
-/// Returns `[status, [[voiceId, displayName], ...], error]` for `parseSimpleArray`.
-/// status is "ready" once any list has loaded, else "pending" or "error".
 pub fn get() -> String {
     let mut cache = CACHE.lock().unwrap();
     let stale = cache.fetched_at.is_none_or(|at| at.elapsed() > REFRESH_AFTER);

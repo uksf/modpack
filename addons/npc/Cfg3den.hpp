@@ -1,4 +1,3 @@
-// One scripted slot = a topic edit + a line multiline edit. Repeated 6 times.
 #define SCRIPTED_SLOT(n) \
     class GVAR(scriptedTopic##n) { \
         property = QGVAR(scriptedTopic##n); \
@@ -21,8 +20,6 @@
         condition = "this isKindOf 'CAManBase'"; \
     }
 
-// One guarded slot = a topic edit + the speakable fact multiline edit. Repeated 3 times,
-// in disclosure order. The slot number is the prerequisite order; there is nothing else to tune.
 #define GUARDED_SLOT(n) \
     class GVAR(guardedTopic##n) { \
         property = QGVAR(guardedTopic##n); \

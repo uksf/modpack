@@ -26,12 +26,10 @@ private _current = if (lbSize _combo > 0) then {
 };
 
 private _response = ("uksf" callExtension ["npcVoices", []]) select 0;
-// An empty answer means the extension did not load; parseSimpleArray would log an error.
 private _parsed = if (_response select [0, 1] == "[") then {parseSimpleArray _response} else {[]};
 _parsed params [["_status", "error", [""]], ["_voices", [], [[]]], ["_error", "the UKSF extension did not answer", [""]]];
 
 lbClear _combo;
-// A blank voice also means the default voice. Keep it blank so opening the window saves no change.
 private _index = _combo lbAdd "Default voice";
 _combo lbSetData [_index, [DEFAULT_VOICE, ""] select (_current == "")];
 _combo lbSetTextRight [_index, DEFAULT_VOICE];
