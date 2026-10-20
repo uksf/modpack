@@ -38,6 +38,7 @@ if (_turnIds isEqualTo []) then {
 };
 GVAR(lastSpeaker) deleteAt _npcId;
 GVAR(watchUntil) deleteAt _npcId;
+GVAR(watchTarget) deleteAt _npcId;
 private _npc = objectFromNetId _npcId;
 if (!isNull _npc) then {
     [QGVAR(doWatch), [_npc, objNull], _npc] call CBA_fnc_targetEvent;
