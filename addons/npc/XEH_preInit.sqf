@@ -22,7 +22,6 @@ GVAR(consoleClients) = [];
     params ["_npc", "_target"];
     if (isNull _npc || {!local _npc}) exitWith {};
     _npc doWatch _target;
-    if (!isNull _target) then { _npc lookAt _target };
 }] call CBA_fnc_addEventHandler;
 
 GVAR(clipRxBuffers) = createHashMap;
