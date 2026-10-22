@@ -66,6 +66,12 @@
           ]
         },
         {
+          "op": "set-section-texture",
+          "lod": "viewPilot",
+          "section": 47,
+          "texture": "#(argb,8,8,3)color(0,0,0,0,ca)"
+        },
+        {
           "op": "translate-selection",
           "lod": "0",
           "selection": "burner_fire_1_left",
