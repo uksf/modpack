@@ -72,6 +72,33 @@
           "texture": "#(argb,8,8,3)color(0,0,0,0,ca)"
         },
         {
+          "op": "set-memory-point",
+          "name": "hud lh",
+          "position": [
+            0.150742,
+            1.22121,
+            -4.84808
+          ]
+        },
+        {
+          "op": "set-memory-point",
+          "name": "hud ph",
+          "position": [
+            -0.161432,
+            1.22121,
+            -4.84808
+          ]
+        },
+        {
+          "op": "set-memory-point",
+          "name": "hud ld",
+          "position": [
+            0.150742,
+            0.94201,
+            -4.84808
+          ]
+        },
+        {
           "op": "translate-selection",
           "lod": "0",
           "selection": "burner_fire_1_left",
