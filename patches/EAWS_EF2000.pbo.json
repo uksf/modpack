@@ -117,6 +117,46 @@
           "offset": [0, 0, -0.1]
         },
         {
+          "op": "rebind-vertices",
+          "lod": "0",
+          "section": 46,
+          "from": "afterburner_left",
+          "to": "afterburner_left_end",
+          "box": [0, 2, -1, 1, 8, 9.5],
+          "vertices": 18
+        },
+        {
+          "op": "add-translation",
+          "animation": "afterburner_left_stretch",
+          "bone": "afterburner_left_end",
+          "animationSource": "afterburner_stretch",
+          "minValue": 0,
+          "maxValue": 1,
+          "offset0": 1.6,
+          "offset1": 4.2,
+          "axis": [0, 0, 1]
+        },
+        {
+          "op": "rebind-vertices",
+          "lod": "0",
+          "section": 46,
+          "from": "afterburner_right",
+          "to": "afterburner_right_end",
+          "box": [-2, 0, -1, 1, 8, 9.5],
+          "vertices": 18
+        },
+        {
+          "op": "add-translation",
+          "animation": "afterburner_right_stretch",
+          "bone": "afterburner_right_end",
+          "animationSource": "afterburner_stretch",
+          "minValue": 0,
+          "maxValue": 1,
+          "offset0": 1.6,
+          "offset1": 4.2,
+          "axis": [0, 0, 1]
+        },
+        {
           "op": "remap-proxies",
           "rules": [
             {
