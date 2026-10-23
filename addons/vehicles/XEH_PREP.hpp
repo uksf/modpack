@@ -1,9 +1,13 @@
 PREP(3cb_reloadTurret);
 PREP(addSwapDriverActions);
 PREP(canSwapDriver);
+PREP(concealCover);
 PREP(deployCover);
 PREP(deployCoverMedical);
-PREP(concealCover);
+PREP(handleWPCamera);
+PREP(initWPCamera);
+PREP(isPilotCameraDriver);
 PREP(reloadTurret);
 PREP(swapDriver);
 PREP(swapDriverLocal);
+PREP(updateWPCamera);

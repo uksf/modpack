@@ -6,6 +6,7 @@
 
 if (hasInterface) exitWith {
     call FUNC(addSwapDriverActions);
+    call FUNC(initWPCamera);
 
     addUserActionEventHandler ["ReloadMagazine", "Activate", FUNC(reloadTurret)];
 };
