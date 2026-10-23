@@ -1,7 +1,7 @@
 {
   "format": 1,
   "pbo": "ew_modular.pbo",
-  "pristineSha256": "a543f01e7ac35408c9c9f471fb60bfd8bc2b3ee9781e0435566c1c76036899ff",
+  "pristineSha256": "ab61d2ac22e479da7eeb3d44de973fdb96e3218cb9a7071a76571a07442c73b0",
   "description": "EWDJ_GeneratorKit uses the generator vehicle model as its item model. That model's switch animations need Switch_source, which an item does not have, so Arma logs unknown-source warnings whenever the kit is drawn. This adds a copy of the model without animations for the kit to use.",
   "assets": [
     {
