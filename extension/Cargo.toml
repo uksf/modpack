@@ -31,6 +31,7 @@ alto = "3.0.4"
 rust-embed = "8.5.0"
 hound = "3.5"
 base64 = "0.22"
+serde_json = "1"
 
 [profile.release]
 opt-level = "z"

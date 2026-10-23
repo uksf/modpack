@@ -66,6 +66,39 @@
           ]
         },
         {
+          "op": "set-section-texture",
+          "lod": "viewPilot",
+          "section": 47,
+          "texture": "#(argb,8,8,3)color(0,0,0,0,ca)"
+        },
+        {
+          "op": "set-memory-point",
+          "name": "hud lh",
+          "position": [
+            0.135133,
+            1.217301,
+            -4.84808
+          ]
+        },
+        {
+          "op": "set-memory-point",
+          "name": "hud ph",
+          "position": [
+            -0.145823,
+            1.217301,
+            -4.84808
+          ]
+        },
+        {
+          "op": "set-memory-point",
+          "name": "hud ld",
+          "position": [
+            0.135133,
+            0.966021,
+            -4.84808
+          ]
+        },
+        {
           "op": "translate-selection",
           "lod": "0",
           "selection": "burner_fire_1_left",
@@ -82,6 +115,46 @@
           "lod": "0",
           "selection": "#46",
           "offset": [0, 0, -0.1]
+        },
+        {
+          "op": "rebind-vertices",
+          "lod": "0",
+          "section": 46,
+          "from": "afterburner_left",
+          "to": "afterburner_left_end",
+          "box": [0, 2, -1, 1, 8, 9.5],
+          "vertices": 18
+        },
+        {
+          "op": "add-translation",
+          "animation": "afterburner_left_stretch",
+          "bone": "afterburner_left_end",
+          "animationSource": "afterburner_stretch",
+          "minValue": 0,
+          "maxValue": 1,
+          "offset0": 1.6,
+          "offset1": 4.2,
+          "axis": [0, 0, 1]
+        },
+        {
+          "op": "rebind-vertices",
+          "lod": "0",
+          "section": 46,
+          "from": "afterburner_right",
+          "to": "afterburner_right_end",
+          "box": [-2, 0, -1, 1, 8, 9.5],
+          "vertices": 18
+        },
+        {
+          "op": "add-translation",
+          "animation": "afterburner_right_stretch",
+          "bone": "afterburner_right_end",
+          "animationSource": "afterburner_stretch",
+          "minValue": 0,
+          "maxValue": 1,
+          "offset0": 1.6,
+          "offset1": 4.2,
+          "axis": [0, 0, 1]
         },
         {
           "op": "remap-proxies",

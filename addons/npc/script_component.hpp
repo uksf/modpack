@@ -3,15 +3,13 @@
 #include "\u\uksf\addons\main\script_mod.hpp"
 
 #define DEBUG_MODE_FULL
-// #define DISABLE_COMPILE_CACHE
 
 #include "\u\uksf\addons\main\script_macros.hpp"
 
-// A guarded source carries exactly three ordered facts. The slot number is the disclosure
-// order and the prerequisite chain; there is no other gate for a mission maker to set.
 #define GUARDED_FACT_COUNT 3
 
-// Slot numbers are the fact ids. g1/g2/g3 are aliases from older registrations.
+#define DEFAULT_VOICE "oracle"
+
 #define GUARDED_FACT_IDS ["1", "2", "3", "g1", "g2", "g3"]
 #define GUARDED_BANDS ["closed", "guarded", "engaged", "cooperative"]
 #define GUARDED_MOODS ["neutral", "angry", "afraid", "sad", "happy"]
@@ -37,8 +35,8 @@
 #define HINT_TEXT_MAX 120
 #define DEBUG_TEXT_MAX 240
 
-// A room flush waits for the NPC turn in flight, but never longer than this.
 #define TURN_HOLD_MAX_MS 60000
+#define STT_START_DELAY_AFTER_FILLERS 20
 
 #define EMOTE_HEIGHT 2.1
 

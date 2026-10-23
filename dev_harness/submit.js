@@ -33,13 +33,14 @@ const mods = [
     'D:/Arma/acre2/.hemttout/dev'
 ];
 
-const payload = { sqf, mods, timeoutSeconds };
+const headlessClients = parseInt(process.env.UKSF_DEV_RUN_HCS || '0', 10);
+const payload = { sqf, mods, timeoutSeconds, headlessClients };
 if (worldName) payload.worldName = worldName;
 const body = JSON.stringify(payload);
-console.log('acePath:', acePath, 'timeout:', timeoutSeconds);
+console.log('acePath:', acePath, 'timeout:', timeoutSeconds, 'headlessClients:', headlessClients);
 
 const req = http.request({
-    hostname: 'localhost', port: 5500, path: '/dev-run', method: 'POST',
+    hostname: 'localhost', port: parseInt(process.env.UKSF_DEV_RUN_PORT || '5500', 10), path: '/dev-run', method: 'POST',
     headers: {
         'Content-Type': 'application/json',
         'Content-Length': Buffer.byteLength(body),

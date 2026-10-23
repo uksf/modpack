@@ -26,7 +26,7 @@ class CfgVehicles {
         faction = "CUP_B_GB";
         crew = "CUP_B_BAF_Soldier_MTP";
         typicalCargo[] = { "CUP_B_BAF_Soldier_MTP" };
-        fuelCapacity = 15;  // Reduced from 100. Gives ~40km range. 230L tank
+        fuelCapacity = 15;
         hullDamageCauseExplosion = 0;
         maxSpeed = 129;
         peakTorque = 800;
@@ -35,37 +35,37 @@ class CfgVehicles {
         };
         class HitPoints : HitPoints {
             class HitBody : HitBody {
-                armor = 1.5;  // Default: 0.7
+                armor = 1.5;
                 passThrough = 0;
             };
             class HitEngine : HitEngine {
-                armor = 4;  // Default: 2
+                armor = 4;
                 passThrough = 0;
             };
             class HitFuel : HitFuel {
-                armor = 2;  // Default: 1
+                armor = 2;
             };
         };
         ace_repair_spareWheels = 4;
     };
     class UK3CB_BAF_LandRover_Base : Car_F {
-        fuelCapacity = 10;  // Reduced from 70. Gives ~30km range. 93L tank
+        fuelCapacity = 10;
         ace_refuel_fuelCapacity = 93;
         hullDamageCauseExplosion = 0;
         peakTorque = 1000;
         maxOmega = 450;
-        brakeDistance = 30;  // 50
+        brakeDistance = 30;
         class HitPoints : HitPoints {
             class HitBody : HitBody {
-                armor = 1.5;  // Default: 0.7
+                armor = 1.5;
                 passThrough = 0;
             };
             class HitEngine : HitEngine {
-                armor = 4;  // Default: 2
+                armor = 4;
                 passThrough = 0;
             };
             class HitFuel : HitFuel {
-                armor = 2;  // Default: 1
+                armor = 2;
             };
         };
         class Turrets : Turrets {
@@ -116,11 +116,16 @@ class CfgVehicles {
     };
 
     class Boat_F;
+    class Boat_Armed_01_base_F : Boat_F {
+        class NewTurret;
+        class Turrets;
+    };
 
 #include "vehicles\CfgBoats.hpp"
 #include "vehicles\CfgBulldog.hpp"
 #include "vehicles\CfgCoyote.hpp"
 #include "vehicles\CfgCoyoteCUP.hpp"
+#include "vehicles\CfgFic.hpp"
 #include "vehicles\CfgHusky.hpp"
 #include "vehicles\CfgJackal.hpp"
 #include "vehicles\CfgJackalCUP.hpp"

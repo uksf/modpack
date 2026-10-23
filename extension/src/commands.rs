@@ -5,6 +5,7 @@ use crate::bridge;
 use crate::file_export;
 use crate::dev_run;
 use crate::input;
+use crate::npc_voices;
 use crate::stt;
 
 pub fn start(context: Context) -> String {
@@ -29,6 +30,10 @@ pub fn delivered(seq: String) -> String {
 
 pub fn load(key: String) -> String {
     bridge::handle_load(&key)
+}
+
+pub fn npc_voices() -> String {
+    npc_voices::get()
 }
 
 pub fn press_space() -> String {

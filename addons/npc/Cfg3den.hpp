@@ -1,4 +1,3 @@
-// One scripted slot = a topic edit + a line multiline edit. Repeated 6 times.
 #define SCRIPTED_SLOT(n) \
     class GVAR(scriptedTopic##n) { \
         property = QGVAR(scriptedTopic##n); \
@@ -8,7 +7,7 @@
         expression = QUOTE(_this setVariable [ARR_3(QQGVAR(scriptedTopic##n),_value,true)]); \
         typeName = "STRING"; \
         defaultValue = "''"; \
-        condition = "this isKindOf 'CAManBase'"; \
+        condition = "objectBrain"; \
     }; \
     class GVAR(scriptedLine##n) { \
         property = QGVAR(scriptedLine##n); \
@@ -18,11 +17,9 @@
         expression = QUOTE(_this setVariable [ARR_3(QQGVAR(scriptedLine##n),_value,true)]); \
         typeName = "STRING"; \
         defaultValue = "''"; \
-        condition = "this isKindOf 'CAManBase'"; \
+        condition = "objectBrain"; \
     }
 
-// One guarded slot = a topic edit + the speakable fact multiline edit. Repeated 3 times,
-// in disclosure order. The slot number is the prerequisite order; there is nothing else to tune.
 #define GUARDED_SLOT(n) \
     class GVAR(guardedTopic##n) { \
         property = QGVAR(guardedTopic##n); \
@@ -32,7 +29,7 @@
         expression = QUOTE(_this setVariable [ARR_3(QQGVAR(guardedTopic##n),_value,true)]); \
         typeName = "STRING"; \
         defaultValue = "''"; \
-        condition = "this isKindOf 'CAManBase'"; \
+        condition = "objectBrain"; \
     }; \
     class GVAR(guardedFact##n) { \
         property = QGVAR(guardedFact##n); \
@@ -42,10 +39,26 @@
         expression = QUOTE(_this setVariable [ARR_3(QQGVAR(guardedFact##n),_value,true)]); \
         typeName = "STRING"; \
         defaultValue = "''"; \
-        condition = "this isKindOf 'CAManBase'"; \
+        condition = "objectBrain"; \
     }
 
 class Cfg3DEN {
+    class Attributes {
+        class Default;
+        class Title: Default {
+            class Controls;
+        };
+        class Combo: Title {
+            class Controls: Controls {
+                class Title;
+                class Value;
+            };
+        };
+        class GVAR(voicePicker): Combo {
+            attributeLoad = QUOTE([ARR_2(_this,_value)] call FUNC(edenVoiceLoad));
+            attributeSave = QUOTE(private _combo = _this controlsGroupCtrl 100; _combo lbData lbCurSel _combo);
+        };
+    };
     class Object {
         class AttributeCategories {
             class GVAR(category) {
@@ -60,7 +73,7 @@ class Cfg3DEN {
                         expression = QUOTE(_this setVariable [ARR_3(QQGVAR(talkable),_value,true)]);
                         typeName = "BOOL";
                         defaultValue = "false";
-                        condition = "this isKindOf 'CAManBase'";
+                        condition = "objectBrain";
                     };
                     class GVAR(mode) {
                         property = QGVAR(mode);
@@ -70,7 +83,7 @@ class Cfg3DEN {
                         expression = QUOTE(_this setVariable [ARR_3(QQGVAR(mode),_value,true)]);
                         typeName = "STRING";
                         defaultValue = "'dynamic'";
-                        condition = "this isKindOf 'CAManBase'";
+                        condition = "objectBrain";
                         class Values {
                             class Dynamic { name = "Dynamic"; value = "dynamic"; };
                             class Scripted { name = "Scripted"; value = "scripted"; };
@@ -84,7 +97,7 @@ class Cfg3DEN {
                         expression = QUOTE(_this setVariable [ARR_3(QQGVAR(interactionProfile),_value,true)]);
                         typeName = "STRING";
                         defaultValue = "'conversation'";
-                        condition = "this isKindOf 'CAManBase'";
+                        condition = "objectBrain";
                         class Values {
                             class Conversation { name = "Conversation"; value = "conversation"; };
                             class Guarded { name = "Guarded source"; value = "guarded"; };
@@ -92,13 +105,13 @@ class Cfg3DEN {
                     };
                     class GVAR(voiceId) {
                         property = QGVAR(voiceId);
-                        control = "Edit";
+                        control = QGVAR(voicePicker);
                         displayName = "Voice";
-                        tooltip = "Voice slug from the UKSF website NPC voice manager. Blank or unknown = default voice.";
+                        tooltip = "Voice from the UKSF website NPC voice manager. An unknown voice uses the default voice.";
                         expression = QUOTE(_this setVariable [ARR_3(QQGVAR(voiceId),_value,true)]);
                         typeName = "STRING";
                         defaultValue = "'oracle'";
-                        condition = "this isKindOf 'CAManBase'";
+                        condition = "objectBrain";
                     };
                     class GVAR(gateRange) {
                         property = QGVAR(gateRange);
@@ -109,7 +122,7 @@ class Cfg3DEN {
                         typeName = "NUMBER";
                         validate = "number";
                         defaultValue = "4";
-                        condition = "this isKindOf 'CAManBase'";
+                        condition = "objectBrain";
                     };
                     class GVAR(gateFov) {
                         property = QGVAR(gateFov);
@@ -120,7 +133,7 @@ class Cfg3DEN {
                         typeName = "NUMBER";
                         validate = "number";
                         defaultValue = "90";
-                        condition = "this isKindOf 'CAManBase'";
+                        condition = "objectBrain";
                     };
                     class GVAR(personaName) {
                         property = QGVAR(personaName);
@@ -130,7 +143,7 @@ class Cfg3DEN {
                         expression = QUOTE(_this setVariable [ARR_3(QQGVAR(personaName),_value,true)]);
                         typeName = "STRING";
                         defaultValue = "''";
-                        condition = "this isKindOf 'CAManBase'";
+                        condition = "objectBrain";
                     };
                     class GVAR(personaRole): GVAR(personaName) {
                         property = QGVAR(personaRole);
@@ -164,7 +177,7 @@ class Cfg3DEN {
                         expression = QUOTE(_this setVariable [ARR_3(QQGVAR(knowledge),_value,true)]);
                         typeName = "STRING";
                         defaultValue = "''";
-                        condition = "this isKindOf 'CAManBase'";
+                        condition = "objectBrain";
                     };
                     class GVAR(guardedConcern) {
                         property = QGVAR(guardedConcern);
@@ -174,7 +187,7 @@ class Cfg3DEN {
                         expression = QUOTE(_this setVariable [ARR_3(QQGVAR(guardedConcern),_value,true)]);
                         typeName = "STRING";
                         defaultValue = "''";
-                        condition = "this isKindOf 'CAManBase'";
+                        condition = "objectBrain";
                     };
                     GUARDED_SLOT(1);
                     GUARDED_SLOT(2);
@@ -193,7 +206,7 @@ class Cfg3DEN {
                         expression = QUOTE(_this setVariable [ARR_3(QQGVAR(deflection),_value,true)]);
                         typeName = "STRING";
                         defaultValue = "''";
-                        condition = "this isKindOf 'CAManBase'";
+                        condition = "objectBrain";
                     };
                 };
             };
