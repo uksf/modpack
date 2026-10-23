@@ -7,16 +7,13 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            // Vanilla
             "A3_Data_F_Tank_Loadorder",
 
-            // CBA
             "cba_jr",
             "cba_main",
             "cba_ui",
             "cba_xeh",
 
-            // ACE
             "ace_aircraft",
             "ace_arsenal",
             "ace_cargo",
@@ -32,7 +29,6 @@ class CfgPatches {
             "ace_refuel",
             "ace_zeus",
 
-            // CUP
             "CUP_Creatures_Military_ACR",
             "CUP_Creatures_Military_BAF",
             "CUP_Creatures_Military_CDF",
@@ -77,7 +73,6 @@ class CfgPatches {
             "CUP_WheeledVehicles_Skoda",
             "CUP_WheeledVehicles_Wolfhound",
 
-            // 3CB
             "3CB_L135A1",
             "3CB_L7A2",
             "UK3CB_BAF_Equipment",
@@ -104,7 +99,6 @@ class CfgPatches {
             "UK3CB_BAF_Weapons_SmallArms",
             "UK3CB_BAF_Weapons_Static",
 
-            // Other
             "3denEnhanced",
             "acre_sys_gsa",
             "acre_sys_prc117f",
@@ -114,6 +108,7 @@ class CfgPatches {
             "Blastcore_VEP",
             "diwako_dui_main",
             "HAFM_Navy_Config",
+            "Helmatic",
             "jsrs2025_config_c",
             "jsrs2025_compat_3cb_BAF_weapons",
             "jsrs2025_compat_cup_vehicles",

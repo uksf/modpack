@@ -8,6 +8,8 @@ class CfgPatches {
             "UK3CB_BAF_MAN_HX58_Rearm_Sand",
             "UK3CB_BAF_MAN_HX60_Rearm_Green",
             "UK3CB_BAF_MAN_HX60_Rearm_Sand",
+            QGVAR(fic),
+            QGVAR(fic_stealth),
             QGVAR(rhicc_green),
             QGVAR(rhicc_grey),
             QGVAR(L119),

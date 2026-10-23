@@ -1,10 +1,5 @@
-class Boat_Armed_01_base_F : Boat_F {
-    class NewTurret;
-    class Turrets;
-};
 class RHICC_MAIN : Boat_Armed_01_base_F {
-    maximumLoad = 2000; // 500
-    // RHICC declares a non-inheriting EventHandlers (fired only), which drops CBA XEH.
+    maximumLoad = 2000;
     class EventHandlers {
         class CBA_Extended_EventHandlers : CBA_Extended_EventHandlers_base {};
     };
@@ -15,7 +10,7 @@ class RHICC_MAIN : Boat_Armed_01_base_F {
     };
     class TransportWeapons {};
     class TransportBackpacks {};
-    armor = 200; // 100
+    armor = 200;
     class HitPoints {
         class HitBody {
             armor = 0.3;
@@ -48,7 +43,6 @@ class RHICC_MAIN : Boat_Armed_01_base_F {
             radius = 0.28;
         };
     };
-    // The speedboat's gunner screens look through PIP3 points that RHICC's model does not have.
     class RenderTargets {
         class driver_display_1 {
             renderTarget = "rendertarget0";
@@ -96,8 +90,6 @@ class RHICC_MAIN : Boat_Armed_01_base_F {
             shortName = "R2";
         };
     };
-    // RHICC's model has no turret hitpoint selections, so the turrets' HitTurret and HitGun do nothing except
-    // log duplicate names.
     class Turrets {
         class CommanderTurret : NewTurret {
             weapons[] = { "CUP_weapon_mastersafe", "Laserdesignator_vehicle", "RHICC_SmokeLauncher" };
