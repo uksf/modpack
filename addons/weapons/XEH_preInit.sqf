@@ -63,6 +63,12 @@ GVAR(l119SubmunitionAmmos) = [
     QGVAR(105mm_shell_ammo_illum)
 ];
 
+GVAR(l118Shells) = createHashMapFromArray [
+    ["he", QGVAR(105mm_shell_he)],
+    ["smoke", QGVAR(105mm_shell_smoke)],
+    ["dpicm", QGVAR(105mm_shell_illum)]
+];
+
 ["TBD_M119", "Fired", {_this call FUNC(l119FiredEH)}] call CBA_fnc_addClassEventHandler;
 
 ADDON = true;
