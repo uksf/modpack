@@ -4,7 +4,7 @@
         Tim Beswick
 
     Description:
-        Registers zeus debug providers for projectile tracking, player FPS, and unconscious status
+        Registers zeus debug providers for projectile tracking, player FPS, unconscious status, and player-controlled UAV lasers
 
     Parameter(s):
         None
@@ -16,7 +16,6 @@
         call uksf_zeus_fnc_registerDebugProviders
 */
 
-// Projectiles provider
 private _key = QGVAR(projectiles);
 private _menuName = "Projectiles";
 private _menuPriority = -10;
@@ -52,7 +51,6 @@ private _fnc_drawMap = {
     ["menuCondition", _fnc_menuCondition]
 ]]] call CBA_fnc_localEvent;
 
-// Player FPS provider — always active when Zeus is open
 _key = QGVAR(fps);
 
 private _fnc_serverGetter = {
@@ -159,7 +157,6 @@ private _fnc_drawHud = {
     ["menuPriority", -5]
 ]]] call CBA_fnc_localEvent;
 
-// Unconscious status provider — always active when Zeus is open
 _key = QGVAR(unconscious);
 
 private _fnc_unconsciousServerGetter = {
@@ -224,4 +221,49 @@ private _fnc_unconsciousDrawMap = {
     ["getterInterval", 1],
     ["alwaysActive", true],
     ["menuPriority", -3]
+]]] call CBA_fnc_localEvent;
+
+_key = QGVAR(uavLasers);
+GVAR(uavLaserStyle) = ["3D", "2D"] apply {
+    private _config = configFile >> "CfgCurator" >> "DrawPlayer" >> _x;
+    [getText (_config >> "textureLaser"), getArray (_config >> "colorLaser")]
+};
+
+GVAR(fnc_uavLasers) = {
+    private _lasers = [];
+    {
+        private _laser = laserTarget _x;
+        if (isNull _laser) then { continue };
+        private _operator = (UAVControl [_x, "gunner"]) + (UAVControl [_x, "driver"]);
+        if (_operator isEqualTo []) then { continue };
+        _lasers pushBack [_x, _laser, name (_operator#0)];
+    } forEach allUnitsUAV;
+    _lasers
+};
+
+private _fnc_uavLasersDraw3d = {
+    (GVAR(uavLaserStyle)#0) params ["_texture", "_color"];
+    {
+        _x params ["_uav", "_laser", "_name"];
+        private _laserPosition = ASLToAGL getPosASLVisual _laser;
+        drawLine3D [ASLToAGL getPosASLVisual _uav, _laserPosition, _color];
+        drawIcon3D [_texture, _color, _laserPosition, 1, 1, 0, _name, 1, 0.03, "RobotoCondensed", "center"];
+    } forEach (call GVAR(fnc_uavLasers));
+};
+
+private _fnc_uavLasersDrawMap = {
+    params ["", "_map"];
+
+    (GVAR(uavLaserStyle)#1) params ["_texture", "_color"];
+    {
+        _x params ["_uav", "_laser", "_name"];
+        _map drawLine [getPosASLVisual _uav, getPosASLVisual _laser, _color];
+        _map drawIcon [_texture, _color, getPosASLVisual _laser, 24, 24, 0, _name, 1, 0.04, "RobotoCondensed", "right"];
+    } forEach (call GVAR(fnc_uavLasers));
+};
+
+[QGVAR(registerDebugProvider), [_key, createHashMapFromArray [
+    ["draw3d", _fnc_uavLasersDraw3d],
+    ["drawMap", _fnc_uavLasersDrawMap],
+    ["alwaysActive", true]
 ]]] call CBA_fnc_localEvent;
