@@ -1,0 +1,440 @@
+{
+  "format": 1,
+  "pbo": "tbd_mortars_105mm.pbo",
+  "pristineSha256": "7313af633276160e942d733db37fd2d3e0962660e90e8a0f08f0781e03832b15",
+  "description": "L118 two-piece ammunition from uksf/modpack#1204: shell-only and charge-only copies of the TBD 105 mm round, so each piece is its own carriable object.",
+  "assets": [
+    {
+      "path": "tbd_mortars_105mm_round_he\\uksf_l118_shell_he.p3d",
+      "copyOf": "tbd_mortars_105mm_round_he\\tbd_mortars_105mm_round_he.p3d",
+      "sha256": "0c3de1d42991a92c00bd0be165ebee8b58eebb11281ea8ac036e742ad8a02949",
+      "ops": [
+        {
+          "op": "remove-faces",
+          "lod": "1",
+          "axis": [
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0
+          ],
+          "wholeParts": true,
+          "allBeyond": -0.04,
+          "anyBeyond": -0.04,
+          "faces": 124
+        },
+        {
+          "op": "remove-faces",
+          "lod": "2",
+          "axis": [
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0
+          ],
+          "wholeParts": true,
+          "allBeyond": -0.04,
+          "anyBeyond": -0.04,
+          "faces": 110
+        },
+        {
+          "op": "remove-faces",
+          "lod": "3",
+          "axis": [
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0
+          ],
+          "wholeParts": true,
+          "allBeyond": -0.04,
+          "anyBeyond": -0.04,
+          "faces": 54
+        },
+        {
+          "op": "remove-faces",
+          "lod": "11002",
+          "axis": [
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0
+          ],
+          "wholeParts": true,
+          "allBeyond": -0.04,
+          "anyBeyond": -0.04,
+          "faces": 124
+        },
+        {
+          "op": "stretch-along-axis",
+          "lods": [
+            "1",
+            "2",
+            "3",
+            "11002"
+          ],
+          "axis": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "cut": -0.045,
+          "length": -0.2857,
+          "vertices": 1780
+        },
+        {
+          "op": "stretch-along-axis",
+          "lods": [
+            "geometry"
+          ],
+          "axis": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "cut": 0,
+          "length": -0.2857,
+          "vertices": 4
+        },
+        {
+          "op": "rebuild-shadow-volume",
+          "lod": "10002",
+          "from": "11002"
+        }
+      ]
+    },
+    {
+      "path": "tbd_mortars_105mm_round_smoke\\uksf_l118_shell_smoke.p3d",
+      "copyOf": "tbd_mortars_105mm_round_smoke\\tbd_mortars_105mm_round_smoke.p3d",
+      "sha256": "485b8b07409c7de0d1b5d69864e81a318cf248a2bf1348656ff0879e896077c2",
+      "ops": [
+        {
+          "op": "remove-faces",
+          "lod": "1",
+          "axis": [
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0
+          ],
+          "wholeParts": true,
+          "allBeyond": -0.04,
+          "anyBeyond": -0.04,
+          "faces": 124
+        },
+        {
+          "op": "remove-faces",
+          "lod": "2",
+          "axis": [
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0
+          ],
+          "wholeParts": true,
+          "allBeyond": -0.04,
+          "anyBeyond": -0.04,
+          "faces": 110
+        },
+        {
+          "op": "remove-faces",
+          "lod": "3",
+          "axis": [
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0
+          ],
+          "wholeParts": true,
+          "allBeyond": -0.04,
+          "anyBeyond": -0.04,
+          "faces": 54
+        },
+        {
+          "op": "remove-faces",
+          "lod": "11002",
+          "axis": [
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0
+          ],
+          "wholeParts": true,
+          "allBeyond": -0.04,
+          "anyBeyond": -0.04,
+          "faces": 124
+        },
+        {
+          "op": "stretch-along-axis",
+          "lods": [
+            "1",
+            "2",
+            "3",
+            "11002"
+          ],
+          "axis": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "cut": -0.045,
+          "length": -0.2857,
+          "vertices": 1780
+        },
+        {
+          "op": "stretch-along-axis",
+          "lods": [
+            "geometry"
+          ],
+          "axis": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "cut": 0,
+          "length": -0.2857,
+          "vertices": 4
+        },
+        {
+          "op": "rebuild-shadow-volume",
+          "lod": "10002",
+          "from": "11002"
+        }
+      ]
+    },
+    {
+      "path": "tbd_mortars_105mm_round_dpicm\\uksf_l118_shell_illum.p3d",
+      "copyOf": "tbd_mortars_105mm_round_dpicm\\tbd_mortars_105mm_round_dpicm.p3d",
+      "sha256": "1d04d0ac4c089f7f2231acab956b8e4e9f52b169b194801ba9c02cbe993d9258",
+      "ops": [
+        {
+          "op": "remove-faces",
+          "lod": "1",
+          "axis": [
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0
+          ],
+          "wholeParts": true,
+          "allBeyond": -0.04,
+          "anyBeyond": -0.04,
+          "faces": 124
+        },
+        {
+          "op": "remove-faces",
+          "lod": "2",
+          "axis": [
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0
+          ],
+          "wholeParts": true,
+          "allBeyond": -0.04,
+          "anyBeyond": -0.04,
+          "faces": 110
+        },
+        {
+          "op": "remove-faces",
+          "lod": "3",
+          "axis": [
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0
+          ],
+          "wholeParts": true,
+          "allBeyond": -0.04,
+          "anyBeyond": -0.04,
+          "faces": 54
+        },
+        {
+          "op": "remove-faces",
+          "lod": "11002",
+          "axis": [
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0
+          ],
+          "wholeParts": true,
+          "allBeyond": -0.04,
+          "anyBeyond": -0.04,
+          "faces": 124
+        },
+        {
+          "op": "stretch-along-axis",
+          "lods": [
+            "1",
+            "2",
+            "3",
+            "11002"
+          ],
+          "axis": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "cut": -0.045,
+          "length": -0.2857,
+          "vertices": 1780
+        },
+        {
+          "op": "stretch-along-axis",
+          "lods": [
+            "geometry"
+          ],
+          "axis": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "cut": 0,
+          "length": -0.2857,
+          "vertices": 4
+        },
+        {
+          "op": "rebuild-shadow-volume",
+          "lod": "10002",
+          "from": "11002"
+        }
+      ]
+    },
+    {
+      "path": "tbd_mortars_105mm_round_he\\uksf_l118_charge.p3d",
+      "copyOf": "tbd_mortars_105mm_round_he\\tbd_mortars_105mm_round_he.p3d",
+      "sha256": "0c3de1d42991a92c00bd0be165ebee8b58eebb11281ea8ac036e742ad8a02949",
+      "ops": [
+        {
+          "op": "remove-faces",
+          "lod": "1",
+          "axis": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "wholeParts": true,
+          "allBeyond": -0.05,
+          "anyBeyond": -0.05,
+          "faces": 540
+        },
+        {
+          "op": "remove-faces",
+          "lod": "2",
+          "axis": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "wholeParts": true,
+          "allBeyond": -0.05,
+          "anyBeyond": -0.05,
+          "faces": 412
+        },
+        {
+          "op": "remove-faces",
+          "lod": "3",
+          "axis": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "wholeParts": true,
+          "allBeyond": -0.05,
+          "anyBeyond": -0.05,
+          "faces": 216
+        },
+        {
+          "op": "remove-faces",
+          "lod": "11002",
+          "axis": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "wholeParts": true,
+          "allBeyond": -0.05,
+          "anyBeyond": -0.05,
+          "faces": 540
+        },
+        {
+          "op": "stretch-along-axis",
+          "lods": [
+            "geometry"
+          ],
+          "axis": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "cut": 0.1,
+          "length": -0.4216,
+          "vertices": 4
+        },
+        {
+          "op": "rebuild-shadow-volume",
+          "lod": "10002",
+          "from": "11002"
+        }
+      ]
+    }
+  ]
+}

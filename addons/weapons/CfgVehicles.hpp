@@ -343,7 +343,43 @@ class CfgVehicles {
             class ACE_MainActions;
         };
     };
-    class TBD_MORTARS_105mm_ROUND_SMOKE_CHARGE_1 : NATO_Box_Base {
+    class GVAR(105mm_piece) : NATO_Box_Base {
+        scope = 1;
+        author = QUOTE(UKSF);
+        editorSubcategory = "EdSubcat_Ammo";
+        ace_cargo_size = 0.5;
+        ace_cargo_canLoad = 1;
+        ace_dragging_canCarry = 1;
+        transportMaxWeapons = 0;
+        transportMaxMagazines = 0;
+        transportMaxBackpacks = 0;
+        class ACE_Actions : ACE_Actions {
+            class ACE_MainActions : ACE_MainActions {
+                class GVAR(stow) {
+                    displayName = "Put in inventory";
+                    condition = QUOTE(_player canAdd getText (configOf _target >> QQGVAR(item)));
+                    statement = QUOTE(_player addItem getText (configOf _target >> QQGVAR(item)); deleteVehicle _target);
+                    distance = 2;
+                };
+            };
+        };
+    };
+    class GVAR(105mm_shell_he) : GVAR(105mm_piece) {
+        scope = 2;
+        displayName = "105mm HE Shell";
+        model = "\x\TBD_MORTARS\addons\105mm\tbd_mortars_105mm_round_he\uksf_l118_shell_he";
+        editorPreview = "\x\TBD_MORTARS\addons\105mm\tbd_mortars_105mm_shell_he\data\shell.jpg";
+        GVAR(item) = "tbd_mortars_105mm_shell_he";
+        GVAR(round) = "he";
+        GVAR(breech) = "magazine";
+    };
+    class GVAR(105mm_shell_smoke) : GVAR(105mm_shell_he) {
+        displayName = "105mm Smoke Shell";
+        model = "\x\TBD_MORTARS\addons\105mm\tbd_mortars_105mm_round_smoke\uksf_l118_shell_smoke";
+        editorPreview = "\x\TBD_MORTARS\addons\105mm\tbd_mortars_105mm_shell_smoke\data\shell.jpg";
+        GVAR(item) = "tbd_mortars_105mm_shell_smoke";
+        GVAR(round) = "smoke";
+        GVAR(breech) = "magazine_smoke";
         class ACE_Actions : ACE_Actions {
             class ACE_MainActions : ACE_MainActions {
                 class GVAR(setFuseTime) {
@@ -355,114 +391,67 @@ class CfgVehicles {
             };
         };
     };
+    class GVAR(105mm_shell_illum) : GVAR(105mm_shell_smoke) {
+        displayName = "105mm Illumination Shell";
+        model = "\x\TBD_MORTARS\addons\105mm\tbd_mortars_105mm_round_dpicm\uksf_l118_shell_illum";
+        editorPreview = "\x\TBD_MORTARS\addons\105mm\tbd_mortars_105mm_shell_dpicm\data\shell.jpg";
+        GVAR(item) = "tbd_mortars_105mm_shell_dpicm";
+        GVAR(round) = "dpicm";
+        GVAR(breech) = "magazine_dpicm";
+    };
+    class GVAR(105mm_charge) : GVAR(105mm_piece) {
+        scope = 2;
+        displayName = "105mm Charge";
+        model = "\x\TBD_MORTARS\addons\105mm\tbd_mortars_105mm_round_he\uksf_l118_charge";
+        editorPreview = "\x\TBD_MORTARS\addons\105mm\tbd_mortars_105mm_casing_spent\data\casing.jpg";
+        GVAR(item) = "tbd_mortars_105mm_casing_charge_7";
+    };
+
+#define CHARGE_ACTION(CHARGE,NAME) class GVAR(DOUBLES(charge,CHARGE)) { \
+    displayName = NAME; \
+    condition = "true"; \
+    statement = QUOTE([ARR_3(_target,_player,CHARGE)] call FUNC(l118LoadCharge)); \
+    showDisabled = 0; \
+}
 
     class TBD_M119 : StaticMortar {
         class ACE_Actions : ACE_Actions {
+            class TBD_CloseBreech {
+                condition = QUOTE([_target] call tbd_m119_m119_fnc_canCloseBreech && {_target getVariable [ARR_2(QQGVAR(l118Shell),'')] isEqualTo ''});
+            };
             class TBD_Load {
-                class TBD_LoadSMOKECh6 {
-                    displayName = "Smoke"; // TBD has no STR_TBD_MORTARS_105mm_SMOKE
-                    class TBD_LoadSMOKECh1 {
-                        displayName = "$STR_TBD_MORTARS_105mm_SMOKE_CHARGE_1";
-                        condition = QUOTE([ARR_2(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_1)))] call tbd_m119_m119_fnc_canLoad);
-                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_1)),0)] call FUNC(l119LoadRound));
-                        showDisabled = 0;
-                        exceptions[] = {};
-                    };
-                    class TBD_LoadSMOKECh2 {
-                        displayName = "$STR_TBD_MORTARS_105mm_SMOKE_CHARGE_2";
-                        condition = QUOTE([ARR_2(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_2)))] call tbd_m119_m119_fnc_canLoad);
-                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_2)),0)] call FUNC(l119LoadRound));
-                        showDisabled = 0;
-                        exceptions[] = {};
-                    };
-                    class TBD_LoadSMOKECh3 {
-                        displayName = "$STR_TBD_MORTARS_105mm_SMOKE_CHARGE_3";
-                        condition = QUOTE([ARR_2(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_3)))] call tbd_m119_m119_fnc_canLoad);
-                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_3)),0)] call FUNC(l119LoadRound));
-                        showDisabled = 0;
-                        exceptions[] = {};
-                    };
-                    class TBD_LoadSMOKECh4 {
-                        displayName = "$STR_TBD_MORTARS_105mm_SMOKE_CHARGE_4";
-                        condition = QUOTE([ARR_2(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_4)))] call tbd_m119_m119_fnc_canLoad);
-                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_4)),0)] call FUNC(l119LoadRound));
-                        showDisabled = 0;
-                        exceptions[] = {};
-                    };
-                    class TBD_LoadSMOKECh5 {
-                        displayName = "$STR_TBD_MORTARS_105mm_SMOKE_CHARGE_5";
-                        condition = QUOTE([ARR_2(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_5)))] call tbd_m119_m119_fnc_canLoad);
-                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_5)),0)] call FUNC(l119LoadRound));
-                        showDisabled = 0;
-                        exceptions[] = {};
-                    };
-                    class TBD_LoadSMOKECh6 {
-                        displayName = "$STR_TBD_MORTARS_105mm_SMOKE_CHARGE_6";
-                        condition = QUOTE([ARR_2(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_6)))] call tbd_m119_m119_fnc_canLoad);
-                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_6)),0)] call FUNC(l119LoadRound));
-                        showDisabled = 0;
-                        exceptions[] = {};
-                    };
-                    class TBD_LoadSMOKECh7 {
-                        displayName = "$STR_TBD_MORTARS_105mm_SMOKE_CHARGE_7";
-                        condition = QUOTE([ARR_2(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_7)))] call tbd_m119_m119_fnc_canLoad);
-                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_smoke_charge_7)),0)] call FUNC(l119LoadRound));
-                        showDisabled = 0;
-                        exceptions[] = {};
-                    };
-                };
-                class TBD_LoadDPICMCh6 {
-                    displayName = "Illumination";
-                    class TBD_LoadDPICMCh1 {
-                        displayName = "Illum Charge 1";
-                        condition = QUOTE([ARR_2(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_dpicm_charge_1)))] call tbd_m119_m119_fnc_canLoad);
-                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_dpicm_charge_1)),0)] call FUNC(l119LoadRound));
-                        showDisabled = 0;
-                        exceptions[] = {};
-                    };
-                    class TBD_LoadDPICMCh2 {
-                        displayName = "Illum Charge 2";
-                        condition = QUOTE([ARR_2(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_dpicm_charge_2)))] call tbd_m119_m119_fnc_canLoad);
-                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_dpicm_charge_2)),0)] call FUNC(l119LoadRound));
-                        showDisabled = 0;
-                        exceptions[] = {};
-                    };
-                    class TBD_LoadDPICMCh3 {
-                        displayName = "Illum Charge 3";
-                        condition = QUOTE([ARR_2(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_dpicm_charge_3)))] call tbd_m119_m119_fnc_canLoad);
-                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_dpicm_charge_3)),0)] call FUNC(l119LoadRound));
-                        showDisabled = 0;
-                        exceptions[] = {};
-                    };
-                    class TBD_LoadDPICMCh4 {
-                        displayName = "Illum Charge 4";
-                        condition = QUOTE([ARR_2(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_dpicm_charge_4)))] call tbd_m119_m119_fnc_canLoad);
-                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_dpicm_charge_4)),0)] call FUNC(l119LoadRound));
-                        showDisabled = 0;
-                        exceptions[] = {};
-                    };
-                    class TBD_LoadDPICMCh5 {
-                        displayName = "Illum Charge 5";
-                        condition = QUOTE([ARR_2(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_dpicm_charge_5)))] call tbd_m119_m119_fnc_canLoad);
-                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_dpicm_charge_5)),0)] call FUNC(l119LoadRound));
-                        showDisabled = 0;
-                        exceptions[] = {};
-                    };
-                    class TBD_LoadDPICMCh6 {
-                        displayName = "Illum Charge 6";
-                        condition = QUOTE([ARR_2(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_dpicm_charge_6)))] call tbd_m119_m119_fnc_canLoad);
-                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_dpicm_charge_6)),0)] call FUNC(l119LoadRound));
-                        showDisabled = 0;
-                        exceptions[] = {};
-                    };
-                    class TBD_LoadDPICMCh7 {
-                        displayName = "Illum Charge 7";
-                        condition = QUOTE([ARR_2(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_dpicm_charge_7)))] call tbd_m119_m119_fnc_canLoad);
-                        statement = QUOTE([ARR_3(_target,QUOTE(QUOTE(tbd_mortars_105mm_round_dpicm_charge_7)),0)] call FUNC(l119LoadRound));
-                        showDisabled = 0;
-                        exceptions[] = {};
-                    };
-                };
+                condition = "false";
+            };
+            class TBD_Unload {
+                condition = "false";
+            };
+            class GVAR(loadShell) {
+                displayName = "Load Shell";
+                selection = "casing_spawn";
+                distance = 1.5;
+                showDisabled = 0;
+                priority = 5;
+                icon = "x\tbd_mortars\addons\main\data\load.paa";
+                condition = QUOTE([ARR_3(_target,_player,QQGVAR(105mm_shell_he))] call FUNC(l118CanLoad));
+                statement = QUOTE([ARR_2(_target,_player)] call FUNC(l118LoadShell));
+            };
+            class GVAR(loadCharge) : GVAR(loadShell) {
+                displayName = "Load Charge";
+                condition = QUOTE([ARR_3(_target,_player,QQGVAR(105mm_charge))] call FUNC(l118CanLoad));
+                statement = "";
+                CHARGE_ACTION(1,"Charge 1");
+                CHARGE_ACTION(2,"Charge 2");
+                CHARGE_ACTION(3,"Charge 3");
+                CHARGE_ACTION(4,"Charge 4");
+                CHARGE_ACTION(5,"Charge 4 1/2");
+                CHARGE_ACTION(6,"Charge 5");
+                CHARGE_ACTION(7,"Charge Super");
+            };
+            class GVAR(unload) : GVAR(loadShell) {
+                displayName = "$STR_TBD_M119_M119_UNLOAD";
+                icon = "x\tbd_mortars\addons\main\data\unload.paa";
+                condition = QUOTE(_target getVariable [ARR_2('tbd_m119_m119_breech',false)] && {_target magazinesTurret [0] isNotEqualTo [] || {_target getVariable [ARR_2(QQGVAR(l118Shell),'')] isNotEqualTo ''}});
+                statement = QUOTE([ARR_2(_target,_player)] call FUNC(l118Unload));
             };
         };
     };
