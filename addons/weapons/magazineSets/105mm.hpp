@@ -1,11 +1,11 @@
 #define CHARGE(VALUE) initSpeed = VALUE
-#define CHARGE_1 CHARGE(237)
-#define CHARGE_2 CHARGE(266)
-#define CHARGE_3 CHARGE(305)
-#define CHARGE_4 CHARGE(346)
-#define CHARGE_5 CHARGE(365)
-#define CHARGE_6 CHARGE(387)
-#define CHARGE_7 CHARGE(411)
+#define CHARGE_1 CHARGE(260)
+#define CHARGE_2 CHARGE(315)
+#define CHARGE_3 CHARGE(365)
+#define CHARGE_4 CHARGE(440)
+#define CHARGE_5 CHARGE(500)
+#define CHARGE_6 CHARGE(600)
+#define CHARGE_7 CHARGE(708)
 
 // HE
 class tbd_mortars_105mm_round_he_charge_mag_1 : 8Rnd_82mm_Mo_shells {
