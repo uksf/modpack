@@ -25,4 +25,4 @@ private _shellLoaded = _gun getVariable [QGVAR(l118Shell), ""] isNotEqualTo "";
 _gun getVariable ["tbd_m119_m119_breech", false]
 && {_gun magazinesTurret [0] isEqualTo []}
 && {_shellLoaded isEqualTo (_class isEqualTo QGVAR(105mm_charge))}
-&& {nearestObjects [_player, [_class], 3] isNotEqualTo []}
+&& {nearestObjects [_player, [_class], 3] findIf {typeOf _x isEqualTo _class} != -1}

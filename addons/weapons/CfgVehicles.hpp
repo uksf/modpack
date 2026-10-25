@@ -407,6 +407,13 @@ class CfgVehicles {
         GVAR(item) = "tbd_mortars_105mm_casing_charge_7";
     };
 
+#define SHELL_ACTION(KIND,NAME) class GVAR(DOUBLES(load,KIND)) { \
+    displayName = NAME; \
+    condition = QUOTE([ARR_3(_target,_player,QQGVAR(DOUBLES(105mm_shell,KIND)))] call FUNC(l118CanLoad)); \
+    statement = QUOTE([ARR_3(_target,_player,QQGVAR(DOUBLES(105mm_shell,KIND)))] call FUNC(l118LoadShell)); \
+    showDisabled = 0; \
+}
+
 #define CHARGE_ACTION(CHARGE,NAME) class GVAR(DOUBLES(charge,CHARGE)) { \
     displayName = NAME; \
     condition = "true"; \
@@ -425,33 +432,38 @@ class CfgVehicles {
             class TBD_Unload {
                 condition = "false";
             };
-            class GVAR(loadShell) {
-                displayName = "Load Shell";
+            class GVAR(breech) {
+                displayName = "Breech";
                 selection = "casing_spawn";
                 distance = 1.5;
                 showDisabled = 0;
                 priority = 5;
                 icon = "x\tbd_mortars\addons\main\data\load.paa";
-                condition = QUOTE([ARR_3(_target,_player,QQGVAR(105mm_shell_he))] call FUNC(l118CanLoad));
-                statement = QUOTE([ARR_2(_target,_player)] call FUNC(l118LoadShell));
-            };
-            class GVAR(loadCharge) : GVAR(loadShell) {
-                displayName = "Load Charge";
-                condition = QUOTE([ARR_3(_target,_player,QQGVAR(105mm_charge))] call FUNC(l118CanLoad));
+                condition = QUOTE(_target getVariable [ARR_2('tbd_m119_m119_breech',false)]);
                 statement = "";
-                CHARGE_ACTION(1,"Charge 1");
-                CHARGE_ACTION(2,"Charge 2");
-                CHARGE_ACTION(3,"Charge 3");
-                CHARGE_ACTION(4,"Charge 4");
-                CHARGE_ACTION(5,"Charge 4 1/2");
-                CHARGE_ACTION(6,"Charge 5");
-                CHARGE_ACTION(7,"Charge Super");
-            };
-            class GVAR(unload) : GVAR(loadShell) {
-                displayName = "$STR_TBD_M119_M119_UNLOAD";
-                icon = "x\tbd_mortars\addons\main\data\unload.paa";
-                condition = QUOTE(_target getVariable [ARR_2('tbd_m119_m119_breech',false)] && {_target magazinesTurret [0] isNotEqualTo [] || {_target getVariable [ARR_2(QQGVAR(l118Shell),'')] isNotEqualTo ''}});
-                statement = QUOTE([ARR_2(_target,_player)] call FUNC(l118Unload));
+                SHELL_ACTION(he,"Load HE Shell");
+                SHELL_ACTION(smoke,"Load Smoke Shell");
+                SHELL_ACTION(illum,"Load Illumination Shell");
+                class GVAR(loadCharge) {
+                    displayName = "Load Charge";
+                    showDisabled = 0;
+                    condition = QUOTE([ARR_3(_target,_player,QQGVAR(105mm_charge))] call FUNC(l118CanLoad));
+                    statement = "";
+                    CHARGE_ACTION(1,"Charge 1");
+                    CHARGE_ACTION(2,"Charge 2");
+                    CHARGE_ACTION(3,"Charge 3");
+                    CHARGE_ACTION(4,"Charge 4");
+                    CHARGE_ACTION(5,"Charge 4 1/2");
+                    CHARGE_ACTION(6,"Charge 5");
+                    CHARGE_ACTION(7,"Charge Super");
+                };
+                class GVAR(unload) {
+                    displayName = "$STR_TBD_M119_M119_UNLOAD";
+                    showDisabled = 0;
+                    icon = "x\tbd_mortars\addons\main\data\unload.paa";
+                    condition = QUOTE(_target magazinesTurret [0] isNotEqualTo [] || {_target getVariable [ARR_2(QQGVAR(l118Shell),'')] isNotEqualTo ''});
+                    statement = QUOTE([ARR_2(_target,_player)] call FUNC(l118Unload));
+                };
             };
         };
     };

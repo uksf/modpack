@@ -4,21 +4,22 @@
         Tim Beswick
 
     Description:
-        Loads the nearest L118 shell into the breech. Keeps the shell type and fuse time on the gun until a charge is loaded.
+        Loads the nearest L118 shell of the chosen type into the breech. Keeps the shell type and fuse time on the gun until a charge is loaded.
 
     Parameters:
         0: Gun <OBJECT>
         1: Player <OBJECT>
+        2: Shell class <STRING>
 
     Return value:
         Nothing
 
     Example:
-        [_gun, player] call uksf_weapons_fnc_l118LoadShell
+        [_gun, player, "uksf_weapons_105mm_shell_smoke"] call uksf_weapons_fnc_l118LoadShell
 */
-params ["_gun", "_player"];
+params ["_gun", "_player", "_class"];
 
-private _shell = nearestObjects [_player, [QGVAR(105mm_shell_he)], 3] param [0, objNull];
+private _shell = nearestObjects [_player, [_class], 3] select {typeOf _x isEqualTo _class} param [0, objNull];
 if (isNull _shell) exitWith {};
 
 private _config = configOf _shell;
