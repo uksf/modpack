@@ -346,7 +346,8 @@ class CfgVehicles {
     class GVAR(105mm_piece) : NATO_Box_Base {
         scope = 1;
         author = QUOTE(UKSF);
-        editorSubcategory = "EdSubcat_Ammo";
+        editorCategory = "EdCat_Supplies";
+        editorSubcategory = QEGVAR(common,resupply);
         ace_cargo_size = 0.5;
         ace_cargo_canLoad = 1;
         ace_dragging_canCarry = 1;
@@ -461,7 +462,7 @@ class CfgVehicles {
                     displayName = "$STR_TBD_M119_M119_UNLOAD";
                     showDisabled = 0;
                     icon = "x\tbd_mortars\addons\main\data\unload.paa";
-                    condition = QUOTE(_target magazinesTurret [0] isNotEqualTo [] || {_target getVariable [ARR_2(QQGVAR(l118Shell),'')] isNotEqualTo ''});
+                    condition = QUOTE((_target magazinesTurret [0] isNotEqualTo [] || {_target getVariable [ARR_2(QQGVAR(l118Shell),'')] isNotEqualTo ''}));
                     statement = QUOTE([ARR_2(_target,_player)] call FUNC(l118Unload));
                 };
             };

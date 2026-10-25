@@ -180,7 +180,7 @@ class GVAR(r8) : GVAR(rx) {
     hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\r8.paa) };
     class ACE_Cargo {
         class Cargo {
-            MACRO_ADDACECARGO(GVAR(g15),2);
+            MACRO_ADDACECARGO(GVAR(g15),4);
             MACRO_ADDACECARGO(GVAR(g18),2);
         };
     };
@@ -192,7 +192,7 @@ class GVAR(r9) : GVAR(rx) {
     hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\r9.paa) };
     class ACE_Cargo {
         class Cargo {
-            MACRO_ADDACECARGO(GVAR(g16),1);
+            MACRO_ADDACECARGO(GVAR(g16),3);
             MACRO_ADDACECARGO(GVAR(g17),1);
             MACRO_ADDACECARGO(GVAR(g18),2);
         };

@@ -53,10 +53,7 @@ class CfgPatches {
             "tbd_mortars_105mm_box_dpicm",
             "tbd_mortars_105mm_box_laser",
             "tbd_mortars_105mm_box_smoke",
-            "tbd_mortars_105mm_shell_he",
-            "tbd_mortars_105mm_shell_smoke",
-            "tbd_mortars_105mm_shell_dpicm",
-            "tbd_mortars_105mm_casing_charge_1",
+            "uksf_weapons",
             "greenmag_main"
         };
         author = QUOTE(UKSF);

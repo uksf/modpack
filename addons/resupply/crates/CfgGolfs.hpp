@@ -200,24 +200,31 @@ class GVAR(g15) : GVAR(gx) {
     displayName = "G15 (LGHE)";
     description = "Grab Box - Light Gun HE Shells";
     BOX_EXPLOSIVE;
-    maximumLoad = 1400;
-    class TransportMagazines {
-        MACRO_ADDMAGAZINE(tbd_mortars_105mm_shell_he,10);
-    };
+    ace_cargo_hasCargo = 1;
+    ace_cargo_space = 6;
     ace_dragging_ignoreWeight = 1;
+    class ACE_Cargo {
+        class Cargo {
+            MACRO_ADDACECARGO(EGVAR(weapons,105mm_shell_he),12);
+        };
+    };
 };
 class GVAR(g16) : GVAR(g15) {
     displayName = "G16 (LGSMK)";
     description = "Grab Box - Light Gun Smoke Shells";
-    class TransportMagazines {
-        MACRO_ADDMAGAZINE(tbd_mortars_105mm_shell_smoke,10);
+    class ACE_Cargo {
+        class Cargo {
+            MACRO_ADDACECARGO(EGVAR(weapons,105mm_shell_smoke),12);
+        };
     };
 };
 class GVAR(g17) : GVAR(g15) {
     displayName = "G17 (LGILLUM)";
     description = "Grab Box - Light Gun Illumination Shells";
-    class TransportMagazines {
-        MACRO_ADDMAGAZINE(tbd_mortars_105mm_shell_dpicm,10);
+    class ACE_Cargo {
+        class Cargo {
+            MACRO_ADDACECARGO(EGVAR(weapons,105mm_shell_illum),12);
+        };
     };
 };
 class VirtualReammoBox_small_F;
@@ -230,18 +237,22 @@ class GVAR(g18) : VirtualReammoBox_small_F {
     editorSubcategory = QEGVAR(common,golfs);
     displayName = "G18 (LGCH)";
     description = "Grab Box - Light Gun Charges";
-    maximumLoad = 1000;
     transportMaxWeapons = 0;
-    transportMaxMagazines = 10;
+    transportMaxMagazines = 0;
     transportMaxBackpacks = 0;
     ace_cargo_size = 0.5;
     ace_cargo_canLoad = 1;
     ace_dragging_canCarry = 1;
     ace_dragging_canDrag = 1;
     ace_dragging_ignoreWeight = 1;
-    class TransportMagazines {
-        MACRO_ADDMAGAZINE(tbd_mortars_105mm_casing_charge_7,10);
+    ace_cargo_hasCargo = 1;
+    ace_cargo_space = 12;
+    class ACE_Cargo {
+        class Cargo {
+            MACRO_ADDACECARGO(EGVAR(weapons,105mm_charge),24);
+        };
     };
+    class TransportMagazines {};
     class TransportWeapons {};
     class TransportItems {};
     class TransportBackpacks {};
