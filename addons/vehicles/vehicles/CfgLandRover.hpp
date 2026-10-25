@@ -251,7 +251,6 @@ class UK3CB_BAF_LandRover_WMIK_HMG_Base : UK3CB_BAF_LandRover_WMIK_Base {
             };
         };
     };
-    // TODO: Change this to similar system as ridgeback etc
     class TransportWeapons : TransportWeapons {
         delete _xx_UK3CB_BAF_Javelin_CLU;
         MACRO_ADDWEAPON(UK3CB_BAF_Javelin_Slung_Tube,2);
@@ -487,8 +486,9 @@ class GVAR(landrover_lightgun_green) : UK3CB_BAF_LandRover_Soft_FFR_Green_A {
     ace_cargo_space = 16;
     class ACE_Cargo {
         class Cargo {
-            MACRO_ADDACECARGO(tbd_mortars_105mm_box,25);
-            MACRO_ADDACECARGO(tbd_mortars_105mm_box_smoke,5);
+            MACRO_ADDACECARGO(EGVAR(resupply,g15),5);
+            MACRO_ADDACECARGO(EGVAR(resupply,g16),1);
+            MACRO_ADDACECARGO(EGVAR(resupply,g18),6);
         };
     };
 };
@@ -497,8 +497,9 @@ class GVAR(landrover_lightgun_greenblack) : UK3CB_BAF_LandRover_Soft_FFR_Green_B
     ace_cargo_space = 16;
     class ACE_Cargo {
         class Cargo {
-            MACRO_ADDACECARGO(tbd_mortars_105mm_box,25);
-            MACRO_ADDACECARGO(tbd_mortars_105mm_box_smoke,5);
+            MACRO_ADDACECARGO(EGVAR(resupply,g15),5);
+            MACRO_ADDACECARGO(EGVAR(resupply,g16),1);
+            MACRO_ADDACECARGO(EGVAR(resupply,g18),6);
         };
     };
 };
@@ -507,8 +508,9 @@ class GVAR(landrover_lightgun_sand) : UK3CB_BAF_LandRover_Soft_FFR_Sand_A {
     ace_cargo_space = 16;
     class ACE_Cargo {
         class Cargo {
-            MACRO_ADDACECARGO(tbd_mortars_105mm_box,25);
-            MACRO_ADDACECARGO(tbd_mortars_105mm_box_smoke,5);
+            MACRO_ADDACECARGO(EGVAR(resupply,g15),5);
+            MACRO_ADDACECARGO(EGVAR(resupply,g16),1);
+            MACRO_ADDACECARGO(EGVAR(resupply,g18),6);
         };
     };
 };

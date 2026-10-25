@@ -180,7 +180,8 @@ class GVAR(r8) : GVAR(rx) {
     hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\r8.paa) };
     class ACE_Cargo {
         class Cargo {
-            MACRO_ADDACECARGO(tbd_mortars_105mm_box,10);
+            MACRO_ADDACECARGO(GVAR(g15),2);
+            MACRO_ADDACECARGO(GVAR(g18),2);
         };
     };
 };
@@ -191,15 +192,15 @@ class GVAR(r9) : GVAR(rx) {
     hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\r9.paa) };
     class ACE_Cargo {
         class Cargo {
-            MACRO_ADDACECARGO(tbd_mortars_105mm_box_smoke,7);
-            MACRO_ADDACECARGO(tbd_mortars_105mm_box_dpicm,3);
+            MACRO_ADDACECARGO(GVAR(g16),1);
+            MACRO_ADDACECARGO(GVAR(g17),1);
+            MACRO_ADDACECARGO(GVAR(g18),2);
         };
     };
 };
 class GVAR(r10) : GVAR(rx) {
     displayName = "R10 (GM-B)";
     description = "Crate - Bullets";
-    // PREVIEW(r9);
     hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\r10.paa) };
     class TransportItems {
         MACRO_ADDITEM(greenmag_ammo_556x45_basic_30Rnd,60);
@@ -234,7 +235,7 @@ class GVAR(rt) : GVAR(rx) {
 class GVAR(rb) : GVAR(rx) {
     displayName = "RB (ReBro)";
     description = "Crate - Re-broadcasting Station";
-    PREVIEW(rx);  // TODO
+    PREVIEW(rx);
     hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\rb.paa) };
     class ACE_Cargo {
         class Cargo {

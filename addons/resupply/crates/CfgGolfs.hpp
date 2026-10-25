@@ -153,7 +153,7 @@ class GVAR(g10) : GVAR(gx) {
     PREVIEW(g10);
     hiddenSelectionsTextures[] = { QPATHTOF(data\golf\g10.paa), "A3\Weapons_F\Ammoboxes\data\AmmoBox_CO.paa"};
     BOX_EXPLOSIVE;
-    maximumLoad = 1400; // Increase space to fix 15 rounds being too many for box size
+    maximumLoad = 1400;
     class TransportMagazines {
         MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_81mm_Mo_Shells,15);
     };
@@ -165,7 +165,7 @@ class GVAR(g11) : GVAR(gx) {
     PREVIEW(g11);
     hiddenSelectionsTextures[] = { QPATHTOF(data\golf\g11.paa), "A3\Weapons_F\Ammoboxes\data\AmmoBox_CO.paa"};
     BOX_EXPLOSIVE;
-    maximumLoad = 1400; // Increase space to fix 15 rounds being too many for box size
+    maximumLoad = 1400;
     class TransportMagazines {
         MACRO_ADDMAGAZINE(UK3CB_BAF_1Rnd_81mm_Mo_Smoke_White,15);
     };
@@ -195,6 +195,56 @@ class GVAR(g13) : GVAR(gx) {
         MACRO_ADDMAGAZINE(UK3CB_BAF_762_L42A1_20Rnd,10);
         MACRO_ADDMAGAZINE(CUP_5Rnd_127x99_as50_M,5);
     };
+};
+class GVAR(g15) : GVAR(gx) {
+    displayName = "G15 (LGHE)";
+    description = "Grab Box - Light Gun HE Shells";
+    BOX_EXPLOSIVE;
+    maximumLoad = 1400;
+    class TransportMagazines {
+        MACRO_ADDMAGAZINE(tbd_mortars_105mm_shell_he,10);
+    };
+    ace_dragging_ignoreWeight = 1;
+};
+class GVAR(g16) : GVAR(g15) {
+    displayName = "G16 (LGSMK)";
+    description = "Grab Box - Light Gun Smoke Shells";
+    class TransportMagazines {
+        MACRO_ADDMAGAZINE(tbd_mortars_105mm_shell_smoke,10);
+    };
+};
+class GVAR(g17) : GVAR(g15) {
+    displayName = "G17 (LGILLUM)";
+    description = "Grab Box - Light Gun Illumination Shells";
+    class TransportMagazines {
+        MACRO_ADDMAGAZINE(tbd_mortars_105mm_shell_dpicm,10);
+    };
+};
+class VirtualReammoBox_small_F;
+class GVAR(g18) : VirtualReammoBox_small_F {
+    author = "UKSF";
+    faction = "CUP_B_GB";
+    scope = 2;
+    scopeCurator = 2;
+    editorCategory = "EdCat_Supplies";
+    editorSubcategory = QEGVAR(common,golfs);
+    displayName = "G18 (LGCH)";
+    description = "Grab Box - Light Gun Charges";
+    maximumLoad = 1000;
+    transportMaxWeapons = 0;
+    transportMaxMagazines = 10;
+    transportMaxBackpacks = 0;
+    ace_cargo_size = 0.5;
+    ace_cargo_canLoad = 1;
+    ace_dragging_canCarry = 1;
+    ace_dragging_canDrag = 1;
+    ace_dragging_ignoreWeight = 1;
+    class TransportMagazines {
+        MACRO_ADDMAGAZINE(tbd_mortars_105mm_casing_charge_7,10);
+    };
+    class TransportWeapons {};
+    class TransportItems {};
+    class TransportBackpacks {};
 };
 
 class ACE_medicalSupplyCrate;
