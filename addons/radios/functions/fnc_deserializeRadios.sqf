@@ -27,9 +27,10 @@
 
     if (_radioData#0 isEqualType []) then {
         private _pttAssignments = [];
+        private _currentPtt = call acre_api_fnc_getMultiPushToTalkAssignment;
+        private _unmatchedPttOffset = 1e6;
 
         {
-            if (count _radioData == 0) exitWith {};
             private _type = [_x] call acre_api_fnc_getBaseRadio;
             private _index = -1;
             {
@@ -44,6 +45,10 @@
                 [_x, _volume] call acre_api_fnc_setRadioVolume;
                 [_x, _ear] call acre_api_fnc_setRadioSpatial;
                 _pttAssignments pushBack [_pttIndex, _x];
+            } else {
+                private _currentIndex = _currentPtt find _x;
+                if (_currentIndex == -1) then {_currentIndex = count _currentPtt};
+                _pttAssignments pushBack [_unmatchedPttOffset + _currentIndex, _x];
             };
         } forEach _radios;
 
@@ -51,6 +56,6 @@
         _pttAssignments = _pttAssignments apply {_x#1};
         [_pttAssignments] call acre_api_fnc_setMultiPushToTalkAssignment;
     } else {
-        {[_x, _radioData#_forEachIndex] call acre_api_fnc_setRadioChannel;} forEach _radios; // Backwards compatibility for old format
+        {[_x, _radioData#_forEachIndex] call acre_api_fnc_setRadioChannel;} forEach _radios;
     };
 }, _this, 15] call CBA_fnc_waitUntilAndExecute;
