@@ -26,6 +26,8 @@ uiNamespace setVariable [QGVAR(defaultLoadouts), _defaultLoadouts];
 ["ace_arsenal_displayOpened", {
     params ["_display"];
 
+    (_display displayCtrl IDC_buttonRadioPresets) ctrlShow (!is3DEN && {ace_arsenal_center isEqualTo acre_player});
+
     private _buttonMainOpGear = _display displayCtrl IDC_buttonMainOpGear;
     if (isMultiplayer) exitWith {
         _buttonMainOpGear ctrlEnable false;
@@ -38,7 +40,7 @@ uiNamespace setVariable [QGVAR(defaultLoadouts), _defaultLoadouts];
         GVAR(useMainOpGear) = true;
         [_display] call FUNC(switchMainOpGear);
     } else {
-        GVAR(useMainOpGear) = !GVAR(useMainOpGear); // switchMainOpGear toggles state, so flip beforehand
+        GVAR(useMainOpGear) = !GVAR(useMainOpGear);
         [{
             [_this] call FUNC(switchMainOpGear);
         }, _display] call CBA_fnc_execNextFrame;

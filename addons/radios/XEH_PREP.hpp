@@ -1,4 +1,5 @@
 PREP(addVehicleRebroActions);
+PREP(applyPreset);
 PREP(assembleRebroStation);
 PREP(deinitialiseRebroStation);
 PREP(deserializeRadios);
@@ -9,6 +10,8 @@ PREP(handleCustomSignal);
 PREP(initialiseRebroStation);
 PREP(initialiseVehicleRacks);
 PREP(isRackInitialisationComplete);
+PREP(openPresets);
+PREP(presetsAction);
 PREP(sanitiseLoadout);
 PREP(serializeRadios);
 PREP(setChannelNames);

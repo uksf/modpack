@@ -24,4 +24,5 @@ class CfgPatches {
 
 #include "CfgChannels.hpp"
 #include "CfgEventHandlers.hpp"
+#include "CfgRadioPresets.hpp"
 #include "CfgVehicles.hpp"

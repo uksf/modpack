@@ -38,6 +38,13 @@ class ace_arsenal_display {
                     text = "Turn On Main Op Gear";
                     onButtonClick = QUOTE([ctrlparent (_this select 0)] call FUNC(switchMainOpGear));
                 };
+                class buttonRadioPresets: buttonLoadouts {
+                    idc = IDC_buttonRadioPresets;
+                    y = QUOTE(0);
+                    text = "Radio Presets";
+                    tooltip = "Save, load and manage radio channel, ear and PTT presets";
+                    onButtonClick = QUOTE([ctrlparent (_this select 0)] call EFUNC(radios,openPresets));
+                };
             };
         };
     };
