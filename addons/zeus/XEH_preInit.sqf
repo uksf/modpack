@@ -10,7 +10,7 @@ GVAR(loadout) = "";
 GVAR(EHIDArray) = [];
 GVAR(trackedProjectiles) = [];
 GVAR(ammoTypeCache) = createHashMap;
-GVAR(ammoNameCache) = createHashMap;
+GVAR(projectileNameCache) = createHashMap;
 GVAR(debugProviders) = createHashMap;
 GVAR(debugAlwaysActiveProviders) = [];
 GVAR(debugSortedActiveKeys) = [];
@@ -87,12 +87,12 @@ if (isServer) then {
 };
 
 ["All", "Fired", {
-    params ["_unit", "_weapon", "", "_magazine", "_ammo", "", "_projectile"];
+    params ["_unit", "_weapon", "", "", "_ammo", "_magazine", "_projectile"];
     TRACE_3("Fired EH",_unit,_ammo,_projectile);
 
     if !(GVAR(debugActiveToggles) getOrDefault [QGVAR(projectiles), false]) exitWith {};
 
-    private _isHeavy = [_ammo, _weapon, _magazine] call FUNC(isHeavyProjectile);
+    private _isHeavy = [_ammo] call FUNC(isHeavyProjectile);
     TRACE_2("ammo classification",_isHeavy,_ammo);
     if !(_isHeavy) exitWith {};
 
@@ -108,7 +108,7 @@ if (isServer) then {
             case independent: { [0, 0.5, 0, 0.9] };
             default           { [0.4, 0, 0.5, 0.9] };
         };
-        [_projectile, _ammo, _sideColor] call FUNC(trackProjectile);
+        [_projectile, _ammo, _sideColor, _magazine, _weapon] call FUNC(trackProjectile);
     } else {
         TRACE_2("projectile still null after nearestObject",_unit,_ammo);
     };
@@ -143,7 +143,6 @@ if (hasInterface) then {
             };
         } forEach keys _dataMap;
 
-        // Check provider conditions and auto-disable any that are no longer valid
         private _invalidKeys = [];
         {
             private _provider = GVAR(debugProviders) getOrDefault [_x, createHashMap];
@@ -166,7 +165,6 @@ if (hasInterface) then {
 
         call _fnc_onStart;
 
-        // Report immediately so the server has data without waiting for the first PFH tick
         private _initialData = call _fnc_clientGetter;
         if (_initialData isNotEqualTo []) then {
             [QGVAR(debugClientReport), [_sourceKey, player, _initialData]] call CBA_fnc_serverEvent;
@@ -203,7 +201,6 @@ if (hasInterface) then {
         };
     }] call CBA_fnc_addEventHandler;
 
-    // Request active client sources from server on join
     [QGVAR(debugActiveClientSourcesResponse), {
         params ["_activeSources"];
         {

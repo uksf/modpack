@@ -26,9 +26,8 @@ private _fnc_draw3d = {
 
     GVAR(trackedProjectiles) = GVAR(trackedProjectiles) select {!isNull (_x#0)};
     {
-        _x params ["_projectile", "_ammo", "_sideColor"];
+        _x params ["_projectile", "_name", "_sideColor"];
         private _position = ASLToAGL getPosASLVisual _projectile;
-        private _name = GVAR(ammoNameCache) getOrDefault [_ammo, _ammo];
         drawIcon3D ["\a3\ui_f\data\map\markers\military\dot_ca.paa", _sideColor, _position, 0.3, 0.3, 0, _name, 1, 0.025, "TahomaB", "center", true];
     } forEach GVAR(trackedProjectiles);
 };
@@ -37,8 +36,7 @@ private _fnc_drawMap = {
     params ["_data", "_map"];
 
     {
-        _x params ["_projectile", "_ammo", "_sideColor"];
-        private _name = GVAR(ammoNameCache) getOrDefault [_ammo, _ammo];
+        _x params ["_projectile", "_name", "_sideColor"];
         _map drawIcon ["\a3\ui_f\data\map\markers\military\dot_ca.paa", _sideColor, _projectile, 16, 16, 0, _name, 1, 0.04, "TahomaB", "right"];
     } forEach GVAR(trackedProjectiles);
 };
