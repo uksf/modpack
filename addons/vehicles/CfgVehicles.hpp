@@ -138,6 +138,7 @@ class CfgVehicles {
 #include "vehicles\CfgPanther.hpp"
 #include "vehicles\CfgRhicc.hpp"
 #include "vehicles\CfgRidgeback.hpp"
+#include "vehicles\CfgSpotlight.hpp"
 #include "vehicles\CfgTug.hpp"
 #include "vehicles\CfgWarrior.hpp"
 #include "vehicles\CfgWolfhound.hpp"

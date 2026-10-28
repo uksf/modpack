@@ -1,13 +1,17 @@
 PREP(3cb_reloadTurret);
+PREP(addSpotlightActions);
 PREP(addSwapDriverActions);
 PREP(canSwapDriver);
 PREP(concealCover);
 PREP(deployCover);
 PREP(deployCoverMedical);
+PREP(initMarkingLaser);
 PREP(handleWPCamera);
 PREP(initWPCamera);
 PREP(isPilotCameraDriver);
 PREP(reloadTurret);
+PREP(setSpotlight);
+PREP(spotlightTurrets);
 PREP(swapDriver);
 PREP(swapDriverLocal);
 PREP(updateWPCamera);
