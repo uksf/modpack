@@ -2,14 +2,15 @@
   "format": 1,
   "pbo": "RHICC.pbo",
   "pristineSha256": "45791e3915fdc577191c9d970592e66d80afc6892ae6faa95e3bc627be2dc88d",
-  "description": "The M240 turret bones name parents swing_2 and swing_3, which the skeleton does not have. Arma logs 'Invalid parent bone' and already treats them as root bones; an empty parent says so explicitly.",
+  "description": "The M240 turret bones name parents swing_2 and swing_3, which the skeleton does not have. Arma logs 'Invalid parent bone' and already treats them as root bones; an empty parent says so explicitly. The left M134's muzzle_3 shares a memory vertex with the wlight_full bone, which collapses it to the model origin, so the gun fired from the middle of the boat; it gets its own vertex at the authored spot, bound like chamber_3.",
   "assets": [
     {
       "path": "rhicc\\addons\\rhicc.p3d",
       "sha256": "12b63320a2fedf8a28e394af51697c8ec4e59adbb530bcca87cd58d1060d3dd3",
       "ops": [
         { "op": "set-bone-parent", "bone": "otocvez_2", "from": "swing_2", "to": "" },
-        { "op": "set-bone-parent", "bone": "otocvez_3", "from": "swing_3", "to": "" }
+        { "op": "set-bone-parent", "bone": "otocvez_3", "from": "swing_3", "to": "" },
+        { "op": "split-memory-point", "name": "muzzle_3", "position": [0.860060871, 0.0414807796, -2.22018695], "boneFrom": "chamber_3" }
       ]
     }
   ]
