@@ -5,7 +5,7 @@
 
     Description:
         Closes the launcher or app shown in the cTab Android dialog.
-        Calls the open app's close code, then deletes its content group unless the display is unloading.
+        Removes the app's map handlers, calls its close code, then deletes its content group unless the display is unloading.
 
     Parameter(s):
         0: cTab display <DISPLAY>
@@ -18,6 +18,12 @@
         [_display] call uksf_ctab_fnc_closeContent
 */
 params ["_display", ["_unloading", false]];
+
+{
+    _x params ["_map", "_event", "_handler"];
+    _map ctrlRemoveEventHandler [_event, _handler];
+} forEach GVAR(mapHandlers);
+GVAR(mapHandlers) = [];
 
 if (GVAR(content) isEqualTo []) exitWith {};
 

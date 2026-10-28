@@ -12,6 +12,7 @@
 #define ANDROID_CONTENT_Y 773
 #define ANDROID_CONTENT_W 1134
 #define ANDROID_CONTENT_H 564
+#define ANDROID_PANEL_W 476
 
 class cTab_RscControlsGroup;
 class cTab_android_btnBack;
@@ -25,6 +26,11 @@ class cTab_Android_dlg {
             w = ANDROID_W(ANDROID_CONTENT_W);
             h = ANDROID_H(ANDROID_CONTENT_H);
             class controls {};
+        };
+        class GVAR(panel): GVAR(apps) {
+            idc = IDC_APPS_PANEL;
+            x = ANDROID_X(ANDROID_CONTENT_X + ANDROID_CONTENT_W - ANDROID_PANEL_W);
+            w = ANDROID_W(ANDROID_PANEL_W);
         };
         class GVAR(btnApps): cTab_android_btnBack {
             idc = IDC_APPS_BUTTON;

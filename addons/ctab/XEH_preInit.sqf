@@ -6,5 +6,38 @@ ADDON = false;
 
 GVAR(apps) = [];
 GVAR(content) = [];
+GVAR(mapHandlers) = [];
+GVAR(overlays) = [];
+GVAR(lastMode) = "";
+
+GVAR(routeWaypoints) = [];
+GVAR(routeLegs) = [];
+GVAR(routeRoads) = false;
+
+GVAR(elevationObserver) = [];
+GVAR(elevationMode) = "visible";
+GVAR(elevationEye) = 2;
+GVAR(elevationRadius) = 1000;
+GVAR(elevationCells) = [];
+GVAR(elevationPending) = [];
+GVAR(elevationCellSize) = 0;
+GVAR(elevationGround) = 0;
+GVAR(elevationTotal) = 0;
+GVAR(elevationJob) = -1;
+
+GVAR(reportType) = [];
+
+GVAR(jumpZone) = [];
+GVAR(jumpPlan) = [];
+GVAR(jumpMode) = "HALO";
+GVAR(jumpRelease) = 4000;
+GVAR(jumpOpening) = JUMP_HALO_OPENING;
+GVAR(jumpHeading) = -1;
+
+
+GVAR(friendlyGroups) = [];
+
+GVAR(drones) = [];
+GVAR(dronePoint) = [];
 
 ADDON = true;

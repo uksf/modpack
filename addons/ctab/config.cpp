@@ -9,7 +9,9 @@ class CfgPatches {
         requiredAddons[] = {
             "uksf_common",
             "ctab_core",
-            "cTab"
+            "ctab_messaging",
+            "cTab",
+            "ace_weather"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
@@ -19,4 +21,5 @@ class CfgPatches {
 };
 
 #include "CfgEventHandlers.hpp"
+#include "CfgUI.hpp"
 #include "CfgAndroid.hpp"

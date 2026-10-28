@@ -22,21 +22,23 @@ params ["_display", "_displayName", "_mode"];
 
 if (_displayName != ANDROID_DIALOG) exitWith {};
 
-private _container = _display displayCtrl IDC_APPS_GROUP;
-if (isNull _container) exitWith {};
+private _full = _display displayCtrl IDC_APPS_GROUP;
+private _panel = _display displayCtrl IDC_APPS_PANEL;
+if (isNull _full) exitWith {};
 
 if (isNil {_display getVariable QGVAR(unloadHandler)}) then {
     _display setVariable [QGVAR(unloadHandler), _display displayAddEventHandler ["Unload", {call FUNC(onDialogUnload)}]];
 };
 
 [_display] call FUNC(closeContent);
+_full ctrlShow false;
+_panel ctrlShow false;
 
-if (_mode == MODE_LAUNCHER) then {
-    [_display, _container] call FUNC(showLauncher);
+if (_mode == MODE_LAUNCHER) exitWith {
+    _full ctrlShow true;
+    [_display, _full] call FUNC(showLauncher);
 };
 
 if (_mode find MODE_APP_PREFIX == 0) then {
-    [_display, _container, _mode select [count MODE_APP_PREFIX]] call FUNC(openApp);
+    [_display, _mode select [count MODE_APP_PREFIX]] call FUNC(openApp);
 };
-
-_container ctrlShow (_mode find MODE_PREFIX == 0);
