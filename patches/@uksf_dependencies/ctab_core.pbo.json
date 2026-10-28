@@ -1,0 +1,29 @@
+{
+  "format": 1,
+  "pbo": "ctab_core.pbo",
+  "pristineSha256": "5715fce78b61da5d39c039c353408bf1d89e93267373f609bb653e5067f84a1a",
+  "description": "cTab hardcodes its Android pages in cTab_fnc_updateInterface and raises no event when the page changes. This shows no cTab page in UKSF_ modes and raises uksf_ctab_modeChanged after every page change, so the uksf_ctab addon can show its app launcher and apps. The compiled .sqfc is removed because Arma loads it in place of the edited .sqf.",
+  "assets": [
+    {
+      "path": "z\\ctab\\addons\\core\\functions\\fnc_updateInterface.sqf",
+      "sha256": "9265028a9d99f6ba89a0c017598450b15ba6134ea021e9d6c19323b00d0ecb5b",
+      "ops": [
+        {
+          "op": "text-replace",
+          "find": "if (_mode == \"INTELFEED\") exitWith {",
+          "replace": "if (_mode find \"UKSF_\" == 0) exitWith {_displayItemsToShow = [];}; if (_mode == \"INTELFEED\") exitWith {"
+        },
+        {
+          "op": "text-replace",
+          "find": "{(_display displayCtrl _x) ctrlShow (_x in _displayItemsToShow)} count _displayItems;",
+          "replace": "{(_display displayCtrl _x) ctrlShow (_x in _displayItemsToShow)} count _displayItems; [\"uksf_ctab_modeChanged\", [_display, _displayName, _mode]] call CBA_fnc_localEvent;"
+        }
+      ]
+    },
+    {
+      "path": "z\\ctab\\addons\\core\\functions\\fnc_updateInterface.sqfc",
+      "sha256": "8e3508a2fbc1c87d1498911791dbdd7a68bb4f3be676c12cd03049025f059e93",
+      "remove": true
+    }
+  ]
+}
