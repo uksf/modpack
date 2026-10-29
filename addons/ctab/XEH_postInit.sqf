@@ -15,4 +15,9 @@ if (!hasInterface) exitWith {};
 ["friendly", "Friendly", FUNC(friendlyOpen)] call FUNC(registerApp);
 ["drones", "Drones", FUNC(droneOpen), {}, true] call FUNC(registerApp);
 
+if (isClass (configFile >> "CfgPatches" >> "acre_sys_mpu5")) then {
+    ["mpu5", "MPU-5", FUNC(mpu5Open)] call FUNC(registerApp);
+    ["acre_sys_mpu5_openGui", FUNC(mpu5OpenGui)] call CBA_fnc_addEventHandler;
+};
+
 GVAR(overlays) append [FUNC(routeDraw), FUNC(elevationDraw), FUNC(jumpDraw)];

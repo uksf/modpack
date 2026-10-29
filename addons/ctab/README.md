@@ -13,6 +13,9 @@ The addon registers these apps:
 - Weather: time, sunrise and sunset, moon, cloud, fog, rain, wind, temperature, pressure, and humidity from ACE Weather.
 - Friendly: groups that cTab shows on BFT, with grid, range, bearing, and each member's transport and state.
 - Drones: friendly UAVs in cTab's UAV list. Observe a map point, escort the requester, hold, or return. The task runs where the drone is local.
+- MPU-5: sets the active talk group, the monitored talk groups, and the power of a carried MPU-5, and shows its direct links and reachable mesh nodes. Opening the MPU-5 from ACRE opens this app. The app registers only when the UKSF ACRE fork provides `acre_sys_mpu5`.
+
+The `patches/acre_mpu5` config makes the MPU-5 a cTab Android device. It is skipped when `acre_sys_mpu5` is missing.
 
 Route, Elevation, HAHO / HALO, and Drones show a side panel over the BFT map. The other apps fill the screen. The dialog reopens on the last app.
 

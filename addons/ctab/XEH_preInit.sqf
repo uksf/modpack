@@ -43,4 +43,6 @@ GVAR(friendlyGroups) = [];
 GVAR(drones) = [];
 GVAR(dronePoint) = [];
 
+GVAR(mpu5Radio) = "";
+
 ADDON = true;
