@@ -11,6 +11,7 @@ PREP(drawOverlays);
 PREP(droneGroup);
 PREP(droneMove);
 PREP(droneOpen);
+PREP(droneOwnerLeft);
 PREP(droneRefresh);
 PREP(droneRoute);
 PREP(droneSend);

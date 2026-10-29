@@ -8,6 +8,7 @@
         An aircraft circles its task point. A ground drone drives to it and stops.
         Observe goes to the point. Escort follows the requester, checked every few seconds and moved only when the requester has moved far enough. Hold stays at the current position. Return goes to where the drone took its first task.
         When the crew group is not local, or stops being local during an escort, the task goes back to the server, which sends it to the new owner.
+        When the escort requester dies or disconnects, the task becomes Observe at the last escort point.
 
     Parameter(s):
         0: Drone <OBJECT>
@@ -30,6 +31,11 @@ if (!local _group) exitWith {
 _drone setVariable [QGVAR(droneEscort), -1];
 
 (_drone getVariable [QGVAR(droneTask), []]) params [["_task", ""], ["_point", []], ["_requester", objNull]];
+if (_task == "escort" && {!alive _requester}) then {
+    _task = "observe";
+    _point = getPosASL _drone;
+    _drone setVariable [QGVAR(droneTask), [_task, _point, objNull], true];
+};
 private _target = switch (_task) do {
     case "observe": {_point};
     case "escort": {getPosASL _requester};
@@ -42,8 +48,12 @@ if (_task == "escort") then {
     _drone setVariable [QGVAR(droneEscort), [{
         params ["_args", "_handle"];
         _args params ["_drone", "_requester", "_target"];
-        if (!alive _drone || {!alive _requester} || {(_drone getVariable [QGVAR(droneTask), []]) param [0, ""] != "escort"}) exitWith {
+        if (!alive _drone || {(_drone getVariable [QGVAR(droneTask), []]) param [0, ""] != "escort"}) exitWith {
             [_handle] call CBA_fnc_removePerFrameHandler;
+        };
+        if (!alive _requester) exitWith {
+            [_handle] call CBA_fnc_removePerFrameHandler;
+            _drone setVariable [QGVAR(droneTask), ["observe", _target, objNull], true];
         };
         if (!local (_drone call FUNC(droneGroup))) exitWith {
             [_handle] call CBA_fnc_removePerFrameHandler;

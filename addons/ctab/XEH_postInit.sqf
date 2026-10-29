@@ -2,7 +2,9 @@
 
 [QGVAR(droneTask), FUNC(droneTask)] call CBA_fnc_addEventHandler;
 if (isServer) then {
+    GVAR(escorts) = [];
     [QGVAR(droneRoute), FUNC(droneRoute)] call CBA_fnc_addEventHandler;
+    addMissionEventHandler ["PlayerDisconnected", {_this call FUNC(droneOwnerLeft)}];
 };
 
 if (!hasInterface) exitWith {};
