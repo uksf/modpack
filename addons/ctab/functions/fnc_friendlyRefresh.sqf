@@ -5,7 +5,7 @@
 
     Description:
         Lists the friendly groups in the Friendly app, nearest first.
-        A group is listed when it is on one of the player's cTab sides and one of its living members carries a cTab tablet or Android, the same rule cTab uses for its group markers.
+        Lists the groups cTab shows as group markers on BFT, from cTab's own list.
 
     Parameter(s):
         None
@@ -18,10 +18,7 @@
 */
 if (isNull APP_CTRL(friendlyList)) exitWith {};
 
-private _sides = call cTab_fnc_getPlayerSides;
-private _groups = allGroups select {
-    side _x in _sides && {units _x findIf {alive _x && {[_x, ctab_core_leaderDevices] call cTab_fnc_checkGear}} != -1}
-};
+private _groups = (missionNamespace getVariable ["cTabBFTgroups", []]) apply {group (_x select 0)};
 _groups = [_groups, [], {cTab_player distance2D leader _x}] call BIS_fnc_sortBy;
 GVAR(friendlyGroups) = _groups;
 

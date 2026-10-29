@@ -7,7 +7,7 @@ The launcher needs the `ctab_core.pbo` patch in `patches/@uksf_dependencies/ctab
 The addon registers these apps:
 
 - Route: click the map to add waypoints. Legs are straight or follow roads through `calculatePath`. Shows the length and the travel time on foot and by vehicle.
-- Elevation: click the map to place an observer. Shows terrain visibility or relative height over a 40 by 40 grid. Buildings and other objects are ignored.
+- Elevation: click the map to place an observer. Shows terrain visibility or relative height over a 50 by 50 grid, drawn only while the app is open. Buildings and other objects are ignored.
 - Reports: TIC, TIC CLEAR, EAGLE DOWN, BDA, SALUTE, and FRAGO forms, sent through cTab messaging to chosen recipients. Grid fields are attached as map positions.
 - HAHO / HALO: click the map to set the drop zone. Calculates the release point from the wind, using 67 m/s freefall, 3 m/s canopy sink, and 4.4 m/s canopy glide measured in Arma.
 - Weather: time, sunrise and sunset, moon, cloud, fog, rain, wind, temperature, pressure, and humidity from ACE Weather.

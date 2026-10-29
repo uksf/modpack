@@ -8,6 +8,7 @@ GVAR(apps) = [];
 GVAR(content) = [];
 GVAR(mapHandlers) = [];
 GVAR(overlays) = [];
+GVAR(currentApp) = "";
 GVAR(lastMode) = "";
 
 GVAR(routeWaypoints) = [];
@@ -20,9 +21,11 @@ GVAR(elevationEye) = 2;
 GVAR(elevationRadius) = 1000;
 GVAR(elevationCells) = [];
 GVAR(elevationPending) = [];
-GVAR(elevationCellSize) = 0;
+GVAR(elevationCellHalf) = 0;
 GVAR(elevationGround) = 0;
 GVAR(elevationTotal) = 0;
+GVAR(elevationVisible) = 0;
+GVAR(elevationHighest) = 0;
 GVAR(elevationJob) = -1;
 
 GVAR(reportType) = [];

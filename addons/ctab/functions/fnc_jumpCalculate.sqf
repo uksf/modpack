@@ -59,7 +59,7 @@ private _lines = [
     format ["Open: %1 m above the drop zone", round GVAR(jumpOpening)],
     format ["Free fall: %1, canopy: %2", _fallTime call FUNC(formatDuration), _canopyTime call FUNC(formatDuration)],
     format ["Canopy glide in still air: %1", _glide call FUNC(formatDistance)],
-    format ["Wind: %1 m/s from %2", _windSpeed toFixed 1, round ((((-(_windVector select 0)) atan2 (-(_windVector select 1))) + 360) mod 360)]
+    call FUNC(formatWind)
 ];
 if (_release >= JUMP_OXYGEN_ALTITUDE) then {
     _lines pushBack format ["<t color='#ff8000'>Oxygen required from %1 m ASL</t>", JUMP_OXYGEN_ALTITUDE];

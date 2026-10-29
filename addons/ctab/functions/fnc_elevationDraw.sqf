@@ -4,7 +4,7 @@
         Tim Beswick
 
     Description:
-        Draws the Elevation map on a cTab map.
+        Draws the Elevation map on a cTab map while the Elevation app is open.
         In visible mode, ground the observer can see is green. In height mode, ground above the observer is red and ground below is blue, stronger with the difference.
 
     Parameter(s):
@@ -18,21 +18,19 @@
 */
 params ["_map"];
 
-if (GVAR(elevationObserver) isEqualTo []) exitWith {};
+if (GVAR(currentApp) != "elevation" || {GVAR(elevationObserver) isEqualTo []}) exitWith {};
 
-private _half = GVAR(elevationCellSize) / 2;
+private _half = GVAR(elevationCellHalf);
 if (GVAR(elevationMode) == "visible") then {
     {
         _x params ["_centre", "_visible"];
         if (_visible) then {
-            _map drawRectangle [_centre, _half, _half, 0, [0, 1, 0, 0.35], FILL_SOLID];
+            _map drawRectangle [_centre, _half, _half, 0, COLOUR_VISIBLE, FILL_SOLID];
         };
     } forEach GVAR(elevationCells);
 } else {
     {
-        _x params ["_centre", "", "_difference"];
-        private _strength = 0.6 min (abs _difference / ELEVATION_FULL_COLOUR_HEIGHT);
-        private _colour = [[0, 0.3, 1, _strength], [1, 0, 0, _strength]] select (_difference > 0);
+        _x params ["_centre", "", "_colour"];
         _map drawRectangle [_centre, _half, _half, 0, _colour, FILL_SOLID];
     } forEach GVAR(elevationCells);
 };

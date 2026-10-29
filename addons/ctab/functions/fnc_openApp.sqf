@@ -39,16 +39,6 @@ if (_usesMap) then {
 };
 _container ctrlShow true;
 
-private _group = _display ctrlCreate ["RscControlsGroupNoScrollbars", -1, _container];
-(ctrlPosition _container) params ["", "", "_width", "_height"];
-_group ctrlSetPosition [0, 0, _width, _height];
-_group ctrlCommit 0;
-
-private _background = _display ctrlCreate ["cTab_RscText", -1, _group];
-_background ctrlSetPosition [0, 0, _width, _height];
-_background ctrlSetBackgroundColor [0.05, 0.05, 0.05, [1, 0.85] select _usesMap];
-_background ctrlCommit 0;
-
-GVAR(content) = [_group, _onClose];
-GVAR(mapHandlers) = [];
+private _group = [_display, _container, _onClose, [1, 0.85] select _usesMap] call FUNC(createContent);
+GVAR(currentApp) = _id;
 [_display, _group, _map] call _onOpen;

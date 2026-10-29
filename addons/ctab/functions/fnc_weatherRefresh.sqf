@@ -33,15 +33,13 @@ private _phaseName = switch (true) do {
     default {"waning"};
 };
 
-private _windSpeed = vectorMagnitude [wind select 0, wind select 1];
-private _windFrom = round ((((-(wind select 0)) atan2 (-(wind select 1))) + 360) mod 360);
 private _altitude = (getPosASL cTab_player) select 2;
 
 [APP_CTRL(weatherInfo), [
     format ["Time: %1, sunrise %2, sunset %3", [dayTime, "HH:MM"] call BIS_fnc_timeToString, _sunrise call _clock, _sunset call _clock],
     format ["Moon: %1, %2%% light", _phaseName, round (100 * moonIntensity)],
     format ["Cloud: %1%%, fog: %2%%, rain: %3%%", round (100 * overcast), round (100 * fog), round (100 * rain)],
-    format ["Wind: %1 m/s from %2", _windSpeed toFixed 1, _windFrom],
+    call FUNC(formatWind),
     format ["Temperature: %1 C at %2 m ASL, %3 C at %4 m ASL",
         (_altitude call ace_weather_fnc_calculateTemperatureAtHeight) toFixed 1, round _altitude,
         (JUMP_OXYGEN_ALTITUDE call ace_weather_fnc_calculateTemperatureAtHeight) toFixed 1, JUMP_OXYGEN_ALTITUDE],

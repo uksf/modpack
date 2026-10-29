@@ -18,16 +18,8 @@
 */
 params ["_display", "_container"];
 
-private _group = _display ctrlCreate ["RscControlsGroupNoScrollbars", -1, _container];
+private _group = [_display, _container, {}, 1] call FUNC(createContent);
 (ctrlPosition _container) params ["", "", "_width", "_height"];
-_group ctrlSetPosition [0, 0, _width, _height];
-_group ctrlCommit 0;
-GVAR(content) = [_group, {}];
-
-private _background = _display ctrlCreate ["cTab_RscText", -1, _group];
-_background ctrlSetPosition [0, 0, _width, _height];
-_background ctrlSetBackgroundColor [0.05, 0.05, 0.05, 1];
-_background ctrlCommit 0;
 
 private _margin = _width * 0.03;
 private _cellWidth = (_width - _margin * (LAUNCHER_COLUMNS + 1)) / LAUNCHER_COLUMNS;

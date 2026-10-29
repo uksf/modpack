@@ -29,6 +29,7 @@ if (GVAR(content) isEqualTo []) exitWith {};
 
 GVAR(content) params ["_group", "_onClose"];
 GVAR(content) = [];
+GVAR(currentApp) = "";
 
 [_display, _group] call _onClose;
 if (!_unloading) then {

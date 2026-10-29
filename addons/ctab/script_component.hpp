@@ -20,7 +20,6 @@
 
 #define DOUBLE_CLICK_TIME 0.35
 #define COLOUR_ROUTE [1, 0.6, 0, 1]
-#define COLOUR_TEXT [1, 1, 1, 1]
 #define ICON_DOT "\A3\ui_f\data\map\markers\military\dot_ca.paa"
 #define ICON_MAN "\A3\ui_f\data\map\VehicleIcons\iconmanvirtual_ca.paa"
 #define FILL_SOLID "#(rgb,1,1,1)color(1,1,1,1)"
@@ -35,6 +34,7 @@
 #define ELEVATION_CELLS_PER_FRAME 100
 #define ELEVATION_TARGET_HEIGHT 1.7
 #define ELEVATION_FULL_COLOUR_HEIGHT 100
+#define COLOUR_VISIBLE [0, 1, 0, 0.35]
 
 #define REPORT_FIELDS 6
 
@@ -51,6 +51,7 @@
 
 #define DRONE_LOITER_RADIUS 300
 #define DRONE_ESCORT_INTERVAL 10
+#define DRONE_ESCORT_MOVE 50
 
 #define LAUNCHER_COLUMNS 3
 #define LAUNCHER_ROWS 4

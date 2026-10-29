@@ -5,7 +5,7 @@
 
     Description:
         Builds the Drones app panel.
-        The list shows the friendly drones. A click on the map sets the task point. The buttons task the selected drone.
+        The list shows the friendly drones from cTab's UAV list. A click on the map sets the task point. The buttons task the selected drone.
 
     Parameter(s):
         0: cTab display <DISPLAY>
@@ -26,7 +26,11 @@ uiNamespace setVariable [QGVAR(droneInfo), [_group, [0.04, 0.46, 0.92, 0.22]] ca
 
 {
     _x params ["_text", "_task", "_rect"];
-    [_group, _rect, _text, compile format ["['%1'] call %2", _task, QFUNC(droneSend)]] call FUNC(createButton);
+    private _button = [_group, _rect, _text, {
+        params ["_button"];
+        [_button getVariable QGVAR(task)] call FUNC(droneSend);
+    }] call FUNC(createButton);
+    _button setVariable [QGVAR(task), _task];
 } forEach [
     ["Observe point", "observe", [0.04, 0.7, 0.44, 0.09]],
     ["Escort me", "escort", [0.52, 0.7, 0.44, 0.09]],
@@ -42,8 +46,7 @@ APP_CTRL(droneList) ctrlAddEventHandler ["LBSelChanged", {call FUNC(droneRefresh
     call FUNC(droneRefresh);
 }] call FUNC(addMapClickHandler);
 
-private _sides = call cTab_fnc_getPlayerSides;
-GVAR(drones) = allUnitsUAV select {alive _x && {side _x in _sides}};
+GVAR(drones) = (missionNamespace getVariable ["cTabUAVlist", []]) select {alive _x};
 {
     APP_CTRL(droneList) lbAdd format ["%1 (%2)", getText (configOf _x >> "displayName"), (cTab_player distance2D _x) call FUNC(formatDistance)];
 } forEach GVAR(drones);

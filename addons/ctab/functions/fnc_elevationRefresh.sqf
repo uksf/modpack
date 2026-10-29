@@ -22,11 +22,6 @@ if (GVAR(elevationObserver) isEqualTo []) exitWith {
 };
 
 private _done = count GVAR(elevationCells);
-private _visible = {_x select 1} count GVAR(elevationCells);
-private _highest = -1e6;
-{
-    _highest = _highest max (_x select 2);
-} forEach GVAR(elevationCells);
 
 private _lines = [
     format ["Observer: %1", [GVAR(elevationObserver)] call ctab_core_fnc_gridPosition],
@@ -35,8 +30,8 @@ private _lines = [
 if (_done < GVAR(elevationTotal)) then {
     _lines pushBack format ["Calculating: %1%%", floor (100 * _done / (GVAR(elevationTotal) max 1))];
 } else {
-    _lines pushBack format ["Visible: %1%% of the area", round (100 * _visible / (_done max 1))];
-    _lines pushBack format ["Highest ground: %1 m above observer", round _highest];
+    _lines pushBack format ["Visible: %1%% of the area", round (100 * GVAR(elevationVisible) / (_done max 1))];
+    _lines pushBack format ["Highest ground: %1 m above observer", round GVAR(elevationHighest)];
 };
 
 [APP_CTRL(elevationInfo), _lines] call FUNC(setInfo);
