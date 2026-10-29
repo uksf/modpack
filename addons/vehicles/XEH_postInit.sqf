@@ -5,6 +5,7 @@
 }] call CBA_fnc_execNextFrame;
 
 if (hasInterface) exitWith {
+    call FUNC(addSpotlightActions);
     call FUNC(addSwapDriverActions);
     call FUNC(initWPCamera);
 

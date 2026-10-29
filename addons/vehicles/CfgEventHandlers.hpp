@@ -16,6 +16,24 @@ class Extended_PostInit_EventHandlers {
     };
 };
 
+class Extended_InitPost_EventHandlers {
+    class Car {
+        class GVAR(markingLaser) {
+            init = QUOTE(call FUNC(initMarkingLaser));
+        };
+    };
+    class Tank {
+        class GVAR(markingLaser) {
+            init = QUOTE(call FUNC(initMarkingLaser));
+        };
+    };
+    class Ship {
+        class GVAR(markingLaser) {
+            init = QUOTE(call FUNC(initMarkingLaser));
+        };
+    };
+};
+
 class Extended_FiredBIS_EventHandlers {
     class CUP_Mastiff_Base {
         class ADDON {
