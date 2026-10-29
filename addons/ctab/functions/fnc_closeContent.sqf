@@ -5,7 +5,7 @@
 
     Description:
         Closes the launcher or app shown in the cTab Android dialog.
-        Removes the app's map handlers, calls its close code, then deletes its content group unless the display is unloading.
+        Removes the app's map handlers and cancels a map click still waiting for its double-click window, calls its close code, then deletes its content group unless the display is unloading.
 
     Parameter(s):
         0: cTab display <DISPLAY>
@@ -22,6 +22,8 @@ params ["_display", ["_unloading", false]];
 {
     _x params ["_map", "_event", "_handler"];
     _map ctrlRemoveEventHandler [_event, _handler];
+    _map setVariable [QGVAR(pendingClick), -1];
+    _map setVariable [QGVAR(clickCode), {}];
 } forEach GVAR(mapHandlers);
 GVAR(mapHandlers) = [];
 

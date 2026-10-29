@@ -1,6 +1,9 @@
 #include "script_component.hpp"
 
 [QGVAR(droneTask), FUNC(droneTask)] call CBA_fnc_addEventHandler;
+if (isServer) then {
+    [QGVAR(droneRoute), FUNC(droneRoute)] call CBA_fnc_addEventHandler;
+};
 
 if (!hasInterface) exitWith {};
 

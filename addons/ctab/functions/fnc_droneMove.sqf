@@ -4,7 +4,7 @@
         Tim Beswick
 
     Description:
-        Replaces a local drone's waypoints with one waypoint at a position.
+        Replaces the waypoints of a drone whose crew group is local with one waypoint at a position.
         An aircraft gets a loiter waypoint that circles the position. A ground drone gets a move waypoint.
 
     Parameter(s):
@@ -19,11 +19,8 @@
 */
 params ["_drone", "_position"];
 
-private _group = group driver _drone;
-if (isNull _group) then {
-    _group = group gunner _drone;
-};
-if (isNull _group) exitWith {};
+private _group = _drone call FUNC(droneGroup);
+if (isNull _group || {!local _group}) exitWith {};
 
 for "_index" from (count waypoints _group - 1) to 0 step -1 do {
     deleteWaypoint [_group, _index];

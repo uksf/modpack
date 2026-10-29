@@ -30,7 +30,7 @@ if !(GVAR(mpu5Radio) in _radios) then {
     GVAR(mpu5Radio) = _radios select 0;
 };
 
-[_group, [0.45, 0.02, 0.52, 0.08], _radios apply {[format ["MPU-5 %1", _forEachIndex + 1], _x]}, GVAR(mpu5Radio), {
+[_group, [0.45, 0.02, 0.52, 0.08], _radios apply {[format ["MPU-5 %1", (_radios find _x) + 1], _x]}, GVAR(mpu5Radio), {
     params ["_radioId"];
     GVAR(mpu5Radio) = _radioId;
     call FUNC(mpu5Refresh);
