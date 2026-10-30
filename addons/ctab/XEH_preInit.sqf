@@ -30,6 +30,11 @@ GVAR(elevationJob) = -1;
 
 GVAR(reportType) = [];
 
+GVAR(markerPoint) = [];
+GVAR(markerIcon) = 0;
+GVAR(markerSize) = 0;
+GVAR(markerDir) = 0;
+
 GVAR(jumpZone) = [];
 GVAR(jumpPlan) = [];
 GVAR(jumpMode) = "HALO";
@@ -47,5 +52,7 @@ GVAR(mpu5Radio) = "";
 GVAR(mpu5Page) = "talkgroups";
 GVAR(mpu5AudioTalkgroup) = 1;
 GVAR(mpu5Refreshing) = false;
+GVAR(mpu5Feeds) = [];
+GVAR(mpu5FeedStatus) = "";
 
 ADDON = true;

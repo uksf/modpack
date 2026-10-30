@@ -4,7 +4,8 @@
         Tim Beswick
 
     Description:
-        Updates the Weather app with sunrise, sunset, moon, sky, wind, temperature, pressure, and humidity.
+        Updates the Weather app with sunrise, sunset, moon, sky, wind, temperature, pressure, and humidity, and a forecast.
+        The forecast is the engine's weather target: the cloud and fog it moves to by the next weather change.
         The temperature and pressure come from ACE weather at the player's altitude, and at the oxygen altitude for jump planning.
 
     Parameter(s):
@@ -43,5 +44,7 @@ private _altitude = (getPosASL cTab_player) select 2;
     format ["Temperature: %1 C at %2 m ASL, %3 C at %4 m ASL",
         (_altitude call ace_weather_fnc_calculateTemperatureAtHeight) toFixed 1, round _altitude,
         (JUMP_OXYGEN_ALTITUDE call ace_weather_fnc_calculateTemperatureAtHeight) toFixed 1, JUMP_OXYGEN_ALTITUDE],
-    format ["Pressure: %1 hPa, humidity: %2%%", round (_altitude call ace_weather_fnc_calculateBarometricPressure), round (100 * ace_weather_currentHumidity)]
+    format ["Pressure: %1 hPa, humidity: %2%%", round (_altitude call ace_weather_fnc_calculateBarometricPressure), round (100 * ace_weather_currentHumidity)],
+    "",
+    call FUNC(weatherForecast)
 ]] call FUNC(setInfo);

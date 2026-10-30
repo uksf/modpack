@@ -69,6 +69,13 @@ switch (GVAR(mpu5Page)) do {
         _lines pushBack format ["Current channel: %1", [_radioId] call acre_sys_mpu5_fnc_getChannelDescription];
         _lines pushBack "Gateway and bridge radios must be powered, carried, and in a single-channel mode.";
     };
+    case "feeds": {
+        if (isNil "Iceman_fnc_toc_startStream") exitWith {_lines pushBack "TOC screens are not loaded."};
+        _lines pushBack format ["%1 feeds from cTab helmet cameras and UAVs.", count GVAR(mpu5Feeds)];
+        if (GVAR(mpu5FeedStatus) != "") then {
+            _lines pushBack GVAR(mpu5FeedStatus);
+        };
+    };
     default {
         APP_CTRL(mpu5Talkgroup) lbSetCurSel (_talkgroup - 1);
         {

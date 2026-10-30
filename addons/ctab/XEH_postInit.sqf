@@ -11,13 +11,18 @@ if (!hasInterface) exitWith {};
 
 [QGVAR(modeChanged), FUNC(onModeChanged)] call CBA_fnc_addEventHandler;
 ["ctab_interface_open", FUNC(onInterfaceOpen)] call CBA_fnc_addEventHandler;
+["ctab_messagesUpdated", {
+    if (GVAR(currentApp) == "messages") then {call FUNC(messagesRefresh)};
+}] call CBA_fnc_addEventHandler;
 
 ["route", "Route", FUNC(routeOpen), {}, true] call FUNC(registerApp);
 ["elevation", "Elevation", FUNC(elevationOpen), {}, true] call FUNC(registerApp);
 ["reports", "Reports", FUNC(reportsOpen)] call FUNC(registerApp);
+["messages", "Messages", FUNC(messagesOpen)] call FUNC(registerApp);
+["markers", "Markers", FUNC(markersOpen), {}, true] call FUNC(registerApp);
 ["jump", "HAHO / HALO", FUNC(jumpOpen), {}, true] call FUNC(registerApp);
 ["weather", "Weather", FUNC(weatherOpen)] call FUNC(registerApp);
-["friendly", "Friendly", FUNC(friendlyOpen)] call FUNC(registerApp);
+["friendly", "Friendly", FUNC(friendlyOpen), {}, true] call FUNC(registerApp);
 ["drones", "Drones", FUNC(droneOpen), {}, true] call FUNC(registerApp);
 
 if (isClass (configFile >> "CfgPatches" >> "acre_sys_mpu5")) then {
@@ -25,4 +30,4 @@ if (isClass (configFile >> "CfgPatches" >> "acre_sys_mpu5")) then {
     ["acre_sys_mpu5_openGui", FUNC(mpu5OpenGui)] call CBA_fnc_addEventHandler;
 };
 
-GVAR(overlays) append [FUNC(routeDraw), FUNC(elevationDraw), FUNC(jumpDraw)];
+GVAR(overlays) append [FUNC(routeDraw), FUNC(elevationDraw), FUNC(jumpDraw), FUNC(friendlyDraw), FUNC(markersDraw)];

@@ -5,6 +5,7 @@
 
     Description:
         Shows one friendly group in the Friendly app: its grid, distance and bearing from the player, and each member with the vehicle or foot and the state.
+        Centres the app map on the group leader.
 
     Parameter(s):
         0: Group <GROUP>
@@ -37,3 +38,9 @@ private _lines = [
 } forEach units _group;
 
 [APP_CTRL(friendlyInfo), _lines] call FUNC(setInfo);
+
+private _map = APP_CTRL(friendlyMap);
+if (!isNull _map) then {
+    _map ctrlMapAnimAdd [0.5, ctrlMapScale _map, getPosASL _leader];
+    ctrlMapAnimCommit _map;
+};

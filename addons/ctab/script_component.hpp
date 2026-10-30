@@ -20,6 +20,8 @@
 
 #define DOUBLE_CLICK_TIME 0.35
 #define COLOUR_ROUTE [1, 0.6, 0, 1]
+#define RAIN_OVERCAST 0.7
+#define COLOUR_FRIENDLY [0.4, 0.75, 1, 1]
 #define ICON_DOT "\A3\ui_f\data\map\markers\military\dot_ca.paa"
 #define ICON_MAN "\A3\ui_f\data\map\VehicleIcons\iconmanvirtual_ca.paa"
 #define FILL_SOLID "#(rgb,1,1,1)color(1,1,1,1)"
@@ -37,6 +39,12 @@
 #define COLOUR_VISIBLE [0, 1, 0, 0.35]
 
 #define REPORT_FIELDS 6
+#define MESSAGES_SHOWN 12
+
+#define MARKER_REFRESH_DELAY 1
+#define MARKER_ICONS [["Enemy infantry", 0], ["Enemy mechanised", 1], ["Enemy motorised", 2], ["Enemy armour", 3], ["Enemy helicopter", 4], ["Enemy plane", 5], ["Enemy unknown", 6], ["Enemy MG", 8], ["Enemy AT", 9], ["Enemy mortar", 12], ["Enemy AA", 13], ["Mine", 80], ["IED", 81], ["Waypoint", 20], ["Objective", 21], ["Medical", 22], ["Warning", 23], ["Friendly HQ", 30], ["Dot", 100], ["Circle", 101], ["Contact point", 102], ["Outpost", 104], ["Target reference point", 106], ["Checkpoint", 201], ["Rally point", 204], ["Casualty collection point", 207]]
+#define MARKER_SIZES [["No size or label", 0], ["Team or A", 1], ["Squad or B", 2], ["Section or C", 3], ["Platoon or D", 4]]
+#define MARKER_DIRECTIONS [["No direction", 0], ["N", 1], ["NE", 2], ["E", 3], ["SE", 4], ["S", 5], ["SW", 6], ["W", 7], ["NW", 8]]
 
 #define JUMP_FALL_START_TIME 4
 #define JUMP_FALL_START_HEIGHT 130

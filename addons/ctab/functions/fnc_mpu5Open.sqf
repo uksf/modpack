@@ -5,7 +5,7 @@
 
     Description:
         Builds the MPU-5 app header, with the page and radio selectors, then the selected page.
-        Pages set the talk groups and power, the TX slots and monitor audio, or the radio over IP gateway and bridge.
+        Pages set the talk groups and power, the TX slots and monitor audio, or the radio over IP gateway and bridge, or send video feeds to TOC screens.
 
     Parameter(s):
         0: cTab display <DISPLAY>
@@ -30,7 +30,7 @@ if !(GVAR(mpu5Radio) in _radios) then {
     GVAR(mpu5Radio) = _radios select 0;
 };
 
-private _pages = [["Talk groups", "talkgroups"], ["TX slots and audio", "slots"], ["Gateway and bridge", "gateway"]];
+private _pages = [["Talk groups", "talkgroups"], ["TX slots and audio", "slots"], ["Gateway and bridge", "gateway"], ["Feeds", "feeds"]];
 [_group, [0.03, 0.02, 0.4, 0.08], _pages, GVAR(mpu5Page), {
     params ["_page", "_combo"];
     GVAR(mpu5Page) = _page;
@@ -51,6 +51,7 @@ private _pages = [["Talk groups", "talkgroups"], ["TX slots and audio", "slots"]
 switch (GVAR(mpu5Page)) do {
     case "slots": {[_group] call FUNC(mpu5PageSlots)};
     case "gateway": {[_group] call FUNC(mpu5PageGateway)};
+    case "feeds": {[_group] call FUNC(mpu5PageFeeds)};
     default {[_group] call FUNC(mpu5PageTalkgroups)};
 };
 
