@@ -8,7 +8,7 @@
 
     Parameter(s):
         0: Radio data <ARRAY>
-            Formatted as: [type, channel, volume, ear, pttIndex]
+            Formatted as: [type, channel, volume, ear, pttIndex, mpu5]
 
     Return Value:
         None
@@ -40,10 +40,20 @@
             } forEach _radioData;
             if (_index > -1) then {
                 private _data = _radioData deleteAt _index;
-                _data params ["", "_channel", "_volume", "_ear", ["_pttIndex", 0]];
+                _data params ["", "_channel", "_volume", "_ear", ["_pttIndex", 0], ["_mpu5", []]];
                 [_x, _channel] call acre_api_fnc_setRadioChannel;
                 [_x, _volume] call acre_api_fnc_setRadioVolume;
                 [_x, _ear] call acre_api_fnc_setRadioSpatial;
+                if (_mpu5 isNotEqualTo [] && {!isNil "acre_sys_mpu5_fnc_setTxSlots"}) then {
+                    _mpu5 params [["_monitors", []], ["_monitorAudio", []], ["_txSlots", []]];
+                    private _radio = _x;
+                    [_radio, _monitors] call acre_sys_mpu5_fnc_setMonitors;
+                    [_radio, _txSlots] call acre_sys_mpu5_fnc_setTxSlots;
+                    [_radio, "setState", ["mpu5MonitorAudio", []]] call acre_sys_data_fnc_dataEvent;
+                    {
+                        [_radio, _x#0, _x#1, _x#2] call acre_sys_mpu5_fnc_setMonitorAudio;
+                    } forEach _monitorAudio;
+                };
                 _pttAssignments pushBack [_pttIndex, _x];
             } else {
                 private _currentIndex = _currentPtt find _x;

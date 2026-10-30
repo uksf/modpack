@@ -44,5 +44,8 @@ GVAR(drones) = [];
 GVAR(dronePoint) = [];
 
 GVAR(mpu5Radio) = "";
+GVAR(mpu5Page) = "talkgroups";
+GVAR(mpu5AudioTalkgroup) = 1;
+GVAR(mpu5Refreshing) = false;
 
 ADDON = true;

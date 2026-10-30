@@ -4,7 +4,8 @@
         Tim Beswick
 
     Description:
-        Builds the MPU-5 app, which sets the active talk group, the monitored talk groups, and the power of a carried MPU-5, and shows its mesh status.
+        Builds the MPU-5 app header, with the page and radio selectors, then the selected page.
+        Pages set the talk groups and power, the TX slots and monitor audio, or the radio over IP gateway and bridge.
 
     Parameter(s):
         0: cTab display <DISPLAY>
@@ -19,10 +20,9 @@
 
 params ["", "_group"];
 
-[_group, "cTab_RscText", [0.03, 0.02, 0.4, 0.08], "MPU-5"] call FUNC(createCtrl);
-
 private _radios = call FUNC(mpu5Radios);
 if (_radios isEqualTo []) exitWith {
+    [_group, "cTab_RscText", [0.03, 0.02, 0.4, 0.08], "MPU-5"] call FUNC(createCtrl);
     private _info = [_group, [0.03, 0.12, 0.94, 0.3]] call FUNC(createInfo);
     [_info, ["No MPU-5 carried."]] call FUNC(setInfo);
 };
@@ -30,50 +30,28 @@ if !(GVAR(mpu5Radio) in _radios) then {
     GVAR(mpu5Radio) = _radios select 0;
 };
 
+private _pages = [["Talk groups", "talkgroups"], ["TX slots and audio", "slots"], ["Gateway and bridge", "gateway"]];
+[_group, [0.03, 0.02, 0.4, 0.08], _pages, GVAR(mpu5Page), {
+    params ["_page", "_combo"];
+    GVAR(mpu5Page) = _page;
+    [{
+        params ["_display"];
+        if (isNull _display || {GVAR(currentApp) != "mpu5"}) exitWith {};
+        [_display] call FUNC(closeContent);
+        [_display, "mpu5"] call FUNC(openApp);
+    }, [ctrlParent _combo]] call CBA_fnc_execNextFrame;
+}] call FUNC(createCombo);
+
 [_group, [0.45, 0.02, 0.52, 0.08], _radios apply {[format ["MPU-5 %1", (_radios find _x) + 1], _x]}, GVAR(mpu5Radio), {
     params ["_radioId"];
     GVAR(mpu5Radio) = _radioId;
     call FUNC(mpu5Refresh);
 }] call FUNC(createCombo);
 
-[_group, "cTab_RscText", [0.03, 0.12, 0.25, 0.07], "Talk group"] call FUNC(createCtrl);
-private _talkgroups = [];
-for "_talkgroup" from 1 to MPU5_TALKGROUPS do {
-    _talkgroups pushBack [[format ["TG %1", _talkgroup], "TG 16 emergency"] select (_talkgroup == MPU5_TALKGROUPS), _talkgroup];
+switch (GVAR(mpu5Page)) do {
+    case "slots": {[_group] call FUNC(mpu5PageSlots)};
+    case "gateway": {[_group] call FUNC(mpu5PageGateway)};
+    default {[_group] call FUNC(mpu5PageTalkgroups)};
 };
-uiNamespace setVariable [QGVAR(mpu5Talkgroup), [_group, [0.3, 0.12, 0.4, 0.07], _talkgroups, [GVAR(mpu5Radio)] call acre_api_fnc_getRadioChannel, {
-    params ["_talkgroup"];
-    if (_talkgroup != [GVAR(mpu5Radio)] call acre_api_fnc_getRadioChannel) then {
-        [GVAR(mpu5Radio), _talkgroup] call acre_api_fnc_setRadioChannel;
-    };
-    call FUNC(mpu5Refresh);
-}] call FUNC(createCombo)];
-
-uiNamespace setVariable [QGVAR(mpu5Power), [_group, [0.74, 0.12, 0.23, 0.07], "Power", {
-    private _on = [GVAR(mpu5Radio), "getOnOffState"] call acre_sys_data_fnc_dataEvent;
-    [GVAR(mpu5Radio), "setOnOffState", 1 - _on] call acre_sys_data_fnc_dataEvent;
-    call FUNC(mpu5Refresh);
-}] call FUNC(createButton)];
-
-[_group, "cTab_RscText", [0.03, 0.21, 0.6, 0.06], "Monitor talk groups"] call FUNC(createCtrl);
-[_group, [0.74, 0.21, 0.23, 0.06], "Refresh", {call FUNC(mpu5Refresh)}] call FUNC(createButton);
-
-private _buttons = [];
-for "_talkgroup" from 1 to MPU5_TALKGROUPS - 1 do {
-    private _index = _talkgroup - 1;
-    private _button = [_group, [0.03 + (_index mod 8) * 0.1175, 0.28 + floor (_index / 8) * 0.09, 0.105, 0.08], str _talkgroup, {
-        params ["_button"];
-        private _talkgroup = _button getVariable QGVAR(talkgroup);
-        private _monitors = [GVAR(mpu5Radio)] call acre_sys_mpu5_fnc_getMonitors;
-        _monitors = [_monitors + [_talkgroup], _monitors - [_talkgroup]] select (_talkgroup in _monitors);
-        [GVAR(mpu5Radio), _monitors] call acre_sys_mpu5_fnc_setMonitors;
-        call FUNC(mpu5Refresh);
-    }] call FUNC(createButton);
-    _button setVariable [QGVAR(talkgroup), _talkgroup];
-    _buttons pushBack _button;
-};
-uiNamespace setVariable [QGVAR(mpu5Monitors), _buttons];
-
-uiNamespace setVariable [QGVAR(mpu5Info), [_group, [0.03, 0.47, 0.94, 0.5]] call FUNC(createInfo)];
 
 call FUNC(mpu5Refresh);
