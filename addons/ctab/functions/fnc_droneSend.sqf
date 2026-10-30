@@ -29,6 +29,7 @@ if (_task == "observe" && {GVAR(dronePoint) isEqualTo []}) exitWith {
 if (isNil {_drone getVariable QGVAR(droneHome)}) then {
     _drone setVariable [QGVAR(droneHome), getPosASL _drone, true];
 };
-_drone setVariable [QGVAR(droneTask), [_task, GVAR(dronePoint), cTab_player], true];
+private _point = [GVAR(dronePoint), getPosASL cTab_player] select (_task == "escort");
+_drone setVariable [QGVAR(droneTask), [_task, _point, cTab_player], true];
 [QGVAR(droneRoute), [_drone]] call CBA_fnc_serverEvent;
 call FUNC(droneRefresh);
