@@ -1,0 +1,20 @@
+{
+  "format": 1,
+  "pbo": "Halmatic.pbo",
+  "pristineSha256": "5483c249d259a37c76ae2e09c8015d084edae0ae58f3893dce6fe4ffac0fbc76",
+  "description": "BAE Fast Interceptor Craft (Workshop 3239284509). The driver proxy is numbered 000. Turret setup rejects any crew proxy with an index below 1, so each of the five turrets logged 'Bad cargo proxy index' once per crew LOD, ten warnings per spawn. The driver proxy becomes 001; the driver seat finds its proxy by type, not index.",
+  "assets": [
+    {
+      "path": "\u00d0\u00a2\u00d0\u00a2\u00d0\u00ab\u00d0\u00b3\u00d1\u008c\u00d0\u00be\u00d0\u00a1?\u00d0\u00a2\u00d1\u0082\u00d0\u00ba.p3d",
+      "sha256": "60a80b092b49c853051fe3f6eda253375df2a3ac85619242329a5986a29391c7",
+      "ops": [
+        {
+          "op": "remap-proxies",
+          "rules": [
+            { "model": "\\a3\\data_f\\proxies\\driver_offroad\\driver", "id": 0, "toModel": "\\a3\\data_f\\proxies\\driver_offroad\\driver", "toId": 1 }
+          ]
+        }
+      ]
+    }
+  ]
+}
