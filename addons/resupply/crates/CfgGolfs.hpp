@@ -286,7 +286,7 @@ class GVAR(g14) : ACE_medicalSupplyCrate {
     };
 };
 class GVAR(g14ba) : GVAR(g14) {
-    displayName = "G14 (MED-BA)";
+    displayName = "G19 (MED-BA)";
     description = "Grab Box - Medical (Bandages)";
     hiddenSelectionsTextures[] = { QPATHTOF(data\golf\g14ba.paa) };
     PREVIEW(g14);
@@ -298,7 +298,7 @@ class GVAR(g14ba) : GVAR(g14) {
     class TransportMagazines {};
 };
 class GVAR(g14bl) : GVAR(g14) {
-    displayName = "G14 (MED-BL)";
+    displayName = "G20 (MED-BL)";
     description = "Grab Box - Medical (Blood)";
     hiddenSelectionsTextures[] = { QPATHTOF(data\golf\g14bl.paa) };
     PREVIEW(g14);
@@ -309,7 +309,7 @@ class GVAR(g14bl) : GVAR(g14) {
     class TransportMagazines {};
 };
 class GVAR(g14d) : GVAR(g14) {
-    displayName = "G14 (MED-D)";
+    displayName = "G21 (MED-D)";
     description = "Grab Box - Medical (Drugs)";
     hiddenSelectionsTextures[] = { QPATHTOF(data\golf\g14d.paa) };
     PREVIEW(g14);
