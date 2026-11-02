@@ -5,7 +5,7 @@
 
     Description:
         Runs the task stored on a drone, on the machine where the drone's crew group is local.
-        An aircraft circles its task point. A ground drone drives to it and stops.
+        Observe and Escort circle the task point. Hold and Return stop at it when the drone can hover, and circle it otherwise. A ground drone drives to the point and stops.
         Observe goes to the point. Escort follows the requester, checked every few seconds and moved only when the requester has moved far enough. Hold stays at the current position. Return goes to where the drone took its first task.
         When the crew group is not local, or stops being local during an escort, the task goes back to the server, which sends it to the new owner.
         Each escort move stores the new escort point in the task, so a new owner resumes from it.
@@ -37,13 +37,7 @@ if (_task == "escort" && {!alive _requester || {!isPlayer _requester}}) then {
     _task = "observe";
     _drone setVariable [QGVAR(droneTask), [_task, _point, objNull], true];
 };
-private _target = switch (_task) do {
-    case "observe": {_point};
-    case "escort": {_point};
-    case "return": {_drone getVariable [QGVAR(droneHome), getPosASL _drone]};
-    default {getPosASL _drone};
-};
-[_drone, _target] call FUNC(droneMove);
+[_drone, _point, _task in ["hold", "return"]] call FUNC(droneMove);
 
 if (_task == "escort") then {
     _drone setVariable [QGVAR(droneEscort), [{
@@ -65,5 +59,5 @@ if (_task == "escort") then {
         _args set [2, _position];
         _drone setVariable [QGVAR(droneTask), ["escort", _position, _requester], true];
         [_drone, _position] call FUNC(droneMove);
-    }, DRONE_ESCORT_INTERVAL, [_drone, _requester, _target]] call CBA_fnc_addPerFrameHandler];
+    }, DRONE_ESCORT_INTERVAL, [_drone, _requester, _point]] call CBA_fnc_addPerFrameHandler];
 };

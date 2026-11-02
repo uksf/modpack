@@ -6,6 +6,7 @@
     Description:
         Stores a task for the selected drone in the Drones app on the drone for every machine, and asks the server to run it where the drone's crew group is local.
         The drone's position when it takes its first task is stored as its home.
+        The task point is the map point for Observe, the requester for Escort, the drone's current position for Hold, and its home for Return.
 
     Parameter(s):
         0: Task: "observe", "escort", "hold", or "return" <STRING>
@@ -29,7 +30,12 @@ if (_task == "observe" && {GVAR(dronePoint) isEqualTo []}) exitWith {
 if (isNil {_drone getVariable QGVAR(droneHome)}) then {
     _drone setVariable [QGVAR(droneHome), getPosASL _drone, true];
 };
-private _point = [GVAR(dronePoint), getPosASL cTab_player] select (_task == "escort");
+private _point = switch (_task) do {
+    case "escort": {getPosASL cTab_player};
+    case "hold": {getPosASL _drone};
+    case "return": {_drone getVariable QGVAR(droneHome)};
+    default {GVAR(dronePoint)};
+};
 _drone setVariable [QGVAR(droneTask), [_task, _point, cTab_player], true];
 [QGVAR(droneRoute), [_drone]] call CBA_fnc_serverEvent;
 call FUNC(droneRefresh);

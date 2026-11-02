@@ -30,6 +30,9 @@
 #define SPEED_VEHICLE 11.1
 
 #define COLOUR_JUMP [0, 0.8, 1, 1]
+#define COLOUR_DRONE [1, 0.85, 0, 1]
+#define COLOUR_DRONE_OTHER [1, 0.85, 0, 0.45]
+#define ICON_POINT "\A3\ui_f\data\map\markers\military\destroy_ca.paa"
 #define ICON_DZ "\A3\ui_f\data\map\markers\military\end_ca.paa"
 
 #define ELEVATION_CELLS 50

@@ -30,4 +30,4 @@ if (isClass (configFile >> "CfgPatches" >> "acre_sys_mpu5")) then {
     ["acre_sys_mpu5_openGui", FUNC(mpu5OpenGui)] call CBA_fnc_addEventHandler;
 };
 
-GVAR(overlays) append [FUNC(routeDraw), FUNC(elevationDraw), FUNC(jumpDraw), FUNC(friendlyDraw), FUNC(markersDraw)];
+GVAR(overlays) append [FUNC(routeDraw), FUNC(elevationDraw), FUNC(jumpDraw), FUNC(friendlyDraw), FUNC(markersDraw), FUNC(droneDraw)];

@@ -14,6 +14,7 @@ PREP(droneOpen);
 PREP(droneOwnerLeft);
 PREP(droneRefresh);
 PREP(droneRoute);
+PREP(droneDraw);
 PREP(droneSend);
 PREP(droneTask);
 PREP(elevationCalculate);
