@@ -33,7 +33,9 @@ if (_index != -1) then {
         params ["_args", "_idPFH"];
         _args params ["_player", "_curator", "_timeout"];
 
-        if ((getAssignedCuratorUnit _curator) == _player || time > _timeout) exitWith {
+        private _slotIndex = GVAR(curatorObjects) find _curator;
+        private _reservedName = if (_slotIndex == -1) then {""} else {GVAR(curatorPlayers) param [_slotIndex, ""]};
+        if ((getAssignedCuratorUnit _curator) == _player || {time > _timeout} || {_reservedName != name _player}) exitWith {
             [_idPFH] call CBA_fnc_removePerFrameHandler;
         };
 
