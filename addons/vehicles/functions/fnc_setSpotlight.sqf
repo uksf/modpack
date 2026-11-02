@@ -31,10 +31,13 @@ private _config = [_vehicle, _turret] call CBA_fnc_getTurret;
 private _muzzle = getText (_config >> "gunBeg");
 private _breech = getText (_config >> "gunEnd");
 private _direction = vectorNormalized ((_vehicle selectionPosition _muzzle) vectorDiff (_vehicle selectionPosition _breech));
+(_vehicle selectionVectorDirAndUp [_muzzle, "Memory"]) params ["_boneDir", "_boneUp"];
+private _boneSide = _boneDir vectorCrossProduct _boneUp;
+private _fnc_toBoneSpace = {[_this vectorDotProduct _boneSide, _this vectorDotProduct _boneDir, _this vectorDotProduct _boneUp]};
 
 private _light = createVehicle [[QGVAR(spotlight), QGVAR(spotlightIR)] select (_mode isEqualTo "ir"), [0, 0, 0], [], 0, "CAN_COLLIDE"];
 _light attachTo [_vehicle, [0, 0, 0], _muzzle, true];
-_light setVectorDirAndUp [_direction, [0, 0, 1]];
+_light setVectorDirAndUp [_direction call _fnc_toBoneSpace, [0, 0, 1] call _fnc_toBoneSpace];
 _vehicle setVariable [_key + "_object", _light];
 
 GVAR(spotlights) pushBack [_vehicle, _light];
