@@ -11,6 +11,7 @@ PREP(initialiseRebroStation);
 PREP(initialiseVehicleRacks);
 PREP(isRackInitialisationComplete);
 PREP(openPresets);
+PREP(presetMpu5Details);
 PREP(presetsAction);
 PREP(sanitiseLoadout);
 PREP(serializeRadios);

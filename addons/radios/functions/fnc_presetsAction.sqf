@@ -40,16 +40,21 @@ switch (_action) do {
             private _pttOrder = _radioData apply {_x#4};
             _pttOrder sort true;
             private _lines = _radioData apply {
-                _x params ["_type", "_channel", "_volume", "_ear", "_pttIndex"];
+                _x params ["_type", "_channel", "_volume", "_ear", "_pttIndex", ["_mpu5", []]];
                 private _pttKey = (_pttOrder find _pttIndex) + 1;
-                format [
-                    "<t font='PuristaMedium'>%1</t><br/>Channel %2, %3, volume %4%%, %5",
+                private _line = format [
+                    "<t font='PuristaMedium'>%1</t><br/>%2 %3, %4, volume %5%%, %6",
                     getText (EGVAR(common,configWeapons) >> _type >> "displayName"),
+                    ["Channel", "Talk group"] select (_mpu5 isNotEqualTo []),
                     _channel,
                     ["both ears", "left ear", "right ear"] select ((["LEFT", "RIGHT"] find _ear) + 1),
                     round (_volume * 100),
                     ["no PTT key", format ["PTT %1", _pttKey]] select (_pttKey <= 3)
-                ]
+                ];
+                if (_mpu5 isNotEqualTo []) then {
+                    _line = _line + ([_mpu5] call FUNC(presetMpu5Details));
+                };
+                _line
             };
             _details = _lines joinString "<br/><br/>";
         };
