@@ -30,9 +30,11 @@ private _index = [-1, GVAR(curatorObjects) find _curator] select (!isNull _curat
 if (!isNull _player) then {
     if (_index == -1) then {
         _index = GVAR(curatorPlayers) find (name _player);
-        private _slotHolder = getAssignedCuratorUnit (GVAR(curatorObjects) param [_index, objNull]);
-        if (!isNull _slotHolder && {_slotHolder != _player}) then {
-            _index = -1;
+        if (_index != -1) then {
+            private _slotHolder = getAssignedCuratorUnit (GVAR(curatorObjects) select _index);
+            if (!isNull _slotHolder && {_slotHolder != _player}) then {
+                _index = -1;
+            };
         };
     };
 
