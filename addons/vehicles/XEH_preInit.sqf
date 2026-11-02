@@ -24,6 +24,8 @@ GVAR(spotlightVehicles) = [
     "Helmatic"
 ];
 GVAR(markingLaserClasses) = createHashMap;
+GVAR(markingLasers) = [];
+GVAR(markingLaserHandle) = -1;
 GVAR(spotlightTurretCache) = createHashMap;
 GVAR(spotlights) = [];
 GVAR(spotlightCleanupHandle) = -1;

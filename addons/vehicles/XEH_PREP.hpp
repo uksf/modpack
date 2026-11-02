@@ -10,6 +10,7 @@ PREP(handleWPCamera);
 PREP(initWPCamera);
 PREP(isPilotCameraDriver);
 PREP(reloadTurret);
+PREP(renderMarkingLasers);
 PREP(setSpotlight);
 PREP(spotlightTurrets);
 PREP(swapDriver);
