@@ -41,7 +41,7 @@ class GVAR(g1gm) : GVAR(gx) {
     displayName = "G1 (GM-SA)";
     description = "Grab Box - Small Arms Ammo (GreenMag boxes)";
     GVAR(stencil) = "SMALL ARMS GREENMAG";
-    PREVIEW(g1);
+    PREVIEW(g1gm);
     hiddenSelectionsTextures[] = { QPATHTOF(data\golf\g1gm.paa), "A3\Weapons_F\Ammoboxes\data\AmmoBox_CO.paa"};
     class TransportMagazines {
         MACRO_ADDMAGAZINE(CUP_200Rnd_TE4_Red_Tracer_556x45_M249_Pouch,5);
@@ -215,6 +215,7 @@ class GVAR(g15) : GVAR(gx) {
     displayName = "G15 (LGHE)";
     description = "Grab Box - Light Gun HE Shells";
     GVAR(stencil) = "L118 HE";
+    PREVIEW(g15);
     hiddenSelectionsTextures[] = { QPATHTOF(data\golf\g15.paa), "A3\Weapons_F\Ammoboxes\data\AmmoBox_CO.paa"};
     BOX_EXPLOSIVE;
     ace_cargo_hasCargo = 1;
@@ -230,6 +231,7 @@ class GVAR(g16) : GVAR(g15) {
     displayName = "G16 (LGSMK)";
     description = "Grab Box - Light Gun Smoke Shells";
     GVAR(stencil) = "L118 SMOKE";
+    PREVIEW(g16);
     hiddenSelectionsTextures[] = { QPATHTOF(data\golf\g16.paa), "A3\Weapons_F\Ammoboxes\data\AmmoBox_CO.paa"};
     class ACE_Cargo {
         class Cargo {
@@ -241,6 +243,7 @@ class GVAR(g17) : GVAR(g15) {
     displayName = "G17 (LGILLUM)";
     description = "Grab Box - Light Gun Illumination Shells";
     GVAR(stencil) = "L118 ILLUM";
+    PREVIEW(g17);
     hiddenSelectionsTextures[] = { QPATHTOF(data\golf\g17.paa), "A3\Weapons_F\Ammoboxes\data\AmmoBox_CO.paa"};
     class ACE_Cargo {
         class Cargo {
@@ -252,6 +255,7 @@ class GVAR(g18) : GVAR(gx) {
     displayName = "G18 (LGCH)";
     description = "Grab Box - Light Gun Charges";
     GVAR(stencil) = "L118 CHARGES";
+    PREVIEW(g18);
     hiddenSelectionsTextures[] = { QPATHTOF(data\golf\g18.paa), "A3\Weapons_F\Ammoboxes\data\AmmoBox_CO.paa"};
     containerIgnore = 1;
     transportMaxWeapons = 0;
@@ -308,7 +312,7 @@ class GVAR(g14ba) : GVAR(g14) {
     description = "Grab Box - Medical (Bandages)";
     GVAR(stencil) = "MED BANDAGES";
     hiddenSelectionsTextures[] = { QPATHTOF(data\golf\g14ba.paa) };
-    PREVIEW(g14);
+    PREVIEW(g14ba);
     class TransportItems {
         MACRO_ADDITEM(ACE_elasticBandage,250);
         MACRO_ADDITEM(ACE_packingBandage,250);
@@ -321,7 +325,7 @@ class GVAR(g14bl) : GVAR(g14) {
     description = "Grab Box - Medical (Blood)";
     GVAR(stencil) = "MED BLOOD";
     hiddenSelectionsTextures[] = { QPATHTOF(data\golf\g14bl.paa) };
-    PREVIEW(g14);
+    PREVIEW(g14bl);
     class TransportItems {
         MACRO_ADDITEM(ACE_bloodIV_500,50);
         MACRO_ADDITEM(ACE_bloodIV_250,50);
@@ -333,7 +337,7 @@ class GVAR(g14d) : GVAR(g14) {
     description = "Grab Box - Medical (Drugs)";
     GVAR(stencil) = "MED DRUGS";
     hiddenSelectionsTextures[] = { QPATHTOF(data\golf\g14d.paa) };
-    PREVIEW(g14);
+    PREVIEW(g14d);
     class TransportItems {
         MACRO_ADDITEM(ACE_adenosine,100);
         MACRO_ADDITEM(ACE_morphine,100);

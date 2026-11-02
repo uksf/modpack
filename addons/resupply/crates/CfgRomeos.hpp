@@ -212,6 +212,7 @@ class GVAR(r10) : GVAR(rx) {
     displayName = "R10 (GM-B)";
     description = "Crate - Bullets";
     GVAR(stencil) = "BULLETS";
+    PREVIEW(r10);
     hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\r10.paa) };
     class TransportItems {
         MACRO_ADDITEM(greenmag_ammo_556x45_basic_30Rnd,60);
@@ -248,7 +249,7 @@ class GVAR(rb) : GVAR(rx) {
     displayName = "RB (ReBro)";
     description = "Crate - Re-broadcasting Station";
     GVAR(stencil) = "REBRO";
-    PREVIEW(rx);
+    PREVIEW(rb);
     hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\rb.paa) };
     class ACE_Cargo {
         class Cargo {
