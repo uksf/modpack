@@ -8,7 +8,7 @@ class GVAR(rx) : B_supplyCrate_F {
     editorSubcategory = QEGVAR(common,romeos);
     displayName = "RX (Empty)";
     description = "Crate - Empty";
-    GVAR(stencil) = "EMPTY";
+    GVAR(stencil) = "";
     PREVIEW(rx);
     hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\rx.paa) };
     ace_cargo_size = 4;

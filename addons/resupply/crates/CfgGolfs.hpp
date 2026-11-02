@@ -8,7 +8,7 @@ class GVAR(gx) : Box_NATO_Ammo_F {
     editorSubcategory = QEGVAR(common,golfs);
     displayName = "GX (Empty)";
     description = "Grab Box - Empty";
-    GVAR(stencil) = "EMPTY";
+    GVAR(stencil) = "";
     PREVIEW(gx);
     hiddenSelectionsTextures[] = { QPATHTOF(data\golf\gx.paa), "A3\Weapons_F\Ammoboxes\data\AmmoBox_CO.paa"};
     ace_cargo_size = 1;
