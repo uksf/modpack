@@ -13,7 +13,7 @@ if (isServer) then {
     [QGVAR(curatorAssign), {call FUNC(curatorAssign)}] call CBA_fnc_addEventHandler;
     [QGVAR(curatorUnassign), {call FUNC(curatorUnassign)}] call CBA_fnc_addEventHandler;
 
-    addMissionEventHandler ["HandleDisconnect", {[QGVAR(curatorUnassign), [getAssignedCuratorLogic (_this#0)]] call CBA_fnc_serverEvent;}];
+    addMissionEventHandler ["HandleDisconnect", {[QGVAR(curatorUnassign), [getAssignedCuratorLogic (_this#0), objNull, _this#0]] call CBA_fnc_serverEvent;}];
 
     ["CBA_settingsInitialized", {
         if (!isMultiplayer) then {
