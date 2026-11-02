@@ -17,6 +17,8 @@
 */
 params ["_player"];
 
+call FUNC(pruneCurators);
+
 private _index = GVAR(curatorPlayers) find "";
 if (_index != -1) then {
     TRACE_2("",_player,_index);

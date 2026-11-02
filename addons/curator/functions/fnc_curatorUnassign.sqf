@@ -6,8 +6,10 @@
     Description:
         Unassigns given curator
         If unit is given, unassigned event is called where that unit is local
-        If player is given, also frees that player's slot by name and unassigns any curator they hold,
-        so a player whose curator logic was lost or deleted can still be logged out
+        If player is given, unassigns any curator they hold
+        If no slot holds the given curator, the player's slot is found by name instead,
+        and is freed only when its curator is held by that player or by no one
+        Deleted curators are pruned first, so a stale slot cannot shift another player's slot
 
     Parameter(s):
         0: Curator <OBJECT>
@@ -22,10 +24,16 @@
 */
 params ["_curator", ["_unit", objNull], ["_player", objNull]];
 
+call FUNC(pruneCurators);
+
 private _index = [-1, GVAR(curatorObjects) find _curator] select (!isNull _curator);
 if (!isNull _player) then {
     if (_index == -1) then {
         _index = GVAR(curatorPlayers) find (name _player);
+        private _slotHolder = getAssignedCuratorUnit (GVAR(curatorObjects) param [_index, objNull]);
+        if (!isNull _slotHolder && {_slotHolder != _player}) then {
+            _index = -1;
+        };
     };
 
     private _heldCurator = getAssignedCuratorLogic _player;

@@ -24,8 +24,7 @@ if (isServer) then {
         ["ModuleCurator_F", "init", {
             params ["_curator"];
 
-            GVAR(curatorObjects) = GVAR(curatorObjects) - [objNull];
-            publicVariable QGVAR(curatorObjects);
+            call FUNC(pruneCurators);
 
             TRACE_1("Mission curator init",_curator);
             if ((count GVAR(curatorObjects)) >= GVAR(curatorsMax)) exitWith {
