@@ -24,8 +24,8 @@ private _rows = [];
 for "_row" from 0 to REPORT_FIELDS - 1 do {
     private _top = 0.14 + _row * 0.12;
     _rows pushBack [
-        [_group, "cTab_RscText", [0.02, _top, 0.22, 0.1]] call FUNC(createCtrl),
-        [_group, "cTab_RscEdit", [0.25, _top, 0.35, 0.1]] call FUNC(createCtrl)
+        [_group, "cTab_RscText", [0.02, _top, 0.27, 0.1]] call FUNC(createCtrl),
+        [_group, "cTab_RscEdit", [0.3, _top, 0.3, 0.1]] call FUNC(createCtrl)
     ];
 };
 uiNamespace setVariable [QGVAR(reportRows), _rows];

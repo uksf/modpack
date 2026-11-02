@@ -18,7 +18,7 @@
         call uksf_ctab_fnc_reportTypes
 */
 [
-    ["TIC", [["Location", "grid"], ["Callsign", "callsign"], ["Enemy", ""], ["Direction and distance", ""], ["Friendly status", ""], ["Request", ""]]],
+    ["TIC", [["Location", "grid"], ["Callsign", "callsign"], ["Enemy", ""], ["Bearing and range", ""], ["Friendly status", ""], ["Request", ""]]],
     ["TIC CLEAR", [["Location", "grid"], ["Callsign", "callsign"], ["Friendly status", ""], ["Remarks", ""]]],
     ["EAGLE DOWN", [["Location", "grid"], ["Aircraft", ""], ["Crew status", ""], ["Enemy in area", ""], ["Remarks", ""]]],
     ["BDA", [["Target location", "grid"], ["Target", ""], ["Effect", ""], ["Re-attack", ""], ["Remarks", ""]]],
