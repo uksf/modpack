@@ -232,9 +232,10 @@ GVAR(fnc_uavLasers) = {
     {
         private _laser = laserTarget _x;
         if (isNull _laser) then { continue };
-        private _operator = (UAVControl [_x, "gunner"]) + (UAVControl [_x, "driver"]);
-        if (_operator isEqualTo []) then { continue };
-        _lasers pushBack [_x, _laser, name (_operator#0)];
+        private _control = UAVControl _x;
+        private _roleIndex = _control findIf {_x in ["DRIVER", "GUNNER"]};
+        if (_roleIndex < 1) then { continue };
+        _lasers pushBack [_x, _laser, name (_control#(_roleIndex - 1))];
     } forEach allUnitsUAV;
     _lasers
 };
