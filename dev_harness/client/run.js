@@ -99,11 +99,26 @@ const findRpt = (since, tag) => fs.readdirSync(RPTS).filter(f => /^arma3_x64_.*\
   fs.mkdirSync(out, { recursive: true });
   const shots = [], seen = {};
   const collect = (all) => {
-    for (const f of fs.readdirSync(SHOTS).filter(f => f.startsWith(runId + '_'))) {
+    for (const f of fs.readdirSync(SHOTS).filter(f => f.startsWith(runId + '_') && !f.startsWith(runId + '_winshot_'))) {
       const p = path.join(SHOTS, f), size = fs.statSync(p).size;
       if (!all && seen[f] !== size) { seen[f] = size; continue; }
       const to = path.join(out, f.slice(runId.length + 1));
       try { fs.renameSync(p, to); shots.push(to); } catch {}
+    }
+  };
+  const captured = new Set();
+  const captureWindows = () => {
+    const prefix = runId + '_winshot_';
+    for (const f of fs.readdirSync(SHOTS).filter(f => f.startsWith(prefix))) {
+      const name = f.slice(prefix.length).replace(/\.png$/, '');
+      if (captured.has(name)) continue;
+      captured.add(name);
+      const to = path.join(out, name + '.png');
+      let res;
+      const capture = () => execFileSync('powershell', ['-NoProfile', '-File', path.join(__dirname, 'capture-window.ps1'), String(pid), to], { encoding: 'utf8', windowsHide: true }).trim();
+      try { res = focusGuard ? focusGuard.pauseWhile(capture) : capture(); } catch (e) { res = String(e.message).split(/\r?\n/)[0]; }
+      if (res === 'ok') shots.push(to); else console.error(`run.js: window capture ${name} failed: ${res}`);
+      try { fs.rmSync(path.join(SHOTS, f), { force: true }); } catch {}
     }
   };
   let state = 'loading', hungSince = 0, lastCheck = 0, lastDismiss = 0;
@@ -111,6 +126,7 @@ const findRpt = (since, tag) => fs.readdirSync(RPTS).filter(f => /^arma3_x64_.*\
     await sleep(1000);
     collect(false);
     const r = read();
+    captureWindows();
     if (/\[vclient\] done/.test(r)) { state = 'done'; break; }
     if (state === 'loading' && !/\[vclient\] start/.test(r) && Date.now() - lastDismiss > ACRE_DISMISS_INTERVAL_MS) {
       lastDismiss = Date.now();
