@@ -29,7 +29,6 @@ private _selected = GVAR(drones) param [lbCurSel APP_CTRL(droneList), objNull];
 
     private _colour = [COLOUR_DRONE_OTHER, COLOUR_DRONE] select (_x == _selected);
     private _position = getPosASLVisual _x;
-    if (_task == "escort") then { _point = getPosASLVisual ((_x getVariable QGVAR(droneTask)) param [2, _x]) };
     _map drawLine [_position, _point, _colour];
     _map drawIcon [ICON_DOT, _colour, _point, 20, 20, 0, toUpper _task, 1, 0.04, "RobotoCondensedBold", "right"];
     if (_x isKindOf "Plane" || {_x isKindOf "Air" && {!(_task in ["hold", "return"])}}) then {

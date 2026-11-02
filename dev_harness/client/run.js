@@ -107,6 +107,7 @@ const findRpt = (since, tag) => fs.readdirSync(RPTS).filter(f => /^arma3_x64_.*\
     }
   };
   const captured = new Set();
+  const captureFailures = [];
   const captureWindows = () => {
     const prefix = runId + '_winshot_';
     for (const f of fs.readdirSync(SHOTS).filter(f => f.startsWith(prefix))) {
@@ -117,7 +118,8 @@ const findRpt = (since, tag) => fs.readdirSync(RPTS).filter(f => /^arma3_x64_.*\
       let res;
       const capture = () => execFileSync('powershell', ['-NoProfile', '-File', path.join(__dirname, 'capture-window.ps1'), String(pid), to], { encoding: 'utf8', windowsHide: true }).trim();
       try { res = focusGuard ? focusGuard.pauseWhile(capture) : capture(); } catch (e) { res = String(e.message).split(/\r?\n/)[0]; }
-      if (res === 'ok') shots.push(to); else console.error(`run.js: window capture ${name} failed: ${res}`);
+      if (res === 'ok' && fs.existsSync(to)) shots.push(to);
+      else { captureFailures.push(name); console.error(`run.js: window capture ${name} failed: ${res}`); }
       try { fs.rmSync(path.join(SHOTS, f), { force: true }); } catch {}
     }
   };
@@ -149,6 +151,10 @@ const findRpt = (since, tag) => fs.readdirSync(RPTS).filter(f => /^arma3_x64_.*\
   collect(true);
   const failed = lines.filter(l => /\[vclient\] shot \S+ false/.test(l));
   if (failed.length) console.error(`run.js: ${failed.length} screenshot(s) failed; see "Cannot save file" in the RPT`);
+  const requested = [...r.matchAll(/\[vclient\] winshot (\S+)/g)].map(m => m[1]);
+  const missing = requested.filter(n => !captured.has(n));
+  for (const n of missing) captureFailures.push(n);
+  if (captureFailures.length) console.error(`run.js: window capture failed for ${captureFailures.join(', ')}`);
   if (!args.includes('--keep')) {
     try { fs.rmSync(tmp, { recursive: true, force: true, maxRetries: 15, retryDelay: 2000 }); }
     catch (e) { console.error(`run.js: could not delete ${tmp}: ${e.code}`); }
@@ -166,5 +172,5 @@ const findRpt = (since, tag) => fs.readdirSync(RPTS).filter(f => /^arma3_x64_.*\
   if (state === 'exited' && !/Shutdown normally|Exception code/.test(r))
     console.error('run.js: Arma vanished without a shutdown line; another process killed it (a script that kills arma3_x64 by name?)');
   else if (!/Mission directory:/.test(r)) console.error('run.js: the mission never loaded (wrong playMission path makes Arma quit silently)');
-  process.exit(state === 'done' && !failed.length ? 0 : 1);
+  process.exit(state === 'done' && !failed.length && !captureFailures.length ? 0 : 1);
 })();

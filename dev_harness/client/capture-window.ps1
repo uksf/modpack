@@ -47,16 +47,23 @@ public static class WindowCapture {
     IntPtr h = FindLargestWindow(pid);
     if (h == IntPtr.Zero) return "no window";
     bool wasMinimised = IsIconic(h);
+    WINDOWPLACEMENT original = new WINDOWPLACEMENT(); original.length = Marshal.SizeOf(original);
+    GetWindowPlacement(h, ref original);
     if (wasMinimised) {
-      WINDOWPLACEMENT wp = new WINDOWPLACEMENT(); wp.length = Marshal.SizeOf(wp);
-      GetWindowPlacement(h, ref wp);
+      WINDOWPLACEMENT wp = original;
       int w = wp.normal.Right - wp.normal.Left, ht = wp.normal.Bottom - wp.normal.Top;
       wp.normal.Left = OFF_SCREEN_X; wp.normal.Right = OFF_SCREEN_X + w; wp.normal.Bottom = wp.normal.Top + ht;
       wp.showCmd = SW_SHOWNOACTIVATE;
       SetWindowPlacement(h, ref wp);
       System.Threading.Thread.Sleep(1000);
     }
-    try { return Save(h, path); } finally { if (wasMinimised) ShowWindow(h, SW_SHOWMINNOACTIVE); }
+    try { return Save(h, path); }
+    finally {
+      if (wasMinimised) {
+        original.showCmd = SW_SHOWMINNOACTIVE;
+        SetWindowPlacement(h, ref original);
+      }
+    }
   }
 
   static string Save(IntPtr h, string path) {
