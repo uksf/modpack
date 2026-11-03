@@ -1,0 +1,19 @@
+{
+  "format": 1,
+  "pbo": "Marbit_Turret_Enhanced.pbo",
+  "pristineSha256": "71e744efd81bf1a9ac97aede9a5a2ab1578d0283edd888d293f9fe2cd5af068e",
+  "description": "Turret Enhanced shows its azimuth tape, elevation ladder, target grid and target-marking actions to any crew member in a gunner view, so door gunners and ground gunners get a drone camera overlay. This limits manned vehicles to the seats that get the UKSF camera compass: an aircraft pilot seat with a pilot camera or an aircraft turret with OpticsIn. UAV gunners keep it.",
+  "assets": [
+    {
+      "path": "Marbit_Turret_Enhanced\\functions\\isViewISR.sqf",
+      "sha256": "8397628c2e5a1713b0047caf91c00a0f2631f5d44c7d0c207f8933e004073248",
+      "ops": [
+        {
+          "op": "text-replace",
+          "find": "(_veh getCargoIndex _player == -1))",
+          "replace": "([_veh] call uksf_vehicles_fnc_isCompassCamera))"
+        }
+      ]
+    }
+  ]
+}
