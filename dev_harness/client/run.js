@@ -12,7 +12,7 @@ const RPTS = path.join(process.env.LOCALAPPDATA, 'Arma 3');
 const args = process.argv.slice(2);
 const opt = (k, d) => { const i = args.indexOf(k); return i >= 0 ? args[i + 1] : d; };
 const test = args[0];
-if (!test || test.startsWith('--')) { console.error('usage: run.js <test.sqf> [--mods <file|preset>] [--world VR] [--timeout 240] [--out <dir>] [--sheet] [--keep] [--allow-focus]'); process.exit(2); }
+if (!test || test.startsWith('--')) { console.error('usage: run.js <test.sqf> [--mods <file|preset>] [--world VR] [--timeout 240] [--out <dir>] [--sheet] [--keep] [--allow-focus] [--sound]'); process.exit(2); }
 const world = opt('--world', 'VR');
 const timeout = +opt('--timeout', 240) * 1000;
 const out = path.resolve(opt('--out', path.join(path.dirname(path.resolve(test)), 'shots')));
@@ -77,7 +77,7 @@ const findRpt = (since, tag) => fs.readdirSync(RPTS).filter(f => /^arma3_x64_.*\
     try { if (/^vc[0-9a-f]{8}_/.test(f) && Date.now() - fs.statSync(p).mtimeMs > 864e5) fs.rmSync(p); } catch {}
   }
   const modArg = [...mods, mod].map(p => path.resolve(p)).join(';');
-  const argv = ['-window', '-noPause', '-noSound', '-noSplash', '-skipIntro', '-world=empty', `-name=${PROFILE}`,
+  const argv = ['-window', '-noPause', ...(args.includes('--sound') ? ['-noPauseAudio'] : ['-noSound']), '-noSplash', '-skipIntro', '-world=empty', `-name=${PROFILE}`,
     `-mod=${modArg}`, `-init=playMission['','\\${PREFIX}\\${mission}']`];
   const focusGuard = !args.includes('--allow-focus') && startFocusGuard({ token: `vclient-${runId}-`, log: path.join(tmp, 'focus.log') });
   if (focusGuard) process.on('exit', focusGuard.stop);
