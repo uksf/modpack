@@ -4,44 +4,48 @@
         Tim Beswick
 
     Description:
-        Unassigns given curator
+        Unassigns a curator and frees its slot
         If unit is given, unassigned event is called where that unit is local
-        If player is given, unassigns any curator they hold
-        If no slot holds the given curator, the player's slot is found by name instead,
-        and is freed only when its curator is held by that player or by no one
+        A player request ignores the given curator and frees only what that player owns now:
+        the slot whose curator they hold, else an unheld slot reserved under their name,
+        and any untracked curator they hold
+        A player request whose player no longer exists does nothing
         Deleted curators are pruned first, so a stale slot cannot shift another player's slot
 
     Parameter(s):
         0: Curator <OBJECT>
         1: Unit <OBJECT> (Optional)
         2: Player <OBJECT> (Optional)
+        3: Player request <BOOL> (Optional, default false)
 
     Return Value:
         None
 
     Example:
-        [_curator, _unit, _player] call uksf_curator_fnc_curatorUnassign
+        [objNull, objNull, player, true] call uksf_curator_fnc_curatorUnassign
 */
-params ["_curator", ["_unit", objNull], ["_player", objNull]];
+params ["_curator", ["_unit", objNull], ["_player", objNull], ["_byPlayer", false]];
 
 call FUNC(pruneCurators);
 
-private _index = [-1, GVAR(curatorObjects) find _curator] select (!isNull _curator);
-if (!isNull _player) then {
+if (_byPlayer && {isNull _player}) exitWith {};
+
+private _index = -1;
+if (_byPlayer) then {
+    private _heldCurator = getAssignedCuratorLogic _player;
+    _index = GVAR(curatorObjects) find _heldCurator;
     if (_index == -1) then {
         _index = GVAR(curatorPlayers) find (name _player);
-    };
-    if (_index != -1) then {
-        private _slotHolder = getAssignedCuratorUnit (GVAR(curatorObjects) select _index);
-        private _ownSlot = [_slotHolder == _player, (GVAR(curatorPlayers) select _index) == name _player] select (isNull _slotHolder);
-        if (!_ownSlot) then {
+        if (_index != -1 && {!isNull getAssignedCuratorUnit (GVAR(curatorObjects) select _index)}) then {
             _index = -1;
         };
     };
-
-    private _heldCurator = getAssignedCuratorLogic _player;
-    if (!isNull _heldCurator) then {
+    if (!isNull _heldCurator && {_index == -1 || {(GVAR(curatorObjects) select _index) != _heldCurator}}) then {
         unassignCurator _heldCurator;
+    };
+} else {
+    if (!isNull _curator) then {
+        _index = GVAR(curatorObjects) find _curator;
     };
 };
 
