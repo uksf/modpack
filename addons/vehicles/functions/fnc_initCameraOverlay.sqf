@@ -52,8 +52,8 @@ private _compassAction = [
 
 {
     [_x, 1, ["ACE_SelfActions"], _wpAction, true] call ace_interact_menu_fnc_addActionToClass;
-    [_x, 1, ["ACE_SelfActions"], _compassAction, true] call ace_interact_menu_fnc_addActionToClass;
 } forEach ["Air", "LandVehicle", "Ship"];
+["Air", 1, ["ACE_SelfActions"], _compassAction, true] call ace_interact_menu_fnc_addActionToClass;
 
 {
     [_x, FUNC(updateCameraOverlay)] call CBA_fnc_addPlayerEventHandler;
