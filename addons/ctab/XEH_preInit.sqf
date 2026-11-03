@@ -8,6 +8,7 @@ GVAR(apps) = [];
 GVAR(content) = [];
 GVAR(mapHandlers) = [];
 GVAR(overlays) = [];
+GVAR(miniOverlays) = [];
 GVAR(currentApp) = "";
 GVAR(lastMode) = "";
 

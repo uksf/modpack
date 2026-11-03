@@ -6,6 +6,7 @@
     Description:
         Handles cTab's interface open event.
         On the Android dialog, adds the app overlays to both cTab maps and returns to the app that was open when the dialog last closed.
+        On the small Android display, adds the overlays that show plans: routes, jumps and drone tasks.
 
     Parameter(s):
         0: cTab display <DISPLAY>
@@ -19,6 +20,11 @@
 */
 params ["_display", "_displayName"];
 
+if (_displayName == ANDROID_DISPLAY) exitWith {
+    {
+        (_display displayCtrl _x) ctrlAddEventHandler ["Draw", {[_this select 0, true] call FUNC(drawOverlays)}];
+    } forEach [IDC_MAP_SCREEN, IDC_MAP_TOPO];
+};
 if (_displayName != ANDROID_DIALOG) exitWith {};
 
 {

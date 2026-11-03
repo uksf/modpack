@@ -6,7 +6,7 @@
     Description:
         Runs the task stored on a drone, on the machine where the drone's crew group is local.
         Observe and Escort circle the task point. Hold and Return stop at it when the drone can hover, and circle it otherwise. A ground drone drives to the point and stops.
-        Observe goes to the point. Escort follows the requester, checked every few seconds and moved only when the requester has moved far enough. Hold stays at the current position. Return goes to where the drone took its first task.
+        Observe goes to the point. Escort follows the requester, checked every few seconds and moved only when the requester has moved far enough. Hold stays at the current position. Return goes to where the handset holder stood when they sent it.
         When the crew group is not local, or stops being local during an escort, the task goes back to the server, which sends it to the new owner.
         Each escort move stores the new escort point in the task, so a new owner resumes from it.
         When the escort requester dies or disconnects, including when the disconnected unit stays alive as AI, the task becomes Observe at the last escort point.

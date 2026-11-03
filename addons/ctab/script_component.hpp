@@ -5,6 +5,7 @@
 #include "\u\uksf\addons\main\script_macros.hpp"
 
 #define ANDROID_DIALOG "cTab_Android_dlg"
+#define ANDROID_DISPLAY "cTab_Android_dsp"
 #define MODE_PREFIX "UKSF_"
 #define MODE_LAUNCHER "UKSF_APPS"
 #define MODE_APP_PREFIX "UKSF_APP_"

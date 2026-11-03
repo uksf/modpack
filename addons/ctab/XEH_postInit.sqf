@@ -31,3 +31,4 @@ if (isClass (configFile >> "CfgPatches" >> "acre_sys_mpu5")) then {
 };
 
 GVAR(overlays) append [FUNC(routeDraw), FUNC(elevationDraw), FUNC(jumpDraw), FUNC(friendlyDraw), FUNC(markersDraw), FUNC(droneDraw)];
+GVAR(miniOverlays) append [FUNC(routeDraw), FUNC(jumpDraw), FUNC(droneDraw)];
