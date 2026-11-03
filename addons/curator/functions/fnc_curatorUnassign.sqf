@@ -30,11 +30,12 @@ private _index = [-1, GVAR(curatorObjects) find _curator] select (!isNull _curat
 if (!isNull _player) then {
     if (_index == -1) then {
         _index = GVAR(curatorPlayers) find (name _player);
-        if (_index != -1) then {
-            private _slotHolder = getAssignedCuratorUnit (GVAR(curatorObjects) select _index);
-            if (!isNull _slotHolder && {_slotHolder != _player}) then {
-                _index = -1;
-            };
+    };
+    if (_index != -1) then {
+        private _slotHolder = getAssignedCuratorUnit (GVAR(curatorObjects) select _index);
+        private _ownSlot = [_slotHolder == _player, (GVAR(curatorPlayers) select _index) == name _player] select (isNull _slotHolder);
+        if (!_ownSlot) then {
+            _index = -1;
         };
     };
 
@@ -49,6 +50,7 @@ if (_index != -1) then {
     private _slotCurator = GVAR(curatorObjects) select _index;
     if (!isNull _slotCurator) then {
         unassignCurator _slotCurator;
+        _slotCurator setVariable [QGVAR(reservation), -1];
     };
     GVAR(curatorPlayers) set [_index, ""];
     publicVariable QGVAR(curatorObjects);

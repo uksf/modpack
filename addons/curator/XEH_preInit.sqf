@@ -9,6 +9,7 @@ ADDON = false;
 if (isServer) then {
     GVAR(curatorObjects) = [];
     GVAR(curatorPlayers) = [];
+    GVAR(reservationSerial) = 0;
     [QGVAR(setCuratorsLocked), {call FUNC(setCuratorsLocked)}] call CBA_fnc_addEventHandler;
     [QGVAR(curatorAssign), {call FUNC(curatorAssign)}] call CBA_fnc_addEventHandler;
     [QGVAR(curatorUnassign), {call FUNC(curatorUnassign)}] call CBA_fnc_addEventHandler;
