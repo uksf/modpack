@@ -19,6 +19,8 @@ params ["_player"];
 
 call FUNC(pruneCurators);
 
+if ((name _player) in GVAR(curatorPlayers) || {!isNull getAssignedCuratorLogic _player}) exitWith {};
+
 private _index = GVAR(curatorPlayers) find "";
 if (_index != -1) then {
     TRACE_2("",_player,_index);
