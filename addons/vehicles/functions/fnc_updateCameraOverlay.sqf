@@ -33,7 +33,7 @@ private _compassVehicle = [objNull, _vehicle] select (
     && {[_vehicle] call FUNC(isCompassCamera)}
 );
 
-if (GVAR(compassPFH) != -1 && {GVAR(compassVehicle) != _compassVehicle}) then {
+if (GVAR(compassPFH) != -1 && {isNull _compassVehicle || {GVAR(compassVehicle) != _compassVehicle}}) then {
     [GVAR(compassPFH)] call CBA_fnc_removePerFrameHandler;
     GVAR(compassPFH) = -1;
 };

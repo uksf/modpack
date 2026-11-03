@@ -20,7 +20,7 @@
 */
 params ["_vehicle", "_idPFH"];
 
-if (call FUNC(cameraOverlayVehicle) != _vehicle) exitWith {};
+if (isNull _vehicle || {call FUNC(cameraOverlayVehicle) != _vehicle}) exitWith {};
 
 private _center = screenToWorld [0.5, 0.5];
 private _cameraDistance = (positionCameraToWorld [0, 0, 0]) distance _center;
