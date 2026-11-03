@@ -5,8 +5,8 @@
 
     Description:
         Per-frame handler. Draws N, E, S and W markers on the ground around the point
-        under the camera centre, at a fixed screen size for any range and zoom, until the player leaves the camera
-        or turns the compass off. Draws nothing while the camera centre is on the sky.
+        under the camera centre, at a fixed screen size for any range and zoom, while updateCameraOverlay keeps it.
+        Skips frames where the player is not looking through this vehicle's camera. Draws nothing while the camera centre is on the sky.
 
     Parameter(s):
         0: Vehicle <OBJECT>
@@ -20,10 +20,7 @@
 */
 params ["_vehicle", "_idPFH"];
 
-if (call FUNC(cameraOverlayVehicle) != _vehicle || {!(ACE_player getVariable [QGVAR(cameraCompass), false])}) exitWith {
-    [_idPFH] call CBA_fnc_removePerFrameHandler;
-    GVAR(compassPFH) = -1;
-};
+if (call FUNC(cameraOverlayVehicle) != _vehicle) exitWith {};
 
 private _center = screenToWorld [0.5, 0.5];
 private _cameraDistance = (positionCameraToWorld [0, 0, 0]) distance _center;

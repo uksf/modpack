@@ -5,8 +5,8 @@
 
     Description:
         Creates the white phosphor filter for vehicle optics and the camera compass,
-        adds their self-interaction toggles and watches the view, and twice a second
-        the object the camera is on, so both follow whichever vehicle or UAV camera
+        adds their self-interaction toggles and watches the view, the white phosphor setting, and twice a second
+        the camera object, view, controlled unit and seat, so both follow whichever vehicle or UAV camera
         the player looks through, including a switch from one UAV to another.
         The white phosphor toggle sets the ACE night vision "always use white phosphor"
         client setting, so one choice covers goggles and vehicle optics.
@@ -27,6 +27,7 @@ GVAR(wpCameraCC) ppEffectCommit 0;
 GVAR(wpCameraCC) ppEffectForceInNVG true;
 GVAR(wpCameraCC) ppEffectEnable false;
 GVAR(compassPFH) = -1;
+GVAR(compassVehicle) = objNull;
 
 private _wpAction = [
     QGVAR(wpCameraToggle),
@@ -59,10 +60,16 @@ private _compassAction = [
     [_x, FUNC(updateCameraOverlay)] call CBA_fnc_addPlayerEventHandler;
 } forEach ["cameraView", "visionMode", "vehicle", "turret"];
 
-GVAR(cameraOverlayTarget) = objNull;
+["CBA_SettingChanged", {
+    params ["_name"];
+    if (_name == "ace_nightvision_alwaysUseWP") then {call FUNC(updateCameraOverlay)};
+}] call CBA_fnc_addEventHandler;
+
+GVAR(cameraOverlayContext) = [];
 [{
-    if (cameraOn != GVAR(cameraOverlayTarget)) then {
-        GVAR(cameraOverlayTarget) = cameraOn;
+    private _context = [cameraOn, cameraView, focusOn, (vehicle focusOn) unitTurret focusOn];
+    if (_context isNotEqualTo GVAR(cameraOverlayContext)) then {
+        GVAR(cameraOverlayContext) = _context;
         call FUNC(updateCameraOverlay);
     };
 }, 0.5] call CBA_fnc_addPerFrameHandler;
