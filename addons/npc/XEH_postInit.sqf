@@ -74,10 +74,12 @@ addMissionEventHandler ["ExtensionCallback", {
 QGVAR(sttNames) addPublicVariableEventHandler { call FUNC(sttPushNames) };
 call FUNC(requestFillers);
 
+GVAR(sttReady) = false;
+GVAR(sttActive) = false;
+QGVAR(talkerNetIds) addPublicVariableEventHandler { call FUNC(sttSync) };
 [{
-    INFO("NPC STT: delayed start");
-    call FUNC(sttStart);
-    call FUNC(sttPushNames);
+    GVAR(sttReady) = true;
+    call FUNC(sttSync);
 }, [], STT_START_DELAY_AFTER_FILLERS] call CBA_fnc_waitAndExecute;
 
 [FUNC(gateTick), 0.2, []] call CBA_fnc_addPerFrameHandler;
