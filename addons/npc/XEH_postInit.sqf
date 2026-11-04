@@ -75,12 +75,9 @@ QGVAR(sttNames) addPublicVariableEventHandler { call FUNC(sttPushNames) };
 call FUNC(requestFillers);
 
 GVAR(sttReady) = false;
-GVAR(sttActive) = false;
-QGVAR(talkerNetIds) addPublicVariableEventHandler { call FUNC(sttSync) };
-[{
-    GVAR(sttReady) = true;
-    call FUNC(sttSync);
-}, [], STT_START_DELAY_AFTER_FILLERS] call CBA_fnc_waitAndExecute;
+GVAR(sttStarted) = false;
+GVAR(sttGateOpen) = false;
+[{ GVAR(sttReady) = true; }, [], STT_START_DELAY_AFTER_FILLERS] call CBA_fnc_waitAndExecute;
 
 [FUNC(gateTick), 0.2, []] call CBA_fnc_addPerFrameHandler;
 [FUNC(proximityPull), 0.5, []] call CBA_fnc_addPerFrameHandler;
