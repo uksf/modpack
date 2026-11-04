@@ -35,7 +35,7 @@ GVAR(nightVisionCameraCache) getOrDefaultCall [[_type, _turret], {
         if (_vehicle isKindOf "Air") then {
             {
                 _modes append getArray (_x >> "visionMode");
-            } forEach ("true" configClasses (_vehicleConfig >> "pilotCamera" >> "OpticsIn"));
+            } forEach configProperties [_vehicleConfig >> "pilotCamera" >> "OpticsIn", "isClass _x", true];
         } else {
             _modes append getArray (_vehicleConfig >> "ViewOptics" >> "visionMode");
         };
@@ -44,7 +44,7 @@ GVAR(nightVisionCameraCache) getOrDefaultCall [[_type, _turret], {
         _modes append getArray (_turretConfig >> "ViewOptics" >> "visionMode");
         {
             _modes append getArray (_x >> "visionMode");
-        } forEach ("true" configClasses (_turretConfig >> "OpticsIn"));
+        } forEach configProperties [_turretConfig >> "OpticsIn", "isClass _x", true];
     };
     (_modes findIf {_x == "NVG"}) != -1
 }, true]
