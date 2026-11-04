@@ -139,3 +139,6 @@
 
 #define JACKAL_INVENTORY_HMG JACKAL_INVENTORY(UK3CB_BAF_127_100Rnd)
 #define JACKAL_INVENTORY_GMG JACKAL_INVENTORY(UK3CB_BAF_32Rnd_40mm_G_Box)
+
+#define WP_CAMERA_NEUTRAL [1, 1, 0, [0, 0, 0, 0], [1, 1, 1, 1], [0, 0, 0, 0]]
+#define WP_CAMERA_WHITE [1, 1, 0, [0, 0, 0, 0], [1.1, 0.8, 1.9, 0.9], [1, 1, 6, 0]]

@@ -8,6 +8,8 @@
         adds their self-interaction toggles and watches the view, the white phosphor setting, and twice a second
         the camera object, view, controlled unit and seat, so both follow whichever vehicle or UAV camera
         the player looks through, including a switch from one UAV to another.
+        The filter stays enabled and only swaps between neutral and white phosphor values,
+        because enabling or disabling a post-process effect stalls a frame on every view switch.
         The white phosphor toggle sets the ACE night vision "always use white phosphor"
         client setting, so one choice covers goggles and vehicle optics.
 
@@ -22,10 +24,11 @@
 */
 
 GVAR(wpCameraCC) = ppEffectCreate ["ColorCorrections", 2010];
-GVAR(wpCameraCC) ppEffectAdjust [1, 1, 0.0, [0, 0, 0, 0], [1.1, 0.8, 1.9, 0.9], [1, 1, 6, 0]];
+GVAR(wpCameraCC) ppEffectAdjust WP_CAMERA_NEUTRAL;
 GVAR(wpCameraCC) ppEffectCommit 0;
 GVAR(wpCameraCC) ppEffectForceInNVG true;
-GVAR(wpCameraCC) ppEffectEnable false;
+GVAR(wpCameraCC) ppEffectEnable true;
+GVAR(wpCameraActive) = false;
 GVAR(compassPFH) = -1;
 GVAR(compassVehicle) = objNull;
 

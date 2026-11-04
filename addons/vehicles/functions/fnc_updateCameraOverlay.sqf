@@ -25,7 +25,12 @@ private _vehicle = call FUNC(cameraOverlayVehicle);
 private _nightVision = !isNull _vehicle && {[_vehicle] call FUNC(hasNightVisionCamera)} && {
     currentVisionMode focusOn == 1 || {driver _vehicle == ACE_player && {currentVisionMode _vehicle == 1}}
 };
-GVAR(wpCameraCC) ppEffectEnable (_nightVision && {ace_nightvision_alwaysUseWP});
+private _wpActive = _nightVision && {ace_nightvision_alwaysUseWP};
+if (_wpActive isNotEqualTo GVAR(wpCameraActive)) then {
+    GVAR(wpCameraActive) = _wpActive;
+    GVAR(wpCameraCC) ppEffectAdjust ([WP_CAMERA_NEUTRAL, WP_CAMERA_WHITE] select _wpActive);
+    GVAR(wpCameraCC) ppEffectCommit 0;
+};
 
 private _compassVehicle = [objNull, _vehicle] select (
     !isNull _vehicle
