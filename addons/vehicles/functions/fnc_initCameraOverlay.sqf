@@ -37,7 +37,7 @@ private _wpAction = [
         ["ace_nightvision_alwaysUseWP", !ace_nightvision_alwaysUseWP, 0, "client", true] call CBA_settings_fnc_set;
         call FUNC(updateCameraOverlay);
     },
-    {cameraOn != ACE_player}
+    {cameraOn != ACE_player && {[cameraOn] call FUNC(hasNightVisionCamera)}}
 ] call ace_interact_menu_fnc_createAction;
 
 private _compassAction = [

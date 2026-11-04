@@ -5,7 +5,7 @@
 
     Description:
         Applies the white phosphor filter while the player looks through vehicle or UAV
-        optics in night vision with the ACE white phosphor setting on, and reconciles the
+        optics that have a night vision mode, in night vision with the ACE white phosphor setting on, and reconciles the
         camera compass: it stops a running compass whose camera changed or is no longer
         eligible, and starts one when the player turned it on for a camera that has one.
         Runs on view, vision mode, vehicle, turret and white phosphor setting changes,
@@ -22,7 +22,7 @@
 */
 
 private _vehicle = call FUNC(cameraOverlayVehicle);
-private _nightVision = !isNull _vehicle && {
+private _nightVision = !isNull _vehicle && {[_vehicle] call FUNC(hasNightVisionCamera)} && {
     currentVisionMode focusOn == 1 || {driver _vehicle == ACE_player && {currentVisionMode _vehicle == 1}}
 };
 GVAR(wpCameraCC) ppEffectEnable (_nightVision && {ace_nightvision_alwaysUseWP});

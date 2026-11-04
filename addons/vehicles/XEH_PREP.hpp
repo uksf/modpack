@@ -9,6 +9,7 @@ PREP(deployCoverMedical);
 PREP(drawCameraCompass);
 PREP(initCameraOverlay);
 PREP(initMarkingLaser);
+PREP(hasNightVisionCamera);
 PREP(isCompassCamera);
 PREP(reloadTurret);
 PREP(renderMarkingLasers);
