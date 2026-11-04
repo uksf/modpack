@@ -4,7 +4,7 @@
         Tim Beswick
 
     Description:
-        On load of server select
+        On load of server select. Clears the failed cached password marker that fnc_connectToServer sets
 
     Parameter(s):
         0: Control <CONTROL>
@@ -16,6 +16,8 @@
         [_control] call uksf_menu_fnc_onServerListLoad
 */
 params ["_control"];
+
+uiNamespace setVariable [QGVAR(cachedPasswordServer), nil];
 
 private _servers = [
     ["Primary","2302"],
