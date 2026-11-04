@@ -46,10 +46,11 @@ if (currentVisionMode focusOn != 1) exitWith {};
     private _direction = if (_gunner == focusOn && {cameraOn == _x} && {cameraView == "GUNNER"}) then {
         (AGLToASL positionCameraToWorld [0, 0, 0]) vectorFromTo (AGLToASL positionCameraToWorld [0, 0, 1000])
     } else {
-        private _history = _x getVariable [QGVAR(markingLaserHistory), []];
+        (_x getVariable [QGVAR(markingLaserHistory), [-1, []]]) params ["_lastFrame", "_history"];
+        if (_lastFrame != diag_frameNo - 1) then { _history = [] };
         _history pushBack vectorNormalized ((_x modelToWorldVisualWorld (_x selectionPosition _muzzle)) vectorDiff (_x modelToWorldVisualWorld (_x selectionPosition _breech)));
         if (count _history > 5) then { _history deleteAt 0 };
-        _x setVariable [QGVAR(markingLaserHistory), _history];
+        _x setVariable [QGVAR(markingLaserHistory), [diag_frameNo, _history]];
         private _sum = [0, 0, 0];
         { _sum = _sum vectorAdd _x } forEach _history;
         vectorNormalized _sum
