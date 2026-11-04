@@ -11,7 +11,9 @@
         The filter stays enabled and only swaps between neutral and white phosphor values,
         because enabling or disabling a post-process effect stalls a frame on every view switch.
         The white phosphor toggle sets the ACE night vision "always use white phosphor"
-        client setting, so one choice covers goggles and vehicle optics.
+        client setting, so one choice covers goggles and vehicle optics. The toggle does not store the
+        setting in the profile, because the profile save stalls a frame on every toggle. The stored
+        default stays in the ACE Night Vision addon options.
 
     Parameter(s):
         None
@@ -37,7 +39,7 @@ private _wpAction = [
     "White Phosphor NV",
     "",
     {
-        ["ace_nightvision_alwaysUseWP", !ace_nightvision_alwaysUseWP, 0, "client", true] call CBA_settings_fnc_set;
+        ["ace_nightvision_alwaysUseWP", !ace_nightvision_alwaysUseWP, 0, "client", false] call CBA_settings_fnc_set;
         call FUNC(updateCameraOverlay);
     },
     {cameraOn != ACE_player && {[cameraOn] call FUNC(hasNightVisionCamera)}}
@@ -45,7 +47,7 @@ private _wpAction = [
 
 private _compassAction = [
     QGVAR(cameraCompassToggle),
-    "Camera Compass",
+    "Compass",
     "",
     {
         ACE_player setVariable [QGVAR(cameraCompass), !(ACE_player getVariable [QGVAR(cameraCompass), false])];
