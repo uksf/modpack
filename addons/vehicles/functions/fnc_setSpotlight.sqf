@@ -22,7 +22,7 @@
 params [["_vehicle", objNull, [objNull]], ["_turret", [], [[]]], ["_mode", "invalid", [""]], ["_requester", objNull, [objNull]]];
 
 if (!isServer || {isNull _requester} || {!isPlayer _requester} || {remoteExecutedOwner != owner _requester}) exitWith {};
-if (isNull _vehicle || {!alive _vehicle} || {_turret findIf {!(_x isEqualType 0)} != -1}) exitWith {};
+if (isNull _vehicle || {!alive _vehicle} || {_turret isNotEqualTo [] && {!(_turret isEqualTypeAll 0)}}) exitWith {};
 if !(_mode in ["", "white", "ir"] && {_turret in ([_vehicle] call FUNC(spotlightTurrets))} && {_vehicle turretUnit _turret == _requester}) exitWith {};
 
 private _key = format [QGVAR(spotlight_%1), _turret];
