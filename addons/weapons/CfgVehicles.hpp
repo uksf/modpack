@@ -358,7 +358,7 @@ class CfgVehicles {
             class ACE_MainActions : ACE_MainActions {
                 class GVAR(stow) {
                     displayName = "Put in inventory";
-                    condition = QUOTE(_player canAdd getText (configOf _target >> QQGVAR(item)) && {_target getVariable ['tbd_mortars_105mm_dpicm_fuse_timer', -1] < 0});
+                    condition = QUOTE(_player canAdd getText (configOf _target >> QQGVAR(item)) && {_target getVariable [ARR_2('tbd_mortars_105mm_dpicm_fuse_timer',-1)] < 0});
                     statement = QUOTE(_player addItem getText (configOf _target >> QQGVAR(item)); deleteVehicle _target);
                     distance = 2;
                 };
