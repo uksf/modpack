@@ -58,6 +58,16 @@ ADDON = false;
     };
 }] call CBA_fnc_addEventHandler;
 
+[QGVAR(l118ReceiveItem), {
+    params ["_player", "_item"];
+    if (local _player) then {_player addItem _item};
+}] call CBA_fnc_addEventHandler;
+
+[QGVAR(l118Carry), {
+    params ["_player", "_shell"];
+    if (local _player) then {[_player, _shell] call ace_dragging_fnc_startCarry};
+}] call CBA_fnc_addEventHandler;
+
 GVAR(l119SubmunitionAmmos) = [
     "tbd_mortars_105mm_shell_ammo_smoke",
     QGVAR(105mm_shell_ammo_illum)

@@ -359,7 +359,7 @@ class CfgVehicles {
                 class GVAR(stow) {
                     displayName = "Put in inventory";
                     condition = QUOTE(_player canAdd getText (configOf _target >> QQGVAR(item)) && {_target getVariable [ARR_2('tbd_mortars_105mm_dpicm_fuse_timer',-1)] < 0});
-                    statement = QUOTE(_player addItem getText (configOf _target >> QQGVAR(item)); deleteVehicle _target);
+                    statement = QUOTE([ARR_3(_player,'stow',_target)] remoteExecCall [ARR_2(QQFUNC(l118Request),2)]);
                     distance = 2;
                 };
             };
@@ -411,14 +411,14 @@ class CfgVehicles {
 #define SHELL_ACTION(KIND,NAME) class GVAR(DOUBLES(load,KIND)) { \
     displayName = NAME; \
     condition = QUOTE([ARR_3(_target,_player,QQGVAR(DOUBLES(105mm_shell,KIND)))] call FUNC(l118CanLoad)); \
-    statement = QUOTE([ARR_3(_target,_player,QQGVAR(DOUBLES(105mm_shell,KIND)))] call FUNC(l118LoadShell)); \
+    statement = QUOTE([ARR_4(_player,'shell',_target,QQGVAR(DOUBLES(105mm_shell,KIND)))] remoteExecCall [ARR_2(QQFUNC(l118Request),2)]); \
     showDisabled = 0; \
 }
 
 #define CHARGE_ACTION(CHARGE,NAME) class GVAR(DOUBLES(charge,CHARGE)) { \
     displayName = NAME; \
     condition = "true"; \
-    statement = QUOTE([ARR_3(_target,_player,CHARGE)] call FUNC(l118LoadCharge)); \
+    statement = QUOTE([ARR_4(_player,'charge',_target,CHARGE)] remoteExecCall [ARR_2(QQFUNC(l118Request),2)]); \
     showDisabled = 0; \
 }
 
@@ -463,7 +463,7 @@ class CfgVehicles {
                     showDisabled = 0;
                     icon = "x\tbd_mortars\addons\main\data\unload.paa";
                     condition = QUOTE((_target magazinesTurret [0] isNotEqualTo [] || {_target getVariable [ARR_2(QQGVAR(l118Shell),'')] isNotEqualTo ''}));
-                    statement = QUOTE([ARR_2(_target,_player)] call FUNC(l118Unload));
+                    statement = QUOTE([ARR_3(_player,'unload',_target)] remoteExecCall [ARR_2(QQFUNC(l118Request),2)]);
                 };
             };
         };

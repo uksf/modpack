@@ -4,7 +4,5 @@ PREP(getSoflamDistance);
 PREP(l119SetSmokeFuseTime);
 PREP(l118AddInventoryActions);
 PREP(l118CanLoad);
-PREP(l118LoadCharge);
-PREP(l118LoadShell);
-PREP(l118Unload);
+PREP(l118Request);
 PREP(l119FiredEH);
