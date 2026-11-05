@@ -77,7 +77,7 @@ switch (GVAR(mpu5Page)) do {
         };
     };
     default {
-        APP_CTRL(mpu5Talkgroup) lbSetCurSel (_talkgroup - 1);
+        [APP_CTRL(mpu5Talkgroup), _talkgroup] call _selectValue;
         {
             private _monitored = (_x getVariable QGVAR(talkgroup)) in _monitors;
             _x ctrlSetText format [["%1", "[%1]"] select _monitored, _x getVariable QGVAR(talkgroup)];

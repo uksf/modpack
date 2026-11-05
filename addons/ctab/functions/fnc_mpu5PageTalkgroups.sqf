@@ -25,6 +25,7 @@ for "_talkgroup" from 1 to MPU5_TALKGROUPS do {
 };
 uiNamespace setVariable [QGVAR(mpu5Talkgroup), [_group, [0.3, 0.12, 0.4, 0.07], _talkgroups, [GVAR(mpu5Radio)] call acre_api_fnc_getRadioChannel, {
     params ["_talkgroup"];
+    if (GVAR(mpu5Refreshing)) exitWith {};
     if (_talkgroup != [GVAR(mpu5Radio)] call acre_api_fnc_getRadioChannel) then {
         [GVAR(mpu5Radio), _talkgroup] call acre_api_fnc_setRadioChannel;
     };
