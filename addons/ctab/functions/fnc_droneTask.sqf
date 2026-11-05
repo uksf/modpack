@@ -22,6 +22,15 @@
 */
 params ["_drone"];
 
+if !(_drone isEqualType objNull) exitWith {};
+if (isNull _drone || {!alive _drone} || {!unitIsUAV _drone && {!(_drone in (missionNamespace getVariable ["cTabUAVlist", []]))}}) exitWith {};
+private _taskData = _drone getVariable [QGVAR(droneTask), []];
+if !(_taskData isEqualType [] && {count _taskData >= 3}) exitWith {};
+_taskData params ["_task", "_point", "_requester"];
+if !(_task isEqualType "" && {_task in ["observe", "escort", "hold", "return"]}) exitWith {};
+if !(_point isEqualType [] && {count _point in [2, 3]} && {_point isEqualTypeAll 0} && {_requester isEqualType objNull}) exitWith {};
+if (_point findIf {abs _x > 10000000 || {_x != _x}} != -1) exitWith {};
+
 private _group = _drone call FUNC(droneGroup);
 if (!alive _drone || {isNull _group}) exitWith {};
 if (!local _group) exitWith {
@@ -31,8 +40,6 @@ if (!local _group) exitWith {
 [_drone getVariable [QGVAR(droneEscort), -1]] call CBA_fnc_removePerFrameHandler;
 _drone setVariable [QGVAR(droneEscort), -1];
 
-(_drone getVariable [QGVAR(droneTask), []]) params [["_task", ""], ["_point", []], ["_requester", objNull]];
-if (_point isEqualTo []) then {_point = getPosASL _drone};
 if (_task == "escort" && {!alive _requester || {!isPlayer _requester}}) then {
     _task = "observe";
     _drone setVariable [QGVAR(droneTask), [_task, _point, objNull], true];

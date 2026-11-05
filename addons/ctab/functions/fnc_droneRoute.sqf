@@ -9,6 +9,7 @@
 
     Parameter(s):
         0: Drone <OBJECT>
+        1: Requested task data <ARRAY> (optional; defaults to the stored task)
 
     Return Value:
         Nothing
@@ -16,12 +17,22 @@
     Example:
         [_drone] call uksf_ctab_fnc_droneRoute
 */
-params ["_drone"];
+params ["_drone", ["_requestedTask", []]];
 
-GVAR(escorts) = GVAR(escorts) select {alive (_x select 0) && {_x select 0 != _drone}};
+if !(_drone isEqualType objNull) exitWith {};
+if (isNull _drone || {!alive _drone} || {!unitIsUAV _drone && {!(_drone in (missionNamespace getVariable ["cTabUAVlist", []]))}}) exitWith {};
+private _taskData = if (_requestedTask isEqualTo []) then {_drone getVariable [QGVAR(droneTask), []]} else {_requestedTask};
+if !(_taskData isEqualType [] && {count _taskData >= 3}) exitWith {};
+_taskData params ["_task", "_point", "_requester"];
+if !(_task isEqualType "" && {_task in ["observe", "escort", "hold", "return"]}) exitWith {};
+if !(_point isEqualType [] && {count _point in [2, 3]} && {_point isEqualTypeAll 0} && {_requester isEqualType objNull}) exitWith {};
+if (_point findIf {abs _x > 10000000 || {_x != _x}} != -1) exitWith {};
 
 private _group = _drone call FUNC(droneGroup);
-if (!alive _drone || {isNull _group}) exitWith {};
+if (isNull _group) exitWith {};
+
+if (_requestedTask isNotEqualTo []) then {_drone setVariable [QGVAR(droneTask), _taskData, true]};
+GVAR(escorts) = GVAR(escorts) select {alive (_x select 0) && {_x select 0 != _drone}};
 
 private _owner = groupOwner _group;
 if ((_drone getVariable [QGVAR(droneTask), []]) param [0, ""] == "escort") then {
