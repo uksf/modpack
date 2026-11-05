@@ -11,19 +11,24 @@
         0: Vehicle <OBJECT>
         1: Turret path <ARRAY>
         2: Mode, "" for off, "white" or "ir" <STRING>
+        3: Requesting player <OBJECT>
 
     Return Value:
         None
 
     Example:
-        [vehicle player, [0], "ir"] call uksf_vehicles_fnc_setSpotlight
+        [vehicle player, [0], "ir", player] remoteExecCall ["uksf_vehicles_fnc_setSpotlight", 2]
 */
-params ["_vehicle", "_turret", "_mode"];
+params [["_vehicle", objNull, [objNull]], ["_turret", [], [[]]], ["_mode", "invalid", [""]], ["_requester", objNull, [objNull]]];
 
-if !(_mode in ["", "white", "ir"] && {_turret in ([_vehicle] call FUNC(spotlightTurrets))}) exitWith {};
+if (!isServer || {isNull _requester} || {!isPlayer _requester} || {remoteExecutedOwner != owner _requester}) exitWith {};
+if (isNull _vehicle || {!alive _vehicle} || {_turret findIf {!(_x isEqualType 0)} != -1}) exitWith {};
+if !(_mode in ["", "white", "ir"] && {_turret in ([_vehicle] call FUNC(spotlightTurrets))} && {_vehicle turretUnit _turret == _requester}) exitWith {};
 
 private _key = format [QGVAR(spotlight_%1), _turret];
-deleteVehicle (_vehicle getVariable [_key + "_object", objNull]);
+private _oldLight = _vehicle getVariable [_key + "_object", objNull];
+if ((_vehicle getVariable [_key, ""]) == _mode && {(_mode == "") || {!isNull _oldLight}}) exitWith {};
+deleteVehicle _oldLight;
 _vehicle setVariable [_key, _mode, true];
 if (_mode isEqualTo "") exitWith {};
 

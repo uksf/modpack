@@ -27,7 +27,7 @@ private _modes = [
 ] apply {
     _x params ["_name", "_displayName", "_mode"];
     [_name, _displayName, "", {
-        [QGVAR(setSpotlight), [_target, _target unitTurret _player, _actionParams]] call CBA_fnc_serverEvent;
+        [_target, _target unitTurret _player, _actionParams, _player] remoteExecCall [QFUNC(setSpotlight), 2];
     }, {
         (_target getVariable [format [QGVAR(spotlight_%1), _target unitTurret _player], ""]) != _actionParams
     }, {}, _mode] call ace_interact_menu_fnc_createAction
