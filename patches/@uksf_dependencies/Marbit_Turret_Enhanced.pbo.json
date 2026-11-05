@@ -11,7 +11,7 @@
         {
           "op": "text-replace",
           "find": "(_veh getCargoIndex _player == -1))",
-          "replace": "([_veh] call uksf_vehicles_fnc_isCompassCamera))"
+          "replace": "([_veh] call (missionNamespace getVariable [\"uksf_vehicles_fnc_isCompassCamera\", {false}])))"
         },
         {
           "op": "text-replace",
