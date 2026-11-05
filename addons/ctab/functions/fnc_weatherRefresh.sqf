@@ -27,11 +27,13 @@ private _clock = {
 
 (date call BIS_fnc_sunriseSunsetTime) params ["_sunrise", "_sunset"];
 private _phase = moonPhase date;
+private _tomorrow = [date, [0, 0, 1, 0, 0]] call BIS_fnc_addToDate;
+private _trend = ["waning", "waxing"] select (moonPhase _tomorrow > _phase);
 private _phaseName = switch (true) do {
-    case (_phase < 0.06 || {_phase > 0.94}): {"new"};
-    case (_phase < 0.44): {"waxing"};
-    case (_phase <= 0.56): {"full"};
-    default {"waning"};
+    case (_phase < 0.06): {"new"};
+    case (_phase > 0.94): {"full"};
+    case (_phase >= 0.44 && {_phase <= 0.56}): {format ["%1 half", _trend]};
+    default {_trend};
 };
 
 private _altitude = (getPosASL cTab_player) select 2;
