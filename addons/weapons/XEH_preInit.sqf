@@ -60,7 +60,8 @@ ADDON = false;
 
 [QGVAR(l118ReceiveItem), {
     params ["_player", "_item"];
-    if (local _player) then {_player addItem _item};
+    private _items = ["tbd_mortars_105mm_shell_he", "tbd_mortars_105mm_shell_smoke", "tbd_mortars_105mm_shell_dpicm", "tbd_mortars_105mm_casing_charge_7"];
+    if (local _player && {_item in _items}) then {_player addItem _item};
 }] call CBA_fnc_addEventHandler;
 
 [QGVAR(l118Carry), {
