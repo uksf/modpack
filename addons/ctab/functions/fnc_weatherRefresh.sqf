@@ -34,7 +34,7 @@ if (_tomorrowNumber >= 1) then {
     _year = _year + 1;
     _tomorrowNumber = _tomorrowNumber - 1;
 };
-private _tomorrow = _year numberToDate _tomorrowNumber;
+private _tomorrow = numberToDate [_year, _tomorrowNumber];
 private _trend = ["waning", "waxing"] select (moonPhase _tomorrow > _phase);
 private _phaseName = switch (true) do {
     case (_phase < 0.06): {"new"};
