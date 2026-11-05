@@ -15,10 +15,12 @@
     Example:
         [_locked] call uksf_curator_fnc_setCuratorsLocked
 */
+if (isRemoteExecuted && {isNil "_uksf_curatorValidated"}) exitWith {};
+
 params ["_locked"];
 
 if (!isServer) exitWith {
-    [QGVAR(setCuratorsLocked), _this] call CBA_fnc_serverEvent;
+    [player, _locked] remoteExecCall [QFUNC(requestLock), 2];
 };
 
 [QGVAR(curatorsLocked), _locked, 0, "server", false] call CBA_settings_fnc_set;

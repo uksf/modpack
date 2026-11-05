@@ -24,6 +24,8 @@
     Example:
         [objNull, objNull, player, true] call uksf_curator_fnc_curatorUnassign
 */
+if (isRemoteExecuted && {isNil "_uksf_curatorValidated"}) exitWith {};
+
 params ["_curator", ["_unit", objNull], ["_player", objNull], ["_byPlayer", false]];
 
 call FUNC(pruneCurators);

@@ -15,6 +15,8 @@
     Example:
         [_player] call uksf_curator_fnc_curatorAssign
 */
+if (isRemoteExecuted && {isNil "_uksf_curatorValidated"}) exitWith {};
+
 params ["_player"];
 
 call FUNC(pruneCurators);

@@ -17,7 +17,7 @@
 */
 
 if !((name player) in GVAR(curatorPlayers)) then {
-    [QGVAR(curatorAssign), [player]] call CBA_fnc_serverEvent;
+    [player] remoteExecCall [QFUNC(requestLogin), 2];
     private _message = format ["%1 logged in", name player];
     [QEGVAR(common,hint), [_message]] call CBA_fnc_localEvent;
     [QEGVAR(common,hint), [_message, true]] call CBA_fnc_globalEvent;
