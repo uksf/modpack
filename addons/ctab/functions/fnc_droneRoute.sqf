@@ -19,7 +19,7 @@
 */
 params ["_drone", ["_requestedTask", []]];
 
-if !(_drone isEqualType objNull) exitWith {};
+if (!isServer || {!(_drone isEqualType objNull)}) exitWith {};
 if (isNull _drone || {!alive _drone} || {!unitIsUAV _drone && {!(_drone in (missionNamespace getVariable ["cTabUAVlist", []]))}}) exitWith {};
 private _taskData = if (_requestedTask isEqualTo []) then {_drone getVariable [QGVAR(droneTask), []]} else {_requestedTask};
 if !(_taskData isEqualType [] && {count _taskData >= 3}) exitWith {};
@@ -27,6 +27,16 @@ _taskData params ["_task", "_point", "_requester"];
 if !(_task isEqualType "" && {_task in ["observe", "escort", "hold", "return"]}) exitWith {};
 if !(_point isEqualType [] && {count _point in [2, 3]} && {_point isEqualTypeAll 0} && {_requester isEqualType objNull}) exitWith {};
 if (_point findIf {abs _x > 10000000 || {_x != _x}} != -1) exitWith {};
+
+if (_requestedTask isNotEqualTo []) then {
+    if (isNull _requester || {!isPlayer _requester} || {if (isRemoteExecuted) then {remoteExecutedOwner != owner _requester} else {!isServer}}) exitWith {_taskData = []};
+    if !(_drone in allUnitsUav) exitWith {_taskData = []};
+    if (side group _drone != side group _requester) exitWith {_taskData = []};
+    private _requesterKey = missionNamespace getVariable [format ["cTab_encryptionKey_%1", side _requester], ""];
+    private _droneKey = missionNamespace getVariable [format ["cTab_encryptionKey_%1", side _drone], ""];
+    if (_droneKey isNotEqualTo _requesterKey) exitWith {_taskData = []};
+};
+if (_taskData isEqualTo []) exitWith {};
 
 private _group = _drone call FUNC(droneGroup);
 if (isNull _group) exitWith {};

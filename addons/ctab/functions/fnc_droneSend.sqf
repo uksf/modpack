@@ -32,5 +32,5 @@ private _point = switch (_task) do {
     case "hold": {getPosASL _drone};
     default {GVAR(dronePoint)};
 };
-[QGVAR(droneRoute), [_drone, [_task, _point, cTab_player]]] call CBA_fnc_serverEvent;
+[_drone, [_task, _point, cTab_player]] remoteExecCall [QFUNC(droneRoute), 2];
 call FUNC(droneRefresh);
