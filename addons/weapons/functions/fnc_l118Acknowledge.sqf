@@ -21,7 +21,7 @@ if (!isServer || {isNull _gun}) exitWith {};
 private _pending = _gun getVariable [QGVAR(l118Pending), []];
 if (count _pending != 5) exitWith {};
 _pending params ["_expectedToken", "_owner", "_action", "_player", "_round"];
-if (_token isNotEqualTo _expectedToken || {if (isRemoteExecuted) then {remoteExecutedOwner != _owner} else {_owner != 2}}) exitWith {};
+if (_token isNotEqualTo _expectedToken || {isRemoteExecuted && {remoteExecutedOwner != _owner}}) exitWith {};
 _gun setVariable [QGVAR(l118Pending), nil];
 if (_action isEqualTo "unload") then {
     createVehicle [QGVAR(105mm_charge), getPosATL _player, [], 0, "NONE"];
