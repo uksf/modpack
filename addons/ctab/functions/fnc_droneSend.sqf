@@ -4,7 +4,7 @@
         Tim Beswick
 
     Description:
-        Asks the server to store and run a task for the selected drone where the drone's crew group is local.
+        Stores a task for the selected drone in the Drones app on the drone for every machine, and asks the server to run it where the drone's crew group is local.
         The task point is the map point for Observe, the requester for Escort, the drone's current position for Hold, and the handset holder's position for Return.
 
     Parameter(s):
@@ -32,5 +32,6 @@ private _point = switch (_task) do {
     case "hold": {getPosASL _drone};
     default {GVAR(dronePoint)};
 };
-[QGVAR(droneRoute), [_drone, [_task, _point, cTab_player]]] call CBA_fnc_serverEvent;
+_drone setVariable [QGVAR(droneTask), [_task, _point, cTab_player], true];
+[QGVAR(droneRoute), [_drone]] call CBA_fnc_serverEvent;
 call FUNC(droneRefresh);
