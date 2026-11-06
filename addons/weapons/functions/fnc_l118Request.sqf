@@ -34,6 +34,7 @@ if (_action isEqualTo "stow") exitWith {
 
 if !(_action in ["shell", "charge", "unload"]) exitWith {};
 if !(_target isKindOf "TBD_M119") exitWith {};
+if !(_target getVariable ["tbd_m119_m119_breech", false]) exitWith {};
 if (_target getVariable [QGVAR(l118Busy), false]) exitWith {};
 private _magazines = _target magazinesTurret [0];
 private _round = _target getVariable [QGVAR(l118Shell), ""];
