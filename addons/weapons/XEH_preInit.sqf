@@ -58,6 +58,8 @@ ADDON = false;
     };
 }] call CBA_fnc_addEventHandler;
 
+if (isServer) then {GVAR(l118Transaction) = 0};
+
 GVAR(l119SubmunitionAmmos) = [
     "tbd_mortars_105mm_shell_ammo_smoke",
     QGVAR(105mm_shell_ammo_illum)

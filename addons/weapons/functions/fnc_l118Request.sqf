@@ -60,7 +60,20 @@ if (_action isEqualTo "unload" && {!(_round in ["he", "smoke", "dpicm"])}) exitW
 
 _target setVariable [QGVAR(l118Busy), true];
 if (!isNull _piece) then {_piece setVariable [QGVAR(claimed), true]};
-private _magazineChanged = false;
+private _magazineChanged = _action isEqualTo "charge" || {_action isEqualTo "unload" && {_magazine isNotEqualTo ""}};
+if (_magazineChanged) then {
+    GVAR(l118Transaction) = GVAR(l118Transaction) + 1;
+    private _token = GVAR(l118Transaction);
+    private _owner = _target turretOwner [0];
+    _target setVariable [QGVAR(l118Pending), [_token, _owner, _action, _player, _round]];
+    [{
+        params ["_gun", "_token"];
+        if ((_gun getVariable [QGVAR(l118Pending), []]) param [0, -1] isEqualTo _token) then {
+            _gun setVariable [QGVAR(l118Pending), nil];
+            _gun setVariable [QGVAR(l118Busy), false];
+        };
+    }, [_target, _token], 10] call CBA_fnc_waitAndExecute;
+};
 switch (_action) do {
     case "shell": {
         private _config = configOf _piece;
@@ -73,30 +86,26 @@ switch (_action) do {
     };
     case "charge": {
         private _newMagazine = format ["tbd_mortars_105mm_round_%1_charge_mag_%2", _round, _selection];
-        ["tbd_m119_m119_loadShell", [_target, _newMagazine, 0], _target, [0]] call CBA_fnc_turretEvent;
+        [_target, GVAR(l118Transaction), _newMagazine] remoteExecCall [QFUNC(l118Magazine), _target turretOwner [0]];
         _target setVariable [QGVAR(l118Shell), nil, true];
         _target animateSource ["magazine_laser_load_source", 0, true];
         _target animateSource ["magazine_laser_hide_source", 0, true];
         _target animateSource ["magazine_laser_load_source", 0.36, 0.2];
-        _magazineChanged = true;
     };
     case "unload": {
-        if (_magazine isNotEqualTo "") then {
-            ["tbd_m119_m119_unloadShell", [_target, 0], _target, [0]] call CBA_fnc_turretEvent;
-            createVehicle [QGVAR(105mm_charge), getPosATL _player, [], 0, "NONE"];
-            _magazineChanged = true;
+        if (_magazineChanged) then {
+            [_target, GVAR(l118Transaction), ""] remoteExecCall [QFUNC(l118Magazine), _target turretOwner [0]];
+        } else {
+            _target setVariable [QGVAR(l118Shell), nil, true];
+            [_target] call tbd_m119_m119_fnc_hideShells;
+            private _shell = createVehicle [GVAR(l118Shells) get _round, getPosATL _player, [], 0, "NONE"];
+            _shell setVariable ["tbd_mortars_105mm_dpicm_fuse_timer", _target getVariable [QGVAR(fuseTime), -1], true];
+            _target setVariable [QGVAR(fuseTime), -1, true];
+            [_player, _shell] remoteExecCall [QFUNC(l118Deliver), _player];
         };
-        _target setVariable [QGVAR(l118Shell), nil, true];
-        [_target] call tbd_m119_m119_fnc_hideShells;
-        private _shell = createVehicle [GVAR(l118Shells) get _round, getPosATL _player, [], 0, "NONE"];
-        _shell setVariable ["tbd_mortars_105mm_dpicm_fuse_timer", _target getVariable [QGVAR(fuseTime), -1], true];
-        _target setVariable [QGVAR(fuseTime), -1, true];
-        [_player, _shell] remoteExecCall [QFUNC(l118Deliver), _player];
     };
 };
 if (!isNull _piece) then {deleteVehicle _piece};
-if (_magazineChanged) then {
-    [{_this setVariable [QGVAR(l118Busy), false]}, _target, 1] call CBA_fnc_waitAndExecute;
-} else {
+if (!_magazineChanged) then {
     _target setVariable [QGVAR(l118Busy), false];
 };

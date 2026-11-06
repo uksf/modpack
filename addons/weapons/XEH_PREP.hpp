@@ -7,3 +7,5 @@ PREP(l118CanLoad);
 PREP(l118Request);
 PREP(l119FiredEH);
 PREP(l118Deliver);
+PREP(l118Magazine);
+PREP(l118Acknowledge);
