@@ -10,19 +10,11 @@ if (isServer) then {
     GVAR(curatorObjects) = [];
     GVAR(curatorPlayers) = [];
     GVAR(reservationSerial) = 0;
-    addMissionEventHandler ["HandleDisconnect", {[objNull, objNull, _this#0, true] call FUNC(curatorUnassign)}];
-    addMissionEventHandler ["EntityRespawned", {
-        params ["_unit", "_oldUnit"];
-        if (!isPlayer _unit) exitWith {};
-        private _index = GVAR(curatorPlayers) find (name _unit);
-        if (_index == -1) exitWith {};
-        private _curator = GVAR(curatorObjects) param [_index, objNull];
-        if (isNull _curator) exitWith {};
-        private _holder = getAssignedCuratorUnit _curator;
-        if (!isNull _holder && {_holder != _oldUnit} && {_holder != _unit}) exitWith {};
-        [_curator] call FUNC(curatorUnassign);
-        [_unit] call FUNC(curatorAssign);
-    }];
+    [QGVAR(setCuratorsLocked), {call FUNC(setCuratorsLocked)}] call CBA_fnc_addEventHandler;
+    [QGVAR(curatorAssign), {call FUNC(curatorAssign)}] call CBA_fnc_addEventHandler;
+    [QGVAR(curatorUnassign), {call FUNC(curatorUnassign)}] call CBA_fnc_addEventHandler;
+
+    addMissionEventHandler ["HandleDisconnect", {[QGVAR(curatorUnassign), [objNull, objNull, _this#0, true]] call CBA_fnc_serverEvent;}];
 
     ["CBA_settingsInitialized", {
         if (!isMultiplayer) then {
@@ -62,8 +54,26 @@ if (hasInterface) then {
 
         [QEGVAR(common,addObjectsToCurators), [[_unit]]] call CBA_fnc_serverEvent;
 
-        if (WHITELISTED && {!((name _unit) in GVAR(curatorPlayers))}) then {
-            call FUNC(curatorLogin);
+        TRACE_2("",_unit,name _unit);
+        private _index = (GVAR(curatorPlayers) find (name _unit));
+        if (_index != -1) then {
+            if (GVAR(curatorUnassignedEHID) != -1) then {
+                [QGVAR(curatorUnassigned), GVAR(curatorUnassignedEHID)] call CBA_fnc_removeEventHandler;
+                GVAR(curatorUnassignedEHID) = -1;
+            };
+
+            GVAR(curatorUnassignedEHID) = [QGVAR(curatorUnassigned), {
+                TRACE_1("",_this);
+                [QGVAR(curatorAssign), _this] call CBA_fnc_serverEvent;
+                [QGVAR(curatorUnassigned), GVAR(curatorUnassignedEHID)] call CBA_fnc_removeEventHandler;
+                GVAR(curatorUnassignedEHID) = -1;
+            }] call CBA_fnc_addEventHandler;
+
+            [QGVAR(curatorUnassign), [GVAR(curatorObjects)#_index, _unit]] call CBA_fnc_serverEvent;
+        } else {
+            if (WHITELISTED) then {
+                call FUNC(curatorLogin);
+            };
         };
     }, true, [], true] call CBA_fnc_addClassEventHandler;
 };

@@ -11,7 +11,3 @@ PREP(bi_moduleCurator);
 PREP(buildMissingVehiclesCache);
 PREP(injectMissingVehicles);
 PREP(setCuratorsLocked);
-PREP(requestLogin);
-PREP(requestLogout);
-PREP(requestKick);
-PREP(requestLock);

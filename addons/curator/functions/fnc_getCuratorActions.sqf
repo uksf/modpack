@@ -24,13 +24,13 @@ _actions pushBack [_action, [], player];
 _action = [QGVAR(curatorLogout), QUOTE(Logout), CURATOR_ICON, {call FUNC(curatorLogout)}, {CONDITION_LOGOUT}] call ace_interact_menu_fnc_createAction;
 _actions pushBack [_action, [], player];
 
-_action = [QGVAR(curatorsLock), QUOTE(Lock Curators), CURATOR_ICON, {[player, true] remoteExecCall [QFUNC(requestLock), 2]}, {CONDITION_LOCK}] call ace_interact_menu_fnc_createAction;
+_action = [QGVAR(curatorsLock), QUOTE(Lock Curators), CURATOR_ICON, {[true] call FUNC(setCuratorsLocked)}, {CONDITION_LOCK}] call ace_interact_menu_fnc_createAction;
 _actions pushBack [_action, [], player];
 
-_action = [QGVAR(curatorsUnlock), QUOTE(Unlock Curators), CURATOR_ICON, {[player, false] remoteExecCall [QFUNC(requestLock), 2]}, {CONDITION_UNLOCK}] call ace_interact_menu_fnc_createAction;
+_action = [QGVAR(curatorsUnlock), QUOTE(Unlock Curators), CURATOR_ICON, {[false] call FUNC(setCuratorsLocked)}, {CONDITION_UNLOCK}] call ace_interact_menu_fnc_createAction;
 _actions pushBack [_action, [], player];
 
-_action = [QGVAR(curatorKickAll), QUOTE(Kick All), CURATOR_ICON, {[player, true] remoteExecCall [QFUNC(requestKick), 2]}, {CONDITION_KICKALL}] call ace_interact_menu_fnc_createAction;
+_action = [QGVAR(curatorKickAll), QUOTE(Kick All), CURATOR_ICON, {[true] call FUNC(curatorKick)}, {CONDITION_KICKALL}] call ace_interact_menu_fnc_createAction;
 _actions pushBack [_action, [], player];
 
 {
@@ -40,7 +40,7 @@ _actions pushBack [_action, [], player];
             format [QGVAR(curatorKick_%1), _player],
             format ["Kick: %1", _player],
             CURATOR_ICON,
-            {[player, false, _this#2#0] remoteExecCall [QFUNC(requestKick), 2]},
+            {[false, _this#2#0] call FUNC(curatorKick)},
             {MULTIPLAYER_ADMIN_OR_WHITELISTED},
             {},
             [_player]
