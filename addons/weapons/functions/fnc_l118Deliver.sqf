@@ -18,5 +18,9 @@
 */
 params ["_player", "_delivery"];
 if (!local _player) exitWith {};
-if (_delivery isEqualType "") exitWith {_player addItem _delivery};
+if (_delivery isEqualType "") exitWith {
+    if (_player canAdd _delivery) exitWith {_player addItem _delivery};
+    private _holder = createVehicle ["GroundWeaponHolder", getPosATL _player, [], 0, "CAN_COLLIDE"];
+    if (isClass (configFile >> "CfgMagazines" >> _delivery)) then {_holder addMagazineCargoGlobal [_delivery, 1]} else {_holder addItemCargoGlobal [_delivery, 1]};
+};
 if (_delivery isEqualType objNull && {!isNull _delivery}) then {[_player, _delivery] call ace_dragging_fnc_startCarry};
