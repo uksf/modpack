@@ -12,7 +12,7 @@ const RPTS = path.join(process.env.LOCALAPPDATA, 'Arma 3');
 const args = process.argv.slice(2);
 const opt = (k, d) => { const i = args.indexOf(k); return i >= 0 ? args[i + 1] : d; };
 const test = args[0];
-if (!test || test.startsWith('--')) { console.error('usage: run.js <test.sqf> [--mods <file|preset>] [--world VR] [--timeout 240] [--out <dir>] [--sheet] [--keep] [--allow-focus]'); process.exit(2); }
+if (!test || test.startsWith('--')) { console.error('usage: run.js <test.sqf> [--mods <file|preset>] [--world VR] [--timeout 240] [--out <dir>] [--sheet] [--keep] [--allow-focus] [--sound]'); process.exit(2); }
 const world = opt('--world', 'VR');
 const timeout = +opt('--timeout', 240) * 1000;
 const out = path.resolve(opt('--out', path.join(path.dirname(path.resolve(test)), 'shots')));
@@ -77,7 +77,7 @@ const findRpt = (since, tag) => fs.readdirSync(RPTS).filter(f => /^arma3_x64_.*\
     try { if (/^vc[0-9a-f]{8}_/.test(f) && Date.now() - fs.statSync(p).mtimeMs > 864e5) fs.rmSync(p); } catch {}
   }
   const modArg = [...mods, mod].map(p => path.resolve(p)).join(';');
-  const argv = ['-window', '-noPause', '-noSound', '-noSplash', '-skipIntro', '-world=empty', `-name=${PROFILE}`,
+  const argv = ['-window', '-noPause', ...(args.includes('--sound') ? ['-noPauseAudio'] : ['-noSound']), '-noSplash', '-skipIntro', '-world=empty', `-name=${PROFILE}`,
     `-mod=${modArg}`, `-init=playMission['','\\${PREFIX}\\${mission}']`];
   const focusGuard = !args.includes('--allow-focus') && startFocusGuard({ token: `vclient-${runId}-`, log: path.join(tmp, 'focus.log') });
   if (focusGuard) process.on('exit', focusGuard.stop);
@@ -99,11 +99,28 @@ const findRpt = (since, tag) => fs.readdirSync(RPTS).filter(f => /^arma3_x64_.*\
   fs.mkdirSync(out, { recursive: true });
   const shots = [], seen = {};
   const collect = (all) => {
-    for (const f of fs.readdirSync(SHOTS).filter(f => f.startsWith(runId + '_'))) {
+    for (const f of fs.readdirSync(SHOTS).filter(f => f.startsWith(runId + '_') && !f.startsWith(runId + '_winshot_'))) {
       const p = path.join(SHOTS, f), size = fs.statSync(p).size;
       if (!all && seen[f] !== size) { seen[f] = size; continue; }
       const to = path.join(out, f.slice(runId.length + 1));
       try { fs.renameSync(p, to); shots.push(to); } catch {}
+    }
+  };
+  const captured = new Set();
+  const captureFailures = [];
+  const captureWindows = () => {
+    const prefix = runId + '_winshot_';
+    for (const f of fs.readdirSync(SHOTS).filter(f => f.startsWith(prefix))) {
+      const name = f.slice(prefix.length).replace(/\.png$/, '');
+      if (captured.has(name)) continue;
+      captured.add(name);
+      const to = path.join(out, name + '.png');
+      let res;
+      const capture = () => execFileSync('powershell', ['-NoProfile', '-File', path.join(__dirname, 'capture-window.ps1'), String(pid), to], { encoding: 'utf8', windowsHide: true }).trim();
+      try { res = focusGuard ? focusGuard.pauseWhile(capture) : capture(); } catch (e) { res = String(e.message).split(/\r?\n/)[0]; }
+      if (res === 'ok' && fs.existsSync(to)) shots.push(to);
+      else { captureFailures.push(name); console.error(`run.js: window capture ${name} failed: ${res}`); }
+      try { fs.rmSync(path.join(SHOTS, f), { force: true }); } catch {}
     }
   };
   let state = 'loading', hungSince = 0, lastCheck = 0, lastDismiss = 0;
@@ -111,6 +128,7 @@ const findRpt = (since, tag) => fs.readdirSync(RPTS).filter(f => /^arma3_x64_.*\
     await sleep(1000);
     collect(false);
     const r = read();
+    captureWindows();
     if (/\[vclient\] done/.test(r)) { state = 'done'; break; }
     if (state === 'loading' && !/\[vclient\] start/.test(r) && Date.now() - lastDismiss > ACRE_DISMISS_INTERVAL_MS) {
       lastDismiss = Date.now();
@@ -133,6 +151,10 @@ const findRpt = (since, tag) => fs.readdirSync(RPTS).filter(f => /^arma3_x64_.*\
   collect(true);
   const failed = lines.filter(l => /\[vclient\] shot \S+ false/.test(l));
   if (failed.length) console.error(`run.js: ${failed.length} screenshot(s) failed; see "Cannot save file" in the RPT`);
+  const requested = [...r.matchAll(/\[vclient\] winshot (\S+)/g)].map(m => m[1]);
+  const missing = requested.filter(n => !captured.has(n));
+  for (const n of missing) captureFailures.push(n);
+  if (captureFailures.length) console.error(`run.js: window capture failed for ${captureFailures.join(', ')}`);
   if (!args.includes('--keep')) {
     try { fs.rmSync(tmp, { recursive: true, force: true, maxRetries: 15, retryDelay: 2000 }); }
     catch (e) { console.error(`run.js: could not delete ${tmp}: ${e.code}`); }
@@ -150,5 +172,5 @@ const findRpt = (since, tag) => fs.readdirSync(RPTS).filter(f => /^arma3_x64_.*\
   if (state === 'exited' && !/Shutdown normally|Exception code/.test(r))
     console.error('run.js: Arma vanished without a shutdown line; another process killed it (a script that kills arma3_x64 by name?)');
   else if (!/Mission directory:/.test(r)) console.error('run.js: the mission never loaded (wrong playMission path makes Arma quit silently)');
-  process.exit(state === 'done' && !failed.length ? 0 : 1);
+  process.exit(state === 'done' && !failed.length && !captureFailures.length ? 0 : 1);
 })();

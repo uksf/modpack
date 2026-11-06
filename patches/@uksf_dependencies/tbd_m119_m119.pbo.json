@@ -1,0 +1,733 @@
+{
+  "format": 1,
+  "pbo": "tbd_m119_m119.pbo",
+  "pristineSha256": "ef64b01c9a70e9d2cdb4c9c684b46931c3bbaf2a90f889640a71619e60417f56",
+  "description": "L118 from uksf/modpack#1204: the barrel is 70 cm longer and carries the L118 muzzle brake in every visual LOD, with fewer faces in each lower LOD (1028, 700, 450, 200 and 94). The breech shows the shell and the charge as separate pieces: the HE, smoke and DPICM rounds keep only the shell, and the laser round keeps only the cartridge case.",
+  "assets": [
+    {
+      "path": "tbd_m119\\TBD_M119.p3d",
+      "sha256": "bd695e9e708686b02ee3c06e206950a2bf45d81d3995bdb3595f8567aec340b3",
+      "ops": [
+        {
+          "op": "remove-faces",
+          "lod": "1",
+          "axis": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "bones": [
+            "magazine"
+          ],
+          "wholeParts": true,
+          "allBeyond": 1.0,
+          "anyBeyond": 1.0,
+          "faces": 124
+        },
+        {
+          "op": "remove-faces",
+          "lod": "2",
+          "axis": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "bones": [
+            "magazine"
+          ],
+          "wholeParts": true,
+          "allBeyond": 1.0,
+          "anyBeyond": 1.0,
+          "faces": 124
+        },
+        {
+          "op": "remove-faces",
+          "lod": "3",
+          "axis": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "bones": [
+            "magazine"
+          ],
+          "wholeParts": true,
+          "allBeyond": 1.0,
+          "anyBeyond": 1.0,
+          "faces": 124
+        },
+        {
+          "op": "remove-faces",
+          "lod": "4",
+          "axis": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "bones": [
+            "magazine"
+          ],
+          "wholeParts": true,
+          "allBeyond": 1.0,
+          "anyBeyond": 1.0,
+          "faces": 40
+        },
+        {
+          "op": "remove-faces",
+          "lod": "1201",
+          "axis": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "bones": [
+            "magazine"
+          ],
+          "wholeParts": true,
+          "allBeyond": 1.0,
+          "anyBeyond": 1.0,
+          "faces": 124
+        },
+        {
+          "op": "remove-faces",
+          "lod": "1",
+          "axis": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "bones": [
+            "magazine_smoke"
+          ],
+          "wholeParts": true,
+          "allBeyond": 1.0,
+          "anyBeyond": 1.0,
+          "faces": 124
+        },
+        {
+          "op": "remove-faces",
+          "lod": "1",
+          "axis": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "bones": [
+            "magazine_dpicm"
+          ],
+          "wholeParts": true,
+          "allBeyond": 1.0,
+          "anyBeyond": 1.0,
+          "faces": 124
+        },
+        {
+          "op": "remove-faces",
+          "lod": "1",
+          "axis": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1
+          ],
+          "bones": [
+            "magazine_laser"
+          ],
+          "wholeParts": true,
+          "allBeyond": -1.1,
+          "anyBeyond": -1.1,
+          "faces": 540
+        },
+        {
+          "op": "remove-faces",
+          "lod": "1201",
+          "axis": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "bones": [
+            "magazine_smoke"
+          ],
+          "wholeParts": true,
+          "allBeyond": 1.0,
+          "anyBeyond": 1.0,
+          "faces": 124
+        },
+        {
+          "op": "remove-faces",
+          "lod": "1201",
+          "axis": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "bones": [
+            "magazine_dpicm"
+          ],
+          "wholeParts": true,
+          "allBeyond": 1.0,
+          "anyBeyond": 1.0,
+          "faces": 124
+        },
+        {
+          "op": "remove-faces",
+          "lod": "1201",
+          "axis": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1
+          ],
+          "bones": [
+            "magazine_laser"
+          ],
+          "wholeParts": true,
+          "allBeyond": -1.1,
+          "anyBeyond": -1.1,
+          "faces": 540
+        },
+        {
+          "op": "remove-faces",
+          "lod": "1",
+          "axis": [
+            0,
+            0.885,
+            1.636,
+            0,
+            0.0487,
+            -0.9988
+          ],
+          "bones": [
+            "barrel"
+          ],
+          "allBeyond": 3.86,
+          "anyBeyond": 3.86,
+          "faces": 464
+        },
+        {
+          "op": "remove-faces",
+          "lod": "2",
+          "axis": [
+            0,
+            0.885,
+            1.636,
+            0,
+            0.0487,
+            -0.9988
+          ],
+          "bones": [
+            "barrel"
+          ],
+          "allBeyond": 3.86,
+          "anyBeyond": 3.86,
+          "faces": 412
+        },
+        {
+          "op": "remove-faces",
+          "lod": "3",
+          "axis": [
+            0,
+            0.885,
+            1.636,
+            0,
+            0.0487,
+            -0.9988
+          ],
+          "bones": [
+            "barrel"
+          ],
+          "allBeyond": 3.86,
+          "anyBeyond": 3.86,
+          "faces": 358
+        },
+        {
+          "op": "remove-faces",
+          "lod": "1201",
+          "axis": [
+            0,
+            0.885,
+            1.636,
+            0,
+            0.0487,
+            -0.9988
+          ],
+          "bones": [
+            "barrel"
+          ],
+          "allBeyond": 3.86,
+          "anyBeyond": 3.86,
+          "faces": 464
+        },
+        {
+          "op": "remove-faces",
+          "lod": "11000",
+          "axis": [
+            0,
+            0.885,
+            1.636,
+            0,
+            0.0487,
+            -0.9988
+          ],
+          "bones": [
+            "barrel"
+          ],
+          "allBeyond": 3.86,
+          "anyBeyond": 3.86,
+          "faces": 296
+        },
+        {
+          "op": "remove-faces",
+          "lod": "5",
+          "axis": [
+            0,
+            0.885,
+            1.636,
+            0,
+            0.0487,
+            -0.9988
+          ],
+          "bones": [
+            "barrel"
+          ],
+          "allBeyond": 3.86,
+          "anyBeyond": 3.86,
+          "faces": 98
+        },
+        {
+          "op": "remove-faces",
+          "lod": "4",
+          "axis": [
+            0,
+            0.885,
+            1.636,
+            0,
+            0.0487,
+            -0.9988
+          ],
+          "bones": [
+            "barrel"
+          ],
+          "allBeyond": 3.86,
+          "anyBeyond": 3.86,
+          "faces": 193
+        },
+        {
+          "op": "stretch-along-axis",
+          "lods": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "1201",
+            "10000",
+            "11000"
+          ],
+          "axis": [
+            0,
+            0.885,
+            1.636,
+            0,
+            0.0487,
+            -0.9988
+          ],
+          "bones": [
+            "barrel",
+            "m119_zasleh"
+          ],
+          "cut": 3.5,
+          "length": 0.7,
+          "vertices": 3521
+        },
+        {
+          "op": "stretch-along-axis",
+          "lods": [
+            "1",
+            "2",
+            "3",
+            "1201",
+            "11000"
+          ],
+          "axis": [
+            0,
+            0.885,
+            1.636,
+            0,
+            0.0487,
+            -0.9988
+          ],
+          "bones": [
+            "barrel"
+          ],
+          "cut": 4.5,
+          "maxRadius": 0.0545,
+          "length": -0.0257,
+          "vertices": 508
+        },
+        {
+          "op": "stretch-along-axis",
+          "lods": [
+            "memory"
+          ],
+          "axis": [
+            0,
+            0.885,
+            1.636,
+            0,
+            0.0487,
+            -0.9988
+          ],
+          "cut": 3.5,
+          "maxRadius": 0.3,
+          "length": 0.74,
+          "vertices": 4
+        },
+        {
+          "op": "stretch-along-axis",
+          "lods": [
+            "geometryFire"
+          ],
+          "axis": [
+            0,
+            0.885,
+            1.636,
+            0,
+            0.0487,
+            -0.9988
+          ],
+          "cut": 3.5,
+          "length": 0.7,
+          "vertices": 12
+        },
+        {
+          "op": "add-mesh",
+          "lods": [
+            "1",
+            "1201"
+          ],
+          "source": "L118_muzzle.p3d",
+          "sourceAxis": [
+            0,
+            0,
+            3.75021,
+            0,
+            0,
+            1
+          ],
+          "axis": [
+            0,
+            0.885,
+            1.636,
+            0,
+            0.0487,
+            -0.9988
+          ],
+          "attachAlong": 4.5742,
+          "scale": 1.06,
+          "loopRadii": [
+            [
+              3.89092,
+              0.04773,
+              0.053
+            ]
+          ],
+          "bone": "barrel",
+          "uvFrom": {
+            "alongMin": 3.1111,
+            "alongMax": 4.5742,
+            "radius": 0.0591,
+            "tolerance": 0.0015
+          },
+          "weldLoops": [
+            [
+              3.75021,
+              0.0558
+            ],
+            [
+              3.89092,
+              0.04773
+            ]
+          ]
+        },
+        {
+          "op": "add-mesh",
+          "lods": [
+            "2"
+          ],
+          "source": "L118_muzzle_700.p3d",
+          "sourceAxis": [
+            0,
+            0,
+            3.75021,
+            0,
+            0,
+            1
+          ],
+          "axis": [
+            0,
+            0.885,
+            1.636,
+            0,
+            0.0487,
+            -0.9988
+          ],
+          "attachAlong": 4.5742,
+          "scale": 1.06,
+          "loopRadii": [
+            [
+              3.89092,
+              0.04773,
+              0.053
+            ]
+          ],
+          "bone": "barrel",
+          "uvFrom": {
+            "alongMin": 3.1111,
+            "alongMax": 4.5742,
+            "radius": 0.0591,
+            "tolerance": 0.0015
+          },
+          "weldLoops": [
+            [
+              3.75021,
+              0.0558
+            ],
+            [
+              3.89092,
+              0.04773
+            ]
+          ]
+        },
+        {
+          "op": "add-mesh",
+          "lods": [
+            "3"
+          ],
+          "source": "L118_muzzle_450.p3d",
+          "sourceAxis": [
+            0,
+            0,
+            3.75021,
+            0,
+            0,
+            1
+          ],
+          "axis": [
+            0,
+            0.885,
+            1.636,
+            0,
+            0.0487,
+            -0.9988
+          ],
+          "attachAlong": 4.5742,
+          "scale": 1.06,
+          "loopRadii": [
+            [
+              3.89092,
+              0.04773,
+              0.053
+            ]
+          ],
+          "bone": "barrel",
+          "uvFrom": {
+            "alongMin": 3.1111,
+            "alongMax": 4.5742,
+            "radius": 0.0591,
+            "tolerance": 0.0015
+          },
+          "weldLoops": [
+            [
+              3.75021,
+              0.0558
+            ],
+            [
+              3.89092,
+              0.04773
+            ]
+          ]
+        },
+        {
+          "op": "add-mesh",
+          "lods": [
+            "4"
+          ],
+          "source": "L118_muzzle_200.p3d",
+          "sourceAxis": [
+            0,
+            0,
+            3.75021,
+            0,
+            0,
+            1
+          ],
+          "axis": [
+            0,
+            0.885,
+            1.636,
+            0,
+            0.0487,
+            -0.9988
+          ],
+          "attachAlong": 4.5742,
+          "scale": 1.06,
+          "loopRadii": [
+            [
+              3.89092,
+              0.04773,
+              0.053
+            ]
+          ],
+          "bone": "barrel",
+          "uvFrom": {
+            "alongMin": 3.097,
+            "alongMax": 4.574,
+            "radius": 0.06,
+            "tolerance": 0.0015,
+            "fit": {
+              "lod": "3",
+              "alongMin": 3.1111,
+              "alongMax": 4.5742,
+              "radius": 0.0591,
+              "tolerance": 0.0015
+            }
+          },
+          "weldLoops": []
+        },
+        {
+          "op": "add-mesh",
+          "lods": [
+            "5"
+          ],
+          "source": "L118_muzzle_94.p3d",
+          "sourceAxis": [
+            0,
+            0,
+            3.75021,
+            0,
+            0,
+            1
+          ],
+          "axis": [
+            0,
+            0.885,
+            1.636,
+            0,
+            0.0487,
+            -0.9988
+          ],
+          "attachAlong": 4.5742,
+          "scale": 1.06,
+          "loopRadii": [
+            [
+              3.89092,
+              0.04773,
+              0.053
+            ]
+          ],
+          "bone": "barrel",
+          "uvFrom": {
+            "alongMin": 3.102,
+            "alongMax": 4.582,
+            "radius": 0.064,
+            "tolerance": 0.0045,
+            "fit": {
+              "lod": "3",
+              "alongMin": 3.1111,
+              "alongMax": 4.5742,
+              "radius": 0.0591,
+              "tolerance": 0.0015
+            }
+          },
+          "weldLoops": []
+        },
+        {
+          "op": "add-mesh",
+          "lods": [
+            "11000"
+          ],
+          "source": "L118_muzzle_450.p3d",
+          "sourceAxis": [
+            0,
+            0,
+            3.75021,
+            0,
+            0,
+            1
+          ],
+          "axis": [
+            0,
+            0.885,
+            1.636,
+            0,
+            0.0487,
+            -0.9988
+          ],
+          "attachAlong": 4.5742,
+          "scale": 1.06,
+          "loopRadii": [
+            [
+              3.89092,
+              0.04773,
+              0.053
+            ]
+          ],
+          "bone": "barrel",
+          "uvFrom": {
+            "alongMin": 3.108,
+            "alongMax": 4.5775,
+            "radius": 0.0591,
+            "tolerance": 0.0015
+          },
+          "weldLoops": [
+            [
+              3.75021,
+              0.0558
+            ],
+            [
+              3.89092,
+              0.04773
+            ]
+          ]
+        },
+        {
+          "op": "rebuild-shadow-volume",
+          "lod": "10000",
+          "from": "11000"
+        }
+      ]
+    }
+  ]
+}

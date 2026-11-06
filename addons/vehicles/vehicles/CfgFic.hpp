@@ -7,6 +7,12 @@ class Helmatic : Boat_Armed_01_base_F {
     };
     class TransportWeapons {};
     class TransportBackpacks {};
+    class AnimationSources {
+        class codrivergunshake {
+            source = "reload";
+            weapon = "RHICC_M240_Turret";
+        };
+    };
     armor = 200;
     class HitPoints {
         class HitFuel {
@@ -100,12 +106,36 @@ class Helmatic : Boat_Armed_01_base_F {
             };
         };
         class Helmatic_Standing : NewTurret {
+            class ViewOptics {
+                initAngleX = 0;
+                minAngleX = -30;
+                maxAngleX = 30;
+                initAngleY = 0;
+                minAngleY = -100;
+                maxAngleY = 100;
+                initFov = 0.75;
+                minFov = 0.25;
+                maxFov = 1.25;
+                visionMode[] = {};
+            };
             class HitPoints {
                 delete HitTurret;
                 delete HitGun;
             };
         };
         class Helmatic_Standing2 : NewTurret {
+            class ViewOptics {
+                initAngleX = 0;
+                minAngleX = -30;
+                maxAngleX = 30;
+                initAngleY = 0;
+                minAngleY = -100;
+                maxAngleY = 100;
+                initFov = 0.75;
+                minFov = 0.25;
+                maxFov = 1.25;
+                visionMode[] = {};
+            };
             class HitPoints {
                 delete HitTurret;
                 delete HitGun;
@@ -115,6 +145,7 @@ class Helmatic : Boat_Armed_01_base_F {
 };
 
 class BAE_FIC : Helmatic {
+    class AnimationSources : AnimationSources {};
     class VehicleTransport {
         class Carrier {
             cargoAlignment[] = { "center", "front" };

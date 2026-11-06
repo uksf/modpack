@@ -2,8 +2,6 @@
 #define COMPONENT_BEAUTIFIED NPC
 #include "\u\uksf\addons\main\script_mod.hpp"
 
-#define DEBUG_MODE_FULL
-
 #include "\u\uksf\addons\main\script_macros.hpp"
 
 #define GUARDED_FACT_COUNT 3

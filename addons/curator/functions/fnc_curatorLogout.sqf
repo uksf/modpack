@@ -16,7 +16,7 @@
         call uksf_curator_fnc_curatorLogout
 */
 
-[QGVAR(curatorUnassign), [getAssignedCuratorLogic player]] call CBA_fnc_serverEvent;
+[QGVAR(curatorUnassign), [objNull, objNull, player, true]] call CBA_fnc_serverEvent;
 [QEGVAR(common,hint), [format ["%1 logged out", name player]]] call CBA_fnc_localEvent;
 [QEGVAR(common,hint), [format ["%1 logged out", name player], true]] call CBA_fnc_globalEvent;
 [QEGVAR(common,log), [format ["%1 logged out", name player]]] call CBA_fnc_serverEvent;

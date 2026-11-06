@@ -1,0 +1,16 @@
+{
+  "format": 1,
+  "pbo": "cup_wheeledvehicles_tigr.pbo",
+  "pristineSha256": "c027dca9a853ae1a9f689dde36b563f5cb6236e75b8f340a9d35184f079a965c",
+  "description": "Every Tigr model drops wheel and rim proxies from its lower LODs (LOD 2 keeps 4 of 8, LOD 3 keeps 2, LODs 4 and 5 keep none), so a Tigr seen from a distance has no wheels. The LOD reduction collapsed their proxy triangles. Copy the missing proxies from LOD 1, which keeps all eight on their wheel bones. Remove this manifest when CUP ships a Tigr with the proxies in every LOD.",
+  "assets": [
+    { "path": "model\\CUP_Tigr.p3d", "sha256": "5a95af0b41e0b4c95ff01e2defd458346060e29ab66ea5b13488b2f043285dee", "ops": [{ "op": "restore-lod-proxies", "from": "1", "lods": ["2", "3", "4", "5"], "filter": "cup_tigr_" }] },
+    { "path": "model\\CUP_Tigr_civ.p3d", "sha256": "79fabf48c71c174f2712929195a8b6604a904d4fe8a1b17fa0f2fcfcbcc02441", "ops": [{ "op": "restore-lod-proxies", "from": "1", "lods": ["2", "3", "4", "5"], "filter": "cup_tigr_" }] },
+    { "path": "model\\CUP_Tigr_M_Kord.p3d", "sha256": "641e1150433fd7f43ba16a3aeb620ae65dff950d91877a77565278fd27e241fe", "ops": [{ "op": "restore-lod-proxies", "from": "1", "lods": ["2", "3", "4", "5"], "filter": "cup_tigr_" }] },
+    { "path": "model\\CUP_Tigr_M_pk.p3d", "sha256": "e976ec7f72865fa370bea2b59a228905f00761b4877a027874fa71da7f4bb366", "ops": [{ "op": "restore-lod-proxies", "from": "1", "lods": ["2", "3", "4", "5"], "filter": "cup_tigr_" }] },
+    { "path": "model\\CUP_Tigr_M_u.p3d", "sha256": "3f70e58a2bd6e5d69a7d5b7d535f37a5d43fd00ef278d79a7602abc58cfcd2e4", "ops": [{ "op": "restore-lod-proxies", "from": "1", "lods": ["2", "3", "4", "5"], "filter": "cup_tigr_" }] },
+    { "path": "model\\CUP_Tigr_SPM.p3d", "sha256": "d2f43f305fcd63102a486590adef28b1197661c29b9f4ff84317e7ce2de1d8e8", "ops": [{ "op": "restore-lod-proxies", "from": "1", "lods": ["2", "3", "4", "5"], "filter": "cup_tigr_" }] },
+    { "path": "model\\CUP_Tigr_STS_pk.p3d", "sha256": "dce705b909ae2be70892bf3869d47317dc1c02144af9a6cb27c0788df34d9cf6", "ops": [{ "op": "restore-lod-proxies", "from": "1", "lods": ["2", "3", "4", "5"], "filter": "cup_tigr_" }] },
+    { "path": "model\\CUP_Tigr_STS_u.p3d", "sha256": "7a8e93686993a046b31448a3c17219fcb2ab984827a62b19b3e36150508148bf", "ops": [{ "op": "restore-lod-proxies", "from": "1", "lods": ["2", "3", "4", "5"], "filter": "cup_tigr_" }] }
+  ]
+}

@@ -102,6 +102,34 @@ if (isServer) then {
 };
 
 if (hasInterface) then {
+    GVAR(pendingPreset) = [];
+
+    ["CBA_loadoutGet", {
+        params ["_unit", "", "_extendedInfo"];
+        if (_unit isEqualTo acre_player) then {
+            _extendedInfo set [QGVAR(preset), [_unit] call FUNC(serializeRadios)];
+        };
+    }] call CBA_fnc_addEventHandler;
+
+    ["ace_arsenal_onLoadoutLoadExtended", {
+        params ["_extendedLoadout"];
+        if (ace_arsenal_center isNotEqualTo acre_player) exitWith {};
+
+        _extendedLoadout params ["", ["_extendedInfo", createHashMap]];
+        if (_extendedInfo isEqualType []) then {_extendedInfo = createHashMapFromArray _extendedInfo};
+        GVAR(pendingPreset) = +(_extendedInfo getOrDefault [QGVAR(preset), []]);
+    }] call CBA_fnc_addEventHandler;
+
+    ["ace_arsenal_displayClosed", {
+        if (GVAR(pendingPreset) isEqualTo []) exitWith {};
+
+        [GVAR(pendingPreset)] call FUNC(deserializeRadios);
+        GVAR(pendingPreset) = [];
+    }] call CBA_fnc_addEventHandler;
+
+    private _presetsAction = [QGVAR(presets), "Radio Presets", "", {[] call FUNC(openPresets)}, {true}] call ace_interact_menu_fnc_createAction;
+    ["CAManBase", 1, ["ACE_SelfActions", "ACRE_Interact"], _presetsAction, true] call ace_interact_menu_fnc_addActionToClass;
+
     {[_x] call FUNC(addVehicleRebroActions)} forEach [
         QAIRGVAR(reaper,raf),
         QAIRGVAR(f35,base),

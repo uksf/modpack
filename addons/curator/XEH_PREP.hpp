@@ -6,6 +6,7 @@ PREP(curatorLogin);
 PREP(curatorLogout);
 PREP(curatorUnassign);
 PREP(getCuratorActions);
+PREP(pruneCurators);
 PREP(bi_moduleCurator);
 PREP(buildMissingVehiclesCache);
 PREP(injectMissingVehicles);

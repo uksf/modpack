@@ -4,7 +4,11 @@ class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
         units[] = {
-            QGVAR(rappelling_helper)
+            QGVAR(rappelling_helper),
+            QGVAR(105mm_shell_he),
+            QGVAR(105mm_shell_smoke),
+            QGVAR(105mm_shell_illum),
+            QGVAR(105mm_charge)
         };
         weapons[] = {
             "UK3CB_BAF_LLM_Flashlight_Far_Black",

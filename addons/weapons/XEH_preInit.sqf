@@ -58,9 +58,17 @@ ADDON = false;
     };
 }] call CBA_fnc_addEventHandler;
 
+if (isServer) then {GVAR(l118Transaction) = 0};
+
 GVAR(l119SubmunitionAmmos) = [
     "tbd_mortars_105mm_shell_ammo_smoke",
     QGVAR(105mm_shell_ammo_illum)
+];
+
+GVAR(l118Shells) = createHashMapFromArray [
+    ["he", QGVAR(105mm_shell_he)],
+    ["smoke", QGVAR(105mm_shell_smoke)],
+    ["dpicm", QGVAR(105mm_shell_illum)]
 ];
 
 ["TBD_M119", "Fired", {_this call FUNC(l119FiredEH)}] call CBA_fnc_addClassEventHandler;

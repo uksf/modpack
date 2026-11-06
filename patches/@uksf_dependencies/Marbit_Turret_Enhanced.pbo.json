@@ -1,0 +1,35 @@
+{
+  "format": 1,
+  "pbo": "Marbit_Turret_Enhanced.pbo",
+  "pristineSha256": "71e744efd81bf1a9ac97aede9a5a2ab1578d0283edd888d293f9fe2cd5af068e",
+  "description": "Turret Enhanced shows its azimuth tape, elevation ladder, target grid and target-marking actions to any crew member in a gunner view, so door gunners and ground gunners get a drone camera overlay. This limits manned vehicles to the seats that get the UKSF camera compass: an aircraft pilot seat with a pilot camera or an aircraft turret with OpticsIn. UAV gunners keep it. The Reaper keeps only its own UKSF camera overlay, which already has a heading scale and elevation ladder. Its north marker shares a display with the target grid, so only the N control is hidden while the player has the UKSF camera compass on. The grid stays and the two north markers never draw together.",
+  "assets": [
+    {
+      "path": "Marbit_Turret_Enhanced\\functions\\isViewISR.sqf",
+      "sha256": "8397628c2e5a1713b0047caf91c00a0f2631f5d44c7d0c207f8933e004073248",
+      "ops": [
+        {
+          "op": "text-replace",
+          "find": "(_veh getCargoIndex _player == -1))",
+          "replace": "([_veh] call (missionNamespace getVariable [\"uksf_vehicles_fnc_isCompassCamera\", {false}])))"
+        },
+        {
+          "op": "text-replace",
+          "find": "params[\"_player\", \"_veh\"];",
+          "replace": "params[\"_player\", \"_veh\"];if (_veh isKindOf \"uksf_air_reaper_raf\") exitWith {false};"
+        }
+      ]
+    },
+    {
+      "path": "Marbit_Turret_Enhanced\\functions\\North_Ind.sqf",
+      "sha256": "c30aaee659cbd358a772c02315cf746886eb1b558b5762872cc4b07221de518a",
+      "ops": [
+        {
+          "op": "text-replace",
+          "find": "if (missionnamespace getVariable \"Fat_Lurch_ShowNorth\") then {710 cutRsc [\"North\", \"Plain\", -1, false];};",
+          "replace": "if (missionnamespace getVariable \"Fat_Lurch_ShowNorth\") then {710 cutRsc [\"North\", \"Plain\", -1, false]; (ctrlParent (uiNamespace getVariable \"myUI_LevelTitle\") displayCtrl 709) ctrlShow !(ACE_player getVariable [\"uksf_vehicles_cameraCompass\", false]);};"
+        }
+      ]
+    }
+  ]
+}

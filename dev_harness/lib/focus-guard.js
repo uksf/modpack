@@ -15,7 +15,11 @@ function startFocusGuard({ token, log, seconds = 86400 }) {
   child.unref();
   return {
     track: pids => fs.writeFileSync(pidFile, pids.filter(Boolean).join('\n')),
-    stop: () => { child.kill(); fs.rmSync(pidFile, { force: true }); },
+    pauseWhile: (fn) => {
+      fs.writeFileSync(pidFile + '.pause', '');
+      try { return fn(); } finally { fs.rmSync(pidFile + '.pause', { force: true }); }
+    },
+    stop: () => { child.kill(); fs.rmSync(pidFile, { force: true }); fs.rmSync(pidFile + '.pause', { force: true }); },
   };
 }
 

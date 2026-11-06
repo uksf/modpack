@@ -1,0 +1,93 @@
+{
+  "format": 1,
+  "pbo": "ctab_core.pbo",
+  "pristineSha256": "5715fce78b61da5d39c039c353408bf1d89e93267373f609bb653e5067f84a1a",
+  "description": "cTab hardcodes its Android pages in cTab_fnc_updateInterface and raises no event when the page changes. This shows no cTab page in UKSF_ modes and raises uksf_ctab_modeChanged after every page change, so the uksf_ctab addon can show its app launcher and apps. cTab also registers its unconscious and inventory-changed close triggers with ace_common_fnc_addEventHandler and reads gear with ace_common_fnc_getAllGear, which current ACE no longer has; these move to the CBA ace_unconscious and player loadout events and read the unit's items directly. Each compiled .sqfc is removed because Arma loads it in place of the edited .sqf.",
+  "assets": [
+    {
+      "path": "z\\ctab\\addons\\core\\functions\\fnc_updateInterface.sqf",
+      "sha256": "9265028a9d99f6ba89a0c017598450b15ba6134ea021e9d6c19323b00d0ecb5b",
+      "ops": [
+        {
+          "op": "text-replace",
+          "find": "if (_mode == \"INTELFEED\") exitWith {",
+          "replace": "if (_mode find \"UKSF_\" == 0) exitWith {_displayItemsToShow = [];}; if (_mode == \"INTELFEED\") exitWith {"
+        },
+        {
+          "op": "text-replace",
+          "find": "{(_display displayCtrl _x) ctrlShow (_x in _displayItemsToShow)} count _displayItems;",
+          "replace": "{(_display displayCtrl _x) ctrlShow (_x in _displayItemsToShow)} count _displayItems; [\"uksf_ctab_modeChanged\", [_display, _displayName, _mode]] call CBA_fnc_localEvent;"
+        }
+      ]
+    },
+    {
+      "path": "z\\ctab\\addons\\core\\functions\\fnc_updateInterface.sqfc",
+      "sha256": "8e3508a2fbc1c87d1498911791dbdd7a68bb4f3be676c12cd03049025f059e93",
+      "remove": true
+    },
+    {
+      "path": "z\\ctab\\addons\\core\\functions\\fnc_open.sqf",
+      "sha256": "49bc0390b9ff46c494ac3111e87a4553a4f4fe8564b9f70164b4ca534d026a4e",
+      "ops": [
+        {
+          "op": "text-replace",
+          "find": "[\"medical_onUnconscious\",{",
+          "replace": "[\"ace_unconscious\",{"
+        },
+        {
+          "op": "text-replace",
+          "find": "[\"playerInventoryChanged\",{",
+          "replace": "[\"cba_events_loadoutEvent\",{"
+        },
+        {
+          "op": "text-replace",
+          "find": "}] call ace_common_fnc_addEventHandler",
+          "replace": "}] call CBA_fnc_addEventHandler",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "path": "z\\ctab\\addons\\core\\functions\\fnc_open.sqfc",
+      "sha256": "1377aed82cc73ef9c5b084d301d8a26fc22e554757317ea29df9dc4f34ecc7a4",
+      "remove": true
+    },
+    {
+      "path": "z\\ctab\\addons\\core\\functions\\fnc_onIfClose.sqf",
+      "sha256": "a2a239582e6e9ee6c7c773b5e8c84aee847ef3d233e0db20ab58070646a58a94",
+      "ops": [
+        {
+          "op": "text-replace",
+          "find": "[\"medical_onUnconscious\",_aceUnconciousEhId] call ace_common_fnc_removeEventHandler",
+          "replace": "[\"ace_unconscious\",_aceUnconciousEhId] call CBA_fnc_removeEventHandler"
+        },
+        {
+          "op": "text-replace",
+          "find": "[\"playerInventoryChanged\",_acePlayerInventoryChangedEhId] call ace_common_fnc_removeEventHandler",
+          "replace": "[\"cba_events_loadoutEvent\",_acePlayerInventoryChangedEhId] call CBA_fnc_removeEventHandler"
+        }
+      ]
+    },
+    {
+      "path": "z\\ctab\\addons\\core\\functions\\fnc_onIfClose.sqfc",
+      "sha256": "adf7ec4fae2da35b4cba49d9f870b6de40ea657eac8ae40c37b14888c3e1d48c",
+      "remove": true
+    },
+    {
+      "path": "z\\ctab\\addons\\core\\functions\\fnc_onPlayerInventoryChanged.sqf",
+      "sha256": "8607a79e2d93f20efdcf6f2f3438522d2569a3c18692e231b5e3514feb4f3cb1",
+      "ops": [
+        {
+          "op": "text-replace",
+          "find": "_itemsToCheck = (_newPlayerInventory select 17) + (_newPlayerInventory select 3) + (_newPlayerInventory select 5) + (_newPlayerInventory select 7);",
+          "replace": "_itemsToCheck = (assignedItems cTab_player) + (uniformItems cTab_player) + (vestItems cTab_player) + (backpackItems cTab_player);"
+        }
+      ]
+    },
+    {
+      "path": "z\\ctab\\addons\\core\\functions\\fnc_onPlayerInventoryChanged.sqfc",
+      "sha256": "a19a490746db8150453d12d1483597a11126ee22a2b2e66f8b21b4995734f9f7",
+      "remove": true
+    }
+  ]
+}

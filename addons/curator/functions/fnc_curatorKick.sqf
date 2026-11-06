@@ -19,12 +19,23 @@
 params ["_kickAll", ["_player", ""]];
 
 if (_kickAll) then {
+    private _kickedNames = [];
+    private _kickedCurators = [];
     {
         if (_x != "") then {
-            [QEGVAR(common,hint), ["You were kicked"], [_x]] call CBA_fnc_targetEvent;
-            [QGVAR(curatorUnassign), [(GVAR(curatorObjects) select _forEachIndex)]] call CBA_fnc_serverEvent;
+            _kickedNames pushBack _x;
+            _kickedCurators pushBack (GVAR(curatorObjects) param [_forEachIndex, objNull]);
         };
     } forEach GVAR(curatorPlayers);
+
+    {
+        [QGVAR(curatorUnassign), [_x]] call CBA_fnc_serverEvent;
+    } forEach _kickedCurators;
+
+    private _kickedPlayers = ALL_PLAYERS select {(name _x) in _kickedNames};
+    if (_kickedPlayers isNotEqualTo []) then {
+        [QEGVAR(common,hint), ["You were kicked"], _kickedPlayers] call CBA_fnc_targetEvent;
+    };
     [QEGVAR(common,hint), ["Kicked all"]] call CBA_fnc_localEvent;
 } else {
     private _index = (GVAR(curatorPlayers) find _player);

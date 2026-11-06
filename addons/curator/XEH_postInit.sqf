@@ -4,8 +4,7 @@
 // Note: This spawning is only a backup. Mission patching should be placing curator modules as part of its patching process.
 [{
     if (isServer) then {
-        GVAR(curatorObjects) = GVAR(curatorObjects) - [objNull];
-        publicVariable QGVAR(curatorObjects);
+        call FUNC(pruneCurators);
         private _neededCurators = GVAR(curatorsMax) - (count GVAR(curatorObjects));
         if (_neededCurators > 0) then {
             INFO_1("Need to create %1 curators",_neededCurators);

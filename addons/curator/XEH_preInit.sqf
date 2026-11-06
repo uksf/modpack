@@ -9,11 +9,12 @@ ADDON = false;
 if (isServer) then {
     GVAR(curatorObjects) = [];
     GVAR(curatorPlayers) = [];
+    GVAR(reservationSerial) = 0;
     [QGVAR(setCuratorsLocked), {call FUNC(setCuratorsLocked)}] call CBA_fnc_addEventHandler;
     [QGVAR(curatorAssign), {call FUNC(curatorAssign)}] call CBA_fnc_addEventHandler;
     [QGVAR(curatorUnassign), {call FUNC(curatorUnassign)}] call CBA_fnc_addEventHandler;
 
-    addMissionEventHandler ["HandleDisconnect", {[QGVAR(curatorUnassign), [getAssignedCuratorLogic (_this#0)]] call CBA_fnc_serverEvent;}];
+    addMissionEventHandler ["HandleDisconnect", {[QGVAR(curatorUnassign), [objNull, objNull, _this#0, true]] call CBA_fnc_serverEvent;}];
 
     ["CBA_settingsInitialized", {
         if (!isMultiplayer) then {
@@ -24,8 +25,7 @@ if (isServer) then {
         ["ModuleCurator_F", "init", {
             params ["_curator"];
 
-            GVAR(curatorObjects) = GVAR(curatorObjects) - [objNull];
-            publicVariable QGVAR(curatorObjects);
+            call FUNC(pruneCurators);
 
             TRACE_1("Mission curator init",_curator);
             if ((count GVAR(curatorObjects)) >= GVAR(curatorsMax)) exitWith {

@@ -2,10 +2,6 @@
 #define COMPONENT_BEAUTIFIED Persistence
 #include "\u\uksf\addons\main\script_mod.hpp"
 
-#define DEBUG_MODE_FULL
-// #define DISABLE_COMPILE_CACHE
-// #define CBA_DEBUG_SYNCHRONOUS
-
 #include "\u\uksf\addons\main\script_macros.hpp"
 
 #define OWNER_SERVER 2
@@ -17,7 +13,6 @@
 
 #define CENTRE_RADIUS 30
 
-// Object data array field indices (see fnc_getObjectData.sqf for construction)
 #define IDX_OBJ_ID              0
 #define IDX_OBJ_TYPE            1
 #define IDX_OBJ_POSITION        2

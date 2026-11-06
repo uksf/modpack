@@ -107,7 +107,10 @@ public static class FocusGuard {
         return true;
     }
 
-    static void Sweep(object state) { EnumWindows(sweeper, IntPtr.Zero); }
+    static void Sweep(object state) {
+        if (pidFile != null && File.Exists(pidFile + ".pause")) return;
+        EnumWindows(sweeper, IntPtr.Zero);
+    }
 
     static void SampleCursor(object state) {
         IntPtr fg = GetForegroundWindow();

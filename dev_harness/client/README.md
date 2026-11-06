@@ -33,6 +33,12 @@ uiSleep 4;                                         // let the model and textures
 call vc_fnc_done;
 ```
 
+`vc_fnc_shot` uses the engine `screenshot` command, which leaves dialogs, menus and the HUD out.
+To check a UI layout, use `"name" call vc_fnc_winshot;` instead. The runner captures the Arma
+window itself with `PrintWindow`, so the PNG shows what a player sees. The focus guard pauses
+during the capture, and a minimised window is restored off-screen without focus, then minimised
+again. The call waits 4 s for the capture.
+
 ## How it works
 
 1. The mission in `mission/` plus the test file are packed into `@uksf_vclient/addons/uksf_vclient.pbo`

@@ -4,6 +4,7 @@ PREP(tick);
 PREP(debugPlayTestClip);
 PREP(sttStart);
 PREP(sttStop);
+PREP(sttSync);
 PREP(sttPushNames);
 PREP(sttPublishNames);
 PREP(onTranscript);

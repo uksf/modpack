@@ -74,11 +74,10 @@ addMissionEventHandler ["ExtensionCallback", {
 QGVAR(sttNames) addPublicVariableEventHandler { call FUNC(sttPushNames) };
 call FUNC(requestFillers);
 
-[{
-    INFO("NPC STT: delayed start");
-    call FUNC(sttStart);
-    call FUNC(sttPushNames);
-}, [], STT_START_DELAY_AFTER_FILLERS] call CBA_fnc_waitAndExecute;
+GVAR(sttReady) = false;
+GVAR(sttStarted) = false;
+GVAR(sttGateOpen) = false;
+[{ GVAR(sttReady) = true; }, [], STT_START_DELAY_AFTER_FILLERS] call CBA_fnc_waitAndExecute;
 
 [FUNC(gateTick), 0.2, []] call CBA_fnc_addPerFrameHandler;
 [FUNC(proximityPull), 0.5, []] call CBA_fnc_addPerFrameHandler;

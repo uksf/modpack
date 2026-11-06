@@ -2,10 +2,6 @@
 #define COMPONENT_BEAUTIFIED Radios
 #include "\u\uksf\addons\main\script_mod.hpp"
 
-// #define DEBUG_MODE_FULL
-// #define DISABLE_COMPILE_CACHE
-// #define CBA_DEBUG_SYNCHRONOUS
-
 #include "\u\uksf\addons\main\script_macros.hpp"
 
 #define INTERCOM_GROUND \
@@ -101,3 +97,9 @@
 #define REBRO_TRACE_2(MESSAGE,A,B) if (GVAR(rebroDebugging)) then {LOG_SYS_FILELINENUMBERS('TRACE',PFORMAT_2(str diag_frameNo + ' ' + (MESSAGE),A,B))}
 #define REBRO_TRACE_3(MESSAGE,A,B,C) if (GVAR(rebroDebugging)) then {LOG_SYS_FILELINENUMBERS('TRACE',PFORMAT_3(str diag_frameNo + ' ' + (MESSAGE),A,B,C))}
 #define REBRO_TRACE_4(MESSAGE,A,B,C,D) if (GVAR(rebroDebugging)) then {LOG_SYS_FILELINENUMBERS('TRACE',PFORMAT_4(str diag_frameNo + ' ' + (MESSAGE),A,B,C,D))}
+
+#define IDD_RADIO_PRESETS 81400
+#define IDC_RADIO_PRESETS_LIST 81401
+#define IDC_RADIO_PRESETS_NAME 81402
+#define IDC_RADIO_PRESETS_DETAILS 81403
+#define IDC_RADIO_PRESETS_STATUS 81404

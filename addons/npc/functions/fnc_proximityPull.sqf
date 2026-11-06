@@ -8,16 +8,25 @@
         scan), pruning null/dead, and on the rising edge of entering an NPC's
         audio range requests its in-flight clip from the server so a late joiner
         hears the current sentence from the right offset. Per-NPC debounced.
+        Prunes heard and cancelled turn ids older than 60 s, even while dead,
+        and syncs the STT mic gate to NPC range.
 
     Parameter(s):
         0: PFH args <ARRAY>
         1: PFH id <NUMBER>
+
+    Return Value:
+        None
+
+    Example:
+        [uksf_npc_fnc_proximityPull, 0.5, []] call CBA_fnc_addPerFrameHandler
 */
 params ["", "_idPFH"];
 
-// Prune heard-turns older than 60s so the dedup map stays bounded (runs even while dead).
 { if (diag_tickTime - _y > 60) then { GVAR(heardTurns) deleteAt _x; }; } forEach GVAR(heardTurns);
 { if (diag_tickTime - _y > 60) then { GVAR(cancelledTurns) deleteAt _x; }; } forEach GVAR(cancelledTurns);
+
+call FUNC(sttSync);
 
 private _player = call CBA_fnc_currentUnit;
 if (!alive _player) exitWith { GVAR(nearTalkers) = []; };

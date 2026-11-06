@@ -8,6 +8,7 @@ class GVAR(rx) : B_supplyCrate_F {
     editorSubcategory = QEGVAR(common,romeos);
     displayName = "RX (Empty)";
     description = "Crate - Empty";
+    GVAR(stencil) = "";
     PREVIEW(rx);
     hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\rx.paa) };
     ace_cargo_size = 4;
@@ -25,6 +26,7 @@ class GVAR(rx) : B_supplyCrate_F {
 class GVAR(r1) : GVAR(rx) {
     displayName = "R1 (SA)";
     description = "Crate - Small Arms Ammo";
+    GVAR(stencil) = "SMALL ARMS";
     PREVIEW(r1);
     hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\r1.paa) };
     class TransportMagazines {
@@ -57,6 +59,7 @@ class GVAR(r1) : GVAR(rx) {
 class GVAR(r2) : GVAR(rx) {
     displayName = "R2 (AT)";
     description = "Crate - Anti-Tank, Demolitions";
+    GVAR(stencil) = "AT DEMS";
     PREVIEW(r2);
     hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\r2.paa) };
     class TransportMagazines {
@@ -91,6 +94,7 @@ class GVAR(r2) : GVAR(rx) {
 class GVAR(r3) : GVAR(rx) {
     displayName = "R3 (VA)";
     description = "Crate - Vehicle Ammo";
+    GVAR(stencil) = "VEHICLE";
     PREVIEW(r3);
     hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\r3.paa) };
     class TransportMagazines {
@@ -109,6 +113,7 @@ class GVAR(r3) : GVAR(rx) {
 class GVAR(r4) : GVAR(rx) {
     displayName = "R4 (ME)";
     description = "Crate - Medical";
+    GVAR(stencil) = "MED";
     PREVIEW(r4);
     hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\r4.paa) };
     disableInventory = 1;
@@ -121,6 +126,7 @@ class GVAR(r4) : GVAR(rx) {
 class GVAR(r5) : GVAR(rx) {
     displayName = "R5 (LM)";
     description = "Crate - Light Mortar";
+    GVAR(stencil) = "M6 MORTAR";
     PREVIEW(r5);
     hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\r5.paa) };
     class TransportWeapons {
@@ -136,6 +142,7 @@ class GVAR(r5) : GVAR(rx) {
 class GVAR(r6) : GVAR(rx) {
     displayName = "R6 (MM)";
     description = "Crate - Medium Mortar";
+    GVAR(stencil) = "L16 MORTAR";
     PREVIEW(r6);
     hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\r6.paa) };
     class TransportMagazines {
@@ -155,6 +162,7 @@ class GVAR(r6) : GVAR(rx) {
 class GVAR(r7) : GVAR(rx) {
     displayName = "R7 (Sniper)";
     description = "Crate - Sniper Ammo";
+    GVAR(stencil) = "SNIPER";
     PREVIEW(r7);
     hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\r7.paa) };
     class TransportMagazines {
@@ -176,30 +184,35 @@ class GVAR(r7) : GVAR(rx) {
 class GVAR(r8) : GVAR(rx) {
     displayName = "R8 (LGHE)";
     description = "Crate - Light Gun High Explosive";
+    GVAR(stencil) = "L118 HE";
     PREVIEW(r8);
     hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\r8.paa) };
     class ACE_Cargo {
         class Cargo {
-            MACRO_ADDACECARGO(tbd_mortars_105mm_box,10);
+            MACRO_ADDACECARGO(GVAR(g15),4);
+            MACRO_ADDACECARGO(GVAR(g18),2);
         };
     };
 };
 class GVAR(r9) : GVAR(rx) {
     displayName = "R9 (LGMisc)";
     description = "Crate - Light Gun Misc";
+    GVAR(stencil) = "L118 MISC";
     PREVIEW(r9);
     hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\r9.paa) };
     class ACE_Cargo {
         class Cargo {
-            MACRO_ADDACECARGO(tbd_mortars_105mm_box_smoke,7);
-            MACRO_ADDACECARGO(tbd_mortars_105mm_box_dpicm,3);
+            MACRO_ADDACECARGO(GVAR(g16),3);
+            MACRO_ADDACECARGO(GVAR(g17),1);
+            MACRO_ADDACECARGO(GVAR(g18),2);
         };
     };
 };
 class GVAR(r10) : GVAR(rx) {
     displayName = "R10 (GM-B)";
     description = "Crate - Bullets";
-    // PREVIEW(r9);
+    GVAR(stencil) = "BULLETS";
+    PREVIEW(r10);
     hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\r10.paa) };
     class TransportItems {
         MACRO_ADDITEM(greenmag_ammo_556x45_basic_30Rnd,60);
@@ -217,6 +230,7 @@ class GVAR(r10) : GVAR(rx) {
 class GVAR(rt) : GVAR(rx) {
     displayName = "RT (Tyres)";
     description = "Crate - Tyres, Toolkits";
+    GVAR(stencil) = "TYRES TOOLKITS";
     PREVIEW(rt);
     hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\rt.paa) };
     class TransportItems {
@@ -234,7 +248,8 @@ class GVAR(rt) : GVAR(rx) {
 class GVAR(rb) : GVAR(rx) {
     displayName = "RB (ReBro)";
     description = "Crate - Re-broadcasting Station";
-    PREVIEW(rx);  // TODO
+    GVAR(stencil) = "REBRO";
+    PREVIEW(rb);
     hiddenSelectionsTextures[] = { QPATHTOF(data\romeo\rb.paa) };
     class ACE_Cargo {
         class Cargo {
@@ -250,6 +265,7 @@ class GVAR(rf) : CargoNet_01_barrels_F {
     faction = "CUP_B_GB";
     displayName = "RF (Fuel)";
     description = "Fuel Barrels";
+    GVAR(stencil) = "";
     editorCategory = "EdCat_Supplies";
     editorSubcategory = QEGVAR(common,romeos);
     PREVIEW(rf);

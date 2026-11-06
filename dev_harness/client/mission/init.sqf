@@ -40,6 +40,15 @@ vc_fnc_shot = {
     format ["shot %1 %2", _this, _ok] call vc_fnc_log;
 };
 
+// "name" call vc_fnc_winshot. run.js captures the Arma window, UI included, to <name>.png.
+// The engine screenshot command leaves dialogs and HUD out; use this one to check UI layout.
+// The trigger is an engine screenshot file, because the RPT reaches disk seconds late.
+vc_fnc_winshot = {
+    screenshot (vc_runId + "_winshot_" + _this + ".png");
+    uiSleep 4;
+    format ["winshot %1", _this] call vc_fnc_log;
+};
+
 vc_fnc_done = { "done" call vc_fnc_log };
 
 // Keeps the hidden player on dry land under the camera. A player in water drowns, and the engine
