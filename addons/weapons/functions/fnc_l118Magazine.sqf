@@ -18,7 +18,7 @@
         [_gun, 1, ""] remoteExecCall ["uksf_weapons_fnc_l118Magazine", 2]
 */
 params ["_gun", "_token", "_magazine"];
-if ((isRemoteExecuted && {remoteExecutedOwner != 2}) || {!isRemoteExecuted && {!isServer}} || {isNull _gun} || {!(_gun turretLocal [0])}) exitWith {};
+if (isNull _gun || {!(_gun turretLocal [0])}) exitWith {};
 {_gun removeMagazinesTurret [_x, [0]]} forEach (_gun magazinesTurret [0]);
 if (_magazine isNotEqualTo "") then {_gun addMagazineTurret [_magazine, [0], 1]};
 [_gun, _token] remoteExecCall [QFUNC(l118Acknowledge), 2];

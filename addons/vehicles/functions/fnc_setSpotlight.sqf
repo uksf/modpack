@@ -23,7 +23,9 @@ params ["_vehicle", "_turret", "_mode"];
 if !(_mode in ["", "white", "ir"] && {_turret in ([_vehicle] call FUNC(spotlightTurrets))}) exitWith {};
 
 private _key = format [QGVAR(spotlight_%1), _turret];
-deleteVehicle (_vehicle getVariable [_key + "_object", objNull]);
+private _oldLight = _vehicle getVariable [_key + "_object", objNull];
+if ((_vehicle getVariable [_key, ""]) == _mode && {(_mode == "") || {!isNull _oldLight}}) exitWith {};
+deleteVehicle _oldLight;
 _vehicle setVariable [_key, _mode, true];
 if (_mode isEqualTo "") exitWith {};
 

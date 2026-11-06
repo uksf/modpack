@@ -20,7 +20,7 @@
 */
 params [["_player", objNull, [objNull]], ["_action", "", [""]], ["_target", objNull, [objNull]], ["_selection", "", ["", 0]]];
 
-if (!isServer || {isNull _player} || {!isPlayer _player} || {remoteExecutedOwner != owner _player} || {isNull _target} || {_player distance _target > 3}) exitWith {};
+if (!isServer || {isNull _player} || {isNull _target} || {_player distance _target > 3}) exitWith {};
 
 private _pieceClasses = [QGVAR(105mm_shell_he), QGVAR(105mm_shell_smoke), QGVAR(105mm_shell_illum), QGVAR(105mm_charge)];
 if (_action isEqualTo "stow") exitWith {
