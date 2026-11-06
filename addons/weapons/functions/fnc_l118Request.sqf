@@ -28,7 +28,7 @@ if (_action isEqualTo "stow") exitWith {
     private _item = getText (configOf _target >> QGVAR(item));
     if !(_player canAdd _item) exitWith {};
     _target setVariable [QGVAR(claimed), true];
-    [QGVAR(l118ReceiveItem), [_player, _item], _player] call CBA_fnc_targetEvent;
+    [_player, _item] remoteExecCall [QFUNC(l118Deliver), _player];
     deleteVehicle _target;
 };
 
@@ -90,7 +90,7 @@ switch (_action) do {
         private _shell = createVehicle [GVAR(l118Shells) get _round, getPosATL _player, [], 0, "NONE"];
         _shell setVariable ["tbd_mortars_105mm_dpicm_fuse_timer", _target getVariable [QGVAR(fuseTime), -1], true];
         _target setVariable [QGVAR(fuseTime), -1, true];
-        [QGVAR(l118Carry), [_player, _shell], _player] call CBA_fnc_targetEvent;
+        [_player, _shell] remoteExecCall [QFUNC(l118Deliver), _player];
     };
 };
 if (!isNull _piece) then {deleteVehicle _piece};

@@ -58,17 +58,6 @@ ADDON = false;
     };
 }] call CBA_fnc_addEventHandler;
 
-[QGVAR(l118ReceiveItem), {
-    params ["_player", "_item"];
-    private _items = ["tbd_mortars_105mm_shell_he", "tbd_mortars_105mm_shell_smoke", "tbd_mortars_105mm_shell_dpicm", "tbd_mortars_105mm_casing_charge_7"];
-    if (local _player && {_item in _items}) then {_player addItem _item};
-}] call CBA_fnc_addEventHandler;
-
-[QGVAR(l118Carry), {
-    params ["_player", "_shell"];
-    if (local _player) then {[_player, _shell] call ace_dragging_fnc_startCarry};
-}] call CBA_fnc_addEventHandler;
-
 GVAR(l119SubmunitionAmmos) = [
     "tbd_mortars_105mm_shell_ammo_smoke",
     QGVAR(105mm_shell_ammo_illum)
