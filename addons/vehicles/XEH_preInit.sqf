@@ -30,5 +30,6 @@ GVAR(spotlightTurretCache) = createHashMap;
 GVAR(nightVisionCameraCache) = createHashMap;
 GVAR(spotlights) = [];
 GVAR(spotlightCleanupHandle) = -1;
+[QGVAR(setSpotlight), {call FUNC(setSpotlight)}] call CBA_fnc_addEventHandler;
 
 ADDON = true;
