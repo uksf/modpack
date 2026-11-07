@@ -79,7 +79,7 @@ class GVAR(presets) {
         class Load: Save {
             x = "safeZoneX + 0.405 * safeZoneW";
             text = "Load";
-            tooltip = "Apply the selected preset to your radios";
+            tooltip = "Apply the selected preset's settings to the radios you carry. Does not add radios.";
             onButtonClick = QUOTE([ARR_2(ctrlParent (_this select 0),'load')] call FUNC(presetsAction));
         };
         class Delete: Save {
