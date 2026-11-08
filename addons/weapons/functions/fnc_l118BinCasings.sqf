@@ -5,9 +5,8 @@
 
     Description:
         Bins spent L118 casings at an ammo crate.
-        Cleanup deletes unattended casings within 15 m of the crate. That covers the
-        gun, the crew space beside it, and a casing kicked a short way from the breech,
-        and leaves anything further out to be carried in. Bin deletes the casing the
+        Cleanup deletes unattended casings within 5 m of the crate, and leaves anything
+        further out to be carried in. Bin deletes the casing the
         player is carrying, after ACE carry has released it.
         Modes: canCleanup, cleanup, canBin, bin.
 
@@ -25,7 +24,7 @@
 params ["_crate", "_player", "_mode"];
 
 private _casingClass = "tbd_mortars_105mm_casing_spent";
-private _radius = 15;
+private _radius = 5;
 private _carried = _player getVariable ["ace_dragging_carriedObject", objNull];
 private _carryingCasing = !isNull _carried && {typeOf _carried isEqualTo _casingClass};
 
