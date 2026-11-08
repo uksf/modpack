@@ -1,0 +1,19 @@
+{
+  "format": 1,
+  "pbo": "cup_airvehicles_ch47.pbo",
+  "pristineSha256": "6fc233534b88aa1f4577cc9421ce8abd8d6e02c2cca9836597d28ffff4c7d604",
+  "description": "The CH-47F hit-points LOD holds only the engine, four windscreens and a light, so the hull, both rotors, the avionics and the fuel named in config never take damage. Add hull points from the fuselage fire geometry (damagehide), rotor points from the two rotor fire-geometry parts, avionics points at the cockpit seats and fuel points at the refuelling point, named for the config hitpoints (trup, velka vrtule, mala vrtule, elektronika, fuel tanks). Remove this manifest when CUP ships a CH-47F hit-points LOD with those selections.",
+  "assets": [
+    {
+      "path": "CUP_CH_47F.p3d",
+      "sha256": "6caa80f5e3121589bfcc8d4a04accb3feb65f7112e9d257aa6f650b4430cfce8",
+      "ops": [
+        { "op": "copy-selection-points", "lod": "hitpoints", "name": "trup", "fromLod": "geometryFire", "from": "damagehide", "shrink": 0.6, "points": 564 },
+        { "op": "copy-selection-points", "lod": "hitpoints", "name": "velka vrtule", "fromLod": "geometryFire", "from": "velka vrtule", "shrink": 0.6, "points": 35 },
+        { "op": "copy-selection-points", "lod": "hitpoints", "name": "mala vrtule", "fromLod": "geometryFire", "from": "mala vrtule", "shrink": 0.6, "points": 35 },
+        { "op": "copy-selection-points", "lod": "hitpoints", "name": "elektronika", "fromLod": "memory", "from": "pos codriver", "shrink": 1, "points": 2 },
+        { "op": "copy-selection-points", "lod": "hitpoints", "name": "fuel tanks", "fromLod": "memory", "from": "doplnovani", "shrink": 1, "points": 2 }
+      ]
+    }
+  ]
+}
