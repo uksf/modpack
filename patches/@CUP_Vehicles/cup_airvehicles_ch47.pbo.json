@@ -8,7 +8,7 @@
       "path": "CUP_CH_47F.p3d",
       "sha256": "6caa80f5e3121589bfcc8d4a04accb3feb65f7112e9d257aa6f650b4430cfce8",
       "ops": [
-        { "op": "copy-selection-points", "lod": "hitpoints", "name": "trup", "fromLod": "geometryFire", "from": "damagehide", "shrink": 0.6, "points": 564 },
+        { "op": "copy-selection-points", "lod": "hitpoints", "name": "trup", "fromLod": "geometryFire", "from": "damagehide", "shrink": 0.85, "points": 564 },
         { "op": "copy-selection-points", "lod": "hitpoints", "name": "velka vrtule", "fromLod": "geometryFire", "from": "velka vrtule", "shrink": 0.6, "points": 35 },
         { "op": "copy-selection-points", "lod": "hitpoints", "name": "mala vrtule", "fromLod": "geometryFire", "from": "mala vrtule", "shrink": 0.6, "points": 35 },
         { "op": "copy-selection-points", "lod": "hitpoints", "name": "elektronika", "fromLod": "memory", "from": "horizont_osa", "shrink": 1, "points": 3 },
