@@ -9,6 +9,12 @@
       "sha256": "d6797158efa2f3c1bfa6df7f36aa6f69ab19720eb136034ce808dc421000efca",
       "ops": [
         {
+          "op": "add-reverse-face",
+          "lod": "0",
+          "face": 13491,
+          "vertices": [17098, 17065, 17100]
+        },
+        {
           "op": "set-animation-source",
           "animation": "towhook",
           "to": "hook"
