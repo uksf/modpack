@@ -10,8 +10,8 @@
         Artillery charge magazines (artillery ammo the firing weapon also loads from
         another magazine at a different initSpeed) use the magazine display name.
         Otherwise the order is: ammo displayName, ammo displayNameShort, the magazine's
-        pylonWeapon displayName, the firing weapon displayName, the magazine
-        displayNameShort, the parent projectile's label, then the ammo classname.
+        pylonWeapon displayName, the magazine displayNameShort, the firing weapon
+        displayName, the parent projectile's label, then the ammo classname.
 
     Parameter(s):
         0: Projectile <OBJECT>
@@ -49,8 +49,8 @@ if (isNil "_name") then {
         getText (_ammoConfig >> "displayName"),
         getText (_ammoConfig >> "displayNameShort"),
         getText (EGVAR(common,configWeapons) >> getText (_magazineConfig >> "pylonWeapon") >> "displayName"),
-        getText (_weaponConfig >> "displayName"),
         getText (_magazineConfig >> "displayNameShort"),
+        getText (_weaponConfig >> "displayName"),
         _parentName,
         _ammo
     ];
