@@ -7,6 +7,7 @@
 #define WIDTH_TOTAL (safezoneW - 2 * (93 * GRID_W))
 #define WIDTH_GAP (WIDTH_TOTAL / 100)
 #define WIDTH_SINGLE ((WIDTH_TOTAL - 6 * WIDTH_GAP) / 5)
+#define WIDTH_SINGLE_ACE ((WIDTH_TOTAL - 7 * WIDTH_GAP) / 6)
 
 class ace_arsenal_display {
     class controls {
@@ -33,13 +34,14 @@ class ace_arsenal_display {
                 };
                 class buttonMainOp: buttonClose {
                     idc = IDC_buttonMainOpGear;
-                    x = QUOTE(1 * WIDTH_GAP + 0 * WIDTH_SINGLE);
+                    x = QUOTE(2 * WIDTH_GAP + 1 * WIDTH_SINGLE_ACE);
                     y = QUOTE(0);
                     text = "Turn On Main Op Gear";
                     onButtonClick = QUOTE([ctrlparent (_this select 0)] call FUNC(switchMainOpGear));
                 };
                 class buttonRadioPresets: buttonLoadouts {
                     idc = IDC_buttonRadioPresets;
+                    x = QUOTE(1 * WIDTH_GAP + 0 * WIDTH_SINGLE);
                     y = QUOTE(0);
                     text = "Radio Presets";
                     tooltip = "Save, load and manage radio channel, ear and PTT presets";
