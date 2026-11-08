@@ -6,9 +6,10 @@
     Description:
         Registers a projectile for Zeus debug visualisation and recursively tracks
         any submunitions it spawns.
-        The label is the ammo display name, then the magazine, then the weapon, then
-        the parent projectile's label, then the ammo classname. Magazines that share
-        one ammo class, such as artillery charges, keep their own labels.
+        The label names the single munition, never a pack count. It uses the ammo
+        display name, then displayNameShort, then the magazine name with pack-count
+        tokens removed. Artillery charge magazines keep their charge name. The weapon
+        name, the parent projectile's label, and the ammo classname are fallbacks.
 
     Parameter(s):
         0: Projectile <OBJECT>
@@ -31,13 +32,33 @@ if (isNull _projectile || {_ammo isEqualTo ""}) exitWith {};
 private _nameKey = [_ammo, _magazine, _weapon, _parentName];
 private _name = GVAR(projectileNameCache) get _nameKey;
 if (isNil "_name") then {
-    _name = [
-        getText (EGVAR(common,configAmmo) >> _ammo >> "displayName"),
-        getText (EGVAR(common,configMagazines) >> _magazine >> "displayName"),
+    private _fnc_singleRoundName = {
+        params ["_label"];
+        if (_label isEqualTo "") exitWith {""};
+        _label = _label regexReplace ["\s+x\d+", ""];
+        _label = _label regexReplace ["\d+x\s+", ""];
+        _label = _label regexReplace ["\(\d+\)", ""];
+        _label = _label regexReplace ["\d+Rnd", ""];
+        _label = _label regexReplace ["\(\s*\)", ""];
+        _label = _label regexReplace ["\s{2,}", " "];
+        _label regexReplace ["^\s+|\s+$", ""]
+    };
+
+    private _magazineName = [getText (EGVAR(common,configMagazines) >> _magazine >> "displayName")] call _fnc_singleRoundName;
+    private _ammoName = getText (EGVAR(common,configAmmo) >> _ammo >> "displayName");
+    if (_ammoName isEqualTo "") then {
+        _ammoName = getText (EGVAR(common,configAmmo) >> _ammo >> "displayNameShort");
+    };
+    private _isCharge = (_magazine find "charge_mag") > -1 || {_magazineName regexMatch ".*\bCharge\b.*"};
+    private _candidates = [
+        ["", _magazineName] select _isCharge,
+        _ammoName,
+        _magazineName,
         getText (EGVAR(common,configWeapons) >> _weapon >> "displayName"),
         _parentName,
         _ammo
-    ] select {_x isNotEqualTo ""} select 0;
+    ];
+    _name = _candidates select {_x isNotEqualTo ""} select 0;
     GVAR(projectileNameCache) set [_nameKey, _name];
 };
 
