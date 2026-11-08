@@ -79,7 +79,7 @@
     params ["_vehicle", "_hitPoint", "_damage", "_currentDamage", "_source", "_instigator"];
 
     private _credited = [_instigator] call FUNC(creditedShooter);
-    if (isNull _credited && {_source isEqualType objNull} && {unitIsUAV _source}) then {
+    if (isNull _credited && {_source isEqualType objNull} && {!isNull _source} && {unitIsUAV _source}) then {
         _credited = [_source] call FUNC(creditedShooter);
     };
     if (isNull _credited) exitWith {};
