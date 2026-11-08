@@ -14,6 +14,12 @@
           "to": "ramp_bottom2"
         },
         {
+          "op": "set-rotation-range",
+          "animation": "ramp_bottom2",
+          "angle0": -1.30899694,
+          "angle1": 1.75
+        },
+        {
           "op": "set-animation-source",
           "animation": "ramp_top",
           "to": "ramp_top"
