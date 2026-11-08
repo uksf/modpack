@@ -49,7 +49,7 @@ if (isNil "_name") then {
     if (_ammoName isEqualTo "") then {
         _ammoName = getText (EGVAR(common,configAmmo) >> _ammo >> "displayNameShort");
     };
-    private _isCharge = (_magazine find "charge_mag") > -1 || {_magazineName regexMatch ".*\bCharge\b.*"};
+    private _isCharge = "charge_mag" in _magazine || {_magazineName regexMatch ".*\bCharge\b.*"};
     private _candidates = [
         ["", _magazineName] select _isCharge,
         _ammoName,
