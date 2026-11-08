@@ -6,10 +6,12 @@
     Description:
         Registers a projectile for Zeus debug visualisation and recursively tracks
         any submunitions it spawns.
-        The label names the single munition, never a pack count. It uses the ammo
-        display name, then displayNameShort, then the magazine name with pack-count
-        tokens removed. Artillery charge magazines keep their charge name. The weapon
-        name, the parent projectile's label, and the ammo classname are fallbacks.
+        The label names the single munition, never a pack count, read from config only.
+        Artillery charge magazines (artillery ammo the firing weapon also loads from
+        another magazine at a different initSpeed) use the magazine display name.
+        Otherwise the order is: ammo displayName, ammo displayNameShort, the magazine's
+        pylonWeapon displayName, the firing weapon displayName, the magazine
+        displayNameShort, the parent projectile's label, then the ammo classname.
 
     Parameter(s):
         0: Projectile <OBJECT>
@@ -32,29 +34,23 @@ if (isNull _projectile || {_ammo isEqualTo ""}) exitWith {};
 private _nameKey = [_ammo, _magazine, _weapon, _parentName];
 private _name = GVAR(projectileNameCache) get _nameKey;
 if (isNil "_name") then {
-    private _fnc_singleRoundName = {
-        params ["_label"];
-        if (_label isEqualTo "") exitWith {""};
-        _label = _label regexReplace ["\s+x\d+", ""];
-        _label = _label regexReplace ["\d+x\s+", ""];
-        _label = _label regexReplace ["\(\d+\)", ""];
-        _label = _label regexReplace ["\d+Rnd", ""];
-        _label = _label regexReplace ["\(\s*\)", ""];
-        _label = _label regexReplace ["\s{2,}", " "];
-        _label regexReplace ["^\s+|\s+$", ""]
+    private _magazineConfig = EGVAR(common,configMagazines) >> _magazine;
+    private _ammoConfig = EGVAR(common,configAmmo) >> _ammo;
+    private _weaponConfig = EGVAR(common,configWeapons) >> _weapon;
+    private _initSpeed = getNumber (_magazineConfig >> "initSpeed");
+    private _isCharge = getNumber (_ammoConfig >> "artilleryLock") == 1 && {
+        getArray (_weaponConfig >> "magazines") findIf {
+            private _siblingConfig = EGVAR(common,configMagazines) >> _x;
+            getText (_siblingConfig >> "ammo") == _ammo && {getNumber (_siblingConfig >> "initSpeed") != _initSpeed}
+        } != -1
     };
-
-    private _magazineName = [getText (EGVAR(common,configMagazines) >> _magazine >> "displayName")] call _fnc_singleRoundName;
-    private _ammoName = getText (EGVAR(common,configAmmo) >> _ammo >> "displayName");
-    if (_ammoName isEqualTo "") then {
-        _ammoName = getText (EGVAR(common,configAmmo) >> _ammo >> "displayNameShort");
-    };
-    private _isCharge = "charge_mag" in _magazine || {_magazineName regexMatch ".*\bCharge\b.*"};
     private _candidates = [
-        ["", _magazineName] select _isCharge,
-        _ammoName,
-        _magazineName,
-        getText (EGVAR(common,configWeapons) >> _weapon >> "displayName"),
+        ["", getText (_magazineConfig >> "displayName")] select _isCharge,
+        getText (_ammoConfig >> "displayName"),
+        getText (_ammoConfig >> "displayNameShort"),
+        getText (EGVAR(common,configWeapons) >> getText (_magazineConfig >> "pylonWeapon") >> "displayName"),
+        getText (_weaponConfig >> "displayName"),
+        getText (_magazineConfig >> "displayNameShort"),
         _parentName,
         _ammo
     ];
