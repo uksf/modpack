@@ -56,38 +56,38 @@ private _cfgWeapons = configFile >> "CfgWeapons";
                     private _sources = [_vehicle];
                     _sources append ((_vehicle getVariable ["ace_cargo_loaded", []]) select {_x isEqualType objNull && {!isNull _x}});
                     {
-                    private _source = _x;
-                    (getMagazineCargo _source) params ["_cargoMags", "_cargoCounts"];
-                    private _cargoIndex = _cargoMags find _mag;
-                    if (_cargoIndex < 0) then {
-                        private _alt = _compatible findIf { _x in _cargoMags };
-                        if (_alt >= 0) then {
-                            _mag = _compatible select _alt;
-                            _cargoIndex = _cargoMags find _mag;
-                            _full = getNumber (configFile >> "CfgMagazines" >> _mag >> "count");
-                            if (_full < 1) then { _full = 1 };
-                        };
-                    };
-                    if (_cargoIndex >= 0 && {(_cargoCounts select _cargoIndex) > 0}) then {
-                        _did = true;
-                        if (_apply) then {
-                            private _take = _wanted - floor (_ammo / _full);
-                            if (_take < 1) then { _take = 1 };
-                            _take = _take min (_cargoCounts select _cargoIndex);
-                            _source addMagazineCargoGlobal [_mag, -_take];
-                            _vehicle removeMagazinesTurret [_mag, _path];
-                            for "_i" from 1 to _take do {
-                                _vehicle addMagazineTurret [_mag, _path];
+                        private _source = _x;
+                        (getMagazineCargo _source) params ["_cargoMags", "_cargoCounts"];
+                        private _cargoIndex = _cargoMags find _mag;
+                        if (_cargoIndex < 0) then {
+                            private _alt = _compatible findIf { _x in _cargoMags };
+                            if (_alt >= 0) then {
+                                _mag = _compatible select _alt;
+                                _cargoIndex = _cargoMags find _mag;
+                                _full = getNumber (configFile >> "CfgMagazines" >> _mag >> "count");
+                                if (_full < 1) then { _full = 1 };
                             };
-                            {
-                                _x params ["", "", "_left"];
-                                if (_left > 0 && {_left < _full}) then {
-                                    _vehicle addMagazineTurret [_mag, _path, _left];
-                                };
-                            } forEach _loaded;
                         };
-                        break;
-                    };
+                        if (_cargoIndex >= 0 && {(_cargoCounts select _cargoIndex) > 0}) then {
+                            _did = true;
+                            if (_apply) then {
+                                private _take = _wanted - floor (_ammo / _full);
+                                if (_take < 1) then { _take = 1 };
+                                _take = _take min (_cargoCounts select _cargoIndex);
+                                _source addMagazineCargoGlobal [_mag, -_take];
+                                _vehicle removeMagazinesTurret [_mag, _path];
+                                for "_i" from 1 to _take do {
+                                    _vehicle addMagazineTurret [_mag, _path];
+                                };
+                                {
+                                    _x params ["", "", "_left"];
+                                    if (_left > 0 && {_left < _full}) then {
+                                        _vehicle addMagazineTurret [_mag, _path, _left];
+                                    };
+                                } forEach _loaded;
+                            };
+                            break;
+                        };
                     } forEach _sources;
                 };
             };
