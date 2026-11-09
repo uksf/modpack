@@ -79,16 +79,9 @@ if (_apply) then {
                                 if (_take < 1) then { _take = 1 };
                                 _take = _take min (_cargoCounts select _cargoIndex);
                                 _source addMagazineCargoGlobal [_mag, -_take];
-                                _vehicle removeMagazinesTurret [_mag, _path];
                                 for "_i" from 1 to _take do {
                                     _vehicle addMagazineTurret [_mag, _path];
                                 };
-                                {
-                                    _x params ["", "", "_left"];
-                                    if (_left > 0 && {_left < _full}) then {
-                                        _vehicle addMagazineTurret [_mag, _path, _left];
-                                    };
-                                } forEach _loaded;
                             };
                         };
                     } forEach _sources;
