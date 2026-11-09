@@ -2,7 +2,7 @@
   "format": 1,
   "pbo": "EAWS_EF2000.pbo",
   "pristineSha256": "845731a52b93cd63ce3bff58543daa8fb9673f0b2eb4ca343bbc4059344b0dab",
-  "description": "Eurofighter Typhoon (Workshop 1337653467). The tail hook follows the \"hook\" source instead of the gear; the engine fans and the turbine discs turn on the rotor source, and the afterburner flame discs stay unbound so the flame does not spin, with the discs moved 1.44 m forward beside the turbine disc and the reheat cone moved 0.1 m forward to start at the nozzle's inner edge; the 13 legacy bomb proxies become dynamic-loadout pylons, with memory-LOD proxies and the supply, ejection, wheel-contact and PhysX wheel points uksf_air uses; the camo is split across two sheets with a separate pilot-view selection; the stencil, sides and formation-light textures point at uksf_air copies; and the fuselage gets a PhysX LOD with an 11000 kg mass. The parts model points its old top.paa at plain airframe grey. The hit-points LOD gains a second engine (the right half of motor) and one hit area for each elevon and the rudder, copied from their fire-geometry parts, so every subsystem the config names can take damage.",
+  "description": "Eurofighter Typhoon (Workshop 1337653467). The tail hook follows the \"hook\" source instead of the gear; the engine fans and the turbine discs turn on the rotor source, and the afterburner flame discs stay unbound so the flame does not spin, with the discs moved 1.44 m forward beside the turbine disc and the reheat cone moved 0.1 m forward to start at the nozzle's inner edge; the 13 legacy bomb proxies become dynamic-loadout pylons, with memory-LOD proxies and the supply, ejection, wheel-contact and PhysX wheel points uksf_air uses; the camo is split across two sheets with a separate pilot-view selection; the stencil, sides and formation-light textures point at uksf_air copies; and the fuselage gets a PhysX LOD with an 11000 kg mass. The parts model points its old top.paa at plain airframe grey. The hit-points LOD gains a second engine (the right half of motor) and one hit area for each elevon and the rudder, copied from their fire-geometry parts, so every subsystem the config names can take damage. Two transparent label quads on the canopy rails carry the pilot-name selection, which uksf_air_typhoon drives as hidden selection 37.",
   "assets": [
     {
       "path": "EAWS_EF2000.p3d",
@@ -455,6 +455,116 @@
           "from": "rudder",
           "shrink": 0.6,
           "points": 9
+        },
+        {
+          "op": "add-label-quads",
+          "lods": [
+            "0"
+          ],
+          "texture": "#(argb,8,8,1)color(0,0,0,0)",
+          "templateSection": 0,
+          "labels": [
+            {
+              "selection": "name",
+              "quads": [
+                {
+                  "normal": [
+                    -1,
+                    0,
+                    0
+                  ],
+                  "uv": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      1,
+                      0
+                    ],
+                    [
+                      1,
+                      0.222222
+                    ],
+                    [
+                      0,
+                      0.222222
+                    ]
+                  ],
+                  "corners": [
+                    [
+                      -0.478,
+                      0.83,
+                      -3.95
+                    ],
+                    [
+                      -0.478,
+                      0.83,
+                      -4.35
+                    ],
+                    [
+                      -0.478,
+                      0.78,
+                      -4.35
+                    ],
+                    [
+                      -0.478,
+                      0.78,
+                      -3.95
+                    ]
+                  ]
+                },
+                {
+                  "normal": [
+                    1,
+                    0,
+                    0
+                  ],
+                  "uv": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      1,
+                      0
+                    ],
+                    [
+                      1,
+                      0.222222
+                    ],
+                    [
+                      0,
+                      0.222222
+                    ]
+                  ],
+                  "corners": [
+                    [
+                      0.478,
+                      0.83,
+                      -4.35
+                    ],
+                    [
+                      0.478,
+                      0.83,
+                      -3.95
+                    ],
+                    [
+                      0.478,
+                      0.78,
+                      -3.95
+                    ],
+                    [
+                      0.478,
+                      0.78,
+                      -4.35
+                    ]
+                  ]
+                }
+              ]
+            }
+          ],
+          "special": 164096
         }
       ]
     },
