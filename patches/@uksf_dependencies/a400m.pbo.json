@@ -2,7 +2,7 @@
   "format": 1,
   "pbo": "a400m.pbo",
   "pristineSha256": "ae372680a045fc10aee0fe94d0aea60281318b62eda3471b26492caca069348d",
-  "description": "Airbus A400M. The cargo ramp, toe and upper door use separate animation sources so half-open is the in-flight pose and fully open is the ground-loading pose. The toe hinge is moved to the ramp floor. A roadway LOD holds only the ramp. Driver, gunner and cargo get-in points are separate, and the cargo points are weighted to the ramp. The hit-points LOD names the hull, four engines, avionics, fuel, glass and the control surfaces.",
+  "description": "Airbus A400M. The cargo ramp, toe and upper door use separate animation sources so half-open is the in-flight pose and fully open is the ground-loading pose. The toe hinge is moved to the ramp floor. A roadway LOD holds the ramp and the cabin floor from the ramp hinge to the forward bulkhead. Driver, gunner and cargo get-in points are separate, and the cargo points are weighted to the ramp. The hit-points LOD places points inside the fire geometry for the hull, four engines, avionics, fuel, glass and the control surfaces.",
   "assets": [
     {
       "path": "A400M_F.p3d",
@@ -67,7 +67,12 @@
           "lod": "roadway",
           "fromLod": "geometry",
           "selections": ["ramp_bottom", "ramp_bottom2"],
-          "faces": 32
+          "faces": 32,
+          "quads": [
+            {"name":"cabin_floor_front","points":[[2.05,1.774,-7.08],[2.05,1.8,-8.2],[-2.05,1.8,-8.2],[-2.05,1.774,-7.08]]},
+            {"name":"cabin_floor","points":[[2.05,1.974,8.08],[2.05,1.774,-7.08],[-2.05,1.774,-7.08],[-2.05,1.974,8.08]]},
+            {"name":"cabin_floor_rear","points":[[2.05,2.005,11.1],[2.05,1.974,8.08],[-2.05,1.974,8.08],[-2.05,2.005,11.1]]}
+          ]
         },
         {
           "op": "add-points",
@@ -80,50 +85,50 @@
           "op": "add-points",
           "lod": "hitpoints",
           "name": "HitEngine",
-          "points": 8,
-          "positions": [[12.72,4.52,-1.39],[12.716,4.501,-0.453],[12.711,4.483,0.484],[12.707,4.464,1.421],[12.703,4.446,2.359],[12.699,4.427,3.296],[12.694,4.409,4.233],[12.69,4.39,5.17]]
+          "points": 16,
+          "positions": [[12.49,4.6,0],[12.49,4.6,1],[12.49,4.6,2],[12.49,4.6,3],[12.49,4.6,4],[12.49,4.6,5],[12.49,4.6,6],[12.49,4.6,7],[12.49,5.5,0],[12.49,5.5,1],[12.49,5.5,2],[12.49,5.5,3],[12.49,5.5,4],[12.49,5.5,5],[12.49,5.5,6],[12.49,5.5,7]]
         },
         {
           "op": "add-points",
           "lod": "hitpoints",
           "name": "HitEngine2",
-          "points": 8,
-          "positions": [[7.01,4.84,-2.95],[7,4.796,-2.01],[6.99,4.751,-1.07],[6.98,4.707,-0.13],[6.97,4.663,0.81],[6.96,4.619,1.75],[6.95,4.574,2.69],[6.94,4.53,3.63]]
+          "points": 16,
+          "positions": [[7.02,4.6,0],[7.02,4.6,1],[7.02,4.6,2],[7.02,4.6,3],[7.02,4.6,4],[7.02,4.6,5],[7.02,4.6,6],[7.02,4.6,7],[7.02,5.5,0],[7.02,5.5,1],[7.02,5.5,2],[7.02,5.5,3],[7.02,5.5,4],[7.02,5.5,5],[7.02,5.5,6],[7.02,5.5,7]]
         },
         {
           "op": "add-points",
           "lod": "hitpoints",
           "name": "HitEngine3",
-          "points": 8,
-          "positions": [[-6.96,4.84,-2.95],[-6.961,4.797,-2.01],[-6.963,4.754,-1.07],[-6.964,4.711,-0.13],[-6.966,4.669,0.81],[-6.967,4.626,1.75],[-6.969,4.583,2.69],[-6.97,4.54,3.63]]
+          "points": 16,
+          "positions": [[-6.9,4.6,0],[-6.9,4.6,1],[-6.9,4.6,2],[-6.9,4.6,3],[-6.9,4.6,4],[-6.9,4.6,5],[-6.9,4.6,6],[-6.9,4.6,7],[-6.9,5.5,0],[-6.9,5.5,1],[-6.9,5.5,2],[-6.9,5.5,3],[-6.9,5.5,4],[-6.9,5.5,5],[-6.9,5.5,6],[-6.9,5.5,7]]
         },
         {
           "op": "add-points",
           "lod": "hitpoints",
           "name": "HitEngine4",
-          "points": 8,
-          "positions": [[-12.7,4.52,-1.39],[-12.703,4.501,-0.453],[-12.706,4.483,0.484],[-12.709,4.464,1.421],[-12.711,4.446,2.359],[-12.714,4.427,3.296],[-12.717,4.409,4.233],[-12.72,4.39,5.17]]
+          "points": 16,
+          "positions": [[-12.88,4.6,0],[-12.88,4.6,1],[-12.88,4.6,2],[-12.88,4.6,3],[-12.88,4.6,4],[-12.88,4.6,5],[-12.88,4.6,6],[-12.88,4.6,7],[-12.88,5.5,0],[-12.88,5.5,1],[-12.88,5.5,2],[-12.88,5.5,3],[-12.88,5.5,4],[-12.88,5.5,5],[-12.88,5.5,6],[-12.88,5.5,7]]
         },
         {
           "op": "add-points",
           "lod": "hitpoints",
           "name": "HitAvionics",
-          "points": 5,
-          "positions": [[0,2.8,-12],[0,3.2,-13],[0.4,3,-12.5],[-0.4,3,-12.5],[0,2.6,-11]]
+          "points": 6,
+          "positions": [[0.4,2.7,-12.6],[-0.4,2.7,-12.6],[0.4,3.5,-12.6],[-0.4,3.5,-12.6],[0,3.1,-13.2],[0,3.1,-12.2]]
         },
         {
           "op": "add-points",
           "lod": "hitpoints",
           "name": "HitFuel",
           "points": 6,
-          "positions": [[4,5,1],[6,5.1,2],[8,5.1,2],[10,5,2],[5,4.6,3],[9,4.6,3]]
+          "positions": [[3.5,6.0,4.5],[5,6.0,5],[9.5,5.85,5.5],[10.5,5.8,6],[15,5.6,6.5],[17,5.5,7]]
         },
         {
           "op": "add-points",
           "lod": "hitpoints",
           "name": "HitFuel2",
           "points": 6,
-          "positions": [[-4,5,1],[-6,5.1,2],[-8,5.1,2],[-10,5,2],[-5,4.6,3],[-9,4.6,3]]
+          "positions": [[-3.5,6.0,4.5],[-5,6.0,5],[-9.5,5.85,5.5],[-10.5,5.8,6],[-15,5.6,6.5],[-17,5.5,7]]
         },
         {
           "op": "add-points",
@@ -150,22 +155,22 @@
           "op": "add-points",
           "lod": "hitpoints",
           "name": "HitLCElevator",
-          "points": 3,
-          "positions": [[7.43,13.27,30.14],[7.8,13.27,30.4],[7,13.1,29.8]]
+          "points": 8,
+          "positions": [[1.5,14.1,27.5],[2.7,14.1,27.5],[3.9,14.1,27.5],[5.1,14.1,27.5],[6.3,14.1,27.5],[7.5,14.1,27.5],[8.7,14.1,27.5],[9.9,14.1,27.5]]
         },
         {
           "op": "add-points",
           "lod": "hitpoints",
           "name": "HitRElevator",
-          "points": 3,
-          "positions": [[-7.47,13.27,30.14],[-7.9,13.27,30.4],[-7,13.1,29.8]]
+          "points": 8,
+          "positions": [[-1.5,14.1,27.5],[-2.7,14.1,27.5],[-3.9,14.1,27.5],[-5.1,14.1,27.5],[-6.3,14.1,27.5],[-7.5,14.1,27.5],[-8.7,14.1,27.5],[-9.9,14.1,27.5]]
         },
         {
           "op": "add-points",
           "lod": "hitpoints",
           "name": "HitRudder",
-          "points": 4,
-          "positions": [[0,6.86,23.34],[0,9,25],[0,12,27.5],[0,14,29]]
+          "points": 5,
+          "positions": [[0,7.5,25.8],[0,9,26.0],[0,10.5,26.3],[0,12,26.6],[0,13.3,26.9]]
         }
       ]
     }
