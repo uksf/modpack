@@ -23,6 +23,8 @@ PREP(gameDataExport);
 PREP(getBoundingBox);
 PREP(getConfigEntry);
 PREP(getNearPlayers);
+PREP(perfLogStart);
+PREP(perfLogTick);
 PREP(getSafePositionGrid);
 PREP(hint);
 PREP(inBoundingBox);
