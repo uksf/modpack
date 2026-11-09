@@ -68,7 +68,7 @@ private _cfgWeapons = configFile >> "CfgWeapons";
                                 if (_full < 1) then { _full = 1 };
                             };
                         };
-                        if (_cargoIndex >= 0 && {(_cargoCounts select _cargoIndex) > 0}) then {
+                        if (_cargoIndex >= 0 && {(_cargoCounts select _cargoIndex) > 0}) exitWith {
                             _did = true;
                             if (_apply) then {
                                 private _take = _wanted - floor (_ammo / _full);
@@ -86,7 +86,6 @@ private _cfgWeapons = configFile >> "CfgWeapons";
                                     };
                                 } forEach _loaded;
                             };
-                            break;
                         };
                     } forEach _sources;
                 };
