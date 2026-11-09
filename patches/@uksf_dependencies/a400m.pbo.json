@@ -2,7 +2,7 @@
   "format": 1,
   "pbo": "a400m.pbo",
   "pristineSha256": "ae372680a045fc10aee0fe94d0aea60281318b62eda3471b26492caca069348d",
-  "description": "Airbus A400M. The cargo ramp, toe and upper door use separate animation sources so half-open is the in-flight pose and fully open is the ground-loading pose. The toe hinge is moved to the ramp floor. A roadway LOD holds the ramp and the cabin floor from the ramp hinge to the forward bulkhead. Driver, gunner and cargo get-in points are separate, and the cargo points are weighted to the ramp. The hit-points LOD places points inside the fire geometry for the hull, four engines, avionics, fuel, glass and the control surfaces.",
+  "description": "Airbus A400M. The cargo ramp, toe and upper door use separate animation sources so half-open is the in-flight pose and fully open is the ground-loading pose. The toe hinge is moved to the ramp floor. A roadway LOD holds the ramp and the cabin floor from the ramp hinge to the forward bulkhead. Driver, gunner and cargo get-in points are separate, and the cargo points are weighted to the ramp. The fire-geometry wing, fin and tailplane components are replaced by their convex hulls, because rounds passed through the originals. The hit-points LOD places points inside the fire geometry for the hull, four engines, avionics, fuel, glass and the control surfaces.",
   "assets": [
     {
       "path": "A400M_F.p3d",
@@ -61,6 +61,21 @@
           "name": "pos cargo dir",
           "position": [0, 3.47, 15.343],
           "bone": "ramp_bottom"
+        },
+        {
+          "op": "convex-hull-component",
+          "lods": ["geometryFire"],
+          "component": "component05"
+        },
+        {
+          "op": "convex-hull-component",
+          "lods": ["geometryFire"],
+          "component": "component13"
+        },
+        {
+          "op": "convex-hull-component",
+          "lods": ["geometryFire"],
+          "component": "component06"
         },
         {
           "op": "add-selection-lod",
@@ -156,21 +171,21 @@
           "lod": "hitpoints",
           "name": "HitLCElevator",
           "points": 8,
-          "positions": [[1.5,14.1,27.5],[2.7,14.1,27.5],[3.9,14.1,27.5],[5.1,14.1,27.5],[6.3,14.1,27.5],[7.5,14.1,27.5],[8.7,14.1,27.5],[9.9,14.1,27.5]]
+          "positions": [[1.5,14.1,27.7],[2.7,14.1,27.7],[3.9,14.1,27.7],[5.1,14.1,27.7],[6.3,14.1,27.7],[7.5,14.1,27.7],[8.7,14.1,27.7],[9.9,14.1,27.7]]
         },
         {
           "op": "add-points",
           "lod": "hitpoints",
           "name": "HitRElevator",
           "points": 8,
-          "positions": [[-1.5,14.1,27.5],[-2.7,14.1,27.5],[-3.9,14.1,27.5],[-5.1,14.1,27.5],[-6.3,14.1,27.5],[-7.5,14.1,27.5],[-8.7,14.1,27.5],[-9.9,14.1,27.5]]
+          "positions": [[-1.5,14.1,27.7],[-2.7,14.1,27.7],[-3.9,14.1,27.7],[-5.1,14.1,27.7],[-6.3,14.1,27.7],[-7.5,14.1,27.7],[-8.7,14.1,27.7],[-9.9,14.1,27.7]]
         },
         {
           "op": "add-points",
           "lod": "hitpoints",
           "name": "HitRudder",
           "points": 5,
-          "positions": [[0,7.5,25.8],[0,9,26.0],[0,10.5,26.3],[0,12,26.6],[0,13.3,26.9]]
+          "positions": [[0,7.5,24.0],[0,9,24.6],[0,10.5,25.2],[0,12,25.7],[0,13.3,26.2]]
         }
       ]
     }
