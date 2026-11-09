@@ -43,7 +43,7 @@ private _fnc_controller = {
     };
     if (_roleIndex < 1) exitWith {objNull};
     private _controller = _control select (_roleIndex - 1);
-    if (isNull _controller || {!isPlayer _controller} || {[_controller] call FUNC(zeusRemoteControlled)}) exitWith {objNull};
+    if (isNull _controller || {!isPlayer _controller}) exitWith {objNull};
     _controller
 };
 
