@@ -4,7 +4,8 @@
         www.3commandobrigade.com, Tim Beswick
 
     Description:
-        Whether the reload action can resupply the current weapon or a smoke launcher from vehicle cargo.
+        Whether the reload action can resupply the current weapon from vehicle cargo,
+        or a smoke launcher from vehicle cargo or an ACE-loaded crate.
 
     Parameter(s):
         0: Vehicle <OBJECT>

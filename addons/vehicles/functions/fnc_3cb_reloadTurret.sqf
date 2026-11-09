@@ -4,7 +4,8 @@
         www.3commandobrigade.com, Tim Beswick
 
     Description:
-        Resupply the current weapon, and any smoke launcher, from the vehicle's magazine cargo.
+        Resupply the current weapon from vehicle magazine cargo, and smoke launchers
+        from vehicle magazine cargo or an ACE-loaded crate.
 
     Parameters:
         0: Vehicle <OBJECT>
