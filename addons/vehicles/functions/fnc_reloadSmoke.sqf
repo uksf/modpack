@@ -4,7 +4,7 @@
         Tim Beswick
 
     Description:
-        Reloads every smoke launcher on a vehicle from that vehicle's magazine cargo.
+        Reloads every smoke launcher from vehicle magazine cargo or an ACE-loaded crate.
         A dry run reports whether a reload is possible and does not move magazines.
 
     Parameters:
@@ -53,7 +53,11 @@ private _cfgWeapons = configFile >> "CfgWeapons";
                 private _ammo = 0;
                 { _ammo = _ammo + (_x select 2) } forEach _loaded;
                 if (_ammo < _wanted * _full) then {
-                    (getMagazineCargo _vehicle) params ["_cargoMags", "_cargoCounts"];
+                    private _sources = [_vehicle];
+                    _sources append ((_vehicle getVariable ["ace_cargo_loaded", []]) select {_x isEqualType objNull && {!isNull _x}});
+                    {
+                    private _source = _x;
+                    (getMagazineCargo _source) params ["_cargoMags", "_cargoCounts"];
                     private _cargoIndex = _cargoMags find _mag;
                     if (_cargoIndex < 0) then {
                         private _alt = _compatible findIf { _x in _cargoMags };
@@ -70,7 +74,7 @@ private _cfgWeapons = configFile >> "CfgWeapons";
                             private _take = _wanted - floor (_ammo / _full);
                             if (_take < 1) then { _take = 1 };
                             _take = _take min (_cargoCounts select _cargoIndex);
-                            _vehicle addMagazineCargoGlobal [_mag, -_take];
+                            _source addMagazineCargoGlobal [_mag, -_take];
                             _vehicle removeMagazinesTurret [_mag, _path];
                             for "_i" from 1 to _take do {
                                 _vehicle addMagazineTurret [_mag, _path];
@@ -82,7 +86,9 @@ private _cfgWeapons = configFile >> "CfgWeapons";
                                 };
                             } forEach _loaded;
                         };
+                        break;
                     };
+                    } forEach _sources;
                 };
             };
         };
