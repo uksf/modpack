@@ -13,6 +13,7 @@ PREP(hasNightVisionCamera);
 PREP(isCompassCamera);
 PREP(reloadTurret);
 PREP(renderMarkingLasers);
+PREP(setEmptyDynamicSimulation);
 PREP(setSpotlight);
 PREP(spotlightTurrets);
 PREP(swapDriver);
