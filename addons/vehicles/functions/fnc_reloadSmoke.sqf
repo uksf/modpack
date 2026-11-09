@@ -4,8 +4,9 @@
         Tim Beswick
 
     Description:
-        Reloads every smoke launcher from vehicle magazine cargo or an ACE-loaded crate.
-        A dry run reports whether a reload is possible and does not move magazines.
+        Reloads smoke launchers from vehicle cargo, ACE-loaded crates,
+        or nearby R crates when reload is attempted.
+        A dry run checks vehicle and loaded cargo without scanning nearby crates.
 
     Parameters:
         0: Vehicle <OBJECT>
@@ -26,6 +27,11 @@ private _did = false;
 private _paths = [[-1]];
 _paths append allTurrets [_vehicle, true];
 private _cfgWeapons = configFile >> "CfgWeapons";
+private _sources = [_vehicle];
+_sources append ((_vehicle getVariable ["ace_cargo_loaded", []]) select {_x isEqualType objNull && {!isNull _x}});
+if (_apply) then {
+    _sources append ((nearestObjects [_vehicle, [QEGVAR(resupply,rx)], 10]) - _sources);
+};
 
 {
     private _path = _x;
@@ -53,8 +59,6 @@ private _cfgWeapons = configFile >> "CfgWeapons";
                 private _ammo = 0;
                 { _ammo = _ammo + (_x select 2) } forEach _loaded;
                 if (_ammo < _wanted * _full) then {
-                    private _sources = [_vehicle];
-                    _sources append ((_vehicle getVariable ["ace_cargo_loaded", []]) select {_x isEqualType objNull && {!isNull _x}});
                     {
                         private _source = _x;
                         (getMagazineCargo _source) params ["_cargoMags", "_cargoCounts"];
