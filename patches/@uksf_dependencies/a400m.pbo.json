@@ -75,7 +75,8 @@
         {
           "op": "convex-hull-component",
           "lods": ["geometryFire"],
-          "component": "component06"
+          "component": "component06",
+          "shear": 0.05
         },
         {
           "op": "add-selection-lod",
