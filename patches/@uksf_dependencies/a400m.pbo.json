@@ -2,7 +2,7 @@
   "format": 1,
   "pbo": "a400m.pbo",
   "pristineSha256": "ae372680a045fc10aee0fe94d0aea60281318b62eda3471b26492caca069348d",
-  "description": "Airbus A400M. The cargo ramp, toe and upper door use separate animation sources so half-open is the in-flight pose and fully open is the ground-loading pose. The folded toe translates along the ramp normal, ahead of its fold, so it sits on the floor. A roadway LOD holds only the ramp. Driver, gunner and cargo get-in points are separate, and the cargo points are weighted to the ramp. The hit-points LOD names the hull, four engines, avionics, fuel, glass and the control surfaces.",
+  "description": "Airbus A400M. The cargo ramp, toe and upper door use separate animation sources so half-open is the in-flight pose and fully open is the ground-loading pose. A roadway LOD holds only the ramp. Driver, gunner and cargo get-in points are separate, and the cargo points are weighted to the ramp. The hit-points LOD names the hull, four engines, avionics, fuel, glass and the control surfaces.",
   "assets": [
     {
       "path": "A400M_F.p3d",
@@ -18,18 +18,6 @@
           "animation": "ramp_bottom2",
           "angle0": -1.30899694,
           "angle1": 1.75
-        },
-        {
-          "op": "add-translation",
-          "animation": "ramp_bottom2_lift",
-          "bone": "ramp_bottom2",
-          "animationSource": "ramp_bottom2_lift",
-          "minValue": 0,
-          "maxValue": 1,
-          "offset0": 0,
-          "offset1": 0.235,
-          "axis": [0, 0.9641, -0.2654],
-          "before": true
         },
         {
           "op": "set-animation-source",
