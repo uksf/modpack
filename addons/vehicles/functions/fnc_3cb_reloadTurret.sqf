@@ -92,5 +92,5 @@ private _gunReloaded = call {
     true
 };
 
-private _smokeReloaded = [_vehicle] call FUNC(reloadSmoke);
+private _smokeReloaded = [_vehicle, true, _unit, _gunReloaded] call FUNC(reloadSmoke);
 _gunReloaded || _smokeReloaded

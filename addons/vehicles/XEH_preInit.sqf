@@ -10,6 +10,12 @@ GVAR(cargoCompartmentHash) = createHashMap;
 GVAR(turretCompartmentHash) = createHashMap;
 
 [QGVAR(swapDriver), {call FUNC(swapDriverLocal)}] call CBA_fnc_addEventHandler;
+[QGVAR(reloadSmoke), {call FUNC(reloadSmoke)}] call CBA_fnc_addEventHandler;
+[QGVAR(addSmokeMagazine), {
+    params ["_vehicle", "_magazine", "_path"];
+    _vehicle addMagazineTurret [_magazine, _path];
+}] call CBA_fnc_addEventHandler;
+[QGVAR(smokeReloadEmpty), {hint "No smoke ammunition found within 10 metres."}] call CBA_fnc_addEventHandler;
 
 GVAR(spotlightVehicles) = [
     "UK3CB_BAF_Jackal_Base",

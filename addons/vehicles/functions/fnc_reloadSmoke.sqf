@@ -6,22 +6,29 @@
     Description:
         Reloads smoke launchers from vehicle cargo, ACE-loaded crates,
         or nearby R crates when reload is attempted.
-        A dry run checks vehicle and loaded cargo without scanning nearby crates.
+        The server withdraws supplies and directs magazine additions to the turret owner.
+        A dry run checks launcher capacity without scanning cargo.
 
     Parameters:
         0: Vehicle <OBJECT>
         1: Apply the reload <BOOLEAN> (default true)
+        2: Requesting unit <OBJECT> (optional)
+        3: Gun already reloaded <BOOLEAN> (default false)
 
     Return value:
-        Reload happened, or is possible when dry <BOOLEAN>
+        Whether the launcher needs ammunition, or a reload occurred <BOOLEAN>
 
     Example:
         [_vehicle, false] call uksf_vehicles_fnc_reloadSmoke
 */
 
-params ["_vehicle", ["_apply", true]];
+params ["_vehicle", ["_apply", true], ["_unit", objNull], ["_gunReloaded", false]];
 
 if (!alive _vehicle) exitWith { false };
+if (_apply && {!isServer}) exitWith {
+    [QGVAR(reloadSmoke), [_vehicle, true, _unit, _gunReloaded]] call CBA_fnc_serverEvent;
+    true
+};
 
 private _did = false;
 private _paths = [[-1]];
@@ -59,6 +66,7 @@ if (_apply) then {
                 private _ammo = 0;
                 { _ammo = _ammo + (_x select 2) } forEach _loaded;
                 if (_ammo < _wanted * _full) then {
+                    if (!_apply) exitWith { _did = true };
                     {
                         private _source = _x;
                         (getMagazineCargo _source) params ["_cargoMags", "_cargoCounts"];
@@ -80,7 +88,7 @@ if (_apply) then {
                                 _take = _take min (_cargoCounts select _cargoIndex);
                                 _source addMagazineCargoGlobal [_mag, -_take];
                                 for "_i" from 1 to _take do {
-                                    _vehicle addMagazineTurret [_mag, _path];
+                                    [QGVAR(addSmokeMagazine), [_vehicle, _mag, _path], _vehicle turretOwner _path] call CBA_fnc_ownerEvent;
                                 };
                             };
                         };
@@ -91,4 +99,7 @@ if (_apply) then {
     } forEach (_vehicle weaponsTurret _path);
 } forEach _paths;
 
+if (_apply && {!_did} && {!_gunReloaded} && {!isNull _unit}) then {
+    [QGVAR(smokeReloadEmpty), [], _unit] call CBA_fnc_targetEvent;
+};
 _did
