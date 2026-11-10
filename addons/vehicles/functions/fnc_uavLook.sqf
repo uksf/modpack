@@ -4,7 +4,7 @@
         Tim Beswick
 
     Description:
-        Saves the visible UAV gunner camera target while gunner control is active,
+        Saves the UAV gunner look target while the player holds gunner control,
         and restores it when gunner control is taken again.
 
     Parameters:
@@ -65,10 +65,11 @@ GVAR(uavLookPFH) = [{
     params ["_args"];
     _args params ["_uav", "_seat", "_path"];
     if (isNull _uav || {isNull _seat} || {_uav getVariable [QGVAR(uavLookHold), false]}) exitWith {};
-    if (visibleMap || {cameraView != "GUNNER"} || {cameraOn isNotEqualTo _uav}) exitWith {};
-    private _from = AGLToASL positionCameraToWorld [0, 0, 0];
-    private _dir = vectorNormalized ((positionCameraToWorld [0, 0, 1]) vectorDiff (positionCameraToWorld [0, 0, 0]));
+    private _weapon = _uav currentWeaponTurret _path;
+    if (_weapon == "") exitWith {};
+    private _dir = _uav weaponDirection _weapon;
     if (_dir isEqualTo [0, 0, 0]) exitWith {};
+    private _from = getPosASL _uav;
     private _to = _from vectorAdd (_dir vectorMultiply 4000);
     private _hits = lineIntersectsSurfaces [_from, _to, _uav, _seat, true, 1, "VIEW", "NONE"];
     private _surface = _hits isNotEqualTo [];
