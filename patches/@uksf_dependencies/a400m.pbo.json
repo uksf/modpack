@@ -2,7 +2,7 @@
   "format": 1,
   "pbo": "a400m.pbo",
   "pristineSha256": "ae372680a045fc10aee0fe94d0aea60281318b62eda3471b26492caca069348d",
-  "description": "Airbus A400M. The cargo ramp, toe and upper door use separate animation sources so half-open is the in-flight pose and fully open is the ground-loading pose. The toe hinge is moved to the ramp floor. A roadway LOD holds the ramp and the cabin floor from the ramp hinge to the forward bulkhead. Driver, gunner and cargo get-in points are separate, and the cargo points are weighted to the ramp. The fire-geometry wing, fin and tailplane components are replaced by their convex hulls, because rounds passed through the originals. The hit-points LOD places points inside the fire geometry for the hull, four engines, avionics, fuel, glass and the control surfaces.",
+  "description": "Airbus A400M. The cargo ramp, toe and upper door use separate animation sources so half-open is the in-flight pose and fully open is the ground-loading pose. The toe hinge is moved to the ramp floor. A roadway LOD holds the ramp, cabin floor, flight-deck stairs and flight deck. Driver, gunner and cargo get-in points are separate, and the cargo points are weighted to the ramp. The fire-geometry wing, fin and tailplane components are replaced by their convex hulls, because rounds passed through the originals. The hit-points LOD places points inside the fire geometry for the hull, four engines, avionics, fuel, glass and the control surfaces.",
   "assets": [
     {
       "path": "A400M_F.p3d",
