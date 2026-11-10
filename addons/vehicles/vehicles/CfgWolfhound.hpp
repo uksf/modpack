@@ -1,15 +1,15 @@
 class CUP_Wolfhound_Base : Wheeled_APC_F {
     class Turrets {
         class MainTurret : NewTurret {
-            magazines[] = { "UK3CB_BAF_127_100Rnd" };
+            magazines[] = { "UK3CB_BAF_127_100Rnd", "SmokeLauncherMag" };
             class ViewOptics {
                 visionMode[] = {};
             };
         };
     };
-    fuelCapacity = 25;    // 45
-    ace_refuel_fuelCapacity = 400; // MAN HX 6x6 / Wolfhound: ~400 L diesel
-    ace_cargo_space = 8;  // 4
+    fuelCapacity = 25;
+    ace_refuel_fuelCapacity = 400;
+    ace_cargo_space = 8;
     ace_repair_spareWheels = 4;
     class complexGearbox {
         GearboxRatios[] = { "R1", -10.094, "N", 0, "D1", 5.562, "D2", 3.456, "D3", 2.623, "D4", 1.678, "D5", 1.078, "D6", 1 };
@@ -39,7 +39,7 @@ class CUP_B_Wolfhound_HMG_GB_W : CUP_Wolfhound_Base {
 class CUP_B_Wolfhound_GMG_GB_D : CUP_Wolfhound_Base {
     class Turrets : Turrets {
         class MainTurret : MainTurret {
-            magazines[] = { "UK3CB_BAF_32Rnd_40mm_G_Box" };
+            magazines[] = { "UK3CB_BAF_32Rnd_40mm_G_Box", "SmokeLauncherMag" };
             class ViewOptics {
                 visionMode[] = {};
             };
@@ -52,7 +52,7 @@ class CUP_B_Wolfhound_GMG_GB_D : CUP_Wolfhound_Base {
 class CUP_B_Wolfhound_GMG_GB_W : CUP_Wolfhound_Base {
     class Turrets : Turrets {
         class MainTurret : MainTurret {
-            magazines[] = { "UK3CB_BAF_32Rnd_40mm_G_Box" };
+            magazines[] = { "UK3CB_BAF_32Rnd_40mm_G_Box", "SmokeLauncherMag" };
             class ViewOptics {
                 visionMode[] = {};
             };
@@ -65,7 +65,7 @@ class CUP_B_Wolfhound_GMG_GB_W : CUP_Wolfhound_Base {
 class CUP_B_Wolfhound_LMG_GB_D : CUP_Wolfhound_Base {
     class Turrets : Turrets {
         class Mainturret : NewTurret {
-            magazines[] = { "UK3CB_BAF_762_100Rnd_T" };
+            magazines[] = { "UK3CB_BAF_762_100Rnd_T", "SmokeLauncherMag" };
             class ViewOptics {
                 visionMode[] = {};
             };
@@ -78,7 +78,7 @@ class CUP_B_Wolfhound_LMG_GB_D : CUP_Wolfhound_Base {
 class CUP_B_Wolfhound_LMG_GB_W : CUP_Wolfhound_Base {
     class Turrets : Turrets {
         class Mainturret : NewTurret {
-            magazines[] = { "UK3CB_BAF_762_100Rnd_T" };
+            magazines[] = { "UK3CB_BAF_762_100Rnd_T", "SmokeLauncherMag" };
             class ViewOptics {
                 visionMode[] = {};
             };
