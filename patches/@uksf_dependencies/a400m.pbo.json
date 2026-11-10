@@ -14,6 +14,12 @@
           "to": "ramp_bottom2"
         },
         {
+          "op": "add-hide",
+          "animation": "uksf_air_a400_toe_hide",
+          "bone": "ramp_bottom2",
+          "animationSource": "uksf_air_a400_toe_hide"
+        },
+        {
           "op": "set-rotation-range",
           "animation": "ramp_bottom2",
           "angle0": -1.30899694,
