@@ -3,23 +3,30 @@ use simplelog::{LevelFilter, WriteLogger};
 use std::fs::{self, File};
 use std::path::PathBuf;
 
+#[cfg(windows)]
 mod audio;
+#[cfg(windows)]
 mod audio_dsp;
-#[cfg(test)]
+#[cfg(all(test, windows))]
 mod audio_stream_tests;
 mod bridge;
+#[cfg(windows)]
+mod client_commands;
 mod commands;
 mod config;
 mod delivery;
 mod file_export;
 mod dev_run;
+#[cfg(windows)]
 mod input;
 mod lanes;
 mod listener;
 mod loader;
+#[cfg(windows)]
 mod npc_voices;
 mod sender;
 mod status;
+#[cfg(windows)]
 mod stt;
 mod transport;
 
@@ -65,7 +72,7 @@ fn init_logger() {
 fn init() -> Extension {
     init_logger();
 
-    Extension::build()
+    let builder = Extension::build()
         .version(env!("CARGO_PKG_VERSION").to_string())
         .allow_no_args()
         .command("start", commands::start)
@@ -74,8 +81,6 @@ fn init() -> Extension {
         .command("event", commands::event)
         .command("delivered", commands::delivered)
         .command("load", commands::load)
-        .command("npcVoices", commands::npc_voices)
-        .command("pressSpace", commands::press_space)
         .command("fileExportOpen", commands::file_export_open)
         .command("fileExportWrite", commands::file_export_write)
         .command("fileExportClose", commands::file_export_close)
@@ -83,17 +88,8 @@ fn init() -> Extension {
         .command("devRunOpen", commands::dev_run_open)
         .command("devRunChunk", commands::dev_run_chunk)
         .command("devRunLog", commands::dev_run_log)
-        .command("devRunFinish", commands::dev_run_finish)
-        .command("audioOpen", commands::audio_open)
-        .command("audioChunk", commands::audio_chunk)
-        .command("audioPlay", commands::audio_play)
-        .command("audioFeed", commands::audio_feed)
-        .command("audioEnd", commands::audio_end)
-        .command("audioPos", commands::audio_pos)
-        .command("audioListener", commands::audio_listener)
-        .command("audioStop", commands::audio_stop)
-        .command("sttStart", commands::stt_start)
-        .command("sttStop", commands::stt_stop)
-        .command("sttHint", commands::stt_hint)
-        .finish()
+        .command("devRunFinish", commands::dev_run_finish);
+    #[cfg(windows)]
+    let builder = client_commands::register(builder);
+    builder.finish()
 }

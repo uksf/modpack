@@ -96,7 +96,9 @@ cp extension/target/release/uksf_x64.dll uksf_x64.dll   # HEMTT packages the roo
 hemtt dev
 ```
 
-Plain `cargo build` fails or silently produces broken bindings: whisper-rs-sys runs bindgen, which needs MSVC/Windows SDK headers on `INCLUDE` and clang's builtin headers. Commit the rebuilt DLL with the source change. A missing command shows up in game as `callExtension` returning `["", 1, 0]` — arma-rs return code 1 is command-not-found, not a runtime error.
+The Linux server build `uksf_x64.so` sits beside the DLL. It carries the server commands only: audio, STT, `pressSpace` and `npcVoices` are client features and compile on Windows only (`client_commands.rs`). Build it on Linux (WSL works) with `cargo build --release` in `extension/`, then copy `target/release/libuksf_x64.so` to `uksf_x64.so` at the project root. Rebuild both binaries when server-side code changes.
+
+Plain `cargo build` on Windows fails or silently produces broken bindings: whisper-rs-sys runs bindgen, which needs MSVC/Windows SDK headers on `INCLUDE` and clang's builtin headers. Commit the rebuilt DLL with the source change. A missing command shows up in game as `callExtension` returning `["", 1, 0]` — arma-rs return code 1 is command-not-found, not a runtime error.
 
 ## CBA Macro System
 
