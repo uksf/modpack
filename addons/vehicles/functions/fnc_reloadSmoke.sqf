@@ -103,26 +103,16 @@ if (_apply) then {
 } forEach _paths;
 
 if (_apply && {_did}) then {
-    GVAR(smokeTransaction) = GVAR(smokeTransaction) + 1;
-    private _token = GVAR(smokeTransaction);
     _vehicle setVariable [QGVAR(smokeBusy), true];
-    _vehicle setVariable [QGVAR(smokeDeliveryFailed), nil];
-    _vehicle setVariable [QGVAR(smokePending), [_token, _unit, count _grants, []]];
     [{
-        params ["_vehicle", "_token"];
-        if (((_vehicle getVariable [QGVAR(smokePending), []]) param [0, -1]) isEqualTo _token) then {
-            diag_log format ["UKSF smoke reload timed out: vehicle=%1 transaction=%2", _vehicle, _token];
-            _vehicle setVariable [QGVAR(smokePending), nil];
-            _vehicle setVariable [QGVAR(smokeBusy), false];
-        };
-    }, [_vehicle, _token], 10] call CBA_fnc_waitAndExecute;
-    [{
-        params ["_vehicle", "_token", "_grants"];
-        {
-            _x params ["_magazine", "_path", "_count"];
-            [QGVAR(addSmokeMagazine), [_vehicle, _token, _forEachIndex, _magazine, _path, _count], _vehicle turretOwner _path] call CBA_fnc_ownerEvent;
-        } forEach _grants;
-    }, [_vehicle, _token, _grants], 0] call CBA_fnc_waitAndExecute;
+        params ["_vehicle"];
+        _vehicle setVariable [QGVAR(smokeBusy), false];
+    }, [_vehicle], 2] call CBA_fnc_waitAndExecute;
+    {
+        _x params ["_magazine", "_path", "_count"];
+        [QGVAR(addSmokeMagazine), [_vehicle, _magazine, _path, _count], _vehicle turretOwner _path] call CBA_fnc_ownerEvent;
+    } forEach _grants;
+    if (!isNull _unit) then {[QGVAR(smokeReloadResult), ["Smoke ammunition refilled."], _unit] call CBA_fnc_targetEvent};
 };
 if (_apply && {!_did} && {!_gunReloaded} && {!isNull _unit}) then {
     [QGVAR(smokeReloadResult), ["No smoke ammunition found within 10 metres."], _unit] call CBA_fnc_targetEvent;
