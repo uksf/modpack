@@ -3,6 +3,8 @@ PREP(3cb_createSmokeRound);
 PREP(getSoflamDistance);
 PREP(l119SetSmokeFuseTime);
 PREP(l118AddInventoryActions);
+PREP(l118AddCrateActions);
+PREP(l118BinCasings);
 PREP(l118CanLoad);
 PREP(l118Request);
 PREP(l119FiredEH);
