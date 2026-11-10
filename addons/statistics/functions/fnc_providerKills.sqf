@@ -7,12 +7,26 @@
         Kills provider setup. Installs an EntityKilled mission event handler on the server
         to capture every entity death.
 
-        Uses ACE medical's damage source tracking (ace_medical_lastDamageSource /
-        ace_medical_lastInstigator) for chain reaction attribution when the engine's
-        killer/instigator params are null or non-player.
+        The credited killer is the instigator when that person is a player, otherwise the
+        killer. fnc_creditedShooter resolves a UAV crew or UAV vehicle to the player in
+        the firing role. Zeus remote control is not credited.
 
-        Assist correlation is handled API-side by joining combatDamage events
-        to kill events on targetNetId.
+        A UAV kill prefers the fire-time controller stored on lastHit when that hit is
+        marked as a UAV shot and is less than 5 seconds old. The stamp is written at
+        impact, so a player who leaves the terminal between launch and impact is still
+        the killer. Older stamps are ignored so a later UAV death does not inherit an
+        earlier hit.
+
+        Respawn self-kills (victim equals killer, instigator null) are skipped. They are
+        the engine deleting a spawn body on join, redeploy, or relog.
+
+        When the engine attacker is not a credited player, ACE medical's
+        ace_medical_lastInstigator, then ace_medical_lastDamageSource, supplies chain
+        reaction attribution (explosion, fire, cookoff). Those names are ACE literals,
+        not uksf variables. That path is indirect. Zeus puppets are still excluded.
+
+        Weapon and ammo come from lastHit only when its shooter uid matches the killer.
+        Assist correlation is API-side, joining combatDamage to kills on targetNetId.
 
     Parameters:
         None
@@ -27,37 +41,45 @@ addMissionEventHandler ["EntityKilled", {
     params ["_victim", "_killer", "_instigator"];
 
     if (isNull _victim) exitWith {};
-
-    // Skip self-kills with no instigator — these are never real combat deaths.
-    // They occur when Arma kills a player's spawn body during join, redeploy,
-    // or relog as part of the respawn cycle.
     if (_killer isEqualTo _victim && {isNull _instigator}) exitWith {};
 
-    // Use instigator if available (e.g. gunner in vehicle), fall back to killer
     private _attacker = if (!isNull _instigator) then {_instigator} else {_killer};
-
-    private _killerUid = if (isPlayer _attacker) then {getPlayerUID _attacker} else {""};
+    private _killerUid = "";
     private _indirect = false;
+    private _uavKillWindow = 5;
 
-    // Chain reaction attribution via ACE medical tracking
-    // ACE stores the last damage source/instigator on the victim — survives through
-    // explosion chains, fire, cookoff, and vehicle damage propagation
-    // Note: uses string literals, not QEGVAR — ACE's prefix is "ace", not "uksf"
+    private _uavActor = (!isNull _attacker) && {unitIsUAV _attacker || {unitIsUAV vehicle _attacker}};
+    if (_uavActor) then {
+        private _firedHit = _victim getVariable [QGVAR(lastHit), []];
+        if (count _firedHit >= 5) then {
+            _firedHit params ["", "", "_firedShooterUid", "_firedTime", "_firedUav"];
+            if (_firedUav && {_firedShooterUid isNotEqualTo ""} && {time - _firedTime < _uavKillWindow}) then {
+                _killerUid = _firedShooterUid;
+            };
+        };
+    };
+
+    if (_killerUid isEqualTo "") then {
+        private _credited = [_attacker] call FUNC(creditedShooter);
+        if (!isNull _credited) then {
+            _killerUid = getPlayerUID _credited;
+        };
+    };
+
     if (_killerUid isEqualTo "") then {
         private _aceInstigator = _victim getVariable ["ace_medical_lastInstigator", objNull];
         if (isNull _aceInstigator) then {
             _aceInstigator = _victim getVariable ["ace_medical_lastDamageSource", objNull];
         };
-        if (!isNull _aceInstigator && {isPlayer _aceInstigator}) then {
-            _killerUid = getPlayerUID _aceInstigator;
+        private _credited = [_aceInstigator] call FUNC(creditedShooter);
+        if (!isNull _credited) then {
+            _killerUid = getPlayerUID _credited;
             _indirect = true;
         };
     };
 
-    // Only emit event if a player was involved as the killer
     if (_killerUid isEqualTo "") exitWith {};
 
-    // Determine target type — skip unclassifiable entities
     private _targetType = if (_victim isKindOf "CAManBase") then {
         "infantry"
     } else {
@@ -74,7 +96,6 @@ addMissionEventHandler ["EntityKilled", {
 
     if (_targetType isEqualTo "") exitWith {};
 
-    // Determine target side with bounds safety
     private _sideIndex = getNumber (configOf _victim >> "side");
     private _sides = [west, east, resistance, civilian];
     private _targetSide = if (_sideIndex >= 0 && {_sideIndex < count _sides}) then {
@@ -83,10 +104,6 @@ addMissionEventHandler ["EntityKilled", {
         "unknown"
     };
 
-    // Weapon attribution: read the victim's lastHit var (set by fnc_providerShots HitPart/HitExplosion
-    // handlers) and match by shooter UID. Matching by identity avoids misattribution in multi-player
-    // engagements (last write wins by shot order, and we only trust the record if it names the killer).
-    // If no match: weapon/ammo empty — no false attribution for cookoff/chain/unknown kills.
     private _weapon = "";
     private _ammo = "";
     private _lastHit = _victim getVariable [QGVAR(lastHit), []];

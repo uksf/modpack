@@ -1,5 +1,6 @@
 PREP(addEvent);
 PREP(clientSync);
+PREP(creditedShooter);
 PREP(explosivesSync);
 PREP(getAmmoCategory);
 PREP(handleClientReport);
@@ -14,3 +15,4 @@ PREP(samplerSync);
 PREP(serverSync);
 PREP(startCollection);
 PREP(stopCollection);
+PREP(zeusRemoteControlled);
