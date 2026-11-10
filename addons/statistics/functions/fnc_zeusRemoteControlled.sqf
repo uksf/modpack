@@ -27,6 +27,7 @@ params [["_unit", objNull, [objNull]]];
 if (isNull _unit) exitWith {false};
 if (!isNull (_unit getVariable ["bis_fnc_moduleRemoteControl_owner", objNull])) exitWith {true};
 if (!isPlayer _unit) exitWith {isRemoteControlling _unit};
+if (!isRemoteControlling _unit && {isNull getAssignedCuratorLogic _unit}) exitWith {false};
 
 private _ownsPuppet = allUnits findIf {
     (_x getVariable ["bis_fnc_moduleRemoteControl_owner", objNull]) isEqualTo _unit
