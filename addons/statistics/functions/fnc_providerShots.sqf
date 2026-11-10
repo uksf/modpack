@@ -32,6 +32,7 @@
         call uksf_statistics_fnc_providerShots
 */
 GVAR(shotCounter) = 0;
+GVAR(shotProducer) = format ["%1_%2_%3", clientOwner, (systemTimeUTC apply {str _x}) joinString "-", floor random 1000000000];
 
 GVAR(getTargetType) = {
     params ["_entity"];
@@ -61,7 +62,7 @@ GVAR(handleFired) = {
     if (_shooterUid isEqualTo "") exitWith {};
 
     GVAR(shotCounter) = GVAR(shotCounter) + 1;
-    private _shotId = format ["%1_%2", _shooterUid, GVAR(shotCounter)];
+    private _shotId = format ["%1_%2_%3", _shooterUid, GVAR(shotProducer), GVAR(shotCounter)];
     private _firedPosition = getPosASL _unit;
     private _category = [_ammo] call FUNC(getAmmoCategory);
     private _uavShot = unitIsUAV _unit || {unitIsUAV vehicle _unit};
