@@ -7,7 +7,7 @@
         Reloads smoke launchers from vehicle cargo, ACE-loaded crates,
         or nearby R crates when reload is attempted.
         The server withdraws supplies and directs magazine additions to the turret owner.
-        A dry run checks launcher capacity without scanning cargo.
+        A dry run checks launcher capacity without scanning cargo. Results arrive asynchronously.
 
     Parameters:
         0: Vehicle <OBJECT>
@@ -16,7 +16,7 @@
         3: Gun already reloaded <BOOLEAN> (default false)
 
     Return value:
-        Whether the launcher needs ammunition, or a reload occurred <BOOLEAN>
+        Whether the launcher needs ammunition during a dry run <BOOLEAN>
 
     Example:
         [_vehicle, false] call uksf_vehicles_fnc_reloadSmoke
@@ -27,10 +27,15 @@ params ["_vehicle", ["_apply", true], ["_unit", objNull], ["_gunReloaded", false
 if (!alive _vehicle) exitWith { false };
 if (_apply && {!isServer}) exitWith {
     [QGVAR(reloadSmoke), [_vehicle, true, _unit, _gunReloaded]] call CBA_fnc_serverEvent;
-    true
+    false
+};
+if (_apply && {_vehicle getVariable [QGVAR(smokeBusy), false]}) exitWith {
+    if (!isNull _unit) then {[QGVAR(smokeReloadResult), ["Reload in progress"], _unit] call CBA_fnc_targetEvent};
+    false
 };
 
 private _did = false;
+private _grants = [];
 private _paths = [[-1]];
 _paths append allTurrets [_vehicle, true];
 private _cfgWeapons = configFile >> "CfgWeapons";
@@ -87,9 +92,7 @@ if (_apply) then {
                                 if (_take < 1) then { _take = 1 };
                                 _take = _take min (_cargoCounts select _cargoIndex);
                                 _source addMagazineCargoGlobal [_mag, -_take];
-                                for "_i" from 1 to _take do {
-                                    [QGVAR(addSmokeMagazine), [_vehicle, _mag, _path], _vehicle turretOwner _path] call CBA_fnc_ownerEvent;
-                                };
+                                _grants pushBack [_mag, _path, _take];
                             };
                         };
                     } forEach _sources;
@@ -99,7 +102,30 @@ if (_apply) then {
     } forEach (_vehicle weaponsTurret _path);
 } forEach _paths;
 
-if (_apply && {!_did} && {!_gunReloaded} && {!isNull _unit}) then {
-    [QGVAR(smokeReloadEmpty), [], _unit] call CBA_fnc_targetEvent;
+if (_apply && {_did}) then {
+    GVAR(smokeTransaction) = GVAR(smokeTransaction) + 1;
+    private _token = GVAR(smokeTransaction);
+    _vehicle setVariable [QGVAR(smokeBusy), true];
+    _vehicle setVariable [QGVAR(smokeDeliveryFailed), nil];
+    _vehicle setVariable [QGVAR(smokePending), [_token, _unit, count _grants, []]];
+    [{
+        params ["_vehicle", "_token"];
+        if (((_vehicle getVariable [QGVAR(smokePending), []]) param [0, -1]) isEqualTo _token) then {
+            diag_log format ["UKSF smoke reload timed out: vehicle=%1 transaction=%2", _vehicle, _token];
+            _vehicle setVariable [QGVAR(smokePending), nil];
+            _vehicle setVariable [QGVAR(smokeBusy), false];
+        };
+    }, [_vehicle, _token], 10] call CBA_fnc_waitAndExecute;
+    [{
+        params ["_vehicle", "_token", "_grants"];
+        {
+            _x params ["_magazine", "_path", "_count"];
+            [QGVAR(addSmokeMagazine), [_vehicle, _token, _forEachIndex, _magazine, _path, _count], _vehicle turretOwner _path] call CBA_fnc_ownerEvent;
+        } forEach _grants;
+    }, [_vehicle, _token, _grants], 0] call CBA_fnc_waitAndExecute;
 };
+if (_apply && {!_did} && {!_gunReloaded} && {!isNull _unit}) then {
+    [QGVAR(smokeReloadResult), ["No smoke ammunition found within 10 metres."], _unit] call CBA_fnc_targetEvent;
+};
+if (_apply) exitWith {false};
 _did
