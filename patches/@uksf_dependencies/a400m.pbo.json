@@ -2,7 +2,7 @@
   "format": 1,
   "pbo": "a400m.pbo",
   "pristineSha256": "ae372680a045fc10aee0fe94d0aea60281318b62eda3471b26492caca069348d",
-  "description": "Airbus A400M. The cargo ramp, toe and upper door use separate animation sources so half-open is the in-flight pose and fully open is the ground-loading pose. The toe hinge is moved to the ramp floor. A roadway LOD holds the ramp and the cabin floor from the ramp hinge to the forward bulkhead. Driver, gunner and cargo get-in points are separate, and the cargo points are weighted to the ramp. The fire-geometry wing, fin and tailplane components are replaced by their convex hulls, because rounds passed through the originals. The hit-points LOD places points inside the fire geometry for the hull, four engines, avionics, fuel, glass and the control surfaces.",
+  "description": "Airbus A400M. The cargo ramp, toe and upper door use separate animation sources so half-open is the in-flight pose and fully open is the ground-loading pose. The toe hinge is moved to the ramp floor. A roadway LOD holds the ramp, cabin floor, flight-deck stairs and flight deck. Driver, gunner and cargo get-in points are separate, and the cargo points are weighted to the ramp. The fire-geometry wing, fin and tailplane components are replaced by their convex hulls, because rounds passed through the originals. The hit-points LOD places points inside the fire geometry for the hull, four engines, avionics, fuel, glass and the control surfaces.",
   "assets": [
     {
       "path": "A400M_F.p3d",
@@ -91,6 +91,12 @@
           "selections": ["ramp_bottom", "ramp_bottom2"],
           "faces": 32,
           "quads": [
+            {"name":"flight_deck","points":[[1.4,3.56,-8.8],[1.4,3.56,-12.15],[-1.4,3.56,-12.15],[-1.4,3.56,-8.8]]},
+            {"name":"stairs_1","points":[[0.343,2.116,-8.798],[0.343,2.117,-8.128],[0.157,2.115,-8.128],[0.157,2.114,-8.798]]},
+            {"name":"stairs_2","points":[[0.185,2.395,-8.798],[0.185,2.396,-8.128],[-0.004,2.394,-8.128],[-0.004,2.393,-8.798]]},
+            {"name":"stairs_3","points":[[0.007,2.706,-8.798],[0.007,2.706,-8.128],[-0.179,2.704,-8.128],[-0.179,2.704,-8.798]]},
+            {"name":"stairs_4","points":[[-0.167,3.015,-8.798],[-0.167,3.015,-8.128],[-0.352,3.013,-8.128],[-0.352,3.013,-8.798]]},
+            {"name":"stairs_5","points":[[-0.348,3.329,-8.798],[-0.347,3.329,-8.129],[-0.537,3.327,-8.129],[-0.537,3.327,-8.798]]},
             {"name":"cabin_floor_front","points":[[2.05,1.774,-7.08],[2.05,1.83,-9.0],[-2.05,1.83,-9.0],[-2.05,1.774,-7.08]]},
             {"name":"cabin_floor","points":[[2.05,1.974,8.08],[2.05,1.774,-7.08],[-2.05,1.774,-7.08],[-2.05,1.974,8.08]]},
             {"name":"cabin_floor_rear","points":[[2.05,2.005,11.1],[2.05,1.974,8.08],[-2.05,1.974,8.08],[-2.05,2.005,11.1]]}
