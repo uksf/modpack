@@ -72,7 +72,7 @@
         _vehicle setVariable [QGVAR(vehicle_driver), objNull, true];
 
         private _jipId = _vehicle getVariable [QGVAR(vehicle_interaction_jipId), ""];
-        [_jipId] call CBA_fnc_removeGlobalEventJIP;
+        if (_jipId isNotEqualTo "") then {[_jipId] call CBA_fnc_removeGlobalEventJIP};
         [QGVAR(removeVehicleInteractions), [_vehicle]] call CBA_fnc_globalEvent;
     };
 

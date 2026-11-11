@@ -30,7 +30,7 @@ private _localHandler = _unit addEventHandler ["Local", {
     if (_index < 0) exitWith {};
     GVAR(unit_statemachine_units) deleteAt _index;
     private _jipId = _object getVariable [QGVAR(unit_interaction_jipId), ""];
-    [_jipId] call CBA_fnc_removeGlobalEventJIP;
+    if (_jipId isNotEqualTo "") then {[_jipId] call CBA_fnc_removeGlobalEventJIP};
     [QGVAR(removeUnitInteractions), [_object]] call CBA_fnc_globalEvent;
     [QGVAR(startUnitStatemachine), [_object], _object] call CBA_fnc_targetEvent;
 }];
@@ -54,7 +54,7 @@ call FUNC(addUnitEventTransitions);
     {
         _x removeEventHandler ["Local", _x getVariable [QGVAR(unit_localHandler), -1]];
         private _jipId = _x getVariable [QGVAR(unit_interaction_jipId), ""];
-        [_jipId] call CBA_fnc_removeGlobalEventJIP;
+        if (_jipId isNotEqualTo "") then {[_jipId] call CBA_fnc_removeGlobalEventJIP};
         [QGVAR(removeUnitInteractions), [_x]] call CBA_fnc_globalEvent;
 
         GVAR(unit_statemachine_units) deleteAt (GVAR(unit_statemachine_units) find _x);
