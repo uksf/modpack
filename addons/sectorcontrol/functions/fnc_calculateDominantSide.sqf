@@ -30,6 +30,9 @@ private _men = _entities select {_x isKindOf "Man"} apply {[_x, side _x]}; // [o
 private _opforMenCount = {_x#1 isEqualTo east} count _men;
 private _bluforMenCount = {_x#1 isEqualTo west} count _men;
 
+_logic setVariable [QGVAR(dominantSide), sideEmpty, true];
+if (_opforMenCount + _bluforMenCount == 0) exitWith {};
+
 // get sector owner
 private _currentOwner = _logic getVariable [QGVAR(currentOwner), 2]; // 2 = No one
 

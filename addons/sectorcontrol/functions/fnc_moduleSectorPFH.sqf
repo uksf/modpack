@@ -72,7 +72,8 @@ if (!GVAR(enabled)) then {
     // exit on no-one nearby, decay the scores
     private _areaMarker = _markers#0;
     private _entities = _areaMarker nearEntities [["Man", "Car", "APC", "Tank"], false, true, true];
-    if (_entities isEqualTo []) exitWith {
+    if (_entities findIf {_x isKindOf "Man" && {side _x in [east, west]}} == -1) exitWith {
+        _logic setVariable [QGVAR(dominantSide), sideEmpty, true];
         if (_currentOwner == 2) then { // decay if the sector is neutral
             _currentBluforScore = (_currentBluforScore - 1) max 0;
             _currentOpforScore = (_currentOpforScore - 1) max 0;
