@@ -24,6 +24,8 @@
         9: Magazine <STRING> (Optional)
         10: Initial magazine rounds <SCALAR> (Optional)
         11: Completion context <ARRAY> (Optional)
+        12: Shell counter owner <SCALAR> (Optional)
+        13: Shell handler ID <SCALAR> (Optional)
 
     Return value:
         Nothing
@@ -43,14 +45,17 @@ params [
     ["_roundsOrdered", 0, [0]],
     ["_magazine", "", [""]],
     ["_initialMagazineRounds", -1, [0]],
-    ["_context", [], [[]]]
+    ["_context", [], [[]]],
+    ["_counterOwner", -1, [0]],
+    ["_shellHandler", -1, [0]]
 ];
 
+_this set [12, _counterOwner];
+_this set [13, _shellHandler];
 private _gunner = gunner _artillery;
 if (_requestId != "" && {!alive _artillery || {isNull _gunner || {!alive _gunner}}}) exitWith {
     _artillery setVariable [QGVAR(artillerySupportTasked), false, true];
-    private _handler = _artillery getVariable [QGVAR(artilleryShellHandler), -1];
-    if (_handler >= 0) then {removeMissionEventHandler ["ArtilleryShellFired", _handler]};
+    if (_counterOwner >= 0) then {[QGVAR(removeArtilleryShellHandler), [_artillery, _shellHandler], _counterOwner] call CBA_fnc_targetEvent};
     [QGVAR(fireMissionCompleted), [_requestId, _artillery, false, _roundsOrdered, "Artillery became unavailable", _context]] call CBA_fnc_serverEvent;
 };
 
@@ -70,7 +75,6 @@ private _delay = 15;
 private _delay = ARTILLERY_FIRE_MISSION_BASE_DELAY + linearConversion [500, 2000, _caller distance2D _artillery, 5, 20, true] + random 10;
 #endif
 
-// Stage 0 Check round (far)
 if (_stage == 0) exitWith {
     _artillery setVariable [QGVAR(artillerySupportTasked), true, true];
     if (_requestId != "") then {
@@ -83,14 +87,15 @@ if (_stage == 0) exitWith {
             } forEach _this;
         }];
         _artillery setVariable [QGVAR(artilleryShellHandler), _handler];
+        _this set [12, clientOwner];
+        _this set [13, _handler];
     };
     [{
-        params ["", "_artillery", "_targetPosition", "", "", "_spread", "_requestId", "", "_roundsOrdered", "_magazine", "", "_context"];
+        params ["", "_artillery", "_targetPosition", "", "", "_spread", "_requestId", "", "_roundsOrdered", "_magazine", "", "_context", "_counterOwner", "_shellHandler"];
 
         if (_requestId != "" && {!alive _artillery || {isNull (gunner _artillery) || {!alive (gunner _artillery)}}}) exitWith {
             _artillery setVariable [QGVAR(artillerySupportTasked), false, true];
-            private _handler = _artillery getVariable [QGVAR(artilleryShellHandler), -1];
-            if (_handler >= 0) then {removeMissionEventHandler ["ArtilleryShellFired", _handler]};
+            if (_counterOwner >= 0) then {[QGVAR(removeArtilleryShellHandler), [_artillery, _shellHandler], _counterOwner] call CBA_fnc_targetEvent};
             [QGVAR(fireMissionCompleted), [_requestId, _artillery, false, _roundsOrdered, "Artillery became unavailable", _context]] call CBA_fnc_serverEvent;
         };
 
@@ -123,13 +128,12 @@ if (_stage == 0) exitWith {
 _delay = _delay + (_artillery getArtilleryETA [_targetPosition, currentMagazine _artillery]);
 #endif
 
-[{ // Stage 1 Check round (near) & Stage 2 Barrage (close)
-    params ["_caller", "_artillery", "_targetPosition", "_stage", "_previousPosition", "_spread", "_requestId", "_requestedRounds", "_roundsOrdered", "_magazine", "_initialMagazineRounds", "_context"];
+[{
+    params ["_caller", "_artillery", "_targetPosition", "_stage", "_previousPosition", "_spread", "_requestId", "_requestedRounds", "_roundsOrdered", "_magazine", "_initialMagazineRounds", "_context", "_counterOwner", "_shellHandler"];
 
     if (_requestId != "" && {!alive _artillery || {isNull (gunner _artillery) || {!alive (gunner _artillery)}}}) exitWith {
         _artillery setVariable [QGVAR(artillerySupportTasked), false, true];
-        private _handler = _artillery getVariable [QGVAR(artilleryShellHandler), -1];
-        if (_handler >= 0) then {removeMissionEventHandler ["ArtilleryShellFired", _handler]};
+        if (_counterOwner >= 0) then {[QGVAR(removeArtilleryShellHandler), [_artillery, _shellHandler], _counterOwner] call CBA_fnc_targetEvent};
         [QGVAR(fireMissionCompleted), [_requestId, _artillery, false, _roundsOrdered, "Artillery became unavailable", _context]] call CBA_fnc_serverEvent;
     };
 
@@ -169,8 +173,14 @@ _delay = _delay + (_artillery getArtilleryETA [_targetPosition, currentMagazine 
 
     [{
         params ["_args", "_idPFH"];
-        _args params ["_callerGroup", "_artillery", "_requestId", "_roundsOrdered", "_context", "_deadline"];
+        _args params ["_callerGroup", "_artillery", "_requestId", "_roundsOrdered", "_context", "_deadline", "_counterOwner", "_shellHandler", "_magazine", "_initialMagazineRounds"];
+        private _counterLocal = clientOwner == _counterOwner && {owner (gunner _artillery) == _counterOwner};
         private _roundsFired = _artillery getVariable [QGVAR(artilleryShellCount), 0];
+        if (!_counterLocal && {_requestId != ""}) then {
+            private _remainingRounds = 0;
+            {if ((_x select 0) == _magazine) then {_remainingRounds = _remainingRounds + (_x select 1)}} forEach magazinesAmmo _artillery;
+            _roundsFired = (_initialMagazineRounds - _remainingRounds) max 0;
+        };
         private _available = alive _artillery && {!isNull (gunner _artillery)} && {alive (gunner _artillery)};
         if (_requestId == "" && {CBA_missionTime < _deadline}) exitWith {};
         if (_requestId != "" && {_available} && {_roundsFired < _roundsOrdered} && {CBA_missionTime < _deadline}) exitWith {};
@@ -183,9 +193,8 @@ _delay = _delay + (_artillery getArtilleryETA [_targetPosition, currentMagazine 
             _artillery setVariable [QGVAR(artillerySupportTasked), false, true];
         };
         if (_requestId != "") then {
-            private _handler = _artillery getVariable [QGVAR(artilleryShellHandler), -1];
-            if (_handler >= 0) then {removeMissionEventHandler ["ArtilleryShellFired", _handler]};
-            _artillery setVariable [QGVAR(artilleryShellCount), nil];
+            if (!_counterLocal) then {diag_log format ["[UKSF] Artillery shell count fallback: request=%1 counterOwner=%2 gunnerOwner=%3", _requestId, _counterOwner, owner (gunner _artillery)]};
+            if (_counterOwner >= 0) then {[QGVAR(removeArtilleryShellHandler), [_artillery, _shellHandler], _counterOwner] call CBA_fnc_targetEvent};
             private _success = _roundsFired >= _roundsOrdered;
             private _reason = ["Artillery stopped before completing the mission", ""] select _success;
             [QGVAR(fireMissionCompleted), [_requestId, _artillery, _success, _roundsFired min _roundsOrdered, _reason, _context]] call CBA_fnc_serverEvent;
@@ -193,5 +202,5 @@ _delay = _delay + (_artillery getArtilleryETA [_targetPosition, currentMagazine 
 #ifdef DEBUG_MODE_FULL
         deleteMarker marker1; deleteMarker marker2; deleteMarker marker3; deleteMarker marker4; deleteMarker marker5; deleteMarker marker6; deleteMarker marker7;
 #endif
-    }, 1, [group _caller, _artillery, _requestId, _roundsOrdered, _context, CBA_missionTime + ([60, 180] select (_requestId != ""))]] call CBA_fnc_addPerFrameHandler;
+    }, 1, [group _caller, _artillery, _requestId, _roundsOrdered, _context, CBA_missionTime + ([60, 180] select (_requestId != "")), _counterOwner, _shellHandler, _magazine, _initialMagazineRounds]] call CBA_fnc_addPerFrameHandler;
 }, _this, _delay] call CBA_fnc_waitAndExecute;
