@@ -19,7 +19,22 @@ params ["_vehicle"];
 
 if !(local _vehicle) exitWith {};
 
+if (_vehicle in GVAR(vehicle_statemachine_vehicles)) exitWith {};
 GVAR(vehicle_statemachine_vehicles) pushBack _vehicle;
+
+private _localHandler = _vehicle addEventHandler ["Local", {
+    params ["_object", "_isLocal"];
+    if (_isLocal) exitWith {};
+    _object removeEventHandler ["Local", _thisEventHandler];
+    private _index = GVAR(vehicle_statemachine_vehicles) find _object;
+    if (_index < 0) exitWith {};
+    GVAR(vehicle_statemachine_vehicles) deleteAt _index;
+    private _jipId = _object getVariable [QGVAR(vehicle_interaction_jipId), ""];
+    [_jipId] call CBA_fnc_removeGlobalEventJIP;
+    [QGVAR(removeVehicleInteractions), [_object]] call CBA_fnc_globalEvent;
+    [QGVAR(startVehicleStatemachine), [_object], _object] call CBA_fnc_targetEvent;
+}];
+_vehicle setVariable [QGVAR(vehicle_localHandler), _localHandler];
 
 if !(isNull GVAR(vehicle_statemachine)) exitWith {
     [_vehicle, GVAR(vehicle_statemachine), QGVAR(vehicle_state_enter), QGVAR(vehicle_state_enter)] call CBA_statemachine_fnc_manualTransition;
@@ -31,10 +46,10 @@ call FUNC(addVehicleStates);
 call FUNC(addVehicleTransitions);
 call FUNC(addVehicleEventTransitions);
 
-// Temporary patch to transfer non-local units to their client. Should be fixed on ambient vehicle spawning side
 [{
     private _nonLocal = (GVAR(vehicle_statemachine_vehicles) select {!(local _x)});
     {
+        _x removeEventHandler ["Local", _x getVariable [QGVAR(vehicle_localHandler), -1]];
         private _jipId = _x getVariable [QGVAR(vehicle_interaction_jipId), ""];
         [_jipId] call CBA_fnc_removeGlobalEventJIP;
         [QGVAR(removeVehicleInteractions), [_x]] call CBA_fnc_globalEvent;
