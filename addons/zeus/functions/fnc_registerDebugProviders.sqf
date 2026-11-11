@@ -227,7 +227,22 @@ GVAR(uavLaserStyle) = ["3D", "2D"] apply {
     [getText (_config >> "textureLaser"), getArray (_config >> "colorLaser")]
 };
 
+GVAR(activeUavLasers) = allUnitsUAV select {!isNull laserTarget _x};
+["AllVehicles", "init", {
+    params ["_unit"];
+    if (!unitIsUAV _unit) exitWith {};
+    _unit addEventHandler ["LaserTargetChanged", {
+        params ["_unit", "_laserTarget"];
+        if (isNull _laserTarget) then {
+            GVAR(activeUavLasers) = GVAR(activeUavLasers) - [_unit];
+        } else {
+            GVAR(activeUavLasers) pushBackUnique _unit;
+        };
+    }];
+}, true, [], true] call CBA_fnc_addClassEventHandler;
+
 GVAR(fnc_uavLasers) = {
+    GVAR(activeUavLasers) = GVAR(activeUavLasers) select {!isNull _x && {!isNull laserTarget _x}};
     private _lasers = [];
     {
         private _laser = laserTarget _x;
@@ -238,7 +253,7 @@ GVAR(fnc_uavLasers) = {
         };
         if (isNull _controller) then { continue };
         _lasers pushBack [_x, _laser, name _controller];
-    } forEach allUnitsUAV;
+    } forEach GVAR(activeUavLasers);
     _lasers
 };
 
