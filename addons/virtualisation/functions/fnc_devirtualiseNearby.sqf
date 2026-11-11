@@ -25,11 +25,10 @@ if (!isServer) exitWith {
     params ["_args", "_idPFH"];
     _args params ["_position", "_radius"];
 
-    private _groupIndex = GVAR(groupPositionMap) findIf {
-        private _groupPosition = _x#1;
-
-        _groupPosition distance2D _position < _radius
-    };
+    private _positions = GVAR(groupPositionMap) apply {_x#1};
+    private _indices = _positions inAreaArrayIndexes [_position, _radius, _radius, 0, false];
+    private _match = _indices findIf {(_positions#_x) distance2D _position < _radius};
+    private _groupIndex = if (_match < 0) then {-1} else {_indices#_match};
 
     if (_groupIndex == -1) exitWith {
         [_idPFH] call CBA_fnc_removePerFrameHandler;
