@@ -48,5 +48,4 @@ PREP(streamClientsHas);
 PREP(streamClientsPrune);
 PREP(streamClientsSet);
 PREP(streamClientsTargets);
-PREP(toJson);
 PREP(updateHeadlessClientPosition);

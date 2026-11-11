@@ -24,7 +24,6 @@ private _isGlobalString = {
     }
 };
 
-// _settingData layout depends on _settingType — flatten into a HashMap so toJson emits an object.
 private _valueInfoForType = {
     params ["_type", "_data"];
     switch (_type) do {
@@ -44,7 +43,6 @@ private _valueInfoForType = {
             _data params [["_min", 0], ["_max", 86400]];
             createHashMapFromArray [["min", _min], ["max", _max]]
         };
-        // CHECKBOX, COLOR — empty info.
         default { createHashMap };
     }
 };
@@ -61,25 +59,23 @@ private _items = cba_settings_allSettings apply {
     private _disp = _displayName call _localiseIfToken;
     private _tip  = _tooltip     call _localiseIfToken;
 
-    // priority returns "client" when the user can override; anything else means a higher
-    // namespace (mission/server/userconfig/missionConfig) has forced the current value.
     private _priority = [_name] call cba_settings_fnc_priority;
     private _isForced = _priority isNotEqualTo "client";
 
     private _valueInfo = [_settingType, _settingData] call _valueInfoForType;
 
     private _obj = [
-        format ['{"setting":%1',       [_name]            call uksf_common_fnc_toJson],
-        format [',"displayName":%1',   [_disp]            call uksf_common_fnc_toJson],
-        format [',"category":%1',      [_cat]             call uksf_common_fnc_toJson],
-        format [',"subCategory":%1',   [_sub]             call uksf_common_fnc_toJson],
-        format [',"tooltip":%1',       [_tip]             call uksf_common_fnc_toJson],
-        format [',"settingType":%1',   [_settingType]     call uksf_common_fnc_toJson],
-        format [',"valueInfo":%1',     [_valueInfo]       call uksf_common_fnc_toJson],
-        format [',"defaultValue":%1',  [_defaultValue]    call uksf_common_fnc_toJson],
-        format [',"isGlobal":%1',      [_isGlobal call _isGlobalString] call uksf_common_fnc_toJson],
+        format ['{"setting":%1',       toJSON (_name)],
+        format [',"displayName":%1',   toJSON (_disp)],
+        format [',"category":%1',      toJSON (_cat)],
+        format [',"subCategory":%1',   toJSON (_sub)],
+        format [',"tooltip":%1',       toJSON (_tip)],
+        format [',"settingType":%1',   toJSON (_settingType)],
+        format [',"valueInfo":%1',     toJSON (_valueInfo)],
+        format [',"defaultValue":%1',  toJSON (_defaultValue)],
+        format [',"isGlobal":%1',      toJSON (_isGlobal call _isGlobalString)],
         format [',"isForced":%1',      if (_isForced) then {"true"} else {"false"}],
-        format [',"priority":%1}',     [_priority]        call uksf_common_fnc_toJson]
+        format [',"priority":%1}',     toJSON (_priority)]
     ] joinString "";
     [[_cat, _sub, _name], _obj]
 };
@@ -99,9 +95,9 @@ private _timestamp = format ["%1-%2-%3T%4:%5:%6Z",
 ];
 
 format [
-    '{"modpackVersion":"%1","gameVersion":"%2","exportedAt":"%3","settings":[%4]}',
-    getText (configFile >> "CfgPatches" >> "uksf_main" >> "versionStr"),
-    productVersion#2,
-    _timestamp,
+    '{"modpackVersion":%1,"gameVersion":%2,"exportedAt":%3,"settings":[%4]}',
+    toJSON getText (configFile >> "CfgPatches" >> "uksf_main" >> "versionStr"),
+    toJSON str (productVersion#2),
+    toJSON _timestamp,
     _settingsJson
 ]
