@@ -24,9 +24,9 @@ private _position = position _logic;
 private _marker = createMarker [format ["spawn_%1_%2_%3", _position select 0, _position select 1, random 100], _position];
 private _area = _logic getVariable ["objectarea", []];
 _area params ["_a", "_b", "_angle", "_isRectangle"];
-_marker setMarkerAlpha 0;
-_marker setMarkerShape (["ELLIPSE", "RECTANGLE"] select _isRectangle);
-_marker setMarkerSize [_a, _b];
+_marker setMarkerAlphaLocal 0;
+_marker setMarkerShapeLocal (["ELLIPSE", "RECTANGLE"] select _isRectangle);
+_marker setMarkerSizeLocal [_a, _b];
 _marker setMarkerDir (direction _logic);
 
 [QGVAR(initPatrol), [_marker, parseNumber (_logic getVariable [QGVAR(maxGroups), 4]), parseNumber (_logic getVariable [QGVAR(groupPool), 8]), _logic getVariable [QGVAR(faction), "OPF_F"]]] call CBA_fnc_serverEvent;
