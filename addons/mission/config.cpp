@@ -10,7 +10,7 @@ class CfgPatches {
             QGVAR(moduleDynamicPatrolArea)
         };
         weapons[] = {};
-        requiredVersion = REQUIRED_VERSION;
+        requiredVersion = 2.18;
         requiredAddons[] = {
             "uksf_common"
         };
