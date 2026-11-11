@@ -62,7 +62,7 @@ addMissionEventHandler ["MarkerUpdated", {
 addMissionEventHandler ["MarkerDeleted", {
     params ["_marker", "_local"];
 
-    if (!_local) exitWith {};
+    if (!_local || {count (_marker splitString "/") < 3}) exitWith {};
 
     [QGVAR(markerDeleted), _this] call CBA_fnc_serverEvent;
 }];
