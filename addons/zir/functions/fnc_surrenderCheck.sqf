@@ -17,10 +17,10 @@
 */
 params ["_unit"];
 
+if (!isServer) exitWith {};
+
 _unit addMPEventHandler ["MPKilled", {
     params ["_unit", "_killer", "_instigator", "_useEffects"];
-
-    if (!local _unit) exitWith {};
 
     private _group = group _unit;
     if (_group getVariable [QGVAR(groupSurrendered), false]) exitWith {};
@@ -45,7 +45,7 @@ _unit addMPEventHandler ["MPKilled", {
             // roll the dice
             private _rng = random 10;
             if (_rng < 7) then {
-                [_x, true] call ACE_captives_fnc_setSurrendered;
+                [QGVAR(setSurrendered), [_x, true], _x] call CBA_fnc_targetEvent;
             };
         } forEach _unitsLeft;
     };
