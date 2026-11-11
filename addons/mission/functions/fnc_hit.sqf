@@ -36,8 +36,9 @@ if (
 ) exitWith {};
 
 if (isPlayer _shooter && {isRemoteControlling _shooter}) then {
-    private _controlled = remoteControlled _shooter;
-    if (!isNull _controlled) then {_shooter = _controlled};
+    private _units = allUnits;
+    private _index = _units findIf {(_x getVariable ["bis_fnc_moduleRemoteControl_owner", objNull]) isEqualTo _shooter};
+    if (_index >= 0) then {_shooter = _units#_index};
 };
 
 TRACE_2("Unit hit raw",_unit,_shooter);

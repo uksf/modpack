@@ -7,9 +7,8 @@
         True when this object is a Zeus remote-control puppet, or the curator
         currently remote-controlling one.
 
-        The engine identifies the controller and puppet. The published BIS
-        owner variable remains a fallback for puppet detection. UAV operators
-        are not treated as Zeus remote controllers.
+        The BIS puppet owner and engine controller identify puppets. UAV
+        operators are not treated as Zeus remote controllers.
 
     Parameters:
         0: Unit <OBJECT>
@@ -24,7 +23,8 @@ params [["_unit", objNull, [objNull]]];
 
 if (isNull _unit) exitWith {false};
 if (!isNull (_unit getVariable ["bis_fnc_moduleRemoteControl_owner", objNull])) exitWith {true};
-private _controlled = remoteControlled _unit;
-if (isNull _controlled) exitWith {false};
-if (!isPlayer _unit) exitWith {true};
-!unitIsUAV _controlled
+if (!isNull (remoteControlled _unit)) exitWith {!unitIsUAV _unit};
+if (!isPlayer _unit || {!isRemoteControlling _unit}) exitWith {false};
+private _uav = getConnectedUAV _unit;
+if (!isNull _uav && {_unit in (UAVControl [_uav, "driver"]) || {_unit in (UAVControl [_uav, "gunner"])}}) exitWith {false};
+true
