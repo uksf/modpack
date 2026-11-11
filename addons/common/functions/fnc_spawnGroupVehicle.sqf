@@ -85,7 +85,7 @@ TRACE_2("6) Spawn vehicle position count",_turrets,_count);
     private _unit = _group createUnit [selectRandom _unitPool, [0, 0, 2000], [], 0, "NONE"];
     INFO("6) Spawn vehicle created unit");
 
-    if (_unit moveInAny [_vehicle, ["DRIVER", "TURRET", "CARGO"]]) then {
+    if (_unit moveInAny [_vehicle, ["DRIVER", "GUNNER", "COMMANDER", "TURRET", "CARGO"]]) then {
         private _seat = (fullCrew _vehicle) select {(_x#0) isEqualTo _unit};
         if (_seat isNotEqualTo []) then {
             (_seat#0) params ["", "_role", "", "_turret"];

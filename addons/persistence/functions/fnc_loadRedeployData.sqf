@@ -78,9 +78,9 @@ if (_vehicleId != "") exitWith {
         };
 
         private _seatOrder = switch (_role) do {
-            case "driver": {["DRIVER", "TURRET", "CARGO"]};
-            case "cargo": {["CARGO", "TURRET", "DRIVER"]};
-            default {["TURRET", "CARGO", "DRIVER"]};
+            case "driver": {["DRIVER", "GUNNER", "COMMANDER", "TURRET", "CARGO"]};
+            case "cargo": {["CARGO", "TURRET", "GUNNER", "COMMANDER", "DRIVER"]};
+            default {["GUNNER", "COMMANDER", "TURRET", "CARGO", "DRIVER"]};
         };
         [{objectParent player == (_this#0)}, {}, [_vehicle, _seatOrder], 3, {
             _this params ["_vehicle", "_seatOrder"];
