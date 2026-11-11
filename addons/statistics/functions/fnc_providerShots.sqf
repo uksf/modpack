@@ -184,6 +184,6 @@ GVAR(handleFired) = {
 ["ace_firedPlayerVehicle", GVAR(handleFired)] call CBA_fnc_addEventHandler;
 ["ace_firedNonPlayerVehicle", {
     params ["_unit"];
-    if (!unitIsUAV _unit) exitWith {};
+    if (!local _unit || {!unitIsUAV _unit}) exitWith {};
     _this call GVAR(handleFired);
 }] call CBA_fnc_addEventHandler;

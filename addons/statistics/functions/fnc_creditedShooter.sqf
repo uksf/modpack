@@ -36,13 +36,7 @@ if ([_firer] call FUNC(zeusRemoteControlled)) exitWith {objNull};
 private _fnc_controller = {
     params ["_uav", "_role"];
     if (isNull _uav || {!unitIsUAV _uav}) exitWith {objNull};
-    private _control = UAVControl _uav;
-    private _roleIndex = _control find _role;
-    if (_roleIndex < 1) then {
-        _roleIndex = _control find toLower _role;
-    };
-    if (_roleIndex < 1) exitWith {objNull};
-    private _controller = _control select (_roleIndex - 1);
+    private _controller = (UAVControl [_uav, toLower _role]) param [0, objNull];
     if (isNull _controller || {!isPlayer _controller}) exitWith {objNull};
     _controller
 };
