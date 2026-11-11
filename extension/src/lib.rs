@@ -10,6 +10,7 @@ mod audio_dsp;
 #[cfg(all(test, windows))]
 mod audio_stream_tests;
 mod bridge;
+mod raw;
 #[cfg(windows)]
 mod client_commands;
 mod commands;
@@ -70,6 +71,7 @@ fn init_logger() {
 
 #[arma]
 fn init() -> Extension {
+    unsafe { arma_rs::RVExtensionFeatureFlags |= 1 << 3; }
     init_logger();
 
     let builder = Extension::build()
@@ -92,4 +94,14 @@ fn init() -> Extension {
     #[cfg(windows)]
     let builder = client_commands::register(builder);
     builder.finish()
+}
+
+#[cfg(test)]
+mod feature_tests {
+    #[test]
+    fn init_enables_raw_string_arguments() {
+        let _extension = super::init();
+        let flags = unsafe { arma_rs::RVExtensionFeatureFlags };
+        assert_ne!(flags & (1 << 3), 0);
+    }
 }

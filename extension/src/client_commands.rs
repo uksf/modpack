@@ -1,5 +1,6 @@
 use arma_rs::{Context, ExtensionBuilder};
 
+use crate::raw::Raw;
 use crate::audio;
 use crate::input;
 use crate::npc_voices;
@@ -30,36 +31,36 @@ pub fn press_space() -> String {
     input::press_space()
 }
 
-pub fn audio_open(id: String) -> String {
-    audio::open(id)
+pub fn audio_open(id: Raw) -> String {
+    audio::open(id.0)
 }
 
-pub fn audio_chunk(id: String, b64: String) -> String {
-    audio::chunk(id, b64)
+pub fn audio_chunk(id: Raw, b64: Raw) -> String {
+    audio::chunk(id.0, b64.0)
 }
 
-pub fn audio_play(id: String, x: f32, y: f32, z: f32, vol: f32, offset_ms: f32) -> String {
-    audio::play(id, x, y, z, vol, offset_ms)
+pub fn audio_play(id: Raw, x: f32, y: f32, z: f32, vol: f32, offset_ms: f32) -> String {
+    audio::play(id.0, x, y, z, vol, offset_ms)
 }
 
-pub fn audio_feed(id: String, b64: String) -> String {
-    audio::feed(id, b64)
+pub fn audio_feed(id: Raw, b64: Raw) -> String {
+    audio::feed(id.0, b64.0)
 }
 
-pub fn audio_end(id: String) -> String {
-    audio::end(id)
+pub fn audio_end(id: Raw) -> String {
+    audio::end(id.0)
 }
 
-pub fn audio_pos(id: String, x: f32, y: f32, z: f32, vol: f32) -> String {
-    audio::pos(id, x, y, z, vol)
+pub fn audio_pos(id: Raw, x: f32, y: f32, z: f32, vol: f32) -> String {
+    audio::pos(id.0, x, y, z, vol)
 }
 
 pub fn audio_listener(dx: f32, dy: f32, dz: f32, ux: f32, uy: f32, uz: f32) -> String {
     audio::listener(dx, dy, dz, ux, uy, uz)
 }
 
-pub fn audio_stop(id: String) -> String {
-    audio::stop(id)
+pub fn audio_stop(id: Raw) -> String {
+    audio::stop(id.0)
 }
 
 pub fn stt_start(context: Context) -> String {
@@ -70,6 +71,6 @@ pub fn stt_stop() -> String {
     stt::stop()
 }
 
-pub fn stt_hint(names: String) -> String {
-    stt::set_hint(names)
+pub fn stt_hint(names: Raw) -> String {
+    stt::set_hint(names.0)
 }
