@@ -8,13 +8,14 @@ GVAR(shockwaveArray) = [];
 GVAR(suppressionArray)    = [];
 GVAR(suppression_currentUnit) = objNull;
 GVAR(suppression_suppressed) = false;
-GVAR(suppression_threshold) = 0; // Changing value
-GVAR(suppression_lastShotAt) = 0; // The time the player got shot at last time
+GVAR(suppression_threshold) = 0;
+GVAR(suppression_lastShotAt) = 0;
 GVAR(shockwave_lastShakeAt) = -1;
 GVAR(suppression_lastImpactAt) = -1;
 GVAR(closeMiss_engagementAge) = 0;
 GVAR(closeMiss_lastTriggerAt) = -1e9;
 GVAR(closeMiss_lastFiredAt) = -1e9;
+GVAR(zeusOpen) = false;
 #ifdef DEBUG_MODE_FULL
 GVAR(closeMiss_debugTraces) = [];
 #endif
