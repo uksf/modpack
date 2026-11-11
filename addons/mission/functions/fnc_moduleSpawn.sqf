@@ -29,5 +29,5 @@ _marker setMarkerShapeLocal (["ELLIPSE", "RECTANGLE"] select _isRectangle);
 _marker setMarkerSizeLocal [_a, _b];
 _marker setMarkerDir (direction _logic);
 
-[QGVAR(initPatrol), [_marker, parseNumber (_logic getVariable [QGVAR(maxGroups), 4]), parseNumber (_logic getVariable [QGVAR(groupPool), 8]), _logic getVariable [QGVAR(faction), "OPF_F"]]] call CBA_fnc_serverEvent;
+[QGVAR(initPatrol), [_marker, parseNumber (_logic getVariable [QGVAR(maxGroups), "4"]), parseNumber (_logic getVariable [QGVAR(groupPool), "8"]), _logic getVariable [QGVAR(faction), "OPF_F"]]] call CBA_fnc_serverEvent;
 
