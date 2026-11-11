@@ -77,8 +77,14 @@ if (_vehicleId != "") exitWith {
             default {player moveInCargo [_vehicle, _index]};
         };
 
-        [{objectParent player == _this}, {}, _vehicle, 3, {
-            player moveInCargo _this;
+        private _seatOrder = switch (_role) do {
+            case "driver": {["DRIVER", "TURRET", "CARGO"]};
+            case "cargo": {["CARGO", "TURRET", "DRIVER"]};
+            default {["TURRET", "CARGO", "DRIVER"]};
+        };
+        [{objectParent player == (_this#0)}, {}, [_vehicle, _seatOrder], 3, {
+            _this params ["_vehicle", "_seatOrder"];
+            player moveInAny [_vehicle, _seatOrder];
         }] call CBA_fnc_waitUntilAndExecute;
     }] call CBA_fnc_addEventHandlerArgs;
     [QGVAR(checkPersistentVehicleExists), [_vehicleState, player]] call CBA_fnc_serverEvent;
