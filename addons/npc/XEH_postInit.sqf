@@ -49,7 +49,7 @@ if (isServer) then {
     private _playerCaused = false;
     if (_active) then {
         private _instigator = _unit getVariable ["ace_medical_lastInstigator", objNull];
-        _playerCaused = !isNull _instigator && {isPlayer _instigator};
+        _playerCaused = !isNull _instigator && {isPlayer _instigator || {isPlayer remoteControlled _instigator}};
         _unit setVariable [QGVAR(unconByPlayer), _playerCaused, true];
     };
     if (isServer) then {

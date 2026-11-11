@@ -19,7 +19,7 @@
         0: Unit <OBJECT>
         1: Causer <OBJECT>
         2: Damage <SCALAR>
-        3: Shooter <OBJECT>
+        3: Instigator <OBJECT>
 
     Return Value:
         None
@@ -34,6 +34,11 @@ if (
     || {!local _unit}
     || {isPlayer _unit}
 ) exitWith {};
+
+if (isPlayer _shooter && {isRemoteControlling _shooter}) then {
+    private _controlled = remoteControlled _shooter;
+    if (!isNull _controlled) then {_shooter = _controlled};
+};
 
 TRACE_2("Unit hit raw",_unit,_shooter);
 [QGVAR(hitRaw), [_unit, _shooter]] call CBA_fnc_localEvent;

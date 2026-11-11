@@ -7,11 +7,9 @@
         True when this object is a Zeus remote-control puppet, or the curator
         currently remote-controlling one.
 
-        BIS_fnc_moduleRemoteControl and ZEN both publish
-        bis_fnc_moduleRemoteControl_owner on the puppet AI (public variable).
-        That is the cross-machine signal. isRemoteControlling also reports UAV
-        control, so connected UAV operators are excluded only when a unit names
-        them as its Zeus owner.
+        The engine identifies the controller and puppet. The published BIS
+        owner variable remains a fallback for puppet detection. UAV operators
+        are not treated as Zeus remote controllers.
 
     Parameters:
         0: Unit <OBJECT>
@@ -26,14 +24,7 @@ params [["_unit", objNull, [objNull]]];
 
 if (isNull _unit) exitWith {false};
 if (!isNull (_unit getVariable ["bis_fnc_moduleRemoteControl_owner", objNull])) exitWith {true};
-if (!isPlayer _unit) exitWith {isRemoteControlling _unit};
-if (!isRemoteControlling _unit && {isNull getAssignedCuratorLogic _unit}) exitWith {false};
-
-private _ownsPuppet = allUnits findIf {
-    (_x getVariable ["bis_fnc_moduleRemoteControl_owner", objNull]) isEqualTo _unit
-} != -1;
-if (_ownsPuppet) exitWith {true};
-
-private _uav = getConnectedUAV _unit;
-if (!isNull _uav && {_unit in UAVControl _uav}) exitWith {false};
-isRemoteControlling _unit
+private _controlled = remoteControlled _unit;
+if (isNull _controlled) exitWith {false};
+if (!isPlayer _unit) exitWith {true};
+!unitIsUAV _controlled
