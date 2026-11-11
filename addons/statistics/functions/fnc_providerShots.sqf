@@ -19,7 +19,7 @@
         uid, and whether the shot was from a UAV. HitPart and HitExplosion on that
         projectile emit the hit on the same machine.
 
-        lastHit on the victim is public, so the server kill handler can read it:
+        lastHit on the victim is sent to the server kill handler:
         [weapon, ammo, shooterUid, mission time, uav shot].
 
     Parameters:
@@ -106,7 +106,7 @@ GVAR(handleFired) = {
                 _distance3D = round (_projectileFiredPosition vectorDistance _position);
             };
 
-            _hitEntity setVariable [QGVAR(lastHit), [_projectileWeapon, _projectileAmmo, _projectileShooterUid, time, _projectileUavShot], true];
+            _hitEntity setVariable [QGVAR(lastHit), [_projectileWeapon, _projectileAmmo, _projectileShooterUid, time, _projectileUavShot], 2];
 
             [createHashMapFromArray [
                 ["type", "hit"],
@@ -149,7 +149,7 @@ GVAR(handleFired) = {
                 _distance3D = round (_projectileFiredPosition vectorDistance _impactPosition);
             };
 
-            _hitEntity setVariable [QGVAR(lastHit), [_projectileWeapon, _projectileAmmo, _projectileShooterUid, time, _projectileUavShot], true];
+            _hitEntity setVariable [QGVAR(lastHit), [_projectileWeapon, _projectileAmmo, _projectileShooterUid, time, _projectileUavShot], 2];
 
             [createHashMapFromArray [
                 ["type", "hit"],
