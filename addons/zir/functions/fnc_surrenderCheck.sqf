@@ -20,13 +20,13 @@ params ["_unit"];
 if (!isServer) exitWith {};
 
 _unit addMPEventHandler ["MPKilled", {
+    if (!isServer) exitWith {};
     params ["_unit", "_killer", "_instigator", "_useEffects"];
 
     private _group = group _unit;
     if (_group getVariable [QGVAR(groupSurrendered), false]) exitWith {};
 
     private _unitsLeft = units _group;
-    // exits if group still has no units in it
     if (count _unitsLeft < 1) exitWith {};
 
     private _pgBaseClass = QGVAR(Soldier_Base_Puritan_Guard);
@@ -34,15 +34,11 @@ _unit addMPEventHandler ["MPKilled", {
     if (!isPlayer _killer) exitWith {};
 
     private _pgIndex = _unitsLeft findIf {_x isKindOf _pgBaseClass};
-    // purtian guard still alive so now surrender allowed
     if (_pgIndex > -1) exitWith {};
 
-    // surrender
-    if (count _unitsLeft <= 3) then { // needs to be 3 because the killed unit is still in group this soon
-        // set a var so if surrendered units are killed, doesn't run again
+    if (count _unitsLeft <= 3) then {
         _group setVariable [QGVAR(groupSurrendered), true, true];
         {
-            // roll the dice
             private _rng = random 10;
             if (_rng < 7) then {
                 [QGVAR(setSurrendered), [_x, true], _x] call CBA_fnc_targetEvent;
