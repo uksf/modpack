@@ -46,7 +46,7 @@ GVAR(systemPFHID) = [{
         [_idPFH] call CBA_fnc_removePerFrameHandler;
 
         GVAR(systemPFHID) = -1;
-        GVAR(oxygenConnected) = false;
+        call FUNC(disconnectOxygen);
         GVAR(hypoxiaLevel) = 0;
         GVAR(maxHypoxiaLevel) = 0;
     };

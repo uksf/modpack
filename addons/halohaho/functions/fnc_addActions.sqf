@@ -24,37 +24,12 @@ private _fnc_children = {
     private _action = [QGVAR(connectOxygen), "Connect Oxygen", "", {
         params ["", "_player"];
 
-        DEBUG("Oxygen connected");
-        GVAR(oxygenConnected) = true;
-        playSound QGVAR(hiss);
-        _player removeItem QGVAR(airSupply);
-        "Oxygen connected" call CBA_fnc_notify;
-
-        [{
-            [{
-                params ["", "_idPFH"];
-
-                if (!GVAR(oxygenConnected)) exitWith {
-                    DEBUG("Oxygen disconnected, exiting breathing sound loop");
-                    [_idPFH] call CBA_fnc_removePerFrameHandler;
-                };
-
-                playSound QGVAR(breatheOxygenShort);
-            }, 5, []] call CBA_fnc_addPerFrameHandler;
-        }, [], 2] call CBA_fnc_waitAndExecute;
-
-        [{
-            if (GVAR(oxygenConnected)) then {
-                DEBUG("Oxygen ran out");
-                GVAR(oxygenConnected) = false;
-            };
-        }, [], OXYGEN_TIME] call CBA_fnc_waitAndExecute;
-
+        [_player] call FUNC(connectOxygen);
     }, {!GVAR(oxygenConnected) && {[_player, QGVAR(airSupply)] call ace_common_fnc_hasItem}}] call ace_interact_menu_fnc_createAction;
     _actions pushBack [_action, [], _player];
 
     _action = [QGVAR(disconnectOxygen), "Disconnect Oxygen", "", {
-        GVAR(oxygenConnected) = false;
+        call FUNC(disconnectOxygen);
         "Oxygen disconnected" call CBA_fnc_notify;
         DEBUG("Oxygen disconnected");
     }, {GVAR(oxygenConnected)}] call ace_interact_menu_fnc_createAction;
