@@ -22,6 +22,7 @@ if !(local _vehicle) exitWith {};
 if (_vehicle in GVAR(vehicle_statemachine_vehicles)) exitWith {};
 GVAR(vehicle_statemachine_vehicles) pushBack _vehicle;
 
+_vehicle removeEventHandler ["Local", _vehicle getVariable [QGVAR(vehicle_localHandler), -1]];
 private _localHandler = _vehicle addEventHandler ["Local", {
     params ["_object", "_isLocal"];
     if (_isLocal) exitWith {};

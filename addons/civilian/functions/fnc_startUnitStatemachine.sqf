@@ -22,6 +22,7 @@ if !(local _unit) exitWith {};
 if (_unit in GVAR(unit_statemachine_units)) exitWith {};
 GVAR(unit_statemachine_units) pushBack _unit;
 
+_unit removeEventHandler ["Local", _unit getVariable [QGVAR(unit_localHandler), -1]];
 private _localHandler = _unit addEventHandler ["Local", {
     params ["_object", "_isLocal"];
     if (_isLocal) exitWith {};
