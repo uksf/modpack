@@ -59,6 +59,11 @@ _vehicle addEventHandler ["Killed", {[QGVAR(deinitialiseRebroStation), _this] ca
         [_rebroId, "setState", ["externalAntennaConnected", [true, _vehicle]]] call acre_sys_data_fnc_dataEvent;
     };
 
+    private _channel = _vehicle getVariable [QGVAR(rebroChannel), 0];
+    if (_channel > 0) then {
+        [_rebroId, _channel] call acre_api_fnc_setRadioChannel;
+    };
+
     GVAR(rebroStations) pushBack _vehicle;
     publicVariable QGVAR(rebroStations);
     REBRO_TRACE_3("Rebro initialised",_vehicle,_rackId,_rebroId);

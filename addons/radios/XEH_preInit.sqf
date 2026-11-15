@@ -89,12 +89,18 @@ _action = [QGVAR(disassembleRebroStation), "Disassemble ReBro Station", "", {
 
 if (isServer) then {
     [QGVAR(rebroStations), {
-        GVAR(rebroStations) select {alive _x && _x isKindOf QGVAR(rebroStationMast)} apply {[getPosATL _x, getDir _x]}
+        GVAR(rebroStations) select {alive _x && _x isKindOf QGVAR(rebroStationMast)} apply {
+            private _equipment = _x getVariable [QGVAR(rebroEquipment), _x];
+            private _rebroId = ([_x] call FUNC(getRebroStationRadio))#1;
+            private _channel = [0, [_rebroId] call acre_api_fnc_getRadioChannel] select (_rebroId != "");
+            [getPosATL _equipment, getDir _equipment, _channel]
+        }
     }, {
         params ["_data"];
 
         {
-            [objNull, _x] call FUNC(assembleRebroStation);
+            private _station = [_x, [_x#0, (_x#1) + 180]] select (count _x == 2);
+            [objNull, _station] call FUNC(assembleRebroStation);
         } forEach _data;
     }] call EFUNC(persistence,registerSerializer);
 

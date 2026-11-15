@@ -8,7 +8,7 @@
 
     Parameter(s):
         0: Station box <OBJECT>
-        1: Serialized data <ARRAY> (Optional)
+        1: Serialized data [equipment position ATL, equipment direction, rebro radio channel] <ARRAY> (Optional)
 
     Return Value:
         None
@@ -16,8 +16,8 @@
     Example:
         [_box, _data] call uksf_radios_fnc_assembleRebroStation
 */
-params [["_box", objNull], ["_data", [[], 0, []]]];
-_data params ["_position", "_dir"];
+params [["_box", objNull], ["_data", [[], 0, 0]]];
+_data params ["_position", "_dir", ["_channel", 0]];
 
 if (!isNull _box) then {
     _position = getPosATL _box;
@@ -52,6 +52,7 @@ _mast setDir (_dir + 180);
 _mast setVectorUp _vectorUp;
 
 _mast setVariable [QGVAR(rebroEquipment), _equipment, true];
+_mast setVariable [QGVAR(rebroChannel), _channel, true];
 _equipment setVariable [QGVAR(rebroMast), _mast, true];
 _equipment setVariable [QGVAR(rebroObjects), [_lid, _router], true];
 
