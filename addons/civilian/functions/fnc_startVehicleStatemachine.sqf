@@ -44,6 +44,7 @@ if !(isNull GVAR(vehicle_statemachine)) exitWith {
 GVAR(vehicle_statemachine) = [{GVAR(vehicle_statemachine_vehicles)}, true] call CBA_statemachine_fnc_create;
 
 call FUNC(addVehicleStates);
+call FUNC(addVehicleDriverStates);
 call FUNC(addVehicleTransitions);
 call FUNC(addVehicleEventTransitions);
 

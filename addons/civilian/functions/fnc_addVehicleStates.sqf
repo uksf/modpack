@@ -15,13 +15,9 @@
     Example:
         call uksf_civilian_fnc_addVehicleStates
 */
-// Add state: OnState, OnEnter, OnLeave, Name
 
-// State - enter
 [GVAR(vehicle_statemachine), {
-    // On state -
 }, {
-    // On Entered - disable AI behaviour
     params ["_vehicle"];
 
     private _driver = driver _vehicle;
@@ -32,7 +28,6 @@
     _vehicle setVariable [QGVAR(vehicle_interaction_jipId), _jipId];
     TRACE_2("Entered statemachine",_vehicle,_driver);
 }, {
-    // On Leaving - Remove waypoints
     params ["_vehicle"];
 
     private _driver = driver _vehicle;
@@ -41,11 +36,8 @@
     TRACE_2("Exited enter",_vehicle,_driver);
 }, QGVAR(vehicle_state_enter)] call CBA_statemachine_fnc_addState;
 
-// State - exit
 [GVAR(vehicle_statemachine), {
-    // On state -
 }, {
-    // On Entered - reset variables and states, remove vehicle from statemachine, give move command (let ambient driving module handle afterwards)
     params ["_vehicle"];
 
     private _driver = driver _vehicle;
@@ -79,12 +71,9 @@
     GVAR(vehicle_statemachine_vehicles) deleteAt (GVAR(vehicle_statemachine_vehicles) find _vehicle);
     TRACE_2("Exited statemachine",_vehicle,_driver);
 }, {
-    // On Leaving -
 }, QGVAR(vehicle_state_exit)] call CBA_statemachine_fnc_addState;
 
-// State - stopping
 [GVAR(vehicle_statemachine), {
-    // On state - re-issue stop command at a certain interval
     params ["_vehicle"];
 
     private _lastTime = _vehicle getVariable [QGVAR(vehicle_lastTime), 0];
@@ -95,23 +84,19 @@
     doStop _driver;
     TRACE_2("Stopping",_vehicle,_driver);
 }, {
-    // On Entered - stop
     params ["_vehicle"];
 
     private _driver = driver _vehicle;
     doStop _driver;
     TRACE_2("Enter stopping",_vehicle,_driver);
 }, {
-    // On Leaving -
     params ["_vehicle"];
 
     private _driver = driver _vehicle;
     TRACE_2("Exit stopping",_vehicle,_driver);
 }, QGVAR(vehicle_state_stopping)] call CBA_statemachine_fnc_addState;
 
-// State - stopped
 [GVAR(vehicle_statemachine), {
-    // On state - randomly increase boredom value
     params ["_vehicle"];
 
     private _lastTime = _vehicle getVariable [QGVAR(vehicle_lastTime), 0];
@@ -126,7 +111,6 @@
         TRACE_3("Adding to boredom",_vehicle,_boredom,_vehicle getVariable [ARR_2(QGVAR(boredom),0)]);
     };
 }, {
-    // On Entered - disable AI move
     params ["_vehicle"];
 
     private _driver = driver _vehicle;
@@ -135,18 +119,15 @@
     _vehicle setVariable [QGVAR(vehicle_stopped), true, true];
     TRACE_2("Enter stopped",_vehicle,_driver);
 }, {
-    // On Leaving -
     params ["_vehicle"];
 
-    _driver enableAI "FSM";
     private _driver = driver _vehicle;
+    _driver enableAI "FSM";
     _vehicle setVariable [QGVAR(vehicle_stopped), false, true];
     TRACE_2("Exit stopped",_vehicle,_driver);
 }, QGVAR(vehicle_state_stopped)] call CBA_statemachine_fnc_addState;
 
-// State - move
 [GVAR(vehicle_statemachine), {
-    // On state - re-issue move command at a certain interval
     params ["_vehicle"];
 
     private _driver = driver _vehicle;
@@ -172,7 +153,6 @@
         };
     };
 }, {
-    // On Entered -
     params ["_vehicle"];
 
     private _driver = driver _vehicle;
@@ -181,7 +161,6 @@
     _driver setVariable [QGVAR(vehicle_moveOrdered), false, true];
     TRACE_2("Enter move",_vehicle,_driver);
 }, {
-    // On Leaving - Reset move command values
     params ["_vehicle"];
 
     private _driver = driver _vehicle;
@@ -194,9 +173,7 @@
     TRACE_2("Exit move",_vehicle,_driver);
 }, QGVAR(vehicle_state_move)] call CBA_statemachine_fnc_addState;
 
-// State - follow
 [GVAR(vehicle_statemachine), {
-    // On state - re-issue follow command at a certain interval to follow commander location
     params ["_vehicle"];
 
     private _driver = driver _vehicle;
@@ -229,7 +206,6 @@
         };
     };
 }, {
-    // On Entered -
     params ["_vehicle"];
 
     private _driver = driver _vehicle;
@@ -238,7 +214,6 @@
     _vehicle forceSpeed 3;
     TRACE_2("Enter follow",_vehicle,_driver);
 }, {
-    // On Leaving - Reset move command values
     params ["_vehicle"];
 
     private _driver = driver _vehicle;
@@ -250,62 +225,3 @@
     _vehicle forceSpeed 8;
     TRACE_2("Exit follow",_vehicle,_driver);
 }, QGVAR(vehicle_state_follow)] call CBA_statemachine_fnc_addState;
-
-// State - getOut
-[GVAR(vehicle_statemachine), {
-    // On state -
-}, {
-    // On Entered - get out of vehicle
-    params ["_vehicle"];
-
-    private _driver = driver _vehicle;
-    _vehicle setVariable [QGVAR(vehicle_driver), _driver, true];
-    _driver setVariable [QGVAR(vehicle_vehicle), _vehicle, true];
-    _driver leaveVehicle _vehicle;
-
-    _driver setVariable [QGVAR(unit_commandedToStop), true, true];
-    [{[QGVAR(startUnitStatemachine), [_this], _this] call CBA_fnc_targetEvent;}, _driver] call CBA_fnc_execNextFrame;
-    [{_this enableAI "FSM"}, _driver, 2] call CBA_fnc_waitAndExecute;
-    TRACE_2("Enter get out",_vehicle,_driver);
-}, {
-    // On Leaving -
-    params ["_vehicle"];
-
-    private _driver = driver _vehicle;
-    TRACE_2("Exit get out",_vehicle,_driver);
-}, QGVAR(vehicle_state_getOut)] call CBA_statemachine_fnc_addState;
-
-// State - getIn
-[GVAR(vehicle_statemachine), {
-    // On state -
-}, {
-    // On Entered - get into vehicle
-    params ["_vehicle"];
-
-    private _driver = _vehicle getVariable [QGVAR(vehicle_driver), objNull];
-    if (isNull _driver) exitWith {};
-
-    [QGVAR(stopUnitStatemachine), [_driver], _driver] call CBA_fnc_targetEvent;
-
-    [{
-        params ["_vehicle", "_driver"];
-
-        _driver disableAI "FSM";
-        _driver enableAI "MOVE";
-        _driver assignAsDriver _vehicle;
-        [_driver, _vehicle, 0, "GETIN", "CARELESS", "BLUE", "LIMITED"] call CBA_fnc_addWaypoint;
-        _driver forceWalk true;
-    }, [_vehicle, _driver]] call CBA_fnc_execNextFrame;
-
-    TRACE_2("Enter get in",_vehicle,_driver);
-}, {
-    // On Leaving -
-    params ["_vehicle"];
-
-    private _driver = driver _vehicle;
-    _driver setBehaviour "SAFE";
-    _driver enableAI "FSM";
-    _driver disableAI "MOVE";
-    _driver forceWalk false;
-    TRACE_2("Exit get in",_vehicle,_driver);
-}, QGVAR(vehicle_state_getIn)] call CBA_statemachine_fnc_addState;
