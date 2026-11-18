@@ -4,7 +4,7 @@ class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
         units[] = {};
-        weapons[] = {};
+        weapons[] = { "ItemcTab", "ItemAndroid", "ItemMicroDAGR", "ItemcTabHCam" };
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             "uksf_common",
@@ -24,3 +24,5 @@ class Extended_PostInit_EventHandlers {
         clientInit = QUOTE(call COMPILE_FILE(XEH_postInitClient));
     };
 };
+
+#include "CfgWeapons.hpp"
