@@ -8,11 +8,10 @@ class CfgPatches {
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             "uksf_common",
-            "ctab_core",
-            "ctab_messaging",
-            "cTab",
-            "ace_weather"
+            "acre_sys_mpu5",
+            "comspec_atak_native_main"
         };
+        skipWhenMissingDependencies = 1;
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };
         url = URL;
@@ -20,6 +19,8 @@ class CfgPatches {
     };
 };
 
-#include "CfgEventHandlers.hpp"
-#include "CfgUI.hpp"
-#include "CfgAndroid.hpp"
+class Extended_PostInit_EventHandlers {
+    class ADDON {
+        clientInit = QUOTE(call COMPILE_FILE(XEH_postInitClient));
+    };
+};

@@ -1,5 +1,4 @@
 uksf_arsenal_mainOpGearBase = [
-    // Magazines
     "1Rnd_HE_Grenade_shell",
     "1Rnd_SmokeBlue_Grenade_shell",
     "1Rnd_SmokeGreen_Grenade_shell",
@@ -182,7 +181,6 @@ uksf_arsenal_mainOpGearBase = [
     "MAA_MAAWS_MT756",
     "MAA_MAAWS_SMOKE469",
 
-    // Weapons
     "ACE_MX2A",
     "ACE_SpottingScope",
     "ACE_TacticalLadder_Pack",
@@ -281,7 +279,6 @@ uksf_arsenal_mainOpGearBase = [
     "LMG_mas_ukl_03_F_uksf",
     "LMG_03_F",
 
-    // Attachments
     "RKSL_optic_LDS",
     "RKSL_optic_LDS_C",
     "RKSL_optic_PMII_312",
@@ -352,7 +349,6 @@ uksf_arsenal_mainOpGearBase = [
     "CUP_optic_Eotech553_OD",
     "CUP_optic_Eotech553",
 
-    // NVGs
     "ACE_NVG_Pilot",
     "CUP_NVG_PVS15_black",
     "CUP_NVG_PVS15_green",
@@ -395,7 +391,6 @@ uksf_arsenal_mainOpGearBase = [
     "G_Headband_NVG_red_F",
     "G_Headband_NVG_yel_F",
 
-    // Items
     "ACE_ATragMX",
     "ACE_Altimeter",
     "ACE_CableTie",
@@ -456,7 +451,9 @@ uksf_arsenal_mainOpGearBase = [
     "ToolKit",
     "UK3CB_BAF_Javelin_CLU",
     "uksf_air_tracking_terminal",
-    "ItemAndroid",
+    "COMSPEC_ATAK_Phone",
+    "COMSPEC_ATAK_Phone_S7_Black",
+    "COMSPEC_ATAK_Phone_S7_OD",
     "uksf_diving_diveComputer",
     "uksf_diving_cylinderSingleCompressedAir",
     "uksf_diving_cylinderDoubleCompressedAir",
@@ -487,8 +484,6 @@ uksf_arsenal_mainOpGearBase = [
     "uksf_diving_cylinderDoubleTx1070",
     "uksf_diving_cylinderSingleTx1070",
     "uksf_halohaho_airSupply",
-    "ItemcTabHCam",
-    "ItemcTab",
     "ACE_IR_Strobe_Item",
     "acex_intelitems_notepad",
     "ACE_EHP",
@@ -496,7 +491,6 @@ uksf_arsenal_mainOpGearBase = [
     "GX_1RND_DRONE40_RECON_M203",
     "GX_UAVBattery",
 
-    // Uniforms
     "SP_0000_Standard_TacticalUniform_ATacsFG",
     "SP_0000_Standard_TacticalUniform_ATacsFG_SS",
     "UK3CB_BAF_U_CombatUniform_Arctic_Ghillie_RM",
@@ -553,7 +547,6 @@ uksf_arsenal_mainOpGearBase = [
     "CUP_U_CRYE_G3C_MC",
     "CUP_U_CRYE_G3C_MC_V3",
 
-    // Vests
     "UK3CB_BAF_V_HiVis",
     "UK3CB_BAF_V_Osprey_Grenadier_A",
     "UK3CB_BAF_V_Osprey_Grenadier_B",
@@ -658,7 +651,6 @@ uksf_arsenal_mainOpGearBase = [
     "V_mas_ukl_PlateCarrierAR_rgr",
     "V_mas_ukl_PlateCarrierAR_green",
 
-    // Backpacks
     "B_AssaultPack_rgr",
     "B_Kitbag_mcamo",
     "B_Kitbag_rgr",
@@ -755,7 +747,6 @@ uksf_arsenal_mainOpGearBase = [
     "B_RadioBag_01_mtp_F",
     "uksf_gear_trauma_bag",
 
-    // Helmets
     "COVER_4d",
     "H_Bonniehat_mcamo",
     "H_Booniehat_mcamo",
@@ -815,7 +806,6 @@ uksf_arsenal_mainOpGearBase = [
     "H_mas_ukl_Booniehat_mul",
     "H_mas_ukl_opscore_b",
 
-    // Glasses
     "CUP_FR_NeckScarf",
     "CUP_FR_NeckScarf2",
     "CUP_H_FR_BandannaGreen",

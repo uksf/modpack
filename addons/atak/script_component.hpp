@@ -1,4 +1,5 @@
-#define COMPONENT patches_acre_mpu5
+#define COMPONENT atak
+#define COMPONENT_BEAUTIFIED ATAK
 #include "\u\uksf\addons\main\script_mod.hpp"
+
 #include "\u\uksf\addons\main\script_macros.hpp"
-#include "\u\uksf\addons\patches\script_patches.hpp"

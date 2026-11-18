@@ -804,25 +804,9 @@ cba_quicktime_qteShorten = false;
 cba_ui_notifyLifetime = 4;
 cba_ui_StorePasswords = 1;
 
-// cTab
-ctab_compass_enable = true;
-ctab_core_bft_mode = 1;
-ctab_core_defMapStyle = "SAT";
-force force ctab_core_drawMainMap = false;
-ctab_core_gridPrecision = 0;
-ctab_core_helmetcam_mode = 1;
-force force ctab_core_microDagrGroupBFT = false;
-force ctab_core_sync_time = 30;
-ctab_core_uav_mode = 1;
-ctab_core_useAceMicroDagr = true;
-ctab_core_useArmaMarker = true;
-ctab_core_useMils = false;
-ctab_irl_camera_mode = 0;
-ctab_irl_connect_alwaysAllowPhotos = false;
-ctab_irl_connect_enabled = true;
-ctab_irl_connect_key = "594326";
-ctab_irl_connect_syncMap = true;
-ctab_irl_connect_uri = "https://ctab.plan-ops.fr/hub";
+// COMSPEC ATAK
+force force comspec_atak_native_local_only = true;
+force force comspec_atak_native_mpu_voice = false;
 
 // CUP
 force force CUP_CheckCfgPatches = false;
