@@ -27,15 +27,26 @@
 
 params ["_uav", "_seat", "_turret", "_position"];
 
+GVAR(uavLookEndRestore) = {
+    if (GVAR(uavLookRestore) isEqualTo []) exitWith {};
+    GVAR(uavLookRestore) params ["_handle", "_uav", "_path"];
+    GVAR(uavLookRestore) = [];
+    [_handle] call CBA_fnc_removePerFrameHandler;
+    if (isNull _uav) exitWith {};
+    _uav lockCameraTo [objNull, _path, true];
+    _uav setVariable [QGVAR(uavLookHold), false];
+};
+
 private _fnc_stop = {
+    call GVAR(uavLookEndRestore);
     if (GVAR(uavLookPFH) < 0) exitWith {};
     [GVAR(uavLookPFH)] call CBA_fnc_removePerFrameHandler;
     GVAR(uavLookPFH) = -1;
 };
 
-if (_position != "gunner" || {isNull _uav} || {isNull _seat}) exitWith {
-    call _fnc_stop;
-};
+call _fnc_stop;
+
+if (_position != "gunner" || {isNull _uav} || {isNull _seat}) exitWith {};
 
 private _path = _uav unitTurret _seat;
 if (_path isEqualTo []) then { _path = _turret };
@@ -43,10 +54,10 @@ if (_path isEqualTo []) then { _path = _turret };
 private _saved = _uav getVariable [QGVAR(uavLook), []];
 if (_saved isNotEqualTo [] && {(_saved select 0) isEqualTo _path}) then {
     _uav setVariable [QGVAR(uavLookHold), true];
-    [{
-        params ["_args", "_handle"];
+    private _handle = [{
+        params ["_args"];
         _args params ["_uav", "_path", "_saved", "_start"];
-        if (isNull _uav) exitWith { [_handle] call CBA_fnc_removePerFrameHandler };
+        if (isNull _uav) exitWith { call GVAR(uavLookEndRestore) };
         _saved params ["", "_surface", "_asl", "_modelDir"];
         private _aim = _asl;
         if (!_surface) then {
@@ -54,24 +65,23 @@ if (_saved isNotEqualTo [] && {(_saved select 0) isEqualTo _path}) then {
         };
         private _weapon = _uav currentWeaponTurret _path;
         private _aligned = _weapon != "" && {((_uav weaponDirection _weapon) vectorDotProduct ((getPosASL _uav) vectorFromTo _aim)) > ALIGNED_DOT};
-        if (_aligned || {CBA_missionTime - _start > HOLD_TIMEOUT}) exitWith {
-            [_handle] call CBA_fnc_removePerFrameHandler;
-            _uav lockCameraTo [objNull, _path, true];
-            _uav setVariable [QGVAR(uavLookHold), false];
-        };
+        if (_aligned || {CBA_missionTime - _start > HOLD_TIMEOUT}) exitWith { call GVAR(uavLookEndRestore) };
         _uav lockCameraTo [_aim, _path, true];
         if (hasPilotCamera _uav) then {
             _uav setPilotCameraTarget ASLToAGL _aim;
         };
     }, 0, [_uav, _path, _saved, CBA_missionTime]] call CBA_fnc_addPerFrameHandler;
+    GVAR(uavLookRestore) = [_handle, _uav, _path];
 };
 
-if (GVAR(uavLookPFH) >= 0) exitWith {};
-
 GVAR(uavLookPFH) = [{
-    params ["_args"];
+    params ["_args", "_handle"];
     _args params ["_uav", "_seat", "_path"];
-    if (isNull _uav || {isNull _seat} || {_uav getVariable [QGVAR(uavLookHold), false]}) exitWith {};
+    if (isNull _uav || {isNull _seat}) exitWith {
+        [_handle] call CBA_fnc_removePerFrameHandler;
+        if (GVAR(uavLookPFH) == _handle) then { GVAR(uavLookPFH) = -1 };
+    };
+    if (_uav getVariable [QGVAR(uavLookHold), false]) exitWith {};
     private _weapon = _uav currentWeaponTurret _path;
     if (_weapon == "") exitWith {};
     private _dir = _uav weaponDirection _weapon;
