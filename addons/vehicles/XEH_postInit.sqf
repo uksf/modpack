@@ -17,6 +17,7 @@ if (isServer) then {
 if (hasInterface) then {
     GVAR(uavLookPFH) = -1;
     GVAR(uavLookRestore) = [];
+    GVAR(uavLookSession) = [];
     ["ACE_controlledUAV", FUNC(uavLook)] call CBA_fnc_addEventHandler;
     call FUNC(addSpotlightActions);
     call FUNC(addSwapDriverActions);
