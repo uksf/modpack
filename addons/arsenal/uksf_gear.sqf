@@ -398,6 +398,7 @@ uksf_arsenal_mainOpGearBase = [
     "ACE_DAGR",
     "ACE_DefusalKit",
     "ACE_EarPlugs",
+    "ACE_EHP",
     "ACE_EntrenchingTool",
     "ACE_Flashlight_KSF1",
     "ACE_Flashlight_MX991",
