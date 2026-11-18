@@ -5,7 +5,9 @@
 
     Description:
         Saves the UAV gunner look target while the player holds gunner control,
-        and restores it when gunner control is taken again.
+        and restores it when gunner control is taken again. The camera stays locked
+        on the saved target until the turret points within ALIGNED_DOT of it, or
+        HOLD_TIMEOUT seconds pass, because the turret slews at a limited speed.
 
     Parameters:
         0: UAV <OBJECT>
@@ -19,6 +21,9 @@
     Example:
         [_uav, _seat, _turret, _position] call uksf_vehicles_fnc_uavLook
 */
+
+#define ALIGNED_DOT 0.9995
+#define HOLD_TIMEOUT 5
 
 params ["_uav", "_seat", "_turret", "_position"];
 
@@ -39,24 +44,26 @@ private _saved = _uav getVariable [QGVAR(uavLook), []];
 if (_saved isNotEqualTo [] && {(_saved select 0) isEqualTo _path}) then {
     _uav setVariable [QGVAR(uavLookHold), true];
     [{
-        params ["_uav", "_path", "_saved"];
-        if (isNull _uav) exitWith {};
+        params ["_args", "_handle"];
+        _args params ["_uav", "_path", "_saved", "_start"];
+        if (isNull _uav) exitWith { [_handle] call CBA_fnc_removePerFrameHandler };
         _saved params ["", "_surface", "_asl", "_modelDir"];
         private _aim = _asl;
         if (!_surface) then {
             _aim = (getPosASL _uav) vectorAdd ((_uav vectorModelToWorldVisual _modelDir) vectorMultiply 1000);
         };
+        private _weapon = _uav currentWeaponTurret _path;
+        private _aligned = _weapon != "" && {((_uav weaponDirection _weapon) vectorDotProduct ((getPosASL _uav) vectorFromTo _aim)) > ALIGNED_DOT};
+        if (_aligned || {CBA_missionTime - _start > HOLD_TIMEOUT}) exitWith {
+            [_handle] call CBA_fnc_removePerFrameHandler;
+            _uav lockCameraTo [objNull, _path, true];
+            _uav setVariable [QGVAR(uavLookHold), false];
+        };
         _uav lockCameraTo [_aim, _path, true];
         if (hasPilotCamera _uav) then {
             _uav setPilotCameraTarget ASLToAGL _aim;
         };
-        [{
-            params ["_uav", "_path"];
-            if (isNull _uav) exitWith {};
-            _uav lockCameraTo [objNull, _path, true];
-            _uav setVariable [QGVAR(uavLookHold), false];
-        }, [_uav, _path], 0.2] call CBA_fnc_waitAndExecute;
-    }, [_uav, _path, _saved]] call CBA_fnc_execNextFrame;
+    }, 0, [_uav, _path, _saved, CBA_missionTime]] call CBA_fnc_addPerFrameHandler;
 };
 
 if (GVAR(uavLookPFH) >= 0) exitWith {};
