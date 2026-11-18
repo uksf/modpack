@@ -1,7 +1,7 @@
 {
   "format": 1,
   "pbo": "tbd_mortars_105mm.pbo",
-  "pristineSha256": "7313af633276160e942d733db37fd2d3e0962660e90e8a0f08f0781e03832b15",
+  "pristineSha256": "2e214d72a1129399dc4692be0dfd38f5c979ce3ed77b8e42ceb5eef2d123db4d",
   "description": "L118 two-piece ammunition from uksf/modpack#1204: shell-only and charge-only copies of the TBD 105 mm round, so each piece is its own carriable object.",
   "assets": [
     {
