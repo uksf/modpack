@@ -20,7 +20,7 @@ class CfgUnitInsignia {
     PATCH(noot,"Noot","Delta");
     PATCH(uksf,"UKSF","Delta");
     PATCH(skull,"Skull","Delta");
-    PATCH(boat_troop,"Boat Troop","Delta");
+    PATCH(boat_troop,"Raider","Delta");
     PATCH(lusty,"Lusty","Delta");
     PATCH(shower,"Shower","Delta");
     PATCH(kruger,"Kruger","Delta");
