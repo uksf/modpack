@@ -30,15 +30,26 @@ GVAR(currentPressure) = _state getOrDefault ["currentPressure", 6];
 GVAR(currentPercentO2) = _state getOrDefault ["currentPercentO2", 0.21];
 GVAR(currentPercentN2) = _state getOrDefault ["currentPercentN2", 0.79];
 GVAR(currentPercentHe) = _state getOrDefault ["currentPercentHe", 0];
+
+private _savedN2 = _state getOrDefault ["saturationN2", []];
+private _savedHe = _state getOrDefault ["saturationHe", []];
+private _current = (_state getOrDefault ["version", 1]) == DIVE_STATE_VERSION
+    && {count _savedN2 == COMPARTMENT_COUNT}
+    && {count _savedHe == COMPARTMENT_COUNT};
+if (!_current) exitWith {
+    call FUNC(reset);
+    if (GVAR(updatePFHID) == -1) then {
+        [true] call FUNC(loop);
+    };
+};
+
 GVAR(currentDepth) = _state getOrDefault ["currentDepth", 0];
 GVAR(currentAmbientPressure) = _state getOrDefault ["currentAmbientPressure", 1];
-GVAR(previousAmbientPressure) = _state getOrDefault ["previousAmbientPressure", 0];
 GVAR(previousDepth) = _state getOrDefault ["previousDepth", 0];
-GVAR(saturationO2) = _state getOrDefault ["saturationO2", [0, 0, 0]];
-GVAR(saturationHe) = _state getOrDefault ["saturationHe", [0, 0, 0]];
-GVAR(saturationN2) = _state getOrDefault ["saturationN2", [0, 0, 0]];
+GVAR(saturationHe) = _savedHe;
+GVAR(saturationN2) = _savedN2;
 GVAR(partialPressureO2) = _state getOrDefault ["partialPressureO2", 0.21];
-GVAR(partialPressureN2) = _state getOrDefault ["partialPressureN2", 0.78];
+GVAR(partialPressureN2) = _state getOrDefault ["partialPressureN2", 0.79];
 GVAR(partialPressureHe) = _state getOrDefault ["partialPressureHe", 0];
 GVAR(remainingDiveTime) = _state getOrDefault ["remainingDiveTime", 0];
 GVAR(elapsedDiveTime) = _state getOrDefault ["elapsedDiveTime", 0];
@@ -51,6 +62,9 @@ GVAR(deepStopDepth) = _state getOrDefault ["deepStopDepth", 0];
 GVAR(deepStopTime) = _state getOrDefault ["deepStopTime", 0];
 GVAR(needDecompress) = _state getOrDefault ["needDecompress", false];
 GVAR(needDeepStop) = _state getOrDefault ["needDeepStop", false];
+GVAR(deepStopDone) = _state getOrDefault ["deepStopDone", false];
+GVAR(decompressEndN2) = _state getOrDefault ["decompressEndN2", []];
+GVAR(decompressEndHe) = _state getOrDefault ["decompressEndHe", []];
 GVAR(connectedGas) = _state getOrDefault ["connectedGas", false];
 GVAR(toxicO2Timeout) = _state getOrDefault ["toxicO2Timeout", 10];
 GVAR(toxicN2Timeout) = _state getOrDefault ["toxicN2Timeout", 10];

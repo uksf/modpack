@@ -22,6 +22,7 @@ if (!_diving) exitWith {
 };
 
 private _state = createHashMap;
+_state set ["version", DIVE_STATE_VERSION];
 _state set ["currentGasLiters", GVAR(currentGasLiters)];
 _state set ["currentVolume", GVAR(currentVolume)];
 _state set ["currentPressure", GVAR(currentPressure)];
@@ -30,9 +31,7 @@ _state set ["currentPercentN2", GVAR(currentPercentN2)];
 _state set ["currentPercentHe", GVAR(currentPercentHe)];
 _state set ["currentDepth", GVAR(currentDepth)];
 _state set ["currentAmbientPressure", GVAR(currentAmbientPressure)];
-_state set ["previousAmbientPressure", GVAR(previousAmbientPressure)];
 _state set ["previousDepth", GVAR(previousDepth)];
-_state set ["saturationO2", GVAR(saturationO2)];
 _state set ["saturationHe", GVAR(saturationHe)];
 _state set ["saturationN2", GVAR(saturationN2)];
 _state set ["partialPressureO2", GVAR(partialPressureO2)];
@@ -49,6 +48,9 @@ _state set ["deepStopDepth", GVAR(deepStopDepth)];
 _state set ["deepStopTime", GVAR(deepStopTime)];
 _state set ["needDecompress", GVAR(needDecompress)];
 _state set ["needDeepStop", GVAR(needDeepStop)];
+_state set ["deepStopDone", GVAR(deepStopDone)];
+_state set ["decompressEndN2", GVAR(decompressEndN2)];
+_state set ["decompressEndHe", GVAR(decompressEndHe)];
 _state set ["connectedGas", GVAR(connectedGas)];
 _state set ["toxicO2Timeout", GVAR(toxicO2Timeout)];
 _state set ["toxicN2Timeout", GVAR(toxicN2Timeout)];

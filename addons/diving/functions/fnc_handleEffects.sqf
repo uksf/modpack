@@ -16,7 +16,7 @@
         call uksf_diving_fnc_handleEffects
 */
 
-private _inWater = ((eyePos player)#2) < 0;
+private _inWater = GVAR(inWater);
 
 if (_inWater && GVAR(noAirTimeout) <= 0) exitWith {
     player setDamage 1;
@@ -26,21 +26,20 @@ GVAR(warningTextLowPressure) = ["", "!LOW AIR!"] select (_inWater && GVAR(curren
 
 if (_inWater && GVAR(needDeepStop) && (GVAR(deepStopTime) > 1) && ((GVAR(currentDepth) + 2) <= GVAR(deepStopDepth))) then {
     player allowSprint false;
+    GVAR(sprintBlocked) = true;
+    GVAR(toxicDeepStopTimeout) = 180;
     GVAR(deepStopDepth) = 0;
     GVAR(deepStopTime) = 0;
     GVAR(needDeepStop) = false;
+    GVAR(deepStopDone) = true;
 };
 
-if (GVAR(toxicDeepStopTimeout) > 0) then {
+if (GVAR(sprintBlocked)) then {
     GVAR(toxicDeepStopTimeout) = GVAR(toxicDeepStopTimeout) - 1;
-} else {
-    player allowSprint true;
-};
-
-if (GVAR(needDeepStop) && GVAR(deepStopTime) <= 0) then {
-    GVAR(deepStopTime) = 0;
-    GVAR(deepStopDepth) = 0;
-    GVAR(needDeepStop) = false;
+    if (GVAR(toxicDeepStopTimeout) <= 0) then {
+        player allowSprint true;
+        GVAR(sprintBlocked) = false;
+    };
 };
 
 if (GVAR(currentDepth) > GVAR(maxDepth)) then {

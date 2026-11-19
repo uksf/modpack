@@ -4,7 +4,7 @@
         Tim Beswick
 
     Description:
-        Resets dive variables and clears tissue saturation
+        Resets dive variables and returns tissues to surface equilibrium on air
 
     Parameter(s):
         None
@@ -21,20 +21,16 @@ GVAR(currentAmbientPressure) = 1;
 GVAR(remainingDiveTime) = 0;
 GVAR(maxDepth) = 0;
 GVAR(previousDepth) = 0;
-GVAR(previousAmbientPressure) = 1;
-
 GVAR(ascendRate) = 0;
-GVAR(decompressDepthB) = 0;
-GVAR(decompressDepth) = 0;
-GVAR(decompressTime) = 0;
-GVAR(deepStopDepth) = 0;
-GVAR(deepStopTime) = 0;
-GVAR(needDecompress) = false;
-GVAR(needDeepStop) = false;
+GVAR(deepStopDone) = false;
+GVAR(stopRecalcTime) = 0;
 
-GVAR(saturationN2) = [0, 0, 0];
-GVAR(saturationHe) = [0, 0, 0];
-GVAR(saturationO2) = [0, 0, 0];
+call FUNC(clearDecompression);
+
+if (GVAR(sprintBlocked)) then {
+    player allowSprint true;
+    GVAR(sprintBlocked) = false;
+};
 
 GVAR(toxicO2Timeout) = 10;
 GVAR(toxicN2Timeout) = 10;

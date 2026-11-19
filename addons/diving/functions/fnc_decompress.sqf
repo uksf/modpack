@@ -18,7 +18,7 @@
 params ["_pod"];
 
 [DECOMPRESS_DURATION, [_pod], {
-    call FUNC(reset);
+    call FUNC(clearDecompression);
     call FUNC(publishDataState);
     hint "Decompression complete";
 }, {}, "Decompressing", {

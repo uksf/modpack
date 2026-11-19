@@ -13,11 +13,17 @@ class CfgVehicles {
     };
     DEPRECATE_CLASS(ade_item_bag,GVAR(bag));
 
+    class Man;
+    class CAManBase : Man {
+        class ACE_Actions {
+            class ACE_MainActions {
+                exceptions[] = { "isNotSwimming" };
+            };
+        };
+    };
+
     class LandVehicle;
     class StaticWeapon : LandVehicle {
-        class ACE_Actions {
-            class ACE_MainActions;
-        };
         class ACE_SelfActions;
     };
     class Pod_Heli_Transport_04_crewed_base_F : StaticWeapon {};
@@ -34,16 +40,6 @@ class CfgVehicles {
         rightEngineEffect = "";
         memoryPointsLeftEngineEffect = "EngineEffectL";
         memoryPointsRightEngineEffect = "EngineEffectR";
-        class ACE_Actions : ACE_Actions {
-            class ACE_MainActions : ACE_MainActions {
-                class GVAR(loadPatient) {
-                    displayName = "Load Patient";
-                    condition = QUOTE(!isNull ([_target] call FUNC(nearestPodPatient)));
-                    statement = QUOTE([ARR_2(_target,_player)] call FUNC(loadPodPatient));
-                    exceptions[] = { "isNotSwimming" };
-                };
-            };
-        };
         class ACE_SelfActions : ACE_SelfActions {
             class GVAR(decompress) {
                 displayName = "Decompress";
