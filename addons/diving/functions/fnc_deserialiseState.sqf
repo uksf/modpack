@@ -20,7 +20,10 @@ params ["_data"];
 private _diving = _data#0;
 if (!_diving) exitWith {};
 
-private _state = _data#1;
+private _state = _data param [1, createHashMap];
+if (_state isEqualType []) then {
+    _state = createHashMapFromArray _state;
+};
 
 if !(_state isEqualType createHashMap) exitWith {};
 

@@ -43,5 +43,5 @@ GVAR(diveComputerUpdatePFHID) = [{
     (_display displayCtrl 1123) ctrlSetText format ["%1", round (getDir player)];
     (_display displayCtrl 1124) ctrlSetText format ["%1", (round (GVAR(partialPressureO2) * 10)) / 10];
     (_display displayCtrl 1125) ctrlSetText format ["%1", (round (GVAR(partialPressureN2) * 10)) / 10];
-    (_display displayCtrl 1126) ctrlSetText str GVAR(warningText);
+    (_display displayCtrl 1126) ctrlSetText GVAR(warningText);
 }, 0.1, []] call CBA_fnc_addPerFrameHandler;
