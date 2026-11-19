@@ -5,8 +5,8 @@ class CfgPatches {
         name = COMPONENT_NAME;
         units[] = {
             QGVAR(bag),
+            QGVAR(decoPod),
 
-            // Deprecated
             "ade_item_bag"
         };
         weapons[] = {

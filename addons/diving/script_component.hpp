@@ -2,10 +2,6 @@
 #define COMPONENT_BEAUTIFIED Diving
 #include "\u\uksf\addons\main\script_mod.hpp"
 
-// #define DEBUG_MODE_FULL
-// #define DISABLE_COMPILE_CACHE
-// #define CBA_DEBUG_SYNCHRONOUS
-
 #include "\u\uksf\addons\main\script_macros.hpp"
 
 #define CYLINDER(BASE,NAME) ##BASE####NAME
@@ -47,3 +43,6 @@ class CYLINDER(GVAR(cylinderDouble),varNAME) : GVAR(cylinderDoubleBase) { \
 #define DECO_DIMINISH 5
 #define MOD_PPO2 1.6
 #define NO_AIR_TIMEOUT 60
+#define DECOMPRESS_DURATION 20
+#define DECO_POD_MASS 2500
+#define DECO_POD_LOAD_RANGE 6

@@ -4,7 +4,7 @@
         Tim Beswick
 
     Description:
-        Resets dive variables
+        Resets dive variables and clears tissue saturation
 
     Parameter(s):
         None
@@ -31,6 +31,10 @@ GVAR(deepStopDepth) = 0;
 GVAR(deepStopTime) = 0;
 GVAR(needDecompress) = false;
 GVAR(needDeepStop) = false;
+
+GVAR(saturationN2) = [0, 0, 0];
+GVAR(saturationHe) = [0, 0, 0];
+GVAR(saturationO2) = [0, 0, 0];
 
 GVAR(toxicO2Timeout) = 10;
 GVAR(toxicN2Timeout) = 10;

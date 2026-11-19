@@ -28,9 +28,6 @@ GVAR(updatePFHID) = [{
         [GVAR(updatePFHID)] call CBA_fnc_removePerFrameHandler;
         GVAR(updatePFHID) = -1;
         call FUNC(reset);
-        GVAR(saturationN2) = [0, 0, 0];
-        GVAR(saturationHe) = [0, 0, 0];
-        GVAR(saturationO2) = [0, 0, 0];
         GVAR(elapsedDiveTime) = 0;
     };
 
@@ -194,9 +191,6 @@ GVAR(updatePFHID) = [{
         [GVAR(updatePFHID)] call CBA_fnc_removePerFrameHandler;
         GVAR(updatePFHID) = -1;
         call FUNC(reset);
-        GVAR(saturationN2) = [0, 0, 0];
-        GVAR(saturationHe) = [0, 0, 0];
-        GVAR(saturationO2) = [0, 0, 0];
         GVAR(elapsedDiveTime) = 0;
         call FUNC(publishDataState);
     };

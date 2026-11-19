@@ -1,6 +1,9 @@
 PREP(addDiverActions);
 PREP(applyToxicEffect);
 PREP(calculateSaturation);
+PREP(decompress);
+PREP(loadPodPatient);
+PREP(nearestPodPatient);
 PREP(deserialiseState);
 PREP(effectToxicDecompression);
 PREP(effectToxicN2);
