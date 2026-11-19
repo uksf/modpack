@@ -19,7 +19,7 @@
     Example:
         [_rhicc, _zodiac] call uksf_vehicles_fnc_seatBoatCargo
 */
-#define BOAT_AFT_OFFSET 0.9
+#define BOAT_AFT_OFFSET 0.4
 
 params ["_carrier", "_cargo"];
 
