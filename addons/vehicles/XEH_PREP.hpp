@@ -15,6 +15,7 @@ PREP(hasNightVisionCamera);
 PREP(isCompassCamera);
 PREP(reloadTurret);
 PREP(renderMarkingLasers);
+PREP(seatBoatCargo);
 PREP(setEmptyDynamicSimulation);
 PREP(setSpotlight);
 PREP(spotlightTurrets);
