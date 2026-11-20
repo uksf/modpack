@@ -18,6 +18,8 @@ if (hasInterface) then {
     GVAR(currentPercentO2) = 0.21;
     GVAR(currentPercentN2) = 0.79;
     GVAR(currentPercentHe) = 0;
+    GVAR(breathedN2) = 0.79;
+    GVAR(breathedHe) = 0;
 
     GVAR(rateConstantsN2) = [5, 8, 12.5, 18.5, 27, 38.3, 54.3, 77, 109, 146, 187, 239, 305, 390, 498, 635] apply {(ln 2) / _x};
     GVAR(buhlmannA_N2) = [1.1696, 1.0, 0.8618, 0.7562, 0.62, 0.5043, 0.441, 0.4, 0.375, 0.35, 0.3295, 0.3065, 0.2835, 0.261, 0.248, 0.2327];

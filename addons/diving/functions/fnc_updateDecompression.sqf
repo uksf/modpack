@@ -6,7 +6,9 @@
     Description:
         Updates the ceiling, the current decompression stop and the deep stop from tissue tensions.
         A stop sits on the next STOP_INCREMENT boundary below the ceiling. Holding it for its shortened
-        time applies the tensions of the full stop, then the next shallower stop is planned.
+        time applies the tensions of the simulated stop. The next shallower stop is planned only when the
+        simulation cleared it; otherwise the stop follows the real ceiling. A change of breathed gas
+        replans the stop, so a prediction never outlives the gas it assumed.
 
     Parameter(s):
         0: Elapsed time in seconds <NUMBER>
@@ -21,11 +23,13 @@ params ["_dt"];
 
 private _planStop = {
     params ["_stopDepth"];
-    ([_stopDepth] call FUNC(calculateStopTime)) params ["_time", "_endN2", "_endHe"];
+    ([_stopDepth] call FUNC(calculateStopTime)) params ["_time", "_endN2", "_endHe", "_cleared"];
     GVAR(decompressDepth) = _stopDepth;
     GVAR(decompressTime) = _time;
     GVAR(decompressEndN2) = _endN2;
     GVAR(decompressEndHe) = _endHe;
+    GVAR(stopCleared) = _cleared;
+    GVAR(stopGas) = [GVAR(breathedN2), GVAR(breathedHe)];
     GVAR(stopRecalcTime) = CBA_missionTime + STOP_RECALC_INTERVAL;
 };
 
@@ -55,6 +59,9 @@ if (!GVAR(needDecompress)) then {
     if (_stopDepth > GVAR(decompressDepth)) then {
         [_stopDepth] call _planStop;
     } else {
+        if (GVAR(stopGas) isNotEqualTo [GVAR(breathedN2), GVAR(breathedHe)]) exitWith {
+            [GVAR(decompressDepth)] call _planStop;
+        };
         if (_atStop) then {
             GVAR(decompressTime) = GVAR(decompressTime) - _dt;
             if (GVAR(decompressTime) <= 0) then {
@@ -63,7 +70,10 @@ if (!GVAR(needDecompress)) then {
                     GVAR(saturationHe) = GVAR(decompressEndHe);
                 };
                 GVAR(decompressDepthB) = [GVAR(saturationN2), GVAR(saturationHe)] call FUNC(calculateCeiling);
-                private _nextStop = ([GVAR(decompressDepthB)] call _toStopDepth) min (GVAR(decompressDepth) - STOP_INCREMENT);
+                private _nextStop = [GVAR(decompressDepthB)] call _toStopDepth;
+                if (GVAR(stopCleared)) then {
+                    _nextStop = _nextStop min (GVAR(decompressDepth) - STOP_INCREMENT);
+                };
                 if (_nextStop > 0) then {
                     [_nextStop] call _planStop;
                 } else {

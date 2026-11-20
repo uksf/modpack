@@ -78,6 +78,7 @@ GVAR(updatePFHID) = [{
         GVAR(currentDepth) = 0;
         GVAR(currentAmbientPressure) = 1;
         GVAR(connectedGas) = false;
+        GVAR(deepStopDone) = false;
     };
 
     GVAR(ascendRate) = if (_dt > 0) then {(GVAR(previousDepth) - GVAR(currentDepth)) / _dt} else {0};
@@ -87,6 +88,8 @@ GVAR(updatePFHID) = [{
     private _fractionO2 = [0.21, GVAR(currentPercentO2)] select _onCylinder;
     private _fractionN2 = [0.79, GVAR(currentPercentN2)] select _onCylinder;
     private _fractionHe = [0, GVAR(currentPercentHe)] select _onCylinder;
+    GVAR(breathedN2) = _fractionN2;
+    GVAR(breathedHe) = _fractionHe;
 
     ([GVAR(saturationN2), GVAR(saturationHe), _fractionN2, _fractionHe, GVAR(currentAmbientPressure), _dt] call FUNC(updateTissues)) params ["_n2", "_he"];
     GVAR(saturationN2) = _n2;
