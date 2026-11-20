@@ -45,21 +45,8 @@ if !(isNull GVAR(unit_statemachine)) exitWith {
     [_unit, GVAR(unit_statemachine), _currentState, QGVAR(unit_state_enter)] call CBA_statemachine_fnc_manualTransition;
 };
 
-GVAR(unit_statemachine) = [{GVAR(unit_statemachine_units)}, true] call CBA_statemachine_fnc_create;
+GVAR(unit_statemachine) = [{GVAR(unit_statemachine_units) = GVAR(unit_statemachine_units) select {!isNull _x}; GVAR(unit_statemachine_units)}, true] call CBA_statemachine_fnc_create;
 
 call FUNC(addUnitStates);
 call FUNC(addUnitTransitions);
 call FUNC(addUnitEventTransitions);
-
-[{
-    private _nonLocal = (GVAR(unit_statemachine_units) select {!(local _x)});
-    {
-        _x removeEventHandler ["Local", _x getVariable [QGVAR(unit_localHandler), -1]];
-        private _jipId = _x getVariable [QGVAR(unit_interaction_jipId), ""];
-        if (_jipId isNotEqualTo "") then {[_jipId] call CBA_fnc_removeGlobalEventJIP};
-        [QGVAR(removeUnitInteractions), [_x]] call CBA_fnc_globalEvent;
-
-        GVAR(unit_statemachine_units) deleteAt (GVAR(unit_statemachine_units) find _x);
-        [QGVAR(startUnitStatemachine), [_x], _x] call CBA_fnc_targetEvent;
-    } forEach _nonLocal;
-}, 5] call CBA_fnc_addPerFrameHandler;

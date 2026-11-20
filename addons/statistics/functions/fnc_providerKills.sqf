@@ -11,8 +11,8 @@
         killer. fnc_creditedShooter resolves a UAV crew or UAV vehicle to the player in
         the firing role. Zeus remote control is not credited.
 
-        A UAV kill prefers the fire-time controller stored on lastHit when that hit is
-        marked as a UAV shot and is less than 5 seconds old. The stamp is written at
+        A UAV kill prefers the fire-time controller stored on lastHit when that hit was
+        fired by the killing UAV and is less than 5 seconds old. The stamp is written at
         impact, so a player who leaves the terminal between launch and impact is still
         the killer. Older stamps are ignored so a later UAV death does not inherit an
         earlier hit.
@@ -48,12 +48,11 @@ addMissionEventHandler ["EntityKilled", {
     private _indirect = false;
     private _uavKillWindow = 5;
 
-    private _uavActor = (!isNull _attacker) && {unitIsUAV _attacker || {unitIsUAV vehicle _attacker}};
-    if (_uavActor) then {
+    if (!isNull _attacker && {unitIsUAV vehicle _attacker}) then {
         private _firedHit = _victim getVariable [QGVAR(lastHit), []];
         if (count _firedHit >= 5) then {
             _firedHit params ["", "", "_firedShooterUid", "_firedTime", "_firedUav"];
-            if (_firedUav && {_firedShooterUid isNotEqualTo ""} && {time - _firedTime < _uavKillWindow}) then {
+            if (_firedUav isEqualTo vehicle _attacker && {_firedShooterUid isNotEqualTo ""} && {time - _firedTime < _uavKillWindow}) then {
                 _killerUid = _firedShooterUid;
             };
         };

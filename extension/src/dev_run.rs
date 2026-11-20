@@ -32,7 +32,7 @@ fn ensure_worker_started() {
             match msg {
                 Message::Log { run_id, line } => {
                     let url = format!("{}/dev-run/internal/{}/log", config::api_base_url(), run_id);
-                    let body = format!(r#"{{"line":{}}}"#, json_escape(&line));
+                    let body = serde_json::json!({ "line": line }).to_string();
                     let _ = ureq::post(&url)
                         .timeout(Duration::from_secs(5))
                         .set("Content-Type", "application/json")
@@ -55,22 +55,6 @@ fn ensure_worker_started() {
             }
         }
     });
-}
-
-fn json_escape(s: &str) -> String {
-    let escaped: String = s
-        .chars()
-        .flat_map(|c| match c {
-            '"' => "\\\"".chars().collect::<Vec<_>>(),
-            '\\' => "\\\\".chars().collect(),
-            '\n' => "\\n".chars().collect(),
-            '\r' => "\\r".chars().collect(),
-            '\t' => "\\t".chars().collect(),
-            c if (c as u32) < 0x20 => format!("\\u{:04x}", c as u32).chars().collect(),
-            c => vec![c],
-        })
-        .collect();
-    format!("\"{escaped}\"")
 }
 
 pub fn open(run_id: String) -> String {
@@ -156,10 +140,5 @@ mod tests {
         reset_state();
         assert_eq!(open("R1".into()), "ok");
         assert_eq!(open("R1".into()), "error: already open");
-    }
-
-    #[test]
-    fn json_escape_handles_quotes_and_newlines() {
-        assert_eq!(json_escape("hi\n\"world\""), "\"hi\\n\\\"world\\\"\"");
     }
 }

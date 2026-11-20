@@ -44,7 +44,7 @@ private _current = (_state getOrDefault ["version", 1]) == DIVE_STATE_VERSION
 if (!_current) exitWith {
     call FUNC(reset);
     if (GVAR(updatePFHID) == -1) then {
-        [true] call FUNC(loop);
+        call FUNC(loop);
     };
 };
 
@@ -55,7 +55,6 @@ GVAR(saturationHe) = _savedHe;
 GVAR(saturationN2) = _savedN2;
 GVAR(partialPressureO2) = _state getOrDefault ["partialPressureO2", 0.21];
 GVAR(partialPressureN2) = _state getOrDefault ["partialPressureN2", 0.79];
-GVAR(partialPressureHe) = _state getOrDefault ["partialPressureHe", 0];
 GVAR(remainingDiveTime) = _state getOrDefault ["remainingDiveTime", 0];
 GVAR(elapsedDiveTime) = _state getOrDefault ["elapsedDiveTime", 0];
 GVAR(maxDepth) = _state getOrDefault ["maxDepth", 0];
@@ -84,12 +83,7 @@ if (_sprintBlocked || GVAR(sprintBlocked)) then {
 GVAR(sprintBlocked) = _sprintBlocked;
 GVAR(toxicAscendTimeout) = _state getOrDefault ["toxicAscendTimeout", 10];
 GVAR(noAirTimeout) = _state getOrDefault ["noAirTimeout", NO_AIR_TIMEOUT];
-GVAR(warningTextO2) = _state getOrDefault ["warningTextO2", ""];
-GVAR(warningTextN2) = _state getOrDefault ["warningTextN2", ""];
-GVAR(warningTextAscendRate) = _state getOrDefault ["warningTextAscendRate", ""];
-GVAR(warningTextLowPressure) = _state getOrDefault ["warningTextLowPressure", ""];
-GVAR(warningTextDecompression) = _state getOrDefault ["warningTextDecompression", ""];
 
 if (GVAR(updatePFHID) == -1) then {
-    [true] call FUNC(loop);
+    call FUNC(loop);
 };

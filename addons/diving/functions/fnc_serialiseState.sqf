@@ -36,7 +36,6 @@ _state set ["saturationHe", GVAR(saturationHe)];
 _state set ["saturationN2", GVAR(saturationN2)];
 _state set ["partialPressureO2", GVAR(partialPressureO2)];
 _state set ["partialPressureN2", GVAR(partialPressureN2)];
-_state set ["partialPressureHe", GVAR(partialPressureHe)];
 _state set ["remainingDiveTime", GVAR(remainingDiveTime)];
 _state set ["elapsedDiveTime", GVAR(elapsedDiveTime)];
 _state set ["maxDepth", GVAR(maxDepth)];
@@ -53,10 +52,5 @@ _state set ["toxicDeepStopTimeout", GVAR(toxicDeepStopTimeout)];
 _state set ["sprintBlocked", GVAR(sprintBlocked)];
 _state set ["toxicAscendTimeout", GVAR(toxicAscendTimeout)];
 _state set ["noAirTimeout", GVAR(noAirTimeout)];
-_state set ["warningTextO2", GVAR(warningTextO2)];
-_state set ["warningTextN2", GVAR(warningTextN2)];
-_state set ["warningTextAscendRate", GVAR(warningTextAscendRate)];
-_state set ["warningTextLowPressure", GVAR(warningTextLowPressure)];
-_state set ["warningTextDecompression", GVAR(warningTextDecompression)];
 
 [true, _state]

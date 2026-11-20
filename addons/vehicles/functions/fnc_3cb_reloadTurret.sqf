@@ -15,7 +15,7 @@
         Resupply successful <BOOLEAN>
 
     Example:
-        [_vehicle, _unit] call uksf_vehicles_fnc_3cb_reloadTurret
+        [_vehicle, _unit] call UK3CB_BAF_Vehicles_Weapons_fnc_resupply_ammo
 */
 DEBUG("3cb reload");
 params ["_vehicle", "_unit"];

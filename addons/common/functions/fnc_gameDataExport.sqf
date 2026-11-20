@@ -88,18 +88,6 @@ try {
         if (_bufferSize >= FLUSH_THRESHOLD) then { call _flush };
     };
 
-    private _escapeString = {
-        // Fast path: most config text values contain no embedded quotes, so a single string
-        // scan beats unconditionally calling toArray. Saves an allocation per text leaf.
-        if (_this find """" == -1) exitWith { str _this };
-        private _result = [];
-        {
-            _result pushBack _x;
-            if (_x == 34) then { _result pushBack 34 };
-        } forEach toArray _this;
-        str toString _result
-    };
-
     private _collectInheritedProperties = {
         private _config = _this;
         private _propertyList = [];
@@ -126,7 +114,7 @@ try {
             { _items pushBack (_x call _formatArray) } forEach _this;
             "{" + (_items joinString ", ") + "}"
         };
-        if (_this isEqualType "") exitWith { _this call _escapeString };
+        if (_this isEqualType "") exitWith { str _this };
         str _this
     };
 
@@ -165,7 +153,7 @@ try {
                 } else {
                     private _entryName = configName _entry;
                     if (isText _entry) then {
-                        _text = _entryName + " = " + (getText _entry call _escapeString) + ";";
+                        _text = _entryName + " = " + str getText _entry + ";";
                         call _appendLine;
                     };
                     if (isNumber _entry) then {
@@ -196,7 +184,7 @@ try {
                         _line = _entryName + " = " + str (getNumber _entry) + ";";
                     } else {
                         if (isText _entry) then {
-                            _line = _entryName + " = " + (getText _entry call _escapeString) + ";";
+                            _line = _entryName + " = " + str getText _entry + ";";
                         } else {
                             if (isArray _entry) then {
                                 _line = _entryName + "[] = " + (getArray _entry call _formatArray) + ";";

@@ -64,25 +64,23 @@ private _items = cba_settings_allSettings apply {
 
     private _valueInfo = [_settingType, _settingData] call _valueInfoForType;
 
-    private _obj = [
-        format ['{"setting":%1',       toJSON (_name)],
-        format [',"displayName":%1',   toJSON (_disp)],
-        format [',"category":%1',      toJSON (_cat)],
-        format [',"subCategory":%1',   toJSON (_sub)],
-        format [',"tooltip":%1',       toJSON (_tip)],
-        format [',"settingType":%1',   toJSON (_settingType)],
-        format [',"valueInfo":%1',     toJSON (_valueInfo)],
-        format [',"defaultValue":%1',  toJSON (_defaultValue)],
-        format [',"isGlobal":%1',      toJSON (_isGlobal call _isGlobalString)],
-        format [',"isForced":%1',      if (_isForced) then {"true"} else {"false"}],
-        format [',"priority":%1}',     toJSON (_priority)]
-    ] joinString "";
+    private _obj = createHashMapFromArray [
+        ["setting", _name],
+        ["displayName", _disp],
+        ["category", _cat],
+        ["subCategory", _sub],
+        ["tooltip", _tip],
+        ["settingType", _settingType],
+        ["valueInfo", _valueInfo],
+        ["defaultValue", _defaultValue],
+        ["isGlobal", _isGlobal call _isGlobalString],
+        ["isForced", _isForced],
+        ["priority", _priority]
+    ];
     [[_cat, _sub, _name], _obj]
 };
 
 _items sort true;
-
-private _settingsJson = (_items apply { _x select 1 }) joinString ",";
 
 systemTimeUTC params ["_year", "_month", "_day", "_hour", "_minute", "_second"];
 private _timestamp = format ["%1-%2-%3T%4:%5:%6Z",
@@ -94,10 +92,9 @@ private _timestamp = format ["%1-%2-%3T%4:%5:%6Z",
     [_second, 2] call CBA_fnc_formatNumber
 ];
 
-format [
-    '{"modpackVersion":%1,"gameVersion":%2,"exportedAt":%3,"settings":[%4]}',
-    toJSON getText (configFile >> "CfgPatches" >> "uksf_main" >> "versionStr"),
-    toJSON str (productVersion#2),
-    toJSON _timestamp,
-    _settingsJson
+toJSON createHashMapFromArray [
+    ["modpackVersion", getText (configFile >> "CfgPatches" >> "uksf_main" >> "versionStr")],
+    ["gameVersion", str (productVersion#2)],
+    ["exportedAt", _timestamp],
+    ["settings", _items apply {_x select 1}]
 ]

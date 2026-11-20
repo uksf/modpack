@@ -16,11 +16,11 @@
         Each shot is recorded with that player's uid, weapon, ammo, magazine, fire
         mode, and fired position. Ammo classname is what the API buckets as munitions.
         Each projectile is tagged with shotId, weapon, ammo, fired position, shooter
-        uid, and whether the shot was from a UAV. HitPart and HitExplosion on that
+        uid, and the firing UAV (objNull when not a UAV). HitPart and HitExplosion on that
         projectile emit the hit on the same machine.
 
         lastHit on the victim is sent to the server kill handler:
-        [weapon, ammo, shooterUid, mission time, uav shot].
+        [weapon, ammo, shooterUid, mission time, firing UAV].
 
     Parameters:
         None
@@ -65,7 +65,7 @@ GVAR(handleFired) = {
     private _shotId = format ["%1_%2_%3", _shooterUid, GVAR(shotProducer), GVAR(shotCounter)];
     private _firedPosition = getPosASL _unit;
     private _category = [_ammo] call FUNC(getAmmoCategory);
-    private _uavShot = unitIsUAV _unit || {unitIsUAV vehicle _unit};
+    private _uav = [objNull, vehicle _unit] select (unitIsUAV vehicle _unit);
 
     if (!isNull _projectile) then {
         _projectile setVariable [QGVAR(shotId), _shotId];
@@ -74,7 +74,7 @@ GVAR(handleFired) = {
         _projectile setVariable [QGVAR(ammo), _ammo];
         _projectile setVariable [QGVAR(category), _category];
         _projectile setVariable [QGVAR(shooterUid), _shooterUid];
-        _projectile setVariable [QGVAR(uavShot), _uavShot];
+        _projectile setVariable [QGVAR(uav), _uav];
 
         _projectile addEventHandler ["HitPart", {
             if (GVAR(killswitch)) exitWith {};
@@ -92,7 +92,7 @@ GVAR(handleFired) = {
             private _projectileCategory = _projectile getVariable [QGVAR(category), "other"];
             private _projectileShooterUid = _projectile getVariable [QGVAR(shooterUid), ""];
             private _projectileFiredPosition = _projectile getVariable [QGVAR(firedPosition), []];
-            private _projectileUavShot = _projectile getVariable [QGVAR(uavShot), false];
+            private _projectileUav = _projectile getVariable [QGVAR(uav), objNull];
 
             private _bodyPart = "";
             if (_targetType isEqualTo "infantry") then {
@@ -106,7 +106,7 @@ GVAR(handleFired) = {
                 _distance3D = round (_projectileFiredPosition vectorDistance _position);
             };
 
-            _hitEntity setVariable [QGVAR(lastHit), [_projectileWeapon, _projectileAmmo, _projectileShooterUid, time, _projectileUavShot], 2];
+            _hitEntity setVariable [QGVAR(lastHit), [_projectileWeapon, _projectileAmmo, _projectileShooterUid, time, _projectileUav], 2];
 
             [createHashMapFromArray [
                 ["type", "hit"],
@@ -139,7 +139,7 @@ GVAR(handleFired) = {
             private _projectileCategory = _projectile getVariable [QGVAR(category), "other"];
             private _projectileShooterUid = _projectile getVariable [QGVAR(shooterUid), ""];
             private _projectileFiredPosition = _projectile getVariable [QGVAR(firedPosition), []];
-            private _projectileUavShot = _projectile getVariable [QGVAR(uavShot), false];
+            private _projectileUav = _projectile getVariable [QGVAR(uav), objNull];
 
             private _impactPosition = if (count _hitSelections > 0) then {_hitSelections#0#0} else {getPosASL _projectile};
             private _distance2D = 0;
@@ -149,7 +149,7 @@ GVAR(handleFired) = {
                 _distance3D = round (_projectileFiredPosition vectorDistance _impactPosition);
             };
 
-            _hitEntity setVariable [QGVAR(lastHit), [_projectileWeapon, _projectileAmmo, _projectileShooterUid, time, _projectileUavShot], 2];
+            _hitEntity setVariable [QGVAR(lastHit), [_projectileWeapon, _projectileAmmo, _projectileShooterUid, time, _projectileUav], 2];
 
             [createHashMapFromArray [
                 ["type", "hit"],

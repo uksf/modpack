@@ -1,21 +1,7 @@
-use arma_rs::Context;
-
 use crate::raw::Raw;
 use crate::bridge;
 use crate::file_export;
 use crate::dev_run;
-
-pub fn start(context: Context) -> String {
-    bridge::handle_start(context)
-}
-
-pub fn stop() -> String {
-    bridge::handle_stop()
-}
-
-pub fn flush() -> String {
-    bridge::handle_flush()
-}
 
 pub fn event(body: Raw) -> String {
     if body.0.starts_with("\"[") {
@@ -38,14 +24,6 @@ pub fn file_export_open(filename: Raw) -> String {
 
 pub fn file_export_write(line: Raw) -> String {
     file_export::write(line.0)
-}
-
-pub fn file_export_close() -> String {
-    file_export::close()
-}
-
-pub fn file_export_finish() -> String {
-    file_export::finish()
 }
 
 pub fn dev_run_open(run_id: Raw) -> String {

@@ -41,22 +41,9 @@ if !(isNull GVAR(vehicle_statemachine)) exitWith {
     [_vehicle, GVAR(vehicle_statemachine), QGVAR(vehicle_state_enter), QGVAR(vehicle_state_enter)] call CBA_statemachine_fnc_manualTransition;
 };
 
-GVAR(vehicle_statemachine) = [{GVAR(vehicle_statemachine_vehicles)}, true] call CBA_statemachine_fnc_create;
+GVAR(vehicle_statemachine) = [{GVAR(vehicle_statemachine_vehicles) = GVAR(vehicle_statemachine_vehicles) select {!isNull _x}; GVAR(vehicle_statemachine_vehicles)}, true] call CBA_statemachine_fnc_create;
 
 call FUNC(addVehicleStates);
 call FUNC(addVehicleDriverStates);
 call FUNC(addVehicleTransitions);
 call FUNC(addVehicleEventTransitions);
-
-[{
-    private _nonLocal = (GVAR(vehicle_statemachine_vehicles) select {!(local _x)});
-    {
-        _x removeEventHandler ["Local", _x getVariable [QGVAR(vehicle_localHandler), -1]];
-        private _jipId = _x getVariable [QGVAR(vehicle_interaction_jipId), ""];
-        if (_jipId isNotEqualTo "") then {[_jipId] call CBA_fnc_removeGlobalEventJIP};
-        [QGVAR(removeVehicleInteractions), [_x]] call CBA_fnc_globalEvent;
-        
-        GVAR(vehicle_statemachine_vehicles) deleteAt (GVAR(vehicle_statemachine_vehicles) find _x);
-        [QGVAR(startVehicleStatemachine), [_x], _x] call CBA_fnc_targetEvent;
-    } forEach _nonLocal;
-}, 5] call CBA_fnc_addPerFrameHandler;

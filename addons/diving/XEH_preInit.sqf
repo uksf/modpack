@@ -30,7 +30,6 @@ if (hasInterface) then {
 
     GVAR(partialPressureO2) = 0.21;
     GVAR(partialPressureN2) = 0.79;
-    GVAR(partialPressureHe) = 0;
     GVAR(lastTickTime) = 0;
     GVAR(inWater) = false;
     GVAR(sprintBlocked) = false;

@@ -487,7 +487,6 @@ uksf_arsenal_mainOpGearBase = [
     "uksf_halohaho_airSupply",
     "ACE_IR_Strobe_Item",
     "acex_intelitems_notepad",
-    "ACE_EHP",
     "GX_DEPLOYABLE_BLACK_HORNET_UAV",
     "GX_1RND_DRONE40_RECON_M203",
     "GX_UAVBattery",

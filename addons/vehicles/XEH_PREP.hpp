@@ -1,4 +1,3 @@
-PREP(3cb_reloadTurret);
 PREP(reloadSmoke);
 PREP(uavLook);
 PREP(addSpotlightActions);

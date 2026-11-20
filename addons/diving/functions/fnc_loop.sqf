@@ -4,23 +4,19 @@
         Tim Beswick, MadMax (https://steamcommunity.com/sharedfiles/filedetails/?id=1891978580)
 
     Description:
-        Starts/stops loop to simulate diving environment and effects.
+        Starts the loop that simulates the diving environment and effects. Does nothing if it is already running.
         Runs underwater on the cylinder mix, and on the surface or inside a decompression pod on air at 1 bar.
         Self-terminates out of the water without a rebreather once no obligation remains and tissues are back near surface equilibrium.
 
     Parameter(s):
-        0: State <BOOLEAN>
+        None
 
     Return Value:
         None
 
     Example:
-        [_state] call uksf_diving_fnc_loop
+        call uksf_diving_fnc_loop
 */
-params ["_state"];
-
-if (!_state) exitWith {};
-
 if (GVAR(updatePFHID) != -1) exitWith {};
 
 GVAR(lastTickTime) = CBA_missionTime;
@@ -97,7 +93,6 @@ GVAR(updatePFHID) = [{
 
     GVAR(partialPressureO2) = _fractionO2 * GVAR(currentAmbientPressure);
     GVAR(partialPressureN2) = _fractionN2 * GVAR(currentAmbientPressure);
-    GVAR(partialPressureHe) = _fractionHe * GVAR(currentAmbientPressure);
     GVAR(maxDepth) = if (GVAR(currentPercentO2) > 0) then {
         ((MOD_PPO2 / GVAR(currentPercentO2)) - 1) * 10
     } else { 0 };
