@@ -5,7 +5,8 @@
 
     Description:
         Deserialises diving simulation state for persistence load.
-        Any saved decompression stop is discarded; the loop replans it from the restored tissues on its next tick.
+        Any saved decompression stop is discarded. The decompression obligation is derived from the restored
+        tissues at once, and the loop plans the stop from them on its next tick.
 
     Parameter(s):
         0: Data array <ARRAY>
@@ -59,14 +60,14 @@ GVAR(remainingDiveTime) = _state getOrDefault ["remainingDiveTime", 0];
 GVAR(elapsedDiveTime) = _state getOrDefault ["elapsedDiveTime", 0];
 GVAR(maxDepth) = _state getOrDefault ["maxDepth", 0];
 GVAR(ascendRate) = _state getOrDefault ["ascendRate", 0];
-GVAR(decompressDepthB) = 0;
+GVAR(decompressDepthB) = [_savedN2, _savedHe] call FUNC(calculateCeiling);
 GVAR(decompressDepth) = 0;
 GVAR(decompressTime) = 0;
 GVAR(decompressEndN2) = [];
 GVAR(decompressEndHe) = [];
 GVAR(stopCleared) = false;
 GVAR(stopGas) = [];
-GVAR(needDecompress) = false;
+GVAR(needDecompress) = GVAR(decompressDepthB) > 0;
 GVAR(deepStopDepth) = _state getOrDefault ["deepStopDepth", 0];
 GVAR(deepStopTime) = _state getOrDefault ["deepStopTime", 0];
 GVAR(needDeepStop) = _state getOrDefault ["needDeepStop", false];
