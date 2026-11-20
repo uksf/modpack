@@ -4,7 +4,8 @@
         Tim Beswick
 
     Description:
-        Deserialises diving simulation state for persistence load
+        Deserialises diving simulation state for persistence load.
+        Any saved decompression stop is discarded; the loop replans it from the restored tissues on its next tick.
 
     Parameter(s):
         0: Data array <ARRAY>
@@ -58,21 +59,28 @@ GVAR(remainingDiveTime) = _state getOrDefault ["remainingDiveTime", 0];
 GVAR(elapsedDiveTime) = _state getOrDefault ["elapsedDiveTime", 0];
 GVAR(maxDepth) = _state getOrDefault ["maxDepth", 0];
 GVAR(ascendRate) = _state getOrDefault ["ascendRate", 0];
-GVAR(decompressDepthB) = _state getOrDefault ["decompressDepthB", 0];
-GVAR(decompressDepth) = _state getOrDefault ["decompressDepth", 0];
-GVAR(decompressTime) = _state getOrDefault ["decompressTime", 0];
+GVAR(decompressDepthB) = 0;
+GVAR(decompressDepth) = 0;
+GVAR(decompressTime) = 0;
+GVAR(decompressEndN2) = [];
+GVAR(decompressEndHe) = [];
+GVAR(stopCleared) = false;
+GVAR(stopGas) = [];
+GVAR(needDecompress) = false;
 GVAR(deepStopDepth) = _state getOrDefault ["deepStopDepth", 0];
 GVAR(deepStopTime) = _state getOrDefault ["deepStopTime", 0];
-GVAR(needDecompress) = _state getOrDefault ["needDecompress", false];
 GVAR(needDeepStop) = _state getOrDefault ["needDeepStop", false];
 GVAR(deepStopDone) = _state getOrDefault ["deepStopDone", false];
-GVAR(decompressEndN2) = _state getOrDefault ["decompressEndN2", []];
-GVAR(decompressEndHe) = _state getOrDefault ["decompressEndHe", []];
 GVAR(connectedGas) = _state getOrDefault ["connectedGas", false];
 GVAR(toxicO2Timeout) = _state getOrDefault ["toxicO2Timeout", 10];
 GVAR(toxicN2Timeout) = _state getOrDefault ["toxicN2Timeout", 10];
 GVAR(toxicDecompressionTimeout) = _state getOrDefault ["toxicDecompressionTimeout", 10];
 GVAR(toxicDeepStopTimeout) = _state getOrDefault ["toxicDeepStopTimeout", 180];
+private _sprintBlocked = _state getOrDefault ["sprintBlocked", false];
+if (_sprintBlocked || GVAR(sprintBlocked)) then {
+    player allowSprint !_sprintBlocked;
+};
+GVAR(sprintBlocked) = _sprintBlocked;
 GVAR(toxicAscendTimeout) = _state getOrDefault ["toxicAscendTimeout", 10];
 GVAR(noAirTimeout) = _state getOrDefault ["noAirTimeout", NO_AIR_TIMEOUT];
 GVAR(warningTextO2) = _state getOrDefault ["warningTextO2", ""];
