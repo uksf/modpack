@@ -3,7 +3,7 @@
     Author: UKSF
     Description:
         Builds a JSON catalogue of every CBA setting registered in the running game.
-        Single pass per setting: format JSON object, pair with sort key, sort, join.
+        Single pass per setting: build a HashMap keyed by sort key, sort the keys, serialise once.
         Sort: category → subCategory → settingName.
 
     Return Value:
@@ -47,7 +47,8 @@ private _valueInfoForType = {
     }
 };
 
-private _items = cba_settings_allSettings apply {
+private _settingsByKey = createHashMap;
+{
     private _name = _x;
     (cba_settings_default getVariable _name) params [
         "_defaultValue", "_settingName", "_settingType", "_settingData",
@@ -77,10 +78,11 @@ private _items = cba_settings_allSettings apply {
         ["isForced", _isForced],
         ["priority", _priority]
     ];
-    [[_cat, _sub, _name], _obj]
-};
+    _settingsByKey set [[_cat, _sub, _name], _obj];
+} forEach cba_settings_allSettings;
 
-_items sort true;
+private _sortedKeys = keys _settingsByKey;
+_sortedKeys sort true;
 
 systemTimeUTC params ["_year", "_month", "_day", "_hour", "_minute", "_second"];
 private _timestamp = format ["%1-%2-%3T%4:%5:%6Z",
@@ -96,5 +98,5 @@ toJSON createHashMapFromArray [
     ["modpackVersion", getText (configFile >> "CfgPatches" >> "uksf_main" >> "versionStr")],
     ["gameVersion", str (productVersion#2)],
     ["exportedAt", _timestamp],
-    ["settings", _items apply {_x select 1}]
+    ["settings", _sortedKeys apply {_settingsByKey get _x}]
 ]
