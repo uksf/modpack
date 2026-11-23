@@ -1,0 +1,24 @@
+{
+  "format": 1,
+  "pbo": "tt_repair.pbo",
+  "pristineSha256": "71918563be2d7b8c3f34376a1a028bc398147edc2cb50ff36b6bc832330bc6cb",
+  "description": "A deployed Tactical Tarps repair tarp makes itself an ACE repair facility, which allows full repair. UKSF wants the tarp only to raise the engineer level of players within 7.5 m by one, so it sets the UKSF ACE training-boost variable instead. The compiled .sqfc is removed so the edited SQF runs.",
+  "assets": [
+    {
+      "path": "functions\\fnc_addActions.sqf",
+      "sha256": "7c87ac1cd041f124e5e80bf6253892826bd14685e380325d3d4ae328d5d2bde9",
+      "ops": [
+        {
+          "op": "text-replace",
+          "find": "_object setVariable [\"ACE_isRepairFacility\", true, true];",
+          "replace": "_object setVariable [\"ace_repair_boostsTraining\", true, true];"
+        }
+      ]
+    },
+    {
+      "path": "functions\\fnc_addActions.sqfc",
+      "sha256": "770cfd102b268060c13fe01c5cafb90b1333128a0a8ffce07e4a70474bc404ca",
+      "remove": true
+    }
+  ]
+}
