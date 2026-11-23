@@ -1,0 +1,45 @@
+{
+  "format": 1,
+  "pbo": "BJ_Strobes.pbo",
+  "pristineSha256": "3252bac6fbe0c951fb553aa7c310569c074a009dae02ec7c0de913a7e0473f70",
+  "description": "BJ Strobes draws every visible personal beacon at intensity 50, so red shows at about a third of green's brightness and blue at about a tenth, and raising intensity alone saturates well below green. Give each colour its own light colour and intensity so red and blue match green at 20 m and 80 m while keeping their hue, and add yellow, orange, purple, and cyan for team identification (modpack issue #1224). Values were measured in-engine on helmet beacons at night. Remove this manifest when BJ Strobes balances its colours.",
+  "assets": [
+    {
+      "path": "functions\\fnc_computeProgram.sqf",
+      "sha256": "820dc44974625147f167d2e449dd45b4941958e82e3626cb17ce2475f8bfa2ea",
+      "ops": [
+        {
+          "op": "text-replace",
+          "find": "private _visColor = [[0,1,0], [1,0,0], [0,0,1]] select (SETTING(color));",
+          "replace": "([[[0,1,0],50], [[1,0.12,0.12],250], [[0,0.15,1],500], [[1,0.85,0],50], [[1,0.45,0],150], [[0.8,0.15,1],250], [[0,1,1],50]] select (SETTING(color))) params [\"_visColor\", \"_visIntensity\"];"
+        },
+        {
+          "op": "text-replace",
+          "find": "exitWith {[false, _visColor, 0.3, false, 50, 0, 0.1, 0.35, []]};",
+          "replace": "exitWith {[false, _visColor, 0.3, false, _visIntensity, 0, 0.1, 0.35, []]};"
+        },
+        {
+          "op": "text-replace",
+          "find": "[false, _visColor, 0.3, true, 50, 0, 0.1, 0.35, []]",
+          "replace": "[false, _visColor, 0.3, true, _visIntensity, 0, 0.1, 0.35, []]"
+        },
+        {
+          "op": "text-replace",
+          "find": "[false, _visColor, 0.3, false, 50, 0, 0.1, 0.35, [], false]",
+          "replace": "[false, _visColor, 0.3, false, _visIntensity, 0, 0.1, 0.35, [], false]"
+        }
+      ]
+    },
+    {
+      "path": "settings.inc",
+      "sha256": "aec0db975d3fc0a32f199e9a9f0e3ec1c607746e31e12c0cefdf3ec368a143a8",
+      "ops": [
+        {
+          "op": "text-replace",
+          "find": "[[0,1,2],[\"Green\",\"Red\",\"Blue\"],0]",
+          "replace": "[[0,1,2,3,4,5,6],[\"Green\",\"Red\",\"Blue\",\"Yellow\",\"Orange\",\"Purple\",\"Cyan\"],0]"
+        }
+      ]
+    }
+  ]
+}
