@@ -1,0 +1,30 @@
+{
+  "format": 1,
+  "pbo": "A3TI.pbo",
+  "pristineSha256": "96c8c641cbd334cb0803125c8ae7fc64892f9e6f74daecb0a6bc4a4ee2b83099",
+  "description": "A3TI finds the player's UAV seat with (UAVControl _uav) find player (or find _unit) and reads the next element as the role, in fn_getCurrentControlledUnit and fn_getPlayerTurret. A player who is connected to a UAV but not in control of it is not in that array, so find returns -1, the role read returns the first controller object, and toLower throws 'Type Object, expected String' every frame. Treat a missing player as no UAV seat so the function falls back to the player or Zeus unit. Remove this manifest when A3TI guards the lookup.",
+  "assets": [
+    {
+      "path": "fn_getCurrentControlledUnit.sqf",
+      "sha256": "d177c49a207a1ebb19a0fef1ea27307fd7c4550ee598f05f84522f37b2c742dc",
+      "ops": [
+        {
+          "op": "text-replace",
+          "find": "_uavPos = (UAVControl _uav) select (_playerControl + 1);",
+          "replace": "_uavPos = if (_playerControl < 0) then {\"\"} else {(UAVControl _uav) select (_playerControl + 1)};"
+        }
+      ]
+    },
+    {
+      "path": "fn_getPlayerTurret.sqf",
+      "sha256": "4994124ca7f1677d2433d573a0612420c9d237cec4a98dfd363ab09cacfcbb3e",
+      "ops": [
+        {
+          "op": "text-replace",
+          "find": "_uavPos = (UAVControl _uav) select (_playerControl + 1);",
+          "replace": "_uavPos = if (_playerControl < 0) then {\"\"} else {(UAVControl _uav) select (_playerControl + 1)};"
+        }
+      ]
+    }
+  ]
+}
