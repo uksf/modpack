@@ -78,7 +78,7 @@ if (_saved isNotEqualTo [] && {(_saved select 0) isEqualTo _path}) then {
         };
         private _eye = AGLToASL (positionCameraToWorld [0, 0, 0]);
         private _view = _eye vectorFromTo AGLToASL (positionCameraToWorld [0, 0, 1000]);
-        private _aligned = cameraOn isEqualTo _uav && {(_view vectorDotProduct (_eye vectorFromTo _aim)) > ALIGNED_DOT};
+        private _aligned = cameraOn isEqualTo _uav && {cameraView isEqualTo "GUNNER"} && {(_view vectorDotProduct (_eye vectorFromTo _aim)) > ALIGNED_DOT};
         if (_aligned || {CBA_missionTime - _start > HOLD_TIMEOUT}) exitWith { call GVAR(uavLookEndRestore) };
         _uav lockCameraTo [_aim, _path, true];
     }, 0, [_uav, _seat, _path, _saved, CBA_missionTime]] call CBA_fnc_addPerFrameHandler;
@@ -90,7 +90,7 @@ GVAR(uavLookPFH) = [{
     _args params ["_uav", "_seat", "_path"];
     if (isNull _uav || {isNull _seat}) exitWith { call GVAR(uavLookStop) };
     if (_uav getVariable [QGVAR(uavLookHold), false]) exitWith {};
-    if (cameraOn isNotEqualTo _uav || {visibleMap}) exitWith {};
+    if (cameraOn isNotEqualTo _uav || {cameraView isNotEqualTo "GUNNER"} || {visibleMap}) exitWith {};
     private _from = AGLToASL (positionCameraToWorld [0, 0, 0]);
     private _to = AGLToASL (positionCameraToWorld [0, 0, 4000]);
     private _dir = _from vectorFromTo _to;
