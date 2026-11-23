@@ -4,10 +4,11 @@
         Tim Beswick
 
     Description:
-        Saves the UAV gunner look target while the player holds gunner control,
-        and restores it when gunner control is taken again. The camera stays locked
-        on the saved target until the turret points within ALIGNED_DOT of it, or
-        HOLD_TIMEOUT seconds pass, because the turret slews at a limited speed.
+        Saves the UAV gunner view and camera lock while the player looks through
+        the gunner camera, and restores them when gunner control is taken again.
+        A saved camera lock is restored as a lock. A free view is held on its saved
+        target until the camera points within ALIGNED_DOT of it, or HOLD_TIMEOUT
+        seconds pass, because the turret slews at a limited speed.
 
     Parameters:
         0: UAV <OBJECT>
@@ -61,6 +62,10 @@ GVAR(uavLookSession) = [_uav, _seat, _path];
 
 private _saved = _uav getVariable [QGVAR(uavLook), []];
 if (_saved isNotEqualTo [] && {(_saved select 0) isEqualTo _path}) then {
+    _saved params ["", "", "", "", "_lock"];
+    if (!isNil "_lock") exitWith {
+        _uav lockCameraTo [_lock, _path, false];
+    };
     _uav setVariable [QGVAR(uavLookHold), true];
     private _handle = [{
         params ["_args"];
@@ -71,13 +76,11 @@ if (_saved isNotEqualTo [] && {(_saved select 0) isEqualTo _path}) then {
         if (!_surface) then {
             _aim = (getPosASL _uav) vectorAdd ((_uav vectorModelToWorldVisual _modelDir) vectorMultiply 1000);
         };
-        private _weapon = _uav currentWeaponTurret _path;
-        private _aligned = _weapon != "" && {((_uav weaponDirection _weapon) vectorDotProduct ((getPosASL _uav) vectorFromTo _aim)) > ALIGNED_DOT};
+        private _eye = AGLToASL (positionCameraToWorld [0, 0, 0]);
+        private _view = _eye vectorFromTo AGLToASL (positionCameraToWorld [0, 0, 1000]);
+        private _aligned = cameraOn isEqualTo _uav && {(_view vectorDotProduct (_eye vectorFromTo _aim)) > ALIGNED_DOT};
         if (_aligned || {CBA_missionTime - _start > HOLD_TIMEOUT}) exitWith { call GVAR(uavLookEndRestore) };
         _uav lockCameraTo [_aim, _path, true];
-        if (hasPilotCamera _uav) then {
-            _uav setPilotCameraTarget ASLToAGL _aim;
-        };
     }, 0, [_uav, _seat, _path, _saved, CBA_missionTime]] call CBA_fnc_addPerFrameHandler;
     GVAR(uavLookRestore) = [_handle, _uav, _path];
 };
@@ -87,14 +90,12 @@ GVAR(uavLookPFH) = [{
     _args params ["_uav", "_seat", "_path"];
     if (isNull _uav || {isNull _seat}) exitWith { call GVAR(uavLookStop) };
     if (_uav getVariable [QGVAR(uavLookHold), false]) exitWith {};
-    private _weapon = _uav currentWeaponTurret _path;
-    if (_weapon == "") exitWith {};
-    private _dir = _uav weaponDirection _weapon;
-    if (_dir isEqualTo [0, 0, 0]) exitWith {};
-    private _from = getPosASL _uav;
-    private _to = _from vectorAdd (_dir vectorMultiply 4000);
+    if (cameraOn isNotEqualTo _uav || {visibleMap}) exitWith {};
+    private _from = AGLToASL (positionCameraToWorld [0, 0, 0]);
+    private _to = AGLToASL (positionCameraToWorld [0, 0, 4000]);
+    private _dir = _from vectorFromTo _to;
     private _hits = lineIntersectsSurfaces [_from, _to, _uav, _seat, true, 1, "VIEW", "NONE"];
     private _surface = _hits isNotEqualTo [];
     private _asl = if (_surface) then { _hits select 0 select 0 } else { _to };
-    _uav setVariable [QGVAR(uavLook), [_path, _surface, _asl, _uav vectorWorldToModel _dir]];
+    _uav setVariable [QGVAR(uavLook), [_path, _surface, _asl, _uav vectorWorldToModel _dir, _uav lockedCameraTo _path]];
 }, 0.1, [_uav, _seat, _path]] call CBA_fnc_addPerFrameHandler;
