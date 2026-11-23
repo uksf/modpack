@@ -9,7 +9,9 @@ class CfgPatches {
         requiredAddons[] = {
             "uksf_common",
             "acre_sys_mpu5",
-            "comspec_atak_native_main"
+            "comspec_atak_native_main",
+            "comspec_overwatch_main",
+            "zen_context_menu"
         };
         skipWhenMissingDependencies = 1;
         author = QUOTE(UKSF);
@@ -19,10 +21,17 @@ class CfgPatches {
     };
 };
 
+class Extended_PreStart_EventHandlers {
+    class ADDON {
+        init = QUOTE(call COMPILE_FILE(XEH_preStart));
+    };
+};
+
 class Extended_PostInit_EventHandlers {
     class ADDON {
         clientInit = QUOTE(call COMPILE_FILE(XEH_postInitClient));
     };
 };
 
+#include "CfgComspec.hpp"
 #include "CfgWeapons.hpp"
