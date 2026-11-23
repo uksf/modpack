@@ -14,17 +14,21 @@ GVAR(turretCompartmentHash) = createHashMap;
 [QGVAR(addSmokeMagazine), {
     params ["_vehicle", "_magazine", "_path", "_count"];
     if (isNull _vehicle) exitWith {};
-    private _missing = _count;
-    if (_vehicle turretLocal _path) then {
-        private _before = {(_x select 0) isEqualTo _magazine && {(_x select 1) isEqualTo _path}} count magazinesAllTurrets [_vehicle, true];
-        for "_i" from 1 to _count do {_vehicle addMagazineTurret [_magazine, _path]};
-        private _after = {(_x select 0) isEqualTo _magazine && {(_x select 1) isEqualTo _path}} count magazinesAllTurrets [_vehicle, true];
-        _missing = _count - ((_after - _before) max 0);
-    };
-    if (_missing > 0) then {
+    if !(_vehicle turretLocal _path) exitWith {
         private _holder = createVehicle ["GroundWeaponHolder", getPosATL _vehicle, [], 0, "CAN_COLLIDE"];
-        _holder addMagazineCargoGlobal [_magazine, _missing];
+        _holder addMagazineCargoGlobal [_magazine, _count];
     };
+    private _weapons = (_vehicle weaponsTurret _path) select {_magazine in compatibleMagazines _x};
+    private _ready = if (_weapons isEqualTo []) then {0} else {(weaponState [_vehicle, _path, _weapons select 0]) select 4};
+    if (_ready > 0) exitWith {
+        for "_i" from 1 to _count do {_vehicle addMagazineTurret [_magazine, _path]};
+    };
+    private _kept = (magazinesAllTurrets [_vehicle, true]) select {
+        (_x select 0) isEqualTo _magazine && {(_x select 1) isEqualTo _path} && {(_x select 2) > 0}
+    } apply {_x select 2};
+    _vehicle removeMagazinesTurret [_magazine, _path];
+    for "_i" from 1 to _count do {_vehicle addMagazineTurret [_magazine, _path]};
+    {_vehicle addMagazineTurret [_magazine, _path, _x]} forEach _kept;
 }] call CBA_fnc_addEventHandler;
 [QGVAR(smokeReloadResult), {params ["_message"]; hint _message}] call CBA_fnc_addEventHandler;
 

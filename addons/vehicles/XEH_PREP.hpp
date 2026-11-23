@@ -1,5 +1,6 @@
 PREP(reloadSmoke);
 PREP(uavLook);
+PREP(addSmokeReloadActions);
 PREP(addSpotlightActions);
 PREP(addSwapDriverActions);
 PREP(cameraOverlayVehicle);

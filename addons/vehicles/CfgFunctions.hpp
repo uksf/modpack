@@ -4,9 +4,6 @@ class CfgFunctions {
             class resupply_ammo {
                 file = QPATHTOF(functions\fnc_3cb_reloadTurret.sqf);
             };
-            class can_resupply_ammo {
-                file = QPATHTOF(functions\fnc_3cb_canResupplyAmmo.sqf);
-            };
         };
     };
 };

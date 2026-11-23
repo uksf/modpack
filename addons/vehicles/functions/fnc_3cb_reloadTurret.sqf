@@ -4,8 +4,7 @@
         www.3commandobrigade.com, Tim Beswick
 
     Description:
-        Resupply the current weapon from vehicle magazine cargo, and smoke launchers
-        from vehicle magazine cargo, an ACE-loaded crate, or a nearby R crate.
+        Resupply the current weapon from vehicle magazine cargo.
 
     Parameters:
         0: Vehicle <OBJECT>
@@ -25,7 +24,7 @@ if (!alive _unit || {!alive _vehicle} || {_vehicle isKindOf "StaticWeapon"} || {
     false
 };
 
-private _gunReloaded = call {
+call {
     if ((
             (_vehicle isKindOf "UK3CB_BAF_Panther_Base") ||
             {_vehicle isKindOf "UK3CB_BAF_FV432_Mk3_RWS_Sand"}
@@ -91,6 +90,3 @@ private _gunReloaded = call {
 
     true
 };
-
-private _smokeReloaded = [_vehicle, true, _unit, _gunReloaded] call FUNC(reloadSmoke);
-_gunReloaded || _smokeReloaded

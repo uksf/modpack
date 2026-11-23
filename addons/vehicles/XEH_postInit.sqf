@@ -19,6 +19,7 @@ if (hasInterface) then {
     GVAR(uavLookRestore) = [];
     GVAR(uavLookSession) = [];
     ["ACE_controlledUAV", FUNC(uavLook)] call CBA_fnc_addEventHandler;
+    call FUNC(addSmokeReloadActions);
     call FUNC(addSpotlightActions);
     call FUNC(addSwapDriverActions);
     call FUNC(initCameraOverlay);
