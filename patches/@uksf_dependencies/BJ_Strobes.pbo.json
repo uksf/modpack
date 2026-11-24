@@ -2,7 +2,7 @@
   "format": 1,
   "pbo": "BJ_Strobes.pbo",
   "pristineSha256": "3252bac6fbe0c951fb553aa7c310569c074a009dae02ec7c0de913a7e0473f70",
-  "description": "BJ Strobes draws every visible personal beacon at intensity 50, so red shows at about a third of green's brightness and blue at about a tenth, and raising intensity alone saturates well below green. Give each colour its own light colour and intensity so red and blue match green at 20 m and 80 m while keeping their hue, and add yellow, orange, purple, and cyan for team identification (modpack issue #1224). Values were measured in-engine on helmet beacons at night. Remove this manifest when BJ Strobes balances its colours.",
+  "description": "BJ Strobes draws every visible personal beacon at intensity 50, so red shows at about a third of green's brightness and blue at about a tenth, and raising intensity alone saturates well below green. Give each colour its own light colour and intensity so red and blue match green at 20 m and 80 m while keeping their hue, and add yellow, orange, purple, and cyan for team identification (modpack issue #1224). Values were measured in-engine on helmet beacons at night. Remove this manifest when BJ Strobes balances its colours. Also fix two script errors logged on every beacon toggle: isNil str _pfh evaluates an undefined handler variable, and private _obj; declares a variable without a value.",
   "assets": [
     {
       "path": "functions\\fnc_computeProgram.sqf",
@@ -38,6 +38,50 @@
           "op": "text-replace",
           "find": "[[0,1,2],[\"Green\",\"Red\",\"Blue\"],0]",
           "replace": "[[0,1,2,3,4,5,6],[\"Green\",\"Red\",\"Blue\",\"Yellow\",\"Orange\",\"Purple\",\"Cyan\"],0]"
+        }
+      ]
+    },
+    {
+      "path": "functions\\fnc_localDisable.sqf",
+      "sha256": "b9274373f0a74a6d5a9989d15fdc303826f6885891c96a1dd0b8ef9e684160d4",
+      "ops": [
+        {
+          "op": "text-replace",
+          "find": "if not isNil str _pfh then",
+          "replace": "if (!isNil \"_pfh\") then"
+        }
+      ]
+    },
+    {
+      "path": "functions\\fnc_localDisableRailLink.sqf",
+      "sha256": "bb0f5fe609d34c57d2610732fa2a86bc1a2cab213fa51547e38c5da24bbc490f",
+      "ops": [
+        {
+          "op": "text-replace",
+          "find": "if not isNil str _pfh then",
+          "replace": "if (!isNil \"_pfh\") then"
+        }
+      ]
+    },
+    {
+      "path": "functions\\fnc_localEnable.sqf",
+      "sha256": "8fba4e2aa91b41b076aa82c5dad1fd7cd992599b20298482948d3d558c26d6c9",
+      "ops": [
+        {
+          "op": "text-replace",
+          "find": "private _obj;",
+          "replace": "private _obj = objNull;"
+        }
+      ]
+    },
+    {
+      "path": "functions\\fnc_localEnableRailLink.sqf",
+      "sha256": "d537d0ce733a11df17a2d32603e35024f4b0d96d508e149ccbaa004951f7aecc",
+      "ops": [
+        {
+          "op": "text-replace",
+          "find": "private _obj;",
+          "replace": "private _obj = objNull;"
         }
       ]
     }
