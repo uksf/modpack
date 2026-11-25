@@ -11,6 +11,7 @@ class CfgPatches {
             "acre_sys_mpu5",
             "comspec_atak_native_main",
             "comspec_overwatch_main",
+            "comspec_overwatch_connect",
             "zen_context_menu"
         };
         skipWhenMissingDependencies = 1;
@@ -34,4 +35,5 @@ class Extended_PostInit_EventHandlers {
 };
 
 #include "CfgComspec.hpp"
+#include "CfgEnglish.hpp"
 #include "CfgWeapons.hpp"

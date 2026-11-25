@@ -1,0 +1,40 @@
+{
+  "format": 1,
+  "pbo": "main.pbo",
+  "pristineSha256": "a1b2245ca16d3a5ecbc61351a6fbeec3a61de324f64d1950973cf3d4461224d1",
+  "description": "Modern ATAK's FRS app draws its Header panel handle as one letter per line, so the English dictionary cannot translate the French word ENTETE. The handle uses the letters of HEADER instead. The default TOC post callsign changes from the Athena brand OVERWATCH to ZERO. The finds are ASCII-only because the original letter list contains an accented character.",
+  "assets": [
+    {
+      "path": "functions\\pages\\fn_pageFrs.sqf",
+      "sha256": "93a2e52dc5776d84a4e09c69d8bb34b1b6154942830a026e2f3f234793156fd9",
+      "ops": [
+        {
+          "op": "text-replace",
+          "find": "select _headOn, [\"E\", \"N\", \"T\", ",
+          "replace": "select _headOn, [[\"H\", \"E\", \"A\", \"D\", \"E\", \"R\"], [\"E\", \"N\", \"T\", "
+        },
+        {
+          "op": "text-replace",
+          "find": "\"T\", \"E\"], { [\"head\"]",
+          "replace": "\"T\", \"E\"]] select 0, { [\"head\"]"
+        }
+      ]
+    },
+    {
+      "path": "functions\\core\\fn_localCfg.sqf",
+      "sha256": "ef99ebf6b835904a5ed646741393e6103b675d922e1e44301385e6d0a856f289",
+      "ops": [
+        {
+          "op": "text-replace",
+          "find": "[\"callsign\", \"OVERWATCH\"]]]",
+          "replace": "[\"callsign\", \"ZERO\"]]]"
+        },
+        {
+          "op": "text-replace",
+          "find": "\"callsign\"] call _str, \"OVERWATCH\"] select",
+          "replace": "\"callsign\"] call _str, \"ZERO\"] select"
+        }
+      ]
+    }
+  ]
+}

@@ -12,6 +12,11 @@ class COMSPEC_ATAK_Apps {
 };
 
 class Extended_DisplayLoad_EventHandlers {
+    class RscDisplayMain { comspec_overwatch_connect = ""; };
+    class RscDisplayAttributesMan { ADDON = QUOTE(_this call COMPILE_FILE(XEH_attributesLoad)); };
+    class RscDisplayAttributesVehicle { ADDON = QUOTE(_this call COMPILE_FILE(XEH_attributesLoad)); };
+    class RscDisplayAttributesVehicleEmpty { ADDON = QUOTE(_this call COMPILE_FILE(XEH_attributesLoad)); };
+    class RscDisplayAttributesGroup { ADDON = QUOTE(_this call COMPILE_FILE(XEH_attributesLoad)); };
     class RscDisplayInterrupt { comspec_atak_native_athenacfg = ""; };
     class RscDisplayMPInterrupt { comspec_atak_native_athenacfg = ""; };
     class RscDisplayStart {

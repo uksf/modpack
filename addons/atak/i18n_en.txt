@@ -192,5 +192,21 @@
     ["Donne une direction approximative vers les émetteurs actifs d'un canal.", "Gives an approximate bearing to active transmitters on a channel."],
     ["RÉSEAU", "NETWORK"],
     ["État du réseau, relais et météo", "Network, relay and weather status"],
-    ["aucune identité SSE", "no SSE identity"]
+    ["aucune identité SSE", "no SSE identity"],
+    ["Arbre ORBAT : formation, groupe, équipe, membres", "ORBAT tree: formation, group, team, members"],
+    ["ENTÊTE", "HEADER"],
+    ["Entête", "Header"],
+    ["Le jeu s'est arrêté pendant le chargement d'une caméra. Les flux restent coupés tant que vous ne les réactivez pas.", "The game stopped while a camera was loading. Feeds stay off until you turn them back on."],
+    ["Zone d'intérêt", "Named area of interest"],
+    ["OPS NON CLASSÉ", "OPS UNFILED"],
+    ["%1 dans le groupe", "%1 in the case"],
+    ["%1 DANS LE GROUPE", "%1 IN THE CASE"],
+    ["Android (système) : %1 Mo", "Android (system): %1 MB"],
+    ["Services COMSPEC (réseau, BFT) : %1 Mo", "COMSPEC services (network, BFT): %1 MB"],
+    ["App au premier plan (%1) : %2 Mo", "Foreground app (%1): %2 MB"],
+    ["%1 app(s) en arrière-plan : %2 Mo", "%1 background app(s): %2 MB"],
+    ["pas de réponse d'Athena", "no TOC response"],
+    ["✗ pas de réponse d'Athena", "✗ no TOC response"],
+    ["coupure : pas de réponse d'Athena", "cut: no TOC response"],
+    ["OVERWATCH", "NETWORK"]
 ]
