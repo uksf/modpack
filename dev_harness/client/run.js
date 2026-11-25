@@ -12,8 +12,9 @@ const RPTS = path.join(process.env.LOCALAPPDATA, 'Arma 3');
 const args = process.argv.slice(2);
 const opt = (k, d) => { const i = args.indexOf(k); return i >= 0 ? args[i + 1] : d; };
 const test = args[0];
-if (!test || test.startsWith('--')) { console.error('usage: run.js <test.sqf> [--mods <file|preset>] [--world VR] [--timeout 240] [--out <dir>] [--sheet] [--keep] [--allow-focus] [--sound]'); process.exit(2); }
+if (!test || test.startsWith('--')) { console.error('usage: run.js <test.sqf> [--mods <file|preset>] [--world VR] [--timeout 240] [--out <dir>] [--sheet] [--keep] [--allow-focus] [--sound] [--settings <cba_settings.sqf>]'); process.exit(2); }
 const world = opt('--world', 'VR');
+const settings = opt('--settings', '');
 const timeout = +opt('--timeout', 240) * 1000;
 const out = path.resolve(opt('--out', path.join(path.dirname(path.resolve(test)), 'shots')));
 const mods = loadMods(opt('--mods', 'vanilla'));
@@ -56,7 +57,8 @@ const findRpt = (since, tag) => fs.readdirSync(RPTS).filter(f => /^arma3_x64_.*\
   const sqm = fs.readFileSync(path.join(dir, 'mission.sqm'), 'utf8');
   const files = [
     [`${mission}\\mission.sqm`, Buffer.from(sqm)],
-    [`${mission}\\description.ext`, fs.readFileSync(path.join(dir, 'description.ext'))],
+    [`${mission}\\description.ext`, Buffer.concat([fs.readFileSync(path.join(dir, 'description.ext')), Buffer.from(settings ? '\r\ncba_settings_hasSettingsFile = 1;\r\n' : '')])],
+    ...(settings ? [[`${mission}\\cba_settings.sqf`, fs.readFileSync(settings)]] : []),
     [`${mission}\\init.sqf`, Buffer.concat([Buffer.from(`vc_runId = "${runId}";\r\n`), fs.readFileSync(path.join(dir, 'init.sqf'))])],
     [`${mission}\\test.sqf`, fs.readFileSync(test)],
   ];

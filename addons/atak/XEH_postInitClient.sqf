@@ -1,5 +1,7 @@
 #include "script_component.hpp"
 
+if (isNil "COMSPEC_ArsenalOverlayEH") then { COMSPEC_ArsenalOverlayEH = -1 };
+
 ["acre_sys_mpu5_openGui", {
     ["WAVERELAY"] call comspec_atak_native_fnc_openApp;
 }] call CBA_fnc_addEventHandler;

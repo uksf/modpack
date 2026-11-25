@@ -179,5 +179,18 @@
     ["texte coupé (%1, %2 > %3)", "clipped text (%1, %2 > %3)"],
     ["Découpage", "Layout"],
     ["Fréquence vers groupe", "Frequency to group"],
-    ["Goniomètre portable (ATAK)", "Portable direction finder (ATAK)"]
+    ["Goniomètre portable (ATAK)", "Portable direction finder (ATAK)"],
+    ["inconnu des fichiers", "not on file"],
+    ["papier annulé", "document cancelled"],
+    ["papier volé ou perdu", "document stolen or lost"],
+    ["papier expiré", "document expired"],
+    [", né(e) le %1", ", born %1"],
+    [", expire le %1", ", expires %1"],
+    ["!véhicule détruit", "!vehicle destroyed"],
+    ["status éteint", "status off"],
+    ["status brouillé", "status jammed"],
+    ["Donne une direction approximative vers les émetteurs actifs d'un canal.", "Gives an approximate bearing to active transmitters on a channel."],
+    ["RÉSEAU", "NETWORK"],
+    ["État du réseau, relais et météo", "Network, relay and weather status"],
+    ["aucune identité SSE", "no SSE identity"]
 ]
