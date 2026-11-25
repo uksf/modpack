@@ -2,7 +2,7 @@
   "format": 1,
   "pbo": "a400m.pbo",
   "pristineSha256": "ae372680a045fc10aee0fe94d0aea60281318b62eda3471b26492caca069348d",
-  "description": "Airbus A400M. The cargo ramp, toe and upper door use separate animation sources so half-open is the in-flight pose and fully open is the ground-loading pose. The toe hinge is moved to the ramp floor. A roadway LOD holds the ramp, cabin floor, flight-deck stairs and flight deck. Driver, gunner and cargo get-in points are separate, and the cargo points are weighted to the ramp. The fire-geometry wing, fin and tailplane components are replaced by their convex hulls, because rounds passed through the originals. The hit-points LOD places points inside the fire geometry for the hull, four engines, avionics, fuel, glass and the control surfaces.",
+  "description": "Airbus A400M. The cargo ramp, toe and upper door use separate animation sources so half-open is the in-flight pose and fully open is the ground-loading pose. The toe hinge is moved to the ramp floor. A roadway LOD holds the ramp, cabin floor, flight-deck stairs and flight deck. Driver and gunner get-in points sit on the cabin floor inside the crew door. The ramp cargo point is weighted to the ramp, and two more cargo points sit on the cabin floor. The fire-geometry wing, fin and tailplane components are replaced by their convex hulls, because rounds passed through the originals. The hit-points LOD places points inside the fire geometry for the hull, four engines, avionics, fuel, glass and the control surfaces.",
   "assets": [
     {
       "path": "A400M_F.p3d",
@@ -39,22 +39,22 @@
         {
           "op": "isolate-memory-selection",
           "name": "pos driver",
-          "position": [2.15, 1.05, -7.85]
+          "position": [1.5, 1.85, -7.85]
         },
         {
           "op": "isolate-memory-selection",
           "name": "pos driver dir",
-          "position": [1.7, 1.05, -7.85]
+          "position": [1.0, 1.85, -7.85]
         },
         {
           "op": "isolate-memory-selection",
           "name": "pos gunner",
-          "position": [2.15, 1.05, -7.35]
+          "position": [1.5, 1.85, -7.35]
         },
         {
           "op": "isolate-memory-selection",
           "name": "pos gunner dir",
-          "position": [1.7, 1.05, -7.35]
+          "position": [1.0, 1.85, -7.35]
         },
         {
           "op": "isolate-memory-selection",
@@ -67,6 +67,34 @@
           "name": "pos cargo dir",
           "position": [0, 3.47, 15.343],
           "bone": "ramp_bottom"
+        },
+        {
+          "op": "add-points",
+          "lod": "memory",
+          "name": "pos cargo aft",
+          "points": 1,
+          "positions": [[0, 1.95, 6]]
+        },
+        {
+          "op": "add-points",
+          "lod": "memory",
+          "name": "pos cargo aft dir",
+          "points": 1,
+          "positions": [[0, 1.95, 5]]
+        },
+        {
+          "op": "add-points",
+          "lod": "memory",
+          "name": "pos cargo fwd",
+          "points": 1,
+          "positions": [[0, 1.85, -3]]
+        },
+        {
+          "op": "add-points",
+          "lod": "memory",
+          "name": "pos cargo fwd dir",
+          "points": 1,
+          "positions": [[0, 1.85, -4]]
         },
         {
           "op": "convex-hull-component",
