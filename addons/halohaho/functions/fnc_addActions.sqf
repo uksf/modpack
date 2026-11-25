@@ -38,5 +38,5 @@ private _fnc_children = {
     _actions
 };
 
-private _action = [QGVAR(halohaho), "HALO/HAHO", "", {}, {isPlayer _player && goggles _player == HALOHAHO_MASK}, _fnc_children] call ace_interact_menu_fnc_createAction;
+private _action = [QGVAR(halohaho), "HALO/HAHO", "", {}, {isPlayer _player && {goggles _player == HALOHAHO_MASK || GVAR(oxygenConnected)}}, _fnc_children] call ace_interact_menu_fnc_createAction;
 ["CAManBase", 1, ["ACE_SelfActions"], _action, true] call ace_interact_menu_fnc_addActionToClass;

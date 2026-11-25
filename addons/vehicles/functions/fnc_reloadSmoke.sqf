@@ -28,7 +28,7 @@ if (_apply && {!isServer}) exitWith {
     false
 };
 if (_apply && {_vehicle getVariable [QGVAR(smokeBusy), false]}) exitWith {
-    if (!isNull _unit) then {[QGVAR(smokeReloadResult), ["Reload in progress"], _unit] call CBA_fnc_targetEvent};
+    if (!isNull _unit) then {[QGVAR(smokeReloadResult), ["Already reloading"], _unit] call CBA_fnc_targetEvent};
     false
 };
 
@@ -110,7 +110,7 @@ if (_did) then {
     } forEach _grants;
 };
 if (!isNull _unit) then {
-    private _message = ["No smoke ammunition found within 10 metres.", "Smoke launchers refilled. An empty launcher is ready in 60 seconds while its gunner seat is manned."] select _did;
+    private _message = ["No smoke ammunition nearby", "Smoke launchers refilled"] select _did;
     [QGVAR(smokeReloadResult), [_message], _unit] call CBA_fnc_targetEvent;
 };
 false

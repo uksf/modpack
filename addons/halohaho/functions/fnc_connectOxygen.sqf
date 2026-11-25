@@ -28,7 +28,7 @@ _unit removeItem QGVAR(airSupply);
 [{
     params ["_unit", "_generation"];
     if (GVAR(oxygenConnected) && {GVAR(oxygenGeneration) == _generation} && {alive _unit} && {_unit isEqualTo player}) then {
-        GVAR(oxygenSound) = playSoundUI [QPATHTOF(data\sounds\breatheOxygenLoop.ogg), 0.15, 1, false, 0, true];
+        GVAR(oxygenSound) = playSoundUI [QPATHTOF(data\sounds\breatheOxygenLoop.ogg), 0.06, 1, false, 0, true];
     };
 }, [_unit, _generation], 2] call CBA_fnc_waitAndExecute;
 

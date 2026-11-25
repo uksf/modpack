@@ -30,7 +30,7 @@ GVAR(turretCompartmentHash) = createHashMap;
     for "_i" from 1 to _count do {_vehicle addMagazineTurret [_magazine, _path]};
     {_vehicle addMagazineTurret [_magazine, _path, _x]} forEach _kept;
 }] call CBA_fnc_addEventHandler;
-[QGVAR(smokeReloadResult), {params ["_message"]; hint _message}] call CBA_fnc_addEventHandler;
+[QGVAR(smokeReloadResult), {params ["_message"]; _message call CBA_fnc_notify}] call CBA_fnc_addEventHandler;
 
 GVAR(spotlightVehicles) = [
     "UK3CB_BAF_Jackal_Base",
