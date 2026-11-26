@@ -145,6 +145,18 @@
           "offset": [0, 0, -1.44]
         },
         {
+          "op": "bind-selection",
+          "lod": "0",
+          "selection": "burner_fire_1_left",
+          "bone": "vrtule 0"
+        },
+        {
+          "op": "bind-selection",
+          "lod": "0",
+          "selection": "burner_fire_1_right",
+          "bone": "vrtule 1"
+        },
+        {
           "op": "translate-selection",
           "lod": "0",
           "selection": "#46",
