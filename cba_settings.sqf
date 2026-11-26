@@ -1,3 +1,4 @@
+// claude:allow-long
 // A3TI
 force force A3TI_ACE_JAVELIN = true;
 force force A3TI_ALLOW_TANK_DRIVER = false;
@@ -805,8 +806,11 @@ cba_ui_notifyLifetime = 4;
 cba_ui_StorePasswords = 1;
 
 // COMSPEC ATAK
-force force comspec_atak_native_ace_root = false; force force comspec_atak_native_local_only = true; force force comspec_atak_native_mpu_voice = false;
+force force comspec_atak_native_ace_root = false;
+force force comspec_atak_native_local_only = true;
+force force comspec_atak_native_mpu_voice = false;
 force force comspec_atak_native_zeus_centre_btn = false;
+force force comspec_overwatch_enabled = false;
 
 // CUP
 force force CUP_CheckCfgPatches = false;
