@@ -2,7 +2,7 @@
   "format": 1,
   "pbo": "leshtow.pbo",
   "pristineSha256": "4552fd2328e6674bf3ef3a9bcd1ebd21d2ea1dfc6a0c189bb8c27c080a7f76bd",
-  "description": "LESH towAction levels the towed vehicle and pushes it down whenever its model origin is more than 0.3 m above the ground. An aircraft with a tall origin and a nose-up stance, such as the Typhoon, is therefore pressed into the ground and pitched up on hook-up. Hold the pitch and height the vehicle had when the tow started, change only its heading, and rotate about the same tow pivot. Remove this manifest when LESH keeps the towed vehicle's stance.",
+  "description": "LESH towAction levels the towed vehicle and pushes it down whenever its model origin is more than 0.3 m above the ground. An aircraft with a tall origin and a nose-up stance, such as the Typhoon, is therefore pressed into the ground and pitched up on hook-up. Hold the pitch and height the vehicle had when the tow started (a new tow starts when the tug changes or the per-frame tow handler has not run for a second), change only its heading, and rotate about the same tow pivot. Remove this manifest when LESH keeps the towed vehicle's stance.",
   "assets": [
     {
       "path": "functions\\fn_towAction.sqf",
@@ -11,7 +11,7 @@
         {
           "op": "text-replace",
           "find": "_vectorDir = [(sin _direction), (cos _direction), 0];",
-          "replace": "private _hold = _target getVariable [\"LESH_rest\", [objNull, 0, 0]]; if ((_hold select 0) != _tower) then { _hold = [_tower, (vectorDir _target) select 2, (getPosATL _target) select 2]; _target setVariable [\"LESH_rest\", _hold] }; private _pitch = _hold select 1; private _flat = sqrt (1 - _pitch * _pitch); _vectorDir = [(sin _direction) * _flat, (cos _direction) * _flat, _pitch];"
+          "replace": "private _hold = _target getVariable [\"LESH_rest\", [objNull, 0, 0, -1]]; if ((_hold select 0) != _tower || {diag_tickTime - (_hold select 3) > 1}) then { _hold = [_tower, (vectorDir _target) select 2, (getPosATL _target) select 2, 0] }; _hold set [3, diag_tickTime]; _target setVariable [\"LESH_rest\", _hold]; private _pitch = _hold select 1; private _flat = sqrt (1 - _pitch * _pitch); _vectorDir = [(sin _direction) * _flat, (cos _direction) * _flat, _pitch];"
         },
         {
           "op": "text-replace",
