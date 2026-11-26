@@ -97,6 +97,34 @@
           "positions": [[0, 1.85, -4]]
         },
         {
+          "op": "add-points",
+          "lod": "memory",
+          "name": "pos cargo rear",
+          "points": 1,
+          "positions": [[0, 1.95, 11]]
+        },
+        {
+          "op": "add-points",
+          "lod": "memory",
+          "name": "pos cargo rear dir",
+          "points": 1,
+          "positions": [[0, 1.95, 10]]
+        },
+        {
+          "op": "add-points",
+          "lod": "memory",
+          "name": "pos driver door",
+          "points": 1,
+          "positions": [[3.0, 0.05, -7.85]]
+        },
+        {
+          "op": "add-points",
+          "lod": "memory",
+          "name": "pos driver door dir",
+          "points": 1,
+          "positions": [[2.4, 0.05, -7.85]]
+        },
+        {
           "op": "convex-hull-component",
           "lods": ["geometryFire"],
           "component": "component05"
