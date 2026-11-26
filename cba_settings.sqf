@@ -806,6 +806,7 @@ cba_ui_notifyLifetime = 4;
 cba_ui_StorePasswords = 1;
 
 // COMSPEC ATAK
+force force comspec_atak_native_aar = false;
 force force comspec_atak_native_ace_root = true;
 force force comspec_atak_native_local_only = true;
 force force comspec_atak_native_mpu_voice = false;

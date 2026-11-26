@@ -21,6 +21,22 @@
       ]
     },
     {
+      "path": "functions\\ui\\fn_notifMeta.sqf",
+      "sha256": "960b191822ad824f93c068af60cc346fc502b1426f1668747aeeae750aa53c7b",
+      "ops": [
+        {
+          "op": "text-replace",
+          "find": "getOrDefault [_t, _t];",
+          "replace": "getOrDefault [_t, _t]; _label = _label call comspec_atak_native_fnc_tr;"
+        },
+        {
+          "op": "text-replace",
+          "find": "if (_cut > 0 && {_cut <= 28}) then { _title = _plain select [0, _cut]; _plain = _plain select [_cut + 3]; };",
+          "replace": "private _whole = _plain call comspec_atak_native_fnc_tr; if (_whole isNotEqualTo _plain) then { _cut = _whole find \": \"; if (_cut > 0 && {_cut <= 28}) then { _title = _whole select [0, _cut]; _plain = _whole select [_cut + 2]; } else { _plain = _whole; }; } else { if (_cut > 0 && {_cut <= 28}) then { _title = _plain select [0, _cut]; _plain = _plain select [_cut + 3]; }; _plain = _plain call comspec_atak_native_fnc_tr; }; _title = _title call comspec_atak_native_fnc_tr;"
+        }
+      ]
+    },
+    {
       "path": "functions\\core\\fn_localCfg.sqf",
       "sha256": "ef99ebf6b835904a5ed646741393e6103b675d922e1e44301385e6d0a856f289",
       "ops": [

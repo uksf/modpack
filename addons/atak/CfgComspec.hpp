@@ -9,6 +9,7 @@ class COMSPEC_ATAK_Apps {
     class Music { hidden = 1; };
     class Food { hidden = 1; };
     class Dating { hidden = 1; };
+    class Aar { hidden = 1; dock = 0; };
 };
 
 class Extended_DisplayLoad_EventHandlers {
