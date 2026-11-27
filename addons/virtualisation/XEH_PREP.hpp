@@ -1,4 +1,5 @@
 PREP(addWaypoints);
+PREP(devirtualiseGroup);
 PREP(devirtualiseNearby);
 PREP(expandVehiclePath);
 PREP(getFullGroupWaypoints);

@@ -1,6 +1,10 @@
 PREP(addDiverActions);
 PREP(applyToxicEffect);
+PREP(calculateCeiling);
 PREP(calculateSaturation);
+PREP(calculateStopTime);
+PREP(clearDecompression);
+PREP(decompress);
 PREP(deserialiseState);
 PREP(effectToxicDecompression);
 PREP(effectToxicN2);
@@ -12,4 +16,6 @@ PREP(publishDataState);
 PREP(reset);
 PREP(serialiseState);
 PREP(toggleDiveComputer);
+PREP(updateDecompression);
+PREP(updateTissues);
 PREP(useCylinder);

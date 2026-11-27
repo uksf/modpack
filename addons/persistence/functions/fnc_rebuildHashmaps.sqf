@@ -4,37 +4,34 @@
         Tim Beswick
 
     Description:
-        Recursively walks an arbitrarily-nested SQF value (output of
-        parseSimpleArray) and reconstructs HashMap shape. The pair-list
-        heuristic — every element is [string, any] — converts a list to a
-        hashmap; any other list is descended into element-by-element.
-
-        Implemented as a real PREP'd function (not a private code variable)
-        so recursion through forEach/apply doesn't depend on dynamic-scope
-        access to a private symbol — see CLAUDE.md "no lexical closures".
+        Rebuilds schema-defined session, object, player and medical hashmaps from SQF transport arrays.
 
     Parameter(s):
-        0: Parsed value <ANY>
+        0: Parsed session <ARRAY>
 
     Return Value:
-        Rebuilt value with hashmap shape restored <ANY>
+        Rebuilt session <HASHMAP>
 
     Example:
         _parsed call uksf_persistence_fnc_rebuildHashmaps
 */
-private _value = _this;
-if !(_value isEqualType []) exitWith { _value };
-if (_value isEqualTo []) exitWith { _value };
-
-private _isPairList = true;
+private _session = createHashMapFromArray _this;
+_session set ["objects", (_session getOrDefault ["objects", []]) apply {createHashMapFromArray _x}];
+private _players = createHashMapFromArray (_session getOrDefault ["players", []]);
 {
-    if (!(_x isEqualType []) || {count _x != 2} || {!((_x#0) isEqualType "")}) exitWith { _isPairList = false };
-} forEach _value;
-
-if (_isPairList) exitWith {
-    private _map = createHashMap;
-    { _map set [_x#0, (_x#1) call FUNC(rebuildHashmaps)] } forEach _value;
-    _map
-};
-
-_value apply { _x call FUNC(rebuildHashmaps) }
+    private _player = createHashMapFromArray _y;
+    private _medical = _player getOrDefault ["aceMedical", []];
+    if ("aceMedical" in _player && {_medical isEqualType []}) then {
+        _medical = createHashMapFromArray _medical;
+        {
+            private _wounds = _medical getOrDefault [_x, []];
+            if (_x in _medical && {_wounds isEqualType []}) then {
+                _medical set [_x, createHashMapFromArray _wounds];
+            };
+        } forEach ["ace_medical_openWounds", "ace_medical_bandagedWounds", "ace_medical_stitchedWounds"];
+        _player set ["aceMedical", _medical];
+    };
+    _players set [_x, _player];
+} forEach _players;
+_session set ["players", _players];
+_session

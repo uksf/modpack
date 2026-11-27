@@ -6,7 +6,6 @@ if (!GVAR(enabled)) exitWith {
     INFO("Virtualisation is disabled.");
 };
 
-// TODO: Remove after extensive testing
 if (EGVAR(caching,enabled)) exitWith {
     INFO("Caching is enabled, virtualisation has been disabled.");
 };
@@ -16,9 +15,7 @@ INFO("Virtualisation is enabled.");
 call FUNC(registerDebugProviders);
 
 if (isServer) then {
-    // Virtualisation
     [{
-        // Killswitch
         if (GVAR(killswitched) || isGamePaused) exitWith {};
 
         private _groups = allGroups select {!(_x getVariable [QGVAR(excluded), false])};
@@ -40,47 +37,32 @@ if (isServer) then {
         }, 0, [_groups, _count, _perFrame, 0]] call CBA_fnc_addPerFrameHandler;
     }, DELAY, []] call CBA_fnc_addPerFrameHandler;
 
-    // Sim — chunked across SIM_INTERVAL window so debug ticks see incremental progress.
     [{
         if (GVAR(killswitched) || isGamePaused) exitWith {};
         call FUNC(simulateGroups);
     }, SIM_DELAY, []] call CBA_fnc_addPerFrameHandler;
 
-    // Recreation
     [{
-        // Killswitch
         if (GVAR(killswitched) || isGamePaused) exitWith {};
 
-        // To avoid flicker, we'll recreate groups 200m closer, but virtualise 200m further away (400m buffer zone)
         private _bufferedDistance = GVAR(distance) - 200;
 
-        private _groupIndex = GVAR(groupPositionMap) findIf {
-            private _groupPosition = _x#1;
-
-            [ALL_PLAYERS, {
-                _x distance _groupPosition <= _bufferedDistance
-                && {!((objectParent _x) isKindOf "Air")}
-            }] call EFUNC(common,arrayAny)
-        };
+        private _players = ALL_PLAYERS select {!((objectParent _x) isKindOf "Air")};
+        private _positions = GVAR(groupPositionMap) apply {_x#1};
+        private _groupIndex = -1;
+        {
+            private _player = _x;
+            private _indices = _positions inAreaArrayIndexes [getPosATL _player, _bufferedDistance, _bufferedDistance, 0, false];
+            {
+                if ((_groupIndex < 0 || {_x < _groupIndex}) && {_player distance (_positions#_x) <= _bufferedDistance}) then {
+                    _groupIndex = _x;
+                };
+            } forEach _indices;
+        } forEach _players;
 
         if (_groupIndex == -1) exitWith {};
 
-        private _id = (GVAR(groupPositionMap) deleteAt _groupIndex)#0;
-        TRACE_1("requesting recreate group",_id);
-
-        private _simulatedIndex = GVAR(simulatedGroupIds) findIf {_x == _id};
-        if (_simulatedIndex >= 0) then { GVAR(simulatedGroupIds) deleteAt _simulatedIndex };
-        GVAR(simPhases) deleteAt _id;
-
-        private _entry = GVAR(groupDataMap) deleteAt _id;
-        _entry params ["_side", "_vehicles", "_infantry", "_waypoints", "_combatMode", "_formationDirection",
-                       "_simState", "", "", "", "_originalLeaderPos"];
-
-        private _simPosition = _simState#1;
-        private _rebaseDelta = [_simPosition#0 - _originalLeaderPos#0, _simPosition#1 - _originalLeaderPos#1, 0];
-
-        private _payload = [_side, _vehicles, _infantry, _waypoints, _combatMode, _formationDirection, _rebaseDelta];
-        [QGVAR(recreateGroup), [_payload]] call EFUNC(common,headlessEvent);
+        [_groupIndex] call FUNC(devirtualiseGroup);
     }, DELAY, []] call CBA_fnc_addPerFrameHandler;
 };
 

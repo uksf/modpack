@@ -4,16 +4,23 @@
         Tim Beswick
 
     Description:
-        Shots and hits provider setup. Listens to ACE fired events to capture every
-        round fired by the local player, both on foot and in vehicles.
+        Shots and hits provider setup. Runs on every machine, because Fired is local
+        to the shooter. Listens to ACE player fired events, and to non-player vehicle
+        fired events when the vehicle is a UAV.
 
-        Each shot is recorded with weapon, ammo, magazine, fire mode, and fired position.
-        Each projectile is tagged with shotId, weapon, ammo, and fired position, then has
-        HitPart (Projectile) and HitExplosion event handlers attached.
+        The credited player is fnc_creditedShooter at the moment of firing: the
+        player on foot or in the seat, or the UAVControl role that owns the turret
+        (DRIVER for turret [-1], GUNNER otherwise). Zeus remote control is not
+        recorded, so client sync cannot stamp the curator.
 
-        When the projectile hits something, the hit event is generated on the same
-        client with accurate weapon, distance, and target data — no cross-machine
-        correlation needed. HitPart covers direct hits, HitExplosion covers splash.
+        Each shot is recorded with that player's uid, weapon, ammo, magazine, fire
+        mode, and fired position. Ammo classname is what the API buckets as munitions.
+        Each projectile is tagged with shotId, weapon, ammo, fired position, shooter
+        uid, and the firing UAV (objNull when not a UAV). HitPart and HitExplosion on that
+        projectile emit the hit on the same machine.
+
+        lastHit on the victim is sent to the server kill handler:
+        [weapon, ammo, shooterUid, mission time, firing UAV].
 
     Parameters:
         None
@@ -25,8 +32,8 @@
         call uksf_statistics_fnc_providerShots
 */
 GVAR(shotCounter) = 0;
+GVAR(shotProducer) = format ["%1_%2_%3", clientOwner, (systemTimeUTC apply {str _x}) joinString "-", floor random 1000000000];
 
-// Determines target type from an entity object
 GVAR(getTargetType) = {
     params ["_entity"];
     if (_entity isKindOf "CAManBase") exitWith {"infantry"};
@@ -35,7 +42,6 @@ GVAR(getTargetType) = {
     "unknown"
 };
 
-// Determines body part from hit components (for infantry targets)
 GVAR(getBodyPart) = {
     params ["_components"];
     private _componentsLower = _components apply {toLower _x};
@@ -45,15 +51,21 @@ GVAR(getBodyPart) = {
     "torso"
 };
 
-private _handleFired = {
+GVAR(handleFired) = {
     if (GVAR(killswitch)) exitWith {};
     params ["_unit", "_weapon", "_muzzle", "_fireMode", "_ammo", "_magazine", "_projectile"];
 
+    private _shooter = [_unit, _weapon] call FUNC(creditedShooter);
+    if (isNull _shooter) exitWith {};
+
+    private _shooterUid = getPlayerUID _shooter;
+    if (_shooterUid isEqualTo "") exitWith {};
+
     GVAR(shotCounter) = GVAR(shotCounter) + 1;
-    private _shooterUid = getPlayerUID _unit;
-    private _shotId = format ["%1_%2", _shooterUid, GVAR(shotCounter)];
+    private _shotId = format ["%1_%2_%3", _shooterUid, GVAR(shotProducer), GVAR(shotCounter)];
     private _firedPosition = getPosASL _unit;
     private _category = [_ammo] call FUNC(getAmmoCategory);
+    private _uav = [objNull, vehicle _unit] select (unitIsUAV vehicle _unit);
 
     if (!isNull _projectile) then {
         _projectile setVariable [QGVAR(shotId), _shotId];
@@ -62,8 +74,8 @@ private _handleFired = {
         _projectile setVariable [QGVAR(ammo), _ammo];
         _projectile setVariable [QGVAR(category), _category];
         _projectile setVariable [QGVAR(shooterUid), _shooterUid];
+        _projectile setVariable [QGVAR(uav), _uav];
 
-        // HitPart (Projectile) — fires on this client for direct hits on any surface
         _projectile addEventHandler ["HitPart", {
             if (GVAR(killswitch)) exitWith {};
             params ["_projectile", "_hitEntity", "_projectileOwner", "_position", "_velocity", "_normal", "_components", "_radius", "_surfaceType"];
@@ -80,6 +92,7 @@ private _handleFired = {
             private _projectileCategory = _projectile getVariable [QGVAR(category), "other"];
             private _projectileShooterUid = _projectile getVariable [QGVAR(shooterUid), ""];
             private _projectileFiredPosition = _projectile getVariable [QGVAR(firedPosition), []];
+            private _projectileUav = _projectile getVariable [QGVAR(uav), objNull];
 
             private _bodyPart = "";
             if (_targetType isEqualTo "infantry") then {
@@ -93,13 +106,11 @@ private _handleFired = {
                 _distance3D = round (_projectileFiredPosition vectorDistance _position);
             };
 
-            // Stash weapon+ammo+shooter on the hit entity so fnc_providerKills can match
-            // the killing hit to the killer via shooter UID (no recency filter needed —
-            // match is by identity). Public setVariable broadcasts to the server.
-            _hitEntity setVariable [QGVAR(lastHit), [_projectileWeapon, _projectileAmmo, _projectileShooterUid], true];
+            _hitEntity setVariable [QGVAR(lastHit), [_projectileWeapon, _projectileAmmo, _projectileShooterUid, time, _projectileUav], 2];
 
             [createHashMapFromArray [
                 ["type", "hit"],
+                ["uid", _projectileShooterUid],
                 ["shotId", _projectileShotId],
                 ["weapon", _projectileWeapon],
                 ["ammo", _projectileAmmo],
@@ -112,7 +123,6 @@ private _handleFired = {
             ]] call FUNC(addEvent);
         }];
 
-        // HitExplosion — fires on this client for splash damage
         _projectile addEventHandler ["HitExplosion", {
             if (GVAR(killswitch)) exitWith {};
             params ["_projectile", "_hitEntity", "_projectileOwner", "_hitSelections"];
@@ -129,6 +139,7 @@ private _handleFired = {
             private _projectileCategory = _projectile getVariable [QGVAR(category), "other"];
             private _projectileShooterUid = _projectile getVariable [QGVAR(shooterUid), ""];
             private _projectileFiredPosition = _projectile getVariable [QGVAR(firedPosition), []];
+            private _projectileUav = _projectile getVariable [QGVAR(uav), objNull];
 
             private _impactPosition = if (count _hitSelections > 0) then {_hitSelections#0#0} else {getPosASL _projectile};
             private _distance2D = 0;
@@ -138,10 +149,11 @@ private _handleFired = {
                 _distance3D = round (_projectileFiredPosition vectorDistance _impactPosition);
             };
 
-            _hitEntity setVariable [QGVAR(lastHit), [_projectileWeapon, _projectileAmmo, _projectileShooterUid], true];
+            _hitEntity setVariable [QGVAR(lastHit), [_projectileWeapon, _projectileAmmo, _projectileShooterUid, time, _projectileUav], 2];
 
             [createHashMapFromArray [
                 ["type", "hit"],
+                ["uid", _projectileShooterUid],
                 ["shotId", _projectileShotId],
                 ["weapon", _projectileWeapon],
                 ["ammo", _projectileAmmo],
@@ -157,6 +169,7 @@ private _handleFired = {
 
     [createHashMapFromArray [
         ["type", "shot"],
+        ["uid", _shooterUid],
         ["shotId", _shotId],
         ["weapon", _weapon],
         ["ammo", _ammo],
@@ -167,5 +180,10 @@ private _handleFired = {
     ]] call FUNC(addEvent);
 };
 
-["ace_firedPlayer", _handleFired] call CBA_fnc_addEventHandler;
-["ace_firedPlayerVehicle", _handleFired] call CBA_fnc_addEventHandler;
+["ace_firedPlayer", GVAR(handleFired)] call CBA_fnc_addEventHandler;
+["ace_firedPlayerVehicle", GVAR(handleFired)] call CBA_fnc_addEventHandler;
+["ace_firedNonPlayerVehicle", {
+    params ["_unit"];
+    if (!local _unit || {!unitIsUAV _unit}) exitWith {};
+    _this call GVAR(handleFired);
+}] call CBA_fnc_addEventHandler;

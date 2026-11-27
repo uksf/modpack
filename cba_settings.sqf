@@ -1,3 +1,4 @@
+// claude:allow-long
 // A3TI
 force force A3TI_ACE_JAVELIN = true;
 force force A3TI_ALLOW_TANK_DRIVER = false;
@@ -804,25 +805,13 @@ cba_quicktime_qteShorten = false;
 cba_ui_notifyLifetime = 4;
 cba_ui_StorePasswords = 1;
 
-// cTab
-ctab_compass_enable = true;
-ctab_core_bft_mode = 1;
-ctab_core_defMapStyle = "SAT";
-force force ctab_core_drawMainMap = false;
-ctab_core_gridPrecision = 0;
-ctab_core_helmetcam_mode = 1;
-force force ctab_core_microDagrGroupBFT = false;
-force ctab_core_sync_time = 30;
-ctab_core_uav_mode = 1;
-ctab_core_useAceMicroDagr = true;
-ctab_core_useArmaMarker = true;
-ctab_core_useMils = false;
-ctab_irl_camera_mode = 0;
-ctab_irl_connect_alwaysAllowPhotos = false;
-ctab_irl_connect_enabled = true;
-ctab_irl_connect_key = "594326";
-ctab_irl_connect_syncMap = true;
-ctab_irl_connect_uri = "https://ctab.plan-ops.fr/hub";
+// COMSPEC ATAK
+force force comspec_atak_native_aar = false;
+force force comspec_atak_native_ace_root = true;
+force force comspec_atak_native_local_only = true;
+force force comspec_atak_native_mpu_voice = false;
+force force comspec_atak_native_zeus_centre_btn = false;
+force force comspec_overwatch_enabled = false;
 
 // CUP
 force force CUP_CheckCfgPatches = false;
@@ -1224,7 +1213,7 @@ force uksf_cleanup_enabled = true;
 force uksf_common_mainOp = false;
 force uksf_curator_curatorsLocked = false;
 force uksf_curator_curatorsMax = 8;
-force uksf_diving_tissueSaturationMultiplier = 1.5;
+force uksf_diving_tissueSaturationMultiplier = 1.25;
 uksf_maptools_segmentTargetMetres = 25;
 force uksf_persistence_loadMapMarkers = false;
 force uksf_persistence_overrideSavedDateTime = false;

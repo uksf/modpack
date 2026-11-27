@@ -8,6 +8,15 @@
 ] call CBA_settings_fnc_init;
 
 [
+    QGVAR(perfLogEnabled),
+    "CHECKBOX",
+    ["Performance log", "Writes frame timing, local AI and script counts to the RPT every 10 s on the server and headless clients"],
+    ["UKSF", QUOTE(COMPONENT_BEAUTIFIED)],
+    true,
+    1
+] call CBA_settings_fnc_init;
+
+[
     "diwako_dui_main_hide_ui_by_default",
     "CHECKBOX",
     [localize "STR_dui_hide_ui_by_default", localize "STR_dui_hide_ui_by_default_desc"],

@@ -4,11 +4,12 @@
         Bridg
 
     Description:
-        Sorts the array of entities in area and works out who is more dominant - daddy.
+        Counts east and west men among the entities in the sector and stores the dominant side on the logic as a number: 0 east, 1 west, 2 no dominance.
 
     Parameters:
-        0: list of entities in the radius <ARRAY>
-        1: percentage for dominance <FLOAT>
+        0: The sector module logic <OBJECT>
+        1: List of entities in the sector <ARRAY>
+        2: Fraction by which one side must outnumber the other <NUMBER>
 
     Return value:
         Nothing
@@ -21,26 +22,20 @@ params ["_logic", "_entities", "_requiredDominance"];
 
 if !(isServer) exitWith {};
 
-// get all the men
-private _men = _entities select {_x isKindOf "Man"} apply {[_x, side _x]}; // [object, side]
-
-// work out their side
-// private _menBluFor = _men select {_x#1 isEqualTo WEST};
-
+private _men = _entities select {_x isKindOf "Man"} apply {[_x, side _x]};
 private _opforMenCount = {_x#1 isEqualTo east} count _men;
 private _bluforMenCount = {_x#1 isEqualTo west} count _men;
 
-// get sector owner
-private _currentOwner = _logic getVariable [QGVAR(currentOwner), 2]; // 2 = No one
+_logic setVariable [QGVAR(dominantSide), 2, true];
+if (_opforMenCount + _bluforMenCount == 0) exitWith {};
 
-// workout required dominance, quick maffs
-private _requiredNumberToDominateOpfor = ceil((_opforMenCount) * (1 + _requiredDominance)); // e.g. 12×1.25=15
+private _currentOwner = _logic getVariable [QGVAR(currentOwner), 2];
+
+private _requiredNumberToDominateOpfor = ceil((_opforMenCount) * (1 + _requiredDominance));
 private _requiredNumberToDominateBlufor = ceil((_bluforMenCount) * (1 + _requiredDominance));
 
-// no dominance, do nothing
 if !(_bluforMenCount >= _requiredNumberToDominateOpfor || _opforMenCount >= _requiredNumberToDominateBlufor) exitWith {};
 
-// allow capture if the dominant side is different from the current owner
 if ((_bluforMenCount >= _requiredNumberToDominateOpfor) && (_currentOwner != 1)) exitWith {
     _logic setVariable [QGVAR(dominantSide), 1, true];
     [_logic, 1] call FUNC(showSectorAsContested);

@@ -6,6 +6,15 @@
     Description:
         Per-frame client gate. Decides which single NPC the local player is addressing.
         Candidates come from the replicated talkable list.
+
+    Parameters:
+        Per-frame handler arguments and handler ID <ARRAY>
+
+    Return value:
+        Nothing
+
+    Example:
+        [[], 0] call uksf_npc_fnc_gateTick
 */
 params ["", "_idPFH"];
 
@@ -16,10 +25,11 @@ if (alive _player) then {
     private _forward = eyeDirection _player;
     private _eye = eyePos _player;
     private _scan = GVAR(gateScanRadius);
+    private _scanSquared = _scan * _scan;
     {
         private _npc = objectFromNetId _x;
         if (isNull _npc || {!alive _npc} || {!(_npc getVariable [QGVAR(talkable), false])}) then { continue };
-        if ((_player distance _npc) > _scan) then { continue };
+        if (_scan < 0 || {(_player distanceSqr _npc) > _scanSquared}) then { continue };
         if !([_player, _npc] call FUNC(isInGate)) then { continue };
         private _toNpc = (eyePos _npc) vectorDiff _eye;
         private _score = 1 - (_forward vectorDotProduct (vectorNormalized _toNpc));

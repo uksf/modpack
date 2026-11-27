@@ -101,6 +101,8 @@ class GVAR(r3) : GVAR(rx) {
         MACRO_ADDMAGAZINE(UK3CB_BAF_127_100Rnd,30);
         MACRO_ADDMAGAZINE(UK3CB_BAF_32Rnd_40mm_G_Box,20);
         MACRO_ADDMAGAZINE(UK3CB_BAF_762_200Rnd,20);
+        MACRO_ADDMAGAZINE(SmokeLauncherMag,20);
+        MACRO_ADDMAGAZINE(RHICC_SmokeLauncherMag,10);
     };
     class ACE_Cargo {
         class Cargo {

@@ -2,6 +2,7 @@ PREP(addUnitEventTransitions);
 PREP(addUnitInteractions);
 PREP(addUnitStates);
 PREP(addUnitTransitions);
+PREP(addVehicleDriverStates);
 PREP(addVehicleEventTransitions);
 PREP(addVehicleInteractions);
 PREP(addVehicleStates);

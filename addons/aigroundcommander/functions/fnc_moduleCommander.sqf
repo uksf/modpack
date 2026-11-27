@@ -42,20 +42,14 @@ publicVariable QGVAR(enabled);
 }, [_module], 60] call CBA_fnc_waitAndExecute;
 
 
-["CAManBase", "init", {
-    params ["_unit"];
-
-    if (side _unit != east) exitWith {TRACE_1("exit side",side _unit)}; // TODO: This side check should be a setting, for cases where we're not fighting OPFOR
-
-    _unit addMPEventHandler ["MPKilled", {
+if (isServer && {isNil QGVAR(entityKilledHandler)}) then {
+    GVAR(entityKilledHandler) = addMissionEventHandler ["EntityKilled", {
         params ["_unit", "_killer", "_instigator"];
 
-        TRACE_3("",_unit,_killer,_instigator);
-        if (isNull _instigator || {!isPlayer _instigator || {surfaceIsWater (getPos _instigator) || {(vehicle _instigator) isKindOf "Air"}}}) exitWith {TRACE_4("exit other",isNull _instigator,isPlayer _instigator,surfaceIsWater (getPos _instigator),(vehicle _instigator) isKindOf "Air")};
+        if !(_unit isKindOf "CAManBase" && {side group _unit isEqualTo east}) exitWith {};
+        if (isNull _instigator || {!isPlayer _instigator || {surfaceIsWater (getPos _instigator) || {(vehicle _instigator) isKindOf "Air"}}}) exitWith {};
 
         GVAR(enemyAggressionLevel) = GVAR(enemyAggressionLevel) + 1;
-
-        TRACE_1("",GVAR(enemyAggressionLevel));
         private _index = GVAR(killerPlayers) findIf {_instigator == (_x#0)};
         if (_index != -1) then {
             GVAR(killerPlayers) set [_index, [_instigator, CBA_missionTime + PLAYER_FIRED_TIMEOUT]];
@@ -63,4 +57,4 @@ publicVariable QGVAR(enabled);
             GVAR(killerPlayers) pushBack [_instigator, CBA_missionTime + PLAYER_FIRED_TIMEOUT];
         };
     }];
-}, true, [], true] call CBA_fnc_addClassEventHandler;
+};

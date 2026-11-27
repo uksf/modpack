@@ -41,10 +41,7 @@ private _selectedIndices = _selected apply {_x#0};
 private _selectedPositions = _selected apply {_x#1};
 
 if (_selectedIndices isNotEqualTo []) then {
-    _selectedIndices = [_selectedIndices, [], {_x}, "DESCEND"] call BIS_fnc_sortBy;
-    {
-        _positions deleteAt _x;
-    } forEach _selectedIndices;
+    _positions deleteAt _selectedIndices;
 };
 
 private _chunk = [_seed];

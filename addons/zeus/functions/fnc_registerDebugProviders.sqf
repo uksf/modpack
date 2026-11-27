@@ -227,17 +227,33 @@ GVAR(uavLaserStyle) = ["3D", "2D"] apply {
     [getText (_config >> "textureLaser"), getArray (_config >> "colorLaser")]
 };
 
+GVAR(activeUavLasers) = allUnitsUAV select {!isNull laserTarget _x};
+["AllVehicles", "init", {
+    params ["_unit"];
+    if (!unitIsUAV _unit) exitWith {};
+    _unit addEventHandler ["LaserTargetChanged", {
+        params ["_unit", "_laserTarget"];
+        if (isNull _laserTarget) then {
+            GVAR(activeUavLasers) = GVAR(activeUavLasers) - [_unit];
+        } else {
+            GVAR(activeUavLasers) pushBackUnique _unit;
+        };
+    }];
+}, true, [], true] call CBA_fnc_addClassEventHandler;
+
 GVAR(fnc_uavLasers) = {
+    GVAR(activeUavLasers) = GVAR(activeUavLasers) select {!isNull _x && {!isNull laserTarget _x}};
     private _lasers = [];
     {
         private _laser = laserTarget _x;
         if (isNull _laser) then { continue };
-        private _control = UAVControl _x;
-        private _roleIndex = _control find "GUNNER";
-        if (_roleIndex < 1) then {_roleIndex = _control find "DRIVER"};
-        if (_roleIndex < 1) then { continue };
-        _lasers pushBack [_x, _laser, name (_control#(_roleIndex - 1))];
-    } forEach allUnitsUAV;
+        private _controller = (UAVControl [_x, "gunner"]) param [0, objNull];
+        if (isNull _controller) then {
+            _controller = (UAVControl [_x, "driver"]) param [0, objNull];
+        };
+        if (isNull _controller) then { continue };
+        _lasers pushBack [_x, _laser, name _controller];
+    } forEach GVAR(activeUavLasers);
     _lasers
 };
 

@@ -306,13 +306,5 @@ class CfgWeapons {
 
     class AFG_1996Leaf_BattleDressUniform : Uniform_Base {};
 
-    class H_HelmetB;
-    class OPS_CORE_22 : H_HelmetB {
-        ace_hearing_protection = 0.75;
-        ace_hearing_lowerVolume = 0;
-    };
-    class COVER_4b : H_HelmetB {
-        ace_hearing_protection = 0.75;
-        ace_hearing_lowerVolume = 0;
-    };
+    #include "CfgWeaponsHeadgear.hpp"
 };

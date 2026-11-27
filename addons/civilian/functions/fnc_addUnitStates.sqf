@@ -84,7 +84,7 @@
         _unit setVariable [QGVAR(unit_followCachedPosition), [], true];
 
         private _jipId = _unit getVariable [QGVAR(unit_interaction_jipId), ""];
-        [_jipId] call CBA_fnc_removeGlobalEventJIP;
+        if (_jipId isNotEqualTo "") then {[_jipId] call CBA_fnc_removeGlobalEventJIP};
         [QGVAR(removeUnitInteractions), [_unit]] call CBA_fnc_globalEvent;
     };
 

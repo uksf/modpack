@@ -31,6 +31,7 @@ private _targetAddons = [
     "UK3CB_BAF_Vehicles_Warrior_a3",
     "UK3CB_BAF_Vehicles_Bulldog",
     "UK3CB_BAF_Vehicles_Panther",
+    "UK3CB_BAF_Vehicles_RHIB",
     "UK3CB_BAF_Weapons_Static"
 ];
 

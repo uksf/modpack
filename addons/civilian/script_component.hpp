@@ -2,10 +2,6 @@
 #define COMPONENT_BEAUTIFIED Civilian
 #include "\u\uksf\addons\main\script_mod.hpp"
 
-// #define DEBUG_MODE_FULL
-// #define DISABLE_COMPILE_CACHE
-// #define CBA_DEBUG_SYNCHRONOUS
-
 #include "\u\uksf\addons\main\script_macros.hpp"
 
 #define GESTURE_COOLDOWN 1
@@ -18,6 +14,8 @@
 #define VEHICLE_STOP_IGNORE_CHANCE 10
 #define VEHICLE_STOP_INTERVAL 1
 #define VEHICLE_STOP_BOREDOM_INCREMENT_CHANCE 5
+#define GET_IN_ACTION_DISTANCE 4
+#define GET_IN_ACTION_DELAY 5
 
 #define UNIT_STOP_WALK_TO_PLAYER_CHANCE 30
 #define UNIT_STOP_IGNORE_CHANCE 5

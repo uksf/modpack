@@ -1,4 +1,6 @@
-PREP(3cb_reloadTurret);
+PREP(reloadSmoke);
+PREP(uavLook);
+PREP(addSmokeReloadActions);
 PREP(addSpotlightActions);
 PREP(addSwapDriverActions);
 PREP(cameraOverlayVehicle);
@@ -13,6 +15,8 @@ PREP(hasNightVisionCamera);
 PREP(isCompassCamera);
 PREP(reloadTurret);
 PREP(renderMarkingLasers);
+PREP(seatBoatCargo);
+PREP(setEmptyDynamicSimulation);
 PREP(setSpotlight);
 PREP(spotlightTurrets);
 PREP(swapDriver);

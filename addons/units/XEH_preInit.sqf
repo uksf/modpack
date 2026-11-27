@@ -9,8 +9,11 @@ ADDON = false;
     };
 }, true, [], true] call CBA_fnc_addClassEventHandler;
 
-["CAManBase", "respawn", {
-    player setUnitTrait ["audibleCoef", 0.7];
+["UKSF_B_Rifleman", "respawn", {
+    params ["_unit"];
+    if (local _unit) then {
+        _unit setUnitTrait ["audibleCoef", 0.7];
+    };
 }, true, nil, true] call CBA_fnc_addClassEventHandler;
 
 ADDON = true;

@@ -21,7 +21,7 @@ if (hasInterface) then {
 
         private _hasRebreather = (vest player) in [QGVAR(rebreather), "UKSF_LARV_1", "UKSF_LARV_2"];
         if (_hasRebreather && GVAR(updatePFHID) == -1) then {
-            [true] call FUNC(loop);
+            call FUNC(loop);
         };
     }] call CBA_fnc_addPlayerEventHandler;
 };

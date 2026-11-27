@@ -32,6 +32,27 @@ class Extended_InitPost_EventHandlers {
             init = QUOTE(call FUNC(initMarkingLaser));
         };
     };
+    class RHICC_MAIN {
+        class GVAR(seatBoatCargo) {
+            init = QUOTE((_this select 0) addEventHandler [ARR_2('CargoLoaded',{call FUNC(seatBoatCargo)})]);
+        };
+    };
+};
+
+class Extended_GetIn_EventHandlers {
+    class LandVehicle {
+        class GVAR(emptyDynamicSimulation) {
+            getIn = QUOTE([ARR_2(QQGVAR(setEmptyDynamicSimulation),[_this select 0])] call CBA_fnc_serverEvent);
+        };
+    };
+};
+
+class Extended_GetOut_EventHandlers {
+    class LandVehicle {
+        class GVAR(emptyDynamicSimulation) {
+            getOut = QUOTE([ARR_2(QQGVAR(setEmptyDynamicSimulation),[_this select 0])] call CBA_fnc_serverEvent);
+        };
+    };
 };
 
 class Extended_FiredBIS_EventHandlers {

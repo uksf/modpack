@@ -21,7 +21,7 @@ if !(local _unit) exitWith {};
 
 if !(isNull GVAR(unit_statemachine)) exitWith {
     private _id = GVAR(unit_statemachine) getVariable "cba_statemachine_ID";
-    private _currentState = _unit getVariable ("cba_statemachine_state" + str _id);
+    private _currentState = _unit getVariable ["cba_statemachine_state" + str _id, QGVAR(unit_state_enter)];
 
     [_unit, GVAR(unit_statemachine), _currentState, QGVAR(unit_state_exit)] call CBA_statemachine_fnc_manualTransition;
 };

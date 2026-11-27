@@ -8,8 +8,10 @@ pub fn api_base_url() -> &'static str {
     API_BASE_URL.get_or_init(|| find_api_base_url().unwrap_or_else(|| DEFAULT_API_BASE_URL.to_string())).as_str()
 }
 
+#[cfg(windows)]
 const LIVE_API_BASE_URL: &str = "https://api.uk-sf.co.uk";
 
+#[cfg(windows)]
 pub fn public_api_base_url() -> String {
     find_api_base_url().unwrap_or_else(|| LIVE_API_BASE_URL.to_string())
 }

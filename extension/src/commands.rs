@@ -1,117 +1,53 @@
-use arma_rs::Context;
-
-use crate::audio;
+use crate::raw::Raw;
 use crate::bridge;
 use crate::file_export;
 use crate::dev_run;
-use crate::input;
-use crate::npc_voices;
-use crate::stt;
 
-pub fn start(context: Context) -> String {
-    bridge::handle_start(context)
+pub fn event(body: Raw) -> String {
+    if body.0.starts_with("\"[") {
+        return "error: escaped event body".to_string();
+    }
+    bridge::handle_event(&body.0)
 }
 
-pub fn stop() -> String {
-    bridge::handle_stop()
+pub fn delivered(seq: Raw) -> String {
+    bridge::handle_delivered(&seq.0)
 }
 
-pub fn flush() -> String {
-    bridge::handle_flush()
+pub fn load(key: Raw) -> String {
+    bridge::handle_load(&key.0)
 }
 
-pub fn event(body: String) -> String {
-    bridge::handle_event(&body)
+pub fn file_export_open(filename: Raw) -> String {
+    file_export::open(filename.0)
 }
 
-pub fn delivered(seq: String) -> String {
-    bridge::handle_delivered(&seq)
+pub fn file_export_write(line: Raw) -> String {
+    file_export::write(line.0)
 }
 
-pub fn load(key: String) -> String {
-    bridge::handle_load(&key)
+pub fn dev_run_open(run_id: Raw) -> String {
+    dev_run::open(run_id.0)
 }
 
-pub fn npc_voices() -> String {
-    npc_voices::get()
+pub fn dev_run_chunk(run_id: Raw, chunk: Raw) -> String {
+    dev_run::chunk(run_id.0, chunk.0)
 }
 
-pub fn press_space() -> String {
-    input::press_space()
+pub fn dev_run_log(run_id: Raw, line: Raw) -> String {
+    dev_run::log(run_id.0, line.0)
 }
 
-pub fn file_export_open(filename: String) -> String {
-    file_export::open(filename)
+pub fn dev_run_finish(run_id: Raw) -> String {
+    dev_run::finish(run_id.0)
 }
 
-pub fn file_export_write(line: String) -> String {
-    file_export::write(line)
-}
+#[cfg(test)]
+mod tests {
+    use super::*;
 
-pub fn file_export_close() -> String {
-    file_export::close()
-}
-
-pub fn file_export_finish() -> String {
-    file_export::finish()
-}
-
-pub fn dev_run_open(run_id: String) -> String {
-    dev_run::open(run_id)
-}
-
-pub fn dev_run_chunk(run_id: String, chunk: String) -> String {
-    dev_run::chunk(run_id, chunk)
-}
-
-pub fn dev_run_log(run_id: String, line: String) -> String {
-    dev_run::log(run_id, line)
-}
-
-pub fn dev_run_finish(run_id: String) -> String {
-    dev_run::finish(run_id)
-}
-
-pub fn audio_open(id: String) -> String {
-    audio::open(id)
-}
-
-pub fn audio_chunk(id: String, b64: String) -> String {
-    audio::chunk(id, b64)
-}
-
-pub fn audio_play(id: String, x: f32, y: f32, z: f32, vol: f32, offset_ms: f32) -> String {
-    audio::play(id, x, y, z, vol, offset_ms)
-}
-
-pub fn audio_feed(id: String, b64: String) -> String {
-    audio::feed(id, b64)
-}
-
-pub fn audio_end(id: String) -> String {
-    audio::end(id)
-}
-
-pub fn audio_pos(id: String, x: f32, y: f32, z: f32, vol: f32) -> String {
-    audio::pos(id, x, y, z, vol)
-}
-
-pub fn audio_listener(dx: f32, dy: f32, dz: f32, ux: f32, uy: f32, uz: f32) -> String {
-    audio::listener(dx, dy, dz, ux, uy, uz)
-}
-
-pub fn audio_stop(id: String) -> String {
-    audio::stop(id)
-}
-
-pub fn stt_start(context: Context) -> String {
-    stt::start(context)
-}
-
-pub fn stt_stop() -> String {
-    stt::stop()
-}
-
-pub fn stt_hint(names: String) -> String {
-    stt::set_hint(names)
+    #[test]
+    fn event_rejects_escaped_body_before_queueing() {
+        assert_eq!(event(Raw("\"[\"\"save\"\",[]]\"".to_string())), "error: escaped event body");
+    }
 }

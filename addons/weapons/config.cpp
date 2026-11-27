@@ -37,7 +37,8 @@ class CfgPatches {
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             QGVAR(prep),
-            "tbd_mortars_105mm_round_he"
+            "tbd_mortars_105mm_round_he",
+            "tbd_mortars_105mm_casing_spent"
         };
         author = QUOTE(UKSF);
         authors[] = { "Beswick.T" };

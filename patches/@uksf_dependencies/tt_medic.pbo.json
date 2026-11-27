@@ -1,0 +1,24 @@
+{
+  "format": 1,
+  "pbo": "tt_medic.pbo",
+  "pristineSha256": "e414475a30cdf0245eb6477278d0a773e0e740390f9a2e912e208708dbfb5988",
+  "description": "A deployed Tactical Tarps medical tarp makes itself an ACE medical facility, which unlocks facility-only treatments. UKSF wants the tarp only to raise the medic level of players within 7.5 m by one, so it sets the UKSF ACE training-boost variable instead. The compiled .sqfc is removed so the edited SQF runs.",
+  "assets": [
+    {
+      "path": "functions\\fnc_addActions.sqf",
+      "sha256": "95f8d27703ddc4d92637f05632d0d4849d923716eba23737d7e052b174cd437e",
+      "ops": [
+        {
+          "op": "text-replace",
+          "find": "_object setVariable [\"ace_medical_isMedicalFacility\", true, true];",
+          "replace": "_object setVariable [\"ace_medical_boostsTraining\", true, true];"
+        }
+      ]
+    },
+    {
+      "path": "functions\\fnc_addActions.sqfc",
+      "sha256": "597dcc4e1ed9e4b864bce7c8e929a13bc3326dc39fbacf46997ba1e46a6889b5",
+      "remove": true
+    }
+  ]
+}

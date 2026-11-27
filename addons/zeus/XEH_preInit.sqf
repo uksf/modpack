@@ -96,11 +96,6 @@ if (isServer) then {
     TRACE_2("ammo classification",_isHeavy,_ammo);
     if !(_isHeavy) exitWith {};
 
-    if (isNull _projectile) then {
-        _projectile = nearestObject [_unit, _ammo];
-        TRACE_1("projectile was null, tried nearestObject",_projectile);
-    };
-
     if (!isNull _projectile) then {
         private _sideColor = switch (side _unit) do {
             case west:        { [0, 0.3, 0.6, 0.9] };
@@ -110,7 +105,7 @@ if (isServer) then {
         };
         [_projectile, _ammo, _sideColor, _magazine, _weapon] call FUNC(trackProjectile);
     } else {
-        TRACE_2("projectile still null after nearestObject",_unit,_ammo);
+        TRACE_2("projectile is null",_unit,_ammo);
     };
 }, true] call CBA_fnc_addClassEventHandler;
 

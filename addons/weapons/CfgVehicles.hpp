@@ -407,6 +407,12 @@ class CfgVehicles {
         editorPreview = "\x\TBD_MORTARS\addons\105mm\tbd_mortars_105mm_casing_spent\data\casing.jpg";
         GVAR(item) = "tbd_mortars_105mm_casing_charge_7";
     };
+    class tbd_mortars_105mm_casing_spent : NATO_Box_Base {
+        ace_dragging_canCarry = 1;
+        ace_dragging_carryPosition[] = {0, 1, 1};
+        ace_dragging_carryDirection = 0;
+        ace_dragging_ignoreWeightCarry = 1;
+    };
 
 #define SHELL_ACTION(KIND,NAME) class GVAR(DOUBLES(load,KIND)) { \
     displayName = NAME; \

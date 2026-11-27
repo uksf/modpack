@@ -20,6 +20,11 @@ GVAR(dynamicPatrolIncludeAreas) = [];
 [QGVAR(initPatrol), {call FUNC(initPatrol)}] call CBA_fnc_addEventHandler;
 [QGVAR(spawnGroup), {call FUNC(spawnGroup)}] call CBA_fnc_addEventHandler;
 [QGVAR(fireMission), {call FUNC(fireMission)}] call CBA_fnc_addEventHandler;
+[QGVAR(removeArtilleryShellHandler), {
+    params ["_artillery", "_handler"];
+    if (_handler >= 0) then {removeMissionEventHandler ["ArtilleryShellFired", _handler]};
+    _artillery setVariable [QGVAR(artilleryShellCount), nil];
+}] call CBA_fnc_addEventHandler;
 [QGVAR(requestFireMission), {call FUNC(requestFireMission)}] call CBA_fnc_addEventHandler;
 [QGVAR(setSupportRadio), {call FUNC(setSupportRadio)}] call CBA_fnc_addEventHandler;
 

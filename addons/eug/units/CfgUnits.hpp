@@ -9,8 +9,8 @@ class GVAR(Rifleman) : GVAR(Soldier_Base) {
     respawnItems[] = { "ACE_EarPlugs", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage" };
     magazines[] = { "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "CUP_15Rnd_9x19_M9", "CUP_15Rnd_9x19_M9", "CUP_HandGrenade_M67", "CUP_HandGrenade_M67", "SmokeShell", "SmokeShell" };
     respawnMagazines[] = { "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "CUP_15Rnd_9x19_M9", "CUP_15Rnd_9x19_M9", "CUP_HandGrenade_M67", "CUP_HandGrenade_M67", "SmokeShell", "SmokeShell" };
-    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "NVGoggles", "H_HelmetB_light_sand", "CUP_V_CZ_NPP2006_nk_des", "NVGoggles" };
-    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "NVGoggles", "H_HelmetB_light_sand", "CUP_V_CZ_NPP2006_nk_des", "NVGoggles" };
+    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "NVGoggles", "H_HelmetB_light_sand", "CUP_V_CZ_NPP2006_nk_des", "NVGoggles" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "NVGoggles", "H_HelmetB_light_sand", "CUP_V_CZ_NPP2006_nk_des", "NVGoggles" };
     backpack = "";
 };
 class GVAR(Squad_Leader) : GVAR(Rifleman) {
@@ -19,8 +19,8 @@ class GVAR(Squad_Leader) : GVAR(Rifleman) {
     respawnWeapons[] = { QGVAR(CUP_arifle_M16A4_GL_Aimpoint_5000),"CUP_hgun_M9","Put","Throw" };
     magazines[] = { "1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "CUP_15Rnd_9x19_M9", "CUP_15Rnd_9x19_M9", "SmokeShell", "SmokeShell" };
     respawnMagazines[] = { "1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "CUP_15Rnd_9x19_M9", "CUP_15Rnd_9x19_M9", "SmokeShell", "SmokeShell" };
-    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "NVGoggles", "H_HelmetSpecB_sand", "CUP_V_CZ_NPP2006_co_des", "NVGoggles" };
-    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "NVGoggles", "H_HelmetSpecB_sand", "CUP_V_CZ_NPP2006_co_des", "NVGoggles" };
+    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "NVGoggles", "H_HelmetSpecB_sand", "CUP_V_CZ_NPP2006_co_des", "NVGoggles" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "NVGoggles", "H_HelmetSpecB_sand", "CUP_V_CZ_NPP2006_co_des", "NVGoggles" };
     icon = "iconManLeader";
 };
 class GVAR(Officer) : GVAR(Rifleman) {
@@ -42,8 +42,8 @@ class GVAR(LMG_Gunner) : GVAR(Rifleman) {
     respawnWeapons[] = { QGVAR(LMG_Mk200_black_F_CUP_optic_ACOG_TA01B_RMR_Blackbipod_02_F_blk),"Put","Throw" };
     magazines[] = { "200Rnd_65x39_cased_Box", "200Rnd_65x39_cased_Box", "HandGrenade", "HandGrenade", "SmokeShell", "SmokeShell", "200Rnd_65x39_cased_Box", "200Rnd_65x39_cased_Box", "200Rnd_65x39_cased_Box" };
     respawnMagazines[] = { "200Rnd_65x39_cased_Box", "200Rnd_65x39_cased_Box", "HandGrenade", "HandGrenade", "SmokeShell", "SmokeShell", "200Rnd_65x39_cased_Box", "200Rnd_65x39_cased_Box", "200Rnd_65x39_cased_Box" };
-    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "NVGoggles", "H_HelmetSpecB_sand", "CUP_V_CZ_NPP2006_ok_des", "NVGoggles" };
-    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "NVGoggles", "H_HelmetSpecB_sand", "CUP_V_CZ_NPP2006_ok_des", "NVGoggles" };
+    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "NVGoggles", "H_HelmetSpecB_sand", "CUP_V_CZ_NPP2006_ok_des", "NVGoggles" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "NVGoggles", "H_HelmetSpecB_sand", "CUP_V_CZ_NPP2006_ok_des", "NVGoggles" };
     backpack = QGVAR(LMG_Gunner_pack);
     icon = "iconManMG";
 };
@@ -53,8 +53,8 @@ class GVAR(HMG_Gunner) : GVAR(Rifleman) {
     respawnWeapons[] = { QGVAR(MMG_01_tan_F_CUP_optic_ACOG_TA01B_RMR_Blackbipod_02_F_blk),"Put","Throw" };
     magazines[] = { "HandGrenade", "HandGrenade", "SmokeShell", "SmokeShell", "150Rnd_93x64_Mag", "150Rnd_93x64_Mag", "150Rnd_93x64_Mag", "150Rnd_93x64_Mag", "150Rnd_93x64_Mag" };
     respawnMagazines[] = { "HandGrenade", "HandGrenade", "SmokeShell", "SmokeShell", "150Rnd_93x64_Mag", "150Rnd_93x64_Mag", "150Rnd_93x64_Mag", "150Rnd_93x64_Mag", "150Rnd_93x64_Mag" };
-    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "NVGoggles", "H_HelmetB_light_sand", "CUP_V_CZ_NPP2006_ok_des", "NVGoggles" };
-    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "NVGoggles", "H_HelmetB_light_sand", "CUP_V_CZ_NPP2006_ok_des", "NVGoggles" };
+    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "NVGoggles", "H_HelmetB_light_sand", "CUP_V_CZ_NPP2006_ok_des", "NVGoggles" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "NVGoggles", "H_HelmetB_light_sand", "CUP_V_CZ_NPP2006_ok_des", "NVGoggles" };
     backpack = QGVAR(HMG_Gunner_pack);
     icon = "iconManMG";
 };
@@ -64,8 +64,8 @@ class GVAR(Rifleman_Light_AT) : GVAR(Rifleman) {
     respawnWeapons[] = { QGVAR(CUP_arifle_M16A4_Base_CUP_optic_ACOG_TA01B_Black), "launch_RPG32_F", "CUP_hgun_M9", "Put", "Throw" };
     magazines[] = { "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "CUP_15Rnd_9x19_M9", "CUP_15Rnd_9x19_M9", "CUP_15Rnd_9x19_M9", "RPG32_F", "RPG32_F", "RPG32_F", "RPG32_HE_F", "RPG32_HE_F" };
     respawnMagazines[] = { "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "CUP_15Rnd_9x19_M9", "CUP_15Rnd_9x19_M9", "CUP_15Rnd_9x19_M9", "RPG32_F", "RPG32_F", "RPG32_F", "RPG32_HE_F", "RPG32_HE_F" };
-    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "NVGoggles", "H_HelmetB_sand", "CUP_V_CZ_NPP2006_nk_des", "NVGoggles" };
-    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "NVGoggles", "H_HelmetB_sand", "CUP_V_CZ_NPP2006_nk_des", "NVGoggles" };
+    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "NVGoggles", "H_HelmetB_sand", "CUP_V_CZ_NPP2006_nk_des", "NVGoggles" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "NVGoggles", "H_HelmetB_sand", "CUP_V_CZ_NPP2006_nk_des", "NVGoggles" };
     backpack = QGVAR(Rifleman_Light_AT_pack);
     icon = "iconManAT";
 };
@@ -75,8 +75,8 @@ class GVAR(Rifleman_Heavy_AT) : GVAR(Rifleman) {
     respawnWeapons[] = { QGVAR(CUP_arifle_M16A4_Base_CUP_optic_ACOG_TA01B_Black), "launch_O_Vorona_brown_F", "CUP_hgun_M9", "Put", "Throw" };
     magazines[] = { "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "CUP_15Rnd_9x19_M9", "CUP_15Rnd_9x19_M9", "CUP_15Rnd_9x19_M9", "Vorona_HEAT" };
     respawnMagazines[] = { "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "CUP_15Rnd_9x19_M9", "CUP_15Rnd_9x19_M9", "CUP_15Rnd_9x19_M9", "Vorona_HEAT" };
-    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "NVGoggles", "H_HelmetB_sand", "CUP_V_CZ_NPP2006_nk_des", "NVGoggles" };
-    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "NVGoggles", "H_HelmetB_sand", "CUP_V_CZ_NPP2006_nk_des", "NVGoggles" };
+    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "NVGoggles", "H_HelmetB_sand", "CUP_V_CZ_NPP2006_nk_des", "NVGoggles" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "NVGoggles", "H_HelmetB_sand", "CUP_V_CZ_NPP2006_nk_des", "NVGoggles" };
     backpack = QGVAR(Rifleman_Heavy_AT_pack);
     icon = "iconManAT";
 };
@@ -86,8 +86,8 @@ class GVAR(Rifleman_AA) : GVAR(Rifleman) {
     respawnWeapons[] = { QGVAR(CUP_arifle_M16A4_Base_CUP_optic_ACOG_TA01B_Black), "CUP_launch_Igla_Loaded", "CUP_hgun_M9", "Put", "Throw" };
     magazines[] = { "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "CUP_15Rnd_9x19_M9", "CUP_15Rnd_9x19_M9", "CUP_HandGrenade_M67", "CUP_HandGrenade_M67", "SmokeShell", "SmokeShell" };
     respawnMagazines[] = { "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "CUP_15Rnd_9x19_M9", "CUP_15Rnd_9x19_M9", "CUP_HandGrenade_M67", "CUP_HandGrenade_M67", "SmokeShell", "SmokeShell" };
-    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "NVGoggles", "H_HelmetSpecB_sand", "CUP_V_CZ_NPP2006_co_des", "NVGoggles" };
-    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "NVGoggles", "H_HelmetSpecB_sand", "CUP_V_CZ_NPP2006_co_des", "NVGoggles" };
+    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "NVGoggles", "H_HelmetSpecB_sand", "CUP_V_CZ_NPP2006_co_des", "NVGoggles" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "NVGoggles", "H_HelmetSpecB_sand", "CUP_V_CZ_NPP2006_co_des", "NVGoggles" };
 };
 class GVAR(Radio_Operator) : GVAR(Rifleman) {
     displayName = "Radio Operator";
@@ -97,8 +97,8 @@ class GVAR(Radio_Operator) : GVAR(Rifleman) {
     respawnItems[] = { "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage" };
     magazines[] = { "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "1Rnd_SmokeRed_Grenade_shell", "1Rnd_SmokeRed_Grenade_shell", "1Rnd_SmokeRed_Grenade_shell", "1Rnd_SmokeRed_Grenade_shell", "1Rnd_SmokeRed_Grenade_shell", "1Rnd_SmokeGreen_Grenade_shell", "1Rnd_SmokeGreen_Grenade_shell", "1Rnd_SmokeGreen_Grenade_shell", "1Rnd_SmokeGreen_Grenade_shell", "1Rnd_SmokeGreen_Grenade_shell", "1Rnd_Smoke_Grenade_shell", "1Rnd_Smoke_Grenade_shell", "1Rnd_Smoke_Grenade_shell", "1Rnd_Smoke_Grenade_shell", "1Rnd_Smoke_Grenade_shell", "CUP_HandGrenade_M67", "CUP_HandGrenade_M67" };
     respawnMagazines[] = { "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "1Rnd_SmokeRed_Grenade_shell", "1Rnd_SmokeRed_Grenade_shell", "1Rnd_SmokeRed_Grenade_shell", "1Rnd_SmokeRed_Grenade_shell", "1Rnd_SmokeRed_Grenade_shell", "1Rnd_SmokeGreen_Grenade_shell", "1Rnd_SmokeGreen_Grenade_shell", "1Rnd_SmokeGreen_Grenade_shell", "1Rnd_SmokeGreen_Grenade_shell", "1Rnd_SmokeGreen_Grenade_shell", "1Rnd_Smoke_Grenade_shell", "1Rnd_Smoke_Grenade_shell", "1Rnd_Smoke_Grenade_shell", "1Rnd_Smoke_Grenade_shell", "1Rnd_Smoke_Grenade_shell", "CUP_HandGrenade_M67", "CUP_HandGrenade_M67" };
-    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "NVGoggles", "H_HelmetSpecB_sand", "CUP_V_CZ_NPP2006_co_des", "NVGoggles" };
-    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "NVGoggles", "H_HelmetSpecB_sand", "CUP_V_CZ_NPP2006_co_des", "NVGoggles" };
+    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "NVGoggles", "H_HelmetSpecB_sand", "CUP_V_CZ_NPP2006_co_des", "NVGoggles" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "NVGoggles", "H_HelmetSpecB_sand", "CUP_V_CZ_NPP2006_co_des", "NVGoggles" };
     backpack = "B_RadioBag_01_wdl_F";
 };
 class GVAR(Combat_Medic) : GVAR(Rifleman) {
@@ -109,8 +109,8 @@ class GVAR(Combat_Medic) : GVAR(Rifleman) {
     respawnItems[] = { "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_splint", "ACE_splint", "ACE_splint", "ACE_splint", "ACE_splint", "ACE_tourniquet", "ACE_tourniquet", "ACE_tourniquet", "ACE_tourniquet", "ACE_tourniquet", "ACE_surgicalKit" };
     magazines[] = { "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "CUP_HandGrenade_M67", "CUP_HandGrenade_M67", "SmokeShellYellow", "SmokeShellYellow", "SmokeShell", "SmokeShell", "CUP_15Rnd_9x19_M9", "CUP_15Rnd_9x19_M9" };
     respawnMagazines[] = { "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "CUP_HandGrenade_M67", "CUP_HandGrenade_M67", "SmokeShellYellow", "SmokeShellYellow", "SmokeShell", "SmokeShell", "CUP_15Rnd_9x19_M9", "CUP_15Rnd_9x19_M9" };
-    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "NVGoggles", "H_HelmetB_light_sand", "CUP_V_CZ_NPP2006_nk_des", "NVGoggles" };
-    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "NVGoggles", "H_HelmetB_light_sand", "CUP_V_CZ_NPP2006_nk_des", "NVGoggles" };
+    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "NVGoggles", "H_HelmetB_light_sand", "CUP_V_CZ_NPP2006_nk_des", "NVGoggles" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "NVGoggles", "H_HelmetB_light_sand", "CUP_V_CZ_NPP2006_nk_des", "NVGoggles" };
     backpack = QGVAR(Combat_Medic_pack);
     icon = "iconManMedic";
     attendant = 1;
@@ -128,8 +128,8 @@ class GVAR(SF_Rifleman) : GVAR(Rifleman) {
     respawnItems[] = { "ACE_EarPlugs", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_splint", "ACE_splint", "ACE_tourniquet", "ACE_tourniquet" };
     magazines[] = { "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_HandGrenade_M67", "CUP_HandGrenade_M67", "ACE_M84", "UK3CB_BAF_SmokeShell", "UK3CB_BAF_SmokeShell" };
     respawnMagazines[] = { "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_HandGrenade_M67", "CUP_HandGrenade_M67", "ACE_M84", "UK3CB_BAF_SmokeShell", "UK3CB_BAF_SmokeShell" };
-    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "CUP_NVG_GPNVG_Hide", "Laserdesignator", "CUP_H_USArmy_Helmet_ECH1_Sand", "CUP_V_CPC_tlbelt_coy", "CUP_G_Scarf_Face_Tan", "CUP_NVG_GPNVG_Hide" };
-    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "CUP_NVG_GPNVG_Hide", "Laserdesignator", "CUP_H_USArmy_Helmet_ECH1_Sand", "CUP_V_CPC_tlbelt_coy", "CUP_G_Scarf_Face_Tan", "CUP_NVG_GPNVG_Hide" };
+    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "CUP_NVG_GPNVG_Hide", "Laserdesignator", "CUP_H_USArmy_Helmet_ECH1_Sand", "CUP_V_CPC_tlbelt_coy", "CUP_G_Scarf_Face_Tan", "CUP_NVG_GPNVG_Hide" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "CUP_NVG_GPNVG_Hide", "Laserdesignator", "CUP_H_USArmy_Helmet_ECH1_Sand", "CUP_V_CPC_tlbelt_coy", "CUP_G_Scarf_Face_Tan", "CUP_NVG_GPNVG_Hide" };
 };
 class GVAR(SF_Teamlead) : GVAR(SF_Rifleman) {
     displayName = "SF Teamlead";
@@ -139,8 +139,8 @@ class GVAR(SF_Teamlead) : GVAR(SF_Rifleman) {
     respawnItems[] = { "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_splint", "ACE_splint", "ACE_tourniquet", "ACE_tourniquet" };
     magazines[] = { "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_HandGrenade_M67", "CUP_HandGrenade_M67", "ACE_M84", "UK3CB_BAF_SmokeShell", "UK3CB_BAF_SmokeShell" };
     respawnMagazines[] = { "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_HandGrenade_M67", "CUP_HandGrenade_M67", "ACE_M84", "UK3CB_BAF_SmokeShell", "UK3CB_BAF_SmokeShell" };
-    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "CUP_NVG_GPNVG_Hide", "Laserdesignator", "CUP_H_USArmy_Helmet_ECH1_Sand", "CUP_V_CPC_communicationsbelt_coy", "CUP_G_ESS_KHK_Scarf_Face_Tan_GPS", "CUP_NVG_GPNVG_Hide" };
-    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "CUP_NVG_GPNVG_Hide", "Laserdesignator", "CUP_H_USArmy_Helmet_ECH1_Sand", "CUP_V_CPC_communicationsbelt_coy", "CUP_G_ESS_KHK_Scarf_Face_Tan_GPS", "CUP_NVG_GPNVG_Hide" };
+    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "CUP_NVG_GPNVG_Hide", "Laserdesignator", "CUP_H_USArmy_Helmet_ECH1_Sand", "CUP_V_CPC_communicationsbelt_coy", "CUP_G_ESS_KHK_Scarf_Face_Tan_GPS", "CUP_NVG_GPNVG_Hide" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "CUP_NVG_GPNVG_Hide", "Laserdesignator", "CUP_H_USArmy_Helmet_ECH1_Sand", "CUP_V_CPC_communicationsbelt_coy", "CUP_G_ESS_KHK_Scarf_Face_Tan_GPS", "CUP_NVG_GPNVG_Hide" };
 };
 class GVAR(SF_Medic) : GVAR(SF_Rifleman) {
     displayName = "SF Medic";
@@ -150,8 +150,8 @@ class GVAR(SF_Medic) : GVAR(SF_Rifleman) {
     respawnItems[] = { "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_splint", "ACE_splint", "ACE_tourniquet", "ACE_tourniquet", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_packingBandage", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_epinephrine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine", "ACE_morphine" };
     magazines[] = { "CUP_HandGrenade_M67", "CUP_HandGrenade_M67", "ACE_M84", "UK3CB_BAF_SmokeShell", "UK3CB_BAF_SmokeShell", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M" };
     respawnMagazines[] = { "CUP_HandGrenade_M67", "CUP_HandGrenade_M67", "ACE_M84", "UK3CB_BAF_SmokeShell", "UK3CB_BAF_SmokeShell", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M" };
-    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "CUP_NVG_PVS14_Hide", "Laserdesignator", "CUP_H_FR_ECH", "CUP_V_CPC_medicalbelt_coy", "CUP_TK_NeckScarf", "CUP_NVG_PVS14_Hide" };
-    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "CUP_NVG_PVS14_Hide", "Laserdesignator", "CUP_H_FR_ECH", "CUP_V_CPC_medicalbelt_coy", "CUP_TK_NeckScarf", "CUP_NVG_PVS14_Hide" };
+    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "CUP_NVG_PVS14_Hide", "Laserdesignator", "CUP_H_FR_ECH", "CUP_V_CPC_medicalbelt_coy", "CUP_TK_NeckScarf", "CUP_NVG_PVS14_Hide" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "CUP_NVG_PVS14_Hide", "Laserdesignator", "CUP_H_FR_ECH", "CUP_V_CPC_medicalbelt_coy", "CUP_TK_NeckScarf", "CUP_NVG_PVS14_Hide" };
     backpack = QGVAR(SF_Medic_pack);
     icon = "iconManMedic";
     attendant = 1;
@@ -165,8 +165,8 @@ class GVAR(SF_AT) : GVAR(SF_Rifleman) {
     respawnItems[] = { "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_splint", "ACE_splint", "ACE_tourniquet", "ACE_tourniquet", "ACE_EarPlugs" };
     magazines[] = { "CUP_HandGrenade_M67", "CUP_HandGrenade_M67", "ACE_M84", "UK3CB_BAF_SmokeShell", "UK3CB_BAF_SmokeShell", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_MAAWS_HEDP_M", "CUP_MAAWS_HEDP_M" };
     respawnMagazines[] = { "CUP_HandGrenade_M67", "CUP_HandGrenade_M67", "ACE_M84", "UK3CB_BAF_SmokeShell", "UK3CB_BAF_SmokeShell", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_MAAWS_HEDP_M", "CUP_MAAWS_HEDP_M" };
-    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "CUP_NVG_GPNVG_Hide", "Laserdesignator", "CUP_H_USArmy_Helmet_ECH1_Sand", "CUP_V_CPC_Fastbelt_coy", "CUP_G_ESS_KHK_Scarf_Face_Tan_GPS", "CUP_NVG_GPNVG_Hide" };
-    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "CUP_NVG_GPNVG_Hide", "Laserdesignator", "CUP_H_USArmy_Helmet_ECH1_Sand", "CUP_V_CPC_Fastbelt_coy", "CUP_G_ESS_KHK_Scarf_Face_Tan_GPS", "CUP_NVG_GPNVG_Hide" };
+    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "CUP_NVG_GPNVG_Hide", "Laserdesignator", "CUP_H_USArmy_Helmet_ECH1_Sand", "CUP_V_CPC_Fastbelt_coy", "CUP_G_ESS_KHK_Scarf_Face_Tan_GPS", "CUP_NVG_GPNVG_Hide" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "CUP_NVG_GPNVG_Hide", "Laserdesignator", "CUP_H_USArmy_Helmet_ECH1_Sand", "CUP_V_CPC_Fastbelt_coy", "CUP_G_ESS_KHK_Scarf_Face_Tan_GPS", "CUP_NVG_GPNVG_Hide" };
     backpack = QGVAR(SF_AT_pack);
     icon = "iconManAT";
 };
@@ -178,8 +178,8 @@ class GVAR(SF_LMG) : GVAR(SF_Rifleman) {
     respawnItems[] = { "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_splint", "ACE_splint", "ACE_tourniquet", "ACE_tourniquet", "ACE_EarPlugs" };
     magazines[] = { "CUP_HandGrenade_M67", "CUP_HandGrenade_M67", "ACE_M84", "UK3CB_BAF_SmokeShell", "UK3CB_BAF_SmokeShell", "CUP_60Rnd_545x39_AK74M_M", "CUP_60Rnd_545x39_AK74M_M", "CUP_60Rnd_545x39_AK74M_M", "CUP_60Rnd_545x39_AK74M_M", "CUP_60Rnd_545x39_AK74M_M", "CUP_60Rnd_545x39_AK74M_M", "CUP_60Rnd_545x39_AK74M_M", "CUP_60Rnd_545x39_AK74M_M", "CUP_60Rnd_545x39_AK74M_M", "CUP_60Rnd_545x39_AK74M_M", "CUP_60Rnd_545x39_AK74M_M", "CUP_60Rnd_545x39_AK74M_M", "CUP_60Rnd_545x39_AK74M_M", "CUP_60Rnd_545x39_AK74M_M" };
     respawnMagazines[] = { "CUP_HandGrenade_M67", "CUP_HandGrenade_M67", "ACE_M84", "UK3CB_BAF_SmokeShell", "UK3CB_BAF_SmokeShell", "CUP_60Rnd_545x39_AK74M_M", "CUP_60Rnd_545x39_AK74M_M", "CUP_60Rnd_545x39_AK74M_M", "CUP_60Rnd_545x39_AK74M_M", "CUP_60Rnd_545x39_AK74M_M", "CUP_60Rnd_545x39_AK74M_M", "CUP_60Rnd_545x39_AK74M_M", "CUP_60Rnd_545x39_AK74M_M", "CUP_60Rnd_545x39_AK74M_M", "CUP_60Rnd_545x39_AK74M_M", "CUP_60Rnd_545x39_AK74M_M", "CUP_60Rnd_545x39_AK74M_M", "CUP_60Rnd_545x39_AK74M_M", "CUP_60Rnd_545x39_AK74M_M" };
-    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "CUP_NVG_GPNVG_Hide", "Laserdesignator", "CUP_H_USArmy_Helmet_ECH1_Sand", "CUP_V_CPC_weaponsbelt_coy", "CUP_G_ESS_KHK_Scarf_Tan", "CUP_NVG_GPNVG_Hide" };
-    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "CUP_NVG_GPNVG_Hide", "Laserdesignator", "CUP_H_USArmy_Helmet_ECH1_Sand", "CUP_V_CPC_weaponsbelt_coy", "CUP_G_ESS_KHK_Scarf_Tan", "CUP_NVG_GPNVG_Hide" };
+    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "CUP_NVG_GPNVG_Hide", "Laserdesignator", "CUP_H_USArmy_Helmet_ECH1_Sand", "CUP_V_CPC_weaponsbelt_coy", "CUP_G_ESS_KHK_Scarf_Tan", "CUP_NVG_GPNVG_Hide" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "CUP_NVG_GPNVG_Hide", "Laserdesignator", "CUP_H_USArmy_Helmet_ECH1_Sand", "CUP_V_CPC_weaponsbelt_coy", "CUP_G_ESS_KHK_Scarf_Tan", "CUP_NVG_GPNVG_Hide" };
     backpack = QGVAR(SF_LMG_pack);
     icon = "iconManMG";
 };
@@ -191,8 +191,8 @@ class GVAR(SF_Comms) : GVAR(SF_Rifleman) {
     respawnItems[] = { "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_splint", "ACE_splint", "ACE_tourniquet", "ACE_tourniquet" };
     magazines[] = { "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_HandGrenade_M67", "CUP_HandGrenade_M67", "ACE_M84", "UK3CB_BAF_SmokeShell", "UK3CB_BAF_SmokeShell" };
     respawnMagazines[] = { "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_HandGrenade_M67", "CUP_HandGrenade_M67", "ACE_M84", "UK3CB_BAF_SmokeShell", "UK3CB_BAF_SmokeShell" };
-    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "CUP_NVG_GPNVG_Hide", "Laserdesignator", "CUP_H_USArmy_Helmet_ECH1_Sand", "CUP_V_CPC_communicationsbelt_coy", "CUP_G_ESS_KHK_Facewrap_Tan", "CUP_NVG_GPNVG_Hide" };
-    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "CUP_NVG_GPNVG_Hide", "Laserdesignator", "CUP_H_USArmy_Helmet_ECH1_Sand", "CUP_V_CPC_communicationsbelt_coy", "CUP_G_ESS_KHK_Facewrap_Tan", "CUP_NVG_GPNVG_Hide" };
+    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "CUP_NVG_GPNVG_Hide", "Laserdesignator", "CUP_H_USArmy_Helmet_ECH1_Sand", "CUP_V_CPC_communicationsbelt_coy", "CUP_G_ESS_KHK_Facewrap_Tan", "CUP_NVG_GPNVG_Hide" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "CUP_NVG_GPNVG_Hide", "Laserdesignator", "CUP_H_USArmy_Helmet_ECH1_Sand", "CUP_V_CPC_communicationsbelt_coy", "CUP_G_ESS_KHK_Facewrap_Tan", "CUP_NVG_GPNVG_Hide" };
     backpack = QGVAR(SF_Comms_pack);
 };
 class GVAR(SF_Sniper) : GVAR(SF_Rifleman) {
@@ -218,8 +218,8 @@ class GVAR(SF_Rifleman_Para) : GVAR(SF_Rifleman) {
     respawnItems[] = { "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_splint", "ACE_splint", "ACE_tourniquet", "ACE_tourniquet", "ACE_EarPlugs" };
     magazines[] = { "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_HandGrenade_M67", "CUP_HandGrenade_M67", "ACE_M84", "UK3CB_BAF_SmokeShell", "UK3CB_BAF_SmokeShell" };
     respawnMagazines[] = { "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_HandGrenade_M67", "CUP_HandGrenade_M67", "ACE_M84", "UK3CB_BAF_SmokeShell", "UK3CB_BAF_SmokeShell" };
-    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "CUP_NVG_GPNVG_Hide", "Laserdesignator", "CUP_H_USArmy_Helmet_ECH1_Sand", "CUP_V_CPC_tlbelt_coy", "CUP_G_Scarf_Face_Tan", "CUP_NVG_GPNVG_Hide" };
-    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "CUP_NVG_GPNVG_Hide", "Laserdesignator", "CUP_H_USArmy_Helmet_ECH1_Sand", "CUP_V_CPC_tlbelt_coy", "CUP_G_Scarf_Face_Tan", "CUP_NVG_GPNVG_Hide" };
+    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "CUP_NVG_GPNVG_Hide", "Laserdesignator", "CUP_H_USArmy_Helmet_ECH1_Sand", "CUP_V_CPC_tlbelt_coy", "CUP_G_Scarf_Face_Tan", "CUP_NVG_GPNVG_Hide" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "CUP_NVG_GPNVG_Hide", "Laserdesignator", "CUP_H_USArmy_Helmet_ECH1_Sand", "CUP_V_CPC_tlbelt_coy", "CUP_G_Scarf_Face_Tan", "CUP_NVG_GPNVG_Hide" };
     backpack = "B_Parachute";
 };
 class GVAR(SF_Teamlead_Para) : GVAR(SF_Rifleman_Para) {
@@ -230,8 +230,8 @@ class GVAR(SF_Teamlead_Para) : GVAR(SF_Rifleman_Para) {
     respawnItems[] = { "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_splint", "ACE_splint", "ACE_tourniquet", "ACE_tourniquet" };
     magazines[] = { "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_HandGrenade_M67", "CUP_HandGrenade_M67", "ACE_M84", "UK3CB_BAF_SmokeShell", "UK3CB_BAF_SmokeShell" };
     respawnMagazines[] = { "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_30Rnd_762x39_AKM_bakelite_desert_M", "CUP_HandGrenade_M67", "CUP_HandGrenade_M67", "ACE_M84", "UK3CB_BAF_SmokeShell", "UK3CB_BAF_SmokeShell" };
-    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "CUP_NVG_GPNVG_Hide", "Laserdesignator", "CUP_H_USArmy_Helmet_ECH1_Sand", "CUP_V_CPC_communicationsbelt_coy", "CUP_G_ESS_KHK_Scarf_Face_Tan_GPS", "CUP_NVG_GPNVG_Hide" };
-    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "CUP_NVG_GPNVG_Hide", "Laserdesignator", "CUP_H_USArmy_Helmet_ECH1_Sand", "CUP_V_CPC_communicationsbelt_coy", "CUP_G_ESS_KHK_Scarf_Face_Tan_GPS", "CUP_NVG_GPNVG_Hide" };
+    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "CUP_NVG_GPNVG_Hide", "Laserdesignator", "CUP_H_USArmy_Helmet_ECH1_Sand", "CUP_V_CPC_communicationsbelt_coy", "CUP_G_ESS_KHK_Scarf_Face_Tan_GPS", "CUP_NVG_GPNVG_Hide" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "CUP_NVG_GPNVG_Hide", "Laserdesignator", "CUP_H_USArmy_Helmet_ECH1_Sand", "CUP_V_CPC_communicationsbelt_coy", "CUP_G_ESS_KHK_Scarf_Face_Tan_GPS", "CUP_NVG_GPNVG_Hide" };
     icon = "iconManLeader";
 };
 class GVAR(SF_AT_Para) : GVAR(SF_Rifleman_Para) {
@@ -242,8 +242,8 @@ class GVAR(SF_AT_Para) : GVAR(SF_Rifleman_Para) {
     respawnItems[] = { "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_splint", "ACE_splint", "ACE_tourniquet", "ACE_tourniquet", "ACE_EarPlugs" };
     magazines[] = { "CUP_HandGrenade_M67", "CUP_HandGrenade_M67", "ACE_M84", "UK3CB_BAF_SmokeShell", "UK3CB_BAF_SmokeShell", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M" };
     respawnMagazines[] = { "CUP_HandGrenade_M67", "CUP_HandGrenade_M67", "ACE_M84", "UK3CB_BAF_SmokeShell", "UK3CB_BAF_SmokeShell", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M", "CUP_30Rnd_545x39_AK74M_M" };
-    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "CUP_NVG_GPNVG_Hide", "Laserdesignator", "CUP_H_USArmy_Helmet_ECH1_Sand", "CUP_V_CPC_Fastbelt_coy", "CUP_G_ESS_KHK_Scarf_Face_Tan_GPS", "CUP_NVG_GPNVG_Hide" };
-    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "CUP_NVG_GPNVG_Hide", "Laserdesignator", "CUP_H_USArmy_Helmet_ECH1_Sand", "CUP_V_CPC_Fastbelt_coy", "CUP_G_ESS_KHK_Scarf_Face_Tan_GPS", "CUP_NVG_GPNVG_Hide" };
+    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "CUP_NVG_GPNVG_Hide", "Laserdesignator", "CUP_H_USArmy_Helmet_ECH1_Sand", "CUP_V_CPC_Fastbelt_coy", "CUP_G_ESS_KHK_Scarf_Face_Tan_GPS", "CUP_NVG_GPNVG_Hide" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "CUP_NVG_GPNVG_Hide", "Laserdesignator", "CUP_H_USArmy_Helmet_ECH1_Sand", "CUP_V_CPC_Fastbelt_coy", "CUP_G_ESS_KHK_Scarf_Face_Tan_GPS", "CUP_NVG_GPNVG_Hide" };
     icon = "iconManAT";
 };
 class GVAR(SF_LMG_Para) : GVAR(SF_Rifleman_Para) {
@@ -254,8 +254,8 @@ class GVAR(SF_LMG_Para) : GVAR(SF_Rifleman_Para) {
     respawnItems[] = { "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_splint", "ACE_splint", "ACE_tourniquet", "ACE_tourniquet", "ACE_EarPlugs" };
     magazines[] = { "CUP_HandGrenade_M67", "CUP_HandGrenade_M67", "ACE_M84", "UK3CB_BAF_SmokeShell", "UK3CB_BAF_SmokeShell", "CUP_60Rnd_545x39_AK74M_M", "CUP_60Rnd_545x39_AK74M_M", "CUP_60Rnd_545x39_AK74M_M", "CUP_60Rnd_545x39_AK74M_M" };
     respawnMagazines[] = { "CUP_HandGrenade_M67", "CUP_HandGrenade_M67", "ACE_M84", "UK3CB_BAF_SmokeShell", "UK3CB_BAF_SmokeShell", "CUP_60Rnd_545x39_AK74M_M", "CUP_60Rnd_545x39_AK74M_M", "CUP_60Rnd_545x39_AK74M_M", "CUP_60Rnd_545x39_AK74M_M" };
-    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "CUP_NVG_GPNVG_Hide", "Laserdesignator", "CUP_H_USArmy_Helmet_ECH1_Sand", "CUP_V_CPC_weaponsbelt_coy", "CUP_G_ESS_KHK_Scarf_Tan", "CUP_NVG_GPNVG_Hide" };
-    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "CUP_NVG_GPNVG_Hide", "Laserdesignator", "CUP_H_USArmy_Helmet_ECH1_Sand", "CUP_V_CPC_weaponsbelt_coy", "CUP_G_ESS_KHK_Scarf_Tan", "CUP_NVG_GPNVG_Hide" };
+    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "CUP_NVG_GPNVG_Hide", "Laserdesignator", "CUP_H_USArmy_Helmet_ECH1_Sand", "CUP_V_CPC_weaponsbelt_coy", "CUP_G_ESS_KHK_Scarf_Tan", "CUP_NVG_GPNVG_Hide" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "CUP_NVG_GPNVG_Hide", "Laserdesignator", "CUP_H_USArmy_Helmet_ECH1_Sand", "CUP_V_CPC_weaponsbelt_coy", "CUP_G_ESS_KHK_Scarf_Tan", "CUP_NVG_GPNVG_Hide" };
     icon = "iconManMG";
 };
 
@@ -283,8 +283,8 @@ class GVAR(Vehicle_Crew) : GVAR(Rifleman) {
     respawnItems[] = { "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage", "ACE_elasticBandage" };
     magazines[] = { "CUP_15Rnd_9x19_M9", "CUP_15Rnd_9x19_M9", "CUP_HandGrenade_M67", "CUP_HandGrenade_M67", "SmokeShell", "SmokeShell", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag" };
     respawnMagazines[] = { "CUP_15Rnd_9x19_M9", "CUP_15Rnd_9x19_M9", "CUP_HandGrenade_M67", "CUP_HandGrenade_M67", "SmokeShell", "SmokeShell", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag", "ACE_30Rnd_556x45_Stanag_Mk318_mag" };
-    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "NVGoggles", "H_HelmetB_light_sand", "CUP_V_CZ_NPP2006_nk_des", "NVGoggles" };
-    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemAndroid", "NVGoggles", "H_HelmetB_light_sand", "CUP_V_CZ_NPP2006_nk_des", "NVGoggles" };
+    linkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "NVGoggles", "H_HelmetB_light_sand", "CUP_V_CZ_NPP2006_nk_des", "NVGoggles" };
+    respawnLinkedItems[] = { "ItemMap", "ItemCompass", "ItemWatch", "ItemGPS", "NVGoggles", "H_HelmetB_light_sand", "CUP_V_CZ_NPP2006_nk_des", "NVGoggles" };
 };
 class GVAR(Heli_Crew) : GVAR(Rifleman) {
     editorSubcategory = QEGVAR(common,crew);

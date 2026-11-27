@@ -2,10 +2,6 @@
 #define COMPONENT_BEAUTIFIED Diving
 #include "\u\uksf\addons\main\script_mod.hpp"
 
-// #define DEBUG_MODE_FULL
-// #define DISABLE_COMPILE_CACHE
-// #define CBA_DEBUG_SYNCHRONOUS
-
 #include "\u\uksf\addons\main\script_macros.hpp"
 
 #define CYLINDER(BASE,NAME) ##BASE####NAME
@@ -42,8 +38,20 @@ class CYLINDER(GVAR(cylinderDouble),varNAME) : GVAR(cylinderDoubleBase) { \
 #define AIR_USAGE_NORMAL 20
 #define AIR_USAGE_FAST 40
 
-#define COMPARTMENT_COUNT 3
-#define SATURATION_OFFGAS_THRESHOLD 0.01
+#define COMPARTMENT_COUNT 16
+#define SATURATION_OFFGAS_THRESHOLD 0.05
 #define DECO_DIMINISH 5
+#define WATER_VAPOUR_PRESSURE 0.0567
+#define SURFACE_N2 (0.79 * (1 - WATER_VAPOUR_PRESSURE))
+#define STOP_INCREMENT 3
+#define STOP_SIM_STEP 30
+#define STOP_RECALC_INTERVAL 10
+#define DEEP_STOP_TIME 120
+#define STOP_SIM_LIMIT 7200
+#define MAX_TICK_DT 30
+#define BENT_COOLDOWN 300
+#define DIVE_STATE_VERSION 2
 #define MOD_PPO2 1.6
 #define NO_AIR_TIMEOUT 60
+#define DECOMPRESS_DURATION 20
+#define DECO_POD_MASS 2500

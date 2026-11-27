@@ -23,6 +23,12 @@ class CfgCustomRanks {
         displayNameShort = "Pte";
         texture = QPATHTOF(data\Empty.paa);
     };
+    class Tpr {
+        rank = "Trooper";
+        displayName = "Trooper";
+        displayNameShort = "Tpr";
+        texture = QPATHTOF(data\Empty.paa);
+    };
     class LAC {
         rank = "Leading Aircraftman";
         displayName = "Leading Aircraftman";

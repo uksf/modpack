@@ -65,7 +65,7 @@ TRACE_2("6) Spawn vehicle position count",_turrets,_count);
 
 [{
     params ["_args", "_idPFH"];
-    _args params ["_group", "_vehicle", "_unitPool", "_count", "_turrets", "_time", "_callback", "_callbackArgs"];
+    _args params ["_group", "_vehicle", "_unitPool", "_count", "_time", "_callback", "_callbackArgs"];
     TRACE_1("6) Spawn vehicle iteration",_args);
 
     private _allSpawned = (count (crew _vehicle)) >= _count;
@@ -85,25 +85,18 @@ TRACE_2("6) Spawn vehicle position count",_turrets,_count);
     private _unit = _group createUnit [selectRandom _unitPool, [0, 0, 2000], [], 0, "NONE"];
     INFO("6) Spawn vehicle created unit");
 
-    if ((_vehicle emptyPositions "driver") > 0) exitWith {
-        INFO("6) Spawn vehicle set unit as driver");
-        _unit assignAsDriver _vehicle;
-        _unit moveInDriver _vehicle;
-        _unit setVariable [QGVAR(assignedVehicle), assignedVehicle _unit];
+    if (_unit moveInAny [_vehicle, ["DRIVER", "GUNNER", "COMMANDER", "TURRET", "CARGO"]]) then {
+        private _seat = (fullCrew _vehicle) select {(_x#0) isEqualTo _unit};
+        if (_seat isNotEqualTo []) then {
+            (_seat#0) params ["", "_role", "", "_turret"];
+            switch (toLower _role) do {
+                case "driver": {_unit assignAsDriver _vehicle};
+                case "cargo": {_unit assignAsCargo _vehicle};
+                default {_unit assignAsTurret [_vehicle, _turret]};
+            };
+            _unit setVariable [QGVAR(assignedVehicle), assignedVehicle _unit];
+        };
+    } else {
+        deleteVehicle _unit;
     };
-
-    if (isNull (_vehicle turretUnit (_turrets#0))) exitWith {
-        INFO("6) Spawn vehicle set unit as turret");
-        _unit assignAsTurret [_vehicle, (_turrets#0)];
-        _unit moveInTurret [_vehicle, (_turrets#0)];
-        _unit setVariable [QGVAR(assignedVehicle), assignedVehicle _unit];
-        _turrets deleteAt 0;
-    };
-
-    if ((_vehicle emptyPositions "cargo") > 0) exitWith {
-        INFO("6) Spawn vehicle set unit as cargo");
-        _unit assignAsCargo _vehicle;
-        _unit moveInCargo _vehicle;
-        _unit setVariable [QGVAR(assignedVehicle), assignedVehicle _unit];
-    };
-}, SPAWN_DELAY, [_group, _vehicle, _unitPool, _count, _turrets, time, _callback, _callbackArgs]] call CBA_fnc_addPerFrameHandler;
+}, SPAWN_DELAY, [_group, _vehicle, _unitPool, _count, time, _callback, _callbackArgs]] call CBA_fnc_addPerFrameHandler;

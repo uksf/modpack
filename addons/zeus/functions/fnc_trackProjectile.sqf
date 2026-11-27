@@ -6,9 +6,12 @@
     Description:
         Registers a projectile for Zeus debug visualisation and recursively tracks
         any submunitions it spawns.
-        The label is the ammo display name, then the magazine, then the weapon, then
-        the parent projectile's label, then the ammo classname. Magazines that share
-        one ammo class, such as artillery charges, keep their own labels.
+        The label names the single munition, never a pack count, read from config only.
+        Artillery charge magazines (artillery ammo the firing weapon also loads from
+        another magazine at a different initSpeed) use the magazine display name.
+        Otherwise the order is: ammo displayName, ammo displayNameShort, the magazine's
+        pylonWeapon displayName, the magazine displayNameShort, the firing weapon
+        displayName, the parent projectile's label, then the ammo classname.
 
     Parameter(s):
         0: Projectile <OBJECT>
@@ -31,13 +34,27 @@ if (isNull _projectile || {_ammo isEqualTo ""}) exitWith {};
 private _nameKey = [_ammo, _magazine, _weapon, _parentName];
 private _name = GVAR(projectileNameCache) get _nameKey;
 if (isNil "_name") then {
-    _name = [
-        getText (EGVAR(common,configAmmo) >> _ammo >> "displayName"),
-        getText (EGVAR(common,configMagazines) >> _magazine >> "displayName"),
-        getText (EGVAR(common,configWeapons) >> _weapon >> "displayName"),
+    private _magazineConfig = EGVAR(common,configMagazines) >> _magazine;
+    private _ammoConfig = EGVAR(common,configAmmo) >> _ammo;
+    private _weaponConfig = EGVAR(common,configWeapons) >> _weapon;
+    private _initSpeed = getNumber (_magazineConfig >> "initSpeed");
+    private _isCharge = getNumber (_ammoConfig >> "artilleryLock") == 1 && {
+        getArray (_weaponConfig >> "magazines") findIf {
+            private _siblingConfig = EGVAR(common,configMagazines) >> _x;
+            getText (_siblingConfig >> "ammo") == _ammo && {getNumber (_siblingConfig >> "initSpeed") != _initSpeed}
+        } != -1
+    };
+    private _candidates = [
+        ["", getText (_magazineConfig >> "displayName")] select _isCharge,
+        getText (_ammoConfig >> "displayName"),
+        getText (_ammoConfig >> "displayNameShort"),
+        getText (EGVAR(common,configWeapons) >> getText (_magazineConfig >> "pylonWeapon") >> "displayName"),
+        getText (_magazineConfig >> "displayNameShort"),
+        getText (_weaponConfig >> "displayName"),
         _parentName,
         _ammo
-    ] select {_x isNotEqualTo ""} select 0;
+    ];
+    _name = _candidates select {_x isNotEqualTo ""} select 0;
     GVAR(projectileNameCache) set [_nameKey, _name];
 };
 

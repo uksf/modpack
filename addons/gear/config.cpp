@@ -65,4 +65,5 @@ class CfgPatches {
 
 class CBA_Extended_EventHandlers;
 #include "CfgVehicles.hpp"
+#include "CfgUnitInsignia.hpp"
 #include "CfgWeapons.hpp"

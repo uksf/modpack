@@ -1,0 +1,29 @@
+{
+  "format": 1,
+  "pbo": "leshtow.pbo",
+  "pristineSha256": "4552fd2328e6674bf3ef3a9bcd1ebd21d2ea1dfc6a0c189bb8c27c080a7f76bd",
+  "description": "LESH towAction levels the towed vehicle and pushes it down whenever its model origin is more than 0.3 m above the ground. An aircraft with a tall origin and a nose-up stance, such as the Typhoon, is therefore pressed into the ground and pitched up on hook-up. Hold the pitch and height the vehicle had when the tow started (a new tow starts when the tug changes or the per-frame tow handler has not run for a second), change only its heading, and rotate about the same tow pivot. Remove this manifest when LESH keeps the towed vehicle's stance.",
+  "assets": [
+    {
+      "path": "functions\\fn_towAction.sqf",
+      "sha256": "23145cd3e780b535fb86813c45b1911baaa71467aa9a6c92c0c1fc847d5b6b98",
+      "ops": [
+        {
+          "op": "text-replace",
+          "find": "_vectorDir = [(sin _direction), (cos _direction), 0];",
+          "replace": "private _hold = _target getVariable [\"LESH_rest\", [objNull, 0, 0, -1]]; if ((_hold select 0) != _tower || {diag_tickTime - (_hold select 3) > 1}) then { _hold = [_tower, (vectorDir _target) select 2, (getPosATL _target) select 2, 0] }; _hold set [3, diag_tickTime]; _target setVariable [\"LESH_rest\", _hold]; private _pitch = _hold select 1; private _flat = sqrt (1 - _pitch * _pitch); _vectorDir = [(sin _direction) * _flat, (cos _direction) * _flat, _pitch];"
+        },
+        {
+          "op": "text-replace",
+          "find": "if ( _altitudeTarget > 0.3 ) then {\r\n    _velocityVector set [2, -1];\r\n} else {\r\n    _velocityVector set [2, -0.01];\r\n};",
+          "replace": "_velocityVector set [2, -1 max (((_hold select 2) - ((getPosATL _target) select 2)) * 5) min 1];"
+        },
+        {
+          "op": "text-replace",
+          "find": "[_target, _vectorDir, _target_wheel_offset] call LESH_towing_fnc_setVectorDirE;",
+          "replace": "private _pivot = _target modelToWorldVisual _target_wheel_offset; _target setVectorDirAndUp [_vectorDir, [-(sin _direction) * _pitch, -(cos _direction) * _pitch, _flat]]; _target setPosWorld ((getPosWorld _target) vectorAdd (_pivot vectorDiff (_target modelToWorldVisual _target_wheel_offset)));\r\n_target setAngularVelocity [0, 0, 0];"
+        }
+      ]
+    }
+  ]
+}

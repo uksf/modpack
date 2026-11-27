@@ -28,6 +28,7 @@
 !uksf_x64.dll
 !extension/resources/OpenAL32.dll
 *.so
+!uksf_x64.so
 *.so.*
 *.dylib
 

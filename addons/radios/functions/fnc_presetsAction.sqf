@@ -39,11 +39,14 @@ switch (_action) do {
             private _radioData = _presets#_selectedIndex#1;
             private _pttOrder = _radioData apply {_x#4};
             _pttOrder sort true;
+            private _carried = (([acre_player] call acre_sys_core_fnc_getGear) select {(_x select [0, 4]) == "ACRE"}) apply {[_x] call acre_api_fnc_getBaseRadio};
             private _lines = _radioData apply {
                 _x params ["_type", "_channel", "_volume", "_ear", "_pttIndex", ["_mpu5", []]];
                 private _pttKey = (_pttOrder find _pttIndex) + 1;
+                private _carriedIndex = _carried find _type;
+                if (_carriedIndex != -1) then {_carried deleteAt _carriedIndex};
                 private _line = format [
-                    "<t font='PuristaMedium'>%1</t><br/>%2 %3, %4, volume %5%%, %6",
+                    ["<t font='PuristaMedium'>%1</t><br/>%2 %3, %4, volume %5%%, %6", "<t color='#ff5050'><t font='PuristaMedium'>%1 - not carried</t><br/>%2 %3, %4, volume %5%%, %6</t>"] select (_carriedIndex == -1),
                     getText (EGVAR(common,configWeapons) >> _type >> "displayName"),
                     ["Channel", "Talk group"] select (_mpu5 isNotEqualTo []),
                     _channel,
@@ -56,7 +59,7 @@ switch (_action) do {
                 };
                 _line
             };
-            _details = _lines joinString "<br/><br/>";
+            _details = "<t color='#b0b0b0'>Loading changes radio settings only. It does not add radios to your gear.</t><br/><br/>" + (_lines joinString "<br/><br/>");
         };
         (_display displayCtrl IDC_RADIO_PRESETS_DETAILS) ctrlSetStructuredText parseText _details;
     };

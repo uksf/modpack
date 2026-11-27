@@ -7,12 +7,24 @@
         Server. Relays one streamed PCM frame from the API to nearby clients, and
         closes the stream on npc_audio_end. Completed frames stay until streamStale
         so a later walk-up can replay them.
+
+    Parameters:
+        0: Event type <STRING>
+        1: Stream event arguments <ARRAY>
+
+    Return value:
+        Nothing
+
+    Example:
+        ["npc_audio_end", [netId cursorObject, "turn"]] call uksf_npc_fnc_onStreamFrame
 */
 params ["_type", "_args"];
 _args params ["_npcId", "_turnId"];
 if ([_npcId, _turnId] call FUNC(isTurnCancelled)) exitWith {};
 
 private _npc = objectFromNetId _npcId;
+private _audioRange = GVAR(audioRange);
+private _audioRangeSquared = _audioRange * _audioRange;
 private _clip = GVAR(activeClips) getOrDefault [_npcId, []];
 if (_clip isNotEqualTo [] && {(_clip select 0) isEqualTo _turnId}) exitWith {
     TRACE_2("stream dropped, complete clip already admitted",_npcId,_turnId);
@@ -39,7 +51,7 @@ if (_type isEqualTo "npc_audio_frame") exitWith {
     (_stream select 1) set [_seq, _pcm];
     _stream set [2, diag_tickTime];
     GVAR(activeStreams) set [_npcId, _stream];
-    private _targets = ALL_PLAYERS select { _x distance _npc <= GVAR(audioRange) };
+    private _targets = ALL_PLAYERS select { _audioRange >= 0 && {_x distanceSqr _npc <= _audioRangeSquared} };
     if (_seq isEqualTo 0) then { [_npcId, _turnId, "stream", "", count _targets] call FUNC(sendAck) };
     if (_targets isEqualTo []) exitWith {};
     private _listeners = _stream param [4, []];
@@ -55,7 +67,7 @@ _stream set [3, true];
 GVAR(activeStreams) set [_npcId, _stream];
 private _targets = _stream param [4, []];
 if (!isNull _npc) then {
-    { _targets pushBackUnique _x } forEach (ALL_PLAYERS select { _x distance _npc <= GVAR(audioRange) });
+    { _targets pushBackUnique _x } forEach (ALL_PLAYERS select { _audioRange >= 0 && {_x distanceSqr _npc <= _audioRangeSquared} });
 };
 TRACE_2("relay end",_npcId,_turnId);
 [_npcId, _turnId, "streamEnd", "", count _targets] call FUNC(sendAck);
