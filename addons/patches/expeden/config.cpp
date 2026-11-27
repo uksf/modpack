@@ -7,6 +7,7 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
+            "A3_Characters_expEden_sick",
             "Air_Globe_Heli_Light_01",
             "Air_Globe_UAV_02",
             "Armor_Globe_APC_Tracked_02",
@@ -40,6 +41,10 @@ class CfgPatches {
 class CBA_Extended_EventHandlers_base;
 
 #include "CfgRoot.hpp"
+
+class CfgFaces {
+    #include "CfgFaces.hpp"
+};
 
 class CfgVehicles {
     #include "CfgVehicles.hpp"

@@ -1,0 +1,15 @@
+{
+  "format": 1,
+  "pbo": "LSR_patch_contact_in_cup_c.pbo",
+  "pristineSha256": "4a5e4133ae34dc4f0ffbf206212387ddceb1cd4544e70579cb286bf2f55ab9cf",
+  "description": "LSR's Contact-in-CUP house patch forward-declares House, Land_HouseV_1I2, Land_HouseV2_01A and Land_HouseV2_04 without their nested DestructionEffects, so 20 houses log 'Cannot find base DestructionEffects' and load with an empty base. Its door and glass classes also drop the CUP sibling bases and log 'Updating base class'. The replacement config.bin is LSR's config with House declared with its nested DestructionEffects, each house defined after its parent, the CUP house addons in requiredAddons, and the sibling bases restored only where the class overrides every inherited property. To rebuild it, derapify the pristine config.bin, run tools/lsr_contact_cup/fix_config.py <in.cpp> <out.cpp>, and binarise the output with CfgConvert -bin. Remove this manifest when LSR fixes its declarations.",
+  "assets": [
+    {
+      "path": "config.bin",
+      "sha256": "992ca70982750fbda7f20f6dbf602b35d452f149d81ea6da6c1f075bdf87753b",
+      "ops": [
+        { "op": "replace-file", "source": "LSR_patch_contact_in_cup_c/config.bin" }
+      ]
+    }
+  ]
+}

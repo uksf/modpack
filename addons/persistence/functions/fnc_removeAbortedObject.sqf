@@ -32,4 +32,4 @@ publicVariable QGVAR(unmarkedObjectIds);
 
 _allObjects deleteAt _index;
 GVAR(dataNamespace) setVariable [QGVAR(objects), _allObjects];
-call FUNC(saveData);
+[false] call FUNC(saveData);
