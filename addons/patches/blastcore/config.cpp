@@ -16,6 +16,9 @@ class CfgPatches {
     };
 };
 
+#include "CfgCloudlets.hpp"
+#include "CfgBackblast.hpp"
+
 class ImpactConcreteSabot {
     class Impact3 {
         type = "ConcreteBulletImpact3_30mm";
