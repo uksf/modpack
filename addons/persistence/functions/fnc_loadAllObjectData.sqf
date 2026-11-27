@@ -70,7 +70,7 @@ INFO_4("Objects sorted by ASL height, lowest: %1 at %2, highest: %3 at %4",(_obj
             GVAR(pendingAbortedRemovals) = [];
             publicVariable QGVAR(unmarkedObjectIds);
             GVAR(dataNamespace) setVariable [QGVAR(objects), _allObjects];
-            call FUNC(saveData);
+            [false] call FUNC(saveData);
         };
 
         if (GVAR(abortedObjectIds) isNotEqualTo []) then {
